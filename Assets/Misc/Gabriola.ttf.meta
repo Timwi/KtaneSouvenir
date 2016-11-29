@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 2cc5074422ed950489fe2e35af896c57
+timeCreated: 1480177244
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Gabriola
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: mod.bundle
+  assetBundleVariant: 
