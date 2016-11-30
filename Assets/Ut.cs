@@ -96,6 +96,30 @@ namespace Souvenir
         public static KeyValuePair<TKey, TValue> KeyValuePair<TKey, TValue>(TKey key, TValue value) { return new KeyValuePair<TKey, TValue>(key, value); }
 
         /// <summary>
+        ///     Adds an element to a List&lt;V&gt; stored in the current IDictionary&lt;K, List&lt;V&gt;&gt;. If the specified
+        ///     key does not exist in the current IDictionary, a new List is created.</summary>
+        /// <typeparam name="K">
+        ///     Type of the key of the IDictionary.</typeparam>
+        /// <typeparam name="V">
+        ///     Type of the values in the Lists.</typeparam>
+        /// <param name="dic">
+        ///     IDictionary to operate on.</param>
+        /// <param name="key">
+        ///     Key at which the list is located in the IDictionary.</param>
+        /// <param name="value">
+        ///     Value to add to the List located at the specified Key.</param>
+        public static void AddSafe<K, V>(this IDictionary<K, List<V>> dic, K key, V value)
+        {
+            if (dic == null)
+                throw new ArgumentNullException("dic");
+            if (key == null)
+                throw new ArgumentNullException("key", "Null values cannot be used for keys in dictionaries.");
+            if (!dic.ContainsKey(key))
+                dic[key] = new List<V>();
+            dic[key].Add(value);
+        }
+
+        /// <summary>
         ///     Increments an integer in an <see cref="IDictionary&lt;K, V&gt;"/> by the specified amount. If the specified
         ///     key does not exist in the current dictionary, the value <paramref name="amount"/> is inserted.</summary>
         /// <typeparam name="K">
