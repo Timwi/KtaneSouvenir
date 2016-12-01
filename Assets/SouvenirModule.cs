@@ -20,18 +20,27 @@ public class SouvenirModule : MonoBehaviour
     public KMBombModule Module;
     public KMAudio Audio;
     public KMSelectable[] Answers;
+    public MeshFilter[] AnswerHighlights;
 
     public GameObject Text;
     public GameObject AnswersParent;
+    public Mesh AnswerHighlightShort;
+    public Mesh AnswerHighlightLong;
 
-    private bool _isTimwisComputer = Environment.GetEnvironmentVariable("COMPUTERNAME") == "TEKELIA";
-    private string _timwiPath = @"D:\c\KTANE\Souvenir modules.txt";
+    private static bool _isTimwisComputer = Environment.GetEnvironmentVariable("COMPUTERNAME") == "TEKELIA";
+    private static string _timwiPath = @"D:\c\KTANE\Souvenir modules.txt";
     private Dictionary<string, List<QuestionBase>> _questions = new Dictionary<string, List<QuestionBase>>();
+    private bool _isActivated = false;
+    private bool _isInUnity = false;
+
+    private QuestionBase _currentQuestion = null;
+    private bool _passAfterCurrentQuestion = false;
+    private bool _isSolved = false;
+    private int _waitableModules;
 
     void Start()
     {
         Debug.Log("[Souvenir] Started.");
-        Module.OnActivate += ActivateModule;
         Bomb.OnBombExploded += delegate { StopAllCoroutines(); };
         Bomb.OnBombSolved += delegate { StopAllCoroutines(); };
 
@@ -39,30 +48,212 @@ public class SouvenirModule : MonoBehaviour
             .Select(f => Ut.KeyValuePair((Question) f.GetValue(null), f.GetCustomAttribute<SouvenirQuestionAttribute>()))
             .Where(kvp => kvp.Value != null)
             .ToDictionary();
-    }
 
-    void ActivateModule()
-    {
         if (_isTimwisComputer)
             lock (_timwiPath)
                 File.WriteAllText(_timwiPath, "");
 
-        foreach (var module in Enumerable.Range(0, transform.parent.childCount)
-                .Select(i => transform.parent.GetChild(i).gameObject)
-                .Where(i => i.GetComponent<KMBombModule>() != null))
+        if (transform.parent != null)
         {
-            StartCoroutine(ProcessModule(module));
+            _waitableModules = Bomb.GetSolvableModuleNames().Count;
+            foreach (var module in Enumerable.Range(0, transform.parent.childCount)
+                    .Select(i => transform.parent.GetChild(i).gameObject)
+                    .Where(i => i.GetComponent<KMBombModule>() != null))
+                StartCoroutine(ProcessModule(module));
         }
+
+        _isActivated = false;
+        Module.OnActivate += delegate
+        {
+            _isActivated = true;
+            var serial = Bomb.GetSerialNumber();
+            if (serial == null)
+            {
+                // Testing in Unity
+                Debug.Log("[Souvenir] Entering Unity testing mode.");
+                _isInUnity = true;
+                var questions = Ut.GetEnumValues<Question>();
+                var curQuestion = 0;
+                var curOrd = 0;
+                var curExample = 0;
+                Action showQuestion = () =>
+                {
+                    SouvenirQuestionAttribute attr;
+                    if (!_attributes.TryGetValue(questions[curQuestion], out attr))
+                    {
+                        Debug.LogFormat("[Souvenir] Error: Question {0} has no attribute.", questions[curQuestion]);
+                        return;
+                    }
+                    if (attr.ExampleExtraFormatArguments != null && attr.ExampleExtraFormatArguments.Length > 0 && attr.ExampleExtraFormatArgumentGroupSize > 0)
+                    {
+                        var sz = attr.ExampleExtraFormatArguments.Length / attr.ExampleExtraFormatArgumentGroupSize;
+                        curExample = (curExample % sz + sz) % sz;
+                    }
+                    var fmt = new object[attr.ExampleExtraFormatArgumentGroupSize + 1];
+                    fmt[0] = curOrd == 0 ? attr.ModuleName : string.Format("the {0} you solved {1}", attr.ModuleName, ordinal(curOrd));
+                    for (int i = 0; i < attr.ExampleExtraFormatArgumentGroupSize; i++)
+                        fmt[i + 1] = attr.ExampleExtraFormatArguments[curExample * attr.ExampleExtraFormatArgumentGroupSize + i];
+                    SetQuestion(new QuestionText(string.Format(attr.QuestionText, fmt), attr.AllAnswers.ToList().Shuffle().Take(attr.NumAnswers).ToArray(), Rnd.Range(0, attr.NumAnswers), 0));
+                };
+                showQuestion();
+
+                Answers[0].OnInteract += delegate
+                {
+                    curQuestion = (curQuestion + questions.Length - 1) % questions.Length;
+                    curExample = 0;
+                    curOrd = 0;
+                    showQuestion();
+                    return false;
+                };
+                Answers[1].OnInteract += delegate
+                {
+                    curQuestion = (curQuestion + 1) % questions.Length;
+                    curExample = 0;
+                    curOrd = 0;
+                    showQuestion();
+                    return false;
+                };
+                Answers[2].OnInteract += delegate
+                {
+                    if (curOrd > 0) curOrd--;
+                    showQuestion();
+                    return false;
+                };
+                Answers[3].OnInteract += delegate
+                {
+                    curOrd++;
+                    showQuestion();
+                    return false;
+                };
+                Answers[4].OnInteract += delegate
+                {
+                    curExample++;
+                    showQuestion();
+                    return false;
+                };
+                Answers[5].OnInteract += delegate
+                {
+                    curExample--;
+                    showQuestion();
+                    return false;
+                };
+            }
+            else
+            {
+                // Playing for real
+                Debug.Log("[Souvenir] Entering KTANE mode.");
+                for (int i = 0; i < Answers.Length; i++)
+                {
+                    var j = i;
+                    Answers[i].OnInteract += delegate { HandleAnswer(j); return false; };
+                }
+                Text.SetActive(false);
+                AnswersParent.SetActive(false);
+                StartCoroutine(Play());
+            }
+        };
+    }
+
+    private void HandleAnswer(int index)
+    {
+        Answers[index].AddInteractionPunch();
+        Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, Answers[index].transform);
+
+        if (_currentQuestion == null)
+            return;
+
+        if (_currentQuestion.CorrectIndex == index)
+        {
+            _currentQuestion = null;
+            Text.SetActive(false);
+            AnswersParent.SetActive(false);
+            if (_passAfterCurrentQuestion)
+            {
+                _isSolved = true;
+                Module.HandlePass();
+            }
+        }
+        else
+            Module.HandleStrike();
+    }
+
+    private IEnumerator Play()
+    {
+        yield return new WaitForSeconds(5f);
+
+        var questionsAsked = 0;
+
+        while (true)
+        {
+            while (_currentQuestion != null)
+                yield return new WaitForSeconds(1f);
+
+            if (_isSolved)
+                yield break;
+
+            var anyQuestions = _questions.Count > 0;
+            var canStillWait = Bomb.GetSolvedModuleNames().Count < _waitableModules;
+
+            if (!anyQuestions && !canStillWait)
+            {
+                SetQuestion(new QuestionText("Congratulations!", new[] { "Thank you" }, 0, 0));
+                _passAfterCurrentQuestion = true;
+            }
+            else if (!anyQuestions)
+            {
+                yield return new WaitForSeconds(1f);
+            }
+            else
+            {
+                var qMod = _questions.Keys.PickRandom();
+                while (_questions[qMod].Count == 0)
+                {
+                    _questions.Remove(qMod);
+                    if (_questions.Count == 0)
+                        break;
+                    qMod = _questions.Keys.PickRandom();
+                }
+                if (_questions.Count == 0)
+                    continue;
+
+                SetQuestion(_questions[qMod].PickRandom());
+            }
+        }
+    }
+
+    private void SetQuestion(QuestionBase q)
+    {
+        _currentQuestion = q;
+
+        var qt = q as QuestionText;
+        Text.GetComponent<TextMesh>().text = q.QuestionText;
+        Text.SetActive(true);
+        if (qt != null)
+            ShowAnswers(qt.Answers);
+        else
+        {
+#warning TODO
+        }
+        AnswersParent.SetActive(true);
     }
 
     void ShowAnswers(string[] answers)
     {
-        if (answers != null && answers.Length > 1 && answers.Length < 5)
+        if (answers != null && answers.Length > 0 && answers.Length < 5)
         {
             Answers[2].transform.localPosition = Answers[2].transform.localPosition.SetX(.005f);
             Answers[3].transform.localPosition = Answers[3].transform.localPosition.SetX(.005f);
-            for (int i = answers.Length; i < Answers.Length; i++)
-                Answers[i].gameObject.SetActive(false);
+            for (int i = 0; i < Answers.Length; i++)
+            {
+                AnswerHighlights[i].mesh = AnswerHighlightLong;
+                if (i >= answers.Length)
+                {
+                    if (_isInUnity)
+                        Answers[i].GetComponent<TextMesh>().text = "-";
+                    else
+                        Answers[i].gameObject.SetActive(false);
+                }
+            }
         }
         else if (answers != null && answers.Length > 1 && answers.Length < 7)
         {
@@ -70,12 +261,21 @@ public class SouvenirModule : MonoBehaviour
             Answers[3].transform.localPosition = Answers[3].transform.localPosition.SetX(-.02f);
             Answers[4].transform.localPosition = Answers[4].transform.localPosition.SetX(.0325f);
             Answers[5].transform.localPosition = Answers[5].transform.localPosition.SetX(.0325f);
-            for (int i = answers.Length; i < Answers.Length; i++)
-                Answers[i].gameObject.SetActive(false);
+            for (int i = 0; i < Answers.Length; i++)
+            {
+                AnswerHighlights[i].mesh = AnswerHighlightShort;
+                if (i >= answers.Length)
+                {
+                    if (_isInUnity)
+                        Answers[i].GetComponent<TextMesh>().text = "-";
+                    else
+                        Answers[i].gameObject.SetActive(false);
+                }
+            }
         }
         else
         {
-            Debug.LogFormat("[Souvenir] Something went wrong setting answers. length={0}, answers=[{1}]", answers == null ? "null" : answers.Length.ToString(), answers == null ? "null" : string.Join(", ", answers));
+            Debug.LogFormat("[Souvenir] Something went wrong setting answers. length={0}, answers=[{1}]", answers == null ? "null" : answers.Length.ToString(), answers == null ? "null" : answers.JoinString());
             PassAndTurnOff("Error.");
         }
     }
@@ -183,20 +383,25 @@ public class SouvenirModule : MonoBehaviour
     private Dictionary<string, int> _moduleCounts = new Dictionary<string, int>();
     private Dictionary<string, int> _modulesSolved = new Dictionary<string, int>();
 
+    private List<int[]> _forgetMeNotDisplays = new List<int[]>();
+    private List<int[]> _forgetMeNotSolutions = new List<int[]>();
+
     private IEnumerator ProcessModule(GameObject module)
     {
-        yield return new WaitForSeconds(.05f + Rnd.Range(0, .05f));
+        yield return new WaitForSeconds(.02f + Rnd.Range(0, .02f));
 
-        const string _3DMaze = "ThreeDMazeModule(Clone)";
+        const string _Souvenir = "SouvenirModule(Clone)";
+
+        const string _3DMaze = "3DMazeModule(Clone)";
         const string _AdjacentLetters = "AdjacentLettersModule(Clone)";
         const string _AdventureGame = "AdventureGameModule(Clone)";
+        const string _ConnectionCheck = "GraphModule(Clone)";
+        const string _ForgetMeNot = "AdvancedMemory(Clone)";
         const string _TheBulb = "TheBulbModule(Clone)";
         const string _TwoBits = "TwoBitsModule(Clone)";
 
         // 𝐍𝐨𝐭 𝐠𝐨𝐧𝐧𝐚 𝐝𝐨:
         var ignore = new[] {
-            "SouvenirModule(Clone)",
-
             // Anagrams
             "Anagrams_Module(Clone)",
             // Astrology
@@ -223,6 +428,7 @@ public class SouvenirModule : MonoBehaviour
         // 𝐒𝐭𝐫𝐢𝐤𝐞𝐬 𝐨𝐧𝐥𝐲:
         // Blind Alley
         // Chess — Chess Module(Clone)/ChessBehaviour
+        // Follow the Leader
         // Friendship
         // Lettered Keys
         // Listening
@@ -232,12 +438,8 @@ public class SouvenirModule : MonoBehaviour
         // Round Keypad
 
         // 𝐂𝐚𝐧𝐝𝐢𝐝𝐚𝐭𝐞𝐬:
-        // The Bulb
         // Colored Squares
-        // Connection Check — GraphModule(Clone)/GraphModule
         // English Test
-        // Follow the Leader
-        // Forget Me Not
         // Hexamaze — HexamazeModule(Clone)/HexamazeModule
         // Laundry
         // Mazes
@@ -284,6 +486,9 @@ public class SouvenirModule : MonoBehaviour
                     if (comp == null || fldMap == null || fldIsComplete == null)
                         yield break;
 
+                    while (!_isActivated)
+                        yield return new WaitForSeconds(.1f);
+
                     var map = fldMap.Get();
                     if (map == null)
                         yield break;
@@ -309,7 +514,7 @@ public class SouvenirModule : MonoBehaviour
                             if ("ABCDH".Contains(ch))
                                 chars.Add(ch);
                         }
-                    var correctMarkings = string.Join("", chars.OrderBy(c => c).Select(c => c.ToString()).ToArray());
+                    var correctMarkings = chars.OrderBy(c => c).JoinString();
 
                     while (!fldIsComplete.Get())
                         yield return new WaitForSeconds(.1f);
@@ -329,6 +534,9 @@ public class SouvenirModule : MonoBehaviour
 
                     if (comp == null || fldSubmitButton == null || fldLetters == null || fldSolved == null || fldPushed == null)
                         yield break;
+
+                    while (!_isActivated)
+                        yield return new WaitForSeconds(.1f);
 
                     var letters = fldLetters.Get();
                     if (letters == null)
@@ -406,6 +614,9 @@ public class SouvenirModule : MonoBehaviour
 
                     if (comp == null || fldButtonUse == null || fldStatValues == null || fldInvValues == null || fldInvWeaponCount == null || fldSelectedItem == null || fldNumWeapons == null || mthItemName == null)
                         yield break;
+
+                    while (!_isActivated)
+                        yield return new WaitForSeconds(.1f);
 
                     var statValues = fldStatValues.Get();
                     var invValues = fldInvValues.Get();
@@ -487,20 +698,139 @@ public class SouvenirModule : MonoBehaviour
                     break;
                 }
 
+            case _ConnectionCheck:
+                {
+                    var comp = GetComponent(module, "GraphModule");
+                    var fldOn = GetField<int[]>(comp, "On");
+                    var fldCheckButton = GetField<KMSelectable>(comp, "Check", isPublic: true);
+                    var fldDict = GetField<Dictionary<Vector2, bool>>(comp, "dict");
+                    var fldQueries = GetField<Vector2[]>(comp, "Queries");
+
+                    if (comp == null || fldOn == null || fldCheckButton == null)
+                        yield break;
+
+                    while (!_isActivated)
+                        yield return new WaitForSeconds(.1f);
+
+                    var isOn = fldOn.Get();
+                    var checkButton = fldCheckButton.Get();
+                    var dict = fldDict.Get();
+                    var queries = fldQueries.Get();
+                    if (isOn == null || checkButton == null || dict == null || queries == null)
+                        yield break;
+
+                    if (isOn.Length != 4 || isOn.Any(i => i < 0 || i > 1))
+                    {
+                        Debug.LogFormat("[Souvenir] Connection Check: Invalid value for ‘on’: [{0}]", isOn.JoinString(", "));
+                        yield break;
+                    }
+
+                    var q = questionMaker(Question.ConnectionCheckInitial, _ConnectionCheck, new[] { isOn.Select(i => i == 0 ? "R" : "G").JoinString() });
+
+                    var prevInteract = checkButton.OnInteract;
+                    var strikes = new List<string>();
+                    var completed = false;
+                    checkButton.OnInteract = delegate
+                    {
+                        bool isSuccess = true;
+                        for (int i = 0; i < 4; i++)
+                            isSuccess &= dict.ContainsKey(queries[i]) == (isOn[i] == 1);
+                        if (!isSuccess)
+                            strikes.Add(isOn.Select(i => i == 0 ? "R" : "G").JoinString());
+                        else
+                            completed = true;
+
+                        return prevInteract();
+                    };
+
+                    while (!completed)
+                        yield return new WaitForSeconds(.1f);
+
+                    _modulesSolved.IncSafe(_ConnectionCheck);
+
+                    _questions.AddSafe(_ConnectionCheck, q(_modulesSolved.Get(_ConnectionCheck)));
+                    for (var s = 0; s < strikes.Count; s++)
+                        addQuestion(Question.ConnectionCheckStrike, _ConnectionCheck, new[] { strikes[s] }, strikes.Count == 1 ? "a" : "your " + ordinal(s));
+
+                    break;
+                }
+
+            case _ForgetMeNot:
+                {
+                    _waitableModules--;
+
+                    var fmnIndex = _forgetMeNotDisplays.Count;
+                    _forgetMeNotDisplays.Add(null);
+                    _forgetMeNotSolutions.Add(null);
+
+                    while (!_isActivated)
+                        yield return new WaitForSeconds(.1f);
+
+                    var comp = GetComponent(module, "AdvancedMemory");
+                    var fldDisplay = GetField<int[]>(comp, "Display");
+                    var fldSolution = GetField<int[]>(comp, "Solution");
+
+                    if (comp == null || fldDisplay == null || fldSolution == null)
+                        yield break;
+
+                    var display = fldDisplay.Get();
+                    var solution = fldSolution.Get();
+
+                    if (display == null || solution == null)
+                        yield break;
+
+                    _forgetMeNotDisplays[fmnIndex] = display;
+                    _forgetMeNotSolutions[fmnIndex] = solution;
+
+                    yield return new WaitForSeconds(.5f);
+                    Debug.LogFormat("[Souvenir] Forget Me Not display=[{0}], solution=[{1}], I’m #{2}.",
+                        _forgetMeNotDisplays.Select(arr => arr == null ? "null" : "[" + arr.JoinString(", ") + "]").JoinString("; "),
+                        _forgetMeNotSolutions.Select(arr => arr == null ? "null" : "[" + arr.JoinString(", ") + "]").JoinString("; "), fmnIndex);
+
+                    int pos;
+                    if ((pos = _forgetMeNotDisplays.IndexOf(null)) != -1 || (pos = _forgetMeNotSolutions.IndexOf(null)) != -1)
+                    {
+                        Debug.LogFormat("[Souvenir] Abandoning Forget Me Not because there’s an uninitialized one at index #{0}.", pos);
+                        yield break;
+                    }
+                    if (display.Length != solution.Length || _forgetMeNotDisplays.Any(d => d.Length != solution.Length) || _forgetMeNotSolutions.Any(s => s.Length != solution.Length))
+                    {
+                        Debug.Log("[Souvenir] Abandoning Forget Me Not because the arrays have inconsistent lengths.");
+                        yield break;
+                    }
+
+                    var firstUniqueN = Enumerable.Range(0, display.Length).Select(i => (int?) i).FirstOrDefault(i => _forgetMeNotDisplays.All(arr => arr == display || arr[i.Value] != display[i.Value]));
+                    if (firstUniqueN == null)
+                    {
+                        Debug.LogFormat("[Souvenir] Abandoning Forget Me Not because there is no index at which this one (#{0})’s display number is unique.", fmnIndex);
+                        yield break;
+                    }
+                    var firstUnique = firstUniqueN.Value;
+
+                    for (int i = 0; i < _waitableModules; i++)
+                    {
+                        if (i != firstUnique)
+                            addQuestion(Question.ForgetMeNot, _ForgetMeNot, new[] { display[i].ToString() },
+                                new[] { ordinal(i + 1), "displayed", _moduleCounts.Get(_ForgetMeNot) == 1 ? "Forget Me Not" : string.Format("the Forget Me Not whose {0}-stage displayed number was {1}", firstUnique + 1, display[firstUnique]) });
+                        addQuestion(Question.ForgetMeNot, _ForgetMeNot, new[] { solution[i].ToString() },
+                            new[] { ordinal(i + 1), "solution", _moduleCounts.Get(_ForgetMeNot) == 1 ? "Forget Me Not" : string.Format("the Forget Me Not whose {0}-stage displayed number was {1}", firstUnique + 1, display[firstUnique]) });
+                    }
+
+                    break;
+                }
+
             case _TheBulb:
                 {
                     var comp = GetComponent(module, "TheBulbModule");
                     var fldButtonO = GetField<KMSelectable>(comp, "ButtonO", isPublic: true);
                     var fldButtonI = GetField<KMSelectable>(comp, "ButtonI", isPublic: true);
-
-                    var fldInitiallyOn = GetField<bool>(comp, "_initiallyOn");
-                    var fldOffAt1 = GetField<bool>(comp, "_wentOffAtStep1");
-                    var fldOAt1 = GetField<bool>(comp, "_pressedOAtStep1");
-                    var fldWentOnAtScrewIn = GetField<bool>(comp, "_wentOnAtScrewIn");
                     var fldStage = GetField<int>(comp, "_stage");
 
-                    if (comp == null || fldButtonO == null || fldButtonI == null || fldInitiallyOn == null || fldOffAt1 == null || fldOAt1 == null || fldWentOnAtScrewIn == null || fldStage == null)
+                    if (comp == null || fldButtonO == null || fldButtonI == null || fldStage == null)
                         yield break;
+
+                    while (!_isActivated)
+                        yield return new WaitForSeconds(.1f);
 
                     var btnO = fldButtonO.Get();
                     var btnI = fldButtonI.Get();
@@ -520,7 +850,7 @@ public class SouvenirModule : MonoBehaviour
                     btnI.OnInteract = prevI;
 
                     _modulesSolved.IncSafe(_TheBulb);
-                    addQuestion(Question.TheBulbButtonPresses, _TheBulb, new[] { buttonsPressed }, null,
+                    addQuestion(Question.TheBulbButtonPresses, _TheBulb, new[] { buttonsPressed }, new[] { buttonsPressed.Length == 3 ? "" : ", including strikes" },
                         Enumerable.Range(0, 1 << buttonsPressed.Length).Select(i => Convert.ToString(i, 2).Replace("0", "O").Replace("1", "I").PadLeft(buttonsPressed.Length, 'O')).ToArray());
                     break;
                 }
@@ -546,18 +876,31 @@ public class SouvenirModule : MonoBehaviour
                     if (queryLookups == null || queryResponses == null)
                         yield break;
 
-                    var zerothNumCode = fldFirstQueryCode.Get();
-                    var zerothLetterCode = queryLookups[zerothNumCode];
-                    var firstResponse = queryResponses[zerothLetterCode];
-                    var firstLookup = queryLookups[zerothNumCode];
-                    var secondResponse = queryResponses[zerothLetterCode];
-                    var secondLookup = queryLookups[zerothNumCode];
-                    var thirdResponse = queryResponses[zerothLetterCode];
-                    var preferredWrongAnswers = new[] { zerothNumCode.ToString("00"), firstResponse.ToString("00"), secondResponse.ToString("00"), thirdResponse.ToString("00") };
-                    addQuestion(Question.TwoBitsResponse, _TwoBits, new[] { firstResponse.ToString("00") }, new[] { "first" }, preferredWrongAnswers);
-                    addQuestion(Question.TwoBitsResponse, _TwoBits, new[] { secondResponse.ToString("00") }, new[] { "second" }, preferredWrongAnswers);
-                    addQuestion(Question.TwoBitsResponse, _TwoBits, new[] { thirdResponse.ToString("00") }, new[] { "third" }, preferredWrongAnswers);
+                    try
+                    {
+                        var zerothNumCode = fldFirstQueryCode.Get();
+                        var zerothLetterCode = queryLookups[zerothNumCode];
+                        var firstResponse = queryResponses[zerothLetterCode];
+                        var firstLookup = queryLookups[firstResponse];
+                        var secondResponse = queryResponses[firstLookup];
+                        var secondLookup = queryLookups[secondResponse];
+                        var thirdResponse = queryResponses[secondLookup];
+                        var preferredWrongAnswers = new[] { zerothNumCode.ToString("00"), firstResponse.ToString("00"), secondResponse.ToString("00"), thirdResponse.ToString("00") };
+                        addQuestion(Question.TwoBitsResponse, _TwoBits, new[] { firstResponse.ToString("00") }, new[] { "first" }, preferredWrongAnswers);
+                        addQuestion(Question.TwoBitsResponse, _TwoBits, new[] { secondResponse.ToString("00") }, new[] { "second" }, preferredWrongAnswers);
+                        addQuestion(Question.TwoBitsResponse, _TwoBits, new[] { thirdResponse.ToString("00") }, new[] { "third" }, preferredWrongAnswers);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.LogFormat("[Souvenir] Two bits: Exception: {0} ({1})", e.Message, e.GetType().FullName);
+                    }
 
+                    break;
+                }
+
+            case _Souvenir:
+                {
+                    _waitableModules--;
                     break;
                 }
 
@@ -573,6 +916,8 @@ public class SouvenirModule : MonoBehaviour
                 }
                 break;
         }
+
+        Debug.LogFormat("[Souvenir] Finished processing {0}.", module.name);
     }
 
     private string titleCase(string str)
@@ -658,9 +1003,9 @@ public class SouvenirModule : MonoBehaviour
             Debug.LogFormat("[Souvenir] Making question:\nINPUT: question={0}, moduleKey={1}, possibleCorrectAnswers=[{2}], extraFormatArguments=[{3}], preferredWrongAnswers=[{4}], solvedOrd={5}\nOUTPUT: {6}",
                 /* {0} */ question,
                 /* {1} */ moduleKey,
-                /* {2} */ possibleCorrectAnswers == null ? "null" : string.Join(", ", possibleCorrectAnswers),
-                /* {3} */ extraFormatArguments == null ? "null" : string.Join(", ", extraFormatArguments),
-                /* {4} */ preferredWrongAnswers == null ? "null" : string.Join(", ", preferredWrongAnswers),
+                /* {2} */ possibleCorrectAnswers == null ? "null" : possibleCorrectAnswers.JoinString(),
+                /* {3} */ extraFormatArguments == null ? "null" : extraFormatArguments.JoinString(),
+                /* {4} */ preferredWrongAnswers == null ? "null" : preferredWrongAnswers.JoinString(),
                 /* {5} */ solvedOrd,
                 /* {6} */ q.DebugString);
 

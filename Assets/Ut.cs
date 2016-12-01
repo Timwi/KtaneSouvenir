@@ -4,6 +4,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using Souvenir;
 using UnityEngine;
 
@@ -27,18 +28,24 @@ namespace Souvenir
             return (baseType == null) ? fields : GetAllFields(baseType).Concat(fields);
         }
 
-        /// <summary>Searches the specified object’s type for a field of the specified name and returns that field’s value.</summary>
-        /// <typeparam name="T">Expected type of the field.</typeparam>
-        /// <param name="instance">Instance from which to retrieve the field value.</param>
-        /// <param name="fieldName">Name of the field to return the value of.</param>
-        /// <returns>The value of the field.</returns>
+        /// <summary>
+        ///     Searches the specified object’s type for a field of the specified name and returns that field’s value.</summary>
+        /// <typeparam name="T">
+        ///     Expected type of the field.</typeparam>
+        /// <param name="instance">
+        ///     Instance from which to retrieve the field value.</param>
+        /// <param name="fieldName">
+        ///     Name of the field to return the value of.</param>
+        /// <returns>
+        ///     The value of the field.</returns>
         /// <exception cref="InvalidOperationException">
-        /// <list type="bullet">
-        /// <item><description>The field is of a different type than specified.</description></item>
-        /// <item><description>There is no field with the specified name.</description></item>
-        /// </list>
-        /// </exception>
-        /// <remarks>This method is intended to be used only for debugging. Do not rely on it in production code.</remarks>
+        ///     <list type="bullet">
+        ///         <item><description>
+        ///             The field is of a different type than specified.</description></item>
+        ///         <item><description>
+        ///             There is no field with the specified name.</description></item></list></exception>
+        /// <remarks>
+        ///     This method is intended to be used only for debugging. Do not rely on it in production code.</remarks>
         public static T GetFieldValue<T>(this object instance, string fieldName)
         {
             var field = instance.GetType().GetAllFields().Single(f => f.Name == fieldName);
@@ -164,6 +171,89 @@ namespace Souvenir
                 return value;
             else
                 return defaultVal;
+        }
+
+        /// <summary>
+        ///     Turns all elements in the enumerable to strings and joins them using the specified <paramref
+        ///     name="separator"/> and the specified <paramref name="prefix"/> and <paramref name="suffix"/> for each string.</summary>
+        /// <param name="values">
+        ///     The sequence of elements to join into a string.</param>
+        /// <param name="separator">
+        ///     Optionally, a separator to insert between each element and the next.</param>
+        /// <param name="prefix">
+        ///     Optionally, a string to insert in front of each element.</param>
+        /// <param name="suffix">
+        ///     Optionally, a string to insert after each element.</param>
+        /// <param name="lastSeparator">
+        ///     Optionally, a separator to use between the second-to-last and the last element.</param>
+        /// <example>
+        ///     <code>
+        ///         // Returns "[Paris], [London], [Tokyo]"
+        ///         (new[] { "Paris", "London", "Tokyo" }).JoinString(", ", "[", "]")
+        ///         
+        ///         // Returns "[Paris], [London] and [Tokyo]"
+        ///         (new[] { "Paris", "London", "Tokyo" }).JoinString(", ", "[", "]", " and ");</code></example>
+        public static string JoinString<T>(this IEnumerable<T> values, string separator = null, string prefix = null, string suffix = null, string lastSeparator = null)
+        {
+            if (values == null)
+                throw new ArgumentNullException("values");
+            if (lastSeparator == null)
+                lastSeparator = separator;
+
+            using (var enumerator = values.GetEnumerator())
+            {
+                if (!enumerator.MoveNext())
+                    return "";
+
+                // Optimise the case where there is only one element
+                var one = enumerator.Current;
+                if (!enumerator.MoveNext())
+                    return prefix + one + suffix;
+
+                // Optimise the case where there are only two elements
+                var two = enumerator.Current;
+                if (!enumerator.MoveNext())
+                {
+                    // Optimise the (common) case where there is no prefix/suffix; this prevents an array allocation when calling string.Concat()
+                    if (prefix == null && suffix == null)
+                        return one + lastSeparator + two;
+                    return prefix + one + suffix + lastSeparator + prefix + two + suffix;
+                }
+
+                StringBuilder sb = new StringBuilder()
+                    .Append(prefix).Append(one).Append(suffix).Append(separator)
+                    .Append(prefix).Append(two).Append(suffix);
+                var prev = enumerator.Current;
+                while (enumerator.MoveNext())
+                {
+                    sb.Append(separator).Append(prefix).Append(prev).Append(suffix);
+                    prev = enumerator.Current;
+                }
+                sb.Append(lastSeparator).Append(prefix).Append(prev).Append(suffix);
+                return sb.ToString();
+            }
+        }
+
+        public static T PickRandom<T>(this IEnumerable<T> src)
+        {
+            if (src == null)
+                throw new ArgumentNullException("src");
+
+            var arr = src.ToArray();
+            if (arr.Length == 0)
+                throw new InvalidOperationException("Cannot pick a random element from an empty set.");
+            return arr[Rnd.Range(0, arr.Length)];
+        }
+
+        /// <summary>
+        ///     Returns the set of enum values from the specified enum type.</summary>
+        /// <typeparam name="T">
+        ///     The enum type from which to retrieve the values.</typeparam>
+        /// <returns>
+        ///     A strongly-typed array containing the enum values from the specified type.</returns>
+        public static T[] GetEnumValues<T>()
+        {
+            return (T[]) Enum.GetValues(typeof(T));
         }
 
         public static Vector3 SetX(this Vector3 orig, float x) { return new Vector3(x, orig.y, orig.z); }

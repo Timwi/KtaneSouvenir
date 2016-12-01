@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: f025b19192b90e244917c296b6d141e6
-timeCreated: 1480193639
+guid: baf42807f85fb5b4ab0eb79f10f1a70b
+timeCreated: 1480555863
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: AnswerHighlight
+    100000: AnswerHighlightShort
     100002: //RootNode
-    400000: AnswerHighlight
+    400000: AnswerHighlightShort
     400002: //RootNode
-    2300000: AnswerHighlight
-    3300000: AnswerHighlight
-    4300000: AnswerHighlight
+    2300000: AnswerHighlightShort
+    3300000: AnswerHighlightShort
+    4300000: AnswerHighlightShort
   materials:
     importMaterials: 1
     materialName: 0
