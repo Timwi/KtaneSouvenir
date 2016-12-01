@@ -7,6 +7,9 @@ namespace Souvenir
         [SouvenirQuestion("What were the markings in {0}?", "3D Maze", 6, "ABC", "ABD", "ABH", "ACD", "ACH", "ADH", "BCD", "BCH", "BDH", "CDH")]
         _3DMazeMarkings,
 
+        [SouvenirQuestion("What was the cardinal direction in {0}?", "3D Maze", 4, "North", "South", "West", "East")]
+        _3DMazeBearing,
+
         [SouvenirQuestion("Which of these letters was wrong when you got {1} strike in {0}?", "Adjacent Letters", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
             ExampleExtraFormatArguments = new[] { "a", "your first" }, ExampleExtraFormatArgumentGroupSize = 1)]
         AdjacentLettersWrong,
@@ -31,11 +34,11 @@ namespace Souvenir
         ConnectionCheckStrike,
 
         [SouvenirQuestion("What is the {1}-stage {2} number in {3}?", "Forget Me Not", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-            ExampleExtraFormatArguments = new[] { "first", "displayed", "Forget Me Not", "second", "solution", "the Forget Me Not whose first-stage displayed number was 5" }, ExampleExtraFormatArgumentGroupSize = 2)]
+            ExampleExtraFormatArguments = new[] { "first", "displayed", "Forget Me Not", "second", "solution", "the Forget Me Not whose first-stage displayed number was 5" }, ExampleExtraFormatArgumentGroupSize = 3)]
         ForgetMeNot,
 
         [SouvenirQuestion("What were your button presses in {0}{1}?", "Bulb", 6, null,
-            ExampleExtraFormatArguments = new[] { "", ", including strikes" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
+            ExampleExtraFormatArguments = new[] { "", ", including strikes" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true, ExampleAnswers = new[] { "OOO", "OOI", "OIO", "OII", "IOO", "IOI", "IIO", "III", "IOOO", "IOOI", "IOIO", "IOII", "IIOO", "IIOI", "IIIO", "IIII" })]
         TheBulbButtonPresses,
 
         [SouvenirQuestion("What was the {1} query response from {0}?", "Two Bits", 6, "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99",
@@ -54,6 +57,7 @@ namespace Souvenir
         public string[] ExampleExtraFormatArguments { get; set; }
         public int ExampleExtraFormatArgumentGroupSize { get; set; }
         public bool AddThe { get; set; }
+        public string[] ExampleAnswers { get; set; }
 
         public SouvenirQuestionAttribute(string questionText, string moduleName, int numAnswers, params string[] allAnswers)
         {

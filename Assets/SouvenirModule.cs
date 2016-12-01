@@ -22,7 +22,9 @@ public class SouvenirModule : MonoBehaviour
     public KMSelectable[] Answers;
     public MeshFilter[] AnswerHighlights;
 
-    public GameObject Text;
+    public TextMesh TextMesh;
+    public Renderer TextRenderer;
+    public Renderer SurfaceRenderer;
     public GameObject AnswersParent;
     public Mesh AnswerHighlightShort;
     public Mesh AnswerHighlightLong;
@@ -34,7 +36,7 @@ public class SouvenirModule : MonoBehaviour
     private bool _isInUnity = false;
 
     private QuestionBase _currentQuestion = null;
-    private bool _passAfterCurrentQuestion = false;
+    private bool _solveAfterCurrentQuestion = false;
     private bool _isSolved = false;
     private int _waitableModules;
 
@@ -49,12 +51,12 @@ public class SouvenirModule : MonoBehaviour
             .Where(kvp => kvp.Value != null)
             .ToDictionary();
 
-        if (_isTimwisComputer)
-            lock (_timwiPath)
-                File.WriteAllText(_timwiPath, "");
-
         if (transform.parent != null)
         {
+            if (_isTimwisComputer)
+                lock (_timwiPath)
+                    File.WriteAllText(_timwiPath, "");
+
             _waitableModules = Bomb.GetSolvableModuleNames().Count;
             foreach (var module in Enumerable.Range(0, transform.parent.childCount)
                     .Select(i => transform.parent.GetChild(i).gameObject)
@@ -86,14 +88,24 @@ public class SouvenirModule : MonoBehaviour
                     }
                     if (attr.ExampleExtraFormatArguments != null && attr.ExampleExtraFormatArguments.Length > 0 && attr.ExampleExtraFormatArgumentGroupSize > 0)
                     {
-                        var sz = attr.ExampleExtraFormatArguments.Length / attr.ExampleExtraFormatArgumentGroupSize;
-                        curExample = (curExample % sz + sz) % sz;
+                        var numExamples = attr.ExampleExtraFormatArguments.Length / attr.ExampleExtraFormatArgumentGroupSize;
+                        curExample = (curExample % numExamples + numExamples) % numExamples;
                     }
                     var fmt = new object[attr.ExampleExtraFormatArgumentGroupSize + 1];
-                    fmt[0] = curOrd == 0 ? attr.ModuleName : string.Format("the {0} you solved {1}", attr.ModuleName, ordinal(curOrd));
+                    fmt[0] = curOrd == 0 ? attr.AddThe ? "The\u00a0" + attr.ModuleName : attr.ModuleName : string.Format("the {0} you solved {1}", attr.ModuleName, ordinal(curOrd));
                     for (int i = 0; i < attr.ExampleExtraFormatArgumentGroupSize; i++)
                         fmt[i + 1] = attr.ExampleExtraFormatArguments[curExample * attr.ExampleExtraFormatArgumentGroupSize + i];
-                    SetQuestion(new QuestionText(string.Format(attr.QuestionText, fmt), attr.AllAnswers.ToList().Shuffle().Take(attr.NumAnswers).ToArray(), Rnd.Range(0, attr.NumAnswers), 0));
+                    try
+                    {
+                        SetQuestion(new QuestionText(string.Format(attr.QuestionText, fmt), (attr.AllAnswers ?? attr.ExampleAnswers).ToList().Shuffle().Take(attr.NumAnswers).ToArray(), Rnd.Range(0, attr.NumAnswers), 0));
+                        Debug.LogFormat("[Souvenir] Bounds:\nText bounds = ({0}, {1}, {2})\nMesh bounds = ({3}, {4}, {5})",
+                            TextRenderer.bounds.size.x, TextRenderer.bounds.size.y, TextRenderer.bounds.size.z,
+                            SurfaceRenderer.bounds.size.x, SurfaceRenderer.bounds.size.y, SurfaceRenderer.bounds.size.z);
+                    }
+                    catch (FormatException e)
+                    {
+                        Debug.LogFormat("[Souvenir] FormatException {0}\nQuestionText={1}\nfmt=[{2}]", e.Message, attr.QuestionText, fmt.JoinString(", ", "\"", "\""));
+                    }
                 };
                 showQuestion();
 
@@ -127,13 +139,13 @@ public class SouvenirModule : MonoBehaviour
                 };
                 Answers[4].OnInteract += delegate
                 {
-                    curExample++;
+                    curExample--;
                     showQuestion();
                     return false;
                 };
                 Answers[5].OnInteract += delegate
                 {
-                    curExample--;
+                    curExample++;
                     showQuestion();
                     return false;
                 };
@@ -147,7 +159,7 @@ public class SouvenirModule : MonoBehaviour
                     var j = i;
                     Answers[i].OnInteract += delegate { HandleAnswer(j); return false; };
                 }
-                Text.SetActive(false);
+                TextMesh.gameObject.SetActive(false);
                 AnswersParent.SetActive(false);
                 StartCoroutine(Play());
             }
@@ -165,9 +177,9 @@ public class SouvenirModule : MonoBehaviour
         if (_currentQuestion.CorrectIndex == index)
         {
             _currentQuestion = null;
-            Text.SetActive(false);
+            TextMesh.gameObject.SetActive(false);
             AnswersParent.SetActive(false);
-            if (_passAfterCurrentQuestion)
+            if (_solveAfterCurrentQuestion)
             {
                 _isSolved = true;
                 Module.HandlePass();
@@ -192,12 +204,13 @@ public class SouvenirModule : MonoBehaviour
                 yield break;
 
             var anyQuestions = _questions.Count > 0;
-            var canStillWait = Bomb.GetSolvedModuleNames().Count < _waitableModules;
+            var solved = Bomb.GetSolvedModuleNames().Count;
+            var canStillWait = solved < _waitableModules;
 
             if (!anyQuestions && !canStillWait)
             {
                 SetQuestion(new QuestionText("Congratulations!", new[] { "Thank you" }, 0, 0));
-                _passAfterCurrentQuestion = true;
+                _solveAfterCurrentQuestion = true;
             }
             else if (!anyQuestions)
             {
@@ -205,18 +218,21 @@ public class SouvenirModule : MonoBehaviour
             }
             else
             {
-                var qMod = _questions.Keys.PickRandom();
-                while (_questions[qMod].Count == 0)
+                var eligible = _questions.Keys.Where(k => _questions[k].Any(q => q.UnleashAt >= solved || !canStillWait));
+                if (!eligible.Any())
                 {
-                    _questions.Remove(qMod);
-                    if (_questions.Count == 0)
-                        break;
-                    qMod = _questions.Keys.PickRandom();
-                }
-                if (_questions.Count == 0)
+                    yield return new WaitForSeconds(1f);
                     continue;
-
-                SetQuestion(_questions[qMod].PickRandom());
+                }
+                var qMod = eligible.PickRandom();
+                var qu = _questions[qMod].PickRandom();
+                _questions[qMod].Remove(qu);
+                if (_questions[qMod].Count == 0)
+                    _questions.Remove(qMod);
+                SetQuestion(qu);
+                questionsAsked++;
+                if (questionsAsked >= _waitableModules)
+                    _solveAfterCurrentQuestion = true;
             }
         }
     }
@@ -226,8 +242,11 @@ public class SouvenirModule : MonoBehaviour
         _currentQuestion = q;
 
         var qt = q as QuestionText;
-        Text.GetComponent<TextMesh>().text = q.QuestionText;
-        Text.SetActive(true);
+
+        SetWordWrappedText(q.QuestionText);
+        //TextMesh.text = q.QuestionText;
+
+        TextMesh.gameObject.SetActive(true);
         if (qt != null)
             ShowAnswers(qt.Answers);
         else
@@ -235,6 +254,81 @@ public class SouvenirModule : MonoBehaviour
 #warning TODO
         }
         AnswersParent.SetActive(true);
+    }
+
+    private static double[][] _acceptableWidths = Ut.NewArray(
+        // First value is y (vertical text advancement), second value is width of the Surface mesh at this y
+        new[] { 0.834 - 0.834, 0.834 + 0.3556 },
+        new[] { 0.834 - 0.7628, 0.834 + 0.424 },
+        new[] { 0.834 - 0.6864, 0.834 + 0.424 },
+        new[] { 0.834 - 0.528, 0.834 + 0.5102 },
+        new[] { 0.834 - 0.4452, 0.834 + 0.6618 },
+        new[] { 0.834 - 0.4452, 0.834 + 0.7745 },
+        new[] { 0.834 - 0.391, 0.834 + 0.834 }
+    );
+
+    private void SetWordWrappedText(string text)
+    {
+        var low = 1;
+        var high = 100;
+        const double desiredHeight = .1;
+        var wrappeds = new Dictionary<int, string>();
+
+        while (high - low > 1)
+        {
+            var mid = (low + high) / 2;
+            TextMesh.fontSize = mid;
+
+            TextMesh.text = "\u00a0";
+            var size = TextRenderer.bounds.size;
+            var widthOfASpace = size.x;
+            var heightOfALine = size.z;
+            var wrapWidths = new List<double>();
+            var surfaceSizeFactor = SurfaceRenderer.bounds.size.x / (2 * .834) * .9;
+            Debug.LogFormat("[Souvenir] widthOfASpace={0}, heightOfALine={1}, surfaceSizeFactor={2}", widthOfASpace, heightOfALine, surfaceSizeFactor);
+
+            var wrapped = Ut.WordWrap(
+                text,
+                line =>
+                {
+                    var y = line * heightOfALine / surfaceSizeFactor;
+                    if (line < wrapWidths.Count)
+                        return wrapWidths[line];
+                    while (wrapWidths.Count < line)
+                        wrapWidths.Add(0);
+                    var i = 1;
+                    while (i < _acceptableWidths.Length && _acceptableWidths[i][0] < y)
+                        i++;
+                    if (i == _acceptableWidths.Length)
+                        wrapWidths.Add(_acceptableWidths[i - 1][1] * surfaceSizeFactor);
+                    else
+                    {
+                        var lambda = (y - _acceptableWidths[i - 1][0]) / (_acceptableWidths[i][0] - _acceptableWidths[i - 1][0]);
+                        wrapWidths.Add((_acceptableWidths[i - 1][1] * (1 - lambda) + _acceptableWidths[i][1] * lambda) * surfaceSizeFactor);
+                    }
+                    Debug.LogFormat("[Souvenir] Wrap width for line {0} (y={2}) is {1}.", line, wrapWidths[line], y);
+
+                    return wrapWidths[line];
+                },
+                widthOfASpace,
+                str =>
+                {
+                    TextMesh.text = str;
+                    return TextRenderer.bounds.size.x;
+                }
+            ).JoinString("\n");
+            wrappeds[mid] = wrapped;
+            TextMesh.text = wrapped;
+            size = TextRenderer.bounds.size;
+
+            if (size.z > desiredHeight)
+                high = mid;
+            else
+                low = mid;
+        }
+
+        TextMesh.fontSize = low;
+        TextMesh.text = wrappeds[low];
     }
 
     void ShowAnswers(string[] answers)
@@ -245,14 +339,22 @@ public class SouvenirModule : MonoBehaviour
             Answers[3].transform.localPosition = Answers[3].transform.localPosition.SetX(.005f);
             for (int i = 0; i < Answers.Length; i++)
             {
-                AnswerHighlights[i].mesh = AnswerHighlightLong;
+                var clone = AnswerHighlights[i].transform.Find("Highlight(Clone)");
+                if (clone != null)
+                    clone.GetComponent<MeshFilter>().mesh = AnswerHighlightLong;
+
                 if (i >= answers.Length)
                 {
                     if (_isInUnity)
+                    {
+                        Answers[i].transform.localPosition = Answers[i].transform.localPosition.SetX(.05f);
                         Answers[i].GetComponent<TextMesh>().text = "-";
+                    }
                     else
                         Answers[i].gameObject.SetActive(false);
                 }
+                else
+                    Answers[i].GetComponent<TextMesh>().text = answers[i];
             }
         }
         else if (answers != null && answers.Length > 1 && answers.Length < 7)
@@ -263,7 +365,10 @@ public class SouvenirModule : MonoBehaviour
             Answers[5].transform.localPosition = Answers[5].transform.localPosition.SetX(.0325f);
             for (int i = 0; i < Answers.Length; i++)
             {
-                AnswerHighlights[i].mesh = AnswerHighlightShort;
+                var clone = AnswerHighlights[i].transform.Find("Highlight(Clone)");
+                if (clone != null)
+                    clone.GetComponent<MeshFilter>().mesh = AnswerHighlightShort;
+
                 if (i >= answers.Length)
                 {
                     if (_isInUnity)
@@ -271,6 +376,8 @@ public class SouvenirModule : MonoBehaviour
                     else
                         Answers[i].gameObject.SetActive(false);
                 }
+                else
+                    Answers[i].GetComponent<TextMesh>().text = answers[i];
             }
         }
         else
@@ -284,9 +391,9 @@ public class SouvenirModule : MonoBehaviour
     {
         Module.HandlePass();
         if (message == null)
-            Text.SetActive(false);
+            TextMesh.gameObject.SetActive(false);
         else
-            Text.GetComponent<TextMesh>().text = message;
+            TextMesh.text = message;
         AnswersParent.SetActive(false);
     }
 
@@ -516,11 +623,35 @@ public class SouvenirModule : MonoBehaviour
                         }
                     var correctMarkings = chars.OrderBy(c => c).JoinString();
 
+                    char bearing;
+                    if (correctMarkings == "ABC") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(1, 1));
+                    else if (correctMarkings == "ABD") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(7, 0));
+                    else if (correctMarkings == "ABH") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(0, 1));
+                    else if (correctMarkings == "ACD") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(1, 2));
+                    else if (correctMarkings == "ACH") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(1, 0));
+                    else if (correctMarkings == "ADH") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(5, 0));
+                    else if (correctMarkings == "BCD") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(6, 1));
+                    else if (correctMarkings == "BCH") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(2, 2));
+                    else if (correctMarkings == "BDH") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(3, 1));
+                    else if (correctMarkings == "CDH") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(5, 1));
+                    else
+                    {
+                        Debug.LogFormat(@"[Souvenir] Abandoning 3D Maze because unexpected markings: ""{0}"".", correctMarkings);
+                        yield break;
+                    }
+
+                    if (!"NSWE".Contains(bearing))
+                    {
+                        Debug.LogFormat("[Souvenir] Abandoning 3D Maze because unexpected bearing: '{0}'.", bearing);
+                        yield break;
+                    }
+
                     while (!fldIsComplete.Get())
                         yield return new WaitForSeconds(.1f);
 
                     _modulesSolved.IncSafe(_3DMaze);
                     addQuestion(Question._3DMazeMarkings, _3DMaze, correctMarkings);
+                    addQuestion(Question._3DMazeBearing, _3DMaze, bearing == 'N' ? "North" : bearing == 'S' ? "South" : bearing == 'W' ? "West" : "East");
                     break;
                 }
 
@@ -990,7 +1121,7 @@ public class SouvenirModule : MonoBehaviour
             var correctIndex = Rnd.Range(0, attr.NumAnswers);
             answers.Insert(correctIndex, possibleCorrectAnswers[Rnd.Range(0, possibleCorrectAnswers.Length)]);
 
-            var formatArguments = new List<string> { num > 1 ? string.Format("the {0} you solved {1}", attr.ModuleName, ordinal(solvedOrd)) : attr.AddThe ? "the " + attr.ModuleName : attr.ModuleName };
+            var formatArguments = new List<string> { num > 1 ? string.Format("the {0} you solved {1}", attr.ModuleName, ordinal(solvedOrd)) : attr.AddThe ? "The\u00a0" + attr.ModuleName : attr.ModuleName };
             if (extraFormatArguments != null)
                 formatArguments.AddRange(extraFormatArguments);
 

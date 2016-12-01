@@ -266,7 +266,9 @@ MonoBehaviour:
   - {fileID: 33000011764508030}
   - {fileID: 33000012556177762}
   - {fileID: 33000013854341116}
-  Text: {fileID: 1000012256520544}
+  TextMesh: {fileID: 102000012539687798}
+  TextRenderer: {fileID: 23000013337156738}
+  SurfaceRenderer: {fileID: 23000012396776310}
   AnswersParent: {fileID: 1000011516753176}
   AnswerHighlightShort: {fileID: 4300000, guid: baf42807f85fb5b4ab0eb79f10f1a70b,
     type: 3}
@@ -1198,7 +1200,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013354515264}
-  m_Mesh: {fileID: 4300000, guid: 0e132af13d16f3d4cae4df71d33e54a1, type: 3}
+  m_Mesh: {fileID: 4300000, guid: baf42807f85fb5b4ab0eb79f10f1a70b, type: 3}
 --- !u!33 &33000011764508030
 MeshFilter:
   m_ObjectHideFlags: 1
