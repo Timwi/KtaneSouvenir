@@ -26,6 +26,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "a", "your first" }, ExampleExtraFormatArgumentGroupSize = 1)]
         AdventureGameWrongItem,
 
+        [SouvenirQuestion("How many pixels were {1} in the {2} quadrant in {0}?", "Bitmaps", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",
+            ExampleExtraFormatArguments = new[] { "white", "top left", "white", "top right", "white", "bottom left", "white", "bottom right", "black", "top left", "black", "top right", "black", "bottom left", "black", "bottom right" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        Bitmaps,
+
         [SouvenirQuestion("What was the initial setting on {0} in reading order?", "Connection Check", 6, "RRRR", "RRRG", "RRGR", "RRGG", "RGRR", "RGRG", "RGGR", "RGGG", "GRRR", "GRRG", "GRGR", "GRGG", "GGRR", "GGRG", "GGGR", "GGGG")]
         ConnectionCheckInitial,
 
@@ -36,6 +40,21 @@ namespace Souvenir
         [SouvenirQuestion("What is the {1}-stage {2} number in {3}?", "Forget Me Not", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
             ExampleExtraFormatArguments = new[] { "first", "displayed", "Forget Me Not", "second", "solution", "the Forget Me Not whose first-stage displayed number was 5" }, ExampleExtraFormatArgumentGroupSize = 3)]
         ForgetMeNot,
+
+        [SouvenirQuestion("What was the color of the pawn in {0}?", "Hexamaze", 4, "Red", "Yellow", "Green", "Cyan", "Blue", "Pink")]
+        HexamazePawnColor,
+
+        [SouvenirQuestion("Which creature was displayed {1}in {0}?", "Monsplode, Fight!", 4, "Caadarim", "Buhar", "Melbor", "Lanaluff", "Bob", "Mountoise", "Aluga", "Nibs", "Zapra", "Zenlad", "Vellarim", "Ukkens", "Lugirit", "Flaurim", "Myrchat", "Clondar", "Gloorim", "Docsplode", "Magmy", "Pouse", "Asteran", "Violan",
+            ExampleExtraFormatArguments = new[] { "", "first ", "second ", "third " }, ExampleExtraFormatArgumentGroupSize = 1)]
+        MonsplodeFightCreature,
+
+        [SouvenirQuestion("Which move {1} selectable {2}in {0}?", "Monsplode, Fight!", 4, "Tic", "Tac", "Toe", "Hollow Gaze", "Splash", "Heavy Rain", "Fountain", "Candle", "Torchlight", "Flame Spear", "Tangle", "Grass Blade", "Ivy Spikes", "Spectre", "Boo", "Battery Power", "Zap", "Double Zap", "Shock", "High Voltage", "Dark Portal", "Last Word", "Void", "Boom", "Fiery Soul", "Stretch", "Shrink", "Appearify", "Sendify", "Freak Out", "Glyph", "Bug Spray", "Bedrock", "Earthquake", "Cave In", "Toxic Waste", "Venom Fang", "Countdown",
+            ExampleExtraFormatArguments = new[] { "was", "", "was", "for the first creature ", "was", "for the second creature ", "was not", "", "was not", "for the first creature ", "was not", "for the second creature " }, ExampleExtraFormatArgumentGroupSize = 2)]
+        MonsplodeFightMove,
+
+        [SouvenirQuestion("Which {1} in the {2} stage in {0}?", "Simon States", 4, "Red", "Yellow", "Green", "Blue", "Red and Yellow", "Red and Green", "Red and Blue", "Yellow and Green", "Yellow and Blue", "Green and Blue", "all of them", "none of them",
+            ExampleExtraFormatArguments = new[] { "color(s) flashed", "first", "color(s) didn’t flash", "first", "color(s) flashed", "second", "color(s) didn’t flash", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        SimonStatesDisplay,
 
         [SouvenirQuestion("What were your button presses in {0}{1}?", "Bulb", 6, null,
             ExampleExtraFormatArguments = new[] { "", ", including strikes" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true, ExampleAnswers = new[] { "OOO", "OOI", "OIO", "OII", "IOO", "IOI", "IIO", "III", "IOOO", "IOOI", "IOIO", "IOII", "IIOO", "IIOI", "IIIO", "IIII" })]
@@ -73,7 +92,12 @@ namespace Souvenir
         public string QuestionText { get; private set; }
         public int CorrectIndex { get; private set; }
         public int UnleashAt { get; private set; }
-        protected QuestionBase(string question, int correct, int unleashAt) { QuestionText = question; UnleashAt = unleashAt; }
+        protected QuestionBase(string question, int correct, int unleashAt)
+        {
+            QuestionText = question;
+            CorrectIndex = correct;
+            UnleashAt = unleashAt;
+        }
         public abstract string DebugString { get; }
     }
 
