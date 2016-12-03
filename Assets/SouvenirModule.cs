@@ -41,6 +41,97 @@ public class SouvenirModule : MonoBehaviour
     private int _waitableModules;
     private double _surfaceSizeFactor;
 
+    private Dictionary<string, int> _moduleCounts = new Dictionary<string, int>();
+    private Dictionary<string, int> _modulesSolved = new Dictionary<string, int>();
+
+    private List<int[]> _forgetMeNotDisplays = new List<int[]>();
+    private List<int[]> _forgetMeNotSolutions = new List<int[]>();
+
+    const string _Souvenir = "SouvenirModule(Clone)";
+
+    const string _3DMaze = "3DMazeModule(Clone)";
+    const string _AdjacentLetters = "AdjacentLettersModule(Clone)";
+    const string _AdventureGame = "AdventureGameModule(Clone)";
+    const string _Bitmaps = "BitmapsModule(Clone)";
+    const string _ConnectionCheck = "GraphModule(Clone)";
+    const string _ForgetMeNot = "AdvancedMemory(Clone)";
+    const string _Hexamaze = "HexamazeModule(Clone)";
+    const string _Listening = "Listening(Clone)";
+    const string _MonsplodeFight = "CreatureModule(Clone)";
+    const string _SimonStates = "AdvancedSimon(Clone)";
+    const string _TheBulb = "TheBulbModule(Clone)";
+    const string _TwoBits = "TwoBitsModule(Clone)";
+
+    // 𝐍𝐨𝐭 𝐠𝐨𝐧𝐧𝐚 𝐝𝐨:
+    private string[] _ignoreModules = new[] {
+        // Anagrams
+        "Anagrams_Module(Clone)",
+        // Astrology
+        // The Button
+        // Caesar Cipher
+        // Complicated Wires
+        // Crazy Talk
+        // Cryptography
+        // Emoji Math
+        // Foreign Exchange Rates
+        // The Gamepad
+        // Piano Keys
+        // Plumbing
+        // Probing
+        // Resistors
+        // Square Button
+        "AdvancedButton(Clone)"
+        // Turn The Key
+        // Turn The Keys
+        // Wires
+    };
+
+    // 𝐒𝐭𝐫𝐢𝐤𝐞𝐬 𝐨𝐧𝐥𝐲:
+    // Blind Alley
+    // Chess — Chess Module(Clone)/ChessBehaviour
+    // Follow the Leader
+    // Friendship
+    // Laundry
+    // Lettered Keys
+    // Logic
+    // Murder — MurderModule(Clone)/MurderModule
+    // Rock-Paper-Scissors-Lizard-Spock
+    // Round Keypad
+
+    // 𝐂𝐚𝐧𝐝𝐢𝐝𝐚𝐭𝐞𝐬:
+    // Colored Squares
+    // English Test
+    // Mazes
+    // Memory
+    // Microcontroller
+    // Morse Code
+    // Morsematics
+    // Mouse In The Maze
+    // Mystic Square
+    // Number Pad
+    // Orientation Cube
+    // Passwords
+    // Perspective Pegs
+    // Safety Safe
+    // Sea Shells — SeaShellsModule(Clone)/SeaShellsModule
+    // Shape Shift
+    // Silly Slots
+    // Simon Says
+    // Simon States
+    // Skewed Slots
+    // Switches
+    // Third Base
+    // Tic-Tac-Toe — TicTacToeModule(Clone)/TicTacToeModule
+    // Who’s on First
+
+    // 𝐏𝐨𝐬𝐬𝐢𝐛𝐥𝐞 𝐟𝐮𝐭𝐮𝐫𝐞 𝐜𝐚𝐧𝐝𝐢𝐝𝐚𝐭𝐞𝐬:
+    // Color Flash
+    // Combination Lock
+    // Keypads (strikes only)
+    // Alphabet (strikes only)
+    // Semaphore — SemaphoreModule(Clone)/SemaphoreModule
+    // Wire Sequences
+
     void setAnswerHandler(int index, Action<int> handler)
     {
         Answers6[index].OnInteract = delegate
@@ -528,97 +619,6 @@ public class SouvenirModule : MonoBehaviour
         return new MethodInfo<T>(target, mth);
     }
 
-    private Dictionary<string, int> _moduleCounts = new Dictionary<string, int>();
-    private Dictionary<string, int> _modulesSolved = new Dictionary<string, int>();
-
-    private List<int[]> _forgetMeNotDisplays = new List<int[]>();
-    private List<int[]> _forgetMeNotSolutions = new List<int[]>();
-
-    const string _Souvenir = "SouvenirModule(Clone)";
-
-    const string _3DMaze = "3DMazeModule(Clone)";
-    const string _AdjacentLetters = "AdjacentLettersModule(Clone)";
-    const string _AdventureGame = "AdventureGameModule(Clone)";
-    const string _Bitmaps = "BitmapsModule(Clone)";
-    const string _ConnectionCheck = "GraphModule(Clone)";
-    const string _ForgetMeNot = "AdvancedMemory(Clone)";
-    const string _Hexamaze = "HexamazeModule(Clone)";
-    const string _MonsplodeFight = "CreatureModule(Clone)";
-    const string _SimonStates = "AdvancedSimon(Clone)";
-    const string _TheBulb = "TheBulbModule(Clone)";
-    const string _TwoBits = "TwoBitsModule(Clone)";
-
-    // 𝐍𝐨𝐭 𝐠𝐨𝐧𝐧𝐚 𝐝𝐨:
-    private string[] _ignoreModules = new[] {
-        // Anagrams
-        "Anagrams_Module(Clone)",
-        // Astrology
-        // The Button
-        // Caesar Cipher
-        // Complicated Wires
-        // Crazy Talk
-        // Cryptography
-        // Emoji Math
-        // Foreign Exchange Rates
-        // The Gamepad
-        // Piano Keys
-        // Plumbing
-        // Probing
-        // Resistors
-        // Square Button
-        "AdvancedButton(Clone)"
-        // Turn The Key
-        // Turn The Keys
-        // Wires
-    };
-
-    // 𝐒𝐭𝐫𝐢𝐤𝐞𝐬 𝐨𝐧𝐥𝐲:
-    // Blind Alley
-    // Chess — Chess Module(Clone)/ChessBehaviour
-    // Follow the Leader
-    // Friendship
-    // Laundry
-    // Lettered Keys
-    // Listening
-    // Logic
-    // Murder — MurderModule(Clone)/MurderModule
-    // Rock-Paper-Scissors-Lizard-Spock
-    // Round Keypad
-
-    // 𝐂𝐚𝐧𝐝𝐢𝐝𝐚𝐭𝐞𝐬:
-    // Colored Squares
-    // English Test
-    // Mazes
-    // Memory
-    // Microcontroller
-    // Morse Code
-    // Morsematics
-    // Mouse In The Maze
-    // Mystic Square
-    // Number Pad
-    // Orientation Cube
-    // Passwords
-    // Perspective Pegs
-    // Safety Safe
-    // Sea Shells — SeaShellsModule(Clone)/SeaShellsModule
-    // Shape Shift
-    // Silly Slots
-    // Simon Says
-    // Simon States
-    // Skewed Slots
-    // Switches
-    // Third Base
-    // Tic-Tac-Toe — TicTacToeModule(Clone)/TicTacToeModule
-    // Who’s on First
-
-    // 𝐏𝐨𝐬𝐬𝐢𝐛𝐥𝐞 𝐟𝐮𝐭𝐮𝐫𝐞 𝐜𝐚𝐧𝐝𝐢𝐝𝐚𝐭𝐞𝐬:
-    // Color Flash
-    // Combination Lock
-    // Keypads (strikes only)
-    // Alphabet (strikes only)
-    // Semaphore — SemaphoreModule(Clone)/SemaphoreModule
-    // Wire Sequences
-
     private IEnumerator ProcessModule(GameObject module)
     {
         _moduleCounts.IncSafe(module.name);
@@ -1052,11 +1052,96 @@ public class SouvenirModule : MonoBehaviour
                     break;
                 }
 
+            case _Listening:
+                {
+                    var comp = GetComponent(module, "Listening");
+                    var fldIsActivated = GetField<bool>(comp, "isActivated");
+                    var fldCodeInput = GetField<char[]>(comp, "codeInput");
+                    var fldCodeInputPosition = GetField<int>(comp, "codeInputPosition");
+                    var fldSound = GetField<object>(comp, "sound");
+                    var fldDollarButton = GetField<KMSelectable>(comp, "DollarButton", isPublic: true);
+                    var fldPoundButton = GetField<KMSelectable>(comp, "PoundButton", isPublic: true);
+                    var fldStarButton = GetField<KMSelectable>(comp, "StarButton", isPublic: true);
+                    var fldAmpersandButton = GetField<KMSelectable>(comp, "AmpersandButton", isPublic: true);
+
+                    if (comp == null || fldIsActivated == null || fldCodeInput == null || fldCodeInputPosition == null || fldSound == null || fldDollarButton == null || fldPoundButton == null || fldStarButton == null || fldAmpersandButton == null)
+                        break;
+
+                    while (!_isActivated)
+                        yield return new WaitForSeconds(.1f);
+
+                    var attr = _attributes.Get(Question.Listening);
+                    if (attr == null)
+                    {
+                        Debug.Log("[Souvenir] Abandoning Listening because SouvenirQuestionAttribute for Question.Listening is null.");
+                        break;
+                    }
+
+                    var sound = fldSound.Get();
+                    var buttons = new[] { fldDollarButton.Get(), fldPoundButton.Get(), fldStarButton.Get(), fldAmpersandButton.Get() };
+                    if (sound == null || buttons.Contains(null))
+                        break;
+
+                    var prevInteracts = buttons.Select(btn => btn.OnInteract).ToArray();
+                    var nullIndex = Array.IndexOf(prevInteracts, null);
+                    if (nullIndex != -1)
+                    {
+                        Debug.LogFormat("[Souvenir] Abandoning Listening because buttons[{0}].OnInteract is null.", nullIndex);
+                        break;
+                    }
+
+                    var fldSoundCode = GetField<string>(sound, "code", isPublic: true);
+                    if (fldSoundCode == null)
+                        break;
+                    var correctCode = fldSoundCode.Get();
+                    if (correctCode == null)
+                        break;
+
+                    var code = "";
+                    var solved = false;
+                    var wrongCodes = new List<string>();
+                    for (int i = 0; i < 4; i++)
+                    {
+                        var j = i;
+                        buttons[i].OnInteract = delegate
+                        {
+                            var ret = prevInteracts[j]();
+                            code += "$#*&"[j];
+                            if (code.Length == 5)
+                            {
+                                if (code == correctCode)
+                                {
+                                    solved = true;
+                                    // Sneaky: make it so that the player can no longer play the sound
+                                    fldIsActivated.Set(false);
+                                }
+                                else
+                                    wrongCodes.Add(code);
+                                code = "";
+                            }
+                            return ret;
+                        };
+                    }
+
+                    while (!solved)
+                        yield return new WaitForSeconds(.1f);
+
+                    for (int i = 0; i < 4; i++)
+                        buttons[i].OnInteract = prevInteracts[i];
+
+                    _modulesSolved.IncSafe(_Listening);
+                    addQuestion(Question.Listening, _Listening, new[] { correctCode }, new[] { "correct" }, attr.ExampleAnswers);
+                    for (int i = 0; i < wrongCodes.Count; i++)
+                        addQuestion(Question.Listening, _Listening, new[] { wrongCodes[i] }, new[] { ordinal(i + 1) + " wrong" }, attr.ExampleAnswers);
+
+                    break;
+                }
+
             case _MonsplodeFight:
                 {
                     var comp = GetComponent(module, "MonsplodeFightModule");
-                    var fldCreatureData = GetField<object>(comp, "CD", true);
-                    var fldMovesData = GetField<object>(comp, "MD", true);
+                    var fldCreatureData = GetField<object>(comp, "CD", isPublic: true);
+                    var fldMovesData = GetField<object>(comp, "MD", isPublic: true);
                     var fldCreatureID = GetField<int>(comp, "crID");
                     var fldMoveIDs = GetField<int[]>(comp, "moveIDs");
                     var fldRevive = GetField<bool>(comp, "revive");
@@ -1385,7 +1470,7 @@ public class SouvenirModule : MonoBehaviour
                 var inconsistency2 = preferredWrongAnswers.FirstOrDefault(pca => !allAnswers.Contains(pca));
                 if (inconsistency2 != null)
                 {
-                    Debug.LogFormat("[Souvenir] Question {0}: invalid preferred answer: {1}.", question, inconsistency2);
+                    Debug.LogFormat("[Souvenir] Question {0}: invalid preferred wrong answer: {1}.", question, inconsistency2);
                     return null;
                 }
             }
