@@ -299,7 +299,7 @@ namespace Souvenir
         ///     any difference.</summary>
         public static Func<T1, T2, T3, T4, TResult> Lambda<T1, T2, T3, T4, TResult>(Func<T1, T2, T3, T4, TResult> method) { return method; }
 
-        public static IEnumerable<string> WordWrap(this string text, Func<int, double> wrapWidth, double widthOfASpace, Func<string, double> measure)
+        public static IEnumerable<string> WordWrap(this string text, Func<int, double> wrapWidth, double widthOfASpace, Func<string, double> measure, bool allowBreakingWordsApart)
         {
             var curLine = 0;
             var atStartOfLine = true;
@@ -360,9 +360,16 @@ namespace Souvenir
                     var fragmentWidth = measure(fragment);
                     retry2:
 
-                    // If we are at the start of a line, and the word itself doesn’t fit on a line by itself, we need to break the word up.
+                    // If we are at the start of a line, and the word itself doesn’t fit on a line by itself, give up
                     if (atStartOfLine && x + wordPiecesWidthsSum + fragmentWidth > wrapWidth(curLine))
                     {
+                        if (!allowBreakingWordsApart)
+                        {
+                            // Return null to signal that we encountered a word that doesn’t fit in a line.
+                            yield return null;
+                            yield break;
+                        }
+
                         // We don’t know exactly where to break the word, so use binary search to discover where that is.
                         if (lengthOfWord > 1)
                         {

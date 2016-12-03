@@ -2052,7 +2052,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013784415500}
-  m_Text: ABC
+  m_Text: 1
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 0.7
@@ -2094,7 +2094,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011097858134}
-  m_Text: ACD
+  m_Text: 4
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 0.7
@@ -2115,7 +2115,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012706047044}
-  m_Text: Hollow Gaze
+  m_Text: Not yet
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 0.7
@@ -2136,7 +2136,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012726219362}
-  m_Text: Heavy Rain
+  m_Text: Just now
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 0.7
@@ -2157,7 +2157,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012912164078}
-  m_Text: Flame Spear
+  m_Text: Yesterday
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 0.7
@@ -2178,7 +2178,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013320423416}
-  m_Text: ACD
+  m_Text: 6
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 0.7
@@ -2199,7 +2199,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013433046874}
-  m_Text: ABD
+  m_Text: 2
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 0.7
@@ -2220,20 +2220,18 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012256520544}
-  m_Text: 'What were the
+  m_Text: 'When was
 
-    markings in the
+    the last time
 
-    3D Maze you solved
-
-    first?'
+    you blew up?'
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 0.525
   m_Anchor: 0
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 56
+  m_FontSize: 80
   m_FontStyle: 0
   m_RichText: 0
   m_Font: {fileID: 12800000, guid: 2cc5074422ed950489fe2e35af896c57, type: 3}
@@ -2268,7 +2266,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011409038914}
-  m_Text: Grass Blade
+  m_Text: Last week
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 0.7
@@ -2289,7 +2287,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014035186044}
-  m_Text: ABH
+  m_Text: 3
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 0.7
@@ -2310,7 +2308,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013787686684}
-  m_Text: ABH
+  m_Text: 5
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 0.7

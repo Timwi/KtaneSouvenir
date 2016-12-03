@@ -10,8 +10,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5cf2299c8864afe4ab42466f546ae20d, type: 3}
   m_Name: WorkshopItem
-  m_EditorClassIdentifier:
-  WorkshopPublishedFileID: 805042374
+  m_EditorClassIdentifier: 
+  WorkshopPublishedFileID: 810934485
   Title: Souvenir
   Description: 'Something to remember us by.
 

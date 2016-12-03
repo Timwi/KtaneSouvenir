@@ -89,6 +89,8 @@ public class SouvenirModule : MonoBehaviour
         _surfaceSizeFactor = SurfaceRenderer.bounds.size.x / (2 * .834) * .9;
         SurfaceRenderer.transform.rotation = origRotation;
 
+        disappear();
+
         _isActivated = false;
         Module.OnActivate += delegate
         {
@@ -188,52 +190,74 @@ public class SouvenirModule : MonoBehaviour
             Module.HandleStrike();
     }
 
+    private int _numQuestionsAsked = 0;
+    private int _numQuestionsToAsk;
+    private HashSet<int> _alreadyAskedAtNumSolved = new HashSet<int>();
+
     private IEnumerator Play()
     {
-        yield return new WaitForSeconds(5f);
+        // This relies on the fact that Play() isn’t started until the module is activated, while _waitableModules is decremented in ProcessModule() which is already started in Start().
+        _numQuestionsToAsk = (_waitableModules + 1) / 2;
+        Debug.LogFormat("[Souvenir] Striving to ask {0} questions.", _numQuestionsToAsk);
 
-        var questionsAsked = 0;
+        //// DEBUG!
+        //yield return new WaitForSeconds(.5f);
+        //SetQuestion(new QuestionText("Test question 1/4. 4 answers. Press one.", new[] { "one", "two", "three", "four" }, 0, 0));
+        //while (_currentQuestion != null)
+        //    yield return new WaitForSeconds(.5f);
+        //SetQuestion(new QuestionText("Test question 2/4. 6 answers. Press one.", new[] { "one", "two", "three", "four", "five", "six" }, 0, 0));
+        //while (_currentQuestion != null)
+        //    yield return new WaitForSeconds(.5f);
+        //SetQuestion(new QuestionText("Test question 3/4. 4 answers. This text is deliberately longer to test the automatic text resizing. Press “certainly, sir”.", new[] { "certainly, sir", "definitely, mister", "I say, mylord", "absolutely, mate" }, 0, 0));
+        //while (_currentQuestion != null)
+        //    yield return new WaitForSeconds(.5f);
+        //SetQuestion(new QuestionText("Test question 4/4. 6 answers. Press “certainly, sir”. Normal operation will resume then.", new[] { "certainly, sir", "definitely, mister", "I say, mylord", "absolutely", "we shall see", "to be determined" }, 0, 0));
+        //while (_currentQuestion != null)
+        //    yield return new WaitForSeconds(.5f);
+        //// END DEBUG
 
         while (true)
         {
-            while (_currentQuestion != null)
-                yield return new WaitForSeconds(1f);
+            do
+                yield return new WaitForSeconds(.5f);
+            while (_currentQuestion != null);
 
             if (_isSolved)
-                yield break;
+                break;
 
-            var anyQuestions = _questions.Count > 0;
+            // Don’t ask more than one question per solved module if there are still modules left to solve.
             var solved = Bomb.GetSolvedModuleNames().Count;
-            var canStillWait = solved < _waitableModules;
+            if (solved < _waitableModules && _alreadyAskedAtNumSolved.Contains(solved))
+                continue;
 
-            if (!anyQuestions && !canStillWait)
-            {
-                SetQuestion(new QuestionText("Congratulations!", new[] { "Thank you" }, 0, 0));
-                _solveAfterCurrentQuestion = true;
-            }
-            else if (!anyQuestions)
-            {
-                yield return new WaitForSeconds(1f);
-            }
-            else
-            {
-                var eligible = _questions.Keys.Where(k => _questions[k].Any(q => q.UnleashAt <= solved || !canStillWait));
-                if (!eligible.Any())
-                {
-                    yield return new WaitForSeconds(1f);
-                    continue;
-                }
-                var qMod = eligible.PickRandom();
-                var qu = _questions[qMod].PickRandom();
-                _questions[qMod].Remove(qu);
-                if (_questions[qMod].Count == 0)
-                    _questions.Remove(qMod);
-                SetQuestion(qu);
-                questionsAsked++;
-                if (questionsAsked >= _waitableModules)
-                    _solveAfterCurrentQuestion = true;
-            }
+            // Find a question to ask.
+            if (solved < _waitableModules ? FindAndSetQuestion(solved) : FindAndSetQuestion(null))
+                continue;
+
+            // No questions to ask and no modules to solve.
+            SetQuestion(new QuestionText("Congratulations!", new[] { "Thank you" }, 0, 0));
+            _solveAfterCurrentQuestion = true;
+            break;
         }
+    }
+
+    private bool FindAndSetQuestion(int? unleashAt)
+    {
+        var eligible = _questions.Keys.Where(k => _questions[k].Any(q => unleashAt == null || q.UnleashAt <= unleashAt.Value));
+        if (!eligible.Any())
+            return false;
+        var qMod = eligible.PickRandom();
+        var qu = _questions[qMod].Where(q => unleashAt == null || q.UnleashAt <= unleashAt).PickRandom();
+        _questions[qMod].Remove(qu);
+        if (_questions[qMod].Count == 0)
+            _questions.Remove(qMod);
+        SetQuestion(qu);
+        _numQuestionsAsked++;
+        if (_numQuestionsAsked >= _numQuestionsToAsk)
+            _solveAfterCurrentQuestion = true;
+        Debug.LogFormat("[Souvenir] Unleashing question (unleashAt={4}): {0}; questions asked={1}, questions to ask={2}, solveAfterCurrentQuestion={3}",
+            qu.DebugString, _numQuestionsAsked, _numQuestionsToAsk, _solveAfterCurrentQuestion, unleashAt == null ? "null" : unleashAt.ToString());
+        return true;
     }
 
     private void SetQuestion(QuestionBase q)
@@ -283,7 +307,9 @@ public class SouvenirModule : MonoBehaviour
             var heightOfALine = size.z;
             var wrapWidths = new List<double>();
 
-            var wrapped = Ut.WordWrap(
+            var wrappedSB = new StringBuilder();
+            var first = true;
+            foreach (var line in Ut.WordWrap(
                 text,
                 line =>
                 {
@@ -310,16 +336,34 @@ public class SouvenirModule : MonoBehaviour
                 {
                     TextMesh.text = str;
                     return TextRenderer.bounds.size.x;
+                },
+                allowBreakingWordsApart: false
+            ))
+            {
+                if (line == null)
+                {
+                    // There was a word that was too long to fit into a line.
+                    high = mid;
+                    wrappedSB = null;
+                    break;
                 }
-            ).JoinString("\n");
-            wrappeds[mid] = wrapped;
-            TextMesh.text = wrapped;
-            size = TextRenderer.bounds.size;
+                if (!first)
+                    wrappedSB.Append('\n');
+                first = false;
+                wrappedSB.Append(line);
+            }
 
-            if (size.z > desiredHeight)
-                high = mid;
-            else
-                low = mid;
+            if (wrappedSB != null)
+            {
+                var wrapped = wrappedSB.ToString();
+                wrappeds[mid] = wrapped;
+                TextMesh.text = wrapped;
+                size = TextRenderer.bounds.size;
+                if (size.z > desiredHeight)
+                    high = mid;
+                else
+                    low = mid;
+            }
         }
 
         TextMesh.fontSize = low;
@@ -371,6 +415,15 @@ public class SouvenirModule : MonoBehaviour
 
         MainSelectable.Children = children;
         MainSelectable.UpdateChildren();
+
+        Debug.LogFormat("[Souvenir] Answers set. answers=[{0}], btns={1}, activeSelf=[{2}], text=[{3}], bounds=[{4}], _surfaceSizeFactor={5}",
+            /* {0} */ answers.JoinString(", ", "\"", "\""),
+            /* {1} */ btns == Answers6 ? "Answers6" : "Answers4",
+            /* {2} */ btns.Select(btn => btn.gameObject.activeSelf).JoinString(", "),
+            /* {3} */ btns.Select(btn => btn.GetComponent<TextMesh>().text).JoinString(", ", "\"", "\""),
+            /* {4} */ btns.Select(btn => btn.GetComponent<Renderer>().bounds.size).Select(sz => string.Format("({0}, {1}, {2})", sz.x, sz.y, sz.z)).JoinString(", ", "\"", "\""),
+            /* {5} */ _surfaceSizeFactor
+        );
     }
 
     private void PassAndTurnOff(string message = null)
@@ -381,7 +434,7 @@ public class SouvenirModule : MonoBehaviour
         if (message != null)
         {
             TextMesh.gameObject.SetActive(true);
-            TextMesh.text = message;
+            SetWordWrappedText(message);
         }
     }
 
@@ -481,95 +534,93 @@ public class SouvenirModule : MonoBehaviour
     private List<int[]> _forgetMeNotDisplays = new List<int[]>();
     private List<int[]> _forgetMeNotSolutions = new List<int[]>();
 
+    const string _Souvenir = "SouvenirModule(Clone)";
+
+    const string _3DMaze = "3DMazeModule(Clone)";
+    const string _AdjacentLetters = "AdjacentLettersModule(Clone)";
+    const string _AdventureGame = "AdventureGameModule(Clone)";
+    const string _Bitmaps = "BitmapsModule(Clone)";
+    const string _ConnectionCheck = "GraphModule(Clone)";
+    const string _ForgetMeNot = "AdvancedMemory(Clone)";
+    const string _Hexamaze = "HexamazeModule(Clone)";
+    const string _MonsplodeFight = "CreatureModule(Clone)";
+    const string _SimonStates = "AdvancedSimon(Clone)";
+    const string _TheBulb = "TheBulbModule(Clone)";
+    const string _TwoBits = "TwoBitsModule(Clone)";
+
+    // 𝐍𝐨𝐭 𝐠𝐨𝐧𝐧𝐚 𝐝𝐨:
+    private string[] _ignoreModules = new[] {
+        // Anagrams
+        "Anagrams_Module(Clone)",
+        // Astrology
+        // The Button
+        // Caesar Cipher
+        // Complicated Wires
+        // Crazy Talk
+        // Cryptography
+        // Emoji Math
+        // Foreign Exchange Rates
+        // The Gamepad
+        // Piano Keys
+        // Plumbing
+        // Probing
+        // Resistors
+        // Square Button
+        "AdvancedButton(Clone)"
+        // Turn The Key
+        // Turn The Keys
+        // Wires
+    };
+
+    // 𝐒𝐭𝐫𝐢𝐤𝐞𝐬 𝐨𝐧𝐥𝐲:
+    // Blind Alley
+    // Chess — Chess Module(Clone)/ChessBehaviour
+    // Follow the Leader
+    // Friendship
+    // Laundry
+    // Lettered Keys
+    // Listening
+    // Logic
+    // Murder — MurderModule(Clone)/MurderModule
+    // Rock-Paper-Scissors-Lizard-Spock
+    // Round Keypad
+
+    // 𝐂𝐚𝐧𝐝𝐢𝐝𝐚𝐭𝐞𝐬:
+    // Colored Squares
+    // English Test
+    // Mazes
+    // Memory
+    // Microcontroller
+    // Morse Code
+    // Morsematics
+    // Mouse In The Maze
+    // Mystic Square
+    // Number Pad
+    // Orientation Cube
+    // Passwords
+    // Perspective Pegs
+    // Safety Safe
+    // Sea Shells — SeaShellsModule(Clone)/SeaShellsModule
+    // Shape Shift
+    // Silly Slots
+    // Simon Says
+    // Simon States
+    // Skewed Slots
+    // Switches
+    // Third Base
+    // Tic-Tac-Toe — TicTacToeModule(Clone)/TicTacToeModule
+    // Who’s on First
+
+    // 𝐏𝐨𝐬𝐬𝐢𝐛𝐥𝐞 𝐟𝐮𝐭𝐮𝐫𝐞 𝐜𝐚𝐧𝐝𝐢𝐝𝐚𝐭𝐞𝐬:
+    // Color Flash
+    // Combination Lock
+    // Keypads (strikes only)
+    // Alphabet (strikes only)
+    // Semaphore — SemaphoreModule(Clone)/SemaphoreModule
+    // Wire Sequences
+
     private IEnumerator ProcessModule(GameObject module)
     {
-        yield return new WaitForSeconds(.02f + Rnd.Range(0, .02f));
-
-        const string _Souvenir = "SouvenirModule(Clone)";
-
-        const string _3DMaze = "3DMazeModule(Clone)";
-        const string _AdjacentLetters = "AdjacentLettersModule(Clone)";
-        const string _AdventureGame = "AdventureGameModule(Clone)";
-        const string _Bitmaps = "BitmapsModule(Clone)";
-        const string _ConnectionCheck = "GraphModule(Clone)";
-        const string _ForgetMeNot = "AdvancedMemory(Clone)";
-        const string _Hexamaze = "HexamazeModule(Clone)";
-        const string _MonsplodeFight = "CreatureModule(Clone)";
-        const string _SimonStates = "AdvancedSimon(Clone)";
-        const string _TheBulb = "TheBulbModule(Clone)";
-        const string _TwoBits = "TwoBitsModule(Clone)";
-
-        // 𝐍𝐨𝐭 𝐠𝐨𝐧𝐧𝐚 𝐝𝐨:
-        var ignore = new[] {
-            // Anagrams
-            "Anagrams_Module(Clone)",
-            // Astrology
-            // The Button
-            // Caesar Cipher
-            // Complicated Wires
-            // Crazy Talk
-            // Cryptography
-            // Emoji Math
-            // Foreign Exchange Rates
-            // The Gamepad
-            // Piano Keys
-            // Plumbing
-            // Probing
-            // Resistors
-            // Square Button
-            "AdvancedButton(Clone)"
-            // Turn The Key
-            // Turn The Keys
-            // Wires
-        };
-
-        // 𝐒𝐭𝐫𝐢𝐤𝐞𝐬 𝐨𝐧𝐥𝐲:
-        // Blind Alley
-        // Chess — Chess Module(Clone)/ChessBehaviour
-        // Follow the Leader
-        // Friendship
-        // Laundry
-        // Lettered Keys
-        // Listening
-        // Logic
-        // Murder — MurderModule(Clone)/MurderModule
-        // Rock-Paper-Scissors-Lizard-Spock
-        // Round Keypad
-
-        // 𝐂𝐚𝐧𝐝𝐢𝐝𝐚𝐭𝐞𝐬:
-        // Colored Squares
-        // English Test
-        // Mazes
-        // Memory
-        // Microcontroller
-        // Morse Code
-        // Morsematics
-        // Mouse In The Maze
-        // Mystic Square
-        // Number Pad
-        // Orientation Cube
-        // Passwords
-        // Perspective Pegs
-        // Safety Safe
-        // Sea Shells — SeaShellsModule(Clone)/SeaShellsModule
-        // Shape Shift
-        // Silly Slots
-        // Simon Says
-        // Simon States
-        // Skewed Slots
-        // Switches
-        // Third Base
-        // Tic-Tac-Toe — TicTacToeModule(Clone)/TicTacToeModule
-        // Who’s on First
-
-        // 𝐏𝐨𝐬𝐬𝐢𝐛𝐥𝐞 𝐟𝐮𝐭𝐮𝐫𝐞 𝐜𝐚𝐧𝐝𝐢𝐝𝐚𝐭𝐞𝐬:
-        // Color Flash
-        // Combination Lock
-        // Keypads (strikes only)
-        // Alphabet (strikes only)
-        // Semaphore — SemaphoreModule(Clone)/SemaphoreModule
-        // Wire Sequences
-
         _moduleCounts.IncSafe(module.name);
 
         switch (module.name)
@@ -1177,11 +1228,11 @@ public class SouvenirModule : MonoBehaviour
                         var c = puzzleDisplay[i].Count(b => b);
                         if (c != 3)
                             addQuestion(Question.SimonStatesDisplay, _SimonStates,
-                                new[] { c == 4 ? "all of them" : puzzleDisplay[i].Select((v, j) => v ? colorNames[j] : null).Where(x => x != null).JoinString(" and ") },
+                                new[] { c == 4 ? "all 4" : puzzleDisplay[i].Select((v, j) => v ? colorNames[j] : null).Where(x => x != null).JoinString(", ") },
                                 new[] { "color(s) flashed", ordinal(i + 1) });
                         if (c != 1)
                             addQuestion(Question.SimonStatesDisplay, _SimonStates,
-                                new[] { c == 4 ? "none of them" : puzzleDisplay[i].Select((v, j) => v ? null : colorNames[j]).Where(x => x != null).JoinString(" and ") },
+                                new[] { c == 4 ? "none" : puzzleDisplay[i].Select((v, j) => v ? null : colorNames[j]).Where(x => x != null).JoinString(", ") },
                                 new[] { "color(s) didn’t flash", ordinal(i + 1) });
                     }
 
@@ -1274,7 +1325,7 @@ public class SouvenirModule : MonoBehaviour
                 }
 
             default:
-                if (_isTimwisComputer && !ignore.Contains(module.name))
+                if (_isTimwisComputer && !_ignoreModules.Contains(module.name))
                 {
                     var s = new StringBuilder();
                     s.AppendLine("Unrecognized module: " + module.name);
