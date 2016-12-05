@@ -90,13 +90,13 @@ public class SouvenirModule : MonoBehaviour
 
     // 𝐒𝐭𝐫𝐢𝐤𝐞𝐬 𝐨𝐧𝐥𝐲:
     // Blind Alley
-    // Follow the Leader
+    // Follow the Leader — FollowTheLeaderModule(Clone)/FollowTheLeaderModule
     // Friendship
     // Laundry
     // Lettered Keys
     // Logic
     // Murder — MurderModule(Clone)/MurderModule
-    // Rock-Paper-Scissors-Lizard-Spock
+    // Rock-Paper-Scissors-Lizard-Spock — RockPaperScissorsLizardSpockModule(Clone)/RockPaperScissorsLizardSpockModule
     // Round Keypad
 
     // 𝐂𝐚𝐧𝐝𝐢𝐝𝐚𝐭𝐞𝐬:
@@ -104,7 +104,7 @@ public class SouvenirModule : MonoBehaviour
     // English Test
     // Mazes
     // Memory
-    // Microcontroller
+    // Microcontroller — Micro(Clone)/Micro
     // Morse Code
     // Morsematics
     // Mystic Square
@@ -316,19 +316,27 @@ public class SouvenirModule : MonoBehaviour
             if (_isSolved)
                 break;
 
-            // Don’t ask more than one question per solved module if there are still modules left to solve.
             var solved = Bomb.GetSolvedModuleNames().Count;
-            if (solved < _waitableModules && _alreadyAskedAtNumSolved.Contains(solved))
-                continue;
+            if (solved < _waitableModules)
+            {
+                // Don’t ask more than one question per solved module if there are still modules left to solve.
+                if (_alreadyAskedAtNumSolved.Contains(solved))
+                    continue;
 
-            // Find a question to ask.
-            if (solved < _waitableModules ? FindAndSetQuestion(solved) : FindAndSetQuestion(null))
+                // Find a question to ask, or wait for a question to become available/eligible
+                if (FindAndSetQuestion(solved))
+                    _alreadyAskedAtNumSolved.Add(solved);
                 continue;
+            }
 
-            // No questions to ask and no modules to solve.
-            SetQuestion(new QuestionText("Congratulations!", new[] { "Thank you" }, 0, 0));
-            _solveAfterCurrentQuestion = true;
-            break;
+            // We ran out of modules to solve. Find a question that would otherwise be too soon to ask
+            if (!FindAndSetQuestion(null))
+            {
+                // No questions to ask and no modules to solve.
+                SetQuestion(new QuestionText("Congratulations!", new[] { "Thank you" }, 0, 0));
+                _solveAfterCurrentQuestion = true;
+                break;
+            }
         }
     }
 
@@ -1616,7 +1624,7 @@ public class SouvenirModule : MonoBehaviour
                 string.Format(attr.QuestionText, formatArguments.ToArray()),
                 answers.ToArray(),
                 correctIndex,
-                Bomb.GetSolvedModuleNames().Count + 3);
+                Bomb.GetSolvedModuleNames().Count + 2);
 
             Debug.LogFormat("[Souvenir] Making question:\nINPUT: question={0}, moduleKey={1}, possibleCorrectAnswers=[{2}], extraFormatArguments=[{3}], preferredWrongAnswers=[{4}], solvedOrd={5}\nOUTPUT: {6}",
                 /* {0} */ question,
