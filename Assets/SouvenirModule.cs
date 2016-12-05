@@ -58,6 +58,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Hexamaze = "HexamazeModule(Clone)";
     const string _Listening = "Listening(Clone)";
     const string _MonsplodeFight = "CreatureModule(Clone)";
+    const string _MouseInTheMaze = "Physics Module(Clone)";
     const string _SimonStates = "AdvancedSimon(Clone)";
     const string _TheBulb = "TheBulbModule(Clone)";
     const string _TwoBits = "TwoBitsModule(Clone)";
@@ -106,7 +107,6 @@ public class SouvenirModule : MonoBehaviour
     // Microcontroller
     // Morse Code
     // Morsematics
-    // Mouse In The Maze
     // Mystic Square
     // Number Pad
     // Orientation Cube
@@ -1268,6 +1268,47 @@ public class SouvenirModule : MonoBehaviour
                         if (attr != null && attr.AllAnswers != null)
                             addQuestion(Question.MonsplodeFightMove, _MonsplodeFight, attr.AllAnswers.Except(displayedMoves[i]).ToArray(), new[] { "was not", ord }, allDisplayedMoves);
                     }
+
+                    break;
+                }
+
+            case _MouseInTheMaze:
+                {
+                    var comp = GetComponent(module, "Maze_3d");
+                    var fldObjectives = GetField<int[]>(comp, "objectives");
+                    var fldIsActive = GetField<bool>(comp, "isActive");
+
+                    if (comp == null || fldObjectives == null || fldIsActive == null)
+                        break;
+
+                    var objectives = fldObjectives.Get();
+                    if (objectives == null)
+                        break;
+                    if (objectives.Length != 6)
+                    {
+                        Debug.LogFormat("[Souvenir] Abandoning Mouse in the Maze because objectives array has unexpected length ({0}; expected 6).", objectives.Length);
+                        break;
+                    }
+
+                    while (!_isActivated)
+                        yield return new WaitForSeconds(.1f);
+
+                    var torusColor = objectives[4];
+                    var goalPos = objectives[5];
+                    var goalColor = objectives[goalPos];
+
+                    if (torusColor < 0 || torusColor >= 4 || goalColor < 0 || goalColor >= 4)
+                    {
+                        Debug.LogFormat("[Souvenir] Abandoning Mouse in the Maze because unexpected color (torus={0}; goal={1}).", torusColor, goalColor);
+                        break;
+                    }
+
+                    while (fldIsActive.Get())
+                        yield return new WaitForSeconds(.1f);
+
+                    _modulesSolved.IncSafe(_MouseInTheMaze);
+                    addQuestion(Question.MouseInTheMazeSphere, _MouseInTheMaze, new[] { "white", "green", "blue", "yellow" }[goalColor]);
+                    addQuestion(Question.MouseInTheMazeTorus, _MouseInTheMaze, new[] { "white", "green", "blue", "yellow" }[torusColor]);
 
                     break;
                 }
