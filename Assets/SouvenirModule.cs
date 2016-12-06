@@ -53,7 +53,7 @@ public class SouvenirModule : MonoBehaviour
     const string _AdjacentLetters = "AdjacentLettersModule(Clone)";
     const string _AdventureGame = "AdventureGameModule(Clone)";
     const string _Bitmaps = "BitmapsModule(Clone)";
-    const string _Chess = "Chess Module(Clone)";
+    const string _Chess = "Chess(Clone)";
     const string _ConnectionCheck = "GraphModule(Clone)";
     const string _ForgetMeNot = "AdvancedMemory(Clone)";
     const string _Hexamaze = "HexamazeModule(Clone)";
@@ -977,76 +977,30 @@ public class SouvenirModule : MonoBehaviour
                 {
                     var comp = GetComponent(module, "ChessBehaviour");
                     var fldIndexSelected = GetField<string[]>(comp, "indexSelected"); // this contains both the coordinates and the solution
-                    var fldBottomButtons = GetField<KMSelectable[]>(comp, "bottomButtons", isPublic: true);
-                    var fldIsLetterPressed = GetField<bool>(comp, "isLetterPressed");
-                    var fldLetterSelected = GetField<char>(comp, "letterSelected");
+                    var fldIsSolved = GetField<bool>(comp, "isSolved", isPublic: true);
 
-                    if (comp == null || fldIndexSelected == null || fldBottomButtons == null)
+                    if (comp == null || fldIndexSelected == null || fldIsSolved == null)
                         break;
 
                     while (!_isActivated)
                         yield return new WaitForSeconds(.1f);
 
                     var indexSelected = fldIndexSelected.Get();
-                    var bottomButtons = fldBottomButtons.Get();
-                    if (indexSelected == null || bottomButtons == null)
+                    if (indexSelected == null)
                         break;
-                    if (bottomButtons.Length != 6 || bottomButtons.Any(b => b == null || b.OnInteract == null))
-                    {
-                        Debug.LogFormat("[Souvenir] Abandoning Chess because buttons array length is unexpected or one of the buttons or its OnInteract delegate is null ({0}).", bottomButtons.Select(b => b == null ? "b=null" : b.OnInteract == null ? "b.OI=null" : "not null").JoinString(", "));
-                        break;
-                    }
                     if (indexSelected.Length != 7 || indexSelected.Any(b => b == null || b.Length != 2))
                     {
                         Debug.LogFormat("[Souvenir] Abandoning Chess because indexSelected array length is unexpected or one of the values is null or not length 2 ({0}).", indexSelected.Select(iSel => iSel == null ? "null" : iSel).JoinString(", "));
                         break;
                     }
 
-                    var prevInteracts = new KMSelectable.OnInteractHandler[6];
-                    var solved = false;
-                    for (int i = 0; i < 6; i++)
-                    {
-                        prevInteracts[i] = bottomButtons[i].OnInteract;
-
-                        // Need an extra scope to work around a bug in the Mono 2.0 C# compiler that Unity uses!!
-                        new Action<int>((int j) =>
-                        {
-                            bottomButtons[j].OnInteract = delegate
-                            {
-                                Debug.LogFormat("[Souvenir] Chess: pressed button #{0}", j);
-                                if (fldIsLetterPressed.Get())
-                                {
-                                    var guess = string.Concat(fldLetterSelected.Get(), j + 1);
-                                    var correctSolution = indexSelected[6];
-                                    if (guess == correctSolution)
-                                    {
-                                        solved = true;
-
-                                        // Sneaky: disable the buttons so that the user can’t look at the coordinates anymore
-                                        for (int k = 0; k < 6; k++)
-                                        {
-                                            var l = k;
-                                            bottomButtons[k].OnInteract = delegate
-                                            {
-                                                Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, bottomButtons[l].transform);
-                                                return false;
-                                            };
-                                        }
-                                    }
-                                }
-
-                                return prevInteracts[j]();
-                            };
-                        })(i);
-                    }
-
-                    while (!solved)
+                    while (!fldIsSolved.Get())
                         yield return new WaitForSeconds(.1f);
 
                     _modulesSolved.IncSafe(_Chess);
 
                     for (int i = 0; i < 6; i++)
-                        addQuestion(Question.ChessCoordinate, _Chess, new[] { indexSelected[i] }, ordinal(i));
+                        addQuestion(Question.ChessCoordinate, _Chess, new[] { indexSelected[i] }, ordinal(i + 1));
                     break;
                 }
 
