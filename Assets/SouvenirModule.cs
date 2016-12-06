@@ -1007,32 +1007,37 @@ public class SouvenirModule : MonoBehaviour
                     for (int i = 0; i < 6; i++)
                     {
                         prevInteracts[i] = bottomButtons[i].OnInteract;
-                        var j = i;
-                        bottomButtons[i].OnInteract = delegate
-                        {
-                            if (fldIsLetterPressed.Get())
-                            {
-                                var guess = string.Concat(fldLetterSelected.Get(), j + 1);
-                                var correctSolution = indexSelected[6];
-                                if (guess == correctSolution)
-                                {
-                                    solved = true;
 
-                                    // Sneaky: disable the buttons so that the user can’t look at the coordinates anymore
-                                    for (int k = 0; k < 6; k++)
+                        // Need an extra scope to work around a bug in the Mono 2.0 C# compiler that Unity uses!!
+                        new Action<int>((int j) =>
+                        {
+                            bottomButtons[j].OnInteract = delegate
+                            {
+                                Debug.LogFormat("[Souvenir] Chess: pressed button #{0}", j);
+                                if (fldIsLetterPressed.Get())
+                                {
+                                    var guess = string.Concat(fldLetterSelected.Get(), j + 1);
+                                    var correctSolution = indexSelected[6];
+                                    if (guess == correctSolution)
                                     {
-                                        var l = k;
-                                        bottomButtons[k].OnInteract = delegate
+                                        solved = true;
+
+                                        // Sneaky: disable the buttons so that the user can’t look at the coordinates anymore
+                                        for (int k = 0; k < 6; k++)
                                         {
-                                            Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, bottomButtons[l].transform);
-                                            return false;
-                                        };
+                                            var l = k;
+                                            bottomButtons[k].OnInteract = delegate
+                                            {
+                                                Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, bottomButtons[l].transform);
+                                                return false;
+                                            };
+                                        }
                                     }
                                 }
-                            }
 
-                            return prevInteracts[j]();
-                        };
+                                return prevInteracts[j]();
+                            };
+                        })(i);
                     }
 
                     while (!solved)
