@@ -60,6 +60,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Listening = "Listening(Clone)";
     const string _MonsplodeFight = "CreatureModule(Clone)";
     const string _MouseInTheMaze = "Physics Module(Clone)";
+    const string _OrientationCube = "OrientationModule(Clone)";
     const string _SimonStates = "AdvancedSimon(Clone)";
     const string _TheBulb = "TheBulbModule(Clone)";
     const string _TwoBits = "TwoBitsModule(Clone)";
@@ -109,7 +110,6 @@ public class SouvenirModule : MonoBehaviour
     // Morsematics
     // Mystic Square
     // Number Pad
-    // Orientation Cube
     // Passwords
     // Perspective Pegs
     // Safety Safe
@@ -1345,6 +1345,67 @@ public class SouvenirModule : MonoBehaviour
                     addQuestion(Question.MouseInTheMazeSphere, _MouseInTheMaze, new[] { new[] { "white", "green", "blue", "yellow" }[goalColor] });
                     addQuestion(Question.MouseInTheMazeTorus, _MouseInTheMaze, new[] { new[] { "white", "green", "blue", "yellow" }[torusColor] });
 
+                    break;
+                }
+
+            case _OrientationCube:
+                {
+                    var comp = GetComponent(module, "OrientationModule");
+                    var fldInitialVirtualViewAngle = GetField<float>(comp, "initialVirtualViewAngle");
+                    var fldSubmitButton = GetField<KMSelectable>(comp, "SubmitButton", isPublic: true);
+                    var mthGetRule = GetMethod<object>(comp, "GetRule", 0);
+                    var mthIsFacing = GetMethod<bool>(comp, "IsFacing", 2);
+                    if (comp == null || fldInitialVirtualViewAngle == null || fldSubmitButton == null || mthGetRule == null || mthIsFacing == null)
+                        break;
+
+                    var initialVirtualViewAngle = fldInitialVirtualViewAngle.Get();
+                    Debug.LogFormat("[Souvenir] Orientation Cube initialVirtualViewAngle = {0}", initialVirtualViewAngle);
+                    var initialAnglePos = Array.IndexOf(new[] { 0f, 90f, 180f, 270f }, initialVirtualViewAngle);
+                    if (initialAnglePos == -1)
+                    {
+                        Debug.LogFormat("[Souvenir] Abandoning Orientation Cube because initialVirtualViewAngle has unexpected value: {0}", initialVirtualViewAngle);
+                        break;
+                    }
+
+                    while (!_isActivated)
+                        yield return new WaitForSeconds(.1f);
+
+                    var submitButton = fldSubmitButton.Get();
+                    if (submitButton == null)
+                        break;
+
+                    var prevInteract = submitButton.OnInteract;
+                    var solved = false;
+
+                    submitButton.OnInteract = delegate
+                    {
+                        var rule = mthGetRule.Invoke();
+                        var fldFromFacing = GetField<Vector3>(rule, "fromFacing", isPublic: true);
+                        var fldToFacing = GetField<Vector3>(rule, "toFacing", isPublic: true);
+                        var fldHasSecondaryRule = GetField<bool>(rule, "hasSecondaryRule", isPublic: true);
+                        var fldSecondaryFromFacing = GetField<Vector3>(rule, "secondaryFromFacing", isPublic: true);
+                        var fldSecondaryToFacing = GetField<Vector3>(rule, "secondaryToFacing", isPublic: true);
+
+                        if (rule == null || fldFromFacing == null || fldToFacing == null || fldHasSecondaryRule == null || fldSecondaryFromFacing == null || fldSecondaryToFacing == null || submitButton == null)
+                        {
+                            Debug.Log("[Souvenir] Abandoning Orientation Cube.");
+                            submitButton.OnInteract = prevInteract;
+                        }
+                        else if (mthIsFacing.Invoke(fldFromFacing.Field.GetValue(rule), fldToFacing.Field.GetValue(rule)) &&
+                                !(bool) fldHasSecondaryRule.Field.GetValue(rule) || mthIsFacing.Invoke(fldSecondaryFromFacing.Field.GetValue(rule), fldSecondaryToFacing.Field.GetValue(rule)))
+                        {
+                            solved = true;
+                            submitButton.OnInteract = prevInteract;
+                        }
+                        return prevInteract();
+                    };
+
+                    while (!solved)
+                        yield return new WaitForSeconds(.1f);
+
+                    _modulesSolved.IncSafe(_OrientationCube);
+
+                    addQuestion(Question.OrientationCubeInitialObserverPosition, _OrientationCube, new[] { new[] { "front", "left", "back", "right" }[initialAnglePos] });
                     break;
                 }
 

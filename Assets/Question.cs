@@ -68,12 +68,15 @@ namespace Souvenir
         [SouvenirQuestion("Which color sphere was the goal in {0}?", "Mouse in the Maze", 4, "white", "green", "blue", "yellow")]
         MouseInTheMazeSphere,
 
+        [SouvenirQuestion("What was the observer’s intial position in {0}?", "Orientation Cube", 4, "front", "left", "back", "right")]
+        OrientationCubeInitialObserverPosition,
+
         [SouvenirQuestion("Which {1} in the {2} stage in {0}?", "Simon States", 4, "Red", "Yellow", "Green", "Blue", "Red, Yellow", "Red, Green", "Red, Blue", "Yellow, Green", "Yellow, Blue", "Green, Blue", "all 4", "none",
             ExampleExtraFormatArguments = new[] { "color(s) flashed", "first", "color(s) didn’t flash", "first", "color(s) flashed", "second", "color(s) didn’t flash", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
         SimonStatesDisplay,
 
-        [SouvenirQuestion("What were your button presses in {0}{1}?", "Bulb", 6, null,
-            ExampleExtraFormatArguments = new[] { "", ", including strikes" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true, ExampleAnswers = new[] { "OOO", "OOI", "OIO", "OII", "IOO", "IOI", "IIO", "III", "IOOO", "IOOI", "IOIO", "IOII", "IIOO", "IIOI", "IIIO", "IIII" })]
+        [SouvenirQuestion("What were your button presses in {0}{1}?", "Bulb", 6, ExampleAnswers = new[] { "OOO", "OOI", "OIO", "OII", "IOO", "IOI", "IIO", "III", "IOOO", "IOOI", "IOIO", "IOII", "IIOO", "IIOI", "IIIO", "IIII" },
+            ExampleExtraFormatArguments = new[] { "", ", including strikes" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         TheBulbButtonPresses,
 
         [SouvenirQuestion("What was the {1} query response from {0}?", "Two Bits", 6, "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99",
@@ -99,7 +102,7 @@ namespace Souvenir
             QuestionText = questionText;
             ModuleName = moduleName;
             NumAnswers = numAnswers;
-            AllAnswers = allAnswers;
+            AllAnswers = allAnswers == null || allAnswers.Length == 0 ? null : allAnswers;
         }
     }
 
