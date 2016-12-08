@@ -698,8 +698,8 @@ public class SouvenirModule : MonoBehaviour
                         yield return new WaitForSeconds(.1f);
 
                     _modulesSolved.IncSafe(_3DMaze);
-                    addQuestion(Question._3DMazeMarkings, _3DMaze, correctMarkings);
-                    addQuestion(Question._3DMazeBearing, _3DMaze, bearing == 'N' ? "North" : bearing == 'S' ? "South" : bearing == 'W' ? "West" : "East");
+                    addQuestion(Question._3DMazeMarkings, _3DMaze, new[] { correctMarkings });
+                    addQuestion(Question._3DMazeBearing, _3DMaze, new[] { bearing == 'N' ? "North" : bearing == 'S' ? "South" : bearing == 'W' ? "West" : "East" });
                     break;
                 }
 
@@ -773,7 +773,7 @@ public class SouvenirModule : MonoBehaviour
                     {
                         addQuestion(Question.AdjacentLettersWrong, _AdjacentLetters,
                             Enumerable.Range(0, letters.Length).Where(i => correctSolution[i] != incorrectSolutions[q][i]).Select(i => letters[i].ToString()).ToArray(),
-                            incorrectSolutions.Count == 1 ? "a" : "your " + ordinal(q));
+                            extraFormatArguments: new[] { incorrectSolutions.Count == 1 ? "a" : "your " + ordinal(q) });
                     }
 
                     break;
@@ -968,7 +968,7 @@ public class SouvenirModule : MonoBehaviour
 
                     _questions.AddSafe(_ConnectionCheck, q(_modulesSolved.Get(_ConnectionCheck)));
                     for (var s = 0; s < strikes.Count; s++)
-                        addQuestion(Question.ConnectionCheckStrike, _ConnectionCheck, new[] { strikes[s] }, strikes.Count == 1 ? "a" : "your " + ordinal(s));
+                        addQuestion(Question.ConnectionCheckStrike, _ConnectionCheck, new[] { strikes[s] }, new[] { strikes.Count == 1 ? "a" : "your " + ordinal(s) });
 
                     break;
                 }
@@ -1000,7 +1000,7 @@ public class SouvenirModule : MonoBehaviour
                     _modulesSolved.IncSafe(_Chess);
 
                     for (int i = 0; i < 6; i++)
-                        addQuestion(Question.ChessCoordinate, _Chess, new[] { indexSelected[i] }, ordinal(i + 1));
+                        addQuestion(Question.ChessCoordinate, _Chess, new[] { indexSelected[i] }, new[] { ordinal(i + 1) });
                     break;
                 }
 
@@ -1060,9 +1060,9 @@ public class SouvenirModule : MonoBehaviour
                     {
                         if (i != firstUnique)
                             addQuestion(Question.ForgetMeNot, _ForgetMeNot, new[] { display[i].ToString() },
-                                new[] { ordinal(i + 1), "displayed", _moduleCounts.Get(_ForgetMeNot) == 1 ? "Forget Me Not" : string.Format("the Forget Me Not whose {0}-stage displayed number was {1}", firstUnique + 1, display[firstUnique]) });
+                                new[] { ordinal(i + 1), "displayed", _moduleCounts.Get(_ForgetMeNot) == 1 ? "Forget Me Not" : string.Format("the Forget Me Not whose {0}-stage displayed number was {1}", firstUnique + 1, display[firstUnique]) }, unleashAt: i + 3);
                         addQuestion(Question.ForgetMeNot, _ForgetMeNot, new[] { solution[i].ToString() },
-                            new[] { ordinal(i + 1), "solution", _moduleCounts.Get(_ForgetMeNot) == 1 ? "Forget Me Not" : string.Format("the Forget Me Not whose {0}-stage displayed number was {1}", firstUnique + 1, display[firstUnique]) });
+                            new[] { ordinal(i + 1), "solution", _moduleCounts.Get(_ForgetMeNot) == 1 ? "Forget Me Not" : string.Format("the Forget Me Not whose {0}-stage displayed number was {1}", firstUnique + 1, display[firstUnique]) }, unleashAt: i + 3);
                     }
 
                     break;
@@ -1346,8 +1346,8 @@ public class SouvenirModule : MonoBehaviour
                         yield return new WaitForSeconds(.1f);
 
                     _modulesSolved.IncSafe(_MouseInTheMaze);
-                    addQuestion(Question.MouseInTheMazeSphere, _MouseInTheMaze, new[] { "white", "green", "blue", "yellow" }[goalColor]);
-                    addQuestion(Question.MouseInTheMazeTorus, _MouseInTheMaze, new[] { "white", "green", "blue", "yellow" }[torusColor]);
+                    addQuestion(Question.MouseInTheMazeSphere, _MouseInTheMaze, new[] { new[] { "white", "green", "blue", "yellow" }[goalColor] });
+                    addQuestion(Question.MouseInTheMazeTorus, _MouseInTheMaze, new[] { new[] { "white", "green", "blue", "yellow" }[torusColor] });
 
                     break;
                 }
@@ -1512,22 +1512,12 @@ public class SouvenirModule : MonoBehaviour
 
     private Dictionary<Question, SouvenirQuestionAttribute> _attributes;
 
-    private void addQuestion(Question question, string moduleKey, params string[] possibleCorrectAnswers)
+    private void addQuestion(Question question, string moduleKey, string[] possibleCorrectAnswers, string[] extraFormatArguments = null, string[] preferredWrongAnswers = null, int? unleashAt = null)
     {
-        addQuestion(question, moduleKey, possibleCorrectAnswers, null);
+        _questions.AddSafe(moduleKey, questionMaker(question, moduleKey, possibleCorrectAnswers, extraFormatArguments, preferredWrongAnswers, unleashAt)(_modulesSolved.Get(moduleKey)));
     }
 
-    private void addQuestion(Question question, string moduleKey, string[] possibleCorrectAnswers, params string[] extraFormatArguments)
-    {
-        addQuestion(question, moduleKey, possibleCorrectAnswers, extraFormatArguments, null);
-    }
-
-    private void addQuestion(Question question, string moduleKey, string[] possibleCorrectAnswers, string[] extraFormatArguments, params string[] preferredWrongAnswers)
-    {
-        _questions.AddSafe(moduleKey, questionMaker(question, moduleKey, possibleCorrectAnswers, extraFormatArguments, preferredWrongAnswers)(_modulesSolved.Get(moduleKey)));
-    }
-
-    private Func<int, QuestionBase> questionMaker(Question question, string moduleKey, string[] possibleCorrectAnswers, string[] extraFormatArguments = null, string[] preferredWrongAnswers = null)
+    private Func<int, QuestionBase> questionMaker(Question question, string moduleKey, string[] possibleCorrectAnswers, string[] extraFormatArguments = null, string[] preferredWrongAnswers = null, int? unleashAt = null)
     {
         SouvenirQuestionAttribute attr;
         if (!_attributes.TryGetValue(question, out attr))
@@ -1583,7 +1573,7 @@ public class SouvenirModule : MonoBehaviour
                 string.Format(attr.QuestionText, formatArguments.ToArray()),
                 answers.ToArray(),
                 correctIndex,
-                Bomb.GetSolvedModuleNames().Count + 2);
+                unleashAt ?? (Bomb.GetSolvedModuleNames().Count + 2));
 
             Debug.LogFormat("[Souvenir] Making question:\nINPUT: question={0}, moduleKey={1}, possibleCorrectAnswers=[{2}], extraFormatArguments=[{3}], preferredWrongAnswers=[{4}], solvedOrd={5}\nOUTPUT: {6}",
                 /* {0} */ question,
