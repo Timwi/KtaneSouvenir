@@ -618,13 +618,18 @@ public class SouvenirModule : MonoBehaviour
         }
         var bindingFlags = (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | BindingFlags.Instance;
         var targetType = target.GetType();
-        var mth = targetType.GetMethods(bindingFlags).FirstOrDefault(m => m.GetParameters().Length == numParameters && typeof(T).IsAssignableFrom(m.ReturnType));
-        if (mth == null)
+        var mths = targetType.GetMethods(bindingFlags).Where(m => m.Name == name && m.GetParameters().Length == numParameters && typeof(T).IsAssignableFrom(m.ReturnType)).Take(2).ToArray();
+        if (mths.Length == 0)
         {
             Debug.LogFormat("[Souvenir] Type {0} does not contain {1} method {2} with return type {3} and {4} parameters.", targetType, isPublic ? "public" : "non-public", name, typeof(T).FullName, numParameters);
             return null;
         }
-        return new MethodInfo<T>(target, mth);
+        if (mths.Length > 1)
+        {
+            Debug.LogFormat("[Souvenir] Type {0} contains multiple {1} methods {2} with return type {3} and {4} parameters.", targetType, isPublic ? "public" : "non-public", name, typeof(T).FullName, numParameters);
+            return null;
+        }
+        return new MethodInfo<T>(target, mths[0]);
     }
 
     private IEnumerator ProcessModule(GameObject module)
