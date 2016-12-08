@@ -514,15 +514,6 @@ public class SouvenirModule : MonoBehaviour
 
         MainSelectable.Children = children;
         MainSelectable.UpdateChildren();
-
-        Debug.LogFormat("[Souvenir] Answers set. answers=[{0}], btns={1}, activeSelf=[{2}], text=[{3}], bounds=[{4}], _surfaceSizeFactor={5}",
-            /* {0} */ answers.JoinString(", ", "\"", "\""),
-            /* {1} */ btns == Answers6 ? "Answers6" : "Answers4",
-            /* {2} */ btns.Select(btn => btn.gameObject.activeSelf).JoinString(", "),
-            /* {3} */ btns.Select(btn => btn.GetComponent<TextMesh>().text).JoinString(", ", "\"", "\""),
-            /* {4} */ btns.Select(btn => btn.GetComponent<Renderer>().bounds.size).Select(sz => string.Format("({0}, {1}, {2})", sz.x, sz.y, sz.z)).JoinString(", ", "\"", "\""),
-            /* {5} */ _surfaceSizeFactor
-        );
     }
 
     private void PassAndTurnOff(string message = null)
