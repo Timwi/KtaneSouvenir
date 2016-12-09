@@ -61,21 +61,26 @@ public class SouvenirModule : MonoBehaviour
     const string _MonsplodeFight = "CreatureModule(Clone)";
     const string _MouseInTheMaze = "Physics Module(Clone)";
     const string _OrientationCube = "OrientationModule(Clone)";
+    const string _PerspectivePegs = "PerspectivePegsModule(Clone)";
     const string _SimonStates = "AdvancedSimon(Clone)";
     const string _TheBulb = "TheBulbModule(Clone)";
     const string _TwoBits = "TwoBitsModule(Clone)";
 
-    // 𝐍𝐨𝐭 𝐠𝐨𝐧𝐧𝐚 𝐝𝐨:
     private string[] _ignoreModules = new[] {
+        // ────────────────────────────
+        // 𝐍𝐨𝐭 𝐠𝐨𝐧𝐧𝐚 𝐝𝐨:
+        // ────────────────────────────
         // Anagrams
         "Anagrams_Module(Clone)",
         // Astrology
         // The Button
         // Caesar Cipher
+        "CaesarCipherModule(Clone)",
         // Complicated Wires
         // Crazy Talk
         // Cryptography
         // Emoji Math
+        "Emoji Math(Clone)",
         // Foreign Exchange Rates
         // The Gamepad
         // Piano Keys
@@ -83,54 +88,76 @@ public class SouvenirModule : MonoBehaviour
         // Probing
         // Resistors
         // Square Button
-        "AdvancedButton(Clone)"
+        "AdvancedButton(Clone)",
         // Turn The Key
         // Turn The Keys
         // Wires
+        // Word Scramble
+        "Word_Scramble_Module(Clone)",
+
+
+        // ────────────────────────────
+        // 𝐒𝐭𝐫𝐢𝐤𝐞𝐬 𝐨𝐧𝐥𝐲:
+        // ────────────────────────────
+        // Blind Alley
+        // Follow the Leader — FollowTheLeaderModule
+        "FollowTheLeaderModule(Clone)",
+        // Friendship
+        // Laundry
+        // Lettered Keys
+        // Logic
+        // Murder — MurderModule
+        "MurderModule(Clone)",
+        // Rock-Paper-Scissors-Lizard-Spock — RockPaperScissorsLizardSpockModule
+        "RockPaperScissorsLizardSpockModule(Clone)",
+        // Round Keypad
+
+        // ────────────────────────────
+        // 𝐂𝐚𝐧𝐝𝐢𝐝𝐚𝐭𝐞𝐬:
+        // ────────────────────────────
+        // Colored Squares
+        // English Test
+        // Mazes
+        // Memory
+        // Microcontroller — Micro
+        "Micro(Clone)",
+        // Morse Code
+        // Morsematics
+        // Mystic Square
+        // Number Pad
+        "NumberPadModule(Clone)",
+        // Passwords
+        // Safety Safe
+        "AdvancedPassword(Clone)",
+        // Sea Shells — SeaShellsModule
+        "SeaShellsModule(Clone)",
+        // Shape Shift
+        "ShapeShiftModule(Clone)",
+        // Silly Slots — SillySlots
+        "SillySlotsModule(Clone)",
+        // Simon Says
+        // Simon States
+        // Skewed Slots — SkewedModule
+        "SkewedModule(Clone)",
+        // Switches
+        // Third Base
+        // Tic-Tac-Toe — TicTacToeModule
+        "TicTacToeModule(Clone)",
+        // Who’s on First
+
+        // ────────────────────────────
+        // 𝐏𝐨𝐬𝐬𝐢𝐛𝐥𝐞 𝐟𝐮𝐭𝐮𝐫𝐞 𝐜𝐚𝐧𝐝𝐢𝐝𝐚𝐭𝐞𝐬:
+        // ────────────────────────────
+        // Color Flash
+        // Combination Lock
+        // Keypads (strikes only)
+        // Alphabet (strikes only)
+        // Semaphore — SemaphoreModule
+        "SemaphoreModule(Clone)",
+        // Wire Sequences
+
+        "dummy"
     };
-
-    // 𝐒𝐭𝐫𝐢𝐤𝐞𝐬 𝐨𝐧𝐥𝐲:
-    // Blind Alley
-    // Follow the Leader — FollowTheLeaderModule(Clone)/FollowTheLeaderModule
-    // Friendship
-    // Laundry
-    // Lettered Keys
-    // Logic
-    // Murder — MurderModule(Clone)/MurderModule
-    // Rock-Paper-Scissors-Lizard-Spock — RockPaperScissorsLizardSpockModule(Clone)/RockPaperScissorsLizardSpockModule
-    // Round Keypad
-
-    // 𝐂𝐚𝐧𝐝𝐢𝐝𝐚𝐭𝐞𝐬:
-    // Colored Squares
-    // English Test
-    // Mazes
-    // Memory
-    // Microcontroller — Micro(Clone)/Micro
-    // Morse Code
-    // Morsematics
-    // Mystic Square
-    // Number Pad
-    // Passwords
-    // Perspective Pegs
-    // Safety Safe
-    // Sea Shells — SeaShellsModule(Clone)/SeaShellsModule
-    // Shape Shift
-    // Silly Slots
-    // Simon Says
-    // Simon States
-    // Skewed Slots
-    // Switches
-    // Third Base
-    // Tic-Tac-Toe — TicTacToeModule(Clone)/TicTacToeModule
-    // Who’s on First
-
-    // 𝐏𝐨𝐬𝐬𝐢𝐛𝐥𝐞 𝐟𝐮𝐭𝐮𝐫𝐞 𝐜𝐚𝐧𝐝𝐢𝐝𝐚𝐭𝐞𝐬:
-    // Color Flash
-    // Combination Lock
-    // Keypads (strikes only)
-    // Alphabet (strikes only)
-    // Semaphore — SemaphoreModule(Clone)/SemaphoreModule
-    // Wire Sequences
 
     void setAnswerHandler(int index, Action<int> handler)
     {
@@ -1406,6 +1433,34 @@ public class SouvenirModule : MonoBehaviour
                     _modulesSolved.IncSafe(_OrientationCube);
 
                     addQuestion(Question.OrientationCubeInitialObserverPosition, _OrientationCube, new[] { new[] { "front", "left", "back", "right" }[initialAnglePos] });
+                    break;
+                }
+
+            case _PerspectivePegs:
+                {
+                    var comp = GetComponent(module, "PerspectivePegsModule");
+                    var fldIsComplete = GetField<bool>(comp, "isComplete");
+                    var fldEnteredSequence = GetField<List<int>>(comp, "EnteredSequence");
+                    if (comp == null || fldIsComplete == null || fldEnteredSequence == null)
+                        break;
+
+                    while (!fldIsComplete.Get())
+                        yield return new WaitForSeconds(.1f);
+                    _modulesSolved.IncSafe(_PerspectivePegs);
+
+                    var entered = fldEnteredSequence.Get();
+                    if (entered == null)
+                        break;
+                    if (entered.Count != 3 || entered.Any(e => e < 0 || e >= 5))
+                    {
+                        Debug.LogFormat("[Souvenir] Abandoning Perspective Pegs because EnteredSequence has unrecognized member or unexpected length: [{0}]", entered.JoinString(", "));
+                        break;
+                    }
+
+                    var theory = new[] { "top", "top right", "bottom right", "bottom left", "top left" };
+                    for (int i = 0; i < 3; i++)
+                        addQuestion(Question.PerspectivePegsSolution, _PerspectivePegs, new[] { theory[entered[i]] }, extraFormatArguments: new[] { ordinal(i + 1) }, preferredWrongAnswers: entered.Select(e => theory[e]).ToArray());
+
                     break;
                 }
 

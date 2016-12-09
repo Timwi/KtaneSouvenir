@@ -71,6 +71,10 @@ namespace Souvenir
         [SouvenirQuestion("What was the observer’s intial position in {0}?", "Orientation Cube", 4, "front", "left", "back", "right")]
         OrientationCubeInitialObserverPosition,
 
+        [SouvenirQuestion("Which peg was {1} in the solution to {0}?", "Perspective Pegs", 4, "top", "top right", "bottom right", "bottom left", "top left",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        PerspectivePegsSolution,
+
         [SouvenirQuestion("Which {1} in the {2} stage in {0}?", "Simon States", 4, "Red", "Yellow", "Green", "Blue", "Red, Yellow", "Red, Green", "Red, Blue", "Yellow, Green", "Yellow, Blue", "Green, Blue", "all 4", "none",
             ExampleExtraFormatArguments = new[] { "color(s) flashed", "first", "color(s) didn’t flash", "first", "color(s) flashed", "second", "color(s) didn’t flash", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
         SimonStatesDisplay,
