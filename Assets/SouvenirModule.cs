@@ -1161,7 +1161,6 @@ public class SouvenirModule : MonoBehaviour
 
                     var code = "";
                     var solved = false;
-                    var wrongCodes = new List<string>();
                     for (int i = 0; i < 4; i++)
                     {
                         var j = i;
@@ -1177,8 +1176,6 @@ public class SouvenirModule : MonoBehaviour
                                     // Sneaky: make it so that the player can no longer play the sound
                                     fldIsActivated.Set(false);
                                 }
-                                else
-                                    wrongCodes.Add(code);
                                 code = "";
                             }
                             return ret;
@@ -1192,9 +1189,7 @@ public class SouvenirModule : MonoBehaviour
                         buttons[i].OnInteract = prevInteracts[i];
 
                     _modulesSolved.IncSafe(_Listening);
-                    addQuestion(Question.Listening, _Listening, new[] { correctCode }, new[] { "correct" }, attr.ExampleAnswers);
-                    for (int i = 0; i < wrongCodes.Count; i++)
-                        addQuestion(Question.Listening, _Listening, new[] { wrongCodes[i] }, new[] { ordinal(i + 1) + " wrong" }, attr.ExampleAnswers);
+                    addQuestion(Question.Listening, _Listening, new[] { correctCode }, preferredWrongAnswers: attr.ExampleAnswers);
 
                     break;
                 }
