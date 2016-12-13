@@ -87,6 +87,7 @@ public class SouvenirModule : MonoBehaviour
         // Plumbing
         // Probing
         // Resistors
+        "ResistorsModule(Clone)",
         // Square Button
         "AdvancedButton(Clone)",
         // Turn The Key
@@ -208,6 +209,7 @@ public class SouvenirModule : MonoBehaviour
         SurfaceRenderer.transform.rotation = origRotation;
 
         disappear();
+        SetWordWrappedText("Welcome to Souvenir");
 
         _isActivated = false;
         Module.OnActivate += delegate
@@ -532,7 +534,7 @@ public class SouvenirModule : MonoBehaviour
             var fac = (answers.Length > 4 ? .45 : .7);
             if (bounds.x > fac * _surfaceSizeFactor)
             {
-                Debug.LogFormat("[Souvenir] Fixing width of answer #{0} by factor {1}", i + 1, (fac * _surfaceSizeFactor / bounds.x));
+                // Adjust width of answer so that it fits horizontally
                 mesh.transform.localScale = new Vector3((float) (fac * _surfaceSizeFactor / bounds.x), 1, 1);
                 highlight.transform.localScale = new Vector3((float) (100 * bounds.x / (fac * _surfaceSizeFactor)), 100, 100);
             }
@@ -1223,8 +1225,8 @@ public class SouvenirModule : MonoBehaviour
                         break;
                     }
 
-                    var fldCreatureNames = GetField<string[]>(creatureData, "names");
-                    var fldMoveNames = GetField<string[]>(movesData, "names");
+                    var fldCreatureNames = GetField<string[]>(creatureData, "names", isPublic: true);
+                    var fldMoveNames = GetField<string[]>(movesData, "names", isPublic: true);
                     if (fldCreatureNames == null || fldMoveNames == null)
                         break;
 
