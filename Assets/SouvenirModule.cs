@@ -1113,8 +1113,6 @@ public class SouvenirModule : MonoBehaviour
                         if (i != firstUnique)
                             addQuestion(Question.ForgetMeNot, _ForgetMeNot, new[] { display[i].ToString() },
                                 new[] { ordinal(i + 1), "displayed", _moduleCounts.Get(_ForgetMeNot) == 1 ? "Forget Me Not" : string.Format("the Forget Me Not whose {0}-stage displayed number was {1}", firstUnique + 1, display[firstUnique]) }, unleashAt: i + 3);
-                        addQuestion(Question.ForgetMeNot, _ForgetMeNot, new[] { solution[i].ToString() },
-                            new[] { ordinal(i + 1), "solution", _moduleCounts.Get(_ForgetMeNot) == 1 ? "Forget Me Not" : string.Format("the Forget Me Not whose {0}-stage displayed number was {1}", firstUnique + 1, display[firstUnique]) }, unleashAt: i + 3);
                     }
 
                     break;

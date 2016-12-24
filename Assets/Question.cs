@@ -41,8 +41,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "a", "your first" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ConnectionCheckStrike,
 
-        [SouvenirQuestion("What is the {1}-stage {2} number in {3}?", "Forget Me Not", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-            ExampleExtraFormatArguments = new[] { "first", "displayed", "Forget Me Not", "second", "solution", "the Forget Me Not whose first-stage displayed number was 5" }, ExampleExtraFormatArgumentGroupSize = 3)]
+        [SouvenirQuestion("What is the {1}-stage displayed number in {2}?", "Forget Me Not", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+            ExampleExtraFormatArguments = new[] { "first", "Forget Me Not", "second", "the Forget Me Not whose first-stage displayed number was 5" }, ExampleExtraFormatArgumentGroupSize = 2)]
         ForgetMeNot,
 
         [SouvenirQuestion("What was the color of the pawn in {0}?", "Hexamaze", 4, "Red", "Yellow", "Green", "Cyan", "Blue", "Pink")]
