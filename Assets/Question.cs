@@ -73,6 +73,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PerspectivePegsSolution,
 
+        [SouvenirQuestion("What was the {1} slot in the {2} stage in {0}?", "Silly Slots", 4, "red bomb", "red cherry", "red coin", "red grape", "green bomb", "green cherry", "green coin", "green grape", "blue bomb", "blue cherry", "blue coin", "blue grape",
+            ExampleExtraFormatArguments = new[] { "first", "first", "first", "second", "first", "third", "second", "first", "second", "second", "second", "third", "third", "first", "third", "second", "third", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        SillySlots,
+
         [SouvenirQuestion("Which {1} in the {2} stage in {0}?", "Simon States", 4, "Red", "Yellow", "Green", "Blue", "Red, Yellow", "Red, Green", "Red, Blue", "Yellow, Green", "Yellow, Blue", "Green, Blue", "all 4", "none",
             ExampleExtraFormatArguments = new[] { "color(s) flashed", "first", "color(s) didn’t flash", "first", "color(s) flashed", "second", "color(s) didn’t flash", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
         SimonStatesDisplay,
@@ -108,27 +112,19 @@ namespace Souvenir
         }
     }
 
-    abstract class QuestionBase
+    sealed class QandA
     {
         public string QuestionText { get; private set; }
+        public string[] Answers { get; private set; }
         public int CorrectIndex { get; private set; }
         public int UnleashAt { get; private set; }
-        protected QuestionBase(string question, int correct, int unleashAt)
+        public QandA(string question, string[] answers, int correct, int unleashAt)
         {
             QuestionText = question;
+            Answers = answers;
             CorrectIndex = correct;
             UnleashAt = unleashAt;
         }
-        public abstract string DebugString { get; }
-    }
-
-    sealed class QuestionText : QuestionBase
-    {
-        public string[] Answers { get; private set; }
-        public QuestionText(string question, string[] answers, int correct, int unleashAt) : base(question, correct, unleashAt)
-        {
-            Answers = answers;
-        }
-        public override string DebugString { get { return string.Format("{0} (answers: {1}, correct: {2}, unleashAt: {3})", QuestionText, string.Join(", ", Answers), CorrectIndex, UnleashAt); } }
+        public string DebugString { get { return string.Format("{0} (answers: {1}, correct: {2}, unleashAt: {3})", QuestionText, string.Join(", ", Answers), CorrectIndex, UnleashAt); } }
     }
 }

@@ -31,11 +31,11 @@ public class SouvenirModule : MonoBehaviour
 
     private static bool _isTimwisComputer = Environment.GetEnvironmentVariable("COMPUTERNAME") == "TEKELIA";
     private static string _timwiPath = @"D:\c\KTANE\Souvenir modules.txt";
-    private Dictionary<string, List<QuestionBase>> _questions = new Dictionary<string, List<QuestionBase>>();
+    private Dictionary<string, List<QandA>> _questions = new Dictionary<string, List<QandA>>();
     private bool _isActivated = false;
     private bool _isInUnity = false;
 
-    private QuestionBase _currentQuestion = null;
+    private QandA _currentQuestion = null;
     private bool _solveAfterCurrentQuestion = false;
     private bool _isSolved = false;
     private int _waitableModules;
@@ -62,6 +62,7 @@ public class SouvenirModule : MonoBehaviour
     const string _MouseInTheMaze = "Physics Module(Clone)";
     const string _OrientationCube = "OrientationModule(Clone)";
     const string _PerspectivePegs = "PerspectivePegsModule(Clone)";
+    const string _SillySlots = "SillySlotsModule(Clone)";
     const string _SimonStates = "AdvancedSimon(Clone)";
     const string _TheBulb = "TheBulbModule(Clone)";
     const string _TwoBits = "TwoBitsModule(Clone)";
@@ -137,9 +138,8 @@ public class SouvenirModule : MonoBehaviour
         "SeaShellsModule(Clone)",
         // Shape Shift
         "ShapeShiftModule(Clone)",
-        // Silly Slots — SillySlots
-        "SillySlotsModule(Clone)",
         // Simon Says
+        // Simon Screams
         // Simon States
         // Skewed Slots — SkewedModule
         "SkewedModule(Clone)",
@@ -250,7 +250,7 @@ public class SouvenirModule : MonoBehaviour
                         fmt[i + 1] = attr.ExampleExtraFormatArguments[curExample * attr.ExampleExtraFormatArgumentGroupSize + i];
                     try
                     {
-                        SetQuestion(new QuestionText(string.Format(attr.QuestionText, fmt), (attr.AllAnswers ?? attr.ExampleAnswers).ToList().Shuffle().Take(attr.NumAnswers).ToArray(), Rnd.Range(0, attr.NumAnswers), 0));
+                        SetQuestion(new QandA(string.Format(attr.QuestionText, fmt), (attr.AllAnswers ?? attr.ExampleAnswers).ToList().Shuffle().Take(attr.NumAnswers).ToArray(), Rnd.Range(0, attr.NumAnswers), 0));
                     }
                     catch (FormatException e)
                     {
@@ -395,7 +395,7 @@ public class SouvenirModule : MonoBehaviour
             if (!FindAndSetQuestion(null))
             {
                 // No questions to ask and no modules to solve.
-                SetQuestion(new QuestionText("Congratulations!", new[] { "Thank you" }, 0, 0));
+                SetQuestion(new QandA("Congratulations!", new[] { "Thank you" }, 0, 0));
                 _solveAfterCurrentQuestion = true;
                 break;
             }
@@ -421,20 +421,11 @@ public class SouvenirModule : MonoBehaviour
         return true;
     }
 
-    private void SetQuestion(QuestionBase q)
+    private void SetQuestion(QandA q)
     {
         _currentQuestion = q;
-
-        var qt = q as QuestionText;
-
         SetWordWrappedText(q.QuestionText);
-
-        if (qt != null)
-            ShowAnswers(qt.Answers);
-        else
-        {
-#warning TODO
-        }
+        ShowAnswers(q.Answers);
     }
 
     private static double[][] _acceptableWidths = Ut.NewArray(
@@ -882,7 +873,7 @@ public class SouvenirModule : MonoBehaviour
                     var origInvValues = new List<int>(invValues.Cast<int>());
                     var correctItemsUsed = 0;
                     var wrongItemsUsed = 0;
-                    var qs = new List<Func<int, QuestionBase>>();
+                    var qs = new List<Func<int, QandA>>();
                     var solved = false;
 
                     buttonUse.OnInteract = delegate
@@ -1507,6 +1498,55 @@ public class SouvenirModule : MonoBehaviour
                     break;
                 }
 
+            case _SillySlots:
+                {
+                    var comp = GetComponent(module, "SillySlots");
+                    var fldSolved = GetField<bool>(comp, "solved");
+                    var fldPrevSlots = GetField<IList>(comp, "mPreviousSlots");
+
+                    if (comp == null || fldSolved == null || fldPrevSlots == null)
+                        break;
+
+                    while (!fldSolved.Get())
+                        yield return new WaitForSeconds(.1f);
+
+                    var prevSlots = fldPrevSlots.Get();
+                    if (prevSlots == null)
+                        break;
+                    if (prevSlots.Count < 2)
+                    {
+                        // Legitimate: first stage was a keep already
+                        Debug.LogFormat("[Souvenir {0}] No question for Silly Slots because there was only one stage.", _SouvenirID);
+                        break;
+                    }
+
+                    if (prevSlots.Cast<object>().Any(obj => !(obj is Array) || ((Array) obj).Length != 3))
+                    {
+                        Debug.LogFormat("[Souvenir {0}] Abandoning Silly Slots because prevSlots {1}.",
+                            _SouvenirID,
+                            prevSlots == null ? "is null" :
+                            prevSlots.Count == 0 ? "has length 0" :
+                            string.Format("has an unexpected item (expected arrays of length 3): [{0}]", prevSlots.Cast<object>().Select(obj => obj == null ? "<null>" : !(obj is Array) ? string.Format("<{0}>", obj.GetType().FullName) : string.Format("<Array, length={0}>", ((Array) obj).Length)).JoinString(", ")));
+                        break;
+                    }
+
+                    var testSlot = ((Array) prevSlots[0]).GetValue(0);
+                    var fldShape = GetField<object>(testSlot, "shape", isPublic: true);
+                    var fldColor = GetField<object>(testSlot, "color", isPublic: true);
+                    if (fldShape == null || fldColor == null)
+                        break;
+
+                    // Skip the last stage because if the last action was Keep, it is still visible on the module
+                    for (int stage = 0; stage < prevSlots.Count - 1; stage++)
+                    {
+                        var slotStrings = ((Array) prevSlots[stage]).Cast<object>().Select(obj => (fldColor.Field.GetValue(obj).ToString() + " " + fldShape.Field.GetValue(obj).ToString()).ToLowerInvariant()).ToArray();
+                        for (int slot = 0; slot < slotStrings.Length; slot++)
+                            addQuestion(Question.SillySlots, _SillySlots, new[] { slotStrings[slot] }, new[] { ordinal(slot + 1), ordinal(stage + 1) }, slotStrings);
+                    }
+
+                    break;
+                }
+
             case _SimonStates:
                 {
                     var comp = GetComponent(module, "AdvancedSimon");
@@ -1672,7 +1712,7 @@ public class SouvenirModule : MonoBehaviour
         _questions.AddSafe(moduleKey, questionMaker(question, moduleKey, possibleCorrectAnswers, extraFormatArguments, preferredWrongAnswers, unleashAt)(_modulesSolved.Get(moduleKey)));
     }
 
-    private Func<int, QuestionBase> questionMaker(Question question, string moduleKey, string[] possibleCorrectAnswers, string[] extraFormatArguments = null, string[] preferredWrongAnswers = null, int? unleashAt = null)
+    private Func<int, QandA> questionMaker(Question question, string moduleKey, string[] possibleCorrectAnswers, string[] extraFormatArguments = null, string[] preferredWrongAnswers = null, int? unleashAt = null)
     {
         SouvenirQuestionAttribute attr;
         if (!_attributes.TryGetValue(question, out attr))
@@ -1724,22 +1764,12 @@ public class SouvenirModule : MonoBehaviour
             if (extraFormatArguments != null)
                 formatArguments.AddRange(extraFormatArguments);
 
-            var q = new QuestionText(
+            var q = new QandA(
                 string.Format(attr.QuestionText, formatArguments.ToArray()),
                 answers.ToArray(),
                 correctIndex,
                 unleashAt ?? (Bomb.GetSolvedModuleNames().Count + 2));
-
-            Debug.LogFormat("[Souvenir {7}] Making question:\nINPUT: question={0}, moduleKey={1}, possibleCorrectAnswers=[{2}], extraFormatArguments=[{3}], preferredWrongAnswers=[{4}], solvedOrd={5}\nOUTPUT: {6}",
-                /* {0} */ question,
-                /* {1} */ moduleKey,
-                /* {2} */ possibleCorrectAnswers == null ? "null" : possibleCorrectAnswers.JoinString(", "),
-                /* {3} */ extraFormatArguments == null ? "null" : extraFormatArguments.JoinString(", "),
-                /* {4} */ preferredWrongAnswers == null ? "null" : preferredWrongAnswers.JoinString(", "),
-                /* {5} */ solvedOrd,
-                /* {6} */ q.DebugString,
-                /* {7} */ _SouvenirID);
-
+            Debug.LogFormat("[Souvenir {1}] Making question {2}: {0}", q.DebugString, _SouvenirID, question);
             return q;
         };
     }
