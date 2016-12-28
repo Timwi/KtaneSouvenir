@@ -53,6 +53,7 @@ public class SouvenirModule : MonoBehaviour
     const string _AdjacentLetters = "AdjacentLettersModule(Clone)";
     const string _AdventureGame = "AdventureGameModule(Clone)";
     const string _Bitmaps = "BitmapsModule(Clone)";
+    const string _BrokenButtons = "BrokenButtonModule(Clone)";
     const string _Chess = "Chess(Clone)";
     const string _ConnectionCheck = "GraphModule(Clone)";
     const string _ForgetMeNot = "AdvancedMemory(Clone)";
@@ -210,7 +211,6 @@ public class SouvenirModule : MonoBehaviour
 
         var origRotation = SurfaceRenderer.transform.rotation;
         SurfaceRenderer.transform.eulerAngles = new Vector3(0, 180, 0);
-        Debug.LogFormat("[Souvenir {3}] SurfaceRenderer bounds=({0}, {1}, {2})", SurfaceRenderer.bounds.size.x, SurfaceRenderer.bounds.size.y, SurfaceRenderer.bounds.size.z, _SouvenirID);
         _surfaceSizeFactor = SurfaceRenderer.bounds.size.x / (2 * .834) * .9;
         SurfaceRenderer.transform.rotation = origRotation;
 
@@ -1020,6 +1020,31 @@ public class SouvenirModule : MonoBehaviour
                     _questions.AddSafe(_ConnectionCheck, q(_modulesSolved.Get(_ConnectionCheck)));
                     for (var s = 0; s < strikes.Count; s++)
                         addQuestion(Question.ConnectionCheckStrike, _ConnectionCheck, new[] { strikes[s] }, new[] { strikes.Count == 1 ? "a" : "your " + ordinal(s) });
+
+                    break;
+                }
+
+            case _BrokenButtons:
+                {
+                    var comp = GetComponent(module, "BrokenButtonModule");
+                    var fldPressed = GetField<List<string>>(comp, "Pressed");
+                    var fldSolved = GetField<bool>(comp, "Solved");
+
+                    if (comp == null || fldPressed == null || fldSolved == null)
+                        break;
+
+                    while (!fldSolved.Get())
+                        yield return new WaitForSeconds(.1f);
+
+                    var pressed = fldPressed.Get();
+                    if (pressed == null)
+                        break;
+
+                    _modulesSolved.IncSafe(_BrokenButtons);
+
+                    for (int i = 0; i < pressed.Count; i++)
+                        if (pressed[i].Length > 0) // skip the literally blank buttons.
+                            addQuestion(Question.BrokenButtons, _BrokenButtons, new[] { pressed[i] }, new[] { ordinal(i + 1) }, pressed.Except(new[] { "" }).ToArray());
 
                     break;
                 }
