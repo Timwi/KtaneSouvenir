@@ -86,13 +86,18 @@ public class SouvenirModule : MonoBehaviour
         // Cryptography
         // Emoji Math
         "Emoji Math(Clone)",
+        // English Test
         // Foreign Exchange Rates
         // The Gamepad
+        // Number Pad
+        "NumberPadModule(Clone)",
         // Piano Keys
         // Plumbing
         // Probing
         // Resistors
         "ResistorsModule(Clone)",
+        // Safety Safe
+        "AdvancedPassword(Clone)",
         // Square Button
         "AdvancedButton(Clone)",
         // Turn The Key
@@ -121,20 +126,15 @@ public class SouvenirModule : MonoBehaviour
         // ────────────────────────────
         // 𝐂𝐚𝐧𝐝𝐢𝐝𝐚𝐭𝐞𝐬:
         // ────────────────────────────
-        // Colored Squares
-        // English Test
+        // Colored Squares (color and size of first group)
         // Mazes
         // Memory
-        // Microcontroller — Micro
+        // Microcontroller — Micro (first LED position only)
         "Micro(Clone)",
         // Morse Code
-        // Morsematics
-        // Mystic Square
-        // Number Pad
-        "NumberPadModule(Clone)",
+        // Morsematics (check if received letters stop blinking)
+        // Mystic Square (position of skull and knight)
         // Passwords
-        // Safety Safe
-        "AdvancedPassword(Clone)",
         // Sea Shells — SeaShellsModule
         "SeaShellsModule(Clone)",
         // Shape Shift
@@ -1532,6 +1532,8 @@ public class SouvenirModule : MonoBehaviour
 
                     while (!fldSolved.Get())
                         yield return new WaitForSeconds(.1f);
+
+                    _modulesSolved.IncSafe(_SillySlots);
 
                     var prevSlots = fldPrevSlots.Get();
                     if (prevSlots == null)
