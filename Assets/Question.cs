@@ -39,6 +39,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ChessCoordinate,
 
+        [SouvenirQuestion("What was the first color group in {0}?", "Colored Squares", 4, "White", "Red", "Blue", "Green", "Yellow", "Magenta")]
+        ColoredSquares,
+
         [SouvenirQuestion("What were the initial colors on {0} in reading order?", "Connection Check", 6, "RRRR", "RRRG", "RRGR", "RRGG", "RGRR", "RGRG", "RGGR", "RGGG", "GRRR", "GRRG", "GRGR", "GRGG", "GGRR", "GGRG", "GGGR", "GGGG")]
         ConnectionCheckInitial,
 
@@ -77,6 +80,17 @@ namespace Souvenir
 
         [SouvenirQuestion("Which color sphere was the goal in {0}?", "Mouse in the Maze", 4, "white", "green", "blue", "yellow")]
         MouseInTheMazeSphere,
+
+        [SouvenirQuestion("Where was the body found in {0}?", "Murder", 4, "Dining Room", "Study", "Kitchen", "Lounge", "Billiard Room", "Conservatory", "Ballroom", "Hall", "Library")]
+        MurderBodyFound,
+
+        [SouvenirQuestion("Which of these was {1} in {0}?", "Murder", 4, "Miss Scarlett", "Professor Plum", "Mrs Peacock", "Reverend Green", "Colonel Mustard", "Mrs White",
+            ExampleExtraFormatArguments = new[] { "a suspect but not the murderer", "not a suspect" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        MurderSuspect,
+
+        [SouvenirQuestion("Which of these was {1} in {0}?", "Murder", 4, "Candlestick", "Dagger", "Lead Pipe", "Revolver", "Rope", "Spanner",
+            ExampleExtraFormatArguments = new[] { "a potential weapon but not the murder weapon", "not a potential weapon" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        MurderWeapon,
 
         [SouvenirQuestion("What was the observer’s intial position in {0}?", "Orientation Cube", 4, "front", "left", "back", "right")]
         OrientationCubeInitialObserverPosition,

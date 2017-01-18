@@ -55,6 +55,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Bitmaps = "BitmapsModule(Clone)";
     const string _BrokenButtons = "BrokenButtonModule(Clone)";
     const string _Chess = "Chess(Clone)";
+    const string _ColoredSquares = "ColoredSquaresModule(Clone)";
     const string _ConnectionCheck = "GraphModule(Clone)";
     const string _DoubleOh = "DoubleOhModule(Clone)";
     const string _ForgetMeNot = "AdvancedMemory(Clone)";
@@ -63,6 +64,7 @@ public class SouvenirModule : MonoBehaviour
     const string _MonsplodeFight = "CreatureModule(Clone)";
     const string _Morsematics = "AdvancedMorse(Clone)";
     const string _MouseInTheMaze = "Physics Module(Clone)";
+    const string _Murder = "MurderModule(Clone)";
     const string _OrientationCube = "OrientationModule(Clone)";
     const string _PerspectivePegs = "PerspectivePegsModule(Clone)";
     const string _SillySlots = "SillySlotsModule(Clone)";
@@ -80,6 +82,7 @@ public class SouvenirModule : MonoBehaviour
         // Anagrams
         "Anagrams_Module(Clone)",
         // Astrology
+        // Blind Alley
         // The Button
         // Caesar Cipher
         "CaesarCipherModule(Clone)",
@@ -89,8 +92,12 @@ public class SouvenirModule : MonoBehaviour
         // Emoji Math
         "Emoji Math(Clone)",
         // English Test
+        // Follow the Leader — FollowTheLeaderModule
+        "FollowTheLeaderModule(Clone)",
         // Foreign Exchange Rates
+        // Friendship
         // The Gamepad
+        // Laundry
         // Number Pad
         "NumberPadModule(Clone)",
         // Piano Keys
@@ -112,15 +119,8 @@ public class SouvenirModule : MonoBehaviour
         // ────────────────────────────
         // 𝐒𝐭𝐫𝐢𝐤𝐞𝐬 𝐨𝐧𝐥𝐲:
         // ────────────────────────────
-        // Blind Alley
-        // Follow the Leader — FollowTheLeaderModule
-        "FollowTheLeaderModule(Clone)",
-        // Friendship
-        // Laundry
         // Lettered Keys
         // Logic
-        // Murder — MurderModule
-        "MurderModule(Clone)",
         // Rock-Paper-Scissors-Lizard-Spock — RockPaperScissorsLizardSpockModule
         "RockPaperScissorsLizardSpockModule(Clone)",
         // Round Keypad
@@ -128,7 +128,6 @@ public class SouvenirModule : MonoBehaviour
         // ────────────────────────────
         // 𝐂𝐚𝐧𝐝𝐢𝐝𝐚𝐭𝐞𝐬:
         // ────────────────────────────
-        // Colored Squares (color and size of first group)
         // Mazes
         // Memory
         // Microcontroller — Micro (first LED position only)
@@ -968,6 +967,26 @@ public class SouvenirModule : MonoBehaviour
                     break;
                 }
 
+            case _ColoredSquares:
+                {
+                    var comp = GetComponent(module, "ColoredSquaresModule");
+                    var fldExpectedPresses = GetField<object>(comp, "_expectedPresses");
+                    var fldFirstStageColor = GetField<object>(comp, "_firstStageColor");
+
+                    if (comp == null || fldExpectedPresses == null || fldFirstStageColor == null)
+                        break;
+
+                    yield return null;
+
+                    // Colored Squares sets _expectedPresses to null when it’s solved
+                    while (fldExpectedPresses.Get() != null)
+                        yield return new WaitForSeconds(.1f);
+
+                    _modulesSolved.IncSafe(_ColoredSquares);
+                    addQuestion(Question.ColoredSquares, _ColoredSquares, new[] { fldFirstStageColor.Get().ToString() });
+                    break;
+                }
+
             case _ConnectionCheck:
                 {
                     var comp = GetComponent(module, "GraphModule");
@@ -1469,7 +1488,7 @@ public class SouvenirModule : MonoBehaviour
                         break;
                     if (objectives.Length != 6)
                     {
-                        Debug.LogFormat("[Souvenir {1}] Abandoning Mouse in the Maze because objectives array has unexpected length ({0}; expected 6).", objectives.Length, _SouvenirID);
+                        Debug.LogFormat("[Souvenir {1}] Mouse in the Maze: Objectives array has unexpected length ({0}; expected 6).", objectives.Length, _SouvenirID);
                         break;
                     }
 
@@ -1482,7 +1501,7 @@ public class SouvenirModule : MonoBehaviour
 
                     if (torusColor < 0 || torusColor >= 4 || goalColor < 0 || goalColor >= 4)
                     {
-                        Debug.LogFormat("[Souvenir {2}] Abandoning Mouse in the Maze because unexpected color (torus={0}; goal={1}).", torusColor, goalColor, _SouvenirID);
+                        Debug.LogFormat("[Souvenir {2}] Mouse in the Maze: Unexpected color (torus={0}; goal={1}).", torusColor, goalColor, _SouvenirID);
                         break;
                     }
 
@@ -1492,6 +1511,75 @@ public class SouvenirModule : MonoBehaviour
                     _modulesSolved.IncSafe(_MouseInTheMaze);
                     addQuestion(Question.MouseInTheMazeSphere, _MouseInTheMaze, new[] { new[] { "white", "green", "blue", "yellow" }[goalColor] });
                     addQuestion(Question.MouseInTheMazeTorus, _MouseInTheMaze, new[] { new[] { "white", "green", "blue", "yellow" }[torusColor] });
+
+                    break;
+                }
+
+            case _Murder:
+                {
+                    var comp = GetComponent(module, "MurderModule");
+                    var fldSolved = GetField<bool>(comp, "isSolved");
+                    var fldSolution = GetField<int[]>(comp, "solution");
+                    var fldNames = GetField<string[,]>(comp, "names");
+                    var fldSkipDisplay = GetField<int[,]>(comp, "skipDisplay");
+                    var fldSuspects = GetField<int>(comp, "suspects");
+                    var fldWeapons = GetField<int>(comp, "weapons");
+                    var fldBodyFound = GetField<int>(comp, "bodyFound");
+
+                    if (comp == null || fldSolved == null || fldNames == null || fldSkipDisplay == null || fldSuspects == null || fldWeapons == null || fldBodyFound == null)
+                        break;
+
+                    yield return null;
+
+                    if (fldSuspects.Get() != 4 || fldWeapons.Get() != 4)
+                    {
+                        Debug.LogFormat("[Souvenir {0}] Murder: Unexpected number of suspects ({1} instead of 4) or weapons ({2} instead of 4).", _SouvenirID, fldSuspects.Get(), fldWeapons.Get());
+                        break;
+                    }
+
+                    Debug.LogFormat("[Souvenir {0}] DEBUG MURDER 4", _SouvenirID);
+                    while (!fldSolved.Get())
+                        yield return new WaitForSeconds(.1f);
+                    _modulesSolved.IncSafe(_Murder);
+                    Debug.LogFormat("[Souvenir {0}] DEBUG MURDER 5", _SouvenirID);
+
+                    var solution = fldSolution.Get();
+                    var skipDisplay = fldSkipDisplay.Get();
+                    var names = fldNames.Get();
+                    if (solution == null || skipDisplay == null || names == null)
+                        break;
+                    if (solution.Length != 3 || skipDisplay.GetLength(0) != 2 || skipDisplay.GetLength(1) != 6 || names.GetLength(0) != 3 || names.GetLength(1) != 9)
+                    {
+                        Debug.LogFormat("[Souvenir {0}] Murder: Unexpected length of solution array ({1} instead of 3) or solution array ({2}/{3} instead of 2/6) or names array ({4}/{5} instead of 3/9).", _SouvenirID, solution.Length, skipDisplay.GetLength(0), skipDisplay.GetLength(1), names.GetLength(0), names.GetLength(1));
+                        break;
+                    }
+
+                    var actualSuspect = solution[0];
+                    var actualWeapon = solution[1];
+                    var actualRoom = solution[2];
+                    var bodyFound = fldBodyFound.Get();
+                    if (actualSuspect < 0 || actualSuspect >= 6 || actualWeapon < 0 || actualWeapon >= 6 || actualRoom < 0 || actualRoom >= 9 || bodyFound < 0 || bodyFound >= 9)
+                    {
+                        Debug.LogFormat("[Souvenir {0}] Murder: Unexpected suspect, weapon, room or bodyFound (expected 0–5/0–5/0–8/0–8, got {1}/{2}/{3}/{4}).", _SouvenirID, actualSuspect, actualWeapon, actualRoom, bodyFound);
+                        break;
+                    }
+
+                    addQuestion(Question.MurderSuspect, _Murder,
+                        Enumerable.Range(0, 6).Where(suspectIx => skipDisplay[0, suspectIx] == 0 && suspectIx != actualSuspect).Select(suspectIx => names[0, suspectIx]).ToArray(),
+                        new[] { "a suspect but not the murderer" });
+                    addQuestion(Question.MurderSuspect, _Murder,
+                        Enumerable.Range(0, 6).Where(suspectIx => skipDisplay[0, suspectIx] == 1).Select(suspectIx => names[0, suspectIx]).ToArray(),
+                        new[] { "not a suspect" });
+
+                    addQuestion(Question.MurderWeapon, _Murder,
+                        Enumerable.Range(0, 6).Where(weaponIx => skipDisplay[1, weaponIx] == 0 && weaponIx != actualWeapon).Select(weaponIx => names[1, weaponIx]).ToArray(),
+                        new[] { "a potential weapon but not the murder weapon" });
+                    addQuestion(Question.MurderWeapon, _Murder,
+                        Enumerable.Range(0, 6).Where(weaponIx => skipDisplay[1, weaponIx] == 1).Select(weaponIx => names[1, weaponIx]).ToArray(),
+                        new[] { "not a potential weapon" });
+
+                    if (bodyFound != actualRoom)
+                        addQuestion(Question.MurderBodyFound, _Murder, new[] { names[2, bodyFound] });
 
                     break;
                 }
@@ -1514,7 +1602,7 @@ public class SouvenirModule : MonoBehaviour
                     var initialAnglePos = Array.IndexOf(new[] { 0f, 90f, 180f, 270f }, initialVirtualViewAngle);
                     if (initialAnglePos == -1)
                     {
-                        Debug.LogFormat("[Souvenir {1}] Abandoning Orientation Cube because initialVirtualViewAngle has unexpected value: {0}", initialVirtualViewAngle, _SouvenirID);
+                        Debug.LogFormat("[Souvenir {1}] Orientation Cube: initialVirtualViewAngle has unexpected value: {0}", initialVirtualViewAngle, _SouvenirID);
                         break;
                     }
 
@@ -1577,7 +1665,7 @@ public class SouvenirModule : MonoBehaviour
                         break;
                     if (entered.Count != 3 || entered.Any(e => e < 0 || e >= 5))
                     {
-                        Debug.LogFormat("[Souvenir {1}] Abandoning Perspective Pegs because EnteredSequence has unrecognized member or unexpected length: [{0}]", entered.JoinString(", "), _SouvenirID);
+                        Debug.LogFormat("[Souvenir {1}] Perspective Pegs: EnteredSequence has unrecognized member or unexpected length: [{0}]", entered.JoinString(", "), _SouvenirID);
                         break;
                     }
 
