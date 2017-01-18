@@ -975,7 +975,7 @@ public class SouvenirModule : MonoBehaviour
                     var fldDict = GetField<Dictionary<Vector2, bool>>(comp, "dict");
                     var fldQueries = GetField<Vector2[]>(comp, "Queries");
 
-                    if (comp == null || fldOn == null || fldCheckButton == null)
+                    if (comp == null || fldOn == null || fldCheckButton == null || fldDict == null || fldQueries == null)
                         break;
 
                     while (!_isActivated)
