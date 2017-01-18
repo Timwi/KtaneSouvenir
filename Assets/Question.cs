@@ -46,6 +46,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "a", "your first" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ConnectionCheckStrike,
 
+        [SouvenirQuestion("What was the initial value displayed on {0}?", "Double-Oh", 6, "60", "15", "57", "36", "83", "48", "71", "24", "88", "46", "31", "70", "22", "64", "55", "13", "74", "27", "53", "41", "18", "86", "30", "62", "52", "10", "43", "85", "37", "61", "28", "76", "33", "65", "78", "21", "56", "12", "44", "87", "47", "81", "26", "68", "14", "72", "50", "35", "38", "42", "84", "63", "20", "75", "17", "51", "25", "73", "67", "16", "58", "34", "82", "40", "11", "54", "80", "32", "77", "45", "23", "66")]
+        DoubleOh,
+
         [SouvenirQuestion("What is the {1}-stage displayed number in {2}?", "Forget Me Not", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
             ExampleExtraFormatArguments = new[] { "first", "Forget Me Not", "second", "the Forget Me Not whose first-stage displayed number was 5" }, ExampleExtraFormatArgumentGroupSize = 2)]
         ForgetMeNot,
@@ -64,6 +67,10 @@ namespace Souvenir
         [SouvenirQuestion("Which one of these moves {1} selectable {2}in {0}?", "Monsplode, Fight!", 4, "Tic", "Tac", "Toe", "Hollow Gaze", "Splash", "Heavy Rain", "Fountain", "Candle", "Torchlight", "Flame Spear", "Tangle", "Grass Blade", "Ivy Spikes", "Spectre", "Boo", "Battery Power", "Zap", "Double Zap", "Shock", "High Voltage", "Dark Portal", "Last Word", "Void", "Boom", "Fiery Soul", "Stretch", "Shrink", "Appearify", "Sendify", "Freak Out", "Glyph", "Bug Spray", "Bedrock", "Earthquake", "Cave In", "Toxic Waste", "Venom Fang", "Countdown",
             ExampleExtraFormatArguments = new[] { "was", "", "was", "for the first creature ", "was", "for the second creature ", "was not", "", "was not", "for the first creature ", "was not", "for the second creature " }, ExampleExtraFormatArgumentGroupSize = 2)]
         MonsplodeFightMove,
+
+        [SouvenirQuestion("What was the {1} received letter in {0}?", "Morsematics", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        MorsematicsReceivedLetters,
 
         [SouvenirQuestion("What color was the torus in {0}?", "Mouse in the Maze", 4, "white", "green", "blue", "yellow")]
         MouseInTheMazeTorus,

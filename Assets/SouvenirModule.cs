@@ -56,10 +56,12 @@ public class SouvenirModule : MonoBehaviour
     const string _BrokenButtons = "BrokenButtonModule(Clone)";
     const string _Chess = "Chess(Clone)";
     const string _ConnectionCheck = "GraphModule(Clone)";
+    const string _DoubleOh = "DoubleOhModule(Clone)";
     const string _ForgetMeNot = "AdvancedMemory(Clone)";
     const string _Hexamaze = "HexamazeModule(Clone)";
     const string _Listening = "ListeningModule(Clone)";
     const string _MonsplodeFight = "CreatureModule(Clone)";
+    const string _Morsematics = "AdvancedMorse(Clone)";
     const string _MouseInTheMaze = "Physics Module(Clone)";
     const string _OrientationCube = "OrientationModule(Clone)";
     const string _PerspectivePegs = "PerspectivePegsModule(Clone)";
@@ -132,7 +134,6 @@ public class SouvenirModule : MonoBehaviour
         // Microcontroller — Micro (first LED position only)
         "Micro(Clone)",
         // Morse Code
-        // Morsematics (check if received letters stop blinking)
         // Mystic Square (position of skull and knight)
         // Passwords
         // Sea Shells — SeaShellsModule
@@ -1024,6 +1025,43 @@ public class SouvenirModule : MonoBehaviour
                     break;
                 }
 
+            case _DoubleOh:
+                {
+                    var comp = GetComponent(module, "DoubleOhModule");
+
+                    var fldGrid = GetField<int[]>(comp, "_grid");
+                    var fldCurPos = GetField<int>(comp, "_curPos");
+                    var fldIsSolved = GetField<bool>(comp, "_isSolved");
+
+                    if (comp == null || fldGrid == null || fldCurPos == null || fldIsSolved == null)
+                        break;
+
+                    yield return null;
+
+                    var grid = fldGrid.Get();
+                    var curPos = fldCurPos.Get();
+                    if (grid == null)
+                        break;
+                    if (curPos < 0 || curPos >= 81)
+                    {
+                        Debug.LogFormat(@"[Souvenir {0}] Double-Oh: invalid start position {1}.", _SouvenirID, curPos);
+                        break;
+                    }
+                    if (grid.Length != 81 || grid[40] != 0)
+                    {
+                        Debug.LogFormat(@"[Souvenir {0}] Double-Oh: grid has unexpected length ({1} instead of 81) or unexpected value at 40 ({2} instead of 0).", _SouvenirID, grid.Length, grid.Length != 81 ? "-" : grid[40].ToString());
+                        break;
+                    }
+
+                    var value = grid[curPos];
+                    while (!fldIsSolved.Get())
+                        yield return new WaitForSeconds(.1f);
+
+                    _modulesSolved.IncSafe(_DoubleOh);
+                    addQuestion(Question.DoubleOh, _DoubleOh, new[] { value.ToString() });
+                    break;
+                }
+
             case _BrokenButtons:
                 {
                     var comp = GetComponent(module, "BrokenButtonModule");
@@ -1385,6 +1423,35 @@ public class SouvenirModule : MonoBehaviour
                             addQuestion(Question.MonsplodeFightMove, _MonsplodeFight, attr.AllAnswers.Except(displayedMoves[i]).ToArray(), new[] { "was not", ord }, allDisplayedMoves);
                     }
 
+                    break;
+                }
+
+            case _Morsematics:
+                {
+                    var comp = GetComponent(module, "AdvancedMorse");
+                    var fldSolved = GetField<bool>(comp, "solved");
+                    var fldChars = GetField<string[]>(comp, "DisplayCharsRaw");
+
+                    if (comp == null || fldSolved == null)
+                        break;
+
+                    yield return null;
+
+                    var chars = fldChars.Get();
+                    if (chars == null)
+                        break;
+                    if (chars.Length != 3)
+                    {
+                        Debug.LogFormat("[Souvenir {0}] Morsematics: Unexpected length of DisplayCharsRaw array ({1} instead of 3).", _SouvenirID, chars.Length);
+                        break;
+                    }
+
+                    while (!fldSolved.Get())
+                        yield return new WaitForSeconds(.1f);
+
+                    _modulesSolved.IncSafe(_Morsematics);
+                    for (int i = 0; i < 3; i++)
+                        addQuestion(Question.MorsematicsReceivedLetters, _Morsematics, new[] { chars[i] }, new[] { ordinal(i + 1) }, chars);
                     break;
                 }
 
