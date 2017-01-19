@@ -50,7 +50,6 @@ public class SouvenirModule : MonoBehaviour
     const string _Souvenir = "SouvenirModule(Clone)";
 
     const string _3DMaze = "3DMazeModule(Clone)";
-    const string _AdjacentLetters = "AdjacentLettersModule(Clone)";
     const string _AdventureGame = "AdventureGameModule(Clone)";
     const string _Bitmaps = "BitmapsModule(Clone)";
     const string _BrokenButtons = "BrokenButtonModule(Clone)";
@@ -754,82 +753,6 @@ public class SouvenirModule : MonoBehaviour
                     break;
                 }
 
-            case _AdjacentLetters:
-                {
-                    var comp = GetComponent(module, "AdjacentLettersModule");
-                    var fldSubmitButton = GetField<KMSelectable>(comp, "SubmitButton", isPublic: true);
-                    var fldLetters = GetField<char[]>(comp, "_letters");
-                    var fldSolved = GetField<bool>(comp, "_isSolved");
-                    var fldPushed = GetField<bool[]>(comp, "_pushed");
-
-                    if (comp == null || fldSubmitButton == null || fldLetters == null || fldSolved == null || fldPushed == null)
-                        break;
-
-                    while (!_isActivated)
-                        yield return new WaitForSeconds(.1f);
-
-                    var letters = fldLetters.Get();
-                    if (letters == null)
-                        break;
-                    if (letters.Length != 12)
-                    {
-                        Debug.LogFormat("[Souvenir {1}] Adjacent Letters: _letters is {0}.", letters == null ? "null" : "of unexpected length " + letters.Length, _SouvenirID);
-                        break;
-                    }
-
-                    var submitButton = fldSubmitButton.Get();
-                    if (submitButton == null)
-                        break;
-
-                    var prevInteract = submitButton.OnInteract;
-                    if (prevInteract == null)
-                    {
-                        Debug.LogFormat("[Souvenir {0}] Adjacent Letters: SubmitButton.OnInteract is null.", _SouvenirID);
-                        break;
-                    }
-
-                    var incorrectSolutions = new List<bool[]>();
-                    bool[] correctSolution = null;
-                    submitButton.OnInteract = delegate
-                    {
-                        var ret = prevInteract();
-                        var pushed = fldPushed.Get();
-                        if (pushed == null || pushed.Length != 12)
-                        {
-                            Debug.LogFormat("[Souvenir {1}] Adjacent Letters: _pushed is {0}.", letters == null ? "null" : "of unexpected length " + pushed.Length, _SouvenirID);
-                            return ret;
-                        }
-
-                        // If the module is not solved, the entered solution was incorrect.
-                        // Make sure to take a copy of the array.
-                        if (!fldSolved.Get())
-                            incorrectSolutions.Add(pushed.ToArray());
-                        else
-                            correctSolution = pushed.ToArray();
-                        return ret;
-                    };
-
-                    while (!fldSolved.Get())
-                        yield return new WaitForSeconds(.1f);
-
-                    _modulesSolved.IncSafe(_AdjacentLetters);
-
-                    if (correctSolution == null)
-                    {
-                        Debug.LogFormat("[Souvenir {0}] Adjacent Letters: correct solution is null.", _SouvenirID);
-                        break;
-                    }
-
-                    for (int q = 0; q < incorrectSolutions.Count; q++)
-                    {
-                        addQuestion(Question.AdjacentLettersWrong, _AdjacentLetters,
-                            Enumerable.Range(0, letters.Length).Where(i => correctSolution[i] != incorrectSolutions[q][i]).Select(i => letters[i].ToString()).ToArray(),
-                            extraFormatArguments: new[] { incorrectSolutions.Count == 1 ? "a" : "your " + ordinal(q) });
-                    }
-
-                    break;
-                }
-
             case _AdventureGame:
                 {
                     var comp = GetComponent(module, "AdventureGameModule");
@@ -872,7 +795,6 @@ public class SouvenirModule : MonoBehaviour
                     var origStatValues = statValues.ToArray();
                     var origInvValues = new List<int>(invValues.Cast<int>());
                     var correctItemsUsed = 0;
-                    var wrongItemsUsed = 0;
                     var qs = new List<Func<int, QandA>>();
                     var solved = false;
 
@@ -902,13 +824,7 @@ public class SouvenirModule : MonoBehaviour
                             origInvValues.Clear();
                             origInvValues.AddRange(invValues.Cast<int>());
                         }
-                        else if (!shouldUse)
-                        {
-                            // The user used an incorrect item and got a strike.
-                            wrongItemsUsed++;
-                            qs.Add(questionMaker(Question.AdventureGameWrongItem, _AdventureGame, new[] { titleCase(mthItemName.Invoke(itemUsed)) }, new[] { ordinal(wrongItemsUsed) }));
-                        }
-                        else
+                        else if (shouldUse)
                         {
                             // The user solved the module.
                             solved = true;
@@ -1017,18 +933,14 @@ public class SouvenirModule : MonoBehaviour
                     var q = questionMaker(Question.ConnectionCheckInitial, _ConnectionCheck, new[] { isOn.Select(i => i == 0 ? "R" : "G").JoinString() });
 
                     var prevInteract = checkButton.OnInteract;
-                    var strikes = new List<string>();
                     var completed = false;
                     checkButton.OnInteract = delegate
                     {
                         bool isSuccess = true;
                         for (int i = 0; i < 4; i++)
                             isSuccess &= dict.ContainsKey(queries[i]) == (isOn[i] == 1);
-                        if (!isSuccess)
-                            strikes.Add(isOn.Select(i => i == 0 ? "R" : "G").JoinString());
-                        else
+                        if (isSuccess)
                             completed = true;
-
                         return prevInteract();
                     };
 
@@ -1036,11 +948,7 @@ public class SouvenirModule : MonoBehaviour
                         yield return new WaitForSeconds(.1f);
 
                     _modulesSolved.IncSafe(_ConnectionCheck);
-
                     _questions.AddSafe(_ConnectionCheck, q(_modulesSolved.Get(_ConnectionCheck)));
-                    for (var s = 0; s < strikes.Count; s++)
-                        addQuestion(Question.ConnectionCheckStrike, _ConnectionCheck, new[] { strikes[s] }, new[] { strikes.Count == 1 ? "a" : "your " + ordinal(s) });
-
                     break;
                 }
 
