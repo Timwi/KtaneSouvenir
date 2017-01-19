@@ -78,6 +78,9 @@ public class SouvenirModule : MonoBehaviour
         // ────────────────────────────
         // 𝐍𝐨𝐭 𝐠𝐨𝐧𝐧𝐚 𝐝𝐨:
         // ────────────────────────────
+        // Adjacent Letters
+        "AdjacentLettersModule(Clone)",
+        // Alphabet
         // Anagrams
         "Anagrams_Module(Clone)",
         // Astrology
@@ -91,12 +94,15 @@ public class SouvenirModule : MonoBehaviour
         // Emoji Math
         "Emoji Math(Clone)",
         // English Test
-        // Follow the Leader — FollowTheLeaderModule
+        // Follow the Leader
         "FollowTheLeaderModule(Clone)",
         // Foreign Exchange Rates
         // Friendship
         // The Gamepad
+        // Keypads
         // Laundry
+        // Lettered Keys
+        // Logic
         // Number Pad
         "NumberPadModule(Clone)",
         // Piano Keys
@@ -104,6 +110,9 @@ public class SouvenirModule : MonoBehaviour
         // Probing
         // Resistors
         "ResistorsModule(Clone)",
+        // Rock-Paper-Scissors-Lizard-Spock — RockPaperScissorsLizardSpockModule
+        "RockPaperScissorsLizardSpockModule(Clone)",
+        // Round Keypad
         // Safety Safe
         "AdvancedPassword(Clone)",
         // Square Button
@@ -114,15 +123,6 @@ public class SouvenirModule : MonoBehaviour
         // Word Scramble
         "Word_Scramble_Module(Clone)",
 
-
-        // ────────────────────────────
-        // 𝐒𝐭𝐫𝐢𝐤𝐞𝐬 𝐨𝐧𝐥𝐲:
-        // ────────────────────────────
-        // Lettered Keys
-        // Logic
-        // Rock-Paper-Scissors-Lizard-Spock — RockPaperScissorsLizardSpockModule
-        "RockPaperScissorsLizardSpockModule(Clone)",
-        // Round Keypad
 
         // ────────────────────────────
         // 𝐂𝐚𝐧𝐝𝐢𝐝𝐚𝐭𝐞𝐬:
@@ -154,8 +154,6 @@ public class SouvenirModule : MonoBehaviour
         // ────────────────────────────
         // Color Flash
         // Combination Lock
-        // Keypads (strikes only)
-        // Alphabet (strikes only)
         // Semaphore — SemaphoreModule
         "SemaphoreModule(Clone)",
         // Wire Sequences
