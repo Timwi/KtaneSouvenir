@@ -324,14 +324,11 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerator halveAnswers(int counter, int clickedIndex)
     {
-        Debug.LogFormat("[Souvenir {2}] Coroutine started with counter={0}, _halveAnswersCounter={1}", counter, _halveAnswersCounter, _SouvenirID);
         yield return new WaitForSeconds(.5f);
 
-        Debug.LogFormat("[Souvenir {2}] Coroutine after wait at counter={0}, _halveAnswersCounter={1}", counter, _halveAnswersCounter, _SouvenirID);
         if (_halveAnswersCounter != counter)
             yield break;
 
-        Debug.LogFormat("[Souvenir {0}] Coroutine survived", _SouvenirID);
         var answers = Answers4Parent.activeSelf ? Answers4 : Answers6;
         var numVisibleAnswers = Answers4Parent.activeSelf
             ? Enumerable.Range(0, 4).Where(i => Answers4[i].gameObject.activeSelf && !string.IsNullOrEmpty(Answers4[i].GetComponent<TextMesh>().text)).ToList()
@@ -1690,36 +1687,27 @@ public class SouvenirModule : MonoBehaviour
             case _TheBulb:
                 {
                     var comp = GetComponent(module, "TheBulbModule");
-                    var fldButtonO = GetField<KMSelectable>(comp, "ButtonO", isPublic: true);
-                    var fldButtonI = GetField<KMSelectable>(comp, "ButtonI", isPublic: true);
+                    var fldButtonPresses = GetField<string>(comp, "_correctButtonPresses");
                     var fldStage = GetField<int>(comp, "_stage");
 
-                    if (comp == null || fldButtonO == null || fldButtonI == null || fldStage == null)
+                    if (comp == null || fldButtonPresses == null || fldStage == null)
                         break;
 
                     while (!_isActivated)
                         yield return new WaitForSeconds(.1f);
 
-                    var btnO = fldButtonO.Get();
-                    var btnI = fldButtonI.Get();
-                    if (btnO == null || btnI == null)
-                        break;
-                    var buttonsPressed = "";
-
-                    var prevO = btnO.OnInteract;
-                    btnO.OnInteract = delegate { buttonsPressed += "O"; return prevO(); };
-                    var prevI = btnI.OnInteract;
-                    btnI.OnInteract = delegate { buttonsPressed += "I"; return prevI(); };
-
                     while (fldStage.Get() != 0)
                         yield return new WaitForSeconds(.1f);
-
-                    btnO.OnInteract = prevO;
-                    btnI.OnInteract = prevI;
-
                     _modulesSolved.IncSafe(_TheBulb);
-                    addQuestion(Question.TheBulbButtonPresses, _TheBulb, new[] { buttonsPressed }, new[] { buttonsPressed.Length == 3 ? "" : ", including strikes" },
-                        Enumerable.Range(0, 1 << buttonsPressed.Length).Select(i => Convert.ToString(i, 2).Replace("0", "O").Replace("1", "I").PadLeft(buttonsPressed.Length, 'O')).ToArray());
+
+                    var buttonPresses = fldButtonPresses.Get();
+                    if (buttonPresses == null || buttonPresses.Length != 3)
+                    {
+                        Debug.LogFormat("[Souvenir {0}] The Bulb: _correctButtonPresses has unexpected value ({1})", _SouvenirID, buttonPresses == null ? "<null>" : string.Format(@"""{0}""", buttonPresses));
+                        break;
+                    }
+
+                    addQuestion(Question.TheBulbButtonPresses, _TheBulb, new[] { buttonPresses });
                     break;
                 }
 
