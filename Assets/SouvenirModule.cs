@@ -53,6 +53,7 @@ public class SouvenirModule : MonoBehaviour
     const string _AdventureGame = "AdventureGameModule(Clone)";
     const string _Bitmaps = "BitmapsModule(Clone)";
     const string _BrokenButtons = "BrokenButtonModule(Clone)";
+    const string _CheapCheckout = "CheapCheckoutModule(Clone)";
     const string _Chess = "Chess(Clone)";
     const string _ColoredSquares = "ColoredSquaresModule(Clone)";
     const string _ConnectionCheck = "GraphModule(Clone)";
@@ -68,6 +69,7 @@ public class SouvenirModule : MonoBehaviour
     const string _PerspectivePegs = "PerspectivePegsModule(Clone)";
     const string _SillySlots = "SillySlotsModule(Clone)";
     const string _SimonStates = "AdvancedSimon(Clone)";
+    const string _SkewedSlots = "SkewedModule(Clone)";
     const string _TheBulb = "TheBulbModule(Clone)";
     const string _TwoBits = "TwoBitsModule(Clone)";
 
@@ -141,8 +143,6 @@ public class SouvenirModule : MonoBehaviour
         // Simon Says
         // Simon Screams
         // Simon States
-        // Skewed Slots — SkewedModule
-        "SkewedModule(Clone)",
         // Switches
         // Third Base
         // Tic-Tac-Toe — TicTacToeModule
@@ -184,7 +184,7 @@ public class SouvenirModule : MonoBehaviour
         _SouvenirID = _SouvenirCounter;
         _SouvenirCounter++;
 
-        Debug.LogFormat("[Souvenir {0}] Started.", _SouvenirID);
+        Debug.LogFormat("[Souvenir #{0}] Started.", _SouvenirID);
         Bomb.OnBombExploded += delegate { StopAllCoroutines(); };
         Bomb.OnBombSolved += delegate { StopAllCoroutines(); };
 
@@ -222,7 +222,7 @@ public class SouvenirModule : MonoBehaviour
             if (serial == null)
             {
                 // Testing in Unity
-                Debug.LogFormat("[Souvenir {0}] Entering Unity testing mode.", _SouvenirID);
+                Debug.LogFormat("[Souvenir #{0}] Entering Unity testing mode.", _SouvenirID);
                 _isInUnity = true;
                 var questions = Ut.GetEnumValues<Question>();
                 var curQuestion = 0;
@@ -233,7 +233,7 @@ public class SouvenirModule : MonoBehaviour
                     SouvenirQuestionAttribute attr;
                     if (!_attributes.TryGetValue(questions[curQuestion], out attr))
                     {
-                        Debug.LogFormat("[Souvenir {1}] Error: Question {0} has no attribute.", questions[curQuestion], _SouvenirID);
+                        Debug.LogFormat("[Souvenir #{1}] Error: Question {0} has no attribute.", questions[curQuestion], _SouvenirID);
                         return;
                     }
                     if (attr.ExampleExtraFormatArguments != null && attr.ExampleExtraFormatArguments.Length > 0 && attr.ExampleExtraFormatArgumentGroupSize > 0)
@@ -251,7 +251,7 @@ public class SouvenirModule : MonoBehaviour
                     }
                     catch (FormatException e)
                     {
-                        Debug.LogFormat("[Souvenir {3}] FormatException {0}\nQuestionText={1}\nfmt=[{2}]", e.Message, attr.QuestionText, fmt.JoinString(", ", "\"", "\""), _SouvenirID);
+                        Debug.LogFormat("[Souvenir #{3}] FormatException {0}\nQuestionText={1}\nfmt=[{2}]", e.Message, attr.QuestionText, fmt.JoinString(", ", "\"", "\""), _SouvenirID);
                     }
                 };
                 showQuestion();
@@ -361,7 +361,7 @@ public class SouvenirModule : MonoBehaviour
     {
         // This relies on the fact that Play() isn’t started until the module is activated, while _waitableModules is decremented in ProcessModule() which is already started in Start().
         _numQuestionsToAsk = (_waitableModules + 1) / 2;
-        Debug.LogFormat("[Souvenir {1}] Entering KTANE mode. Striving to ask {0} questions.", _numQuestionsToAsk, _SouvenirID);
+        Debug.LogFormat("[Souvenir #{1}] Entering KTANE mode. Striving to ask {0} questions.", _numQuestionsToAsk, _SouvenirID);
 
         while (true)
         {
@@ -410,7 +410,7 @@ public class SouvenirModule : MonoBehaviour
         _numQuestionsAsked++;
         if (_numQuestionsAsked >= _numQuestionsToAsk)
             _solveAfterCurrentQuestion = true;
-        Debug.LogFormat("[Souvenir {5}] Unleashing question (unleashAt={4}): {0}; questions asked={1}, questions to ask={2}, solveAfterCurrentQuestion={3}",
+        Debug.LogFormat("[Souvenir #{5}] Unleashing question (unleashAt={4}): {0}; questions asked={1}, questions to ask={2}, solveAfterCurrentQuestion={3}",
             qu.DebugString, _numQuestionsAsked, _numQuestionsToAsk, _solveAfterCurrentQuestion, unleashAt == null ? "null" : unleashAt.ToString(), _SouvenirID);
         return true;
     }
@@ -522,7 +522,7 @@ public class SouvenirModule : MonoBehaviour
     {
         if (answers == null || answers.Length == 0 || answers.Length > 6)
         {
-            Debug.LogFormat("[Souvenir {2}] Something went wrong setting answers. length={0}, answers=[{1}]", answers == null ? "null" : answers.Length.ToString(), answers == null ? "null" : answers.JoinString(), _SouvenirID);
+            Debug.LogFormat("[Souvenir #{2}] Something went wrong setting answers. length={0}, answers=[{1}]", answers == null ? "null" : answers.Length.ToString(), answers == null ? "null" : answers.JoinString(), _SouvenirID);
             PassAndTurnOff("Error.");
             return;
         }
@@ -592,7 +592,7 @@ public class SouvenirModule : MonoBehaviour
         {
             var t = (T) Field.GetValue(_target);
             if (!nullAllowed && t == null)
-                Debug.LogFormat("[Souvenir {2}] {0} field {1} is null.", _target.GetType().FullName, Field.Name, _souvenirID);
+                Debug.LogFormat("[Souvenir #{2}] {0} field {1} is null.", _target.GetType().FullName, Field.Name, _souvenirID);
             return t;
         }
         public void Set(T value) { Field.SetValue(_target, value); }
@@ -620,7 +620,7 @@ public class SouvenirModule : MonoBehaviour
         var comp = module.GetComponent(name);
         if (comp == null)
         {
-            Debug.LogFormat("[Souvenir {2}] {0} game object has no {1} component.", module.name, name, _SouvenirID);
+            Debug.LogFormat("[Souvenir #{2}] {0} game object has no {1} component.", module.name, name, _SouvenirID);
             return null;
         }
         return comp;
@@ -630,7 +630,7 @@ public class SouvenirModule : MonoBehaviour
     {
         if (target == null)
         {
-            Debug.LogFormat("[Souvenir {3}] Attempt to get {1} field {0} of type {2} from a null object.", name, isPublic ? "public" : "non-public", typeof(T).FullName, _SouvenirID);
+            Debug.LogFormat("[Souvenir #{3}] Attempt to get {1} field {0} of type {2} from a null object.", name, isPublic ? "public" : "non-public", typeof(T).FullName, _SouvenirID);
             return null;
         }
         var bindingFlags = (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | BindingFlags.Instance;
@@ -638,12 +638,12 @@ public class SouvenirModule : MonoBehaviour
         var fld = targetType.GetField(name, bindingFlags);
         if (fld == null)
         {
-            Debug.LogFormat("[Souvenir {3}] Type {0} does not contain {1} field {2}.", targetType, isPublic ? "public" : "non-public", name, _SouvenirID);
+            Debug.LogFormat("[Souvenir #{3}] Type {0} does not contain {1} field {2}.", targetType, isPublic ? "public" : "non-public", name, _SouvenirID);
             return null;
         }
         if (!typeof(T).IsAssignableFrom(fld.FieldType))
         {
-            Debug.LogFormat("[Souvenir {5}] Type {0} has {1} field {2} of type {3} but expected type {4}.", targetType, isPublic ? "public" : "non-public", name, fld.FieldType.FullName, typeof(T).FullName, _SouvenirID);
+            Debug.LogFormat("[Souvenir #{5}] Type {0} has {1} field {2} of type {3} but expected type {4}.", targetType, isPublic ? "public" : "non-public", name, fld.FieldType.FullName, typeof(T).FullName, _SouvenirID);
             return null;
         }
         return new FieldInfo<T>(target, fld, _SouvenirID);
@@ -653,7 +653,7 @@ public class SouvenirModule : MonoBehaviour
     {
         if (target == null)
         {
-            Debug.LogFormat("[Souvenir {3}] Attempt to get {1} method {0} of return type {2} from a null object.", name, isPublic ? "public" : "non-public", typeof(T).FullName, _SouvenirID);
+            Debug.LogFormat("[Souvenir #{3}] Attempt to get {1} method {0} of return type {2} from a null object.", name, isPublic ? "public" : "non-public", typeof(T).FullName, _SouvenirID);
             return null;
         }
         var bindingFlags = (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | BindingFlags.Instance;
@@ -661,12 +661,12 @@ public class SouvenirModule : MonoBehaviour
         var mths = targetType.GetMethods(bindingFlags).Where(m => m.Name == name && m.GetParameters().Length == numParameters && typeof(T).IsAssignableFrom(m.ReturnType)).Take(2).ToArray();
         if (mths.Length == 0)
         {
-            Debug.LogFormat("[Souvenir {5}] Type {0} does not contain {1} method {2} with return type {3} and {4} parameters.", targetType, isPublic ? "public" : "non-public", name, typeof(T).FullName, numParameters, _SouvenirID);
+            Debug.LogFormat("[Souvenir #{5}] Type {0} does not contain {1} method {2} with return type {3} and {4} parameters.", targetType, isPublic ? "public" : "non-public", name, typeof(T).FullName, numParameters, _SouvenirID);
             return null;
         }
         if (mths.Length > 1)
         {
-            Debug.LogFormat("[Souvenir {5}] Type {0} contains multiple {1} methods {2} with return type {3} and {4} parameters.", targetType, isPublic ? "public" : "non-public", name, typeof(T).FullName, numParameters, _SouvenirID);
+            Debug.LogFormat("[Souvenir #{5}] Type {0} contains multiple {1} methods {2} with return type {3} and {4} parameters.", targetType, isPublic ? "public" : "non-public", name, typeof(T).FullName, numParameters, _SouvenirID);
             return null;
         }
         return new MethodInfo<T>(target, mths[0]);
@@ -700,7 +700,7 @@ public class SouvenirModule : MonoBehaviour
                         break;
                     if (mapData.GetLength(0) != 8 || mapData.GetLength(1) != 8)
                     {
-                        Debug.LogFormat("[Souvenir {2}] 3D maze wrong size ({0},{1}, expected 8,8).", mapData.GetLength(0), mapData.GetLength(1), _SouvenirID);
+                        Debug.LogFormat("[Souvenir #{2}] 3D maze wrong size ({0},{1}, expected 8,8).", mapData.GetLength(0), mapData.GetLength(1), _SouvenirID);
                         break;
                     }
                     var fldLabel = GetField<char>(mapData.GetValue(0, 0), "label", isPublic: true);
@@ -729,13 +729,13 @@ public class SouvenirModule : MonoBehaviour
                     else if (correctMarkings == "CDH") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(5, 1));
                     else
                     {
-                        Debug.LogFormat(@"[Souvenir {1}] Abandoning 3D Maze because unexpected markings: ""{0}"".", correctMarkings, _SouvenirID);
+                        Debug.LogFormat(@"[Souvenir #{1}] Abandoning 3D Maze because unexpected markings: ""{0}"".", correctMarkings, _SouvenirID);
                         break;
                     }
 
                     if (!"NSWE".Contains(bearing))
                     {
-                        Debug.LogFormat("[Souvenir {1}] Abandoning 3D Maze because unexpected bearing: '{0}'.", bearing, _SouvenirID);
+                        Debug.LogFormat("[Souvenir #{1}] Abandoning 3D Maze because unexpected bearing: '{0}'.", bearing, _SouvenirID);
                         break;
                     }
 
@@ -776,14 +776,14 @@ public class SouvenirModule : MonoBehaviour
                     var numWeapons = fldNumWeapons.Get();
                     if (invWeaponCount == 0 || numWeapons == 0)
                     {
-                        Debug.LogFormat("[Souvenir {2}] {0} field {1} is 0 (zero).", comp.GetType().FullName, invWeaponCount == 0 ? fldInvWeaponCount.Field.Name : fldNumWeapons.Field.Name, _SouvenirID);
+                        Debug.LogFormat("[Souvenir #{2}] {0} field {1} is 0 (zero).", comp.GetType().FullName, invWeaponCount == 0 ? fldInvWeaponCount.Field.Name : fldNumWeapons.Field.Name, _SouvenirID);
                         break;
                     }
 
                     var prevInteract = buttonUse.OnInteract;
                     if (prevInteract == null)
                     {
-                        Debug.LogFormat("[Souvenir {0}] Adventure Game: ButtonUse.OnInteract is null.", _SouvenirID);
+                        Debug.LogFormat("[Souvenir #{0}] Adventure Game: ButtonUse.OnInteract is null.", _SouvenirID);
                         break;
                     }
 
@@ -921,7 +921,7 @@ public class SouvenirModule : MonoBehaviour
 
                     if (isOn.Length != 4 || isOn.Any(i => i < 0 || i > 1))
                     {
-                        Debug.LogFormat("[Souvenir {1}] Connection Check: Invalid value for ‘on’: [{0}]", isOn.JoinString(", "), _SouvenirID);
+                        Debug.LogFormat("[Souvenir #{1}] Connection Check: Invalid value for ‘on’: [{0}]", isOn.JoinString(", "), _SouvenirID);
                         break;
                     }
 
@@ -966,12 +966,12 @@ public class SouvenirModule : MonoBehaviour
                         break;
                     if (curPos < 0 || curPos >= 81)
                     {
-                        Debug.LogFormat(@"[Souvenir {0}] Double-Oh: invalid start position {1}.", _SouvenirID, curPos);
+                        Debug.LogFormat(@"[Souvenir #{0}] Double-Oh: invalid start position {1}.", _SouvenirID, curPos);
                         break;
                     }
                     if (grid.Length != 81 || grid[40] != 0)
                     {
-                        Debug.LogFormat(@"[Souvenir {0}] Double-Oh: grid has unexpected length ({1} instead of 81) or unexpected value at 40 ({2} instead of 0).", _SouvenirID, grid.Length, grid.Length != 81 ? "-" : grid[40].ToString());
+                        Debug.LogFormat(@"[Souvenir #{0}] Double-Oh: grid has unexpected length ({1} instead of 81) or unexpected value at 40 ({2} instead of 0).", _SouvenirID, grid.Length, grid.Length != 81 ? "-" : grid[40].ToString());
                         break;
                     }
 
@@ -1009,6 +1009,46 @@ public class SouvenirModule : MonoBehaviour
                     break;
                 }
 
+            case _CheapCheckout:
+                {
+                    var comp = GetComponent(module, "CheapCheckoutModule");
+                    var fldPaid = GetField<decimal>(comp, "Paid");
+                    var fldWaiting = GetField<bool>(comp, "waiting");
+                    var fldSolved = GetField<bool>(comp, "solved");
+
+                    if (comp == null || fldPaid == null || fldWaiting == null || fldSolved == null)
+                        break;
+
+                    while (!_isActivated)
+                        yield return new WaitForSeconds(.1f);
+
+                    var paids = new List<decimal> { fldPaid.Get() };
+
+                    nextCycle:
+
+                    // When the user clicks “Submit”, regardless of whether they entered change or not, the “waiting” variable turns true
+                    while (!fldWaiting.Get())
+                        yield return new WaitForSeconds(.1f);
+
+                    // At this point, if “solved” is false, the user entered no change and a new amount of money paid is displayed
+                    if (!fldSolved.Get())
+                    {
+                        while (fldWaiting.Get())
+                            yield return new WaitForSeconds(.1f);
+                        paids.Add(fldPaid.Get());
+                        goto nextCycle;
+                    }
+
+                    _modulesSolved.IncSafe(_CheapCheckout);
+
+                    for (int i = 0; i < paids.Count; i++)
+                        addQuestion(Question.CheapCheckoutPaid, _CheapCheckout, new[] { "$" + paids[i].ToString("N2") },
+                            extraFormatArguments: new[] { paids.Count == 1 ? "" : ordinal(i + 1) + " " },
+                            preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(_ => Rnd.Range(0, 10000) * .01m).Select(amt => "$" + amt.ToString("N2")).Distinct().Take(5).ToArray());
+
+                    break;
+                }
+
             case _Chess:
                 {
                     var comp = GetComponent(module, "ChessBehaviour");
@@ -1026,7 +1066,7 @@ public class SouvenirModule : MonoBehaviour
                         break;
                     if (indexSelected.Length != 7 || indexSelected.Any(b => b == null || b.Length != 2))
                     {
-                        Debug.LogFormat("[Souvenir {1}] Abandoning Chess because indexSelected array length is unexpected or one of the values is null or not length 2 ({0}).", indexSelected.Select(iSel => iSel == null ? "null" : iSel).JoinString(", "), _SouvenirID);
+                        Debug.LogFormat("[Souvenir #{1}] Abandoning Chess because indexSelected array length is unexpected or one of the values is null or not length 2 ({0}).", indexSelected.Select(iSel => iSel == null ? "null" : iSel).JoinString(", "), _SouvenirID);
                         break;
                     }
 
@@ -1068,7 +1108,7 @@ public class SouvenirModule : MonoBehaviour
                     _forgetMeNotSolutions[fmnIndex] = solution;
 
                     yield return new WaitForSeconds(.5f);
-                    Debug.LogFormat("[Souvenir {3}] Forget Me Not displays=[{0}], solutions=[{1}], I’m #{2}.",
+                    Debug.LogFormat("[Souvenir #{3}] Forget Me Not displays=[{0}], solutions=[{1}], I’m #{2}.",
                         _forgetMeNotDisplays.Select(arr => arr == null ? "null" : "[" + arr.JoinString(", ") + "]").JoinString("; "),
                         _forgetMeNotSolutions.Select(arr => arr == null ? "null" : "[" + arr.JoinString(", ") + "]").JoinString("; "),
                         fmnIndex, _SouvenirID);
@@ -1076,19 +1116,19 @@ public class SouvenirModule : MonoBehaviour
                     int pos;
                     if ((pos = _forgetMeNotDisplays.IndexOf(null)) != -1 || (pos = _forgetMeNotSolutions.IndexOf(null)) != -1)
                     {
-                        Debug.LogFormat("[Souvenir {1}] Abandoning Forget Me Not because there’s an uninitialized one at index #{0}.", pos, _SouvenirID);
+                        Debug.LogFormat("[Souvenir #{1}] Abandoning Forget Me Not because there’s an uninitialized one at index #{0}.", pos, _SouvenirID);
                         break;
                     }
                     if (display.Length != solution.Length || _forgetMeNotDisplays.Any(d => d.Length != solution.Length) || _forgetMeNotSolutions.Any(s => s.Length != solution.Length))
                     {
-                        Debug.LogFormat("[Souvenir {0}] Abandoning Forget Me Not because the arrays have inconsistent lengths.", _SouvenirID);
+                        Debug.LogFormat("[Souvenir #{0}] Abandoning Forget Me Not because the arrays have inconsistent lengths.", _SouvenirID);
                         break;
                     }
 
                     var firstUniqueN = Enumerable.Range(0, display.Length).Select(i => (int?) i).FirstOrDefault(i => _forgetMeNotDisplays.All(arr => arr == display || arr[i.Value] != display[i.Value]));
                     if (firstUniqueN == null)
                     {
-                        Debug.LogFormat("[Souvenir {1}] Abandoning Forget Me Not because there is no index at which this one (#{0})’s display number is unique.", fmnIndex, _SouvenirID);
+                        Debug.LogFormat("[Souvenir #{1}] Abandoning Forget Me Not because there is no index at which this one (#{0})’s display number is unique.", fmnIndex, _SouvenirID);
                         break;
                     }
                     var firstUnique = firstUniqueN.Value;
@@ -1118,7 +1158,7 @@ public class SouvenirModule : MonoBehaviour
                     var pawnColor = fldPawnColor.Get();
                     if (pawnColor < 0 || pawnColor >= 6)
                     {
-                        Debug.LogFormat("[Souvenir {1}] Abandoning Hexamaze because invalid pawn color {0}.", pawnColor, _SouvenirID);
+                        Debug.LogFormat("[Souvenir #{1}] Abandoning Hexamaze because invalid pawn color {0}.", pawnColor, _SouvenirID);
                         break;
                     }
 
@@ -1147,7 +1187,7 @@ public class SouvenirModule : MonoBehaviour
                     var attr = _attributes.Get(Question.Listening);
                     if (attr == null)
                     {
-                        Debug.LogFormat("[Souvenir {0}] Abandoning Listening because SouvenirQuestionAttribute for Question.Listening is null.", _SouvenirID);
+                        Debug.LogFormat("[Souvenir #{0}] Abandoning Listening because SouvenirQuestionAttribute for Question.Listening is null.", _SouvenirID);
                         break;
                     }
 
@@ -1160,7 +1200,7 @@ public class SouvenirModule : MonoBehaviour
                     var nullIndex = Array.IndexOf(prevInteracts, null);
                     if (nullIndex != -1)
                     {
-                        Debug.LogFormat("[Souvenir {1}] Abandoning Listening because buttons[{0}].OnInteract is null.", nullIndex, _SouvenirID);
+                        Debug.LogFormat("[Souvenir #{1}] Abandoning Listening because buttons[{0}].OnInteract is null.", nullIndex, _SouvenirID);
                         break;
                     }
 
@@ -1234,7 +1274,7 @@ public class SouvenirModule : MonoBehaviour
                     var buttonNullIndex = Array.IndexOf(buttons, null);
                     if (buttons.Length != 4 || buttonNullIndex != -1)
                     {
-                        Debug.LogFormat("[Souvenir {2}] Abandoning Monsplode, Fight! because unexpected buttons array length ({0}, expected 4) or one of them is null ({1}, expected -1).", buttons.Length, buttonNullIndex, _SouvenirID);
+                        Debug.LogFormat("[Souvenir #{2}] Abandoning Monsplode, Fight! because unexpected buttons array length ({0}, expected 4) or one of them is null ({1}, expected -1).", buttons.Length, buttonNullIndex, _SouvenirID);
                         break;
                     }
 
@@ -1268,12 +1308,12 @@ public class SouvenirModule : MonoBehaviour
 
                                 var creatureID = fldCreatureID.Get();
                                 if (creatureID < 0 || creatureID >= creatureNames.Length || string.IsNullOrEmpty(creatureNames[creatureID]))
-                                    Debug.LogFormat("[Souvenir {2}] Monsplode, Fight!: Unexpected creature ID: {0}; creature names are: [{1}]", creatureID, creatureNames.Select(cn => cn == null ? "null" : '"' + cn + '"').JoinString(", "), _SouvenirID);
+                                    Debug.LogFormat("[Souvenir #{2}] Monsplode, Fight!: Unexpected creature ID: {0}; creature names are: [{1}]", creatureID, creatureNames.Select(cn => cn == null ? "null" : '"' + cn + '"').JoinString(", "), _SouvenirID);
                                 else
                                 {
                                     var moveIDs = fldMoveIDs.Get();
                                     if (moveIDs == null || moveIDs.Length != 4 || moveIDs.Any(mid => mid >= moveNames.Length || string.IsNullOrEmpty(moveNames[mid])))
-                                        Debug.LogFormat("[Souvenir {2}] Monsplode, Fight!: Unexpected move IDs: {0}; moves names are: [{1}]",
+                                        Debug.LogFormat("[Souvenir #{2}] Monsplode, Fight!: Unexpected move IDs: {0}; moves names are: [{1}]",
                                             moveIDs == null ? null : "[" + moveIDs.JoinString(", ") + "]",
                                             moveNames.Select(mn => mn == null ? "null" : '"' + mn + '"').JoinString(", "),
                                             _SouvenirID);
@@ -1289,7 +1329,7 @@ public class SouvenirModule : MonoBehaviour
 
                                 if (curCreatureName == null || curMoveNames == null)
                                 {
-                                    Debug.LogFormat("[Souvenir {0}] Monsplode, Fight!: Abandoning due to error above.", _SouvenirID);
+                                    Debug.LogFormat("[Souvenir #{0}] Monsplode, Fight!: Abandoning due to error above.", _SouvenirID);
                                     // Set these to null to signal that something went wrong and we need to abort
                                     displayedCreature = null;
                                     displayedMoves = null;
@@ -1329,7 +1369,7 @@ public class SouvenirModule : MonoBehaviour
 
                     if (displayedCreature.Count != displayedMoves.Count || displayedCreature.Count != pushedMoves.Count || displayedCreature.Count != correctMoves.Count)
                     {
-                        Debug.LogFormat("[Souvenir {4}] Monsplode, Fight!: Inconsistent list lengths: {0}, {1}, {2}, {3}.", displayedCreature.Count, displayedMoves.Count, pushedMoves.Count, correctMoves.Count, _SouvenirID);
+                        Debug.LogFormat("[Souvenir #{4}] Monsplode, Fight!: Inconsistent list lengths: {0}, {1}, {2}, {3}.", displayedCreature.Count, displayedMoves.Count, pushedMoves.Count, correctMoves.Count, _SouvenirID);
                         break;
                     }
 
@@ -1364,7 +1404,7 @@ public class SouvenirModule : MonoBehaviour
                         break;
                     if (chars.Length != 3)
                     {
-                        Debug.LogFormat("[Souvenir {0}] Morsematics: Unexpected length of DisplayCharsRaw array ({1} instead of 3).", _SouvenirID, chars.Length);
+                        Debug.LogFormat("[Souvenir #{0}] Morsematics: Unexpected length of DisplayCharsRaw array ({1} instead of 3).", _SouvenirID, chars.Length);
                         break;
                     }
 
@@ -1391,7 +1431,7 @@ public class SouvenirModule : MonoBehaviour
                         break;
                     if (objectives.Length != 6)
                     {
-                        Debug.LogFormat("[Souvenir {1}] Mouse in the Maze: Objectives array has unexpected length ({0}; expected 6).", objectives.Length, _SouvenirID);
+                        Debug.LogFormat("[Souvenir #{1}] Mouse in the Maze: Objectives array has unexpected length ({0}; expected 6).", objectives.Length, _SouvenirID);
                         break;
                     }
 
@@ -1404,7 +1444,7 @@ public class SouvenirModule : MonoBehaviour
 
                     if (torusColor < 0 || torusColor >= 4 || goalColor < 0 || goalColor >= 4)
                     {
-                        Debug.LogFormat("[Souvenir {2}] Mouse in the Maze: Unexpected color (torus={0}; goal={1}).", torusColor, goalColor, _SouvenirID);
+                        Debug.LogFormat("[Souvenir #{2}] Mouse in the Maze: Unexpected color (torus={0}; goal={1}).", torusColor, goalColor, _SouvenirID);
                         break;
                     }
 
@@ -1436,15 +1476,15 @@ public class SouvenirModule : MonoBehaviour
 
                     if (fldSuspects.Get() != 4 || fldWeapons.Get() != 4)
                     {
-                        Debug.LogFormat("[Souvenir {0}] Murder: Unexpected number of suspects ({1} instead of 4) or weapons ({2} instead of 4).", _SouvenirID, fldSuspects.Get(), fldWeapons.Get());
+                        Debug.LogFormat("[Souvenir #{0}] Murder: Unexpected number of suspects ({1} instead of 4) or weapons ({2} instead of 4).", _SouvenirID, fldSuspects.Get(), fldWeapons.Get());
                         break;
                     }
 
-                    Debug.LogFormat("[Souvenir {0}] DEBUG MURDER 4", _SouvenirID);
+                    Debug.LogFormat("[Souvenir #{0}] DEBUG MURDER 4", _SouvenirID);
                     while (!fldSolved.Get())
                         yield return new WaitForSeconds(.1f);
                     _modulesSolved.IncSafe(_Murder);
-                    Debug.LogFormat("[Souvenir {0}] DEBUG MURDER 5", _SouvenirID);
+                    Debug.LogFormat("[Souvenir #{0}] DEBUG MURDER 5", _SouvenirID);
 
                     var solution = fldSolution.Get();
                     var skipDisplay = fldSkipDisplay.Get();
@@ -1453,7 +1493,7 @@ public class SouvenirModule : MonoBehaviour
                         break;
                     if (solution.Length != 3 || skipDisplay.GetLength(0) != 2 || skipDisplay.GetLength(1) != 6 || names.GetLength(0) != 3 || names.GetLength(1) != 9)
                     {
-                        Debug.LogFormat("[Souvenir {0}] Murder: Unexpected length of solution array ({1} instead of 3) or solution array ({2}/{3} instead of 2/6) or names array ({4}/{5} instead of 3/9).", _SouvenirID, solution.Length, skipDisplay.GetLength(0), skipDisplay.GetLength(1), names.GetLength(0), names.GetLength(1));
+                        Debug.LogFormat("[Souvenir #{0}] Murder: Unexpected length of solution array ({1} instead of 3) or solution array ({2}/{3} instead of 2/6) or names array ({4}/{5} instead of 3/9).", _SouvenirID, solution.Length, skipDisplay.GetLength(0), skipDisplay.GetLength(1), names.GetLength(0), names.GetLength(1));
                         break;
                     }
 
@@ -1463,7 +1503,7 @@ public class SouvenirModule : MonoBehaviour
                     var bodyFound = fldBodyFound.Get();
                     if (actualSuspect < 0 || actualSuspect >= 6 || actualWeapon < 0 || actualWeapon >= 6 || actualRoom < 0 || actualRoom >= 9 || bodyFound < 0 || bodyFound >= 9)
                     {
-                        Debug.LogFormat("[Souvenir {0}] Murder: Unexpected suspect, weapon, room or bodyFound (expected 0–5/0–5/0–8/0–8, got {1}/{2}/{3}/{4}).", _SouvenirID, actualSuspect, actualWeapon, actualRoom, bodyFound);
+                        Debug.LogFormat("[Souvenir #{0}] Murder: Unexpected suspect, weapon, room or bodyFound (expected 0–5/0–5/0–8/0–8, got {1}/{2}/{3}/{4}).", _SouvenirID, actualSuspect, actualWeapon, actualRoom, bodyFound);
                         break;
                     }
 
@@ -1501,11 +1541,11 @@ public class SouvenirModule : MonoBehaviour
                     yield return null;
 
                     var initialVirtualViewAngle = fldInitialVirtualViewAngle.Get();
-                    Debug.LogFormat("[Souvenir {1}] Orientation Cube initialVirtualViewAngle = {0}", initialVirtualViewAngle, _SouvenirID);
+                    Debug.LogFormat("[Souvenir #{1}] Orientation Cube initialVirtualViewAngle = {0}", initialVirtualViewAngle, _SouvenirID);
                     var initialAnglePos = Array.IndexOf(new[] { 0f, 90f, 180f, 270f }, initialVirtualViewAngle);
                     if (initialAnglePos == -1)
                     {
-                        Debug.LogFormat("[Souvenir {1}] Orientation Cube: initialVirtualViewAngle has unexpected value: {0}", initialVirtualViewAngle, _SouvenirID);
+                        Debug.LogFormat("[Souvenir #{1}] Orientation Cube: initialVirtualViewAngle has unexpected value: {0}", initialVirtualViewAngle, _SouvenirID);
                         break;
                     }
 
@@ -1530,7 +1570,7 @@ public class SouvenirModule : MonoBehaviour
 
                         if (rule == null || fldFromFacing == null || fldToFacing == null || fldHasSecondaryRule == null || fldSecondaryFromFacing == null || fldSecondaryToFacing == null || submitButton == null)
                         {
-                            Debug.LogFormat("[Souvenir {0}] Abandoning Orientation Cube.", _SouvenirID);
+                            Debug.LogFormat("[Souvenir #{0}] Abandoning Orientation Cube.", _SouvenirID);
                             submitButton.OnInteract = prevInteract;
                         }
                         else if (mthIsFacing.Invoke(fldFromFacing.Field.GetValue(rule), fldToFacing.Field.GetValue(rule)) &&
@@ -1568,7 +1608,7 @@ public class SouvenirModule : MonoBehaviour
                         break;
                     if (entered.Count != 3 || entered.Any(e => e < 0 || e >= 5))
                     {
-                        Debug.LogFormat("[Souvenir {1}] Perspective Pegs: EnteredSequence has unrecognized member or unexpected length: [{0}]", entered.JoinString(", "), _SouvenirID);
+                        Debug.LogFormat("[Souvenir #{1}] Perspective Pegs: EnteredSequence has unrecognized member or unexpected length: [{0}]", entered.JoinString(", "), _SouvenirID);
                         break;
                     }
 
@@ -1599,13 +1639,13 @@ public class SouvenirModule : MonoBehaviour
                     if (prevSlots.Count < 2)
                     {
                         // Legitimate: first stage was a keep already
-                        Debug.LogFormat("[Souvenir {0}] No question for Silly Slots because there was only one stage.", _SouvenirID);
+                        Debug.LogFormat("[Souvenir #{0}] No question for Silly Slots because there was only one stage.", _SouvenirID);
                         break;
                     }
 
                     if (prevSlots.Cast<object>().Any(obj => !(obj is Array) || ((Array) obj).Length != 3))
                     {
-                        Debug.LogFormat("[Souvenir {0}] Abandoning Silly Slots because prevSlots {1}.",
+                        Debug.LogFormat("[Souvenir #{0}] Abandoning Silly Slots because prevSlots {1}.",
                             _SouvenirID,
                             prevSlots == null ? "is null" :
                             prevSlots.Count == 0 ? "has length 0" :
@@ -1646,13 +1686,13 @@ public class SouvenirModule : MonoBehaviour
 
                     if (puzzleDisplay.Length != 4 || puzzleDisplay.Any(arr => arr.Length != 4))
                     {
-                        Debug.LogFormat("[Souvenir {1}] Abandoning Simon States because PuzzleDisplay has an unexpected length or value: [{0}]",
+                        Debug.LogFormat("[Souvenir #{1}] Abandoning Simon States because PuzzleDisplay has an unexpected length or value: [{0}]",
                             puzzleDisplay.Select(arr => arr == null ? "null" : "[" + arr.JoinString(", ") + "]").JoinString("; "), _SouvenirID);
                         break;
                     }
 
                     var colorNames = new[] { "Red", "Yellow", "Green", "Blue" };
-                    Debug.LogFormat("[Souvenir {1}] Simon States: PuzzleDisplay = [{0}]",
+                    Debug.LogFormat("[Souvenir #{1}] Simon States: PuzzleDisplay = [{0}]",
                         puzzleDisplay.Select(arr => arr.Select((v, i) => v ? colorNames[i] : null).Where(x => x != null).JoinString(", ")).JoinString("; ", "[", "]"), _SouvenirID);
 
                     while (fldProgress.Get() < 4)
@@ -1660,7 +1700,7 @@ public class SouvenirModule : MonoBehaviour
                     // Consistency check
                     if (fldPuzzleDisplay.Get(nullAllowed: true) != null)
                     {
-                        Debug.LogFormat("[Souvenir {0}] Abandoning Simon States because PuzzleDisplay was expected to be null when Progress reached 4, but wasn’t.", _SouvenirID);
+                        Debug.LogFormat("[Souvenir #{0}] Abandoning Simon States because PuzzleDisplay was expected to be null when Progress reached 4, but wasn’t.", _SouvenirID);
                         break;
                     }
 
@@ -1679,6 +1719,82 @@ public class SouvenirModule : MonoBehaviour
                                 new[] { "color(s) didn’t flash", ordinal(i + 1) });
                     }
 
+                    break;
+                }
+
+            case _SkewedSlots:
+                {
+                    var comp = GetComponent(module, "SkewedModule");
+                    var fldNumbers = GetField<int[]>(comp, "numbers");
+                    var fldDisplay = GetField<int[]>(comp, "display");
+                    var fldSolution = GetField<int[]>(comp, "solution");
+                    var fldSubmit = GetField<KMSelectable>(comp, "Submit", isPublic: true);
+
+                    if (comp == null || fldNumbers == null || fldSubmit == null)
+                        break;
+
+                    while (!_isActivated)
+                        yield return new WaitForSeconds(.1f);
+
+                    var submit = fldSubmit.Get();
+                    var numbers = fldNumbers.Get();
+                    if (submit == null || numbers == null)
+                        break;
+                    if (numbers.Length != 3 || numbers.Any(n => n < 0 || n > 9))
+                    {
+                        Debug.LogFormat("[Souvenir #{0}] Abandoning Skewed Slots because numbers has unexpected length (3) or a number outside expected range (0–9): [{1}].", _SouvenirID, numbers.JoinString(", "));
+                        break;
+                    }
+
+                    var correctAnswers = new List<string>() { numbers.JoinString() };
+                    var wrongAnswers = new List<string>() { numbers.JoinString() };
+
+                    var solved = false;
+                    var prevInteract = submit.OnInteract;
+                    submit.OnInteract = delegate
+                    {
+                        var display = fldDisplay.Get();
+                        var solution = fldSolution.Get();
+                        if (display == null || solution == null)
+                        {
+                            submit.OnInteract = prevInteract;
+                            return prevInteract();
+                        }
+                        if (display.Length != 3 || display.Any(n => n < 0 || n > 9) || solution.Length != 3 || solution.Any(n => n < 0 || n > 9))
+                        {
+                            Debug.LogFormat("[Souvenir #{0}] Abandoning Skewed Slots because display or solution has unexpected length (3) or a number outside expected range (0–9): display=[{1}], solution=[{2}].", _SouvenirID, display.JoinString(", "), solution.JoinString(", "));
+                            submit.OnInteract = prevInteract;
+                            return prevInteract();
+                        }
+
+                        // What the user entered
+                        wrongAnswers.Add(display.JoinString());
+
+                        if (display.SequenceEqual(solution))
+                            solved = true;
+
+                        var ret = prevInteract();
+
+                        // The new puzzle that comes up after a wrong answer
+                        if (!solved)
+                        {
+                            correctAnswers.Add(display.JoinString());
+                            wrongAnswers.Add(display.JoinString());
+                        }
+
+                        return ret;
+                    };
+
+                    while (!solved)
+                        yield return new WaitForSeconds(.1f);
+
+                    submit.OnInteract = prevInteract;
+                    _modulesSolved.IncSafe(_SkewedSlots);
+
+                    for (int i = 0; i < correctAnswers.Count; i++)
+                        addQuestion(Question.SkewedSlotsOriginalNumbers, _SkewedSlots, new[] { correctAnswers[i] },
+                            extraFormatArguments: new[] { correctAnswers.Count == 1 ? "" : ordinal(i + 1) + " " },
+                            preferredWrongAnswers: wrongAnswers.Concat(Enumerable.Range(0, int.MaxValue).Select(_ => Rnd.Range(0, 1000).ToString("000"))).Where(str => str != correctAnswers[i]).Take(5).ToArray());
                     break;
                 }
 
@@ -1701,7 +1817,7 @@ public class SouvenirModule : MonoBehaviour
                     var buttonPresses = fldButtonPresses.Get();
                     if (buttonPresses == null || buttonPresses.Length != 3)
                     {
-                        Debug.LogFormat("[Souvenir {0}] The Bulb: _correctButtonPresses has unexpected value ({1})", _SouvenirID, buttonPresses == null ? "<null>" : string.Format(@"""{0}""", buttonPresses));
+                        Debug.LogFormat("[Souvenir #{0}] The Bulb: _correctButtonPresses has unexpected value ({1})", _SouvenirID, buttonPresses == null ? "<null>" : string.Format(@"""{0}""", buttonPresses));
                         break;
                     }
 
@@ -1746,7 +1862,7 @@ public class SouvenirModule : MonoBehaviour
                     }
                     catch (Exception e)
                     {
-                        Debug.LogFormat("[Souvenir {2}] Two bits: Exception: {0} ({1})", e.Message, e.GetType().FullName, _SouvenirID);
+                        Debug.LogFormat("[Souvenir #{2}] Two bits: Exception: {0} ({1})", e.Message, e.GetType().FullName, _SouvenirID);
                     }
 
                     break;
@@ -1771,7 +1887,7 @@ public class SouvenirModule : MonoBehaviour
                 break;
         }
 
-        Debug.LogFormat("[Souvenir {1}] Finished processing {0}.", module.name, _SouvenirID);
+        Debug.LogFormat("[Souvenir #{1}] Finished processing {0}.", module.name, _SouvenirID);
     }
 
     private string titleCase(string str)
@@ -1791,7 +1907,7 @@ public class SouvenirModule : MonoBehaviour
         SouvenirQuestionAttribute attr;
         if (!_attributes.TryGetValue(question, out attr))
         {
-            Debug.LogFormat("[Souvenir {1}] Question {0} has no attribute.", question, _SouvenirID);
+            Debug.LogFormat("[Souvenir #{1}] Question {0} has no attribute.", question, _SouvenirID);
             return null;
         }
 
@@ -1801,7 +1917,7 @@ public class SouvenirModule : MonoBehaviour
             var inconsistency = possibleCorrectAnswers.FirstOrDefault(pca => !allAnswers.Contains(pca));
             if (inconsistency != null)
             {
-                Debug.LogFormat("[Souvenir {2}] Question {0}: invalid answer: {1}.", question, inconsistency, _SouvenirID);
+                Debug.LogFormat("[Souvenir #{2}] Question {0}: invalid answer: {1}.", question, inconsistency, _SouvenirID);
                 return null;
             }
             if (preferredWrongAnswers != null)
@@ -1809,7 +1925,7 @@ public class SouvenirModule : MonoBehaviour
                 var inconsistency2 = preferredWrongAnswers.FirstOrDefault(pca => !allAnswers.Contains(pca));
                 if (inconsistency2 != null)
                 {
-                    Debug.LogFormat("[Souvenir {2}] Question {0}: invalid preferred wrong answer: {1}.", question, inconsistency2, _SouvenirID);
+                    Debug.LogFormat("[Souvenir #{2}] Question {0}: invalid preferred wrong answer: {1}.", question, inconsistency2, _SouvenirID);
                     return null;
                 }
             }
@@ -1843,7 +1959,7 @@ public class SouvenirModule : MonoBehaviour
                 answers.ToArray(),
                 correctIndex,
                 unleashAt ?? (Bomb.GetSolvedModuleNames().Count + 2));
-            Debug.LogFormat("[Souvenir {1}] Making question {2}: {0}", q.DebugString, _SouvenirID, question);
+            Debug.LogFormat("[Souvenir #{1}] Making question {2}: {0}", q.DebugString, _SouvenirID, question);
             return q;
         };
     }
