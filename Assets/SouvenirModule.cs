@@ -65,6 +65,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Morsematics = "AdvancedMorse(Clone)";
     const string _MouseInTheMaze = "Physics Module(Clone)";
     const string _Murder = "MurderModule(Clone)";
+    const string _OnlyConnect = "OnlyConnectModule(Clone)";
     const string _OrientationCube = "OrientationModule(Clone)";
     const string _PerspectivePegs = "PerspectivePegsModule(Clone)";
     const string _SillySlots = "SillySlotsModule(Clone)";
@@ -1524,6 +1525,37 @@ public class SouvenirModule : MonoBehaviour
                     if (bodyFound != actualRoom)
                         addQuestion(Question.MurderBodyFound, _Murder, new[] { names[2, bodyFound] });
 
+                    break;
+                }
+
+            case _OnlyConnect:
+                {
+                    var comp = GetComponent(module, "OnlyConnectModule");
+                    var fldHieroglyphsDisplayed = GetField<int[]>(comp, "_hieroglyphsDisplayed");
+                    var fldIsSolved = GetField<bool>(comp, "_isSolved");
+                    if (comp == null || fldHieroglyphsDisplayed == null || fldIsSolved == null)
+                        break;
+
+                    while (!_isActivated)
+                        yield return new WaitForSeconds(.1f);
+
+                    var hieroglyphsDisplayed = fldHieroglyphsDisplayed.Get();
+                    if (hieroglyphsDisplayed == null || hieroglyphsDisplayed.Length != 6 || hieroglyphsDisplayed.Any(h => h < 0 || h >= 6))
+                    {
+                        Debug.LogFormat("[Souvenir #{0}] Only Connect: hieroglyphsDisplayed has unexpected value: {1}", _SouvenirID,
+                            hieroglyphsDisplayed == null ? "null" : string.Format("[{0}]", hieroglyphsDisplayed.JoinString(", ")));
+                        break;
+                    }
+
+                    while (!fldIsSolved.Get())
+                        yield return new WaitForSeconds(.1f);
+
+                    _modulesSolved.IncSafe(_OnlyConnect);
+
+                    var hieroglyphs = new[] { "Two Reeds", "Lion", "Twisted Flax", "Horned Viper", "Water", "Eye of Horus" };
+                    var positions = new[] { "top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right" };
+                    for (int i = 0; i < positions.Length; i++)
+                        addQuestion(Question.OnlyConnectHieroglyphs, _OnlyConnect, new[] { hieroglyphs[hieroglyphsDisplayed[i]] }, new[] { positions[i] });
                     break;
                 }
 
