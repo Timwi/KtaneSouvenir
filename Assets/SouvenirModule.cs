@@ -285,6 +285,8 @@ public class SouvenirModule : MonoBehaviour
                 StartCoroutine(Play());
             }
         };
+
+        Bomb.OnBombExploded += delegate { _exploded = true; };
     }
 
     private void disappear()
@@ -296,62 +298,57 @@ public class SouvenirModule : MonoBehaviour
 
     private void HandleAnswer(int index)
     {
-        _halveAnswersCounter++;
+        if (_animating)
+            return;
 
         if (_currentQuestion == null)
             return;
 
         if (_currentQuestion.CorrectIndex == index)
-        {
-            _currentQuestion = null;
-            disappear();
-            if (_solveAfterCurrentQuestion)
-            {
-                _isSolved = true;
-                Module.HandlePass();
-            }
-        }
+            dismissQuestion();
         else
         {
             Module.HandleStrike();
-            // Potentially remove wrong answers to help the player
-            StartCoroutine(halveAnswers(_halveAnswersCounter, index));
+            if (!_exploded)
+            {
+                // Blink the correct answer, then move on to the next question
+                _animating = true;
+                StartCoroutine(revealThenMoveOn());
+            }
         }
     }
 
-    private int _halveAnswersCounter = 0;
-
-    private IEnumerator halveAnswers(int counter, int clickedIndex)
+    private void dismissQuestion()
     {
-        yield return new WaitForSeconds(.5f);
-
-        if (_halveAnswersCounter != counter)
-            yield break;
-
-        var answers = Answers4Parent.activeSelf ? Answers4 : Answers6;
-        var numVisibleAnswers = Answers4Parent.activeSelf
-            ? Enumerable.Range(0, 4).Where(i => Answers4[i].gameObject.activeSelf && !string.IsNullOrEmpty(Answers4[i].GetComponent<TextMesh>().text)).ToList()
-            : Enumerable.Range(0, 6).Where(i => Answers6[i].gameObject.activeSelf && !string.IsNullOrEmpty(Answers6[i].GetComponent<TextMesh>().text)).ToList();
-        var numRemove = (numVisibleAnswers.Count + 1) / 2;
-        numVisibleAnswers.Remove(_currentQuestion.CorrectIndex);
-        var first = true;
-        while (numRemove > 0 && numVisibleAnswers.Count > 0)
+        _currentQuestion = null;
+        disappear();
+        if (_solveAfterCurrentQuestion)
         {
-            var ix = Rnd.Range(0, numVisibleAnswers.Count);
-            if (first)
-            {
-                Audio.PlaySoundAtTransform("5050", MainSelectable.transform);
-                var nix = numVisibleAnswers.IndexOf(clickedIndex);
-                if (nix != -1)
-                    ix = nix;
-                first = false;
-            }
-
-            var ans = numVisibleAnswers[ix];
-            answers[ans].GetComponent<TextMesh>().text = "";
-            numVisibleAnswers.RemoveAt(ix);
-            numRemove--;
+            _isSolved = true;
+            Module.HandlePass();
         }
+    }
+
+    private bool _animating = false;
+    private bool _exploded = false;
+
+    private IEnumerator revealThenMoveOn()
+    {
+        yield return new WaitForSeconds(.3f);
+
+        var on = false;
+        var answ = Answers4Parent.activeSelf ? Answers4 : Answers6;
+        var text = answ[_currentQuestion.CorrectIndex].GetComponent<TextMesh>().text;
+        for (int i = 0; i < 15; i++)
+        {
+            answ[_currentQuestion.CorrectIndex].GetComponent<TextMesh>().text = on ? text : "";
+            on = !on;
+            yield return new WaitForSeconds(.1f);
+        }
+        yield return new WaitForSeconds(.3f);
+
+        dismissQuestion();
+        _animating = false;
     }
 
     private int _numQuestionsAsked = 0;
