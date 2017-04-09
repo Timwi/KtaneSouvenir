@@ -1011,31 +1011,23 @@ public class SouvenirModule : MonoBehaviour
                 {
                     var comp = GetComponent(module, "CheapCheckoutModule");
                     var fldPaid = GetField<decimal>(comp, "Paid");
+                    var fldDisplay = GetField<decimal>(comp, "Display");
                     var fldWaiting = GetField<bool>(comp, "waiting");
                     var fldSolved = GetField<bool>(comp, "solved");
 
-                    if (comp == null || fldPaid == null || fldWaiting == null || fldSolved == null)
+                    if (comp == null || fldPaid == null || fldDisplay == null || fldWaiting == null || fldSolved == null)
                         break;
 
                     while (!_isActivated)
                         yield return new WaitForSeconds(.1f);
 
-                    var paids = new List<decimal> { fldPaid.Get() };
+                    var paids = new List<decimal> { fldDisplay.Get() };
+                    var paid = fldPaid.Get();
+                    if (paid != paids[0])
+                        paids.Add(paid);
 
-                    nextCycle:
-
-                    // When the user clicks “Submit”, regardless of whether they entered change or not, the “waiting” variable turns true
-                    while (!fldWaiting.Get())
+                    while (!fldSolved.Get())
                         yield return new WaitForSeconds(.1f);
-
-                    // At this point, if “solved” is false, the user entered no change and a new amount of money paid is displayed
-                    if (!fldSolved.Get())
-                    {
-                        while (fldWaiting.Get())
-                            yield return new WaitForSeconds(.1f);
-                        paids.Add(fldPaid.Get());
-                        goto nextCycle;
-                    }
 
                     _modulesSolved.IncSafe(_CheapCheckout);
 
@@ -1478,11 +1470,9 @@ public class SouvenirModule : MonoBehaviour
                         break;
                     }
 
-                    Debug.LogFormat("[Souvenir #{0}] DEBUG MURDER 4", _SouvenirID);
                     while (!fldSolved.Get())
                         yield return new WaitForSeconds(.1f);
                     _modulesSolved.IncSafe(_Murder);
-                    Debug.LogFormat("[Souvenir #{0}] DEBUG MURDER 5", _SouvenirID);
 
                     var solution = fldSolution.Get();
                     var skipDisplay = fldSkipDisplay.Get();
