@@ -65,6 +65,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Morsematics = "AdvancedMorse(Clone)";
     const string _MouseInTheMaze = "Physics Module(Clone)";
     const string _Murder = "MurderModule(Clone)";
+    const string _Neutralization = "neutralization(Clone)";
     const string _OnlyConnect = "OnlyConnectModule(Clone)";
     const string _OrientationCube = "OrientationModule(Clone)";
     const string _PerspectivePegs = "PerspectivePegsModule(Clone)";
@@ -1512,6 +1513,40 @@ public class SouvenirModule : MonoBehaviour
                     if (bodyFound != actualRoom)
                         addQuestion(Question.MurderBodyFound, _Murder, new[] { names[2, bodyFound] });
 
+                    break;
+                }
+
+            case _Neutralization:
+                {
+                    var comp = GetComponent(module, "neutralization");
+                    var fldAcidType = GetField<int>(comp, "acidType");
+                    var fldAcidVol = GetField<int>(comp, "acidVol");
+                    var fldSolved = GetField<bool>(comp, "_isSolved");
+                    if (comp == null || fldAcidType == null || fldAcidVol == null || fldSolved == null)
+                        break;
+
+                    while (!_isActivated)
+                        yield return new WaitForSeconds(.1f);
+
+                    var acidType = fldAcidType.Get();
+                    if (acidType < 0 || acidType > 3)
+                    {
+                        Debug.LogFormat("[Souvenir #{0}] Neutralization: Unexpected acid type: {1}", _SouvenirID, acidType);
+                        break;
+                    }
+                    var acidVol = fldAcidVol.Get();
+                    if (acidVol < 5 || acidVol > 20 || acidVol % 5 != 0)
+                    {
+                        Debug.LogFormat("[Souvenir #{0}] Neutralization: Unexpected acid volume: {1}", _SouvenirID, acidVol);
+                        break;
+                    }
+
+                    while (!fldSolved.Get())
+                        yield return new WaitForSeconds(.1f);
+
+                    _modulesSolved.IncSafe(_Neutralization);
+                    addQuestion(Question.NeutralizationColor, _Neutralization, new[] { new[] { "Yellow", "Green", "Red", "Blue" }[acidType] });
+                    addQuestion(Question.NeutralizationVolume, _Neutralization, new[] { acidVol.ToString() });
                     break;
                 }
 
