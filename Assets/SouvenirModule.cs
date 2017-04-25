@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using Souvenir;
 using UnityEngine;
 
@@ -2037,5 +2038,25 @@ public class SouvenirModule : MonoBehaviour
             case 3: return number + "rd";
             default: return number + "th";
         }
+    }
+
+    KMSelectable[] ProcessTwitchCommand(string command)
+    {
+        if ((command.Equals("thanks", StringComparison.InvariantCultureIgnoreCase) || command.Equals("thank you", StringComparison.InvariantCultureIgnoreCase)) &&
+            Answers4Parent.activeSelf && _currentQuestion.QuestionText == "Congratulations!")
+            return new[] { Answers4[0] };
+
+        var m = Regex.Match(command, @"\A\s*answer\s+(\d)\s*\z");
+        if (!m.Success)
+            return null;
+
+        var number = int.Parse(m.Groups[1].Value);
+        var btns = Answers4Parent.activeSelf ? Answers4 : Answers6;
+        if (number <= 0 || number > btns.Length)
+            return null;
+        var btn = btns[number - 1];
+        if (btn == null || !btn.gameObject.activeSelf)
+            return null;
+        return new[] { btn };
     }
 }
