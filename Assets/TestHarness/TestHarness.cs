@@ -657,7 +657,7 @@ public class TestHarness : MonoBehaviour
     }
 
     Dictionary<Component, HashSet<KMSelectable>> ComponentHelds = new Dictionary<Component, HashSet<KMSelectable>> { };
-    IEnumerator SimulateModule(Component component, MethodInfo method, string command)
+    IEnumerator SimulateModule(Component component, Transform moduleTransform, MethodInfo method, string command)
     {
         // Simple Command
         if (method.ReturnType == typeof(KMSelectable[]))
@@ -678,14 +678,15 @@ public class TestHarness : MonoBehaviour
                 yield break;
             }
 
-            int initalStrikes = fakeInfo.strikes;
+            int initialStrikes = fakeInfo.strikes;
+            int initialSolved = fakeInfo.GetSolvedModuleNames().Count;
             foreach (KMSelectable selectable in selectableSequence)
             {
                 DoInteractionStart(selectable);
                 yield return new WaitForSeconds(0.1f);
                 DoInteractionEnd(selectable);
 
-                if (fakeInfo.strikes != initalStrikes)
+                if (fakeInfo.strikes != initialStrikes || fakeInfo.GetSolvedModuleNames().Count != initialSolved)
                 {
                     break;
                 }
@@ -707,28 +708,42 @@ public class TestHarness : MonoBehaviour
                 yield break;
             }
 
-            if (!ComponentHelds.ContainsKey(component))
-            {
-                ComponentHelds[component] = new HashSet<KMSelectable>();
-            }
+            if (responseCoroutine == null)
+                yield break;
 
-            HashSet<KMSelectable> HeldSelectables = ComponentHelds[component];
+            if (!ComponentHelds.ContainsKey(component))
+                ComponentHelds[component] = new HashSet<KMSelectable>();
+            HashSet<KMSelectable> heldSelectables = ComponentHelds[component];
+
+            int initialStrikes = fakeInfo.strikes;
+            int initialSolved = fakeInfo.GetSolvedModuleNames().Count;
+
             while (responseCoroutine.MoveNext())
             {
                 object currentObject = responseCoroutine.Current;
                 if (currentObject is KMSelectable)
                 {
                     KMSelectable selectable = (KMSelectable) currentObject;
-                    if (HeldSelectables.Contains(selectable))
+                    if (heldSelectables.Contains(selectable))
                     {
                         DoInteractionEnd(selectable);
-                        HeldSelectables.Remove(selectable);
+                        heldSelectables.Remove(selectable);
+                        if (fakeInfo.strikes != initialStrikes || fakeInfo.GetSolvedModuleNames().Count != initialSolved)
+                            yield break;
                     }
                     else
                     {
                         DoInteractionStart(selectable);
-                        HeldSelectables.Add(selectable);
+                        heldSelectables.Add(selectable);
                     }
+                }
+                else if (currentObject is string)
+                {
+                    Debug.Log("Twitch handler sent: " + currentObject);
+                }
+                else if (currentObject is Quaternion)
+                {
+                    moduleTransform.localRotation = (Quaternion) currentObject;
                 }
                 yield return currentObject;
             }
@@ -777,7 +792,7 @@ public class TestHarness : MonoBehaviour
         GUILayout.Space(10);
 
         command = GUILayout.TextField(command);
-        if (GUILayout.Button("Simulate Twitch Command"))
+        if ((GUILayout.Button("Simulate Twitch Command") || Event.current.keyCode == KeyCode.Return) && command != "")
         {
             Debug.Log("Twitch Command: " + command);
 
@@ -791,7 +806,7 @@ public class TestHarness : MonoBehaviour
 
                     if (method != null)
                     {
-                        StartCoroutine(SimulateModule(component, method, command));
+                        StartCoroutine(SimulateModule(component, module.transform, method, command));
                     }
                 }
             }
