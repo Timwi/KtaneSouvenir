@@ -842,13 +842,10 @@ public class SouvenirModule : MonoBehaviour
             case _Bitmaps:
                 {
                     var comp = GetComponent(module, "BitmapsModule");
-                    var fldNumTopLeft = GetField<int>(comp, "_numTopLeft");
-                    var fldNumTopRight = GetField<int>(comp, "_numTopRight");
-                    var fldNumBottomLeft = GetField<int>(comp, "_numBottomLeft");
-                    var fldNumBottomRight = GetField<int>(comp, "_numBottomRight");
+                    var fldBitmap = GetField<bool[][]>(comp, "_bitmap");
                     var fldButtonToPush = GetField<int>(comp, "_buttonToPush");
 
-                    if (comp == null || fldNumTopLeft == null || fldNumTopRight == null || fldNumBottomLeft == null || fldNumBottomRight == null || fldButtonToPush == null)
+                    if (comp == null || fldBitmap == null || fldButtonToPush == null)
                         break;
 
                     while (!_isActivated)
@@ -859,21 +856,23 @@ public class SouvenirModule : MonoBehaviour
 
                     _modulesSolved.IncSafe(_Bitmaps);
 
-                    var topLeft = fldNumTopLeft.Get();
-                    var topRight = fldNumTopRight.Get();
-                    var bottomLeft = fldNumBottomLeft.Get();
-                    var bottomRight = fldNumBottomRight.Get();
+                    var bitmap = fldBitmap.Get();
+                    var qCounts = new int[4];
+                    for (int x = 0; x < 8; x++)
+                        for (int y = 0; y < 8; y++)
+                            if (bitmap[x][y])
+                                qCounts[(y / 4) * 2 + (x / 4)]++;
 
-                    var preferredWrongAnswers = new[] { topLeft, topRight, bottomLeft, bottomRight }.SelectMany(i => new[] { i, 16 - i }).Distinct().Select(i => i.ToString()).ToArray();
+                    var preferredWrongAnswers = qCounts.SelectMany(i => new[] { i, 16 - i }).Distinct().Select(i => i.ToString()).ToArray();
 
-                    addQuestion(Question.Bitmaps, _Bitmaps, new[] { topLeft.ToString() }, new[] { "white", "top left" }, preferredWrongAnswers);
-                    addQuestion(Question.Bitmaps, _Bitmaps, new[] { topRight.ToString() }, new[] { "white", "top right" }, preferredWrongAnswers);
-                    addQuestion(Question.Bitmaps, _Bitmaps, new[] { bottomLeft.ToString() }, new[] { "white", "bottom left" }, preferredWrongAnswers);
-                    addQuestion(Question.Bitmaps, _Bitmaps, new[] { bottomRight.ToString() }, new[] { "white", "bottom right" }, preferredWrongAnswers);
-                    addQuestion(Question.Bitmaps, _Bitmaps, new[] { (16 - topLeft).ToString() }, new[] { "black", "top left" }, preferredWrongAnswers);
-                    addQuestion(Question.Bitmaps, _Bitmaps, new[] { (16 - topRight).ToString() }, new[] { "black", "top right" }, preferredWrongAnswers);
-                    addQuestion(Question.Bitmaps, _Bitmaps, new[] { (16 - bottomLeft).ToString() }, new[] { "black", "bottom left" }, preferredWrongAnswers);
-                    addQuestion(Question.Bitmaps, _Bitmaps, new[] { (16 - bottomRight).ToString() }, new[] { "black", "bottom right" }, preferredWrongAnswers);
+                    addQuestion(Question.Bitmaps, _Bitmaps, new[] { qCounts[0].ToString() }, new[] { "white", "top left" }, preferredWrongAnswers);
+                    addQuestion(Question.Bitmaps, _Bitmaps, new[] { qCounts[1].ToString() }, new[] { "white", "top right" }, preferredWrongAnswers);
+                    addQuestion(Question.Bitmaps, _Bitmaps, new[] { qCounts[2].ToString() }, new[] { "white", "bottom left" }, preferredWrongAnswers);
+                    addQuestion(Question.Bitmaps, _Bitmaps, new[] { qCounts[3].ToString() }, new[] { "white", "bottom right" }, preferredWrongAnswers);
+                    addQuestion(Question.Bitmaps, _Bitmaps, new[] { (16 - qCounts[0]).ToString() }, new[] { "black", "top left" }, preferredWrongAnswers);
+                    addQuestion(Question.Bitmaps, _Bitmaps, new[] { (16 - qCounts[1]).ToString() }, new[] { "black", "top right" }, preferredWrongAnswers);
+                    addQuestion(Question.Bitmaps, _Bitmaps, new[] { (16 - qCounts[2]).ToString() }, new[] { "black", "bottom left" }, preferredWrongAnswers);
+                    addQuestion(Question.Bitmaps, _Bitmaps, new[] { (16 - qCounts[3]).ToString() }, new[] { "black", "bottom right" }, preferredWrongAnswers);
 
                     break;
                 }
