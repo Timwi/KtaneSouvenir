@@ -101,6 +101,15 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PerspectivePegsSolution,
 
+        [SouvenirQuestion("What were the 1st and 2nd word in the {1} phrase in {0}?", "Sea Shells", 4, "she sells", "she shells", "sea shells", "sea sells")]
+        SeaShells1,
+
+        [SouvenirQuestion("What were the 3rd and 4th word in the {1} phrase in {0}?", "Sea Shells", 4, "sea shells", "she shells", "sea sells", "she sells")]
+        SeaShells2,
+
+        [SouvenirQuestion("What was the end of the {1} phrase in {0}?", "Sea Shells", 4, "sea shore", "she sore", "she sure", "seesaw")]
+        SeaShells3,
+
         [SouvenirQuestion("What was the {1} slot in the {2} stage in {0}?", "Silly Slots", 4, "red bomb", "red cherry", "red coin", "red grape", "green bomb", "green cherry", "green coin", "green grape", "blue bomb", "blue cherry", "blue coin", "blue grape",
             ExampleExtraFormatArguments = new[] { "first", "first", "first", "second", "first", "third", "second", "first", "second", "second", "second", "third", "third", "first", "third", "second", "third", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
         SillySlots,

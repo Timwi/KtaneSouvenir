@@ -70,6 +70,7 @@ public class SouvenirModule : MonoBehaviour
     const string _OnlyConnect = "OnlyConnectModule(Clone)";
     const string _OrientationCube = "OrientationModule(Clone)";
     const string _PerspectivePegs = "PerspectivePegsModule(Clone)";
+    const string _SeaShells = "SeaShellsModule(Clone)";
     const string _SillySlots = "SillySlotsModule(Clone)";
     const string _SimonStates = "AdvancedSimon(Clone)";
     const string _SkewedSlots = "SkewedModule(Clone)";
@@ -402,7 +403,7 @@ public class SouvenirModule : MonoBehaviour
         if (!eligible.Any())
             return false;
         var qMod = eligible.PickRandom();
-        var qu = _questions[qMod].Where(q => unleashAt == null || q.UnleashAt <= unleashAt).PickRandom();
+        var qu = _questions[qMod].Where(q => unleashAt == null || q.UnleashAt <= unleashAt.Value).PickRandom();
         _questions[qMod].Remove(qu);
         if (_questions[qMod].Count == 0)
             _questions.Remove(qMod);
@@ -1670,6 +1671,58 @@ public class SouvenirModule : MonoBehaviour
                     for (int i = 0; i < 3; i++)
                         addQuestion(Question.PerspectivePegsSolution, _PerspectivePegs, new[] { theory[entered[i]] }, extraFormatArguments: new[] { ordinal(i + 1) }, preferredWrongAnswers: entered.Select(e => theory[e]).ToArray());
 
+                    break;
+                }
+
+            case _SeaShells:
+                {
+                    var comp = GetComponent(module, "SeaShellsModule");
+                    var fldRow = GetField<int>(comp, "row");
+                    var fldCol = GetField<int>(comp, "col");
+                    var fldKeynum = GetField<int>(comp, "keynum");
+                    var fldStage = GetField<int>(comp, "stage");
+                    var fldSolved = GetField<bool>(comp, "isPassed");
+                    var fldDisplay = GetField<TextMesh>(comp, "Display", isPublic: true);
+
+                    if (comp == null || fldRow == null || fldCol == null || fldKeynum == null || fldStage == null || fldSolved == null || fldDisplay == null)
+                        break;
+
+                    while (!_isActivated)
+                        yield return new WaitForSeconds(.1f);
+
+                    var rows = new List<int>();
+                    var cols = new List<int>();
+                    var keynums = new List<int>();
+                    while (true)
+                    {
+                        while (fldDisplay.Get().text == " ")
+                        {
+                            yield return new WaitForSeconds(.1f);
+                            if (fldSolved.Get())
+                                goto solved;
+                        }
+
+                        rows.Add(fldRow.Get());
+                        cols.Add(fldCol.Get());
+                        keynums.Add(fldKeynum.Get());
+
+                        while (fldDisplay.Get().text != " ")
+                        {
+                            yield return new WaitForSeconds(.1f);
+                            if (fldSolved.Get())
+                                goto solved;
+                        }
+                    }
+
+                    solved:
+                    _modulesSolved.IncSafe(_SeaShells);
+
+                    for (int i = 0; i < rows.Count; i++)
+                    {
+                        addQuestion(Question.SeaShells1, _SeaShells, new[] { new[] { "she sells", "she shells", "sea shells", "sea sells" }[rows[i]] }, new[] { ordinal(i + 1) });
+                        addQuestion(Question.SeaShells2, _SeaShells, new[] { new[] { "sea shells", "she shells", "sea sells", "she sells" }[cols[i]] }, new[] { ordinal(i + 1) });
+                        addQuestion(Question.SeaShells3, _SeaShells, new[] { new[] { "sea shore", "she sore", "she sure", "seesaw" }[keynums[i]] }, new[] { ordinal(i + 1) });
+                    }
                     break;
                 }
 
