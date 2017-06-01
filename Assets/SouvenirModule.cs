@@ -59,6 +59,7 @@ public class SouvenirModule : MonoBehaviour
     const string _ColoredSquares = "ColoredSquaresModule(Clone)";
     const string _ConnectionCheck = "GraphModule(Clone)";
     const string _DoubleOh = "DoubleOhModule(Clone)";
+    const string _FastMath = "fastMath(Clone)";
     const string _ForgetMeNot = "AdvancedMemory(Clone)";
     const string _Hexamaze = "HexamazeModule(Clone)";
     const string _Listening = "ListeningModule(Clone)";
@@ -1069,6 +1070,45 @@ public class SouvenirModule : MonoBehaviour
 
                     for (int i = 0; i < 6; i++)
                         addQuestion(Question.ChessCoordinate, _Chess, new[] { indexSelected[i] }, new[] { ordinal(i + 1) });
+                    break;
+                }
+
+            case _FastMath:
+                {
+                    var comp = GetComponent(module, "fastMath");
+                    var fldScreen = GetField<TextMesh>(comp, "Screen", isPublic: true);
+                    var fldSolved = GetField<bool>(comp, "_isSolved");
+
+                    if (comp == null || fldScreen == null || fldSolved == null)
+                        break;
+
+                    while (!_isActivated)
+                        yield return new WaitForSeconds(.1f);
+
+                    var prevLetters = new HashSet<string>();
+                    string letters = null;
+                    while (!fldSolved.Get())
+                    {
+                        var display = fldScreen.Get().text;
+                        if (display.Length != 3)
+                        {
+                            Debug.LogFormat(@"[Souvenir #{1}] Abandoning Fast Math because the screen contains something other than three characters: ""{0}"" ({2} characters).", display, _SouvenirID, display.Length);
+                            goto abandon;
+                        }
+                        letters = display[0] + "" + display[2];
+                        prevLetters.Add(letters);
+                        yield return new WaitForSeconds(.1f);
+                    }
+                    if (letters == null)
+                    {
+                        Debug.LogFormat(@"[Souvenir #{0}] Abandoning Fast Math because no letters were extracted before the module was solved.", _SouvenirID);
+                        goto abandon;
+                    }
+
+                    _modulesSolved.IncSafe(_FastMath);
+                    addQuestion(Question.FastMathLastLetters, _FastMath, new[] { letters }, preferredWrongAnswers: prevLetters.ToArray());
+
+                    abandon:;
                     break;
                 }
 
