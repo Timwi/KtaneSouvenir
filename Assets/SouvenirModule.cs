@@ -1037,7 +1037,7 @@ public class SouvenirModule : MonoBehaviour
                     for (int i = 0; i < paids.Count; i++)
                         addQuestion(Question.CheapCheckoutPaid, _CheapCheckout, new[] { "$" + paids[i].ToString("N2") },
                             extraFormatArguments: new[] { paids.Count == 1 ? "" : ordinal(i + 1) + " " },
-                            preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(_ => Rnd.Range(0, 10000) * .01m).Select(amt => "$" + amt.ToString("N2")).Distinct().Take(5).ToArray());
+                            preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(_ => (decimal) Rnd.Range(5, 50)).Select(amt => "$" + amt.ToString("N2")).Distinct().Take(5).ToArray());
 
                     break;
                 }
