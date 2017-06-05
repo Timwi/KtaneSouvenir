@@ -1169,7 +1169,7 @@ public class SouvenirModule : MonoBehaviour
                     {
                         if (i != firstUnique)
                             addQuestion(Question.ForgetMeNot, _ForgetMeNot, new[] { display[i].ToString() },
-                                new[] { ordinal(i + 1), _moduleCounts.Get(_ForgetMeNot) == 1 ? "Forget Me Not" : string.Format("the Forget Me Not whose {0}-stage displayed number was {1}", firstUnique + 1, display[firstUnique]) }, unleashAt: i + 3);
+                                new[] { ordinal(i + 1), _moduleCounts.Get(_ForgetMeNot) == 1 ? "Forget Me Not" : string.Format("the Forget Me Not whose {0}-stage displayed number was {1}", ordinal(firstUnique + 1), display[firstUnique]) }, unleashAt: i + 2);
                     }
 
                     break;
@@ -2105,7 +2105,7 @@ public class SouvenirModule : MonoBehaviour
                 string.Format(attr.QuestionText, formatArguments.ToArray()),
                 answers.ToArray(),
                 correctIndex,
-                unleashAt ?? (Bomb.GetSolvedModuleNames().Count + 2));
+                unleashAt ?? (Bomb.GetSolvedModuleNames().Count + 1));
             Debug.LogFormat("[Souvenir #{1}] Making question {2}: {0}", q.DebugString, _SouvenirID, question);
             return q;
         };
