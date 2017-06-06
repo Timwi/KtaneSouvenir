@@ -73,6 +73,7 @@ public class SouvenirModule : MonoBehaviour
     const string _PerspectivePegs = "PerspectivePegsModule(Clone)";
     const string _SeaShells = "SeaShellsModule(Clone)";
     const string _SillySlots = "SillySlotsModule(Clone)";
+    const string _SimonScreams = "SimonScreamsModule(Clone)";
     const string _SimonStates = "AdvancedSimon(Clone)";
     const string _SkewedSlots = "SkewedModule(Clone)";
     const string _TheBulb = "TheBulbModule(Clone)";
@@ -146,8 +147,6 @@ public class SouvenirModule : MonoBehaviour
         // Shape Shift
         "ShapeShiftModule(Clone)",
         // Simon Says
-        // Simon Screams
-        // Simon States
         // Switches
         // Third Base
         // Tic-Tac-Toe — TicTacToeModule
@@ -1811,6 +1810,93 @@ public class SouvenirModule : MonoBehaviour
                         var slotStrings = ((Array) prevSlots[stage]).Cast<object>().Select(obj => (fldColor.Field.GetValue(obj).ToString() + " " + fldShape.Field.GetValue(obj).ToString()).ToLowerInvariant()).ToArray();
                         for (int slot = 0; slot < slotStrings.Length; slot++)
                             addQuestion(Question.SillySlots, _SillySlots, new[] { slotStrings[slot] }, new[] { ordinal(slot + 1), ordinal(stage + 1) }, slotStrings);
+                    }
+
+                    break;
+                }
+
+            case _SimonScreams:
+                {
+                    var comp = GetComponent(module, "SimonScreamsModule");
+                    var fldSequences = GetField<int[][]>(comp, "_sequences");
+                    var fldColors = GetField<Array>(comp, "_colors");
+                    var fldSolved = GetField<bool>(comp, "_isSolved");
+
+                    if (comp == null || fldSequences == null || fldColors == null || fldSolved == null)
+                        break;
+
+                    while (!fldSolved.Get())
+                        yield return new WaitForSeconds(.1f);
+
+                    _modulesSolved.IncSafe(_SimonScreams);
+
+                    var seqs = fldSequences.Get();
+                    var colors = fldColors.Get();
+                    if (seqs == null || colors == null)
+                        break;
+                    if (seqs.Length == 0)
+                    {
+                        Debug.LogFormat("[Souvenir #{0}] Abandoning Simon Screams because _sequences has a zero length.", _SouvenirID);
+                        break;
+                    }
+                    if (colors.Length != 6)
+                    {
+                        Debug.LogFormat("[Souvenir #{0}] Abandoning Simon Screams because _colors has length {1} (expected 6).", _SouvenirID, colors.Length);
+                        break;
+                    }
+
+                    var lastSeq = seqs.Last();
+                    for (int i = 0; i < lastSeq.Length; i++)
+                        addQuestion(Question.SimonScreamsFlashing, _SimonScreams, new[] { colors.GetValue(lastSeq[i]).ToString() }, new[] { ordinal(i + 1) });
+
+                    // First determine which rule applied in which stage
+                    var ryb = new[] { "Red", "Yellow", "Blue" }.Select(colorName => colors.IndexOf(c => c.ToString() == colorName)).ToArray();
+                    var stageRules = new int[seqs.Length];
+                    for (int i = 0; i < seqs.Length; i++)
+                    {
+                        var seq = seqs[i];
+                        // "If three adjacent colors flashed in clockwise order"
+                        if (Enumerable.Range(0, seq.Length - 2).Any(ix => seq[ix + 1] == (seq[ix] + 1) % 6 && seq[ix + 2] == (seq[ix] + 2) % 6))
+                            stageRules[i] = 0;
+                        // "Otherwise, if a color flashed, then an adjacent color, then the first again"
+                        else if (Enumerable.Range(0, seq.Length - 2).Any(ix => seq[ix + 2] == seq[ix] && (seq[ix + 1] == (seq[ix] + 1) % 6 || seq[ix + 1] == (seq[ix] + 5) % 6)))
+                            stageRules[i] = 1;
+                        // "Otherwise, if at most one color flashed out of red, yellow, and blue"
+                        else if (ryb.Count(colIx => seq.Contains(colIx)) <= 1)
+                            stageRules[i] = 2;
+                        // "Otherwise, if there are two colors opposite each other that didn’t flash"
+                        else if (Enumerable.Range(0, 3).Any(col => !seq.Contains(col) && !seq.Contains(col + 3)))
+                            stageRules[i] = 3;
+                        // "Otherwise, if two adjacent colors flashed in clockwise order"
+                        else if (Enumerable.Range(0, seq.Length - 1).Any(ix => seq[ix + 1] == (seq[ix] + 1) % 6))
+                            stageRules[i] = 4;
+                        // "Otherwise"
+                        else
+                            stageRules[i] = 5;
+                    }
+
+                    // Note that we’re excluding the Otherwise row
+                    var ruleNames = Ut.NewArray(
+                        "three adjacent colors flashing in clockwise order",
+                        "a color flashing, then an adjacent color, then the first again",
+                        "at most one color flashing out of red, yellow, and blue",
+                        "two colors opposite each other that didn’t flash",
+                        "two (but not three) adjacent colors flashing in clockwise order"
+                    );
+                    // Now set the questions
+                    for (int rule = 0; rule < ruleNames.Length; rule++)
+                    {
+                        var applicableStages = new List<string>();
+                        for (int stage = 0; stage < stageRules.Length; stage++)
+                            if (stageRules[stage] == rule)
+                                applicableStages.Add(ordinal(stage + 1));
+                        if (applicableStages.Count > 0)
+                            addQuestion(Question.SimonScreamsRule, _SimonScreams,
+                                new[] { applicableStages.Count == stageRules.Length ? "all of them" : applicableStages.JoinString(", ", lastSeparator: " and ") },
+                                new[] { applicableStages.Count == 1 ? "stage" : "stages", ruleNames[rule] },
+                                applicableStages.Count == 1
+                                    ? Enumerable.Range(1, seqs.Length).Select(i => ordinal(i)).ToArray()
+                                    : Enumerable.Range(1, seqs.Length).SelectMany(a => Enumerable.Range(a + 1, seqs.Length - a).Select(b => ordinal(a) + " and " + ordinal(b))).Concat(new[] { "all of them" }).ToArray());
                     }
 
                     break;

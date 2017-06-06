@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -459,6 +460,18 @@ namespace Souvenir
 
             // Apart from the above exceptions, wrap at whitespace characters.
             return char.IsWhiteSpace(txt, index);
+        }
+
+        public static int IndexOf(this IEnumerable source, Func<object, bool> predicate)
+        {
+            var i = 0;
+            foreach (var obj in source)
+            {
+                if (predicate(obj))
+                    return i;
+                i++;
+            }
+            return -1;
         }
     }
 }

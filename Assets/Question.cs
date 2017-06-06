@@ -117,6 +117,25 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "first", "first", "second", "first", "third", "second", "first", "second", "second", "second", "third", "third", "first", "third", "second", "third", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
         SillySlots,
 
+        [SouvenirQuestion("Which color flashed {1} in the final sequence in {0}?", "Simon Screams", 4, "Red", "Orange", "Yellow", "Green", "Blue", "Purple",
+            ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SimonScreamsFlashing,
+
+        [SouvenirQuestion("Which {1} of {0} had {2}?", "Simon Screams", 4, ExampleAnswers = new[] { "first", "second", "third", "first and second", "first and third", "second and third", "all of them" },
+            ExampleExtraFormatArguments = new[] {
+                "stage", "three adjacent colors flashing in clockwise order",
+                "stage", "a color flashing, then an adjacent color, then the first again",
+                "stage", "at most one color flashing out of red, yellow, and blue",
+                "stage", "two colors opposite each other that didn’t flash",
+                "stage", "two (but not three) adjacent colors flashing in clockwise order",
+                "stages", "three adjacent colors flashing in clockwise order",
+                "stages", "a color flashing, then an adjacent color, then the first again",
+                "stages", "at most one color flashing out of red, yellow, and blue",
+                "stages", "two colors opposite each other that didn’t flash",
+                "stages", "two (but not three) adjacent colors flashing in clockwise order"
+            }, ExampleExtraFormatArgumentGroupSize = 2)]
+        SimonScreamsRule,
+
         [SouvenirQuestion("Which {1} in the {2} stage in {0}?", "Simon States", 4, "Red", "Yellow", "Green", "Blue", "Red, Yellow", "Red, Green", "Red, Blue", "Yellow, Green", "Yellow, Blue", "Green, Blue", "all 4", "none",
             ExampleExtraFormatArguments = new[] { "color(s) flashed", "first", "color(s) didn’t flash", "first", "color(s) flashed", "second", "color(s) didn’t flash", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
         SimonStatesDisplay,
