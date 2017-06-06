@@ -223,8 +223,7 @@ public class SouvenirModule : MonoBehaviour
         Module.OnActivate += delegate
         {
             _isActivated = true;
-            var serial = Bomb.GetSerialNumber();
-            if (serial == null)
+            if (Bomb.QueryWidgets("Unity", null).Count > 0)
             {
                 // Testing in Unity
                 Debug.LogFormat("[Souvenir #{0}] Entering Unity testing mode.", _SouvenirID);
