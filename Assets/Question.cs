@@ -27,7 +27,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         BrokenButtons,
 
-        [SouvenirQuestion("What was the {1}paid amount in {0}?", "Cheap Checkout", 6, ExampleAnswers = new[] { "$0.01", "$12.34", "$84.72", "$1.11", "$2.50", "$24.56" },
+        [SouvenirQuestion("What was the {1}paid amount in {0}?", "Cheap Checkout", 6, ExampleAnswers = new[] { "$11.00", "$12.00", "$14.00", "$11.00", "$25.00", "$24.00" },
             ExampleExtraFormatArguments = new[] { "", "first ", "second " }, ExampleExtraFormatArgumentGroupSize = 1)]
         CheapCheckoutPaid,
 
