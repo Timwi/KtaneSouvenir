@@ -721,7 +721,7 @@ public class SouvenirModule : MonoBehaviour
                     else if (correctMarkings == "ABD") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(7, 0));
                     else if (correctMarkings == "ABH") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(0, 1));
                     else if (correctMarkings == "ACD") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(1, 2));
-                    else if (correctMarkings == "ACH") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(1, 0));
+                    else if (correctMarkings == "ACH") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(0, 1));
                     else if (correctMarkings == "ADH") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(5, 0));
                     else if (correctMarkings == "BCD") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(6, 1));
                     else if (correctMarkings == "BCH") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(2, 2));
@@ -889,7 +889,7 @@ public class SouvenirModule : MonoBehaviour
                     yield return null;
 
                     // Colored Squares sets _expectedPresses to null when it’s solved
-                    while (fldExpectedPresses.Get() != null)
+                    while (fldExpectedPresses.Get(nullAllowed: true) != null)
                         yield return new WaitForSeconds(.1f);
 
                     _modulesSolved.IncSafe(_ColoredSquares);
