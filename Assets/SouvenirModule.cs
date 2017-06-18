@@ -902,7 +902,7 @@ public class SouvenirModule : MonoBehaviour
                     var comp = GetComponent(module, "GraphModule");
                     var fldOn = GetField<int[]>(comp, "On");
                     var fldCheckButton = GetField<KMSelectable>(comp, "Check", isPublic: true);
-                    var fldDict = GetField<Dictionary<Vector2, bool>>(comp, "dict");
+                    var fldDict = GetField<HashSet<Vector2>>(comp, "dict");
                     var fldQueries = GetField<Vector2[]>(comp, "Queries");
 
                     if (comp == null || fldOn == null || fldCheckButton == null || fldDict == null || fldQueries == null)
@@ -932,7 +932,7 @@ public class SouvenirModule : MonoBehaviour
                     {
                         bool isSuccess = true;
                         for (int i = 0; i < 4; i++)
-                            isSuccess &= dict.ContainsKey(queries[i]) == (isOn[i] == 1);
+                            isSuccess &= dict.Contains(queries[i]) == (isOn[i] == 1);
                         if (isSuccess)
                             completed = true;
                         return prevInteract();
@@ -1957,9 +1957,9 @@ public class SouvenirModule : MonoBehaviour
             case _SkewedSlots:
                 {
                     var comp = GetComponent(module, "SkewedModule");
-                    var fldNumbers = GetField<int[]>(comp, "numbers");
-                    var fldDisplay = GetField<int[]>(comp, "display");
-                    var fldSolution = GetField<int[]>(comp, "solution");
+                    var fldNumbers = GetField<int[]>(comp, "Numbers");
+                    var fldDisplay = GetField<int[]>(comp, "Display");
+                    var fldSolution = GetField<int[]>(comp, "Solution");
                     var fldSubmit = GetField<KMSelectable>(comp, "Submit", isPublic: true);
 
                     if (comp == null || fldNumbers == null || fldSubmit == null)
