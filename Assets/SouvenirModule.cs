@@ -79,7 +79,7 @@ public class SouvenirModule : MonoBehaviour
     const string _TheBulb = "TheBulbModule(Clone)";
     const string _TwoBits = "TwoBitsModule(Clone)";
 
-    private static int _SouvenirCounter = 0;
+    private static int _SouvenirCounter = 1;
     private int _SouvenirID;
 
     private string[] _ignoreModules = new[] {
