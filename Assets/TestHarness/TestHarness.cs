@@ -151,8 +151,9 @@ public class FakeBombInfo : MonoBehaviour
 
     void Awake()
     {
-        widgets = new Widget[5];
-        for (int a = 0; a < 5; a++)
+        const int numWidgets = 10;
+        widgets = new Widget[numWidgets];
+        for (int a = 0; a < numWidgets; a++)
         {
             int r = Random.Range(0, 3);
             if (r == 0) widgets[a] = new PortWidget();
