@@ -1958,75 +1958,48 @@ public class SouvenirModule : MonoBehaviour
                 {
                     var comp = GetComponent(module, "SkewedModule");
                     var fldNumbers = GetField<int[]>(comp, "Numbers");
-                    var fldDisplay = GetField<int[]>(comp, "Display");
-                    var fldSolution = GetField<int[]>(comp, "Solution");
-                    var fldSubmit = GetField<KMSelectable>(comp, "Submit", isPublic: true);
+                    var fldModuleActivated = GetField<bool>(comp, "moduleActivated");
+                    var fldSolved = GetField<bool>(comp, "solved");
 
-                    if (comp == null || fldNumbers == null || fldSubmit == null)
+                    if (comp == null || fldNumbers == null || fldModuleActivated == null || fldSolved == null)
                         break;
 
-                    while (!_isActivated)
-                        yield return new WaitForSeconds(.1f);
+                    var originalNumbers = new List<string>();
 
-                    var submit = fldSubmit.Get();
-                    var numbers = fldNumbers.Get();
-                    if (submit == null || numbers == null)
-                        break;
-                    if (numbers.Length != 3 || numbers.Any(n => n < 0 || n > 9))
+                    while (true)
                     {
-                        Debug.LogFormat("[Souvenir #{0}] Abandoning Skewed Slots because numbers has unexpected length (3) or a number outside expected range (0–9): [{1}].", _SouvenirID, numbers.JoinString(", "));
-                        break;
+                        // Skewed Slots sets moduleActivated to false while the slots are spinning.
+                        // If there was a correct answer, it will set solved to true, otherwise it will set moduleActivated to true.
+                        while (!fldModuleActivated.Get() && !fldSolved.Get())
+                            yield return new WaitForSeconds(.1f);
+
+                        if (fldSolved.Get())
+                            break;
+
+                        // Get the current original digits.
+                        var numbers = fldNumbers.Get();
+                        if (numbers == null)
+                            break;
+                        if (numbers.Length != 3 || numbers.Any(n => n < 0 || n > 9))
+                        {
+                            Debug.LogFormat("[Souvenir #{0}] Abandoning Skewed Slots because numbers has unexpected length (3) or a number outside expected range (0–9): [{1}].", _SouvenirID, numbers.JoinString(", "));
+                            goto abandonSkewedSlots;
+                        }
+                        originalNumbers.Add(numbers.JoinString());
+
+                        // When the user presses anything, Skewed Slots sets moduleActivated to false while the slots are spinning.
+                        while (fldModuleActivated.Get())
+                            yield return new WaitForSeconds(.1f);
                     }
 
-                    var correctAnswers = new List<string>() { numbers.JoinString() };
-                    var wrongAnswers = new List<string>() { numbers.JoinString() };
-
-                    var solved = false;
-                    var prevInteract = submit.OnInteract;
-                    submit.OnInteract = delegate
-                    {
-                        var display = fldDisplay.Get();
-                        var solution = fldSolution.Get();
-                        if (display == null || solution == null)
-                        {
-                            submit.OnInteract = prevInteract;
-                            return prevInteract();
-                        }
-                        if (display.Length != 3 || display.Any(n => n < 0 || n > 9) || solution.Length != 3 || solution.Any(n => n < 0 || n > 9))
-                        {
-                            Debug.LogFormat("[Souvenir #{0}] Abandoning Skewed Slots because display or solution has unexpected length (3) or a number outside expected range (0–9): display=[{1}], solution=[{2}].", _SouvenirID, display.JoinString(", "), solution.JoinString(", "));
-                            submit.OnInteract = prevInteract;
-                            return prevInteract();
-                        }
-
-                        // What the user entered
-                        wrongAnswers.Add(display.JoinString());
-
-                        if (display.SequenceEqual(solution))
-                            solved = true;
-
-                        var ret = prevInteract();
-
-                        // The new puzzle that comes up after a wrong answer
-                        if (!solved)
-                        {
-                            correctAnswers.Add(display.JoinString());
-                            wrongAnswers.Add(display.JoinString());
-                        }
-
-                        return ret;
-                    };
-
-                    while (!solved)
-                        yield return new WaitForSeconds(.1f);
-
-                    submit.OnInteract = prevInteract;
                     _modulesSolved.IncSafe(_SkewedSlots);
 
-                    for (int i = 0; i < correctAnswers.Count; i++)
-                        addQuestion(Question.SkewedSlotsOriginalNumbers, _SkewedSlots, new[] { correctAnswers[i] },
-                            extraFormatArguments: new[] { correctAnswers.Count == 1 ? "" : ordinal(i + 1) + " " },
-                            preferredWrongAnswers: wrongAnswers.Concat(Enumerable.Range(0, int.MaxValue).Select(_ => Rnd.Range(0, 1000).ToString("000"))).Where(str => str != correctAnswers[i]).Take(5).ToArray());
+                    for (int i = 0; i < originalNumbers.Count; i++)
+                        addQuestion(Question.SkewedSlotsOriginalNumbers, _SkewedSlots, new[] { originalNumbers[i] },
+                            extraFormatArguments: new[] { originalNumbers.Count == 1 ? "" : ordinal(i + 1) + " " },
+                            preferredWrongAnswers: originalNumbers.Concat(Enumerable.Range(0, int.MaxValue).Select(_ => Rnd.Range(0, 1000).ToString("000"))).Where(str => str != originalNumbers[i]).Distinct().Take(5).ToArray());
+
+                    abandonSkewedSlots:
                     break;
                 }
 
