@@ -306,6 +306,8 @@ public class SouvenirModule : MonoBehaviour
         if (_currentQuestion == null)
             return;
 
+        Debug.LogFormat("[Souvenir #{0}] Clicked answer #{1} ({2}). {3}.", _SouvenirID, index + 1, _currentQuestion.Answers[index], _currentQuestion.CorrectIndex == index ? "Correct" : "Wrong");
+
         if (_currentQuestion.CorrectIndex == index)
             dismissQuestion();
         else
