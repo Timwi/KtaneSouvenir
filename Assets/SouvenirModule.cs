@@ -303,7 +303,7 @@ public class SouvenirModule : MonoBehaviour
         if (_animating)
             return;
 
-        if (_currentQuestion == null)
+        if (_currentQuestion == null || index >= _currentQuestion.Answers.Length)
             return;
 
         Debug.LogFormat("[Souvenir #{0}] Clicked answer #{1} ({2}). {3}.", _SouvenirID, index + 1, _currentQuestion.Answers[index], _currentQuestion.CorrectIndex == index ? "Correct" : "Wrong");
