@@ -242,10 +242,10 @@ namespace Souvenir
             if (src == null)
                 throw new ArgumentNullException("src");
 
-            var arr = src.ToArray();
-            if (arr.Length == 0)
+            var arr = (src as IList<T>) ?? src.ToArray();
+            if (arr.Count == 0)
                 throw new InvalidOperationException("Cannot pick a random element from an empty set.");
-            return arr[Rnd.Range(0, arr.Length)];
+            return arr[Rnd.Range(0, arr.Count)];
         }
 
         /// <summary>
