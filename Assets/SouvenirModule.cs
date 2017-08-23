@@ -421,6 +421,7 @@ public class SouvenirModule : MonoBehaviour
 
     private void SetQuestion(QandA q)
     {
+        Debug.LogFormat("[Souvenir #{0}] Asking question: {1}", _moduleId, q.DebugString);
         _currentQuestion = q;
         SetWordWrappedText(q.QuestionText);
         ShowAnswers(q.Answers);
