@@ -62,6 +62,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Chess = "Chess(Clone)";
     const string _ColoredSquares = "ColoredSquaresModule(Clone)";
     const string _ConnectionCheck = "GraphModule(Clone)";
+    const string _Coordinates = "CoordinatesModule(Clone)";
     const string _DoubleOh = "DoubleOhModule(Clone)";
     const string _FastMath = "fastMath(Clone)";
     const string _Hexamaze = "HexamazeModule(Clone)";
@@ -86,86 +87,17 @@ public class SouvenirModule : MonoBehaviour
     private int _moduleId;
 
     private string[] _ignoreModules = new[] {
-        // ────────────────────────────
-        // 𝐍𝐨𝐭 𝐠𝐨𝐧𝐧𝐚 𝐝𝐨:
-        // ────────────────────────────
-        // Adjacent Letters
         "AdjacentLettersModule(Clone)",
-        // Alphabet
-        // Anagrams
-        "Anagrams_Module(Clone)",
-        // Astrology
-        // Blind Alley
-        // The Button
-        // Caesar Cipher
-        "CaesarCipherModule(Clone)",
-        // Complicated Wires
-        // Crazy Talk
-        // Cryptography
-        // Emoji Math
-        "Emoji Math(Clone)",
-        // English Test
-        // Follow the Leader
-        "FollowTheLeaderModule(Clone)",
-        // Foreign Exchange Rates
-        // Friendship
-        // The Gamepad
-        // Keypads
-        // Laundry
-        // Lettered Keys
-        // Logic
-        // Number Pad
-        "NumberPadModule(Clone)",
-        // Piano Keys
-        // Plumbing
-        // Probing
-        // Resistors
-        "ResistorsModule(Clone)",
-        // Rock-Paper-Scissors-Lizard-Spock — RockPaperScissorsLizardSpockModule
-        "RockPaperScissorsLizardSpockModule(Clone)",
-        // Round Keypad
-        // Safety Safe
         "AdvancedPassword(Clone)",
-        // Square Button
-        "AdvancedButton(Clone)",
-        // Turn The Key
-        // Turn The Keys
-        // Wires
-        // Word Scramble
-        "Word_Scramble_Module(Clone)",
-
-
-        // ────────────────────────────
-        // 𝐂𝐚𝐧𝐝𝐢𝐝𝐚𝐭𝐞𝐬:
-        // ────────────────────────────
-        // Mazes
-        // Memory
-        // Microcontroller — Micro (first LED position only)
-        "Micro(Clone)",
-        // Morse Code
-        // Mystic Square (position of skull and knight)
-        // Passwords
-        // Sea Shells — SeaShellsModule
-        "SeaShellsModule(Clone)",
-        // Shape Shift
-        "ShapeShiftModule(Clone)",
-        // Simon Says
-        // Switches
-        // Third Base
-        // Tic-Tac-Toe — TicTacToeModule
-        "TicTacToeModule(Clone)",
-        // Who’s on First
-
-        // ────────────────────────────
-        // 𝐏𝐨𝐬𝐬𝐢𝐛𝐥𝐞 𝐟𝐮𝐭𝐮𝐫𝐞 𝐜𝐚𝐧𝐝𝐢𝐝𝐚𝐭𝐞𝐬:
-        // ────────────────────────────
-        // Color Flash
-        // Combination Lock
-        // Semaphore — SemaphoreModule
-        "SemaphoreModule(Clone)",
-        // Wire Sequences
-
-        "dummy"
+        "Anagrams_Module(Clone)",
+        "CaesarCipherModule(Clone)",
+        "Emoji Math(Clone)",
+        "FollowTheLeaderModule(Clone)",
+        "NumberPadModule(Clone)",
+        "ResistorsModule(Clone)",
+        "RockPaperScissorsLizardSpockModule(Clone)",
+        "RubiksCubeModule(Clone)",
+        "Word_Scramble_Module(Clone)"
     };
 
     void setAnswerHandler(int index, Action<int> handler)
@@ -635,8 +567,13 @@ public class SouvenirModule : MonoBehaviour
         var fld = targetType.GetField(name, bindingFlags);
         if (fld == null)
         {
-            Debug.LogFormat("[Souvenir #{3}] Type {0} does not contain {1} field {2}.", targetType, isPublic ? "public" : "non-public", name, _moduleId);
-            return null;
+            // In case it’s actually an auto-implemented property and not a field.
+            fld = targetType.GetField("<" + name + ">k__BackingField", bindingFlags);
+            if (fld == null)
+            {
+                Debug.LogFormat("[Souvenir #{3}] Type {0} does not contain {1} field {2}.", targetType, isPublic ? "public" : "non-public", name, _moduleId);
+                return null;
+            }
         }
         if (!typeof(T).IsAssignableFrom(fld.FieldType))
         {
@@ -940,6 +877,78 @@ public class SouvenirModule : MonoBehaviour
 
                     _modulesSolved.IncSafe(_ConnectionCheck);
                     addQuestion(Question.ConnectionCheckInitial, _ConnectionCheck, new[] { initialState });
+                    break;
+                }
+
+            case _Coordinates:
+                {
+                    var comp = GetComponent(module, "CoordinatesModule");
+                    var fldFirstSubmitted = GetField<int?>(comp, "_firstCorrectSubmitted");
+                    var fldClues = GetField<IList>(comp, "_clues");
+
+                    if (comp == null || fldFirstSubmitted == null || fldClues == null)
+                        break;
+
+                    while (fldFirstSubmitted.Get(nullAllowed: true) == null)
+                        yield return new WaitForSeconds(.1f);
+
+                    var clues = fldClues.Get();
+                    var index = fldFirstSubmitted.Get().Value;
+                    if (clues == null || index < 0 || index >= clues.Count)
+                    {
+                        Debug.LogFormat(@"[Souvenir #{0}] Abandoning Coordinates because ‘clues’ is null or ‘index’ has unexpected value ({1}, clues length {2}).", _moduleId, index, clues == null ? "null" : clues.Count.ToString());
+                        break;
+                    }
+                    var clue = clues[index];
+                    var fldClueText = GetField<string>(clue, "Text");
+                    var fldClueSystem = GetField<int?>(clue, "System");
+                    if (fldClueText == null || fldClueSystem == null)
+                        break;
+
+                    var clueText = fldClueText.Get();
+                    if (clueText == null)
+                        break;
+
+                    // The module sets ‘clues’ to null to indicate that it is solved.
+                    while (fldClues.Get(nullAllowed: true) != null)
+                        yield return new WaitForSeconds(.1f);
+
+                    _modulesSolved.IncSafe(_Coordinates);
+                    var shortenCoordinate = Ut.Lambda((string str) =>
+                    {
+                        if (str == null)
+                            return null;
+
+                        str = str.Replace("\n", " ");
+                        if (str.Length > 13)
+                        {
+                            str = str
+                                .Replace(",", "")
+                                .Replace("north", "N")
+                                .Replace("south", "S")
+                                .Replace("west", "W")
+                                .Replace("east", "E")
+                                .Replace("up", "U")
+                                .Replace("down", "D")
+                                .Replace("left", "L")
+                                .Replace("right", "R")
+                                .Replace("top", "T")
+                                .Replace("bottom", "B")
+                                .Replace("middle", "M")
+                                .Replace("center", "C")
+                                .Replace("from", "fr.")
+                                .Replace(" o’clock", "")
+                                .Replace(" corner", "");
+                            str = Regex.Replace(str, @"\b[A-Z] [A-Z]\b", m => m.Value.Remove(1, 1));
+                        }
+                        return str;
+                    });
+
+                    // The size clue is the only one where fldClueSystem is null
+                    var sizeClue = clues.Cast<object>().Where(szCl => fldClueSystem.Field.GetValue(szCl) == null).FirstOrDefault();
+                    addQuestions(
+                        makeQuestion(Question.CoordinatesFirstSolution, _Coordinates, new[] { shortenCoordinate(clueText) }, preferredWrongAnswers: clues.Cast<object>().Select(c => shortenCoordinate((string) fldClueText.Field.GetValue(c))).Where(t => t != null).ToArray()),
+                        sizeClue == null ? null : makeQuestion(Question.CoordinatesSize, _Coordinates, new[] { (string) fldClueText.Field.GetValue(sizeClue) }));
                     break;
                 }
 
