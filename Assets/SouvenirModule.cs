@@ -36,7 +36,7 @@ public class SouvenirModule : MonoBehaviour
         "Turn The Key"
     };
 
-    private static bool _isTimwisComputer = new[] { "TEKELIA", "CORNFLOWER" }.Contains(Environment.GetEnvironmentVariable("COMPUTERNAME"));
+    private static bool _isTimwisComputer = new[] { "TEKELIA", "CORNFLOWER", "CAITSITH2-PC" }.Contains(Environment.GetEnvironmentVariable("COMPUTERNAME"));
     private static string _timwiPath = @"D:\c\KTANE\Souvenir modules.txt";
     private List<QuestionBatch> _questions = new List<QuestionBatch>();
     private bool _isActivated = false;
@@ -56,6 +56,8 @@ public class SouvenirModule : MonoBehaviour
 
     const string _3DMaze = "3DMazeModule(Clone)";
     const string _AdventureGame = "AdventureGameModule(Clone)";
+    const string _BigCircle = "TheBigCircle(Clone)";
+    const string _BigCircleRegex = "Big Circle #\\d+";
     const string _Bitmaps = "BitmapsModule(Clone)";
     const string _BrokenButtons = "BrokenButtonModule(Clone)";
     const string _CheapCheckout = "CheapCheckoutModule(Clone)";
@@ -68,6 +70,8 @@ public class SouvenirModule : MonoBehaviour
     const string _Hexamaze = "HexamazeModule(Clone)";
     const string _Listening = "ListeningModule(Clone)";
     const string _MonsplodeFight = "CreatureModule(Clone)";
+    const string _MorseAMaze = "MorseAMaze(Clone)";
+    const string _MorseAMazeRegex = "Morse-A-Maze #\\d+";
     const string _Morsematics = "AdvancedMorse(Clone)";
     const string _MouseInTheMaze = "Physics Module(Clone)";
     const string _Murder = "MurderModule(Clone)";
@@ -608,9 +612,16 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerator ProcessModule(GameObject module)
     {
-        _moduleCounts.IncSafe(module.name);
+        var modulename = module.name;
+        if (Regex.IsMatch(module.name, _BigCircleRegex))
+            modulename = _BigCircle;
 
-        switch (module.name)
+        if (Regex.IsMatch(module.name, _MorseAMazeRegex))
+            modulename = _MorseAMaze;
+
+        _moduleCounts.IncSafe(modulename);
+
+        switch (modulename)
         {
             case _3DMaze:
                 {
@@ -769,6 +780,12 @@ public class SouvenirModule : MonoBehaviour
                     buttonUse.OnInteract = prevInteract;
                     _modulesSolved.IncSafe(_AdventureGame);
                     addQuestions(qs.Select(q => q()));
+                    break;
+                }
+
+            case _BigCircle:
+                {
+                    Debug.LogFormat("Found Big Circle under name: {0}", module.name);
                     break;
                 }
 
@@ -1358,6 +1375,56 @@ public class SouvenirModule : MonoBehaviour
 
                     break;
                 }
+
+            case _MorseAMaze:
+            {
+                var comp = GetComponent(module, "MorseAMaze");
+                var fldSolved = GetField<bool>(comp, "_solved");
+                var fldStart = GetField<string>(comp, "_souvenirQuestionStartingLocation");
+                var fldEnd = GetField<string>(comp, "_souvenirQuestionEndingLocation");
+                var fldWord = GetField<string>(comp, "_souvenirQuestionWordPlaying");
+
+                if (comp == null || fldSolved == null || fldStart == null || fldEnd == null || fldWord == null)
+                    break;
+
+                while (!_isActivated)
+                    yield return new WaitForSeconds(0.1f);
+
+                var start = fldStart.Get();
+                var end = fldEnd.Get();
+                var word = fldWord.Get();
+                if (start == null || start.Length != 2)
+                {
+                    Debug.LogFormat("[Souvenir #{0}] Morse-A-Maze starting coordinate is null or has unexpected value: {1}",
+                        _moduleId, start);
+                    break;
+                }
+                if (end == null || end.Length != 2)
+                {
+                    Debug.LogFormat(
+                        "[Souvenir #{0}] Morse-A-Maze ending coordinate is null or has unexpected value: {1}",
+                        _moduleId, end);
+                    break;
+                }
+                if (word == null || word.Length < 4)
+                {
+                    Debug.LogFormat(
+                        "[Souvenir #{0}] Morse-A-Maze morse code word is null or has unexpected value: {1}",
+                        _moduleId,word);
+                        break;
+                }
+
+                while (!fldSolved.Get())
+                    yield return new WaitForSeconds(0.1f);
+
+                _modulesSolved.IncSafe(_MorseAMaze);
+                    addQuestions(
+                    makeQuestion(Question.MorseAMazeStartingCoordinate, _MorseAMaze, new[] { start }),
+                    makeQuestion(Question.MorseAMazeEndingCoordinate, _MorseAMaze, new[] { end }),
+                    makeQuestion(Question.MorseAMazeMorseCodeWord, _MorseAMaze, new[] { word })
+                        );
+                break;
+            }
 
             case _Morsematics:
                 {

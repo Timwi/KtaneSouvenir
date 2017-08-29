@@ -72,6 +72,15 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "was", "", "was", "for the first creature ", "was", "for the second creature ", "was not", "", "was not", "for the first creature ", "was not", "for the second creature " }, ExampleExtraFormatArgumentGroupSize = 2)]
         MonsplodeFightMove,
 
+        [SouvenirQuestion("What was the starting coordinate in {0}", "Morse-A-Maze", 6, "A1","A2","A3","A4","A5","A6","B1","B2","B3","B4","B5","B6","C1","C2","C3","C4","C5","C6","D1","D2","D3","D4","D5","D6","E1","E2","E3","E4","E5","E6","F1","F2","F3","F4","F5","F6")]
+        MorseAMazeStartingCoordinate,
+
+        [SouvenirQuestion("What was the ending coordinate in {0}", "Morse-A-Maze", 6, "A1", "A2", "A3", "A4", "A5", "A6", "B1", "B2", "B3", "B4", "B5", "B6", "C1", "C2", "C3", "C4", "C5", "C6", "D1", "D2", "D3", "D4", "D5", "D6", "E1", "E2", "E3", "E4", "E5", "E6", "F1", "F2", "F3", "F4", "F5", "F6")]
+        MorseAMazeEndingCoordinate,
+
+        [SouvenirQuestion("What was the morse code word played in {0}", "Morse-A-Maze", 6, "Thank you BOB", "shell", "leaks", "strike", "alien3", "bistro", "tango", "timer", "boxes", "trick", "penguin", "sting", "elias", "ktane", "manual", "zulu", "november", "kaboom", "unicorn", "quebec", "bashly", "slick", "vector", "flick", "timwi", "strobe", "bombs", "bravo", "laundry", "brick", "kitty", "halls", "steak", "break", "beats")]
+        MorseAMazeMorseCodeWord,
+
         [SouvenirQuestion("What was the {1} received letter in {0}?", "Morsematics", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MorsematicsReceivedLetters,
