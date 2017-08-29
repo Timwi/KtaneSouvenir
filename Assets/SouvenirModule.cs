@@ -52,56 +52,54 @@ public class SouvenirModule : MonoBehaviour
     private Dictionary<string, int> _moduleCounts = new Dictionary<string, int>();
     private Dictionary<string, int> _modulesSolved = new Dictionary<string, int>();
 
-    const string _Souvenir = "SouvenirModule(Clone)";
+    const string _Souvenir = "SouvenirModule";
 
-    const string _3DMaze = "3DMazeModule(Clone)";
-    const string _AdventureGame = "AdventureGameModule(Clone)";
-    const string _BigCircle = "TheBigCircle(Clone)";
-    const string _BigCircleRegex = "Big Circle #\\d+";
-    const string _Bitmaps = "BitmapsModule(Clone)";
-    const string _BrokenButtons = "BrokenButtonModule(Clone)";
-    const string _CheapCheckout = "CheapCheckoutModule(Clone)";
-    const string _Chess = "Chess(Clone)";
-    const string _ColoredSquares = "ColoredSquaresModule(Clone)";
-    const string _ConnectionCheck = "GraphModule(Clone)";
-    const string _Coordinates = "CoordinatesModule(Clone)";
-    const string _DoubleOh = "DoubleOhModule(Clone)";
-    const string _FastMath = "fastMath(Clone)";
-    const string _Hexamaze = "HexamazeModule(Clone)";
-    const string _Listening = "ListeningModule(Clone)";
-    const string _MonsplodeFight = "CreatureModule(Clone)";
-    const string _MorseAMaze = "MorseAMaze(Clone)";
-    const string _MorseAMazeRegex = "Morse-A-Maze #\\d+";
-    const string _Morsematics = "AdvancedMorse(Clone)";
-    const string _MouseInTheMaze = "Physics Module(Clone)";
-    const string _Murder = "MurderModule(Clone)";
-    const string _Neutralization = "neutralization(Clone)";
-    const string _OnlyConnect = "OnlyConnectModule(Clone)";
-    const string _OrientationCube = "OrientationModule(Clone)";
-    const string _PerspectivePegs = "PerspectivePegsModule(Clone)";
-    const string _SeaShells = "SeaShellsModule(Clone)";
-    const string _SillySlots = "SillySlotsModule(Clone)";
-    const string _SimonScreams = "SimonScreamsModule(Clone)";
-    const string _SimonStates = "AdvancedSimon(Clone)";
-    const string _SkewedSlots = "SkewedModule(Clone)";
-    const string _TheBulb = "TheBulbModule(Clone)";
-    const string _TwoBits = "TwoBitsModule(Clone)";
+    const string _3DMaze = "spwiz3DMaze";
+    const string _AdventureGame = "spwizAdventureGame";
+    const string _BigCircle = "BigCircle";
+    const string _Bitmaps = "BitmapsModule";
+    const string _BrokenButtons = "BrokenButtonsModule";
+    const string _CheapCheckout = "CheapCheckoutModule";
+    const string _Chess = "ChessModule";
+    const string _ColoredSquares = "ColoredSquaresModule";
+    const string _ConnectionCheck = "graphModule";
+    const string _Coordinates = "CoordinatesModule";
+    const string _DoubleOh = "DoubleOhModule";
+    const string _FastMath = "fastMath";
+    const string _Hexamaze = "HexamazeModule";
+    const string _Listening = "Listening";
+    const string _MonsplodeFight = "monsplodeFight";
+    const string _MorseAMaze = "MorseAMaze";
+    const string _Morsematics = "MorseV2";
+    const string _MouseInTheMaze = "MouseInTheMaze";
+    const string _Murder = "murder";
+    const string _Neutralization = "neutralization";
+    const string _OnlyConnect = "OnlyConnectModule";
+    const string _OrientationCube = "OrientationCube";
+    const string _PerspectivePegs = "spwizPerspectivePegs";
+    const string _SeaShells = "SeaShells";
+    const string _SillySlots = "SillySlots";
+    const string _SimonScreams = "SimonScreamsModule";
+    const string _SimonStates = "SimonV2";
+    const string _SkewedSlots = "SkewedSlotsModule";
+    const string _TheBulb = "TheBulbModule";
+    const string _TwoBits = "TwoBits";
 
     private static int _moduleIdCounter = 1;
     private int _moduleId;
 
     private string[] _ignoreModules = new[] {
-        "AdjacentLettersModule(Clone)",
-        "AdvancedPassword(Clone)",
-        "Anagrams_Module(Clone)",
-        "CaesarCipherModule(Clone)",
-        "Emoji Math(Clone)",
-        "FollowTheLeaderModule(Clone)",
-        "NumberPadModule(Clone)",
-        "ResistorsModule(Clone)",
-        "RockPaperScissorsLizardSpockModule(Clone)",
-        "RubiksCubeModule(Clone)",
-        "Word_Scramble_Module(Clone)"
+        "AdjacentLettersModule",
+        "AnagramsModule",
+        "CaesarCipherModule",
+        "Emoji Math",
+        "FollowTheLeaderModule",
+        "NumberPad",
+        "PasswordV2",
+        "resistors",
+        "RockPaperScissorsLizardSpockModule",
+        "RubiksCubeModule",
+        "WordScrambleModule"
     };
 
     void setAnswerHandler(int index, Action<int> handler)
@@ -612,16 +610,27 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerator ProcessModule(GameObject module)
     {
-        var modulename = module.name;
-        if (Regex.IsMatch(module.name, _BigCircleRegex))
-            modulename = _BigCircle;
+        var bombModule = module.GetComponent<KMBombModule>();
 
-        if (Regex.IsMatch(module.name, _MorseAMazeRegex))
-            modulename = _MorseAMaze;
+        if(bombModule == null)
+        {
+            if (_isTimwisComputer && !_ignoreModules.Contains(module.name))
+            {
+                var s = new StringBuilder();
+                s.AppendLine("Unrecognized module: " + module.name);
+                s.AppendLine("Cannot continue with this module because KMBombModule was not found in this GameObject.");
+                foreach (var comp in module.GetComponents(typeof(UnityEngine.Object)))
+                    s.AppendLine("    - " + comp.GetType().FullName);
+                lock (_timwiPath)
+                    File.AppendAllText(_timwiPath, s.ToString());
+            }
+            Debug.LogFormat("[Souvenir #{1}] Finished processing {0}.", module.name, _moduleId);
+            yield break;
+        }
 
-        _moduleCounts.IncSafe(modulename);
-
-        switch (modulename)
+        var moduleType = bombModule.ModuleType;
+        _moduleCounts.IncSafe(moduleType);
+        switch (moduleType)
         {
             case _3DMaze:
                 {
