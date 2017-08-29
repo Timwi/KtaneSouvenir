@@ -1377,54 +1377,48 @@ public class SouvenirModule : MonoBehaviour
                 }
 
             case _MorseAMaze:
-            {
-                var comp = GetComponent(module, "MorseAMaze");
-                var fldSolved = GetField<bool>(comp, "_solved");
-                var fldStart = GetField<string>(comp, "_souvenirQuestionStartingLocation");
-                var fldEnd = GetField<string>(comp, "_souvenirQuestionEndingLocation");
-                var fldWord = GetField<string>(comp, "_souvenirQuestionWordPlaying");
-
-                if (comp == null || fldSolved == null || fldStart == null || fldEnd == null || fldWord == null)
-                    break;
-
-                while (!_isActivated)
-                    yield return new WaitForSeconds(0.1f);
-
-                var start = fldStart.Get();
-                var end = fldEnd.Get();
-                var word = fldWord.Get();
-                if (start == null || start.Length != 2)
                 {
-                    Debug.LogFormat("[Souvenir #{0}] Morse-A-Maze starting coordinate is null or has unexpected value: {1}",
-                        _moduleId, start);
-                    break;
-                }
-                if (end == null || end.Length != 2)
-                {
-                    Debug.LogFormat(
-                        "[Souvenir #{0}] Morse-A-Maze ending coordinate is null or has unexpected value: {1}",
-                        _moduleId, end);
-                    break;
-                }
-                if (word == null || word.Length < 4)
-                {
-                    Debug.LogFormat(
-                        "[Souvenir #{0}] Morse-A-Maze morse code word is null or has unexpected value: {1}",
-                        _moduleId,word);
+                    var comp = GetComponent(module, "MorseAMaze");
+                    var fldSolved = GetField<bool>(comp, "_solved");
+                    var fldStart = GetField<string>(comp, "_souvenirQuestionStartingLocation");
+                    var fldEnd = GetField<string>(comp, "_souvenirQuestionEndingLocation");
+                    var fldWord = GetField<string>(comp, "_souvenirQuestionWordPlaying");
+
+                    if (comp == null || fldSolved == null || fldStart == null || fldEnd == null || fldWord == null)
                         break;
-                }
 
-                while (!fldSolved.Get())
-                    yield return new WaitForSeconds(0.1f);
+                    while (!_isActivated)
+                        yield return new WaitForSeconds(0.1f);
 
-                _modulesSolved.IncSafe(_MorseAMaze);
+                    var start = fldStart.Get();
+                    var end = fldEnd.Get();
+                    var word = fldWord.Get();
+                    if (start == null || start.Length != 2)
+                    {
+                        Debug.LogFormat("[Souvenir #{0}] Morse-A-Maze starting coordinate is null or has unexpected value: {1}", _moduleId, start ?? "<null>");
+                        break;
+                    }
+                    if (end == null || end.Length != 2)
+                    {
+                        Debug.LogFormat("[Souvenir #{0}] Morse-A-Maze ending coordinate is null or has unexpected value: {1}", _moduleId, end ?? "<null>");
+                        break;
+                    }
+                    if (word == null || word.Length < 4)
+                    {
+                        Debug.LogFormat("[Souvenir #{0}] Morse-A-Maze morse code word is null or has unexpected value: {1}", _moduleId, word ?? "<null>");
+                        break;
+                    }
+
+                    while (!fldSolved.Get())
+                        yield return new WaitForSeconds(0.1f);
+
+                    _modulesSolved.IncSafe(_MorseAMaze);
                     addQuestions(
-                    makeQuestion(Question.MorseAMazeStartingCoordinate, _MorseAMaze, new[] { start }),
-                    makeQuestion(Question.MorseAMazeEndingCoordinate, _MorseAMaze, new[] { end }),
-                    makeQuestion(Question.MorseAMazeMorseCodeWord, _MorseAMaze, new[] { word })
-                        );
-                break;
-            }
+                        makeQuestion(Question.MorseAMazeStartingCoordinate, _MorseAMaze, new[] { start }),
+                        makeQuestion(Question.MorseAMazeEndingCoordinate, _MorseAMaze, new[] { end }),
+                        makeQuestion(Question.MorseAMazeMorseCodeWord, _MorseAMaze, new[] { word }));
+                    break;
+                }
 
             case _Morsematics:
                 {
