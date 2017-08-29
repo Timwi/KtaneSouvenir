@@ -785,7 +785,45 @@ public class SouvenirModule : MonoBehaviour
 
             case _BigCircle:
                 {
-                    Debug.LogFormat("Found Big Circle under name: {0}", module.name);
+                    var Colors = new[] {"Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black"};
+                    var comp = GetComponent(module, "TheBigCircle");
+                    var fldColors = GetField<int[]>(comp, "_colors");
+                    var fldSolved = GetField<bool>(comp, "_solved");
+
+                    if (comp == null || fldSolved == null || fldColors == null)
+                        break;
+
+                    while (!fldSolved.Get())
+                        yield return new WaitForSeconds(0.1f);
+
+                    var colors = fldColors.Get();
+                    if (colors == null || colors.Length != 8 || colors.Any(i => i < 0 || i >= 8))
+                    {
+                        Debug.LogFormat("[Souvenir #{0}] Big Circle: Colors is null or has an unexpected value",
+                            _moduleId);
+                        break;
+                    }
+
+                    var questionsAdjacent = Enumerable.Range(0, 8).Select(i =>
+                        makeQuestion(
+                            Question.BigCircle, 
+                            _BigCircle,
+                            new[] {Colors[colors[(i + 1) % 8]], Colors[colors[(i + 7) % 8]]},
+                            new[] {"adjacent to", Colors[colors[i]]},
+                            new[]{Colors[colors[(i + 2) % 8]], Colors[colors[(i + 3) % 8]], Colors[colors[(i + 4) % 8]],Colors[colors[(i + 5) % 8]], Colors[colors[(i + 6) % 8]]}
+                            ));
+                    var questionsOpposite = Enumerable.Range(0, 8).Select(i =>
+                        makeQuestion(
+                            Question.BigCircle,
+                            _BigCircle,
+                            new[] {Colors[colors[(i + 4) % 8]]},
+                            new[] {"opposite from", Colors[colors[i]]},
+                            new[] {Colors[colors[(i + 1) % 8]], Colors[colors[(i + 2) % 8]], Colors[colors[(i + 3) % 8]],Colors[colors[(i + 5) % 8]], Colors[colors[(i + 6) % 8]], Colors[colors[(i + 7) % 8]]}
+                        ));
+
+                    _modulesSolved.IncSafe(_BigCircle);
+                    addQuestions(questionsAdjacent.Concat(questionsOpposite));
+                    
                     break;
                 }
 

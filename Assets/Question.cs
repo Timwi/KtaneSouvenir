@@ -19,6 +19,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         AdventureGameCorrectItem,
 
+        [SouvenirQuestion("What color was {1} {2} in {0}?", "The Big Circle", 4, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black", 
+            ExampleExtraFormatArguments = new [] {"adjacent to", "Red", "adjacent to", "Orange", "adjacent to", "Yellow", "adjacent to", "Green", "adjacent to", "Blue", "adjacent to", "Magenta", "adjacent to", "White", "adjacent to", "Black", "opposite from", "Red","opposite from", "Orange","opposite from", "Yellow","opposite from", "Green","opposite from", "Blue","opposite from", "Magenta","opposite from", "White","opposite from", "Black",}, ExampleExtraFormatArgumentGroupSize = 2)]
+        BigCircle,
+
         [SouvenirQuestion("How many pixels were {1} in the {2} quadrant in {0}?", "Bitmaps", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",
             ExampleExtraFormatArguments = new[] { "white", "top left", "white", "top right", "white", "bottom left", "white", "bottom right", "black", "top left", "black", "top right", "black", "bottom left", "black", "bottom right" }, ExampleExtraFormatArgumentGroupSize = 2)]
         Bitmaps,
