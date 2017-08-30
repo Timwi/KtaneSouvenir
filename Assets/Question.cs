@@ -19,9 +19,12 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         AdventureGameCorrectItem,
 
-        [SouvenirQuestion("What color was {1} {2} in {0}?", "The Big Circle", 4, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black", 
-            ExampleExtraFormatArguments = new [] {"adjacent to", "Red", "adjacent to", "Orange", "adjacent to", "Yellow", "adjacent to", "Green", "adjacent to", "Blue", "adjacent to", "Magenta", "adjacent to", "White", "adjacent to", "Black", "opposite from", "Red","opposite from", "Orange","opposite from", "Yellow","opposite from", "Green","opposite from", "Blue","opposite from", "Magenta","opposite from", "White","opposite from", "Black",}, ExampleExtraFormatArgumentGroupSize = 2)]
-        BigCircle,
+        [SouvenirQuestion("What color was {1} {2} in {0}?", "Big Circle", 4, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black",
+            ExampleExtraFormatArguments = new[] {
+                "adjacent to", "Red", "adjacent to", "Orange", "adjacent to", "Yellow", "adjacent to", "Green", "adjacent to", "Blue", "adjacent to", "Magenta", "adjacent to", "White", "adjacent to", "Black",
+                "opposite from", "Red", "opposite from", "Orange", "opposite from", "Yellow", "opposite from", "Green", "opposite from", "Blue", "opposite from", "Magenta", "opposite from", "White", "opposite from", "Black" },
+            ExampleExtraFormatArgumentGroupSize = 2)]
+        BigCircleColors,
 
         [SouvenirQuestion("How many pixels were {1} in the {2} quadrant in {0}?", "Bitmaps", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",
             ExampleExtraFormatArguments = new[] { "white", "top left", "white", "top right", "white", "bottom left", "white", "bottom right", "black", "top left", "black", "top right", "black", "bottom left", "black", "bottom right" }, ExampleExtraFormatArgumentGroupSize = 2)]
@@ -81,7 +84,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "was", "", "was", "for the first creature ", "was", "for the second creature ", "was not", "", "was not", "for the first creature ", "was not", "for the second creature " }, ExampleExtraFormatArgumentGroupSize = 2)]
         MonsplodeFightMove,
 
-        [SouvenirQuestion("What was the starting location in {0}?", "Morse-A-Maze", 6, "A1","A2","A3","A4","A5","A6","B1","B2","B3","B4","B5","B6","C1","C2","C3","C4","C5","C6","D1","D2","D3","D4","D5","D6","E1","E2","E3","E4","E5","E6","F1","F2","F3","F4","F5","F6")]
+        [SouvenirQuestion("What was the starting location in {0}?", "Morse-A-Maze", 6, "A1", "A2", "A3", "A4", "A5", "A6", "B1", "B2", "B3", "B4", "B5", "B6", "C1", "C2", "C3", "C4", "C5", "C6", "D1", "D2", "D3", "D4", "D5", "D6", "E1", "E2", "E3", "E4", "E5", "E6", "F1", "F2", "F3", "F4", "F5", "F6")]
         MorseAMazeStartingCoordinate,
 
         [SouvenirQuestion("What was the ending location in {0}?", "Morse-A-Maze", 6, "A1", "A2", "A3", "A4", "A5", "A6", "B1", "B2", "B3", "B4", "B5", "B6", "C1", "C2", "C3", "C4", "C5", "C6", "D1", "D2", "D3", "D4", "D5", "D6", "E1", "E2", "E3", "E4", "E5", "E6", "F1", "F2", "F3", "F4", "F5", "F6")]

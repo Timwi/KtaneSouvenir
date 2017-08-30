@@ -462,7 +462,7 @@ namespace Souvenir
             return char.IsWhiteSpace(txt, index);
         }
 
-        public static int IndexOf(this IEnumerable source, Func<object, bool> predicate)
+        public static int IndexOf<T>(this IEnumerable<T> source, Func<T, bool> predicate)
         {
             var i = 0;
             foreach (var obj in source)
