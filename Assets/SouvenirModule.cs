@@ -1177,7 +1177,7 @@ public class SouvenirModule : MonoBehaviour
                     if (pages == null || pages.Length < 5 || pages.Length > 10 || solution < 0 || solution > 15 ||
                         pages.Any(p => p == null || p.Length != 16 || p.Any(q => q < 0 || (q & 15) > 12 || (q & (15 << 4)) > (4 << 4))))
                     {
-                        Debug.LogFormat(@"[Souvenir #{0}] Abandoning Gridlock because unxpected values were found (pages={1}, solution={2}).", _moduleId, pages == null ? "<null>" : string.Format("[{0}]", pages.Select(p => string.Format("[{0}]", p.JoinString(", "))).JoinString(", ")));
+                        Debug.LogFormat(@"[Souvenir #{0}] Abandoning Gridlock because unxpected values were found (pages={1}, solution={2}).", _moduleId, pages == null ? "<null>" : string.Format("[{0}]", pages.Select(p => string.Format("[{0}]", p.JoinString(", "))).JoinString(", ")), solution);
                         break;
                     }
 
