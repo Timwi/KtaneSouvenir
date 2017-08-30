@@ -19,6 +19,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         AdventureGameCorrectItem,
 
+        [SouvenirQuestion("What color was {1} {2} in {0}?", "The Big Circle", 4, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black", 
+            ExampleExtraFormatArguments = new [] {"adjacent to", "Red", "adjacent to", "Orange", "adjacent to", "Yellow", "adjacent to", "Green", "adjacent to", "Blue", "adjacent to", "Magenta", "adjacent to", "White", "adjacent to", "Black", "opposite from", "Red","opposite from", "Orange","opposite from", "Yellow","opposite from", "Green","opposite from", "Blue","opposite from", "Magenta","opposite from", "White","opposite from", "Black",}, ExampleExtraFormatArgumentGroupSize = 2)]
+        BigCircle,
+
         [SouvenirQuestion("How many pixels were {1} in the {2} quadrant in {0}?", "Bitmaps", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",
             ExampleExtraFormatArguments = new[] { "white", "top left", "white", "top right", "white", "bottom left", "white", "bottom right", "black", "top left", "black", "top right", "black", "bottom left", "black", "bottom right" }, ExampleExtraFormatArgumentGroupSize = 2)]
         Bitmaps,
@@ -53,9 +57,14 @@ namespace Souvenir
         [SouvenirQuestion("What was the last pair of letters in {0}?", "Fast Math", 6, "AA", "AB", "AC", "AD", "AE", "AG", "AK", "AN", "AP", "AS", "AT", "AX", "AZ", "BA", "BB", "BC", "BD", "BE", "BG", "BK", "BN", "BP", "BS", "BT", "BX", "BZ", "CA", "CB", "CC", "CD", "CE", "CG", "CK", "CN", "CP", "CS", "CT", "CX", "CZ", "DA", "DB", "DC", "DD", "DE", "DG", "DK", "DN", "DP", "DS", "DT", "DX", "DZ", "EA", "EB", "EC", "ED", "EE", "EG", "EK", "EN", "EP", "ES", "ET", "EX", "EZ", "GA", "GB", "GC", "GD", "GE", "GG", "GK", "GN", "GP", "GS", "GT", "GX", "GZ", "KA", "KB", "KC", "KD", "KE", "KG", "KK", "KN", "KP", "KS", "KT", "KX", "KZ", "NA", "NB", "NC", "ND", "NE", "NG", "NK", "NN", "NP", "NS", "NT", "NX", "NZ", "PA", "PB", "PC", "PD", "PE", "PG", "PK", "PN", "PP", "PS", "PT", "PX", "PZ", "SA", "SB", "SC", "SD", "SE", "SG", "SK", "SN", "SP", "SS", "ST", "SX", "SZ", "TA", "TB", "TC", "TD", "TE", "TG", "TK", "TN", "TP", "TS", "TT", "TX", "TZ", "XA", "XB", "XC", "XD", "XE", "XG", "XK", "XN", "XP", "XS", "XT", "XX", "XZ", "ZA", "ZB", "ZC", "ZD", "ZE", "ZG", "ZK", "ZN", "ZP", "ZS", "ZT", "ZX", "ZZ")]
         FastMathLastLetters,
 
-        [SouvenirQuestion("What is the {1}-stage displayed number in {2}?", "Forget Me Not", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-            ExampleExtraFormatArguments = new[] { "first", "Forget Me Not", "second", "the Forget Me Not whose first-stage displayed number was 5" }, ExampleExtraFormatArgumentGroupSize = 2)]
-        ForgetMeNot,
+        [SouvenirQuestion("What was the starting location in {0}?", "Gridlock", 6, "A1", "B1", "C1", "D1", "A2", "B2", "C2", "D2", "A3", "B3", "C3", "D3", "A4", "B4", "C4", "D4")]
+        GridLockStartingLocation,
+
+        [SouvenirQuestion("What was the ending location in {0}?", "Gridlock", 6, "A1", "B1", "C1", "D1", "A2", "B2", "C2", "D2", "A3", "B3", "C3", "D3", "A4", "B4", "C4", "D4")]
+        GridLockEndingLocation,
+
+        [SouvenirQuestion("What was the starting color in {0}?", "Gridlock", 4, "Green", "Yellow", "Red", "Blue")]
+        GridLockStartingColor,
 
         [SouvenirQuestion("What was the color of the pawn in {0}?", "Hexamaze", 4, "Red", "Yellow", "Green", "Cyan", "Blue", "Pink")]
         HexamazePawnColor,
