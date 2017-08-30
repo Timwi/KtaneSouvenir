@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using Souvenir;
 using UnityEngine;
 
@@ -66,6 +67,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Coordinates = "CoordinatesModule";
     const string _DoubleOh = "DoubleOhModule";
     const string _FastMath = "fastMath";
+    const string _GridLock = "GridlockModule";
     const string _Hexamaze = "HexamazeModule";
     const string _Listening = "Listening";
     const string _MonsplodeFight = "monsplodeFight";
@@ -1176,6 +1178,49 @@ public class SouvenirModule : MonoBehaviour
                     break;
                 }
 
+            case _GridLock:
+                {
+                    var comp = GetComponent(module, "GridlockModule");
+                    var fldSolved = GetField<bool>(comp, "_isSolved");
+                    var fldPages = GetField<int[][]>(comp, "_pages");
+                    var fldSolution = GetField<int>(comp, "_solution");
+
+                    if (comp == null || fldSolved == null || fldPages == null || fldSolution == null)
+                        break;
+
+                    var locations = GetAnswers(Question.GridLockStartingLocation);
+                    var colors = GetAnswers(Question.GridLockStartingColor);
+
+                    if (locations == null || colors == null)
+                        break;
+
+                    while (!_isActivated)
+                        yield return new WaitForSeconds(0.1f);
+
+                    var solution = fldSolution.Get();
+                    var pages = fldPages.Get();
+                    if (pages == null || pages.Length < 5 || pages.Length > 10 || solution < 0 || solution > 15
+                        || pages.Any(p => p == null || p.Length != 16 || p.Any(q => q < 0 || (q & 15) > 12 || (q & (15 << 4)) > (4 << 4))))
+                    {
+                        Debug.LogFormat(@"[Souvenir #{0}] Abandoning Gridlock because unxpected values were found.", _moduleId);
+                        goto abandon;
+                    }
+
+                    var start = pages[0].IndexOf(i => ((int) i & 15) == 4);
+
+                    while (!fldSolved.Get())
+                        yield return new WaitForSeconds(0.1f);
+
+                    _modulesSolved.IncSafe(_GridLock);
+                    addQuestions(makeQuestion(Question.GridLockStartingLocation, _GridLock, new[] { locations[start]}),
+                        makeQuestion(Question.GridLockEndingLocation, _GridLock, new[] { locations[solution]}),
+                        makeQuestion(Question.GridLockStartingColor, _GridLock, new [] { colors[(pages[0][start] >> 4) - 1]})
+                        );
+
+                    abandon:
+                    break;
+                }
+
             case _Hexamaze:
                 {
                     var comp = GetComponent(module, "HexamazeModule");
@@ -2231,6 +2276,14 @@ public class SouvenirModule : MonoBehaviour
             formatArguments.AddRange(extraFormatArguments);
 
         return new QandA(string.Format(attr.QuestionText, formatArguments.ToArray()), answers.ToArray(), correctIndex);
+    }
+
+    private string[] GetAnswers(Question question)
+    {
+        SouvenirQuestionAttribute attr;
+        return !_attributes.TryGetValue(question, out attr) 
+            ? null 
+            : attr.AllAnswers;
     }
 
     private string ordinal(int number)
