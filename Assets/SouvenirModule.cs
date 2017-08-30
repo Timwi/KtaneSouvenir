@@ -143,10 +143,12 @@ public class SouvenirModule : MonoBehaviour
                     File.WriteAllText(_timwiPath, "");
 
             _waitableModules = Bomb.GetSolvableModuleNames().Count;
-            foreach (var module in Enumerable.Range(0, transform.parent.childCount)
-                    .Select(i => transform.parent.GetChild(i).gameObject)
-                    .Where(i => i.GetComponent<KMBombModule>() != null))
-                StartCoroutine(ProcessModule(module));
+            for (int i = 0; i < transform.parent.childCount; i++)
+            {
+                var module = transform.parent.GetChild(i).gameObject.GetComponent<KMBombModule>();
+                if (module != null)
+                    StartCoroutine(ProcessModule(module));
+            }
         }
 
         var origRotation = SurfaceRenderer.transform.rotation;
@@ -548,6 +550,10 @@ public class SouvenirModule : MonoBehaviour
         }
     }
 
+    private Component GetComponent(KMBombModule module, string name)
+    {
+        return GetComponent(module.gameObject, name);
+    }
     private Component GetComponent(GameObject module, string name)
     {
         var comp = module.GetComponent(name);
@@ -610,27 +616,9 @@ public class SouvenirModule : MonoBehaviour
         return new MethodInfo<T>(target, mths[0]);
     }
 
-    private IEnumerator ProcessModule(GameObject module)
+    private IEnumerator ProcessModule(KMBombModule module)
     {
-        var bombModule = module.GetComponent<KMBombModule>();
-
-        if(bombModule == null)
-        {
-            if (_isTimwisComputer && !_ignoreModules.Contains(module.name))
-            {
-                var s = new StringBuilder();
-                s.AppendLine("Unrecognized module: " + module.name);
-                s.AppendLine("Cannot continue with this module because KMBombModule was not found in this GameObject.");
-                foreach (var comp in module.GetComponents(typeof(UnityEngine.Object)))
-                    s.AppendLine("    - " + comp.GetType().FullName);
-                lock (_timwiPath)
-                    File.AppendAllText(_timwiPath, s.ToString());
-            }
-            Debug.LogFormat("[Souvenir #{1}] Finished processing {0}.", module.name, _moduleId);
-            yield break;
-        }
-
-        var moduleType = bombModule.ModuleType;
+        var moduleType = module.ModuleType;
         _moduleCounts.IncSafe(moduleType);
         switch (moduleType)
         {
@@ -796,10 +784,10 @@ public class SouvenirModule : MonoBehaviour
 
             case _BigCircle:
                 {
-                    var Colors = new[] {"Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black"};
+                    var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black" };
                     var comp = GetComponent(module, "TheBigCircle");
-                    var fldColors = GetField<int[]>(comp, "_colors");
                     var fldSolved = GetField<bool>(comp, "_solved");
+                    var fldColors = GetField<int[]>(comp, "_colors");
 
                     if (comp == null || fldSolved == null || fldColors == null)
                         break;
@@ -810,31 +798,19 @@ public class SouvenirModule : MonoBehaviour
                     var colors = fldColors.Get();
                     if (colors == null || colors.Length != 8 || colors.Any(i => i < 0 || i >= 8))
                     {
-                        Debug.LogFormat("[Souvenir #{0}] Big Circle: Colors is null or has an unexpected value",
-                            _moduleId);
+                        Debug.LogFormat("[Souvenir #{0}] Big Circle: Colors is null or has an unexpected value.", _moduleId);
                         break;
                     }
 
-                    var questionsAdjacent = Enumerable.Range(0, 8).Select(i =>
-                        makeQuestion(
-                            Question.BigCircle, 
-                            _BigCircle,
-                            new[] {Colors[colors[(i + 1) % 8]], Colors[colors[(i + 7) % 8]]},
-                            new[] {"adjacent to", Colors[colors[i]]},
-                            new[]{Colors[colors[(i + 2) % 8]], Colors[colors[(i + 3) % 8]], Colors[colors[(i + 4) % 8]],Colors[colors[(i + 5) % 8]], Colors[colors[(i + 6) % 8]]}
-                            ));
-                    var questionsOpposite = Enumerable.Range(0, 8).Select(i =>
-                        makeQuestion(
-                            Question.BigCircle,
-                            _BigCircle,
-                            new[] {Colors[colors[(i + 4) % 8]]},
-                            new[] {"opposite from", Colors[colors[i]]},
-                            new[] {Colors[colors[(i + 1) % 8]], Colors[colors[(i + 2) % 8]], Colors[colors[(i + 3) % 8]],Colors[colors[(i + 5) % 8]], Colors[colors[(i + 6) % 8]], Colors[colors[(i + 7) % 8]]}
-                        ));
-
                     _modulesSolved.IncSafe(_BigCircle);
+
+                    var questionsAdjacent = Enumerable.Range(0, 8).Select(i => makeQuestion(Question.BigCircleColors, _BigCircle,
+                        possibleCorrectAnswers: new[] { colorNames[colors[(i + 1) % 8]], colorNames[colors[(i + 7) % 8]] },
+                        extraFormatArguments: new[] { "adjacent to", colorNames[colors[i]] }));
+                    var questionsOpposite = Enumerable.Range(0, 8).Select(i => makeQuestion(Question.BigCircleColors, _BigCircle,
+                        possibleCorrectAnswers: new[] { colorNames[colors[(i + 4) % 8]] },
+                        extraFormatArguments: new[] { "opposite from", colorNames[colors[i]] }));
                     addQuestions(questionsAdjacent.Concat(questionsOpposite));
-                    
                     break;
                 }
 
@@ -1190,7 +1166,6 @@ public class SouvenirModule : MonoBehaviour
 
                     var locations = GetAnswers(Question.GridLockStartingLocation);
                     var colors = GetAnswers(Question.GridLockStartingColor);
-
                     if (locations == null || colors == null)
                         break;
 
@@ -1199,25 +1174,24 @@ public class SouvenirModule : MonoBehaviour
 
                     var solution = fldSolution.Get();
                     var pages = fldPages.Get();
-                    if (pages == null || pages.Length < 5 || pages.Length > 10 || solution < 0 || solution > 15
-                        || pages.Any(p => p == null || p.Length != 16 || p.Any(q => q < 0 || (q & 15) > 12 || (q & (15 << 4)) > (4 << 4))))
+                    if (pages == null || pages.Length < 5 || pages.Length > 10 || solution < 0 || solution > 15 ||
+                        pages.Any(p => p == null || p.Length != 16 || p.Any(q => q < 0 || (q & 15) > 12 || (q & (15 << 4)) > (4 << 4))))
                     {
-                        Debug.LogFormat(@"[Souvenir #{0}] Abandoning Gridlock because unxpected values were found.", _moduleId);
-                        goto abandon;
+                        Debug.LogFormat(@"[Souvenir #{0}] Abandoning Gridlock because unxpected values were found (pages={1}, solution={2}).", _moduleId, pages == null ? "<null>" : string.Format("[{0}]", pages.Select(p => string.Format("[{0}]", p.JoinString(", "))).JoinString(", ")));
+                        break;
                     }
 
-                    var start = pages[0].IndexOf(i => ((int) i & 15) == 4);
+                    var start = pages[0].IndexOf(i => (i & 15) == 4);
 
                     while (!fldSolved.Get())
                         yield return new WaitForSeconds(0.1f);
 
                     _modulesSolved.IncSafe(_GridLock);
-                    addQuestions(makeQuestion(Question.GridLockStartingLocation, _GridLock, new[] { locations[start]}),
-                        makeQuestion(Question.GridLockEndingLocation, _GridLock, new[] { locations[solution]}),
-                        makeQuestion(Question.GridLockStartingColor, _GridLock, new [] { colors[(pages[0][start] >> 4) - 1]})
-                        );
+                    addQuestions(
+                        makeQuestion(Question.GridLockStartingLocation, _GridLock, new[] { locations[start] }),
+                        makeQuestion(Question.GridLockEndingLocation, _GridLock, new[] { locations[solution] }),
+                        makeQuestion(Question.GridLockStartingColor, _GridLock, new[] { colors[(pages[0][start] >> 4) - 1] }));
 
-                    abandon:
                     break;
                 }
 
@@ -1933,9 +1907,12 @@ public class SouvenirModule : MonoBehaviour
                     _modulesSolved.IncSafe(_SimonScreams);
 
                     var seqs = fldSequences.Get();
-                    var colors = fldColors.Get();
-                    if (seqs == null || colors == null)
+                    var colorsRaw = fldColors.Get();
+                    if (seqs == null || colorsRaw == null)
                         break;
+                    // colorsRaw contains enum values; stringify them.
+                    var colors = colorsRaw.Cast<object>().Select(obj => obj.ToString()).ToArray();
+
                     if (seqs.Length == 0)
                     {
                         Debug.LogFormat("[Souvenir #{0}] Abandoning Simon Screams because _sequences has a zero length.", _moduleId);
@@ -1950,10 +1927,10 @@ public class SouvenirModule : MonoBehaviour
                     var qs = new List<QandA>();
                     var lastSeq = seqs.Last();
                     for (int i = 0; i < lastSeq.Length; i++)
-                        qs.Add(makeQuestion(Question.SimonScreamsFlashing, _SimonScreams, new[] { colors.GetValue(lastSeq[i]).ToString() }, new[] { ordinal(i + 1) }));
+                        qs.Add(makeQuestion(Question.SimonScreamsFlashing, _SimonScreams, new[] { colors[lastSeq[i]] }, new[] { ordinal(i + 1) }));
 
                     // First determine which rule applied in which stage
-                    var ryb = new[] { "Red", "Yellow", "Blue" }.Select(colorName => colors.IndexOf(c => c.ToString() == colorName)).ToArray();
+                    var ryb = new[] { "Red", "Yellow", "Blue" }.Select(colorName => Array.IndexOf(colors, colorName)).ToArray();
                     var stageRules = new int[seqs.Length];
                     for (int i = 0; i < seqs.Length; i++)
                     {
@@ -2281,9 +2258,12 @@ public class SouvenirModule : MonoBehaviour
     private string[] GetAnswers(Question question)
     {
         SouvenirQuestionAttribute attr;
-        return !_attributes.TryGetValue(question, out attr) 
-            ? null 
-            : attr.AllAnswers;
+        if (!_attributes.TryGetValue(question, out attr))
+        {
+            Debug.LogFormat("[Souvenir #{0}] Question {1} is missing from the _attributes dictionary.", _moduleId, question);
+            return null;
+        }
+        return attr.AllAnswers;
     }
 
     private string ordinal(int number)
