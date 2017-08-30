@@ -212,6 +212,6 @@ namespace Souvenir
             Answers = answers;
             CorrectIndex = correct;
         }
-        public string DebugString { get { return string.Format("{0} — {1}", QuestionText, Answers.Select((a, ix) => string.Format(ix == CorrectIndex ? "[_{0}_]" : "{0}", a)).JoinString("|")); } }
+        public string DebugString { get { return string.Format("{0} — {1}", QuestionText, Answers.Select((a, ix) => string.Format(ix == CorrectIndex ? "[_{0}_]" : "{0}", a)).JoinString(" | ")); } }
     }
 }
