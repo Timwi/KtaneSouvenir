@@ -1227,21 +1227,18 @@ public class SouvenirModule : MonoBehaviour
                     var fldSolution = GetField<int[]>(comp, "solution");
                     var fldFlavourOptions = GetField<int[][]>(comp, "flavourOptions");
 
-                    if (comp == null || fldCurrentStage == null || fldCustomers == null ||
-                        fldSolution == null || fldFlavourOptions == null)
+                    if (comp == null || fldCurrentStage == null || fldCustomers == null || fldSolution == null || fldFlavourOptions == null)
                         break;
 
                     while (!_isActivated)
                         yield return new WaitForSeconds(0.1f);
 
-                    var FlavourNames = GetAnswers(Question.IceCreamFlavour);
-                    var CustomerNames = GetAnswers(Question.IceCreamCustomer);
+                    var flavourNames = GetAnswers(Question.IceCreamFlavour);
+                    var customerNames = GetAnswers(Question.IceCreamCustomer);
 
-                    
-
-                    var Flavours = new int[3][];
-                    var Solution = new int[3];
-                    var Customers = new int[3];
+                    var flavours = new int[3][];
+                    var solution = new int[3];
+                    var customers = new int[3];
 
                     for (var i = 0; i < 3; i++)
                     {
@@ -1253,37 +1250,25 @@ public class SouvenirModule : MonoBehaviour
                         var cus = fldCustomers.Get();
 
                         if (options == null || sol == null || cus == null || options.Length != 3 || fldCurrentStage.Get() < i ||
-                            options.Any(x => x == null || x.Length != 5 || x.Any(y => y < 0 || y > FlavourNames.Length)) ||
-                            sol.Any(x => x < 0 || x > FlavourNames.Length) || cus.Any(x => x < 0 || x > CustomerNames.Length))
+                            options.Any(x => x == null || x.Length != 5 || x.Any(y => y < 0 || y >= flavourNames.Length)) ||
+                            sol.Any(x => x < 0 || x >= flavourNames.Length) || cus.Any(x => x < 0 || x >= customerNames.Length))
                         {
-                            Debug.LogFormat("[Souvenir #{0}] Abanding icecream because of unexpected values.", _moduleId);
+                            Debug.LogFormat("[Souvenir #{0}] Abandoning Ice Cream because of unexpected values.", _moduleId);
                             break;
                         }
-                        Flavours[i] = new int[5];
-                        for (var j = 0; j < 5; j++)
-                            Flavours[i][j] = options[i][j];
-
-                        Solution[i] = sol[i];
-                        Customers[i] = cus[i];
+                        flavours[i] = options[i].ToArray();
+                        solution[i] = sol[i];
+                        customers[i] = cus[i];
                     }
                     var questions = new List<QandA>();
                     _modulesSolved.IncSafe(_IceCream);
 
                     for (var i = 0; i < 3; i++)
                     {
-                        var nonPotentialFlavours = new List<string>(FlavourNames);
-                        foreach (var f in Flavours[i])
-                            nonPotentialFlavours.Remove(FlavourNames[f]);
-
-                        var potentialFlavours = new List<string>(FlavourNames);
-                        foreach (var f in nonPotentialFlavours)
-                            potentialFlavours.Remove(f);
-                        potentialFlavours.Remove(FlavourNames[Solution[i]]);
-
-                        questions.Add(makeQuestion(Question.IceCreamFlavour, _IceCream, nonPotentialFlavours.ToArray(), new[] { "was not", new[] { "first", "second", "third" }[i] }));
-                        questions.Add(makeQuestion(Question.IceCreamFlavour, _IceCream, potentialFlavours.ToArray(), new[] { "was", new[] { "first", "second", "third" }[i] }));
+                        questions.Add(makeQuestion(Question.IceCreamFlavour, _IceCream, flavours[i].Where(ix => ix != solution[i]).Select(ix => flavourNames[ix]).ToArray(), new[] { "was on offer, but not sold,", ordinal(i + 1) }));
+                        questions.Add(makeQuestion(Question.IceCreamFlavour, _IceCream, flavourNames.Where((f, ix) => !flavours[i].Contains(ix)).ToArray(), new[] { "was not on offer", ordinal(i + 1) }));
                         if (i != 2)
-                            questions.Add(makeQuestion(Question.IceCreamCustomer, _IceCream, new[] { CustomerNames[Customers[i]] }, new[] { new[] { "first", "second" }[i] }));
+                            questions.Add(makeQuestion(Question.IceCreamCustomer, _IceCream, new[] { customerNames[customers[i]] }, new[] { ordinal(i + 1) }, preferredWrongAnswers: customers.Select(ix => customerNames[ix]).ToArray()));
                     }
 
                     addQuestions(questions);
