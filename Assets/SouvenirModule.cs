@@ -377,7 +377,7 @@ public class SouvenirModule : MonoBehaviour
         new[] { 0.834 - 0.391, 0.834 + 0.834 }
     );
 
-    private void SetWordWrappedText(string text, double desiredHeightFactor = 1.1)
+    private void SetWordWrappedText(string text, double desiredHeightFactor = 1)
     {
         var low = 1;
         var high = 256;
