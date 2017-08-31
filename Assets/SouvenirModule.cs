@@ -69,6 +69,7 @@ public class SouvenirModule : MonoBehaviour
     const string _FastMath = "fastMath";
     const string _GridLock = "GridlockModule";
     const string _Hexamaze = "HexamazeModule";
+    const string _IceCream = "iceCreamModule";
     const string _Listening = "Listening";
     const string _MonsplodeFight = "monsplodeFight";
     const string _MorseAMaze = "MorseAMaze";
@@ -1218,6 +1219,78 @@ public class SouvenirModule : MonoBehaviour
                     break;
                 }
 
+            case _IceCream:
+                {
+                    var comp = GetComponent(module, "IceCreamModule");
+                    var fldCurrentStage = GetField<int>(comp, "currentStage");
+                    var fldCustomers = GetField<int[]>(comp, "solCustomerNames");
+                    var fldSolution = GetField<int[]>(comp, "solution");
+                    var fldFlavourOptions = GetField<int[][]>(comp, "flavourOptions");
+
+                    if (comp == null || fldCurrentStage == null || fldCustomers == null ||
+                        fldSolution == null || fldFlavourOptions == null)
+                        break;
+
+                    while (!_isActivated)
+                        yield return new WaitForSeconds(0.1f);
+
+                    var FlavourNames = GetAnswers(Question.IceCreamFlavour);
+                    var CustomerNames = GetAnswers(Question.IceCreamCustomer);
+
+                    
+
+                    var Flavours = new int[3][];
+                    var Solution = new int[3];
+                    var Customers = new int[3];
+
+                    for (var i = 0; i < 3; i++)
+                    {
+                        while (fldCurrentStage.Get() == i)
+                            yield return new WaitForSeconds(0.1f);
+
+                        var options = fldFlavourOptions.Get();
+                        var sol = fldSolution.Get();
+                        var cus = fldCustomers.Get();
+
+                        if (options == null || sol == null || cus == null || options.Length != 3 || fldCurrentStage.Get() < i ||
+                            options.Any(x => x == null || x.Length != 5 || x.Any(y => y < 0 || y > FlavourNames.Length)) ||
+                            sol.Any(x => x < 0 || x > FlavourNames.Length) || cus.Any(x => x < 0 || x > CustomerNames.Length))
+                        {
+                            Debug.LogFormat("[Souvenir #{0}] Abanding icecream because of unexpected values.", _moduleId);
+                            break;
+                        }
+                        Flavours[i] = new int[5];
+                        for (var j = 0; j < 5; j++)
+                            Flavours[i][j] = options[i][j];
+
+                        Solution[i] = sol[i];
+                        Customers[i] = cus[i];
+                    }
+                    var questions = new List<QandA>();
+                    _modulesSolved.IncSafe(_IceCream);
+
+                    for (var i = 0; i < 3; i++)
+                    {
+                        var nonPotentialFlavours = new List<string>(FlavourNames);
+                        foreach (var f in Flavours[i])
+                            nonPotentialFlavours.Remove(FlavourNames[f]);
+
+                        var potentialFlavours = new List<string>(FlavourNames);
+                        foreach (var f in nonPotentialFlavours)
+                            potentialFlavours.Remove(f);
+                        potentialFlavours.Remove(FlavourNames[Solution[i]]);
+
+                        questions.Add(makeQuestion(Question.IceCreamFlavour, _IceCream, nonPotentialFlavours.ToArray(), new[] { "was not", new[] { "first", "second", "third" }[i] }));
+                        questions.Add(makeQuestion(Question.IceCreamFlavour, _IceCream, potentialFlavours.ToArray(), new[] { "was", new[] { "first", "second", "third" }[i] }));
+                        if (i != 2)
+                            questions.Add(makeQuestion(Question.IceCreamCustomer, _IceCream, new[] { CustomerNames[Customers[i]] }, new[] { new[] { "first", "second" }[i] }));
+                    }
+
+                    addQuestions(questions);
+
+                    break;
+                }
+
             case _Listening:
                 {
                     var comp = GetComponent(module, "Listening");
@@ -2163,10 +2236,10 @@ public class SouvenirModule : MonoBehaviour
                 }
 
             default:
-                if (_isTimwisComputer && !_ignoreModules.Contains(module.name))
+                if (_isTimwisComputer && !_ignoreModules.Contains(moduleType))
                 {
                     var s = new StringBuilder();
-                    s.AppendLine("Unrecognized module: " + module.name);
+                    s.AppendLine("Unrecognized module: " + module.name + ", KMBombModule.ModuleType: " + moduleType);
                     foreach (var comp in module.GetComponents(typeof(UnityEngine.Object)))
                         s.AppendLine("    - " + comp.GetType().FullName);
                     lock (_timwiPath)
@@ -2175,7 +2248,7 @@ public class SouvenirModule : MonoBehaviour
                 break;
         }
 
-        Debug.LogFormat("[Souvenir #{1}] Finished processing {0}.", module.name, _moduleId);
+        Debug.LogFormat("[Souvenir #{1}] Finished processing {0}.", moduleType, _moduleId);
     }
 
     private void addQuestion(Question question, string moduleKey, string[] possibleCorrectAnswers, string[] extraFormatArguments = null, string[] preferredWrongAnswers = null)
