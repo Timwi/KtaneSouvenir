@@ -72,6 +72,14 @@ namespace Souvenir
         [SouvenirQuestion("What was the color of the pawn in {0}?", "Hexamaze", 4, "Red", "Yellow", "Green", "Cyan", "Blue", "Pink")]
         HexamazePawnColor,
 
+        [SouvenirQuestion("What {1} a potential flavour that was not sold to the {2} customer in {0}", "Ice Cream", 4, "Tutti Frutti", "Rocky Road", "Raspberry Ripple", "Double Choc.", "Double Strawberry", "Cookies & Cream", "Neapolitan", "Mint Choc. Chip", "The Classic", "Vanilla",
+            ExampleExtraFormatArguments = new[] { "was", "first", "was not", "first", "was", "second", "was not", "second", "was", "third", "was not", "third"}, ExampleExtraFormatArgumentGroupSize = 2)]
+        IceCreamFlavour,
+
+        [SouvenirQuestion("Who was the {1} customer in {0}", "Ice Cream", 4, "Mike", "Tim", "Tom", "Dave", "Adam", "Cheryl", "Sean", "Ashley", "Jessica", "Taylor", "Simon", "Sally", "Jade", "Sam", "Gary", "Victor", "George", "Jacob", "Pat", "Bob",
+            ExampleExtraFormatArguments = new [] {"first", "second"}, ExampleExtraFormatArgumentGroupSize = 1)]
+        IceCreamCustomer,
+
         [SouvenirQuestion("What was the correct code you entered in {0}?", "Listening", 4, null,
             ExampleAnswers = new[] { "&&&**", "&$#$&", "$#$*&", "#$$**", "$#$#*", "**$*#", "#$$&*", "##*$*", "$#*$&", "**#**", "#&&*#", "&#**&", "$&**#", "&#$$#", "$&&**", "#&$##", "&*$*$", "&$$&*", "#&&&&", "**$$$", "*&*&&", "*#&*&", "**###", "&&$&*", "&$**&", "#$#&$", "&#&&#", "$$*$*", "$&#$$", "&**$$", "$&&*&", "&$&##", "#&$*&", "$*$**", "*#$&&", "###&$", "*$$&$", "$*&##", "#&$&&", "$&$$*", "*$*$*" })]
         Listening,
