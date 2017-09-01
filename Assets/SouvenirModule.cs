@@ -86,6 +86,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SimonStates = "SimonV2";
     const string _SkewedSlots = "SkewedSlotsModule";
     const string _TheBulb = "TheBulbModule";
+    const string _TheGamepad = "TheGamepadModule";
     const string _TwoBits = "TwoBits";
 
     private static int _moduleIdCounter = 1;
@@ -2166,6 +2167,59 @@ public class SouvenirModule : MonoBehaviour
                     }
 
                     addQuestion(Question.TheBulbButtonPresses, _TheBulb, new[] { buttonPresses });
+                    break;
+                }
+
+            case _TheGamepad:
+                {
+                    var comp = GetComponent(module, "GamepadModule");
+                    var fldX = GetField<int>(comp, "x");
+                    var fldY = GetField<int>(comp, "y");
+                    var fldSolved = GetField<bool>(comp, "solved");
+                    var fldDisplay = GetField<GameObject>(comp, "Input", isPublic: true);
+                    var fldDigits1 = GetField<GameObject>(comp, "Digits1", isPublic: true);
+                    var fldDigits2 = GetField<GameObject>(comp, "Digits2", isPublic: true);
+
+                    if (comp == null || fldX == null || fldY == null || fldSolved == null || fldDisplay == null || fldDigits1 == null || fldDigits2 == null)
+                        break;
+
+                    while (!fldSolved.Get())
+                        yield return new WaitForSeconds(.05f);
+
+                    var x = fldX.Get();
+                    var y = fldY.Get();
+                    if (x < 1 || x > 99 || y < 1 || y > 99)
+                    {
+                        Debug.LogFormat("[Souvenir #{0}] The Gamepad: x or y has unexpected value (x={1}, y={2})", _moduleId, x, y);
+                        break;
+                    }
+
+                    var display = fldDisplay.Get();
+                    var digits1 = fldDigits1.Get();
+                    var digits2 = fldDigits2.Get();
+                    if (display == null || display.GetComponent<TextMesh>() == null)
+                    {
+                        Debug.LogFormat("[Souvenir #{0}] The Gamepad: display is null or not a TextMesh.", _moduleId);
+                        break;
+                    }
+                    if (digits1 == null || digits1.GetComponent<TextMesh>() == null)
+                    {
+                        Debug.LogFormat("[Souvenir #{0}] The Gamepad: digits1 is null or not a TextMesh.", _moduleId);
+                        break;
+                    }
+                    if (digits2 == null || digits2.GetComponent<TextMesh>() == null)
+                    {
+                        Debug.LogFormat("[Souvenir #{0}] The Gamepad: digits2 is null or not a TextMesh.", _moduleId);
+                        break;
+                    }
+
+                    _modulesSolved.IncSafe(_TheGamepad);
+                    addQuestions(
+                        makeQuestion(Question.TheGamepadNumbers, _TheGamepad, new[] { string.Format("{0:00}:{1:00}", x, y) },
+                            preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(i => string.Format("{0:00}:{1:00}", Rnd.Range(1, 99), Rnd.Range(1, 99))).Distinct().Take(6).ToArray()),
+                        makeQuestion(Question.TheGamepadMessage, _TheGamepad, new[] { display.GetComponent<TextMesh>().text }));
+                    digits1.GetComponent<TextMesh>().text = "--";
+                    digits2.GetComponent<TextMesh>().text = "--";
                     break;
                 }
 

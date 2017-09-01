@@ -25,10 +25,10 @@ MonoBehaviour:
       SpecialComponentType: 0
       ModTypes:
       - SouvenirModule
-    - Count: 4
+    - Count: 1
       AllowedSources: 2
       ComponentTypes: 
       SpecialComponentType: 0
       ModTypes:
-      - CoordinatesModule
+      - TheGamepadModule
   PacingEventsEnabled: 0
