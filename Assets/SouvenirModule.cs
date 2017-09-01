@@ -1018,15 +1018,13 @@ public class SouvenirModule : MonoBehaviour
                     var badData = currentDay != 1 || currentWeather == null || !weatherNames.Contains(currentWeather);
                     while (!badData)
                     {
-                        
-
-                        while (fldDay.Get() == currentDay && !fldSolved.Get())
+                        while (fldDay.Get() == currentDay && !fldSolved.Get() && currentWeather == fldWeather.Get())
                             yield return new WaitForSeconds(0.1f);
 
                         if (fldSolved.Get())
                             break;
 
-                        if (fldDay.Get() < currentDay)
+                        if (fldDay.Get() <= currentDay)
                             allWeather.Clear();
                         else
                             allWeather.Add(currentWeather);
@@ -1035,9 +1033,10 @@ public class SouvenirModule : MonoBehaviour
                         currentWeather = fldWeather.Get();
                         badData = currentDay < 1 || currentDay > 6 || currentWeather == null || !weatherNames.Contains(currentWeather);
                     }
+
                     if (badData)
                     {
-                        Debug.LogFormat("[Souvenir #{0}] Abandoning Creation because Creation has unexpected data. Day = {1}, Weather = {2}", _moduleId, currentDay, currentWeather == null ? "<null>" : currentWeather);
+                        Debug.LogFormat("[Souvenir #{0}] Abandoning Creation because of unexpected data. Day = {1}, Weather = {2}", _moduleId, currentDay, currentWeather ?? "<null>");
                         break;
                     }
 
