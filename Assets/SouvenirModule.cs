@@ -65,6 +65,7 @@ public class SouvenirModule : MonoBehaviour
     const string _ColoredSquares = "ColoredSquaresModule";
     const string _ConnectionCheck = "graphModule";
     const string _Coordinates = "CoordinatesModule";
+    const string _Creation = "CreationModule";
     const string _DoubleOh = "DoubleOhModule";
     const string _FastMath = "fastMath";
     const string _GridLock = "GridlockModule";
@@ -993,6 +994,55 @@ public class SouvenirModule : MonoBehaviour
                     addQuestions(
                         makeQuestion(Question.CoordinatesFirstSolution, _Coordinates, new[] { shortenCoordinate(clueText) }, preferredWrongAnswers: clues.Cast<object>().Select(c => shortenCoordinate((string) fldClueText.Field.GetValue(c))).Where(t => t != null).ToArray()),
                         sizeClue == null ? null : makeQuestion(Question.CoordinatesSize, _Coordinates, new[] { (string) fldClueText.Field.GetValue(sizeClue) }));
+                    break;
+                }
+
+            case _Creation:
+                {
+                    var comp = GetComponent(module, "CreationModule");
+                    var fldSolved = GetField<bool>(comp, "Solved");
+                    var fldDay = GetField<int>(comp, "Day");
+                    var fldWeather = GetField<string>(comp, "Weather");
+
+                    if (comp == null || fldSolved == null || fldDay == null || fldWeather == null)
+                        break;
+
+                    var weatherNames = GetAnswers(Question.Creation);
+
+                    while (!_isActivated)
+                        yield return new WaitForSeconds(0.1f);
+
+                    var currentDay = fldDay.Get();
+                    var currentWeather = fldWeather.Get();
+                    var allWeather = new List<string>();
+                    var badData = currentDay != 1 || currentWeather == null || !weatherNames.Contains(currentWeather);
+                    while (!badData)
+                    {
+                        
+
+                        while (fldDay.Get() == currentDay && !fldSolved.Get())
+                            yield return new WaitForSeconds(0.1f);
+
+                        if (fldSolved.Get())
+                            break;
+
+                        if (fldDay.Get() < currentDay)
+                            allWeather.Clear();
+                        else
+                            allWeather.Add(currentWeather);
+
+                        currentDay = fldDay.Get();
+                        currentWeather = fldWeather.Get();
+                        badData = currentDay < 1 || currentDay > 6 || currentWeather == null || !weatherNames.Contains(currentWeather);
+                    }
+                    if (badData)
+                    {
+                        Debug.LogFormat("[Souvenir #{0}] Abandoning Creation because Creation has unexpected data. Day = {1}, Weather = {2}", _moduleId, currentDay, currentWeather == null ? "<null>" : currentWeather);
+                        break;
+                    }
+
+                    _modulesSolved.IncSafe(_Creation);
+                    addQuestions(allWeather.Select((t, i) => makeQuestion(Question.Creation, _Creation, new[] { t }, new[] { ordinal(i + 1) })));
                     break;
                 }
 
