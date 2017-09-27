@@ -190,7 +190,14 @@ public class SouvenirModule : MonoBehaviour
             "Yabba dabba boom!",
             "This bomb will self-destruct in five seconds.",
             "Defusing is futile.",
-            "Is that your final answer?"
+            "Is that your final answer?",
+            "A bomb’s best friend is his defuser.",
+            "Keep your experts close, but your bomb closer.",
+            "Fasten your seatbelts. It’s going to be a bomby night.",
+            "Show me the modules!",
+            "I’ll be back.",
+            "We defuse bombs.",
+            "We’ll always have batteries."
         ).PickRandom(), 1.75);
 
         _isActivated = false;
