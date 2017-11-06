@@ -161,7 +161,6 @@ public class SouvenirModule : MonoBehaviour
 
         disappear();
         SetWordWrappedText(Ut.NewArray(
-            "Remember...",
             "I see dead defusers.",
             "Welcome... to the real bomb.",
             "I’m gonna make him a bomb he can’t defuse.",
@@ -195,9 +194,22 @@ public class SouvenirModule : MonoBehaviour
             "Keep your experts close, but your bomb closer.",
             "Fasten your seatbelts. It’s going to be a bomby night.",
             "Show me the modules!",
-            "I’ll be back.",
             "We defuse bombs.",
-            "We’ll always have batteries."
+            "We’ll always have batteries.",
+            "Say hello to my little bomb.",
+            "You’re a defuser, Harry.",
+            "I’m sorry, Dave. I’m afraid I can’t defuse that.",
+            "You either die a defuser, or you live long enough to see yourself become the expert.",
+            "This isn’t defusing. This is exploding... with style.",
+            "Could you describe the module, sir?",
+            "You want widgets? I got twenty.",
+            "We don’t need no stinking widgets.",
+            "Say edgework one more goddamn time.",
+            "How do you like them modules?",
+            "Introducing: The Double... Decker... Bomb!",
+            "Have you got your wires crossed?",
+            "Don't cross the wires.",
+            "Wanna hear the most annoying explosion in the world?"
         ).PickRandom(), 1.75);
 
         _isActivated = false;
@@ -755,22 +767,32 @@ public class SouvenirModule : MonoBehaviour
                         var shouldUse = mthShouldUseItem.Invoke(selectedItem);
                         for (int j = invWeaponCount; j < invValues.Count; j++)
                             shouldUse &= !mthShouldUseItem.Invoke(j);
+
                         var ret = prevInteract();
 
                         // If the stat values have changed, the user took a potion.
                         if (statValues[0] != origStatValues[0])
-                            qs.Add(() => makeQuestion(Question.AdventureGamePotion, _AdventureGame, new[] { origStatValues[0].ToString() }, new[] { "strength" }));
+                        {
+                            var oldValue = origStatValues[0].ToString();
+                            qs.Add(() => makeQuestion(Question.AdventureGamePotion, _AdventureGame, new[] { oldValue }, new[] { "strength" }));
+                        }
                         if (statValues[1] != origStatValues[1])
-                            qs.Add(() => makeQuestion(Question.AdventureGamePotion, _AdventureGame, new[] { origStatValues[1].ToString() }, new[] { "intelligence" }));
+                        {
+                            var oldValue = origStatValues[1].ToString();
+                            qs.Add(() => makeQuestion(Question.AdventureGamePotion, _AdventureGame, new[] { oldValue }, new[] { "dexterity" }));
+                        }
                         if (statValues[2] != origStatValues[2])
-                            qs.Add(() => makeQuestion(Question.AdventureGamePotion, _AdventureGame, new[] { origStatValues[2].ToString() }, new[] { "dexterity" }));
+                        {
+                            var oldValue = origStatValues[2].ToString();
+                            qs.Add(() => makeQuestion(Question.AdventureGamePotion, _AdventureGame, new[] { oldValue }, new[] { "intelligence" }));
+                        }
                         Array.Copy(statValues, origStatValues, statValues.Length);
 
                         if (invValues.Count != origInvValues.Count)
                         {
                             // If the length of the inventory has changed, the user used a correct non-weapon item.
-                            correctItemsUsed++;
-                            qs.Add(() => makeQuestion(Question.AdventureGameCorrectItem, _AdventureGame, new[] { titleCase(mthItemName.Invoke(itemUsed)) }, new[] { ordinal(correctItemsUsed) }));
+                            var itemIndex = ++correctItemsUsed;
+                            qs.Add(() => makeQuestion(Question.AdventureGameCorrectItem, _AdventureGame, new[] { titleCase(mthItemName.Invoke(itemUsed)) }, new[] { ordinal(itemIndex) }));
                             origInvValues.Clear();
                             origInvValues.AddRange(invValues.Cast<int>());
                         }
@@ -1631,36 +1653,47 @@ public class SouvenirModule : MonoBehaviour
 
             case _MouseInTheMaze:
                 {
+                    //int[] sphereColors = new int[4];    //0:white 1:green 2:blue 3: yellow; clockwise order from top-left
+                    //int torusColor;
+                    //int goalPosition;
+
                     var comp = GetComponent(module, "Maze_3d");
-                    var fldObjectives = GetField<int[]>(comp, "objectives");
-                    var fldIsActive = GetField<bool>(comp, "isActive");
+                    var fldSphereColors = GetField<int[]>(comp, "sphereColors");
+                    var fldTorusColor = GetField<int>(comp, "torusColor");
+                    var fldGoalPosition = GetField<int>(comp, "goalPosition");
+                    var fldIsSolved = GetField<bool>(comp, "_isSolved");
 
-                    if (comp == null || fldObjectives == null || fldIsActive == null)
+                    if (comp == null || fldSphereColors == null || fldTorusColor == null || fldGoalPosition == null || fldIsSolved == null)
                         break;
 
-                    var objectives = fldObjectives.Get();
-                    if (objectives == null)
+                    var sphereColors = fldSphereColors.Get();
+                    if (sphereColors == null)
                         break;
-                    if (objectives.Length != 6)
+                    if (sphereColors.Length != 4)
                     {
-                        Debug.LogFormat("[Souvenir #{1}] Mouse in the Maze: Objectives array has unexpected length ({0}; expected 6).", objectives.Length, _moduleId);
+                        Debug.LogFormat("[Souvenir #{1}] Mouse in the Maze: sphereColors has unexpected length ({0}; expected 4).", sphereColors.Length, _moduleId);
                         break;
                     }
 
                     while (!_isActivated)
                         yield return new WaitForSeconds(.1f);
 
-                    var torusColor = objectives[4];
-                    var goalPos = objectives[5];
-                    var goalColor = objectives[goalPos];
+                    var goalPos = fldGoalPosition.Get();
+                    if (goalPos < 0 || goalPos >= 4)
+                    {
+                        Debug.LogFormat("[Souvenir #{1}] Mouse in the Maze: Unexpected goalPos ({0}; expected 0 to 3).", goalPos, _moduleId);
+                        break;
+                    }
 
+                    var torusColor = fldTorusColor.Get();
+                    var goalColor = sphereColors[goalPos];
                     if (torusColor < 0 || torusColor >= 4 || goalColor < 0 || goalColor >= 4)
                     {
                         Debug.LogFormat("[Souvenir #{2}] Mouse in the Maze: Unexpected color (torus={0}; goal={1}).", torusColor, goalColor, _moduleId);
                         break;
                     }
 
-                    while (fldIsActive.Get())
+                    while (!fldIsSolved.Get())
                         yield return new WaitForSeconds(.1f);
 
                     _modulesSolved.IncSafe(_MouseInTheMaze);
