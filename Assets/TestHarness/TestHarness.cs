@@ -627,6 +627,7 @@ public class TestHarness : MonoBehaviour
         foreach (KMSelectable selectable in selectables)
         {
             TestSelectable testSelectable = selectable.gameObject.GetComponent<TestSelectable>();
+			testSelectable.Parent = selectable.Parent ? selectable.Parent.GetComponent<TestSelectable>() : null;
             testSelectable.Children = new TestSelectable[selectable.Children.Length];
             for (int i = 0; i < selectable.Children.Length; i++)
             {
