@@ -2417,18 +2417,18 @@ public class SouvenirModule : MonoBehaviour
         var allAnswers = attr.AllAnswers;
         if (allAnswers != null)
         {
-            var inconsistency = possibleCorrectAnswers.FirstOrDefault(pca => !allAnswers.Contains(pca));
+            var inconsistency = possibleCorrectAnswers.Except(allAnswers).FirstOrDefault();
             if (inconsistency != null)
             {
-                Debug.LogFormat("[Souvenir #{2}] Question {0}: invalid answer: {1}.", question, inconsistency, _moduleId);
+                Debug.LogFormat("[Souvenir #{2}] Question {0}: invalid answer: {1}.", question, inconsistency ?? "<null>", _moduleId);
                 return null;
             }
             if (preferredWrongAnswers != null)
             {
-                var inconsistency2 = preferredWrongAnswers.FirstOrDefault(pca => !allAnswers.Contains(pca));
+                var inconsistency2 = preferredWrongAnswers.Except(allAnswers).FirstOrDefault();
                 if (inconsistency2 != null)
                 {
-                    Debug.LogFormat("[Souvenir #{2}] Question {0}: invalid preferred wrong answer: {1}.", question, inconsistency2, _moduleId);
+                    Debug.LogFormat("[Souvenir #{2}] Question {0}: invalid preferred wrong answer: {1}.", question, inconsistency2 ?? "<null>", _moduleId);
                     return null;
                 }
             }

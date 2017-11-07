@@ -19,7 +19,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         AdventureGameCorrectItem,
 
-        [SouvenirQuestion("What color was {1} {2} in {0}?", "Big Circle", 4, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black",
+        [SouvenirQuestion("What color was {1} {2} in {0}?", "Big Circle", 6, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black",
             ExampleExtraFormatArguments = new[] {
                 "adjacent to", "Red", "adjacent to", "Orange", "adjacent to", "Yellow", "adjacent to", "Green", "adjacent to", "Blue", "adjacent to", "Magenta", "adjacent to", "White", "adjacent to", "Black",
                 "opposite from", "Red", "opposite from", "Orange", "opposite from", "Yellow", "opposite from", "Green", "opposite from", "Blue", "opposite from", "Magenta", "opposite from", "White", "opposite from", "Black" },
@@ -42,7 +42,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ChessCoordinate,
 
-        [SouvenirQuestion("What was the first color group in {0}?", "Colored Squares", 4, "White", "Red", "Blue", "Green", "Yellow", "Magenta")]
+        [SouvenirQuestion("What was the first color group in {0}?", "Colored Squares", 6, "White", "Red", "Blue", "Green", "Yellow", "Magenta")]
         ColoredSquares,
 
         [SouvenirQuestion("What were the initial colors on {0} in reading order?", "Connection Check", 6, "RRRR", "RRRG", "RRGR", "RRGG", "RGRR", "RGRG", "RGGR", "RGGG", "GRRR", "GRRG", "GRGR", "GRGG", "GGRR", "GGRG", "GGGR", "GGGG")]
@@ -73,18 +73,18 @@ namespace Souvenir
         [SouvenirQuestion("What was the starting color in {0}?", "Gridlock", 4, "Green", "Yellow", "Red", "Blue")]
         GridLockStartingColor,
 
-        [SouvenirQuestion("What was the color of the pawn in {0}?", "Hexamaze", 4, "Red", "Yellow", "Green", "Cyan", "Blue", "Pink")]
+        [SouvenirQuestion("What was the color of the pawn in {0}?", "Hexamaze", 6, "Red", "Yellow", "Green", "Cyan", "Blue", "Pink")]
         HexamazePawnColor,
 
         [SouvenirQuestion("Which one of these flavours {1} to the {2} customer in {0}?", "Ice Cream", 4, "Tutti Frutti", "Rocky Road", "Raspb. Ripple", "Double Choc.", "Double Str.", "Cookies & Cr.", "Neapolitan", "Mint Ch. Chip", "The Classic", "Vanilla",
             ExampleExtraFormatArguments = new[] { "was on offer, but not sold,", "first", "was not on offer", "first", "was on offer, but not sold,", "second", "was not on offer", "second", "was on offer, but not sold,", "third", "was not on offer", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
         IceCreamFlavour,
 
-        [SouvenirQuestion("Who was the {1} customer in {0}?", "Ice Cream", 4, "Mike", "Tim", "Tom", "Dave", "Adam", "Cheryl", "Sean", "Ashley", "Jessica", "Taylor", "Simon", "Sally", "Jade", "Sam", "Gary", "Victor", "George", "Jacob", "Pat", "Bob",
+        [SouvenirQuestion("Who was the {1} customer in {0}?", "Ice Cream", 6, "Mike", "Tim", "Tom", "Dave", "Adam", "Cheryl", "Sean", "Ashley", "Jessica", "Taylor", "Simon", "Sally", "Jade", "Sam", "Gary", "Victor", "George", "Jacob", "Pat", "Bob",
             ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
         IceCreamCustomer,
 
-        [SouvenirQuestion("What was the correct code you entered in {0}?", "Listening", 4, null,
+        [SouvenirQuestion("What was the correct code you entered in {0}?", "Listening", 6, null,
             ExampleAnswers = new[] { "&&&**", "&$#$&", "$#$*&", "#$$**", "$#$#*", "**$*#", "#$$&*", "##*$*", "$#*$&", "**#**", "#&&*#", "&#**&", "$&**#", "&#$$#", "$&&**", "#&$##", "&*$*$", "&$$&*", "#&&&&", "**$$$", "*&*&&", "*#&*&", "**###", "&&$&*", "&$**&", "#$#&$", "&#&&#", "$$*$*", "$&#$$", "&**$$", "$&&*&", "&$&##", "#&$*&", "$*$**", "*#$&&", "###&$", "*$$&$", "$*&##", "#&$&&", "$&$$*", "*$*$*" })]
         Listening,
 
@@ -102,7 +102,7 @@ namespace Souvenir
         [SouvenirQuestion("What was the ending location in {0}?", "Morse-A-Maze", 6, "A1", "A2", "A3", "A4", "A5", "A6", "B1", "B2", "B3", "B4", "B5", "B6", "C1", "C2", "C3", "C4", "C5", "C6", "D1", "D2", "D3", "D4", "D5", "D6", "E1", "E2", "E3", "E4", "E5", "E6", "F1", "F2", "F3", "F4", "F5", "F6")]
         MorseAMazeEndingCoordinate,
 
-        [SouvenirQuestion("What was the morse code word played in {0}?", "Morse-A-Maze", 6, "Thank you BOB", "shell", "leaks", "strike", "alien3", "bistro", "tango", "timer", "boxes", "trick", "penguin", "sting", "elias", "ktane", "manual", "zulu", "november", "kaboom", "unicorn", "quebec", "bashly", "slick", "vector", "flick", "timwi", "strobe", "bombs", "bravo", "laundry", "brick", "kitty", "halls", "steak", "break", "beats")]
+        [SouvenirQuestion("What was the word shown as Morse code in {0}?", "Morse-A-Maze", 6, "Thank you BOB", "shell", "leaks", "strike", "alien3", "bistro", "tango", "timer", "boxes", "trick", "penguin", "sting", "elias", "ktane", "manual", "zulu", "november", "kaboom", "unicorn", "quebec", "bashly", "slick", "vector", "flick", "timwi", "strobe", "bombs", "bravo", "laundry", "brick", "kitty", "halls", "steak", "break", "beats")]
         MorseAMazeMorseCodeWord,
 
         [SouvenirQuestion("What was the {1} received letter in {0}?", "Morsematics", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
@@ -119,11 +119,11 @@ namespace Souvenir
         MurderBodyFound,
 
         [SouvenirQuestion("Which of these was {1} in {0}?", "Murder", 4, "Miss Scarlett", "Professor Plum", "Mrs Peacock", "Reverend Green", "Colonel Mustard", "Mrs White",
-            ExampleExtraFormatArguments = new[] { "a suspect but not the murderer", "not a suspect" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "a suspect, but not the murderer,", "not a suspect" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MurderSuspect,
 
         [SouvenirQuestion("Which of these was {1} in {0}?", "Murder", 4, "Candlestick", "Dagger", "Lead Pipe", "Revolver", "Rope", "Spanner",
-            ExampleExtraFormatArguments = new[] { "a potential weapon but not the murder weapon", "not a potential weapon" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "a potential weapon, but not the murder weapon,", "not a potential weapon" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MurderWeapon,
 
         [SouvenirQuestion("What was the acid’s color in {0}?", "Neutralization", 4, "Yellow", "Green", "Red", "Blue")]
@@ -156,8 +156,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "first", "first", "second", "first", "third", "second", "first", "second", "second", "second", "third", "third", "first", "third", "second", "third", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
         SillySlots,
 
-        [SouvenirQuestion("Which color flashed {1} in the final sequence in {0}?", "Simon Screams", 4, "Red", "Orange", "Yellow", "Green", "Blue", "Purple",
-            ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("Which color flashed {1} in the final sequence in {0}?", "Simon Screams", 6, "Red", "Orange", "Yellow", "Green", "Blue", "Purple",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonScreamsFlashing,
 
         [SouvenirQuestion("Which {1} of {0} had {2}?", "Simon Screams", 4, ExampleAnswers = new[] { "first", "second", "third", "first and second", "first and third", "second and third", "all of them" },
