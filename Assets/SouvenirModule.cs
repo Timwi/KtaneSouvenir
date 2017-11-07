@@ -59,6 +59,7 @@ public class SouvenirModule : MonoBehaviour
     const string _AdventureGame = "spwizAdventureGame";
     const string _BigCircle = "BigCircle";
     const string _Bitmaps = "BitmapsModule";
+    const string _Braille = "BrailleModule";
     const string _BrokenButtons = "BrokenButtonsModule";
     const string _CheapCheckout = "CheapCheckoutModule";
     const string _Chess = "ChessModule";
@@ -1108,6 +1109,25 @@ public class SouvenirModule : MonoBehaviour
 
                     _modulesSolved.IncSafe(_DoubleOh);
                     addQuestion(Question.DoubleOhInitialValue, _DoubleOh, new[] { value.ToString() });
+                    break;
+                }
+
+            case _Braille:
+                {
+                    var comp = GetComponent(module, "BrailleModule");
+                    var fldWord = GetField<string>(comp, "_word");
+                    var fldSolved = GetField<bool>(comp, "_isSolved");
+
+                    if (comp == null || fldWord == null || fldSolved == null)
+                        break;
+
+                    yield return null;
+
+                    while (!fldSolved.Get())
+                        yield return new WaitForSeconds(.1f);
+                    _modulesSolved.IncSafe(_Braille);
+                    addQuestion(Question.BrailleWord, _Braille, new[] { fldWord.Get() });
+
                     break;
                 }
 
