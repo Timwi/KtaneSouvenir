@@ -73,6 +73,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Hexamaze = "HexamazeModule";
     const string _IceCream = "iceCreamModule";
     const string _Listening = "Listening";
+    const string _Mafia = "MafiaModule";
     const string _MonsplodeFight = "monsplodeFight";
     const string _MorseAMaze = "MorseAMaze";
     const string _Morsematics = "MorseV2";
@@ -1454,6 +1455,34 @@ public class SouvenirModule : MonoBehaviour
 
                     _modulesSolved.IncSafe(_Listening);
                     addQuestion(Question.Listening, _Listening, new[] { correctCode }, preferredWrongAnswers: attr.ExampleAnswers);
+
+                    break;
+                }
+
+            case _Mafia:
+                {
+                    var comp = GetComponent(module, "MafiaModule");
+                    var fldSuspects = GetField<Array>(comp, "_suspects");
+                    var fldGodfather = GetField<object>(comp, "_godfather");
+                    var fldSolved = GetField<bool>(comp, "_isSolved");
+
+                    if (comp == null || fldSuspects == null || fldGodfather == null || fldSolved == null)
+                        break;
+
+                    while (!fldSolved.Get())
+                        yield return new WaitForSeconds(.1f);
+
+                    var godfather = fldGodfather.Get();
+                    var suspects = fldSuspects.Get();
+
+                    if (godfather == null || suspects == null || suspects.Length != 8)
+                    {
+                        Debug.LogFormat("[Souvenir #{0}] Abandoning Mafia because ‘{1}’ is null or unexpected length ({2}).", _moduleId, godfather == null ? "godfather" : "suspects", suspects == null ? "null" : suspects.Length.ToString());
+                        break;
+                    }
+
+                    _modulesSolved.IncSafe(_Mafia);
+                    addQuestion(Question.MafiaPlayers, _Mafia, suspects.Cast<object>().Select(obj => obj.ToString()).Except(new[] { godfather.ToString() }).ToArray());
 
                     break;
                 }

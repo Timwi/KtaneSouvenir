@@ -5,6 +5,7 @@ using UnityEditor;
 using System.Linq;
 using System;
 using System.Reflection;
+using System.Text;
 
 /// <summary>
 /// 
@@ -123,7 +124,7 @@ public class AssetBundler
             //Copy any other non-Editor managed assemblies to the output folder
             bundler.CopyManagedAssemblies();
 
-            //Create the modInfo.json file
+            //Create the modInfo.json file and copy the preview image if available
             bundler.CreateModInfo();
 
             //Copy the modSettings.json file from Assets into the build
@@ -262,10 +263,10 @@ public class AssetBundler
         string[] defineArray = allDefines.Split(';');
 
         //MonoIsland to compile
-        string classlib_profile = "2.0";
+        int apiCompatibilityLevel = 1; //NET_2_0 compatibility level is enum value 1
         Assembly assembly = Assembly.GetAssembly(typeof(MonoScript));
         var monoIslandType = assembly.GetType("UnityEditor.Scripting.MonoIsland");
-        object monoIsland = Activator.CreateInstance(monoIslandType, BuildTarget.StandaloneWindows, classlib_profile, scriptArray, referenceArray, defineArray, outputFilename);
+        object monoIsland = Activator.CreateInstance(monoIslandType, BuildTarget.StandaloneWindows, apiCompatibilityLevel, scriptArray, referenceArray, defineArray, outputFilename);
 
         //MonoCompiler itself
         var monoCompilerType = assembly.GetType("UnityEditor.Scripting.Compilers.MonoCSharpCompiler");
@@ -281,18 +282,18 @@ public class AssetBundler
 
         //Start compiling
         beginCompilingMethod.Invoke(monoCompiler, null);
-        while (!(bool)pollMethod.Invoke(monoCompiler, null))
+        while (!(bool) pollMethod.Invoke(monoCompiler, null))
         {
             System.Threading.Thread.Sleep(50);
         }
 
         //Now check and output any messages returned by the compiler
         object returnedObj = getMessagesMethod.Invoke(monoCompiler, null);
-        object[] cmArray = ((Array)returnedObj).Cast<object>().ToArray();
+        object[] cmArray = ((Array) returnedObj).Cast<object>().ToArray();
 
         foreach (object cm in cmArray)
         {
-            string str = (string)messageField.GetValue(cm);
+            string str = (string) messageField.GetValue(cm);
             Debug.LogFormat("Compiler: {0}", str);
         }
 
@@ -439,6 +440,12 @@ public class AssetBundler
     protected void CreateModInfo()
     {
         File.WriteAllText(outputFolder + "/modInfo.json", ModConfig.Instance.ToJson());
+
+        if (ModConfig.PreviewImage != null)
+        {
+            byte[] bytes = ModConfig.PreviewImage.EncodeToPNG();
+            File.WriteAllBytes(outputFolder + "/previewImage.png", bytes);
+        }
     }
 
     /// <summary>
@@ -446,7 +453,7 @@ public class AssetBundler
     /// </summary>
     protected void CopyModSettings()
     {
-        if(File.Exists("Assets/modSettings.json"))
+        if (File.Exists("Assets/modSettings.json"))
         {
             File.Copy("Assets/modSettings.json", outputFolder + "/modSettings.json");
         }
@@ -456,7 +463,7 @@ public class AssetBundler
     /// </summary>
     protected void CopyManual()
     {
-        if(Directory.Exists("Manual/pdfs"))
+        if (Directory.Exists("Manual/pdfs"))
         {
             DirectoryCopyPDFs("Manual/pdfs", outputFolder + "/Manual", true);
         }
@@ -489,11 +496,11 @@ public class AssetBundler
         foreach (FileInfo file in files)
         {
             string temppath = Path.Combine(destDirName, file.Name);
-            if(file.Extension.ToLower() == ".pdf")
+            if (file.Extension.ToLower() == ".pdf")
             {
                 file.CopyTo(temppath, false);
             }
-            
+
         }
 
         // If copying subdirectories, copy them and their contents to new location.
@@ -593,33 +600,44 @@ public class AssetBundler
             };
 
         string[] prefabsGUIDs = AssetDatabase.FindAssets("t: prefab");
-        foreach(string prefabGUID in prefabsGUIDs)
+        foreach (string prefabGUID in prefabsGUIDs)
         {
             string path = AssetDatabase.GUIDToAssetPath(prefabGUID);
             GameObject go = AssetDatabase.LoadAssetAtPath<GameObject>(path);
-            if(go == null)
+            if (go == null)
             {
                 continue;
             }
-            foreach(Renderer renderer in go.GetComponentsInChildren<Renderer>())
+            foreach (Renderer renderer in go.GetComponentsInChildren<Renderer>())
             {
-                if(renderer.sharedMaterials != null && renderer.sharedMaterials.Length > 0)
+                if (renderer.sharedMaterials != null && renderer.sharedMaterials.Length > 0)
                 {
-                    if(renderer.gameObject.GetComponent<KMMaterialInfo>() == null)
+                    if (renderer.gameObject.GetComponent<KMMaterialInfo>() == null)
                     {
                         renderer.gameObject.AddComponent<KMMaterialInfo>();
                     }
                     KMMaterialInfo materialInfo = renderer.gameObject.GetComponent<KMMaterialInfo>();
                     materialInfo.ShaderNames = new List<string>();
-                    foreach(Material material in renderer.sharedMaterials)
+                    foreach (Material material in renderer.sharedMaterials)
                     {
+                        if (material == null)
+                        {
+                            var obj = renderer.transform;
+                            var str = new List<string>();
+                            while (obj != null)
+                            {
+                                str.Add(obj.gameObject.name);
+                                obj = obj.parent;
+                            }
+                            Debug.LogErrorFormat("There is an unassigned material on the following object: {0}", string.Join(" > ", str.ToArray()));
+                        }
                         materialInfo.ShaderNames.Add(material.shader.name);
 
-                        if(material.shader.name == "Standard")
+                        if (material.shader.name == "Standard")
                         {
                             Debug.LogWarning(string.Format("Use of Standard shader in object {0}. Standard shader should be avoided as it will cause your mod to break in future versions of the game.", renderer.gameObject));
                         }
-                        else if(!supportedShaders.Contains(material.shader.name))
+                        else if (!supportedShaders.Contains(material.shader.name))
                         {
                             Debug.LogWarning(string.Format("Use of custom shader {0} in object {1}. Use of custom shaders will break mod compatibility on game update requiring rebuild. Recommend using only supported shaders.", material.shader.name, renderer.gameObject));
                         }
