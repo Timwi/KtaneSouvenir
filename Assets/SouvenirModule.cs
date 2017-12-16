@@ -73,6 +73,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Hexamaze = "HexamazeModule";
     const string _IceCream = "iceCreamModule";
     const string _Listening = "Listening";
+    const string _Logic = "Logic";
     const string _Mafia = "MafiaModule";
     const string _MonsplodeFight = "monsplodeFight";
     const string _MorseAMaze = "MorseAMaze";
@@ -1456,6 +1457,28 @@ public class SouvenirModule : MonoBehaviour
                     _modulesSolved.IncSafe(_Listening);
                     addQuestion(Question.Listening, _Listening, new[] { correctCode }, preferredWrongAnswers: attr.ExampleAnswers);
 
+                    break;
+                }
+
+            case _Logic:
+                {
+                    var comp = GetComponent(module, "Logic");
+                    var fldTog = GetField<bool[]>(comp, "tog", isPublic: true);
+                    var fldSolved = GetField<bool>(comp, "_isSolved");
+
+                    if (comp == null || fldTog == null || fldSolved == null)
+                        break;
+
+                    while (!_isActivated)
+                        yield return new WaitForSeconds(.1f);
+
+                    var tog = fldTog.Get().ToArray();
+
+                    while (!fldSolved.Get())
+                        yield return new WaitForSeconds(.1f);
+
+                    _modulesSolved.IncSafe(_Logic);
+                    addQuestion(Question.LogicInitial, _Logic, new[] { tog.Select(val => val ? "true" : "false").JoinString(", ") });
                     break;
                 }
 

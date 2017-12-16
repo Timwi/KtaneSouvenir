@@ -91,6 +91,9 @@ namespace Souvenir
             ExampleAnswers = new[] { "&&&**", "&$#$&", "$#$*&", "#$$**", "$#$#*", "**$*#", "#$$&*", "##*$*", "$#*$&", "**#**", "#&&*#", "&#**&", "$&**#", "&#$$#", "$&&**", "#&$##", "&*$*$", "&$$&*", "#&&&&", "**$$$", "*&*&&", "*#&*&", "**###", "&&$&*", "&$**&", "#$#&$", "&#&&#", "$$*$*", "$&#$$", "&**$$", "$&&*&", "&$&##", "#&$*&", "$*$**", "*#$&&", "###&$", "*$$&$", "$*&##", "#&$&&", "$&$$*", "*$*$*" })]
         Listening,
 
+        [SouvenirQuestion("What was the initial state of the buttons on {0} from top to bottom?", "Logic", 4, "false, false", "false, true", "true, false", "true, true")]
+        LogicInitial,
+
         [SouvenirQuestion("Who was a player, but not the Godfather, in {0}?", "Murder", 6, "Rob", "Tim", "Mary", "Briane", "Hunter", "Macy", "John", "Will", "Lacy", "Claire", "Kenny", "Rick", "Walter", "Bonnie", "Luke", "Ed", "Sarah", "Larry", "Kate", "Stacy", "Diane", "Mac", "Jim", "Ron", "Tommy", "Lenny", "Molly", "Benny", "Phil", "Bob", "Gary", "Ted", "Kim", "Nate", "Cher", "Wally", "Thomas", "Sam", "Duke", "Jack", "Bill", "Ronny", "Terry", "Claira", "Nick", "Cob", "Ash", "Don", "Jerry", "Simon")]
         MafiaPlayers,
 

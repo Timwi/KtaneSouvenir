@@ -1,11 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor;
 using System.Linq;
-using System;
 using System.Reflection;
-using System.Text;
+using UnityEditor;
+using UnityEngine;
 
 /// <summary>
 /// 
