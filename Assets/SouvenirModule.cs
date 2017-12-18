@@ -2515,7 +2515,7 @@ public class SouvenirModule : MonoBehaviour
             answers = allAnswers.Except(possibleCorrectAnswers).ToList().Shuffle().Take(attr.NumAnswers - 1).ToList();
             // Add the preferred wrong answers, if any. If we had added them earlier, they’d come up too rarely.
             if (preferredWrongAnswers != null)
-                answers = answers.Concat(preferredWrongAnswers.Except(possibleCorrectAnswers)).ToList().Shuffle().Take(attr.NumAnswers - 1).ToList();
+                answers = answers.Concat(preferredWrongAnswers.Except(answers).Except(possibleCorrectAnswers)).ToList().Shuffle().Take(attr.NumAnswers - 1).ToList();
         }
 
         var correctIndex = Rnd.Range(0, Math.Min(attr.NumAnswers, answers.Count + 1));
