@@ -212,7 +212,8 @@ public class SouvenirModule : MonoBehaviour
             "Introducing: The Double... Decker... Bomb!",
             "Have you got your wires crossed?",
             "Don't cross the wires.",
-            "Wanna hear the most annoying explosion in the world?"
+            "Wanna hear the most annoying explosion in the world?",
+            "Manuals? Where we’re going, we don’t need manuals."
         ).PickRandom(), 1.75);
 
         _isActivated = false;
