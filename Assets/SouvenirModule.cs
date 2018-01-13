@@ -1359,7 +1359,7 @@ public class SouvenirModule : MonoBehaviour
                             break;
                         }
                         flavours[i] = options[i].ToArray();
-                        solution[i] = sol[i];
+                        solution[i] = flavours[i][sol[i]];
                         customers[i] = cus[i];
                     }
                     var questions = new List<QandA>();
