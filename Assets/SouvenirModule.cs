@@ -62,6 +62,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Braille = "BrailleModule";
     const string _BrokenButtons = "BrokenButtonsModule";
     const string _CheapCheckout = "CheapCheckoutModule";
+    const string _CheapCheckoutSupermercadoSalvaje = "SupermercadoSalvajeModule";
     const string _Chess = "ChessModule";
     const string _ColoredSquares = "ColoredSquaresModule";
     const string _ConnectionCheck = "graphModule";
@@ -213,7 +214,10 @@ public class SouvenirModule : MonoBehaviour
             "Have you got your wires crossed?",
             "Don't cross the wires.",
             "Wanna hear the most annoying explosion in the world?",
-            "Manuals? Where we’re going, we don’t need manuals."
+            "Manuals? Where we’re going, we don’t need manuals.",
+            "On a long enough timeline, the survival rate for everyone drops to zero.",
+            "This is your bomb, and it's ending one minute at a time.",
+            "The first rule of defusal is, you keep talking about defusal."
         ).PickRandom(), 1.75);
 
         _isActivated = false;
@@ -1159,7 +1163,10 @@ public class SouvenirModule : MonoBehaviour
                 }
 
             case _CheapCheckout:
+            case _CheapCheckoutSupermercadoSalvaje:
                 {
+                    var isSpanish = moduleType == _CheapCheckoutSupermercadoSalvaje;
+
                     var comp = GetComponent(module, "CheapCheckoutModule");
                     var fldPaid = GetField<decimal>(comp, "Paid");
                     var fldDisplay = GetField<decimal>(comp, "Display");
@@ -1180,10 +1187,19 @@ public class SouvenirModule : MonoBehaviour
                     while (!fldSolved.Get())
                         yield return new WaitForSeconds(.1f);
 
-                    _modulesSolved.IncSafe(_CheapCheckout);
-                    addQuestions(paids.Select((p, i) => makeQuestion(Question.CheapCheckoutPaid, _CheapCheckout, new[] { "$" + p.ToString("N2") },
-                        extraFormatArguments: new[] { paids.Count == 1 ? "" : ordinal(i + 1) + " " },
-                        preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(_ => (decimal) Rnd.Range(5, 50)).Select(amt => "$" + amt.ToString("N2")).Distinct().Take(5).ToArray())));
+                    _modulesSolved.IncSafe(moduleType);
+                    if (isSpanish)
+                    {
+                        addQuestions(paids.Select((p, i) => makeQuestion(Question.CheapCheckoutPaidSupermercadoSalvaje, _CheapCheckout, new[] { "$" + p.ToString("N2") },
+                            extraFormatArguments: new[] { paids.Count == 1 ? "" : ordinalSpanish(i + 1) + " ", _moduleCounts.Get(moduleType) > 1 ? string.Format("el Supermercado Salvaje que resolviste {0}", ordinalSpanish(_modulesSolved.Get(moduleType))) : "Supermercado Salvaje" },
+                            preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(_ => (decimal) Rnd.Range(5, 50)).Select(amt => "$" + amt.ToString("N2")).Distinct().Take(5).ToArray())));
+                    }
+                    else
+                    {
+                        addQuestions(paids.Select((p, i) => makeQuestion(Question.CheapCheckoutPaid, _CheapCheckout, new[] { "$" + p.ToString("N2") },
+                            extraFormatArguments: new[] { paids.Count == 1 ? "" : ordinal(i + 1) + " " },
+                            preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(_ => (decimal) Rnd.Range(5, 50)).Select(amt => "$" + amt.ToString("N2")).Distinct().Take(5).ToArray())));
+                    }
 
                     break;
                 }
@@ -2559,6 +2575,21 @@ public class SouvenirModule : MonoBehaviour
             case 3: return number + "rd";
             default: return number + "th";
         }
+    }
+
+    private string ordinalSpanish(int number)
+    {
+        if (number < 0)
+            return "(" + number + ")º";
+
+        switch (number)
+        {
+            case 1: return "primero";
+            case 2: return "segundo";
+            case 3: return "tercero";
+        }
+
+        return number + "º";
     }
 
     KMSelectable[] ProcessTwitchCommand(string command)

@@ -41,6 +41,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "", "first ", "second " }, ExampleExtraFormatArgumentGroupSize = 1)]
         CheapCheckoutPaid,
 
+        [SouvenirQuestion("¿Qué fue el monto pagado {1}del cliente en {2}?", "Supermercado Salvaje", 6, ExampleAnswers = new[] { "$11.00", "$12.00", "$14.00", "$11.00", "$25.00", "$24.00" },
+            ExampleExtraFormatArguments = new[] { "", "inicial ", "segundo " }, ExampleExtraFormatArgumentGroupSize = 1)]
+        CheapCheckoutPaidSupermercadoSalvaje,
+
         [SouvenirQuestion("What was the {1} coordinate in {0}?", "Chess", 6, "a1", "a2", "a3", "a4", "a5", "a6", "b1", "b2", "b3", "b4", "b5", "b6", "c1", "c2", "c3", "c4", "c5", "c6", "d1", "d2", "d3", "d4", "d5", "d6", "e1", "e2", "e3", "e4", "e5", "e6", "f1", "f2", "f3", "f4", "f5", "f6",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ChessCoordinate,
