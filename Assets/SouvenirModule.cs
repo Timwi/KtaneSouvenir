@@ -65,7 +65,6 @@ public class SouvenirModule : MonoBehaviour
     const string _CheapCheckoutSupermercadoSalvaje = "SupermercadoSalvajeModule";
     const string _Chess = "ChessModule";
     const string _ColoredSquares = "ColoredSquaresModule";
-    const string _ConnectionCheck = "graphModule";
     const string _Coordinates = "CoordinatesModule";
     const string _Creation = "CreationModule";
     const string _DoubleOh = "DoubleOhModule";
@@ -74,7 +73,6 @@ public class SouvenirModule : MonoBehaviour
     const string _Hexamaze = "HexamazeModule";
     const string _IceCream = "iceCreamModule";
     const string _Listening = "Listening";
-    const string _Logic = "Logic";
     const string _Mafia = "MafiaModule";
     const string _MonsplodeFight = "monsplodeFight";
     const string _MorseAMaze = "MorseAMaze";
@@ -727,7 +725,6 @@ public class SouvenirModule : MonoBehaviour
                 {
                     var comp = GetComponent(module, "AdventureGameModule");
                     var fldButtonUse = GetField<KMSelectable>(comp, "ButtonUse", isPublic: true);
-                    var fldStatValues = GetField<int[]>(comp, "StatValues");
                     var fldInvValues = GetField<IList>(comp, "InvValues"); // actually List<AdventureGameModule.ITEM>
                     var fldInvWeaponCount = GetField<int>(comp, "InvWeaponCount");
                     var fldSelectedItem = GetField<int>(comp, "SelectedItem");
@@ -735,16 +732,15 @@ public class SouvenirModule : MonoBehaviour
                     var mthItemName = GetMethod<string>(comp, "ItemName", 1);
                     var mthShouldUseItem = GetMethod<bool>(comp, "ShouldUseItem", 1);
 
-                    if (comp == null || fldButtonUse == null || fldStatValues == null || fldInvValues == null || fldInvWeaponCount == null || fldSelectedItem == null || fldNumWeapons == null || mthItemName == null)
+                    if (comp == null || fldButtonUse == null || fldInvValues == null || fldInvWeaponCount == null || fldSelectedItem == null || fldNumWeapons == null || mthItemName == null)
                         break;
 
                     while (!_isActivated)
                         yield return new WaitForSeconds(.1f);
 
-                    var statValues = fldStatValues.Get();
                     var invValues = fldInvValues.Get();
                     var buttonUse = fldButtonUse.Get();
-                    if (statValues == null || invValues == null || buttonUse == null)
+                    if (invValues == null || buttonUse == null)
                         break;
 
                     var invWeaponCount = fldInvWeaponCount.Get();
@@ -762,7 +758,6 @@ public class SouvenirModule : MonoBehaviour
                         break;
                     }
 
-                    var origStatValues = statValues.ToArray();
                     var origInvValues = new List<int>(invValues.Cast<int>());
                     var correctItemsUsed = 0;
                     var qs = new List<Func<QandA>>();
@@ -777,24 +772,6 @@ public class SouvenirModule : MonoBehaviour
                             shouldUse &= !mthShouldUseItem.Invoke(j);
 
                         var ret = prevInteract();
-
-                        // If the stat values have changed, the user took a potion.
-                        if (statValues[0] != origStatValues[0])
-                        {
-                            var oldValue = origStatValues[0].ToString();
-                            qs.Add(() => makeQuestion(Question.AdventureGamePotion, _AdventureGame, new[] { oldValue }, new[] { "strength" }));
-                        }
-                        if (statValues[1] != origStatValues[1])
-                        {
-                            var oldValue = origStatValues[1].ToString();
-                            qs.Add(() => makeQuestion(Question.AdventureGamePotion, _AdventureGame, new[] { oldValue }, new[] { "dexterity" }));
-                        }
-                        if (statValues[2] != origStatValues[2])
-                        {
-                            var oldValue = origStatValues[2].ToString();
-                            qs.Add(() => makeQuestion(Question.AdventureGamePotion, _AdventureGame, new[] { oldValue }, new[] { "intelligence" }));
-                        }
-                        Array.Copy(statValues, origStatValues, statValues.Length);
 
                         if (invValues.Count != origInvValues.Count)
                         {
@@ -824,33 +801,29 @@ public class SouvenirModule : MonoBehaviour
 
             case _BigCircle:
                 {
-                    var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black" };
                     var comp = GetComponent(module, "TheBigCircle");
                     var fldSolved = GetField<bool>(comp, "_solved");
-                    var fldColors = GetField<int[]>(comp, "_colors");
+                    var fldSolution = GetField<Array>(comp, "_currentSolution");
 
-                    if (comp == null || fldSolved == null || fldColors == null)
+                    if (comp == null || fldSolved == null || fldSolution == null)
                         break;
 
                     while (!fldSolved.Get())
                         yield return new WaitForSeconds(0.1f);
 
-                    var colors = fldColors.Get();
-                    if (colors == null || colors.Length != 8 || colors.Any(i => i < 0 || i >= 8))
+                    var solution = fldSolution.Get();
+                    if (solution == null || solution.Length != 3)
                     {
-                        Debug.LogFormat("[Souvenir #{0}] Big Circle: Colors is null or has an unexpected value.", _moduleId);
+                        Debug.LogFormat("[Souvenir #{0}] Big Circle: solution is null or has an unexpected length ({1}).", _moduleId, solution == null ? "null" : solution.Length.ToString());
                         break;
                     }
 
                     _modulesSolved.IncSafe(_BigCircle);
 
-                    var questionsAdjacent = Enumerable.Range(0, 8).Select(i => makeQuestion(Question.BigCircleColors, _BigCircle,
-                        possibleCorrectAnswers: new[] { colorNames[colors[(i + 1) % 8]], colorNames[colors[(i + 7) % 8]] },
-                        extraFormatArguments: new[] { "adjacent to", colorNames[colors[i]] }));
-                    var questionsOpposite = Enumerable.Range(0, 8).Select(i => makeQuestion(Question.BigCircleColors, _BigCircle,
-                        possibleCorrectAnswers: new[] { colorNames[colors[(i + 4) % 8]] },
-                        extraFormatArguments: new[] { "opposite from", colorNames[colors[i]] }));
-                    addQuestions(questionsAdjacent.Concat(questionsOpposite));
+                    addQuestions(solution.Cast<object>().Select((color, ix) => makeQuestion(
+                        Question.BigCircleColors, _BigCircle,
+                        possibleCorrectAnswers: new[] { color.ToString() },
+                        extraFormatArguments: new[] { ordinal(ix + 1) })));
                     break;
                 }
 
@@ -910,55 +883,6 @@ public class SouvenirModule : MonoBehaviour
 
                     _modulesSolved.IncSafe(_ColoredSquares);
                     addQuestion(Question.ColoredSquares, _ColoredSquares, new[] { fldFirstStageColor.Get().ToString() });
-                    break;
-                }
-
-            case _ConnectionCheck:
-                {
-                    var comp = GetComponent(module, "GraphModule");
-                    var fldOn = GetField<int[]>(comp, "On");
-                    var fldCheckButton = GetField<KMSelectable>(comp, "Check", isPublic: true);
-                    var fldDict = GetField<HashSet<Vector2>>(comp, "dict");
-                    var fldQueries = GetField<Vector2[]>(comp, "Queries");
-
-                    if (comp == null || fldOn == null || fldCheckButton == null || fldDict == null || fldQueries == null)
-                        break;
-
-                    while (!_isActivated)
-                        yield return new WaitForSeconds(.1f);
-
-                    var isOn = fldOn.Get();
-                    var checkButton = fldCheckButton.Get();
-                    var dict = fldDict.Get();
-                    var queries = fldQueries.Get();
-                    if (isOn == null || checkButton == null || dict == null || queries == null)
-                        break;
-
-                    if (isOn.Length != 4 || isOn.Any(i => i < 0 || i > 1))
-                    {
-                        Debug.LogFormat("[Souvenir #{1}] Connection Check: Invalid value for ‘on’: [{0}]", isOn.JoinString(", "), _moduleId);
-                        break;
-                    }
-
-                    var initialState = isOn.Select(i => i == 0 ? "R" : "G").JoinString();
-
-                    var prevInteract = checkButton.OnInteract;
-                    var completed = false;
-                    checkButton.OnInteract = delegate
-                    {
-                        bool isSuccess = true;
-                        for (int i = 0; i < 4; i++)
-                            isSuccess &= dict.Contains(queries[i]) == (isOn[i] == 1);
-                        if (isSuccess)
-                            completed = true;
-                        return prevInteract();
-                    };
-
-                    while (!completed)
-                        yield return new WaitForSeconds(.1f);
-
-                    _modulesSolved.IncSafe(_ConnectionCheck);
-                    addQuestion(Question.ConnectionCheckInitial, _ConnectionCheck, new[] { initialState });
                     break;
                 }
 
@@ -1474,28 +1398,6 @@ public class SouvenirModule : MonoBehaviour
                     _modulesSolved.IncSafe(_Listening);
                     addQuestion(Question.Listening, _Listening, new[] { correctCode }, preferredWrongAnswers: attr.ExampleAnswers);
 
-                    break;
-                }
-
-            case _Logic:
-                {
-                    var comp = GetComponent(module, "Logic");
-                    var fldTog = GetField<bool[]>(comp, "tog", isPublic: true);
-                    var fldSolved = GetField<bool>(comp, "_isSolved");
-
-                    if (comp == null || fldTog == null || fldSolved == null)
-                        break;
-
-                    while (!_isActivated)
-                        yield return new WaitForSeconds(.1f);
-
-                    var tog = fldTog.Get().ToArray();
-
-                    while (!fldSolved.Get())
-                        yield return new WaitForSeconds(.1f);
-
-                    _modulesSolved.IncSafe(_Logic);
-                    addQuestion(Question.LogicInitial, _Logic, new[] { tog.Select(val => val ? "true" : "false").JoinString(", ") });
                     break;
                 }
 
@@ -2392,10 +2294,8 @@ public class SouvenirModule : MonoBehaviour
                     }
 
                     _modulesSolved.IncSafe(_TheGamepad);
-                    addQuestions(
-                        makeQuestion(Question.TheGamepadNumbers, _TheGamepad, new[] { string.Format("{0:00}:{1:00}", x, y) },
-                            preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(i => string.Format("{0:00}:{1:00}", Rnd.Range(1, 99), Rnd.Range(1, 99))).Distinct().Take(6).ToArray()),
-                        makeQuestion(Question.TheGamepadMessage, _TheGamepad, new[] { display.GetComponent<TextMesh>().text }));
+                    addQuestions(makeQuestion(Question.TheGamepadNumbers, _TheGamepad, new[] { string.Format("{0:00}:{1:00}", x, y) },
+                        preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(i => string.Format("{0:00}:{1:00}", Rnd.Range(1, 99), Rnd.Range(1, 99))).Distinct().Take(6).ToArray()));
                     digits1.GetComponent<TextMesh>().text = "--";
                     digits2.GetComponent<TextMesh>().text = "--";
                     break;

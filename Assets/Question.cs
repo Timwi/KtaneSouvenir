@@ -11,19 +11,12 @@ namespace Souvenir
         [SouvenirQuestion("What was the cardinal direction in {0}?", "3D Maze", 4, "North", "South", "West", "East")]
         _3DMazeBearing,
 
-        [SouvenirQuestion("What was your {1} before you took the potion in {0}?", "Adventure Game", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13",
-            ExampleExtraFormatArguments = new[] { "strength", "intelligence", "dexterity" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        AdventureGamePotion,
-
         [SouvenirQuestion("Which item was the {1} correct item you used in {0}?", "Adventure Game", 4, "Broadsword", "Caber", "Nasty knife", "Longbow", "Magic orb", "Grimoire", "Balloon", "Battery", "Bellows", "Cheat code", "Crystal ball", "Feather", "Hard drive", "Lamp", "Moonstone", "Potion", "Small dog", "Stepladder", "Sunstone", "Symbol", "Ticket", "Trophy",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         AdventureGameCorrectItem,
 
-        [SouvenirQuestion("What color was {1} {2} in {0}?", "Big Circle", 6, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black",
-            ExampleExtraFormatArguments = new[] {
-                "adjacent to", "Red", "adjacent to", "Orange", "adjacent to", "Yellow", "adjacent to", "Green", "adjacent to", "Blue", "adjacent to", "Magenta", "adjacent to", "White", "adjacent to", "Black",
-                "opposite from", "Red", "opposite from", "Orange", "opposite from", "Yellow", "opposite from", "Green", "opposite from", "Blue", "opposite from", "Magenta", "opposite from", "White", "opposite from", "Black" },
-            ExampleExtraFormatArgumentGroupSize = 2)]
+        [SouvenirQuestion("What color was {1} in the solution to {0}?", "Big Circle", 6, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         BigCircleColors,
 
         [SouvenirQuestion("How many pixels were {1} in the {2} quadrant in {0}?", "Bitmaps", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",
@@ -52,9 +45,6 @@ namespace Souvenir
         [SouvenirQuestion("What was the first color group in {0}?", "Colored Squares", 6, "White", "Red", "Blue", "Green", "Yellow", "Magenta")]
         ColoredSquares,
 
-        [SouvenirQuestion("What were the initial colors on {0} in reading order?", "Connection Check", 6, "RRRR", "RRRG", "RRGR", "RRGG", "RGRR", "RGRG", "RGGR", "RGGG", "GRRR", "GRRG", "GRGR", "GRGG", "GGRR", "GGRG", "GGGR", "GGGG")]
-        ConnectionCheckInitial,
-
         [SouvenirQuestion("What was the solution you selected first in {0}?", "Coordinates", 6, ExampleAnswers = new[] { "[4,7]", "C4", "<0, 2>", "3, 1", "(6,2)", "B-1", "“1, 0”", "4/3", "[12]", "#23", "四十七" })]
         CoordinatesFirstSolution,
 
@@ -63,7 +53,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What were the weather conditions on the {1} day in {0}?", "Creation", 4, "Clear", "Heat Wave", "Meteor Shower", "Rain", "Windy",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
-        Creation,
+        Creation,//
 
         [SouvenirQuestion("What was the initial value displayed on {0}?", "Double-Oh", 6, "60", "15", "57", "36", "83", "48", "71", "24", "88", "46", "31", "70", "22", "64", "55", "13", "74", "27", "53", "41", "18", "86", "30", "62", "52", "10", "43", "85", "37", "61", "28", "76", "33", "65", "78", "21", "56", "12", "44", "87", "47", "81", "26", "68", "14", "72", "50", "35", "38", "42", "84", "63", "20", "75", "17", "51", "25", "73", "67", "16", "58", "34", "82", "40", "11", "54", "80", "32", "77", "45", "23", "66")]
         DoubleOhInitialValue,
@@ -94,9 +84,6 @@ namespace Souvenir
         [SouvenirQuestion("What was the correct code you entered in {0}?", "Listening", 6, null,
             ExampleAnswers = new[] { "&&&**", "&$#$&", "$#$*&", "#$$**", "$#$#*", "**$*#", "#$$&*", "##*$*", "$#*$&", "**#**", "#&&*#", "&#**&", "$&**#", "&#$$#", "$&&**", "#&$##", "&*$*$", "&$$&*", "#&&&&", "**$$$", "*&*&&", "*#&*&", "**###", "&&$&*", "&$**&", "#$#&$", "&#&&#", "$$*$*", "$&#$$", "&**$$", "$&&*&", "&$&##", "#&$*&", "$*$**", "*#$&&", "###&$", "*$$&$", "$*&##", "#&$&&", "$&$$*", "*$*$*" })]
         Listening,
-
-        [SouvenirQuestion("What was the initial state of the buttons on {0} from top to bottom?", "Logic", 4, "false, false", "false, true", "true, false", "true, true")]
-        LogicInitial,
 
         [SouvenirQuestion("Who was a player, but not the Godfather, in {0}?", "Mafia", 6, "Rob", "Tim", "Mary", "Briane", "Hunter", "Macy", "John", "Will", "Lacy", "Claire", "Kenny", "Rick", "Walter", "Bonnie", "Luke", "Ed", "Sarah", "Larry", "Kate", "Stacy", "Diane", "Mac", "Jim", "Ron", "Tommy", "Lenny", "Molly", "Benny", "Phil", "Bob", "Gary", "Ted", "Kim", "Nate", "Cher", "Wally", "Thomas", "Sam", "Duke", "Jack", "Bill", "Ronny", "Terry", "Claira", "Nick", "Cob", "Ash", "Don", "Jerry", "Simon")]
         MafiaPlayers,
@@ -202,12 +189,9 @@ namespace Souvenir
         [SouvenirQuestion("What were the numbers on {0}?", "Gamepad", 6, null, AddThe = true, ExampleAnswers = new[] { "01:03", "12:92", "84:72", "24:56" })]
         TheGamepadNumbers,
 
-        [SouvenirQuestion("What was the congratulatory message on {0}?", "Gamepad", 4, "GOOD JOB!", "CORRECT!", ":)", "=)", ";)", ":D", "=D", ";D", "^_^", AddThe = true)]
-        TheGamepadMessage,
-
         [SouvenirQuestion("What was the {1} query response from {0}?", "Two Bits", 6, "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99",
             ExampleExtraFormatArguments = new[] { "first" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        TwoBitsResponse,
+        TwoBitsResponse,//
     }
 
     [AttributeUsage(AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
