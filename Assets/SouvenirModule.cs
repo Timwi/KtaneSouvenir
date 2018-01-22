@@ -1275,7 +1275,7 @@ public class SouvenirModule : MonoBehaviour
             if (display.Length != 3)
             {
                 Debug.LogFormat(@"[Souvenir #{1}] Abandoning Fast Math because the screen contains something other than three characters: ""{0}"" ({2} characters).", display, _moduleId, display.Length);
-                goto abandon;
+                yield break;
             }
             letters = display[0] + "" + display[2];
             prevLetters.Add(letters);
@@ -1284,13 +1284,11 @@ public class SouvenirModule : MonoBehaviour
         if (letters == null)
         {
             Debug.LogFormat(@"[Souvenir #{0}] Abandoning Fast Math because no letters were extracted before the module was solved.", _moduleId);
-            goto abandon;
+            yield break;
         }
 
         _modulesSolved.IncSafe(_FastMath);
         addQuestion(Question.FastMathLastLetters, _FastMath, new[] { letters }, preferredWrongAnswers: prevLetters.ToArray());
-
-        abandon:;
     }
 
     private IEnumerable<object> ProcessGridLock(KMBombModule module)
