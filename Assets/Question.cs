@@ -25,6 +25,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         BigCircleColors,
 
+        [SouvenirQuestion("At which numeric value did you cut the correct wire in {0}?", "Binary LEDs", 6, null, ExampleAnswers = new[] { "1", "12", "25", "31" })]
+        BinaryLEDsValue,
+
         [SouvenirQuestion("How many pixels were {1} in the {2} quadrant in {0}?", "Bitmaps", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",
             ExampleExtraFormatArguments = new[] { "white", "top left", "white", "top right", "white", "bottom left", "white", "bottom right", "black", "top left", "black", "top right", "black", "bottom left", "black", "bottom right" }, ExampleExtraFormatArgumentGroupSize = 2)]
         Bitmaps,
@@ -36,11 +39,11 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         BrokenButtons,
 
-        [SouvenirQuestion("What was the {1}paid amount in {0}?", "Cheap Checkout", 6, ExampleAnswers = new[] { "$11.00", "$12.00", "$14.00", "$11.00", "$25.00", "$24.00" },
+        [SouvenirQuestion("What was the {1}paid amount in {0}?", "Cheap Checkout", 6, null, ExampleAnswers = new[] { "$11.00", "$12.00", "$14.00", "$11.00", "$25.00", "$24.00" },
             ExampleExtraFormatArguments = new[] { "", "first ", "second " }, ExampleExtraFormatArgumentGroupSize = 1)]
         CheapCheckoutPaid,
 
-        [SouvenirQuestion("¿Qué fue el monto pagado {1}del cliente en {2}?", "Supermercado Salvaje", 6, ExampleAnswers = new[] { "$11.00", "$12.00", "$14.00", "$11.00", "$25.00", "$24.00" },
+        [SouvenirQuestion("¿Qué fue el monto pagado {1}del cliente en {2}?", "Supermercado Salvaje", 6, null, ExampleAnswers = new[] { "$11.00", "$12.00", "$14.00", "$11.00", "$25.00", "$24.00" },
             ExampleExtraFormatArguments = new[] { "", "inicial ", "segundo " }, ExampleExtraFormatArgumentGroupSize = 1)]
         CheapCheckoutPaidSupermercadoSalvaje,
 
@@ -51,7 +54,7 @@ namespace Souvenir
         [SouvenirQuestion("What was the first color group in {0}?", "Colored Squares", 6, "White", "Red", "Blue", "Green", "Yellow", "Magenta")]
         ColoredSquares,
 
-        [SouvenirQuestion("What was the solution you selected first in {0}?", "Coordinates", 6, ExampleAnswers = new[] { "[4,7]", "C4", "<0, 2>", "3, 1", "(6,2)", "B-1", "“1, 0”", "4/3", "[12]", "#23", "四十七" })]
+        [SouvenirQuestion("What was the solution you selected first in {0}?", "Coordinates", 6, null, ExampleAnswers = new[] { "[4,7]", "C4", "<0, 2>", "3, 1", "(6,2)", "B-1", "“1, 0”", "4/3", "[12]", "#23", "四十七" })]
         CoordinatesFirstSolution,
 
         [SouvenirQuestion("What was the grid size in {0}?", "Coordinates", 6, "9", "15", "25", "21", "35", "49", "(9)", "(15)", "(21)", "(25)", "(35)", "(49)", "3 by 3", "4 by 3", "5 by 3", "6 by 3", "7 by 3", "3 by 4", "4 by 4", "5 by 4", "6 by 4", "7 by 4", "3 by 5", "4 by 5", "5 by 5", "6 by 5", "7 by 5", "3 by 6", "4 by 6", "5 by 6", "6 by 6", "7 by 6", "3 by 7", "4 by 7", "5 by 7", "6 by 7", "7 by 7", "9*3", "12*4", "15*5", "18*6", "21*7", "12*3", "16*4", "20*5", "24*6", "28*7", "15*3", "20*4", "25*5", "30*6", "35*7", "18*3", "24*4", "30*5", "36*6", "42*7", "21*3", "28*4", "35*5", "42*6", "49*7", "9 : 3", "12 : 3", "15 : 3", "18 : 3", "21 : 3", "12 : 4", "16 : 4", "20 : 4", "24 : 4", "28 : 4", "15 : 5", "20 : 5", "25 : 5", "30 : 5", "35 : 5", "18 : 6", "24 : 6", "30 : 6", "36 : 6", "42 : 6", "21 : 7", "28 : 7", "35 : 7", "42 : 7", "49 : 7", "3×3", "3×4", "3×5", "3×6", "3×7", "4×3", "4×4", "4×5", "4×6", "4×7", "5×3", "5×4", "5×5", "5×6", "5×7", "6×3", "6×4", "6×5", "6×6", "6×7", "7×3", "7×4", "7×5", "7×6", "7×7")]
@@ -78,6 +81,9 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the color of the pawn in {0}?", "Hexamaze", 6, "Red", "Yellow", "Green", "Cyan", "Blue", "Pink")]
         HexamazePawnColor,
+
+        [SouvenirQuestion("Which of the first three stages of {0} had the {1} symbol {2}?", "Hunting", 4, "none", "first", "second", "first two", "third", "first & third", "second & third", "all three")]
+        HuntingColumnsRows,
 
         [SouvenirQuestion("Which one of these flavours {1} to the {2} customer in {0}?", "Ice Cream", 4, "Tutti Frutti", "Rocky Road", "Raspb. Ripple", "Double Choc.", "Double Str.", "Cookies & Cr.", "Neapolitan", "Mint Ch. Chip", "The Classic", "Vanilla",
             ExampleExtraFormatArguments = new[] { "was on offer, but not sold,", "first", "was not on offer", "first", "was on offer, but not sold,", "second", "was not on offer", "second", "was on offer, but not sold,", "third", "was not on offer", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
@@ -166,7 +172,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonScreamsFlashing,
 
-        [SouvenirQuestion("Which {1} of {0} had {2}?", "Simon Screams", 4, ExampleAnswers = new[] { "first", "second", "third", "first and second", "first and third", "second and third", "all of them" },
+        [SouvenirQuestion("Which {1} of {0} had {2}?", "Simon Screams", 4, null, ExampleAnswers = new[] { "first", "second", "third", "first and second", "first and third", "second and third", "all of them" },
             ExampleExtraFormatArguments = new[] {
                 "stage", "three adjacent colors flashing in clockwise order",
                 "stage", "a color flashing, then an adjacent color, then the first again",
@@ -185,7 +191,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "color(s) flashed", "first", "color(s) didn’t flash", "first", "color(s) flashed", "second", "color(s) didn’t flash", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
         SimonStatesDisplay,
 
-        [SouvenirQuestion("What were the {1}original numbers in {0}?", "Skewed Slots", 6, ExampleAnswers = new[] { "123", "847", "000", "245", "961", "253", "858" },
+        [SouvenirQuestion("What were the {1}original numbers in {0}?", "Skewed Slots", 6, null, ExampleAnswers = new[] { "123", "847", "000", "245", "961", "253", "858" },
             ExampleExtraFormatArguments = new[] { "", "first ", "second ", "third " }, ExampleExtraFormatArgumentGroupSize = 1)]
         SkewedSlotsOriginalNumbers,
 

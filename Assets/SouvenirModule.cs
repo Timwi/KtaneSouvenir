@@ -59,6 +59,7 @@ public class SouvenirModule : MonoBehaviour
     const string _AdventureGame = "spwizAdventureGame";
     const string _Algebra = "algebra";
     const string _BigCircle = "BigCircle";
+    const string _BinaryLEDs = "BinaryLeds";
     const string _Bitmaps = "BitmapsModule";
     const string _Braille = "BrailleModule";
     const string _BrokenButtons = "BrokenButtonsModule";
@@ -72,6 +73,7 @@ public class SouvenirModule : MonoBehaviour
     const string _FastMath = "fastMath";
     const string _GridLock = "GridlockModule";
     const string _Hexamaze = "HexamazeModule";
+    const string _Hunting = "hunting";
     const string _IceCream = "iceCreamModule";
     const string _Listening = "Listening";
     const string _Mafia = "MafiaModule";
@@ -104,6 +106,7 @@ public class SouvenirModule : MonoBehaviour
             { _AdventureGame, ProcessAdventureGame },
             { _Algebra, ProcessAlgebra },
             { _BigCircle, ProcessBigCircle },
+            { _BinaryLEDs, ProcessBinaryLEDs },
             { _Bitmaps, ProcessBitmaps },
             { _Braille, ProcessBraille },
             { _BrokenButtons, ProcessBrokenButtons },
@@ -117,6 +120,7 @@ public class SouvenirModule : MonoBehaviour
             { _FastMath, ProcessFastMath },
             { _GridLock, ProcessGridLock },
             { _Hexamaze, ProcessHexamaze },
+            { _Hunting, ProcessHunting },
             { _IceCream, ProcessIceCream },
             { _Listening, ProcessListening },
             { _Mafia, ProcessMafia },
@@ -890,6 +894,64 @@ public class SouvenirModule : MonoBehaviour
             extraFormatArguments: new[] { ordinal(ix + 1) })));
     }
 
+    private IEnumerable<object> ProcessBinaryLEDs(KMBombModule module)
+    {
+        var comp = GetComponent(module, "BinaryLeds");
+        var fldSequences = GetField<int[,]>(comp, "sequences");
+        var fldSequenceIndex = GetField<int>(comp, "sequenceIndex");
+        var fldWires = GetField<KMSelectable[]>(comp, "wires", isPublic: true);
+        var fldSolved = GetField<bool>(comp, "solved");
+        var fldBlinkDelay = GetField<float>(comp, "blinkDelay");
+        var mthGetIndexFromTime = GetMethod<int>(comp, "GetIndexFromTime", 2);
+
+        if (comp == null || fldSequences == null || fldSequenceIndex == null || fldWires == null || fldSolved == null || fldBlinkDelay == null || mthGetIndexFromTime == null)
+            yield break;
+
+        yield return null;
+
+        int answer = -1;
+        var wires = fldWires.Get();
+        if (wires == null || wires.Length != 3)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Binary LEDs because ‘wires’ array is null or its length is unexpected or one of the values is null ({1}).", _moduleId, wires == null ? "null" : string.Format("[{0}]", wires.Select(w => w == null ? "null" : "not null").JoinString(", ")));
+            yield break;
+        }
+        for (int i = 0; i < wires.Length; i++)
+        {
+            var oldInteract = wires[i].OnInteract;
+            wires[i].OnInteract = delegate
+            {
+                var wasSolved = fldSolved.Get();
+                var result = oldInteract();
+                if (!wasSolved && fldSolved.Get())
+                {
+                    // This wire snip solved the module! Find out which value is displayed
+                    var sequences = fldSequences.Get();
+                    var seqIx = fldSequenceIndex.Get();
+                    var numIx = mthGetIndexFromTime.Invoke(Time.time, fldBlinkDelay.Get());
+
+                    if (sequences == null || sequences.GetLength(0) <= seqIx || sequences.GetLength(1) <= numIx)
+                    {
+                        Debug.LogFormat("[Souvenir #{0}] Abandoning Binary LEDs because ‘sequences’ array has unexpected lengths ({1}, {2}).", _moduleId,
+                            sequences == null ? "null" : sequences.GetLength(0).ToString(),
+                            sequences == null ? "null" : sequences.GetLength(1).ToString());
+                        return result;
+                    }
+
+                    answer = sequences[seqIx, numIx];
+                    return result;
+                }
+                return result;
+            };
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        if (answer != -1)
+            addQuestion(Question.BinaryLEDsValue, _BinaryLEDs, new[] { answer.ToString() }, preferredWrongAnswers: Enumerable.Range(0, 32).Select(i => i.ToString()).ToArray());
+    }
+
     private IEnumerable<object> ProcessBitmaps(KMBombModule module)
     {
         var comp = GetComponent(module, "BitmapsModule");
@@ -925,7 +987,6 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.Bitmaps, _Bitmaps, new[] { (16 - qCounts[1]).ToString() }, new[] { "black", "top right" }, preferredWrongAnswers),
             makeQuestion(Question.Bitmaps, _Bitmaps, new[] { (16 - qCounts[2]).ToString() }, new[] { "black", "bottom left" }, preferredWrongAnswers),
             makeQuestion(Question.Bitmaps, _Bitmaps, new[] { (16 - qCounts[3]).ToString() }, new[] { "black", "bottom right" }, preferredWrongAnswers));
-
     }
 
     private IEnumerable<object> ProcessBraille(KMBombModule module)
@@ -943,7 +1004,6 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Braille);
         addQuestion(Question.BrailleWord, _Braille, new[] { fldWord.Get() });
-
     }
 
     private IEnumerable<object> ProcessBrokenButtons(KMBombModule module)
@@ -966,7 +1026,6 @@ public class SouvenirModule : MonoBehaviour
 
         // skip the literally blank buttons.
         addQuestions(pressed.Select((p, i) => p.Length == 0 ? null : makeQuestion(Question.BrokenButtons, _BrokenButtons, new[] { p }, new[] { ordinal(i + 1) }, pressed.Except(new[] { "" }).ToArray())));
-
     }
 
     private IEnumerable<object> ProcessCheapCheckout(KMBombModule module, bool isSpanish)
@@ -1004,7 +1063,6 @@ public class SouvenirModule : MonoBehaviour
                 extraFormatArguments: new[] { paids.Count == 1 ? "" : ordinal(i + 1) + " " },
                 preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(_ => (decimal) Rnd.Range(5, 50)).Select(amt => "$" + amt.ToString("N2")).Distinct().Take(5).ToArray())));
         }
-
     }
 
     private IEnumerable<object> ProcessChess(KMBombModule module)
@@ -1272,7 +1330,6 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.GridLockStartingLocation, _GridLock, new[] { locations[start] }),
             makeQuestion(Question.GridLockEndingLocation, _GridLock, new[] { locations[solution] }),
             makeQuestion(Question.GridLockStartingColor, _GridLock, new[] { colors[(pages[0][start] >> 4) - 1] }));
-
     }
 
     private IEnumerable<object> ProcessHexamaze(KMBombModule module)
@@ -1297,6 +1354,36 @@ public class SouvenirModule : MonoBehaviour
         addQuestion(Question.HexamazePawnColor, _Hexamaze, new[] { new[] { "Red", "Yellow", "Green", "Cyan", "Blue", "Pink" }[pawnColor] });
     }
 
+    private IEnumerable<object> ProcessHunting(KMBombModule module)
+    {
+        var comp = GetComponent(module, "hunting");
+        var fldStage = GetField<int>(comp, "stage");
+        var fldReverseClues = GetField<bool>(comp, "reverseClues");
+        var fldAcceptingInput = GetField<bool>(comp, "acceptingInput");
+
+        if (comp == null || fldStage == null || fldReverseClues == null || fldAcceptingInput == null)
+            yield break;
+
+        while (!_isActivated)
+            yield return new WaitForSeconds(.1f);
+
+        var hasRowFirst = new bool[4];
+        while (fldStage.Get() < 5)
+        {
+            hasRowFirst[fldStage.Get() - 1] = fldReverseClues.Get();
+            yield return new WaitForSeconds(.1f);
+        }
+
+        _modulesSolved.IncSafe(_Hunting);
+        var qs = new List<QandA>();
+        foreach (var row in new[] { false, true })
+            foreach (var first in new[] { false, true })
+                qs.Add(makeQuestion(Question.HuntingColumnsRows, _Hunting,
+                    possibleCorrectAnswers: new[] { _attributes[Question.HuntingColumnsRows].AllAnswers[(hasRowFirst[0] ^ row ^ first ? 1 : 0) | (hasRowFirst[1] ^ row ^ first ? 2 : 0) | (hasRowFirst[2] ^ row ^ first ? 4 : 0)] },
+                    extraFormatArguments: new[] { row ? "row" : "column", first ? "first" : "second" }));
+        addQuestions(qs);
+    }
+
     private IEnumerable<object> ProcessIceCream(KMBombModule module)
     {
         var comp = GetComponent(module, "IceCreamModule");
@@ -1309,7 +1396,7 @@ public class SouvenirModule : MonoBehaviour
             yield break;
 
         while (!_isActivated)
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(.1f);
 
         var flavourNames = GetAnswers(Question.IceCreamFlavour);
         var customerNames = GetAnswers(Question.IceCreamCustomer);
@@ -1321,7 +1408,7 @@ public class SouvenirModule : MonoBehaviour
         for (var i = 0; i < 3; i++)
         {
             while (fldCurrentStage.Get() == i)
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(.1f);
 
             var options = fldFlavourOptions.Get();
             var sol = fldSolution.Get();
@@ -1350,7 +1437,6 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestions(questions);
-
     }
 
     private IEnumerable<object> ProcessListening(KMBombModule module)
@@ -1432,7 +1518,6 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_Listening);
         addQuestion(Question.Listening, _Listening, new[] { correctCode }, preferredWrongAnswers: attr.ExampleAnswers);
-
     }
 
     private IEnumerable<object> ProcessMafia(KMBombModule module)
@@ -1459,7 +1544,6 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_Mafia);
         addQuestion(Question.MafiaPlayers, _Mafia, suspects.Cast<object>().Select(obj => obj.ToString()).Except(new[] { godfather.ToString() }).ToArray());
-
     }
 
     private IEnumerable<object> ProcessMonsplodeFight(KMBombModule module)
@@ -1599,7 +1683,6 @@ public class SouvenirModule : MonoBehaviour
                 qs.Add(makeQuestion(Question.MonsplodeFightMove, _MonsplodeFight, attr.AllAnswers.Except(displayedMoves[i]).ToArray(), new[] { "was not", ord }, allDisplayedMoves));
         }
         addQuestions(qs);
-
     }
 
     private IEnumerable<object> ProcessMorseAMaze(KMBombModule module)
@@ -1721,7 +1804,6 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(
             makeQuestion(Question.MouseInTheMazeSphere, _MouseInTheMaze, new[] { new[] { "white", "green", "blue", "yellow" }[goalColor] }),
             makeQuestion(Question.MouseInTheMazeTorus, _MouseInTheMaze, new[] { new[] { "white", "green", "blue", "yellow" }[torusColor] }));
-
     }
 
     private IEnumerable<object> ProcessMurder(KMBombModule module)
@@ -1787,7 +1869,6 @@ public class SouvenirModule : MonoBehaviour
                 new[] { "not a potential weapon" }),
 
             bodyFound == actualRoom ? null : makeQuestion(Question.MurderBodyFound, _Murder, new[] { names[2, bodyFound] }));
-
     }
 
     private IEnumerable<object> ProcessNeutralization(KMBombModule module)
@@ -1944,7 +2025,6 @@ public class SouvenirModule : MonoBehaviour
             new[] { theory[entered[i]] },
             extraFormatArguments: new[] { ordinal(i + 1) },
             preferredWrongAnswers: entered.Select(e => theory[e]).ToArray())));
-
     }
 
     private IEnumerable<object> ProcessSeaShells(KMBombModule module)
@@ -2049,7 +2129,6 @@ public class SouvenirModule : MonoBehaviour
                 qs.Add(makeQuestion(Question.SillySlots, _SillySlots, new[] { slotStrings[slot] }, new[] { ordinal(slot + 1), ordinal(stage + 1) }, slotStrings));
         }
         addQuestions(qs);
-
     }
 
     private IEnumerable<object> ProcessSimonScreams(KMBombModule module)
@@ -2193,7 +2272,6 @@ public class SouvenirModule : MonoBehaviour
                     new[] { "color(s) didn’t flash", ordinal(i + 1) }));
         }
         addQuestions(qs);
-
     }
 
     private IEnumerable<object> ProcessSkewedSlots(KMBombModule module)
