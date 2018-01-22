@@ -2292,12 +2292,12 @@ public class SouvenirModule : MonoBehaviour
                 yield return new WaitForSeconds(.1f);
 
             if (fldSolved.Get())
-                yield break;
+                break;
 
             // Get the current original digits.
             var numbers = fldNumbers.Get();
             if (numbers == null)
-                break;
+                yield break;
             if (numbers.Length != 3 || numbers.Any(n => n < 0 || n > 9))
             {
                 Debug.LogFormat("[Souvenir #{0}] Abandoning Skewed Slots because numbers has unexpected length (3) or a number outside expected range (0–9): [{1}].", _moduleId, numbers.JoinString(", "));
