@@ -1209,7 +1209,7 @@ public class SouvenirModule : MonoBehaviour
                 yield return new WaitForSeconds(0.1f);
 
             if (fldSolved.Get())
-                yield break;
+                break;
 
             if (fldDay.Get() <= currentDay)
                 allWeather.Clear();
