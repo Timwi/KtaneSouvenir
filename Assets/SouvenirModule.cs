@@ -1032,31 +1032,6 @@ public class SouvenirModule : MonoBehaviour
                     break;
                 }
 
-            case _DoubleOh:
-                {
-                    var comp = GetComponent(module, "DoubleOhModule");
-                    var fldFunctions = GetField<Array>(comp, "_functions");
-                    var fldIsSolved = GetField<bool>(comp, "_isSolved");
-
-                    if (comp == null || fldFunctions == null || fldIsSolved == null)
-                        break;
-
-                    while (!fldIsSolved.Get())
-                        yield return new WaitForSeconds(.1f);
-
-                    var functions = fldFunctions.Get();
-                    var submitIndex = functions.Cast<object>().IndexOf(f => f.ToString() == "Submit");
-                    if (submitIndex < 0 || submitIndex > 4)
-                    {
-                        Debug.LogFormat(@"[Souvenir #{0}] Double-Oh: submit button is at index {1}?", _moduleId, submitIndex);
-                        break;
-                    }
-
-                    _modulesSolved.IncSafe(_DoubleOh);
-                    addQuestion(Question.DoubleOhSubmitButton, _DoubleOh, new[] { "↕↔⇔⇕◆".Substring(submitIndex, 1) });
-                    break;
-                }
-
             case _Braille:
                 {
                     var comp = GetComponent(module, "BrailleModule");
@@ -1169,6 +1144,31 @@ public class SouvenirModule : MonoBehaviour
                     _modulesSolved.IncSafe(_Chess);
 
                     addQuestions(Enumerable.Range(0, 6).Select(i => makeQuestion(Question.ChessCoordinate, _Chess, new[] { indexSelected[i] }, new[] { ordinal(i + 1) })));
+                    break;
+                }
+
+            case _DoubleOh:
+                {
+                    var comp = GetComponent(module, "DoubleOhModule");
+                    var fldFunctions = GetField<Array>(comp, "_functions");
+                    var fldIsSolved = GetField<bool>(comp, "_isSolved");
+
+                    if (comp == null || fldFunctions == null || fldIsSolved == null)
+                        break;
+
+                    while (!fldIsSolved.Get())
+                        yield return new WaitForSeconds(.1f);
+
+                    var functions = fldFunctions.Get();
+                    var submitIndex = functions.Cast<object>().IndexOf(f => f.ToString() == "Submit");
+                    if (submitIndex < 0 || submitIndex > 4)
+                    {
+                        Debug.LogFormat(@"[Souvenir #{0}] Double-Oh: submit button is at index {1}?", _moduleId, submitIndex);
+                        break;
+                    }
+
+                    _modulesSolved.IncSafe(_DoubleOh);
+                    addQuestion(Question.DoubleOhSubmitButton, _DoubleOh, new[] { "↕↔⇔⇕◆".Substring(submitIndex, 1) });
                     break;
                 }
 
