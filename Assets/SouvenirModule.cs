@@ -57,6 +57,7 @@ public class SouvenirModule : MonoBehaviour
 
     const string _3DMaze = "spwiz3DMaze";
     const string _AdventureGame = "spwizAdventureGame";
+    const string _Algebra = "algebra";
     const string _BigCircle = "BigCircle";
     const string _Bitmaps = "BitmapsModule";
     const string _Braille = "BrailleModule";
@@ -799,6 +800,31 @@ public class SouvenirModule : MonoBehaviour
                     break;
                 }
 
+            case _Algebra:
+                {
+                    var comp = GetComponent(module, "algebraScript");
+                    var fldEquations = Enumerable.Range(1, 3).Select(i => GetField<Texture>(comp, string.Format("level{0}Equation", i))).ToArray();
+                    var fldStage = GetField<int>(comp, "stage");
+
+                    if (comp == null || fldEquations.Any(f => f == null))
+                        break;
+
+                    while (fldStage.Get() <= 3)
+                        yield return new WaitForSeconds(.1f);
+
+                    _modulesSolved.IncSafe(_Algebra);
+
+                    var textures = fldEquations.Select(f => f.Get());
+                    if (textures.Any(t => t == null))
+                    {
+                        Debug.LogFormat("[Souvenir #{0}] Algebra: texture #{1} is null.", _moduleId, textures.IndexOf(t => t == null) + 1);
+                        break;
+                    }
+
+                    addQuestions(textures.Take(2).Select((t, ix) => makeQuestion(ix == 0 ? Question.AlgebraEquation1 : Question.AlgebraEquation2, _Algebra, new[] { t.name.Replace(';', '/') })));
+                    break;
+                }
+
             case _BigCircle:
                 {
                     var comp = GetComponent(module, "TheBigCircle");
@@ -809,7 +835,7 @@ public class SouvenirModule : MonoBehaviour
                         break;
 
                     while (!fldSolved.Get())
-                        yield return new WaitForSeconds(0.1f);
+                        yield return new WaitForSeconds(.1f);
 
                     var solution = fldSolution.Get();
                     if (solution == null || solution.Length != 3)
@@ -1009,37 +1035,25 @@ public class SouvenirModule : MonoBehaviour
             case _DoubleOh:
                 {
                     var comp = GetComponent(module, "DoubleOhModule");
-
-                    var fldGrid = GetField<int[]>(comp, "_grid");
-                    var fldCurPos = GetField<int>(comp, "_curPos");
+                    var fldFunctions = GetField<Array>(comp, "_functions");
                     var fldIsSolved = GetField<bool>(comp, "_isSolved");
 
-                    if (comp == null || fldGrid == null || fldCurPos == null || fldIsSolved == null)
+                    if (comp == null || fldFunctions == null || fldIsSolved == null)
                         break;
 
-                    yield return null;
-
-                    var grid = fldGrid.Get();
-                    var curPos = fldCurPos.Get();
-                    if (grid == null)
-                        break;
-                    if (curPos < 0 || curPos >= 81)
-                    {
-                        Debug.LogFormat(@"[Souvenir #{0}] Double-Oh: invalid start position {1}.", _moduleId, curPos);
-                        break;
-                    }
-                    if (grid.Length != 81 || grid[40] != 0)
-                    {
-                        Debug.LogFormat(@"[Souvenir #{0}] Double-Oh: grid has unexpected length ({1} instead of 81) or unexpected value at 40 ({2} instead of 0).", _moduleId, grid.Length, grid.Length != 81 ? "-" : grid[40].ToString());
-                        break;
-                    }
-
-                    var value = grid[curPos];
                     while (!fldIsSolved.Get())
                         yield return new WaitForSeconds(.1f);
 
+                    var functions = fldFunctions.Get();
+                    var submitIndex = functions.Cast<object>().IndexOf(f => f.ToString() == "Submit");
+                    if (submitIndex < 0 || submitIndex > 4)
+                    {
+                        Debug.LogFormat(@"[Souvenir #{0}] Double-Oh: submit button is at index {1}?", _moduleId, submitIndex);
+                        break;
+                    }
+
                     _modulesSolved.IncSafe(_DoubleOh);
-                    addQuestion(Question.DoubleOhInitialValue, _DoubleOh, new[] { value.ToString() });
+                    addQuestion(Question.DoubleOhSubmitButton, _DoubleOh, new[] { "↕↔⇔⇕◆".Substring(submitIndex, 1) });
                     break;
                 }
 
