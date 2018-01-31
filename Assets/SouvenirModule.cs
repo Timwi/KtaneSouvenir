@@ -93,7 +93,9 @@ public class SouvenirModule : MonoBehaviour
     const string _SkewedSlots = "SkewedSlotsModule";
     const string _TheBulb = "TheBulbModule";
     const string _TheGamepad = "TheGamepadModule";
+    const string _TicTacToe = "TicTacToeModule";
     const string _TwoBits = "TwoBits";
+    const string _Yahtzee = "YahtzeeModule";
 
     void Start()
     {
@@ -140,7 +142,9 @@ public class SouvenirModule : MonoBehaviour
             { _SkewedSlots, ProcessSkewedSlots },
             { _TheBulb, ProcessTheBulb },
             { _TheGamepad, ProcessTheGamepad },
-            { _TwoBits, ProcessTwoBits }
+            { _TicTacToe, ProcessTicTacToe },
+            { _TwoBits, ProcessTwoBits },
+            { _Yahtzee, ProcessYahtzee }
         };
 
         Debug.LogFormat("[Souvenir #{0}] Started.", _moduleId);
@@ -1110,7 +1114,7 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
 
         _modulesSolved.IncSafe(_ColoredSquares);
-        addQuestion(Question.ColoredSquares, _ColoredSquares, new[] { fldFirstStageColor.Get().ToString() });
+        addQuestion(Question.ColoredSquaresFirstGroup, _ColoredSquares, new[] { fldFirstStageColor.Get().ToString() });
     }
 
     private IEnumerable<object> ProcessCoordinates(KMBombModule module)
@@ -2392,6 +2396,45 @@ public class SouvenirModule : MonoBehaviour
         digits2.GetComponent<TextMesh>().text = "--";
     }
 
+    private IEnumerable<object> ProcessTicTacToe(KMBombModule module)
+    {
+        var comp = GetComponent(module, "TicTacToeModule");
+        var fldKeypadButtons = GetField<KMSelectable[]>(comp, "KeypadButtons", isPublic: true);
+        var fldKeypadPhysical = GetField<KMSelectable[]>(comp, "_keypadButtonsPhysical");
+        var fldPlacedX = GetField<bool?[]>(comp, "_placedX");
+        var fldIsInitialized = GetField<bool>(comp, "_isInitialized");
+        var fldIsSolved = GetField<bool>(comp, "_isSolved");
+
+        if (comp == null || fldKeypadButtons == null || fldKeypadPhysical == null || fldPlacedX == null || fldIsInitialized == null || fldIsSolved == null)
+            yield break;
+
+        while (!fldIsInitialized.Get())
+            yield return new WaitForSeconds(.1f);
+
+        var keypadButtons = fldKeypadButtons.Get();
+        var keypadPhysical = fldKeypadPhysical.Get();
+        var placedX = fldPlacedX.Get();
+        if (keypadButtons == null || keypadPhysical == null || placedX == null)
+            yield break;
+        if (keypadButtons.Length != 9 || keypadPhysical.Length != 9 || placedX.Length != 9)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Tic-Tac-Toe because one of the arrays has an unexpected length (expected 9): {1}, {2}, {3}.", _moduleId, keypadButtons.Length, keypadPhysical.Length, placedX.Length);
+            yield break;
+        }
+
+        // Take a copy of the placedX array because it changes
+        placedX = placedX.ToArray();
+
+        while (!fldIsSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_TicTacToe);
+
+        var buttonNames = new[] { "top-left", "top-middle", "top-right", "middle-left", "middle-center", "middle-right", "bottom-left", "bottom-middle", "bottom-right" };
+        addQuestions(Enumerable.Range(0, 9).Select(ix => makeQuestion(Question.TicTacToeInitialState, _TicTacToe,
+            possibleCorrectAnswers: new[] { placedX[ix] == null ? (ix + 1).ToString() : placedX[ix].Value ? "X" : "O" },
+            extraFormatArguments: new[] { buttonNames[Array.IndexOf(keypadPhysical, keypadButtons[ix])] })));
+    }
+
     private IEnumerable<object> ProcessTwoBits(KMBombModule module)
     {
         var comp = GetComponent(module, "TwoBitsModule");
@@ -2434,6 +2477,59 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestions(qs);
+    }
+
+    private IEnumerable<object> ProcessYahtzee(KMBombModule module)
+    {
+        var comp = GetComponent(module, "YahtzeeModule");
+        var fldDiceValues = GetField<int[]>(comp, "_diceValues");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+
+        if (comp == null || fldDiceValues == null || fldSolved == null)
+            yield break;
+
+        // Make sure that Yahtzee’s Start method ran, which assigns _diceValues
+        yield return null;
+
+        // This array only changes its contents, it’s never reassigned, so we only need to get it once
+        var diceValues = fldDiceValues.Get();
+
+        while (diceValues.Any(v => v == 0))
+            yield return new WaitForSeconds(.1f);
+
+        string result;
+
+        // Capture the first roll
+        if (Enumerable.Range(1, 6).Any(i => diceValues.Count(val => val == i) == 4))
+            result = "Yahtzee";
+        else if (diceValues.Contains(2) && diceValues.Contains(3) && diceValues.Contains(4) && diceValues.Contains(5) && (diceValues.Contains(1) || diceValues.Contains(6)))
+            result = "large straight";
+        else if (diceValues.Contains(3) && diceValues.Contains(4) && (
+            (diceValues.Contains(1) && diceValues.Contains(2)) ||
+            (diceValues.Contains(2) && diceValues.Contains(5)) ||
+            (diceValues.Contains(5) && diceValues.Contains(6))))
+            result = "small straight";
+        else if (Enumerable.Range(1, 6).Any(i => diceValues.Count(val => val == i) == 4))
+            result = "four of a kind";
+        else if (Enumerable.Range(1, 6).Any(i => diceValues.Count(val => val == i) == 3) && Enumerable.Range(1, 6).Any(i => diceValues.Count(val => val == i) == 2))
+            result = "full house";
+        else if (Enumerable.Range(1, 6).Any(i => diceValues.Count(val => val == i) == 3))
+            result = "three of a kind";
+        else if (Enumerable.Range(1, 6).Count(i => diceValues.Count(val => val == i) == 2) == 2)
+            result = "two pairs";
+        else if (Enumerable.Range(1, 6).Any(i => diceValues.Count(val => val == i) == 2))
+            result = "pair";
+        else
+        {
+            Debug.LogFormat("[Souvenir #{2}] Yahtzee: not asking a question because the first roll was nothing.", _moduleId);
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_Yahtzee);
+        addQuestion(Question.YahtzeeInitialRoll, _Yahtzee, new[] { result });
     }
 
     private void addQuestion(Question question, string moduleKey, string[] possibleCorrectAnswers, string[] extraFormatArguments = null, string[] preferredWrongAnswers = null)
