@@ -2603,7 +2603,13 @@ public class SouvenirModule : MonoBehaviour
         var correctIndex = Rnd.Range(0, Math.Min(attr.NumAnswers, answers.Count + 1));
         answers.Insert(correctIndex, possibleCorrectAnswers[Rnd.Range(0, possibleCorrectAnswers.Length)]);
 
-        var formatArguments = new List<string> { _moduleCounts.Get(moduleKey) > 1 ? string.Format("the {0} you solved {1}", attr.ModuleName, ordinal(_modulesSolved.Get(moduleKey))) : attr.AddThe ? "The\u00a0" + attr.ModuleName : attr.ModuleName };
+        var numSolved = _modulesSolved.Get(moduleKey);
+        if (numSolved < 1)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning {1} ({2}) because you forgot to increment the solve count.", _moduleId, attr.ModuleName, moduleKey);
+            return null;
+        }
+        var formatArguments = new List<string> { _moduleCounts.Get(moduleKey) > 1 ? string.Format("the {0} you solved {1}", attr.ModuleName, ordinal(numSolved)) : attr.AddThe ? "The\u00a0" + attr.ModuleName : attr.ModuleName };
         if (extraFormatArguments != null)
             formatArguments.AddRange(extraFormatArguments);
 
