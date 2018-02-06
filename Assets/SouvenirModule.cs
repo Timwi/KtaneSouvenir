@@ -951,6 +951,7 @@ public class SouvenirModule : MonoBehaviour
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_BinaryLEDs);
 
         if (answer != -1)
             addQuestion(Question.BinaryLEDsValue, _BinaryLEDs, new[] { answer.ToString() }, preferredWrongAnswers: Enumerable.Range(0, 32).Select(i => i.ToString()).ToArray());
