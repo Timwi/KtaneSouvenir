@@ -149,7 +149,13 @@ public class SouvenirModule : MonoBehaviour
 
         Debug.LogFormat("[Souvenir #{0}] Started.", _moduleId);
         Bomb.OnBombExploded += delegate { _exploded = true; StopAllCoroutines(); };
-        Bomb.OnBombSolved += delegate { if(Bomb.GetSolvableModuleNames().Count == Bomb.GetSolvedModuleNames().Count) StopAllCoroutines(); };
+        Bomb.OnBombSolved += delegate
+        {
+            // This delegate gets invoked when _any_ bomb in the room is solved,
+            // so we need to check if the bomb this module is on is actually solved
+            if (Bomb.GetSolvedModuleNames().Count == Bomb.GetSolvableModuleNames().Count)
+                StopAllCoroutines();
+        };
 
         _attributes = typeof(Question).GetFields(BindingFlags.Public | BindingFlags.Static)
             .Select(f => Ut.KeyValuePair((Question) f.GetValue(null), f.GetCustomAttribute<SouvenirQuestionAttribute>()))
