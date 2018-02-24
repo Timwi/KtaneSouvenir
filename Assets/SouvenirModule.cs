@@ -149,7 +149,7 @@ public class SouvenirModule : MonoBehaviour
 
         Debug.LogFormat("[Souvenir #{0}] Started.", _moduleId);
         Bomb.OnBombExploded += delegate { _exploded = true; StopAllCoroutines(); };
-        Bomb.OnBombSolved += delegate { StopAllCoroutines(); };
+        Bomb.OnBombSolved += delegate { if(Bomb.GetSolvableModuleNames().Count == Bomb.GetSolvedModuleNames().Count) StopAllCoroutines(); };
 
         _attributes = typeof(Question).GetFields(BindingFlags.Public | BindingFlags.Static)
             .Select(f => Ut.KeyValuePair((Question) f.GetValue(null), f.GetCustomAttribute<SouvenirQuestionAttribute>()))
@@ -218,6 +218,20 @@ public class SouvenirModule : MonoBehaviour
             "The first rule of defusal is, you keep talking about defusal."
         ).PickRandom(), 1.75);
 
+        if (transform.parent != null)
+        {
+            if (_isTimwisComputer)
+                lock (_timwiPath)
+                    File.WriteAllText(_timwiPath, "");
+
+            for (int i = 0; i < transform.parent.childCount; i++)
+            {
+                var module = transform.parent.GetChild(i).gameObject.GetComponent<KMBombModule>();
+                if (module != null)
+                    StartCoroutine(ProcessModule(module));
+            }
+        }
+
         _isActivated = false;
         Module.OnActivate += delegate
         {
@@ -280,20 +294,6 @@ public class SouvenirModule : MonoBehaviour
             }
             else
             {
-                if (transform.parent != null)
-                {
-                    if (_isTimwisComputer)
-                        lock (_timwiPath)
-                            File.WriteAllText(_timwiPath, "");
-
-                    for (int i = 0; i < transform.parent.childCount; i++)
-                    {
-                        var module = transform.parent.GetChild(i).gameObject.GetComponent<KMBombModule>();
-                        if (module != null)
-                            StartCoroutine(ProcessModule(module));
-                    }
-                }
-
                 // Playing for real
                 for (int i = 0; i < 6; i++)
                     setAnswerHandler(i, HandleAnswer);
