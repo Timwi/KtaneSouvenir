@@ -156,20 +156,6 @@ public class SouvenirModule : MonoBehaviour
             .Where(kvp => kvp.Value != null)
             .ToDictionary();
 
-        if (transform.parent != null)
-        {
-            if (_isTimwisComputer)
-                lock (_timwiPath)
-                    File.WriteAllText(_timwiPath, "");
-
-            for (int i = 0; i < transform.parent.childCount; i++)
-            {
-                var module = transform.parent.GetChild(i).gameObject.GetComponent<KMBombModule>();
-                if (module != null)
-                    StartCoroutine(ProcessModule(module));
-            }
-        }
-
         var origRotation = SurfaceRenderer.transform.rotation;
         SurfaceRenderer.transform.eulerAngles = new Vector3(0, 180, 0);
         _surfaceSizeFactor = SurfaceRenderer.bounds.size.x / (2 * .834) * .9;
@@ -294,6 +280,20 @@ public class SouvenirModule : MonoBehaviour
             }
             else
             {
+                if (transform.parent != null)
+                {
+                    if (_isTimwisComputer)
+                        lock (_timwiPath)
+                            File.WriteAllText(_timwiPath, "");
+
+                    for (int i = 0; i < transform.parent.childCount; i++)
+                    {
+                        var module = transform.parent.GetChild(i).gameObject.GetComponent<KMBombModule>();
+                        if (module != null)
+                            StartCoroutine(ProcessModule(module));
+                    }
+                }
+
                 // Playing for real
                 for (int i = 0; i < 6; i++)
                     setAnswerHandler(i, HandleAnswer);
@@ -911,13 +911,15 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "BinaryLeds");
         var fldSequences = GetField<int[,]>(comp, "sequences");
         var fldSequenceIndex = GetField<int>(comp, "sequenceIndex");
+        var fldColors = GetField<int[]>(comp, "colorIndices");
+        var fldSolutions = GetField<int[,]>(comp, "solutions");
         var fldWires = GetField<KMSelectable[]>(comp, "wires", isPublic: true);
         var fldCutWires = GetField<int>(comp, "cutWires");
         var fldSolved = GetField<bool>(comp, "solved");
         var fldBlinkDelay = GetField<float>(comp, "blinkDelay");
         var mthGetIndexFromTime = GetMethod<int>(comp, "GetIndexFromTime", 2);
 
-        if (comp == null || fldSequences == null || fldSequenceIndex == null || fldWires == null || fldCutWires == null || fldSolved == null || fldBlinkDelay == null || mthGetIndexFromTime == null)
+        if (comp == null || fldSequences == null || fldSequenceIndex == null || fldColors == null || fldSolutions == null || fldWires == null || fldCutWires == null || fldSolved == null || fldBlinkDelay == null || mthGetIndexFromTime == null)
             yield break;
 
         yield return null;
@@ -932,18 +934,37 @@ public class SouvenirModule : MonoBehaviour
         for (int i = 0; i < wires.Length; i++)
         {
             var oldInteract = wires[i].OnInteract;
+            var j = i;
             wires[i].OnInteract = delegate
             {
+                wires[j].OnInteract = oldInteract;  //Restore original Interaction, so that this can only ever be called once per wire.
                 var wasSolved = fldSolved.Get();
+                var seqIx = fldSequenceIndex.Get();
+                var numIx = mthGetIndexFromTime.Invoke(Time.time, fldBlinkDelay.Get());
+                var colors = fldColors.Get();
+                var solutions = fldSolutions.Get();
                 var result = oldInteract();
 
+                if (colors == null || colors.GetLength(0) <= j)
+                {
+                    Debug.LogFormat("[Souvenir #{0}] Abandoning Binary LEDs because ‘colors’ array has unexpected length ({1}).", _moduleId,
+                        colors == null ? "null" : colors.GetLength(0).ToString());
+                    return result;
+                }
+
+                if (solutions == null || solutions.GetLength(0) <= seqIx || solutions.GetLength(1) <= colors[j])
+                {
+                    Debug.LogFormat("[Souvenir #{0}] Abandoning Binary LEDs because ‘solutions’ array has unexpected length ({1}, {2}).", _moduleId,
+                        solutions == null ? "null" : solutions.GetLength(0).ToString(),
+                        solutions == null ? "null" : solutions.GetLength(1).ToString());
+                    return result;
+                }
+
                 // Check if this wire snip solved the module, but it wasn’t the third (in which case the snip /may/ have been incorrect and the player was simply granted the courtesy solve after three wrong wires)
-                if (!wasSolved && fldSolved.Get() && fldCutWires.Get() < 3)
+                if (!wasSolved && solutions[seqIx, colors[j]] == numIx)
                 {
                     // Find out which value is displayed
                     var sequences = fldSequences.Get();
-                    var seqIx = fldSequenceIndex.Get();
-                    var numIx = mthGetIndexFromTime.Invoke(Time.time, fldBlinkDelay.Get());
 
                     if (sequences == null || sequences.GetLength(0) <= seqIx || sequences.GetLength(1) <= numIx)
                     {
@@ -962,10 +983,10 @@ public class SouvenirModule : MonoBehaviour
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_BinaryLEDs);
 
-        if (answer != -1)
-            addQuestion(Question.BinaryLEDsValue, _BinaryLEDs, new[] { answer.ToString() }, preferredWrongAnswers: Enumerable.Range(0, 32).Select(i => i.ToString()).ToArray());
+        if (answer == -1) yield break;
+        _modulesSolved.IncSafe(_BinaryLEDs);
+        addQuestion(Question.BinaryLEDsValue, _BinaryLEDs, new[] { answer.ToString() }, preferredWrongAnswers: Enumerable.Range(0, 32).Select(i => i.ToString()).ToArray());
     }
 
     private IEnumerable<object> ProcessBitmaps(KMBombModule module)
