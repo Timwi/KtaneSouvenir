@@ -914,12 +914,11 @@ public class SouvenirModule : MonoBehaviour
         var fldColors = GetField<int[]>(comp, "colorIndices");
         var fldSolutions = GetField<int[,]>(comp, "solutions");
         var fldWires = GetField<KMSelectable[]>(comp, "wires", isPublic: true);
-        var fldCutWires = GetField<int>(comp, "cutWires");
         var fldSolved = GetField<bool>(comp, "solved");
         var fldBlinkDelay = GetField<float>(comp, "blinkDelay");
         var mthGetIndexFromTime = GetMethod<int>(comp, "GetIndexFromTime", 2);
 
-        if (comp == null || fldSequences == null || fldSequenceIndex == null || fldColors == null || fldSolutions == null || fldWires == null || fldCutWires == null || fldSolved == null || fldBlinkDelay == null || mthGetIndexFromTime == null)
+        if (comp == null || fldSequences == null || fldSequenceIndex == null || fldColors == null || fldSolutions == null || fldWires == null || fldSolved == null || fldBlinkDelay == null || mthGetIndexFromTime == null)
             yield break;
 
         yield return null;
@@ -931,38 +930,44 @@ public class SouvenirModule : MonoBehaviour
             Debug.LogFormat("[Souvenir #{0}] Abandoning Binary LEDs because ‘wires’ array is null or its length is unexpected or one of the values is null ({1}).", _moduleId, wires == null ? "null" : string.Format("[{0}]", wires.Select(w => w == null ? "null" : "not null").JoinString(", ")));
             yield break;
         }
+
         for (int i = 0; i < wires.Length; i++)
         {
-            var oldInteract = wires[i].OnInteract;
-            var j = i;
-            wires[i].OnInteract = delegate
+            // Need an extra scope to work around bug in Mono 2.0 C# compiler
+            new Action<int, KMSelectable.OnInteractHandler>((j, oldInteract) =>
             {
-                wires[j].OnInteract = oldInteract;  //Restore original Interaction, so that this can only ever be called once per wire.
-                var wasSolved = fldSolved.Get();
-                var seqIx = fldSequenceIndex.Get();
-                var numIx = mthGetIndexFromTime.Invoke(Time.time, fldBlinkDelay.Get());
-                var colors = fldColors.Get();
-                var solutions = fldSolutions.Get();
-                var result = oldInteract();
-
-                if (colors == null || colors.GetLength(0) <= j)
+                wires[j].OnInteract = delegate
                 {
-                    Debug.LogFormat("[Souvenir #{0}] Abandoning Binary LEDs because ‘colors’ array has unexpected length ({1}).", _moduleId,
-                        colors == null ? "null" : colors.GetLength(0).ToString());
-                    return result;
-                }
+                    wires[j].OnInteract = oldInteract;  // Restore original interaction, so that this can only ever be called once per wire.
+                    var wasSolved = fldSolved.Get();    // Get this before calling oldInteract()
+                    var seqIx = fldSequenceIndex.Get();
+                    var numIx = mthGetIndexFromTime.Invoke(Time.time, fldBlinkDelay.Get());
+                    var colors = fldColors.Get();
+                    var solutions = fldSolutions.Get();
+                    var result = oldInteract();
 
-                if (solutions == null || solutions.GetLength(0) <= seqIx || solutions.GetLength(1) <= colors[j])
-                {
-                    Debug.LogFormat("[Souvenir #{0}] Abandoning Binary LEDs because ‘solutions’ array has unexpected length ({1}, {2}).", _moduleId,
-                        solutions == null ? "null" : solutions.GetLength(0).ToString(),
-                        solutions == null ? "null" : solutions.GetLength(1).ToString());
-                    return result;
-                }
+                    if (wasSolved)
+                        return result;
 
-                // Check if this wire snip solved the module, but it wasn’t the third (in which case the snip /may/ have been incorrect and the player was simply granted the courtesy solve after three wrong wires)
-                if (!wasSolved && solutions[seqIx, colors[j]] == numIx)
-                {
+                    if (colors == null || colors.Length <= j)
+                    {
+                        Debug.LogFormat("[Souvenir #{0}] Abandoning Binary LEDs because ‘colors’ array has unexpected length ({1}).", _moduleId,
+                            colors == null ? "null" : colors.Length.ToString());
+                        return result;
+                    }
+
+                    if (solutions == null || solutions.GetLength(0) <= seqIx || solutions.GetLength(1) <= colors[j])
+                    {
+                        Debug.LogFormat("[Souvenir #{0}] Abandoning Binary LEDs because ‘solutions’ array has unexpected lengths ({1}, {2}).", _moduleId,
+                            solutions == null ? "null" : solutions.GetLength(0).ToString(),
+                            solutions == null ? "null" : solutions.GetLength(1).ToString());
+                        return result;
+                    }
+
+                    // Ignore if this wasn’t a solve
+                    if (solutions[seqIx, colors[j]] != numIx)
+                        return result;
+
                     // Find out which value is displayed
                     var sequences = fldSequences.Get();
 
@@ -976,17 +981,16 @@ public class SouvenirModule : MonoBehaviour
 
                     answer = sequences[seqIx, numIx];
                     return result;
-                }
-                return result;
-            };
+                };
+            })(i, wires[i].OnInteract);
         }
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
-
-        if (answer == -1) yield break;
         _modulesSolved.IncSafe(_BinaryLEDs);
-        addQuestion(Question.BinaryLEDsValue, _BinaryLEDs, new[] { answer.ToString() }, preferredWrongAnswers: Enumerable.Range(0, 32).Select(i => i.ToString()).ToArray());
+
+        if (answer != -1)
+            addQuestion(Question.BinaryLEDsValue, _BinaryLEDs, new[] { answer.ToString() }, preferredWrongAnswers: Enumerable.Range(0, 32).Select(i => i.ToString()).ToArray());
     }
 
     private IEnumerable<object> ProcessBitmaps(KMBombModule module)
