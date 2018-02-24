@@ -912,11 +912,12 @@ public class SouvenirModule : MonoBehaviour
         var fldSequences = GetField<int[,]>(comp, "sequences");
         var fldSequenceIndex = GetField<int>(comp, "sequenceIndex");
         var fldWires = GetField<KMSelectable[]>(comp, "wires", isPublic: true);
+        var fldCutWires = GetField<int>(comp, "cutWires");
         var fldSolved = GetField<bool>(comp, "solved");
         var fldBlinkDelay = GetField<float>(comp, "blinkDelay");
         var mthGetIndexFromTime = GetMethod<int>(comp, "GetIndexFromTime", 2);
 
-        if (comp == null || fldSequences == null || fldSequenceIndex == null || fldWires == null || fldSolved == null || fldBlinkDelay == null || mthGetIndexFromTime == null)
+        if (comp == null || fldSequences == null || fldSequenceIndex == null || fldWires == null || fldCutWires == null || fldSolved == null || fldBlinkDelay == null || mthGetIndexFromTime == null)
             yield break;
 
         yield return null;
@@ -935,9 +936,11 @@ public class SouvenirModule : MonoBehaviour
             {
                 var wasSolved = fldSolved.Get();
                 var result = oldInteract();
-                if (!wasSolved && fldSolved.Get())
+
+                // Check if this wire snip solved the module, but it wasn’t the third (in which case the snip /may/ have been incorrect and the player was simply granted the courtesy solve after three wrong wires)
+                if (!wasSolved && fldSolved.Get() && fldCutWires.Get() < 3)
                 {
-                    // This wire snip solved the module! Find out which value is displayed
+                    // Find out which value is displayed
                     var sequences = fldSequences.Get();
                     var seqIx = fldSequenceIndex.Get();
                     var numIx = mthGetIndexFromTime.Invoke(Time.time, fldBlinkDelay.Get());
