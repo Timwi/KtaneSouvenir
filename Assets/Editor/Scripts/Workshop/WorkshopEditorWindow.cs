@@ -1,9 +1,8 @@
-﻿using UnityEditor;
-using Steamworks;
-using UnityEngine;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using System.Collections.Generic;
+using Steamworks;
+using UnityEditor;
+using UnityEngine;
 
 public class WorkshopEditorWindow : EditorWindow
 {

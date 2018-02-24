@@ -385,13 +385,20 @@ public class SouvenirModule : MonoBehaviour
         {
             var numSolved = Bomb.GetSolvedModuleNames().Count(x => !_ignoredModules.Contains(x));
             if (_questions.Count == 0 && numSolved >= numPlayableModules)
-                break;
+            {
+                // Very rare case: another coroutine could still be waiting to detect that a module is solved and then add another question to the queue
+                yield return new WaitForSeconds(.1f);
+
+                // If still no new questions, the bomb is solved and we’re done. (Or maybe a coroutine is stuck in a loop, but then it’s bugged and we need to cancel it anyway.)
+                if (_questions.Count == 0)
+                    break;
+            }
 
             IEnumerable<QuestionBatch> eligible = _questions;
 
             // If we reached the end of the bomb, everything is eligible.
             if (numSolved < numPlayableModules)
-                // Otherwise, make sure there has been another solved modules since
+                // Otherwise, make sure there has been another solved module since
                 eligible = eligible.Where(e => e.NumSolved < numSolved);
 
             var numEligibles = eligible.Count();
@@ -679,6 +686,7 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerator ProcessModule(KMBombModule module)
     {
         var moduleType = module.ModuleType;
+        Debug.LogFormat("<Souvenir #{1}> Start processing {0}.", moduleType, _moduleId);
         _moduleCounts.IncSafe(moduleType);
         var iterator = _moduleProcessors.Get(moduleType, null);
 
@@ -697,7 +705,7 @@ public class SouvenirModule : MonoBehaviour
                 File.AppendAllText(_timwiPath, s.ToString());
         }
 
-        Debug.LogFormat("[Souvenir #{1}] Finished processing {0}.", moduleType, _moduleId);
+        Debug.LogFormat("<Souvenir #{1}> Finished processing {0}.", moduleType, _moduleId);
     }
 
     private IEnumerable<object> Process3DMaze(KMBombModule module)
@@ -1199,7 +1207,7 @@ public class SouvenirModule : MonoBehaviour
         if (comp == null || fldSolved == null || fldDay == null || fldWeather == null)
             yield break;
 
-        var weatherNames = GetAnswers(Question.Creation);
+        var weatherNames = GetAnswers(Question.CreationWeather);
 
         while (!_isActivated)
             yield return new WaitForSeconds(0.1f);
@@ -1233,7 +1241,7 @@ public class SouvenirModule : MonoBehaviour
         }
 
         _modulesSolved.IncSafe(_Creation);
-        addQuestions(allWeather.Select((t, i) => makeQuestion(Question.Creation, _Creation, new[] { t }, new[] { ordinal(i + 1) })));
+        addQuestions(allWeather.Select((t, i) => makeQuestion(Question.CreationWeather, _Creation, new[] { t }, new[] { ordinal(i + 1) })));
     }
 
     private IEnumerable<object> ProcessDoubleOh(KMBombModule module)
