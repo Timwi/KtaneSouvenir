@@ -937,6 +937,7 @@ public class SouvenirModule : MonoBehaviour
             var j = i;
             wires[i].OnInteract = delegate
             {
+                wires[j].OnInteract = oldInteract;  //Restore original Interaction, so that this can only ever be called once per wire.
                 var wasSolved = fldSolved.Get();
                 var seqIx = fldSequenceIndex.Get();
                 var numIx = mthGetIndexFromTime.Invoke(Time.time, fldBlinkDelay.Get());
