@@ -2509,7 +2509,7 @@ public class SouvenirModule : MonoBehaviour
         string result;
 
         // Capture the first roll
-        if (Enumerable.Range(1, 6).Any(i => diceValues.Count(val => val == i) == 4))
+        if (Enumerable.Range(1, 6).Any(i => diceValues.Count(val => val == i) == 5))
             result = "Yahtzee";
         else if (diceValues.Contains(2) && diceValues.Contains(3) && diceValues.Contains(4) && diceValues.Contains(5) && (diceValues.Contains(1) || diceValues.Contains(6)))
             result = "large straight";
