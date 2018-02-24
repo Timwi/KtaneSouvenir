@@ -156,20 +156,6 @@ public class SouvenirModule : MonoBehaviour
             .Where(kvp => kvp.Value != null)
             .ToDictionary();
 
-        if (transform.parent != null)
-        {
-            if (_isTimwisComputer)
-                lock (_timwiPath)
-                    File.WriteAllText(_timwiPath, "");
-
-            for (int i = 0; i < transform.parent.childCount; i++)
-            {
-                var module = transform.parent.GetChild(i).gameObject.GetComponent<KMBombModule>();
-                if (module != null)
-                    StartCoroutine(ProcessModule(module));
-            }
-        }
-
         var origRotation = SurfaceRenderer.transform.rotation;
         SurfaceRenderer.transform.eulerAngles = new Vector3(0, 180, 0);
         _surfaceSizeFactor = SurfaceRenderer.bounds.size.x / (2 * .834) * .9;
@@ -294,6 +280,20 @@ public class SouvenirModule : MonoBehaviour
             }
             else
             {
+                if (transform.parent != null)
+                {
+                    if (_isTimwisComputer)
+                        lock (_timwiPath)
+                            File.WriteAllText(_timwiPath, "");
+
+                    for (int i = 0; i < transform.parent.childCount; i++)
+                    {
+                        var module = transform.parent.GetChild(i).gameObject.GetComponent<KMBombModule>();
+                        if (module != null)
+                            StartCoroutine(ProcessModule(module));
+                    }
+                }
+
                 // Playing for real
                 for (int i = 0; i < 6; i++)
                     setAnswerHandler(i, HandleAnswer);
