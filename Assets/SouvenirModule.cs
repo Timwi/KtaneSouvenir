@@ -1432,10 +1432,10 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessIceCream(KMBombModule module)
     {
         var comp = GetComponent(module, "IceCreamModule");
-        var fldCurrentStage = GetField<int>(comp, "currentStage");
-        var fldCustomers = GetField<int[]>(comp, "solCustomerNames");
-        var fldSolution = GetField<int[]>(comp, "solution");
-        var fldFlavourOptions = GetField<int[][]>(comp, "flavourOptions");
+        var fldCurrentStage = GetField<int>(comp, "CurrentStage");
+        var fldCustomers = GetField<int[]>(comp, "CustomerNamesSolution");
+        var fldSolution = GetField<int[]>(comp, "Solution");
+        var fldFlavourOptions = GetField<int[][]>(comp, "FlavorOptions");
 
         if (comp == null || fldCurrentStage == null || fldCustomers == null || fldSolution == null || fldFlavourOptions == null)
             yield break;
