@@ -91,10 +91,12 @@ public class SouvenirModule : MonoBehaviour
     const string _SimonScreams = "SimonScreamsModule";
     const string _SimonStates = "SimonV2";
     const string _SkewedSlots = "SkewedSlotsModule";
+    const string _SonicTheHedgehog = "sonic";
     const string _TheBulb = "TheBulbModule";
     const string _TheGamepad = "TheGamepadModule";
     const string _TicTacToe = "TicTacToeModule";
     const string _TwoBits = "TwoBits";
+    const string _VisualImpairment = "visual_impairment";
     const string _Yahtzee = "YahtzeeModule";
 
     void Start()
@@ -140,10 +142,12 @@ public class SouvenirModule : MonoBehaviour
             { _SimonScreams, ProcessSimonScreams },
             { _SimonStates, ProcessSimonStates },
             { _SkewedSlots, ProcessSkewedSlots },
+            { _SonicTheHedgehog, ProcessSonicTheHedgehog },
             { _TheBulb, ProcessTheBulb },
             { _TheGamepad, ProcessTheGamepad },
             { _TicTacToe, ProcessTicTacToe },
             { _TwoBits, ProcessTwoBits },
+            { _VisualImpairment, ProcessVisualImpairment },
             { _Yahtzee, ProcessYahtzee }
         };
 
@@ -2363,6 +2367,58 @@ public class SouvenirModule : MonoBehaviour
                 preferredWrongAnswers: originalNumbers.Concat(Enumerable.Range(0, int.MaxValue).Select(_ => Rnd.Range(0, 1000).ToString("000"))).Where(str => str != origNum).Distinct().Take(5).ToArray())));
     }
 
+    private sealed class SonicPictureInfo { public string Name; public int Stage; }
+    private IEnumerable<object> ProcessSonicTheHedgehog(KMBombModule module)
+    {
+        var comp = GetComponent(module, "sonicScript");
+        var fldsButtonSounds = new[] { "boots", "invincible", "life", "rings" }.Select(name => GetField<string>(comp, name + "Press"));
+        var fldsPics = Enumerable.Range(0, 3).Select(i => GetField<Texture>(comp, "pic" + (i + 1))).ToArray();
+        var fldStage = GetField<int>(comp, "stage");
+
+        if (comp == null || fldsButtonSounds.Any(b => b == null) || fldsPics.Any(p => p == null) || fldStage == null)
+            yield break;
+
+        while (fldStage.Get() < 5)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SonicTheHedgehog);
+
+        var soundNameMapping =
+            @"boss=Boss Theme;breathe=Breathe;continueSFX=Continue;drown=Drown;emerald=Emerald;extraLife=Extra Life;finalZone=Final Zone;invincibleSFX=Invincibility;jump=Jump;lamppost=Lamppost;marbleZone=Marble Zone;bumper=Bumper;skid=Skid;spikes=Spikes;spin=Spin;spring=Spring"
+                .Split(';').Select(str => str.Split('=')).ToDictionary(ar => ar[0], ar => ar[1]);
+        var pictureNameMapping =
+            @"annoyedSonic=Annoyed Sonic=2;ballhog=Ballhog=1;blueLamppost=Blue Lamppost=3;burrobot=Burrobot=1;buzzBomber=Buzz Bomber=1;crabMeat=Crab Meat=1;deadSonic=Dead Sonic=2;drownedSonic=Drowned Sonic=2;fallingSonic=Falling Sonic=2;motoBug=Moto Bug=1;redLamppost=Red Lamppost=3;redSpring=Red Spring=3;standingSonic=Standing Sonic=2;switch=Switch=3;yellowSpring=Yellow Spring=3"
+                .Split(';').Select(str => str.Split('=')).ToDictionary(ar => ar[0], ar => new SonicPictureInfo { Name = ar[1], Stage = int.Parse(ar[2]) - 1 });
+
+        var pics = fldsPics.Select(f => f.Get()).ToArray();
+        if (pics.Any(p => p == null || p.name == null || !pictureNameMapping.ContainsKey(p.name)))
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Sonic The Hedgehog because a pic was null or not recognized: [{1}]", _moduleId, pics.Select(p => p == null ? "<null>" : "\"" + p.name + "\"").JoinString(", "));
+            yield break;
+        }
+        var sounds = fldsButtonSounds.Select(f => f.Get()).ToArray();
+        if (sounds.Any(s => s == null || !soundNameMapping.ContainsKey(s)))
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Sonic The Hedgehog because a sound was null: [{1}]", _moduleId, sounds.Select(s => s == null ? "<null>" : "\"" + s + "\"").JoinString(", "));
+            yield break;
+        }
+
+        addQuestions(
+            Enumerable.Range(0, 3).Select(i =>
+                makeQuestion(
+                    Question.SonicTheHedgehogPictures,
+                    _SonicTheHedgehog,
+                    new[] { pictureNameMapping[pics[i].name].Name },
+                    new[] { ordinal(i + 1) },
+                    pictureNameMapping.Values.Where(inf => inf.Stage == i).Select(inf => inf.Name).ToArray()))
+            .Concat(new[] { "Running Boots", "Invincibility", "Extra Life", "Rings" }.Select((screenName, i) =>
+                makeQuestion(
+                    Question.SonicTheHedgehogSounds,
+                    _SonicTheHedgehog,
+                    new[] { soundNameMapping[sounds[i]] },
+                    new[] { screenName },
+                    sounds.Select(s => soundNameMapping[s]).ToArray()))));
+    }
+
     private IEnumerable<object> ProcessTheBulb(KMBombModule module)
     {
         var comp = GetComponent(module, "TheBulbModule");
@@ -2516,10 +2572,61 @@ public class SouvenirModule : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.LogFormat("[Souvenir #{2}] Two Bits: Exception: {0} ({1})", e.Message, e.GetType().FullName, _moduleId);
+            Debug.LogFormat("[Souvenir #{0}] Two Bits: Exception: {1} ({2})", _moduleId, e.Message, e.GetType().FullName);
         }
 
         addQuestions(qs);
+    }
+
+    private IEnumerable<object> ProcessVisualImpairment(KMBombModule module)
+    {
+        var comp = GetComponent(module, "VisualImpairment");
+        var fldRoundsFinished = GetField<int>(comp, "roundsFinished");
+        var fldStageCount = GetField<int>(comp, "stageCount");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldColor = GetField<int>(comp, "color");
+        var fldAnyPressed = GetField<bool>(comp, "anyPressed");
+        var fldPicture = GetField<string[]>(comp, "picture");
+
+        if (comp == null || fldRoundsFinished == null || fldStageCount == null || fldSolved == null || fldColor == null || fldAnyPressed == null || fldPicture == null)
+            yield break;
+
+        // Wait for the first picture to be assigned
+        while (fldPicture.Get(nullAllowed: true) == null)
+            yield return new WaitForSeconds(.1f);
+
+        var stageCount = fldStageCount.Get();
+        if (stageCount < 2 || stageCount >= 4)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Visual Impairment because stageCount is not 2 or 3 as expected (it’s {1}).", _moduleId, stageCount);
+            yield break;
+        }
+        var colorsPerStage = new int[stageCount];
+        colorsPerStage[0] = fldColor.Get();
+        var curStage = 0;
+
+        while (curStage < stageCount)
+        {
+            yield return new WaitForSeconds(.1f);
+
+            var newStage = fldRoundsFinished.Get();
+            if (newStage != curStage)
+            {
+                if (newStage != curStage + 1)
+                {
+                    Debug.LogFormat("[Souvenir #{0}] Abandoning Visual Impairment because roundsFinished changed by an amount other than +1 (was: {1}, now: {2}).", _moduleId, curStage, newStage);
+                    yield break;
+                }
+                if (newStage < stageCount)
+                    colorsPerStage[newStage] = fldColor.Get();
+                curStage = newStage;
+            }
+        }
+
+        var colorNames = new[] { "Blue", "Green", "Red", "White" };
+        Debug.LogFormat("<Souvenir #{0}> Visual Impairment Colors were: {1}", _moduleId, colorsPerStage.Select(col => colorNames[col]).JoinString(", "));
+        _modulesSolved.IncSafe(_VisualImpairment);
+        addQuestions(colorsPerStage.Select((col, ix) => makeQuestion(Question.VisualImpairmentColors, _VisualImpairment, new[] { colorNames[col] }, new[] { ordinal(ix + 1) })));
     }
 
     private IEnumerable<object> ProcessYahtzee(KMBombModule module)
@@ -2564,7 +2671,7 @@ public class SouvenirModule : MonoBehaviour
             result = "pair";
         else
         {
-            Debug.LogFormat("[Souvenir #{2}] Yahtzee: not asking a question because the first roll was nothing.", _moduleId);
+            Debug.LogFormat("[Souvenir #{0}] Yahtzee: not asking a question because the first roll was nothing.", _moduleId);
             yield break;
         }
 
