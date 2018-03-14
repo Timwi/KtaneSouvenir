@@ -2825,6 +2825,10 @@ public class SouvenirModule : MonoBehaviour
         return number + "º";
     }
 
+#pragma warning disable 414
+    private string TwitchHelpMessage = @"Submit the correct response with “!{0} answer 3”. Order is from top to bottom, then left to right.";
+#pragma warning restore 414
+
     KMSelectable[] ProcessTwitchCommand(string command)
     {
         var m = Regex.Match(command, @"\A\s*answer\s+(\d)\s*\z");
