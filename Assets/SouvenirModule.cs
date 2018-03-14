@@ -86,6 +86,8 @@ public class SouvenirModule : MonoBehaviour
     const string _OnlyConnect = "OnlyConnectModule";
     const string _OrientationCube = "OrientationCube";
     const string _PerspectivePegs = "spwizPerspectivePegs";
+    const string _PolyhedralMaze = "PolyhedralMazeModule";
+    const string _Rhythms = "MusicRhythms";
     const string _SeaShells = "SeaShells";
     const string _SillySlots = "SillySlots";
     const string _SimonScreams = "SimonScreamsModule";
@@ -137,6 +139,8 @@ public class SouvenirModule : MonoBehaviour
             { _OnlyConnect, ProcessOnlyConnect },
             { _OrientationCube, ProcessOrientationCube },
             { _PerspectivePegs, ProcessPerspectivePegs },
+            { _PolyhedralMaze, ProcessPolyhedralMaze },
+            { _Rhythms, ProcessRhythms },
             { _SeaShells, ProcessSeaShells },
             { _SillySlots, ProcessSillySlots },
             { _SimonScreams, ProcessSimonScreams },
@@ -2076,6 +2080,43 @@ public class SouvenirModule : MonoBehaviour
             preferredWrongAnswers: entered.Select(e => theory[e]).ToArray())));
     }
 
+    private IEnumerable<object> ProcessPolyhedralMaze(KMBombModule module)
+    {
+        var comp = GetComponent(module, "PolyhedralMazeModule");
+        var fldStartFace = GetField<int>(comp, "_startFace");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+
+        if (comp == null || fldStartFace == null || fldSolved == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_PolyhedralMaze);
+        addQuestion(Question.PolyhedralMazeStartPosition, _PolyhedralMaze, new[] { fldStartFace.Get().ToString() }, null, Enumerable.Range(0, 62).Select(i => i.ToString()).ToArray());
+    }
+
+    private IEnumerable<object> ProcessRhythms(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Rhythms");
+        var fldSolved = GetField<bool>(comp, "isSolved", isPublic: true);
+        var fldColor = GetField<int>(comp, "lightColor");
+
+        if (comp == null || fldSolved == null || fldColor == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_Rhythms);
+
+        var color = fldColor.Get();
+        if (color < 0 || color >= 4)
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Rhythms because lightColor has unexpected value ({1}).", _moduleId, color);
+        else
+            addQuestion(Question.RhythmsColor, _Rhythms, new[] { new[] { "Blue", "Red", "Green", "Yellow" }[color] });
+    }
+
     private IEnumerable<object> ProcessSeaShells(KMBombModule module)
     {
         var comp = GetComponent(module, "SeaShellsModule");
@@ -2751,7 +2792,12 @@ public class SouvenirModule : MonoBehaviour
         }
 
         List<string> answers;
-        if (allAnswers == null)
+        if (allAnswers == null && preferredWrongAnswers == null)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Question {1}: allAnswers and preferredWrongAnswers are both null.", _moduleId, question);
+            return null;
+        }
+        else if (allAnswers == null)
             answers = preferredWrongAnswers.Except(possibleCorrectAnswers).ToList().Shuffle().Take(attr.NumAnswers - 1).ToList();
         else
         {
