@@ -2617,14 +2617,27 @@ public class SouvenirModule : MonoBehaviour
                     Debug.LogFormat("[Souvenir #{0}] Abandoning Visual Impairment because roundsFinished changed by an amount other than +1 (was: {1}, now: {2}).", _moduleId, curStage, newStage);
                     yield break;
                 }
+
                 if (newStage < stageCount)
+                {
+                    // Wait for the next picture to be assigned
+                    while (fldAnyPressed.Get())
+                        yield return new WaitForSeconds(.1f);
+
+                    newStage = fldRoundsFinished.Get();
+                    if (newStage != curStage + 1)
+                    {
+                        Debug.LogFormat("[Souvenir #{0}] Abandoning Visual Impairment because roundsFinished changed while I was waiting for anyPressed to return to false (was: {1}, before wait: {2}, now: {3}).", _moduleId, curStage, curStage + 1, newStage);
+                        yield break;
+                    }
+
                     colorsPerStage[newStage] = fldColor.Get();
+                }
                 curStage = newStage;
             }
         }
 
         var colorNames = new[] { "Blue", "Green", "Red", "White" };
-        Debug.LogFormat("<Souvenir #{0}> Visual Impairment Colors were: {1}", _moduleId, colorsPerStage.Select(col => colorNames[col]).JoinString(", "));
         _modulesSolved.IncSafe(_VisualImpairment);
         addQuestions(colorsPerStage.Select((col, ix) => makeQuestion(Question.VisualImpairmentColors, _VisualImpairment, new[] { colorNames[col] }, new[] { ordinal(ix + 1) })));
     }
