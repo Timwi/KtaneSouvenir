@@ -2877,7 +2877,7 @@ public class SouvenirModule : MonoBehaviour
 
     KMSelectable[] ProcessTwitchCommand(string command)
     {
-        var m = Regex.Match(command, @"\A\s*answer\s+(\d)\s*\z");
+        var m = Regex.Match(command.ToLowerInvariant(), @"\A\s*answer\s+(\d)\s*\z");
         if (!m.Success)
             return null;
 
