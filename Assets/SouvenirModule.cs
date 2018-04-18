@@ -707,7 +707,10 @@ public class SouvenirModule : MonoBehaviour
         if (iterator != null)
         {
             foreach (var obj in iterator(module))
+            {
                 yield return obj;
+                if (TwitchAbandonModule.Contains(module)) break;
+            }
         }
         else if (_isTimwisComputer)
         {
@@ -2872,6 +2875,7 @@ public class SouvenirModule : MonoBehaviour
     }
 
 #pragma warning disable 414
+    private List<KMBombModule> TwitchAbandonModule = new List<KMBombModule>();
     private string TwitchHelpMessage = @"Submit the correct response with “!{0} answer 3”. Order is from top to bottom, then left to right.";
 #pragma warning restore 414
 
