@@ -32,6 +32,7 @@ public class SouvenirModule : MonoBehaviour
 
     public static readonly string[] _ignoredModules = {
         "Souvenir",
+        "Forget Everything",
         "Forget Me Not",
         "Turn The Key"
     };
@@ -50,6 +51,7 @@ public class SouvenirModule : MonoBehaviour
 
     private Dictionary<string, int> _moduleCounts = new Dictionary<string, int>();
     private Dictionary<string, int> _modulesSolved = new Dictionary<string, int>();
+    private int _coroutinesActive;
 
     private static int _moduleIdCounter = 1;
     private int _moduleId;
@@ -398,12 +400,12 @@ public class SouvenirModule : MonoBehaviour
         while (true)
         {
             var numSolved = Bomb.GetSolvedModuleNames().Count(x => !_ignoredModules.Contains(x));
-            if (_questions.Count == 0 && numSolved >= numPlayableModules)
+            if (_questions.Count == 0 && (numSolved >= numPlayableModules || _coroutinesActive == 0))
             {
                 // Very rare case: another coroutine could still be waiting to detect that a module is solved and then add another question to the queue
                 yield return new WaitForSeconds(.1f);
 
-                // If still no new questions, the bomb is solved and we’re done. (Or maybe a coroutine is stuck in a loop, but then it’s bugged and we need to cancel it anyway.)
+                // If still no new questions, all supported modules are solved and we’re done. (Or maybe a coroutine is stuck in a loop, but then it’s bugged and we need to cancel it anyway.)
                 if (_questions.Count == 0)
                     break;
             }
@@ -699,6 +701,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerator ProcessModule(KMBombModule module)
     {
+        _coroutinesActive++;
         var moduleType = module.ModuleType;
         Debug.LogFormat("<Souvenir #{1}> Start processing {0}.", moduleType, _moduleId);
         _moduleCounts.IncSafe(moduleType);
@@ -720,6 +723,7 @@ public class SouvenirModule : MonoBehaviour
         }
 
         Debug.LogFormat("<Souvenir #{1}> Finished processing {0}.", moduleType, _moduleId);
+        _coroutinesActive--;
     }
 
     private IEnumerable<object> Process3DMaze(KMBombModule module)
