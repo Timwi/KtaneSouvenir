@@ -2331,7 +2331,7 @@ public class SouvenirModule : MonoBehaviour
         var fldMorseB = GetField<string>(comp, "_morseB");
         string[] _morse = ".-|-...|-.-.|-..|.|..-.|--.|....|..|.---|-.-|.-..|--|-.|---|.--.|--.-|.-.|...|-|..-|...-|.--|-..-|-.--|--..".Split('|');
 
-        if (comp == null || fldMorseR == null || fldMorseG == null || fldMorseB == null /*|| fldMorse == null*/)
+        if (comp == null || fldMorseR == null || fldMorseG == null || fldMorseB == null)
             yield break;
 
         yield return null;
