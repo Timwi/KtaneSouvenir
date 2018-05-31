@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -93,6 +93,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SeaShells = "SeaShells";
     const string _SillySlots = "SillySlots";
     const string _SimonScreams = "SimonScreamsModule";
+    const string _SimonSends = "SimonSendsModule";
     const string _SimonStates = "SimonV2";
     const string _SkewedSlots = "SkewedSlotsModule";
     const string _SonicTheHedgehog = "sonic";
@@ -146,6 +147,7 @@ public class SouvenirModule : MonoBehaviour
             { _SeaShells, ProcessSeaShells },
             { _SillySlots, ProcessSillySlots },
             { _SimonScreams, ProcessSimonScreams },
+            { _SimonSends, ProcessSimonSends },
             { _SimonStates, ProcessSimonStates },
             { _SkewedSlots, ProcessSkewedSlots },
             { _SonicTheHedgehog, ProcessSonicTheHedgehog },
@@ -2318,6 +2320,50 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestions(qs);
+    }
+    
+    private IEnumerable<object> ProcessSimonSends(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SimonSendsModule");
+        var fldSolved = GetField<List<int>>(comp, "_answerSoFar");
+        var fldMorseR = GetField<string>(comp, "_morseR");
+        var fldMorseG = GetField<string>(comp, "_morseG");
+        var fldMorseB = GetField<string>(comp, "_morseB");
+        string[] _morse = ".-|-...|-.-.|-..|.|..-.|--.|....|..|.---|-.-|.-..|--|-.|---|.--.|--.-|.-.|...|-|..-|...-|.--|-..-|-.--|--..".Split('|');
+
+        if (comp == null || fldMorseR == null || fldMorseG == null || fldMorseB == null /*|| fldMorse == null*/)
+            yield break;
+
+        yield return null;
+        
+        var charR = fldMorseR.Get();
+        charR = charR.Replace("###", "-");
+        charR = charR.Replace("#", ".");
+        charR = charR.Replace("_", "");
+
+        var charG = fldMorseG.Get();
+        charG = charG.Replace("###", "-");
+        charG = charG.Replace("#", ".");
+        charG = charG.Replace("_", "");
+
+        var charB = fldMorseB.Get();
+        charB = charB.Replace("###", "-");
+        charB = charB.Replace("#", ".");
+        charB = charB.Replace("_", "");
+
+        charR = ((char)((char)(Array.FindIndex(_morse, x => x == charR)) +'A')).ToString();
+        charG = ((char)((char)(Array.FindIndex(_morse, x => x == charG)) + 'A')).ToString();
+        charB = ((char)((char)(Array.FindIndex(_morse, x => x == charB)) + 'A')).ToString();
+
+        var chars = new string[] { charR, charG, charB };
+        if (chars == null)
+            yield break;
+
+        while (fldSolved.Get(nullAllowed: true) != null)
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_SimonSends);
+        addQuestions(Enumerable.Range(0, 3).Select(i => makeQuestion(Question.SimonSendsReceivedLetters, _SimonSends, new[] { chars[i] }, new[] { ordinal(i + 1) }, chars)));
     }
 
     private IEnumerable<object> ProcessSimonStates(KMBombModule module)
