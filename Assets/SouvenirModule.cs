@@ -2355,9 +2355,6 @@ public class SouvenirModule : MonoBehaviour
         charG = ((char)((char)(Array.FindIndex(_morse, x => x == charG)) + 'A')).ToString();
         charB = ((char)((char)(Array.FindIndex(_morse, x => x == charB)) + 'A')).ToString();
 
-        Debug.LogFormat("SOUVENIR TESTING: SIMON SENDS R,G,B {0},{1},{2}", fldMorseR.Get(), fldMorseG.Get(), fldMorseB.Get());
-        Debug.LogFormat("SOUVENIR TESTING: SIMON SENDS R,G,B {0},{1},{2}", charR, charG, charB);
-
         var chars = new string[] { charR, charG, charB };
         if (chars == null)
             yield break;
