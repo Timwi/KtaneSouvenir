@@ -2321,49 +2321,42 @@ public class SouvenirModule : MonoBehaviour
 
         addQuestions(qs);
     }
-    
+
+    private static readonly string[] _morse = ".-|-...|-.-.|-..|.|..-.|--.|....|..|.---|-.-|.-..|--|-.|---|.--.|--.-|.-.|...|-|..-|...-|.--|-..-|-.--|--..".Split('|');
+
     private IEnumerable<object> ProcessSimonSends(KMBombModule module)
     {
         var comp = GetComponent(module, "SimonSendsModule");
-        var fldSolved = GetField<List<int>>(comp, "_answerSoFar");
+        var fldAnswerSoFar = GetField<List<int>>(comp, "_answerSoFar");
         var fldMorseR = GetField<string>(comp, "_morseR");
         var fldMorseG = GetField<string>(comp, "_morseG");
         var fldMorseB = GetField<string>(comp, "_morseB");
-        string[] _morse = ".-|-...|-.-.|-..|.|..-.|--.|....|..|.---|-.-|.-..|--|-.|---|.--.|--.-|.-.|...|-|..-|...-|.--|-..-|-.--|--..".Split('|');
 
-        if (comp == null || fldMorseR == null || fldMorseG == null || fldMorseB == null)
+        if (comp == null || fldAnswerSoFar == null || fldMorseR == null || fldMorseG == null || fldMorseB == null)
             yield break;
 
         yield return null;
-        
-        var charR = fldMorseR.Get();
-        charR = charR.Replace("###", "-");
-        charR = charR.Replace("#", ".");
-        charR = charR.Replace("_", "");
 
-        var charG = fldMorseG.Get();
-        charG = charG.Replace("###", "-");
-        charG = charG.Replace("#", ".");
-        charG = charG.Replace("_", "");
+        var morseR = fldMorseR.Get();
+        var morseG = fldMorseG.Get();
+        var morseB = fldMorseB.Get();
 
-        var charB = fldMorseB.Get();
-        charB = charB.Replace("###", "-");
-        charB = charB.Replace("#", ".");
-        charB = charB.Replace("_", "");
-
-        charR = ((char)((char)(Array.FindIndex(_morse, x => x == charR)) +'A')).ToString();
-        charG = ((char)((char)(Array.FindIndex(_morse, x => x == charG)) + 'A')).ToString();
-        charB = ((char)((char)(Array.FindIndex(_morse, x => x == charB)) + 'A')).ToString();
-
-        var chars = new string[] { charR, charG, charB };
-        if (chars == null)
+        if (morseR == null || morseG == null || morseB == null)
             yield break;
 
-        while (fldSolved.Get(nullAllowed: true) != null)
+        var charR = ((char) ('A' + Array.IndexOf(_morse, morseR.Replace("###", "-").Replace("#", ".").Replace("_", "")))).ToString();
+        var charG = ((char) ('A' + Array.IndexOf(_morse, morseG.Replace("###", "-").Replace("#", ".").Replace("_", "")))).ToString();
+        var charB = ((char) ('A' + Array.IndexOf(_morse, morseB.Replace("###", "-").Replace("#", ".").Replace("_", "")))).ToString();
+
+        // Simon Sends sets “_answerSoFar” to null when it’s done
+        while (fldAnswerSoFar.Get(nullAllowed: true) != null)
             yield return new WaitForSeconds(.1f);
 
         _modulesSolved.IncSafe(_SimonSends);
-        addQuestions(Enumerable.Range(0, 3).Select(i => makeQuestion(Question.SimonSendsReceivedLetters, _SimonSends, new[] { chars[i] }, new[] { ordinal(i + 1) }, chars)));
+        addQuestions(
+            makeQuestion(Question.SimonSendsReceivedLetters, _SimonSends, new[] { charR }, new[] { "red" }, new[] { charG, charB }),
+            makeQuestion(Question.SimonSendsReceivedLetters, _SimonSends, new[] { charG }, new[] { "green" }, new[] { charR, charB }),
+            makeQuestion(Question.SimonSendsReceivedLetters, _SimonSends, new[] { charB }, new[] { "blue" }, new[] { charR, charG }));
     }
 
     private IEnumerable<object> ProcessSimonStates(KMBombModule module)
