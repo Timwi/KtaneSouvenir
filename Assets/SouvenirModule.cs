@@ -723,7 +723,7 @@ public class SouvenirModule : MonoBehaviour
             var s = new StringBuilder();
             s.AppendLine("Unrecognized module: " + module.name + ", KMBombModule.ModuleType: " + moduleType);
             foreach (var comp in module.GetComponents(typeof(UnityEngine.Object)))
-                s.AppendLine("    - " + comp.GetType().FullName);
+                s.AppendLine("    - " + (comp == null ? "<null>" : comp.GetType().FullName));
             lock (_timwiPath)
                 File.AppendAllText(_timwiPath, s.ToString());
         }
