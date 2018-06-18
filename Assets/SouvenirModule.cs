@@ -460,7 +460,7 @@ public class SouvenirModule : MonoBehaviour
                 continue;
 
             SetQuestion(batch.Questions.PickRandom());
-            while (_currentQuestion != null)
+            while (_currentQuestion != null || _animating)
                 yield return new WaitForSeconds(.5f);
         }
 
