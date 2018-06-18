@@ -343,14 +343,12 @@ public class SouvenirModule : MonoBehaviour
     {
         Answers6[index].OnInteract = delegate
         {
-            Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, Answers6[index].transform);
             Answers6[index].AddInteractionPunch();
             handler(index);
             return false;
         };
         Answers4[index].OnInteract = delegate
         {
-            Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, Answers4[index].transform);
             Answers4[index].AddInteractionPunch();
             handler(index);
             return false;
@@ -375,7 +373,9 @@ public class SouvenirModule : MonoBehaviour
         Debug.LogFormat("[Souvenir #{0}] Clicked answer #{1} ({2}). {3}.", _moduleId, index + 1, _currentQuestion.Answers[index], _currentQuestion.CorrectIndex == index ? "Correct" : "Wrong");
 
         if (_currentQuestion.CorrectIndex == index)
-            dismissQuestion();
+        {
+            StartCoroutine(CorrectAnswer());
+        }
         else
         {
             Module.HandleStrike();
@@ -386,6 +386,15 @@ public class SouvenirModule : MonoBehaviour
                 StartCoroutine(revealThenMoveOn());
             }
         }
+    }
+
+    private IEnumerator CorrectAnswer()
+    {
+        _animating = true;
+        Audio.PlaySoundAtTransform("Answer", transform);
+        dismissQuestion();
+        yield return new WaitForSeconds(.5f);
+        _animating = false;
     }
 
     private void dismissQuestion()
@@ -466,6 +475,7 @@ public class SouvenirModule : MonoBehaviour
         _currentQuestion = q;
         SetWordWrappedText(q.QuestionText);
         ShowAnswers(q.Answers);
+        Audio.PlaySoundAtTransform("Question", transform);
     }
 
     private static double[][] _acceptableWidths = Ut.NewArray(
