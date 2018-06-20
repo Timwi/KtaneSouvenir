@@ -3402,7 +3402,7 @@ public class SouvenirModule : MonoBehaviour
 
 #pragma warning disable 414
     private List<KMBombModule> TwitchAbandonModule = new List<KMBombModule>();
-    private string TwitchHelpMessage = @"Submit the correct response with “!{0} answer 3”. Order is from top to bottom, then left to right.";
+    private readonly string TwitchHelpMessage = @"Submit the correct response with “!{0} answer 3”. Order is from top to bottom, then left to right.";
 #pragma warning restore 414
 
     KMSelectable[] ProcessTwitchCommand(string command)
