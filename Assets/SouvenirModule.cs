@@ -1887,10 +1887,7 @@ public class SouvenirModule : MonoBehaviour
         for (int i = 0; i < gateTypeNames.Length; i++)
             qs.Add(makeQuestion(Question.LogicGatesGates, _LogicGates, new[] { gateTypeNames[i] }, new[] { "gate " + (char) ('A' + i) }));
         if (!isDuplicateInvalid)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Duplicated logic gate is {1}.", _moduleId, duplicate);
             qs.Add(makeQuestion(Question.LogicGatesGates, _LogicGates, new[] { duplicate }, new[] { "the duplicated gate" }));
-        }
         addQuestions(qs);
     }
 
@@ -1973,8 +1970,6 @@ public class SouvenirModule : MonoBehaviour
             {
                 buttons[j].OnInteract = delegate
                 {
-                    Debug.LogFormat("<Souvenir #{0}> Monsplode, Fight!: Press button #{1}.", _moduleId, j);
-
                     // Before processing the button push, get the creature and moves
                     string curCreatureName = null;
                     string[] curMoveNames = null;
@@ -1985,7 +1980,6 @@ public class SouvenirModule : MonoBehaviour
                     else
                     {
                         var moveIDs = fldMoveIDs.Get();
-                        Debug.LogFormat("<Souvenir #{0}> Monsplode, Fight!: Move IDs are {1}.", _moduleId, moveIDs.JoinString(", "));
                         if (moveIDs == null || moveIDs.Length != 4 || moveIDs.Any(mid => mid >= moveNames.Length || string.IsNullOrEmpty(moveNames[mid])))
                             Debug.LogFormat("[Souvenir #{2}] Monsplode, Fight!: Unexpected move IDs: {0}; moves names are: [{1}]",
                                 moveIDs == null ? null : "[" + moveIDs.JoinString(", ") + "]",
@@ -2018,11 +2012,8 @@ public class SouvenirModule : MonoBehaviour
                         if (!fldRevive.Get())
                             finished = true;
 
-                        Debug.LogFormat("<Souvenir #{0}> Monsplode, Fight!: wasCorrect={1}, finished={2}.", _moduleId, wasCorrect, finished);
-
                         if (curCreatureName != null && curMoveNames != null && displayedCreature != null && displayedMoves != null)
                         {
-                            Debug.LogFormat("<Souvenir #{0}> Monsplode, Fight!: Adding info.", _moduleId, wasCorrect, finished);
                             displayedCreature.Add(curCreatureName);
                             displayedMoves.Add(curMoveNames);
                             pushedMoves.Add(j);
@@ -2036,7 +2027,6 @@ public class SouvenirModule : MonoBehaviour
 
         while (!finished)
             yield return new WaitForSeconds(.1f);
-        Debug.LogFormat("<Souvenir #{0}> Monsplode, Fight!: while (!finished) loop ended.", _moduleId);
         _modulesSolved.IncSafe(_MonsplodeFight);
 
         for (int i = 0; i < buttons.Length; i++)
@@ -2050,8 +2040,6 @@ public class SouvenirModule : MonoBehaviour
             Debug.LogFormat("[Souvenir #{4}] Monsplode, Fight!: Inconsistent list lengths: {0}, {1}, {2}, {3}.", displayedCreature.Count, displayedMoves.Count, pushedMoves.Count, correctMoves.Count, _moduleId);
             yield break;
         }
-
-        Debug.LogFormat("<Souvenir #{0}> Monsplode, Fight!: Creatures: {1}.", _moduleId, displayedCreature.Count);
 
         var attr = _attributes.Get(Question.MonsplodeFightMove);
         var allDisplayedCreatures = displayedCreature.ToArray();
@@ -2542,7 +2530,6 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
 
         var names = new[] { "flat", "round", "pointy", "ticket" };
-        Debug.LogFormat("<Souvenir #{0}> Shape Shift initial={1}/{2}, solution={3}/{4}", _moduleId, names[fldStartL.Get()], names[fldStartR.Get()], names[fldSolutionL.Get()], names[fldSolutionR.Get()]);
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
