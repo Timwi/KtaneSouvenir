@@ -106,6 +106,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SimonStates = "SimonV2";
     const string _SkewedSlots = "SkewedSlotsModule";
     const string _SonicTheHedgehog = "sonic";
+    const string _Synonyms = "synonyms";
     const string _TapCode = "tapCode";
     const string _TicTacToe = "TicTacToeModule";
     const string _TwoBits = "TwoBits";
@@ -169,6 +170,7 @@ public class SouvenirModule : MonoBehaviour
             { _SimonStates, ProcessSimonStates },
             { _SkewedSlots, ProcessSkewedSlots },
             { _SonicTheHedgehog, ProcessSonicTheHedgehog },
+            { _Synonyms, ProcessSynonyms },
             { _TapCode, ProcessTapCode },
             { _TicTacToe, ProcessTicTacToe },
             { _TwoBits, ProcessTwoBits },
@@ -2916,6 +2918,33 @@ public class SouvenirModule : MonoBehaviour
                     new[] { soundNameMapping[sounds[i]] },
                     new[] { screenName },
                     sounds.Select(s => soundNameMapping[s]).ToArray()))));
+    }
+
+    private IEnumerable<object> ProcessSynonyms(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Synonyms");
+        var fldNumberText = GetField<TextMesh>(comp, "NumberText", isPublic: true);
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+
+        if (comp == null || fldNumberText == null || fldSolved == null)
+            yield break;
+
+        yield return null;
+        var numberText = fldNumberText.Get();
+        if (numberText == null)
+            yield break;
+        int number;
+        if (numberText.text == null || !int.TryParse(numberText.text, out number) || number < 0 || number > 9)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Synonyms because the display text (“{1}”) is not an integer 0–9.", _moduleId, numberText.text ?? "<null>");
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Synonyms);
+
+        addQuestion(Question.SynonymsNumber, _Synonyms, new[] { number.ToString() });
     }
 
     private IEnumerable<object> ProcessBulb(KMBombModule module)
