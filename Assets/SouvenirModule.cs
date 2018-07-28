@@ -274,7 +274,7 @@ public class SouvenirModule : MonoBehaviour
         Module.OnActivate += delegate
         {
             _isActivated = true;
-            if (Bomb.QueryWidgets("Unity", null).Count > 0)
+            if (Application.isEditor)
             {
                 // Testing in Unity
                 Debug.LogFormat("[Souvenir #{0}] Entering Unity testing mode.", _moduleId);
