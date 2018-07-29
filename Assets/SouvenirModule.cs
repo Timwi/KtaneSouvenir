@@ -852,11 +852,13 @@ public class SouvenirModule : MonoBehaviour
         var fldInvValues = GetField<IList>(comp, "InvValues"); // actually List<AdventureGameModule.ITEM>
         var fldInvWeaponCount = GetField<int>(comp, "InvWeaponCount");
         var fldSelectedItem = GetField<int>(comp, "SelectedItem");
+        var fldSelectedEnemy = GetField<object>(comp, "SelectedEnemy");
+        var fldTextEnemy = GetField<TextMesh>(comp, "TextEnemy", isPublic: true);
         var fldNumWeapons = GetField<int>(comp, "NumWeapons");
         var mthItemName = GetMethod<string>(comp, "ItemName", 1);
         var mthShouldUseItem = GetMethod<bool>(comp, "ShouldUseItem", 1);
 
-        if (comp == null || fldButtonUse == null || fldInvValues == null || fldInvWeaponCount == null || fldSelectedItem == null || fldNumWeapons == null || mthItemName == null)
+        if (comp == null || fldButtonUse == null || fldInvValues == null || fldInvWeaponCount == null || fldSelectedItem == null || fldSelectedEnemy == null || fldTextEnemy == null || fldNumWeapons == null || mthItemName == null)
             yield break;
 
         while (!_isActivated)
@@ -865,6 +867,11 @@ public class SouvenirModule : MonoBehaviour
         var invValues = fldInvValues.Get();
         var buttonUse = fldButtonUse.Get();
         if (invValues == null || buttonUse == null)
+            yield break;
+
+        var enemy = fldSelectedEnemy.Get();
+        var textEnemy = fldTextEnemy.Get();
+        if (enemy == null || textEnemy == null)
             yield break;
 
         var invWeaponCount = fldInvWeaponCount.Get();
@@ -909,6 +916,7 @@ public class SouvenirModule : MonoBehaviour
             {
                 // The user solved the module.
                 solved = true;
+                textEnemy.text = "Victory!";
             }
 
             return ret;
@@ -919,7 +927,9 @@ public class SouvenirModule : MonoBehaviour
 
         buttonUse.OnInteract = prevInteract;
         _modulesSolved.IncSafe(_AdventureGame);
-        addQuestions(qs.Select(q => q()));
+        var enemyName = enemy.ToString();
+        enemyName = enemyName.Substring(0, 1).ToUpperInvariant() + enemyName.Substring(1).ToLowerInvariant();
+        addQuestions(qs.Select(q => q()).Concat(new[] { makeQuestion(Question.AdventureGameEnemy, _AdventureGame, new[] { enemyName }) }));
     }
 
     private IEnumerable<object> ProcessAlgebra(KMBombModule module)
