@@ -85,6 +85,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Listening = "Listening";
     const string _LogicGates = "logicGates";
     const string _Mafia = "MafiaModule";
+    const string _MaritimeFlags = "MaritimeFlagsModule";
     const string _MonsplodeFight = "monsplodeFight";
     const string _Moon = "moon";
     const string _MorseAMaze = "MorseAMaze";
@@ -149,6 +150,7 @@ public class SouvenirModule : MonoBehaviour
             { _Listening, ProcessListening },
             { _LogicGates, ProcessLogicGates },
             { _Mafia, ProcessMafia },
+            { _MaritimeFlags, ProcessMaritimeFlags },
             { _MonsplodeFight, ProcessMonsplodeFight },
             { _Moon, ProcessMoon },
             { _MorseAMaze, ProcessMorseAMaze },
@@ -1927,6 +1929,44 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_Mafia);
         addQuestion(Question.MafiaPlayers, _Mafia, suspects.Cast<object>().Select(obj => obj.ToString()).Except(new[] { godfather.ToString() }).ToArray());
+    }
+
+    private IEnumerable<object> ProcessMaritimeFlags(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MaritimeFlagsModule");
+        var fldBearing = GetField<int>(comp, "_bearingOnModule");
+        var fldCallsign = GetField<object>(comp, "_callsign");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+
+        if (comp == null || fldBearing == null || fldCallsign == null || fldSolved == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_MaritimeFlags);
+
+        var bearing = fldBearing.Get();
+        var callsignObj = fldCallsign.Get();
+
+        if (callsignObj == null || bearing < 0 || bearing >= 360)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Maritime Flags because callsign is null ({1}) or bearing is out of range ({2}).", _moduleId, callsignObj == null, bearing);
+            yield break;
+        }
+
+        var fldCallsignName = GetField<string>(callsignObj, "Name", isPublic: true);
+        if (fldCallsignName == null)
+            yield break;
+        var callsign = fldCallsignName.Get();
+        if (callsign == null || callsign.Length != 7)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Maritime Flags because callsign is null or length not 7 (it’s {1}).", _moduleId, callsign == null ? "null" : callsign.Length.ToString());
+            yield break;
+        }
+
+        addQuestions(
+            makeQuestion(Question.MaritimeFlagsBearing, _MaritimeFlags, new[] { bearing.ToString() }),
+            makeQuestion(Question.MaritimeFlagsCallsign, _MaritimeFlags, new[] { callsign.ToLowerInvariant() }));
     }
 
     private IEnumerable<object> ProcessMonsplodeFight(KMBombModule module)
