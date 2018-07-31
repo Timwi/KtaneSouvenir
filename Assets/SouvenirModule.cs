@@ -24,6 +24,7 @@ public class SouvenirModule : MonoBehaviour
     public KMSelectable[] Answers6;
     public GameObject Answers4Parent;
     public GameObject Answers6Parent;
+    public GameObject[] TpNumbers;
 
     public KMSelectable MainSelectable;
     public TextMesh TextMesh;
@@ -341,6 +342,17 @@ public class SouvenirModule : MonoBehaviour
                 StartCoroutine(Play());
             }
         };
+
+        //var sph = SurfaceRenderer.transform.Find("Sphere");
+        //for (int i = 0; i < _acceptableWidths.Length; i++)
+        //{
+        //    var s = Instantiate(sph);
+        //    s.parent = sph.parent;
+        //    s.localPosition = new Vector3((float) -_acceptableWidths[i][1] / 10 + .0834f, .0101f, (float) _acceptableWidths[i][0] / 10 - .0834f);
+        //    s.localScale = new Vector3(.01f, .01f, .01f);
+        //    s.localRotation = Quaternion.identity;
+        //}
+        //Destroy(sph.gameObject);
     }
 
     void setAnswerHandler(int index, Action<int> handler)
@@ -482,6 +494,7 @@ public class SouvenirModule : MonoBehaviour
         Audio.PlaySoundAtTransform("Question", transform);
     }
 
+    // Without icon
     private static double[][] _acceptableWidths = Ut.NewArray(
         // First value is y (vertical text advancement), second value is width of the Surface mesh at this y
         new[] { 0.834 - 0.834, 0.834 + 0.3556 },
@@ -493,7 +506,18 @@ public class SouvenirModule : MonoBehaviour
         new[] { 0.834 - 0.391, 0.834 + 0.834 }
     );
 
-    private void SetWordWrappedText(string text, double desiredHeightFactor = 1)
+    // With icon
+    private static double[][] _acceptableWidthsOld = Ut.NewArray(
+        // First value is y (vertical text advancement), second value is width of the Surface mesh at this y
+        new[] { 0.834 - 0.834, 0.834 + 0.3556 },
+        new[] { 0.834 - 0.7628, 0.834 + 0.424 },
+        new[] { 0.834 - 0.6864, 0.834 + 0.424 },
+        new[] { 0.834 - 0.528, 0.834 + 0.5102 },
+        new[] { 0.834 - 0.07, 0.834 + 0.5102 },
+        new[] { 0.834 - 0.07, 0.834 + 0.834 }
+    );
+
+    private void SetWordWrappedText(string text, double desiredHeightFactor = 1.1)
     {
         var low = 1;
         var high = 256;
@@ -612,6 +636,9 @@ public class SouvenirModule : MonoBehaviour
             mesh.transform.eulerAngles = new Vector3(90, 0, 0);
             mesh.transform.localScale = new Vector3(1, 1, 1);
             highlight.transform.localScale = new Vector3(100, 100, 100);
+            var tpNumber = mesh.transform.Find("TP" + (i + 1));
+            if (tpNumber != null)
+                tpNumber.localScale = new Vector3(1, 1, 1);
             var bounds = renderer.bounds.size;
             var fac = (answers.Length > 4 ? .45 : .7);
             if (bounds.x > fac * _surfaceSizeFactor)
@@ -619,6 +646,8 @@ public class SouvenirModule : MonoBehaviour
                 // Adjust width of answer so that it fits horizontally
                 mesh.transform.localScale = new Vector3((float) (fac * _surfaceSizeFactor / bounds.x), 1, 1);
                 highlight.transform.localScale = new Vector3((float) (100 * bounds.x / (fac * _surfaceSizeFactor)), 100, 100);
+                if (tpNumber != null)
+                    tpNumber.localScale = new Vector3((float) (bounds.x / (fac * _surfaceSizeFactor)), 1, 1);
             }
             mesh.transform.localRotation = origRotation;
         }
@@ -2206,10 +2235,6 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessMouseInTheMaze(KMBombModule module)
     {
-        //int[] sphereColors = new int[4];    //0:white 1:green 2:blue 3: yellow; clockwise order from top-left
-        //int torusColor;
-        //int goalPosition;
-
         var comp = GetComponent(module, "Maze_3d");
         var fldSphereColors = GetField<int[]>(comp, "sphereColors");
         var fldTorusColor = GetField<int>(comp, "torusColor");
@@ -3471,8 +3496,19 @@ public class SouvenirModule : MonoBehaviour
     private readonly string TwitchHelpMessage = @"Submit the correct response with “!{0} answer 3”. Order is from top to bottom, then left to right.";
 #pragma warning restore 414
 
+    private bool _tpNumbersEnabled = false;
+
     KMSelectable[] ProcessTwitchCommand(string command)
     {
+        if (!_tpNumbersEnabled)
+        {
+            _tpNumbersEnabled = true;
+            Answers4Parent.transform.localPosition = new Vector3(.003f, 0, 0);
+            Answers6Parent.transform.localPosition = new Vector3(.003f, 0, 0);
+            foreach (var gobj in TpNumbers)
+                gobj.SetActive(true);
+        }
+
         var m = Regex.Match(command.ToLowerInvariant(), @"\A\s*answer\s+(\d)\s*\z");
         if (!m.Success)
             return null;
