@@ -495,7 +495,7 @@ public class SouvenirModule : MonoBehaviour
     }
 
     // Without icon
-    private static double[][] _acceptableWidths = Ut.NewArray(
+    private static readonly double[][] _acceptableWidths = Ut.NewArray(
         // First value is y (vertical text advancement), second value is width of the Surface mesh at this y
         new[] { 0.834 - 0.834, 0.834 + 0.3556 },
         new[] { 0.834 - 0.7628, 0.834 + 0.424 },
@@ -506,16 +506,16 @@ public class SouvenirModule : MonoBehaviour
         new[] { 0.834 - 0.391, 0.834 + 0.834 }
     );
 
-    // With icon
-    private static double[][] _acceptableWidthsOld = Ut.NewArray(
-        // First value is y (vertical text advancement), second value is width of the Surface mesh at this y
-        new[] { 0.834 - 0.834, 0.834 + 0.3556 },
-        new[] { 0.834 - 0.7628, 0.834 + 0.424 },
-        new[] { 0.834 - 0.6864, 0.834 + 0.424 },
-        new[] { 0.834 - 0.528, 0.834 + 0.5102 },
-        new[] { 0.834 - 0.07, 0.834 + 0.5102 },
-        new[] { 0.834 - 0.07, 0.834 + 0.834 }
-    );
+    //// With icon
+    //private static double[][] _acceptableWidthsWithIcon = Ut.NewArray(
+    //    // First value is y (vertical text advancement), second value is width of the Surface mesh at this y
+    //    new[] { 0.834 - 0.834, 0.834 + 0.3556 },
+    //    new[] { 0.834 - 0.7628, 0.834 + 0.424 },
+    //    new[] { 0.834 - 0.6864, 0.834 + 0.424 },
+    //    new[] { 0.834 - 0.528, 0.834 + 0.5102 },
+    //    new[] { 0.834 - 0.07, 0.834 + 0.5102 },
+    //    new[] { 0.834 - 0.07, 0.834 + 0.834 }
+    //);
 
     private void SetWordWrappedText(string text, double desiredHeightFactor = 1.1)
     {
