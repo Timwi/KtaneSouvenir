@@ -440,6 +440,14 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerator Play()
     {
+        if (TwitchPlaysActive)
+        {
+            Answers4Parent.transform.localPosition = new Vector3(.003f, 0, 0);
+            Answers6Parent.transform.localPosition = new Vector3(.003f, 0, 0);
+            foreach (var gobj in TpNumbers)
+                gobj.SetActive(true);
+        }
+
         var numPlayableModules = Bomb.GetSolvableModuleNames().Count(x => !_ignoredModules.Contains(x));
 
         while (true)
@@ -3492,23 +3500,15 @@ public class SouvenirModule : MonoBehaviour
     }
 
 #pragma warning disable 414
+#pragma warning disable IDE0044
+    private bool TwitchPlaysActive = false;
     private List<KMBombModule> TwitchAbandonModule = new List<KMBombModule>();
     private readonly string TwitchHelpMessage = @"Submit the correct response with “!{0} answer 3”. Order is from top to bottom, then left to right.";
 #pragma warning restore 414
-
-    private bool _tpNumbersEnabled = false;
+#pragma warning restore IDE0044
 
     KMSelectable[] ProcessTwitchCommand(string command)
     {
-        if (!_tpNumbersEnabled)
-        {
-            _tpNumbersEnabled = true;
-            Answers4Parent.transform.localPosition = new Vector3(.003f, 0, 0);
-            Answers6Parent.transform.localPosition = new Vector3(.003f, 0, 0);
-            foreach (var gobj in TpNumbers)
-                gobj.SetActive(true);
-        }
-
         var m = Regex.Match(command.ToLowerInvariant(), @"\A\s*answer\s+(\d)\s*\z");
         if (!m.Success)
             return null;
