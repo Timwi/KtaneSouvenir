@@ -38,11 +38,11 @@ public class SouvenirModule : MonoBehaviour
         "Turn The Key"
     };
 
-    private static bool _isTimwisComputer = new[] { "TEKELIA", "CORNFLOWER", "CAITSITH2-PC" }.Contains(Environment.GetEnvironmentVariable("COMPUTERNAME"));
-    private static string _timwiPath = @"D:\c\KTANE\Souvenir modules.txt";
-    private List<QuestionBatch> _questions = new List<QuestionBatch>();
+    private static readonly bool _isTimwisComputer = new[] { "TEKELIA", "CORNFLOWER", "CAITSITH2-PC" }.Contains(Environment.GetEnvironmentVariable("COMPUTERNAME"));
+    private static readonly string _timwiPath = @"D:\c\KTANE\Souvenir modules.txt";
+    private readonly List<QuestionBatch> _questions = new List<QuestionBatch>();
+    private readonly HashSet<KMBombModule> _legitimatelyNoQuestions = new HashSet<KMBombModule>();
     private bool _isActivated = false;
-    private bool _isInUnity = false;
 
     private QandA _currentQuestion = null;
     private bool _isSolved = false;
@@ -58,6 +58,7 @@ public class SouvenirModule : MonoBehaviour
     private int _moduleId;
     private Dictionary<string, Func<KMBombModule, IEnumerable<object>>> _moduleProcessors;
 
+    // The values here are “ModuleType” property on the KMBombModule components.
     const string _3DMaze = "spwiz3DMaze";
     const string _AdventureGame = "spwizAdventureGame";
     const string _Algebra = "algebra";
@@ -182,7 +183,6 @@ public class SouvenirModule : MonoBehaviour
             { _Yahtzee, ProcessYahtzee }
         };
 
-        Debug.LogFormat("[Souvenir #{0}] Started.", _moduleId);
         Bomb.OnBombExploded += delegate { _exploded = true; StopAllCoroutines(); };
         Bomb.OnBombSolved += delegate
         {
@@ -280,8 +280,7 @@ public class SouvenirModule : MonoBehaviour
             if (Application.isEditor)
             {
                 // Testing in Unity
-                Debug.LogFormat("[Souvenir #{0}] Entering Unity testing mode.", _moduleId);
-                _isInUnity = true;
+                Debug.LogFormat("<Souvenir #{0}> Entering Unity testing mode.", _moduleId);
                 var questions = Ut.GetEnumValues<Question>();
                 var curQuestion = 0;
                 var curOrd = 0;
@@ -291,7 +290,7 @@ public class SouvenirModule : MonoBehaviour
                     SouvenirQuestionAttribute attr;
                     if (!_attributes.TryGetValue(questions[curQuestion], out attr))
                     {
-                        Debug.LogFormat("[Souvenir #{1}] Error: Question {0} has no attribute.", questions[curQuestion], _moduleId);
+                        Debug.LogFormat("<Souvenir #{1}> Error: Question {0} has no attribute.", questions[curQuestion], _moduleId);
                         return;
                     }
                     if (attr.ExampleExtraFormatArguments != null && attr.ExampleExtraFormatArguments.Length > 0 && attr.ExampleExtraFormatArgumentGroupSize > 0)
@@ -309,7 +308,7 @@ public class SouvenirModule : MonoBehaviour
                     }
                     catch (FormatException e)
                     {
-                        Debug.LogFormat("[Souvenir #{3}] FormatException {0}\nQuestionText={1}\nfmt=[{2}]", e.Message, attr.QuestionText, fmt.JoinString(", ", "\"", "\""), _moduleId);
+                        Debug.LogFormat("<Souvenir #{3}> FormatException {0}\nQuestionText={1}\nfmt=[{2}]", e.Message, attr.QuestionText, fmt.JoinString(", ", "\"", "\""), _moduleId);
                     }
                 };
                 showQuestion();
@@ -614,7 +613,7 @@ public class SouvenirModule : MonoBehaviour
     {
         if (answers == null || answers.Length == 0 || answers.Length > 6)
         {
-            Debug.LogFormat("[Souvenir #{2}] Something went wrong setting answers. length={0}, answers=[{1}]", answers == null ? "null" : answers.Length.ToString(), answers == null ? "null" : answers.JoinString(), _moduleId);
+            Debug.LogFormat("<Souvenir #{2}> Something went wrong setting answers. length={0}, answers=[{1}]", answers == null ? "null" : answers.Length.ToString(), answers == null ? "null" : answers.JoinString(), _moduleId);
             Module.HandlePass();
             _isSolved = true;
             disappear();
@@ -635,8 +634,8 @@ public class SouvenirModule : MonoBehaviour
             var renderer = btns[i].GetComponent<Renderer>();
 
             mesh.text = i < answers.Length ? answers[i] : "•";
-            btns[i].gameObject.SetActive(_isInUnity || i < answers.Length);
-            children[3 * (i % 2) + (i / 2)] = _isInUnity || i < answers.Length ? btns[i] : null;
+            btns[i].gameObject.SetActive(Application.isEditor || i < answers.Length);
+            children[3 * (i % 2) + (i / 2)] = Application.isEditor || i < answers.Length ? btns[i] : null;
 
             var highlight = btns[i].Highlight;
 
@@ -681,7 +680,7 @@ public class SouvenirModule : MonoBehaviour
         {
             var t = (T) Field.GetValue(_target);
             if (!nullAllowed && t == null)
-                Debug.LogFormat("[Souvenir #{2}] Field {1}.{0} is null.", Field.Name, Field.DeclaringType.FullName, _souvenirID);
+                Debug.LogFormat("<Souvenir #{2}> Field {1}.{0} is null.", Field.Name, Field.DeclaringType.FullName, _souvenirID);
             return t;
         }
         public void Set(T value) { Field.SetValue(_target, value); }
@@ -713,7 +712,7 @@ public class SouvenirModule : MonoBehaviour
         var comp = module.GetComponent(name);
         if (comp == null)
         {
-            Debug.LogFormat("[Souvenir #{2}] {0} game object has no {1} component.", module.name, name, _moduleId);
+            Debug.LogFormat("<Souvenir #{2}> {0} game object has no {1} component. Components are: {3}", module.name, name, _moduleId, module.GetComponents(typeof(Component)).Select(c => c.GetType().FullName).JoinString(", "));
             return null;
         }
         return comp;
@@ -723,7 +722,7 @@ public class SouvenirModule : MonoBehaviour
     {
         if (target == null)
         {
-            Debug.LogFormat("[Souvenir #{3}] Attempt to get {1} field {0} of type {2} from a null object.", name, isPublic ? "public" : "non-public", typeof(T).FullName, _moduleId);
+            Debug.LogFormat("<Souvenir #{3}> Attempt to get {1} field {0} of type {2} from a null object.", name, isPublic ? "public" : "non-public", typeof(T).FullName, _moduleId);
             return null;
         }
         return GetFieldImpl<T>(target, target.GetType(), name, isPublic, BindingFlags.Instance);
@@ -733,7 +732,7 @@ public class SouvenirModule : MonoBehaviour
     {
         if (targetType == null)
         {
-            Debug.LogFormat("[Souvenir #{0}] Attempt to get {1} static field {2} of type {3} from a null type.", _moduleId, isPublic ? "public" : "non-public", name, typeof(T).FullName);
+            Debug.LogFormat("<Souvenir #{0}> Attempt to get {1} static field {2} of type {3} from a null type.", _moduleId, isPublic ? "public" : "non-public", name, typeof(T).FullName);
             return null;
         }
         return GetFieldImpl<T>(null, targetType, name, isPublic, BindingFlags.Static);
@@ -748,13 +747,14 @@ public class SouvenirModule : MonoBehaviour
             fld = targetType.GetField("<" + name + ">k__BackingField", BindingFlags.NonPublic | bindingFlags);
             if (fld == null)
             {
-                Debug.LogFormat("[Souvenir #{3}] Type {0} does not contain {1} field {2}.", targetType, isPublic ? "public" : "non-public", name, _moduleId);
+                Debug.LogFormat("<Souvenir #{3}> Type {0} does not contain {1} field {2}. Fields are: {4}", targetType, isPublic ? "public" : "non-public", name, _moduleId,
+                    targetType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(f => string.Format("{0} {1} {2}", f.IsPublic ? "public" : "private", f.FieldType.FullName, f.Name)).JoinString(", "));
                 return null;
             }
         }
         if (!typeof(T).IsAssignableFrom(fld.FieldType))
         {
-            Debug.LogFormat("[Souvenir #{5}] Type {0} has {1} field {2} of type {3} but expected type {4}.", targetType, isPublic ? "public" : "non-public", name, fld.FieldType.FullName, typeof(T).FullName, _moduleId);
+            Debug.LogFormat("<Souvenir #{5}> Type {0} has {1} field {2} of type {3} but expected type {4}.", targetType, isPublic ? "public" : "non-public", name, fld.FieldType.FullName, typeof(T).FullName, _moduleId);
             return null;
         }
         return new FieldInfo<T>(target, fld, _moduleId);
@@ -764,7 +764,7 @@ public class SouvenirModule : MonoBehaviour
     {
         if (target == null)
         {
-            Debug.LogFormat("[Souvenir #{3}] Attempt to get {1} method {0} of return type {2} from a null object.", name, isPublic ? "public" : "non-public", typeof(T).FullName, _moduleId);
+            Debug.LogFormat("<Souvenir #{3}> Attempt to get {1} method {0} of return type {2} from a null object.", name, isPublic ? "public" : "non-public", typeof(T).FullName, _moduleId);
             return null;
         }
         var bindingFlags = (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | BindingFlags.Instance;
@@ -772,12 +772,12 @@ public class SouvenirModule : MonoBehaviour
         var mths = targetType.GetMethods(bindingFlags).Where(m => m.Name == name && m.GetParameters().Length == numParameters && typeof(T).IsAssignableFrom(m.ReturnType)).Take(2).ToArray();
         if (mths.Length == 0)
         {
-            Debug.LogFormat("[Souvenir #{5}] Type {0} does not contain {1} method {2} with return type {3} and {4} parameters.", targetType, isPublic ? "public" : "non-public", name, typeof(T).FullName, numParameters, _moduleId);
+            Debug.LogFormat("<Souvenir #{5}> Type {0} does not contain {1} method {2} with return type {3} and {4} parameters.", targetType, isPublic ? "public" : "non-public", name, typeof(T).FullName, numParameters, _moduleId);
             return null;
         }
         if (mths.Length > 1)
         {
-            Debug.LogFormat("[Souvenir #{5}] Type {0} contains multiple {1} methods {2} with return type {3} and {4} parameters.", targetType, isPublic ? "public" : "non-public", name, typeof(T).FullName, numParameters, _moduleId);
+            Debug.LogFormat("<Souvenir #{5}> Type {0} contains multiple {1} methods {2} with return type {3} and {4} parameters.", targetType, isPublic ? "public" : "non-public", name, typeof(T).FullName, numParameters, _moduleId);
             return null;
         }
         return new MethodInfo<T>(target, mths[0]);
@@ -797,8 +797,13 @@ public class SouvenirModule : MonoBehaviour
             {
                 yield return obj;
                 if (TwitchAbandonModule.Contains(module))
-                    break;
+                {
+                    Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because Twitch Plays told me to.", _moduleId, module.ModuleDisplayName);
+                    yield break;
+                }
             }
+            if (!_legitimatelyNoQuestions.Contains(module) && !_questions.Any(q => q.Module == module))
+                Debug.LogFormat("[Souvenir #{0}] There was no question generated for {1}. Please report this to Timwi as this may indicate a bug in the module. Remember to send him this logfile.", _moduleId, module.ModuleDisplayName);
         }
         else if (_isTimwisComputer)
         {
@@ -836,7 +841,7 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         if (mapData.GetLength(0) != 8 || mapData.GetLength(1) != 8)
         {
-            Debug.LogFormat("[Souvenir #{2}] 3D maze wrong size ({0},{1}, expected 8,8).", mapData.GetLength(0), mapData.GetLength(1), _moduleId);
+            Debug.LogFormat("<Souvenir #{2}> 3D maze wrong size ({0},{1}, expected 8,8).", mapData.GetLength(0), mapData.GetLength(1), _moduleId);
             yield break;
         }
         var fldLabel = GetField<char>(mapData.GetValue(0, 0), "label", isPublic: true);
@@ -865,13 +870,13 @@ public class SouvenirModule : MonoBehaviour
         else if (correctMarkings == "CDH") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(5, 1));
         else
         {
-            Debug.LogFormat(@"[Souvenir #{1}] Abandoning 3D Maze because unexpected markings: ""{0}"".", correctMarkings, _moduleId);
+            Debug.LogFormat(@"<Souvenir #{1}> Abandoning 3D Maze because unexpected markings: ""{0}"".", correctMarkings, _moduleId);
             yield break;
         }
 
         if (!"NSWE".Contains(bearing))
         {
-            Debug.LogFormat("[Souvenir #{1}] Abandoning 3D Maze because unexpected bearing: '{0}'.", bearing, _moduleId);
+            Debug.LogFormat("<Souvenir #{1}> Abandoning 3D Maze because unexpected bearing: '{0}'.", bearing, _moduleId);
             yield break;
         }
 
@@ -879,7 +884,7 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
 
         _modulesSolved.IncSafe(_3DMaze);
-        addQuestions(
+        addQuestions(module,
             makeQuestion(Question._3DMazeMarkings, _3DMaze, new[] { correctMarkings }),
             makeQuestion(Question._3DMazeBearing, _3DMaze, new[] { bearing == 'N' ? "North" : bearing == 'S' ? "South" : bearing == 'W' ? "West" : "East" }));
     }
@@ -917,14 +922,14 @@ public class SouvenirModule : MonoBehaviour
         var numWeapons = fldNumWeapons.Get();
         if (invWeaponCount == 0 || numWeapons == 0)
         {
-            Debug.LogFormat("[Souvenir #{2}] {0} field {1} is 0 (zero).", comp.GetType().FullName, invWeaponCount == 0 ? fldInvWeaponCount.Field.Name : fldNumWeapons.Field.Name, _moduleId);
+            Debug.LogFormat("<Souvenir #{2}> {0} field {1} is 0 (zero).", comp.GetType().FullName, invWeaponCount == 0 ? fldInvWeaponCount.Field.Name : fldNumWeapons.Field.Name, _moduleId);
             yield break;
         }
 
         var prevInteract = buttonUse.OnInteract;
         if (prevInteract == null)
         {
-            Debug.LogFormat("[Souvenir #{0}] Adventure Game: ButtonUse.OnInteract is null.", _moduleId);
+            Debug.LogFormat("<Souvenir #{0}> Adventure Game: ButtonUse.OnInteract is null.", _moduleId);
             yield break;
         }
 
@@ -968,7 +973,7 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_AdventureGame);
         var enemyName = enemy.ToString();
         enemyName = enemyName.Substring(0, 1).ToUpperInvariant() + enemyName.Substring(1).ToLowerInvariant();
-        addQuestions(qs.Select(q => q()).Concat(new[] { makeQuestion(Question.AdventureGameEnemy, _AdventureGame, new[] { enemyName }) }));
+        addQuestions(module, qs.Select(q => q()).Concat(new[] { makeQuestion(Question.AdventureGameEnemy, _AdventureGame, new[] { enemyName }) }));
     }
 
     private IEnumerable<object> ProcessAlgebra(KMBombModule module)
@@ -988,11 +993,11 @@ public class SouvenirModule : MonoBehaviour
         var textures = fldEquations.Select(f => f.Get());
         if (textures.Any(t => t == null))
         {
-            Debug.LogFormat("[Souvenir #{0}] Algebra: texture #{1} is null.", _moduleId, textures.IndexOf(t => t == null) + 1);
+            Debug.LogFormat("<Souvenir #{0}> Algebra: texture #{1} is null.", _moduleId, textures.IndexOf(t => t == null) + 1);
             yield break;
         }
 
-        addQuestions(textures.Take(2).Select((t, ix) => makeQuestion(ix == 0 ? Question.AlgebraEquation1 : Question.AlgebraEquation2, _Algebra, new[] { t.name.Replace(';', '/') })));
+        addQuestions(module, textures.Take(2).Select((t, ix) => makeQuestion(ix == 0 ? Question.AlgebraEquation1 : Question.AlgebraEquation2, _Algebra, new[] { t.name.Replace(';', '/') })));
     }
 
     private IEnumerable<object> ProcessBigCircle(KMBombModule module)
@@ -1010,16 +1015,16 @@ public class SouvenirModule : MonoBehaviour
         var solution = fldSolution.Get();
         if (solution == null || solution.Length != 3)
         {
-            Debug.LogFormat("[Souvenir #{0}] Big Circle: solution is null or has an unexpected length ({1}).", _moduleId, solution == null ? "null" : solution.Length.ToString());
+            Debug.LogFormat("<Souvenir #{0}> Big Circle: solution is null or has an unexpected length ({1}).", _moduleId, solution == null ? "null" : solution.Length.ToString());
             yield break;
         }
 
         _modulesSolved.IncSafe(_BigCircle);
 
-        addQuestions(solution.Cast<object>().Select((color, ix) => makeQuestion(
-            Question.BigCircleColors, _BigCircle,
-            possibleCorrectAnswers: new[] { color.ToString() },
-            extraFormatArguments: new[] { ordinal(ix + 1) })));
+        addQuestions(module, solution.Cast<object>().Select((color, ix) => makeQuestion(
+             Question.BigCircleColors, _BigCircle,
+             possibleCorrectAnswers: new[] { color.ToString() },
+             extraFormatArguments: new[] { ordinal(ix + 1) })));
     }
 
     private IEnumerable<object> ProcessBinaryLEDs(KMBombModule module)
@@ -1043,7 +1048,7 @@ public class SouvenirModule : MonoBehaviour
         var wires = fldWires.Get();
         if (wires == null || wires.Length != 3)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Binary LEDs because ‘wires’ array is null or its length is unexpected or one of the values is null ({1}).", _moduleId, wires == null ? "null" : string.Format("[{0}]", wires.Select(w => w == null ? "null" : "not null").JoinString(", ")));
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Binary LEDs because ‘wires’ array is null or its length is unexpected or one of the values is null ({1}).", _moduleId, wires == null ? "null" : string.Format("[{0}]", wires.Select(w => w == null ? "null" : "not null").JoinString(", ")));
             yield break;
         }
 
@@ -1067,14 +1072,14 @@ public class SouvenirModule : MonoBehaviour
 
                     if (colors == null || colors.Length <= j)
                     {
-                        Debug.LogFormat("[Souvenir #{0}] Abandoning Binary LEDs because ‘colors’ array has unexpected length ({1}).", _moduleId,
+                        Debug.LogFormat("<Souvenir #{0}> Abandoning Binary LEDs because ‘colors’ array has unexpected length ({1}).", _moduleId,
                             colors == null ? "null" : colors.Length.ToString());
                         return result;
                     }
 
                     if (solutions == null || solutions.GetLength(0) <= seqIx || solutions.GetLength(1) <= colors[j])
                     {
-                        Debug.LogFormat("[Souvenir #{0}] Abandoning Binary LEDs because ‘solutions’ array has unexpected lengths ({1}, {2}).", _moduleId,
+                        Debug.LogFormat("<Souvenir #{0}> Abandoning Binary LEDs because ‘solutions’ array has unexpected lengths ({1}, {2}).", _moduleId,
                             solutions == null ? "null" : solutions.GetLength(0).ToString(),
                             solutions == null ? "null" : solutions.GetLength(1).ToString());
                         return result;
@@ -1089,7 +1094,7 @@ public class SouvenirModule : MonoBehaviour
 
                     if (sequences == null || sequences.GetLength(0) <= seqIx || sequences.GetLength(1) <= numIx)
                     {
-                        Debug.LogFormat("[Souvenir #{0}] Abandoning Binary LEDs because ‘sequences’ array has unexpected lengths ({1}, {2}).", _moduleId,
+                        Debug.LogFormat("<Souvenir #{0}> Abandoning Binary LEDs because ‘sequences’ array has unexpected lengths ({1}, {2}).", _moduleId,
                             sequences == null ? "null" : sequences.GetLength(0).ToString(),
                             sequences == null ? "null" : sequences.GetLength(1).ToString());
                         return result;
@@ -1106,7 +1111,7 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_BinaryLEDs);
 
         if (answer != -1)
-            addQuestion(Question.BinaryLEDsValue, _BinaryLEDs, new[] { answer.ToString() }, preferredWrongAnswers: Enumerable.Range(0, 32).Select(i => i.ToString()).ToArray());
+            addQuestion(module, Question.BinaryLEDsValue, new[] { answer.ToString() }, preferredWrongAnswers: Enumerable.Range(0, 32).Select(i => i.ToString()).ToArray());
     }
 
     private IEnumerable<object> ProcessBitmaps(KMBombModule module)
@@ -1135,7 +1140,7 @@ public class SouvenirModule : MonoBehaviour
 
         var preferredWrongAnswers = qCounts.SelectMany(i => new[] { i, 16 - i }).Distinct().Select(i => i.ToString()).ToArray();
 
-        addQuestions(
+        addQuestions(module,
             makeQuestion(Question.Bitmaps, _Bitmaps, new[] { qCounts[0].ToString() }, new[] { "white", "top left" }, preferredWrongAnswers),
             makeQuestion(Question.Bitmaps, _Bitmaps, new[] { qCounts[1].ToString() }, new[] { "white", "top right" }, preferredWrongAnswers),
             makeQuestion(Question.Bitmaps, _Bitmaps, new[] { qCounts[2].ToString() }, new[] { "white", "bottom left" }, preferredWrongAnswers),
@@ -1160,7 +1165,7 @@ public class SouvenirModule : MonoBehaviour
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Braille);
-        addQuestion(Question.BrailleWord, _Braille, new[] { fldWord.Get() });
+        addQuestion(module, Question.BrailleWord, new[] { fldWord.Get() });
     }
 
     private IEnumerable<object> ProcessBrokenButtons(KMBombModule module)
@@ -1182,7 +1187,7 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_BrokenButtons);
 
         // skip the literally blank buttons.
-        addQuestions(pressed.Select((p, i) => p.Length == 0 ? null : makeQuestion(Question.BrokenButtons, _BrokenButtons, new[] { p }, new[] { ordinal(i + 1) }, pressed.Except(new[] { "" }).ToArray())));
+        addQuestions(module, pressed.Select((p, i) => p.Length == 0 ? null : makeQuestion(Question.BrokenButtons, _BrokenButtons, new[] { p }, new[] { ordinal(i + 1) }, pressed.Except(new[] { "" }).ToArray())));
     }
 
     private IEnumerable<object> ProcessCheapCheckout(KMBombModule module, bool isSpanish)
@@ -1210,15 +1215,15 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(isSpanish ? _CheapCheckoutSupermercadoSalvaje : _CheapCheckout);
         if (isSpanish)
         {
-            addQuestions(paids.Select((p, i) => makeQuestion(Question.CheapCheckoutPaidSupermercadoSalvaje, _CheapCheckout, new[] { "$" + p.ToString("N2") },
-                extraFormatArguments: new[] { paids.Count == 1 ? "" : ordinalSpanish(i + 1) + " ", _moduleCounts.Get(_CheapCheckoutSupermercadoSalvaje) > 1 ? string.Format("el Supermercado Salvaje que resolviste {0}", ordinalSpanish(_modulesSolved.Get(_CheapCheckoutSupermercadoSalvaje))) : "Supermercado Salvaje" },
-                preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(_ => (decimal) Rnd.Range(5, 50)).Select(amt => "$" + amt.ToString("N2")).Distinct().Take(5).ToArray())));
+            addQuestions(module, paids.Select((p, i) => makeQuestion(Question.CheapCheckoutPaidSupermercadoSalvaje, _CheapCheckout, new[] { "$" + p.ToString("N2") },
+                 extraFormatArguments: new[] { paids.Count == 1 ? "" : ordinalSpanish(i + 1) + " ", _moduleCounts.Get(_CheapCheckoutSupermercadoSalvaje) > 1 ? string.Format("el Supermercado Salvaje que resolviste {0}", ordinalSpanish(_modulesSolved.Get(_CheapCheckoutSupermercadoSalvaje))) : "Supermercado Salvaje" },
+                 preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(_ => (decimal) Rnd.Range(5, 50)).Select(amt => "$" + amt.ToString("N2")).Distinct().Take(5).ToArray())));
         }
         else
         {
-            addQuestions(paids.Select((p, i) => makeQuestion(Question.CheapCheckoutPaid, _CheapCheckout, new[] { "$" + p.ToString("N2") },
-                extraFormatArguments: new[] { paids.Count == 1 ? "" : ordinal(i + 1) + " " },
-                preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(_ => (decimal) Rnd.Range(5, 50)).Select(amt => "$" + amt.ToString("N2")).Distinct().Take(5).ToArray())));
+            addQuestions(module, paids.Select((p, i) => makeQuestion(Question.CheapCheckoutPaid, _CheapCheckout, new[] { "$" + p.ToString("N2") },
+                 extraFormatArguments: new[] { paids.Count == 1 ? "" : ordinal(i + 1) + " " },
+                 preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(_ => (decimal) Rnd.Range(5, 50)).Select(amt => "$" + amt.ToString("N2")).Distinct().Take(5).ToArray())));
         }
     }
 
@@ -1239,7 +1244,7 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         if (indexSelected.Length != 7 || indexSelected.Any(b => b == null || b.Length != 2))
         {
-            Debug.LogFormat("[Souvenir #{1}] Abandoning Chess because indexSelected array length is unexpected or one of the values is null or not length 2 ({0}).", indexSelected.Select(iSel => iSel == null ? "null" : iSel).JoinString(", "), _moduleId);
+            Debug.LogFormat("<Souvenir #{1}> Abandoning Chess because indexSelected array length is unexpected or one of the values is null or not length 2 ({0}).", indexSelected.Select(iSel => iSel == null ? "null" : iSel).JoinString(", "), _moduleId);
             yield break;
         }
 
@@ -1248,7 +1253,7 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_Chess);
 
-        addQuestions(Enumerable.Range(0, 6).Select(i => makeQuestion(Question.ChessCoordinate, _Chess, new[] { indexSelected[i] }, new[] { ordinal(i + 1) })));
+        addQuestions(module, Enumerable.Range(0, 6).Select(i => makeQuestion(Question.ChessCoordinate, _Chess, new[] { indexSelected[i] }, new[] { ordinal(i + 1) })));
     }
 
     private IEnumerable<object> ProcessChordQualities(KMBombModule module)
@@ -1277,14 +1282,14 @@ public class SouvenirModule : MonoBehaviour
 
         if (notes.Length != 4)
         {
-            Debug.LogFormat(@"[Souvenir #{0}] Abandoning Chord Qualities because ‘notes’ has unexpected length ({1}).", _moduleId, notes == null ? "null" : notes.Length.ToString());
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Chord Qualities because ‘notes’ has unexpected length ({1}).", _moduleId, notes == null ? "null" : notes.Length.ToString());
             yield break;
         }
 
         var lights = fldLights.Get();
         if (lights == null || lights.Length != 12)
         {
-            Debug.LogFormat(@"[Souvenir #{0}] Abandoning Chord Qualities because ‘lights’ is null or has unexpected length ({1}).", _moduleId, lights == null ? "null" : lights.Length.ToString());
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Chord Qualities because ‘lights’ is null or has unexpected length ({1}).", _moduleId, lights == null ? "null" : lights.Length.ToString());
             yield break;
         }
 
@@ -1300,7 +1305,7 @@ public class SouvenirModule : MonoBehaviour
             meth.Invoke(false);
 
         var noteNames = notes.Cast<object>().Select(note => note.ToString().Replace("sharp", "♯")).ToArray();
-        addQuestions(
+        addQuestions(module,
             makeQuestion(Question.ChordQualitiesNotes, _ChordQualities, noteNames),
             makeQuestion(Question.ChordQualitiesQuality, _ChordQualities, new[] { qualityName }));
     }
@@ -1352,7 +1357,7 @@ public class SouvenirModule : MonoBehaviour
             var indColors = fldColors == null ? null : fldColors.Get();
             if (fldPattern == null || fldColors == null || indColors == null || indColors.Count == 0 || indColors.Cast<object>().Any(col => !_ColorDecoding_ColorNameMapping.ContainsKey(col.ToString())))
             {
-                Debug.LogFormat(@"[Souvenir #{0}] Abandoning Color Decoding because something is null, or indicator_colors contains an invalid value: {1}.", _moduleId,
+                Debug.LogFormat(@"<Souvenir #{0}> Abandoning Color Decoding because something is null, or indicator_colors contains an invalid value: {1}.", _moduleId,
                     indColors == null ? "<null>" : string.Format("[{0}]", indColors.Cast<object>().JoinString(", ")));
                 isAbandoned = true;
                 return;
@@ -1396,21 +1401,21 @@ public class SouvenirModule : MonoBehaviour
 
         if (isAbandoned)
         {
-            Debug.LogFormat(@"[Souvenir #{0}] Abandoning Color Decoding.", _moduleId);
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Color Decoding.", _moduleId);
             yield break;
         }
         _modulesSolved.IncSafe(_ColorDecoding);
 
         if (Enumerable.Range(0, 3).Any(k => !patterns.ContainsKey(k) || !colors.ContainsKey(k)))
         {
-            Debug.LogFormat(@"[Souvenir #{0}] Abandoning Color Decoding because I have a discontinuous set of stages: {1}/{2}.", _moduleId, patterns.Keys.JoinString(", "), colors.Keys.JoinString(", "));
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Color Decoding because I have a discontinuous set of stages: {1}/{2}.", _moduleId, patterns.Keys.JoinString(", "), colors.Keys.JoinString(", "));
             yield break;
         }
 
-        addQuestions(Enumerable.Range(0, 3).SelectMany(stage => Ut.NewArray(
-            colors[stage].Length <= 3 ? makeQuestion(Question.ColorDecodingIndicatorColors, _ColorDecoding, colors[stage], new[] { "appeared", ordinal(stage + 1) }) : null,
-            colors[stage].Length >= 3 ? makeQuestion(Question.ColorDecodingIndicatorColors, _ColorDecoding, _ColorDecoding_ColorNameMapping.Keys.Except(colors[stage]).ToArray(), new[] { "did not appear", ordinal(stage + 1) }) : null,
-            makeQuestion(Question.ColorDecodingIndicatorPattern, _ColorDecoding, new[] { patterns[stage] }, new[] { ordinal(stage + 1) }))));
+        addQuestions(module, Enumerable.Range(0, 3).SelectMany(stage => Ut.NewArray(
+             colors[stage].Length <= 3 ? makeQuestion(Question.ColorDecodingIndicatorColors, _ColorDecoding, colors[stage], new[] { "appeared", ordinal(stage + 1) }) : null,
+             colors[stage].Length >= 3 ? makeQuestion(Question.ColorDecodingIndicatorColors, _ColorDecoding, _ColorDecoding_ColorNameMapping.Keys.Except(colors[stage]).ToArray(), new[] { "did not appear", ordinal(stage + 1) }) : null,
+             makeQuestion(Question.ColorDecodingIndicatorPattern, _ColorDecoding, new[] { patterns[stage] }, new[] { ordinal(stage + 1) }))));
     }
 
     private IEnumerable<object> ProcessColoredSquares(KMBombModule module)
@@ -1429,7 +1434,7 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
 
         _modulesSolved.IncSafe(_ColoredSquares);
-        addQuestion(Question.ColoredSquaresFirstGroup, _ColoredSquares, new[] { fldFirstStageColor.Get().ToString() });
+        addQuestion(module, Question.ColoredSquaresFirstGroup, new[] { fldFirstStageColor.Get().ToString() });
     }
 
     private IEnumerable<object> ProcessColorMorse(KMBombModule module)
@@ -1457,7 +1462,7 @@ public class SouvenirModule : MonoBehaviour
 
         if (numbers == null || numbers.Length != 3 || colors == null || colors.Length != 3 || colorNames == null || colorNames.Any(cn => cn == null) || colors.Any(c => c < 0 || c >= colorNames.Length))
         {
-            Debug.LogFormat(@"[Souvenir #{0}] Abandoning Color Morse because an array is null or not the expected length: numbers={1}, colors={2}, colorNames={3}.", _moduleId,
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Color Morse because an array is null or not the expected length: numbers={1}, colors={2}, colorNames={3}.", _moduleId,
                 numbers == null ? "null" : string.Format("[{0}]", numbers.JoinString(", ")),
                 colors == null ? "null" : string.Format("[{0}]", colors.JoinString(", ")),
                 colorNames == null ? "null" : string.Format("[{0}]", colorNames.Select(cn => cn == null ? "<null>" : string.Format(@"""{0}""", cn)).JoinString(", ")));
@@ -1466,10 +1471,10 @@ public class SouvenirModule : MonoBehaviour
 
         var flashedColorNames = colors.Select(c => colorNames[c].Substring(0, 1) + colorNames[c].Substring(1).ToLowerInvariant()).ToArray();
         var flashedCharacters = numbers.Select(num => "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".Substring(num, 1)).ToArray();
-        addQuestions(Enumerable.Range(0, 3).SelectMany(ix => Ut.NewArray(
-            makeQuestion(Question.ColorMorseColor, _ColorMorse, new[] { flashedColorNames[ix] }, new[] { ordinal(ix + 1) }, flashedColorNames),
-            makeQuestion(Question.ColorMorseCharacter, _ColorMorse, new[] { flashedCharacters[ix] }, new[] { ordinal(ix + 1) }, flashedCharacters)
-        )));
+        addQuestions(module, Enumerable.Range(0, 3).SelectMany(ix => Ut.NewArray(
+             makeQuestion(Question.ColorMorseColor, _ColorMorse, new[] { flashedColorNames[ix] }, new[] { ordinal(ix + 1) }, flashedColorNames),
+             makeQuestion(Question.ColorMorseCharacter, _ColorMorse, new[] { flashedCharacters[ix] }, new[] { ordinal(ix + 1) }, flashedCharacters)
+         )));
     }
 
     private IEnumerable<object> ProcessCoordinates(KMBombModule module)
@@ -1488,7 +1493,7 @@ public class SouvenirModule : MonoBehaviour
         var index = fldFirstSubmitted.Get().Value;
         if (clues == null || index < 0 || index >= clues.Count)
         {
-            Debug.LogFormat(@"[Souvenir #{0}] Abandoning Coordinates because ‘clues’ is null or ‘index’ has unexpected value ({1}, clues length {2}).", _moduleId, index, clues == null ? "null" : clues.Count.ToString());
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Coordinates because ‘clues’ is null or ‘index’ has unexpected value ({1}, clues length {2}).", _moduleId, index, clues == null ? "null" : clues.Count.ToString());
             yield break;
         }
         var clue = clues[index];
@@ -1538,7 +1543,7 @@ public class SouvenirModule : MonoBehaviour
 
         // The size clue is the only one where fldClueSystem is null
         var sizeClue = clues.Cast<object>().Where(szCl => fldClueSystem.Field.GetValue(szCl) == null).FirstOrDefault();
-        addQuestions(
+        addQuestions(module,
             makeQuestion(Question.CoordinatesFirstSolution, _Coordinates, new[] { shortenCoordinate(clueText) }, preferredWrongAnswers: clues.Cast<object>().Select(c => shortenCoordinate((string) fldClueText.Field.GetValue(c))).Where(t => t != null).ToArray()),
             sizeClue == null ? null : makeQuestion(Question.CoordinatesSize, _Coordinates, new[] { (string) fldClueText.Field.GetValue(sizeClue) }));
     }
@@ -1582,12 +1587,12 @@ public class SouvenirModule : MonoBehaviour
 
         if (badData)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Creation because of unexpected data. Day = {1}, Weather = {2}", _moduleId, currentDay, currentWeather ?? "<null>");
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Creation because of unexpected data. Day = {1}, Weather = {2}", _moduleId, currentDay, currentWeather ?? "<null>");
             yield break;
         }
 
         _modulesSolved.IncSafe(_Creation);
-        addQuestions(allWeather.Select((t, i) => makeQuestion(Question.CreationWeather, _Creation, new[] { t }, new[] { ordinal(i + 1) })));
+        addQuestions(module, allWeather.Select((t, i) => makeQuestion(Question.CreationWeather, _Creation, new[] { t }, new[] { ordinal(i + 1) })));
     }
 
     private IEnumerable<object> ProcessDoubleOh(KMBombModule module)
@@ -1606,17 +1611,17 @@ public class SouvenirModule : MonoBehaviour
         var submitIndex = functions.Cast<object>().IndexOf(f => f.ToString() == "Submit");
         if (submitIndex < 0 || submitIndex > 4)
         {
-            Debug.LogFormat(@"[Souvenir #{0}] Double-Oh: submit button is at index {1}?", _moduleId, submitIndex);
+            Debug.LogFormat(@"<Souvenir #{0}> Double-Oh: submit button is at index {1} (expected 0–4).", _moduleId, submitIndex);
             yield break;
         }
 
         _modulesSolved.IncSafe(_DoubleOh);
-        addQuestion(Question.DoubleOhSubmitButton, _DoubleOh, new[] { "↕↔⇔⇕◆".Substring(submitIndex, 1) });
+        addQuestion(module, Question.DoubleOhSubmitButton, new[] { "↕↔⇔⇕◆".Substring(submitIndex, 1) });
     }
 
     private IEnumerable<object> ProcessFastMath(KMBombModule module)
     {
-        var comp = GetComponent(module, "fastMath");
+        var comp = GetComponent(module, "FastMath");
         var fldScreen = GetField<TextMesh>(comp, "Screen", isPublic: true);
         var fldSolved = GetField<bool>(comp, "_isSolved");
 
@@ -1633,7 +1638,7 @@ public class SouvenirModule : MonoBehaviour
             var display = fldScreen.Get().text;
             if (display.Length != 3)
             {
-                Debug.LogFormat(@"[Souvenir #{1}] Abandoning Fast Math because the screen contains something other than three characters: ""{0}"" ({2} characters).", display, _moduleId, display.Length);
+                Debug.LogFormat(@"<Souvenir #{1}> Abandoning Fast Math because the screen contains something other than three characters: ""{0}"" ({2} characters).", display, _moduleId, display.Length);
                 yield break;
             }
             letters = display[0] + "" + display[2];
@@ -1642,12 +1647,12 @@ public class SouvenirModule : MonoBehaviour
         }
         if (letters == null)
         {
-            Debug.LogFormat(@"[Souvenir #{0}] Abandoning Fast Math because no letters were extracted before the module was solved.", _moduleId);
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Fast Math because no letters were extracted before the module was solved.", _moduleId);
             yield break;
         }
 
         _modulesSolved.IncSafe(_FastMath);
-        addQuestion(Question.FastMathLastLetters, _FastMath, new[] { letters }, preferredWrongAnswers: prevLetters.ToArray());
+        addQuestion(module, Question.FastMathLastLetters, new[] { letters }, preferredWrongAnswers: prevLetters.ToArray());
     }
 
     private IEnumerable<object> ProcessGridLock(KMBombModule module)
@@ -1673,7 +1678,7 @@ public class SouvenirModule : MonoBehaviour
         if (pages == null || pages.Length < 5 || pages.Length > 10 || solution < 0 || solution > 15 ||
             pages.Any(p => p == null || p.Length != 16 || p.Any(q => q < 0 || (q & 15) > 12 || (q & (15 << 4)) > (4 << 4))))
         {
-            Debug.LogFormat(@"[Souvenir #{0}] Abandoning Gridlock because unxpected values were found (pages={1}, solution={2}).", _moduleId, pages == null ? "<null>" : string.Format("[{0}]", pages.Select(p => string.Format("[{0}]", p.JoinString(", "))).JoinString(", ")), solution);
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Gridlock because unxpected values were found (pages={1}, solution={2}).", _moduleId, pages == null ? "<null>" : string.Format("[{0}]", pages.Select(p => string.Format("[{0}]", p.JoinString(", "))).JoinString(", ")), solution);
             yield break;
         }
 
@@ -1683,7 +1688,7 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
 
         _modulesSolved.IncSafe(_GridLock);
-        addQuestions(
+        addQuestions(module,
             makeQuestion(Question.GridLockStartingLocation, _GridLock, new[] { locations[start] }),
             makeQuestion(Question.GridLockEndingLocation, _GridLock, new[] { locations[solution] }),
             makeQuestion(Question.GridLockStartingColor, _GridLock, new[] { colors[(pages[0][start] >> 4) - 1] }));
@@ -1704,11 +1709,11 @@ public class SouvenirModule : MonoBehaviour
         var pawnColor = fldPawnColor.Get();
         if (pawnColor < 0 || pawnColor >= 6)
         {
-            Debug.LogFormat("[Souvenir #{1}] Abandoning Hexamaze because invalid pawn color {0}.", pawnColor, _moduleId);
+            Debug.LogFormat("<Souvenir #{1}> Abandoning Hexamaze because invalid pawn color {0}.", pawnColor, _moduleId);
             yield break;
         }
 
-        addQuestion(Question.HexamazePawnColor, _Hexamaze, new[] { new[] { "Red", "Yellow", "Green", "Cyan", "Blue", "Pink" }[pawnColor] });
+        addQuestion(module, Question.HexamazePawnColor, new[] { new[] { "Red", "Yellow", "Green", "Cyan", "Blue", "Pink" }[pawnColor] });
     }
 
     private IEnumerable<object> ProcessHunting(KMBombModule module)
@@ -1738,7 +1743,7 @@ public class SouvenirModule : MonoBehaviour
                 qs.Add(makeQuestion(Question.HuntingColumnsRows, _Hunting,
                     possibleCorrectAnswers: new[] { _attributes[Question.HuntingColumnsRows].AllAnswers[(hasRowFirst[0] ^ row ^ first ? 1 : 0) | (hasRowFirst[1] ^ row ^ first ? 2 : 0) | (hasRowFirst[2] ^ row ^ first ? 4 : 0)] },
                     extraFormatArguments: new[] { row ? "row" : "column", first ? "first" : "second" }));
-        addQuestions(qs);
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessIceCream(KMBombModule module)
@@ -1775,7 +1780,7 @@ public class SouvenirModule : MonoBehaviour
                 options.Any(x => x == null || x.Length != 5 || x.Any(y => y < 0 || y >= flavourNames.Length)) ||
                 sol.Any(x => x < 0 || x >= flavourNames.Length) || cus.Any(x => x < 0 || x >= customerNames.Length))
             {
-                Debug.LogFormat("[Souvenir #{0}] Abandoning Ice Cream because of unexpected values.", _moduleId);
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Ice Cream because of unexpected values.", _moduleId);
                 yield break;
             }
             flavours[i] = options[i].ToArray();
@@ -1793,7 +1798,7 @@ public class SouvenirModule : MonoBehaviour
                 questions.Add(makeQuestion(Question.IceCreamCustomer, _IceCream, new[] { customerNames[customers[i]] }, new[] { ordinal(i + 1) }, preferredWrongAnswers: customers.Select(ix => customerNames[ix]).ToArray()));
         }
 
-        addQuestions(questions);
+        addQuestions(module, questions);
     }
 
     private IEnumerable<object> ProcessListening(KMBombModule module)
@@ -1817,7 +1822,7 @@ public class SouvenirModule : MonoBehaviour
         var attr = _attributes.Get(Question.Listening);
         if (attr == null)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Listening because SouvenirQuestionAttribute for Question.Listening is null.", _moduleId);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Listening because SouvenirQuestionAttribute for Question.Listening is null.", _moduleId);
             yield break;
         }
 
@@ -1830,7 +1835,7 @@ public class SouvenirModule : MonoBehaviour
         var nullIndex = Array.IndexOf(prevInteracts, null);
         if (nullIndex != -1)
         {
-            Debug.LogFormat("[Souvenir #{1}] Abandoning Listening because buttons[{0}].OnInteract is null.", nullIndex, _moduleId);
+            Debug.LogFormat("<Souvenir #{1}> Abandoning Listening because buttons[{0}].OnInteract is null.", nullIndex, _moduleId);
             yield break;
         }
 
@@ -1874,7 +1879,7 @@ public class SouvenirModule : MonoBehaviour
             buttons[i].OnInteract = prevInteracts[i];
 
         _modulesSolved.IncSafe(_Listening);
-        addQuestion(Question.Listening, _Listening, new[] { correctCode }, preferredWrongAnswers: attr.ExampleAnswers);
+        addQuestion(module, Question.Listening, new[] { correctCode }, preferredWrongAnswers: attr.ExampleAnswers);
     }
 
     private IEnumerable<object> ProcessLogicGates(KMBombModule module)
@@ -1939,7 +1944,7 @@ public class SouvenirModule : MonoBehaviour
             qs.Add(makeQuestion(Question.LogicGatesGates, _LogicGates, new[] { gateTypeNames[i] }, new[] { "gate " + (char) ('A' + i) }));
         if (!isDuplicateInvalid)
             qs.Add(makeQuestion(Question.LogicGatesGates, _LogicGates, new[] { duplicate }, new[] { "the duplicated gate" }));
-        addQuestions(qs);
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessMafia(KMBombModule module)
@@ -1960,12 +1965,12 @@ public class SouvenirModule : MonoBehaviour
 
         if (godfather == null || suspects == null || suspects.Length != 8)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Mafia because ‘{1}’ is null or unexpected length ({2}).", _moduleId, godfather == null ? "godfather" : "suspects", suspects == null ? "null" : suspects.Length.ToString());
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Mafia because ‘{1}’ is null or unexpected length ({2}).", _moduleId, godfather == null ? "godfather" : "suspects", suspects == null ? "null" : suspects.Length.ToString());
             yield break;
         }
 
         _modulesSolved.IncSafe(_Mafia);
-        addQuestion(Question.MafiaPlayers, _Mafia, suspects.Cast<object>().Select(obj => obj.ToString()).Except(new[] { godfather.ToString() }).ToArray());
+        addQuestion(module, Question.MafiaPlayers, suspects.Cast<object>().Select(obj => obj.ToString()).Except(new[] { godfather.ToString() }).ToArray());
     }
 
     private IEnumerable<object> ProcessMaritimeFlags(KMBombModule module)
@@ -1987,7 +1992,7 @@ public class SouvenirModule : MonoBehaviour
 
         if (callsignObj == null || bearing < 0 || bearing >= 360)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Maritime Flags because callsign is null ({1}) or bearing is out of range ({2}).", _moduleId, callsignObj == null, bearing);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Maritime Flags because callsign is null ({1}) or bearing is out of range ({2}).", _moduleId, callsignObj == null, bearing);
             yield break;
         }
 
@@ -1997,11 +2002,11 @@ public class SouvenirModule : MonoBehaviour
         var callsign = fldCallsignName.Get();
         if (callsign == null || callsign.Length != 7)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Maritime Flags because callsign is null or length not 7 (it’s {1}).", _moduleId, callsign == null ? "null" : callsign.Length.ToString());
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Maritime Flags because callsign is null or length not 7 (it’s {1}).", _moduleId, callsign == null ? "null" : callsign.Length.ToString());
             yield break;
         }
 
-        addQuestions(
+        addQuestions(module,
             makeQuestion(Question.MaritimeFlagsBearing, _MaritimeFlags, new[] { bearing.ToString() }),
             makeQuestion(Question.MaritimeFlagsCallsign, _MaritimeFlags, new[] { callsign.ToLowerInvariant() }));
     }
@@ -2031,7 +2036,7 @@ public class SouvenirModule : MonoBehaviour
         var buttonNullIndex = Array.IndexOf(buttons, null);
         if (buttons.Length != 4 || buttonNullIndex != -1)
         {
-            Debug.LogFormat("[Souvenir #{2}] Abandoning Monsplode, Fight! because unexpected buttons array length ({0}, expected 4) or one of them is null ({1}, expected -1).", buttons.Length, buttonNullIndex, _moduleId);
+            Debug.LogFormat("<Souvenir #{2}> Abandoning Monsplode, Fight! because unexpected buttons array length ({0}, expected 4) or one of them is null ({1}, expected -1).", buttons.Length, buttonNullIndex, _moduleId);
             yield break;
         }
 
@@ -2065,12 +2070,12 @@ public class SouvenirModule : MonoBehaviour
 
                     var creatureID = fldCreatureID.Get();
                     if (creatureID < 0 || creatureID >= creatureNames.Length || string.IsNullOrEmpty(creatureNames[creatureID]))
-                        Debug.LogFormat("[Souvenir #{2}] Monsplode, Fight!: Unexpected creature ID: {0}; creature names are: [{1}]", creatureID, creatureNames.Select(cn => cn == null ? "null" : '"' + cn + '"').JoinString(", "), _moduleId);
+                        Debug.LogFormat("<Souvenir #{2}> Monsplode, Fight!: Unexpected creature ID: {0}; creature names are: [{1}]", creatureID, creatureNames.Select(cn => cn == null ? "null" : '"' + cn + '"').JoinString(", "), _moduleId);
                     else
                     {
                         var moveIDs = fldMoveIDs.Get();
                         if (moveIDs == null || moveIDs.Length != 4 || moveIDs.Any(mid => mid >= moveNames.Length || string.IsNullOrEmpty(moveNames[mid])))
-                            Debug.LogFormat("[Souvenir #{2}] Monsplode, Fight!: Unexpected move IDs: {0}; moves names are: [{1}]",
+                            Debug.LogFormat("<Souvenir #{2}> Monsplode, Fight!: Unexpected move IDs: {0}; moves names are: [{1}]",
                                 moveIDs == null ? null : "[" + moveIDs.JoinString(", ") + "]",
                                 moveNames.Select(mn => mn == null ? "null" : '"' + mn + '"').JoinString(", "),
                                 _moduleId);
@@ -2086,7 +2091,7 @@ public class SouvenirModule : MonoBehaviour
 
                     if (curCreatureName == null || curMoveNames == null)
                     {
-                        Debug.LogFormat("[Souvenir #{0}] Monsplode, Fight!: Abandoning due to error above.", _moduleId);
+                        Debug.LogFormat("<Souvenir #{0}> Monsplode, Fight!: Abandoning due to error above.", _moduleId);
                         // Set these to null to signal that something went wrong and we need to abort
                         displayedCreature = null;
                         displayedMoves = null;
@@ -2126,7 +2131,7 @@ public class SouvenirModule : MonoBehaviour
 
         if (displayedCreature.Count != displayedMoves.Count || displayedCreature.Count != pushedMoves.Count || displayedCreature.Count != correctMoves.Count)
         {
-            Debug.LogFormat("[Souvenir #{4}] Monsplode, Fight!: Inconsistent list lengths: {0}, {1}, {2}, {3}.", displayedCreature.Count, displayedMoves.Count, pushedMoves.Count, correctMoves.Count, _moduleId);
+            Debug.LogFormat("<Souvenir #{4}> Monsplode, Fight!: Inconsistent list lengths: {0}, {1}, {2}, {3}.", displayedCreature.Count, displayedMoves.Count, pushedMoves.Count, correctMoves.Count, _moduleId);
             yield break;
         }
 
@@ -2142,7 +2147,7 @@ public class SouvenirModule : MonoBehaviour
             if (attr != null && attr.AllAnswers != null)
                 qs.Add(makeQuestion(Question.MonsplodeFightMove, _MonsplodeFight, attr.AllAnswers.Except(displayedMoves[i]).ToArray(), new[] { "was not", ord }, allDisplayedMoves));
         }
-        addQuestions(qs);
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessMoon(KMBombModule module)
@@ -2162,13 +2167,13 @@ public class SouvenirModule : MonoBehaviour
         var lightIndex = fldLightIndex.Get();
         if (lightIndex < 0 || lightIndex >= 8)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning The Moon because ‘lightIndex’ has unexpected value {1}.", _moduleId, lightIndex);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning The Moon because ‘lightIndex’ has unexpected value {1}.", _moduleId, lightIndex);
             yield break;
         }
 
         var qNames = new[] { "first initially lit", "second initially lit", "third initially lit", "fourth initially lit", "first initially unlit", "second initially unlit", "third initially unlit", "fourth initially unlit" };
         var aNames = new[] { "south", "south-west", "west", "north-west", "north", "north-east", "east", "south-east" };
-        addQuestions(Enumerable.Range(0, 8).Select(i => makeQuestion(Question.MoonLitUnlit, _Moon, new[] { aNames[(i + lightIndex) % 8] }, new[] { qNames[i] })));
+        addQuestions(module, Enumerable.Range(0, 8).Select(i => makeQuestion(Question.MoonLitUnlit, _Moon, new[] { aNames[(i + lightIndex) % 8] }, new[] { qNames[i] })));
     }
 
     private IEnumerable<object> ProcessMorseAMaze(KMBombModule module)
@@ -2190,17 +2195,17 @@ public class SouvenirModule : MonoBehaviour
         var word = fldWord.Get();
         if (start == null || start.Length != 2)
         {
-            Debug.LogFormat("[Souvenir #{0}] Morse-A-Maze starting coordinate is null or has unexpected value: {1}", _moduleId, start ?? "<null>");
+            Debug.LogFormat("<Souvenir #{0}> Morse-A-Maze starting coordinate is null or has unexpected value: {1}", _moduleId, start ?? "<null>");
             yield break;
         }
         if (end == null || end.Length != 2)
         {
-            Debug.LogFormat("[Souvenir #{0}] Morse-A-Maze ending coordinate is null or has unexpected value: {1}", _moduleId, end ?? "<null>");
+            Debug.LogFormat("<Souvenir #{0}> Morse-A-Maze ending coordinate is null or has unexpected value: {1}", _moduleId, end ?? "<null>");
             yield break;
         }
         if (word == null || word.Length < 4)
         {
-            Debug.LogFormat("[Souvenir #{0}] Morse-A-Maze morse code word is null or has unexpected value: {1}", _moduleId, word ?? "<null>");
+            Debug.LogFormat("<Souvenir #{0}> Morse-A-Maze morse code word is null or has unexpected value: {1}", _moduleId, word ?? "<null>");
             yield break;
         }
 
@@ -2208,7 +2213,7 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
 
         _modulesSolved.IncSafe(_MorseAMaze);
-        addQuestions(
+        addQuestions(module,
             makeQuestion(Question.MorseAMazeStartingCoordinate, _MorseAMaze, new[] { start }),
             makeQuestion(Question.MorseAMazeEndingCoordinate, _MorseAMaze, new[] { end }),
             makeQuestion(Question.MorseAMazeMorseCodeWord, _MorseAMaze, new[] { word }));
@@ -2230,7 +2235,7 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         if (chars.Length != 3)
         {
-            Debug.LogFormat("[Souvenir #{0}] Morsematics: Unexpected length of DisplayCharsRaw array ({1} instead of 3).", _moduleId, chars.Length);
+            Debug.LogFormat("<Souvenir #{0}> Morsematics: Unexpected length of DisplayCharsRaw array ({1} instead of 3).", _moduleId, chars.Length);
             yield break;
         }
 
@@ -2238,7 +2243,7 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
 
         _modulesSolved.IncSafe(_Morsematics);
-        addQuestions(Enumerable.Range(0, 3).Select(i => makeQuestion(Question.MorsematicsReceivedLetters, _Morsematics, new[] { chars[i] }, new[] { ordinal(i + 1) }, chars)));
+        addQuestions(module, Enumerable.Range(0, 3).Select(i => makeQuestion(Question.MorsematicsReceivedLetters, _Morsematics, new[] { chars[i] }, new[] { ordinal(i + 1) }, chars)));
     }
 
     private IEnumerable<object> ProcessMouseInTheMaze(KMBombModule module)
@@ -2257,7 +2262,7 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         if (sphereColors.Length != 4)
         {
-            Debug.LogFormat("[Souvenir #{1}] Mouse in the Maze: sphereColors has unexpected length ({0}; expected 4).", sphereColors.Length, _moduleId);
+            Debug.LogFormat("<Souvenir #{1}> Mouse in the Maze: sphereColors has unexpected length ({0}; expected 4).", sphereColors.Length, _moduleId);
             yield break;
         }
 
@@ -2267,7 +2272,7 @@ public class SouvenirModule : MonoBehaviour
         var goalPos = fldGoalPosition.Get();
         if (goalPos < 0 || goalPos >= 4)
         {
-            Debug.LogFormat("[Souvenir #{1}] Mouse in the Maze: Unexpected goalPos ({0}; expected 0 to 3).", goalPos, _moduleId);
+            Debug.LogFormat("<Souvenir #{1}> Mouse in the Maze: Unexpected goalPos ({0}; expected 0 to 3).", goalPos, _moduleId);
             yield break;
         }
 
@@ -2275,7 +2280,7 @@ public class SouvenirModule : MonoBehaviour
         var goalColor = sphereColors[goalPos];
         if (torusColor < 0 || torusColor >= 4 || goalColor < 0 || goalColor >= 4)
         {
-            Debug.LogFormat("[Souvenir #{2}] Mouse in the Maze: Unexpected color (torus={0}; goal={1}).", torusColor, goalColor, _moduleId);
+            Debug.LogFormat("<Souvenir #{2}> Mouse in the Maze: Unexpected color (torus={0}; goal={1}).", torusColor, goalColor, _moduleId);
             yield break;
         }
 
@@ -2283,7 +2288,7 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
 
         _modulesSolved.IncSafe(_MouseInTheMaze);
-        addQuestions(
+        addQuestions(module,
             makeQuestion(Question.MouseInTheMazeSphere, _MouseInTheMaze, new[] { new[] { "white", "green", "blue", "yellow" }[goalColor] }),
             makeQuestion(Question.MouseInTheMazeTorus, _MouseInTheMaze, new[] { new[] { "white", "green", "blue", "yellow" }[torusColor] }));
     }
@@ -2306,7 +2311,7 @@ public class SouvenirModule : MonoBehaviour
 
         if (fldSuspects.Get() != 4 || fldWeapons.Get() != 4)
         {
-            Debug.LogFormat("[Souvenir #{0}] Murder: Unexpected number of suspects ({1} instead of 4) or weapons ({2} instead of 4).", _moduleId, fldSuspects.Get(), fldWeapons.Get());
+            Debug.LogFormat("<Souvenir #{0}> Murder: Unexpected number of suspects ({1} instead of 4) or weapons ({2} instead of 4).", _moduleId, fldSuspects.Get(), fldWeapons.Get());
             yield break;
         }
 
@@ -2321,7 +2326,7 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         if (solution.Length != 3 || skipDisplay.GetLength(0) != 2 || skipDisplay.GetLength(1) != 6 || names.GetLength(0) != 3 || names.GetLength(1) != 9)
         {
-            Debug.LogFormat("[Souvenir #{0}] Murder: Unexpected length of solution array ({1} instead of 3) or solution array ({2}/{3} instead of 2/6) or names array ({4}/{5} instead of 3/9).", _moduleId, solution.Length, skipDisplay.GetLength(0), skipDisplay.GetLength(1), names.GetLength(0), names.GetLength(1));
+            Debug.LogFormat("<Souvenir #{0}> Murder: Unexpected length of solution array ({1} instead of 3) or solution array ({2}/{3} instead of 2/6) or names array ({4}/{5} instead of 3/9).", _moduleId, solution.Length, skipDisplay.GetLength(0), skipDisplay.GetLength(1), names.GetLength(0), names.GetLength(1));
             yield break;
         }
 
@@ -2331,11 +2336,11 @@ public class SouvenirModule : MonoBehaviour
         var bodyFound = fldBodyFound.Get();
         if (actualSuspect < 0 || actualSuspect >= 6 || actualWeapon < 0 || actualWeapon >= 6 || actualRoom < 0 || actualRoom >= 9 || bodyFound < 0 || bodyFound >= 9)
         {
-            Debug.LogFormat("[Souvenir #{0}] Murder: Unexpected suspect, weapon, room or bodyFound (expected 0–5/0–5/0–8/0–8, got {1}/{2}/{3}/{4}).", _moduleId, actualSuspect, actualWeapon, actualRoom, bodyFound);
+            Debug.LogFormat("<Souvenir #{0}> Murder: Unexpected suspect, weapon, room or bodyFound (expected 0–5/0–5/0–8/0–8, got {1}/{2}/{3}/{4}).", _moduleId, actualSuspect, actualWeapon, actualRoom, bodyFound);
             yield break;
         }
 
-        addQuestions(
+        addQuestions(module,
             makeQuestion(Question.MurderSuspect, _Murder,
                 Enumerable.Range(0, 6).Where(suspectIx => skipDisplay[0, suspectIx] == 0 && suspectIx != actualSuspect).Select(suspectIx => names[0, suspectIx]).ToArray(),
                 new[] { "a suspect but not the murderer" }),
@@ -2355,7 +2360,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessNeutralization(KMBombModule module)
     {
-        var comp = GetComponent(module, "neutralization");
+        var comp = GetComponent(module, "Neutralization");
         var fldAcidType = GetField<int>(comp, "acidType");
         var fldAcidVol = GetField<int>(comp, "acidVol");
         var fldSolved = GetField<bool>(comp, "_isSolved");
@@ -2368,13 +2373,13 @@ public class SouvenirModule : MonoBehaviour
         var acidType = fldAcidType.Get();
         if (acidType < 0 || acidType > 3)
         {
-            Debug.LogFormat("[Souvenir #{0}] Neutralization: Unexpected acid type: {1}", _moduleId, acidType);
+            Debug.LogFormat("<Souvenir #{0}> Neutralization: Unexpected acid type: {1}", _moduleId, acidType);
             yield break;
         }
         var acidVol = fldAcidVol.Get();
         if (acidVol < 5 || acidVol > 20 || acidVol % 5 != 0)
         {
-            Debug.LogFormat("[Souvenir #{0}] Neutralization: Unexpected acid volume: {1}", _moduleId, acidVol);
+            Debug.LogFormat("<Souvenir #{0}> Neutralization: Unexpected acid volume: {1}", _moduleId, acidVol);
             yield break;
         }
 
@@ -2382,7 +2387,7 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
 
         _modulesSolved.IncSafe(_Neutralization);
-        addQuestions(
+        addQuestions(module,
             makeQuestion(Question.NeutralizationColor, _Neutralization, new[] { new[] { "Yellow", "Green", "Red", "Blue" }[acidType] }),
             makeQuestion(Question.NeutralizationVolume, _Neutralization, new[] { acidVol.ToString() }));
     }
@@ -2401,7 +2406,7 @@ public class SouvenirModule : MonoBehaviour
         var hieroglyphsDisplayed = fldHieroglyphsDisplayed.Get();
         if (hieroglyphsDisplayed == null || hieroglyphsDisplayed.Length != 6 || hieroglyphsDisplayed.Any(h => h < 0 || h >= 6))
         {
-            Debug.LogFormat("[Souvenir #{0}] Only Connect: hieroglyphsDisplayed has unexpected value: {1}", _moduleId,
+            Debug.LogFormat("<Souvenir #{0}> Only Connect: hieroglyphsDisplayed has unexpected value: {1}", _moduleId,
                 hieroglyphsDisplayed == null ? "null" : string.Format("[{0}]", hieroglyphsDisplayed.JoinString(", ")));
             yield break;
         }
@@ -2413,7 +2418,7 @@ public class SouvenirModule : MonoBehaviour
 
         var hieroglyphs = new[] { "Two Reeds", "Lion", "Twisted Flax", "Horned Viper", "Water", "Eye of Horus" };
         var positions = new[] { "top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right" };
-        addQuestions(positions.Select((p, i) => makeQuestion(Question.OnlyConnectHieroglyphs, _OnlyConnect, new[] { hieroglyphs[hieroglyphsDisplayed[i]] }, new[] { p })));
+        addQuestions(module, positions.Select((p, i) => makeQuestion(Question.OnlyConnectHieroglyphs, _OnlyConnect, new[] { hieroglyphs[hieroglyphsDisplayed[i]] }, new[] { p })));
     }
 
     private IEnumerable<object> ProcessOrientationCube(KMBombModule module)
@@ -2430,11 +2435,10 @@ public class SouvenirModule : MonoBehaviour
         yield return null;
 
         var initialVirtualViewAngle = fldInitialVirtualViewAngle.Get();
-        Debug.LogFormat("[Souvenir #{1}] Orientation Cube initialVirtualViewAngle = {0}", initialVirtualViewAngle, _moduleId);
         var initialAnglePos = Array.IndexOf(new[] { 0f, 90f, 180f, 270f }, initialVirtualViewAngle);
         if (initialAnglePos == -1)
         {
-            Debug.LogFormat("[Souvenir #{1}] Orientation Cube: initialVirtualViewAngle has unexpected value: {0}", initialVirtualViewAngle, _moduleId);
+            Debug.LogFormat("<Souvenir #{1}> Orientation Cube: initialVirtualViewAngle has unexpected value: {0}", initialVirtualViewAngle, _moduleId);
             yield break;
         }
 
@@ -2459,7 +2463,7 @@ public class SouvenirModule : MonoBehaviour
 
             if (rule == null || fldFromFacing == null || fldToFacing == null || fldHasSecondaryRule == null || fldSecondaryFromFacing == null || fldSecondaryToFacing == null || submitButton == null)
             {
-                Debug.LogFormat("[Souvenir #{0}] Abandoning Orientation Cube.", _moduleId);
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Orientation Cube.", _moduleId);
                 submitButton.OnInteract = prevInteract;
             }
             else if (mthIsFacing.Invoke(fldFromFacing.Field.GetValue(rule), fldToFacing.Field.GetValue(rule)) &&
@@ -2476,7 +2480,7 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_OrientationCube);
 
-        addQuestion(Question.OrientationCubeInitialObserverPosition, _OrientationCube, new[] { new[] { "front", "left", "back", "right" }[initialAnglePos] });
+        addQuestion(module, Question.OrientationCubeInitialObserverPosition, new[] { new[] { "front", "left", "back", "right" }[initialAnglePos] });
     }
 
     private IEnumerable<object> ProcessPerspectivePegs(KMBombModule module)
@@ -2496,17 +2500,17 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         if (entered.Count != 3 || entered.Any(e => e < 0 || e >= 5))
         {
-            Debug.LogFormat("[Souvenir #{1}] Perspective Pegs: EnteredSequence has unrecognized member or unexpected length: [{0}]", entered.JoinString(", "), _moduleId);
+            Debug.LogFormat("<Souvenir #{1}> Perspective Pegs: EnteredSequence has unrecognized member or unexpected length: [{0}]", entered.JoinString(", "), _moduleId);
             yield break;
         }
 
         var theory = new[] { "top", "top right", "bottom right", "bottom left", "top left" };
-        addQuestions(Enumerable.Range(0, 3).Select(i => makeQuestion(
-            Question.PerspectivePegsSolution,
-            _PerspectivePegs,
-            new[] { theory[entered[i]] },
-            extraFormatArguments: new[] { ordinal(i + 1) },
-            preferredWrongAnswers: entered.Select(e => theory[e]).ToArray())));
+        addQuestions(module, Enumerable.Range(0, 3).Select(i => makeQuestion(
+             Question.PerspectivePegsSolution,
+             _PerspectivePegs,
+             new[] { theory[entered[i]] },
+             extraFormatArguments: new[] { ordinal(i + 1) },
+             preferredWrongAnswers: entered.Select(e => theory[e]).ToArray())));
     }
 
     private IEnumerable<object> ProcessPolyhedralMaze(KMBombModule module)
@@ -2522,7 +2526,7 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
 
         _modulesSolved.IncSafe(_PolyhedralMaze);
-        addQuestion(Question.PolyhedralMazeStartPosition, _PolyhedralMaze, new[] { fldStartFace.Get().ToString() }, null, Enumerable.Range(0, 62).Select(i => i.ToString()).ToArray());
+        addQuestion(module, Question.PolyhedralMazeStartPosition, new[] { fldStartFace.Get().ToString() }, null, Enumerable.Range(0, 62).Select(i => i.ToString()).ToArray());
     }
 
     private IEnumerable<object> ProcessRhythms(KMBombModule module)
@@ -2541,9 +2545,9 @@ public class SouvenirModule : MonoBehaviour
 
         var color = fldColor.Get();
         if (color < 0 || color >= 4)
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Rhythms because lightColor has unexpected value ({1}).", _moduleId, color);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Rhythms because lightColor has unexpected value ({1}).", _moduleId, color);
         else
-            addQuestion(Question.RhythmsColor, _Rhythms, new[] { new[] { "Blue", "Red", "Green", "Yellow" }[color] });
+            addQuestion(module, Question.RhythmsColor, new[] { new[] { "Blue", "Red", "Green", "Yellow" }[color] });
     }
 
     private IEnumerable<object> ProcessSeaShells(KMBombModule module)
@@ -2596,7 +2600,7 @@ public class SouvenirModule : MonoBehaviour
             qs.Add(makeQuestion(Question.SeaShells2, _SeaShells, new[] { new[] { "sea shells", "she shells", "sea sells", "she sells" }[cols[i]] }, new[] { ordinal(i + 1) }));
             qs.Add(makeQuestion(Question.SeaShells3, _SeaShells, new[] { new[] { "sea shore", "she sore", "she sure", "seesaw" }[keynums[i]] }, new[] { ordinal(i + 1) }));
         }
-        addQuestions(qs);
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessShapeShift(KMBombModule module)
@@ -2626,7 +2630,7 @@ public class SouvenirModule : MonoBehaviour
         if (fldStartR.Get() != fldSolutionR.Get())
             qs.Add(makeQuestion(Question.ShapeShiftInitialShape, _ShapeShift, new[] { names[fldStartR.Get()] }, new[] { "right" }));
         if (qs.Count > 0)
-            addQuestions(qs);
+            addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessSillySlots(KMBombModule module)
@@ -2650,12 +2654,13 @@ public class SouvenirModule : MonoBehaviour
         {
             // Legitimate: first stage was a keep already
             Debug.LogFormat("[Souvenir #{0}] No question for Silly Slots because there was only one stage.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
             yield break;
         }
 
         if (prevSlots.Cast<object>().Any(obj => !(obj is Array) || ((Array) obj).Length != 3))
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Silly Slots because prevSlots {1}.",
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Silly Slots because prevSlots {1}.",
                 _moduleId,
                 prevSlots == null ? "is null" :
                 prevSlots.Count == 0 ? "has length 0" :
@@ -2677,7 +2682,7 @@ public class SouvenirModule : MonoBehaviour
             for (int slot = 0; slot < slotStrings.Length; slot++)
                 qs.Add(makeQuestion(Question.SillySlots, _SillySlots, new[] { slotStrings[slot] }, new[] { ordinal(slot + 1), ordinal(stage + 1) }, slotStrings));
         }
-        addQuestions(qs);
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessSimonScreams(KMBombModule module)
@@ -2704,12 +2709,12 @@ public class SouvenirModule : MonoBehaviour
 
         if (seqs.Length == 0)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Simon Screams because _sequences has a zero length.", _moduleId);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Screams because _sequences has a zero length.", _moduleId);
             yield break;
         }
         if (colors.Length != 6)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Simon Screams because _colors has length {1} (expected 6).", _moduleId, colors.Length);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Screams because _colors has length {1} (expected 6).", _moduleId, colors.Length);
             yield break;
         }
 
@@ -2768,7 +2773,7 @@ public class SouvenirModule : MonoBehaviour
                         : Enumerable.Range(1, seqs.Length).SelectMany(a => Enumerable.Range(a + 1, seqs.Length - a).Select(b => ordinal(a) + " and " + ordinal(b))).Concat(new[] { "all of them" }).ToArray()));
         }
 
-        addQuestions(qs);
+        addQuestions(module, qs);
     }
 
     private static readonly string[] _SimonSends_Morse = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.." };
@@ -2802,7 +2807,7 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
 
         _modulesSolved.IncSafe(_SimonSends);
-        addQuestions(
+        addQuestions(module,
             makeQuestion(Question.SimonSendsReceivedLetters, _SimonSends, new[] { charR }, new[] { "red" }, new[] { charG, charB }),
             makeQuestion(Question.SimonSendsReceivedLetters, _SimonSends, new[] { charG }, new[] { "green" }, new[] { charR, charB }),
             makeQuestion(Question.SimonSendsReceivedLetters, _SimonSends, new[] { charB }, new[] { "blue" }, new[] { charR, charG }));
@@ -2825,7 +2830,7 @@ public class SouvenirModule : MonoBehaviour
         var curStage = fldCurStage.Get();
         if (curStage != 0)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Simon Sings because it started at stage {1} instead of 1.", _moduleId, curStage + 1);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Sings because it started at stage {1} instead of 1.", _moduleId, curStage + 1);
             yield break;
         }
         while (curStage < 3)
@@ -2837,7 +2842,7 @@ public class SouvenirModule : MonoBehaviour
                 var newColors = fldFlashingColors.Get();
                 if (ReferenceEquals(newColors, flashingColorSequences.Last()))
                 {
-                    Debug.LogFormat("[Souvenir #{0}] Abandoning Simon Sings because stage {1} gave me the same color sequence array (reference equals) as the previous stage.", _moduleId, newStage + 1);
+                    Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Sings because stage {1} gave me the same color sequence array (reference equals) as the previous stage.", _moduleId, newStage + 1);
                     yield break;
                 }
                 flashingColorSequences.Add(newColors);
@@ -2847,12 +2852,12 @@ public class SouvenirModule : MonoBehaviour
 
         if (flashingColorSequences.Any(seq => seq.Any(col => col < 0 || col >= _SimonSings_Notes.Length)))
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Simon Sings because one of the flashing “colors” is out of range (values from 0–11 expected): [{1}].", _moduleId, flashingColorSequences.Select(seq => string.Format("[{0}]", seq.JoinString(", "))).JoinString("; "));
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Sings because one of the flashing “colors” is out of range (values from 0–11 expected): [{1}].", _moduleId, flashingColorSequences.Select(seq => string.Format("[{0}]", seq.JoinString(", "))).JoinString("; "));
             yield break;
         }
 
         _modulesSolved.IncSafe(_SimonSings);
-        addQuestions(flashingColorSequences.SelectMany((seq, stage) => seq.Select((col, ix) => makeQuestion(Question.SimonSingsFlashing, _SimonSings, new[] { _SimonSings_Notes[col] }, new[] { ordinal(ix + 1), ordinal(stage + 1) }))));
+        addQuestions(module, flashingColorSequences.SelectMany((seq, stage) => seq.Select((col, ix) => makeQuestion(Question.SimonSingsFlashing, _SimonSings, new[] { _SimonSings_Notes[col] }, new[] { ordinal(ix + 1), ordinal(stage + 1) }))));
     }
 
     private IEnumerable<object> ProcessSimonStates(KMBombModule module)
@@ -2871,13 +2876,13 @@ public class SouvenirModule : MonoBehaviour
 
         if (puzzleDisplay.Length != 4 || puzzleDisplay.Any(arr => arr.Length != 4))
         {
-            Debug.LogFormat("[Souvenir #{1}] Abandoning Simon States because PuzzleDisplay has an unexpected length or value: [{0}]",
+            Debug.LogFormat("<Souvenir #{1}> Abandoning Simon States because PuzzleDisplay has an unexpected length or value: [{0}]",
                 puzzleDisplay.Select(arr => arr == null ? "null" : "[" + arr.JoinString(", ") + "]").JoinString("; "), _moduleId);
             yield break;
         }
 
         var colorNames = new[] { "Red", "Yellow", "Green", "Blue" };
-        Debug.LogFormat("[Souvenir #{1}] Simon States: PuzzleDisplay = [{0}]",
+        Debug.LogFormat("<Souvenir #{1}> Simon States: PuzzleDisplay = [{0}]",
             puzzleDisplay.Select(arr => arr.Select((v, i) => v ? colorNames[i] : null).Where(x => x != null).JoinString(", ")).JoinString("; ", "[", "]"), _moduleId);
 
         while (fldProgress.Get() < 4)
@@ -2885,7 +2890,7 @@ public class SouvenirModule : MonoBehaviour
         // Consistency check
         if (fldPuzzleDisplay.Get(nullAllowed: true) != null)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Simon States because PuzzleDisplay was expected to be null when Progress reached 4, but wasn’t.", _moduleId);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon States because PuzzleDisplay was expected to be null when Progress reached 4, but wasn’t.", _moduleId);
             yield break;
         }
 
@@ -2904,7 +2909,7 @@ public class SouvenirModule : MonoBehaviour
                     new[] { c == 4 ? "none" : puzzleDisplay[i].Select((v, j) => v ? null : colorNames[j]).Where(x => x != null).JoinString(", ") },
                     new[] { "color(s) didn’t flash", ordinal(i + 1) }));
         }
-        addQuestions(qs);
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessSkewedSlots(KMBombModule module)
@@ -2935,7 +2940,7 @@ public class SouvenirModule : MonoBehaviour
                 yield break;
             if (numbers.Length != 3 || numbers.Any(n => n < 0 || n > 9))
             {
-                Debug.LogFormat("[Souvenir #{0}] Abandoning Skewed Slots because numbers has unexpected length (3) or a number outside expected range (0–9): [{1}].", _moduleId, numbers.JoinString(", "));
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Skewed Slots because numbers has unexpected length (3) or a number outside expected range (0–9): [{1}].", _moduleId, numbers.JoinString(", "));
                 yield break;
             }
             originalNumbers.Add(numbers.JoinString());
@@ -2946,9 +2951,9 @@ public class SouvenirModule : MonoBehaviour
         }
 
         _modulesSolved.IncSafe(_SkewedSlots);
-        addQuestions(originalNumbers.Select((origNum, i) => makeQuestion(Question.SkewedSlotsOriginalNumbers, _SkewedSlots, new[] { origNum },
-                extraFormatArguments: new[] { originalNumbers.Count == 1 ? "" : ordinal(i + 1) + " " },
-                preferredWrongAnswers: originalNumbers.Concat(Enumerable.Range(0, int.MaxValue).Select(_ => Rnd.Range(0, 1000).ToString("000"))).Where(str => str != origNum).Distinct().Take(5).ToArray())));
+        addQuestions(module, originalNumbers.Select((origNum, i) => makeQuestion(Question.SkewedSlotsOriginalNumbers, _SkewedSlots, new[] { origNum },
+                 extraFormatArguments: new[] { originalNumbers.Count == 1 ? "" : ordinal(i + 1) + " " },
+                 preferredWrongAnswers: originalNumbers.Concat(Enumerable.Range(0, int.MaxValue).Select(_ => Rnd.Range(0, 1000).ToString("000"))).Where(str => str != origNum).Distinct().Take(5).ToArray())));
     }
 
     private sealed class SonicPictureInfo { public string Name; public int Stage; }
@@ -2976,17 +2981,17 @@ public class SouvenirModule : MonoBehaviour
         var pics = fldsPics.Select(f => f.Get()).ToArray();
         if (pics.Any(p => p == null || p.name == null || !pictureNameMapping.ContainsKey(p.name)))
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Sonic The Hedgehog because a pic was null or not recognized: [{1}]", _moduleId, pics.Select(p => p == null ? "<null>" : "\"" + p.name + "\"").JoinString(", "));
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Sonic The Hedgehog because a pic was null or not recognized: [{1}]", _moduleId, pics.Select(p => p == null ? "<null>" : "\"" + p.name + "\"").JoinString(", "));
             yield break;
         }
         var sounds = fldsButtonSounds.Select(f => f.Get()).ToArray();
         if (sounds.Any(s => s == null || !soundNameMapping.ContainsKey(s)))
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Sonic The Hedgehog because a sound was null: [{1}]", _moduleId, sounds.Select(s => s == null ? "<null>" : "\"" + s + "\"").JoinString(", "));
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Sonic The Hedgehog because a sound was null: [{1}]", _moduleId, sounds.Select(s => s == null ? "<null>" : "\"" + s + "\"").JoinString(", "));
             yield break;
         }
 
-        addQuestions(
+        addQuestions(module,
             Enumerable.Range(0, 3).Select(i =>
                 makeQuestion(
                     Question.SonicTheHedgehogPictures,
@@ -3019,7 +3024,7 @@ public class SouvenirModule : MonoBehaviour
         int number;
         if (numberText.text == null || !int.TryParse(numberText.text, out number) || number < 0 || number > 9)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Synonyms because the display text (“{1}”) is not an integer 0–9.", _moduleId, numberText.text ?? "<null>");
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Synonyms because the display text (“{1}”) is not an integer 0–9.", _moduleId, numberText.text ?? "<null>");
             yield break;
         }
 
@@ -3027,7 +3032,7 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Synonyms);
 
-        addQuestion(Question.SynonymsNumber, _Synonyms, new[] { number.ToString() });
+        addQuestion(module, Question.SynonymsNumber, new[] { number.ToString() });
     }
 
     private IEnumerable<object> ProcessBulb(KMBombModule module)
@@ -3049,11 +3054,11 @@ public class SouvenirModule : MonoBehaviour
         var buttonPresses = fldButtonPresses.Get();
         if (buttonPresses == null || buttonPresses.Length != 3)
         {
-            Debug.LogFormat("[Souvenir #{0}] The Bulb: _correctButtonPresses has unexpected value ({1})", _moduleId, buttonPresses == null ? "<null>" : string.Format(@"""{0}""", buttonPresses));
+            Debug.LogFormat("<Souvenir #{0}> The Bulb: _correctButtonPresses has unexpected value ({1})", _moduleId, buttonPresses == null ? "<null>" : string.Format(@"""{0}""", buttonPresses));
             yield break;
         }
 
-        addQuestion(Question.BulbButtonPresses, _Bulb, new[] { buttonPresses });
+        addQuestion(module, Question.BulbButtonPresses, new[] { buttonPresses });
     }
 
     private IEnumerable<object> ProcessGamepad(KMBombModule module)
@@ -3076,7 +3081,7 @@ public class SouvenirModule : MonoBehaviour
         var y = fldY.Get();
         if (x < 1 || x > 99 || y < 1 || y > 99)
         {
-            Debug.LogFormat("[Souvenir #{0}] The Gamepad: x or y has unexpected value (x={1}, y={2})", _moduleId, x, y);
+            Debug.LogFormat("<Souvenir #{0}> The Gamepad: x or y has unexpected value (x={1}, y={2})", _moduleId, x, y);
             yield break;
         }
 
@@ -3085,22 +3090,22 @@ public class SouvenirModule : MonoBehaviour
         var digits2 = fldDigits2.Get();
         if (display == null || display.GetComponent<TextMesh>() == null)
         {
-            Debug.LogFormat("[Souvenir #{0}] The Gamepad: display is null or not a TextMesh.", _moduleId);
+            Debug.LogFormat("<Souvenir #{0}> The Gamepad: display is null or not a TextMesh.", _moduleId);
             yield break;
         }
         if (digits1 == null || digits1.GetComponent<TextMesh>() == null)
         {
-            Debug.LogFormat("[Souvenir #{0}] The Gamepad: digits1 is null or not a TextMesh.", _moduleId);
+            Debug.LogFormat("<Souvenir #{0}> The Gamepad: digits1 is null or not a TextMesh.", _moduleId);
             yield break;
         }
         if (digits2 == null || digits2.GetComponent<TextMesh>() == null)
         {
-            Debug.LogFormat("[Souvenir #{0}] The Gamepad: digits2 is null or not a TextMesh.", _moduleId);
+            Debug.LogFormat("<Souvenir #{0}> The Gamepad: digits2 is null or not a TextMesh.", _moduleId);
             yield break;
         }
 
         _modulesSolved.IncSafe(_Gamepad);
-        addQuestions(makeQuestion(Question.GamepadNumbers, _Gamepad, new[] { string.Format("{0:00}:{1:00}", x, y) },
+        addQuestions(module, makeQuestion(Question.GamepadNumbers, _Gamepad, new[] { string.Format("{0:00}:{1:00}", x, y) },
             preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(i => string.Format("{0:00}:{1:00}", Rnd.Range(1, 99), Rnd.Range(1, 99))).Distinct().Take(6).ToArray()));
         digits1.GetComponent<TextMesh>().text = "--";
         digits2.GetComponent<TextMesh>().text = "--";
@@ -3127,11 +3132,11 @@ public class SouvenirModule : MonoBehaviour
         var chosenWord = fldChosenWord.Get();
         if (chosenWord == null || !words.Contains(chosenWord))
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Tap Code because the initial word ({1}) is not in the word bank.", _moduleId, chosenWord ?? "<null>");
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Tap Code because the initial word ({1}) is not in the word bank.", _moduleId, chosenWord ?? "<null>");
             yield break;
         }
 
-        addQuestion(Question.TapCodeReceivedWord, _TapCode, new[] { chosenWord }, preferredWrongAnswers: words);
+        addQuestion(module, Question.TapCodeReceivedWord, new[] { chosenWord }, preferredWrongAnswers: words);
     }
 
     private IEnumerable<object> ProcessTicTacToe(KMBombModule module)
@@ -3156,7 +3161,7 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         if (keypadButtons.Length != 9 || keypadPhysical.Length != 9 || placedX.Length != 9)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Tic-Tac-Toe because one of the arrays has an unexpected length (expected 9): {1}, {2}, {3}.", _moduleId, keypadButtons.Length, keypadPhysical.Length, placedX.Length);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Tic-Tac-Toe because one of the arrays has an unexpected length (expected 9): {1}, {2}, {3}.", _moduleId, keypadButtons.Length, keypadPhysical.Length, placedX.Length);
             yield break;
         }
 
@@ -3168,9 +3173,9 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_TicTacToe);
 
         var buttonNames = new[] { "top-left", "top-middle", "top-right", "middle-left", "middle-center", "middle-right", "bottom-left", "bottom-middle", "bottom-right" };
-        addQuestions(Enumerable.Range(0, 9).Select(ix => makeQuestion(Question.TicTacToeInitialState, _TicTacToe,
-            possibleCorrectAnswers: new[] { placedX[ix] == null ? (ix + 1).ToString() : placedX[ix].Value ? "X" : "O" },
-            extraFormatArguments: new[] { buttonNames[Array.IndexOf(keypadPhysical, keypadButtons[ix])] })));
+        addQuestions(module, Enumerable.Range(0, 9).Select(ix => makeQuestion(Question.TicTacToeInitialState, _TicTacToe,
+             possibleCorrectAnswers: new[] { placedX[ix] == null ? (ix + 1).ToString() : placedX[ix].Value ? "X" : "O" },
+             extraFormatArguments: new[] { buttonNames[Array.IndexOf(keypadPhysical, keypadButtons[ix])] })));
     }
 
     private IEnumerable<object> ProcessTwoBits(KMBombModule module)
@@ -3211,10 +3216,10 @@ public class SouvenirModule : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.LogFormat("[Souvenir #{0}] Two Bits: Exception: {1} ({2})", _moduleId, e.Message, e.GetType().FullName);
+            Debug.LogFormat("<Souvenir #{0}> Two Bits: Exception: {1} ({2})", _moduleId, e.Message, e.GetType().FullName);
         }
 
-        addQuestions(qs);
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessVisualImpairment(KMBombModule module)
@@ -3237,7 +3242,7 @@ public class SouvenirModule : MonoBehaviour
         var stageCount = fldStageCount.Get();
         if (stageCount < 2 || stageCount >= 4)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Visual Impairment because stageCount is not 2 or 3 as expected (it’s {1}).", _moduleId, stageCount);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Visual Impairment because stageCount is not 2 or 3 as expected (it’s {1}).", _moduleId, stageCount);
             yield break;
         }
         var colorsPerStage = new int[stageCount];
@@ -3253,7 +3258,7 @@ public class SouvenirModule : MonoBehaviour
             {
                 if (newStage != curStage + 1)
                 {
-                    Debug.LogFormat("[Souvenir #{0}] Abandoning Visual Impairment because roundsFinished changed by an amount other than +1 (was: {1}, now: {2}).", _moduleId, curStage, newStage);
+                    Debug.LogFormat("<Souvenir #{0}> Abandoning Visual Impairment because roundsFinished changed by an amount other than +1 (was: {1}, now: {2}).", _moduleId, curStage, newStage);
                     yield break;
                 }
 
@@ -3266,7 +3271,7 @@ public class SouvenirModule : MonoBehaviour
                     newStage = fldRoundsFinished.Get();
                     if (newStage != curStage + 1)
                     {
-                        Debug.LogFormat("[Souvenir #{0}] Abandoning Visual Impairment because roundsFinished changed while I was waiting for anyPressed to return to false (was: {1}, before wait: {2}, now: {3}).", _moduleId, curStage, curStage + 1, newStage);
+                        Debug.LogFormat("<Souvenir #{0}> Abandoning Visual Impairment because roundsFinished changed while I was waiting for anyPressed to return to false (was: {1}, before wait: {2}, now: {3}).", _moduleId, curStage, curStage + 1, newStage);
                         yield break;
                     }
 
@@ -3278,7 +3283,7 @@ public class SouvenirModule : MonoBehaviour
 
         var colorNames = new[] { "Blue", "Green", "Red", "White" };
         _modulesSolved.IncSafe(_VisualImpairment);
-        addQuestions(colorsPerStage.Select((col, ix) => makeQuestion(Question.VisualImpairmentColors, _VisualImpairment, new[] { colorNames[col] }, new[] { ordinal(ix + 1) })));
+        addQuestions(module, colorsPerStage.Select((col, ix) => makeQuestion(Question.VisualImpairmentColors, _VisualImpairment, new[] { colorNames[col] }, new[] { ordinal(ix + 1) })));
     }
 
     private IEnumerable<object> ProcessWire(KMBombModule module)
@@ -3298,11 +3303,11 @@ public class SouvenirModule : MonoBehaviour
         var dials = fldDials.Get();
         if (dials == null || dials.Length != 3)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning The Wire because ‘renderers’ has unexpected length ({1}, expected 3).", _moduleId, dials == null ? "<null>" : dials.Length.ToString());
+            Debug.LogFormat("<Souvenir #{0}> Abandoning The Wire because ‘renderers’ has unexpected length ({1}, expected 3).", _moduleId, dials == null ? "<null>" : dials.Length.ToString());
             yield break;
         }
 
-        addQuestions(
+        addQuestions(module,
             makeQuestion(Question.WireDialColors, _Wire, new[] { dials[0].material.mainTexture.name.Replace("Mat", "") }, new[] { "top" }),
             makeQuestion(Question.WireDialColors, _Wire, new[] { dials[1].material.mainTexture.name.Replace("Mat", "") }, new[] { "bottom-left" }),
             makeQuestion(Question.WireDialColors, _Wire, new[] { dials[2].material.mainTexture.name.Replace("Mat", "") }, new[] { "bottom-right" }),
@@ -3351,7 +3356,8 @@ public class SouvenirModule : MonoBehaviour
             result = "pair";
         else
         {
-            Debug.LogFormat("[Souvenir #{0}] Yahtzee: not asking a question because the first roll was nothing.", _moduleId);
+            Debug.LogFormat("[Souvenir #{0}] No question for Yahtzee because the first roll was nothing.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
             yield break;
         }
 
@@ -3359,28 +3365,29 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
 
         _modulesSolved.IncSafe(_Yahtzee);
-        addQuestion(Question.YahtzeeInitialRoll, _Yahtzee, new[] { result });
+        addQuestion(module, Question.YahtzeeInitialRoll, new[] { result });
     }
 
-    private void addQuestion(Question question, string moduleKey, string[] possibleCorrectAnswers, string[] extraFormatArguments = null, string[] preferredWrongAnswers = null)
+    private void addQuestion(KMBombModule module, Question question, string[] possibleCorrectAnswers, string[] extraFormatArguments = null, string[] preferredWrongAnswers = null)
     {
-        addQuestions(makeQuestion(question, moduleKey, possibleCorrectAnswers, extraFormatArguments, preferredWrongAnswers));
+        addQuestions(module, makeQuestion(question, module.ModuleType, possibleCorrectAnswers, extraFormatArguments, preferredWrongAnswers));
     }
 
-    private void addQuestions(IEnumerable<QandA> questions)
+    private void addQuestions(KMBombModule module, IEnumerable<QandA> questions)
     {
         var qs = questions.Where(q => q != null).ToArray();
         Debug.LogFormat("<Souvenir #{0}> Adding question batch:\n{1}", _moduleId, qs.Select(q => "    • " + q.DebugString).JoinString("\n"));
         _questions.Add(new QuestionBatch
         {
             NumSolved = Bomb.GetSolvedModuleNames().Count,
-            Questions = qs
+            Questions = qs,
+            Module = module
         });
     }
 
-    private void addQuestions(params QandA[] questions)
+    private void addQuestions(KMBombModule module, params QandA[] questions)
     {
-        addQuestions((IEnumerable<QandA>) questions);
+        addQuestions(module, (IEnumerable<QandA>) questions);
     }
 
     private string titleCase(string str)
@@ -3395,7 +3402,7 @@ public class SouvenirModule : MonoBehaviour
         SouvenirQuestionAttribute attr;
         if (!_attributes.TryGetValue(question, out attr))
         {
-            Debug.LogFormat("[Souvenir #{1}] Question {0} has no attribute.", question, _moduleId);
+            Debug.LogFormat("<Souvenir #{1}> Question {0} has no attribute.", question, _moduleId);
             return null;
         }
 
@@ -3405,7 +3412,7 @@ public class SouvenirModule : MonoBehaviour
             var inconsistency = possibleCorrectAnswers.Except(allAnswers).FirstOrDefault();
             if (inconsistency != null)
             {
-                Debug.LogFormat("[Souvenir #{2}] Question {0}: invalid answer: {1}.", question, inconsistency ?? "<null>", _moduleId);
+                Debug.LogFormat("<Souvenir #{2}> Question {0}: invalid answer: {1}.", question, inconsistency ?? "<null>", _moduleId);
                 return null;
             }
             if (preferredWrongAnswers != null)
@@ -3413,7 +3420,7 @@ public class SouvenirModule : MonoBehaviour
                 var inconsistency2 = preferredWrongAnswers.Except(allAnswers).FirstOrDefault();
                 if (inconsistency2 != null)
                 {
-                    Debug.LogFormat("[Souvenir #{2}] Question {0}: invalid preferred wrong answer: {1}.", question, inconsistency2 ?? "<null>", _moduleId);
+                    Debug.LogFormat("<Souvenir #{2}> Question {0}: invalid preferred wrong answer: {1}.", question, inconsistency2 ?? "<null>", _moduleId);
                     return null;
                 }
             }
@@ -3422,7 +3429,7 @@ public class SouvenirModule : MonoBehaviour
         List<string> answers;
         if (allAnswers == null && preferredWrongAnswers == null)
         {
-            Debug.LogFormat("[Souvenir #{0}] Question {1}: allAnswers and preferredWrongAnswers are both null.", _moduleId, question);
+            Debug.LogFormat("<Souvenir #{0}> Question {1}: allAnswers and preferredWrongAnswers are both null.", _moduleId, question);
             return null;
         }
         else if (allAnswers == null)
@@ -3442,7 +3449,7 @@ public class SouvenirModule : MonoBehaviour
         var numSolved = _modulesSolved.Get(moduleKey);
         if (numSolved < 1)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning {1} ({2}) because you forgot to increment the solve count.", _moduleId, attr.ModuleName, moduleKey);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning {1} ({2}) because you forgot to increment the solve count.", _moduleId, attr.ModuleName, moduleKey);
             return null;
         }
         var formatArguments = new List<string> { _moduleCounts.Get(moduleKey) > 1 ? string.Format("the {0} you solved {1}", attr.ModuleName, ordinal(numSolved)) : attr.AddThe ? "The\u00a0" + attr.ModuleName : attr.ModuleName };
@@ -3457,7 +3464,7 @@ public class SouvenirModule : MonoBehaviour
         SouvenirQuestionAttribute attr;
         if (!_attributes.TryGetValue(question, out attr))
         {
-            Debug.LogFormat("[Souvenir #{0}] Question {1} is missing from the _attributes dictionary.", _moduleId, question);
+            Debug.LogFormat("<Souvenir #{0}> Question {1} is missing from the _attributes dictionary.", _moduleId, question);
             return null;
         }
         return attr.AllAnswers;

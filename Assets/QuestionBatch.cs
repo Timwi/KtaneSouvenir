@@ -4,5 +4,6 @@
     {
         public QandA[] Questions;
         public int NumSolved;
+        public KMBombModule Module;
     }
 }
