@@ -81,6 +81,7 @@ public class SouvenirModule : MonoBehaviour
     const string _FastMath = "fastMath";
     const string _Gamepad = "TheGamepadModule";
     const string _GridLock = "GridlockModule";
+    const string _LogicalButtons = "logicalButtonsModule";
     const string _Hexamaze = "HexamazeModule";
     const string _Hunting = "hunting";
     const string _IceCream = "iceCreamModule";
@@ -97,22 +98,26 @@ public class SouvenirModule : MonoBehaviour
     const string _Neutralization = "neutralization";
     const string _OnlyConnect = "OnlyConnectModule";
     const string _OrientationCube = "OrientationCube";
+    const string _PatternCube = "PatternCubeModule";
     const string _PerspectivePegs = "spwizPerspectivePegs";
     const string _PolyhedralMaze = "PolyhedralMazeModule";
     const string _Rhythms = "MusicRhythms";
     const string _SeaShells = "SeaShells";
     const string _ShapeShift = "shapeshift";
     const string _SillySlots = "SillySlots";
+    const string _SimonSamples = "simonSamples";
     const string _SimonScreams = "SimonScreamsModule";
     const string _SimonSends = "SimonSendsModule";
     const string _SimonSings = "SimonSingsModule";
     const string _SimonStates = "SimonV2";
     const string _SkewedSlots = "SkewedSlotsModule";
+    const string _Skyrim = "skyrim";
     const string _SonicTheHedgehog = "sonic";
     const string _Synonyms = "synonyms";
     const string _TapCode = "tapCode";
     const string _TicTacToe = "TicTacToeModule";
     const string _TwoBits = "TwoBits";
+    const string _UncoloredSquares = "UncoloredSquaresModule";
     const string _VisualImpairment = "visual_impairment";
     const string _Wire = "wire";
     const string _Yahtzee = "YahtzeeModule";
@@ -146,6 +151,7 @@ public class SouvenirModule : MonoBehaviour
             { _FastMath, ProcessFastMath },
             { _Gamepad, ProcessGamepad },
             { _GridLock, ProcessGridLock },
+            { _LogicalButtons, ProcessLogicalButtons },
             { _Hexamaze, ProcessHexamaze },
             { _Hunting, ProcessHunting },
             { _IceCream, ProcessIceCream },
@@ -162,22 +168,26 @@ public class SouvenirModule : MonoBehaviour
             { _Neutralization, ProcessNeutralization },
             { _OnlyConnect, ProcessOnlyConnect },
             { _OrientationCube, ProcessOrientationCube },
+            { _PatternCube, ProcessPatternCube },
             { _PerspectivePegs, ProcessPerspectivePegs },
             { _PolyhedralMaze, ProcessPolyhedralMaze },
             { _Rhythms, ProcessRhythms },
             { _SeaShells, ProcessSeaShells },
             { _ShapeShift, ProcessShapeShift },
             { _SillySlots, ProcessSillySlots },
+            { _SimonSamples, ProcessSimonSamples },
             { _SimonScreams, ProcessSimonScreams },
             { _SimonSends, ProcessSimonSends },
             { _SimonSings, ProcessSimonSings },
             { _SimonStates, ProcessSimonStates },
             { _SkewedSlots, ProcessSkewedSlots },
+            { _Skyrim, ProcessSkyrim },
             { _SonicTheHedgehog, ProcessSonicTheHedgehog },
             { _Synonyms, ProcessSynonyms },
             { _TapCode, ProcessTapCode },
             { _TicTacToe, ProcessTicTacToe },
             { _TwoBits, ProcessTwoBits },
+            { _UncoloredSquares, ProcessUncoloredSquares },
             { _VisualImpairment, ProcessVisualImpairment },
             { _Wire, ProcessWire },
             { _Yahtzee, ProcessYahtzee }
@@ -1682,6 +1692,80 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.GridLockStartingColor, _GridLock, new[] { colors[(pages[0][start] >> 4) - 1] }));
     }
 
+    private static readonly string[] _logicalButtonsButtonNames = new[] { "top", "bottom-left", "bottom-right" };
+    private IEnumerable<object> ProcessLogicalButtons(KMBombModule module)
+    {
+        var comp = GetComponent(module, "LogicalButtonsScript");
+        var fldSolved = GetField<bool>(comp, "isSolved");
+        var fldStage = GetField<int>(comp, "stage");
+        var fldButtons = GetField<Array>(comp, "buttons");
+        var fldGateOperator = GetField<object>(comp, "gateOperator");
+        if (comp == null || fldSolved == null || fldStage == null || fldButtons == null || fldGateOperator == null)
+            yield break;
+
+        var curStage = 0;
+        var colors = new List<string[]>();
+        var labels = new List<string[]>();
+        var initialOperators = new List<string>();
+
+        while (!fldSolved.Get())
+        {
+            var stage = fldStage.Get();
+            if (stage != curStage)
+            {
+                if (stage != curStage + 1)
+                {
+                    Debug.LogFormat(@"<Souvenir #{0}> Abandoning Logical Buttons because I must have missed a stage (it went from {1} to {2}).", _moduleId, curStage, stage);
+                    yield break;
+                }
+
+                var buttons = fldButtons.Get();
+                if (buttons == null || buttons.Length != 3)
+                {
+                    Debug.LogFormat(@"<Souvenir #{0}> Abandoning Logical Buttons because “buttons” {1} (expected length 3).", _moduleId, buttons == null ? "is null" : "has length " + buttons.Length);
+                    yield break;
+                }
+                var infs = buttons.Cast<object>().Select(obj =>
+                {
+                    var fldLabel = GetField<string>(obj, "<Label>k__BackingField");
+                    var fldColor = GetField<object>(obj, "<Color>k__BackingField");
+                    var fldIndex = GetField<int>(obj, "<Index>k__BackingField");
+                    if (fldLabel == null || fldColor == null || fldIndex == null)
+                        return null;
+                    return new { Label = fldLabel.Get(), Color = fldColor.Get(), Index = fldIndex.Get() };
+                }).ToArray();
+                if (infs.Length != 3 || infs.Any(inf => inf == null || inf.Label == null || inf.Color == null) || infs[0].Index != 0 || infs[1].Index != 1 || infs[2].Index != 2)
+                {
+                    Debug.LogFormat(@"<Souvenir #{0}> Abandoning Logical Buttons because I got an unexpected value ([{1}]).", _moduleId, infs.Select(inf => inf == null ? "<null>" : inf.ToString()).JoinString(", "));
+                    yield break;
+                }
+                var gateOperator = fldGateOperator.Get();
+                var mthGetName = GetMethod<string>(gateOperator, "get_Name", 0, isPublic: true);
+                if (gateOperator == null || mthGetName == null)
+                    yield break;
+
+                colors.Add(infs.Select(inf => inf.Color.ToString()).ToArray());
+                labels.Add(infs.Select(inf => inf.Label).ToArray());
+                initialOperators.Add(mthGetName.Invoke());
+                curStage = stage;
+            }
+
+            yield return new WaitForSeconds(.1f);
+        }
+
+        _modulesSolved.IncSafe(_LogicalButtons);
+        if (initialOperators.Any(io => io == null))
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Logical Buttons because there is a null initial operator ([{1}]).", _moduleId, initialOperators.Select(io => io == null ? "<null>" : string.Format(@"""{0}""", io)).JoinString(", "));
+            yield break;
+        }
+
+        addQuestions(module,
+            colors.SelectMany((clrs, stage) => clrs.Select((clr, btnIx) => makeQuestion(Question.LogicalButtonsColor, _LogicalButtons, new[] { clr }, new[] { _logicalButtonsButtonNames[btnIx], ordinal(stage + 1) })))
+                .Concat(labels.SelectMany((lbls, stage) => lbls.Select((lbl, btnIx) => makeQuestion(Question.LogicalButtonsLabel, _LogicalButtons, new[] { lbl }, new[] { _logicalButtonsButtonNames[btnIx], ordinal(stage + 1) }))))
+                .Concat(initialOperators.Select((op, stage) => makeQuestion(Question.LogicalButtonsOperator, _LogicalButtons, new[] { op }, new[] { ordinal(stage + 1) }))));
+    }
+
     private IEnumerable<object> ProcessHexamaze(KMBombModule module)
     {
         var comp = GetComponent(module, "HexamazeModule");
@@ -2471,6 +2555,35 @@ public class SouvenirModule : MonoBehaviour
         addQuestion(module, Question.OrientationCubeInitialObserverPosition, new[] { new[] { "front", "left", "back", "right" }[initialAnglePos] });
     }
 
+    private IEnumerable<object> ProcessPatternCube(KMBombModule module)
+    {
+        var comp = GetComponent(module, "PatternCubeModule");
+        var fldSelectableSymbols = GetField<Array>(comp, "_selectableSymbols");
+        var fldHighlightedPosition = GetField<int>(comp, "_highlightedPosition");
+
+        yield return null;
+        var selectableSymbols = fldSelectableSymbols.Get();
+        if (selectableSymbols == null || selectableSymbols.Length != 5)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Pattern Cube because _selectableSymbols {1} (expected length 5).", _moduleId, selectableSymbols == null ? "was null" : "had length " + selectableSymbols.Length);
+            yield break;
+        }
+        while (selectableSymbols.Cast<object>().Any(obj => obj != null))
+            yield return new WaitForSeconds(.1f);
+
+        var highlightPos = fldHighlightedPosition.Get();
+        if (highlightPos < 0 || highlightPos > 4)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Pattern Cube because _highlightedPosition was {1} (expected 0–4).", _moduleId, highlightPos);
+            yield break;
+        }
+
+        _modulesSolved.IncSafe(_PatternCube);
+        addQuestions(module,
+            makeQuestion(Question.PatternCubeHighlightPosition, _PatternCube, new[] { ordinal(highlightPos + 1) }, new[] { "top" }),
+            makeQuestion(Question.PatternCubeHighlightPosition, _PatternCube, new[] { ordinal(5 - highlightPos) }, new[] { "bottom" }));
+    }
+
     private IEnumerable<object> ProcessPerspectivePegs(KMBombModule module)
     {
         var comp = GetComponent(module, "PerspectivePegsModule");
@@ -2671,6 +2784,30 @@ public class SouvenirModule : MonoBehaviour
                 qs.Add(makeQuestion(Question.SillySlots, _SillySlots, new[] { slotStrings[slot] }, new[] { ordinal(slot + 1), ordinal(stage + 1) }, slotStrings));
         }
         addQuestions(module, qs);
+    }
+
+    private static readonly string[] _simonSamplesFAs = new[] { "played in the first stage", "added in the second stage", "added in the third stage" };
+    private IEnumerable<object> ProcessSimonSamples(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SimonSamples");
+        var fldCalls = GetField<List<string>>(comp, "_calls");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+
+        if (comp == null || fldCalls == null || fldSolved == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SimonSamples);
+
+        var calls = fldCalls.Get();
+        if (calls == null || calls.Count != 3 || Enumerable.Range(1, 2).Any(i => calls[i].Length <= calls[i - 1].Length || !calls[i].StartsWith(calls[i - 1])))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Samples because _calls={1} (expected length 3 and expected each element to start with the previous).", _moduleId, calls == null ? "<null>" : string.Format("[{0}]", calls.Select(c => string.Format(@"""{0}""", c)).JoinString(", ")));
+            yield break;
+        }
+
+        addQuestions(module, calls.Select((c, ix) => makeQuestion(Question.SimonSamplesSamples, _SimonSamples, new[] { (ix == 0 ? c : c.Substring(calls[ix - 1].Length)).Replace("0", "K").Replace("1", "S").Replace("2", "H").Replace("3", "O") }, new[] { _simonSamplesFAs[ix] })));
     }
 
     private IEnumerable<object> ProcessSimonScreams(KMBombModule module)
@@ -2944,6 +3081,70 @@ public class SouvenirModule : MonoBehaviour
                  preferredWrongAnswers: originalNumbers.Concat(Enumerable.Range(0, int.MaxValue).Select(_ => Rnd.Range(0, 1000).ToString("000"))).Where(str => str != origNum).Distinct().Take(5).ToArray())));
     }
 
+    private static readonly string[] _skyrimFieldNames = new[] { "race", "weapon", "enemy", "city" };
+    private static readonly string[] _skyrimFieldNames2 = new[] { "correctRace", "correctWeapon", "correctEnemy", "correctCity" };
+    private static readonly string[] _skyrimButtonNames = new[] { "cycleUp", "cycleDown", "accept", "submit", "race", "weapon", "enemy", "city", "shout" };
+    private KMSelectable.OnInteractHandler getSkyrimButtonHandler(KMSelectable btn)
+    {
+        return delegate
+        {
+            Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, btn.transform);
+            btn.AddInteractionPunch(.5f);
+            return false;
+        };
+    }
+    private IEnumerable<object> ProcessSkyrim(KMBombModule module)
+    {
+        var comp = GetComponent(module, "skyrimScript");
+        var questions = new[] { Question.SkyrimRace, Question.SkyrimWeapon, Question.SkyrimEnemy, Question.SkyrimCity };
+        var flds = _skyrimFieldNames.Select(name => GetField<List<Texture>>(comp, name + "Images", isPublic: true)).ToArray();
+        var fldsCorrect = _skyrimFieldNames2.Select(name => GetField<Texture>(comp, name)).ToArray();
+        var fldShoutNames = GetField<List<string>>(comp, "shoutNameOptions");
+        var fldCorrectShoutName = GetField<string>(comp, "shoutName");
+        var fldSolved = GetField<bool>(comp, "solved");
+        var fldsButtons = _skyrimButtonNames.Select(fieldName => GetField<KMSelectable>(comp, fieldName, isPublic: true)).ToArray();
+        if (comp == null || flds.Any(f => f == null) || fldsCorrect.Any(f => f == null) || fldShoutNames == null || fldCorrectShoutName == null || fldSolved == null || fldsButtons.Any(b => b == null))
+            yield break;
+
+        yield return null;
+        while (!fldSolved.Get())
+            // Usually we’d wait 0.1 seconds at a time, but in this case we need to know immediately so that we can hook the buttons
+            yield return null;
+        _modulesSolved.IncSafe(_Skyrim);
+
+        var btns = fldsButtons.Select(b => b.Get()).ToArray();
+        if (btns.Any(b => b == null))
+            yield break;
+        foreach (var btn in btns)
+            btn.OnInteract = getSkyrimButtonHandler(btn);
+
+        var qs = new List<QandA>();
+        for (int i = 0; i < _skyrimFieldNames.Length; i++)
+        {
+            var list = flds[i].Get();
+            if (list.Count != 3)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Skyrim because “{1}” array has unexpected length {2} (expected 3).", _moduleId, _skyrimFieldNames[i], list.Count);
+                yield break;
+            }
+            var correct = fldsCorrect[i].Get();
+            if (correct == null)
+                yield break;
+            qs.Add(makeQuestion(questions[i], _Skyrim, list.Except(new[] { correct }).Select(t => t.name.Replace("'", "’")).ToArray()));
+        }
+        var shoutNames = fldShoutNames.Get();
+        if (shoutNames.Count != 3)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Skyrim because “shoutNameOptions” array has unexpected length {1} (expected 3).", _moduleId, shoutNames.Count);
+            yield break;
+        }
+        var correctShoutName = fldCorrectShoutName.Get();
+        if (correctShoutName == null)
+            yield break;
+        qs.Add(makeQuestion(Question.SkyrimDragonShout, _Skyrim, shoutNames.Except(new[] { correctShoutName }).Select(n => n.Replace("'", "’")).ToArray()));
+        addQuestions(module, qs);
+    }
+
     private sealed class SonicPictureInfo { public string Name; public int Stage; }
     private IEnumerable<object> ProcessSonicTheHedgehog(KMBombModule module)
     {
@@ -3208,6 +3409,27 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessUncoloredSquares(KMBombModule module)
+    {
+        var comp = GetComponent(module, "UncoloredSquaresModule");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+        var fldFirstStageColor1 = GetField<object>(comp, "_firstStageColor1");
+        var fldFirstStageColor2 = GetField<object>(comp, "_firstStageColor2");
+
+        if (comp == null || fldSolved == null || fldFirstStageColor1 == null || fldFirstStageColor2 == null)
+            yield break;
+
+        yield return null;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_UncoloredSquares);
+        addQuestions(module,
+            makeQuestion(Question.UncoloredSquaresFirstStage, _UncoloredSquares, new[] { fldFirstStageColor1.Get().ToString() }, new[] { "first" }),
+            makeQuestion(Question.UncoloredSquaresFirstStage, _UncoloredSquares, new[] { fldFirstStageColor2.Get().ToString() }, new[] { "second" }));
     }
 
     private IEnumerable<object> ProcessVisualImpairment(KMBombModule module)
