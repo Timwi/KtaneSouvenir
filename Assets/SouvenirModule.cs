@@ -2255,6 +2255,7 @@ public class SouvenirModule : MonoBehaviour
         var fldStart = GetField<string>(comp, "_souvenirQuestionStartingLocation");
         var fldEnd = GetField<string>(comp, "_souvenirQuestionEndingLocation");
         var fldWord = GetField<string>(comp, "_souvenirQuestionWordPlaying");
+	    var fldWords = GetField<string[]>(comp, "_souvenirQuestionWordList");
 
         if (comp == null || fldSolved == null || fldStart == null || fldEnd == null || fldWord == null)
             yield break;
@@ -2265,6 +2266,7 @@ public class SouvenirModule : MonoBehaviour
         var start = fldStart.Get();
         var end = fldEnd.Get();
         var word = fldWord.Get();
+	    var words = fldWords.Get();
         if (start == null || start.Length != 2)
         {
             Debug.LogFormat("<Souvenir #{0}> Morse-A-Maze starting coordinate is null or has unexpected value: {1}", _moduleId, start ?? "<null>");
@@ -2280,6 +2282,11 @@ public class SouvenirModule : MonoBehaviour
             Debug.LogFormat("<Souvenir #{0}> Morse-A-Maze morse code word is null or has unexpected value: {1}", _moduleId, word ?? "<null>");
             yield break;
         }
+	    if (words == null || words.Length != 36)
+	    {
+			Debug.LogFormat("<Souvenir #{0}> Morse-A-Maze word list is null or or its length is not 36: {1}", _moduleId, words == null ? "<null>" : words.Length.ToString() );
+		    yield break;
+	    }
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
@@ -2288,7 +2295,7 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.MorseAMazeStartingCoordinate, _MorseAMaze, new[] { start }),
             makeQuestion(Question.MorseAMazeEndingCoordinate, _MorseAMaze, new[] { end }),
-            makeQuestion(Question.MorseAMazeMorseCodeWord, _MorseAMaze, new[] { word }));
+            makeQuestion(Question.MorseAMazeMorseCodeWord, _MorseAMaze, new[] { word }, preferredWrongAnswers: words));
     }
 
     private IEnumerable<object> ProcessMorsematics(KMBombModule module)
