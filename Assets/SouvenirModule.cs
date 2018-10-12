@@ -69,7 +69,6 @@ public class SouvenirModule : MonoBehaviour
     const string _BrokenButtons = "BrokenButtonsModule";
     const string _Bulb = "TheBulbModule";
     const string _CheapCheckout = "CheapCheckoutModule";
-    const string _CheapCheckoutSupermercadoSalvaje = "SupermercadoSalvajeModule";
     const string _Chess = "ChessModule";
     const string _ChordQualities = "ChordQualities";
     const string _ColorDecoding = "Color Decoding";
@@ -138,8 +137,7 @@ public class SouvenirModule : MonoBehaviour
             { _Braille, ProcessBraille },
             { _BrokenButtons, ProcessBrokenButtons },
             { _Bulb, ProcessBulb },
-            { _CheapCheckout, mod => ProcessCheapCheckout(mod, isSpanish: false) },
-            { _CheapCheckoutSupermercadoSalvaje, mod => ProcessCheapCheckout(mod, isSpanish: true) },
+            { _CheapCheckout, mod => ProcessCheapCheckout(mod) },
             { _Chess, ProcessChess },
             { _ChordQualities, ProcessChordQualities },
             { _ColorDecoding, ProcessColorDecoding },
@@ -1188,7 +1186,7 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, pressed.Select((p, i) => p.Length == 0 ? null : makeQuestion(Question.BrokenButtons, _BrokenButtons, new[] { p }, new[] { ordinal(i + 1) }, pressed.Except(new[] { "" }).ToArray())));
     }
 
-    private IEnumerable<object> ProcessCheapCheckout(KMBombModule module, bool isSpanish)
+    private IEnumerable<object> ProcessCheapCheckout(KMBombModule module)
     {
         var comp = GetComponent(module, "CheapCheckoutModule");
         var fldPaid = GetField<decimal>(comp, "Paid");
@@ -1210,25 +1208,17 @@ public class SouvenirModule : MonoBehaviour
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
 
-        _modulesSolved.IncSafe(isSpanish ? _CheapCheckoutSupermercadoSalvaje : _CheapCheckout);
-        if (isSpanish)
-        {
-            addQuestions(module, paids.Select((p, i) => makeQuestion(Question.CheapCheckoutPaidSupermercadoSalvaje, _CheapCheckout, new[] { "$" + p.ToString("N2") },
-                 extraFormatArguments: new[] { paids.Count == 1 ? "" : ordinalSpanish(i + 1) + " ", _moduleCounts.Get(_CheapCheckoutSupermercadoSalvaje) > 1 ? string.Format("el Supermercado Salvaje que resolviste {0}", ordinalSpanish(_modulesSolved.Get(_CheapCheckoutSupermercadoSalvaje))) : "Supermercado Salvaje" },
-                 preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(_ => (decimal) Rnd.Range(5, 50)).Select(amt => "$" + amt.ToString("N2")).Distinct().Take(5).ToArray())));
-        }
-        else
-        {
-            addQuestions(module, paids.Select((p, i) => makeQuestion(Question.CheapCheckoutPaid, _CheapCheckout, new[] { "$" + p.ToString("N2") },
-                 extraFormatArguments: new[] { paids.Count == 1 ? "" : ordinal(i + 1) + " " },
-                 preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(_ => (decimal) Rnd.Range(5, 50)).Select(amt => "$" + amt.ToString("N2")).Distinct().Take(5).ToArray())));
-        }
+        _modulesSolved.IncSafe(_CheapCheckout);
+
+        addQuestions(module, paids.Select((p, i) => makeQuestion(Question.CheapCheckoutPaid, _CheapCheckout, new[] { "$" + p.ToString("N2") },
+             extraFormatArguments: new[] { paids.Count == 1 ? "" : ordinal(i + 1) + " " },
+             preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(_ => (decimal) Rnd.Range(5, 50)).Select(amt => "$" + amt.ToString("N2")).Distinct().Take(5).ToArray())));
     }
 
     private IEnumerable<object> ProcessChess(KMBombModule module)
     {
         var comp = GetComponent(module, "ChessBehaviour");
-        var fldIndexSelected = GetField<string[]>(comp, "indexSelected"); // this contains both the coordinates and the solution
+        var fldIndexSelected = GetField<int[]>(comp, "indexSelected"); // this contains both the coordinates and the solution
         var fldIsSolved = GetField<bool>(comp, "isSolved", isPublic: true);
 
         if (comp == null || fldIndexSelected == null || fldIsSolved == null)
@@ -1240,9 +1230,9 @@ public class SouvenirModule : MonoBehaviour
         var indexSelected = fldIndexSelected.Get();
         if (indexSelected == null)
             yield break;
-        if (indexSelected.Length != 7 || indexSelected.Any(b => b == null || b.Length != 2))
+        if (indexSelected.Length != 7 || indexSelected.Any(b => b / 10 < 0 || b / 10 >= 6 || b % 10 < 0 || b % 10 >= 6))
         {
-            Debug.LogFormat("<Souvenir #{1}> Abandoning Chess because indexSelected array length is unexpected or one of the values is null or not length 2 ({0}).", indexSelected.Select(iSel => iSel == null ? "null" : iSel).JoinString(", "), _moduleId);
+            Debug.LogFormat("<Souvenir #{1}> Abandoning Chess because indexSelected array length is unexpected or one of the values is weird ({0}).", indexSelected.Select(iSel => iSel.ToString()).JoinString(", "), _moduleId);
             yield break;
         }
 
@@ -1251,7 +1241,7 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_Chess);
 
-        addQuestions(module, Enumerable.Range(0, 6).Select(i => makeQuestion(Question.ChessCoordinate, _Chess, new[] { indexSelected[i] }, new[] { ordinal(i + 1) })));
+        addQuestions(module, Enumerable.Range(0, 6).Select(i => makeQuestion(Question.ChessCoordinate, _Chess, new[] { "" + ((char) (indexSelected[i] / 10 + 'a')) + (indexSelected[i] % 10 + 1) }, new[] { ordinal(i + 1) })));
     }
 
     private IEnumerable<object> ProcessChordQualities(KMBombModule module)
@@ -2439,7 +2429,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessNeutralization(KMBombModule module)
     {
-        var comp = GetComponent(module, "Neutralization");
+        var comp = GetComponent(module, "neutralization");
         var fldAcidType = GetField<int>(comp, "acidType");
         var fldAcidVol = GetField<int>(comp, "acidVol");
         var fldSolved = GetField<bool>(comp, "_isSolved");
@@ -3706,21 +3696,6 @@ public class SouvenirModule : MonoBehaviour
             case 3: return number + "rd";
             default: return number + "th";
         }
-    }
-
-    private string ordinalSpanish(int number)
-    {
-        if (number < 0)
-            return "(" + number + ")º";
-
-        switch (number)
-        {
-            case 1: return "primero";
-            case 2: return "segundo";
-            case 3: return "tercero";
-        }
-
-        return number + "º";
     }
 
 #pragma warning disable 414
