@@ -240,7 +240,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "first", "first", "second", "first", "third", "second", "first", "second", "second", "second", "third", "third", "first", "third", "second", "third", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
         SillySlots,
 
-        [SouvenirQuestion("What were the call samples {1} of {0}?", "Simon Samples", 6, null, "KKSS", "KKSH", "KSSH", "KHSS", "KHSH", "KHSO", "KHOH", "KOSH", "KOSO", "SKSK", "SHHS",
+        [SouvenirQuestion("What were the call samples {1} of {0}?", "Simon Samples", 6, "KKSS", "KKSH", "KSSH", "KHSS", "KHSH", "KHSO", "KHOH", "KOSH", "KOSO", "SKSK", "SHHS",
             ExampleExtraFormatArguments = new[] { "played in the first stage", "added in the second stage", "added in the third stage" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSamplesSamples,
 
