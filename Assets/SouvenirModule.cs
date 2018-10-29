@@ -449,12 +449,7 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerator Play()
     {
         if (TwitchPlaysActive)
-        {
-            Answers4Parent.transform.localPosition = new Vector3(.003f, 0, 0);
-            Answers6Parent.transform.localPosition = new Vector3(.003f, 0, 0);
-            foreach (var gobj in TpNumbers)
-                gobj.SetActive(true);
-        }
+            ActivateTwitchPlaysNumbers();
 
         var numPlayableModules = Bomb.GetSolvableModuleNames().Count(x => !_ignoredModules.Contains(x));
 
@@ -499,6 +494,14 @@ public class SouvenirModule : MonoBehaviour
         Debug.LogFormat("[Souvenir #{0}] Questions exhausted. Module solved.", _moduleId);
         _isSolved = true;
         Module.HandlePass();
+    }
+
+    private void ActivateTwitchPlaysNumbers()
+    {
+        Answers4Parent.transform.localPosition = new Vector3(.005f, 0, 0);
+        Answers6Parent.transform.localPosition = new Vector3(.005f, 0, 0);
+        foreach (var gobj in TpNumbers)
+            gobj.SetActive(true);
     }
 
     private void SetQuestion(QandA q)
@@ -3709,6 +3712,11 @@ public class SouvenirModule : MonoBehaviour
 
     KMSelectable[] ProcessTwitchCommand(string command)
     {
+        if (command == "tp" && !TwitchPlaysActive)
+        {
+            ActivateTwitchPlaysNumbers();
+            TwitchPlaysActive = true;
+        }
         var m = Regex.Match(command.ToLowerInvariant(), @"\A\s*answer\s+(\d)\s*\z");
         if (!m.Success)
             return null;
