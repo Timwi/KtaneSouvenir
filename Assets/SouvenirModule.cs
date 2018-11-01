@@ -433,10 +433,11 @@ public class SouvenirModule : MonoBehaviour
 
         var on = false;
         var answ = Answers4Parent.activeSelf ? Answers4 : Answers6;
-        var text = answ[_currentQuestion.CorrectIndex].GetComponent<TextMesh>().text;
+        var textMesh = answ[_currentQuestion.CorrectIndex].transform.Find("AnswerText").GetComponent<TextMesh>();
+        var text = textMesh.text;
         for (int i = 0; i < 15; i++)
         {
-            answ[_currentQuestion.CorrectIndex].GetComponent<TextMesh>().text = on ? text : "";
+            textMesh.text = on ? text : "";
             on = !on;
             yield return new WaitForSeconds(.1f);
         }
@@ -630,32 +631,20 @@ public class SouvenirModule : MonoBehaviour
         var children = new KMSelectable[6];
         for (int i = 0; i < btns.Length; i++)
         {
-            var mesh = btns[i].GetComponent<TextMesh>();
-            var renderer = btns[i].GetComponent<Renderer>();
+            var mesh = btns[i].transform.Find("AnswerText").GetComponent<TextMesh>();
 
             mesh.text = i < answers.Length ? answers[i] : "•";
             btns[i].gameObject.SetActive(Application.isEditor || i < answers.Length);
             children[3 * (i % 2) + (i / 2)] = Application.isEditor || i < answers.Length ? btns[i] : null;
 
-            var highlight = btns[i].Highlight;
-
             var origRotation = mesh.transform.localRotation;
             mesh.transform.eulerAngles = new Vector3(90, 0, 0);
             mesh.transform.localScale = new Vector3(1, 1, 1);
-            highlight.transform.localScale = new Vector3(100, 100, 100);
-            var tpNumber = mesh.transform.Find("TP" + (i + 1));
-            if (tpNumber != null)
-                tpNumber.localScale = new Vector3(1, 1, 1);
-            var bounds = renderer.bounds.size;
+            var bounds = mesh.GetComponent<Renderer>().bounds.size;
             var fac = (answers.Length > 4 ? .45 : .7);
             if (bounds.x > fac * _surfaceSizeFactor)
-            {
                 // Adjust width of answer so that it fits horizontally
                 mesh.transform.localScale = new Vector3((float) (fac * _surfaceSizeFactor / bounds.x), 1, 1);
-                highlight.transform.localScale = new Vector3((float) (100 * bounds.x / (fac * _surfaceSizeFactor)), 100, 100);
-                if (tpNumber != null)
-                    tpNumber.localScale = new Vector3((float) (bounds.x / (fac * _surfaceSizeFactor)), 1, 1);
-            }
             mesh.transform.localRotation = origRotation;
         }
 
