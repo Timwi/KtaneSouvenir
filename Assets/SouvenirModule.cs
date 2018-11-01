@@ -683,6 +683,15 @@ public class SouvenirModule : MonoBehaviour
                 Debug.LogFormat("<Souvenir #{2}> Field {1}.{0} is null.", Field.Name, Field.DeclaringType.FullName, _souvenirID);
             return t;
         }
+
+        public T GetFrom(object obj, bool nullAllowed = false)
+        {
+            var t = (T) Field.GetValue(obj);
+            if (!nullAllowed && t == null)
+                Debug.LogFormat("<Souvenir #{2}> Field {1}.{0} is null.", Field.Name, Field.DeclaringType.FullName, _souvenirID);
+            return t;
+        }
+
         public void Set(T value) { Field.SetValue(_target, value); }
     }
 
@@ -851,23 +860,23 @@ public class SouvenirModule : MonoBehaviour
         for (int i = 0; i < 8; i++)
             for (int j = 0; j < 8; j++)
             {
-                var ch = (char) fldLabel.Field.GetValue(mapData.GetValue(i, j));
+                var ch = fldLabel.GetFrom(mapData.GetValue(i, j));
                 if ("ABCDH".Contains(ch))
                     chars.Add(ch);
             }
         var correctMarkings = chars.OrderBy(c => c).JoinString();
 
         char bearing;
-        if (correctMarkings == "ABC") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(1, 1));
-        else if (correctMarkings == "ABD") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(7, 0));
-        else if (correctMarkings == "ABH") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(0, 1));
-        else if (correctMarkings == "ACD") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(1, 2));
-        else if (correctMarkings == "ACH") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(0, 1));
-        else if (correctMarkings == "ADH") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(5, 0));
-        else if (correctMarkings == "BCD") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(6, 1));
-        else if (correctMarkings == "BCH") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(2, 2));
-        else if (correctMarkings == "BDH") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(3, 1));
-        else if (correctMarkings == "CDH") bearing = (char) fldLabel.Field.GetValue(mapData.GetValue(5, 1));
+        if (correctMarkings == "ABC") bearing = fldLabel.GetFrom(mapData.GetValue(1, 1));
+        else if (correctMarkings == "ABD") bearing = fldLabel.GetFrom(mapData.GetValue(7, 0));
+        else if (correctMarkings == "ABH") bearing = fldLabel.GetFrom(mapData.GetValue(0, 1));
+        else if (correctMarkings == "ACD") bearing = fldLabel.GetFrom(mapData.GetValue(1, 2));
+        else if (correctMarkings == "ACH") bearing = fldLabel.GetFrom(mapData.GetValue(0, 1));
+        else if (correctMarkings == "ADH") bearing = fldLabel.GetFrom(mapData.GetValue(5, 0));
+        else if (correctMarkings == "BCD") bearing = fldLabel.GetFrom(mapData.GetValue(6, 1));
+        else if (correctMarkings == "BCH") bearing = fldLabel.GetFrom(mapData.GetValue(2, 2));
+        else if (correctMarkings == "BDH") bearing = fldLabel.GetFrom(mapData.GetValue(3, 1));
+        else if (correctMarkings == "CDH") bearing = fldLabel.GetFrom(mapData.GetValue(5, 1));
         else
         {
             Debug.LogFormat(@"<Souvenir #{1}> Abandoning 3D Maze because unexpected markings: ""{0}"".", correctMarkings, _moduleId);
@@ -1534,10 +1543,10 @@ public class SouvenirModule : MonoBehaviour
         });
 
         // The size clue is the only one where fldClueSystem is null
-        var sizeClue = clues.Cast<object>().Where(szCl => fldClueSystem.Field.GetValue(szCl) == null).FirstOrDefault();
+        var sizeClue = clues.Cast<object>().Where(szCl => fldClueSystem.GetFrom(szCl, nullAllowed: true) == null).FirstOrDefault();
         addQuestions(module,
-            makeQuestion(Question.CoordinatesFirstSolution, _Coordinates, new[] { shortenCoordinate(clueText) }, preferredWrongAnswers: clues.Cast<object>().Select(c => shortenCoordinate((string) fldClueText.Field.GetValue(c))).Where(t => t != null).ToArray()),
-            sizeClue == null ? null : makeQuestion(Question.CoordinatesSize, _Coordinates, new[] { (string) fldClueText.Field.GetValue(sizeClue) }));
+            makeQuestion(Question.CoordinatesFirstSolution, _Coordinates, new[] { shortenCoordinate(clueText) }, preferredWrongAnswers: clues.Cast<object>().Select(c => shortenCoordinate(fldClueText.GetFrom(c))).Where(t => t != null).ToArray()),
+            sizeClue == null ? null : makeQuestion(Question.CoordinatesSize, _Coordinates, new[] { fldClueText.GetFrom(sizeClue) }));
     }
 
     private IEnumerable<object> ProcessCreation(KMBombModule module)
@@ -1976,7 +1985,7 @@ public class SouvenirModule : MonoBehaviour
         if (fldGateType == null || tmpGateType == null || fldGateTypeName == null)
             yield break;
 
-        var gateTypeNames = gates.Cast<object>().Select(obj => fldGateTypeName.Field.GetValue(fldGateType.Field.GetValue(obj)).ToString()).ToArray();
+        var gateTypeNames = gates.Cast<object>().Select(obj => fldGateTypeName.GetFrom(fldGateType.GetFrom(obj)).ToString()).ToArray();
         string duplicate = null;
         bool isDuplicateInvalid = false;
         for (int i = 0; i < gateTypeNames.Length; i++)
@@ -2539,8 +2548,8 @@ public class SouvenirModule : MonoBehaviour
                 Debug.LogFormat("<Souvenir #{0}> Abandoning Orientation Cube.", _moduleId);
                 submitButton.OnInteract = prevInteract;
             }
-            else if (mthIsFacing.Invoke(fldFromFacing.Field.GetValue(rule), fldToFacing.Field.GetValue(rule)) &&
-                    !(bool) fldHasSecondaryRule.Field.GetValue(rule) || mthIsFacing.Invoke(fldSecondaryFromFacing.Field.GetValue(rule), fldSecondaryToFacing.Field.GetValue(rule)))
+            else if (mthIsFacing.Invoke(fldFromFacing.GetFrom(rule), fldToFacing.GetFrom(rule)) &&
+                    !fldHasSecondaryRule.GetFrom(rule) || mthIsFacing.Invoke(fldSecondaryFromFacing.GetFrom(rule), fldSecondaryToFacing.GetFrom(rule)))
             {
                 solved = true;
                 submitButton.OnInteract = prevInteract;
@@ -2780,7 +2789,7 @@ public class SouvenirModule : MonoBehaviour
         // Skip the last stage because if the last action was Keep, it is still visible on the module
         for (int stage = 0; stage < prevSlots.Count - 1; stage++)
         {
-            var slotStrings = ((Array) prevSlots[stage]).Cast<object>().Select(obj => (fldColor.Field.GetValue(obj).ToString() + " " + fldShape.Field.GetValue(obj).ToString()).ToLowerInvariant()).ToArray();
+            var slotStrings = ((Array) prevSlots[stage]).Cast<object>().Select(obj => (fldColor.GetFrom(obj).ToString() + " " + fldShape.GetFrom(obj).ToString()).ToLowerInvariant()).ToArray();
             for (int slot = 0; slot < slotStrings.Length; slot++)
                 qs.Add(makeQuestion(Question.SillySlots, _SillySlots, new[] { slotStrings[slot] }, new[] { ordinal(slot + 1), ordinal(stage + 1) }, slotStrings));
         }
