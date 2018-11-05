@@ -1159,15 +1159,15 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "BitmapsModule");
         var fldBitmap = GetField<bool[][]>(comp, "_bitmap");
-        var fldButtonToPush = GetField<int>(comp, "_buttonToPush");
+        var fldIsSolved = GetField<bool>(comp, "_isSolved");
 
-        if (comp == null || fldBitmap == null || fldButtonToPush == null)
+        if (comp == null || fldBitmap == null || fldIsSolved == null)
             yield break;
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
 
-        while (fldButtonToPush.Get() != 0)
+        while (!fldIsSolved.Get())
             yield return new WaitForSeconds(.1f);
 
         _modulesSolved.IncSafe(_Bitmaps);
