@@ -19,20 +19,18 @@ MonoBehaviour:
     things this module might ask you about are listed below. For a complete list,
     please see the manual.\n\r\n[list]\r\n[*][b]3D Maze:[/b] floor markings, cardinal
     direction\r\n[*][b]Adventure Game:[/b] your stats before you took a potion\n[*][b]Bitmaps:[/b]
-    How many white/black squares were in each quadrant\r\n[*][b]Connection Check:[/b]
-    What was the initial red/green state of the buttons at the start\n[*][b]Hexamaze:[/b]
-    pawn color\r\n[*][b]Monsplode:[/b] creatures displayed and moves shown on buttons\r\n[*][b]Mouse
+    How many white/black squares were in each quadrant\r\n[*][b]Hexamaze:[/b] pawn
+    color\r\n[*][b]Monsplode, Fight!:[/b] creatures displayed and moves shown on buttons\r\n[*][b]Mouse
     in the Maze:[/b] color of the torus and the solution sphere\r\n[*][b]Simon States:[/b]
     which colors flashed\r\n[*][b]The Bulb:[/b] which buttons you pressed\n[*][b]Two
-    Bits:[/b] query responses\r\n[/list]\r\n\r\nIf you wish to see another module
-    added, please leave a comment and/or send me a message. You can also contribute
-    development by submitting pull requests to the [url=https://github.com/Timwi/KtaneSouvenir]source
-    code[/url]. Additions that would be welcome would have to satisfy the following
-    guidelines:\r\n\r\n[list]\r\n[*]No questions about things that can just be read
-    off after the module was solved (e.g. the symbols in Astrology)\r\n[*]No questions
-    about things that can be re-deduced by re-solving the module (e.g. offset in Caesar
-    Cipher)\r\n[*]Definitely no questions that could under any circumstances be impossible
-    to answer\r\n[/list]\r\n\r\n[url=http://ktane.timwi.de/PDF/Souvenir.pdf]Manual
+    Bits:[/b] the three correct query responses\r\n[/list]\r\n\r\nIf you wish to see
+    another module added, please leave a comment and/or send me a message. You can
+    also contribute development by submitting pull requests to the [url=https://github.com/Timwi/KtaneSouvenir]source
+    code[/url]. Additions would generally be required to satisfy the following guidelines:\r\n\r\n[list]\r\n[*]No
+    questions about things that can just be read off after the module was solved (e.g.
+    the symbols in Astrology)\r\n[*]No questions about things that can be re-deduced
+    by re-solving the module (e.g. offset in Caesar Cipher)\r\n[*]No questions that
+    could under any circumstances be impossible to answer\r\n[/list]\r\n\r\n[url=http://ktane.timwi.de/PDF/Souvenir.pdf]Manual
     PDF[/url]\r\n[url=http://ktane.timwi.de/HTML/Souvenir.html]Manual HTML[/url]"
   version: 2.0
   outputFolder: build
