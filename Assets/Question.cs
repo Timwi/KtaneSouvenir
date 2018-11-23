@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using UnityEngine;
 
 namespace Souvenir
 {
@@ -11,8 +12,8 @@ namespace Souvenir
         [SouvenirQuestion("What was the cardinal direction in {0}?", "3D Maze", 4, "North", "South", "West", "East")]
         _3DMazeBearing,
 
-        [SouvenirQuestion("What was the {1} goal node in {0}?", "3D Tunnels", 4, "Chip", "Ring", "Drop", "Cube", "Cloud", "Command", "Heart monitor", "Anchor", "Medal", "Lock", "Crossing", "Moon", "Globe", "Heart", "Link", "Eye", "Feather", "Flag", "Chart", "Umbrella", "Wind", "Shield", "Star", "Sun", "Quarter", "Radio", "Gear",
-            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was the {1} goal node in {0}?", "3D Tunnels", 6, "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", ".",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1, Font = AnswerFont.SymbolsFont)]
         _3DTunnelsTargetNode,
 
         [SouvenirQuestion("Which item was the {1} correct item you used in {0}?", "Adventure Game", 4, "Broadsword", "Caber", "Nasty knife", "Longbow", "Magic orb", "Grimoire", "Balloon", "Battery", "Bellows", "Cheat code", "Crystal ball", "Feather", "Hard drive", "Lamp", "Moonstone", "Potion", "Small dog", "Stepladder", "Sunstone", "Symbol", "Ticket", "Trophy",
@@ -267,8 +268,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SeaShells3,
 
-        [SouvenirQuestion("What was the {1} half of the initial shape in {0}?", "Shape Shift", 4, "flat", "round", "ticket", "pointy",
-            ExampleExtraFormatArguments = new[] { "left", "right" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was the initial shape in {0}?", "Shape Shift", 4, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", Font = AnswerFont.SymbolsFont)]
         ShapeShiftInitialShape,
 
         [SouvenirQuestion("What was the {1} slot in the {2} stage in {0}?", "Silly Slots", 4, "red bomb", "red cherry", "red coin", "red grape", "green bomb", "green cherry", "green coin", "green grape", "blue bomb", "blue cherry", "blue coin", "blue grape",
@@ -371,6 +371,12 @@ namespace Souvenir
         YahtzeeInitialRoll,
     }
 
+    enum AnswerFont
+    {
+        Default,
+        SymbolsFont
+    }
+
     [AttributeUsage(AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
     sealed class SouvenirQuestionAttribute : Attribute
     {
@@ -383,6 +389,7 @@ namespace Souvenir
         public int ExampleExtraFormatArgumentGroupSize { get; set; }
         public bool AddThe { get; set; }
         public string[] ExampleAnswers { get; set; }
+        public AnswerFont Font { get; set; }
 
         public SouvenirQuestionAttribute(string questionText, string moduleName, int numAnswers, params string[] allAnswers)
         {
@@ -390,6 +397,7 @@ namespace Souvenir
             ModuleName = moduleName;
             NumAnswers = numAnswers;
             AllAnswers = allAnswers == null || allAnswers.Length == 0 ? null : allAnswers;
+            Font = AnswerFont.Default;
         }
     }
 
@@ -398,11 +406,15 @@ namespace Souvenir
         public string QuestionText { get; private set; }
         public string[] Answers { get; private set; }
         public int CorrectIndex { get; private set; }
-        public QandA(string question, string[] answers, int correct)
+        public Font Font { get; private set; }
+        public Texture FontTexture { get; private set; }
+        public QandA(string question, string[] answers, int correct, Font font, Texture fontTexture)
         {
             QuestionText = question;
             Answers = answers;
             CorrectIndex = correct;
+            Font = font;
+            FontTexture = fontTexture;
         }
         public string DebugString { get { return string.Format("{0} — {1}", QuestionText, Answers.Select((a, ix) => string.Format(ix == CorrectIndex ? "[_{0}_]" : "{0}", a)).JoinString(" | ")); } }
     }

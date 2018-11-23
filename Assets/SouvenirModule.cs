@@ -30,6 +30,11 @@ public class SouvenirModule : MonoBehaviour
     public TextMesh TextMesh;
     public Renderer TextRenderer;
     public Renderer SurfaceRenderer;
+    public Material FontMaterial;
+    public Font FontDefault;
+    public Texture FontDefaultTexture;
+    public Font FontSymbols;
+    public Texture FontSymbolsTexture;
 
     public static readonly string[] _ignoredModules = {
         "Souvenir",
@@ -327,7 +332,7 @@ public class SouvenirModule : MonoBehaviour
                         fmt[i + 1] = attr.ExampleExtraFormatArguments[curExample * attr.ExampleExtraFormatArgumentGroupSize + i];
                     try
                     {
-                        SetQuestion(new QandA(string.Format(attr.QuestionText, fmt), (attr.AllAnswers ?? attr.ExampleAnswers).ToList().Shuffle().Take(attr.NumAnswers).ToArray(), Rnd.Range(0, attr.NumAnswers)));
+                        SetQuestion(new QandA(string.Format(attr.QuestionText, fmt), (attr.AllAnswers ?? attr.ExampleAnswers).ToList().Shuffle().Take(attr.NumAnswers).ToArray(), Rnd.Range(0, attr.NumAnswers), font(attr.Font), fontTexture(attr.Font)));
                     }
                     catch (FormatException e)
                     {
@@ -375,6 +380,26 @@ public class SouvenirModule : MonoBehaviour
         //    s.localRotation = Quaternion.identity;
         //}
         //Destroy(sph.gameObject);
+    }
+
+    private Font font(AnswerFont font)
+    {
+        switch (font)
+        {
+            case AnswerFont.SymbolsFont:
+                return FontSymbols;
+        }
+        return FontDefault;
+    }
+
+    private Texture fontTexture(AnswerFont font)
+    {
+        switch (font)
+        {
+            case AnswerFont.SymbolsFont:
+                return FontSymbolsTexture;
+        }
+        return FontDefaultTexture;
     }
 
     void setAnswerHandler(int index, Action<int> handler)
@@ -524,7 +549,7 @@ public class SouvenirModule : MonoBehaviour
         Debug.LogFormat("[Souvenir #{0}] Asking question: {1}", _moduleId, q.DebugString);
         _currentQuestion = q;
         SetWordWrappedText(q.QuestionText);
-        ShowAnswers(q.Answers);
+        ShowAnswers(q.Answers, q.Font, q.FontTexture);
         Audio.PlaySoundAtTransform("Question", transform);
     }
 
@@ -624,7 +649,7 @@ public class SouvenirModule : MonoBehaviour
         TextMesh.gameObject.SetActive(true);
     }
 
-    void ShowAnswers(string[] answers)
+    void ShowAnswers(string[] answers, Font font, Texture fontTexture)
     {
         if (answers == null || answers.Length == 0 || answers.Length > 6)
         {
@@ -648,6 +673,9 @@ public class SouvenirModule : MonoBehaviour
             var mesh = btns[i].transform.Find("AnswerText").GetComponent<TextMesh>();
 
             mesh.text = i < answers.Length ? answers[i] : "•";
+            mesh.font = font ?? FontDefault;
+            mesh.GetComponent<MeshRenderer>().material = FontMaterial;
+            mesh.GetComponent<MeshRenderer>().material.mainTexture = fontTexture ?? FontDefaultTexture;
             btns[i].gameObject.SetActive(Application.isEditor || i < answers.Length);
             children[3 * (i % 2) + (i / 2)] = Application.isEditor || i < answers.Length ? btns[i] : null;
 
@@ -904,29 +932,29 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> Process3DTunnels(KMBombModule module)
     {
         var comp = GetComponent(module, "ThreeDTunnels");
-        var fldSymbolNames = comp == null ? null : GetStaticField<string[]>(comp.GetType(), "_symbolNames");
+        var fldSymbols = comp == null ? null : GetStaticField<string>(comp.GetType(), "_symbols");
         var fldTargetNodes = GetField<List<int>>(comp, "_targetNodes");
         var fldSolved = GetField<bool>(comp, "_solved");
 
-        if (comp == null || fldSymbolNames == null || fldTargetNodes == null || fldSolved == null)
+        if (comp == null || fldSymbols == null || fldTargetNodes == null || fldSolved == null)
             yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_3DTunnels);
 
-        var symbolNames = fldSymbolNames.Get();
+        var symbols = fldSymbols.Get();
         var targetNodes = fldTargetNodes.Get();
-        if (symbolNames == null || targetNodes == null || targetNodes.Any(tn => tn < 0 || tn >= symbolNames.Length))
+        if (symbols == null || targetNodes == null || targetNodes.Any(tn => tn < 0 || tn >= symbols.Length))
         {
-            Debug.LogFormat("<Souvenir #{0}> 3D Tunnels: invalid values: symbolNames={1}, targetNodes={2}",
+            Debug.LogFormat("<Souvenir #{0}> 3D Tunnels: invalid values: symbols={1}, targetNodes={2}",
                 _moduleId,
-                symbolNames == null ? "null" : string.Format("[{0}]", symbolNames.Select(sn => string.Format(@"""{0}""", sn)).JoinString(", ")),
+                symbols ?? "<null>",
                 targetNodes == null ? "null" : string.Format("[{0}]", targetNodes.JoinString(", ")));
             yield break;
         }
 
-        var targetNodeNames = targetNodes.Select(tn => symbolNames[tn]).ToArray();
+        var targetNodeNames = targetNodes.Select(tn => symbols[tn].ToString()).ToArray();
         addQuestions(module, targetNodeNames.Select((tn, ix) => makeQuestion(Question._3DTunnelsTargetNode, _3DTunnels, new[] { tn }, new[] { ordinal(ix + 1) }, targetNodeNames)));
     }
 
@@ -2990,19 +3018,27 @@ public class SouvenirModule : MonoBehaviour
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
 
-        var names = new[] { "flat", "round", "pointy", "ticket" };
-
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_ShapeShift);
 
-        var qs = new List<QandA>();
-        if (fldStartL.Get() != fldSolutionL.Get())
-            qs.Add(makeQuestion(Question.ShapeShiftInitialShape, _ShapeShift, new[] { names[fldStartL.Get()] }, new[] { "left" }));
-        if (fldStartR.Get() != fldSolutionR.Get())
-            qs.Add(makeQuestion(Question.ShapeShiftInitialShape, _ShapeShift, new[] { names[fldStartR.Get()] }, new[] { "right" }));
-        if (qs.Count > 0)
-            addQuestions(module, qs);
+        var stL = fldStartL.Get();
+        var stR = fldStartR.Get();
+        var solL = fldSolutionL.Get();
+        var solR = fldSolutionR.Get();
+        var answers = new HashSet<string>();
+        for (int l = 0; l < 4; l++)
+            if (stL != solL || l == stL)
+                for (int r = 0; r < 4; r++)
+                    if (stR != solR || r == stR)
+                        answers.Add(((char) ('A' + r + (4 * l))).ToString());
+        if (answers.Count < 4)
+        {
+            Debug.LogFormat("[Souvenir #{0}] No question for Shape Shift because the answer was the same as the initial state.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+        }
+        else
+            addQuestion(module, Question.ShapeShiftInitialShape, new[] { ((char) ('A' + stR + (4 * stL))).ToString() }, preferredWrongAnswers: answers.ToArray());
     }
 
     private IEnumerable<object> ProcessSillySlots(KMBombModule module)
@@ -3867,7 +3903,11 @@ public class SouvenirModule : MonoBehaviour
 
         // Capture the first roll
         if (Enumerable.Range(1, 6).Any(i => diceValues.Count(val => val == i) == 5))
-            result = "Yahtzee";
+        {
+            Debug.LogFormat("[Souvenir #{0}] No question for Yahtzee because the first roll was a Yahtzee.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
         else if (diceValues.Contains(2) && diceValues.Contains(3) && diceValues.Contains(4) && diceValues.Contains(5) && (diceValues.Contains(1) || diceValues.Contains(6)))
             result = "large straight";
         else if (diceValues.Contains(3) && diceValues.Contains(4) && (
@@ -3987,7 +4027,7 @@ public class SouvenirModule : MonoBehaviour
         if (extraFormatArguments != null)
             formatArguments.AddRange(extraFormatArguments);
 
-        return new QandA(string.Format(attr.QuestionText, formatArguments.ToArray()), answers.ToArray(), correctIndex);
+        return new QandA(string.Format(attr.QuestionText, formatArguments.ToArray()), answers.ToArray(), correctIndex, font(attr.Font), fontTexture(attr.Font));
     }
 
     private string[] GetAnswers(Question question)

@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 7eb251b1ccb04364aaed7e7915ea8c49
+timeCreated: 1542847591
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Tunnel-maze
+  fontNames:
+  - Tunnel-maze
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

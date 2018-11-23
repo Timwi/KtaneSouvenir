@@ -293,6 +293,11 @@ MonoBehaviour:
   TextMesh: {fileID: 102000012539687798}
   TextRenderer: {fileID: 23000013337156738}
   SurfaceRenderer: {fileID: 23000012396776310}
+  FontMaterial: {fileID: 2100000, guid: 242a1717addea514fb331d9d02716d6d, type: 2}
+  FontDefault: {fileID: 12800000, guid: 2cc5074422ed950489fe2e35af896c57, type: 3}
+  FontDefaultTexture: {fileID: 2800000, guid: 2cc5074422ed950489fe2e35af896c57, type: 3}
+  FontSymbols: {fileID: 12800000, guid: 7eb251b1ccb04364aaed7e7915ea8c49, type: 3}
+  FontSymbolsTexture: {fileID: 2800000, guid: 7eb251b1ccb04364aaed7e7915ea8c49, type: 3}
 --- !u!114 &11489324
 MonoBehaviour:
   m_ObjectHideFlags: 1
