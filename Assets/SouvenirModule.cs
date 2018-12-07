@@ -1255,6 +1255,13 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_BrokenButtons);
 
+        if (pressed.All(p => p.Length == 0))
+        {
+            Debug.LogFormat("[Souvenir #{0}] No question for Broken Buttons because the only buttons you pressed were literally blank.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
+
         // skip the literally blank buttons.
         addQuestions(module, pressed.Select((p, i) => p.Length == 0 ? null : makeQuestion(Question.BrokenButtons, _BrokenButtons, new[] { p }, new[] { ordinal(i + 1) }, pressed.Except(new[] { "" }).ToArray())));
     }
@@ -3947,6 +3954,11 @@ public class SouvenirModule : MonoBehaviour
     private void addQuestions(KMBombModule module, IEnumerable<QandA> questions)
     {
         var qs = questions.Where(q => q != null).ToArray();
+        if (qs.Length == 0)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Empty question batch provided for {1}.", _moduleId, module.ModuleDisplayName);
+            return;
+        }
         Debug.LogFormat("<Souvenir #{0}> Adding question batch:\n{1}", _moduleId, qs.Select(q => "    • " + q.DebugString).JoinString("\n"));
         _questions.Add(new QuestionBatch
         {
