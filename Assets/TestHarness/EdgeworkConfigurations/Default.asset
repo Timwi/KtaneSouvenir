@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34a4fefeeafb9a5439cfbd83306ba467, type: 3}
   m_Name: Default
   m_EditorClassIdentifier: 
-  SerialNumberType: 0
-  CustomSerialNumber: 
+  SerialNumberType: 2
+  CustomSerialNumber: A23BC0
+  TwoFactorResetTime: 30
   Widgets: []
