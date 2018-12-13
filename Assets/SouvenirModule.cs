@@ -112,6 +112,7 @@ public class SouvenirModule : MonoBehaviour
     const string _PatternCube = "PatternCubeModule";
     const string _PerspectivePegs = "spwizPerspectivePegs";
     const string _PolyhedralMaze = "PolyhedralMazeModule";
+    const string _Quintuples = "quintuples";
     const string _Rhythms = "MusicRhythms";
     const string _SeaShells = "SeaShells";
     const string _ShapeShift = "shapeshift";
@@ -188,6 +189,7 @@ public class SouvenirModule : MonoBehaviour
             { _PatternCube, ProcessPatternCube },
             { _PerspectivePegs, ProcessPerspectivePegs },
             { _PolyhedralMaze, ProcessPolyhedralMaze },
+            { _Quintuples, ProcessQuintuples },
             { _Rhythms, ProcessRhythms },
             { _SeaShells, ProcessSeaShells },
             { _ShapeShift, ProcessShapeShift },
@@ -2938,6 +2940,45 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_PolyhedralMaze);
         addQuestion(module, Question.PolyhedralMazeStartPosition, new[] { fldStartFace.Get().ToString() }, null, Enumerable.Range(0, 62).Select(i => i.ToString()).ToArray());
+    }
+
+    private IEnumerable<object> ProcessQuintuples(KMBombModule module)
+    {
+        var comp = GetComponent(module, "quinaryNumbersScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldNumbers = GetField<int[]>(comp, "cyclingNumbers", isPublic: true);
+        var fldColors = GetField<string[]>(comp, "chosenColorsName", isPublic: true);
+        var fldColorCounts = GetField<int[]>(comp, "numberOfEachColour", isPublic: true);
+        var fldColorNames = GetField<string[]>(comp, "potentialColorsName", isPublic: true);
+
+        if (comp == null || fldSolved == null || fldNumbers == null || fldColors == null || fldColorCounts == null || fldColorNames == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Quintuples);
+
+        var numbers = fldNumbers.Get();
+        var colors = fldColors.Get();
+        var colorCounts = fldColorCounts.Get();
+        var colorNames = fldColorNames.Get();
+        if (numbers == null || numbers.Length != 25 || numbers.Any(n => n < 1 || n > 10) ||
+            colors == null || colors.Length != 25 ||
+            colorCounts == null || colorCounts.Length != 5 || colorCounts.Any(cc => cc < 0 || cc > 25) ||
+            colorNames == null || colorNames.Length != 5)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Quintuples because an array has unexpected length or values: (numbers={1} / colors={2} / numberOfEachColour={3} / potentialColorsName={4})", _moduleId,
+                numbers == null ? "<null>" : string.Format("[{0}]", numbers.JoinString(", ")),
+                colors == null ? "<null>" : string.Format("[{0}]", colors.Select(c => string.Format(@"""{0}""", c)).JoinString(", ")),
+                colorCounts == null ? "<null>" : string.Format("[{0}]", colorCounts.JoinString(", ")),
+                colorNames == null ? "<null>" : string.Format("[{0}]", colorNames.JoinString(", ")));
+            yield break;
+        }
+
+        addQuestions(module,
+            numbers.Select((n, ix) => makeQuestion(Question.QuintuplesNumbers, _Quintuples, new[] { (n % 10).ToString() }, new[] { ordinal(ix % 5 + 1), ordinal(ix / 5 + 1) })).Concat(
+            colors.Select((color, ix) => makeQuestion(Question.QuintuplesColors, _Quintuples, new[] { color }, new[] { ordinal(ix % 5 + 1), ordinal(ix / 5 + 1) }))).Concat(
+            colorCounts.Select((cc, ix) => makeQuestion(Question.QuintuplesColorCounts, _Quintuples, new[] { cc.ToString() }, new[] { colorNames[ix] }))));
     }
 
     private IEnumerable<object> ProcessRhythms(KMBombModule module)

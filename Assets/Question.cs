@@ -253,6 +253,18 @@ namespace Souvenir
         [SouvenirQuestion("What was the starting position in {0}?", "Polyhedral Maze", 6, null, ExampleAnswers = new[] { "1", "16", "24", "47", "89" })]
         PolyhedralMazeStartPosition,
 
+        [SouvenirQuestion("What was the {1} digit in the {2} slot in {0}?", "Quintuples", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+            ExampleExtraFormatArguments = new[] { "first", "first", "first", "second", "second", "first", "second", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        QuintuplesNumbers,
+
+        [SouvenirQuestion("What color was the {1} digit in the {2} slot in {0}?", "Quintuples", 4, "red", "blue", "orange", "green", "pink",
+            ExampleExtraFormatArguments = new[] { "first", "first", "first", "second", "second", "first", "second", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        QuintuplesColors,
+
+        [SouvenirQuestion("How many numbers were {1} in {0}?", "Quintuples", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25",
+            ExampleExtraFormatArguments = new[] { "red", "blue", "orange", "green", "pink" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        QuintuplesColorCounts,
+
         [SouvenirQuestion("What was the last color in {0}?", "Rhythms", 4, "Blue", "Red", "Green", "Yellow")]
         RhythmsColor,
 
