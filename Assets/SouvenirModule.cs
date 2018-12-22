@@ -85,6 +85,7 @@ public class SouvenirModule : MonoBehaviour
     const string _ColoredSquares = "ColoredSquaresModule";
     const string _ColorMorse = "ColorMorseModule";
     const string _Coordinates = "CoordinatesModule";
+    const string _Crackbox = "CrackboxModule";
     const string _Creation = "CreationModule";
     const string _DoubleOh = "DoubleOhModule";
     const string _FastMath = "fastMath";
@@ -127,6 +128,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SonicTheHedgehog = "sonic";
     const string _Synonyms = "synonyms";
     const string _TapCode = "tapCode";
+    const string _TenButtonColorCode = "TenButtonColorCode";
     const string _TicTacToe = "TicTacToeModule";
     const string _Timezone = "timezone";
     const string _TwoBits = "TwoBits";
@@ -162,6 +164,7 @@ public class SouvenirModule : MonoBehaviour
             { _ColoredSquares, ProcessColoredSquares },
             { _ColorMorse, ProcessColorMorse },
             { _Coordinates, ProcessCoordinates },
+            { _Crackbox, ProcessCrackbox },
             { _Creation, ProcessCreation },
             { _DoubleOh, ProcessDoubleOh },
             { _FastMath, ProcessFastMath },
@@ -204,6 +207,7 @@ public class SouvenirModule : MonoBehaviour
             { _SonicTheHedgehog, ProcessSonicTheHedgehog },
             { _Synonyms, ProcessSynonyms },
             { _TapCode, ProcessTapCode },
+            { _TenButtonColorCode, ProcessTenButtonColorCode },
             { _TicTacToe, ProcessTicTacToe },
             { _Timezone, ProcessTimezone },
             { _TwoBits, ProcessTwoBits },
@@ -1714,6 +1718,44 @@ public class SouvenirModule : MonoBehaviour
             sizeClue == null ? null : makeQuestion(Question.CoordinatesSize, _Coordinates, new[] { fldClueText.GetFrom(sizeClue) }));
     }
 
+    private IEnumerable<object> ProcessCrackbox(KMBombModule module)
+    {
+        var comp = GetComponent(module, "CrackboxScript");
+        var fldGridItems = GetField<Array>(comp, "originalGridItems");
+        var fldSolved = GetField<bool>(comp, "isSolved");
+
+        if (comp == null || fldGridItems == null || fldSolved == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Crackbox);
+
+        var array = fldGridItems.Get();
+        if (array == null || array.Length != 16)
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Crackbox because ‘originalGridItems’ is null or has unexpected length ({1}, expected 16).", _moduleId, array == null ? "<null>" : array.Length.ToString());
+            yield break;
+        }
+        var obj = array.GetValue(0);
+        var fldIsBlack = GetField<bool>(obj, "IsBlack", isPublic: true);
+        var fldIsLocked = GetField<bool>(obj, "IsLocked", isPublic: true);
+        var fldValue = GetField<int>(obj, "Value", isPublic: true);
+        if (fldIsBlack == null || fldIsLocked == null || fldValue == null)
+            yield break;
+
+        var qs = new List<QandA>();
+        for (int x = 0; x < 4; x++)
+        {
+            for (int y = 0; y < 4; y++)
+            {
+                obj = array.GetValue(y * 4 + x);
+                qs.Add(makeQuestion(Question.CrackboxInitialState, _Crackbox, new[] { fldIsBlack.GetFrom(obj) ? "black" : !fldIsLocked.GetFrom(obj) ? "white" : fldValue.GetFrom(obj).ToString() }, new[] { ((char) ('A' + x)).ToString(), (y + 1).ToString() }));
+            }
+        }
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessCreation(KMBombModule module)
     {
         var comp = GetComponent(module, "CreationModule");
@@ -3175,8 +3217,9 @@ public class SouvenirModule : MonoBehaviour
         var fldSequences = GetField<int[][]>(comp, "_sequences");
         var fldColors = GetField<Array>(comp, "_colors");
         var fldSolved = GetField<bool>(comp, "_isSolved");
+        var fldRowCriteria = GetField<Array>(comp, "_rowCriteria");
 
-        if (comp == null || fldSequences == null || fldColors == null || fldSolved == null)
+        if (comp == null || fldSequences == null || fldColors == null || fldSolved == null || fldRowCriteria == null)
             yield break;
 
         while (!fldSolved.Get())
@@ -3186,19 +3229,25 @@ public class SouvenirModule : MonoBehaviour
 
         var seqs = fldSequences.Get();
         var colorsRaw = fldColors.Get();
-        if (seqs == null || colorsRaw == null)
+        var rules = fldRowCriteria.Get();
+        if (seqs == null || colorsRaw == null || fldRowCriteria == null)
             yield break;
         // colorsRaw contains enum values; stringify them.
         var colors = colorsRaw.Cast<object>().Select(obj => obj.ToString()).ToArray();
 
-        if (seqs.Length == 0)
+        if (seqs.Length != 3)
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Screams because _sequences has a zero length.", _moduleId);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Screams because _sequences length is {1} (expected 3).", _moduleId, seqs.Length);
             yield break;
         }
         if (colors.Length != 6)
         {
             Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Screams because _colors has length {1} (expected 6).", _moduleId, colors.Length);
+            yield break;
+        }
+        if (rules.Length != 6)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Screams because _rowCriteria has length {1} (expected 6).", _moduleId, rules.Length);
             yield break;
         }
 
@@ -3208,41 +3257,24 @@ public class SouvenirModule : MonoBehaviour
             qs.Add(makeQuestion(Question.SimonScreamsFlashing, _SimonScreams, new[] { colors[lastSeq[i]] }, new[] { ordinal(i + 1) }));
 
         // First determine which rule applied in which stage
-        var ryb = new[] { "Red", "Yellow", "Blue" }.Select(colorName => Array.IndexOf(colors, colorName)).ToArray();
+        var fldCheck = GetField<Func<int[], bool>>(rules.GetValue(0), "Check", isPublic: true);
+        var fldRuleName = GetField<string>(rules.GetValue(0), "Name", isPublic: true);
+        if (fldCheck == null || fldRuleName == null)
+            yield break;
         var stageRules = new int[seqs.Length];
         for (int i = 0; i < seqs.Length; i++)
         {
-            var seq = seqs[i];
-            // "If three adjacent colors flashed in clockwise order"
-            if (Enumerable.Range(0, seq.Length - 2).Any(ix => seq[ix + 1] == (seq[ix] + 1) % 6 && seq[ix + 2] == (seq[ix] + 2) % 6))
-                stageRules[i] = 0;
-            // "Otherwise, if a color flashed, then an adjacent color, then the first again"
-            else if (Enumerable.Range(0, seq.Length - 2).Any(ix => seq[ix + 2] == seq[ix] && (seq[ix + 1] == (seq[ix] + 1) % 6 || seq[ix + 1] == (seq[ix] + 5) % 6)))
-                stageRules[i] = 1;
-            // "Otherwise, if at most one color flashed out of red, yellow, and blue"
-            else if (ryb.Count(colIx => seq.Contains(colIx)) <= 1)
-                stageRules[i] = 2;
-            // "Otherwise, if there are two colors opposite each other that didn’t flash"
-            else if (Enumerable.Range(0, 3).Any(col => !seq.Contains(col) && !seq.Contains(col + 3)))
-                stageRules[i] = 3;
-            // "Otherwise, if two adjacent colors flashed in clockwise order"
-            else if (Enumerable.Range(0, seq.Length - 1).Any(ix => seq[ix + 1] == (seq[ix] + 1) % 6))
-                stageRules[i] = 4;
-            // "Otherwise"
-            else
-                stageRules[i] = 5;
+            stageRules[i] = rules.Cast<object>().IndexOf(rule => fldCheck.GetFrom(rule)(seqs[i]));
+            if (stageRules[i] == -1)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Screams because apparently none of the criteria applies to Stage {1} ({2}).", _moduleId, i + 1, seqs[i].Select(ix => colors[ix]).JoinString(", "));
+                yield break;
+            }
         }
 
-        // Note that we’re excluding the Otherwise row
-        var ruleNames = Ut.NewArray(
-            "three adjacent colors flashing in clockwise order",
-            "a color flashing, then an adjacent color, then the first again",
-            "at most one color flashing out of red, yellow, and blue",
-            "two colors opposite each other that didn’t flash",
-            "two (but not three) adjacent colors flashing in clockwise order"
-        );
         // Now set the questions
-        for (int rule = 0; rule < ruleNames.Length; rule++)
+        // Skip the last rule because it’s the “otherwise” row
+        for (int rule = 0; rule < rules.Length - 1; rule++)
         {
             var applicableStages = new List<string>();
             for (int stage = 0; stage < stageRules.Length; stage++)
@@ -3251,7 +3283,7 @@ public class SouvenirModule : MonoBehaviour
             if (applicableStages.Count > 0)
                 qs.Add(makeQuestion(Question.SimonScreamsRule, _SimonScreams,
                     new[] { applicableStages.Count == stageRules.Length ? "all of them" : applicableStages.JoinString(", ", lastSeparator: " and ") },
-                    new[] { applicableStages.Count == 1 ? "stage" : "stages", ruleNames[rule] },
+                    new[] { fldRuleName.GetFrom(rules.GetValue(rule)) },
                     applicableStages.Count == 1
                         ? Enumerable.Range(1, seqs.Length).Select(i => ordinal(i)).ToArray()
                         : Enumerable.Range(1, seqs.Length).SelectMany(a => Enumerable.Range(a + 1, seqs.Length - a).Select(b => ordinal(a) + " and " + ordinal(b))).Concat(new[] { "all of them" }).ToArray()));
@@ -3685,6 +3717,46 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestion(module, Question.TapCodeReceivedWord, new[] { chosenWord }, preferredWrongAnswers: words);
+    }
+
+    private IEnumerable<object> ProcessTenButtonColorCode(KMBombModule module)
+    {
+        var comp = GetComponent(module, "scr_colorCode");
+        var fldSolvedFirstStage = GetField<bool>(comp, "solvedFirst");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldColors = GetField<int[]>(comp, "prevColors");
+
+        if (comp == null || fldSolvedFirstStage == null || fldSolved == null || fldColors == null)
+            yield break;
+
+        yield return null;  // Just make sure that Start() has run
+
+        var firstStageColors = fldColors.Get();
+        if (firstStageColors == null || firstStageColors.Length != 10)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Ten-Button Color Code because “prevColors” has unexpected value {1}.", _moduleId, firstStageColors == null ? "<null>" : string.Format("[{0}]", firstStageColors.JoinString(", ")));
+            yield break;
+        }
+        // Take a copy because the module modifies the same array in the second stage
+        firstStageColors = firstStageColors.ToArray();
+
+        while (!fldSolvedFirstStage.Get())
+            yield return new WaitForSeconds(.1f);
+
+        var secondStageColors = fldColors.Get();
+        if (secondStageColors == null || secondStageColors.Length != 10)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Ten-Button Color Code because “prevColors” has unexpected value {1}.", _moduleId, secondStageColors == null ? "<null>" : string.Format("[{0}]", secondStageColors.JoinString(", ")));
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_TenButtonColorCode);
+
+        var colorNames = new[] { "red", "green", "blue" };
+        addQuestions(module, new[] { firstStageColors, secondStageColors }.SelectMany((colors, stage) => Enumerable.Range(0, 10)
+            .Select(slot => makeQuestion(Question.TenButtonColorCodeInitialColors, _TenButtonColorCode, new[] { colorNames[colors[slot]] }, new[] { ordinal(slot + 1), ordinal(stage + 1) }))));
     }
 
     private IEnumerable<object> ProcessTicTacToe(KMBombModule module)
