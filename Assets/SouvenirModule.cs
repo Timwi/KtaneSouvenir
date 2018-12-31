@@ -1871,28 +1871,27 @@ public class SouvenirModule : MonoBehaviour
         var fldFirstLastDigit = GetField<int>(comp, "firstLastDigit");
         var fldSolved = GetField<bool>(comp, "isSolved");
 
-        // What was the last digit of the first query's result?
 
-        if (fldFirstLastDigit == null || fldFirstLastDigit == -1)
+        if (fldFirstLastDigit == null)
             yield break;
+
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
 
         var lastDigit = fldFirstLastDigit.Get();
-        if (fldFirstLastDigit == null || fldFirstLastDigit == -1)
+        if (lastDigit == -1)
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Functions because the first last digit is not found (or they solved it with no queries?!).", _moduleId);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Functions because they solved it with no queries?! This isn't a bug, just impressive (or cheating).", _moduleId);
             yield break;
         }
-        else if (fldFirstLastDigit > 9 || fldFirstLastDigit < 0)
+        else if (lastDigit > 9 || lastDigit < 0)
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Functions because the first last digit is {1} when it should be from 0 to 9.", _moduleId, fldFirstLastDigit);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Functions because the first last digit is {1} when it should be from 0 to 9.", _moduleId, lastDigit);
             yield break;
         }
-
         _modulesSolved.IncSafe(_Functions);
-        addQuestions(module, Question.FunctionsLastDigit, new[] { fldFirstLastDigit });
+        addQuestion(module, Question.FunctionsLastDigit, new[] { lastDigit.ToString() });
     }
 
     private IEnumerable<object> ProcessGridLock(KMBombModule module)
