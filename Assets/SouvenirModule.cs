@@ -1871,18 +1871,18 @@ public class SouvenirModule : MonoBehaviour
         var fldFirstLastDigit = GetField<int>(comp, "firstLastDigit");
         var fldSolved = GetField<bool>(comp, "isSolved");
 
-
-        if (fldFirstLastDigit == null)
+        if (comp == null || fldFirstLastDigit == null || fldSolved == null)
             yield break;
-
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Functions);
 
         var lastDigit = fldFirstLastDigit.Get();
         if (lastDigit == -1)
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Functions because they solved it with no queries?! This isn't a bug, just impressive (or cheating).", _moduleId);
+            Debug.LogFormat("[Souvenir #{0}] No questions for Functions because it was solved with no queries! This isn’t a bug, just impressive (or cheating).", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
             yield break;
         }
         else if (lastDigit > 9 || lastDigit < 0)
@@ -1890,7 +1890,6 @@ public class SouvenirModule : MonoBehaviour
             Debug.LogFormat("<Souvenir #{0}> Abandoning Functions because the first last digit is {1} when it should be from 0 to 9.", _moduleId, lastDigit);
             yield break;
         }
-        _modulesSolved.IncSafe(_Functions);
         addQuestion(module, Question.FunctionsLastDigit, new[] { lastDigit.ToString() });
     }
 
