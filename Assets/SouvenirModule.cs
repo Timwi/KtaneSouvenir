@@ -100,6 +100,7 @@ public class SouvenirModule : MonoBehaviour
     const string _IceCream = "iceCreamModule";
     const string _Listening = "Listening";
     const string _LogicGates = "logicGates";
+    const string _LondonUnderground = "londonUnderground";
     const string _Mafia = "MafiaModule";
     const string _MaritimeFlags = "MaritimeFlagsModule";
     const string _MonsplodeFight = "monsplodeFight";
@@ -124,6 +125,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SimonScreams = "SimonScreamsModule";
     const string _SimonSends = "SimonSendsModule";
     const string _SimonSings = "SimonSingsModule";
+    const string _SimonSpeaks = "SimonSpeaksModule";
     const string _SimonStates = "SimonV2";
     const string _SkewedSlots = "SkewedSlotsModule";
     const string _Skyrim = "skyrim";
@@ -175,13 +177,14 @@ public class SouvenirModule : MonoBehaviour
             { _Functions, ProcessFunctions },
             { _Gamepad, ProcessGamepad },
             { _GridLock, ProcessGridLock },
-            { _LogicalButtons, ProcessLogicalButtons },
             { _Hexamaze, ProcessHexamaze },
             { _HumanResources, ProcessHumanResources },
             { _Hunting, ProcessHunting },
             { _IceCream, ProcessIceCream },
             { _Listening, ProcessListening },
+            { _LogicalButtons, ProcessLogicalButtons },
             { _LogicGates, ProcessLogicGates },
+            { _LondonUnderground, ProcessLondonUnderground },
             { _Mafia, ProcessMafia },
             { _MaritimeFlags, ProcessMaritimeFlags },
             { _MonsplodeFight, ProcessMonsplodeFight },
@@ -206,6 +209,7 @@ public class SouvenirModule : MonoBehaviour
             { _SimonScreams, ProcessSimonScreams },
             { _SimonSends, ProcessSimonSends },
             { _SimonSings, ProcessSimonSings },
+            { _SimonSpeaks, ProcessSimonSpeaks },
             { _SimonStates, ProcessSimonStates },
             { _SkewedSlots, ProcessSkewedSlots },
             { _Skyrim, ProcessSkyrim },
@@ -2342,6 +2346,65 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessLondonUnderground(KMBombModule module)
+    {
+        var comp = GetComponent(module, "londonUndergroundScript");
+        var fldStage = GetField<int>(comp, "levelsPassed");
+        var fldDepartureStation = GetField<string>(comp, "departureStation");
+        var fldDestinationStation = GetField<string>(comp, "destinationStation");
+        var fldDepartureOptions = GetField<string[]>(comp, "departureOptions");
+        var fldDestinationOptions = GetField<string[]>(comp, "destinationOptions");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        if (comp == null || fldStage == null || fldDepartureStation == null || fldDestinationStation == null || fldDepartureOptions == null || fldDestinationOptions == null || fldSolved == null)
+            yield break;
+
+        yield return null;
+
+        Func<string, string> firstWord = str =>
+        {
+            var pos = str.IndexOf(' ');
+            return pos == -1 ? str : str.Substring(0, pos);
+        };
+
+        var departures = new List<string>();
+        var destinations = new List<string>();
+        var extraOptions = new HashSet<string>();
+        var lastStage = -1;
+        while (!fldSolved.Get())
+        {
+            var stage = fldStage.Get();
+            if (stage != lastStage)
+            {
+                if (stage == 0)
+                {
+                    // The player got a strike and the module reset
+                    departures.Clear();
+                    destinations.Clear();
+                    extraOptions.Clear();
+                }
+                departures.Add(firstWord(fldDepartureStation.Get()));
+                destinations.Add(firstWord(fldDestinationStation.Get()));
+
+                foreach (var word in fldDepartureOptions.Get())
+                    extraOptions.Add(firstWord(word));
+                foreach (var word in fldDestinationOptions.Get())
+                    extraOptions.Add(firstWord(word));
+                lastStage = stage;
+            }
+            yield return null;
+        }
+        _modulesSolved.IncSafe(_LondonUnderground);
+        var primary = departures.Union(destinations).ToArray();
+        if (primary.Length < 4)
+            primary = primary.Union(extraOptions).ToArray();
+
+        var possibleWrongAnswers = departures.Concat(destinations).Distinct().ToArray();
+        addQuestions(module,
+            departures.Select((dep, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { firstWord(dep) }, new[] { ordinal(ix + 1), "departure" }, primary)).Concat(
+            destinations.Select((dest, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { firstWord(dest) }, new[] { ordinal(ix + 1), "destination" }, primary))));
+    }
+
     private IEnumerable<object> ProcessMafia(KMBombModule module)
     {
         var comp = GetComponent(module, "MafiaModule");
@@ -3442,6 +3505,49 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_SimonSings);
         addQuestions(module, flashingColorSequences.SelectMany((seq, stage) => seq.Select((col, ix) => makeQuestion(Question.SimonSingsFlashing, _SimonSings, new[] { _SimonSings_Notes[col] }, new[] { ordinal(ix + 1), ordinal(stage + 1) }))));
+    }
+
+    private IEnumerable<object> ProcessSimonSpeaks(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SimonSpeaksModule");
+        var fldSequence = GetField<int[]>(comp, "_sequence");
+        var fldColors = GetField<int[]>(comp, "_colors");
+        var fldWords = GetField<int[]>(comp, "_words");
+        var fldLanguages = GetField<int[]>(comp, "_languages");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+        var fldWordsTable = GetStaticField<string[][]>(comp.GetType(), "_wordsTable");
+        var fldPositionNames = GetStaticField<string[]>(comp.GetType(), "_positionNames");
+
+        if (comp == null || fldSequence == null || fldColors == null || fldWords == null || fldLanguages == null || fldSolved == null || fldWordsTable == null || fldPositionNames == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SimonSpeaks);
+
+        var sequence = fldSequence.Get();
+        var colors = fldColors.Get();
+        var words = fldWords.Get();
+        var languages = fldLanguages.Get();
+        var wordsTable = fldWordsTable.Get();
+        var positionNames = fldPositionNames.Get();
+        if (sequence == null || colors == null || words == null || languages == null || wordsTable == null || positionNames == null)
+            yield break;
+        if (colors.Length != 9 || words.Length != 9 || languages.Length != 9 || wordsTable.Length != 9 || positionNames.Length != 9)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Speaks because one of “_colors” ({1})/“_words” ({2})/“_languages” ({3})/“_wordsTable” ({4})/“_positionNames” ({5}) is not of length 9.", _moduleId, colors.Length, words.Length, languages.Length, wordsTable.Length, positionNames.Length);
+            yield break;
+        }
+        if (sequence.Length != 5)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Speaks because “_sequence” is of length {1} instead of 5.", _moduleId, sequence.Length);
+            yield break;
+        }
+
+        addQuestions(module,
+            Enumerable.Range(0, 5).Select(ix => makeQuestion(Question.SimonSpeaksPositions, _SimonSpeaks, new[] { positionNames[sequence[ix]] }, new[] { ordinal(ix + 1) })).Concat(
+            Enumerable.Range(0, 5).Select(ix => makeQuestion(Question.SimonSpeaksColors, _SimonSpeaks, new[] { wordsTable[colors[sequence[ix]]][0] }, new[] { ordinal(ix + 1) })).Concat(
+            Enumerable.Range(0, 5).Select(ix => makeQuestion(Question.SimonSpeaksWords, _SimonSpeaks, new[] { wordsTable[words[sequence[ix]]][languages[sequence[ix]]] }, new[] { ordinal(ix + 1) })))));
     }
 
     private IEnumerable<object> ProcessSimonStates(KMBombModule module)

@@ -166,11 +166,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the initial color of the {1} button in the {2} stage of {0}?", "Logical Buttons", 4, "Red", "Blue", "Green", "Yellow", "Purple", "White", "Orange", "Cyan", "Grey",
             ExampleExtraFormatArguments = new[] { "top", "first", "bottom-left", "first", "bottom-right", "first", "top", "second", "bottom-left", "second", "bottom-right", "second", "top", "third", "bottom-left", "third", "bottom-right", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
         LogicalButtonsColor,
-
         [SouvenirQuestion("What was the initial label on the {1} button in the {2} stage of {0}?", "Logical Buttons", 4, "Logic", "Color", "Label", "Button", "Wrong", "Boom", "No", "Wait", "Hmmm",
             ExampleExtraFormatArguments = new[] { "top", "first", "bottom-left", "first", "bottom-right", "first", "top", "second", "bottom-left", "second", "bottom-right", "second", "top", "third", "bottom-left", "third", "bottom-right", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
         LogicalButtonsLabel,
-
         [SouvenirQuestion("What was the initial operator in the {1} stage of {0}?", "Logical Buttons", 6, "AND", "OR", "XOR", "NAND", "NOR", "XNOR",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         LogicalButtonsOperator,
@@ -178,6 +176,10 @@ namespace Souvenir
         [SouvenirQuestion("What was {1} in {0}?", "Logic Gates", 6, "AND", "OR", "XOR", "NAND", "NOR", "XNOR",
             ExampleExtraFormatArguments = new[] { "gate A", "gate B", "gate C", "gate D", "gate E", "gate F", "gate G", "the duplicated gate" }, ExampleExtraFormatArgumentGroupSize = 1)]
         LogicGatesGates,
+
+        [SouvenirQuestion("What was the first word in the name of the {1} {2} station in the last successful run on {0}?", "London Underground", 4, null, AddThe = true,
+            ExampleExtraFormatArguments = new[] { "first", "departure", "second", "departure", "first", "destination", "second", "destination" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        LondonUndergroundStations,
 
         [SouvenirQuestion("Who was a player, but not the Godfather, in the last stage of {0}?", "Mafia", 6, "Rob", "Tim", "Mary", "Briane", "Hunter", "Macy", "John", "Will", "Lacy", "Claire", "Kenny", "Rick", "Walter", "Bonnie", "Luke", "Bill", "Sarah", "Larry", "Kate", "Stacy", "Diane", "Mac", "Jim", "Clyde", "Tommy", "Lenny", "Molly", "Benny", "Phil", "Bob", "Gary", "Ted", "Kim", "Nate", "Cher", "Ron", "Thomas", "Sam", "Duke", "Jack", "Ed", "Ronny", "Terry", "Claira", "Nick", "Cob", "Ash", "Don", "Jerry", "Simon")]
         MafiaPlayers,
@@ -326,6 +328,16 @@ namespace Souvenir
         [SouvenirQuestion("Which key’s color flashed {1} in the {2} stage of {0}?", "Simon Sings", 6, "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B",
             ExampleExtraFormatArguments = new[] { "first", "first", "first", "second", "first", "third", "second", "first", "second", "second", "second", "third", "third", "first", "third", "second", "third", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
         SimonSingsFlashing,
+
+        [SouvenirQuestion("Which color was the bubble that flashed {1} in {0}?", "Simon Speaks", 6, "black", "blue", "green", "cyan", "red", "purple", "yellow", "white", "gray",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SimonSpeaksColors,
+        [SouvenirQuestion("Which word was in the bubble that flashed {1} in {0}?", "Simon Speaks", 6, "black", "sort", "zwart", "nigra", "musta", "noir", "schwarz", "fekete", "nero", "blue", "blå", "blauw", "blua", "sininen", "bleu", "blau", "kék", "blu", "green", "grøn", "groen", "verda", "vihreä", "vert", "grün", "zöld", "verde", "cyan", "turkis", "turkoois", "turkisa", "turkoosi", "turquoise", "türkis", "türkiz", "turchese", "red", "rød", "rood", "ruĝa", "punainen", "rouge", "rot", "piros", "rosso", "purple", "lilla", "purper", "purpura", "purppura", "pourpre", "lila", "bíbor", "porpora", "yellow", "gul", "geel", "flava", "keltainen", "jaune", "gelb", "sárga", "giallo", "white", "hvid", "wit", "blanka", "valkoinen", "blanc", "weiß", "fehér", "bianco", "gray", "grå", "grijs", "griza", "harmaa", "gris", "grau", "szürke", "grigio",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SimonSpeaksWords,
+        [SouvenirQuestion("Which bubble flashed {1} in {0}?", "Simon Speaks", 6, "top-left", "top-middle", "top-right", "middle-left", "middle-center", "middle-right", "bottom-left", "bottom-middle", "bottom-right",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SimonSpeaksPositions,
 
         [SouvenirQuestion("Which {1} in the {2} stage in {0}?", "Simon States", 4, "Red", "Yellow", "Green", "Blue", "Red, Yellow", "Red, Green", "Red, Blue", "Yellow, Green", "Yellow, Blue", "Green, Blue", "all 4", "none",
             ExampleExtraFormatArguments = new[] { "color(s) flashed", "first", "color(s) didn’t flash", "first", "color(s) flashed", "second", "color(s) didn’t flash", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
