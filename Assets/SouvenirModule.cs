@@ -83,6 +83,7 @@ public class SouvenirModule : MonoBehaviour
     const string _ChordQualities = "ChordQualities";
     const string _ColorDecoding = "Color Decoding";
     const string _ColoredSquares = "ColoredSquaresModule";
+    const string _ColoredSwitches = "ColoredSwitchesModule";
     const string _ColorMorse = "ColorMorseModule";
     const string _Coordinates = "CoordinatesModule";
     const string _Crackbox = "CrackboxModule";
@@ -127,6 +128,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SkewedSlots = "SkewedSlotsModule";
     const string _Skyrim = "skyrim";
     const string _SonicTheHedgehog = "sonic";
+    const string _Switches = "switchModule";
     const string _Synonyms = "synonyms";
     const string _TapCode = "tapCode";
     const string _TenButtonColorCode = "TenButtonColorCode";
@@ -163,6 +165,7 @@ public class SouvenirModule : MonoBehaviour
             { _ChordQualities, ProcessChordQualities },
             { _ColorDecoding, ProcessColorDecoding },
             { _ColoredSquares, ProcessColoredSquares },
+            { _ColoredSwitches, ProcessColoredSwitches },
             { _ColorMorse, ProcessColorMorse },
             { _Coordinates, ProcessCoordinates },
             { _Crackbox, ProcessCrackbox },
@@ -207,6 +210,7 @@ public class SouvenirModule : MonoBehaviour
             { _SkewedSlots, ProcessSkewedSlots },
             { _Skyrim, ProcessSkyrim },
             { _SonicTheHedgehog, ProcessSonicTheHedgehog },
+            { _Switches, ProcessSwitches },
             { _Synonyms, ProcessSynonyms },
             { _TapCode, ProcessTapCode },
             { _TenButtonColorCode, ProcessTenButtonColorCode },
@@ -1607,6 +1611,40 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_ColoredSquares);
         addQuestion(module, Question.ColoredSquaresFirstGroup, new[] { fldFirstStageColor.Get().ToString() });
+    }
+
+    private IEnumerable<object> ProcessColoredSwitches(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ColoredSwitchesModule");
+        var fldSwitches = GetField<int>(comp, "_switchState");
+        var fldSolution = GetField<int>(comp, "_solutionState");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+        if (comp == null || fldSwitches == null || fldSolved == null)
+            yield break;
+
+        yield return null;
+        var initial = fldSwitches.Get();
+        if (initial < 0 || initial >= (1 << 5))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Colored Switches because _switchState was {1} at the start (expected 0–31).", _moduleId, initial);
+            yield break;
+        }
+
+        while (fldSolution.Get() == -1)
+            yield return null;  // not waiting for .1 seconds this time to make absolutely sure we catch it before the player toggles another switch
+        var afterReveal = fldSwitches.Get();
+        if (afterReveal < 0 || afterReveal >= (1 << 5))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Colored Switches because _switchState was {1} after the LEDs came on (expected 0–31).", _moduleId, afterReveal);
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ColoredSwitches);
+        addQuestions(module,
+            makeQuestion(Question.ColoredSwitchesInitialPosition, _ColoredSwitches, new[] { Enumerable.Range(0, 5).Select(b => (initial & (1 << b)) != 0 ? "Q" : "R").Reverse().JoinString() }),
+            makeQuestion(Question.ColoredSwitchesWhenLEDsCameOn, _ColoredSwitches, new[] { Enumerable.Range(0, 5).Select(b => (afterReveal & (1 << b)) != 0 ? "Q" : "R").Reverse().JoinString() }));
     }
 
     private IEnumerable<object> ProcessColorMorse(KMBombModule module)
@@ -3616,6 +3654,31 @@ public class SouvenirModule : MonoBehaviour
                     new[] { soundNameMapping[sounds[i]] },
                     new[] { screenName },
                     sounds.Select(s => soundNameMapping[s]).ToArray()))));
+    }
+
+    private IEnumerable<object> ProcessSwitches(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SwitchModule");
+        var fldSwitches = GetField<MonoBehaviour[]>(comp, "Switches", isPublic: true);
+        var fldGoal = GetField<object>(comp, "goalConfiguration");
+        var mthCurConfig = GetMethod<object>(comp, "GetCurrentConfiguration", 0);
+        if (comp == null || fldSwitches == null || fldGoal == null || mthCurConfig == null)
+            yield break;
+
+        yield return null;
+        var switches = fldSwitches.Get();
+        if (switches == null || switches.Length != 5 || switches.Any(s => s == null))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Switches because Switches is {1} (expected length 5 and no nulls).", _moduleId,
+                switches == null ? "<null>" : string.Format("[{0}]", switches.Select(sw => sw == null ? "null" : "not null").Join(", ")));
+            yield break;
+        }
+        var initialState = switches.Select(sw => sw.GetComponent<Animator>().GetBool("Up") ? "Q" : "R").JoinString();
+
+        while (!fldGoal.Get().Equals(mthCurConfig.Invoke()))
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Switches);
+        addQuestion(module, Question.SwitchesInitialPosition, new[] { initialState });
     }
 
     private IEnumerable<object> ProcessSynonyms(KMBombModule module)
