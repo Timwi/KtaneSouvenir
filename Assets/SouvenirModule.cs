@@ -98,6 +98,7 @@ public class SouvenirModule : MonoBehaviour
     const string _HumanResources = "HumanResourcesModule";
     const string _Hunting = "hunting";
     const string _IceCream = "iceCreamModule";
+    const string _Kudosudoku = "KudosudokuModule";
     const string _Listening = "Listening";
     const string _LogicGates = "logicGates";
     const string _LondonUnderground = "londonUnderground";
@@ -181,6 +182,7 @@ public class SouvenirModule : MonoBehaviour
             { _HumanResources, ProcessHumanResources },
             { _Hunting, ProcessHunting },
             { _IceCream, ProcessIceCream },
+            { _Kudosudoku, ProcessKudosudoku },
             { _Listening, ProcessListening },
             { _LogicalButtons, ProcessLogicalButtons },
             { _LogicGates, ProcessLogicGates },
@@ -2198,6 +2200,36 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestions(module, questions);
+    }
+
+    private IEnumerable<object> ProcessKudosudoku(KMBombModule module)
+    {
+        var comp = GetComponent(module, "KudosudokuModule");
+        var fldShown = GetField<bool[]>(comp, "_shown");
+        var fldSolved= GetField<bool>(comp, "_isSolved");
+
+        if (comp == null || fldShown == null|| fldSolved==null)
+            yield break;
+
+        // Ensure that Start() has run
+        yield return null;
+
+        var shown = fldShown.Get();
+        if (shown == null || shown.Length != 16)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Kudosudoku because “_shown” {1} (expected length 16).", _moduleId, shown == null ? "is null" : "has length " + shown.Length);
+            yield break;
+        }
+        // Take a copy of the array
+        shown = shown.ToArray();
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Kudosudoku);
+
+        addQuestions(module,
+            makeQuestion(Question.KudosudokuPrefilled, _Kudosudoku, Enumerable.Range(0, 16).Where(ix => shown[ix]).Select(coord => (char) ('A' + (coord % 4)) + (coord / 4 + 1).ToString()).ToArray(), new[] { "pre-filled" }),
+            makeQuestion(Question.KudosudokuPrefilled, _Kudosudoku, Enumerable.Range(0, 16).Where(ix => !shown[ix]).Select(coord => (char) ('A' + (coord % 4)) + (coord / 4 + 1).ToString()).ToArray(), new[] { "not pre-filled" }));
     }
 
     private IEnumerable<object> ProcessListening(KMBombModule module)
