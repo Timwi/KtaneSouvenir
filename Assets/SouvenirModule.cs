@@ -68,6 +68,7 @@ public class SouvenirModule : MonoBehaviour
     const string _3DMaze = "spwiz3DMaze";
     const string _3DTunnels = "3dTunnels";
     const string _AdventureGame = "spwizAdventureGame";
+    const string _Alchemy = "JuckAlchemy";
     const string _Algebra = "algebra";
     const string _BigCircle = "BigCircle";
     const string _BinaryLEDs = "BinaryLeds";
@@ -153,6 +154,7 @@ public class SouvenirModule : MonoBehaviour
             { _3DMaze, Process3DMaze },
             { _3DTunnels, Process3DTunnels },
             { _AdventureGame, ProcessAdventureGame },
+            { _Alchemy, ProcessAlchemy },
             { _Algebra, ProcessAlgebra },
             { _BigCircle, ProcessBigCircle },
             { _BinaryLEDs, ProcessBinaryLEDs },
@@ -1065,6 +1067,136 @@ public class SouvenirModule : MonoBehaviour
         var enemyName = enemy.ToString();
         enemyName = enemyName.Substring(0, 1).ToUpperInvariant() + enemyName.Substring(1).ToLowerInvariant();
         addQuestions(module, qs.Select(q => q()).Concat(new[] { makeQuestion(Question.AdventureGameEnemy, _AdventureGame, new[] { enemyName }) }));
+    }
+
+    private IEnumerable<object> ProcessAlchemy(KMBombModule module)
+    {
+        var comp = GetComponent(module, "alchemyScript");
+        //var fldButtons = GetField<KMSelectable[]>(comp, "SymbolButtons", isPublic: true);
+        //var fldBtnSubmit = GetField<KMSelectable>(comp, "button1", isPublic: true);
+        var fldBtnRedraw = GetField<KMSelectable>(comp, "button2", isPublic: true);
+        var fldSymbols = GetField<int[]>(comp, "nowSymbols");
+        var fldMainSymbol = GetField<int>(comp, "mainSymbol");
+        var fldSymbolNames = GetField<string[]>(comp, "symbolNames");
+
+        if (comp == null || fldSymbols == null || fldMainSymbol == null || fldSymbolNames == null/*|| fldButtons == null || fldBtnSubmit == null*/ || fldBtnRedraw == null)
+            yield break;
+
+        // Ensure that Start() has run
+        yield return null;
+
+        var symbolNames = fldSymbolNames.Get();
+        if (symbolNames == null || symbolNames.Length != 6 || symbolNames.Any(s => s == null))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Alchemy because “symbolNames” was invalid: [{1}].", _moduleId, symbolNames == null ? "null" : symbolNames.Select(s => s == null ? "<null>" : string.Format(@"""{0}""", s)).JoinString(", "));
+            yield break;
+        }
+
+        var haveInfo = false;
+        int[] symbols = null;
+        int mainSymbol = -1;
+        var hasPressedRedraw = false;
+
+        //var symbolButtons = fldButtons.Get();
+        //if (symbolButtons == null)
+        //    yield break;
+        //var buttons = new[] { fldBtnSubmit.Get(), fldBtnRedraw.Get() }.Concat(symbolButtons).ToArray();
+        //if (buttons.Any(b => b == null) || buttons.Length != 8)
+        //{
+        //    Debug.LogFormat("<Souvenir #{0}> Abandoning Alchemy because a button was null or the length wasn’t 8: [{1}].", _moduleId, buttons.Select(b => b == null ? "<null>" : "NOT NULL").JoinString(", "));
+        //    yield break;
+        //}
+        //var oldInteract = buttons.Select(btn => btn.OnInteract).ToArray();
+        //for (int i = 0; i < buttons.Length; i++)
+        //{
+        //    var j = i;
+        //    buttons[i].OnInteract = delegate
+        //    {
+        //        var oldStrikes = Bomb.GetStrikes();
+        //        var ret = oldInteract[j]();
+        //        if(
+        //        return ret;
+        //    };
+        //}
+
+        var oldStrike = module.OnStrike;
+        var oldPass = module.OnPass;
+        var solved = false;
+
+        module.OnStrike = delegate
+        {
+            Debug.LogFormat("<Souvenir #{0}> Strike on Alchemy!", _moduleId);
+            hasPressedRedraw = false;
+            haveInfo = false;
+            return oldStrike();
+        };
+
+        module.OnPass = delegate
+        {
+            Debug.LogFormat("<Souvenir #{0}> Pass on Alchemy!", _moduleId);
+            solved = true;
+            return oldPass();
+        };
+
+        var btnRedraw = fldBtnRedraw.Get();
+        if (btnRedraw == null)
+            yield break;
+        var oldRedraw = btnRedraw.OnInteract;
+        btnRedraw.OnInteract = delegate
+        {
+            Debug.LogFormat("<Souvenir #{0}> Redraw on Alchemy!", _moduleId);
+            hasPressedRedraw = true;
+            return oldRedraw();
+        };
+
+        Debug.LogFormat("<Souvenir #{0}> B", _moduleId);
+
+        while (!solved)
+        {
+            yield return null;
+
+            if (!haveInfo)
+            {
+                symbols = fldSymbols.Get();
+                if (symbols == null || symbols.Length != 6 || symbols.Any(s => s < 0 || s >= 6))
+                {
+                    Debug.LogFormat("<Souvenir #{0}> Abandoning Alchemy because “nowSymbols” was invalid: [{1}].", _moduleId, symbols == null ? "null" : symbols.JoinString(", "));
+                    yield break;
+                }
+                // Take a copy of the array
+                symbols = symbols.ToArray();
+
+                mainSymbol = fldMainSymbol.Get();
+                if (mainSymbol < 0 || mainSymbol >= 6)
+                {
+                    Debug.LogFormat("<Souvenir #{0}> Abandoning Alchemy because “mainSymbol” was invalid: {1}.", _moduleId, mainSymbol);
+                    yield break;
+                }
+
+                Debug.LogFormat("<Souvenir #{0}> Got info: {1}; {2}", _moduleId, symbols.JoinString(", "), mainSymbol);
+                haveInfo = true;
+            }
+        }
+        _modulesSolved.IncSafe(_Alchemy);
+
+        Debug.LogFormat("<Souvenir #{0}> C: hasPressedRedraw={1}", _moduleId, hasPressedRedraw);
+
+        if (symbols == null || mainSymbol == -1)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Alchemy the symbols were never assigned.", _moduleId);
+            yield break;
+        }
+
+        if (!hasPressedRedraw)
+        {
+            Debug.LogFormat("[Souvenir #{0}] No question for Alchemy because the Redraw button was never pressed in the last successful brew.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
+
+        addQuestions(module,
+            symbols.Select((sym, ix) => makeQuestion(Question.AlchemySymbols, _Alchemy, new[] { symbolNames[sym] }, new[] { string.Format("at {0} o’clock", (17 - 2 * ix) % 12) }))
+                .Concat(new[] { makeQuestion(Question.AlchemySymbols, _Alchemy, new[] { symbolNames[mainSymbol] }, new[] { "in the center" }) }));
     }
 
     private IEnumerable<object> ProcessAlgebra(KMBombModule module)
@@ -2206,9 +2338,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "KudosudokuModule");
         var fldShown = GetField<bool[]>(comp, "_shown");
-        var fldSolved= GetField<bool>(comp, "_isSolved");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
 
-        if (comp == null || fldShown == null|| fldSolved==null)
+        if (comp == null || fldShown == null || fldSolved == null)
             yield break;
 
         // Ensure that Start() has run
@@ -2431,7 +2563,6 @@ public class SouvenirModule : MonoBehaviour
         if (primary.Length < 4)
             primary = primary.Union(extraOptions).ToArray();
 
-        var possibleWrongAnswers = departures.Concat(destinations).Distinct().ToArray();
         addQuestions(module,
             departures.Select((dep, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { firstWord(dep) }, new[] { ordinal(ix + 1), "departure" }, primary)).Concat(
             destinations.Select((dest, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { firstWord(dest) }, new[] { ordinal(ix + 1), "destination" }, primary))));

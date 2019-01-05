@@ -23,6 +23,10 @@ namespace Souvenir
         [SouvenirQuestion("What enemy were you fighting in {0}?", "Adventure Game", 4, "Dragon", "Demon", "Eagle", "Goblin", "Troll", "Wizard", "Golem", "Lizard")]
         AdventureGameEnemy,
 
+        [SouvenirQuestion("Which symbol was {1} at the start of the last successful brew in {0}?", "Alchemy", 4, "Creation", "Fire", "Heva", "Meta", "Strucota", "Tera",
+            ExampleExtraFormatArguments = new[] { "in the center", "at 1 o’clock", "at 3 o’clock", "at 5 o’clock", "at 7 o’clock", "at 9 o’clock", "at 11 o’clock" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        AlchemySymbols,
+
         [SouvenirQuestion("What was the first equation in {0}?", "Algebra", 4, "a=3z", "a=5+y", "a=6-x", "a=7x", "a=8y", "a=9+z", "a=x/2", "a=x+1", "a=y/4", "a=y-2", "a=z/10", "a=z-7")]
         AlgebraEquation1,
 
