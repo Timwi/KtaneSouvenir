@@ -41,7 +41,8 @@ public class SouvenirModule : MonoBehaviour
         "Forget Everything",
         "Forget Me Not",
         "Turn The Key",
-        "The Time Keeper"
+        "The Time Keeper",
+        "Simon's Stages"
     };
 
     private static readonly bool _isTimwisComputer = new[] { "TEKELIA", "CORNFLOWER", "CAITSITH2-PC" }.Contains(Environment.GetEnvironmentVariable("COMPUTERNAME"));
