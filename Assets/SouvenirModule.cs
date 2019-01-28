@@ -3281,7 +3281,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessQuintuples(KMBombModule module)
     {
-        var comp = GetComponent(module, "quinaryNumbersScript");
+        var comp = GetComponent(module, "quintuplesScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldNumbers = GetField<int[]>(comp, "cyclingNumbers", isPublic: true);
         var fldColors = GetField<string[]>(comp, "chosenColorsName", isPublic: true);
