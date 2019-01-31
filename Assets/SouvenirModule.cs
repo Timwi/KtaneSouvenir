@@ -753,7 +753,7 @@ public class SouvenirModule : MonoBehaviour
 
     sealed class MethodInfo<T>
     {
-        private object _target;
+        private readonly object _target;
         public MethodInfo Method { get; private set; }
 
         public MethodInfo(object target, MethodInfo method)
@@ -2147,9 +2147,9 @@ public class SouvenirModule : MonoBehaviour
                     var fldLabel = GetField<string>(obj, "<Label>k__BackingField");
                     var fldColor = GetField<object>(obj, "<Color>k__BackingField");
                     var fldIndex = GetField<int>(obj, "<Index>k__BackingField");
-                    if (fldLabel == null || fldColor == null || fldIndex == null)
-                        return null;
-                    return new { Label = fldLabel.Get(), Color = fldColor.Get(), Index = fldIndex.Get() };
+                    return fldLabel == null || fldColor == null || fldIndex == null
+                        ? null
+                        : new { Label = fldLabel.Get(), Color = fldColor.Get(), Index = fldIndex.Get() };
                 }).ToArray();
                 if (infs.Length != 3 || infs.Any(inf => inf == null || inf.Label == null || inf.Color == null) || infs[0].Index != 0 || infs[1].Index != 1 || infs[2].Index != 2)
                 {
@@ -3955,14 +3955,18 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "Synonyms");
         var fldNumberText = GetField<TextMesh>(comp, "NumberText", isPublic: true);
+        var fldGoodLabel = GetField<TextMesh>(comp, "GoodLabel", isPublic: true);
+        var fldBadLabel = GetField<TextMesh>(comp, "BadLabel", isPublic: true);
         var fldSolved = GetField<bool>(comp, "_isSolved");
 
-        if (comp == null || fldNumberText == null || fldSolved == null)
+        if (comp == null || fldNumberText == null || fldGoodLabel == null || fldBadLabel == null || fldSolved == null)
             yield break;
 
         yield return null;
         var numberText = fldNumberText.Get();
-        if (numberText == null)
+        var goodLabel = fldGoodLabel.Get();
+        var badLabel = fldBadLabel.Get();
+        if (numberText == null || goodLabel == null || badLabel == null)
             yield break;
         int number;
         if (numberText.text == null || !int.TryParse(numberText.text, out number) || number < 0 || number > 9)
@@ -3974,6 +3978,9 @@ public class SouvenirModule : MonoBehaviour
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Synonyms);
+        numberText.gameObject.SetActive(false);
+        badLabel.text = "INPUT";
+        goodLabel.text = "ACCEPTED";
 
         addQuestion(module, Question.SynonymsNumber, new[] { number.ToString() });
     }
@@ -4578,8 +4585,6 @@ public class SouvenirModule : MonoBehaviour
         if (number <= 0 || number > btns.Length)
             return null;
         var btn = btns[number - 1];
-        if (btn == null || !btn.gameObject.activeSelf)
-            return null;
-        return new[] { btn };
+        return btn == null || !btn.gameObject.activeSelf ? null : new[] { btn };
     }
 }

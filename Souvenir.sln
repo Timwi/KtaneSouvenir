@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Souvenir", "Souvenir.csproj", "{094315E4-C6E9-44F9-0799-83D36A87C30A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Souvenir.Editor", "Souvenir.Editor.csproj", "{776F7370-D2A5-CE37-C630-2605587ED3CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{094315E4-C6E9-44F9-0799-83D36A87C30A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{094315E4-C6E9-44F9-0799-83D36A87C30A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{094315E4-C6E9-44F9-0799-83D36A87C30A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{094315E4-C6E9-44F9-0799-83D36A87C30A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{776F7370-D2A5-CE37-C630-2605587ED3CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{776F7370-D2A5-CE37-C630-2605587ED3CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{776F7370-D2A5-CE37-C630-2605587ED3CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{776F7370-D2A5-CE37-C630-2605587ED3CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
