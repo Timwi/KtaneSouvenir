@@ -105,6 +105,7 @@ public class SouvenirModule : MonoBehaviour
     const string _LondonUnderground = "londonUnderground";
     const string _Mafia = "MafiaModule";
     const string _MaritimeFlags = "MaritimeFlagsModule";
+    const string _Microcontroller = "Microcontroller";
     const string _MonsplodeFight = "monsplodeFight";
     const string _MonsplodeTradingCards = "monsplodeCards";
     const string _Moon = "moon";
@@ -118,6 +119,7 @@ public class SouvenirModule : MonoBehaviour
     const string _PatternCube = "PatternCubeModule";
     const string _PerspectivePegs = "spwizPerspectivePegs";
     const string _PolyhedralMaze = "PolyhedralMazeModule";
+    const string _Probing = "Probing";
     const string _Quintuples = "quintuples";
     const string _Rhythms = "MusicRhythms";
     const string _SeaShells = "SeaShells";
@@ -132,6 +134,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SkewedSlots = "SkewedSlotsModule";
     const string _Skyrim = "skyrim";
     const string _SonicTheHedgehog = "sonic";
+    const string _Switch = "BigSwitch";
     const string _Switches = "switchModule";
     const string _Synonyms = "synonyms";
     const string _TapCode = "tapCode";
@@ -191,6 +194,7 @@ public class SouvenirModule : MonoBehaviour
             { _LondonUnderground, ProcessLondonUnderground },
             { _Mafia, ProcessMafia },
             { _MaritimeFlags, ProcessMaritimeFlags },
+            { _Microcontroller, ProcessMicrocontroller },
             { _MonsplodeFight, ProcessMonsplodeFight },
             { _MonsplodeTradingCards, ProcessMonsplodeTradingCards },
             { _Moon, ProcessMoon },
@@ -204,6 +208,7 @@ public class SouvenirModule : MonoBehaviour
             { _PatternCube, ProcessPatternCube },
             { _PerspectivePegs, ProcessPerspectivePegs },
             { _PolyhedralMaze, ProcessPolyhedralMaze },
+            { _Probing, ProcessProbing },
             { _Quintuples, ProcessQuintuples },
             { _Rhythms, ProcessRhythms },
             { _SeaShells, ProcessSeaShells },
@@ -218,6 +223,7 @@ public class SouvenirModule : MonoBehaviour
             { _SkewedSlots, ProcessSkewedSlots },
             { _Skyrim, ProcessSkyrim },
             { _SonicTheHedgehog, ProcessSonicTheHedgehog },
+            { _Switch, ProcessSwitch },
             { _Switches, ProcessSwitches },
             { _Synonyms, ProcessSynonyms },
             { _TapCode, ProcessTapCode },
@@ -1069,8 +1075,6 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessAlchemy(KMBombModule module)
     {
         var comp = GetComponent(module, "alchemyScript");
-        //var fldButtons = GetField<KMSelectable[]>(comp, "SymbolButtons", isPublic: true);
-        //var fldBtnSubmit = GetField<KMSelectable>(comp, "button1", isPublic: true);
         var fldBtnRedraw = GetField<KMSelectable>(comp, "button2", isPublic: true);
         var fldSymbols = GetField<int[]>(comp, "nowSymbols");
         var fldMainSymbol = GetField<int>(comp, "mainSymbol");
@@ -1093,28 +1097,6 @@ public class SouvenirModule : MonoBehaviour
         int[] symbols = null;
         int mainSymbol = -1;
         var hasPressedRedraw = false;
-
-        //var symbolButtons = fldButtons.Get();
-        //if (symbolButtons == null)
-        //    yield break;
-        //var buttons = new[] { fldBtnSubmit.Get(), fldBtnRedraw.Get() }.Concat(symbolButtons).ToArray();
-        //if (buttons.Any(b => b == null) || buttons.Length != 8)
-        //{
-        //    Debug.LogFormat("<Souvenir #{0}> Abandoning Alchemy because a button was null or the length wasn’t 8: [{1}].", _moduleId, buttons.Select(b => b == null ? "<null>" : "NOT NULL").JoinString(", "));
-        //    yield break;
-        //}
-        //var oldInteract = buttons.Select(btn => btn.OnInteract).ToArray();
-        //for (int i = 0; i < buttons.Length; i++)
-        //{
-        //    var j = i;
-        //    buttons[i].OnInteract = delegate
-        //    {
-        //        var oldStrikes = Bomb.GetStrikes();
-        //        var ret = oldInteract[j]();
-        //        if(
-        //        return ret;
-        //    };
-        //}
 
         var oldStrike = module.OnStrike;
         var oldPass = module.OnPass;
@@ -1483,7 +1465,11 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         }
 
-        addQuestions(module, colorOccurrences.Select(kvp => makeQuestion(Question.ButtonSequencesColorOccurrences, _ButtonSequences, new[] { kvp.Value.ToString() }, new[] { colorNames[kvp.Key].ToLowerInvariant() }, colorOccurrences.Values.Select(v => v.ToString()).ToArray())));
+        addQuestions(module, colorOccurrences.Select(kvp =>
+            makeQuestion(Question.ButtonSequencesColorOccurrences, _ButtonSequences,
+                possibleCorrectAnswers: new[] { kvp.Value.ToString() },
+                extraFormatArguments: new[] { colorNames[kvp.Key].ToLowerInvariant() },
+                preferredWrongAnswers: colorOccurrences.Values.Select(v => v.ToString()).ToArray())));
     }
 
     private IEnumerable<object> ProcessCalendar(KMBombModule module)
@@ -1555,7 +1541,7 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         if (indexSelected.Length != 7 || indexSelected.Any(b => b / 10 < 0 || b / 10 >= 6 || b % 10 < 0 || b % 10 >= 6))
         {
-            Debug.LogFormat("<Souvenir #{1}> Abandoning Chess because indexSelected array length is unexpected or one of the values is weird ({0}).", indexSelected.Select(iSel => iSel.ToString()).JoinString(", "), _moduleId);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Chess because indexSelected array length is unexpected or one of the values is weird ({1}).", _moduleId, indexSelected.Select(iSel => iSel.ToString()).JoinString(", "));
             yield break;
         }
 
@@ -2629,6 +2615,36 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.MaritimeFlagsCallsign, _MaritimeFlags, new[] { callsign.ToLowerInvariant() }));
     }
 
+    private IEnumerable<object> ProcessMicrocontroller(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Micro");
+        var fldSolved = GetField<int>(comp, "solved");
+        var fldLedsOrder = GetField<List<int>>(comp, "LEDorder");
+        var fldPositionTranslate = GetField<int[]>(comp, "positionTranslate");
+
+        if (comp == null || fldSolved == null || fldLedsOrder == null || fldPositionTranslate == null)
+            yield break;
+
+        while (fldSolved.Get() == 0)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Microcontroller);
+
+        var ledsOrder = fldLedsOrder.Get();
+        if (ledsOrder == null || (ledsOrder.Count != 6 && ledsOrder.Count != 8 && ledsOrder.Count != 10))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Microcontroller because ‘LEDorder’ is null or unexpected length (expected 6, 8 or 10): {1}.", _moduleId, ledsOrder == null ? "<null>" : ledsOrder.Count.ToString());
+            yield break;
+        }
+        var positionTranslate = fldPositionTranslate.Get();
+        if (positionTranslate == null || positionTranslate.Length != ledsOrder.Count)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Microcontroller because ‘positionTranslate’ is null or unexpected length (expected {1}): {2}.", _moduleId, ledsOrder.Count, positionTranslate == null ? "<null>" : positionTranslate.Length.ToString());
+            yield break;
+        }
+
+        addQuestions(module, ledsOrder.Select((led, ix) => makeQuestion(Question.MicrocontrollerPinOrder, _Microcontroller, new[] { (positionTranslate[led] + 1).ToString() }, new[] { ordinal(ix + 1) })));
+    }
+
     private IEnumerable<object> ProcessMonsplodeFight(KMBombModule module)
     {
         var comp = GetComponent(module, "MonsplodeFightModule");
@@ -3273,6 +3289,64 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_PolyhedralMaze);
         addQuestion(module, Question.PolyhedralMazeStartPosition, new[] { fldStartFace.Get().ToString() }, null, Enumerable.Range(0, 62).Select(i => i.ToString()).ToArray());
+    }
+
+    private IEnumerable<object> ProcessProbing(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ProbingModule");
+        var fldWires = GetField<Array>(comp, "mWires");
+        var fldDisplay = GetField<TextMesh>(comp, "display", isPublic: true);
+        var fldSelectables = GetField<KMSelectable[]>(comp, "selectables", isPublic: true);
+        var fldSolved = GetField<bool>(comp, "bSolved");
+
+        if (comp == null || fldWires == null || fldDisplay == null || fldSelectables == null || fldSolved == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Probing);
+
+        var display = fldDisplay.Get();
+        if (display == null)
+            yield break;
+
+        // Blank out the display so that the user cannot see the readout for the solution wires
+        display.text = "";
+
+        // Prevent the user from interacting with the wires after solving
+        var selectables = fldSelectables.Get();
+        if (selectables == null || selectables.Length != 6 || selectables.Any(s => s == null))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Probing because ‘selectables’ is null or has unexpected length (expected 6): {1}",
+                _moduleId, selectables == null ? "<null>" : string.Format("[{0}]", selectables.Select(s => s == null ? "<null>" : "SELECTABLE").JoinString(", ")));
+            yield break;
+        }
+        for (int i = 0; i < selectables.Length; i++)
+            selectables[i].OnInteract = delegate { return false; };
+
+        var wireNames = new[] { "orange-white", "yellow-black", "green", "gray", "yellow-orange", "orange-blue" };
+        var wireFrequenciesRaw = fldWires.Get();
+        if (wireFrequenciesRaw == null || wireFrequenciesRaw.Length != 6)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Probing because ‘mWires’ is null or has unexpected length (expected 6): {1}",
+                _moduleId, wireFrequenciesRaw == null ? "<nully>" : string.Format("[{0}]", wireFrequenciesRaw.Cast<object>().Select(s => s.ToString()).JoinString("; ")));
+            yield break;
+        }
+
+        // Retrieve the missing wire frequencies
+        var wireFrequencies = wireFrequenciesRaw.Cast<int>().Select((val, ix) =>
+        {
+            if (val == 7) return "60Hz";
+            if (val == 11) return "50Hz";
+            if (val == 13) return "22Hz";
+            if (val == 14) return "10Hz";
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Probing because wire #{1} has unexpected value {2} (expected 7, 11, 13, 14).", _moduleId, ix, val);
+            return null;
+        }).ToArray();
+        if (wireFrequencies.Any(wf => wf == null))
+            yield break;
+
+        addQuestions(module, wireFrequencies.Select((wf, ix) => makeQuestion(Question.ProbingFrequencies, _Probing, new[] { wf }, new[] { wireNames[ix] })));
     }
 
     private IEnumerable<object> ProcessQuintuples(KMBombModule module)
@@ -3920,6 +3994,72 @@ public class SouvenirModule : MonoBehaviour
                     new[] { soundNameMapping[sounds[i]] },
                     new[] { screenName },
                     sounds.Select(s => soundNameMapping[s]).ToArray()))));
+    }
+
+    private IEnumerable<object> ProcessSwitch(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Switch");
+        var fldSolved = GetField<bool>(comp, "SOLVED");
+        var fldBottomColor = GetField<int>(comp, "BottomColor");
+        var fldTopColor = GetField<int>(comp, "TopColor");
+        var fldSwitch = GetField<KMSelectable>(comp, "FlipperSelectable", isPublic: true);
+        var fldFirstSuccess = GetField<bool>(comp, "FirstSuccess");
+
+        if (comp == null || fldSolved == null || fldBottomColor == null || fldTopColor == null || fldSwitch == null || fldFirstSuccess == null)
+            yield break;
+
+        yield return null;
+
+        var colorNames = new[] { "red", "orange", "yellow", "green", "blue", "purple" };
+
+        var topColor1 = fldTopColor.Get();
+        var bottomColor1 = fldBottomColor.Get();
+        var topColor2 = -1;
+        var bottomColor2 = -1;
+
+        Debug.LogFormat("<Souvenir #{0}> The Switch: initial colors: {1}/{2}", _moduleId, topColor1, bottomColor1);
+
+        var switchSelectable = fldSwitch.Get();
+        if (switchSelectable == null)
+            yield break;
+
+        var prevInteract = switchSelectable.OnInteract;
+        switchSelectable.OnInteract = delegate
+        {
+            var ret = prevInteract();
+            var firstSuccess = fldFirstSuccess.Get();
+            if (!firstSuccess)  // This means the user got a strike. Need to retrieve the new colors
+            {
+                topColor1 = fldTopColor.Get();
+                bottomColor1 = fldBottomColor.Get();
+                Debug.LogFormat("<Souvenir #{0}> The Switch: Strike! Initial colors now: {1}/{2}", _moduleId, topColor1, bottomColor1);
+            }
+            else if (!fldSolved.Get())
+            {
+                topColor2 = fldTopColor.Get();
+                bottomColor2 = fldBottomColor.Get();
+                Debug.LogFormat("<Souvenir #{0}> The Switch: Success! Second set of colors now: {1}/{2}", _moduleId, topColor2, bottomColor2);
+            }
+            return ret;
+        };
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Switch);
+
+        if (topColor1 < 1 || topColor1 > 6 || bottomColor1 < 1 || bottomColor1 > 6 || topColor2 < 1 || topColor2 > 6 || bottomColor2 < 1 || bottomColor2 > 6)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning The Switch because topColor1/bottomColor1/topColor2/bottomColor2 has an unexpected value: {1}, {2}, {3}, {4} (expected 1–6).", _moduleId, topColor1, bottomColor1, topColor2, bottomColor2);
+            yield break;
+        }
+
+        Debug.LogFormat("<Souvenir #{0}> The Switch: Asking questions. Color values: {1}/{2}/{3}/{4}", _moduleId, topColor1, bottomColor1, topColor2, bottomColor2);
+
+        addQuestions(module,
+            makeQuestion(Question.SwitchInitialColor, _Switch, new[] { colorNames[topColor1 - 1] }, new[] { "top", "start" }),
+            makeQuestion(Question.SwitchInitialColor, _Switch, new[] { colorNames[bottomColor1 - 1] }, new[] { "bottom", "start" }),
+            makeQuestion(Question.SwitchInitialColor, _Switch, new[] { colorNames[topColor2 - 1] }, new[] { "top", "end" }),
+            makeQuestion(Question.SwitchInitialColor, _Switch, new[] { colorNames[bottomColor2 - 1] }, new[] { "bottom", "end" }));
     }
 
     private IEnumerable<object> ProcessSwitches(KMBombModule module)
