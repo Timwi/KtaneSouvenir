@@ -4499,21 +4499,21 @@ public class SouvenirModule : MonoBehaviour
         List<string> answers;
         if (allAnswers == null && preferredWrongAnswers == null)
         {
-            Debug.LogFormat("<Souvenir #{0}> Question {1}: allAnswers and preferredWrongAnswers are both null.", _moduleId, question);
+            Debug.LogFormat("<Souvenir #{0}> Question {1}: allAnswers and preferredWrongAnswers are both null. You must specify either the full set of possible answers in the Question enum’s attribute, or provide possible wrong answers through the “preferredWrongAnswers” parameter.", _moduleId, question);
             return null;
         }
         else if (allAnswers == null)
-            answers = preferredWrongAnswers.Except(possibleCorrectAnswers).ToList().Shuffle().Take(attr.NumAnswers - 1).ToList();
+            answers = preferredWrongAnswers.Distinct().Except(possibleCorrectAnswers).ToList().Shuffle().Take(attr.NumAnswers - 1).ToList();
         else
         {
             // Pick 𝑛−1 random wrong answers.
             answers = allAnswers.Except(possibleCorrectAnswers).ToList().Shuffle().Take(attr.NumAnswers - 1).ToList();
             // Add the preferred wrong answers, if any. If we had added them earlier, they’d come up too rarely.
             if (preferredWrongAnswers != null)
-                answers = answers.Concat(preferredWrongAnswers.Except(answers).Except(possibleCorrectAnswers)).ToList().Shuffle().Take(attr.NumAnswers - 1).ToList();
+                answers = answers.Concat(preferredWrongAnswers.Distinct().Except(answers).Except(possibleCorrectAnswers)).ToList().Shuffle().Take(attr.NumAnswers - 1).ToList();
         }
 
-        var correctIndex = Rnd.Range(0, Math.Min(attr.NumAnswers, answers.Count + 1));
+        var correctIndex = Rnd.Range(0, Math.Min(attr.NumAnswers + 1, answers.Count + 1));
         answers.Insert(correctIndex, possibleCorrectAnswers[Rnd.Range(0, possibleCorrectAnswers.Length)]);
 
         var numSolved = _modulesSolved.Get(moduleKey);
