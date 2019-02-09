@@ -404,6 +404,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "first", "second", "first", "first", "second", "second", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
         TenButtonColorCodeInitialColors,
 
+		[SouvenirQuestion("What was the {1} display word on {0}", "Third Base", 6, "NHXS", "IH6X", "XI8Z", "I8O9", "XOHZ", "H68S", "8OXN", "Z8IX", "SXHN", "6NZH", "H6SI", "6O8I", "NXO8", "66I8", "S89H", "SNZX", "9NZS", "8I99", "ZHOX", "SI9X", "SZN6", "ZSN8", "HZN9", "X9HI", "IS9H", "XZNS", "X6IS", "8NSZ",
+			ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
+		ThirdBase,
+
         [SouvenirQuestion("What was on the {1} button at the start of {0}?", "Tic-Tac-Toe", 6, "1", "2", "3", "4", "5", "6", "7", "8", "9", "O", "X",
             ExampleExtraFormatArguments = new[] { "top-left", "top-middle", "top-right", "middle-left", "middle-center", "middle-right", "bottom-left", "bottom-middle", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         TicTacToeInitialState,

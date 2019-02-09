@@ -141,6 +141,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Synonyms = "synonyms";
     const string _TapCode = "tapCode";
     const string _TenButtonColorCode = "TenButtonColorCode";
+	const string _ThirdBase = "ThirdBase";
     const string _TicTacToe = "TicTacToeModule";
     const string _Timezone = "timezone";
     const string _TwoBits = "TwoBits";
@@ -231,6 +232,7 @@ public class SouvenirModule : MonoBehaviour
             { _Synonyms, ProcessSynonyms },
             { _TapCode, ProcessTapCode },
             { _TenButtonColorCode, ProcessTenButtonColorCode },
+	        { _ThirdBase, ProcessThirdBase },
             { _TicTacToe, ProcessTicTacToe },
             { _Timezone, ProcessTimezone },
             { _TwoBits, ProcessTwoBits },
@@ -4341,7 +4343,49 @@ public class SouvenirModule : MonoBehaviour
             .Select(slot => makeQuestion(Question.TenButtonColorCodeInitialColors, _TenButtonColorCode, new[] { colorNames[colors[slot]] }, new[] { ordinal(slot + 1), ordinal(stage + 1) }))));
     }
 
-    private IEnumerable<object> ProcessTicTacToe(KMBombModule module)
+	private IEnumerable<object> ProcessThirdBase(KMBombModule module)
+	{
+		var comp = GetComponent(module, "ThirdBaseModule");
+		var fldDisplay = GetField<TextMesh>(comp, "Display", true);
+		var fldStage = GetField<int>(comp, "stage");
+		var fldActivated = GetField<bool>(comp, "isActivated");
+		var fldSolved = GetField<bool>(comp, "isPassed");
+
+		if (comp == null || fldDisplay == null || fldStage == null || fldActivated == null || fldSolved == null)
+			yield break;
+
+		yield return null;
+
+		var displayWords = new string[2];
+
+		var displayTextMesh = fldDisplay.Get();
+
+		if (displayTextMesh == null) yield break;
+
+		while (!fldActivated.Get())
+			yield return new WaitForSeconds(0.1f);
+		yield return new WaitForSeconds(0.1f);
+
+		for(var i = 0; i < 2; i++)
+			while (fldStage.Get() == i)
+			{
+				while (!fldActivated.Get())
+					yield return new WaitForSeconds(0.1f);
+
+				displayWords[i] = displayTextMesh.text;
+
+				while (fldActivated.Get())
+					yield return new WaitForSeconds(0.1f);
+			}
+
+		while (!fldSolved.Get())
+			yield return new WaitForSeconds(0.1f);
+
+		_modulesSolved.IncSafe(_ThirdBase);
+		addQuestions(module, Enumerable.Range(0, 2).Select(stage => makeQuestion(Question.ThirdBase, _ThirdBase, new[] {displayWords[stage]}, new[] {ordinal(stage + 1)})));
+	}
+
+	private IEnumerable<object> ProcessTicTacToe(KMBombModule module)
     {
         var comp = GetComponent(module, "TicTacToeModule");
         var fldKeypadButtons = GetField<KMSelectable[]>(comp, "KeypadButtons", isPublic: true);
