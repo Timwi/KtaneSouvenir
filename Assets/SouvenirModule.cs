@@ -113,8 +113,9 @@ public class SouvenirModule : MonoBehaviour
     const string _MorseAMaze = "MorseAMaze";
     const string _Morsematics = "MorseV2";
     const string _MouseInTheMaze = "MouseInTheMaze";
-    const string _Murder = "murder";
-    const string _Neutralization = "neutralization";
+	const string _Murder = "murder";
+	const string _MysticSquare = "MysticSquareModule";
+	const string _Neutralization = "neutralization";
     const string _OnlyConnect = "OnlyConnectModule";
     const string _OrientationCube = "OrientationCube";
     const string _PatternCube = "PatternCubeModule";
@@ -203,6 +204,7 @@ public class SouvenirModule : MonoBehaviour
             { _Morsematics, ProcessMorsematics },
             { _MouseInTheMaze, ProcessMouseInTheMaze },
             { _Murder, ProcessMurder },
+	        { _MysticSquare, ProcessMysticSquare },
             { _Neutralization, ProcessNeutralization },
             { _OnlyConnect, ProcessOnlyConnect },
             { _OrientationCube, ProcessOrientationCube },
@@ -3095,7 +3097,77 @@ public class SouvenirModule : MonoBehaviour
             bodyFound == actualRoom ? null : makeQuestion(Question.MurderBodyFound, _Murder, new[] { names[2, bodyFound] }));
     }
 
-    private IEnumerable<object> ProcessNeutralization(KMBombModule module)
+	private IEnumerable<object> ProcessMysticSquare(KMBombModule module)
+	{
+		var comp = GetComponent(module, "MysticSquareModule");
+		var fldSolved = GetField<bool>(comp, "_isSolved");
+		var fldSkull = GetField<Transform>(comp, "Skull", true);
+		var fldKnight = GetField<Transform>(comp, "Knight", true);
+
+		var fldIsInDanger = GetField<bool>(comp, "_isInDanger");
+		var fldSkullPos = GetField<int>(comp, "_skullPos");
+		var fldKnightPos = GetField<int>(comp, "_knightPos");
+		
+
+		if (comp == null || fldSolved == null || fldSkull == null || fldKnight == null || fldIsInDanger == null || fldSkullPos == null || fldKnightPos == null)
+			yield break;
+
+		var skull = fldSkull.Get();
+		var knight = fldKnight.Get();
+
+		if (skull == null || knight == null)
+			yield break;
+
+		while (!skull.gameObject.activeSelf)
+			yield return null;
+
+		while (!fldSolved.Get())
+			yield return new WaitForSeconds(0.1f);
+
+		yield return new WaitForSeconds(0.5f);
+
+		var knightpos = fldKnightPos.Get();
+		var skullpos = fldSkullPos.Get();
+		if (knightpos < 0 || knightpos > 8)
+		{
+			Debug.LogFormat("<Souvenir #{0}> Abandoning Mystic square because knight is in unexpected position {1}. Expected (0-8)", _moduleId, knightpos);
+			yield break;
+		}
+		if (skullpos < 0 || skullpos > 8)
+		{
+			Debug.LogFormat("<Souvenir #{0}> Abandoning Mystic square because skull is in unexpected position {1}. Expected (0-8)", _moduleId, skullpos);
+			yield break;
+		}
+
+		var startTime = Time.time;
+		while ((Time.time - startTime) < 1.5f)
+		{
+			skull.localScale = Vector3.Lerp(new Vector3(0.004f, 0.004f, 0.004f), Vector3.zero, (Time.time - startTime) / 2);
+			knight.localScale = Vector3.Lerp(new Vector3(0.004f, 0.004f, 0.004f), Vector3.zero, (Time.time - startTime) / 2);
+			yield return null;
+		}
+
+		skull.gameObject.SetActive(false);
+		knight.gameObject.SetActive(false);
+
+		_modulesSolved.IncSafe(_MysticSquare);
+		var answers = new[]
+		{
+			"Top Left", "Top Middle", "Top Right", "Middle Left", "Center", "Middle Right", "Bottom Left", "Bottom Middle",
+			"Bottom Right"
+		};
+
+		if(!fldIsInDanger.Get())
+			addQuestions(module, 
+				makeQuestion(Question.MysticSquare, _MysticSquare, new []{ answers[knightpos] }, new [] {"knight"} , answers),
+				makeQuestion(Question.MysticSquare, _MysticSquare, new[] { answers[skullpos] }, new[] { "skull" }, answers));
+		else
+			addQuestions(module,
+				makeQuestion(Question.MysticSquare, _MysticSquare, new[] { answers[skullpos] }, new[] { "skull" }, answers));
+
+	}
+
+	private IEnumerable<object> ProcessNeutralization(KMBombModule module)
     {
         var comp = GetComponent(module, "neutralization");
         var fldAcidType = GetField<int>(comp, "acidType");

@@ -257,6 +257,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "a potential weapon, but not the murder weapon,", "not a potential weapon" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MurderWeapon,
 
+		[SouvenirQuestion("Where was the {1} in {0}?", "Mystic Square", 4, "Top Left", "Top Middle", "Top Right", "Middle Left", "Center", "Middle Right", "Bottom Left", "Bottom Middle", "Bottom Right",
+			ExampleExtraFormatArguments = new[] {"knight", "skull"}, ExampleExtraFormatArgumentGroupSize = 1)]
+		MysticSquare,
+
         [SouvenirQuestion("What was the acid’s color in {0}?", "Neutralization", 4, "Yellow", "Green", "Red", "Blue")]
         NeutralizationColor,
 
