@@ -114,6 +114,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Morsematics = "MorseV2";
     const string _MouseInTheMaze = "MouseInTheMaze";
     const string _Murder = "murder";
+    const string _MysticSquare = "MysticSquareModule";
     const string _Neutralization = "neutralization";
     const string _OnlyConnect = "OnlyConnectModule";
     const string _OrientationCube = "OrientationCube";
@@ -140,6 +141,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Synonyms = "synonyms";
     const string _TapCode = "tapCode";
     const string _TenButtonColorCode = "TenButtonColorCode";
+    const string _ThirdBase = "ThirdBase";
     const string _TicTacToe = "TicTacToeModule";
     const string _Timezone = "timezone";
     const string _TwoBits = "TwoBits";
@@ -203,6 +205,7 @@ public class SouvenirModule : MonoBehaviour
             { _Morsematics, ProcessMorsematics },
             { _MouseInTheMaze, ProcessMouseInTheMaze },
             { _Murder, ProcessMurder },
+            { _MysticSquare, ProcessMysticSquare },
             { _Neutralization, ProcessNeutralization },
             { _OnlyConnect, ProcessOnlyConnect },
             { _OrientationCube, ProcessOrientationCube },
@@ -229,6 +232,7 @@ public class SouvenirModule : MonoBehaviour
             { _Synonyms, ProcessSynonyms },
             { _TapCode, ProcessTapCode },
             { _TenButtonColorCode, ProcessTenButtonColorCode },
+            { _ThirdBase, ProcessThirdBase },
             { _TicTacToe, ProcessTicTacToe },
             { _Timezone, ProcessTimezone },
             { _TwoBits, ProcessTwoBits },
@@ -3095,6 +3099,76 @@ public class SouvenirModule : MonoBehaviour
             bodyFound == actualRoom ? null : makeQuestion(Question.MurderBodyFound, _Murder, new[] { names[2, bodyFound] }));
     }
 
+    private IEnumerable<object> ProcessMysticSquare(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MysticSquareModule");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+        var fldSkull = GetField<Transform>(comp, "Skull", true);
+        var fldKnight = GetField<Transform>(comp, "Knight", true);
+
+        var fldIsInDanger = GetField<bool>(comp, "_isInDanger");
+        var fldSkullPos = GetField<int>(comp, "_skullPos");
+        var fldKnightPos = GetField<int>(comp, "_knightPos");
+
+        if (comp == null || fldSolved == null || fldSkull == null || fldKnight == null || fldIsInDanger == null || fldSkullPos == null || fldKnightPos == null)
+            yield break;
+
+        var skull = fldSkull.Get();
+        var knight = fldKnight.Get();
+
+        if (skull == null || knight == null)
+            yield break;
+
+        while (!skull.gameObject.activeSelf)
+            yield return null;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+
+        // Make sure that the last sliding animation finishes
+        yield return new WaitForSeconds(0.5f);
+
+        var knightpos = fldKnightPos.Get();
+        var skullpos = fldSkullPos.Get();
+        if (knightpos < 0 || knightpos > 8)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Mystic Square because knight is in unexpected position {1} (expected 0-8).", _moduleId, knightpos);
+            yield break;
+        }
+        if (skullpos < 0 || skullpos > 8)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Mystic Square because skull is in unexpected position {1} (expected 0-8).", _moduleId, skullpos);
+            yield break;
+        }
+
+        // Shrink the skull and knight and then disappear them
+        const float duration = 1.5f;
+        var elapsed = 0f;
+        while (elapsed < duration)
+        {
+            skull.localScale = Vector3.Lerp(new Vector3(0.004f, 0.004f, 0.004f), Vector3.zero, elapsed / duration);
+            knight.localScale = Vector3.Lerp(new Vector3(0.004f, 0.004f, 0.004f), Vector3.zero, elapsed / duration);
+            yield return null;
+            elapsed += Time.deltaTime;
+        }
+
+        skull.gameObject.SetActive(false);
+        knight.gameObject.SetActive(false);
+
+        _modulesSolved.IncSafe(_MysticSquare);
+        var answers = new[] { "top left", "top middle", "top right", "middle left", "center", "middle right", "bottom left", "bottom middle", "bottom right" };
+
+        // Ask about the knight only if it was ever uncovered
+        if (!fldIsInDanger.Get())
+            addQuestions(module,
+                makeQuestion(Question.MysticSquareKnightSkull, _MysticSquare, new[] { answers[knightpos] }, new[] { "knight" }, answers),
+                makeQuestion(Question.MysticSquareKnightSkull, _MysticSquare, new[] { answers[skullpos] }, new[] { "skull" }, answers));
+        else
+            addQuestions(module,
+                makeQuestion(Question.MysticSquareKnightSkull, _MysticSquare, new[] { answers[skullpos] }, new[] { "skull" }, answers));
+
+    }
+
     private IEnumerable<object> ProcessNeutralization(KMBombModule module)
     {
         var comp = GetComponent(module, "neutralization");
@@ -4267,6 +4341,47 @@ public class SouvenirModule : MonoBehaviour
         var colorNames = new[] { "red", "green", "blue" };
         addQuestions(module, new[] { firstStageColors, secondStageColors }.SelectMany((colors, stage) => Enumerable.Range(0, 10)
             .Select(slot => makeQuestion(Question.TenButtonColorCodeInitialColors, _TenButtonColorCode, new[] { colorNames[colors[slot]] }, new[] { ordinal(slot + 1), ordinal(stage + 1) }))));
+    }
+
+    private IEnumerable<object> ProcessThirdBase(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ThirdBaseModule");
+        var fldDisplay = GetField<TextMesh>(comp, "Display", isPublic: true);
+        var fldStage = GetField<int>(comp, "stage");
+        var fldActivated = GetField<bool>(comp, "isActivated");
+        var fldSolved = GetField<bool>(comp, "isPassed");
+
+        if (comp == null || fldDisplay == null || fldStage == null || fldActivated == null || fldSolved == null)
+            yield break;
+
+        yield return null;
+
+        var displayTextMesh = fldDisplay.Get();
+        if (displayTextMesh == null)
+            yield break;
+
+        while (!fldActivated.Get())
+            yield return new WaitForSeconds(0.1f);
+
+        var displayWords = new string[2];
+
+        for (var i = 0; i < 2; i++)
+            while (fldStage.Get() == i)
+            {
+                while (!fldActivated.Get())
+                    yield return new WaitForSeconds(0.1f);
+
+                displayWords[i] = displayTextMesh.text;
+
+                while (fldActivated.Get())
+                    yield return new WaitForSeconds(0.1f);
+            }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+
+        _modulesSolved.IncSafe(_ThirdBase);
+        addQuestions(module, displayWords.Select((word, stage) => makeQuestion(Question.ThirdBaseDisplay, _ThirdBase, new[] { word }, new[] { ordinal(stage + 1) })));
     }
 
     private IEnumerable<object> ProcessTicTacToe(KMBombModule module)
