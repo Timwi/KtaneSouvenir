@@ -378,6 +378,9 @@ namespace Souvenir
         [SouvenirQuestion("Which dragon shout was selectable, but not the solution, in {0}?", "Skyrim", 4, "Disarm", "Dismay", "Dragonrend", "Fire Breath", "Ice Form", "Kyne’s Peace", "Slow Time", "Unrelenting Force", "Whirlwind Sprint")]
         SkyrimDragonShout,
 
+        [SouvenirQuestion("What was the first module asked about in the other Souvenir on this bomb?", "Souvenir", 4, ExampleAnswers = new[] { "Probing", "Microcontroller", "Third Base", "Kudosudoku", "Quintuples", "3D Tunnels", "Uncolored Squares", "Pattern Cube", "Synonyms", "The Moon", "Human Resources", "Algebra" })]
+        SouvenirFirstQuestion,
+
         [SouvenirQuestion("What was the {1} picture on {0}?", "Sonic The Hedgehog", 4, "Annoyed Sonic", "Ballhog", "Blue Lamppost", "Burrobot", "Buzz Bomber", "Crab Meat", "Dead Sonic", "Drowned Sonic", "Falling Sonic", "Moto Bug", "Red Lamppost", "Red Spring", "Standing Sonic", "Switch", "Yellow Spring",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SonicTheHedgehogPictures,
@@ -475,13 +478,15 @@ namespace Souvenir
 
     sealed class QandA
     {
+        public string ModuleName { get; private set; }
         public string QuestionText { get; private set; }
         public string[] Answers { get; private set; }
         public int CorrectIndex { get; private set; }
         public Font Font { get; private set; }
         public Texture FontTexture { get; private set; }
-        public QandA(string question, string[] answers, int correct, Font font, Texture fontTexture)
+        public QandA(string moduleName, string question, string[] answers, int correct, Font font, Texture fontTexture)
         {
+            ModuleName = moduleName;
             QuestionText = question;
             Answers = answers;
             CorrectIndex = correct;

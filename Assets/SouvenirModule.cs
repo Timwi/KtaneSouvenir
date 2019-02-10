@@ -135,6 +135,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SkewedSlots = "SkewedSlotsModule";
     const string _Skyrim = "skyrim";
     const string _SonicTheHedgehog = "sonic";
+    const string _Souvenir = "SouvenirModule";
     const string _Switch = "BigSwitch";
     const string _Switches = "switchModule";
     const string _Synonyms = "synonyms";
@@ -227,6 +228,7 @@ public class SouvenirModule : MonoBehaviour
             { _SkewedSlots, ProcessSkewedSlots },
             { _Skyrim, ProcessSkyrim },
             { _SonicTheHedgehog, ProcessSonicTheHedgehog },
+            { _Souvenir, ProcessSouvenir },
             { _Switch, ProcessSwitch },
             { _Switches, ProcessSwitches },
             { _Synonyms, ProcessSynonyms },
@@ -368,7 +370,7 @@ public class SouvenirModule : MonoBehaviour
                         fmt[i + 1] = attr.ExampleExtraFormatArguments[curExample * attr.ExampleExtraFormatArgumentGroupSize + i];
                     try
                     {
-                        SetQuestion(new QandA(string.Format(attr.QuestionText, fmt), (attr.AllAnswers ?? attr.ExampleAnswers).ToList().Shuffle().Take(attr.NumAnswers).ToArray(), Rnd.Range(0, attr.NumAnswers), font(attr.Font), fontTexture(attr.Font)));
+                        SetQuestion(new QandA(attr.ModuleName, string.Format(attr.QuestionText, fmt), (attr.AllAnswers ?? attr.ExampleAnswers).ToList().Shuffle().Take(attr.NumAnswers).ToArray(), Rnd.Range(0, attr.NumAnswers), font(attr.Font), fontTexture(attr.Font)));
                     }
                     catch (FormatException e)
                     {
@@ -4072,6 +4074,46 @@ public class SouvenirModule : MonoBehaviour
                     sounds.Select(s => soundNameMapping[s]).ToArray()))));
     }
 
+    private IEnumerable<object> ProcessSouvenir(KMBombModule module)
+    {
+        var comp = module.GetComponent<SouvenirModule>();
+        if (comp == null || comp == this)
+        {
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
+
+        yield return null;
+
+        int souvenirCount;
+        if (!_moduleCounts.TryGetValue(_Souvenir, out souvenirCount) || souvenirCount != 2)
+        {
+            if (souvenirCount > 2)
+                Debug.LogFormat("[Souvenir #{0}] There are more than two Souvenir modules on this bomb. Not asking any questions about them.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
+
+        var modules = _attributes.Where(x => x.Value != null).Select(x => x.Value.ModuleName).Distinct().ToArray();
+        while (comp._currentQuestion == null)
+            yield return new WaitForSeconds(0.1f);
+
+        var firstQuestion = comp._currentQuestion;
+        var firstModule = firstQuestion.ModuleName;
+        if (!modules.Contains(firstModule))
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Souvenir because the first question was on “{1}”, which is not a module I recognize.", _moduleId, firstModule);
+            yield break;
+        }
+
+        // Wait for the user to solve that question before asking about it
+        while (comp._currentQuestion == firstQuestion)
+            yield return new WaitForSeconds(0.1f);
+
+        _modulesSolved.IncSafe(_Souvenir);
+        addQuestion(module, Question.SouvenirFirstQuestion, new[] { firstModule }, null, modules);
+    }
+
     private IEnumerable<object> ProcessSwitch(KMBombModule module)
     {
         var comp = GetComponent(module, "Switch");
@@ -4828,7 +4870,7 @@ public class SouvenirModule : MonoBehaviour
         if (extraFormatArguments != null)
             formatArguments.AddRange(extraFormatArguments);
 
-        return new QandA(string.Format(attr.QuestionText, formatArguments.ToArray()), answers.ToArray(), correctIndex, font(attr.Font), fontTexture(attr.Font));
+        return new QandA(attr.ModuleName, string.Format(attr.QuestionText, formatArguments.ToArray()), answers.ToArray(), correctIndex, font(attr.Font), fontTexture(attr.Font));
     }
 
     private string[] GetAnswers(Question question)
