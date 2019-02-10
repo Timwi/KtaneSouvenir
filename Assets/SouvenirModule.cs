@@ -101,14 +101,14 @@ public class SouvenirModule : MonoBehaviour
     const string _Hunting = "hunting";
     const string _IceCream = "iceCreamModule";
     const string _Kudosudoku = "KudosudokuModule";
-	const string _LEDEncryption = "LEDEnc";
+    const string _LEDEncryption = "LEDEnc";
     const string _Listening = "Listening";
     const string _LogicGates = "logicGates";
     const string _LondonUnderground = "londonUnderground";
     const string _Mafia = "MafiaModule";
     const string _MaritimeFlags = "MaritimeFlagsModule";
     const string _Microcontroller = "Microcontroller";
-	const string _MineSweeper = "MinesweeperModule";
+    const string _Minesweeper = "MinesweeperModule";
     const string _MonsplodeFight = "monsplodeFight";
     const string _MonsplodeTradingCards = "monsplodeCards";
     const string _Moon = "moon";
@@ -196,7 +196,7 @@ public class SouvenirModule : MonoBehaviour
             { _Hunting, ProcessHunting },
             { _IceCream, ProcessIceCream },
             { _Kudosudoku, ProcessKudosudoku },
-	        { _LEDEncryption, ProcessLEDEncryption },
+            { _LEDEncryption, ProcessLEDEncryption },
             { _Listening, ProcessListening },
             { _LogicalButtons, ProcessLogicalButtons },
             { _LogicGates, ProcessLogicGates },
@@ -204,7 +204,7 @@ public class SouvenirModule : MonoBehaviour
             { _Mafia, ProcessMafia },
             { _MaritimeFlags, ProcessMaritimeFlags },
             { _Microcontroller, ProcessMicrocontroller },
-	        { _MineSweeper, ProcessMineSweeper },
+            { _Minesweeper, ProcessMinesweeper },
             { _MonsplodeFight, ProcessMonsplodeFight },
             { _MonsplodeTradingCards, ProcessMonsplodeTradingCards },
             { _Moon, ProcessMoon },
@@ -784,60 +784,59 @@ public class SouvenirModule : MonoBehaviour
         }
     }
 
-	sealed class PropertyInfo<T>
-	{
-		private readonly object _target;
-		private readonly int _souvenirID;
-		public readonly PropertyInfo Property;
-		public bool Error { get; private set; }
+    sealed class PropertyInfo<T>
+    {
+        private readonly object _target;
+        private readonly int _souvenirID;
+        public readonly PropertyInfo Property;
+        public bool Error { get; private set; }
 
-		public PropertyInfo(object target, PropertyInfo property, int souvenirID)
-		{
-			_target = target;
-			Property = property;
-			_souvenirID = souvenirID;
-			Error = false;
-		}
+        public PropertyInfo(object target, PropertyInfo property, int souvenirID)
+        {
+            _target = target;
+            Property = property;
+            _souvenirID = souvenirID;
+            Error = false;
+        }
 
-		public T Get(bool nullAllowed = false)
-		{
-			return Get(new object[] { }, nullAllowed);
-		}
+        public T Get(bool nullAllowed = false)
+        {
+            // “This value should be null for non-indexed properties.” (MSDN)
+            return Get(null, nullAllowed);
+        }
 
-		public T Get(object[] index, bool nullAllowed = false)
-		{
-			try
-			{
-				var t = (T) Property.GetValue(_target, index);
-				if (!nullAllowed && t == null)
-					Debug.LogFormat("<Souvenir #{2}> Property {1}.{0} is null.", Property.Name, Property.DeclaringType.FullName, _souvenirID);
-				Error = false;
-				return t;
-			}
-			catch
-			{
-				Debug.LogFormat("<Souvenir #{2}> Property {1}.{0} could not be fetched with the specified parameters", Property.Name, Property.DeclaringType.FullName, _souvenirID);
-				Error = true;
-				return default(T);
-			}
-		}
+        public T Get(object[] index, bool nullAllowed = false)
+        {
+            try
+            {
+                var t = (T) Property.GetValue(_target, index);
+                if (!nullAllowed && t == null)
+                    Debug.LogFormat("<Souvenir #{2}> Property {1}.{0} is null.", Property.Name, Property.DeclaringType.FullName, _souvenirID);
+                Error = false;
+                return t;
+            }
+            catch (Exception e)
+            {
+                Debug.LogFormat("<Souvenir #{2}> Property {1}.{0} could not be fetched with the specified parameters. Exception: {3}\n{4}", Property.Name, Property.DeclaringType.FullName, _souvenirID, e.GetType().FullName, e.StackTrace);
+                Error = true;
+                return default(T);
+            }
+        }
 
-		public void Set(T value) { Set(value, new object[] { });}
-
-		public void Set(T value, object[] index)
-		{
-			try
-			{
-				Property.SetValue(_target, value, index);
-				Error = false;
-			}
-			catch
-			{
-				Debug.LogFormat("<Souvenir #{2}> Property {1}.{0} could not be set with the specified parameters", Property.Name, Property.DeclaringType.FullName, _souvenirID);
-				Error = true;
-			}
-		}
-	}
+        public void Set(T value, object[] index = null)
+        {
+            try
+            {
+                Property.SetValue(_target, value, index);
+                Error = false;
+            }
+            catch (Exception e)
+            {
+                Debug.LogFormat("<Souvenir #{2}> Property {1}.{0} could not be set with the specified parameters. Exception: {3}\n{4}", Property.Name, Property.DeclaringType.FullName, _souvenirID, e.GetType().FullName, e.StackTrace);
+                Error = true;
+            }
+        }
+    }
 
     private Component GetComponent(KMBombModule module, string name)
     {
@@ -919,44 +918,44 @@ public class SouvenirModule : MonoBehaviour
         return new MethodInfo<T>(target, mths[0]);
     }
 
-	private PropertyInfo<T> GetProperty<T>(object target, string name, bool isPublic = false)
-	{
-		if (target == null)
-		{
-			Debug.LogFormat("<Souvenir #{3}> Attempt to get {1} property {0} of type {2} from a null object.", name, isPublic ? "public" : "non-public", typeof(T).FullName, _moduleId);
-			return null;
-		}
-		return GetPropertyImpl<T>(target, target.GetType(), name, isPublic, BindingFlags.Instance);
-	}
+    private PropertyInfo<T> GetProperty<T>(object target, string name, bool isPublic = false)
+    {
+        if (target == null)
+        {
+            Debug.LogFormat("<Souvenir #{3}> Attempt to get {1} property {0} of type {2} from a null object.", name, isPublic ? "public" : "non-public", typeof(T).FullName, _moduleId);
+            return null;
+        }
+        return GetPropertyImpl<T>(target, target.GetType(), name, isPublic, BindingFlags.Instance);
+    }
 
-	private PropertyInfo<T> GetStaticProperty<T>(Type targetType, string name, bool isPublic = false)
-	{
-		if (targetType == null)
-		{
-			Debug.LogFormat("<Souvenir #{0}> Attempt to get {1} static property {2} of type {3} from a null type.", _moduleId, isPublic ? "public" : "non-public", name, typeof(T).FullName);
-			return null;
-		}
-		return GetPropertyImpl<T>(null, targetType, name, isPublic, BindingFlags.Static);
-	}
+    private PropertyInfo<T> GetStaticProperty<T>(Type targetType, string name, bool isPublic = false)
+    {
+        if (targetType == null)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Attempt to get {1} static property {2} of type {3} from a null type.", _moduleId, isPublic ? "public" : "non-public", name, typeof(T).FullName);
+            return null;
+        }
+        return GetPropertyImpl<T>(null, targetType, name, isPublic, BindingFlags.Static);
+    }
 
-	private PropertyInfo<T> GetPropertyImpl<T>(object target, Type targetType, string name, bool isPublic, BindingFlags bindingFlags)
-	{
-		var fld = targetType.GetProperty(name, (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | bindingFlags);
-		if (fld == null)
-		{
-				Debug.LogFormat("<Souvenir #{3}> Type {0} does not contain {1} property {2}. Properties are: {4}", targetType, isPublic ? "public" : "non-public", name, _moduleId,
-					targetType.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(f => string.Format("{0} {1} {2}", f.GetGetMethod().IsPublic ? "public" : "private", f.PropertyType.FullName, f.Name)).JoinString(", "));
-				return null;
-		}
-		if (!typeof(T).IsAssignableFrom(fld.PropertyType))
-		{
-			Debug.LogFormat("<Souvenir #{5}> Type {0} has {1} field {2} of type {3} but expected type {4}.", targetType, isPublic ? "public" : "non-public", name, fld.PropertyType.FullName, typeof(T).FullName, _moduleId);
-			return null;
-		}
-		return new PropertyInfo<T>(target, fld, _moduleId);
-	}
+    private PropertyInfo<T> GetPropertyImpl<T>(object target, Type targetType, string name, bool isPublic, BindingFlags bindingFlags)
+    {
+        var fld = targetType.GetProperty(name, (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | bindingFlags);
+        if (fld == null)
+        {
+            Debug.LogFormat("<Souvenir #{3}> Type {0} does not contain {1} property {2}. Properties are: {4}", targetType, isPublic ? "public" : "non-public", name, _moduleId,
+                targetType.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(f => string.Format("{0} {1} {2}", f.GetGetMethod().IsPublic ? "public" : "private", f.PropertyType.FullName, f.Name)).JoinString(", "));
+            return null;
+        }
+        if (!typeof(T).IsAssignableFrom(fld.PropertyType))
+        {
+            Debug.LogFormat("<Souvenir #{5}> Type {0} has {1} field {2} of type {3} but expected type {4}.", targetType, isPublic ? "public" : "non-public", name, fld.PropertyType.FullName, typeof(T).FullName, _moduleId);
+            return null;
+        }
+        return new PropertyInfo<T>(target, fld, _moduleId);
+    }
 
-	private IEnumerator ProcessModule(KMBombModule module)
+    private IEnumerator ProcessModule(KMBombModule module)
     {
         _coroutinesActive++;
         var moduleType = module.ModuleType;
@@ -2508,97 +2507,86 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.KudosudokuPrefilled, _Kudosudoku, Enumerable.Range(0, 16).Where(ix => !shown[ix]).Select(coord => (char) ('A' + (coord % 4)) + (coord / 4 + 1).ToString()).ToArray(), new[] { "not pre-filled" }));
     }
 
-	private IEnumerable<object> ProcessLEDEncryption(KMBombModule module)
-	{
-		var comp = GetComponent(module, "LEDEncryption");
-		var fldButtons = GetField<KMSelectable[]>(comp, "buttons", true);
-		var fldActivated = GetField<bool>(comp, "isActivated");
-		var fldLayerMultipliers = GetField<int[]>(comp, "layerMultipliers");
-		var fldLayer = GetField<int>(comp, "layer");
+    private IEnumerable<object> ProcessLEDEncryption(KMBombModule module)
+    {
+        var comp = GetComponent(module, "LEDEncryption");
+        var fldButtons = GetField<KMSelectable[]>(comp, "buttons", true);
+        var fldMultipliers = GetField<int[]>(comp, "layerMultipliers");
+        var fldStage = GetField<int>(comp, "layer");
 
-		if (comp == null || fldButtons == null || fldActivated == null || fldLayerMultipliers == null || fldLayer == null)
-			yield break;
+        if (comp == null || fldButtons == null || fldMultipliers == null || fldStage == null)
+            yield break;
 
-		while (!fldActivated.Get())
-			yield return new WaitForSeconds(0.1f);
+        while (!_isActivated)
+            yield return new WaitForSeconds(0.1f);
 
-		var buttons = fldButtons.Get();
-		var layerMultipliers = fldLayerMultipliers.Get();
-		if (buttons == null || layerMultipliers == null)
-			yield break;
+        var buttons = fldButtons.Get();
+        var multipliers = fldMultipliers.Get();
+        if (buttons == null || multipliers == null)
+            yield break;
 
-		if (buttons.Length != 4)
-		{
-			Debug.LogFormat("<Souvenir #{0}> Abandoning LED Encryption because there is an unexpected number of buttons {1} (Expected 4)", _moduleId, buttons.Length);
-			yield break;
-		}
+        if (buttons.Length != 4)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning LED Encryption because there is an unexpected number of buttons: {1} (expected 4).", _moduleId, buttons.Length);
+            yield break;
+        }
 
-		if (buttons.Any(x => x == null))
-		{
-			Debug.LogFormat("<Souvenir #{0}> Abandoning LED Encryption because at least one of the buttons is null.", _moduleId);
-			yield break;
-		}
+        if (buttons.Any(x => x == null))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning LED Encryption because at least one of the buttons is null.", _moduleId);
+            yield break;
+        }
 
-		if (buttons.Any(x => x.GetComponentInChildren<TextMesh>() == null))
-		{
-			Debug.LogFormat("<Souvenir #{0}> Abandoning LED Encryption because at least one of the buttons TextMesh is null.", _moduleId);
-			yield break;
-		}
+        var buttonLabels = buttons.Select(btn => btn.GetComponentInChildren<TextMesh>()).ToArray();
+        if (buttonLabels.Any(x => x == null))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning LED Encryption because at least one of the buttons’ TextMesh is null.", _moduleId);
+            yield break;
+        }
 
-		if (layerMultipliers.Length < 2 || layerMultipliers.Length > 5 || layerMultipliers.Any(multipler => multipler < 2 || multipler > 7))
-		{
-			Debug.LogFormat("<Souvenir #{0}> Abandoning LED Encryption because layerMultipliers has unxepected length {1} / Values [{2}] (Expected length 2-5, Expected values 2-7)", _moduleId, layerMultipliers.Length, layerMultipliers.Select(x => x.ToString()).Join(", "));
-			yield break;
-		}
+        if (multipliers.Length < 2 || multipliers.Length > 5 || multipliers.Any(multipler => multipler < 2 || multipler > 7))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning LED Encryption because layerMultipliers has unxepected length {1} / Values [{2}] (Expected length 2-5, Expected values 2-7)", _moduleId, multipliers.Length, multipliers.Select(x => x.ToString()).Join(", "));
+            yield break;
+        }
 
-		
-		var layers = layerMultipliers.Length;
+        var numStages = multipliers.Length;
+        var pressedLetters = new string[numStages];
+        var wrongLetters = new HashSet<string>();
 
-		
-		var stageLetters = new List<string>();
-		var wrongStageLetters = new List<string[]>();
+        while (fldStage.Get() < numStages)
+        {
+            foreach (var lbl in buttonLabels)
+                wrongLetters.Add(lbl.text);
 
-		
+            // LED Encryption re-hooks the buttons at every press, so we have to re-hook it at each stage as well
+            for (int i = 0; i < 4; i++)
+                LEDEncryptionReassignButton(buttons[i], buttonLabels[i], fldStage, pressedLetters);
 
-		while (fldLayer.Get() < layers)
-		{
-			var layer = fldLayer.Get();
-			var pressed = "";
-			var wrongLetters = buttons.Select(button => button.GetComponentInChildren<TextMesh>().text).ToArray();
-			var prevInteracts = buttons.Select(btn => btn.OnInteract).ToArray();
-			for (int i = 0; i < 4; i++)
-			{
-				// Workaround bug in Mono 2.0 C# compiler
-				new Action<int>(j =>
-				{
-					buttons[j].OnInteract = delegate
-					{
-						pressed = buttons[j].GetComponentInChildren<TextMesh>().text;
-						return prevInteracts[j]();
-					};
-				})(i);
-			}
+            var stage = fldStage.Get();
+            while (fldStage.Get() == stage)
+                yield return new WaitForSeconds(0.1f);
+        }
 
-			while (layer == fldLayer.Get())
-			{
-				pressed = "";
-				while (pressed == "")
-					yield return new WaitForSeconds(0.1f);
-			}
+        _modulesSolved.IncSafe(_LEDEncryption);
+        addQuestions(module, Enumerable.Range(0, pressedLetters.Length)
+            .Where(i => pressedLetters[i] != null)
+            .Select(stage => makeQuestion(Question.LEDEncryptionPressedLetters, _LEDEncryption, new[] { pressedLetters[stage] }, new[] { ordinal(stage + 1) }, wrongLetters.ToArray())));
+    }
 
-			if (fldLayer.Get() != layers)
-			{
-				stageLetters.Add(pressed);
-				wrongStageLetters.Add(wrongLetters);
-			}
-		}
-
-		_modulesSolved.IncSafe(_LEDEncryption);
-		addQuestions(module,
-			stageLetters.Select((letter, stage) => makeQuestion(Question.LEDEncryption, _LEDEncryption, new[] {letter},
-				new[] {ordinal(stage + 1)}, wrongStageLetters[stage])));
-
-	}
+    private static void LEDEncryptionReassignButton(KMSelectable btn, TextMesh lbl, FieldInfo<int> fldStage, string[] pressedLetters)
+    {
+        var prev = btn.OnInteract;
+        var stage = fldStage.Get();
+        btn.OnInteract = delegate
+        {
+            var label = lbl.text;
+            var ret = prev();
+            if (fldStage.Get() > stage)
+                pressedLetters[stage] = label;
+            return ret;
+        };
+    }
 
     private IEnumerable<object> ProcessListening(KMBombModule module)
     {
@@ -2898,37 +2886,37 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, ledsOrder.Select((led, ix) => makeQuestion(Question.MicrocontrollerPinOrder, _Microcontroller, new[] { (positionTranslate[led] + 1).ToString() }, new[] { ordinal(ix + 1) })));
     }
 
-	private IEnumerable<object> ProcessMineSweeper(KMBombModule module)
-	{
-		yield return null;
-		var prevOnActivate = module.OnActivate;
-		var activated = false;
-		module.OnActivate = delegate { activated = true; prevOnActivate(); };
+    private IEnumerable<object> ProcessMinesweeper(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MinesweeperModule");
+        var fldGrid = GetField<object>(comp, "Game");
+        var fldStartingCell = GetField<object>(comp, "StartingCell");
 
-		while (!activated)
-			yield return new WaitForSeconds(0.1f);
+        if (comp == null || fldGrid == null || fldStartingCell == null)
+            yield break;
 
-		var comp = GetComponent(module, "MinesweeperModule");
-		var fldGrid = GetField<object>(comp, "Game");
-		var prptySolved = GetProperty<bool>(fldGrid.Get(), "Solved", true);
-		var fldStartingCell = GetField<object>(comp, "StartingCell");
-		var fldColor = GetField<string>(fldStartingCell.Get(), "Color", true);
+        // Wait for activation as the above fields aren’t fully initialized until then
+        while (!_isActivated)
+            yield return new WaitForSeconds(0.1f);
 
-		if (comp == null || prptySolved == null || fldColor == null)
-			yield break;
+        var propSolved = GetProperty<bool>(fldGrid.Get(), "Solved", isPublic: true);
+        var fldColor = GetField<string>(fldStartingCell.Get(), "Color", isPublic: true);
 
-		var color = fldColor.Get();
+        if (propSolved == null || fldColor == null)
+            yield break;
 
-		while (!prptySolved.Get())
-		{
-			if (prptySolved.Error)
-				yield break;
-			yield return new WaitForSeconds(0.1f);
-		}
+        var color = fldColor.Get();
 
-		_modulesSolved.IncSafe(_MineSweeper);
-		addQuestion(module, Question.MineSweeperStartingColor, new [] {color });
-	}
+        while (!propSolved.Get())
+        {
+            if (propSolved.Error)
+                yield break;
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        _modulesSolved.IncSafe(_Minesweeper);
+        addQuestion(module, Question.MinesweeperStartingColor, new[] { color });
+    }
 
     private IEnumerable<object> ProcessMonsplodeFight(KMBombModule module)
     {
