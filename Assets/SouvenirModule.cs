@@ -108,6 +108,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Mafia = "MafiaModule";
     const string _MaritimeFlags = "MaritimeFlagsModule";
     const string _Microcontroller = "Microcontroller";
+	const string _MineSweeper = "MinesweeperModule";
     const string _MonsplodeFight = "monsplodeFight";
     const string _MonsplodeTradingCards = "monsplodeCards";
     const string _Moon = "moon";
@@ -203,6 +204,7 @@ public class SouvenirModule : MonoBehaviour
             { _Mafia, ProcessMafia },
             { _MaritimeFlags, ProcessMaritimeFlags },
             { _Microcontroller, ProcessMicrocontroller },
+	        { _MineSweeper, ProcessMineSweeper },
             { _MonsplodeFight, ProcessMonsplodeFight },
             { _MonsplodeTradingCards, ProcessMonsplodeTradingCards },
             { _Moon, ProcessMoon },
@@ -782,6 +784,61 @@ public class SouvenirModule : MonoBehaviour
         }
     }
 
+	sealed class PropertyInfo<T>
+	{
+		private readonly object _target;
+		private readonly int _souvenirID;
+		public readonly PropertyInfo Property;
+		public bool Error { get; private set; }
+
+		public PropertyInfo(object target, PropertyInfo property, int souvenirID)
+		{
+			_target = target;
+			Property = property;
+			_souvenirID = souvenirID;
+			Error = false;
+		}
+
+		public T Get(bool nullAllowed = false)
+		{
+			return Get(new object[] { }, nullAllowed);
+		}
+
+		public T Get(object[] index, bool nullAllowed = false)
+		{
+			try
+			{
+				var t = (T) Property.GetValue(_target, index);
+				if (!nullAllowed && t == null)
+					Debug.LogFormat("<Souvenir #{2}> Property {1}.{0} is null.", Property.Name, Property.DeclaringType.FullName, _souvenirID);
+				Error = false;
+				return t;
+			}
+			catch
+			{
+				Debug.LogFormat("<Souvenir #{2}> Property {1}.{0} could not be fetched with the specified parameters", Property.Name, Property.DeclaringType.FullName, _souvenirID);
+				Error = true;
+				return default(T);
+			}
+		}
+
+		public void Set(T value) { Set(value, new object[] { });}
+
+		public void Set(T value, object[] index)
+		{
+			try
+			{
+				Property.SetValue(_target, value, index);
+				Error = false;
+			}
+			catch
+			{
+				Debug.LogFormat("<Souvenir #{2}> Property {1}.{0} could not be set with the specified parameters", Property.Name, Property.DeclaringType.FullName, _souvenirID);
+				Error = true;
+			}
+		}
+	}
+
     private Component GetComponent(KMBombModule module, string name)
     {
         return GetComponent(module.gameObject, name);
@@ -862,7 +919,44 @@ public class SouvenirModule : MonoBehaviour
         return new MethodInfo<T>(target, mths[0]);
     }
 
-    private IEnumerator ProcessModule(KMBombModule module)
+	private PropertyInfo<T> GetProperty<T>(object target, string name, bool isPublic = false)
+	{
+		if (target == null)
+		{
+			Debug.LogFormat("<Souvenir #{3}> Attempt to get {1} property {0} of type {2} from a null object.", name, isPublic ? "public" : "non-public", typeof(T).FullName, _moduleId);
+			return null;
+		}
+		return GetPropertyImpl<T>(target, target.GetType(), name, isPublic, BindingFlags.Instance);
+	}
+
+	private PropertyInfo<T> GetStaticProperty<T>(Type targetType, string name, bool isPublic = false)
+	{
+		if (targetType == null)
+		{
+			Debug.LogFormat("<Souvenir #{0}> Attempt to get {1} static property {2} of type {3} from a null type.", _moduleId, isPublic ? "public" : "non-public", name, typeof(T).FullName);
+			return null;
+		}
+		return GetPropertyImpl<T>(null, targetType, name, isPublic, BindingFlags.Static);
+	}
+
+	private PropertyInfo<T> GetPropertyImpl<T>(object target, Type targetType, string name, bool isPublic, BindingFlags bindingFlags)
+	{
+		var fld = targetType.GetProperty(name, (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | bindingFlags);
+		if (fld == null)
+		{
+				Debug.LogFormat("<Souvenir #{3}> Type {0} does not contain {1} property {2}. Properties are: {4}", targetType, isPublic ? "public" : "non-public", name, _moduleId,
+					targetType.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(f => string.Format("{0} {1} {2}", f.GetGetMethod().IsPublic ? "public" : "private", f.PropertyType.FullName, f.Name)).JoinString(", "));
+				return null;
+		}
+		if (!typeof(T).IsAssignableFrom(fld.PropertyType))
+		{
+			Debug.LogFormat("<Souvenir #{5}> Type {0} has {1} field {2} of type {3} but expected type {4}.", targetType, isPublic ? "public" : "non-public", name, fld.PropertyType.FullName, typeof(T).FullName, _moduleId);
+			return null;
+		}
+		return new PropertyInfo<T>(target, fld, _moduleId);
+	}
+
+	private IEnumerator ProcessModule(KMBombModule module)
     {
         _coroutinesActive++;
         var moduleType = module.ModuleType;
@@ -2803,6 +2897,38 @@ public class SouvenirModule : MonoBehaviour
 
         addQuestions(module, ledsOrder.Select((led, ix) => makeQuestion(Question.MicrocontrollerPinOrder, _Microcontroller, new[] { (positionTranslate[led] + 1).ToString() }, new[] { ordinal(ix + 1) })));
     }
+
+	private IEnumerable<object> ProcessMineSweeper(KMBombModule module)
+	{
+		yield return null;
+		var prevOnActivate = module.OnActivate;
+		var activated = false;
+		module.OnActivate = delegate { activated = true; prevOnActivate(); };
+
+		while (!activated)
+			yield return new WaitForSeconds(0.1f);
+
+		var comp = GetComponent(module, "MinesweeperModule");
+		var fldGrid = GetField<object>(comp, "Game");
+		var prptySolved = GetProperty<bool>(fldGrid.Get(), "Solved", true);
+		var fldStartingCell = GetField<object>(comp, "StartingCell");
+		var fldColor = GetField<string>(fldStartingCell.Get(), "Color", true);
+
+		if (comp == null || prptySolved == null || fldColor == null)
+			yield break;
+
+		var color = fldColor.Get();
+
+		while (!prptySolved.Get())
+		{
+			if (prptySolved.Error)
+				yield break;
+			yield return new WaitForSeconds(0.1f);
+		}
+
+		_modulesSolved.IncSafe(_MineSweeper);
+		addQuestion(module, Question.MineSweeperStartingColor, new [] {color });
+	}
 
     private IEnumerable<object> ProcessMonsplodeFight(KMBombModule module)
     {
