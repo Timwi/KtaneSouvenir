@@ -96,6 +96,7 @@ public class SouvenirModule : MonoBehaviour
     const string _GridLock = "GridlockModule";
     const string _LogicalButtons = "logicalButtonsModule";
     const string _Hexamaze = "HexamazeModule";
+    const string _Hogwarts = "HogwartsModule";
     const string _HumanResources = "HumanResourcesModule";
     const string _Hunting = "hunting";
     const string _IceCream = "iceCreamModule";
@@ -188,6 +189,7 @@ public class SouvenirModule : MonoBehaviour
             { _Gamepad, ProcessGamepad },
             { _GridLock, ProcessGridLock },
             { _Hexamaze, ProcessHexamaze },
+            { _Hogwarts, ProcessHogwarts },
             { _HumanResources, ProcessHumanResources },
             { _Hunting, ProcessHunting },
             { _IceCream, ProcessIceCream },
@@ -2193,6 +2195,61 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestion(module, Question.HexamazePawnColor, new[] { new[] { "Red", "Yellow", "Green", "Cyan", "Blue", "Pink" }[pawnColor] });
+    }
+
+    struct HogwartsModuleSubstitutionInfo
+    {
+        public string AbbrevInAnswer { get; private set; }
+        public string AbbrevInQuestion { get; private set; }
+        public HogwartsModuleSubstitutionInfo(string abbrevInAnswer, string abbrevInQuestion = null)
+        {
+            AbbrevInAnswer = abbrevInAnswer;
+            AbbrevInQuestion = abbrevInQuestion;
+        }
+    }
+    private static readonly Dictionary<string, HogwartsModuleSubstitutionInfo> _hogwartsModuleNameSubstitutions = new Dictionary<string, HogwartsModuleSubstitutionInfo>
+    {
+        { "Rock-Paper-Scissors-L.-Sp.", new HogwartsModuleSubstitutionInfo("R.-P.-S.-L.-Sp.", "R.-P.-S.- L.-Sp.") },
+        { "Modules Against Humanity", new HogwartsModuleSubstitutionInfo("M.A. Humanity") },
+        { "Monsplode Trading Cards", new HogwartsModuleSubstitutionInfo("Monsplode Tr.C.") },
+        { "The London Underground", new HogwartsModuleSubstitutionInfo("L. Underground") },
+        { "Foreign Exchange Rates", new HogwartsModuleSubstitutionInfo("Foreign Ex. Rates") },
+        { "Ten-Button Color Code", new HogwartsModuleSubstitutionInfo("10-B. Color Code") }
+    };
+    private static string hogwartsModuleNameSubstitution(string moduleName, bool isQuestion)
+    {
+        HogwartsModuleSubstitutionInfo result;
+        return (_hogwartsModuleNameSubstitutions.TryGetValue(moduleName, out result) ? (isQuestion ? result.AbbrevInQuestion : result.AbbrevInAnswer) : null) ?? moduleName.Replace("'", "’");
+    }
+    private IEnumerable<object> ProcessHogwarts(KMBombModule module)
+    {
+        var comp = GetComponent(module, "HogwartsModule");
+        var fldModuleNames = GetField<IDictionary>(comp, "_moduleNames");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+
+        if (comp == null || fldModuleNames == null || fldSolved == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Hogwarts);
+
+        var dic = fldModuleNames.Get();
+        if (dic == null || dic.Count == 0)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Hogwarts because _moduleNames is {1}.", _moduleId, dic == null ? "null" : "empty");
+            yield break;
+        }
+
+        addQuestions(module,
+            dic.Keys.Cast<object>().Where(house => dic[house] != null).SelectMany(house => Ut.NewArray(
+                makeQuestion(Question.HogwartsHouse, _Hogwarts,
+                    possibleCorrectAnswers: new[] { house.ToString() },
+                    extraFormatArguments: new[] { hogwartsModuleNameSubstitution(dic[house].ToString(), isQuestion: true) }),
+                makeQuestion(Question.HogwartsModule, _Hogwarts,
+                    possibleCorrectAnswers: new[] { hogwartsModuleNameSubstitution(dic[house].ToString(), isQuestion: false) },
+                    extraFormatArguments: new[] { house.ToString() },
+                    preferredWrongAnswers: Bomb.GetSolvableModuleNames().Select(m => hogwartsModuleNameSubstitution(m, isQuestion: false)).ToArray()))));
     }
 
     private IEnumerable<object> ProcessHumanResources(KMBombModule module)

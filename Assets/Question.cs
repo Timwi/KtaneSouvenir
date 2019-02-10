@@ -143,6 +143,13 @@ namespace Souvenir
         [SouvenirQuestion("What was the color of the pawn in {0}?", "Hexamaze", 6, "Red", "Yellow", "Green", "Cyan", "Blue", "Pink")]
         HexamazePawnColor,
 
+        [SouvenirQuestion("Which House was {1} solved\u00a0for in {0}?", "Hogwarts", 4, "Gryffindor", "Hufflepuff", "Slytherin", "Ravenclaw",
+            ExampleExtraFormatArguments = new[] { "Binary Puzzle", "Zoni", "R.-P.-S.- L.-Sp.", "Modules Against Humanity", "Monsplode Trading Cards" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        HogwartsHouse,
+        [SouvenirQuestion("Which module was solved\u00a0for {1} in {0}?", "Hogwarts", 4, null, ExampleAnswers = new[] { "Binary Puzzle", "Zoni", "R.-P.-S.-L.-Sp.", "M.A. Humanity", "Monsplode Tr.C." },
+            ExampleExtraFormatArguments = new[] { "Gryffindor", "Hufflepuff", "Slytherin", "Ravenclaw" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        HogwartsModule,
+
         [SouvenirQuestion("Who was {1} in {0}?", "Human Resources", 6, "Rebecca", "Damian", "Jean", "Mike", "River", "Samuel", "Yoshi", "Caleb", "Ashley", "Tim", "Eliott", "Ursula", "Silas", "Noah", "Quinn", "Dylan",
             ExampleExtraFormatArguments = new[] { "an employee that was not fired", "an applicant that was not hired" }, ExampleExtraFormatArgumentGroupSize = 1)]
         HumanResourcesEmployees,
