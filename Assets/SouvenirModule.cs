@@ -141,6 +141,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Synonyms = "synonyms";
     const string _TapCode = "tapCode";
     const string _TenButtonColorCode = "TenButtonColorCode";
+    const string _TextField = "TextField";
     const string _ThirdBase = "ThirdBase";
     const string _TicTacToe = "TicTacToeModule";
     const string _Timezone = "timezone";
@@ -232,6 +233,7 @@ public class SouvenirModule : MonoBehaviour
             { _Synonyms, ProcessSynonyms },
             { _TapCode, ProcessTapCode },
             { _TenButtonColorCode, ProcessTenButtonColorCode },
+            { _TextField, ProcessTextField },
             { _ThirdBase, ProcessThirdBase },
             { _TicTacToe, ProcessTicTacToe },
             { _Timezone, ProcessTimezone },
@@ -4341,6 +4343,55 @@ public class SouvenirModule : MonoBehaviour
         var colorNames = new[] { "red", "green", "blue" };
         addQuestions(module, new[] { firstStageColors, secondStageColors }.SelectMany((colors, stage) => Enumerable.Range(0, 10)
             .Select(slot => makeQuestion(Question.TenButtonColorCodeInitialColors, _TenButtonColorCode, new[] { colorNames[colors[slot]] }, new[] { ordinal(slot + 1), ordinal(stage + 1) }))));
+    }
+
+    private IEnumerable<object> ProcessTextField(KMBombModule module)
+    {
+        var comp = GetComponent(module, "TextField");
+        var fldDisplay = GetField<TextMesh[]>(comp, "ButtonLabels", true);
+        var fldActivated = GetField<bool>(comp, "_lightson");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+
+        if (comp == null || fldDisplay == null || fldActivated == null || fldSolved == null)
+            yield break;
+
+        var displayMeshes = fldDisplay.Get();
+        if (displayMeshes == null)
+            yield break;
+
+        if (displayMeshes.Any(x => x == null))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Text Field because one of the text meshes in ‘ButtonLabels’ is null.", _moduleId);
+            yield break;
+        }
+
+        if (displayMeshes.Length != 12)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Text Field because ‘ButtonLabels’ has unexpected length {1} (expected 12).", _moduleId, displayMeshes.Length);
+            yield break;
+        }
+
+        while (!fldActivated.Get())
+            yield return new WaitForSeconds(0.1f);
+
+        var answer = displayMeshes.Select(x => x.text).FirstOrDefault(x => x != "✓" && x != "✗");
+        var possibleAnswers = new[] { "A", "B", "C", "D", "E", "F" };
+
+        if (!possibleAnswers.Contains(answer))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Text Field because answer ‘{1}’ is not of expected value ({2}).", _moduleId, answer ?? "<null>", possibleAnswers.Join(", "));
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+
+        for (var i = 0; i < 12; i++)
+            if (displayMeshes[i].text == answer)
+                displayMeshes[i].text = "✓";
+
+        _modulesSolved.IncSafe(_TextField);
+        addQuestion(module, Question.TextFieldDisplay, new[] { answer });
     }
 
     private IEnumerable<object> ProcessThirdBase(KMBombModule module)
