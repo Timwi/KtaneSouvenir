@@ -18,10 +18,10 @@ MonoBehaviour:
     down things that otherwise wouldn\u2019t be significant.\r\n\r\r\nSome of the
     things this module might ask you about are listed below. For a complete list,
     please see the manual.\n\r\n[list]\r\n[*][b]3D Maze:[/b] floor markings, cardinal
-    direction\r\n[*][b]Adventure Game:[/b] your stats before you took a potion\n[*][b]Bitmaps:[/b]
-    How many white/black squares were in each quadrant\r\n[*][b]Hexamaze:[/b] pawn
-    color\r\n[*][b]Monsplode, Fight!:[/b] creatures displayed and moves shown on buttons\r\n[*][b]Mouse
-    in the Maze:[/b] color of the torus and the solution sphere\r\n[*][b]Simon States:[/b]
+    direction\r\n[*][b]Bitmaps:[/b] How many white/black squares were in each quadrant\r\n[*][b]Chess:[/b]
+    What were the coordinates shown on the module?\n[*][b]Hexamaze:[/b] pawn color\r\n[*][b]Monsplode,
+    Fight!:[/b] creatures displayed and moves shown on buttons\r\n[*][b]Mouse in the
+    Maze:[/b] color of the torus and the solution sphere\r\n[*][b]Simon States:[/b]
     which colors flashed\r\n[*][b]The Bulb:[/b] which buttons you pressed\n[*][b]Two
     Bits:[/b] the three correct query responses\r\n[/list]\r\n\r\nIf you wish to see
     another module added, please leave a comment and/or send me a message. You can
