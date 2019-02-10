@@ -101,6 +101,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Hunting = "hunting";
     const string _IceCream = "iceCreamModule";
     const string _Kudosudoku = "KudosudokuModule";
+	const string _LEDEncryption = "LEDEnc";
     const string _Listening = "Listening";
     const string _LogicGates = "logicGates";
     const string _LondonUnderground = "londonUnderground";
@@ -194,6 +195,7 @@ public class SouvenirModule : MonoBehaviour
             { _Hunting, ProcessHunting },
             { _IceCream, ProcessIceCream },
             { _Kudosudoku, ProcessKudosudoku },
+	        { _LEDEncryption, ProcessLEDEncryption },
             { _Listening, ProcessListening },
             { _LogicalButtons, ProcessLogicalButtons },
             { _LogicGates, ProcessLogicGates },
@@ -2411,6 +2413,98 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.KudosudokuPrefilled, _Kudosudoku, Enumerable.Range(0, 16).Where(ix => shown[ix]).Select(coord => (char) ('A' + (coord % 4)) + (coord / 4 + 1).ToString()).ToArray(), new[] { "pre-filled" }),
             makeQuestion(Question.KudosudokuPrefilled, _Kudosudoku, Enumerable.Range(0, 16).Where(ix => !shown[ix]).Select(coord => (char) ('A' + (coord % 4)) + (coord / 4 + 1).ToString()).ToArray(), new[] { "not pre-filled" }));
     }
+
+	private IEnumerable<object> ProcessLEDEncryption(KMBombModule module)
+	{
+		var comp = GetComponent(module, "LEDEncryption");
+		var fldButtons = GetField<KMSelectable[]>(comp, "buttons", true);
+		var fldActivated = GetField<bool>(comp, "isActivated");
+		var fldLayerMultipliers = GetField<int[]>(comp, "layerMultipliers");
+		var fldLayer = GetField<int>(comp, "layer");
+
+		if (comp == null || fldButtons == null || fldActivated == null || fldLayerMultipliers == null || fldLayer == null)
+			yield break;
+
+		while (!fldActivated.Get())
+			yield return new WaitForSeconds(0.1f);
+
+		var buttons = fldButtons.Get();
+		var layerMultipliers = fldLayerMultipliers.Get();
+		if (buttons == null || layerMultipliers == null)
+			yield break;
+
+		if (buttons.Length != 4)
+		{
+			Debug.LogFormat("<Souvenir #{0}> Abandoning LED Encryption because there is an unexpected number of buttons {1} (Expected 4)", _moduleId, buttons.Length);
+			yield break;
+		}
+
+		if (buttons.Any(x => x == null))
+		{
+			Debug.LogFormat("<Souvenir #{0}> Abandoning LED Encryption because at least one of the buttons is null.", _moduleId);
+			yield break;
+		}
+
+		if (buttons.Any(x => x.GetComponentInChildren<TextMesh>() == null))
+		{
+			Debug.LogFormat("<Souvenir #{0}> Abandoning LED Encryption because at least one of the buttons TextMesh is null.", _moduleId);
+			yield break;
+		}
+
+		if (layerMultipliers.Length < 2 || layerMultipliers.Length > 5 || layerMultipliers.Any(multipler => multipler < 2 || multipler > 7))
+		{
+			Debug.LogFormat("<Souvenir #{0}> Abandoning LED Encryption because layerMultipliers has unxepected length {1} / Values [{2}] (Expected length 2-5, Expected values 2-7)", _moduleId, layerMultipliers.Length, layerMultipliers.Select(x => x.ToString()).Join(", "));
+			yield break;
+		}
+
+		
+		var layers = layerMultipliers.Length;
+
+		
+		var stageLetters = new List<string>();
+		var wrongStageLetters = new List<string[]>();
+
+		
+
+		while (fldLayer.Get() < layers)
+		{
+			var layer = fldLayer.Get();
+			var pressed = "";
+			var wrongLetters = buttons.Select(button => button.GetComponentInChildren<TextMesh>().text).ToArray();
+			var prevInteracts = buttons.Select(btn => btn.OnInteract).ToArray();
+			for (int i = 0; i < 4; i++)
+			{
+				// Workaround bug in Mono 2.0 C# compiler
+				new Action<int>(j =>
+				{
+					buttons[j].OnInteract = delegate
+					{
+						pressed = buttons[j].GetComponentInChildren<TextMesh>().text;
+						return prevInteracts[j]();
+					};
+				})(i);
+			}
+
+			while (layer == fldLayer.Get())
+			{
+				pressed = "";
+				while (pressed == "")
+					yield return new WaitForSeconds(0.1f);
+			}
+
+			if (fldLayer.Get() != layers)
+			{
+				stageLetters.Add(pressed);
+				wrongStageLetters.Add(wrongLetters);
+			}
+		}
+
+		_modulesSolved.IncSafe(_LEDEncryption);
+		addQuestions(module,
+			stageLetters.Select((letter, stage) => makeQuestion(Question.LEDEncryption, _LEDEncryption, new[] {letter},
+				new[] {ordinal(stage + 1)}, wrongStageLetters[stage])));
+
+	}
 
     private IEnumerable<object> ProcessListening(KMBombModule module)
     {

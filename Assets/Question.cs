@@ -174,6 +174,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "pre-filled", "not pre-filled" }, ExampleExtraFormatArgumentGroupSize = 1)]
         KudosudokuPrefilled,
 
+		[SouvenirQuestion("What was the correct letter you pressed in the {1} stage of {0}", "LED Encryption", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+			ExampleExtraFormatArguments = new[] {"first", "second", "third", "4th"}, ExampleExtraFormatArgumentGroupSize = 1)]
+		LEDEncryption,
+
         [SouvenirQuestion("What was the correct code you entered in {0}?", "Listening", 6, null,
             ExampleAnswers = new[] { "&&&**", "&$#$&", "$#$*&", "#$$**", "$#$#*", "**$*#", "#$$&*", "##*$*", "$#*$&", "**#**", "#&&*#", "&#**&", "$&**#", "&#$$#", "$&&**", "#&$##", "&*$*$", "&$$&*", "#&&&&", "**$$$", "*&*&&", "*#&*&", "**###", "&&$&*", "&$**&", "#$#&$", "&#&&#", "$$*$*", "$&#$$", "&**$$", "$&&*&", "&$&##", "#&$*&", "$*$**", "*#$&&", "###&$", "*$$&$", "$*&##", "#&$&&", "$&$$*", "*$*$*" })]
         Listening,
