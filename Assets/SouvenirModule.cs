@@ -25,6 +25,7 @@ public class SouvenirModule : MonoBehaviour
     public GameObject Answers4Parent;
     public GameObject Answers6Parent;
     public GameObject[] TpNumbers;
+    public SpriteRenderer[] SpriteHolders;
 
     public TextMesh TextMesh;
     public Renderer TextRenderer;
@@ -63,6 +64,8 @@ public class SouvenirModule : MonoBehaviour
     private static int _moduleIdCounter = 1;
     private int _moduleId;
     private Dictionary<string, Func<KMBombModule, IEnumerable<object>>> _moduleProcessors;
+
+    private List<Sprite> sprites = new List<Sprite>();
 
     // The values here are “ModuleType” property on the KMBombModule components.
     const string _3DMaze = "spwiz3DMaze";
@@ -105,6 +108,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Listening = "Listening";
     const string _LogicGates = "logicGates";
     const string _LondonUnderground = "londonUnderground";
+    const string _ModuleMaze = "ModuleMaze";
     const string _Mafia = "MafiaModule";
     const string _MaritimeFlags = "MaritimeFlagsModule";
     const string _Microcontroller = "Microcontroller";
@@ -201,6 +205,7 @@ public class SouvenirModule : MonoBehaviour
             { _LogicalButtons, ProcessLogicalButtons },
             { _LogicGates, ProcessLogicGates },
             { _LondonUnderground, ProcessLondonUnderground },
+            { _ModuleMaze, ProcessModuleMaze },
             { _Mafia, ProcessMafia },
             { _MaritimeFlags, ProcessMaritimeFlags },
             { _Microcontroller, ProcessMicrocontroller },
@@ -465,6 +470,10 @@ public class SouvenirModule : MonoBehaviour
     private void disappear()
     {
         TextMesh.gameObject.SetActive(false);
+        for (int i = 0; i < SpriteHolders.Count(); i++)
+        {
+            SpriteHolders[i].gameObject.SetActive(false);
+        }
         Answers4Parent.SetActive(false);
         Answers6Parent.SetActive(false);
     }
@@ -518,9 +527,14 @@ public class SouvenirModule : MonoBehaviour
         var answ = Answers4Parent.activeSelf ? Answers4 : Answers6;
         var textMesh = answ[_currentQuestion.CorrectIndex].transform.Find("AnswerText").GetComponent<TextMesh>();
         var text = textMesh.text;
+        SpriteRenderer spriteRenderer = null;
+        if (_currentQuestion.ModuleName == "Module Maze") spriteRenderer = answ[_currentQuestion.CorrectIndex].transform.Find("SpriteHolder" + (_currentQuestion.CorrectIndex + 1)).GetComponent<SpriteRenderer>();
         for (int i = 0; i < 15; i++)
         {
-            textMesh.text = on ? text : "";
+            if (_currentQuestion.ModuleName == "Module Maze")
+                spriteRenderer.gameObject.SetActive(on);
+            else
+                textMesh.text = on ? text : "";
             on = !on;
             yield return new WaitForSeconds(.1f);
         }
@@ -593,7 +607,7 @@ public class SouvenirModule : MonoBehaviour
         Debug.LogFormat("[Souvenir #{0}] Asking question: {1}", _moduleId, q.DebugString);
         _currentQuestion = q;
         SetWordWrappedText(q.QuestionText);
-        ShowAnswers(q.Answers, q.Font, q.FontTexture);
+        ShowAnswers(q.Answers, q.Font, q.FontTexture, q.ModuleName);
         Audio.PlaySoundAtTransform("Question", transform);
     }
 
@@ -693,7 +707,7 @@ public class SouvenirModule : MonoBehaviour
         TextMesh.gameObject.SetActive(true);
     }
 
-    void ShowAnswers(string[] answers, Font font, Texture fontTexture)
+    void ShowAnswers(string[] answers, Font font, Texture fontTexture, string currentModule)
     {
         if (answers == null || answers.Length == 0 || answers.Length > 6)
         {
@@ -732,6 +746,12 @@ public class SouvenirModule : MonoBehaviour
                 // Adjust width of answer so that it fits horizontally
                 mesh.transform.localScale = new Vector3((float) (fac * _surfaceSizeFactor / bounds.x), 1, 1);
             mesh.transform.localRotation = origRotation;
+            if (currentModule == "Module Maze")
+            {
+                mesh.text = "";
+                SpriteHolders[i].gameObject.SetActive(true);
+                SpriteHolders[i].sprite = sprites.Where(x => x.name == answers[i]).First();
+            }
         }
     }
 
@@ -2790,6 +2810,32 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             departures.Select((dep, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { firstWord(dep) }, new[] { ordinal(ix + 1), "departure" }, primary)).Concat(
             destinations.Select((dest, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { firstWord(dest) }, new[] { ordinal(ix + 1), "destination" }, primary))));
+    }
+    
+    private IEnumerable<object> ProcessModuleMaze(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ModuleMazeModule");
+        var fldSprites = GetField<Sprite[]>(comp, "souvenirSprites", true);
+        var fldStart = GetField<string>(comp, "souvenirStart", true);
+
+        if (comp == null || fldSprites == null || fldStart == null)
+            yield break;
+
+        while (fldSprites.Get().Count() < 6)
+            yield return new WaitForSeconds(.1f);
+
+        var sprites = fldSprites.Get();
+        var start = fldStart.Get();
+
+        foreach (Sprite sprite in sprites)
+        {
+            if (!this.sprites.Contains(sprite))
+                this.sprites.Add(sprite);
+        }
+
+        _modulesSolved.IncSafe(_ModuleMaze);
+        _attributes[Question.ModuleMazeStartingIcon] = new SouvenirQuestionAttribute("Which of the following was the starting icon for {0}?", "Module Maze", 6, this.sprites.Select(x => x.name).ToArray());
+        addQuestion(module, Question.ModuleMazeStartingIcon, new[] { start }, null, sprites.Select(x => x.name).ToArray());
     }
 
     private IEnumerable<object> ProcessMafia(KMBombModule module)
@@ -5054,7 +5100,7 @@ public class SouvenirModule : MonoBehaviour
 
     private Dictionary<Question, SouvenirQuestionAttribute> _attributes;
 
-    private QandA makeQuestion(Question question, string moduleKey, string[] possibleCorrectAnswers, string[] extraFormatArguments = null, string[] preferredWrongAnswers = null)
+    private QandA makeQuestion(Question question, string moduleKey, string[] possibleCorrectAnswers = null, string[] extraFormatArguments = null, string[] preferredWrongAnswers = null)
     {
         SouvenirQuestionAttribute attr;
         if (!_attributes.TryGetValue(question, out attr))
