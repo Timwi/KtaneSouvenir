@@ -26,7 +26,6 @@ public class SouvenirModule : MonoBehaviour
     public GameObject Answers6Parent;
     public GameObject[] TpNumbers;
 
-    public KMSelectable MainSelectable;
     public TextMesh TextMesh;
     public Renderer TextRenderer;
     public Renderer SurfaceRenderer;
@@ -714,9 +713,6 @@ public class SouvenirModule : MonoBehaviour
                 mesh.transform.localScale = new Vector3((float) (fac * _surfaceSizeFactor / bounds.x), 1, 1);
             mesh.transform.localRotation = origRotation;
         }
-
-        MainSelectable.Children = children;
-        MainSelectable.UpdateChildren();
     }
 
     sealed class FieldInfo<T>
@@ -4571,11 +4567,26 @@ public class SouvenirModule : MonoBehaviour
 
     KMSelectable[] ProcessTwitchCommand(string command)
     {
-        if (command == "tp" && !TwitchPlaysActive)
+        if (Application.isEditor)
+        {
+            var questions = Ut.GetEnumValues<Question>();
+            var i = 0;
+            do
+            {
+                Answers6[1].OnInteract();
+                i++;
+            }
+            while ((_currentQuestion == null || !_currentQuestion.QuestionText.ContainsIgnoreCase(command)) && i < questions.Length);
+            return null;
+        }
+
+        if (!TwitchPlaysActive && command == "tp")
         {
             ActivateTwitchPlaysNumbers();
             TwitchPlaysActive = true;
+            return null;
         }
+
         var m = Regex.Match(command.ToLowerInvariant(), @"\A\s*answer\s+(\d)\s*\z");
         if (!m.Success)
             return null;
