@@ -283,6 +283,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 98fa98424f6b7174cad7e62b6db47116, type: 3}
   - {fileID: 21300000, guid: 9ef9eb1722e492b48a41c24c2c2c1961, type: 3}
   - {fileID: 21300000, guid: 84e50e9c217e241488950ab09af66e09, type: 3}
+  SymbolicCoordinateSprites:
+  - {fileID: 21300000, guid: c46883603a2000a47b888e91c5e1aab8, type: 3}
+  - {fileID: 21300000, guid: c34f67901585bec44b5344a32c7e21e9, type: 3}
+  - {fileID: 21300000, guid: b21faf7b793dc4945a31ba03c0123087, type: 3}
+  - {fileID: 21300000, guid: a3485bd7a62e28841b65f08a5329c758, type: 3}
+  - {fileID: 21300000, guid: 4cd3064f2ee8ed5458de87df41f30111, type: 3}
   TextMesh: {fileID: 102000012539687798}
   TextRenderer: {fileID: 23000013337156738}
   SurfaceRenderer: {fileID: 23000012396776310}
