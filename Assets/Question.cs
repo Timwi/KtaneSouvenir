@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace Souvenir
         _3DMazeBearing,
 
         [SouvenirQuestion("What was the {1} goal node in {0}?", "3D Tunnels", 6, "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", ".",
-            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1, Font = AnswerFont.SymbolsFont)]
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.SymbolsFont)]
         _3DTunnelsTargetNode,
 
         [SouvenirQuestion("Which item was the {1} correct item you used in {0}?", "Adventure Game", 4, "Broadsword", "Caber", "Nasty knife", "Longbow", "Magic orb", "Grimoire", "Balloon", "Battery", "Bellows", "Cheat code", "Crystal ball", "Feather", "Hard drive", "Lamp", "Moonstone", "Potion", "Small dog", "Stepladder", "Sunstone", "Symbol", "Ticket", "Trophy",
@@ -91,10 +92,10 @@ namespace Souvenir
         ColoredSquaresFirstGroup,
 
         [SouvenirQuestion("What was the initial position of the switches in {0}?", "Colored Switches", 6, "RRRRR", "QRRRR", "RQRRR", "QQRRR", "RRQRR", "QRQRR", "RQQRR", "QQQRR", "RRRQR", "QRRQR", "RQRQR", "QQRQR", "RRQQR", "QRQQR", "RQQQR", "QQQQR", "RRRRQ", "QRRRQ", "RQRRQ", "QQRRQ", "RRQRQ", "QRQRQ", "RQQRQ", "QQQRQ", "RRRQQ", "QRRQQ", "RQRQQ", "QQRQQ", "RRQQQ", "QRQQQ", "RQQQQ", "QQQQQ",
-            Font = AnswerFont.SymbolsFont)]
+            Type = AnswerType.SymbolsFont)]
         ColoredSwitchesInitialPosition,
         [SouvenirQuestion("What was the position of the switches when the LEDs came on in {0}?", "Colored Switches", 6, "RRRRR", "QRRRR", "RQRRR", "QQRRR", "RRQRR", "QRQRR", "RQQRR", "QQQRR", "RRRQR", "QRRQR", "RQRQR", "QQRQR", "RRQQR", "QRQQR", "RQQQR", "QQQQR", "RRRRQ", "QRRRQ", "RQRRQ", "QQRRQ", "RRQRQ", "QRQRQ", "RQQRQ", "QQQRQ", "RRRQQ", "QRRQQ", "RQRQQ", "QQRQQ", "RRQQQ", "QRQQQ", "RQQQQ", "QQQQQ",
-            Font = AnswerFont.SymbolsFont)]
+            Type = AnswerType.SymbolsFont)]
         ColoredSwitchesWhenLEDsCameOn,
 
         [SouvenirQuestion("What was the color of the {1} LED in {0}?", "Color Morse", 6, "Blue", "Green", "Orange", "Purple", "Red", "Yellow", "White",
@@ -196,11 +197,11 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "gate A", "gate B", "gate C", "gate D", "gate E", "gate F", "gate G", "the duplicated gate" }, ExampleExtraFormatArgumentGroupSize = 1)]
         LogicGatesGates,
 
-        [SouvenirQuestion("What was the first word in the name of the {1} {2} station in the last successful run on {0}?", "London Underground", 4, null, AddThe = true,
-            ExampleExtraFormatArguments = new[] { "first", "departure", "second", "departure", "first", "destination", "second", "destination" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        [SouvenirQuestion("What was the first word in the name of the {1} {2} station in the last successful run on {0}?", "London Underground", 4, "Acton", "Aldgate", "Angel", "Archway", "Arsenal", "Baker", "Barbican", "Barons", "Bayswater", "Belsize", "Bermondsey", "Bethnal", "Blackfriars", "Blackhorse", "Bond", "Borough", "Bounds", "Bow", "Brent", "Brixton", "Bromley-by-Bow", "Caledonian", "Camden", "Canada", "Canary", "Canning", "Cannon", "Chalk", "Chancery", "Charing", "Chiswick", "Clapham", "Covent", "Dollis", "Ealing", "Earl's", "East", "Edgware", "Elephant", "Embankment", "Euston", "Farringdon", "Finchley", "Finsbury", "Gloucester", "Golders", "Goldhawk", "Goodge", "Great", "Green", "Hammersmith", "Hampstead", "Hanger", "Harlesden", "Hendon", "High", "Highbury", "Highgate", "Holborn", "Holland", "Holloway", "Hyde", "Kennington", "Kensal", "Kentish", "Kilburn", "King's", "Knightsbridge", "Ladbroke", "Lambeth", "Lancaster", "Latimer", "Leicester", "Leyton", "Leytonstone", "Liverpool", "London", "Maida", "Manor", "Mansion", "Marble", "Marylebone", "Mile", "Monument/Bank", "Moorgate", "Mornington", "Neasden", "North", "Northfields", "Notting", "Old", "Oval", "Oxford", "Paddington", "Piccadilly", "Pimlico", "Plaistow", "Queen's", "Queensway", "Ravenscourt", "Regent's", "Royal", "Russell", "Seven", "Shepherd's", "Sloane", "South", "Southwark", "Stamford", "Stepney", "Stockwell", "Stonebridge", "Stratford", "Swiss", "Temple", "Tottenham", "Tower", "Tufnell", "Turnham", "Turnpike", "Upton", "Vauxhall", "Victoria", "Walthamstow", "Warren", "Warwick", "Waterloo", "Wembley", "West", "Westbourne", "Westminster", "White", "Whitechapel", "Willesden", "Wood",
+            AddThe = true, ExampleExtraFormatArguments = new[] { "first", "departure", "second", "departure", "first", "destination", "second", "destination" }, ExampleExtraFormatArgumentGroupSize = 2)]
         LondonUndergroundStations,
-        
-        [SouvenirQuestion("Which of the following was the starting icon for {0}?", "Module Maze", 6, "")]
+
+        [SouvenirQuestion("Which of the following was the starting icon for {0}?", "Module Maze", 6, null, Type = AnswerType.Sprites)]
         ModuleMazeStartingIcon,
 
         [SouvenirQuestion("Who was a player, but not the Godfather, in the last stage of {0}?", "Mafia", 6, "Rob", "Tim", "Mary", "Briane", "Hunter", "Macy", "John", "Will", "Lacy", "Claire", "Kenny", "Rick", "Walter", "Bonnie", "Luke", "Bill", "Sarah", "Larry", "Kate", "Stacy", "Diane", "Mac", "Jim", "Clyde", "Tommy", "Lenny", "Molly", "Benny", "Phil", "Bob", "Gary", "Ted", "Kim", "Nate", "Cher", "Ron", "Thomas", "Sam", "Duke", "Jack", "Ed", "Ronny", "Terry", "Claira", "Nick", "Cob", "Ash", "Don", "Jerry", "Simon")]
@@ -291,8 +292,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "top", "bottom" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PatternCubeHighlightPosition,
 
-        [SouvenirQuestion("Which peg was {1} in the solution to {0}?", "Perspective Pegs", 4, "top", "top right", "bottom right", "bottom left", "top left",
-            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("Which peg was {1} in the solution to {0}?", "Perspective Pegs", 6, null,
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.Sprites)]
         PerspectivePegsSolution,
 
         [SouvenirQuestion("What was the starting position in {0}?", "Polyhedral Maze", 6, null, ExampleAnswers = new[] { "1", "16", "24", "47", "89" })]
@@ -329,7 +330,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SeaShells3,
 
-        [SouvenirQuestion("What was the initial shape in {0}?", "Shape Shift", 4, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", Font = AnswerFont.SymbolsFont)]
+        [SouvenirQuestion("What was the initial shape in {0}?", "Shape Shift", 4, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", Type = AnswerType.SymbolsFont)]
         ShapeShiftInitialShape,
 
         [SouvenirQuestion("What was the {1} slot in the {2} stage in {0}?", "Silly Slots", 4, "red bomb", "red cherry", "red coin", "red grape", "green bomb", "green cherry", "green coin", "green grape", "blue bomb", "blue cherry", "blue coin", "blue grape",
@@ -407,7 +408,7 @@ namespace Souvenir
         SwitchInitialColor,
 
         [SouvenirQuestion("What was the initial position of the switches in {0}?", "Switches", 6, "RRRRR", "QRRRR", "RQRRR", "QQRRR", "RRQRR", "QRQRR", "RQQRR", "QQQRR", "RRRQR", "QRRQR", "RQRQR", "QQRQR", "RRQQR", "QRQQR", "RQQQR", "QQQQR", "RRRRQ", "QRRRQ", "RQRRQ", "QQRRQ", "RRQRQ", "QRQRQ", "RQQRQ", "QQQRQ", "RRRQQ", "QRRQQ", "RQRQQ", "QQRQQ", "RRQQQ", "QRQQQ", "RQQQQ", "QQQQQ",
-            Font = AnswerFont.SymbolsFont)]
+            Type = AnswerType.SymbolsFont)]
         SwitchesInitialPosition,
 
         [SouvenirQuestion("Which number was displayed on {0}?", "Synonyms", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
@@ -459,10 +460,11 @@ namespace Souvenir
         YahtzeeInitialRoll,
     }
 
-    enum AnswerFont
+    enum AnswerType
     {
         Default,
-        SymbolsFont
+        SymbolsFont,
+        Sprites
     }
 
     [AttributeUsage(AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
@@ -477,7 +479,7 @@ namespace Souvenir
         public int ExampleExtraFormatArgumentGroupSize { get; set; }
         public bool AddThe { get; set; }
         public string[] ExampleAnswers { get; set; }
-        public AnswerFont Font { get; set; }
+        public AnswerType Type { get; set; }
 
         public SouvenirQuestionAttribute(string questionText, string moduleName, int numAnswers, params string[] allAnswers)
         {
@@ -485,27 +487,115 @@ namespace Souvenir
             ModuleName = moduleName;
             NumAnswers = numAnswers;
             AllAnswers = allAnswers == null || allAnswers.Length == 0 ? null : allAnswers;
-            Font = AnswerFont.Default;
+            Type = AnswerType.Default;
         }
     }
 
-    sealed class QandA
+    abstract class QandA
     {
         public string ModuleName { get; private set; }
         public string QuestionText { get; private set; }
-        public string[] Answers { get; private set; }
         public int CorrectIndex { get; private set; }
-        public Font Font { get; private set; }
-        public Texture FontTexture { get; private set; }
-        public QandA(string moduleName, string question, string[] answers, int correct, Font font, Texture fontTexture)
+        public int NumAnswers { get; private set; } // must be 4 or 6
+        public QandA(string module, string question, int correct, int numAnswers)
         {
-            ModuleName = moduleName;
+            ModuleName = module;
             QuestionText = question;
-            Answers = answers;
             CorrectIndex = correct;
-            Font = font;
-            FontTexture = fontTexture;
+            NumAnswers = numAnswers;
         }
-        public string DebugString { get { return string.Format("{0} — {1}", QuestionText, Answers.Select((a, ix) => string.Format(ix == CorrectIndex ? "[_{0}_]" : "{0}", a)).JoinString(" | ")); } }
+        public abstract void SetAnswers(SouvenirModule souvenir);
+        public string DebugString { get { return string.Format("{0} — {1}", QuestionText, DebugAnswers.Select((a, ix) => string.Format(ix == CorrectIndex ? "[_{0}_]" : "{0}", a)).JoinString(" | ")); } }
+        public abstract IEnumerable<string> DebugAnswers { get; }
+        public abstract double DesiredHeightFactor { get; }
+        public abstract void BlinkCorrectAnswer(bool on, SouvenirModule souvenir);
+
+        protected void SetupAnswers(SouvenirModule souvenir, float xSpacing, float ySpacing)
+        {
+            var highlightMesh = NumAnswers > 4 ? souvenir.HighlightShort : souvenir.HighlightLong;
+            for (int i = 0; i < souvenir.Answers.Length; i++)
+            {
+                souvenir.Answers[i].gameObject.SetActive(Application.isEditor || i < NumAnswers);
+                souvenir.Answers[i].transform.Find("SpriteHolder").gameObject.SetActive(false);
+                souvenir.Answers[i].transform.Find("AnswerText").gameObject.SetActive(false);
+                var h1 = souvenir.Answers[i].transform.Find("Highlight");
+                h1.GetComponent<MeshFilter>().sharedMesh = highlightMesh;
+                var h2 = h1.Find("Highlight(Clone)");
+                if (h2 != null)
+                    h2.GetComponent<MeshFilter>().sharedMesh = highlightMesh;
+                souvenir.Answers[i].transform.localPosition = new Vector3(-18.125f + xSpacing * (i / 2), 2.525f, -16.25f + ySpacing * (1 - i % 2));
+            }
+        }
+    }
+
+    sealed class QandAText : QandA
+    {
+        private readonly string[] _answers;
+        private readonly Font _font;
+        private readonly Texture _fontTexture;
+        private readonly Material _fontMaterial;
+        public QandAText(string module, string question, int correct, string[] answers, Font font, Texture fontTexture, Material fontMaterial) : base(module, question, correct, answers.Length)
+        {
+            _answers = answers;
+            _font = font;
+            _fontTexture = fontTexture;
+            _fontMaterial = fontMaterial;
+        }
+        public override IEnumerable<string> DebugAnswers { get { return _answers; } }
+        public override double DesiredHeightFactor { get { return 1.1; } }
+
+        public override void SetAnswers(SouvenirModule souvenir)
+        {
+            SetupAnswers(souvenir, _answers.Length > 4 ? 13.125f : 19.375f, 6.25f);
+            for (int i = 0; i < souvenir.Answers.Length; i++)
+            {
+                var mesh = souvenir.Answers[i].transform.Find("AnswerText").GetComponent<TextMesh>();
+                mesh.gameObject.SetActive(true);
+
+                mesh.text = i < _answers.Length ? _answers[i] : "•";
+                mesh.font = _font;
+                mesh.GetComponent<MeshRenderer>().material = _fontMaterial;
+                mesh.GetComponent<MeshRenderer>().material.mainTexture = _fontTexture;
+
+                // Determine size of the answer and if it’s too long, shrink it horizontally to make it fit
+                var origRotation = mesh.transform.localRotation;
+                mesh.transform.eulerAngles = new Vector3(90, 0, 0);
+                mesh.transform.localScale = new Vector3(1, 1, 1);
+                var bounds = mesh.GetComponent<Renderer>().bounds.size;
+                var fac = (_answers.Length > 4 ? .45 : .7) * souvenir.SurfaceSizeFactor;
+                if (bounds.x > fac)
+                    mesh.transform.localScale = new Vector3((float) (fac / bounds.x), 1, 1);
+                mesh.transform.localRotation = origRotation;
+            }
+        }
+
+        public override void BlinkCorrectAnswer(bool on, SouvenirModule souvenir)
+        {
+            souvenir.Answers[CorrectIndex].transform.Find("AnswerText").gameObject.SetActive(on);
+        }
+    }
+
+    sealed class QandASprite : QandA
+    {
+        private readonly Sprite[] _answers;
+        public QandASprite(string module, string question, int correct, Sprite[] answers) : base(module, question, correct, answers.Length) { _answers = answers; }
+        public override IEnumerable<string> DebugAnswers { get { return _answers.Select(s => s.name); } }
+        public override double DesiredHeightFactor { get { return 1; } }
+
+        public override void SetAnswers(SouvenirModule souvenir)
+        {
+            SetupAnswers(souvenir, _answers.Length > 4 ? 13.125f : 19.375f, 7.75f);
+            for (int i = 0; i < souvenir.Answers.Length; i++)
+            {
+                var spriteRenderer = souvenir.Answers[i].transform.Find("SpriteHolder").GetComponent<SpriteRenderer>();
+                spriteRenderer.gameObject.SetActive(i < _answers.Length);
+                spriteRenderer.sprite = i < _answers.Length ? _answers[i] : null;
+            }
+        }
+
+        public override void BlinkCorrectAnswer(bool on, SouvenirModule souvenir)
+        {
+            souvenir.Answers[CorrectIndex].transform.Find("SpriteHolder").gameObject.SetActive(on);
+        }
     }
 }
