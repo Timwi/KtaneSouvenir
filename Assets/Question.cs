@@ -213,7 +213,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MicrocontrollerPinOrder,
 
-        [SouvenirQuestion("Which color was the correct starting color in {0}?", "Minesweeper", 6, "red", "orange", "yellow", "green", "blue", "purple", "black")]
+        [SouvenirQuestion("What was the color of the starting cell in {0}?", "Minesweeper", 6, "red", "orange", "yellow", "green", "blue", "purple", "black")]
         MinesweeperStartingColor,
 
         [SouvenirQuestion("Which creature was displayed {1}in {0}?", "Monsplode, Fight!", 4, "Caadarim", "Buhar", "Melbor", "Lanaluff", "Bob", "Mountoise", "Aluga", "Nibs", "Zapra", "Zenlad", "Vellarim", "Ukkens", "Lugirit", "Flaurim", "Myrchat", "Clondar", "Gloorim", "Docsplode", "Magmy", "Pouse", "Asteran", "Violan", "Percy", "Cutie Pie",
@@ -352,7 +352,7 @@ namespace Souvenir
                 "at most one color flashing out of red, yellow, and blue",
                 "two colors opposite each other that didn’t flash",
                 "two (but not three) adjacent colors flashing in clockwise order"
-            }, ExampleExtraFormatArgumentGroupSize = 2)]
+            }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonScreamsRule,
 
         [SouvenirQuestion("What was the {1} received letter in {0}?", "Simon Sends", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
