@@ -410,7 +410,7 @@ namespace Souvenir
             Type = AnswerType.SymbolsFont)]
         SwitchesInitialPosition,
 
-		[SouvenirQuestion("How many symbols were on the {1} screen in {0}?", "Symbol Cycle", 4, "2", "3", "4", "5",
+		[SouvenirQuestion("How many symbols were cycling on the {1} screen in the last successful round on {0}?", "Symbol Cycle", 4, "2", "3", "4", "5",
 			ExampleExtraFormatArguments = new[] { "left", "right" }, ExampleExtraFormatArgumentGroupSize = 1)]
 		SymbolCycleSymbolCounts,
 
