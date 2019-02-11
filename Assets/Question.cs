@@ -411,6 +411,10 @@ namespace Souvenir
             Type = AnswerType.SymbolsFont)]
         SwitchesInitialPosition,
 
+		[SouvenirQuestion("How many symbols were on the {1} screen in {0}?", "Symbol Cycle", 4, "2", "3", "4", "5",
+			ExampleExtraFormatArguments = new[] { "left", "right" }, ExampleExtraFormatArgumentGroupSize = 1)]
+		SymbolCycleSymbolCounts,
+
         [SouvenirQuestion("Which number was displayed on {0}?", "Synonyms", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
         SynonymsNumber,
 
