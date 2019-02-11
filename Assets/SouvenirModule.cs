@@ -26,6 +26,7 @@ public class SouvenirModule : MonoBehaviour
     public GameObject[] TpNumbers;
     public Sprite[] ExampleSprites;
     public Sprite[] PerspectivePegsSprites;
+	public Sprite[] SymbolicCoordinateSprites;
 
     public TextMesh TextMesh;
     public Renderer TextRenderer;
@@ -152,6 +153,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Souvenir = "SouvenirModule";
     const string _Switch = "BigSwitch";
     const string _Switches = "switchModule";
+	const string _SymbolicCoordinates = "symbolicCoordinates";
     const string _SymbolCycle = "SymbolCycleModule";
     const string _Synonyms = "synonyms";
     const string _TapCode = "tapCode";
@@ -250,6 +252,7 @@ public class SouvenirModule : MonoBehaviour
             { _Souvenir, ProcessSouvenir },
             { _Switch, ProcessSwitch },
             { _Switches, ProcessSwitches },
+	        { _SymbolicCoordinates, ProcessSymbolicCoordinates },
             { _SymbolCycle, ProcessSymbolCycle },
             { _Synonyms, ProcessSynonyms },
             { _TapCode, ProcessTapCode },
@@ -4425,6 +4428,49 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_Switches);
         addQuestion(module, Question.SwitchesInitialPosition, correctAnswers: new[] { initialState });
     }
+
+	private IEnumerable<object> ProcessSymbolicCoordinates(KMBombModule module)
+	{
+		var comp = GetComponent(module, "symbolicCoordinatesScript");
+		var fldLetter1 = GetField<string>(comp, "letter1");
+		var fldLetter2 = GetField<string>(comp, "letter2");
+		var fldLetter3 = GetField<string>(comp, "letter3");
+		var fldStage = GetField<int>(comp, "stage");
+
+		if (comp == null || fldLetter1 == null || fldLetter2 == null || fldLetter3 == null || fldStage == null)
+			yield break;
+
+		yield return null;
+
+		var letter1 = fldLetter1.Get();
+		var letter2 = fldLetter2.Get();
+		var letter3 = fldLetter3.Get();
+
+		if (letter1 == null || letter2 == null || letter3 == null)
+			yield break;
+
+		var stageLetters = new[] { letter1.Split(' ').ToArray(), letter2.Split(' ').ToArray(), letter3.Split(' ').ToArray() };
+
+		if (stageLetters.Any(x => x.Length != 3) || stageLetters.SelectMany(x => x).Any(y => !"PLACE".Contains(y)))
+		{
+			Debug.LogFormat("<Souvenir #{1}> Abandoing Symbolic Coordinates because one of the stages has less than 3 symbols or symbols are of unexpected value. (Expected symbols \"ACELP\", Got {0})", stageLetters.Select(x => "\"" + x.JoinString(" ")).JoinString(", "), _moduleId);
+			yield break;
+		}
+		
+		while (fldStage.Get() < 4)
+			yield return new WaitForSeconds(0.1f);
+
+		_modulesSolved.IncSafe(_SymbolicCoordinates);
+
+		var position = new[] {"left", "middle", "right"};
+		addQuestions(module, stageLetters.SelectMany((letters, stage) => letters.Select((letter, pos) => makeQuestion(
+			Question.SymbolicCoordinateSymbols, 
+			_SymbolicCoordinates, 
+			formatArgs: new [] { position[pos], ordinal(stage+1) },
+			correctAnswers: new [] { SymbolicCoordinateSprites["ACELP".IndexOf(letter, StringComparison.Ordinal)] },
+			preferredWrongAnswers: SymbolicCoordinateSprites 
+			))));
+	}
 
     private IEnumerable<object> ProcessSymbolCycle(KMBombModule module)
     {

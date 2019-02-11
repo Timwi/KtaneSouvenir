@@ -410,6 +410,10 @@ namespace Souvenir
             Type = AnswerType.SymbolsFont)]
         SwitchesInitialPosition,
 
+		[SouvenirQuestion("What was the {1} symbol on the {2} stage of {0}?", "Symbolic Coordinates", 6, null,
+			ExampleExtraFormatArguments = new[] { "left", "first", "left", "second", "left", "third", "middle", "first", "middle", "second", "middle", "third", "right", "first", "right", "second", "right", "third" }, ExampleExtraFormatArgumentGroupSize = 2, Type = AnswerType.Sprites)]
+		SymbolicCoordinateSymbols,
+
 		[SouvenirQuestion("How many symbols were cycling on the {1} screen in the last successful round on {0}?", "Symbol Cycle", 4, "2", "3", "4", "5",
 			ExampleExtraFormatArguments = new[] { "left", "right" }, ExampleExtraFormatArgumentGroupSize = 1)]
 		SymbolCycleSymbolCounts,
