@@ -3004,7 +3004,6 @@ public class SouvenirModule : MonoBehaviour
                     }
                     else
                     {
-                        var wasCorrect = fldCorrectCount.Get() > prevCorrectCount;
                         // If ‘revive’ is ‘false’, there is not going to be another stage.
                         if (!fldRevive.Get())
                             finished = true;
