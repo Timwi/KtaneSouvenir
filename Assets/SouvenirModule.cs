@@ -2957,10 +2957,8 @@ public class SouvenirModule : MonoBehaviour
         if (creatureNames == null || moveNames == null)
             yield break;
 
-        var displayedCreature = new List<string>();
-        var displayedMoves = new List<string[]>();
-        var pushedMoves = new List<int>();
-        var correctMoves = new List<bool>();
+        string displayedCreature = null;
+        string[] displayedMoves = null;
         var finished = false;
 
         var origInteracts = buttons.Select(btn => btn.OnInteract).ToArray();
@@ -3002,8 +3000,6 @@ public class SouvenirModule : MonoBehaviour
                         // Set these to null to signal that something went wrong and we need to abort
                         displayedCreature = null;
                         displayedMoves = null;
-                        pushedMoves = null;
-                        correctMoves = null;
                         finished = true;
                     }
                     else
@@ -3013,12 +3009,10 @@ public class SouvenirModule : MonoBehaviour
                         if (!fldRevive.Get())
                             finished = true;
 
-                        if (curCreatureName != null && curMoveNames != null && displayedCreature != null && displayedMoves != null)
+                        if (curCreatureName != null && curMoveNames != null)
                         {
-                            displayedCreature.Add(curCreatureName);
-                            displayedMoves.Add(curMoveNames);
-                            pushedMoves.Add(j);
-                            correctMoves.Add(wasCorrect);
+                            displayedCreature = curCreatureName;
+                            displayedMoves = curMoveNames;
                         }
                     }
                     return ret;
@@ -3036,25 +3030,10 @@ public class SouvenirModule : MonoBehaviour
         if (displayedCreature == null || displayedMoves == null)
             yield break;
 
-        if (displayedCreature.Count != displayedMoves.Count || displayedCreature.Count != pushedMoves.Count || displayedCreature.Count != correctMoves.Count)
-        {
-            Debug.LogFormat("<Souvenir #{4}> Monsplode, Fight!: Inconsistent list lengths: {0}, {1}, {2}, {3}.", displayedCreature.Count, displayedMoves.Count, pushedMoves.Count, correctMoves.Count, _moduleId);
-            yield break;
-        }
-
-        var attr = _attributes.Get(Question.MonsplodeFightMove);
-        var allDisplayedCreatures = displayedCreature.ToArray();
-        var allDisplayedMoves = displayedMoves.SelectMany(x => x).Distinct().ToArray();
-        var qs = new List<QandA>();
-        for (int i = 0; i < displayedCreature.Count; i++)
-        {
-            qs.Add(makeQuestion(Question.MonsplodeFightCreature, _MonsplodeFight, new[] { displayedCreature[i] }, new[] { displayedCreature.Count == 1 ? "" : ordinal(i + 1) + " " }, allDisplayedCreatures));
-            var ord = displayedCreature.Count == 1 ? "" : string.Format("for the {0} creature ", ordinal(i + 1));
-            qs.Add(makeQuestion(Question.MonsplodeFightMove, _MonsplodeFight, displayedMoves[i], new[] { "was", ord }, allDisplayedMoves));
-            if (attr != null && attr.AllAnswers != null)
-                qs.Add(makeQuestion(Question.MonsplodeFightMove, _MonsplodeFight, attr.AllAnswers.Except(displayedMoves[i]).ToArray(), new[] { "was not", ord }, allDisplayedMoves));
-        }
-        addQuestions(module, qs);
+        addQuestions(module,
+            makeQuestion(Question.MonsplodeFightCreature, _MonsplodeFight, new[] { displayedCreature }),
+            makeQuestion(Question.MonsplodeFightMove, _MonsplodeFight, displayedMoves, new[] { "was" }),
+            makeQuestion(Question.MonsplodeFightMove, _MonsplodeFight, _attributes.Get(Question.MonsplodeFightMove).AllAnswers.Except(displayedMoves).ToArray(), new[] { "was not" }));
     }
 
     private IEnumerable<object> ProcessMonsplodeTradingCards(KMBombModule module)
