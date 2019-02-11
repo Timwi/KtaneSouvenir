@@ -152,6 +152,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Souvenir = "SouvenirModule";
     const string _Switch = "BigSwitch";
     const string _Switches = "switchModule";
+	const string _SymbolCycle = "SymbolCycleModule";
     const string _Synonyms = "synonyms";
     const string _TapCode = "tapCode";
     const string _TenButtonColorCode = "TenButtonColorCode";
@@ -249,6 +250,7 @@ public class SouvenirModule : MonoBehaviour
             { _Souvenir, ProcessSouvenir },
             { _Switch, ProcessSwitch },
             { _Switches, ProcessSwitches },
+	        { _SymbolCycle, ProcessSymbolCycle },
             { _Synonyms, ProcessSynonyms },
             { _TapCode, ProcessTapCode },
             { _TenButtonColorCode, ProcessTenButtonColorCode },
@@ -4423,6 +4425,50 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_Switches);
         addQuestion(module, Question.SwitchesInitialPosition, correctAnswers: new[] { initialState });
     }
+
+	private IEnumerable<object> ProcessSymbolCycle(KMBombModule module)
+	{
+		var comp = GetComponent(module, "SymbolCycleModule");
+		var fldCycles = GetField<int[][]>(comp, "_cycles");
+		var fldState = GetField<object>(comp, "_state");
+
+		if (comp == null || fldCycles == null || fldState == null)
+			yield break;
+
+		yield return null;
+
+
+		int[][] cycles = null;
+		while (fldState.Get().ToString() != "Solved")
+		{
+			cycles = fldCycles.Get();
+			if (cycles == null)
+				yield break;
+			if (cycles.Length != 2)
+			{
+				Debug.LogFormat("[Souvenir #{0}] Abandoning Symbol Cycle because the number of screens is unexpected. (Expected 2, got {1})", _moduleId, cycles.Length);
+				yield break;
+			}
+
+			if (cycles.Any(x => x == null || x.Length < 2 || x.Length > 5))
+			{
+				Debug.LogFormat("[Souvenir #{0}] Abandoning Symbol Cycle because the number of cycles per screen is unexpected. (Expected 2-5, Got {1})", _moduleId, cycles.Select(x => x == null ? "<null>" : x.Length.ToString()).Join(", "));
+				yield break;
+			}
+
+			while (fldState.Get().ToString() == "Cycling")
+				yield return new WaitForSeconds(0.1f);
+
+			while (fldState.Get().ToString() == "Retrotransphasic" || fldState.Get().ToString() == "Anterodiametric")
+				yield return new WaitForSeconds(0.1f);
+		}
+
+		if (cycles == null)
+			yield break;
+
+		_modulesSolved.IncSafe(_SymbolCycle);
+		addQuestions(module, new [] {"left", "right"}.Select((screen, ix) => makeQuestion(Question.SymbolCycleSymbolCounts, _SymbolCycle, new [] { cycles[ix].Length.ToString() }, new [] { screen} )));
+	}
 
     private IEnumerable<object> ProcessSynonyms(KMBombModule module)
     {
