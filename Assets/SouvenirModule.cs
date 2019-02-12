@@ -1875,7 +1875,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessColorMorse(KMBombModule module)
     {
-        var comp = GetComponent(module, "FlashingMathModule");
+        var comp = GetComponent(module, "ColorMorseModule");
         var fldNumbers = GetField<int[]>(comp, "Numbers");
         var fldColors = GetField<int[]>(comp, "Colors");
         var fldColorNames = GetField<string[]>(comp, "ColorNames", isPublic: true);
