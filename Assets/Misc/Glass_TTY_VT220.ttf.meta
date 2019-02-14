@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: a6d758bc9465c8a4f9ae5128b6aad5d6
+timeCreated: 1550175549
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Glass TTY VT220
+  fontNames:
+  - Glass TTY VT220
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

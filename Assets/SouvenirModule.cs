@@ -31,10 +31,8 @@ public class SouvenirModule : MonoBehaviour
     public Renderer TextRenderer;
     public Renderer SurfaceRenderer;
     public Material FontMaterial;
-    public Font FontDefault;
-    public Texture FontDefaultTexture;
-    public Font FontSymbols;
-    public Texture FontSymbolsTexture;
+	public Font[] Fonts;
+	public Texture[] FontTextures;
     public Mesh HighlightShort;
     public Mesh HighlightLong;
 
@@ -393,13 +391,14 @@ public class SouvenirModule : MonoBehaviour
                         {
                             case AnswerType.Default:
                             case AnswerType.SymbolsFont:
+							case AnswerType.GlassTTYFont:
                                 SetQuestion(new QandAText(
                                     module: attr.ModuleName,
                                     question: string.Format(attr.QuestionText, fmt),
                                     correct: 0,
                                     answers: (attr.AllAnswers ?? attr.ExampleAnswers).ToList().Shuffle().Take(attr.NumAnswers).ToArray(),
-                                    font: font(attr.Type),
-                                    fontTexture: fontTexture(attr.Type),
+                                    font: Fonts[font(attr.Type)],
+                                    fontTexture: FontTextures[font(attr.Type)],
                                     fontMaterial: FontMaterial));
                                 break;
 
@@ -449,24 +448,17 @@ public class SouvenirModule : MonoBehaviour
         };
     }
 
-    private Font font(AnswerType font)
+    private int font(AnswerType font)
     {
         switch (font)
         {
             case AnswerType.SymbolsFont:
-                return FontSymbols;
+                return 1;
+			case AnswerType.GlassTTYFont:
+				return 2;
+			default:
+				return 0;
         }
-        return FontDefault;
-    }
-
-    private Texture fontTexture(AnswerType font)
-    {
-        switch (font)
-        {
-            case AnswerType.SymbolsFont:
-                return FontSymbolsTexture;
-        }
-        return FontDefaultTexture;
     }
 
     void setAnswerHandler(int index, Action<int> handler)
@@ -4900,6 +4892,8 @@ public class SouvenirModule : MonoBehaviour
 		if (commands == null || deleteButton == null || downButton == null)
 			yield break;
 
+		var codeLines = (from object command in commands select mthFormatCommand.Invoke(command, false)).ToArray();
+
 		var bugs = new List<string>();
 		var bugsMarked = new HashSet<int>();
 
@@ -4918,8 +4912,6 @@ public class SouvenirModule : MonoBehaviour
 
 		while (!fldSolved.Get())
 			yield return new WaitForSeconds(0.1f);
-
-		var codeLines = (from object command in commands select mthFormatCommand.Invoke(command, true).Replace("#", "")).ToArray();
 
 		_modulesSolved.IncSafe(_TurtleRobot);
 		addQuestions(module, bugs.Take(2).Select((bug, ix) => makeQuestion(Question.TurtleRobotCodeLines, _TurtleRobot, new[] { ordinal(ix + 1) }, new [] { bug }, codeLines)));
@@ -5183,7 +5175,7 @@ public class SouvenirModule : MonoBehaviour
     private QandA makeQuestion(Question question, string moduleKey, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null)
     {
         return makeQuestion(question, moduleKey,
-            (attr, q, correct, answers) => new QandAText(attr.ModuleName, q, correct, answers.ToArray(), font(attr.Type), fontTexture(attr.Type), FontMaterial),
+            (attr, q, correct, answers) => new QandAText(attr.ModuleName, q, correct, answers.ToArray(), Fonts[font(attr.Type)], FontTextures[font(attr.Type)], FontMaterial),
             formatArgs, correctAnswers, preferredWrongAnswers);
     }
 
