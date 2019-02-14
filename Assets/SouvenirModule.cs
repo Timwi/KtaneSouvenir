@@ -162,6 +162,7 @@ public class SouvenirModule : MonoBehaviour
     const string _ThirdBase = "ThirdBase";
     const string _TicTacToe = "TicTacToeModule";
     const string _Timezone = "timezone";
+	const string _TurtleRobot = "turtleRobot";
     const string _TwoBits = "TwoBits";
     const string _UncoloredSquares = "UncoloredSquaresModule";
     const string _VisualImpairment = "visual_impairment";
@@ -261,6 +262,7 @@ public class SouvenirModule : MonoBehaviour
             { _ThirdBase, ProcessThirdBase },
             { _TicTacToe, ProcessTicTacToe },
             { _Timezone, ProcessTimezone },
+	        { _TurtleRobot, ProcessTurtleRobot },
             { _TwoBits, ProcessTwoBits },
             { _UncoloredSquares, ProcessUncoloredSquares },
             { _VisualImpairment, ProcessVisualImpairment },
@@ -4870,6 +4872,53 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.TimezoneCities, _Timezone, new[] { "departure" }, new[] { fldFromCity.Get() }),
             makeQuestion(Question.TimezoneCities, _Timezone, new[] { "destination" }, new[] { fldToCity.Get() }));
     }
+
+	private IEnumerable<object> ProcessTurtleRobot(KMBombModule module)
+	{
+		var comp = GetComponent(module, "TurtleRobot");
+		var fldCursor = GetField<int>(comp, "_cursor");
+		var fldCommands = GetField<IList>(comp, "_commands");
+		var fldSolved = GetField<bool>(comp, "_isSolved");
+		var fldButtonDelete = GetField<KMSelectable>(comp, "ButtonDelete", isPublic: true);
+		var fldButtonDown = GetField<KMSelectable>(comp, Rnd.value < 0.5f ? "ButtonUp" : "ButtonDown" , isPublic: true);
+		var mthFormatCommand = GetMethod<string>(comp, "FormatCommand", 2);
+
+		if (comp == null || fldCursor == null || fldCommands == null || fldSolved == null || fldButtonDelete == null || fldButtonDown == null || mthFormatCommand == null)
+			yield break;
+
+		yield return null;
+
+		var commands = fldCommands.Get();
+		var deleteButton = fldButtonDelete.Get();
+		var downButton = fldButtonDown.Get();
+		if (commands == null || deleteButton == null || downButton == null)
+			yield break;
+
+		var bugs = new List<string>();
+		var bugsMarked = new HashSet<int>();
+
+		var buttonHandler = deleteButton.OnInteract;
+		deleteButton.OnInteract = delegate
+		{
+			var result = buttonHandler();
+
+			var cursor = fldCursor.Get();
+			var command = mthFormatCommand.Invoke(commands[cursor], true);
+			if (command.StartsWith("#") && bugsMarked.Add(cursor))
+				bugs.Add(command.Replace("#", ""));
+
+			return result;
+		};
+
+		while (!fldSolved.Get())
+			yield return new WaitForSeconds(0.1f);
+
+		var codeLines = (from object command in commands select mthFormatCommand.Invoke(command, true).Replace("#", "")).ToArray();
+
+		_modulesSolved.IncSafe(_TurtleRobot);
+		addQuestions(module, bugs.Take(2).Select((bug, ix) => makeQuestion(Question.TurtleRobotCodeLines, _TurtleRobot, new[] { ordinal(ix + 1) }, new [] { bug }, codeLines)));
+
+	}
 
     private IEnumerable<object> ProcessTwoBits(KMBombModule module)
     {
