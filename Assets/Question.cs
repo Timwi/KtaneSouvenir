@@ -51,7 +51,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         BrokenButtons,
 
-        [SouvenirQuestion("What were the correct button presses in {0}?", "Bulb", 6, "OOO", "OOI", "OIO", "OII", "IOO", "IOI", "IIO", "III", AddThe = true)]
+        [SouvenirQuestion("What were the correct button presses in {0}?", "Bulb", 6, "OOO", "OOI", "OIO", "OII", "IOO", "IOI", "IIO", "III", AddThe = true, Type = AnswerType.TicTacToeFont)]
         BulbButtonPresses,
 
         [SouvenirQuestion("What was the {1} displayed digit in {0}?", "Burglar Alarm", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
@@ -437,7 +437,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ThirdBaseDisplay,
 
-        [SouvenirQuestion("What was on the {1} button at the start of {0}?", "Tic-Tac-Toe", 6, "1", "2", "3", "4", "5", "6", "7", "8", "9", "O", "X",
+        [SouvenirQuestion("What was on the {1} button at the start of {0}?", "Tic-Tac-Toe", 6, "1", "2", "3", "4", "5", "6", "7", "8", "9", "O", "X", Type = AnswerType.TicTacToeFont,
             ExampleExtraFormatArguments = new[] { "top-left", "top-middle", "top-right", "middle-left", "middle-center", "middle-right", "bottom-left", "bottom-middle", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         TicTacToeInitialState,
 
@@ -479,6 +479,7 @@ namespace Souvenir
         Default = 0,
         SymbolsFont = 1,
         TurtleRobotFont = 2,
+        TicTacToeFont = 3,  // also used by The Bulb
 
         // Special value that doesn’t translate to a font
         Sprites = -1
