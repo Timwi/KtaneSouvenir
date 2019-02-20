@@ -36,12 +36,17 @@ public class SouvenirModule : MonoBehaviour
     public Texture FontSymbolsTexture;
 
     public static readonly string[] _ignoredModules = {
+
+        // Alchemy is not in this list because Souvenir asks questions about it. This is safe because Alchemy ignores Souvenir.
+
         "Souvenir",
         "Forget Everything",
         "Forget Me Not",
+        "Forget This",
         "Turn The Key",
         "The Time Keeper",
-        "Simon's Stages"
+        "Simon's Stages",
+        "Purgatory"
     };
 
     private static readonly bool _isTimwisComputer = new[] { "TEKELIA", "CORNFLOWER", "CAITSITH2-PC" }.Contains(Environment.GetEnvironmentVariable("COMPUTERNAME"));
