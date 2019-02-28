@@ -418,17 +418,6 @@ public class SouvenirModule : MonoBehaviour
                 StartCoroutine(Play());
             }
         };
-
-        //var sph = SurfaceRenderer.transform.Find("Sphere");
-        //for (int i = 0; i < _acceptableWidths.Length; i++)
-        //{
-        //    var s = Instantiate(sph);
-        //    s.parent = sph.parent;
-        //    s.localPosition = new Vector3((float) -_acceptableWidths[i][1] / 10 + .0834f, .0101f, (float) _acceptableWidths[i][0] / 10 - .0834f);
-        //    s.localScale = new Vector3(.01f, .01f, .01f);
-        //    s.localRotation = Quaternion.identity;
-        //}
-        //Destroy(sph.gameObject);
     }
 
     private Font font(AnswerFont font)
@@ -2793,8 +2782,8 @@ public class SouvenirModule : MonoBehaviour
             primary = primary.Union(extraOptions).ToArray();
 
         addQuestions(module,
-            departures.Select((dep, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { firstWord(dep) }, new[] { ordinal(ix + 1), "departure" }, primary)).Concat(
-            destinations.Select((dest, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { firstWord(dest) }, new[] { ordinal(ix + 1), "destination" }, primary))));
+            departures.Select((dep, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { firstWord(dep) }, new[] { ordinal(ix + 1), "departure", "from" }, primary)).Concat(
+            destinations.Select((dest, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { firstWord(dest) }, new[] { ordinal(ix + 1), "destination", "to" }, primary))));
     }
 
     private IEnumerable<object> ProcessMafia(KMBombModule module)

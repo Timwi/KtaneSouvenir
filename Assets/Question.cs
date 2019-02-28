@@ -196,8 +196,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "gate A", "gate B", "gate C", "gate D", "gate E", "gate F", "gate G", "the duplicated gate" }, ExampleExtraFormatArgumentGroupSize = 1)]
         LogicGatesGates,
 
-        [SouvenirQuestion("What was the first word in the name of the {1} {2} station in the last successful run on {0}?", "London Underground", 4, null, AddThe = true,
-            ExampleExtraFormatArguments = new[] { "first", "departure", "second", "departure", "first", "destination", "second", "destination" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        [SouvenirQuestion("What was the first word in the name of the {1} {2} station successfully travelled {3} on {0}?", "London Underground", 4, null, AddThe = true, ExampleAnswers = new[] { "Waterloo", "Neasden", "Euston", "Victoria" },
+            ExampleExtraFormatArguments = new[] { "first", "departure", "from", "second", "departure", "from", "first", "destination", "to", "second", "destination", "to" }, ExampleExtraFormatArgumentGroupSize = 3)]
         LondonUndergroundStations,
 
         [SouvenirQuestion("Who was a player, but not the Godfather, in the last stage of {0}?", "Mafia", 6, "Rob", "Tim", "Mary", "Briane", "Hunter", "Macy", "John", "Will", "Lacy", "Claire", "Kenny", "Rick", "Walter", "Bonnie", "Luke", "Bill", "Sarah", "Larry", "Kate", "Stacy", "Diane", "Mac", "Jim", "Clyde", "Tommy", "Lenny", "Molly", "Benny", "Phil", "Bob", "Gary", "Ted", "Kim", "Nate", "Cher", "Ron", "Thomas", "Sam", "Duke", "Jack", "Ed", "Ronny", "Terry", "Claira", "Nick", "Cob", "Ash", "Don", "Jerry", "Simon")]
