@@ -20,6 +20,8 @@ public class SouvenirModule : MonoBehaviour
     public KMBombInfo Bomb;
     public KMBombModule Module;
     public KMAudio Audio;
+    public KMBossModule BossModule;
+
     public KMSelectable[] Answers4;
     public KMSelectable[] Answers6;
     public GameObject Answers4Parent;
@@ -35,7 +37,7 @@ public class SouvenirModule : MonoBehaviour
     public Font FontSymbols;
     public Texture FontSymbolsTexture;
 
-    public static readonly string[] _ignoredModules = {
+    public static readonly string[] _defaultIgnoredModules = {
 
         // Alchemy is not in this list because Souvenir asks questions about it. This is safe because Alchemy ignores Souvenir.
 
@@ -529,11 +531,13 @@ public class SouvenirModule : MonoBehaviour
         if (TwitchPlaysActive)
             ActivateTwitchPlaysNumbers();
 
-        var numPlayableModules = Bomb.GetSolvableModuleNames().Count(x => !_ignoredModules.Contains(x));
+        var ignoredModules = BossModule.GetIgnoredModules(Module, _defaultIgnoredModules);
+        Debug.LogFormat(@"<Souvenir #{0}> Ignored modules: {1}", _moduleId, ignoredModules.JoinString(", "));
+        var numPlayableModules = Bomb.GetSolvableModuleNames().Count(x => !ignoredModules.Contains(x));
 
         while (true)
         {
-            var numSolved = Bomb.GetSolvedModuleNames().Count(x => !_ignoredModules.Contains(x));
+            var numSolved = Bomb.GetSolvedModuleNames().Count(x => !ignoredModules.Contains(x));
             if (_questions.Count == 0 && (numSolved >= numPlayableModules || _coroutinesActive == 0))
             {
                 // Very rare case: another coroutine could still be waiting to detect that a module is solved and then add another question to the queue
