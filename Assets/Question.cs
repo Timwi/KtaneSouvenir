@@ -475,6 +475,8 @@ namespace Souvenir
         public string[] ExampleAnswers { get; set; }
         public AnswerFont Font { get; set; }
 
+        public string ModuleNameWithThe { get { return (AddThe ? "The " : "") + ModuleName; } }
+
         public SouvenirQuestionAttribute(string questionText, string moduleName, int numAnswers, params string[] allAnswers)
         {
             QuestionText = questionText;
@@ -487,7 +489,7 @@ namespace Souvenir
 
     sealed class QandA
     {
-        public string ModuleName { get; private set; }
+        public string ModuleNameWithThe { get; private set; }
         public string QuestionText { get; private set; }
         public string[] Answers { get; private set; }
         public int CorrectIndex { get; private set; }
@@ -495,7 +497,7 @@ namespace Souvenir
         public Texture FontTexture { get; private set; }
         public QandA(string moduleName, string question, string[] answers, int correct, Font font, Texture fontTexture)
         {
-            ModuleName = moduleName;
+            ModuleNameWithThe = moduleName;
             QuestionText = question;
             Answers = answers;
             CorrectIndex = correct;

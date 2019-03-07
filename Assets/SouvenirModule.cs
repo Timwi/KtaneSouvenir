@@ -383,7 +383,7 @@ public class SouvenirModule : MonoBehaviour
                         fmt[i + 1] = attr.ExampleExtraFormatArguments[curExample * attr.ExampleExtraFormatArgumentGroupSize + i];
                     try
                     {
-                        SetQuestion(new QandA(attr.ModuleName, string.Format(attr.QuestionText, fmt), (attr.AllAnswers ?? attr.ExampleAnswers).ToList().Shuffle().Take(attr.NumAnswers).ToArray(), Rnd.Range(0, attr.NumAnswers), font(attr.Font), fontTexture(attr.Font)));
+                        SetQuestion(new QandA(attr.ModuleNameWithThe, string.Format(attr.QuestionText, fmt), (attr.AllAnswers ?? attr.ExampleAnswers).ToList().Shuffle().Take(attr.NumAnswers).ToArray(), Rnd.Range(0, attr.NumAnswers), font(attr.Font), fontTexture(attr.Font)));
                     }
                     catch (FormatException e)
                     {
@@ -957,12 +957,12 @@ public class SouvenirModule : MonoBehaviour
     {
         _coroutinesActive++;
         var moduleType = module.ModuleType;
-        Debug.LogFormat("<Souvenir #{1}> Start processing {0}.", moduleType, _moduleId);
         _moduleCounts.IncSafe(moduleType);
         var iterator = _moduleProcessors.Get(moduleType, null);
 
         if (iterator != null)
         {
+            Debug.LogFormat("<Souvenir #{1}> Module {0}: Start processing.", moduleType, _moduleId);
             foreach (var obj in iterator(module))
             {
                 yield return obj;
@@ -974,18 +974,22 @@ public class SouvenirModule : MonoBehaviour
             }
             if (!_legitimatelyNoQuestions.Contains(module) && !_questions.Any(q => q.Module == module))
                 Debug.LogFormat("[Souvenir #{0}] There was no question generated for {1}. Please report this to Timwi as this may indicate a bug in the module. Remember to send him this logfile.", _moduleId, module.ModuleDisplayName);
+            Debug.LogFormat("<Souvenir #{1}> Module {0}: Finished processing.", moduleType, _moduleId);
         }
-        else if (_isTimwisComputer)
+        else
         {
-            var s = new StringBuilder();
-            s.AppendLine("Unrecognized module: " + module.name + ", KMBombModule.ModuleType: " + moduleType);
-            foreach (var comp in module.GetComponents(typeof(UnityEngine.Object)))
-                s.AppendLine("    - " + (comp == null ? "<null>" : comp.GetType().FullName));
-            lock (_timwiPath)
-                File.AppendAllText(_timwiPath, s.ToString());
+            Debug.LogFormat("<Souvenir #{1}> Module {0}: Not supported.", moduleType, _moduleId);
+            if (_isTimwisComputer)
+            {
+                var s = new StringBuilder();
+                s.AppendLine("Unrecognized module: " + module.name + ", KMBombModule.ModuleType: " + moduleType);
+                foreach (var comp in module.GetComponents(typeof(UnityEngine.Object)))
+                    s.AppendLine("    - " + (comp == null ? "<null>" : comp.GetType().FullName));
+                lock (_timwiPath)
+                    File.AppendAllText(_timwiPath, s.ToString());
+            }
         }
 
-        Debug.LogFormat("<Souvenir #{1}> Finished processing {0}.", moduleType, _moduleId);
         _coroutinesActive--;
     }
 
@@ -2971,7 +2975,6 @@ public class SouvenirModule : MonoBehaviour
                         }
                     }
 
-                    var prevCorrectCount = fldCorrectCount.Get();
                     var ret = origInteracts[j]();
 
                     if (curCreatureName == null || curMoveNames == null)
@@ -4317,12 +4320,12 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         }
 
-        var modules = _attributes.Where(x => x.Value != null).Select(x => x.Value.ModuleName).Distinct().ToArray();
+        var modules = _attributes.Where(x => x.Value != null).Select(x => x.Value.ModuleNameWithThe).Distinct().ToArray();
         while (comp._currentQuestion == null)
             yield return new WaitForSeconds(0.1f);
 
         var firstQuestion = comp._currentQuestion;
-        var firstModule = firstQuestion.ModuleName;
+        var firstModule = firstQuestion.ModuleNameWithThe;
         if (!modules.Contains(firstModule))
         {
             Debug.LogFormat("[Souvenir #{0}] Abandoning Souvenir because the first question was on “{1}”, which is not a module I recognize.", _moduleId, firstModule);
@@ -5093,7 +5096,7 @@ public class SouvenirModule : MonoBehaviour
         if (extraFormatArguments != null)
             formatArguments.AddRange(extraFormatArguments);
 
-        return new QandA(attr.ModuleName, string.Format(attr.QuestionText, formatArguments.ToArray()), answers.ToArray(), correctIndex, font(attr.Font), fontTexture(attr.Font));
+        return new QandA(attr.ModuleNameWithThe, string.Format(attr.QuestionText, formatArguments.ToArray()), answers.ToArray(), correctIndex, font(attr.Font), fontTexture(attr.Font));
     }
 
     private string[] GetAnswers(Question question)
