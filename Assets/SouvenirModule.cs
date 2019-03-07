@@ -1196,9 +1196,7 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         }
 
-        var haveInfo = false;
-        int[] symbols = null;
-        int mainSymbol = -1;
+        int? mainSymbol = null;
         var hasPressedRedraw = false;
 
         var oldStrike = module.OnStrike;
@@ -1209,7 +1207,7 @@ public class SouvenirModule : MonoBehaviour
         {
             Debug.LogFormat("<Souvenir #{0}> Strike on Alchemy!", _moduleId);
             hasPressedRedraw = false;
-            haveInfo = false;
+            mainSymbol = null;
             return oldStrike();
         };
 
@@ -1231,23 +1229,12 @@ public class SouvenirModule : MonoBehaviour
             return oldRedraw();
         };
 
-        Debug.LogFormat("<Souvenir #{0}> B", _moduleId);
-
         while (!solved)
         {
             yield return null;
 
-            if (!haveInfo)
+            if (mainSymbol == null)
             {
-                symbols = fldSymbols.Get();
-                if (symbols == null || symbols.Length != 6 || symbols.Any(s => s < 0 || s >= 6))
-                {
-                    Debug.LogFormat("<Souvenir #{0}> Abandoning Alchemy because “nowSymbols” was invalid: [{1}].", _moduleId, symbols == null ? "null" : symbols.JoinString(", "));
-                    yield break;
-                }
-                // Take a copy of the array
-                symbols = symbols.ToArray();
-
                 mainSymbol = fldMainSymbol.Get();
                 if (mainSymbol < 0 || mainSymbol >= 6)
                 {
@@ -1255,17 +1242,14 @@ public class SouvenirModule : MonoBehaviour
                     yield break;
                 }
 
-                Debug.LogFormat("<Souvenir #{0}> Got info: {1}; {2}", _moduleId, symbols.JoinString(", "), mainSymbol);
-                haveInfo = true;
+                Debug.LogFormat("<Souvenir #{0}> Got main symbol: {1}", _moduleId, mainSymbol);
             }
         }
         _modulesSolved.IncSafe(_Alchemy);
 
-        Debug.LogFormat("<Souvenir #{0}> C: hasPressedRedraw={1}", _moduleId, hasPressedRedraw);
-
-        if (symbols == null || mainSymbol == -1)
+        if (mainSymbol == null)
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Alchemy the symbols were never assigned.", _moduleId);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Alchemy because mainSymbol was never assigned.", _moduleId);
             yield break;
         }
 
@@ -1276,9 +1260,7 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         }
 
-        addQuestions(module,
-            symbols.Select((sym, ix) => makeQuestion(Question.AlchemySymbols, _Alchemy, new[] { symbolNames[sym] }, new[] { string.Format("at {0} o’clock", (17 - 2 * ix) % 12) }))
-                .Concat(new[] { makeQuestion(Question.AlchemySymbols, _Alchemy, new[] { symbolNames[mainSymbol] }, new[] { "in the center" }) }));
+        addQuestion(module, Question.AlchemyMainSymbol, new[] { symbolNames[mainSymbol.Value] });
     }
 
     private IEnumerable<object> ProcessAlgebra(KMBombModule module)
