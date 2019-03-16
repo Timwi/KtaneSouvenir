@@ -10,7 +10,8 @@ public class RedistCopy {
 	[PostProcessBuild]
 	public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject) {
 #if !DISABLEREDISTCOPY
-		if (target != BuildTarget.StandaloneWindows && target != BuildTarget.StandaloneWindows64 && target != BuildTarget.StandaloneOSX &&
+		if (target != BuildTarget.StandaloneWindows && target != BuildTarget.StandaloneWindows64 &&
+			target != BuildTarget.StandaloneOSX &&
 			target != BuildTarget.StandaloneLinux && target != BuildTarget.StandaloneLinux64 && target != BuildTarget.StandaloneLinuxUniversal) {
 			return;
 		}
