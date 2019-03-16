@@ -300,7 +300,7 @@ namespace Souvenir
         PolyhedralMazeStartPosition,
 
         [SouvenirQuestion("What was the missing frequency in the {1} wire in {0}?", "Probing", 4, "10Hz", "22Hz", "50Hz", "60Hz",
-            ExampleExtraFormatArguments = new[] { "orange-white", "yellow-black", "green", "gray", "yellow-orange", "orange-blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "red-white", "yellow-black", "green", "gray", "yellow-red", "red-blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ProbingFrequencies,
 
         [SouvenirQuestion("What was the {1} digit in the {2} slot in {0}?", "Quintuples", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",

@@ -2845,7 +2845,10 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         }
 
-        addQuestions(module, ledsOrder.Select((led, ix) => makeQuestion(Question.MicrocontrollerPinOrder, _Microcontroller, new[] { ordinal(ix + 1) }, new[] { (positionTranslate[led] + 1).ToString() })));
+        addQuestions(module, ledsOrder.Select((led, ix) => makeQuestion(Question.MicrocontrollerPinOrder, _Microcontroller,
+            formatArgs: new[] { ordinal(ix + 1) },
+            correctAnswers: new[] { (positionTranslate[led] + 1).ToString() },
+            preferredWrongAnswers:Enumerable.Range(1,ledsOrder.Count).Select(i=>i.ToString()).ToArray())));
     }
 
     private IEnumerable<object> ProcessMinesweeper(KMBombModule module)
@@ -3605,7 +3608,7 @@ public class SouvenirModule : MonoBehaviour
         for (int i = 0; i < selectables.Length; i++)
             selectables[i].OnInteract = delegate { return false; };
 
-        var wireNames = new[] { "orange-white", "yellow-black", "green", "gray", "yellow-orange", "orange-blue" };
+        var wireNames = new[] { "red-white", "yellow-black", "green", "gray", "yellow-red", "red-blue" };
         var wireFrequenciesRaw = fldWires.Get();
         if (wireFrequenciesRaw == null || wireFrequenciesRaw.Length != 6)
         {
@@ -4087,8 +4090,6 @@ public class SouvenirModule : MonoBehaviour
         }
 
         var colorNames = new[] { "Red", "Yellow", "Green", "Blue" };
-        Debug.LogFormat("<Souvenir #{1}> Simon States: PuzzleDisplay = [{0}]",
-            puzzleDisplay.Select(arr => arr.Select((v, i) => v ? colorNames[i] : null).Where(x => x != null).JoinString(", ")).JoinString("; ", "[", "]"), _moduleId);
 
         while (fldProgress.Get() < 4)
             yield return new WaitForSeconds(.1f);
