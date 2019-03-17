@@ -296,6 +296,16 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.Sprites)]
         PerspectivePegsSolution,
 
+        [SouvenirQuestion("What was the correct PIN in {0}?", "Planets", 4, null, ExampleAnswers = new[] { "000000", "333333", "011037", "123456" })]
+        PlanetsPIN,
+
+        [SouvenirQuestion("What was the planet shown in {0}?", "Planets", 6, null, Type = AnswerType.Sprites)]
+        PlanetsPlanet,
+
+        [SouvenirQuestion("What was the correct color for the {1} strip in {0}?", "Planets", 6, "Aqua", "Blue", "Green", "Lime", "Orange", "Red", "Yellow", "White", "Off",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        PlanetsStrips,
+
         [SouvenirQuestion("What was the starting position in {0}?", "Polyhedral Maze", 6, null, ExampleAnswers = new[] { "1", "16", "24", "47", "89" })]
         PolyhedralMazeStartPosition,
 

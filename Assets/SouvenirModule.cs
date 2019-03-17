@@ -26,6 +26,7 @@ public class SouvenirModule : MonoBehaviour
     public GameObject[] TpNumbers;
     public Sprite[] ExampleSprites;
     public Sprite[] PerspectivePegsSprites;
+    public Sprite[] PlanetsSprites;
     public Sprite[] SymbolicCoordinatesSprites;
 
     public TextMesh TextMesh;
@@ -132,6 +133,7 @@ public class SouvenirModule : MonoBehaviour
     const string _OrientationCube = "OrientationCube";
     const string _PatternCube = "PatternCubeModule";
     const string _PerspectivePegs = "spwizPerspectivePegs";
+    const string _Planets = "planets";
     const string _PolyhedralMaze = "PolyhedralMazeModule";
     const string _Probing = "Probing";
     const string _Quintuples = "quintuples";
@@ -232,6 +234,7 @@ public class SouvenirModule : MonoBehaviour
             { _OrientationCube, ProcessOrientationCube },
             { _PatternCube, ProcessPatternCube },
             { _PerspectivePegs, ProcessPerspectivePegs },
+            { _Planets, ProcessPlanets },
             { _PolyhedralMaze, ProcessPolyhedralMaze },
             { _Probing, ProcessProbing },
             { _Quintuples, ProcessQuintuples },
@@ -3557,6 +3560,58 @@ public class SouvenirModule : MonoBehaviour
             formatArgs: new[] { ordinal(i + 1) },
             correctAnswers: new[] { PerspectivePegsSprites[entered[i]] },
             preferredWrongAnswers: PerspectivePegsSprites)));
+    }
+
+    private IEnumerable<object> ProcessPlanets(KMBombModule module)
+    {
+        var comp = GetComponent(module, "planetsModScript");
+        var fldPIN = GetField<string>(comp, "answerText");
+        var fldPlanet = GetField<int>(comp, "planetShown");
+        var fldStrips = GetField<int[]>(comp, "stripColours");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        if (comp == null || fldPIN == null || fldPlanet == null || fldSolved == null)
+            yield break;
+
+        yield return null;
+
+        var correctPIN = fldPIN.Get();
+        if (correctPIN == null || correctPIN.Length != 6)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Planets because ‘correctPIN’ is null or has unexpected length (expected 6): {1}", _moduleId, correctPIN ?? "<null>");
+            yield break;
+        }
+        var planetShown = fldPlanet.Get();
+        if (planetShown < 0 || planetShown > 9) {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Planets because ‘planetShown’ has unexpected length (expected 0-9): {1}", _moduleId, planetShown);
+            yield break;
+        }
+        var stripColors = fldStrips.Get();
+        if (stripColors.Length != 5 || stripColors.Any(x => (x < 0 || x > 8))) {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Planets because ‘stripColors’ or one of its elements has unexpected length (expected 5 or 0-8): {1}", _moduleId, string.Format("[{0}]", stripColors.JoinString(", ")));
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_Planets);
+        var incorrectPIN = new string[3];
+        for (int i = 0; i < incorrectPIN.Length; i++)
+        {
+            var nowPIN = "";
+            do
+                nowPIN = Rnd.Range(0, 1000000).ToString().PadLeft(6, '0');
+            while (incorrectPIN.Contains(nowPIN) || nowPIN.Equals(correctPIN));
+            incorrectPIN[i] = nowPIN;
+        }
+
+        var stripNames = new[] { "Aqua", "Blue", "Green", "Lime", "Orange", "Red", "Yellow", "White", "Off" };
+        addQuestions(module, Enumerable.Range(0, 3).SelectMany(question => {
+                if (question == 0) return Enumerable.Range(0, 1).Select(x => makeQuestion(Question.PlanetsPIN, _Planets, correctAnswers: new[] { correctPIN }, preferredWrongAnswers: incorrectPIN));
+                if (question == 1) return Enumerable.Range(0, 1).Select(x => makeQuestion(Question.PlanetsPlanet, _Planets, correctAnswers: new[] { PlanetsSprites[planetShown] }, preferredWrongAnswers: (DateTime.Now.Month == 4 && DateTime.Now.Day == 1) ? PlanetsSprites : PlanetsSprites.Take(PlanetsSprites.Length - 2).ToArray()));
+                return stripColors.Select((strip, count) => makeQuestion(Question.PlanetsStrips, _Planets, new[] { ordinal(count + 1) }, new[] { stripNames[strip] }));
+        }));
     }
 
     private IEnumerable<object> ProcessPolyhedralMaze(KMBombModule module)

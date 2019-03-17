@@ -287,6 +287,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 98fa98424f6b7174cad7e62b6db47116, type: 3}
   - {fileID: 21300000, guid: 9ef9eb1722e492b48a41c24c2c2c1961, type: 3}
   - {fileID: 21300000, guid: 84e50e9c217e241488950ab09af66e09, type: 3}
+  PlanetsSprites:
+  - {fileID: 21300000, guid: 7c74171015cf3c94893846f743961046, type: 3}
+  - {fileID: 21300000, guid: bbba2fe2ff9274e4cadf610f67d8a16d, type: 3}
+  - {fileID: 21300000, guid: 80d75966639b05946aa7eae52b5f6227, type: 3}
+  - {fileID: 21300000, guid: 6ee25ada6194b1247970e50091932019, type: 3}
+  - {fileID: 21300000, guid: 27918bd5783b4cf46bc8fdf3bebb8f48, type: 3}
+  - {fileID: 21300000, guid: 5c8b06193976c2f4da39fda28fd7331b, type: 3}
+  - {fileID: 21300000, guid: 98525ee17e2b13444afbae41a325c102, type: 3}
+  - {fileID: 21300000, guid: 2754dedc28fe56340a568340a7884746, type: 3}
+  - {fileID: 21300000, guid: 3a2aba86813b534489a73b584440669e, type: 3}
+  - {fileID: 21300000, guid: de5d9a68c1c23fa4498301b34b0f3c9d, type: 3}
   SymbolicCoordinatesSprites:
   - {fileID: 21300000, guid: c46883603a2000a47b888e91c5e1aab8, type: 3}
   - {fileID: 21300000, guid: c34f67901585bec44b5344a32c7e21e9, type: 3}
