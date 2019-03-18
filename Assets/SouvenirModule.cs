@@ -28,6 +28,7 @@ public class SouvenirModule : MonoBehaviour
     public Sprite[] PerspectivePegsSprites;
     public Sprite[] PlanetsSprites;
     public Sprite[] SymbolicCoordinatesSprites;
+    public Sprite[] WavetappingSprites;
 
     public TextMesh TextMesh;
     public Renderer TextRenderer;
@@ -167,6 +168,7 @@ public class SouvenirModule : MonoBehaviour
     const string _TwoBits = "TwoBits";
     const string _UncoloredSquares = "UncoloredSquaresModule";
     const string _VisualImpairment = "visual_impairment";
+    const string _Wavetapping = "Wavetapping";
     const string _Wire = "wire";
     const string _Yahtzee = "YahtzeeModule";
 
@@ -269,6 +271,7 @@ public class SouvenirModule : MonoBehaviour
             { _TwoBits, ProcessTwoBits },
             { _UncoloredSquares, ProcessUncoloredSquares },
             { _VisualImpairment, ProcessVisualImpairment },
+            { _Wavetapping, ProcessWavetapping },
             { _Wire, ProcessWire },
             { _Yahtzee, ProcessYahtzee }
         };
@@ -5102,6 +5105,42 @@ public class SouvenirModule : MonoBehaviour
         var colorNames = new[] { "Blue", "Green", "Red", "White" };
         _modulesSolved.IncSafe(_VisualImpairment);
         addQuestions(module, colorsPerStage.Select((col, ix) => makeQuestion(Question.VisualImpairmentColors, _VisualImpairment, new[] { ordinal(ix + 1) }, new[] { colorNames[col] })));
+    }
+
+    private IEnumerable<object> ProcessWavetapping(KMBombModule module)
+    {
+        var comp = GetComponent(module, "scr_wavetapping");
+        var fldStageColors = GetField<int[]>(comp, "stageColors");
+        var fldIntPatterns = GetField<int[]>(comp, "intPatterns");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        if (comp == null || fldStageColors == null || fldIntPatterns == null || fldSolved == null)
+            yield break;
+
+        yield return null;
+
+        var stageColors = fldStageColors.Get();
+        var intPatterns = fldIntPatterns.Get();
+        if (stageColors.Length != 3 || intPatterns.Length != 3)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Wavetapping because ‘intPatterns/stageColors’ has unexpected length (expected 3): {1}).", _moduleId, string.Format("[{0}] | [{1}]", intPatterns.JoinString(", "), stageColors.JoinString(", ")));
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        var patternSprites = new Dictionary<int, Sprite[]>();
+        var spriteTake = new[] { 4, 4, 3, 2, 2, 2, 2, 2, 9, 4, 40, 13, 4, 8, 21, 38 };
+        var spriteSkip = 0;
+        for (int i = 0; i < spriteTake.Length; i++)
+        {
+            patternSprites.Add(i, WavetappingSprites.Skip(spriteSkip).Take(spriteTake[i]).ToArray());
+            spriteSkip += spriteTake[i];
+        }
+
+        _modulesSolved.IncSafe(_Wavetapping);
+        addQuestions(module, intPatterns.Select((pattern, stage) => makeQuestion(Question.WavetappingPatterns, _Wavetapping, new[] { ordinal(stage + 1) }, new[] { patternSprites[stageColors[stage]][pattern] }, stageColors.SelectMany(stages => patternSprites[stages].Select(x => x).ToArray().Shuffle().Take(2)).ToArray())));
     }
 
     private IEnumerable<object> ProcessWire(KMBombModule module)
