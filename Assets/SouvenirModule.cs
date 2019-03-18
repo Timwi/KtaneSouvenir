@@ -139,6 +139,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Quintuples = "quintuples";
     const string _Rhythms = "MusicRhythms";
     const string _SeaShells = "SeaShells";
+    const string _ShapesBombs = "ShapesBombs";
     const string _ShapeShift = "shapeshift";
     const string _SillySlots = "SillySlots";
     const string _SimonSamples = "simonSamples";
@@ -240,6 +241,7 @@ public class SouvenirModule : MonoBehaviour
             { _Quintuples, ProcessQuintuples },
             { _Rhythms, ProcessRhythms },
             { _SeaShells, ProcessSeaShells },
+            { _ShapesBombs, ProcessShapesBombs },
             { _ShapeShift, ProcessShapeShift },
             { _SillySlots, ProcessSillySlots },
             { _SimonSamples, ProcessSimonSamples },
@@ -3583,12 +3585,12 @@ public class SouvenirModule : MonoBehaviour
         }
         var planetShown = fldPlanet.Get();
         if (planetShown < 0 || planetShown > 9) {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Planets because ‘planetShown’ has unexpected length (expected 0-9): {1}", _moduleId, planetShown);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Planets because ‘planetShown’ has unexpected value (expected 0-9): {1}", _moduleId, planetShown);
             yield break;
         }
         var stripColors = fldStrips.Get();
         if (stripColors.Length != 5 || stripColors.Any(x => (x < 0 || x > 8))) {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Planets because ‘stripColors’ or one of its elements has unexpected length (expected 5 or 0-8): {1}", _moduleId, string.Format("[{0}]", stripColors.JoinString(", ")));
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Planets because ‘stripColors’ has unexpected length or one of its elements has unexpected value (expected 5 or 0-8): {1}", _moduleId, string.Format("[{0}]", stripColors.JoinString(", ")));
             yield break;
         }
 
@@ -3799,6 +3801,32 @@ public class SouvenirModule : MonoBehaviour
             qs.Add(makeQuestion(Question.SeaShells3, _SeaShells, new[] { ordinal(i + 1) }, new[] { new[] { "sea shore", "she sore", "she sure", "seesaw" }[keynums[i]] }));
         }
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessShapesBombs(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ShapesBombs");
+        var fldLetter = GetField<int>(comp, "selectLetter");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        if (comp == null || fldLetter == null || fldSolved == null)
+            yield break;
+
+        yield return null;
+
+        var initialLetter = fldLetter.Get();
+        if (initialLetter < 0 || initialLetter > 14)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Shapes And Bombs because ‘initialLetter’ has unexpected value (expected 0-14): {1}", _moduleId, initialLetter);
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_ShapesBombs);
+        var letterChars = new[] { "A", "B", "D", "E", "G", "I", "K", "L", "N", "O", "P", "S", "T", "X", "Y" };
+        addQuestion(module, Question.ShapesBombsInitialLetter, correctAnswers: new[] { letterChars[initialLetter] });
     }
 
     private IEnumerable<object> ProcessShapeShift(KMBombModule module)

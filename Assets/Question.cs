@@ -340,6 +340,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SeaShells3,
 
+        [SouvenirQuestion("What was the initial letter in {0}?", "Shapes And Bombs", 6, "A", "B", "D", "E", "G", "I", "K", "L", "N", "O", "P", "S", "T", "X", "Y")]
+        ShapesBombsInitialLetter,
+
         [SouvenirQuestion("What was the initial shape in {0}?", "Shape Shift", 4, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", Type = AnswerType.SymbolsFont)]
         ShapeShiftInitialShape,
 
