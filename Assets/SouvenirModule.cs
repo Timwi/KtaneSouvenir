@@ -352,8 +352,9 @@ public class SouvenirModule : MonoBehaviour
             "Well, here's another nice mess you’ve gotten me into!",     // direct quote (Sons of the Desert / Oliver Hardy)
             "You know how to defuse, don’t you, Steve? You just put your wires together and cut.",  // “You know how to whistle, don't you Steve? You just put your lips together, and blow.” (To Have And Have Not)
             "Mrs. Defuser, you’re trying to disarm me. Aren’t you?",    // “Mrs. Robinson, you’re trying to seduce me. Aren’t you?” (The Graduate)
-            "We defuse bombs.",  // “We rob banks.” (Bonnie and Clyde)
-            "Somebody set up us the bomb."  // direct quote (Zero Wing)
+            "We defuse bombs.",  // “We rob banks.“ (Bonnie and Clyde)
+            "Somebody set up us the bomb.",  // direct quote (Zero Wing)
+            "Luke, I am your expert." // “Luke, I am your father.“ (Star Wars V: The Empire Strikes Back) (misquote)
         ).PickRandom(), 1.75);
 
         if (transform.parent != null)
@@ -5091,8 +5092,7 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, colorsPerStage.Select((col, ix) => makeQuestion(Question.VisualImpairmentColors, _VisualImpairment, new[] { ordinal(ix + 1) }, new[] { colorNames[col] })));
     }
 
-    private IEnumerable<object> ProcessWavetapping(KMBombModule module)
-    {
+    private IEnumerable<object> ProcessWavetapping(KMBombModule module) {
         var comp = GetComponent(module, "scr_wavetapping");
         var fldStageColors = GetField<int[]>(comp, "stageColors");
         var fldIntPatterns = GetField<int[]>(comp, "intPatterns");
@@ -5105,8 +5105,7 @@ public class SouvenirModule : MonoBehaviour
 
         var stageColors = fldStageColors.Get();
         var intPatterns = fldIntPatterns.Get();
-        if (stageColors.Length != 3 || intPatterns.Length != 3)
-        {
+        if (stageColors.Length != 3 || intPatterns.Length != 3) {
             Debug.LogFormat("<Souvenir #{0}> Abandoning Wavetapping because ‘intPatterns/stageColors’ has unexpected length (expected 3): {1}).", _moduleId, string.Format("[{0}] | [{1}]", intPatterns.JoinString(", "), stageColors.JoinString(", ")));
             yield break;
         }
@@ -5117,17 +5116,20 @@ public class SouvenirModule : MonoBehaviour
         var patternSprites = new Dictionary<int, Sprite[]>();
         var spriteTake = new[] { 4, 4, 3, 2, 2, 2, 2, 2, 9, 4, 40, 13, 4, 8, 21, 38 };
         var spriteSkip = 0;
-        for (int i = 0; i < spriteTake.Length; i++)
-        {
+        for (int i = 0; i < spriteTake.Length; i++) {
             patternSprites.Add(i, WavetappingSprites.Skip(spriteSkip).Take(spriteTake[i]).ToArray());
             spriteSkip += spriteTake[i];
         }
 
+        var colorNames = new[] { "Red", "Orange", "Orange-Yellow", "Chartreuse", "Lime", "Green", "Seafoam Green", "Cyan-Green", "Turquoise", "Dark Blue", "Indigo", "Purple", "Purple-Magenta", "Magenta", "Pink", "Gray" };
         _modulesSolved.IncSafe(_Wavetapping);
         addQuestions(module, intPatterns.Select((pattern, stage) => makeQuestion(Question.WavetappingPatterns, _Wavetapping,
             formatArgs: new[] { ordinal(stage + 1) },
             correctAnswers: new[] { patternSprites[stageColors[stage]][pattern] },
-            preferredWrongAnswers: stageColors.SelectMany(stages => patternSprites[stages]).ToArray())));
+            preferredWrongAnswers: stageColors.SelectMany(stages => patternSprites[stages]).ToArray()))
+            .Concat(Enumerable.Range(0, 2).Select(stage => makeQuestion(Question.WavetappingColors, _Wavetapping,
+            formatArgs: new[] { ordinal(stage + 1) },
+            correctAnswers: new[] { colorNames[stageColors[stage]] }))));
     }
 
     private IEnumerable<object> ProcessWire(KMBombModule module)
