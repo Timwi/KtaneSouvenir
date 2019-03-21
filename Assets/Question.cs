@@ -560,6 +560,8 @@ namespace Souvenir
                 if (h2 != null)
                     h2.GetComponent<MeshFilter>().sharedMesh = highlightMesh;
                 souvenir.Answers[i].transform.localPosition = new Vector3(-18.125f + xSpacing * (i / 2), 2.525f, -16.25f + ySpacing * (1 - i % 2));
+                souvenir.Answers[i].GetComponent<BoxCollider>().center = new Vector3(NumAnswers > 4 ? 5 : 8, 0, 0);
+                souvenir.Answers[i].GetComponent<BoxCollider>().size = new Vector3(NumAnswers > 4 ? 13 : 19, 6, 3);
             }
         }
     }
