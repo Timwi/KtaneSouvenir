@@ -296,13 +296,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.Sprites)]
         PerspectivePegsSolution,
 
-        [SouvenirQuestion("What was the correct PIN in {0}?", "Planets", 4, null, ExampleAnswers = new[] { "000000", "333333", "011037", "123456" })]
-        PlanetsPIN,
-
         [SouvenirQuestion("What was the planet shown in {0}?", "Planets", 6, null, Type = AnswerType.Sprites)]
         PlanetsPlanet,
-
-        [SouvenirQuestion("What was the correct color for the {1} strip in {0}?", "Planets", 6, "Aqua", "Blue", "Green", "Lime", "Orange", "Red", "Yellow", "White", "Off",
+        [SouvenirQuestion("What was the color of the {1} strip (from the top) in {0}?", "Planets", 6, "Aqua", "Blue", "Green", "Lime", "Orange", "Red", "Yellow", "White", "Off",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PlanetsStrips,
 
@@ -341,7 +337,7 @@ namespace Souvenir
         SeaShells3,
 
         [SouvenirQuestion("What was the initial letter in {0}?", "Shapes And Bombs", 6, "A", "B", "D", "E", "G", "I", "K", "L", "N", "O", "P", "S", "T", "X", "Y")]
-        ShapesBombsInitialLetter,
+        ShapesAndBombsInitialLetter,
 
         [SouvenirQuestion("What was the initial shape in {0}?", "Shape Shift", 4, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", Type = AnswerType.SymbolsFont)]
         ShapeShiftInitialShape,

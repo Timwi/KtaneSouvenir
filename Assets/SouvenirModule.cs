@@ -243,7 +243,7 @@ public class SouvenirModule : MonoBehaviour
             { _Quintuples, ProcessQuintuples },
             { _Rhythms, ProcessRhythms },
             { _SeaShells, ProcessSeaShells },
-            { _ShapesBombs, ProcessShapesBombs },
+            { _ShapesBombs, ProcessShapesAndBombs },
             { _ShapeShift, ProcessShapeShift },
             { _SillySlots, ProcessSillySlots },
             { _SimonSamples, ProcessSimonSamples },
@@ -2856,7 +2856,7 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, ledsOrder.Select((led, ix) => makeQuestion(Question.MicrocontrollerPinOrder, _Microcontroller,
             formatArgs: new[] { ordinal(ix + 1) },
             correctAnswers: new[] { (positionTranslate[led] + 1).ToString() },
-            preferredWrongAnswers:Enumerable.Range(1,ledsOrder.Count).Select(i=>i.ToString()).ToArray())));
+            preferredWrongAnswers: Enumerable.Range(1, ledsOrder.Count).Select(i => i.ToString()).ToArray())));
     }
 
     private IEnumerable<object> ProcessMinesweeper(KMBombModule module)
@@ -3570,30 +3570,25 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessPlanets(KMBombModule module)
     {
         var comp = GetComponent(module, "planetsModScript");
-        var fldPIN = GetField<string>(comp, "answerText");
         var fldPlanet = GetField<int>(comp, "planetShown");
         var fldStrips = GetField<int[]>(comp, "stripColours");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
 
-        if (comp == null || fldPIN == null || fldPlanet == null || fldSolved == null)
+        if (comp == null || fldPlanet == null || fldStrips == null || fldSolved == null)
             yield break;
 
         yield return null;
 
-        var correctPIN = fldPIN.Get();
-        if (correctPIN == null || correctPIN.Length != 6)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Planets because ‘correctPIN’ is null or has unexpected length (expected 6): {1}", _moduleId, correctPIN ?? "<null>");
-            yield break;
-        }
         var planetShown = fldPlanet.Get();
-        if (planetShown < 0 || planetShown > 9) {
+        if (planetShown < 0 || planetShown > 9)
+        {
             Debug.LogFormat("<Souvenir #{0}> Abandoning Planets because ‘planetShown’ has unexpected value (expected 0-9): {1}", _moduleId, planetShown);
             yield break;
         }
         var stripColors = fldStrips.Get();
-        if (stripColors.Length != 5 || stripColors.Any(x => (x < 0 || x > 8))) {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Planets because ‘stripColors’ has unexpected length or one of its elements has unexpected value (expected 5 or 0-8): {1}", _moduleId, string.Format("[{0}]", stripColors.JoinString(", ")));
+        if (stripColors.Length != 5 || stripColors.Any(x => x < 0 || x > 8))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Planets because ‘stripColors’ has unexpected length or one of its elements has unexpected value (expected length 5 and values 0-8): {1}", _moduleId, string.Format("[{0}]", stripColors.JoinString(", ")));
             yield break;
         }
 
@@ -3601,22 +3596,11 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
 
         _modulesSolved.IncSafe(_Planets);
-        var incorrectPIN = new string[3];
-        for (int i = 0; i < incorrectPIN.Length; i++)
-        {
-            var nowPIN = "";
-            do
-                nowPIN = Rnd.Range(0, 1000000).ToString().PadLeft(6, '0');
-            while (incorrectPIN.Contains(nowPIN) || nowPIN.Equals(correctPIN));
-            incorrectPIN[i] = nowPIN;
-        }
 
         var stripNames = new[] { "Aqua", "Blue", "Green", "Lime", "Orange", "Red", "Yellow", "White", "Off" };
-        addQuestions(module, Enumerable.Range(0, 3).SelectMany(question => {
-                if (question == 0) return Enumerable.Range(0, 1).Select(x => makeQuestion(Question.PlanetsPIN, _Planets, correctAnswers: new[] { correctPIN }, preferredWrongAnswers: incorrectPIN));
-                if (question == 1) return Enumerable.Range(0, 1).Select(x => makeQuestion(Question.PlanetsPlanet, _Planets, correctAnswers: new[] { PlanetsSprites[planetShown] }, preferredWrongAnswers: (DateTime.Now.Month == 4 && DateTime.Now.Day == 1) ? PlanetsSprites : PlanetsSprites.Take(PlanetsSprites.Length - 2).ToArray()));
-                return stripColors.Select((strip, count) => makeQuestion(Question.PlanetsStrips, _Planets, new[] { ordinal(count + 1) }, new[] { stripNames[strip] }));
-        }));
+        addQuestions(module,
+            stripColors.Select((strip, count) => makeQuestion(Question.PlanetsStrips, _Planets, new[] { ordinal(count + 1) }, new[] { stripNames[strip] }))
+                .Concat(new[] { makeQuestion(Question.PlanetsPlanet, _Planets, correctAnswers: new[] { PlanetsSprites[planetShown] }, preferredWrongAnswers: (DateTime.Now.Month == 4 && DateTime.Now.Day == 1) ? PlanetsSprites : PlanetsSprites.Take(PlanetsSprites.Length - 2).ToArray()) }));
     }
 
     private IEnumerable<object> ProcessPolyhedralMaze(KMBombModule module)
@@ -3806,7 +3790,7 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessShapesBombs(KMBombModule module)
+    private IEnumerable<object> ProcessShapesAndBombs(KMBombModule module)
     {
         var comp = GetComponent(module, "ShapesBombs");
         var fldLetter = GetField<int>(comp, "selectLetter");
@@ -3829,7 +3813,7 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_ShapesBombs);
         var letterChars = new[] { "A", "B", "D", "E", "G", "I", "K", "L", "N", "O", "P", "S", "T", "X", "Y" };
-        addQuestion(module, Question.ShapesBombsInitialLetter, correctAnswers: new[] { letterChars[initialLetter] });
+        addQuestion(module, Question.ShapesAndBombsInitialLetter, correctAnswers: new[] { letterChars[initialLetter] });
     }
 
     private IEnumerable<object> ProcessShapeShift(KMBombModule module)
@@ -5140,7 +5124,10 @@ public class SouvenirModule : MonoBehaviour
         }
 
         _modulesSolved.IncSafe(_Wavetapping);
-        addQuestions(module, intPatterns.Select((pattern, stage) => makeQuestion(Question.WavetappingPatterns, _Wavetapping, new[] { ordinal(stage + 1) }, new[] { patternSprites[stageColors[stage]][pattern] }, stageColors.SelectMany(stages => patternSprites[stages].Select(x => x).ToArray().Shuffle().Take(2)).ToArray())));
+        addQuestions(module, intPatterns.Select((pattern, stage) => makeQuestion(Question.WavetappingPatterns, _Wavetapping,
+            formatArgs: new[] { ordinal(stage + 1) },
+            correctAnswers: new[] { patternSprites[stageColors[stage]][pattern] },
+            preferredWrongAnswers: stageColors.SelectMany(stages => patternSprites[stages]).ToArray())));
     }
 
     private IEnumerable<object> ProcessWire(KMBombModule module)
