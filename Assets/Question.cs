@@ -128,6 +128,15 @@ namespace Souvenir
         [SouvenirQuestion("What was the last digit of your first query’s result in {0}?", "Functions", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
         FunctionsLastDigit,
 
+        [SouvenirQuestion("What number was to the left of the displayed letter in {0}?", "Functions", 6, null, ExampleAnswers = new[] { "123", "847", "14", "73", "961", "9", "858" })]
+        FunctionsLeftNumber,
+
+        [SouvenirQuestion("What letter was displayed in {0}?", "Functions", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")]
+        FunctionsLetter,
+
+        [SouvenirQuestion("What number was to the right of the displayed letter in {0}?", "Functions", 6, null, ExampleAnswers = new[] { "321", "747", "47", "31", "169", "8", "858" })]
+        FunctionsRightNumber,
+
         [SouvenirQuestion("What were the numbers on {0}?", "Gamepad", 6, null, AddThe = true, ExampleAnswers = new[] { "01:03", "12:92", "84:72", "24:56" })]
         GamepadNumbers,
 
@@ -323,6 +332,20 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the last color in {0}?", "Rhythms", 4, "Blue", "Red", "Green", "Yellow")]
         RhythmsColor,
+
+        [SouvenirQuestion("What was the contestant's name in {0}?", "Schlag den Bomb", 4, "Ron", "Don", "Julia", "Cory", "Greg", "Paula", "Val", "Lisa", "Ozy",
+        "Ozzy", "Elsa", "Cori", "Harry", "Gale", "Daniel", "Albert", "Spike", "Tommy",
+        "Greta", "Tina", "Rob", "Edgar", "Julia", "Peter", "Millie", "Isolde", "Eris")]
+        SchlagDenBombContestantName,
+
+        [SouvenirQuestion("What was the contestant's score in {0}?", "Schlag den Bomb", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75")]
+        SchlagDenBombContestantScore,
+
+        [SouvenirQuestion("What was the bomb's score in {0}?", "Schlag den Bomb", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75")]
+        SchlagDenBombBombScore,
+
+
+        
 
         [SouvenirQuestion("What were the first and second words in the {1} phrase in {0}?", "Sea Shells", 4, "she sells", "she shells", "sea shells", "sea sells",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]

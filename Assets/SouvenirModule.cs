@@ -139,6 +139,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Probing = "Probing";
     const string _Quintuples = "quintuples";
     const string _Rhythms = "MusicRhythms";
+    const string _SchlagDenBomb = "qSchlagDenBomb";
     const string _SeaShells = "SeaShells";
     const string _ShapesBombs = "ShapesBombs";
     const string _ShapeShift = "shapeshift";
@@ -242,6 +243,7 @@ public class SouvenirModule : MonoBehaviour
             { _Probing, ProcessProbing },
             { _Quintuples, ProcessQuintuples },
             { _Rhythms, ProcessRhythms },
+            { _SchlagDenBomb, ProcessSchlagDenBomb },
             { _SeaShells, ProcessSeaShells },
             { _ShapesBombs, ProcessShapesAndBombs },
             { _ShapeShift, ProcessShapeShift },
@@ -2083,8 +2085,11 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "qFunctions");
         var fldFirstLastDigit = GetField<int>(comp, "firstLastDigit");
         var fldSolved = GetField<bool>(comp, "isSolved");
+        var fldLeftNum = GetField<int>(comp, "numberA");
+        var fldRightNum = GetField<int>(comp, "numberB");
+        var fldLetter = GetField<string>(comp, "ruleLetter");
 
-        if (comp == null || fldFirstLastDigit == null || fldSolved == null)
+        if (comp == null || fldFirstLastDigit == null || fldSolved == null || fldLeftNum == null || fldRightNum == null || fldLetter == null)
             yield break;
 
         while (!fldSolved.Get())
@@ -2103,7 +2108,44 @@ public class SouvenirModule : MonoBehaviour
             Debug.LogFormat("<Souvenir #{0}> Abandoning Functions because the first last digit is {1} when it should be from 0 to 9.", _moduleId, lastDigit);
             yield break;
         }
-        addQuestion(module, Question.FunctionsLastDigit, correctAnswers: new[] { lastDigit.ToString() });
+
+        var lNum = fldLeftNum.Get();
+        var rNum = fldRightNum.Get();
+        if (lNum == -1)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Functions because the number to the left of the letter was not found when it should have been from 1 to 999.", _moduleId);
+            yield break;
+        }
+        else if (lNum > 999 || lNum < 1)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Functions because the number to the left of the letter {1} when it should have been from 1 to 999.", _moduleId, lNum);
+            yield break;
+        }
+        if (rNum == -1)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Functions because the number to the right of the letter was not found when it should have been from 1 to 999.", _moduleId);
+            yield break;
+        }
+        else if (rNum > 999 || rNum < 1)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Functions because the number to the right of the letter {1} when it should have been from 1 to 999.", _moduleId, rNum);
+            yield break;
+        }
+        var theLetter = fldLetter.Get();
+        if (theLetter == "")
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Functions because the displayed letter was not found.", _moduleId);
+            yield break;
+        }
+
+        addQuestions(module,
+            makeQuestion(Question.FunctionsLastDigit, _Functions, correctAnswers: new[] { lastDigit.ToString() }),
+            makeQuestion(Question.FunctionsLeftNumber, _Functions, correctAnswers: new[] { lNum.ToString() }, preferredWrongAnswers:
+                Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(1, 999).ToString()).Distinct().Take(6).ToArray()),
+            makeQuestion(Question.FunctionsLetter, _Functions, correctAnswers: new[] { theLetter }),
+            makeQuestion(Question.FunctionsRightNumber, _Functions, correctAnswers: new[] { rNum.ToString() }, preferredWrongAnswers:
+                Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(1, 999).ToString()).Distinct().Take(6).ToArray())
+        );
     }
 
     private IEnumerable<object> ProcessGridLock(KMBombModule module)
@@ -3736,6 +3778,52 @@ public class SouvenirModule : MonoBehaviour
             Debug.LogFormat("<Souvenir #{0}> Abandoning Rhythms because lightColor has unexpected value ({1}).", _moduleId, color);
         else
             addQuestion(module, Question.RhythmsColor, correctAnswers: new[] { new[] { "Blue", "Red", "Green", "Yellow" }[color] });
+    }
+
+    private IEnumerable<object> ProcessSchlagDenBomb(KMBombModule module)
+    {
+        var comp = GetComponent(module, "qSchlagDenBomb");
+        var fldSolved = GetField<bool>(comp, "isSolved");
+        var fldContestant = GetField<string>(comp, "contestantName");
+        var fldContScore = GetField<int>(comp, "scoreC");
+        var fldBombScore = GetField<int>(comp, "scoreB");
+
+        if (comp == null || fldContestant == null || fldContScore == null || fldBombScore == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SchlagDenBomb);
+
+        var contestant = fldContestant.Get();
+        if (contestant == "" || contestant == null)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Schlag den Bomb because there was no contestant name found.", _moduleId);
+            yield break;
+        }
+
+
+        var cScore = fldContScore.Get();
+        var bScore = fldBombScore.Get();
+        if (cScore > 75 || cScore < 0)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Schlag den Bomb because the contender's score was {1} when it should have been from 0 to 75.", _moduleId, cScore);
+            yield break;
+        }
+        if (bScore > 75 || bScore < 0)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Schlag den Bomb because the bomb's score was {1} when it should have been from 0 to 75.", _moduleId, bScore);
+            yield break;
+        }
+
+
+        addQuestions(module,
+            makeQuestion(Question.SchlagDenBombContestantName, _SchlagDenBomb, correctAnswers: new[] { contestant }),
+            makeQuestion(Question.SchlagDenBombContestantScore, _SchlagDenBomb, correctAnswers: new[] { cScore.ToString() }, preferredWrongAnswers:
+               Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(0, 75).ToString()).Distinct().Take(6).ToArray()),
+            makeQuestion(Question.SchlagDenBombBombScore, _SchlagDenBomb, correctAnswers: new[] { bScore.ToString() }, preferredWrongAnswers:
+               Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(0, 75).ToString()).Distinct().Take(6).ToArray())
+               );
     }
 
     private IEnumerable<object> ProcessSeaShells(KMBombModule module)
