@@ -2111,30 +2111,20 @@ public class SouvenirModule : MonoBehaviour
 
         var lNum = fldLeftNum.Get();
         var rNum = fldRightNum.Get();
-        if (lNum == -1)
-        {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Functions because the number to the left of the letter was not found when it should have been from 1 to 999.", _moduleId);
-            yield break;
-        }
-        else if (lNum > 999 || lNum < 1)
+        if (lNum > 999 || lNum < 1)
         {
             Debug.LogFormat("[Souvenir #{0}] Abandoning Functions because the number to the left of the letter {1} when it should have been from 1 to 999.", _moduleId, lNum);
             yield break;
         }
-        if (rNum == -1)
-        {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Functions because the number to the right of the letter was not found when it should have been from 1 to 999.", _moduleId);
-            yield break;
-        }
-        else if (rNum > 999 || rNum < 1)
+        if (rNum > 999 || rNum < 1)
         {
             Debug.LogFormat("[Souvenir #{0}] Abandoning Functions because the number to the right of the letter {1} when it should have been from 1 to 999.", _moduleId, rNum);
             yield break;
         }
         var theLetter = fldLetter.Get();
-        if (theLetter == "")
+        if (theLetter == null || theLetter.Length != 1)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Functions because the displayed letter was not found.", _moduleId);
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Functions because the displayed letter is not a single letter (it’s {1}).", _moduleId, theLetter ?? "<null>");
             yield break;
         }
 
@@ -2144,8 +2134,7 @@ public class SouvenirModule : MonoBehaviour
                 Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(1, 999).ToString()).Distinct().Take(6).ToArray()),
             makeQuestion(Question.FunctionsLetter, _Functions, correctAnswers: new[] { theLetter }),
             makeQuestion(Question.FunctionsRightNumber, _Functions, correctAnswers: new[] { rNum.ToString() }, preferredWrongAnswers:
-                Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(1, 999).ToString()).Distinct().Take(6).ToArray())
-        );
+                Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(1, 999).ToString()).Distinct().Take(6).ToArray()));
     }
 
     private IEnumerable<object> ProcessGridLock(KMBombModule module)
@@ -3788,7 +3777,7 @@ public class SouvenirModule : MonoBehaviour
         var fldContScore = GetField<int>(comp, "scoreC");
         var fldBombScore = GetField<int>(comp, "scoreB");
 
-        if (comp == null || fldContestant == null || fldContScore == null || fldBombScore == null)
+        if (comp == null || fldSolved == null || fldContestant == null || fldContScore == null || fldBombScore == null)
             yield break;
 
         while (!fldSolved.Get())
@@ -3796,34 +3785,28 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_SchlagDenBomb);
 
         var contestant = fldContestant.Get();
-        if (contestant == "" || contestant == null)
-        {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Schlag den Bomb because there was no contestant name found.", _moduleId);
+        if (contestant == null)
             yield break;
-        }
-
 
         var cScore = fldContScore.Get();
         var bScore = fldBombScore.Get();
         if (cScore > 75 || cScore < 0)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Schlag den Bomb because the contender's score was {1} when it should have been from 0 to 75.", _moduleId, cScore);
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Schlag den Bomb because the contestant’s score was {1} when it should have been from 0 to 75.", _moduleId, cScore);
             yield break;
         }
         if (bScore > 75 || bScore < 0)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Schlag den Bomb because the bomb's score was {1} when it should have been from 0 to 75.", _moduleId, bScore);
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Schlag den Bomb because the bomb’s score was {1} when it should have been from 0 to 75.", _moduleId, bScore);
             yield break;
         }
-
 
         addQuestions(module,
             makeQuestion(Question.SchlagDenBombContestantName, _SchlagDenBomb, correctAnswers: new[] { contestant }),
             makeQuestion(Question.SchlagDenBombContestantScore, _SchlagDenBomb, correctAnswers: new[] { cScore.ToString() }, preferredWrongAnswers:
                Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(0, 75).ToString()).Distinct().Take(6).ToArray()),
             makeQuestion(Question.SchlagDenBombBombScore, _SchlagDenBomb, correctAnswers: new[] { bScore.ToString() }, preferredWrongAnswers:
-               Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(0, 75).ToString()).Distinct().Take(6).ToArray())
-               );
+               Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(0, 75).ToString()).Distinct().Take(6).ToArray()));
     }
 
     private IEnumerable<object> ProcessSeaShells(KMBombModule module)
