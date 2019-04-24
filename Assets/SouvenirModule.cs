@@ -3292,7 +3292,7 @@ public class SouvenirModule : MonoBehaviour
         var fldWeapons = GetField<int>(comp, "weapons");
         var fldBodyFound = GetField<int>(comp, "bodyFound");
 
-        if (comp == null || fldSolved == null || fldNames == null || fldSkipDisplay == null || fldSuspects == null || fldWeapons == null || fldBodyFound == null)
+        if (comp == null || fldSolved == null || fldSolution == null || fldNames == null || fldSkipDisplay == null || fldSuspects == null || fldWeapons == null || fldBodyFound == null)
             yield break;
 
         yield return null;
