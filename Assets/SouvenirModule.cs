@@ -4126,38 +4126,16 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "SimonSingsModule");
         var fldCurStage = GetField<int>(comp, "_curStage");
-        var fldFlashingColors = GetField<int[]>(comp, "_flashingColors");
+        var fldFlashingColors = GetField<int[][]>(comp, "_flashingColors");
 
         if (comp == null || fldCurStage == null || fldFlashingColors == null)
             yield break;
 
-        yield return null;
-
-        var flashingColorSequences = new List<int[]> { fldFlashingColors.Get() };
-        var curStage = fldCurStage.Get();
-        if (curStage != 0)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Sings because it started at stage {1} instead of 1.", _moduleId, curStage + 1);
-            yield break;
-        }
-        while (curStage < 3)
-        {
+        while (fldCurStage.Get() < 3)
             yield return new WaitForSeconds(.1f);
-            var newStage = fldCurStage.Get();
-            if (newStage != curStage && newStage < 3)
-            {
-                var newColors = fldFlashingColors.Get();
-                if (ReferenceEquals(newColors, flashingColorSequences.Last()))
-                {
-                    Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Sings because stage {1} gave me the same color sequence array (reference equals) as the previous stage.", _moduleId, newStage + 1);
-                    yield break;
-                }
-                flashingColorSequences.Add(newColors);
-            }
-            curStage = newStage;
-        }
 
-        if (flashingColorSequences.Any(seq => seq.Any(col => col < 0 || col >= _SimonSings_Notes.Length)))
+        var flashingColorSequences = fldFlashingColors.Get();
+        if (flashingColorSequences == null || flashingColorSequences.Length != 3 || flashingColorSequences.Any(seq => seq.Any(col => col < 0 || col >= _SimonSings_Notes.Length)))
         {
             Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Sings because one of the flashing “colors” is out of range (values from 0–11 expected): [{1}].", _moduleId, flashingColorSequences.Select(seq => string.Format("[{0}]", seq.JoinString(", "))).JoinString("; "));
             yield break;
