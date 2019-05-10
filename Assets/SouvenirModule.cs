@@ -451,6 +451,9 @@ public class SouvenirModule : MonoBehaviour
                 setAnswerHandler(3, _ => { curOrd++; showQuestion(); });
                 setAnswerHandler(4, _ => { curExample--; showQuestion(); });
                 setAnswerHandler(5, _ => { curExample++; showQuestion(); });
+
+                if (TwitchPlaysActive)
+                    ActivateTwitchPlaysNumbers();
             }
             else
             {
