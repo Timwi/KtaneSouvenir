@@ -3425,7 +3425,9 @@ public class SouvenirModule : MonoBehaviour
         var fldAcidType = GetField<int>(comp, "acidType");
         var fldAcidVol = GetField<int>(comp, "acidVol");
         var fldSolved = GetField<bool>(comp, "_isSolved");
-        if (comp == null || fldAcidType == null || fldAcidVol == null || fldSolved == null)
+        var fldColorText = GetField<GameObject>(comp, "colorText", isPublic: true);
+
+        if (comp == null || fldAcidType == null || fldAcidVol == null || fldSolved == null || fldColorText == null)
             yield break;
 
         while (!_isActivated)
@@ -3446,8 +3448,11 @@ public class SouvenirModule : MonoBehaviour
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
-
         _modulesSolved.IncSafe(_Neutralization);
+
+        var colorText = fldColorText.Get();
+        if (colorText != null)
+            colorText.SetActive(false);
         addQuestions(module,
             makeQuestion(Question.NeutralizationColor, _Neutralization, correctAnswers: new[] { new[] { "Yellow", "Green", "Red", "Blue" }[acidType] }),
             makeQuestion(Question.NeutralizationVolume, _Neutralization, correctAnswers: new[] { acidVol.ToString() }));
