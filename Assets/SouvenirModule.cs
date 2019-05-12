@@ -4999,6 +4999,7 @@ public class SouvenirModule : MonoBehaviour
             yield break;
 
         var codeLines = commands.Cast<object>().Select(cmd => mthFormatCommand.Invoke(cmd, false)).ToArray();
+        Debug.LogFormat("<Souvenir #{0}> Turtle Robot lines:\n{1}", _moduleId, codeLines.Select((cl, ix) => string.Format("{0}. {1}", ix, cl)).JoinString("\n"));
         var bugs = new List<string>();
         var bugsMarked = new HashSet<int>();
 
@@ -5008,14 +5009,21 @@ public class SouvenirModule : MonoBehaviour
             var ret = buttonHandler();
             var cursor = fldCursor.Get();
             var command = mthFormatCommand.Invoke(commands[cursor], true);
+            Debug.LogFormat("<Souvenir #{0}> Turtle Robot: Delete button pressed on {1} at cursor position {2}", _moduleId, command, cursor);
             if (command.StartsWith("#") && bugsMarked.Add(cursor))
+            {
                 bugs.Add(codeLines[cursor]);
+                Debug.LogFormat("<Souvenir #{0}> Turtle Robot: — Added", _moduleId);
+            }
+            else
+                Debug.LogFormat("<Souvenir #{0}> Turtle Robot: — NOT added", _moduleId);
             return ret;
         };
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
 
+        Debug.LogFormat("<Souvenir #{0}> Turtle Robot solved. Bugs:\n{1}", _moduleId, bugs.JoinString("\n"));
         _modulesSolved.IncSafe(_TurtleRobot);
         addQuestions(module, bugs.Take(2).Select((bug, ix) => makeQuestion(Question.TurtleRobotCodeLines, _TurtleRobot, new[] { ordinal(ix + 1) }, new[] { bug }, codeLines)));
     }
