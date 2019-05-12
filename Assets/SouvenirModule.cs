@@ -24,6 +24,7 @@ public class SouvenirModule : MonoBehaviour
     public KMSelectable[] Answers;
     public GameObject AnswersParent;
     public GameObject[] TpNumbers;
+    public Sprite[] ArithmelogicSprites;
     public Sprite[] ExampleSprites;
     public Sprite[] PerspectivePegsSprites;
     public Sprite[] PlanetsSprites;
@@ -81,6 +82,7 @@ public class SouvenirModule : MonoBehaviour
     const string _AdventureGame = "spwizAdventureGame";
     const string _Alchemy = "JuckAlchemy";
     const string _Algebra = "algebra";
+    const string _Arithmelogic = "arithmelogic";
     const string _BigCircle = "BigCircle";
     const string _BinaryLEDs = "BinaryLeds";
     const string _Bitmaps = "BitmapsModule";
@@ -105,6 +107,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Functions = "qFunctions";
     const string _Gamepad = "TheGamepadModule";
     const string _GridLock = "GridlockModule";
+    const string _Gryphons = "gryphons";
     const string _LogicalButtons = "logicalButtonsModule";
     const string _Hexamaze = "HexamazeModule";
     const string _Hogwarts = "HogwartsModule";
@@ -150,6 +153,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SimonSings = "SimonSingsModule";
     const string _SimonSpeaks = "SimonSpeaksModule";
     const string _SimonStates = "SimonV2";
+    const string _SimonStops = "simonStops";
     const string _SkewedSlots = "SkewedSlotsModule";
     const string _Skyrim = "skyrim";
     const string _SonicTheHedgehog = "sonic";
@@ -185,6 +189,7 @@ public class SouvenirModule : MonoBehaviour
             { _AdventureGame, ProcessAdventureGame },
             { _Alchemy, ProcessAlchemy },
             { _Algebra, ProcessAlgebra },
+            { _Arithmelogic, ProcessArithmelogic },
             { _BigCircle, ProcessBigCircle },
             { _BinaryLEDs, ProcessBinaryLEDs },
             { _Bitmaps, ProcessBitmaps },
@@ -209,6 +214,7 @@ public class SouvenirModule : MonoBehaviour
             { _Functions, ProcessFunctions },
             { _Gamepad, ProcessGamepad },
             { _GridLock, ProcessGridLock },
+            { _Gryphons, ProcessGryphons },
             { _Hexamaze, ProcessHexamaze },
             { _Hogwarts, ProcessHogwarts },
             { _HumanResources, ProcessHumanResources },
@@ -254,6 +260,7 @@ public class SouvenirModule : MonoBehaviour
             { _SimonSings, ProcessSimonSings },
             { _SimonSpeaks, ProcessSimonSpeaks },
             { _SimonStates, ProcessSimonStates },
+            { _SimonStops, ProcessSimonStops },
             { _SkewedSlots, ProcessSkewedSlots },
             { _Skyrim, ProcessSkyrim },
             { _SonicTheHedgehog, ProcessSonicTheHedgehog },
@@ -1260,6 +1267,31 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, textures.Take(2).Select((t, ix) => makeQuestion(ix == 0 ? Question.AlgebraEquation1 : Question.AlgebraEquation2, _Algebra, correctAnswers: new[] { t.name.Replace(';', '/') })));
     }
 
+    private IEnumerable<object> ProcessArithmelogic(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Arithmalogic"); //This is spelled incorrectly in the script as well
+        var fldSymbolNum = GetField<int>(comp, "submitSymbol");
+        var fldSolved = GetField<bool>(comp, "isSolved");
+
+        if (comp == null || fldSymbolNum == null || fldSolved == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_Arithmelogic);
+
+        var symbolNum = fldSymbolNum.Get();
+        if (symbolNum > 21 || symbolNum < 0)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Arithmelogic because the submit button’s symbol’s ID is {1}, when it should be from 0 to 21.", _moduleId, symbolNum);
+            yield break;
+        }
+
+        addQuestion(module, Question.ArithmelogicSubmit, correctAnswers: new[] { ArithmelogicSprites[symbolNum] },
+            preferredWrongAnswers: ArithmelogicSprites);
+    }
+
     private IEnumerable<object> ProcessBigCircle(KMBombModule module)
     {
         var comp = GetComponent(module, "TheBigCircle");
@@ -2177,6 +2209,35 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.GridLockStartingLocation, _GridLock, correctAnswers: new[] { locations[start] }),
             makeQuestion(Question.GridLockEndingLocation, _GridLock, correctAnswers: new[] { locations[solution] }),
             makeQuestion(Question.GridLockStartingColor, _GridLock, correctAnswers: new[] { colors[(pages[0][start] >> 4) - 1] }));
+    }
+
+    private IEnumerable<object> ProcessGryphons(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Gryphons");
+        var fldAge = GetField<int>(comp, "age");
+        var fldName = GetField<string>(comp, "theirName");
+        var fldSolved = GetField<bool>(comp, "isSolved");
+
+        if (comp == null || fldAge == null || fldName == null || fldSolved == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Gryphons);
+
+        var age = fldAge.Get();
+        var name = fldName.Get();
+
+        if (age < 23 || age > 34)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Gryphons because the gryphon's age is {1} when it should be from 23 to 34.", _moduleId, age);
+            yield break;
+        }
+
+        addQuestions(module,
+            makeQuestion(Question.GryphonsName, _Gryphons, correctAnswers: new[] { name }),
+            makeQuestion(Question.GryphonsAge, _Gryphons, correctAnswers: new[] { age.ToString() }, preferredWrongAnswers:
+                Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(23, 34).ToString()).Distinct().Take(6).ToArray()));
     }
 
     private static readonly string[] _logicalButtonsButtonNames = new[] { "top", "bottom-left", "bottom-right" };
@@ -4244,6 +4305,34 @@ public class SouvenirModule : MonoBehaviour
                     new[] { c == 4 ? "none" : puzzleDisplay[i].Select((v, j) => v ? null : colorNames[j]).Where(x => x != null).JoinString(", ") }));
         }
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessSimonStops(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SimonStops");
+        var fldColors = GetField<string[]>(comp, "outputSequence");
+        var fldSolved = GetField<bool>(comp, "isSolved");
+
+        if (comp == null || fldColors == null || fldSolved == null)
+            yield break;
+
+        while (!_isActivated)
+            yield return new WaitForSeconds(.1f);
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SimonStops);
+
+        var colors = fldColors.Get();
+        if (colors == null || colors.Length != 5)
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Simon Stops because the sequence is [{1}], which is {2}, when we expected five colors.", _moduleId,
+                colors == null ? "null" : string.Format("[{0}]", colors.JoinString(", ")), colors == null ? "null" : colors.Length + " colors");
+            yield break;
+        }
+
+        addQuestions(module, Enumerable.Range(0, 5).Select(ix =>
+             makeQuestion(Question.SimonStopsColors, _SimonStops, new[] { ordinal(ix + 1) }, new[] { colors[ix] }, colors)));
     }
 
     private IEnumerable<object> ProcessSkewedSlots(KMBombModule module)
