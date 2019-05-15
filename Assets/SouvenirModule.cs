@@ -2832,8 +2832,8 @@ public class SouvenirModule : MonoBehaviour
             primary = primary.Union(extraOptions).ToArray();
 
         addQuestions(module,
-            departures.Select((dep, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { firstWord(dep) }, new[] { ordinal(ix + 1), "departure", "from" }, primary)).Concat(
-            destinations.Select((dest, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { firstWord(dest) }, new[] { ordinal(ix + 1), "destination", "to" }, primary))));
+            departures.Select((dep, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { ordinal(ix + 1), "departure", "from" }, new[] { firstWord(dep) }, primary)).Concat(
+            destinations.Select((dest, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { ordinal(ix + 1), "destination", "to" }, new[] { firstWord(dest) }, primary))));
     }
 
     private IEnumerable<object> ProcessModuleMaze(KMBombModule module)
