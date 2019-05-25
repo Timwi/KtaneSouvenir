@@ -4449,31 +4449,25 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "snookerScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldactiveReds = GetField<int>(comp, "activeReds");
+        var fldActiveReds = GetField<int>(comp, "activeReds");
 
-        if(comp == null || fldSolved == null || fldactiveReds == null)
+        if (comp == null || fldSolved == null || fldActiveReds == null)
             yield break;
 
         yield return null;
 
-        var activeReds = fldactiveReds.Get();
-        if(activeReds < 8 || activeReds > 11)
+        var activeReds = fldActiveReds.Get();
+        if (activeReds < 8 || activeReds > 11)
         {
             Debug.LogFormat("<Souvenir #{0}> Abandoning Snooker because activeReds has an unexpected value: {1} (expected 8-11).", _moduleId, activeReds);
             yield break;
-
         }
 
-        while (!_moduleSolved.Get())
+        while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Snooker);
 
-        var redAmounts = new[] { "8", "9", "10", "11" };
-
-
-        addQuestion(module,
-            makeQuestion(question.SnookerReds, _Snooker, new[] { redAmounts[activeReds] }, new[] { "reds" })
-            );
+        addQuestion(module, Question.SnookerReds, correctAnswers: new[] { activeReds.ToString() });
     }
 
     private sealed class SonicPictureInfo { public string Name; public int Stage; }
