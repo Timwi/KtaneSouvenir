@@ -156,6 +156,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SimonStops = "simonStops";
     const string _SkewedSlots = "SkewedSlotsModule";
     const string _Skyrim = "skyrim";
+    const string _Snooker = "snooker";
     const string _SonicTheHedgehog = "sonic";
     const string _Souvenir = "SouvenirModule";
     const string _Switch = "BigSwitch";
@@ -263,6 +264,7 @@ public class SouvenirModule : MonoBehaviour
             { _SimonStops, ProcessSimonStops },
             { _SkewedSlots, ProcessSkewedSlots },
             { _Skyrim, ProcessSkyrim },
+            { _Snooker, ProcessSnooker },
             { _SonicTheHedgehog, ProcessSonicTheHedgehog },
             { _Souvenir, ProcessSouvenir },
             { _Switch, ProcessSwitch },
@@ -4441,6 +4443,31 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         qs.Add(makeQuestion(Question.SkyrimDragonShout, _Skyrim, correctAnswers: shoutNames.Except(new[] { correctShoutName }).Select(n => n.Replace("'", "’")).ToArray()));
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessSnooker(KMBombModule module)
+    {
+        var comp = GetComponent(module, "snookerScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldActiveReds = GetField<int>(comp, "activeReds");
+
+        if (comp == null || fldSolved == null || fldActiveReds == null)
+            yield break;
+
+        yield return null;
+
+        var activeReds = fldActiveReds.Get();
+        if (activeReds < 8 || activeReds > 11)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Snooker because activeReds has an unexpected value: {1} (expected 8-11).", _moduleId, activeReds);
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Snooker);
+
+        addQuestion(module, Question.SnookerReds, correctAnswers: new[] { activeReds.ToString() });
     }
 
     private sealed class SonicPictureInfo { public string Name; public int Stage; }
