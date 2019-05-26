@@ -13,13 +13,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Souvenir
   title: Souvenir
+  author: 
   description: "This module asks you questions about some of the other modules on
     your bomb after you\u2019ve solved them. It requires you to remember or write
-    down things that otherwise wouldn\u2019t be significant.\r\n\r\r\nSome of the
-    things this module might ask you about are listed below. For a complete list,
-    please see the manual.\n\r\n[list]\r\n[*][b]3D Maze:[/b] floor markings, cardinal
-    direction\r\n[*][b]Bitmaps:[/b] How many white/black squares were in each quadrant\r\n[*][b]Chess:[/b]
-    What were the coordinates shown on the module?\n[*][b]Hexamaze:[/b] pawn color\r\n[*][b]Monsplode,
+    down things that you used to solve the module.\n\r\r\nSome of the things this
+    module might ask you about are listed below. For a complete list, please see the
+    manual.\n\r\n[list]\r\n[*][b]3D Maze:[/b] floor markings, cardinal direction\r\n[*][b]Bitmaps:[/b]
+    How many white/black squares were in each quadrant\r\n[*][b]Chess:[/b] What were
+    the coordinates shown on the module?\n[*][b]Hexamaze:[/b] pawn color\r\n[*][b]Monsplode,
     Fight!:[/b] creature displayed and moves shown on buttons\r\n[*][b]Mouse in the
     Maze:[/b] color of the torus and the solution sphere\r\n[*][b]Simon States:[/b]
     which colors flashed\r\n[*][b]The Bulb:[/b] which buttons you pressed\n[*][b]Two
