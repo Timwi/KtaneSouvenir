@@ -191,6 +191,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         LEDEncryptionPressedLetters,
 
+        [SouvenirQuestion("What color was {1} in {0}?", "LED Math", 4, "Red", "Blue", "Yellow", "Green",
+            ExampleExtraFormatArguments = new[] { "LED A", "LED B", "the operator" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        LEDMathLights,
+
         [SouvenirQuestion("What was the correct code you entered in {0}?", "Listening", 6, null,
             ExampleAnswers = new[] { "&&&**", "&$#$&", "$#$*&", "#$$**", "$#$#*", "**$*#", "#$$&*", "##*$*", "$#*$&", "**#**", "#&&*#", "&#**&", "$&**#", "&#$$#", "$&&**", "#&$##", "&*$*$", "&$$&*", "#&&&&", "**$$$", "*&*&&", "*#&*&", "**###", "&&$&*", "&$**&", "#$#&$", "&#&&#", "$$*$*", "$&#$$", "&**$$", "$&&*&", "&$&##", "#&$*&", "$*$**", "*#$&&", "###&$", "*$$&$", "$*&##", "#&$&&", "$&$$*", "*$*$*" })]
         Listening,
