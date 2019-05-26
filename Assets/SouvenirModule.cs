@@ -116,6 +116,7 @@ public class SouvenirModule : MonoBehaviour
     const string _IceCream = "iceCreamModule";
     const string _Kudosudoku = "KudosudokuModule";
     const string _LEDEncryption = "LEDEnc";
+    const string _LEDMath = "lgndLEDMath";
     const string _Listening = "Listening";
     const string _LogicGates = "logicGates";
     const string _LondonUnderground = "londonUnderground";
@@ -223,6 +224,7 @@ public class SouvenirModule : MonoBehaviour
             { _IceCream, ProcessIceCream },
             { _Kudosudoku, ProcessKudosudoku },
             { _LEDEncryption, ProcessLEDEncryption },
+            { _LEDMath, ProcessLEDMath },
             { _Listening, ProcessListening },
             { _LogicalButtons, ProcessLogicalButtons },
             { _LogicGates, ProcessLogicGates },
@@ -297,7 +299,7 @@ public class SouvenirModule : MonoBehaviour
         };
 
         _attributes = typeof(Question).GetFields(BindingFlags.Public | BindingFlags.Static)
-            .Select(f => Ut.KeyValuePair((Question) f.GetValue(null), f.GetCustomAttribute<SouvenirQuestionAttribute>()))
+            .Select(f => Ut.KeyValuePair((Question)f.GetValue(null), f.GetCustomAttribute<SouvenirQuestionAttribute>()))
             .Where(kvp => kvp.Value != null)
             .ToDictionary();
 
@@ -429,8 +431,8 @@ public class SouvenirModule : MonoBehaviour
                                     question: string.Format(attr.QuestionText, fmt),
                                     correct: 0,
                                     answers: (attr.AllAnswers ?? attr.ExampleAnswers).ToList().Shuffle().Take(attr.NumAnswers).ToArray(),
-                                    font: Fonts[(int) attr.Type],
-                                    fontTexture: FontTextures[(int) attr.Type],
+                                    font: Fonts[(int)attr.Type],
+                                    fontTexture: FontTextures[(int)attr.Type],
                                     fontMaterial: FontMaterial));
                                 break;
                         }
@@ -726,7 +728,7 @@ public class SouvenirModule : MonoBehaviour
 
         public T Get(bool nullAllowed = false)
         {
-            var t = (T) Field.GetValue(_target);
+            var t = (T)Field.GetValue(_target);
             if (!nullAllowed && t == null)
                 Debug.LogFormat("<Souvenir #{2}> Field {1}.{0} is null.", Field.Name, Field.DeclaringType.FullName, _souvenirID);
             return t;
@@ -734,7 +736,7 @@ public class SouvenirModule : MonoBehaviour
 
         public T GetFrom(object obj, bool nullAllowed = false)
         {
-            var t = (T) Field.GetValue(obj);
+            var t = (T)Field.GetValue(obj);
             if (!nullAllowed && t == null)
                 Debug.LogFormat("<Souvenir #{2}> Field {1}.{0} is null.", Field.Name, Field.DeclaringType.FullName, _souvenirID);
             return t;
@@ -756,7 +758,7 @@ public class SouvenirModule : MonoBehaviour
 
         public T Invoke(params object[] arguments)
         {
-            return (T) Method.Invoke(_target, arguments);
+            return (T)Method.Invoke(_target, arguments);
         }
     }
 
@@ -785,7 +787,7 @@ public class SouvenirModule : MonoBehaviour
         {
             try
             {
-                var t = (T) Property.GetValue(_target, index);
+                var t = (T)Property.GetValue(_target, index);
                 if (!nullAllowed && t == null)
                     Debug.LogFormat("<Souvenir #{2}> Property {1}.{0} is null.", Property.Name, Property.DeclaringType.FullName, _souvenirID);
                 Error = false;
@@ -1614,7 +1616,7 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, paids.Select((p, i) => makeQuestion(Question.CheapCheckoutPaid, _CheapCheckout,
             formatArgs: new[] { paids.Count == 1 ? "" : ordinal(i + 1) + " " },
             correctAnswers: new[] { "$" + p.ToString("N2") },
-            preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(_ => (decimal) Rnd.Range(5, 50)).Select(amt => "$" + amt.ToString("N2")).Distinct().Take(5).ToArray())));
+            preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(_ => (decimal)Rnd.Range(5, 50)).Select(amt => "$" + amt.ToString("N2")).Distinct().Take(5).ToArray())));
     }
 
     private IEnumerable<object> ProcessChess(KMBombModule module)
@@ -1643,7 +1645,7 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_Chess);
 
-        addQuestions(module, Enumerable.Range(0, 6).Select(i => makeQuestion(Question.ChessCoordinate, _Chess, new[] { ordinal(i + 1) }, new[] { "" + ((char) (indexSelected[i] / 10 + 'a')) + (indexSelected[i] % 10 + 1) })));
+        addQuestions(module, Enumerable.Range(0, 6).Select(i => makeQuestion(Question.ChessCoordinate, _Chess, new[] { ordinal(i + 1) }, new[] { "" + ((char)(indexSelected[i] / 10 + 'a')) + (indexSelected[i] % 10 + 1) })));
     }
 
     private IEnumerable<object> ProcessChordQualities(KMBombModule module)
@@ -2004,7 +2006,7 @@ public class SouvenirModule : MonoBehaviour
             for (int y = 0; y < 4; y++)
             {
                 obj = array.GetValue(y * 4 + x);
-                qs.Add(makeQuestion(Question.CrackboxInitialState, _Crackbox, new[] { ((char) ('A' + x)).ToString(), (y + 1).ToString() }, new[] { fldIsBlack.GetFrom(obj) ? "black" : !fldIsLocked.GetFrom(obj) ? "white" : fldValue.GetFrom(obj).ToString() }));
+                qs.Add(makeQuestion(Question.CrackboxInitialState, _Crackbox, new[] { ((char)('A' + x)).ToString(), (y + 1).ToString() }, new[] { fldIsBlack.GetFrom(obj) ? "black" : !fldIsLocked.GetFrom(obj) ? "white" : fldValue.GetFrom(obj).ToString() }));
             }
         }
         addQuestions(module, qs);
@@ -2549,8 +2551,8 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_Kudosudoku);
 
         addQuestions(module,
-            makeQuestion(Question.KudosudokuPrefilled, _Kudosudoku, new[] { "pre-filled" }, Enumerable.Range(0, 16).Where(ix => shown[ix]).Select(coord => (char) ('A' + (coord % 4)) + (coord / 4 + 1).ToString()).ToArray()),
-            makeQuestion(Question.KudosudokuPrefilled, _Kudosudoku, new[] { "not pre-filled" }, Enumerable.Range(0, 16).Where(ix => !shown[ix]).Select(coord => (char) ('A' + (coord % 4)) + (coord / 4 + 1).ToString()).ToArray()));
+            makeQuestion(Question.KudosudokuPrefilled, _Kudosudoku, new[] { "pre-filled" }, Enumerable.Range(0, 16).Where(ix => shown[ix]).Select(coord => (char)('A' + (coord % 4)) + (coord / 4 + 1).ToString()).ToArray()),
+            makeQuestion(Question.KudosudokuPrefilled, _Kudosudoku, new[] { "not pre-filled" }, Enumerable.Range(0, 16).Where(ix => !shown[ix]).Select(coord => (char)('A' + (coord % 4)) + (coord / 4 + 1).ToString()).ToArray()));
     }
 
     private IEnumerable<object> ProcessLEDEncryption(KMBombModule module)
@@ -2632,6 +2634,52 @@ public class SouvenirModule : MonoBehaviour
                 pressedLetters[stage] = label;
             return ret;
         };
+    }
+
+    private IEnumerable<object> ProcessLEDMath(KMBombModule module)
+    {
+        var comp = GetComponent(module, "LEDMathScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldLedA = GetField<int>(comp, "ledAIndex");
+        var fldLedB = GetField<int>(comp, "ledBIndex");
+        var fldLedOp = GetField<int>(comp, "ledOpIndex");
+
+        if (comp == null || fldSolved == null || fldLedA == null || fldLedB == null || fldLedOp == null)
+            yield break;
+
+        yield return null;
+
+        var ledA = fldLedA.Get();
+        var ledB = fldLedB.Get();
+        var ledOp = fldLedOp.Get();
+        if (ledA < 0 || ledA > 3)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning LED Math because ledAIndex has an unexpected value: {1} (expected 0-4).", _moduleId, ledA);
+            yield break;
+        }
+
+        if (ledB < 0 || ledB > 3)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning LED Math because ledBIndex has an unexpected value: {1} (expected 0-4).", _moduleId, ledB);
+            yield break;
+        }
+
+        if (ledOp < 0 || ledOp > 3)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning LED Math because ledOpIndex has an unexpected value: {1} (expected 0-4).", _moduleId, ledOp);
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_LEDMath);
+
+        var ledColors = new[] { "Red", "Blue", "Green", "Yellow" };
+
+        addQuestions(module,
+            makeQuestion(Question.LEDMathLights, _LEDMath, new[] { "LED A" }, new[] { ledColors[ledA] }),
+            makeQuestion(Question.LEDMathLights, _LEDMath, new[] { "LED B" }, new[] { ledColors[ledB] }),
+            makeQuestion(Question.LEDMathLights, _LEDMath, new[] { "the operator LED" }, new[] { ledColors[ledOp] }));
     }
 
     private IEnumerable<object> ProcessListening(KMBombModule module)
