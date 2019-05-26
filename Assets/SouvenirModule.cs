@@ -2674,13 +2674,10 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_LEDMath);
 
-        var ledColors = new[] { "red", "blue", "green", "yellow" };
-
         addQuestions(module,
-            makeQuestion(Question.LEDMathLights, _LEDMath, new[] { "LED A" }, new[] { LedA }),
-            makeQuestion(Question.LEDMathLights, _LEDMath, new[] { "LED B" }, new[] { LedB }),
-            makeQuestion(Question.LEDMathLights, _LEDMath, new[] { "the operator" }, new[] { LedOp }));
-            
+            makeQuestion(Question.LEDMathLights, _LEDMath, new[] { "LED A" }, new[] { LedA.ToString() }),
+            makeQuestion(Question.LEDMathLights, _LEDMath, new[] { "LED B" }, new[] { LedB.ToString() }),
+            makeQuestion(Question.LEDMathLights, _LEDMath, new[] { "the operator" }, new[] { LedOp.ToString() }));
     }
 
     private IEnumerable<object> ProcessListening(KMBombModule module)
