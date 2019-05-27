@@ -153,6 +153,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SimonSends = "SimonSendsModule";
     const string _SimonSings = "SimonSingsModule";
     const string _SimonSpeaks = "SimonSpeaksModule";
+    const string _SimonsStar = "simonsStar";
     const string _SimonStates = "SimonV2";
     const string _SimonStops = "simonStops";
     const string _SkewedSlots = "SkewedSlotsModule";
@@ -262,6 +263,7 @@ public class SouvenirModule : MonoBehaviour
             { _SimonSends, ProcessSimonSends },
             { _SimonSings, ProcessSimonSings },
             { _SimonSpeaks, ProcessSimonSpeaks },
+            { _SimonsStar, ProcessSimonsStar },
             { _SimonStates, ProcessSimonStates },
             { _SimonStops, ProcessSimonStops },
             { _SkewedSlots, ProcessSkewedSlots },
@@ -2822,7 +2824,7 @@ public class SouvenirModule : MonoBehaviour
 
         var qs = new List<QandA>();
         for (int i = 0; i < gateTypeNames.Length; i++)
-            qs.Add(makeQuestion(Question.LogicGatesGates, _LogicGates, new[] { "gate " + (char) ('A' + i) }, new[] { gateTypeNames[i] }));
+            qs.Add(makeQuestion(Question.LogicGatesGates, _LogicGates, new[] { "gate " + (char)('A' + i) }, new[] { gateTypeNames[i] }));
         if (!isDuplicateInvalid)
             qs.Add(makeQuestion(Question.LogicGatesGates, _LogicGates, new[] { "the duplicated gate" }, new[] { duplicate }));
         addQuestions(module, qs);
@@ -3968,7 +3970,7 @@ public class SouvenirModule : MonoBehaviour
             }
         }
 
-        solved:
+    solved:
         _modulesSolved.IncSafe(_SeaShells);
 
         var qs = new List<QandA>();
@@ -4035,14 +4037,14 @@ public class SouvenirModule : MonoBehaviour
             if (stL != solL || l == stL)
                 for (int r = 0; r < 4; r++)
                     if (stR != solR || r == stR)
-                        answers.Add(((char) ('A' + r + (4 * l))).ToString());
+                        answers.Add(((char)('A' + r + (4 * l))).ToString());
         if (answers.Count < 4)
         {
             Debug.LogFormat("[Souvenir #{0}] No question for Shape Shift because the answer was the same as the initial state.", _moduleId);
             _legitimatelyNoQuestions.Add(module);
         }
         else
-            addQuestion(module, Question.ShapeShiftInitialShape, correctAnswers: new[] { ((char) ('A' + stR + (4 * stL))).ToString() }, preferredWrongAnswers: answers.ToArray());
+            addQuestion(module, Question.ShapeShiftInitialShape, correctAnswers: new[] { ((char)('A' + stR + (4 * stL))).ToString() }, preferredWrongAnswers: answers.ToArray());
     }
 
     private IEnumerable<object> ProcessSillySlots(KMBombModule module)
@@ -4070,17 +4072,17 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         }
 
-        if (prevSlots.Cast<object>().Any(obj => !(obj is Array) || ((Array) obj).Length != 3))
+        if (prevSlots.Cast<object>().Any(obj => !(obj is Array) || ((Array)obj).Length != 3))
         {
             Debug.LogFormat("<Souvenir #{0}> Abandoning Silly Slots because prevSlots {1}.",
                 _moduleId,
                 prevSlots == null ? "is null" :
                 prevSlots.Count == 0 ? "has length 0" :
-                string.Format("has an unexpected item (expected arrays of length 3): [{0}]", prevSlots.Cast<object>().Select(obj => obj == null ? "<null>" : !(obj is Array) ? string.Format("<{0}>", obj.GetType().FullName) : string.Format("<Array, length={0}>", ((Array) obj).Length)).JoinString(", ")));
+                string.Format("has an unexpected item (expected arrays of length 3): [{0}]", prevSlots.Cast<object>().Select(obj => obj == null ? "<null>" : !(obj is Array) ? string.Format("<{0}>", obj.GetType().FullName) : string.Format("<Array, length={0}>", ((Array)obj).Length)).JoinString(", ")));
             yield break;
         }
 
-        var testSlot = ((Array) prevSlots[0]).GetValue(0);
+        var testSlot = ((Array)prevSlots[0]).GetValue(0);
         var fldShape = GetField<object>(testSlot, "shape", isPublic: true);
         var fldColor = GetField<object>(testSlot, "color", isPublic: true);
         if (fldShape == null || fldColor == null)
@@ -4090,7 +4092,7 @@ public class SouvenirModule : MonoBehaviour
         // Skip the last stage because if the last action was Keep, it is still visible on the module
         for (int stage = 0; stage < prevSlots.Count - 1; stage++)
         {
-            var slotStrings = ((Array) prevSlots[stage]).Cast<object>().Select(obj => (fldColor.GetFrom(obj).ToString() + " " + fldShape.GetFrom(obj).ToString()).ToLowerInvariant()).ToArray();
+            var slotStrings = ((Array)prevSlots[stage]).Cast<object>().Select(obj => (fldColor.GetFrom(obj).ToString() + " " + fldShape.GetFrom(obj).ToString()).ToLowerInvariant()).ToArray();
             for (int slot = 0; slot < slotStrings.Length; slot++)
                 qs.Add(makeQuestion(Question.SillySlots, _SillySlots, new[] { ordinal(slot + 1), ordinal(stage + 1) }, new[] { slotStrings[slot] }, slotStrings));
         }
@@ -4224,9 +4226,9 @@ public class SouvenirModule : MonoBehaviour
         if (morseR == null || morseG == null || morseB == null)
             yield break;
 
-        var charR = ((char) ('A' + Array.IndexOf(_SimonSends_Morse, morseR.Replace("###", "-").Replace("#", ".").Replace("_", "")))).ToString();
-        var charG = ((char) ('A' + Array.IndexOf(_SimonSends_Morse, morseG.Replace("###", "-").Replace("#", ".").Replace("_", "")))).ToString();
-        var charB = ((char) ('A' + Array.IndexOf(_SimonSends_Morse, morseB.Replace("###", "-").Replace("#", ".").Replace("_", "")))).ToString();
+        var charR = ((char)('A' + Array.IndexOf(_SimonSends_Morse, morseR.Replace("###", "-").Replace("#", ".").Replace("_", "")))).ToString();
+        var charG = ((char)('A' + Array.IndexOf(_SimonSends_Morse, morseG.Replace("###", "-").Replace("#", ".").Replace("_", "")))).ToString();
+        var charB = ((char)('A' + Array.IndexOf(_SimonSends_Morse, morseB.Replace("###", "-").Replace("#", ".").Replace("_", "")))).ToString();
 
         // Simon Sends sets “_answerSoFar” to null when it’s done
         while (fldAnswerSoFar.Get(nullAllowed: true) != null)
@@ -4305,6 +4307,64 @@ public class SouvenirModule : MonoBehaviour
             Enumerable.Range(0, 5).Select(ix => makeQuestion(Question.SimonSpeaksPositions, _SimonSpeaks, new[] { ordinal(ix + 1) }, new[] { positionNames[sequence[ix]] })).Concat(
             Enumerable.Range(0, 5).Select(ix => makeQuestion(Question.SimonSpeaksColors, _SimonSpeaks, new[] { ordinal(ix + 1) }, new[] { wordsTable[colors[sequence[ix]]][0] })).Concat(
             Enumerable.Range(0, 5).Select(ix => makeQuestion(Question.SimonSpeaksWords, _SimonSpeaks, new[] { ordinal(ix + 1) }, new[] { wordsTable[words[sequence[ix]]][languages[sequence[ix]]] })))));
+    }
+
+    private IEnumerable<object> ProcessSimonsStar(KMBombModule module)
+    {
+        var comp = GetComponent(module, "simonsStarScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldFlash1 = GetField<string>(comp, "firstFlashColour");
+        var fldFlash2 = GetField<string>(comp, "secondFlashColour");
+        var fldFlash3 = GetField<string>(comp, "thirdFlashColour");
+        var fldFlash4 = GetField<string>(comp, "fourthFlashColour");
+        var fldFlash5 = GetField<string>(comp, "fifthFlashColour");
+
+        if (comp == null || fldSolved == null || fldFlash1 == null || fldFlash2 == null || fldFlash3 == null || fldFlash4 == null || fldFlash5 == null)
+            yield break;
+
+        yield return null;
+
+        var Flash1 = fldFlash1.Get();
+        var Flash2 = fldFlash2.Get();
+        var Flash3 = fldFlash3.Get();
+        var Flash4 = fldFlash4.Get();
+        var Flash5 = fldFlash5.Get();
+
+        if (new[] { "red", "yellow", "green", "blue", "purple" }.Any(x => Flash1 != x))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon's Star because Flash1 has an unexpected value: {1} (expected red, green, yellow, blue, or purple).", _moduleId, Flash1);
+            yield break;
+        }
+
+        if (new[] { "red", "yellow", "green", "blue", "purple" }.Any(x => Flash2 != x))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon's Star because Flash2 has an unexpected value: {1} (expected red, green, yellow, blue, or purple).", _moduleId, Flash2);
+            yield break;
+        }
+
+        if (new[] {  "red", "yellow", "green", "blue", "purple" }.Any(x => Flash3 != x))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon's Star because Flash3 has an unexpected value: {1} (expected red, green, yellow, blue, or purple).", _moduleId, Flash3);
+            yield break;
+        }
+
+        if (new[] { "red", "yellow", "green", "blue", "purple" }.Any(x => Flash4 != x))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon's Star because Flash4 has an unexpected value: {1} (expected red, green, yellow, blue, or purple).", _moduleId, Flash4);
+        }
+
+        if (new[] { "red", "yellow", "green", "blue", "purple" }.Any(x => Flash5 != x))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon's Star because Flash5 has an unexpected value: {1} (expected red, green, yellow, blue, or purple).", _moduleId, Flash5);
+        }
+
+        addQuestions(module,
+            makeQuestion(Question.SimonsStarColors, _SimonsStar, new[] { "1st" }, new[] { Flash1 }),
+            makeQuestion(Question.SimonsStarColors, _SimonsStar, new[] { "2nd" }, new[] { Flash2 }),
+            makeQuestion(Question.SimonsStarColors, _SimonsStar, new[] { "3rd" }, new[] { Flash3 }),
+            makeQuestion(Question.SimonsStarColors, _SimonsStar, new[] { "4th" }, new[] { Flash4 }),
+            makeQuestion(Question.SimonsStarColors, _SimonsStar, new[] { "5th" }, new[] { Flash5 }));
+
     }
 
     private IEnumerable<object> ProcessSimonStates(KMBombModule module)

@@ -402,6 +402,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSpeaksPositions,
 
+        [SouvenirQuestion("Which color flashed {1} in sequence in {0}?", "Simon's Star", 6, "red", "yellow", "green", "blue", "purple",
+            ExampleExtraFormatArguments = new[] { "1st", "2nd", "3rd", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SimonsStarColors,
+
         [SouvenirQuestion("Which {1} in the {2} stage in {0}?", "Simon States", 4, "Red", "Yellow", "Green", "Blue", "Red, Yellow", "Red, Green", "Red, Blue", "Yellow, Green", "Yellow, Blue", "Green, Blue", "all 4", "none",
             ExampleExtraFormatArguments = new[] { "color(s) flashed", "first", "color(s) didn’t flash", "first", "color(s) flashed", "second", "color(s) didn’t flash", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
         SimonStatesDisplay,
