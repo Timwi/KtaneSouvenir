@@ -230,11 +230,11 @@ public class SouvenirModule : MonoBehaviour
             { _LogicalButtons, ProcessLogicalButtons },
             { _LogicGates, ProcessLogicGates },
             { _LondonUnderground, ProcessLondonUnderground },
-            { _ModuleMaze, ProcessModuleMaze },
             { _Mafia, ProcessMafia },
             { _MaritimeFlags, ProcessMaritimeFlags },
             { _Microcontroller, ProcessMicrocontroller },
             { _Minesweeper, ProcessMinesweeper },
+            { _ModuleMaze, ProcessModuleMaze },
             { _MonsplodeFight, ProcessMonsplodeFight },
             { _MonsplodeTradingCards, ProcessMonsplodeTradingCards },
             { _Moon, ProcessMoon },
@@ -2888,28 +2888,6 @@ public class SouvenirModule : MonoBehaviour
             destinations.Select((dest, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { ordinal(ix + 1), "destination", "to" }, new[] { firstWord(dest) }, primary))));
     }
 
-    private IEnumerable<object> ProcessModuleMaze(KMBombModule module)
-    {
-        var comp = GetComponent(module, "ModuleMazeModule");
-        var fldSprites = GetField<Sprite[]>(comp, "souvenirSprites", true);
-        var fldStart = GetField<string>(comp, "souvenirStart", true);
-
-        if (comp == null || fldSprites == null || fldStart == null)
-            yield break;
-
-        while (fldSprites.Get().Count() < 6)
-            yield return new WaitForSeconds(.1f);
-
-        var sprites = fldSprites.Get();
-        var start = fldStart.Get();
-
-        _modulesSolved.IncSafe(_ModuleMaze);
-
-        addQuestions(module,
-            makeQuestion(Question.ModuleMazeStartingIcon, _ModuleMaze,
-                correctAnswers: new[] { sprites.FirstOrDefault(spr => spr.name == start) }, preferredWrongAnswers: sprites));
-    }
-
     private IEnumerable<object> ProcessMafia(KMBombModule module)
     {
         var comp = GetComponent(module, "MafiaModule");
@@ -3037,6 +3015,28 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_Minesweeper);
         addQuestion(module, Question.MinesweeperStartingColor, correctAnswers: new[] { color });
+    }
+
+    private IEnumerable<object> ProcessModuleMaze(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ModuleMazeModule");
+        var fldSprites = GetField<Sprite[]>(comp, "souvenirSprites", true);
+        var fldStart = GetField<string>(comp, "souvenirStart", true);
+
+        if (comp == null || fldSprites == null || fldStart == null)
+            yield break;
+
+        while (fldSprites.Get().Count() < 6)
+            yield return new WaitForSeconds(.1f);
+
+        var sprites = fldSprites.Get();
+        var start = fldStart.Get();
+
+        _modulesSolved.IncSafe(_ModuleMaze);
+
+        addQuestions(module,
+            makeQuestion(Question.ModuleMazeStartingIcon, _ModuleMaze,
+                correctAnswers: new[] { sprites.FirstOrDefault(spr => spr.name == start) }, preferredWrongAnswers: sprites));
     }
 
     private IEnumerable<object> ProcessMonsplodeFight(KMBombModule module)
