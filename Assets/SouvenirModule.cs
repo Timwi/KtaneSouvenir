@@ -30,6 +30,7 @@ public class SouvenirModule : MonoBehaviour
     public Sprite[] PlanetsSprites;
     public Sprite[] SymbolicCoordinatesSprites;
     public Sprite[] WavetappingSprites;
+    public Sprite[] FlagsSprites;
 
     public TextMesh TextMesh;
     public Renderer TextRenderer;
@@ -104,6 +105,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Creation = "CreationModule";
     const string _DoubleOh = "DoubleOhModule";
     const string _FastMath = "fastMath";
+    const string _Flags = "FlagsModule";
     const string _Functions = "qFunctions";
     const string _Gamepad = "TheGamepadModule";
     const string _GridLock = "GridlockModule";
@@ -134,6 +136,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Murder = "murder";
     const string _MysticSquare = "MysticSquareModule";
     const string _Neutralization = "neutralization";
+    const string _Nonogram = "NonogramModule";
     const string _OnlyConnect = "OnlyConnectModule";
     const string _OrientationCube = "OrientationCube";
     const string _PatternCube = "PatternCubeModule";
@@ -214,6 +217,7 @@ public class SouvenirModule : MonoBehaviour
             { _Creation, ProcessCreation },
             { _DoubleOh, ProcessDoubleOh },
             { _FastMath, ProcessFastMath },
+            { _Flags, ProcessFlags },
             { _Functions, ProcessFunctions },
             { _Gamepad, ProcessGamepad },
             { _GridLock, ProcessGridLock },
@@ -244,6 +248,7 @@ public class SouvenirModule : MonoBehaviour
             { _Murder, ProcessMurder },
             { _MysticSquare, ProcessMysticSquare },
             { _Neutralization, ProcessNeutralization },
+            { _Nonogram, ProcessNonogram },
             { _OnlyConnect, ProcessOnlyConnect },
             { _OrientationCube, ProcessOrientationCube },
             { _PatternCube, ProcessPatternCube },
@@ -801,6 +806,19 @@ public class SouvenirModule : MonoBehaviour
                 Error = true;
                 return default(T);
             }
+        }
+
+        public T GetFrom(object obj, bool nullAllowed = false)
+        {
+            return GetFrom(obj, null, nullAllowed);
+        }
+
+        public T GetFrom(object obj, object[] index, bool nullAllowed = false)
+        {
+            var t = (T) Property.GetValue(obj, index);
+            if (!nullAllowed && t == null)
+                Debug.LogFormat("<Souvenir #{2}> Property {1}.{0} is null.", Property.Name, Property.DeclaringType.FullName, _souvenirID);
+            return t;
         }
 
         public void Set(T value, object[] index = null)
@@ -2119,6 +2137,59 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_FastMath);
         addQuestion(module, Question.FastMathLastLetters, correctAnswers: new[] { letters }, preferredWrongAnswers: prevLetters.ToArray());
+    }
+
+    private IEnumerable<object> ProcessFlags(KMBombModule module)
+    {
+        var comp = GetComponent(module, "FlagsModule");
+        var fldMainCountry = GetField<object>(comp, "mainCountry");
+        var fldCountries = GetField<IList>(comp, "countries");
+        var fldNumber = GetField<int>(comp, "number");
+        var fldCanInteract = GetField<bool>(comp, "canInteract");
+
+        if (comp == null || fldMainCountry == null || fldCountries == null || fldNumber == null || fldCanInteract == null)
+            yield break;
+
+        yield return null;
+
+        var mainCountry = fldMainCountry.Get();
+        var countries = fldCountries.Get();
+        var number = fldNumber.Get();
+
+        if (mainCountry == null || countries == null)
+            yield break;
+        if (countries.Count != 7)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Flags because ‘countries’ has length {1} (expected 7).", _moduleId, countries.Count);
+            yield break;
+        }
+        if (number < 1 || number > 7)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Flags because ‘number’ has unexpected value {1} (expected 1–7).", _moduleId, number);
+            yield break;
+        }
+
+        var propCountryName = GetProperty<string>(mainCountry, "CountryName", isPublic: true);
+        var mainCountrySprite = FlagsSprites.FirstOrDefault(spr => spr.name == propCountryName.GetFrom(mainCountry));
+        var otherCountrySprites = countries.Cast<object>().Select(country => FlagsSprites.FirstOrDefault(spr => spr.name == propCountryName.GetFrom(country))).ToArray();
+
+        if (mainCountrySprite == null || otherCountrySprites.Any(spr => spr == null))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Flags because one of the countries has a name with no corresponding sprite: main country = {1}, other countries = [{2}].", _moduleId, propCountryName.GetFrom(mainCountry), countries.Cast<object>().Select(country => propCountryName.GetFrom(country)).JoinString(", "));
+            yield break;
+        }
+
+        while (fldCanInteract.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Flags);
+
+        addQuestions(module,
+            // Displayed number
+            makeQuestion(Question.FlagsDisplayedNumber, _Flags, correctAnswers: new[] { number.ToString() }),
+            // Main country flag
+            makeQuestion(Question.FlagsMainCountry, _Flags, correctAnswers: new[] { mainCountrySprite }, preferredWrongAnswers: otherCountrySprites),
+            // Rest of the country flags
+            makeQuestion(Question.FlagsCountries, _Flags, correctAnswers: otherCountrySprites, preferredWrongAnswers: FlagsSprites));
     }
 
     private IEnumerable<object> ProcessFunctions(KMBombModule module)
@@ -3569,6 +3640,42 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.NeutralizationColor, _Neutralization, correctAnswers: new[] { new[] { "Yellow", "Green", "Red", "Blue" }[acidType] }),
             makeQuestion(Question.NeutralizationVolume, _Neutralization, correctAnswers: new[] { acidVol.ToString() }));
+    }
+
+    private IEnumerable<object> ProcessNonogram(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NonogramModule");
+        var fldColors = GetField<List<string>>(comp, "colors");
+        if (comp == null || fldColors == null)
+            yield break;
+
+        yield return null;
+
+        // Hook into the module’s OnPass handler
+        var isSolved = false;
+        module.OnPass += delegate { isSolved = true; return false; };
+        yield return new WaitUntil(() => isSolved);
+        _modulesSolved.IncSafe(_Nonogram);
+
+        var colors = fldColors.Get();
+        if (colors == null)
+            yield break;
+        if (colors.Count != 10 || colors.Any(c => !Regex.IsMatch(c, @"^[ROYGBP] [ROYGBP]$")))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Nonogram because ‘colors’ has unexpected length ({1}; expected 10) or an unexpected entry ([{2}]).", _moduleId, colors.Count, colors.JoinString(", "));
+            yield break;
+        }
+
+        var colorNames = new Dictionary<string, string> {
+            { "R", "Red" },
+            { "O", "Orange" },
+            { "Y", "Yellow" },
+            { "G", "Green" },
+            { "B", "Blue" },
+            { "P", "Purple" }
+        };
+
+        addQuestions(module, colors.Select((color, index) => makeQuestion(Question.NonogramColors, _Nonogram, new[] { ordinal(index % 5 + 1) + (index >= 5 ? " row" : " column") }, color.Split(' ').Select(c => colorNames[c]).ToArray())));
     }
 
     private IEnumerable<object> ProcessOnlyConnect(KMBombModule module)
