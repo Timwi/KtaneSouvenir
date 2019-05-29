@@ -104,6 +104,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Crackbox = "CrackboxModule";
     const string _Creation = "CreationModule";
     const string _DoubleOh = "DoubleOhModule";
+    const string _DrDoctor = "DrDoctorModule";
     const string _FastMath = "fastMath";
     const string _Flags = "FlagsModule";
     const string _Functions = "qFunctions";
@@ -216,6 +217,7 @@ public class SouvenirModule : MonoBehaviour
             { _Crackbox, ProcessCrackbox },
             { _Creation, ProcessCreation },
             { _DoubleOh, ProcessDoubleOh },
+            { _DrDoctor, ProcessDrDoctor },
             { _FastMath, ProcessFastMath },
             { _Flags, ProcessFlags },
             { _Functions, ProcessFunctions },
@@ -2101,6 +2103,33 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_DoubleOh);
         addQuestion(module, Question.DoubleOhSubmitButton, correctAnswers: new[] { "↕↔⇔⇕◆".Substring(submitIndex, 1) });
+    }
+
+    private IEnumerable<object> ProcessDrDoctor(KMBombModule module)
+    {
+        var comp = GetComponent(module, "DrDoctorModule");
+        var fldSymptoms = GetField<string[]>(comp, "_selectableSymptoms");
+        var fldDiagnoses = GetField<string[]>(comp, "_selectableDiagnoses");
+        var fldDiagnoseText = GetField<TextMesh>(comp, "DiagnoseText", isPublic: true);
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+
+        if (comp == null || fldSymptoms == null || fldDiagnoses == null || fldDiagnoseText == null || fldSolved == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_DrDoctor);
+
+        var diagnoses = fldDiagnoses.Get();
+        var symptoms = fldSymptoms.Get();
+        var diagnoseText = fldDiagnoseText.Get();
+
+        if (diagnoses == null || symptoms == null || diagnoseText == null)
+            yield break;
+
+        addQuestions(module,
+            makeQuestion(Question.DrDoctorDiseases, _DrDoctor, correctAnswers: diagnoses.Except(new[] { diagnoseText.text }).ToArray()),
+            makeQuestion(Question.DrDoctorSymptoms, _DrDoctor, correctAnswers: symptoms));
     }
 
     private IEnumerable<object> ProcessFastMath(KMBombModule module)
