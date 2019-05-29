@@ -1308,7 +1308,7 @@ public class SouvenirModule : MonoBehaviour
         var symbolNum = fldSymbolNum.Get();
         if (symbolNum > 21 || symbolNum < 0)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Arithmelogic because the submit button’s symbol’s ID is {1}, when it should be from 0 to 21.", _moduleId, symbolNum);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Arithmelogic because the submit button’s symbol’s ID is {1}, when it should be from 0 to 21.", _moduleId, symbolNum);
             yield break;
         }
 
@@ -2225,18 +2225,18 @@ public class SouvenirModule : MonoBehaviour
         var rNum = fldRightNum.Get();
         if (lNum > 999 || lNum < 1)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Functions because the number to the left of the letter {1} when it should have been from 1 to 999.", _moduleId, lNum);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Functions because the number to the left of the letter {1} when it should have been from 1 to 999.", _moduleId, lNum);
             yield break;
         }
         if (rNum > 999 || rNum < 1)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Functions because the number to the right of the letter {1} when it should have been from 1 to 999.", _moduleId, rNum);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Functions because the number to the right of the letter {1} when it should have been from 1 to 999.", _moduleId, rNum);
             yield break;
         }
         var theLetter = fldLetter.Get();
         if (theLetter == null || theLetter.Length != 1)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Functions because the displayed letter is not a single letter (it’s {1}).", _moduleId, theLetter ?? "<null>");
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Functions because the displayed letter is not a single letter (it’s {1}).", _moduleId, theLetter ?? "<null>");
             yield break;
         }
 
@@ -2307,7 +2307,7 @@ public class SouvenirModule : MonoBehaviour
 
         if (age < 23 || age > 34)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Gryphons because the gryphon's age is {1} when it should be from 23 to 34.", _moduleId, age);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Gryphons because the gryphon's age is {1} when it should be from 23 to 34.", _moduleId, age);
             yield break;
         }
 
@@ -4020,12 +4020,12 @@ public class SouvenirModule : MonoBehaviour
         var bScore = fldBombScore.Get();
         if (cScore > 75 || cScore < 0)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Schlag den Bomb because the contestant’s score was {1} when it should have been from 0 to 75.", _moduleId, cScore);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Schlag den Bomb because the contestant’s score was {1} when it should have been from 0 to 75.", _moduleId, cScore);
             yield break;
         }
         if (bScore > 75 || bScore < 0)
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Schlag den Bomb because the bomb’s score was {1} when it should have been from 0 to 75.", _moduleId, bScore);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Schlag den Bomb because the bomb’s score was {1} when it should have been from 0 to 75.", _moduleId, bScore);
             yield break;
         }
 
@@ -4734,7 +4734,7 @@ public class SouvenirModule : MonoBehaviour
         var firstModule = firstQuestion.ModuleNameWithThe;
         if (!modules.Contains(firstModule))
         {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Souvenir because the first question was on “{1}”, which is not a module I recognize.", _moduleId, firstModule);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Souvenir because the first question was on “{1}”, which is not a module I recognize.", _moduleId, firstModule);
             yield break;
         }
 
@@ -4856,13 +4856,13 @@ public class SouvenirModule : MonoBehaviour
                 yield break;
             if (cycles.Length != 2)
             {
-                Debug.LogFormat("[Souvenir #{0}] Abandoning Symbol Cycle because the number of screens is unexpected (expected 2, got {1}).", _moduleId, cycles.Length);
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Symbol Cycle because the number of screens is unexpected (expected 2, got {1}).", _moduleId, cycles.Length);
                 yield break;
             }
 
             if (cycles.Any(x => x == null || x.Length < 2 || x.Length > 5))
             {
-                Debug.LogFormat("[Souvenir #{0}] Abandoning Symbol Cycle because the number of cycles per screen is unexpected (expected 2-5, got {1}).", _moduleId, cycles.Select(x => x == null ? "<null>" : x.Length.ToString()).JoinString(", "));
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Symbol Cycle because the number of cycles per screen is unexpected (expected 2-5, got {1}).", _moduleId, cycles.Select(x => x == null ? "<null>" : x.Length.ToString()).JoinString(", "));
                 yield break;
             }
 
