@@ -414,6 +414,12 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "first", "first", "second", "first", "third", "second", "first", "second", "second", "second", "third", "third", "first", "third", "second", "third", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
         SimonSingsFlashing,
 
+        [SouvenirQuestion("Which color did the arrow point at in {0}?", "Simon Shrieks", 6, "Red", "Yellow", "Green", "Cyan", "Blue", "White", "Magenta")]
+        SimonShrieksArrow,
+        [SouvenirQuestion("Which color flashed {1} in the final sequence in {0}?", "Simon Shrieks", 6, "Red", "Yellow", "Green", "Cyan", "Blue", "White", "Magenta",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SimonShrieksFlashingColors,
+
         [SouvenirQuestion("Which color was the bubble that flashed {1} in {0}?", "Simon Speaks", 6, "black", "blue", "green", "cyan", "red", "purple", "yellow", "white", "gray",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSpeaksColors,

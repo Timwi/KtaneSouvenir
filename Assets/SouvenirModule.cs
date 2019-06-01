@@ -157,6 +157,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SimonSamples = "simonSamples";
     const string _SimonScreams = "SimonScreamsModule";
     const string _SimonSends = "SimonSendsModule";
+    const string _SimonShrieks = "SimonShrieksModule";
     const string _SimonSings = "SimonSingsModule";
     const string _SimonSpeaks = "SimonSpeaksModule";
     const string _SimonsStar = "simonsStar";
@@ -271,6 +272,7 @@ public class SouvenirModule : MonoBehaviour
             { _SimonSamples, ProcessSimonSamples },
             { _SimonScreams, ProcessSimonScreams },
             { _SimonSends, ProcessSimonSends },
+            { _SimonShrieks, ProcessSimonShrieks },
             { _SimonSings, ProcessSimonSings },
             { _SimonSpeaks, ProcessSimonSpeaks },
             { _SimonsStar, ProcessSimonsStar },
@@ -4429,6 +4431,47 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.SimonSendsReceivedLetters, _SimonSends, new[] { "red" }, new[] { charR }, new[] { charG, charB }),
             makeQuestion(Question.SimonSendsReceivedLetters, _SimonSends, new[] { "green" }, new[] { charG }, new[] { charR, charB }),
             makeQuestion(Question.SimonSendsReceivedLetters, _SimonSends, new[] { "blue" }, new[] { charB }, new[] { charR, charG }));
+    }
+
+    private IEnumerable<object> ProcessSimonShrieks(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SimonShrieksModule");
+        var fldArrow = GetField<int>(comp, "_arrow");
+        var fldButtonColors = GetField<int[]>(comp, "_buttonColors");
+        var fldFlashingButtons = GetField<int[]>(comp, "_flashingButtons");
+        var fldStage = GetField<int>(comp, "_stage");
+
+        if (comp == null || fldArrow == null || fldButtonColors == null || fldFlashingButtons == null || fldStage == null)
+            yield break;
+
+        while (fldStage.Get() < 3)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SimonShrieks);
+
+        var colorNames = new[] { "Red", "Yellow", "Green", "Cyan", "Blue", "White", "Magenta" };
+        var arrow = fldArrow.Get();
+        var buttonColors = fldButtonColors.Get();
+        var flashingButtons = fldFlashingButtons.Get();
+
+        if (arrow < 0 || arrow > 6)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Shrieks because ‘_arrow’ has an unexpected value ({1}, expected 0–6).", _moduleId, arrow);
+            yield break;
+        }
+        if (buttonColors == null || flashingButtons == null)
+            yield break;
+        if (buttonColors.Length != 7 || flashingButtons.Length != 8 || buttonColors.Any(b => b < 0 || b > 6) || flashingButtons.Any(b => b < 0 || b > 6))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Shrieks because ‘_buttonColors’ or ‘_flashingButtons’ has an unexpected length or value: [{1}], [{2}], expected length 7/8 and values 0–6.",
+                _moduleId, buttonColors.JoinString(", "), flashingButtons.JoinString(", "));
+            yield break;
+        }
+
+        var qs = new List<QandA>();
+        qs.Add(makeQuestion(Question.SimonShrieksArrow, _SimonShrieks, correctAnswers: new[] { colorNames[buttonColors[arrow]] }));
+        for (int i = 0; i < flashingButtons.Length; i++)
+            qs.Add(makeQuestion(Question.SimonShrieksFlashingColors, _SimonShrieks, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorNames[buttonColors[flashingButtons[i]]] }));
+        addQuestions(module, qs);
     }
 
     private static readonly string[] _SimonSings_Notes = { "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B" };
