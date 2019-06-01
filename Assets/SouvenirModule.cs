@@ -133,6 +133,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Moon = "moon";
     const string _MorseAMaze = "MorseAMaze";
     const string _Morsematics = "MorseV2";
+    const string _MorseWar = "MorseWar";
     const string _MouseInTheMaze = "MouseInTheMaze";
     const string _Murder = "murder";
     const string _MysticSquare = "MysticSquareModule";
@@ -246,6 +247,7 @@ public class SouvenirModule : MonoBehaviour
             { _Moon, ProcessMoon },
             { _MorseAMaze, ProcessMorseAMaze },
             { _Morsematics, ProcessMorsematics },
+            { _MorseWar, ProcessMorseWar },
             { _MouseInTheMaze, ProcessMouseInTheMaze },
             { _Murder, ProcessMurder },
             { _MysticSquare, ProcessMysticSquare },
@@ -3448,6 +3450,53 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_Morsematics);
         addQuestions(module, Enumerable.Range(0, 3).Select(i => makeQuestion(Question.MorsematicsReceivedLetters, _Morsematics, new[] { ordinal(i + 1) }, new[] { chars[i] }, chars)));
+    }
+
+    private IEnumerable<object> ProcessMorseWar(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MorseWar");
+        var fldWordNum = GetField<int>(comp, "wordNum");
+        var fldLights = GetField<string>(comp, "lights");
+        var fldWordTable = comp == null ? null : GetStaticField<string[]>(comp.GetType(), "WordTable");
+        var fldRowTable = comp == null ? null : GetStaticField<string[]>(comp.GetType(), "RowTable");
+        var fldIsSolved = GetField<bool>(comp, "isSolved");
+
+        if (comp == null || fldWordNum == null || fldLights == null || fldWordTable == null || fldRowTable == null || fldIsSolved == null)
+            yield break;
+
+        while (!fldIsSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_MorseWar);
+
+        var wordNum = fldWordNum.Get();
+        var lights = fldLights.Get();
+        var wordTable = fldWordTable.Get();
+        var rowTable = fldRowTable.Get();
+        if (lights == null || wordTable == null || rowTable == null)
+            yield break;
+        if (wordNum < 0 || wordNum >= wordTable.Length)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Morse War because ‘wordNum’ is out of range ({1}; expected 0–{2}).", _moduleId, wordNum, wordTable.Length - 1);
+            yield break;
+        }
+        if (lights.Length != 3 || lights.Any(ch => ch < '1' || ch > '6'))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Morse War because ‘lights’ has unexpected value: “{1}” (expected 3 characters 1–6).", _moduleId, lights);
+            yield break;
+        }
+        if (rowTable.Length != 6)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Morse War because ‘RowTable’ has unexpected length ({1}; expected 6).", _moduleId, rowTable.Length);
+            yield break;
+        }
+
+        var qs = new List<QandA>();
+        qs.Add(makeQuestion(Question.MorseWarCode, _MorseWar, correctAnswers: new[] { wordTable[wordNum].ToUpperInvariant() }));
+        var rowNames = new[] { "bottom", "middle", "top" };
+        for (int i = 0; i < 3; i++)
+            qs.Add(makeQuestion(Question.MorseWarLeds, _MorseWar, formatArgs: new[] { rowNames[i] }, correctAnswers: new[] { rowTable[lights[i] - '1'] }));
+
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessMouseInTheMaze(KMBombModule module)
