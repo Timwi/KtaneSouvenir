@@ -31,6 +31,7 @@ public class SouvenirModule : MonoBehaviour
     public Sprite[] SymbolicCoordinatesSprites;
     public Sprite[] WavetappingSprites;
     public Sprite[] FlagsSprites;
+    public Sprite[] KudosudokuSprites;
 
     public TextMesh TextMesh;
     public Renderer TextRenderer;
@@ -2655,8 +2656,12 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_Kudosudoku);
 
         addQuestions(module,
-            makeQuestion(Question.KudosudokuPrefilled, _Kudosudoku, new[] { "pre-filled" }, Enumerable.Range(0, 16).Where(ix => shown[ix]).Select(coord => (char) ('A' + (coord % 4)) + (coord / 4 + 1).ToString()).ToArray()),
-            makeQuestion(Question.KudosudokuPrefilled, _Kudosudoku, new[] { "not pre-filled" }, Enumerable.Range(0, 16).Where(ix => !shown[ix]).Select(coord => (char) ('A' + (coord % 4)) + (coord / 4 + 1).ToString()).ToArray()));
+            makeQuestion(Question.KudosudokuPrefilled, _Kudosudoku, new[] { "pre-filled" },
+                preferredWrongAnswers: KudosudokuSprites,
+                correctAnswers: Enumerable.Range(0, 16).Where(ix => shown[ix]).Select(coord => KudosudokuSprites.First(k => k.name == (char) ('A' + (coord % 4)) + (coord / 4 + 1).ToString())).ToArray()),
+            makeQuestion(Question.KudosudokuPrefilled, _Kudosudoku, new[] { "not pre-filled" },
+                preferredWrongAnswers: KudosudokuSprites,
+                correctAnswers: Enumerable.Range(0, 16).Where(ix => !shown[ix]).Select(coord => KudosudokuSprites.First(k => k.name == (char) ('A' + (coord % 4)) + (coord / 4 + 1).ToString())).ToArray()));
     }
 
     private IEnumerable<object> ProcessLEDEncryption(KMBombModule module)
