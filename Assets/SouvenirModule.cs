@@ -88,6 +88,7 @@ public class SouvenirModule : MonoBehaviour
     const string _BigCircle = "BigCircle";
     const string _BinaryLEDs = "BinaryLeds";
     const string _Bitmaps = "BitmapsModule";
+    const string _BlindMaze = "BlindMaze";
     const string _Braille = "BrailleModule";
     const string _BrokenButtons = "BrokenButtonsModule";
     const string _Bulb = "TheBulbModule";
@@ -118,6 +119,7 @@ public class SouvenirModule : MonoBehaviour
     const string _HumanResources = "HumanResourcesModule";
     const string _Hunting = "hunting";
     const string _IceCream = "iceCreamModule";
+    const string _IdentityParade = "identityParade";
     const string _Kudosudoku = "KudosudokuModule";
     const string _LEDEncryption = "LEDEnc";
     const string _LEDMath = "lgndLEDMath";
@@ -145,6 +147,7 @@ public class SouvenirModule : MonoBehaviour
     const string _PatternCube = "PatternCubeModule";
     const string _PerspectivePegs = "spwizPerspectivePegs";
     const string _Planets = "planets";
+    const string _Poetry = "poetry";
     const string _PolyhedralMaze = "PolyhedralMazeModule";
     const string _Probing = "Probing";
     const string _Quintuples = "quintuples";
@@ -203,6 +206,7 @@ public class SouvenirModule : MonoBehaviour
             { _BigCircle, ProcessBigCircle },
             { _BinaryLEDs, ProcessBinaryLEDs },
             { _Bitmaps, ProcessBitmaps },
+            { _BlindMaze, ProcessBlindMaze },
             { _Braille, ProcessBraille },
             { _BrokenButtons, ProcessBrokenButtons },
             { _Bulb, ProcessBulb },
@@ -232,6 +236,7 @@ public class SouvenirModule : MonoBehaviour
             { _HumanResources, ProcessHumanResources },
             { _Hunting, ProcessHunting },
             { _IceCream, ProcessIceCream },
+            { _IdentityParade, ProcessIdentityParade },
             { _Kudosudoku, ProcessKudosudoku },
             { _LEDEncryption, ProcessLEDEncryption },
             { _LEDMath, ProcessLEDMath },
@@ -260,6 +265,7 @@ public class SouvenirModule : MonoBehaviour
             { _PatternCube, ProcessPatternCube },
             { _PerspectivePegs, ProcessPerspectivePegs },
             { _Planets, ProcessPlanets },
+            { _Poetry, ProcessPoetry },
             { _PolyhedralMaze, ProcessPolyhedralMaze },
             { _Probing, ProcessProbing },
             { _Quintuples, ProcessQuintuples },
@@ -1474,6 +1480,33 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.Bitmaps, _Bitmaps, new[] { "black", "bottom right" }, new[] { (16 - qCounts[3]).ToString() }, preferredWrongAnswers));
     }
 
+    private IEnumerable<object> ProcessBlindMaze(KMBombModule module)
+    {
+        var comp = GetComponent(module, "BlindMaze");
+        var fldButtonColors = GetField<int[]>(comp, "buttonColors");
+        var fldSolved = GetField<bool>(comp, "Solved");
+
+        if (comp == null || fldButtonColors == null || fldSolved == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_BlindMaze);
+
+        var buttonColors = fldButtonColors.Get();
+        if (buttonColors == null)
+            yield break;
+        if (buttonColors.Length != 4 && buttonColors.Any(bc => bc < 0 || bc > 4))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Blind Maze because ‘buttonColors’ has unexpected length or unexpected value (expected 4 values 0–4): [{1}].", _moduleId, buttonColors.JoinString(", "));
+            yield break;
+        }
+
+        var colorNames = new[] { "Red", "Green", "Blue", "Gray", "Yellow" };
+        var buttonNames = new[] { "north", "east", "south", "west" };
+        addQuestions(module, buttonColors.Select((col, ix) => makeQuestion(Question.BlindMazeColors, _BlindMaze, formatArgs: new[] { buttonNames[ix] }, correctAnswers: new[] { colorNames[col] })));
+    }
+
     private IEnumerable<object> ProcessBraille(KMBombModule module)
     {
         var comp = GetComponent(module, "BrailleModule");
@@ -2630,6 +2663,49 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessIdentityParade(KMBombModule module)
+    {
+        var comp = GetComponent(module, "identityParadeScript");
+        var fldHairEntries = GetField<List<string>>(comp, "hairEntries");
+        var fldBuildEntries = GetField<List<string>>(comp, "buildEntries");
+        var fldAttireEntries = GetField<List<string>>(comp, "attireEntries");
+
+        if (comp == null || fldHairEntries == null || fldBuildEntries == null || fldAttireEntries == null)
+            yield break;
+
+        yield return null;
+
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_IdentityParade);
+
+        var hairs = fldHairEntries.Get();
+        var builds = fldBuildEntries.Get();
+        var attires = fldAttireEntries.Get();
+
+        if (hairs == null || builds == null || attires == null)
+            yield break;
+        if (hairs.Count != 3 || builds.Count != 3 || attires.Count != 3)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Identity Parade because ‘hairEntries’, ‘buildEntries’ and/or ‘attireEntries’ has unexpected length: {1}/{2}/{3} (expected 3).", _moduleId, hairs.Count, builds.Count, attires.Count);
+            yield break;
+        }
+
+        var validHairs = new[] { "Black", "Blonde", "Brown", "Grey", "Red", "White" };
+        var validBuilds = new[] { "Fat", "Hunched", "Muscular", "Short", "Slim", "Tall" };
+        var validAttires = new[] { "Blazer", "Hoodie", "Jumper", "Suit", "T-shirt", "Tank top" };
+
+        addQuestions(module,
+            makeQuestion(Question.IdentityParadeHairColors, _IdentityParade, formatArgs: new[] { "was" }, correctAnswers: hairs.ToArray()),
+            makeQuestion(Question.IdentityParadeHairColors, _IdentityParade, formatArgs: new[] { "was not" }, correctAnswers: validHairs.Except(hairs).ToArray()),
+            makeQuestion(Question.IdentityParadeBuilds, _IdentityParade, formatArgs: new[] { "was" }, correctAnswers: builds.ToArray()),
+            makeQuestion(Question.IdentityParadeBuilds, _IdentityParade, formatArgs: new[] { "was not" }, correctAnswers: validBuilds.Except(builds).ToArray()),
+            makeQuestion(Question.IdentityParadeAttires, _IdentityParade, formatArgs: new[] { "was" }, correctAnswers: attires.ToArray()),
+            makeQuestion(Question.IdentityParadeAttires, _IdentityParade, formatArgs: new[] { "was not" }, correctAnswers: validAttires.Except(attires).ToArray()));
     }
 
     private IEnumerable<object> ProcessKudosudoku(KMBombModule module)
@@ -3946,6 +4022,70 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             stripColors.Select((strip, count) => makeQuestion(Question.PlanetsStrips, _Planets, new[] { ordinal(count + 1) }, new[] { stripNames[strip] }))
                 .Concat(new[] { makeQuestion(Question.PlanetsPlanet, _Planets, correctAnswers: new[] { PlanetsSprites[planetShown] }, preferredWrongAnswers: (DateTime.Now.Month == 4 && DateTime.Now.Day == 1) ? PlanetsSprites : PlanetsSprites.Take(PlanetsSprites.Length - 2).ToArray()) }));
+    }
+
+    private IEnumerable<object> ProcessPoetry(KMBombModule module)
+    {
+        var comp = GetComponent(module, "PoetryModule");
+        var fldWordSelectables = GetField<KMSelectable[]>(comp, "wordSelectables", isPublic: true);
+        var fldStage = GetField<int>(comp, "currentStage");
+        var fldStageCount = GetField<int>(comp, "stageCount", isPublic: true);
+        var fldWordTextMeshes = GetField<TextMesh[]>(comp, "words", isPublic: true);
+
+        if (comp == null || fldWordSelectables == null || fldStage == null || fldStageCount == null || fldWordTextMeshes == null)
+            yield break;
+
+        yield return null;
+
+        var answers = new List<string>();
+        var selectables = fldWordSelectables.Get();
+        if (selectables == null)
+            yield break;
+        if (selectables.Length != 6 || selectables.Any(s => s == null))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Poetry because ‘wordSelectables’ has unexpected length or contains null (expected length 6, got values: [{1}])",
+                _moduleId, selectables.Select(s => s == null ? "<null>" : "NOT NULL").JoinString(", "));
+            yield break;
+        }
+        var wordTextMeshes = fldWordTextMeshes.Get();
+        if (wordTextMeshes == null)
+            yield break;
+        if (wordTextMeshes.Length != 6 || wordTextMeshes.Any(s => s == null))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Poetry because ‘words’ has unexpected length or contains null (expected length 6, got values: [{1}])",
+                _moduleId, selectables.Select(s => s == null ? "<null>" : "NOT NULL").JoinString(", "));
+            yield break;
+        }
+
+        for (int i = 0; i < 6; i++)
+        {
+            var j = i;
+            var oldHandler = selectables[i].OnInteract;
+            selectables[i].OnInteract = delegate
+            {
+                var prevStage = fldStage.Get();
+                var word = wordTextMeshes[j].text;
+                var ret = oldHandler();
+
+                if (fldStage.Get() > prevStage)
+                    answers.Add(word);
+
+                return ret;
+            };
+        }
+
+        while (fldStage.Get() < fldStageCount.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Poetry);
+
+        if (answers.Count != fldStageCount.Get())
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Poetry because the number of answers captured is not equal to the number of stages played ({1}). Answers were: [{2}]",
+                _moduleId, fldStageCount.Get(), answers.JoinString(", "));
+            yield break;
+        }
+
+        addQuestions(module, answers.Select((ans, st) => makeQuestion(Question.PoetryAnswers, _Poetry, formatArgs: new[] { ordinal(st + 1) }, correctAnswers: new[] { ans }, preferredWrongAnswers: answers.ToArray())));
     }
 
     private IEnumerable<object> ProcessPolyhedralMaze(KMBombModule module)

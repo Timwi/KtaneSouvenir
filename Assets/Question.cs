@@ -46,6 +46,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "white", "top left", "white", "top right", "white", "bottom left", "white", "bottom right", "black", "top left", "black", "top right", "black", "bottom left", "black", "bottom right" }, ExampleExtraFormatArgumentGroupSize = 2)]
         Bitmaps,
 
+        [SouvenirQuestion("What was the {1} color in {0}?", "Blind Maze", 4, "Red", "Green", "Blue", "Gray", "Yellow",
+            ExampleExtraFormatArguments = new[] { "north", "south", "west", "east" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        BlindMazeColors,
+
         [SouvenirQuestion("What was the final solution word in {0}?", "Braille", 6, "acting", "dating", "heading", "meaning", "server", "aiming", "dealer", "hearing", "miners", "shaking", "artist", "eating", "heating", "nearer", "sought", "asking", "eighth", "higher", "parish", "staying", "bearing", "farmer", "insist", "parker", "strands", "beating", "farming", "lasted", "parking", "strings", "beings", "faster", "laying", "paying", "teaching", "binding", "father", "leader", "powers", "tended", "bought", "finding", "leading", "pushed", "tender", "boxing", "finest", "leaned", "pushing", "testing", "breach", "finish", "leaning", "rather", "throwing", "breast", "flying", "leaving", "reaching", "towers", "breath", "foster", "linking", "reader", "vested", "breathe", "fought", "listed", "reading", "warned", "bringing", "gaining", "listen", "resting", "warning", "brings", "gather", "living", "riding", "weaker", "carers", "gazing", "making", "rushed", "wealth", "carter", "gender", "marked", "rushing", "winner", "charter", "growing", "marking", "saying", "winning", "crying", "headed", "master", "served", "winter")]
         BrailleWord,
 
@@ -190,10 +194,19 @@ namespace Souvenir
         [SouvenirQuestion("Which one of these flavours {1} to the {2} customer in {0}?", "Ice Cream", 4, "Tutti Frutti", "Rocky Road", "Raspb. Ripple", "Double Choc.", "Double Str.", "Cookies & Cr.", "Neapolitan", "Mint Ch. Chip", "The Classic", "Vanilla",
             ExampleExtraFormatArguments = new[] { "was on offer, but not sold,", "first", "was not on offer", "first", "was on offer, but not sold,", "second", "was not on offer", "second", "was on offer, but not sold,", "third", "was not on offer", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
         IceCreamFlavour,
-
         [SouvenirQuestion("Who was the {1} customer in {0}?", "Ice Cream", 6, "Mike", "Tim", "Tom", "Dave", "Adam", "Cheryl", "Sean", "Ashley", "Jessica", "Taylor", "Simon", "Sally", "Jade", "Sam", "Gary", "Victor", "George", "Jacob", "Pat", "Bob",
             ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
         IceCreamCustomer,
+
+        [SouvenirQuestion("Which hair color {1} listed in {0}?", "Identity Parade", 4, "Black", "Blonde", "Brown", "Grey", "Red", "White",
+            ExampleExtraFormatArguments = new[] { "was", "was not" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        IdentityParadeHairColors,
+        [SouvenirQuestion("Which build {1} listed in {0}?", "Identity Parade", 4, "Fat", "Hunched", "Muscular", "Short", "Slim", "Tall",
+            ExampleExtraFormatArguments = new[] { "was", "was not" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        IdentityParadeBuilds,
+        [SouvenirQuestion("Which attire {1} listed in {0}?", "Identity Parade", 4, "Blazer", "Hoodie", "Jumper", "Suit", "T-shirt", "Tank top",
+            ExampleExtraFormatArguments = new[] { "was", "was not" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        IdentityParadeAttires,
 
         [SouvenirQuestion("Which square was {1} in {0}?", "Kudosudoku", 6, null, Type = AnswerType.Sprites,
             ExampleExtraFormatArguments = new[] { "pre-filled", "not pre-filled" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -340,6 +353,10 @@ namespace Souvenir
         [SouvenirQuestion("What was the color of the {1} strip (from the top) in {0}?", "Planets", 6, "Aqua", "Blue", "Green", "Lime", "Orange", "Red", "Yellow", "White", "Off",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PlanetsStrips,
+
+        [SouvenirQuestion("What was the answer you pressed in the {1} stage of {0}?", "Poetry", 4, "clarity", "flow", "fatigue", "hollow", "energy", "sunshine", "ocean", "reflection", "identity", "black", "crowd", "heart", "weather", "words", "past", "solitary", "relax", "dance", "weightless", "morality", "gaze", "failure", "bunny", "lovely", "romance", "future", "focus", "search", "cookies", "compassion", "creation", "patience",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        PoetryAnswers,
 
         [SouvenirQuestion("What was the starting position in {0}?", "Polyhedral Maze", 6, null, ExampleAnswers = new[] { "1", "16", "24", "47", "89" })]
         PolyhedralMazeStartPosition,
@@ -545,7 +562,7 @@ namespace Souvenir
         VisualImpairmentColors,
 
         [SouvenirQuestion("What was the initial roll on {0}?", "Yahtzee", 4, "Yahtzee", "large straight", "small straight", "four of a kind", "full house", "three of a kind", "two pairs", "pair")]
-        YahtzeeInitialRoll,
+        YahtzeeInitialRoll
     }
 
     enum AnswerType
