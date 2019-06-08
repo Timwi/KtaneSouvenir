@@ -6,9 +6,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using KModkit;
 using Souvenir;
 using UnityEngine;
-
 using Rnd = UnityEngine.Random;
 
 /// <summary>
@@ -26,6 +26,7 @@ public class SouvenirModule : MonoBehaviour
     public GameObject[] TpNumbers;
     public Sprite[] ArithmelogicSprites;
     public Sprite[] ExampleSprites;
+    public Sprite[] MahjongSprites;
     public Sprite[] PerspectivePegsSprites;
     public Sprite[] PlanetsSprites;
     public Sprite[] SymbolicCoordinatesSprites;
@@ -126,11 +127,12 @@ public class SouvenirModule : MonoBehaviour
     const string _Listening = "Listening";
     const string _LogicGates = "logicGates";
     const string _LondonUnderground = "londonUnderground";
-    const string _ModuleMaze = "ModuleMaze";
     const string _Mafia = "MafiaModule";
+    const string _Mahjong = "MahjongModule";
     const string _MaritimeFlags = "MaritimeFlagsModule";
     const string _Microcontroller = "Microcontroller";
     const string _Minesweeper = "MinesweeperModule";
+    const string _ModuleMaze = "ModuleMaze";
     const string _MonsplodeFight = "monsplodeFight";
     const string _MonsplodeTradingCards = "monsplodeCards";
     const string _Moon = "moon";
@@ -245,6 +247,7 @@ public class SouvenirModule : MonoBehaviour
             { _LogicGates, ProcessLogicGates },
             { _LondonUnderground, ProcessLondonUnderground },
             { _Mafia, ProcessMafia },
+            { _Mahjong, ProcessMahjong },
             { _MaritimeFlags, ProcessMaritimeFlags },
             { _Microcontroller, ProcessMicrocontroller },
             { _Minesweeper, ProcessMinesweeper },
@@ -1483,11 +1486,15 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessBlindMaze(KMBombModule module)
     {
         var comp = GetComponent(module, "BlindMaze");
+        // Despite the name “currentMaze”, the field actually contains the number of solved modules when Blind Maze was solved
+        var fldNumSolved = GetField<int>(comp, "currentMaze");
         var fldButtonColors = GetField<int[]>(comp, "buttonColors");
         var fldSolved = GetField<bool>(comp, "Solved");
 
-        if (comp == null || fldButtonColors == null || fldSolved == null)
+        if (comp == null || fldNumSolved == null || fldButtonColors == null || fldSolved == null)
             yield break;
+
+        yield return null;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -1496,15 +1503,24 @@ public class SouvenirModule : MonoBehaviour
         var buttonColors = fldButtonColors.Get();
         if (buttonColors == null)
             yield break;
-        if (buttonColors.Length != 4 && buttonColors.Any(bc => bc < 0 || bc > 4))
+        if (buttonColors.Length != 4 || buttonColors.Any(bc => bc < 0 || bc > 4))
         {
             Debug.LogFormat("<Souvenir #{0}> Abandoning Blind Maze because ‘buttonColors’ has unexpected length or unexpected value (expected 4 values 0–4): [{1}].", _moduleId, buttonColors.JoinString(", "));
+            yield break;
+        }
+        var numSolved = fldNumSolved.Get();
+        if (numSolved < 0)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Blind Maze because ‘currentMaze’ is negative ({1}).", _moduleId, numSolved);
             yield break;
         }
 
         var colorNames = new[] { "Red", "Green", "Blue", "Gray", "Yellow" };
         var buttonNames = new[] { "north", "east", "south", "west" };
-        addQuestions(module, buttonColors.Select((col, ix) => makeQuestion(Question.BlindMazeColors, _BlindMaze, formatArgs: new[] { buttonNames[ix] }, correctAnswers: new[] { colorNames[col] })));
+
+        addQuestions(module,
+            buttonColors.Select((col, ix) => makeQuestion(Question.BlindMazeColors, _BlindMaze, formatArgs: new[] { buttonNames[ix] }, correctAnswers: new[] { colorNames[col] }))
+                .Concat(new[] { makeQuestion(Question.BlindMazeMaze, _BlindMaze, correctAnswers: new[] { ((numSolved + Bomb.GetSerialNumberNumbers().Last()) % 10).ToString() }) }));
     }
 
     private IEnumerable<object> ProcessBraille(KMBombModule module)
@@ -3097,6 +3113,94 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_Mafia);
         addQuestion(module, Question.MafiaPlayers, correctAnswers: suspects.Cast<object>().Select(obj => obj.ToString()).Except(new[] { godfather.ToString() }).ToArray());
+    }
+
+    private IEnumerable<object> ProcessMahjong(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MahjongModule");
+        var fldTaken = GetField<bool[]>(comp, "_taken");
+        var fldCountingRow = GetField<int[]>(comp, "_countingRow");
+        var fldMatchRow1 = GetField<int[]>(comp, "_matchRow1");
+        var fldMatchRow2 = GetField<int[]>(comp, "_matchRow2");
+        var fldCountingTile = GetField<MeshRenderer>(comp, "CountingTile", true);
+        var fldParticleEffect = GetField<ParticleSystem>(comp, "Smoke1", true);
+        var fldAudio = GetField<KMAudio>(comp, "Audio", true);
+        var fldTileSelectables = GetField<KMSelectable[]>(comp, "Tiles", true);
+
+        if (comp == null || fldTaken == null || fldCountingRow == null || fldMatchRow1 == null || fldMatchRow2 == null || fldCountingTile == null || fldParticleEffect == null || fldAudio == null || fldTileSelectables == null)
+            yield break;
+
+        yield return null;
+
+        // Capture the player’s matching pairs until the module is solved
+        var taken = fldTaken.Get();
+        if (taken == null)
+            yield break;
+
+        var currentTaken = taken.ToArray();
+        var matchedTiles = new List<int>();
+
+        while (true)
+        {
+            yield return null;
+            if (!currentTaken.SequenceEqual(taken))
+            {
+                matchedTiles.AddRange(Enumerable.Range(0, taken.Length).Where(ix => currentTaken[ix] != taken[ix]));
+                if (taken.All(x => x))
+                    break;
+                currentTaken = taken.ToArray();
+            }
+        }
+        _modulesSolved.IncSafe(_Mahjong);
+
+        // Remove the counting tile, complete with smoke animation
+        var countingTile = fldCountingTile.Get();
+        var smoke = fldParticleEffect.Get();
+        var countingRow = fldCountingRow.Get();
+        if (countingTile == null || smoke == null || fldAudio.Get() == null || countingRow == null)
+            yield break;
+
+        if (countingTile.gameObject.activeSelf)     // Do it only if another Souvenir module on the same bomb hasn’t already done it
+        {
+            fldAudio.Get().PlaySoundAtTransform("Elimination", countingTile.transform);
+            smoke.transform.localPosition = countingTile.transform.localPosition;
+            smoke.Play();
+            countingTile.gameObject.SetActive(false);
+        }
+
+        // Stuff for the “counting tile” question (bottom-left of the module)
+        var countingTileName = countingTile.material.mainTexture.name.Replace(" normal", "");
+        var countingTileSprite = MahjongSprites.FirstOrDefault(x => x.name == countingTileName);
+        if (countingTileSprite == null)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Mahjong because the sprite for the counting tile ({1}) doesn’t exist.", _moduleId, countingTileName);
+            yield break;
+        }
+
+        // Stuff for the “matching tiles” question
+        var matchRow1 = fldMatchRow1.Get();
+        var matchRow2 = fldMatchRow2.Get();
+        var tileSelectables = fldTileSelectables.Get();
+        if (matchRow1 == null || matchRow2 == null || tileSelectables == null)
+            yield break;
+
+        var tileSprites = matchRow1.Concat(matchRow2).Select(ix => MahjongSprites[ix]).ToArray();
+        var matchedTileSpriteNames = matchedTiles.Select(ix => tileSelectables[ix].GetComponent<MeshRenderer>().material.mainTexture.name.Replace(" normal", "").Replace(" highlighted", "")).ToArray();
+        var matchedTileSprites = matchedTileSpriteNames.Select(name => tileSprites.FirstOrDefault(spr => spr.name == name)).ToArray();
+
+        var invalidIx = matchedTileSprites.IndexOf(spr => spr == null);
+        if (invalidIx != -1)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Mahjong because the sprite for one of the matched tiles ({1}) doesn’t exist. matchedTileSpriteNames=[{2}], matchedTileSprites=[{3}], countingRow=[{4}], matchRow1=[{5}], matchRow2=[{6}], tileSprites=[{7}]",
+                _moduleId, matchedTileSpriteNames[invalidIx], matchedTileSpriteNames.JoinString(", "), matchedTileSprites.Select(spr => spr == null ? "<null>" : spr.name).JoinString(", "),
+                countingRow.JoinString(", "), matchRow1.JoinString(", "), matchRow2.JoinString(", "), tileSprites.Select(spr => spr.name).JoinString(", "));
+            yield break;
+        }
+
+        addQuestions(module,
+            makeQuestion(Question.MahjongCountingTile, _Mahjong, correctAnswers: new[] { MahjongSprites.First(x => x.name == countingTileName) }, preferredWrongAnswers: countingRow.Select(ix => MahjongSprites[ix]).ToArray()),
+            makeQuestion(Question.MahjongMatches, _Mahjong, new[] { "first" }, correctAnswers: matchedTileSprites.Take(2).ToArray(), preferredWrongAnswers: tileSprites),
+            makeQuestion(Question.MahjongMatches, _Mahjong, new[] { "second" }, correctAnswers: matchedTileSprites.Skip(2).Take(2).ToArray(), preferredWrongAnswers: tileSprites));
     }
 
     private IEnumerable<object> ProcessMaritimeFlags(KMBombModule module)
