@@ -2687,8 +2687,10 @@ public class SouvenirModule : MonoBehaviour
         var fldHairEntries = GetField<List<string>>(comp, "hairEntries");
         var fldBuildEntries = GetField<List<string>>(comp, "buildEntries");
         var fldAttireEntries = GetField<List<string>>(comp, "attireEntries");
+        var fldButtonsToOverride = new[] { "hairLeft", "hairRight", "buildLeft", "buildRight", "attireLeft", "attireRight", "suspectLeft", "suspectRight", "convictBut" }.Select(fldName => GetField<KMSelectable>(comp, fldName, isPublic: true)).ToArray();
+        var fldTextMeshes = new[] { "hairText", "buildText", "attireText", "suspectText" }.Select(fldName => GetField<TextMesh>(comp, fldName, isPublic: true)).ToArray();
 
-        if (comp == null || fldHairEntries == null || fldBuildEntries == null || fldAttireEntries == null)
+        if (comp == null || fldHairEntries == null || fldBuildEntries == null || fldAttireEntries == null || fldButtonsToOverride.Any(b => b == null) || fldTextMeshes.Any(b => b == null))
             yield break;
 
         yield return null;
@@ -2698,6 +2700,28 @@ public class SouvenirModule : MonoBehaviour
         while (!solved)
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_IdentityParade);
+
+        var buttonsToOverride = fldButtonsToOverride.Select(f => f.Get()).ToArray();
+        if (buttonsToOverride.Any(b => b == null))
+            yield break;
+
+        foreach (var btn in buttonsToOverride)
+        {
+            btn.OnInteract = delegate
+            {
+                Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, btn.transform);
+                btn.AddInteractionPunch(0.5f);
+                return false;
+            };
+        }
+
+        var textMeshes = fldTextMeshes.Select(f => f.Get()).ToArray();
+        if (textMeshes.Any(b => b == null))
+            yield break;
+        textMeshes[0].text = "Identity";
+        textMeshes[1].text = "Parade";
+        textMeshes[2].text = "has been";
+        textMeshes[3].text = "solved";
 
         var hairs = fldHairEntries.Get();
         var builds = fldBuildEntries.Get();
