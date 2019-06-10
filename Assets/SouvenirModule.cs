@@ -4181,7 +4181,7 @@ public class SouvenirModule : MonoBehaviour
         if (wordTextMeshes.Length != 6 || wordTextMeshes.Any(s => s == null))
         {
             Debug.LogFormat("<Souvenir #{0}> Abandoning Poetry because ‘words’ has unexpected length or contains null (expected length 6, got values: [{1}])",
-                _moduleId, selectables.Select(s => s == null ? "<null>" : "NOT NULL").JoinString(", "));
+                _moduleId, wordTextMeshes.Select(s => s == null ? "<null>" : "NOT NULL").JoinString(", "));
             yield break;
         }
 
