@@ -4406,9 +4406,9 @@ public class SouvenirModule : MonoBehaviour
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
 
-        var rows = new List<int>();
-        var cols = new List<int>();
-        var keynums = new List<int>();
+        var rows = new int[3];
+        var cols = new int[3];
+        var keynums = new int[3];
         while (true)
         {
             while (fldDisplay.Get().text == " ")
@@ -4418,9 +4418,15 @@ public class SouvenirModule : MonoBehaviour
                     goto solved;
             }
 
-            rows.Add(fldRow.Get());
-            cols.Add(fldCol.Get());
-            keynums.Add(fldKeynum.Get());
+            var stage = fldStage.Get();
+            if (stage < 0 || stage > 2)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Sea Shells because ‘stage’ has unexpected value (expected 0-2): {1}", _moduleId, stage);
+                yield break;
+            }
+            rows[stage] = fldRow.Get();
+            cols[stage] = fldCol.Get();
+            keynums[stage] = fldKeynum.Get();
 
             while (fldDisplay.Get().text != " ")
             {
@@ -4434,7 +4440,7 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_SeaShells);
 
         var qs = new List<QandA>();
-        for (int i = 0; i < rows.Count; i++)
+        for (int i = 0; i < 3; i++)
         {
             qs.Add(makeQuestion(Question.SeaShells1, _SeaShells, new[] { ordinal(i + 1) }, new[] { new[] { "she sells", "she shells", "sea shells", "sea sells" }[rows[i]] }));
             qs.Add(makeQuestion(Question.SeaShells2, _SeaShells, new[] { ordinal(i + 1) }, new[] { new[] { "sea shells", "she shells", "sea sells", "she sells" }[cols[i]] }));
