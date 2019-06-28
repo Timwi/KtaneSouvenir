@@ -6148,17 +6148,17 @@ public class SouvenirModule : MonoBehaviour
 #pragma warning disable IDE0044
     private bool TwitchPlaysActive = false;
     private List<KMBombModule> TwitchAbandonModule = new List<KMBombModule>();
-    private readonly string TwitchHelpMessage = @"Submit the correct response with “!{0} answer 3”. Order is from top to bottom, then left to right.";
+    private readonly string TwitchHelpMessage = @"!{0} answer 3 [order is from top to bottom, then left to right]";
 #pragma warning restore 414
 #pragma warning restore IDE0044
 
-    KMSelectable[] ProcessTwitchCommand(string command)
+    IEnumerator ProcessTwitchCommand(string command)
     {
         if (Application.isEditor && !TwitchPlaysActive && command == "tp")
         {
             ActivateTwitchPlaysNumbers();
             TwitchPlaysActive = true;
-            return null;
+            yield break;
         }
 
         if (Application.isEditor)
@@ -6171,17 +6171,28 @@ public class SouvenirModule : MonoBehaviour
                 i++;
             }
             while ((_currentQuestion == null || !_currentQuestion.QuestionText.ContainsIgnoreCase(command)) && i < questions.Length);
-            return null;
+            yield break;
         }
 
         var m = Regex.Match(command.ToLowerInvariant(), @"\A\s*answer\s+(\d)\s*\z");
-        if (!m.Success)
-            return null;
+        if (!m.Success || _isSolved)
+            yield break;
 
         int number;
-        if (!int.TryParse(m.Groups[1].Value, out number) || number <= 0 || number > Answers.Length)
-            return null;
-        var btn = Answers[number - 1];
-        return btn == null || !btn.gameObject.activeSelf ? null : new[] { btn };
+        if (_animating || _currentQuestion == null)
+        {
+            yield return "sendtochaterror {0}, there is no question active right now on module {1} (Souvenir).";
+            yield break;
+        }
+        if (!int.TryParse(m.Groups[1].Value, out number) || number <= 0 || number > Answers.Length || Answers[number - 1] == null || !Answers[number - 1].gameObject.activeSelf)
+        {
+            yield return string.Format("sendtochaterror {{0}}, that’s not a valid answer; give me a number from 1 to {0}.", Answers.Count(a => a != null && a.gameObject.activeSelf));
+            yield break;
+        }
+
+        yield return null;
+        if (_currentQuestion.CorrectIndex == number - 1)
+            yield return "awardpoints 1";
+        yield return new[] { Answers[number - 1] };
     }
 }
