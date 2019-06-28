@@ -496,8 +496,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "Running Boots", "Invincibility", "Extra Life", "Rings" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SonicTheHedgehogSounds,
 
-        [SouvenirQuestion("What was the {1} color at the {2} of the last successful round of {0}?", "Switch", 6, "red", "orange", "yellow", "green", "blue", "purple",
-            ExampleExtraFormatArguments = new[] { "top", "start", "bottom", "start", "top", "end", "bottom", "end", }, ExampleExtraFormatArgumentGroupSize = 2, AddThe = true)]
+        [SouvenirQuestion("What was the {1} color before the {2} time you switched the switch correctly in {0}?", "Switch", 6, "red", "orange", "yellow", "green", "blue", "purple",
+            ExampleExtraFormatArguments = new[] { "top", "second-last", "bottom", "second-last", "top", "last", "bottom", "last" }, ExampleExtraFormatArgumentGroupSize = 2, AddThe = true)]
         SwitchInitialColor,
 
         [SouvenirQuestion("What was the initial position of the switches in {0}?", "Switches", 6, "RRRRR", "QRRRR", "RQRRR", "QQRRR", "RRQRR", "QRQRR", "RQQRR", "QQQRR", "RRRQR", "QRRQR", "RQRQR", "QQRQR", "RRQQR", "QRQQR", "RQQQR", "QQQQR", "RRRRQ", "QRRRQ", "RQRRQ", "QQRRQ", "RRQRQ", "QRQRQ", "RQQRQ", "QQQRQ", "RRRQQ", "QRRQQ", "RQRQQ", "QQRQQ", "RRQQQ", "QRQQQ", "RQQQQ", "QQQQQ",
