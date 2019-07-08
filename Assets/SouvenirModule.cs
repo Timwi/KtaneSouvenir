@@ -44,9 +44,6 @@ public class SouvenirModule : MonoBehaviour
     public Mesh HighlightLong;
 
     public static readonly string[] _defaultIgnoredModules = {
-
-        // Alchemy is not in this list because Souvenir asks questions about it. This is safe because Alchemy ignores Souvenir.
-
         "Souvenir",
         "Forget Everything",
         "Forget Me Not",
@@ -83,7 +80,6 @@ public class SouvenirModule : MonoBehaviour
     const string _3DMaze = "spwiz3DMaze";
     const string _3DTunnels = "3dTunnels";
     const string _AdventureGame = "spwizAdventureGame";
-    const string _Alchemy = "JuckAlchemy";
     const string _Algebra = "algebra";
     const string _Arithmelogic = "arithmelogic";
     const string _BigCircle = "BigCircle";
@@ -202,7 +198,6 @@ public class SouvenirModule : MonoBehaviour
             { _3DMaze, Process3DMaze },
             { _3DTunnels, Process3DTunnels },
             { _AdventureGame, ProcessAdventureGame },
-            { _Alchemy, ProcessAlchemy },
             { _Algebra, ProcessAlgebra },
             { _Arithmelogic, ProcessArithmelogic },
             { _BigCircle, ProcessBigCircle },
@@ -1195,94 +1190,6 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, qs.Select(q => q()).Concat(new[] { makeQuestion(Question.AdventureGameEnemy, _AdventureGame, correctAnswers: new[] { enemyName }) }));
     }
 
-    private IEnumerable<object> ProcessAlchemy(KMBombModule module)
-    {
-        var comp = GetComponent(module, "alchemyScript");
-        var fldBtnRedraw = GetField<KMSelectable>(comp, "button2", isPublic: true);
-        var fldSymbols = GetField<int[]>(comp, "nowSymbols");
-        var fldMainSymbol = GetField<int>(comp, "mainSymbol");
-        var fldSymbolNames = GetField<string[]>(comp, "symbolNames");
-
-        if (comp == null || fldSymbols == null || fldMainSymbol == null || fldSymbolNames == null/*|| fldButtons == null || fldBtnSubmit == null*/ || fldBtnRedraw == null)
-            yield break;
-
-        // Ensure that Start() has run
-        yield return null;
-
-        var symbolNames = fldSymbolNames.Get();
-        if (symbolNames == null || symbolNames.Length != 6 || symbolNames.Any(s => s == null))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Alchemy because “symbolNames” was invalid: [{1}].", _moduleId, symbolNames == null ? "null" : symbolNames.Select(s => s == null ? "<null>" : string.Format(@"""{0}""", s)).JoinString(", "));
-            yield break;
-        }
-
-        int? mainSymbol = null;
-        var hasPressedRedraw = false;
-
-        var oldStrike = module.OnStrike;
-        var oldPass = module.OnPass;
-        var solved = false;
-
-        module.OnStrike = delegate
-        {
-            Debug.LogFormat("<Souvenir #{0}> Strike on Alchemy!", _moduleId);
-            hasPressedRedraw = false;
-            mainSymbol = null;
-            return oldStrike();
-        };
-
-        module.OnPass = delegate
-        {
-            Debug.LogFormat("<Souvenir #{0}> Pass on Alchemy!", _moduleId);
-            solved = true;
-            return oldPass();
-        };
-
-        var btnRedraw = fldBtnRedraw.Get();
-        if (btnRedraw == null)
-            yield break;
-        var oldRedraw = btnRedraw.OnInteract;
-        btnRedraw.OnInteract = delegate
-        {
-            Debug.LogFormat("<Souvenir #{0}> Redraw on Alchemy!", _moduleId);
-            hasPressedRedraw = true;
-            return oldRedraw();
-        };
-
-        while (!solved)
-        {
-            yield return null;
-
-            if (mainSymbol == null)
-            {
-                mainSymbol = fldMainSymbol.Get();
-                if (mainSymbol < 0 || mainSymbol >= 6)
-                {
-                    Debug.LogFormat("<Souvenir #{0}> Abandoning Alchemy because “mainSymbol” was invalid: {1}.", _moduleId, mainSymbol);
-                    yield break;
-                }
-
-                Debug.LogFormat("<Souvenir #{0}> Got main symbol: {1}", _moduleId, mainSymbol);
-            }
-        }
-        _modulesSolved.IncSafe(_Alchemy);
-
-        if (mainSymbol == null)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Alchemy because mainSymbol was never assigned.", _moduleId);
-            yield break;
-        }
-
-        if (!hasPressedRedraw)
-        {
-            Debug.LogFormat("[Souvenir #{0}] No question for Alchemy because the Redraw button was never pressed in the last successful brew.", _moduleId);
-            _legitimatelyNoQuestions.Add(module);
-            yield break;
-        }
-
-        addQuestion(module, Question.AlchemyMainSymbol, correctAnswers: new[] { symbolNames[mainSymbol.Value] });
-    }
-
     private IEnumerable<object> ProcessAlgebra(KMBombModule module)
     {
         var comp = GetComponent(module, "algebraScript");
@@ -1309,11 +1216,13 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessArithmelogic(KMBombModule module)
     {
-        var comp = GetComponent(module, "Arithmalogic"); //This is spelled incorrectly in the script as well
+        var comp = GetComponent(module, "Arithmelogic");
         var fldSymbolNum = GetField<int>(comp, "submitSymbol");
+        var fldSelectableValues = GetField<int[][]>(comp, "selectableValues");
+        var fldCurrentDisplays = GetField<int[]>(comp, "currentDisplays");
         var fldSolved = GetField<bool>(comp, "isSolved");
 
-        if (comp == null || fldSymbolNum == null || fldSolved == null)
+        if (comp == null || fldSymbolNum == null || fldSelectableValues == null || fldCurrentDisplays == null || fldSolved == null)
             yield break;
 
         while (!fldSolved.Get())
@@ -1328,8 +1237,28 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         }
 
-        addQuestion(module, Question.ArithmelogicSubmit, correctAnswers: new[] { ArithmelogicSprites[symbolNum] },
-            preferredWrongAnswers: ArithmelogicSprites);
+        var selVal = fldSelectableValues.Get();
+        if (selVal == null || selVal.Length != 3 || selVal.Any(arr => arr == null || arr.Length != 4))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Arithmelogic because the ‘selectableValues’ arrays have unexpected length: {1} (expected 4×3).", _moduleId, selVal == null ? "<null>" : "[" + selVal.Select(arr => arr == null ? "<null>" : arr.Length.ToString()).JoinString(", ") + "]");
+            yield break;
+        }
+
+        var curDisp = fldCurrentDisplays.Get();
+        if (curDisp == null || curDisp.Length != 3 || curDisp.Any(val => val < 0 || val >= 4))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Arithmelogic because ‘currentDisplays’ has unexpected length or values: [{1}] (expected 3 values 0–3).", _moduleId, curDisp == null ? "<null>" : curDisp.JoinString(", "));
+            yield break;
+        }
+
+        var qs = new List<QandA>();
+        qs.Add(makeQuestion(Question.ArithmelogicSubmit, _Arithmelogic, correctAnswers: new[] { ArithmelogicSprites[symbolNum] }, preferredWrongAnswers: ArithmelogicSprites));
+        var screens = new[] { "left", "middle", "right" };
+        for (int i = 0; i < 3; i++)
+            qs.Add(makeQuestion(Question.ArithmelogicNumbers, _Arithmelogic, formatArgs: new[] { screens[i] },
+                correctAnswers: Enumerable.Range(0, 4).Where(ix => ix != curDisp[i]).Select(ix => selVal[i][ix].ToString()).ToArray(),
+                preferredWrongAnswers: Enumerable.Range(10, 99).Select(j => j.ToString()).ToArray()));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessBigCircle(KMBombModule module)
@@ -4000,10 +3929,7 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "OrientationModule");
         var fldInitialVirtualViewAngle = GetField<float>(comp, "initialVirtualViewAngle");
-        var fldSubmitButton = GetField<KMSelectable>(comp, "SubmitButton", isPublic: true);
-        var mthGetRule = GetMethod<object>(comp, "GetRule", 0);
-        var mthIsFacing = GetMethod<bool>(comp, "IsFacing", 2);
-        if (comp == null || fldInitialVirtualViewAngle == null || fldSubmitButton == null || mthGetRule == null || mthIsFacing == null)
+        if (comp == null || fldInitialVirtualViewAngle == null)
             yield break;
 
         // Wait for one frame to ensure Orientation Cube has set initialVirtualViewAngle in its Start()
@@ -4020,35 +3946,9 @@ public class SouvenirModule : MonoBehaviour
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
 
-        var submitButton = fldSubmitButton.Get();
-        if (submitButton == null)
-            yield break;
-
-        var prevInteract = submitButton.OnInteract;
         var solved = false;
 
-        submitButton.OnInteract = delegate
-        {
-            var rule = mthGetRule.Invoke();
-            var fldFromFacing = GetField<Vector3>(rule, "fromFacing", isPublic: true);
-            var fldToFacing = GetField<Vector3>(rule, "toFacing", isPublic: true);
-            var fldHasSecondaryRule = GetField<bool>(rule, "hasSecondaryRule", isPublic: true);
-            var fldSecondaryFromFacing = GetField<Vector3>(rule, "secondaryFromFacing", isPublic: true);
-            var fldSecondaryToFacing = GetField<Vector3>(rule, "secondaryToFacing", isPublic: true);
-
-            if (rule == null || fldFromFacing == null || fldToFacing == null || fldHasSecondaryRule == null || fldSecondaryFromFacing == null || fldSecondaryToFacing == null || submitButton == null)
-            {
-                Debug.LogFormat("<Souvenir #{0}> Abandoning Orientation Cube.", _moduleId);
-                submitButton.OnInteract = prevInteract;
-            }
-            else if (mthIsFacing.Invoke(fldFromFacing.GetFrom(rule), fldToFacing.GetFrom(rule)) &&
-                    !fldHasSecondaryRule.GetFrom(rule) || mthIsFacing.Invoke(fldSecondaryFromFacing.GetFrom(rule), fldSecondaryToFacing.GetFrom(rule)))
-            {
-                solved = true;
-                submitButton.OnInteract = prevInteract;
-            }
-            return prevInteract();
-        };
+        module.OnPass += delegate { solved = true; return false; };
 
         while (!solved)
             yield return new WaitForSeconds(.1f);
