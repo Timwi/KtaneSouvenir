@@ -4860,9 +4860,8 @@ public class SouvenirModule : MonoBehaviour
         }
 
         _modulesSolved.IncSafe(_SkewedSlots);
-        addQuestions(module, originalNumbers.Select((origNum, i) => makeQuestion(Question.SkewedSlotsOriginalNumbers, _SkewedSlots, formatArgs: new[] { originalNumbers.Count == 1 ? "" : ordinal(i + 1) + " " },
-            correctAnswers: new[] { origNum },
-            preferredWrongAnswers: originalNumbers.Concat(Enumerable.Range(0, int.MaxValue).Select(_ => Rnd.Range(0, 1000).ToString("000"))).Where(str => str != origNum).Distinct().Take(5).ToArray())));
+        addQuestion(module, Question.SkewedSlotsOriginalNumbers, correctAnswers: new[] { originalNumbers.Last() },
+            preferredWrongAnswers: originalNumbers.Take(originalNumbers.Count - 1).Concat(Enumerable.Range(0, int.MaxValue).Select(_ => Rnd.Range(0, 1000).ToString("000"))).Where(str => str != originalNumbers.Last()).Distinct().Take(5).ToArray());
     }
 
     private static readonly string[] _skyrimFieldNames = new[] { "race", "weapon", "enemy", "city" };
