@@ -131,6 +131,7 @@ public class SouvenirModule : MonoBehaviour
     const string _MelodySequencer = "melodySequencer";
     const string _Microcontroller = "Microcontroller";
     const string _Minesweeper = "MinesweeperModule";
+    const string _ModernCipher = "modernCipher";
     const string _ModuleMaze = "ModuleMaze";
     const string _MonsplodeFight = "monsplodeFight";
     const string _MonsplodeTradingCards = "monsplodeCards";
@@ -252,6 +253,7 @@ public class SouvenirModule : MonoBehaviour
             { _MelodySequencer, ProcessMelodySequencer },
             { _Microcontroller, ProcessMicrocontroller },
             { _Minesweeper, ProcessMinesweeper },
+            { _ModernCipher, ProcessModernCipher },
             { _ModuleMaze, ProcessModuleMaze },
             { _MonsplodeFight, ProcessMonsplodeFight },
             { _MonsplodeTradingCards, ProcessMonsplodeTradingCards },
@@ -3381,6 +3383,40 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_Minesweeper);
         addQuestion(module, Question.MinesweeperStartingColor, correctAnswers: new[] { color });
+    }
+
+    private IEnumerable<object> ProcessModernCipher(KMBombModule module)
+    {
+        var comp = GetComponent(module, "modernCipher");
+        var fldWords = GetField<Dictionary<string, string>>(comp, "chosenWords");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+
+        if (comp == null || fldWords == null || fldSolved == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+
+        var dictionary = fldWords.Get();
+        if (dictionary == null)
+            yield break;
+
+        string stage1word, stage2word;
+        if (!dictionary.TryGetValue("Stage1", out stage1word) || !dictionary.TryGetValue("Stage2", out stage2word) || stage1word == null || stage2word == null)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Modern Cipher because there is no word for {1}.", _moduleId, stage1word == null ? "stage 1" : "stage 2");
+            yield break;
+        }
+
+        Debug.LogFormat("<Souvenir #{0}> Modern Cipher words: {1} {2}.", _moduleId, stage1word, stage2word);
+
+        stage1word = stage1word.Substring(0, 1).ToUpperInvariant() + stage1word.Substring(1).ToLowerInvariant();
+        stage2word = stage2word.Substring(0, 1).ToUpperInvariant() + stage2word.Substring(1).ToLowerInvariant();
+
+        _modulesSolved.IncSafe(_ModernCipher);
+        addQuestions(module,
+            makeQuestion(Question.ModernCipherWord, _ModernCipher, new[] { "first" }, new[] { stage1word }, new[] { stage2word }),
+            makeQuestion(Question.ModernCipherWord, _ModernCipher, new[] { "second" }, new[] { stage2word }, new[] { stage1word }));
     }
 
     private IEnumerable<object> ProcessModuleMaze(KMBombModule module)
