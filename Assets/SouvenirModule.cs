@@ -118,6 +118,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Hunting = "hunting";
     const string _IceCream = "iceCreamModule";
     const string _IdentityParade = "identityParade";
+    const string _iPhone = "iPhone";
     const string _Kudosudoku = "KudosudokuModule";
     const string _LEDEncryption = "LEDEnc";
     const string _LEDMath = "lgndLEDMath";
@@ -239,6 +240,7 @@ public class SouvenirModule : MonoBehaviour
             { _Hunting, ProcessHunting },
             { _IceCream, ProcessIceCream },
             { _IdentityParade, ProcessIdentityParade },
+            { _iPhone, ProcessiPhone },
             { _Kudosudoku, ProcessKudosudoku },
             { _LEDEncryption, ProcessLEDEncryption },
             { _LEDMath, ProcessLEDMath },
@@ -2713,6 +2715,39 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.IdentityParadeBuilds, _IdentityParade, formatArgs: new[] { "was not" }, correctAnswers: validBuilds.Except(builds).ToArray()),
             makeQuestion(Question.IdentityParadeAttires, _IdentityParade, formatArgs: new[] { "was" }, correctAnswers: attires.ToArray()),
             makeQuestion(Question.IdentityParadeAttires, _IdentityParade, formatArgs: new[] { "was not" }, correctAnswers: validAttires.Except(attires).ToArray()));
+    }
+
+    private IEnumerable<object> ProcessiPhone(KMBombModule module)
+    {
+        var comp = GetComponent(module, "iPhoneScript");
+        var fldSolved = GetField<string>(comp, "solved");
+        var fldDigits = GetField<List<string>>(comp, "pinDigits", isPublic: true);
+
+        if (comp == null || fldSolved == null || fldDigits == null)
+            yield break;
+
+        // Ensure that Start() has run
+        yield return null;
+
+        var digits = fldDigits.Get();
+
+        if (digits == null)
+            yield break;
+        if (digits.Count != 4)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning iPhone because ‘pinDigits’ has unexpected length {1} (expected 4).", _moduleId, digits.Count);
+            yield break;
+        }
+
+        while (fldSolved.Get() != "solved")
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_iPhone);
+        addQuestions(module,
+            makeQuestion(Question.iPhoneDigits, _iPhone, new[] { "first" }, new[] { digits[0] }, new[] { digits[1], digits[2], digits[3] }),
+            makeQuestion(Question.iPhoneDigits, _iPhone, new[] { "second" }, new[] { digits[1] }, new[] { digits[0], digits[2], digits[3] }),
+            makeQuestion(Question.iPhoneDigits, _iPhone, new[] { "third" }, new[] { digits[2] }, new[] { digits[1], digits[0], digits[3] }),
+            makeQuestion(Question.iPhoneDigits, _iPhone, new[] { "fourth" }, new[] { digits[3] }, new[] { digits[1], digits[2], digits[0] }));
     }
 
     private IEnumerable<object> ProcessKudosudoku(KMBombModule module)
