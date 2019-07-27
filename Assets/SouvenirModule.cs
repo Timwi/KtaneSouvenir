@@ -2923,12 +2923,12 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "LogicGates");
         var fldGates = GetField<IList>(comp, "_gates");
-        var fldSolution = GetField<int>(comp, "_solution");
         var fldInputs = GetField<List<int>>(comp, "_inputs");
         var fldCurrentInputIndex = GetField<int>(comp, "_currentInputIndex");
-        var fldButtonCheck = GetField<KMSelectable>(comp, "ButtonCheck", isPublic: true);
+        var fldButtonNext = GetField<KMSelectable>(comp, "ButtonNext", isPublic: true);
+        var fldButtonPrevious = GetField<KMSelectable>(comp, "ButtonPrevious", isPublic: true);
 
-        if (comp == null || fldGates == null || fldSolution == null || fldInputs == null || fldCurrentInputIndex == null || fldButtonCheck == null)
+        if (comp == null || fldGates == null || fldInputs == null || fldCurrentInputIndex == null || fldButtonNext == null || fldButtonPrevious == null)
             yield break;
 
         // Make sure Start() has run
@@ -2936,9 +2936,9 @@ public class SouvenirModule : MonoBehaviour
 
         var inputs = fldInputs.Get();
         var gates = fldGates.Get();
-        var btnCheck = fldButtonCheck.Get();
-        var solution = fldSolution.Get();
-        if (inputs == null || inputs.Count == 0 || gates == null || gates.Count == 0 || btnCheck == null)
+        var btnNext = fldButtonNext.Get();
+        var btnPrevious = fldButtonPrevious.Get();
+        if (inputs == null || inputs.Count == 0 || gates == null || gates.Count == 0 || btnNext == null || btnPrevious == null)
             yield break;
 
         var fldGateType = GetField<object>(gates[0], "GateType", isPublic: true);
@@ -2960,21 +2960,28 @@ public class SouvenirModule : MonoBehaviour
                         duplicate = gateTypeNames[i];
                 }
 
+        yield return null;
+
         // Unfortunately Logic Gates has no “isSolved” field, so we need to hook into the button
-        var oldInteract = btnCheck.OnInteract;
         var solved = false;
-        btnCheck.OnInteract = delegate
-        {
-            var ret = oldInteract();
-            if (inputs[fldCurrentInputIndex.Get()] == solution)
-                solved = true;
-            return ret;
-        };
+        module.OnPass += delegate { solved = true; return true; };
 
         while (!solved)
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_LogicGates);
-        btnCheck.OnInteract = oldInteract;
+
+        btnNext.OnInteract = delegate
+        {
+            Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, module.transform);
+            btnNext.AddInteractionPunch(0.2f);
+            return false;
+        };
+        btnPrevious.OnInteract = delegate
+        {
+            Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, module.transform);
+            btnNext.AddInteractionPunch(0.2f);
+            return false;
+        };
 
         var qs = new List<QandA>();
         for (int i = 0; i < gateTypeNames.Length; i++)
