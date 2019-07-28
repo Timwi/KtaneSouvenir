@@ -127,6 +127,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         CreationWeather,
 
+        [SouvenirQuestion("What was the {1} cube rotation in {0}?", "Cube", 4, "rotate cw", "tip left", "tip backwards", "rotate ccw", "tip right", "tip forwards",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
+        CubeRotations,
+
         [SouvenirQuestion("Which button was the submit button in {0}?", "Double-Oh", 6, "↕", "⇕", "↔", "⇔", "◆")]
         DoubleOhSubmitButton,
 

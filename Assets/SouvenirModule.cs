@@ -102,6 +102,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Coordinates = "CoordinatesModule";
     const string _Crackbox = "CrackboxModule";
     const string _Creation = "CreationModule";
+    const string _Cube = "cube";
     const string _DoubleOh = "DoubleOhModule";
     const string _DrDoctor = "DrDoctorModule";
     const string _ElderFuthark = "elderFuthark";
@@ -227,6 +228,7 @@ public class SouvenirModule : MonoBehaviour
             { _Coordinates, ProcessCoordinates },
             { _Crackbox, ProcessCrackbox },
             { _Creation, ProcessCreation },
+            { _Cube, ProcessCube },
             { _DoubleOh, ProcessDoubleOh },
             { _DrDoctor, ProcessDrDoctor },
             { _ElderFuthark, ProcessElderFuthark },
@@ -2086,6 +2088,34 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_Creation);
         addQuestions(module, allWeather.Select((t, i) => makeQuestion(Question.CreationWeather, _Creation, new[] { ordinal(i + 1) }, new[] { t })));
+    }
+
+    private IEnumerable<object> ProcessCube(KMBombModule module)
+    {
+        var comp = GetComponent(module, "theCubeScript");
+        var fldRotations = GetField<List<int>>(comp, "selectedRotations");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        if (comp == null || fldSolved == null || fldRotations == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Cube);
+
+        var rotations = fldRotations.Get();
+        if (rotations == null)
+            yield break;
+        if (rotations.Count != 6)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning The Cube because 'selectedRotations' has unexpected length {1} (expected 6).", _moduleId, rotations.Count);
+            yield break;
+        }
+
+        var rotationNames = new[] { "rotate cw", "tip left", "tip backwards", "rotate ccw", "tip right", "tip forwards" };
+        var allRotations = rotations.Select(r => rotationNames[r]).ToArray();
+
+        addQuestions(module, rotations.Select((rot, ix) => makeQuestion(Question.CubeRotations, _Cube, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { rotationNames[rot] }, preferredWrongAnswers: allRotations)));
     }
 
     private IEnumerable<object> ProcessDoubleOh(KMBombModule module)
