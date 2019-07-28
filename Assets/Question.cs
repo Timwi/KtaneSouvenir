@@ -87,6 +87,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the given chord quality in {0}?", "Chord Qualities", 6, "7", "-7", "Δ7", "-Δ7", "7♯9", "ø", "add9", "-add9", "7♯5", "Δ7♯5", "7sus", "-Δ7♯5")]
         ChordQualitiesQuality,
 
+        [SouvenirQuestion("What was the displayed number in {0}?", "Code", 6, null, AddThe = true, ExampleAnswers = new[] { "1234", "9876", "2345", "4567" })]
+        CodeDisplayNumber,
+
         [SouvenirQuestion("What was the {1}-stage indicator pattern in {0}?", "Color Decoding", 4, "Checkered", "Horizontal", "Vertical", "Solid",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ColorDecodingIndicatorPattern,

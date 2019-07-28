@@ -95,6 +95,7 @@ public class SouvenirModule : MonoBehaviour
     const string _CheapCheckout = "CheapCheckoutModule";
     const string _Chess = "ChessModule";
     const string _ChordQualities = "ChordQualities";
+    const string _Code = "theCodeModule";
     const string _ColorDecoding = "Color Decoding";
     const string _ColoredSquares = "ColoredSquaresModule";
     const string _ColoredSwitches = "ColoredSwitchesModule";
@@ -222,6 +223,7 @@ public class SouvenirModule : MonoBehaviour
             { _CheapCheckout, ProcessCheapCheckout },
             { _Chess, ProcessChess },
             { _ChordQualities, ProcessChordQualities },
+            { _Code, ProcessCode },
             { _ColorDecoding, ProcessColorDecoding },
             { _ColoredSquares, ProcessColoredSquares },
             { _ColoredSwitches, ProcessColoredSwitches },
@@ -1733,6 +1735,48 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.ChordQualitiesNotes, _ChordQualities, correctAnswers: noteNames),
             makeQuestion(Question.ChordQualitiesQuality, _ChordQualities, correctAnswers: new[] { qualityName }));
+    }
+
+    private IEnumerable<object> ProcessCode(KMBombModule module)
+    {
+        var comp = GetComponent(module, "TheCodeModule");
+        var fldCode = GetField<int>(comp, "moduleNumber");
+        var fldResetBtn = GetField<KMSelectable>(comp, "ButtonR", isPublic: true);
+        var fldSubmitBtn = GetField<KMSelectable>(comp, "ButtonS", isPublic: true);
+
+        if (comp == null || fldCode == null || fldResetBtn == null || fldSubmitBtn == null)
+            yield break;
+
+        // wait for Start()
+        yield return null;
+
+        var code = fldCode.Get();
+
+        if (code < 999 || code > 9999)
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning The Code because ‘moduleNumber’ has unexpected value ({1}).", _moduleId, code);
+            yield break;
+        }
+
+        // Hook into the module’s OnPass handler
+        var isSolved = false;
+        module.OnPass += delegate { isSolved = true; return false; };
+        yield return new WaitUntil(() => isSolved);
+        _modulesSolved.IncSafe(_Code);
+
+        // Block the submit/reset buttons
+        var resetBtn = fldResetBtn.Get();
+        var submitBtn = fldSubmitBtn.Get();
+        if (resetBtn == null || submitBtn == null)
+            yield break;
+
+        resetBtn.OnInteract = delegate { return false; };
+        submitBtn.OnInteract = delegate { return false; };
+
+        addQuestions(module,
+            makeQuestion(Question.CodeDisplayNumber, _Code,
+                correctAnswers: new[] { code.ToString() },
+                preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(999, 10000)).Distinct().Take(6).Select(i => i.ToString()).ToArray()));
     }
 
     private static readonly Dictionary<string, string> _ColorDecoding_ColorNameMapping = new Dictionary<string, string>
