@@ -122,6 +122,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Kudosudoku = "KudosudokuModule";
     const string _LEDEncryption = "LEDEnc";
     const string _LEDMath = "lgndLEDMath";
+    const string _LEGOs = "LEGOModule";
     const string _Listening = "Listening";
     const string _LogicGates = "logicGates";
     const string _LondonUnderground = "londonUnderground";
@@ -244,6 +245,7 @@ public class SouvenirModule : MonoBehaviour
             { _Kudosudoku, ProcessKudosudoku },
             { _LEDEncryption, ProcessLEDEncryption },
             { _LEDMath, ProcessLEDMath },
+            { _LEGOs, ProcessLEGOs },
             { _Listening, ProcessListening },
             { _LogicalButtons, ProcessLogicalButtons },
             { _LogicGates, ProcessLogicGates },
@@ -916,22 +918,32 @@ public class SouvenirModule : MonoBehaviour
 
     private MethodInfo<T> GetMethod<T>(object target, string name, int numParameters, bool isPublic = false)
     {
+        return GetMethodImpl<T>(typeof(T), target, name, numParameters, isPublic);
+    }
+
+    private MethodInfo<object> GetMethod(object target, string name, int numParameters, bool isPublic = false)
+    {
+        return GetMethodImpl<object>(typeof(void), target, name, numParameters, isPublic);
+    }
+
+    private MethodInfo<T> GetMethodImpl<T>(Type returnType, object target, string name, int numParameters, bool isPublic = false)
+    {
         if (target == null)
         {
-            Debug.LogFormat("<Souvenir #{3}> Attempt to get {1} method {0} of return type {2} from a null object.", name, isPublic ? "public" : "non-public", typeof(T).FullName, _moduleId);
+            Debug.LogFormat("<Souvenir #{3}> Attempt to get {1} method {0} of return type {2} from a null object.", name, isPublic ? "public" : "non-public", returnType.FullName, _moduleId);
             return null;
         }
         var bindingFlags = (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | BindingFlags.Instance;
         var targetType = target.GetType();
-        var mths = targetType.GetMethods(bindingFlags).Where(m => m.Name == name && m.GetParameters().Length == numParameters && typeof(T).IsAssignableFrom(m.ReturnType)).Take(2).ToArray();
+        var mths = targetType.GetMethods(bindingFlags).Where(m => m.Name == name && m.GetParameters().Length == numParameters && returnType.IsAssignableFrom(m.ReturnType)).Take(2).ToArray();
         if (mths.Length == 0)
         {
-            Debug.LogFormat("<Souvenir #{5}> Type {0} does not contain {1} method {2} with return type {3} and {4} parameters.", targetType, isPublic ? "public" : "non-public", name, typeof(T).FullName, numParameters, _moduleId);
+            Debug.LogFormat("<Souvenir #{5}> Type {0} does not contain {1} method {2} with return type {3} and {4} parameters.", targetType, isPublic ? "public" : "non-public", name, returnType.FullName, numParameters, _moduleId);
             return null;
         }
         if (mths.Length > 1)
         {
-            Debug.LogFormat("<Souvenir #{5}> Type {0} contains multiple {1} methods {2} with return type {3} and {4} parameters.", targetType, isPublic ? "public" : "non-public", name, typeof(T).FullName, numParameters, _moduleId);
+            Debug.LogFormat("<Souvenir #{5}> Type {0} contains multiple {1} methods {2} with return type {3} and {4} parameters.", targetType, isPublic ? "public" : "non-public", name, returnType.FullName, numParameters, _moduleId);
             return null;
         }
         return new MethodInfo<T>(target, mths[0]);
@@ -2909,6 +2921,87 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.LEDMathLights, _LEDMath, new[] { "LED A" }, new[] { ledColors[ledA] }),
             makeQuestion(Question.LEDMathLights, _LEDMath, new[] { "LED B" }, new[] { ledColors[ledB] }),
             makeQuestion(Question.LEDMathLights, _LEDMath, new[] { "the operator LED" }, new[] { ledColors[ledOp] }));
+    }
+
+    private IEnumerable<object> ProcessLEGOs(KMBombModule module)
+    {
+        var comp = GetComponent(module, "LEGOModule");
+        var fldSolutionStruct = GetField<object>(comp, "SolutionStructure");
+        var fldLeftButton = GetField<KMSelectable>(comp, "LeftButton", isPublic: true);
+        var fldRightButton = GetField<KMSelectable>(comp, "RightButton", isPublic: true);
+        var fldSubmission = GetField<int[]>(comp, "Submission");
+        var mthUpdate = GetMethod(comp, "UpdateDisplays", numParameters: 0);
+
+        if (comp == null || fldSolutionStruct == null || fldLeftButton == null || fldRightButton == null || fldSubmission == null || mthUpdate == null)
+            yield break;
+
+        // Make sure Start() has run
+        yield return null;
+
+        var solutionStruct = fldSolutionStruct.Get();
+        if (solutionStruct == null)
+            yield break;
+
+        var fldPieces = GetField<IList>(solutionStruct, "Pieces", isPublic: true);
+        if (fldPieces == null)
+            yield break;
+
+        var pieces = fldPieces.Get();
+        if (pieces == null)
+            yield break;
+        if (pieces.Count != 6)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning LEGOs because ‘SolutionStructure.Pieces’ has unexpected length {1} (expected 6).", _moduleId, pieces.Count);
+            yield break;
+        }
+
+        // Hook into the module’s OnPass handler
+        var isSolved = false;
+        module.OnPass += delegate { isSolved = true; return false; };
+        yield return new WaitUntil(() => isSolved);
+
+        // Block the left/right buttons so the player can’t see the instruction pages anymore
+        var leftButton = fldLeftButton.Get();
+        var rightButton = fldRightButton.Get();
+
+        if (leftButton == null || rightButton == null)
+            yield break;
+
+        leftButton.OnInteract = delegate
+        {
+            Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, module.transform);
+            leftButton.AddInteractionPunch(0.5f);
+            return false;
+        };
+        rightButton.OnInteract = delegate
+        {
+            Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, module.transform);
+            rightButton.AddInteractionPunch(0.5f);
+            return false;
+        };
+
+        // Erase the solution so the player can’t see brick sizes on it either
+        var submission = fldSubmission.Get();
+        if (submission == null)
+            yield break;
+        for (int i = 0; i < submission.Length; i++)
+            submission[i] = 0;
+        mthUpdate.Invoke();
+
+        // Obtain the brick sizes and colors
+        var fldBrickColors = GetField<int>(pieces[0], "BrickColor", isPublic: true);
+        var fldBrickDimensions = GetField<int[]>(pieces[0], "Dimensions", isPublic: true);
+        if (fldBrickColors == null || fldBrickDimensions == null)
+            yield break;
+
+        var brickColors = Enumerable.Range(0, 6).Select(i => fldBrickColors.GetFrom(pieces[i])).ToList();
+        var brickDimensions = Enumerable.Range(0, 6).Select(i => fldBrickDimensions.GetFrom(pieces[i])).ToList();
+        if (brickDimensions.Any(d => d == null))
+            yield break;
+
+        _modulesSolved.IncSafe(_LEGOs);
+        var colorNames = new[] { "red", "green", "blue", "cyan", "magenta", "yellow" };
+        addQuestions(module, Enumerable.Range(0, 6).Select(i => makeQuestion(Question.LEGOsPieceDimensions, _LEGOs, new[] { colorNames[brickColors[i]] }, new[] { brickDimensions[i][0] + "×" + brickDimensions[i][1] })));
     }
 
     private IEnumerable<object> ProcessListening(KMBombModule module)
