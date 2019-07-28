@@ -150,6 +150,7 @@ public class SouvenirModule : MonoBehaviour
     const string _OrientationCube = "OrientationCube";
     const string _PatternCube = "PatternCubeModule";
     const string _PerspectivePegs = "spwizPerspectivePegs";
+    const string _Pie = "pieModule";
     const string _Planets = "planets";
     const string _Poetry = "poetry";
     const string _PolyhedralMaze = "PolyhedralMazeModule";
@@ -274,6 +275,7 @@ public class SouvenirModule : MonoBehaviour
             { _OrientationCube, ProcessOrientationCube },
             { _PatternCube, ProcessPatternCube },
             { _PerspectivePegs, ProcessPerspectivePegs },
+            { _Pie, ProcessPie },
             { _Planets, ProcessPlanets },
             { _Poetry, ProcessPoetry },
             { _PolyhedralMaze, ProcessPolyhedralMaze },
@@ -4302,6 +4304,37 @@ public class SouvenirModule : MonoBehaviour
             formatArgs: new[] { ordinal(i + 1) },
             correctAnswers: new[] { PerspectivePegsSprites[entered[i]] },
             preferredWrongAnswers: PerspectivePegsSprites)));
+    }
+
+    private IEnumerable<object> ProcessPie(KMBombModule module)
+    {
+        var comp = GetComponent(module, "PieScript");
+        var fldDigits = GetField<string[]>(comp, "codes");
+        var fldSolved = GetField<bool>(comp, "solveCoroutineStarted");
+
+        if (comp == null || fldDigits == null || fldSolved == null)
+            yield break;
+
+        // wait for Start()
+        yield return null;
+
+        // get displayed digits
+        var digits = fldDigits.Get();
+
+        if (digits == null)
+            yield break;
+
+        if (digits.Length != 5)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Pie because 'codes' has unexpected length {1} (expected 5).", _moduleId, digits.Count());
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_Pie);
+        addQuestions(module, digits.Select((digit, ix) => makeQuestion(Question.PieDigits, _Pie, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { digit }, preferredWrongAnswers: digits)));
     }
 
     private IEnumerable<object> ProcessPlanets(KMBombModule module)
