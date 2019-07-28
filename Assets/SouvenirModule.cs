@@ -120,6 +120,7 @@ public class SouvenirModule : MonoBehaviour
     const string _IceCream = "iceCreamModule";
     const string _IdentityParade = "identityParade";
     const string _iPhone = "iPhone";
+    const string _JewelVault = "jewelVault";
     const string _Kudosudoku = "KudosudokuModule";
     const string _LEDEncryption = "LEDEnc";
     const string _LEDMath = "lgndLEDMath";
@@ -245,6 +246,7 @@ public class SouvenirModule : MonoBehaviour
             { _IceCream, ProcessIceCream },
             { _IdentityParade, ProcessIdentityParade },
             { _iPhone, ProcessiPhone },
+            { _JewelVault, ProcessJewelVault },
             { _Kudosudoku, ProcessKudosudoku },
             { _LEDEncryption, ProcessLEDEncryption },
             { _LEDMath, ProcessLEDMath },
@@ -2792,6 +2794,43 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.iPhoneDigits, _iPhone, new[] { "second" }, new[] { digits[1] }, new[] { digits[0], digits[2], digits[3] }),
             makeQuestion(Question.iPhoneDigits, _iPhone, new[] { "third" }, new[] { digits[2] }, new[] { digits[1], digits[0], digits[3] }),
             makeQuestion(Question.iPhoneDigits, _iPhone, new[] { "fourth" }, new[] { digits[3] }, new[] { digits[1], digits[2], digits[0] }));
+    }
+
+    private IEnumerable<object> ProcessJewelVault(KMBombModule module)
+    {
+        var comp = GetComponent(module, "jewelWheelsScript");
+        var fldWheels = GetField<KMSelectable[]>(comp, "wheels", isPublic: true);
+        var fldAssignedWheels = GetField<List<KMSelectable>>(comp, "assignedWheels");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        if (comp == null || fldWheels == null || fldAssignedWheels == null || fldSolved == null)
+            yield break;
+
+        // wait for Start()
+        yield return null;
+
+        var wheels = fldWheels.Get();
+        var assignedWheels = fldAssignedWheels.Get();
+
+        if (wheels == null || assignedWheels == null)
+            yield break;
+
+        if (wheels.Length != 4)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning The Jewel Vault because ‘wheels’ has unexpected length {1} (expected 4).", _moduleId, wheels.Count());
+            yield break;
+        }
+        if (assignedWheels.Count != 4)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning The Jewel Vault because ‘assignedWheels’ has unexpected length {1} (expected 4).", _moduleId, assignedWheels.Count());
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_JewelVault);
+        addQuestions(module, assignedWheels.Select((aw, ix) => makeQuestion(Question.JewelVaultWheels, _JewelVault, new[] { "ABCD".Substring(ix, 1) }, new[] { (Array.IndexOf(wheels, aw) + 1).ToString() })));
     }
 
     private IEnumerable<object> ProcessKudosudoku(KMBombModule module)
