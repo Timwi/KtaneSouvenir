@@ -126,6 +126,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Mafia = "MafiaModule";
     const string _Mahjong = "MahjongModule";
     const string _MaritimeFlags = "MaritimeFlagsModule";
+    const string _MegaMan2 = "megaMan2";
     const string _Microcontroller = "Microcontroller";
     const string _Minesweeper = "MinesweeperModule";
     const string _ModuleMaze = "ModuleMaze";
@@ -244,6 +245,7 @@ public class SouvenirModule : MonoBehaviour
             { _Mafia, ProcessMafia },
             { _Mahjong, ProcessMahjong },
             { _MaritimeFlags, ProcessMaritimeFlags },
+            { _MegaMan2, ProcessMegaMan2 },
             { _Microcontroller, ProcessMicrocontroller },
             { _Minesweeper, ProcessMinesweeper },
             { _ModuleMaze, ProcessModuleMaze },
@@ -3199,6 +3201,44 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.MaritimeFlagsBearing, _MaritimeFlags, correctAnswers: new[] { bearing.ToString() }),
             makeQuestion(Question.MaritimeFlagsCallsign, _MaritimeFlags, correctAnswers: new[] { callsign.ToLowerInvariant() }));
+    }
+
+    private IEnumerable<object> ProcessMegaMan2(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Megaman2");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldRobotMasters = GetField<string[]>(comp, "robotMasters");
+        var fldSelectedWeapon = GetField<int>(comp, "selectedWeapon");
+        var fldSelectedMaster = GetField<int>(comp, "selectedMaster");
+
+        if (comp == null || fldSolved == null || fldRobotMasters == null || fldSelectedWeapon == null || fldSelectedMaster == null)
+            yield break;
+
+        yield return null;
+
+        var robotMasters = fldRobotMasters.Get();
+        var selectedMaster = fldSelectedMaster.Get();
+        var selectedWeapon = fldSelectedWeapon.Get();
+
+        if (selectedMaster < 0 || selectedMaster >= robotMasters.Length)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Mega Man 2 because ‘selectedMaster’ does not have a valid value (current value is {1}).", _moduleId, selectedMaster);
+            yield break;
+        }
+
+        if (selectedWeapon < 0 || selectedWeapon >= robotMasters.Length)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Mega Man 2 because ‘selectedWeapon’ does not have a valid value (current value is {1}).", _moduleId, selectedWeapon);
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_MegaMan2);
+
+        addQuestions(module,
+            makeQuestion(Question.MegaMan2SelectedMaster, _MegaMan2, correctAnswers: new[] { robotMasters[selectedMaster] }, preferredWrongAnswers: robotMasters),
+            makeQuestion(Question.MegaMan2SelectedWeapon, _MegaMan2, correctAnswers: new[] { robotMasters[selectedWeapon] }, preferredWrongAnswers: robotMasters));
     }
 
     private IEnumerable<object> ProcessMicrocontroller(KMBombModule module)
