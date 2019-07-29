@@ -163,6 +163,7 @@ public class SouvenirModule : MonoBehaviour
     const string _PolyhedralMaze = "PolyhedralMazeModule";
     const string _Probing = "Probing";
     const string _Quintuples = "quintuples";
+    const string _ReverseMorse = "reverseMorse";
     const string _Rhythms = "MusicRhythms";
     const string _SchlagDenBomb = "qSchlagDenBomb";
     const string _SeaShells = "SeaShells";
@@ -297,6 +298,7 @@ public class SouvenirModule : MonoBehaviour
             { _PolyhedralMaze, ProcessPolyhedralMaze },
             { _Probing, ProcessProbing },
             { _Quintuples, ProcessQuintuples },
+            { _ReverseMorse, ProcessReverseMorse },
             { _Rhythms, ProcessRhythms },
             { _SchlagDenBomb, ProcessSchlagDenBomb },
             { _SeaShells, ProcessSeaShells },
@@ -4872,6 +4874,47 @@ public class SouvenirModule : MonoBehaviour
             numbers.Select((n, ix) => makeQuestion(Question.QuintuplesNumbers, _Quintuples, new[] { ordinal(ix % 5 + 1), ordinal(ix / 5 + 1) }, new[] { (n % 10).ToString() })).Concat(
             colors.Select((color, ix) => makeQuestion(Question.QuintuplesColors, _Quintuples, new[] { ordinal(ix % 5 + 1), ordinal(ix / 5 + 1) }, new[] { color }))).Concat(
             colorCounts.Select((cc, ix) => makeQuestion(Question.QuintuplesColorCounts, _Quintuples, new[] { colorNames[ix] }, new[] { cc.ToString() }))));
+    }
+
+    private IEnumerable<object> ProcessReverseMorse(KMBombModule module)
+    {
+        var comp = GetComponent(module, "reverseMorseScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldMessage1 = GetField<List<string>>(comp, "selectedLetters1", isPublic: true);
+        var fldMessage2 = GetField<List<string>>(comp, "selectedLetters2", isPublic: true);
+
+        if (comp == null || fldSolved == null || fldMessage1 == null || fldMessage2 == null)
+            yield break;
+
+        // wait for Start()
+        yield return null;
+
+        var message1 = fldMessage1.Get();
+        var message2 = fldMessage2.Get();
+        if (message1 == null || message2 == null)
+            yield break;
+        if (message1.Count != 6)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Reverse Morse because ‘selectedLetters1’ has an unexpected length: {1} (expected length: 6).", _moduleId, message1.Count);
+            yield break;
+        }
+        if (message2.Count != 6)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Reverse Morse because ‘selectedLetters2’ has an unexpected length: {1} (expected length: 6).", _moduleId, message2.Count);
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ReverseMorse);
+
+        var qs = new List<QandA>();
+        for (int i = 0; i < 6; i++)
+        {
+            qs.Add(makeQuestion(Question.ReverseMorseCharacters, _ReverseMorse, new[] { ordinal(i + 1), "first" }, new[] { message1[i] }, message1.ToArray()));
+            qs.Add(makeQuestion(Question.ReverseMorseCharacters, _ReverseMorse, new[] { ordinal(i + 1), "second" }, new[] { message2[i] }, message2.ToArray()));
+        }
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessRhythms(KMBombModule module)
