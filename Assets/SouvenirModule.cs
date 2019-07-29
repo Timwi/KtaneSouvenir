@@ -133,6 +133,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Mafia = "MafiaModule";
     const string _Mahjong = "MahjongModule";
     const string _MaritimeFlags = "MaritimeFlagsModule";
+    const string _MazeScrambler = "MazeScrambler";
     const string _MegaMan2 = "megaMan2";
     const string _MelodySequencer = "melodySequencer";
     const string _Microcontroller = "Microcontroller";
@@ -263,6 +264,7 @@ public class SouvenirModule : MonoBehaviour
             { _Mafia, ProcessMafia },
             { _Mahjong, ProcessMahjong },
             { _MaritimeFlags, ProcessMaritimeFlags },
+            { _MazeScrambler, ProcessMazeScrambler },
             { _MegaMan2, ProcessMegaMan2 },
             { _MelodySequencer, ProcessMelodySequencer },
             { _Microcontroller, ProcessMicrocontroller },
@@ -3518,6 +3520,66 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.MaritimeFlagsBearing, _MaritimeFlags, correctAnswers: new[] { bearing.ToString() }),
             makeQuestion(Question.MaritimeFlagsCallsign, _MaritimeFlags, correctAnswers: new[] { callsign.ToLowerInvariant() }));
+    }
+
+    private IEnumerable<object> ProcessMazeScrambler(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MazeScrambler");
+        var fldSolved = GetField<bool>(comp, "SOLVED");
+        var fldInd1X = GetField<int>(comp, "IDX1");
+        var fldInd1Y = GetField<int>(comp, "IDY1");
+        var fldInd2X = GetField<int>(comp, "IDX2");
+        var fldInd2Y = GetField<int>(comp, "IDY2");
+        var fldStartX = GetField<int>(comp, "StartX");
+        var fldStartY = GetField<int>(comp, "StartY");
+        var fldGoalX = GetField<int>(comp, "GoalX");
+        var fldGoalY = GetField<int>(comp, "GoalY");
+
+        if (comp == null || fldSolved == null || fldInd1X == null || fldInd1Y == null || fldInd2X == null || fldInd2Y == null || fldStartX == null || fldStartY == null || fldGoalX == null || fldGoalY == null)
+            yield break;
+
+        //wait for Start()
+        yield return null;
+
+        const int x = 0;
+        const int y = 1;
+
+        var ind1 = new[] { fldInd1X.Get(), fldInd1Y.Get() };
+        var ind2 = new[] { fldInd2X.Get(), fldInd2Y.Get() };
+        var start = new[] { fldStartX.Get(), fldStartY.Get() };
+        var goal = new[] { fldGoalX.Get(), fldGoalY.Get() };
+
+        if (ind1[x] < 0 || ind1[x] > 2 || ind1[y] < 0 || ind1[y] > 2)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Maze Scrambler because Indicator 1 has unnexpected coordinates (expected 0 to 2): [{1}, {2}].", _moduleId, ind1[x], ind1[y]);
+            yield break;
+        }
+        if (ind2[x] < 0 || ind2[x] > 2 || ind2[y] < 0 || ind2[y] > 2)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Maze Scrambler because Indicator 2 has unnexpected coordinates (expected 0 to 2): [{1}, {2}].", _moduleId, ind2[x], ind2[y]);
+            yield break;
+        }
+        if (start[x] < 0 || start[x] > 2 || start[y] < 0 || start[y] > 2)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Maze Scrambler because Start has unnexpected coordinates (expected 0 to 2): [{1}, {2}].", _moduleId, start[x], start[y]);
+            yield break;
+        }
+        if (goal[x] < 0 || goal[x] > 2 || goal[y] < 0 || goal[y] > 2)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Maze Scrambler because Goal has unnexpected coordinates (expected 0 to 2): [{1}, {2}].", _moduleId, goal[x], goal[y]);
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        var positionNames = new[] { "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right" };
+
+        _modulesSolved.IncSafe(_MazeScrambler);
+        addQuestions(module,
+            makeQuestion(Question.MazeScramblerStart, _MazeScrambler, correctAnswers: new[] { positionNames[start[y] * 3 + start[x]] }, preferredWrongAnswers: new[] { positionNames[goal[y] * 3 + goal[x]] }),
+            makeQuestion(Question.MazeScramblerGoal, _MazeScrambler, correctAnswers: new[] { positionNames[goal[y] * 3 + goal[x]] }, preferredWrongAnswers: new[] { positionNames[start[y] * 3 + start[x]] }),
+            makeQuestion(Question.MazeScramblerIndicators, _MazeScrambler, correctAnswers: new[] { positionNames[ind1[y] * 3 + ind1[x]], positionNames[ind2[y] * 3 + ind2[x]] }, preferredWrongAnswers: positionNames));
     }
 
     private IEnumerable<object> ProcessMegaMan2(KMBombModule module)
