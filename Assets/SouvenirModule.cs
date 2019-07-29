@@ -194,6 +194,7 @@ public class SouvenirModule : MonoBehaviour
     const string _TurtleRobot = "turtleRobot";
     const string _TwoBits = "TwoBits";
     const string _UncoloredSquares = "UncoloredSquaresModule";
+    const string _USAMaze = "USA";
     const string _VisualImpairment = "visual_impairment";
     const string _Wavetapping = "Wavetapping";
     const string _Wire = "wire";
@@ -323,6 +324,7 @@ public class SouvenirModule : MonoBehaviour
             { _TurtleRobot, ProcessTurtleRobot },
             { _TwoBits, ProcessTwoBits },
             { _UncoloredSquares, ProcessUncoloredSquares },
+            { _USAMaze, ProcessUSAMaze },
             { _VisualImpairment, ProcessVisualImpairment },
             { _Wavetapping, ProcessWavetapping },
             { _Wire, ProcessWire },
@@ -6160,6 +6162,34 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.UncoloredSquaresFirstStage, _UncoloredSquares, new[] { "first" }, new[] { fldFirstStageColor1.Get().ToString() }),
             makeQuestion(Question.UncoloredSquaresFirstStage, _UncoloredSquares, new[] { "second" }, new[] { fldFirstStageColor2.Get().ToString() }));
+    }
+
+    private IEnumerable<object> ProcessUSAMaze(KMBombModule module)
+    {
+        var comp = GetComponent(module, "USA");
+        var fldOrigin = GetField<int>(comp, "origin");
+        var fldActive = GetField<bool>(comp, "isActive");
+
+        if (comp == null || fldOrigin == null || fldActive == null)
+            yield break;
+
+        // wait for isActive to become true
+        while (!_isActivated)
+            yield return new WaitForSeconds(.1f);
+
+        while (fldActive.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_USAMaze);
+
+        var states = new[] { "Alaska", "Alabama", "Arkansas", "Arizona", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Iowa", "Idaho", "Illinois", "Indiana", "Kansas", "Kentucky", "Louisiana", "Massachusetts", "Maryland", "Maine", "Michigan", "Minnesota", "Missouri", "Mississippi", "Montana", "North Carolina", "North Dakota", "Nebraska", "New Hampshire", "New Jersey", "New Mexico", "Nevada", "New York", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Virginia", "Vermont", "Washington", "Wisconsin", "West Virginia", "Wyoming" };
+        var origin = fldOrigin.Get();
+        if (origin < 0 || origin >= states.Length)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning USA Maze because 'origin' had an unexpected value {1}.", _moduleId, origin);
+            yield break;
+        }
+
+        addQuestions(module, makeQuestion(Question.USAMazeOrigin, _USAMaze, correctAnswers: new[] { states[origin] }));
     }
 
     private IEnumerable<object> ProcessVisualImpairment(KMBombModule module)
