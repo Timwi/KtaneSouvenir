@@ -104,6 +104,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Crackbox = "CrackboxModule";
     const string _Creation = "CreationModule";
     const string _Cube = "cube";
+    const string _DoubleColor = "doubleColor";
     const string _DoubleOh = "DoubleOhModule";
     const string _DrDoctor = "DrDoctorModule";
     const string _ElderFuthark = "elderFuthark";
@@ -235,6 +236,7 @@ public class SouvenirModule : MonoBehaviour
             { _Crackbox, ProcessCrackbox },
             { _Creation, ProcessCreation },
             { _Cube, ProcessCube },
+            { _DoubleColor, ProcessDoubleColor },
             { _DoubleOh, ProcessDoubleOh },
             { _DrDoctor, ProcessDrDoctor },
             { _ElderFuthark, ProcessElderFuthark },
@@ -2168,6 +2170,64 @@ public class SouvenirModule : MonoBehaviour
         var allRotations = rotations.Select(r => rotationNames[r]).ToArray();
 
         addQuestions(module, rotations.Select((rot, ix) => makeQuestion(Question.CubeRotations, _Cube, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { rotationNames[rot] }, preferredWrongAnswers: allRotations)));
+    }
+
+    private IEnumerable<object> ProcessDoubleColor(KMBombModule module)
+    {
+        var comp = GetComponent(module, "doubleColor");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+        var fldColor = GetField<int>(comp, "screenColor");
+        var fldStage = GetField<int>(comp, "stageNumber");
+        var fldSubmitBtn = GetField<KMSelectable>(comp, "submit", isPublic: true);
+
+        if (comp == null || fldSolved == null || fldColor == null || fldStage == null || fldSubmitBtn == null)
+            yield break;
+
+        while (!_isActivated)
+            yield return new WaitForSeconds(.1f);
+
+        var color1 = fldColor.Get();
+        var stage = fldStage.Get();
+        var submitBtn = fldSubmitBtn.Get();
+        if (submitBtn == null)
+            yield break;
+        if (stage != 1)
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Double Color because first stage number was not 1: {1}.", _moduleId, stage);
+            yield break;
+        }
+
+        var prevInteract = submitBtn.OnInteract;
+        submitBtn.OnInteract = delegate
+        {
+            var ret = prevInteract();
+            stage = fldStage.Get();
+            if (stage == 1)  // This means the user got a strike. Need to retrieve the new first stage color
+                color1 = fldColor.Get();
+            return ret;
+        };
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_DoubleColor);
+
+        if (color1 < 0 || color1 > 4)
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Double Color because first stage color has unexpected value: {1} (expected 0 to 4).", _moduleId, color1);
+            yield break;
+        }
+        var color2 = fldColor.Get();
+        if (color2 < 0 || color2 > 4)
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Double Color because second stage color has unexpected value: {1} (expected 0 to 4).", _moduleId, color2);
+            yield break;
+        }
+
+        var colorNames = new[] { "Green", "Blue", "Red", "Pink", "Yellow" };
+
+        addQuestions(module,
+            makeQuestion(Question.DoubleColorColors, _DoubleColor, new[] { "first" }, new[] { colorNames[color1] }),
+            makeQuestion(Question.DoubleColorColors, _DoubleColor, new[] { "second" }, new[] { colorNames[color2] }));
     }
 
     private IEnumerable<object> ProcessDoubleOh(KMBombModule module)

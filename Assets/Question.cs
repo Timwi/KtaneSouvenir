@@ -134,6 +134,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         CubeRotations,
 
+        [SouvenirQuestion("What was the screen color on the {1} stage of {0}?", "Double Color", 5, "Green", "Blue", "Red", "Pink", "Yellow",
+            ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        DoubleColorColors,
+
         [SouvenirQuestion("Which button was the submit button in {0}?", "Double-Oh", 6, "↕", "⇕", "↔", "⇔", "◆")]
         DoubleOhSubmitButton,
 
