@@ -123,6 +123,7 @@ public class SouvenirModule : MonoBehaviour
     const string _iPhone = "iPhone";
     const string _JewelVault = "jewelVault";
     const string _Kudosudoku = "KudosudokuModule";
+    const string _Lasers = "lasers";
     const string _LEDEncryption = "LEDEnc";
     const string _LEDMath = "lgndLEDMath";
     const string _LEGOs = "LEGOModule";
@@ -250,6 +251,7 @@ public class SouvenirModule : MonoBehaviour
             { _iPhone, ProcessiPhone },
             { _JewelVault, ProcessJewelVault },
             { _Kudosudoku, ProcessKudosudoku },
+            { _Lasers, ProcessLasers },
             { _LEDEncryption, ProcessLEDEncryption },
             { _LEDMath, ProcessLEDMath },
             { _LEGOs, ProcessLEGOs },
@@ -2909,6 +2911,40 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.KudosudokuPrefilled, _Kudosudoku, new[] { "not pre-filled" },
                 preferredWrongAnswers: KudosudokuSprites,
                 correctAnswers: Enumerable.Range(0, 16).Where(ix => !shown[ix]).Select(coord => KudosudokuSprites.First(k => k.name == (char) ('A' + (coord % 4)) + (coord / 4 + 1).ToString())).ToArray()));
+    }
+
+    private IEnumerable<object> ProcessLasers(KMBombModule module)
+    {
+        var comp = GetComponent(module, "LasersModule");
+        var fldLaserOrder = GetField<List<int>>(comp, "_laserOrder");
+        var fldHatchesPressed = GetField<List<int>>(comp, "_hatchesAlreadyPressed");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+
+        if (comp == null || fldLaserOrder == null || fldHatchesPressed == null || fldSolved == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Lasers);
+
+        var laserOrder = fldLaserOrder.Get();
+        var hatchesPressed = fldHatchesPressed.Get();
+
+        if (laserOrder == null || hatchesPressed == null)
+            yield break;
+        if (laserOrder.Count != 9)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Lasers because ‘_laserOrder’ has unexpected length {1} (expected 9).", _moduleId, laserOrder.Count);
+            yield break;
+        }
+        if (hatchesPressed.Count != 7)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Lasers because ‘_hatchesAlreadyPressed’ has unexpected length {1} (expected 7).", _moduleId, hatchesPressed.Count);
+            yield break;
+        }
+
+        var hatchNames = new[] { "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right" };
+        addQuestions(module, hatchesPressed.Select((hatch, ix) => makeQuestion(Question.LasersHatches, _Lasers, new[] { hatchNames[hatch] }, new[] { laserOrder[hatch].ToString() }, hatchesPressed.Select(number => laserOrder[number].ToString()).ToArray())));
     }
 
     private IEnumerable<object> ProcessLEDEncryption(KMBombModule module)
