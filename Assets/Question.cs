@@ -160,6 +160,10 @@ namespace Souvenir
         [SouvenirQuestion("Which of these country flags was shown, but not the main country flag, in {0}?", "Flags", 6, null, Type = AnswerType.Sprites)]
         FlagsCountries,
 
+        [SouvenirQuestion("How many times did the {1} LED flash {2} on {0}?", "Flashing Lights", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
+            ExampleExtraFormatArguments = new[] { "top", "blue", "top", "green", "top", "red", "top", "purple", "top", "orange", "bottom", "blue", "bottom", "green", "bottom", "red", "bottom", "purple", "bottom", "orange" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        FlashingLightsLEDFrequency,
+
         [SouvenirQuestion("What was the last digit of your first query’s result in {0}?", "Functions", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
         FunctionsLastDigit,
         [SouvenirQuestion("What number was to the left of the displayed letter in {0}?", "Functions", 6, null, ExampleAnswers = new[] { "123", "847", "14", "73", "961", "9", "858" })]

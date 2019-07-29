@@ -110,6 +110,7 @@ public class SouvenirModule : MonoBehaviour
     const string _ElderFuthark = "elderFuthark";
     const string _FastMath = "fastMath";
     const string _Flags = "FlagsModule";
+    const string _FlashingLights = "flashingLights";
     const string _Functions = "qFunctions";
     const string _Gamepad = "TheGamepadModule";
     const string _GridLock = "GridlockModule";
@@ -243,6 +244,7 @@ public class SouvenirModule : MonoBehaviour
             { _ElderFuthark, ProcessElderFuthark },
             { _FastMath, ProcessFastMath },
             { _Flags, ProcessFlags },
+            { _FlashingLights, ProcessFlashingLights },
             { _Functions, ProcessFunctions },
             { _Gamepad, ProcessGamepad },
             { _GridLock, ProcessGridLock },
@@ -2400,6 +2402,53 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.FlagsMainCountry, _Flags, correctAnswers: new[] { mainCountrySprite }, preferredWrongAnswers: otherCountrySprites),
             // Rest of the country flags
             makeQuestion(Question.FlagsCountries, _Flags, correctAnswers: otherCountrySprites, preferredWrongAnswers: FlagsSprites));
+    }
+
+    private IEnumerable<object> ProcessFlashingLights(KMBombModule module)
+    {
+        var comp = GetComponent(module, "doubleNegativesScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldTopColors = GetField<List<int>>(comp, "selectedColours");
+        var fldBottomColors = GetField<List<int>>(comp, "selectedColours2");
+
+        if (comp == null || fldSolved == null || fldTopColors == null || fldBottomColors == null)
+            yield break;
+
+        // wait for Start()
+        yield return null;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_FlashingLights);
+
+        var topColors = fldTopColors.Get();
+        var bottomColors = fldBottomColors.Get();
+        if (topColors == null || bottomColors == null)
+            yield break;
+
+        if (topColors.Count != 12)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Flashing Lights because ‘selectedColours’ list has unexpected length ({1} instead of 12).", _moduleId, topColors.Count);
+            yield break;
+        }
+        if (bottomColors.Count != 12)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Flashing Lights because ‘selectedColours2’ list has unexpected length ({1} instead of 12).", _moduleId, bottomColors.Count);
+            yield break;
+        }
+
+        var colorNames = new[] { "blue", "green", "red", "purple", "orange" };
+
+        var topTotals = Enumerable.Range(1, 5).Select(num => topColors.Count(x => x == num)).ToArray();
+        var bottomTotals = Enumerable.Range(1, 5).Select(num => bottomColors.Count(x => x == num)).ToArray();
+
+        var qs = new List<QandA>();
+        for (int i = 0; i < 5; i++)
+        {
+            qs.Add(makeQuestion(Question.FlashingLightsLEDFrequency, _FlashingLights, new[] { "top", colorNames[i] }, new[] { topTotals[i].ToString() }, new[] { bottomTotals[i].ToString() }));
+            qs.Add(makeQuestion(Question.FlashingLightsLEDFrequency, _FlashingLights, new[] { "bottom", colorNames[i] }, new[] { bottomTotals[i].ToString() }, new[] { topTotals[i].ToString() }));
+        }
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessFunctions(KMBombModule module)
