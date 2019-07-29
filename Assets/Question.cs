@@ -553,6 +553,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "Running Boots", "Invincibility", "Extra Life", "Rings" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SonicTheHedgehogSounds,
 
+        [SouvenirQuestion("What bag was initially colored in {0}?", "Splitting The Loot", 6, null, ExampleAnswers = new[] { "A5", "E6", "19", "82" })]
+        SplittingTheLootColoredBag,
+
         [SouvenirQuestion("What was the {1} color before the {2} time you switched the switch correctly in {0}?", "Switch", 6, "red", "orange", "yellow", "green", "blue", "purple",
             ExampleExtraFormatArguments = new[] { "top", "second-last", "bottom", "second-last", "top", "last", "bottom", "last" }, ExampleExtraFormatArgumentGroupSize = 2, AddThe = true)]
         SwitchInitialColor,

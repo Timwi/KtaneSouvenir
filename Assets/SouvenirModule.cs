@@ -182,6 +182,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Snooker = "snooker";
     const string _SonicTheHedgehog = "sonic";
     const string _Souvenir = "SouvenirModule";
+    const string _SplittingTheLoot = "SplittingTheLootModule";
     const string _Switch = "BigSwitch";
     const string _Switches = "switchModule";
     const string _SymbolCycle = "SymbolCycleModule";
@@ -314,6 +315,7 @@ public class SouvenirModule : MonoBehaviour
             { _Snooker, ProcessSnooker },
             { _SonicTheHedgehog, ProcessSonicTheHedgehog },
             { _Souvenir, ProcessSouvenir },
+            { _SplittingTheLoot, ProcessSplittingTheLoot },
             { _Switch, ProcessSwitch },
             { _Switches, ProcessSwitches },
             { _SymbolCycle, ProcessSymbolCycle },
@@ -5637,6 +5639,54 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_Souvenir);
         addQuestion(module, Question.SouvenirFirstQuestion, null, new[] { firstModule }, modules);
+    }
+
+    private IEnumerable<object> ProcessSplittingTheLoot(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SplittingTheLootScript");
+        var fldSolved = GetField<bool>(comp, "isSolved");
+        var fldBags = GetField<object>(comp, "bags");
+
+        if (comp == null || fldSolved == null || fldBags == null)
+            yield break;
+
+        while (!_isActivated)
+            yield return new WaitForSeconds(.1f);
+
+        var bagsRaw = fldBags.Get();
+        if (bagsRaw == null || !(bagsRaw is IList))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Splitting the Loot because 'bags' is {1} (expected something that implements IList).", _moduleId, bagsRaw == null ? "null" : bagsRaw.GetType().FullName);
+            yield break;
+        }
+
+        var bags = (IList) bagsRaw;
+        if (bags.Count != 7)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Splitting the Loot because 'bags' had unexpected length: {1} (expected 7).", _moduleId, bags.Count);
+            yield break;
+        }
+
+        var fldBagColor = GetField<object>(bags[0], "Color");
+        var fldBagLabel = GetField<string>(bags[0], "Label");
+
+        if (fldBagColor == null || fldBagLabel == null)
+            yield break;
+
+        var bagColors = bags.Cast<object>().Select(obj => fldBagColor.GetFrom(obj)).ToArray();
+        var bagNames = bags.Cast<object>().Select(obj => fldBagLabel.GetFrom(obj)).ToArray();
+        var paintedBag = bagColors.IndexOf(bc => bc.ToString() != "Normal");
+        if (paintedBag == -1)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Splitting the Loot because no colored bag was found: [{1}]", _moduleId, bagColors.JoinString(", "));
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_SplittingTheLoot);
+        addQuestion(module, Question.SplittingTheLootColoredBag, correctAnswers: new[] { bagNames[paintedBag] }, preferredWrongAnswers: bagNames);
     }
 
     private IEnumerable<object> ProcessSwitch(KMBombModule module)
