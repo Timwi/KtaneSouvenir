@@ -104,6 +104,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Creation = "CreationModule";
     const string _DoubleOh = "DoubleOhModule";
     const string _DrDoctor = "DrDoctorModule";
+    const string _ElderFuthark = "elderFuthark";
     const string _FastMath = "fastMath";
     const string _Flags = "FlagsModule";
     const string _Functions = "qFunctions";
@@ -223,6 +224,7 @@ public class SouvenirModule : MonoBehaviour
             { _Creation, ProcessCreation },
             { _DoubleOh, ProcessDoubleOh },
             { _DrDoctor, ProcessDrDoctor },
+            { _ElderFuthark, ProcessElderFuthark },
             { _FastMath, ProcessFastMath },
             { _Flags, ProcessFlags },
             { _Functions, ProcessFunctions },
@@ -2115,6 +2117,36 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.DrDoctorDiseases, _DrDoctor, correctAnswers: diagnoses.Except(new[] { diagnoseText.text }).ToArray()),
             makeQuestion(Question.DrDoctorSymptoms, _DrDoctor, correctAnswers: symptoms));
+    }
+
+    private IEnumerable<object> ProcessElderFuthark(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ElderFutharkScript");
+
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldPickedRuneNames = GetField<string[]>(comp, "pickedRuneNames");
+
+        if (comp == null || fldSolved == null || fldPickedRuneNames == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ElderFuthark);
+
+        var pickedRuneNames = fldPickedRuneNames.Get();
+
+        if (pickedRuneNames == null)
+            yield break;
+
+        if (pickedRuneNames.Length != 2)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Elder Futhark because pickedRuneNames has unexpected length {1}. Expected length 2", _moduleId, pickedRuneNames.Length);
+            yield break;
+        }
+
+        addQuestions(module,
+            makeQuestion(Question.ElderFutharkRunes, _ElderFuthark, correctAnswers: new[] { pickedRuneNames[0] }, formatArgs: new[] { "first" }, preferredWrongAnswers: pickedRuneNames),
+            makeQuestion(Question.ElderFutharkRunes, _ElderFuthark, correctAnswers: new[] { pickedRuneNames[1] }, formatArgs: new[] { "second" }, preferredWrongAnswers: pickedRuneNames));
     }
 
     private IEnumerable<object> ProcessFastMath(KMBombModule module)
