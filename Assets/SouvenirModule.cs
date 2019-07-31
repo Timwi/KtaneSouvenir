@@ -128,6 +128,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Mahjong = "MahjongModule";
     const string _MaritimeFlags = "MaritimeFlagsModule";
     const string _MegaMan2 = "megaMan2";
+    const string _MelodySequencer = "melodySequencer";
     const string _Microcontroller = "Microcontroller";
     const string _Minesweeper = "MinesweeperModule";
     const string _ModuleMaze = "ModuleMaze";
@@ -248,6 +249,7 @@ public class SouvenirModule : MonoBehaviour
             { _Mahjong, ProcessMahjong },
             { _MaritimeFlags, ProcessMaritimeFlags },
             { _MegaMan2, ProcessMegaMan2 },
+            { _MelodySequencer, ProcessMelodySequencer },
             { _Microcontroller, ProcessMicrocontroller },
             { _Minesweeper, ProcessMinesweeper },
             { _ModuleMaze, ProcessModuleMaze },
@@ -3271,6 +3273,49 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.MegaMan2SelectedMaster, _MegaMan2, correctAnswers: new[] { robotMasters[selectedMaster] }, preferredWrongAnswers: robotMasters),
             makeQuestion(Question.MegaMan2SelectedWeapon, _MegaMan2, correctAnswers: new[] { robotMasters[selectedWeapon] }, preferredWrongAnswers: robotMasters));
+    }
+
+    private IEnumerable<object> ProcessMelodySequencer(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MelodySequencerScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldParts = GetField<int[][]>(comp, "parts");    // the 8 parts in their “correct” order
+        var fldModuleParts = GetField<int[][]>(comp, "moduleParts");    // the parts as assigned to the slots
+
+        if (comp == null || fldSolved == null || fldParts == null || fldModuleParts == null)
+            yield break;
+
+        // Ensure the Start() has run
+        yield return null;
+
+        var parts = fldParts.Get();
+        var moduleParts = fldModuleParts.Get();
+        if (parts == null || moduleParts == null)
+            yield break;
+        if (parts.Length != 8 || moduleParts.Length != 8)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Melody Sequencer because ‘parts’ or ‘moduleParts’ has unexpected lengths {1} and {2} (expected 8).", _moduleId, parts.Length, moduleParts.Length);
+            yield break;
+        }
+        var partsPerSlot = Enumerable.Range(0, 8).Select(slot => parts.IndexOf(p => ReferenceEquals(p, moduleParts[slot]))).ToArray();
+        Debug.LogFormat("<Souvenir #{0}> Melody Sequencer: parts are: [{1}].", _moduleId, partsPerSlot.JoinString(", "));
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_MelodySequencer);
+
+        var qs = new List<QandA>();
+        var givenSlots = Enumerable.Range(0, partsPerSlot.Length).Where(slot => partsPerSlot[slot] != -1).Select(slot => (slot + 1).ToString()).ToArray();
+        var givenParts = partsPerSlot.Where(part => part != -1).Select(part => (part + 1).ToString()).ToArray();
+        for (int i = 0; i < partsPerSlot.Length; i++)
+        {
+            if (partsPerSlot[i] != -1)
+            {
+                qs.Add(makeQuestion(Question.MelodySequencerParts, _MelodySequencer, new[] { (partsPerSlot[i] + 1).ToString() }, new[] { (i + 1).ToString() }, preferredWrongAnswers: givenSlots));
+                qs.Add(makeQuestion(Question.MelodySequencerSlots, _MelodySequencer, new[] { (i + 1).ToString() }, new[] { (partsPerSlot[i] + 1).ToString() }, preferredWrongAnswers: givenParts));
+            }
+        }
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessMicrocontroller(KMBombModule module)
