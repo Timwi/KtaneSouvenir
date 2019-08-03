@@ -6480,43 +6480,28 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         }
         var colorsPerStage = new int[stageCount];
-        colorsPerStage[0] = fldColor.Get();
-        var curStage = 0;
+        var colorNames = new[] { "Blue", "Green", "Red", "White" };
 
-        while (curStage < stageCount)
+        while (!fldSolved.Get())
         {
-            yield return new WaitForSeconds(.1f);
-
             var newStage = fldRoundsFinished.Get();
-            if (newStage != curStage)
-            {
-                if (newStage != curStage + 1)
-                {
-                    Debug.LogFormat("<Souvenir #{0}> Abandoning Visual Impairment because roundsFinished changed by an amount other than +1 (was: {1}, now: {2}).", _moduleId, curStage, newStage);
-                    yield break;
-                }
+            if (newStage >= stageCount)
+                break;
 
-                if (newStage < stageCount)
-                {
-                    // Wait for the next picture to be assigned
-                    while (fldAnyPressed.Get())
-                        yield return new WaitForSeconds(.1f);
+            var newColor = fldColor.Get();
+            if (newColor != colorsPerStage[newStage])
+                Debug.LogFormat("<Souvenir #{0}> Visual Impairment: stage {1} color changed to {2} ({3}).", _moduleId, newStage, newColor, newColor >= 0 && newColor < 4 ? colorNames[newColor] : "<out of range>");
+            colorsPerStage[newStage] = newColor;
+            yield return new WaitForSeconds(.1f);
+        }
+        _modulesSolved.IncSafe(_VisualImpairment);
 
-                    newStage = fldRoundsFinished.Get();
-                    if (newStage != curStage + 1)
-                    {
-                        Debug.LogFormat("<Souvenir #{0}> Abandoning Visual Impairment because roundsFinished changed while I was waiting for anyPressed to return to false (was: {1}, before wait: {2}, now: {3}).", _moduleId, curStage, curStage + 1, newStage);
-                        yield break;
-                    }
-
-                    colorsPerStage[newStage] = fldColor.Get();
-                }
-                curStage = newStage;
-            }
+        if (colorsPerStage.Any(c => c < 0 || c > 3))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Visual Impairment because one of the colors is invalid (expected 0–3): [{1}].", _moduleId, colorsPerStage.JoinString(", "));
+            yield break;
         }
 
-        var colorNames = new[] { "Blue", "Green", "Red", "White" };
-        _modulesSolved.IncSafe(_VisualImpairment);
         addQuestions(module, colorsPerStage.Select((col, ix) => makeQuestion(Question.VisualImpairmentColors, _VisualImpairment, new[] { ordinal(ix + 1) }, new[] { colorNames[col] })));
     }
 
