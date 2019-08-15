@@ -186,6 +186,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Snooker = "snooker";
     const string _SonicTheHedgehog = "sonic";
     const string _Souvenir = "SouvenirModule";
+    const string _Sphere = "sphere";
     const string _SplittingTheLoot = "SplittingTheLootModule";
     const string _Switch = "BigSwitch";
     const string _Switches = "switchModule";
@@ -323,6 +324,7 @@ public class SouvenirModule : MonoBehaviour
             { _Snooker, ProcessSnooker },
             { _SonicTheHedgehog, ProcessSonicTheHedgehog },
             { _Souvenir, ProcessSouvenir },
+            { _Sphere, ProcessSphere },
             { _SplittingTheLoot, ProcessSplittingTheLoot },
             { _Switch, ProcessSwitch },
             { _Switches, ProcessSwitches },
@@ -5850,6 +5852,43 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_Souvenir);
         addQuestion(module, Question.SouvenirFirstQuestion, null, new[] { firstModule }, modules);
+    }
+
+    private IEnumerable<object> ProcessSphere(KMBombModule module)
+    {
+        var comp = GetComponent(module, "theSphereScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldColorNames = GetField<string[]>(comp, "colourNames", isPublic: true);
+        var fldColors = GetField<int[]>(comp, "selectedColourIndices", isPublic: true);
+
+        if (comp == null || fldSolved == null || fldColorNames == null || fldColors == null)
+            yield break;
+
+        // wait for Start()
+        yield return null;
+
+        string[] colorNames = fldColorNames.Get();
+        int[] colors = fldColors.Get();
+
+        if(colorNames == null || colors == null)
+            yield break;
+
+        if(colors.Length != 5)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning The Sphere because 'selectedColourIndices' has length {1}, but expected 5.", _moduleId, colors.Length);
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_Sphere);
+        addQuestions(module,
+            makeQuestion(Question.SphereColors, _Sphere, new[] { "first" }, new[] { colorNames[colors[0]] }),
+            makeQuestion(Question.SphereColors, _Sphere, new[] { "second" }, new[] { colorNames[colors[1]] }),
+            makeQuestion(Question.SphereColors, _Sphere, new[] { "third" }, new[] { colorNames[colors[2]] }),
+            makeQuestion(Question.SphereColors, _Sphere, new[] { "fourth" }, new[] { colorNames[colors[3]] }),
+            makeQuestion(Question.SphereColors, _Sphere, new[] { "fifth" }, new[] { colorNames[colors[4]] }));
     }
 
     private IEnumerable<object> ProcessSplittingTheLoot(KMBombModule module)
