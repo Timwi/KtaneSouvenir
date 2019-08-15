@@ -86,6 +86,7 @@ public class SouvenirModule : MonoBehaviour
     const string _BinaryLEDs = "BinaryLeds";
     const string _Bitmaps = "BitmapsModule";
     const string _BlindMaze = "BlindMaze";
+    const string _Boggle = "boggle";
     const string _Braille = "BrailleModule";
     const string _BrokenButtons = "BrokenButtonsModule";
     const string _Bulb = "TheBulbModule";
@@ -222,6 +223,7 @@ public class SouvenirModule : MonoBehaviour
             { _BinaryLEDs, ProcessBinaryLEDs },
             { _Bitmaps, ProcessBitmaps },
             { _BlindMaze, ProcessBlindMaze },
+            { _Boggle, ProcessBoggle },
             { _Braille, ProcessBraille },
             { _BrokenButtons, ProcessBrokenButtons },
             { _Bulb, ProcessBulb },
@@ -1496,6 +1498,62 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             buttonColors.Select((col, ix) => makeQuestion(Question.BlindMazeColors, _BlindMaze, formatArgs: new[] { buttonNames[ix] }, correctAnswers: new[] { colorNames[col] }))
                 .Concat(new[] { makeQuestion(Question.BlindMazeMaze, _BlindMaze, correctAnswers: new[] { ((numSolved + Bomb.GetSerialNumberNumbers().Last()) % 10).ToString() }) }));
+    }
+
+    private IEnumerable<object> ProcessBoggle(KMBombModule module)
+    {
+        var comp = GetComponent(module, "boggle");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+        var fldMap = GetField<char[,]>(comp, "letterMap");
+        var fldVisible = GetField<String>(comp, "visableLetters", isPublic: true);
+        var fldVerOffset = GetField<int>(comp, "verOffset");
+        var fldHorOffset = GetField<int>(comp, "horOffset");
+
+        if (comp == null || fldSolved == null || fldMap == null || fldVisible == null || fldVerOffset == null || fldHorOffset == null)
+            yield break;
+
+        while (!_isActivated)
+            yield return new WaitForSeconds(.1f);
+
+        char[,] map = fldMap.Get();
+        String visible = fldVisible.Get();
+        int verOffset = fldVerOffset.Get();
+        int horOffset = fldHorOffset.Get();
+
+        if (map == null || visible == null)
+            yield break;
+
+        if(map.GetLength(0) != 10 || map.GetLength(1) != 10)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Boggle because expected 'letterMap' to be 10x10, but was {1}x{2}.", _moduleId, map.GetLength(0), map.GetLength(1));
+            yield break;
+        }
+        if(visible.Length != 4)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Boggle because expected 'visableLetters' to be 4 characters long, but was {1}.", _moduleId, visible.Length);
+            yield break;
+        }
+        if(verOffset < 0 || verOffset > 6)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Boggle because expected 'verOffset' to be 0-6, but was {1}.", _moduleId, verOffset);
+            yield break;
+        }
+        if(horOffset < 0 || horOffset > 6)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Boggle because expected 'horOffset' to be 0-6, but was {1}.", _moduleId, horOffset);
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        List<String> letters = new List<String>();
+        for(int i = verOffset; i < verOffset + 4; i++)
+            for(int j = horOffset; j < horOffset + 4; j++)
+                letters.Add(map[i, j].ToString());
+
+        _modulesSolved.IncSafe(_Boggle);
+        addQuestion(module, Question.BoggleLetters, correctAnswers: new[] {visible[0].ToString(), visible[1].ToString(), visible[2].ToString(), visible[3].ToString()}, preferredWrongAnswers: letters.ToArray());
     }
 
     private IEnumerable<object> ProcessBraille(KMBombModule module)

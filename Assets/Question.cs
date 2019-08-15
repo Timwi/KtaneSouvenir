@@ -52,6 +52,9 @@ namespace Souvenir
         [SouvenirQuestion("Which maze did you solve {0} on?", "Blind Maze", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
         BlindMazeMaze,
 
+        [SouvenirQuestion("What letter was initially visible on {0}?", "Boggle", 6, null, ExampleAnswers = new[] { "A", "E", "G", "M", "T", "W" })]
+        BoggleLetters,
+
         [SouvenirQuestion("What was the final solution word in {0}?", "Braille", 6, "acting", "dating", "heading", "meaning", "server", "aiming", "dealer", "hearing", "miners", "shaking", "artist", "eating", "heating", "nearer", "sought", "asking", "eighth", "higher", "parish", "staying", "bearing", "farmer", "insist", "parker", "strands", "beating", "farming", "lasted", "parking", "strings", "beings", "faster", "laying", "paying", "teaching", "binding", "father", "leader", "powers", "tended", "bought", "finding", "leading", "pushed", "tender", "boxing", "finest", "leaned", "pushing", "testing", "breach", "finish", "leaning", "rather", "throwing", "breast", "flying", "leaving", "reaching", "towers", "breath", "foster", "linking", "reader", "vested", "breathe", "fought", "listed", "reading", "warned", "bringing", "gaining", "listen", "resting", "warning", "brings", "gather", "living", "riding", "weaker", "carers", "gazing", "making", "rushed", "wealth", "carter", "gender", "marked", "rushing", "winner", "charter", "growing", "marking", "saying", "winning", "crying", "headed", "master", "served", "winter")]
         BrailleWord,
 
