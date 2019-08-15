@@ -93,6 +93,11 @@ namespace Souvenir
         [SouvenirQuestion("What was the displayed number in {0}?", "Code", 6, null, AddThe = true, ExampleAnswers = new[] { "1234", "9876", "2345", "4567" })]
         CodeDisplayNumber,
 
+        [SouvenirQuestion("What was the last written client name in {0}?", "Coffeebucks", 6, null, ExampleAnswers = new[] { "Gen", "Den" })]
+        CoffeebucksClient,
+        [SouvenirQuestion("What was the served coffee in {0}?", "Coffeebucks", 4, null, ExampleAnswers = new[] { "The Blue Drink", "Twix Frappuccino" })]
+        CoffeebucksCoffee,
+
         [SouvenirQuestion("What was the {1}-stage indicator pattern in {0}?", "Color Decoding", 4, "Checkered", "Horizontal", "Vertical", "Solid",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ColorDecodingIndicatorPattern,

@@ -97,6 +97,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Chess = "ChessModule";
     const string _ChordQualities = "ChordQualities";
     const string _Code = "theCodeModule";
+    const string _Coffeebucks = "coffeebucks";
     const string _ColorDecoding = "Color Decoding";
     const string _ColoredSquares = "ColoredSquaresModule";
     const string _ColoredSwitches = "ColoredSwitchesModule";
@@ -235,6 +236,7 @@ public class SouvenirModule : MonoBehaviour
             { _Chess, ProcessChess },
             { _ChordQualities, ProcessChordQualities },
             { _Code, ProcessCode },
+            { _Coffeebucks, ProcessCoffeebucks },
             { _ColorDecoding, ProcessColorDecoding },
             { _ColoredSquares, ProcessColoredSquares },
             { _ColoredSwitches, ProcessColoredSwitches },
@@ -1853,6 +1855,50 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.CodeDisplayNumber, _Code,
                 correctAnswers: new[] { code.ToString() },
                 preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(999, 10000)).Distinct().Take(6).Select(i => i.ToString()).ToArray()));
+    }
+
+    private IEnumerable<object> ProcessCoffeebucks(KMBombModule module)
+    {
+        var comp = GetComponent(module, "coffeebucksScript");
+        var fldNames = GetField<string[]>(comp, "nameOptions", isPublic: true);
+        var fldCoffees = GetField<string[]>(comp, "coffeeOptions", isPublic: true);
+        var fldCurrName = GetField<int>(comp, "startName");
+        var fldCurrCoffee = GetField<int>(comp, "startCoffee");
+        
+        if(comp == null || fldNames == null || fldCoffees == null || fldCurrName == null || fldCurrCoffee == null)
+            yield break;
+
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+
+        string[] names = fldNames.Get();
+        string[] coffees = fldCoffees.Get();
+        int currName = fldCurrName.Get();
+        int currCoffee = fldCurrCoffee.Get();
+
+        if(names == null || coffees == null)
+            yield break;
+        if(currName < 0 || currName > names.Length)
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Coffeebucks because 'startName' points to invalid name: {1}.", _moduleId, currName);
+            yield break;
+        }
+        if(currCoffee < 0 || currCoffee > coffees.Length)
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Coffeebucks because 'startCoffee' points to invalid coffee: {1}.", _moduleId, currCoffee);
+            yield break;
+        }
+
+        for(int i = 0; i < names.Length; i++)
+            names[i] = Char.ToUpperInvariant(names[i][0]) + names[i].Substring(1);
+
+        _modulesSolved.IncSafe(_Coffeebucks);
+        addQuestions(module,
+            makeQuestion(Question.CoffeebucksClient, _Coffeebucks, correctAnswers: new[] { names[currName] }, preferredWrongAnswers: names));
+            // the text doesn't fit in the module in this question. it works, but it's not functional unless the text can be made smaller or something. Not sure if possible
+            // makeQuestion(Question.CoffeebucksCoffee, _Coffeebucks, correctAnswers: new[] { coffees[currCoffee ]}, preferredWrongAnswers: coffees)
     }
 
     private static readonly Dictionary<string, string> _ColorDecoding_ColorNameMapping = new Dictionary<string, string>
