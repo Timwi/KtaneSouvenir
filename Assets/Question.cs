@@ -200,6 +200,16 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "Gryffindor", "Hufflepuff", "Slytherin", "Ravenclaw" }, ExampleExtraFormatArgumentGroupSize = 1)]
         HogwartsModule,
 
+        [SouvenirQuestion("In what position was the button pressed on the {1} stage of {0}?", "Horrible Memory", 6, "1", "2", "3", "4", "5", "6",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        HorribleMemoryPositions,
+        [SouvenirQuestion("What was the label of the button pressed on the {1} stage of {0}?", "Horrible Memory", 6, "1", "2", "3", "4", "5", "6",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        HorribleMemoryLabels,
+        [SouvenirQuestion("What color was the button pressed on the {1} stage of {0}?", "Horrible Memory", 6, "blue", "green", "red", "orange", "purple", "pink",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        HorribleMemoryColors,
+
         [SouvenirQuestion("Who was {1} in {0}?", "Human Resources", 6, "Rebecca", "Damian", "Jean", "Mike", "River", "Samuel", "Yoshi", "Caleb", "Ashley", "Tim", "Eliott", "Ursula", "Silas", "Noah", "Quinn", "Dylan",
             ExampleExtraFormatArguments = new[] { "an employee that was not fired", "an applicant that was not hired" }, ExampleExtraFormatArgumentGroupSize = 1)]
         HumanResourcesEmployees,

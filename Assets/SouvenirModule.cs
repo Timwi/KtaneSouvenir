@@ -118,6 +118,7 @@ public class SouvenirModule : MonoBehaviour
     const string _LogicalButtons = "logicalButtonsModule";
     const string _Hexamaze = "HexamazeModule";
     const string _Hogwarts = "HogwartsModule";
+    const string _HorribleMemory = "horribleMemory";
     const string _HumanResources = "HumanResourcesModule";
     const string _Hunting = "hunting";
     const string _IceCream = "iceCreamModule";
@@ -252,6 +253,7 @@ public class SouvenirModule : MonoBehaviour
             { _Gryphons, ProcessGryphons },
             { _Hexamaze, ProcessHexamaze },
             { _Hogwarts, ProcessHogwarts },
+            { _HorribleMemory, ProcessHorribleMemory },
             { _HumanResources, ProcessHumanResources },
             { _Hunting, ProcessHunting },
             { _IceCream, ProcessIceCream },
@@ -2729,6 +2731,65 @@ public class SouvenirModule : MonoBehaviour
                     preferredWrongAnswers: Bomb.GetSolvableModuleNames().Select(m => hogwartsModuleNameSubstitution(m, isQuestion: false)).ToArray()))));
     }
 
+    private IEnumerable<object> ProcessHorribleMemory(KMBombModule module)
+    {
+        var comp = GetComponent(module, "cruelMemoryScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldPos = GetField<List<int>>(comp, "correctStagePositions", isPublic: true);
+        var fldLbl = GetField<List<int>>(comp, "correctStageLabels", isPublic: true);
+        var fldColors = GetField<List<string>>(comp, "correctStageColours", isPublic: true);
+
+        if (comp == null || fldSolved == null || fldPos == null || fldLbl == null || fldColors == null)
+            yield break;
+
+        //wait for Start()
+        yield return null;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        List<int> pos = fldPos.Get();
+        List<int> lbl = fldLbl.Get();
+        List<string> colors = fldColors.Get();
+
+        if(pos == null || lbl == null || colors == null)
+            yield break;
+
+        if(pos.Count != 5)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Horrible Memory because 'correctStagePositions' has {1} elements instead of 5.", _moduleId, pos.Count);
+            yield break;
+        }
+        if(lbl.Count != 5)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Horrible Memory because 'correctStageLabels' has {1} elements instead of 5.", _moduleId, lbl.Count);
+            yield break;
+        }
+        if(colors.Count != 5)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Horrible Memory because 'correctStageColours' has {1} elements instead of 5.", _moduleId, colors.Count);
+            yield break;
+        }
+
+        _modulesSolved.IncSafe(_HorribleMemory);
+        addQuestions(module,
+            makeQuestion(Question.HorribleMemoryPositions, _HorribleMemory, new[] {"first"}, new[] {pos[0].ToString()}),        
+            makeQuestion(Question.HorribleMemoryPositions, _HorribleMemory, new[] {"second"}, new[] {pos[1].ToString()}),        
+            makeQuestion(Question.HorribleMemoryPositions, _HorribleMemory, new[] {"third"}, new[] {pos[2].ToString()}),        
+            makeQuestion(Question.HorribleMemoryPositions, _HorribleMemory, new[] {"fourth"}, new[] {pos[3].ToString()}),        
+            makeQuestion(Question.HorribleMemoryPositions, _HorribleMemory, new[] {"fifth"}, new[] {pos[4].ToString()}),   
+            makeQuestion(Question.HorribleMemoryLabels, _HorribleMemory, new[] {"first"}, new[] {lbl[0].ToString()}),        
+            makeQuestion(Question.HorribleMemoryLabels, _HorribleMemory, new[] {"second"}, new[] {lbl[1].ToString()}),        
+            makeQuestion(Question.HorribleMemoryLabels, _HorribleMemory, new[] {"third"}, new[] {lbl[2].ToString()}),        
+            makeQuestion(Question.HorribleMemoryLabels, _HorribleMemory, new[] {"fourth"}, new[] {lbl[3].ToString()}),        
+            makeQuestion(Question.HorribleMemoryLabels, _HorribleMemory, new[] {"fifth"}, new[] {lbl[4].ToString()}),    
+            makeQuestion(Question.HorribleMemoryColors, _HorribleMemory, new[] {"first"}, new[] {colors[0]}),        
+            makeQuestion(Question.HorribleMemoryColors, _HorribleMemory, new[] {"second"}, new[] {colors[1]}),        
+            makeQuestion(Question.HorribleMemoryColors, _HorribleMemory, new[] {"third"}, new[] {colors[2]}),        
+            makeQuestion(Question.HorribleMemoryColors, _HorribleMemory, new[] {"fourth"}, new[] {colors[3]}),        
+            makeQuestion(Question.HorribleMemoryColors, _HorribleMemory, new[] {"fifth"}, new[] {colors[4]}));         
+    }
+
     private IEnumerable<object> ProcessHumanResources(KMBombModule module)
     {
         var comp = GetComponent(module, "HumanResourcesModule");
@@ -3982,7 +4043,7 @@ public class SouvenirModule : MonoBehaviour
                     }
                     else
                     {
-                        // If ‘revive’ is ‘false’, there is not going to be another stage.
+                        // If ��revive’ is ‘false’, there is not going to be another stage.
                         if (!fldRevive.Get())
                             finished = true;
 
