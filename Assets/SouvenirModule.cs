@@ -119,6 +119,7 @@ public class SouvenirModule : MonoBehaviour
     const string _FastMath = "fastMath";
     const string _Flags = "FlagsModule";
     const string _FlashingLights = "flashingLights";
+    const string _FreeParking = "freeParking";
     const string _Functions = "qFunctions";
     const string _Gamepad = "TheGamepadModule";
     const string _GridLock = "GridlockModule";
@@ -266,6 +267,7 @@ public class SouvenirModule : MonoBehaviour
             { _FastMath, ProcessFastMath },
             { _Flags, ProcessFlags },
             { _FlashingLights, ProcessFlashingLights },
+            { _FreeParking, ProcessFreeParking },
             { _Functions, ProcessFunctions },
             { _Gamepad, ProcessGamepad },
             { _GridLock, ProcessGridLock },
@@ -2829,6 +2831,42 @@ public class SouvenirModule : MonoBehaviour
             qs.Add(makeQuestion(Question.FlashingLightsLEDFrequency, _FlashingLights, new[] { "bottom", colorNames[i] }, new[] { bottomTotals[i].ToString() }, new[] { topTotals[i].ToString() }));
         }
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessFreeParking(KMBombModule module)
+    {
+        var comp = GetComponent(module, "FreeParkingScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldTokens = GetField<Material[]>(comp, "tokenOptions", isPublic: true);
+        var fldSelected = GetField<int>(comp, "tokenIndex");
+
+        if(comp == null || fldSolved == null || fldTokens == null || fldSelected == null)
+            yield break;
+
+        // wait for Start()
+        yield return null;
+
+        Material[] tokens = fldTokens.Get();
+        int selected = fldSelected.Get();
+
+        if(tokens == null)
+            yield break;
+        if(tokens.Length != 7)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Free Parking because the 'tokenOptions' had unexpected length: expcted 7, was {1}.", _moduleId, tokens.Length);
+            yield break;
+        }
+        if(selected < 0 || selected >= tokens.Length)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Free Parking because the 'tokenIndex' points to illegal token: {1}.", _moduleId, selected);
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_FreeParking);
+        addQuestion(module, Question.FreeParkingTokens, correctAnswers: new[] { tokens[selected].name });
     }
 
     private IEnumerable<object> ProcessFunctions(KMBombModule module)

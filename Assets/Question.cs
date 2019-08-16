@@ -196,6 +196,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "top", "blue", "top", "green", "top", "red", "top", "purple", "top", "orange", "bottom", "blue", "bottom", "green", "bottom", "red", "bottom", "purple", "bottom", "orange" }, ExampleExtraFormatArgumentGroupSize = 2)]
         FlashingLightsLEDFrequency,
 
+        [SouvenirQuestion("What was the player token in {0}?", "Free Parking", 6, "Dog", "Wheelbarrow", "Cat", "Iron", "Top Hat", "Car", "Battleship")]
+        FreeParkingTokens,
+
         [SouvenirQuestion("What was the last digit of your first query’s result in {0}?", "Functions", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
         FunctionsLastDigit,
         [SouvenirQuestion("What number was to the left of the displayed letter in {0}?", "Functions", 6, null, ExampleAnswers = new[] { "123", "847", "14", "73", "961", "9", "858" })]
