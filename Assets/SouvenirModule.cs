@@ -112,6 +112,7 @@ public class SouvenirModule : MonoBehaviour
     const string _DoubleOh = "DoubleOhModule";
     const string _DrDoctor = "DrDoctorModule";
     const string _ElderFuthark = "elderFuthark";
+    const string _EncryptedMorse = "EncryptedMorse";
     const string _FastMath = "fastMath";
     const string _Flags = "FlagsModule";
     const string _FlashingLights = "flashingLights";
@@ -253,6 +254,7 @@ public class SouvenirModule : MonoBehaviour
             { _DoubleOh, ProcessDoubleOh },
             { _DrDoctor, ProcessDrDoctor },
             { _ElderFuthark, ProcessElderFuthark },
+            { _EncryptedMorse, ProcessEncryptedMorse },
             { _FastMath, ProcessFastMath },
             { _Flags, ProcessFlags },
             { _FlashingLights, ProcessFlashingLights },
@@ -2515,6 +2517,47 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.ElderFutharkRunes, _ElderFuthark, correctAnswers: new[] { pickedRuneNames[0] }, formatArgs: new[] { "first" }, preferredWrongAnswers: pickedRuneNames),
             makeQuestion(Question.ElderFutharkRunes, _ElderFuthark, correctAnswers: new[] { pickedRuneNames[1] }, formatArgs: new[] { "second" }, preferredWrongAnswers: pickedRuneNames));
+    }
+
+    private IEnumerable<object> ProcessEncryptedMorse(KMBombModule module)
+    {
+        var comp = GetComponent(module, "EncryptedMorseModule");
+        var fldSolved = GetField<bool>(comp, "solved");
+        var fldIndex = GetField<int>(comp, "callResponseIndex");
+        var fldCalls = GetStaticField<string[]>(comp.GetType(), "calls");
+        var fldResponses = GetStaticField<string[]>(comp.GetType(), "responses");
+
+        string[] formatCalls = { "Detonate", "Ready Now", "We're Dead", "She Sells", "Remember", "Great Job", "Solo This", "Keep Talk" };
+        string[] formatResponses = { "Please No", "Cheesecake", "Sadface", "Sea Shells", "Souvenir", "Thank You", "I Dare You", "No Explode" };
+
+        if(comp == null || fldSolved == null || fldIndex == null || fldCalls == null || fldResponses == null)
+            yield break;
+        
+        // wait for Start()
+        yield return null;
+
+        int index = fldIndex.Get();
+        string[] calls = fldCalls.Get();
+        string[] responses = fldResponses.Get();
+
+        if(index < 0 || index > formatCalls.Length)
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Encrypted Morse because 'callResponseIndex' points to an invalid call/response pair: {1}.", _moduleId, index);
+            yield break;
+        }
+        if(formatCalls.Length != calls.Length || formatResponses.Length != responses.Length)
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Encrypted Morse because the call/response pairs are not the expected ones.", _moduleId);
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_EncryptedMorse);
+        addQuestions(module,
+            makeQuestion(Question.EncryptedMorseCallResponse, _EncryptedMorse, new[] { "received call" }, new[] { formatCalls[index] }, formatCalls),
+            makeQuestion(Question.EncryptedMorseCallResponse, _EncryptedMorse, new[] { "sent response" }, new[] { formatResponses[index] }, formatResponses));
     }
 
     private IEnumerable<object> ProcessFastMath(KMBombModule module)
