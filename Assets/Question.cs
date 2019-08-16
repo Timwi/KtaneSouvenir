@@ -152,6 +152,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         CubeRotations,
 
+        [SouvenirQuestion("What was the starting {1} defining color in {0}?", "Decolored Squares", 6, "White", "Red", "Blue", "Green", "Yellow", "Magenta",
+            ExampleExtraFormatArguments = new[] { "column", "row" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        DecoloredSquaresStartingPos,
+
         [SouvenirQuestion("What was {1}'s remembered position in {0}?", "Discolored Squares", 6, null, Type = AnswerType.Sprites,
             ExampleExtraFormatArguments = new[] { "Blue", "Red", "Yellow", "Green", "Magenta" }, ExampleExtraFormatArgumentGroupSize = 1)]
         DiscoloredSquaresRememberedPositions,

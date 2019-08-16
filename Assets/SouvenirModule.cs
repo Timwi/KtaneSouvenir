@@ -108,6 +108,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Crackbox = "CrackboxModule";
     const string _Creation = "CreationModule";
     const string _Cube = "cube";
+    const string _DecoloredSquares = "DecoloredSquaresModule";
     const string _DiscoloredSquares = "DiscoloredSquaresModule";
     const string _DividedSquares = "DividedSquaresModule";
     const string _DoubleColor = "doubleColor";
@@ -257,6 +258,7 @@ public class SouvenirModule : MonoBehaviour
             { _Crackbox, ProcessCrackbox },
             { _Creation, ProcessCreation },
             { _Cube, ProcessCube },
+            { _DecoloredSquares, ProcessDecoloredSquares },
             { _DiscoloredSquares, ProcessDiscoloredSquares },
             { _DividedSquares, ProcessDividedSquares },
             { _DoubleColor, ProcessDoubleColor },
@@ -2402,6 +2404,80 @@ public class SouvenirModule : MonoBehaviour
         var allRotations = rotations.Select(r => rotationNames[r]).ToArray();
 
         addQuestions(module, rotations.Select((rot, ix) => makeQuestion(Question.CubeRotations, _Cube, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { rotationNames[rot] }, preferredWrongAnswers: allRotations)));
+    }
+
+    private IEnumerable<object> ProcessDecoloredSquares(KMBombModule module)
+    {
+        var comp = GetComponent(module, "DecoloredSquaresModule");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+        var fldSquareColors = GetField<Array>(comp, "_colors");
+        var fldColSquare = GetField<int>(comp, "_squareForFlowchartStartColumn");
+        var fldRowSquare = GetField<int>(comp, "_squareForFlowchartStartRow");
+        var fldScaffold = GetField<object>(comp, "Scaffold");
+
+        if(comp == null || fldSolved == null || fldSquareColors == null || fldColSquare == null || fldRowSquare == null || fldScaffold == null)
+            yield break;
+
+        // wait for Start()
+        yield return null;        
+
+        var squareColorsRaw = fldSquareColors.Get();
+        var scaffold = fldScaffold.Get();
+
+        if(squareColorsRaw == null || scaffold == null)
+            yield break;
+
+        var fldBtns = GetField<KMSelectable[]>(scaffold, "Buttons", isPublic: true);
+
+        if(fldBtns == null)
+            yield break;
+
+        string[] squareColors = squareColorsRaw.Cast<object>().Select(obj => obj.ToString()).ToArray();
+        int colSquare = fldColSquare.Get();
+        int rowSquare = fldRowSquare.Get();
+        KMSelectable[] btns = fldBtns.Get();
+
+        if(squareColors == null || btns == null)
+            yield break;
+        if(colSquare < 0 || colSquare >= squareColors.Length)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Decolored Squares because the '_squareForFlowchartStartColumn' points to illegal suqare: {1}.", _moduleId, colSquare);
+            yield break;
+        }
+        if(rowSquare < 0 || rowSquare >= squareColors.Length)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Decolored Squares because the '_squareForFlowchartStartRow' points to illegal suqare: {1}.", _moduleId, rowSquare);
+            yield break;
+        }
+
+        string colColor = squareColors[colSquare];
+        string rowColor = squareColors[rowSquare];
+
+        for(int i = 0; i < btns.Length; i++)
+        {
+            var prevInteract = btns[i].OnInteract;
+            btns[i].OnInteract = delegate
+            {
+                var strikes = Bomb.GetStrikes();
+                var ret = prevInteract();
+                if (strikes != Bomb.GetStrikes())  // This means the user got a strike. Retreiving new colors
+                {
+                    squareColorsRaw = fldSquareColors.Get();
+                    squareColors = squareColorsRaw.Cast<object>().Select(obj => obj.ToString()).ToArray();
+                    colColor = squareColors[colSquare];
+                    rowColor = squareColors[rowSquare];
+                }  
+                return ret;
+            };
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        
+        _modulesSolved.IncSafe(_DecoloredSquares);
+        addQuestions(module,
+            makeQuestion(Question.DecoloredSquaresStartingPos, _DecoloredSquares, new[] { "column" }, new[] { colColor }),
+            makeQuestion(Question.DecoloredSquaresStartingPos, _DecoloredSquares, new[] { "row" }, new[] { rowColor }));
     }
 
     private IEnumerable<object> ProcessDiscoloredSquares(KMBombModule module)
