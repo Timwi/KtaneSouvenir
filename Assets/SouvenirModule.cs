@@ -79,6 +79,7 @@ public class SouvenirModule : MonoBehaviour
     // The values here are “ModuleType” property on the KMBombModule components.
     const string _3DMaze = "spwiz3DMaze";
     const string _3DTunnels = "3dTunnels";
+    const string _Accumulation = "accumulation";
     const string _AdventureGame = "spwizAdventureGame";
     const string _Algebra = "algebra";
     const string _Arithmelogic = "arithmelogic";
@@ -218,6 +219,7 @@ public class SouvenirModule : MonoBehaviour
         {
             { _3DMaze, Process3DMaze },
             { _3DTunnels, Process3DTunnels },
+            { _Accumulation, ProcessAccumulation },
             { _AdventureGame, ProcessAdventureGame },
             { _Algebra, ProcessAlgebra },
             { _Arithmelogic, ProcessArithmelogic },
@@ -1155,6 +1157,58 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, targetNodeNames.Select((tn, ix) => makeQuestion(Question._3DTunnelsTargetNode, _3DTunnels, new[] { ordinal(ix + 1) }, new[] { tn }, targetNodeNames)));
     }
 
+    private IEnumerable<object> ProcessAccumulation(KMBombModule module)
+    {
+        var comp = GetComponent(module, "accumulationScript");
+        var fldBorder = GetField<int>(comp, "borderValue");
+        var fldBg = GetField<Material[]>(comp, "chosenBackgroundColours", isPublic: true);
+
+        if(comp == null || fldBorder == null || fldBg == null)
+            yield break;
+
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+
+        var colorNames = new Dictionary<int, string> {
+            { 9, "Blue" },
+            { 23, "Brown" },
+            { 4, "Green" },
+            { 15, "Grey" },
+            { 26, "Lime" },
+            { 2, "Orange" },
+            { 8, "Pink" },
+            { 17, "Red" },
+            { 11, "White" },
+            { 10, "Yellow" }
+        };
+
+        String border = colorNames[fldBorder.Get()];
+        Material[] bg = fldBg.Get();
+
+        if(border == null || bg == null)
+            yield break;
+        if(bg.Length != 5)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Accumulation because expected 'chosenBackgroundColours' to have length 5, was {1} instead.", _moduleId, bg.Length);
+            yield break;
+        }
+
+        String[] bgNames = Enumerable.Range(0, bg.Length).Select(x => bg[x].name).ToArray();
+        for(int i = 0; i < bgNames.Length; i++)
+            bgNames[i] = Char.ToUpperInvariant(bgNames[i][0]) + bgNames[i].Substring(1);
+
+        _modulesSolved.IncSafe(_Accumulation);
+        addQuestions(module,
+            makeQuestion(Question.AccumulationBorderColor, _Accumulation, correctAnswers: new[] { border}),
+            makeQuestion(Question.AccumulationBackgroundColor, _Accumulation, new[] { "first" }, new[] { bgNames[0] }, bgNames),
+            makeQuestion(Question.AccumulationBackgroundColor, _Accumulation, new[] { "second" }, new[] { bgNames[1] }, bgNames),
+            makeQuestion(Question.AccumulationBackgroundColor, _Accumulation, new[] { "third" }, new[] { bgNames[2] }, bgNames),
+            makeQuestion(Question.AccumulationBackgroundColor, _Accumulation, new[] { "fourth" }, new[] { bgNames[3] }, bgNames),
+            makeQuestion(Question.AccumulationBackgroundColor, _Accumulation, new[] { "fifth" }, new[] { bgNames[4] }, bgNames));
+    }
+    
     private IEnumerable<object> ProcessAdventureGame(KMBombModule module)
     {
         var comp = GetComponent(module, "AdventureGameModule");

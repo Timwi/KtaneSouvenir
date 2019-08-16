@@ -17,6 +17,12 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.SymbolsFont)]
         _3DTunnelsTargetNode,
 
+        [SouvenirQuestion("What was the background color on the {1} stage in {0}?", "Accumulation", 6, "Blue", "Brown", "Green", "Grey", "Lime", "Orange", "Pink", "Red", "White", "Yellow",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        AccumulationBackgroundColor,
+        [SouvenirQuestion("What was the border color in {0}?", "Accumulation", 6, "Blue", "Brown", "Green", "Grey", "Lime", "Orange", "Pink", "Red", "White", "Yellow")]
+        AccumulationBorderColor,
+
         [SouvenirQuestion("Which item was the {1} correct item you used in {0}?", "Adventure Game", 4, "Broadsword", "Caber", "Nasty knife", "Longbow", "Magic orb", "Grimoire", "Balloon", "Battery", "Bellows", "Cheat code", "Crystal ball", "Feather", "Hard drive", "Lamp", "Moonstone", "Potion", "Small dog", "Stepladder", "Sunstone", "Symbol", "Ticket", "Trophy",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         AdventureGameCorrectItem,
