@@ -2000,12 +2000,13 @@ public class SouvenirModule : MonoBehaviour
 
         for(int i = 0; i < names.Length; i++)
             names[i] = Char.ToUpperInvariant(names[i][0]) + names[i].Substring(1);
+        for(int i = 0; i < coffees.Length; i++)
+            coffees[i] = coffees[i].Replace("\n", " ");
 
         _modulesSolved.IncSafe(_Coffeebucks);
         addQuestions(module,
-            makeQuestion(Question.CoffeebucksClient, _Coffeebucks, correctAnswers: new[] { names[currName] }, preferredWrongAnswers: names));
-            // the text doesn't fit in the module in this question. it works, but it's not functional unless the text can be made smaller or something. Not sure if possible
-            // makeQuestion(Question.CoffeebucksCoffee, _Coffeebucks, correctAnswers: new[] { coffees[currCoffee ]}, preferredWrongAnswers: coffees)
+            makeQuestion(Question.CoffeebucksClient, _Coffeebucks, correctAnswers: new[] { names[currName] }, preferredWrongAnswers: names),
+            makeQuestion(Question.CoffeebucksCoffee, _Coffeebucks, correctAnswers: new[] { coffees[currCoffee ]}, preferredWrongAnswers: coffees));
     }
 
     private static readonly Dictionary<string, string> _ColorDecoding_ColorNameMapping = new Dictionary<string, string>

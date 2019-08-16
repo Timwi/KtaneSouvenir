@@ -105,7 +105,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the last written client name in {0}?", "Coffeebucks", 6, null, ExampleAnswers = new[] { "Gen", "Den" })]
         CoffeebucksClient,
-        [SouvenirQuestion("What was the served coffee in {0}?", "Coffeebucks", 4, null, ExampleAnswers = new[] { "The Blue Drink", "Twix Frappuccino" })]
+        [SouvenirQuestion("What was the last served coffee in {0}?", "Coffeebucks", 4, null, ExampleAnswers = new[] { "The Blue Drink", "Twix Frappuccino" })]
         CoffeebucksCoffee,
 
         [SouvenirQuestion("What was the {1}-stage indicator pattern in {0}?", "Color Decoding", 4, "Checkered", "Horizontal", "Vertical", "Solid",
