@@ -169,6 +169,7 @@ public class SouvenirModule : MonoBehaviour
     const string _PolyhedralMaze = "PolyhedralMazeModule";
     const string _Probing = "Probing";
     const string _Quintuples = "quintuples";
+    const string _Retirement = "retirement";
     const string _ReverseMorse = "reverseMorse";
     const string _Rhythms = "MusicRhythms";
     const string _SchlagDenBomb = "qSchlagDenBomb";
@@ -311,6 +312,7 @@ public class SouvenirModule : MonoBehaviour
             { _PolyhedralMaze, ProcessPolyhedralMaze },
             { _Probing, ProcessProbing },
             { _Quintuples, ProcessQuintuples },
+            { _Retirement, ProcessRetirement },
             { _ReverseMorse, ProcessReverseMorse },
             { _Rhythms, ProcessRhythms },
             { _SchlagDenBomb, ProcessSchlagDenBomb },
@@ -5176,6 +5178,36 @@ public class SouvenirModule : MonoBehaviour
             numbers.Select((n, ix) => makeQuestion(Question.QuintuplesNumbers, _Quintuples, new[] { ordinal(ix % 5 + 1), ordinal(ix / 5 + 1) }, new[] { (n % 10).ToString() })).Concat(
             colors.Select((color, ix) => makeQuestion(Question.QuintuplesColors, _Quintuples, new[] { ordinal(ix % 5 + 1), ordinal(ix / 5 + 1) }, new[] { color }))).Concat(
             colorCounts.Select((cc, ix) => makeQuestion(Question.QuintuplesColorCounts, _Quintuples, new[] { colorNames[ix] }, new[] { cc.ToString() }))));
+    }
+
+    private IEnumerable<object> ProcessRetirement(KMBombModule module)
+    {
+        var comp = GetComponent(module, "retirementScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldHomes = GetField<String[]>(comp, "retirementHomeOptions", isPublic: true);
+        var fldAvailable = GetField<String[]>(comp, "selectedHomes");
+        var fldCorrect = GetField<string>(comp, "correctHome");
+
+        if(comp == null || fldSolved == null || fldHomes == null || fldAvailable == null || fldCorrect == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        String[] homes = fldHomes.Get();
+        String[] available = fldAvailable.Get();
+        String correct = fldCorrect.Get();
+
+        if(homes == null || available == null || correct == null)
+            yield break;
+        if(correct == "")
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Retirement because 'correctHome' was empty.", _moduleId);
+            yield break;
+        }
+
+        _modulesSolved.IncSafe(_Retirement);
+        addQuestion(module, Question.RetirementHouses, correctAnswers: available.Where(x => x != correct).ToArray(), preferredWrongAnswers: homes);
     }
 
     private IEnumerable<object> ProcessReverseMorse(KMBombModule module)
