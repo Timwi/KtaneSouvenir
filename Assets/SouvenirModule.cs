@@ -108,6 +108,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Crackbox = "CrackboxModule";
     const string _Creation = "CreationModule";
     const string _Cube = "cube";
+    const string _DiscoloredSquares = "DiscoloredSquaresModule";
     const string _DividedSquares = "DividedSquaresModule";
     const string _DoubleColor = "doubleColor";
     const string _DoubleOh = "DoubleOhModule";
@@ -253,6 +254,7 @@ public class SouvenirModule : MonoBehaviour
             { _Crackbox, ProcessCrackbox },
             { _Creation, ProcessCreation },
             { _Cube, ProcessCube },
+            { _DiscoloredSquares, ProcessDiscoloredSquares },
             { _DividedSquares, ProcessDividedSquares },
             { _DoubleColor, ProcessDoubleColor },
             { _DoubleOh, ProcessDoubleOh },
@@ -2394,6 +2396,52 @@ public class SouvenirModule : MonoBehaviour
         var allRotations = rotations.Select(r => rotationNames[r]).ToArray();
 
         addQuestions(module, rotations.Select((rot, ix) => makeQuestion(Question.CubeRotations, _Cube, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { rotationNames[rot] }, preferredWrongAnswers: allRotations)));
+    }
+
+    private IEnumerable<object> ProcessDiscoloredSquares(KMBombModule module)
+    {
+        var comp = GetComponent(module, "DiscoloredSquaresModule");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+        var fldColors = GetField<Array>(comp, "_rememberedColors");
+        var fldPositions = GetField<int[]>(comp, "_rememberedPositions");
+
+        if(comp == null || fldSolved == null || fldColors == null || fldPositions == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        var colorsRaw = fldColors.Get();
+
+        if(colorsRaw == null)
+            yield break;
+
+        string[] colors = colorsRaw.Cast<object>().Select(obj => obj.ToString()).ToArray();
+        int[] positions = fldPositions.Get();     
+
+        if(colors == null || positions == null)
+            yield break;
+
+        if(colors.Length != 4 || positions.Length != 4)
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Discolored Squares because there weren't 4 non-neural colors.", _moduleId);
+            yield break;
+        }
+
+        _modulesSolved.IncSafe(_DiscoloredSquares);
+        addQuestions(module,
+            makeQuestion(Question.DiscoloredSquaresRememberedPositions, _DiscoloredSquares, new[] { colors[0] },
+                preferredWrongAnswers: KudosudokuSprites,
+                correctAnswers: new[] { KudosudokuSprites.First(k => k.name == (char) ('A' + (positions[0] % 4)) + (positions[0] / 4 + 1).ToString()) }),
+            makeQuestion(Question.DiscoloredSquaresRememberedPositions, _DiscoloredSquares, new[] { colors[1] },
+                preferredWrongAnswers: KudosudokuSprites,
+                correctAnswers: new[] { KudosudokuSprites.First(k => k.name == (char) ('A' + (positions[1] % 4)) + (positions[1] / 4 + 1).ToString()) }),
+            makeQuestion(Question.DiscoloredSquaresRememberedPositions, _DiscoloredSquares, new[] { colors[2] },
+                preferredWrongAnswers: KudosudokuSprites,
+                correctAnswers: new[] { KudosudokuSprites.First(k => k.name == (char) ('A' + (positions[2] % 4)) + (positions[2] / 4 + 1).ToString()) }),
+            makeQuestion(Question.DiscoloredSquaresRememberedPositions, _DiscoloredSquares, new[] { colors[3] },
+                preferredWrongAnswers: KudosudokuSprites,
+                correctAnswers: new[] { KudosudokuSprites.First(k => k.name == (char) ('A' + (positions[3] % 4)) + (positions[3] / 4 + 1).ToString()) }));
     }
 
     private IEnumerable<object> ProcessDividedSquares(KMBombModule module)
