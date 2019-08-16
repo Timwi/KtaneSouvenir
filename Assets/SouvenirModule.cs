@@ -94,6 +94,7 @@ public class SouvenirModule : MonoBehaviour
     const string _BurglarAlarm = "burglarAlarm";
     const string _ButtonSequences = "buttonSequencesModule";
     const string _Calendar = "calendar";
+    const string _ChallengeAndContact = "challengeAndContact";
     const string _CheapCheckout = "CheapCheckoutModule";
     const string _Chess = "ChessModule";
     const string _ChordQualities = "ChordQualities";
@@ -237,6 +238,7 @@ public class SouvenirModule : MonoBehaviour
             { _BurglarAlarm, ProcessBurglarAlarm },
             { _ButtonSequences, ProcessButtonSequences },
             { _Calendar, ProcessCalendar },
+            { _ChallengeAndContact, ProcessChallengeAndContact },
             { _CheapCheckout, ProcessCheapCheckout },
             { _Chess, ProcessChess },
             { _ChordQualities, ProcessChordQualities },
@@ -1760,6 +1762,51 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Calendar);
         addQuestion(module, Question.CalendarLedColor, correctAnswers: new[] { colorblindText.text });
+    }
+
+    private IEnumerable<object> ProcessChallengeAndContact(KMBombModule module)
+    {
+        var comp = GetComponent(module, "moduleScript");
+        var fldSolved = GetField<bool>(comp, "solved");
+        var fldAnswers = GetField<string[]>(comp, "answers");
+        var fldFirstSet = GetField<string[]>(comp, "possibleFirstAnswers");
+        var fldSecondSet = GetField<string[]>(comp, "possibleSecondAnswers");
+        var fldThirdSet = GetField<string[]>(comp, "possibleFinalAnswers");
+        
+        if (comp == null || fldSolved == null || fldAnswers == null || fldFirstSet == null || fldSecondSet == null || fldThirdSet == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        string[] answers = fldAnswers.Get();
+        string[] firstSet = fldFirstSet.Get();
+        string[] secondSet = fldSecondSet.Get();
+        string[] thirdSet = fldThirdSet.Get();
+
+        if(answers == null || firstSet == null || secondSet == null || thirdSet == null)
+            yield break;
+        if(answers.Length != 3)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Challenge & Contact because 'answers' array length had an unexpected values: expected 3, but was {1}.", _moduleId, answers.Length);
+            yield break;
+        }
+
+        string[] allAnswers = new string[firstSet.Length + secondSet.Length + thirdSet.Length];
+        firstSet.CopyTo(allAnswers, 0);
+        secondSet.CopyTo(allAnswers, firstSet.Length);
+        thirdSet.CopyTo(allAnswers, firstSet.Length + secondSet.Length);
+
+        for(int i = 0; i < answers.Length; i++)
+            answers[i] = Char.ToUpperInvariant(answers[i][0]) + answers[i].Substring(1);
+        for(int i = 0; i < allAnswers.Length; i++)
+            allAnswers[i] = Char.ToUpperInvariant(allAnswers[i][0]) + allAnswers[i].Substring(1);
+
+        _modulesSolved.IncSafe(_ChallengeAndContact);
+        addQuestions(module,
+            makeQuestion(Question.ChallengeAndContactAnswers, _ChallengeAndContact, new[] { "first" }, new[] { answers[0] }, allAnswers.Where(x => x[0] == answers[0][0]).ToArray()),
+            makeQuestion(Question.ChallengeAndContactAnswers, _ChallengeAndContact, new[] { "second" }, new[] { answers[1] }, allAnswers.Where(x => x[0] == answers[1][0]).ToArray()),
+            makeQuestion(Question.ChallengeAndContactAnswers, _ChallengeAndContact, new[] { "third" }, new[] { answers[2] }, allAnswers.Where(x => x[0] == answers[2][0]).ToArray()));
     }
 
     private IEnumerable<object> ProcessCheapCheckout(KMBombModule module)

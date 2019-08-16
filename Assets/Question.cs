@@ -82,6 +82,10 @@ namespace Souvenir
         [SouvenirQuestion("What was the LED color in {0}?", "Calendar", 4, "Green", "Yellow", "Red", "Blue")]
         CalendarLedColor,
 
+        [SouvenirQuestion("What was the {1} submitted answer in {0}?", "Challenge & Contact", 4, null, ExampleAnswers = new[] { "Accumulation", "Coffeebucks", "Perplexing", "Zoo", "Sunstone", "Bob" },
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ChallengeAndContactAnswers,
+
         [SouvenirQuestion("What was the {1}paid amount in {0}?", "Cheap Checkout", 6, null, ExampleAnswers = new[] { "$11.00", "$12.00", "$14.00", "$17.00", "$24.00", "$25.00" },
             ExampleExtraFormatArguments = new[] { "", "first ", "second " }, ExampleExtraFormatArgumentGroupSize = 1)]
         CheapCheckoutPaid,
