@@ -107,6 +107,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Crackbox = "CrackboxModule";
     const string _Creation = "CreationModule";
     const string _Cube = "cube";
+    const string _DividedSquares = "DividedSquaresModule";
     const string _DoubleColor = "doubleColor";
     const string _DoubleOh = "DoubleOhModule";
     const string _DrDoctor = "DrDoctorModule";
@@ -247,6 +248,7 @@ public class SouvenirModule : MonoBehaviour
             { _Crackbox, ProcessCrackbox },
             { _Creation, ProcessCreation },
             { _Cube, ProcessCube },
+            { _DividedSquares, ProcessDividedSquares },
             { _DoubleColor, ProcessDoubleColor },
             { _DoubleOh, ProcessDoubleOh },
             { _DrDoctor, ProcessDrDoctor },
@@ -2338,6 +2340,42 @@ public class SouvenirModule : MonoBehaviour
         var allRotations = rotations.Select(r => rotationNames[r]).ToArray();
 
         addQuestions(module, rotations.Select((rot, ix) => makeQuestion(Question.CubeRotations, _Cube, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { rotationNames[rot] }, preferredWrongAnswers: allRotations)));
+    }
+
+    private IEnumerable<object> ProcessDividedSquares(KMBombModule module)
+    {
+        var comp = GetComponent(module, "DividedSquaresModule");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+        var fldArrangeRunning = GetField<bool>(comp, "_arrangeRunning");
+        var fldColorB = GetField<int>(comp, "_colorB");
+        var fldColors = GetField<string[]>(comp, "ColorNames", isPublic: true);
+
+        if(comp == null || fldSolved == null || fldArrangeRunning == null || fldColorB == null || fldColors == null)
+            yield break;
+
+        //wait for Start()
+        yield return null;
+
+        //wait for module coroutine to end
+        while (fldArrangeRunning.Get())
+            yield return new WaitForSeconds(.1f);
+
+        int colorB = fldColorB.Get();
+        string[] colors = fldColors.Get();
+
+        if(colors == null)
+            yield break;
+        if(colorB < 0 || colorB >= colors.Length)
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Divided Squares because 'colorB' points to an invalid color: {1}.", _moduleId, colorB);
+            yield break;
+        }
+        
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_DividedSquares);
+        addQuestion(module, Question.DividedSquaresColorB, correctAnswers: new[] { colors[colorB] });
     }
 
     private IEnumerable<object> ProcessDoubleColor(KMBombModule module)
