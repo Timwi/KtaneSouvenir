@@ -114,6 +114,7 @@ public class SouvenirModule : MonoBehaviour
     const string _DrDoctor = "DrDoctorModule";
     const string _ElderFuthark = "elderFuthark";
     const string _EncryptedMorse = "EncryptedMorse";
+    const string _FactoryMaze = "factoryMaze";
     const string _FastMath = "fastMath";
     const string _Flags = "FlagsModule";
     const string _FlashingLights = "flashingLights";
@@ -258,6 +259,7 @@ public class SouvenirModule : MonoBehaviour
             { _DrDoctor, ProcessDrDoctor },
             { _ElderFuthark, ProcessElderFuthark },
             { _EncryptedMorse, ProcessEncryptedMorse },
+            { _FactoryMaze, ProcessFactoryMaze },
             { _FastMath, ProcessFastMath },
             { _Flags, ProcessFlags },
             { _FlashingLights, ProcessFlashingLights },
@@ -2608,6 +2610,39 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.EncryptedMorseCallResponse, _EncryptedMorse, new[] { "received call" }, new[] { formatCalls[index] }, formatCalls),
             makeQuestion(Question.EncryptedMorseCallResponse, _EncryptedMorse, new[] { "sent response" }, new[] { formatResponses[index] }, formatResponses));
+    }
+
+    private IEnumerable<object> ProcessFactoryMaze(KMBombModule module)
+    {
+        var comp = GetComponent(module, "FactoryMazeScript");
+        var fldSolved = GetField<bool>(comp, "solved");
+        var fldUsedRooms = GetField<string[]>(comp, "usedRooms");
+        var fldStartRoom = GetField<int>(comp, "startRoom");
+
+        if (comp == null || fldSolved == null || fldUsedRooms == null || fldStartRoom == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        string[] usedRooms = fldUsedRooms.Get();
+        int startRoom = fldStartRoom.Get();
+
+        if(usedRooms == null)
+            yield break;
+        if(usedRooms.Length != 5)
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Factory Maze expected 'usedRooms' to have length 5, but was {1}.", _moduleId, usedRooms.Length);
+            yield break;
+        }
+        if(startRoom < 0 || startRoom >= usedRooms.Length)
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Factory Maze 'startRoom' pointed to an unnexpected room: {1}.", _moduleId, startRoom);
+            yield break;
+        }
+
+        _modulesSolved.IncSafe(_FactoryMaze);
+        addQuestion(module, Question.FactoryMazeStartRoom, correctAnswers: new[] { usedRooms[startRoom] }, preferredWrongAnswers: usedRooms);
     }
 
     private IEnumerable<object> ProcessFastMath(KMBombModule module)
