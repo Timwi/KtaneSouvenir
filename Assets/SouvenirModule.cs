@@ -217,6 +217,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Wavetapping = "Wavetapping";
     const string _Wire = "wire";
     const string _Yahtzee = "YahtzeeModule";
+    const string _Zoni = "lgndZoni";
 
     void Start()
     {
@@ -364,7 +365,8 @@ public class SouvenirModule : MonoBehaviour
             { _VisualImpairment, ProcessVisualImpairment },
             { _Wavetapping, ProcessWavetapping },
             { _Wire, ProcessWire },
-            { _Yahtzee, ProcessYahtzee }
+            { _Yahtzee, ProcessYahtzee },
+            { _Zoni, ProcessZoni }
         };
 
         Bomb.OnBombExploded += delegate { _exploded = true; StopAllCoroutines(); };
@@ -7203,6 +7205,78 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_Yahtzee);
         addQuestion(module, Question.YahtzeeInitialRoll, correctAnswers: new[] { result });
+    }
+
+    private IEnumerable<object> ProcessZoni(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ZoniModuleScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldButtons = GetField<KMSelectable[]>(comp, "buttons", isPublic: true);
+        var fldWords = GetField<string[]>(comp, "wordlist", isPublic: true);
+        var fldIndex = GetField<int>(comp, "wordIndex");
+        var fldStage = GetField<int>(comp, "solvedStages");
+
+        if(comp == null || fldSolved == null || fldButtons == null || fldWords == null || fldIndex == null || fldStage == null)
+            yield break;
+
+        List<int> wordsAnswered = new List<int>();
+
+        // wait for Start()
+        yield return null;
+
+        KMSelectable[] buttons = fldButtons.Get();
+        string[] words = fldWords.Get();
+        int index = fldIndex.Get();
+        int stage = fldStage.Get();
+
+        if(buttons == null || words == null)
+            yield break;
+        if(index < 0 || index >= words.Length)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Zoni because 'wordIndex' points to illegal word: {1}.", _moduleId, index);
+            yield break;
+        }
+        if(stage != 0)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Zoni because 'solvedStages' did not start at 0: was {1}.", _moduleId, stage);
+            yield break;
+        }
+        
+        for(int i = 0; i < buttons.Length; i++)
+        {
+            var prevInteract = buttons[i].OnInteract;
+            buttons[i].OnInteract = delegate
+            {
+                var ret = prevInteract();
+                var st = fldStage.Get();
+                if (stage == st)  // This means the user got a strike. Ignoring previous word
+                {
+                    index = fldIndex.Get();
+                }  
+                else
+                {
+                    wordsAnswered.Add(index);
+                    stage = st;
+                    index = fldIndex.Get();
+                } 
+                return ret;
+            };
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        if(wordsAnswered.Count != 3)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Zoni because the received number of valid words was not 3: was {1}.", _moduleId, wordsAnswered.Count);
+            yield break;
+        }
+
+        _modulesSolved.IncSafe(_Zoni);
+        addQuestions(module,
+            makeQuestion(Question.ZoniWords, _Zoni, new[] { "first" }, new[] { words[wordsAnswered[0]] }, words),
+            makeQuestion(Question.ZoniWords, _Zoni, new[] { "second" }, new[] { words[wordsAnswered[1]] }, words),
+            makeQuestion(Question.ZoniWords, _Zoni, new[] { "third" }, new[] { words[wordsAnswered[2]] }, words));
     }
 
     private void addQuestion(KMBombModule module, Question question, string[] formatArguments = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null)

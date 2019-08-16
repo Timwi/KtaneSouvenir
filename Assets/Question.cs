@@ -695,7 +695,11 @@ namespace Souvenir
         VisualImpairmentColors,
 
         [SouvenirQuestion("What was the initial roll on {0}?", "Yahtzee", 4, "Yahtzee", "large straight", "small straight", "four of a kind", "full house", "three of a kind", "two pairs", "pair")]
-        YahtzeeInitialRoll
+        YahtzeeInitialRoll,
+
+        [SouvenirQuestion("What was the {1} correctly decrypted word in {0}?", "Zoni", 6, null, ExampleAnswers = new[] { "angel", "thing", "dance", "heavy", "quote" },
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ZoniWords
     }
 
     enum AnswerType
