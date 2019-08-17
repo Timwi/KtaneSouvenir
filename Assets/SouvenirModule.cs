@@ -183,6 +183,7 @@ public class SouvenirModule : MonoBehaviour
     const string _ShapeShift = "shapeshift";
     const string _SillySlots = "SillySlots";
     const string _SimonSamples = "simonSamples";
+    const string _SimonScrambles = "simonScrambles";
     const string _SimonScreams = "SimonScreamsModule";
     const string _SimonSends = "SimonSendsModule";
     const string _SimonShrieks = "SimonShrieksModule";
@@ -333,6 +334,7 @@ public class SouvenirModule : MonoBehaviour
             { _ShapeShift, ProcessShapeShift },
             { _SillySlots, ProcessSillySlots },
             { _SimonSamples, ProcessSimonSamples },
+            { _SimonScrambles, ProcessSimonScrambles },
             { _SimonScreams, ProcessSimonScreams },
             { _SimonSends, ProcessSimonSends },
             { _SimonShrieks, ProcessSimonShrieks },
@@ -5758,6 +5760,44 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestions(module, calls.Select((c, ix) => makeQuestion(Question.SimonSamplesSamples, _SimonSamples, new[] { _simonSamplesFAs[ix] }, new[] { (ix == 0 ? c : c.Substring(calls[ix - 1].Length)).Replace("0", "K").Replace("1", "S").Replace("2", "H").Replace("3", "O") })));
+    }
+
+    private IEnumerable<object> ProcessSimonScrambles(KMBombModule module)
+    {
+        var comp = GetComponent(module, "simonScramblesScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldSequence = GetField<int[]>(comp, "sequence");
+        var fldColors = GetField<string[]>(comp, "colorNames");
+
+        if(comp == null || fldSolved == null || fldSequence == null || fldColors == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);  
+
+        int[] sequence = fldSequence.Get(); 
+        string[] colors = fldColors.Get(); 
+
+        if(sequence == null || colors == null)
+            yield break;
+        if(sequence.Length != 10)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Scrambles because 'sequence' length is {1} (expected 10).", _moduleId, sequence.Length);
+            yield break;
+        }
+        if(colors.Length != 4)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Scrambles because 'colors' length is {1} (expected 4).", _moduleId, colors.Length);
+            yield break;
+        }
+        if(sequence[9] < 0 || sequence[9] >= colors.Length)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Scrambles because 'sequence[9]' points to illegal color: {1} (expected 0-3).", _moduleId, sequence[9]);
+            yield break;
+        }
+
+        _modulesSolved.IncSafe(_SimonScrambles);
+        addQuestion(module, Question.SimonScramblesLastColor, correctAnswers: new[] { colors[sequence[9]] });
     }
 
     private IEnumerable<object> ProcessSimonScreams(KMBombModule module)

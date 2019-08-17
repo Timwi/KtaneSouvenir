@@ -534,6 +534,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "played in the first stage", "added in the second stage", "added in the third stage" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSamplesSamples,
 
+        [SouvenirQuestion("What was the last flashed color in {0}?", "Simon Scrambles", 4, "Red", "Green", "Blue", "Yellow")]
+        SimonScramblesLastColor,
+
         [SouvenirQuestion("Which color flashed {1} in the final sequence in {0}?", "Simon Screams", 6, "Red", "Orange", "Yellow", "Green", "Blue", "Purple",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonScreamsFlashing,
