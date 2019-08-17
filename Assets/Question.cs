@@ -58,6 +58,9 @@ namespace Souvenir
         [SouvenirQuestion("Which maze did you solve {0} on?", "Blind Maze", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
         BlindMazeMaze,
 
+        [SouvenirQuestion("What was the last letter pressed on {0}?", "Blockbusters", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")]
+        BlockbustersLastLetter,
+
         [SouvenirQuestion("What letter was initially visible on {0}?", "Boggle", 6, null, ExampleAnswers = new[] { "A", "E", "G", "M", "T", "W" })]
         BoggleLetters,
 

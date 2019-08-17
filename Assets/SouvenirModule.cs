@@ -87,6 +87,7 @@ public class SouvenirModule : MonoBehaviour
     const string _BinaryLEDs = "BinaryLeds";
     const string _Bitmaps = "BitmapsModule";
     const string _BlindMaze = "BlindMaze";
+    const string _Blockbusters = "blockbusters";
     const string _Boggle = "boggle";
     const string _Braille = "BrailleModule";
     const string _BrokenButtons = "BrokenButtonsModule";
@@ -238,6 +239,7 @@ public class SouvenirModule : MonoBehaviour
             { _BinaryLEDs, ProcessBinaryLEDs },
             { _Bitmaps, ProcessBitmaps },
             { _BlindMaze, ProcessBlindMaze },
+            { _Blockbusters, ProcessBlockbusters },
             { _Boggle, ProcessBoggle },
             { _Braille, ProcessBraille },
             { _BrokenButtons, ProcessBrokenButtons },
@@ -1578,6 +1580,72 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             buttonColors.Select((col, ix) => makeQuestion(Question.BlindMazeColors, _BlindMaze, formatArgs: new[] { buttonNames[ix] }, correctAnswers: new[] { colorNames[col] }))
                 .Concat(new[] { makeQuestion(Question.BlindMazeMaze, _BlindMaze, correctAnswers: new[] { ((numSolved + Bomb.GetSerialNumberNumbers().Last()) % 10).ToString() }) }));
+    }
+
+    private IEnumerable<object> ProcessBlockbusters(KMBombModule module)
+    {
+        var comp = GetComponent(module, "blockbustersScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldTiles = GetField<Array>(comp, "tiles", isPublic: true);
+        var fldLegalLetters = GetField<List<string>>(comp, "legalLetters", isPublic: true);
+
+        if(comp == null || fldSolved == null || fldTiles == null || fldLegalLetters == null)
+            yield break;
+
+        var tiles = fldTiles.Get();
+        var lastPress = "";
+        List<string> legalLetters = fldLegalLetters.Get();
+
+        if(legalLetters == null)
+            yield break;
+
+        List<KMSelectable> reference = new List<KMSelectable>();
+
+        for(int i = 0; i < tiles.Length; i++)
+        {
+            if(tiles.GetValue(i) == null)
+                yield break;
+
+            var fldSelectable = GetField<KMSelectable>(tiles.GetValue(i), "selectable", isPublic: true);
+
+            if(fldSelectable == null)
+                yield break;
+
+            var selectable = fldSelectable.Get();
+
+            if(selectable == null)
+                yield break;
+
+            reference.Add(selectable);
+
+            var prevInteract = selectable.OnInteract;
+            selectable.OnInteract = delegate
+            {
+                var fldLetter = GetField<TextMesh>(tiles.GetValue(reference.IndexOf(selectable)), "containedLetter", isPublic: true);
+                if(fldLetter != null)
+                {
+                    var text = fldLetter.Get();
+                    if(text != null)
+                    {
+                        lastPress = text.text;
+                    }
+                }
+               
+                return prevInteract();
+            };
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        if(lastPress == "")
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Blockbusters because no pressed letter was retreived.", _moduleId);
+            yield break;
+        }
+
+        _modulesSolved.IncSafe(_Blockbusters);
+        addQuestion(module, Question.BlockbustersLastLetter, correctAnswers: new[] { lastPress }, preferredWrongAnswers: legalLetters.ToArray());
     }
 
     private IEnumerable<object> ProcessBoggle(KMBombModule module)
