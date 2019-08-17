@@ -167,6 +167,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Nonogram = "NonogramModule";
     const string _OnlyConnect = "OnlyConnectModule";
     const string _OrientationCube = "OrientationCube";
+    const string _PassportControl = "passportControl";
     const string _PatternCube = "PatternCubeModule";
     const string _PerspectivePegs = "spwizPerspectivePegs";
     const string _Pie = "pieModule";
@@ -320,6 +321,7 @@ public class SouvenirModule : MonoBehaviour
             { _Nonogram, ProcessNonogram },
             { _OnlyConnect, ProcessOnlyConnect },
             { _OrientationCube, ProcessOrientationCube },
+            { _PassportControl, ProcessPassportControl },
             { _PatternCube, ProcessPatternCube },
             { _PerspectivePegs, ProcessPerspectivePegs },
             { _Pie, ProcessPie },
@@ -5197,6 +5199,115 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_OrientationCube);
 
         addQuestion(module, Question.OrientationCubeInitialObserverPosition, correctAnswers: new[] { new[] { "front", "left", "back", "right" }[initialAnglePos] });
+    }
+
+    private IEnumerable<object> ProcessPassportControl(KMBombModule module)
+    {
+        var comp = GetComponent(module, "passportControlScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldName = GetField<string>(comp, "name");
+        var fldNationality = GetField<string>(comp, "ethnicity");
+        var fldForenames = GetField<string[]>(comp, "forenames", isPublic: true);
+        var fldSurnames = GetField<string[]>(comp, "surnames", isPublic: true);
+        var fldNationalities = GetField<string[]>(comp, "ethnics", isPublic: true);
+        var fldStamps = GetField<KMSelectable[]>(comp, "stamps", isPublic: true);
+        var fldTextToHide1 = GetField<GameObject[]>(comp, "passport", isPublic: true);
+        var fldTextToHide2 = GetField<GameObject>(comp, "ticket", isPublic: true);
+
+        if(comp == null || fldSolved == null || fldName == null || fldNationality == null || fldForenames == null || fldSurnames == null || fldNationalities == null || fldStamps == null || fldTextToHide1 == null || fldTextToHide2 == null)
+            yield break;
+
+        string[] forenames = fldForenames.Get();
+        string[] surnames = fldSurnames.Get();
+        string[] nationalities = fldNationalities.Get();
+        KMSelectable[] stamps = fldStamps.Get();
+        GameObject[] textToHide1 = fldTextToHide1.Get();
+        GameObject textToHide2 = fldTextToHide2.Get();
+
+        if(forenames == null || surnames == null || nationalities == null || stamps == null || textToHide1 == null || textToHide2 == null)
+            yield break;
+
+        List<TextMesh> textToHide = new List<TextMesh>();
+
+        for(int i = 0; i < textToHide1.Length; i++)
+        {
+            if(textToHide1[i] == null || textToHide1[i].GetComponent<TextMesh>() == null)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Passport Control because at least one TextMesh that needs to be hidden was null.", _moduleId);
+                yield break;
+            }
+            textToHide.Add(textToHide1[i].GetComponent<TextMesh>());
+        }
+        if(textToHide2 == null || textToHide2.GetComponent<TextMesh>() == null)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Passport Control because at least one TextMesh that needs to be hidden was null.", _moduleId);
+            yield break;
+        }
+        textToHide.Add(textToHide2.GetComponent<TextMesh>());
+
+        List<string> passportFirstNames = new List<string>();
+        List<string> passportLastNames = new List<string>();
+        List<string> passportNationalities = new List<string>();
+
+        for (int i = 0; i < stamps.Length; i++)
+        {
+            if(stamps[i] == null)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Passport Control because at least one Selectable null.", _moduleId);
+                yield break;
+            }
+            var oldHandler = stamps[i].OnInteract;
+            stamps[i].OnInteract = delegate
+            {
+                // if an error occurs, function returns earlier and no info is added to lists. The error is caught later when list length is checked.
+                var name = fldName.Get();
+                var nat = fldNationality.Get();
+                
+                if(name == null || nat == null)
+                    return oldHandler();
+
+                var names = name.Split(' ');
+
+                if(names.Length != 2)
+                    return oldHandler();
+
+                var strikes = Bomb.GetStrikes();
+
+                var ret = oldHandler();
+
+                if (Bomb.GetStrikes() != strikes) // player got strike, ignoring retrieved info
+                    return ret;
+
+                passportFirstNames.Add(names[0]);
+                passportLastNames.Add(names[1]);
+                passportNationalities.Add(nat);
+                return ret;
+            };
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        if(passportFirstNames.Count != 3 || passportLastNames.Count != 3 || passportNationalities.Count != 3)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Passport Control because the number of retreived sets of information wasn't 3.", _moduleId);
+            yield break;
+        }
+
+        for(int i = 0; i < textToHide.Count; i++)
+            textToHide[i].text = "";
+
+        _modulesSolved.IncSafe(_PassportControl);
+        addQuestions(module,
+            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "first", "first name" }, new[] { passportFirstNames[0] }, forenames ),
+            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "second", "first name" }, new[] { passportFirstNames[1] }, forenames ),
+            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "third", "first name" }, new[] { passportFirstNames[2] }, forenames ),
+            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "first", "last name" }, new[] { passportLastNames[0] }, surnames ),
+            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "second", "last name" }, new[] { passportLastNames[1] }, surnames ),
+            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "third", "last name" }, new[] { passportLastNames[2] }, surnames ),
+            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "first", "nationality" }, new[] { passportNationalities[0] }, nationalities ),
+            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "second", "nationality" }, new[] { passportNationalities[1] }, nationalities ),
+            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "third", "nationality" }, new[] { passportNationalities[2] }, nationalities ));
     }
 
     private IEnumerable<object> ProcessPatternCube(KMBombModule module)
