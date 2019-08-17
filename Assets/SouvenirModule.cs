@@ -214,6 +214,7 @@ public class SouvenirModule : MonoBehaviour
     const string _TurtleRobot = "turtleRobot";
     const string _TwoBits = "TwoBits";
     const string _UncoloredSquares = "UncoloredSquaresModule";
+    const string _UnfairCipher = "unfairCipher";
     const string _USAMaze = "USA";
     const string _VaricoloredSquares = "VaricoloredSquaresModule";
     const string _VisualImpairment = "visual_impairment";
@@ -366,6 +367,7 @@ public class SouvenirModule : MonoBehaviour
             { _TurtleRobot, ProcessTurtleRobot },
             { _TwoBits, ProcessTwoBits },
             { _UncoloredSquares, ProcessUncoloredSquares },
+            { _UnfairCipher, ProcessUnfairCipher },
             { _USAMaze, ProcessUSAMaze },
             { _VaricoloredSquares, ProcessVaricoloredSquares },
             { _VisualImpairment, ProcessVisualImpairment },
@@ -7154,6 +7156,36 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.UncoloredSquaresFirstStage, _UncoloredSquares, new[] { "first" }, new[] { fldFirstStageColor1.Get().ToString() }),
             makeQuestion(Question.UncoloredSquaresFirstStage, _UncoloredSquares, new[] { "second" }, new[] { fldFirstStageColor2.Get().ToString() }));
+    }
+
+    private IEnumerable<object> ProcessUnfairCipher(KMBombModule module)
+    {
+        var comp = GetComponent(module, "unfairCipherScript");
+        var fldSolved = GetField<bool>(comp, "solved");
+        var fldInstructions = GetField<string[]>(comp, "Message");
+
+        if(comp == null || fldSolved == null || fldInstructions == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        string[] instructions = fldInstructions.Get();
+
+        if(instructions == null)
+            yield break;
+        if(instructions.Length != 4)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Unfair Cipher because 'Message' had an unexpected length {1} (expected 4).", _moduleId, instructions.Length);
+            yield break;
+        }
+
+        _modulesSolved.IncSafe(_UnfairCipher);
+        addQuestions(module,
+            makeQuestion(Question.UnfairCipherInstructions, _UnfairCipher, new[] { "first" }, new[] { instructions[0] }),
+            makeQuestion(Question.UnfairCipherInstructions, _UnfairCipher, new[] { "second" }, new[] { instructions[1] }),
+            makeQuestion(Question.UnfairCipherInstructions, _UnfairCipher, new[] { "third" }, new[] { instructions[2] }),
+            makeQuestion(Question.UnfairCipherInstructions, _UnfairCipher, new[] { "fourth" }, new[] { instructions[3] }));
     }
 
     private IEnumerable<object> ProcessUSAMaze(KMBombModule module)
