@@ -225,6 +225,7 @@ public class SouvenirModule : MonoBehaviour
     const string _UnfairCipher = "unfairCipher";
     const string _USAMaze = "USA";
     const string _VaricoloredSquares = "VaricoloredSquaresModule";
+    const string _Vexillology = "vexillology";
     const string _VisualImpairment = "visual_impairment";
     const string _Wavetapping = "Wavetapping";
     const string _Wire = "wire";
@@ -386,6 +387,7 @@ public class SouvenirModule : MonoBehaviour
             { _UnfairCipher, ProcessUnfairCipher },
             { _USAMaze, ProcessUSAMaze },
             { _VaricoloredSquares, ProcessVaricoloredSquares },
+            { _Vexillology, ProcessVexillology },
             { _VisualImpairment, ProcessVisualImpairment },
             { _Wavetapping, ProcessWavetapping },
             { _Wire, ProcessWire },
@@ -7679,6 +7681,44 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_VaricoloredSquares);
         addQuestion(module, Question.VaricoloredSquaresInitialColor, correctAnswers: new[] { firstColor.ToString() });
+    }
+
+    private IEnumerable<object> ProcessVexillology(KMBombModule module)
+    {
+        var comp = GetComponent(module, "vexillologyScript");
+        var fldSolved = GetField<bool>(comp, "_issolved");
+        var fldColors = GetField<string[]>(comp, "coloursStrings");
+        var fldColor1 = GetField<int>(comp, "ActiveFlagTop1");
+        var fldColor2 = GetField<int>(comp, "ActiveFlagTop2");
+        var fldColor3 = GetField<int>(comp, "ActiveFlagTop3");
+
+        if (comp == null || fldSolved == null || fldColors == null || fldColor1 == null || fldColor2 == null || fldColor3 == null)
+            yield break;
+
+        // wait for Start()
+        yield return null;
+
+        string[] colors = fldColors.Get();
+        int color1 = fldColor1.Get();
+        int color2 = fldColor2.Get();
+        int color3 = fldColor3.Get();
+
+        if(colors == null)
+            yield break;
+        if(color1 < 0 || color1 >= colors.Length || color2 < 0 || color2 >= colors.Length || color3 < 0 || color3 >= colors.Length)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Vexillology because one or more of the flagpole colors points to an illegal color.", _moduleId);
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        
+        _modulesSolved.IncSafe(_Vexillology);
+        addQuestions(module,
+            makeQuestion(Question.VexillologyColors, _Vexillology, new[] { "first" }, new[] { colors[color1] }, new[] { colors[color2], colors[color3] } ),
+            makeQuestion(Question.VexillologyColors, _Vexillology, new[] { "first" }, new[] { colors[color2] }, new[] { colors[color1], colors[color3] } ),
+            makeQuestion(Question.VexillologyColors, _Vexillology, new[] { "first" }, new[] { colors[color3] }, new[] { colors[color2], colors[color1] } ));
     }
 
     private IEnumerable<object> ProcessVisualImpairment(KMBombModule module)
