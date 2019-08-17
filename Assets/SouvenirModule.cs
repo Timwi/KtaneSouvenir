@@ -166,6 +166,7 @@ public class SouvenirModule : MonoBehaviour
     const string _MouseInTheMaze = "MouseInTheMaze";
     const string _Murder = "murder";
     const string _MysticSquare = "MysticSquareModule";
+    const string _Necronomicon = "necronomicon";
     const string _Neutralization = "neutralization";
     const string _Nonogram = "NonogramModule";
     const string _OnlyConnect = "OnlyConnectModule";
@@ -325,6 +326,7 @@ public class SouvenirModule : MonoBehaviour
             { _MouseInTheMaze, ProcessMouseInTheMaze },
             { _Murder, ProcessMurder },
             { _MysticSquare, ProcessMysticSquare },
+            { _Necronomicon, ProcessNecronomicon },
             { _Neutralization, ProcessNeutralization },
             { _Nonogram, ProcessNonogram },
             { _OnlyConnect, ProcessOnlyConnect },
@@ -5219,6 +5221,42 @@ public class SouvenirModule : MonoBehaviour
             addQuestions(module,
                 makeQuestion(Question.MysticSquareKnightSkull, _MysticSquare, new[] { "skull" }, new[] { answers[skullpos] }, answers));
 
+    }
+
+    private IEnumerable<object> ProcessNecronomicon(KMBombModule module)
+    {
+        var comp = GetComponent(module, "necronomiconScript");
+        var fldChapters = GetField<int[]>(comp, "selectedChapters");
+
+        if(comp == null || fldChapters == null)
+            yield break;
+
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+        
+        int[] chapters = fldChapters.Get();
+
+        if(chapters == null)
+            yield break;
+        if(chapters.Length != 7)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning The Necronomicon because 'selectedChapters' has unexpected length ({1}; expected 7).", _moduleId, chapters.Length);
+            yield break;
+        }
+
+        string[] chaptersString = chapters.Select(x => x.ToString()).ToArray();
+
+        _modulesSolved.IncSafe(_Necronomicon);
+        addQuestions(module,
+            makeQuestion(Question.NecronomiconChapters, _Necronomicon, new[] { "first" }, new[] { chaptersString[0] }, chaptersString ),
+            makeQuestion(Question.NecronomiconChapters, _Necronomicon, new[] { "second" }, new[] { chaptersString[1] }, chaptersString ),
+            makeQuestion(Question.NecronomiconChapters, _Necronomicon, new[] { "third" }, new[] { chaptersString[2] }, chaptersString ),
+            makeQuestion(Question.NecronomiconChapters, _Necronomicon, new[] { "fourth" }, new[] { chaptersString[3] }, chaptersString ),
+            makeQuestion(Question.NecronomiconChapters, _Necronomicon, new[] { "fifth" }, new[] { chaptersString[4] }, chaptersString ),
+            makeQuestion(Question.NecronomiconChapters, _Necronomicon, new[] { "sixth" }, new[] { chaptersString[5] }, chaptersString ),
+            makeQuestion(Question.NecronomiconChapters, _Necronomicon, new[] { "seventh" }, new[] { chaptersString[6] }, chaptersString ));
     }
 
     private IEnumerable<object> ProcessNeutralization(KMBombModule module)

@@ -458,6 +458,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "knight", "skull" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MysticSquareKnightSkull,
 
+        [SouvenirQuestion("Where was the chapter number of the {1} page in {0}?", "Necronomicon", 6, null, ExampleAnswers = new[] { "1", "24", "36" }, AddThe = true, 
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth", "seventh" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        NecronomiconChapters,
+
         [SouvenirQuestion("What was the acid’s color in {0}?", "Neutralization", 4, "Yellow", "Green", "Red", "Blue")]
         NeutralizationColor,
 
