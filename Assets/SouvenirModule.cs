@@ -208,6 +208,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SymbolicCoordinates = "symbolicCoordinates";
     const string _Synonyms = "synonyms";
     const string _TapCode = "tapCode";
+    const string _TashaSqueals = "tashaSqueals";
     const string _TenButtonColorCode = "TenButtonColorCode";
     const string _TextField = "TextField";
     const string _ThirdBase = "ThirdBase";
@@ -363,6 +364,7 @@ public class SouvenirModule : MonoBehaviour
             { _SymbolicCoordinates, ProcessSymbolicCoordinates },
             { _Synonyms, ProcessSynonyms },
             { _TapCode, ProcessTapCode },
+            { _TashaSqueals, ProcessTashaSqueals },
             { _TenButtonColorCode, ProcessTenButtonColorCode },
             { _TextField, ProcessTextField },
             { _ThirdBase, ProcessThirdBase },
@@ -6967,6 +6969,58 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestion(module, Question.TapCodeReceivedWord, correctAnswers: new[] { chosenWord }, preferredWrongAnswers: words);
+    }
+
+    private IEnumerable<object> ProcessTashaSqueals(KMBombModule module)
+    {
+        var comp = GetComponent(module, "tashaSquealsScript");
+        var fldSolved = GetField<bool>(comp, "solved");
+        var fldColors = GetStaticField<string[]>(comp.GetType(), "colorNames");
+        var fldSequence = GetField<int[]>(comp, "flashing");
+
+        if(comp == null || fldSolved == null || fldColors == null || fldSequence == null)
+            yield break;
+
+        // wait for Start()
+        yield return null;
+
+        string[] colors = fldColors.Get();
+        int[] sequence = fldSequence.Get();
+
+        if(colors == null || sequence == null)
+            yield break;
+        if(colors.Length != 4)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Tasha Squeals because the 'colorNames' had length {1} instead of 4.", _moduleId, colors.Length);
+            yield break;
+        }
+        if(sequence.Length != 5)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Tasha Squeals because the 'flashing' had length {1} instead of 5.", _moduleId, sequence.Length);
+            yield break;
+        }
+        for(int i = 0; i < sequence.Length; i++)
+        {
+            if(sequence[i] < 0 || sequence[i] >= colors.Length)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Tasha Squeals because the 'sequence[{1}]' pointed to illegal color: {2}.", _moduleId, i, sequence[i]);
+                yield break;
+            }
+        }
+        
+        for(int i = 0; i < colors.Length; i++)
+            colors[i] = Char.ToUpperInvariant(colors[i][0]) + colors[i].Substring(1);
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_TashaSqueals);
+        addQuestions(module,
+            makeQuestion(Question.TashaSquealsColors, _TashaSqueals, new[] { "first" }, new[] { colors[sequence[0]] }),
+            makeQuestion(Question.TashaSquealsColors, _TashaSqueals, new[] { "second" }, new[] { colors[sequence[1]] }),
+            makeQuestion(Question.TashaSquealsColors, _TashaSqueals, new[] { "third" }, new[] { colors[sequence[2]] }),
+            makeQuestion(Question.TashaSquealsColors, _TashaSqueals, new[] { "fourth" }, new[] { colors[sequence[3]] }),
+            makeQuestion(Question.TashaSquealsColors, _TashaSqueals, new[] { "fifth" }, new[] { colors[sequence[4]] }));
     }
 
     private IEnumerable<object> ProcessTenButtonColorCode(KMBombModule module)

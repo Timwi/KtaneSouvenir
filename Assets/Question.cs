@@ -655,6 +655,10 @@ namespace Souvenir
         [SouvenirQuestion("What was the received word in {0}?", "Tap Code", 4, null, ExampleAnswers = new[] { "child", "style", "shake", "alive", "axion", "wreck", "cause", "pupil", "cheat", "watch" })]
         TapCodeReceivedWord,
 
+        [SouvenirQuestion("What was the {1} flashed color in {0}?", "Tasha Squeals", 4, "Pink", "Green", "Yellow", "Blue",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        TashaSquealsColors,
+
         [SouvenirQuestion("What was the initial color of the {1} button in the {2} stage of {0}?", "Ten-Button Color Code", 4, "red", "green", "blue",
             ExampleExtraFormatArguments = new[] { "first", "first", "second", "first", "first", "second", "second", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
         TenButtonColorCodeInitialColors,
