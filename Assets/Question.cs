@@ -690,6 +690,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first" }, ExampleExtraFormatArgumentGroupSize = 1)]
         TwoBitsResponse,
 
+        [SouvenirQuestion("What was the {1} rotation in {0}?", "Ultracube", 6, "XY", "YX", "XZ", "ZX", "XW", "WX", "XV", "VX", "YZ", "ZY", "YW", "WY", "YV", "VY", "ZW", "WZ", "ZV", "VZ", "WV", "VW", AddThe = true,
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        UltracubeRotations,
+
         [SouvenirQuestion("What was the {1} color in reading order used in the first stage of {0}?", "Uncolored Squares", 6, "White", "Red", "Blue", "Green", "Yellow", "Magenta",
             ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
         UncoloredSquaresFirstStage,

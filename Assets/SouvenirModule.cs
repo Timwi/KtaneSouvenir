@@ -217,6 +217,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Timezone = "timezone";
     const string _TurtleRobot = "turtleRobot";
     const string _TwoBits = "TwoBits";
+    const string _Ultracube = "TheUltracubeModule";
     const string _UncoloredSquares = "UncoloredSquaresModule";
     const string _UnfairCipher = "unfairCipher";
     const string _USAMaze = "USA";
@@ -374,6 +375,7 @@ public class SouvenirModule : MonoBehaviour
             { _Timezone, ProcessTimezone },
             { _TurtleRobot, ProcessTurtleRobot },
             { _TwoBits, ProcessTwoBits },
+            { _Ultracube, ProcessUltracube },
             { _UncoloredSquares, ProcessUncoloredSquares },
             { _UnfairCipher, ProcessUnfairCipher },
             { _USAMaze, ProcessUSAMaze },
@@ -3494,7 +3496,7 @@ public class SouvenirModule : MonoBehaviour
         {
             if(sequence[i] < 0 || sequence[i] >= rotations.Length)
             {
-                Debug.LogFormat("<Souvenir #{0}> Abandoning Tasha Squeals because the '_rotations[{1}]' pointed to illegal rotation: {2}.", _moduleId, i, sequence[i]);
+                Debug.LogFormat("<Souvenir #{0}> Abandoning The Hypercube because the '_rotations[{1}]' pointed to illegal rotation: {2}.", _moduleId, i, sequence[i]);
                 yield break;
             }
         }
@@ -7380,6 +7382,51 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessUltracube(KMBombModule module)
+    {
+        var comp = GetComponent(module, "TheUltracubeModule");
+        var fldSequence = GetField<int[]>(comp, "_rotations");
+        var fldRotations = GetStaticField<string[]>(comp.GetType(), "_rotationNames");
+
+        if(comp == null || fldSequence == null || fldRotations == null)
+            yield break;
+
+        // wait for Start()
+        yield return null;
+
+        int[] sequence = fldSequence.Get();
+        string[] rotations = fldRotations.Get();
+
+        if(sequence == null || rotations == null)
+            yield break;
+        if(sequence.Length != 5)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning The Ultracube because '_rotations' had length {1} instead of 5.", _moduleId, sequence.Length);
+            yield break;
+        }
+        for(int i = 0; i < sequence.Length; i++)
+        {
+            if(sequence[i] < 0 || sequence[i] >= rotations.Length)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning The Ultracube because the '_rotations[{1}]' pointed to illegal rotation: {2}.", _moduleId, i, sequence[i]);
+                yield break;
+            }
+        }
+
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_Ultracube);
+        addQuestions(module,
+            makeQuestion(Question.UltracubeRotations, _Ultracube, new[] { "first" }, new[] { rotations[sequence[0]] }),
+            makeQuestion(Question.UltracubeRotations, _Ultracube, new[] { "second" }, new[] { rotations[sequence[1]] }),
+            makeQuestion(Question.UltracubeRotations, _Ultracube, new[] { "third" }, new[] { rotations[sequence[2]] }),
+            makeQuestion(Question.UltracubeRotations, _Ultracube, new[] { "fourth" }, new[] { rotations[sequence[3]] }),
+            makeQuestion(Question.UltracubeRotations, _Ultracube, new[] { "fifth" }, new[] { rotations[sequence[4]] }));
     }
 
     private IEnumerable<object> ProcessUncoloredSquares(KMBombModule module)
