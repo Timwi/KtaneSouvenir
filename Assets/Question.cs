@@ -232,6 +232,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the gryphon’s age in {0}?", "Gryphons", 6, "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34")]
         GryphonsAge,
 
+        [SouvenirQuestion("What label was printed on {0}?", "Hexabutton", 6, "Jump", "Boom", "Claim", "Button", "Hold", "Blue", AddThe = true)]
+        HexabuttonLabel,
+        
         [SouvenirQuestion("What was the color of the pawn in {0}?", "Hexamaze", 6, "Red", "Yellow", "Green", "Cyan", "Blue", "Pink")]
         HexamazePawnColor,
 

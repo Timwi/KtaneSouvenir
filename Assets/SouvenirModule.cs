@@ -127,6 +127,7 @@ public class SouvenirModule : MonoBehaviour
     const string _GridLock = "GridlockModule";
     const string _Gryphons = "gryphons";
     const string _LogicalButtons = "logicalButtonsModule";
+    const string _Hexabutton = "hexabutton";
     const string _Hexamaze = "HexamazeModule";
     const string _Hogwarts = "HogwartsModule";
     const string _HorribleMemory = "horribleMemory";
@@ -280,6 +281,7 @@ public class SouvenirModule : MonoBehaviour
             { _Gamepad, ProcessGamepad },
             { _GridLock, ProcessGridLock },
             { _Gryphons, ProcessGryphons },
+            { _Hexabutton, ProcessHexabutton },
             { _Hexamaze, ProcessHexamaze },
             { _Hogwarts, ProcessHogwarts },
             { _HorribleMemory, ProcessHorribleMemory },
@@ -3218,6 +3220,37 @@ public class SouvenirModule : MonoBehaviour
             colors.SelectMany((clrs, stage) => clrs.Select((clr, btnIx) => makeQuestion(Question.LogicalButtonsColor, _LogicalButtons, new[] { _logicalButtonsButtonNames[btnIx], ordinal(stage + 1) }, new[] { clr })))
                 .Concat(labels.SelectMany((lbls, stage) => lbls.Select((lbl, btnIx) => makeQuestion(Question.LogicalButtonsLabel, _LogicalButtons, new[] { _logicalButtonsButtonNames[btnIx], ordinal(stage + 1) }, new[] { lbl }))))
                 .Concat(initialOperators.Select((op, stage) => makeQuestion(Question.LogicalButtonsOperator, _LogicalButtons, new[] { ordinal(stage + 1) }, new[] { op }))));
+    }
+
+    private IEnumerable<object> ProcessHexabutton(KMBombModule module)
+    {
+        var comp = GetComponent(module, "hexabuttonScript");
+        var fldSolved = GetField<bool>(comp, "solved");
+        var fldLabels = GetField<string[]>(comp, "labels");
+        var fldIndex = GetField<int>(comp, "labelNum");
+
+        if(comp == null || fldSolved == null || fldLabels == null || fldIndex == null)
+            yield break;
+
+        // wait for Start()
+        yield return null;
+
+        string[] labels = fldLabels.Get();
+        int index = fldIndex.Get();
+
+        if(labels == null)
+            yield break;
+        if(index < 0 || index >= labels.Length)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning The Hexabutton because 'labelNum' points to illegal label: {1}.", _moduleId, index);
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_Hexabutton);
+        addQuestion(module, Question.HexabuttonLabel, correctAnswers: new[] { labels[index] });
     }
 
     private IEnumerable<object> ProcessHexamaze(KMBombModule module)
