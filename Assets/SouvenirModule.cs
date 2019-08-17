@@ -102,6 +102,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Code = "theCodeModule";
     const string _Coffeebucks = "coffeebucks";
     const string _ColorDecoding = "Color Decoding";
+    const string _ColoredKeys = "lgndColoredKeys";
     const string _ColoredSquares = "ColoredSquaresModule";
     const string _ColoredSwitches = "ColoredSwitchesModule";
     const string _ColorMorse = "ColorMorseModule";
@@ -260,6 +261,7 @@ public class SouvenirModule : MonoBehaviour
             { _Code, ProcessCode },
             { _Coffeebucks, ProcessCoffeebucks },
             { _ColorDecoding, ProcessColorDecoding },
+            { _ColoredKeys, ProcessColoredKeys },
             { _ColoredSquares, ProcessColoredSquares },
             { _ColoredSwitches, ProcessColoredSwitches },
             { _ColorMorse, ProcessColorMorse },
@@ -2209,6 +2211,77 @@ public class SouvenirModule : MonoBehaviour
              colors[stage].Length <= 3 ? makeQuestion(Question.ColorDecodingIndicatorColors, _ColorDecoding, new[] { "appeared", ordinal(stage + 1) }, colors[stage]) : null,
              colors[stage].Length >= 3 ? makeQuestion(Question.ColorDecodingIndicatorColors, _ColorDecoding, new[] { "did not appear", ordinal(stage + 1) }, _ColorDecoding_ColorNameMapping.Keys.Except(colors[stage]).ToArray()) : null,
              makeQuestion(Question.ColorDecodingIndicatorPattern, _ColorDecoding, new[] { ordinal(stage + 1) }, new[] { patterns[stage] }))));
+    }
+
+    private IEnumerable<object> ProcessColoredKeys(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ColoredKeysScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldColors = GetField<string[]>(comp, "loggingWords", isPublic: true);
+        var fldMats = GetField<Material[]>(comp, "buttonmats", isPublic: true);
+        var fldLetters = GetField<string[]>(comp, "letters", isPublic: true);
+        var fldBtn1Letter = GetField<int>(comp, "b1LetIndex");
+        var fldBtn2Letter = GetField<int>(comp, "b2LetIndex");
+        var fldBtn3Letter = GetField<int>(comp, "b3LetIndex");
+        var fldBtn4Letter = GetField<int>(comp, "b4LetIndex");
+        var fldBtn1Color = GetField<int>(comp, "b1ColIndex");
+        var fldBtn2Color = GetField<int>(comp, "b2ColIndex");
+        var fldBtn3Color = GetField<int>(comp, "b3ColIndex");
+        var fldBtn4Color = GetField<int>(comp, "b4ColIndex");
+        var fldDisplayWord = GetField<int>(comp, "displayIndex");
+        var fldDisplayColor = GetField<int>(comp, "displayColIndex");
+
+        if(comp == null || fldSolved == null || fldColors == null || fldMats == null || fldLetters == null ||
+            fldBtn1Letter == null || fldBtn2Letter == null || fldBtn3Letter == null || fldBtn4Letter == null ||
+            fldBtn1Color == null || fldBtn2Color == null || fldBtn3Color == null || fldBtn4Color == null ||
+            fldDisplayColor == null || fldDisplayWord == null)
+            yield break;
+
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+
+        string[] colors = fldColors.Get();
+        Material[] mats = fldMats.Get();
+        string[] letters = fldLetters.Get();
+        int[] display = new int[] { fldDisplayWord.Get(), fldDisplayColor.Get() };
+        int[][] btns = new int[][] { new int[] { fldBtn1Letter.Get(), fldBtn1Color.Get() },
+                                     new int[] { fldBtn2Letter.Get(), fldBtn2Color.Get() },
+                                     new int[] { fldBtn3Letter.Get(), fldBtn3Color.Get() },
+                                     new int[] { fldBtn4Letter.Get(), fldBtn4Color.Get() } };
+        
+        if(colors == null || mats == null || letters == null)
+            yield break;
+        if(display[0] < 0 || display[0] >= colors.Length ||
+           display[1] < 0 || display[1] >= colors.Length ||
+           btns[0][0] < 0 || btns[0][0] >= letters.Length ||
+           btns[1][0] < 0 || btns[1][0] >= letters.Length ||
+           btns[2][0] < 0 || btns[2][0] >= letters.Length ||
+           btns[3][0] < 0 || btns[3][0] >= letters.Length ||
+           btns[0][1] < 0 || btns[0][1] >= mats.Length ||
+           btns[1][1] < 0 || btns[1][1] >= mats.Length ||
+           btns[2][1] < 0 || btns[2][1] >= mats.Length ||
+           btns[3][1] < 0 || btns[3][1] >= mats.Length)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Colored Keys because of an illegal array indexation.", _moduleId);
+            yield break;
+        }
+
+        string[] matsNames = mats.Select(x => x.name).ToArray();
+
+        _modulesSolved.IncSafe(_ColoredKeys);
+        addQuestions(module,
+            makeQuestion(Question.ColoredKeysDisplayWord, _ColoredKeys, correctAnswers: new[] { colors[display[0]] }, preferredWrongAnswers: colors ),
+            makeQuestion(Question.ColoredKeysDisplayWordColor, _ColoredKeys, correctAnswers: new[] { colors[display[1]] }, preferredWrongAnswers: colors ),
+            makeQuestion(Question.ColoredKeysKeyLetter, _ColoredKeys, new[] { "top-left" }, new[] { letters[btns[0][0]] }, letters ),
+            makeQuestion(Question.ColoredKeysKeyLetter, _ColoredKeys, new[] { "top-right" }, new[] { letters[btns[1][0]] }, letters ),
+            makeQuestion(Question.ColoredKeysKeyLetter, _ColoredKeys, new[] { "bottom-left" }, new[] { letters[btns[2][0]] }, letters ),
+            makeQuestion(Question.ColoredKeysKeyLetter, _ColoredKeys, new[] { "bottom-right" }, new[] { letters[btns[3][0]] }, letters ),
+            makeQuestion(Question.ColoredKeysKeyColor, _ColoredKeys, new[] { "top-left" }, new[] { matsNames[btns[0][1]] }, matsNames ),
+            makeQuestion(Question.ColoredKeysKeyColor, _ColoredKeys, new[] { "top-right" }, new[] { matsNames[btns[1][1]] }, matsNames ),
+            makeQuestion(Question.ColoredKeysKeyColor, _ColoredKeys, new[] { "bottom-left" }, new[] { matsNames[btns[2][1]] }, matsNames ),
+            makeQuestion(Question.ColoredKeysKeyColor, _ColoredKeys, new[] { "bottom-right" }, new[] { matsNames[btns[3][1]] }, matsNames ));
     }
 
     private IEnumerable<object> ProcessColoredSquares(KMBombModule module)

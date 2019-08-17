@@ -119,6 +119,17 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "appeared", "first", "appeared", "second", "appeared", "third", "did not appear", "first", "did not appear", "second", "did not appear", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
         ColorDecodingIndicatorColors,
 
+        [SouvenirQuestion("What was the displayed word in {0}?", "Colored Keys", 6, null, ExampleAnswers = new[] { "blue", "white" })]
+        ColoredKeysDisplayWord,
+        [SouvenirQuestion("What was the displayed word's color in {0}?", "Colored Keys", 6, null, ExampleAnswers = new[] { "blue", "white" })]
+        ColoredKeysDisplayWordColor,
+        [SouvenirQuestion("What was the color of the {1} key in {0}?", "Colored Keys", 6, null, ExampleAnswers = new[] { "blue", "white" },
+            ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ColoredKeysKeyColor,
+        [SouvenirQuestion("What was the letter of the {1} key in {0}?", "Colored Keys", 6, null, ExampleAnswers = new[] { "A", "Z" },
+            ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ColoredKeysKeyLetter,
+
         [SouvenirQuestion("What was the first color group in {0}?", "Colored Squares", 6, "White", "Red", "Blue", "Green", "Yellow", "Magenta")]
         ColoredSquaresFirstGroup,
 
