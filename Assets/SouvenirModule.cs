@@ -125,6 +125,7 @@ public class SouvenirModule : MonoBehaviour
     const string _FreeParking = "freeParking";
     const string _Functions = "qFunctions";
     const string _Gamepad = "TheGamepadModule";
+    const string _GiantsDrink = "giantsDrink";
     const string _GridLock = "GridlockModule";
     const string _Gryphons = "gryphons";
     const string _LogicalButtons = "logicalButtonsModule";
@@ -285,6 +286,7 @@ public class SouvenirModule : MonoBehaviour
             { _FreeParking, ProcessFreeParking },
             { _Functions, ProcessFunctions },
             { _Gamepad, ProcessGamepad },
+            { _GiantsDrink, ProcessGiantsDrink },
             { _GridLock, ProcessGridLock },
             { _Gryphons, ProcessGryphons },
             { _Hexabutton, ProcessHexabutton },
@@ -3159,6 +3161,44 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.FunctionsLetter, _Functions, correctAnswers: new[] { theLetter }),
             makeQuestion(Question.FunctionsRightNumber, _Functions, correctAnswers: new[] { rNum.ToString() }, preferredWrongAnswers:
                 Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(1, 999).ToString()).Distinct().Take(6).ToArray()));
+    }
+
+    private IEnumerable<object> ProcessGiantsDrink(KMBombModule module)
+    {
+        var comp = GetComponent(module, "giantsDrinkScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldSolEvenStrikes = GetField<int>(comp, "evenStrikes");
+        var fldSolOddStrikes = GetField<int>(comp, "oddStrikes");
+        var fldLiquids = GetField<int[]>(comp, "liquid");
+
+        if (comp == null || fldSolved == null || fldSolEvenStrikes == null || fldSolOddStrikes == null || fldLiquids == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+
+        int sol = Bomb.GetStrikes() % 2 == 0 ? fldSolEvenStrikes.Get() : fldSolOddStrikes.Get();
+        int[] liquids = fldLiquids.Get();
+        string[] liquidNames = { "Red", "Blue", "Green", "Orange", "Purple", "Cyan"};
+
+        if(liquids == null)
+            yield break;
+        if(liquids.Length != 2)
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning The Giant's Drink because 'liquid' had length {1} (expected length 2).", _moduleId, liquids.Length);
+            yield break;
+        }
+        if(sol < 0 || sol >= liquids.Length)
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning The Giant's Drink because 'evenStrikes' or 'oddStrikes' pointed to illegal goblet: {1}.", _moduleId, sol);
+            yield break;
+        }
+
+         while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+
+        _modulesSolved.IncSafe(_GiantsDrink);
+        addQuestion(module, Question.GiantsDrinkLiquid, correctAnswers: new[] { liquidNames[liquids[sol]] });
     }
 
     private IEnumerable<object> ProcessGridLock(KMBombModule module)

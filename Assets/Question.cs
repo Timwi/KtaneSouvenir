@@ -229,6 +229,9 @@ namespace Souvenir
         [SouvenirQuestion("What were the numbers on {0}?", "Gamepad", 6, null, AddThe = true, ExampleAnswers = new[] { "01:03", "12:92", "84:72", "24:56" })]
         GamepadNumbers,
 
+        [SouvenirQuestion("What was the color of the liquid you drank in {0}?", "Giant's Drink", 6, "Red", "Blue", "Green", "Orange", "Purple", "Cyan", AddThe = true)]
+        GiantsDrinkLiquid,
+
         [SouvenirQuestion("What was the starting location in {0}?", "Gridlock", 6, "A1", "B1", "C1", "D1", "A2", "B2", "C2", "D2", "A3", "B3", "C3", "D3", "A4", "B4", "C4", "D4")]
         GridLockStartingLocation,
 
