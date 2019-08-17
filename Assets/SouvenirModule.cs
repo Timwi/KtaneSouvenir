@@ -133,6 +133,7 @@ public class SouvenirModule : MonoBehaviour
     const string _HorribleMemory = "horribleMemory";
     const string _HumanResources = "HumanResourcesModule";
     const string _Hunting = "hunting";
+    const string _Hypercube = "TheHypercubeModule";
     const string _IceCream = "iceCreamModule";
     const string _IdentityParade = "identityParade";
     const string _iPhone = "iPhone";
@@ -288,6 +289,7 @@ public class SouvenirModule : MonoBehaviour
             { _HorribleMemory, ProcessHorribleMemory },
             { _HumanResources, ProcessHumanResources },
             { _Hunting, ProcessHunting },
+            { _Hypercube, ProcessHypercube },
             { _IceCream, ProcessIceCream },
             { _IdentityParade, ProcessIdentityParade },
             { _iPhone, ProcessiPhone },
@@ -3464,6 +3466,51 @@ public class SouvenirModule : MonoBehaviour
                     formatArgs: new[] { row ? "row" : "column", first ? "first" : "second" },
                     correctAnswers: new[] { _attributes[Question.HuntingColumnsRows].AllAnswers[(hasRowFirst[0] ^ row ^ first ? 1 : 0) | (hasRowFirst[1] ^ row ^ first ? 2 : 0) | (hasRowFirst[2] ^ row ^ first ? 4 : 0)] }));
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessHypercube(KMBombModule module)
+    {
+        var comp = GetComponent(module, "TheHypercubeModule");
+        var fldSequence = GetField<int[]>(comp, "_rotations");
+        var fldRotations = GetStaticField<string[]>(comp.GetType(), "_rotationNames");
+
+        if(comp == null || fldSequence == null || fldRotations == null)
+            yield break;
+
+        // wait for Start()
+        yield return null;
+
+        int[] sequence = fldSequence.Get();
+        string[] rotations = fldRotations.Get();
+
+        if(sequence == null || rotations == null)
+            yield break;
+        if(sequence.Length != 5)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning The Hypercube because '_rotations' had length {1} instead of 5.", _moduleId, sequence.Length);
+            yield break;
+        }
+        for(int i = 0; i < sequence.Length; i++)
+        {
+            if(sequence[i] < 0 || sequence[i] >= rotations.Length)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Tasha Squeals because the '_rotations[{1}]' pointed to illegal rotation: {2}.", _moduleId, i, sequence[i]);
+                yield break;
+            }
+        }
+
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_Hypercube);
+        addQuestions(module,
+            makeQuestion(Question.HypercubeRotations, _Hypercube, new[] { "first" }, new[] { rotations[sequence[0]] }),
+            makeQuestion(Question.HypercubeRotations, _Hypercube, new[] { "second" }, new[] { rotations[sequence[1]] }),
+            makeQuestion(Question.HypercubeRotations, _Hypercube, new[] { "third" }, new[] { rotations[sequence[2]] }),
+            makeQuestion(Question.HypercubeRotations, _Hypercube, new[] { "fourth" }, new[] { rotations[sequence[3]] }),
+            makeQuestion(Question.HypercubeRotations, _Hypercube, new[] { "fifth" }, new[] { rotations[sequence[4]] }));
     }
 
     private IEnumerable<object> ProcessIceCream(KMBombModule module)
@@ -7007,7 +7054,7 @@ public class SouvenirModule : MonoBehaviour
                 yield break;
             }
         }
-        
+
         for(int i = 0; i < colors.Length; i++)
             colors[i] = Char.ToUpperInvariant(colors[i][0]) + colors[i].Substring(1);
 
