@@ -478,6 +478,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first column", "second column", "first row", "second row" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NonogramColors,
 
+        [SouvenirQuestion("What was the button you pressed in the {1} stage of {0}?", "Odd One Out", 6, "top-left", "top-middle", "top-right", "bottom-left", "bottom-middle", "bottom-right",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        OddOneOutButton,
+
         [SouvenirQuestion("Which Egyptian hieroglyph was in the {1} in {0}?", "Only Connect", 4, "Two Reeds", "Lion", "Twisted Flax", "Horned Viper", "Water", "Eye of Horus",
             ExampleExtraFormatArguments = new[] { "top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         OnlyConnectHieroglyphs,

@@ -171,6 +171,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Necronomicon = "necronomicon";
     const string _Neutralization = "neutralization";
     const string _Nonogram = "NonogramModule";
+    const string _OddOneOut = "OddOneOutModule";
     const string _OnlyConnect = "OnlyConnectModule";
     const string _OrientationCube = "OrientationCube";
     const string _PassportControl = "passportControl";
@@ -334,6 +335,7 @@ public class SouvenirModule : MonoBehaviour
             { _Necronomicon, ProcessNecronomicon },
             { _Neutralization, ProcessNeutralization },
             { _Nonogram, ProcessNonogram },
+            { _OddOneOut, ProcessOddOneOut },
             { _OnlyConnect, ProcessOnlyConnect },
             { _OrientationCube, ProcessOrientationCube },
             { _PassportControl, ProcessPassportControl },
@@ -5376,6 +5378,55 @@ public class SouvenirModule : MonoBehaviour
         };
 
         addQuestions(module, colors.Select((color, index) => makeQuestion(Question.NonogramColors, _Nonogram, new[] { ordinal(index % 5 + 1) + (index >= 5 ? " row" : " column") }, color.Split(' ').Select(c => colorNames[c]).ToArray())));
+    }
+
+    private IEnumerable<object> ProcessOddOneOut(KMBombModule module)
+    {
+        var comp = GetComponent(module, "OddOneOutModule");
+        var fldStages = GetField<Array>(comp, "_stages");
+
+        if(comp == null || fldStages == null)
+            yield break;
+
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+
+        var stages = fldStages.Get();
+
+        if(stages == null)
+            yield break;
+        if(stages.Length != 6)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Odd One Out because '_stages' has unexpected length ({1}; expected 6).", _moduleId, stages.Length);
+            yield break;
+        }
+        if(stages.Cast<object>().Any(x => x == null))
+            yield break;
+
+        string[] btnNames = { "top-left", "top-middle", "top-right", "bottom-left", "bottom-middle", "bottom-right" };
+        var stageBtnFld = stages.Cast<object>().Select(x => GetField<int>(x, "CorrectIndex", isPublic: true));
+
+        if(stageBtnFld.Any(x => x == null))
+            yield break;
+
+        var stageBtn = stageBtnFld.Select(x => x.Get()).ToArray();
+
+        if(stageBtn.Any(x => x < 0 || x >= btnNames.Length))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Odd One Out because '_stages' has at least one 'CorrectIndex' that points to an illegal value.", _moduleId);
+            yield break;
+        }
+
+        _modulesSolved.IncSafe(_OddOneOut);
+        addQuestions(module,
+            makeQuestion(Question.OddOneOutButton, _OddOneOut, new[] { "first" }, new[] { btnNames[stageBtn[0]] } ),
+            makeQuestion(Question.OddOneOutButton, _OddOneOut, new[] { "second" }, new[] { btnNames[stageBtn[1]] } ),
+            makeQuestion(Question.OddOneOutButton, _OddOneOut, new[] { "third" }, new[] { btnNames[stageBtn[2]] } ),
+            makeQuestion(Question.OddOneOutButton, _OddOneOut, new[] { "fourth" }, new[] { btnNames[stageBtn[3]] } ),
+            makeQuestion(Question.OddOneOutButton, _OddOneOut, new[] { "fifth" }, new[] { btnNames[stageBtn[4]] } ),
+            makeQuestion(Question.OddOneOutButton, _OddOneOut, new[] { "sixth" }, new[] { btnNames[stageBtn[5]] } ));
     }
 
     private IEnumerable<object> ProcessOnlyConnect(KMBombModule module)
