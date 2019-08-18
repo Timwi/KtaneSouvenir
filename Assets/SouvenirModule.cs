@@ -165,6 +165,7 @@ public class SouvenirModule : MonoBehaviour
     const string _MonsplodeTradingCards = "monsplodeCards";
     const string _Moon = "moon";
     const string _MorseAMaze = "MorseAMaze";
+    const string _MorseButtons = "morseButtons";
     const string _Morsematics = "MorseV2";
     const string _MorseWar = "MorseWar";
     const string _MouseInTheMaze = "MouseInTheMaze";
@@ -331,6 +332,7 @@ public class SouvenirModule : MonoBehaviour
             { _MonsplodeTradingCards, ProcessMonsplodeTradingCards },
             { _Moon, ProcessMoon },
             { _MorseAMaze, ProcessMorseAMaze },
+            { _MorseButtons, ProcessMorseButtons },
             { _Morsematics, ProcessMorsematics },
             { _MorseWar, ProcessMorseWar },
             { _MouseInTheMaze, ProcessMouseInTheMaze },
@@ -5076,6 +5078,64 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.MorseAMazeStartingCoordinate, _MorseAMaze, correctAnswers: new[] { start }),
             makeQuestion(Question.MorseAMazeEndingCoordinate, _MorseAMaze, correctAnswers: new[] { end }),
             makeQuestion(Question.MorseAMazeMorseCodeWord, _MorseAMaze, correctAnswers: new[] { word }, preferredWrongAnswers: words));
+    }
+
+    private IEnumerable<object> ProcessMorseButtons(KMBombModule module)
+    {
+        var comp = GetComponent(module, "morseButtonsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldLetters = GetField<int[]>(comp, "letters");
+        var fldColors = GetField<int[]>(comp, "colors");
+        var fldAlphabet = GetField<string>(comp, "alphabet");
+
+        if(comp == null || fldSolved == null || fldLetters == null || fldColors == null || fldAlphabet == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        int[] letters = fldLetters.Get();
+        int[] colors = fldColors.Get();
+        string alphabet = fldAlphabet.Get();
+        var colorNames = new[] { "Red", "Blue", "Green", "Yellow", "Orange", "Purple" };
+
+        if(letters == null || colors == null || alphabet == null)
+            yield break;
+        if(letters.Length != 6)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Morse Buttons because 'letters' has length {1} (expected 6).", _moduleId, letters.Length);
+            yield break;
+        }
+        if(colors.Length != 6)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Morse Buttons because 'colors' has length {1} (expected 6).", _moduleId, colors.Length);
+            yield break;
+        }
+        if(letters.Any(x => x < 0 || x >= alphabet.Length))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Morse Buttons because at least one element of 'letters' has an illegal value.", _moduleId);
+            yield break;
+        }
+        if(colors.Any(x => x < 0 || x >= colorNames.Length))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Morse Buttons because at least one element of 'colors' has an illegal value.", _moduleId);
+            yield break;
+        }
+
+        _modulesSolved.IncSafe(_MorseButtons);
+        addQuestions(module,
+            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "character", "first" }, new[] { alphabet[letters[0]].ToString() }, alphabet.ToCharArray().Select(x => x.ToString()).ToArray() ),
+            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "character", "second" }, new[] { alphabet[letters[1]].ToString() }, alphabet.ToCharArray().Select(x => x.ToString()).ToArray() ),
+            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "character", "third" }, new[] { alphabet[letters[2]].ToString() }, alphabet.ToCharArray().Select(x => x.ToString()).ToArray() ),
+            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "character", "fourth" }, new[] { alphabet[letters[3]].ToString() }, alphabet.ToCharArray().Select(x => x.ToString()).ToArray() ),
+            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "character", "fifth" }, new[] { alphabet[letters[4]].ToString() }, alphabet.ToCharArray().Select(x => x.ToString()).ToArray() ),
+            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "character", "sixth" }, new[] { alphabet[letters[5]].ToString() }, alphabet.ToCharArray().Select(x => x.ToString()).ToArray() ),
+            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "color", "first" }, new[] { colorNames[colors[0]].ToString() }, colorNames ),
+            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "color", "second" }, new[] { colorNames[colors[1]].ToString() }, colorNames ),
+            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "color", "third" }, new[] { colorNames[colors[2]].ToString() }, colorNames ),
+            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "color", "fourth" }, new[] { colorNames[colors[3]].ToString() }, colorNames ),
+            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "color", "fifth" }, new[] { colorNames[colors[4]].ToString() }, colorNames ),
+            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "color", "sixth" }, new[] { colorNames[colors[5]].ToString() }, colorNames ));
     }
 
     private IEnumerable<object> ProcessMorsematics(KMBombModule module)

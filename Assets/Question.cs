@@ -440,6 +440,10 @@ namespace Souvenir
             ExampleAnswers = new[] { "couch", "strobe", "smoke", "assay", "monkey", "glass", "starts", "strode", "office", "essays", "couple", "bosses" })]
         MorseAMazeMorseCodeWord,
 
+        [SouvenirQuestion("What was the {1} flashed by the {2} button in {0}?", "Morse Buttons", 6, null,
+            ExampleExtraFormatArguments = new[] { "character", "first", "character", "second", "character", "third", "character", "fourth", "character", "fifth", "character", "sixth", "color", "first", "color", "second", "color", "third", "color", "fourth", "color", "fifth", "color", "sixth" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        MorseButtonsButton,
+
         [SouvenirQuestion("What was the {1} received letter in {0}?", "Morsematics", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MorsematicsReceivedLetters,
