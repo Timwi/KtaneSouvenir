@@ -91,6 +91,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Boggle = "boggle";
     const string _Braille = "BrailleModule";
     const string _BrokenButtons = "BrokenButtonsModule";
+    const string _BrushStrokes = "brushStrokes";
     const string _Bulb = "TheBulbModule";
     const string _BurglarAlarm = "burglarAlarm";
     const string _ButtonSequences = "buttonSequencesModule";
@@ -253,6 +254,7 @@ public class SouvenirModule : MonoBehaviour
             { _Boggle, ProcessBoggle },
             { _Braille, ProcessBraille },
             { _BrokenButtons, ProcessBrokenButtons },
+            { _BrushStrokes, ProcessBrushStrokes },
             { _Bulb, ProcessBulb },
             { _BurglarAlarm, ProcessBurglarAlarm },
             { _ButtonSequences, ProcessButtonSequences },
@@ -7067,6 +7069,39 @@ public class SouvenirModule : MonoBehaviour
         goodLabel.text = "ACCEPTED";
 
         addQuestion(module, Question.SynonymsNumber, correctAnswers: new[] { number.ToString() });
+    }
+
+    private IEnumerable<object> ProcessBrushStrokes(KMBombModule module)
+    {
+        var comp = GetComponent(module, "BrushStrokesScript");
+        var fldSolved = GetField<bool>(comp, "solved");
+        var fldColorNames = GetStaticField<string[]>(comp.GetType(), "colorNames");
+        var fldColors = GetField<int[]>(comp, "colors");
+
+        if(comp == null || fldSolved == null || fldColorNames == null || fldColors == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        string[] colorNames = fldColorNames.Get();
+        int[] colors = fldColors.Get();
+
+        if(colorNames == null || colors == null)
+            yield break;
+        if(colors.Length != 9)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Brush Strikes because 'colors' had unexpected length {1} (expected 9).", _moduleId, colors.Length);
+            yield break;
+        }
+        if(colors[4] < 0 || colors[4] >= colorNames.Length)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Brush Strikes because 'colors[4]' pointed to illegal color: {1}.", _moduleId, colors[4]);
+            yield break;
+        }
+
+        _modulesSolved.IncSafe(_BrushStrokes);
+        addQuestion(module, Question.BrushStrokesMiddleColor, correctAnswers: new[] { Char.ToUpperInvariant(colorNames[colors[4]][0]) + colorNames[colors[4]].Substring(1) });
     }
 
     private IEnumerable<object> ProcessBulb(KMBombModule module)
