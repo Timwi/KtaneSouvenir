@@ -152,6 +152,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Mafia = "MafiaModule";
     const string _Mahjong = "MahjongModule";
     const string _MaritimeFlags = "MaritimeFlagsModule";
+    const string _Maze3 = "maze3";
     const string _Mazematics = "mazematics";
     const string _MazeScrambler = "MazeScrambler";
     const string _MegaMan2 = "megaMan2";
@@ -317,6 +318,7 @@ public class SouvenirModule : MonoBehaviour
             { _Mafia, ProcessMafia },
             { _Mahjong, ProcessMahjong },
             { _MaritimeFlags, ProcessMaritimeFlags },
+            { _Maze3, ProcessMaze3 },
             { _Mazematics, ProcessMazematics },
             { _MazeScrambler, ProcessMazeScrambler },
             { _MegaMan2, ProcessMegaMan2 },
@@ -4467,6 +4469,34 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.MaritimeFlagsBearing, _MaritimeFlags, correctAnswers: new[] { bearing.ToString() }),
             makeQuestion(Question.MaritimeFlagsCallsign, _MaritimeFlags, correctAnswers: new[] { callsign.ToLowerInvariant() }));
+    }
+
+    private IEnumerable<object> ProcessMaze3(KMBombModule module)
+    {
+        var comp = GetComponent(module, "maze3Script");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldNode = GetField<int>(comp, "node");
+        
+        if(comp == null || fldSolved == null || fldNode == null)
+            yield break;
+
+        // wait for Start()
+        yield return null;
+
+        var node = fldNode.Get();
+        var colors = new[] { "Red", "Blue", "Yellow", "Green", "Magenta", "Orange"};
+
+        if(node < 0 || node > 53)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Maze³ because either 'node' has illegal value: {1}.", _moduleId, node);
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_Maze3);
+        addQuestion(module, Question.Maze3StartingFace, correctAnswers: new[] { colors[node / 9] });
     }
 
     private IEnumerable<object> ProcessMazematics(KMBombModule module)
