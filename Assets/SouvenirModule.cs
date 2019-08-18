@@ -152,6 +152,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Mafia = "MafiaModule";
     const string _Mahjong = "MahjongModule";
     const string _MaritimeFlags = "MaritimeFlagsModule";
+    const string _Mazematics = "mazematics";
     const string _MazeScrambler = "MazeScrambler";
     const string _MegaMan2 = "megaMan2";
     const string _MelodySequencer = "melodySequencer";
@@ -316,6 +317,7 @@ public class SouvenirModule : MonoBehaviour
             { _Mafia, ProcessMafia },
             { _Mahjong, ProcessMahjong },
             { _MaritimeFlags, ProcessMaritimeFlags },
+            { _Mazematics, ProcessMazematics },
             { _MazeScrambler, ProcessMazeScrambler },
             { _MegaMan2, ProcessMegaMan2 },
             { _MelodySequencer, ProcessMelodySequencer },
@@ -4465,6 +4467,39 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.MaritimeFlagsBearing, _MaritimeFlags, correctAnswers: new[] { bearing.ToString() }),
             makeQuestion(Question.MaritimeFlagsCallsign, _MaritimeFlags, correctAnswers: new[] { callsign.ToLowerInvariant() }));
+    }
+
+    private IEnumerable<object> ProcessMazematics(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Mazematics");
+        var fldStartVal = GetField<int>(comp, "startValue");
+        var fldGoalVal = GetField<int>(comp, "goalValue");
+
+        if(comp == null || fldStartVal == null || fldGoalVal == null)
+            yield break;
+
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+
+        var startVal = fldStartVal.Get().ToString();
+        var goalVal = fldGoalVal.Get().ToString();
+
+        string[] possibleStartVals = Enumerable.Range(17, 33).Select(x => x.ToString()).ToArray();
+        string[] possibleGoalVals = Enumerable.Range(0, 50).Select(x => x.ToString()).ToArray();
+
+        if(!possibleStartVals.Contains(startVal) || !possibleGoalVals.Contains(goalVal))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Mazemativs because either 'startValue' or 'goalValue' has illegal value (startVal = {1}; goalVal = {2}).", _moduleId, startVal, goalVal);
+            yield break;
+        }
+
+        _modulesSolved.IncSafe(_Mazematics);
+        addQuestions(module,
+            makeQuestion(Question.MazematicsValue, _Mazematics, new[] { "initial" }, new[] { startVal }, possibleStartVals ),
+            makeQuestion(Question.MazematicsValue, _Mazematics, new[] { "goal" }, new[] { goalVal }, possibleGoalVals ));
+            
     }
 
     private IEnumerable<object> ProcessMazeScrambler(KMBombModule module)
