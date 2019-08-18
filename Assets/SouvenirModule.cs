@@ -111,6 +111,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Crackbox = "CrackboxModule";
     const string _Creation = "CreationModule";
     const string _Cube = "cube";
+    const string _DeckOfManyThings = "deckOfManyThings";
     const string _DecoloredSquares = "DecoloredSquaresModule";
     const string _DiscoloredSquares = "DiscoloredSquaresModule";
     const string _DividedSquares = "DividedSquaresModule";
@@ -278,6 +279,7 @@ public class SouvenirModule : MonoBehaviour
             { _Crackbox, ProcessCrackbox },
             { _Creation, ProcessCreation },
             { _Cube, ProcessCube },
+            { _DeckOfManyThings, ProcessDeckOfManyThings },
             { _DecoloredSquares, ProcessDecoloredSquares },
             { _DiscoloredSquares, ProcessDiscoloredSquares },
             { _DividedSquares, ProcessDividedSquares },
@@ -2575,6 +2577,69 @@ public class SouvenirModule : MonoBehaviour
         var allRotations = rotations.Select(r => rotationNames[r]).ToArray();
 
         addQuestions(module, rotations.Select((rot, ix) => makeQuestion(Question.CubeRotations, _Cube, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { rotationNames[rot] }, preferredWrongAnswers: allRotations)));
+    }
+
+    private IEnumerable<object> ProcessDeckOfManyThings(KMBombModule module)
+    {
+        var comp = GetComponent(module, "deckOfManyThingsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldDeck = GetField<Array>(comp, "deck");
+        var fldBtns = GetField<KMSelectable[]>(comp, "btns", isPublic: true);
+        var fldPrevCard = GetField<KMSelectable>(comp, "prevCard", isPublic: true);
+        var fldNextCard = GetField<KMSelectable>(comp, "nextCard", isPublic: true);
+
+        if(comp == null || fldSolved == null || fldDeck == null || fldBtns == null || fldPrevCard == null || fldNextCard == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        KMSelectable[] btns = fldBtns.Get();
+
+        if(btns == null)
+            yield break;
+        if(btns.Length != 2)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning The Deck of Many Things because 'btns' has unexpected length {1} (expected 2).", _moduleId, btns.Length);
+            yield break;
+        }
+
+        var deck = fldDeck.Get();
+        KMSelectable prevCard = fldPrevCard.Get();
+        KMSelectable nextCard = fldNextCard.Get();
+
+        if(deck == null || prevCard == null || nextCard == null || btns.Any(x => x == null))
+            yield break;
+        if(deck.Length == 0)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Decolored Squares because the 'deck' contained no cards.", _moduleId);
+            yield break;
+        }
+
+        prevCard.OnInteract = delegate
+        {
+            return false;
+        };
+        nextCard.OnInteract = delegate
+        {
+            return false;
+        };
+        foreach(KMSelectable btn in btns)
+            btn.OnInteract = delegate
+            {
+                Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, module.transform);
+                btn.AddInteractionPunch(0.5f);
+                return false;
+            };
+
+        string firstCardDeck = deck.GetValue(0).GetType().ToString().Replace("Card", "");
+
+        // correcting my original misplelling
+        if(firstCardDeck == "Artic")
+            firstCardDeck = "Arctic";
+
+        _modulesSolved.IncSafe(_DeckOfManyThings);
+        addQuestion(module, Question.DeckOfManyThingsFirstCard, correctAnswers: new[] { firstCardDeck });
     }
 
     private IEnumerable<object> ProcessDecoloredSquares(KMBombModule module)

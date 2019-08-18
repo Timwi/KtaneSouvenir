@@ -169,6 +169,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         CubeRotations,
 
+        [SouvenirQuestion("What deck did the first card of {0} belong to?", "Deck of Many Things", 4, "Standard", "Metropolitan", "Maritime", "Arctic", "Tropical", "Oasis", "Celestial", AddThe = true)]
+        DeckOfManyThingsFirstCard,
+
         [SouvenirQuestion("What was the starting {1} defining color in {0}?", "Decolored Squares", 6, "White", "Red", "Blue", "Green", "Yellow", "Magenta",
             ExampleExtraFormatArguments = new[] { "column", "row" }, ExampleExtraFormatArgumentGroupSize = 1)]
         DecoloredSquaresStartingPos,
