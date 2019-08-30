@@ -129,7 +129,7 @@ namespace Souvenir
         [SouvenirQuestion("What was the color of the {1} key in {0}?", "Colored Keys", 6, null, ExampleAnswers = new[] { "blue", "white" },
             ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ColoredKeysKeyColor,
-        [SouvenirQuestion("What was the letter of the {1} key in {0}?", "Colored Keys", 6, null, ExampleAnswers = new[] { "A", "Z" },
+        [SouvenirQuestion("What letter was on the {1} key in {0}?", "Colored Keys", 6, null, ExampleAnswers = new[] { "A", "Z" },
             ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ColoredKeysKeyLetter,
 
@@ -477,7 +477,6 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the acid’s color in {0}?", "Neutralization", 4, "Yellow", "Green", "Red", "Blue")]
         NeutralizationColor,
-
         [SouvenirQuestion("What was the acid’s volume in {0}?", "Neutralization", 6, "0", "5", "10", "15", "20", "25")]
         NeutralizationVolume,
 
