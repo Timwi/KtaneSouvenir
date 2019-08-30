@@ -2876,24 +2876,31 @@ public class SouvenirModule : MonoBehaviour
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_FactoryMaze);
 
         string[] usedRooms = fldUsedRooms.Get();
         int startRoom = fldStartRoom.Get();
 
-        if(usedRooms == null)
+        if (usedRooms == null)
             yield break;
-        if(usedRooms.Length != 5)
+        if (usedRooms.Length != 5)
         {
-            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Factory Maze expected 'usedRooms' to have length 5, but was {1}.", _moduleId, usedRooms.Length);
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Factory Maze: expected 'usedRooms' to have length 5, but was {1}.", _moduleId, usedRooms.Length);
             yield break;
         }
-        if(startRoom < 0 || startRoom >= usedRooms.Length)
+        if (startRoom < 0 || startRoom >= usedRooms.Length)
         {
-            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Factory Maze 'startRoom' pointed to an unnexpected room: {1}.", _moduleId, startRoom);
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Factory Maze: 'startRoom' pointed to an unnexpected room: {1}.", _moduleId, startRoom);
             yield break;
         }
 
-        _modulesSolved.IncSafe(_FactoryMaze);
+        // Shorten long names by cutting off everything after a newline
+        usedRooms = usedRooms.Select(ur =>
+        {
+            var p = ur.IndexOf('\n');
+            return p >= 0 ? ur.Substring(0, p) + "..." : ur;
+        }).ToArray();
+
         addQuestion(module, Question.FactoryMazeStartRoom, correctAnswers: new[] { usedRooms[startRoom] }, preferredWrongAnswers: usedRooms);
     }
 
@@ -3156,9 +3163,6 @@ public class SouvenirModule : MonoBehaviour
             Debug.LogFormat(@"<Souvenir #{0}> Abandoning The Giant's Drink because 'evenStrikes' or 'oddStrikes' pointed to illegal goblet: {1}.", _moduleId, sol);
             yield break;
         }
-
-         while (!fldSolved.Get())
-            yield return new WaitForSeconds(0.1f);
 
         _modulesSolved.IncSafe(_GiantsDrink);
         addQuestion(module, Question.GiantsDrinkLiquid, correctAnswers: new[] { liquidNames[liquids[sol]] });
@@ -7878,9 +7882,9 @@ public class SouvenirModule : MonoBehaviour
         
         _modulesSolved.IncSafe(_Vexillology);
         addQuestions(module,
-            makeQuestion(Question.VexillologyColors, _Vexillology, new[] { "first" }, new[] { colors[color1] }, new[] { colors[color2], colors[color3] } ),
-            makeQuestion(Question.VexillologyColors, _Vexillology, new[] { "first" }, new[] { colors[color2] }, new[] { colors[color1], colors[color3] } ),
-            makeQuestion(Question.VexillologyColors, _Vexillology, new[] { "first" }, new[] { colors[color3] }, new[] { colors[color2], colors[color1] } ));
+            makeQuestion(Question.VexillologyColors, _Vexillology, new[] { "first" }, new[] { colors[color1] }, new[] { colors[color2], colors[color3] }),
+            makeQuestion(Question.VexillologyColors, _Vexillology, new[] { "second" }, new[] { colors[color2] }, new[] { colors[color1], colors[color3] }),
+            makeQuestion(Question.VexillologyColors, _Vexillology, new[] { "third" }, new[] { colors[color3] }, new[] { colors[color2], colors[color1] }));
     }
 
     private IEnumerable<object> ProcessVisualImpairment(KMBombModule module)
