@@ -112,6 +112,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Creation = "CreationModule";
     const string _Cube = "cube";
     const string _DeckOfManyThings = "deckOfManyThings";
+    const string _DecoloredSquares = "DecoloredSquaresModule";
     const string _DiscoloredSquares = "DiscoloredSquaresModule";
     const string _DoubleColor = "doubleColor";
     const string _DoubleOh = "DoubleOhModule";
@@ -278,6 +279,7 @@ public class SouvenirModule : MonoBehaviour
             { _Creation, ProcessCreation },
             { _Cube, ProcessCube },
             { _DeckOfManyThings, ProcessDeckOfManyThings },
+            { _DecoloredSquares, ProcessDecoloredSquares },
             { _DiscoloredSquares, ProcessDiscoloredSquares },
             { _DoubleColor, ProcessDoubleColor },
             { _DoubleOh, ProcessDoubleOh },
@@ -2631,6 +2633,31 @@ public class SouvenirModule : MonoBehaviour
             firstCardDeck = "Arctic";
 
         addQuestion(module, Question.DeckOfManyThingsFirstCard, correctAnswers: new[] { firstCardDeck });
+    }
+
+    private IEnumerable<object> ProcessDecoloredSquares(KMBombModule module)
+    {
+        var comp = GetComponent(module, "DecoloredSquaresModule");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+        var fldColColor = GetField<string>(comp, "_color1");
+        var fldRowColor = GetField<string>(comp, "_color2");
+
+        if (comp == null || fldSolved == null || fldColColor == null || fldRowColor == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_DecoloredSquares);
+
+        var colColor = fldColColor.Get();
+        var rowColor = fldRowColor.Get();
+
+        if (colColor == null || rowColor == null)
+            yield break;
+
+        addQuestions(module,
+            makeQuestion(Question.DecoloredSquaresStartingPos, _DecoloredSquares, new[] { "column" }, new[] { colColor }),
+            makeQuestion(Question.DecoloredSquaresStartingPos, _DecoloredSquares, new[] { "row" }, new[] { rowColor }));
     }
 
     private IEnumerable<object> ProcessDiscoloredSquares(KMBombModule module)
