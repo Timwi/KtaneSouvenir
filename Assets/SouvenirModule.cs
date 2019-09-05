@@ -5604,26 +5604,20 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "passportControlScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldName = GetField<string>(comp, "name");
-        var fldNationality = GetField<string>(comp, "ethnicity");
-        var fldForenames = GetField<string[]>(comp, "forenames", isPublic: true);
-        var fldSurnames = GetField<string[]>(comp, "surnames", isPublic: true);
-        var fldNationalities = GetField<string[]>(comp, "ethnics", isPublic: true);
+        var fldPassages = GetField<int>(comp, "passages");
+        var fldExpiration = GetField<int[]>(comp, "expiration");
         var fldStamps = GetField<KMSelectable[]>(comp, "stamps", isPublic: true);
         var fldTextToHide1 = GetField<GameObject[]>(comp, "passport", isPublic: true);
         var fldTextToHide2 = GetField<GameObject>(comp, "ticket", isPublic: true);
 
-        if (comp == null || fldSolved == null || fldName == null || fldNationality == null || fldForenames == null || fldSurnames == null || fldNationalities == null || fldStamps == null || fldTextToHide1 == null || fldTextToHide2 == null)
+        if (comp == null || fldSolved == null || fldPassages == null || fldExpiration == null || fldStamps == null || fldTextToHide1 == null || fldTextToHide2 == null)
             yield break;
 
-        var forenames = fldForenames.Get();
-        var surnames = fldSurnames.Get();
-        var nationalities = fldNationalities.Get();
         var stamps = fldStamps.Get();
         var textToHide1 = fldTextToHide1.Get();
         var textToHide2 = fldTextToHide2.Get();
 
-        if (forenames == null || surnames == null || nationalities == null || stamps == null || textToHide1 == null || textToHide2 == null)
+        if (stamps == null || textToHide1 == null || textToHide2 == null)
             yield break;
 
         var textToHide = new List<TextMesh>();
@@ -5644,9 +5638,7 @@ public class SouvenirModule : MonoBehaviour
         }
         textToHide.Add(textToHide2.GetComponent<TextMesh>());
 
-        var passportFirstNames = new List<string>();
-        var passportLastNames = new List<string>();
-        var passportNationalities = new List<string>();
+        var expirationDates = new List<int>();
 
         for (int i = 0; i < stamps.Length; i++)
         {
@@ -5659,27 +5651,21 @@ public class SouvenirModule : MonoBehaviour
             stamps[i].OnInteract = delegate
             {
                 // if an error occurs, function returns earlier and no info is added to lists. The error is caught later when list length is checked.
-                var name = fldName.Get();
-                var nat = fldNationality.Get();
+                var date = fldExpiration.Get();
 
-                if (name == null || nat == null)
+                if (date == null || date.Length != 3)
                     return oldHandler();
 
-                var names = name.Split(' ');
+                var year = date[2];
 
-                if (names.Length != 2)
-                    return oldHandler();
-
-                var strikes = Bomb.GetStrikes();
+                var passages = fldPassages.Get();
 
                 var ret = oldHandler();
 
-                if (Bomb.GetStrikes() != strikes) // player got strike, ignoring retrieved info
+                if (fldPassages.Get() == passages) // player got strike, ignoring retrieved info
                     return ret;
 
-                passportFirstNames.Add(names[0]);
-                passportLastNames.Add(names[1]);
-                passportNationalities.Add(nat);
+                expirationDates.Add(year);
                 return ret;
             };
         }
@@ -5687,26 +5673,30 @@ public class SouvenirModule : MonoBehaviour
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
 
-        if (passportFirstNames.Count != 3 || passportLastNames.Count != 3 || passportNationalities.Count != 3)
+        if (expirationDates.Count != 3)
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Passport Control because the number of retrieved sets of information wasn't 3 ({1}, {2}, {3}).", _moduleId, passportFirstNames.Count, passportLastNames.Count, passportNationalities.Count);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Passport Control because the number of retrieved sets of information wasn't 3 (was {1}).", _moduleId, expirationDates.Count);
             yield break;
         }
 
         for (int i = 0; i < textToHide.Count; i++)
             textToHide[i].text = "";
 
+        List<string[]> altDates = new List<string[]>();
+
+        for (int i = 0; i < expirationDates.Count; i++)
+        {
+            altDates.Add(new string[6]);
+            int startVal = expirationDates[i] - Rnd.Range(0, 6);
+            for (int j = 0; j < altDates[i].Length; j++)
+                altDates[i][j] = (startVal + j).ToString();
+        }
+
         _modulesSolved.IncSafe(_PassportControl);
         addQuestions(module,
-            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "first", "first name" }, new[] { passportFirstNames[0] }, forenames),
-            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "second", "first name" }, new[] { passportFirstNames[1] }, forenames),
-            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "third", "first name" }, new[] { passportFirstNames[2] }, forenames),
-            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "first", "last name" }, new[] { passportLastNames[0] }, surnames),
-            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "second", "last name" }, new[] { passportLastNames[1] }, surnames),
-            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "third", "last name" }, new[] { passportLastNames[2] }, surnames),
-            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "first", "nationality" }, new[] { passportNationalities[0] }, nationalities),
-            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "second", "nationality" }, new[] { passportNationalities[1] }, nationalities),
-            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "third", "nationality" }, new[] { passportNationalities[2] }, nationalities));
+            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "first" }, new[] { expirationDates[0].ToString() }, altDates[0]),
+            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "second" }, new[] { expirationDates[1].ToString() }, altDates[1]),
+            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "third" }, new[] { expirationDates[2].ToString() }, altDates[2]));
     }
 
     private IEnumerable<object> ProcessPatternCube(KMBombModule module)

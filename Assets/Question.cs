@@ -499,8 +499,8 @@ namespace Souvenir
         [SouvenirQuestion("What was the observer’s intial position in {0}?", "Orientation Cube", 4, "front", "left", "back", "right")]
         OrientationCubeInitialObserverPosition,
 
-        [SouvenirQuestion("What was the {2} of the {1} correctly inspected passenger in {0}?", "Passport Control", 4, null,
-            ExampleExtraFormatArguments = new[] { "first", "first name", "first", "last name", "first", "nationality", "second", "first name", "second", "last name", "second", "nationality", "third", "first name", "third", "last name", "third", "nationality" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        [SouvenirQuestion("What was the passport expiration year of the {1} correctly inspected passenger in {0}?", "Passport Control", 6, null,
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PassportControlPassenger,
 
         [SouvenirQuestion("At which position in the selection bar on the left, counting from the {1}, was the highlight in {0}?", "Pattern Cube", 6, "first", "second", "third", "4th", "5th",
