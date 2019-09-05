@@ -124,7 +124,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the displayed word in {0}?", "Colored Keys", 6, null, ExampleAnswers = new[] { "blue", "white" })]
         ColoredKeysDisplayWord,
-        [SouvenirQuestion("What was the displayed word's color in {0}?", "Colored Keys", 6, null, ExampleAnswers = new[] { "blue", "white" })]
+        [SouvenirQuestion("What was the displayed word’s color in {0}?", "Colored Keys", 6, null, ExampleAnswers = new[] { "blue", "white" })]
         ColoredKeysDisplayWordColor,
         [SouvenirQuestion("What was the color of the {1} key in {0}?", "Colored Keys", 6, null, ExampleAnswers = new[] { "blue", "white" },
             ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -176,7 +176,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "column", "row" }, ExampleExtraFormatArgumentGroupSize = 1)]
         DecoloredSquaresStartingPos,
 
-        [SouvenirQuestion("What was {1}'s remembered position in {0}?", "Discolored Squares", 6, null, Type = AnswerType.Sprites,
+        [SouvenirQuestion("What was {1}’s remembered position in {0}?", "Discolored Squares", 6, null, Type = AnswerType.Sprites,
             ExampleExtraFormatArguments = new[] { "Blue", "Red", "Yellow", "Green", "Magenta" }, ExampleExtraFormatArgumentGroupSize = 1)]
         DiscoloredSquaresRememberedPositions,
 
@@ -218,7 +218,7 @@ namespace Souvenir
         FlashingLightsLEDFrequency,
 
         [SouvenirQuestion("What was the player token in {0}?", "Free Parking", 6, "Dog", "Wheelbarrow", "Cat", "Iron", "Top Hat", "Car", "Battleship")]
-        FreeParkingTokens,
+        FreeParkingToken,
 
         [SouvenirQuestion("What was the last digit of your first query’s result in {0}?", "Functions", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
         FunctionsLastDigit,
@@ -232,7 +232,7 @@ namespace Souvenir
         [SouvenirQuestion("What were the numbers on {0}?", "Gamepad", 6, null, AddThe = true, ExampleAnswers = new[] { "01:03", "12:92", "84:72", "24:56" })]
         GamepadNumbers,
 
-        [SouvenirQuestion("What was the color of the liquid you drank in {0}?", "Giant's Drink", 6, "Red", "Blue", "Green", "Orange", "Purple", "Cyan", AddThe = true)]
+        [SouvenirQuestion("What was the color of the liquid you drank in {0}?", "Giant’s Drink", 6, "Red", "Blue", "Green", "Orange", "Purple", "Cyan", AddThe = true)]
         GiantsDrinkLiquid,
 
         [SouvenirQuestion("What was the starting location in {0}?", "Gridlock", 6, "A1", "B1", "C1", "D1", "A2", "B2", "C2", "D2", "A3", "B3", "C3", "D3", "A4", "B4", "C4", "D4")]
@@ -251,7 +251,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What label was printed on {0}?", "Hexabutton", 6, "Jump", "Boom", "Claim", "Button", "Hold", "Blue", AddThe = true)]
         HexabuttonLabel,
-        
+
         [SouvenirQuestion("What was the color of the pawn in {0}?", "Hexamaze", 6, "Red", "Yellow", "Green", "Cyan", "Blue", "Pink")]
         HexamazePawnColor,
 
@@ -372,7 +372,7 @@ namespace Souvenir
         [SouvenirQuestion("What was the color of the starting face in {0}?", "Maze³", 6, "Red", "Blue", "Yellow", "Green", "Magenta", "Orange")]
         Maze3StartingFace,
 
-        [SouvenirQuestion("Which was the {1} value in {0}?", "Mazematics", 6, null, ExampleAnswers = new [] { "30", "42", "51"},
+        [SouvenirQuestion("Which was the {1} value in {0}?", "Mazematics", 6, null, ExampleAnswers = new[] { "30", "42", "51" },
             ExampleExtraFormatArguments = new[] { "initial", "goal" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MazematicsValue,
 
@@ -475,7 +475,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "knight", "skull" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MysticSquareKnightSkull,
 
-        [SouvenirQuestion("Where was the chapter number of the {1} page in {0}?", "Necronomicon", 6, null, ExampleAnswers = new[] { "1", "24", "36" }, AddThe = true, 
+        [SouvenirQuestion("What was the chapter number of the {1} page in {0}?", "Necronomicon", 6, null, ExampleAnswers = new[] { "1", "24", "36" }, AddThe = true,
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth", "seventh" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NecronomiconChapters,
 
@@ -499,7 +499,7 @@ namespace Souvenir
         [SouvenirQuestion("What was the observer’s intial position in {0}?", "Orientation Cube", 4, "front", "left", "back", "right")]
         OrientationCubeInitialObserverPosition,
 
-        [SouvenirQuestion("What was the {2} of the the {1} correctly inspected passenger in {0}?", "Passport Control", 4, null,
+        [SouvenirQuestion("What was the {2} of the {1} correctly inspected passenger in {0}?", "Passport Control", 4, null,
             ExampleExtraFormatArguments = new[] { "first", "first name", "first", "last name", "first", "nationality", "second", "first name", "second", "last name", "second", "nationality", "third", "first name", "third", "last name", "third", "nationality" }, ExampleExtraFormatArgumentGroupSize = 2)]
         PassportControlPassenger,
 
@@ -542,7 +542,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "red", "blue", "orange", "green", "pink" }, ExampleExtraFormatArgumentGroupSize = 1)]
         QuintuplesColorCounts,
 
-        [SouvenirQuestion("Which one of these houses was on offer, but not chosen by Bob in {0}?", "Retirement", 4, null, ExampleAnswers = new [] { "Hotham Place", "Homestead", "Riverwell", "Lodge Park" })]
+        [SouvenirQuestion("Which one of these houses was on offer, but not chosen by Bob in {0}?", "Retirement", 4, null, ExampleAnswers = new[] { "Hotham Place", "Homestead", "Riverwell", "Lodge Park" })]
         RetirementHouses,
 
         [SouvenirQuestion("What was the {1} character in the {2} message of {0}?", "Reverse Morse", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",

@@ -3093,7 +3093,7 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
 
         _modulesSolved.IncSafe(_FreeParking);
-        addQuestion(module, Question.FreeParkingTokens, correctAnswers: new[] { tokens[selected].name });
+        addQuestion(module, Question.FreeParkingToken, correctAnswers: new[] { tokens[selected].name });
     }
 
     private IEnumerable<object> ProcessFunctions(KMBombModule module)
