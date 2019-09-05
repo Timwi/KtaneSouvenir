@@ -2582,12 +2582,13 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "deckOfManyThingsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldSolution = GetField<int>(comp, "solution");
         var fldDeck = GetField<Array>(comp, "deck");
         var fldBtns = GetField<KMSelectable[]>(comp, "btns", isPublic: true);
         var fldPrevCard = GetField<KMSelectable>(comp, "prevCard", isPublic: true);
         var fldNextCard = GetField<KMSelectable>(comp, "nextCard", isPublic: true);
 
-        if (comp == null || fldSolved == null || fldDeck == null || fldBtns == null || fldPrevCard == null || fldNextCard == null)
+        if (comp == null || fldSolved == null || fldSolution == null || fldDeck == null || fldBtns == null || fldPrevCard == null || fldNextCard == null)
             yield break;
 
         while (!fldSolved.Get())
@@ -2631,6 +2632,15 @@ public class SouvenirModule : MonoBehaviour
         // correcting original misspelling
         if (firstCardDeck == "Artic")
             firstCardDeck = "Arctic";
+
+        var solution = fldSolution.Get();
+
+        if(solution == 0)
+        {
+            Debug.LogFormat("[Souvenir #{0}] No question for The Deck of Many Things because the solution was the first card.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
 
         addQuestion(module, Question.DeckOfManyThingsFirstCard, correctAnswers: new[] { firstCardDeck });
     }
