@@ -8057,7 +8057,7 @@ public class SouvenirModule : MonoBehaviour
         {
             Debug.LogFormat("[Souvenir #{0}] No question for Yahtzee because the first roll was a Yahtzee.", _moduleId);
             _legitimatelyNoQuestions.Add(module);
-            yield break;
+            result = null;
         }
         else if (diceValues.Contains(2) && diceValues.Contains(3) && diceValues.Contains(4) && diceValues.Contains(5) && (diceValues.Contains(1) || diceValues.Contains(6)))
             result = "large straight";
@@ -8080,14 +8080,15 @@ public class SouvenirModule : MonoBehaviour
         {
             Debug.LogFormat("[Souvenir #{0}] No question for Yahtzee because the first roll was nothing.", _moduleId);
             _legitimatelyNoQuestions.Add(module);
-            yield break;
+            result = null;
         }
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
-
         _modulesSolved.IncSafe(_Yahtzee);
-        addQuestion(module, Question.YahtzeeInitialRoll, correctAnswers: new[] { result });
+
+        if (result != null)
+            addQuestion(module, Question.YahtzeeInitialRoll, correctAnswers: new[] { result });
     }
 
     private IEnumerable<object> ProcessZoni(KMBombModule module)
