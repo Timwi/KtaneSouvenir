@@ -1700,26 +1700,20 @@ public class SouvenirModule : MonoBehaviour
         string[] validLabels = { "BOB", "CAR", "CLR", "IND", "FRK", "FRQ", "MSA", "NSA", "SIG", "SND", "TRN", "BUB", "DOG", "ETC", "KEY" };
 
         int[] indicators = fldIndicators.Get();
-        if (indicators.Length != 4)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Bob Barks because ‘assigned’ has unexpected length ({1}).", _moduleId, indicators.Length);
+        if (indicators == null)
             yield break;
-        }
-        if (indicators.Any(idn => idn < 0 || idn > validLabels.Length))
+        if (indicators.Length != 4 || indicators.Any(idn => idn < 0 || idn >= validLabels.Length))
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Bob Barks because ‘assigned’ has an unexpected value in it [{1}].", _moduleId, indicators.JoinString(", "));
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Bob Barks because ‘assigned’ has unexpected length or an unexpected value in it [{1}].", _moduleId, indicators.JoinString(", "));
             yield break;
         }
 
         int[] flashes = fldFlashes.Get();
-        if (flashes.Length != 5)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Bob Barks because ‘stages’ has unexpected length ({1}).", _moduleId, flashes.Length);
+        if (flashes == null)
             yield break;
-        }
-        if (flashes.Any(fn => fn < 0 || fn > validDirections.Length))
+        if (flashes.Length != 5 || flashes.Any(fn => fn < 0 || fn >= validDirections.Length))
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Bob Barks because ‘stages’ has an unexpected value in it [{1}].", _moduleId, indicators.JoinString(", "));
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Bob Barks because ‘stages’ has unexpected length or an unexpected value in it [{1}].", _moduleId, indicators.JoinString(", "));
             yield break;
         }
 
@@ -1727,14 +1721,14 @@ public class SouvenirModule : MonoBehaviour
         string[] labelsOnModule = { validLabels[indicators[0]], validLabels[indicators[1]], validLabels[indicators[2]], validLabels[indicators[3]] };
 
         addQuestions(module,
-            Enumerable.Range(0, 4).Select(ix => makeQuestion(Question.BobBarksIndicators, _BobBarks, 
-                correctAnswers: new[] { labelsOnModule[ix] }, 
+            Enumerable.Range(0, 4).Select(ix => makeQuestion(Question.BobBarksIndicators, _BobBarks,
+                correctAnswers: new[] { labelsOnModule[ix] },
                 formatArgs: new[] { validDirections[ix] },
                 preferredWrongAnswers: labelsOnModule.Except(new[] { labelsOnModule[ix] }).ToArray()
             )).Concat(
-            Enumerable.Range(0, 5).Select(ix => makeQuestion(Question.BobBarksPositions, _BobBarks, 
-                correctAnswers: new[] { validDirections[flashes[ix]] }, 
-                formatArgs: new[] { ordinal(ix + 1) } ))
+            Enumerable.Range(0, 5).Select(ix => makeQuestion(Question.BobBarksPositions, _BobBarks,
+                correctAnswers: new[] { validDirections[flashes[ix]] },
+                formatArgs: new[] { ordinal(ix + 1) }))
             ));
     }
 
