@@ -61,6 +61,13 @@ namespace Souvenir
         [SouvenirQuestion("What was the last letter pressed on {0}?", "Blockbusters", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")]
         BlockbustersLastLetter,
 
+        [SouvenirQuestion("What was the {1} indicator label in {0}?", "Bob Barks", 6, "BOB", "CAR", "CLR", "IND", "FRK", "FRQ", "MSA", "NSA", "SIG", "SND", "TRN", "BUB", "DOG", "ETC", "KEY",
+            ExampleExtraFormatArguments = new[] { "top left", "top right", "bottom left", "bottom right" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        BobBarksIndicators,
+        [SouvenirQuestion("Which button flashed {1} in sequence in {0}?", "Bob Barks", 4, "top left", "top right", "bottom left", "bottom right",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        BobBarksPositions,
+
         [SouvenirQuestion("What letter was initially visible on {0}?", "Boggle", 6, null, ExampleAnswers = new[] { "A", "E", "G", "M", "T", "W" })]
         BoggleLetters,
 

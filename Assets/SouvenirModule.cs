@@ -88,6 +88,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Bitmaps = "BitmapsModule";
     const string _BlindMaze = "BlindMaze";
     const string _Blockbusters = "blockbusters";
+    const string _BobBarks = "ksmBobBarks";
     const string _Boggle = "boggle";
     const string _Braille = "BrailleModule";
     const string _BrokenButtons = "BrokenButtonsModule";
@@ -255,6 +256,7 @@ public class SouvenirModule : MonoBehaviour
             { _Bitmaps, ProcessBitmaps },
             { _BlindMaze, ProcessBlindMaze },
             { _Blockbusters, ProcessBlockbusters },
+            { _BobBarks, ProcessBobBarks },
             { _Boggle, ProcessBoggle },
             { _Braille, ProcessBraille },
             { _BrokenButtons, ProcessBrokenButtons },
@@ -1677,6 +1679,57 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestion(module, Question.BlockbustersLastLetter, correctAnswers: new[] { lastPress }, preferredWrongAnswers: legalLetters.ToArray());
+    }
+
+    private IEnumerable<object> ProcessBobBarks(KMBombModule module)
+    {
+        var comp = GetComponent(module, "BobBarks");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldIndicators = GetField<int[]>(comp, "assigned");
+        var fldFlashes = GetField<int[]>(comp, "stages");
+
+        if (comp == null || fldSolved == null || fldIndicators == null || fldFlashes == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_BobBarks);
+
+        string[] validDirections = { "top left", "top right", "bottom left", "bottom right" };
+        string[] validLabels = { "BOB", "CAR", "CLR", "IND", "FRK", "FRQ", "MSA", "NSA", "SIG", "SND", "TRN", "BUB", "DOG", "ETC", "KEY" };
+
+        int[] indicators = fldIndicators.Get();
+        if (indicators == null)
+            yield break;
+        if (indicators.Length != 4 || indicators.Any(idn => idn < 0 || idn >= validLabels.Length))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Bob Barks because ‘assigned’ has unexpected length or an unexpected value in it [{1}].", _moduleId, indicators.JoinString(", "));
+            yield break;
+        }
+
+        int[] flashes = fldFlashes.Get();
+        if (flashes == null)
+            yield break;
+        if (flashes.Length != 5 || flashes.Any(fn => fn < 0 || fn >= validDirections.Length))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Bob Barks because ‘stages’ has unexpected length or an unexpected value in it [{1}].", _moduleId, indicators.JoinString(", "));
+            yield break;
+        }
+
+        // To provide preferred wrong answers, mostly.
+        string[] labelsOnModule = { validLabels[indicators[0]], validLabels[indicators[1]], validLabels[indicators[2]], validLabels[indicators[3]] };
+
+        addQuestions(module,
+            Enumerable.Range(0, 4).Select(ix => makeQuestion(Question.BobBarksIndicators, _BobBarks,
+                correctAnswers: new[] { labelsOnModule[ix] },
+                formatArgs: new[] { validDirections[ix] },
+                preferredWrongAnswers: labelsOnModule.Except(new[] { labelsOnModule[ix] }).ToArray()
+            )).Concat(
+            Enumerable.Range(0, 5).Select(ix => makeQuestion(Question.BobBarksPositions, _BobBarks,
+                correctAnswers: new[] { validDirections[flashes[ix]] },
+                formatArgs: new[] { ordinal(ix + 1) }))
+            ));
     }
 
     private IEnumerable<object> ProcessBoggle(KMBombModule module)
