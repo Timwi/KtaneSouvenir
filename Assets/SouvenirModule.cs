@@ -956,8 +956,9 @@ public class SouvenirModule : MonoBehaviour
         var comp = module.GetComponent(name);
         if (comp == null)
         {
-            Debug.LogFormat("<Souvenir #{2}> {0} game object has no {1} component. Components are: {3}", module.name, name, _moduleId, module.GetComponents(typeof(Component)).Select(c => c.GetType().FullName).JoinString(", "));
-            return null;
+            comp = module.GetComponents(typeof(Component)).FirstOrDefault(c => c.GetType().FullName == name);
+            if (comp == null)
+                Debug.LogFormat("<Souvenir #{2}> {0} game object has no {1} component. Components are: {3}", module.name, name, _moduleId, module.GetComponents(typeof(Component)).Select(c => c.GetType().FullName).JoinString(", "));
         }
         return comp;
     }
