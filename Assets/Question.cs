@@ -804,7 +804,7 @@ namespace Souvenir
         [SouvenirQuestion("What was the initial roll on {0}?", "Yahtzee", 4, "Yahtzee", "large straight", "small straight", "four of a kind", "full house", "three of a kind", "two pairs", "pair")]
         YahtzeeInitialRoll,
 
-        [SouvenirQuestion("What was the letter that was used for starting row in the last successful round on {0}?", "Yellow Arrows", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L" ,"M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")]
+        [SouvenirQuestion("What was the letter that was used for the starting row in the last successful round on {0}?", "Yellow Arrows", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L" ,"M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")]
         YellowArrowsStartingRow,
 
         [SouvenirQuestion("What was the {1} correctly decrypted word in {0}?", "Zoni", 6, null, ExampleAnswers = new[] { "angel", "thing", "dance", "heavy", "quote" },
