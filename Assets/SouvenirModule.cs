@@ -240,6 +240,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Wavetapping = "Wavetapping";
     const string _Wire = "wire";
     const string _Yahtzee = "YahtzeeModule";
+    const string _YellowArrows = "yellowArrowsModule";
     const string _Zoni = "lgndZoni";
 
     void Start()
@@ -412,6 +413,7 @@ public class SouvenirModule : MonoBehaviour
             { _Wavetapping, ProcessWavetapping },
             { _Wire, ProcessWire },
             { _Yahtzee, ProcessYahtzee },
+            { _YellowArrows, ProcessYellowArrows },
             { _Zoni, ProcessZoni }
         };
 
@@ -8285,6 +8287,28 @@ public class SouvenirModule : MonoBehaviour
 
         if (result != null)
             addQuestion(module, Question.YahtzeeInitialRoll, correctAnswers: new[] { result });
+    }
+
+    private IEnumerable<object> ProcessYellowArrows(KMBombModule module)
+    {
+        var comp = GetComponent(module, "YellowArrowsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldLetIndex = GetField<int>(comp, "letindex");
+
+        if (comp == null || fldSolved == null | fldLetIndex == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_YellowArrows);
+
+        int letterIndex = fldLetIndex.Get();
+        if (letterIndex < 0 || letterIndex > 25)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Yellow Arrows because ‘letindex’ points to illegal letter: {1} (expected 0–25).", _moduleId, letterIndex);
+            yield break;
+        }
+        addQuestion(module, Question.YellowArrowsStartingRow, correctAnswers: new[] { ((char) ('A' + letterIndex)).ToString() });
     }
 
     private IEnumerable<object> ProcessZoni(KMBombModule module)
