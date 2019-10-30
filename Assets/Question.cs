@@ -556,6 +556,16 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "first", "first", "second", "second", "first", "second", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
         OrangeArrowsSequences,
 
+        [SouvenirQuestion("What color was the {2} key in stage {1} of {0}?", "Ordered Keys", 6, "Red", "Blue", "Green", "Yellow", "Cyan", "Magenta",
+            ExampleExtraFormatArguments = new[] { "first", "1", "first", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        OrderedKeysColors,
+        [SouvenirQuestion("What was the label on the {2} key in stage {1} of {0}?", "Ordered Keys", 6, "1", "2", "3", "4", "5", "6",
+            ExampleExtraFormatArguments = new[] { "first", "1", "first", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        OrderedKeysLabels,
+        [SouvenirQuestion("What color was the label of the {2} key in stage {1} of {0}?", "Ordered Keys", 6, "Red", "Blue", "Green", "Yellow", "Cyan", "Magenta",
+            ExampleExtraFormatArguments = new[] { "first", "1", "first", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        OrderedKeysLabelColors,
+
         [SouvenirQuestion("What was the observer’s intial position in {0}?", "Orientation Cube", 4, "front", "left", "back", "right")]
         OrientationCubeInitialObserverPosition,
 

@@ -189,6 +189,7 @@ public class SouvenirModule : MonoBehaviour
     const string _OddOneOut = "OddOneOutModule";
     const string _OnlyConnect = "OnlyConnectModule";
     const string _OrangeArrows = "orangeArrowsModule";
+    const string _OrderedKeys = "orderedKeys";
     const string _OrientationCube = "OrientationCube";
     const string _PassportControl = "passportControl";
     const string _PatternCube = "PatternCubeModule";
@@ -378,6 +379,7 @@ public class SouvenirModule : MonoBehaviour
             { _OddOneOut, ProcessOddOneOut },
             { _OnlyConnect, ProcessOnlyConnect },
             { _OrangeArrows, ProcessOrangeArrows },
+            { _OrderedKeys, ProcessOrderedKeys },
             { _OrientationCube, ProcessOrientationCube },
             { _PassportControl, ProcessPassportControl },
             { _PatternCube, ProcessPatternCube },
@@ -6078,6 +6080,58 @@ public class SouvenirModule : MonoBehaviour
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
                 qs.Add(makeQuestion(Question.OrangeArrowsSequences, _OrangeArrows, new[] { ordinal(j + 1), ordinal(i + 1) }, new[] { correctMoves[i][j].Substring(0, 1) + correctMoves[i][j].Substring(1).ToLowerInvariant() }));
+
+        addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessOrderedKeys(KMBombModule module)
+    {
+        var comp = GetComponent(module, "OrderedKeysScript");
+        var fldInfo = GetField<int[][]>(comp, "info");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldStage = GetField<int>(comp, "stage");
+
+        yield return null;
+
+        var stage = 0;
+        var moduleData = new int[3][][];
+
+        while (!fldSolved.Get())
+        {
+            var info = fldInfo.Get();
+            if (info == null || info.Length != 6 || info.Any(arr => arr == null || arr.Length != 4))
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Ordered Keys because ‘info’ has unexpected length data: [{1}] (expected 6 arrays of length 4).", _moduleId, info == null ? "<null>" : info.Select(arr => arr == null ? "<null>" : string.Format("[{0}]", arr.JoinString(", "))).JoinString(", "));
+                yield break;
+            }
+            if (fldStage.Get() < 1 || fldStage.Get() > 3)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Ordered Keys because ’stage’ has unexpected value: {1} (expected 1, 2, or 3).", _moduleId, fldStage.Get());
+                yield break;
+            }
+            if (stage != fldStage.Get() || moduleData[fldStage.Get() - 1] == null || Enumerable.Range(0, 6).All(ix => info[ix].SequenceEqual(moduleData[fldStage.Get() - 1][ix])))
+            {
+                stage = fldStage.Get();
+                moduleData[stage - 1] = info.Select(arr => arr.ToArray()).ToArray(); // Take a copy of the array.
+            }
+            yield return new WaitForSeconds(.1f);
+        }
+
+        _modulesSolved.IncSafe(_OrderedKeys);
+
+        var colors = new string[6] { "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow" };
+
+        var qs = new List<QandA>();
+        for (var i = 0; i < 3; i++)
+        {
+            for (var j = 0; j < 6; j++)
+            {
+                qs.Add(makeQuestion(Question.OrderedKeysColors, _OrderedKeys, new[] { (i + 1).ToString(), ordinal(j + 1) }, new[] { colors[moduleData[i][j][0]] }));
+                qs.Add(makeQuestion(Question.OrderedKeysLabels, _OrderedKeys, new[] { (i + 1).ToString(), ordinal(j + 1) }, new[] { moduleData[i][j][3].ToString() }));
+                qs.Add(makeQuestion(Question.OrderedKeysLabelColors, _OrderedKeys, new[] { (i + 1).ToString(), ordinal(j + 1) }, new[] { colors[moduleData[i][j][1]] }));
+            }
+        }
+
         addQuestions(module, qs);
     }
 
