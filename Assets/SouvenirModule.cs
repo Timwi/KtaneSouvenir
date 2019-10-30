@@ -188,6 +188,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Poetry = "poetry";
     const string _PolyhedralMaze = "PolyhedralMazeModule";
     const string _Probing = "Probing";
+    const string _PurpleArrows = "purpleArrowsModule";
     const string _Quintuples = "quintuples";
     const string _Retirement = "retirement";
     const string _ReverseMorse = "reverseMorse";
@@ -358,6 +359,7 @@ public class SouvenirModule : MonoBehaviour
             { _Poetry, ProcessPoetry },
             { _PolyhedralMaze, ProcessPolyhedralMaze },
             { _Probing, ProcessProbing },
+            { _PurpleArrows, ProcessPurpleArrows },
             { _Quintuples, ProcessQuintuples },
             { _Retirement, ProcessRetirement },
             { _ReverseMorse, ProcessReverseMorse },
@@ -6098,6 +6100,37 @@ public class SouvenirModule : MonoBehaviour
             yield break;
 
         addQuestions(module, wireFrequencies.Select((wf, ix) => makeQuestion(Question.ProbingFrequencies, _Probing, new[] { wireNames[ix] }, new[] { wf })));
+    }
+
+    private IEnumerable<object> ProcessPurpleArrows(KMBombModule module)
+    {
+        var comp = GetComponent(module, "PurpleArrowsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldFinishScrambled = GetField<string>(comp, "finishscrambled");
+
+        if (comp == null || fldSolved == null || fldFinishScrambled == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_PurpleArrows);
+
+        string scrambledWord = fldFinishScrambled.Get();
+        if (scrambledWord == null)
+            yield break;
+        if (scrambledWord.Length != 6)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Purple Arrows because ‘finishscrambled’ has unexpected length (expected 6): “{1}”", scrambledWord);
+            yield break;
+        }
+
+        // Generate additional scrambles of the same word
+        var scrambledWords = new HashSet<string>();
+        scrambledWords.Add(scrambledWord);
+        while (scrambledWords.Count < 6)
+            scrambledWords.Add(new string(scrambledWord.ToCharArray().Shuffle()));
+
+        addQuestion(module, Question.PurpleArrowsFinishScrambled, correctAnswers: new[] { scrambledWord }, preferredWrongAnswers: scrambledWords.ToArray());
     }
 
     private IEnumerable<object> ProcessQuintuples(KMBombModule module)
