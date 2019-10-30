@@ -179,6 +179,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Nonogram = "NonogramModule";
     const string _OddOneOut = "OddOneOutModule";
     const string _OnlyConnect = "OnlyConnectModule";
+    const string _OrangeArrows = "orangeArrowsModule";
     const string _OrientationCube = "OrientationCube";
     const string _PassportControl = "passportControl";
     const string _PatternCube = "PatternCubeModule";
@@ -354,6 +355,7 @@ public class SouvenirModule : MonoBehaviour
             { _Nonogram, ProcessNonogram },
             { _OddOneOut, ProcessOddOneOut },
             { _OnlyConnect, ProcessOnlyConnect },
+            { _OrangeArrows, ProcessOrangeArrows },
             { _OrientationCube, ProcessOrientationCube },
             { _PassportControl, ProcessPassportControl },
             { _PatternCube, ProcessPatternCube },
@@ -5713,6 +5715,75 @@ public class SouvenirModule : MonoBehaviour
         var hieroglyphs = new[] { "Two Reeds", "Lion", "Twisted Flax", "Horned Viper", "Water", "Eye of Horus" };
         var positions = new[] { "top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right" };
         addQuestions(module, positions.Select((p, i) => makeQuestion(Question.OnlyConnectHieroglyphs, _OnlyConnect, new[] { p }, new[] { hieroglyphs[hieroglyphsDisplayed[i]] })));
+    }
+
+    private IEnumerable<object> ProcessOrangeArrows(KMBombModule module)
+    {
+        var comp = GetComponent(module, "OrangeArrowsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldMoves = GetField<string[]>(comp, "moves");
+        var fldButtons = GetField<KMSelectable[]>(comp, "buttons", isPublic: true);
+        var fldStage = GetField<int>(comp, "stage");
+
+        if (comp == null || fldSolved == null || fldMoves == null || fldButtons == null || fldStage == null)
+            yield break;
+
+        yield return null;
+
+        // The module does not modify the arrays; it instantiates a new one for each stage.
+        var correctMoves = new string[3][];
+
+        KMSelectable[] buttons = fldButtons.Get();
+        if (buttons == null)
+            yield break;
+
+        var prevButtonInteracts = buttons.Select(b => b.OnInteract).ToArray();
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            var prevInteract = prevButtonInteracts[i];
+            buttons[i].OnInteract = delegate
+            {
+                var ret = prevInteract();
+                var st = fldStage.Get();
+                if (st < 1 || st > 3)
+                {
+                    Debug.LogFormat("<Souvenir #{0}> Abandoning Orange Arrows because ‘stage’ was out of range: {1}.", _moduleId, st);
+                    correctMoves = null;
+                    for (int j = 0; j < buttons.Length; j++)
+                        buttons[j].OnInteract = prevButtonInteracts[j];
+                }
+                else
+                {
+                    // We need to capture the array at each button press because the user might get a strike and the array might change
+                    correctMoves[st - 1] = fldMoves.Get();
+                }
+                return ret;
+            };
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_OrangeArrows);
+
+        if (correctMoves == null)   // an error message has already been output
+            yield break;
+
+        for (int i = 0; i < buttons.Length; i++)
+            buttons[i].OnInteract = prevButtonInteracts[i];
+
+        var directions = new[] { "UP", "RIGHT", "DOWN", "LEFT" };
+        if (correctMoves.Any(arr => arr == null || arr.Any(dir => !directions.Contains(dir))))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Orange Arrows because one of the move arrays has an unexpected value: [{1}].",
+                _moduleId, correctMoves.Select(arr => arr == null ? "null" : string.Format("[{0}]", arr.JoinString(", "))).JoinString(", "));
+            yield break;
+        }
+
+        var qs = new List<QandA>();
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++)
+                qs.Add(makeQuestion(Question.OrangeArrowsSequences, _OrangeArrows, new[] { ordinal(j + 1), ordinal(i + 1) }, new[] { correctMoves[i][j].Substring(0, 1) + correctMoves[i][j].Substring(1).ToLowerInvariant() }));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessOrientationCube(KMBombModule module)

@@ -509,6 +509,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         OnlyConnectHieroglyphs,
 
+        [SouvenirQuestion("What was the {1} arrow on the display of the {2} successful stage on {0}?", "Orange Arrows", 4, "Up", "Right", "Down", "Left",
+            ExampleExtraFormatArguments = new[] { "first", "first", "first", "second", "second", "first", "second", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        OrangeArrowsSequences,
+
         [SouvenirQuestion("What was the observer’s intial position in {0}?", "Orientation Cube", 4, "front", "left", "back", "right")]
         OrientationCubeInitialObserverPosition,
 
