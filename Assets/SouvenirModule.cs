@@ -204,6 +204,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SimonScreams = "SimonScreamsModule";
     const string _SimonSends = "SimonSendsModule";
     const string _SimonShrieks = "SimonShrieksModule";
+    const string _SimonSimons = "simonSimons";
     const string _SimonSings = "SimonSingsModule";
     const string _SimonSpeaks = "SimonSpeaksModule";
     const string _SimonsStar = "simonsStar";
@@ -377,6 +378,7 @@ public class SouvenirModule : MonoBehaviour
             { _SimonScreams, ProcessSimonScreams },
             { _SimonSends, ProcessSimonSends },
             { _SimonShrieks, ProcessSimonShrieks },
+            { _SimonSimons, ProcessSimonSimons },
             { _SimonSings, ProcessSimonSings },
             { _SimonSpeaks, ProcessSimonSpeaks },
             { _SimonsStar, ProcessSimonsStar },
@@ -6724,6 +6726,44 @@ public class SouvenirModule : MonoBehaviour
         qs.Add(makeQuestion(Question.SimonShrieksArrow, _SimonShrieks, correctAnswers: new[] { colorNames[buttonColors[arrow]] }));
         for (int i = 0; i < flashingButtons.Length; i++)
             qs.Add(makeQuestion(Question.SimonShrieksFlashingColors, _SimonShrieks, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorNames[buttonColors[flashingButtons[i]]] }));
+        addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessSimonSimons(KMBombModule module)
+    {
+        var comp = GetComponent(module, "simonsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldSelButtons = GetField<KMSelectable[]>(comp, "selButtons");
+
+        if (comp == null || fldSolved == null || fldSelButtons == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SimonSimons);
+
+        var buttonFlashes = fldSelButtons.Get();
+        if (buttonFlashes == null)
+            yield break;
+        if (buttonFlashes.Length != 5)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Simons because ‘selButtons’ has an unexpected length (expected 5): {1}", _moduleId, buttonFlashes.Length);
+            yield break;
+        }
+
+        var flashes = new[] { "TR", "TY", "TG", "TB", "LR", "LY", "LG", "LB", "RR", "RY", "RG", "RB", "BR", "BY", "BG", "BB" };
+
+        for (int i = 0; i < 5; i++)
+        {
+            if (!flashes.Contains(buttonFlashes[i].name.ToUpperInvariant()))
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Simons because one of the button flash #{1} is not valid: {2}", _moduleId, i, buttonFlashes[i].name.ToUpperInvariant());
+                yield break;
+            }
+        }
+        var qs = new List<QandA>();
+        for (int i = 0; i < 5; i++)
+            qs.Add(makeQuestion(Question.SimonSimonsFlashingColors, _SimonSimons, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { buttonFlashes[i].name.ToUpperInvariant() }));
         addQuestions(module, qs);
     }
 
