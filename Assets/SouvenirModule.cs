@@ -207,6 +207,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Retirement = "retirement";
     const string _ReverseMorse = "reverseMorse";
     const string _Rhythms = "MusicRhythms";
+    const string _Rule = "theRule";
     const string _SchlagDenBomb = "qSchlagDenBomb";
     const string _SeaShells = "SeaShells";
     const string _ShapesBombs = "ShapesBombs";
@@ -397,6 +398,7 @@ public class SouvenirModule : MonoBehaviour
             { _Retirement, ProcessRetirement },
             { _ReverseMorse, ProcessReverseMorse },
             { _Rhythms, ProcessRhythms },
+            { _Rule, ProcessRule },
             { _SchlagDenBomb, ProcessSchlagDenBomb },
             { _SeaShells, ProcessSeaShells },
             { _ShapesBombs, ProcessShapesAndBombs },
@@ -6723,6 +6725,27 @@ public class SouvenirModule : MonoBehaviour
             Debug.LogFormat("<Souvenir #{0}> Abandoning Rhythms because lightColor has unexpected value ({1}).", _moduleId, color);
         else
             addQuestion(module, Question.RhythmsColor, correctAnswers: new[] { new[] { "Blue", "Red", "Green", "Yellow" }[color] });
+    }
+
+    private IEnumerable<object> ProcessRule(KMBombModule module)
+    {
+        var comp = GetComponent(module, "TheRuleScript");
+        var fldRuleNum = GetField<int>(comp, "ruleNumber");
+
+        if (comp == null || fldRuleNum == null)
+            yield break;
+
+        yield return null;
+
+        var number = fldRuleNum.Get();
+
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Rule);
+
+        addQuestion(module, Question.RuleNumber, correctAnswers: new[] { number.ToString() });
     }
 
     private IEnumerable<object> ProcessSchlagDenBomb(KMBombModule module)
