@@ -88,6 +88,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Bitmaps = "BitmapsModule";
     const string _BlindMaze = "BlindMaze";
     const string _Blockbusters = "blockbusters";
+    const string _BlueArrows = "blueArrowsModule";
     const string _BobBarks = "ksmBobBarks";
     const string _Boggle = "boggle";
     const string _Braille = "BrailleModule";
@@ -256,6 +257,7 @@ public class SouvenirModule : MonoBehaviour
             { _Bitmaps, ProcessBitmaps },
             { _BlindMaze, ProcessBlindMaze },
             { _Blockbusters, ProcessBlockbusters },
+            { _BlueArrows, ProcessBlueArrows },
             { _BobBarks, ProcessBobBarks },
             { _Boggle, ProcessBoggle },
             { _Braille, ProcessBraille },
@@ -1680,6 +1682,34 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestion(module, Question.BlockbustersLastLetter, correctAnswers: new[] { lastPress }, preferredWrongAnswers: legalLetters.ToArray());
+    }
+
+    private IEnumerable<object> ProcessBlueArrows(KMBombModule module)
+    {
+        var comp = GetComponent(module, "BlueArrowsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldCoord = GetField<string>(comp, "coord");
+
+        if (comp == null || fldSolved == null || fldCoord == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_BlueArrows);
+
+        string coord = fldCoord.Get();
+        if (coord == null)
+            yield break;
+
+        string[] letters = { "CA", "C1", "CB", "C8", "CF", "C4", "CE", "C6", "3A", "31", "3B", "38", "3F", "34", "3E", "36", "GA", "G1", "GB", "G8", "GF", "G4", "GE", "G6", "7A", "71", "7B", "78", "7F", "74", "7E", "76", "DA", "D1", "DB", "D8", "DF", "D4", "DE", "D6", "5A", "51", "5B", "58", "5F", "54", "5E", "56", "HA", "H1", "HB", "H8", "HF", "H4", "HE", "H6", "2A", "21", "2B", "28", "2F", "24", "2E", "26" };
+
+        if (coord.Length != 2 || !letters.Contains(coord))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Blue Arrows because ‘coord’ has invalid value: “{1}”.", _moduleId, coord ?? "<null>");
+            yield break;
+        }
+
+        addQuestion(module, Question.BlueArrowsInitialLetters, correctAnswers: new[] { coord });
     }
 
     private IEnumerable<object> ProcessBobBarks(KMBombModule module)
