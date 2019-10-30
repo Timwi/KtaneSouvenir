@@ -764,6 +764,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         UnfairCipherInstructions,
 
+        [SouvenirQuestion("What was the {1} submitted letter in {0}?", "Unown Cipher", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+            Type = AnswerType.UnownFont, ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        UnownCipherAnswers,
+
         [SouvenirQuestion("What state did you depart from in {0}?", "USA Maze", 4, "Alaska", "Alabama", "Arkansas", "Arizona", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Iowa", "Idaho", "Illinois", "Indiana", "Kansas", "Kentucky", "Louisiana", "Massachusetts", "Maryland", "Maine", "Michigan", "Minnesota", "Missouri", "Mississippi", "Montana", "North Carolina", "North Dakota", "Nebraska", "New Hampshire", "New Jersey", "New Mexico", "Nevada", "New York", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Virginia", "Vermont", "Washington", "Wisconsin", "West Virginia", "Wyoming")]
         USAMazeOrigin,
 
@@ -812,9 +816,10 @@ namespace Souvenir
     {
         // These values must match the indexes in SouvenirModule.Fonts/SouvenirModule.FontTextures
         Default = 0,
-        SymbolsFont = 1,
+        SymbolsFont = 1,    // used by 3D Tunnels, Shape Shift, Switches and Colored Switches
         TurtleRobotFont = 2,
         TicTacToeFont = 3,  // also used by The Bulb
+        UnownFont = 4,
 
         // Special value that doesn’t translate to a font
         Sprites = -1

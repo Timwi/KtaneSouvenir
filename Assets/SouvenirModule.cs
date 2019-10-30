@@ -235,6 +235,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Ultracube = "TheUltracubeModule";
     const string _UncoloredSquares = "UncoloredSquaresModule";
     const string _UnfairCipher = "unfairCipher";
+    const string _UnownCipher = "UnownCipher";
     const string _USAMaze = "USA";
     const string _VaricoloredSquares = "VaricoloredSquaresModule";
     const string _Vectors = "vectorsModule";
@@ -411,6 +412,7 @@ public class SouvenirModule : MonoBehaviour
             { _Ultracube, ProcessUltracube },
             { _UncoloredSquares, ProcessUncoloredSquares },
             { _UnfairCipher, ProcessUnfairCipher },
+            { _UnownCipher, ProcessUnownCipher },
             { _USAMaze, ProcessUSAMaze },
             { _VaricoloredSquares, ProcessVaricoloredSquares },
             { _Vectors, ProcessVectors },
@@ -8127,6 +8129,31 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.UnfairCipherInstructions, _UnfairCipher, new[] { "second" }, new[] { instructions[1] }),
             makeQuestion(Question.UnfairCipherInstructions, _UnfairCipher, new[] { "third" }, new[] { instructions[2] }),
             makeQuestion(Question.UnfairCipherInstructions, _UnfairCipher, new[] { "fourth" }, new[] { instructions[3] }));
+    }
+
+    private IEnumerable<object> ProcessUnownCipher(KMBombModule module)
+    {
+        var comp = GetComponent(module, "UnownCipher");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldUnown = GetField<int[]>(comp, "letterIndexes");
+
+        if (comp == null || fldSolved == null || fldUnown == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_UnownCipher);
+
+        int[] unownAnswer = fldUnown.Get();
+        if (unownAnswer == null)
+            yield break;
+        if (unownAnswer.Length != 5 || unownAnswer.Any(v => v < 0 || v > 25))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Unown Cipher because ‘letterIndexes’ had an unexpected length or value: [{1}] (expected 5 values of 0–25).", _moduleId, unownAnswer.JoinString(", "));
+            yield break;
+        }
+
+        addQuestions(module, unownAnswer.Select((ans, i) => makeQuestion(Question.UnownCipherAnswers, _UnownCipher, new[] { ordinal(i + 1) }, new[] { ((char) ('A' + ans)).ToString() })));
     }
 
     private IEnumerable<object> ProcessUSAMaze(KMBombModule module)
