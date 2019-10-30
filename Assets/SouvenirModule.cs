@@ -84,6 +84,7 @@ public class SouvenirModule : MonoBehaviour
     const string _AffineCycle = "affineCycle";
     const string _Algebra = "algebra";
     const string _Arithmelogic = "arithmelogic";
+    const string _BamboozlingButton = "bamboozlingButton";
     const string _BigCircle = "BigCircle";
     const string _BinaryLEDs = "BinaryLeds";
     const string _Bitmaps = "BitmapsModule";
@@ -269,6 +270,7 @@ public class SouvenirModule : MonoBehaviour
             { _AffineCycle, ProcessAffineCycle },
             { _Algebra, ProcessAlgebra },
             { _Arithmelogic, ProcessArithmelogic },
+            { _BamboozlingButton, ProcessBamboozlingButton },
             { _BigCircle, ProcessBigCircle },
             { _BinaryLEDs, ProcessBinaryLEDs },
             { _Bitmaps, ProcessBitmaps },
@@ -1563,6 +1565,60 @@ public class SouvenirModule : MonoBehaviour
             qs.Add(makeQuestion(Question.ArithmelogicNumbers, _Arithmelogic, formatArgs: new[] { screens[i] },
                 correctAnswers: Enumerable.Range(0, 4).Where(ix => ix != curDisp[i]).Select(ix => selVal[i][ix].ToString()).ToArray(),
                 preferredWrongAnswers: Enumerable.Range(10, 99).Select(j => j.ToString()).ToArray()));
+        addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessBamboozlingButton(KMBombModule module)
+    {
+        var comp = GetComponent(module, "BamboozlingButtonScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldRandomiser = GetField<int[]>(comp, "randomiser");
+        var fldStage = GetField<int>(comp, "stage");
+
+        yield return null;
+
+        var moduleData = new int[2][];
+        var stage = 0;
+
+        while (!fldSolved.Get())
+        {
+            var randomiser = fldRandomiser.Get();
+            if (randomiser == null || randomiser.Length != 11)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Bamboozling Button because ’Randomiser’ has unexpected length: [{1}] (expected 11 values).", _moduleId, randomiser == null ? "<null>" : randomiser.JoinString(", "));
+                yield break;
+            }
+            if (fldStage.Get() < 1 || fldStage.Get() > 2)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Bamboozling Button because ’stage’ has unexpected value: {1} (expected 1 or 2).", _moduleId, fldStage.Get());
+                yield break;
+            }
+            if (stage != fldStage.Get() || !randomiser.SequenceEqual(moduleData[fldStage.Get() - 1]))
+            {
+                stage = fldStage.Get();
+                moduleData[stage - 1] = randomiser.ToArray(); // Take a copy of the array.
+            }
+            yield return new WaitForSeconds(.1f);
+        }
+
+        _modulesSolved.IncSafe(_BamboozlingButton);
+
+        var colors = new string[15] { "White", "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Grey", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose", "Black" };
+        var texts = new string[55] { "A LETTER", "A WORD", "THE LETTER", "THE WORD", "1 LETTER", "1 WORD", "ONE LETTER", "ONE WORD", "B", "C", "D", "E", "G", "K", "N", "P", "Q", "T", "V", "W", "Y", "BRAVO", "CHARLIE", "DELTA", "ECHO", "GOLF", "KILO", "NOVEMBER", "PAPA", "QUEBEC", "TANGO", "VICTOR", "WHISKEY", "YANKEE", "COLOUR", "RED", "ORANGE", "YELLOW", "LIME", "GREEN", "JADE", "CYAN", "AZURE", "BLUE", "VIOLET", "MAGENTA", "ROSE", "IN RED", "IN YELLOW", "IN GREEN", "IN CYAN", "IN BLUE", "IN MAGENTA", "QUOTE", "END QUOTE" };
+        var qs = new List<QandA>();
+        for (var i = 0; i < 2; i++)
+        {
+            qs.Add(makeQuestion(Question.BamboozlingButtonColor, _BamboozlingButton, new[] { (i + 1).ToString() }, new[] { colors[moduleData[i][0]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplayColor, _BamboozlingButton, new[] { (i + 1).ToString(), "fourth" }, new[] { colors[moduleData[i][1]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplayColor, _BamboozlingButton, new[] { (i + 1).ToString(), "fifth" }, new[] { colors[moduleData[i][2]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, _BamboozlingButton, new[] { (i + 1).ToString(), "first" }, new[] { texts[moduleData[i][3]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, _BamboozlingButton, new[] { (i + 1).ToString(), "third" }, new[] { texts[moduleData[i][4]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, _BamboozlingButton, new[] { (i + 1).ToString(), "fourth" }, new[] { texts[moduleData[i][5]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, _BamboozlingButton, new[] { (i + 1).ToString(), "fifth" }, new[] { texts[moduleData[i][6]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonLabel, _BamboozlingButton, new[] { (i + 1).ToString(), "top" }, new[] { texts[moduleData[i][7]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonLabel, _BamboozlingButton, new[] { (i + 1).ToString(), "bottom" }, new[] { texts[moduleData[i][8]] }));
+        }
+
         addQuestions(module, qs);
     }
 

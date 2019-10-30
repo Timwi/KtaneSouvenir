@@ -45,6 +45,19 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "left", "middle", "right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ArithmelogicNumbers,
 
+        [SouvenirQuestion("What color was the button in stage {1} of {0}?", "Bamboozling Button", 4, "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose", "White", "Grey", "Black",
+          ExampleExtraFormatArguments = new[] { "1", "2" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        BamboozlingButtonColor,
+        [SouvenirQuestion("What was the {2} label on the button in stage {1} of {0}?", "Bamboozling Button", 4, "A LETTER", "A WORD", "THE LETTER", "THE WORD", "1 LETTER", "1 WORD", "ONE LETTER", "ONE WORD", "B", "C", "D", "E", "G", "K", "N", "P", "Q", "T", "V", "W", "Y", "BRAVO", "CHARLIE", "DELTA", "ECHO", "GOLF", "KILO", "NOVEMBER", "PAPA", "QUEBEC", "TANGO", "VICTOR", "WHISKEY", "YANKEE", "COLOUR", "RED", "ORANGE", "YELLOW", "LIME", "GREEN", "JADE", "CYAN", "AZURE", "BLUE", "VIOLET", "MAGENTA", "ROSE", "IN RED", "IN YELLOW", "IN GREEN", "IN CYAN", "IN BLUE", "IN MAGENTA", "QUOTE", "END QUOTE",
+          ExampleExtraFormatArguments = new[] { "1", "top", "1", "bottom", "2", "top", "2", "bottom" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        BamboozlingButtonLabel,
+        [SouvenirQuestion("What was the {2} display in stage {1} of {0}?", "Bamboozling Button", 4, "A LETTER", "A WORD", "THE LETTER", "THE WORD", "1 LETTER", "1 WORD", "ONE LETTER", "ONE WORD", "B", "C", "D", "E", "G", "K", "N", "P", "Q", "T", "V", "W", "Y", "BRAVO", "CHARLIE", "DELTA", "ECHO", "GOLF", "KILO", "NOVEMBER", "PAPA", "QUEBEC", "TANGO", "VICTOR", "WHISKEY", "YANKEE", "COLOUR", "RED", "ORANGE", "YELLOW", "LIME", "GREEN", "JADE", "CYAN", "AZURE", "BLUE", "VIOLET", "MAGENTA", "ROSE", "IN RED", "IN YELLOW", "IN GREEN", "IN CYAN", "IN BLUE", "IN MAGENTA", "QUOTE", "END QUOTE",
+          ExampleExtraFormatArguments = new[] { "1", "first", "1", "third", "1", "fourth", "1", "fifth" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        BamboozlingButtonDisplay,
+        [SouvenirQuestion("What was the color of the {2} display in stage {1} of {0}?", "Bamboozling Button", 4, "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose", "White", "Grey",
+          ExampleExtraFormatArguments = new[] { "1", "fourth", "1", "fifth", "2", "fourth", "2", "fifth" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        BamboozlingButtonDisplayColor,
+
         [SouvenirQuestion("What color was {1} in the solution to {0}?", "Big Circle", 6, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         BigCircleColors,
