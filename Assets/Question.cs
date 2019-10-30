@@ -537,6 +537,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the acid’s volume in {0}?", "Neutralization", 6, "0", "5", "10", "15", "20", "25")]
         NeutralizationVolume,
 
+        [SouvenirQuestion("What was the label of the correct button in {0}?", "N&Ms", 6, "NNNNN", "NNNNM", "NNNMN", "NNNMM", "NNMNN", "NNMNM", "NNMMN", "NNMMM", "NMNNN", "NMNNM", "NMNMN", "NMNMM", "NMMNN", "NMMNM", "NMMMN", "NMMMM", "MNNNN", "MNNNM", "MNNMN", "MNNMM", "MNMNN", "MNMNM", "MNMMN", "MNMMM", "MMNNN", "MMNNM", "MMNMN", "MMNMM", "MMMMM")]
+        NandMsAnswer,
+
         [SouvenirQuestion("What was one of the colors in the {1} in {0}?", "Nonogram", 6, "Red", "Orange", "Yellow", "Green", "Blue", "Purple",
             ExampleExtraFormatArguments = new[] { "first column", "second column", "first row", "second row" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NonogramColors,

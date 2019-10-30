@@ -184,6 +184,7 @@ public class SouvenirModule : MonoBehaviour
     const string _MysticSquare = "MysticSquareModule";
     const string _Necronomicon = "necronomicon";
     const string _Neutralization = "neutralization";
+    const string _NandMs = "NandMs";
     const string _Nonogram = "NonogramModule";
     const string _OddOneOut = "OddOneOutModule";
     const string _OnlyConnect = "OnlyConnectModule";
@@ -372,6 +373,7 @@ public class SouvenirModule : MonoBehaviour
             { _MysticSquare, ProcessMysticSquare },
             { _Necronomicon, ProcessNecronomicon },
             { _Neutralization, ProcessNeutralization },
+            { _NandMs, ProcessNandMs },
             { _Nonogram, ProcessNonogram },
             { _OddOneOut, ProcessOddOneOut },
             { _OnlyConnect, ProcessOnlyConnect },
@@ -5864,6 +5866,36 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.NeutralizationColor, _Neutralization, correctAnswers: new[] { new[] { "Yellow", "Green", "Red", "Blue" }[acidType] }),
             makeQuestion(Question.NeutralizationVolume, _Neutralization, correctAnswers: new[] { acidVol.ToString() }));
+    }
+
+    private IEnumerable<object> ProcessNandMs(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NandMs");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldIndex = GetField<int>(comp, "otherwordindex");
+        var fldWords = GetField<string[]>(comp, "otherWords");
+
+        if (comp == null || fldSolved == null || fldIndex == null || fldWords == null)
+            yield break;
+
+        yield return null;
+
+        var index = fldIndex.Get();
+        var words = fldWords.Get();
+
+        if (words == null)
+            yield break;
+        if (index < 0 || index >= words.Length)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning N&Ms because index = {1} (expected 0–{2}).", _moduleId, index, words.Length - 1);
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_NandMs);
+
+        addQuestion(module, Question.NandMsAnswer, correctAnswers: new[] { words[index] });
     }
 
     private IEnumerable<object> ProcessNonogram(KMBombModule module)
