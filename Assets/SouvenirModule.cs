@@ -190,6 +190,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Probing = "Probing";
     const string _PurpleArrows = "purpleArrowsModule";
     const string _Quintuples = "quintuples";
+    const string _RedArrows = "redArrowsModule";
     const string _Retirement = "retirement";
     const string _ReverseMorse = "reverseMorse";
     const string _Rhythms = "MusicRhythms";
@@ -361,6 +362,7 @@ public class SouvenirModule : MonoBehaviour
             { _Probing, ProcessProbing },
             { _PurpleArrows, ProcessPurpleArrows },
             { _Quintuples, ProcessQuintuples },
+            { _RedArrows, ProcessRedArrows},
             { _Retirement, ProcessRetirement },
             { _ReverseMorse, ProcessReverseMorse },
             { _Rhythms, ProcessRhythms },
@@ -6170,6 +6172,29 @@ public class SouvenirModule : MonoBehaviour
             numbers.Select((n, ix) => makeQuestion(Question.QuintuplesNumbers, _Quintuples, new[] { ordinal(ix % 5 + 1), ordinal(ix / 5 + 1) }, new[] { (n % 10).ToString() })).Concat(
             colors.Select((color, ix) => makeQuestion(Question.QuintuplesColors, _Quintuples, new[] { ordinal(ix % 5 + 1), ordinal(ix / 5 + 1) }, new[] { color }))).Concat(
             colorCounts.Select((cc, ix) => makeQuestion(Question.QuintuplesColorCounts, _Quintuples, new[] { colorNames[ix] }, new[] { cc.ToString() }))));
+    }
+
+    private IEnumerable<object> ProcessRedArrows(KMBombModule module)
+    {
+        var comp = GetComponent(module, "RedArrowsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldStart = GetField<int>(comp, "start");
+
+        if (comp == null || fldSolved == null || fldStart == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_RedArrows);
+
+        int startNumber = fldStart.Get();
+        if (startNumber < 0 || startNumber > 9)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Red Arrows because 'start' is {1} (expected 0–9).", _moduleId, startNumber);
+            yield break;
+        }
+
+        addQuestion(module, Question.RedArrowsStartNumber, correctAnswers: new[] { startNumber.ToString() });
     }
 
     private IEnumerable<object> ProcessRetirement(KMBombModule module)

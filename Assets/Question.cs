@@ -558,6 +558,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "red", "blue", "orange", "green", "pink" }, ExampleExtraFormatArgumentGroupSize = 1)]
         QuintuplesColorCounts,
 
+        [SouvenirQuestion("What was the starting number in {0}?", "Red Arrows", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
+        RedArrowsStartNumber,
+
         [SouvenirQuestion("Which one of these houses was on offer, but not chosen by Bob in {0}?", "Retirement", 4, null, ExampleAnswers = new[] { "Hotham Place", "Homestead", "Riverwell", "Lodge Park" })]
         RetirementHouses,
 
