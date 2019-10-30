@@ -741,7 +741,7 @@ namespace Souvenir
         [SouvenirQuestion("Which dragon shout was selectable, but not the solution, in {0}?", "Skyrim", 4, "Disarm", "Dismay", "Dragonrend", "Fire Breath", "Ice Form", "Kyne’s Peace", "Slow Time", "Unrelenting Force", "Whirlwind Sprint")]
         SkyrimDragonShout,
 
-        [SouvenirQuestion("How many red balls were there at the start of {0}?", "Snooker", 4, "8", "9", "10", "11")]
+        [SouvenirQuestion("How many red balls were there at the start of {0}?", "Snooker", 4, "8", "9", "10")]
         SnookerReds,
 
         [SouvenirQuestion("What was the first module asked about in the other Souvenir on this bomb?", "Souvenir", 4, null,

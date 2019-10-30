@@ -3766,7 +3766,7 @@ public class SouvenirModule : MonoBehaviour
         var pawnColor = fldPawnColor.Get();
         if (pawnColor < 0 || pawnColor >= 6)
         {
-            Debug.LogFormat("<Souvenir #{1}> Abandoning Hexamaze because invalid pawn color {0}.", pawnColor, _moduleId);
+            Debug.LogFormat("<Souvenir #{1}> Abandoning Hexamaze because pawnColor has an unexpected value. {0}.", pawnColor, _moduleId);
             yield break;
         }
 
@@ -7514,9 +7514,9 @@ public class SouvenirModule : MonoBehaviour
         yield return null;
 
         var activeReds = fldActiveReds.Get();
-        if (activeReds < 8 || activeReds > 11)
+        if (activeReds < 8 || activeReds > 10)
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Snooker because activeReds has an unexpected value: {1} (expected 8-11).", _moduleId, activeReds);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Snooker because activeReds has an unexpected value: {1} (expected 8-10).", _moduleId, activeReds);
             yield break;
         }
 
