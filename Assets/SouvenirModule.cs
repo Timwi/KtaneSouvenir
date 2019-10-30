@@ -104,6 +104,7 @@ public class SouvenirModule : MonoBehaviour
     const string _ChallengeAndContact = "challengeAndContact";
     const string _CheapCheckout = "CheapCheckoutModule";
     const string _Chess = "ChessModule";
+    const string _ChineseCounting = "chineseCounting";
     const string _ChordQualities = "ChordQualities";
     const string _Code = "theCodeModule";
     const string _Coffeebucks = "coffeebucks";
@@ -290,6 +291,7 @@ public class SouvenirModule : MonoBehaviour
             { _ChallengeAndContact, ProcessChallengeAndContact },
             { _CheapCheckout, ProcessCheapCheckout },
             { _Chess, ProcessChess },
+            { _ChineseCounting, ProcessChineseCounting},
             { _ChordQualities, ProcessChordQualities },
             { _Code, ProcessCode },
             { _Coffeebucks, ProcessCoffeebucks },
@@ -2260,6 +2262,38 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_Chess);
 
         addQuestions(module, Enumerable.Range(0, 6).Select(i => makeQuestion(Question.ChessCoordinate, _Chess, new[] { ordinal(i + 1) }, new[] { "" + ((char) (indexSelected[i] / 10 + 'a')) + (indexSelected[i] % 10 + 1) })));
+    }
+
+    private IEnumerable<object> ProcessChineseCounting(KMBombModule module)
+    {
+        var comp = GetComponent(module, "chineseCounting");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldIndex1 = GetField<int>(comp, "ledIndex");
+        var fldIndex2 = GetField<int>(comp, "led2Index");
+
+        if (comp == null || fldSolved == null || fldIndex1 == null || fldIndex2 == null)
+            yield break;
+
+        yield return null;
+
+        var index1 = fldIndex1.Get();
+        var index2 = fldIndex2.Get();
+
+        if (index1 < 0 || index1 > 3 || index2 < 0 || index2 > 3)
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Chinese Counting because ‘ledIndex’ or ‘led2Index’ has unexpected value {1} and {2} (expected 0–3).", _moduleId, index1, index2);
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ChineseCounting);
+
+        var ledColors = new[] { "White", "Red", "Green", "Orange" };
+
+        addQuestions(module,
+          makeQuestion(Question.ChineseCountingLED, _ChineseCounting, new[] { "left" }, new[] { ledColors[index1] }),
+          makeQuestion(Question.ChineseCountingLED, _ChineseCounting, new[] { "right" }, new[] { ledColors[index2] }));
     }
 
     private IEnumerable<object> ProcessChordQualities(KMBombModule module)
