@@ -81,6 +81,7 @@ public class SouvenirModule : MonoBehaviour
     const string _3DTunnels = "3dTunnels";
     const string _Accumulation = "accumulation";
     const string _AdventureGame = "spwizAdventureGame";
+    const string _AffineCycle = "affineCycle";
     const string _Algebra = "algebra";
     const string _Arithmelogic = "arithmelogic";
     const string _BigCircle = "BigCircle";
@@ -97,6 +98,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Bulb = "TheBulbModule";
     const string _BurglarAlarm = "burglarAlarm";
     const string _ButtonSequences = "buttonSequencesModule";
+    const string _CaesarCycle = "caesarCycle";
     const string _Calendar = "calendar";
     const string _ChallengeAndContact = "challengeAndContact";
     const string _CheapCheckout = "CheapCheckoutModule";
@@ -112,6 +114,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Coordinates = "CoordinatesModule";
     const string _Crackbox = "CrackboxModule";
     const string _Creation = "CreationModule";
+    const string _CrypticCycle = "crypticCycle";
     const string _Cube = "cube";
     const string _DeckOfManyThings = "deckOfManyThings";
     const string _DecoloredSquares = "DecoloredSquaresModule";
@@ -135,6 +138,7 @@ public class SouvenirModule : MonoBehaviour
     const string _LogicalButtons = "logicalButtonsModule";
     const string _Hexabutton = "hexabutton";
     const string _Hexamaze = "HexamazeModule";
+    const string _HillCycle = "hillCycle";
     const string _Hogwarts = "HogwartsModule";
     const string _HorribleMemory = "horribleMemory";
     const string _HumanResources = "HumanResourcesModule";
@@ -144,6 +148,7 @@ public class SouvenirModule : MonoBehaviour
     const string _IdentityParade = "identityParade";
     const string _iPhone = "iPhone";
     const string _JewelVault = "jewelVault";
+    const string _JumbleCycle = "jumbleCycle";
     const string _Kudosudoku = "KudosudokuModule";
     const string _Lasers = "lasers";
     const string _LEDEncryption = "LEDEnc";
@@ -185,7 +190,9 @@ public class SouvenirModule : MonoBehaviour
     const string _PatternCube = "PatternCubeModule";
     const string _PerspectivePegs = "spwizPerspectivePegs";
     const string _Pie = "pieModule";
+    const string _PigpenCycle = "pigpenCycle";
     const string _Planets = "planets";
+    const string _PlayfairCycle = "playfairCycle";
     const string _Poetry = "poetry";
     const string _PolyhedralMaze = "PolyhedralMazeModule";
     const string _Probing = "Probing";
@@ -232,6 +239,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Timezone = "timezone";
     const string _TurtleRobot = "turtleRobot";
     const string _TwoBits = "TwoBits";
+    const string _UltimateCycle = "ultimateCycle";
     const string _Ultracube = "TheUltracubeModule";
     const string _UncoloredSquares = "UncoloredSquaresModule";
     const string _UnfairCipher = "unfairCipher";
@@ -258,6 +266,7 @@ public class SouvenirModule : MonoBehaviour
             { _3DTunnels, Process3DTunnels },
             { _Accumulation, ProcessAccumulation },
             { _AdventureGame, ProcessAdventureGame },
+            { _AffineCycle, ProcessAffineCycle },
             { _Algebra, ProcessAlgebra },
             { _Arithmelogic, ProcessArithmelogic },
             { _BigCircle, ProcessBigCircle },
@@ -274,6 +283,7 @@ public class SouvenirModule : MonoBehaviour
             { _Bulb, ProcessBulb },
             { _BurglarAlarm, ProcessBurglarAlarm },
             { _ButtonSequences, ProcessButtonSequences },
+            { _CaesarCycle, ProcessCaesarCycle },
             { _Calendar, ProcessCalendar },
             { _ChallengeAndContact, ProcessChallengeAndContact },
             { _CheapCheckout, ProcessCheapCheckout },
@@ -289,6 +299,7 @@ public class SouvenirModule : MonoBehaviour
             { _Coordinates, ProcessCoordinates },
             { _Crackbox, ProcessCrackbox },
             { _Creation, ProcessCreation },
+            { _CrypticCycle, ProcessCrypticCycle },
             { _Cube, ProcessCube },
             { _DeckOfManyThings, ProcessDeckOfManyThings },
             { _DecoloredSquares, ProcessDecoloredSquares },
@@ -311,6 +322,7 @@ public class SouvenirModule : MonoBehaviour
             { _Gryphons, ProcessGryphons },
             { _Hexabutton, ProcessHexabutton },
             { _Hexamaze, ProcessHexamaze },
+            { _HillCycle, ProcessHillCycle },
             { _Hogwarts, ProcessHogwarts },
             { _HorribleMemory, ProcessHorribleMemory },
             { _HumanResources, ProcessHumanResources },
@@ -320,6 +332,7 @@ public class SouvenirModule : MonoBehaviour
             { _IdentityParade, ProcessIdentityParade },
             { _iPhone, ProcessiPhone },
             { _JewelVault, ProcessJewelVault },
+            { _JumbleCycle, ProcessJumbleCycle },
             { _Kudosudoku, ProcessKudosudoku },
             { _Lasers, ProcessLasers },
             { _LEDEncryption, ProcessLEDEncryption },
@@ -362,7 +375,9 @@ public class SouvenirModule : MonoBehaviour
             { _PatternCube, ProcessPatternCube },
             { _PerspectivePegs, ProcessPerspectivePegs },
             { _Pie, ProcessPie },
+            { _PigpenCycle, ProcessPigpenCycle },
             { _Planets, ProcessPlanets },
+            { _PlayfairCycle, ProcessPlayfairCycle },
             { _Poetry, ProcessPoetry },
             { _PolyhedralMaze, ProcessPolyhedralMaze },
             { _Probing, ProcessProbing },
@@ -409,6 +424,7 @@ public class SouvenirModule : MonoBehaviour
             { _Timezone, ProcessTimezone },
             { _TurtleRobot, ProcessTurtleRobot },
             { _TwoBits, ProcessTwoBits },
+            { _UltimateCycle, ProcessUltimateCycle },
             { _Ultracube, ProcessUltracube },
             { _UncoloredSquares, ProcessUncoloredSquares },
             { _UnfairCipher, ProcessUnfairCipher },
@@ -1148,6 +1164,90 @@ public class SouvenirModule : MonoBehaviour
         _coroutinesActive--;
     }
 
+
+    /* Generalized methods for modules that are extremely similar */
+
+    private IEnumerable<object> processSpeakingEvilCycle1(KMBombModule module, string componentName, string moduleName, Question question, string moduleId)
+    {
+        var comp = GetComponent(module, componentName);
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldIndex = GetField<int>(comp, "r");
+        var fldMessage = GetField<string[]>(comp, "message");
+        var fldResponse = GetField<string[]>(comp, "response");
+
+        if (comp == null || fldSolved == null || fldIndex == null || fldMessage == null || fldResponse == null)
+            yield break;
+
+        yield return null;
+
+        var index = fldIndex.Get();
+        var messages = fldMessage.Get();
+        var responses = fldResponse.Get();
+
+        if (messages == null || responses == null)
+            yield break;
+        if (index < 0 || index >= messages.Length || index >= responses.Length)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning {3} because ‘r’ is out of range: {1}, expected 0–{2}", _moduleId, index, Math.Min(messages.Length, responses.Length) - 1, moduleName);
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(moduleId);
+
+        addQuestions(module,
+          makeQuestion(question, moduleId, new[] { "message" }, new[] { Regex.Replace(messages[index], @"(?<!^).", m => m.Value.ToLowerInvariant()) }),
+          makeQuestion(question, moduleId, new[] { "response" }, new[] { Regex.Replace(responses[index], @"(?<!^).", m => m.Value.ToLowerInvariant()) }));
+    }
+
+    private IEnumerable<object> processSpeakingEvilCycle2(KMBombModule module, string componentName, string moduleName, Question question, string moduleId)
+    {
+        var comp = GetComponent(module, componentName);
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldIndex = GetField<int>(comp, "r");
+        var fldWords = GetField<string[][]>(comp, "message");
+
+        if (comp == null || fldSolved == null || fldIndex == null || fldWords == null)
+            yield break;
+
+        yield return null;
+
+        var words = fldWords.Get();
+        if (words == null)
+            yield break;
+        if (words.Length != 2)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning {2} because ‘message’ is has length {1}, expected 2.", _moduleId, words.Length, moduleName);
+            yield break;
+        }
+
+        var messages = words[0];
+        var responses = words[1];
+        var index = fldIndex.Get();
+        if (messages == null || responses == null)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because ‘message’ contains null.", _moduleId, moduleName);
+            yield break;
+        }
+        if (index < 0 || index >= messages.Length || index >= responses.Length)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning {3} because ‘r’ is out of range: {1}, expected 0–{2}", _moduleId, index, Math.Min(messages.Length, responses.Length) - 1, moduleName);
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(moduleId);
+
+        addQuestions(module,
+          makeQuestion(question, moduleId, new[] { "message" }, new[] { Regex.Replace(messages[index], @"(?<!^).", m => m.Value.ToLowerInvariant()) }),
+          makeQuestion(question, moduleId, new[] { "response" }, new[] { Regex.Replace(responses[index], @"(?<!^).", m => m.Value.ToLowerInvariant()) }));
+    }
+
+
+    /* Actual module processors start here */
+
     private IEnumerable<object> Process3DMaze(KMBombModule module)
     {
         var comp = GetComponent(module, "ThreeDMazeModule");
@@ -1388,6 +1488,11 @@ public class SouvenirModule : MonoBehaviour
         var enemyName = enemy.ToString();
         enemyName = enemyName.Substring(0, 1).ToUpperInvariant() + enemyName.Substring(1).ToLowerInvariant();
         addQuestions(module, qs.Select(q => q()).Concat(new[] { makeQuestion(Question.AdventureGameEnemy, _AdventureGame, correctAnswers: new[] { enemyName }) }));
+    }
+
+    private IEnumerable<object> ProcessAffineCycle(KMBombModule module)
+    {
+        return processSpeakingEvilCycle1(module, "AffineCycleScript", "Affine Cycle", Question.AffineCycleWord, _AffineCycle);
     }
 
     private IEnumerable<object> ProcessAlgebra(KMBombModule module)
@@ -1967,6 +2072,11 @@ public class SouvenirModule : MonoBehaviour
                 formatArgs: new[] { colorNames[kvp.Key].ToLowerInvariant() },
                 correctAnswers: new[] { kvp.Value.ToString() },
                 preferredWrongAnswers: colorOccurrences.Values.Select(v => v.ToString()).ToArray())));
+    }
+
+    private IEnumerable<object> ProcessCaesarCycle(KMBombModule module)
+    {
+        return processSpeakingEvilCycle1(module, "CaesarCycleScript", "Caesar Cycle", Question.CaesarCycleWord, _CaesarCycle);
     }
 
     private IEnumerable<object> ProcessCalendar(KMBombModule module)
@@ -2663,6 +2773,11 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_Creation);
         addQuestions(module, allWeather.Select((t, i) => makeQuestion(Question.CreationWeather, _Creation, new[] { ordinal(i + 1) }, new[] { t })));
+    }
+
+    private IEnumerable<object> ProcessCrypticCycle(KMBombModule module)
+    {
+        return processSpeakingEvilCycle2(module, "CrypticCycleScript", "Cryptic Cycle", Question.CrypticCycleWord, _CrypticCycle);
     }
 
     private IEnumerable<object> ProcessCube(KMBombModule module)
@@ -3560,6 +3675,11 @@ public class SouvenirModule : MonoBehaviour
         addQuestion(module, Question.HexamazePawnColor, correctAnswers: new[] { new[] { "Red", "Yellow", "Green", "Cyan", "Blue", "Pink" }[pawnColor] });
     }
 
+    private IEnumerable<object> ProcessHillCycle(KMBombModule module)
+    {
+        return processSpeakingEvilCycle2(module, "HillCycleScript", "Hill Cycle", Question.HillCycleWord, _HillCycle);
+    }
+
     struct HogwartsModuleSubstitutionInfo
     {
         public string AbbrevInAnswer { get; private set; }
@@ -3984,6 +4104,11 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_JewelVault);
         addQuestions(module, assignedWheels.Select((aw, ix) => makeQuestion(Question.JewelVaultWheels, _JewelVault, new[] { "ABCD".Substring(ix, 1) }, new[] { (Array.IndexOf(wheels, aw) + 1).ToString() })));
+    }
+
+    private IEnumerable<object> ProcessJumbleCycle(KMBombModule module)
+    {
+        return processSpeakingEvilCycle2(module, "JumbleCycleScript", "Jumble Cycle", Question.JumbleCycleWord, _JumbleCycle);
     }
 
     private IEnumerable<object> ProcessKudosudoku(KMBombModule module)
@@ -6024,6 +6149,11 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, digits.Select((digit, ix) => makeQuestion(Question.PieDigits, _Pie, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { digit }, preferredWrongAnswers: digits)));
     }
 
+    private IEnumerable<object> ProcessPigpenCycle(KMBombModule module)
+    {
+        return processSpeakingEvilCycle1(module, "PigpenCycleScript", "Pigpen Cycle", Question.PigpenCycleWord, _PigpenCycle);
+    }
+
     private IEnumerable<object> ProcessPlanets(KMBombModule module)
     {
         var comp = GetComponent(module, "planetsModScript");
@@ -6058,6 +6188,11 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             stripColors.Select((strip, count) => makeQuestion(Question.PlanetsStrips, _Planets, new[] { ordinal(count + 1) }, new[] { stripNames[strip] }))
                 .Concat(new[] { makeQuestion(Question.PlanetsPlanet, _Planets, correctAnswers: new[] { PlanetsSprites[planetShown] }, preferredWrongAnswers: (DateTime.Now.Month == 4 && DateTime.Now.Day == 1) ? PlanetsSprites : PlanetsSprites.Take(PlanetsSprites.Length - 2).ToArray()) }));
+    }
+
+    private IEnumerable<object> ProcessPlayfairCycle(KMBombModule module)
+    {
+        return processSpeakingEvilCycle1(module, "PlayfairCycleScript", "Playfair Cycle", Question.PlayfairCycleWord, _PlayfairCycle);
     }
 
     private IEnumerable<object> ProcessPoetry(KMBombModule module)
@@ -8048,6 +8183,11 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessUltimateCycle(KMBombModule module)
+    {
+        return processSpeakingEvilCycle2(module, "UltimateCycleScript", "Ultimate Cycle", Question.UltimateCycleWord, _UltimateCycle);
     }
 
     private IEnumerable<object> ProcessUltracube(KMBombModule module)
