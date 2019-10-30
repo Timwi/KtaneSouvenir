@@ -129,6 +129,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Functions = "qFunctions";
     const string _Gamepad = "TheGamepadModule";
     const string _GiantsDrink = "giantsDrink";
+    const string _GreenArrows = "greenArrowsModule";
     const string _GridLock = "GridlockModule";
     const string _Gryphons = "gryphons";
     const string _LogicalButtons = "logicalButtonsModule";
@@ -298,6 +299,7 @@ public class SouvenirModule : MonoBehaviour
             { _Functions, ProcessFunctions },
             { _Gamepad, ProcessGamepad },
             { _GiantsDrink, ProcessGiantsDrink },
+            { _GreenArrows, ProcessGreenArrows },
             { _GridLock, ProcessGridLock },
             { _Gryphons, ProcessGryphons },
             { _Hexabutton, ProcessHexabutton },
@@ -3280,6 +3282,58 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestion(module, Question.GiantsDrinkLiquid, correctAnswers: new[] { liquidNames[liquids[sol]] });
+    }
+
+    private IEnumerable<object> ProcessGreenArrows(KMBombModule module)
+    {
+        var comp = GetComponent(module, "GreenArrowsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldNumDisplay = GetField<GameObject>(comp, "numDisplay", isPublic: true);
+        var fldStreak = GetField<int>(comp, "streak");
+        var fldAnimating = GetField<bool>(comp, "isanimating");
+
+        if (comp == null || fldSolved == null || fldNumDisplay == null || fldStreak == null || fldAnimating == null)
+            yield break;
+
+        yield return null;
+
+        string numbers = null;
+        bool activated = false;
+        while (!fldSolved.Get())
+        {
+            int streak = fldStreak.Get();
+            bool animating = fldAnimating.Get();
+            if (streak == 6 && !animating && !activated)
+            {
+                var numDisplay = fldNumDisplay.Get();
+                if (numDisplay == null)
+                    yield break;
+                numbers = numDisplay.GetComponent<TextMesh>().text;
+                if (numbers == null)
+                    yield break;
+                activated = true;
+            }
+            if (streak == 0)
+                activated = false;
+            yield return new WaitForSeconds(.1f);
+        }
+
+        _modulesSolved.IncSafe(_GreenArrows);
+
+        int number;
+        if (!int.TryParse(numbers, out number))
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Green Arrows because the screen couldn’t be parsed correctly: “{0}”.", _moduleId, numbers);
+            yield break;
+        }
+
+        if (number < 0 || number > 99)
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Green Arrows because ‘number’ is out of range: number = {1}, expected 0-99", _moduleId, number);
+            yield break;
+        }
+
+        addQuestions(module, makeQuestion(Question.GreenArrowsLastScreen, _GreenArrows, correctAnswers: new[] { number.ToString() }));
     }
 
     private IEnumerable<object> ProcessGridLock(KMBombModule module)
