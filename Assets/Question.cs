@@ -781,6 +781,10 @@ namespace Souvenir
         [SouvenirQuestion("What was the initially pressed color on {0}?", "Varicolored Squares", 6, "White", "Red", "Blue", "Green", "Yellow", "Magenta")]
         VaricoloredSquaresInitialColor,
 
+        [SouvenirQuestion("What was the color of the {1} vector in the last successful round on {0}?", "Vectors", 6, "Red", "Orange", "Yellow", "Green", "Blue", "Purple",
+        ExampleExtraFormatArguments = new[] { "first", "second", "third", "only" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        VectorsColors,
+
         [SouvenirQuestion("What was the {1} flagpole color on {0}?", "Vexillology", 6, "Red", "Orange", "Green", "Yellow", "Blue", "Aqua", "White", "Black",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         VexillologyColors,

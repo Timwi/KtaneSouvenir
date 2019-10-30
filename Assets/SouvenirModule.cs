@@ -236,6 +236,7 @@ public class SouvenirModule : MonoBehaviour
     const string _UnfairCipher = "unfairCipher";
     const string _USAMaze = "USA";
     const string _VaricoloredSquares = "VaricoloredSquaresModule";
+    const string _Vectors = "vectorsModule";
     const string _Vexillology = "vexillology";
     const string _VisualImpairment = "visual_impairment";
     const string _Wavetapping = "Wavetapping";
@@ -410,6 +411,7 @@ public class SouvenirModule : MonoBehaviour
             { _UnfairCipher, ProcessUnfairCipher },
             { _USAMaze, ProcessUSAMaze },
             { _VaricoloredSquares, ProcessVaricoloredSquares },
+            { _Vectors, ProcessVectors },
             { _Vexillology, ProcessVexillology },
             { _VisualImpairment, ProcessVisualImpairment },
             { _Wavetapping, ProcessWavetapping },
@@ -8103,6 +8105,57 @@ public class SouvenirModule : MonoBehaviour
             yield break;
 
         addQuestion(module, Question.VaricoloredSquaresInitialColor, correctAnswers: new[] { firstColor.ToString() });
+    }
+
+    private IEnumerable<object> ProcessVectors(KMBombModule module)
+    {
+        var comp = GetComponent(module, "VectorsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldColors = GetField<string[]>(comp, "colors");
+        var fldVectorsPicked = GetField<int[]>(comp, "vectorsPicked");
+        var fldVectorCount = GetField<int>(comp, "vectorct");
+
+        if (comp == null || fldSolved == null || fldColors == null || fldVectorsPicked == null || fldVectorCount == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_Vectors);
+
+        int vectorCount = fldVectorCount.Get();
+        if (vectorCount < 1 || vectorCount > 3)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Vectors because ‘vectorct’ has an unexpected value (expected 1–3): {1}.", _moduleId, vectorCount);
+            yield break;
+        }
+
+        var colors = fldColors.Get();
+        var pickedVectors = fldVectorsPicked.Get();
+
+        if (colors == null || pickedVectors == null)
+            yield break;
+        var colorsName = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Purple" };
+        if (pickedVectors.Length != 3 || pickedVectors.Any(v => v < 0 || v >= colors.Length))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Vectors because ‘vectorsPicked’ has unexpected length or value: [{1}] (expected length 3, values 0–{2}).", _moduleId, pickedVectors.JoinString(", "), colors.Length - 1);
+            yield break;
+        }
+
+        for (int i = 0; i < vectorCount; i++)
+        {
+            if (!colorsName.Contains(colors[pickedVectors[i]]))
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Vectors because ‘colors[{1}]’ pointed to illegal color “{2}” (colors=[{3}], pickedVectors=[{4}], index {5}).",
+                    _moduleId, pickedVectors[i], colors[pickedVectors[i]], colors.JoinString(", "), pickedVectors.JoinString(", "), i);
+                yield break;
+            }
+        }
+
+        var qs = new List<QandA>();
+        for (int i = 0; i < vectorCount; i++)
+            qs.Add(makeQuestion(Question.VectorsColors, _Vectors, new[] { vectorCount == 1 ? "only" : ordinal(i + 1) }, new[] { colors[pickedVectors[i]] }));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessVexillology(KMBombModule module)
