@@ -140,6 +140,7 @@ public class SouvenirModule : MonoBehaviour
     const string _LogicalButtons = "logicalButtonsModule";
     const string _Hexabutton = "hexabutton";
     const string _Hexamaze = "HexamazeModule";
+    const string _HiddenColors = "lgndHiddenColors";
     const string _HillCycle = "hillCycle";
     const string _Hogwarts = "HogwartsModule";
     const string _HorribleMemory = "horribleMemory";
@@ -326,6 +327,7 @@ public class SouvenirModule : MonoBehaviour
             { _Gryphons, ProcessGryphons },
             { _Hexabutton, ProcessHexabutton },
             { _Hexamaze, ProcessHexamaze },
+            { _HiddenColors, ProcessHiddenColors },
             { _HillCycle, ProcessHillCycle },
             { _Hogwarts, ProcessHogwarts },
             { _HorribleMemory, ProcessHorribleMemory },
@@ -3763,6 +3765,35 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestion(module, Question.HexamazePawnColor, correctAnswers: new[] { new[] { "Red", "Yellow", "Green", "Cyan", "Blue", "Pink" }[pawnColor] });
+    }
+
+    private IEnumerable<object> ProcessHiddenColors(KMBombModule module)
+    {
+        var comp = GetComponent(module, "HiddenColorsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldColor = GetField<int>(comp, "LEDColor");
+        var fldLed = GetField<Renderer>(comp, "LED", isPublic: true);
+        var fldColors = GetField<Material[]>(comp, "buttonColors", isPublic: true);
+
+        if (comp == null || fldSolved == null || fldColor == null || fldLed == null || fldColors == null)
+            yield break;
+
+        yield return null;
+
+        var ledcolor = fldColor.Get();
+        var colors = fldColors.Get();
+        var led = fldLed.Get();
+        var ledcolors = new[] { "Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Magenta", "White" };
+        if (ledcolor < 0 || ledcolor >= 8)
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Hidden Colors because ‘LEDColor’ has an unexpected value: {1} (expected 0–7).", _moduleId, ledcolor);
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_HiddenColors);
+
+        if (led != null && colors != null && colors.Length == 9)
+            led.material = colors[8];
+        addQuestion(module, Question.HiddenColorsLED, null, new[] { ledcolors[ledcolor] });
     }
 
     private IEnumerable<object> ProcessHillCycle(KMBombModule module)
