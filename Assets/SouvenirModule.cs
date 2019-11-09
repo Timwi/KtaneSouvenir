@@ -7126,44 +7126,60 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_SimonSelects);
 
-        var order1 = fldStg1order.Get();
-        if (order1 == null)
+        var order = new int[3][];
+
+        order[0] = fldStg1order.Get();
+        order[1] = fldStg2order.Get();
+        order[2] = fldStg3order.Get();
+
+        if (order == null || order.Any(content => content == null))
             yield break;
-        if (order1.Length < 3 || order1.Length > 5)
+
+        if (order.Any(content => content.Length < 3 || content.Length > 5))
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Selects because ‘stg1order’ has an unexpected length ({1}).", _moduleId, order1);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Selects because one of the stage order has an unexpected length : [{1}], expected length 3 - 5 ",
+                _moduleId, order.Select(content => content.Length.ToString()).JoinString(", "));
             yield break;
         }
 
-        var order2 = fldStg2order.Get();
-        if (order2 == null)
+        var buttonR = fldButtonrend.Get();
+
+        if (buttonR == null)
             yield break;
-        if (order2.Length < 3 || order1.Length > 5)
+
+        if (buttonR.Length != 8)
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Selects because ‘stg2order’ has an unexpected length ({1}).", _moduleId, order2);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Selects because 'buttonR' has an unexpected length : {1}, expected length 8 ", _moduleId, buttonR.Length);
             yield break;
         }
 
-        var order3 = fldStg3order.Get();
-        if (order3 == null)
-            yield break;
-        if (order3.Length < 3 || order1.Length > 5)
+        var colors = new string[3][];
+
+        /* Parsing the received string */
+        for (int j = 0; j < 3; j++)
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Selects because ‘stg3order’ has an unexpected length ({1}).", _moduleId, order3);
+            var parsedString = new string[order[j].Length];
+            for (int i = 0; i < order[j].Length; i++)
+            {
+                string temp = buttonR[order[j][i]].material.name;
+                temp = temp.Remove(temp.IndexOf(' '), 11);
+                parsedString[i] = temp;
+            }
+            colors[j] = parsedString;
+        }
+
+        /* Used to validate colors */
+        string[] colorNames = { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Magenta", "Cyan" };
+
+        if (colors.Any(subColor => subColor.Any(innermostColor => !colorNames.Contains(innermostColor))))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Selects because 'colors' contains an invalid color : [{1}]", _moduleId, colors.Select(innerColor => innerColor.Select(innermostColor => innermostColor).JoinString(", ")).JoinString("; "));
             yield break;
         }
 
-        var buttonrend = fldButtonrend.Get();
-
-        var qs = new List<QandA>();
-        for (int i = 0; i < order1.Length; i++)
-            qs.Add(makeQuestion(Question.SimonSelectsOrder1, _SimonSelects, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { buttonrend[order1[i]].material.name.Remove(buttonrend[order1[i]].material.name.IndexOf(' '), 11) }));
-        for (int i = 0; i < order2.Length; i++)
-            qs.Add(makeQuestion(Question.SimonSelectsOrder2, _SimonSelects, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { buttonrend[order2[i]].material.name.Remove(buttonrend[order2[i]].material.name.IndexOf(' '), 11) }));
-        for (int i = 0; i < order3.Length; i++)
-            qs.Add(makeQuestion(Question.SimonSelectsOrder3, _SimonSelects, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { buttonrend[order3[i]].material.name.Remove(buttonrend[order3[i]].material.name.IndexOf(' '), 11) }));
-
-        addQuestions(module, qs);
+        addQuestions(module, colors.SelectMany((seq, stage) => seq.Select((col, ix) => makeQuestion(Question.SimonSelectsOrder, _SimonSelects,
+            formatArgs: new[] { ordinal(ix + 1), ordinal(stage + 1) },
+            correctAnswers: new[] { col }))));
     }
 
     private static readonly string[] _SimonSends_Morse = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.." };
