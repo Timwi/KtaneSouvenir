@@ -687,6 +687,16 @@ namespace Souvenir
             }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonScreamsRule,
 
+        [SouvenirQuestion("Which color flashed {1} in the first stage of {0}?", "Simon Selects", 6, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Magenta", "Cyan",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th", }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SimonSelectsOrder1,
+        [SouvenirQuestion("Which color flashed {1} in the second stage of {0}?", "Simon Selects", 6, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Magenta", "Cyan",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th", }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SimonSelectsOrder2,
+        [SouvenirQuestion("Which color flashed {1} in the third stage of {0}?", "Simon Selects", 6, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Magenta", "Cyan",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th", }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SimonSelectsOrder3,
+
         [SouvenirQuestion("What was the {1} received letter in {0}?", "Simon Sends", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
             ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSendsReceivedLetters,

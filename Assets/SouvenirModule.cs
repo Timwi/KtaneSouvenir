@@ -216,6 +216,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SimonSamples = "simonSamples";
     const string _SimonScrambles = "simonScrambles";
     const string _SimonScreams = "SimonScreamsModule";
+    const string _SimonSelects = "simonSelectsModule";
     const string _SimonSends = "SimonSendsModule";
     const string _SimonShrieks = "SimonShrieksModule";
     const string _SimonSimons = "simonSimons";
@@ -407,6 +408,7 @@ public class SouvenirModule : MonoBehaviour
             { _SimonSamples, ProcessSimonSamples },
             { _SimonScrambles, ProcessSimonScrambles },
             { _SimonScreams, ProcessSimonScreams },
+            { _SimonSelects, ProcessSimonSelects },
             { _SimonSends, ProcessSimonSends },
             { _SimonShrieks, ProcessSimonShrieks },
             { _SimonSimons, ProcessSimonSimons },
@@ -7102,6 +7104,64 @@ public class SouvenirModule : MonoBehaviour
                         ? Enumerable.Range(1, seqs.Length).Select(i => ordinal(i)).ToArray()
                         : Enumerable.Range(1, seqs.Length).SelectMany(a => Enumerable.Range(a + 1, seqs.Length - a).Select(b => ordinal(a) + " and " + ordinal(b))).Concat(new[] { "all of them" }).ToArray()));
         }
+
+        addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessSimonSelects(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SimonSelectsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldStg1order = GetField<int[]>(comp, "stg1order");
+        var fldStg2order = GetField<int[]>(comp, "stg2order");
+        var fldStg3order = GetField<int[]>(comp, "stg3order");
+        var fldButtonrend = GetField<Renderer[]>(comp, "buttonrend", isPublic: true);
+
+        if (comp == null || fldSolved == null || fldStg1order == null || fldStg2order == null || fldStg3order == null || fldButtonrend == null)
+            yield break;
+
+        yield return null;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SimonSelects);
+
+        var order1 = fldStg1order.Get();
+        if (order1 == null)
+            yield break;
+        if (order1.Length < 3 || order1.Length > 5)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Selects because ‘stg1order’ has an unexpected length ({1}).", _moduleId, order1);
+            yield break;
+        }
+
+        var order2 = fldStg2order.Get();
+        if (order2 == null)
+            yield break;
+        if (order2.Length < 3 || order1.Length > 5)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Selects because ‘stg2order’ has an unexpected length ({1}).", _moduleId, order2);
+            yield break;
+        }
+
+        var order3 = fldStg3order.Get();
+        if (order3 == null)
+            yield break;
+        if (order3.Length < 3 || order1.Length > 5)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Selects because ‘stg3order’ has an unexpected length ({1}).", _moduleId, order3);
+            yield break;
+        }
+
+        var buttonrend = fldButtonrend.Get();
+
+        var qs = new List<QandA>();
+        for (int i = 0; i < order1.Length; i++)
+            qs.Add(makeQuestion(Question.SimonSelectsOrder1, _SimonSelects, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { buttonrend[order1[i]].material.name.Remove(buttonrend[order1[i]].material.name.IndexOf(' '), 11) }));
+        for (int i = 0; i < order2.Length; i++)
+            qs.Add(makeQuestion(Question.SimonSelectsOrder2, _SimonSelects, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { buttonrend[order2[i]].material.name.Remove(buttonrend[order2[i]].material.name.IndexOf(' '), 11) }));
+        for (int i = 0; i < order3.Length; i++)
+            qs.Add(makeQuestion(Question.SimonSelectsOrder3, _SimonSelects, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { buttonrend[order3[i]].material.name.Remove(buttonrend[order3[i]].material.name.IndexOf(' '), 11) }));
 
         addQuestions(module, qs);
     }
