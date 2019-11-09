@@ -216,6 +216,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SimonSamples = "simonSamples";
     const string _SimonScrambles = "simonScrambles";
     const string _SimonScreams = "SimonScreamsModule";
+    const string _SimonSelects = "simonSelectsModule";
     const string _SimonSends = "SimonSendsModule";
     const string _SimonShrieks = "SimonShrieksModule";
     const string _SimonSimons = "simonSimons";
@@ -407,6 +408,7 @@ public class SouvenirModule : MonoBehaviour
             { _SimonSamples, ProcessSimonSamples },
             { _SimonScrambles, ProcessSimonScrambles },
             { _SimonScreams, ProcessSimonScreams },
+            { _SimonSelects, ProcessSimonSelects },
             { _SimonSends, ProcessSimonSends },
             { _SimonShrieks, ProcessSimonShrieks },
             { _SimonSimons, ProcessSimonSimons },
@@ -7148,6 +7150,80 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessSimonSelects(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SimonSelectsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldStg1order = GetField<int[]>(comp, "stg1order");
+        var fldStg2order = GetField<int[]>(comp, "stg2order");
+        var fldStg3order = GetField<int[]>(comp, "stg3order");
+        var fldButtonrend = GetField<Renderer[]>(comp, "buttonrend", isPublic: true);
+
+        if (comp == null || fldSolved == null || fldStg1order == null || fldStg2order == null || fldStg3order == null || fldButtonrend == null)
+            yield break;
+
+        yield return null;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SimonSelects);
+
+        var order = new int[3][];
+
+        order[0] = fldStg1order.Get();
+        order[1] = fldStg2order.Get();
+        order[2] = fldStg3order.Get();
+
+        if (order == null || order.Any(content => content == null))
+            yield break;
+
+        if (order.Any(content => content.Length < 3 || content.Length > 5))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Selects because one of the stage order has an unexpected length : [{1}], expected length 3 - 5 ",
+                _moduleId, order.Select(content => content.Length.ToString()).JoinString(", "));
+            yield break;
+        }
+
+        var buttonR = fldButtonrend.Get();
+
+        if (buttonR == null)
+            yield break;
+
+        if (buttonR.Length != 8)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Selects because 'buttonR' has an unexpected length : {1}, expected length 8 ", _moduleId, buttonR.Length);
+            yield break;
+        }
+
+        var colors = new string[3][];
+
+        /* Parsing the received string */
+        for (int j = 0; j < 3; j++)
+        {
+            var parsedString = new string[order[j].Length];
+            for (int i = 0; i < order[j].Length; i++)
+            {
+                string temp = buttonR[order[j][i]].material.name;
+                temp = temp.Remove(temp.IndexOf(' '), 11);
+                parsedString[i] = temp;
+            }
+            colors[j] = parsedString;
+        }
+
+        /* Used to validate colors */
+        string[] colorNames = { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Magenta", "Cyan" };
+
+        if (colors.Any(subColor => subColor.Any(innermostColor => !colorNames.Contains(innermostColor))))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Selects because 'colors' contains an invalid color : [{1}]", _moduleId, colors.Select(innerColor => innerColor.Select(innermostColor => innermostColor).JoinString(", ")).JoinString("; "));
+            yield break;
+        }
+
+        addQuestions(module, colors.SelectMany((seq, stage) => seq.Select((col, ix) => makeQuestion(Question.SimonSelectsOrder, _SimonSelects,
+            formatArgs: new[] { ordinal(ix + 1), ordinal(stage + 1) },
+            correctAnswers: new[] { col }))));
     }
 
     private static readonly string[] _SimonSends_Morse = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.." };
