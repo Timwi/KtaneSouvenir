@@ -939,6 +939,11 @@ public class SouvenirModule : MonoBehaviour
         {
             return (T) Method.Invoke(_target, arguments);
         }
+
+        public T InvokeOn(object target, params object[] arguments)
+        {
+            return (T) Method.Invoke(target, arguments);
+        }
     }
 
     sealed class PropertyInfo<T>
@@ -3657,50 +3662,89 @@ public class SouvenirModule : MonoBehaviour
         if (comp == null || fldSolved == null || fldStage == null || fldButtons == null || fldGateOperator == null)
             yield break;
 
+        while (!_isActivated)
+            yield return new WaitForSeconds(.1f);
+
         var curStage = 0;
-        var colors = new List<string[]>();
-        var labels = new List<string[]>();
-        var initialOperators = new List<string>();
+        var colors = new string[3][];
+        var labels = new string[3][];
+        var initialOperators = new string[3];
+
+        FieldInfo<string> fldLabel = null;
+        FieldInfo<object> fldColor = null;
+        FieldInfo<int> fldIndex = null;
+        MethodInfo<string> mthGetName = null;
 
         while (!fldSolved.Get())
         {
-            var stage = fldStage.Get();
-            if (stage != curStage)
+            var buttons = fldButtons.Get();
+            if (buttons == null || buttons.Length != 3)
             {
-                if (stage != curStage + 1)
+                Debug.LogFormat(@"<Souvenir #{0}> Abandoning Logical Buttons because “buttons” {1} (expected length 3).", _moduleId, buttons == null ? "is null" : "has length " + buttons.Length);
+                yield break;
+            }
+            var infs = buttons.Cast<object>().Select(obj =>
+            {
+                fldLabel = fldLabel ?? GetField<string>(obj, "<Label>k__BackingField");
+                fldColor = fldColor ?? GetField<object>(obj, "<Color>k__BackingField");
+                fldIndex = fldIndex ?? GetField<int>(obj, "<Index>k__BackingField");
+                return fldLabel == null || fldColor == null || fldIndex == null
+                    ? null
+                    : new { Label = fldLabel.GetFrom(obj), Color = fldColor.GetFrom(obj), Index = fldIndex.GetFrom(obj) };
+            }).ToArray();
+            if (infs.Length != 3 || infs.Any(inf => inf == null || inf.Label == null || inf.Color == null) || infs[0].Index != 0 || infs[1].Index != 1 || infs[2].Index != 2)
+            {
+                Debug.LogFormat(@"<Souvenir #{0}> Abandoning Logical Buttons because I got an unexpected value ([{1}]).", _moduleId, infs.Select(inf => inf == null ? "<null>" : inf.ToString()).JoinString(", "));
+                yield break;
+            }
+
+            var gateOperator = fldGateOperator.Get();
+            if (gateOperator != null && mthGetName == null)
+            {
+                var interfaceType = gateOperator.GetType().Assembly.GetType("ILogicalGateOperator");
+                if (interfaceType == null)
+                {
+                    Debug.LogFormat(@"<Souvenir #{0}> Abandoning Logical Buttons because interface type ILogicalGateOperator not found.", _moduleId);
+                    yield break;
+                }
+                var bindingFlags = BindingFlags.Public | BindingFlags.Instance;
+                var mths = interfaceType.GetMethods(bindingFlags).Where(m => m.Name == "get_Name" && m.GetParameters().Length == 0 && typeof(string).IsAssignableFrom(m.ReturnType)).Take(2).ToArray();
+                if (mths.Length == 0)
+                {
+                    Debug.LogFormat("<Souvenir #{5}> Type {0} does not contain {1} method {2} with return type {3} and {4} parameters.", interfaceType, "public", name, "string", 0, _moduleId);
+                    yield break;
+                }
+                if (mths.Length > 1)
+                {
+                    Debug.LogFormat("<Souvenir #{5}> Type {0} contains multiple {1} methods {2} with return type {3} and {4} parameters.", interfaceType, "public", name, "string", 0, _moduleId);
+                    yield break;
+                }
+                mthGetName = new MethodInfo<string>(null, mths[0]);
+            }
+            if (gateOperator == null || mthGetName == null)
+                yield break;
+
+            var clrs = infs.Select(inf => inf.Color.ToString()).ToArray();
+            var lbls = infs.Select(inf => inf.Label).ToArray();
+            var iOp = mthGetName.InvokeOn(gateOperator);
+
+            var stage = fldStage.Get();
+            if (stage != curStage || !clrs.SequenceEqual(colors[stage - 1]) || !lbls.SequenceEqual(labels[stage - 1]) || iOp != initialOperators[stage - 1])
+            {
+                if (stage != curStage && stage != curStage + 1)
                 {
                     Debug.LogFormat(@"<Souvenir #{0}> Abandoning Logical Buttons because I must have missed a stage (it went from {1} to {2}).", _moduleId, curStage, stage);
                     yield break;
                 }
-
-                var buttons = fldButtons.Get();
-                if (buttons == null || buttons.Length != 3)
+                if (stage < 1 || stage > 3)
                 {
-                    Debug.LogFormat(@"<Souvenir #{0}> Abandoning Logical Buttons because “buttons” {1} (expected length 3).", _moduleId, buttons == null ? "is null" : "has length " + buttons.Length);
+                    Debug.LogFormat(@"<Souvenir #{0}> Abandoning Logical Buttons because ‘stage’ has unexpected value {1} (expected 1–3).", _moduleId, stage);
                     yield break;
                 }
-                var infs = buttons.Cast<object>().Select(obj =>
-                {
-                    var fldLabel = GetField<string>(obj, "<Label>k__BackingField");
-                    var fldColor = GetField<object>(obj, "<Color>k__BackingField");
-                    var fldIndex = GetField<int>(obj, "<Index>k__BackingField");
-                    return fldLabel == null || fldColor == null || fldIndex == null
-                        ? null
-                        : new { Label = fldLabel.Get(), Color = fldColor.Get(), Index = fldIndex.Get() };
-                }).ToArray();
-                if (infs.Length != 3 || infs.Any(inf => inf == null || inf.Label == null || inf.Color == null) || infs[0].Index != 0 || infs[1].Index != 1 || infs[2].Index != 2)
-                {
-                    Debug.LogFormat(@"<Souvenir #{0}> Abandoning Logical Buttons because I got an unexpected value ([{1}]).", _moduleId, infs.Select(inf => inf == null ? "<null>" : inf.ToString()).JoinString(", "));
-                    yield break;
-                }
-                var gateOperator = fldGateOperator.Get();
-                var mthGetName = GetMethod<string>(gateOperator, "get_Name", 0, isPublic: true);
-                if (gateOperator == null || mthGetName == null)
-                    yield break;
 
-                colors.Add(infs.Select(inf => inf.Color.ToString()).ToArray());
-                labels.Add(infs.Select(inf => inf.Label).ToArray());
-                initialOperators.Add(mthGetName.Invoke());
+                colors[stage - 1] = clrs;
+                labels[stage - 1] = lbls;
+                initialOperators[stage - 1] = iOp;
                 curStage = stage;
             }
 
