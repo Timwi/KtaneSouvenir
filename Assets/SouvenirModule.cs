@@ -1197,7 +1197,9 @@ public class SouvenirModule : MonoBehaviour
         if (comp == null || fldSolved == null || fldIndex == null || fldMessage == null || fldResponse == null)
             yield break;
 
-        yield return null;
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(moduleId);
 
         var index = fldIndex.Get();
         var messages = fldMessage.Get();
@@ -1210,10 +1212,6 @@ public class SouvenirModule : MonoBehaviour
             Debug.LogFormat("<Souvenir #{0}> Abandoning {3} because ‘r’ is out of range: {1}, expected 0–{2}", _moduleId, index, Math.Min(messages.Length, responses.Length) - 1, moduleName);
             yield break;
         }
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(moduleId);
 
         addQuestions(module,
           makeQuestion(question, moduleId, new[] { "message" }, new[] { Regex.Replace(messages[index], @"(?<!^).", m => m.Value.ToLowerInvariant()) }),
@@ -1230,7 +1228,9 @@ public class SouvenirModule : MonoBehaviour
         if (comp == null || fldSolved == null || fldIndex == null || fldWords == null)
             yield break;
 
-        yield return null;
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(moduleId);
 
         var words = fldWords.Get();
         if (words == null)
@@ -1254,10 +1254,6 @@ public class SouvenirModule : MonoBehaviour
             Debug.LogFormat("<Souvenir #{0}> Abandoning {3} because ‘r’ is out of range: {1}, expected 0–{2}", _moduleId, index, Math.Min(messages.Length, responses.Length) - 1, moduleName);
             yield break;
         }
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(moduleId);
 
         addQuestions(module,
           makeQuestion(question, moduleId, new[] { "message" }, new[] { Regex.Replace(messages[index], @"(?<!^).", m => m.Value.ToLowerInvariant()) }),
@@ -2289,7 +2285,9 @@ public class SouvenirModule : MonoBehaviour
         if (comp == null || fldSolved == null || fldIndex1 == null || fldIndex2 == null)
             yield break;
 
-        yield return null;
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ChineseCounting);
 
         var index1 = fldIndex1.Get();
         var index2 = fldIndex2.Get();
@@ -2299,10 +2297,6 @@ public class SouvenirModule : MonoBehaviour
             Debug.LogFormat(@"<Souvenir #{0}> Abandoning Chinese Counting because ‘ledIndex’ or ‘led2Index’ has unexpected value {1} and {2} (expected 0–3).", _moduleId, index1, index2);
             yield break;
         }
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_ChineseCounting);
 
         var ledColors = new[] { "White", "Red", "Green", "Orange" };
 
@@ -5928,7 +5922,9 @@ public class SouvenirModule : MonoBehaviour
         if (comp == null || fldSolved == null || fldIndex == null || fldWords == null)
             yield break;
 
-        yield return null;
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_NandMs);
 
         var index = fldIndex.Get();
         var words = fldWords.Get();
@@ -5940,10 +5936,6 @@ public class SouvenirModule : MonoBehaviour
             Debug.LogFormat("<Souvenir #{0}> Abandoning N&Ms because index = {1} (expected 0–{2}).", _moduleId, index, words.Length - 1);
             yield break;
         }
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_NandMs);
 
         addQuestion(module, Question.NandMsAnswer, correctAnswers: new[] { words[index] });
     }
@@ -7176,52 +7168,49 @@ public class SouvenirModule : MonoBehaviour
         order[1] = fldStg2order.Get();
         order[2] = fldStg3order.Get();
 
-        if (order == null || order.Any(content => content == null))
+        if (order == null)
             yield break;
 
-        if (order.Any(content => content.Length < 3 || content.Length > 5))
+        if (order.Any(flashes => flashes == null || flashes.Length < 3 || flashes.Length > 5))
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Selects because one of the stage order has an unexpected length : [{1}], expected length 3 - 5 ",
-                _moduleId, order.Select(content => content.Length.ToString()).JoinString(", "));
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Selects because one of ‘stg1order’/‘stg2order’/‘stg3order’ is null or has an unexpected length: [{1}], expected length 3-5.",
+                _moduleId, order.Select(flashes => flashes == null ? "<null>" : "length " + flashes.Length).JoinString(", "));
             yield break;
         }
 
-        var buttonR = fldButtonrend.Get();
+        var btnRenderers = fldButtonrend.Get();
 
-        if (buttonR == null)
+        if (btnRenderers == null)
             yield break;
 
-        if (buttonR.Length != 8)
+        if (btnRenderers.Length != 8)
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Selects because 'buttonR' has an unexpected length : {1}, expected length 8 ", _moduleId, buttonR.Length);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Selects because ‘buttonrend’ has an unexpected length: {1}, expected length 8.", _moduleId, btnRenderers.Length);
             yield break;
         }
 
-        var colors = new string[3][];
+        // Sequences of colors that flashes in each stage
+        var seqs = new string[3][];
 
-        /* Parsing the received string */
-        for (int j = 0; j < 3; j++)
+        // Parsing the received string
+        for (int stage = 0; stage < 3; stage++)
         {
-            var parsedString = new string[order[j].Length];
-            for (int i = 0; i < order[j].Length; i++)
-            {
-                string temp = buttonR[order[j][i]].material.name;
-                temp = temp.Remove(temp.IndexOf(' '), 11);
-                parsedString[i] = temp;
-            }
-            colors[j] = parsedString;
+            var parsedString = new string[order[stage].Length];
+            for (int flash = 0; flash < order[stage].Length; flash++)
+                parsedString[flash] = btnRenderers[order[stage][flash]].material.name.Replace(" (Instance)", "");
+            seqs[stage] = parsedString;
         }
 
-        /* Used to validate colors */
+        // Used to validate colors
         string[] colorNames = { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Magenta", "Cyan" };
 
-        if (colors.Any(subColor => subColor.Any(innermostColor => !colorNames.Contains(innermostColor))))
+        if (seqs.Any(seq => seq.Any(color => !colorNames.Contains(color))))
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Selects because 'colors' contains an invalid color : [{1}]", _moduleId, colors.Select(innerColor => innerColor.Select(innermostColor => innermostColor).JoinString(", ")).JoinString("; "));
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Selects because ‘colors’ contains an invalid color: [{1}]", _moduleId, seqs.Select(seq => seq.JoinString(", ")).JoinString("; "));
             yield break;
         }
 
-        addQuestions(module, colors.SelectMany((seq, stage) => seq.Select((col, ix) => makeQuestion(Question.SimonSelectsOrder, _SimonSelects,
+        addQuestions(module, seqs.SelectMany((seq, stage) => seq.Select((col, ix) => makeQuestion(Question.SimonSelectsOrder, _SimonSelects,
             formatArgs: new[] { ordinal(ix + 1), ordinal(stage + 1) },
             correctAnswers: new[] { col }))));
     }
