@@ -126,6 +126,7 @@ public class SouvenirModule : MonoBehaviour
     const string _DrDoctor = "DrDoctorModule";
     const string _ElderFuthark = "elderFuthark";
     const string _EncryptedMorse = "EncryptedMorse";
+    const string _EquationsX = "equationsXModule";
     const string _FactoryMaze = "factoryMaze";
     const string _FastMath = "fastMath";
     const string _Flags = "FlagsModule";
@@ -225,6 +226,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SimonsStar = "simonsStar";
     const string _SimonStates = "SimonV2";
     const string _SimonStops = "simonStops";
+    const string _SimonStores = "simonStores";
     const string _SkewedSlots = "SkewedSlotsModule";
     const string _Skyrim = "skyrim";
     const string _Snooker = "snooker";
@@ -241,6 +243,7 @@ public class SouvenirModule : MonoBehaviour
     const string _TashaSqueals = "tashaSqueals";
     const string _TenButtonColorCode = "TenButtonColorCode";
     const string _TextField = "TextField";
+    const string _ThinkingWires = "thinkingWiresModule";
     const string _ThirdBase = "ThirdBase";
     const string _TicTacToe = "TicTacToeModule";
     const string _Timezone = "timezone";
@@ -318,6 +321,7 @@ public class SouvenirModule : MonoBehaviour
             { _DrDoctor, ProcessDrDoctor },
             { _ElderFuthark, ProcessElderFuthark },
             { _EncryptedMorse, ProcessEncryptedMorse },
+            { _EquationsX, ProcessEquationsX },
             { _FactoryMaze, ProcessFactoryMaze },
             { _FastMath, ProcessFastMath },
             { _Flags, ProcessFlags },
@@ -417,6 +421,7 @@ public class SouvenirModule : MonoBehaviour
             { _SimonsStar, ProcessSimonsStar },
             { _SimonStates, ProcessSimonStates },
             { _SimonStops, ProcessSimonStops },
+            { _SimonStores, ProcessSimonStores},
             { _SkewedSlots, ProcessSkewedSlots },
             { _Skyrim, ProcessSkyrim },
             { _Snooker, ProcessSnooker },
@@ -433,6 +438,7 @@ public class SouvenirModule : MonoBehaviour
             { _TashaSqueals, ProcessTashaSqueals },
             { _TenButtonColorCode, ProcessTenButtonColorCode },
             { _TextField, ProcessTextField },
+            { _ThinkingWires, ProcessThinkingWires },
             { _ThirdBase, ProcessThirdBase },
             { _TicTacToe, ProcessTicTacToe },
             { _Timezone, ProcessTimezone },
@@ -3223,6 +3229,61 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.EncryptedMorseCallResponse, _EncryptedMorse, new[] { "sent response" }, new[] { formatResponses[index] }, formatResponses));
     }
 
+    private IEnumerable<object> ProcessEquationsX(KMBombModule module)
+    {
+        var comp = GetComponent(module, "EquationsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldSymbolDisplay = GetField<GameObject>(comp, "symboldisplay", isPublic: true);
+
+        if (comp == null || fldSolved == null || fldSymbolDisplay == null)
+            yield break;
+
+        while (!_isActivated)
+            yield return new WaitForSeconds(0.1f);
+
+        var symbolObject = fldSymbolDisplay.Get();
+
+        if (symbolObject == null)
+            yield break;
+
+        var symbol = symbolObject.GetComponentInChildren<TextMesh>().text;
+
+        //Use for string validation
+        string[] symbolList = { "H(T)", "R", "\u03C7", "w", "Z(T)", "t", "m", "a", "K" };
+
+        if (!symbolList.Contains(symbol))
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Equations X because 'symbol' has an unexpected character: {1}", _moduleId, symbol);
+            yield break;
+        }
+
+        //Equations X use symbols that doesn't translate well to souvenir. This switch statement is used to correctly translated the answer.
+        switch (symbol)
+        {
+            case "R":
+                symbol = "P";
+                break;
+            case "w":
+                symbol = "\u03C9";
+                break;
+            case "t":
+                symbol = "\u03C4";
+                break;
+            case "m":
+                symbol = "\u03BC";
+                break;
+            case "a":
+                symbol = "\u03B1";
+                break;
+        }
+        
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_EquationsX);
+
+        addQuestion(module, Question.EquationsXSymbols, correctAnswers: new[] { symbol });
+    }
+
     private IEnumerable<object> ProcessFactoryMaze(KMBombModule module)
     {
         var comp = GetComponent(module, "FactoryMazeScript");
@@ -3525,58 +3586,6 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestion(module, Question.GiantsDrinkLiquid, correctAnswers: new[] { liquidNames[liquids[sol]] });
-    }
-	
-    private IEnumerable<object> ProcessGreenArrows(KMBombModule module)
-    {
-        var comp = GetComponent(module, "GreenArrowsScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldNumDisplay = GetField<GameObject>(comp, "numDisplay", isPublic: true);
-        var fldStreak = GetField<int>(comp, "streak");
-        var fldAnimating = GetField<bool>(comp, "isanimating");
-        if (comp == null || fldSolved == null || fldNumDisplay == null || fldStreak == null || fldAnimating == null)
-            yield break;
-
-        yield return null;
-
-        int number = -1;
-        string numbers = " ";
-        bool activated = false;
-        while (!fldSolved.Get())
-        {
-            int Streak = fldStreak.Get();
-            bool Animating = fldAnimating.Get();
-            if (Streak == null || Animating == null)
-                yield break;
-            if (Streak == 6 && !Animating && !activated)
-            {
-                var NumDisplay = fldNumDisplay.Get();
-                if (NumDisplay == null)
-                    yield break;
-                numbers = NumDisplay.GetComponent<TextMesh>().text;
-                if (numbers == null)
-                    yield break;
-                activated = true;
-            }
-            if (Streak == 0) activated = false;
-            yield return new WaitForSeconds(.1f);
-        }
-
-        _modulesSolved.IncSafe(_GreenArrows);
-
-        if (!int.TryParse(numbers, out number))
-        {
-            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Green Arrows because the screen couldn't be parsed correctly.", _moduleId);
-            yield break;
-        }
-
-        if (number < 0 || number > 100)
-        {
-            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Green Arrows because 'number' is out of range: number = {1}, expected 0 - 99", _moduleId, number);
-            yield break;
-        }
-
-        addQuestions(module, makeQuestion(Question.GreenArrowsLastScreen, _GreenArrows, correctAnswers: new[] { number.ToString() }));
     }
 
     private IEnumerable<object> ProcessGreenArrows(KMBombModule module)
@@ -6635,32 +6644,65 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessPurpleArrows(KMBombModule module)
     {
         var comp = GetComponent(module, "PurpleArrowsScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldFinishScrambled = GetField<string>(comp, "finishscrambled");
+        var fldFinish = GetField<string>(comp, "finish");
+        var fldWordScreen = GetField<GameObject>(comp, "wordDisplay", isPublic: true);
+        var fldWordList = GetField<string[]>(comp, "words");
 
-        if (comp == null || fldSolved == null || fldFinishScrambled == null)
+        if (comp == null || fldFinish == null || fldWordScreen == null || fldWordList == null)
             yield break;
 
-        while (!fldSolved.Get())
+        //Use module.OnPass instead of the moduleSolved field since the module set the field to true early. (at the beginning of solve animation)
+        //It is setup this way so that Souvenir will change the text to "SOLVED" after solve animation.
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+
+        while (!solved)
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_PurpleArrows);
 
-        string scrambledWord = fldFinishScrambled.Get();
-        if (scrambledWord == null)
+        string finishWord = fldFinish.Get();
+
+        if (finishWord == null)
             yield break;
-        if (scrambledWord.Length != 6)
+
+        if (finishWord.Length != 6)
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Purple Arrows because ‘finishscrambled’ has unexpected length (expected 6): “{1}”", scrambledWord);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Purple Arrows because ‘finishWord’ has unexpected length (expected 6): “{1}”", finishWord);
             yield break;
         }
 
-        // Generate additional scrambles of the same word
-        var scrambledWords = new HashSet<string>();
-        scrambledWords.Add(scrambledWord);
-        while (scrambledWords.Count < 6)
-            scrambledWords.Add(new string(scrambledWord.ToCharArray().Shuffle()));
+        string[] wordList = fldWordList.Get();
+        if (wordList == null || wordList.Any(word => word == null))
+            yield break;
 
-        addQuestion(module, Question.PurpleArrowsFinishScrambled, correctAnswers: new[] { scrambledWord }, preferredWrongAnswers: scrambledWords.ToArray());
+        if (wordList.Length != (9 * 13) || !wordList.Contains(finishWord))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Purple Arrows because ‘wordList’ has an unexpected length (expected 9 * 13) or does not contain ‘finishWord’ : [Length: {1}, finishWord: {2}]", wordList.Length, finishWord);
+            yield break;
+        }
+        
+        //Shuffle words in array for randomization
+        string[] incorrectWordList = wordList.Where(word => word != finishWord).ToArray().Shuffle();
+        string[] incorrectWords = new string[5];
+
+        //Pick the first 5 elements for incorrect answers
+        for (int index = 0; index < 5; index++)
+        {
+            incorrectWords[index] = Regex.Replace(incorrectWordList[index], @"(?<!^).", m => m.Value.ToLowerInvariant());
+        }
+
+        if (incorrectWords == null || incorrectWords.Any(word => word == null))
+            yield break;
+
+        var wordScreen = fldWordScreen.Get();
+
+        if (wordScreen == null)
+            yield break;
+        
+        //Hiding the display when the handlepass is called
+        wordScreen.GetComponent<TextMesh>().text = "SOLVED";
+
+        addQuestion(module, Question.PurpleArrowsFinish, correctAnswers: new[] { Regex.Replace(finishWord, @"(?<!^).", m => m.Value.ToLowerInvariant()) }, preferredWrongAnswers: incorrectWords);
     }
 
     private IEnumerable<object> ProcessQuintuples(KMBombModule module)
@@ -6701,7 +6743,7 @@ public class SouvenirModule : MonoBehaviour
             colors.Select((color, ix) => makeQuestion(Question.QuintuplesColors, _Quintuples, new[] { ordinal(ix % 5 + 1), ordinal(ix / 5 + 1) }, new[] { color }))).Concat(
             colorCounts.Select((cc, ix) => makeQuestion(Question.QuintuplesColorCounts, _Quintuples, new[] { colorNames[ix] }, new[] { cc.ToString() }))));
     }
-	
+
     private IEnumerable<object> ProcessRedArrows(KMBombModule module)
     {
         var comp = GetComponent(module, "RedArrowsScript");
@@ -7556,6 +7598,94 @@ public class SouvenirModule : MonoBehaviour
              makeQuestion(Question.SimonStopsColors, _SimonStops, new[] { ordinal(ix + 1) }, new[] { colors[ix] }, colors)));
     }
 
+    private IEnumerable<object> ProcessSimonStores(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SimonStoresScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldFlashingColours = GetField<List<string>>(comp, "flashingColours");
+        var fldAnswer = GetField<int[][]>(comp, "step");
+
+        if (comp == null || fldSolved == null || fldFlashingColours == null || fldAnswer == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_SimonStores);
+
+        var flashSequences = fldFlashingColours.Get();
+
+        if (flashSequences == null || (flashSequences.Any(flash => flash == null)))
+            yield break;
+
+        string colors = "RGBCMY";
+
+        foreach (string flash in flashSequences)
+        {
+            var set = new HashSet<char>();
+            if (flash.Any(color => (!set.Add(color) || !colors.Contains(color))) || flash.Length < 1 || flash.Length > 3)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Stores because 'flashSequences' contain 'flash' with duplicated colors, invalid color, or has an unexpected length (expected: 1 - 3): [Flash: {1}, Length: {2}]", 
+                    _moduleId, flash, flash.Length);
+                yield break;
+            }
+        }
+
+        int[][] correctAnswers = fldAnswer.Get();
+
+        if (correctAnswers == null || correctAnswers.Any(answer => answer == null))
+            yield break;
+
+        if (correctAnswers.Length != 3 || correctAnswers.Any(answer => answer.Length != 6))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Stores because 'correctAnswers' or its elements has an unexpected length (expected: 1 - 3 and 1 - 6): {1}, [{2}]", _moduleId, correctAnswers.Length, correctAnswers.Select(seq => seq.Length).Join(", "));
+            yield break;
+        }
+
+        int[] intergerAnswers = new int[3];
+        intergerAnswers[0] = correctAnswers[0][3];
+        intergerAnswers[1] = correctAnswers[1][4];
+        intergerAnswers[2] = correctAnswers[2][5];
+
+        if (intergerAnswers.Any(answer => (answer <= -365 || answer >= 365)))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Stores because 'integerAnswers' contains an invalid value (expected -364 to 364): [{1}]", _moduleId, String.Join(", ", intergerAnswers.Select(number => number.ToString()).ToArray()));
+            yield break;
+        }
+
+        var colorNames = new Dictionary<char, string> {
+            { 'R', "Red" },
+            { 'G', "Green" },
+            { 'B', "Blue" },
+            { 'C', "Cyan" },
+            { 'M', "Magenta" },
+            { 'Y', "Yellow" }
+        };
+
+        string[][] flashesFullName = new string[5][];
+        for (int index = 0; index < 5; index++)        
+        {
+            List<string> fullnameList = new List<string>();
+
+            foreach(char color in flashSequences[index])
+            {
+                fullnameList.Add(colorNames[color]);
+            }
+
+            flashesFullName[index] = fullnameList.ToArray();
+        }
+
+        addQuestions(module,
+            Enumerable.Range(0, 5).Select(index => makeQuestion(Question.SimonStoresColors, _SimonStores, 
+                formatArgs: new[] { flashSequences[index].Length == 1 ? "flashed" : "was one of the colors flashed", ordinal(index + 1) }, 
+                correctAnswers: flashesFullName[index]
+            )).Concat(
+            Enumerable.Range(0, 3).Select(index => makeQuestion(Question.SimonStoresAnswers, _SimonStores, 
+            formatArgs: new[] { (index + 1).ToString() }, 
+            correctAnswers: new[] { intergerAnswers[index].ToString() }, 
+            preferredWrongAnswers: Enumerable.Range(-364, 1 + 2 * 364).Select(number => number.ToString()).ToArray())
+            )));
+    }
+
     private IEnumerable<object> ProcessSkewedSlots(KMBombModule module)
     {
         var comp = GetComponent(module, "SkewedModule");
@@ -8351,6 +8481,57 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_TextField);
         addQuestion(module, Question.TextFieldDisplay, correctAnswers: new[] { answer });
+    }
+
+    private IEnumerable<object> ProcessThinkingWires(KMBombModule module)
+    {
+        var comp = GetComponent(module, "thinkingWiresScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldFirstWireToCut = GetField<int>(comp, "firstWireToCut");
+        var fldSecondWireToCut = GetField<string>(comp, "secondWireToCut");
+        var fldScreenNumber = GetField<string>(comp, "screenNumber");
+
+        if (comp == null || fldSolved == null || fldFirstWireToCut == null || fldSecondWireToCut == null || fldScreenNumber == null)
+            yield break;
+
+        while(!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_ThinkingWires);
+
+        int firstCorrectWire = fldFirstWireToCut.Get();
+        string secondCorrectWire = fldSecondWireToCut.Get();
+        string displayNumber = fldScreenNumber.Get();
+
+        if (secondCorrectWire == null || displayNumber == null)
+            yield break;
+
+        if (firstCorrectWire < 1 || firstCorrectWire > 7)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Thinking Wires because ‘firstCorrectWire’ has an unexpected value (expected 1 - 7): {1}", _moduleId, firstCorrectWire);
+            yield break;
+        }
+
+        //String array for validation.
+        string[] colorNames = {"Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", "White", "Black", "Any" }; 
+        if (!colorNames.Contains(secondCorrectWire))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Thinking Wires because ‘secondCorrectWire’ is an invalid color: {1}", _moduleId, secondCorrectWire);
+            yield break;
+        }
+
+        //List of valid display number for validation. 69 happens in the case of "Any" while 11 is expected to be the longest.
+        //Basic calculations by hand and algorithm seem to confirm this, but may want to recalculate to ensure it is right.
+        string[] displayNumberList = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "69" };
+        if (!displayNumberList.Contains(displayNumber))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Thinking Wires because ‘displayNumber’ has an unexpected value: {1}", _moduleId, displayNumber);
+            yield break;
+        }
+
+        addQuestions(module,
+            makeQuestion(Question.ThinkingWiresFirstWire, _ThinkingWires, null, new[] { firstCorrectWire.ToString() }),
+            makeQuestion(Question.ThinkingWiresSecondWire, _ThinkingWires, null, new[] { secondCorrectWire }),
+            makeQuestion(Question.ThinkingWiresDisplayNumber, _ThinkingWires, null, new[] { displayNumber }));
     }
 
     private IEnumerable<object> ProcessThirdBase(KMBombModule module)
