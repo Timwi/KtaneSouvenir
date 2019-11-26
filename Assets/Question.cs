@@ -30,6 +30,10 @@ namespace Souvenir
         [SouvenirQuestion("What enemy were you fighting in {0}?", "Adventure Game", 4, "Dragon", "Demon", "Eagle", "Goblin", "Troll", "Wizard", "Golem", "Lizard")]
         AdventureGameEnemy,
 
+        [SouvenirQuestion("What was the {1} in the last successful round of {0}?", "Affine Cycle", 4, "Advanced", "Addition", "Allocate", "Allotted", "Binaries", "Billions", "Bulkhead", "Bulwarks", "Ciphered", "Circuits", "Computer", "Compiler", "Decrypts", "Division", "Discover", "Discrete", "Encipher", "Entrance", "Equation", "Equalise", "Finished", "Findings", "Fortress", "Fortunes", "Gauntlet", "Gambling", "Gathered", "Gateways", "Hazarded", "Haziness", "Hunkered", "Hungrier", "Indicate", "Indigoes", "Illusion", "Illuding", "Jigsawed", "Jimmying", "Junction", "Juncture", "Kilowatt", "Kinetics", "Knockout", "Knowable", "Limiting", "Linearly", "Linkages", "Lingered", "Monogram", "Monotone", "Multiply", "Mulcting", "Nanogram", "Nanotube", "Numbered", "Numerate", "Octangle", "Octuples", "Observed", "Obstacle", "Progress", "Projects", "Position", "Positron", "Quadrant", "Quadrics", "Quickest", "Quitters", "Reversed", "Revolved", "Rotation", "Relative", "Starting", "Standard", "Stopping", "Stoccata", "Triggers", "Triangle", "Tomogram", "Tomorrow", "Underrun", "Underlie", "Ultimate", "Ultrahot", "Vicinity", "Viceless", "Voltages", "Voluming", "Wingding", "Winnable", "Whatever", "Whatsits", "Yellowed", "Yeasayer", "Yielders", "Yourself", "Zippered", "Zigzaggy", "Zugzwang", "Zymogene",
+            ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        AffineCycleWord,
+
         [SouvenirQuestion("What was the first equation in {0}?", "Algebra", 4, "a=3z", "a=5+y", "a=6-x", "a=7x", "a=8y", "a=9+z", "a=x/2", "a=x+1", "a=y/4", "a=y-2", "a=z/10", "a=z-7")]
         AlgebraEquation1,
         [SouvenirQuestion("What was the second equation in {0}?", "Algebra", 4, "b=(2x/10)-y", "b=(7x)y", "b=(x+y)-(z/2)", "b=(y/2)-z", "b=(zy)-(2x)", "b=(z-y)/2", "b=2(z+7)", "b=2z+7", "b=xy-(2+x)", "b=xyz")]
@@ -40,6 +44,19 @@ namespace Souvenir
         [SouvenirQuestion("Which number was selectable, but not the solution, in the {1} screen on {0}?", "Arithmelogic", 6, null, ExampleAnswers = new[] { "12", "33", "47", "82", "99" },
             ExampleExtraFormatArguments = new[] { "left", "middle", "right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ArithmelogicNumbers,
+
+        [SouvenirQuestion("What color was the button in stage {1} of {0}?", "Bamboozling Button", 4, "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose", "White", "Grey", "Black",
+          ExampleExtraFormatArguments = new[] { "1", "2" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        BamboozlingButtonColor,
+        [SouvenirQuestion("What was the {2} label on the button in stage {1} of {0}?", "Bamboozling Button", 4, "A LETTER", "A WORD", "THE LETTER", "THE WORD", "1 LETTER", "1 WORD", "ONE LETTER", "ONE WORD", "B", "C", "D", "E", "G", "K", "N", "P", "Q", "T", "V", "W", "Y", "BRAVO", "CHARLIE", "DELTA", "ECHO", "GOLF", "KILO", "NOVEMBER", "PAPA", "QUEBEC", "TANGO", "VICTOR", "WHISKEY", "YANKEE", "COLOUR", "RED", "ORANGE", "YELLOW", "LIME", "GREEN", "JADE", "CYAN", "AZURE", "BLUE", "VIOLET", "MAGENTA", "ROSE", "IN RED", "IN YELLOW", "IN GREEN", "IN CYAN", "IN BLUE", "IN MAGENTA", "QUOTE", "END QUOTE",
+          ExampleExtraFormatArguments = new[] { "1", "top", "1", "bottom", "2", "top", "2", "bottom" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        BamboozlingButtonLabel,
+        [SouvenirQuestion("What was the {2} display in stage {1} of {0}?", "Bamboozling Button", 4, "A LETTER", "A WORD", "THE LETTER", "THE WORD", "1 LETTER", "1 WORD", "ONE LETTER", "ONE WORD", "B", "C", "D", "E", "G", "K", "N", "P", "Q", "T", "V", "W", "Y", "BRAVO", "CHARLIE", "DELTA", "ECHO", "GOLF", "KILO", "NOVEMBER", "PAPA", "QUEBEC", "TANGO", "VICTOR", "WHISKEY", "YANKEE", "COLOUR", "RED", "ORANGE", "YELLOW", "LIME", "GREEN", "JADE", "CYAN", "AZURE", "BLUE", "VIOLET", "MAGENTA", "ROSE", "IN RED", "IN YELLOW", "IN GREEN", "IN CYAN", "IN BLUE", "IN MAGENTA", "QUOTE", "END QUOTE",
+          ExampleExtraFormatArguments = new[] { "1", "first", "1", "third", "1", "fourth", "1", "fifth" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        BamboozlingButtonDisplay,
+        [SouvenirQuestion("What was the color of the {2} display in stage {1} of {0}?", "Bamboozling Button", 4, "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose", "White", "Grey",
+          ExampleExtraFormatArguments = new[] { "1", "fourth", "1", "fifth", "2", "fourth", "2", "fifth" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        BamboozlingButtonDisplayColor,
 
         [SouvenirQuestion("What color was {1} in the solution to {0}?", "Big Circle", 6, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -61,7 +78,7 @@ namespace Souvenir
         [SouvenirQuestion("What was the last letter pressed on {0}?", "Blockbusters", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")]
         BlockbustersLastLetter,
 
-        [SouvenirQuestion("What were the letters on the screen on the last successful round on {0}?", "Blue Arrows", 6, "CA", "C1", "CB", "C8", "CF", "C4", "CE", "C6", "3A", "31", "3B", "38", "3F", "34", "3E", "36", "GA", "G1", "GB", "G8", "GF", "G4", "GE", "G6", "7A", "71", "7B", "78", "7F", "74", "7E", "76", "DA", "D1", "DB", "D8", "DF", "D4", "DE", "D6", "5A", "51", "5B", "58", "5F", "54", "5E", "56", "HA", "H1", "HB", "H8", "HF", "H4", "HE", "H6", "2A", "21", "2B", "28", "2F", "24", "2E", "26")]
+        [SouvenirQuestion("What were the letters on the screen in the last successful round of {0}?", "Blue Arrows", 6, "CA", "C1", "CB", "C8", "CF", "C4", "CE", "C6", "3A", "31", "3B", "38", "3F", "34", "3E", "36", "GA", "G1", "GB", "G8", "GF", "G4", "GE", "G6", "7A", "71", "7B", "78", "7F", "74", "7E", "76", "DA", "D1", "DB", "D8", "DF", "D4", "DE", "D6", "5A", "51", "5B", "58", "5F", "54", "5E", "56", "HA", "H1", "HB", "H8", "HF", "H4", "HE", "H6", "2A", "21", "2B", "28", "2F", "24", "2E", "26")]
         BlueArrowsInitialLetters,
 
         [SouvenirQuestion("What was the {1} indicator label in {0}?", "Bob Barks", 6, "BOB", "CAR", "CLR", "IND", "FRK", "FRQ", "MSA", "NSA", "SIG", "SND", "TRN", "BUB", "DOG", "ETC", "KEY",
@@ -95,6 +112,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "red", "blue", "yellow", "white" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ButtonSequencesColorOccurrences,
 
+        [SouvenirQuestion("What was the {1} in the last successful round of {0}?", "Caesar Cycle", 4, "Advanced", "Addition", "Allocate", "Altering", "Binaries", "Billions", "Bulkhead", "Bulleted", "Ciphered", "Circuits", "Computer", "Continue", "Decrypts", "Division", "Discover", "Disposal", "Encipher", "Entrance", "Equation", "Equipped", "Finished", "Findings", "Fortress", "Forwards", "Gauntlet", "Gambling", "Gathered", "Glooming", "Hazarded", "Haziness", "hunkered", "Huntsman", "Indicate", "Indigoes", "Illusion", "Illumine", "Jigsawed", "Jimmying", "Junction", "Judgment", "Kilowatt", "Kinetics", "Knockout", "Knuckled", "Limiting", "Linearly", "Linkages", "Labeling", "Monogram", "Monotone", "Multiply", "Mulligan", "Nanogram", "Nanotube", "Numbered", "Numerals", "Octangle", "Octuples", "observed", "Obscured", "Progress", "Projects", "Position", "Positive", "Quadrant", "Quadrics", "Quickest", "Quintics", "Reversed", "Revolved", "rotation", "Relation", "Starting", "Standard", "Stopping", "Stopword", "Triggers", "Triangle", "Toggling", "Together", "Underrun", "Underlie", "Ultimate", "Ultrared", "Vicinity", "Viceless", "Voltages", "Volatile", "Wingding", "Winnable", "Whatever", "Whatnots", "Yellowed", "Yeasayer", "Yielding", "Yourself", "Zippered", "Zigzaggy", "Zugzwang", "Zymogram",
+          ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        CaesarCycleWord,
+
         [SouvenirQuestion("What was the LED color in {0}?", "Calendar", 4, "Green", "Yellow", "Red", "Blue")]
         CalendarLedColor,
 
@@ -109,6 +130,10 @@ namespace Souvenir
         [SouvenirQuestion("What was the {1} coordinate in {0}?", "Chess", 6, "a1", "a2", "a3", "a4", "a5", "a6", "b1", "b2", "b3", "b4", "b5", "b6", "c1", "c2", "c3", "c4", "c5", "c6", "d1", "d2", "d3", "d4", "d5", "d6", "e1", "e2", "e3", "e4", "e5", "e6", "f1", "f2", "f3", "f4", "f5", "f6",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ChessCoordinate,
+
+        [SouvenirQuestion("What color was the {1} LED in the last successful round of {0}?", "Chinese Counting", 4, "White", "Red", "Green", "Orange",
+          ExampleExtraFormatArguments = new[] { "left", "right" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ChineseCountingLED,
 
         [SouvenirQuestion("Which note was part of the given chord in {0}?", "Chord Qualities", 6, "A", "A♯", "B", "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯")]
         ChordQualitiesNotes,
@@ -174,6 +199,10 @@ namespace Souvenir
         [SouvenirQuestion("What were the weather conditions on the {1} day in {0}?", "Creation", 4, "Clear", "Heat Wave", "Meteor Shower", "Rain", "Windy",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         CreationWeather,
+
+        [SouvenirQuestion("What was the {1} in the last successful round of {0}?", "Cryptic Cycle", 4, "Advanced", "Addition", "Allocate", "Altering", "Binaries", "Billions", "Bulkhead", "Bulleted", "Ciphered", "Circuits", "Computer", "Continue", "Decrypts", "Division", "Discover", "Disposal", "Examined", "Examples", "Equation", "Equipped", "Finished", "Findings", "Fortress", "Forwards", "Gauntlet", "Gambling", "Gathered", "Glooming", "Hazarded", "Haziness", "Hunkered", "Huntsman", "Indicate", "Indigoes", "Illusion", "Illumine", "Jigsawed", "Jimmying", "Junction", "Judgment", "Kilowatt", "Kinetics", "Knockout", "Knuckled", "Limiting", "Linearly", "Linkages", "Labeling", "Monogram", "Monotone", "Multiply", "Mulligan", "Nanogram", "Nanotube", "Numbered", "Numerals", "Octangle", "Octuples", "Observed", "Obscured", "Progress", "Projects", "Position", "Positive", "Quadrant", "Quadplex", "Quickest", "Quintics", "Reversed", "Revolved", "Rotation", "Relation", "Starting", "Standard", "Stopping", "Stopword", "Triggers", "Triangle", "Toggling", "Together", "Underrun", "Underlie", "Ultimate", "Ultrared", "Vicinity", "Viceless", "Voltages", "Volatile", "Wingding", "Winnable", "Whatever", "Whatnots", "Yellowed", "Yeasayer", "Yielding", "Yourself", "Zippered", "Zigzaggy", "Zugzwang", "Zymogram",
+          ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        CrypticCycleWord,
 
         [SouvenirQuestion("What was the {1} cube rotation in {0}?", "Cube", 4, "rotate cw", "tip left", "tip backwards", "rotate ccw", "tip right", "tip forwards",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
@@ -248,6 +277,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the last number on the screen on {0}?", "Green Arrows", 6, "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99")]
         GreenArrowsLastScreen,
 
+        [SouvenirQuestion("What was the last number on the display on {0}?", "Green Arrows", 6, "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99")]
+        GreenArrowsLastScreen,
+
         [SouvenirQuestion("What was the starting location in {0}?", "Gridlock", 6, "A1", "B1", "C1", "D1", "A2", "B2", "C2", "D2", "A3", "B3", "C3", "D3", "A4", "B4", "C4", "D4")]
         GridLockStartingLocation,
 
@@ -267,6 +299,13 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the color of the pawn in {0}?", "Hexamaze", 6, "Red", "Yellow", "Green", "Cyan", "Blue", "Pink")]
         HexamazePawnColor,
+
+        [SouvenirQuestion("What was the color of the main LED in {0}?", "Hidden Colors", 6, "Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Magenta", "White")]
+        HiddenColorsLED,
+
+        [SouvenirQuestion("What was the {1} in the last successful round of {0}?", "Hill Cycle", 4, "Adverted", "Advocate", "Allocate", "Altering", "Binormal", "Binomial", "Bulkhead", "Bulleted", "Ciphered", "Circuits", "Compiler", "Commando", "Decimate", "Deceived", "Discover", "Disposal", "Encipher", "Entrance", "Equators", "Equalise", "Finalise", "Finnicky", "Fortress", "Forwards", "Gauntlet", "Gambling", "Gatepost", "Gateways", "Hazarded", "Haziness", "Hungrier", "Huntress", "Incoming", "Indirect", "Illusion", "Illumine", "Jigsawed", "Jiggling", "Junction", "Junkyard", "Kilowatt", "Kilobyte", "Knockout", "Knocking", "lingered", "Linearly", "Linkages", "Linkwork", "Monogram", "Monomial", "Multiply", "Multiton", "Nanogram", "Nanowatt", "Numerous", "Numerals", "Ordinals", "Ordering", "Observed", "Obscured", "Progress", "Projects", "Prophase", "Prophecy", "Quadrant", "Quadrics", "Quartile", "Quartics", "Reversed", "Revolved", "Rotators", "Relaying", "Stanzaic", "Standout", "Stopping", "Stopword", "Trigonal", "Trickier", "Toggling", "Together", "Underway", "Underlie", "Ultrahot", "Ultrared", "Vicinity", "Viceless", "Volition", "Volatile", "Whatness", "Whatsits", "Whatever", "Whatnots", "Yearlong", "Yeasayer", "Yokozuna", "Yourself", "Zippered", "Zygomata", "Zugzwang", "Zymogene",
+          ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        HillCycleWord,
 
         [SouvenirQuestion("Which House was {1} solved\u00a0for in {0}?", "Hogwarts", 4, "Gryffindor", "Hufflepuff", "Slytherin", "Ravenclaw",
             ExampleExtraFormatArguments = new[] { "Binary Puzzle", "Zoni", "R.-P.-S.- L.-Sp.", "Modules Against Humanity", "Monsplode Trading Cards" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -326,6 +365,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "A", "B", "C", "D" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         JewelVaultWheels,
 
+        [SouvenirQuestion("What was the {1} in the last successful round of {0}?", "Jumble Cycle", 4, "Adverted", "Advocate", "Allotype", "Allotted", "Binormal", "Binomial", "Bullhorn", "Bulwarks", "Connects", "Conquers", "Commando", "Compiler", "Deceived", "Decimate", "Dispatch", "Discrete", "Encrypts", "Encoding", "Equators", "Equalise", "Finalise", "Finnicky", "Formulae", "Fortunes", "Garrison", "Garnered", "Gatepost", "Gateways", "Hotlinks", "Hotheads", "Huntress", "Hundreds", "Incoming", "Indirect", "Illusory", "Illuding", "Journeys", "Jousting", "Junkyard", "Juncture", "Kilovolt", "Kilobyte", "Knocking", "Knowable", "Language", "Landmark", "Linkwork", "Lingered", "Monomial", "Monolith", "Multiton", "Mulcting", "Nanowatt", "Nanobots", "Numerous", "Numerate", "Ordering", "Ordinals", "Obstruct", "Obstacle", "Prophase", "PROPHECY", "Postsync", "Positron", "Quartile", "Quartics", "Quirkish", "Quitters", "Reversed", "Revealed", "Relaying", "Relative", "Stanzaic", "Standout", "Stockade", "Stoccata", "Trigonal", "Trickier", "Tomogram", "Tomahawk", "Underway", "Undoings", "Ulterior", "Ultrahot", "Venomous", "Vendetta", "Volition", "Voluming", "Weakened", "Weaponed", "Whatness", "Whatsits", "Yearlong", "Yearning", "Yokozuna", "Yourself", "Zygomata", "Zygotene", "Zymology", "Zymogene",
+          ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        JumbleCycleWord,
+
         [SouvenirQuestion("Which square was {1} in {0}?", "Kudosudoku", 6, null, Type = AnswerType.Sprites,
             ExampleExtraFormatArguments = new[] { "pre-filled", "not pre-filled" }, ExampleExtraFormatArgumentGroupSize = 1)]
         KudosudokuPrefilled,
@@ -350,13 +393,13 @@ namespace Souvenir
             ExampleAnswers = new[] { "&&&**", "&$#$&", "$#$*&", "#$$**", "$#$#*", "**$*#", "#$$&*", "##*$*", "$#*$&", "**#**", "#&&*#", "&#**&", "$&**#", "&#$$#", "$&&**", "#&$##", "&*$*$", "&$$&*", "#&&&&", "**$$$", "*&*&&", "*#&*&", "**###", "&&$&*", "&$**&", "#$#&$", "&#&&#", "$$*$*", "$&#$$", "&**$$", "$&&*&", "&$&##", "#&$*&", "$*$**", "*#$&&", "###&$", "*$$&$", "$*&##", "#&$&&", "$&$$*", "*$*$*" })]
         Listening,
 
-        [SouvenirQuestion("What was the initial color of the {1} button in the {2} stage of {0}?", "Logical Buttons", 4, "Red", "Blue", "Green", "Yellow", "Purple", "White", "Orange", "Cyan", "Grey",
+        [SouvenirQuestion("What was the initial color of the {1} button in the {2} successful stage of {0}?", "Logical Buttons", 4, "Red", "Blue", "Green", "Yellow", "Purple", "White", "Orange", "Cyan", "Grey",
             ExampleExtraFormatArguments = new[] { "top", "first", "bottom-left", "first", "bottom-right", "first", "top", "second", "bottom-left", "second", "bottom-right", "second", "top", "third", "bottom-left", "third", "bottom-right", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
         LogicalButtonsColor,
-        [SouvenirQuestion("What was the initial label on the {1} button in the {2} stage of {0}?", "Logical Buttons", 4, "Logic", "Color", "Label", "Button", "Wrong", "Boom", "No", "Wait", "Hmmm",
+        [SouvenirQuestion("What was the initial label on the {1} button in the {2} successful stage of {0}?", "Logical Buttons", 4, "Logic", "Color", "Label", "Button", "Wrong", "Boom", "No", "Wait", "Hmmm",
             ExampleExtraFormatArguments = new[] { "top", "first", "bottom-left", "first", "bottom-right", "first", "top", "second", "bottom-left", "second", "bottom-right", "second", "top", "third", "bottom-left", "third", "bottom-right", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
         LogicalButtonsLabel,
-        [SouvenirQuestion("What was the initial operator in the {1} stage of {0}?", "Logical Buttons", 6, "AND", "OR", "XOR", "NAND", "NOR", "XNOR",
+        [SouvenirQuestion("What was the final operator in the {1} successful stage of {0}?", "Logical Buttons", 6, "AND", "OR", "XOR", "NAND", "NOR", "XNOR",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         LogicalButtonsOperator,
 
@@ -497,6 +540,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the acid’s volume in {0}?", "Neutralization", 6, "0", "5", "10", "15", "20", "25")]
         NeutralizationVolume,
 
+        [SouvenirQuestion("What was the label of the correct button in the last successful round of {0}?", "N&Ms", 6, "NNNNN", "MNNNN", "NMNNN", "MMNNN", "NNMNN", "MNMNN", "NMMNN", "MMMNN", "NNNMN", "MNNMN", "NMNMN", "MMNMN", "NNMMN", "MNMMN", "NMMMN", "MMMMN", "NNNNM", "MNNNM", "NMNNM", "MMNNM", "NNMNM", "MNMNM", "NMMNM", "MMMNM", "NNNMM", "MNNMM", "NMNMM", "MMNMM", "NNMMM", "MNMMM", "NMMMM", "MMMMM")]
+        NandMsAnswer,
+
         [SouvenirQuestion("What was one of the colors in the {1} in {0}?", "Nonogram", 6, "Red", "Orange", "Yellow", "Green", "Blue", "Purple",
             ExampleExtraFormatArguments = new[] { "first column", "second column", "first row", "second row" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NonogramColors,
@@ -512,6 +558,16 @@ namespace Souvenir
         [SouvenirQuestion("What was the {1} arrow on the display of the {2} successful stage on {0}?", "Orange Arrows", 4, "Up", "Right", "Down", "Left",
             ExampleExtraFormatArguments = new[] { "first", "first", "first", "second", "second", "first", "second", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
         OrangeArrowsSequences,
+
+        [SouvenirQuestion("What color was the {2} key in stage {1} of {0}?", "Ordered Keys", 6, "Red", "Blue", "Green", "Yellow", "Cyan", "Magenta",
+            ExampleExtraFormatArguments = new[] { "first", "1", "first", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        OrderedKeysColors,
+        [SouvenirQuestion("What was the label on the {2} key in stage {1} of {0}?", "Ordered Keys", 6, "1", "2", "3", "4", "5", "6",
+            ExampleExtraFormatArguments = new[] { "first", "1", "first", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        OrderedKeysLabels,
+        [SouvenirQuestion("What color was the label of the {2} key in stage {1} of {0}?", "Ordered Keys", 6, "Red", "Blue", "Green", "Yellow", "Cyan", "Magenta",
+            ExampleExtraFormatArguments = new[] { "first", "1", "first", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        OrderedKeysLabelColors,
 
         [SouvenirQuestion("What was the observer’s intial position in {0}?", "Orientation Cube", 4, "front", "left", "back", "right")]
         OrientationCubeInitialObserverPosition,
@@ -532,11 +588,19 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PieDigits,
 
+        [SouvenirQuestion("What was the {1} in the last successful round of {0}?", "Pigpen Cycle", 4, "Advanced", "Addition", "Allotype", "Allotted", "Binaries", "Billions", "Bullhorn", "Bulwarks", "Ciphered", "Circuits", "Commando", "Compiler", "Decrypts", "Division", "Dispatch", "Discrete", "Encipher", "Entrance", "Equators", "Equalise", "Finished", "Findings", "Formulae", "Fortunes", "Gauntlet", "Gambling", "Gatepost", "Gateways", "Hazarded", "Haziness", "Huntress", "Hungrier", "Indicate", "Indigoes", "Illusory", "Illuding", "Jigsawed", "Jimmying", "Junkyard", "Juncture", "Kilowatt", "Kinetics", "Knocking", "Knowable", "Limiting", "Linearly", "Linkwork", "Lingered", "Monogram", "Monotone", "Multiton", "Mulcting", "Nanogram", "Nanotube", "Numerous", "Numerate", "Octangle", "Octuples", "Obstruct", "Obstacle", "Progress", "Projects", "Postsync", "Positron", "Quadrant", "Quadrics", "Quirkish", "Quitters", "Reversed", "Revolved", "Rotators", "Relative", "Starting", "Standard", "Stockade", "Stoccata", "Triggers", "Triangle", "Tomogram", "Tomahawk", "Underrun", "Underlie", "Ulterior", "Ultrahot", "Vicinity", "Viceless", "Volition", "Voluming", "Wingding", "Winnable", "Whatness", "Whatsits", "Yellowed", "Yeasayer", "Yokozuna", "Yourself", "Zippered", "Zigzaggy", "Zymology", "Zymogene",
+          ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        PigpenCycleWord,
+
         [SouvenirQuestion("What was the planet shown in {0}?", "Planets", 6, null, Type = AnswerType.Sprites)]
         PlanetsPlanet,
         [SouvenirQuestion("What was the color of the {1} strip (from the top) in {0}?", "Planets", 6, "Aqua", "Blue", "Green", "Lime", "Orange", "Red", "Yellow", "White", "Off",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PlanetsStrips,
+
+        [SouvenirQuestion("What was the {1} in the last successful round of {0}?", "Playfair Cycle", 4, "Advanced", "Advocate", "Allotype", "Allotted", "Binaries", "Binomial", "Bullhorn", "Bulwarks", "Circular", "Circuits", "Commando", "Compiler", "Decrypts", "Decimals", "Dispatch", "Discrete", "Encipher", "Encoding", "Equators", "Equalise", "Finished", "Finnicky", "Formulae", "Fortunes", "Gauntlet", "Gauchest", "Gatepost", "Gateways", "Hotlinks", "Hotheads", "Huntress", "Hungrier", "Indicate", "Indirect", "Illusory", "Illuding", "Jigsawed", "Jiggling", "Junkyard", "Juncture", "Kilowatt", "Kilobyte", "Knocking", "Knowable", "Limiting", "Limerick", "Linkwork", "Lingered", "Monogram", "Monolith", "Multiton", "Mulcting", "Nanogram", "Nanobots", "Numerous", "Numerate", "Octangle", "Octonary", "Obstruct", "Obstacle", "Progress", "Programs", "Postsync", "Positron", "Quotient", "Quotable", "Quirkish", "Quitters", "Reversed", "Revealed", "Rotators", "Relative", "Stanzaic", "Standard", "Stockade", "Stoccata", "Triggers", "Trickier", "Tomogram", "Tomahawk", "Underrun", "Undoings", "Ulterior", "Ultrahot", "Vicinity", "Vicenary", "Volition", "Voluming", "Wingding", "Wingspan", "Whatness", "Whatsits", "Yearlong", "Yeasayer", "Yokozuna", "Yourself", "Ziggurat", "Zigzaggy", "Zymology", "Zymogene",
+          ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        PlayfairCycleWord,
 
         [SouvenirQuestion("What was the {1} correct answer you pressed in {0}?", "Poetry", 4, "clarity", "flow", "fatigue", "hollow", "energy", "sunshine", "ocean", "reflection", "identity", "black", "crowd", "heart", "weather", "words", "past", "solitary", "relax", "dance", "weightless", "morality", "gaze", "failure", "bunny", "lovely", "romance", "future", "focus", "search", "cookies", "compassion", "creation", "patience",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -550,6 +614,9 @@ namespace Souvenir
         ProbingFrequencies,
         
         [SouvenirQuestion("What was the word at the finish position when not unscrambled on {0}?", "Purple Arrows", 6, null)]
+        PurpleArrowsFinishScrambled,
+
+        [SouvenirQuestion("What was the scrambled word shown on {0}?", "Purple Arrows", 6, null, ExampleAnswers = new[] { "PURPLE", "PURPEL", "PURLPE", "PURLEP", "PUREPL", "PURELP", "PUPRLE", "PUPREL", "PUPLRE", "PUPLER", "PUPERL", "PUPELR", "PULRPE", "PULREP", "PULPRE", "PULPER", "PULERP", "PULEPR", "PUERPL", "PUERLP", "PUEPRL", "PUEPLR", "PUELRP", "PUELPR", "PRUPLE", "PRUPEL", "PRULPE", "PRULEP", "PRUEPL", "PRUELP", "PRPULE", "PRPUEL", "PRPLUE", "PRPLEU", "PRPEUL", "PRPELU", "PRLUPE", "PRLUEP", "PRLPUE", "PRLPEU", "PRLEUP", "PRLEPU", "PREUPL", "PREULP", "PREPUL", "PREPLU", "PRELUP", "PRELPU", "PPURLE", "PPUREL", "PPULRE", "PPULER", "PPUERL", "PPUELR", "PPRULE", "PPRUEL", "PPRLUE", "PPRLEU", "PPREUL", "PPRELU", "PPLURE", "PPLUER", "PPLRUE", "PPLREU", "PPLEUR", "PPLERU", "PPEURL", "PPEULR", "PPERUL", "PPERLU", "PPELUR", "PPELRU", "PLURPE", "PLUREP", "PLUPRE", "PLUPER", "PLUERP", "PLUEPR", "PLRUPE", "PLRUEP", "PLRPUE", "PLRPEU", "PLREUP", "PLREPU", "PLPURE", "PLPUER", "PLPRUE", "PLPREU", "PLPEUR", "PLPERU", "PLEURP", "PLEUPR", "PLERUP", "PLERPU", "PLEPUR", "PLEPRU", "PEURPL", "PEURLP", "PEUPRL", "PEUPLR", "PEULRP", "PEULPR", "PERUPL", "PERULP", "PERPUL", "PERPLU", "PERLUP", "PERLPU", "PEPURL", "PEPULR", "PEPRUL", "PEPRLU", "PEPLUR", "PEPLRU", "PELURP", "PELUPR", "PELRUP", "PELRPU", "PELPUR", "PELPRU", "UPRPLE", "UPRPEL", "UPRLPE", "UPRLEP", "UPREPL", "UPRELP", "UPPRLE", "UPPREL", "UPPLRE", "UPPLER", "UPPERL", "UPPELR", "UPLRPE", "UPLREP", "UPLPRE", "UPLPER", "UPLERP", "UPLEPR", "UPERPL", "UPERLP", "UPEPRL", "UPEPLR", "UPELRP", "UPELPR", "URPPLE", "URPPEL", "URPLPE", "URPLEP", "URPEPL", "URPELP", "URPPLE", "URPPEL", "URPLPE", "URPLEP", "URPEPL", "URPELP", "URLPPE", "URLPEP", "URLPPE", "URLPEP", "URLEPP", "URLEPP", "UREPPL", "UREPLP", "UREPPL", "UREPLP", "URELPP", "URELPP", "UPPRLE", "UPPREL", "UPPLRE", "UPPLER", "UPPERL", "UPPELR", "UPRPLE", "UPRPEL", "UPRLPE", "UPRLEP", "UPREPL", "UPRELP", "UPLPRE", "UPLPER", "UPLRPE", "UPLREP", "UPLEPR", "UPLERP", "UPEPRL", "UPEPLR", "UPERPL", "UPERLP", "UPELPR", "UPELRP", "ULPRPE", "ULPREP", "ULPPRE", "ULPPER", "ULPERP", "ULPEPR", "ULRPPE", "ULRPEP", "ULRPPE", "ULRPEP", "ULREPP", "ULREPP", "ULPPRE", "ULPPER", "ULPRPE", "ULPREP", "ULPEPR", "ULPERP", "ULEPRP", "ULEPPR", "ULERPP", "ULERPP", "ULEPPR", "ULEPRP", "UEPRPL", "UEPRLP", "UEPPRL", "UEPPLR", "UEPLRP", "UEPLPR", "UERPPL", "UERPLP", "UERPPL", "UERPLP", "UERLPP", "UERLPP", "UEPPRL", "UEPPLR", "UEPRPL", "UEPRLP", "UEPLPR", "UEPLRP", "UELPRP", "UELPPR", "UELRPP", "UELRPP", "UELPPR", "UELPRP", "RPUPLE", "RPUPEL", "RPULPE", "RPULEP", "RPUEPL", "RPUELP", "RPPULE", "RPPUEL", "RPPLUE", "RPPLEU", "RPPEUL", "RPPELU", "RPLUPE", "RPLUEP", "RPLPUE", "RPLPEU", "RPLEUP", "RPLEPU", "RPEUPL", "RPEULP", "RPEPUL", "RPEPLU", "RPELUP", "RPELPU", "RUPPLE", "RUPPEL", "RUPLPE", "RUPLEP", "RUPEPL", "RUPELP", "RUPPLE", "RUPPEL", "RUPLPE", "RUPLEP", "RUPEPL", "RUPELP", "RULPPE", "RULPEP", "RULPPE", "RULPEP", "RULEPP", "RULEPP", "RUEPPL", "RUEPLP", "RUEPPL", "RUEPLP", "RUELPP", "RUELPP", "RPPULE", "RPPUEL", "RPPLUE", "RPPLEU", "RPPEUL", "RPPELU", "RPUPLE", "RPUPEL", "RPULPE", "RPULEP", "RPUEPL", "RPUELP", "RPLPUE", "RPLPEU", "RPLUPE", "RPLUEP", "RPLEPU", "RPLEUP", "RPEPUL", "RPEPLU", "RPEUPL", "RPEULP", "RPELPU", "RPELUP", "RLPUPE", "RLPUEP", "RLPPUE", "RLPPEU", "RLPEUP", "RLPEPU", "RLUPPE", "RLUPEP", "RLUPPE", "RLUPEP", "RLUEPP", "RLUEPP", "RLPPUE", "RLPPEU", "RLPUPE", "RLPUEP", "RLPEPU", "RLPEUP", "RLEPUP", "RLEPPU", "RLEUPP", "RLEUPP", "RLEPPU", "RLEPUP", "REPUPL", "REPULP", "REPPUL", "REPPLU", "REPLUP", "REPLPU", "REUPPL", "REUPLP", "REUPPL", "REUPLP", "REULPP", "REULPP", "REPPUL", "REPPLU", "REPUPL", "REPULP", "REPLPU", "REPLUP", "RELPUP", "RELPPU", "RELUPP", "RELUPP", "RELPPU", "RELPUP", "PPURLE", "PPUREL", "PPULRE", "PPULER", "PPUERL", "PPUELR", "PPRULE", "PPRUEL", "PPRLUE", "PPRLEU", "PPREUL", "PPRELU", "PPLURE", "PPLUER", "PPLRUE", "PPLREU", "PPLEUR", "PPLERU", "PPEURL", "PPEULR", "PPERUL", "PPERLU", "PPELUR", "PPELRU", "PUPRLE", "PUPREL", "PUPLRE", "PUPLER", "PUPERL", "PUPELR", "PURPLE", "PURPEL", "PURLPE", "PURLEP", "PUREPL", "PURELP", "PULPRE", "PULPER", "PULRPE", "PULREP", "PULEPR", "PULERP", "PUEPRL", "PUEPLR", "PUERPL", "PUERLP", "PUELPR", "PUELRP", "PRPULE", "PRPUEL", "PRPLUE", "PRPLEU", "PRPEUL", "PRPELU", "PRUPLE", "PRUPEL", "PRULPE", "PRULEP", "PRUEPL", "PRUELP", "PRLPUE", "PRLPEU", "PRLUPE", "PRLUEP", "PRLEPU", "PRLEUP", "PREPUL", "PREPLU", "PREUPL", "PREULP", "PRELPU", "PRELUP", "PLPURE", "PLPUER", "PLPRUE", "PLPREU", "PLPEUR", "PLPERU", "PLUPRE", "PLUPER", "PLURPE", "PLUREP", "PLUEPR", "PLUERP", "PLRPUE", "PLRPEU", "PLRUPE", "PLRUEP", "PLREPU", "PLREUP", "PLEPUR", "PLEPRU", "PLEUPR", "PLEURP", "PLERPU", "PLERUP", "PEPURL", "PEPULR", "PEPRUL", "PEPRLU", "PEPLUR", "PEPLRU", "PEUPRL", "PEUPLR", "PEURPL", "PEURLP", "PEULPR", "PEULRP", "PERPUL", "PERPLU", "PERUPL", "PERULP", "PERLPU", "PERLUP", "PELPUR", "PELPRU", "PELUPR", "PELURP", "PELRPU", "PELRUP", "LPURPE", "LPUREP", "LPUPRE", "LPUPER", "LPUERP", "LPUEPR", "LPRUPE", "LPRUEP", "LPRPUE", "LPRPEU", "LPREUP", "LPREPU", "LPPURE", "LPPUER", "LPPRUE", "LPPREU", "LPPEUR", "LPPERU", "LPEURP", "LPEUPR", "LPERUP", "LPERPU", "LPEPUR", "LPEPRU", "LUPRPE", "LUPREP", "LUPPRE", "LUPPER", "LUPERP", "LUPEPR", "LURPPE", "LURPEP", "LURPPE", "LURPEP", "LUREPP", "LUREPP", "LUPPRE", "LUPPER", "LUPRPE", "LUPREP", "LUPEPR", "LUPERP", "LUEPRP", "LUEPPR", "LUERPP", "LUERPP", "LUEPPR", "LUEPRP", "LRPUPE", "LRPUEP", "LRPPUE", "LRPPEU", "LRPEUP", "LRPEPU", "LRUPPE", "LRUPEP", "LRUPPE", "LRUPEP", "LRUEPP", "LRUEPP", "LRPPUE", "LRPPEU", "LRPUPE", "LRPUEP", "LRPEPU", "LRPEUP", "LREPUP", "LREPPU", "LREUPP", "LREUPP", "LREPPU", "LREPUP", "LPPURE", "LPPUER", "LPPRUE", "LPPREU", "LPPEUR", "LPPERU", "LPUPRE", "LPUPER", "LPURPE", "LPUREP", "LPUEPR", "LPUERP", "LPRPUE", "LPRPEU", "LPRUPE", "LPRUEP", "LPREPU", "LPREUP", "LPEPUR", "LPEPRU", "LPEUPR", "LPEURP", "LPERPU", "LPERUP", "LEPURP", "LEPUPR", "LEPRUP", "LEPRPU", "LEPPUR", "LEPPRU", "LEUPRP", "LEUPPR", "LEURPP", "LEURPP", "LEUPPR", "LEUPRP", "LERPUP", "LERPPU", "LERUPP", "LERUPP", "LERPPU", "LERPUP", "LEPPUR", "LEPPRU", "LEPUPR", "LEPURP", "LEPRPU", "LEPRUP", "EPURPL", "EPURLP", "EPUPRL", "EPUPLR", "EPULRP", "EPULPR", "EPRUPL", "EPRULP", "EPRPUL", "EPRPLU", "EPRLUP", "EPRLPU", "EPPURL", "EPPULR", "EPPRUL", "EPPRLU", "EPPLUR", "EPPLRU", "EPLURP", "EPLUPR", "EPLRUP", "EPLRPU", "EPLPUR", "EPLPRU", "EUPRPL", "EUPRLP", "EUPPRL", "EUPPLR", "EUPLRP", "EUPLPR", "EURPPL", "EURPLP", "EURPPL", "EURPLP", "EURLPP", "EURLPP", "EUPPRL", "EUPPLR", "EUPRPL", "EUPRLP", "EUPLPR", "EUPLRP", "EULPRP", "EULPPR", "EULRPP", "EULRPP", "EULPPR", "EULPRP", "ERPUPL", "ERPULP", "ERPPUL", "ERPPLU", "ERPLUP", "ERPLPU", "ERUPPL", "ERUPLP", "ERUPPL", "ERUPLP", "ERULPP", "ERULPP", "ERPPUL", "ERPPLU", "ERPUPL", "ERPULP", "ERPLPU", "ERPLUP", "ERLPUP", "ERLPPU", "ERLUPP", "ERLUPP", "ERLPPU", "ERLPUP", "EPPURL", "EPPULR", "EPPRUL", "EPPRLU", "EPPLUR", "EPPLRU", "EPUPRL", "EPUPLR", "EPURPL", "EPURLP", "EPULPR", "EPULRP", "EPRPUL", "EPRPLU", "EPRUPL", "EPRULP", "EPRLPU", "EPRLUP", "EPLPUR", "EPLPRU", "EPLUPR", "EPLURP", "EPLRPU", "EPLRUP", "ELPURP", "ELPUPR", "ELPRUP", "ELPRPU", "ELPPUR", "ELPPRU", "ELUPRP", "ELUPPR", "ELURPP", "ELURPP", "ELUPPR", "ELUPRP", "ELRPUP", "ELRPPU", "ELRUPP", "ELRUPP", "ELRPPU", "ELRPUP", "ELPPUR", "ELPPRU", "ELPUPR", "ELPURP", "ELPRPU", "ELPRUP" })]
         PurpleArrowsFinishScrambled,
 
         [SouvenirQuestion("What was the {1} digit in the {2} slot in {0}?", "Quintuples", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
@@ -574,6 +641,9 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the last color in {0}?", "Rhythms", 4, "Blue", "Red", "Green", "Yellow")]
         RhythmsColor,
+
+        [SouvenirQuestion("What was the rule number in {0}?", "Rule", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", AddThe = true)]
+        RuleNumber,
 
         [SouvenirQuestion("What was the contestant’s name in {0}?", "Schlag den Bomb", 4, "Ron", "Don", "Julia", "Cory", "Greg", "Paula", "Val", "Lisa", "Ozy", "Ozzy", "Elsa", "Cori", "Harry", "Gale", "Daniel", "Albert", "Spike", "Tommy", "Greta", "Tina", "Rob", "Edgar", "Julia", "Peter", "Millie", "Isolde", "Eris")]
         SchlagDenBombContestantName,
@@ -622,6 +692,10 @@ namespace Souvenir
                 "two (but not three) adjacent colors flashing in clockwise order"
             }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonScreamsRule,
+
+        [SouvenirQuestion("Which color flashed {1} in the {2} stage of {0}?", "Simon Selects", 6, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Magenta", "Cyan",
+             ExampleExtraFormatArguments = new[] { "first", "first", "first", "second", "first", "third", "second", "first", "second", "second", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        SimonSelectsOrder,
 
         [SouvenirQuestion("What was the {1} received letter in {0}?", "Simon Sends", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
             ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -677,7 +751,7 @@ namespace Souvenir
         [SouvenirQuestion("Which dragon shout was selectable, but not the solution, in {0}?", "Skyrim", 4, "Disarm", "Dismay", "Dragonrend", "Fire Breath", "Ice Form", "Kyne’s Peace", "Slow Time", "Unrelenting Force", "Whirlwind Sprint")]
         SkyrimDragonShout,
 
-        [SouvenirQuestion("How many red balls were there at the start of {0}?", "Snooker", 4, "8", "9", "10", "11")]
+        [SouvenirQuestion("How many red balls were there at the start of {0}?", "Snooker", 4, "8", "9", "10")]
         SnookerReds,
 
         [SouvenirQuestion("What was the first module asked about in the other Souvenir on this bomb?", "Souvenir", 4, null,
@@ -752,6 +826,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first" }, ExampleExtraFormatArgumentGroupSize = 1)]
         TwoBitsResponse,
 
+        [SouvenirQuestion("What was the {1} in the last successful round of {0}?", "Ultimate Cycle", 4, "Advanced", "Adverted", "Advocate", "Addition", "Allocate", "Allotype", "Allotted", "Altering", "Binaries", "Binormal", "Binomial", "Billions", "Bulkhead", "Bullhorn", "Bulleted", "Bulwarks", "Ciphered", "Circuits", "Connects", "Conquers", "Commando", "Compiler", "Computer", "Continue", "Decrypts", "Deceived", "Decimate", "Division", "Discover", "Discrete", "Dispatch", "Disposal", "Encipher", "Encrypts", "Encoding", "Entrance", "Equalise", "Equators", "Equation", "Equipped", "Finalise", "Finished", "Findings", "Finnicky", "Formulae", "Fortunes", "Fortress", "Forwards", "Garrison", "Garnered", "Gatepost", "Gateways", "Gauntlet", "Gambling", "Gathered", "Glooming", "Hazarded", "Haziness", "Hotlinks", "Hotheads", "Hundreds", "Hunkered", "Huntsman", "Huntress", "Incoming", "Indicate", "Indirect", "Indigoes", "Illuding", "Illusion", "Illusory", "Illumine", "Jigsawed", "Jimmying", "Journeys", "Jousting", "Junction", "Juncture", "Junkyard", "Judgment", "Kilowatt", "Kilovolt", "Kilobyte", "Kinetics", "Knocking", "Knockout", "Knowable", "Knuckled", "Language", "Landmark", "limiting", "Linearly", "Lingered", "Linkages", "Linkwork", "Labeling", "Monogram", "Monolith", "Monomial", "Monotone", "Multiton", "Multiply", "Mulcting", "Mulligan", "NANOBOTS", "Nanogram", "Nanowatt", "Nanotube", "Numbered", "Numerous", "Numerals", "Numerate", "Octangle", "Octuples", "Ordering", "Ordinals", "Observed", "Obscured", "Obstruct", "Obstacle", "Progress", "Projects", "Prophase", "Prophecy", "Postsync", "Possible", "Positron", "Positive", "Quadrant", "Quadrics", "Quartile", "Quartics", "Quickest", "Quirkish", "Quintics", "Quitters", "Reversed", "Revolved", "Revealed", "Rotation", "Rotators", "Relation", "Relative", "Relaying", "Starting", "Standard", "Standout", "Stanzaic", "Stoccata", "Stockade", "Stopping", "Stopword", "Trickier", "Trigonal", "Triggers", "Triangle", "Tomogram", "Tomahawk", "Toggling", "Together", "Underrun", "UnderwaY", "Underlie", "Undoings", "Ulterior", "Ultimate", "Ultrared", "Ultrahot", "Venomous", "Vendetta", "Vicinity", "Viceless", "Volition", "Voltages", "Volatile", "Voluming", "Weakened", "Weaponed", "Wingding", "Winnable", "Whatever", "Whatness", "Whatnots", "Whatsits", "Yellowed", "Yearlong", "Yearning", "Yeasayer", "Yielding", "Yielders", "Yokozuna", "Yourself", "Zippered", "Ziggurat", "Zigzaggy", "Zugzwang", "Zygomata", "Zygotene", "Zymology", "Zymogram",
+          ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        UltimateCycleWord,
+
         [SouvenirQuestion("What was the {1} rotation in {0}?", "Ultracube", 6, "XY", "YX", "XZ", "ZX", "XW", "WX", "XV", "VX", "YZ", "ZY", "YW", "WY", "YV", "VY", "ZW", "WZ", "ZV", "VZ", "WV", "VW", AddThe = true,
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         UltracubeRotations,
@@ -764,8 +842,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         UnfairCipherInstructions,
 
-        [SouvenirQuestion("What was the {1} correct letter in {0}?", "Unown Cipher", 6, null, ExampleAnswers = new[] { "A", "B", "C", "D", "E", "F"}, Type = AnswerType.UnownFont,
-            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was the {1} submitted letter in {0}?", "Unown Cipher", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+            Type = AnswerType.UnownFont, ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         UnownCipherAnswers,
 
         [SouvenirQuestion("What state did you depart from in {0}?", "USA Maze", 4, "Alaska", "Alabama", "Arkansas", "Arizona", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Iowa", "Idaho", "Illinois", "Indiana", "Kansas", "Kentucky", "Louisiana", "Massachusetts", "Maryland", "Maine", "Michigan", "Minnesota", "Missouri", "Mississippi", "Montana", "North Carolina", "North Dakota", "Nebraska", "New Hampshire", "New Jersey", "New Mexico", "Nevada", "New York", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Virginia", "Vermont", "Washington", "Wisconsin", "West Virginia", "Wyoming")]
@@ -804,7 +882,7 @@ namespace Souvenir
         [SouvenirQuestion("What was the initial roll on {0}?", "Yahtzee", 4, "Yahtzee", "large straight", "small straight", "four of a kind", "full house", "three of a kind", "two pairs", "pair")]
         YahtzeeInitialRoll,
 
-        [SouvenirQuestion("What was the letter that was used for the starting row in the last successful round on {0}?", "Yellow Arrows", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L" ,"M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")]
+        [SouvenirQuestion("What was the starting row letter in the last successful round of {0}?", "Yellow Arrows", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")]
         YellowArrowsStartingRow,
 
         [SouvenirQuestion("What was the {1} correctly decrypted word in {0}?", "Zoni", 6, null, ExampleAnswers = new[] { "angel", "thing", "dance", "heavy", "quote" },
@@ -816,11 +894,11 @@ namespace Souvenir
     {
         // These values must match the indexes in SouvenirModule.Fonts/SouvenirModule.FontTextures
         Default = 0,
-        SymbolsFont = 1,
+        SymbolsFont = 1,    // used by 3D Tunnels, Shape Shift, Switches and Colored Switches
         TurtleRobotFont = 2,
         TicTacToeFont = 3,  // also used by The Bulb
-		UnownFont = 4,
-		
+        UnownFont = 4,
+
         // Special value that doesn’t translate to a font
         Sprites = -1
     }
