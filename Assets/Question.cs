@@ -734,6 +734,14 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonStopsColors,
 
+        [SouvenirQuestion("Which color {1} {2} in the final sequence of {0}?", "Simon Stores", 4,  "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
+            ExampleExtraFormatArguments = new[] { "flashed", "first", "flashed", "second", "was one of the colors flashed", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        SimonStoresColors,
+
+        [SouvenirQuestion("What was the correct answer in stage {1} of {0}?", "Simon Stores", 6, null, ExampleAnswers = new[] { "1", "-58", "12", "25", "364", "-244"},
+            ExampleExtraFormatArguments = new[] { "1", "2", "3" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SimonStoresAnswers,
+
         [SouvenirQuestion("What were the original numbers when you solved {0}?", "Skewed Slots", 6, null, ExampleAnswers = new[] { "123", "847", "000", "245", "961", "253", "858" })]
         SkewedSlotsOriginalNumbers,
 

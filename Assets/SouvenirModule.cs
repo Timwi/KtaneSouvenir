@@ -226,6 +226,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SimonsStar = "simonsStar";
     const string _SimonStates = "SimonV2";
     const string _SimonStops = "simonStops";
+    const string _SimonStores = "simonStores";
     const string _SkewedSlots = "SkewedSlotsModule";
     const string _Skyrim = "skyrim";
     const string _Snooker = "snooker";
@@ -419,6 +420,7 @@ public class SouvenirModule : MonoBehaviour
             { _SimonsStar, ProcessSimonsStar },
             { _SimonStates, ProcessSimonStates },
             { _SimonStops, ProcessSimonStops },
+            { _SimonStores, ProcessSimonStores},
             { _SkewedSlots, ProcessSkewedSlots },
             { _Skyrim, ProcessSkyrim },
             { _Snooker, ProcessSnooker },
@@ -7556,6 +7558,83 @@ public class SouvenirModule : MonoBehaviour
 
         addQuestions(module, Enumerable.Range(0, 5).Select(ix =>
              makeQuestion(Question.SimonStopsColors, _SimonStops, new[] { ordinal(ix + 1) }, new[] { colors[ix] }, colors)));
+    }
+
+    private IEnumerable<object> ProcessSimonStores(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SimonStoresScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldFlashingColours = GetField<List<string>>(comp, "flashingColours");
+        var fldAnswer = GetField<int[][]>(comp, "step");
+
+        if (comp == null || fldSolved == null || fldFlashingColours == null || fldAnswer == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_SimonStores);
+
+        var flashSequences = fldFlashingColours.Get();
+
+        if (flashSequences == null || flashSequences.Any(flash => flash == null))
+            yield break;
+
+        var colors = "RGBCMY";
+
+        foreach (var flash in flashSequences)
+        {
+            var set = new HashSet<char>();
+            if (flash.Any(color => !set.Add(color) || !colors.Contains(color)) || flash.Length < 1 || flash.Length > 3)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Stores because 'flashingColours' contains value with duplicated colors, invalid color, or unexpected length (expected: 1-3): [flash: {1}, length: {2}]",
+                    _moduleId, flash, flash.Length);
+                yield break;
+            }
+        }
+
+        var correctAnswers = fldAnswer.Get();
+        if (correctAnswers == null || correctAnswers.Any(answer => answer == null))
+            yield break;
+
+        if (correctAnswers.Length != 3 || correctAnswers.Any(answer => answer.Length != 6))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Stores because 'step' or its elements has an unexpected length (expected: 1-3 and 1-6): {1}, [{2}]", _moduleId, correctAnswers.Length, correctAnswers.Select(seq => seq.Length).JoinString(", "));
+            yield break;
+        }
+
+        int[] integerAnswers = new int[3];
+        integerAnswers[0] = correctAnswers[0][3];
+        integerAnswers[1] = correctAnswers[1][4];
+        integerAnswers[2] = correctAnswers[2][5];
+
+        if (integerAnswers.Any(answer => answer <= -365 || answer >= 365))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Stores because 'step' contains an invalid answer to a stage (expected -364 to 364): [{1}]", _moduleId, integerAnswers.JoinString(", "));
+            yield break;
+        }
+
+        var colorNames = new Dictionary<char, string> {
+            { 'R', "Red" },
+            { 'G', "Green" },
+            { 'B', "Blue" },
+            { 'C', "Cyan" },
+            { 'M', "Magenta" },
+            { 'Y', "Yellow" }
+        };
+
+        var qs = new List<QandA>();
+        for (var i = 0; i < 5; i++)
+            qs.Add(makeQuestion(Question.SimonStoresColors, _SimonStores,
+                formatArgs: new[] { flashSequences[i].Length == 1 ? "flashed" : "was one of the colors flashed", ordinal(i + 1) },
+                correctAnswers: flashSequences[i].Select(ch => colorNames[ch]).ToArray()));
+
+        for (var i = 0; i < 3; i++)
+            qs.Add(makeQuestion(Question.SimonStoresAnswers, _SimonStores,
+                formatArgs: new[] { (i + 1).ToString() },
+                correctAnswers: new[] { integerAnswers[i].ToString() },
+                preferredWrongAnswers: Enumerable.Range(-364, 1 + 2 * 364).Select(number => number.ToString()).ToArray()));
+
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessSkewedSlots(KMBombModule module)
