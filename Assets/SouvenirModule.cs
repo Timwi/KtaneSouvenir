@@ -4443,7 +4443,7 @@ public class SouvenirModule : MonoBehaviour
 
         if (multipliers.Length < 2 || multipliers.Length > 5 || multipliers.Any(multipler => multipler < 2 || multipler > 7))
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning LED Encryption because layerMultipliers has unxepected length {1} / Values [{2}] (Expected length 2-5, Expected values 2-7)", _moduleId, multipliers.Length, multipliers.Select(x => x.ToString()).Join(", "));
+            Debug.LogFormat("<Souvenir #{0}> Abandoning LED Encryption because layerMultipliers has unxepected length {1} / Values [{2}] (Expected length 2-5, Expected values 2-7)", _moduleId, multipliers.Length, multipliers.Select(x => x.ToString()).JoinString(", "));
             yield break;
         }
 
@@ -8046,7 +8046,7 @@ public class SouvenirModule : MonoBehaviour
         if (switches == null || switches.Length != 5 || switches.Any(s => s == null))
         {
             Debug.LogFormat("<Souvenir #{0}> Abandoning Switches because Switches is {1} (expected length 5 and no nulls).", _moduleId,
-                switches == null ? "<null>" : string.Format("[{0}]", switches.Select(sw => sw == null ? "null" : "not null").Join(", ")));
+                switches == null ? "<null>" : string.Format("[{0}]", switches.Select(sw => sw == null ? "null" : "not null").JoinString(", ")));
             yield break;
         }
         var initialState = switches.Select(sw => sw.GetComponent<Animator>().GetBool("Up") ? "Q" : "R").JoinString();
@@ -8439,7 +8439,7 @@ public class SouvenirModule : MonoBehaviour
 
         if (!possibleAnswers.Contains(answer))
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Text Field because answer ‘{1}’ is not of expected value ({2}).", _moduleId, answer ?? "<null>", possibleAnswers.Join(", "));
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Text Field because answer ‘{1}’ is not of expected value ({2}).", _moduleId, answer ?? "<null>", possibleAnswers.JoinString(", "));
             yield break;
         }
 
