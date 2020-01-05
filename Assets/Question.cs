@@ -811,6 +811,15 @@ namespace Souvenir
         [SouvenirQuestion("What was the displayed letter in {0}?", "Text Field", 6, "A", "B", "C", "D", "E", "F")]
         TextFieldDisplay,
 
+        [SouvenirQuestion("What was the position from top to bottom of the first wire needed to be cut in the last successful round of {0}?", "Thinking Wires", 6, "1", "2", "3", "4", "5", "6", "7")]
+        ThinkingWiresFirstWire,
+
+        [SouvenirQuestion("What color must the second valid wire to cut have during the last successful round of {0}?", "Thinking Wires", 6, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", "White", "Black", "Any")]
+        ThinkingWiresSecondWire,
+
+        [SouvenirQuestion("What was the display number in the last successful round of {0}?", "Thinking Wires", 6, "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "69")]
+        ThinkingWiresDisplayNumber,
+
         [SouvenirQuestion("What was the display word in the {1} successful stage on {0}?", "Third Base", 6, "NHXS", "IH6X", "XI8Z", "I8O9", "XOHZ", "H68S", "8OXN", "Z8IX", "SXHN", "6NZH", "H6SI", "6O8I", "NXO8", "66I8", "S89H", "SNZX", "9NZS", "8I99", "ZHOX", "SI9X", "SZN6", "ZSN8", "HZN9", "X9HI", "IS9H", "XZNS", "X6IS", "8NSZ",
             ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ThirdBaseDisplay,

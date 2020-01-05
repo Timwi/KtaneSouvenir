@@ -243,6 +243,7 @@ public class SouvenirModule : MonoBehaviour
     const string _TashaSqueals = "tashaSqueals";
     const string _TenButtonColorCode = "TenButtonColorCode";
     const string _TextField = "TextField";
+    const string _ThinkingWires = "thinkingWiresModule";
     const string _ThirdBase = "ThirdBase";
     const string _TicTacToe = "TicTacToeModule";
     const string _Timezone = "timezone";
@@ -437,6 +438,7 @@ public class SouvenirModule : MonoBehaviour
             { _TashaSqueals, ProcessTashaSqueals },
             { _TenButtonColorCode, ProcessTenButtonColorCode },
             { _TextField, ProcessTextField },
+            { _ThinkingWires, ProcessThinkingWires },
             { _ThirdBase, ProcessThirdBase },
             { _TicTacToe, ProcessTicTacToe },
             { _Timezone, ProcessTimezone },
@@ -8432,6 +8434,54 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_TextField);
         addQuestion(module, Question.TextFieldDisplay, correctAnswers: new[] { answer });
+    }
+
+    private IEnumerable<object> ProcessThinkingWires(KMBombModule module)
+    {
+        var comp = GetComponent(module, "thinkingWiresScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldFirstWireToCut = GetField<int>(comp, "firstWireToCut");
+        var fldSecondWireToCut = GetField<string>(comp, "secondWireToCut");
+        var fldScreenNumber = GetField<string>(comp, "screenNumber");
+
+        if (comp == null || fldSolved == null || fldFirstWireToCut == null || fldSecondWireToCut == null || fldScreenNumber == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_ThinkingWires);
+
+        var firstCorrectWire = fldFirstWireToCut.Get();
+        var secondCorrectWire = fldSecondWireToCut.Get();
+        var displayNumber = fldScreenNumber.Get();
+
+        if (secondCorrectWire == null || displayNumber == null)
+            yield break;
+
+        if (firstCorrectWire < 1 || firstCorrectWire > 7)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Thinking Wires because ‘firstCorrectWire’ has an unexpected value (expected 1–7): {1}", _moduleId, firstCorrectWire);
+            yield break;
+        }
+
+        if (!new[] { "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", "White", "Black", "Any" }.Contains(secondCorrectWire))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Thinking Wires because ‘secondCorrectWire’ is an invalid color: {1}", _moduleId, secondCorrectWire);
+            yield break;
+        }
+
+        // List of valid display numbers for validation. 69 happens in the case of "Any" while 11 is expected to be the longest.
+        // Basic calculations by hand and algorithm seem to confirm this, but may want to recalculate to ensure it is right.
+        if (!new[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "69" }.Contains(displayNumber))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Thinking Wires because ‘displayNumber’ has an unexpected value: {1}", _moduleId, displayNumber);
+            yield break;
+        }
+
+        addQuestions(module,
+            makeQuestion(Question.ThinkingWiresFirstWire, _ThinkingWires, null, new[] { firstCorrectWire.ToString() }),
+            makeQuestion(Question.ThinkingWiresSecondWire, _ThinkingWires, null, new[] { secondCorrectWire }),
+            makeQuestion(Question.ThinkingWiresDisplayNumber, _ThinkingWires, null, new[] { displayNumber }));
     }
 
     private IEnumerable<object> ProcessThirdBase(KMBombModule module)
