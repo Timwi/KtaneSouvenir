@@ -126,6 +126,7 @@ public class SouvenirModule : MonoBehaviour
     const string _DrDoctor = "DrDoctorModule";
     const string _ElderFuthark = "elderFuthark";
     const string _EncryptedMorse = "EncryptedMorse";
+    const string _EquationsX = "equationsXModule";
     const string _FactoryMaze = "factoryMaze";
     const string _FastMath = "fastMath";
     const string _Flags = "FlagsModule";
@@ -318,6 +319,7 @@ public class SouvenirModule : MonoBehaviour
             { _DrDoctor, ProcessDrDoctor },
             { _ElderFuthark, ProcessElderFuthark },
             { _EncryptedMorse, ProcessEncryptedMorse },
+            { _EquationsX, ProcessEquationsX },
             { _FactoryMaze, ProcessFactoryMaze },
             { _FastMath, ProcessFastMath },
             { _Flags, ProcessFlags },
@@ -3221,6 +3223,58 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.EncryptedMorseCallResponse, _EncryptedMorse, new[] { "received call" }, new[] { formatCalls[index] }, formatCalls),
             makeQuestion(Question.EncryptedMorseCallResponse, _EncryptedMorse, new[] { "sent response" }, new[] { formatResponses[index] }, formatResponses));
+    }
+
+    private IEnumerable<object> ProcessEquationsX(KMBombModule module)
+    {
+        var comp = GetComponent(module, "EquationsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldSymbolDisplay = GetField<GameObject>(comp, "symboldisplay", isPublic: true);
+
+        if (comp == null || fldSolved == null || fldSymbolDisplay == null)
+            yield break;
+
+        while (!_isActivated)
+            yield return new WaitForSeconds(0.1f);
+
+        var symbolObject = fldSymbolDisplay.Get();
+
+        if (symbolObject == null)
+            yield break;
+
+        var symbol = symbolObject.GetComponentInChildren<TextMesh>().text;
+
+        if (!new[] { "H(T)", "R", "\u03C7", "w", "Z(T)", "t", "m", "a", "K" }.Contains(symbol))
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Equations X because 'symbol' has an unexpected character: {1}", _moduleId, symbol);
+            yield break;
+        }
+
+        // Equations X uses symbols that don’t translate well to Souvenir. This switch statement is used to correctly translate the answer.
+        switch (symbol)
+        {
+            case "R":
+                symbol = "P";
+                break;
+            case "w":
+                symbol = "\u03C9";
+                break;
+            case "t":
+                symbol = "\u03C4";
+                break;
+            case "m":
+                symbol = "\u03BC";
+                break;
+            case "a":
+                symbol = "\u03B1";
+                break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_EquationsX);
+
+        addQuestion(module, Question.EquationsXSymbols, correctAnswers: new[] { symbol });
     }
 
     private IEnumerable<object> ProcessFactoryMaze(KMBombModule module)

@@ -239,6 +239,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "received call", "sent response" }, ExampleExtraFormatArgumentGroupSize = 1)]
         EncryptedMorseCallResponse,
 
+        [SouvenirQuestion("What was the displayed symbol in {0}?", "Equations X", 6, "H(T)", "P", "\u03C7", "\u03C9", "Z(T)", "\u03C4", "\u03BC", "\u03B1", "K")]
+        EquationsXSymbols,
+
         [SouvenirQuestion("What room did you start in in the last generated maze of {0}?", "Factory Maze", 4, "Bathroom", "Assembly Line", "Cafeteria", "Room A9", "Broom Closet", "Basement", "Copy Room", "Unnecessarily...", "Library", "Break Room", "Empty Room...", "Arcade", "Classroom", "Module Testing...", "Music Studio", "Computer Room", "Infirmary", "Bomb Room", "Space", "Storage Room", "Lounge", "Conference Room", "Kitchen", "Incinerator")]
         FactoryMazeStartRoom,
 
