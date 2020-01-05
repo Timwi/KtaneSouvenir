@@ -6641,32 +6641,50 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessPurpleArrows(KMBombModule module)
     {
         var comp = GetComponent(module, "PurpleArrowsScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldFinishScrambled = GetField<string>(comp, "finishscrambled");
+        var fldFinish = GetField<string>(comp, "finish");
+        var fldWordScreen = GetField<GameObject>(comp, "wordDisplay", isPublic: true);
+        var fldWordList = GetField<string[]>(comp, "words");
 
-        if (comp == null || fldSolved == null || fldFinishScrambled == null)
+        if (comp == null || fldFinish == null || fldWordScreen == null || fldWordList == null)
             yield break;
 
-        while (!fldSolved.Get())
+        // The module sets moduleSolved to true at the start of its solve animation but before it is actually marked as solved.
+        // Therefore, we use OnPass to wait for the end of that animation and then set the text to “SOLVED” afterwards.
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+
+        while (!solved)
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_PurpleArrows);
 
-        string scrambledWord = fldFinishScrambled.Get();
-        if (scrambledWord == null)
+        string finishWord = fldFinish.Get();
+
+        if (finishWord == null)
             yield break;
-        if (scrambledWord.Length != 6)
+
+        if (finishWord.Length != 6)
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Purple Arrows because ‘finishscrambled’ has unexpected length (expected 6): “{1}”", scrambledWord);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Purple Arrows because ‘finishWord’ has unexpected length (expected 6): “{1}”", finishWord);
             yield break;
         }
 
-        // Generate additional scrambles of the same word
-        var scrambledWords = new HashSet<string>();
-        scrambledWords.Add(scrambledWord);
-        while (scrambledWords.Count < 6)
-            scrambledWords.Add(new string(scrambledWord.ToCharArray().Shuffle()));
+        string[] wordList = fldWordList.Get();
+        if (wordList == null || wordList.Any(word => word == null))
+            yield break;
 
-        addQuestion(module, Question.PurpleArrowsFinishScrambled, correctAnswers: new[] { scrambledWord }, preferredWrongAnswers: scrambledWords.ToArray());
+        if (wordList.Length != (9 * 13) || !wordList.Contains(finishWord))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Purple Arrows because ‘wordList’ has an unexpected length (expected 9 * 13) or does not contain ‘finishWord’ : [Length: {1}, finishWord: {2}]", wordList.Length, finishWord);
+            yield break;
+        }
+
+        var wordScreen = fldWordScreen.Get();
+        var wordScreenTextMesh = wordScreen == null ? null : wordScreen.GetComponent<TextMesh>();
+        if (wordScreen == null || wordScreenTextMesh == null)
+            yield break;
+        wordScreenTextMesh.text = "SOLVED";
+
+        addQuestion(module, Question.PurpleArrowsFinish, correctAnswers: new[] { Regex.Replace(finishWord, @"(?<!^).", m => m.Value.ToLowerInvariant()) }, preferredWrongAnswers: wordList.Select(w => w[0] + w.Substring(1).ToLowerInvariant()).ToArray());
     }
 
     private IEnumerable<object> ProcessQuintuples(KMBombModule module)
