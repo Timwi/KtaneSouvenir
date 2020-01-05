@@ -737,7 +737,6 @@ namespace Souvenir
         [SouvenirQuestion("Which color {1} {2} in the final sequence of {0}?", "Simon Stores", 4,  "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
             ExampleExtraFormatArguments = new[] { "flashed", "first", "flashed", "second", "was one of the colors flashed", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
         SimonStoresColors,
-
         [SouvenirQuestion("What was the correct answer in stage {1} of {0}?", "Simon Stores", 6, null, ExampleAnswers = new[] { "1", "-58", "12", "25", "364", "-244"},
             ExampleExtraFormatArguments = new[] { "1", "2", "3" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonStoresAnswers,
@@ -811,12 +810,10 @@ namespace Souvenir
         [SouvenirQuestion("What was the displayed letter in {0}?", "Text Field", 6, "A", "B", "C", "D", "E", "F")]
         TextFieldDisplay,
 
-        [SouvenirQuestion("What was the position from top to bottom of the first wire needed to be cut in the last successful round of {0}?", "Thinking Wires", 6, "1", "2", "3", "4", "5", "6", "7")]
+        [SouvenirQuestion("What was the position from top to bottom of the first wire needing to be cut in the last successful round of {0}?", "Thinking Wires", 6, "1", "2", "3", "4", "5", "6", "7")]
         ThinkingWiresFirstWire,
-
-        [SouvenirQuestion("What color must the second valid wire to cut have during the last successful round of {0}?", "Thinking Wires", 6, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", "White", "Black", "Any")]
+        [SouvenirQuestion("What color did the second valid wire to cut have to have during the last successful round of {0}?", "Thinking Wires", 6, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", "White", "Black", "Any")]
         ThinkingWiresSecondWire,
-
         [SouvenirQuestion("What was the display number in the last successful round of {0}?", "Thinking Wires", 6, "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "69")]
         ThinkingWiresDisplayNumber,
 
