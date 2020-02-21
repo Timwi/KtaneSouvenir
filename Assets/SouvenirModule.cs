@@ -24,6 +24,7 @@ public class SouvenirModule : MonoBehaviour
     public KMSelectable[] Answers;
     public GameObject AnswersParent;
     public GameObject[] TpNumbers;
+    public Sprite[] MemorySprites;
     public Sprite[] ArithmelogicSprites;
     public Sprite[] ExampleSprites;
     public Sprite[] MahjongSprites;
@@ -98,6 +99,7 @@ public class SouvenirModule : MonoBehaviour
     const string _BrushStrokes = "brushStrokes";
     const string _Bulb = "TheBulbModule";
     const string _BurglarAlarm = "burglarAlarm";
+    const string _Button = "BigButton";
     const string _ButtonSequences = "buttonSequencesModule";
     const string _CaesarCycle = "caesarCycle";
     const string _Calendar = "calendar";
@@ -164,11 +166,13 @@ public class SouvenirModule : MonoBehaviour
     const string _Mafia = "MafiaModule";
     const string _Mahjong = "MahjongModule";
     const string _MaritimeFlags = "MaritimeFlagsModule";
+    const string _Maze = "Maze";
     const string _Maze3 = "maze3";
     const string _Mazematics = "mazematics";
     const string _MazeScrambler = "MazeScrambler";
     const string _MegaMan2 = "megaMan2";
     const string _MelodySequencer = "melodySequencer";
+    const string _Memory = "Memory";
     const string _Microcontroller = "Microcontroller";
     const string _Minesweeper = "MinesweeperModule";
     const string _ModernCipher = "modernCipher";
@@ -215,6 +219,7 @@ public class SouvenirModule : MonoBehaviour
     const string _ShapeShift = "shapeshift";
     const string _SillySlots = "SillySlots";
     const string _SimonSamples = "simonSamples";
+    const string _SimonSays = "Simon";
     const string _SimonScrambles = "simonScrambles";
     const string _SimonScreams = "SimonScreamsModule";
     const string _SimonSelects = "simonSelectsModule";
@@ -260,7 +265,9 @@ public class SouvenirModule : MonoBehaviour
     const string _Vexillology = "vexillology";
     const string _VisualImpairment = "visual_impairment";
     const string _Wavetapping = "Wavetapping";
+    const string _WhosOnFirst = "WhosOnFirst";
     const string _Wire = "wire";
+    const string _WireSequence = "WireSequence";
     const string _Yahtzee = "YahtzeeModule";
     const string _YellowArrows = "yellowArrowsModule";
     const string _Zoni = "lgndZoni";
@@ -293,6 +300,7 @@ public class SouvenirModule : MonoBehaviour
             { _BrushStrokes, ProcessBrushStrokes },
             { _Bulb, ProcessBulb },
             { _BurglarAlarm, ProcessBurglarAlarm },
+            { _Button, ProcessButton },
             { _ButtonSequences, ProcessButtonSequences },
             { _CaesarCycle, ProcessCaesarCycle },
             { _Calendar, ProcessCalendar },
@@ -359,11 +367,13 @@ public class SouvenirModule : MonoBehaviour
             { _Mafia, ProcessMafia },
             { _Mahjong, ProcessMahjong },
             { _MaritimeFlags, ProcessMaritimeFlags },
+            { _Maze, ProcessMaze },
             { _Maze3, ProcessMaze3 },
             { _Mazematics, ProcessMazematics },
             { _MazeScrambler, ProcessMazeScrambler },
             { _MegaMan2, ProcessMegaMan2 },
             { _MelodySequencer, ProcessMelodySequencer },
+            { _Memory, ProcessMemory },
             { _Microcontroller, ProcessMicrocontroller },
             { _Minesweeper, ProcessMinesweeper },
             { _ModernCipher, ProcessModernCipher },
@@ -410,6 +420,7 @@ public class SouvenirModule : MonoBehaviour
             { _ShapeShift, ProcessShapeShift },
             { _SillySlots, ProcessSillySlots },
             { _SimonSamples, ProcessSimonSamples },
+            { _SimonSays, ProcessSimonSays },
             { _SimonScrambles, ProcessSimonScrambles },
             { _SimonScreams, ProcessSimonScreams },
             { _SimonSelects, ProcessSimonSelects },
@@ -455,7 +466,9 @@ public class SouvenirModule : MonoBehaviour
             { _Vexillology, ProcessVexillology },
             { _VisualImpairment, ProcessVisualImpairment },
             { _Wavetapping, ProcessWavetapping },
+            { _WhosOnFirst, ProcessWhosOnFirst },
             { _Wire, ProcessWire },
+            { _WireSequence, ProcessWireSequence },
             { _Yahtzee, ProcessYahtzee },
             { _YellowArrows, ProcessYellowArrows },
             { _Zoni, ProcessZoni }
@@ -563,11 +576,42 @@ public class SouvenirModule : MonoBehaviour
                 lock (_timwiPath)
                     File.WriteAllText(_timwiPath, "");
 
+            FieldInfo<object> fldType = null;
             for (int i = 0; i < transform.parent.childCount; i++)
             {
-                var module = transform.parent.GetChild(i).gameObject.GetComponent<KMBombModule>();
+                var gameObject = transform.parent.GetChild(i).gameObject;
+                var module = gameObject.GetComponent<KMBombModule>();
                 if (module != null)
                     StartCoroutine(ProcessModule(module));
+                else
+                {
+                    var vanillaModule = transform.parent.GetChild(i).gameObject.GetComponent("BombComponent");
+                    if (vanillaModule != null)
+                    {
+                        // For vanilla modules, we will attach a temporary KMBombModule component to the module.
+                        // We'll remove it after the coroutine starts.
+                        // The routine will already have a reference to the actual BombComponent by then.
+                        if (fldType == null) fldType = GetField<object>(vanillaModule.GetType(), "ComponentType", true);
+                        if (fldType == null) continue;
+                        var typeCode = (int) fldType.GetFrom(vanillaModule);
+                        string type; string displayName;
+                        switch (typeCode)
+                        {
+                            case 3: type = "BigButton"; displayName = "The Button"; break;
+                            case 5: type = "Simon"; displayName = "Simon Says"; break;
+                            case 6: type = "WhosOnFirst"; displayName = "Who's on First"; break;
+                            case 7: type = "Memory"; displayName = "Memory"; break;
+                            case 10: type = "WireSequence"; displayName = "Wire Sequence"; break;
+                            case 11: type = "Maze"; displayName = "Maze"; break;
+                            default: continue;  // Other components are not supported modules.
+                        }
+                        module = gameObject.AddComponent<KMBombModule>();
+                        module.ModuleType = type;
+                        module.ModuleDisplayName = displayName;
+                        StartCoroutine(ProcessModule(module));
+                        Destroy(module);
+                    }
+                }
             }
         }
 
@@ -1045,6 +1089,16 @@ public class SouvenirModule : MonoBehaviour
             return null;
         }
         return GetFieldImpl<T>(target, target.GetType(), name, isPublic, BindingFlags.Instance);
+    }
+
+    private FieldInfo<T> GetField<T>(Type targetType, string name, bool isPublic = false)
+    {
+        if (targetType == null)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Attempt to get {1} field {2} of type {3} from a null type.", _moduleId, isPublic ? "public" : "non-public", name, typeof(T).FullName);
+            return null;
+        }
+        return GetFieldImpl<T>(null, targetType, name, isPublic, BindingFlags.Instance);
     }
 
     private FieldInfo<T> GetStaticField<T>(Type targetType, string name, bool isPublic = false)
@@ -2101,6 +2155,43 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         }
         addQuestions(module, moduleNumber.Select((mn, ix) => makeQuestion(Question.BurglarAlarmDigits, _BurglarAlarm, new[] { ordinal(ix + 1) }, new[] { mn.ToString() }, moduleNumber.Select(n => n.ToString()).ToArray())));
+    }
+
+    private IEnumerable<object> ProcessButton(KMBombModule module)
+    {
+        var component = GetComponent(module, "ButtonComponent");
+        var fldSolved = GetField<bool>(component, "IsSolved", true);
+        var propLightColor = GetProperty<object>(component, "IndicatorColor", true);
+        var fldLedOff = GetField<GameObject>(component, "LED_Off", true);
+        if (component == null || fldSolved == null || propLightColor == null || fldLedOff == null)
+            yield break;
+
+        var ledOff = fldLedOff.Get();
+        var color = -1;
+        while (!fldSolved.Get())
+        {
+            color = ledOff.activeSelf ? -1 : (int) propLightColor.Get();
+            yield return new WaitForSeconds(.1f);
+        }
+        _modulesSolved.IncSafe(_Button);
+        if (color < 0)
+        {
+            Debug.LogFormat("<Souvenir #{0}> No question for The Button because the button was tapped (or I missed the light color).", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+        }
+        else
+        {
+            string answer;
+            switch (color)
+            {
+                case 0: answer = "red"; break;
+                case 1: answer = "blue"; break;
+                case 2: answer = "yellow"; break;
+                case 3: answer = "white"; break;
+                default: Debug.LogFormat("<Souvenir #{0}> Abandoning The Button because IndicatorColor is out of range ({1}).", _moduleId, color); yield break;
+            }
+            addQuestion(module, Question.ButtonLightColor, correctAnswers: new[] { answer });
+        }
     }
 
     private IEnumerable<object> ProcessButtonSequences(KMBombModule module)
@@ -4975,6 +5066,27 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.MaritimeFlagsCallsign, _MaritimeFlags, correctAnswers: new[] { callsign.ToLowerInvariant() }));
     }
 
+    private IEnumerable<object> ProcessMaze(KMBombModule module)
+    {
+        var component = GetComponent(module, "InvisibleWallsComponent");
+        var fldSolved = GetField<bool>(component, "IsSolved", true);
+        var propCurrentCell = GetProperty<object>(component, "CurrentCell", true);
+        if (component == null || fldSolved == null || propCurrentCell == null)
+            yield break;
+
+        var currentCell = propCurrentCell.Get();  // Need to get the current cell at the start.
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Maze);
+
+        var fldX = GetField<int>(currentCell, "X", true);
+        var fldY = GetField<int>(currentCell, "Y", true);
+        if (fldX == null || fldY == null) yield break;
+
+        addQuestion(module, Question.MazeStartingPosition, correctAnswers: new[] { new string(new[] { (char) ('A' + fldX.Get()), (char) ('1' + fldY.Get()) }) });
+        yield break;
+    }
+
     private IEnumerable<object> ProcessMaze3(KMBombModule module)
     {
         var comp = GetComponent(module, "maze3Script");
@@ -5174,6 +5286,32 @@ public class SouvenirModule : MonoBehaviour
             }
         }
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessMemory(KMBombModule module)
+    {
+        var component = GetComponent(module, "MemoryComponent");
+        var fldSolved = GetField<bool>(component, "IsSolved", true);
+        var propDisplaySequence = GetProperty<string>(component, "DisplaySequence", true);
+        var fldButtonIndicesPressed = GetField<List<int>>(component, "buttonIndicesPressed", false);
+        var fldButtonLabelsPressed = GetField<List<string>>(component, "buttonLabelsPressed", false);
+        if (fldSolved == null || propDisplaySequence == null || fldButtonIndicesPressed == null || fldButtonLabelsPressed == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Memory);
+
+        var displaySequence = propDisplaySequence.Get();
+        var indices = fldButtonIndicesPressed.Get();
+        var labels = fldButtonLabelsPressed.Get();
+
+        var stage = Rnd.Range(0, 4);
+        addQuestions(module, new[] {
+            makeQuestion(Question.MemoryDisplay, "Memory", new[] { (stage + 1).ToString() }, new[] { displaySequence[stage].ToString() }),
+            makeQuestion(Question.MemoryPosition, "Memory", new[] { (stage + 1).ToString() }, new[] { MemorySprites[indices[stage]] }, MemorySprites),
+            makeQuestion(Question.MemoryLabel, "Memory", new[] { (stage + 1).ToString() }, new[] { labels[stage][labels[stage].Length - 1].ToString() })
+        });
     }
 
     private IEnumerable<object> ProcessMicrocontroller(KMBombModule module)
@@ -7099,6 +7237,32 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestions(module, calls.Select((c, ix) => makeQuestion(Question.SimonSamplesSamples, _SimonSamples, new[] { _simonSamplesFAs[ix] }, new[] { (ix == 0 ? c : c.Substring(calls[ix - 1].Length)).Replace("0", "K").Replace("1", "S").Replace("2", "H").Replace("3", "O") })));
+    }
+
+    private IEnumerable<object> ProcessSimonSays(KMBombModule module)
+    {
+        var component = GetComponent(module, "SimonComponent");
+        var fldSolved = GetField<bool>(component, "IsSolved", true);
+        var fldSequence = GetField<int[]>(component, "currentSequence");
+        if (fldSolved == null || fldSequence == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SimonSays);
+
+        var sequence = fldSequence.Get();
+        var i = Rnd.Range(0, sequence.Length);
+        string answer;
+        switch (sequence[i])
+        {
+            case 0: answer = "red"; break;
+            case 1: answer = "blue"; break;
+            case 2: answer = "green"; break;
+            case 3: answer = "yellow"; break;
+            default: Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Says because currentSequence item is out of range ({1}).", _moduleId, sequence[i]); yield break;
+        }
+        addQuestion(module, Question.SimonSaysFlash, new[] { ordinal(i + 1) }, new[] { answer });
     }
 
     private IEnumerable<object> ProcessSimonScrambles(KMBombModule module)
@@ -9088,6 +9252,46 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessWhosOnFirst(KMBombModule module)
+    {
+        var component = GetComponent(module, "WhosOnFirstComponent");
+        var fldSolved = GetField<bool>(component, "IsSolved", true);
+        var fldDisplay = GetField<MonoBehaviour>(component, "DisplayText", true);  // TextMeshPro
+        var propStage = GetProperty<int>(component, "CurrentStage", true);
+        var propButtonsEmerged = GetProperty<bool>(component, "ButtonsEmerged", true);
+        if (fldSolved == null || fldDisplay == null || propStage == null || propButtonsEmerged == null)
+            yield break;
+
+        yield return null;
+
+        var displayTextMesh = fldDisplay.Get();
+        var propText = GetProperty<string>(displayTextMesh, "text", true);
+        if (displayTextMesh == null || propText == null)
+            yield break;
+
+        while (!propButtonsEmerged.Get())
+            yield return new WaitForSeconds(0.1f);
+
+        var displayWords = new string[2];
+        for (var i = 0; i < 2; i++)
+            while (propStage.Get() == i)
+            {
+                while (!propButtonsEmerged.Get())
+                    yield return new WaitForSeconds(0.1f);
+
+                displayWords[i] = propText.Get();
+
+                while (propButtonsEmerged.Get())
+                    yield return new WaitForSeconds(0.1f);
+            }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+
+        _modulesSolved.IncSafe(_WhosOnFirst);
+        addQuestions(module, displayWords.Select((word, stage) => makeQuestion(Question.WhosOnFirstDisplay, _WhosOnFirst, new[] { ordinal(stage + 1) }, new[] { word }, displayWords)));
+    }
+
     private IEnumerable<object> ProcessWire(KMBombModule module)
     {
         var comp = GetComponent(module, "wireScript");
@@ -9114,6 +9318,42 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.WireDialColors, _Wire, new[] { "bottom-left" }, new[] { dials[1].material.mainTexture.name.Replace("Mat", "") }),
             makeQuestion(Question.WireDialColors, _Wire, new[] { "bottom-right" }, new[] { dials[2].material.mainTexture.name.Replace("Mat", "") }),
             makeQuestion(Question.WireDisplayedNumber, _Wire, correctAnswers: new[] { fldDisplayedNumber.Get().ToString() }));
+    }
+
+    private IEnumerable<object> ProcessWireSequence(KMBombModule module)
+    {
+        var component = GetComponent(module, "WireSequenceComponent");
+        var fldSolved = GetField<bool>(component, "IsSolved", true);
+        var fldWireSequence = GetField<IEnumerable>(component, "wireSequence");
+        if (fldSolved == null || fldWireSequence == null)
+            yield break;
+
+        while (!fldSolved.Get()) yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_WireSequence);
+
+        var wireSequence = fldWireSequence.Get();
+        if (wireSequence == null) yield break;
+
+        var color = Rnd.Range(0, 3);
+        var colorWord = color == 0 ? "black" : (color == 1 ? "blue" : "red");
+        var counts = new int[3];
+        var typeWireConfiguration = wireSequence.GetType().GetGenericArguments()[0];
+        var fldNoWire = GetField<bool>(typeWireConfiguration, "NoWire", true);
+        var fldColor = GetField<object>(typeWireConfiguration, "Color", true);
+        if (fldNoWire == null || fldColor == null)
+            yield break;
+
+        foreach (var item in wireSequence.Cast<object>().Take(12))
+        {
+            if (!fldNoWire.GetFrom(item))
+                ++counts[(int) fldColor.GetFrom(item)];
+        }
+
+        var preferredWrongAnswers = new string[4];
+        for (int i = 0; i < 3; ++i)
+            preferredWrongAnswers[i] = counts[i].ToString();
+        preferredWrongAnswers[3] = (counts[color] == 0 ? 1 : counts[color] - 1).ToString();
+        addQuestion(module, Question.WireSequenceColorCount, new[] { colorWord }, new[] { counts[color].ToString() }, preferredWrongAnswers);
     }
 
     private IEnumerable<object> ProcessYahtzee(KMBombModule module)

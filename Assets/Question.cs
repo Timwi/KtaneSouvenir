@@ -108,6 +108,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         BurglarAlarmDigits,
 
+        [SouvenirQuestion("What color did the light glow when you solved {0}?", "Button", 4, "red", "blue", "yellow", "white", AddThe = true)]
+        ButtonLightColor,
+
         [SouvenirQuestion("How many of the buttons in {0} were {1}?", "Button Sequences", 6, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
             ExampleExtraFormatArguments = new[] { "red", "blue", "yellow", "white" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ButtonSequencesColorOccurrences,
@@ -425,6 +428,9 @@ namespace Souvenir
         [SouvenirQuestion("Which callsign was signalled in {0}?", "Maritime Flags", 4, "1stmate", "2ndmate", "3rdmate", "abandon", "admiral", "advance", "aground", "allides", "anchors", "athwart", "azimuth", "bailers", "ballast", "barrack", "beached", "beacons", "beamend", "beamsea", "bearing", "beating", "belayed", "bermuda", "bobstay", "boilers", "bollard", "bonnets", "boomkin", "bounder", "bowline", "brailed", "breadth", "bridges", "brigged", "bringto", "bulwark", "bumboat", "bumpkin", "burthen", "caboose", "capsize", "capstan", "captain", "caravel", "careens", "carrack", "carrier", "catboat", "cathead", "chained", "channel", "charley", "charter", "citadel", "cleared", "cleated", "clinker", "clipper", "coaming", "coasted", "consort", "convoys", "corinth", "cotchel", "counter", "cranzes", "crewing", "cringle", "crojack", "cruiser", "cutters", "dandies", "deadrun", "debunks", "derrick", "dipping", "disrate", "dogvane", "doldrum", "dolphin", "draught", "drifter", "drogues", "drydock", "dunnage", "dunsels", "earings", "echelon", "embayed", "ensigns", "escorts", "fairway", "falkusa", "fantail", "fardage", "fathoms", "fenders", "ferries", "fitting", "flanked", "flaring", "flattop", "flemish", "floated", "floored", "flotsam", "folding", "follows", "forcing", "forward", "foulies", "founder", "framing", "freight", "frigate", "funnels", "furling", "galleon", "galleys", "galliot", "gangway", "garbled", "general", "georges", "ghosted", "ginpole", "giveway", "gondola", "graving", "gripies", "grounds", "growler", "guineas", "gundeck", "gunport", "gunwale", "halyard", "hammock", "hampers", "hangars", "harbors", "harbour", "hauling", "hawsers", "heading", "headsea", "heaving", "herring", "hogging", "holiday", "huffler", "inboard", "inirons", "inshore", "instays", "inwater", "inwayof", "jackies", "jacktar", "jennies", "jetties", "jiggers", "joggles", "jollies", "juryrig", "keelson", "kellets", "kicking", "killick", "kitchen", "lanyard", "laydays", "lazaret", "leehelm", "leeside", "leeward", "liberty", "lighter", "lizards", "loading", "lockers", "lofting", "lolling", "lookout", "lubbers", "luffing", "luggers", "lugsail", "maewest", "manowar", "marconi", "mariner", "matelot", "mizzens", "mooring", "mousing", "narrows", "nippers", "officer", "offpier", "oilskin", "oldsalt", "onboard", "oreboat", "outhaul", "outward", "painter", "panting", "parcels", "parleys", "parrels", "passage", "pelagic", "pendant", "pennant", "pickets", "pinnace", "pintles", "pirates", "pivoted", "pursers", "pursued", "quarter", "quaying", "rabbets", "ratline", "reduced", "reefers", "repairs", "rigging", "ripraps", "rompers", "rowlock", "rudders", "ruffles", "rummage", "sagging", "sailors", "salties", "salvors", "sampans", "sampson", "sculled", "scupper", "scuttle", "seacock", "sealing", "seekers", "serving", "sextant", "shelter", "shipped", "shiprig", "sickbay", "skipper", "skysail", "slinged", "slipway", "snagged", "snotter", "spliced", "splices", "sponson", "sponsor", "springs", "squares", "stackie", "standon", "starter", "station", "steamer", "steered", "steeves", "steward", "stopper", "stovein", "stowage", "strikes", "sunfish", "swimmie", "systems", "tacking", "thwarts", "tinclad", "tompion", "tonnage", "topmast", "topsail", "torpedo", "tossers", "trading", "traffic", "tramper", "transom", "trawler", "trenail", "trennel", "trimmer", "trooper", "trunnel", "tugboat", "turntwo", "unships", "upbound", "vessels", "voicing", "voyager", "weather", "whalers", "wharves", "whelkie", "whistle", "winches", "windage", "working", "yardarm")]
         MaritimeFlagsCallsign,
 
+        [SouvenirQuestion("What was the starting position in {0}, with A1 being northwest?", "Maze", 6, "A1", "A2", "A3", "A4", "A5", "A6", "B1", "B2", "B3", "B4", "B5", "B6", "C1", "C2", "C3", "C4", "C5", "C6", "D1", "D2", "D3", "D4", "D5", "D6", "E1", "E2", "E3", "E4", "E5", "E6", "F1", "F2", "F3", "F4", "F5", "F6")]
+        MazeStartingPosition,
+
         [SouvenirQuestion("What was the color of the starting face in {0}?", "Maze³", 6, "Red", "Blue", "Yellow", "Green", "Magenta", "Orange")]
         Maze3StartingFace,
 
@@ -450,6 +456,16 @@ namespace Souvenir
         [SouvenirQuestion("Which slot contained part #{1} at the start of {0}?", "Melody Sequencer", 6, "1", "2", "3", "4", "5", "6", "7", "8",
             ExampleExtraFormatArguments = new[] { "1", "2" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MelodySequencerParts,
+
+        [SouvenirQuestion("What was the displayed number in stage {1} when you solved {0}?", "Memory", 4, "1", "2", "3", "4",
+            ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "5" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        MemoryDisplay,
+        [SouvenirQuestion("In what position was the button that you pressed in stage {1} when you solved {0}?", "Memory", 4, null, Type = AnswerType.Sprites,
+            ExampleExtraFormatArguments = new[] { "1", "2", "3", "4" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        MemoryPosition,
+        [SouvenirQuestion("What was the label of the button that you pressed in stage {1} when you solved {0}?", "Memory", 4, "1", "2", "3", "4",
+            ExampleExtraFormatArguments = new[] { "1", "2", "3", "4" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        MemoryLabel,
 
         [SouvenirQuestion("Which pin lit up {1} in {0}?", "Microcontroller", 6, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -673,6 +689,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "played in the first stage", "added in the second stage", "added in the third stage" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSamplesSamples,
 
+        [SouvenirQuestion("What colour flashed {1} in the final sequence in {0}?", "Simon Says", 4, "red", "yellow", "green", "blue",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SimonSaysFlash,
+
         [SouvenirQuestion("What was the last flashed color in {0}?", "Simon Scrambles", 4, "Red", "Green", "Blue", "Yellow")]
         SimonScramblesLastColor,
 
@@ -860,21 +880,6 @@ namespace Souvenir
         [SouvenirQuestion("What state did you depart from in {0}?", "USA Maze", 4, "Alaska", "Alabama", "Arkansas", "Arizona", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Iowa", "Idaho", "Illinois", "Indiana", "Kansas", "Kentucky", "Louisiana", "Massachusetts", "Maryland", "Maine", "Michigan", "Minnesota", "Missouri", "Mississippi", "Montana", "North Carolina", "North Dakota", "Nebraska", "New Hampshire", "New Jersey", "New Mexico", "Nevada", "New York", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Virginia", "Vermont", "Washington", "Wisconsin", "West Virginia", "Wyoming")]
         USAMazeOrigin,
 
-        [SouvenirQuestion("What was the color on the {1} stage in {0}?", "Wavetapping", 4, "Red", "Orange", "Orange-Yellow", "Chartreuse", "Lime", "Green", "Seafoam Green", "Cyan-Green", "Turquoise", "Dark Blue", "Indigo", "Purple", "Purple-Magenta", "Magenta", "Pink", "Gray",
-            ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        WavetappingColors,
-        [SouvenirQuestion("What was the correct pattern on the {1} stage in {0}?", "Wavetapping", 6, null,
-            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.Sprites)]
-        WavetappingPatterns,
-
-        [SouvenirQuestion("What was the color of the {1} dial when you solved {0}?", "Wire", 6, "blue", "green", "grey", "orange", "purple", "red",
-            ExampleExtraFormatArguments = new[] { "top", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
-        WireDialColors,
-
-        [SouvenirQuestion("What was the displayed number when you solved {0}?", "Wire", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-            ExampleExtraFormatArguments = new[] { "top", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
-        WireDisplayedNumber,
-
         [SouvenirQuestion("What was the initially pressed color on {0}?", "Varicolored Squares", 6, "White", "Red", "Blue", "Green", "Yellow", "Magenta")]
         VaricoloredSquaresInitialColor,
 
@@ -889,6 +894,29 @@ namespace Souvenir
         [SouvenirQuestion("What was the desired color in the {1} successful round on {0}?", "Visual Impairment", 4, "Blue", "Green", "Red", "White",
             ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
         VisualImpairmentColors,
+
+        [SouvenirQuestion("What was the color on the {1} stage in {0}?", "Wavetapping", 4, "Red", "Orange", "Orange-Yellow", "Chartreuse", "Lime", "Green", "Seafoam Green", "Cyan-Green", "Turquoise", "Dark Blue", "Indigo", "Purple", "Purple-Magenta", "Magenta", "Pink", "Gray",
+            ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        WavetappingColors,
+        [SouvenirQuestion("What was the correct pattern on the {1} stage in {0}?", "Wavetapping", 6, null,
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.Sprites)]
+        WavetappingPatterns,
+
+        [SouvenirQuestion("What was the display in the {1} successful stage on {0}?", "Who's on First", 6, "", "BLANK", "C", "CEE", "DISPLAY", "FIRST", "HOLD ON", "LEAD", "LED", "LEED", "NO", "NOTHING", "OK", "OKAY", "READ", "RED", "REED", "SAY", "SAYS", "SEE", "THEIR", "THERE", "THEY ARE", "THEY'RE", "U", "UR", "YES", "YOU", "YOU ARE", "YOU'RE", "YOUR",
+            ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        WhosOnFirstDisplay,
+
+        [SouvenirQuestion("What was the color of the {1} dial when you solved {0}?", "Wire", 6, "blue", "green", "grey", "orange", "purple", "red",
+            ExampleExtraFormatArguments = new[] { "top", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
+        WireDialColors,
+
+        [SouvenirQuestion("What was the displayed number when you solved {0}?", "Wire", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+            ExampleExtraFormatArguments = new[] { "top", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
+        WireDisplayedNumber,
+
+        [SouvenirQuestion("How many {1} wires were there in {0}?", "Wire Sequence", 4, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+            ExampleExtraFormatArguments = new[] { "red", "blue", "black" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        WireSequenceColorCount,
 
         [SouvenirQuestion("What was the initial roll on {0}?", "Yahtzee", 4, "Yahtzee", "large straight", "small straight", "four of a kind", "full house", "three of a kind", "two pairs", "pair")]
         YahtzeeInitialRoll,

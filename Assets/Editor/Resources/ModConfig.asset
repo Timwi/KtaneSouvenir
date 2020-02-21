@@ -10,10 +10,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 615501dbe4f3fe94fbf4b564abb10237, type: 3}
   m_Name: ModConfig
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   id: Souvenir
   title: Souvenir
-  author: 
+  author:
   description: "This module asks you questions about some of the other modules on
     your bomb after you\u2019ve solved them. It requires you to remember or write
     down things that you used to solve those other modules.\n\r\r\nSome of the things
@@ -36,6 +36,6 @@ MonoBehaviour:
     questions that could under any circumstances be impossible to answer\r. This includes
     things that are removed/reset when striking on a module.\n[/list]\r\n\r\n[url=http://ktane.timwi.de/PDF/Souvenir.pdf]Manual
     PDF[/url]\r\n[url=http://ktane.timwi.de/HTML/Souvenir.html]Manual HTML[/url]"
-  version: 2.0
+  version: 2.1
   outputFolder: build
   previewImage: {fileID: 2800000, guid: bd5c1f4881f57d54481b44e4c8a7779a, type: 3}
