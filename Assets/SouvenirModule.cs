@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using KModkit;
+using Newtonsoft.Json;
 using Souvenir;
 using UnityEngine;
 using Rnd = UnityEngine.Random;
@@ -21,6 +22,7 @@ public class SouvenirModule : MonoBehaviour
     public KMBombModule Module;
     public KMAudio Audio;
     public KMBossModule BossModule;
+    public KMModSettings ModSettings;
     public KMSelectable[] Answers;
     public GameObject AnswersParent;
     public GameObject[] TpNumbers;
@@ -57,6 +59,7 @@ public class SouvenirModule : MonoBehaviour
 
     private static readonly bool _isTimwisComputer = new[] { "TEKELIA", "CORNFLOWER", "CAITSITH2-PC" }.Contains(Environment.GetEnvironmentVariable("COMPUTERNAME"));
     private static readonly string _timwiPath = @"D:\c\KTANE\Souvenir modules.txt";
+    private Config config;
     private readonly List<QuestionBatch> _questions = new List<QuestionBatch>();
     private readonly HashSet<KMBombModule> _legitimatelyNoQuestions = new HashSet<KMBombModule>();
     private bool _isActivated = false;
@@ -474,6 +477,23 @@ public class SouvenirModule : MonoBehaviour
             { _Zoni, ProcessZoni }
         };
 
+        try
+        {
+            config = JsonConvert.DeserializeObject<Config>(ModSettings.Settings);
+        }
+        catch (JsonSerializationException ex)
+        {
+            Debug.LogErrorFormat("<Souvenir #{0}> The mod settings file is invalid.", _moduleId);
+            Debug.LogException(ex, this);
+            config = null;
+        }
+        if (config == null)
+        {
+            config = new Config();
+            using (var writer = new StreamWriter(ModSettings.SettingsPath))
+                new JsonSerializer() { Formatting = Formatting.Indented }.Serialize(writer, config);
+        }
+
         Bomb.OnBombExploded += delegate { _exploded = true; StopAllCoroutines(); };
         Bomb.OnBombSolved += delegate
         {
@@ -583,7 +603,7 @@ public class SouvenirModule : MonoBehaviour
                 var module = gameObject.GetComponent<KMBombModule>();
                 if (module != null)
                     StartCoroutine(ProcessModule(module));
-                else
+                else if (!config.ExcludeVanillaModules)
                 {
                     var vanillaModule = transform.parent.GetChild(i).gameObject.GetComponent("BombComponent");
                     if (vanillaModule != null)
