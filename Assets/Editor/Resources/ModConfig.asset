@@ -10,32 +10,38 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 615501dbe4f3fe94fbf4b564abb10237, type: 3}
   m_Name: ModConfig
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   id: Souvenir
   title: Souvenir
-  author:
-  description: "This module asks you questions about some of the other modules on
-    your bomb after you\u2019ve solved them. It requires you to remember or write
+  author: Timwi, Andrio Celos
+  description: "This is a fork of [url=https://steamcommunity.com/sharedfiles/filedetails/?id=810934485]Timwi\u2019s
+    Souvenir mod[/url], posted with permission. When using this mod, please unsubscribe
+    from that mod.\n\nThis module asks you questions about some of the other modules
+    on your bomb after you\u2019ve solved them. It requires you to remember or write
     down things that you used to solve those other modules.\n\r\r\nSome of the things
     this module might ask about are listed below. For a complete list, please see
-    the manual.\n\r\n[list]\r\n[*][b]3D Maze:[/b] floor markings, cardinal direction\r\n[*][b]Bitmaps:[/b]
-    How many white/black squares were in each quadrant\r?\n[*][b]Chess:[/b] What were
-    the coordinates shown on the module?\n[*][b]Hexamaze:[/b] pawn color\r\n[*][b]Monsplode,
-    Fight!:[/b] creature displayed and moves shown on buttons\r\n[*][b]Mouse in the
-    Maze:[/b] color of the torus and the solution sphere\r\n[*][b]Simon States:[/b]
-    which colors flashed\r\n[*][b]The Bulb:[/b] which buttons you pressed\n[*][b]Two
-    Bits:[/b] the three correct query responses\r\n[/list]\r\n\r\nIf you wish to see
-    another module added, you can contribute development by submitting pull requests
-    to the [url=https://github.com/Timwi/KtaneSouvenir]source code[/url], or find
-    a volunteer modder on the KTANE Discord. Additions would generally be required
-    to satisfy the following guidelines:\r\n\r\n[list]\r\n[*]No questions about things
-    that can just be read off after the module was solved (e.g. the symbols in Astrology)\r.\n[*]No
-    questions about things that can be re-deduced by re-solving the module (e.g. offset
-    in Caesar Cipher)\r.\n[*]No questions about random things that aren\u2019t required
-    for solving a module (e.g. initial red/green state in Connection Check).\n[*]No
-    questions that could under any circumstances be impossible to answer\r. This includes
-    things that are removed/reset when striking on a module.\n[/list]\r\n\r\n[url=http://ktane.timwi.de/PDF/Souvenir.pdf]Manual
+    the manual.\n\r\n[list]\r\n[*][b]3D Maze:[/b] What were the floor markings and
+    cardinal direction\r?\n[*][b]Bitmaps:[/b] How many white/black squares were in
+    each quadrant\r?\n[*][b]Chess:[/b] What were the coordinates shown on the module?\n[*][b]Hexamaze:[/b]
+    What color was the pawn?\n[*][b]Monsplode, Fight!:[/b] Which Monsplode and moves
+    were displayed?\n[*][b]Mouse in the Maze:[/b] What color were the torus and the
+    solution sphere\r?\n[*][b]Simon States:[/b] Which colors flashed\r?\n[*][b]The
+    Bulb:[/b] What were the correct buttons that you pressed?\n[*][b]Two Bits:[/b]
+    What were the three correct query responses\r?\n[/list]\r\n\r\nIf you wish to
+    see another module added, you can contribute development by submitting pull requests
+    to the [url=https://github.com/AndrioCelos/KtaneSouvenir]GitHub repository[/url],
+    or finding a volunteer modder on the KTaNE Discord guild. Additions would generally
+    be required to satisfy the following guidelines:\r\n\r\n[list]\r\n[*]No questions
+    about things that can just be read off after the module is solved (e.g. the symbols
+    in Astrology)\r. However, Souvenir may hide this information on some modules,
+    such as Adventure Game.\n[*]No questions about things that can be re-deduced by
+    re-solving the module (e.g. offset in Caesar Cipher)\r.\n[*]No questions about
+    random things that aren\u2019t required for solving a module (e.g. initial red/green
+    state in Connection Check).\n[*]No questions that could under any circumstances
+    be impossible to answer\r. This includes things that are removed/reset when striking
+    on a module.\n[/list]\r\n\r\n[url=http://ktane.timwi.de/PDF/Souvenir.pdf]Manual
     PDF[/url]\r\n[url=http://ktane.timwi.de/HTML/Souvenir.html]Manual HTML[/url]"
-  version: 2.1
-  outputFolder: build
+  version: 2.2
+  outputFolder: C:\Program Files (x86)\Steam\steamapps\common\Keep Talking and Nobody
+    Explodes\mods
   previewImage: {fileID: 2800000, guid: bd5c1f4881f57d54481b44e4c8a7779a, type: 3}
