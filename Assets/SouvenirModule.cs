@@ -26,6 +26,7 @@ public class SouvenirModule : MonoBehaviour
     public KMSelectable[] Answers;
     public GameObject AnswersParent;
     public GameObject[] TpNumbers;
+    public Sprite[] KeypadSprites;
     public Sprite[] MemorySprites;
     public Sprite[] ArithmelogicSprites;
     public Sprite[] ExampleSprites;
@@ -194,6 +195,12 @@ public class SouvenirModule : MonoBehaviour
     const string _Neutralization = "neutralization";
     const string _NandMs = "NandMs";
     const string _Nonogram = "NonogramModule";
+    const string _NotButton = "NotButton";
+    const string _NotKeypad = "NotKeypad";
+    const string _NotMaze = "NotMaze";
+    const string _NotMorseCode = "NotMorseCode";
+    const string _NotSimaze = "NotSimaze";
+    const string _NotWhosOnFirst = "NotWhosOnFirst";
     const string _OddOneOut = "OddOneOutModule";
     const string _OnlyConnect = "OnlyConnectModule";
     const string _OrangeArrows = "orangeArrowsModule";
@@ -395,6 +402,12 @@ public class SouvenirModule : MonoBehaviour
             { _Neutralization, ProcessNeutralization },
             { _NandMs, ProcessNandMs },
             { _Nonogram, ProcessNonogram },
+            { _NotButton, ProcessNotButton },
+            { _NotKeypad, ProcessNotKeypad },
+            { _NotMaze, ProcessNotMaze },
+            { _NotMorseCode, ProcessNotMorseCode },
+            { _NotSimaze, ProcessNotSimaze },
+            { _NotWhosOnFirst, ProcessNotWhosOnFirst },
             { _OddOneOut, ProcessOddOneOut },
             { _OnlyConnect, ProcessOnlyConnect },
             { _OrangeArrows, ProcessOrangeArrows },
@@ -6190,6 +6203,179 @@ public class SouvenirModule : MonoBehaviour
         };
 
         addQuestions(module, colors.Select((color, index) => makeQuestion(Question.NonogramColors, _Nonogram, new[] { ordinal(index % 5 + 1) + (index >= 5 ? " row" : " column") }, color.Split(' ').Select(c => colorNames[c]).ToArray())));
+    }
+
+    private IEnumerable<object> ProcessNotButton(KMBombModule module)
+    {
+        var component = GetComponent(module, "NotButton");
+        var propSolved = GetProperty<bool>(component, "Solved", true);
+        var propLightColour = GetProperty<object>(component, "LightColour", true);
+        var propMashCount = GetField<int>(component, "MashCount", true);
+        if (component == null || propSolved == null || propLightColour == null || propMashCount == null)
+            yield break;
+
+        var lightColor = 0; var mashCount = 0;
+        while (!propSolved.Get())
+        {
+            mashCount = propMashCount.Get();
+            lightColor = (int) propLightColour.Get();
+            yield return new WaitForSeconds(.1f);
+        }
+        _modulesSolved.IncSafe(_NotButton);
+        if (lightColor != 0)
+        {
+            var strings = _attributes[Question.NotButtonLightColour].AllAnswers;
+            if (lightColor <= 0 || lightColor > strings.Length)
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Not the Button because LightColour is out of range ({1}).", _moduleId, lightColor);
+            else
+                addQuestion(module, Question.NotButtonLightColour, correctAnswers: new[] { strings[lightColor - 1] });
+        }
+        else if (mashCount > 1)
+        {
+            var wrongAnswers = new int[5];
+            var wrongAnswerStrings = Enumerable.Range(0, 20).Select(_ => Rnd.Range(10, 100)).Where(i => i != mashCount).Distinct().Take(5).Select(i => i.ToString()).ToArray();
+            addQuestion(module, Question.NotButtonMashCount, correctAnswers: new[] { mashCount.ToString() }, preferredWrongAnswers: wrongAnswerStrings);
+        }
+        else
+        {
+            Debug.LogFormat("<Souvenir #{0}> No question for Not the Button because the button was tapped (or I missed the light color).", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+        }
+    }
+
+    private IEnumerable<object> ProcessNotKeypad(KMBombModule module)
+    {
+        var component = GetComponent(module, "NotKeypad");
+        var connectorComponent = GetComponent(module, "NotVanillaModulesLib.NotKeypadConnector");
+        var propSolved = GetProperty<bool>(component, "Solved", true);
+        var fldColours = GetField<Array>(component, "sequenceColours");
+        var fldButtons = GetField<int[]>(component, "sequenceButtons");
+        var fldSymbols = GetField<Array>(connectorComponent, "symbols");
+        if (propSolved == null || fldColours == null || fldButtons == null || fldSymbols == null)
+            yield break;
+
+        while (!propSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_NotKeypad);
+
+        var colours = fldColours.Get();
+        var buttons = fldButtons.Get();
+        var symbols = fldSymbols.Get();
+        var stage = Rnd.Range(0, colours.Length);
+
+        var questions = new QandA[2];
+        var colour = (int) colours.GetValue(stage);
+        var strings = _attributes[Question.NotKeypadColour].AllAnswers;
+        if (colour <= 0 || colour > strings.Length)
+            Debug.LogFormat("<Souvenir #{0}> Abandoning a question for Not Keypad because colour index is out of range ({1}).", _moduleId, colour);
+        else
+            questions[0] = makeQuestion(Question.NotKeypadColour, _NotKeypad, new[] { ordinal(stage + 1) }, new[] { strings[colour - 1] });
+
+        var symbol = (int) symbols.GetValue(buttons[stage]);
+        if (symbol < 0 || symbol > 30)
+            Debug.LogFormat("<Souvenir #{0}> Abandoning a question for Not Keypad because symbol index is out of range ({1}).", _moduleId, colour);
+        else
+            questions[1] = makeQuestion(Question.NotKeypadSymbol, _NotKeypad, new[] { ordinal(stage + 1) }, new[] { KeypadSprites[symbol] },
+                symbols.Cast<int>().Select(i => KeypadSprites[i]).ToArray());
+
+        addQuestions(module, questions);
+    }
+
+    private IEnumerable<object> ProcessNotMaze(KMBombModule module)
+    {
+        var component = GetComponent(module, "NotMaze");
+        var propSolved = GetProperty<bool>(component, "Solved", true);
+        var fldDistance = GetField<int>(component, "distance");
+        if (propSolved == null || fldDistance == null)
+            yield break;
+
+        while (!propSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_NotMaze);
+
+        addQuestion(module, Question.NotMazeStartingDistance, correctAnswers: new[] { fldDistance.Get().ToString() });
+    }
+
+    private IEnumerable<object> ProcessNotMorseCode(KMBombModule module)
+    {
+        var component = GetComponent(module, "NotMorseCode");
+        var propSolved = GetProperty<bool>(component, "Solved", true);
+        var fldCorrectChannels = GetField<int[]>(component, "correctChannels");
+        var fldWords = GetField<string[]>(component, "words");
+        var fldColumns = GetStaticField<string[][]>(component.GetType(), "defaultColumns");
+        if (propSolved == null || fldCorrectChannels == null || fldWords == null || fldColumns == null)
+            yield break;
+
+        while (!propSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_NotMorseCode);
+
+        var stage = Rnd.Range(0, 5);
+        var words = fldWords.Get();
+        var channels = fldCorrectChannels.Get();
+        var columns = fldColumns.Get();
+        var correctAnswers = new[] { words[channels[stage]] };
+        // Pick the other four words shown on the module, and four other random words from the table.
+        var wrongAnswers = words.Concat(Enumerable.Range(0, 50).Select(_ => columns.PickRandom().PickRandom())).Except(correctAnswers).Distinct().Take(8).ToArray();
+
+        addQuestion(module, Question.NotMorseCodeWord, new[] { ordinal(stage + 1) }, correctAnswers, wrongAnswers);
+    }
+
+    private IEnumerable<object> ProcessNotSimaze(KMBombModule module)
+    {
+        var component = GetComponent(module, "NotSimaze");
+        var propSolved = GetProperty<bool>(component, "Solved", true);
+        var fldMazeIndex = GetField<int>(component, "mazeIndex");
+        var fldX = GetField<int>(component, "x");
+        var fldY = GetField<int>(component, "y");
+        var fldGoalX = GetField<int>(component, "goalX");
+        var fldGoalY = GetField<int>(component, "goalY");
+        if (propSolved == null || fldMazeIndex == null || fldX == null || fldY == null || fldGoalX == null || fldGoalY == null)
+            yield break;
+
+        yield return null;  // Make sure the module has initialised.
+        var colours = _attributes[Question.NotSimazeMaze].AllAnswers;
+        var startPositionArray = new[] { string.Format("({0}, {1})", colours[fldX.Get()], colours[fldY.Get()]) };
+
+        while (!propSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_NotSimaze);
+
+        var goalPositionArray = new[] { string.Format("({0}, {1})", colours[fldGoalX.Get()], colours[fldGoalY.Get()]) };
+
+        addQuestions(module,
+            makeQuestion(Question.NotSimazeMaze, _NotSimaze, correctAnswers: new[] { colours[fldMazeIndex.Get()] }),
+            makeQuestion(Question.NotSimazeStart, _NotSimaze, correctAnswers: startPositionArray, preferredWrongAnswers: goalPositionArray),
+            makeQuestion(Question.NotSimazeGoal, _NotSimaze, correctAnswers: goalPositionArray, preferredWrongAnswers: startPositionArray)
+        );
+    }
+
+    private IEnumerable<object> ProcessNotWhosOnFirst(KMBombModule module)
+    {
+        var component = GetComponent(module, "NotWhosOnFirst");
+        var propSolved = GetProperty<bool>(component, "Solved", true);
+        var fldPositions = GetField<int[]>(component, "rememberedPositions");
+        var fldLabels = GetField<string[]>(component, "rememberedLabels");
+        var fldSum = GetField<int>(component, "stage2Sum");
+        if (propSolved == null || fldPositions == null || fldLabels == null || fldSum == null)
+            yield break;
+
+        while (!propSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_NotWhosOnFirst);
+
+        var i = Rnd.Range(0, 6);
+        var positions = _attributes[Question.NotWhosOnFirstPressedPosition].AllAnswers;
+        var sumCorrectAnswers = new[] { fldSum.Get().ToString() };
+
+        addQuestions(module,
+            i >= 4 ? makeQuestion(Question.NotWhosOnFirstReferencePosition, _NotWhosOnFirst, new[] { (i - 1).ToString() }, new[] { positions[fldPositions.Get()[i]] }) :
+                makeQuestion(Question.NotWhosOnFirstPressedPosition, _NotWhosOnFirst, new[] { (i + 1).ToString() }, new[] { positions[fldPositions.Get()[i]] }),
+            i >= 4 ? makeQuestion(Question.NotWhosOnFirstReferenceLabel, _NotWhosOnFirst, new[] { (i - 1).ToString() }, new[] { fldLabels.Get()[i] }) :
+                makeQuestion(Question.NotWhosOnFirstPressedLabel, _NotWhosOnFirst, new[] { (i + 1).ToString() }, new[] { fldLabels.Get()[i] }),
+            makeQuestion(Question.NotWhosOnFirstSum, _NotWhosOnFirst, correctAnswers: sumCorrectAnswers,
+                preferredWrongAnswers: Enumerable.Range(0, 20).Select(_ => Rnd.Range(1, 61).ToString()).Except(sumCorrectAnswers).Distinct().Take(5).ToArray())
+        );
     }
 
     private IEnumerable<object> ProcessOddOneOut(KMBombModule module)

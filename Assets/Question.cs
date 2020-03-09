@@ -563,6 +563,47 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first column", "second column", "first row", "second row" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NonogramColors,
 
+        [SouvenirQuestion("What colours did the light glow when you solved {0}?", "Not the Button", 6, "white", "red", "yellow", "green", "blue", "white/red", "white/yellow", "white/green", "white/blue", "red/yellow", "red/green", "red/blue", "yellow/green", "yellow/blue", "green/blue")]
+        NotButtonLightColour,
+        [SouvenirQuestion("How many times did you press the button when you solved {0}?", "Not the Button", 6, ExampleAnswers = new[] { "10", "20", "30", "40", "50", "60" })]
+        NotButtonMashCount,
+
+        [SouvenirQuestion("What colour flashed {1} in the final sequence in {0}?", "Not Keypad", 6, "red", "orange", "yellow", "green", "cyan", "blue", "purple", "magenta", "pink", "brown", "grey", "white",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        NotKeypadColour,
+        [SouvenirQuestion("Which symbol was on the button that flashed {1} in the final sequence in {0}?", "Not Keypad", 4, Type = AnswerType.Sprites,
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        NotKeypadSymbol,
+
+        [SouvenirQuestion("What was the starting distance in {0}?", "Not Maze", 6, "1", "2", "3", "4", "5", "6", "7", "8", "9")]
+        NotMazeStartingDistance,
+
+        [SouvenirQuestion("What was the {1} correct word you submitted in {0}?", "Not Morse Code", 6, ExampleAnswers = new[] { "shelf", "pounds", "sister", "beef", "yeast", "drive" },
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        NotMorseCodeWord,
+
+        [SouvenirQuestion("Which maze was used in {0}?", "Not Simaze", 6, "red", "orange", "yellow", "green", "blue", "purple")]
+        NotSimazeMaze,
+        [SouvenirQuestion("What was the starting position in {0}?", "Not Simaze", 4, "(red, red)", "(red, orange)", "(red, yellow)", "(red, green)", "(red, blue)", "(red, purple)", "(orange, red)", "(orange, orange)", "(orange, yellow)", "(orange, green)", "(orange, blue)", "(orange, purple)", "(yellow, red)", "(yellow, orange)", "(yellow, yellow)", "(yellow, green)", "(yellow, blue)", "(yellow, purple)", "(green, red)", "(green, orange)", "(green, yellow)", "(green, green)", "(green, blue)", "(green, purple)", "(blue, red)", "(blue, orange)", "(blue, yellow)", "(blue, green)", "(blue, blue)", "(blue, purple)", "(purple, red)", "(purple, orange)", "(purple, yellow)", "(purple, green)", "(purple, blue)", "(purple, purple)")]
+        NotSimazeStart,
+        [SouvenirQuestion("What was the goal position in {0}?", "Not Simaze", 4, "(red, red)", "(red, orange)", "(red, yellow)", "(red, green)", "(red, blue)", "(red, purple)", "(orange, red)", "(orange, orange)", "(orange, yellow)", "(orange, green)", "(orange, blue)", "(orange, purple)", "(yellow, red)", "(yellow, orange)", "(yellow, yellow)", "(yellow, green)", "(yellow, blue)", "(yellow, purple)", "(green, red)", "(green, orange)", "(green, yellow)", "(green, green)", "(green, blue)", "(green, purple)", "(blue, red)", "(blue, orange)", "(blue, yellow)", "(blue, green)", "(blue, blue)", "(blue, purple)", "(purple, red)", "(purple, orange)", "(purple, yellow)", "(purple, green)", "(purple, blue)", "(purple, purple)")]
+        NotSimazeGoal,
+
+        [SouvenirQuestion("In which position was the button you pressed in stage {1} when you solved {0}?", "Not Who's on First", 6, "top left", "top right", "middle left", "middle right", "bottom left", "bottom right",
+            ExampleExtraFormatArguments = new[] { "1", "2", "3", "4" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        NotWhosOnFirstPressedPosition,
+        [SouvenirQuestion("What was the label on the button you pressed in stage {1} when you solved {0}?", "Not Who's on First", 6, "BLANK", "DONE", "FIRST", "HOLD", "LEFT", "LIKE", "MIDDLE", "NEXT", "NO", "NOTHING", "OKAY", "PRESS", "READY", "RIGHT", "SURE", "U", "UH HUH", "UH UH", "UHHH", "UR", "WAIT", "WHAT", "WHAT?", "YES", "YOU", "YOU ARE", "YOU'RE", "YOUR",
+            ExampleExtraFormatArguments = new[] { "1", "2", "3", "4" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        NotWhosOnFirstPressedLabel,
+        [SouvenirQuestion("In which position was the reference button in stage {1} when you solved {0}?", "Not Who's on First", 6, "top left", "top right", "middle left", "middle right", "bottom left", "bottom right",
+            ExampleExtraFormatArguments = new[] { "1", "2", "3", "4" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        NotWhosOnFirstReferencePosition,
+        [SouvenirQuestion("What was the label on the reference button in stage {1} when you solved {0}?", "Not Who's on First", 6, "BLANK", "DONE", "FIRST", "HOLD", "LEFT", "LIKE", "MIDDLE", "NEXT", "NO", "NOTHING", "OKAY", "PRESS", "READY", "RIGHT", "SURE", "U", "UH HUH", "UH UH", "UHHH", "UR", "WAIT", "WHAT", "WHAT?", "YES", "YOU", "YOU ARE", "YOU'RE", "YOUR",
+            ExampleExtraFormatArguments = new[] { "1", "2", "3", "4" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        NotWhosOnFirstReferenceLabel,
+        [SouvenirQuestion("What was the calculated number in stage 2 when you solved {0}?", "Not Who's on First", 6)]
+        NotWhosOnFirstSum,
+
         [SouvenirQuestion("What was the button you pressed in the {1} stage of {0}?", "Odd One Out", 6, "top-left", "top-middle", "top-right", "bottom-left", "bottom-middle", "bottom-right",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         OddOneOutButton,
