@@ -490,22 +490,27 @@ public class SouvenirModule : MonoBehaviour
             { _Zoni, ProcessZoni }
         };
 
-        try
+        if (!string.IsNullOrEmpty(ModSettings.SettingsPath))
         {
-            config = JsonConvert.DeserializeObject<Config>(ModSettings.Settings);
+            try
+            {
+                config = JsonConvert.DeserializeObject<Config>(ModSettings.Settings);
+            }
+            catch (JsonSerializationException ex)
+            {
+                Debug.LogErrorFormat("<Souvenir #{0}> The mod settings file is invalid.", _moduleId);
+                Debug.LogException(ex, this);
+                config = null;
+            }
+            if (config == null)
+            {
+                config = new Config();
+                using (var writer = new StreamWriter(ModSettings.SettingsPath))
+                    new JsonSerializer() { Formatting = Formatting.Indented }.Serialize(writer, config);
+            }
         }
-        catch (JsonSerializationException ex)
-        {
-            Debug.LogErrorFormat("<Souvenir #{0}> The mod settings file is invalid.", _moduleId);
-            Debug.LogException(ex, this);
-            config = null;
-        }
-        if (config == null)
-        {
+        else
             config = new Config();
-            using (var writer = new StreamWriter(ModSettings.SettingsPath))
-                new JsonSerializer() { Formatting = Formatting.Indented }.Serialize(writer, config);
-        }
 
         Bomb.OnBombExploded += delegate { _exploded = true; StopAllCoroutines(); };
         Bomb.OnBombSolved += delegate
