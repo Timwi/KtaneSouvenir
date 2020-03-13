@@ -649,6 +649,13 @@ namespace Souvenir
           ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PigpenCycleWord,
 
+        [SouvenirQuestion("What was the first half of first phrase in {0}?", "Placeholder Talk", 4, null, ExampleAnswers = new[] { "", "IS IN THE", "IS THE", "IS IN UH", "IS", "IS AT", "IS INN", "IS THE IN", "IN IS", "IS IN.", "IS IN", "THE", "FIRST-", "IN", "UH IS IN", "AT", "LAST-", "UH", "KEYBORD", "A" })]
+        PlaceholderTalkFirstPhrase,
+        [SouvenirQuestion("What was the last half of first phrase in {0}?", "Placeholder Talk", 4, null, ExampleAnswers = new[] { "", "FIRST POS.", "SECOND POS.", "THIRD POS.", "FOURTH POS.", "FIFTH POS.", "MILLIONTH POS.", "BILLIONTH POS.", "LAST POS.", "AN ANSWER" })]
+        PlaceholderTalkOrdinal,
+        [SouvenirQuestion("What was the second phrase's calculated value in {0}?", "Placeholder Talk", 6, null, ExampleAnswers = new[] { "1", "2", "3", "4", "5", "6", "7", "8", })]
+        PlaceholderTalkSecondPhrase,
+
         [SouvenirQuestion("What was the planet shown in {0}?", "Planets", 6, null, Type = AnswerType.Sprites)]
         PlanetsPlanet,
         [SouvenirQuestion("What was the color of the {1} strip (from the top) in {0}?", "Planets", 6, "Aqua", "Blue", "Green", "Lime", "Orange", "Red", "Yellow", "White", "Off",
@@ -698,6 +705,12 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the rule number in {0}?", "Rule", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", AddThe = true)]
         RuleNumber,
+
+        [SouvenirQuestion("What was the number to the correct condition in {0}?", "Role Reversal", 6, "2", "3", "4", "5", "6", "7", "8")]
+        RoleReversalNumber,
+        [SouvenirQuestion("How many {1} wires were there in {0}?", "Role Reversal", 6, "0", "1", "2", "3", "4", "5", "6", "7",
+            ExampleExtraFormatArguments = new[] { "warm-colored", "cold-colored", "primary-colored", "secondary-colored" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        RoleReversalWires,
 
         [SouvenirQuestion("What was the contestant’s name in {0}?", "Schlag den Bomb", 4, "Ron", "Don", "Julia", "Cory", "Greg", "Paula", "Val", "Lisa", "Ozy", "Ozzy", "Elsa", "Cori", "Harry", "Gale", "Daniel", "Albert", "Spike", "Tommy", "Greta", "Tina", "Rob", "Edgar", "Julia", "Peter", "Millie", "Isolde", "Eris")]
         SchlagDenBombContestantName,
@@ -795,10 +808,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonStopsColors,
 
-        [SouvenirQuestion("Which color {1} {2} in the final sequence of {0}?", "Simon Stores", 4,  "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
+        [SouvenirQuestion("Which color {1} {2} in the final sequence of {0}?", "Simon Stores", 4, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
             ExampleExtraFormatArguments = new[] { "flashed", "first", "flashed", "second", "was one of the colors flashed", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
         SimonStoresColors,
-        [SouvenirQuestion("What was the correct answer in stage {1} of {0}?", "Simon Stores", 6, null, ExampleAnswers = new[] { "1", "-58", "12", "25", "364", "-244"},
+        [SouvenirQuestion("What was the correct answer in stage {1} of {0}?", "Simon Stores", 6, null, ExampleAnswers = new[] { "1", "-58", "12", "25", "364", "-244" },
             ExampleExtraFormatArguments = new[] { "1", "2", "3" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonStoresAnswers,
 
@@ -818,6 +831,11 @@ namespace Souvenir
 
         [SouvenirQuestion("How many red balls were there at the start of {0}?", "Snooker", 4, "8", "9", "10")]
         SnookerReds,
+
+        [SouvenirQuestion("What positions were the last swap used to solve {0}?", "Sorting", 6, "1 & 2", "1 & 3", "1 & 4", "1 & 5", "2 & 3", "2 & 4", "2 & 5", "3 & 4", "3 & 5", "4 & 5")]
+        SortingLastSwap,
+        [SouvenirQuestion("How many swaps were performed to solve {0}?", "Sorting", 6, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16")]
+        SortingSwapCount,
 
         [SouvenirQuestion("What was the first module asked about in the other Souvenir on this bomb?", "Souvenir", 4, null,
             ExampleAnswers = new[] { "Probing", "Microcontroller", "Third Base", "Kudosudoku", "Quintuples", "3D Tunnels", "Uncolored Squares", "Pattern Cube", "Synonyms", "The Moon", "Human Resources", "Algebra" })]
