@@ -89,6 +89,7 @@ public class SouvenirModule : MonoBehaviour
     const string _AffineCycle = "affineCycle";
     const string _Algebra = "algebra";
     const string _Arithmelogic = "arithmelogic";
+    const string _BamboozledAgain = "bamboozledAgain";
     const string _BamboozlingButton = "bamboozlingButton";
     const string _BigCircle = "BigCircle";
     const string _BinaryLEDs = "BinaryLeds";
@@ -135,6 +136,7 @@ public class SouvenirModule : MonoBehaviour
     const string _EquationsX = "equationsXModule";
     const string _FactoryMaze = "factoryMaze";
     const string _FastMath = "fastMath";
+    const string _FaultyRGBMaze = "faultyrgbMaze";
     const string _Flags = "FlagsModule";
     const string _FlashingLights = "flashingLights";
     const string _FreeParking = "freeParking";
@@ -145,6 +147,7 @@ public class SouvenirModule : MonoBehaviour
     const string _GridLock = "GridlockModule";
     const string _Gryphons = "gryphons";
     const string _LogicalButtons = "logicalButtonsModule";
+    const string _HereditaryBaseNotation = "hereditaryBaseNotationModule";
     const string _Hexabutton = "hexabutton";
     const string _Hexamaze = "HexamazeModule";
     const string _HiddenColors = "lgndHiddenColors";
@@ -221,12 +224,14 @@ public class SouvenirModule : MonoBehaviour
     const string _RedArrows = "redArrowsModule";
     const string _Retirement = "retirement";
     const string _ReverseMorse = "reverseMorse";
+    const string _RGBMaze = "rgbMaze";
     const string _Rhythms = "MusicRhythms";
     const string _Rule = "theRule";
     const string _SchlagDenBomb = "qSchlagDenBomb";
     const string _SeaShells = "SeaShells";
     const string _ShapesBombs = "ShapesBombs";
     const string _ShapeShift = "shapeshift";
+    const string _ShellGame = "shellGame";
     const string _SillySlots = "SillySlots";
     const string _SimonSamples = "simonSamples";
     const string _SimonSays = "Simon";
@@ -262,6 +267,7 @@ public class SouvenirModule : MonoBehaviour
     const string _ThirdBase = "ThirdBase";
     const string _TicTacToe = "TicTacToeModule";
     const string _Timezone = "timezone";
+    const string _TransmittedMorse = "transmittedMorseModule";
     const string _TurtleRobot = "turtleRobot";
     const string _TwoBits = "TwoBits";
     const string _UltimateCycle = "ultimateCycle";
@@ -296,6 +302,7 @@ public class SouvenirModule : MonoBehaviour
             { _AffineCycle, ProcessAffineCycle },
             { _Algebra, ProcessAlgebra },
             { _Arithmelogic, ProcessArithmelogic },
+            { _BamboozledAgain, ProcessBamboozledAgain },
             { _BamboozlingButton, ProcessBamboozlingButton },
             { _BigCircle, ProcessBigCircle },
             { _BinaryLEDs, ProcessBinaryLEDs },
@@ -342,6 +349,7 @@ public class SouvenirModule : MonoBehaviour
             { _EquationsX, ProcessEquationsX },
             { _FactoryMaze, ProcessFactoryMaze },
             { _FastMath, ProcessFastMath },
+            { _FaultyRGBMaze, ProcessFaultyRGBMaze },
             { _Flags, ProcessFlags },
             { _FlashingLights, ProcessFlashingLights },
             { _FreeParking, ProcessFreeParking },
@@ -351,6 +359,7 @@ public class SouvenirModule : MonoBehaviour
             { _GreenArrows, ProcessGreenArrows },
             { _GridLock, ProcessGridLock },
             { _Gryphons, ProcessGryphons },
+            { _HereditaryBaseNotation, ProcessHereditaryBaseNotation },
             { _Hexabutton, ProcessHexabutton },
             { _Hexamaze, ProcessHexamaze },
             { _HiddenColors, ProcessHiddenColors },
@@ -428,12 +437,14 @@ public class SouvenirModule : MonoBehaviour
             { _RedArrows, ProcessRedArrows},
             { _Retirement, ProcessRetirement },
             { _ReverseMorse, ProcessReverseMorse },
+            { _RGBMaze, ProcessRGBMaze},
             { _Rhythms, ProcessRhythms },
             { _Rule, ProcessRule },
             { _SchlagDenBomb, ProcessSchlagDenBomb },
             { _SeaShells, ProcessSeaShells },
             { _ShapesBombs, ProcessShapesAndBombs },
             { _ShapeShift, ProcessShapeShift },
+            { _ShellGame, ProcessShellGame },
             { _SillySlots, ProcessSillySlots },
             { _SimonSamples, ProcessSimonSamples },
             { _SimonSays, ProcessSimonSays },
@@ -469,6 +480,7 @@ public class SouvenirModule : MonoBehaviour
             { _ThirdBase, ProcessThirdBase },
             { _TicTacToe, ProcessTicTacToe },
             { _Timezone, ProcessTimezone },
+            { _TransmittedMorse, ProcessTransmittedMorse },
             { _TurtleRobot, ProcessTurtleRobot },
             { _TwoBits, ProcessTwoBits },
             { _UltimateCycle, ProcessUltimateCycle },
@@ -1677,6 +1689,154 @@ public class SouvenirModule : MonoBehaviour
                 correctAnswers: Enumerable.Range(0, 4).Where(ix => ix != curDisp[i]).Select(ix => selVal[i][ix].ToString()).ToArray(),
                 preferredWrongAnswers: Enumerable.Range(10, 99).Select(j => j.ToString()).ToArray()));
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessBamboozledAgain(KMBombModule module)
+    {
+        var comp = GetComponent(module, "BamboozledAgainScript");
+        var fldDisplayTexts = GetField<string[][]>(comp, "message");
+        var fldColorIndex = GetField<int[]>(comp, "textRandomiser");
+        var fldStage = GetField<int>(comp, "pressCount");
+        var fldCorrectButtons = GetField<int[][]>(comp, "answerKey");
+        var fldButtonInfo = GetField<string[][]>(comp, "buttonRandomiser");
+        var fldButtonTextMesh = GetField<TextMesh[]>(comp, "buttonText", isPublic: true);
+
+        if (comp == null || fldDisplayTexts == null || fldColorIndex == null || fldStage == null || fldCorrectButtons == null || fldButtonInfo == null || fldButtonTextMesh == null)
+            yield break;
+
+        yield return null;
+
+        //Beginning of correct button section.
+
+        int stage = 0;
+
+        string[] correctButtonTexts = new string[4];
+        string[] correctButtonColors = new string[4];
+
+        //The module cycle the stage count back to 0 regardless. So it gives no indications whether the module is solved or not on the fourth press.
+        //Stores the first button in a separate variable. Then, restore it once the module is solved. Index 0 for text. Index 1 for color.
+
+        string[] correctFirstStageButton = new string[2];
+
+        bool dataAdded = false;
+
+        //Not certain why, but the variable 'moduleSolved' in Bamboozled Again script becomes true at the start of the submit couroutine even though the answer may not be correct.
+        //Hooking isSolved variable to mitigate the possible side effects.
+
+        var isSolved = false;
+        module.OnPass += delegate { isSolved = true; return false; };
+
+        while (!isSolved)
+        {
+            if (fldStage.Get() < 0 || fldStage.Get() > 3)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Bamboozled Again because 'stage' has an unexpected value: stage = {1}", _moduleId, fldStage.Get());
+                yield break;
+            }
+            if (!dataAdded)
+            {
+                var buttonInfo = fldButtonInfo.Get();
+                if (buttonInfo == null || buttonInfo.Length != 2 || buttonInfo.Any(innerArray => innerArray.Length != 6))
+                {
+                    Debug.LogFormat("<Souvenir #{0}> Abandoning Bamboozled Again because 'buttonInfo' is null, has an unexpected length, or contains arrays with unexpected length: [{1}]",
+                            _moduleId, buttonInfo == null ? "<null>" : string.Format("Length = {0}, {1}", buttonInfo.Length, buttonInfo.SelectMany((innerArray, index) => innerArray == null ? "<null>" : string.Format("Inner length ({1}) = {0}", innerArray.Length, index + 1)).JoinString(", ")));
+                    yield break;
+                }
+                var correctButtons = fldCorrectButtons.Get();
+                if (correctButtons == null || correctButtons.Length != 2 || correctButtons.Any(innerArray => innerArray.Length != 4))
+                {
+                    Debug.LogFormat("<Souvenir #{0}> Abandoning Bamboozled Again because 'correctButtons' is null, has an unexpected length, or contains arrays with unexpected length: [{1}]",
+                        _moduleId, correctButtons == null ? "<null>" : string.Format("Length = {0}, {1}", correctButtons.Length, correctButtons.SelectMany((innerArray, index) => innerArray == null ? "<null>" : string.Format("Inner length ({1}) = {0}", innerArray.Length, index + 1)).JoinString(", ")));
+                    yield break;
+                }
+                if (stage == 0)
+                {
+                    correctFirstStageButton[0] = correctButtonTexts[stage];
+                    correctFirstStageButton[1] = correctButtonColors[stage];
+                }
+                correctButtonTexts[stage] = Regex.Replace(buttonInfo[1][correctButtons[0][stage]], "#", " ");
+                correctButtonColors[stage] = buttonInfo[0][correctButtons[0][stage]][0] + buttonInfo[0][correctButtons[0][stage]].Substring(1).ToLowerInvariant();
+                dataAdded = true;
+            }
+            if (stage != fldStage.Get())
+            {
+                stage = fldStage.Get();
+                dataAdded = false;
+            }
+            var buttonTextMesh = fldButtonTextMesh.Get();
+
+            if (buttonTextMesh == null)
+                yield break;
+
+            //Check if the module is resetting. There is no flag indicating the module is resetting, but each button will have exactly a string with length of 1 on it.
+            if (buttonTextMesh.Any(strMesh => strMesh.text.Length == 1))
+                dataAdded = false;
+
+            yield return new WaitForSeconds(.1f);
+        }
+        _modulesSolved.IncSafe(_BamboozledAgain);
+
+        //Restore the first button to the arrays.
+
+        correctButtonTexts[0] = correctFirstStageButton[0];
+        correctButtonColors[0] = correctFirstStageButton[1];
+
+        //End of correct button section.
+
+        //Beginning of the displayed texts section.
+
+        var displayTexts = fldDisplayTexts.Get();
+        var colorIndex = fldColorIndex.Get();
+
+        if (displayTexts == null || displayTexts.Length != 4 || displayTexts.Any(innerArray => innerArray.Length != 8))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Bamboozled Again because 'displayTexts' is null, has an unexpected length, or contains arrays with unexpected length: [{1}]",
+                _moduleId, displayTexts == null ? "<null>" : string.Format("Length = {0}, {1}", displayTexts.Length, displayTexts.SelectMany((innerArray, index) => innerArray == null ? "<null>" : string.Format("Inner length ({1}) = {0}", innerArray.Length, index + 1)).JoinString(", ")));
+            yield break;
+        }
+
+        if (displayTexts[0].Any(str => String.IsNullOrEmpty(str)))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Bamboozled Again because 'displayText[0]' contains null or an empty string: [{1}]", _moduleId, displayTexts[0].Select(str => str == null ? "<null>" : str).JoinString(", "));
+            yield break;
+        }
+
+        if (colorIndex == null || colorIndex.Length != 8)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Bamboozled Again because 'colorIndex' is null or has an unexpected length: {1}", _moduleId, colorIndex == null ? "<null>" : colorIndex.Length.ToString());
+            yield break;
+        }
+
+        displayTexts[0] = displayTexts[0].Select(str => Regex.Replace(str, "#", " ")).ToArray();
+
+        string[] firstRowTexts = displayTexts[0].Where((item, index) => index == 0 || index == 2 || index == 4).ToArray();
+        string[] lastThreeTexts = displayTexts[0].Where((item, index) => index > 4 && index < 8).ToArray();
+        string[] color = new string[14] { "White", "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Grey", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose" };
+        string[] displayColors = colorIndex.Select(index => color[index]).ToArray();
+        
+        //End of the displayed texts section.
+
+        addQuestions(module,
+            correctButtonTexts.Select((name, index) => makeQuestion(Question.BamboozledAgainButtonText, _BamboozledAgain,
+                formatArgs: new[] { index == 3 ? "fourth" : ordinal(index + 1) },
+                correctAnswers: new[] { name },
+                preferredWrongAnswers: correctButtonTexts.Except(new[] { name }).ToArray())).Concat(
+            correctButtonColors.Select((col, index) => makeQuestion(Question.BamboozledAgainButtonColor, _BamboozledAgain,
+                formatArgs: new[] { index == 3 ? "fourth" : ordinal(index + 1) },
+                correctAnswers: new[] { col },
+                preferredWrongAnswers: correctButtonColors.Except(new[] { col }).ToArray()))).Concat(
+            firstRowTexts.Select((text, index) => makeQuestion(Question.BamboozledAgainDisplayTexts1, _BamboozledAgain,
+                formatArgs: new[] { ordinal(2 * index + 6) },
+                correctAnswers: new[] { text },
+                preferredWrongAnswers: firstRowTexts.Except(new[] { text }).ToArray()))).Concat(
+            lastThreeTexts.Select((text, index) => makeQuestion(Question.BamboozledAgainDisplayTexts2, _BamboozledAgain,
+                formatArgs: new[] { ordinal(index + 6) },
+                correctAnswers: new[] { text },
+                preferredWrongAnswers: lastThreeTexts.Except(new[] { text }).ToArray()))).Concat(
+            displayColors.Select((col, index) => makeQuestion(Question.BamboozledAgainDisplayColor, _BamboozledAgain,
+                formatArgs: new[] { ordinal(index + 6) },
+                correctAnswers: new[] { col },
+                preferredWrongAnswers: displayColors.Except(new[] { col }).ToArray()))));
     }
 
     private IEnumerable<object> ProcessBamboozlingButton(KMBombModule module)
@@ -3486,6 +3646,84 @@ public class SouvenirModule : MonoBehaviour
         addQuestion(module, Question.FastMathLastLetters, correctAnswers: new[] { letters }, preferredWrongAnswers: prevLetters.ToArray());
     }
 
+    private IEnumerable<object> ProcessFaultyRGBMaze(KMBombModule module)
+    {
+        var comp = GetComponent(module, "FaultyRGBMazeScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldKeyPos = GetField<int[][]>(comp, "keylocations");
+        var fldMazeNum = GetField<int[][]>(comp, "mazenumber");
+        var fldExitPos = GetField<int[]>(comp, "exitlocation");
+
+        if (comp == null || fldSolved == null || fldKeyPos == null || fldMazeNum == null || fldExitPos == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_FaultyRGBMaze);
+
+        var keyPos = fldKeyPos.Get();
+        var mazeNum = fldMazeNum.Get();
+        var exitPos = fldExitPos.Get();
+
+        if (keyPos == null || mazeNum == null || exitPos == null)
+            yield break;
+
+        if (keyPos.Length != 3)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Faulty RGB Maze because 'KeyPos' has an unexpected length: Length = {1}", _moduleId, keyPos.Length);
+            yield break;
+        }
+
+        if (keyPos.Any(key => key.Length != 2 || key.Any(number => number < 0 || number > 6)))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Faulty RGB Maze because 'KeyPos' contains keys with invalid positions: [{1}]", _moduleId, keyPos.Select(key => string.Format("Length = {0}, ({1},{2})", key.Length, key[1], key[0])).JoinString("; "));
+            yield break;
+        }
+
+        if (mazeNum.Length != 3)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Faulty RGB Maze because 'MazeNum' or has an unexpected length: Length = {1}", _moduleId, mazeNum.Length);
+            yield break;
+        }
+
+        if (mazeNum.Any(maze => maze.Length != 2 || maze[0] < 0 || maze[0] > 15))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Faulty RGB Maze because 'MazeNum' contains mazes with invalid number: [{1}]", _moduleId, mazeNum.Select(maze => string.Format("Length = {0}, Maze {1}", maze.Length, maze[0])).JoinString("; "));
+            yield break;
+        }
+
+        if (exitPos.Length != 3)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Faulty RGB Maze because 'exitPos' has an unexpected length: Length = {1}", _moduleId, exitPos.Length);
+            yield break;
+        }
+
+        if (exitPos[1] < 0 || exitPos[1] > 6 || exitPos[2] < 0 || exitPos[2] > 6)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Faulty RGB Maze because 'exitPos' contains invalid coordinate: ({1},{2})", _moduleId, exitPos[2], exitPos[1]);
+            yield break;
+        }
+
+        string[] colors = { "red", "green", "blue" };
+
+        var qs = new List<QandA>();
+
+        for (int index = 0; index < 3; index++)
+        {
+            qs.Add(makeQuestion(Question.FaultyRGBMazeKeys, _FaultyRGBMaze,
+                formatArgs: new[] { colors[index] },
+                correctAnswers: new[] { "ABCDEFG"[keyPos[index][1]] + (keyPos[index][0] + 1).ToString() }));
+            qs.Add(makeQuestion(Question.FaultyRGBMazeNumber, _FaultyRGBMaze,
+                formatArgs: new[] { colors[index] },
+                correctAnswers: new[] { "0123456789ABCDEF"[mazeNum[index][0]].ToString() }));
+        }
+
+        qs.Add(makeQuestion(Question.FaultyRGBMazeExit, _FaultyRGBMaze,
+            correctAnswers: new[] { "ABCDEFG"[exitPos[2]] + (exitPos[1] + 1).ToString() }));
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessFlags(KMBombModule module)
     {
         var comp = GetComponent(module, "FlagsModule");
@@ -3945,6 +4183,70 @@ public class SouvenirModule : MonoBehaviour
             colors.SelectMany((clrs, stage) => clrs.Select((clr, btnIx) => makeQuestion(Question.LogicalButtonsColor, _LogicalButtons, new[] { _logicalButtonsButtonNames[btnIx], ordinal(stage + 1) }, new[] { clr })))
                 .Concat(labels.SelectMany((lbls, stage) => lbls.Select((lbl, btnIx) => makeQuestion(Question.LogicalButtonsLabel, _LogicalButtons, new[] { _logicalButtonsButtonNames[btnIx], ordinal(stage + 1) }, new[] { lbl }))))
                 .Concat(initialOperators.Select((op, stage) => makeQuestion(Question.LogicalButtonsOperator, _LogicalButtons, new[] { ordinal(stage + 1) }, new[] { op }))));
+    }
+
+    private IEnumerable<object> ProcessHereditaryBaseNotation(KMBombModule module)
+    {
+        var comp = GetComponent(module, "hereditaryBaseNotationScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldInitialNum = GetField<int>(comp, "initialNumber");
+        var fldBaseN = GetField<int>(comp, "baseN");
+        var mthNumberToBaseNString = GetMethod<string>(comp, "numberToBaseNString", numParameters: 2);
+
+        if (comp == null || fldSolved == null || fldInitialNum == null || fldBaseN == null || mthNumberToBaseNString == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_HereditaryBaseNotation);
+
+        int baseN = fldBaseN.Get();
+
+        if (baseN < 3 || baseN > 7)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Hereditary Base Notation because 'baseN' has an invalid value (expected 3 - 7): {1}", _moduleId, baseN);
+            yield break;
+        }
+
+        int upperBound;
+
+        switch (baseN)
+        {
+            case 3:
+                upperBound = 19682;
+                break;
+            case 4:
+                upperBound = 60000;
+                break;
+            case 5:
+                upperBound = 80000;
+                break;
+            default:
+                upperBound = 100000;
+                break;
+        }
+
+        int initialNum = fldInitialNum.Get();
+
+        if (initialNum < 1 || initialNum > upperBound)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Hereditary Base Notation because 'initialNum' has an invalid value (expected 1 - {1}): {2}", _moduleId, upperBound, initialNum);
+            yield break;
+        }
+
+        string answer = mthNumberToBaseNString.Invoke(baseN, initialNum).ToString();
+        HashSet<string> invalidAnswer = new HashSet<string>();
+        invalidAnswer.Add(answer);
+
+        //Generate fake options in the same base of the answer.
+        while (invalidAnswer.Count() < 4)
+        {
+            var wrongAnswer = Rnd.Range(1, upperBound + 1);
+            invalidAnswer.Add(mthNumberToBaseNString.Invoke(baseN, wrongAnswer).ToString());
+        }
+
+        invalidAnswer.Add(answer);
+        addQuestions(module, makeQuestion(Question.HereditaryBaseNotationInitialNumber, _HereditaryBaseNotation, null, new[] { answer }, invalidAnswer.ToArray()));
     }
 
     private IEnumerable<object> ProcessHexabutton(KMBombModule module)
@@ -7169,6 +7471,84 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessRGBMaze(KMBombModule module)
+    {
+        var comp = GetComponent(module, "RGBMazeScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldKeyPos = GetField<int[][]>(comp, "keylocations");
+        var fldMazeNum = GetField<int[][]>(comp, "mazenumber");
+        var fldExitPos = GetField<int[]>(comp, "exitlocation");
+
+        if (comp == null || fldSolved == null || fldKeyPos == null || fldMazeNum == null || fldExitPos == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_RGBMaze);
+
+        var keyPos = fldKeyPos.Get();
+        var mazeNum = fldMazeNum.Get();
+        var exitPos = fldExitPos.Get();
+
+        if (keyPos == null || mazeNum == null || exitPos == null)
+            yield break;
+
+        if (keyPos.Length != 3)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning RGB Maze because 'KeyPos' has an unexpected length: Length = {1}", _moduleId, keyPos.Length);
+            yield break;
+        }
+
+        if (keyPos.Any(key => key.Length != 2 || key.Any(number => number < 0 || number > 7)))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning RGB Maze because 'KeyPos' contains keys with invalid positions: [{1}]", _moduleId, keyPos.Select(key => string.Format("Length = {0}, ({1},{2})", key.Length, key[1], key[0])).JoinString("; "));
+            yield break;
+        }
+
+        if (mazeNum.Length != 3)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning RGB Maze because 'MazeNum' or has an unexpected length: Length = {1}", _moduleId, mazeNum.Length);
+            yield break;
+        }
+
+        if (mazeNum.Any(maze => maze.Length != 2 || maze[0] < 0 || maze[0] > 9))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning RGB Maze because 'MazeNum' contains mazes with invalid number: [{1}]", _moduleId, mazeNum.Select(maze => string.Format("Length = {0}, Maze {1}", maze.Length, maze[0])).JoinString("; "));
+            yield break;
+        }
+
+        if (exitPos.Length != 3)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning RGB Maze because 'exitPos' has an unexpected length: Length = {1}", _moduleId, exitPos.Length);
+            yield break;
+        }
+
+        if (exitPos[1] < 0 || exitPos[1] > 7 || exitPos[2] < 0 || exitPos[2] > 7)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning RGB Maze because 'exitPos' contains invalid coordinate: ({1},{2})", _moduleId, exitPos[2], exitPos[1]);
+            yield break;
+        }
+
+        string[] colors = { "red", "green", "blue" };
+
+        var qs = new List<QandA>();
+
+        for (int index = 0; index < 3; index++)
+        {
+            qs.Add(makeQuestion(Question.RGBMazeKeys, _RGBMaze,
+                formatArgs: new[] { colors[index] },
+                correctAnswers: new[] { "ABCDEFGH"[keyPos[index][1]] + (keyPos[index][0] + 1).ToString() }));
+            qs.Add(makeQuestion(Question.RGBMazeNumber, _RGBMaze,
+                formatArgs: new[] { colors[index] },
+                correctAnswers: new[] { mazeNum[index][0].ToString() }));
+        }
+
+        qs.Add(makeQuestion(Question.RGBMazeExit, _RGBMaze,
+            correctAnswers: new[] { "ABCDEFGH"[exitPos[2]] + (exitPos[1] + 1).ToString() }));
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessRhythms(KMBombModule module)
     {
         var comp = GetComponent(module, "Rhythms");
@@ -7372,6 +7752,32 @@ public class SouvenirModule : MonoBehaviour
         }
         else
             addQuestion(module, Question.ShapeShiftInitialShape, correctAnswers: new[] { ((char) ('A' + stR + (4 * stL))).ToString() }, preferredWrongAnswers: answers.ToArray());
+    }
+
+    private IEnumerable<object> ProcessShellGame(KMBombModule module)
+    {
+        var comp = GetComponent(module, "shellGame");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldInitialCup = GetField<int>(comp, "startingCup");
+
+        if (comp == null || fldSolved == null || fldInitialCup == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ShellGame);
+
+        int initialCup = fldInitialCup.Get();
+
+        if (initialCup < 0 || initialCup > 2)
+        {
+            Debug.LogFormat("<Souvenir {0}> Abandoning Shell Game because 'initialCup' has an unexpected value (expected 0 - 2): {1}", _moduleId, initialCup);
+            yield break;
+        }
+
+        string[] position = new string[3] { "Left", "Middle", "Right" };
+
+        addQuestions(module, makeQuestion(Question.ShellGameStartingCup, _ShellGame, correctAnswers: new[] { position[initialCup] }));
     }
 
     private IEnumerable<object> ProcessSillySlots(KMBombModule module)
@@ -9005,6 +9411,44 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.TimezoneCities, _Timezone, new[] { "departure" }, new[] { fldFromCity.Get() }),
             makeQuestion(Question.TimezoneCities, _Timezone, new[] { "destination" }, new[] { fldToCity.Get() }));
+    }
+
+    private IEnumerable<object> ProcessTransmittedMorse(KMBombModule module)
+    {
+        var comp = GetComponent(module, "TransmittedMorseScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldMessage = GetField<string>(comp, "messagetrans");
+        var fldStage = GetField<int>(comp, "stage");
+
+        if (comp == null || fldSolved == null || fldMessage == null || fldStage == null)
+            yield break;
+
+        yield return null;
+
+        string[] messages = new string[2];
+        string message;
+        int stage = 0;
+
+        while (!fldSolved.Get())
+        {
+            stage = fldStage.Get();
+            if (stage < 1 || stage > 2)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Transmitted Morse because 'stage' has an unexpected value (expected 1 - 2): {1}", _moduleId, stage);
+                yield break;
+            }
+            message = fldMessage.Get();
+            if (message == null)
+                yield break;
+            messages[stage - 1] = message;
+            yield return new WaitForSeconds(.1f);
+        }
+        _modulesSolved.IncSafe(_TransmittedMorse);
+
+        addQuestions(module, messages.Select((msg, index) => makeQuestion(Question.TransmittedMorseMessage, _TransmittedMorse, 
+            formatArgs: new[] { ordinal(index + 1) },
+            correctAnswers: new[] { msg },
+            preferredWrongAnswers: messages)));
     }
 
     private IEnumerable<object> ProcessTurtleRobot(KMBombModule module)
