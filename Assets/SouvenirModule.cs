@@ -3715,7 +3715,7 @@ public class SouvenirModule : MonoBehaviour
                 correctAnswers: new[] { "ABCDEFG"[keyPos[index][1]] + (keyPos[index][0] + 1).ToString() }));
             qs.Add(makeQuestion(Question.FaultyRGBMazeNumber, _FaultyRGBMaze,
                 formatArgs: new[] { colors[index] },
-                correctAnswers: new[] { "0123456789ABCDEF"[mazeNum[index][0]].ToString() }));
+                correctAnswers: new[] { "0123456789abcdef"[mazeNum[index][0]].ToString() }));
         }
 
         qs.Add(makeQuestion(Question.FaultyRGBMazeExit, _FaultyRGBMaze,
