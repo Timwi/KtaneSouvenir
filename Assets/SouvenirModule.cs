@@ -1813,7 +1813,7 @@ public class SouvenirModule : MonoBehaviour
         string[] lastThreeTexts = displayTexts[0].Where((item, index) => index > 4 && index < 8).ToArray();
         string[] color = new string[14] { "White", "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Grey", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose" };
         string[] displayColors = colorIndex.Select(index => color[index]).ToArray();
-        
+
         //End of the displayed texts section.
 
         addQuestions(module,
@@ -1826,7 +1826,7 @@ public class SouvenirModule : MonoBehaviour
                 correctAnswers: new[] { col },
                 preferredWrongAnswers: correctButtonColors.Except(new[] { col }).ToArray()))).Concat(
             firstRowTexts.Select((text, index) => makeQuestion(Question.BamboozledAgainDisplayTexts1, _BamboozledAgain,
-                formatArgs: new[] { ordinal(2 * index + 6) },
+                formatArgs: new[] { ordinal(2 * index + 1) },
                 correctAnswers: new[] { text },
                 preferredWrongAnswers: firstRowTexts.Except(new[] { text }).ToArray()))).Concat(
             lastThreeTexts.Select((text, index) => makeQuestion(Question.BamboozledAgainDisplayTexts2, _BamboozledAgain,
@@ -1834,7 +1834,7 @@ public class SouvenirModule : MonoBehaviour
                 correctAnswers: new[] { text },
                 preferredWrongAnswers: lastThreeTexts.Except(new[] { text }).ToArray()))).Concat(
             displayColors.Select((col, index) => makeQuestion(Question.BamboozledAgainDisplayColor, _BamboozledAgain,
-                formatArgs: new[] { ordinal(index + 6) },
+                formatArgs: new[] { ordinal(index + 1) },
                 correctAnswers: new[] { col },
                 preferredWrongAnswers: displayColors.Except(new[] { col }).ToArray()))));
     }
@@ -9445,7 +9445,7 @@ public class SouvenirModule : MonoBehaviour
         }
         _modulesSolved.IncSafe(_TransmittedMorse);
 
-        addQuestions(module, messages.Select((msg, index) => makeQuestion(Question.TransmittedMorseMessage, _TransmittedMorse, 
+        addQuestions(module, messages.Select((msg, index) => makeQuestion(Question.TransmittedMorseMessage, _TransmittedMorse,
             formatArgs: new[] { ordinal(index + 1) },
             correctAnswers: new[] { msg },
             preferredWrongAnswers: messages)));
