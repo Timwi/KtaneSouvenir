@@ -878,8 +878,8 @@ namespace Souvenir
         [SouvenirQuestion("What bag was initially colored in {0}?", "Splitting The Loot", 6, null, ExampleAnswers = new[] { "A5", "E6", "19", "82" })]
         SplittingTheLootColoredBag,
 
-        [SouvenirQuestion("What was the {1} color before the {2} time you switched the switch correctly in {0}?", "Switch", 6, "red", "orange", "yellow", "green", "blue", "purple",
-            ExampleExtraFormatArguments = new[] { "top", "second-last", "bottom", "second-last", "top", "last", "bottom", "last" }, ExampleExtraFormatArgumentGroupSize = 2, AddThe = true)]
+        [SouvenirQuestion("What color was the {1} LED on the {2} flip when you solved {0}?", "Switch", 6, "red", "orange", "yellow", "green", "blue", "purple",
+            ExampleExtraFormatArguments = new[] { "top", "first", "bottom", "first", "top", "second", "bottom", "second" }, ExampleExtraFormatArgumentGroupSize = 2, AddThe = true)]
         SwitchInitialColor,
 
         [SouvenirQuestion("What was the initial position of the switches in {0}?", "Switches", 6, "RRRRR", "QRRRR", "RQRRR", "QQRRR", "RRQRR", "QRQRR", "RQQRR", "QQQRR", "RRRQR", "QRRQR", "RQRQR", "QQRQR", "RRQQR", "QRQQR", "RQQQR", "QQQQR", "RRRRQ", "QRRRQ", "RQRRQ", "QQRRQ", "RRQRQ", "QRQRQ", "RQQRQ", "QQQRQ", "RRRQQ", "QRRQQ", "RQRQQ", "QQRQQ", "RRQQQ", "QRQQQ", "RQQQQ", "QQQQQ",

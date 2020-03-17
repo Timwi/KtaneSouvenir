@@ -8807,10 +8807,10 @@ public class SouvenirModule : MonoBehaviour
         Debug.LogFormat("<Souvenir #{0}> The Switch: Asking questions. Color values: {1}/{2}/{3}/{4}", _moduleId, topColor1, bottomColor1, topColor2, bottomColor2);
 
         addQuestions(module,
-            makeQuestion(Question.SwitchInitialColor, _Switch, new[] { "top", "second-last" }, new[] { colorNames[topColor1 - 1] }),
-            makeQuestion(Question.SwitchInitialColor, _Switch, new[] { "bottom", "second-last" }, new[] { colorNames[bottomColor1 - 1] }),
-            makeQuestion(Question.SwitchInitialColor, _Switch, new[] { "top", "last" }, new[] { colorNames[topColor2 - 1] }),
-            makeQuestion(Question.SwitchInitialColor, _Switch, new[] { "bottom", "last" }, new[] { colorNames[bottomColor2 - 1] }));
+            makeQuestion(Question.SwitchInitialColor, _Switch, new[] { "top", "first" }, new[] { colorNames[topColor1 - 1] }),
+            makeQuestion(Question.SwitchInitialColor, _Switch, new[] { "bottom", "first" }, new[] { colorNames[bottomColor1 - 1] }),
+            makeQuestion(Question.SwitchInitialColor, _Switch, new[] { "top", "second" }, new[] { colorNames[topColor2 - 1] }),
+            makeQuestion(Question.SwitchInitialColor, _Switch, new[] { "bottom", "second" }, new[] { colorNames[bottomColor2 - 1] }));
     }
 
     private IEnumerable<object> ProcessSwitches(KMBombModule module)
