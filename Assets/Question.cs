@@ -45,6 +45,22 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "left", "middle", "right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ArithmelogicNumbers,
 
+        [SouvenirQuestion("What color was the {1} correct button when you solved {0}?", "Bamboozled Again", 4, "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose", "White", "Grey", "Black",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        BamboozledAgainButtonColor,
+        [SouvenirQuestion("What was the text on the {1} correct button when you solved {0}?", "Bamboozled Again", 4, "THE LETTER", "ONE LETTER", "THE COLOUR", "ONE COLOUR", "THE PHRASE", "ONE PHRASE", "ALPHA", "BRAVO", "CHARLIE", "DELTA", "ECHO", "GOLF", "KILO", "QUEBEC", "TANGO", "WHISKEY", "VICTOR", "YANKEE", "ECHO ECHO", "E THEN E", "ALPHA PAPA", "PAPA ALPHA", "PAPHA ALPA", "T GOLF", "TANGOLF", "WHISKEE", "WHISKY", "CHARLIE C", "C CHARLIE", "YANGO", "DELTA NEXT", "CUEBEQ", "MILO", "KI LO", "HI-LO", "VVICTOR", "VICTORR", "LIME BRAVO", "BLUE BRAVO", "G IN JADE", "G IN ROSE", "BLUE IN RED", "YES BUT NO", "COLOUR", "MESSAGE", "CIPHER", "BUTTON", "TWO BUTTONS", "SIX BUTTONS", "I GIVE UP", "ONE ELEVEN", "ONE ONE ONE", "THREE ONES", "WHAT?", "THIS?", "THAT?", "BLUE!", "ECHO!", "BLANK", "BLANK?!", "NOTHING", "YELLOW TEXT", "BLACK TEXT?", "QUOTE V", "END QUOTE", "\"QUOTE K\"", "IN RED", "ORANGE", "IN YELLOW", "LIME", "IN GREEN", "JADE", "IN CYAN", "AZURE", "IN BLUE", "VIOLET", "IN MAGENTA", "ROSE",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        BamboozledAgainButtonText,
+        [SouvenirQuestion("What was the {1} decrypted text on the display when you solved {0}?", "Bamboozled Again", 4, "THE LETTER", "ONE LETTER", "THE COLOUR", "ONE COLOUR", "THE PHRASE", "ONE PHRASE",
+            ExampleExtraFormatArguments = new[] { "first", "third", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        BamboozledAgainDisplayTexts1,
+        [SouvenirQuestion("What was the {1} decrypted text on the display when you solved {0}?", "Bamboozled Again", 4, "ALPHA", "BRAVO", "CHARLIE", "DELTA", "ECHO", "GOLF", "KILO", "QUEBEC", "TANGO", "WHISKEY", "VICTOR", "YANKEE", "ECHO ECHO", "E THEN E", "ALPHA PAPA", "PAPA ALPHA", "PAPHA ALPA", "T GOLF", "TANGOLF", "WHISKEE", "WHISKY", "CHARLIE C", "C CHARLIE", "YANGO", "DELTA NEXT", "CUEBEQ", "MILO", "KI LO", "HI-LO", "VVICTOR", "VICTORR", "LIME BRAVO", "BLUE BRAVO", "G IN JADE", "G IN ROSE", "BLUE IN RED", "YES BUT NO", "COLOUR", "MESSAGE", "CIPHER", "BUTTON", "TWO BUTTONS", "SIX BUTTONS", "I GIVE UP", "ONE ELEVEN", "ONE ONE ONE", "THREE ONES", "WHAT?", "THIS?", "THAT?", "BLUE!", "ECHO!", "BLANK", "BLANK?!", "NOTHING", "YELLOW TEXT", "BLACK TEXT?", "QUOTE V", "END QUOTE", "\"QUOTE K\"", "IN RED", "ORANGE", "IN YELLOW", "LIME", "IN GREEN", "JADE", "IN CYAN", "AZURE", "IN BLUE", "VIOLET", "IN MAGENTA", "ROSE",
+            ExampleExtraFormatArguments = new[] { "6th", "7th", "8th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        BamboozledAgainDisplayTexts2,
+        [SouvenirQuestion("What color was the {1} text on the display when you solved {0}?", "Bamboozled Again", 4, "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose", "White", "Grey",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        BamboozledAgainDisplayColor,
+
         [SouvenirQuestion("What color was the button in stage {1} of {0}?", "Bamboozling Button", 4, "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose", "White", "Grey", "Black",
           ExampleExtraFormatArguments = new[] { "1", "2" }, ExampleExtraFormatArgumentGroupSize = 1)]
         BamboozlingButtonColor,
@@ -251,6 +267,15 @@ namespace Souvenir
         [SouvenirQuestion("What was the last pair of letters in {0}?", "Fast Math", 6, "AA", "AB", "AC", "AD", "AE", "AG", "AK", "AN", "AP", "AS", "AT", "AX", "AZ", "BA", "BB", "BC", "BD", "BE", "BG", "BK", "BN", "BP", "BS", "BT", "BX", "BZ", "CA", "CB", "CC", "CD", "CE", "CG", "CK", "CN", "CP", "CS", "CT", "CX", "CZ", "DA", "DB", "DC", "DD", "DE", "DG", "DK", "DN", "DP", "DS", "DT", "DX", "DZ", "EA", "EB", "EC", "ED", "EE", "EG", "EK", "EN", "EP", "ES", "ET", "EX", "EZ", "GA", "GB", "GC", "GD", "GE", "GG", "GK", "GN", "GP", "GS", "GT", "GX", "GZ", "KA", "KB", "KC", "KD", "KE", "KG", "KK", "KN", "KP", "KS", "KT", "KX", "KZ", "NA", "NB", "NC", "ND", "NE", "NG", "NK", "NN", "NP", "NS", "NT", "NX", "NZ", "PA", "PB", "PC", "PD", "PE", "PG", "PK", "PN", "PP", "PS", "PT", "PX", "PZ", "SA", "SB", "SC", "SD", "SE", "SG", "SK", "SN", "SP", "SS", "ST", "SX", "SZ", "TA", "TB", "TC", "TD", "TE", "TG", "TK", "TN", "TP", "TS", "TT", "TX", "TZ", "XA", "XB", "XC", "XD", "XE", "XG", "XK", "XN", "XP", "XS", "XT", "XX", "XZ", "ZA", "ZB", "ZC", "ZD", "ZE", "ZG", "ZK", "ZN", "ZP", "ZS", "ZT", "ZX", "ZZ")]
         FastMathLastLetters,
 
+        [SouvenirQuestion("What was the exit coordinate in {0}?", "Faulty RGB Maze", 6, "A1", "A2", "A3", "A4", "A5", "A6", "A7", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "E1", "E2", "E3", "E4", "E5", "E6", "E7", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "G1", "G2", "G3", "G4", "G5", "G6", "G7")]
+        FaultyRGBMazeExit,
+        [SouvenirQuestion("Where was the {1} key in {0}?", "Faulty RGB Maze", 6, "A1", "A2", "A3", "A4", "A5", "A6", "A7", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "E1", "E2", "E3", "E4", "E5", "E6", "E7", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "G1", "G2", "G3", "G4", "G5", "G6", "G7",
+            ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        FaultyRGBMazeKeys,
+        [SouvenirQuestion("Which maze number was the {1} maze in {0}?", "Faulty RGB Maze", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f",
+            ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        FaultyRGBMazeNumber,
+
         [SouvenirQuestion("What was the displayed number in {0}?", "Flags", 6, "1", "2", "3", "4", "5", "6", "7")]
         FlagsDisplayedNumber,
         [SouvenirQuestion("What was the main country flag in {0}?", "Flags", 6, null, Type = AnswerType.Sprites)]
@@ -296,6 +321,9 @@ namespace Souvenir
         GryphonsName,
         [SouvenirQuestion("What was the gryphon’s age in {0}?", "Gryphons", 6, "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34")]
         GryphonsAge,
+
+        [SouvenirQuestion("What was the given number in {0}?", "Hereditary Base Notation", 4, null, ExampleAnswers = new[] { "12", "33", "46", "112", "356" })]
+        HereditaryBaseNotationInitialNumber,
 
         [SouvenirQuestion("What label was printed on {0}?", "Hexabutton", 6, "Jump", "Boom", "Claim", "Button", "Hold", "Blue", AddThe = true)]
         HexabuttonLabel,
@@ -700,6 +728,15 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "first", "first", "second", "second", "first", "second", "second", "third", "first", "third", "second", "fourth", "first", "fourth", "second", "fifth", "first", "fifth", "second", "sixth", "first", "sixth", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
         ReverseMorseCharacters,
 
+        [SouvenirQuestion("What was the exit coordinate in {0}?", "RGB Maze", 6, "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8")]
+            RGBMazeExit,
+        [SouvenirQuestion("Where was the {1} key in {0}?", "RGB Maze", 6, "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8",
+            ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        RGBMazeKeys,
+        [SouvenirQuestion("Which maze number was the {1} maze in {0}?", "RGB Maze", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+            ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        RGBMazeNumber,
+
         [SouvenirQuestion("What was the last color in {0}?", "Rhythms", 4, "Blue", "Red", "Green", "Yellow")]
         RhythmsColor,
 
@@ -734,6 +771,9 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the initial shape in {0}?", "Shape Shift", 4, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", Type = AnswerType.SymbolsFont)]
         ShapeShiftInitialShape,
+
+        [SouvenirQuestion("What was the initial position of the pearl in {0}?", "Shell Game", 4, "Left", "Middle", "Right")]
+        ShellGameStartingCup,
 
         [SouvenirQuestion("What was the {1} slot in the {2} stage in {0}?", "Silly Slots", 4, "red bomb", "red cherry", "red coin", "red grape", "green bomb", "green cherry", "green coin", "green grape", "blue bomb", "blue cherry", "blue coin", "blue grape",
             ExampleExtraFormatArguments = new[] { "first", "first", "first", "second", "first", "third", "second", "first", "second", "second", "second", "third", "third", "first", "third", "second", "third", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
@@ -856,8 +896,8 @@ namespace Souvenir
         [SouvenirQuestion("What bag was initially colored in {0}?", "Splitting The Loot", 6, null, ExampleAnswers = new[] { "A5", "E6", "19", "82" })]
         SplittingTheLootColoredBag,
 
-        [SouvenirQuestion("What was the {1} color before the {2} time you switched the switch correctly in {0}?", "Switch", 6, "red", "orange", "yellow", "green", "blue", "purple",
-            ExampleExtraFormatArguments = new[] { "top", "second-last", "bottom", "second-last", "top", "last", "bottom", "last" }, ExampleExtraFormatArgumentGroupSize = 2, AddThe = true)]
+        [SouvenirQuestion("What color was the {1} LED on the {2} flip when you solved {0}?", "Switch", 6, "red", "orange", "yellow", "green", "blue", "purple",
+            ExampleExtraFormatArguments = new[] { "top", "first", "bottom", "first", "top", "second", "bottom", "second" }, ExampleExtraFormatArgumentGroupSize = 2, AddThe = true)]
         SwitchInitialColor,
 
         [SouvenirQuestion("What was the initial position of the switches in {0}?", "Switches", 6, "RRRRR", "QRRRR", "RQRRR", "QQRRR", "RRQRR", "QRQRR", "RQQRR", "QQQRR", "RRRQR", "QRRQR", "RQRQR", "QQRQR", "RRQQR", "QRQQR", "RQQQR", "QQQQR", "RRRRQ", "QRRRQ", "RQRRQ", "QQRRQ", "RRQRQ", "QRQRQ", "RQQRQ", "QQQRQ", "RRRQQ", "QRRQQ", "RQRQQ", "QQRQQ", "RRQQQ", "QRQQQ", "RQQQQ", "QQQQQ",
@@ -907,6 +947,10 @@ namespace Souvenir
         [SouvenirQuestion("What was the {1} city in {0}?", "Timezone", 4, "Alofi", "Papeete", "Unalaska", "Whitehorse", "Denver", "Managua", "Quito", "Manaus", "Buenos Aires", "Sao Paulo", "Praia", "Edinburgh", "Berlin", "Bujumbura", "Moscow", "Tbilisi", "Lahore", "Omsk", "Bangkok", "Beijing", "Tokyo", "Brisbane", "Sydney", "Tarawa",
             ExampleExtraFormatArguments = new[] { "departure", "destination" }, ExampleExtraFormatArgumentGroupSize = 1)]
         TimezoneCities,
+
+        [SouvenirQuestion("What was the {1} received message in {0}?", "Transmitted Morse", 4, "BOMBS","SHORT","UNDERSTOOD","W1RES","SOS","MANUAL","STRIKED", "WEREDEAD","GOTASOUV","EXPLOSION","EXPERT","RIP","LISTEN","DETONATE", "ROGER","WELOSTBRO","AMIDEAF","KEYPAD","DEFUSER","NUCLEARWEAPONS", "KAPPA","DELTA","PI3","SMOKE","SENDHELP","LOST","SWAN", "NOMNOM","BLUE","BOOM","CANCEL","DEFUSED","BROKEN","MEMORY", "R6S8T","TRANSMISSION","UMWHAT","GREEN","EQUATIONSX", "RED","ENERGY","JESTER","CONTACT","LONG",
+            ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        TransmittedMorseMessage,
 
         [SouvenirQuestion("What was the {1} line you commented out in {0}?", "Turtle Robot", 4, null, ExampleAnswers = new[] { "LT 90", "FD 1", "RT 180 2", "LT 90 2", "RT 180", "FD 6", "RT 90 2" },
             ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.TurtleRobotFont)]
