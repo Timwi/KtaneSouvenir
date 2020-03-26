@@ -139,6 +139,7 @@ public class SouvenirModule : MonoBehaviour
     const string _FaultyRGBMaze = "faultyrgbMaze";
     const string _Flags = "FlagsModule";
     const string _FlashingLights = "flashingLights";
+    const string _ForgetTheColors = "ForgetTheColors";
     const string _FreeParking = "freeParking";
     const string _Functions = "qFunctions";
     const string _Gamepad = "TheGamepadModule";
@@ -355,6 +356,7 @@ public class SouvenirModule : MonoBehaviour
             { _FaultyRGBMaze, ProcessFaultyRGBMaze },
             { _Flags, ProcessFlags },
             { _FlashingLights, ProcessFlashingLights },
+            { _ForgetTheColors, ProcessForgetTheColors },
             { _FreeParking, ProcessFreeParking },
             { _Functions, ProcessFunctions },
             { _Gamepad, ProcessGamepad },
@@ -3828,6 +3830,80 @@ public class SouvenirModule : MonoBehaviour
             qs.Add(makeQuestion(Question.FlashingLightsLEDFrequency, _FlashingLights, new[] { "bottom", colorNames[i] }, new[] { bottomTotals[i].ToString() }, new[] { topTotals[i].ToString() }));
         }
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessForgetTheColors(KMBombModule module)
+    {
+        var comp = GetComponent(module, "FTC");
+        var fldSolved = GetField<bool>(comp, "solved");
+        var fldStage = GetField<int>(comp, "stage");
+        var fldMaxStage = GetField<int>(comp, "maxStage");
+
+        var fldGear = GetField<List<byte>>(comp, "gear");
+        var fldLargeDisplay = GetField<List<short>>(comp, "largeDisplay");
+        var fldSineNumber = GetField<List<int>>(comp, "sineNumber");
+        var fldGearColor = GetField<List<string>>(comp, "gearColor");
+        var fldRuleColor = GetField<List<string>>(comp, "ruleColor");
+
+        if (comp == null || fldStage == null || fldSolved == null || fldGear == null || fldLargeDisplay == null || fldSineNumber == null || fldGearColor == null || fldRuleColor == null)
+            yield break;
+
+        yield return null;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_ForgetTheColors);
+
+        var maxStage = fldMaxStage.Get();
+        var stage = fldStage.Get();
+
+        var gear = fldGear.Get();
+        var largeDisplay = fldLargeDisplay.Get();
+        var sineNumber = fldSineNumber.Get();
+        var gearColor = fldGearColor.Get();
+        var ruleColor = fldRuleColor.Get();
+
+        if (maxStage < stage)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning ForgetTheColors because the 'stage' had an unexpected value: expected 0-{1}, was {2}.", _moduleId, maxStage, stage);
+            yield break;
+        }
+
+        if (gear.Count != maxStage || largeDisplay.Count != maxStage || sineNumber.Count != maxStage || gearColor.Count != maxStage || ruleColor.Count != maxStage)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning ForgetTheColors because one of the lists have an unexpected level of entries.", _moduleId);
+            yield break;
+        }
+
+        string[] colors = { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "Pink", "Maroon", "Azure", "Gray" };
+
+        // Picks a random stage between 0 and the current stage.
+        var randomStage = Rnd.Range(0, stage) % 100;
+
+        // Only generate a single question.
+        switch (Rnd.Range(0, 5))
+        {
+            case 0:
+                addQuestions(module, (makeQuestion(Question.ForgetTheColorsGearNumber, _ForgetTheColors, new[] { randomStage.ToString() }, correctAnswers: new[] { gear[randomStage].ToString() }, preferredWrongAnswers: new[] { Rnd.Range(0, 10).ToString() })));
+                break;
+
+            case 1:
+                addQuestions(module, (makeQuestion(Question.ForgetTheColorsLargeDisplay, _ForgetTheColors, new[] { randomStage.ToString() }, correctAnswers: new[] { largeDisplay[randomStage].ToString() }, preferredWrongAnswers: new[] { Rnd.Range(0, 991).ToString() })));
+                break;
+
+            case 2:
+                addQuestions(module, (makeQuestion(Question.ForgetTheColorsSineNumber, _ForgetTheColors, new[] { randomStage.ToString() }, correctAnswers: new[] { (Mathf.Abs(sineNumber[randomStage]) % 10).ToString() }, preferredWrongAnswers: new[] { Rnd.Range(0, 10).ToString() })));
+                break;
+
+            case 3:
+                addQuestions(module, (makeQuestion(Question.ForgetTheColorsGearColor, _ForgetTheColors, new[] { randomStage.ToString() }, correctAnswers: new[] { gearColor[randomStage].ToString() }, preferredWrongAnswers: new[] { colors[Rnd.Range(0, colors.Length)] })));
+                break;
+
+            case 4:
+                addQuestions(module, (makeQuestion(Question.ForgetTheColorsRuleColor, _ForgetTheColors, new[] { randomStage.ToString() }, correctAnswers: new[] { ruleColor[randomStage].ToString() }, preferredWrongAnswers: new[] { colors[Rnd.Range(0, colors.Length)] })));
+                break;
+        }
     }
 
     private IEnumerable<object> ProcessFreeParking(KMBombModule module)
