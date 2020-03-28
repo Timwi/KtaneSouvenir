@@ -63,6 +63,7 @@ public class SouvenirModule : MonoBehaviour
     private Config config;
     private readonly List<QuestionBatch> _questions = new List<QuestionBatch>();
     private readonly HashSet<KMBombModule> _legitimatelyNoQuestions = new HashSet<KMBombModule>();
+    private readonly HashSet<string> ignoredModules = new HashSet<string>();
     private bool _isActivated = false;
 
     private QandA _currentQuestion = null;
@@ -512,25 +513,40 @@ public class SouvenirModule : MonoBehaviour
 
         if (!string.IsNullOrEmpty(ModSettings.SettingsPath))
         {
+            bool rewriteFile;
             try
             {
                 config = JsonConvert.DeserializeObject<Config>(ModSettings.Settings);
+                if (config != null)
+                {
+                    var dictionary = JsonConvert.DeserializeObject<IDictionary<string, object>>(ModSettings.Settings);
+                    rewriteFile = !dictionary.ContainsKey("ExcludeIgnoredModules");
+                }
+                else
+                {
+                    config = new Config();
+                    rewriteFile = true;
+                }
             }
             catch (JsonSerializationException ex)
             {
                 Debug.LogErrorFormat("<Souvenir #{0}> The mod settings file is invalid.", _moduleId);
                 Debug.LogException(ex, this);
-                config = null;
-            }
-            if (config == null)
-            {
                 config = new Config();
+                rewriteFile = true;
+            }
+            if (rewriteFile)
+            {
                 using (var writer = new StreamWriter(ModSettings.SettingsPath))
                     new JsonSerializer() { Formatting = Formatting.Indented }.Serialize(writer, config);
             }
         }
         else
             config = new Config();
+
+        var ignoredList = BossModule.GetIgnoredModules(Module, _defaultIgnoredModules);
+        Debug.LogFormat(@"<Souvenir #{0}> Ignored modules: {1}", _moduleId, ignoredList.JoinString(", "));
+        ignoredModules.UnionWith(ignoredList);
 
         Bomb.OnBombExploded += delegate { _exploded = true; StopAllCoroutines(); };
         Bomb.OnBombSolved += delegate
@@ -640,7 +656,12 @@ public class SouvenirModule : MonoBehaviour
                 var gameObject = transform.parent.GetChild(i).gameObject;
                 var module = gameObject.GetComponent<KMBombModule>();
                 if (module != null)
-                    StartCoroutine(ProcessModule(module));
+                {
+                    if (!config.ExcludeIgnoredModules || !ignoredModules.Contains(module.ModuleDisplayName))
+                    {
+                        StartCoroutine(ProcessModule(module));
+                    }
+                }
                 else if (!config.ExcludeVanillaModules)
                 {
                     var vanillaModule = transform.parent.GetChild(i).gameObject.GetComponent("BombComponent");
@@ -842,8 +863,6 @@ public class SouvenirModule : MonoBehaviour
         if (TwitchPlaysActive)
             ActivateTwitchPlaysNumbers();
 
-        var ignoredModules = BossModule.GetIgnoredModules(Module, _defaultIgnoredModules);
-        Debug.LogFormat(@"<Souvenir #{0}> Ignored modules: {1}", _moduleId, ignoredModules.JoinString(", "));
         var numPlayableModules = Bomb.GetSolvableModuleNames().Count(x => !ignoredModules.Contains(x));
 
         while (true)
