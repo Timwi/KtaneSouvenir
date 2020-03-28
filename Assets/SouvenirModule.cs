@@ -6633,7 +6633,6 @@ public class SouvenirModule : MonoBehaviour
         }
         else if (mashCount > 1)
         {
-            var wrongAnswers = new int[5];
             var wrongAnswerStrings = Enumerable.Range(0, 20).Select(_ => Rnd.Range(10, 100)).Where(i => i != mashCount).Distinct().Take(5).Select(i => i.ToString()).ToArray();
             addQuestion(module, Question.NotButtonMashCount, correctAnswers: new[] { mashCount.ToString() }, preferredWrongAnswers: wrongAnswerStrings);
         }
@@ -8885,8 +8884,6 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         }
 
-        var swapCount = (byte) (fldSwapCount.Get() - 1);
-
         string[] answers = new string[10];
         byte index = 0;
 
@@ -10599,15 +10596,13 @@ public class SouvenirModule : MonoBehaviour
         }
     }
 
-#pragma warning disable 414
-#pragma warning disable IDE0044
-    private bool TwitchPlaysActive = false;
-    private List<KMBombModule> TwitchAbandonModule = new List<KMBombModule>();
-    private readonly string TwitchHelpMessage = @"!{0} answer 3 [order is from top to bottom, then left to right]";
-#pragma warning restore 414
-#pragma warning restore IDE0044
+    [NonSerialized]
+    public bool TwitchPlaysActive = false;
+    [NonSerialized]
+    public List<KMBombModule> TwitchAbandonModule = new List<KMBombModule>();
+    public static readonly string TwitchHelpMessage = @"!{0} answer 3 [order is from top to bottom, then left to right]";
 
-    IEnumerator ProcessTwitchCommand(string command)
+    public IEnumerator ProcessTwitchCommand(string command)
     {
         if (Application.isEditor && !TwitchPlaysActive && command == "tp")
         {
