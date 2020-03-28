@@ -139,6 +139,7 @@ public class SouvenirModule : MonoBehaviour
     const string _FaultyRGBMaze = "faultyrgbMaze";
     const string _Flags = "FlagsModule";
     const string _FlashingLights = "flashingLights";
+    const string _ForgetTheColors = "ForgetTheColors";
     const string _FreeParking = "freeParking";
     const string _Functions = "qFunctions";
     const string _Gamepad = "TheGamepadModule";
@@ -214,6 +215,7 @@ public class SouvenirModule : MonoBehaviour
     const string _PerspectivePegs = "spwizPerspectivePegs";
     const string _Pie = "pieModule";
     const string _PigpenCycle = "pigpenCycle";
+    const string _PlaceholderTalk = "placeholderTalk";
     const string _Planets = "planets";
     const string _PlayfairCycle = "playfairCycle";
     const string _Poetry = "poetry";
@@ -226,6 +228,7 @@ public class SouvenirModule : MonoBehaviour
     const string _ReverseMorse = "reverseMorse";
     const string _RGBMaze = "rgbMaze";
     const string _Rhythms = "MusicRhythms";
+    const string _RoleReversal = "roleReversal";
     const string _Rule = "theRule";
     const string _SchlagDenBomb = "qSchlagDenBomb";
     const string _SeaShells = "SeaShells";
@@ -251,6 +254,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Skyrim = "skyrim";
     const string _Snooker = "snooker";
     const string _SonicTheHedgehog = "sonic";
+    const string _Sorting = "sorting";
     const string _Souvenir = "SouvenirModule";
     const string _Sphere = "sphere";
     const string _SplittingTheLoot = "SplittingTheLootModule";
@@ -352,6 +356,7 @@ public class SouvenirModule : MonoBehaviour
             { _FaultyRGBMaze, ProcessFaultyRGBMaze },
             { _Flags, ProcessFlags },
             { _FlashingLights, ProcessFlashingLights },
+            { _ForgetTheColors, ProcessForgetTheColors },
             { _FreeParking, ProcessFreeParking },
             { _Functions, ProcessFunctions },
             { _Gamepad, ProcessGamepad },
@@ -427,6 +432,7 @@ public class SouvenirModule : MonoBehaviour
             { _PerspectivePegs, ProcessPerspectivePegs },
             { _Pie, ProcessPie },
             { _PigpenCycle, ProcessPigpenCycle },
+            { _PlaceholderTalk, ProcessPlaceholderTalk },
             { _Planets, ProcessPlanets },
             { _PlayfairCycle, ProcessPlayfairCycle },
             { _Poetry, ProcessPoetry },
@@ -439,6 +445,7 @@ public class SouvenirModule : MonoBehaviour
             { _ReverseMorse, ProcessReverseMorse },
             { _RGBMaze, ProcessRGBMaze},
             { _Rhythms, ProcessRhythms },
+            { _RoleReversal, ProcessRoleReversal },
             { _Rule, ProcessRule },
             { _SchlagDenBomb, ProcessSchlagDenBomb },
             { _SeaShells, ProcessSeaShells },
@@ -464,6 +471,7 @@ public class SouvenirModule : MonoBehaviour
             { _Skyrim, ProcessSkyrim },
             { _Snooker, ProcessSnooker },
             { _SonicTheHedgehog, ProcessSonicTheHedgehog },
+            { _Sorting, ProcessSorting },
             { _Souvenir, ProcessSouvenir },
             { _Sphere, ProcessSphere },
             { _SplittingTheLoot, ProcessSplittingTheLoot },
@@ -3824,6 +3832,86 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessForgetTheColors(KMBombModule module)
+    {
+        var comp = GetComponent(module, "FTC");
+        var fldSolved = GetField<bool>(comp, "solved");
+        var fldStage = GetField<int>(comp, "stage");
+        var fldMaxStage = GetField<int>(comp, "maxStage");
+
+        var fldGear = GetField<List<byte>>(comp, "gear");
+        var fldLargeDisplay = GetField<List<short>>(comp, "largeDisplay");
+        var fldSineNumber = GetField<List<int>>(comp, "sineNumber");
+        var fldGearColor = GetField<List<string>>(comp, "gearColor");
+        var fldRuleColor = GetField<List<string>>(comp, "ruleColor");
+
+        if (comp == null || fldStage == null || fldSolved == null || fldGear == null || fldLargeDisplay == null || fldSineNumber == null || fldGearColor == null || fldRuleColor == null)
+            yield break;
+
+        yield return null;
+
+        int ftcCount;
+        if (!_moduleCounts.TryGetValue(_ForgetTheColors, out ftcCount) || ftcCount > 1)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning ForgetTheColors because there is more than one of them.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
+
+        var maxStage = fldMaxStage.Get();
+        var stage = fldStage.Get();
+
+        var gear = fldGear.Get();
+        var largeDisplay = fldLargeDisplay.Get();
+        var sineNumber = fldSineNumber.Get();
+        var gearColor = fldGearColor.Get();
+        var ruleColor = fldRuleColor.Get();
+
+        if (maxStage < stage)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning ForgetTheColors because the 'stage' had an unexpected value: expected 0-{1}, was {2}.", _moduleId, maxStage, stage);
+            yield break;
+        }
+
+        string[] colors = { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "Pink", "Maroon", "Azure", "Gray" };
+
+        var randomStage = Rnd.Range(0, Math.Min(maxStage, _coroutinesActive)) % 100;
+        Debug.LogFormat("<Souvenir #{0}> Waiting for stage {1} of ForgetTheColors.", _moduleId, randomStage);
+        while (fldStage.Get() <= randomStage)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ForgetTheColors);
+
+        if (gear.Count <= randomStage || largeDisplay.Count <= randomStage || sineNumber.Count <= randomStage || gearColor.Count <= randomStage || ruleColor.Count <= randomStage)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning ForgetTheColors because one of the lists have an unexpected level of entries.", _moduleId);
+            yield break;
+        }
+
+        // Only generate a single question.
+        switch (Rnd.Range(0, 5))
+        {
+            case 0:
+                addQuestions(module, (makeQuestion(Question.ForgetTheColorsGearNumber, _ForgetTheColors, new[] { randomStage.ToString() }, correctAnswers: new[] { gear[randomStage].ToString() }, preferredWrongAnswers: new[] { Rnd.Range(0, 10).ToString() })));
+                break;
+
+            case 1:
+                addQuestions(module, (makeQuestion(Question.ForgetTheColorsLargeDisplay, _ForgetTheColors, new[] { randomStage.ToString() }, correctAnswers: new[] { largeDisplay[randomStage].ToString() }, preferredWrongAnswers: new[] { Rnd.Range(0, 991).ToString() })));
+                break;
+
+            case 2:
+                addQuestions(module, (makeQuestion(Question.ForgetTheColorsSineNumber, _ForgetTheColors, new[] { randomStage.ToString() }, correctAnswers: new[] { (Mathf.Abs(sineNumber[randomStage]) % 10).ToString() }, preferredWrongAnswers: new[] { Rnd.Range(0, 10).ToString() })));
+                break;
+
+            case 3:
+                addQuestions(module, (makeQuestion(Question.ForgetTheColorsGearColor, _ForgetTheColors, new[] { randomStage.ToString() }, correctAnswers: new[] { gearColor[randomStage].ToString() }, preferredWrongAnswers: new[] { colors[Rnd.Range(0, colors.Length)] })));
+                break;
+
+            case 4:
+                addQuestions(module, (makeQuestion(Question.ForgetTheColorsRuleColor, _ForgetTheColors, new[] { randomStage.ToString() }, correctAnswers: new[] { ruleColor[randomStage].ToString() }, preferredWrongAnswers: new[] { colors[Rnd.Range(0, colors.Length)] })));
+                break;
+        }
+    }
+
     private IEnumerable<object> ProcessFreeParking(KMBombModule module)
     {
         var comp = GetComponent(module, "FreeParkingScript");
@@ -7110,6 +7198,69 @@ public class SouvenirModule : MonoBehaviour
         return processSpeakingEvilCycle1(module, "PigpenCycleScript", "Pigpen Cycle", Question.PigpenCycleWord, _PigpenCycle);
     }
 
+    private IEnumerable<object> ProcessPlaceholderTalk(KMBombModule module)
+    {
+        var comp = GetComponent(module, "placeholderTalk");
+        var fldSolved = GetField<bool>(comp, "isSolved");
+        var fldFirstString = GetField<string>(comp, "firstString");
+        var fldFirstPhrase = GetField<string[]>(comp, "firstPhrase");
+        var fldCurrentOrdinal = GetField<string>(comp, "currentOrdinal");
+        var fldOrdinals = GetField<string[]>(comp, "ordinals");
+        var fldAnswer = GetField<byte>(comp, "answerId");
+        var fldPreviousModules = GetField<sbyte>(comp, "previousModules");
+
+        if (comp == null || fldSolved == null || fldFirstString == null || fldFirstPhrase == null || fldCurrentOrdinal == null || fldOrdinals == null || fldAnswer == null || fldPreviousModules == null)
+            yield break;
+
+        yield return null;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_PlaceholderTalk);
+
+        var answer = fldAnswer.Get() + 1;
+        if (answer < 1 || answer > 17)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning PlaceholderTalk because ‘answer’ has unexpected value (expected 1-17): {1}", _moduleId, answer);
+            yield break;
+        }
+
+        var firstPhrase = fldFirstPhrase.Get();
+        var ordinals = fldOrdinals.Get();
+
+        if (!firstPhrase.Contains(fldFirstString.Get()))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning PlaceholderTalk because ‘fldFirstString’ has unexpected value (expected to be one of ‘firstPhrase’): {1}", _moduleId, fldFirstString.Get());
+            yield break;
+        }
+
+        if (!ordinals.Contains(fldCurrentOrdinal.Get()))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning PlaceholderTalk because ‘fldCurrentOrdinal’ has unexpected value (expected to be one of ‘ordinals’): {1}", _moduleId, fldFirstString.Get());
+            yield break;
+        }
+
+        var previousModules = fldPreviousModules.Get();
+
+        var qs = new List<QandA>();
+
+        string[] randomNumbers = new string[8];
+        for (int i = 1; i <= randomNumbers.Length; i++)
+        {
+            randomNumbers[i - 1] = i.ToString();
+        }
+
+        //because the number of solved modules could be any number, the second phrase question should be deactivated if previousModule is either 1 or -1, meaning that they apply to the numbers
+        if (previousModules == 0)
+            qs.Add(makeQuestion(Question.PlaceholderTalkSecondPhrase, _PlaceholderTalk, correctAnswers: new[] { answer.ToString() }, preferredWrongAnswers: randomNumbers));
+
+        qs.Add(makeQuestion(Question.PlaceholderTalkFirstPhrase, _PlaceholderTalk, correctAnswers: new[] { fldFirstString.Get().ToString() }, preferredWrongAnswers: firstPhrase));
+        qs.Add(makeQuestion(Question.PlaceholderTalkOrdinal, _PlaceholderTalk, correctAnswers: new[] { fldCurrentOrdinal.Get().ToString() }, preferredWrongAnswers: ordinals));
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessPlanets(KMBombModule module)
     {
         var comp = GetComponent(module, "planetsModScript");
@@ -7570,6 +7721,88 @@ public class SouvenirModule : MonoBehaviour
             addQuestion(module, Question.RhythmsColor, correctAnswers: new[] { new[] { "Blue", "Red", "Green", "Yellow" }[color] });
     }
 
+    private IEnumerable<object> ProcessRoleReversal(KMBombModule module)
+    {
+        var comp = GetComponent(module, "roleReversal");
+        var fldSolved = GetField<bool>(comp, "isSolved");
+        var fldAnswerIndex = GetField<byte>(comp, "souvenir");
+
+        if (comp == null || fldSolved == null || fldAnswerIndex == null)
+            yield break;
+
+        yield return null;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_RoleReversal);
+
+        var fldRedWires = GetField<List<byte>>(comp, "redWires");
+        var fldOrangeWires = GetField<List<byte>>(comp, "orangeWires");
+        var fldYellowWires = GetField<List<byte>>(comp, "yellowWires");
+        var fldGreenWires = GetField<List<byte>>(comp, "greenWires");
+        var fldBlueWires = GetField<List<byte>>(comp, "blueWires");
+        var fldPurpleWires = GetField<List<byte>>(comp, "purpleWires");
+
+        var redWires = fldRedWires.Get();
+        var orangeWires = fldOrangeWires.Get();
+        var yellowWires = fldYellowWires.Get();
+        var greenWires = fldGreenWires.Get();
+        var blueWires = fldBlueWires.Get();
+        var purpleWires = fldPurpleWires.Get();
+
+        if (redWires.Count > 7 || orangeWires.Count > 7 || yellowWires.Count > 7 || greenWires.Count > 7 || blueWires.Count > 7 || purpleWires.Count > 7)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning RoleReversal because a wire color has unexpected amount of bytes in list (expected 0-7): {1}, {2}, {3}, {4}, {5}, {6}", _moduleId, redWires, orangeWires, yellowWires, greenWires, blueWires, purpleWires);
+            yield break;
+        }
+
+        if (redWires.Count + orangeWires.Count + yellowWires.Count + greenWires.Count + blueWires.Count + purpleWires.Count < 2 ||
+            redWires.Count + orangeWires.Count + yellowWires.Count + greenWires.Count + blueWires.Count + purpleWires.Count > 7)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning RoleReversal because all wires combined has unexpected value (expected 2-7): {1}", _moduleId, redWires.Count + orangeWires.Count + yellowWires.Count + greenWires.Count + blueWires.Count + purpleWires.Count);
+            yield break;
+        }
+
+        var answerIndex = fldAnswerIndex.Get();
+        if (answerIndex < 2 || answerIndex > 8)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning RoleReversal because ‘answerIndex’ has unexpected value (expected 2-8): {1}", _moduleId, answerIndex);
+            yield break;
+        }
+
+        string[] color = new string[4] { "warm-colored", "cold-colored", "primary-colored", "secondary-colored" };
+        byte randomIndex = (byte) Rnd.Range(0, color.Length);
+
+        byte correct;
+        switch (randomIndex)
+        {
+            case 0:
+                correct = (byte) (redWires.Count + orangeWires.Count + yellowWires.Count);
+                break;
+
+            case 1:
+                correct = (byte) (greenWires.Count + blueWires.Count + purpleWires.Count);
+                break;
+
+            case 2:
+                correct = (byte) (redWires.Count + yellowWires.Count + blueWires.Count);
+                break;
+
+            case 3:
+                correct = (byte) (orangeWires.Count + greenWires.Count + purpleWires.Count);
+                break;
+
+            default:
+                Debug.LogFormat("<Souvenir #{0}> Abandoning RoleReversal because ‘index’ has unexpected value (expected 0-3): {1}", _moduleId, randomIndex);
+                yield break;
+        }
+
+        addQuestions(module,
+            makeQuestion(Question.RoleReversalWires, _RoleReversal, new[] { color[randomIndex] }, correctAnswers: new[] { correct.ToString() }, preferredWrongAnswers: new[] { "0", "1", "2", "3", "4", "5", "6", "7" }),
+            makeQuestion(Question.RoleReversalNumber, _RoleReversal, correctAnswers: new[] { fldAnswerIndex.Get().ToString() }, preferredWrongAnswers: new[] { "2", "3", "4", "5", "6", "7", "8" }));
+    }
+
     private IEnumerable<object> ProcessRule(KMBombModule module)
     {
         var comp = GetComponent(module, "TheRuleScript");
@@ -7677,7 +7910,7 @@ public class SouvenirModule : MonoBehaviour
             }
         }
 
-        solved:
+    solved:
         _modulesSolved.IncSafe(_SeaShells);
 
         var qs = new List<QandA>();
@@ -8620,6 +8853,55 @@ public class SouvenirModule : MonoBehaviour
                     new[] { screenName },
                     new[] { soundNameMapping[sounds[i]] },
                     sounds.Select(s => soundNameMapping[s]).ToArray()))));
+    }
+
+    private IEnumerable<object> ProcessSorting(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Sorting");
+        var fldSolved = GetField<bool>(comp, "isSolved");
+        var fldLastSwap = GetField<byte>(comp, "swapButtons");
+        var fldSwapCount = GetField<byte>(comp, "swapIndex");
+
+        if (comp == null || fldSolved == null || fldLastSwap == null || fldSwapCount == null)
+            yield break;
+
+        yield return null;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_Sorting);
+
+        var lastSwap = fldLastSwap.Get();
+        if ((lastSwap % 10 == 0 || lastSwap % 10 > 5) || (lastSwap / 10 == 0 || lastSwap / 10 > 5) || lastSwap / 10 == lastSwap % 10)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Sorting because ‘swap’ has unexpected value (expected two digit number, each with a unique digit from 1-5): {1}", _moduleId, lastSwap);
+            yield break;
+        }
+
+        var swapCount = (byte) (fldSwapCount.Get() - 1);
+
+        string[] answers = new string[10];
+        byte index = 0;
+
+        for (int i = 1; i <= 4; i++)
+        {
+            for (int j = i + 1; j <= 5; j++)
+            {
+                answers[index] = string.Format("{0} & {1}", i, j);
+                index++;
+            }
+        }
+
+        string[] randomNumbers = new string[16];
+        for (int i = 1; i <= randomNumbers.Length; i++)
+        {
+            randomNumbers[i - 1] = i.ToString();
+        }
+
+        addQuestions(module,
+            makeQuestion(Question.SortingLastSwap, _Sorting, correctAnswers: new[] { fldLastSwap.Get().ToString().Insert(1, " & ") }, preferredWrongAnswers: answers),
+            makeQuestion(Question.SortingSwapCount, _Sorting, correctAnswers: new[] { swapCount.ToString() }, preferredWrongAnswers: randomNumbers));
     }
 
     private IEnumerable<object> ProcessSouvenir(KMBombModule module)
