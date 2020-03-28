@@ -8899,9 +8899,7 @@ public class SouvenirModule : MonoBehaviour
             randomNumbers[i - 1] = i.ToString();
         }
 
-        addQuestions(module,
-            makeQuestion(Question.SortingLastSwap, _Sorting, correctAnswers: new[] { fldLastSwap.Get().ToString().Insert(1, " & ") }, preferredWrongAnswers: answers),
-            makeQuestion(Question.SortingSwapCount, _Sorting, correctAnswers: new[] { swapCount.ToString() }, preferredWrongAnswers: randomNumbers));
+        addQuestions(module, makeQuestion(Question.SortingLastSwap, _Sorting, correctAnswers: new[] { fldLastSwap.Get().ToString().Insert(1, " & ") }, preferredWrongAnswers: answers));
     }
 
     private IEnumerable<object> ProcessSouvenir(KMBombModule module)
