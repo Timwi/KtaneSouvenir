@@ -63,6 +63,7 @@ public class SouvenirModule : MonoBehaviour
     private Config config;
     private readonly List<QuestionBatch> _questions = new List<QuestionBatch>();
     private readonly HashSet<KMBombModule> _legitimatelyNoQuestions = new HashSet<KMBombModule>();
+    private readonly HashSet<string> supportedModuleNames = new HashSet<string>();
     private readonly HashSet<string> ignoredModules = new HashSet<string>();
     private bool _isActivated = false;
 
@@ -1289,6 +1290,7 @@ public class SouvenirModule : MonoBehaviour
 
         if (iterator != null)
         {
+            supportedModuleNames.Add(module.ModuleDisplayName);
             Debug.LogFormat("<Souvenir #{1}> Module {0}: Start processing.", moduleType, _moduleId);
             foreach (var obj in iterator(module))
             {
@@ -8941,24 +8943,26 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         }
 
-        var modules = _attributes.Where(x => x.Value != null).Select(x => x.Value.ModuleNameWithThe).Distinct().ToArray();
+        // Prefer names of supported modules on the bomb other than Souvenir.
+        IEnumerable<string> modules = supportedModuleNames.Except(new[] { "Souvenir" });
+        if (supportedModuleNames.Count < 5)
+        {
+            // If there are less than 4 eligible modules, fill the remaining spaces with random other modules.
+            var allModules = _attributes.Where(x => x.Value != null).Select(x => x.Value.ModuleNameWithThe).Distinct().ToList();
+            modules = modules.Concat(Enumerable.Range(0, 1000).Select(i => allModules[Rnd.Range(0, allModules.Count)]).Except(supportedModuleNames).Take(5 - supportedModuleNames.Count));
+        }
         while (comp._currentQuestion == null)
             yield return new WaitForSeconds(0.1f);
 
         var firstQuestion = comp._currentQuestion;
         var firstModule = firstQuestion.ModuleNameWithThe;
-        if (!modules.Contains(firstModule))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Souvenir because the first question was on “{1}”, which is not a module I recognize.", _moduleId, firstModule);
-            yield break;
-        }
 
         // Wait for the user to solve that question before asking about it
         while (comp._currentQuestion == firstQuestion)
             yield return new WaitForSeconds(0.1f);
 
         _modulesSolved.IncSafe(_Souvenir);
-        addQuestion(module, Question.SouvenirFirstQuestion, null, new[] { firstModule }, modules);
+        addQuestion(module, Question.SouvenirFirstQuestion, null, new[] { firstModule }, modules.ToArray());
     }
 
     private IEnumerable<object> ProcessSphere(KMBombModule module)
