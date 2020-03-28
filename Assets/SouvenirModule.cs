@@ -58,8 +58,6 @@ public class SouvenirModule : MonoBehaviour
         "Purgatory"
     };
 
-    private static readonly bool _isTimwisComputer = new[] { "TEKELIA", "CORNFLOWER", "CAITSITH2-PC" }.Contains(Environment.GetEnvironmentVariable("COMPUTERNAME"));
-    private static readonly string _timwiPath = @"D:\c\KTANE\Souvenir modules.txt";
     private Config config;
     private readonly List<QuestionBatch> _questions = new List<QuestionBatch>();
     private readonly HashSet<KMBombModule> _legitimatelyNoQuestions = new HashSet<KMBombModule>();
@@ -647,10 +645,6 @@ public class SouvenirModule : MonoBehaviour
 
         if (transform.parent != null)
         {
-            if (_isTimwisComputer)
-                lock (_timwiPath)
-                    File.WriteAllText(_timwiPath, "");
-
             FieldInfo<object> fldType = null;
             for (int i = 0; i < transform.parent.childCount; i++)
             {
@@ -1302,21 +1296,12 @@ public class SouvenirModule : MonoBehaviour
                 }
             }
             if (!_legitimatelyNoQuestions.Contains(module) && !_questions.Any(q => q.Module == module))
-                Debug.LogFormat("[Souvenir #{0}] There was no question generated for {1}. Please report this to Timwi as this may indicate a bug in Souvenir. Remember to send him this logfile.", _moduleId, module.ModuleDisplayName);
+                Debug.LogFormat("[Souvenir #{0}] There was no question generated for {1}. Please report this to Andrio or the implementer for that module as this may indicate a bug in Souvenir. Remember to send him this logfile.", _moduleId, module.ModuleDisplayName);
             Debug.LogFormat("<Souvenir #{1}> Module {0}: Finished processing.", moduleType, _moduleId);
         }
         else
         {
             Debug.LogFormat("<Souvenir #{1}> Module {0}: Not supported.", moduleType, _moduleId);
-            if (_isTimwisComputer)
-            {
-                var s = new StringBuilder();
-                s.AppendLine("Unrecognized module: " + module.name + ", KMBombModule.ModuleType: " + moduleType);
-                foreach (var comp in module.GetComponents(typeof(UnityEngine.Object)))
-                    s.AppendLine("    - " + (comp == null ? "<null>" : comp.GetType().FullName));
-                lock (_timwiPath)
-                    File.AppendAllText(_timwiPath, s.ToString());
-            }
         }
 
         _coroutinesActive--;
