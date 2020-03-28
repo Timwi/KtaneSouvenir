@@ -3850,10 +3850,13 @@ public class SouvenirModule : MonoBehaviour
 
         yield return null;
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-
-        _modulesSolved.IncSafe(_ForgetTheColors);
+        int ftcCount;
+        if (!_moduleCounts.TryGetValue(_ForgetTheColors, out ftcCount) || ftcCount > 1)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning ForgetTheColors because there is more than one of them.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
 
         var maxStage = fldMaxStage.Get();
         var stage = fldStage.Get();
@@ -3870,16 +3873,19 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         }
 
-        if (gear.Count != maxStage || largeDisplay.Count != maxStage || sineNumber.Count != maxStage || gearColor.Count != maxStage || ruleColor.Count != maxStage)
+        string[] colors = { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "Pink", "Maroon", "Azure", "Gray" };
+
+        var randomStage = Rnd.Range(0, Math.Min(maxStage, _coroutinesActive)) % 100;
+        Debug.LogFormat("<Souvenir #{0}> Waiting for stage {1} of ForgetTheColors.", _moduleId, randomStage);
+        while (fldStage.Get() <= randomStage)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ForgetTheColors);
+
+        if (gear.Count <= randomStage || largeDisplay.Count <= randomStage || sineNumber.Count <= randomStage || gearColor.Count <= randomStage || ruleColor.Count <= randomStage)
         {
             Debug.LogFormat("<Souvenir #{0}> Abandoning ForgetTheColors because one of the lists have an unexpected level of entries.", _moduleId);
             yield break;
         }
-
-        string[] colors = { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "Pink", "Maroon", "Azure", "Gray" };
-
-        // Picks a random stage between 0 and the current stage.
-        var randomStage = Rnd.Range(0, stage) % 100;
 
         // Only generate a single question.
         switch (Rnd.Range(0, 5))
