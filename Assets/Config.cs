@@ -6,4 +6,5 @@ using System.Text;
 public class Config
 {
     public bool ExcludeVanillaModules;
+    public bool ExcludeIgnoredModules;
 }

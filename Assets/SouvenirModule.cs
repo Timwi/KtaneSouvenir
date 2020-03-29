@@ -58,11 +58,11 @@ public class SouvenirModule : MonoBehaviour
         "Purgatory"
     };
 
-    private static readonly bool _isTimwisComputer = new[] { "TEKELIA", "CORNFLOWER", "CAITSITH2-PC" }.Contains(Environment.GetEnvironmentVariable("COMPUTERNAME"));
-    private static readonly string _timwiPath = @"D:\c\KTANE\Souvenir modules.txt";
     private Config config;
     private readonly List<QuestionBatch> _questions = new List<QuestionBatch>();
     private readonly HashSet<KMBombModule> _legitimatelyNoQuestions = new HashSet<KMBombModule>();
+    private readonly HashSet<string> supportedModuleNames = new HashSet<string>();
+    private readonly HashSet<string> ignoredModules = new HashSet<string>();
     private bool _isActivated = false;
 
     private QandA _currentQuestion = null;
@@ -512,25 +512,40 @@ public class SouvenirModule : MonoBehaviour
 
         if (!string.IsNullOrEmpty(ModSettings.SettingsPath))
         {
+            bool rewriteFile;
             try
             {
                 config = JsonConvert.DeserializeObject<Config>(ModSettings.Settings);
+                if (config != null)
+                {
+                    var dictionary = JsonConvert.DeserializeObject<IDictionary<string, object>>(ModSettings.Settings);
+                    rewriteFile = !dictionary.ContainsKey("ExcludeIgnoredModules");
+                }
+                else
+                {
+                    config = new Config();
+                    rewriteFile = true;
+                }
             }
             catch (JsonSerializationException ex)
             {
                 Debug.LogErrorFormat("<Souvenir #{0}> The mod settings file is invalid.", _moduleId);
                 Debug.LogException(ex, this);
-                config = null;
-            }
-            if (config == null)
-            {
                 config = new Config();
+                rewriteFile = true;
+            }
+            if (rewriteFile)
+            {
                 using (var writer = new StreamWriter(ModSettings.SettingsPath))
                     new JsonSerializer() { Formatting = Formatting.Indented }.Serialize(writer, config);
             }
         }
         else
             config = new Config();
+
+        var ignoredList = BossModule.GetIgnoredModules(Module, _defaultIgnoredModules);
+        Debug.LogFormat(@"<Souvenir #{0}> Ignored modules: {1}", _moduleId, ignoredList.JoinString(", "));
+        ignoredModules.UnionWith(ignoredList);
 
         Bomb.OnBombExploded += delegate { _exploded = true; StopAllCoroutines(); };
         Bomb.OnBombSolved += delegate
@@ -630,17 +645,18 @@ public class SouvenirModule : MonoBehaviour
 
         if (transform.parent != null)
         {
-            if (_isTimwisComputer)
-                lock (_timwiPath)
-                    File.WriteAllText(_timwiPath, "");
-
             FieldInfo<object> fldType = null;
             for (int i = 0; i < transform.parent.childCount; i++)
             {
                 var gameObject = transform.parent.GetChild(i).gameObject;
                 var module = gameObject.GetComponent<KMBombModule>();
                 if (module != null)
-                    StartCoroutine(ProcessModule(module));
+                {
+                    if (!config.ExcludeIgnoredModules || !ignoredModules.Contains(module.ModuleDisplayName))
+                    {
+                        StartCoroutine(ProcessModule(module));
+                    }
+                }
                 else if (!config.ExcludeVanillaModules)
                 {
                     var vanillaModule = transform.parent.GetChild(i).gameObject.GetComponent("BombComponent");
@@ -842,8 +858,6 @@ public class SouvenirModule : MonoBehaviour
         if (TwitchPlaysActive)
             ActivateTwitchPlaysNumbers();
 
-        var ignoredModules = BossModule.GetIgnoredModules(Module, _defaultIgnoredModules);
-        Debug.LogFormat(@"<Souvenir #{0}> Ignored modules: {1}", _moduleId, ignoredModules.JoinString(", "));
         var numPlayableModules = Bomb.GetSolvableModuleNames().Count(x => !ignoredModules.Contains(x));
 
         while (true)
@@ -1270,6 +1284,7 @@ public class SouvenirModule : MonoBehaviour
 
         if (iterator != null)
         {
+            supportedModuleNames.Add(module.ModuleDisplayName);
             Debug.LogFormat("<Souvenir #{1}> Module {0}: Start processing.", moduleType, _moduleId);
             foreach (var obj in iterator(module))
             {
@@ -1281,21 +1296,12 @@ public class SouvenirModule : MonoBehaviour
                 }
             }
             if (!_legitimatelyNoQuestions.Contains(module) && !_questions.Any(q => q.Module == module))
-                Debug.LogFormat("[Souvenir #{0}] There was no question generated for {1}. Please report this to Timwi as this may indicate a bug in Souvenir. Remember to send him this logfile.", _moduleId, module.ModuleDisplayName);
+                Debug.LogFormat("[Souvenir #{0}] There was no question generated for {1}. Please report this to Andrio or the implementer for that module as this may indicate a bug in Souvenir. Remember to send him this logfile.", _moduleId, module.ModuleDisplayName);
             Debug.LogFormat("<Souvenir #{1}> Module {0}: Finished processing.", moduleType, _moduleId);
         }
         else
         {
             Debug.LogFormat("<Souvenir #{1}> Module {0}: Not supported.", moduleType, _moduleId);
-            if (_isTimwisComputer)
-            {
-                var s = new StringBuilder();
-                s.AppendLine("Unrecognized module: " + module.name + ", KMBombModule.ModuleType: " + moduleType);
-                foreach (var comp in module.GetComponents(typeof(UnityEngine.Object)))
-                    s.AppendLine("    - " + (comp == null ? "<null>" : comp.GetType().FullName));
-                lock (_timwiPath)
-                    File.AppendAllText(_timwiPath, s.ToString());
-            }
         }
 
         _coroutinesActive--;
@@ -6627,7 +6633,6 @@ public class SouvenirModule : MonoBehaviour
         }
         else if (mashCount > 1)
         {
-            var wrongAnswers = new int[5];
             var wrongAnswerStrings = Enumerable.Range(0, 20).Select(_ => Rnd.Range(10, 100)).Where(i => i != mashCount).Distinct().Take(5).Select(i => i.ToString()).ToArray();
             addQuestion(module, Question.NotButtonMashCount, correctAnswers: new[] { mashCount.ToString() }, preferredWrongAnswers: wrongAnswerStrings);
         }
@@ -8879,8 +8884,6 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         }
 
-        var swapCount = (byte) (fldSwapCount.Get() - 1);
-
         string[] answers = new string[10];
         byte index = 0;
 
@@ -8899,9 +8902,7 @@ public class SouvenirModule : MonoBehaviour
             randomNumbers[i - 1] = i.ToString();
         }
 
-        addQuestions(module,
-            makeQuestion(Question.SortingLastSwap, _Sorting, correctAnswers: new[] { fldLastSwap.Get().ToString().Insert(1, " & ") }, preferredWrongAnswers: answers),
-            makeQuestion(Question.SortingSwapCount, _Sorting, correctAnswers: new[] { swapCount.ToString() }, preferredWrongAnswers: randomNumbers));
+        addQuestions(module, makeQuestion(Question.SortingLastSwap, _Sorting, correctAnswers: new[] { fldLastSwap.Get().ToString().Insert(1, " & ") }, preferredWrongAnswers: answers));
     }
 
     private IEnumerable<object> ProcessSouvenir(KMBombModule module)
@@ -8924,24 +8925,26 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         }
 
-        var modules = _attributes.Where(x => x.Value != null).Select(x => x.Value.ModuleNameWithThe).Distinct().ToArray();
+        // Prefer names of supported modules on the bomb other than Souvenir.
+        IEnumerable<string> modules = supportedModuleNames.Except(new[] { "Souvenir" });
+        if (supportedModuleNames.Count < 5)
+        {
+            // If there are less than 4 eligible modules, fill the remaining spaces with random other modules.
+            var allModules = _attributes.Where(x => x.Value != null).Select(x => x.Value.ModuleNameWithThe).Distinct().ToList();
+            modules = modules.Concat(Enumerable.Range(0, 1000).Select(i => allModules[Rnd.Range(0, allModules.Count)]).Except(supportedModuleNames).Take(5 - supportedModuleNames.Count));
+        }
         while (comp._currentQuestion == null)
             yield return new WaitForSeconds(0.1f);
 
         var firstQuestion = comp._currentQuestion;
         var firstModule = firstQuestion.ModuleNameWithThe;
-        if (!modules.Contains(firstModule))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Souvenir because the first question was on “{1}”, which is not a module I recognize.", _moduleId, firstModule);
-            yield break;
-        }
 
         // Wait for the user to solve that question before asking about it
         while (comp._currentQuestion == firstQuestion)
             yield return new WaitForSeconds(0.1f);
 
         _modulesSolved.IncSafe(_Souvenir);
-        addQuestion(module, Question.SouvenirFirstQuestion, null, new[] { firstModule }, modules);
+        addQuestion(module, Question.SouvenirFirstQuestion, null, new[] { firstModule }, modules.ToArray());
     }
 
     private IEnumerable<object> ProcessSphere(KMBombModule module)
@@ -10593,15 +10596,13 @@ public class SouvenirModule : MonoBehaviour
         }
     }
 
-#pragma warning disable 414
-#pragma warning disable IDE0044
-    private bool TwitchPlaysActive = false;
-    private List<KMBombModule> TwitchAbandonModule = new List<KMBombModule>();
-    private readonly string TwitchHelpMessage = @"!{0} answer 3 [order is from top to bottom, then left to right]";
-#pragma warning restore 414
-#pragma warning restore IDE0044
+    [NonSerialized]
+    public bool TwitchPlaysActive = false;
+    [NonSerialized]
+    public List<KMBombModule> TwitchAbandonModule = new List<KMBombModule>();
+    public static readonly string TwitchHelpMessage = @"!{0} answer 3 [order is from top to bottom, then left to right]";
 
-    IEnumerator ProcessTwitchCommand(string command)
+    public IEnumerator ProcessTwitchCommand(string command)
     {
         if (Application.isEditor && !TwitchPlaysActive && command == "tp")
         {

@@ -890,8 +890,6 @@ namespace Souvenir
 
         [SouvenirQuestion("What positions were the last swap used to solve {0}?", "Sorting", 6, "1 & 2", "1 & 3", "1 & 4", "1 & 5", "2 & 3", "2 & 4", "2 & 5", "3 & 4", "3 & 5", "4 & 5")]
         SortingLastSwap,
-        [SouvenirQuestion("How many swaps were performed to solve {0}?", "Sorting", 6, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16")]
-        SortingSwapCount,
 
         [SouvenirQuestion("What was the first module asked about in the other Souvenir on this bomb?", "Souvenir", 4, null,
             ExampleAnswers = new[] { "Probing", "Microcontroller", "Third Base", "Kudosudoku", "Quintuples", "3D Tunnels", "Uncolored Squares", "Pattern Cube", "Synonyms", "The Moon", "Human Resources", "Algebra" })]
