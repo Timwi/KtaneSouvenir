@@ -3841,7 +3841,6 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessForgetTheColors(KMBombModule module)
     {
         var comp = GetComponent(module, "FTC");
-        var fldSolved = GetField<bool>(comp, "solved");
         var fldStage = GetField<int>(comp, "stage");
         var fldMaxStage = GetField<int>(comp, "maxStage");
 
@@ -3851,7 +3850,7 @@ public class SouvenirModule : MonoBehaviour
         var fldGearColor = GetField<List<string>>(comp, "gearColor");
         var fldRuleColor = GetField<List<string>>(comp, "ruleColor");
 
-        if (comp == null || fldStage == null || fldSolved == null || fldGear == null || fldLargeDisplay == null || fldSineNumber == null || fldGearColor == null || fldRuleColor == null)
+        if (comp == null || fldStage == null || fldGear == null || fldLargeDisplay == null || fldSineNumber == null || fldGearColor == null || fldRuleColor == null)
             yield break;
 
         yield return null;
@@ -3879,9 +3878,11 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         }
 
-        string[] colors = { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "Pink", "Maroon", "Azure", "Gray" };
+        string[] colors = { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "Pink", "Maroon", "White", "Gray" };
 
-        var randomStage = Rnd.Range(0, Math.Min(maxStage, _coroutinesActive)) % 100;
+        var randomStage = 0;
+        // Uncomment the line below if you want the module to pick a random stage instead of only stage 0.
+        // var randomStage = Rnd.Range(0, Math.Min(maxStage, _coroutinesActive)) % 100;
         Debug.LogFormat("<Souvenir #{0}> Waiting for stage {1} of ForgetTheColors.", _moduleId, randomStage);
         while (fldStage.Get() <= randomStage)
             yield return new WaitForSeconds(.1f);
@@ -3889,8 +3890,47 @@ public class SouvenirModule : MonoBehaviour
 
         if (gear.Count <= randomStage || largeDisplay.Count <= randomStage || sineNumber.Count <= randomStage || gearColor.Count <= randomStage || ruleColor.Count <= randomStage)
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning ForgetTheColors because one of the lists have an unexpected level of entries.", _moduleId);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning ForgetTheColors because one or more of the lists have an unexpected level of entries. (Expected less than or equal {1}): Gear: {2}, LargeDisplay: {3}, SineNumber: {4}, GearColor: {5}, RuleColor: {6}", _moduleId, randomStage, gear.Count, largeDisplay.Count, sineNumber.Count, gearColor.Count, ruleColor.Count);
             yield break;
+        }
+
+        if (!new[] { gear.Count, largeDisplay.Count, sineNumber.Count, gearColor.Count, ruleColor.Count }.All(x => x == gear.Count))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning ForgetTheColors because one or more of the lists aren't all the same length. (Expected {1}): Gear: {1}, LargeDisplay: {2}, SineNumber: {3}, GearColor: {4}, RuleColor: {5}", _moduleId, gear.Count, largeDisplay.Count, sineNumber.Count, gearColor.Count, ruleColor.Count);
+            yield break;
+        }
+
+        for (int i = 0; i < gear.Count; i++)
+        {
+            if (gear[i] < 0 || gear[i] > 9)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning ForgetTheColors because ‘gear[{1}]’ had an unexpected value. (Expected 0-9): {2}", _moduleId, i, gear[i]);
+                yield break;
+            }
+
+            if (largeDisplay[i] < 0 || largeDisplay[i] > 990)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning ForgetTheColors because ‘largeDisplay[{1}]’ had an unexpected value. (Expected 0-990): {2}", _moduleId, i, largeDisplay[i]);
+                yield break;
+            }
+
+            if (sineNumber[i] < 0 || sineNumber[i] > 99999)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning ForgetTheColors because ‘sineNumber[{1}]’ had an unexpected value. (Expected 0-99999): {2}", _moduleId, i, sineNumber[i]);
+                yield break;
+            }
+
+            if (!colors.Contains(gearColor[i]))
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning ForgetTheColors because ‘gearColor[{1}]’ had an unexpected value. (Expected {2}): {3}", _moduleId, i, colors.JoinString(", "), sineNumber[i]);
+                yield break;
+            }
+
+            if (!colors.Contains(ruleColor[i]))
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning ForgetTheColors because ‘ruleColor[{1}]’ had an unexpected value. (Expected {2}): {3}", _moduleId, i, colors.JoinString(", "), ruleColor[i]);
+                yield break;
+            }
         }
 
         // Only generate a single question.
