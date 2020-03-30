@@ -3914,9 +3914,9 @@ public class SouvenirModule : MonoBehaviour
                 yield break;
             }
 
-            if (sineNumber[i] < 0 || sineNumber[i] > 99999)
+            if (sineNumber[i] < -99999 || sineNumber[i] > 99999)
             {
-                Debug.LogFormat("<Souvenir #{0}> Abandoning ForgetTheColors because ‘sineNumber[{1}]’ had an unexpected value. (Expected 0-99999): {2}", _moduleId, i, sineNumber[i]);
+                Debug.LogFormat("<Souvenir #{0}> Abandoning ForgetTheColors because ‘sineNumber[{1}]’ had an unexpected value. (Expected (-99999)-99999): {2}", _moduleId, i, sineNumber[i]);
                 yield break;
             }
 
