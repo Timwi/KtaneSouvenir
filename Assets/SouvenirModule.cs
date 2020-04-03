@@ -205,6 +205,7 @@ public class SouvenirModule : MonoBehaviour
     const string _NotMorseCode = "NotMorseCode";
     const string _NotSimaze = "NotSimaze";
     const string _NotWhosOnFirst = "NotWhosOnFirst";
+    const string _NumberedButtons = "numberedButtonsModule";
     const string _OddOneOut = "OddOneOutModule";
     const string _OnlyConnect = "OnlyConnectModule";
     const string _OrangeArrows = "orangeArrowsModule";
@@ -422,6 +423,7 @@ public class SouvenirModule : MonoBehaviour
             { _NotMorseCode, ProcessNotMorseCode },
             { _NotSimaze, ProcessNotSimaze },
             { _NotWhosOnFirst, ProcessNotWhosOnFirst },
+            { _NumberedButtons, ProcessNumberedButtons },
             { _OddOneOut, ProcessOddOneOut },
             { _OnlyConnect, ProcessOnlyConnect },
             { _OrangeArrows, ProcessOrangeArrows },
@@ -6816,6 +6818,44 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.NotWhosOnFirstSum, _NotWhosOnFirst, correctAnswers: sumCorrectAnswers,
                 preferredWrongAnswers: Enumerable.Range(0, 20).Select(_ => Rnd.Range(1, 61).ToString()).Except(sumCorrectAnswers).Distinct().Take(5).ToArray())
         );
+    }
+    
+    private IEnumerable<object> ProcessNumberedButtons(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NumberedButtonsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldNumbers = GetField<int[]>(comp, "buttonNums");
+
+        if(comp == null || fldSolved == null || fldNumbers == null)
+            yield break;
+
+        yield return null;
+
+        while(!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        
+        _modulesSolved.IncSafe(_NumberedButtons);
+
+        var numbers = fldNumbers.Get();
+
+        if(numbers.Count() != 16)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Numbered Buttons because 'numbers' has unexpected length ({1}; expected 16).", _moduleId, numbers.Length);
+            yield break;
+        }
+
+        for (int i = 0; i < 16; i++)
+        {
+            if(numbers[i] < 1 || numbers[i] > 100)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Numbered Buttons because 'numbers[{1}]' has unexpected value ({2}; expected 1-100).", _moduleId, i.ToString(), numbers[i].ToString());
+                yield break;
+            }
+        }
+
+        int randomIndexChooser = Rnd.Range(0, 16);
+
+        addQuestions(module, (makeQuestion(Question.NumberedButtonsLabels, _NumberedButtons, new[] { (randomIndexChooser+1).ToString() }, correctAnswers: new[] { numbers[randomIndexChooser].ToString() }, preferredWrongAnswers: new[] { Rnd.Range(1, 101).ToString() })));
     }
 
     private IEnumerable<object> ProcessOddOneOut(KMBombModule module)
