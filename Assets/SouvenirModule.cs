@@ -654,7 +654,7 @@ public class SouvenirModule : MonoBehaviour
                 var module = gameObject.GetComponent<KMBombModule>();
                 if (module != null)
                 {
-                    if (!config.ExcludeIgnoredModules || !ignoredModules.Contains(module.ModuleDisplayName))
+                    if (module.ModuleType == _Souvenir ? !config.ExcludeSouvenir : (!config.ExcludeIgnoredModules || !ignoredModules.Contains(module.ModuleDisplayName)))
                     {
                         StartCoroutine(ProcessModule(module));
                     }
