@@ -520,7 +520,7 @@ public class SouvenirModule : MonoBehaviour
                 if (config != null)
                 {
                     var dictionary = JsonConvert.DeserializeObject<IDictionary<string, object>>(ModSettings.Settings);
-                    rewriteFile = !dictionary.ContainsKey("ExcludeIgnoredModules");
+                    rewriteFile = !dictionary.ContainsKey("ExcludeIgnoredModules") || !dictionary.ContainsKey("ExcludeSouvenir");
                 }
                 else
                 {
@@ -6782,7 +6782,7 @@ public class SouvenirModule : MonoBehaviour
                 preferredWrongAnswers: Enumerable.Range(0, 20).Select(_ => Rnd.Range(1, 61).ToString()).Except(sumCorrectAnswers).Distinct().Take(5).ToArray())
         );
     }
-    
+
     private IEnumerable<object> ProcessNumberedButtons(KMBombModule module)
     {
         var comp = GetComponent(module, "NumberedButtonsScript");
@@ -6796,7 +6796,7 @@ public class SouvenirModule : MonoBehaviour
 
         while(!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
-        
+
         _modulesSolved.IncSafe(_NumberedButtons);
 
         var numbers = fldNumbers.Get();
