@@ -199,7 +199,6 @@ public class SouvenirModule : MonoBehaviour
     const string _Necronomicon = "necronomicon";
     const string _Neutralization = "neutralization";
     const string _NandMs = "NandMs";
-    const string _Nonogram = "NonogramModule";
     const string _NotButton = "NotButton";
     const string _NotKeypad = "NotKeypad";
     const string _NotMaze = "NotMaze";
@@ -417,7 +416,6 @@ public class SouvenirModule : MonoBehaviour
             { _Necronomicon, ProcessNecronomicon },
             { _Neutralization, ProcessNeutralization },
             { _NandMs, ProcessNandMs },
-            { _Nonogram, ProcessNonogram },
             { _NotButton, ProcessNotButton },
             { _NotKeypad, ProcessNotKeypad },
             { _NotMaze, ProcessNotMaze },
@@ -6611,42 +6609,6 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestion(module, Question.NandMsAnswer, correctAnswers: new[] { words[index] });
-    }
-
-    private IEnumerable<object> ProcessNonogram(KMBombModule module)
-    {
-        var comp = GetComponent(module, "NonogramModule");
-        var fldColors = GetField<List<string>>(comp, "colors");
-        if (comp == null || fldColors == null)
-            yield break;
-
-        yield return null;
-
-        // Hook into the module’s OnPass handler
-        var isSolved = false;
-        module.OnPass += delegate { isSolved = true; return false; };
-        yield return new WaitUntil(() => isSolved);
-        _modulesSolved.IncSafe(_Nonogram);
-
-        var colors = fldColors.Get();
-        if (colors == null)
-            yield break;
-        if (colors.Count != 10 || colors.Any(c => !Regex.IsMatch(c, @"^[ROYGBP] [ROYGBP]$")))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Nonogram because ‘colors’ has unexpected length ({1}; expected 10) or an unexpected entry ([{2}]).", _moduleId, colors.Count, colors.JoinString(", "));
-            yield break;
-        }
-
-        var colorNames = new Dictionary<string, string> {
-            { "R", "Red" },
-            { "O", "Orange" },
-            { "Y", "Yellow" },
-            { "G", "Green" },
-            { "B", "Blue" },
-            { "P", "Purple" }
-        };
-
-        addQuestions(module, colors.Select((color, index) => makeQuestion(Question.NonogramColors, _Nonogram, new[] { ordinal(index % 5 + 1) + (index >= 5 ? " row" : " column") }, color.Split(' ').Select(c => colorNames[c]).ToArray())));
     }
 
     private IEnumerable<object> ProcessNotButton(KMBombModule module)

@@ -603,10 +603,6 @@ namespace Souvenir
         [SouvenirQuestion("What was the label of the correct button in the last successful round of {0}?", "N&Ms", 6, "NNNNN", "MNNNN", "NMNNN", "MMNNN", "NNMNN", "MNMNN", "NMMNN", "MMMNN", "NNNMN", "MNNMN", "NMNMN", "MMNMN", "NNMMN", "MNMMN", "NMMMN", "MMMMN", "NNNNM", "MNNNM", "NMNNM", "MMNNM", "NNMNM", "MNMNM", "NMMNM", "MMMNM", "NNNMM", "MNNMM", "NMNMM", "MMNMM", "NNMMM", "MNMMM", "NMMMM", "MMMMM")]
         NandMsAnswer,
 
-        [SouvenirQuestion("What was one of the colors in the {1} in {0}?", "Nonogram", 6, "Red", "Orange", "Yellow", "Green", "Blue", "Purple",
-            ExampleExtraFormatArguments = new[] { "first column", "second column", "first row", "second row" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        NonogramColors,
-
         [SouvenirQuestion("What colours did the light glow when you solved {0}?", "Not the Button", 6, "white", "red", "yellow", "green", "blue", "white/red", "white/yellow", "white/green", "white/blue", "red/yellow", "red/green", "red/blue", "yellow/green", "yellow/blue", "green/blue")]
         NotButtonLightColour,
         [SouvenirQuestion("How many times did you press the button when you solved {0}?", "Not the Button", 6, ExampleAnswers = new[] { "10", "20", "30", "40", "50", "60" })]
