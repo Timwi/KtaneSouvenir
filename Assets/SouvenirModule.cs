@@ -31,6 +31,7 @@ public class SouvenirModule : MonoBehaviour
     public Sprite[] ArithmelogicSprites;
     public Sprite[] ExampleSprites;
     public Sprite[] MahjongSprites;
+    public Sprite[] PatternCubeSprites;
     public Sprite[] PerspectivePegsSprites;
     public Sprite[] PlanetsSprites;
     public Sprite[] SymbolicCoordinatesSprites;
@@ -7193,17 +7194,31 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "PatternCubeModule");
         var fldSelectableSymbols = GetField<Array>(comp, "_selectableSymbols");
+        var fldSelectableSymbolObjects = GetField<MeshRenderer[]>(comp, "_selectableSymbolObjs");
+        var fldPlaceableSymbolObjects = GetField<MeshRenderer[]>(comp, "_placeableSymbolObjs");
         var fldHighlightedPosition = GetField<int>(comp, "_highlightedPosition");
 
         yield return null;
+        /*
         var selectableSymbols = fldSelectableSymbols.Get();
         if (selectableSymbols == null || selectableSymbols.Length != 5)
         {
             Debug.LogFormat("<Souvenir #{0}> Abandoning Pattern Cube because _selectableSymbols {1} (expected length 5).", _moduleId, selectableSymbols == null ? "was null" : "had length " + selectableSymbols.Length);
             yield break;
         }
-        while (selectableSymbols.Cast<object>().Any(obj => obj != null))
-            yield return new WaitForSeconds(.1f);
+        */
+        var selectableSymbolObjects = fldSelectableSymbolObjects.Get();
+        if (selectableSymbolObjects == null || selectableSymbolObjects.Length != 5)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Pattern Cube because _selectableSymbolObjs {1} (expected length 5).", _moduleId, selectableSymbolObjects == null ? "was null" : "had length " + selectableSymbolObjects.Length);
+            yield break;
+        }
+        var placeableSymbolObjects = fldPlaceableSymbolObjects.Get();
+        if (placeableSymbolObjects == null || placeableSymbolObjects.Length != 6)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Pattern Cube because _placeableSymbolObjs {1} (expected length 5).", _moduleId, selectableSymbolObjects == null ? "was null" : "had length " + selectableSymbolObjects.Length);
+            yield break;
+        }
 
         var highlightPos = fldHighlightedPosition.Get();
         if (highlightPos < 0 || highlightPos > 4)
@@ -7212,10 +7227,11 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         }
 
+        var symbols = selectableSymbolObjects.Concat(placeableSymbolObjects.Where(r => r.gameObject.activeSelf))
+            .Select(r => PatternCubeSprites[int.Parse(r.sharedMaterial.mainTexture.name.Substring(6))]).ToArray();
+
         _modulesSolved.IncSafe(_PatternCube);
-        addQuestions(module,
-            makeQuestion(Question.PatternCubeHighlightPosition, _PatternCube, new[] { "top" }, new[] { ordinal(highlightPos + 1) }),
-            makeQuestion(Question.PatternCubeHighlightPosition, _PatternCube, new[] { "bottom" }, new[] { ordinal(5 - highlightPos) }));
+        addQuestion(module, Question.PatternCubeHighlightedSymbol, null, new[] { symbols[highlightPos] }, symbols);
     }
 
     private IEnumerable<object> ProcessPerspectivePegs(KMBombModule module)

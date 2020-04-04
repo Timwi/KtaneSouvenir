@@ -681,9 +681,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PassportControlPassenger,
 
-        [SouvenirQuestion("At which position in the selection bar on the left, counting from the {1}, was the highlight in {0}?", "Pattern Cube", 6, "first", "second", "third", "4th", "5th",
-            ExampleExtraFormatArguments = new[] { "top", "bottom" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        PatternCubeHighlightPosition,
+        [SouvenirQuestion("Which symbol was highlighted in {0}?", "Pattern Cube", 6, Type = AnswerType.Sprites)]
+        PatternCubeHighlightedSymbol,
 
         [SouvenirQuestion("Which peg was {1} in the solution to {0}?", "Perspective Pegs", 6, null,
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.Sprites)]
