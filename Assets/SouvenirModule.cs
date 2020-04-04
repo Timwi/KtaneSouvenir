@@ -7155,20 +7155,11 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessPatternCube(KMBombModule module)
     {
         var comp = GetComponent(module, "PatternCubeModule");
-        var fldSelectableSymbols = GetField<Array>(comp, "_selectableSymbols");
         var fldSelectableSymbolObjects = GetField<MeshRenderer[]>(comp, "_selectableSymbolObjs");
         var fldPlaceableSymbolObjects = GetField<MeshRenderer[]>(comp, "_placeableSymbolObjs");
         var fldHighlightedPosition = GetField<int>(comp, "_highlightedPosition");
 
         yield return null;
-        /*
-        var selectableSymbols = fldSelectableSymbols.Get();
-        if (selectableSymbols == null || selectableSymbols.Length != 5)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Pattern Cube because _selectableSymbols {1} (expected length 5).", _moduleId, selectableSymbols == null ? "was null" : "had length " + selectableSymbols.Length);
-            yield break;
-        }
-        */
         var selectableSymbolObjects = fldSelectableSymbolObjects.Get();
         if (selectableSymbolObjects == null || selectableSymbolObjects.Length != 5)
         {
