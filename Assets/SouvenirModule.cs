@@ -8458,9 +8458,7 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_SimonShrieks);
 
-        var colorNames = new[] { "Red", "Yellow", "Green", "Cyan", "Blue", "White", "Magenta" };
         var arrow = fldArrow.Get();
-        var buttonColors = fldButtonColors.Get();
         var flashingButtons = fldFlashingButtons.Get();
 
         if (arrow < 0 || arrow > 6)
@@ -8468,19 +8466,18 @@ public class SouvenirModule : MonoBehaviour
             Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Shrieks because ‘_arrow’ has an unexpected value ({1}, expected 0–6).", _moduleId, arrow);
             yield break;
         }
-        if (buttonColors == null || flashingButtons == null)
+        if (flashingButtons == null)
             yield break;
-        if (buttonColors.Length != 7 || flashingButtons.Length != 8 || buttonColors.Any(b => b < 0 || b > 6) || flashingButtons.Any(b => b < 0 || b > 6))
+        if (flashingButtons.Length != 8 || flashingButtons.Any(b => b < 0 || b > 6))
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Shrieks because ‘_buttonColors’ or ‘_flashingButtons’ has an unexpected length or value: [{1}], [{2}], expected length 7/8 and values 0–6.",
-                _moduleId, buttonColors.JoinString(", "), flashingButtons.JoinString(", "));
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Shrieks because ‘_flashingButtons’ has an unexpected length or value: [{1}], expected length 8 and values 0–6.",
+                _moduleId, flashingButtons.JoinString(", "));
             yield break;
         }
 
         var qs = new List<QandA>();
-        qs.Add(makeQuestion(Question.SimonShrieksArrow, _SimonShrieks, correctAnswers: new[] { colorNames[buttonColors[arrow]] }));
         for (int i = 0; i < flashingButtons.Length; i++)
-            qs.Add(makeQuestion(Question.SimonShrieksFlashingColors, _SimonShrieks, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorNames[buttonColors[flashingButtons[i]]] }));
+            qs.Add(makeQuestion(Question.SimonShrieksFlashingButton, _SimonShrieks, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { ((flashingButtons[i] + 7 - arrow) % 7).ToString() }));
         addQuestions(module, qs);
     }
 
