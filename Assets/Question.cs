@@ -127,7 +127,7 @@ namespace Souvenir
         [SouvenirQuestion("What color did the light glow when you solved {0}?", "Button", 4, "red", "blue", "yellow", "white", AddThe = true)]
         ButtonLightColor,
 
-        [SouvenirQuestion("How many of the buttons in {0} were {1}?", "Button Sequences", 6, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
+        [SouvenirQuestion("How many of the buttons in {0} were {1}?", "Button Sequence", 6, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
             ExampleExtraFormatArguments = new[] { "red", "blue", "yellow", "white" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ButtonSequencesColorOccurrences,
 
