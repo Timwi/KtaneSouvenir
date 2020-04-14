@@ -261,6 +261,10 @@ namespace Souvenir
         [SouvenirQuestion("What was the displayed symbol in {0}?", "Equations X", 6, "H(T)", "P", "\u03C7", "\u03C9", "Z(T)", "\u03C4", "\u03BC", "\u03B1", "K")]
         EquationsXSymbols,
 
+        [SouvenirQuestion("What was the beat for the {1} arrow in {0}?", "Etterna", 6, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32",
+            ExampleExtraFormatArguments = new[] { "bottom", "bottom-middle", "top-middle", "top" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        EtternaNumber,
+
         [SouvenirQuestion("What room did you start in in the last generated maze of {0}?", "Factory Maze", 4, "Bathroom", "Assembly Line", "Cafeteria", "Room A9", "Broom Closet", "Basement", "Copy Room", "Unnecessarily...", "Library", "Break Room", "Empty Room...", "Arcade", "Classroom", "Module Testing...", "Music Studio", "Computer Room", "Infirmary", "Bomb Room", "Space", "Storage Room", "Lounge", "Conference Room", "Kitchen", "Incinerator")]
         FactoryMazeStartRoom,
 
