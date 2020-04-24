@@ -7238,28 +7238,53 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "PerspectivePegsModule");
         var fldIsComplete = GetField<bool>(comp, "isComplete");
-        var fldEnteredSequence = GetField<List<int>>(comp, "EnteredSequence");
-        if (comp == null || fldIsComplete == null || fldEnteredSequence == null)
+        var fldColourMeshes = GetField<MeshRenderer[,]>(comp, "ColourMeshes");
+        if (comp == null || fldIsComplete == null || fldColourMeshes == null)
             yield break;
 
         while (!fldIsComplete.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_PerspectivePegs);
 
-        var entered = fldEnteredSequence.Get();
-        if (entered == null)
-            yield break;
-        if (entered.Count != 3 || entered.Any(e => e < 0 || e >= 5))
+        int keyNumber = 0; string keyColour;
+        char prevChar = '\0';
+        foreach (var letter in Bomb.GetSerialNumberLetters())
         {
-            Debug.LogFormat("<Souvenir #{1}> Perspective Pegs: EnteredSequence has unrecognized member or unexpected length: [{0}]", entered.JoinString(", "), _moduleId);
+            if (prevChar == 0)
+                prevChar = letter;
+            else
+            {
+                keyNumber += Math.Abs(letter - prevChar);
+                prevChar = '\0';
+            }
+        }
+        switch (keyNumber % 10)
+        {
+            case 0: case 3: keyColour = "ColourRed"; break;
+            case 4: case 9: keyColour = "ColourYellow"; break;
+            case 1: case 7: keyColour = "ColourGreen"; break;
+            case 5: case 8: keyColour = "ColourBlue"; break;
+            case 2: case 6: keyColour = "ColourPurple"; break;
+            default: yield break;
+        }
+
+        var colourMeshes = fldColourMeshes.Get();
+        int pegIndex;
+        for (pegIndex = 0; pegIndex < 5; ++pegIndex)
+        {
+            if (Enumerable.Range(0, 5).Count(i => colourMeshes[pegIndex, i].sharedMaterial.name.StartsWith(keyColour)) >= 3)
+                break;
+        }
+        if (pegIndex >= 5)
+        {
+            Debug.LogFormat("<Souvenir #{1}> Abandoning Perspective Pegs because the key peg couldn't be found (the key colour was {0}).", keyColour, _moduleId);
             yield break;
         }
 
         addQuestions(module, Enumerable.Range(0, 3).Select(i => makeQuestion(
              Question.PerspectivePegsSolution,
             _PerspectivePegs,
-            formatArgs: new[] { ordinal(i + 1) },
-            correctAnswers: new[] { PerspectivePegsSprites[entered[i]] },
+            correctAnswers: new[] { PerspectivePegsSprites[pegIndex] },
             preferredWrongAnswers: PerspectivePegsSprites)));
     }
 

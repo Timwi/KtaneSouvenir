@@ -684,8 +684,7 @@ namespace Souvenir
         [SouvenirQuestion("Which symbol was highlighted in {0}?", "Pattern Cube", 6, Type = AnswerType.Sprites)]
         PatternCubeHighlightedSymbol,
 
-        [SouvenirQuestion("Which peg was {1} in the solution to {0}?", "Perspective Pegs", 6, null,
-            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.Sprites)]
+        [SouvenirQuestion("Which peg had three sides of the key colour in {0}?", "Perspective Pegs", 6, null, Type = AnswerType.Sprites)]
         PerspectivePegsSolution,
 
         [SouvenirQuestion("What was the {1} digit of the displayed number in {0}?", "Pie", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
