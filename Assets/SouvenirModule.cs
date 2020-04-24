@@ -197,6 +197,7 @@ public class SouvenirModule : MonoBehaviour
     const string _MouseInTheMaze = "MouseInTheMaze";
     const string _Murder = "murder";
     const string _MysticSquare = "MysticSquareModule";
+    const string _MysteryModule = "mysterymodule";
     const string _Necronomicon = "necronomicon";
     const string _Neutralization = "neutralization";
     const string _NandMs = "NandMs";
@@ -415,6 +416,7 @@ public class SouvenirModule : MonoBehaviour
             { _MouseInTheMaze, ProcessMouseInTheMaze },
             { _Murder, ProcessMurder },
             { _MysticSquare, ProcessMysticSquare },
+            { _MysteryModule, ProcessMysteryModule },
             { _Necronomicon, ProcessNecronomicon },
             { _Neutralization, ProcessNeutralization },
             { _NandMs, ProcessNandMs },
@@ -6545,6 +6547,43 @@ public class SouvenirModule : MonoBehaviour
 
     }
 
+    private IEnumerable<object> ProcessMysteryModule(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MysteryModuleScript");
+        var fldKeyModules = GetField<List<KMBombModule>>(comp, "keyModules");
+        var fldMystifiedModule = GetField<KMBombModule>(comp, "mystifiedModule");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        if (comp == null || fldKeyModules == null || fldMystifiedModule == null || fldSolved == null)
+            yield break;
+
+        yield return null;
+        while (fldKeyModules.Get(nullAllowed: true) == null)
+            yield return null;
+        while (fldMystifiedModule.Get(nullAllowed: true) == null)
+            yield return null;
+
+        var keyModules = fldKeyModules.Get();
+        if (keyModules == null)
+            yield break;
+        if (keyModules.Count == 0)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Mystery Module because ‘keyModules’ is empty.", _moduleId);
+            yield break;
+        }
+
+        var keyModule = keyModules[0];
+        var mystifiedModule = fldMystifiedModule.Get();
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_MysteryModule);
+
+        addQuestions(module,
+            makeQuestion(Question.MysteryModuleFirstKey, _MysteryModule, correctAnswers: new[] { keyModule.ModuleDisplayName }, preferredWrongAnswers: Bomb.GetSolvableModuleNames().ToArray()),
+            makeQuestion(Question.MysteryModuleHiddenModule, _MysteryModule, correctAnswers: new[] { mystifiedModule.ModuleDisplayName }, preferredWrongAnswers: Bomb.GetSolvableModuleNames().ToArray()));
+    }
+
     private IEnumerable<object> ProcessNecronomicon(KMBombModule module)
     {
         var comp = GetComponent(module, "necronomiconScript");
@@ -8036,7 +8075,7 @@ public class SouvenirModule : MonoBehaviour
             }
         }
 
-    solved:
+        solved:
         _modulesSolved.IncSafe(_SeaShells);
 
         var qs = new List<QandA>();

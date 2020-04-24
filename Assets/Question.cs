@@ -591,6 +591,11 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "a potential weapon, but not the murder weapon,", "not a potential weapon" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MurderWeapon,
 
+        [SouvenirQuestion("Which module was the first requested to be solved by {0}?", "Mystery Module", 4, null, ExampleAnswers = new[] { "Probing", "Kudosudoku", "Ten-Button Color Code", "The Jukebox", "Rock-Paper-Scissors-Lizard-Spock" })]
+        MysteryModuleFirstKey,
+        [SouvenirQuestion("Which module was hidden by {0}?", "Mystery Module", 4, null, ExampleAnswers = new[] { "Probing", "Kudosudoku", "Ten-Button Color Code", "The Jukebox" })]
+        MysteryModuleHiddenModule,
+
         [SouvenirQuestion("Where was the {1} in {0}?", "Mystic Square", 4, "top left", "top middle", "top right", "middle left", "center", "middle right", "bottom left", "bottom middle", "bottom right",
             ExampleExtraFormatArguments = new[] { "knight", "skull" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MysticSquareKnightSkull,
