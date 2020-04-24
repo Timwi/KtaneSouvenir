@@ -3600,7 +3600,7 @@ public class SouvenirModule : MonoBehaviour
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
 
-        _modulesSolved.IncSafe(_Sorting);
+        _modulesSolved.IncSafe(_Etterna);
 
         var correct = fldCorrect.Get();
 
