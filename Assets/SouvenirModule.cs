@@ -3617,13 +3617,8 @@ public class SouvenirModule : MonoBehaviour
                 yield break;
             }
 
-        string[] randomNumbers = new string[32];
-        for (int i = 1; i <= randomNumbers.Length; i++)
-            randomNumbers[i - 1] = i.ToString();
-
-        string[] temp = new string[4] { "bottom", "bottom-middle", "top-middle", "top" };
         byte arrow = (byte)Rnd.Range(0, 4);
-        addQuestion(module, Question.EtternaNumber, new[] { temp[arrow] }, correctAnswers: new[] { correct[arrow].ToString() }, preferredWrongAnswers: randomNumbers);
+        addQuestion(module, Question.EtternaNumber, new[] { ordinal(arrow + 1) }, correctAnswers: new[] { correct[arrow].ToString() });
     }
 
     private IEnumerable<object> ProcessFactoryMaze(KMBombModule module)
