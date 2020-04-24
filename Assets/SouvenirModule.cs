@@ -135,6 +135,7 @@ public class SouvenirModule : MonoBehaviour
     const string _ElderFuthark = "elderFuthark";
     const string _EncryptedMorse = "EncryptedMorse";
     const string _EquationsX = "equationsXModule";
+    const string _Etterna = "etterna";
     const string _FactoryMaze = "factoryMaze";
     const string _FastMath = "fastMath";
     const string _FaultyRGBMaze = "faultyrgbMaze";
@@ -352,6 +353,7 @@ public class SouvenirModule : MonoBehaviour
             { _ElderFuthark, ProcessElderFuthark },
             { _EncryptedMorse, ProcessEncryptedMorse },
             { _EquationsX, ProcessEquationsX },
+            { _Etterna, ProcessEtterna },
             { _FactoryMaze, ProcessFactoryMaze },
             { _FastMath, ProcessFastMath },
             { _FaultyRGBMaze, ProcessFaultyRGBMaze },
@@ -3583,6 +3585,41 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_EquationsX);
 
         addQuestion(module, Question.EquationsXSymbols, correctAnswers: new[] { symbol });
+    }
+
+    private IEnumerable<object> ProcessEtterna(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Etterna");
+        var fldSolved = GetField<bool>(comp, "isSolved");
+        var fldCorrect = GetField<byte[]>(comp, "correct");
+
+        if (comp == null || fldSolved == null || fldCorrect == null)
+            yield break;
+
+        yield return null;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_Etterna);
+
+        var correct = fldCorrect.Get();
+
+        if (correct.Length != 4)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Etterna because ‘correct’ has unexpected number of values (expected 4 numbers in array): {1}", _moduleId, correct.Length);
+            yield break;
+        }
+
+        for (int i = 0; i < correct.Length; i++)
+            if (correct[i] > 32 || correct[i] == 0)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Etterna because ‘correct[{1}]’ has unexpected value (expected 1-32): {1}", _moduleId, i, correct[i]);
+                yield break;
+            }
+
+        byte arrow = (byte)Rnd.Range(0, 4);
+        addQuestion(module, Question.EtternaNumber, new[] { ordinal(arrow + 1) }, correctAnswers: new[] { correct[arrow].ToString() });
     }
 
     private IEnumerable<object> ProcessFactoryMaze(KMBombModule module)
