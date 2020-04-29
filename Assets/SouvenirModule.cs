@@ -7173,6 +7173,48 @@ public class SouvenirModule : MonoBehaviour
         addQuestion(module, Question.PalindromesNumbers, new[] { numToStr[randomVar], numToStr[randomInd + 4] }, correctAnswers: new[] { vars[randomVar].ToString().ToCharArray()[randomInd].ToString() }); //i am so sorry for this botch code
     }
 
+    private IEnumerable<object> ProcessPalindromes(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Palindromes");
+        var fldSolved = GetField<bool>(comp, "isSolved");
+        var fldX = GetField<string>(comp, "x");
+        var fldY = GetField<string>(comp, "y");
+        var fldZ = GetField<string>(comp, "z");
+        var fldN = GetField<string>(comp, "n");
+
+        if (comp == null || fldSolved == null || fldX == null || fldY == null || fldZ == null || fldN == null)
+            yield break;
+
+        yield return null;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_Palindromes);
+
+        uint x = 0, y = 0, z = 0, n = 0;
+        if (!uint.TryParse(fldX.Get(), out x) || !uint.TryParse(fldY.Get(), out y) || !uint.TryParse(fldZ.Get(), out z) || !uint.TryParse(fldN.Get(), out n))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Palindromes because one of the strings has an unexpected value. (expected uint-parsable string): x: {1}, y: {2}, z: {3}, n: {4}", _moduleId, fldX.Get(), fldY.Get(), fldZ.Get(), fldN.Get());
+            yield break;
+        }
+
+        if (x > 999999999 || y > 99999999 || z > 9999999 || n > 999999999)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Palindromes because one of the uints has an unexpected value. (expected 9-digit number) x: {1}, y: {2}, z: {3}, n: {4}", _moduleId, x, y, z, n);
+            yield break;
+        }
+
+        uint[] vars = new uint[4] { x, y, z, n };
+        byte[] nums = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+        byte randomVar = (byte)Rnd.Range(0, vars.Length);
+        byte randomInd = (byte)Rnd.Range(0, 5 - Convert.ToByte(randomVar == 1 || randomVar == 2)); //5 if x or n, else 4
+        string[] numToStr = new string[] { "X", "Y", "Z", "the screen", "first", "second", "third", "4th", "5th" };
+
+        addQuestion(module, Question.PalindromesNumbers, new[] { numToStr[randomVar], numToStr[randomInd + 4] }, correctAnswers: new[] { vars[randomVar].ToString().ToCharArray()[randomInd].ToString() }); //i am so sorry for this botch code
+    }
+
     private IEnumerable<object> ProcessPassportControl(KMBombModule module)
     {
         var comp = GetComponent(module, "passportControlScript");
