@@ -53,6 +53,5 @@ MonoBehaviour:
     mod. Souvenir itself and other boss modules may also be excluded this way.\r\n\r\n[url=http://ktane.timwi.de/PDF/Souvenir.pdf]Manual
     PDF[/url]\r\n[url=http://ktane.timwi.de/HTML/Souvenir.html]Manual HTML[/url]"
   version: 2.2
-  outputFolder: C:\Program Files (x86)\Steam\steamapps\common\Keep Talking and Nobody
-    Explodes\mods
+  outputFolder: build
   previewImage: {fileID: 2800000, guid: bd5c1f4881f57d54481b44e4c8a7779a, type: 3}

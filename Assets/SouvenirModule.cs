@@ -70,6 +70,7 @@ public class SouvenirModule : MonoBehaviour
     private bool _isSolved = false;
     private bool _animating = false;
     private bool _exploded = false;
+    private int _avoidQuestions = 0;   // While this is > 0, temporarily avoid asking questions; currently only used when Souvenir is hidden by a Mystery Module
 
     [NonSerialized]
     public double SurfaceSizeFactor;
@@ -867,6 +868,10 @@ public class SouvenirModule : MonoBehaviour
 
         while (true)
         {
+            // A module handler can increment this value temporarily to delay asking questions. (Currently only the Mystery Module handler does this when Souvenir is hidden by a Mystery Module.)
+            while (_avoidQuestions > 0)
+                yield return new WaitForSeconds(.1f);
+
             var numSolved = Bomb.GetSolvedModuleNames().Count(x => !ignoredModules.Contains(x));
             if (_questions.Count == 0 && (numSolved >= numPlayableModules || _coroutinesActive == 0))
             {
@@ -3620,7 +3625,7 @@ public class SouvenirModule : MonoBehaviour
                 yield break;
             }
 
-        byte arrow = (byte)Rnd.Range(0, 4);
+        byte arrow = (byte) Rnd.Range(0, 4);
         addQuestion(module, Question.EtternaNumber, new[] { ordinal(arrow + 1) }, correctAnswers: new[] { correct[arrow].ToString() });
     }
 
@@ -6553,8 +6558,9 @@ public class SouvenirModule : MonoBehaviour
         var fldKeyModules = GetField<List<KMBombModule>>(comp, "keyModules");
         var fldMystifiedModule = GetField<KMBombModule>(comp, "mystifiedModule");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldAnimating = GetField<bool>(comp, "animating");
 
-        if (comp == null || fldKeyModules == null || fldMystifiedModule == null || fldSolved == null)
+        if (comp == null || fldKeyModules == null || fldMystifiedModule == null || fldSolved == null || fldAnimating == null)
             yield break;
 
         yield return null;
@@ -6575,13 +6581,24 @@ public class SouvenirModule : MonoBehaviour
         var keyModule = keyModules[0];
         var mystifiedModule = fldMystifiedModule.Get();
 
+        // Do not ask questions while Souvenir is hidden by Mystery Module.
+        if (mystifiedModule == Module)
+            _avoidQuestions++;
+
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_MysteryModule);
 
+        // Do not ask questions during the solve animation, since Mystery Module modifies the scaling of this module.
+        while (fldAnimating.Get())
+            yield return new WaitForSeconds(.1f);
+
         addQuestions(module,
             makeQuestion(Question.MysteryModuleFirstKey, _MysteryModule, correctAnswers: new[] { keyModule.ModuleDisplayName }, preferredWrongAnswers: Bomb.GetSolvableModuleNames().ToArray()),
             makeQuestion(Question.MysteryModuleHiddenModule, _MysteryModule, correctAnswers: new[] { mystifiedModule.ModuleDisplayName }, preferredWrongAnswers: Bomb.GetSolvableModuleNames().ToArray()));
+
+        if (mystifiedModule == Module)
+            _avoidQuestions--;
     }
 
     private IEnumerable<object> ProcessNecronomicon(KMBombModule module)
@@ -6865,19 +6882,19 @@ public class SouvenirModule : MonoBehaviour
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldNumbers = GetField<int[]>(comp, "buttonNums");
 
-        if(comp == null || fldSolved == null || fldNumbers == null)
+        if (comp == null || fldSolved == null || fldNumbers == null)
             yield break;
 
         yield return null;
 
-        while(!fldSolved.Get())
+        while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
 
         _modulesSolved.IncSafe(_NumberedButtons);
 
         var numbers = fldNumbers.Get();
 
-        if(numbers.Count() != 16)
+        if (numbers.Count() != 16)
         {
             Debug.LogFormat("<Souvenir #{0}> Abandoning Numbered Buttons because 'numbers' has unexpected length ({1}; expected 16).", _moduleId, numbers.Length);
             yield break;
@@ -6885,7 +6902,7 @@ public class SouvenirModule : MonoBehaviour
 
         for (int i = 0; i < 16; i++)
         {
-            if(numbers[i] < 1 || numbers[i] > 100)
+            if (numbers[i] < 1 || numbers[i] > 100)
             {
                 Debug.LogFormat("<Souvenir #{0}> Abandoning Numbered Buttons because 'numbers[{1}]' has unexpected value ({2}; expected 1-100).", _moduleId, i.ToString(), numbers[i].ToString());
                 yield break;
@@ -6894,7 +6911,7 @@ public class SouvenirModule : MonoBehaviour
 
         int randomIndexChooser = Rnd.Range(0, 16);
 
-        addQuestions(module, (makeQuestion(Question.NumberedButtonsLabels, _NumberedButtons, new[] { (randomIndexChooser+1).ToString() }, correctAnswers: new[] { numbers[randomIndexChooser].ToString() }, preferredWrongAnswers: new[] { Rnd.Range(1, 101).ToString() })));
+        addQuestions(module, (makeQuestion(Question.NumberedButtonsLabels, _NumberedButtons, new[] { (randomIndexChooser + 1).ToString() }, correctAnswers: new[] { numbers[randomIndexChooser].ToString() }, preferredWrongAnswers: new[] { Rnd.Range(1, 101).ToString() })));
     }
 
     private IEnumerable<object> ProcessOddOneOut(KMBombModule module)
