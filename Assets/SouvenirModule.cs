@@ -9805,7 +9805,7 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         if (keypadButtons.Length != 9 || keypadPhysical.Length != 9 || placedX.Length != 9)
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Tic-Tac-Toe because one of the arrays has an unexpected length (expected 9): {1}, {2}, {3}.", _moduleId, keypadButtons.Length, keypadPhysical.Length, placedX.Length);
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Tic Tac Toe because one of the arrays has an unexpected length (expected 9): {1}, {2}, {3}.", _moduleId, keypadButtons.Length, keypadPhysical.Length, placedX.Length);
             yield break;
         }
 
