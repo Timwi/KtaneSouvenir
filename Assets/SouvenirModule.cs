@@ -525,7 +525,11 @@ public class SouvenirModule : MonoBehaviour
                 if (config != null)
                 {
                     var dictionary = JsonConvert.DeserializeObject<IDictionary<string, object>>(ModSettings.Settings);
-                    rewriteFile = !dictionary.ContainsKey("ExcludeIgnoredModules") || !dictionary.ContainsKey("ExcludeSouvenir");
+                    object key;
+                    // Rewrite the file if any keys listed in TweaksEditorSettings are not in it.
+                    rewriteFile = ((List<Dictionary<string, object>>) Config.TweaksEditorSettings[0]["Listings"])
+                        .Any(o => o.TryGetValue("Key", out key) && !dictionary.ContainsKey((string) key));
+                    config.UpdateExcludedModules();
                 }
                 else
                 {
@@ -658,7 +662,11 @@ public class SouvenirModule : MonoBehaviour
                 var module = gameObject.GetComponent<KMBombModule>();
                 if (module != null)
                 {
-                    if (module.ModuleType == _Souvenir ? !config.ExcludeSouvenir : (!config.ExcludeIgnoredModules || !ignoredModules.Contains(module.ModuleDisplayName)))
+                    if ((config.ExcludeIgnoredModules && ignoredModules.Contains(module.ModuleDisplayName)) || config.ExcludedModules.Contains(module.ModuleType))
+                    {
+                        Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because it is excluded in the mod settings.", _moduleId, module.ModuleDisplayName);
+                    }
+                    else
                     {
                         StartCoroutine(ProcessModule(module));
                     }
