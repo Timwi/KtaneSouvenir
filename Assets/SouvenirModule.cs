@@ -214,6 +214,7 @@ public class SouvenirModule : MonoBehaviour
     const string _OrangeArrows = "orangeArrowsModule";
     const string _OrderedKeys = "orderedKeys";
     const string _OrientationCube = "OrientationCube";
+    const string _Palindromes = "palindromes";
     const string _PassportControl = "passportControl";
     const string _PatternCube = "PatternCubeModule";
     const string _PerspectivePegs = "spwizPerspectivePegs";
@@ -433,6 +434,7 @@ public class SouvenirModule : MonoBehaviour
             { _OrangeArrows, ProcessOrangeArrows },
             { _OrderedKeys, ProcessOrderedKeys },
             { _OrientationCube, ProcessOrientationCube },
+            { _Palindromes, ProcessPalindromes },
             { _PassportControl, ProcessPassportControl },
             { _PatternCube, ProcessPatternCube },
             { _PerspectivePegs, ProcessPerspectivePegs },
@@ -7152,6 +7154,40 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_OrientationCube);
 
         addQuestion(module, Question.OrientationCubeInitialObserverPosition, correctAnswers: new[] { new[] { "front", "left", "back", "right" }[initialAnglePos] });
+    }
+
+    private IEnumerable<object> ProcessPalindromes(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Palindromes");
+        var fldSolved = GetField<bool>(comp, "isSolved");
+        var fldX = GetField<string>(comp, "x");
+        var fldY = GetField<string>(comp, "y");
+        var fldZ = GetField<string>(comp, "z");
+        var fldN = GetField<string>(comp, "n");
+
+        if (comp == null || fldSolved == null || fldX == null || fldY == null || fldZ == null || fldN == null)
+            yield break;
+
+        yield return null;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_Palindromes);
+
+        var vars = new[] { fldN, fldX, fldY, fldZ };
+        byte randomVar = (byte)Rnd.Range(0, vars.Length);
+        byte randomInd = (byte) Rnd.Range(0, randomVar < 2 ? 5 : 4);  // 5 if x or n, else 4
+        string numString = vars[randomVar].Get();
+        char digit = numString[numString.Length - 1 - randomInd];
+        if (digit < '0' || digit > '9')
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Palindromes because the chosen character was unexpected ('{1}').", digit);
+            yield break;
+        }
+
+        string[] labels = new string[] { "the screen", "X", "Y", "Z" };
+        addQuestion(module, Question.PalindromesNumbers, new[] { labels[randomVar], ordinal(randomInd + 1) }, correctAnswers: new[] { digit.ToString() });
     }
 
     private IEnumerable<object> ProcessPassportControl(KMBombModule module)
