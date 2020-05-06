@@ -10863,4 +10863,20 @@ public class SouvenirModule : MonoBehaviour
             yield return "awardpoints 1";
         yield return new[] { Answers[number - 1] };
     }
+
+    IEnumerator TwitchHandleForcedSolve()
+    {
+        while (true)
+        {
+            while (_currentQuestion == null)
+            {
+                if (_isSolved)
+                    yield break;
+                yield return true;
+            }
+
+            Answers[_currentQuestion.CorrectIndex].OnInteract();
+            yield return new WaitForSeconds(.1f);
+        }
+    }
 }
