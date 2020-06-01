@@ -127,6 +127,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Creation = "CreationModule";
     const string _CrypticCycle = "crypticCycle";
     const string _Cube = "cube";
+    const string _DACHMaze = "DACH";
     const string _DeckOfManyThings = "deckOfManyThings";
     const string _DecoloredSquares = "DecoloredSquaresModule";
     const string _DiscoloredSquares = "DiscoloredSquaresModule";
@@ -347,6 +348,7 @@ public class SouvenirModule : MonoBehaviour
             { _Creation, ProcessCreation },
             { _CrypticCycle, ProcessCrypticCycle },
             { _Cube, ProcessCube },
+            { _DACHMaze, ProcessDACHMaze },
             { _DeckOfManyThings, ProcessDeckOfManyThings },
             { _DecoloredSquares, ProcessDecoloredSquares },
             { _DiscoloredSquares, ProcessDiscoloredSquares },
@@ -1205,18 +1207,27 @@ public class SouvenirModule : MonoBehaviour
 
     private FieldInfo<T> GetFieldImpl<T>(object target, Type targetType, string name, bool isPublic, BindingFlags bindingFlags)
     {
-        var fld = targetType.GetField(name, (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | bindingFlags);
-        if (fld == null)
+        FieldInfo fld;
+        while (targetType != null && targetType != typeof(object))
         {
+            fld = targetType.GetField(name, (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | bindingFlags);
+            if (fld != null)
+                goto found;
+
             // In case it’s actually an auto-implemented property and not a field.
             fld = targetType.GetField("<" + name + ">k__BackingField", BindingFlags.NonPublic | bindingFlags);
-            if (fld == null)
-            {
-                Debug.LogFormat("<Souvenir #{3}> Type {0} does not contain {1} field {2}. Fields are: {4}", targetType, isPublic ? "public" : "non-public", name, _moduleId,
-                    targetType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(f => string.Format("{0} {1} {2}", f.IsPublic ? "public" : "private", f.FieldType.FullName, f.Name)).JoinString(", "));
-                return null;
-            }
+            if (fld != null)
+                goto found;
+
+            // Reflection won’t return private fields in base classes unless we check those explicitly
+            targetType = targetType.BaseType;
         }
+
+        Debug.LogFormat("<Souvenir #{3}> Type {0} does not contain {1} field {2}. Fields are: {4}", targetType, isPublic ? "public" : "non-public", name, _moduleId,
+            targetType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(f => string.Format("{0} {1} {2}", f.IsPublic ? "public" : "private", f.FieldType.FullName, f.Name)).JoinString(", "));
+        return null;
+
+        found:
         if (!typeof(T).IsAssignableFrom(fld.FieldType))
         {
             Debug.LogFormat("<Souvenir #{5}> Type {0} has {1} field {2} of type {3} but expected type {4}.", targetType, isPublic ? "public" : "non-public", name, fld.FieldType.FullName, typeof(T).FullName, _moduleId);
@@ -3234,6 +3245,11 @@ public class SouvenirModule : MonoBehaviour
         var allRotations = rotations.Select(r => rotationNames[r]).ToArray();
 
         addQuestions(module, rotations.Select((rot, ix) => makeQuestion(Question.CubeRotations, _Cube, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { rotationNames[rot] }, preferredWrongAnswers: allRotations)));
+    }
+
+    private IEnumerable<object> ProcessDACHMaze(KMBombModule module)
+    {
+        return ProcessWorldMaze(module, "DACHMaze", _DACHMaze, Question.DACHMazeOrigin);
     }
 
     private IEnumerable<object> ProcessDeckOfManyThings(KMBombModule module)
@@ -7176,7 +7192,7 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_Palindromes);
 
         var vars = new[] { fldN, fldX, fldY, fldZ };
-        byte randomVar = (byte)Rnd.Range(0, vars.Length);
+        byte randomVar = (byte) Rnd.Range(0, vars.Length);
         byte randomInd = (byte) Rnd.Range(0, randomVar < 2 ? 5 : 4);  // 5 if x or n, else 4
         string numString = vars[randomVar].Get();
         char digit = numString[numString.Length - 1 - randomInd];
@@ -10175,30 +10191,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessUSAMaze(KMBombModule module)
     {
-        var comp = GetComponent(module, "USA");
-        var fldOrigin = GetField<int>(comp, "origin");
-        var fldActive = GetField<bool>(comp, "isActive");
-
-        if (comp == null || fldOrigin == null || fldActive == null)
-            yield break;
-
-        // wait for isActive to become true
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
-
-        while (fldActive.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_USAMaze);
-
-        var states = new[] { "Alaska", "Alabama", "Arkansas", "Arizona", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Iowa", "Idaho", "Illinois", "Indiana", "Kansas", "Kentucky", "Louisiana", "Massachusetts", "Maryland", "Maine", "Michigan", "Minnesota", "Missouri", "Mississippi", "Montana", "North Carolina", "North Dakota", "Nebraska", "New Hampshire", "New Jersey", "New Mexico", "Nevada", "New York", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Virginia", "Vermont", "Washington", "Wisconsin", "West Virginia", "Wyoming" };
-        var origin = fldOrigin.Get();
-        if (origin < 0 || origin >= states.Length)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning USA Maze because 'origin' had an unexpected value {1}.", _moduleId, origin);
-            yield break;
-        }
-
-        addQuestions(module, makeQuestion(Question.USAMazeOrigin, _USAMaze, correctAnswers: new[] { states[origin] }));
+        return ProcessWorldMaze(module, "USAMaze", _USAMaze, Question.USAMazeOrigin);
     }
 
     private IEnumerable<object> ProcessVaricoloredSquares(KMBombModule module)
@@ -10512,6 +10505,42 @@ public class SouvenirModule : MonoBehaviour
             preferredWrongAnswers[i] = counts[i].ToString();
         preferredWrongAnswers[3] = (counts[color] == 0 ? 1 : counts[color] - 1).ToString();
         addQuestion(module, Question.WireSequenceColorCount, new[] { colorWord }, new[] { counts[color].ToString() }, preferredWrongAnswers);
+    }
+
+    // Function used by modules in the World Mazes mod (currently: USA Maze, DACH Maze)
+    private IEnumerable<object> ProcessWorldMaze(KMBombModule module, string script, string moduleCode, Question question)
+    {
+        var comp = GetComponent(module, script);
+        var fldOrigin = GetField<string>(comp, "_originState");
+        var fldActive = GetField<bool>(comp, "_isActive");
+        var fldStates = GetStaticField<string[]>(comp.GetType(), "_states");  // This relies on the fact that USA Maze and DACH Maze both have a field with the same name. It is not inherited from the base class.
+        var mthGetName = GetMethod<string>(comp, "GetStateFullName", 1);
+
+        if (comp == null || fldOrigin == null || fldActive == null || fldStates == null || mthGetName == null)
+            yield break;
+
+        // wait for activation
+        while (!_isActivated)
+            yield return new WaitForSeconds(.1f);
+
+        // then wait for the module to get solved
+        while (fldActive.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(moduleCode);
+
+        var stateCodes = fldStates.Get();
+        if (stateCodes == null)
+            yield break;
+
+        var states = stateCodes.Select(code => mthGetName.Invoke(code)).ToArray();
+        var origin = mthGetName.Invoke(fldOrigin.Get());
+        if (!states.Contains(origin))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because '_originState' was not contained in the list of all states ({2} not in: {3}).", _moduleId, module.ModuleDisplayName, origin, states.JoinString(", "));
+            yield break;
+        }
+
+        addQuestions(module, makeQuestion(question, moduleCode, correctAnswers: new[] { origin }, preferredWrongAnswers: states));
     }
 
     private IEnumerable<object> ProcessYahtzee(KMBombModule module)
