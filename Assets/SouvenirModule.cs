@@ -5110,7 +5110,7 @@ public class SouvenirModule : MonoBehaviour
 
         if (multipliers.Length < 2 || multipliers.Length > 5 || multipliers.Any(multipler => multipler < 2 || multipler > 7))
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning LED Encryption because layerMultipliers has unxepected length {1} / Values [{2}] (Expected length 2-5, Expected values 2-7)", _moduleId, multipliers.Length, multipliers.Select(x => x.ToString()).JoinString(", "));
+            Debug.LogFormat("<Souvenir #{0}> Abandoning LED Encryption because layerMultipliers has unexepected length {1} / Values [{2}] (Expected length 2-5, Expected values 2-7)", _moduleId, multipliers.Length, multipliers.Select(x => x.ToString()).JoinString(", "));
             yield break;
         }
 
@@ -5133,7 +5133,7 @@ public class SouvenirModule : MonoBehaviour
         }
 
         _modulesSolved.IncSafe(_LEDEncryption);
-        addQuestions(module, Enumerable.Range(0, pressedLetters.Length)
+        addQuestions(module, Enumerable.Range(0, pressedLetters.Length - 1)
             .Where(i => pressedLetters[i] != null)
             .Select(stage => makeQuestion(Question.LEDEncryptionPressedLetters, _LEDEncryption, new[] { ordinal(stage + 1) }, new[] { pressedLetters[stage] }, wrongLetters.ToArray())));
     }
