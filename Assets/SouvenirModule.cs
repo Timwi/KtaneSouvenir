@@ -48,6 +48,9 @@ public class SouvenirModule : MonoBehaviour
     public Mesh HighlightShort;
     public Mesh HighlightLong;
 
+    /// <summary>May be set to a question name while playing the test harness to skip to that question.</summary>
+    public string TestQuestion;
+
     public static readonly string[] _defaultIgnoredModules = {
         "Souvenir",
         "Forget Everything",
@@ -127,6 +130,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Creation = "CreationModule";
     const string _CrypticCycle = "crypticCycle";
     const string _Cube = "cube";
+    const string _DACHMaze = "DACH";
     const string _DeckOfManyThings = "deckOfManyThings";
     const string _DecoloredSquares = "DecoloredSquaresModule";
     const string _DiscoloredSquares = "DiscoloredSquaresModule";
@@ -348,6 +352,7 @@ public class SouvenirModule : MonoBehaviour
             { _Creation, ProcessCreation },
             { _CrypticCycle, ProcessCrypticCycle },
             { _Cube, ProcessCube },
+            { _DACHMaze, ProcessDACHMaze },
             { _DeckOfManyThings, ProcessDeckOfManyThings },
             { _DecoloredSquares, ProcessDecoloredSquares },
             { _DiscoloredSquares, ProcessDiscoloredSquares },
@@ -714,80 +719,7 @@ public class SouvenirModule : MonoBehaviour
             if (Application.isEditor)
             {
                 // Testing in Unity
-                Debug.LogFormat("<Souvenir #{0}> Entering Unity testing mode.", _moduleId);
-                var questions = Ut.GetEnumValues<Question>();
-                var curQuestion = 0;
-                var curOrd = 0;
-                var curExample = 0;
-                Action showQuestion = () =>
-                {
-                    SouvenirQuestionAttribute attr;
-                    if (!_attributes.TryGetValue(questions[curQuestion], out attr))
-                    {
-                        Debug.LogFormat("<Souvenir #{1}> Error: Question {0} has no attribute.", questions[curQuestion], _moduleId);
-                        return;
-                    }
-                    if (attr.ExampleExtraFormatArguments != null && attr.ExampleExtraFormatArguments.Length > 0 && attr.ExampleExtraFormatArgumentGroupSize > 0)
-                    {
-                        var numExamples = attr.ExampleExtraFormatArguments.Length / attr.ExampleExtraFormatArgumentGroupSize;
-                        curExample = (curExample % numExamples + numExamples) % numExamples;
-                    }
-                    var fmt = new object[attr.ExampleExtraFormatArgumentGroupSize + 1];
-                    fmt[0] = curOrd == 0 ? attr.AddThe ? "The\u00a0" + attr.ModuleName : attr.ModuleName : string.Format("the {0} you solved {1}", attr.ModuleName, ordinal(curOrd));
-                    for (int i = 0; i < attr.ExampleExtraFormatArgumentGroupSize; i++)
-                        fmt[i + 1] = attr.ExampleExtraFormatArguments[curExample * attr.ExampleExtraFormatArgumentGroupSize + i];
-                    try
-                    {
-                        switch (attr.Type)
-                        {
-                            case AnswerType.Sprites:
-                                SetQuestion(new QandASprite(
-                                    module: attr.ModuleNameWithThe,
-                                    question: string.Format(attr.QuestionText, fmt),
-                                    correct: 0,
-                                    answers: ExampleSprites));
-                                break;
-
-                            default:
-                                SetQuestion(new QandAText(
-                                    module: attr.ModuleNameWithThe,
-                                    question: string.Format(attr.QuestionText, fmt),
-                                    correct: 0,
-                                    answers: (attr.AllAnswers ?? attr.ExampleAnswers).ToList().Shuffle().Take(attr.NumAnswers).ToArray(),
-                                    font: Fonts[(int) attr.Type],
-                                    fontTexture: FontTextures[(int) attr.Type],
-                                    fontMaterial: FontMaterial));
-                                break;
-                        }
-                    }
-                    catch (FormatException e)
-                    {
-                        Debug.LogFormat("<Souvenir #{3}> FormatException {0}\nQuestionText={1}\nfmt=[{2}]", e.Message, attr.QuestionText, fmt.JoinString(", ", "\"", "\""), _moduleId);
-                    }
-                };
-                showQuestion();
-
-                setAnswerHandler(0, _ =>
-                {
-                    curQuestion = (curQuestion + questions.Length - 1) % questions.Length;
-                    curExample = 0;
-                    curOrd = 0;
-                    showQuestion();
-                });
-                setAnswerHandler(1, _ =>
-                {
-                    curQuestion = (curQuestion + 1) % questions.Length;
-                    curExample = 0;
-                    curOrd = 0;
-                    showQuestion();
-                });
-                setAnswerHandler(2, _ => { if (curOrd > 0) curOrd--; showQuestion(); });
-                setAnswerHandler(3, _ => { curOrd++; showQuestion(); });
-                setAnswerHandler(4, _ => { curExample--; showQuestion(); });
-                setAnswerHandler(5, _ => { curExample++; showQuestion(); });
-
-                if (TwitchPlaysActive)
-                    ActivateTwitchPlaysNumbers();
+                StartCoroutine(TestModeCoroutine());
             }
             else
             {
@@ -798,6 +730,107 @@ public class SouvenirModule : MonoBehaviour
                 StartCoroutine(Play());
             }
         };
+    }
+
+    private IEnumerator TestModeCoroutine()
+    {
+        Debug.LogFormat(this, "<Souvenir #{0}> Entering Unity testing mode. To select a question, set SouvenirModule.TestQuestion and click on the game view.", _moduleId);
+        var questions = Ut.GetEnumValues<Question>();
+        var curQuestion = 0;
+        var curOrd = 0;
+        var curExample = 0;
+        Action showQuestion = () =>
+        {
+            SouvenirQuestionAttribute attr;
+            if (!_attributes.TryGetValue(questions[curQuestion], out attr))
+            {
+                Debug.LogErrorFormat("<Souvenir #{1}> Error: Question {0} has no attribute.", questions[curQuestion], _moduleId);
+                return;
+            }
+            if (attr.ExampleExtraFormatArguments != null && attr.ExampleExtraFormatArguments.Length > 0 && attr.ExampleExtraFormatArgumentGroupSize > 0)
+            {
+                var numExamples = attr.ExampleExtraFormatArguments.Length / attr.ExampleExtraFormatArgumentGroupSize;
+                curExample = (curExample % numExamples + numExamples) % numExamples;
+            }
+            var fmt = new object[attr.ExampleExtraFormatArgumentGroupSize + 1];
+            fmt[0] = curOrd == 0 ? attr.AddThe ? "The\u00a0" + attr.ModuleName : attr.ModuleName : string.Format("the {0} you solved {1}", attr.ModuleName, ordinal(curOrd));
+            for (int i = 0; i < attr.ExampleExtraFormatArgumentGroupSize; i++)
+                fmt[i + 1] = attr.ExampleExtraFormatArguments[curExample * attr.ExampleExtraFormatArgumentGroupSize + i];
+            try
+            {
+                switch (attr.Type)
+                {
+                    case AnswerType.Sprites:
+                        SetQuestion(new QandASprite(
+                            module: attr.ModuleNameWithThe,
+                            question: string.Format(attr.QuestionText, fmt),
+                            correct: 0,
+                            answers: ExampleSprites));
+                        break;
+
+                    default:
+                        SetQuestion(new QandAText(
+                            module: attr.ModuleNameWithThe,
+                            question: string.Format(attr.QuestionText, fmt),
+                            correct: 0,
+                            answers: (attr.AllAnswers ?? attr.ExampleAnswers).ToList().Shuffle().Take(attr.NumAnswers).ToArray(),
+                            font: Fonts[(int) attr.Type],
+                            fontTexture: FontTextures[(int) attr.Type],
+                            fontMaterial: FontMaterial));
+                        break;
+                }
+            }
+            catch (FormatException e)
+            {
+                Debug.LogErrorFormat("<Souvenir #{3}> FormatException {0}\nQuestionText={1}\nfmt=[{2}]", e.Message, attr.QuestionText, fmt.JoinString(", ", "\"", "\""), _moduleId);
+            }
+        };
+        showQuestion();
+
+        setAnswerHandler(0, _ =>
+        {
+            curQuestion = (curQuestion + questions.Length - 1) % questions.Length;
+            curExample = 0;
+            curOrd = 0;
+            showQuestion();
+        });
+        setAnswerHandler(1, _ =>
+        {
+            curQuestion = (curQuestion + 1) % questions.Length;
+            curExample = 0;
+            curOrd = 0;
+            showQuestion();
+        });
+        setAnswerHandler(2, _ => { if (curOrd > 0) curOrd--; showQuestion(); });
+        setAnswerHandler(3, _ => { curOrd++; showQuestion(); });
+        setAnswerHandler(4, _ => { curExample--; showQuestion(); });
+        setAnswerHandler(5, _ => { curExample++; showQuestion(); });
+
+        if (TwitchPlaysActive)
+            ActivateTwitchPlaysNumbers();
+
+        while (true)
+        {
+            if (TestQuestion != null && Application.isFocused)
+            {
+                TestQuestion = TestQuestion.Trim();
+                if (TestQuestion.Length > 0)
+                {
+                    var i = questions.IndexOf(q => q.ToString().StartsWith(TestQuestion));
+                    if (i < 0)
+                        Debug.LogFormat(this, "<Souvenir #{0}> No question matching '{1}' was found.", _moduleId, TestQuestion);
+                    else
+                    {
+                        curQuestion = i;
+                        curExample = 0;
+                        curOrd = 0;
+                        showQuestion();
+                    }
+                }
+                TestQuestion = null;
+            }
+            yield return null;
+        }
     }
 
     void setAnswerHandler(int index, Action<int> handler)
@@ -1207,18 +1240,27 @@ public class SouvenirModule : MonoBehaviour
 
     private FieldInfo<T> GetFieldImpl<T>(object target, Type targetType, string name, bool isPublic, BindingFlags bindingFlags)
     {
-        var fld = targetType.GetField(name, (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | bindingFlags);
-        if (fld == null)
+        FieldInfo fld;
+        while (targetType != null && targetType != typeof(object))
         {
+            fld = targetType.GetField(name, (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | bindingFlags);
+            if (fld != null)
+                goto found;
+
             // In case it’s actually an auto-implemented property and not a field.
             fld = targetType.GetField("<" + name + ">k__BackingField", BindingFlags.NonPublic | bindingFlags);
-            if (fld == null)
-            {
-                Debug.LogFormat("<Souvenir #{3}> Type {0} does not contain {1} field {2}. Fields are: {4}", targetType, isPublic ? "public" : "non-public", name, _moduleId,
-                    targetType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(f => string.Format("{0} {1} {2}", f.IsPublic ? "public" : "private", f.FieldType.FullName, f.Name)).JoinString(", "));
-                return null;
-            }
+            if (fld != null)
+                goto found;
+
+            // Reflection won’t return private fields in base classes unless we check those explicitly
+            targetType = targetType.BaseType;
         }
+
+        Debug.LogFormat("<Souvenir #{3}> Type {0} does not contain {1} field {2}. Fields are: {4}", targetType, isPublic ? "public" : "non-public", name, _moduleId,
+            targetType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(f => string.Format("{0} {1} {2}", f.IsPublic ? "public" : "private", f.FieldType.FullName, f.Name)).JoinString(", "));
+        return null;
+
+        found:
         if (!typeof(T).IsAssignableFrom(fld.FieldType))
         {
             Debug.LogFormat("<Souvenir #{5}> Type {0} has {1} field {2} of type {3} but expected type {4}.", targetType, isPublic ? "public" : "non-public", name, fld.FieldType.FullName, typeof(T).FullName, _moduleId);
@@ -3238,6 +3280,11 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, rotations.Select((rot, ix) => makeQuestion(Question.CubeRotations, _Cube, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { rotationNames[rot] }, preferredWrongAnswers: allRotations)));
     }
 
+    private IEnumerable<object> ProcessDACHMaze(KMBombModule module)
+    {
+        return ProcessWorldMaze(module, "DACHMaze", _DACHMaze, Question.DACHMazeOrigin);
+    }
+
     private IEnumerable<object> ProcessDeckOfManyThings(KMBombModule module)
     {
         var comp = GetComponent(module, "deckOfManyThingsScript");
@@ -5141,7 +5188,7 @@ public class SouvenirModule : MonoBehaviour
 
         if (multipliers.Length < 2 || multipliers.Length > 5 || multipliers.Any(multipler => multipler < 2 || multipler > 7))
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning LED Encryption because layerMultipliers has unxepected length {1} / Values [{2}] (Expected length 2-5, Expected values 2-7)", _moduleId, multipliers.Length, multipliers.Select(x => x.ToString()).JoinString(", "));
+            Debug.LogFormat("<Souvenir #{0}> Abandoning LED Encryption because layerMultipliers has unexepected length {1} / Values [{2}] (Expected length 2-5, Expected values 2-7)", _moduleId, multipliers.Length, multipliers.Select(x => x.ToString()).JoinString(", "));
             yield break;
         }
 
@@ -5164,7 +5211,7 @@ public class SouvenirModule : MonoBehaviour
         }
 
         _modulesSolved.IncSafe(_LEDEncryption);
-        addQuestions(module, Enumerable.Range(0, pressedLetters.Length)
+        addQuestions(module, Enumerable.Range(0, pressedLetters.Length - 1)
             .Where(i => pressedLetters[i] != null)
             .Select(stage => makeQuestion(Question.LEDEncryptionPressedLetters, _LEDEncryption, new[] { ordinal(stage + 1) }, new[] { pressedLetters[stage] }, wrongLetters.ToArray())));
     }
@@ -5686,12 +5733,12 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Maze);
 
-        var fldX = GetField<int>(currentCell, "X", true);
-        var fldY = GetField<int>(currentCell, "Y", true);
-        if (fldX == null || fldY == null) yield break;
+        var coordinateChoice = Rnd.Range(0, 2);
+        var fldCoordinate = GetField<int>(currentCell, coordinateChoice == 0 ? "X" : "Y", true);
+        if (fldCoordinate == null) yield break;
 
-        addQuestion(module, Question.MazeStartingPosition, correctAnswers: new[] { new string(new[] { (char) ('A' + fldX.Get()), (char) ('1' + fldY.Get()) }) });
-        yield break;
+        addQuestion(module, Question.MazeStartingPosition, formatArguments: coordinateChoice == 0 ? new[] { "column", "left" } : new[] { "row", "top" },
+            correctAnswers: new[] { (fldCoordinate.Get() + 1).ToString() });
     }
 
     private IEnumerable<object> ProcessMaze3(KMBombModule module)
@@ -6811,11 +6858,11 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_NotButton);
         if (lightColor != 0)
         {
-            var strings = _attributes[Question.NotButtonLightColour].AllAnswers;
+            var strings = _attributes[Question.NotButtonLightColor].AllAnswers;
             if (lightColor <= 0 || lightColor > strings.Length)
                 Debug.LogFormat("<Souvenir #{0}> Abandoning Not the Button because LightColour is out of range ({1}).", _moduleId, lightColor);
             else
-                addQuestion(module, Question.NotButtonLightColour, correctAnswers: new[] { strings[lightColor - 1] });
+                addQuestion(module, Question.NotButtonLightColor, correctAnswers: new[] { strings[lightColor - 1] });
         }
         else if (mashCount > 1)
         {
@@ -6851,11 +6898,11 @@ public class SouvenirModule : MonoBehaviour
 
         var questions = new QandA[2];
         var colour = (int) colours.GetValue(stage);
-        var strings = _attributes[Question.NotKeypadColour].AllAnswers;
+        var strings = _attributes[Question.NotKeypadColor].AllAnswers;
         if (colour <= 0 || colour > strings.Length)
             Debug.LogFormat("<Souvenir #{0}> Abandoning a question for Not Keypad because colour index is out of range ({1}).", _moduleId, colour);
         else
-            questions[0] = makeQuestion(Question.NotKeypadColour, _NotKeypad, new[] { ordinal(stage + 1) }, new[] { strings[colour - 1] });
+            questions[0] = makeQuestion(Question.NotKeypadColor, _NotKeypad, new[] { ordinal(stage + 1) }, new[] { strings[colour - 1] });
 
         var symbol = (int) symbols.GetValue(buttons[stage]);
         if (symbol < 0 || symbol > 30)
@@ -7254,7 +7301,7 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_Palindromes);
 
         var vars = new[] { fldN, fldX, fldY, fldZ };
-        byte randomVar = (byte)Rnd.Range(0, vars.Length);
+        byte randomVar = (byte) Rnd.Range(0, vars.Length);
         byte randomInd = (byte) Rnd.Range(0, randomVar < 2 ? 5 : 4);  // 5 if x or n, else 4
         string numString = vars[randomVar].Get();
         char digit = numString[numString.Length - 1 - randomInd];
@@ -10253,30 +10300,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessUSAMaze(KMBombModule module)
     {
-        var comp = GetComponent(module, "USA");
-        var fldOrigin = GetField<int>(comp, "origin");
-        var fldActive = GetField<bool>(comp, "isActive");
-
-        if (comp == null || fldOrigin == null || fldActive == null)
-            yield break;
-
-        // wait for isActive to become true
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
-
-        while (fldActive.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_USAMaze);
-
-        var states = new[] { "Alaska", "Alabama", "Arkansas", "Arizona", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Iowa", "Idaho", "Illinois", "Indiana", "Kansas", "Kentucky", "Louisiana", "Massachusetts", "Maryland", "Maine", "Michigan", "Minnesota", "Missouri", "Mississippi", "Montana", "North Carolina", "North Dakota", "Nebraska", "New Hampshire", "New Jersey", "New Mexico", "Nevada", "New York", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Virginia", "Vermont", "Washington", "Wisconsin", "West Virginia", "Wyoming" };
-        var origin = fldOrigin.Get();
-        if (origin < 0 || origin >= states.Length)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning USA Maze because 'origin' had an unexpected value {1}.", _moduleId, origin);
-            yield break;
-        }
-
-        addQuestions(module, makeQuestion(Question.USAMazeOrigin, _USAMaze, correctAnswers: new[] { states[origin] }));
+        return ProcessWorldMaze(module, "USAMaze", _USAMaze, Question.USAMazeOrigin);
     }
 
     private IEnumerable<object> ProcessVaricoloredSquares(KMBombModule module)
@@ -10590,6 +10614,42 @@ public class SouvenirModule : MonoBehaviour
             preferredWrongAnswers[i] = counts[i].ToString();
         preferredWrongAnswers[3] = (counts[color] == 0 ? 1 : counts[color] - 1).ToString();
         addQuestion(module, Question.WireSequenceColorCount, new[] { colorWord }, new[] { counts[color].ToString() }, preferredWrongAnswers);
+    }
+
+    // Function used by modules in the World Mazes mod (currently: USA Maze, DACH Maze)
+    private IEnumerable<object> ProcessWorldMaze(KMBombModule module, string script, string moduleCode, Question question)
+    {
+        var comp = GetComponent(module, script);
+        var fldOrigin = GetField<string>(comp, "_originState");
+        var fldActive = GetField<bool>(comp, "_isActive");
+        var fldStates = GetStaticField<string[]>(comp.GetType(), "_states");  // This relies on the fact that USA Maze and DACH Maze both have a field with the same name. It is not inherited from the base class.
+        var mthGetName = GetMethod<string>(comp, "GetStateFullName", 1);
+
+        if (comp == null || fldOrigin == null || fldActive == null || fldStates == null || mthGetName == null)
+            yield break;
+
+        // wait for activation
+        while (!_isActivated)
+            yield return new WaitForSeconds(.1f);
+
+        // then wait for the module to get solved
+        while (fldActive.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(moduleCode);
+
+        var stateCodes = fldStates.Get();
+        if (stateCodes == null)
+            yield break;
+
+        var states = stateCodes.Select(code => mthGetName.Invoke(code)).ToArray();
+        var origin = mthGetName.Invoke(fldOrigin.Get());
+        if (!states.Contains(origin))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because '_originState' was not contained in the list of all states ({2} not in: {3}).", _moduleId, module.ModuleDisplayName, origin, states.JoinString(", "));
+            yield break;
+        }
+
+        addQuestions(module, makeQuestion(question, moduleCode, correctAnswers: new[] { origin }, preferredWrongAnswers: states));
     }
 
     private IEnumerable<object> ProcessYahtzee(KMBombModule module)
@@ -10940,5 +11000,21 @@ public class SouvenirModule : MonoBehaviour
         if (_currentQuestion.CorrectIndex == number - 1)
             yield return "awardpoints 1";
         yield return new[] { Answers[number - 1] };
+    }
+
+    IEnumerator TwitchHandleForcedSolve()
+    {
+        while (true)
+        {
+            while (_currentQuestion == null)
+            {
+                if (_isSolved)
+                    yield break;
+                yield return true;
+            }
+
+            Answers[_currentQuestion.CorrectIndex].OnInteract();
+            yield return new WaitForSeconds(.1f);
+        }
     }
 }
