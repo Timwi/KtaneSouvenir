@@ -615,14 +615,14 @@ namespace Souvenir
         [SouvenirQuestion("What was the label of the correct button in the last successful round of {0}?", "N&Ms", 6, "NNNNN", "MNNNN", "NMNNN", "MMNNN", "NNMNN", "MNMNN", "NMMNN", "MMMNN", "NNNMN", "MNNMN", "NMNMN", "MMNMN", "NNMMN", "MNMMN", "NMMMN", "MMMMN", "NNNNM", "MNNNM", "NMNNM", "MMNNM", "NNMNM", "MNMNM", "NMMNM", "MMMNM", "NNNMM", "MNNMM", "NMNMM", "MMNMM", "NNMMM", "MNMMM", "NMMMM", "MMMMM")]
         NandMsAnswer,
 
-        [SouvenirQuestion("What colours did the light glow when you solved {0}?", "Not the Button", 6, "white", "red", "yellow", "green", "blue", "white/red", "white/yellow", "white/green", "white/blue", "red/yellow", "red/green", "red/blue", "yellow/green", "yellow/blue", "green/blue")]
-        NotButtonLightColour,
+        [SouvenirQuestion("What colors did the light glow when you solved {0}?", "Not the Button", 6, "white", "red", "yellow", "green", "blue", "white/red", "white/yellow", "white/green", "white/blue", "red/yellow", "red/green", "red/blue", "yellow/green", "yellow/blue", "green/blue")]
+        NotButtonLightColor,
         [SouvenirQuestion("How many times did you press the button when you solved {0}?", "Not the Button", 6, ExampleAnswers = new[] { "10", "20", "30", "40", "50", "60" })]
         NotButtonMashCount,
 
-        [SouvenirQuestion("What colour flashed {1} in the final sequence in {0}?", "Not Keypad", 6, "red", "orange", "yellow", "green", "cyan", "blue", "purple", "magenta", "pink", "brown", "grey", "white",
+        [SouvenirQuestion("What color flashed {1} in the final sequence in {0}?", "Not Keypad", 6, "red", "orange", "yellow", "green", "cyan", "blue", "purple", "magenta", "pink", "brown", "grey", "white",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        NotKeypadColour,
+        NotKeypadColor,
         [SouvenirQuestion("Which symbol was on the button that flashed {1} in the final sequence in {0}?", "Not Keypad", 4, Type = AnswerType.Sprites,
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NotKeypadSymbol,
@@ -696,7 +696,7 @@ namespace Souvenir
         [SouvenirQuestion("Which symbol was highlighted in {0}?", "Pattern Cube", 6, Type = AnswerType.Sprites)]
         PatternCubeHighlightedSymbol,
 
-        [SouvenirQuestion("Which peg had three sides of the key colour in {0}?", "Perspective Pegs", 6, null, Type = AnswerType.Sprites)]
+        [SouvenirQuestion("Which peg had three sides of the key color in {0}?", "Perspective Pegs", 6, null, Type = AnswerType.Sprites)]
         PerspectivePegsSolution,
 
         [SouvenirQuestion("What was the {1} digit of the displayed number in {0}?", "Pie", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
@@ -813,7 +813,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "played in the first stage", "added in the second stage", "added in the third stage" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSamplesSamples,
 
-        [SouvenirQuestion("What colour flashed {1} in the final sequence in {0}?", "Simon Says", 4, "red", "yellow", "green", "blue",
+        [SouvenirQuestion("What color flashed {1} in the final sequence in {0}?", "Simon Says", 4, "red", "yellow", "green", "blue",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSaysFlash,
 
