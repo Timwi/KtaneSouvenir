@@ -48,6 +48,9 @@ public class SouvenirModule : MonoBehaviour
     public Mesh HighlightShort;
     public Mesh HighlightLong;
 
+    /// <summary>May be set to a question name while playing the test harness to skip to that question.</summary>
+    public string TestQuestion;
+
     public static readonly string[] _defaultIgnoredModules = {
         "Souvenir",
         "Forget Everything",
@@ -714,80 +717,7 @@ public class SouvenirModule : MonoBehaviour
             if (Application.isEditor)
             {
                 // Testing in Unity
-                Debug.LogFormat("<Souvenir #{0}> Entering Unity testing mode.", _moduleId);
-                var questions = Ut.GetEnumValues<Question>();
-                var curQuestion = 0;
-                var curOrd = 0;
-                var curExample = 0;
-                Action showQuestion = () =>
-                {
-                    SouvenirQuestionAttribute attr;
-                    if (!_attributes.TryGetValue(questions[curQuestion], out attr))
-                    {
-                        Debug.LogFormat("<Souvenir #{1}> Error: Question {0} has no attribute.", questions[curQuestion], _moduleId);
-                        return;
-                    }
-                    if (attr.ExampleExtraFormatArguments != null && attr.ExampleExtraFormatArguments.Length > 0 && attr.ExampleExtraFormatArgumentGroupSize > 0)
-                    {
-                        var numExamples = attr.ExampleExtraFormatArguments.Length / attr.ExampleExtraFormatArgumentGroupSize;
-                        curExample = (curExample % numExamples + numExamples) % numExamples;
-                    }
-                    var fmt = new object[attr.ExampleExtraFormatArgumentGroupSize + 1];
-                    fmt[0] = curOrd == 0 ? attr.AddThe ? "The\u00a0" + attr.ModuleName : attr.ModuleName : string.Format("the {0} you solved {1}", attr.ModuleName, ordinal(curOrd));
-                    for (int i = 0; i < attr.ExampleExtraFormatArgumentGroupSize; i++)
-                        fmt[i + 1] = attr.ExampleExtraFormatArguments[curExample * attr.ExampleExtraFormatArgumentGroupSize + i];
-                    try
-                    {
-                        switch (attr.Type)
-                        {
-                            case AnswerType.Sprites:
-                                SetQuestion(new QandASprite(
-                                    module: attr.ModuleNameWithThe,
-                                    question: string.Format(attr.QuestionText, fmt),
-                                    correct: 0,
-                                    answers: ExampleSprites));
-                                break;
-
-                            default:
-                                SetQuestion(new QandAText(
-                                    module: attr.ModuleNameWithThe,
-                                    question: string.Format(attr.QuestionText, fmt),
-                                    correct: 0,
-                                    answers: (attr.AllAnswers ?? attr.ExampleAnswers).ToList().Shuffle().Take(attr.NumAnswers).ToArray(),
-                                    font: Fonts[(int) attr.Type],
-                                    fontTexture: FontTextures[(int) attr.Type],
-                                    fontMaterial: FontMaterial));
-                                break;
-                        }
-                    }
-                    catch (FormatException e)
-                    {
-                        Debug.LogFormat("<Souvenir #{3}> FormatException {0}\nQuestionText={1}\nfmt=[{2}]", e.Message, attr.QuestionText, fmt.JoinString(", ", "\"", "\""), _moduleId);
-                    }
-                };
-                showQuestion();
-
-                setAnswerHandler(0, _ =>
-                {
-                    curQuestion = (curQuestion + questions.Length - 1) % questions.Length;
-                    curExample = 0;
-                    curOrd = 0;
-                    showQuestion();
-                });
-                setAnswerHandler(1, _ =>
-                {
-                    curQuestion = (curQuestion + 1) % questions.Length;
-                    curExample = 0;
-                    curOrd = 0;
-                    showQuestion();
-                });
-                setAnswerHandler(2, _ => { if (curOrd > 0) curOrd--; showQuestion(); });
-                setAnswerHandler(3, _ => { curOrd++; showQuestion(); });
-                setAnswerHandler(4, _ => { curExample--; showQuestion(); });
-                setAnswerHandler(5, _ => { curExample++; showQuestion(); });
-
-                if (TwitchPlaysActive)
-                    ActivateTwitchPlaysNumbers();
+                StartCoroutine(TestModeCoroutine());
             }
             else
             {
@@ -798,6 +728,107 @@ public class SouvenirModule : MonoBehaviour
                 StartCoroutine(Play());
             }
         };
+    }
+
+    private IEnumerator TestModeCoroutine()
+    {
+        Debug.LogFormat(this, "<Souvenir #{0}> Entering Unity testing mode. To select a question, set SouvenirModule.TestQuestion and click on the game view.", _moduleId);
+        var questions = Ut.GetEnumValues<Question>();
+        var curQuestion = 0;
+        var curOrd = 0;
+        var curExample = 0;
+        Action showQuestion = () =>
+        {
+            SouvenirQuestionAttribute attr;
+            if (!_attributes.TryGetValue(questions[curQuestion], out attr))
+            {
+                Debug.LogErrorFormat("<Souvenir #{1}> Error: Question {0} has no attribute.", questions[curQuestion], _moduleId);
+                return;
+            }
+            if (attr.ExampleExtraFormatArguments != null && attr.ExampleExtraFormatArguments.Length > 0 && attr.ExampleExtraFormatArgumentGroupSize > 0)
+            {
+                var numExamples = attr.ExampleExtraFormatArguments.Length / attr.ExampleExtraFormatArgumentGroupSize;
+                curExample = (curExample % numExamples + numExamples) % numExamples;
+            }
+            var fmt = new object[attr.ExampleExtraFormatArgumentGroupSize + 1];
+            fmt[0] = curOrd == 0 ? attr.AddThe ? "The\u00a0" + attr.ModuleName : attr.ModuleName : string.Format("the {0} you solved {1}", attr.ModuleName, ordinal(curOrd));
+            for (int i = 0; i < attr.ExampleExtraFormatArgumentGroupSize; i++)
+                fmt[i + 1] = attr.ExampleExtraFormatArguments[curExample * attr.ExampleExtraFormatArgumentGroupSize + i];
+            try
+            {
+                switch (attr.Type)
+                {
+                    case AnswerType.Sprites:
+                        SetQuestion(new QandASprite(
+                            module: attr.ModuleNameWithThe,
+                            question: string.Format(attr.QuestionText, fmt),
+                            correct: 0,
+                            answers: ExampleSprites));
+                        break;
+
+                    default:
+                        SetQuestion(new QandAText(
+                            module: attr.ModuleNameWithThe,
+                            question: string.Format(attr.QuestionText, fmt),
+                            correct: 0,
+                            answers: (attr.AllAnswers ?? attr.ExampleAnswers).ToList().Shuffle().Take(attr.NumAnswers).ToArray(),
+                            font: Fonts[(int) attr.Type],
+                            fontTexture: FontTextures[(int) attr.Type],
+                            fontMaterial: FontMaterial));
+                        break;
+                }
+            }
+            catch (FormatException e)
+            {
+                Debug.LogErrorFormat("<Souvenir #{3}> FormatException {0}\nQuestionText={1}\nfmt=[{2}]", e.Message, attr.QuestionText, fmt.JoinString(", ", "\"", "\""), _moduleId);
+            }
+        };
+        showQuestion();
+
+        setAnswerHandler(0, _ =>
+        {
+            curQuestion = (curQuestion + questions.Length - 1) % questions.Length;
+            curExample = 0;
+            curOrd = 0;
+            showQuestion();
+        });
+        setAnswerHandler(1, _ =>
+        {
+            curQuestion = (curQuestion + 1) % questions.Length;
+            curExample = 0;
+            curOrd = 0;
+            showQuestion();
+        });
+        setAnswerHandler(2, _ => { if (curOrd > 0) curOrd--; showQuestion(); });
+        setAnswerHandler(3, _ => { curOrd++; showQuestion(); });
+        setAnswerHandler(4, _ => { curExample--; showQuestion(); });
+        setAnswerHandler(5, _ => { curExample++; showQuestion(); });
+
+        if (TwitchPlaysActive)
+            ActivateTwitchPlaysNumbers();
+
+        while (true)
+        {
+            if (TestQuestion != null && Application.isFocused)
+            {
+                TestQuestion = TestQuestion.Trim();
+                if (TestQuestion.Length > 0)
+                {
+                    var i = questions.IndexOf(q => q.ToString().StartsWith(TestQuestion));
+                    if (i < 0)
+                        Debug.LogFormat(this, "<Souvenir #{0}> No question matching '{1}' was found.", _moduleId, TestQuestion);
+                    else
+                    {
+                        curQuestion = i;
+                        curExample = 0;
+                        curOrd = 0;
+                        showQuestion();
+                    }
+                }
+                TestQuestion = null;
+            }
+            yield return null;
+        }
     }
 
     void setAnswerHandler(int index, Action<int> handler)
