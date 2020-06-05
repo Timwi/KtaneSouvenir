@@ -5655,12 +5655,12 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Maze);
 
-        var fldX = GetField<int>(currentCell, "X", true);
-        var fldY = GetField<int>(currentCell, "Y", true);
-        if (fldX == null || fldY == null) yield break;
+        var coordinateChoice = Rnd.Range(0, 2);
+        var fldCoordinate = GetField<int>(currentCell, coordinateChoice == 0 ? "X" : "Y", true);
+        if (fldCoordinate == null) yield break;
 
-        addQuestion(module, Question.MazeStartingPosition, correctAnswers: new[] { new string(new[] { (char) ('A' + fldX.Get()), (char) ('1' + fldY.Get()) }) });
-        yield break;
+        addQuestion(module, Question.MazeStartingPosition, formatArguments: coordinateChoice == 0 ? new[] { "column", "left" } : new[] { "row", "top" },
+            correctAnswers: new[] { (fldCoordinate.Get() + 1).ToString() });
     }
 
     private IEnumerable<object> ProcessMaze3(KMBombModule module)
@@ -6780,11 +6780,11 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_NotButton);
         if (lightColor != 0)
         {
-            var strings = _attributes[Question.NotButtonLightColour].AllAnswers;
+            var strings = _attributes[Question.NotButtonLightColor].AllAnswers;
             if (lightColor <= 0 || lightColor > strings.Length)
                 Debug.LogFormat("<Souvenir #{0}> Abandoning Not the Button because LightColour is out of range ({1}).", _moduleId, lightColor);
             else
-                addQuestion(module, Question.NotButtonLightColour, correctAnswers: new[] { strings[lightColor - 1] });
+                addQuestion(module, Question.NotButtonLightColor, correctAnswers: new[] { strings[lightColor - 1] });
         }
         else if (mashCount > 1)
         {
@@ -6820,11 +6820,11 @@ public class SouvenirModule : MonoBehaviour
 
         var questions = new QandA[2];
         var colour = (int) colours.GetValue(stage);
-        var strings = _attributes[Question.NotKeypadColour].AllAnswers;
+        var strings = _attributes[Question.NotKeypadColor].AllAnswers;
         if (colour <= 0 || colour > strings.Length)
             Debug.LogFormat("<Souvenir #{0}> Abandoning a question for Not Keypad because colour index is out of range ({1}).", _moduleId, colour);
         else
-            questions[0] = makeQuestion(Question.NotKeypadColour, _NotKeypad, new[] { ordinal(stage + 1) }, new[] { strings[colour - 1] });
+            questions[0] = makeQuestion(Question.NotKeypadColor, _NotKeypad, new[] { ordinal(stage + 1) }, new[] { strings[colour - 1] });
 
         var symbol = (int) symbols.GetValue(buttons[stage]);
         if (symbol < 0 || symbol > 30)
