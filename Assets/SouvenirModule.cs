@@ -8086,14 +8086,13 @@ public class SouvenirModule : MonoBehaviour
 
         yield return null;
 
-        var number = fldRuleNum.Get();
-
         var solved = false;
         module.OnPass += delegate { solved = true; return false; };
         while (!solved)
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Rule);
 
+        var number = fldRuleNum.Get();
         addQuestion(module, Question.RuleNumber, correctAnswers: new[] { number.ToString() });
     }
 
