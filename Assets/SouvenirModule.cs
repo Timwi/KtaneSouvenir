@@ -158,6 +158,7 @@ public class SouvenirModule : MonoBehaviour
     const string _HereditaryBaseNotation = "hereditaryBaseNotationModule";
     const string _Hexabutton = "hexabutton";
     const string _Hexamaze = "HexamazeModule";
+    const string _HexOS = "hexOS";
     const string _HiddenColors = "lgndHiddenColors";
     const string _HillCycle = "hillCycle";
     const string _Hogwarts = "HogwartsModule";
@@ -378,6 +379,7 @@ public class SouvenirModule : MonoBehaviour
             { _HereditaryBaseNotation, ProcessHereditaryBaseNotation },
             { _Hexabutton, ProcessHexabutton },
             { _Hexamaze, ProcessHexamaze },
+            { _HexOS, ProcessHexOS },
             { _HiddenColors, ProcessHiddenColors },
             { _HillCycle, ProcessHillCycle },
             { _Hogwarts, ProcessHogwarts },
@@ -4536,6 +4538,76 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestion(module, Question.HexamazePawnColor, correctAnswers: new[] { new[] { "Red", "Yellow", "Green", "Cyan", "Blue", "Pink" }[pawnColor] });
+    }
+
+    private IEnumerable<object> ProcessHexOS(KMBombModule module)
+    {
+        var comp = GetComponent(module, "HexOS");
+        var fldSolved = GetField<bool>(comp, "isSolved");
+        var fldDecipher = GetField<char[]>(comp, "decipher");
+        var fldSum = GetField<string>(comp, "sum");
+        var fldScreen = GetField<string>(comp, "screen");
+
+        if (comp == null || fldSolved == null || fldDecipher == null || fldSum == null || fldScreen == null)
+            yield break;
+
+        yield return null;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_HexOS);
+
+        var decipher = fldDecipher.Get();
+        if (decipher.Length != 2)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning hexOS because ‘decipher’ has unexpected length (expected 2): {1}", _moduleId, decipher.Length);
+            yield break;
+        }
+
+        char[] validLetters = { ' ', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+        for (byte i = 0; i < decipher.Length; i++)
+            if (!validLetters.Contains(decipher[i]))
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning hexOS because ‘decipher[{1}]’ has unexpected character (expected ' '/A-Z): {2}", _moduleId, i, decipher[i]);
+                yield break;
+            }
+
+        var screen = fldScreen.Get();
+
+        if (screen.Length != 30)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning hexOS because ‘screen’ has unexpected length (expected 30): {1}", _moduleId, screen.Length);
+            yield break;
+        }
+
+        for (byte i = 0; i < screen.Length; i++)
+            if (!char.IsDigit(screen[i]))
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning hexOS because ‘screen[{1}]’ has unexpected value (expected 0-9): {2}", _moduleId, i, screen[i]);
+                yield break;
+            }
+
+        var sum = fldSum.Get();
+
+        if (sum.Length != 4)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning hexOS because ‘sum’ has unexpected length (expected 4): {1}", _moduleId, sum.Length);
+            yield break;
+        }
+
+        for (byte i = 0; i < sum.Length; i++)
+            if (sum[i] != '0' && sum[i] != '1' && sum[i] != '2')
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning hexOS because ‘sum[{1}]’ has unexpected value (expected 0-2): {2}", _moduleId, i, sum[i]);
+                yield break;
+            }
+
+        byte offset = (byte)Rnd.Range(0, 10);
+        addQuestions(module,
+            makeQuestion(Question.HexOSCipher, _HexOS, correctAnswers: new[] { decipher[0].ToString() + decipher[1].ToString(), decipher[1].ToString() + decipher[0].ToString() }, preferredWrongAnswers: Enumerable.Range(0, 50).Select(_ => validLetters[Rnd.Range(0, validLetters.Length)].ToString() + validLetters[Rnd.Range(0, validLetters.Length)].ToString()).Distinct().Take(6).ToArray()),
+            makeQuestion(Question.HexOSScreen, _HexOS, new[] { ordinal(offset) }, correctAnswers: new[] { screen[offset * 3].ToString() + screen[(offset * 3) + 1].ToString() + screen[(offset * 3) + 2].ToString() }, preferredWrongAnswers: Enumerable.Range(0, 50).Select(_ => Rnd.Range(0, 1000)).Distinct().Take(6).Select(i => i.ToString("000")).ToArray()),
+            makeQuestion(Question.HexOSSum, _HexOS, correctAnswers: new[] { sum }));
     }
 
     private IEnumerable<object> ProcessHiddenColors(KMBombModule module)

@@ -353,6 +353,14 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the color of the pawn in {0}?", "Hexamaze", 6, "Red", "Yellow", "Green", "Cyan", "Blue", "Pink")]
         HexamazePawnColor,
+		
+        [SouvenirQuestion("What were the deciphered letters in {0}?", "hexOS", 6, ExampleAnswers = new[] { "AA", "AC", "DH", "DS", "FL", "FT", "IP", "IR", "IY", "MS", "NN", "PZ", "RG", "RS", "VC", "VZ", "WP", "XG", "ZC", "ZJ" })]
+        HexOSCipher,
+        [SouvenirQuestion("What was the {1} 3-digit number cycled by the screen in {0}?", "hexOS", 6, ExampleAnswers = new[] { "108", "130", "192", "332", "379", "432", "442", "482", "491", "541", "622", "672", "69", "73", "743", "780", "918", "948", "985", "990" },
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th", "6th", "7th", "8th", "9th", "10th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        HexOSScreen,
+        [SouvenirQuestion("What was the sum of the rhythm values in {0}?", "hexOS", 6, "0001", "0010", "0011", "0012", "0021", "0100", "0101", "0102", "0110", "0111", "0112", "0120", "0121", "0122", "0201", "0210", "0211", "0212", "0221", "1000", "1001", "1002", "1010", "1011", "1012", "1020", "1021", "1022", "1100", "1101", "1102", "1110", "1111", "1112", "1120", "1121", "1122", "1200", "1201", "1202", "1210", "1211", "1212", "1220", "1221", "1222", "2001", "2010", "2011", "2012", "2021", "2100", "2101", "2102", "2110", "2111", "2112", "2120", "2121", "2122", "2201", "2210", "2211", "2212", "2221")]
+        HexOSSum,
 
         [SouvenirQuestion("What was the color of the main LED in {0}?", "Hidden Colors", 6, "Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Magenta", "White")]
         HiddenColorsLED,
