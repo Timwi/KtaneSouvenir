@@ -6549,8 +6549,9 @@ public class SouvenirModule : MonoBehaviour
         var fldIsInDanger = GetField<bool>(comp, "_isInDanger");
         var fldSkullPos = GetField<int>(comp, "_skullPos");
         var fldKnightPos = GetField<int>(comp, "_knightPos");
+        var fldField = GetField<int[]>(comp, "_field");
 
-        if (comp == null || fldSolved == null || fldSkull == null || fldKnight == null || fldIsInDanger == null || fldSkullPos == null || fldKnightPos == null)
+        if (comp == null || fldSolved == null || fldSkull == null || fldKnight == null || fldIsInDanger == null || fldSkullPos == null || fldKnightPos == null || fldField == null)
             yield break;
 
         var skull = fldSkull.Get();
@@ -6564,12 +6565,11 @@ public class SouvenirModule : MonoBehaviour
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
-
-        // Make sure that the last sliding animation finishes
-        yield return new WaitForSeconds(0.5f);
+        _modulesSolved.IncSafe(_MysticSquare);
 
         var knightpos = fldKnightPos.Get();
         var skullpos = fldSkullPos.Get();
+        var spacepos = Array.IndexOf(fldField.Get(), 0);
         if (knightpos < 0 || knightpos > 8)
         {
             Debug.LogFormat("<Souvenir #{0}> Abandoning Mystic Square because knight is in unexpected position {1} (expected 0-8).", _moduleId, knightpos);
@@ -6581,32 +6581,60 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         }
 
-        // Shrink the skull and knight and then disappear them
-        const float duration = 1.5f;
-        var elapsed = 0f;
-        while (elapsed < duration)
+        var answers = new[] { "top left", "top middle", "top right", "middle left", "center", "middle right", "bottom left", "bottom middle", "bottom right" };
+        var knightQuestion = makeQuestion(Question.MysticSquareKnightSkull, _MysticSquare, new[] { "knight" }, new[] { answers[knightpos] }, answers);
+        var skullQuestion = makeQuestion(Question.MysticSquareKnightSkull, _MysticSquare, new[] { "skull" }, new[] { answers[skullpos] }, answers);
+
+        if (_questions.Count == 0 && _coroutinesActive == 1)
         {
-            skull.localScale = Vector3.Lerp(new Vector3(0.004f, 0.004f, 0.004f), Vector3.zero, elapsed / duration);
-            knight.localScale = Vector3.Lerp(new Vector3(0.004f, 0.004f, 0.004f), Vector3.zero, elapsed / duration);
-            yield return null;
-            elapsed += Time.deltaTime;
+            // If this Mystic Square module is the only supported module, add a question immediately so that it will be asked immediately instead of disarming.
+            // Always ask about the skull if the knight is in the empty space, and vice versa.
+            if (fldIsInDanger.Get())
+            {
+                if (skullpos == spacepos)
+                {
+                    Debug.LogFormat("<Souvenir #{0}> No question for Mystic Square because the skull ended in the empty space, the knight was never uncovered and there are no other supported modules.",
+                        _moduleId, skullpos);
+                    _legitimatelyNoQuestions.Add(module);
+                }
+                else
+                    addQuestions(module, skullQuestion);
+            }
+            else
+            {
+                if (skullpos == spacepos)
+                    addQuestions(module, knightQuestion);
+                else if (knightpos == spacepos)
+                    addQuestions(module, skullQuestion);
+                else
+                    addQuestions(module, knightQuestion, skullQuestion);
+            }
+        }
+        else
+        {
+            // If other questions will be asked, the skull and knight will be hidden beforehand.
+            addQuestions(module, knightQuestion, skullQuestion);
+        }
+
+        // If the skull or knight is in the empty space, shrink and then disappear them.
+        if (skullpos == spacepos || knightpos == spacepos)
+        {
+            // Make sure that the last sliding animation finishes
+            yield return new WaitForSeconds(0.5f);
+
+            const float duration = 1.5f;
+            var elapsed = 0f;
+            while (elapsed < duration)
+            {
+                skull.localScale = Vector3.Lerp(new Vector3(0.004f, 0.004f, 0.004f), Vector3.zero, elapsed / duration);
+                knight.localScale = Vector3.Lerp(new Vector3(0.004f, 0.004f, 0.004f), Vector3.zero, elapsed / duration);
+                yield return null;
+                elapsed += Time.deltaTime;
+            }
         }
 
         skull.gameObject.SetActive(false);
         knight.gameObject.SetActive(false);
-
-        _modulesSolved.IncSafe(_MysticSquare);
-        var answers = new[] { "top left", "top middle", "top right", "middle left", "center", "middle right", "bottom left", "bottom middle", "bottom right" };
-
-        // Ask about the knight only if it was ever uncovered
-        if (!fldIsInDanger.Get())
-            addQuestions(module,
-                makeQuestion(Question.MysticSquareKnightSkull, _MysticSquare, new[] { "knight" }, new[] { answers[knightpos] }, answers),
-                makeQuestion(Question.MysticSquareKnightSkull, _MysticSquare, new[] { "skull" }, new[] { answers[skullpos] }, answers));
-        else
-            addQuestions(module,
-                makeQuestion(Question.MysticSquareKnightSkull, _MysticSquare, new[] { "skull" }, new[] { answers[skullpos] }, answers));
-
     }
 
     private IEnumerable<object> ProcessMysteryModule(KMBombModule module)
