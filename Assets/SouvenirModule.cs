@@ -4539,7 +4539,7 @@ public class SouvenirModule : MonoBehaviour
 
         addQuestion(module, Question.HexamazePawnColor, correctAnswers: new[] { new[] { "Red", "Yellow", "Green", "Cyan", "Blue", "Pink" }[pawnColor] });
     }
-	
+
     private IEnumerable<object> ProcessHexOS(KMBombModule module)
     {
         var comp = GetComponent(module, "HexOS");
@@ -4603,17 +4603,11 @@ public class SouvenirModule : MonoBehaviour
                 yield break;
             }
 
-        var qs = new List<QandA>();
-
-        string[] randomSum = { "0001", "0010", "0011", "0012", "0021", "0100", "0101", "0102", "0110", "0111", "0112", "0120", "0121", "0122", "0201", "0210", "0211", "0212", "0221", "1000", "1001", "1002", "1010", "1011", "1012", "1020", "1021", "1022", "1100", "1101", "1102", "1110", "1111", "1112", "1120", "1121", "1122", "1200", "1201", "1202", "1210", "1211", "1212", "1220", "1221", "1222", "2001", "2010", "2011", "2012", "2021", "2100", "2101", "2102", "2110", "2111", "2112", "2120", "2121", "2122", "2201", "2210", "2211", "2212", "2221" };
-
         byte offset = (byte)Rnd.Range(0, 10);
-        string[] ordinals = { "first", "second", "third", "4th", "5th", "6th", "7th", "8th", "9th", "10th" };
-
         addQuestions(module,
-            makeQuestion(Question.HexOSCipher, _HexOS, correctAnswers: new[] { decipher[0].ToString() + decipher[1].ToString(), decipher[1].ToString() + decipher[0].ToString() }, preferredWrongAnswers: new[] { validLetters[Rnd.Range(0, validLetters.Length)].ToString() + validLetters[Rnd.Range(0, validLetters.Length)].ToString() }),
-            makeQuestion(Question.HexOSScreen, _HexOS, new[] { ordinals[offset] }, correctAnswers: new[] { screen[offset * 3].ToString() + screen[(offset * 3) + 1].ToString() + screen[(offset * 3) + 2].ToString() }, preferredWrongAnswers: new[] { Rnd.Range(0, 999).ToString() }),
-            makeQuestion(Question.HexOSSum, _HexOS, correctAnswers: new[] { sum }, preferredWrongAnswers: randomSum));
+            makeQuestion(Question.HexOSCipher, _HexOS, correctAnswers: new[] { decipher[0].ToString() + decipher[1].ToString(), decipher[1].ToString() + decipher[0].ToString() }, preferredWrongAnswers: Enumerable.Range(0, 50).Select(_ => validLetters[Rnd.Range(0, validLetters.Length)].ToString() + validLetters[Rnd.Range(0, validLetters.Length)].ToString()).Distinct().Take(6).ToArray()),
+            makeQuestion(Question.HexOSScreen, _HexOS, new[] { ordinal(offset) }, correctAnswers: new[] { screen[offset * 3].ToString() + screen[(offset * 3) + 1].ToString() + screen[(offset * 3) + 2].ToString() }, preferredWrongAnswers: Enumerable.Range(0, 50).Select(_ => Rnd.Range(0, 1000)).Distinct().Take(6).Select(i => i.ToString("000")).ToArray()),
+            makeQuestion(Question.HexOSSum, _HexOS, correctAnswers: new[] { sum }));
     }
 
     private IEnumerable<object> ProcessHiddenColors(KMBombModule module)
