@@ -42,6 +42,7 @@ public class SouvenirModule : MonoBehaviour
     public TextMesh TextMesh;
     public Renderer TextRenderer;
     public Renderer SurfaceRenderer;
+    public GameObject WarningIcon;
     public Material FontMaterial;
     public Font[] Fonts;
     public Texture[] FontTextures;
@@ -586,6 +587,7 @@ public class SouvenirModule : MonoBehaviour
         SurfaceRenderer.transform.rotation = origRotation;
 
         disappear();
+        WarningIcon.SetActive(false);
         SetWordWrappedText(Ut.NewArray(
             "I see dead defusers.",     // “I see dead people”, (Sixth Sense)
             "Welcome... to the real bomb.",     // “Welcome... to the real world.” (The Matrix)
@@ -1382,7 +1384,10 @@ public class SouvenirModule : MonoBehaviour
                 }
             }
             if (!_legitimatelyNoQuestions.Contains(module) && !_questions.Any(q => q.Module == module))
+            {
                 Debug.LogFormat("[Souvenir #{0}] There was no question generated for {1}. Please report this to Andrio or the implementer for that module as this may indicate a bug in Souvenir. Remember to send them this logfile.", _moduleId, module.ModuleDisplayName);
+                WarningIcon.SetActive(true);
+            }
             Debug.LogFormat("<Souvenir #{1}> Module {0}: Finished processing.", moduleType, _moduleId);
         }
         else
