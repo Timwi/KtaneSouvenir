@@ -46,8 +46,9 @@ public class SouvenirModule : MonoBehaviour
     public Material FontMaterial;
     public Font[] Fonts;
     public Texture[] FontTextures;
-    public Mesh HighlightShort;
-    public Mesh HighlightLong;
+    public Mesh HighlightShort; // 6 answers, 2 columns
+    public Mesh HighlightLong;  // 4 answers, 2 columns
+    public Mesh HighlightVeryLong;  // 4 long answers, 1 column
 
     /// <summary>May be set to a question name while playing the test harness to skip to that question.</summary>
     public string TestQuestion;
@@ -800,7 +801,8 @@ public class SouvenirModule : MonoBehaviour
                             answers: answers.ToArray(),
                             font: Fonts[(int) attr.Type],
                             fontTexture: FontTextures[(int) attr.Type],
-                            fontMaterial: FontMaterial));
+                            fontMaterial: FontMaterial,
+                            layout: attr.Layout));
                         break;
                 }
             }
@@ -840,7 +842,7 @@ public class SouvenirModule : MonoBehaviour
                 TestQuestion = TestQuestion.Trim();
                 if (TestQuestion.Length > 0)
                 {
-                    var i = questions.IndexOf(q => q.ToString().StartsWith(TestQuestion));
+                    var i = questions.IndexOf(q => q.ToString().StartsWith(TestQuestion, StringComparison.InvariantCultureIgnoreCase));
                     if (i < 0)
                         Debug.LogFormat(this, "<Souvenir #{0}> No question matching '{1}' was found.", _moduleId, TestQuestion);
                     else
@@ -4624,7 +4626,7 @@ public class SouvenirModule : MonoBehaviour
                 yield break;
             }
 
-        byte offset = (byte)Rnd.Range(0, 10);
+        byte offset = (byte) Rnd.Range(0, 10);
         addQuestions(module,
             makeQuestion(Question.HexOSCipher, _HexOS, correctAnswers: new[] { decipher[0].ToString() + decipher[1].ToString(), decipher[1].ToString() + decipher[0].ToString() }, preferredWrongAnswers: Enumerable.Range(0, 50).Select(_ => validLetters[Rnd.Range(0, validLetters.Length)].ToString() + validLetters[Rnd.Range(0, validLetters.Length)].ToString()).Distinct().Take(6).ToArray()),
             makeQuestion(Question.HexOSScreen, _HexOS, new[] { ordinal(offset) }, correctAnswers: new[] { screen[offset * 3].ToString() + screen[(offset * 3) + 1].ToString() + screen[(offset * 3) + 2].ToString() }),
@@ -5540,12 +5542,6 @@ public class SouvenirModule : MonoBehaviour
 
         yield return null;
 
-        Func<string, string> firstWord = str =>
-        {
-            var pos = str.IndexOf(' ');
-            return pos == -1 ? str : str.Substring(0, pos);
-        };
-
         var departures = new List<string>();
         var destinations = new List<string>();
         var extraOptions = new HashSet<string>();
@@ -5562,13 +5558,13 @@ public class SouvenirModule : MonoBehaviour
                     destinations.Clear();
                     extraOptions.Clear();
                 }
-                departures.Add(firstWord(fldDepartureStation.Get()));
-                destinations.Add(firstWord(fldDestinationStation.Get()));
+                departures.Add(fldDepartureStation.Get());
+                destinations.Add(fldDestinationStation.Get());
 
-                foreach (var word in fldDepartureOptions.Get())
-                    extraOptions.Add(firstWord(word));
-                foreach (var word in fldDestinationOptions.Get())
-                    extraOptions.Add(firstWord(word));
+                foreach (var option in fldDepartureOptions.Get())
+                    extraOptions.Add(option);
+                foreach (var option in fldDestinationOptions.Get())
+                    extraOptions.Add(option);
                 lastStage = stage;
             }
             yield return null;
@@ -5579,8 +5575,8 @@ public class SouvenirModule : MonoBehaviour
             primary = primary.Union(extraOptions).ToArray();
 
         addQuestions(module,
-            departures.Select((dep, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { ordinal(ix + 1), "departure", "from" }, new[] { firstWord(dep) }, primary)).Concat(
-            destinations.Select((dest, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { ordinal(ix + 1), "destination", "to" }, new[] { firstWord(dest) }, primary))));
+            departures.Select((dep, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { ordinal(ix + 1), "departure", "from" }, new[] { dep }, primary)).Concat(
+            destinations.Select((dest, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { ordinal(ix + 1), "destination", "to" }, new[] { dest }, primary))));
     }
 
     private IEnumerable<object> ProcessMafia(KMBombModule module)
@@ -10878,7 +10874,7 @@ public class SouvenirModule : MonoBehaviour
     private QandA makeQuestion(Question question, string moduleKey, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null)
     {
         return makeQuestion(question, moduleKey,
-            (attr, q, correct, answers) => new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), Fonts[(int) attr.Type], FontTextures[(int) attr.Type], FontMaterial),
+            (attr, q, correct, answers) => new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), Fonts[(int) attr.Type], FontTextures[(int) attr.Type], FontMaterial, attr.Layout),
             formatArgs, correctAnswers, preferredWrongAnswers);
     }
 
