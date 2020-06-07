@@ -576,7 +576,7 @@ public class SouvenirModule : MonoBehaviour
         };
 
         _attributes = typeof(Question).GetFields(BindingFlags.Public | BindingFlags.Static)
-            .Select(f => Ut.KeyValuePair((Question) f.GetValue(null), f.GetCustomAttribute<SouvenirQuestionAttribute>()))
+            .Select(f => Ut.KeyValuePair((Question) f.GetValue(null), GetQuestionAttribute(f)))
             .Where(kvp => kvp.Value != null)
             .ToDictionary();
 
@@ -732,6 +732,14 @@ public class SouvenirModule : MonoBehaviour
         };
     }
 
+    private static SouvenirQuestionAttribute GetQuestionAttribute(FieldInfo field)
+    {
+        var attribute = field.GetCustomAttribute<SouvenirQuestionAttribute>();
+        if (attribute != null)
+            attribute.AnswerGenerator = field.GetCustomAttribute<AnswerGeneratorAttribute>();
+        return attribute;
+    }
+
     private IEnumerator TestModeCoroutine()
     {
         Debug.LogFormat(this, "<Souvenir #{0}> Entering Unity testing mode. To select a question, set SouvenirModule.TestQuestion and click on the game view.", _moduleId);
@@ -769,11 +777,25 @@ public class SouvenirModule : MonoBehaviour
                         break;
 
                     default:
+                        var answers = new List<string>(attr.NumAnswers);
+                        if (attr.AllAnswers != null) answers.AddRange(attr.AllAnswers);
+                        else if (attr.ExampleAnswers != null) answers.AddRange(attr.ExampleAnswers);
+                        if (answers.Count <= attr.NumAnswers)
+                        {
+                            if (attr.AnswerGenerator != null)
+                                answers.AddRange(attr.AnswerGenerator.GetAnswers(this).Except(answers).Distinct().Take(attr.NumAnswers - answers.Count));
+                            answers.Shuffle();
+                        }
+                        else
+                        {
+                            answers.Shuffle();
+                            answers.RemoveRange(attr.NumAnswers, answers.Count - attr.NumAnswers);
+                        }
                         SetQuestion(new QandAText(
                             module: attr.ModuleNameWithThe,
                             question: string.Format(attr.QuestionText, fmt),
                             correct: 0,
-                            answers: (attr.AllAnswers ?? attr.ExampleAnswers).ToList().Shuffle().Take(attr.NumAnswers).ToArray(),
+                            answers: answers.ToArray(),
                             font: Fonts[(int) attr.Type],
                             fontTexture: FontTextures[(int) attr.Type],
                             fontMaterial: FontMaterial));
@@ -1764,8 +1786,7 @@ public class SouvenirModule : MonoBehaviour
         var screens = new[] { "left", "middle", "right" };
         for (int i = 0; i < 3; i++)
             qs.Add(makeQuestion(Question.ArithmelogicNumbers, _Arithmelogic, formatArgs: new[] { screens[i] },
-                correctAnswers: Enumerable.Range(0, 4).Where(ix => ix != curDisp[i]).Select(ix => selVal[i][ix].ToString()).ToArray(),
-                preferredWrongAnswers: Enumerable.Range(10, 99).Select(j => j.ToString()).ToArray()));
+                correctAnswers: Enumerable.Range(0, 4).Where(ix => ix != curDisp[i]).Select(ix => selVal[i][ix].ToString()).ToArray()));
         addQuestions(module, qs);
     }
 
@@ -2082,7 +2103,7 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_BinaryLEDs);
 
         if (answer != -1)
-            addQuestion(module, Question.BinaryLEDsValue, correctAnswers: new[] { answer.ToString() }, preferredWrongAnswers: Enumerable.Range(0, 32).Select(i => i.ToString()).ToArray());
+            addQuestion(module, Question.BinaryLEDsValue, correctAnswers: new[] { answer.ToString() });
     }
 
     private IEnumerable<object> ProcessBitmaps(KMBombModule module)
@@ -2615,8 +2636,7 @@ public class SouvenirModule : MonoBehaviour
 
         addQuestions(module, paids.Select((p, i) => makeQuestion(Question.CheapCheckoutPaid, _CheapCheckout,
             formatArgs: new[] { paids.Count == 1 ? "" : ordinal(i + 1) + " " },
-            correctAnswers: new[] { "$" + p.ToString("N2") },
-            preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(_ => (decimal) Rnd.Range(5, 50)).Select(amt => "$" + amt.ToString("N2")).Distinct().Take(5).ToArray())));
+            correctAnswers: new[] { "$" + p.ToString("N2") })));
     }
 
     private IEnumerable<object> ProcessChess(KMBombModule module)
@@ -2768,10 +2788,7 @@ public class SouvenirModule : MonoBehaviour
         resetBtn.OnInteract = delegate { return false; };
         submitBtn.OnInteract = delegate { return false; };
 
-        addQuestions(module,
-            makeQuestion(Question.CodeDisplayNumber, _Code,
-                correctAnswers: new[] { code.ToString() },
-                preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(999, 10000)).Distinct().Take(6).Select(i => i.ToString()).ToArray()));
+        addQuestions(module, makeQuestion(Question.CodeDisplayNumber, _Code, correctAnswers: new[] { code.ToString() }));
     }
 
     private IEnumerable<object> ProcessCoffeebucks(KMBombModule module)
@@ -4252,9 +4269,8 @@ public class SouvenirModule : MonoBehaviour
         if (comp == null || fldSolved == null || fldPages == null || fldSolution == null)
             yield break;
 
-        var locations = GetAnswers(Question.GridLockStartingLocation);
         var colors = GetAnswers(Question.GridLockStartingColor);
-        if (locations == null || colors == null)
+        if (colors == null)
             yield break;
 
         while (!_isActivated)
@@ -4276,8 +4292,8 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_GridLock);
         addQuestions(module,
-            makeQuestion(Question.GridLockStartingLocation, _GridLock, correctAnswers: new[] { locations[start] }),
-            makeQuestion(Question.GridLockEndingLocation, _GridLock, correctAnswers: new[] { locations[solution] }),
+            makeQuestion(Question.GridLockStartingLocation, _GridLock, correctAnswers: new[] { ((char) ('A' + start % 4)).ToString() + (char) ('1' + start / 4) }),
+            makeQuestion(Question.GridLockEndingLocation, _GridLock, correctAnswers: new[] { ((char) ('A' + solution % 4)).ToString() + (char) ('1' + solution / 4) }),
             makeQuestion(Question.GridLockStartingColor, _GridLock, correctAnswers: new[] { colors[(pages[0][start] >> 4) - 1] }));
     }
 
@@ -4606,7 +4622,7 @@ public class SouvenirModule : MonoBehaviour
         byte offset = (byte)Rnd.Range(0, 10);
         addQuestions(module,
             makeQuestion(Question.HexOSCipher, _HexOS, correctAnswers: new[] { decipher[0].ToString() + decipher[1].ToString(), decipher[1].ToString() + decipher[0].ToString() }, preferredWrongAnswers: Enumerable.Range(0, 50).Select(_ => validLetters[Rnd.Range(0, validLetters.Length)].ToString() + validLetters[Rnd.Range(0, validLetters.Length)].ToString()).Distinct().Take(6).ToArray()),
-            makeQuestion(Question.HexOSScreen, _HexOS, new[] { ordinal(offset) }, correctAnswers: new[] { screen[offset * 3].ToString() + screen[(offset * 3) + 1].ToString() + screen[(offset * 3) + 2].ToString() }, preferredWrongAnswers: Enumerable.Range(0, 50).Select(_ => Rnd.Range(0, 1000)).Distinct().Take(6).Select(i => i.ToString("000")).ToArray()),
+            makeQuestion(Question.HexOSScreen, _HexOS, new[] { ordinal(offset) }, correctAnswers: new[] { screen[offset * 3].ToString() + screen[(offset * 3) + 1].ToString() + screen[(offset * 3) + 2].ToString() }),
             makeQuestion(Question.HexOSSum, _HexOS, correctAnswers: new[] { sum }));
     }
 
@@ -5429,7 +5445,7 @@ public class SouvenirModule : MonoBehaviour
             buttons[i].OnInteract = prevInteracts[i];
 
         _modulesSolved.IncSafe(_Listening);
-        addQuestion(module, Question.Listening, correctAnswers: new[] { correctCode }, preferredWrongAnswers: attr.ExampleAnswers);
+        addQuestion(module, Question.Listening, correctAnswers: new[] { correctCode });
     }
 
     private IEnumerable<object> ProcessLogicGates(KMBombModule module)
@@ -7618,15 +7634,9 @@ public class SouvenirModule : MonoBehaviour
 
         var qs = new List<QandA>();
 
-        string[] randomNumbers = new string[8];
-        for (int i = 1; i <= randomNumbers.Length; i++)
-        {
-            randomNumbers[i - 1] = i.ToString();
-        }
-
         //because the number of solved modules could be any number, the second phrase question should be deactivated if previousModule is either 1 or -1, meaning that they apply to the numbers
         if (previousModules == 0)
-            qs.Add(makeQuestion(Question.PlaceholderTalkSecondPhrase, _PlaceholderTalk, correctAnswers: new[] { answer.ToString() }, preferredWrongAnswers: randomNumbers));
+            qs.Add(makeQuestion(Question.PlaceholderTalkSecondPhrase, _PlaceholderTalk, correctAnswers: new[] { answer.ToString() }));
 
         qs.Add(makeQuestion(Question.PlaceholderTalkFirstPhrase, _PlaceholderTalk, correctAnswers: new[] { fldFirstString.Get().ToString() }, preferredWrongAnswers: firstPhrase));
         qs.Add(makeQuestion(Question.PlaceholderTalkOrdinal, _PlaceholderTalk, correctAnswers: new[] { fldCurrentOrdinal.Get().ToString() }, preferredWrongAnswers: ordinals));
@@ -7752,7 +7762,7 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
 
         _modulesSolved.IncSafe(_PolyhedralMaze);
-        addQuestion(module, Question.PolyhedralMazeStartPosition, null, new[] { fldStartFace.Get().ToString() }, Enumerable.Range(0, 62).Select(i => i.ToString()).ToArray());
+        addQuestion(module, Question.PolyhedralMazeStartPosition, null, new[] { fldStartFace.Get().ToString() });
     }
 
     private IEnumerable<object> ProcessProbing(KMBombModule module)
@@ -9034,8 +9044,7 @@ public class SouvenirModule : MonoBehaviour
         for (var i = 0; i < 3; i++)
             qs.Add(makeQuestion(Question.SimonStoresAnswers, _SimonStores,
                 formatArgs: new[] { (i + 1).ToString() },
-                correctAnswers: new[] { integerAnswers[i].ToString() },
-                preferredWrongAnswers: Enumerable.Range(-364, 1 + 2 * 364).Select(number => number.ToString()).ToArray()));
+                correctAnswers: new[] { integerAnswers[i].ToString() }));
 
         addQuestions(module, qs);
     }
@@ -9080,7 +9089,7 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_SkewedSlots);
         addQuestion(module, Question.SkewedSlotsOriginalNumbers, correctAnswers: new[] { originalNumbers.Last() },
-            preferredWrongAnswers: originalNumbers.Take(originalNumbers.Count - 1).Concat(Enumerable.Range(0, int.MaxValue).Select(_ => Rnd.Range(0, 1000).ToString("000"))).Where(str => str != originalNumbers.Last()).Distinct().Take(5).ToArray());
+            preferredWrongAnswers: originalNumbers.Take(originalNumbers.Count - 1).ToArray());
     }
 
     private static readonly string[] _skyrimFieldNames = new[] { "race", "weapon", "enemy", "city" };
@@ -10880,7 +10889,7 @@ public class SouvenirModule : MonoBehaviour
         SouvenirQuestionAttribute attr;
         if (!_attributes.TryGetValue(question, out attr))
         {
-            Debug.LogFormat("<Souvenir #{1}> Question {0} has no attribute.", question, _moduleId);
+            Debug.LogErrorFormat("<Souvenir #{1}> Question {0} has no SouvenirQuestionAttribute.", question, _moduleId);
             return null;
         }
 
@@ -10890,7 +10899,7 @@ public class SouvenirModule : MonoBehaviour
             var inconsistency = correctAnswers.Except(allAnswers).FirstOrDefault();
             if (inconsistency != null)
             {
-                Debug.LogFormat("<Souvenir #{2}> Question {0}: invalid answer: {1}.", question, inconsistency.ToString() ?? "<null>", _moduleId);
+                Debug.LogErrorFormat("<Souvenir #{2}> Question {0}: invalid answer: {1}.", question, inconsistency.ToString() ?? "<null>", _moduleId);
                 return null;
             }
             if (preferredWrongAnswers != null)
@@ -10898,36 +10907,50 @@ public class SouvenirModule : MonoBehaviour
                 var inconsistency2 = preferredWrongAnswers.Except(allAnswers).FirstOrDefault();
                 if (inconsistency2 != null)
                 {
-                    Debug.LogFormat("<Souvenir #{2}> Question {0}: invalid preferred wrong answer: {1}.", question, inconsistency2.ToString() ?? "<null>", _moduleId);
+                    Debug.LogErrorFormat("<Souvenir #{2}> Question {0}: invalid preferred wrong answer: {1}.", question, inconsistency2.ToString() ?? "<null>", _moduleId);
                     return null;
                 }
             }
         }
 
-        List<T> answers;
-        if (allAnswers == null && preferredWrongAnswers == null)
+        var answers = new List<T>(attr.NumAnswers);
+        if (allAnswers == null && attr.AnswerGenerator == null)
         {
-            Debug.LogFormat("<Souvenir #{0}> Question {1}: allAnswers and preferredWrongAnswers are both null. You must specify either the full set of possible answers in the Question enum’s attribute, or provide possible wrong answers through the “preferredWrongAnswers” parameter.", _moduleId, question);
-            return null;
+            if (preferredWrongAnswers == null)
+            {
+                Debug.LogErrorFormat("<Souvenir #{0}> Question {1} has no answers. You must specify either the full set of possible answers in SouvenirQuestionAttribute.AllAnswers, provide possible wrong answers through the preferredWrongAnswers parameter, or add an AnswerGeneratorAttribute to the question enum value.", _moduleId, question);
+                return null;
+            }
+            answers.AddRange(preferredWrongAnswers.Except(correctAnswers).Distinct());
         }
-        else if (allAnswers == null)
-            answers = preferredWrongAnswers.Distinct().Except(correctAnswers).ToList().Shuffle().Take(attr.NumAnswers - 1).ToList();
         else
         {
             // Pick 𝑛−1 random wrong answers.
-            answers = allAnswers.Except(correctAnswers).ToList().Shuffle().Take(attr.NumAnswers - 1).ToList();
+            if (allAnswers != null) answers.AddRange(allAnswers.Except(correctAnswers));
+            if (answers.Count <= attr.NumAnswers - 1)
+            {
+                if (attr.AnswerGenerator != null && typeof(T) == typeof(string))
+                    answers.AddRange(attr.AnswerGenerator.GetAnswers(this).Except(answers.Concat(correctAnswers) as IEnumerable<string>).Distinct().Take(attr.NumAnswers - 1 - answers.Count) as IEnumerable<T>);
+            }
+            else
+            {
+                answers.Shuffle();
+                answers.RemoveRange(attr.NumAnswers - 1, answers.Count - (attr.NumAnswers - 1));
+            }
             // Add the preferred wrong answers, if any. If we had added them earlier, they’d come up too rarely.
             if (preferredWrongAnswers != null)
-                answers = answers.Concat(preferredWrongAnswers.Distinct().Except(answers).Except(correctAnswers)).ToList().Shuffle().Take(attr.NumAnswers - 1).ToList();
+                answers.AddRange(preferredWrongAnswers.Except(answers.Concat(correctAnswers)).Distinct());
+            answers.Shuffle();
+            if (answers.Count >= attr.NumAnswers) answers.RemoveRange(attr.NumAnswers - 1, answers.Count - (attr.NumAnswers - 1));
         }
 
-        var correctIndex = Rnd.Range(0, Math.Min(attr.NumAnswers + 1, answers.Count + 1));
-        answers.Insert(correctIndex, correctAnswers[Rnd.Range(0, correctAnswers.Length)]);
+        var correctIndex = Rnd.Range(0, answers.Count + 1);
+        answers.Insert(correctIndex, correctAnswers.PickRandom());
 
         var numSolved = _modulesSolved.Get(moduleKey);
         if (numSolved < 1)
         {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning {1} ({2}) because you forgot to increment the solve count.", _moduleId, attr.ModuleName, moduleKey);
+            Debug.LogErrorFormat("<Souvenir #{0}> Abandoning {1} ({2}) because you forgot to increment the solve count.", _moduleId, attr.ModuleName, moduleKey);
             return null;
         }
 
@@ -10941,12 +10964,12 @@ public class SouvenirModule : MonoBehaviour
         return questionConstructor(attr, string.Format(attr.QuestionText, allFormatArgs), correctIndex, answers.ToArray());
     }
 
-    private string[] GetAnswers(Question question)
+    internal string[] GetAnswers(Question question)
     {
         SouvenirQuestionAttribute attr;
         if (!_attributes.TryGetValue(question, out attr))
         {
-            Debug.LogFormat("<Souvenir #{0}> Question {1} is missing from the _attributes dictionary.", _moduleId, question);
+            Debug.LogErrorFormat("<Souvenir #{0}> Question {1} is missing from the _attributes dictionary.", _moduleId, question);
             return null;
         }
         return attr.AllAnswers;

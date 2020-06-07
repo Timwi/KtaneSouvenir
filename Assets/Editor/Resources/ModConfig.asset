@@ -52,6 +52,6 @@ MonoBehaviour:
     Selector[/url] tablet with the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1366808675]Tweaks[/url]
     mod. Souvenir itself and other boss modules may also be excluded this way.\r\n\r\n[url=http://ktane.timwi.de/PDF/Souvenir.pdf]Manual
     PDF[/url]\r\n[url=http://ktane.timwi.de/HTML/Souvenir.html]Manual HTML[/url]"
-  version: 2.2
+  version: 2.3
   outputFolder: build
   previewImage: {fileID: 2800000, guid: bd5c1f4881f57d54481b44e4c8a7779a, type: 3}

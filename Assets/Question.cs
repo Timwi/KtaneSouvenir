@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Souvenir
 {
-    enum Question
+    public enum Question
     {
         [SouvenirQuestion("What were the markings in {0}?", "3D Maze", 6, "ABC", "ABD", "ABH", "ACD", "ACH", "ADH", "BCD", "BCH", "BDH", "CDH")]
         _3DMazeMarkings,
@@ -13,8 +13,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the cardinal direction in {0}?", "3D Maze", 4, "North", "South", "West", "East")]
         _3DMazeBearing,
 
-        [SouvenirQuestion("What was the {1} goal node in {0}?", "3D Tunnels", 6, "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", ".",
+        [SouvenirQuestion("What was the {1} goal node in {0}?", "3D Tunnels", 6,
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.SymbolsFont)]
+        [AnswerGenerator.Strings("a-z.")]
         _3DTunnelsTargetNode,
 
         [SouvenirQuestion("What was the background color on the {1} stage in {0}?", "Accumulation", 6, "Blue", "Brown", "Green", "Grey", "Lime", "Orange", "Pink", "Red", "White", "Yellow",
@@ -41,8 +42,9 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the symbol on the submit button in {0}?", "Arithmelogic", 6, null, Type = AnswerType.Sprites)]
         ArithmelogicSubmit,
-        [SouvenirQuestion("Which number was selectable, but not the solution, in the {1} screen on {0}?", "Arithmelogic", 6, null, ExampleAnswers = new[] { "12", "33", "47", "82", "99" },
+        [SouvenirQuestion("Which number was selectable, but not the solution, in the {1} screen on {0}?", "Arithmelogic", 6,
             ExampleExtraFormatArguments = new[] { "left", "middle", "right" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(10, 99)]
         ArithmelogicNumbers,
 
         [SouvenirQuestion("What color was the {1} correct button when you solved {0}?", "Bamboozled Again", 4, "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose", "White", "Grey", "Black",
@@ -78,20 +80,24 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         BigCircleColors,
 
-        [SouvenirQuestion("At which numeric value did you cut the correct wire in {0}?", "Binary LEDs", 6, null, ExampleAnswers = new[] { "1", "5", "12", "19", "25", "31" })]
+        [SouvenirQuestion("At which numeric value did you cut the correct wire in {0}?", "Binary LEDs", 6)]
+        [AnswerGenerator.Integers(0, 31)]
         BinaryLEDsValue,
 
-        [SouvenirQuestion("How many pixels were {1} in the {2} quadrant in {0}?", "Bitmaps", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",
+        [SouvenirQuestion("How many pixels were {1} in the {2} quadrant in {0}?", "Bitmaps", 6,
             ExampleExtraFormatArguments = new[] { "white", "top left", "white", "top right", "white", "bottom left", "white", "bottom right", "black", "top left", "black", "top right", "black", "bottom left", "black", "bottom right" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        [AnswerGenerator.Integers(0, 16)]
         Bitmaps,
 
         [SouvenirQuestion("What color was the {1} button in {0}?", "Blind Maze", 4, "red", "blue", "yellow", "green", "gray",
             ExampleExtraFormatArguments = new[] { "north", "east", "west", "south" }, ExampleExtraFormatArgumentGroupSize = 1)]
         BlindMazeColors,
-        [SouvenirQuestion("Which maze did you solve {0} on?", "Blind Maze", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
+        [SouvenirQuestion("Which maze did you solve {0} on?", "Blind Maze", 6)]
+        [AnswerGenerator.Integers(0, 9)]
         BlindMazeMaze,
 
-        [SouvenirQuestion("What was the last letter pressed on {0}?", "Blockbusters", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")]
+        [SouvenirQuestion("What was the last letter pressed on {0}?", "Blockbusters", 6)]
+        [AnswerGenerator.Strings('A', 'Z')]
         BlockbustersLastLetter,
 
         [SouvenirQuestion("What were the letters on the screen in the last successful round of {0}?", "Blue Arrows", 6, "CA", "C1", "CB", "C8", "CF", "C4", "CE", "C6", "3A", "31", "3B", "38", "3F", "34", "3E", "36", "GA", "G1", "GB", "G8", "GF", "G4", "GE", "G6", "7A", "71", "7B", "78", "7F", "74", "7E", "76", "DA", "D1", "DB", "D8", "DF", "D4", "DE", "D6", "5A", "51", "5B", "58", "5F", "54", "5E", "56", "HA", "H1", "HB", "H8", "HF", "H4", "HE", "H6", "2A", "21", "2B", "28", "2F", "24", "2E", "26")]
@@ -120,15 +126,17 @@ namespace Souvenir
         [SouvenirQuestion("What were the correct button presses in {0}?", "Bulb", 6, "OOO", "OOI", "OIO", "OII", "IOO", "IOI", "IIO", "III", AddThe = true, Type = AnswerType.TicTacToeFont)]
         BulbButtonPresses,
 
-        [SouvenirQuestion("What was the {1} displayed digit in {0}?", "Burglar Alarm", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+        [SouvenirQuestion("What was the {1} displayed digit in {0}?", "Burglar Alarm", 6,
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 9)]
         BurglarAlarmDigits,
 
         [SouvenirQuestion("What color did the light glow when you solved {0}?", "Button", 4, "red", "blue", "yellow", "white", AddThe = true)]
         ButtonLightColor,
 
-        [SouvenirQuestion("How many of the buttons in {0} were {1}?", "Button Sequence", 6, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
+        [SouvenirQuestion("How many of the buttons in {0} were {1}?", "Button Sequence", 6,
             ExampleExtraFormatArguments = new[] { "red", "blue", "yellow", "white" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1, 12)]
         ButtonSequencesColorOccurrences,
 
         [SouvenirQuestion("What was the {1} in the last successful round of {0}?", "Caesar Cycle", 4, "Advanced", "Addition", "Allocate", "Altering", "Binaries", "Billions", "Bulkhead", "Bulleted", "Ciphered", "Circuits", "Computer", "Continue", "Decrypts", "Division", "Discover", "Disposal", "Encipher", "Entrance", "Equation", "Equipped", "Finished", "Findings", "Fortress", "Forwards", "Gauntlet", "Gambling", "Gathered", "Glooming", "Hazarded", "Haziness", "Hunkered", "Huntsman", "Indicate", "Indigoes", "Illusion", "Illumine", "Jigsawed", "Jimmying", "Junction", "Judgment", "Kilowatt", "Kinetics", "Knockout", "Knuckled", "Limiting", "Linearly", "Linkages", "Labeling", "Monogram", "Monotone", "Multiply", "Mulligan", "Nanogram", "Nanotube", "Numbered", "Numerals", "Octangle", "Octuples", "Observed", "Obscured", "Progress", "Projects", "Position", "Positive", "Quadrant", "Quadrics", "Quickest", "Quintics", "Reversed", "Revolved", "Rotation", "Relation", "Starting", "Standard", "Stopping", "Stopword", "Triggers", "Triangle", "Toggling", "Together", "Underrun", "Underlie", "Ultimate", "Ultrared", "Vicinity", "Viceless", "Voltages", "Volatile", "Wingding", "Winnable", "Whatever", "Whatnots", "Yellowed", "Yeasayer", "Yielding", "Yourself", "Zippered", "Zigzaggy", "Zugzwang", "Zymogram",
@@ -142,12 +150,14 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ChallengeAndContactAnswers,
 
-        [SouvenirQuestion("What was the {1}paid amount in {0}?", "Cheap Checkout", 6, null, ExampleAnswers = new[] { "$11.00", "$12.00", "$14.00", "$17.00", "$24.00", "$25.00" },
+        [SouvenirQuestion("What was the {1}paid amount in {0}?", "Cheap Checkout", 6,
             ExampleExtraFormatArguments = new[] { "", "first ", "second " }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(5, 50, "$0\".00\"")]
         CheapCheckoutPaid,
 
-        [SouvenirQuestion("What was the {1} coordinate in {0}?", "Chess", 6, "a1", "a2", "a3", "a4", "a5", "a6", "b1", "b2", "b3", "b4", "b5", "b6", "c1", "c2", "c3", "c4", "c5", "c6", "d1", "d2", "d3", "d4", "d5", "d6", "e1", "e2", "e3", "e4", "e5", "e6", "f1", "f2", "f3", "f4", "f5", "f6",
+        [SouvenirQuestion("What was the {1} coordinate in {0}?", "Chess", 6,
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("a-f", "1-6")]
         ChessCoordinate,
 
         [SouvenirQuestion("What color was the {1} LED in the last successful round of {0}?", "Chinese Counting", 4, "White", "Red", "Green", "Orange",
@@ -160,7 +170,8 @@ namespace Souvenir
         [SouvenirQuestion("What was the given chord quality in {0}?", "Chord Qualities", 6, "7", "-7", "Δ7", "-Δ7", "7♯9", "ø", "add9", "-add9", "7♯5", "Δ7♯5", "7sus", "-Δ7♯5")]
         ChordQualitiesQuality,
 
-        [SouvenirQuestion("What was the displayed number in {0}?", "Code", 6, null, AddThe = true, ExampleAnswers = new[] { "1234", "9876", "2345", "4567" })]
+        [SouvenirQuestion("What was the displayed number in {0}?", "Code", 6, null, AddThe = true)]
+        [AnswerGenerator.Integers(999, 9999)]
         CodeDisplayNumber,
 
         [SouvenirQuestion("What was the last written client name in {0}?", "Coffeebucks", 6, null, ExampleAnswers = new[] { "Gen", "Den" })]
@@ -183,26 +194,30 @@ namespace Souvenir
         [SouvenirQuestion("What was the color of the {1} key in {0}?", "Colored Keys", 6, null, ExampleAnswers = new[] { "blue", "white" },
             ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ColoredKeysKeyColor,
-        [SouvenirQuestion("What letter was on the {1} key in {0}?", "Colored Keys", 6, null, ExampleAnswers = new[] { "A", "Z" },
+        [SouvenirQuestion("What letter was on the {1} key in {0}?", "Colored Keys", 6,
             ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings('A', 'Z')]
         ColoredKeysKeyLetter,
 
         [SouvenirQuestion("What was the first color group in {0}?", "Colored Squares", 6, "White", "Red", "Blue", "Green", "Yellow", "Magenta")]
         ColoredSquaresFirstGroup,
 
-        [SouvenirQuestion("What was the initial position of the switches in {0}?", "Colored Switches", 6, "RRRRR", "QRRRR", "RQRRR", "QQRRR", "RRQRR", "QRQRR", "RQQRR", "QQQRR", "RRRQR", "QRRQR", "RQRQR", "QQRQR", "RRQQR", "QRQQR", "RQQQR", "QQQQR", "RRRRQ", "QRRRQ", "RQRRQ", "QQRRQ", "RRQRQ", "QRQRQ", "RQQRQ", "QQQRQ", "RRRQQ", "QRRQQ", "RQRQQ", "QQRQQ", "RRQQQ", "QRQQQ", "RQQQQ", "QQQQQ",
+        [SouvenirQuestion("What was the initial position of the switches in {0}?", "Colored Switches", 6,
             Type = AnswerType.SymbolsFont)]
+        [AnswerGenerator.Strings(5, 'Q', 'R')]
         ColoredSwitchesInitialPosition,
-        [SouvenirQuestion("What was the position of the switches when the LEDs came on in {0}?", "Colored Switches", 6, "RRRRR", "QRRRR", "RQRRR", "QQRRR", "RRQRR", "QRQRR", "RQQRR", "QQQRR", "RRRQR", "QRRQR", "RQRQR", "QQRQR", "RRQQR", "QRQQR", "RQQQR", "QQQQR", "RRRRQ", "QRRRQ", "RQRRQ", "QQRRQ", "RRQRQ", "QRQRQ", "RQQRQ", "QQQRQ", "RRRQQ", "QRRQQ", "RQRQQ", "QQRQQ", "RRQQQ", "QRQQQ", "RQQQQ", "QQQQQ",
+        [SouvenirQuestion("What was the position of the switches when the LEDs came on in {0}?", "Colored Switches", 6,
             Type = AnswerType.SymbolsFont)]
+        [AnswerGenerator.Strings(5, 'Q', 'R')]
         ColoredSwitchesWhenLEDsCameOn,
 
         [SouvenirQuestion("What was the color of the {1} LED in {0}?", "Color Morse", 6, "Blue", "Green", "Orange", "Purple", "Red", "Yellow", "White",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ColorMorseColor,
 
-        [SouvenirQuestion("What character was flashed by the {1} LED in {0}?", "Color Morse", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+        [SouvenirQuestion("What character was flashed by the {1} LED in {0}?", "Color Morse", 6,
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("0-9A-Z")]
         ColorMorseCharacter,
 
         [SouvenirQuestion("What was the solution you selected first in {0}?", "Coordinates", 6, null, ExampleAnswers = new[] { "[4,7]", "C4", "<0, 2>", "3, 1", "(6,2)", "B-1", "“1, 0”", "4/3", "[12]", "#23", "四十七" })]
@@ -264,77 +279,95 @@ namespace Souvenir
         [SouvenirQuestion("What was the displayed symbol in {0}?", "Equations X", 6, "H(T)", "P", "\u03C7", "\u03C9", "Z(T)", "\u03C4", "\u03BC", "\u03B1", "K")]
         EquationsXSymbols,
 
-        [SouvenirQuestion("What was the beat for the {1} arrow from the bottom in {0}?", "Etterna", 6, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32",
+        [SouvenirQuestion("What was the beat for the {1} arrow from the bottom in {0}?", "Etterna", 6,
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1, 32)]
         EtternaNumber,
 
         [SouvenirQuestion("What room did you start in in the last generated maze of {0}?", "Factory Maze", 4, "Bathroom", "Assembly Line", "Cafeteria", "Room A9", "Broom Closet", "Basement", "Copy Room", "Unnecessarily...", "Library", "Break Room", "Empty Room...", "Arcade", "Classroom", "Module Testing...", "Music Studio", "Computer Room", "Infirmary", "Bomb Room", "Space", "Storage Room", "Lounge", "Conference Room", "Kitchen", "Incinerator")]
         FactoryMazeStartRoom,
 
-        [SouvenirQuestion("What was the last pair of letters in {0}?", "Fast Math", 6, "AA", "AB", "AC", "AD", "AE", "AG", "AK", "AN", "AP", "AS", "AT", "AX", "AZ", "BA", "BB", "BC", "BD", "BE", "BG", "BK", "BN", "BP", "BS", "BT", "BX", "BZ", "CA", "CB", "CC", "CD", "CE", "CG", "CK", "CN", "CP", "CS", "CT", "CX", "CZ", "DA", "DB", "DC", "DD", "DE", "DG", "DK", "DN", "DP", "DS", "DT", "DX", "DZ", "EA", "EB", "EC", "ED", "EE", "EG", "EK", "EN", "EP", "ES", "ET", "EX", "EZ", "GA", "GB", "GC", "GD", "GE", "GG", "GK", "GN", "GP", "GS", "GT", "GX", "GZ", "KA", "KB", "KC", "KD", "KE", "KG", "KK", "KN", "KP", "KS", "KT", "KX", "KZ", "NA", "NB", "NC", "ND", "NE", "NG", "NK", "NN", "NP", "NS", "NT", "NX", "NZ", "PA", "PB", "PC", "PD", "PE", "PG", "PK", "PN", "PP", "PS", "PT", "PX", "PZ", "SA", "SB", "SC", "SD", "SE", "SG", "SK", "SN", "SP", "SS", "ST", "SX", "SZ", "TA", "TB", "TC", "TD", "TE", "TG", "TK", "TN", "TP", "TS", "TT", "TX", "TZ", "XA", "XB", "XC", "XD", "XE", "XG", "XK", "XN", "XP", "XS", "XT", "XX", "XZ", "ZA", "ZB", "ZC", "ZD", "ZE", "ZG", "ZK", "ZN", "ZP", "ZS", "ZT", "ZX", "ZZ")]
+        [SouvenirQuestion("What was the last pair of letters in {0}?", "Fast Math", 6)]
+        [AnswerGenerator.Strings(2, 'A', 'B', 'C', 'D', 'E', 'G', 'K', 'N', 'P', 'S', 'T', 'X', 'Z')]
         FastMathLastLetters,
 
-        [SouvenirQuestion("What was the exit coordinate in {0}?", "Faulty RGB Maze", 6, "A1", "A2", "A3", "A4", "A5", "A6", "A7", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "E1", "E2", "E3", "E4", "E5", "E6", "E7", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "G1", "G2", "G3", "G4", "G5", "G6", "G7")]
+        [SouvenirQuestion("What was the exit coordinate in {0}?", "Faulty RGB Maze", 6)]
+        [AnswerGenerator.Strings("A-G", "1-7")]
         FaultyRGBMazeExit,
-        [SouvenirQuestion("Where was the {1} key in {0}?", "Faulty RGB Maze", 6, "A1", "A2", "A3", "A4", "A5", "A6", "A7", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "E1", "E2", "E3", "E4", "E5", "E6", "E7", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "G1", "G2", "G3", "G4", "G5", "G6", "G7",
+        [SouvenirQuestion("Where was the {1} key in {0}?", "Faulty RGB Maze", 6,
             ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("A-G", "1-7")]
         FaultyRGBMazeKeys,
-        [SouvenirQuestion("Which maze number was the {1} maze in {0}?", "Faulty RGB Maze", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f",
+        [SouvenirQuestion("Which maze number was the {1} maze in {0}?", "Faulty RGB Maze", 6,
             ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("0-9a-f")]
         FaultyRGBMazeNumber,
 
-        [SouvenirQuestion("What was the displayed number in {0}?", "Flags", 6, "1", "2", "3", "4", "5", "6", "7")]
+        [SouvenirQuestion("What was the displayed number in {0}?", "Flags", 6)]
         FlagsDisplayedNumber,
+        [AnswerGenerator.Integers(1, 7)]
         [SouvenirQuestion("What was the main country flag in {0}?", "Flags", 6, null, Type = AnswerType.Sprites)]
         FlagsMainCountry,
         [SouvenirQuestion("Which of these country flags was shown, but not the main country flag, in {0}?", "Flags", 6, null, Type = AnswerType.Sprites)]
         FlagsCountries,
 
-        [SouvenirQuestion("How many times did the {1} LED flash {2} on {0}?", "Flashing Lights", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
+        [SouvenirQuestion("How many times did the {1} LED flash {2} on {0}?", "Flashing Lights", 6,
             ExampleExtraFormatArguments = new[] { "top", "blue", "top", "green", "top", "red", "top", "purple", "top", "orange", "bottom", "blue", "bottom", "green", "bottom", "red", "bottom", "purple", "bottom", "orange" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        [AnswerGenerator.Integers(0, 12)]
         FlashingLightsLEDFrequency,
 
-        [SouvenirQuestion("What number was on the gear during stage {1} in {0}?", "Forget the Colors", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-            ExampleExtraFormatArguments = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What number was on the gear during stage {1} in {0}?", "Forget the Colors", 6,
+            ExampleExtraFormatArguments = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 9)]
         ForgetTheColorsGearNumber,
-        [SouvenirQuestion("What number was on the large display during stage {1} in {0}?", "Forget the Colors", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100", "101", "102", "103", "104", "105", "106", "107", "108", "109", "110", "111", "112", "113", "114", "115", "116", "117", "118", "119", "120", "121", "122", "123", "124", "125", "126", "127", "128", "129", "130", "131", "132", "133", "134", "135", "136", "137", "138", "139", "140", "141", "142", "143", "144", "145", "146", "147", "148", "149", "150", "151", "152", "153", "154", "155", "156", "157", "158", "159", "160", "161", "162", "163", "164", "165", "166", "167", "168", "169", "170", "171", "172", "173", "174", "175", "176", "177", "178", "179", "180", "181", "182", "183", "184", "185", "186", "187", "188", "189", "190", "191", "192", "193", "194", "195", "196", "197", "198", "199", "200", "201", "202", "203", "204", "205", "206", "207", "208", "209", "210", "211", "212", "213", "214", "215", "216", "217", "218", "219", "220", "221", "222", "223", "224", "225", "226", "227", "228", "229", "230", "231", "232", "233", "234", "235", "236", "237", "238", "239", "240", "241", "242", "243", "244", "245", "246", "247", "248", "249", "250", "251", "252", "253", "254", "255", "256", "257", "258", "259", "260", "261", "262", "263", "264", "265", "266", "267", "268", "269", "270", "271", "272", "273", "274", "275", "276", "277", "278", "279", "280", "281", "282", "283", "284", "285", "286", "287", "288", "289", "290", "291", "292", "293", "294", "295", "296", "297", "298", "299", "300", "301", "302", "303", "304", "305", "306", "307", "308", "309", "310", "311", "312", "313", "314", "315", "316", "317", "318", "319", "320", "321", "322", "323", "324", "325", "326", "327", "328", "329", "330", "331", "332", "333", "334", "335", "336", "337", "338", "339", "340", "341", "342", "343", "344", "345", "346", "347", "348", "349", "350", "351", "352", "353", "354", "355", "356", "357", "358", "359", "360", "361", "362", "363", "364", "365", "366", "367", "368", "369", "370", "371", "372", "373", "374", "375", "376", "377", "378", "379", "380", "381", "382", "383", "384", "385", "386", "387", "388", "389", "390", "391", "392", "393", "394", "395", "396", "397", "398", "399", "400", "401", "402", "403", "404", "405", "406", "407", "408", "409", "410", "411", "412", "413", "414", "415", "416", "417", "418", "419", "420", "421", "422", "423", "424", "425", "426", "427", "428", "429", "430", "431", "432", "433", "434", "435", "436", "437", "438", "439", "440", "441", "442", "443", "444", "445", "446", "447", "448", "449", "450", "451", "452", "453", "454", "455", "456", "457", "458", "459", "460", "461", "462", "463", "464", "465", "466", "467", "468", "469", "470", "471", "472", "473", "474", "475", "476", "477", "478", "479", "480", "481", "482", "483", "484", "485", "486", "487", "488", "489", "490", "491", "492", "493", "494", "495", "496", "497", "498", "499", "500", "501", "502", "503", "504", "505", "506", "507", "508", "509", "510", "511", "512", "513", "514", "515", "516", "517", "518", "519", "520", "521", "522", "523", "524", "525", "526", "527", "528", "529", "530", "531", "532", "533", "534", "535", "536", "537", "538", "539", "540", "541", "542", "543", "544", "545", "546", "547", "548", "549", "550", "551", "552", "553", "554", "555", "556", "557", "558", "559", "560", "561", "562", "563", "564", "565", "566", "567", "568", "569", "570", "571", "572", "573", "574", "575", "576", "577", "578", "579", "580", "581", "582", "583", "584", "585", "586", "587", "588", "589", "590", "591", "592", "593", "594", "595", "596", "597", "598", "599", "600", "601", "602", "603", "604", "605", "606", "607", "608", "609", "610", "611", "612", "613", "614", "615", "616", "617", "618", "619", "620", "621", "622", "623", "624", "625", "626", "627", "628", "629", "630", "631", "632", "633", "634", "635", "636", "637", "638", "639", "640", "641", "642", "643", "644", "645", "646", "647", "648", "649", "650", "651", "652", "653", "654", "655", "656", "657", "658", "659", "660", "661", "662", "663", "664", "665", "666", "667", "668", "669", "670", "671", "672", "673", "674", "675", "676", "677", "678", "679", "680", "681", "682", "683", "684", "685", "686", "687", "688", "689", "690", "691", "692", "693", "694", "695", "696", "697", "698", "699", "700", "701", "702", "703", "704", "705", "706", "707", "708", "709", "710", "711", "712", "713", "714", "715", "716", "717", "718", "719", "720", "721", "722", "723", "724", "725", "726", "727", "728", "729", "730", "731", "732", "733", "734", "735", "736", "737", "738", "739", "740", "741", "742", "743", "744", "745", "746", "747", "748", "749", "750", "751", "752", "753", "754", "755", "756", "757", "758", "759", "760", "761", "762", "763", "764", "765", "766", "767", "768", "769", "770", "771", "772", "773", "774", "775", "776", "777", "778", "779", "780", "781", "782", "783", "784", "785", "786", "787", "788", "789", "790", "791", "792", "793", "794", "795", "796", "797", "798", "799", "800", "801", "802", "803", "804", "805", "806", "807", "808", "809", "810", "811", "812", "813", "814", "815", "816", "817", "818", "819", "820", "821", "822", "823", "824", "825", "826", "827", "828", "829", "830", "831", "832", "833", "834", "835", "836", "837", "838", "839", "840", "841", "842", "843", "844", "845", "846", "847", "848", "849", "850", "851", "852", "853", "854", "855", "856", "857", "858", "859", "860", "861", "862", "863", "864", "865", "866", "867", "868", "869", "870", "871", "872", "873", "874", "875", "876", "877", "878", "879", "880", "881", "882", "883", "884", "885", "886", "887", "888", "889", "890", "891", "892", "893", "894", "895", "896", "897", "898", "899", "900", "901", "902", "903", "904", "905", "906", "907", "908", "909", "910", "911", "912", "913", "914", "915", "916", "917", "918", "919", "920", "921", "922", "923", "924", "925", "926", "927", "928", "929", "930", "931", "932", "933", "934", "935", "936", "937", "938", "939", "940", "941", "942", "943", "944", "945", "946", "947", "948", "949", "950", "951", "952", "953", "954", "955", "956", "957", "958", "959", "960", "961", "962", "963", "964", "965", "966", "967", "968", "969", "970", "971", "972", "973", "974", "975", "976", "977", "978", "979", "980", "981", "982", "983", "984", "985", "986", "987", "988", "989", "990",
-            ExampleExtraFormatArguments = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What number was on the large display during stage {1} in {0}?", "Forget the Colors", 6,
+            ExampleExtraFormatArguments = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 990)]
         ForgetTheColorsLargeDisplay,
-        [SouvenirQuestion("What was the last decimal in the sine number recieved during stage {1} in {0}?", "Forget the Colors", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-            ExampleExtraFormatArguments = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was the last decimal in the sine number recieved during stage {1} in {0}?", "Forget the Colors", 6,
+            ExampleExtraFormatArguments = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 9)]
         ForgetTheColorsSineNumber,
         [SouvenirQuestion("What color was the gear during stage {1} in {0}?", "Forget the Colors", 6, "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "Pink", "Maroon", "White", "Gray",
-            ExampleExtraFormatArguments = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ForgetTheColorsGearColor,
         [SouvenirQuestion("Which edgework-based rule was applied to the total number during stage {1} in {0}?", "Forget the Colors", 6, "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "Pink", "Maroon", "White", "Gray",
-            ExampleExtraFormatArguments = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ForgetTheColorsRuleColor,
 
         [SouvenirQuestion("What was the player token in {0}?", "Free Parking", 6, "Dog", "Wheelbarrow", "Cat", "Iron", "Top Hat", "Car", "Battleship")]
         FreeParkingToken,
 
-        [SouvenirQuestion("What was the last digit of your first query’s result in {0}?", "Functions", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
+        [SouvenirQuestion("What was the last digit of your first query’s result in {0}?", "Functions", 6)]
+        [AnswerGenerator.Integers(0, 9)]
         FunctionsLastDigit,
-        [SouvenirQuestion("What number was to the left of the displayed letter in {0}?", "Functions", 6, null, ExampleAnswers = new[] { "123", "847", "14", "73", "961", "9", "858" })]
+        [SouvenirQuestion("What number was to the left of the displayed letter in {0}?", "Functions", 6)]
+        [AnswerGenerator.Integers(1, 999)]
         FunctionsLeftNumber,
-        [SouvenirQuestion("What letter was displayed in {0}?", "Functions", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")]
+        [SouvenirQuestion("What letter was displayed in {0}?", "Functions", 6)]
+        [AnswerGenerator.Strings('A', 'Z')]
         FunctionsLetter,
-        [SouvenirQuestion("What number was to the right of the displayed letter in {0}?", "Functions", 6, null, ExampleAnswers = new[] { "321", "747", "47", "31", "169", "8", "858" })]
+        [SouvenirQuestion("What number was to the right of the displayed letter in {0}?", "Functions", 6)]
+        [AnswerGenerator.Integers(1, 999)]
         FunctionsRightNumber,
 
-        [SouvenirQuestion("What were the numbers on {0}?", "Gamepad", 6, null, AddThe = true, ExampleAnswers = new[] { "01:03", "12:92", "84:72", "24:56" })]
+        [SouvenirQuestion("What were the numbers on {0}?", "Gamepad", 6, null, AddThe = true)]
+        [AnswerGenerator.Strings("2*0-9", ":", "2*0-9")]
         GamepadNumbers,
 
         [SouvenirQuestion("What was the color of the liquid you drank in {0}?", "Giant’s Drink", 6, "Red", "Blue", "Green", "Orange", "Purple", "Cyan", AddThe = true)]
         GiantsDrinkLiquid,
 
-        [SouvenirQuestion("What was the last number on the display on {0}?", "Green Arrows", 6, "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99")]
+        [SouvenirQuestion("What was the last number on the display on {0}?", "Green Arrows", 6)]
+        [AnswerGenerator.Integers(0, 99, "00")]
         GreenArrowsLastScreen,
 
-        [SouvenirQuestion("What was the starting location in {0}?", "Gridlock", 6, "A1", "B1", "C1", "D1", "A2", "B2", "C2", "D2", "A3", "B3", "C3", "D3", "A4", "B4", "C4", "D4")]
+        [SouvenirQuestion("What was the starting location in {0}?", "Gridlock", 6)]
+        [AnswerGenerator.Strings("A-D", "1-4")]
         GridLockStartingLocation,
 
-        [SouvenirQuestion("What was the ending location in {0}?", "Gridlock", 6, "A1", "B1", "C1", "D1", "A2", "B2", "C2", "D2", "A3", "B3", "C3", "D3", "A4", "B4", "C4", "D4")]
+        [SouvenirQuestion("What was the ending location in {0}?", "Gridlock", 6)]
+        [AnswerGenerator.Strings("A-D", "1-4")]
         GridLockEndingLocation,
 
         [SouvenirQuestion("What was the starting color in {0}?", "Gridlock", 4, "Green", "Yellow", "Red", "Blue")]
@@ -342,7 +375,8 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the gryphon’s name in {0}?", "Gryphons", 6, "Gabe", "Gabriel", "Gad", "Gael", "Gage", "Gaia", "Galena", "Galina", "Gallo", "Gallagher", "Ganymede", "Ganzorig", "Garen", "Gareth", "Garland", "Garnett", "Garret", "Garrick", "Gary", "Gaspar", "Gaston", "Gauthier", "Gavin", "Gaz", "Geena", "Geff", "Geffrey", "Gela", "Geltrude", "Gene", "Geneva", "Genevieve", "Geno", "Gentius", "Geoff", "George", "Georgio", "Georgius", "Gerald", "Geraldo", "Gerda", "Gerel", "Gergana", "Gerhardt", "Gerhart", "Gerry", "Gertrude", "Gervais", "Gervaise", "Ghada", "Ghadir", "Ghassan", "Ghjulia", "Gia", "Giada", "Giampaolo", "Giampiero", "Giancarlo", "Giana", "Gianna", "Gideon", "Gidon", "Gilbert", "Gilberta", "Gino", "Giorgio", "Giovanni", "Giove", "Girish", "Girisha", "Gisela", "Giselle", "Gittel", "Gizella", "Gjorgji", "Gladys", "Glauco", "Glaukos", "Glen", "Glenn", "Godfrey", "Godfried", "Gojko", "Gol", "Golda", "Gona", "Gonzalo", "Gordie", "Gordy", "Goretti", "Gosia", "Gosse", "Gotzon", "Gotzone", "Gowri", "Gozzo", "Grace", "Gracia", "Griffith", "Gwynnyth")]
         GryphonsName,
-        [SouvenirQuestion("What was the gryphon’s age in {0}?", "Gryphons", 6, "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34")]
+        [SouvenirQuestion("What was the gryphon’s age in {0}?", "Gryphons", 6)]
+        [AnswerGenerator.Integers(23, 34)]
         GryphonsAge,
 
         [SouvenirQuestion("What was the given number in {0}?", "Hereditary Base Notation", 4, null, ExampleAnswers = new[] { "12", "33", "46", "112", "356" })]
@@ -354,10 +388,12 @@ namespace Souvenir
         [SouvenirQuestion("What was the color of the pawn in {0}?", "Hexamaze", 6, "Red", "Yellow", "Green", "Cyan", "Blue", "Pink")]
         HexamazePawnColor,
 		
-        [SouvenirQuestion("What were the deciphered letters in {0}?", "hexOS", 6, ExampleAnswers = new[] { "AA", "AC", "DH", "DS", "FL", "FT", "IP", "IR", "IY", "MS", "NN", "PZ", "RG", "RS", "VC", "VZ", "WP", "XG", "ZC", "ZJ" })]
+        [SouvenirQuestion("What were the deciphered letters in {0}?", "hexOS", 6)]
+        [AnswerGenerator.Strings("2* A-Z")]
         HexOSCipher,
-        [SouvenirQuestion("What was the {1} 3-digit number cycled by the screen in {0}?", "hexOS", 6, ExampleAnswers = new[] { "108", "130", "192", "332", "379", "432", "442", "482", "491", "541", "622", "672", "69", "73", "743", "780", "918", "948", "985", "990" },
+        [SouvenirQuestion("What was the {1} 3-digit number cycled by the screen in {0}?", "hexOS", 6,
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th", "6th", "7th", "8th", "9th", "10th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1, 999, "000")]
         HexOSScreen,
         [SouvenirQuestion("What was the sum of the rhythm values in {0}?", "hexOS", 6, "0001", "0010", "0011", "0012", "0021", "0100", "0101", "0102", "0110", "0111", "0112", "0120", "0121", "0122", "0201", "0210", "0211", "0212", "0221", "1000", "1001", "1002", "1010", "1011", "1012", "1020", "1021", "1022", "1100", "1101", "1102", "1110", "1111", "1112", "1120", "1121", "1122", "1200", "1201", "1202", "1210", "1211", "1212", "1220", "1221", "1222", "2001", "2010", "2011", "2012", "2021", "2100", "2101", "2102", "2110", "2111", "2112", "2120", "2121", "2122", "2201", "2210", "2211", "2212", "2221")]
         HexOSSum,
@@ -376,11 +412,13 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "Gryffindor", "Hufflepuff", "Slytherin", "Ravenclaw" }, ExampleExtraFormatArgumentGroupSize = 1)]
         HogwartsModule,
 
-        [SouvenirQuestion("In what position was the button pressed on the {1} stage of {0}?", "Horrible Memory", 6, "1", "2", "3", "4", "5", "6",
+        [SouvenirQuestion("In what position was the button pressed on the {1} stage of {0}?", "Horrible Memory", 6,
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1, 6)]
         HorribleMemoryPositions,
-        [SouvenirQuestion("What was the label of the button pressed on the {1} stage of {0}?", "Horrible Memory", 6, "1", "2", "3", "4", "5", "6",
+        [SouvenirQuestion("What was the label of the button pressed on the {1} stage of {0}?", "Horrible Memory", 6,
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1, 6)]
         HorribleMemoryLabels,
         [SouvenirQuestion("What color was the button pressed on the {1} stage of {0}?", "Horrible Memory", 6, "blue", "green", "red", "orange", "purple", "pink",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -419,12 +457,14 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "was", "was not" }, ExampleExtraFormatArgumentGroupSize = 1)]
         IdentityParadeAttires,
 
-        [SouvenirQuestion("What was the {1} PIN digit in {0}?", "iPhone", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+        [SouvenirQuestion("What was the {1} PIN digit in {0}?", "iPhone", 6,
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
+        [AnswerGenerator.Integers(0, 9)]
         iPhoneDigits,
 
-        [SouvenirQuestion("What number was wheel {1} in {0}?", "Jewel Vault", 4, "1", "2", "3", "4",
+        [SouvenirQuestion("What number was wheel {1} in {0}?", "Jewel Vault", 4,
             ExampleExtraFormatArguments = new[] { "A", "B", "C", "D" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
+        [AnswerGenerator.Integers(1, 4)]
         JewelVaultWheels,
 
         [SouvenirQuestion("What was the {1} in the last successful round of {0}?", "Jumble Cycle", 4, "Adverted", "Advocate", "Allotype", "Allotted", "Binormal", "Binomial", "Bullhorn", "Bulwarks", "Connects", "Conquers", "Commando", "Compiler", "Deceived", "Decimate", "Dispatch", "Discrete", "Encrypts", "Encoding", "Equators", "Equalise", "Finalise", "Finnicky", "Formulae", "Fortunes", "Garrison", "Garnered", "Gatepost", "Gateways", "Hotlinks", "Hotheads", "Huntress", "Hundreds", "Incoming", "Indirect", "Illusory", "Illuding", "Journeys", "Jousting", "Junkyard", "Juncture", "Kilovolt", "Kilobyte", "Knocking", "Knowable", "Language", "Landmark", "Linkwork", "Lingered", "Monomial", "Monolith", "Multiton", "Mulcting", "Nanowatt", "Nanobots", "Numerous", "Numerate", "Ordering", "Ordinals", "Obstruct", "Obstacle", "Prophase", "PROPHECY", "Postsync", "Positron", "Quartile", "Quartics", "Quirkish", "Quitters", "Reversed", "Revealed", "Relaying", "Relative", "Stanzaic", "Standout", "Stockade", "Stoccata", "Trigonal", "Trickier", "Tomogram", "Tomahawk", "Underway", "Undoings", "Ulterior", "Ultrahot", "Venomous", "Vendetta", "Volition", "Voluming", "Weakened", "Weaponed", "Whatness", "Whatsits", "Yearlong", "Yearning", "Yokozuna", "Yourself", "Zygomata", "Zygotene", "Zymology", "Zymogene",
@@ -435,12 +475,14 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "pre-filled", "not pre-filled" }, ExampleExtraFormatArgumentGroupSize = 1)]
         KudosudokuPrefilled,
 
-        [SouvenirQuestion("What was the number on the {1} hatch on {0}?", "Lasers", 6, "1", "2", "3", "4", "5", "6", "7", "8", "9",
+        [SouvenirQuestion("What was the number on the {1} hatch on {0}?", "Lasers", 6,
             ExampleExtraFormatArguments = new[] { "top-left", "top-middle", "top-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1, 9)]
         LasersHatches,
 
-        [SouvenirQuestion("What was the correct letter you pressed in the {1} stage of {0}?", "LED Encryption", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+        [SouvenirQuestion("What was the correct letter you pressed in the {1} stage of {0}?", "LED Encryption", 6,
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings('A', 'Z')]
         LEDEncryptionPressedLetters,
 
         [SouvenirQuestion("What color was {1} in {0}?", "LED Math", 4, "Red", "Blue", "Yellow", "Green",
@@ -451,8 +493,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "red", "green", "blue", "cyan", "magenta", "yellow" }, ExampleExtraFormatArgumentGroupSize = 1)]
         LEGOsPieceDimensions,
 
-        [SouvenirQuestion("What was the correct code you entered in {0}?", "Listening", 6, null,
-            ExampleAnswers = new[] { "&&&**", "&$#$&", "$#$*&", "#$$**", "$#$#*", "**$*#", "#$$&*", "##*$*", "$#*$&", "**#**", "#&&*#", "&#**&", "$&**#", "&#$$#", "$&&**", "#&$##", "&*$*$", "&$$&*", "#&&&&", "**$$$", "*&*&&", "*#&*&", "**###", "&&$&*", "&$**&", "#$#&$", "&#&&#", "$$*$*", "$&#$$", "&**$$", "$&&*&", "&$&##", "#&$*&", "$*$**", "*#$&&", "###&$", "*$$&$", "$*&##", "#&$&&", "$&$$*", "*$*$*" })]
+        [SouvenirQuestion("What was the correct code you entered in {0}?", "Listening", 6, "&&&**", "&$#$&", "$#$*&", "#$$**", "$#$#*", "**$*#", "#$$&*", "##*$*", "$#*$&", "**#**", "#&&*#", "&#**&", "$&**#", "&#$$#", "$&&**", "#&$##", "&*$*$", "&$$&*", "#&&&&", "**$$$", "*&*&&", "*#&*&", "**###", "&&$&*", "&$**&", "#$#&$", "&#&&#", "$$*$*", "$&#$$", "&**$$", "$&&*&", "&$&##", "#&$*&", "$*$**", "*#$&&", "###&$", "*$$&$", "$*&##", "#&$&&", "$&$$*", "*$*$*")]
         Listening,
 
         [SouvenirQuestion("What was the initial color of the {1} button in the {2} successful stage of {0}?", "Logical Buttons", 4, "Red", "Blue", "Green", "Yellow", "Purple", "White", "Orange", "Cyan", "Grey",
@@ -487,8 +528,9 @@ namespace Souvenir
         [SouvenirQuestion("Which callsign was signalled in {0}?", "Maritime Flags", 4, "1stmate", "2ndmate", "3rdmate", "abandon", "admiral", "advance", "aground", "allides", "anchors", "athwart", "azimuth", "bailers", "ballast", "barrack", "beached", "beacons", "beamend", "beamsea", "bearing", "beating", "belayed", "bermuda", "bobstay", "boilers", "bollard", "bonnets", "boomkin", "bounder", "bowline", "brailed", "breadth", "bridges", "brigged", "bringto", "bulwark", "bumboat", "bumpkin", "burthen", "caboose", "capsize", "capstan", "captain", "caravel", "careens", "carrack", "carrier", "catboat", "cathead", "chained", "channel", "charley", "charter", "citadel", "cleared", "cleated", "clinker", "clipper", "coaming", "coasted", "consort", "convoys", "corinth", "cotchel", "counter", "cranzes", "crewing", "cringle", "crojack", "cruiser", "cutters", "dandies", "deadrun", "debunks", "derrick", "dipping", "disrate", "dogvane", "doldrum", "dolphin", "draught", "drifter", "drogues", "drydock", "dunnage", "dunsels", "earings", "echelon", "embayed", "ensigns", "escorts", "fairway", "falkusa", "fantail", "fardage", "fathoms", "fenders", "ferries", "fitting", "flanked", "flaring", "flattop", "flemish", "floated", "floored", "flotsam", "folding", "follows", "forcing", "forward", "foulies", "founder", "framing", "freight", "frigate", "funnels", "furling", "galleon", "galleys", "galliot", "gangway", "garbled", "general", "georges", "ghosted", "ginpole", "giveway", "gondola", "graving", "gripies", "grounds", "growler", "guineas", "gundeck", "gunport", "gunwale", "halyard", "hammock", "hampers", "hangars", "harbors", "harbour", "hauling", "hawsers", "heading", "headsea", "heaving", "herring", "hogging", "holiday", "huffler", "inboard", "inirons", "inshore", "instays", "inwater", "inwayof", "jackies", "jacktar", "jennies", "jetties", "jiggers", "joggles", "jollies", "juryrig", "keelson", "kellets", "kicking", "killick", "kitchen", "lanyard", "laydays", "lazaret", "leehelm", "leeside", "leeward", "liberty", "lighter", "lizards", "loading", "lockers", "lofting", "lolling", "lookout", "lubbers", "luffing", "luggers", "lugsail", "maewest", "manowar", "marconi", "mariner", "matelot", "mizzens", "mooring", "mousing", "narrows", "nippers", "officer", "offpier", "oilskin", "oldsalt", "onboard", "oreboat", "outhaul", "outward", "painter", "panting", "parcels", "parleys", "parrels", "passage", "pelagic", "pendant", "pennant", "pickets", "pinnace", "pintles", "pirates", "pivoted", "pursers", "pursued", "quarter", "quaying", "rabbets", "ratline", "reduced", "reefers", "repairs", "rigging", "ripraps", "rompers", "rowlock", "rudders", "ruffles", "rummage", "sagging", "sailors", "salties", "salvors", "sampans", "sampson", "sculled", "scupper", "scuttle", "seacock", "sealing", "seekers", "serving", "sextant", "shelter", "shipped", "shiprig", "sickbay", "skipper", "skysail", "slinged", "slipway", "snagged", "snotter", "spliced", "splices", "sponson", "sponsor", "springs", "squares", "stackie", "standon", "starter", "station", "steamer", "steered", "steeves", "steward", "stopper", "stovein", "stowage", "strikes", "sunfish", "swimmie", "systems", "tacking", "thwarts", "tinclad", "tompion", "tonnage", "topmast", "topsail", "torpedo", "tossers", "trading", "traffic", "tramper", "transom", "trawler", "trenail", "trennel", "trimmer", "trooper", "trunnel", "tugboat", "turntwo", "unships", "upbound", "vessels", "voicing", "voyager", "weather", "whalers", "wharves", "whelkie", "whistle", "winches", "windage", "working", "yardarm")]
         MaritimeFlagsCallsign,
 
-        [SouvenirQuestion("In which {1} was the starting position in {0}, counting from the {2}?", "Maze", 6, "1", "2", "3", "4", "5", "6",
+        [SouvenirQuestion("In which {1} was the starting position in {0}, counting from the {2}?", "Maze", 6,
             ExampleExtraFormatArguments = new[] { "column", "left", "row", "top" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        [AnswerGenerator.Integers(1, 6)]
         MazeStartingPosition,
 
         [SouvenirQuestion("What was the color of the starting face in {0}?", "Maze³", 6, "Red", "Blue", "Yellow", "Green", "Magenta", "Orange")]
@@ -510,25 +552,30 @@ namespace Souvenir
         [SouvenirQuestion("Whose weapon was shown in {0}?", "Mega Man 2", 4, "Cold Man", "Magma Man", "Dust Man", "Sword Man", "Splash Woman", "Ice Man", "Quick Man", "Hard Man", "Pharaoh Man", "Charge Man", "Pirate Man", "Pump Man", "Galaxy Man", "Grenade Man", "Snake Man", "Burst Man", "Cut Man", "Air Man", "Magnet Man", "Toad Man", "Gyro Man", "Tomahawk Man", "Wood Man", "Strike Man", "Blade Man", "Aqua Man", "Shade Man", "Flash Man", "Flame Man", "Concrete Man", "Metal Man", "Needle Man", "Wave Man", "Knight Man", "Slash Man", "Shadow Man", "Sheep Man", "Ground Man", "Wind Man", "Fire Man", "Stone Man", "Tengu Man", "Bright Man", "Centaur Man", "Cloud Man", "Frost Man", "Dynamo Man", "Chill Man", "Turbo Man", "Napalm Man", "Jewel Man", "Drill Man", "Freeze Man", "Blizzard Man", "Gravity Man", "Junk Man", "Clown Man", "Hornet Man", "Skull Man", "Solar Man", "Commando Man", "Yamato Man", "Dive Man", "Search Man", "Gemini Man", "Bubble Man", "Guts Man", "Tornado Man", "Astro Man", "Plug Man", "Elec Man", "Crystal Man", "Nitro Man", "Burner Man", "Spark Man", "Spring Man", "Plant Man", "Star Man", "Ring Man", "Top Man", "Crash Man", "Bomb Man", "Heat Man", "Magic Man")]
         MegaMan2SelectedWeapon,
 
-        [SouvenirQuestion("Which part was in slot #{1} at the start of {0}?", "Melody Sequencer", 6, "1", "2", "3", "4", "5", "6", "7", "8",
+        [SouvenirQuestion("Which part was in slot #{1} at the start of {0}?", "Melody Sequencer", 6,
             ExampleExtraFormatArguments = new[] { "1", "2" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1, 8)]
         MelodySequencerSlots,
-        [SouvenirQuestion("Which slot contained part #{1} at the start of {0}?", "Melody Sequencer", 6, "1", "2", "3", "4", "5", "6", "7", "8",
+        [SouvenirQuestion("Which slot contained part #{1} at the start of {0}?", "Melody Sequencer", 6,
             ExampleExtraFormatArguments = new[] { "1", "2" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1, 8)]
         MelodySequencerParts,
 
-        [SouvenirQuestion("What was the displayed number in stage {1} when you solved {0}?", "Memory", 4, "1", "2", "3", "4",
+        [SouvenirQuestion("What was the displayed number in stage {1} when you solved {0}?", "Memory", 4,
             ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "5" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1, 4)]
         MemoryDisplay,
         [SouvenirQuestion("In what position was the button that you pressed in stage {1} when you solved {0}?", "Memory", 4, null, Type = AnswerType.Sprites,
             ExampleExtraFormatArguments = new[] { "1", "2", "3", "4" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MemoryPosition,
-        [SouvenirQuestion("What was the label of the button that you pressed in stage {1} when you solved {0}?", "Memory", 4, "1", "2", "3", "4",
+        [SouvenirQuestion("What was the label of the button that you pressed in stage {1} when you solved {0}?", "Memory", 4,
             ExampleExtraFormatArguments = new[] { "1", "2", "3", "4" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1, 4)]
         MemoryLabel,
 
-        [SouvenirQuestion("Which pin lit up {1} in {0}?", "Microcontroller", 6, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+        [SouvenirQuestion("Which pin lit up {1} in {0}?", "Microcontroller", 6,
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1, 10)]
         MicrocontrollerPinOrder,
 
         [SouvenirQuestion("What was the color of the starting cell in {0}?", "Minesweeper", 6, "red", "orange", "yellow", "green", "blue", "purple", "black")]
@@ -553,8 +600,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the rarity of the {1} before the last action in {0}?", "Monsplode Trading Cards", 4, "common", "uncommon", "rare", "ultra rare",
             ExampleExtraFormatArguments = new[] { "first card in your hand", "second card in your hand", "third card in your hand", "card on offer" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MonsplodeTradingCardsRarities,
-        [SouvenirQuestion("What was the print version of the {1} before the last action in {0}?", "Monsplode Trading Cards", 6, "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9", "B10", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C10", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D10", "E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9", "E10", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10", "H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "I1", "I2", "I3", "I4", "I5", "I6", "I7", "I8", "I9", "I10", "J1", "J2", "J3", "J4", "J5", "J6", "J7", "J8", "J9", "J10",
+        [SouvenirQuestion("What was the print version of the {1} before the last action in {0}?", "Monsplode Trading Cards", 6,
             ExampleExtraFormatArguments = new[] { "first card in your hand", "second card in your hand", "third card in your hand", "card on offer" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("A-J", "1-9")]
         MonsplodeTradingCardsPrintVersions,
 
         [SouvenirQuestion("What was the {1} set in clockwise order in {0}?", "Moon", 4, "south", "south-west", "west", "north-west", "north", "north-east", "east", "south-east",
@@ -562,22 +610,26 @@ namespace Souvenir
             ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         MoonLitUnlit,
 
-        [SouvenirQuestion("What was the starting location in {0}?", "Morse-A-Maze", 6, "A1", "A2", "A3", "A4", "A5", "A6", "B1", "B2", "B3", "B4", "B5", "B6", "C1", "C2", "C3", "C4", "C5", "C6", "D1", "D2", "D3", "D4", "D5", "D6", "E1", "E2", "E3", "E4", "E5", "E6", "F1", "F2", "F3", "F4", "F5", "F6")]
+        [SouvenirQuestion("What was the starting location in {0}?", "Morse-A-Maze", 6)]
+        [AnswerGenerator.Strings("A-F", "1-6")]
         MorseAMazeStartingCoordinate,
 
-        [SouvenirQuestion("What was the ending location in {0}?", "Morse-A-Maze", 6, "A1", "A2", "A3", "A4", "A5", "A6", "B1", "B2", "B3", "B4", "B5", "B6", "C1", "C2", "C3", "C4", "C5", "C6", "D1", "D2", "D3", "D4", "D5", "D6", "E1", "E2", "E3", "E4", "E5", "E6", "F1", "F2", "F3", "F4", "F5", "F6")]
+        [SouvenirQuestion("What was the ending location in {0}?", "Morse-A-Maze", 6)]
+        [AnswerGenerator.Strings("A-F", "1-6")]
         MorseAMazeEndingCoordinate,
 
         [SouvenirQuestion("What was the word shown as Morse code in {0}?", "Morse-A-Maze", 6, null,
             ExampleAnswers = new[] { "couch", "strobe", "smoke", "assay", "monkey", "glass", "starts", "strode", "office", "essays", "couple", "bosses" })]
         MorseAMazeMorseCodeWord,
 
-        [SouvenirQuestion("What was the {1} flashed by the {2} button in {0}?", "Morse Buttons", 6, null, ExampleAnswers = new[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" },
+        [SouvenirQuestion("What was the {1} flashed by the {2} button in {0}?", "Morse Buttons", 6, null,
             ExampleExtraFormatArguments = new[] { "character", "first", "character", "second", "character", "third", "character", "fourth", "character", "fifth", "character", "sixth", "color", "first", "color", "second", "color", "third", "color", "fourth", "color", "fifth", "color", "sixth" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        [AnswerGenerator.Strings("A-Z0-9")]
         MorseButtonsButton,
 
-        [SouvenirQuestion("What was the {1} received letter in {0}?", "Morsematics", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+        [SouvenirQuestion("What was the {1} received letter in {0}?", "Morsematics", 6,
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings('A', 'Z')]
         MorsematicsReceivedLetters,
 
         [SouvenirQuestion("What were the LEDs in the {1} row in {0} (1 = on, 0 = off)?", "Morse War", 6, "1100", "1010", "1001", "0110", "0101", "0011",
@@ -621,12 +673,14 @@ namespace Souvenir
         [SouvenirQuestion("What was the acid’s volume in {0}?", "Neutralization", 6, "0", "5", "10", "15", "20", "25")]
         NeutralizationVolume,
 
-        [SouvenirQuestion("What was the label of the correct button in the last successful round of {0}?", "N&Ms", 6, "NNNNN", "MNNNN", "NMNNN", "MMNNN", "NNMNN", "MNMNN", "NMMNN", "MMMNN", "NNNMN", "MNNMN", "NMNMN", "MMNMN", "NNMMN", "MNMMN", "NMMMN", "MMMMN", "NNNNM", "MNNNM", "NMNNM", "MMNNM", "NNMNM", "MNMNM", "NMMNM", "MMMNM", "NNNMM", "MNNMM", "NMNMM", "MMNMM", "NNMMM", "MNMMM", "NMMMM", "MMMMM")]
+        [SouvenirQuestion("What was the label of the correct button in the last successful round of {0}?", "N&Ms", 6)]
+        [AnswerGenerator.Strings(5, 'M', 'N')]
         NandMsAnswer,
 
         [SouvenirQuestion("What colors did the light glow when you solved {0}?", "Not the Button", 6, "white", "red", "yellow", "green", "blue", "white/red", "white/yellow", "white/green", "white/blue", "red/yellow", "red/green", "red/blue", "yellow/green", "yellow/blue", "green/blue")]
         NotButtonLightColor,
-        [SouvenirQuestion("How many times did you press the button when you solved {0}?", "Not the Button", 6, ExampleAnswers = new[] { "10", "20", "30", "40", "50", "60" })]
+        [SouvenirQuestion("How many times did you press the button when you solved {0}?", "Not the Button", 6)]
+        [AnswerGenerator.Integers(10, 99)]
         NotButtonMashCount,
 
         [SouvenirQuestion("What color flashed {1} in the final sequence in {0}?", "Not Keypad", 6, "red", "orange", "yellow", "green", "cyan", "blue", "purple", "magenta", "pink", "brown", "grey", "white",
@@ -636,7 +690,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NotKeypadSymbol,
 
-        [SouvenirQuestion("What was the starting distance in {0}?", "Not Maze", 6, "1", "2", "3", "4", "5", "6", "7", "8", "9")]
+        [SouvenirQuestion("What was the starting distance in {0}?", "Not Maze", 6)]
+        [AnswerGenerator.Integers(1, 9)]
         NotMazeStartingDistance,
 
         [SouvenirQuestion("What was the {1} correct word you submitted in {0}?", "Not Morse Code", 6, ExampleAnswers = new[] { "shelf", "pounds", "sister", "beef", "yeast", "drive" },
@@ -647,7 +702,8 @@ namespace Souvenir
         NotSimazeMaze,
         [SouvenirQuestion("What was the starting position in {0}?", "Not Simaze", 4, "(red, red)", "(red, orange)", "(red, yellow)", "(red, green)", "(red, blue)", "(red, purple)", "(orange, red)", "(orange, orange)", "(orange, yellow)", "(orange, green)", "(orange, blue)", "(orange, purple)", "(yellow, red)", "(yellow, orange)", "(yellow, yellow)", "(yellow, green)", "(yellow, blue)", "(yellow, purple)", "(green, red)", "(green, orange)", "(green, yellow)", "(green, green)", "(green, blue)", "(green, purple)", "(blue, red)", "(blue, orange)", "(blue, yellow)", "(blue, green)", "(blue, blue)", "(blue, purple)", "(purple, red)", "(purple, orange)", "(purple, yellow)", "(purple, green)", "(purple, blue)", "(purple, purple)")]
         NotSimazeStart,
-        [SouvenirQuestion("What was the goal position in {0}?", "Not Simaze", 4, "(red, red)", "(red, orange)", "(red, yellow)", "(red, green)", "(red, blue)", "(red, purple)", "(orange, red)", "(orange, orange)", "(orange, yellow)", "(orange, green)", "(orange, blue)", "(orange, purple)", "(yellow, red)", "(yellow, orange)", "(yellow, yellow)", "(yellow, green)", "(yellow, blue)", "(yellow, purple)", "(green, red)", "(green, orange)", "(green, yellow)", "(green, green)", "(green, blue)", "(green, purple)", "(blue, red)", "(blue, orange)", "(blue, yellow)", "(blue, green)", "(blue, blue)", "(blue, purple)", "(purple, red)", "(purple, orange)", "(purple, yellow)", "(purple, green)", "(purple, blue)", "(purple, purple)")]
+        [SouvenirQuestion("What was the goal position in {0}?", "Not Simaze", 4)]
+        [AnswerGenerator.Inherit(NotSimazeStart)]
         NotSimazeGoal,
 
         [SouvenirQuestion("In which position was the button you pressed in stage {1} when you solved {0}?", "Not Who's on First", 6, "top left", "top right", "middle left", "middle right", "bottom left", "bottom right",
@@ -665,8 +721,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the calculated number in stage 2 when you solved {0}?", "Not Who's on First", 6)]
         NotWhosOnFirstSum,
 
-        [SouvenirQuestion("What number was on button {1} in reading order in {0}?", "Numbered Buttons", 6, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100",
+        [SouvenirQuestion("What number was on button {1} in reading order in {0}?", "Numbered Buttons", 6,
             ExampleExtraFormatArguments = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1, 100)]
         NumberedButtonsLabels,
 
         [SouvenirQuestion("What was the button you pressed in the {1} stage of {0}?", "Odd One Out", 6, "top-left", "top-middle", "top-right", "bottom-left", "bottom-middle", "bottom-right",
@@ -694,8 +751,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the observer’s intial position in {0}?", "Orientation Cube", 4, "front", "left", "back", "right")]
         OrientationCubeInitialObserverPosition,
 
-        [SouvenirQuestion("What was {1}'s {2} digit from the right in {0}?", "Palindromes", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+        [SouvenirQuestion("What was {1}'s {2} digit from the right in {0}?", "Palindromes", 6,
             ExampleExtraFormatArguments = new[] { "X", "first", "X", "second", "X", "third", "X", "4th", "X", "5th", "X", "first", "Y", "second", "Y", "third", "Y", "4th", "Y", "first", "Z", "second", "Z", "third", "Z", "4th", "Z", "5th", "the screen", "first", "the screen", "second", "the screen", "third", "the screen", "4th", "the screen", "5th" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        [AnswerGenerator.Integers(0, 9)]
         PalindromesNumbers,
 
         [SouvenirQuestion("What was the passport expiration year of the {1} correctly inspected passenger in {0}?", "Passport Control", 6, ExampleAnswers = new[] { "1931", "1956", "1977", "1980", "1991", "2000", "2004", "2019", "2047" },
@@ -708,8 +766,9 @@ namespace Souvenir
         [SouvenirQuestion("Which peg had three sides of the key color in {0}?", "Perspective Pegs", 6, null, Type = AnswerType.Sprites)]
         PerspectivePegsSolution,
 
-        [SouvenirQuestion("What was the {1} digit of the displayed number in {0}?", "Pie", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+        [SouvenirQuestion("What was the {1} digit of the displayed number in {0}?", "Pie", 6,
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 9)]
         PieDigits,
 
         [SouvenirQuestion("What was the {1} in the last successful round of {0}?", "Pigpen Cycle", 4, "Advanced", "Addition", "Allotype", "Allotted", "Binaries", "Billions", "Bullhorn", "Bulwarks", "Ciphered", "Circuits", "Commando", "Compiler", "Decrypts", "Division", "Dispatch", "Discrete", "Encipher", "Entrance", "Equators", "Equalise", "Finished", "Findings", "Formulae", "Fortunes", "Gauntlet", "Gambling", "Gatepost", "Gateways", "Hazarded", "Haziness", "Huntress", "Hungrier", "Indicate", "Indigoes", "Illusory", "Illuding", "Jigsawed", "Jimmying", "Junkyard", "Juncture", "Kilowatt", "Kinetics", "Knocking", "Knowable", "Limiting", "Linearly", "Linkwork", "Lingered", "Monogram", "Monotone", "Multiton", "Mulcting", "Nanogram", "Nanotube", "Numerous", "Numerate", "Octangle", "Octuples", "Obstruct", "Obstacle", "Progress", "Projects", "Postsync", "Positron", "Quadrant", "Quadrics", "Quirkish", "Quitters", "Reversed", "Revolved", "Rotators", "Relative", "Starting", "Standard", "Stockade", "Stoccata", "Triggers", "Triangle", "Tomogram", "Tomahawk", "Underrun", "Underlie", "Ulterior", "Ultrahot", "Vicinity", "Viceless", "Volition", "Voluming", "Wingding", "Winnable", "Whatness", "Whatsits", "Yellowed", "Yeasayer", "Yokozuna", "Yourself", "Zippered", "Zigzaggy", "Zymology", "Zymogene",
@@ -720,7 +779,8 @@ namespace Souvenir
         PlaceholderTalkFirstPhrase,
         [SouvenirQuestion("What was the last half of first phrase in {0}?", "Placeholder Talk", 4, null, ExampleAnswers = new[] { "", "FIRST POS.", "SECOND POS.", "THIRD POS.", "FOURTH POS.", "FIFTH POS.", "MILLIONTH POS.", "BILLIONTH POS.", "LAST POS.", "AN ANSWER" })]
         PlaceholderTalkOrdinal,
-        [SouvenirQuestion("What was the second phrase's calculated value in {0}?", "Placeholder Talk", 6, null, ExampleAnswers = new[] { "1", "2", "3", "4", "5", "6", "7", "8", })]
+        [SouvenirQuestion("What was the second phrase's calculated value in {0}?", "Placeholder Talk", 6)]
+        [AnswerGenerator.Integers(1, 8)]
         PlaceholderTalkSecondPhrase,
 
         [SouvenirQuestion("What was the planet shown in {0}?", "Planets", 6, null, Type = AnswerType.Sprites)]
@@ -737,7 +797,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PoetryAnswers,
 
-        [SouvenirQuestion("What was the starting position in {0}?", "Polyhedral Maze", 6, null, ExampleAnswers = new[] { "1", "16", "24", "47", "89" })]
+        [SouvenirQuestion("What was the starting position in {0}?", "Polyhedral Maze", 6)]
+        [AnswerGenerator.Integers(0, 61)]
         PolyhedralMazeStartPosition,
 
         [SouvenirQuestion("What was the missing frequency in the {1} wire in {0}?", "Probing", 4, "10Hz", "22Hz", "50Hz", "60Hz",
@@ -747,39 +808,47 @@ namespace Souvenir
         [SouvenirQuestion("What was the target word on {0}?", "Purple Arrows", 6, null, ExampleAnswers = new[] { "Thesis", "Immune", "Agency", "Height", "Active", "Bother", "Viable" })]
         PurpleArrowsFinish,
 
-        [SouvenirQuestion("What was the {1} digit in the {2} slot in {0}?", "Quintuples", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+        [SouvenirQuestion("What was the {1} digit in the {2} slot in {0}?", "Quintuples", 6,
             ExampleExtraFormatArguments = new[] { "first", "first", "first", "second", "second", "first", "second", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        [AnswerGenerator.Integers(0, 9)]
         QuintuplesNumbers,
         [SouvenirQuestion("What color was the {1} digit in the {2} slot in {0}?", "Quintuples", 4, "red", "blue", "orange", "green", "pink",
             ExampleExtraFormatArguments = new[] { "first", "first", "first", "second", "second", "first", "second", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
         QuintuplesColors,
-        [SouvenirQuestion("How many numbers were {1} in {0}?", "Quintuples", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25",
+        [SouvenirQuestion("How many numbers were {1} in {0}?", "Quintuples", 6,
             ExampleExtraFormatArguments = new[] { "red", "blue", "orange", "green", "pink" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 25)]
         QuintuplesColorCounts,
 
-        [SouvenirQuestion("What was the starting number in {0}?", "Red Arrows", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
+        [SouvenirQuestion("What was the starting number in {0}?", "Red Arrows", 6)]
+        [AnswerGenerator.Integers(0, 9)]
         RedArrowsStartNumber,
 
         [SouvenirQuestion("Which one of these houses was on offer, but not chosen by Bob in {0}?", "Retirement", 4, null, ExampleAnswers = new[] { "Hotham Place", "Homestead", "Riverwell", "Lodge Park" })]
         RetirementHouses,
 
-        [SouvenirQuestion("What was the {1} character in the {2} message of {0}?", "Reverse Morse", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+        [SouvenirQuestion("What was the {1} character in the {2} message of {0}?", "Reverse Morse", 6,
             ExampleExtraFormatArguments = new[] { "first", "first", "first", "second", "second", "first", "second", "second", "third", "first", "third", "second", "fourth", "first", "fourth", "second", "fifth", "first", "fifth", "second", "sixth", "first", "sixth", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        [AnswerGenerator.Strings("A-Z0-9")]
         ReverseMorseCharacters,
 
-        [SouvenirQuestion("What was the exit coordinate in {0}?", "RGB Maze", 6, "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8")]
+        [SouvenirQuestion("What was the exit coordinate in {0}?", "RGB Maze", 6)]
+        [AnswerGenerator.Strings("A-H", "1-8")]
         RGBMazeExit,
-        [SouvenirQuestion("Where was the {1} key in {0}?", "RGB Maze", 6, "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8",
+        [SouvenirQuestion("Where was the {1} key in {0}?", "RGB Maze", 6,
             ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("A-H", "1-8")]
         RGBMazeKeys,
-        [SouvenirQuestion("Which maze number was the {1} maze in {0}?", "RGB Maze", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+        [SouvenirQuestion("Which maze number was the {1} maze in {0}?", "RGB Maze", 6,
             ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 9)]
         RGBMazeNumber,
 
         [SouvenirQuestion("What was the last color in {0}?", "Rhythms", 4, "Blue", "Red", "Green", "Yellow")]
         RhythmsColor,
 
-        [SouvenirQuestion("What was the rule number when you solved {0}?", "Rule", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", AddThe = true)]
+        [SouvenirQuestion("What was the rule number when you solved {0}?", "Rule", 6, AddThe = true)]
+        [AnswerGenerator.Integers(0, 15)]
         RuleNumber,
 
         [SouvenirQuestion("What was the number to the correct condition in {0}?", "Role Reversal", 6, "2", "3", "4", "5", "6", "7", "8")]
@@ -790,9 +859,11 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the contestant’s name in {0}?", "Schlag den Bomb", 4, "Ron", "Don", "Julia", "Cory", "Greg", "Paula", "Val", "Lisa", "Ozy", "Ozzy", "Elsa", "Cori", "Harry", "Gale", "Daniel", "Albert", "Spike", "Tommy", "Greta", "Tina", "Rob", "Edgar", "Julia", "Peter", "Millie", "Isolde", "Eris")]
         SchlagDenBombContestantName,
-        [SouvenirQuestion("What was the contestant’s score in {0}?", "Schlag den Bomb", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75")]
+        [SouvenirQuestion("What was the contestant’s score in {0}?", "Schlag den Bomb", 6)]
+        [AnswerGenerator.Integers(0, 75)]
         SchlagDenBombContestantScore,
-        [SouvenirQuestion("What was the bomb’s score in {0}?", "Schlag den Bomb", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75")]
+        [SouvenirQuestion("What was the bomb’s score in {0}?", "Schlag den Bomb", 6)]
+        [AnswerGenerator.Integers(0, 75)]
         SchlagDenBombBombScore,
 
         [SouvenirQuestion("What were the first and second words in the {1} phrase you answered correctly in {0}?", "Sea Shells", 4, "she sells", "she shells", "sea shells", "sea sells",
@@ -808,7 +879,8 @@ namespace Souvenir
         [SouvenirQuestion("What was the initial letter in {0}?", "Shapes And Bombs", 6, "A", "B", "D", "E", "G", "I", "K", "L", "N", "O", "P", "S", "T", "X", "Y")]
         ShapesAndBombsInitialLetter,
 
-        [SouvenirQuestion("What was the initial shape in {0}?", "Shape Shift", 4, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", Type = AnswerType.SymbolsFont)]
+        [SouvenirQuestion("What was the initial shape in {0}?", "Shape Shift", 4, Type = AnswerType.SymbolsFont)]
+        [AnswerGenerator.Strings('A', 'P')]
         ShapeShiftInitialShape,
 
         [SouvenirQuestion("What was the initial position of the pearl in {0}?", "Shell Game", 4, "Left", "Middle", "Right")]
@@ -847,8 +919,9 @@ namespace Souvenir
              ExampleExtraFormatArguments = new[] { "first", "first", "first", "second", "first", "third", "second", "first", "second", "second", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
         SimonSelectsOrder,
 
-        [SouvenirQuestion("What was the {1} received letter in {0}?", "Simon Sends", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+        [SouvenirQuestion("What was the {1} received letter in {0}?", "Simon Sends", 6,
             ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings('A', 'Z')]
         SimonSendsReceivedLetters,
 
         [SouvenirQuestion("What was the {1} flash in the final sequence in {0}?", "Simon Simons", 6, "TR", "TY", "TG", "TB", "LR", "LY", "LG", "LB", "RR", "RY", "RG", "RB", "BR", "BY", "BG", "BB",
@@ -888,11 +961,13 @@ namespace Souvenir
         [SouvenirQuestion("Which color {1} {2} in the final sequence of {0}?", "Simon Stores", 4, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
             ExampleExtraFormatArguments = new[] { "flashed", "first", "flashed", "second", "was one of the colors flashed", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
         SimonStoresColors,
-        [SouvenirQuestion("What was the correct answer in stage {1} of {0}?", "Simon Stores", 6, null, ExampleAnswers = new[] { "1", "-58", "12", "25", "364", "-244" },
+        [SouvenirQuestion("What was the correct answer in stage {1} of {0}?", "Simon Stores", 6,
             ExampleExtraFormatArguments = new[] { "1", "2", "3" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(-364, 364)]
         SimonStoresAnswers,
 
-        [SouvenirQuestion("What were the original numbers when you solved {0}?", "Skewed Slots", 6, null, ExampleAnswers = new[] { "123", "847", "000", "245", "961", "253", "858" })]
+        [SouvenirQuestion("What were the original numbers when you solved {0}?", "Skewed Slots", 6)]
+        [AnswerGenerator.Integers(0, 999, "000")]
         SkewedSlotsOriginalNumbers,
 
         [SouvenirQuestion("Which race was selectable, but not the solution, in {0}?", "Skyrim", 4, "Nord", "Khajiit", "Breton", "Argonian", "Dunmer", "Altmer", "Redguard", "Orc", "Imperial")]
@@ -935,8 +1010,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "top", "first", "bottom", "first", "top", "second", "bottom", "second" }, ExampleExtraFormatArgumentGroupSize = 2, AddThe = true)]
         SwitchInitialColor,
 
-        [SouvenirQuestion("What was the initial position of the switches in {0}?", "Switches", 6, "RRRRR", "QRRRR", "RQRRR", "QQRRR", "RRQRR", "QRQRR", "RQQRR", "QQQRR", "RRRQR", "QRRQR", "RQRQR", "QQRQR", "RRQQR", "QRQQR", "RQQQR", "QQQQR", "RRRRQ", "QRRRQ", "RQRRQ", "QQRRQ", "RRQRQ", "QRQRQ", "RQQRQ", "QQQRQ", "RRRQQ", "QRRQQ", "RQRQQ", "QQRQQ", "RRQQQ", "QRQQQ", "RQQQQ", "QQQQQ",
-            Type = AnswerType.SymbolsFont)]
+        [SouvenirQuestion("What was the initial position of the switches in {0}?", "Switches", 6, Type = AnswerType.SymbolsFont)]
+        [AnswerGenerator.Strings(5, 'Q', 'R')]
         SwitchesInitialPosition,
 
         [SouvenirQuestion("How many symbols were cycling on the {1} screen in the last successful round on {0}?", "Symbol Cycle", 4, "2", "3", "4", "5",
@@ -947,7 +1022,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "left", "first", "left", "second", "left", "third", "middle", "first", "middle", "second", "middle", "third", "right", "first", "right", "second", "right", "third" }, ExampleExtraFormatArgumentGroupSize = 2, Type = AnswerType.Sprites)]
         SymbolicCoordinateSymbols,
 
-        [SouvenirQuestion("Which number was displayed on {0}?", "Synonyms", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
+        [SouvenirQuestion("Which number was displayed on {0}?", "Synonyms", 6)]
+        [AnswerGenerator.Integers(0, 9)]
         SynonymsNumber,
 
         [SouvenirQuestion("What was the received word in {0}?", "Tap Code", 4, null, ExampleAnswers = new[] { "child", "style", "shake", "alive", "axion", "wreck", "cause", "pupil", "cheat", "watch" })]
@@ -991,8 +1067,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.TurtleRobotFont)]
         TurtleRobotCodeLines,
 
-        [SouvenirQuestion("What was the {1} correct query response from {0}?", "Two Bits", 6, "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99",
+        [SouvenirQuestion("What was the {1} correct query response from {0}?", "Two Bits", 6,
             ExampleExtraFormatArguments = new[] { "first" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 99, "00")]
         TwoBitsResponse,
 
         [SouvenirQuestion("What was the {1} in the last successful round of {0}?", "Ultimate Cycle", 4, "Advanced", "Adverted", "Advocate", "Addition", "Allocate", "Allotype", "Allotted", "Altering", "Binaries", "Binormal", "Binomial", "Billions", "Bulkhead", "Bullhorn", "Bulleted", "Bulwarks", "Ciphered", "Circuits", "Connects", "Conquers", "Commando", "Compiler", "Computer", "Continue", "Decrypts", "Deceived", "Decimate", "Division", "Discover", "Discrete", "Dispatch", "Disposal", "Encipher", "Encrypts", "Encoding", "Entrance", "Equalise", "Equators", "Equation", "Equipped", "Finalise", "Finished", "Findings", "Finnicky", "Formulae", "Fortunes", "Fortress", "Forwards", "Garrison", "Garnered", "Gatepost", "Gateways", "Gauntlet", "Gambling", "Gathered", "Glooming", "Hazarded", "Haziness", "Hotlinks", "Hotheads", "Hundreds", "Hunkered", "Huntsman", "Huntress", "Incoming", "Indicate", "Indirect", "Indigoes", "Illuding", "Illusion", "Illusory", "Illumine", "Jigsawed", "Jimmying", "Journeys", "Jousting", "Junction", "Juncture", "Junkyard", "Judgment", "Kilowatt", "Kilovolt", "Kilobyte", "Kinetics", "Knocking", "Knockout", "Knowable", "Knuckled", "Language", "Landmark", "Limiting", "Linearly", "Lingered", "Linkages", "Linkwork", "Labeling", "Monogram", "Monolith", "Monomial", "Monotone", "Multiton", "Multiply", "Mulcting", "Mulligan", "NANOBOTS", "Nanogram", "Nanowatt", "Nanotube", "Numbered", "Numerous", "Numerals", "Numerate", "Octangle", "Octuples", "Ordering", "Ordinals", "Observed", "Obscured", "Obstruct", "Obstacle", "Progress", "Projects", "Prophase", "Prophecy", "Postsync", "Possible", "Positron", "Positive", "Quadrant", "Quadrics", "Quartile", "Quartics", "Quickest", "Quirkish", "Quintics", "Quitters", "Reversed", "Revolved", "Revealed", "Rotation", "Rotators", "Relation", "Relative", "Relaying", "Starting", "Standard", "Standout", "Stanzaic", "Stoccata", "Stockade", "Stopping", "Stopword", "Trickier", "Trigonal", "Triggers", "Triangle", "Tomogram", "Tomahawk", "Toggling", "Together", "Underrun", "UnderwaY", "Underlie", "Undoings", "Ulterior", "Ultimate", "Ultrared", "Ultrahot", "Venomous", "Vendetta", "Vicinity", "Viceless", "Volition", "Voltages", "Volatile", "Voluming", "Weakened", "Weaponed", "Wingding", "Winnable", "Whatever", "Whatness", "Whatnots", "Whatsits", "Yellowed", "Yearlong", "Yearning", "Yeasayer", "Yielding", "Yielders", "Yokozuna", "Yourself", "Zippered", "Ziggurat", "Zigzaggy", "Zugzwang", "Zygomata", "Zygotene", "Zymology", "Zymogram",
@@ -1011,8 +1088,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         UnfairCipherInstructions,
 
-        [SouvenirQuestion("What was the {1} submitted letter in {0}?", "Unown Cipher", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+        [SouvenirQuestion("What was the {1} submitted letter in {0}?", "Unown Cipher", 6,
             Type = AnswerType.UnownFont, ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings('A', 'Z')]
         UnownCipherAnswers,
 
         [SouvenirQuestion("What state did you depart from in {0}?", "USA Maze", 4, "Alaska", "Alabama", "Arkansas", "Arizona", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Iowa", "Idaho", "Illinois", "Indiana", "Kansas", "Kentucky", "Louisiana", "Massachusetts", "Maryland", "Maine", "Michigan", "Minnesota", "Missouri", "Mississippi", "Montana", "North Carolina", "North Dakota", "Nebraska", "New Hampshire", "New Jersey", "New Mexico", "Nevada", "New York", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Virginia", "Vermont", "Washington", "Wisconsin", "West Virginia", "Wyoming")]
@@ -1048,18 +1126,21 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "top", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         WireDialColors,
 
-        [SouvenirQuestion("What was the displayed number when you solved {0}?", "Wire", 6, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+        [SouvenirQuestion("What was the displayed number when you solved {0}?", "Wire", 6,
             ExampleExtraFormatArguments = new[] { "top", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
+        [AnswerGenerator.Integers(0, 9)]
         WireDisplayedNumber,
 
-        [SouvenirQuestion("How many {1} wires were there in {0}?", "Wire Sequence", 4, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+        [SouvenirQuestion("How many {1} wires were there in {0}?", "Wire Sequence", 4,
             ExampleExtraFormatArguments = new[] { "red", "blue", "black" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 9)]
         WireSequenceColorCount,
 
         [SouvenirQuestion("What was the initial roll on {0}?", "Yahtzee", 4, "Yahtzee", "large straight", "small straight", "four of a kind", "full house", "three of a kind", "two pairs", "pair")]
         YahtzeeInitialRoll,
 
-        [SouvenirQuestion("What was the starting row letter in the last successful round of {0}?", "Yellow Arrows", 6, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")]
+        [SouvenirQuestion("What was the starting row letter in the last successful round of {0}?", "Yellow Arrows", 6)]
+        [AnswerGenerator.Strings('A', 'Z')]
         YellowArrowsStartingRow,
 
         [SouvenirQuestion("What was the {1} correctly decrypted word in {0}?", "Zoni", 6, null, ExampleAnswers = new[] { "angel", "thing", "dance", "heavy", "quote" },
@@ -1087,6 +1168,7 @@ namespace Souvenir
         public string ModuleName { get; private set; }
         public int NumAnswers { get; private set; }
         public string[] AllAnswers { get; private set; }
+        public AnswerGeneratorAttribute AnswerGenerator { get; internal set; }
 
         public string[] ExampleExtraFormatArguments { get; set; }
         public int ExampleExtraFormatArgumentGroupSize { get; set; }
