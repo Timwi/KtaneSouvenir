@@ -51,6 +51,8 @@ public class SouvenirModule : MonoBehaviour
 
     /// <summary>May be set to a question name while playing the test harness to skip to that question.</summary>
     public string TestQuestion;
+    /// <summary>May be used if the prefab of a different module is available in the project</summary>
+    public bool ModulePresent;
 
     public static readonly string[] _defaultIgnoredModules = {
         "Souvenir",
@@ -718,7 +720,7 @@ public class SouvenirModule : MonoBehaviour
         Module.OnActivate += delegate
         {
             _isActivated = true;
-            if (Application.isEditor)
+            if (Application.isEditor && !ModulePresent)
             {
                 // Testing in Unity
                 StartCoroutine(TestModeCoroutine());
@@ -10657,10 +10659,10 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, script);
         var fldOrigin = GetField<string>(comp, "_originState");
         var fldActive = GetField<bool>(comp, "_isActive");
-        var fldStates = GetStaticField<string[]>(comp.GetType(), "_states");  // This relies on the fact that USA Maze and DACH Maze both have a field with the same name. It is not inherited from the base class.
+        var mthGetStates = GetMethod<List<string>>(comp, "GetAllStates", 0);  // This relies on the fact that USA Maze and DACH Maze both have a field with the same name. It is not inherited from the base class.
         var mthGetName = GetMethod<string>(comp, "GetStateFullName", 1);
 
-        if (comp == null || fldOrigin == null || fldActive == null || fldStates == null || mthGetName == null)
+        if (comp == null || fldOrigin == null || fldActive == null || mthGetStates == null || mthGetName == null)
             yield break;
 
         // wait for activation
@@ -10672,7 +10674,7 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(moduleCode);
 
-        var stateCodes = fldStates.Get();
+        var stateCodes = mthGetStates.Invoke();
         if (stateCodes == null)
             yield break;
 
