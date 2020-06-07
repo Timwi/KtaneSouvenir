@@ -1262,20 +1262,20 @@ public class SouvenirModule : MonoBehaviour
 
     private FieldInfo<T> GetFieldImpl<T>(object target, Type targetType, string name, bool isPublic, BindingFlags bindingFlags)
     {
-        FieldInfo fld;
-        while (targetType != null && targetType != typeof(object))
+        FieldInfo fld; Type type = targetType;
+        while (type != null && type != typeof(object))
         {
-            fld = targetType.GetField(name, (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | bindingFlags);
+            fld = type.GetField(name, (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | bindingFlags);
             if (fld != null)
                 goto found;
 
             // In case it’s actually an auto-implemented property and not a field.
-            fld = targetType.GetField("<" + name + ">k__BackingField", BindingFlags.NonPublic | bindingFlags);
+            fld = type.GetField("<" + name + ">k__BackingField", BindingFlags.NonPublic | bindingFlags);
             if (fld != null)
                 goto found;
 
             // Reflection won’t return private fields in base classes unless we check those explicitly
-            targetType = targetType.BaseType;
+            type = type.BaseType;
         }
 
         Debug.LogFormat("<Souvenir #{3}> Type {0} does not contain {1} field {2}. Fields are: {4}", targetType, isPublic ? "public" : "non-public", name, _moduleId,
@@ -3747,7 +3747,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessFastMath(KMBombModule module)
     {
-        var comp = GetComponent(module, "FastMath");
+        var comp = GetComponent(module, "FastMathModule");
         var fldScreen = GetField<TextMesh>(comp, "Screen", isPublic: true);
         var fldSolved = GetField<bool>(comp, "_isSolved");
 
@@ -9475,7 +9475,7 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "SwitchModule");
         var fldSwitches = GetField<MonoBehaviour[]>(comp, "Switches", isPublic: true);
-        var fldGoal = GetField<object>(comp, "goalConfiguration");
+        var fldGoal = GetField<object>(comp, "_goalConfiguration");
         var mthCurConfig = GetMethod<object>(comp, "GetCurrentConfiguration", 0);
         if (comp == null || fldSwitches == null || fldGoal == null || mthCurConfig == null)
             yield break;
