@@ -670,7 +670,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the acid’s color in {0}?", "Neutralization", AnswerLayout.TwoColumns4Answers, "Yellow", "Green", "Red", "Blue")]
         NeutralizationColor,
-        [SouvenirQuestion("What was the acid’s volume in {0}?", "Neutralization", AnswerLayout.TwoColumns6Answers, "0", "5", "10", "15", "20", "25")]
+        [SouvenirQuestion("What was the acid’s volume in {0}?", "Neutralization", AnswerLayout.TwoColumns4Answers, "5", "10", "15", "20")]
         NeutralizationVolume,
 
         [SouvenirQuestion("What was the label of the correct button in the last successful round of {0}?", "N&Ms", AnswerLayout.TwoColumns6Answers)]
