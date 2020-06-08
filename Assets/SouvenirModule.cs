@@ -3742,12 +3742,8 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         }
 
-        // Shorten long names by cutting off everything after a newline
-        usedRooms = usedRooms.Select(ur =>
-        {
-            var p = ur.IndexOf('\n');
-            return p >= 0 ? ur.Substring(0, p) + "..." : ur;
-        }).ToArray();
+        for (int i = usedRooms.Length - 1; i >= 0; --i)
+            usedRooms[i] = usedRooms[i].Replace('\n', ' ');
 
         addQuestion(module, Question.FactoryMazeStartRoom, correctAnswers: new[] { usedRooms[startRoom] }, preferredWrongAnswers: usedRooms);
     }
@@ -4667,30 +4663,6 @@ public class SouvenirModule : MonoBehaviour
         return processSpeakingEvilCycle2(module, "HillCycleScript", "Hill Cycle", Question.HillCycleWord, _HillCycle);
     }
 
-    struct HogwartsModuleSubstitutionInfo
-    {
-        public string AbbrevInAnswer { get; private set; }
-        public string AbbrevInQuestion { get; private set; }
-        public HogwartsModuleSubstitutionInfo(string abbrevInAnswer, string abbrevInQuestion = null)
-        {
-            AbbrevInAnswer = abbrevInAnswer;
-            AbbrevInQuestion = abbrevInQuestion;
-        }
-    }
-    private static readonly Dictionary<string, HogwartsModuleSubstitutionInfo> _hogwartsModuleNameSubstitutions = new Dictionary<string, HogwartsModuleSubstitutionInfo>
-    {
-        { "Rock-Paper-Scissors-L.-Sp.", new HogwartsModuleSubstitutionInfo("R.-P.-S.-L.-Sp.", "R.-P.-S.- L.-Sp.") },
-        { "Modules Against Humanity", new HogwartsModuleSubstitutionInfo("M.A. Humanity") },
-        { "Monsplode Trading Cards", new HogwartsModuleSubstitutionInfo("Monsplode Tr.C.") },
-        { "The London Underground", new HogwartsModuleSubstitutionInfo("L. Underground") },
-        { "Foreign Exchange Rates", new HogwartsModuleSubstitutionInfo("Foreign Ex. Rates") },
-        { "Ten-Button Color Code", new HogwartsModuleSubstitutionInfo("10-B. Color Code") }
-    };
-    private static string hogwartsModuleNameSubstitution(string moduleName, bool isQuestion)
-    {
-        HogwartsModuleSubstitutionInfo result;
-        return (_hogwartsModuleNameSubstitutions.TryGetValue(moduleName, out result) ? (isQuestion ? result.AbbrevInQuestion : result.AbbrevInAnswer) : null) ?? moduleName.Replace("'", "’");
-    }
     private IEnumerable<object> ProcessHogwarts(KMBombModule module)
     {
         var comp = GetComponent(module, "HogwartsModule");
@@ -4711,15 +4683,16 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         }
 
+        // TODO: Rock-Paper-Scissors-Lizard-Spock needs to be broken up in the question because hyphens don't break.
         addQuestions(module,
             dic.Keys.Cast<object>().Where(house => dic[house] != null).SelectMany(house => Ut.NewArray(
                 makeQuestion(Question.HogwartsHouse, _Hogwarts,
-                    formatArgs: new[] { hogwartsModuleNameSubstitution(dic[house].ToString(), isQuestion: true) },
+                    formatArgs: new[] { dic[house].ToString() == "Rock-Paper-Scissors-L.-Sp." ? "Rock-Paper- Scissors-L.-Sp." : dic[house].ToString() },
                     correctAnswers: new[] { house.ToString() }),
                 makeQuestion(Question.HogwartsModule, _Hogwarts,
                     formatArgs: new[] { house.ToString() },
-                    correctAnswers: new[] { hogwartsModuleNameSubstitution(dic[house].ToString(), isQuestion: false) },
-                    preferredWrongAnswers: Bomb.GetSolvableModuleNames().Select(m => hogwartsModuleNameSubstitution(m, isQuestion: false)).ToArray()))));
+                    correctAnswers: new[] { dic[house].ToString() },
+                    preferredWrongAnswers: Bomb.GetSolvableModuleNames().ToArray()))));
     }
 
     private IEnumerable<object> ProcessHorribleMemory(KMBombModule module)

@@ -242,7 +242,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         CubeRotations,
 
-        [SouvenirQuestion("What region did you depart from in {0}?", "DACH Maze", AnswerLayout.TwoColumns4Answers, "Burgenland, A", "Carinthia, A", "Lower Austria, A", "North Tyrol, A", "Upper Austria, A", "East Tyrol, A", "Salzburg, A", "Styria, A", "Vorarlberg, A", "Vienna, A", "Aargau, CH", "Appenzell Inner Rhodes, CH", "Appenzell Outer Rhodes, CH", "Basel Country, CH", "Bern, CH", "Basel City, CH", "Fribourg, CH", "Geneva, CH", "Glarus, CH", "Grisons, CH", "Jura, CH", "Luzern, CH", "Nidwalden, CH", "Neuchâtel, CH", "Obwalden, CH", "Schaffhausen, CH", "St. Gallen, CH", "Solothurn, CH", "Schwyz, CH", "Thurgau, CH", "Ticino, CH", "Uri, CH", "Vaud, CH", "Valais, CH", "Zug, CH", "Zürich, CH", "Brandenburg, D", "Berlin, D", "Baden-Württemberg, D", "Bavaria, D", "Bremen, D", "Hesse, D", "Hamburg, D", "Mecklenburg-Vorpommern, D", "Lower Saxony, D", "North Rhine-Westphalia, D", "Rhineland-Palatinate, D", "Schleswig-Holstein, D", "Saarland, D", "Saxony, D", "Saxony-Anhalt, D", "Thuringia, D", "Liechtenstein")]
+        [SouvenirQuestion("What region did you depart from in {0}?", "DACH Maze", AnswerLayout.OneColumn4Answers, "Burgenland, A", "Carinthia, A", "Lower Austria, A", "North Tyrol, A", "Upper Austria, A", "East Tyrol, A", "Salzburg, A", "Styria, A", "Vorarlberg, A", "Vienna, A", "Aargau, CH", "Appenzell Inner Rhodes, CH", "Appenzell Outer Rhodes, CH", "Basel Country, CH", "Bern, CH", "Basel City, CH", "Fribourg, CH", "Geneva, CH", "Glarus, CH", "Grisons, CH", "Jura, CH", "Luzern, CH", "Nidwalden, CH", "Neuchâtel, CH", "Obwalden, CH", "Schaffhausen, CH", "St. Gallen, CH", "Solothurn, CH", "Schwyz, CH", "Thurgau, CH", "Ticino, CH", "Uri, CH", "Vaud, CH", "Valais, CH", "Zug, CH", "Zürich, CH", "Brandenburg, D", "Berlin, D", "Baden-Württemberg, D", "Bavaria, D", "Bremen, D", "Hesse, D", "Hamburg, D", "Mecklenburg-Vorpommern, D", "Lower Saxony, D", "North Rhine-Westphalia, D", "Rhineland-Palatinate, D", "Schleswig-Holstein, D", "Saarland, D", "Saxony, D", "Saxony-Anhalt, D", "Thuringia, D", "Liechtenstein")]
         DACHMazeOrigin,
 
         [SouvenirQuestion("What deck did the first card of {0} belong to?", "Deck of Many Things", AnswerLayout.TwoColumns4Answers, "Standard", "Metropolitan", "Maritime", "Arctic", "Tropical", "Oasis", "Celestial", AddThe = true)]
@@ -284,7 +284,7 @@ namespace Souvenir
         [AnswerGenerator.Integers(1, 32)]
         EtternaNumber,
 
-        [SouvenirQuestion("What room did you start in in the last generated maze of {0}?", "Factory Maze", AnswerLayout.TwoColumns4Answers, "Bathroom", "Assembly Line", "Cafeteria", "Room A9", "Broom Closet", "Basement", "Copy Room", "Unnecessarily...", "Library", "Break Room", "Empty Room...", "Arcade", "Classroom", "Module Testing...", "Music Studio", "Computer Room", "Infirmary", "Bomb Room", "Space", "Storage Room", "Lounge", "Conference Room", "Kitchen", "Incinerator")]
+        [SouvenirQuestion("What room did you start in in the last generated maze of {0}?", "Factory Maze", AnswerLayout.OneColumn4Answers, "Bathroom", "Assembly Line", "Cafeteria", "Room A9", "Broom Closet", "Basement", "Copy Room", "Unnecessarily Long-Named Room", "Library", "Break Room", "Empty Room with Two Doors", "Arcade", "Classroom", "Module Testing Room", "Music Studio", "Computer Room", "Infirmary", "Bomb Room", "Space", "Storage Room", "Lounge", "Conference Room", "Kitchen", "Incinerator")]
         FactoryMazeStartRoom,
 
         [SouvenirQuestion("What was the last pair of letters in {0}?", "Fast Math", AnswerLayout.TwoColumns6Answers)]
@@ -406,9 +406,9 @@ namespace Souvenir
         HillCycleWord,
 
         [SouvenirQuestion("Which House was {1} solved\u00a0for in {0}?", "Hogwarts", AnswerLayout.TwoColumns4Answers, "Gryffindor", "Hufflepuff", "Slytherin", "Ravenclaw",
-            ExampleExtraFormatArguments = new[] { "Binary Puzzle", "Zoni", "R.-P.-S.- L.-Sp.", "Modules Against Humanity", "Monsplode Trading Cards" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "Binary Puzzle", "Zoni", "Rock-Paper- Scissors-L.-Sp.", "Modules Against Humanity", "Monsplode Trading Cards" }, ExampleExtraFormatArgumentGroupSize = 1)]
         HogwartsHouse,
-        [SouvenirQuestion("Which module was solved\u00a0for {1} in {0}?", "Hogwarts", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "Binary Puzzle", "Zoni", "R.-P.-S.-L.-Sp.", "M.A. Humanity", "Monsplode Tr.C." },
+        [SouvenirQuestion("Which module was solved\u00a0for {1} in {0}?", "Hogwarts", AnswerLayout.OneColumn4Answers, null, ExampleAnswers = new[] { "Binary Puzzle", "Zoni", "Rock-Paper-Scissors-L.-Sp.", "Modules Against Humanity", "Monsplode Trading Cards" },
             ExampleExtraFormatArguments = new[] { "Gryffindor", "Hufflepuff", "Slytherin", "Ravenclaw" }, ExampleExtraFormatArgumentGroupSize = 1)]
         HogwartsModule,
 
@@ -655,9 +655,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "a potential weapon, but not the murder weapon,", "not a potential weapon" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MurderWeapon,
 
-        [SouvenirQuestion("Which module was the first requested to be solved by {0}?", "Mystery Module", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "Probing", "Kudosudoku", "Ten-Button Color Code", "The Jukebox", "Rock-Paper-Scissors-Lizard-Spock" })]
+        [SouvenirQuestion("Which module was the first requested to be solved by {0}?", "Mystery Module", AnswerLayout.OneColumn4Answers, null, ExampleAnswers = new[] { "Probing", "Kudosudoku", "Ten-Button Color Code", "The Jukebox", "Rock-Paper-Scissors-L.-Sp." })]
         MysteryModuleFirstKey,
-        [SouvenirQuestion("Which module was hidden by {0}?", "Mystery Module", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "Probing", "Kudosudoku", "Ten-Button Color Code", "The Jukebox" })]
+        [SouvenirQuestion("Which module was hidden by {0}?", "Mystery Module", AnswerLayout.OneColumn4Answers, null, ExampleAnswers = new[] { "Probing", "Kudosudoku", "Ten-Button Color Code", "The Jukebox" })]
         MysteryModuleHiddenModule,
 
         [SouvenirQuestion("Where was the {1} in {0}?", "Mystic Square", AnswerLayout.TwoColumns4Answers, "top left", "top middle", "top right", "middle left", "center", "middle right", "bottom left", "bottom middle", "bottom right",
