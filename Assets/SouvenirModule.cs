@@ -722,6 +722,15 @@ public class SouvenirModule : MonoBehaviour
             if (Application.isEditor)
             {
                 // Testing in Unity
+                foreach (var entry in _attributes)
+                {
+                    if (entry.Value.Type != AnswerType.Sprites && (entry.Value.AllAnswers == null || entry.Value.AllAnswers.Length == 0) &&
+                        (entry.Value.ExampleAnswers == null || entry.Value.ExampleAnswers.Length == 0) && entry.Value.AnswerGenerator == null)
+                    {
+                        Debug.LogWarningFormat("<Souvenir #{0}> Question {1} has no answers. You should specify either SouvenirQuestionAttribute.AllAnswers or SouvenirQuestionAttribute.ExampleAnswers (with preferredWrongAnswers in-game), or add an AnswerGeneratorAttribute to the question enum value.", _moduleId, entry.Key);
+                        WarningIcon.SetActive(true);
+                    }
+                }
                 StartCoroutine(TestModeCoroutine());
             }
             else
@@ -7018,8 +7027,7 @@ public class SouvenirModule : MonoBehaviour
                 makeQuestion(Question.NotWhosOnFirstPressedPosition, _NotWhosOnFirst, new[] { (i + 1).ToString() }, new[] { positions[fldPositions.Get()[i]] }),
             i >= 4 ? makeQuestion(Question.NotWhosOnFirstReferenceLabel, _NotWhosOnFirst, new[] { (i - 1).ToString() }, new[] { fldLabels.Get()[i] }) :
                 makeQuestion(Question.NotWhosOnFirstPressedLabel, _NotWhosOnFirst, new[] { (i + 1).ToString() }, new[] { fldLabels.Get()[i] }),
-            makeQuestion(Question.NotWhosOnFirstSum, _NotWhosOnFirst, correctAnswers: sumCorrectAnswers,
-                preferredWrongAnswers: Enumerable.Range(0, 20).Select(_ => Rnd.Range(1, 61).ToString()).Except(sumCorrectAnswers).Distinct().Take(5).ToArray())
+            makeQuestion(Question.NotWhosOnFirstSum, _NotWhosOnFirst, correctAnswers: sumCorrectAnswers)
         );
     }
 
@@ -10890,7 +10898,7 @@ public class SouvenirModule : MonoBehaviour
         var answers = new List<T>(attr.NumAnswers);
         if (allAnswers == null && attr.AnswerGenerator == null)
         {
-            if (preferredWrongAnswers == null)
+            if (preferredWrongAnswers == null || preferredWrongAnswers.Length == 0)
             {
                 Debug.LogErrorFormat("<Souvenir #{0}> Question {1} has no answers. You must specify either the full set of possible answers in SouvenirQuestionAttribute.AllAnswers, provide possible wrong answers through the preferredWrongAnswers parameter, or add an AnswerGeneratorAttribute to the question enum value.", _moduleId, question);
                 return null;
@@ -10905,6 +10913,11 @@ public class SouvenirModule : MonoBehaviour
             {
                 if (attr.AnswerGenerator != null && typeof(T) == typeof(string))
                     answers.AddRange(attr.AnswerGenerator.GetAnswers(this).Except(answers.Concat(correctAnswers) as IEnumerable<string>).Distinct().Take(attr.NumAnswers - 1 - answers.Count) as IEnumerable<T>);
+                if (answers.Count == 0 && (preferredWrongAnswers == null || preferredWrongAnswers.Length == 0))
+                {
+                    Debug.LogErrorFormat("<Souvenir #{0}> Question {1}'s answer generator did not generate any answers.", _moduleId, question);
+                    return null;
+                }
             }
             else
             {
@@ -10914,9 +10927,9 @@ public class SouvenirModule : MonoBehaviour
             // Add the preferred wrong answers, if any. If we had added them earlier, they’d come up too rarely.
             if (preferredWrongAnswers != null)
                 answers.AddRange(preferredWrongAnswers.Except(answers.Concat(correctAnswers)).Distinct());
-            answers.Shuffle();
-            if (answers.Count >= attr.NumAnswers) answers.RemoveRange(attr.NumAnswers - 1, answers.Count - (attr.NumAnswers - 1));
         }
+        answers.Shuffle();
+        if (answers.Count >= attr.NumAnswers) answers.RemoveRange(attr.NumAnswers - 1, answers.Count - (attr.NumAnswers - 1));
 
         var correctIndex = Rnd.Range(0, answers.Count + 1);
         answers.Insert(correctIndex, correctAnswers.PickRandom());

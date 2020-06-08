@@ -304,8 +304,8 @@ namespace Souvenir
         FaultyRGBMazeNumber,
 
         [SouvenirQuestion("What was the displayed number in {0}?", "Flags", AnswerLayout.TwoColumns6Answers)]
-        FlagsDisplayedNumber,
         [AnswerGenerator.Integers(1, 7)]
+        FlagsDisplayedNumber,
         [SouvenirQuestion("What was the main country flag in {0}?", "Flags", AnswerLayout.TwoColumns6Answers, null, Type = AnswerType.Sprites)]
         FlagsMainCountry,
         [SouvenirQuestion("Which of these country flags was shown, but not the main country flag, in {0}?", "Flags", AnswerLayout.TwoColumns6Answers, null, Type = AnswerType.Sprites)]
@@ -719,6 +719,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "1", "2", "3", "4" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NotWhosOnFirstReferenceLabel,
         [SouvenirQuestion("What was the calculated number in stage 2 when you solved {0}?", "Not Who's on First", AnswerLayout.TwoColumns6Answers)]
+        [AnswerGenerator.Integers(1, 60)]
         NotWhosOnFirstSum,
 
         [SouvenirQuestion("What number was on button {1} in reading order in {0}?", "Numbered Buttons", AnswerLayout.TwoColumns6Answers,
