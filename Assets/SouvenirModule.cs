@@ -10636,7 +10636,7 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, script);
         var fldOrigin = GetField<string>(comp, "_originState");
         var fldActive = GetField<bool>(comp, "_isActive");
-        var mthGetStates = GetMethod<List<string>>(comp, "GetAllStates", 0);  // This relies on the fact that USA Maze and DACH Maze both have a field with the same name. It is not inherited from the base class.
+        var mthGetStates = GetMethod<List<string>>(comp, "GetAllStates", 0);
         var mthGetName = GetMethod<string>(comp, "GetStateFullName", 1);
 
         if (comp == null || fldOrigin == null || fldActive == null || mthGetStates == null || mthGetName == null)
