@@ -692,6 +692,13 @@ namespace Souvenir
         [AnswerGenerator.Strings(5, 'M', 'N')]
         NandMsAnswer,
 
+        [SouvenirQuestion("What was the initial middle digit in {0}?", "Navinums", AnswerLayout.TwoColumns6Answers)]
+        [AnswerGenerator.Integers(1, 10)]
+        NavinumsMiddleDigit,
+        [SouvenirQuestion("What was the {1} directional button pressed in {0}?", "Navinums", AnswerLayout.TwoColumns4Answers, "up", "left", "right", "down",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        NavinumsDirectionalButtons,
+
         [SouvenirQuestion("What colors did the light glow when you solved {0}?", "Not the Button", AnswerLayout.TwoColumns6Answers, "white", "red", "yellow", "green", "blue", "white/red", "white/yellow", "white/green", "white/blue", "red/yellow", "red/green", "red/blue", "yellow/green", "yellow/blue", "green/blue")]
         NotButtonLightColor,
         [SouvenirQuestion("How many times did you press the button when you solved {0}?", "Not the Button", AnswerLayout.TwoColumns6Answers)]

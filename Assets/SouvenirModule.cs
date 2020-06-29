@@ -214,6 +214,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Necronomicon = "necronomicon";
     const string _Neutralization = "neutralization";
     const string _NandMs = "NandMs";
+    const string _Navinums = "navinums";
     const string _NotButton = "NotButton";
     const string _NotKeypad = "NotKeypad";
     const string _NotMaze = "NotMaze";
@@ -439,6 +440,7 @@ public class SouvenirModule : MonoBehaviour
             { _Necronomicon, ProcessNecronomicon },
             { _Neutralization, ProcessNeutralization },
             { _NandMs, ProcessNandMs },
+            { _Navinums, ProcessNavinums },
             { _NotButton, ProcessNotButton },
             { _NotKeypad, ProcessNotKeypad },
             { _NotMaze, ProcessNotMaze },
@@ -7015,13 +7017,110 @@ public class SouvenirModule : MonoBehaviour
         addQuestion(module, Question.NandMsAnswer, correctAnswers: new[] { words[index] });
     }
 
+    private IEnumerable<object> ProcessNavinums(KMBombModule module)
+    {
+        var comp = GetComponent(module, "navinumsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldCenterDigit = GetField<int>(comp, "center");
+        var fldStage = GetField<int>(comp, "stage");
+        var fldLookUp = GetField<int[][]>(comp, "lookUp");
+        var fldDirections = GetField<List<int>>(comp, "directions");
+        var fldDirectionsSorted = GetField<List<int>>(comp, "directionsSorted");
+
+        if (comp == null || fldSolved == null || fldCenterDigit == null || fldStage == null || fldLookUp == null || fldDirections == null || fldDirectionsSorted == null)
+            yield break;
+
+        yield return null;
+
+        var lookUp = fldLookUp.Get();
+        if (lookUp == null)
+            yield break;
+        if (lookUp.Length != 9)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Navinums because ‘lookUp’ has unexpected length {1} (expected 9).", _moduleId, lookUp.Length);
+            yield break;
+        }
+        for (var i = 0; i < 9; i++)
+            if (lookUp[i].Length != 8)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Navinums because ‘lookUp’ contains an array of unexpected length {1} (expected 8).", _moduleId, lookUp[i].Length);
+                yield break;
+            }
+
+        var directionsSorted = fldDirectionsSorted.Get();
+        if (directionsSorted == null)
+            yield break;
+        if (directionsSorted.Count != 4)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Navinums because ‘directionsSorted’ has unexpected length {1} (expected 4).", _moduleId, directionsSorted.Count);
+            yield break;
+        }
+
+        var centerDigit = fldCenterDigit.Get();
+        if (centerDigit < 1 || centerDigit > 9)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Navinums because ‘center’ has unexpected value {1} (expected 1–9).", _moduleId, centerDigit);
+            yield break;
+        }
+
+        var curStage = -1;
+        var answers = new int[8];
+        Debug.LogFormat("<Souvenir #{0}> Waiting for next stage", _moduleId);
+        while (true)
+        {
+            yield return null;
+            var newStage = fldStage.Get();
+            if (newStage != curStage)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Stage is now {1}", _moduleId, newStage);
+                if (newStage == 8)
+                    break;
+                var newDirections = fldDirections.Get();
+                if (newDirections == null)
+                    yield break;
+                if (newDirections.Count != 4)
+                {
+                    Debug.LogFormat("<Souvenir #{0}> Abandoning Navinums because ‘directions’ has unexpected length {1} (expected 4).", _moduleId, newDirections.Count);
+                    yield break;
+                }
+
+                var digit = directionsSorted[lookUp[centerDigit - 1][newStage] - 1];
+                answers[newStage] = newDirections.IndexOf(digit);
+                if (answers[newStage] == -1)
+                {
+                    Debug.LogFormat("<Souvenir #{0}> Abandoning Navinums because ‘directions’ ({1}) did not contain the value from ‘directionsSorted’ ({2}).", _moduleId, newDirections.JoinString(", "), digit);
+                    yield break;
+                }
+                curStage = newStage;
+            }
+        }
+        Debug.LogFormat("<Souvenir #{0}> Stage 8 reached", _moduleId);
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Navinums);
+
+        Debug.LogFormat("<Souvenir #{0}> Navinums solved", _moduleId);
+
+        var directionNames = new[] { "up", "left", "right", "down" };
+
+        var qs = new List<QandA>();
+        for (var stage = 0; stage < 8; stage++)
+            qs.Add(makeQuestion(Question.NavinumsDirectionalButtons, _Navinums, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { directionNames[answers[stage]] }));
+        qs.Add(makeQuestion(Question.NavinumsMiddleDigit, _Navinums, correctAnswers: new[] { centerDigit.ToString() }));
+
+        Debug.LogFormat("<Souvenir #{0}> Adding questions", _moduleId);
+        addQuestions(module, qs);
+        Debug.LogFormat("<Souvenir #{0}> Questions generated", _moduleId);
+    }
+
     private IEnumerable<object> ProcessNotButton(KMBombModule module)
     {
-        var component = GetComponent(module, "NotButton");
-        var propSolved = GetProperty<bool>(component, "Solved", true);
-        var propLightColour = GetProperty<object>(component, "LightColour", true);
-        var propMashCount = GetField<int>(component, "MashCount", true);
-        if (component == null || propSolved == null || propLightColour == null || propMashCount == null)
+        var comp = GetComponent(module, "NotButton");
+        var propSolved = GetProperty<bool>(comp, "Solved", true);
+        var propLightColour = GetProperty<object>(comp, "LightColour", true);
+        var propMashCount = GetField<int>(comp, "MashCount", true);
+        if (comp == null || propSolved == null || propLightColour == null || propMashCount == null)
             yield break;
 
         var lightColor = 0; var mashCount = 0;
