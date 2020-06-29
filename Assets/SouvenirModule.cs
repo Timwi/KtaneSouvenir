@@ -241,6 +241,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Probing = "Probing";
     const string _PurpleArrows = "purpleArrowsModule";
     const string _Quintuples = "quintuples";
+    const string _RecoloredSwitches = "R4YRecoloredSwitches";
     const string _RedArrows = "redArrowsModule";
     const string _Retirement = "retirement";
     const string _ReverseMorse = "reverseMorse";
@@ -467,7 +468,8 @@ public class SouvenirModule : MonoBehaviour
             { _Probing, ProcessProbing },
             { _PurpleArrows, ProcessPurpleArrows },
             { _Quintuples, ProcessQuintuples },
-            { _RedArrows, ProcessRedArrows},
+            { _RecoloredSwitches, ProcessRecoloredSwitches },
+            { _RedArrows, ProcessRedArrows },
             { _Retirement, ProcessRetirement },
             { _ReverseMorse, ProcessReverseMorse },
             { _RGBMaze, ProcessRGBMaze},
@@ -8145,6 +8147,44 @@ public class SouvenirModule : MonoBehaviour
             numbers.Select((n, ix) => makeQuestion(Question.QuintuplesNumbers, _Quintuples, new[] { ordinal(ix % 5 + 1), ordinal(ix / 5 + 1) }, new[] { (n % 10).ToString() })).Concat(
             colors.Select((color, ix) => makeQuestion(Question.QuintuplesColors, _Quintuples, new[] { ordinal(ix % 5 + 1), ordinal(ix / 5 + 1) }, new[] { color }))).Concat(
             colorCounts.Select((cc, ix) => makeQuestion(Question.QuintuplesColorCounts, _Quintuples, new[] { colorNames[ix] }, new[] { cc.ToString() }))));
+    }
+
+    private IEnumerable<object> ProcessRecoloredSwitches(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Recolored_Switches");
+        var fldLedColors = GetField<StringBuilder>(comp, "LEDsColorsString");
+
+        if (comp == null || fldLedColors == null)
+            yield break;
+
+        var isSolved = false;
+        module.OnPass += delegate { isSolved = true; return false; };
+
+        while (!isSolved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_RecoloredSwitches);
+
+        var colorNames = new Dictionary<char, string>
+        {
+            { 'R', "red" },
+            { 'G', "green" },
+            { 'B', "blue" },
+            { 'T', "turquoise" },
+            { 'O', "orange" },
+            { 'P', "purple" },
+            { 'W', "white" }
+        };
+        var ledColors = fldLedColors.Get();
+        if (ledColors == null)
+            yield break;
+        if (ledColors.Length != 10 || Enumerable.Range(0, 10).Any(ix => !colorNames.ContainsKey(ledColors[ix])))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Recolored Switches because 'LEDsColorsString' has unexpected length {1} (expected 10) or unexpected character ({2}) (expected {3}).",
+                _moduleId, ledColors.Length, ledColors.ToString(), colorNames.Keys.JoinString());
+            yield break;
+        }
+
+        addQuestions(module, Enumerable.Range(0, 10).Select(ix => makeQuestion(Question.RecoloredSwitchesLedColors, _RecoloredSwitches, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { colorNames[ledColors[ix]] })));
     }
 
     private IEnumerable<object> ProcessRedArrows(KMBombModule module)

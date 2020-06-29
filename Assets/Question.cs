@@ -843,6 +843,10 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 25)]
         QuintuplesColorCounts,
 
+        [SouvenirQuestion("What was the color of the {1} LED in {0}?", "Recolored Switches", AnswerLayout.TwoColumns4Answers, "red", "green", "blue", "turquoise", "orange", "purple", "white",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        RecoloredSwitchesLedColors,
+
         [SouvenirQuestion("What was the starting number in {0}?", "Red Arrows", AnswerLayout.TwoColumns6Answers)]
         [AnswerGenerator.Integers(0, 9)]
         RedArrowsStartNumber,
