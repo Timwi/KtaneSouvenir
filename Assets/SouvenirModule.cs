@@ -124,6 +124,7 @@ public class SouvenirModule : MonoBehaviour
     const string _ChordQualities = "ChordQualities";
     const string _Code = "theCodeModule";
     const string _Coffeebucks = "coffeebucks";
+    const string _ColorBraille = "ColorBrailleModule";
     const string _ColorDecoding = "Color Decoding";
     const string _ColoredKeys = "lgndColoredKeys";
     const string _ColoredSquares = "ColoredSquaresModule";
@@ -347,6 +348,7 @@ public class SouvenirModule : MonoBehaviour
             { _ChordQualities, ProcessChordQualities },
             { _Code, ProcessCode },
             { _Coffeebucks, ProcessCoffeebucks },
+            { _ColorBraille, ProcessColorBraille },
             { _ColorDecoding, ProcessColorDecoding },
             { _ColoredKeys, ProcessColoredKeys },
             { _ColoredSquares, ProcessColoredSquares },
@@ -2854,6 +2856,71 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.CoffeebucksClient, _Coffeebucks, correctAnswers: new[] { names[currName] }, preferredWrongAnswers: names),
             makeQuestion(Question.CoffeebucksCoffee, _Coffeebucks, correctAnswers: new[] { coffees[currCoffee] }, preferredWrongAnswers: coffees));
+    }
+
+    private IEnumerable<object> ProcessColorBraille(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ColorBrailleModule");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+        var fldWords = GetField<string[]>(comp, "_words");
+        var fldMangling = GetField<object>(comp, "_mangling");
+
+        if (comp == null || fldSolved == null || fldWords == null || fldMangling == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ColorBraille);
+
+        var manglingNames = new Dictionary<string, string>
+        {
+            { "TopRowShiftedToTheRight", "Top row shifted to the right" },
+            { "TopRowShiftedToTheLeft", "Top row shifted to the left" },
+            { "MiddleRowShiftedToTheRight", "Middle row shifted to the right" },
+            { "MiddleRowShiftedToTheLeft", "Middle row shifted to the left" },
+            { "BottomRowShiftedToTheRight", "Bottom row shifted to the right" },
+            { "BottomRowShiftedToTheLeft", "Bottom row shifted to the left" },
+            { "EachLetterUpsideDown", "Each letter upside-down" },
+            { "EachLetterHorizontallyFlipped", "Each letter horizontally flipped" },
+            { "EachLetterVerticallyFlipped", "Each letter vertically flipped" },
+            { "DotsAreInverted", "Dots are inverted" }
+        };
+
+        var allWordsType = comp.GetType().Assembly.GetType("ColorBraille.WordsData");
+        if (allWordsType == null)
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Color Braille because I cannot find the ColorBraille.WordsData type.", _moduleId);
+            yield break;
+        }
+        var fldAllWords = GetStaticField<Dictionary<string, int[]>>(allWordsType, "Words", isPublic: true);
+        if (fldAllWords == null)
+            yield break;
+        var allWordsDic = fldAllWords.Get();
+        if (allWordsDic == null)
+            yield break;
+        var allWords = allWordsDic.Keys.ToArray();
+
+        var words = fldWords.Get();
+        if (words == null)
+            yield break;
+        if (words.Length != 3)
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Color Braille because ‘_words’ has unexpected length {1} (expected 3).", _moduleId, words.Length);
+            yield break;
+        }
+        var mangling = fldMangling.Get();
+        if (mangling == null)
+            yield break;
+        if (!manglingNames.ContainsKey(mangling.ToString()))
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Color Braille because ‘_mangling’ has unexpected value {1}.", _moduleId, mangling.ToString());
+            yield break;
+        }
+        addQuestions(module,
+            makeQuestion(Question.ColorBrailleWords, _ColorBraille, formatArgs: new[] { "red" }, correctAnswers: new[] { words[0] }, preferredWrongAnswers: allWords),
+            makeQuestion(Question.ColorBrailleWords, _ColorBraille, formatArgs: new[] { "green" }, correctAnswers: new[] { words[1] }, preferredWrongAnswers: allWords),
+            makeQuestion(Question.ColorBrailleWords, _ColorBraille, formatArgs: new[] { "blue" }, correctAnswers: new[] { words[2] }, preferredWrongAnswers: allWords),
+            makeQuestion(Question.ColorBrailleMangling, _ColorBraille, correctAnswers: new[] { manglingNames[mangling.ToString()] }));
     }
 
     private static readonly Dictionary<string, string> _ColorDecoding_ColorNameMapping = new Dictionary<string, string>

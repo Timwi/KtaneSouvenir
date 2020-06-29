@@ -179,6 +179,12 @@ namespace Souvenir
         [SouvenirQuestion("What was the last served coffee in {0}?", "Coffeebucks", AnswerLayout.OneColumn4Answers, "Twix Frappuccino", "The Blue Drink", "Matcha & Espresso Fusion", "Caramel Snickerdoodle Macchiato", "Liquid Cocaine", "S’mores Hot Chocolate", "The Pink Drink", "Grasshopper Frappuccino")]
         CoffeebucksCoffee,
 
+        [SouvenirQuestion("What mangling was applied in {0}?", "Color Braille", AnswerLayout.OneColumn4Answers, "Top row shifted to the right", "Top row shifted to the left", "Middle row shifted to the right", "Middle row shifted to the left", "Bottom row shifted to the right", "Bottom row shifted to the left", "Each letter upside-down", "Each letter horizontally flipped", "Each letter vertically flipped", "Dots are inverted")]
+        ColorBrailleMangling,
+        [SouvenirQuestion("What was the {1} word in {0}?", "Color Braille", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "advent", "barman", "carrying", "drowning", "holding", "landowner", "mandate", "narrowed", "remain", "shallow", "therefore", "western", "yield" },
+            ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ColorBrailleWords,
+
         [SouvenirQuestion("What was the {1}-stage indicator pattern in {0}?", "Color Decoding", AnswerLayout.TwoColumns4Answers, "Checkered", "Horizontal", "Vertical", "Solid",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ColorDecodingIndicatorPattern,
