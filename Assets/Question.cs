@@ -561,6 +561,10 @@ namespace Souvenir
         [AnswerGenerator.Integers(1, 8)]
         MelodySequencerParts,
 
+        [SouvenirQuestion("What was the {1} correct symbol pressed in {0}?", "Memorable Buttons", AnswerLayout.TwoColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "J", "K", "L", "P", "Q",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.DynamicFont)]
+        MemorableButtonsSymbols,
+
         [SouvenirQuestion("What was the displayed number in stage {1} when you solved {0}?", "Memory", AnswerLayout.TwoColumns4Answers,
             ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "5" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 4)]

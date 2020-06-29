@@ -90,7 +90,7 @@ public class SouvenirModule : MonoBehaviour
     private int _moduleId;
     private Dictionary<string, Func<KMBombModule, IEnumerable<object>>> _moduleProcessors;
 
-    // The values here are “ModuleType” property on the KMBombModule components.
+    // The values here are the “ModuleType” property on the KMBombModule components.
     const string _3DMaze = "spwiz3DMaze";
     const string _3DTunnels = "3dTunnels";
     const string _Accumulation = "accumulation";
@@ -192,6 +192,7 @@ public class SouvenirModule : MonoBehaviour
     const string _MazeScrambler = "MazeScrambler";
     const string _MegaMan2 = "megaMan2";
     const string _MelodySequencer = "melodySequencer";
+    const string _MemorableButtons = "memorableButtons";
     const string _Memory = "Memory";
     const string _Microcontroller = "Microcontroller";
     const string _Minesweeper = "MinesweeperModule";
@@ -414,6 +415,7 @@ public class SouvenirModule : MonoBehaviour
             { _MazeScrambler, ProcessMazeScrambler },
             { _MegaMan2, ProcessMegaMan2 },
             { _MelodySequencer, ProcessMelodySequencer },
+            { _MemorableButtons, ProcessMemorableButtons },
             { _Memory, ProcessMemory },
             { _Microcontroller, ProcessMicrocontroller },
             { _Minesweeper, ProcessMinesweeper },
@@ -5937,6 +5939,41 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessMemorableButtons(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MemorableButtons");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldCombinedCode = GetField<string>(comp, "combinedCode", isPublic: true);
+        var fldButtonLabels = GetField<TextMesh[]>(comp, "buttonLabels", isPublic: true);
+
+        if (comp == null || fldSolved == null || fldCombinedCode == null || fldButtonLabels == null)
+            yield break;
+
+        var buttonLabels = fldButtonLabels.Get();
+        if (buttonLabels == null)
+            yield break;
+        if (buttonLabels.Length == 0)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Memorable Buttons because ‘buttonLabels’ has unexpected length 0.", _moduleId);
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_MemorableButtons);
+
+        var combinedCode = fldCombinedCode.Get();
+        if (combinedCode == null)
+            yield break;
+        if (combinedCode.Length < 10 || combinedCode.Length > 15)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Memorable Buttons because ‘combinedCode’ has unexpected length {1} (expected 10–15).", _moduleId, combinedCode.Length);
+            yield break;
+        }
+
+        addQuestions(module, combinedCode.Select((ch, ix) => makeQuestion(Question.MemorableButtonsSymbols, _MemorableButtons, buttonLabels[0].font, buttonLabels[0].GetComponent<MeshRenderer>().sharedMaterial.mainTexture, new[] { ordinal(ix + 1) }, correctAnswers: new[] { ch.ToString() })));
+    }
+
     private IEnumerable<object> ProcessMemory(KMBombModule module)
     {
         var component = GetComponent(module, "MemoryComponent");
@@ -10857,14 +10894,45 @@ public class SouvenirModule : MonoBehaviour
     private QandA makeQuestion(Question question, string moduleKey, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null)
     {
         return makeQuestion(question, moduleKey,
-            (attr, q, correct, answers) => new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), Fonts[(int) attr.Type], FontTextures[(int) attr.Type], FontMaterial, attr.Layout),
+            (attr, q, correct, answers) =>
+            {
+                if (attr.Type == AnswerType.DynamicFont || attr.Type == AnswerType.Sprites)
+                {
+                    Debug.LogErrorFormat("<Souvenir #{0}> The module handler for {1} attempted to output a question that requires a sprite or dynamic font, but didn’t supply one.", _moduleId, moduleKey);
+                    throw new InvalidOperationException();
+                }
+                return new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), Fonts[(int) attr.Type], FontTextures[(int) attr.Type], FontMaterial, attr.Layout);
+            },
+            formatArgs, correctAnswers, preferredWrongAnswers);
+    }
+
+    private QandA makeQuestion(Question question, string moduleKey, Font font, Texture fontTexture, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null)
+    {
+        return makeQuestion(question, moduleKey,
+            (attr, q, correct, answers) =>
+            {
+                if (attr.Type != AnswerType.DynamicFont)
+                {
+                    Debug.LogErrorFormat("<Souvenir #{0}> The module handler for {1} attempted to use a dynamic font but the corresponding question is not marked as AnswerType.DynamicFont.", _moduleId, moduleKey);
+                    throw new InvalidOperationException();
+                }
+                return new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), font, fontTexture, FontMaterial, attr.Layout);
+            },
             formatArgs, correctAnswers, preferredWrongAnswers);
     }
 
     private QandA makeQuestion(Question question, string moduleKey, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null)
     {
         return makeQuestion(question, moduleKey,
-            (attr, q, correct, answers) => new QandASprite(attr.ModuleNameWithThe, q, correct, answers.ToArray()),
+            (attr, q, correct, answers) =>
+            {
+                if (attr.Type != AnswerType.Sprites)
+                {
+                    Debug.LogErrorFormat("<Souvenir #{0}> The module handler for {1} attempted to use a sprite but the corresponding question is not marked as AnswerType.Sprite.", _moduleId, moduleKey);
+                    throw new InvalidOperationException();
+                }
+                return new QandASprite(attr.ModuleNameWithThe, q, correct, answers.ToArray());
+            },
             formatArgs, correctAnswers, preferredWrongAnswers);
     }
 

@@ -9,8 +9,8 @@
         TicTacToeFont = 3,  // also used by The Bulb
         UnownFont = 4,
 
-        // Special value that doesn’t translate to a font
-        Sprites = -1
+        Sprites = -1,           // Special value that doesn’t translate to a font (used for answers that use sprites)
+        DynamicFont = -2    // Special value to indicate that the module handler will obtain the font from the client module
     }
 
     enum AnswerLayout
