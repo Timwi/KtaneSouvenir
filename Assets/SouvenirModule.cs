@@ -143,6 +143,7 @@ public class SouvenirModule : MonoBehaviour
     const string _DoubleOh = "DoubleOhModule";
     const string _DrDoctor = "DrDoctorModule";
     const string _ElderFuthark = "elderFuthark";
+    const string _EncryptedHangman = "encryptedHangman";
     const string _EncryptedMorse = "EncryptedMorse";
     const string _EquationsX = "equationsXModule";
     const string _Etterna = "etterna";
@@ -367,6 +368,7 @@ public class SouvenirModule : MonoBehaviour
             { _DoubleOh, ProcessDoubleOh },
             { _DrDoctor, ProcessDrDoctor },
             { _ElderFuthark, ProcessElderFuthark },
+            { _EncryptedHangman, ProcessEncryptedHangman },
             { _EncryptedMorse, ProcessEncryptedMorse },
             { _EquationsX, ProcessEquationsX },
             { _Etterna, ProcessEtterna },
@@ -3662,6 +3664,53 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.ElderFutharkRunes, _ElderFuthark, correctAnswers: new[] { pickedRuneNames[0] }, formatArgs: new[] { "first" }, preferredWrongAnswers: pickedRuneNames),
             makeQuestion(Question.ElderFutharkRunes, _ElderFuthark, correctAnswers: new[] { pickedRuneNames[1] }, formatArgs: new[] { "second" }, preferredWrongAnswers: pickedRuneNames));
+    }
+
+    private IEnumerable<object> ProcessEncryptedHangman(KMBombModule module)
+    {
+        var comp = GetComponent(module, "HangmanScript");
+        var fldSolved = GetField<bool>(comp, "isSolved", isPublic: true);
+        var fldModuleName = GetField<string>(comp, "moduleName", isPublic: true);
+        var fldEncryptionMethod = GetField<int>(comp, "encryptionMethod");
+
+        if (comp == null || fldSolved == null || fldModuleName == null)
+            yield break;
+
+        yield return null;  // Make sure that Start() has run
+
+        var moduleName = fldModuleName.Get();
+        if (moduleName == null)
+            yield break;
+        if (moduleName.Length == 0)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Encrypted Hangman because ‘moduleName’ was empty.", _moduleId);
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_EncryptedHangman);
+
+        var wrongModuleNames = Bomb.GetSolvableModuleNames();
+        // If there are less than 4 eligible modules, fill the remaining spaces with random other modules.
+        if (wrongModuleNames.Count < 4)
+            wrongModuleNames.AddRange(_attributes.Where(x => x.Value != null).Select(x => x.Value.ModuleNameWithThe).Distinct());
+
+        var qs = new List<QandA>();
+        qs.Add(makeQuestion(Question.EncryptedHangmanModule, _EncryptedHangman, correctAnswers: new[] { moduleName }, preferredWrongAnswers: wrongModuleNames.ToArray()));
+        if (fldEncryptionMethod != null)
+        {
+            var encryptionMethod = fldEncryptionMethod.Get();
+            var encryptionMethodNames = new[] { "Caesar Cipher", "Playfair Cipher", "Rot-13 Cipher", "Atbash Cipher", "Affine Cipher", "Modern Cipher", "Vigenère Cipher" };
+            if (encryptionMethod < 0 || encryptionMethod >= encryptionMethodNames.Length)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Encrypted Hangman because ‘encryptionMethod’ has unexpected value {1} (expected 0–{2}).", _moduleId, encryptionMethod, encryptionMethodNames.Length - 1);
+                yield break;
+            }
+            qs.Add(makeQuestion(Question.EncryptedHangmanEncryptionMethod, _EncryptedHangman, correctAnswers: new[] { encryptionMethodNames[encryptionMethod] }));
+        }
+
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessEncryptedMorse(KMBombModule module)
