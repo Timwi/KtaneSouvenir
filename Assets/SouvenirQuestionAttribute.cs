@@ -29,7 +29,7 @@ namespace Souvenir
                 switch (Layout)
                 {
                     case AnswerLayout.TwoColumns4Answers: return 4;
-                    case AnswerLayout.TwoColumns6Answers: return 6;
+                    case AnswerLayout.ThreeColumns6Answers: return 6;
                     case AnswerLayout.OneColumn4Answers: return 4;
                     default: throw new InvalidOperationException("Unexpected AnswerLayout value.");
                 }

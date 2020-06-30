@@ -16,8 +16,7 @@
     enum AnswerLayout
     {
         TwoColumns4Answers = 0,
-        TwoColumns6Answers = 1,
+        ThreeColumns6Answers = 1,
         OneColumn4Answers = 2
     }
-
 }
