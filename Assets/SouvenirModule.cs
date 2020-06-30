@@ -97,6 +97,7 @@ public class SouvenirModule : MonoBehaviour
     const string _AdventureGame = "spwizAdventureGame";
     const string _AffineCycle = "affineCycle";
     const string _Algebra = "algebra";
+    const string _AlphabeticalRuling = "alphabeticalRuling";
     const string _Arithmelogic = "arithmelogic";
     const string _BamboozledAgain = "bamboozledAgain";
     const string _BamboozlingButton = "bamboozlingButton";
@@ -324,6 +325,7 @@ public class SouvenirModule : MonoBehaviour
             { _AdventureGame, ProcessAdventureGame },
             { _AffineCycle, ProcessAffineCycle },
             { _Algebra, ProcessAlgebra },
+            { _AlphabeticalRuling, ProcessAlphabeticalRuling },
             { _Arithmelogic, ProcessArithmelogic },
             { _BamboozledAgain, ProcessBamboozledAgain },
             { _BamboozlingButton, ProcessBamboozlingButton },
@@ -1770,6 +1772,72 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestions(module, textures.Take(2).Select((t, ix) => makeQuestion(ix == 0 ? Question.AlgebraEquation1 : Question.AlgebraEquation2, _Algebra, correctAnswers: new[] { t.name.Replace(';', '/') })));
+    }
+
+    private IEnumerable<object> ProcessAlphabeticalRuling(KMBombModule module)
+    {
+        var comp = GetComponent(module, "AlphabeticalRuling");
+        var fldSolved = GetField<bool>(comp, "solved");
+        var fldStage = GetField<int>(comp, "currentStage");
+        var fldLetterDisplay = GetField<TextMesh>(comp, "LetterDisplay", isPublic: true);
+        var fldNumberDisplays = GetField<TextMesh[]>(comp, "NumberDisplays", isPublic: true);
+
+        if (comp == null || fldSolved == null || fldStage == null || fldLetterDisplay == null || fldNumberDisplays == null)
+            yield break;
+
+        while (!_isActivated)
+            yield return new WaitForSeconds(.1f);
+
+        var letterDisplay = fldLetterDisplay.Get();
+        if (letterDisplay == null)
+            yield break;
+        var numberDisplays = fldNumberDisplays.Get();
+        if (numberDisplays == null)
+            yield break;
+        if (numberDisplays.Length != 2 || numberDisplays.Contains(null))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Alphabetical Ruling because ‘NumberDisplays’ had unexpected length ({1}) or had a null value.", _moduleId, numberDisplays.Length);
+            yield break;
+        }
+
+        var curStage = 0;
+        var letters = new char[3];
+        var numbers = new int[3];
+        while (!fldSolved.Get())
+        {
+            var newStage = fldStage.Get();
+            if (newStage != curStage)
+            {
+                if (letterDisplay.text.Length != 1 || letterDisplay.text[0] < 'A' || letterDisplay.text[0] > 'Z')
+                {
+                    Debug.LogFormat("<Souvenir #{0}> Abandoning Alphabetical Ruling because ‘LetterDisplay’ shows {1} (expected single letter A–Z).", _moduleId, letterDisplay.text);
+                    yield break;
+                }
+                letters[newStage - 1] = letterDisplay.text[0];
+                int number;
+                if (!int.TryParse(numberDisplays[0].text, out number) || number < 1 || number > 9)
+                {
+                    Debug.LogFormat("<Souvenir #{0}> Abandoning Alphabetical Ruling because ‘NumberDisplay[0]’ shows {1} (expected integer 1–9).", _moduleId, numberDisplays[0].text);
+                    yield break;
+                }
+                numbers[newStage - 1] = number;
+                curStage = newStage;
+            }
+
+            yield return null;
+        }
+        _modulesSolved.IncSafe(_AlphabeticalRuling);
+
+        if (letters.Any(l => l < 'A' || l > 'Z') || numbers.Any(n => n < 1 || n > 9))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Alphabetical Ruling because the captured letters/numbers are unexpected (letters: [{1}], numbers: [{2}]).", _moduleId, letters.JoinString(", "), numbers.JoinString(", "));
+            yield break;
+        }
+
+        var qs = new List<QandA>();
+        qs.AddRange(letters.Select((ltr, ix) => makeQuestion(Question.AlphabeticalRulingLetter, _AlphabeticalRuling, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { ltr.ToString() })));
+        qs.AddRange(numbers.Select((nmbr, ix) => makeQuestion(Question.AlphabeticalRulingNumber, _AlphabeticalRuling, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { nmbr.ToString() })));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessArithmelogic(KMBombModule module)

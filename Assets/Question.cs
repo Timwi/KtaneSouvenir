@@ -40,6 +40,15 @@ namespace Souvenir
         [SouvenirQuestion("What was the second equation in {0}?", "Algebra", AnswerLayout.TwoColumns4Answers, "b=(2x/10)-y", "b=(7x)y", "b=(x+y)-(z/2)", "b=(y/2)-z", "b=(zy)-(2x)", "b=(z-y)/2", "b=2(z+7)", "b=2z+7", "b=xy-(2+x)", "b=xyz")]
         AlgebraEquation2,
 
+        [SouvenirQuestion("What was the letter displayed in the {1} stage of {0}?", "Alphabetical Ruling", AnswerLayout.TwoColumns6Answers,
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings(1, 'A', 'Z')]
+        AlphabeticalRulingLetter,
+        [SouvenirQuestion("What was the number displayed in the {1} stage of {0}?", "Alphabetical Ruling", AnswerLayout.TwoColumns6Answers,
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 10)]
+        AlphabeticalRulingNumber,
+
         [SouvenirQuestion("What was the symbol on the submit button in {0}?", "Arithmelogic", AnswerLayout.TwoColumns6Answers, null, Type = AnswerType.Sprites)]
         ArithmelogicSubmit,
         [SouvenirQuestion("Which number was selectable, but not the solution, in the {1} screen on {0}?", "Arithmelogic", AnswerLayout.TwoColumns6Answers,
