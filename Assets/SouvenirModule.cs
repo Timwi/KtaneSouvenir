@@ -257,6 +257,7 @@ public class SouvenirModule : MonoBehaviour
     const string _ScavengerHunt = "scavengerHunt";
     const string _SchlagDenBomb = "qSchlagDenBomb";
     const string _SeaShells = "SeaShells";
+    const string _Semamorse = "semamorse";
     const string _ShapesBombs = "ShapesBombs";
     const string _ShapeShift = "shapeshift";
     const string _ShellGame = "shellGame";
@@ -490,6 +491,7 @@ public class SouvenirModule : MonoBehaviour
             { _ScavengerHunt, ProcessScavengerHunt },
             { _SchlagDenBomb, ProcessSchlagDenBomb },
             { _SeaShells, ProcessSeaShells },
+            { _Semamorse, ProcessSemamorse },
             { _ShapesBombs, ProcessShapesAndBombs },
             { _ShapeShift, ProcessShapeShift },
             { _ShellGame, ProcessShellGame },
@@ -8879,6 +8881,48 @@ public class SouvenirModule : MonoBehaviour
             qs.Add(makeQuestion(Question.SeaShells1, _SeaShells, new[] { ordinal(i + 1) }, new[] { new[] { "she sells", "she shells", "sea shells", "sea sells" }[rows[i]] }));
             qs.Add(makeQuestion(Question.SeaShells2, _SeaShells, new[] { ordinal(i + 1) }, new[] { new[] { "sea shells", "she shells", "sea sells", "she sells" }[cols[i]] }));
             qs.Add(makeQuestion(Question.SeaShells3, _SeaShells, new[] { ordinal(i + 1) }, new[] { new[] { "sea shore", "she sore", "she sure", "seesaw" }[keynums[i]] }));
+        }
+        addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessSemamorse(KMBombModule module)
+    {
+        var comp = GetComponent(module, "semamorse");
+        var fldDisplayedLetters = GetField<int[][]>(comp, "displayedLetters");
+        var fldDisplayedColors = GetField<int[]>(comp, "displayedColors");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        if (comp == null || fldDisplayedLetters == null || fldDisplayedColors == null || fldSolved == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Semamorse);
+
+        var letters = fldDisplayedLetters.Get();
+        if (letters == null)
+            yield break;
+        if (letters.Length != 2 || letters.Any(arr => arr == null || arr.Length != 5 || arr.Any(v => v < 0 || v >= 26)))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Semamorse because ‘displayedLetters’ has unexpected values: [{1}]", _moduleId, letters.Select(arr => string.Format(@"[{0}]", arr.JoinString(", "))).JoinString("; "));
+            yield break;
+        }
+        var colorNames = new string[] { "red", "green", "cyan", "indigo", "pink" };
+        var colors = fldDisplayedColors.Get();
+        if (colors == null)
+            yield break;
+        if (colors.Length != 5 || colors.Any(c => c < 0 || c >= colorNames.Length))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Semamorse because ‘displayedColors’ has unexpected values: [{1}]", _moduleId, colors.JoinString(", "));
+            yield break;
+        }
+
+        var qs = new List<QandA>();
+        for (var dispIx = 0; dispIx < 5; dispIx++)
+        {
+            qs.Add(makeQuestion(Question.SemamorseColors, _Semamorse, formatArgs: new[] { ordinal(dispIx + 1) }, correctAnswers: new[] { colorNames[colors[dispIx]] }));
+            qs.Add(makeQuestion(Question.SemamorseLetters, _Semamorse, formatArgs: new[] { ordinal(dispIx + 1), "Semaphore" }, correctAnswers: new[] { ((char) ('A' + letters[0][dispIx])).ToString() }));
+            qs.Add(makeQuestion(Question.SemamorseLetters, _Semamorse, formatArgs: new[] { ordinal(dispIx + 1), "Morse" }, correctAnswers: new[] { ((char) ('A' + letters[1][dispIx])).ToString() }));
         }
         addQuestions(module, qs);
     }

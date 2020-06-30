@@ -934,6 +934,13 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SeaShells3,
 
+        [SouvenirQuestion("What was the {1} {2} letter in {0}?", "Semamorse", AnswerLayout.TwoColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+            ExampleExtraFormatArguments = new[] { "first", "Morse", "second", "Morse", "first", "Semaphore", "second", "Semaphore" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        SemamorseLetters,
+        [SouvenirQuestion("What was the color of the {1} display in {0}?", "Semamorse", AnswerLayout.TwoColumns4Answers, "red", "green", "cyan", "indigo", "pink",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SemamorseColors,
+
         [SouvenirQuestion("What was the initial letter in {0}?", "Shapes And Bombs", AnswerLayout.TwoColumns6Answers, "A", "B", "D", "E", "G", "I", "K", "L", "N", "O", "P", "S", "T", "X", "Y")]
         ShapesAndBombsInitialLetter,
 
