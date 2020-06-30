@@ -226,6 +226,7 @@ public class SouvenirModule : MonoBehaviour
     const string _NotSimaze = "NotSimaze";
     const string _NotWhosOnFirst = "NotWhosOnFirst";
     const string _NumberedButtons = "numberedButtonsModule";
+    const string _ObjectShows = "objectShows";
     const string _OddOneOut = "OddOneOutModule";
     const string _OnlyConnect = "OnlyConnectModule";
     const string _OrangeArrows = "orangeArrowsModule";
@@ -457,6 +458,7 @@ public class SouvenirModule : MonoBehaviour
             { _NotSimaze, ProcessNotSimaze },
             { _NotWhosOnFirst, ProcessNotWhosOnFirst },
             { _NumberedButtons, ProcessNumberedButtons },
+            { _ObjectShows, ProcessObjectShows },
             { _OddOneOut, ProcessOddOneOut },
             { _OnlyConnect, ProcessOnlyConnect },
             { _OrangeArrows, ProcessOrangeArrows },
@@ -7518,6 +7520,45 @@ public class SouvenirModule : MonoBehaviour
         int randomIndexChooser = Rnd.Range(0, 16);
 
         addQuestions(module, (makeQuestion(Question.NumberedButtonsLabels, _NumberedButtons, new[] { (randomIndexChooser + 1).ToString() }, correctAnswers: new[] { numbers[randomIndexChooser].ToString() }, preferredWrongAnswers: new[] { Rnd.Range(1, 101).ToString() })));
+    }
+
+    private IEnumerable<object> ProcessObjectShows(KMBombModule module)
+    {
+        var comp = GetComponent(module, "objectShows");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldSolution = GetField<Array>(comp, "solution");
+        var fldContestantNames = GetField<string[]>(comp, "charnames", isPublic: true);
+
+        if (comp == null || fldSolved == null || fldSolution == null || fldContestantNames == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ObjectShows);
+
+        var solution = fldSolution.Get();
+        if (solution == null)
+            yield break;
+        var solutionObjs = solution.Cast<object>().ToArray();
+        if (solutionObjs.Length != 5 || solutionObjs.Contains(null))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Object Shows because ‘solution’ contains a null value or has unexpected length {1} (expected 5).", _moduleId, solutionObjs.Length);
+            yield break;
+        }
+
+        var tmp = solutionObjs[0];
+        var fldId = GetField<int>(tmp, "id", isPublic: true);
+        var contestantNames = fldContestantNames.Get();
+        if (contestantNames == null)
+            yield break;
+        if (solutionObjs.Any(c => fldId.GetFrom(c) < 0 || fldId.GetFrom(c) >= contestantNames.Length))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Object Shows because one of the ‘id’s in ‘solution’ is unexpected: [{1}]", _moduleId, solutionObjs.Select(c => fldId.GetFrom(c)).JoinString(", "));
+            yield break;
+        }
+        var solutionNames = solutionObjs.Select(c => contestantNames[fldId.GetFrom(c)]).ToArray();
+
+        addQuestion(module, Question.ObjectShowsContestants, correctAnswers: solutionNames, preferredWrongAnswers: contestantNames);
     }
 
     private IEnumerable<object> ProcessOddOneOut(KMBombModule module)

@@ -770,6 +770,9 @@ namespace Souvenir
         [AnswerGenerator.Integers(1, 100)]
         NumberedButtonsLabels,
 
+        [SouvenirQuestion("Which of these was a contestant on {0} but not the final winner?", "Object Shows", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "Battleship", "Big Circle", "Jack O’ Lantern", "Lego", "Moon", "Radio", "Combination Lock", "Cookie Jar", "Fidget Spinner" })]
+        ObjectShowsContestants,
+
         [SouvenirQuestion("What was the button you pressed in the {1} stage of {0}?", "Odd One Out", AnswerLayout.TwoColumns6Answers, "top-left", "top-middle", "top-right", "bottom-left", "bottom-middle", "bottom-right",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         OddOneOutButton,
