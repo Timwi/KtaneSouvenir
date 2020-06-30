@@ -89,6 +89,10 @@ namespace Souvenir
           ExampleExtraFormatArguments = new[] { "1", "fourth", "1", "fifth", "2", "fourth", "2", "fifth" }, ExampleExtraFormatArgumentGroupSize = 2)]
         BamboozlingButtonDisplayColor,
 
+        [SouvenirQuestion("Which ingredient was in position {1} on {0}?", "Bartending", AnswerLayout.TwoColumns4Answers, "Adelhyde", "Flanergide", "Bronson Extract", "Karmotrine", "Powdered Delta",
+            ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "5" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        BartendingIngredients,
+
         [SouvenirQuestion("What color was {1} in the solution to {0}?", "Big Circle", AnswerLayout.TwoColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         BigCircleColors,

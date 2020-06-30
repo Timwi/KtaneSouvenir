@@ -102,6 +102,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Arithmelogic = "arithmelogic";
     const string _BamboozledAgain = "bamboozledAgain";
     const string _BamboozlingButton = "bamboozlingButton";
+    const string _Bartending = "BartendingModule";
     const string _BigCircle = "BigCircle";
     const string _BinaryLEDs = "BinaryLeds";
     const string _Bitmaps = "BitmapsModule";
@@ -331,6 +332,7 @@ public class SouvenirModule : MonoBehaviour
             { _Arithmelogic, ProcessArithmelogic },
             { _BamboozledAgain, ProcessBamboozledAgain },
             { _BamboozlingButton, ProcessBamboozlingButton },
+            { _Bartending, ProcessBartending },
             { _BigCircle, ProcessBigCircle },
             { _BinaryLEDs, ProcessBinaryLEDs },
             { _Bitmaps, ProcessBitmaps },
@@ -2123,6 +2125,32 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessBartending(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Maker");
+        var fldSolved = GetField<bool>(comp, "_IsSolved");
+        var fldIngredientIxs = GetField<int[]>(comp, "ingIndices");
+
+        if (comp == null || fldSolved == null || fldIngredientIxs == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Bartending);
+
+        var ingIxs = fldIngredientIxs.Get();
+        if(ingIxs == null)
+            yield break;
+        if (ingIxs.Length != 5 || ingIxs.Any(ing => ing < 0 || ing >= 5))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Bartending because ‘ingIndices’ has unexpected length or values: [{1}]", _moduleId, ingIxs.JoinString(", "));
+            yield break;
+        }
+
+        var ingredientNames = new[] { "Powdered Delta", "Flanergide", "Adelhyde", "Bronson Extract", "Karmotrine" };
+        addQuestions(module, ingIxs.Select((ingIx, pos) => makeQuestion(Question.BartendingIngredients, _Bartending, formatArgs: new[] { (pos + 1).ToString() }, correctAnswers: new[] { ingredientNames[ingIx] })));
     }
 
     private IEnumerable<object> ProcessBigCircle(KMBombModule module)
