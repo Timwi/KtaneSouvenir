@@ -49,6 +49,10 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 10)]
         AlphabeticalRulingNumber,
 
+        [SouvenirQuestion("What character was displayed on the {1} screen on the {2} in {0}?", "Alpha-Bits", AnswerLayout.TwoColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V",
+            ExampleExtraFormatArguments = new[] { "first", "left", "second", "left", "third", "left", "first", "right", "second", "right", "third", "right" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        AlphaBitsDisplayedCharacters,
+
         [SouvenirQuestion("What was the symbol on the submit button in {0}?", "Arithmelogic", AnswerLayout.TwoColumns6Answers, null, Type = AnswerType.Sprites)]
         ArithmelogicSubmit,
         [SouvenirQuestion("Which number was selectable, but not the solution, in the {1} screen on {0}?", "Arithmelogic", AnswerLayout.TwoColumns6Answers,

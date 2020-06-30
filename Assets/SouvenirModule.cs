@@ -98,6 +98,7 @@ public class SouvenirModule : MonoBehaviour
     const string _AffineCycle = "affineCycle";
     const string _Algebra = "algebra";
     const string _AlphabeticalRuling = "alphabeticalRuling";
+    const string _AlphaBits = "alphaBits";
     const string _Arithmelogic = "arithmelogic";
     const string _BamboozledAgain = "bamboozledAgain";
     const string _BamboozlingButton = "bamboozlingButton";
@@ -326,6 +327,7 @@ public class SouvenirModule : MonoBehaviour
             { _AffineCycle, ProcessAffineCycle },
             { _Algebra, ProcessAlgebra },
             { _AlphabeticalRuling, ProcessAlphabeticalRuling },
+            { _AlphaBits, ProcessAlphaBits },
             { _Arithmelogic, ProcessArithmelogic },
             { _BamboozledAgain, ProcessBamboozledAgain },
             { _BamboozlingButton, ProcessBamboozlingButton },
@@ -1838,6 +1840,41 @@ public class SouvenirModule : MonoBehaviour
         qs.AddRange(letters.Select((ltr, ix) => makeQuestion(Question.AlphabeticalRulingLetter, _AlphabeticalRuling, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { ltr.ToString() })));
         qs.AddRange(numbers.Select((nmbr, ix) => makeQuestion(Question.AlphabeticalRulingNumber, _AlphabeticalRuling, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { nmbr.ToString() })));
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessAlphaBits(KMBombModule module)
+    {
+        var comp = GetComponent(module, "AlphaBitsScript");
+        var fldsDisplays = new[] { "displayTL", "displayML", "displayBL", "displayTR", "displayMR", "displayBR" }.Select(fieldName => GetField<TextMesh>(comp, fieldName, isPublic: true)).ToArray();
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        if (comp == null || fldsDisplays.Contains(null) || fldSolved == null)
+            yield break;
+
+        yield return null;  // Ensure that Start() has run
+
+        var isSolved = false;
+        module.OnPass += delegate { isSolved = true; return false; };
+
+        var displays = fldsDisplays.Select(fld => fld.Get()).ToArray();
+        if (displays.Contains(null))
+            yield break;
+        var displayedCharacters = displays.Select(display => display.text.Trim()).ToArray();
+        if (displayedCharacters.Contains(null) || displayedCharacters.Length != 6 || displayedCharacters.Any(ch => ch.Length != 1 || ((ch[0] < 'A' || ch[0] > 'V') && (ch[0] < '0' || ch[0] > '9'))))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Alpha-Bits because the displayed characters ({1}) are not what I expect (expected six single-character strings 0–9/A–V each).", _moduleId, displayedCharacters.Select(str => string.Format(@"""{0}""", str)).JoinString(", "));
+            yield break;
+        }
+
+        while (!isSolved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_AlphaBits);
+
+        addQuestions(module, Enumerable.Range(0, 6).Select(displayIx => makeQuestion(
+            Question.AlphaBitsDisplayedCharacters,
+            _AlphaBits,
+            formatArgs: new[] { new[] { "top", "middle", "bottom" }[displayIx % 3], new[] { "left", "right" }[displayIx / 3] },
+            correctAnswers: new[] { displayedCharacters[displayIx] })));
     }
 
     private IEnumerable<object> ProcessArithmelogic(KMBombModule module)
