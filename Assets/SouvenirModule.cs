@@ -308,6 +308,7 @@ public class SouvenirModule : MonoBehaviour
     const string _UnownCipher = "UnownCipher";
     const string _USAMaze = "USA";
     const string _VaricoloredSquares = "VaricoloredSquaresModule";
+    const string _Vcrcs = "VCRCS";
     const string _Vectors = "vectorsModule";
     const string _Vexillology = "vexillology";
     const string _VisualImpairment = "visual_impairment";
@@ -543,6 +544,7 @@ public class SouvenirModule : MonoBehaviour
             { _UnownCipher, ProcessUnownCipher },
             { _USAMaze, ProcessUSAMaze },
             { _VaricoloredSquares, ProcessVaricoloredSquares },
+            {  _Vcrcs, ProcessVcrcs },
             { _Vectors, ProcessVectors },
             { _Vexillology, ProcessVexillology },
             { _VisualImpairment, ProcessVisualImpairment },
@@ -11006,6 +11008,34 @@ public class SouvenirModule : MonoBehaviour
             yield break;
 
         addQuestion(module, Question.VaricoloredSquaresInitialColor, correctAnswers: new[] { firstColor.ToString() });
+    }
+
+    private IEnumerable<object> ProcessVcrcs(KMBombModule module)
+    {
+        var comp = GetComponent(module, "VcrcsScript");
+        var fldSolved = GetField<bool>(comp, "ModuleSolved");
+        var fldWord = GetField<TextMesh>(comp, "Words", isPublic: true);
+
+        if (comp == null || fldSolved == null || fldWord == null)
+            yield break;
+
+        yield return null;
+
+        var wordTextMesh = fldWord.Get();
+        if (wordTextMesh == null)
+            yield break;
+        var word = wordTextMesh.text;
+        if (word == null)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Vcrcs because ‘Words.text’ is null.", _moduleId);
+            yield break;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Vcrcs);
+
+        addQuestion(module, Question.VcrcsWord, correctAnswers: new[] { word });
     }
 
     private IEnumerable<object> ProcessVectors(KMBombModule module)
