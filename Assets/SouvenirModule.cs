@@ -254,6 +254,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Rhythms = "MusicRhythms";
     const string _RoleReversal = "roleReversal";
     const string _Rule = "theRule";
+    const string _ScavengerHunt = "scavengerHunt";
     const string _SchlagDenBomb = "qSchlagDenBomb";
     const string _SeaShells = "SeaShells";
     const string _ShapesBombs = "ShapesBombs";
@@ -486,6 +487,7 @@ public class SouvenirModule : MonoBehaviour
             { _Rhythms, ProcessRhythms },
             { _RoleReversal, ProcessRoleReversal },
             { _Rule, ProcessRule },
+            { _ScavengerHunt, ProcessScavengerHunt },
             { _SchlagDenBomb, ProcessSchlagDenBomb },
             { _SeaShells, ProcessSeaShells },
             { _ShapesBombs, ProcessShapesAndBombs },
@@ -8716,6 +8718,70 @@ public class SouvenirModule : MonoBehaviour
 
         var number = fldRuleNum.Get();
         addQuestion(module, Question.RuleNumber, correctAnswers: new[] { number.ToString() });
+    }
+
+    private IEnumerable<object> ProcessScavengerHunt(KMBombModule module)
+    {
+        var comp = GetComponent(module, "scavengerHunt");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldKeySquare = GetField<int>(comp, "keySquare");
+        var fldRelTiles = GetField<int[]>(comp, "relTiles");    // Coordinates of the color that the user needed
+        var fldDecoyTiles = GetField<int[]>(comp, "decoyTiles");    // Coordinates of the other colors
+        var fldColorIndex = GetField<int>(comp, "colorIndex");  // Which color is the ‘relTiles’ color
+
+        if (comp == null || fldSolved == null || fldKeySquare == null || fldRelTiles == null || fldDecoyTiles == null || fldColorIndex == null)
+            yield break;
+
+        yield return null;  // Make sure that Start() has run
+
+        var keySquare = fldKeySquare.Get();
+        if (keySquare < 0 || keySquare >= 16)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Scavenger Hunt because ‘keySquare’ has value {1} (expected 0–15).", _moduleId, keySquare);
+            yield break;
+        }
+
+        var relTiles = fldRelTiles.Get();
+        if (relTiles == null)
+            yield break;
+        if (relTiles.Length != 2 && relTiles.Any(v => v < 0 || v >= 16))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Scavenger Hunt because ‘relTiles’ has unexpected value: [{1}] (expected 2 values in the range 0–15).", _moduleId, relTiles.JoinString(", "));
+            yield break;
+        }
+
+        var decoyTiles = fldDecoyTiles.Get();
+        if (decoyTiles == null)
+            yield break;
+        if (decoyTiles.Length != 4 && decoyTiles.Any(v => v < 0 || v >= 16))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Scavenger Hunt because ‘decoyTiles’ has unexpected value: [{1}] (expected 4 values in the range 0–15).", _moduleId, decoyTiles.JoinString(", "));
+            yield break;
+        }
+
+        var colorIndex = fldColorIndex.Get();
+        if (colorIndex < 0 || colorIndex >= 3)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Scavenger Hunt because ‘colorIndex’ has unexpected value: {1} (expected 0–2).", _moduleId, colorIndex);
+            yield break;
+        }
+
+        // 0 = red, 1 = green, 2 = blue
+        var redTiles = colorIndex == 0 ? relTiles : decoyTiles.Take(2).ToArray();
+        var greenTiles = colorIndex == 1 ? relTiles : colorIndex == 0 ? decoyTiles.Take(2).ToArray() : decoyTiles.Skip(2).ToArray();
+        var blueTiles = colorIndex == 2 ? relTiles : decoyTiles.Skip(2).ToArray();
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ScavengerHunt);
+
+        var tileNames = new[] { "A1", "B1", "C1", "D1", "A2", "B2", "C2", "D2", "A3", "B3", "C3", "D3", "A4", "B4", "C4", "D4" };
+        var qs = new List<QandA>();
+        qs.Add(makeQuestion(Question.ScavengerHuntKeySquare, _ScavengerHunt, correctAnswers: new[] { tileNames[keySquare] }));
+        qs.Add(makeQuestion(Question.ScavengerHuntColoredTiles, _ScavengerHunt, formatArgs: new[] { "red" }, correctAnswers: redTiles.Select(c => tileNames[c]).ToArray()));
+        qs.Add(makeQuestion(Question.ScavengerHuntColoredTiles, _ScavengerHunt, formatArgs: new[] { "green" }, correctAnswers: greenTiles.Select(c => tileNames[c]).ToArray()));
+        qs.Add(makeQuestion(Question.ScavengerHuntColoredTiles, _ScavengerHunt, formatArgs: new[] { "blue" }, correctAnswers: blueTiles.Select(c => tileNames[c]).ToArray()));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessSchlagDenBomb(KMBombModule module)

@@ -908,6 +908,13 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "warm-colored", "cold-colored", "primary-colored", "secondary-colored" }, ExampleExtraFormatArgumentGroupSize = 1)]
         RoleReversalWires,
 
+        [SouvenirQuestion("Which tile was correctly submitted in stage 1 of {0}?", "Scavenger Hunt", AnswerLayout.TwoColumns6Answers, "A1", "B1", "C1", "D1", "A2", "B2", "C2", "D2", "A3", "B3", "C3", "D3", "A4", "B4", "C4", "D4")]
+        ScavengerHuntKeySquare,
+        [SouvenirQuestion("Which of these tiles was {1} in stage 1 of {0}?", "Scavenger Hunt", AnswerLayout.TwoColumns6Answers,
+            ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Inherit(Question.ScavengerHuntKeySquare)]
+        ScavengerHuntColoredTiles,
+
         [SouvenirQuestion("What was the contestant’s name in {0}?", "Schlag den Bomb", AnswerLayout.TwoColumns4Answers, "Ron", "Don", "Julia", "Cory", "Greg", "Paula", "Val", "Lisa", "Ozy", "Ozzy", "Elsa", "Cori", "Harry", "Gale", "Daniel", "Albert", "Spike", "Tommy", "Greta", "Tina", "Rob", "Edgar", "Julia", "Peter", "Millie", "Isolde", "Eris")]
         SchlagDenBombContestantName,
         [SouvenirQuestion("What was the contestant’s score in {0}?", "Schlag den Bomb", AnswerLayout.TwoColumns6Answers)]
