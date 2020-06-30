@@ -177,6 +177,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Hypercube = "TheHypercubeModule";
     const string _IceCream = "iceCreamModule";
     const string _IdentityParade = "identityParade";
+    const string _Instructions = "instructions";
     const string _iPhone = "iPhone";
     const string _JewelVault = "jewelVault";
     const string _JumbleCycle = "jumbleCycle";
@@ -406,6 +407,7 @@ public class SouvenirModule : MonoBehaviour
             { _Hypercube, ProcessHypercube },
             { _IceCream, ProcessIceCream },
             { _IdentityParade, ProcessIdentityParade },
+            { _Instructions, ProcessInstructions },
             { _iPhone, ProcessiPhone },
             { _JewelVault, ProcessJewelVault },
             { _JumbleCycle, ProcessJumbleCycle },
@@ -5260,6 +5262,66 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.IdentityParadeBuilds, _IdentityParade, formatArgs: new[] { "was not" }, correctAnswers: validBuilds.Except(builds).ToArray()),
             makeQuestion(Question.IdentityParadeAttires, _IdentityParade, formatArgs: new[] { "was" }, correctAnswers: attires.ToArray()),
             makeQuestion(Question.IdentityParadeAttires, _IdentityParade, formatArgs: new[] { "was not" }, correctAnswers: validAttires.Except(attires).ToArray()));
+    }
+
+    private IEnumerable<object> ProcessInstructions(KMBombModule module)
+    {
+        var comp = GetComponent(module, "instructionsScript");
+        var fldSolved = GetField<bool>(comp, "_solved");
+        var fldScreens = GetField<int[,]>(comp, "screens");
+        var fldEdgeworkScreens = GetStaticField<bool[]>(comp.GetType(), "edgeworkScreens");
+        var fldEdgeworkPossibilities = GetField<string[]>(comp, "edgeworkPossibilities");
+        var fldButtonPossibilities = GetField<string[]>(comp, "buttonPossibilities");
+
+        if (comp == null || fldSolved == null || fldScreens == null || fldEdgeworkScreens == null || fldEdgeworkPossibilities == null || fldButtonPossibilities == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Instructions);
+
+        var screens = fldScreens.Get();
+        if (screens == null)
+            yield break;
+        if (screens.GetLength(0) != 5 || screens.GetLength(1) != 2)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Instructions because ‘screens’ has unexpected lengths: {1}/{2} (expected 5/2).", _moduleId, screens.GetLength(0), screens.GetLength(1));
+            yield break;
+        }
+
+        var edgeworkScreens = fldEdgeworkScreens.Get();
+        if (edgeworkScreens == null)
+            yield break;
+        if (edgeworkScreens.Length != 5)
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Instructions because ‘edgeworkScreens’ has unexpected lengths: {1} (expected 5).", _moduleId, edgeworkScreens.Length);
+            yield break;
+        }
+
+        var edgeworkPossibilities = fldEdgeworkPossibilities.Get();
+        if (edgeworkPossibilities == null)
+            yield break;
+        var buttonPossibilities = fldButtonPossibilities.Get();
+        if (buttonPossibilities == null)
+            yield break;
+
+        edgeworkPossibilities = edgeworkPossibilities.Select(ep => ep.ToLowerInvariant().Replace("\n", " ")).ToArray();
+        buttonPossibilities = buttonPossibilities.Select(bp => bp.ToLowerInvariant().Replace("\n", " ")).ToArray();
+
+        var qs = new List<QandA>();
+        for (var btnIx = 0; btnIx < 5; btnIx++)
+        {
+            var ix = screens[btnIx, 0];
+            var arr = edgeworkScreens[btnIx] ? edgeworkPossibilities : buttonPossibilities;
+            if (ix < 0 || ix >= arr.Length)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Instructions because ‘screens[{1}, 0]’ has value {2} but {3} has length {4}.", _moduleId,
+                    btnIx, ix, edgeworkScreens[btnIx] ? "edgeworkPossibilities" : "buttonPossibilities", arr.Length);
+                yield break;
+            }
+            qs.Add(makeQuestion(Question.InstructionsPhrases, _Instructions, formatArgs: new[] { ordinal(btnIx + 1) }, correctAnswers: new[] { arr[ix] }, preferredWrongAnswers: arr));
+        }
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessiPhone(KMBombModule module)

@@ -485,6 +485,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "was", "was not" }, ExampleExtraFormatArgumentGroupSize = 1)]
         IdentityParadeAttires,
 
+        [SouvenirQuestion("What was the phrase on the {1} display in {0}?", "Instructions", AnswerLayout.TwoColumns6Answers, "batteries", "battery holders", "indicators", "lit indicators", "unlit indicators", "ports", "port plates", "digits in serial number", "letters in serial number", "modules", "two factors", "solved modules", "port types", "strikes", "red", "green", "yellow", "blue", "a", "b", "c", "d", "first", "second", "third", "fourth",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        InstructionsPhrases,
+
         [SouvenirQuestion("What was the {1} PIN digit in {0}?", "iPhone", AnswerLayout.TwoColumns6Answers,
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         [AnswerGenerator.Integers(0, 9)]
