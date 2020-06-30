@@ -1001,6 +1001,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonShrieksFlashingButton,
 
+        [SouvenirQuestion("What was the flashing color added in the {1} stage of {0}?", "Simon Sounds", AnswerLayout.TwoColumns4Answers, "red", "blue", "yellow", "green",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SimonSoundsFlashingColors,
+
         [SouvenirQuestion("Which color was the bubble that flashed {1} in {0}?", "Simon Speaks", AnswerLayout.TwoColumns6Answers, "black", "blue", "green", "cyan", "red", "purple", "yellow", "white", "gray",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSpeaksColors,

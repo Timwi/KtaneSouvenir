@@ -271,6 +271,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SimonShrieks = "SimonShrieksModule";
     const string _SimonSimons = "simonSimons";
     const string _SimonSings = "SimonSingsModule";
+    const string _SimonSounds = "simonSounds";
     const string _SimonSpeaks = "SimonSpeaksModule";
     const string _SimonsStar = "simonsStar";
     const string _SimonStates = "SimonV2";
@@ -505,6 +506,7 @@ public class SouvenirModule : MonoBehaviour
             { _SimonShrieks, ProcessSimonShrieks },
             { _SimonSimons, ProcessSimonSimons },
             { _SimonSings, ProcessSimonSings },
+            { _SimonSounds, ProcessSimonSounds },
             { _SimonSpeaks, ProcessSimonSpeaks },
             { _SimonsStar, ProcessSimonsStar },
             { _SimonStates, ProcessSimonStates },
@@ -9445,6 +9447,36 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_SimonSings);
         addQuestions(module, flashingColorSequences.SelectMany((seq, stage) => seq.Select((col, ix) => makeQuestion(Question.SimonSingsFlashing, _SimonSings, new[] { ordinal(ix + 1), ordinal(stage + 1) }, new[] { _SimonSings_Notes[col] }))));
+    }
+
+    private IEnumerable<object> ProcessSimonSounds(KMBombModule module)
+    {
+        var comp = GetComponent(module, "simonSoundsScript");
+        var fldFlashedColors = GetField<List<int>[]>(comp, "stage");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        if (comp == null || fldFlashedColors == null || fldSolved == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SimonSounds);
+
+        var colorNames = new[] { "red", "blue", "yellow", "green" };
+        var flashed = fldFlashedColors.Get();
+        if (flashed == null)
+            yield break;
+        if (flashed.Contains(null) || flashed.Any(list => list.Last() < 0 || list.Last() >= colorNames.Length))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Simon Sounds because ‘stage’ contains a null value or an invalid color: [{1}].", _moduleId,
+                flashed.Select(v => v == null ? "NULL" : string.Format("[{0}]", v.JoinString(", "))).JoinString("; "));
+            yield break;
+        }
+
+        var qs = new List<QandA>();
+        for (var stage = 0; stage < flashed.Length; stage++)
+            qs.Add(makeQuestion(Question.SimonSoundsFlashingColors, _SimonSounds, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { colorNames[flashed[stage].Last()] }));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessSimonSpeaks(KMBombModule module)
