@@ -37,7 +37,7 @@ public class SouvenirModule : MonoBehaviour
     public Sprite[] SymbolicCoordinatesSprites;
     public Sprite[] WavetappingSprites;
     public Sprite[] FlagsSprites;
-    public Sprite[] KudosudokuSprites;
+    public Sprite[] Tiles4x4Sprites;
 
     public TextMesh TextMesh;
     public Renderer TextRenderer;
@@ -3663,17 +3663,17 @@ public class SouvenirModule : MonoBehaviour
 
         addQuestions(module,
             makeQuestion(Question.DiscoloredSquaresRememberedPositions, _DiscoloredSquares, new[] { colors[0] },
-                preferredWrongAnswers: KudosudokuSprites,
-                correctAnswers: new[] { KudosudokuSprites.First(k => k.name == (char) ('A' + (positions[0] % 4)) + (positions[0] / 4 + 1).ToString()) }),
+                preferredWrongAnswers: Tiles4x4Sprites,
+                correctAnswers: new[] { Tiles4x4Sprites.First(k => k.name == (char) ('A' + (positions[0] % 4)) + (positions[0] / 4 + 1).ToString()) }),
             makeQuestion(Question.DiscoloredSquaresRememberedPositions, _DiscoloredSquares, new[] { colors[1] },
-                preferredWrongAnswers: KudosudokuSprites,
-                correctAnswers: new[] { KudosudokuSprites.First(k => k.name == (char) ('A' + (positions[1] % 4)) + (positions[1] / 4 + 1).ToString()) }),
+                preferredWrongAnswers: Tiles4x4Sprites,
+                correctAnswers: new[] { Tiles4x4Sprites.First(k => k.name == (char) ('A' + (positions[1] % 4)) + (positions[1] / 4 + 1).ToString()) }),
             makeQuestion(Question.DiscoloredSquaresRememberedPositions, _DiscoloredSquares, new[] { colors[2] },
-                preferredWrongAnswers: KudosudokuSprites,
-                correctAnswers: new[] { KudosudokuSprites.First(k => k.name == (char) ('A' + (positions[2] % 4)) + (positions[2] / 4 + 1).ToString()) }),
+                preferredWrongAnswers: Tiles4x4Sprites,
+                correctAnswers: new[] { Tiles4x4Sprites.First(k => k.name == (char) ('A' + (positions[2] % 4)) + (positions[2] / 4 + 1).ToString()) }),
             makeQuestion(Question.DiscoloredSquaresRememberedPositions, _DiscoloredSquares, new[] { colors[3] },
-                preferredWrongAnswers: KudosudokuSprites,
-                correctAnswers: new[] { KudosudokuSprites.First(k => k.name == (char) ('A' + (positions[3] % 4)) + (positions[3] / 4 + 1).ToString()) }));
+                preferredWrongAnswers: Tiles4x4Sprites,
+                correctAnswers: new[] { Tiles4x4Sprites.First(k => k.name == (char) ('A' + (positions[3] % 4)) + (positions[3] / 4 + 1).ToString()) }));
     }
 
     private IEnumerable<object> ProcessDoubleColor(KMBombModule module)
@@ -5436,11 +5436,11 @@ public class SouvenirModule : MonoBehaviour
 
         addQuestions(module,
             makeQuestion(Question.KudosudokuPrefilled, _Kudosudoku, new[] { "pre-filled" },
-                preferredWrongAnswers: KudosudokuSprites,
-                correctAnswers: Enumerable.Range(0, 16).Where(ix => shown[ix]).Select(coord => KudosudokuSprites.First(k => k.name == (char) ('A' + (coord % 4)) + (coord / 4 + 1).ToString())).ToArray()),
+                preferredWrongAnswers: Tiles4x4Sprites,
+                correctAnswers: Enumerable.Range(0, 16).Where(ix => shown[ix]).Select(coord => Tiles4x4Sprites.First(k => k.name == (char) ('A' + (coord % 4)) + (coord / 4 + 1).ToString())).ToArray()),
             makeQuestion(Question.KudosudokuPrefilled, _Kudosudoku, new[] { "not pre-filled" },
-                preferredWrongAnswers: KudosudokuSprites,
-                correctAnswers: Enumerable.Range(0, 16).Where(ix => !shown[ix]).Select(coord => KudosudokuSprites.First(k => k.name == (char) ('A' + (coord % 4)) + (coord / 4 + 1).ToString())).ToArray()));
+                preferredWrongAnswers: Tiles4x4Sprites,
+                correctAnswers: Enumerable.Range(0, 16).Where(ix => !shown[ix]).Select(coord => Tiles4x4Sprites.First(k => k.name == (char) ('A' + (coord % 4)) + (coord / 4 + 1).ToString())).ToArray()));
     }
 
     private IEnumerable<object> ProcessLasers(KMBombModule module)
