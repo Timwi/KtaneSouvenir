@@ -111,6 +111,7 @@ public class SouvenirModule : MonoBehaviour
     const string _BlueArrows = "blueArrowsModule";
     const string _BobBarks = "ksmBobBarks";
     const string _Boggle = "boggle";
+    const string _Boxing = "boxing";
     const string _Braille = "BrailleModule";
     const string _BrokenButtons = "BrokenButtonsModule";
     const string _BrushStrokes = "brushStrokes";
@@ -347,6 +348,7 @@ public class SouvenirModule : MonoBehaviour
             { _BlueArrows, ProcessBlueArrows },
             { _BobBarks, ProcessBobBarks },
             { _Boggle, ProcessBoggle },
+            { _Boxing, ProcessBoxing },
             { _Braille, ProcessBraille },
             { _BrokenButtons, ProcessBrokenButtons },
             { _BrushStrokes, ProcessBrushStrokes },
@@ -2555,6 +2557,68 @@ public class SouvenirModule : MonoBehaviour
                 letters.Add(map[i, j].ToString());
 
         addQuestion(module, Question.BoggleLetters, correctAnswers: new[] { visible[0].ToString(), visible[1].ToString(), visible[2].ToString(), visible[3].ToString() }, preferredWrongAnswers: letters.ToArray());
+    }
+
+    private IEnumerable<object> ProcessBoxing(KMBombModule module)
+    {
+        var comp = GetComponent(module, "boxing");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldContestantStrengths = GetField<int[]>(comp, "contestantStrengths");
+        var fldContestantIndices = GetField<int[]>(comp, "contestantIndices");
+        var fldLastNameIndices = GetField<int[]>(comp, "lastNameIndices");
+        var fldSubstituteIndices = GetField<int[]>(comp, "substituteIndices");
+        var fldSubstituteLastNameIndices = GetField<int[]>(comp, "substituteLastNameIndices");
+        var fldPossibleNames = GetStaticField<string[]>(comp.GetType(), "possibleNames");
+        var fldPossibleSubstituteNames = GetStaticField<string[]>(comp.GetType(), "possibleSubstituteNames");
+        var fldPossibleLastNames = GetStaticField<string[]>(comp.GetType(), "possibleLastNames");
+
+        if (comp == null || fldSolved == null || fldContestantStrengths == null || fldContestantIndices == null || fldLastNameIndices == null
+            || fldSubstituteIndices == null || fldSubstituteLastNameIndices == null || fldPossibleNames == null || fldPossibleSubstituteNames == null || fldPossibleLastNames == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Boxing);
+
+        var contestantStrengths = fldContestantStrengths.Get();
+        var contestantIndices = fldContestantIndices.Get();
+        var lastNameIndices = fldLastNameIndices.Get();
+        var substituteIndices = fldSubstituteIndices.Get();
+        var substituteLastNameIndices = fldSubstituteLastNameIndices.Get();
+        var possibleNames = fldPossibleNames.Get();
+        var possibleSubstituteNames = fldPossibleSubstituteNames.Get();
+        var possibleLastNames = fldPossibleLastNames.Get();
+        if (contestantStrengths == null || contestantIndices == null || lastNameIndices == null || substituteIndices == null || substituteLastNameIndices == null || possibleNames == null || possibleSubstituteNames == null || possibleLastNames == null)
+            yield break;
+
+        if (contestantStrengths.Length != 5 || contestantIndices.Length != 5 || lastNameIndices.Length != 5 || substituteIndices.Length != 5 || substituteLastNameIndices.Length != 5)
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Boxing because one of the arrays has unexpected length (expected 5): {1}, {2}, {3}, {4}, {5}",
+                _moduleId, contestantStrengths, contestantIndices, lastNameIndices, substituteIndices, substituteLastNameIndices);
+            yield break;
+        }
+        if (contestantIndices.Any(v => v < 0 || v >= possibleNames.Length) || lastNameIndices.Any(v => v < 0 || v >= possibleLastNames.Length) ||
+            substituteIndices.Any(v => v < 0 || v >= possibleSubstituteNames.Length) || substituteLastNameIndices.Any(v => v < 0 || v >= possibleLastNames.Length))
+        {
+            Debug.LogFormat("[Souvenir #{0}] Abandoning Boxing because one of the arrays contains a value outside the bounds of its correspoding array of names: [{1}], [{2}], [{3}], [{4}]",
+                _moduleId, contestantIndices.JoinString(", "), lastNameIndices.JoinString(", "), substituteIndices.JoinString(", "), substituteLastNameIndices.JoinString(", "));
+            yield break;
+        }
+
+        var qs = new List<QandA>();
+        for (var ct = 0; ct < 5; ct++)
+        {
+            qs.Add(makeQuestion(Question.BoxingStrengthByContestant, _Boxing, formatArgs: new[] { possibleNames[contestantIndices[ct]] }, correctAnswers: new[] { contestantStrengths[ct].ToString() }));
+            qs.Add(makeQuestion(Question.BoxingContestantByStrength, _Boxing, formatArgs: new[] { "first name", contestantStrengths[ct].ToString() }, correctAnswers: new[] { possibleNames[contestantIndices[ct]] }, preferredWrongAnswers: possibleNames));
+            qs.Add(makeQuestion(Question.BoxingContestantByStrength, _Boxing, formatArgs: new[] { "last name", contestantStrengths[ct].ToString() }, correctAnswers: new[] { possibleLastNames[lastNameIndices[ct]] }, preferredWrongAnswers: possibleLastNames));
+            qs.Add(makeQuestion(Question.BoxingContestantByStrength, _Boxing, formatArgs: new[] { "substitute’s first name", contestantStrengths[ct].ToString() }, correctAnswers: new[] { possibleSubstituteNames[substituteIndices[ct]] }, preferredWrongAnswers: possibleSubstituteNames));
+            qs.Add(makeQuestion(Question.BoxingContestantByStrength, _Boxing, formatArgs: new[] { "substitute’s last name", contestantStrengths[ct].ToString() }, correctAnswers: new[] { possibleLastNames[substituteLastNameIndices[ct]] }, preferredWrongAnswers: possibleLastNames));
+        }
+        qs.Add(makeQuestion(Question.BoxingNames, _Boxing, formatArgs: new[] { "contestant’s first name", }, correctAnswers: contestantIndices.Select(ix => possibleNames[ix]).ToArray(), preferredWrongAnswers: possibleNames));
+        qs.Add(makeQuestion(Question.BoxingNames, _Boxing, formatArgs: new[] { "contestant’s last name" }, correctAnswers: lastNameIndices.Select(ix => possibleLastNames[ix]).ToArray(), preferredWrongAnswers: possibleLastNames));
+        qs.Add(makeQuestion(Question.BoxingNames, _Boxing, formatArgs: new[] { "substitute’s first name" }, correctAnswers: substituteIndices.Select(ix => possibleSubstituteNames[ix]).ToArray(), preferredWrongAnswers: possibleSubstituteNames));
+        qs.Add(makeQuestion(Question.BoxingNames, _Boxing, formatArgs: new[] { "substitute’s last name" }, correctAnswers: substituteLastNameIndices.Select(ix => possibleLastNames[ix]).ToArray(), preferredWrongAnswers: possibleLastNames));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessBraille(KMBombModule module)

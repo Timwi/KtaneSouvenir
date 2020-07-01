@@ -130,6 +130,16 @@ namespace Souvenir
         [SouvenirQuestion("What letter was initially visible on {0}?", "Boggle", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "A", "E", "G", "M", "T", "W" })]
         BoggleLetters,
 
+        [SouvenirQuestion("Which {1} appeared on {0}?", "Boxing", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "Muhammad", "Mike", "Floyd", "Joe", "George", "Manny", "Sugar Ray", "Evander" },
+            ExampleExtraFormatArguments = new[] { "contestant’s first name", "contestant’s last name", "substitute’s first name", "substitute’s last name" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        BoxingNames,
+        [SouvenirQuestion("What was the {1} of the contestant with strength rating {2} on {0}?", "Boxing", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "Muhammad", "Mike", "Floyd", "Joe", "George", "Manny", "Sugar Ray", "Evander" },
+            ExampleExtraFormatArguments = new[] { "first name", "0", "first name", "1", "first name", "2", "last name", "0", "last name", "1", "last name", "2", "substitute’s first name", "0", "substitute’s first name", "1", "substitute’s first name", "2", "substitute’s last name", "0", "substitute’s last name", "1", "substitute’s last name", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        BoxingContestantByStrength,
+        [SouvenirQuestion("What was {1}’s strength rating on {0}?", "Boxing", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4",
+            ExampleExtraFormatArguments = new[] { "Muhammad", "Mike", "Floyd", "Joe", "George", "Manny", "Sugar Ray", "Evander" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        BoxingStrengthByContestant,
+
         [SouvenirQuestion("What was the final solution word in {0}?", "Braille", AnswerLayout.ThreeColumns6Answers, "acting", "dating", "heading", "meaning", "server", "aiming", "dealer", "hearing", "miners", "shaking", "artist", "eating", "heating", "nearer", "sought", "asking", "eighth", "higher", "parish", "staying", "bearing", "farmer", "insist", "parker", "strands", "beating", "farming", "lasted", "parking", "strings", "beings", "faster", "laying", "paying", "teaching", "binding", "father", "leader", "powers", "tended", "bought", "finding", "leading", "pushed", "tender", "boxing", "finest", "leaned", "pushing", "testing", "breach", "finish", "leaning", "rather", "throwing", "breast", "flying", "leaving", "reaching", "towers", "breath", "foster", "linking", "reader", "vested", "breathe", "fought", "listed", "reading", "warned", "bringing", "gaining", "listen", "resting", "warning", "brings", "gather", "living", "riding", "weaker", "carers", "gazing", "making", "rushed", "wealth", "carter", "gender", "marked", "rushing", "winner", "charter", "growing", "marking", "saying", "winning", "crying", "headed", "master", "served", "winter")]
         BrailleWord,
 
