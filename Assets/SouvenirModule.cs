@@ -841,8 +841,8 @@ public class SouvenirModule : MonoBehaviour
                             question: string.Format(attr.QuestionText, fmt),
                             correct: 0,
                             answers: answers.ToArray(),
-                            font: Fonts[(int) attr.Type],
-                            fontTexture: FontTextures[(int) attr.Type],
+                            font: Fonts[attr.Type == AnswerType.DynamicFont ? 0 : (int) attr.Type],
+                            fontTexture: FontTextures[attr.Type == AnswerType.DynamicFont ? 0 : (int) attr.Type],
                             fontMaterial: FontMaterial,
                             layout: attr.Layout));
                         break;
@@ -2156,7 +2156,7 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_Bartending);
 
         var ingIxs = fldIngredientIxs.Get();
-        if(ingIxs == null)
+        if (ingIxs == null)
             yield break;
         if (ingIxs.Length != 5 || ingIxs.Any(ing => ing < 0 || ing >= 5))
         {
