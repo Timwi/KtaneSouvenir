@@ -38,6 +38,7 @@ public class SouvenirModule : MonoBehaviour
     public Sprite[] WavetappingSprites;
     public Sprite[] FlagsSprites;
     public Sprite[] Tiles4x4Sprites;
+    public Sprite[] EncryptedEquationsSprites;
 
     public TextMesh TextMesh;
     public Renderer TextRenderer;
@@ -147,6 +148,7 @@ public class SouvenirModule : MonoBehaviour
     const string _DoubleOh = "DoubleOhModule";
     const string _DrDoctor = "DrDoctorModule";
     const string _ElderFuthark = "elderFuthark";
+    const string _EncryptedEquations = "EncryptedEquationsModule";
     const string _EncryptedHangman = "encryptedHangman";
     const string _EncryptedMorse = "EncryptedMorse";
     const string _EquationsX = "equationsXModule";
@@ -384,6 +386,7 @@ public class SouvenirModule : MonoBehaviour
             { _DoubleOh, ProcessDoubleOh },
             { _DrDoctor, ProcessDrDoctor },
             { _ElderFuthark, ProcessElderFuthark },
+            { _EncryptedEquations, ProcessEncryptedEquations },
             { _EncryptedHangman, ProcessEncryptedHangman },
             { _EncryptedMorse, ProcessEncryptedMorse },
             { _EquationsX, ProcessEquationsX },
@@ -3880,6 +3883,50 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.ElderFutharkRunes, _ElderFuthark, correctAnswers: new[] { pickedRuneNames[0] }, formatArgs: new[] { "first" }, preferredWrongAnswers: pickedRuneNames),
             makeQuestion(Question.ElderFutharkRunes, _ElderFuthark, correctAnswers: new[] { pickedRuneNames[1] }, formatArgs: new[] { "second" }, preferredWrongAnswers: pickedRuneNames));
+    }
+
+    private IEnumerable<object> ProcessEncryptedEquations(KMBombModule module)
+    {
+        var comp = GetComponent(module, "EncryptedEquations");
+        var fldSolved = GetField<bool>(comp, "isSolved");
+        var fldEquation = GetField<object>(comp, "CurrentEquation");
+
+        if (comp == null || fldSolved == null || fldEquation == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_EncryptedEquations);
+
+        var equation = fldEquation.Get();
+        if (equation == null)
+            yield break;
+        var fldOperands = new[] { "LeftOperand", "MiddleOperand", "RightOperand" }.Select(fldName => GetField<object>(equation, fldName, isPublic: true)).ToArray();
+        if (fldOperands.Contains(null))
+            yield break;
+        var operands = fldOperands.Select(fld => fld.Get()).ToArray();
+        if (operands.Contains(null))
+            yield break;
+        var fldShapes = operands.Select(op => GetField<object>(op, "Shape", isPublic: true)).ToArray();
+        if (fldShapes.Contains(null))
+            yield break;
+        var shapes = fldShapes.Select(fld => fld.Get()).ToArray();
+        if (shapes.Contains(null))
+            yield break;
+        var fldTextureIndexes = shapes.Select(sh => GetField<int>(sh, "TextureIndex", isPublic: true)).ToArray();
+        if (fldTextureIndexes.Contains(null))
+            yield break;
+        var textureIndexes = fldTextureIndexes.Select(fld => fld.Get()).ToArray();
+        if (textureIndexes.Any(tx => tx < 0 || tx >= EncryptedEquationsSprites.Length))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Encrypted Equations because the ‘TextureIndex’ values for the shapes contained an unexpected value: [{1}]", _moduleId, textureIndexes.JoinString(", "));
+            yield break;
+        }
+
+        addQuestions(module, textureIndexes
+            .Select((txIx, opIx) => txIx == -1 ? null : new { Shape = EncryptedEquationsSprites[txIx], Ordinal = ordinal(opIx + 1) })
+            .Where(inf => inf != null)
+            .Select(inf => makeQuestion(Question.EncryptedEquationsShapes, _EncryptedEquations, formatArgs: new[] { inf.Ordinal }, correctAnswers: new[] { inf.Shape }, preferredWrongAnswers: EncryptedEquationsSprites)));
     }
 
     private IEnumerable<object> ProcessEncryptedHangman(KMBombModule module)

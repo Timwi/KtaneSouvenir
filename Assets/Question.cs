@@ -305,6 +305,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ElderFutharkRunes,
 
+        [SouvenirQuestion("Which shape was the {1} operand in {0}?", "Encrypted Equations", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "EncryptedEquationsSprites",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        EncryptedEquationsShapes,
+
         [SouvenirQuestion("What method of encryption was used by {0}?", "Encrypted Hangman", AnswerLayout.OneColumn4Answers, "Caesar Cipher", "Atbash Cipher", "Rot-13 Cipher", "Affine Cipher", "Modern Cipher", "Vigenère Cipher", "Playfair Cipher")]
         EncryptedHangmanEncryptionMethod,
         [SouvenirQuestion("What module name was encrypted by {0}?", "Encrypted Hangman", AnswerLayout.OneColumn4Answers, ExampleAnswers = new[] { "Anagrams", "Word Scramble", "Two Bits", "Switches", "Lights Out", "Emoji Math", "Math", "Semaphore", "Piano Keys", "Colour Flash" })]
