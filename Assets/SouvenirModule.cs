@@ -309,6 +309,7 @@ public class SouvenirModule : MonoBehaviour
     const string _UltimateCycle = "ultimateCycle";
     const string _Ultracube = "TheUltracubeModule";
     const string _UncoloredSquares = "UncoloredSquaresModule";
+    const string _UncoloredSwitches = "R4YUncoloredSwitches";
     const string _UnfairCipher = "unfairCipher";
     const string _UnownCipher = "UnownCipher";
     const string _USAMaze = "USA";
@@ -549,6 +550,7 @@ public class SouvenirModule : MonoBehaviour
             { _UltimateCycle, ProcessUltimateCycle },
             { _Ultracube, ProcessUltracube },
             { _UncoloredSquares, ProcessUncoloredSquares },
+            { _UncoloredSwitches, ProcessUncoloredSwitches },
             { _UnfairCipher, ProcessUnfairCipher },
             { _UnownCipher, ProcessUnownCipher },
             { _USAMaze, ProcessUSAMaze },
@@ -11157,6 +11159,75 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.UncoloredSquaresFirstStage, _UncoloredSquares, new[] { "first" }, new[] { fldFirstStageColor1.Get().ToString() }),
             makeQuestion(Question.UncoloredSquaresFirstStage, _UncoloredSquares, new[] { "second" }, new[] { fldFirstStageColor2.Get().ToString() }));
+    }
+
+    private IEnumerable<object> ProcessUncoloredSwitches(KMBombModule module)
+    {
+        var comp = GetComponent(module, "UncoloredSwitches");
+        var fldInitialState = GetField<StringBuilder>(comp, "Switches_Current_State");
+        var fldLedColors = GetField<StringBuilder>(comp, "LEDsColorsString");
+        var fldStage = GetField<int>(comp, "stage");
+
+        if (comp == null || fldInitialState == null || fldLedColors == null || fldStage == null)
+            yield break;
+
+        yield return null;
+
+        var curStage = -1;
+        var ledColors = new int[3][];
+        var switchStates = new bool[3][];
+        var colorNames = new[] { "red", "green", "blue", "turquoise", "orange", "purple", "white", "black" };
+        while (fldStage.Get() < 4)
+        {
+            var newStage = fldStage.Get();
+            if (newStage == 3 || newStage < 0 || newStage > 4)
+            {
+                Debug.LogFormat("<Souvenir #{0}> Abandoning Uncolored Switches because ‘stage’ had unexpected value {1} (expected 0–2 or 4).", _moduleId, newStage);
+                yield break;
+            }
+            if (newStage != curStage)
+            {
+                var curLedColors = fldLedColors.Get();
+                if (curLedColors == null)
+                    yield break;
+                if (curLedColors.Length != 10)
+                {
+                    Debug.LogFormat("<Souvenir #{0}> Abandoning Uncolored Switches because ‘LEDsColorsString’ had unexpected length {1} (expected 10).", _moduleId, curLedColors.Length);
+                    yield break;
+                }
+
+                var switchState = fldInitialState.Get();
+                if (switchState == null)
+                    yield break;
+                if (switchState.Length != 5)
+                {
+                    Debug.LogFormat("<Souvenir #{0}> Abandoning Uncolored Switches because ‘Switches_State’ had unexpected length {1} (expected 5).", _moduleId, switchState.Length);
+                    yield break;
+                }
+
+                ledColors[newStage] = Enumerable.Range(0, 10).Select(ledIx => "RGBTOPWK".IndexOf(curLedColors[ledIx])).ToArray();
+                switchStates[newStage] = Enumerable.Range(0, 5).Select(swIx => switchState[swIx] == '1').ToArray();
+            }
+            yield return null;
+        }
+        _modulesSolved.IncSafe(_UncoloredSwitches);
+
+        if (ledColors.Contains(null) || switchStates.Contains(null))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Uncolored Switches because a stage was skipped: [{1}], [{2}]", _moduleId,
+                ledColors.Select(arr => arr == null ? "null" : string.Format(@"[{0}]", arr.JoinString(", "))),
+                switchStates.Select(arr => arr == null ? "null" : string.Format(@"[{0}]", arr.JoinString(", "))));
+            yield break;
+        }
+
+        var qs = new List<QandA>();
+        for (var stage = 0; stage < 3; stage++)
+        {
+            qs.Add(makeQuestion(Question.UncoloredSwitchesInitialState, _UncoloredSwitches, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { switchStates[stage].Select(b => b ? 'Q' : 'R').JoinString() }));
+            for (var ledIx = 0; ledIx < 10; ledIx++)
+                qs.Add(makeQuestion(Question.UncoloredSwitchesLedColors, _UncoloredSwitches, formatArgs: new[] { ordinal(ledIx + 1), ordinal(stage + 1) }, correctAnswers: new[] { colorNames[ledColors[stage][ledIx]] }));
+        }
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessUnfairCipher(KMBombModule module)
