@@ -811,11 +811,14 @@ public class SouvenirModule : MonoBehaviour
                 switch (attr.Type)
                 {
                     case AnswerType.Sprites:
+                        var answerSprites = attr.SpriteField == null ? ExampleSprites : (Sprite[]) typeof(SouvenirModule).GetField(attr.SpriteField, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleSprites;
+                        if (answerSprites != null)
+                            answerSprites.Shuffle();
                         SetQuestion(new QandASprite(
                             module: attr.ModuleNameWithThe,
                             question: string.Format(attr.QuestionText, fmt),
                             correct: 0,
-                            answers: ExampleSprites));
+                            answers: answerSprites));
                         break;
 
                     default:

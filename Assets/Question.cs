@@ -53,7 +53,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "left", "second", "left", "third", "left", "first", "right", "second", "right", "third", "right" }, ExampleExtraFormatArgumentGroupSize = 2)]
         AlphaBitsDisplayedCharacters,
 
-        [SouvenirQuestion("What was the symbol on the submit button in {0}?", "Arithmelogic", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites)]
+        [SouvenirQuestion("What was the symbol on the submit button in {0}?", "Arithmelogic", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "ArithmelogicSprites")]
         ArithmelogicSubmit,
         [SouvenirQuestion("Which number was selectable, but not the solution, in the {1} screen on {0}?", "Arithmelogic", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "left", "middle", "right" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -275,7 +275,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "column", "row" }, ExampleExtraFormatArgumentGroupSize = 1)]
         DecoloredSquaresStartingPos,
 
-        [SouvenirQuestion("What was {1}’s remembered position in {0}?", "Discolored Squares", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites,
+        [SouvenirQuestion("What was {1}’s remembered position in {0}?", "Discolored Squares", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "Tiles4x4Sprites",
             ExampleExtraFormatArguments = new[] { "Blue", "Red", "Yellow", "Green", "Magenta" }, ExampleExtraFormatArgumentGroupSize = 1)]
         DiscoloredSquaresRememberedPositions,
 
@@ -334,9 +334,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the displayed number in {0}?", "Flags", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Integers(1, 7)]
         FlagsDisplayedNumber,
-        [SouvenirQuestion("What was the main country flag in {0}?", "Flags", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites)]
+        [SouvenirQuestion("What was the main country flag in {0}?", "Flags", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "FlagsSprites")]
         FlagsMainCountry,
-        [SouvenirQuestion("Which of these country flags was shown, but not the main country flag, in {0}?", "Flags", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites)]
+        [SouvenirQuestion("Which of these country flags was shown, but not the main country flag, in {0}?", "Flags", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "FlagsSprites")]
         FlagsCountries,
 
         [SouvenirQuestion("How many times did the {1} LED flash {2} on {0}?", "Flashing Lights", AnswerLayout.ThreeColumns6Answers,
@@ -503,7 +503,7 @@ namespace Souvenir
           ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
         JumbleCycleWord,
 
-        [SouvenirQuestion("Which square was {1} in {0}?", "Kudosudoku", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites,
+        [SouvenirQuestion("Which square was {1} in {0}?", "Kudosudoku", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "Tiles4x4Sprites",
             ExampleExtraFormatArguments = new[] { "pre-filled", "not pre-filled" }, ExampleExtraFormatArgumentGroupSize = 1)]
         KudosudokuPrefilled,
 
@@ -546,9 +546,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "departure", "from", "second", "departure", "from", "first", "destination", "to", "second", "destination", "to" }, ExampleExtraFormatArgumentGroupSize = 3)]
         LondonUndergroundStations,
 
-        [SouvenirQuestion("Which tile was part of the {1} matched pair in {0}?", "Mahjong", AnswerLayout.ThreeColumns6Answers, null, ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.Sprites)]
+        [SouvenirQuestion("Which tile was part of the {1} matched pair in {0}?", "Mahjong", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "MahjongSprites",
+            ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MahjongMatches,
-        [SouvenirQuestion("Which tile was shown in the bottom-left of {0}?", "Mahjong", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites)]
+        [SouvenirQuestion("Which tile was shown in the bottom-left of {0}?", "Mahjong", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "MahjongSprites")]
         MahjongCountingTile,
 
         [SouvenirQuestion("Who was a player, but not the Godfather, in the last stage of {0}?", "Mafia", AnswerLayout.ThreeColumns6Answers, "Rob", "Tim", "Mary", "Briane", "Hunter", "Macy", "John", "Will", "Lacy", "Claire", "Kenny", "Rick", "Walter", "Bonnie", "Luke", "Bill", "Sarah", "Larry", "Kate", "Stacy", "Diane", "Mac", "Jim", "Clyde", "Tommy", "Lenny", "Molly", "Benny", "Phil", "Bob", "Gary", "Ted", "Kim", "Nate", "Cher", "Ron", "Thomas", "Sam", "Duke", "Jack", "Ed", "Ronny", "Terry", "Claira", "Nick", "Cob", "Ash", "Don", "Jerry", "Simon")]
@@ -601,7 +602,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "5" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 4)]
         MemoryDisplay,
-        [SouvenirQuestion("In what position was the button that you pressed in stage {1} when you solved {0}?", "Memory", AnswerLayout.TwoColumns4Answers, null, Type = AnswerType.Sprites,
+        [SouvenirQuestion("In what position was the button that you pressed in stage {1} when you solved {0}?", "Memory", AnswerLayout.TwoColumns4Answers, null, Type = AnswerType.Sprites, SpriteField = "MemorySprites",
             ExampleExtraFormatArguments = new[] { "1", "2", "3", "4" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MemoryPosition,
         [SouvenirQuestion("What was the label of the button that you pressed in stage {1} when you solved {0}?", "Memory", AnswerLayout.TwoColumns4Answers,
@@ -729,7 +730,7 @@ namespace Souvenir
         [SouvenirQuestion("What color flashed {1} in the final sequence in {0}?", "Not Keypad", AnswerLayout.ThreeColumns6Answers, "red", "orange", "yellow", "green", "cyan", "blue", "purple", "magenta", "pink", "brown", "grey", "white",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NotKeypadColor,
-        [SouvenirQuestion("Which symbol was on the button that flashed {1} in the final sequence in {0}?", "Not Keypad", AnswerLayout.TwoColumns4Answers, Type = AnswerType.Sprites,
+        [SouvenirQuestion("Which symbol was on the button that flashed {1} in the final sequence in {0}?", "Not Keypad", AnswerLayout.TwoColumns4Answers, Type = AnswerType.Sprites, SpriteField = "KeypadSprites",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NotKeypadSymbol,
 
@@ -807,10 +808,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PassportControlPassenger,
 
-        [SouvenirQuestion("Which symbol was highlighted in {0}?", "Pattern Cube", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Sprites)]
+        [SouvenirQuestion("Which symbol was highlighted in {0}?", "Pattern Cube", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "PatternCubeSprites")]
         PatternCubeHighlightedSymbol,
 
-        [SouvenirQuestion("Which peg had three sides of the key color in {0}?", "Perspective Pegs", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites)]
+        [SouvenirQuestion("Which peg had three sides of the key color in {0}?", "Perspective Pegs", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "PerspectivePegsSprites")]
         PerspectivePegsSolution,
 
         [SouvenirQuestion("What was the {1} digit of the displayed number in {0}?", "Pie", AnswerLayout.ThreeColumns6Answers,
@@ -830,7 +831,7 @@ namespace Souvenir
         [AnswerGenerator.Integers(1, 8)]
         PlaceholderTalkSecondPhrase,
 
-        [SouvenirQuestion("What was the planet shown in {0}?", "Planets", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites)]
+        [SouvenirQuestion("What was the planet shown in {0}?", "Planets", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "PlanetsSprites")]
         PlanetsPlanet,
         [SouvenirQuestion("What was the color of the {1} strip (from the top) in {0}?", "Planets", AnswerLayout.ThreeColumns6Answers, "Aqua", "Blue", "Green", "Lime", "Orange", "Red", "Yellow", "White", "Off",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -1087,8 +1088,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "left", "right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SymbolCycleSymbolCounts,
 
-        [SouvenirQuestion("What was the {1} symbol in the {2} stage of {0}?", "Symbolic Coordinates", AnswerLayout.ThreeColumns6Answers, null,
-            ExampleExtraFormatArguments = new[] { "left", "first", "left", "second", "left", "third", "middle", "first", "middle", "second", "middle", "third", "right", "first", "right", "second", "right", "third" }, ExampleExtraFormatArgumentGroupSize = 2, Type = AnswerType.Sprites)]
+        [SouvenirQuestion("What was the {1} symbol in the {2} stage of {0}?", "Symbolic Coordinates", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "SymbolicCoordinatesSprites",
+            ExampleExtraFormatArguments = new[] { "left", "first", "left", "second", "left", "third", "middle", "first", "middle", "second", "middle", "third", "right", "first", "right", "second", "right", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
         SymbolicCoordinateSymbols,
 
         [SouvenirQuestion("Which number was displayed on {0}?", "Synonyms", AnswerLayout.ThreeColumns6Answers)]
@@ -1186,8 +1187,8 @@ namespace Souvenir
         [SouvenirQuestion("What was the color on the {1} stage in {0}?", "Wavetapping", AnswerLayout.TwoColumns4Answers, "Red", "Orange", "Orange-Yellow", "Chartreuse", "Lime", "Green", "Seafoam Green", "Cyan-Green", "Turquoise", "Dark Blue", "Indigo", "Purple", "Purple-Magenta", "Magenta", "Pink", "Gray",
             ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
         WavetappingColors,
-        [SouvenirQuestion("What was the correct pattern on the {1} stage in {0}?", "Wavetapping", AnswerLayout.ThreeColumns6Answers, null,
-            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.Sprites)]
+        [SouvenirQuestion("What was the correct pattern on the {1} stage in {0}?", "Wavetapping", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "WavetappingSprites",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         WavetappingPatterns,
 
         [SouvenirQuestion("What was the display in the {1} successful stage on {0}?", "Who's on First", AnswerLayout.ThreeColumns6Answers, "", "BLANK", "C", "CEE", "DISPLAY", "FIRST", "HOLD ON", "LEAD", "LED", "LEED", "NO", "NOTHING", "OK", "OKAY", "READ", "RED", "REED", "SAY", "SAYS", "SEE", "THEIR", "THERE", "THEY ARE", "THEY'RE", "U", "UR", "YES", "YOU", "YOU ARE", "YOU'RE", "YOUR",

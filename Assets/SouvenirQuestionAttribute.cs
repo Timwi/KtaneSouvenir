@@ -19,6 +19,7 @@ namespace Souvenir
         public string[] ExampleAnswers { get; set; }
         public AnswerType Type { get; set; }
         public AnswerLayout Layout { get; set; }
+        public string SpriteField { get; set; }
 
         public string ModuleNameWithThe { get { return (AddThe ? "The " : "") + ModuleName; } }
 
