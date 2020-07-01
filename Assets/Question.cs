@@ -825,6 +825,13 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9)]
         PalindromesNumbers,
 
+        [SouvenirQuestion("What was the LED color in stage {1} of {0}?", "Partial Derivatives", AnswerLayout.ThreeColumns6Answers, "blue", "green", "orange", "purple", "red", "yellow",
+            ExampleExtraFormatArguments = new[] { "1", "2", "3" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        PartialDerivativesLedColors,
+        [SouvenirQuestion("What was the {1} term in {0}?", "Partial Derivatives", AnswerLayout.TwoColumns4Answers,
+            ExampleAnswers = new[] { "−5x⁴z³", "8x⁴z⁴", "4xy³z²", "−3x⁴z", "3x⁵y⁵z³" }, ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        PartialDerivativesTerms,
+
         [SouvenirQuestion("What was the passport expiration year of the {1} correctly inspected passenger in {0}?", "Passport Control", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "1931", "1956", "1977", "1980", "1991", "2000", "2004", "2019", "2047" },
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PassportControlPassenger,

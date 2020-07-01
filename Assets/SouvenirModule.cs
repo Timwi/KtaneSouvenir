@@ -237,6 +237,7 @@ public class SouvenirModule : MonoBehaviour
     const string _OrderedKeys = "orderedKeys";
     const string _OrientationCube = "OrientationCube";
     const string _Palindromes = "palindromes";
+    const string _PartialDerivatives = "partialDerivatives";
     const string _PassportControl = "passportControl";
     const string _PatternCube = "PatternCubeModule";
     const string _PerspectivePegs = "spwizPerspectivePegs";
@@ -476,6 +477,7 @@ public class SouvenirModule : MonoBehaviour
             { _OrderedKeys, ProcessOrderedKeys },
             { _OrientationCube, ProcessOrientationCube },
             { _Palindromes, ProcessPalindromes },
+            { _PartialDerivatives, ProcessPartialDerivatives },
             { _PassportControl, ProcessPassportControl },
             { _PatternCube, ProcessPatternCube },
             { _PerspectivePegs, ProcessPerspectivePegs },
@@ -7980,6 +7982,87 @@ public class SouvenirModule : MonoBehaviour
 
         string[] labels = new string[] { "the screen", "X", "Y", "Z" };
         addQuestion(module, Question.PalindromesNumbers, new[] { labels[randomVar], ordinal(randomInd + 1) }, correctAnswers: new[] { digit.ToString() });
+    }
+
+    private IEnumerable<object> ProcessPartialDerivatives(KMBombModule module)
+    {
+        var comp = GetComponent(module, "PartialDerivativesScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldLeds = GetField<int[]>(comp, "ledIndex");
+        var fldDisplay = GetField<TextMesh>(comp, "display", isPublic: true);
+
+        if (comp == null || fldSolved == null || fldLeds == null || fldDisplay == null)
+            yield break;
+
+        yield return null;  // ensure that Start() has run
+
+        var display = fldDisplay.Get();
+        if (display == null)
+            yield break;
+        var terms = display.text.Split('\n').Select(term => Regex.Replace(Regex.Replace(term.Trim(), @"^(f\(x\) =|\+) ", ""), @"^- ", "−")).ToArray();
+        if (terms.Length != 3)
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Partial Derivatives because the display does not appear to contain three terms: ""{1}""", _moduleId, display.text.Replace("\r", "").Replace("\n", "\\n"));
+            yield break;
+        }
+
+        var vars = new[] { "x", "y", "z" };
+        var exponentStrs = ",²,³,⁴,⁵".Split(',');
+        var writeTerm = new Func<int, bool, int[], string>((int coeff, bool negative, int[] exps) =>
+        {
+            if (coeff == 0)
+                return "0";
+
+            var function = negative ? "−" : "";
+            if (coeff > 1)
+                function += coeff.ToString();
+            for (int j = 0; j < 3; j++)
+            {
+                if (exps[j] != 0)
+                {
+                    function += vars[j];
+                    if (exps[j] > 1)
+                        function += exponentStrs[exps[j] - 1];
+                }
+            }
+            return function;
+        });
+
+        var wrongAnswers = new HashSet<string>();
+        while (wrongAnswers.Count < 3)
+        {
+            var exps = new int[3];
+            for (int j = 0; j < 3; j++)
+                exps[j] = Rnd.Range(0, 6);
+            if (exps.All(e => e == 0))
+                exps[Rnd.Range(0, 3)] = Rnd.Range(1, 6);
+            var wrongTerm = writeTerm(Rnd.Range(1, 10), Rnd.Range(0, 2) != 0, exps);
+            if (!terms.Contains(wrongTerm))
+                wrongAnswers.Add(wrongTerm);
+        }
+
+        var isSolved = false;
+        module.OnPass += delegate { isSolved = true; return false; };
+        while (!isSolved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_PartialDerivatives);
+
+        var leds = fldLeds.Get();
+        if (leds == null)
+            yield break;
+        if (leds.Length != 3 || leds.Any(l => l < 0 || l >= 6))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Abandoning Partial Derivatives because ‘ledIndex’ has unexpected length (expected 3) or contains unexpected value (expected 0–5): [{1}].", _moduleId, leds.JoinString(", "));
+            yield break;
+        }
+
+        var colorNames = new[] { "blue", "green", "orange", "purple", "red", "yellow" };
+        var qs = new List<QandA>();
+        for (var stage = 0; stage < 3; stage++)
+            qs.Add(makeQuestion(Question.PartialDerivativesLedColors, _PartialDerivatives, formatArgs: new[] { (stage + 1).ToString() }, correctAnswers: new[] { colorNames[leds[stage]] }));
+        for (var term = 0; term < 3; term++)
+            qs.Add(makeQuestion(Question.PartialDerivativesTerms, _PartialDerivatives, formatArgs: new[] { ordinal(term + 1) }, correctAnswers: new[] { terms[term] }, preferredWrongAnswers: wrongAnswers.ToArray()));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessPassportControl(KMBombModule module)
