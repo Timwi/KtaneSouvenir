@@ -259,6 +259,13 @@ namespace Souvenir
         [SouvenirQuestion("What was the grid size in {0}?", "Coordinates", AnswerLayout.ThreeColumns6Answers, "9", "15", "25", "21", "35", "49", "(9)", "(15)", "(21)", "(25)", "(35)", "(49)", "3 by 3", "4 by 3", "5 by 3", "6 by 3", "7 by 3", "3 by 4", "4 by 4", "5 by 4", "6 by 4", "7 by 4", "3 by 5", "4 by 5", "5 by 5", "6 by 5", "7 by 5", "3 by 6", "4 by 6", "5 by 6", "6 by 6", "7 by 6", "3 by 7", "4 by 7", "5 by 7", "6 by 7", "7 by 7", "9*3", "12*4", "15*5", "18*6", "21*7", "12*3", "16*4", "20*5", "24*6", "28*7", "15*3", "20*4", "25*5", "30*6", "35*7", "18*3", "24*4", "30*5", "36*6", "42*7", "21*3", "28*4", "35*5", "42*6", "49*7", "9 : 3", "12 : 3", "15 : 3", "18 : 3", "21 : 3", "12 : 4", "16 : 4", "20 : 4", "24 : 4", "28 : 4", "15 : 5", "20 : 5", "25 : 5", "30 : 5", "35 : 5", "18 : 6", "24 : 6", "30 : 6", "36 : 6", "42 : 6", "21 : 7", "28 : 7", "35 : 7", "42 : 7", "49 : 7", "3×3", "3×4", "3×5", "3×6", "3×7", "4×3", "4×4", "4×5", "4×6", "4×7", "5×3", "5×4", "5×5", "5×6", "5×7", "6×3", "6×4", "6×5", "6×6", "6×7", "7×3", "7×4", "7×5", "7×6", "7×7")]
         CoordinatesSize,
 
+        [SouvenirQuestion("What was the color of the {1} corner in {0}?", "Corners", AnswerLayout.TwoColumns4Answers, "red", "green", "blue", "yellow",
+            ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-right", "bottom-left" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        CornersColors,
+        [SouvenirQuestion("How many corners in {0} were {1}?", "Corners", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4",
+            ExampleExtraFormatArguments = new[] { "red", "green", "blue", "yellow" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        CornersColorCount,
+
         [SouvenirQuestion("What was in square {1}{2} in the last round of {0}?", "Crackbox", AnswerLayout.TwoColumns4Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "white", "black",
             ExampleExtraFormatArguments = new[] { "A", "1", "A", "2", "B", "1", "B", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
         CrackboxInitialState,

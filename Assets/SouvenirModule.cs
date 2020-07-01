@@ -136,6 +136,7 @@ public class SouvenirModule : MonoBehaviour
     const string _ColoredSwitches = "ColoredSwitchesModule";
     const string _ColorMorse = "ColorMorseModule";
     const string _Coordinates = "CoordinatesModule";
+    const string _Corners = "CornersModule";
     const string _Crackbox = "CrackboxModule";
     const string _Creation = "CreationModule";
     const string _CrypticCycle = "crypticCycle";
@@ -374,6 +375,7 @@ public class SouvenirModule : MonoBehaviour
             { _ColoredSwitches, ProcessColoredSwitches },
             { _ColorMorse, ProcessColorMorse },
             { _Coordinates, ProcessCoordinates },
+            { _Corners, ProcessCorners },
             { _Crackbox, ProcessCrackbox },
             { _Creation, ProcessCreation },
             { _CrypticCycle, ProcessCrypticCycle },
@@ -3485,6 +3487,37 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.CoordinatesFirstSolution, _Coordinates, correctAnswers: new[] { shortenCoordinate(clueText) }, preferredWrongAnswers: clues.Cast<object>().Select(c => shortenCoordinate(fldClueText.GetFrom(c))).Where(t => t != null).ToArray()),
             sizeClue == null ? null : makeQuestion(Question.CoordinatesSize, _Coordinates, correctAnswers: new[] { fldClueText.GetFrom(sizeClue) }));
+    }
+
+    private IEnumerable<object> ProcessCorners(KMBombModule module)
+    {
+        var comp = GetComponent(module, "CornersModule");
+        var fldClampColors = GetField<int[]>(comp, "_clampColors");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+
+        if (comp == null || fldClampColors == null || fldSolved == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Corners);
+
+        var clampColors = fldClampColors.Get();
+        if (clampColors == null)
+            yield break;
+        var colorNames = new[] { "red", "green", "blue", "yellow" };
+        if (clampColors.Length != 4 || clampColors.Any(v => v < 0 || v >= colorNames.Length))
+        {
+            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Corners because ‘_clampColors’ has unexpected length or contains unexpected value: [{1}] (expected 4 values 0–{2}).",
+                _moduleId, clampColors.JoinString(", "), colorNames.Length - 1);
+            yield break;
+        }
+
+        var cornerNames = new[] { "top-left", "top-right", "bottom-right", "bottom-left" };
+        var qs = new List<QandA>();
+        qs.AddRange(cornerNames.Select((corner, cIx) => makeQuestion(Question.CornersColors, _Corners, formatArgs: new[] { corner }, correctAnswers: new[] { colorNames[clampColors[cIx]] })));
+        qs.AddRange(colorNames.Select((col, colIx) => makeQuestion(Question.CornersColorCount, _Corners, formatArgs: new[] { col }, correctAnswers: new[] { clampColors.Count(cc => cc == colIx).ToString() })));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessCrackbox(KMBombModule module)
