@@ -7930,20 +7930,6 @@ public class SouvenirModule : MonoBehaviour
         if (comp == null || fldInitialVirtualViewAngle == null)
             yield break;
 
-        // Wait for one frame to ensure Orientation Cube has set initialVirtualViewAngle in its Start()
-        yield return null;
-
-        var initialVirtualViewAngle = fldInitialVirtualViewAngle.Get();
-        var initialAnglePos = Array.IndexOf(new[] { 0f, 90f, 180f, 270f }, initialVirtualViewAngle);
-        if (initialAnglePos == -1)
-        {
-            Debug.LogFormat("<Souvenir #{1}> Orientation Cube: initialVirtualViewAngle has unexpected value: {0}", initialVirtualViewAngle, _moduleId);
-            yield break;
-        }
-
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
-
         var solved = false;
 
         module.OnPass += delegate { solved = true; return false; };
@@ -7952,6 +7938,14 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
 
         _modulesSolved.IncSafe(_OrientationCube);
+
+        var initialVirtualViewAngle = fldInitialVirtualViewAngle.Get();
+        var initialAnglePos = Array.IndexOf(new[] { 0f, 90f, 180f, 270f }, initialVirtualViewAngle);
+        if (initialAnglePos == -1)
+        {
+            Debug.LogFormat("<Souvenir #{1}> Orientation Cube: initialVirtualViewAngle has unexpected value: {0}", initialVirtualViewAngle, _moduleId);
+            yield break;
+        }
 
         addQuestion(module, Question.OrientationCubeInitialObserverPosition, correctAnswers: new[] { new[] { "front", "left", "back", "right" }[initialAnglePos] });
     }

@@ -821,7 +821,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "1", "first", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
         OrderedKeysLabelColors,
 
-        [SouvenirQuestion("What was the observer’s intial position in {0}?", "Orientation Cube", AnswerLayout.TwoColumns4Answers, "front", "left", "back", "right")]
+        [SouvenirQuestion("What was the observer’s intial position when you solved {0}?", "Orientation Cube", AnswerLayout.TwoColumns4Answers, "front", "left", "back", "right")]
         OrientationCubeInitialObserverPosition,
 
         [SouvenirQuestion("What was {1}'s {2} digit from the right in {0}?", "Palindromes", AnswerLayout.ThreeColumns6Answers,
