@@ -1898,11 +1898,14 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_AlphaBits);
 
+        // If the correct answer is '0' or 'O', don't include these as wrong answers.
         addQuestions(module, Enumerable.Range(0, 6).Select(displayIx => makeQuestion(
             Question.AlphaBitsDisplayedCharacters,
             _AlphaBits,
             formatArgs: new[] { new[] { "top", "middle", "bottom" }[displayIx % 3], new[] { "left", "right" }[displayIx / 3] },
-            correctAnswers: new[] { displayedCharacters[displayIx] })));
+            correctAnswers: new[] { displayedCharacters[displayIx] },
+            preferredWrongAnswers: new AnswerGenerator.Strings(displayedCharacters[displayIx] == "0" || displayedCharacters[displayIx] == "O" ? "1-9A-NP-V" : "0-9A-V")
+                .GetAnswers(this).Distinct().Take(6).ToArray())));
     }
 
     private IEnumerable<object> ProcessArithmelogic(KMBombModule module)
