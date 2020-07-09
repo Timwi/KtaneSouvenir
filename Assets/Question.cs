@@ -567,8 +567,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "gate A", "gate B", "gate C", "gate D", "gate E", "gate F", "gate G", "the duplicated gate" }, ExampleExtraFormatArgumentGroupSize = 1)]
         LogicGatesGates,
 
-        [SouvenirQuestion("What was the {1} {2} station successfully travelled {3} on {0}?", "London Underground", AnswerLayout.OneColumn4Answers, null, AddThe = true, ExampleAnswers = new[] { "Great Portland Street", "High Street Kensington", "King's Cross St. Pancras", "Mornington Crescent", "Shepherd's Bush Market", "Tottenham Court Road", "Walthamstow Central", "White City/Wood Lane" },
-            ExampleExtraFormatArguments = new[] { "first", "departure", "from", "second", "departure", "from", "first", "destination", "to", "second", "destination", "to" }, ExampleExtraFormatArgumentGroupSize = 3)]
+        [SouvenirQuestion("Where did the {1} successful journey on {0} {2}?", "London Underground", AnswerLayout.OneColumn4Answers, null, AddThe = true, ExampleAnswers = new[] { "Great Portland Street", "High Street Kensington", "King's Cross St. Pancras", "Mornington Crescent", "Shepherd's Bush Market", "Tottenham Court Road", "Walthamstow Central", "White City/Wood Lane" },
+            ExampleExtraFormatArguments = new[] { "first", "depart from", "second", "depart from", "first", "arrive to", "second", "arrive to" }, ExampleExtraFormatArgumentGroupSize = 2)]
         LondonUndergroundStations,
 
         [SouvenirQuestion("Which tile was part of the {1} matched pair in {0}?", "Mahjong", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "MahjongSprites",

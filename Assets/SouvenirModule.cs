@@ -6043,8 +6043,8 @@ public class SouvenirModule : MonoBehaviour
             primary = primary.Union(extraOptions).ToArray();
 
         addQuestions(module,
-            departures.Select((dep, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { ordinal(ix + 1), "departure", "from" }, new[] { dep }, primary)).Concat(
-            destinations.Select((dest, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { ordinal(ix + 1), "destination", "to" }, new[] { dest }, primary))));
+            departures.Select((dep, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { ordinal(ix + 1), "depart from" }, new[] { dep }, primary)).Concat(
+            destinations.Select((dest, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { ordinal(ix + 1), "arrive to" }, new[] { dest }, primary))));
     }
 
     private IEnumerable<object> ProcessMafia(KMBombModule module)
