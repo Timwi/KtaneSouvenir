@@ -8005,7 +8005,7 @@ public class SouvenirModule : MonoBehaviour
         var display = fldDisplay.Get();
         if (display == null)
             yield break;
-        var terms = display.text.Split('\n').Select(term => Regex.Replace(Regex.Replace(term.Trim(), @"^(f\(x\) =|\+) ", ""), @"^- ", "−")).ToArray();
+        var terms = display.text.Split('\n').Select(term => Regex.Replace(Regex.Replace(term.Trim(), @"^(f.*?=|\+) ", ""), @"^- ", "−")).ToArray();
         if (terms.Length != 3)
         {
             Debug.LogFormat(@"<Souvenir #{0}> Abandoning Partial Derivatives because the display does not appear to contain three terms: ""{1}""", _moduleId, display.text.Replace("\r", "").Replace("\n", "\\n"));
@@ -8013,7 +8013,7 @@ public class SouvenirModule : MonoBehaviour
         }
 
         var vars = new[] { "x", "y", "z" };
-        var exponentStrs = ",²,³,⁴,⁵".Split(',');
+        var exponentStrs = new[] { "²", "³", "⁴", "⁵" };
         var writeTerm = new Func<int, bool, int[], string>((int coeff, bool negative, int[] exps) =>
         {
             if (coeff == 0)
@@ -8028,7 +8028,7 @@ public class SouvenirModule : MonoBehaviour
                 {
                     function += vars[j];
                     if (exps[j] > 1)
-                        function += exponentStrs[exps[j] - 1];
+                        function += exponentStrs[exps[j] - 2];
                 }
             }
             return function;
