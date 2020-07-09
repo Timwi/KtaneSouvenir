@@ -1189,7 +1189,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Strings(5, 'Q', 'R')]
         UncoloredSwitchesInitialState,
-        [SouvenirQuestion("What color was the {1} LED in the {2} stage of {0}?", "Uncolored Switches", AnswerLayout.TwoColumns4Answers, "red", "green", "blue", "turquoise", "orange", "purple", "white", "black",
+        [SouvenirQuestion("What color was the {1} LED in reading order in the {2} stage of {0}?", "Uncolored Switches", AnswerLayout.TwoColumns4Answers, "red", "green", "blue", "turquoise", "orange", "purple", "white", "black",
             ExampleExtraFormatArguments = new[] { "first", "first", "second", "first", "first", "second", "second", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
         UncoloredSwitchesLedColors,
 
