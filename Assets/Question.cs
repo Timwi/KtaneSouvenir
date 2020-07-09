@@ -1243,6 +1243,16 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9)]
         WireDisplayedNumber,
 
+        [SouvenirQuestion("What color was the {1} display from the left in {0}?", "Wire Ordering", AnswerLayout.ThreeColumns6Answers, "red", "orange", "yellow", "green", "blue", "purple", "white", "black",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        WireOrderingDisplayColor,
+        [SouvenirQuestion("What number was on the {1} display from the left in {0}?", "Wire Ordering", AnswerLayout.TwoColumns4Answers, "1", "2", "3", "4",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        WireOrderingDisplayNumber,
+        [SouvenirQuestion("What color was the {1} wire from the left in {0}?", "Wire Ordering", AnswerLayout.ThreeColumns6Answers, "red", "orange", "yellow", "green", "blue", "purple", "white", "black",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        WireOrderingWireColor,
+
         [SouvenirQuestion("How many {1} wires were there in {0}?", "Wire Sequence", AnswerLayout.TwoColumns4Answers,
             ExampleExtraFormatArguments = new[] { "red", "blue", "black" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 9)]

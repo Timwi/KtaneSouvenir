@@ -321,6 +321,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Wavetapping = "Wavetapping";
     const string _WhosOnFirst = "WhosOnFirst";
     const string _Wire = "wire";
+    const string _WireOrdering = "kataWireOrdering";
     const string _WireSequence = "WireSequence";
     const string _Yahtzee = "YahtzeeModule";
     const string _YellowArrows = "yellowArrowsModule";
@@ -562,6 +563,7 @@ public class SouvenirModule : MonoBehaviour
             { _Wavetapping, ProcessWavetapping },
             { _WhosOnFirst, ProcessWhosOnFirst },
             { _Wire, ProcessWire },
+            { _WireOrdering, ProcessWireOrdering },
             { _WireSequence, ProcessWireSequence },
             { _Yahtzee, ProcessYahtzee },
             { _YellowArrows, ProcessYellowArrows },
@@ -11591,6 +11593,30 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.WireDialColors, _Wire, new[] { "bottom-left" }, new[] { dials[1].material.mainTexture.name.Replace("Mat", "") }),
             makeQuestion(Question.WireDialColors, _Wire, new[] { "bottom-right" }, new[] { dials[2].material.mainTexture.name.Replace("Mat", "") }),
             makeQuestion(Question.WireDisplayedNumber, _Wire, correctAnswers: new[] { fldDisplayedNumber.Get().ToString() }));
+    }
+
+    private IEnumerable<object> ProcessWireOrdering(KMBombModule module)
+    {
+        var comp = GetComponent(module, "WireOrderingScript");
+        var fldSolved = GetField<bool>(comp, "_modSolved");
+        var fldChosenColorsDisplay = GetField<int[]>(comp, "_chosenColorsDis");
+        var fldChosenColorsWire = GetField<int[]>(comp, "_chosenColorsWire");
+        var fldChosenDisplayNumbers = GetField<int[]>(comp, "_chosenDisNum");
+
+        if (comp == null || fldSolved == null || fldChosenColorsDisplay == null || fldChosenColorsWire == null || fldChosenDisplayNumbers == null)
+            yield break;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_WireOrdering);
+
+        var colors = _attributes[Question.WireOrderingDisplayColor].AllAnswers;
+        var index = Rnd.Range(0, 4);
+        var ordinal = new[] { this.ordinal(index + 1) };
+        addQuestions(module,
+            makeQuestion(Question.WireOrderingDisplayColor, _WireOrdering, ordinal, new[] { colors[fldChosenColorsDisplay.Get()[index]] }),
+            makeQuestion(Question.WireOrderingDisplayNumber, _WireOrdering, ordinal, new[] { fldChosenDisplayNumbers.Get()[index].ToString() }),
+            makeQuestion(Question.WireOrderingWireColor, _WireOrdering, ordinal, new[] { colors[fldChosenColorsWire.Get()[index]] }));
     }
 
     private IEnumerable<object> ProcessWireSequence(KMBombModule module)
