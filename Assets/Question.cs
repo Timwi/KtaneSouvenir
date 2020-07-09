@@ -46,7 +46,7 @@ namespace Souvenir
         AlphabeticalRulingLetter,
         [SouvenirQuestion("What was the number displayed in the {1} stage of {0}?", "Alphabetical Ruling", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        [AnswerGenerator.Integers(0, 10)]
+        [AnswerGenerator.Integers(1, 9)]
         AlphabeticalRulingNumber,
 
         [SouvenirQuestion("What character was displayed on the {1} screen on the {2} in {0}?", "Alpha-Bits", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V",
