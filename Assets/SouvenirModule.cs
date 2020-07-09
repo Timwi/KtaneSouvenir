@@ -5469,8 +5469,8 @@ public class SouvenirModule : MonoBehaviour
         if (buttonPossibilities == null)
             yield break;
 
-        edgeworkPossibilities = edgeworkPossibilities.Select(ep => ep.ToLowerInvariant().Replace("\n", " ")).ToArray();
-        buttonPossibilities = buttonPossibilities.Select(bp => bp.ToLowerInvariant().Replace("\n", " ")).ToArray();
+        edgeworkPossibilities = edgeworkPossibilities.Select(ep => ep.ToLowerInvariant().Replace('\n', ' ')).ToArray();
+        buttonPossibilities = buttonPossibilities.Select(bp => (bp.Length > 1 ? bp.ToLowerInvariant() : bp).Replace('\n', ' ')).ToArray();
 
         var qs = new List<QandA>();
         for (var btnIx = 0; btnIx < 5; btnIx++)
@@ -5483,7 +5483,8 @@ public class SouvenirModule : MonoBehaviour
                     btnIx, ix, edgeworkScreens[btnIx] ? "edgeworkPossibilities" : "buttonPossibilities", arr.Length);
                 yield break;
             }
-            qs.Add(makeQuestion(Question.InstructionsPhrases, _Instructions, formatArgs: new[] { ordinal(btnIx + 1) }, correctAnswers: new[] { arr[ix] }, preferredWrongAnswers: arr));
+            qs.Add(makeQuestion(edgeworkScreens[btnIx] ? Question.InstructionsPhrasesEdgework : Question.InstructionsPhrasesButtons, _Instructions,
+                formatArgs: new[] { ordinal(btnIx + 1) }, correctAnswers: new[] { arr[ix] }, preferredWrongAnswers: arr));
         }
         addQuestions(module, qs);
     }

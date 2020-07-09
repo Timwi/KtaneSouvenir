@@ -507,9 +507,12 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "was", "was not" }, ExampleExtraFormatArgumentGroupSize = 1)]
         IdentityParadeAttires,
 
-        [SouvenirQuestion("What was the phrase on the {1} display in {0}?", "Instructions", AnswerLayout.ThreeColumns6Answers, "batteries", "battery holders", "indicators", "lit indicators", "unlit indicators", "ports", "port plates", "digits in serial number", "letters in serial number", "modules", "two factors", "solved modules", "port types", "strikes", "red", "green", "yellow", "blue", "a", "b", "c", "d", "first", "second", "third", "fourth",
+        [SouvenirQuestion("What was the phrase on the {1} display in {0}?", "Instructions", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "batteries", "battery holders", "indicators", "lit indicators", "unlit indicators", "ports", "port plates", "digits in serial number", "letters in serial number", "modules", "two factors", "solved modules", "port types", "strikes" },
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        InstructionsPhrases,
+        InstructionsPhrasesEdgework,
+        [SouvenirQuestion("What was the phrase on the {1} display in {0}?", "Instructions", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "red", "green", "yellow", "blue", "A", "B", "C", "D", "first", "second", "third", "fourth" },
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        InstructionsPhrasesButtons,
 
         [SouvenirQuestion("What was the {1} PIN digit in {0}?", "iPhone", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
