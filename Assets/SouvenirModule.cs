@@ -9019,10 +9019,10 @@ public class SouvenirModule : MonoBehaviour
 
         var tileNames = new[] { "A1", "B1", "C1", "D1", "A2", "B2", "C2", "D2", "A3", "B3", "C3", "D3", "A4", "B4", "C4", "D4" };
         var qs = new List<QandA>();
-        qs.Add(makeQuestion(Question.ScavengerHuntKeySquare, _ScavengerHunt, correctAnswers: new[] { tileNames[keySquare] }));
-        qs.Add(makeQuestion(Question.ScavengerHuntColoredTiles, _ScavengerHunt, formatArgs: new[] { "red" }, correctAnswers: redTiles.Select(c => tileNames[c]).ToArray()));
-        qs.Add(makeQuestion(Question.ScavengerHuntColoredTiles, _ScavengerHunt, formatArgs: new[] { "green" }, correctAnswers: greenTiles.Select(c => tileNames[c]).ToArray()));
-        qs.Add(makeQuestion(Question.ScavengerHuntColoredTiles, _ScavengerHunt, formatArgs: new[] { "blue" }, correctAnswers: blueTiles.Select(c => tileNames[c]).ToArray()));
+        qs.Add(makeQuestion(Question.ScavengerHuntKeySquare, _ScavengerHunt, correctAnswers: new[] { Tiles4x4Sprites.First(k => k.name == tileNames[keySquare]) }, preferredWrongAnswers: Tiles4x4Sprites));
+        qs.Add(makeQuestion(Question.ScavengerHuntColoredTiles, _ScavengerHunt, formatArgs: new[] { "red" }, correctAnswers: redTiles.Select(c => Tiles4x4Sprites.First(k => k.name == tileNames[c])).ToArray(), preferredWrongAnswers: Tiles4x4Sprites));
+        qs.Add(makeQuestion(Question.ScavengerHuntColoredTiles, _ScavengerHunt, formatArgs: new[] { "green" }, correctAnswers: greenTiles.Select(c => Tiles4x4Sprites.First(k => k.name == tileNames[c])).ToArray(), preferredWrongAnswers: Tiles4x4Sprites));
+        qs.Add(makeQuestion(Question.ScavengerHuntColoredTiles, _ScavengerHunt, formatArgs: new[] { "blue" }, correctAnswers: blueTiles.Select(c => Tiles4x4Sprites.First(k => k.name == tileNames[c])).ToArray(), preferredWrongAnswers: Tiles4x4Sprites));
         addQuestions(module, qs);
     }
 
