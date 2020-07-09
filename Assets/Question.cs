@@ -736,7 +736,7 @@ namespace Souvenir
         NandMsAnswer,
 
         [SouvenirQuestion("What was the initial middle digit in {0}?", "Navinums", AnswerLayout.ThreeColumns6Answers)]
-        [AnswerGenerator.Integers(1, 10)]
+        [AnswerGenerator.Integers(1, 9)]
         NavinumsMiddleDigit,
         [SouvenirQuestion("What was the {1} directional button pressed in {0}?", "Navinums", AnswerLayout.TwoColumns4Answers, "up", "left", "right", "down",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
