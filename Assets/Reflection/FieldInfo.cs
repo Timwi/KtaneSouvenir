@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -55,39 +56,49 @@ namespace Souvenir.Reflection
     {
         public IntFieldInfo(object target, FieldInfo field) : base(target, field) { }
 
-        public int Get(int? expectedMinValue = null, int? expectedMaxValue = null)
+        public int Get(int? min = null, int? max = null)
         {
-            return Get(v => (expectedMinValue != null && v < expectedMinValue.Value) || (expectedMaxValue != null && v > expectedMaxValue.Value) ? string.Format("expected {0}–{1}", expectedMinValue, expectedMaxValue) : null);
+            return Get(v => (min != null && v < min.Value) || (max != null && v > max.Value) ? string.Format("expected {0}–{1}", min, max) : null);
         }
     }
 
-    sealed class ArrayFieldInfo<T> : FieldInfo<T[]>
+    abstract class CollectionFieldInfo<TCollection, TElement> : FieldInfo<TCollection> where TCollection : class, IList<TElement>
+    {
+        protected CollectionFieldInfo(object target, FieldInfo field) : base(target, field) { }
+
+        public TCollection Get(int expectedLength, bool nullArrayAllowed = false, bool nullContentAllowed = false, Func<TElement, string> validator = null)
+        {
+            return Get(expectedLength, expectedLength, nullArrayAllowed, nullContentAllowed, validator);
+        }
+
+        public TCollection Get(int minLength, int maxLength, bool nullArrayAllowed = false, bool nullContentAllowed = false, Func<TElement, string> validator = null)
+        {
+            var collection = Get(nullAllowed: nullArrayAllowed);
+            if (collection == null)
+                return null;
+            if (collection.Count < minLength || collection.Count > maxLength)
+                throw new AbandonModuleException("Array field {0}.{1} has length {2} (expected {3}{4}).", Field.DeclaringType.FullName, Field.Name, collection.Count,
+                    minLength, maxLength != minLength ? "–" + maxLength : "");
+            int pos;
+            if (!nullContentAllowed && (pos = collection.IndexOf(v => v == null)) != -1)
+                throw new AbandonModuleException("Array field {0}.{1} (length {2}) contained a null value at index {3}.", Field.DeclaringType.FullName, Field.Name, collection.Count, pos);
+            string validatorFailMessage;
+            if (validator != null)
+                for (var ix = 0; ix < collection.Count; ix++)
+                    if ((validatorFailMessage = validator(collection[ix])) != null)
+                        throw new AbandonModuleException("Array field {0}.{1} (length {2}) contained value “{3}” at index {4} that failed the validator: {5}.",
+                            Field.DeclaringType.FullName, Field.Name, collection.Count, stringify(collection[ix]), ix, validatorFailMessage);
+            return collection;
+        }
+    }
+
+    sealed class ArrayFieldInfo<T> : CollectionFieldInfo<T[], T>
     {
         public ArrayFieldInfo(object target, FieldInfo field) : base(target, field) { }
+    }
 
-        public T[] Get(int expectedLength, bool nullArrayAllowed = false, bool nullContentAllowed = false, Func<T, string> elementValidator = null)
-        {
-            return Get(expectedLength, expectedLength, nullArrayAllowed, nullContentAllowed, elementValidator);
-        }
-
-        public T[] Get(int expectedMinLength, int expectedMaxLength, bool nullArrayAllowed = false, bool nullContentAllowed = false, Func<T, string> elementValidator = null)
-        {
-            var array = Get(nullAllowed: nullArrayAllowed);
-            if (array == null)
-                return null;
-            if (array.Length < expectedMinLength || array.Length > expectedMaxLength)
-                throw new AbandonModuleException("Array field {0}.{1} has length {2} (expected {3}{4}).", Field.DeclaringType.FullName, Field.Name, array.Length,
-                    expectedMinLength, expectedMaxLength != expectedMinLength ? "–" + expectedMaxLength : "");
-            int pos;
-            if (!nullContentAllowed && (pos = array.IndexOf(v => v == null)) != -1)
-                throw new AbandonModuleException("Array field {0}.{1} (length {2}) contained a null value at index {3}.", Field.DeclaringType.FullName, Field.Name, array.Length, pos);
-            string validatorFailMessage;
-            if (elementValidator != null)
-                for (var ix = 0; ix < array.Length; ix++)
-                    if ((validatorFailMessage = elementValidator(array[ix])) != null)
-                        throw new AbandonModuleException("Array field {0}.{1} (length {2}) contained value “{3}” at index {4} that failed the validator: {5}.",
-                            Field.DeclaringType.FullName, Field.Name, array.Length, stringify(array[ix]), ix, validatorFailMessage);
-            return array;
-        }
+    sealed class ListFieldInfo<T> : CollectionFieldInfo<List<T>, T>
+    {
+        public ListFieldInfo(object target, FieldInfo field) : base(target, field) { }
     }
 }
