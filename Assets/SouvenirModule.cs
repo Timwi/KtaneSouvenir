@@ -92,6 +92,7 @@ public class SouvenirModule : MonoBehaviour
     private static int _moduleIdCounter = 1;
     private int _moduleId;
     private Dictionary<string, Func<KMBombModule, IEnumerable<object>>> _moduleProcessors;
+    private Dictionary<Question, SouvenirQuestionAttribute> _attributes;
     #endregion
 
     #region Module ID constant declarations
@@ -1045,13 +1046,6 @@ public class SouvenirModule : MonoBehaviour
         Module.HandlePass();
     }
 
-    private void ActivateTwitchPlaysNumbers()
-    {
-        AnswersParent.transform.localPosition = new Vector3(.005f, 0, 0);
-        foreach (var gobj in TpNumbers)
-            gobj.SetActive(true);
-    }
-
     private void SetQuestion(QandA q)
     {
         Debug.LogFormat("[Souvenir #{0}] Asking question: {1}", _moduleId, q.DebugString);
@@ -1157,9 +1151,65 @@ public class SouvenirModule : MonoBehaviour
         TextMesh.transform.rotation = origRotation;
         TextMesh.gameObject.SetActive(true);
     }
+
+    private IEnumerator ProcessModule(KMBombModule module)
+    {
+        _coroutinesActive++;
+        var moduleType = module.ModuleType;
+        _moduleCounts.IncSafe(moduleType);
+        var iterator = _moduleProcessors.Get(moduleType, null);
+
+        if (iterator != null)
+        {
+            supportedModuleNames.Add(module.ModuleDisplayName);
+            yield return null;  // Ensures that the module’s Start() method has run
+            Debug.LogFormat("<Souvenir #{1}> Module {0}: Start processing.", moduleType, _moduleId);
+
+            // I’d much rather just put a ‘foreach’ loop inside a ‘try’ block, but Unity’s C# version doesn’t allow ‘yield return’ inside of ‘try’ blocks yet
+            using (var e = iterator(module).GetEnumerator())
+            {
+                while (true)
+                {
+                    bool canMoveNext;
+                    try { canMoveNext = e.MoveNext(); }
+                    catch (AbandonModuleException ex)
+                    {
+                        Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because: {2}", _moduleId, module.ModuleDisplayName, ex.Message);
+                        yield break;
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.LogFormat("<Souvenir #{0}> The {1} handler threw an exception ({2}):\n{3}", _moduleId, module.ModuleDisplayName, ex.GetType().FullName, ex.StackTrace);
+                        yield break;
+                    }
+                    if (TwitchAbandonModule.Contains(module))
+                    {
+                        Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because Twitch Plays told me to.", _moduleId, module.ModuleDisplayName);
+                        yield break;
+                    }
+                    if (!canMoveNext)
+                        break;
+                    yield return e.Current;
+                }
+            }
+
+            if (!_legitimatelyNoQuestions.Contains(module) && !_questions.Any(q => q.Module == module))
+            {
+                Debug.LogFormat("[Souvenir #{0}] There was no question generated for {1}. Please report this to Andrio or the implementer for that module as this may indicate a bug in Souvenir. Remember to send them this logfile.", _moduleId, module.ModuleDisplayName);
+                WarningIcon.SetActive(true);
+            }
+            Debug.LogFormat("<Souvenir #{1}> Module {0}: Finished processing.", moduleType, _moduleId);
+        }
+        else
+        {
+            Debug.LogFormat("<Souvenir #{1}> Module {0}: Not supported.", moduleType, _moduleId);
+        }
+
+        _coroutinesActive--;
+    }
     #endregion
 
-    #region Reflection
+    #region Helper methods for Reflection (used by module handlers)
     private Component GetComponent(KMBombModule module, string name)
     {
         return GetComponent(module.gameObject, name);
@@ -1275,65 +1325,205 @@ public class SouvenirModule : MonoBehaviour
     }
     #endregion
 
-
-    #region Module handlers
-    private IEnumerator ProcessModule(KMBombModule module)
+    #region Other helper methods (used by module handlers)
+    private void addQuestion(KMBombModule module, Question question, string[] formatArguments = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null)
     {
-        _coroutinesActive++;
-        var moduleType = module.ModuleType;
-        _moduleCounts.IncSafe(moduleType);
-        var iterator = _moduleProcessors.Get(moduleType, null);
+        addQuestions(module, makeQuestion(question, module.ModuleType, formatArguments, correctAnswers, preferredWrongAnswers));
+    }
 
-        if (iterator != null)
+    private void addQuestion(KMBombModule module, Question question, string[] formatArguments = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null)
+    {
+        addQuestions(module, makeQuestion(question, module.ModuleType, formatArguments, correctAnswers, preferredWrongAnswers));
+    }
+
+    private void addQuestions(KMBombModule module, IEnumerable<QandA> questions)
+    {
+        var qs = questions.Where(q => q != null).ToArray();
+        if (qs.Length == 0)
         {
-            supportedModuleNames.Add(module.ModuleDisplayName);
-            yield return null;  // Ensures that the module’s Start() method has run
-            Debug.LogFormat("<Souvenir #{1}> Module {0}: Start processing.", moduleType, _moduleId);
+            Debug.LogFormat("<Souvenir #{0}> Empty question batch provided for {1}.", _moduleId, module.ModuleDisplayName);
+            return;
+        }
+        Debug.LogFormat("<Souvenir #{0}> Adding question batch:\n{1}", _moduleId, qs.Select(q => "    • " + q.DebugString).JoinString("\n"));
+        _questions.Add(new QuestionBatch
+        {
+            NumSolved = Bomb.GetSolvedModuleNames().Count,
+            Questions = qs,
+            Module = module
+        });
+    }
 
-            // I’d much rather just put a ‘foreach’ loop inside a ‘try’ block, but Unity’s C# version doesn’t allow ‘yield return’ inside of ‘try’ blocks yet
-            using (var e = iterator(module).GetEnumerator())
+    private void addQuestions(KMBombModule module, params QandA[] questions)
+    {
+        addQuestions(module, (IEnumerable<QandA>) questions);
+    }
+
+    private string titleCase(string str)
+    {
+        return str.Length < 1 ? str : char.ToUpperInvariant(str[0]) + str.Substring(1).ToLowerInvariant();
+    }
+
+    private QandA makeQuestion(Question question, string moduleKey, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null)
+    {
+        return makeQuestion(question, moduleKey,
+            (attr, q, correct, answers) =>
             {
-                while (true)
+                if (attr.Type == AnswerType.DynamicFont || attr.Type == AnswerType.Sprites)
                 {
-                    bool canMoveNext;
-                    try { canMoveNext = e.MoveNext(); }
-                    catch (AbandonModuleException ex)
-                    {
-                        Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because: {2}", _moduleId, module.ModuleDisplayName, ex.Message);
-                        yield break;
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.LogFormat("<Souvenir #{0}> The {1} handler threw an exception ({2}):\n{3}", _moduleId, module.ModuleDisplayName, ex.GetType().FullName, ex.StackTrace);
-                        yield break;
-                    }
-                    if (TwitchAbandonModule.Contains(module))
-                    {
-                        Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because Twitch Plays told me to.", _moduleId, module.ModuleDisplayName);
-                        yield break;
-                    }
-                    if (!canMoveNext)
-                        break;
-                    yield return e.Current;
+                    Debug.LogErrorFormat("<Souvenir #{0}> The module handler for {1} attempted to output a question that requires a sprite or dynamic font, but didn’t supply one.", _moduleId, moduleKey);
+                    throw new InvalidOperationException();
+                }
+                return new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), Fonts[(int) attr.Type], FontTextures[(int) attr.Type], FontMaterial, attr.Layout);
+            },
+            formatArgs, correctAnswers, preferredWrongAnswers);
+    }
+
+    private QandA makeQuestion(Question question, string moduleKey, Font font, Texture fontTexture, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null)
+    {
+        return makeQuestion(question, moduleKey,
+            (attr, q, correct, answers) =>
+            {
+                if (attr.Type != AnswerType.DynamicFont)
+                {
+                    Debug.LogErrorFormat("<Souvenir #{0}> The module handler for {1} attempted to use a dynamic font but the corresponding question is not marked as AnswerType.DynamicFont.", _moduleId, moduleKey);
+                    throw new InvalidOperationException();
+                }
+                return new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), font, fontTexture, FontMaterial, attr.Layout);
+            },
+            formatArgs, correctAnswers, preferredWrongAnswers);
+    }
+
+    private QandA makeQuestion(Question question, string moduleKey, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null)
+    {
+        return makeQuestion(question, moduleKey,
+            (attr, q, correct, answers) =>
+            {
+                if (attr.Type != AnswerType.Sprites)
+                {
+                    Debug.LogErrorFormat("<Souvenir #{0}> The module handler for {1} attempted to use a sprite but the corresponding question is not marked as AnswerType.Sprite.", _moduleId, moduleKey);
+                    throw new InvalidOperationException();
+                }
+                return new QandASprite(attr.ModuleNameWithThe, q, correct, answers.ToArray());
+            },
+            formatArgs, correctAnswers, preferredWrongAnswers);
+    }
+
+    private QandA makeQuestion<T>(Question question, string moduleKey, Func<SouvenirQuestionAttribute, string, int, T[], QandA> questionConstructor, string[] formatArgs = null, T[] correctAnswers = null, T[] preferredWrongAnswers = null)
+    {
+        SouvenirQuestionAttribute attr;
+        if (!_attributes.TryGetValue(question, out attr))
+        {
+            Debug.LogErrorFormat("<Souvenir #{1}> Question {0} has no SouvenirQuestionAttribute.", question, _moduleId);
+            return null;
+        }
+
+        var allAnswers = attr.AllAnswers as T[];
+        if (allAnswers != null)
+        {
+            var inconsistency = correctAnswers.Except(allAnswers).FirstOrDefault();
+            if (inconsistency != null)
+            {
+                Debug.LogErrorFormat("<Souvenir #{2}> Question {0}: invalid answer: {1}.", question, inconsistency.ToString() ?? "<null>", _moduleId);
+                return null;
+            }
+            if (preferredWrongAnswers != null)
+            {
+                var inconsistency2 = preferredWrongAnswers.Except(allAnswers).FirstOrDefault();
+                if (inconsistency2 != null)
+                {
+                    Debug.LogErrorFormat("<Souvenir #{2}> Question {0}: invalid preferred wrong answer: {1}.", question, inconsistency2.ToString() ?? "<null>", _moduleId);
+                    return null;
                 }
             }
+        }
 
-            if (!_legitimatelyNoQuestions.Contains(module) && !_questions.Any(q => q.Module == module))
+        var answers = new List<T>(attr.NumAnswers);
+        if (allAnswers == null && attr.AnswerGenerator == null)
+        {
+            if (preferredWrongAnswers == null || preferredWrongAnswers.Length == 0)
             {
-                Debug.LogFormat("[Souvenir #{0}] There was no question generated for {1}. Please report this to Andrio or the implementer for that module as this may indicate a bug in Souvenir. Remember to send them this logfile.", _moduleId, module.ModuleDisplayName);
-                WarningIcon.SetActive(true);
+                Debug.LogErrorFormat("<Souvenir #{0}> Question {1} has no answers. You must specify either the full set of possible answers in SouvenirQuestionAttribute.AllAnswers, provide possible wrong answers through the preferredWrongAnswers parameter, or add an AnswerGeneratorAttribute to the question enum value.", _moduleId, question);
+                return null;
             }
-            Debug.LogFormat("<Souvenir #{1}> Module {0}: Finished processing.", moduleType, _moduleId);
+            answers.AddRange(preferredWrongAnswers.Except(correctAnswers).Distinct());
         }
         else
         {
-            Debug.LogFormat("<Souvenir #{1}> Module {0}: Not supported.", moduleType, _moduleId);
+            // Pick 𝑛−1 random wrong answers.
+            if (allAnswers != null) answers.AddRange(allAnswers.Except(correctAnswers));
+            if (answers.Count <= attr.NumAnswers - 1)
+            {
+                if (attr.AnswerGenerator != null && typeof(T) == typeof(string))
+                    answers.AddRange(attr.AnswerGenerator.GetAnswers(this).Except(answers.Concat(correctAnswers) as IEnumerable<string>).Distinct().Take(attr.NumAnswers - 1 - answers.Count) as IEnumerable<T>);
+                if (answers.Count == 0 && (preferredWrongAnswers == null || preferredWrongAnswers.Length == 0))
+                {
+                    Debug.LogErrorFormat("<Souvenir #{0}> Question {1}'s answer generator did not generate any answers.", _moduleId, question);
+                    return null;
+                }
+            }
+            else
+            {
+                answers.Shuffle();
+                answers.RemoveRange(attr.NumAnswers - 1, answers.Count - (attr.NumAnswers - 1));
+            }
+            // Add the preferred wrong answers, if any. If we had added them earlier, they’d come up too rarely.
+            if (preferredWrongAnswers != null)
+                answers.AddRange(preferredWrongAnswers.Except(answers.Concat(correctAnswers)).Distinct());
+        }
+        answers.Shuffle();
+        if (answers.Count >= attr.NumAnswers) answers.RemoveRange(attr.NumAnswers - 1, answers.Count - (attr.NumAnswers - 1));
+
+        var correctIndex = Rnd.Range(0, answers.Count + 1);
+        answers.Insert(correctIndex, correctAnswers.PickRandom());
+
+        var numSolved = _modulesSolved.Get(moduleKey);
+        if (numSolved < 1)
+        {
+            Debug.LogErrorFormat("<Souvenir #{0}> Abandoning {1} ({2}) because you forgot to increment the solve count.", _moduleId, attr.ModuleName, moduleKey);
+            return null;
         }
 
-        _coroutinesActive--;
+        var allFormatArgs = new string[formatArgs != null ? formatArgs.Length + 1 : 1];
+        allFormatArgs[0] = _moduleCounts.Get(moduleKey) > 1
+            ? string.Format("the {0} you solved {1}", attr.ModuleName, ordinal(numSolved))
+            : attr.AddThe ? "The\u00a0" + attr.ModuleName : attr.ModuleName;
+        if (formatArgs != null)
+            Array.Copy(formatArgs, 0, allFormatArgs, 1, formatArgs.Length);
+
+        return questionConstructor(attr, string.Format(attr.QuestionText, allFormatArgs), correctIndex, answers.ToArray());
     }
 
+    internal string[] GetAnswers(Question question)
+    {
+        SouvenirQuestionAttribute attr;
+        if (!_attributes.TryGetValue(question, out attr))
+            throw new InvalidOperationException(string.Format("<Souvenir #{0}> Question {1} is missing from the _attributes dictionary.", _moduleId, question));
+        return attr.AllAnswers;
+    }
 
+    private string ordinal(int number)
+    {
+        if (number < 0)
+            return "(" + number + ")th";
+
+        switch (number)
+        {
+            case 1: return "first";
+            case 2: return "second";
+            case 3: return "third";
+        }
+
+        switch ((number / 10) % 10 == 1 ? 0 : number % 10)
+        {
+            case 1: return number + "st";
+            case 2: return number + "nd";
+            case 3: return number + "rd";
+            default: return number + "th";
+        }
+    }
+    #endregion
+
+    #region Module handlers
     /* Generalized methods for modules that are extremely similar */
 
     private IEnumerable<object> processSpeakingEvilCycle1(KMBombModule module, string componentName, string moduleName, Question question, string moduleId)
@@ -11630,207 +11820,7 @@ public class SouvenirModule : MonoBehaviour
     }
     #endregion
 
-    private void addQuestion(KMBombModule module, Question question, string[] formatArguments = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null)
-    {
-        addQuestions(module, makeQuestion(question, module.ModuleType, formatArguments, correctAnswers, preferredWrongAnswers));
-    }
-
-    private void addQuestion(KMBombModule module, Question question, string[] formatArguments = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null)
-    {
-        addQuestions(module, makeQuestion(question, module.ModuleType, formatArguments, correctAnswers, preferredWrongAnswers));
-    }
-
-    private void addQuestions(KMBombModule module, IEnumerable<QandA> questions)
-    {
-        var qs = questions.Where(q => q != null).ToArray();
-        if (qs.Length == 0)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Empty question batch provided for {1}.", _moduleId, module.ModuleDisplayName);
-            return;
-        }
-        Debug.LogFormat("<Souvenir #{0}> Adding question batch:\n{1}", _moduleId, qs.Select(q => "    • " + q.DebugString).JoinString("\n"));
-        _questions.Add(new QuestionBatch
-        {
-            NumSolved = Bomb.GetSolvedModuleNames().Count,
-            Questions = qs,
-            Module = module
-        });
-    }
-
-    private void addQuestions(KMBombModule module, params QandA[] questions)
-    {
-        addQuestions(module, (IEnumerable<QandA>) questions);
-    }
-
-    private string titleCase(string str)
-    {
-        return str.Length < 1 ? str : char.ToUpperInvariant(str[0]) + str.Substring(1).ToLowerInvariant();
-    }
-
-    private Dictionary<Question, SouvenirQuestionAttribute> _attributes;
-
-    private QandA makeQuestion(Question question, string moduleKey, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null)
-    {
-        return makeQuestion(question, moduleKey,
-            (attr, q, correct, answers) =>
-            {
-                if (attr.Type == AnswerType.DynamicFont || attr.Type == AnswerType.Sprites)
-                {
-                    Debug.LogErrorFormat("<Souvenir #{0}> The module handler for {1} attempted to output a question that requires a sprite or dynamic font, but didn’t supply one.", _moduleId, moduleKey);
-                    throw new InvalidOperationException();
-                }
-                return new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), Fonts[(int) attr.Type], FontTextures[(int) attr.Type], FontMaterial, attr.Layout);
-            },
-            formatArgs, correctAnswers, preferredWrongAnswers);
-    }
-
-    private QandA makeQuestion(Question question, string moduleKey, Font font, Texture fontTexture, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null)
-    {
-        return makeQuestion(question, moduleKey,
-            (attr, q, correct, answers) =>
-            {
-                if (attr.Type != AnswerType.DynamicFont)
-                {
-                    Debug.LogErrorFormat("<Souvenir #{0}> The module handler for {1} attempted to use a dynamic font but the corresponding question is not marked as AnswerType.DynamicFont.", _moduleId, moduleKey);
-                    throw new InvalidOperationException();
-                }
-                return new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), font, fontTexture, FontMaterial, attr.Layout);
-            },
-            formatArgs, correctAnswers, preferredWrongAnswers);
-    }
-
-    private QandA makeQuestion(Question question, string moduleKey, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null)
-    {
-        return makeQuestion(question, moduleKey,
-            (attr, q, correct, answers) =>
-            {
-                if (attr.Type != AnswerType.Sprites)
-                {
-                    Debug.LogErrorFormat("<Souvenir #{0}> The module handler for {1} attempted to use a sprite but the corresponding question is not marked as AnswerType.Sprite.", _moduleId, moduleKey);
-                    throw new InvalidOperationException();
-                }
-                return new QandASprite(attr.ModuleNameWithThe, q, correct, answers.ToArray());
-            },
-            formatArgs, correctAnswers, preferredWrongAnswers);
-    }
-
-    private QandA makeQuestion<T>(Question question, string moduleKey, Func<SouvenirQuestionAttribute, string, int, T[], QandA> questionConstructor, string[] formatArgs = null, T[] correctAnswers = null, T[] preferredWrongAnswers = null)
-    {
-        SouvenirQuestionAttribute attr;
-        if (!_attributes.TryGetValue(question, out attr))
-        {
-            Debug.LogErrorFormat("<Souvenir #{1}> Question {0} has no SouvenirQuestionAttribute.", question, _moduleId);
-            return null;
-        }
-
-        var allAnswers = attr.AllAnswers as T[];
-        if (allAnswers != null)
-        {
-            var inconsistency = correctAnswers.Except(allAnswers).FirstOrDefault();
-            if (inconsistency != null)
-            {
-                Debug.LogErrorFormat("<Souvenir #{2}> Question {0}: invalid answer: {1}.", question, inconsistency.ToString() ?? "<null>", _moduleId);
-                return null;
-            }
-            if (preferredWrongAnswers != null)
-            {
-                var inconsistency2 = preferredWrongAnswers.Except(allAnswers).FirstOrDefault();
-                if (inconsistency2 != null)
-                {
-                    Debug.LogErrorFormat("<Souvenir #{2}> Question {0}: invalid preferred wrong answer: {1}.", question, inconsistency2.ToString() ?? "<null>", _moduleId);
-                    return null;
-                }
-            }
-        }
-
-        var answers = new List<T>(attr.NumAnswers);
-        if (allAnswers == null && attr.AnswerGenerator == null)
-        {
-            if (preferredWrongAnswers == null || preferredWrongAnswers.Length == 0)
-            {
-                Debug.LogErrorFormat("<Souvenir #{0}> Question {1} has no answers. You must specify either the full set of possible answers in SouvenirQuestionAttribute.AllAnswers, provide possible wrong answers through the preferredWrongAnswers parameter, or add an AnswerGeneratorAttribute to the question enum value.", _moduleId, question);
-                return null;
-            }
-            answers.AddRange(preferredWrongAnswers.Except(correctAnswers).Distinct());
-        }
-        else
-        {
-            // Pick 𝑛−1 random wrong answers.
-            if (allAnswers != null) answers.AddRange(allAnswers.Except(correctAnswers));
-            if (answers.Count <= attr.NumAnswers - 1)
-            {
-                if (attr.AnswerGenerator != null && typeof(T) == typeof(string))
-                    answers.AddRange(attr.AnswerGenerator.GetAnswers(this).Except(answers.Concat(correctAnswers) as IEnumerable<string>).Distinct().Take(attr.NumAnswers - 1 - answers.Count) as IEnumerable<T>);
-                if (answers.Count == 0 && (preferredWrongAnswers == null || preferredWrongAnswers.Length == 0))
-                {
-                    Debug.LogErrorFormat("<Souvenir #{0}> Question {1}'s answer generator did not generate any answers.", _moduleId, question);
-                    return null;
-                }
-            }
-            else
-            {
-                answers.Shuffle();
-                answers.RemoveRange(attr.NumAnswers - 1, answers.Count - (attr.NumAnswers - 1));
-            }
-            // Add the preferred wrong answers, if any. If we had added them earlier, they’d come up too rarely.
-            if (preferredWrongAnswers != null)
-                answers.AddRange(preferredWrongAnswers.Except(answers.Concat(correctAnswers)).Distinct());
-        }
-        answers.Shuffle();
-        if (answers.Count >= attr.NumAnswers) answers.RemoveRange(attr.NumAnswers - 1, answers.Count - (attr.NumAnswers - 1));
-
-        var correctIndex = Rnd.Range(0, answers.Count + 1);
-        answers.Insert(correctIndex, correctAnswers.PickRandom());
-
-        var numSolved = _modulesSolved.Get(moduleKey);
-        if (numSolved < 1)
-        {
-            Debug.LogErrorFormat("<Souvenir #{0}> Abandoning {1} ({2}) because you forgot to increment the solve count.", _moduleId, attr.ModuleName, moduleKey);
-            return null;
-        }
-
-        var allFormatArgs = new string[formatArgs != null ? formatArgs.Length + 1 : 1];
-        allFormatArgs[0] = _moduleCounts.Get(moduleKey) > 1
-            ? string.Format("the {0} you solved {1}", attr.ModuleName, ordinal(numSolved))
-            : attr.AddThe ? "The\u00a0" + attr.ModuleName : attr.ModuleName;
-        if (formatArgs != null)
-            Array.Copy(formatArgs, 0, allFormatArgs, 1, formatArgs.Length);
-
-        return questionConstructor(attr, string.Format(attr.QuestionText, allFormatArgs), correctIndex, answers.ToArray());
-    }
-
-    internal string[] GetAnswers(Question question)
-    {
-        SouvenirQuestionAttribute attr;
-        if (!_attributes.TryGetValue(question, out attr))
-        {
-            Debug.LogErrorFormat("<Souvenir #{0}> Question {1} is missing from the _attributes dictionary.", _moduleId, question);
-            return null;
-        }
-        return attr.AllAnswers;
-    }
-
-    private string ordinal(int number)
-    {
-        if (number < 0)
-            return "(" + number + ")th";
-
-        switch (number)
-        {
-            case 1: return "first";
-            case 2: return "second";
-            case 3: return "third";
-        }
-
-        switch ((number / 10) % 10 == 1 ? 0 : number % 10)
-        {
-            case 1: return number + "st";
-            case 2: return number + "nd";
-            case 3: return number + "rd";
-            default: return number + "th";
-        }
-    }
-
+    #region Twitch Plays
     [NonSerialized]
     public bool TwitchPlaysActive = false;
     [NonSerialized]
@@ -11896,4 +11886,12 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         }
     }
+
+    private void ActivateTwitchPlaysNumbers()
+    {
+        AnswersParent.transform.localPosition = new Vector3(.005f, 0, 0);
+        foreach (var gobj in TpNumbers)
+            gobj.SetActive(true);
+    }
+    #endregion
 }
