@@ -63,18 +63,18 @@ namespace Souvenir
             public string Format { get; private set; }
 
             /// <param name="min">The inclusive lower bound for generated numbers.</param>
-            /// <param name="max">The exclusive upper bound for generated numbers.</param>
+            /// <param name="max">The inclusive upper bound for generated numbers.</param>
             public Integers(int min, int max) : this(min, max, 1, null) { }
             /// <param name="min">The inclusive lower bound for generated numbers.</param>
-            /// <param name="max">The exclusive upper bound for generated numbers.</param>
+            /// <param name="max">The inclusive upper bound for generated numbers.</param>
             /// <param name="format">A format string used to format generated numbers.</param>
             public Integers(int min, int max, string format) : this(min, max, 1, format) { }
             /// <param name="min">The inclusive lower bound for generated numbers.</param>
-            /// <param name="max">The exclusive upper bound for generated numbers.</param>
+            /// <param name="max">The inclusive upper bound for generated numbers.</param>
             /// <param name="step">The step size to use for generated numbers.</param>
             public Integers(int min, int max, int step) : this(min, max, step, null) { }
             /// <param name="min">The inclusive lower bound for generated numbers.</param>
-            /// <param name="max">The exclusive upper bound for generated numbers.</param>
+            /// <param name="max">The inclusive upper bound for generated numbers.</param>
             /// <param name="step">The step size to use for generated numbers.</param>
             /// <param name="format">A format string used to format generated numbers.</param>
             public Integers(int min, int max, int step, string format)
