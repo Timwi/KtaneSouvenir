@@ -1230,24 +1230,38 @@ public class SouvenirModule : MonoBehaviour
     {
         if (target == null)
             throw new AbandonModuleException("Attempt to get {1} field {0} of type {2} from a null object.", name, isPublic ? "public" : "non-public", typeof(T).FullName);
-        return GetFieldImpl<T>(target, target.GetType(), name, isPublic, BindingFlags.Instance);
+        return new FieldInfo<T>(target, GetFieldImpl<T>(target.GetType(), name, isPublic, BindingFlags.Instance));
     }
 
-    private FieldInfo<T> GetField<T>(Type targetType, string name, bool isPublic = false)
+    private FieldInfo<T> GetField<T>(Type targetType, string name, bool isPublic = false, bool noThrow = false)
     {
-        if (targetType == null)
+        if (targetType == null && !noThrow)
             throw new AbandonModuleException("Attempt to get {0} field {1} of type {2} from a null type.", isPublic ? "public" : "non-public", name, typeof(T).FullName);
-        return GetFieldImpl<T>(null, targetType, name, isPublic, BindingFlags.Instance);
+        return new FieldInfo<T>(null, GetFieldImpl<T>(targetType, name, isPublic, BindingFlags.Instance, noThrow));
+    }
+
+    private IntFieldInfo GetIntField(object target, string name, bool isPublic = false)
+    {
+        if (target == null)
+            throw new AbandonModuleException("Attempt to get {0} field {1} of type int from a null object.", isPublic ? "public" : "non-public", name);
+        return new IntFieldInfo(target, GetFieldImpl<int>(target.GetType(), name, isPublic, BindingFlags.Instance));
+    }
+
+    private ArrayFieldInfo<T> GetArrayField<T>(object target, string name, bool isPublic = false)
+    {
+        if (target == null)
+            throw new AbandonModuleException("Attempt to get {0} field {1} of type {2}[] from a null object.", isPublic ? "public" : "non-public", name, typeof(T).FullName);
+        return new ArrayFieldInfo<T>(target, GetFieldImpl<T[]>(target.GetType(), name, isPublic, BindingFlags.Instance));
     }
 
     private FieldInfo<T> GetStaticField<T>(Type targetType, string name, bool isPublic = false)
     {
         if (targetType == null)
             throw new AbandonModuleException("Attempt to get {0} static field {1} of type {2} from a null type.", isPublic ? "public" : "non-public", name, typeof(T).FullName);
-        return GetFieldImpl<T>(null, targetType, name, isPublic, BindingFlags.Static);
+        return new FieldInfo<T>(null, GetFieldImpl<T>(targetType, name, isPublic, BindingFlags.Static));
     }
 
-    private FieldInfo<T> GetFieldImpl<T>(object target, Type targetType, string name, bool isPublic, BindingFlags bindingFlags)
+    private FieldInfo GetFieldImpl<T>(Type targetType, string name, bool isPublic, BindingFlags bindingFlags, bool noThrow = false)
     {
         FieldInfo fld; Type type = targetType;
         while (type != null && type != typeof(object))
@@ -1265,13 +1279,19 @@ public class SouvenirModule : MonoBehaviour
             type = type.BaseType;
         }
 
+        if (noThrow)
+            return null;
         throw new AbandonModuleException("Type {0} does not contain {1} field {2}. Fields are: {3}", targetType, isPublic ? "public" : "non-public", name,
             targetType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(f => string.Format("{0} {1} {2}", f.IsPublic ? "public" : "private", f.FieldType.FullName, f.Name)).JoinString(", "));
 
         found:
         if (!typeof(T).IsAssignableFrom(fld.FieldType))
+        {
+            if (noThrow)
+                return null;
             throw new AbandonModuleException("Type {0} has {1} field {2} of type {3} but expected type {4}.", targetType, isPublic ? "public" : "non-public", name, fld.FieldType.FullName, typeof(T).FullName);
-        return new FieldInfo<T>(target, fld);
+        }
+        return fld;
     }
 
     private MethodInfo<T> GetMethod<T>(object target, string name, int numParameters, bool isPublic = false)
@@ -1524,34 +1544,23 @@ public class SouvenirModule : MonoBehaviour
     #endregion
 
     #region Module handlers
-    /* Generalized methods for modules that are extremely similar */
+    /* Generalized handlers for modules that are extremely similar */
 
-    private IEnumerable<object> processSpeakingEvilCycle1(KMBombModule module, string componentName, string moduleName, Question question, string moduleId)
+    private IEnumerable<object> processSpeakingEvilCycle1(KMBombModule module, string componentName, Question question, string moduleId)
     {
         var comp = GetComponent(module, componentName);
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldIndex = GetField<int>(comp, "r");
-        var fldMessage = GetField<string[]>(comp, "message");
-        var fldResponse = GetField<string[]>(comp, "response");
-
-        if (comp == null || fldSolved == null || fldIndex == null || fldMessage == null || fldResponse == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(moduleId);
 
-        var index = fldIndex.Get();
-        var messages = fldMessage.Get();
-        var responses = fldResponse.Get();
-
-        if (messages == null || responses == null)
-            yield break;
-        if (index < 0 || index >= messages.Length || index >= responses.Length)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning {3} because ‘r’ is out of range: {1}, expected 0–{2}", _moduleId, index, Math.Min(messages.Length, responses.Length) - 1, moduleName);
-            yield break;
-        }
+        var messages = GetArrayField<string>(comp, "message").Get();
+        var responses = GetArrayField<string>(comp, "response").Get();
+        var index = GetIntField(comp, "r").Get(ix =>
+            ix < 0 ? "negative" :
+            ix >= messages.Length ? string.Format("greater than ‘message’ length ({0})", messages.Length) :
+            ix >= responses.Length ? string.Format("greater than ‘response’ length ({0})", responses.Length) : null);
 
         addQuestions(module,
           makeQuestion(question, moduleId, new[] { "message" }, new[] { Regex.Replace(messages[index], @"(?<!^).", m => m.Value.ToLowerInvariant()) }),
@@ -1562,38 +1571,18 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, componentName);
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldIndex = GetField<int>(comp, "r");
-        var fldWords = GetField<string[][]>(comp, "message");
-
-        if (comp == null || fldSolved == null || fldIndex == null || fldWords == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(moduleId);
 
-        var words = fldWords.Get();
-        if (words == null)
-            yield break;
-        if (words.Length != 2)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning {2} because ‘message’ is has length {1}, expected 2.", _moduleId, words.Length, moduleName);
-            yield break;
-        }
-
+        var words = GetArrayField<string[]>(comp, "message").Get(expectedLength: 2);
         var messages = words[0];
         var responses = words[1];
-        var index = fldIndex.Get();
-        if (messages == null || responses == null)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because ‘message’ contains null.", _moduleId, moduleName);
-            yield break;
-        }
-        if (index < 0 || index >= messages.Length || index >= responses.Length)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning {3} because ‘r’ is out of range: {1}, expected 0–{2}", _moduleId, index, Math.Min(messages.Length, responses.Length) - 1, moduleName);
-            yield break;
-        }
+        var index = GetIntField(comp, "r").Get(ix =>
+            ix < 0 ? "‘r’ is negative." :
+            ix >= messages.Length ? string.Format("‘r’ is greater than ‘message’ length ({0}).", messages.Length) :
+            ix >= responses.Length ? string.Format("‘r’ is greater than ‘response’ length ({0}).", responses.Length) : null);
 
         addQuestions(module,
           makeQuestion(question, moduleId, new[] { "message" }, new[] { Regex.Replace(messages[index], @"(?<!^).", m => m.Value.ToLowerInvariant()) }),
@@ -1608,9 +1597,6 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "ThreeDMazeModule");
         var fldMap = GetField<object>(comp, "map");
         var fldIsComplete = GetField<bool>(comp, "isComplete");
-        if (comp == null || fldMap == null || fldIsComplete == null)
-            yield break;
-
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
 
@@ -1680,9 +1666,6 @@ public class SouvenirModule : MonoBehaviour
         var fldTargetNodes = GetField<List<int>>(comp, "_targetNodes");
         var fldSolved = GetField<bool>(comp, "_solved");
 
-        if (comp == null || fldSymbols == null || fldTargetNodes == null || fldSolved == null)
-            yield break;
-
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_3DTunnels);
@@ -1705,11 +1688,8 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessAccumulation(KMBombModule module)
     {
         var comp = GetComponent(module, "accumulationScript");
-        var fldBorder = GetField<int>(comp, "borderValue");
-        var fldBg = GetField<Material[]>(comp, "chosenBackgroundColours", isPublic: true);
-
-        if (comp == null || fldBorder == null || fldBg == null)
-            yield break;
+        var fldBorder = GetIntField(comp, "borderValue");
+        var fldBg = GetArrayField<Material>(comp, "chosenBackgroundColours", isPublic: true);
 
         var solved = false;
         module.OnPass += delegate { solved = true; return false; };
@@ -1763,16 +1743,13 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "AdventureGameModule");
         var fldButtonUse = GetField<KMSelectable>(comp, "ButtonUse", isPublic: true);
         var fldInvValues = GetField<IList>(comp, "InvValues"); // actually List<AdventureGameModule.ITEM>
-        var fldInvWeaponCount = GetField<int>(comp, "InvWeaponCount");
-        var fldSelectedItem = GetField<int>(comp, "SelectedItem");
+        var fldInvWeaponCount = GetIntField(comp, "InvWeaponCount");
+        var fldSelectedItem = GetIntField(comp, "SelectedItem");
         var fldSelectedEnemy = GetField<object>(comp, "SelectedEnemy");
         var fldTextEnemy = GetField<TextMesh>(comp, "TextEnemy", isPublic: true);
-        var fldNumWeapons = GetField<int>(comp, "NumWeapons");
+        var fldNumWeapons = GetIntField(comp, "NumWeapons");
         var mthItemName = GetMethod<string>(comp, "ItemName", 1);
         var mthShouldUseItem = GetMethod<bool>(comp, "ShouldUseItem", 1);
-
-        if (comp == null || fldButtonUse == null || fldInvValues == null || fldInvWeaponCount == null || fldSelectedItem == null || fldSelectedEnemy == null || fldTextEnemy == null || fldNumWeapons == null || mthItemName == null)
-            yield break;
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
@@ -1847,17 +1824,14 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessAffineCycle(KMBombModule module)
     {
-        return processSpeakingEvilCycle1(module, "AffineCycleScript", "Affine Cycle", Question.AffineCycleWord, _AffineCycle);
+        return processSpeakingEvilCycle1(module, "AffineCycleScript", Question.AffineCycleWord, _AffineCycle);
     }
 
     private IEnumerable<object> ProcessAlgebra(KMBombModule module)
     {
         var comp = GetComponent(module, "algebraScript");
         var fldEquations = Enumerable.Range(1, 3).Select(i => GetField<Texture>(comp, string.Format("level{0}Equation", i))).ToArray();
-        var fldStage = GetField<int>(comp, "stage");
-
-        if (comp == null || fldEquations.Any(f => f == null))
-            yield break;
+        var fldStage = GetIntField(comp, "stage");
 
         while (fldStage.Get() <= 3)
             yield return new WaitForSeconds(.1f);
@@ -1878,12 +1852,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "AlphabeticalRuling");
         var fldSolved = GetField<bool>(comp, "solved");
-        var fldStage = GetField<int>(comp, "currentStage");
+        var fldStage = GetIntField(comp, "currentStage");
         var fldLetterDisplay = GetField<TextMesh>(comp, "LetterDisplay", isPublic: true);
-        var fldNumberDisplays = GetField<TextMesh[]>(comp, "NumberDisplays", isPublic: true);
-
-        if (comp == null || fldSolved == null || fldStage == null || fldLetterDisplay == null || fldNumberDisplays == null)
-            yield break;
+        var fldNumberDisplays = GetArrayField<TextMesh>(comp, "NumberDisplays", isPublic: true);
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
@@ -1946,9 +1917,6 @@ public class SouvenirModule : MonoBehaviour
         var fldsDisplays = new[] { "displayTL", "displayML", "displayBL", "displayTR", "displayMR", "displayBR" }.Select(fieldName => GetField<TextMesh>(comp, fieldName, isPublic: true)).ToArray();
         var fldSolved = GetField<bool>(comp, "moduleSolved");
 
-        if (comp == null || fldsDisplays.Contains(null) || fldSolved == null)
-            yield break;
-
         var isSolved = false;
         module.OnPass += delegate { isSolved = true; return false; };
 
@@ -1979,13 +1947,10 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessArithmelogic(KMBombModule module)
     {
         var comp = GetComponent(module, "Arithmelogic");
-        var fldSymbolNum = GetField<int>(comp, "submitSymbol");
-        var fldSelectableValues = GetField<int[][]>(comp, "selectableValues");
-        var fldCurrentDisplays = GetField<int[]>(comp, "currentDisplays");
+        var fldSymbolNum = GetIntField(comp, "submitSymbol");
+        var fldSelectableValues = GetArrayField<int[]>(comp, "selectableValues");
+        var fldCurrentDisplays = GetArrayField<int>(comp, "currentDisplays");
         var fldSolved = GetField<bool>(comp, "isSolved");
-
-        if (comp == null || fldSymbolNum == null || fldSelectableValues == null || fldCurrentDisplays == null || fldSolved == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -2025,15 +1990,12 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessBamboozledAgain(KMBombModule module)
     {
         var comp = GetComponent(module, "BamboozledAgainScript");
-        var fldDisplayTexts = GetField<string[][]>(comp, "message");
-        var fldColorIndex = GetField<int[]>(comp, "textRandomiser");
-        var fldStage = GetField<int>(comp, "pressCount");
-        var fldCorrectButtons = GetField<int[][]>(comp, "answerKey");
-        var fldButtonInfo = GetField<string[][]>(comp, "buttonRandomiser");
-        var fldButtonTextMesh = GetField<TextMesh[]>(comp, "buttonText", isPublic: true);
-
-        if (comp == null || fldDisplayTexts == null || fldColorIndex == null || fldStage == null || fldCorrectButtons == null || fldButtonInfo == null || fldButtonTextMesh == null)
-            yield break;
+        var fldDisplayTexts = GetArrayField<string[]>(comp, "message");
+        var fldColorIndex = GetArrayField<int>(comp, "textRandomiser");
+        var fldStage = GetIntField(comp, "pressCount");
+        var fldCorrectButtons = GetArrayField<int[]>(comp, "answerKey");
+        var fldButtonInfo = GetArrayField<string[]>(comp, "buttonRandomiser");
+        var fldButtonTextMesh = GetArrayField<TextMesh>(comp, "buttonText", isPublic: true);
 
         yield return null;
 
@@ -2174,8 +2136,8 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "BamboozlingButtonScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldRandomiser = GetField<int[]>(comp, "randomiser");
-        var fldStage = GetField<int>(comp, "stage");
+        var fldRandomiser = GetArrayField<int>(comp, "randomiser");
+        var fldStage = GetIntField(comp, "stage");
 
         yield return null;
 
@@ -2228,10 +2190,7 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "Maker");
         var fldSolved = GetField<bool>(comp, "_IsSolved");
-        var fldIngredientIxs = GetField<int[]>(comp, "ingIndices");
-
-        if (comp == null || fldSolved == null || fldIngredientIxs == null)
-            yield break;
+        var fldIngredientIxs = GetArrayField<int>(comp, "ingIndices");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -2256,9 +2215,6 @@ public class SouvenirModule : MonoBehaviour
         var fldSolved = GetField<bool>(comp, "_solved");
         var fldSolution = GetField<Array>(comp, "_currentSolution");
 
-        if (comp == null || fldSolved == null || fldSolution == null)
-            yield break;
-
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
 
@@ -2281,16 +2237,13 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "BinaryLeds");
         var fldSequences = GetField<int[,]>(comp, "sequences");
-        var fldSequenceIndex = GetField<int>(comp, "sequenceIndex");
-        var fldColors = GetField<int[]>(comp, "colorIndices");
+        var fldSequenceIndex = GetIntField(comp, "sequenceIndex");
+        var fldColors = GetArrayField<int>(comp, "colorIndices");
         var fldSolutions = GetField<int[,]>(comp, "solutions");
-        var fldWires = GetField<KMSelectable[]>(comp, "wires", isPublic: true);
+        var fldWires = GetArrayField<KMSelectable>(comp, "wires", isPublic: true);
         var fldSolved = GetField<bool>(comp, "solved");
         var fldBlinkDelay = GetField<float>(comp, "blinkDelay");
         var mthGetIndexFromTime = GetMethod<int>(comp, "GetIndexFromTime", 2);
-
-        if (comp == null || fldSequences == null || fldSequenceIndex == null || fldColors == null || fldSolutions == null || fldWires == null || fldSolved == null || fldBlinkDelay == null || mthGetIndexFromTime == null)
-            yield break;
 
         yield return null;
 
@@ -2367,11 +2320,8 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessBitmaps(KMBombModule module)
     {
         var comp = GetComponent(module, "BitmapsModule");
-        var fldBitmap = GetField<bool[][]>(comp, "_bitmap");
+        var fldBitmap = GetArrayField<bool[]>(comp, "_bitmap");
         var fldIsSolved = GetField<bool>(comp, "_isSolved");
-
-        if (comp == null || fldBitmap == null || fldIsSolved == null)
-            yield break;
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
@@ -2405,12 +2355,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "BlindMaze");
         // Despite the name “currentMaze”, the field actually contains the number of solved modules when Blind Maze was solved
-        var fldNumSolved = GetField<int>(comp, "currentMaze");
-        var fldButtonColors = GetField<int[]>(comp, "buttonColors");
+        var fldNumSolved = GetIntField(comp, "currentMaze");
+        var fldButtonColors = GetArrayField<int>(comp, "buttonColors");
         var fldSolved = GetField<bool>(comp, "Solved");
-
-        if (comp == null || fldNumSolved == null || fldButtonColors == null || fldSolved == null)
-            yield break;
 
         yield return null;
 
@@ -2447,9 +2394,6 @@ public class SouvenirModule : MonoBehaviour
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldTiles = GetField<Array>(comp, "tiles", isPublic: true);
         var fldLegalLetters = GetField<List<string>>(comp, "legalLetters", isPublic: true);
-
-        if (comp == null || fldSolved == null || fldTiles == null || fldLegalLetters == null)
-            yield break;
 
         var tiles = fldTiles.Get();
         var lastPress = "";
@@ -2510,9 +2454,6 @@ public class SouvenirModule : MonoBehaviour
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldCoord = GetField<string>(comp, "coord");
 
-        if (comp == null || fldSolved == null || fldCoord == null)
-            yield break;
-
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_BlueArrows);
@@ -2536,11 +2477,8 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "BobBarks");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldIndicators = GetField<int[]>(comp, "assigned");
-        var fldFlashes = GetField<int[]>(comp, "stages");
-
-        if (comp == null || fldSolved == null || fldIndicators == null || fldFlashes == null)
-            yield break;
+        var fldIndicators = GetArrayField<int>(comp, "assigned");
+        var fldFlashes = GetArrayField<int>(comp, "stages");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -2589,11 +2527,8 @@ public class SouvenirModule : MonoBehaviour
         var fldSolved = GetField<bool>(comp, "_isSolved");
         var fldMap = GetField<char[,]>(comp, "letterMap");
         var fldVisible = GetField<string>(comp, "visableLetters", isPublic: true);
-        var fldVerOffset = GetField<int>(comp, "verOffset");
-        var fldHorOffset = GetField<int>(comp, "horOffset");
-
-        if (comp == null || fldSolved == null || fldMap == null || fldVisible == null || fldVerOffset == null || fldHorOffset == null)
-            yield break;
+        var fldVerOffset = GetIntField(comp, "verOffset");
+        var fldHorOffset = GetIntField(comp, "horOffset");
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
@@ -2643,18 +2578,14 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "boxing");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldContestantStrengths = GetField<int[]>(comp, "contestantStrengths");
-        var fldContestantIndices = GetField<int[]>(comp, "contestantIndices");
-        var fldLastNameIndices = GetField<int[]>(comp, "lastNameIndices");
-        var fldSubstituteIndices = GetField<int[]>(comp, "substituteIndices");
-        var fldSubstituteLastNameIndices = GetField<int[]>(comp, "substituteLastNameIndices");
+        var fldContestantStrengths = GetArrayField<int>(comp, "contestantStrengths");
+        var fldContestantIndices = GetArrayField<int>(comp, "contestantIndices");
+        var fldLastNameIndices = GetArrayField<int>(comp, "lastNameIndices");
+        var fldSubstituteIndices = GetArrayField<int>(comp, "substituteIndices");
+        var fldSubstituteLastNameIndices = GetArrayField<int>(comp, "substituteLastNameIndices");
         var fldPossibleNames = GetStaticField<string[]>(comp.GetType(), "possibleNames");
         var fldPossibleSubstituteNames = GetStaticField<string[]>(comp.GetType(), "possibleSubstituteNames");
         var fldPossibleLastNames = GetStaticField<string[]>(comp.GetType(), "possibleLastNames");
-
-        if (comp == null || fldSolved == null || fldContestantStrengths == null || fldContestantIndices == null || fldLastNameIndices == null
-            || fldSubstituteIndices == null || fldSubstituteLastNameIndices == null || fldPossibleNames == null || fldPossibleSubstituteNames == null || fldPossibleLastNames == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -2707,9 +2638,6 @@ public class SouvenirModule : MonoBehaviour
         var fldWord = GetField<string>(comp, "_word");
         var fldSolved = GetField<bool>(comp, "_isSolved");
 
-        if (comp == null || fldWord == null || fldSolved == null)
-            yield break;
-
         yield return null;
 
         while (!fldSolved.Get())
@@ -2723,9 +2651,6 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "BrokenButtonModule");
         var fldPressed = GetField<List<string>>(comp, "Pressed");
         var fldSolved = GetField<bool>(comp, "Solved");
-
-        if (comp == null || fldPressed == null || fldSolved == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -2751,11 +2676,8 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "BurglarAlarmScript");
         var fldDisplayText = GetField<TextMesh>(comp, "DisplayText", isPublic: true);
-        var fldModuleNumber = GetField<int[]>(comp, "moduleNumber");
+        var fldModuleNumber = GetArrayField<int>(comp, "moduleNumber");
         var fldSolved = GetField<bool>(comp, "isSolved");
-
-        if (comp == null || fldDisplayText == null || fldModuleNumber == null || fldSolved == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -2816,10 +2738,7 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "ButtonSequencesModule");
         var fldPanelInfo = GetField<Array>(comp, "PanelInfo");
         var fldButtonsActive = GetField<bool>(comp, "buttonsActive");
-        var fldColorNames = GetField<string[]>(comp, "ColorNames");
-
-        if (comp == null || fldPanelInfo == null || fldButtonsActive == null || fldColorNames == null)
-            yield break;
+        var fldColorNames = GetArrayField<string>(comp, "ColorNames");
 
         while (fldButtonsActive.Get())
             yield return new WaitForSeconds(.1f);
@@ -2833,7 +2752,7 @@ public class SouvenirModule : MonoBehaviour
         }
 
         var obj = panelInfo.GetValue(0, 0);
-        var fldColor = GetField<int>(obj, "color", isPublic: true);
+        var fldColor = GetIntField(obj, "color", isPublic: true);
         var colorNames = fldColorNames.Get();
         if (obj == null || fldColor == null || colorNames == null)
             yield break;
@@ -2859,7 +2778,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessCaesarCycle(KMBombModule module)
     {
-        return processSpeakingEvilCycle1(module, "CaesarCycleScript", "Caesar Cycle", Question.CaesarCycleWord, _CaesarCycle);
+        return processSpeakingEvilCycle1(module, "CaesarCycleScript", Question.CaesarCycleWord, _CaesarCycle);
     }
 
     private IEnumerable<object> ProcessCalendar(KMBombModule module)
@@ -2868,9 +2787,6 @@ public class SouvenirModule : MonoBehaviour
         var fldColorblindText = GetField<TextMesh>(comp, "colorblindText", isPublic: true);
         var fldLightsOn = GetField<bool>(comp, "_lightsOn");
         var fldIsSolved = GetField<bool>(comp, "_isSolved");
-
-        if (comp == null || fldColorblindText == null || fldLightsOn == null || fldIsSolved == null)
-            yield break;
 
         while (!fldLightsOn.Get())
             yield return new WaitForSeconds(.1f);
@@ -2889,13 +2805,10 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "moduleScript");
         var fldSolved = GetField<bool>(comp, "solved");
-        var fldAnswers = GetField<string[]>(comp, "answers");
-        var fldFirstSet = GetField<string[]>(comp, "possibleFirstAnswers");
-        var fldSecondSet = GetField<string[]>(comp, "possibleSecondAnswers");
-        var fldThirdSet = GetField<string[]>(comp, "possibleFinalAnswers");
-
-        if (comp == null || fldSolved == null || fldAnswers == null || fldFirstSet == null || fldSecondSet == null || fldThirdSet == null)
-            yield break;
+        var fldAnswers = GetArrayField<string>(comp, "answers");
+        var fldFirstSet = GetArrayField<string>(comp, "possibleFirstAnswers");
+        var fldSecondSet = GetArrayField<string>(comp, "possibleSecondAnswers");
+        var fldThirdSet = GetArrayField<string>(comp, "possibleFinalAnswers");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -2938,9 +2851,6 @@ public class SouvenirModule : MonoBehaviour
         var fldWaiting = GetField<bool>(comp, "waiting");
         var fldSolved = GetField<bool>(comp, "solved");
 
-        if (comp == null || fldPaid == null || fldDisplay == null || fldWaiting == null || fldSolved == null)
-            yield break;
-
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
 
@@ -2962,11 +2872,8 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessChess(KMBombModule module)
     {
         var comp = GetComponent(module, "ChessBehaviour");
-        var fldIndexSelected = GetField<int[]>(comp, "indexSelected"); // this contains both the coordinates and the solution
+        var fldIndexSelected = GetArrayField<int>(comp, "indexSelected"); // this contains both the coordinates and the solution
         var fldIsSolved = GetField<bool>(comp, "isSolved", isPublic: true);
-
-        if (comp == null || fldIndexSelected == null || fldIsSolved == null)
-            yield break;
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
@@ -2992,11 +2899,8 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "chineseCounting");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldIndex1 = GetField<int>(comp, "ledIndex");
-        var fldIndex2 = GetField<int>(comp, "led2Index");
-
-        if (comp == null || fldSolved == null || fldIndex1 == null || fldIndex2 == null)
-            yield break;
+        var fldIndex1 = GetIntField(comp, "ledIndex");
+        var fldIndex2 = GetIntField(comp, "led2Index");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -3025,9 +2929,6 @@ public class SouvenirModule : MonoBehaviour
         var fldIsSolved = GetField<bool>(comp, "isSolved", isPublic: true);
         var fldGivenChord = GetField<object>(comp, "givenChord");
 
-        if (comp == null || fldLights == null || fldIsSolved == null || fldGivenChord == null)
-            yield break;
-
         var givenChord = fldGivenChord.Get();
         var fldNotes = givenChord == null ? null : GetField<Array>(givenChord, "notes");
         var notes = fldNotes == null ? null : fldNotes.Get();
@@ -3035,9 +2936,6 @@ public class SouvenirModule : MonoBehaviour
         var quality = fldQuality == null ? null : fldQuality.Get();
         var fldQualityName = quality == null ? null : GetField<string>(quality, "name");
         var qualityName = fldQualityName == null ? null : fldQualityName.Get();
-
-        if (givenChord == null || fldNotes == null || notes == null || fldQuality == null || quality == null || fldQualityName == null || qualityName == null)
-            yield break;
 
         if (notes.Length != 4)
         {
@@ -3072,12 +2970,9 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessCode(KMBombModule module)
     {
         var comp = GetComponent(module, "TheCodeModule");
-        var fldCode = GetField<int>(comp, "moduleNumber");
+        var fldCode = GetIntField(comp, "moduleNumber");
         var fldResetBtn = GetField<KMSelectable>(comp, "ButtonR", isPublic: true);
         var fldSubmitBtn = GetField<KMSelectable>(comp, "ButtonS", isPublic: true);
-
-        if (comp == null || fldCode == null || fldResetBtn == null || fldSubmitBtn == null)
-            yield break;
 
         var code = fldCode.Get();
 
@@ -3108,13 +3003,10 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessCoffeebucks(KMBombModule module)
     {
         var comp = GetComponent(module, "coffeebucksScript");
-        var fldNames = GetField<string[]>(comp, "nameOptions", isPublic: true);
-        var fldCoffees = GetField<string[]>(comp, "coffeeOptions", isPublic: true);
-        var fldCurrName = GetField<int>(comp, "startName");
-        var fldCurrCoffee = GetField<int>(comp, "startCoffee");
-
-        if (comp == null || fldNames == null || fldCoffees == null || fldCurrName == null || fldCurrCoffee == null)
-            yield break;
+        var fldNames = GetArrayField<string>(comp, "nameOptions", isPublic: true);
+        var fldCoffees = GetArrayField<string>(comp, "coffeeOptions", isPublic: true);
+        var fldCurrName = GetIntField(comp, "startName");
+        var fldCurrCoffee = GetIntField(comp, "startCoffee");
 
         var solved = false;
         module.OnPass += delegate { solved = true; return false; };
@@ -3154,11 +3046,8 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "ColorBrailleModule");
         var fldSolved = GetField<bool>(comp, "_isSolved");
-        var fldWords = GetField<string[]>(comp, "_words");
+        var fldWords = GetArrayField<string>(comp, "_words");
         var fldMangling = GetField<object>(comp, "_mangling");
-
-        if (comp == null || fldSolved == null || fldWords == null || fldMangling == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -3227,13 +3116,10 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessColorDecoding(KMBombModule module)
     {
         var comp = GetComponent(module, "ColorDecoding");
-        var fldInputButtons = GetField<KMSelectable[]>(comp, "InputButtons", isPublic: true);
-        var fldStageNum = GetField<int>(comp, "stagenum");
+        var fldInputButtons = GetArrayField<KMSelectable>(comp, "InputButtons", isPublic: true);
+        var fldStageNum = GetIntField(comp, "stagenum");
         var fldIndicator = GetField<object>(comp, "indicator");
-        var fldIndicatorGrid = GetField<GameObject[]>(comp, "IndicatorGrid", isPublic: true);
-
-        if (comp == null || fldInputButtons == null || fldStageNum == null || fldIndicator == null || fldIndicatorGrid == null)
-            yield break;
+        var fldIndicatorGrid = GetArrayField<GameObject>(comp, "IndicatorGrid", isPublic: true);
 
         var indicatorGrid = fldIndicatorGrid.Get();
         if (indicatorGrid == null)
@@ -3324,25 +3210,19 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "ColoredKeysScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldColors = GetField<string[]>(comp, "loggingWords", isPublic: true);
-        var fldMats = GetField<Material[]>(comp, "buttonmats", isPublic: true);
-        var fldLetters = GetField<string[]>(comp, "letters", isPublic: true);
-        var fldBtn1Letter = GetField<int>(comp, "b1LetIndex");
-        var fldBtn2Letter = GetField<int>(comp, "b2LetIndex");
-        var fldBtn3Letter = GetField<int>(comp, "b3LetIndex");
-        var fldBtn4Letter = GetField<int>(comp, "b4LetIndex");
-        var fldBtn1Color = GetField<int>(comp, "b1ColIndex");
-        var fldBtn2Color = GetField<int>(comp, "b2ColIndex");
-        var fldBtn3Color = GetField<int>(comp, "b3ColIndex");
-        var fldBtn4Color = GetField<int>(comp, "b4ColIndex");
-        var fldDisplayWord = GetField<int>(comp, "displayIndex");
-        var fldDisplayColor = GetField<int>(comp, "displayColIndex");
-
-        if (comp == null || fldSolved == null || fldColors == null || fldMats == null || fldLetters == null ||
-            fldBtn1Letter == null || fldBtn2Letter == null || fldBtn3Letter == null || fldBtn4Letter == null ||
-            fldBtn1Color == null || fldBtn2Color == null || fldBtn3Color == null || fldBtn4Color == null ||
-            fldDisplayWord == null || fldDisplayColor == null)
-            yield break;
+        var fldColors = GetArrayField<string>(comp, "loggingWords", isPublic: true);
+        var fldMats = GetArrayField<Material>(comp, "buttonmats", isPublic: true);
+        var fldLetters = GetArrayField<string>(comp, "letters", isPublic: true);
+        var fldBtn1Letter = GetIntField(comp, "b1LetIndex");
+        var fldBtn2Letter = GetIntField(comp, "b2LetIndex");
+        var fldBtn3Letter = GetIntField(comp, "b3LetIndex");
+        var fldBtn4Letter = GetIntField(comp, "b4LetIndex");
+        var fldBtn1Color = GetIntField(comp, "b1ColIndex");
+        var fldBtn2Color = GetIntField(comp, "b2ColIndex");
+        var fldBtn3Color = GetIntField(comp, "b3ColIndex");
+        var fldBtn4Color = GetIntField(comp, "b4ColIndex");
+        var fldDisplayWord = GetIntField(comp, "displayIndex");
+        var fldDisplayColor = GetIntField(comp, "displayColIndex");
 
         var solved = false;
         module.OnPass += delegate { solved = true; return false; };
@@ -3397,9 +3277,6 @@ public class SouvenirModule : MonoBehaviour
         var fldExpectedPresses = GetField<object>(comp, "_expectedPresses");
         var fldFirstStageColor = GetField<object>(comp, "_firstStageColor");
 
-        if (comp == null || fldExpectedPresses == null || fldFirstStageColor == null)
-            yield break;
-
         yield return null;
 
         // Colored Squares sets _expectedPresses to null when it’s solved
@@ -3413,12 +3290,9 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessColoredSwitches(KMBombModule module)
     {
         var comp = GetComponent(module, "ColoredSwitchesModule");
-        var fldSwitches = GetField<int>(comp, "_switchState");
-        var fldSolution = GetField<int>(comp, "_solutionState");
+        var fldSwitches = GetIntField(comp, "_switchState");
+        var fldSolution = GetIntField(comp, "_solutionState");
         var fldSolved = GetField<bool>(comp, "_isSolved");
-        if (comp == null || fldSwitches == null || fldSolved == null)
-            yield break;
-
         yield return null;
         var initial = fldSwitches.Get();
         if (initial < 0 || initial >= (1 << 5))
@@ -3447,13 +3321,10 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessColorMorse(KMBombModule module)
     {
         var comp = GetComponent(module, "ColorMorseModule");
-        var fldNumbers = GetField<int[]>(comp, "Numbers");
-        var fldColors = GetField<int[]>(comp, "Colors");
-        var fldColorNames = GetField<string[]>(comp, "ColorNames", isPublic: true);
+        var fldNumbers = GetArrayField<int>(comp, "Numbers");
+        var fldColors = GetArrayField<int>(comp, "Colors");
+        var fldColorNames = GetArrayField<string>(comp, "ColorNames", isPublic: true);
         var fldFlashingEnabled = GetField<bool>(comp, "flashingEnabled");
-
-        if (comp == null || fldNumbers == null || fldColors == null || fldColorNames == null || fldFlashingEnabled == null)
-            yield break;
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
@@ -3489,9 +3360,6 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "CoordinatesModule");
         var fldFirstSubmitted = GetField<int?>(comp, "_firstCorrectSubmitted");
         var fldClues = GetField<IList>(comp, "_clues");
-
-        if (comp == null || fldFirstSubmitted == null || fldClues == null)
-            yield break;
 
         while (fldFirstSubmitted.Get(nullAllowed: true) == null)
             yield return new WaitForSeconds(.1f);
@@ -3558,11 +3426,8 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessCorners(KMBombModule module)
     {
         var comp = GetComponent(module, "CornersModule");
-        var fldClampColors = GetField<int[]>(comp, "_clampColors");
+        var fldClampColors = GetArrayField<int>(comp, "_clampColors");
         var fldSolved = GetField<bool>(comp, "_moduleSolved");
-
-        if (comp == null || fldClampColors == null || fldSolved == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -3592,9 +3457,6 @@ public class SouvenirModule : MonoBehaviour
         var fldGridItems = GetField<Array>(comp, "originalGridItems");
         var fldSolved = GetField<bool>(comp, "isSolved");
 
-        if (comp == null || fldGridItems == null || fldSolved == null)
-            yield break;
-
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Crackbox);
@@ -3608,7 +3470,7 @@ public class SouvenirModule : MonoBehaviour
         var obj = array.GetValue(0);
         var fldIsBlack = GetField<bool>(obj, "IsBlack", isPublic: true);
         var fldIsLocked = GetField<bool>(obj, "IsLocked", isPublic: true);
-        var fldValue = GetField<int>(obj, "Value", isPublic: true);
+        var fldValue = GetIntField(obj, "Value", isPublic: true);
         if (fldIsBlack == null || fldIsLocked == null || fldValue == null)
             yield break;
 
@@ -3628,11 +3490,8 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "CreationModule");
         var fldSolved = GetField<bool>(comp, "Solved");
-        var fldDay = GetField<int>(comp, "Day");
+        var fldDay = GetIntField(comp, "Day");
         var fldWeather = GetField<string>(comp, "Weather");
-
-        if (comp == null || fldSolved == null || fldDay == null || fldWeather == null)
-            yield break;
 
         var weatherNames = GetAnswers(Question.CreationWeather);
 
@@ -3682,9 +3541,6 @@ public class SouvenirModule : MonoBehaviour
         var fldRotations = GetField<List<int>>(comp, "selectedRotations");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
 
-        if (comp == null || fldSolved == null || fldRotations == null)
-            yield break;
-
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Cube);
@@ -3713,14 +3569,11 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "deckOfManyThingsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldSolution = GetField<int>(comp, "solution");
+        var fldSolution = GetIntField(comp, "solution");
         var fldDeck = GetField<Array>(comp, "deck");
-        var fldBtns = GetField<KMSelectable[]>(comp, "btns", isPublic: true);
+        var fldBtns = GetArrayField<KMSelectable>(comp, "btns", isPublic: true);
         var fldPrevCard = GetField<KMSelectable>(comp, "prevCard", isPublic: true);
         var fldNextCard = GetField<KMSelectable>(comp, "nextCard", isPublic: true);
-
-        if (comp == null || fldSolved == null || fldSolution == null || fldDeck == null || fldBtns == null || fldPrevCard == null || fldNextCard == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -3783,9 +3636,6 @@ public class SouvenirModule : MonoBehaviour
         var fldColColor = GetField<string>(comp, "_color1");
         var fldRowColor = GetField<string>(comp, "_color2");
 
-        if (comp == null || fldSolved == null || fldColColor == null || fldRowColor == null)
-            yield break;
-
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_DecoloredSquares);
@@ -3806,10 +3656,7 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "DiscoloredSquaresModule");
         var fldSolved = GetField<bool>(comp, "_isSolved");
         var fldColors = GetField<Array>(comp, "_rememberedColors");
-        var fldPositions = GetField<int[]>(comp, "_rememberedPositions");
-
-        if (comp == null || fldSolved == null || fldColors == null || fldPositions == null)
-            yield break;
+        var fldPositions = GetArrayField<int>(comp, "_rememberedPositions");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -3849,12 +3696,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "doubleColor");
         var fldSolved = GetField<bool>(comp, "_isSolved");
-        var fldColor = GetField<int>(comp, "screenColor");
-        var fldStage = GetField<int>(comp, "stageNumber");
+        var fldColor = GetIntField(comp, "screenColor");
+        var fldStage = GetIntField(comp, "stageNumber");
         var fldSubmitBtn = GetField<KMSelectable>(comp, "submit", isPublic: true);
-
-        if (comp == null || fldSolved == null || fldColor == null || fldStage == null || fldSubmitBtn == null)
-            yield break;
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
@@ -3909,9 +3753,6 @@ public class SouvenirModule : MonoBehaviour
         var fldFunctions = GetField<Array>(comp, "_functions");
         var fldIsSolved = GetField<bool>(comp, "_isSolved");
 
-        if (comp == null || fldFunctions == null || fldIsSolved == null)
-            yield break;
-
         while (!fldIsSolved.Get())
             yield return new WaitForSeconds(.1f);
 
@@ -3930,13 +3771,10 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessDrDoctor(KMBombModule module)
     {
         var comp = GetComponent(module, "DrDoctorModule");
-        var fldSymptoms = GetField<string[]>(comp, "_selectableSymptoms");
-        var fldDiagnoses = GetField<string[]>(comp, "_selectableDiagnoses");
+        var fldSymptoms = GetArrayField<string>(comp, "_selectableSymptoms");
+        var fldDiagnoses = GetArrayField<string>(comp, "_selectableDiagnoses");
         var fldDiagnoseText = GetField<TextMesh>(comp, "DiagnoseText", isPublic: true);
         var fldSolved = GetField<bool>(comp, "_isSolved");
-
-        if (comp == null || fldSymptoms == null || fldDiagnoses == null || fldDiagnoseText == null || fldSolved == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -3959,10 +3797,7 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "ElderFutharkScript");
 
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldPickedRuneNames = GetField<string[]>(comp, "pickedRuneNames");
-
-        if (comp == null || fldSolved == null || fldPickedRuneNames == null)
-            yield break;
+        var fldPickedRuneNames = GetArrayField<string>(comp, "pickedRuneNames");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -3990,9 +3825,6 @@ public class SouvenirModule : MonoBehaviour
         var fldSolved = GetField<bool>(comp, "isSolved");
         var fldEquation = GetField<object>(comp, "CurrentEquation");
 
-        if (comp == null || fldSolved == null || fldEquation == null)
-            yield break;
-
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_EncryptedEquations);
@@ -4012,7 +3844,7 @@ public class SouvenirModule : MonoBehaviour
         var shapes = fldShapes.Select(fld => fld.Get()).ToArray();
         if (shapes.Contains(null))
             yield break;
-        var fldTextureIndexes = shapes.Select(sh => GetField<int>(sh, "TextureIndex", isPublic: true)).ToArray();
+        var fldTextureIndexes = shapes.Select(sh => GetIntField(sh, "TextureIndex", isPublic: true)).ToArray();
         if (fldTextureIndexes.Contains(null))
             yield break;
         var textureIndexes = fldTextureIndexes.Select(fld => fld.Get()).ToArray();
@@ -4033,10 +3865,7 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "HangmanScript");
         var fldSolved = GetField<bool>(comp, "isSolved", isPublic: true);
         var fldModuleName = GetField<string>(comp, "moduleName", isPublic: true);
-        var fldEncryptionMethod = GetField<int>(comp, "encryptionMethod");
-
-        if (comp == null || fldSolved == null || fldModuleName == null)
-            yield break;
+        var fldEncryptionMethod = GetIntField(comp, "encryptionMethod");
 
         var moduleName = fldModuleName.Get();
         if (moduleName == null)
@@ -4077,15 +3906,12 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "EncryptedMorseModule");
         var fldSolved = GetField<bool>(comp, "solved");
-        var fldIndex = GetField<int>(comp, "callResponseIndex");
+        var fldIndex = GetIntField(comp, "callResponseIndex");
         var fldCalls = GetStaticField<string[]>(comp.GetType(), "calls");
         var fldResponses = GetStaticField<string[]>(comp.GetType(), "responses");
 
         string[] formatCalls = { "Detonate", "Ready Now", "We're Dead", "She Sells", "Remember", "Great Job", "Solo This", "Keep Talk" };
         string[] formatResponses = { "Please No", "Cheesecake", "Sadface", "Sea Shells", "Souvenir", "Thank You", "I Dare You", "No Explode" };
-
-        if (comp == null || fldSolved == null || fldIndex == null || fldCalls == null || fldResponses == null)
-            yield break;
 
         int index = fldIndex.Get();
         string[] calls = fldCalls.Get();
@@ -4116,9 +3942,6 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "EquationsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldSymbolDisplay = GetField<GameObject>(comp, "symboldisplay", isPublic: true);
-
-        if (comp == null || fldSolved == null || fldSymbolDisplay == null)
-            yield break;
 
         while (!_isActivated)
             yield return new WaitForSeconds(0.1f);
@@ -4167,10 +3990,7 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "Etterna");
         var fldSolved = GetField<bool>(comp, "isSolved");
-        var fldCorrect = GetField<byte[]>(comp, "correct");
-
-        if (comp == null || fldSolved == null || fldCorrect == null)
-            yield break;
+        var fldCorrect = GetArrayField<byte>(comp, "correct");
 
         yield return null;
 
@@ -4202,11 +4022,8 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "FactoryMazeScript");
         var fldSolved = GetField<bool>(comp, "solved");
-        var fldUsedRooms = GetField<string[]>(comp, "usedRooms");
-        var fldStartRoom = GetField<int>(comp, "startRoom");
-
-        if (comp == null || fldSolved == null || fldUsedRooms == null || fldStartRoom == null)
-            yield break;
+        var fldUsedRooms = GetArrayField<string>(comp, "usedRooms");
+        var fldStartRoom = GetIntField(comp, "startRoom");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -4240,9 +4057,6 @@ public class SouvenirModule : MonoBehaviour
         var fldScreen = GetField<TextMesh>(comp, "Screen", isPublic: true);
         var fldSolved = GetField<bool>(comp, "_isSolved");
 
-        if (comp == null || fldScreen == null || fldSolved == null)
-            yield break;
-
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
 
@@ -4274,12 +4088,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "FaultyRGBMazeScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldKeyPos = GetField<int[][]>(comp, "keylocations");
-        var fldMazeNum = GetField<int[][]>(comp, "mazenumber");
-        var fldExitPos = GetField<int[]>(comp, "exitlocation");
-
-        if (comp == null || fldSolved == null || fldKeyPos == null || fldMazeNum == null || fldExitPos == null)
-            yield break;
+        var fldKeyPos = GetArrayField<int[]>(comp, "keylocations");
+        var fldMazeNum = GetArrayField<int[]>(comp, "mazenumber");
+        var fldExitPos = GetArrayField<int>(comp, "exitlocation");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -4353,11 +4164,8 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "FlagsModule");
         var fldMainCountry = GetField<object>(comp, "mainCountry");
         var fldCountries = GetField<IList>(comp, "countries");
-        var fldNumber = GetField<int>(comp, "number");
+        var fldNumber = GetIntField(comp, "number");
         var fldCanInteract = GetField<bool>(comp, "canInteract");
-
-        if (comp == null || fldMainCountry == null || fldCountries == null || fldNumber == null || fldCanInteract == null)
-            yield break;
 
         yield return null;
 
@@ -4408,9 +4216,6 @@ public class SouvenirModule : MonoBehaviour
         var fldTopColors = GetField<List<int>>(comp, "selectedColours");
         var fldBottomColors = GetField<List<int>>(comp, "selectedColours2");
 
-        if (comp == null || fldSolved == null || fldTopColors == null || fldBottomColors == null)
-            yield break;
-
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_FlashingLights);
@@ -4448,17 +4253,14 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessForgetTheColors(KMBombModule module)
     {
         var comp = GetComponent(module, "FTC");
-        var fldStage = GetField<int>(comp, "stage");
-        var fldMaxStage = GetField<int>(comp, "maxStage");
+        var fldStage = GetIntField(comp, "stage");
+        var fldMaxStage = GetIntField(comp, "maxStage");
 
         var fldGear = GetField<List<byte>>(comp, "gear");
         var fldLargeDisplay = GetField<List<short>>(comp, "largeDisplay");
         var fldSineNumber = GetField<List<int>>(comp, "sineNumber");
         var fldGearColor = GetField<List<string>>(comp, "gearColor");
         var fldRuleColor = GetField<List<string>>(comp, "ruleColor");
-
-        if (comp == null || fldStage == null || fldGear == null || fldLargeDisplay == null || fldSineNumber == null || fldGearColor == null || fldRuleColor == null)
-            yield break;
 
         yield return null;
 
@@ -4569,11 +4371,8 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "FreeParkingScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldTokens = GetField<Material[]>(comp, "tokenOptions", isPublic: true);
-        var fldSelected = GetField<int>(comp, "tokenIndex");
-
-        if (comp == null || fldSolved == null || fldTokens == null || fldSelected == null)
-            yield break;
+        var fldTokens = GetArrayField<Material>(comp, "tokenOptions", isPublic: true);
+        var fldSelected = GetIntField(comp, "tokenIndex");
 
         Material[] tokens = fldTokens.Get();
         int selected = fldSelected.Get();
@@ -4601,14 +4400,11 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessFunctions(KMBombModule module)
     {
         var comp = GetComponent(module, "qFunctions");
-        var fldFirstLastDigit = GetField<int>(comp, "firstLastDigit");
+        var fldFirstLastDigit = GetIntField(comp, "firstLastDigit");
         var fldSolved = GetField<bool>(comp, "isSolved");
-        var fldLeftNum = GetField<int>(comp, "numberA");
-        var fldRightNum = GetField<int>(comp, "numberB");
+        var fldLeftNum = GetIntField(comp, "numberA");
+        var fldRightNum = GetIntField(comp, "numberB");
         var fldLetter = GetField<string>(comp, "ruleLetter");
-
-        if (comp == null || fldFirstLastDigit == null || fldSolved == null || fldLeftNum == null || fldRightNum == null || fldLetter == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -4659,12 +4455,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "giantsDrinkScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldSolEvenStrikes = GetField<int>(comp, "evenStrikes");
-        var fldSolOddStrikes = GetField<int>(comp, "oddStrikes");
-        var fldLiquids = GetField<int[]>(comp, "liquid");
-
-        if (comp == null || fldSolved == null || fldSolEvenStrikes == null || fldSolOddStrikes == null || fldLiquids == null)
-            yield break;
+        var fldSolEvenStrikes = GetIntField(comp, "evenStrikes");
+        var fldSolOddStrikes = GetIntField(comp, "oddStrikes");
+        var fldLiquids = GetArrayField<int>(comp, "liquid");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
@@ -4695,11 +4488,8 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "GreenArrowsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldNumDisplay = GetField<GameObject>(comp, "numDisplay", isPublic: true);
-        var fldStreak = GetField<int>(comp, "streak");
+        var fldStreak = GetIntField(comp, "streak");
         var fldAnimating = GetField<bool>(comp, "isanimating");
-
-        if (comp == null || fldSolved == null || fldNumDisplay == null || fldStreak == null || fldAnimating == null)
-            yield break;
 
         yield return null;
 
@@ -4746,11 +4536,8 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "GridlockModule");
         var fldSolved = GetField<bool>(comp, "_isSolved");
-        var fldPages = GetField<int[][]>(comp, "_pages");
-        var fldSolution = GetField<int>(comp, "_solution");
-
-        if (comp == null || fldSolved == null || fldPages == null || fldSolution == null)
-            yield break;
+        var fldPages = GetArrayField<int[]>(comp, "_pages");
+        var fldSolution = GetIntField(comp, "_solution");
 
         var colors = GetAnswers(Question.GridLockStartingColor);
         if (colors == null)
@@ -4783,12 +4570,9 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessGryphons(KMBombModule module)
     {
         var comp = GetComponent(module, "Gryphons");
-        var fldAge = GetField<int>(comp, "age");
+        var fldAge = GetIntField(comp, "age");
         var fldName = GetField<string>(comp, "theirName");
         var fldSolved = GetField<bool>(comp, "isSolved");
-
-        if (comp == null || fldAge == null || fldName == null || fldSolved == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -4814,12 +4598,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "LogicalButtonsScript");
         var fldSolved = GetField<bool>(comp, "isSolved");
-        var fldStage = GetField<int>(comp, "stage");
+        var fldStage = GetIntField(comp, "stage");
         var fldButtons = GetField<Array>(comp, "buttons");
         var fldGateOperator = GetField<object>(comp, "gateOperator");
-        if (comp == null || fldSolved == null || fldStage == null || fldButtons == null || fldGateOperator == null)
-            yield break;
-
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
 
@@ -4845,7 +4626,7 @@ public class SouvenirModule : MonoBehaviour
             {
                 fldLabel = fldLabel ?? GetField<string>(obj, "<Label>k__BackingField");
                 fldColor = fldColor ?? GetField<object>(obj, "<Color>k__BackingField");
-                fldIndex = fldIndex ?? GetField<int>(obj, "<Index>k__BackingField");
+                fldIndex = fldIndex ?? GetIntField(obj, "<Index>k__BackingField");
                 return fldLabel == null || fldColor == null || fldIndex == null
                     ? null
                     : new { Label = fldLabel.GetFrom(obj), Color = fldColor.GetFrom(obj), Index = fldIndex.GetFrom(obj) };
@@ -4926,12 +4707,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "hereditaryBaseNotationScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldInitialNum = GetField<int>(comp, "initialNumber");
-        var fldBaseN = GetField<int>(comp, "baseN");
+        var fldInitialNum = GetIntField(comp, "initialNumber");
+        var fldBaseN = GetIntField(comp, "baseN");
         var mthNumberToBaseNString = GetMethod<string>(comp, "numberToBaseNString", numParameters: 2);
-
-        if (comp == null || fldSolved == null || fldInitialNum == null || fldBaseN == null || mthNumberToBaseNString == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -4990,11 +4768,8 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "hexabuttonScript");
         var fldSolved = GetField<bool>(comp, "solved");
-        var fldLabels = GetField<string[]>(comp, "labels");
-        var fldIndex = GetField<int>(comp, "labelNum");
-
-        if (comp == null || fldSolved == null || fldLabels == null || fldIndex == null)
-            yield break;
+        var fldLabels = GetArrayField<string>(comp, "labels");
+        var fldIndex = GetIntField(comp, "labelNum");
 
         string[] labels = fldLabels.Get();
         int index = fldIndex.Get();
@@ -5017,7 +4792,7 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessHexamaze(KMBombModule module)
     {
         var comp = GetComponent(module, "HexamazeModule");
-        var fldPawnColor = GetField<int>(comp, "_pawnColor");
+        var fldPawnColor = GetIntField(comp, "_pawnColor");
         var fldSolved = GetField<bool>(comp, "_isSolved");
         if (comp == null | fldPawnColor == null || fldSolved == null)
             yield break;
@@ -5040,12 +4815,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "HexOS");
         var fldSolved = GetField<bool>(comp, "isSolved");
-        var fldDecipher = GetField<char[]>(comp, "decipher");
+        var fldDecipher = GetArrayField<char>(comp, "decipher");
         var fldSum = GetField<string>(comp, "sum");
         var fldScreen = GetField<string>(comp, "screen");
-
-        if (comp == null || fldSolved == null || fldDecipher == null || fldSum == null || fldScreen == null)
-            yield break;
 
         yield return null;
 
@@ -5110,12 +4882,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "HiddenColorsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldColor = GetField<int>(comp, "LEDColor");
+        var fldColor = GetIntField(comp, "LEDColor");
         var fldLed = GetField<Renderer>(comp, "LED", isPublic: true);
-        var fldColors = GetField<Material[]>(comp, "buttonColors", isPublic: true);
-
-        if (comp == null || fldSolved == null || fldColor == null || fldLed == null || fldColors == null)
-            yield break;
+        var fldColors = GetArrayField<Material>(comp, "buttonColors", isPublic: true);
 
         yield return null;
 
@@ -5145,9 +4914,6 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "HogwartsModule");
         var fldModuleNames = GetField<IDictionary>(comp, "_moduleNames");
         var fldSolved = GetField<bool>(comp, "_isSolved");
-
-        if (comp == null || fldModuleNames == null || fldSolved == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -5179,9 +4945,6 @@ public class SouvenirModule : MonoBehaviour
         var fldPos = GetField<List<int>>(comp, "correctStagePositions", isPublic: true);
         var fldLbl = GetField<List<int>>(comp, "correctStageLabels", isPublic: true);
         var fldColors = GetField<List<string>>(comp, "correctStageColours", isPublic: true);
-
-        if (comp == null || fldSolved == null || fldPos == null || fldLbl == null || fldColors == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -5233,14 +4996,11 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "HumanResourcesModule");
         var fldPeople = comp == null ? null : GetStaticField<Array>(comp.GetType(), "_people");
         var people = fldPeople == null ? null : fldPeople.Get();
-        var fldNames = GetField<int[]>(comp, "_availableNames");
-        var fldDescs = GetField<int[]>(comp, "_availableDescs");
-        var fldToHire = GetField<int>(comp, "_personToHire");
-        var fldToFire = GetField<int>(comp, "_personToFire");
+        var fldNames = GetArrayField<int>(comp, "_availableNames");
+        var fldDescs = GetArrayField<int>(comp, "_availableDescs");
+        var fldToHire = GetIntField(comp, "_personToHire");
+        var fldToFire = GetIntField(comp, "_personToFire");
         var fldSolved = GetField<bool>(comp, "_isSolved");
-
-        if (comp == null || fldPeople == null || people == null || fldNames == null || fldDescs == null || fldToHire == null || fldToFire == null || fldSolved == null)
-            yield break;
 
         if (people.Length != 16)
         {
@@ -5276,12 +5036,9 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessHunting(KMBombModule module)
     {
         var comp = GetComponent(module, "hunting");
-        var fldStage = GetField<int>(comp, "stage");
+        var fldStage = GetIntField(comp, "stage");
         var fldReverseClues = GetField<bool>(comp, "reverseClues");
         var fldAcceptingInput = GetField<bool>(comp, "acceptingInput");
-
-        if (comp == null || fldStage == null || fldReverseClues == null || fldAcceptingInput == null)
-            yield break;
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
@@ -5306,11 +5063,8 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessHypercube(KMBombModule module)
     {
         var comp = GetComponent(module, "TheHypercubeModule");
-        var fldSequence = GetField<int[]>(comp, "_rotations");
+        var fldSequence = GetArrayField<int>(comp, "_rotations");
         var fldRotations = GetStaticField<string[]>(comp.GetType(), "_rotationNames");
-
-        if (comp == null || fldSequence == null || fldRotations == null)
-            yield break;
 
         int[] sequence = fldSequence.Get();
         string[] rotations = fldRotations.Get();
@@ -5348,13 +5102,10 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessIceCream(KMBombModule module)
     {
         var comp = GetComponent(module, "IceCreamModule");
-        var fldCurrentStage = GetField<int>(comp, "CurrentStage");
-        var fldCustomers = GetField<int[]>(comp, "CustomerNamesSolution");
-        var fldSolution = GetField<int[]>(comp, "Solution");
-        var fldFlavourOptions = GetField<int[][]>(comp, "FlavorOptions");
-
-        if (comp == null || fldCurrentStage == null || fldCustomers == null || fldSolution == null || fldFlavourOptions == null)
-            yield break;
+        var fldCurrentStage = GetIntField(comp, "CurrentStage");
+        var fldCustomers = GetArrayField<int>(comp, "CustomerNamesSolution");
+        var fldSolution = GetArrayField<int>(comp, "Solution");
+        var fldFlavourOptions = GetArrayField<int[]>(comp, "FlavorOptions");
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
@@ -5408,9 +5159,6 @@ public class SouvenirModule : MonoBehaviour
         var fldAttireEntries = GetField<List<string>>(comp, "attireEntries");
         var fldButtonsToOverride = new[] { "hairLeft", "hairRight", "buildLeft", "buildRight", "attireLeft", "attireRight", "suspectLeft", "suspectRight", "convictBut" }.Select(fldName => GetField<KMSelectable>(comp, fldName, isPublic: true)).ToArray();
         var fldTextMeshes = new[] { "hairText", "buildText", "attireText", "suspectText" }.Select(fldName => GetField<TextMesh>(comp, fldName, isPublic: true)).ToArray();
-
-        if (comp == null || fldHairEntries == null || fldBuildEntries == null || fldAttireEntries == null || fldButtonsToOverride.Any(b => b == null) || fldTextMeshes.Any(b => b == null))
-            yield break;
 
         yield return null;
 
@@ -5473,11 +5221,8 @@ public class SouvenirModule : MonoBehaviour
         var fldSolved = GetField<bool>(comp, "_solved");
         var fldScreens = GetField<int[,]>(comp, "screens");
         var fldEdgeworkScreens = GetStaticField<bool[]>(comp.GetType(), "edgeworkScreens");
-        var fldEdgeworkPossibilities = GetField<string[]>(comp, "edgeworkPossibilities");
-        var fldButtonPossibilities = GetField<string[]>(comp, "buttonPossibilities");
-
-        if (comp == null || fldSolved == null || fldScreens == null || fldEdgeworkScreens == null || fldEdgeworkPossibilities == null || fldButtonPossibilities == null)
-            yield break;
+        var fldEdgeworkPossibilities = GetArrayField<string>(comp, "edgeworkPossibilities");
+        var fldButtonPossibilities = GetArrayField<string>(comp, "buttonPossibilities");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -5534,9 +5279,6 @@ public class SouvenirModule : MonoBehaviour
         var fldSolved = GetField<string>(comp, "solved");
         var fldDigits = GetField<List<string>>(comp, "pinDigits", isPublic: true);
 
-        if (comp == null || fldSolved == null || fldDigits == null)
-            yield break;
-
         var digits = fldDigits.Get();
 
         if (digits == null)
@@ -5561,12 +5303,9 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessJewelVault(KMBombModule module)
     {
         var comp = GetComponent(module, "jewelWheelsScript");
-        var fldWheels = GetField<KMSelectable[]>(comp, "wheels", isPublic: true);
+        var fldWheels = GetArrayField<KMSelectable>(comp, "wheels", isPublic: true);
         var fldAssignedWheels = GetField<List<KMSelectable>>(comp, "assignedWheels");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        if (comp == null || fldWheels == null || fldAssignedWheels == null || fldSolved == null)
-            yield break;
 
         var wheels = fldWheels.Get();
         var assignedWheels = fldAssignedWheels.Get();
@@ -5600,11 +5339,8 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessKudosudoku(KMBombModule module)
     {
         var comp = GetComponent(module, "KudosudokuModule");
-        var fldShown = GetField<bool[]>(comp, "_shown");
+        var fldShown = GetArrayField<bool>(comp, "_shown");
         var fldSolved = GetField<bool>(comp, "_isSolved");
-
-        if (comp == null || fldShown == null || fldSolved == null)
-            yield break;
 
         var shown = fldShown.Get();
         if (shown == null || shown.Length != 16)
@@ -5635,9 +5371,6 @@ public class SouvenirModule : MonoBehaviour
         var fldHatchesPressed = GetField<List<int>>(comp, "_hatchesAlreadyPressed");
         var fldSolved = GetField<bool>(comp, "_isSolved");
 
-        if (comp == null || fldLaserOrder == null || fldHatchesPressed == null || fldSolved == null)
-            yield break;
-
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Lasers);
@@ -5665,12 +5398,9 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessLEDEncryption(KMBombModule module)
     {
         var comp = GetComponent(module, "LEDEncryption");
-        var fldButtons = GetField<KMSelectable[]>(comp, "buttons", true);
-        var fldMultipliers = GetField<int[]>(comp, "layerMultipliers");
-        var fldStage = GetField<int>(comp, "layer");
-
-        if (comp == null || fldButtons == null || fldMultipliers == null || fldStage == null)
-            yield break;
+        var fldButtons = GetArrayField<KMSelectable>(comp, "buttons", true);
+        var fldMultipliers = GetArrayField<int>(comp, "layerMultipliers");
+        var fldStage = GetIntField(comp, "layer");
 
         while (!_isActivated)
             yield return new WaitForSeconds(0.1f);
@@ -5747,12 +5477,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "LEDMathScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldLedA = GetField<int>(comp, "ledAIndex");
-        var fldLedB = GetField<int>(comp, "ledBIndex");
-        var fldLedOp = GetField<int>(comp, "ledOpIndex");
-
-        if (comp == null || fldSolved == null || fldLedA == null || fldLedB == null || fldLedOp == null)
-            yield break;
+        var fldLedA = GetIntField(comp, "ledAIndex");
+        var fldLedB = GetIntField(comp, "ledBIndex");
+        var fldLedOp = GetIntField(comp, "ledOpIndex");
 
         yield return null;
 
@@ -5795,11 +5522,8 @@ public class SouvenirModule : MonoBehaviour
         var fldSolutionStruct = GetField<object>(comp, "SolutionStructure");
         var fldLeftButton = GetField<KMSelectable>(comp, "LeftButton", isPublic: true);
         var fldRightButton = GetField<KMSelectable>(comp, "RightButton", isPublic: true);
-        var fldSubmission = GetField<int[]>(comp, "Submission");
+        var fldSubmission = GetArrayField<int>(comp, "Submission");
         var mthUpdate = GetMethod(comp, "UpdateDisplays", numParameters: 0);
-
-        if (comp == null || fldSolutionStruct == null || fldLeftButton == null || fldRightButton == null || fldSubmission == null || mthUpdate == null)
-            yield break;
 
         var solutionStruct = fldSolutionStruct.Get();
         if (solutionStruct == null)
@@ -5852,8 +5576,8 @@ public class SouvenirModule : MonoBehaviour
         mthUpdate.Invoke();
 
         // Obtain the brick sizes and colors
-        var fldBrickColors = GetField<int>(pieces[0], "BrickColor", isPublic: true);
-        var fldBrickDimensions = GetField<int[]>(pieces[0], "Dimensions", isPublic: true);
+        var fldBrickColors = GetIntField(pieces[0], "BrickColor", isPublic: true);
+        var fldBrickDimensions = GetArrayField<int>(pieces[0], "Dimensions", isPublic: true);
         if (fldBrickColors == null || fldBrickDimensions == null)
             yield break;
 
@@ -5871,16 +5595,13 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "Listening");
         var fldIsActivated = GetField<bool>(comp, "isActivated");
-        var fldCodeInput = GetField<char[]>(comp, "codeInput");
-        var fldCodeInputPosition = GetField<int>(comp, "codeInputPosition");
+        var fldCodeInput = GetArrayField<char>(comp, "codeInput");
+        var fldCodeInputPosition = GetIntField(comp, "codeInputPosition");
         var fldSound = GetField<object>(comp, "sound");
         var fldDollarButton = GetField<KMSelectable>(comp, "DollarButton", isPublic: true);
         var fldPoundButton = GetField<KMSelectable>(comp, "PoundButton", isPublic: true);
         var fldStarButton = GetField<KMSelectable>(comp, "StarButton", isPublic: true);
         var fldAmpersandButton = GetField<KMSelectable>(comp, "AmpersandButton", isPublic: true);
-
-        if (comp == null || fldIsActivated == null || fldCodeInput == null || fldCodeInputPosition == null || fldSound == null || fldDollarButton == null || fldPoundButton == null || fldStarButton == null || fldAmpersandButton == null)
-            yield break;
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
@@ -5953,12 +5674,9 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "LogicGates");
         var fldGates = GetField<IList>(comp, "_gates");
         var fldInputs = GetField<List<int>>(comp, "_inputs");
-        var fldCurrentInputIndex = GetField<int>(comp, "_currentInputIndex");
+        var fldCurrentInputIndex = GetIntField(comp, "_currentInputIndex");
         var fldButtonNext = GetField<KMSelectable>(comp, "ButtonNext", isPublic: true);
         var fldButtonPrevious = GetField<KMSelectable>(comp, "ButtonPrevious", isPublic: true);
-
-        if (comp == null || fldGates == null || fldInputs == null || fldCurrentInputIndex == null || fldButtonNext == null || fldButtonPrevious == null)
-            yield break;
 
         var inputs = fldInputs.Get();
         var gates = fldGates.Get();
@@ -6020,15 +5738,12 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessLondonUnderground(KMBombModule module)
     {
         var comp = GetComponent(module, "londonUndergroundScript");
-        var fldStage = GetField<int>(comp, "levelsPassed");
+        var fldStage = GetIntField(comp, "levelsPassed");
         var fldDepartureStation = GetField<string>(comp, "departureStation");
         var fldDestinationStation = GetField<string>(comp, "destinationStation");
-        var fldDepartureOptions = GetField<string[]>(comp, "departureOptions");
-        var fldDestinationOptions = GetField<string[]>(comp, "destinationOptions");
+        var fldDepartureOptions = GetArrayField<string>(comp, "departureOptions");
+        var fldDestinationOptions = GetArrayField<string>(comp, "destinationOptions");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        if (comp == null || fldStage == null || fldDepartureStation == null || fldDestinationStation == null || fldDepartureOptions == null || fldDestinationOptions == null || fldSolved == null)
-            yield break;
 
         yield return null;
 
@@ -6076,9 +5791,6 @@ public class SouvenirModule : MonoBehaviour
         var fldGodfather = GetField<object>(comp, "_godfather");
         var fldSolved = GetField<bool>(comp, "_isSolved");
 
-        if (comp == null || fldSuspects == null || fldGodfather == null || fldSolved == null)
-            yield break;
-
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
 
@@ -6098,17 +5810,14 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessMahjong(KMBombModule module)
     {
         var comp = GetComponent(module, "MahjongModule");
-        var fldTaken = GetField<bool[]>(comp, "_taken");
-        var fldCountingRow = GetField<int[]>(comp, "_countingRow");
-        var fldMatchRow1 = GetField<int[]>(comp, "_matchRow1");
-        var fldMatchRow2 = GetField<int[]>(comp, "_matchRow2");
+        var fldTaken = GetArrayField<bool>(comp, "_taken");
+        var fldCountingRow = GetArrayField<int>(comp, "_countingRow");
+        var fldMatchRow1 = GetArrayField<int>(comp, "_matchRow1");
+        var fldMatchRow2 = GetArrayField<int>(comp, "_matchRow2");
         var fldCountingTile = GetField<MeshRenderer>(comp, "CountingTile", true);
         var fldParticleEffect = GetField<ParticleSystem>(comp, "Smoke1", true);
         var fldAudio = GetField<KMAudio>(comp, "Audio", true);
-        var fldTileSelectables = GetField<KMSelectable[]>(comp, "Tiles", true);
-
-        if (comp == null || fldTaken == null || fldCountingRow == null || fldMatchRow1 == null || fldMatchRow2 == null || fldCountingTile == null || fldParticleEffect == null || fldAudio == null || fldTileSelectables == null)
-            yield break;
+        var fldTileSelectables = GetArrayField<KMSelectable>(comp, "Tiles", true);
 
         yield return null;
 
@@ -6186,12 +5895,9 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessMaritimeFlags(KMBombModule module)
     {
         var comp = GetComponent(module, "MaritimeFlagsModule");
-        var fldBearing = GetField<int>(comp, "_bearingOnModule");
+        var fldBearing = GetIntField(comp, "_bearingOnModule");
         var fldCallsign = GetField<object>(comp, "_callsign");
         var fldSolved = GetField<bool>(comp, "_isSolved");
-
-        if (comp == null || fldBearing == null || fldCallsign == null || fldSolved == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -6235,7 +5941,7 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_Maze);
 
         var coordinateChoice = Rnd.Range(0, 2);
-        var fldCoordinate = GetField<int>(currentCell, coordinateChoice == 0 ? "X" : "Y", true);
+        var fldCoordinate = GetIntField(currentCell, coordinateChoice == 0 ? "X" : "Y", true);
         if (fldCoordinate == null) yield break;
 
         addQuestion(module, Question.MazeStartingPosition, formatArguments: coordinateChoice == 0 ? new[] { "column", "left" } : new[] { "row", "top" },
@@ -6246,10 +5952,7 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "maze3Script");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldNode = GetField<int>(comp, "node");
-
-        if (comp == null || fldSolved == null || fldNode == null)
-            yield break;
+        var fldNode = GetIntField(comp, "node");
 
         var node = fldNode.Get();
         var colors = new[] { "Red", "Blue", "Yellow", "Green", "Magenta", "Orange" };
@@ -6270,11 +5973,8 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessMazematics(KMBombModule module)
     {
         var comp = GetComponent(module, "Mazematics");
-        var fldStartVal = GetField<int>(comp, "startValue");
-        var fldGoalVal = GetField<int>(comp, "goalValue");
-
-        if (comp == null || fldStartVal == null || fldGoalVal == null)
-            yield break;
+        var fldStartVal = GetIntField(comp, "startValue");
+        var fldGoalVal = GetIntField(comp, "goalValue");
 
         var solved = false;
         module.OnPass += delegate { solved = true; return false; };
@@ -6303,17 +6003,14 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "MazeScrambler");
         var fldSolved = GetField<bool>(comp, "SOLVED");
-        var fldInd1X = GetField<int>(comp, "IDX1");
-        var fldInd1Y = GetField<int>(comp, "IDY1");
-        var fldInd2X = GetField<int>(comp, "IDX2");
-        var fldInd2Y = GetField<int>(comp, "IDY2");
-        var fldStartX = GetField<int>(comp, "StartX");
-        var fldStartY = GetField<int>(comp, "StartY");
-        var fldGoalX = GetField<int>(comp, "GoalX");
-        var fldGoalY = GetField<int>(comp, "GoalY");
-
-        if (comp == null || fldSolved == null || fldInd1X == null || fldInd1Y == null || fldInd2X == null || fldInd2Y == null || fldStartX == null || fldStartY == null || fldGoalX == null || fldGoalY == null)
-            yield break;
+        var fldInd1X = GetIntField(comp, "IDX1");
+        var fldInd1Y = GetIntField(comp, "IDY1");
+        var fldInd2X = GetIntField(comp, "IDX2");
+        var fldInd2Y = GetIntField(comp, "IDY2");
+        var fldStartX = GetIntField(comp, "StartX");
+        var fldStartY = GetIntField(comp, "StartY");
+        var fldGoalX = GetIntField(comp, "GoalX");
+        var fldGoalY = GetIntField(comp, "GoalY");
 
         const int x = 0;
         const int y = 1;
@@ -6360,12 +6057,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "Megaman2");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldRobotMasters = GetField<string[]>(comp, "robotMasters");
-        var fldSelectedWeapon = GetField<int>(comp, "selectedWeapon");
-        var fldSelectedMaster = GetField<int>(comp, "selectedMaster");
-
-        if (comp == null || fldSolved == null || fldRobotMasters == null || fldSelectedWeapon == null || fldSelectedMaster == null)
-            yield break;
+        var fldRobotMasters = GetArrayField<string>(comp, "robotMasters");
+        var fldSelectedWeapon = GetIntField(comp, "selectedWeapon");
+        var fldSelectedMaster = GetIntField(comp, "selectedMaster");
 
         yield return null;
 
@@ -6398,11 +6092,8 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "MelodySequencerScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldParts = GetField<int[][]>(comp, "parts");    // the 8 parts in their “correct” order
-        var fldModuleParts = GetField<int[][]>(comp, "moduleParts");    // the parts as assigned to the slots
-
-        if (comp == null || fldSolved == null || fldParts == null || fldModuleParts == null)
-            yield break;
+        var fldParts = GetArrayField<int[]>(comp, "parts");    // the 8 parts in their “correct” order
+        var fldModuleParts = GetArrayField<int[]>(comp, "moduleParts");    // the parts as assigned to the slots
 
         var parts = fldParts.Get();
         var moduleParts = fldModuleParts.Get();
@@ -6439,10 +6130,7 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "MemorableButtons");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldCombinedCode = GetField<string>(comp, "combinedCode", isPublic: true);
-        var fldButtonLabels = GetField<TextMesh[]>(comp, "buttonLabels", isPublic: true);
-
-        if (comp == null || fldSolved == null || fldCombinedCode == null || fldButtonLabels == null)
-            yield break;
+        var fldButtonLabels = GetArrayField<TextMesh>(comp, "buttonLabels", isPublic: true);
 
         var buttonLabels = fldButtonLabels.Get();
         if (buttonLabels == null)
@@ -6498,12 +6186,9 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessMicrocontroller(KMBombModule module)
     {
         var comp = GetComponent(module, "Micro");
-        var fldSolved = GetField<int>(comp, "solved");
+        var fldSolved = GetIntField(comp, "solved");
         var fldLedsOrder = GetField<List<int>>(comp, "LEDorder");
-        var fldPositionTranslate = GetField<int[]>(comp, "positionTranslate");
-
-        if (comp == null || fldSolved == null || fldLedsOrder == null || fldPositionTranslate == null)
-            yield break;
+        var fldPositionTranslate = GetArrayField<int>(comp, "positionTranslate");
 
         while (fldSolved.Get() == 0)
             yield return new WaitForSeconds(.1f);
@@ -6534,9 +6219,6 @@ public class SouvenirModule : MonoBehaviour
         var fldGrid = GetField<object>(comp, "Game");
         var fldStartingCell = GetField<object>(comp, "StartingCell");
 
-        if (comp == null || fldGrid == null || fldStartingCell == null)
-            yield break;
-
         // Wait for activation as the above fields aren’t fully initialized until then
         while (!_isActivated)
             yield return new WaitForSeconds(0.1f);
@@ -6561,9 +6243,6 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "modernCipher");
         var fldWords = GetField<Dictionary<string, string>>(comp, "chosenWords");
         var fldSolved = GetField<bool>(comp, "_isSolved");
-
-        if (comp == null || fldWords == null || fldSolved == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
@@ -6593,11 +6272,8 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessModuleMaze(KMBombModule module)
     {
         var comp = GetComponent(module, "ModuleMazeModule");
-        var fldSprites = GetField<Sprite[]>(comp, "souvenirSprites", true);
+        var fldSprites = GetArrayField<Sprite>(comp, "souvenirSprites", true);
         var fldStart = GetField<string>(comp, "souvenirStart", true);
-
-        if (comp == null || fldSprites == null || fldStart == null)
-            yield break;
 
         while (fldSprites.Get().Count() < 6)
             yield return new WaitForSeconds(.1f);
@@ -6617,14 +6293,11 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "MonsplodeFightModule");
         var fldCreatureData = GetField<object>(comp, "CD", isPublic: true);
         var fldMovesData = GetField<object>(comp, "MD", isPublic: true);
-        var fldCreatureID = GetField<int>(comp, "crID");
-        var fldMoveIDs = GetField<int[]>(comp, "moveIDs");
+        var fldCreatureID = GetIntField(comp, "crID");
+        var fldMoveIDs = GetArrayField<int>(comp, "moveIDs");
         var fldRevive = GetField<bool>(comp, "revive");
-        var fldButtons = GetField<KMSelectable[]>(comp, "buttons", isPublic: true);
-        var fldCorrectCount = GetField<int>(comp, "correctCount");
-
-        if (comp == null || fldCreatureData == null || fldMovesData == null || fldCreatureID == null || fldMoveIDs == null || fldRevive == null || fldButtons == null || fldCorrectCount == null)
-            yield break;
+        var fldButtons = GetArrayField<KMSelectable>(comp, "buttons", isPublic: true);
+        var fldCorrectCount = GetIntField(comp, "correctCount");
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
@@ -6641,8 +6314,8 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         }
 
-        var fldCreatureNames = GetField<string[]>(creatureData, "names", isPublic: true);
-        var fldMoveNames = GetField<string[]>(movesData, "names", isPublic: true);
+        var fldCreatureNames = GetArrayField<string>(creatureData, "names", isPublic: true);
+        var fldMoveNames = GetArrayField<string>(movesData, "names", isPublic: true);
         if (fldCreatureNames == null || fldMoveNames == null)
             yield break;
 
@@ -6731,14 +6404,11 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessMonsplodeTradingCards(KMBombModule module)
     {
         var comp = GetComponent(module, "MonsplodeCardModule");
-        var fldStage = GetField<int>(comp, "correctOffer", isPublic: true);
-        var fldStageCount = GetField<int>(comp, "offerCount", isPublic: true);
+        var fldStage = GetIntField(comp, "correctOffer", isPublic: true);
+        var fldStageCount = GetIntField(comp, "offerCount", isPublic: true);
         var fldDeck = GetField<Array>(comp, "deck", isPublic: true);
         var fldOffer = GetField<object>(comp, "offer", isPublic: true);
         var fldData = GetField<object>(comp, "CD", isPublic: true);
-
-        if (comp == null || fldStage == null || fldStageCount == null || fldDeck == null || fldOffer == null || fldData == null)
-            yield break;
 
         yield return null;
 
@@ -6751,7 +6421,7 @@ public class SouvenirModule : MonoBehaviour
         var data = fldData.Get();
         if (data == null)
             yield break;
-        var fldNames = GetField<string[]>(data, "names", isPublic: true);
+        var fldNames = GetArrayField<string>(data, "names", isPublic: true);
         if (fldNames == null)
             yield break;
         var monsplodeNames = fldNames.Get();
@@ -6779,9 +6449,9 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         }
 
-        var fldMonsplode = GetField<int>(offer, "monsplode", isPublic: true);
-        var fldRarity = GetField<int>(offer, "rarity", isPublic: true);
-        var fldPrintDigit = GetField<int>(offer, "printDigit", isPublic: true);
+        var fldMonsplode = GetIntField(offer, "monsplode", isPublic: true);
+        var fldRarity = GetIntField(offer, "rarity", isPublic: true);
+        var fldPrintDigit = GetIntField(offer, "printDigit", isPublic: true);
         var fldPrintChar = GetField<char>(offer, "printChar", isPublic: true);
         if (fldMonsplode == null || fldRarity == null || fldPrintDigit == null || fldPrintChar == null)
             yield break;
@@ -6823,11 +6493,8 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessMoon(KMBombModule module)
     {
         var comp = GetComponent(module, "theMoonScript");
-        var fldStage = GetField<int>(comp, "stage");
-        var fldLightIndex = GetField<int>(comp, "lightIndex");
-
-        if (comp == null || fldStage == null || fldLightIndex == null)
-            yield break;
+        var fldStage = GetIntField(comp, "stage");
+        var fldLightIndex = GetIntField(comp, "lightIndex");
 
         // The Moon sets ‘stage’ to 9 when the module is solved.
         while (fldStage.Get() != 9)
@@ -6853,10 +6520,7 @@ public class SouvenirModule : MonoBehaviour
         var fldStart = GetField<string>(comp, "_souvenirQuestionStartingLocation");
         var fldEnd = GetField<string>(comp, "_souvenirQuestionEndingLocation");
         var fldWord = GetField<string>(comp, "_souvenirQuestionWordPlaying");
-        var fldWords = GetField<string[]>(comp, "_souvenirQuestionWordList");
-
-        if (comp == null || fldSolved == null || fldStart == null || fldEnd == null || fldWord == null || fldWords == null)
-            yield break;
+        var fldWords = GetArrayField<string>(comp, "_souvenirQuestionWordList");
 
         while (!_isActivated)
             yield return new WaitForSeconds(0.1f);
@@ -6900,12 +6564,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "morseButtonsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldLetters = GetField<int[]>(comp, "letters");
-        var fldColors = GetField<int[]>(comp, "colors");
+        var fldLetters = GetArrayField<int>(comp, "letters");
+        var fldColors = GetArrayField<int>(comp, "colors");
         var fldAlphabet = GetField<string>(comp, "alphabet");
-
-        if (comp == null || fldSolved == null || fldLetters == null || fldColors == null || fldAlphabet == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -6958,10 +6619,7 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "AdvancedMorse");
         var fldSolved = GetField<bool>(comp, "solved");
-        var fldChars = GetField<string[]>(comp, "DisplayCharsRaw");
-
-        if (comp == null || fldSolved == null)
-            yield break;
+        var fldChars = GetArrayField<string>(comp, "DisplayCharsRaw");
 
         yield return null;
 
@@ -6984,14 +6642,11 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessMorseWar(KMBombModule module)
     {
         var comp = GetComponent(module, "MorseWar");
-        var fldWordNum = GetField<int>(comp, "wordNum");
+        var fldWordNum = GetIntField(comp, "wordNum");
         var fldLights = GetField<string>(comp, "lights");
         var fldWordTable = comp == null ? null : GetStaticField<string[]>(comp.GetType(), "WordTable");
         var fldRowTable = comp == null ? null : GetStaticField<string[]>(comp.GetType(), "RowTable");
         var fldIsSolved = GetField<bool>(comp, "isSolved");
-
-        if (comp == null || fldWordNum == null || fldLights == null || fldWordTable == null || fldRowTable == null || fldIsSolved == null)
-            yield break;
 
         while (!fldIsSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -7031,13 +6686,10 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessMouseInTheMaze(KMBombModule module)
     {
         var comp = GetComponent(module, "Maze_3d");
-        var fldSphereColors = GetField<int[]>(comp, "sphereColors");
-        var fldTorusColor = GetField<int>(comp, "torusColor");
-        var fldGoalPosition = GetField<int>(comp, "goalPosition");
+        var fldSphereColors = GetArrayField<int>(comp, "sphereColors");
+        var fldTorusColor = GetIntField(comp, "torusColor");
+        var fldGoalPosition = GetIntField(comp, "goalPosition");
         var fldIsSolved = GetField<bool>(comp, "_isSolved");
-
-        if (comp == null || fldSphereColors == null || fldTorusColor == null || fldGoalPosition == null || fldIsSolved == null)
-            yield break;
 
         var sphereColors = fldSphereColors.Get();
         if (sphereColors == null)
@@ -7079,15 +6731,12 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "MurderModule");
         var fldSolved = GetField<bool>(comp, "isSolved");
-        var fldSolution = GetField<int[]>(comp, "solution");
+        var fldSolution = GetArrayField<int>(comp, "solution");
         var fldNames = GetField<string[,]>(comp, "names");
         var fldSkipDisplay = GetField<int[,]>(comp, "skipDisplay");
-        var fldSuspects = GetField<int>(comp, "suspects");
-        var fldWeapons = GetField<int>(comp, "weapons");
-        var fldBodyFound = GetField<int>(comp, "bodyFound");
-
-        if (comp == null || fldSolved == null || fldSolution == null || fldNames == null || fldSkipDisplay == null || fldSuspects == null || fldWeapons == null || fldBodyFound == null)
-            yield break;
+        var fldSuspects = GetIntField(comp, "suspects");
+        var fldWeapons = GetIntField(comp, "weapons");
+        var fldBodyFound = GetIntField(comp, "bodyFound");
 
         yield return null;
 
@@ -7148,12 +6797,9 @@ public class SouvenirModule : MonoBehaviour
         var fldKnight = GetField<Transform>(comp, "Knight", true);
 
         var fldIsInDanger = GetField<bool>(comp, "_isInDanger");
-        var fldSkullPos = GetField<int>(comp, "_skullPos");
-        var fldKnightPos = GetField<int>(comp, "_knightPos");
-        var fldField = GetField<int[]>(comp, "_field");
-
-        if (comp == null || fldSolved == null || fldSkull == null || fldKnight == null || fldIsInDanger == null || fldSkullPos == null || fldKnightPos == null || fldField == null)
-            yield break;
+        var fldSkullPos = GetIntField(comp, "_skullPos");
+        var fldKnightPos = GetIntField(comp, "_knightPos");
+        var fldField = GetArrayField<int>(comp, "_field");
 
         var skull = fldSkull.Get();
         var knight = fldKnight.Get();
@@ -7246,9 +6892,6 @@ public class SouvenirModule : MonoBehaviour
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldAnimating = GetField<bool>(comp, "animating");
 
-        if (comp == null || fldKeyModules == null || fldMystifiedModule == null || fldSolved == null || fldAnimating == null)
-            yield break;
-
         yield return null;
         while (fldKeyModules.Get(nullAllowed: true) == null)
             yield return null;
@@ -7290,10 +6933,7 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessNecronomicon(KMBombModule module)
     {
         var comp = GetComponent(module, "necronomiconScript");
-        var fldChapters = GetField<int[]>(comp, "selectedChapters");
-
-        if (comp == null || fldChapters == null)
-            yield break;
+        var fldChapters = GetArrayField<int>(comp, "selectedChapters");
 
         var solved = false;
         module.OnPass += delegate { solved = true; return false; };
@@ -7326,13 +6966,10 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessNeutralization(KMBombModule module)
     {
         var comp = GetComponent(module, "neutralization");
-        var fldAcidType = GetField<int>(comp, "acidType");
-        var fldAcidVol = GetField<int>(comp, "acidVol");
+        var fldAcidType = GetIntField(comp, "acidType");
+        var fldAcidVol = GetIntField(comp, "acidVol");
         var fldSolved = GetField<bool>(comp, "_isSolved");
         var fldColorText = GetField<GameObject>(comp, "colorText", isPublic: true);
-
-        if (comp == null || fldAcidType == null || fldAcidVol == null || fldSolved == null || fldColorText == null)
-            yield break;
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
@@ -7366,11 +7003,8 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "NandMs");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldIndex = GetField<int>(comp, "otherwordindex");
-        var fldWords = GetField<string[]>(comp, "otherWords");
-
-        if (comp == null || fldSolved == null || fldIndex == null || fldWords == null)
-            yield break;
+        var fldIndex = GetIntField(comp, "otherwordindex");
+        var fldWords = GetArrayField<string>(comp, "otherWords");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -7394,14 +7028,11 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "navinumsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldCenterDigit = GetField<int>(comp, "center");
-        var fldStage = GetField<int>(comp, "stage");
-        var fldLookUp = GetField<int[][]>(comp, "lookUp");
+        var fldCenterDigit = GetIntField(comp, "center");
+        var fldStage = GetIntField(comp, "stage");
+        var fldLookUp = GetArrayField<int[]>(comp, "lookUp");
         var fldDirections = GetField<List<int>>(comp, "directions");
         var fldDirectionsSorted = GetField<List<int>>(comp, "directionsSorted");
-
-        if (comp == null || fldSolved == null || fldCenterDigit == null || fldStage == null || fldLookUp == null || fldDirections == null || fldDirectionsSorted == null)
-            yield break;
 
         yield return null;
 
@@ -7492,10 +7123,7 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "NotButton");
         var propSolved = GetProperty<bool>(comp, "Solved", true);
         var propLightColour = GetProperty<object>(comp, "LightColour", true);
-        var propMashCount = GetField<int>(comp, "MashCount", true);
-        if (comp == null || propSolved == null || propLightColour == null || propMashCount == null)
-            yield break;
-
+        var propMashCount = GetIntField(comp, "MashCount", true);
         var lightColor = 0; var mashCount = 0;
         while (!propSolved.Get())
         {
@@ -7530,7 +7158,7 @@ public class SouvenirModule : MonoBehaviour
         var connectorComponent = GetComponent(module, "NotVanillaModulesLib.NotKeypadConnector");
         var propSolved = GetProperty<bool>(component, "Solved", true);
         var fldColours = GetField<Array>(component, "sequenceColours");
-        var fldButtons = GetField<int[]>(component, "sequenceButtons");
+        var fldButtons = GetArrayField<int>(component, "sequenceButtons");
         var fldSymbols = GetField<Array>(connectorComponent, "symbols");
         if (propSolved == null || fldColours == null || fldButtons == null || fldSymbols == null)
             yield break;
@@ -7566,7 +7194,7 @@ public class SouvenirModule : MonoBehaviour
     {
         var component = GetComponent(module, "NotMaze");
         var propSolved = GetProperty<bool>(component, "Solved", true);
-        var fldDistance = GetField<int>(component, "distance");
+        var fldDistance = GetIntField(component, "distance");
         if (propSolved == null || fldDistance == null)
             yield break;
 
@@ -7581,8 +7209,8 @@ public class SouvenirModule : MonoBehaviour
     {
         var component = GetComponent(module, "NotMorseCode");
         var propSolved = GetProperty<bool>(component, "Solved", true);
-        var fldCorrectChannels = GetField<int[]>(component, "correctChannels");
-        var fldWords = GetField<string[]>(component, "words");
+        var fldCorrectChannels = GetArrayField<int>(component, "correctChannels");
+        var fldWords = GetArrayField<string>(component, "words");
         var fldColumns = GetStaticField<string[][]>(component.GetType(), "defaultColumns");
         if (propSolved == null || fldCorrectChannels == null || fldWords == null || fldColumns == null)
             yield break;
@@ -7606,11 +7234,11 @@ public class SouvenirModule : MonoBehaviour
     {
         var component = GetComponent(module, "NotSimaze");
         var propSolved = GetProperty<bool>(component, "Solved", true);
-        var fldMazeIndex = GetField<int>(component, "mazeIndex");
-        var fldX = GetField<int>(component, "x");
-        var fldY = GetField<int>(component, "y");
-        var fldGoalX = GetField<int>(component, "goalX");
-        var fldGoalY = GetField<int>(component, "goalY");
+        var fldMazeIndex = GetIntField(component, "mazeIndex");
+        var fldX = GetIntField(component, "x");
+        var fldY = GetIntField(component, "y");
+        var fldGoalX = GetIntField(component, "goalX");
+        var fldGoalY = GetIntField(component, "goalY");
         if (propSolved == null || fldMazeIndex == null || fldX == null || fldY == null || fldGoalX == null || fldGoalY == null)
             yield break;
 
@@ -7635,9 +7263,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var component = GetComponent(module, "NotWhosOnFirst");
         var propSolved = GetProperty<bool>(component, "Solved", true);
-        var fldPositions = GetField<int[]>(component, "rememberedPositions");
-        var fldLabels = GetField<string[]>(component, "rememberedLabels");
-        var fldSum = GetField<int>(component, "stage2Sum");
+        var fldPositions = GetArrayField<int>(component, "rememberedPositions");
+        var fldLabels = GetArrayField<string>(component, "rememberedLabels");
+        var fldSum = GetIntField(component, "stage2Sum");
         if (propSolved == null || fldPositions == null || fldLabels == null || fldSum == null)
             yield break;
 
@@ -7662,10 +7290,7 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "NumberedButtonsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldNumbers = GetField<int[]>(comp, "buttonNums");
-
-        if (comp == null || fldSolved == null || fldNumbers == null)
-            yield break;
+        var fldNumbers = GetArrayField<int>(comp, "buttonNums");
 
         yield return null;
 
@@ -7701,10 +7326,7 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "objectShows");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldSolution = GetField<Array>(comp, "solution");
-        var fldContestantNames = GetField<string[]>(comp, "charnames", isPublic: true);
-
-        if (comp == null || fldSolved == null || fldSolution == null || fldContestantNames == null)
-            yield break;
+        var fldContestantNames = GetArrayField<string>(comp, "charnames", isPublic: true);
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -7721,7 +7343,7 @@ public class SouvenirModule : MonoBehaviour
         }
 
         var tmp = solutionObjs[0];
-        var fldId = GetField<int>(tmp, "id", isPublic: true);
+        var fldId = GetIntField(tmp, "id", isPublic: true);
         var contestantNames = fldContestantNames.Get();
         if (contestantNames == null)
             yield break;
@@ -7739,9 +7361,6 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "OddOneOutModule");
         var fldStages = GetField<Array>(comp, "_stages");
-
-        if (comp == null || fldStages == null)
-            yield break;
 
         var solved = false;
         module.OnPass += delegate { solved = true; return false; };
@@ -7761,7 +7380,7 @@ public class SouvenirModule : MonoBehaviour
             yield break;
 
         string[] btnNames = { "top-left", "top-middle", "top-right", "bottom-left", "bottom-middle", "bottom-right" };
-        var stageBtnFld = stages.Cast<object>().Select(x => GetField<int>(x, "CorrectIndex", isPublic: true));
+        var stageBtnFld = stages.Cast<object>().Select(x => GetIntField(x, "CorrectIndex", isPublic: true));
 
         if (stageBtnFld.Any(x => x == null))
             yield break;
@@ -7787,11 +7406,8 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessOnlyConnect(KMBombModule module)
     {
         var comp = GetComponent(module, "OnlyConnectModule");
-        var fldHieroglyphsDisplayed = GetField<int[]>(comp, "_hieroglyphsDisplayed");
+        var fldHieroglyphsDisplayed = GetArrayField<int>(comp, "_hieroglyphsDisplayed");
         var fldIsSolved = GetField<bool>(comp, "_isSolved");
-        if (comp == null || fldHieroglyphsDisplayed == null || fldIsSolved == null)
-            yield break;
-
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
 
@@ -7817,12 +7433,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "OrangeArrowsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldMoves = GetField<string[]>(comp, "moves");
-        var fldButtons = GetField<KMSelectable[]>(comp, "buttons", isPublic: true);
-        var fldStage = GetField<int>(comp, "stage");
-
-        if (comp == null || fldSolved == null || fldMoves == null || fldButtons == null || fldStage == null)
-            yield break;
+        var fldMoves = GetArrayField<string>(comp, "moves");
+        var fldButtons = GetArrayField<KMSelectable>(comp, "buttons", isPublic: true);
+        var fldStage = GetIntField(comp, "stage");
 
         yield return null;
 
@@ -7886,9 +7499,9 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessOrderedKeys(KMBombModule module)
     {
         var comp = GetComponent(module, "OrderedKeysScript");
-        var fldInfo = GetField<int[][]>(comp, "info");
+        var fldInfo = GetArrayField<int[]>(comp, "info");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldStage = GetField<int>(comp, "stage");
+        var fldStage = GetIntField(comp, "stage");
 
         yield return null;
 
@@ -7938,9 +7551,6 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "OrientationModule");
         var fldInitialVirtualViewAngle = GetField<float>(comp, "initialVirtualViewAngle");
-        if (comp == null || fldInitialVirtualViewAngle == null)
-            yield break;
-
         var solved = false;
 
         module.OnPass += delegate { solved = true; return false; };
@@ -7970,9 +7580,6 @@ public class SouvenirModule : MonoBehaviour
         var fldZ = GetField<string>(comp, "z");
         var fldN = GetField<string>(comp, "n");
 
-        if (comp == null || fldSolved == null || fldX == null || fldY == null || fldZ == null || fldN == null)
-            yield break;
-
         yield return null;
 
         while (!fldSolved.Get())
@@ -7999,11 +7606,8 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "PartialDerivativesScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldLeds = GetField<int[]>(comp, "ledIndex");
+        var fldLeds = GetArrayField<int>(comp, "ledIndex");
         var fldDisplay = GetField<TextMesh>(comp, "display", isPublic: true);
-
-        if (comp == null || fldSolved == null || fldLeds == null || fldDisplay == null)
-            yield break;
 
         var display = fldDisplay.Get();
         if (display == null)
@@ -8078,14 +7682,11 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "passportControlScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldPassages = GetField<int>(comp, "passages");
-        var fldExpiration = GetField<int[]>(comp, "expiration");
-        var fldStamps = GetField<KMSelectable[]>(comp, "stamps", isPublic: true);
-        var fldTextToHide1 = GetField<GameObject[]>(comp, "passport", isPublic: true);
+        var fldPassages = GetIntField(comp, "passages");
+        var fldExpiration = GetArrayField<int>(comp, "expiration");
+        var fldStamps = GetArrayField<KMSelectable>(comp, "stamps", isPublic: true);
+        var fldTextToHide1 = GetArrayField<GameObject>(comp, "passport", isPublic: true);
         var fldTextToHide2 = GetField<GameObject>(comp, "ticket", isPublic: true);
-
-        if (comp == null || fldSolved == null || fldPassages == null || fldExpiration == null || fldStamps == null || fldTextToHide1 == null || fldTextToHide2 == null)
-            yield break;
 
         var stamps = fldStamps.Get();
         var textToHide1 = fldTextToHide1.Get();
@@ -8177,9 +7778,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "PatternCubeModule");
         var fldSelectableSymbols = GetField<Array>(comp, "_selectableSymbols");
-        var fldSelectableSymbolObjects = GetField<MeshRenderer[]>(comp, "_selectableSymbolObjs");
-        var fldPlaceableSymbolObjects = GetField<MeshRenderer[]>(comp, "_placeableSymbolObjs");
-        var fldHighlightedPosition = GetField<int>(comp, "_highlightedPosition");
+        var fldSelectableSymbolObjects = GetArrayField<MeshRenderer>(comp, "_selectableSymbolObjs");
+        var fldPlaceableSymbolObjects = GetArrayField<MeshRenderer>(comp, "_placeableSymbolObjs");
+        var fldHighlightedPosition = GetIntField(comp, "_highlightedPosition");
 
         yield return null;
         var selectableSymbols = fldSelectableSymbols.Get();
@@ -8223,9 +7824,6 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "PerspectivePegsModule");
         var fldIsComplete = GetField<bool>(comp, "isComplete");
         var fldColourMeshes = GetField<MeshRenderer[,]>(comp, "ColourMeshes");
-        if (comp == null || fldIsComplete == null || fldColourMeshes == null)
-            yield break;
-
         while (!fldIsComplete.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_PerspectivePegs);
@@ -8275,11 +7873,8 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessPie(KMBombModule module)
     {
         var comp = GetComponent(module, "PieScript");
-        var fldDigits = GetField<string[]>(comp, "codes");
+        var fldDigits = GetArrayField<string>(comp, "codes");
         var fldSolved = GetField<bool>(comp, "solveCoroutineStarted");
-
-        if (comp == null || fldDigits == null || fldSolved == null)
-            yield break;
 
         // get displayed digits
         var digits = fldDigits.Get();
@@ -8302,7 +7897,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessPigpenCycle(KMBombModule module)
     {
-        return processSpeakingEvilCycle1(module, "PigpenCycleScript", "Pigpen Cycle", Question.PigpenCycleWord, _PigpenCycle);
+        return processSpeakingEvilCycle1(module, "PigpenCycleScript", Question.PigpenCycleWord, _PigpenCycle);
     }
 
     private IEnumerable<object> ProcessPlaceholderTalk(KMBombModule module)
@@ -8310,14 +7905,11 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "placeholderTalk");
         var fldSolved = GetField<bool>(comp, "isSolved");
         var fldFirstString = GetField<string>(comp, "firstString");
-        var fldFirstPhrase = GetField<string[]>(comp, "firstPhrase");
+        var fldFirstPhrase = GetArrayField<string>(comp, "firstPhrase");
         var fldCurrentOrdinal = GetField<string>(comp, "currentOrdinal");
-        var fldOrdinals = GetField<string[]>(comp, "ordinals");
+        var fldOrdinals = GetArrayField<string>(comp, "ordinals");
         var fldAnswer = GetField<byte>(comp, "answerId");
         var fldPreviousModules = GetField<sbyte>(comp, "previousModules");
-
-        if (comp == null || fldSolved == null || fldFirstString == null || fldFirstPhrase == null || fldCurrentOrdinal == null || fldOrdinals == null || fldAnswer == null || fldPreviousModules == null)
-            yield break;
 
         yield return null;
 
@@ -8365,12 +7957,9 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessPlanets(KMBombModule module)
     {
         var comp = GetComponent(module, "planetsModScript");
-        var fldPlanet = GetField<int>(comp, "planetShown");
-        var fldStrips = GetField<int[]>(comp, "stripColours");
+        var fldPlanet = GetIntField(comp, "planetShown");
+        var fldStrips = GetArrayField<int>(comp, "stripColours");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        if (comp == null || fldPlanet == null || fldStrips == null || fldSolved == null)
-            yield break;
 
         yield return null;
 
@@ -8400,19 +7989,16 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessPlayfairCycle(KMBombModule module)
     {
-        return processSpeakingEvilCycle1(module, "PlayfairCycleScript", "Playfair Cycle", Question.PlayfairCycleWord, _PlayfairCycle);
+        return processSpeakingEvilCycle1(module, "PlayfairCycleScript", Question.PlayfairCycleWord, _PlayfairCycle);
     }
 
     private IEnumerable<object> ProcessPoetry(KMBombModule module)
     {
         var comp = GetComponent(module, "PoetryModule");
-        var fldWordSelectables = GetField<KMSelectable[]>(comp, "wordSelectables", isPublic: true);
-        var fldStage = GetField<int>(comp, "currentStage");
-        var fldStageCount = GetField<int>(comp, "stageCount", isPublic: true);
-        var fldWordTextMeshes = GetField<TextMesh[]>(comp, "words", isPublic: true);
-
-        if (comp == null || fldWordSelectables == null || fldStage == null || fldStageCount == null || fldWordTextMeshes == null)
-            yield break;
+        var fldWordSelectables = GetArrayField<KMSelectable>(comp, "wordSelectables", isPublic: true);
+        var fldStage = GetIntField(comp, "currentStage");
+        var fldStageCount = GetIntField(comp, "stageCount", isPublic: true);
+        var fldWordTextMeshes = GetArrayField<TextMesh>(comp, "words", isPublic: true);
 
         yield return null;
 
@@ -8470,11 +8056,8 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessPolyhedralMaze(KMBombModule module)
     {
         var comp = GetComponent(module, "PolyhedralMazeModule");
-        var fldStartFace = GetField<int>(comp, "_startFace");
+        var fldStartFace = GetIntField(comp, "_startFace");
         var fldSolved = GetField<bool>(comp, "_isSolved");
-
-        if (comp == null || fldStartFace == null || fldSolved == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -8488,11 +8071,8 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "ProbingModule");
         var fldWires = GetField<Array>(comp, "mWires");
         var fldDisplay = GetField<TextMesh>(comp, "display", isPublic: true);
-        var fldSelectables = GetField<KMSelectable[]>(comp, "selectables", isPublic: true);
+        var fldSelectables = GetArrayField<KMSelectable>(comp, "selectables", isPublic: true);
         var fldSolved = GetField<bool>(comp, "bSolved");
-
-        if (comp == null || fldWires == null || fldDisplay == null || fldSelectables == null || fldSolved == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -8546,10 +8126,7 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "PurpleArrowsScript");
         var fldFinish = GetField<string>(comp, "finish");
         var fldWordScreen = GetField<GameObject>(comp, "wordDisplay", isPublic: true);
-        var fldWordList = GetField<string[]>(comp, "words");
-
-        if (comp == null || fldFinish == null || fldWordScreen == null || fldWordList == null)
-            yield break;
+        var fldWordList = GetArrayField<string>(comp, "words");
 
         // The module sets moduleSolved to true at the start of its solve animation but before it is actually marked as solved.
         // Therefore, we use OnPass to wait for the end of that animation and then set the text to “SOLVED” afterwards.
@@ -8594,13 +8171,10 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "quintuplesScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldNumbers = GetField<int[]>(comp, "cyclingNumbers", isPublic: true);
-        var fldColors = GetField<string[]>(comp, "chosenColorsName", isPublic: true);
-        var fldColorCounts = GetField<int[]>(comp, "numberOfEachColour", isPublic: true);
-        var fldColorNames = GetField<string[]>(comp, "potentialColorsName", isPublic: true);
-
-        if (comp == null || fldSolved == null || fldNumbers == null || fldColors == null || fldColorCounts == null || fldColorNames == null)
-            yield break;
+        var fldNumbers = GetArrayField<int>(comp, "cyclingNumbers", isPublic: true);
+        var fldColors = GetArrayField<string>(comp, "chosenColorsName", isPublic: true);
+        var fldColorCounts = GetArrayField<int>(comp, "numberOfEachColour", isPublic: true);
+        var fldColorNames = GetArrayField<string>(comp, "potentialColorsName", isPublic: true);
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -8633,9 +8207,6 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "Recolored_Switches");
         var fldLedColors = GetField<StringBuilder>(comp, "LEDsColorsString");
-
-        if (comp == null || fldLedColors == null)
-            yield break;
 
         var isSolved = false;
         module.OnPass += delegate { isSolved = true; return false; };
@@ -8671,10 +8242,7 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "RedArrowsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldStart = GetField<int>(comp, "start");
-
-        if (comp == null || fldSolved == null || fldStart == null)
-            yield break;
+        var fldStart = GetIntField(comp, "start");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -8694,12 +8262,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "retirementScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldHomes = GetField<string[]>(comp, "retirementHomeOptions", isPublic: true);
-        var fldAvailable = GetField<string[]>(comp, "selectedHomes");
+        var fldHomes = GetArrayField<string>(comp, "retirementHomeOptions", isPublic: true);
+        var fldAvailable = GetArrayField<string>(comp, "selectedHomes");
         var fldCorrect = GetField<string>(comp, "correctHome");
-
-        if (comp == null || fldSolved == null || fldHomes == null || fldAvailable == null || fldCorrect == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -8726,9 +8291,6 @@ public class SouvenirModule : MonoBehaviour
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldMessage1 = GetField<List<string>>(comp, "selectedLetters1", isPublic: true);
         var fldMessage2 = GetField<List<string>>(comp, "selectedLetters2", isPublic: true);
-
-        if (comp == null || fldSolved == null || fldMessage1 == null || fldMessage2 == null)
-            yield break;
 
         var message1 = fldMessage1.Get();
         var message2 = fldMessage2.Get();
@@ -8762,12 +8324,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "RGBMazeScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldKeyPos = GetField<int[][]>(comp, "keylocations");
-        var fldMazeNum = GetField<int[][]>(comp, "mazenumber");
-        var fldExitPos = GetField<int[]>(comp, "exitlocation");
-
-        if (comp == null || fldSolved == null || fldKeyPos == null || fldMazeNum == null || fldExitPos == null)
-            yield break;
+        var fldKeyPos = GetArrayField<int[]>(comp, "keylocations");
+        var fldMazeNum = GetArrayField<int[]>(comp, "mazenumber");
+        var fldExitPos = GetArrayField<int>(comp, "exitlocation");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -8840,10 +8399,7 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "Rhythms");
         var fldSolved = GetField<bool>(comp, "isSolved", isPublic: true);
-        var fldColor = GetField<int>(comp, "lightColor");
-
-        if (comp == null || fldSolved == null || fldColor == null)
-            yield break;
+        var fldColor = GetIntField(comp, "lightColor");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -8862,9 +8418,6 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "roleReversal");
         var fldSolved = GetField<bool>(comp, "isSolved");
         var fldAnswerIndex = GetField<byte>(comp, "souvenir");
-
-        if (comp == null || fldSolved == null || fldAnswerIndex == null)
-            yield break;
 
         yield return null;
 
@@ -8942,10 +8495,7 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessRule(KMBombModule module)
     {
         var comp = GetComponent(module, "TheRuleScript");
-        var fldRuleNum = GetField<int>(comp, "ruleNumber");
-
-        if (comp == null || fldRuleNum == null)
-            yield break;
+        var fldRuleNum = GetIntField(comp, "ruleNumber");
 
         yield return null;
 
@@ -8963,13 +8513,10 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "scavengerHunt");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldKeySquare = GetField<int>(comp, "keySquare");
-        var fldRelTiles = GetField<int[]>(comp, "relTiles");    // Coordinates of the color that the user needed
-        var fldDecoyTiles = GetField<int[]>(comp, "decoyTiles");    // Coordinates of the other colors
-        var fldColorIndex = GetField<int>(comp, "colorIndex");  // Which color is the ‘relTiles’ color
-
-        if (comp == null || fldSolved == null || fldKeySquare == null || fldRelTiles == null || fldDecoyTiles == null || fldColorIndex == null)
-            yield break;
+        var fldKeySquare = GetIntField(comp, "keySquare");
+        var fldRelTiles = GetArrayField<int>(comp, "relTiles");    // Coordinates of the color that the user needed
+        var fldDecoyTiles = GetArrayField<int>(comp, "decoyTiles");    // Coordinates of the other colors
+        var fldColorIndex = GetIntField(comp, "colorIndex");  // Which color is the ‘relTiles’ color
 
         var keySquare = fldKeySquare.Get();
         if (keySquare < 0 || keySquare >= 16)
@@ -9026,11 +8573,8 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "qSchlagDenBomb");
         var fldSolved = GetField<bool>(comp, "isSolved");
         var fldContestant = GetField<string>(comp, "contestantName");
-        var fldContScore = GetField<int>(comp, "scoreC");
-        var fldBombScore = GetField<int>(comp, "scoreB");
-
-        if (comp == null || fldSolved == null || fldContestant == null || fldContScore == null || fldBombScore == null)
-            yield break;
+        var fldContScore = GetIntField(comp, "scoreC");
+        var fldBombScore = GetIntField(comp, "scoreB");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -9064,15 +8608,12 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessSeaShells(KMBombModule module)
     {
         var comp = GetComponent(module, "SeaShellsModule");
-        var fldRow = GetField<int>(comp, "row");
-        var fldCol = GetField<int>(comp, "col");
-        var fldKeynum = GetField<int>(comp, "keynum");
-        var fldStage = GetField<int>(comp, "stage");
+        var fldRow = GetIntField(comp, "row");
+        var fldCol = GetIntField(comp, "col");
+        var fldKeynum = GetIntField(comp, "keynum");
+        var fldStage = GetIntField(comp, "stage");
         var fldSolved = GetField<bool>(comp, "isPassed");
         var fldDisplay = GetField<TextMesh>(comp, "Display", isPublic: true);
-
-        if (comp == null || fldRow == null || fldCol == null || fldKeynum == null || fldStage == null || fldSolved == null || fldDisplay == null)
-            yield break;
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
@@ -9123,12 +8664,9 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessSemamorse(KMBombModule module)
     {
         var comp = GetComponent(module, "semamorse");
-        var fldDisplayedLetters = GetField<int[][]>(comp, "displayedLetters");
-        var fldDisplayedColors = GetField<int[]>(comp, "displayedColors");
+        var fldDisplayedLetters = GetArrayField<int[]>(comp, "displayedLetters");
+        var fldDisplayedColors = GetArrayField<int>(comp, "displayedColors");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        if (comp == null || fldDisplayedLetters == null || fldDisplayedColors == null || fldSolved == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -9165,11 +8703,8 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessShapesAndBombs(KMBombModule module)
     {
         var comp = GetComponent(module, "ShapesBombs");
-        var fldLetter = GetField<int>(comp, "selectLetter");
+        var fldLetter = GetIntField(comp, "selectLetter");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        if (comp == null || fldLetter == null || fldSolved == null)
-            yield break;
 
         yield return null;
 
@@ -9192,13 +8727,10 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "ShapeShiftModule");
         var fldSolved = GetField<bool>(comp, "isSolved");
-        var fldStartL = GetField<int>(comp, "startL");
-        var fldStartR = GetField<int>(comp, "startR");
-        var fldSolutionL = GetField<int>(comp, "solutionL");
-        var fldSolutionR = GetField<int>(comp, "solutionR");
-
-        if (comp == null || fldSolved == null || fldStartL == null || fldStartR == null || fldSolutionL == null || fldSolutionR == null)
-            yield break;
+        var fldStartL = GetIntField(comp, "startL");
+        var fldStartR = GetIntField(comp, "startR");
+        var fldSolutionL = GetIntField(comp, "solutionL");
+        var fldSolutionR = GetIntField(comp, "solutionR");
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
@@ -9230,10 +8762,7 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "shellGame");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldInitialCup = GetField<int>(comp, "startingCup");
-
-        if (comp == null || fldSolved == null || fldInitialCup == null)
-            yield break;
+        var fldInitialCup = GetIntField(comp, "startingCup");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -9257,9 +8786,6 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "SillySlots");
         var fldSolved = GetField<bool>(comp, "solved");
         var fldPrevSlots = GetField<IList>(comp, "mPreviousSlots");
-
-        if (comp == null || fldSolved == null || fldPrevSlots == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -9311,9 +8837,6 @@ public class SouvenirModule : MonoBehaviour
         var fldCalls = GetField<List<string>>(comp, "_calls");
         var fldSolved = GetField<bool>(comp, "_isSolved");
 
-        if (comp == null || fldCalls == null || fldSolved == null)
-            yield break;
-
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_SimonSamples);
@@ -9332,7 +8855,7 @@ public class SouvenirModule : MonoBehaviour
     {
         var component = GetComponent(module, "SimonComponent");
         var fldSolved = GetField<bool>(component, "IsSolved", true);
-        var fldSequence = GetField<int[]>(component, "currentSequence");
+        var fldSequence = GetArrayField<int>(component, "currentSequence");
         if (fldSolved == null || fldSequence == null)
             yield break;
 
@@ -9358,11 +8881,8 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "simonScramblesScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldSequence = GetField<int[]>(comp, "sequence");
-        var fldColors = GetField<string[]>(comp, "colorNames");
-
-        if (comp == null || fldSolved == null || fldSequence == null || fldColors == null)
-            yield break;
+        var fldSequence = GetArrayField<int>(comp, "sequence");
+        var fldColors = GetArrayField<string>(comp, "colorNames");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -9395,13 +8915,10 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessSimonScreams(KMBombModule module)
     {
         var comp = GetComponent(module, "SimonScreamsModule");
-        var fldSequences = GetField<int[][]>(comp, "_sequences");
+        var fldSequences = GetArrayField<int[]>(comp, "_sequences");
         var fldColors = GetField<Array>(comp, "_colors");
         var fldSolved = GetField<bool>(comp, "_isSolved");
         var fldRowCriteria = GetField<Array>(comp, "_rowCriteria");
-
-        if (comp == null || fldSequences == null || fldColors == null || fldSolved == null || fldRowCriteria == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -9477,13 +8994,10 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "SimonSelectsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldStg1order = GetField<int[]>(comp, "stg1order");
-        var fldStg2order = GetField<int[]>(comp, "stg2order");
-        var fldStg3order = GetField<int[]>(comp, "stg3order");
-        var fldButtonrend = GetField<Renderer[]>(comp, "buttonrend", isPublic: true);
-
-        if (comp == null || fldSolved == null || fldStg1order == null || fldStg2order == null || fldStg3order == null || fldButtonrend == null)
-            yield break;
+        var fldStg1order = GetArrayField<int>(comp, "stg1order");
+        var fldStg2order = GetArrayField<int>(comp, "stg2order");
+        var fldStg3order = GetArrayField<int>(comp, "stg3order");
+        var fldButtonrend = GetArrayField<Renderer>(comp, "buttonrend", isPublic: true);
 
         yield return null;
 
@@ -9554,9 +9068,6 @@ public class SouvenirModule : MonoBehaviour
         var fldMorseG = GetField<string>(comp, "_morseG");
         var fldMorseB = GetField<string>(comp, "_morseB");
 
-        if (comp == null || fldAnswerSoFar == null || fldMorseR == null || fldMorseG == null || fldMorseB == null)
-            yield break;
-
         yield return null;
 
         var morseR = fldMorseR.Get();
@@ -9584,13 +9095,10 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessSimonShrieks(KMBombModule module)
     {
         var comp = GetComponent(module, "SimonShrieksModule");
-        var fldArrow = GetField<int>(comp, "_arrow");
-        var fldButtonColors = GetField<int[]>(comp, "_buttonColors");
-        var fldFlashingButtons = GetField<int[]>(comp, "_flashingButtons");
-        var fldStage = GetField<int>(comp, "_stage");
-
-        if (comp == null || fldArrow == null || fldButtonColors == null || fldFlashingButtons == null || fldStage == null)
-            yield break;
+        var fldArrow = GetIntField(comp, "_arrow");
+        var fldButtonColors = GetArrayField<int>(comp, "_buttonColors");
+        var fldFlashingButtons = GetArrayField<int>(comp, "_flashingButtons");
+        var fldStage = GetIntField(comp, "_stage");
 
         while (fldStage.Get() < 3)
             yield return new WaitForSeconds(.1f);
@@ -9623,10 +9131,7 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "simonsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldSelButtons = GetField<KMSelectable[]>(comp, "selButtons");
-
-        if (comp == null || fldSolved == null || fldSelButtons == null)
-            yield break;
+        var fldSelButtons = GetArrayField<KMSelectable>(comp, "selButtons");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -9662,11 +9167,8 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessSimonSings(KMBombModule module)
     {
         var comp = GetComponent(module, "SimonSingsModule");
-        var fldCurStage = GetField<int>(comp, "_curStage");
-        var fldFlashingColors = GetField<int[][]>(comp, "_flashingColors");
-
-        if (comp == null || fldCurStage == null || fldFlashingColors == null)
-            yield break;
+        var fldCurStage = GetIntField(comp, "_curStage");
+        var fldFlashingColors = GetArrayField<int[]>(comp, "_flashingColors");
 
         while (fldCurStage.Get() < 3)
             yield return new WaitForSeconds(.1f);
@@ -9687,9 +9189,6 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "simonSoundsScript");
         var fldFlashedColors = GetField<List<int>[]>(comp, "stage");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        if (comp == null || fldFlashedColors == null || fldSolved == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -9715,16 +9214,13 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessSimonSpeaks(KMBombModule module)
     {
         var comp = GetComponent(module, "SimonSpeaksModule");
-        var fldSequence = GetField<int[]>(comp, "_sequence");
-        var fldColors = GetField<int[]>(comp, "_colors");
-        var fldWords = GetField<int[]>(comp, "_words");
-        var fldLanguages = GetField<int[]>(comp, "_languages");
+        var fldSequence = GetArrayField<int>(comp, "_sequence");
+        var fldColors = GetArrayField<int>(comp, "_colors");
+        var fldWords = GetArrayField<int>(comp, "_words");
+        var fldLanguages = GetArrayField<int>(comp, "_languages");
         var fldSolved = GetField<bool>(comp, "_isSolved");
         var fldWordsTable = GetStaticField<string[][]>(comp.GetType(), "_wordsTable");
         var fldPositionNames = GetStaticField<string[]>(comp.GetType(), "_positionNames");
-
-        if (comp == null || fldSequence == null || fldColors == null || fldWords == null || fldLanguages == null || fldSolved == null || fldWordsTable == null || fldPositionNames == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -9761,9 +9257,6 @@ public class SouvenirModule : MonoBehaviour
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldFlashes = "first,second,third,fourth,fifth".Split(',').Select(n => GetField<string>(comp, n + "FlashColour", isPublic: true)).ToArray();
 
-        if (comp == null || fldSolved == null || fldFlashes.Any(f => f == null))
-            yield break;
-
         yield return null;
 
         var flashes = fldFlashes.Select(f => f.Get()).ToArray();
@@ -9785,12 +9278,9 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessSimonStates(KMBombModule module)
     {
         var comp = GetComponent(module, "AdvancedSimon");
-        var fldPuzzleDisplay = GetField<bool[][]>(comp, "PuzzleDisplay");
-        var fldAnswer = GetField<int[]>(comp, "Answer");
-        var fldProgress = GetField<int>(comp, "Progress");
-
-        if (comp == null || fldPuzzleDisplay == null || fldAnswer == null || fldProgress == null)
-            yield break;
+        var fldPuzzleDisplay = GetArrayField<bool[]>(comp, "PuzzleDisplay");
+        var fldAnswer = GetArrayField<int>(comp, "Answer");
+        var fldProgress = GetIntField(comp, "Progress");
 
         bool[][] puzzleDisplay;
         while ((puzzleDisplay = fldPuzzleDisplay.Get(nullAllowed: true)) == null)
@@ -9835,11 +9325,8 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessSimonStops(KMBombModule module)
     {
         var comp = GetComponent(module, "SimonStops");
-        var fldColors = GetField<string[]>(comp, "outputSequence");
+        var fldColors = GetArrayField<string>(comp, "outputSequence");
         var fldSolved = GetField<bool>(comp, "isSolved");
-
-        if (comp == null || fldColors == null || fldSolved == null)
-            yield break;
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
@@ -9865,10 +9352,7 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "SimonStoresScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldFlashingColours = GetField<List<string>>(comp, "flashingColours");
-        var fldAnswer = GetField<int[][]>(comp, "step");
-
-        if (comp == null || fldSolved == null || fldFlashingColours == null || fldAnswer == null)
-            yield break;
+        var fldAnswer = GetArrayField<int[]>(comp, "step");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
@@ -9939,12 +9423,9 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessSkewedSlots(KMBombModule module)
     {
         var comp = GetComponent(module, "SkewedModule");
-        var fldNumbers = GetField<int[]>(comp, "Numbers");
+        var fldNumbers = GetArrayField<int>(comp, "Numbers");
         var fldModuleActivated = GetField<bool>(comp, "moduleActivated");
         var fldSolved = GetField<bool>(comp, "solved");
-
-        if (comp == null || fldNumbers == null || fldModuleActivated == null || fldSolved == null)
-            yield break;
 
         var originalNumbers = new List<string>();
 
@@ -10001,9 +9482,6 @@ public class SouvenirModule : MonoBehaviour
         var fldCorrectShoutName = GetField<string>(comp, "shoutName");
         var fldSolved = GetField<bool>(comp, "solved");
         var fldsButtons = _skyrimButtonNames.Select(fieldName => GetField<KMSelectable>(comp, fieldName, isPublic: true)).ToArray();
-        if (comp == null || flds.Any(f => f == null) || fldsCorrect.Any(f => f == null) || fldShoutNames == null || fldCorrectShoutName == null || fldSolved == null || fldsButtons.Any(b => b == null))
-            yield break;
-
         yield return null;
         while (!fldSolved.Get())
             // Usually we’d wait 0.1 seconds at a time, but in this case we need to know immediately so that we can hook the buttons
@@ -10047,10 +9525,7 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "snookerScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldActiveReds = GetField<int>(comp, "activeReds");
-
-        if (comp == null || fldSolved == null || fldActiveReds == null)
-            yield break;
+        var fldActiveReds = GetIntField(comp, "activeReds");
 
         yield return null;
 
@@ -10074,10 +9549,7 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "sonicScript");
         var fldsButtonSounds = new[] { "boots", "invincible", "life", "rings" }.Select(name => GetField<string>(comp, name + "Press"));
         var fldsPics = Enumerable.Range(0, 3).Select(i => GetField<Texture>(comp, "pic" + (i + 1))).ToArray();
-        var fldStage = GetField<int>(comp, "stage");
-
-        if (comp == null || fldsButtonSounds.Any(b => b == null) || fldsPics.Any(p => p == null) || fldStage == null)
-            yield break;
+        var fldStage = GetIntField(comp, "stage");
 
         while (fldStage.Get() < 5)
             yield return new WaitForSeconds(.1f);
@@ -10126,9 +9598,6 @@ public class SouvenirModule : MonoBehaviour
         var fldSolved = GetField<bool>(comp, "isSolved");
         var fldLastSwap = GetField<byte>(comp, "swapButtons");
         var fldSwapCount = GetField<byte>(comp, "swapIndex");
-
-        if (comp == null || fldSolved == null || fldLastSwap == null || fldSwapCount == null)
-            yield break;
 
         yield return null;
 
@@ -10211,11 +9680,8 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "theSphereScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldColorNames = GetField<string[]>(comp, "colourNames", isPublic: true);
-        var fldColors = GetField<int[]>(comp, "selectedColourIndices", isPublic: true);
-
-        if (comp == null || fldSolved == null || fldColorNames == null || fldColors == null)
-            yield break;
+        var fldColorNames = GetArrayField<string>(comp, "colourNames", isPublic: true);
+        var fldColors = GetArrayField<int>(comp, "selectedColourIndices", isPublic: true);
 
         string[] colorNames = fldColorNames.Get();
         int[] colors = fldColors.Get();
@@ -10246,9 +9712,6 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "SplittingTheLootScript");
         var fldSolved = GetField<bool>(comp, "isSolved");
         var fldBags = GetField<object>(comp, "bags");
-
-        if (comp == null || fldSolved == null || fldBags == null)
-            yield break;
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
@@ -10293,13 +9756,10 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "Switch");
         var fldSolved = GetField<bool>(comp, "SOLVED");
-        var fldBottomColor = GetField<int>(comp, "BottomColor");
-        var fldTopColor = GetField<int>(comp, "TopColor");
+        var fldBottomColor = GetIntField(comp, "BottomColor");
+        var fldTopColor = GetIntField(comp, "TopColor");
         var fldSwitch = GetField<KMSelectable>(comp, "FlipperSelectable", isPublic: true);
         var fldFirstSuccess = GetField<bool>(comp, "FirstSuccess");
-
-        if (comp == null || fldSolved == null || fldBottomColor == null || fldTopColor == null || fldSwitch == null || fldFirstSuccess == null)
-            yield break;
 
         yield return null;
 
@@ -10358,12 +9818,9 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessSwitches(KMBombModule module)
     {
         var comp = GetComponent(module, "SwitchModule");
-        var fldSwitches = GetField<MonoBehaviour[]>(comp, "Switches", isPublic: true);
+        var fldSwitches = GetArrayField<MonoBehaviour>(comp, "Switches", isPublic: true);
         var fldGoal = GetField<object>(comp, "_goalConfiguration");
         var mthCurConfig = GetMethod<object>(comp, "GetCurrentConfiguration", 0);
-        if (comp == null || fldSwitches == null || fldGoal == null || mthCurConfig == null)
-            yield break;
-
         yield return null;
         var switches = fldSwitches.Get();
         if (switches == null || switches.Length != 5 || switches.Any(s => s == null))
@@ -10383,11 +9840,8 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessSymbolCycle(KMBombModule module)
     {
         var comp = GetComponent(module, "SymbolCycleModule");
-        var fldCycles = GetField<int[][]>(comp, "_cycles");
+        var fldCycles = GetArrayField<int[]>(comp, "_cycles");
         var fldState = GetField<object>(comp, "_state");
-
-        if (comp == null || fldCycles == null || fldState == null)
-            yield break;
 
         yield return null;
 
@@ -10429,10 +9883,7 @@ public class SouvenirModule : MonoBehaviour
         var fldLetter1 = GetField<string>(comp, "letter1");
         var fldLetter2 = GetField<string>(comp, "letter2");
         var fldLetter3 = GetField<string>(comp, "letter3");
-        var fldStage = GetField<int>(comp, "stage");
-
-        if (comp == null || fldLetter1 == null || fldLetter2 == null || fldLetter3 == null || fldStage == null)
-            yield break;
+        var fldStage = GetIntField(comp, "stage");
 
         yield return null;
 
@@ -10473,9 +9924,6 @@ public class SouvenirModule : MonoBehaviour
         var fldBadLabel = GetField<TextMesh>(comp, "BadLabel", isPublic: true);
         var fldSolved = GetField<bool>(comp, "_isSolved");
 
-        if (comp == null || fldNumberText == null || fldGoodLabel == null || fldBadLabel == null || fldSolved == null)
-            yield break;
-
         yield return null;
         var numberText = fldNumberText.Get();
         var goodLabel = fldGoodLabel.Get();
@@ -10504,10 +9952,7 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "BrushStrokesScript");
         var fldSolved = GetField<bool>(comp, "solved");
         var fldColorNames = GetStaticField<string[]>(comp.GetType(), "colorNames");
-        var fldColors = GetField<int[]>(comp, "colors");
-
-        if (comp == null || fldSolved == null || fldColorNames == null || fldColors == null)
-            yield break;
+        var fldColors = GetArrayField<int>(comp, "colors");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -10536,10 +9981,7 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "TheBulbModule");
         var fldButtonPresses = GetField<string>(comp, "_correctButtonPresses");
-        var fldStage = GetField<int>(comp, "_stage");
-
-        if (comp == null || fldButtonPresses == null || fldStage == null)
-            yield break;
+        var fldStage = GetIntField(comp, "_stage");
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
@@ -10561,15 +10003,12 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessGamepad(KMBombModule module)
     {
         var comp = GetComponent(module, "GamepadModule");
-        var fldX = GetField<int>(comp, "x");
-        var fldY = GetField<int>(comp, "y");
+        var fldX = GetIntField(comp, "x");
+        var fldY = GetIntField(comp, "y");
         var fldSolved = GetField<bool>(comp, "solved");
         var fldDisplay = GetField<GameObject>(comp, "Input", isPublic: true);
         var fldDigits1 = GetField<GameObject>(comp, "Digits1", isPublic: true);
         var fldDigits2 = GetField<GameObject>(comp, "Digits2", isPublic: true);
-
-        if (comp == null || fldX == null || fldY == null || fldSolved == null || fldDisplay == null || fldDigits1 == null || fldDigits2 == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.05f);
@@ -10613,10 +10052,7 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "TapCodeScript");
         var fldSolved = GetField<bool>(comp, "modulepass");
         var fldChosenWord = GetField<string>(comp, "chosenWord");
-        var fldWords = GetField<string[]>(comp, "words");
-
-        if (comp == null || fldSolved == null || fldChosenWord == null || fldWords == null)
-            yield break;
+        var fldWords = GetArrayField<string>(comp, "words");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -10641,10 +10077,7 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "tashaSquealsScript");
         var fldSolved = GetField<bool>(comp, "solved");
         var fldColors = GetStaticField<string[]>(comp.GetType(), "colorNames");
-        var fldSequence = GetField<int[]>(comp, "flashing");
-
-        if (comp == null || fldSolved == null || fldColors == null || fldSequence == null)
-            yield break;
+        var fldSequence = GetArrayField<int>(comp, "flashing");
 
         string[] colors = fldColors.Get();
         int[] sequence = fldSequence.Get();
@@ -10690,10 +10123,7 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "scr_colorCode");
         var fldSolvedFirstStage = GetField<bool>(comp, "solvedFirst");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldColors = GetField<int[]>(comp, "prevColors");
-
-        if (comp == null || fldSolvedFirstStage == null || fldSolved == null || fldColors == null)
-            yield break;
+        var fldColors = GetArrayField<int>(comp, "prevColors");
 
         var firstStageColors = fldColors.Get();
         if (firstStageColors == null || firstStageColors.Length != 10)
@@ -10726,12 +10156,9 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessTextField(KMBombModule module)
     {
         var comp = GetComponent(module, "TextField");
-        var fldDisplay = GetField<TextMesh[]>(comp, "ButtonLabels", true);
+        var fldDisplay = GetArrayField<TextMesh>(comp, "ButtonLabels", true);
         var fldActivated = GetField<bool>(comp, "_lightson");
         var fldSolved = GetField<bool>(comp, "_isSolved");
-
-        if (comp == null || fldDisplay == null || fldActivated == null || fldSolved == null)
-            yield break;
 
         var displayMeshes = fldDisplay.Get();
         if (displayMeshes == null)
@@ -10776,12 +10203,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "thinkingWiresScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldFirstWireToCut = GetField<int>(comp, "firstWireToCut");
+        var fldFirstWireToCut = GetIntField(comp, "firstWireToCut");
         var fldSecondWireToCut = GetField<string>(comp, "secondWireToCut");
         var fldScreenNumber = GetField<string>(comp, "screenNumber");
-
-        if (comp == null || fldSolved == null || fldFirstWireToCut == null || fldSecondWireToCut == null || fldScreenNumber == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
@@ -10824,12 +10248,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "ThirdBaseModule");
         var fldDisplay = GetField<TextMesh>(comp, "Display", isPublic: true);
-        var fldStage = GetField<int>(comp, "stage");
+        var fldStage = GetIntField(comp, "stage");
         var fldActivated = GetField<bool>(comp, "isActivated");
         var fldSolved = GetField<bool>(comp, "isPassed");
-
-        if (comp == null || fldDisplay == null || fldStage == null || fldActivated == null || fldSolved == null)
-            yield break;
 
         yield return null;
 
@@ -10864,14 +10285,11 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessTicTacToe(KMBombModule module)
     {
         var comp = GetComponent(module, "TicTacToeModule");
-        var fldKeypadButtons = GetField<KMSelectable[]>(comp, "KeypadButtons", isPublic: true);
-        var fldKeypadPhysical = GetField<KMSelectable[]>(comp, "_keypadButtonsPhysical");
+        var fldKeypadButtons = GetArrayField<KMSelectable>(comp, "KeypadButtons", isPublic: true);
+        var fldKeypadPhysical = GetArrayField<KMSelectable>(comp, "_keypadButtonsPhysical");
         var fldPlacedX = GetField<bool?[]>(comp, "_placedX");
         var fldIsInitialized = GetField<bool>(comp, "_isInitialized");
         var fldIsSolved = GetField<bool>(comp, "_isSolved");
-
-        if (comp == null || fldKeypadButtons == null || fldKeypadPhysical == null || fldPlacedX == null || fldIsInitialized == null || fldIsSolved == null)
-            yield break;
 
         while (!fldIsInitialized.Get())
             yield return new WaitForSeconds(.1f);
@@ -10908,9 +10326,6 @@ public class SouvenirModule : MonoBehaviour
         var fldTextFromCity = GetField<TextMesh>(comp, "TextFromCity", isPublic: true);
         var fldTextToCity = GetField<TextMesh>(comp, "TextToCity", isPublic: true);
         var fldInputButton = GetField<KMSelectable>(comp, "InputButton", isPublic: true);
-
-        if (comp == null || fldFromCity == null || fldToCity == null || fldTextFromCity == null || fldTextToCity == null || fldInputButton == null)
-            yield break;
 
         yield return null;
 
@@ -10955,10 +10370,7 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "TransmittedMorseScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldMessage = GetField<string>(comp, "messagetrans");
-        var fldStage = GetField<int>(comp, "stage");
-
-        if (comp == null || fldSolved == null || fldMessage == null || fldStage == null)
-            yield break;
+        var fldStage = GetIntField(comp, "stage");
 
         yield return null;
 
@@ -10991,14 +10403,11 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessTurtleRobot(KMBombModule module)
     {
         var comp = GetComponent(module, "TurtleRobot");
-        var fldCursor = GetField<int>(comp, "_cursor");
+        var fldCursor = GetIntField(comp, "_cursor");
         var fldCommands = GetField<IList>(comp, "_commands");
         var fldSolved = GetField<bool>(comp, "_isSolved");
         var fldButtonDelete = GetField<KMSelectable>(comp, "ButtonDelete", isPublic: true);
         var mthFormatCommand = GetMethod<string>(comp, "FormatCommand", 2);
-
-        if (comp == null || fldCursor == null || fldCommands == null || fldSolved == null || fldButtonDelete == null || mthFormatCommand == null)
-            yield break;
 
         yield return null;
 
@@ -11040,13 +10449,10 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessTwoBits(KMBombModule module)
     {
         var comp = GetComponent(module, "TwoBitsModule");
-        var fldFirstQueryCode = GetField<int>(comp, "firstQueryCode");
+        var fldFirstQueryCode = GetIntField(comp, "firstQueryCode");
         var fldQueryLookups = GetField<Dictionary<int, string>>(comp, "queryLookups");
         var fldQueryResponses = GetField<Dictionary<string, int>>(comp, "queryResponses");
         var fldCurrentState = GetField<object>(comp, "currentState");
-
-        if (comp == null || fldFirstQueryCode == null || fldQueryLookups == null || fldQueryResponses == null || fldCurrentState == null)
-            yield break;
 
         while (fldCurrentState.Get().ToString() != "Complete")
             yield return new WaitForSeconds(.1f);
@@ -11089,11 +10495,8 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessUltracube(KMBombModule module)
     {
         var comp = GetComponent(module, "TheUltracubeModule");
-        var fldSequence = GetField<int[]>(comp, "_rotations");
+        var fldSequence = GetArrayField<int>(comp, "_rotations");
         var fldRotations = GetStaticField<string[]>(comp.GetType(), "_rotationNames");
-
-        if (comp == null || fldSequence == null || fldRotations == null)
-            yield break;
 
         int[] sequence = fldSequence.Get();
         string[] rotations = fldRotations.Get();
@@ -11135,9 +10538,6 @@ public class SouvenirModule : MonoBehaviour
         var fldFirstStageColor1 = GetField<object>(comp, "_firstStageColor1");
         var fldFirstStageColor2 = GetField<object>(comp, "_firstStageColor2");
 
-        if (comp == null || fldSolved == null || fldFirstStageColor1 == null || fldFirstStageColor2 == null)
-            yield break;
-
         yield return null;
 
         while (!fldSolved.Get())
@@ -11154,10 +10554,7 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "UncoloredSwitches");
         var fldInitialState = GetField<StringBuilder>(comp, "Switches_Current_State");
         var fldLedColors = GetField<StringBuilder>(comp, "LEDsColorsString");
-        var fldStage = GetField<int>(comp, "stage");
-
-        if (comp == null || fldInitialState == null || fldLedColors == null || fldStage == null)
-            yield break;
+        var fldStage = GetIntField(comp, "stage");
 
         yield return null;
 
@@ -11222,10 +10619,7 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "unfairCipherScript");
         var fldSolved = GetField<bool>(comp, "solved");
-        var fldInstructions = GetField<string[]>(comp, "Message");
-
-        if (comp == null || fldSolved == null || fldInstructions == null)
-            yield break;
+        var fldInstructions = GetArrayField<string>(comp, "Message");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -11252,10 +10646,7 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "UnownCipher");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldUnown = GetField<int[]>(comp, "letterIndexes");
-
-        if (comp == null || fldSolved == null || fldUnown == null)
-            yield break;
+        var fldUnown = GetArrayField<int>(comp, "letterIndexes");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -11283,9 +10674,6 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "VaricoloredSquaresModule");
         var fldFirstColor = GetField<object>(comp, "_firstStageColor");
 
-        if (comp == null || fldFirstColor == null)
-            yield break;
-
         var solved = false;
         module.OnPass += delegate { solved = true; return false; };
         while (!solved)
@@ -11304,9 +10692,6 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "VcrcsScript");
         var fldSolved = GetField<bool>(comp, "ModuleSolved");
         var fldWord = GetField<TextMesh>(comp, "Words", isPublic: true);
-
-        if (comp == null || fldSolved == null || fldWord == null)
-            yield break;
 
         yield return null;
 
@@ -11331,12 +10716,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "VectorsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldColors = GetField<string[]>(comp, "colors");
-        var fldVectorsPicked = GetField<int[]>(comp, "vectorsPicked");
-        var fldVectorCount = GetField<int>(comp, "vectorct");
-
-        if (comp == null || fldSolved == null || fldColors == null || fldVectorsPicked == null || fldVectorCount == null)
-            yield break;
+        var fldColors = GetArrayField<string>(comp, "colors");
+        var fldVectorsPicked = GetArrayField<int>(comp, "vectorsPicked");
+        var fldVectorCount = GetIntField(comp, "vectorct");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -11382,13 +10764,10 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "vexillologyScript");
         var fldSolved = GetField<bool>(comp, "_issolved");
-        var fldColors = GetField<string[]>(comp, "coloursStrings");
-        var fldColor1 = GetField<int>(comp, "ActiveFlagTop1");
-        var fldColor2 = GetField<int>(comp, "ActiveFlagTop2");
-        var fldColor3 = GetField<int>(comp, "ActiveFlagTop3");
-
-        if (comp == null || fldSolved == null || fldColors == null || fldColor1 == null || fldColor2 == null || fldColor3 == null)
-            yield break;
+        var fldColors = GetArrayField<string>(comp, "coloursStrings");
+        var fldColor1 = GetIntField(comp, "ActiveFlagTop1");
+        var fldColor2 = GetIntField(comp, "ActiveFlagTop2");
+        var fldColor3 = GetIntField(comp, "ActiveFlagTop3");
 
         string[] colors = fldColors.Get();
         int color1 = fldColor1.Get();
@@ -11416,15 +10795,12 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessVisualImpairment(KMBombModule module)
     {
         var comp = GetComponent(module, "VisualImpairment");
-        var fldRoundsFinished = GetField<int>(comp, "roundsFinished");
-        var fldStageCount = GetField<int>(comp, "stageCount");
+        var fldRoundsFinished = GetIntField(comp, "roundsFinished");
+        var fldStageCount = GetIntField(comp, "stageCount");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldColor = GetField<int>(comp, "color");
+        var fldColor = GetIntField(comp, "color");
         var fldAnyPressed = GetField<bool>(comp, "anyPressed");
-        var fldPicture = GetField<string[]>(comp, "picture");
-
-        if (comp == null || fldRoundsFinished == null || fldStageCount == null || fldSolved == null || fldColor == null || fldAnyPressed == null || fldPicture == null)
-            yield break;
+        var fldPicture = GetArrayField<string>(comp, "picture");
 
         // Wait for the first picture to be assigned
         while (fldPicture.Get(nullAllowed: true) == null)
@@ -11465,12 +10841,9 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessWavetapping(KMBombModule module)
     {
         var comp = GetComponent(module, "scr_wavetapping");
-        var fldStageColors = GetField<int[]>(comp, "stageColors");
-        var fldIntPatterns = GetField<int[]>(comp, "intPatterns");
+        var fldStageColors = GetArrayField<int>(comp, "stageColors");
+        var fldIntPatterns = GetArrayField<int>(comp, "intPatterns");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        if (comp == null || fldStageColors == null || fldIntPatterns == null || fldSolved == null)
-            yield break;
 
         yield return null;
 
@@ -11556,11 +10929,8 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "wireScript");
         var fldSolved = GetField<bool>(comp, "moduleDone");
-        var fldDials = GetField<Renderer[]>(comp, "renderers", isPublic: true);
-        var fldDisplayedNumber = GetField<int>(comp, "displayedNumber");
-
-        if (comp == null || fldSolved == null || fldDials == null || fldDisplayedNumber == null)
-            yield break;
+        var fldDials = GetArrayField<Renderer>(comp, "renderers", isPublic: true);
+        var fldDisplayedNumber = GetIntField(comp, "displayedNumber");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -11584,12 +10954,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "WireOrderingScript");
         var fldSolved = GetField<bool>(comp, "_modSolved");
-        var fldChosenColorsDisplay = GetField<int[]>(comp, "_chosenColorsDis");
-        var fldChosenColorsWire = GetField<int[]>(comp, "_chosenColorsWire");
-        var fldChosenDisplayNumbers = GetField<int[]>(comp, "_chosenDisNum");
-
-        if (comp == null || fldSolved == null || fldChosenColorsDisplay == null || fldChosenColorsWire == null || fldChosenDisplayNumbers == null)
-            yield break;
+        var fldChosenColorsDisplay = GetArrayField<int>(comp, "_chosenColorsDis");
+        var fldChosenColorsWire = GetArrayField<int>(comp, "_chosenColorsWire");
+        var fldChosenDisplayNumbers = GetArrayField<int>(comp, "_chosenDisNum");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -11649,9 +11016,6 @@ public class SouvenirModule : MonoBehaviour
         var mthGetStates = GetMethod<List<string>>(comp, "GetAllStates", 0);
         var mthGetName = GetMethod<string>(comp, "GetStateFullName", 1);
 
-        if (comp == null || fldOrigin == null || fldActive == null || mthGetStates == null || mthGetName == null)
-            yield break;
-
         // wait for activation
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
@@ -11679,11 +11043,8 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessYahtzee(KMBombModule module)
     {
         var comp = GetComponent(module, "YahtzeeModule");
-        var fldDiceValues = GetField<int[]>(comp, "_diceValues");
+        var fldDiceValues = GetArrayField<int>(comp, "_diceValues");
         var fldSolved = GetField<bool>(comp, "_isSolved");
-
-        if (comp == null || fldDiceValues == null || fldSolved == null)
-            yield break;
 
         // This array only changes its contents, it’s never reassigned, so we only need to get it once
         var diceValues = fldDiceValues.Get();
@@ -11736,10 +11097,7 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "YellowArrowsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldLetIndex = GetField<int>(comp, "letindex");
-
-        if (comp == null || fldSolved == null | fldLetIndex == null)
-            yield break;
+        var fldLetIndex = GetIntField(comp, "letindex");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -11758,13 +11116,10 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "ZoniModuleScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldButtons = GetField<KMSelectable[]>(comp, "buttons", isPublic: true);
-        var fldWords = GetField<string[]>(comp, "wordlist", isPublic: true);
-        var fldIndex = GetField<int>(comp, "wordIndex");
-        var fldStage = GetField<int>(comp, "solvedStages");
-
-        if (comp == null || fldSolved == null || fldButtons == null || fldWords == null || fldIndex == null || fldStage == null)
-            yield break;
+        var fldButtons = GetArrayField<KMSelectable>(comp, "buttons", isPublic: true);
+        var fldWords = GetArrayField<string>(comp, "wordlist", isPublic: true);
+        var fldIndex = GetIntField(comp, "wordIndex");
+        var fldStage = GetIntField(comp, "solvedStages");
 
         List<int> wordsAnswered = new List<int>();
 
