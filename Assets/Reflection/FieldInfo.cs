@@ -47,7 +47,7 @@ namespace Souvenir.Reflection
                 return "<null>";
             var list = value as IList;
             if (list != null)
-                return string.Format("[{0}]", list.Cast<object>().Select(obj => obj == null ? "<null>" : obj.ToString()).JoinString(", "));
+                return string.Format("[{0}]", list.Cast<object>().Select(stringify).JoinString(", "));
             return string.Format("“{0}”", value);
         }
     }
