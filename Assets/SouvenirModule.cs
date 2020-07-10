@@ -1430,6 +1430,7 @@ public class SouvenirModule : MonoBehaviour
         if (iterator != null)
         {
             supportedModuleNames.Add(module.ModuleDisplayName);
+            yield return null;  // Ensures that the module’s Start() method has run
             Debug.LogFormat("<Souvenir #{1}> Module {0}: Start processing.", moduleType, _moduleId);
             foreach (var obj in iterator(module))
             {
@@ -1880,8 +1881,6 @@ public class SouvenirModule : MonoBehaviour
 
         if (comp == null || fldsDisplays.Contains(null) || fldSolved == null)
             yield break;
-
-        yield return null;  // Ensure that Start() has run
 
         var isSolved = false;
         module.OnPass += delegate { isSolved = true; return false; };
@@ -2962,9 +2961,6 @@ public class SouvenirModule : MonoBehaviour
         if (comp == null || fldLights == null || fldIsSolved == null || fldGivenChord == null)
             yield break;
 
-        // Make sure that Chord Qualities’s Start() has run.
-        yield return null;
-
         var givenChord = fldGivenChord.Get();
         var fldNotes = givenChord == null ? null : GetField<Array>(givenChord, "notes");
         var notes = fldNotes == null ? null : fldNotes.Get();
@@ -3015,9 +3011,6 @@ public class SouvenirModule : MonoBehaviour
 
         if (comp == null || fldCode == null || fldResetBtn == null || fldSubmitBtn == null)
             yield break;
-
-        // wait for Start()
-        yield return null;
 
         var code = fldCode.Get();
 
@@ -3174,9 +3167,6 @@ public class SouvenirModule : MonoBehaviour
 
         if (comp == null || fldInputButtons == null || fldStageNum == null || fldIndicator == null || fldIndicatorGrid == null)
             yield break;
-
-        // Ensure Start() has run.
-        yield return null;
 
         var indicatorGrid = fldIndicatorGrid.Get();
         if (indicatorGrid == null)
@@ -3981,8 +3971,6 @@ public class SouvenirModule : MonoBehaviour
         if (comp == null || fldSolved == null || fldModuleName == null)
             yield break;
 
-        yield return null;  // Make sure that Start() has run
-
         var moduleName = fldModuleName.Get();
         if (moduleName == null)
             yield break;
@@ -4031,9 +4019,6 @@ public class SouvenirModule : MonoBehaviour
 
         if (comp == null || fldSolved == null || fldIndex == null || fldCalls == null || fldResponses == null)
             yield break;
-
-        // wait for Start()
-        yield return null;
 
         int index = fldIndex.Get();
         string[] calls = fldCalls.Get();
@@ -4359,9 +4344,6 @@ public class SouvenirModule : MonoBehaviour
         if (comp == null || fldSolved == null || fldTopColors == null || fldBottomColors == null)
             yield break;
 
-        // wait for Start()
-        yield return null;
-
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_FlashingLights);
@@ -4525,9 +4507,6 @@ public class SouvenirModule : MonoBehaviour
 
         if (comp == null || fldSolved == null || fldTokens == null || fldSelected == null)
             yield break;
-
-        // wait for Start()
-        yield return null;
 
         Material[] tokens = fldTokens.Get();
         int selected = fldSelected.Get();
@@ -4950,9 +4929,6 @@ public class SouvenirModule : MonoBehaviour
         if (comp == null || fldSolved == null || fldLabels == null || fldIndex == null)
             yield break;
 
-        // wait for Start()
-        yield return null;
-
         string[] labels = fldLabels.Get();
         int index = fldIndex.Get();
 
@@ -5140,9 +5116,6 @@ public class SouvenirModule : MonoBehaviour
         if (comp == null || fldSolved == null || fldPos == null || fldLbl == null || fldColors == null)
             yield break;
 
-        //wait for Start()
-        yield return null;
-
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_HorribleMemory);
@@ -5271,9 +5244,6 @@ public class SouvenirModule : MonoBehaviour
 
         if (comp == null || fldSequence == null || fldRotations == null)
             yield break;
-
-        // wait for Start()
-        yield return null;
 
         int[] sequence = fldSequence.Get();
         string[] rotations = fldRotations.Get();
@@ -5500,9 +5470,6 @@ public class SouvenirModule : MonoBehaviour
         if (comp == null || fldSolved == null || fldDigits == null)
             yield break;
 
-        // Ensure that Start() has run
-        yield return null;
-
         var digits = fldDigits.Get();
 
         if (digits == null)
@@ -5533,9 +5500,6 @@ public class SouvenirModule : MonoBehaviour
 
         if (comp == null || fldWheels == null || fldAssignedWheels == null || fldSolved == null)
             yield break;
-
-        // wait for Start()
-        yield return null;
 
         var wheels = fldWheels.Get();
         var assignedWheels = fldAssignedWheels.Get();
@@ -5574,9 +5538,6 @@ public class SouvenirModule : MonoBehaviour
 
         if (comp == null || fldShown == null || fldSolved == null)
             yield break;
-
-        // Ensure that Start() has run
-        yield return null;
 
         var shown = fldShown.Get();
         if (shown == null || shown.Length != 16)
@@ -5773,9 +5734,6 @@ public class SouvenirModule : MonoBehaviour
         if (comp == null || fldSolutionStruct == null || fldLeftButton == null || fldRightButton == null || fldSubmission == null || mthUpdate == null)
             yield break;
 
-        // Make sure Start() has run
-        yield return null;
-
         var solutionStruct = fldSolutionStruct.Get();
         if (solutionStruct == null)
             yield break;
@@ -5934,9 +5892,6 @@ public class SouvenirModule : MonoBehaviour
 
         if (comp == null || fldGates == null || fldInputs == null || fldCurrentInputIndex == null || fldButtonNext == null || fldButtonPrevious == null)
             yield break;
-
-        // Make sure Start() has run
-        yield return null;
 
         var inputs = fldInputs.Get();
         var gates = fldGates.Get();
@@ -6229,9 +6184,6 @@ public class SouvenirModule : MonoBehaviour
         if (comp == null || fldSolved == null || fldNode == null)
             yield break;
 
-        // wait for Start()
-        yield return null;
-
         var node = fldNode.Get();
         var colors = new[] { "Red", "Blue", "Yellow", "Green", "Magenta", "Orange" };
 
@@ -6295,9 +6247,6 @@ public class SouvenirModule : MonoBehaviour
 
         if (comp == null || fldSolved == null || fldInd1X == null || fldInd1Y == null || fldInd2X == null || fldInd2Y == null || fldStartX == null || fldStartY == null || fldGoalX == null || fldGoalY == null)
             yield break;
-
-        //wait for Start()
-        yield return null;
 
         const int x = 0;
         const int y = 1;
@@ -6387,9 +6336,6 @@ public class SouvenirModule : MonoBehaviour
 
         if (comp == null || fldSolved == null || fldParts == null || fldModuleParts == null)
             yield break;
-
-        // Ensure the Start() has run
-        yield return null;
 
         var parts = fldParts.Get();
         var moduleParts = fldModuleParts.Get();
@@ -7996,8 +7942,6 @@ public class SouvenirModule : MonoBehaviour
         if (comp == null || fldSolved == null || fldLeds == null || fldDisplay == null)
             yield break;
 
-        yield return null;  // ensure that Start() has run
-
         var display = fldDisplay.Get();
         if (display == null)
             yield break;
@@ -8273,9 +8217,6 @@ public class SouvenirModule : MonoBehaviour
 
         if (comp == null || fldDigits == null || fldSolved == null)
             yield break;
-
-        // wait for Start()
-        yield return null;
 
         // get displayed digits
         var digits = fldDigits.Get();
@@ -8726,9 +8667,6 @@ public class SouvenirModule : MonoBehaviour
         if (comp == null || fldSolved == null || fldMessage1 == null || fldMessage2 == null)
             yield break;
 
-        // wait for Start()
-        yield return null;
-
         var message1 = fldMessage1.Get();
         var message2 = fldMessage2.Get();
         if (message1 == null || message2 == null)
@@ -8969,8 +8907,6 @@ public class SouvenirModule : MonoBehaviour
 
         if (comp == null || fldSolved == null || fldKeySquare == null || fldRelTiles == null || fldDecoyTiles == null || fldColorIndex == null)
             yield break;
-
-        yield return null;  // Make sure that Start() has run
 
         var keySquare = fldKeySquare.Get();
         if (keySquare < 0 || keySquare >= 16)
@@ -10218,9 +10154,6 @@ public class SouvenirModule : MonoBehaviour
         if (comp == null || fldSolved == null || fldColorNames == null || fldColors == null)
             yield break;
 
-        // wait for Start()
-        yield return null;
-
         string[] colorNames = fldColorNames.Get();
         int[] colors = fldColors.Get();
 
@@ -10650,9 +10583,6 @@ public class SouvenirModule : MonoBehaviour
         if (comp == null || fldSolved == null || fldColors == null || fldSequence == null)
             yield break;
 
-        // wait for Start()
-        yield return null;
-
         string[] colors = fldColors.Get();
         int[] sequence = fldSequence.Get();
 
@@ -10701,8 +10631,6 @@ public class SouvenirModule : MonoBehaviour
 
         if (comp == null || fldSolvedFirstStage == null || fldSolved == null || fldColors == null)
             yield break;
-
-        yield return null;  // Just make sure that Start() has run
 
         var firstStageColors = fldColors.Get();
         if (firstStageColors == null || firstStageColors.Length != 10)
@@ -11104,9 +11032,6 @@ public class SouvenirModule : MonoBehaviour
         if (comp == null || fldSequence == null || fldRotations == null)
             yield break;
 
-        // wait for Start()
-        yield return null;
-
         int[] sequence = fldSequence.Get();
         string[] rotations = fldRotations.Get();
 
@@ -11401,9 +11326,6 @@ public class SouvenirModule : MonoBehaviour
 
         if (comp == null || fldSolved == null || fldColors == null || fldColor1 == null || fldColor2 == null || fldColor3 == null)
             yield break;
-
-        // wait for Start()
-        yield return null;
 
         string[] colors = fldColors.Get();
         int color1 = fldColor1.Get();
@@ -11700,9 +11622,6 @@ public class SouvenirModule : MonoBehaviour
         if (comp == null || fldDiceValues == null || fldSolved == null)
             yield break;
 
-        // Make sure that Yahtzee’s Start method ran, which assigns _diceValues
-        yield return null;
-
         // This array only changes its contents, it’s never reassigned, so we only need to get it once
         var diceValues = fldDiceValues.Get();
 
@@ -11785,9 +11704,6 @@ public class SouvenirModule : MonoBehaviour
             yield break;
 
         List<int> wordsAnswered = new List<int>();
-
-        // wait for Start()
-        yield return null;
 
         KMSelectable[] buttons = fldButtons.Get();
         string[] words = fldWords.Get();
