@@ -1033,7 +1033,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonShrieksFlashingButton,
 
-        [SouvenirQuestion("What was the flashing color added in the {1} stage of {0}?", "Simon Sounds", AnswerLayout.TwoColumns4Answers, "red", "blue", "yellow", "green",
+        [SouvenirQuestion("Which sample button sounded {1} in the final sequence in {0}?", "Simon Sounds", AnswerLayout.TwoColumns4Answers, "red", "blue", "yellow", "green",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSoundsFlashingColors,
 
