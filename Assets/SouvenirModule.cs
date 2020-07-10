@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using KModkit;
 using Newtonsoft.Json;
 using Souvenir;
+using Souvenir.Reflection;
 using UnityEngine;
 using Rnd = UnityEngine.Random;
 
@@ -18,6 +19,7 @@ using Rnd = UnityEngine.Random;
 /// </summary>
 public class SouvenirModule : MonoBehaviour
 {
+    #region Fields
     public KMBombInfo Bomb;
     public KMBombModule Module;
     public KMAudio Audio;
@@ -90,7 +92,9 @@ public class SouvenirModule : MonoBehaviour
     private static int _moduleIdCounter = 1;
     private int _moduleId;
     private Dictionary<string, Func<KMBombModule, IEnumerable<object>>> _moduleProcessors;
+    #endregion
 
+    #region Module ID constant declarations
     // The values here are the “ModuleType” property on the KMBombModule components.
     const string _3DMaze = "spwiz3DMaze";
     const string _3DTunnels = "3dTunnels";
@@ -326,7 +330,9 @@ public class SouvenirModule : MonoBehaviour
     const string _Yahtzee = "YahtzeeModule";
     const string _YellowArrows = "yellowArrowsModule";
     const string _Zoni = "lgndZoni";
+    #endregion
 
+    #region Souvenir’s own module logic
     void Start()
     {
         _moduleId = _moduleIdCounter;
@@ -1151,128 +1157,9 @@ public class SouvenirModule : MonoBehaviour
         TextMesh.transform.rotation = origRotation;
         TextMesh.gameObject.SetActive(true);
     }
+    #endregion
 
-    sealed class FieldInfo<T>
-    {
-        private readonly object _target;
-        private readonly int _souvenirID;
-        public readonly FieldInfo Field;
-
-        public FieldInfo(object target, FieldInfo field, int souvenirID)
-        {
-            _target = target;
-            Field = field;
-            _souvenirID = souvenirID;
-        }
-
-        public T Get(bool nullAllowed = false)
-        {
-            var t = (T) Field.GetValue(_target);
-            if (!nullAllowed && t == null)
-                Debug.LogFormat("<Souvenir #{2}> Field {1}.{0} is null.", Field.Name, Field.DeclaringType.FullName, _souvenirID);
-            return t;
-        }
-
-        public T GetFrom(object obj, bool nullAllowed = false)
-        {
-            var t = (T) Field.GetValue(obj);
-            if (!nullAllowed && t == null)
-                Debug.LogFormat("<Souvenir #{2}> Field {1}.{0} is null.", Field.Name, Field.DeclaringType.FullName, _souvenirID);
-            return t;
-        }
-
-        public void Set(T value) { Field.SetValue(_target, value); }
-    }
-
-    sealed class MethodInfo<T>
-    {
-        private readonly object _target;
-        public MethodInfo Method { get; private set; }
-
-        public MethodInfo(object target, MethodInfo method)
-        {
-            _target = target;
-            Method = method;
-        }
-
-        public T Invoke(params object[] arguments)
-        {
-            return (T) Method.Invoke(_target, arguments);
-        }
-
-        public T InvokeOn(object target, params object[] arguments)
-        {
-            return (T) Method.Invoke(target, arguments);
-        }
-    }
-
-    sealed class PropertyInfo<T>
-    {
-        private readonly object _target;
-        private readonly int _souvenirID;
-        public readonly PropertyInfo Property;
-        public bool Error { get; private set; }
-
-        public PropertyInfo(object target, PropertyInfo property, int souvenirID)
-        {
-            _target = target;
-            Property = property;
-            _souvenirID = souvenirID;
-            Error = false;
-        }
-
-        public T Get(bool nullAllowed = false)
-        {
-            // “This value should be null for non-indexed properties.” (MSDN)
-            return Get(null, nullAllowed);
-        }
-
-        public T Get(object[] index, bool nullAllowed = false)
-        {
-            try
-            {
-                var t = (T) Property.GetValue(_target, index);
-                if (!nullAllowed && t == null)
-                    Debug.LogFormat("<Souvenir #{2}> Property {1}.{0} is null.", Property.Name, Property.DeclaringType.FullName, _souvenirID);
-                Error = false;
-                return t;
-            }
-            catch (Exception e)
-            {
-                Debug.LogFormat("<Souvenir #{2}> Property {1}.{0} could not be fetched with the specified parameters. Exception: {3}\n{4}", Property.Name, Property.DeclaringType.FullName, _souvenirID, e.GetType().FullName, e.StackTrace);
-                Error = true;
-                return default(T);
-            }
-        }
-
-        public T GetFrom(object obj, bool nullAllowed = false)
-        {
-            return GetFrom(obj, null, nullAllowed);
-        }
-
-        public T GetFrom(object obj, object[] index, bool nullAllowed = false)
-        {
-            var t = (T) Property.GetValue(obj, index);
-            if (!nullAllowed && t == null)
-                Debug.LogFormat("<Souvenir #{2}> Property {1}.{0} is null.", Property.Name, Property.DeclaringType.FullName, _souvenirID);
-            return t;
-        }
-
-        public void Set(T value, object[] index = null)
-        {
-            try
-            {
-                Property.SetValue(_target, value, index);
-                Error = false;
-            }
-            catch (Exception e)
-            {
-                Debug.LogFormat("<Souvenir #{2}> Property {1}.{0} could not be set with the specified parameters. Exception: {3}\n{4}", Property.Name, Property.DeclaringType.FullName, _souvenirID, e.GetType().FullName, e.StackTrace);
-                Error = true;
-            }
-        }
-    }
-
+    #region Reflection
     private Component GetComponent(KMBombModule module, string name)
     {
         return GetComponent(module.gameObject, name);
@@ -1284,7 +1171,7 @@ public class SouvenirModule : MonoBehaviour
         {
             comp = module.GetComponents(typeof(Component)).FirstOrDefault(c => c.GetType().FullName == name);
             if (comp == null)
-                Debug.LogFormat("<Souvenir #{2}> {0} game object has no {1} component. Components are: {3}", module.name, name, _moduleId, module.GetComponents(typeof(Component)).Select(c => c.GetType().FullName).JoinString(", "));
+                throw new AbandonModuleException("{0} game object has no {1} component. Components are: {2}", module.name, name, module.GetComponents(typeof(Component)).Select(c => c.GetType().FullName).JoinString(", "));
         }
         return comp;
     }
@@ -1292,30 +1179,21 @@ public class SouvenirModule : MonoBehaviour
     private FieldInfo<T> GetField<T>(object target, string name, bool isPublic = false)
     {
         if (target == null)
-        {
-            Debug.LogFormat("<Souvenir #{3}> Attempt to get {1} field {0} of type {2} from a null object.", name, isPublic ? "public" : "non-public", typeof(T).FullName, _moduleId);
-            return null;
-        }
+            throw new AbandonModuleException("Attempt to get {1} field {0} of type {2} from a null object.", name, isPublic ? "public" : "non-public", typeof(T).FullName);
         return GetFieldImpl<T>(target, target.GetType(), name, isPublic, BindingFlags.Instance);
     }
 
     private FieldInfo<T> GetField<T>(Type targetType, string name, bool isPublic = false)
     {
         if (targetType == null)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Attempt to get {1} field {2} of type {3} from a null type.", _moduleId, isPublic ? "public" : "non-public", name, typeof(T).FullName);
-            return null;
-        }
+            throw new AbandonModuleException("Attempt to get {0} field {1} of type {2} from a null type.", isPublic ? "public" : "non-public", name, typeof(T).FullName);
         return GetFieldImpl<T>(null, targetType, name, isPublic, BindingFlags.Instance);
     }
 
     private FieldInfo<T> GetStaticField<T>(Type targetType, string name, bool isPublic = false)
     {
         if (targetType == null)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Attempt to get {1} static field {2} of type {3} from a null type.", _moduleId, isPublic ? "public" : "non-public", name, typeof(T).FullName);
-            return null;
-        }
+            throw new AbandonModuleException("Attempt to get {0} static field {1} of type {2} from a null type.", isPublic ? "public" : "non-public", name, typeof(T).FullName);
         return GetFieldImpl<T>(null, targetType, name, isPublic, BindingFlags.Static);
     }
 
@@ -1337,17 +1215,13 @@ public class SouvenirModule : MonoBehaviour
             type = type.BaseType;
         }
 
-        Debug.LogFormat("<Souvenir #{3}> Type {0} does not contain {1} field {2}. Fields are: {4}", targetType, isPublic ? "public" : "non-public", name, _moduleId,
+        throw new AbandonModuleException("Type {0} does not contain {1} field {2}. Fields are: {3}", targetType, isPublic ? "public" : "non-public", name,
             targetType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(f => string.Format("{0} {1} {2}", f.IsPublic ? "public" : "private", f.FieldType.FullName, f.Name)).JoinString(", "));
-        return null;
 
         found:
         if (!typeof(T).IsAssignableFrom(fld.FieldType))
-        {
-            Debug.LogFormat("<Souvenir #{5}> Type {0} has {1} field {2} of type {3} but expected type {4}.", targetType, isPublic ? "public" : "non-public", name, fld.FieldType.FullName, typeof(T).FullName, _moduleId);
-            return null;
-        }
-        return new FieldInfo<T>(target, fld, _moduleId);
+            throw new AbandonModuleException("Type {0} has {1} field {2} of type {3} but expected type {4}.", targetType, isPublic ? "public" : "non-public", name, fld.FieldType.FullName, typeof(T).FullName);
+        return new FieldInfo<T>(target, fld);
     }
 
     private MethodInfo<T> GetMethod<T>(object target, string name, int numParameters, bool isPublic = false)
@@ -1363,43 +1237,29 @@ public class SouvenirModule : MonoBehaviour
     private MethodInfo<T> GetMethodImpl<T>(Type returnType, object target, string name, int numParameters, bool isPublic = false)
     {
         if (target == null)
-        {
-            Debug.LogFormat("<Souvenir #{3}> Attempt to get {1} method {0} of return type {2} from a null object.", name, isPublic ? "public" : "non-public", returnType.FullName, _moduleId);
-            return null;
-        }
+            throw new AbandonModuleException("Attempt to get {1} method {0} of return type {2} from a null object.", name, isPublic ? "public" : "non-public", returnType.FullName);
+
         var bindingFlags = (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | BindingFlags.Instance;
         var targetType = target.GetType();
         var mths = targetType.GetMethods(bindingFlags).Where(m => m.Name == name && m.GetParameters().Length == numParameters && returnType.IsAssignableFrom(m.ReturnType)).Take(2).ToArray();
         if (mths.Length == 0)
-        {
-            Debug.LogFormat("<Souvenir #{5}> Type {0} does not contain {1} method {2} with return type {3} and {4} parameters.", targetType, isPublic ? "public" : "non-public", name, returnType.FullName, numParameters, _moduleId);
-            return null;
-        }
+            throw new AbandonModuleException("Type {0} does not contain {1} method {2} with return type {3} and {4} parameters.", targetType, isPublic ? "public" : "non-public", name, returnType.FullName, numParameters);
         if (mths.Length > 1)
-        {
-            Debug.LogFormat("<Souvenir #{5}> Type {0} contains multiple {1} methods {2} with return type {3} and {4} parameters.", targetType, isPublic ? "public" : "non-public", name, returnType.FullName, numParameters, _moduleId);
-            return null;
-        }
+            throw new AbandonModuleException("Type {0} contains multiple {1} methods {2} with return type {3} and {4} parameters.", targetType, isPublic ? "public" : "non-public", name, returnType.FullName, numParameters);
         return new MethodInfo<T>(target, mths[0]);
     }
 
     private PropertyInfo<T> GetProperty<T>(object target, string name, bool isPublic = false)
     {
         if (target == null)
-        {
-            Debug.LogFormat("<Souvenir #{3}> Attempt to get {1} property {0} of type {2} from a null object.", name, isPublic ? "public" : "non-public", typeof(T).FullName, _moduleId);
-            return null;
-        }
+            throw new AbandonModuleException("Attempt to get {1} property {0} of type {2} from a null object.", name, isPublic ? "public" : "non-public", typeof(T).FullName);
         return GetPropertyImpl<T>(target, target.GetType(), name, isPublic, BindingFlags.Instance);
     }
 
     private PropertyInfo<T> GetStaticProperty<T>(Type targetType, string name, bool isPublic = false)
     {
         if (targetType == null)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Attempt to get {1} static property {2} of type {3} from a null type.", _moduleId, isPublic ? "public" : "non-public", name, typeof(T).FullName);
-            return null;
-        }
+            throw new AbandonModuleException("Attempt to get {0} static property {1} of type {2} from a null type.", isPublic ? "public" : "non-public", name, typeof(T).FullName);
         return GetPropertyImpl<T>(null, targetType, name, isPublic, BindingFlags.Static);
     }
 
@@ -1407,19 +1267,16 @@ public class SouvenirModule : MonoBehaviour
     {
         var fld = targetType.GetProperty(name, (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | bindingFlags);
         if (fld == null)
-        {
-            Debug.LogFormat("<Souvenir #{3}> Type {0} does not contain {1} property {2}. Properties are: {4}", targetType, isPublic ? "public" : "non-public", name, _moduleId,
+            throw new AbandonModuleException("Type {0} does not contain {1} property {2}. Properties are: {3}", targetType, isPublic ? "public" : "non-public", name,
                 targetType.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(f => string.Format("{0} {1} {2}", f.GetGetMethod().IsPublic ? "public" : "private", f.PropertyType.FullName, f.Name)).JoinString(", "));
-            return null;
-        }
         if (!typeof(T).IsAssignableFrom(fld.PropertyType))
-        {
-            Debug.LogFormat("<Souvenir #{5}> Type {0} has {1} field {2} of type {3} but expected type {4}.", targetType, isPublic ? "public" : "non-public", name, fld.PropertyType.FullName, typeof(T).FullName, _moduleId);
-            return null;
-        }
-        return new PropertyInfo<T>(target, fld, _moduleId);
+            throw new AbandonModuleException("Type {0} has {1} field {2} of type {3} but expected type {4}.", targetType, isPublic ? "public" : "non-public", name, fld.PropertyType.FullName, typeof(T).FullName, _moduleId);
+        return new PropertyInfo<T>(target, fld);
     }
+    #endregion
 
+
+    #region Module handlers
     private IEnumerator ProcessModule(KMBombModule module)
     {
         _coroutinesActive++;
@@ -1432,15 +1289,35 @@ public class SouvenirModule : MonoBehaviour
             supportedModuleNames.Add(module.ModuleDisplayName);
             yield return null;  // Ensures that the module’s Start() method has run
             Debug.LogFormat("<Souvenir #{1}> Module {0}: Start processing.", moduleType, _moduleId);
-            foreach (var obj in iterator(module))
+
+            // I’d much rather just put a ‘foreach’ loop inside a ‘try’ block, but Unity’s C# version doesn’t allow ‘yield return’ inside of ‘try’ blocks yet
+            using (var e = iterator(module).GetEnumerator())
             {
-                yield return obj;
-                if (TwitchAbandonModule.Contains(module))
+                while (true)
                 {
-                    Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because Twitch Plays told me to.", _moduleId, module.ModuleDisplayName);
-                    yield break;
+                    bool canMoveNext;
+                    try { canMoveNext = e.MoveNext(); }
+                    catch (AbandonModuleException ex)
+                    {
+                        Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because: {2}", _moduleId, module.ModuleDisplayName, ex.Message);
+                        yield break;
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.LogFormat("<Souvenir #{0}> The {1} handler threw an exception ({2}):\n{3}", _moduleId, module.ModuleDisplayName, ex.GetType().FullName, ex.StackTrace);
+                        yield break;
+                    }
+                    if (TwitchAbandonModule.Contains(module))
+                    {
+                        Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because Twitch Plays told me to.", _moduleId, module.ModuleDisplayName);
+                        yield break;
+                    }
+                    if (!canMoveNext)
+                        break;
+                    yield return e.Current;
                 }
             }
+
             if (!_legitimatelyNoQuestions.Contains(module) && !_questions.Any(q => q.Module == module))
             {
                 Debug.LogFormat("[Souvenir #{0}] There was no question generated for {1}. Please report this to Andrio or the implementer for that module as this may indicate a bug in Souvenir. Remember to send them this logfile.", _moduleId, module.ModuleDisplayName);
@@ -6483,11 +6360,7 @@ public class SouvenirModule : MonoBehaviour
         var color = fldColor.Get();
 
         while (!propSolved.Get())
-        {
-            if (propSolved.Error)
-                yield break;
             yield return new WaitForSeconds(0.1f);
-        }
 
         _modulesSolved.IncSafe(_Minesweeper);
         addQuestion(module, Question.MinesweeperStartingColor, correctAnswers: new[] { color });
@@ -11755,6 +11628,7 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.ZoniWords, _Zoni, new[] { "second" }, new[] { words[wordsAnswered[1]] }, words),
             makeQuestion(Question.ZoniWords, _Zoni, new[] { "third" }, new[] { words[wordsAnswered[2]] }, words));
     }
+    #endregion
 
     private void addQuestion(KMBombModule module, Question question, string[] formatArguments = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null)
     {
