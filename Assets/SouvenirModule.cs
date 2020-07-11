@@ -1553,6 +1553,7 @@ public class SouvenirModule : MonoBehaviour
     #region Module handlers
     /* Generalized handlers for modules that are extremely similar */
 
+    // Used by Affine Cycle, Caesar Cycle, Pigpen Cycle and Playfair Cycle
     private IEnumerable<object> processSpeakingEvilCycle1(KMBombModule module, string componentName, Question question, string moduleId)
     {
         var comp = GetComponent(module, componentName);
@@ -1574,7 +1575,8 @@ public class SouvenirModule : MonoBehaviour
           makeQuestion(question, moduleId, new[] { "response" }, new[] { Regex.Replace(responses[index], @"(?<!^).", m => m.Value.ToLowerInvariant()) }));
     }
 
-    private IEnumerable<object> processSpeakingEvilCycle2(KMBombModule module, string componentName, string moduleName, Question question, string moduleId)
+    // Used by Cryptic Cycle, Hill Cycle, Jumble Cycle and Ultimate Cycle
+    private IEnumerable<object> processSpeakingEvilCycle2(KMBombModule module, string componentName, Question question, string moduleId)
     {
         var comp = GetComponent(module, componentName);
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -1594,6 +1596,59 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
           makeQuestion(question, moduleId, new[] { "message" }, new[] { Regex.Replace(messages[index], @"(?<!^).", m => m.Value.ToLowerInvariant()) }),
           makeQuestion(question, moduleId, new[] { "response" }, new[] { Regex.Replace(responses[index], @"(?<!^).", m => m.Value.ToLowerInvariant()) }));
+    }
+
+    // Used by the World Mazes modules (currently: USA Maze, DACH Maze)
+    private IEnumerable<object> processWorldMaze(KMBombModule module, string script, string moduleCode, Question question)
+    {
+        var comp = GetComponent(module, script);
+        var fldOrigin = GetField<string>(comp, "_originState");
+        var fldActive = GetField<bool>(comp, "_isActive");
+        var mthGetStates = GetMethod<List<string>>(comp, "GetAllStates", 0);
+        var mthGetName = GetMethod<string>(comp, "GetStateFullName", 1);
+
+        // wait for activation
+        while (!_isActivated)
+            yield return new WaitForSeconds(.1f);
+
+        // then wait for the module to get solved
+        while (fldActive.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(moduleCode);
+
+        var stateCodes = mthGetStates.Invoke();
+        if (stateCodes == null)
+            throw new AbandonModuleException("GetAllStates() returned null.");
+        if (stateCodes.Count == 0)
+            throw new AbandonModuleException("GetAllStates() returned an empty list.");
+
+        var states = stateCodes.Select(code => mthGetName.Invoke(code)).ToArray();
+        var origin = mthGetName.Invoke(fldOrigin.Get());
+        if (!states.Contains(origin))
+            throw new AbandonModuleException("‘_originState’ was not contained in the list of all states ({0} not in: {1}).", origin, states.JoinString(", "));
+
+        addQuestions(module, makeQuestion(question, moduleCode, correctAnswers: new[] { origin }, preferredWrongAnswers: states));
+    }
+
+    // Used by The Hypercube and The Ultracube
+    private IEnumerable<object> processHypercubeUltracube(KMBombModule module, string componentName, Question question, string moduleId)
+    {
+        var comp = GetComponent(module, componentName);
+        var rotations = GetStaticField<string[]>(comp.GetType(), "_rotationNames").Get();
+        var sequence = GetArrayField<int>(comp, "_rotations").Get(expectedLength: 5, validator: rot => rot < 0 || rot >= rotations.Length ? string.Format("expected range 0–{0}", rotations.Length - 1) : null);
+
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(moduleId);
+        addQuestions(module,
+            makeQuestion(question, moduleId, new[] { "first" }, new[] { rotations[sequence[0]] }),
+            makeQuestion(question, moduleId, new[] { "second" }, new[] { rotations[sequence[1]] }),
+            makeQuestion(question, moduleId, new[] { "third" }, new[] { rotations[sequence[2]] }),
+            makeQuestion(question, moduleId, new[] { "fourth" }, new[] { rotations[sequence[3]] }),
+            makeQuestion(question, moduleId, new[] { "fifth" }, new[] { rotations[sequence[4]] }));
     }
 
 
@@ -3059,7 +3114,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessCrypticCycle(KMBombModule module)
     {
-        return processSpeakingEvilCycle2(module, "CrypticCycleScript", "Cryptic Cycle", Question.CrypticCycleWord, _CrypticCycle);
+        return processSpeakingEvilCycle2(module, "CrypticCycleScript", Question.CrypticCycleWord, _CrypticCycle);
     }
 
     private IEnumerable<object> ProcessCube(KMBombModule module)
@@ -3080,7 +3135,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessDACHMaze(KMBombModule module)
     {
-        return ProcessWorldMaze(module, "DACHMaze", _DACHMaze, Question.DACHMazeOrigin);
+        return processWorldMaze(module, "DACHMaze", _DACHMaze, Question.DACHMazeOrigin);
     }
 
     private IEnumerable<object> ProcessDeckOfManyThings(KMBombModule module)
@@ -3860,7 +3915,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessHillCycle(KMBombModule module)
     {
-        return processSpeakingEvilCycle2(module, "HillCycleScript", "Hill Cycle", Question.HillCycleWord, _HillCycle);
+        return processSpeakingEvilCycle2(module, "HillCycleScript", Question.HillCycleWord, _HillCycle);
     }
 
     private IEnumerable<object> ProcessHogwarts(KMBombModule module)
@@ -3973,22 +4028,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessHypercube(KMBombModule module)
     {
-        var comp = GetComponent(module, "TheHypercubeModule");
-        var rotations = GetStaticField<string[]>(comp.GetType(), "_rotationNames").Get();
-        var sequence = GetArrayField<int>(comp, "_rotations").Get(expectedLength: 5, validator: sq => sq < 0 || sq >= rotations.Length ? string.Format("expected 0–{0}", rotations.Length - 1) : null);
-
-        var solved = false;
-        module.OnPass += delegate { solved = true; return false; };
-        while (!solved)
-            yield return new WaitForSeconds(.1f);
-
-        _modulesSolved.IncSafe(_Hypercube);
-        addQuestions(module,
-            makeQuestion(Question.HypercubeRotations, _Hypercube, new[] { "first" }, new[] { rotations[sequence[0]] }),
-            makeQuestion(Question.HypercubeRotations, _Hypercube, new[] { "second" }, new[] { rotations[sequence[1]] }),
-            makeQuestion(Question.HypercubeRotations, _Hypercube, new[] { "third" }, new[] { rotations[sequence[2]] }),
-            makeQuestion(Question.HypercubeRotations, _Hypercube, new[] { "fourth" }, new[] { rotations[sequence[3]] }),
-            makeQuestion(Question.HypercubeRotations, _Hypercube, new[] { "fifth" }, new[] { rotations[sequence[4]] }));
+        return processHypercubeUltracube(module, "TheHypercubeModule", Question.HypercubeRotations, _Hypercube);
     }
 
     private IEnumerable<object> ProcessIceCream(KMBombModule module)
@@ -4150,7 +4190,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessJumbleCycle(KMBombModule module)
     {
-        return processSpeakingEvilCycle2(module, "JumbleCycleScript", "Jumble Cycle", Question.JumbleCycleWord, _JumbleCycle);
+        return processSpeakingEvilCycle2(module, "JumbleCycleScript", Question.JumbleCycleWord, _JumbleCycle);
     }
 
     private IEnumerable<object> ProcessKudosudoku(KMBombModule module)
@@ -7222,29 +7262,17 @@ public class SouvenirModule : MonoBehaviour
         addQuestion(module, Question.SynonymsNumber, correctAnswers: new[] { number.ToString() });
     }
 
-
     private IEnumerable<object> ProcessTapCode(KMBombModule module)
     {
         var comp = GetComponent(module, "TapCodeScript");
         var fldSolved = GetField<bool>(comp, "modulepass");
-        var fldChosenWord = GetField<string>(comp, "chosenWord");
-        var fldWords = GetArrayField<string>(comp, "words");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_TapCode);
 
-        var words = fldWords.Get();
-        if (words == null)
-            yield break;
-
-        var chosenWord = fldChosenWord.Get();
-        if (chosenWord == null || !words.Contains(chosenWord))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Tap Code because the initial word ({1}) is not in the word bank.", _moduleId, chosenWord ?? "<null>");
-            yield break;
-        }
-
+        var words = GetArrayField<string>(comp, "words").Get();
+        var chosenWord = GetField<string>(comp, "chosenWord").Get(str => !words.Contains(str) ? string.Format("word is not in list: {0}", words.JoinString(", ")) : null);
         addQuestion(module, Question.TapCodeReceivedWord, correctAnswers: new[] { chosenWord }, preferredWrongAnswers: words);
     }
 
@@ -7252,32 +7280,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "tashaSquealsScript");
         var fldSolved = GetField<bool>(comp, "solved");
-        var fldColors = GetStaticField<string[]>(comp.GetType(), "colorNames");
-        var fldSequence = GetArrayField<int>(comp, "flashing");
 
-        string[] colors = fldColors.Get();
-        int[] sequence = fldSequence.Get();
-
-        if (colors == null || sequence == null)
-            yield break;
-        if (colors.Length != 4)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Tasha Squeals because 'colorNames' had length {1} instead of 4.", _moduleId, colors.Length);
-            yield break;
-        }
-        if (sequence.Length != 5)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Tasha Squeals because 'flashing' had length {1} instead of 5.", _moduleId, sequence.Length);
-            yield break;
-        }
-        for (int i = 0; i < sequence.Length; i++)
-        {
-            if (sequence[i] < 0 || sequence[i] >= colors.Length)
-            {
-                Debug.LogFormat("<Souvenir #{0}> Abandoning Tasha Squeals because 'sequence[{1}]' pointed to illegal color: {2}.", _moduleId, i, sequence[i]);
-                yield break;
-            }
-        }
+        var colors = GetStaticField<string[]>(comp.GetType(), "colorNames").Get(ar => ar.Length != 4 ? "expected length 4" : null).ToArray();
+        var sequence = GetArrayField<int>(comp, "flashing").Get(expectedLength: 5, validator: val => val < 0 || val >= colors.Length ? string.Format("expected range 0–{0}", colors.Length - 1) : null);
 
         for (int i = 0; i < colors.Length; i++)
             colors[i] = char.ToUpperInvariant(colors[i][0]) + colors[i].Substring(1);
@@ -7301,24 +7306,13 @@ public class SouvenirModule : MonoBehaviour
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldColors = GetArrayField<int>(comp, "prevColors");
 
-        var firstStageColors = fldColors.Get();
-        if (firstStageColors == null || firstStageColors.Length != 10)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Ten-Button Color Code because “prevColors” has unexpected value {1}.", _moduleId, firstStageColors == null ? "<null>" : string.Format("[{0}]", firstStageColors.JoinString(", ")));
-            yield break;
-        }
         // Take a copy because the module modifies the same array in the second stage
-        firstStageColors = firstStageColors.ToArray();
+        var firstStageColors = fldColors.Get(expectedLength: 10).ToArray();
 
         while (!fldSolvedFirstStage.Get())
             yield return new WaitForSeconds(.1f);
 
-        var secondStageColors = fldColors.Get();
-        if (secondStageColors == null || secondStageColors.Length != 10)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Ten-Button Color Code because “prevColors” has unexpected value {1}.", _moduleId, secondStageColors == null ? "<null>" : string.Format("[{0}]", secondStageColors.JoinString(", ")));
-            yield break;
-        }
+        var secondStageColors = fldColors.Get(expectedLength: 10);
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -7332,38 +7326,19 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessTextField(KMBombModule module)
     {
         var comp = GetComponent(module, "TextField");
-        var fldDisplay = GetArrayField<TextMesh>(comp, "ButtonLabels", true);
+
         var fldActivated = GetField<bool>(comp, "_lightson");
-        var fldSolved = GetField<bool>(comp, "_isSolved");
-
-        var displayMeshes = fldDisplay.Get();
-        if (displayMeshes == null)
-            yield break;
-
-        if (displayMeshes.Any(x => x == null))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Text Field because one of the text meshes in ‘ButtonLabels’ is null.", _moduleId);
-            yield break;
-        }
-
-        if (displayMeshes.Length != 12)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Text Field because ‘ButtonLabels’ has unexpected length {1} (expected 12).", _moduleId, displayMeshes.Length);
-            yield break;
-        }
-
         while (!fldActivated.Get())
             yield return new WaitForSeconds(0.1f);
 
+        var displayMeshes = GetArrayField<TextMesh>(comp, "ButtonLabels", true).Get(expectedLength: 12, validator: tm => tm.text == null ? "text is null" : null);
         var answer = displayMeshes.Select(x => x.text).FirstOrDefault(x => x != "✓" && x != "✗");
         var possibleAnswers = new[] { "A", "B", "C", "D", "E", "F" };
 
         if (!possibleAnswers.Contains(answer))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Text Field because answer ‘{1}’ is not of expected value ({2}).", _moduleId, answer ?? "<null>", possibleAnswers.JoinString(", "));
-            yield break;
-        }
+            throw new AbandonModuleException("Answer ‘{0}’ is not of expected value ({1}).", answer ?? "<null>", possibleAnswers.JoinString(", "));
 
+        var fldSolved = GetField<bool>(comp, "_isSolved");
         while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
 
@@ -7379,40 +7354,20 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "thinkingWiresScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldFirstWireToCut = GetIntField(comp, "firstWireToCut");
-        var fldSecondWireToCut = GetField<string>(comp, "secondWireToCut");
-        var fldScreenNumber = GetField<string>(comp, "screenNumber");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
         _modulesSolved.IncSafe(_ThinkingWires);
 
-        var firstCorrectWire = fldFirstWireToCut.Get();
-        var secondCorrectWire = fldSecondWireToCut.Get();
-        var displayNumber = fldScreenNumber.Get();
-
-        if (secondCorrectWire == null || displayNumber == null)
-            yield break;
-
-        if (firstCorrectWire < 1 || firstCorrectWire > 7)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Thinking Wires because ‘firstCorrectWire’ has an unexpected value (expected 1–7): {1}", _moduleId, firstCorrectWire);
-            yield break;
-        }
-
-        if (!new[] { "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", "White", "Black", "Any" }.Contains(secondCorrectWire))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Thinking Wires because ‘secondCorrectWire’ is an invalid color: {1}", _moduleId, secondCorrectWire);
-            yield break;
-        }
+        var validWires = new[] { "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", "White", "Black", "Any" };
+        var firstCorrectWire = GetIntField(comp, "firstWireToCut").Get(min: 1, max: 7);
+        var secondCorrectWire = GetField<string>(comp, "secondWireToCut").Get(str => !validWires.Contains(str) ? string.Format("invalid color; expected: {0}", validWires.JoinString(", ")) : null);
+        var displayNumber = GetField<string>(comp, "screenNumber").Get();
 
         // List of valid display numbers for validation. 69 happens in the case of "Any" while 11 is expected to be the longest.
         // Basic calculations by hand and algorithm seem to confirm this, but may want to recalculate to ensure it is right.
         if (!new[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "69" }.Contains(displayNumber))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Thinking Wires because ‘displayNumber’ has an unexpected value: {1}", _moduleId, displayNumber);
-            yield break;
-        }
+            throw new AbandonModuleException("‘displayNumber’ has an unexpected value: {0}", displayNumber);
 
         addQuestions(module,
             makeQuestion(Question.ThinkingWiresFirstWire, _ThinkingWires, null, new[] { firstCorrectWire.ToString() }),
@@ -7423,16 +7378,10 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessThirdBase(KMBombModule module)
     {
         var comp = GetComponent(module, "ThirdBaseModule");
-        var fldDisplay = GetField<TextMesh>(comp, "Display", isPublic: true);
         var fldStage = GetIntField(comp, "stage");
         var fldActivated = GetField<bool>(comp, "isActivated");
         var fldSolved = GetField<bool>(comp, "isPassed");
-
-        yield return null;
-
-        var displayTextMesh = fldDisplay.Get();
-        if (displayTextMesh == null)
-            yield break;
+        var displayTextMesh = GetField<TextMesh>(comp, "Display", isPublic: true).Get();
 
         while (!fldActivated.Get())
             yield return new WaitForSeconds(0.1f);
@@ -7461,28 +7410,17 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessTicTacToe(KMBombModule module)
     {
         var comp = GetComponent(module, "TicTacToeModule");
-        var fldKeypadButtons = GetArrayField<KMSelectable>(comp, "KeypadButtons", isPublic: true);
-        var fldKeypadPhysical = GetArrayField<KMSelectable>(comp, "_keypadButtonsPhysical");
-        var fldPlacedX = GetField<bool?[]>(comp, "_placedX");
         var fldIsInitialized = GetField<bool>(comp, "_isInitialized");
         var fldIsSolved = GetField<bool>(comp, "_isSolved");
 
         while (!fldIsInitialized.Get())
             yield return new WaitForSeconds(.1f);
 
-        var keypadButtons = fldKeypadButtons.Get();
-        var keypadPhysical = fldKeypadPhysical.Get();
-        var placedX = fldPlacedX.Get();
-        if (keypadButtons == null || keypadPhysical == null || placedX == null)
-            yield break;
-        if (keypadButtons.Length != 9 || keypadPhysical.Length != 9 || placedX.Length != 9)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Tic Tac Toe because one of the arrays has an unexpected length (expected 9): {1}, {2}, {3}.", _moduleId, keypadButtons.Length, keypadPhysical.Length, placedX.Length);
-            yield break;
-        }
+        var keypadButtons = GetArrayField<KMSelectable>(comp, "KeypadButtons", isPublic: true).Get(expectedLength: 9);
+        var keypadPhysical = GetArrayField<KMSelectable>(comp, "_keypadButtonsPhysical").Get(expectedLength: 9);
 
         // Take a copy of the placedX array because it changes
-        placedX = placedX.ToArray();
+        var placedX = GetArrayField<bool?>(comp, "_placedX").Get(expectedLength: 9).ToArray();
 
         while (!fldIsSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -7499,43 +7437,21 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "TimezoneScript");
         var fldFromCity = GetField<string>(comp, "from");
         var fldToCity = GetField<string>(comp, "to");
-        var fldTextFromCity = GetField<TextMesh>(comp, "TextFromCity", isPublic: true);
-        var fldTextToCity = GetField<TextMesh>(comp, "TextToCity", isPublic: true);
-        var fldInputButton = GetField<KMSelectable>(comp, "InputButton", isPublic: true);
-
-        yield return null;
-
-        var inputButton = fldInputButton.Get();
-        var textFromCity = fldTextFromCity.Get();
-        var textToCity = fldTextToCity.Get();
-        if (inputButton == null || textFromCity == null || textToCity == null)
-            yield break;
+        var inputButton = GetField<KMSelectable>(comp, "InputButton", isPublic: true).Get();
+        var textFromCity = GetField<TextMesh>(comp, "TextFromCity", isPublic: true).Get();
+        var textToCity = GetField<TextMesh>(comp, "TextToCity", isPublic: true).Get();
 
         if (fldFromCity.Get() != textFromCity.text || fldToCity.Get() != textToCity.text)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Timezone because the city names don’t match up: “{1}” vs. “{2}” and “{3}” vs. “{4}”.", _moduleId, fldFromCity.Get(), textFromCity.text, fldToCity.Get(), textToCity.text);
-            yield break;
-        }
+            throw new AbandonModuleException("The city names don’t match up: “{0}” vs. “{1}” and “{2}” vs. “{3}”.", fldFromCity.Get(), textFromCity.text, fldToCity.Get(), textToCity.text);
 
-        var prevHandler = inputButton.OnInteract;
         var solved = false;
-        inputButton.OnInteract = delegate
-        {
-            var prevSolved = Bomb.GetSolvedModuleNames().Count();
-            var result = prevHandler();
-            if (Bomb.GetSolvedModuleNames().Count() > prevSolved)
-            {
-                textFromCity.text = "WELL";
-                textToCity.text = "DONE!";
-                solved = true;
-            }
-            return result;
-        };
-
+        module.OnPass += delegate { solved = true; return false; };
         while (!solved)
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Timezone);
-        inputButton.OnInteract = prevHandler;
+
+        textFromCity.text = "WELL";
+        textToCity.text = "DONE!";
         addQuestions(module,
             makeQuestion(Question.TimezoneCities, _Timezone, new[] { "departure" }, new[] { fldFromCity.Get() }),
             makeQuestion(Question.TimezoneCities, _Timezone, new[] { "destination" }, new[] { fldToCity.Get() }));
@@ -7548,24 +7464,13 @@ public class SouvenirModule : MonoBehaviour
         var fldMessage = GetField<string>(comp, "messagetrans");
         var fldStage = GetIntField(comp, "stage");
 
-        yield return null;
-
         string[] messages = new string[2];
-        string message;
         int stage = 0;
 
         while (!fldSolved.Get())
         {
-            stage = fldStage.Get();
-            if (stage < 1 || stage > 2)
-            {
-                Debug.LogFormat("<Souvenir #{0}> Abandoning Transmitted Morse because 'stage' has an unexpected value (expected 1 - 2): {1}", _moduleId, stage);
-                yield break;
-            }
-            message = fldMessage.Get();
-            if (message == null)
-                yield break;
-            messages[stage - 1] = message;
+            stage = fldStage.Get(min: 1, max: 2);
+            messages[stage - 1] = fldMessage.Get();
             yield return new WaitForSeconds(.1f);
         }
         _modulesSolved.IncSafe(_TransmittedMorse);
@@ -7580,20 +7485,12 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "TurtleRobot");
         var fldCursor = GetIntField(comp, "_cursor");
-        var fldCommands = GetField<IList>(comp, "_commands");
         var fldSolved = GetField<bool>(comp, "_isSolved");
-        var fldButtonDelete = GetField<KMSelectable>(comp, "ButtonDelete", isPublic: true);
         var mthFormatCommand = GetMethod<string>(comp, "FormatCommand", 2);
-
-        yield return null;
-
-        var commands = fldCommands.Get();
-        var deleteButton = fldButtonDelete.Get();
-        if (commands == null || deleteButton == null)
-            yield break;
+        var commands = GetField<IList>(comp, "_commands").Get();
+        var deleteButton = GetField<KMSelectable>(comp, "ButtonDelete", isPublic: true).Get();
 
         var codeLines = commands.Cast<object>().Select(cmd => mthFormatCommand.Invoke(cmd, false)).ToArray();
-        Debug.LogFormat("<Souvenir #{0}> Turtle Robot lines:\n{1}", _moduleId, codeLines.Select((cl, ix) => string.Format("{0}. {1}", ix, cl)).JoinString("\n"));
         var bugs = new List<string>();
         var bugsMarked = new HashSet<int>();
 
@@ -7601,23 +7498,16 @@ public class SouvenirModule : MonoBehaviour
         deleteButton.OnInteract = delegate
         {
             var ret = buttonHandler();
-            var cursor = fldCursor.Get();
+            var cursor = fldCursor.Get();   // int field: avoid throwing exceptions inside of the button handler
             var command = mthFormatCommand.Invoke(commands[cursor], true);
-            Debug.LogFormat("<Souvenir #{0}> Turtle Robot: Delete button pressed on {1} at cursor position {2}", _moduleId, command, cursor);
             if (command.StartsWith("#") && bugsMarked.Add(cursor))
-            {
                 bugs.Add(codeLines[cursor]);
-                Debug.LogFormat("<Souvenir #{0}> Turtle Robot: — Added", _moduleId);
-            }
-            else
-                Debug.LogFormat("<Souvenir #{0}> Turtle Robot: — NOT added", _moduleId);
             return ret;
         };
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
 
-        Debug.LogFormat("<Souvenir #{0}> Turtle Robot solved. Bugs:\n{1}", _moduleId, bugs.JoinString("\n"));
         _modulesSolved.IncSafe(_TurtleRobot);
         addQuestions(module, bugs.Take(2).Select((bug, ix) => makeQuestion(Question.TurtleRobotCodeLines, _TurtleRobot, new[] { ordinal(ix + 1) }, new[] { bug }, codeLines)));
     }
@@ -7625,104 +7515,52 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessTwoBits(KMBombModule module)
     {
         var comp = GetComponent(module, "TwoBitsModule");
-        var fldFirstQueryCode = GetIntField(comp, "firstQueryCode");
-        var fldQueryLookups = GetField<Dictionary<int, string>>(comp, "queryLookups");
-        var fldQueryResponses = GetField<Dictionary<string, int>>(comp, "queryResponses");
-        var fldCurrentState = GetField<object>(comp, "currentState");
 
+        var fldCurrentState = GetField<object>(comp, "currentState");
         while (fldCurrentState.Get().ToString() != "Complete")
             yield return new WaitForSeconds(.1f);
-
         _modulesSolved.IncSafe(_TwoBits);
 
-        var queryLookups = fldQueryLookups.Get();
-        var queryResponses = fldQueryResponses.Get();
-        if (queryLookups == null || queryResponses == null)
-            yield break;
+        var queryLookups = GetField<Dictionary<int, string>>(comp, "queryLookups").Get();
+        var queryResponses = GetField<Dictionary<string, int>>(comp, "queryResponses").Get();
 
-        var qs = new List<QandA>();
-        try
-        {
-            var zerothNumCode = fldFirstQueryCode.Get();
-            var zerothLetterCode = queryLookups[zerothNumCode];
-            var firstResponse = queryResponses[zerothLetterCode];
-            var firstLookup = queryLookups[firstResponse];
-            var secondResponse = queryResponses[firstLookup];
-            var secondLookup = queryLookups[secondResponse];
-            var thirdResponse = queryResponses[secondLookup];
-            var preferredWrongAnswers = new[] { zerothNumCode.ToString("00"), firstResponse.ToString("00"), secondResponse.ToString("00"), thirdResponse.ToString("00") };
-            qs.Add(makeQuestion(Question.TwoBitsResponse, _TwoBits, new[] { "first" }, new[] { firstResponse.ToString("00") }, preferredWrongAnswers));
-            qs.Add(makeQuestion(Question.TwoBitsResponse, _TwoBits, new[] { "second" }, new[] { secondResponse.ToString("00") }, preferredWrongAnswers));
-            qs.Add(makeQuestion(Question.TwoBitsResponse, _TwoBits, new[] { "third" }, new[] { thirdResponse.ToString("00") }, preferredWrongAnswers));
-        }
-        catch (Exception e)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Two Bits: Exception: {1} ({2})", _moduleId, e.Message, e.GetType().FullName);
-        }
+        var zerothNumCode = GetIntField(comp, "firstQueryCode").Get();
+        var zerothLetterCode = queryLookups[zerothNumCode];
+        var firstResponse = queryResponses[zerothLetterCode];
+        var firstLookup = queryLookups[firstResponse];
+        var secondResponse = queryResponses[firstLookup];
+        var secondLookup = queryLookups[secondResponse];
+        var thirdResponse = queryResponses[secondLookup];
+        var preferredWrongAnswers = new[] { zerothNumCode.ToString("00"), firstResponse.ToString("00"), secondResponse.ToString("00"), thirdResponse.ToString("00") };
 
-        addQuestions(module, qs);
+        addQuestions(module,
+            makeQuestion(Question.TwoBitsResponse, _TwoBits, new[] { "first" }, new[] { firstResponse.ToString("00") }, preferredWrongAnswers),
+            makeQuestion(Question.TwoBitsResponse, _TwoBits, new[] { "second" }, new[] { secondResponse.ToString("00") }, preferredWrongAnswers),
+            makeQuestion(Question.TwoBitsResponse, _TwoBits, new[] { "third" }, new[] { thirdResponse.ToString("00") }, preferredWrongAnswers));
     }
 
     private IEnumerable<object> ProcessUltimateCycle(KMBombModule module)
     {
-        return processSpeakingEvilCycle2(module, "UltimateCycleScript", "Ultimate Cycle", Question.UltimateCycleWord, _UltimateCycle);
+        return processSpeakingEvilCycle2(module, "UltimateCycleScript", Question.UltimateCycleWord, _UltimateCycle);
     }
 
     private IEnumerable<object> ProcessUltracube(KMBombModule module)
     {
-        var comp = GetComponent(module, "TheUltracubeModule");
-        var fldSequence = GetArrayField<int>(comp, "_rotations");
-        var fldRotations = GetStaticField<string[]>(comp.GetType(), "_rotationNames");
-
-        int[] sequence = fldSequence.Get();
-        string[] rotations = fldRotations.Get();
-
-        if (sequence == null || rotations == null)
-            yield break;
-        if (sequence.Length != 5)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning The Ultracube because '_rotations' had length {1} instead of 5.", _moduleId, sequence.Length);
-            yield break;
-        }
-        for (int i = 0; i < sequence.Length; i++)
-        {
-            if (sequence[i] < 0 || sequence[i] >= rotations.Length)
-            {
-                Debug.LogFormat("<Souvenir #{0}> Abandoning The Ultracube because the '_rotations[{1}]' pointed to illegal rotation: {2}.", _moduleId, i, sequence[i]);
-                yield break;
-            }
-        }
-
-        var solved = false;
-        module.OnPass += delegate { solved = true; return false; };
-        while (!solved)
-            yield return new WaitForSeconds(.1f);
-
-        _modulesSolved.IncSafe(_Ultracube);
-        addQuestions(module,
-            makeQuestion(Question.UltracubeRotations, _Ultracube, new[] { "first" }, new[] { rotations[sequence[0]] }),
-            makeQuestion(Question.UltracubeRotations, _Ultracube, new[] { "second" }, new[] { rotations[sequence[1]] }),
-            makeQuestion(Question.UltracubeRotations, _Ultracube, new[] { "third" }, new[] { rotations[sequence[2]] }),
-            makeQuestion(Question.UltracubeRotations, _Ultracube, new[] { "fourth" }, new[] { rotations[sequence[3]] }),
-            makeQuestion(Question.UltracubeRotations, _Ultracube, new[] { "fifth" }, new[] { rotations[sequence[4]] }));
+        return processHypercubeUltracube(module, "TheUltracubeModule", Question.UltracubeRotations, _Ultracube);
     }
 
     private IEnumerable<object> ProcessUncoloredSquares(KMBombModule module)
     {
         var comp = GetComponent(module, "UncoloredSquaresModule");
         var fldSolved = GetField<bool>(comp, "_isSolved");
-        var fldFirstStageColor1 = GetField<object>(comp, "_firstStageColor1");
-        var fldFirstStageColor2 = GetField<object>(comp, "_firstStageColor2");
-
-        yield return null;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
 
         _modulesSolved.IncSafe(_UncoloredSquares);
         addQuestions(module,
-            makeQuestion(Question.UncoloredSquaresFirstStage, _UncoloredSquares, new[] { "first" }, new[] { fldFirstStageColor1.Get().ToString() }),
-            makeQuestion(Question.UncoloredSquaresFirstStage, _UncoloredSquares, new[] { "second" }, new[] { fldFirstStageColor2.Get().ToString() }));
+            makeQuestion(Question.UncoloredSquaresFirstStage, _UncoloredSquares, new[] { "first" }, new[] { GetField<object>(comp, "_firstStageColor1").Get().ToString() }),
+            makeQuestion(Question.UncoloredSquaresFirstStage, _UncoloredSquares, new[] { "second" }, new[] { GetField<object>(comp, "_firstStageColor2").Get().ToString() }));
     }
 
     private IEnumerable<object> ProcessUncoloredSwitches(KMBombModule module)
@@ -7732,40 +7570,17 @@ public class SouvenirModule : MonoBehaviour
         var fldLedColors = GetField<StringBuilder>(comp, "LEDsColorsString");
         var fldStage = GetIntField(comp, "stage");
 
-        yield return null;
-
         var curStage = -1;
         var ledColors = new int[3][];
         var switchStates = new bool[3][];
         var colorNames = new[] { "red", "green", "blue", "turquoise", "orange", "purple", "white", "black" };
         while (fldStage.Get() < 4)
         {
-            var newStage = fldStage.Get();
-            if (newStage == 3 || newStage < 0 || newStage > 4)
-            {
-                Debug.LogFormat("<Souvenir #{0}> Abandoning Uncolored Switches because ‘stage’ had unexpected value {1} (expected 0–2 or 4).", _moduleId, newStage);
-                yield break;
-            }
+            var newStage = fldStage.Get(st => st == 3 ? "didn’t expect 3" : st < 0 || st > 4 ? "expected 0–2 or 4" : null);
             if (newStage != curStage)
             {
-                var curLedColors = fldLedColors.Get();
-                if (curLedColors == null)
-                    yield break;
-                if (curLedColors.Length != 10)
-                {
-                    Debug.LogFormat("<Souvenir #{0}> Abandoning Uncolored Switches because ‘LEDsColorsString’ had unexpected length {1} (expected 10).", _moduleId, curLedColors.Length);
-                    yield break;
-                }
-
-                var switchState = fldInitialState.Get();
-                if (switchState == null)
-                    yield break;
-                if (switchState.Length != 5)
-                {
-                    Debug.LogFormat("<Souvenir #{0}> Abandoning Uncolored Switches because ‘Switches_State’ had unexpected length {1} (expected 5).", _moduleId, switchState.Length);
-                    yield break;
-                }
-
+                var curLedColors = fldLedColors.Get(str => str.Length != 10 ? "expected length 10" : null);
+                var switchState = fldInitialState.Get(str => str.Length != 5 ? "expected length 5" : null);
                 ledColors[newStage] = Enumerable.Range(0, 10).Select(ledIx => "RGBTOPWK".IndexOf(curLedColors[ledIx])).ToArray();
                 switchStates[newStage] = Enumerable.Range(0, 5).Select(swIx => switchState[swIx] == '1').ToArray();
             }
@@ -7774,12 +7589,9 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_UncoloredSwitches);
 
         if (ledColors.Contains(null) || switchStates.Contains(null))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Uncolored Switches because a stage was skipped: [{1}], [{2}]", _moduleId,
+            throw new AbandonModuleException("A stage was skipped: [{0}], [{1}]",
                 ledColors.Select(arr => arr == null ? "null" : string.Format(@"[{0}]", arr.JoinString(", "))),
                 switchStates.Select(arr => arr == null ? "null" : string.Format(@"[{0}]", arr.JoinString(", "))));
-            yield break;
-        }
 
         var qs = new List<QandA>();
         for (var stage = 0; stage < 3; stage++)
@@ -7795,22 +7607,12 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "unfairCipherScript");
         var fldSolved = GetField<bool>(comp, "solved");
-        var fldInstructions = GetArrayField<string>(comp, "Message");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_UnfairCipher);
 
-        string[] instructions = fldInstructions.Get();
-
-        if (instructions == null)
-            yield break;
-        if (instructions.Length != 4)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Unfair Cipher because 'Message' had an unexpected length {1} (expected 4).", _moduleId, instructions.Length);
-            yield break;
-        }
-
+        var instructions = GetArrayField<string>(comp, "Message").Get(expectedLength: 4);
         addQuestions(module,
             makeQuestion(Question.UnfairCipherInstructions, _UnfairCipher, new[] { "first" }, new[] { instructions[0] }),
             makeQuestion(Question.UnfairCipherInstructions, _UnfairCipher, new[] { "second" }, new[] { instructions[1] }),
@@ -7822,27 +7624,18 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "UnownCipher");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldUnown = GetArrayField<int>(comp, "letterIndexes");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_UnownCipher);
 
-        int[] unownAnswer = fldUnown.Get();
-        if (unownAnswer == null)
-            yield break;
-        if (unownAnswer.Length != 5 || unownAnswer.Any(v => v < 0 || v > 25))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Unown Cipher because ‘letterIndexes’ had an unexpected length or value: [{1}] (expected 5 values of 0–25).", _moduleId, unownAnswer.JoinString(", "));
-            yield break;
-        }
-
+        var unownAnswer = GetArrayField<int>(comp, "letterIndexes").Get(expectedLength: 5, validator: v => v < 0 || v > 25 ? "expected 0–25" : null);
         addQuestions(module, unownAnswer.Select((ans, i) => makeQuestion(Question.UnownCipherAnswers, _UnownCipher, new[] { ordinal(i + 1) }, new[] { ((char) ('A' + ans)).ToString() })));
     }
 
     private IEnumerable<object> ProcessUSAMaze(KMBombModule module)
     {
-        return ProcessWorldMaze(module, "USAMaze", _USAMaze, Question.USAMazeOrigin);
+        return processWorldMaze(module, "USAMaze", _USAMaze, Question.USAMazeOrigin);
     }
 
     private IEnumerable<object> ProcessVaricoloredSquares(KMBombModule module)
@@ -8181,39 +7974,6 @@ public class SouvenirModule : MonoBehaviour
             preferredWrongAnswers[i] = counts[i].ToString();
         preferredWrongAnswers[3] = (counts[color] == 0 ? 1 : counts[color] - 1).ToString();
         addQuestion(module, Question.WireSequenceColorCount, new[] { colorWord }, new[] { counts[color].ToString() }, preferredWrongAnswers);
-    }
-
-    // Function used by modules in the World Mazes mod (currently: USA Maze, DACH Maze)
-    private IEnumerable<object> ProcessWorldMaze(KMBombModule module, string script, string moduleCode, Question question)
-    {
-        var comp = GetComponent(module, script);
-        var fldOrigin = GetField<string>(comp, "_originState");
-        var fldActive = GetField<bool>(comp, "_isActive");
-        var mthGetStates = GetMethod<List<string>>(comp, "GetAllStates", 0);
-        var mthGetName = GetMethod<string>(comp, "GetStateFullName", 1);
-
-        // wait for activation
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
-
-        // then wait for the module to get solved
-        while (fldActive.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(moduleCode);
-
-        var stateCodes = mthGetStates.Invoke();
-        if (stateCodes == null)
-            yield break;
-
-        var states = stateCodes.Select(code => mthGetName.Invoke(code)).ToArray();
-        var origin = mthGetName.Invoke(fldOrigin.Get());
-        if (!states.Contains(origin))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because '_originState' was not contained in the list of all states ({2} not in: {3}).", _moduleId, module.ModuleDisplayName, origin, states.JoinString(", "));
-            yield break;
-        }
-
-        addQuestions(module, makeQuestion(question, moduleCode, correctAnswers: new[] { origin }, preferredWrongAnswers: states));
     }
 
     private IEnumerable<object> ProcessYahtzee(KMBombModule module)
