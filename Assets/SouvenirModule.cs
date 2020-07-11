@@ -1778,7 +1778,6 @@ public class SouvenirModule : MonoBehaviour
         var enemy = GetField<object>(comp, "SelectedEnemy").Get();
         var textEnemy = GetField<TextMesh>(comp, "TextEnemy", isPublic: true).Get();
         var invWeaponCount = fldInvWeaponCount.Get(v => v == 0 ? "zero" : null);
-        var numWeapons = GetIntField(comp, "NumWeapons").Get(v => v == 0 ? "zero" : null);
 
         var prevInteract = buttonUse.OnInteract;
         var origInvValues = new List<int>(invValues.Cast<int>());
@@ -2882,7 +2881,6 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessColoredKeys(KMBombModule module)
     {
         var comp = GetComponent(module, "ColoredKeysScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
 
         var solved = false;
         module.OnPass += delegate { solved = true; return false; };
@@ -3379,10 +3377,7 @@ public class SouvenirModule : MonoBehaviour
 
         string[] formatCalls = { "Detonate", "Ready Now", "We're Dead", "She Sells", "Remember", "Great Job", "Solo This", "Keep Talk" };
         string[] formatResponses = { "Please No", "Cheesecake", "Sadface", "Sea Shells", "Souvenir", "Thank You", "I Dare You", "No Explode" };
-
-        int index = GetIntField(comp, "callResponseIndex").Get(0, formatCalls.Length - 1);
-        string[] calls = GetStaticField<string[]>(comp.GetType(), "calls").Get(arr => arr.Length != formatCalls.Length ? "mismatched length" : null);
-        string[] responses = GetStaticField<string[]>(comp.GetType(), "responses").Get(arr => arr.Length != formatResponses.Length ? "mismatched length" : null);
+        int index = GetIntField(comp, "callResponseIndex").Get(0, Math.Min(formatCalls.Length - 1, formatResponses.Length - 1));
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -4004,7 +3999,6 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "hunting");
         var fldStage = GetIntField(comp, "stage");
         var fldReverseClues = GetField<bool>(comp, "reverseClues");
-        var fldAcceptingInput = GetField<bool>(comp, "acceptingInput");
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
@@ -4349,8 +4343,6 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "Listening");
         var fldIsActivated = GetField<bool>(comp, "isActivated");
-        var fldCodeInput = GetArrayField<char>(comp, "codeInput");
-        var fldCodeInputPosition = GetIntField(comp, "codeInputPosition");
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
@@ -4492,8 +4484,6 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessLogicGates(KMBombModule module)
     {
         var comp = GetComponent(module, "LogicGates");
-        var fldCurrentInputIndex = GetIntField(comp, "_currentInputIndex");
-        var inputs = GetListField<int>(comp, "_inputs").Get(lst => lst.Count == 0 ? "empty" : null);
         var gates = GetField<IList>(comp, "_gates").Get(lst => lst.Count == 0 ? "empty" : null);
         var btnNext = GetField<KMSelectable>(comp, "ButtonNext", isPublic: true).Get();
         var btnPrevious = GetField<KMSelectable>(comp, "ButtonPrevious", isPublic: true).Get();
@@ -5775,7 +5765,6 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessPartialDerivatives(KMBombModule module)
     {
         var comp = GetComponent(module, "PartialDerivativesScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldLeds = GetArrayField<int>(comp, "ledIndex");
 
         var display = GetField<TextMesh>(comp, "display", isPublic: true).Get();
@@ -6795,7 +6784,6 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "AdvancedSimon");
         var fldPuzzleDisplay = GetArrayField<bool[]>(comp, "PuzzleDisplay");
-        var fldAnswer = GetArrayField<int>(comp, "Answer");
         var fldProgress = GetIntField(comp, "Progress");
 
         bool[][] puzzleDisplay;
@@ -7024,7 +7012,6 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "Sorting");
         var fldSolved = GetField<bool>(comp, "isSolved");
-        var fldSwapCount = GetField<byte>(comp, "swapIndex");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -7437,7 +7424,6 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "TimezoneScript");
         var fldFromCity = GetField<string>(comp, "from");
         var fldToCity = GetField<string>(comp, "to");
-        var inputButton = GetField<KMSelectable>(comp, "InputButton", isPublic: true).Get();
         var textFromCity = GetField<TextMesh>(comp, "TextFromCity", isPublic: true).Get();
         var textToCity = GetField<TextMesh>(comp, "TextToCity", isPublic: true).Get();
 
