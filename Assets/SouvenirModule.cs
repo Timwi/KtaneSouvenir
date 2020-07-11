@@ -5213,7 +5213,6 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessNecronomicon(KMBombModule module)
     {
         var comp = GetComponent(module, "necronomiconScript");
-        var fldChapters = GetArrayField<int>(comp, "selectedChapters");
 
         var solved = false;
         module.OnPass += delegate { solved = true; return false; };
@@ -5221,16 +5220,7 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Necronomicon);
 
-        int[] chapters = fldChapters.Get();
-
-        if (chapters == null)
-            yield break;
-        if (chapters.Length != 7)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning The Necronomicon because 'selectedChapters' has unexpected length ({1}; expected 7).", _moduleId, chapters.Length);
-            yield break;
-        }
-
+        int[] chapters = GetArrayField<int>(comp, "selectedChapters").Get(expectedLength: 7);
         string[] chaptersString = chapters.Select(x => x.ToString()).ToArray();
 
         addQuestions(module,
@@ -5246,34 +5236,22 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessNeutralization(KMBombModule module)
     {
         var comp = GetComponent(module, "neutralization");
-        var fldAcidType = GetIntField(comp, "acidType");
-        var fldAcidVol = GetIntField(comp, "acidVol");
         var fldSolved = GetField<bool>(comp, "_isSolved");
-        var fldColorText = GetField<GameObject>(comp, "colorText", isPublic: true);
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
 
-        var acidType = fldAcidType.Get();
-        if (acidType < 0 || acidType > 3)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Neutralization: Unexpected acid type: {1}", _moduleId, acidType);
-            yield break;
-        }
-        var acidVol = fldAcidVol.Get();
-        if (acidVol < 5 || acidVol > 20 || acidVol % 5 != 0)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Neutralization: Unexpected acid volume: {1}", _moduleId, acidVol);
-            yield break;
-        }
+        var acidType = GetIntField(comp, "acidType").Get(min: 0, max: 3);
+        var acidVol = GetIntField(comp, "acidVol").Get(av => av < 5 || av > 20 || av % 5 != 0 ? "unexpected acid volume" : null);
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Neutralization);
 
-        var colorText = fldColorText.Get();
+        var colorText = GetField<GameObject>(comp, "colorText", isPublic: true).Get(nullAllowed: true);
         if (colorText != null)
             colorText.SetActive(false);
+
         addQuestions(module,
             makeQuestion(Question.NeutralizationColor, _Neutralization, correctAnswers: new[] { new[] { "Yellow", "Green", "Red", "Blue" }[acidType] }),
             makeQuestion(Question.NeutralizationVolume, _Neutralization, correctAnswers: new[] { acidVol.ToString() }));
@@ -5283,24 +5261,13 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "NandMs");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldIndex = GetIntField(comp, "otherwordindex");
-        var fldWords = GetArrayField<string>(comp, "otherWords");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_NandMs);
 
-        var index = fldIndex.Get();
-        var words = fldWords.Get();
-
-        if (words == null)
-            yield break;
-        if (index < 0 || index >= words.Length)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning N&Ms because index = {1} (expected 0–{2}).", _moduleId, index, words.Length - 1);
-            yield break;
-        }
-
+        var words = GetArrayField<string>(comp, "otherWords").Get();
+        var index = GetIntField(comp, "otherwordindex").Get(min: 0, max: words.Length - 1);
         addQuestion(module, Question.NandMsAnswer, correctAnswers: new[] { words[index] });
     }
 
@@ -5308,83 +5275,37 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "navinumsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldCenterDigit = GetIntField(comp, "center");
         var fldStage = GetIntField(comp, "stage");
-        var fldLookUp = GetArrayField<int[]>(comp, "lookUp");
         var fldDirections = GetListField<int>(comp, "directions");
-        var fldDirectionsSorted = GetListField<int>(comp, "directionsSorted");
-
-        yield return null;
-
-        var lookUp = fldLookUp.Get();
-        if (lookUp == null)
-            yield break;
-        if (lookUp.Length != 9)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Navinums because ‘lookUp’ has unexpected length {1} (expected 9).", _moduleId, lookUp.Length);
-            yield break;
-        }
-        for (var i = 0; i < 9; i++)
-            if (lookUp[i].Length != 8)
-            {
-                Debug.LogFormat("<Souvenir #{0}> Abandoning Navinums because ‘lookUp’ contains an array of unexpected length {1} (expected 8).", _moduleId, lookUp[i].Length);
-                yield break;
-            }
-
-        var directionsSorted = fldDirectionsSorted.Get();
-        if (directionsSorted == null)
-            yield break;
-        if (directionsSorted.Count != 4)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Navinums because ‘directionsSorted’ has unexpected length {1} (expected 4).", _moduleId, directionsSorted.Count);
-            yield break;
-        }
-
-        var centerDigit = fldCenterDigit.Get();
-        if (centerDigit < 1 || centerDigit > 9)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Navinums because ‘center’ has unexpected value {1} (expected 1–9).", _moduleId, centerDigit);
-            yield break;
-        }
+        var lookUp = GetArrayField<int[]>(comp, "lookUp").Get(expectedLength: 9, validator: ar => ar.Length != 8 ? "expected length 8" : null);
+        var directionsSorted = GetListField<int>(comp, "directionsSorted").Get(expectedLength: 4);
+        var centerDigit = GetIntField(comp, "center").Get(min: 1, max: 9);
 
         var curStage = -1;
         var answers = new int[8];
-        Debug.LogFormat("<Souvenir #{0}> Waiting for next stage", _moduleId);
         while (true)
         {
             yield return null;
             var newStage = fldStage.Get();
             if (newStage != curStage)
             {
-                Debug.LogFormat("<Souvenir #{0}> Stage is now {1}", _moduleId, newStage);
                 if (newStage == 8)
                     break;
                 var newDirections = fldDirections.Get();
-                if (newDirections == null)
-                    yield break;
                 if (newDirections.Count != 4)
-                {
-                    Debug.LogFormat("<Souvenir #{0}> Abandoning Navinums because ‘directions’ has unexpected length {1} (expected 4).", _moduleId, newDirections.Count);
-                    yield break;
-                }
+                    throw new AbandonModuleException("‘directions’ has unexpected length {1} (expected 4).", newDirections.Count);
 
-                var digit = directionsSorted[lookUp[centerDigit - 1][newStage] - 1];
-                answers[newStage] = newDirections.IndexOf(digit);
+                answers[newStage] = newDirections.IndexOf(directionsSorted[lookUp[centerDigit - 1][newStage] - 1]);
                 if (answers[newStage] == -1)
-                {
-                    Debug.LogFormat("<Souvenir #{0}> Abandoning Navinums because ‘directions’ ({1}) did not contain the value from ‘directionsSorted’ ({2}).", _moduleId, newDirections.JoinString(", "), digit);
-                    yield break;
-                }
+                    throw new AbandonModuleException("‘directions’ ({0}) does not contain the value from ‘directionsSorted’ ({1}).",
+                        newDirections.JoinString(", "), directionsSorted[lookUp[centerDigit - 1][newStage] - 1]);
                 curStage = newStage;
             }
         }
-        Debug.LogFormat("<Souvenir #{0}> Stage 8 reached", _moduleId);
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Navinums);
-
-        Debug.LogFormat("<Souvenir #{0}> Navinums solved", _moduleId);
 
         var directionNames = new[] { "up", "left", "right", "down" };
 
@@ -5392,33 +5313,32 @@ public class SouvenirModule : MonoBehaviour
         for (var stage = 0; stage < 8; stage++)
             qs.Add(makeQuestion(Question.NavinumsDirectionalButtons, _Navinums, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { directionNames[answers[stage]] }));
         qs.Add(makeQuestion(Question.NavinumsMiddleDigit, _Navinums, correctAnswers: new[] { centerDigit.ToString() }));
-
-        Debug.LogFormat("<Souvenir #{0}> Adding questions", _moduleId);
         addQuestions(module, qs);
-        Debug.LogFormat("<Souvenir #{0}> Questions generated", _moduleId);
     }
 
     private IEnumerable<object> ProcessNotButton(KMBombModule module)
     {
         var comp = GetComponent(module, "NotButton");
-        var propSolved = GetProperty<bool>(comp, "Solved", true);
-        var propLightColour = GetProperty<object>(comp, "LightColour", true);
-        var propMashCount = GetIntField(comp, "MashCount", true);
-        var lightColor = 0; var mashCount = 0;
+        var propSolved = GetProperty<bool>(comp, "Solved", isPublic: true);
+        var propLightColour = GetProperty<object>(comp, "LightColour", isPublic: true); // actual type is an enum
+        var propMashCount = GetIntField(comp, "MashCount", isPublic: true);
+
+        var lightColor = 0;
+        var mashCount = 0;
         while (!propSolved.Get())
         {
             mashCount = propMashCount.Get();
-            lightColor = (int) propLightColour.Get();
-            yield return new WaitForSeconds(.1f);
+            lightColor = (int) propLightColour.Get();   // casting boxed enum value to int
+            yield return null;  // Don’t wait for .1 seconds so we don’t miss it
         }
         _modulesSolved.IncSafe(_NotButton);
+
         if (lightColor != 0)
         {
             var strings = _attributes[Question.NotButtonLightColor].AllAnswers;
             if (lightColor <= 0 || lightColor > strings.Length)
-                Debug.LogFormat("<Souvenir #{0}> Abandoning Not the Button because LightColour is out of range ({1}).", _moduleId, lightColor);
-            else
-                addQuestion(module, Question.NotButtonLightColor, correctAnswers: new[] { strings[lightColor - 1] });
+                throw new AbandonModuleException("‘LightColour’ is out of range ({0}).", lightColor);
+            addQuestion(module, Question.NotButtonLightColor, correctAnswers: new[] { strings[lightColor - 1] });
         }
         else if (mashCount > 1)
         {
@@ -5427,251 +5347,161 @@ public class SouvenirModule : MonoBehaviour
         }
         else
         {
-            Debug.LogFormat("<Souvenir #{0}> No question for Not the Button because the button was tapped (or I missed the light color).", _moduleId);
+            Debug.LogFormat("[Souvenir #{0}] No question for Not the Button because the button was tapped (or I missed the light color).", _moduleId);
             _legitimatelyNoQuestions.Add(module);
         }
     }
 
     private IEnumerable<object> ProcessNotKeypad(KMBombModule module)
     {
-        var component = GetComponent(module, "NotKeypad");
+        var comp = GetComponent(module, "NotKeypad");
         var connectorComponent = GetComponent(module, "NotVanillaModulesLib.NotKeypadConnector");
-        var propSolved = GetProperty<bool>(component, "Solved", true);
-        var fldColours = GetField<Array>(component, "sequenceColours");
-        var fldButtons = GetArrayField<int>(component, "sequenceButtons");
-        var fldSymbols = GetField<Array>(connectorComponent, "symbols");
-        if (propSolved == null || fldColours == null || fldButtons == null || fldSymbols == null)
-            yield break;
+        var propSolved = GetProperty<bool>(comp, "Solved", true);
 
         while (!propSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_NotKeypad);
 
-        var colours = fldColours.Get();
-        var buttons = fldButtons.Get();
-        var symbols = fldSymbols.Get();
-        var stage = Rnd.Range(0, colours.Length);
+        var strings = GetAnswers(Question.NotKeypadColor);
+        var colours = GetField<Array>(comp, "sequenceColours").Get(ar => ar.Cast<int>().Any(v => v <= 0 || v > strings.Length) ? "out of range" : null);
+        var buttons = GetArrayField<int>(comp, "sequenceButtons").Get(expectedLength: colours.Length);
+        var symbols = GetField<Array>(connectorComponent, "symbols").Get(ar => ar.Cast<int>().Any(v => v < 0 || v > KeypadSprites.Length) ? "out of range" : null);
+        var sprites = symbols.Cast<int>().Select(i => KeypadSprites[i]).ToArray();
 
-        var questions = new QandA[2];
-        var colour = (int) colours.GetValue(stage);
-        var strings = _attributes[Question.NotKeypadColor].AllAnswers;
-        if (colour <= 0 || colour > strings.Length)
-            Debug.LogFormat("<Souvenir #{0}> Abandoning a question for Not Keypad because colour index is out of range ({1}).", _moduleId, colour);
-        else
-            questions[0] = makeQuestion(Question.NotKeypadColor, _NotKeypad, new[] { ordinal(stage + 1) }, new[] { strings[colour - 1] });
-
-        var symbol = (int) symbols.GetValue(buttons[stage]);
-        if (symbol < 0 || symbol > 30)
-            Debug.LogFormat("<Souvenir #{0}> Abandoning a question for Not Keypad because symbol index is out of range ({1}).", _moduleId, colour);
-        else
-            questions[1] = makeQuestion(Question.NotKeypadSymbol, _NotKeypad, new[] { ordinal(stage + 1) }, new[] { KeypadSprites[symbol] },
-                symbols.Cast<int>().Select(i => KeypadSprites[i]).ToArray());
-
-        addQuestions(module, questions);
+        var qs = new List<QandA>();
+        for (var stage = 0; stage < colours.Length; stage++)
+        {
+            qs.Add(makeQuestion(Question.NotKeypadColor, _NotKeypad, new[] { ordinal(stage + 1) }, new[] { strings[(int) colours.GetValue(stage) - 1] }));
+            qs.Add(makeQuestion(Question.NotKeypadSymbol, _NotKeypad, new[] { ordinal(stage + 1) }, new[] { KeypadSprites[(int) symbols.GetValue(buttons[stage])] }, sprites));
+        }
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessNotMaze(KMBombModule module)
     {
         var component = GetComponent(module, "NotMaze");
         var propSolved = GetProperty<bool>(component, "Solved", true);
-        var fldDistance = GetIntField(component, "distance");
-        if (propSolved == null || fldDistance == null)
-            yield break;
 
         while (!propSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_NotMaze);
 
-        addQuestion(module, Question.NotMazeStartingDistance, correctAnswers: new[] { fldDistance.Get().ToString() });
+        addQuestion(module, Question.NotMazeStartingDistance, correctAnswers: new[] { GetIntField(component, "distance").Get().ToString() });
     }
 
     private IEnumerable<object> ProcessNotMorseCode(KMBombModule module)
     {
         var component = GetComponent(module, "NotMorseCode");
         var propSolved = GetProperty<bool>(component, "Solved", true);
-        var fldCorrectChannels = GetArrayField<int>(component, "correctChannels");
-        var fldWords = GetArrayField<string>(component, "words");
-        var fldColumns = GetStaticField<string[][]>(component.GetType(), "defaultColumns");
-        if (propSolved == null || fldCorrectChannels == null || fldWords == null || fldColumns == null)
-            yield break;
 
         while (!propSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_NotMorseCode);
 
-        var stage = Rnd.Range(0, 5);
-        var words = fldWords.Get();
-        var channels = fldCorrectChannels.Get();
-        var columns = fldColumns.Get();
-        var correctAnswers = new[] { words[channels[stage]] };
-        // Pick the other four words shown on the module, and four other random words from the table.
-        var wrongAnswers = words.Concat(Enumerable.Range(0, 50).Select(_ => columns.PickRandom().PickRandom())).Except(correctAnswers).Distinct().Take(8).ToArray();
+        var words = GetArrayField<string>(component, "words").Get();
+        var channels = GetArrayField<int>(component, "correctChannels").Get();
+        var columns = GetStaticField<string[][]>(component.GetType(), "defaultColumns").Get();
 
-        addQuestion(module, Question.NotMorseCodeWord, new[] { ordinal(stage + 1) }, correctAnswers, wrongAnswers);
+        addQuestions(module, Enumerable.Range(0, 5).Select(stage => makeQuestion(
+            question: Question.NotMorseCodeWord,
+            moduleKey: _NotMorseCode,
+            formatArgs: new[] { ordinal(stage + 1) },
+            correctAnswers: new[] { words[channels[stage]] },
+            preferredWrongAnswers: words.Concat(Enumerable.Range(0, 50).Select(_ => columns.PickRandom().PickRandom())).Except(new[] { words[channels[stage]] }).Distinct().Take(8).ToArray())));
     }
 
     private IEnumerable<object> ProcessNotSimaze(KMBombModule module)
     {
-        var component = GetComponent(module, "NotSimaze");
-        var propSolved = GetProperty<bool>(component, "Solved", true);
-        var fldMazeIndex = GetIntField(component, "mazeIndex");
-        var fldX = GetIntField(component, "x");
-        var fldY = GetIntField(component, "y");
-        var fldGoalX = GetIntField(component, "goalX");
-        var fldGoalY = GetIntField(component, "goalY");
-        if (propSolved == null || fldMazeIndex == null || fldX == null || fldY == null || fldGoalX == null || fldGoalY == null)
-            yield break;
+        var comp = GetComponent(module, "NotSimaze");
+        var propSolved = GetProperty<bool>(comp, "Solved", isPublic: true);
+        var fldMazeIndex = GetIntField(comp, "mazeIndex");
 
-        yield return null;  // Make sure the module has initialised.
         var colours = _attributes[Question.NotSimazeMaze].AllAnswers;
-        var startPositionArray = new[] { string.Format("({0}, {1})", colours[fldX.Get()], colours[fldY.Get()]) };
+        var startPositionArray = new[] { string.Format("({0}, {1})", colours[GetIntField(comp, "x").Get()], colours[GetIntField(comp, "y").Get()]) };
 
         while (!propSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_NotSimaze);
 
-        var goalPositionArray = new[] { string.Format("({0}, {1})", colours[fldGoalX.Get()], colours[fldGoalY.Get()]) };
+        var goalPositionArray = new[] { string.Format("({0}, {1})", colours[GetIntField(comp, "goalX").Get()], colours[GetIntField(comp, "goalY").Get()]) };
 
         addQuestions(module,
             makeQuestion(Question.NotSimazeMaze, _NotSimaze, correctAnswers: new[] { colours[fldMazeIndex.Get()] }),
             makeQuestion(Question.NotSimazeStart, _NotSimaze, correctAnswers: startPositionArray, preferredWrongAnswers: goalPositionArray),
-            makeQuestion(Question.NotSimazeGoal, _NotSimaze, correctAnswers: goalPositionArray, preferredWrongAnswers: startPositionArray)
-        );
+            makeQuestion(Question.NotSimazeGoal, _NotSimaze, correctAnswers: goalPositionArray, preferredWrongAnswers: startPositionArray));
     }
 
     private IEnumerable<object> ProcessNotWhosOnFirst(KMBombModule module)
     {
-        var component = GetComponent(module, "NotWhosOnFirst");
-        var propSolved = GetProperty<bool>(component, "Solved", true);
-        var fldPositions = GetArrayField<int>(component, "rememberedPositions");
-        var fldLabels = GetArrayField<string>(component, "rememberedLabels");
-        var fldSum = GetIntField(component, "stage2Sum");
-        if (propSolved == null || fldPositions == null || fldLabels == null || fldSum == null)
-            yield break;
+        var comp = GetComponent(module, "NotWhosOnFirst");
+        var propSolved = GetProperty<bool>(comp, "Solved", true);
+        var fldPositions = GetArrayField<int>(comp, "rememberedPositions");
+        var fldLabels = GetArrayField<string>(comp, "rememberedLabels");
+        var fldSum = GetIntField(comp, "stage2Sum");
 
         while (!propSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_NotWhosOnFirst);
 
-        var i = Rnd.Range(0, 6);
         var positions = _attributes[Question.NotWhosOnFirstPressedPosition].AllAnswers;
         var sumCorrectAnswers = new[] { fldSum.Get().ToString() };
 
-        addQuestions(module,
-            i >= 4 ? makeQuestion(Question.NotWhosOnFirstReferencePosition, _NotWhosOnFirst, new[] { (i - 1).ToString() }, new[] { positions[fldPositions.Get()[i]] }) :
-                makeQuestion(Question.NotWhosOnFirstPressedPosition, _NotWhosOnFirst, new[] { (i + 1).ToString() }, new[] { positions[fldPositions.Get()[i]] }),
-            i >= 4 ? makeQuestion(Question.NotWhosOnFirstReferenceLabel, _NotWhosOnFirst, new[] { (i - 1).ToString() }, new[] { fldLabels.Get()[i] }) :
-                makeQuestion(Question.NotWhosOnFirstPressedLabel, _NotWhosOnFirst, new[] { (i + 1).ToString() }, new[] { fldLabels.Get()[i] }),
-            makeQuestion(Question.NotWhosOnFirstSum, _NotWhosOnFirst, correctAnswers: sumCorrectAnswers)
-        );
+        var qs = new List<QandA>();
+        for (var i = 0; i < 4; i++)
+        {
+            qs.Add(makeQuestion(Question.NotWhosOnFirstPressedPosition, _NotWhosOnFirst, new[] { (i + 1).ToString() }, new[] { positions[fldPositions.Get()[i]] }));
+            qs.Add(makeQuestion(Question.NotWhosOnFirstPressedLabel, _NotWhosOnFirst, new[] { (i + 1).ToString() }, new[] { fldLabels.Get()[i] }));
+        }
+        for (var i = 4; i < 6; i++)
+        {
+            qs.Add(makeQuestion(Question.NotWhosOnFirstReferencePosition, _NotWhosOnFirst, new[] { (i - 1).ToString() }, new[] { positions[fldPositions.Get()[i]] }));
+            qs.Add(makeQuestion(Question.NotWhosOnFirstReferenceLabel, _NotWhosOnFirst, new[] { (i - 1).ToString() }, new[] { fldLabels.Get()[i] }));
+        }
+        qs.Add(makeQuestion(Question.NotWhosOnFirstSum, _NotWhosOnFirst, correctAnswers: sumCorrectAnswers));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessNumberedButtons(KMBombModule module)
     {
         var comp = GetComponent(module, "NumberedButtonsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldNumbers = GetArrayField<int>(comp, "buttonNums");
-
-        yield return null;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
-
         _modulesSolved.IncSafe(_NumberedButtons);
 
-        var numbers = fldNumbers.Get();
-
-        if (numbers.Count() != 16)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Numbered Buttons because 'numbers' has unexpected length ({1}; expected 16).", _moduleId, numbers.Length);
-            yield break;
-        }
-
-        for (int i = 0; i < 16; i++)
-        {
-            if (numbers[i] < 1 || numbers[i] > 100)
-            {
-                Debug.LogFormat("<Souvenir #{0}> Abandoning Numbered Buttons because 'numbers[{1}]' has unexpected value ({2}; expected 1-100).", _moduleId, i.ToString(), numbers[i].ToString());
-                yield break;
-            }
-        }
-
-        int randomIndexChooser = Rnd.Range(0, 16);
-
-        addQuestions(module, (makeQuestion(Question.NumberedButtonsLabels, _NumberedButtons, new[] { (randomIndexChooser + 1).ToString() }, correctAnswers: new[] { numbers[randomIndexChooser].ToString() }, preferredWrongAnswers: new[] { Rnd.Range(1, 101).ToString() })));
+        var numbers = GetArrayField<int>(comp, "buttonNums").Get(expectedLength: 16, validator: n => n < 1 || n > 100 ? "expected 1–100" : null);
+        addQuestions(module, numbers.Select((n, ix) => makeQuestion(Question.NumberedButtonsLabels, _NumberedButtons, new[] { (ix + 1).ToString() }, correctAnswers: new[] { n.ToString() })));
     }
 
     private IEnumerable<object> ProcessObjectShows(KMBombModule module)
     {
         var comp = GetComponent(module, "objectShows");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldSolution = GetField<Array>(comp, "solution");
-        var fldContestantNames = GetArrayField<string>(comp, "charnames", isPublic: true);
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_ObjectShows);
 
-        var solution = fldSolution.Get();
-        if (solution == null)
-            yield break;
-        var solutionObjs = solution.Cast<object>().ToArray();
-        if (solutionObjs.Length != 5 || solutionObjs.Contains(null))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Object Shows because ‘solution’ contains a null value or has unexpected length {1} (expected 5).", _moduleId, solutionObjs.Length);
-            yield break;
-        }
-
-        var tmp = solutionObjs[0];
-        var fldId = GetIntField(tmp, "id", isPublic: true);
-        var contestantNames = fldContestantNames.Get();
-        if (contestantNames == null)
-            yield break;
-        if (solutionObjs.Any(c => fldId.GetFrom(c) < 0 || fldId.GetFrom(c) >= contestantNames.Length))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Object Shows because one of the ‘id’s in ‘solution’ is unexpected: [{1}]", _moduleId, solutionObjs.Select(c => fldId.GetFrom(c)).JoinString(", "));
-            yield break;
-        }
-        var solutionNames = solutionObjs.Select(c => contestantNames[fldId.GetFrom(c)]).ToArray();
-
+        var contestantNames = GetArrayField<string>(comp, "charnames", isPublic: true).Get();
+        var solutionObjs = GetField<Array>(comp, "solution").Get(ar => ar.Length != 5 ? "expected length 5" : ar.Cast<object>().Any(obj => obj == null) ? "contains null" : null).Cast<object>().ToArray();
+        var fldId = GetIntField(solutionObjs[0], "id", isPublic: true);
+        var solutionNames = solutionObjs.Select(c => contestantNames[fldId.GetFrom(c, min: 0, max: contestantNames.Length - 1)]).ToArray();
         addQuestion(module, Question.ObjectShowsContestants, correctAnswers: solutionNames, preferredWrongAnswers: contestantNames);
     }
 
     private IEnumerable<object> ProcessOddOneOut(KMBombModule module)
     {
         var comp = GetComponent(module, "OddOneOutModule");
-        var fldStages = GetField<Array>(comp, "_stages");
 
         var solved = false;
         module.OnPass += delegate { solved = true; return false; };
         while (!solved)
             yield return new WaitForSeconds(.1f);
 
-        var stages = fldStages.Get();
-
-        if (stages == null)
-            yield break;
-        if (stages.Length != 6)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Odd One Out because '_stages' has unexpected length ({1}; expected 6).", _moduleId, stages.Length);
-            yield break;
-        }
-        if (stages.Cast<object>().Any(x => x == null))
-            yield break;
-
-        string[] btnNames = { "top-left", "top-middle", "top-right", "bottom-left", "bottom-middle", "bottom-right" };
-        var stageBtnFld = stages.Cast<object>().Select(x => GetIntField(x, "CorrectIndex", isPublic: true));
-
-        if (stageBtnFld.Any(x => x == null))
-            yield break;
-
-        var stageBtn = stageBtnFld.Select(x => x.Get()).ToArray();
-
-        if (stageBtn.Any(x => x < 0 || x >= btnNames.Length))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Odd One Out because '_stages' has at least one 'CorrectIndex' that points to an illegal value.", _moduleId);
-            yield break;
-        }
+        var stages = GetField<Array>(comp, "_stages").Get(ar => ar.Length != 6 ? "expected length 6" : ar.Cast<object>().Any(obj => obj == null) ? "contains null" : null);
+        var btnNames = new[] { "top-left", "top-middle", "top-right", "bottom-left", "bottom-middle", "bottom-right" };
+        var stageBtn = stages.Cast<object>().Select(x => GetIntField(x, "CorrectIndex", isPublic: true).Get(min: 0, max: btnNames.Length - 1)).ToArray();
 
         _modulesSolved.IncSafe(_OddOneOut);
         addQuestions(module,
@@ -5686,22 +5516,14 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessOnlyConnect(KMBombModule module)
     {
         var comp = GetComponent(module, "OnlyConnectModule");
-        var fldHieroglyphsDisplayed = GetArrayField<int>(comp, "_hieroglyphsDisplayed");
         var fldIsSolved = GetField<bool>(comp, "_isSolved");
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
 
-        var hieroglyphsDisplayed = fldHieroglyphsDisplayed.Get();
-        if (hieroglyphsDisplayed == null || hieroglyphsDisplayed.Length != 6 || hieroglyphsDisplayed.Any(h => h < 0 || h >= 6))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Only Connect: hieroglyphsDisplayed has unexpected value: {1}", _moduleId,
-                hieroglyphsDisplayed == null ? "null" : string.Format("[{0}]", hieroglyphsDisplayed.JoinString(", ")));
-            yield break;
-        }
+        var hieroglyphsDisplayed = GetArrayField<int>(comp, "_hieroglyphsDisplayed").Get(expectedLength: 6, validator: v => v < 0 || v > 5 ? "expected range 0–5" : null);
 
         while (!fldIsSolved.Get())
             yield return new WaitForSeconds(.1f);
-
         _modulesSolved.IncSafe(_OnlyConnect);
 
         var hieroglyphs = new[] { "Two Reeds", "Lion", "Twisted Flax", "Horned Viper", "Water", "Eye of Horus" };
@@ -5714,18 +5536,12 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "OrangeArrowsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldMoves = GetArrayField<string>(comp, "moves");
-        var fldButtons = GetArrayField<KMSelectable>(comp, "buttons", isPublic: true);
         var fldStage = GetIntField(comp, "stage");
-
-        yield return null;
 
         // The module does not modify the arrays; it instantiates a new one for each stage.
         var correctMoves = new string[3][];
 
-        KMSelectable[] buttons = fldButtons.Get();
-        if (buttons == null)
-            yield break;
-
+        var buttons = GetArrayField<KMSelectable>(comp, "buttons", isPublic: true).Get();
         var prevButtonInteracts = buttons.Select(b => b.OnInteract).ToArray();
         for (int i = 0; i < buttons.Length; i++)
         {
@@ -5743,8 +5559,9 @@ public class SouvenirModule : MonoBehaviour
                 }
                 else
                 {
-                    // We need to capture the array at each button press because the user might get a strike and the array might change
-                    correctMoves[st - 1] = fldMoves.Get();
+                    // We need to capture the array at each button press because the user might get a strike and the array might change.
+                    // Avoid throwing an exception within the button handler
+                    correctMoves[st - 1] = fldMoves.Get(nullAllowed: true);
                 }
                 return ret;
             };
@@ -5762,11 +5579,8 @@ public class SouvenirModule : MonoBehaviour
 
         var directions = new[] { "UP", "RIGHT", "DOWN", "LEFT" };
         if (correctMoves.Any(arr => arr == null || arr.Any(dir => !directions.Contains(dir))))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Orange Arrows because one of the move arrays has an unexpected value: [{1}].",
-                _moduleId, correctMoves.Select(arr => arr == null ? "null" : string.Format("[{0}]", arr.JoinString(", "))).JoinString(", "));
-            yield break;
-        }
+            throw new AbandonModuleException("One of the move arrays has an unexpected value: [{0}].",
+                correctMoves.Select(arr => arr == null ? "null" : string.Format("[{0}]", arr.JoinString(", "))).JoinString(", "));
 
         var qs = new List<QandA>();
         for (int i = 0; i < 3; i++)
@@ -5783,27 +5597,16 @@ public class SouvenirModule : MonoBehaviour
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldStage = GetIntField(comp, "stage");
 
-        yield return null;
-
         var stage = 0;
         var moduleData = new int[3][][];
 
         while (!fldSolved.Get())
         {
-            var info = fldInfo.Get();
-            if (info == null || info.Length != 6 || info.Any(arr => arr == null || arr.Length != 4))
+            var info = fldInfo.Get(expectedLength: 6, validator: arr => arr == null ? "null" : arr.Length != 4 ? "expected length 4" : null);
+            var newStage = fldStage.Get(min: 1, max: 3);
+            if (stage != newStage || moduleData[newStage - 1] == null || Enumerable.Range(0, 6).All(ix => info[ix].SequenceEqual(moduleData[newStage - 1][ix])))
             {
-                Debug.LogFormat("<Souvenir #{0}> Abandoning Ordered Keys because ‘info’ has unexpected length data: [{1}] (expected 6 arrays of length 4).", _moduleId, info == null ? "<null>" : info.Select(arr => arr == null ? "<null>" : string.Format("[{0}]", arr.JoinString(", "))).JoinString(", "));
-                yield break;
-            }
-            if (fldStage.Get() < 1 || fldStage.Get() > 3)
-            {
-                Debug.LogFormat("<Souvenir #{0}> Abandoning Ordered Keys because ’stage’ has unexpected value: {1} (expected 1, 2, or 3).", _moduleId, fldStage.Get());
-                yield break;
-            }
-            if (stage != fldStage.Get() || moduleData[fldStage.Get() - 1] == null || Enumerable.Range(0, 6).All(ix => info[ix].SequenceEqual(moduleData[fldStage.Get() - 1][ix])))
-            {
-                stage = fldStage.Get();
+                stage = newStage;
                 moduleData[stage - 1] = info.Select(arr => arr.ToArray()).ToArray(); // Take a copy of the array.
             }
             yield return new WaitForSeconds(.1f);
@@ -5830,23 +5633,17 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessOrientationCube(KMBombModule module)
     {
         var comp = GetComponent(module, "OrientationModule");
-        var fldInitialVirtualViewAngle = GetField<float>(comp, "initialVirtualViewAngle");
+
         var solved = false;
-
         module.OnPass += delegate { solved = true; return false; };
-
         while (!solved)
             yield return new WaitForSeconds(.1f);
-
         _modulesSolved.IncSafe(_OrientationCube);
 
-        var initialVirtualViewAngle = fldInitialVirtualViewAngle.Get();
+        var initialVirtualViewAngle = GetField<float>(comp, "initialVirtualViewAngle").Get();
         var initialAnglePos = Array.IndexOf(new[] { 0f, 90f, 180f, 270f }, initialVirtualViewAngle);
         if (initialAnglePos == -1)
-        {
-            Debug.LogFormat("<Souvenir #{1}> Orientation Cube: initialVirtualViewAngle has unexpected value: {0}", initialVirtualViewAngle, _moduleId);
-            yield break;
-        }
+            throw new AbandonModuleException("‘initialVirtualViewAngle’ has unexpected value: {0}", initialVirtualViewAngle);
 
         addQuestion(module, Question.OrientationCubeInitialObserverPosition, correctAnswers: new[] { new[] { "front", "left", "back", "right" }[initialAnglePos] });
     }
