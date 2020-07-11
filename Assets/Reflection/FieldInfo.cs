@@ -95,6 +95,24 @@ namespace Souvenir.Reflection
                             Field.DeclaringType.FullName, Field.Name, collection.Count, stringify(collection[ix]), ix, validatorFailMessage);
             return collection;
         }
+
+        public new TCollection Get(Func<TCollection, string> validator = null, bool nullAllowed = false)
+        {
+            var collection = base.Get(validator, nullAllowed);
+            var pos = collection.IndexOf(v => v == null);
+            if (pos != -1)
+                throw new AbandonModuleException("Collection field {0}.{1} (length {2}) contained a null value at index {3}.", Field.DeclaringType.FullName, Field.Name, collection.Count, pos);
+            return collection;
+        }
+
+        public new TCollection GetFrom(object obj, Func<TCollection, string> validator = null, bool nullAllowed = false)
+        {
+            var collection = base.GetFrom(obj, validator, nullAllowed);
+            var pos = collection.IndexOf(v => v == null);
+            if (pos != -1)
+                throw new AbandonModuleException("Collection field {0}.{1} (length {2}) contained a null value at index {3}.", Field.DeclaringType.FullName, Field.Name, collection.Count, pos);
+            return collection;
+        }
     }
 
     sealed class ArrayFieldInfo<T> : CollectionFieldInfo<T[], T>

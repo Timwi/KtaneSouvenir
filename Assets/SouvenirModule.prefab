@@ -729,20 +729,20 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e467e01e7aaf451479e114e425539d52, type: 3}
   Tiles4x4Sprites:
   - {fileID: 21300000, guid: fda2f3db2dcc62f4dacc701129f3f76f, type: 3}
-  - {fileID: 21300000, guid: 5782ff874fc79fa4c84cc562bb23e503, type: 3}
-  - {fileID: 21300000, guid: 2c9f1e0a7cc364a4c8d62a48d28384ea, type: 3}
-  - {fileID: 21300000, guid: f2657fb101ac6f7499ab255ecbb32762, type: 3}
   - {fileID: 21300000, guid: 7896591178d84ce428a7f36a495d8012, type: 3}
-  - {fileID: 21300000, guid: 8311c72e0e56c534aa9f2946281c017a, type: 3}
-  - {fileID: 21300000, guid: 7969c24442a5df143b5fc079a554f2c6, type: 3}
-  - {fileID: 21300000, guid: 7508965645b070b408c38d3746fc499b, type: 3}
   - {fileID: 21300000, guid: d1a8399d13055414b872651dc7b57d6c, type: 3}
-  - {fileID: 21300000, guid: 31256d1c662576a4e80d0470772b1c35, type: 3}
-  - {fileID: 21300000, guid: 6a0fdca997334b9428e16151e1b89571, type: 3}
-  - {fileID: 21300000, guid: 668a80aa64dd8b740b43b20783aeab75, type: 3}
   - {fileID: 21300000, guid: c1fc8e2d20ba41a4384a0cb7c3cfbbcf, type: 3}
+  - {fileID: 21300000, guid: 5782ff874fc79fa4c84cc562bb23e503, type: 3}
+  - {fileID: 21300000, guid: 8311c72e0e56c534aa9f2946281c017a, type: 3}
+  - {fileID: 21300000, guid: 31256d1c662576a4e80d0470772b1c35, type: 3}
   - {fileID: 21300000, guid: 644d8766a2305364fa1895af467e682f, type: 3}
+  - {fileID: 21300000, guid: 2c9f1e0a7cc364a4c8d62a48d28384ea, type: 3}
+  - {fileID: 21300000, guid: 7969c24442a5df143b5fc079a554f2c6, type: 3}
+  - {fileID: 21300000, guid: 6a0fdca997334b9428e16151e1b89571, type: 3}
   - {fileID: 21300000, guid: 4e97eeebeec2c4c4c82628c2ad7321dd, type: 3}
+  - {fileID: 21300000, guid: f2657fb101ac6f7499ab255ecbb32762, type: 3}
+  - {fileID: 21300000, guid: 7508965645b070b408c38d3746fc499b, type: 3}
+  - {fileID: 21300000, guid: 668a80aa64dd8b740b43b20783aeab75, type: 3}
   - {fileID: 21300000, guid: da4f13a926506894b9b7f7a125f386a3, type: 3}
   EncryptedEquationsSprites:
   - {fileID: 21300000, guid: ec3a26799d5ecd940b601d552b404d07, type: 3}
