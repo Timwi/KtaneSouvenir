@@ -7641,7 +7641,6 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessVaricoloredSquares(KMBombModule module)
     {
         var comp = GetComponent(module, "VaricoloredSquaresModule");
-        var fldFirstColor = GetField<object>(comp, "_firstStageColor");
 
         var solved = false;
         module.OnPass += delegate { solved = true; return false; };
@@ -7649,30 +7648,18 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_VaricoloredSquares);
 
-        var firstColor = fldFirstColor.Get();
-        if (firstColor == null)
-            yield break;
-
-        addQuestion(module, Question.VaricoloredSquaresInitialColor, correctAnswers: new[] { firstColor.ToString() });
+        addQuestion(module, Question.VaricoloredSquaresInitialColor, correctAnswers: new[] { GetField<object>(comp, "_firstStageColor").Get().ToString() });
     }
 
     private IEnumerable<object> ProcessVcrcs(KMBombModule module)
     {
         var comp = GetComponent(module, "VcrcsScript");
         var fldSolved = GetField<bool>(comp, "ModuleSolved");
-        var fldWord = GetField<TextMesh>(comp, "Words", isPublic: true);
 
-        yield return null;
-
-        var wordTextMesh = fldWord.Get();
-        if (wordTextMesh == null)
-            yield break;
+        var wordTextMesh = GetField<TextMesh>(comp, "Words", isPublic: true).Get();
         var word = wordTextMesh.text;
         if (word == null)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Vcrcs because ‘Words.text’ is null.", _moduleId);
-            yield break;
-        }
+            throw new AbandonModuleException("‘Words.text’ is null.");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -7685,43 +7672,20 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "VectorsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldColors = GetArrayField<string>(comp, "colors");
-        var fldVectorsPicked = GetArrayField<int>(comp, "vectorsPicked");
-        var fldVectorCount = GetIntField(comp, "vectorct");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
-
         _modulesSolved.IncSafe(_Vectors);
 
-        int vectorCount = fldVectorCount.Get();
-        if (vectorCount < 1 || vectorCount > 3)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Vectors because ‘vectorct’ has an unexpected value (expected 1–3): {1}.", _moduleId, vectorCount);
-            yield break;
-        }
-
-        var colors = fldColors.Get();
-        var pickedVectors = fldVectorsPicked.Get();
-
-        if (colors == null || pickedVectors == null)
-            yield break;
         var colorsName = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Purple" };
-        if (pickedVectors.Length != 3 || pickedVectors.Any(v => v < 0 || v >= colors.Length))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Vectors because ‘vectorsPicked’ has unexpected length or value: [{1}] (expected length 3, values 0–{2}).", _moduleId, pickedVectors.JoinString(", "), colors.Length - 1);
-            yield break;
-        }
+        var vectorCount = GetIntField(comp, "vectorct").Get(min: 1, max: 3);
+        var colors = GetArrayField<string>(comp, "colors").Get();
+        var pickedVectors = GetArrayField<int>(comp, "vectorsPicked").Get(expectedLength: 3, validator: v => v < 0 || v >= colors.Length ? string.Format("expected range 0–{0}", colors.Length - 1) : null);
 
         for (int i = 0; i < vectorCount; i++)
-        {
             if (!colorsName.Contains(colors[pickedVectors[i]]))
-            {
-                Debug.LogFormat("<Souvenir #{0}> Abandoning Vectors because ‘colors[{1}]’ pointed to illegal color “{2}” (colors=[{3}], pickedVectors=[{4}], index {5}).",
-                    _moduleId, pickedVectors[i], colors[pickedVectors[i]], colors.JoinString(", "), pickedVectors.JoinString(", "), i);
-                yield break;
-            }
-        }
+                throw new AbandonModuleException("‘colors[{1}]’ pointed to illegal color “{2}” (colors=[{3}], pickedVectors=[{4}], index {0}).",
+                    i, pickedVectors[i], colors[pickedVectors[i]], colors.JoinString(", "), pickedVectors.JoinString(", "));
 
         var qs = new List<QandA>();
         for (int i = 0; i < vectorCount; i++)
@@ -7733,28 +7697,16 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "vexillologyScript");
         var fldSolved = GetField<bool>(comp, "_issolved");
-        var fldColors = GetArrayField<string>(comp, "coloursStrings");
-        var fldColor1 = GetIntField(comp, "ActiveFlagTop1");
-        var fldColor2 = GetIntField(comp, "ActiveFlagTop2");
-        var fldColor3 = GetIntField(comp, "ActiveFlagTop3");
 
-        string[] colors = fldColors.Get();
-        int color1 = fldColor1.Get();
-        int color2 = fldColor2.Get();
-        int color3 = fldColor3.Get();
-
-        if (colors == null)
-            yield break;
-        if (color1 < 0 || color1 >= colors.Length || color2 < 0 || color2 >= colors.Length || color3 < 0 || color3 >= colors.Length)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Vexillology because one or more of the flagpole colors points to an illegal color: {1}, {2}, {3}.", _moduleId, color1, color2, color3);
-            yield break;
-        }
+        string[] colors = GetArrayField<string>(comp, "coloursStrings").Get();
+        int color1 = GetIntField(comp, "ActiveFlagTop1").Get(min: 0, max: colors.Length - 1);
+        int color2 = GetIntField(comp, "ActiveFlagTop2").Get(min: 0, max: colors.Length - 1);
+        int color3 = GetIntField(comp, "ActiveFlagTop3").Get(min: 0, max: colors.Length - 1);
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
-
         _modulesSolved.IncSafe(_Vexillology);
+
         addQuestions(module,
             makeQuestion(Question.VexillologyColors, _Vexillology, new[] { "first" }, new[] { colors[color1] }, new[] { colors[color2], colors[color3] }),
             makeQuestion(Question.VexillologyColors, _Vexillology, new[] { "second" }, new[] { colors[color2] }, new[] { colors[color1], colors[color3] }),
@@ -7765,22 +7717,15 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "VisualImpairment");
         var fldRoundsFinished = GetIntField(comp, "roundsFinished");
-        var fldStageCount = GetIntField(comp, "stageCount");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldColor = GetIntField(comp, "color");
-        var fldAnyPressed = GetField<bool>(comp, "anyPressed");
         var fldPicture = GetArrayField<string>(comp, "picture");
 
         // Wait for the first picture to be assigned
         while (fldPicture.Get(nullAllowed: true) == null)
             yield return new WaitForSeconds(.1f);
 
-        var stageCount = fldStageCount.Get();
-        if (stageCount < 2 || stageCount >= 4)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Visual Impairment because stageCount is not 2 or 3 as expected (it’s {1}).", _moduleId, stageCount);
-            yield break;
-        }
+        var stageCount = GetIntField(comp, "stageCount").Get(min: 2, max: 3);
         var colorsPerStage = new int[stageCount];
         var colorNames = new[] { "Blue", "Green", "Red", "White" };
 
@@ -7790,7 +7735,7 @@ public class SouvenirModule : MonoBehaviour
             if (newStage >= stageCount)
                 break;
 
-            var newColor = fldColor.Get();
+            var newColor = fldColor.Get(min: 0, max: 3);
             if (newColor != colorsPerStage[newStage])
                 Debug.LogFormat("<Souvenir #{0}> Visual Impairment: stage {1} color changed to {2} ({3}).", _moduleId, newStage, newColor, newColor >= 0 && newColor < 4 ? colorNames[newColor] : "<out of range>");
             colorsPerStage[newStage] = newColor;
@@ -7798,34 +7743,19 @@ public class SouvenirModule : MonoBehaviour
         }
         _modulesSolved.IncSafe(_VisualImpairment);
 
-        if (colorsPerStage.Any(c => c < 0 || c > 3))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Visual Impairment because one of the colors is invalid (expected 0–3): [{1}].", _moduleId, colorsPerStage.JoinString(", "));
-            yield break;
-        }
-
         addQuestions(module, colorsPerStage.Select((col, ix) => makeQuestion(Question.VisualImpairmentColors, _VisualImpairment, new[] { ordinal(ix + 1) }, new[] { colorNames[col] })));
     }
 
     private IEnumerable<object> ProcessWavetapping(KMBombModule module)
     {
         var comp = GetComponent(module, "scr_wavetapping");
-        var fldStageColors = GetArrayField<int>(comp, "stageColors");
-        var fldIntPatterns = GetArrayField<int>(comp, "intPatterns");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        yield return null;
-
-        var stageColors = fldStageColors.Get();
-        var intPatterns = fldIntPatterns.Get();
-        if (stageColors.Length != 3 || intPatterns.Length != 3)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Wavetapping because ‘intPatterns/stageColors’ has unexpected length (expected 3): {1}).", _moduleId, string.Format("[{0}] | [{1}]", intPatterns.JoinString(", "), stageColors.JoinString(", ")));
-            yield break;
-        }
+        var stageColors = GetArrayField<int>(comp, "stageColors").Get(expectedLength: 3);
+        var intPatterns = GetArrayField<int>(comp, "intPatterns").Get(expectedLength: 3);
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Wavetapping);
 
         var patternSprites = new Dictionary<int, Sprite[]>();
         var spriteTake = new[] { 4, 4, 3, 2, 2, 2, 2, 2, 9, 4, 40, 13, 4, 8, 21, 38 };
@@ -7837,7 +7767,6 @@ public class SouvenirModule : MonoBehaviour
         }
 
         var colorNames = new[] { "Red", "Orange", "Orange-Yellow", "Chartreuse", "Lime", "Green", "Seafoam Green", "Cyan-Green", "Turquoise", "Dark Blue", "Indigo", "Purple", "Purple-Magenta", "Magenta", "Pink", "Gray" };
-        _modulesSolved.IncSafe(_Wavetapping);
 
         var qs = new List<QandA>();
 
@@ -7856,20 +7785,12 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessWhosOnFirst(KMBombModule module)
     {
-        var component = GetComponent(module, "WhosOnFirstComponent");
-        var fldSolved = GetField<bool>(component, "IsSolved", true);
-        var fldDisplay = GetField<MonoBehaviour>(component, "DisplayText", true);  // TextMeshPro
-        var propStage = GetProperty<int>(component, "CurrentStage", true);
-        var propButtonsEmerged = GetProperty<bool>(component, "ButtonsEmerged", true);
-        if (fldSolved == null || fldDisplay == null || propStage == null || propButtonsEmerged == null)
-            yield break;
-
-        yield return null;
-
-        var displayTextMesh = fldDisplay.Get();
+        var comp = GetComponent(module, "WhosOnFirstComponent");
+        var fldSolved = GetField<bool>(comp, "IsSolved", true);
+        var propStage = GetProperty<int>(comp, "CurrentStage", true);
+        var propButtonsEmerged = GetProperty<bool>(comp, "ButtonsEmerged", true);
+        var displayTextMesh = GetField<MonoBehaviour>(comp, "DisplayText", true).Get(); // TextMeshPro
         var propText = GetProperty<string>(displayTextMesh, "text", true);
-        if (displayTextMesh == null || propText == null)
-            yield break;
 
         while (!propButtonsEmerged.Get())
             yield return new WaitForSeconds(0.1f);
@@ -7898,25 +7819,17 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "wireScript");
         var fldSolved = GetField<bool>(comp, "moduleDone");
-        var fldDials = GetArrayField<Renderer>(comp, "renderers", isPublic: true);
-        var fldDisplayedNumber = GetIntField(comp, "displayedNumber");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Wire);
 
-        var dials = fldDials.Get();
-        if (dials == null || dials.Length != 3)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning The Wire because ‘renderers’ has unexpected length ({1}, expected 3).", _moduleId, dials == null ? "<null>" : dials.Length.ToString());
-            yield break;
-        }
-
+        var dials = GetArrayField<Renderer>(comp, "renderers", isPublic: true).Get(expectedLength: 3);
         addQuestions(module,
             makeQuestion(Question.WireDialColors, _Wire, new[] { "top" }, new[] { dials[0].material.mainTexture.name.Replace("Mat", "") }),
             makeQuestion(Question.WireDialColors, _Wire, new[] { "bottom-left" }, new[] { dials[1].material.mainTexture.name.Replace("Mat", "") }),
             makeQuestion(Question.WireDialColors, _Wire, new[] { "bottom-right" }, new[] { dials[2].material.mainTexture.name.Replace("Mat", "") }),
-            makeQuestion(Question.WireDisplayedNumber, _Wire, correctAnswers: new[] { fldDisplayedNumber.Get().ToString() }));
+            makeQuestion(Question.WireDisplayedNumber, _Wire, correctAnswers: new[] { GetIntField(comp, "displayedNumber").Get().ToString() }));
     }
 
     private IEnumerable<object> ProcessWireOrdering(KMBombModule module)
@@ -7932,58 +7845,59 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_WireOrdering);
 
         var colors = _attributes[Question.WireOrderingDisplayColor].AllAnswers;
-        var index = Rnd.Range(0, 4);
-        var ordinal = new[] { this.ordinal(index + 1) };
-        addQuestions(module,
-            makeQuestion(Question.WireOrderingDisplayColor, _WireOrdering, ordinal, new[] { colors[fldChosenColorsDisplay.Get()[index]] }),
-            makeQuestion(Question.WireOrderingDisplayNumber, _WireOrdering, ordinal, new[] { fldChosenDisplayNumbers.Get()[index].ToString() }),
-            makeQuestion(Question.WireOrderingWireColor, _WireOrdering, ordinal, new[] { colors[fldChosenColorsWire.Get()[index]] }));
+        var chosenColorsDisplay = fldChosenColorsDisplay.Get(expectedLength: 4);
+        var chosenDisplayNumbers = fldChosenDisplayNumbers.Get(expectedLength: 4);
+        var chosenColorsWire = fldChosenColorsWire.Get(expectedLength: 4);
+
+        var qs = new List<QandA>();
+        for (var ix = 0; ix < 4; ix++)
+        {
+            qs.Add(makeQuestion(Question.WireOrderingDisplayColor, _WireOrdering, new[] { ordinal(ix + 1) }, new[] { colors[chosenColorsDisplay[ix]] }));
+            qs.Add(makeQuestion(Question.WireOrderingDisplayNumber, _WireOrdering, new[] { ordinal(ix + 1) }, new[] { chosenDisplayNumbers[ix].ToString() }));
+            qs.Add(makeQuestion(Question.WireOrderingWireColor, _WireOrdering, new[] { ordinal(ix + 1) }, new[] { colors[chosenColorsWire[ix]] }));
+        }
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessWireSequence(KMBombModule module)
     {
-        var component = GetComponent(module, "WireSequenceComponent");
-        var fldSolved = GetField<bool>(component, "IsSolved", true);
-        var fldWireSequence = GetField<IEnumerable>(component, "wireSequence");
-        if (fldSolved == null || fldWireSequence == null)
-            yield break;
+        var comp = GetComponent(module, "WireSequenceComponent");
+        var fldSolved = GetField<bool>(comp, "IsSolved", true);
 
-        while (!fldSolved.Get()) yield return new WaitForSeconds(.1f);
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_WireSequence);
 
-        var wireSequence = fldWireSequence.Get();
-        if (wireSequence == null) yield break;
+        var wireSequence = GetField<IEnumerable>(comp, "wireSequence").Get();
 
-        var color = Rnd.Range(0, 3);
-        var colorWord = color == 0 ? "black" : (color == 1 ? "blue" : "red");
         var counts = new int[3];
         var typeWireConfiguration = wireSequence.GetType().GetGenericArguments()[0];
         var fldNoWire = GetField<bool>(typeWireConfiguration, "NoWire", true);
         var fldColor = GetField<object>(typeWireConfiguration, "Color", true);
-        if (fldNoWire == null || fldColor == null)
-            yield break;
 
         foreach (var item in wireSequence.Cast<object>().Take(12))
-        {
             if (!fldNoWire.GetFrom(item))
-                ++counts[(int) fldColor.GetFrom(item)];
-        }
+                counts[(int) fldColor.GetFrom(item)]++;
 
-        var preferredWrongAnswers = new string[4];
-        for (int i = 0; i < 3; ++i)
-            preferredWrongAnswers[i] = counts[i].ToString();
-        preferredWrongAnswers[3] = (counts[color] == 0 ? 1 : counts[color] - 1).ToString();
-        addQuestion(module, Question.WireSequenceColorCount, new[] { colorWord }, new[] { counts[color].ToString() }, preferredWrongAnswers);
+        var qs = new List<QandA>();
+        for (var color = 0; color < 3; color++)
+        {
+            var preferredWrongAnswers = new string[4];
+            for (int i = 0; i < 3; i++)
+                preferredWrongAnswers[i] = counts[i].ToString();
+            preferredWrongAnswers[3] = (counts[color] == 0 ? 1 : counts[color] - 1).ToString();
+            qs.Add(makeQuestion(Question.WireSequenceColorCount, _WireSequence, new[] { new[] { "black", "blue", "red" }[color] }, new[] { counts[color].ToString() }, preferredWrongAnswers));
+        }
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessYahtzee(KMBombModule module)
     {
         var comp = GetComponent(module, "YahtzeeModule");
-        var fldDiceValues = GetArrayField<int>(comp, "_diceValues");
         var fldSolved = GetField<bool>(comp, "_isSolved");
 
         // This array only changes its contents, it’s never reassigned, so we only need to get it once
-        var diceValues = fldDiceValues.Get();
+        var diceValues = GetArrayField<int>(comp, "_diceValues").Get();
 
         while (diceValues.Any(v => v == 0))
             yield return new WaitForSeconds(.1f);
@@ -7995,7 +7909,7 @@ public class SouvenirModule : MonoBehaviour
         {
             Debug.LogFormat("[Souvenir #{0}] No question for Yahtzee because the first roll was a Yahtzee.", _moduleId);
             _legitimatelyNoQuestions.Add(module);
-            result = null;
+            result = null;  // don’t yield break here because we need to know when the module is solved in case there are multiple Yahtzees on the bomb
         }
         else if (diceValues.Contains(2) && diceValues.Contains(3) && diceValues.Contains(4) && diceValues.Contains(5) && (diceValues.Contains(1) || diceValues.Contains(6)))
             result = "large straight";
@@ -8033,18 +7947,12 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "YellowArrowsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldLetIndex = GetIntField(comp, "letindex");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_YellowArrows);
 
-        int letterIndex = fldLetIndex.Get();
-        if (letterIndex < 0 || letterIndex > 25)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Yellow Arrows because ‘letindex’ points to illegal letter: {1} (expected 0–25).", _moduleId, letterIndex);
-            yield break;
-        }
+        int letterIndex = GetIntField(comp, "letindex").Get(min: 0, max: 25);
         addQuestion(module, Question.YellowArrowsStartingRow, correctAnswers: new[] { ((char) ('A' + letterIndex)).ToString() });
     }
 
@@ -8052,31 +7960,17 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "ZoniModuleScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldButtons = GetArrayField<KMSelectable>(comp, "buttons", isPublic: true);
-        var fldWords = GetArrayField<string>(comp, "wordlist", isPublic: true);
         var fldIndex = GetIntField(comp, "wordIndex");
         var fldStage = GetIntField(comp, "solvedStages");
 
-        List<int> wordsAnswered = new List<int>();
-
-        KMSelectable[] buttons = fldButtons.Get();
-        string[] words = fldWords.Get();
-        int index = fldIndex.Get();
+        var buttons = GetArrayField<KMSelectable>(comp, "buttons", isPublic: true).Get();
+        var words = GetArrayField<string>(comp, "wordlist", isPublic: true).Get();
+        int index = fldIndex.Get(0, words.Length - 1);
         int stage = fldStage.Get();
-
-        if (buttons == null || words == null)
-            yield break;
-        if (index < 0 || index >= words.Length)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Zoni because 'wordIndex' points to illegal word: {1}.", _moduleId, index);
-            yield break;
-        }
         if (stage != 0)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Zoni because 'solvedStages' did not start at 0: was {1}.", _moduleId, stage);
-            yield break;
-        }
+            throw new AbandonModuleException("‘solvedStages’ did not start at 0: was {0}.", stage);
 
+        var wordsAnswered = new List<int>();
         for (int i = 0; i < buttons.Length; i++)
         {
             var prevInteract = buttons[i].OnInteract;
@@ -8099,10 +7993,7 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_Zoni);
 
         if (wordsAnswered.Count != 3)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Zoni because the received number of valid words was not 3: was {1}.", _moduleId, wordsAnswered.Count);
-            yield break;
-        }
+            throw new AbandonModuleException("The received number of valid words was not 3: was {0}.", wordsAnswered.Count);
 
         addQuestions(module,
             makeQuestion(Question.ZoniWords, _Zoni, new[] { "first" }, new[] { words[wordsAnswered[0]] }, words),
