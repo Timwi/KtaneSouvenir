@@ -60,6 +60,11 @@ namespace Souvenir.Reflection
         {
             return Get(v => (min != null && v < min.Value) || (max != null && v > max.Value) ? string.Format("expected {0}–{1}", min, max) : null);
         }
+
+        public int GetFrom(object obj, int? min = null, int? max = null)
+        {
+            return GetFrom(obj, v => (min != null && v < min.Value) || (max != null && v > max.Value) ? string.Format("expected {0}–{1}", min, max) : null);
+        }
     }
 
     abstract class CollectionFieldInfo<TCollection, TElement> : FieldInfo<TCollection> where TCollection : class, IList<TElement>
@@ -77,16 +82,16 @@ namespace Souvenir.Reflection
             if (collection == null)
                 return null;
             if (collection.Count < minLength || collection.Count > maxLength)
-                throw new AbandonModuleException("Array field {0}.{1} has length {2} (expected {3}{4}).", Field.DeclaringType.FullName, Field.Name, collection.Count,
+                throw new AbandonModuleException("Collection field {0}.{1} has length {2} (expected {3}{4}).", Field.DeclaringType.FullName, Field.Name, collection.Count,
                     minLength, maxLength != minLength ? "–" + maxLength : "");
             int pos;
             if (!nullContentAllowed && (pos = collection.IndexOf(v => v == null)) != -1)
-                throw new AbandonModuleException("Array field {0}.{1} (length {2}) contained a null value at index {3}.", Field.DeclaringType.FullName, Field.Name, collection.Count, pos);
+                throw new AbandonModuleException("Collection field {0}.{1} (length {2}) contained a null value at index {3}.", Field.DeclaringType.FullName, Field.Name, collection.Count, pos);
             string validatorFailMessage;
             if (validator != null)
                 for (var ix = 0; ix < collection.Count; ix++)
                     if ((validatorFailMessage = validator(collection[ix])) != null)
-                        throw new AbandonModuleException("Array field {0}.{1} (length {2}) contained value “{3}” at index {4} that failed the validator: {5}.",
+                        throw new AbandonModuleException("Collection field {0}.{1} (length {2}) contained value “{3}” at index {4} that failed the validator: {5}.",
                             Field.DeclaringType.FullName, Field.Name, collection.Count, stringify(collection[ix]), ix, validatorFailMessage);
             return collection;
         }
