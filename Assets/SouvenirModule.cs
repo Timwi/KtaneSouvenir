@@ -1664,6 +1664,7 @@ public class SouvenirModule : MonoBehaviour
 
         var map = GetField<object>(comp, "map").Get();
         var mapData = GetField<Array>(map, "mapData").Get(arr => arr.GetLength(0) != 8 || arr.GetLength(1) != 8 ? string.Format("size {0},{1}, expected 8,8", arr.GetLength(0), arr.GetLength(1)) : null);
+        var bearing = GetIntField(map, "end_dir").Get(min: 0, max: 3);
         var fldLabel = GetField<char>(mapData.GetValue(0, 0), "label", isPublic: true);
         var chars = new HashSet<char>();
         for (int i = 0; i < 8; i++)
@@ -1675,36 +1676,13 @@ public class SouvenirModule : MonoBehaviour
             }
         var correctMarkings = chars.OrderBy(c => c).JoinString();
 
-        char bearing;
-        if (correctMarkings == "ABC") bearing = fldLabel.GetFrom(mapData.GetValue(1, 1));
-        else if (correctMarkings == "ABD") bearing = fldLabel.GetFrom(mapData.GetValue(7, 0));
-        else if (correctMarkings == "ABH") bearing = fldLabel.GetFrom(mapData.GetValue(0, 1));
-        else if (correctMarkings == "ACD") bearing = fldLabel.GetFrom(mapData.GetValue(1, 2));
-        else if (correctMarkings == "ACH") bearing = fldLabel.GetFrom(mapData.GetValue(0, 1));
-        else if (correctMarkings == "ADH") bearing = fldLabel.GetFrom(mapData.GetValue(5, 0));
-        else if (correctMarkings == "BCD") bearing = fldLabel.GetFrom(mapData.GetValue(6, 1));
-        else if (correctMarkings == "BCH") bearing = fldLabel.GetFrom(mapData.GetValue(2, 2));
-        else if (correctMarkings == "BDH") bearing = fldLabel.GetFrom(mapData.GetValue(3, 1));
-        else if (correctMarkings == "CDH") bearing = fldLabel.GetFrom(mapData.GetValue(5, 1));
-        else
-        {
-            Debug.LogFormat(@"<Souvenir #{1}> Abandoning 3D Maze because unexpected markings: ""{0}"".", correctMarkings, _moduleId);
-            yield break;
-        }
-
-        if (!"NSWE".Contains(bearing))
-        {
-            Debug.LogFormat("<Souvenir #{1}> Abandoning 3D Maze because unexpected bearing: '{0}'.", bearing, _moduleId);
-            yield break;
-        }
-
         while (!fldIsComplete.Get())
             yield return new WaitForSeconds(.1f);
 
         _modulesSolved.IncSafe(_3DMaze);
         addQuestions(module,
             makeQuestion(Question._3DMazeMarkings, _3DMaze, correctAnswers: new[] { correctMarkings }),
-            makeQuestion(Question._3DMazeBearing, _3DMaze, correctAnswers: new[] { bearing == 'N' ? "North" : bearing == 'S' ? "South" : bearing == 'W' ? "West" : "East" }));
+            makeQuestion(Question._3DMazeBearing, _3DMaze, correctAnswers: new[] { new[] { "North", "East", "South", "West" }[bearing] }));
     }
 
     private IEnumerable<object> Process3DTunnels(KMBombModule module)
@@ -5155,7 +5133,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessMouseInTheMaze(KMBombModule module)
     {
-        var comp = GetComponent(module, "Maze_3d");
+        var comp = GetComponent(module, "MouseInTheMazeModule");
         var fldSolved = GetField<bool>(comp, "_isSolved");
         var sphereColors = GetArrayField<int>(comp, "sphereColors").Get(expectedLength: 4);
 
