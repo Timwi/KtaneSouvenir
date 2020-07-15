@@ -3869,7 +3869,7 @@ public class SouvenirModule : MonoBehaviour
         qs.Add(makeQuestion(Question.HexOSCipher, _HexOS, correctAnswers: new[] { decipher.JoinString(), decipher.Reverse().JoinString() }, preferredWrongAnswers: possibleWrongAnswers));
         qs.Add(makeQuestion(Question.HexOSSum, _HexOS, correctAnswers: new[] { sum }));
         for (var offset = 0; offset < 10; offset++)
-            qs.Add(makeQuestion(Question.HexOSScreen, _HexOS, new[] { ordinal(offset) }, correctAnswers: new[] { screen.Substring(offset * 3, 3) }));
+            qs.Add(makeQuestion(Question.HexOSScreen, _HexOS, new[] { ordinal(offset + 1) }, correctAnswers: new[] { screen.Substring(offset * 3, 3) }));
         addQuestions(module, qs);
     }
 
@@ -7642,9 +7642,12 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessVectors(KMBombModule module)
     {
         var comp = GetComponent(module, "VectorsScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
 
-        while (!fldSolved.Get())
+        // After moduleSolved is set to true, the module still performs an animation before it actually marks as solved.
+        // Therefore, we use OnPass to wait for it to be solved
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+        while (!solved)
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Vectors);
 
@@ -7652,9 +7655,9 @@ public class SouvenirModule : MonoBehaviour
         var vectorCount = GetIntField(comp, "vectorct").Get(min: 1, max: 3);
         var colors = GetArrayField<string>(comp, "colors").Get(expectedLength: 24, nullContentAllowed: true);
         var pickedVectors = GetArrayField<int>(comp, "vectorsPicked").Get(expectedLength: 3, validator: v => v < 0 || v >= colors.Length ? string.Format("expected range 0–{0}", colors.Length - 1) : null);
-        var nullIx = pickedVectors.IndexOf(ix => colors[ix] == null);
+        var nullIx = pickedVectors.Take(vectorCount).IndexOf(ix => colors[ix] == null);
         if (nullIx != -1)
-            throw new AbandonModuleException("‘colors[{0}]’ was null; ‘pickedVectors’ = [{1}]", pickedVectors[nullIx], pickedVectors);
+            throw new AbandonModuleException("‘colors[{0}]’ was null; ‘pickedVectors’ = [{1}]", pickedVectors[nullIx], pickedVectors.JoinString(", "));
 
         for (int i = 0; i < vectorCount; i++)
             if (!colorsName.Contains(colors[pickedVectors[i]]))

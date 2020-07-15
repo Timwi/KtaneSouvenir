@@ -858,11 +858,11 @@ namespace Souvenir
           ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PigpenCycleWord,
 
-        [SouvenirQuestion("What was the first half of first phrase in {0}?", "Placeholder Talk", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "", "IS IN THE", "IS THE", "IS IN UH", "IS", "IS AT", "IS INN", "IS THE IN", "IN IS", "IS IN.", "IS IN", "THE", "FIRST-", "IN", "UH IS IN", "AT", "LAST-", "UH", "KEYBORD", "A" })]
+        [SouvenirQuestion("What was the first half of the first phrase in {0}?", "Placeholder Talk", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "", "IS IN THE", "IS THE", "IS IN UH", "IS", "IS AT", "IS INN", "IS THE IN", "IN IS", "IS IN.", "IS IN", "THE", "FIRST-", "IN", "UH IS IN", "AT", "LAST-", "UH", "KEYBORD", "A" })]
         PlaceholderTalkFirstPhrase,
-        [SouvenirQuestion("What was the last half of first phrase in {0}?", "Placeholder Talk", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "", "FIRST POS.", "SECOND POS.", "THIRD POS.", "FOURTH POS.", "FIFTH POS.", "MILLIONTH POS.", "BILLIONTH POS.", "LAST POS.", "AN ANSWER" })]
+        [SouvenirQuestion("What was the last half of the first phrase in {0}?", "Placeholder Talk", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "", "FIRST POS.", "SECOND POS.", "THIRD POS.", "FOURTH POS.", "FIFTH POS.", "MILLIONTH POS.", "BILLIONTH POS.", "LAST POS.", "AN ANSWER" })]
         PlaceholderTalkOrdinal,
-        [SouvenirQuestion("What was the second phrase's calculated value in {0}?", "Placeholder Talk", AnswerLayout.ThreeColumns6Answers)]
+        [SouvenirQuestion("What was the second phrase’s calculated value in {0}?", "Placeholder Talk", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Integers(1, 8)]
         PlaceholderTalkSecondPhrase,
 
