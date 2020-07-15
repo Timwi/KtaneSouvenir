@@ -67,7 +67,7 @@ namespace Souvenir.Reflection
         }
     }
 
-    abstract class CollectionFieldInfo<TCollection, TElement> : FieldInfo<TCollection> where TCollection : class, IList<TElement>
+    abstract class CollectionFieldInfo<TCollection, TElement> : FieldInfo<TCollection> where TCollection : IList<TElement>
     {
         protected CollectionFieldInfo(object target, FieldInfo field) : base(target, field) { }
 
@@ -78,9 +78,9 @@ namespace Souvenir.Reflection
 
         public TCollection Get(int minLength, int maxLength, bool nullArrayAllowed = false, bool nullContentAllowed = false, Func<TElement, string> validator = null)
         {
-            var collection = Get(nullAllowed: nullArrayAllowed);
+            var collection = base.Get(nullAllowed: nullArrayAllowed);
             if (collection == null)
-                return null;
+                return collection;
             if (collection.Count < minLength || collection.Count > maxLength)
                 throw new AbandonModuleException("Collection field {0}.{1} has length {2} (expected {3}{4}).", Field.DeclaringType.FullName, Field.Name, collection.Count,
                     minLength, maxLength != minLength ? "–" + maxLength : "");
@@ -91,7 +91,7 @@ namespace Souvenir.Reflection
             if (validator != null)
                 for (var ix = 0; ix < collection.Count; ix++)
                     if ((validatorFailMessage = validator(collection[ix])) != null)
-                        throw new AbandonModuleException("Collection field {0}.{1} (length {2}) contained value “{3}” at index {4} that failed the validator: {5}.",
+                        throw new AbandonModuleException("Collection field {0}.{1} (length {2}) contained value {3} at index {4} that failed the validator: {5}.",
                             Field.DeclaringType.FullName, Field.Name, collection.Count, stringify(collection[ix]), ix, validatorFailMessage);
             return collection;
         }
@@ -99,6 +99,8 @@ namespace Souvenir.Reflection
         public new TCollection Get(Func<TCollection, string> validator = null, bool nullAllowed = false)
         {
             var collection = base.Get(validator, nullAllowed);
+            if (collection == null)
+                return collection;
             var pos = collection.IndexOf(v => v == null);
             if (pos != -1)
                 throw new AbandonModuleException("Collection field {0}.{1} (length {2}) contained a null value at index {3}.", Field.DeclaringType.FullName, Field.Name, collection.Count, pos);
@@ -108,6 +110,8 @@ namespace Souvenir.Reflection
         public new TCollection GetFrom(object obj, Func<TCollection, string> validator = null, bool nullAllowed = false)
         {
             var collection = base.GetFrom(obj, validator, nullAllowed);
+            if (collection == null)
+                return collection;
             var pos = collection.IndexOf(v => v == null);
             if (pos != -1)
                 throw new AbandonModuleException("Collection field {0}.{1} (length {2}) contained a null value at index {3}.", Field.DeclaringType.FullName, Field.Name, collection.Count, pos);

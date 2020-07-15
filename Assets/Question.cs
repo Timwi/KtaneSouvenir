@@ -317,9 +317,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         EncryptedEquationsShapes,
 
-        [SouvenirQuestion("What method of encryption was used by {0}?", "Encrypted Hangman", AnswerLayout.OneColumn4Answers, "Caesar Cipher", "Atbash Cipher", "Rot-13 Cipher", "Affine Cipher", "Modern Cipher", "Vigenère Cipher", "Playfair Cipher")]
+        [SouvenirQuestion("What method of encryption was used by {0} when it was solved?", "Encrypted Hangman", AnswerLayout.OneColumn4Answers, "Caesar Cipher", "Atbash Cipher", "Rot-13 Cipher", "Affine Cipher", "Modern Cipher", "Vigenère Cipher", "Playfair Cipher")]
         EncryptedHangmanEncryptionMethod,
-        [SouvenirQuestion("What module name was encrypted by {0}?", "Encrypted Hangman", AnswerLayout.OneColumn4Answers, ExampleAnswers = new[] { "Anagrams", "Word Scramble", "Two Bits", "Switches", "Lights Out", "Emoji Math", "Math", "Semaphore", "Piano Keys", "Colour Flash" })]
+        [SouvenirQuestion("What module name was encrypted by {0} when it was solved?", "Encrypted Hangman", AnswerLayout.OneColumn4Answers, ExampleAnswers = new[] { "Anagrams", "Word Scramble", "Two Bits", "Switches", "Lights Out", "Emoji Math", "Math", "Semaphore", "Piano Keys", "Colour Flash" })]
         EncryptedHangmanModule,
 
         [SouvenirQuestion("What was the {1} on {0}?", "Encrypted Morse", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "Detonate", "Ready Now", "Please No", "Cheesecake" },
@@ -684,10 +684,13 @@ namespace Souvenir
             ExampleAnswers = new[] { "couch", "strobe", "smoke", "assay", "monkey", "glass", "starts", "strode", "office", "essays", "couple", "bosses" })]
         MorseAMazeMorseCodeWord,
 
-        [SouvenirQuestion("What was the {1} flashed by the {2} button in {0}?", "Morse Buttons", AnswerLayout.ThreeColumns6Answers, null,
-            ExampleExtraFormatArguments = new[] { "character", "first", "character", "second", "character", "third", "character", "fourth", "character", "fifth", "character", "sixth", "color", "first", "color", "second", "color", "third", "color", "fourth", "color", "fifth", "color", "sixth" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        [SouvenirQuestion("What was the character flashed by the {1} button in {0}?", "Morse Buttons", AnswerLayout.ThreeColumns6Answers, null,
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Strings("A-Z0-9")]
-        MorseButtonsButton,
+        MorseButtonsButtonLabel,
+        [SouvenirQuestion("What was the color flashed by the {1} button in {0}?", "Morse Buttons", AnswerLayout.ThreeColumns6Answers, "red", "blue", "green", "yellow", "orange", "purple",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        MorseButtonsButtonColor,
 
         [SouvenirQuestion("What was the {1} received letter in {0}?", "Morsematics", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -775,13 +778,13 @@ namespace Souvenir
         [AnswerGenerator.Inherit(NotSimazeStart)]
         NotSimazeGoal,
 
-        [SouvenirQuestion("In which position was the button you pressed in stage {1} when you solved {0}?", "Not Who's on First", AnswerLayout.ThreeColumns6Answers, "top left", "top right", "middle left", "middle right", "bottom left", "bottom right",
+        [SouvenirQuestion("In which position was the button you pressed in stage {1} when you solved {0}?", "Not Who's on First", AnswerLayout.TwoColumns4Answers, "top left", "top right", "middle left", "middle right", "bottom left", "bottom right",
             ExampleExtraFormatArguments = new[] { "1", "2", "3", "4" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NotWhosOnFirstPressedPosition,
         [SouvenirQuestion("What was the label on the button you pressed in stage {1} when you solved {0}?", "Not Who's on First", AnswerLayout.ThreeColumns6Answers, "BLANK", "DONE", "FIRST", "HOLD", "LEFT", "LIKE", "MIDDLE", "NEXT", "NO", "NOTHING", "OKAY", "PRESS", "READY", "RIGHT", "SURE", "U", "UH HUH", "UH UH", "UHHH", "UR", "WAIT", "WHAT", "WHAT?", "YES", "YOU", "YOU ARE", "YOU'RE", "YOUR",
             ExampleExtraFormatArguments = new[] { "1", "2", "3", "4" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NotWhosOnFirstPressedLabel,
-        [SouvenirQuestion("In which position was the reference button in stage {1} when you solved {0}?", "Not Who's on First", AnswerLayout.ThreeColumns6Answers, "top left", "top right", "middle left", "middle right", "bottom left", "bottom right",
+        [SouvenirQuestion("In which position was the reference button in stage {1} when you solved {0}?", "Not Who's on First", AnswerLayout.TwoColumns4Answers, "top left", "top right", "middle left", "middle right", "bottom left", "bottom right",
             ExampleExtraFormatArguments = new[] { "1", "2", "3", "4" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NotWhosOnFirstReferencePosition,
         [SouvenirQuestion("What was the label on the reference button in stage {1} when you solved {0}?", "Not Who's on First", AnswerLayout.ThreeColumns6Answers, "BLANK", "DONE", "FIRST", "HOLD", "LEFT", "LIKE", "MIDDLE", "NEXT", "NO", "NOTHING", "OKAY", "PRESS", "READY", "RIGHT", "SURE", "U", "UH HUH", "UH UH", "UHHH", "UR", "WAIT", "WHAT", "WHAT?", "YES", "YOU", "YOU ARE", "YOU'RE", "YOUR",
@@ -799,7 +802,7 @@ namespace Souvenir
         [SouvenirQuestion("Which of these was a contestant on {0} but not the final winner?", "Object Shows", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "Battleship", "Big Circle", "Jack O’ Lantern", "Lego", "Moon", "Radio", "Combination Lock", "Cookie Jar", "Fidget Spinner" })]
         ObjectShowsContestants,
 
-        [SouvenirQuestion("What was the button you pressed in the {1} stage of {0}?", "Odd One Out", AnswerLayout.ThreeColumns6Answers, "top-left", "top-middle", "top-right", "bottom-left", "bottom-middle", "bottom-right",
+        [SouvenirQuestion("What was the button you pressed in the {1} stage of {0}?", "Odd One Out", AnswerLayout.TwoColumns4Answers, "top-left", "top-middle", "top-right", "bottom-left", "bottom-middle", "bottom-right",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         OddOneOutButton,
 

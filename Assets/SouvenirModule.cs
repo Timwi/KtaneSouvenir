@@ -1570,9 +1570,11 @@ public class SouvenirModule : MonoBehaviour
             ix >= messages.Length ? string.Format("greater than ‘message’ length ({0})", messages.Length) :
             ix >= responses.Length ? string.Format("greater than ‘response’ length ({0})", responses.Length) : null);
 
+        var message = Regex.Replace(messages[index], @"(?<!^).", m => m.Value.ToLowerInvariant());
+        var response = Regex.Replace(responses[index], @"(?<!^).", m => m.Value.ToLowerInvariant());
         addQuestions(module,
-          makeQuestion(question, moduleId, new[] { "message" }, new[] { Regex.Replace(messages[index], @"(?<!^).", m => m.Value.ToLowerInvariant()) }),
-          makeQuestion(question, moduleId, new[] { "response" }, new[] { Regex.Replace(responses[index], @"(?<!^).", m => m.Value.ToLowerInvariant()) }));
+          makeQuestion(question, moduleId, new[] { "message" }, new[] { message }, new[] { response }),
+          makeQuestion(question, moduleId, new[] { "response" }, new[] { response }, new[] { message }));
     }
 
     // Used by Cryptic Cycle, Hill Cycle, Jumble Cycle and Ultimate Cycle
@@ -1593,9 +1595,11 @@ public class SouvenirModule : MonoBehaviour
             ix >= messages.Length ? string.Format("‘r’ is greater than ‘message’ length ({0}).", messages.Length) :
             ix >= responses.Length ? string.Format("‘r’ is greater than ‘response’ length ({0}).", responses.Length) : null);
 
+        var message = Regex.Replace(messages[index], @"(?<!^).", m => m.Value.ToLowerInvariant());
+        var response = Regex.Replace(responses[index], @"(?<!^).", m => m.Value.ToLowerInvariant());
         addQuestions(module,
-          makeQuestion(question, moduleId, new[] { "message" }, new[] { Regex.Replace(messages[index], @"(?<!^).", m => m.Value.ToLowerInvariant()) }),
-          makeQuestion(question, moduleId, new[] { "response" }, new[] { Regex.Replace(responses[index], @"(?<!^).", m => m.Value.ToLowerInvariant()) }));
+          makeQuestion(question, moduleId, new[] { "message" }, new[] { message }, new[] { response }),
+          makeQuestion(question, moduleId, new[] { "response" }, new[] { response }, new[] { message }));
     }
 
     // Used by the World Mazes modules (currently: USA Maze, DACH Maze)
@@ -3293,11 +3297,12 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_ElderFuthark);
 
-        var pickedRuneNames = GetArrayField<string>(comp, "pickedRuneNames").Get(expectedLength: 2);
+        var pickedRuneNames = GetArrayField<string>(comp, "pickedRuneNames").Get(expectedLength: 3);
 
         addQuestions(module,
             makeQuestion(Question.ElderFutharkRunes, _ElderFuthark, correctAnswers: new[] { pickedRuneNames[0] }, formatArgs: new[] { "first" }, preferredWrongAnswers: pickedRuneNames),
-            makeQuestion(Question.ElderFutharkRunes, _ElderFuthark, correctAnswers: new[] { pickedRuneNames[1] }, formatArgs: new[] { "second" }, preferredWrongAnswers: pickedRuneNames));
+            makeQuestion(Question.ElderFutharkRunes, _ElderFuthark, correctAnswers: new[] { pickedRuneNames[1] }, formatArgs: new[] { "second" }, preferredWrongAnswers: pickedRuneNames),
+            makeQuestion(Question.ElderFutharkRunes, _ElderFuthark, correctAnswers: new[] { pickedRuneNames[2] }, formatArgs: new[] { "third" }, preferredWrongAnswers: pickedRuneNames));
     }
 
     private IEnumerable<object> ProcessEncryptedEquations(KMBombModule module)
@@ -3325,13 +3330,13 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "HangmanScript");
         var fldSolved = GetField<bool>(comp, "isSolved", isPublic: true);
 
-        var moduleName = GetField<string>(comp, "moduleName", isPublic: true).Get();
-        if (moduleName.Length == 0)
-            throw new AbandonModuleException("‘moduleName’ is empty.");
-
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_EncryptedHangman);
+
+        var moduleName = GetField<string>(comp, "moduleName", isPublic: true).Get();
+        if (moduleName.Length == 0)
+            throw new AbandonModuleException("‘moduleName’ is empty.");
 
         var wrongModuleNames = Bomb.GetSolvableModuleNames();
         // If there are less than 4 eligible modules, fill the remaining spaces with random other modules.
@@ -3505,7 +3510,7 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "FlagsModule");
         var fldCanInteract = GetField<bool>(comp, "canInteract");
         var mainCountry = GetField<object>(comp, "mainCountry").Get();
-        var countries = GetListField<IList>(comp, "countries").Get();
+        var countries = GetField<IList>(comp, "countries").Get();
         var number = GetIntField(comp, "number").Get(1, 7);
 
         if (countries.Count != 7)
@@ -4747,7 +4752,7 @@ public class SouvenirModule : MonoBehaviour
         var fldSolved = GetField<bool>(comp, "moduleSolved");
 
         var parts = GetArrayField<int[]>(comp, "parts").Get(expectedLength: 8);  // the 8 parts in their “correct” order
-        var moduleParts = GetArrayField<int[]>(comp, "moduleParts").Get(expectedLength: 8);      // the parts as assigned to the slots
+        var moduleParts = GetArrayField<int[]>(comp, "moduleParts").Get(expectedLength: 8, nullContentAllowed: true);      // the parts as assigned to the slots
         var partsPerSlot = Enumerable.Range(0, 8).Select(slot => parts.IndexOf(p => ReferenceEquals(p, moduleParts[slot]))).ToArray();
         Debug.LogFormat("<Souvenir #{0}> Melody Sequencer: parts are: [{1}].", _moduleId, partsPerSlot.JoinString(", "));
 
@@ -5075,24 +5080,24 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
 
         string alphabet = GetField<string>(comp, "alphabet").Get();
-        var colorNames = new[] { "Red", "Blue", "Green", "Yellow", "Orange", "Purple" };
+        var colorNames = new[] { "red", "blue", "green", "yellow", "orange", "purple" };
         int[] letters = GetArrayField<int>(comp, "letters").Get(expectedLength: 6, validator: x => x < 0 || x >= alphabet.Length ? "out of range" : null);
         int[] colors = GetArrayField<int>(comp, "colors").Get(expectedLength: 6, validator: x => x < 0 || x >= colorNames.Length ? "out of range" : null);
 
         _modulesSolved.IncSafe(_MorseButtons);
         addQuestions(module,
-            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "character", "first" }, new[] { alphabet[letters[0]].ToString() }, alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "character", "second" }, new[] { alphabet[letters[1]].ToString() }, alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "character", "third" }, new[] { alphabet[letters[2]].ToString() }, alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "character", "fourth" }, new[] { alphabet[letters[3]].ToString() }, alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "character", "fifth" }, new[] { alphabet[letters[4]].ToString() }, alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "character", "sixth" }, new[] { alphabet[letters[5]].ToString() }, alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "color", "first" }, new[] { colorNames[colors[0]].ToString() }, colorNames),
-            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "color", "second" }, new[] { colorNames[colors[1]].ToString() }, colorNames),
-            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "color", "third" }, new[] { colorNames[colors[2]].ToString() }, colorNames),
-            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "color", "fourth" }, new[] { colorNames[colors[3]].ToString() }, colorNames),
-            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "color", "fifth" }, new[] { colorNames[colors[4]].ToString() }, colorNames),
-            makeQuestion(Question.MorseButtonsButton, _MorseButtons, new[] { "color", "sixth" }, new[] { colorNames[colors[5]].ToString() }, colorNames));
+            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, new[] { "first" }, new[] { alphabet[letters[0]].ToString() }, alphabet.Select(x => x.ToString()).ToArray()),
+            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, new[] { "second" }, new[] { alphabet[letters[1]].ToString() }, alphabet.Select(x => x.ToString()).ToArray()),
+            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, new[] { "third" }, new[] { alphabet[letters[2]].ToString() }, alphabet.Select(x => x.ToString()).ToArray()),
+            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, new[] { "fourth" }, new[] { alphabet[letters[3]].ToString() }, alphabet.Select(x => x.ToString()).ToArray()),
+            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, new[] { "fifth" }, new[] { alphabet[letters[4]].ToString() }, alphabet.Select(x => x.ToString()).ToArray()),
+            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, new[] { "sixth" }, new[] { alphabet[letters[5]].ToString() }, alphabet.Select(x => x.ToString()).ToArray()),
+            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, new[] { "first" }, new[] { colorNames[colors[0]].ToString() }, colorNames),
+            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, new[] { "second" }, new[] { colorNames[colors[1]].ToString() }, colorNames),
+            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, new[] { "third" }, new[] { colorNames[colors[2]].ToString() }, colorNames),
+            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, new[] { "fourth" }, new[] { colorNames[colors[3]].ToString() }, colorNames),
+            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, new[] { "fifth" }, new[] { colorNames[colors[4]].ToString() }, colorNames),
+            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, new[] { "sixth" }, new[] { colorNames[colors[5]].ToString() }, colorNames));
     }
 
     private IEnumerable<object> ProcessMorsematics(KMBombModule module)
@@ -6286,7 +6291,7 @@ public class SouvenirModule : MonoBehaviour
         var relTiles = GetArrayField<int>(comp, "relTiles").Get(expectedLength: 2, validator: v => v < 0 || v > 15 ? "expected range 0–15" : null);
 
         // Coordinates of the other colors
-        var decoyTiles = GetArrayField<int>(comp, "decoyTiles").Get(expectedLength: 4, validator: v => v < 4 || v > 15 ? "expected range 0–15" : null);
+        var decoyTiles = GetArrayField<int>(comp, "decoyTiles").Get(expectedLength: 4, validator: v => v < 0 || v > 15 ? "expected range 0–15" : null);
 
         // Which color is the ‘relTiles’ color
         var colorIndex = GetIntField(comp, "colorIndex").Get(min: 0, max: 2);
@@ -6556,7 +6561,7 @@ public class SouvenirModule : MonoBehaviour
 
         var seqs = GetArrayField<int[]>(comp, "_sequences").Get(expectedLength: 3);
         var rules = GetField<Array>(comp, "_rowCriteria").Get(ar => ar.Length != 6 ? "expected length 6" : null);
-        var colorsRaw = GetField<Array>(comp, "_colors").Get(ar => ar.Length != 3 ? "expected length 3" : null);     // array of enum values
+        var colorsRaw = GetField<Array>(comp, "_colors").Get(ar => ar.Length != 6 ? "expected length 6" : null);     // array of enum values
         var colors = colorsRaw.Cast<object>().Select(obj => obj.ToString()).ToArray();
 
         var qs = new List<QandA>();
@@ -6940,12 +6945,13 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "snookerScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var activeReds = GetIntField(comp, "activeReds").Get(min: 8, max: 10);
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Snooker);
 
-        addQuestion(module, Question.SnookerReds, correctAnswers: new[] { GetIntField(comp, "activeReds").Get(min: 8, max: 10).ToString() });
+        addQuestion(module, Question.SnookerReds, correctAnswers: new[] { activeReds.ToString() });
     }
 
     private IEnumerable<object> ProcessSonicTheHedgehog(KMBombModule module)
@@ -7385,7 +7391,7 @@ public class SouvenirModule : MonoBehaviour
         var keypadPhysical = GetArrayField<KMSelectable>(comp, "_keypadButtonsPhysical").Get(expectedLength: 9);
 
         // Take a copy of the placedX array because it changes
-        var placedX = GetArrayField<bool?>(comp, "_placedX").Get(expectedLength: 9).ToArray();
+        var placedX = GetArrayField<bool?>(comp, "_placedX").Get(expectedLength: 9, nullContentAllowed: true).ToArray();
 
         while (!fldIsSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -7643,8 +7649,11 @@ public class SouvenirModule : MonoBehaviour
 
         var colorsName = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Purple" };
         var vectorCount = GetIntField(comp, "vectorct").Get(min: 1, max: 3);
-        var colors = GetArrayField<string>(comp, "colors").Get();
+        var colors = GetArrayField<string>(comp, "colors").Get(expectedLength: 24, nullContentAllowed: true);
         var pickedVectors = GetArrayField<int>(comp, "vectorsPicked").Get(expectedLength: 3, validator: v => v < 0 || v >= colors.Length ? string.Format("expected range 0–{0}", colors.Length - 1) : null);
+        var nullIx = pickedVectors.IndexOf(ix => colors[ix] == null);
+        if (nullIx != -1)
+            throw new AbandonModuleException("‘colors[{0}]’ was null; ‘pickedVectors’ = [{1}]", pickedVectors[nullIx], pickedVectors);
 
         for (int i = 0; i < vectorCount; i++)
             if (!colorsName.Contains(colors[pickedVectors[i]]))
