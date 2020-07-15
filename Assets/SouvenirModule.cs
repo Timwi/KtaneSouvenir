@@ -1174,11 +1174,13 @@ public class SouvenirModule : MonoBehaviour
                     catch (AbandonModuleException ex)
                     {
                         Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because: {2}", _moduleId, module.ModuleDisplayName, ex.Message);
+                        WarningIcon.SetActive(true);
                         yield break;
                     }
                     catch (Exception ex)
                     {
                         Debug.LogFormat("<Souvenir #{0}> The {1} handler threw an exception ({2}):\n{3}", _moduleId, module.ModuleDisplayName, ex.GetType().FullName, ex.StackTrace);
+                        WarningIcon.SetActive(true);
                         yield break;
                     }
                     if (TwitchAbandonModule.Contains(module))
