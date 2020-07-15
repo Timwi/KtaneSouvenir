@@ -749,7 +749,7 @@ public class SouvenirModule : MonoBehaviour
                         {
                             case 3: type = "BigButton"; displayName = "The Button"; break;
                             case 5: type = "Simon"; displayName = "Simon Says"; break;
-                            case 6: type = "WhosOnFirst"; displayName = "Who's on First"; break;
+                            case 6: type = "WhosOnFirst"; displayName = "Who’s on First"; break;
                             case 7: type = "Memory"; displayName = "Memory"; break;
                             case 10: type = "WireSequence"; displayName = "Wire Sequence"; break;
                             case 11: type = "Maze"; displayName = "Maze"; break;
@@ -759,7 +759,6 @@ public class SouvenirModule : MonoBehaviour
                         module.ModuleType = type;
                         module.ModuleDisplayName = displayName;
                         StartCoroutine(ProcessModule(module));
-                        Destroy(module);
                     }
                 }
             }
