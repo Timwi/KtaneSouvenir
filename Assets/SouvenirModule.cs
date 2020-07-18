@@ -4801,12 +4801,14 @@ public class SouvenirModule : MonoBehaviour
         var displaySequence = GetProperty<string>(comp, "DisplaySequence", true).Get();
         var indices = GetListField<int>(comp, "buttonIndicesPressed", false).Get();
         var labels = GetListField<string>(comp, "buttonLabelsPressed", false).Get();
-
-        var stage = Rnd.Range(0, 4);
-        addQuestions(module,
-            makeQuestion(Question.MemoryDisplay, "Memory", new[] { (stage + 1).ToString() }, new[] { displaySequence[stage].ToString() }),
-            makeQuestion(Question.MemoryPosition, "Memory", new[] { (stage + 1).ToString() }, new[] { MemorySprites[indices[stage]] }, MemorySprites),
-            makeQuestion(Question.MemoryLabel, "Memory", new[] { (stage + 1).ToString() }, new[] { labels[stage][labels[stage].Length - 1].ToString() }));
+        var qs = new List<QandA>();
+        for (var stage = 0; stage < 4; stage++)
+        {
+            qs.Add(makeQuestion(Question.MemoryDisplay, "Memory", new[] { (stage + 1).ToString() }, new[] { displaySequence[stage].ToString() }));
+            qs.Add(makeQuestion(Question.MemoryPosition, "Memory", new[] { (stage + 1).ToString() }, new[] { MemorySprites[indices[stage]] }, MemorySprites));
+            qs.Add(makeQuestion(Question.MemoryLabel, "Memory", new[] { (stage + 1).ToString() }, new[] { labels[stage][labels[stage].Length - 1].ToString() }));
+        }
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessMicrocontroller(KMBombModule module)
