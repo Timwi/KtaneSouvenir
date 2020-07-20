@@ -587,10 +587,10 @@ public class SouvenirModule : MonoBehaviour
                 {
                     var dictionary = JsonConvert.DeserializeObject<IDictionary<string, object>>(ModSettings.Settings);
                     object key;
-                    // Rewrite the file if any keys listed in TweaksEditorSettings are not in it.
-                    rewriteFile = ((List<Dictionary<string, object>>) Config.TweaksEditorSettings[0]["Listings"])
-                        .Any(o => o.TryGetValue("Key", out key) && !dictionary.ContainsKey((string) key));
-                    config.UpdateExcludedModules();
+                    // Rewrite the file if any keys have been added or removed in TweaksEditorSettings
+                    var listings = ((List<Dictionary<string, object>>) Config.TweaksEditorSettings[0]["Listings"]);
+                    rewriteFile = listings.Any(o => o.TryGetValue("Key", out key) && !dictionary.ContainsKey((string) key)) ||
+                        dictionary.Any(p => !listings.Any(o => o.TryGetValue("Key", out key) && key.Equals(p.Key)));
                 }
                 else
                 {
@@ -724,14 +724,10 @@ public class SouvenirModule : MonoBehaviour
                 var module = gameObject.GetComponent<KMBombModule>();
                 if (module != null)
                 {
-                    if ((config.ExcludeIgnoredModules && ignoredModules.Contains(module.ModuleDisplayName)) || config.ExcludedModules.Contains(module.ModuleType))
-                    {
+                    if (config.IsExcluded(module, ignoredModules))
                         Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because it is excluded in the mod settings.", _moduleId, module.ModuleDisplayName);
-                    }
                     else
-                    {
                         StartCoroutine(ProcessModule(module));
-                    }
                 }
                 else if (!config.ExcludeVanillaModules)
                 {

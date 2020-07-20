@@ -1,18 +1,22 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
 
 public class Config
 {
-    [JsonIgnore]
-    public HashSet<string> ExcludedModules = new HashSet<string>();
-
     public bool ExcludeVanillaModules;
     public bool ExcludeIgnoredModules;
+    public bool ExcludeMysteryModule;
+    public bool ExcludeSouvenir;
 
-    // Non-ignored mini-boss modules
-    public bool ExcludeMinibossModules { get; set; }
-    public bool ExcludeMysteryModule { get { return ExcludedModules.Contains("mysterymodule"); } set { SetExcludedModule("mysterymodule", value); } }
-    public bool ExcludeSouvenir { get { return ExcludedModules.Contains("SouvenirModule"); } set { SetExcludedModule("SouvenirModule", value); } }
+    /// <summary>Checks if a modded(!) module is excluded. This function does not check for vanilla modules.</summary>
+    public bool IsExcluded(KMBombModule module, HashSet<string> ignoredModules)
+    {
+        switch (module.ModuleType)
+        {
+            case "mysterymodule": return ExcludeMysteryModule;
+            case "SouvenirModule": return ExcludeSouvenir;
+        }
+        return ExcludeIgnoredModules && ignoredModules.Contains(module.ModuleDisplayName);
+    }
 
     public static readonly Dictionary<string, object>[] TweaksEditorSettings = new Dictionary<string, object>[]
     {
@@ -22,30 +26,14 @@ public class Config
             { "Name", "Souvenir" },
             { "Listings", new List<Dictionary<string, object>>
                 {
-                    new Dictionary<string, object> { { "Key", "ExcludeVanillaModules" }, { "Text", "Exclude vanilla modules" } },
-                    new Dictionary<string, object> { { "Key", "ExcludeIgnoredModules" }, { "Text", "Exclude ignored modules" }, { "Description", "e.g. Forget The Colors" } },
+                    new Dictionary<string, object> { { "Key", "ExcludeVanillaModules" }, { "Text", "Exclude vanilla modules" }, { "Description", "avoid questions about vanilla modules" } },
+                    new Dictionary<string, object> { { "Key", "ExcludeIgnoredModules" }, { "Text", "Exclude ignored modules" }, { "Description", "avoid questions about e.g. Forget The Colors; does not affect other Souvenirs" } },
 
-                    new Dictionary<string, object> { { "Text", "Exclude mini-boss modules" }, { "Type", "Section" } },
-                    new Dictionary<string, object> { { "Key", "ExcludeMinibossModules" }, { "Text", "(Exclude all)" }, { "Description", "Overrides the settings below if set." } },
+                    new Dictionary<string, object> { { "Text", "Exclude specific modules" }, { "Type", "Section" } },
                     new Dictionary<string, object> { { "Key", "ExcludeMysteryModule" }, { "Text", "Mystery Module" } },
-                    new Dictionary<string, object> { { "Key", "ExcludeSouvenir" }, { "Text", "Souvenir" } }
+                    new Dictionary<string, object> { { "Key", "ExcludeSouvenir" }, { "Text", "Souvenir" }, { "Description", "avoid questions about other Souvenirs on the same bomb" } }
                 }
             }
         }
     };
-
-    public void UpdateExcludedModules()
-    {
-        if (ExcludeMinibossModules)
-        {
-            ExcludeMysteryModule = true;
-            ExcludeSouvenir = true;
-        }
-    }
-
-    public void SetExcludedModule(string moduleType, bool exclude)
-    {
-        if (exclude) ExcludedModules.Add(moduleType);
-        else ExcludedModules.Remove(moduleType);
-    }
 }
