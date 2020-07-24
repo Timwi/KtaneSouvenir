@@ -3316,7 +3316,7 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, new[] { "LeftOperand", "MiddleOperand", "RightOperand" }
             .Select(fldName => GetField<object>(equation, fldName, isPublic: true).Get())
             .Select(op => GetField<object>(op, "Shape", isPublic: true).Get())
-            .Select(sh => GetIntField(sh, "TextureIndex", isPublic: true).Get(0, EncryptedEquationsSprites.Length - 1))
+            .Select(sh => GetIntField(sh, "TextureIndex", isPublic: true).Get(min: -1, max: EncryptedEquationsSprites.Length - 1))
             .Select((txIx, opIx) => txIx == -1 ? null : new { Shape = EncryptedEquationsSprites[txIx], Ordinal = ordinal(opIx + 1) })
             .Where(inf => inf != null)
             .Select(inf => makeQuestion(Question.EncryptedEquationsShapes, _EncryptedEquations, formatArgs: new[] { inf.Ordinal }, correctAnswers: new[] { inf.Shape }, preferredWrongAnswers: EncryptedEquationsSprites)));
