@@ -7535,40 +7535,24 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessUncoloredSwitches(KMBombModule module)
     {
         var comp = GetComponent(module, "UncoloredSwitches");
-        var fldInitialState = GetField<StringBuilder>(comp, "Switches_Current_State");
         var fldLedColors = GetField<StringBuilder>(comp, "LEDsColorsString");
-        var fldStage = GetIntField(comp, "stage");
+        var switchState = GetField<StringBuilder>(comp, "Switches_Current_State").Get(str => str.Length != 5 ? "expected length 5" : null);
+        var switchStates = Enumerable.Range(0, 5).Select(swIx => switchState[swIx] == '1').ToArray();
 
-        var curStage = -1;
-        var ledColors = new int[3][];
-        var switchStates = new bool[3][];
-        var colorNames = new[] { "red", "green", "blue", "turquoise", "orange", "purple", "white", "black" };
-        while (fldStage.Get() < 4)
-        {
-            var newStage = fldStage.Get(st => st == 3 ? "didn’t expect 3" : st < 0 || st > 4 ? "expected 0–2 or 4" : null);
-            if (newStage != curStage)
-            {
-                var curLedColors = fldLedColors.Get(str => str.Length != 10 ? "expected length 10" : null);
-                var switchState = fldInitialState.Get(str => str.Length != 5 ? "expected length 5" : null);
-                ledColors[newStage] = Enumerable.Range(0, 10).Select(ledIx => "RGBTOPWK".IndexOf(curLedColors[ledIx])).ToArray();
-                switchStates[newStage] = Enumerable.Range(0, 5).Select(swIx => switchState[swIx] == '1').ToArray();
-            }
-            yield return null;
-        }
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_UncoloredSwitches);
 
-        if (ledColors.Contains(null) || switchStates.Contains(null))
-            throw new AbandonModuleException("A stage was skipped: [{0}], [{1}]",
-                ledColors.Select(arr => arr == null ? "null" : string.Format(@"[{0}]", arr.JoinString(", "))),
-                switchStates.Select(arr => arr == null ? "null" : string.Format(@"[{0}]", arr.JoinString(", "))));
+        var colorNames = new[] { "red", "green", "blue", "turquoise", "orange", "purple", "white", "black" };
+        var curLedColors = fldLedColors.Get(str => str.Length != 10 ? "expected length 10" : null);
+        var ledColors = Enumerable.Range(0, 10).Select(ledIx => "RGBTOPWK".IndexOf(curLedColors[ledIx])).ToArray();
 
         var qs = new List<QandA>();
-        for (var stage = 0; stage < 3; stage++)
-        {
-            qs.Add(makeQuestion(Question.UncoloredSwitchesInitialState, _UncoloredSwitches, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { switchStates[stage].Select(b => b ? 'Q' : 'R').JoinString() }));
-            for (var ledIx = 0; ledIx < 10; ledIx++)
-                qs.Add(makeQuestion(Question.UncoloredSwitchesLedColors, _UncoloredSwitches, formatArgs: new[] { ordinal(ledIx + 1), ordinal(stage + 1) }, correctAnswers: new[] { colorNames[ledColors[stage][ledIx]] }));
-        }
+        qs.Add(makeQuestion(Question.UncoloredSwitchesInitialState, _UncoloredSwitches, correctAnswers: new[] { switchStates.Select(b => b ? 'Q' : 'R').JoinString() }));
+        for (var ledIx = 0; ledIx < 10; ledIx++)
+            qs.Add(makeQuestion(Question.UncoloredSwitchesLedColors, _UncoloredSwitches, formatArgs: new[] { ordinal(ledIx + 1) }, correctAnswers: new[] { colorNames[ledColors[ledIx]] }));
         addQuestions(module, qs);
     }
 

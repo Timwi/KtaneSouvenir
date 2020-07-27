@@ -1188,12 +1188,11 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
         UncoloredSquaresFirstStage,
 
-        [SouvenirQuestion("What was the initial state of the switches in the {1} stage of {0}?", "Uncolored Switches", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.SymbolsFont,
-            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was the initial state of the switches in {0}?", "Uncolored Switches", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.SymbolsFont)]
         [AnswerGenerator.Strings(5, 'Q', 'R')]
         UncoloredSwitchesInitialState,
-        [SouvenirQuestion("What color was the {1} LED in reading order in the {2} stage of {0}?", "Uncolored Switches", AnswerLayout.TwoColumns4Answers, "red", "green", "blue", "turquoise", "orange", "purple", "white", "black",
-            ExampleExtraFormatArguments = new[] { "first", "first", "second", "first", "first", "second", "second", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        [SouvenirQuestion("What color was the {1} LED in reading order in {0}?", "Uncolored Switches", AnswerLayout.TwoColumns4Answers, "red", "green", "blue", "turquoise", "orange", "purple", "white", "black",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         UncoloredSwitchesLedColors,
 
         [SouvenirQuestion("What was the {1} received instruction in {0}?", "Unfair Cipher", AnswerLayout.ThreeColumns6Answers, "PCR", "PCG", "PCB", "SUB", "MIT", "CHK", "PRN", "BOB", "REP", "EAT", "STR", "IKE",
