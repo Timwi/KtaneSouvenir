@@ -3810,17 +3810,27 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_HexOS);
 
-        const string validCharacters = " ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        var decipher = GetArrayField<char>(comp, "decipher").Get(expectedLength: 2, validator: ch => !validCharacters.Contains(ch) ? "expected characters A–Z or space" : null);
+        const string validNumbers = "0123", validCharacters = " ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        string[] validPhrases = new string[24] { "a maze with edges like their knives", "someday ill be the shape they want me to be", "but i dont know how much more theyll wake away before theyre satisfied", "they have sliced away my flesh", "shorn of unsightly limbs and organs", "more stitch and scar than human", "if only marble", "grew back so quickly", "they have stolen away my spirit", "memories scattered into the slipstream", "i have no idea who i used to be", "i can only guess", "what they will make me", "they found me in my lowest days", "breathed life back into my frozen body", "promising a more beautiful future", "then i discovered", "what they really wanted", "they pulled me into their vortex", "and i saw my future reflected in their eyes", "a shimmering halo of impossible dreams", "void of my self", "it was", "perfect" };
+
+        var octOS = GetField<bool>(comp, "solvedInOctOS");
+        var decipher = GetField<char[]>(comp, "decipher").Get(arr => arr.Length != 2 && arr.Length != 6 ? "expected length 2 or 6" : arr.Any(ch => !validCharacters.Contains(ch.ToString().ToUpper().ToCharArray()[0])) ? "expected characters A–Z or space" : null);
         var screen = GetField<string>(comp, "screen").Get(s => s.Length != 30 ? "expected length 30" : s.Any(ch => !char.IsDigit(ch)) ? "expected only digits" : null);
-        var sum = GetField<string>(comp, "sum").Get(s => s.Length != 4 ? "expected length 4" : s.Any(ch => ch != '0' && ch != '1' && ch != '2') ? "expected only characters 0–2" : null);
+        var sum = GetField<string>(comp, "sum").Get(s => s.Length != 4 ? "expected length 4" : s.Any(ch => ch != '0' && ch != '1' && ch != '2' && ch != '3') ? "expected only characters 0–3" : null);
 
         var qs = new List<QandA>();
-        var possibleWrongAnswers = validCharacters.SelectMany(c1 => validCharacters.Select(c2 => string.Concat(c1, c2))).ToArray();
-        qs.Add(makeQuestion(Question.HexOSCipher, _HexOS, correctAnswers: new[] { decipher.JoinString(), decipher.Reverse().JoinString() }, preferredWrongAnswers: possibleWrongAnswers));
-        qs.Add(makeQuestion(Question.HexOSSum, _HexOS, correctAnswers: new[] { sum }));
-        for (var offset = 0; offset < 10; offset++)
-            qs.Add(makeQuestion(Question.HexOSScreen, _HexOS, new[] { ordinal(offset + 1) }, correctAnswers: new[] { screen.Substring(offset * 3, 3) }));
+        var offset = Rnd.Range(0, 10);
+        var cipherWrongAnswers = octOS.Get() ? validPhrases.SelectMany(str => Enumerable.Range(0, str.Length - 6).Select(ix => str.Substring(ix, 6))).ToArray() : validCharacters.SelectMany(c1 => validCharacters.Select(c2 => string.Concat(c1, c2))).ToArray();
+
+        // octOS.Get() == true, then generate every combination of 0, 1, 2, & 3 so long as the left two numbers don't match the right (3031 is valid but 3131 is not)
+        // octOS.Get() == false, then generate every combination of 0, 1, & 2 so long as the left two numbers don't match the right (2021 is valid but 2121 is not)
+        // please make the line below less spaghetti thanks
+        var sumWrongAnswers = !octOS.Get() ? new string[] { "0001", "0010", "0011", "0012", "0021", "0100", "0101", "0102", "0110", "0111", "0112", "0120", "0121", "0122", "0201", "0210", "0211", "0212", "0221", "1000", "1001", "1002", "1010", "1011", "1012", "1020", "1021", "1022", "1100", "1101", "1102", "1110", "1111", "1112", "1120", "1121", "1122", "1200", "1201", "1202", "1210", "1211", "1212", "1220", "1221", "1222", "2001", "2010", "2011", "2012", "2021", "2100", "2101", "2102", "2110", "2111", "2112", "2120", "2121", "2122", "2201", "2210", "2211", "2212", "2221" } :
+                                            new string[] { "0001", "0002", "0003", "0010", "0011", "0012", "0013", "0020", "0021", "0022", "0023", "0030", "0031", "0032", "0033", "0100", "0102", "0103", "0110", "0111", "0112", "0113", "0120", "0121", "0122", "0123", "0130", "0131", "0132", "0133", "0200", "0201", "0203", "0210", "0211", "0212", "0213", "0220", "0221", "0222", "0223", "0300", "0301", "0302", "0310", "0311", "0312", "0313", "0320", "0321", "0322", "0323", "0330", "0331", "0332", "0333", "1000", "1001", "1002", "1003", "1011", "1012", "1013", "1020", "1021", "1022", "1023", "1030", "1031", "1032", "1033", "1100", "1101", "1102", "1103", "1110", "1112", "1113", "1120", "1121", "1122", "1123", "1130", "1131", "1132", "1133", "1200", "1201", "1202", "1203", "1210", "1211", "1213", "1220", "1221", "1222", "1223", "1300", "1301", "1302", "1303", "1310", "1311", "1312", "1313", "1320", "1321", "1322", "1323", "1330", "1331", "1332", "1333", "2000", "2001", "2002", "2003", "2010", "2011", "2012", "2013", "2021", "2022", "2023", "2030", "2031", "2032", "2033", "2100", "2101", "2102", "2103", "2110", "2111", "2112", "2113", "2120", "2122", "2123", "2130", "2131", "2132", "2133", "2200", "2201", "2202", "2203", "2210", "2211", "2212", "2213", "2220", "2221", "2223", "2300", "2301", "2302", "2303", "2310", "2311", "2312", "2313", "2320", "2321", "2322", "2330", "2331", "2332", "2333", "3000", "3001", "3002", "3003", "3010", "3011", "3012", "3013", "3020", "3021", "3022", "3023", "3031", "3032", "3033", "3100", "3101", "3102", "3103", "3110", "3111", "3112", "3113", "3120", "3121", "3122", "3123", "3130", "3132", "3133", "3200", "3201", "3202", "3203", "3210", "3211", "3212", "3213", "3220", "3221", "3222", "3223", "3230", "3231", "3233", "3300", "3301", "3302", "3303", "3310", "3311", "3312", "3313", "3320", "3321", "3322", "3323", "3330", "3331", "3332" };
+
+        qs.Add(octOS.Get() ? makeQuestion(Question.HexOSOctCipher, _HexOS, correctAnswers: new[] { decipher.JoinString() }, preferredWrongAnswers: cipherWrongAnswers) : makeQuestion(Question.HexOSCipher, _HexOS, correctAnswers: new[] { decipher.JoinString(), decipher.Reverse().JoinString() }, preferredWrongAnswers: cipherWrongAnswers));
+        qs.Add(makeQuestion(Question.HexOSSum, _HexOS, correctAnswers: new[] { sum }, preferredWrongAnswers: sumWrongAnswers));
+        qs.Add(makeQuestion(Question.HexOSScreen, _HexOS, new[] { ordinal(offset + 1) }, correctAnswers: new[] { screen.Substring(offset * 3, 3) }));
         addQuestions(module, qs);
     }
 

@@ -432,11 +432,13 @@ namespace Souvenir
         [SouvenirQuestion("What were the deciphered letters in {0}?", "hexOS", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Strings("2* A-Z")]
         HexOSCipher,
+        [SouvenirQuestion("What was the deciphered phrase in {0}?", "hexOS", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "a maze", "someda", "but i ", "they h", "shorn o", "more s", "if onl", "grew b" })]
+        HexOSOctCipher,
         [SouvenirQuestion("What was the {1} 3-digit number cycled by the screen in {0}?", "hexOS", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th", "6th", "7th", "8th", "9th", "10th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 999, "000")]
         HexOSScreen,
-        [SouvenirQuestion("What was the sum of the rhythm values in {0}?", "hexOS", AnswerLayout.ThreeColumns6Answers, "0001", "0010", "0011", "0012", "0021", "0100", "0101", "0102", "0110", "0111", "0112", "0120", "0121", "0122", "0201", "0210", "0211", "0212", "0221", "1000", "1001", "1002", "1010", "1011", "1012", "1020", "1021", "1022", "1100", "1101", "1102", "1110", "1111", "1112", "1120", "1121", "1122", "1200", "1201", "1202", "1210", "1211", "1212", "1220", "1221", "1222", "2001", "2010", "2011", "2012", "2021", "2100", "2101", "2102", "2110", "2111", "2112", "2120", "2121", "2122", "2201", "2210", "2211", "2212", "2221")]
+        [SouvenirQuestion("What were the rhythm values in {0}?", "hexOS", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "0001", "0012", "0123", "1230", "2300", "3000" })]
         HexOSSum,
 
         [SouvenirQuestion("What was the color of the main LED in {0}?", "Hidden Colors", AnswerLayout.ThreeColumns6Answers, "Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Magenta", "White")]
