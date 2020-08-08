@@ -202,8 +202,6 @@ namespace Souvenir
         [AnswerGenerator.Integers(999, 9999)]
         CodeDisplayNumber,
 
-        [SouvenirQuestion("What was the last written client name in {0}?", "Coffeebucks", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "Gen", "Den" })]
-        CoffeebucksClient,
         [SouvenirQuestion("What was the last served coffee in {0}?", "Coffeebucks", AnswerLayout.OneColumn4Answers, "Twix Frappuccino", "The Blue Drink", "Matcha & Espresso Fusion", "Caramel Snickerdoodle Macchiato", "Liquid Cocaine", "S’mores Hot Chocolate", "The Pink Drink", "Grasshopper Frappuccino")]
         CoffeebucksCoffee,
 
@@ -266,10 +264,6 @@ namespace Souvenir
         [SouvenirQuestion("How many corners in {0} were {1}?", "Corners", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4",
             ExampleExtraFormatArguments = new[] { "red", "green", "blue", "yellow" }, ExampleExtraFormatArgumentGroupSize = 1)]
         CornersColorCount,
-
-        [SouvenirQuestion("What was in square {1}{2} in the last round of {0}?", "Crackbox", AnswerLayout.TwoColumns4Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "white", "black",
-            ExampleExtraFormatArguments = new[] { "A", "1", "A", "2", "B", "1", "B", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
-        CrackboxInitialState,
 
         [SouvenirQuestion("What were the weather conditions on the {1} day in {0}?", "Creation", AnswerLayout.TwoColumns4Answers, "Clear", "Heat Wave", "Meteor Shower", "Rain", "Windy",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -405,9 +399,6 @@ namespace Souvenir
         [AnswerGenerator.Strings("2*0-9", ":", "2*0-9")]
         GamepadNumbers,
 
-        [SouvenirQuestion("What was the color of the liquid you drank in {0}?", "Giant’s Drink", AnswerLayout.ThreeColumns6Answers, "Red", "Blue", "Green", "Orange", "Purple", "Cyan", AddThe = true)]
-        GiantsDrinkLiquid,
-
         [SouvenirQuestion("What was the last number on the display on {0}?", "Green Arrows", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Integers(0, 99, "00")]
         GreenArrowsLastScreen,
@@ -474,13 +465,12 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         HorribleMemoryColors,
 
-        [SouvenirQuestion("Who was {1} in {0}?", "Human Resources", AnswerLayout.ThreeColumns6Answers, "Rebecca", "Damian", "Jean", "Mike", "River", "Samuel", "Yoshi", "Caleb", "Ashley", "Tim", "Eliott", "Ursula", "Silas", "Noah", "Quinn", "Dylan",
-            ExampleExtraFormatArguments = new[] { "an employee that was not fired", "an applicant that was not hired" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        HumanResourcesEmployees,
-
         [SouvenirQuestion("Which was a descriptor shown in {1} in {0}?", "Human Resources", AnswerLayout.TwoColumns4Answers, "Intellectual", "Deviser", "Confidant", "Helper", "Auditor", "Innovator", "Defender", "Chameleon", "Director", "Designer", "Educator", "Advocate", "Manager", "Showman", "Contributor", "Entertainer",
             ExampleExtraFormatArguments = new[] { "red", "green" }, ExampleExtraFormatArgumentGroupSize = 1)]
         HumanResourcesDescriptors,
+        [SouvenirQuestion("Who was {1} in {0}?", "Human Resources", AnswerLayout.ThreeColumns6Answers, "Rebecca", "Damian", "Jean", "Mike", "River", "Samuel", "Yoshi", "Caleb", "Ashley", "Tim", "Eliott", "Ursula", "Silas", "Noah", "Quinn", "Dylan",
+            ExampleExtraFormatArguments = new[] { "fired", "hired" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        HumanResourcesHiredFired,
 
         [SouvenirQuestion("Which of the first three stages of {0} had the {1} symbol {2}?", "Hunting", AnswerLayout.TwoColumns4Answers, "none", "first", "second", "first two", "third", "first & third", "second & third", "all three",
             ExampleExtraFormatArguments = new[] { "column", "first", "row", "first", "column", "second", "row", "second", "column", "third", "row", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
@@ -506,13 +496,6 @@ namespace Souvenir
         [SouvenirQuestion("Which attire {1} listed in {0}?", "Identity Parade", AnswerLayout.TwoColumns4Answers, "Blazer", "Hoodie", "Jumper", "Suit", "T-shirt", "Tank top",
             ExampleExtraFormatArguments = new[] { "was", "was not" }, ExampleExtraFormatArgumentGroupSize = 1)]
         IdentityParadeAttires,
-
-        [SouvenirQuestion("What was the phrase on the {1} display in {0}?", "Instructions", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "batteries", "battery holders", "indicators", "lit indicators", "unlit indicators", "ports", "port plates", "digits in serial number", "letters in serial number", "modules", "two factors", "solved modules", "port types", "strikes" },
-            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        InstructionsPhrasesEdgework,
-        [SouvenirQuestion("What was the phrase on the {1} display in {0}?", "Instructions", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "red", "green", "yellow", "blue", "A", "B", "C", "D", "first", "second", "third", "fourth" },
-            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        InstructionsPhrasesButtons,
 
         [SouvenirQuestion("What was the {1} PIN digit in {0}?", "iPhone", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
@@ -725,9 +708,8 @@ namespace Souvenir
         [SouvenirQuestion("Which module was hidden by {0}?", "Mystery Module", AnswerLayout.OneColumn4Answers, null, ExampleAnswers = new[] { "Probing", "Kudosudoku", "Ten-Button Color Code", "The Jukebox" })]
         MysteryModuleHiddenModule,
 
-        [SouvenirQuestion("Where was the {1} in {0}?", "Mystic Square", AnswerLayout.TwoColumns4Answers, "top left", "top middle", "top right", "middle left", "center", "middle right", "bottom left", "bottom middle", "bottom right",
-            ExampleExtraFormatArguments = new[] { "knight", "skull" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        MysticSquareKnightSkull,
+        [SouvenirQuestion("Where was the skull in {0}?", "Mystic Square", AnswerLayout.TwoColumns4Answers, "top left", "top middle", "top right", "middle left", "center", "middle right", "bottom left", "bottom middle", "bottom right")]
+        MysticSquareSkull,
 
         [SouvenirQuestion("What was the chapter number of the {1} page in {0}?", "Necronomicon", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "1", "24", "36" }, AddThe = true,
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth", "seventh" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -794,10 +776,9 @@ namespace Souvenir
         [AnswerGenerator.Integers(1, 60)]
         NotWhosOnFirstSum,
 
-        [SouvenirQuestion("What number was on button {1} in reading order in {0}?", "Numbered Buttons", AnswerLayout.ThreeColumns6Answers,
-            ExampleExtraFormatArguments = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("Which number was correctly pressed on {0}?", "Numbered Buttons", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Integers(1, 100)]
-        NumberedButtonsLabels,
+        NumberedButtonsButtons,
 
         [SouvenirQuestion("Which of these was a contestant on {0} but not the final winner?", "Object Shows", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "Battleship", "Big Circle", "Jack O’ Lantern", "Lego", "Moon", "Radio", "Combination Lock", "Cookie Jar", "Fidget Spinner" })]
         ObjectShowsContestants,
@@ -846,8 +827,9 @@ namespace Souvenir
         [SouvenirQuestion("Which symbol was highlighted in {0}?", "Pattern Cube", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "PatternCubeSprites")]
         PatternCubeHighlightedSymbol,
 
-        [SouvenirQuestion("Which peg had three sides of the key color in {0}?", "Perspective Pegs", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "PerspectivePegsSprites")]
-        PerspectivePegsSolution,
+        [SouvenirQuestion("What was the {1} color in the key sequence in {0}?", "Perspective Pegs", AnswerLayout.ThreeColumns6Answers, "red", "yellow", "green", "blue", "purple",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        PerspectivePegsColorSequence,
 
         [SouvenirQuestion("What was the {1} digit of the displayed number in {0}?", "Pie", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -969,12 +951,11 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SeaShells3,
 
-        [SouvenirQuestion("What was the {1} {2} letter in {0}?", "Semamorse", AnswerLayout.ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
-            ExampleExtraFormatArguments = new[] { "first", "Morse", "second", "Morse", "first", "Semaphore", "second", "Semaphore" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        [SouvenirQuestion("What was the {1} letter involved in the starting value in {0}?", "Semamorse", AnswerLayout.ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+            ExampleExtraFormatArguments = new[] { "Morse", "semaphore" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SemamorseLetters,
-        [SouvenirQuestion("What was the color of the {1} display in {0}?", "Semamorse", AnswerLayout.TwoColumns4Answers, "red", "green", "cyan", "indigo", "pink",
-            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        SemamorseColors,
+        [SouvenirQuestion("What was the color of the display involved in the starting value in {0}?", "Semamorse", AnswerLayout.TwoColumns4Answers, "red", "green", "cyan", "indigo", "pink")]
+        SemamorseColor,
 
         [SouvenirQuestion("What was the initial letter in {0}?", "Shapes And Bombs", AnswerLayout.ThreeColumns6Answers, "A", "B", "D", "E", "G", "I", "K", "L", "N", "O", "P", "S", "T", "X", "Y")]
         ShapesAndBombsInitialLetter,
@@ -983,8 +964,8 @@ namespace Souvenir
         [AnswerGenerator.Strings('A', 'P')]
         ShapeShiftInitialShape,
 
-        [SouvenirQuestion("What was the initial position of the pearl in {0}?", "Shell Game", AnswerLayout.TwoColumns4Answers, "Left", "Middle", "Right")]
-        ShellGameStartingCup,
+        [SouvenirQuestion("What was the final position of the initial cup in {0}?", "Shell Game", AnswerLayout.TwoColumns4Answers, "Left", "Middle", "Right")]
+        ShellGameInitialCupFinalPosition,
 
         [SouvenirQuestion("What was the {1} slot in the {2} stage in {0}?", "Silly Slots", AnswerLayout.TwoColumns4Answers, "red bomb", "red cherry", "red coin", "red grape", "green bomb", "green cherry", "green coin", "green grape", "blue bomb", "blue cherry", "blue coin", "blue grape",
             ExampleExtraFormatArguments = new[] { "first", "first", "first", "second", "first", "third", "second", "first", "second", "second", "second", "third", "third", "first", "third", "second", "third", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
@@ -998,8 +979,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSaysFlash,
 
-        [SouvenirQuestion("What was the last flashed color in {0}?", "Simon Scrambles", AnswerLayout.TwoColumns4Answers, "Red", "Green", "Blue", "Yellow")]
-        SimonScramblesLastColor,
+        [SouvenirQuestion("What color flashed {1} in {0}?", "Simon Scrambles", AnswerLayout.TwoColumns4Answers, "Red", "Green", "Blue", "Yellow",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SimonScramblesColors,
 
         [SouvenirQuestion("Which color flashed {1} in the final sequence in {0}?", "Simon Screams", AnswerLayout.ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -1040,15 +1022,16 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSoundsFlashingColors,
 
-        [SouvenirQuestion("Which color was the bubble that flashed {1} in {0}?", "Simon Speaks", AnswerLayout.ThreeColumns6Answers, "black", "blue", "green", "cyan", "red", "purple", "yellow", "white", "gray",
-            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        SimonSpeaksColors,
-        [SouvenirQuestion("Which word was in the bubble that flashed {1} in {0}?", "Simon Speaks", AnswerLayout.ThreeColumns6Answers, "black", "sort", "zwart", "nigra", "musta", "noir", "schwarz", "fekete", "nero", "blue", "blå", "blauw", "blua", "sininen", "bleu", "blau", "kék", "blu", "green", "grøn", "groen", "verda", "vihreä", "vert", "grün", "zöld", "verde", "cyan", "turkis", "turkoois", "turkisa", "turkoosi", "turquoise", "türkis", "türkiz", "turchese", "red", "rød", "rood", "ruĝa", "punainen", "rouge", "rot", "piros", "rosso", "purple", "lilla", "purper", "purpura", "purppura", "pourpre", "lila", "bíbor", "porpora", "yellow", "gul", "geel", "flava", "keltainen", "jaune", "gelb", "sárga", "giallo", "white", "hvid", "wit", "blanka", "valkoinen", "blanc", "weiß", "fehér", "bianco", "gray", "grå", "grijs", "griza", "harmaa", "gris", "grau", "szürke", "grigio",
-            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        SimonSpeaksWords,
-        [SouvenirQuestion("Which bubble flashed {1} in {0}?", "Simon Speaks", AnswerLayout.ThreeColumns6Answers, "top-left", "top-middle", "top-right", "middle-left", "middle-center", "middle-right", "bottom-left", "bottom-middle", "bottom-right",
-            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("Which bubble flashed first in {0}?", "Simon Speaks", AnswerLayout.TwoColumns4Answers, "top-left", "top-middle", "top-right", "middle-left", "middle-center", "middle-right", "bottom-left", "bottom-middle", "bottom-right")]
         SimonSpeaksPositions,
+        [SouvenirQuestion("Which bubble flashed second in {0}?", "Simon Speaks", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "SimonSpeaksSprites")]
+        SimonSpeaksShapes,
+        [SouvenirQuestion("Which language was the bubble that flashed third in {0} in?", "Simon Speaks", AnswerLayout.TwoColumns4Answers, "English", "Danish", "Dutch", "Esperanto", "Finnish", "French", "German", "Hungarian", "Italian")]
+        SimonSpeaksLanguages,
+        [SouvenirQuestion("Which word was in the bubble that flashed fourth in {0}?", "Simon Speaks", AnswerLayout.ThreeColumns6Answers, "black", "sort", "zwart", "nigra", "musta", "noir", "schwarz", "fekete", "nero", "blue", "blå", "blauw", "blua", "sininen", "bleu", "blau", "kék", "blu", "green", "grøn", "groen", "verda", "vihreä", "vert", "grün", "zöld", "verde", "cyan", "turkis", "turkoois", "turkisa", "turkoosi", "turquoise", "türkis", "türkiz", "turchese", "red", "rød", "rood", "ruĝa", "punainen", "rouge", "rot", "piros", "rosso", "purple", "lilla", "purper", "purpura", "purppura", "pourpre", "lila", "bíbor", "porpora", "yellow", "gul", "geel", "flava", "keltainen", "jaune", "gelb", "sárga", "giallo", "white", "hvid", "wit", "blanka", "valkoinen", "blanc", "weiß", "fehér", "bianco", "gray", "grå", "grijs", "griza", "harmaa", "gris", "grau", "szürke", "grigio")]
+        SimonSpeaksWords,
+        [SouvenirQuestion("What color was the bubble that flashed fifth in {0}?", "Simon Speaks", AnswerLayout.ThreeColumns6Answers, "black", "blue", "green", "cyan", "red", "purple", "yellow", "white", "gray")]
+        SimonSpeaksColors,
 
         [SouvenirQuestion("Which color flashed {1} in sequence in {0}?", "Simon’s Star", AnswerLayout.ThreeColumns6Answers, "red", "yellow", "green", "blue", "purple",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]

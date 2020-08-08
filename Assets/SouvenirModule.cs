@@ -1,4 +1,5 @@
 using System;
+using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -34,13 +35,13 @@ public class SouvenirModule : MonoBehaviour
     public Sprite[] ExampleSprites;
     public Sprite[] MahjongSprites;
     public Sprite[] PatternCubeSprites;
-    public Sprite[] PerspectivePegsSprites;
     public Sprite[] PlanetsSprites;
     public Sprite[] SymbolicCoordinatesSprites;
     public Sprite[] WavetappingSprites;
     public Sprite[] FlagsSprites;
     public Sprite[] Tiles4x4Sprites;    // Arranged in reading order
     public Sprite[] EncryptedEquationsSprites;
+    public Sprite[] SimonSpeaksSprites;
 
     public TextMesh TextMesh;
     public Renderer TextRenderer;
@@ -142,7 +143,6 @@ public class SouvenirModule : MonoBehaviour
     const string _ColorMorse = "ColorMorseModule";
     const string _Coordinates = "CoordinatesModule";
     const string _Corners = "CornersModule";
-    const string _Crackbox = "CrackboxModule";
     const string _Creation = "CreationModule";
     const string _CrypticCycle = "crypticCycle";
     const string _Cube = "cube";
@@ -168,7 +168,6 @@ public class SouvenirModule : MonoBehaviour
     const string _FreeParking = "freeParking";
     const string _Functions = "qFunctions";
     const string _Gamepad = "TheGamepadModule";
-    const string _GiantsDrink = "giantsDrink";
     const string _GreenArrows = "greenArrowsModule";
     const string _GridLock = "GridlockModule";
     const string _Gryphons = "gryphons";
@@ -186,7 +185,6 @@ public class SouvenirModule : MonoBehaviour
     const string _Hypercube = "TheHypercubeModule";
     const string _IceCream = "iceCreamModule";
     const string _IdentityParade = "identityParade";
-    const string _Instructions = "instructions";
     const string _iPhone = "iPhone";
     const string _JewelVault = "jewelVault";
     const string _JumbleCycle = "jumbleCycle";
@@ -386,7 +384,6 @@ public class SouvenirModule : MonoBehaviour
             { _ColorMorse, ProcessColorMorse },
             { _Coordinates, ProcessCoordinates },
             { _Corners, ProcessCorners },
-            { _Crackbox, ProcessCrackbox },
             { _Creation, ProcessCreation },
             { _CrypticCycle, ProcessCrypticCycle },
             { _Cube, ProcessCube },
@@ -412,7 +409,6 @@ public class SouvenirModule : MonoBehaviour
             { _FreeParking, ProcessFreeParking },
             { _Functions, ProcessFunctions },
             { _Gamepad, ProcessGamepad },
-            { _GiantsDrink, ProcessGiantsDrink },
             { _GreenArrows, ProcessGreenArrows },
             { _GridLock, ProcessGridLock },
             { _Gryphons, ProcessGryphons },
@@ -429,7 +425,6 @@ public class SouvenirModule : MonoBehaviour
             { _Hypercube, ProcessHypercube },
             { _IceCream, ProcessIceCream },
             { _IdentityParade, ProcessIdentityParade },
-            { _Instructions, ProcessInstructions },
             { _iPhone, ProcessiPhone },
             { _JewelVault, ProcessJewelVault },
             { _JumbleCycle, ProcessJumbleCycle },
@@ -1192,7 +1187,7 @@ public class SouvenirModule : MonoBehaviour
 
             if (!_legitimatelyNoQuestions.Contains(module) && !_questions.Any(q => q.Module == module))
             {
-                Debug.LogFormat("[Souvenir #{0}] There was no question generated for {1}. Please report this to Andrio or the implementer for that module as this may indicate a bug in Souvenir. Remember to send them this logfile.", _moduleId, module.ModuleDisplayName);
+                Debug.LogFormat("[Souvenir #{0}] There was no question generated for {1}. Please report this to Timwi or the implementer for that module as this may indicate a bug in Souvenir. Remember to send them this logfile.", _moduleId, module.ModuleDisplayName);
                 WarningIcon.SetActive(true);
             }
             Debug.LogFormat("<Souvenir #{1}> Module {0}: Finished processing.", moduleType, _moduleId);
@@ -2702,19 +2697,13 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Coffeebucks);
 
-        var names = GetArrayField<string>(comp, "nameOptions", isPublic: true).Get();
         var coffees = GetArrayField<string>(comp, "coffeeOptions", isPublic: true).Get();
-        var currName = GetIntField(comp, "startName").Get(min: 0, max: names.Length - 1);
         var currCoffee = GetIntField(comp, "startCoffee").Get(min: 0, max: coffees.Length - 1);
 
-        for (int i = 0; i < names.Length; i++)
-            names[i] = char.ToUpperInvariant(names[i][0]) + names[i].Substring(1);
         for (int i = 0; i < coffees.Length; i++)
             coffees[i] = coffees[i].Replace("\n", " ");
 
-        addQuestions(module,
-            makeQuestion(Question.CoffeebucksClient, _Coffeebucks, correctAnswers: new[] { names[currName] }, preferredWrongAnswers: names),
-            makeQuestion(Question.CoffeebucksCoffee, _Coffeebucks, correctAnswers: new[] { coffees[currCoffee] }, preferredWrongAnswers: coffees));
+        addQuestion(module, Question.CoffeebucksCoffee, correctAnswers: new[] { coffees[currCoffee] }, preferredWrongAnswers: coffees);
     }
 
     private IEnumerable<object> ProcessColorBraille(KMBombModule module)
@@ -3023,33 +3012,6 @@ public class SouvenirModule : MonoBehaviour
         var qs = new List<QandA>();
         qs.AddRange(cornerNames.Select((corner, cIx) => makeQuestion(Question.CornersColors, _Corners, formatArgs: new[] { corner }, correctAnswers: new[] { colorNames[clampColors[cIx]] })));
         qs.AddRange(colorNames.Select((col, colIx) => makeQuestion(Question.CornersColorCount, _Corners, formatArgs: new[] { col }, correctAnswers: new[] { clampColors.Count(cc => cc == colIx).ToString() })));
-        addQuestions(module, qs);
-    }
-
-    private IEnumerable<object> ProcessCrackbox(KMBombModule module)
-    {
-        var comp = GetComponent(module, "CrackboxScript");
-        var fldSolved = GetField<bool>(comp, "isSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Crackbox);
-
-        var array = GetField<Array>(comp, "originalGridItems").Get(arr => arr.Length != 16 ? "expected length 16" : null);
-        var obj = array.GetValue(0);
-        var fldIsBlack = GetField<bool>(obj, "IsBlack", isPublic: true);
-        var fldIsLocked = GetField<bool>(obj, "IsLocked", isPublic: true);
-        var fldValue = GetIntField(obj, "Value", isPublic: true);
-
-        var qs = new List<QandA>();
-        for (int x = 0; x < 4; x++)
-        {
-            for (int y = 0; y < 4; y++)
-            {
-                obj = array.GetValue(y * 4 + x);
-                qs.Add(makeQuestion(Question.CrackboxInitialState, _Crackbox, new[] { ((char) ('A' + x)).ToString(), (y + 1).ToString() }, new[] { fldIsBlack.GetFrom(obj) ? "black" : !fldIsLocked.GetFrom(obj) ? "white" : fldValue.GetFrom(obj).ToString() }));
-            }
-        }
         addQuestions(module, qs);
     }
 
@@ -3690,21 +3652,6 @@ public class SouvenirModule : MonoBehaviour
         digits2.GetComponent<TextMesh>().text = "--";
     }
 
-    private IEnumerable<object> ProcessGiantsDrink(KMBombModule module)
-    {
-        var comp = GetComponent(module, "giantsDrinkScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        while (!fldSolved.Get())
-            yield return null;  // Don’t wait .1 seconds so we get the number of strikes exactly at the time of solve
-        _modulesSolved.IncSafe(_GiantsDrink);
-
-        var liquids = GetArrayField<int>(comp, "liquid").Get(expectedLength: 2);
-        var sol = GetIntField(comp, Bomb.GetStrikes() % 2 == 0 ? "evenStrikes" : "oddStrikes").Get(0, liquids.Length - 1);
-        var liquidNames = new[] { "Red", "Blue", "Green", "Orange", "Purple", "Cyan" };
-        addQuestion(module, Question.GiantsDrinkLiquid, correctAnswers: new[] { liquidNames[liquids[sol]] });
-    }
-
     private IEnumerable<object> ProcessGreenArrows(KMBombModule module)
     {
         var comp = GetComponent(module, "GreenArrowsScript");
@@ -3953,6 +3900,8 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "HumanResourcesModule");
         var people = GetStaticField<Array>(comp.GetType(), "_people").Get(ar => ar.Length != 16 ? "expected length 16" : null);
         var fldSolved = GetField<bool>(comp, "_isSolved");
+        var personToFire = GetIntField(comp, "_personToFire").Get(0, 15);
+        var personToHire = GetIntField(comp, "_personToHire").Get(0, 15);
 
         var person = people.GetValue(0);
         var fldName = GetField<string>(person, "Name", isPublic: true);
@@ -3962,16 +3911,12 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_HumanResources);
 
-        var names = GetArrayField<int>(comp, "_availableNames").Get(expectedLength: 10);
         var descs = GetArrayField<int>(comp, "_availableDescs").Get(expectedLength: 5);
-        var toHire = GetIntField(comp, "_personToHire").Get();
-        var toFire = GetIntField(comp, "_personToFire").Get();
-
         addQuestions(module,
-            makeQuestion(Question.HumanResourcesEmployees, _HumanResources, new[] { "an employee that was not fired" }, names.Take(5).Where(ix => ix != toFire).Select(ix => fldName.GetFrom(people.GetValue(ix))).ToArray()),
-            makeQuestion(Question.HumanResourcesEmployees, _HumanResources, new[] { "an applicant that was not hired" }, names.Skip(5).Where(ix => ix != toHire).Select(ix => fldName.GetFrom(people.GetValue(ix))).ToArray()),
             makeQuestion(Question.HumanResourcesDescriptors, _HumanResources, new[] { "red" }, descs.Take(3).Select(ix => fldDesc.GetFrom(people.GetValue(ix))).ToArray()),
-            makeQuestion(Question.HumanResourcesDescriptors, _HumanResources, new[] { "green" }, descs.Skip(3).Select(ix => fldDesc.GetFrom(people.GetValue(ix))).ToArray()));
+            makeQuestion(Question.HumanResourcesDescriptors, _HumanResources, new[] { "green" }, descs.Skip(3).Select(ix => fldDesc.GetFrom(people.GetValue(ix))).ToArray()),
+            makeQuestion(Question.HumanResourcesHiredFired, _HumanResources, new[] { "fired" }, new[] { fldName.GetFrom(people.GetValue(personToFire)) }),
+            makeQuestion(Question.HumanResourcesHiredFired, _HumanResources, new[] { "hired" }, new[] { fldName.GetFrom(people.GetValue(personToHire)) }));
     }
 
     private IEnumerable<object> ProcessHunting(KMBombModule module)
@@ -4094,40 +4039,6 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.IdentityParadeBuilds, _IdentityParade, formatArgs: new[] { "was not" }, correctAnswers: validBuilds.Except(builds).ToArray()),
             makeQuestion(Question.IdentityParadeAttires, _IdentityParade, formatArgs: new[] { "was" }, correctAnswers: attires.ToArray()),
             makeQuestion(Question.IdentityParadeAttires, _IdentityParade, formatArgs: new[] { "was not" }, correctAnswers: validAttires.Except(attires).ToArray()));
-    }
-
-    private IEnumerable<object> ProcessInstructions(KMBombModule module)
-    {
-        var comp = GetComponent(module, "instructionsScript");
-        var fldSolved = GetField<bool>(comp, "_solved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Instructions);
-
-        var screens = GetField<int[,]>(comp, "screens").Get();
-        if (screens.GetLength(0) != 5 || screens.GetLength(1) != 2)
-            throw new AbandonModuleException("‘screens’ has unexpected lengths: {0}/{1} (expected 5/2).", screens.GetLength(0), screens.GetLength(1));
-
-        var edgeworkScreens = GetStaticField<bool[]>(comp.GetType(), "edgeworkScreens").Get(ar => ar.Length != 5 ? "expected length 5" : null);
-        var edgeworkPossibilities = GetArrayField<string>(comp, "edgeworkPossibilities").Get();
-        var buttonPossibilities = GetArrayField<string>(comp, "buttonPossibilities").Get();
-
-        edgeworkPossibilities = edgeworkPossibilities.Select(ep => ep.ToLowerInvariant().Replace('\n', ' ')).ToArray();
-        buttonPossibilities = buttonPossibilities.Select(bp => (bp.Length > 1 ? bp.ToLowerInvariant() : bp).Replace('\n', ' ')).ToArray();
-
-        var qs = new List<QandA>();
-        for (var btnIx = 0; btnIx < 5; btnIx++)
-        {
-            var ix = screens[btnIx, 0];
-            var arr = edgeworkScreens[btnIx] ? edgeworkPossibilities : buttonPossibilities;
-            if (ix < 0 || ix >= arr.Length)
-                throw new AbandonModuleException("Abandoning Instructions because ‘screens[{0}, 0]’ has value {1} but {2} has length {3}.",
-                    btnIx, ix, edgeworkScreens[btnIx] ? "edgeworkPossibilities" : "buttonPossibilities", arr.Length);
-            qs.Add(makeQuestion(edgeworkScreens[btnIx] ? Question.InstructionsPhrasesEdgework : Question.InstructionsPhrasesButtons, _Instructions,
-                formatArgs: new[] { ordinal(btnIx + 1) }, correctAnswers: new[] { arr[ix] }, preferredWrongAnswers: arr));
-        }
-        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessiPhone(KMBombModule module)
@@ -5205,7 +5116,6 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "MysticSquareModule");
         var fldSolved = GetField<bool>(comp, "_isSolved");
         var skull = GetField<Transform>(comp, "Skull", true).Get();
-        var knight = GetField<Transform>(comp, "Knight", true).Get();
 
         while (!skull.gameObject.activeSelf)
             yield return null;
@@ -5214,17 +5124,11 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         _modulesSolved.IncSafe(_MysticSquare);
 
-        var knightpos = GetIntField(comp, "_knightPos").Get(min: 0, max: 8);
         var skullpos = GetIntField(comp, "_skullPos").Get(min: 0, max: 8);
         var spacepos = Array.IndexOf(GetArrayField<int>(comp, "_field").Get(), 0);
 
-        var answers = new[] { "top left", "top middle", "top right", "middle left", "center", "middle right", "bottom left", "bottom middle", "bottom right" };
-        addQuestions(module,
-            makeQuestion(Question.MysticSquareKnightSkull, _MysticSquare, new[] { "knight" }, new[] { answers[knightpos] }, answers),
-            makeQuestion(Question.MysticSquareKnightSkull, _MysticSquare, new[] { "skull" }, new[] { answers[skullpos] }, answers));
-
-        // If the skull or knight is in the empty space, shrink and then disappear them.
-        if (skullpos == spacepos || knightpos == spacepos)
+        // If the skull is in the empty space, shrink and then disappear it.
+        if (skullpos == spacepos)
         {
             // Make sure that the last sliding animation finishes
             yield return new WaitForSeconds(0.5f);
@@ -5234,14 +5138,14 @@ public class SouvenirModule : MonoBehaviour
             while (elapsed < duration)
             {
                 skull.localScale = Vector3.Lerp(new Vector3(0.004f, 0.004f, 0.004f), Vector3.zero, elapsed / duration);
-                knight.localScale = Vector3.Lerp(new Vector3(0.004f, 0.004f, 0.004f), Vector3.zero, elapsed / duration);
                 yield return null;
                 elapsed += Time.deltaTime;
             }
         }
 
         skull.gameObject.SetActive(false);
-        knight.gameObject.SetActive(false);
+        var answers = new[] { "top left", "top middle", "top right", "middle left", "center", "middle right", "bottom left", "bottom middle", "bottom right" };
+        addQuestion(module, Question.MysticSquareSkull, correctAnswers: new[] { answers[skullpos] });
     }
 
     private IEnumerable<object> ProcessMysteryModule(KMBombModule module)
@@ -5535,13 +5439,22 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "NumberedButtonsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var expectedButtons = GetListField<string>(comp, "ExpectedButtons").Get(list => list.Count == 0 ? "list is empty" : null).ToArray();
+
+        var hadStrike = false;
+        module.OnStrike += delegate { hadStrike = true; return false; };
 
         while (!fldSolved.Get())
-            yield return new WaitForSeconds(0.1f);
+        {
+            yield return null;
+            if (hadStrike)
+            {
+                yield return null;
+                expectedButtons = GetListField<string>(comp, "ExpectedButtons").Get(list => list.Count == 0 ? "list is empty" : null).ToArray();
+            }
+        }
         _modulesSolved.IncSafe(_NumberedButtons);
-
-        var numbers = GetArrayField<int>(comp, "buttonNums").Get(expectedLength: 16, validator: n => n < 1 || n > 100 ? "expected 1–100" : null);
-        addQuestions(module, numbers.Select((n, ix) => makeQuestion(Question.NumberedButtonsLabels, _NumberedButtons, new[] { (ix + 1).ToString() }, correctAnswers: new[] { n.ToString() })));
+        addQuestion(module, Question.NumberedButtonsButtons, correctAnswers: expectedButtons);
     }
 
     private IEnumerable<object> ProcessObjectShows(KMBombModule module)
@@ -5905,6 +5818,7 @@ public class SouvenirModule : MonoBehaviour
                 prevChar = '\0';
             }
         }
+        var colorNames = new[] { "red", "yellow", "green", "blue", "purple" };
         switch (keyNumber % 10)
         {
             case 0: case 3: keyColour = "ColourRed"; break;
@@ -5920,11 +5834,10 @@ public class SouvenirModule : MonoBehaviour
         if (pegIndex == -1)
             throw new AbandonModuleException("The key peg couldn't be found (the key colour was {0}).", keyColour);
 
-        addQuestions(module, Enumerable.Range(0, 3).Select(i => makeQuestion(
-             Question.PerspectivePegsSolution,
-            _PerspectivePegs,
-            correctAnswers: new[] { PerspectivePegsSprites[pegIndex] },
-            preferredWrongAnswers: PerspectivePegsSprites)));
+        addQuestions(module, Enumerable.Range(0, 5)
+            .Select(i => (pegIndex + i) % 5)
+            .Select(n => colorNames.First(cn => colourMeshes[n, n].sharedMaterial.name.Substring(6).StartsWith(cn, StringComparison.InvariantCultureIgnoreCase)))
+            .Select((col, ix) => makeQuestion(Question.PerspectivePegsColorSequence, _PerspectivePegs, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { col })));
     }
 
     private IEnumerable<object> ProcessPie(KMBombModule module)
@@ -6393,15 +6306,13 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_Semamorse);
 
         var letters = GetArrayField<int[]>(comp, "displayedLetters").Get(expectedLength: 2, validator: arr => arr.Length != 5 ? "expected length 5" : arr.Any(v => v < 0 || v > 25) ? "expected range 0–25" : null);
+        var relevantIx = Enumerable.Range(0, letters[0].Length).First(ix => letters[0][ix] != letters[1][ix]);
         var colorNames = new string[] { "red", "green", "cyan", "indigo", "pink" };
         var colors = GetArrayField<int>(comp, "displayedColors").Get(expectedLength: 5, validator: c => c < 0 || c >= colorNames.Length ? string.Format("expected range 0–{0}", colorNames.Length - 1) : null);
         var qs = new List<QandA>();
-        for (var dispIx = 0; dispIx < 5; dispIx++)
-        {
-            qs.Add(makeQuestion(Question.SemamorseColors, _Semamorse, formatArgs: new[] { ordinal(dispIx + 1) }, correctAnswers: new[] { colorNames[colors[dispIx]] }));
-            qs.Add(makeQuestion(Question.SemamorseLetters, _Semamorse, formatArgs: new[] { ordinal(dispIx + 1), "Semaphore" }, correctAnswers: new[] { ((char) ('A' + letters[0][dispIx])).ToString() }));
-            qs.Add(makeQuestion(Question.SemamorseLetters, _Semamorse, formatArgs: new[] { ordinal(dispIx + 1), "Morse" }, correctAnswers: new[] { ((char) ('A' + letters[1][dispIx])).ToString() }));
-        }
+        qs.Add(makeQuestion(Question.SemamorseColor, _Semamorse, correctAnswers: new[] { colorNames[colors[relevantIx]] }));
+        qs.Add(makeQuestion(Question.SemamorseLetters, _Semamorse, formatArgs: new[] { "semaphore" }, correctAnswers: new[] { ((char) ('A' + letters[0][relevantIx])).ToString() }));
+        qs.Add(makeQuestion(Question.SemamorseLetters, _Semamorse, formatArgs: new[] { "Morse" }, correctAnswers: new[] { ((char) ('A' + letters[1][relevantIx])).ToString() }));
         addQuestions(module, qs);
     }
 
@@ -6459,9 +6370,9 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_ShellGame);
 
-        int initialCup = GetIntField(comp, "startingCup").Get(min: 0, max: 2);
+        int initialCup = GetIntField(comp, "endingCup").Get(min: 0, max: 2);
         string[] position = new string[3] { "Left", "Middle", "Right" };
-        addQuestions(module, makeQuestion(Question.ShellGameStartingCup, _ShellGame, correctAnswers: new[] { position[initialCup] }));
+        addQuestions(module, makeQuestion(Question.ShellGameInitialCupFinalPosition, _ShellGame, correctAnswers: new[] { position[initialCup] }));
     }
 
     private IEnumerable<object> ProcessSillySlots(KMBombModule module)
@@ -6545,7 +6456,7 @@ public class SouvenirModule : MonoBehaviour
         if (sequence[9] < 0 || sequence[9] >= colors.Length)
             throw new AbandonModuleException("‘sequence[9]’ points to illegal color: {0} (expected 0-3).", sequence[9]);
 
-        addQuestion(module, Question.SimonScramblesLastColor, correctAnswers: new[] { colors[sequence[9]] });
+        addQuestions(module, sequence.Select((val, ix) => makeQuestion(Question.SimonScramblesColors, _SimonScrambles, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { colors[val] })));
     }
 
     private IEnumerable<object> ProcessSimonScreams(KMBombModule module)
@@ -6559,13 +6470,14 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_SimonScreams);
 
         var seqs = GetArrayField<int[]>(comp, "_sequences").Get(expectedLength: 3);
+        var stageIxs = GetArrayField<int>(comp, "_stageIxs").Get(expectedLength: 3);
         var rules = GetField<Array>(comp, "_rowCriteria").Get(ar => ar.Length != 6 ? "expected length 6" : null);
         var colorsRaw = GetField<Array>(comp, "_colors").Get(ar => ar.Length != 6 ? "expected length 6" : null);     // array of enum values
         var colors = colorsRaw.Cast<object>().Select(obj => obj.ToString()).ToArray();
 
         var qs = new List<QandA>();
         var lastSeq = seqs.Last();
-        for (int i = 0; i < lastSeq.Length; i++)
+        foreach (var i in stageIxs)     // Only ask about the flashing colors that were relevant in the big table
             qs.Add(makeQuestion(Question.SimonScreamsFlashing, _SimonScreams, new[] { ordinal(i + 1) }, new[] { colors[lastSeq[i]] }));
 
         // First determine which rule applied in which stage
@@ -6738,14 +6650,18 @@ public class SouvenirModule : MonoBehaviour
         var sequence = GetArrayField<int>(comp, "_sequence").Get(expectedLength: 5);
         var colors = GetArrayField<int>(comp, "_colors").Get(expectedLength: 9);
         var words = GetArrayField<int>(comp, "_words").Get(expectedLength: 9);
+        var shapes = GetArrayField<int>(comp, "_shapes").Get(expectedLength: 9);
         var languages = GetArrayField<int>(comp, "_languages").Get(expectedLength: 9);
         var wordsTable = GetStaticField<string[][]>(comp.GetType(), "_wordsTable").Get(ar => ar.Length != 9 ? "expected length 9" : null);
         var positionNames = GetStaticField<string[]>(comp.GetType(), "_positionNames").Get(ar => ar.Length != 9 ? "expected length 9" : null);
+        var languageNames = new[] { "English", "Danish", "Dutch", "Esperanto", "Finnish", "French", "German", "Hungarian", "Italian" };
 
         addQuestions(module,
-            Enumerable.Range(0, 5).Select(ix => makeQuestion(Question.SimonSpeaksPositions, _SimonSpeaks, new[] { ordinal(ix + 1) }, new[] { positionNames[sequence[ix]] })).Concat(
-            Enumerable.Range(0, 5).Select(ix => makeQuestion(Question.SimonSpeaksColors, _SimonSpeaks, new[] { ordinal(ix + 1) }, new[] { wordsTable[colors[sequence[ix]]][0] })).Concat(
-            Enumerable.Range(0, 5).Select(ix => makeQuestion(Question.SimonSpeaksWords, _SimonSpeaks, new[] { ordinal(ix + 1) }, new[] { wordsTable[words[sequence[ix]]][languages[sequence[ix]]] })))));
+            makeQuestion(Question.SimonSpeaksPositions, _SimonSpeaks, correctAnswers: new[] { positionNames[sequence[0]] }),
+            makeQuestion(Question.SimonSpeaksShapes, _SimonSpeaks, correctAnswers: new[] { SimonSpeaksSprites[shapes[sequence[1]]] }, preferredWrongAnswers: SimonSpeaksSprites),
+            makeQuestion(Question.SimonSpeaksLanguages, _SimonSpeaks, correctAnswers: new[] { languageNames[languages[sequence[2]]] }),
+            makeQuestion(Question.SimonSpeaksWords, _SimonSpeaks, correctAnswers: new[] { wordsTable[words[sequence[3]]][languages[sequence[3]]] }),
+            makeQuestion(Question.SimonSpeaksColors, _SimonSpeaks, correctAnswers: new[] { wordsTable[colors[sequence[4]]][0] }));
     }
 
     private IEnumerable<object> ProcessSimonsStar(KMBombModule module)
@@ -6787,7 +6703,7 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_SimonStates);
 
         var qs = new List<QandA>();
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 3; i++)     // Do not ask about fourth stage because it can sometimes be solved without waiting for the flashes
         {
             var c = puzzleDisplay[i].Count(b => b);
             if (c != 3)
