@@ -3340,26 +3340,30 @@ public class SouvenirModule : MonoBehaviour
 
         var symbol = GetField<GameObject>(comp, "symboldisplay", isPublic: true).Get().GetComponentInChildren<TextMesh>().text;
 
-        if (!new[] { "H(T)", "R", "\u03C7", "w", "Z(T)", "t", "m", "a", "K" }.Contains(symbol))
+        if (!new[] { "H(T)", "R", "c", "w", "Z(T)", "t", "m", "a", "K" }.Contains(symbol))
             throw new AbandonModuleException("‘symbol’ has an unexpected character: {0}", symbol);
+        Debug.LogFormat(@"<Souvenir #{0}> Equations X: symbol is {1}", _moduleId, symbol);
 
         // Equations X uses symbols that don’t translate well to Souvenir. This switch statement is used to correctly translate the answer.
         switch (symbol)
         {
+            case "c":
+                symbol = "χ";
+                break;
             case "R":
                 symbol = "P";
                 break;
             case "w":
-                symbol = "\u03C9";
+                symbol = "ω";
                 break;
             case "t":
-                symbol = "\u03C4";
+                symbol = "τ";
                 break;
             case "m":
-                symbol = "\u03BC";
+                symbol = "μ";
                 break;
             case "a":
-                symbol = "\u03B1";
+                symbol = "α";
                 break;
         }
 
