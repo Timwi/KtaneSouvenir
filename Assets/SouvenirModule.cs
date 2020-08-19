@@ -254,6 +254,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Probing = "Probing";
     const string _PurpleArrows = "purpleArrowsModule";
     const string _Quintuples = "quintuples";
+    const string _RailwayCargoLoading = "RailwayCargoLoading";
     const string _RecoloredSwitches = "R4YRecoloredSwitches";
     const string _RedArrows = "redArrowsModule";
     const string _Retirement = "retirement";
@@ -495,6 +496,7 @@ public class SouvenirModule : MonoBehaviour
             { _Probing, ProcessProbing },
             { _PurpleArrows, ProcessPurpleArrows },
             { _Quintuples, ProcessQuintuples },
+            { _RailwayCargoLoading, ProcessRailwayCargoLoading },
             { _RecoloredSwitches, ProcessRecoloredSwitches },
             { _RedArrows, ProcessRedArrows },
             { _Retirement, ProcessRetirement },
@@ -6033,6 +6035,131 @@ public class SouvenirModule : MonoBehaviour
             numbers.Select((n, ix) => makeQuestion(Question.QuintuplesNumbers, _Quintuples, new[] { ordinal(ix % 5 + 1), ordinal(ix / 5 + 1) }, new[] { (n % 10).ToString() })).Concat(
             colors.Select((color, ix) => makeQuestion(Question.QuintuplesColors, _Quintuples, new[] { ordinal(ix % 5 + 1), ordinal(ix / 5 + 1) }, new[] { color }))).Concat(
             colorCounts.Select((cc, ix) => makeQuestion(Question.QuintuplesColorCounts, _Quintuples, new[] { colorNames[ix] }, new[] { cc.ToString() }))));
+    }
+
+    private IEnumerable<object> ProcessRailwayCargoLoading(KMBombModule module)
+    {
+        var comp = GetComponent(module, "TrainLoading");
+        var fldCurrentStage = GetIntField(comp, "_currentStage");
+
+        while (fldCurrentStage.Get() < 17)
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_RailwayCargoLoading);
+
+        var trainCars = GetField<Array>(comp, "_train").Get(ar => ar.Length != 15 ? "expected length 15" : null);
+        var freightTableRules = GetField<Array>(comp, "_freightTable").Get(ar => ar.Length != 14 ? "expected length 14" : null);
+
+        var qs = new List<QandA>();
+
+        // Ask about the correctly connected cars
+        var fldCarName = GetField<string>(trainCars.GetValue(0), "FriendlyName", isPublic: true);
+        var connectedCars = new string[13];
+        for (int i = 1; i < 14; i++)
+            connectedCars[i - 1] = fldCarName.GetFrom(trainCars.GetValue(i));
+        for (int i = 0; i < 2; i++)
+        {
+            int randomCar = Rnd.Range(0, connectedCars.Length);   // only add 2 cars to the question pool to balance out the amount of question types.
+            qs.Add(makeQuestion(Question.RailwayCargoLoadingCars, _RailwayCargoLoading, new[] { ordinal(randomCar + 2) }, new[] { connectedCars[randomCar] }, connectedCars));
+        }
+
+        // Ask about the met or unmet freight table rules
+        var fldTableRuleMet = GetIntField(freightTableRules.GetValue(0), "_metAtStage", isPublic: false);
+        var fldTableRuleResource = GetField<object>(freightTableRules.GetValue(0), "_resource", isPublic: false);
+        var fldTableRuleResourceName = GetField<string>(fldTableRuleResource.Get(), "DisplayName", isPublic: true);
+
+        var metRules = new List<string>();
+        var unmetRules = new List<string>();
+
+        int metAtStage = 99;
+        for (int i = 0; i < 14; i++)
+        {
+            metAtStage = fldTableRuleMet.GetFrom(freightTableRules.GetValue(i));
+            var ruleResource = fldTableRuleResource.GetFrom(freightTableRules.GetValue(i));
+            var ruleResourceName = fldTableRuleResourceName.GetFrom(ruleResource);
+
+            string ruleName;
+            switch (ruleResourceName)
+            {
+                case "Sulfuric Acid":
+                case "Nitric Acid":
+                    ruleName = "Over 700 industrial gas";
+                    break;
+                case "Automobiles":
+                    ruleName = "Over 5 automobiles";
+                    break;
+                case "Farming Equipment":
+                case "Military Hardware":
+                case "Wings":
+                    ruleName = "Over 7 large objects";
+                    break;
+                case "Grain":
+                case "Sand":
+                case "Clay":
+                case "Cement":
+                case "Iron Ore":
+                case "Gold Ore":
+                    ruleName = "Over 500 loose bulk (excl. coal)";
+                    break;
+                case "Coal":
+                    ruleName = "Over 100 coal";
+                    break;
+                case "Meat":
+                case "Vegetables":
+                case "Fruit":
+                    ruleName = "Over 150 food";
+                    break;
+                case "Helium":
+                case "Argon":
+                case "Nitrogen":
+                case "Acetylene":
+                    ruleName = "Over 700 industrial gas";
+                    break;
+                case "Kerosene":
+                case "Gasoline":
+                case "Diesel":
+                    ruleName = "Over 100 liquid fuel";
+                    break;
+                case "Milk":
+                case "Water":
+                case "Resin":
+                    ruleName = "Over 600 milk/water/resin";
+                    break;
+                case "Livestock":
+                    ruleName = "Over 30 livestock";
+                    break;
+                case "Mail":
+                    ruleName = "Over 400 mail";
+                    break;
+                case "Crude Oil":
+                    ruleName = "Over 250 crude oil";
+                    break;
+                case "Sheet Metal":
+                    ruleName = "Over 100 sheet metal";
+                    break;
+                case "Lumber":
+                case "Logs":
+                    ruleName = "Over 150 lumber/75 logs";
+                    break;
+                default:
+                    throw new AbandonModuleException("there was an invalid resource found for one of the freight table rules: {0}", ruleResourceName);
+            }
+
+            if (metAtStage < 15)
+                metRules.Add(ruleName); 
+            else
+                unmetRules.Add(ruleName);
+        }
+
+        if (metRules.Count + unmetRules.Count != 14)
+            throw new AbandonModuleException("the total amount of freight table rules is not 14. Met: {0}, unmet: {1}", metRules.Count, unmetRules.Count);
+
+        if (metRules.Count >= 1 && unmetRules.Count >= 3) 
+            qs.Add(makeQuestion(Question.RailwayCargoLoadingFreightTableRules, _RailwayCargoLoading, formatArgs: new[] { "was met" }, correctAnswers: metRules.ToArray(), preferredWrongAnswers: unmetRules.ToArray()));
+        if (unmetRules.Count >= 1 && metRules.Count >= 3)
+            qs.Add(makeQuestion(Question.RailwayCargoLoadingFreightTableRules, _RailwayCargoLoading, formatArgs: new[] { "wasn't met" }, correctAnswers: unmetRules.ToArray(), preferredWrongAnswers: metRules.ToArray()));
+
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessRecoloredSwitches(KMBombModule module)
