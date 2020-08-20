@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Souvenir
   title: Souvenir
-  author: Timwi, Andrio Celos
+  author: Timwi, Andrio Celos, many contributors
   description: "This module asks you questions about some of the other modules on
     your bomb after you\u2019ve solved them. It requires you to remember or write
     down things that you used to solve those other modules.\r\n\r\n[url=http://ktane.timwi.de/PDF/Souvenir.pdf]Manual
@@ -54,6 +54,6 @@ MonoBehaviour:
     and maintainer. Many thanks to Andrio for taking care of Souvenir in the interim.
     If you were subscribed to Andrio\u2019s version, please [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2018009170]unsubscribe
     from it[/url]."
-  version: 2.3
+  version: 2.4
   outputFolder: build
   previewImage: {fileID: 2800000, guid: bd5c1f4881f57d54481b44e4c8a7779a, type: 3}
