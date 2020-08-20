@@ -6057,11 +6057,8 @@ public class SouvenirModule : MonoBehaviour
         var connectedCars = new string[13];
         for (int i = 1; i < 14; i++)
             connectedCars[i - 1] = fldCarName.GetFrom(trainCars.GetValue(i));
-        for (int i = 0; i < 2; i++)
-        {
-            int randomCar = Rnd.Range(0, connectedCars.Length);   // only add 2 cars to the question pool to balance out the amount of question types.
-            qs.Add(makeQuestion(Question.RailwayCargoLoadingCars, _RailwayCargoLoading, new[] { ordinal(randomCar + 2) }, new[] { connectedCars[randomCar] }, connectedCars));
-        }
+        for (int i = 0; i < 13; i++)
+            qs.Add(makeQuestion(Question.RailwayCargoLoadingCars, _RailwayCargoLoading, new[] { ordinal(i + 2) }, new[] { connectedCars[i] }, connectedCars));
 
         // Ask about the met or unmet freight table rules
         var fldTableRuleMet = GetIntField(freightTableRules.GetValue(0), "_metAtStage", isPublic: false);
@@ -6142,22 +6139,22 @@ public class SouvenirModule : MonoBehaviour
                     ruleName = "Over 150 lumber/75 logs";
                     break;
                 default:
-                    throw new AbandonModuleException("there was an invalid resource found for one of the freight table rules: {0}", ruleResourceName);
+                    throw new AbandonModuleException("There was an invalid resource found for one of the freight table rules: {0}", ruleResourceName);
             }
 
             if (metAtStage < 15)
-                metRules.Add(ruleName); 
+                metRules.Add(ruleName);
             else
                 unmetRules.Add(ruleName);
         }
 
         if (metRules.Count + unmetRules.Count != 14)
-            throw new AbandonModuleException("the total amount of freight table rules is not 14. Met: {0}, unmet: {1}", metRules.Count, unmetRules.Count);
+            throw new AbandonModuleException("The total amount of freight table rules is not 14. Met: {0}, unmet: {1}", metRules.Count, unmetRules.Count);
 
-        if (metRules.Count >= 1 && unmetRules.Count >= 3) 
+        if (metRules.Count >= 1 && unmetRules.Count >= 3)
             qs.Add(makeQuestion(Question.RailwayCargoLoadingFreightTableRules, _RailwayCargoLoading, formatArgs: new[] { "was met" }, correctAnswers: metRules.ToArray(), preferredWrongAnswers: unmetRules.ToArray()));
         if (unmetRules.Count >= 1 && metRules.Count >= 3)
-            qs.Add(makeQuestion(Question.RailwayCargoLoadingFreightTableRules, _RailwayCargoLoading, formatArgs: new[] { "wasn't met" }, correctAnswers: unmetRules.ToArray(), preferredWrongAnswers: metRules.ToArray()));
+            qs.Add(makeQuestion(Question.RailwayCargoLoadingFreightTableRules, _RailwayCargoLoading, formatArgs: new[] { "wasn’t met" }, correctAnswers: unmetRules.ToArray(), preferredWrongAnswers: metRules.ToArray()));
 
         addQuestions(module, qs);
     }

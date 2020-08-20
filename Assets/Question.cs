@@ -889,7 +889,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "second", "third", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         RailwayCargoLoadingCars,
         [SouvenirQuestion("Which freight table rule {1} in {0}?", "Railway Cargo Loading", AnswerLayout.OneColumn4Answers, "Over 150 lumber/75 logs", "Over 100 sheet metal", "Over 250 crude oil", "Over 400 mail", "Over 30 livestock", "Over 600 milk/water/resin", "Over 100 liquid fuel", "Over 700 industrial gas", "Over 150 food", "Over 100 coal", "Over 500 loose bulk (excl. coal)", "Over 7 large objects", "Over 5 automobiles", "Over 700 industrial gas",
-            ExampleExtraFormatArguments = new[] { "was met", "wasn't met" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "was met", "wasn’t met" }, ExampleExtraFormatArgumentGroupSize = 1)]
         RailwayCargoLoadingFreightTableRules,
 
         [SouvenirQuestion("What was the color of the {1} LED in {0}?", "Recolored Switches", AnswerLayout.TwoColumns4Answers, "red", "green", "blue", "turquoise", "orange", "purple", "white",
