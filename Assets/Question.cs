@@ -252,6 +252,9 @@ namespace Souvenir
         [AnswerGenerator.Strings("0-9A-Z")]
         ColorMorseCharacter,
 
+        [SouvenirQuestion("What was the color of the last word in the sequence in {0}?", "Colour Flash", AnswerLayout.ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Magenta", "White")]
+        ColourFlashLastColor,
+
         [SouvenirQuestion("What was the solution you selected first in {0}?", "Coordinates", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "[4,7]", "C4", "<0, 2>", "3, 1", "(6,2)", "B-1", "“1, 0”", "4/3", "[12]", "#23", "四十七" })]
         CoordinatesFirstSolution,
 

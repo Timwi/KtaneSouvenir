@@ -141,6 +141,7 @@ public class SouvenirModule : MonoBehaviour
     const string _ColoredSquares = "ColoredSquaresModule";
     const string _ColoredSwitches = "ColoredSwitchesModule";
     const string _ColorMorse = "ColorMorseModule";
+    const string _ColourFlash = "ColourFlash";
     const string _Coordinates = "CoordinatesModule";
     const string _Corners = "CornersModule";
     const string _Creation = "CreationModule";
@@ -385,6 +386,7 @@ public class SouvenirModule : MonoBehaviour
             { _ColoredSquares, ProcessColoredSquares },
             { _ColoredSwitches, ProcessColoredSwitches },
             { _ColorMorse, ProcessColorMorse },
+            { _ColourFlash, ProcessColourFlash },
             { _Coordinates, ProcessCoordinates },
             { _Corners, ProcessCorners },
             { _Creation, ProcessCreation },
@@ -2940,6 +2942,23 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, Enumerable.Range(0, 3).SelectMany(ix => Ut.NewArray(
              makeQuestion(Question.ColorMorseColor, _ColorMorse, new[] { ordinal(ix + 1) }, new[] { flashedColorNames[ix] }, flashedColorNames),
              makeQuestion(Question.ColorMorseCharacter, _ColorMorse, new[] { ordinal(ix + 1) }, new[] { flashedCharacters[ix] }, flashedCharacters))));
+    }
+
+    private IEnumerable<object> ProcessColourFlash(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ColourFlashModule");
+
+        var fldSolved = GetField<bool>(comp, "_solved");
+        while (!fldSolved.Get())
+        {
+            yield return new WaitForSeconds(.1f);
+        }
+        _modulesSolved.IncSafe(_ColourFlash);
+
+        var fldColorSequence = GetArrayField<object>(comp, "_colourSequence").Get(ar => ar.Length != 8 ? "expected length 8" : null);
+        var colorValue = GetField<object>(fldColorSequence.GetValue(7), "ColourValue", isPublic: true).Get();
+
+        addQuestion(module, Question.ColourFlashLastColor, correctAnswers: new[] { colorValue.ToString() });
     }
 
     private IEnumerable<object> ProcessCoordinates(KMBombModule module)
