@@ -2074,15 +2074,15 @@ public class SouvenirModule : MonoBehaviour
         var qs = new List<QandA>();
         for (var i = 0; i < 2; i++)
         {
-            qs.Add(makeQuestion(Question.BamboozlingButtonColor, _BamboozlingButton, new[] { (i + 1).ToString() }, new[] { colors[moduleData[i][0]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplayColor, _BamboozlingButton, new[] { (i + 1).ToString(), "fourth" }, new[] { colors[moduleData[i][1]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplayColor, _BamboozlingButton, new[] { (i + 1).ToString(), "fifth" }, new[] { colors[moduleData[i][2]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, _BamboozlingButton, new[] { (i + 1).ToString(), "first" }, new[] { texts[moduleData[i][3]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, _BamboozlingButton, new[] { (i + 1).ToString(), "third" }, new[] { texts[moduleData[i][4]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, _BamboozlingButton, new[] { (i + 1).ToString(), "fourth" }, new[] { texts[moduleData[i][5]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, _BamboozlingButton, new[] { (i + 1).ToString(), "fifth" }, new[] { texts[moduleData[i][6]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonLabel, _BamboozlingButton, new[] { (i + 1).ToString(), "top" }, new[] { texts[moduleData[i][7]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonLabel, _BamboozlingButton, new[] { (i + 1).ToString(), "bottom" }, new[] { texts[moduleData[i][8]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonColor, _BamboozlingButton, new[] { ordinal(i + 1) }, new[] { colors[moduleData[i][0]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplayColor, _BamboozlingButton, new[] { ordinal(i + 1), "fourth" }, new[] { colors[moduleData[i][1]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplayColor, _BamboozlingButton, new[] { ordinal(i + 1), "fifth" }, new[] { colors[moduleData[i][2]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, _BamboozlingButton, new[] { ordinal(i + 1), "first" }, new[] { texts[moduleData[i][3]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, _BamboozlingButton, new[] { ordinal(i + 1), "third" }, new[] { texts[moduleData[i][4]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, _BamboozlingButton, new[] { ordinal(i + 1), "fourth" }, new[] { texts[moduleData[i][5]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, _BamboozlingButton, new[] { ordinal(i + 1), "fifth" }, new[] { texts[moduleData[i][6]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonLabel, _BamboozlingButton, new[] { ordinal(i + 1), "top" }, new[] { texts[moduleData[i][7]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonLabel, _BamboozlingButton, new[] { ordinal(i + 1), "bottom" }, new[] { texts[moduleData[i][8]] }));
         }
 
         addQuestions(module, qs);
@@ -2100,7 +2100,7 @@ public class SouvenirModule : MonoBehaviour
 
         var ingIxs = fldIngredientIxs.Get(expectedLength: 5, validator: ing => ing < 0 || ing > 4 ? "expected 0–4" : null);
         var ingredientNames = new[] { "Powdered Delta", "Flanergide", "Adelhyde", "Bronson Extract", "Karmotrine" };
-        addQuestions(module, ingIxs.Select((ingIx, pos) => makeQuestion(Question.BartendingIngredients, _Bartending, formatArgs: new[] { (pos + 1).ToString() }, correctAnswers: new[] { ingredientNames[ingIx] })));
+        addQuestions(module, ingIxs.Select((ingIx, pos) => makeQuestion(Question.BartendingIngredients, _Bartending, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { ingredientNames[ingIx] })));
     }
 
     private IEnumerable<object> ProcessBigCircle(KMBombModule module)
@@ -2950,9 +2950,7 @@ public class SouvenirModule : MonoBehaviour
 
         var fldSolved = GetField<bool>(comp, "_solved");
         while (!fldSolved.Get())
-        {
             yield return new WaitForSeconds(.1f);
-        }
         _modulesSolved.IncSafe(_ColourFlash);
 
         var fldColorSequence = GetArrayField<object>(comp, "_colourSequence").Get(ar => ar.Length != 8 ? "expected length 8" : null);
@@ -5619,17 +5617,17 @@ public class SouvenirModule : MonoBehaviour
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldStage = GetIntField(comp, "stage");
 
-        var stage = 0;
+        var curStage = 0;
         var moduleData = new int[3][][];
 
         while (!fldSolved.Get())
         {
             var info = fldInfo.Get(expectedLength: 6, validator: arr => arr == null ? "null" : arr.Length != 4 ? "expected length 4" : null);
             var newStage = fldStage.Get(min: 1, max: 3);
-            if (stage != newStage || moduleData[newStage - 1] == null || Enumerable.Range(0, 6).All(ix => info[ix].SequenceEqual(moduleData[newStage - 1][ix])))
+            if (curStage != newStage || moduleData[newStage - 1] == null || Enumerable.Range(0, 6).All(ix => info[ix].SequenceEqual(moduleData[newStage - 1][ix])))
             {
-                stage = newStage;
-                moduleData[stage - 1] = info.Select(arr => arr.ToArray()).ToArray(); // Take a copy of the array.
+                curStage = newStage;
+                moduleData[curStage - 1] = info.Select(arr => arr.ToArray()).ToArray(); // Take a copy of the array.
             }
             yield return new WaitForSeconds(.1f);
         }
@@ -5639,13 +5637,13 @@ public class SouvenirModule : MonoBehaviour
         var colors = new string[6] { "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow" };
 
         var qs = new List<QandA>();
-        for (var i = 0; i < 3; i++)
+        for (var stage = 0; stage < 3; stage++)
         {
-            for (var j = 0; j < 6; j++)
+            for (var key = 0; key < 6; key++)
             {
-                qs.Add(makeQuestion(Question.OrderedKeysColors, _OrderedKeys, new[] { (i + 1).ToString(), ordinal(j + 1) }, new[] { colors[moduleData[i][j][0]] }));
-                qs.Add(makeQuestion(Question.OrderedKeysLabels, _OrderedKeys, new[] { (i + 1).ToString(), ordinal(j + 1) }, new[] { moduleData[i][j][3].ToString() }));
-                qs.Add(makeQuestion(Question.OrderedKeysLabelColors, _OrderedKeys, new[] { (i + 1).ToString(), ordinal(j + 1) }, new[] { colors[moduleData[i][j][1]] }));
+                qs.Add(makeQuestion(Question.OrderedKeysColors, _OrderedKeys, new[] { ordinal(stage + 1), ordinal(key + 1) }, new[] { colors[moduleData[stage][key][0]] }));
+                qs.Add(makeQuestion(Question.OrderedKeysLabels, _OrderedKeys, new[] { ordinal(stage + 1), ordinal(key + 1) }, new[] { moduleData[stage][key][3].ToString() }));
+                qs.Add(makeQuestion(Question.OrderedKeysLabelColors, _OrderedKeys, new[] { ordinal(stage + 1), ordinal(key + 1) }, new[] { colors[moduleData[stage][key][1]] }));
             }
         }
 
@@ -5751,7 +5749,7 @@ public class SouvenirModule : MonoBehaviour
         var colorNames = new[] { "blue", "green", "orange", "purple", "red", "yellow" };
         var qs = new List<QandA>();
         for (var stage = 0; stage < 3; stage++)
-            qs.Add(makeQuestion(Question.PartialDerivativesLedColors, _PartialDerivatives, formatArgs: new[] { (stage + 1).ToString() }, correctAnswers: new[] { colorNames[leds[stage]] }));
+            qs.Add(makeQuestion(Question.PartialDerivativesLedColors, _PartialDerivatives, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { colorNames[leds[stage]] }));
         for (var term = 0; term < 3; term++)
             qs.Add(makeQuestion(Question.PartialDerivativesTerms, _PartialDerivatives, formatArgs: new[] { ordinal(term + 1) }, correctAnswers: new[] { terms[term] }, preferredWrongAnswers: wrongAnswers.ToArray()));
         addQuestions(module, qs);
@@ -6937,12 +6935,12 @@ public class SouvenirModule : MonoBehaviour
         var qs = new List<QandA>();
         for (var i = 0; i < 5; i++)
             qs.Add(makeQuestion(Question.SimonStoresColors, _SimonStores,
-                formatArgs: new[] { flashSequences[i].Length == 1 ? "flashed" : "was one of the colors flashed", ordinal(i + 1) },
+                formatArgs: new[] { flashSequences[i].Length == 1 ? "flashed" : "was among the colors flashed", ordinal(i + 1) },
                 correctAnswers: flashSequences[i].Select(ch => colorNames[ch]).ToArray()));
 
         for (var i = 0; i < 3; i++)
             qs.Add(makeQuestion(Question.SimonStoresAnswers, _SimonStores,
-                formatArgs: new[] { (i + 1).ToString() },
+                formatArgs: new[] { ordinal(i + 1) },
                 correctAnswers: new[] { integerAnswers[i].ToString() }));
 
         addQuestions(module, qs);
