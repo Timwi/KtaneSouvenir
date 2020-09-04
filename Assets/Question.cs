@@ -7,6 +7,10 @@ namespace Souvenir
 {
     public enum Question
     {
+        [SouvenirQuestion("What was the {1} displayed letter when you solved {0}?", "100 Levels of Defusal", AnswerLayout.ThreeColumns6Answers, "B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        _100LevelsOfDefusalLetters,
+
         [SouvenirQuestion("What were the markings in {0}?", "3D Maze", AnswerLayout.ThreeColumns6Answers, "ABC", "ABD", "ABH", "ACD", "ACH", "ADH", "BCD", "BCH", "BDH", "CDH")]
         _3DMazeMarkings,
 

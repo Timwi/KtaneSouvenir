@@ -98,6 +98,7 @@ public class SouvenirModule : MonoBehaviour
 
     #region Module ID constant declarations
     // The values here are the “ModuleType” property on the KMBombModule components.
+    const string _100LevelsOfDefusal = "100LevelsOfDefusal";
     const string _3DMaze = "spwiz3DMaze";
     const string _3DTunnels = "3dTunnels";
     const string _Accumulation = "accumulation";
@@ -343,6 +344,7 @@ public class SouvenirModule : MonoBehaviour
 
         _moduleProcessors = new Dictionary<string, Func<KMBombModule, IEnumerable<object>>>()
         {
+            { _100LevelsOfDefusal, Process100LevelsOfDefusal },
             { _3DMaze, Process3DMaze },
             { _3DTunnels, Process3DTunnels },
             { _Accumulation, ProcessAccumulation },
@@ -1655,6 +1657,21 @@ public class SouvenirModule : MonoBehaviour
 
 
     /* Actual module processors start here */
+
+    private IEnumerable<object> Process100LevelsOfDefusal(KMBombModule module)
+    {
+        var comp = GetComponent(module, "OneHundredLevelsOfDefusal");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_100LevelsOfDefusal);
+
+        var display = GetArrayField<char>(comp, "displayedLetters").Get();
+
+        addQuestions(module, display.Select((ans, i) =>
+            makeQuestion(Question._100LevelsOfDefusalLetters, _100LevelsOfDefusal, new[] { ordinal(i + 1) }, new[] { ans.ToString() })));
+    }
 
     private IEnumerable<object> Process3DMaze(KMBombModule module)
     {
