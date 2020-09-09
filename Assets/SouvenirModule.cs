@@ -7297,6 +7297,19 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
 
         _modulesSolved.IncSafe(_SymbolicCoordinates);
+        GetField<TextMesh>(comp, "lettersText", isPublic: true).Get().text = "";
+        GetField<TextMesh>(comp, "digitsText", isPublic: true).Get().text = "";
+
+        foreach (var btnFieldName in new[] { "lettersUp", "lettersDown", "digitsUp", "digitsDown" })
+        {
+            var btn = GetField<KMSelectable>(comp, btnFieldName, isPublic: true).Get();
+            btn.OnInteract = delegate
+            {
+                Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, btn.transform);
+                btn.AddInteractionPunch(0.5f);
+                return false;
+            };
+        }
 
         var position = new[] { "left", "middle", "right" };
         addQuestions(module, stageLetters.SelectMany((letters, stage) => letters.Select((letter, pos) => makeQuestion(
