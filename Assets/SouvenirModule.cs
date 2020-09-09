@@ -2673,14 +2673,18 @@ public class SouvenirModule : MonoBehaviour
         var quality = GetField<object>(givenChord, "quality").Get();
         var qualityName = GetField<string>(quality, "name").Get();
         var lights = GetField<Array>(comp, "lights", isPublic: true).Get(v => v.Length != 12 ? "expected length 12" : null);
-        var mthsSetOutputLight = lights.Cast<object>().Select(light => GetMethod<object>(light, "setOutputLight", numParameters: 1, isPublic: true)).ToArray();
+        var mthSetOutputLight = GetMethod<object>(lights.GetValue(0), "setOutputLight", numParameters: 1, isPublic: true);
+        var mthTurnInputLightOff = GetMethod<object>(lights.GetValue(0), "turnInputLightOff", numParameters: 0, isPublic: true);
 
         while (!fldIsSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_ChordQualities);
 
-        foreach (var method in mthsSetOutputLight)
-            method.Invoke(false);
+        for (int lightIx = 0; lightIx < lights.Length; lightIx++)
+        {
+            mthSetOutputLight.InvokeOn(lights.GetValue(lightIx), false);
+            mthTurnInputLightOff.InvokeOn(lights.GetValue(lightIx));
+        }
 
         var noteNames = GetField<Array>(givenChord, "notes").Get(v => v.Length != 4 ? "expected length 4" : null).Cast<object>().Select(note => note.ToString().Replace("sharp", "♯")).ToArray();
         addQuestions(module,
