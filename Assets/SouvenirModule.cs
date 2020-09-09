@@ -4891,7 +4891,11 @@ public class SouvenirModule : MonoBehaviour
                     string[] curMoveNames = null;
 
                     var creatureID = fldCreatureID.Get();
-                    if (creatureID < 0 || creatureID >= creatureNames.Length || string.IsNullOrEmpty(creatureNames[creatureID]))
+                    if (creatureID == -1)
+                    {
+                        // Missingno: do nothing
+                    }
+                    else if (creatureID < 0 || creatureID >= creatureNames.Length || string.IsNullOrEmpty(creatureNames[creatureID]))
                         Debug.LogFormat("<Souvenir #{2}> Monsplode, Fight!: Unexpected creature ID: {0}; creature names are: [{1}]", creatureID, creatureNames.Select(cn => cn == null ? "null" : '"' + cn + '"').JoinString(", "), _moduleId);
                     else
                     {
@@ -4911,7 +4915,15 @@ public class SouvenirModule : MonoBehaviour
 
                     var ret = origInteracts[j]();
 
-                    if (curCreatureName == null || curMoveNames == null)
+                    if (creatureID == -1)
+                    {
+                        Debug.LogFormat("[Souvenir #{0}] No question on Monsplode, Fight! because the creature displayed was Missingno.", _moduleId);
+                        _legitimatelyNoQuestions.Add(module);
+                        displayedCreature = null;
+                        displayedMoves = null;
+                        finished = true;
+                    }
+                    else if (curCreatureName == null || curMoveNames == null)
                     {
                         Debug.LogFormat("<Souvenir #{0}> Monsplode, Fight!: Abandoning due to error above.", _moduleId);
                         // Set these to null to signal that something went wrong and we need to abort
