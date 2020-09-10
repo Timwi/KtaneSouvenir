@@ -2673,14 +2673,18 @@ public class SouvenirModule : MonoBehaviour
         var quality = GetField<object>(givenChord, "quality").Get();
         var qualityName = GetField<string>(quality, "name").Get();
         var lights = GetField<Array>(comp, "lights", isPublic: true).Get(v => v.Length != 12 ? "expected length 12" : null);
-        var mthsSetOutputLight = lights.Cast<object>().Select(light => GetMethod<object>(light, "setOutputLight", numParameters: 1, isPublic: true)).ToArray();
+        var mthSetOutputLight = GetMethod<object>(lights.GetValue(0), "setOutputLight", numParameters: 1, isPublic: true);
+        var mthTurnInputLightOff = GetMethod<object>(lights.GetValue(0), "turnInputLightOff", numParameters: 0, isPublic: true);
 
         while (!fldIsSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_ChordQualities);
 
-        foreach (var method in mthsSetOutputLight)
-            method.Invoke(false);
+        for (int lightIx = 0; lightIx < lights.Length; lightIx++)
+        {
+            mthSetOutputLight.InvokeOn(lights.GetValue(lightIx), false);
+            mthTurnInputLightOff.InvokeOn(lights.GetValue(lightIx));
+        }
 
         var noteNames = GetField<Array>(givenChord, "notes").Get(v => v.Length != 4 ? "expected length 4" : null).Cast<object>().Select(note => note.ToString().Replace("sharp", "♯")).ToArray();
         addQuestions(module,
@@ -4887,7 +4891,11 @@ public class SouvenirModule : MonoBehaviour
                     string[] curMoveNames = null;
 
                     var creatureID = fldCreatureID.Get();
-                    if (creatureID < 0 || creatureID >= creatureNames.Length || string.IsNullOrEmpty(creatureNames[creatureID]))
+                    if (creatureID == -1)
+                    {
+                        // Missingno: do nothing
+                    }
+                    else if (creatureID < 0 || creatureID >= creatureNames.Length || string.IsNullOrEmpty(creatureNames[creatureID]))
                         Debug.LogFormat("<Souvenir #{2}> Monsplode, Fight!: Unexpected creature ID: {0}; creature names are: [{1}]", creatureID, creatureNames.Select(cn => cn == null ? "null" : '"' + cn + '"').JoinString(", "), _moduleId);
                     else
                     {
@@ -4907,7 +4915,15 @@ public class SouvenirModule : MonoBehaviour
 
                     var ret = origInteracts[j]();
 
-                    if (curCreatureName == null || curMoveNames == null)
+                    if (creatureID == -1)
+                    {
+                        Debug.LogFormat("[Souvenir #{0}] No question on Monsplode, Fight! because the creature displayed was Missingno.", _moduleId);
+                        _legitimatelyNoQuestions.Add(module);
+                        displayedCreature = null;
+                        displayedMoves = null;
+                        finished = true;
+                    }
+                    else if (curCreatureName == null || curMoveNames == null)
                     {
                         Debug.LogFormat("<Souvenir #{0}> Monsplode, Fight!: Abandoning due to error above.", _moduleId);
                         // Set these to null to signal that something went wrong and we need to abort
@@ -7293,6 +7309,19 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
 
         _modulesSolved.IncSafe(_SymbolicCoordinates);
+        GetField<TextMesh>(comp, "lettersText", isPublic: true).Get().text = "";
+        GetField<TextMesh>(comp, "digitsText", isPublic: true).Get().text = "";
+
+        foreach (var btnFieldName in new[] { "lettersUp", "lettersDown", "digitsUp", "digitsDown" })
+        {
+            var btn = GetField<KMSelectable>(comp, btnFieldName, isPublic: true).Get();
+            btn.OnInteract = delegate
+            {
+                Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, btn.transform);
+                btn.AddInteractionPunch(0.5f);
+                return false;
+            };
+        }
 
         var position = new[] { "left", "middle", "right" };
         addQuestions(module, stageLetters.SelectMany((letters, stage) => letters.Select((letter, pos) => makeQuestion(
