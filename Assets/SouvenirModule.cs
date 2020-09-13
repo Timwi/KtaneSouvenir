@@ -285,6 +285,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SimonSounds = "simonSounds";
     const string _SimonSpeaks = "SimonSpeaksModule";
     const string _SimonsStar = "simonsStar";
+    const string _SimonStages = "simonStages";
     const string _SimonStates = "SimonV2";
     const string _SimonStops = "simonStops";
     const string _SimonStores = "simonStores";
@@ -531,6 +532,7 @@ public class SouvenirModule : MonoBehaviour
             { _SimonSounds, ProcessSimonSounds },
             { _SimonSpeaks, ProcessSimonSpeaks },
             { _SimonsStar, ProcessSimonsStar },
+            { _SimonStages, ProcessSimonStages },
             { _SimonStates, ProcessSimonStates },
             { _SimonStops, ProcessSimonStops },
             { _SimonStores, ProcessSimonStores},
@@ -1667,7 +1669,7 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_100LevelsOfDefusal);
 
-        var display = GetArrayField<char>(comp, "displayedLetters").Get();
+        var display = GetArrayField<char>(comp, "displayedLetters").Get(expectedLength: 12);
 
         addQuestions(module, display.Select((ans, i) =>
             makeQuestion(Question._100LevelsOfDefusalLetters, _100LevelsOfDefusal, new[] { ordinal(i + 1) }, new[] { ans.ToString() })));
@@ -3940,17 +3942,14 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.HorribleMemoryPositions, _HorribleMemory, new[] { "second" }, new[] { pos[1].ToString() }),
             makeQuestion(Question.HorribleMemoryPositions, _HorribleMemory, new[] { "third" }, new[] { pos[2].ToString() }),
             makeQuestion(Question.HorribleMemoryPositions, _HorribleMemory, new[] { "fourth" }, new[] { pos[3].ToString() }),
-            makeQuestion(Question.HorribleMemoryPositions, _HorribleMemory, new[] { "fifth" }, new[] { pos[4].ToString() }),
             makeQuestion(Question.HorribleMemoryLabels, _HorribleMemory, new[] { "first" }, new[] { lbl[0].ToString() }),
             makeQuestion(Question.HorribleMemoryLabels, _HorribleMemory, new[] { "second" }, new[] { lbl[1].ToString() }),
             makeQuestion(Question.HorribleMemoryLabels, _HorribleMemory, new[] { "third" }, new[] { lbl[2].ToString() }),
             makeQuestion(Question.HorribleMemoryLabels, _HorribleMemory, new[] { "fourth" }, new[] { lbl[3].ToString() }),
-            makeQuestion(Question.HorribleMemoryLabels, _HorribleMemory, new[] { "fifth" }, new[] { lbl[4].ToString() }),
             makeQuestion(Question.HorribleMemoryColors, _HorribleMemory, new[] { "first" }, new[] { colors[0] }),
             makeQuestion(Question.HorribleMemoryColors, _HorribleMemory, new[] { "second" }, new[] { colors[1] }),
             makeQuestion(Question.HorribleMemoryColors, _HorribleMemory, new[] { "third" }, new[] { colors[2] }),
-            makeQuestion(Question.HorribleMemoryColors, _HorribleMemory, new[] { "fourth" }, new[] { colors[3] }),
-            makeQuestion(Question.HorribleMemoryColors, _HorribleMemory, new[] { "fifth" }, new[] { colors[4] }));
+            makeQuestion(Question.HorribleMemoryColors, _HorribleMemory, new[] { "fourth" }, new[] { colors[3] }));
     }
 
     private IEnumerable<object> ProcessHumanResources(KMBombModule module)
@@ -4769,9 +4768,9 @@ public class SouvenirModule : MonoBehaviour
         var qs = new List<QandA>();
         for (var stage = 0; stage < 4; stage++)
         {
-            qs.Add(makeQuestion(Question.MemoryDisplay, "Memory", new[] { (stage + 1).ToString() }, new[] { displaySequence[stage].ToString() }));
-            qs.Add(makeQuestion(Question.MemoryPosition, "Memory", new[] { (stage + 1).ToString() }, new[] { MemorySprites[indices[stage]] }, MemorySprites));
-            qs.Add(makeQuestion(Question.MemoryLabel, "Memory", new[] { (stage + 1).ToString() }, new[] { labels[stage][labels[stage].Length - 1].ToString() }));
+            qs.Add(makeQuestion(Question.MemoryDisplay, "Memory", new[] { ordinal(stage + 1) }, new[] { displaySequence[stage].ToString() }));
+            qs.Add(makeQuestion(Question.MemoryPosition, "Memory", new[] { ordinal(stage + 1) }, new[] { MemorySprites[indices[stage]] }, MemorySprites));
+            qs.Add(makeQuestion(Question.MemoryLabel, "Memory", new[] { ordinal(stage + 1) }, new[] { labels[stage][labels[stage].Length - 1].ToString() }));
         }
         addQuestions(module, qs);
     }
@@ -5493,13 +5492,13 @@ public class SouvenirModule : MonoBehaviour
         var qs = new List<QandA>();
         for (var i = 0; i < 4; i++)
         {
-            qs.Add(makeQuestion(Question.NotWhosOnFirstPressedPosition, _NotWhosOnFirst, new[] { (i + 1).ToString() }, new[] { positions[fldPositions.Get()[i]] }));
-            qs.Add(makeQuestion(Question.NotWhosOnFirstPressedLabel, _NotWhosOnFirst, new[] { (i + 1).ToString() }, new[] { fldLabels.Get()[i] }));
+            qs.Add(makeQuestion(Question.NotWhosOnFirstPressedPosition, _NotWhosOnFirst, new[] { ordinal(i + 1) }, new[] { positions[fldPositions.Get()[i]] }));
+            qs.Add(makeQuestion(Question.NotWhosOnFirstPressedLabel, _NotWhosOnFirst, new[] { ordinal(i + 1) }, new[] { fldLabels.Get()[i] }));
         }
         for (var i = 4; i < 6; i++)
         {
-            qs.Add(makeQuestion(Question.NotWhosOnFirstReferencePosition, _NotWhosOnFirst, new[] { (i - 1).ToString() }, new[] { positions[fldPositions.Get()[i]] }));
-            qs.Add(makeQuestion(Question.NotWhosOnFirstReferenceLabel, _NotWhosOnFirst, new[] { (i - 1).ToString() }, new[] { fldLabels.Get()[i] }));
+            qs.Add(makeQuestion(Question.NotWhosOnFirstReferencePosition, _NotWhosOnFirst, new[] { ordinal(i + 1) }, new[] { positions[fldPositions.Get()[i]] }));
+            qs.Add(makeQuestion(Question.NotWhosOnFirstReferenceLabel, _NotWhosOnFirst, new[] { ordinal(i + 1) }, new[] { fldLabels.Get()[i] }));
         }
         qs.Add(makeQuestion(Question.NotWhosOnFirstSum, _NotWhosOnFirst, correctAnswers: sumCorrectAnswers));
         addQuestions(module, qs);
@@ -6868,6 +6867,38 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_SimonsStar);
 
         addQuestions(module, flashes.Select((f, ix) => makeQuestion(Question.SimonsStarColors, _SimonsStar, new[] { ordinal(ix + 1) }, new[] { f })));
+    }
+
+    private IEnumerable<object> ProcessSimonStages(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SimonStagesHandler");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var indicatorList = GetMethod<List<string>>(comp, "grabIndicatorColorsAll", numParameters: 0, isPublic: true);
+        var flashList = GetMethod<List<string>>(comp, "grabSequenceColorsOneStage", numParameters: 1, isPublic: true);
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SimonStages);
+
+        var indicators = indicatorList.Invoke();
+        var stage1Flash = flashList.Invoke(1);
+        var stage2Flash = flashList.Invoke(2);
+        var stage3Flash = flashList.Invoke(3);
+        var stage4Flash = flashList.Invoke(4);
+        var stage5Flash = flashList.Invoke(5);
+
+        addQuestions(module, indicators.Select((ans, i) =>
+            makeQuestion(Question.SimonStagesIndicator, _SimonStages, new[] { ordinal(i + 1) }, new[] { ans })).Concat(
+            stage1Flash.Select((ans, i) =>
+            makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "first" }, new[] { ans }))).Concat(
+            stage2Flash.Select((ans, i) =>
+            makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "second" }, new[] { ans }))).Concat(
+            stage3Flash.Select((ans, i) =>
+            makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "third" }, new[] { ans }))).Concat(
+            stage4Flash.Select((ans, i) =>
+            makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "4th" }, new[] { ans }))).Concat(
+            stage5Flash.Select((ans, i) =>
+            makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "5th" }, new[] { ans }))));
     }
 
     private IEnumerable<object> ProcessSimonStates(KMBombModule module)
