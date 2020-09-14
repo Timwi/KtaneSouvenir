@@ -216,6 +216,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Microcontroller = "Microcontroller";
     const string _Minesweeper = "MinesweeperModule";
     const string _ModernCipher = "modernCipher";
+    const string _ModuleListening = "moduleListening";
     const string _ModuleMaze = "ModuleMaze";
     const string _MonsplodeFight = "monsplodeFight";
     const string _MonsplodeTradingCards = "monsplodeCards";
@@ -467,6 +468,7 @@ public class SouvenirModule : MonoBehaviour
             { _Microcontroller, ProcessMicrocontroller },
             { _Minesweeper, ProcessMinesweeper },
             { _ModernCipher, ProcessModernCipher },
+            { _ModuleListening, ProcessModuleListening },
             { _ModuleMaze, ProcessModuleMaze },
             { _MonsplodeFight, ProcessMonsplodeFight },
             { _MonsplodeTradingCards, ProcessMonsplodeTradingCards },
@@ -4921,6 +4923,25 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.ModernCipherWord, _ModernCipher, new[] { "first" }, new[] { stage1word }, new[] { stage2word }),
             makeQuestion(Question.ModernCipherWord, _ModernCipher, new[] { "second" }, new[] { stage2word }, new[] { stage1word }));
+    }
+
+    private IEnumerable<object> ProcessModuleListening(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ModuleListening");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ModuleListening);
+
+        var moduleNames = GetArrayField<string>(comp, "moduleNames").Get();
+        var indices = GetArrayField<int>(comp, "moduleIndex").Get();
+        var colorOrder = GetArrayField<int>(comp, "btnColors").Get();
+        var colorNames = GetArrayField<string>(comp, "buttonColors").Get();
+        var qs = new List<QandA>();
+        for (int i = 0; i < 4; i++)
+            qs.Add(makeQuestion(Question.ModuleListeningSounds, _ModuleListening, correctAnswers: new[] { moduleNames[indices[i]] }, preferredWrongAnswers: moduleNames.Where(x => x != moduleNames[indices[i]]).ToArray(), formatArgs: new[] { colorNames[colorOrder[i]] }));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessModuleMaze(KMBombModule module)
