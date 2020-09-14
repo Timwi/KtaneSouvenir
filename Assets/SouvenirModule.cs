@@ -294,6 +294,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SimonSounds = "simonSounds";
     const string _SimonSpeaks = "SimonSpeaksModule";
     const string _SimonsStar = "simonsStar";
+    const string _SimonStages = "simonStages";
     const string _SimonStates = "SimonV2";
     const string _SimonStops = "simonStops";
     const string _SimonStores = "simonStores";
@@ -550,6 +551,7 @@ public class SouvenirModule : MonoBehaviour
             { _SimonSounds, ProcessSimonSounds },
             { _SimonSpeaks, ProcessSimonSpeaks },
             { _SimonsStar, ProcessSimonsStar },
+            { _SimonStages, ProcessSimonStages },
             { _SimonStates, ProcessSimonStates },
             { _SimonStops, ProcessSimonStops },
             { _SimonStores, ProcessSimonStores},
@@ -7066,6 +7068,32 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_SimonsStar);
 
         addQuestions(module, flashes.Select((f, ix) => makeQuestion(Question.SimonsStarColors, _SimonsStar, new[] { ordinal(ix + 1) }, new[] { f })));
+    }
+
+    private IEnumerable<object> ProcessSimonStages(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SimonStagesHandler");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var indicatorList = GetMethod<List<string>>(comp, "grabIndicatorColorsAll", numParameters: 0, isPublic: true);
+        var flashList = GetMethod<List<string>>(comp, "grabSequenceColorsOneStage", numParameters: 1, isPublic: true);
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SimonStages);
+
+        var indicators = indicatorList.Invoke();
+        var stage1Flash = flashList.Invoke(1);
+        var stage2Flash = flashList.Invoke(2);
+        var stage3Flash = flashList.Invoke(3);
+        var stage4Flash = flashList.Invoke(4);
+        var stage5Flash = flashList.Invoke(5);
+
+        addQuestions(module, indicators.Select((ans, i) => makeQuestion(Question.SimonStagesIndicator, _SimonStages, new[] { ordinal(i + 1) }, new[] { ans }))
+            .Concat(stage1Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "first" }, new[] { ans })))
+            .Concat(stage2Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "second" }, new[] { ans })))
+            .Concat(stage3Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "third" }, new[] { ans })))
+            .Concat(stage4Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "4th" }, new[] { ans })))
+            .Concat(stage5Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "5th" }, new[] { ans }))));
     }
 
     private IEnumerable<object> ProcessSimonStates(KMBombModule module)
