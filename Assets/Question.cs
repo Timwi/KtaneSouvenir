@@ -674,6 +674,10 @@ namespace Souvenir
             ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         MoonLitUnlit,
 
+        [SouvenirQuestion("What was the flashing word in {0}?", "More Code", AnswerLayout.TwoColumns4Answers,
+            ExampleAnswers = new[] { "Allocate", "Bulwarks", "Compiler", "Disposal", "Encipher", "Formulae", "Gauntlet", "Hunkered", "Illusory", "Jousting", "Kinetics", "Linkwork" })]
+        MoreCodeWord,
+
         [SouvenirQuestion("What was the starting location in {0}?", "Morse-A-Maze", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Strings("A-F", "1-6")]
         MorseAMazeStartingCoordinate,

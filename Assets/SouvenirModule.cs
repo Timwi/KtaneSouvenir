@@ -218,6 +218,7 @@ public class SouvenirModule : MonoBehaviour
     const string _MonsplodeFight = "monsplodeFight";
     const string _MonsplodeTradingCards = "monsplodeCards";
     const string _Moon = "moon";
+    const string _MoreCode = "MoreCode";
     const string _MorseAMaze = "MorseAMaze";
     const string _MorseButtons = "morseButtons";
     const string _Morsematics = "MorseV2";
@@ -466,6 +467,7 @@ public class SouvenirModule : MonoBehaviour
             { _MonsplodeFight, ProcessMonsplodeFight },
             { _MonsplodeTradingCards, ProcessMonsplodeTradingCards },
             { _Moon, ProcessMoon },
+            { _MoreCode, ProcessMoreCode },
             { _MorseAMaze, ProcessMorseAMaze },
             { _MorseButtons, ProcessMorseButtons },
             { _Morsematics, ProcessMorsematics },
@@ -5068,6 +5070,21 @@ public class SouvenirModule : MonoBehaviour
         var qNames = new[] { "first initially lit", "second initially lit", "third initially lit", "fourth initially lit", "first initially unlit", "second initially unlit", "third initially unlit", "fourth initially unlit" };
         var aNames = new[] { "south", "south-west", "west", "north-west", "north", "north-east", "east", "south-east" };
         addQuestions(module, Enumerable.Range(0, 8).Select(i => makeQuestion(Question.MoonLitUnlit, _Moon, new[] { qNames[i] }, new[] { aNames[(i + lightIndex) % 8] })));
+    }
+
+    private IEnumerable<object> ProcessMoreCode(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MoreCode");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_MoreCode);
+
+        var word = GetField<string>(comp, "FuckAids").Get();
+        word = word.Substring(0, 1) + word.Substring(1).ToLowerInvariant();
+        var allWords = new string[] { "Allocate", "Bulwarks", "Compiler", "Disposal", "Encipher", "Formulae", "Gauntlet", "Hunkered", "Illusory", "Jousting", "Kinetics", "Linkwork", "Monolith", "Nanobots", "Octangle", "Postsync", "Quartics", "Revolved", "Stanzaic", "Tomahawk", "Ultrahot", "Vendetta", "Wafflers", "Yokozuna", "Zugzwang", "Allotype", "Bulkhead", "Computer", "Dispatch", "Encrypts", "Fortunes", "Gateways", "Huntress", "Illusion", "Junction", "Kilobyte", "Linkages", "Monogram", "Nanogram", "Octuples", "Positron", "Quintics", "Revealed", "Stoccata", "Tomogram", "Ultrared", "Venomous", "Weakened", "Xenolith", "Yeasayer", "Zymogram" };
+        addQuestion(module, Question.MoreCodeWord, correctAnswers: new[] { word }, preferredWrongAnswers: allWords.Where(x => x != word).ToArray());
     }
 
     private IEnumerable<object> ProcessMorseAMaze(KMBombModule module)
