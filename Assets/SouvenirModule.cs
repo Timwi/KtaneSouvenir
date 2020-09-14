@@ -135,6 +135,7 @@ public class SouvenirModule : MonoBehaviour
     const string _ChineseCounting = "chineseCounting";
     const string _ChordQualities = "ChordQualities";
     const string _Code = "theCodeModule";
+    const string _Codenames = "codenames";
     const string _Coffeebucks = "coffeebucks";
     const string _ColorBraille = "ColorBrailleModule";
     const string _ColorDecoding = "Color Decoding";
@@ -382,6 +383,7 @@ public class SouvenirModule : MonoBehaviour
             { _ChineseCounting, ProcessChineseCounting },
             { _ChordQualities, ProcessChordQualities },
             { _Code, ProcessCode },
+            { _Codenames, ProcessCodenames },
             { _Coffeebucks, ProcessCoffeebucks },
             { _ColorBraille, ProcessColorBraille },
             { _ColorDecoding, ProcessColorDecoding },
@@ -2714,6 +2716,21 @@ public class SouvenirModule : MonoBehaviour
         fldSubmitBtn.Get().OnInteract = delegate { return false; };
 
         addQuestions(module, makeQuestion(Question.CodeDisplayNumber, _Code, correctAnswers: new[] { code.ToString() }));
+    }
+
+    private IEnumerable<object> ProcessCodenames(KMBombModule module)
+    {
+        var comp = GetComponent(module, "codenames");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Codenames);
+
+        var words = GetArrayField<string>(comp, "grid").Get(expectedLength: 25);
+        var solution = GetArrayField<bool>(comp, "solution").Get(expectedLength: 25);
+        var solutionWords = words.Where((w, i) => solution[i]).ToArray();
+        addQuestion(module, Question.CodenamesAnswers, correctAnswers: solutionWords, preferredWrongAnswers: words.Where(x => !solutionWords.Contains(x)).ToArray());
     }
 
     private IEnumerable<object> ProcessCoffeebucks(KMBombModule module)

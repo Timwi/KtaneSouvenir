@@ -201,6 +201,9 @@ namespace Souvenir
         [AnswerGenerator.Integers(999, 9999)]
         CodeDisplayNumber,
 
+        [SouvenirQuestion("Which of these words was submitted in {0}?", "Codenames", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "Hyperborean", "Weenus", "Melody", "King" })]
+        CodenamesAnswers,
+
         [SouvenirQuestion("What was the last served coffee in {0}?", "Coffeebucks", AnswerLayout.OneColumn4Answers, "Twix Frappuccino", "The Blue Drink", "Matcha & Espresso Fusion", "Caramel Snickerdoodle Macchiato", "Liquid Cocaine", "S’mores Hot Chocolate", "The Pink Drink", "Grasshopper Frappuccino")]
         CoffeebucksCoffee,
 
