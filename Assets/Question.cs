@@ -201,7 +201,7 @@ namespace Souvenir
         [AnswerGenerator.Integers(999, 9999)]
         CodeDisplayNumber,
 
-        [SouvenirQuestion("Which of these words was submitted in {0}?", "Codenames", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new string[] { "Hyperborean", "Weenus", "Melody", "King" })]
+        [SouvenirQuestion("Which of these words was submitted in {0}?", "Codenames", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "Hyperborean", "Weenus", "Melody", "King" })]
         CodenamesAnswers,
 
         [SouvenirQuestion("What was the last served coffee in {0}?", "Coffeebucks", AnswerLayout.OneColumn4Answers, "Twix Frappuccino", "The Blue Drink", "Matcha & Espresso Fusion", "Caramel Snickerdoodle Macchiato", "Liquid Cocaine", "S’mores Hot Chocolate", "The Pink Drink", "Grasshopper Frappuccino")]
@@ -324,6 +324,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the {1} on {0}?", "Encrypted Morse", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "Detonate", "Ready Now", "Please No", "Cheesecake" },
             ExampleExtraFormatArguments = new[] { "received call", "sent response" }, ExampleExtraFormatArgumentGroupSize = 1)]
         EncryptedMorseCallResponse,
+
+        [SouvenirQuestion("What was the first encoding used in {0}?", "Encryption Bingo", AnswerLayout.OneColumn4Answers, ExampleAnswers = new[] { "Morse code", "Braille", "Semaphore", "Lombax" })]
+        EncryptionBingoEncoding,
 
         [SouvenirQuestion("What was the displayed symbol in {0}?", "Equations X", AnswerLayout.ThreeColumns6Answers, "H(T)", "P", "\u03C7", "\u03C9", "Z(T)", "\u03C4", "\u03BC", "\u03B1", "K")]
         EquationsXSymbols,

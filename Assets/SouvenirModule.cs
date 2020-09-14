@@ -160,6 +160,7 @@ public class SouvenirModule : MonoBehaviour
     const string _EncryptedEquations = "EncryptedEquationsModule";
     const string _EncryptedHangman = "encryptedHangman";
     const string _EncryptedMorse = "EncryptedMorse";
+    const string _EncryptionBingo = "encryptionBingo";
     const string _EquationsX = "equationsXModule";
     const string _Etterna = "etterna";
     const string _FactoryMaze = "factoryMaze";
@@ -410,6 +411,7 @@ public class SouvenirModule : MonoBehaviour
             { _EncryptedEquations, ProcessEncryptedEquations },
             { _EncryptedHangman, ProcessEncryptedHangman },
             { _EncryptedMorse, ProcessEncryptedMorse },
+            { _EncryptionBingo, ProcessEncryptionBingo },
             { _EquationsX, ProcessEquationsX },
             { _Etterna, ProcessEtterna },
             { _FactoryMaze, ProcessFactoryMaze },
@@ -3393,6 +3395,26 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.EncryptedMorseCallResponse, _EncryptedMorse, new[] { "received call" }, new[] { formatCalls[index] }, formatCalls),
             makeQuestion(Question.EncryptedMorseCallResponse, _EncryptedMorse, new[] { "sent response" }, new[] { formatResponses[index] }, formatResponses));
+    }
+
+    private IEnumerable<object> ProcessEncryptionBingo(KMBombModule module)
+    {
+        var comp = GetComponent(module, "encryptionBingoScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldBall = GetField<bool>(comp, "ballOut");
+
+        var fldIndex = GetIntField(comp, "encryptionIndex");
+        var encodingNames = GetArrayField<string>(comp, "encryptions").Get();
+        var encoding = 0;
+        while (!fldBall.Get())
+            yield return new WaitForSeconds(.1f);
+        encoding = fldIndex.Get();
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_EncryptionBingo);
+
+        addQuestion(module, Question.EncryptionBingoEncoding, correctAnswers: new[] { encodingNames[encoding] }, preferredWrongAnswers: encodingNames.Where(x => x != encodingNames[encoding]).ToArray());
     }
 
     private IEnumerable<object> ProcessEquationsX(KMBombModule module)
