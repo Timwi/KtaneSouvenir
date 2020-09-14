@@ -910,6 +910,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "was met", "wasn’t met" }, ExampleExtraFormatArgumentGroupSize = 1)]
         RailwayCargoLoadingFreightTableRules,
 
+        [SouvenirQuestion("What was the displayed number in {0}?", "Rainbow Arrows", AnswerLayout.ThreeColumns6Answers)]
+        [AnswerGenerator.Integers(0, 99)]
+        RainbowArrowsNumber,
+
         [SouvenirQuestion("What was the color of the {1} LED in {0}?", "Recolored Switches", AnswerLayout.TwoColumns4Answers, "red", "green", "blue", "turquoise", "orange", "purple", "white",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         RecoloredSwitchesLedColors,

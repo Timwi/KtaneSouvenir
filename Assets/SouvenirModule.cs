@@ -261,6 +261,7 @@ public class SouvenirModule : MonoBehaviour
     const string _PurpleArrows = "purpleArrowsModule";
     const string _Quintuples = "quintuples";
     const string _RailwayCargoLoading = "RailwayCargoLoading";
+    const string _RainbowArrows = "ksmRainbowArrows";
     const string _RecoloredSwitches = "R4YRecoloredSwitches";
     const string _RedArrows = "redArrowsModule";
     const string _Retirement = "retirement";
@@ -511,6 +512,7 @@ public class SouvenirModule : MonoBehaviour
             { _PurpleArrows, ProcessPurpleArrows },
             { _Quintuples, ProcessQuintuples },
             { _RailwayCargoLoading, ProcessRailwayCargoLoading },
+            { _RainbowArrows, ProcessRainbowArrows },
             { _RecoloredSwitches, ProcessRecoloredSwitches },
             { _RedArrows, ProcessRedArrows },
             { _Retirement, ProcessRetirement },
@@ -6292,6 +6294,18 @@ public class SouvenirModule : MonoBehaviour
             qs.Add(makeQuestion(Question.RailwayCargoLoadingFreightTableRules, _RailwayCargoLoading, formatArgs: new[] { "wasn’t met" }, correctAnswers: unmetRules.ToArray(), preferredWrongAnswers: metRules.ToArray()));
 
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessRainbowArrows(KMBombModule module)
+    {
+        var comp = GetComponent(module, "RainbowArrows");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_RainbowArrows);
+
+        addQuestion(module, Question.RainbowArrowsNumber, correctAnswers: new[] { GetIntField(comp, "displayedDigits").Get().ToString() });
     }
 
     private IEnumerable<object> ProcessRecoloredSwitches(KMBombModule module)
