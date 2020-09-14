@@ -203,6 +203,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Mafia = "MafiaModule";
     const string _Mahjong = "MahjongModule";
     const string _MandMs = "MandMs";
+    const string _MandNs = "MandNs";
     const string _MaritimeFlags = "MaritimeFlagsModule";
     const string _Maze = "Maze";
     const string _Maze3 = "maze3";
@@ -456,6 +457,7 @@ public class SouvenirModule : MonoBehaviour
             { _Mafia, ProcessMafia },
             { _Mahjong, ProcessMahjong },
             { _MandMs, ProcessMandMs },
+            { _MandNs, ProcessMandNs },
             { _MaritimeFlags, ProcessMaritimeFlags },
             { _Maze, ProcessMaze },
             { _Maze3, ProcessMaze3 },
@@ -4664,6 +4666,26 @@ public class SouvenirModule : MonoBehaviour
             qs.Add(makeQuestion(Question.MandMsColors, _MandMs, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorNames[colors[i]] }));
             qs.Add(makeQuestion(Question.MandMsLabels, _MandMs, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { labels[i] }, preferredWrongAnswers: labels));
         }
+        addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessMandNs(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MandNs");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_MandNs);
+
+        var colorNames = new string[] { "red", "green", "orange", "blue", "yellow", "brown" };
+        var colors = GetArrayField<int>(comp, "buttonColors").Get();
+        var labels = GetArrayField<string>(comp, "convertedValues").Get();
+        var solution = GetIntField(comp, "solution").Get();
+        var qs = new List<QandA>();
+        for (int i = 0; i < 5; i++)
+            qs.Add(makeQuestion(Question.MandNsColors, _MandNs, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorNames[colors[i]] }));
+        qs.Add(makeQuestion(Question.MandNsLabel, _MandNs, correctAnswers: new[] { labels[solution] }, preferredWrongAnswers: labels));
         addQuestions(module, qs);
     }
 
