@@ -200,6 +200,7 @@ public class SouvenirModule : MonoBehaviour
     const string _LondonUnderground = "londonUnderground";
     const string _Mafia = "MafiaModule";
     const string _Mahjong = "MahjongModule";
+    const string _MandNs = "MandNs";
     const string _MaritimeFlags = "MaritimeFlagsModule";
     const string _Maze = "Maze";
     const string _Maze3 = "maze3";
@@ -446,6 +447,7 @@ public class SouvenirModule : MonoBehaviour
             { _LondonUnderground, ProcessLondonUnderground },
             { _Mafia, ProcessMafia },
             { _Mahjong, ProcessMahjong },
+            { _MandNs, ProcessMandNs },
             { _MaritimeFlags, ProcessMaritimeFlags },
             { _Maze, ProcessMaze },
             { _Maze3, ProcessMaze3 },
@@ -4597,6 +4599,26 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.MahjongCountingTile, _Mahjong, correctAnswers: new[] { countingTileSprite }, preferredWrongAnswers: GetArrayField<int>(comp, "_countingRow").Get().Select(ix => MahjongSprites[ix]).ToArray()),
             makeQuestion(Question.MahjongMatches, _Mahjong, new[] { "first" }, correctAnswers: matchedTileSprites.Take(2).ToArray(), preferredWrongAnswers: tileSprites),
             makeQuestion(Question.MahjongMatches, _Mahjong, new[] { "second" }, correctAnswers: matchedTileSprites.Skip(2).Take(2).ToArray(), preferredWrongAnswers: tileSprites));
+    }
+
+    private IEnumerable<object> ProcessMandNs(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MandNs");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_MandNs);
+
+        var colors = GetArrayField<int>(comp, "buttonColors").Get();
+        var colorNames = new string[] { "red", "green", "orange", "blue", "yellow", "brown" };
+        var labels = GetArrayField<string>(comp, "convertedValues").Get();
+        var solution = GetIntField(comp, "solution").Get();
+        var qs = new List<QandA>();
+        for (int i = 0; i < 5; i++)
+            qs.Add(makeQuestion(Question.MandNsColors, _MandNs, formatArgs: new [] { ordinal(i + 1) }, correctAnswers: new[] { colorNames[colors[i]] }));
+        qs.Add(makeQuestion(Question.MandNsLabels, _MandNs, correctAnswers: new[] { labels[solution] }, preferredWrongAnswers: labels.Where((v, i) => i != solution).ToArray()));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessMaritimeFlags(KMBombModule module)
