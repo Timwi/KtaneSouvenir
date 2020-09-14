@@ -1689,7 +1689,7 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_100LevelsOfDefusal);
 
-        var display = GetArrayField<char>(comp, "displayedLetters").Get();
+        var display = GetArrayField<char>(comp, "displayedLetters").Get(expectedLength: 12);
 
         addQuestions(module, display.Select((ans, i) =>
             makeQuestion(Question._100LevelsOfDefusalLetters, _100LevelsOfDefusal, new[] { ordinal(i + 1) }, new[] { ans.ToString() })));
@@ -4895,9 +4895,9 @@ public class SouvenirModule : MonoBehaviour
         var qs = new List<QandA>();
         for (var stage = 0; stage < 4; stage++)
         {
-            qs.Add(makeQuestion(Question.MemoryDisplay, "Memory", new[] { (stage + 1).ToString() }, new[] { displaySequence[stage].ToString() }));
-            qs.Add(makeQuestion(Question.MemoryPosition, "Memory", new[] { (stage + 1).ToString() }, new[] { MemorySprites[indices[stage]] }, MemorySprites));
-            qs.Add(makeQuestion(Question.MemoryLabel, "Memory", new[] { (stage + 1).ToString() }, new[] { labels[stage][labels[stage].Length - 1].ToString() }));
+            qs.Add(makeQuestion(Question.MemoryDisplay, "Memory", new[] { ordinal(stage + 1) }, new[] { displaySequence[stage].ToString() }));
+            qs.Add(makeQuestion(Question.MemoryPosition, "Memory", new[] { ordinal(stage + 1) }, new[] { MemorySprites[indices[stage]] }, MemorySprites));
+            qs.Add(makeQuestion(Question.MemoryLabel, "Memory", new[] { ordinal(stage + 1) }, new[] { labels[stage][labels[stage].Length - 1].ToString() }));
         }
         addQuestions(module, qs);
     }
@@ -5652,13 +5652,13 @@ public class SouvenirModule : MonoBehaviour
         var qs = new List<QandA>();
         for (var i = 0; i < 4; i++)
         {
-            qs.Add(makeQuestion(Question.NotWhosOnFirstPressedPosition, _NotWhosOnFirst, new[] { (i + 1).ToString() }, new[] { positions[fldPositions.Get()[i]] }));
-            qs.Add(makeQuestion(Question.NotWhosOnFirstPressedLabel, _NotWhosOnFirst, new[] { (i + 1).ToString() }, new[] { fldLabels.Get()[i] }));
+            qs.Add(makeQuestion(Question.NotWhosOnFirstPressedPosition, _NotWhosOnFirst, new[] { ordinal(i + 1) }, new[] { positions[fldPositions.Get()[i]] }));
+            qs.Add(makeQuestion(Question.NotWhosOnFirstPressedLabel, _NotWhosOnFirst, new[] { ordinal(i + 1) }, new[] { fldLabels.Get()[i] }));
         }
         for (var i = 4; i < 6; i++)
         {
-            qs.Add(makeQuestion(Question.NotWhosOnFirstReferencePosition, _NotWhosOnFirst, new[] { (i - 1).ToString() }, new[] { positions[fldPositions.Get()[i]] }));
-            qs.Add(makeQuestion(Question.NotWhosOnFirstReferenceLabel, _NotWhosOnFirst, new[] { (i - 1).ToString() }, new[] { fldLabels.Get()[i] }));
+            qs.Add(makeQuestion(Question.NotWhosOnFirstReferencePosition, _NotWhosOnFirst, new[] { ordinal(i + 1) }, new[] { positions[fldPositions.Get()[i]] }));
+            qs.Add(makeQuestion(Question.NotWhosOnFirstReferenceLabel, _NotWhosOnFirst, new[] { ordinal(i + 1) }, new[] { fldLabels.Get()[i] }));
         }
         qs.Add(makeQuestion(Question.NotWhosOnFirstSum, _NotWhosOnFirst, correctAnswers: sumCorrectAnswers));
         addQuestions(module, qs);
