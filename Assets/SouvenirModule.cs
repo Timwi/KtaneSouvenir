@@ -185,6 +185,7 @@ public class SouvenirModule : MonoBehaviour
     const string _HumanResources = "HumanResourcesModule";
     const string _Hunting = "hunting";
     const string _Hypercube = "TheHypercubeModule";
+    const string _Hyperlink = "hyperlink";
     const string _IceCream = "iceCreamModule";
     const string _IdentityParade = "identityParade";
     const string _iPhone = "iPhone";
@@ -260,6 +261,7 @@ public class SouvenirModule : MonoBehaviour
     const string _RecoloredSwitches = "R4YRecoloredSwitches";
     const string _RedArrows = "redArrowsModule";
     const string _Retirement = "retirement";
+    const string _RegularCrazyTalk = "RegularCrazyTalkModule";
     const string _ReverseMorse = "reverseMorse";
     const string _RGBMaze = "rgbMaze";
     const string _Rhythms = "MusicRhythms";
@@ -431,6 +433,7 @@ public class SouvenirModule : MonoBehaviour
             { _HumanResources, ProcessHumanResources },
             { _Hunting, ProcessHunting },
             { _Hypercube, ProcessHypercube },
+            { _Hyperlink, ProcessHyperlink },
             { _IceCream, ProcessIceCream },
             { _IdentityParade, ProcessIdentityParade },
             { _iPhone, ProcessiPhone },
@@ -506,6 +509,7 @@ public class SouvenirModule : MonoBehaviour
             { _RailwayCargoLoading, ProcessRailwayCargoLoading },
             { _RecoloredSwitches, ProcessRecoloredSwitches },
             { _RedArrows, ProcessRedArrows },
+            { _RegularCrazyTalk, ProcessRegularCrazyTalk },
             { _Retirement, ProcessRetirement },
             { _ReverseMorse, ProcessReverseMorse },
             { _RGBMaze, ProcessRGBMaze},
@@ -4007,6 +4011,68 @@ public class SouvenirModule : MonoBehaviour
         return processHypercubeUltracube(module, "TheHypercubeModule", Question.HypercubeRotations, _Hypercube);
     }
 
+    private IEnumerable<object> ProcessHyperlink(KMBombModule module)
+    {
+        var comp = GetComponent(module, "hyperlinkScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Hyperlink);
+
+        var moduleNames = new Dictionary<string, string>
+        {
+            // Sorry if I made a mess here
+            { "yK-2RwenHyg", "3D Maze" }, { "3lrvgMc7DBU", "Adjacent Letters" }, { "mXXJXNloTUU", "Adventure Game" }, { "Jhr4S7Kihsw", "Alphabet" },
+            { "1OU2zBusTc4", "Anagrams" }, { "7cXvqgU7S30", "Answering Questions" }, { "ZJ3SuU4CLxI", "Astrology" }, { "-AuTWClc0ps", "Backgrounds" },
+            { "NCfhGSThp34", "Battleship" }, { "I9YpqNbE04o", "Big Circle" }, { "i2GX_yllT2Y", "Bitmaps" }, { "TMoFq0D1Jtc", "Blind Alley" },
+            { "4MoIHkNqkKU", "Blind Maze" }, { "Bq1B82pitLg", "Braille" }, { "OJsfwTb6XB8", "Broken Buttons" }, { "mIYYazRkppQ", "Burglar Alarm" },
+            { "AAwWgzyEcEY", "Button Sequence" }, { "Q4BoxQkR5AU", "Caesar Cipher" }, { "FJv-xV4eiB4", "Capacitor Discharge" }, { "J95TbfQymxw", "Cheap Checkout" },
+            { "j7ij3a6Bckc", "Chess" }, { "jbRg53U7mYU", "Chord Qualities" }, { "w1RMQXnpZFQ", "Color Flash" }, { "rSsPgkwyg_8", "Colored Squares" },
+            { "6NPhJnUGbcI", "Colored Switches" }, { "KrAoelzn9Rw", "Combination Lock" }, { "b0i84rMMYPA", "Complicated Buttons"},
+            { "KirbywLSysw", "Complicated Wires" }, { "pveM77kyHhI", "Connection Check" }, { "NUAIL5KmIjM", "Cooking" }, { "A8trsxRrlGQ", "Coordinates"},
+            { "_KqeKlop-yI", "Crazy Talk" }, { "Ffu5F3R_64s", "Creation" }, { "l6qyz5IlONY", "Cryptography" }, { "0SB5lP8Al-k", "Double-Oh"},
+            { "A3Jhga1sZHE", "Emoji Math" }, { "qhu4xOxPqTw", "English Test" }, { "f7QZgLYrqeU", "European Travel" }, { "e17aNUgJXks", "Faulty Backgrounds"},
+            { "GHzOOs8nwao", "Filibuster" }, { "qkZaHNiVLEM", "Follow The Leader" }, { "4UHeMpXnW9k", "Foreign Exchange Rates" }, { "w7eDs_IBLdY", "Forget Me Not"},
+            { "QnSE5V9mLw0", "Friendship" }, { "78xZYSxRZWA", "Game Of Life Cruel" }, { "uPcTIV_MSQk", "Game Of Life Simple" }, { "fNDZo8-FOs0", "Hexamaze"},
+            { "bz7MDHiWggM", "HTTP Response" }, { "sl0GFlbRhNA", "Hunting" }, { "R9zIPRwfTjw", "Ice Cream" }, { "iFEFBxTiV7g", "Keypad" }, { "1947_K2AkQU", "Knob"},
+            { "HU30V1yHdIY", "Laundry" }, { "EQ6TU53wgts", "Letter Keys" }, { "wAuv2CuUP6Q", "Light Cycle" }, { "72ruZA1wDBw", "Lights Out"},
+            { "Nd_aTIEaby4", "Listening" }, { "d7QaktxKVUQ", "Logic" }, { "iFAQUEjPS-k", "Math" }, { "xvoRyekWpK8", "Maze" }, { "PCUxXuW9Opk", "Memory"},
+            { "W1aZAIaM0t0", "Microcontroller" }, { "wicpqX_Krnc", "Module Against Humanity" }, { "6EU46vycYGk", "Monsplode Trading Cards"},
+            { "wAOF8whYH5I", "Monsplode, Fight!" }, { "EiTW9_xQlSw", "Morse Code" }, { "RYIVFIoTyMc", "Morsematics" }, { "5IoMa4zJiK4", "Mortal Kombat"},
+            { "gchTqBMFzUc", "Motion Sense" }, { "zOMum_E9SGA", "Mouse In The Maze" }, { "O0lk5-R2LtM", "Murder" }, { "hIDYMNgdMwE", "Mystic Square"},
+            { "X49hRnXG_1w", "Neutralization" }, { "WeXZ4WOQQEM", "Number Pad" }, { "F-XI2PkX6c0", "Orientation Cube" }, { "D_1uqiSsPZA", "Password"},
+            { "G0CSfXeXn3M", "Perspective Pegs" }, { "fPdW5IoioAE", "Piano Keys" }, { "3S8czpKKjhI", "Plumbing" }, { "VhWXl5U3BGQ", "Probing"},
+            { "Rsess4phjq0", "Resistors" }, { "p9JuSc9DxVc", "Rock-Paper-Scissors-Lizard-Spock" }, { "T8WoIt8idzo", "Rotary Phone"},
+            { "GaHcyRsMiOU", "Round Keypad" }, { "sW21j4GjPPI", "Safety Safe" }, { "ywC_66oZjq0", "Sea Shells" }, { "lQbHkyHsnuA", "Semaphore"},
+            { "cTMRqTUh9lE", "Shape Shift" }, { "sEU5-gmMSUk", "Silly Slots" }, { "S-WQzD3lwLc", "Simon Says" }, { "immQAJbBEwA", "Simon Screams"},
+            { "g_YbHXNFGlk", "Simon States" }, { "7sWLtJVIjDk", "Skewed Slots" }, { "5JyzJedWD1E", "Souvenir" }, { "7m-kwhUlMGY", "Square Button"},
+            { "Mg-6WN4wFrI", "Switches" }, { "N-wQknYVJrE", "Symbolic Coordinates" }, { "ZFBf8QYEBa4", "Symbolic Password" }, { "7sgIf3LkXzg", "Tetris"},
+            { "fRHEKFQcRqE", "Text Field" }, { "rxYNbApHeBE", "The Bulb" }, { "MZ_9fyNFkSY", "The Button" }, { "enHhcG0CalY", "The Clock"},
+            { "78UHE6IlE4Q", "The Gamepad" }, { "UY69PZNcO7Y", "The iPhone" }, { "bnMuRYRucQU", "The Moon" }, { "42A8kJmydrI", "The Stopwatch"},
+            { "osXQYG8xv3w", "The Sun" }, { "Pi-8AnblXwc", "The Swan" }, { "5Tqm2UKGRDo", "Third Base" }, { "5bvvRHCiQtM", "Tic-Tac-Toe"},
+            { "daftUGvdqnY", "Turn The Key" }, { "7VyuGADPlmE", "Turn The Keys" }, { "k6-vQpPZ25o", "Two Bits" }, { "_4uJAjXmnbg", "Venting Gas"},
+            { "nCyAsnjScCc", "Who's On First" }, { "WpTXswUJh_I", "Who's That Monsplode" }, { "yqjcnLZabeI", "Wire Placement" }, { "vCsnOyF4Vvk", "Wire Sequence"},
+            { "tt5T7qYqQwE", "Wires" }, { "X7gSRu7xQ2c", "Word Scramble" }, { "8qcovi-pR9k", "Word Search" }, { "P4Lrnmdxr5A", "Zoo"}
+        };
+
+        var hyperlink = GetField<string>(comp, "selectedString").Get();
+
+        addQuestions(module,
+            makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "first" }, new[] { hyperlink[0].ToString() }),
+            makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "second" }, new[] { hyperlink[1].ToString() }),
+            makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "third" }, new[] { hyperlink[2].ToString() }),
+            makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "4th" }, new[] { hyperlink[3].ToString() }),
+            makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "5th" }, new[] { hyperlink[4].ToString() }),
+            makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "6th" }, new[] { hyperlink[5].ToString() }),
+            makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "7th" }, new[] { hyperlink[6].ToString() }),
+            makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "8th" }, new[] { hyperlink[7].ToString() }),
+            makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "9th" }, new[] { hyperlink[8].ToString() }),
+            makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "10th" }, new[] { hyperlink[9].ToString() }),
+            makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "11th" }, new[] { hyperlink[10].ToString() }),
+            makeQuestion(Question.HyperlinkAnswer, _Hyperlink, correctAnswers: new[] { moduleNames[hyperlink] }));
+    }
+
     private IEnumerable<object> ProcessIceCream(KMBombModule module)
     {
         var comp = GetComponent(module, "IceCreamModule");
@@ -6256,6 +6322,35 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_RedArrows);
 
         addQuestion(module, Question.RedArrowsStartNumber, correctAnswers: new[] { GetIntField(comp, "start").Get(min: 0, max: 9).ToString() });
+    }
+
+    private IEnumerable<object> ProcessRegularCrazyTalk(KMBombModule module)
+    {
+        var comp = GetComponent(module, "RegularCrazyTalkModule");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_RegularCrazyTalk);
+
+        var phrases = GetField<IList>(comp, "_phraseActions").Get();
+        var selected = GetField<int>(comp, "_selectedPhraseIx").Get();
+
+        var selectedPhrase = phrases[selected];
+        var phraseText = GetField<string>(selectedPhrase, "Phrase", isPublic: true).Get();
+        var displayDigit = GetField<int>(selectedPhrase, "ExpectedDigit", isPublic: true).Get();
+
+        string modifier = "[PHRASE]";
+
+        if (phraseText.Length >= 9 && phraseText.Substring(0, 10) == "It says: “") modifier = "It says: “[PHRASE]”";
+        else if (phraseText.Length >= 8 && phraseText.Substring(0, 9) == "“It says:") modifier = "“It says: [PHRASE]”";
+        else if (phraseText.Length >= 7 && phraseText.Substring(0, 8) == "It says:") modifier = "It says: [PHRASE]";
+        else if (phraseText.Length >= 5 && phraseText.Substring(0, 6) == "Quote:") modifier = "Quote: [PHRASE] End quote";
+        else if (phraseText.Substring(0, 1) == "“") modifier = "“[PHRASE]”";
+
+        addQuestions(module,
+            makeQuestion(Question.RegularCrazyTalkDigit, _RegularCrazyTalk, correctAnswers: new[] { displayDigit.ToString() }),
+            makeQuestion(Question.RegularCrazyTalkModifier, _RegularCrazyTalk, correctAnswers: new[] { modifier }));
     }
 
     private IEnumerable<object> ProcessRetirement(KMBombModule module)
