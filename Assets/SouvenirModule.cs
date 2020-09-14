@@ -311,6 +311,7 @@ public class SouvenirModule : MonoBehaviour
     const string _TapCode = "tapCode";
     const string _TashaSqueals = "tashaSqueals";
     const string _TenButtonColorCode = "TenButtonColorCode";
+    const string _Tenpins = "tenpins";
     const string _TextField = "TextField";
     const string _ThinkingWires = "thinkingWiresModule";
     const string _ThirdBase = "ThirdBase";
@@ -564,6 +565,7 @@ public class SouvenirModule : MonoBehaviour
             { _TapCode, ProcessTapCode },
             { _TashaSqueals, ProcessTashaSqueals },
             { _TenButtonColorCode, ProcessTenButtonColorCode },
+            { _Tenpins, ProcessTenpins },
             { _TextField, ProcessTextField },
             { _ThinkingWires, ProcessThinkingWires },
             { _ThirdBase, ProcessThirdBase },
@@ -7546,6 +7548,24 @@ public class SouvenirModule : MonoBehaviour
         var colorNames = new[] { "red", "green", "blue" };
         addQuestions(module, new[] { firstStageColors, secondStageColors }.SelectMany((colors, stage) => Enumerable.Range(0, 10)
             .Select(slot => makeQuestion(Question.TenButtonColorCodeInitialColors, _TenButtonColorCode, new[] { ordinal(slot + 1), ordinal(stage + 1) }, new[] { colorNames[colors[slot]] }))));
+    }
+
+    private IEnumerable<object> ProcessTenpins(KMBombModule module)
+    {
+        var comp = GetComponent(module, "tenpins");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Tenpins);
+
+        var splitNames = new string[] { "Goal Posts", "Cincinnati", "Woolworth Store", "Lily", "3-7 Split", "Cocked Hat", "4-7-10 Split", "Big Four", "Greek Church", "Big Five", "Big Six", "HOW" };
+        var splits = GetArrayField<int>(comp, "splits").Get();
+        var colorNames = new string[] { "red", "green", "blue" };
+        var qs = new List<QandA>();
+        for (int i = 0; i < 3; i++)
+            qs.Add(makeQuestion(Question.TenpinsSplits, _Tenpins, correctAnswers: new[] { splitNames[splits[i]] }, preferredWrongAnswers: splits.Where(x => x != splits[i]).Select(x => splitNames[x]).ToArray(), formatArgs: new[] { colorNames[i] }));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessTextField(KMBombModule module)
