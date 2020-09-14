@@ -943,6 +943,12 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9)]
         RedArrowsStartNumber,
 
+        [SouvenirQuestion("What was the displayed digit that corresponded to the solution phrase in {0}?", "Regular Crazy Talk", AnswerLayout.ThreeColumns6Answers)]
+        [AnswerGenerator.Integers(0, 9)]
+        RegularCrazyTalkDigit,
+        [SouvenirQuestion("What was the embellishment of the solution phrase in {0}?", "Regular Crazy Talk", AnswerLayout.OneColumn4Answers, "[PHRASE]", "It says: [PHRASE]", "Quote: [PHRASE] End quote", "“[PHRASE]”", "It says: “[PHRASE]”", "“It says: [PHRASE]”")]
+        RegularCrazyTalkModifier,
+
         [SouvenirQuestion("Which one of these houses was on offer, but not chosen by Bob in {0}?", "Retirement", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "Hotham Place", "Homestead", "Riverwell", "Lodge Park" })]
         RetirementHouses,
 

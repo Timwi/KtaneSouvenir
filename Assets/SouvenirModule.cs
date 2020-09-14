@@ -268,6 +268,7 @@ public class SouvenirModule : MonoBehaviour
     const string _RecoloredSwitches = "R4YRecoloredSwitches";
     const string _RedArrows = "redArrowsModule";
     const string _Retirement = "retirement";
+    const string _RegularCrazyTalk = "RegularCrazyTalkModule";
     const string _ReverseMorse = "reverseMorse";
     const string _RGBMaze = "rgbMaze";
     const string _Rhythms = "MusicRhythms";
@@ -522,6 +523,7 @@ public class SouvenirModule : MonoBehaviour
             { _RainbowArrows, ProcessRainbowArrows },
             { _RecoloredSwitches, ProcessRecoloredSwitches },
             { _RedArrows, ProcessRedArrows },
+            { _RegularCrazyTalk, ProcessRegularCrazyTalk },
             { _Retirement, ProcessRetirement },
             { _ReverseMorse, ProcessReverseMorse },
             { _RGBMaze, ProcessRGBMaze},
@@ -6424,6 +6426,35 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_RedArrows);
 
         addQuestion(module, Question.RedArrowsStartNumber, correctAnswers: new[] { GetIntField(comp, "start").Get(min: 0, max: 9).ToString() });
+    }
+
+    private IEnumerable<object> ProcessRegularCrazyTalk(KMBombModule module)
+    {
+        var comp = GetComponent(module, "RegularCrazyTalkModule");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_RegularCrazyTalk);
+
+        var phrases = GetField<IList>(comp, "_phraseActions").Get();
+        var selected = GetField<int>(comp, "_selectedPhraseIx").Get();
+
+        var selectedPhrase = phrases[selected];
+        var phraseText = GetField<string>(selectedPhrase, "Phrase", isPublic: true).Get();
+        var displayDigit = GetField<int>(selectedPhrase, "ExpectedDigit", isPublic: true).Get();
+
+        string modifier = "[PHRASE]";
+
+        if (phraseText.Length >= 9 && phraseText.Substring(0, 10) == "It says: “") modifier = "It says: “[PHRASE]”";
+        else if (phraseText.Length >= 8 && phraseText.Substring(0, 9) == "“It says:") modifier = "“It says: [PHRASE]”";
+        else if (phraseText.Length >= 7 && phraseText.Substring(0, 8) == "It says:") modifier = "It says: [PHRASE]";
+        else if (phraseText.Length >= 5 && phraseText.Substring(0, 6) == "Quote:") modifier = "Quote: [PHRASE] End quote";
+        else if (phraseText.Substring(0, 1) == "“") modifier = "“[PHRASE]”";
+
+        addQuestions(module,
+            makeQuestion(Question.RegularCrazyTalkDigit, _RegularCrazyTalk, correctAnswers: new[] { displayDigit.ToString() }),
+            makeQuestion(Question.RegularCrazyTalkModifier, _RegularCrazyTalk, correctAnswers: new[] { modifier }));
     }
 
     private IEnumerable<object> ProcessRetirement(KMBombModule module)
