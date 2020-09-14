@@ -659,6 +659,10 @@ namespace Souvenir
             ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         MoonLitUnlit,
 
+        [SouvenirQuestion("What was the flashing word in {0}?", "More Code", AnswerLayout.TwoColumns4Answers, "Allocate", "Bulwarks", "Compiler", "Disposal", "Encipher", "Formulae", "Gauntlet", "Hunkered", "Illusory", "Jousting", "Kinetics", "Linkwork", "Monolith", "Nanobots", "Octangle", "Postsync", "Quartics", "Revolved", "Stanzaic", "Tomahawk", "Ultrahot", "Vendetta", "Wafflers", "Yokozuna", "Zugzwang", "Allotype", "Bulkhead", "Computer", "Dispatch", "Encrypts", "Fortunes", "Gateways", "Huntress", "Illusion", "Junction", "Kilobyte", "Linkages", "Monogram", "Nanogram", "Octuples", "Positron", "Quintics", "Revealed", "Stoccata", "Tomogram", "Ultrared", "Venomous", "Weakened", "Xenolith", "Yeasayer", "Zymogram",
+            ExampleAnswers = new[] { "Allocate", "Bulwarks", "Compiler", "Disposal", "Encipher", "Formulae", "Gauntlet", "Hunkered", "Illusory", "Jousting", "Kinetics", "Linkwork" })]
+        MoreCodeWord,
+
         [SouvenirQuestion("What was the starting location in {0}?", "Morse-A-Maze", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Strings("A-F", "1-6")]
         MorseAMazeStartingCoordinate,
