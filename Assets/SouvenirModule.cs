@@ -6397,15 +6397,15 @@ public class SouvenirModule : MonoBehaviour
         var selected = GetField<int>(comp, "_selectedPhraseIx").Get();
 
         var selectedPhrase = phrases[selected];
-        var phraseText = GetField<string>(selectedPhrase, "Phrase", isPublic: true).Get();
+        var phraseText = GetField<string>(selectedPhrase, "Phrase", isPublic: true).Get(v => string.IsNullOrEmpty(v) ? "‘Phrase’ is empty" : null);
         var displayDigit = GetField<int>(selectedPhrase, "ExpectedDigit", isPublic: true).Get();
 
         string modifier = "[PHRASE]";
 
-        if (phraseText.Length >= 9 && phraseText.Substring(0, 10) == "It says: “") modifier = "It says: “[PHRASE]”";
-        else if (phraseText.Length >= 8 && phraseText.Substring(0, 9) == "“It says:") modifier = "“It says: [PHRASE]”";
-        else if (phraseText.Length >= 7 && phraseText.Substring(0, 8) == "It says:") modifier = "It says: [PHRASE]";
-        else if (phraseText.Length >= 5 && phraseText.Substring(0, 6) == "Quote:") modifier = "Quote: [PHRASE] End quote";
+        if (phraseText.Length >= 10 && phraseText.Substring(0, 10) == "It says: “") modifier = "It says: “[PHRASE]”";
+        else if (phraseText.Length >= 9 && phraseText.Substring(0, 9) == "“It says:") modifier = "“It says: [PHRASE]”";
+        else if (phraseText.Length >= 8 && phraseText.Substring(0, 8) == "It says:") modifier = "It says: [PHRASE]";
+        else if (phraseText.Length >= 6 && phraseText.Substring(0, 6) == "Quote:") modifier = "Quote: [PHRASE] End quote";
         else if (phraseText.Substring(0, 1) == "“") modifier = "“[PHRASE]”";
 
         addQuestions(module,
