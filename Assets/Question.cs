@@ -1289,7 +1289,6 @@ namespace Souvenir
         [SouvenirQuestion("What was the color of the {1} dial in {0}?", "Wire", AnswerLayout.ThreeColumns6Answers, "blue", "green", "grey", "orange", "purple", "red",
             ExampleExtraFormatArguments = new[] { "top", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         WireDialColors,
-
         [SouvenirQuestion("What was the displayed number in {0}?", "Wire", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "top", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         [AnswerGenerator.Integers(0, 9)]
