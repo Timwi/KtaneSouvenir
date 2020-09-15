@@ -1882,17 +1882,11 @@ public class SouvenirModule : MonoBehaviour
             if (newStage != curStage)
             {
                 if (letterDisplay.text.Length != 1 || letterDisplay.text[0] < 'A' || letterDisplay.text[0] > 'Z')
-                {
-                    Debug.LogFormat("<Souvenir #{0}> Abandoning Alphabetical Ruling because ‘LetterDisplay’ shows {1} (expected single letter A–Z).", _moduleId, letterDisplay.text);
-                    yield break;
-                }
+                    throw new AbandonModuleException("‘LetterDisplay’ shows {0} (expected single letter A–Z).", letterDisplay.text);
                 letters[newStage - 1] = letterDisplay.text[0];
                 int number;
                 if (!int.TryParse(numberDisplays[0].text, out number) || number < 1 || number > 9)
-                {
-                    Debug.LogFormat("<Souvenir #{0}> Abandoning Alphabetical Ruling because ‘NumberDisplay[0]’ shows {1} (expected integer 1–9).", _moduleId, numberDisplays[0].text);
-                    yield break;
-                }
+                    throw new AbandonModuleException("‘NumberDisplay[0]’ shows {0} (expected integer 1–9).", numberDisplays[0].text);
                 numbers[newStage - 1] = number;
                 curStage = newStage;
             }
@@ -1902,10 +1896,7 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_AlphabeticalRuling);
 
         if (letters.Any(l => l < 'A' || l > 'Z') || numbers.Any(n => n < 1 || n > 9))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Alphabetical Ruling because the captured letters/numbers are unexpected (letters: [{1}], numbers: [{2}]).", _moduleId, letters.JoinString(", "), numbers.JoinString(", "));
-            yield break;
-        }
+            throw new AbandonModuleException("The captured letters/numbers are unexpected (letters: [{0}], numbers: [{1}]).", letters.JoinString(", "), numbers.JoinString(", "));
 
         var qs = new List<QandA>();
         for (var ix = 0; ix < letters.Length; ix++)
@@ -1924,11 +1915,7 @@ public class SouvenirModule : MonoBehaviour
 
         var displayedCharacters = new[] { "displayTL", "displayML", "displayBL", "displayTR", "displayMR", "displayBR" }.Select(fieldName => GetField<TextMesh>(comp, fieldName, isPublic: true).Get().text.Trim()).ToArray();
         if (displayedCharacters.Any(ch => ch.Length != 1 || ((ch[0] < 'A' || ch[0] > 'V') && (ch[0] < '0' || ch[0] > '9'))))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Alpha-Bits because the displayed characters are {1} (expected six single-character strings 0–9/A–V each).",
-                _moduleId, displayedCharacters.Select(str => string.Format(@"""{0}""", str)).JoinString(", "));
-            yield break;
-        }
+            throw new AbandonModuleException("The displayed characters are {0} (expected six single-character strings 0–9/A–V each).", displayedCharacters.Select(str => string.Format(@"""{0}""", str)).JoinString(", "));
 
         while (!isSolved)
             yield return new WaitForSeconds(.1f);
@@ -2047,10 +2034,7 @@ public class SouvenirModule : MonoBehaviour
         var colorIndex = fldColorIndex.Get(expectedLength: 8);
 
         if (displayTexts[0].Any(str => string.IsNullOrEmpty(str)))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Bamboozled Again because 'displayText[0]' contains null or an empty string: [{1}]", _moduleId, displayTexts[0].Select(str => str ?? "<null>").JoinString(", "));
-            yield break;
-        }
+            throw new AbandonModuleException("'displayText[0]' contains null or an empty string: [{0}]", displayTexts[0].Select(str => str ?? "<null>").JoinString(", "));
 
         displayTexts[0] = displayTexts[0].Select(str => Regex.Replace(str, "#", " ")).ToArray();
 
@@ -2311,10 +2295,7 @@ public class SouvenirModule : MonoBehaviour
             selectables[i].OnInteract = prevInteracts[i];
 
         if (lastPress == null)
-        {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Blockbusters because no pressed letter was retrieved.", _moduleId);
-            yield break;
-        }
+            throw new AbandonModuleException("No pressed letter was retrieved.");
 
         addQuestion(module, Question.BlockbustersLastLetter, correctAnswers: new[] { lastPress }, preferredWrongAnswers: legalLetters.ToArray());
     }
@@ -2535,7 +2516,7 @@ public class SouvenirModule : MonoBehaviour
                 case 1: answer = "blue"; break;
                 case 2: answer = "yellow"; break;
                 case 3: answer = "white"; break;
-                default: Debug.LogFormat("<Souvenir #{0}> Abandoning The Button because IndicatorColor is out of range ({1}).", _moduleId, color); yield break;
+                default: throw new AbandonModuleException("IndicatorColor is out of range ({0}).", color);
             }
             addQuestion(module, Question.ButtonLightColor, correctAnswers: new[] { answer });
         }
@@ -2795,10 +2776,7 @@ public class SouvenirModule : MonoBehaviour
 
         var allWordsType = comp.GetType().Assembly.GetType("ColorBraille.WordsData");
         if (allWordsType == null)
-        {
-            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Color Braille because I cannot find the ColorBraille.WordsData type.", _moduleId);
-            yield break;
-        }
+            throw new AbandonModuleException("I cannot find the ColorBraille.WordsData type.");
         var allWords = GetStaticField<Dictionary<string, int[]>>(allWordsType, "Words", isPublic: true).Get().Keys.ToArray();
 
         var words = GetArrayField<string>(comp, "_words").Get(expectedLength: 3);
@@ -2893,16 +2871,10 @@ public class SouvenirModule : MonoBehaviour
             inputButtons[ix].OnInteract = origInteract[ix];
 
         if (isAbandoned)
-        {
-            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Color Decoding.", _moduleId);
-            yield break;
-        }
+            throw new AbandonModuleException("See error logged earlier.");
 
         if (Enumerable.Range(0, 3).Any(k => !patterns.ContainsKey(k) || !colors.ContainsKey(k)))
-        {
-            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Color Decoding because I have a discontinuous set of stages: {1}/{2}.", _moduleId, patterns.Keys.JoinString(", "), colors.Keys.JoinString(", "));
-            yield break;
-        }
+            throw new AbandonModuleException(@"I have a discontinuous set of stages: {0}/{1}.", patterns.Keys.JoinString(", "), colors.Keys.JoinString(", "));
 
         addQuestions(module, Enumerable.Range(0, 3).SelectMany(stage => Ut.NewArray(
              colors[stage].Length <= 3 ? makeQuestion(Question.ColorDecodingIndicatorColors, _ColorDecoding, new[] { "appeared", ordinal(stage + 1) }, colors[stage]) : null,
@@ -3275,10 +3247,7 @@ public class SouvenirModule : MonoBehaviour
 
         // Check the value of color1 because we might have reassigned it inside the button handler
         if (color1 < 0 || color1 > 4)
-        {
-            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Double Color because first stage color has unexpected value: {1} (expected 0 to 4).", _moduleId, color1);
-            yield break;
-        }
+            throw new AbandonModuleException(@"First stage color has unexpected value: {0} (expected 0 to 4).", color1);
 
         var color2 = fldColor.Get(min: 0, max: 4);
 
@@ -3300,10 +3269,7 @@ public class SouvenirModule : MonoBehaviour
 
         var submitIndex = GetField<Array>(comp, "_functions").Get().Cast<object>().IndexOf(f => f.ToString() == "Submit");
         if (submitIndex < 0 || submitIndex > 4)
-        {
-            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Double-Oh because submit button is at index {1} (expected 0–4).", _moduleId, submitIndex);
-            yield break;
-        }
+            throw new AbandonModuleException(@"Submit button is at index {0} (expected 0–4).", submitIndex);
 
         addQuestion(module, Question.DoubleOhSubmitButton, correctAnswers: new[] { "↕↔⇔⇕◆".Substring(submitIndex, 1) });
     }
@@ -3770,11 +3736,9 @@ public class SouvenirModule : MonoBehaviour
             if (streak == 6 && !animating && !activated)
             {
                 var numDisplay = fldNumDisplay.Get();
-                if (numDisplay == null)
-                    yield break;
                 numbers = numDisplay.GetComponent<TextMesh>().text;
                 if (numbers == null)
-                    yield break;
+                    throw new AbandonModuleException("numDisplay TextMesh text was null.");
                 activated = true;
             }
             if (streak == 0)
@@ -3799,8 +3763,6 @@ public class SouvenirModule : MonoBehaviour
         var fldSolved = GetField<bool>(comp, "_isSolved");
 
         var colors = GetAnswers(Question.GridLockStartingColor);
-        if (colors == null)
-            yield break;
 
         while (!_isActivated)
             yield return new WaitForSeconds(0.1f);
@@ -3884,8 +3846,6 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "HexamazeModule");
         var fldSolved = GetField<bool>(comp, "_isSolved");
-        if (comp == null | GetIntField(comp, "_pawnColor") == null || fldSolved == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -4071,10 +4031,7 @@ public class SouvenirModule : MonoBehaviour
 
         var moduleNamesType = comp.GetType().Assembly.GetType("IDList");
         if (moduleNamesType == null)
-        {
-            Debug.LogFormat(@"<Souvenir #{0}> Abandoning The Hyperlink because I cannot find the IDList type.", _moduleId);
-            yield break;
-        }
+            throw new AbandonModuleException("I cannot find the IDList type.");
         var moduleNames = GetStaticField<string[]>(moduleNamesType, "phrases", isPublic: true).Get(validator: ar => ar.Length % 2 != 0 ? "expected even number of items" : null);
         var hyperlink = GetField<string>(comp, "selectedString").Get(validator: str => Array.IndexOf(moduleNames, str) % 2 != 0 ? "‘selectedString’ is not in ‘IDList.phrases’" : null);
 
@@ -4950,10 +4907,7 @@ public class SouvenirModule : MonoBehaviour
 
         string stage1word, stage2word;
         if (!dictionary.TryGetValue("Stage1", out stage1word) || !dictionary.TryGetValue("Stage2", out stage2word) || stage1word == null || stage2word == null)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Modern Cipher because there is no word for {1}.", _moduleId, stage1word == null ? "stage 1" : "stage 2");
-            yield break;
-        }
+            throw new AbandonModuleException("There is no word for {0}.", stage1word == null ? "stage 1" : "stage 2");
 
         Debug.LogFormat("<Souvenir #{0}> Modern Cipher words: {1} {2}.", _moduleId, stage1word, stage2word);
 
@@ -6055,7 +6009,7 @@ public class SouvenirModule : MonoBehaviour
             case 1: case 7: keyColour = "ColourGreen"; break;
             case 5: case 8: keyColour = "ColourBlue"; break;
             case 2: case 6: keyColour = "ColourPurple"; break;
-            default: yield break;
+            default: throw new AbandonModuleException("Invalid keyNumber % 10.");
         }
 
         var colourMeshes = GetField<MeshRenderer[,]>(comp, "ColourMeshes").Get();
