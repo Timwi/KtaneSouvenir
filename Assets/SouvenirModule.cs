@@ -3380,10 +3380,12 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "encryptionBingoScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldBall = GetField<bool>(comp, "ballOut");
-
+        var stampedSquares = GetField<List<int>>(comp, "stampedSquares").Get();
         var encodingNames = GetArrayField<string>(comp, "encryptions").Get();
-        while (!fldBall.Get())
-            yield return new WaitForSeconds(.1f);
+
+        // When the first correct(!) square is pressed, Encryption Bingo adds an entry to stampedSquares but helpfully waits .25 sec before changing any variables, including encryptionIndex
+        while (!fldBall.Get() || stampedSquares.Count == 0)
+            yield return null;  // don’t wait .1 sec here because it’s important to not miss the moment
         var encoding = GetIntField(comp, "encryptionIndex").Get();
 
         while (!fldSolved.Get())
