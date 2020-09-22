@@ -135,6 +135,7 @@ public class SouvenirModule : MonoBehaviour
     const string _ChineseCounting = "chineseCounting";
     const string _ChordQualities = "ChordQualities";
     const string _Code = "theCodeModule";
+    const string _Codenames = "codenames";
     const string _Coffeebucks = "coffeebucks";
     const string _ColorBraille = "ColorBrailleModule";
     const string _ColorDecoding = "Color Decoding";
@@ -159,6 +160,7 @@ public class SouvenirModule : MonoBehaviour
     const string _EncryptedEquations = "EncryptedEquationsModule";
     const string _EncryptedHangman = "encryptedHangman";
     const string _EncryptedMorse = "EncryptedMorse";
+    const string _EncryptionBingo = "encryptionBingo";
     const string _EquationsX = "equationsXModule";
     const string _Etterna = "etterna";
     const string _FactoryMaze = "factoryMaze";
@@ -201,6 +203,8 @@ public class SouvenirModule : MonoBehaviour
     const string _LondonUnderground = "londonUnderground";
     const string _Mafia = "MafiaModule";
     const string _Mahjong = "MahjongModule";
+    const string _MandMs = "MandMs";
+    const string _MandNs = "MandNs";
     const string _MaritimeFlags = "MaritimeFlagsModule";
     const string _Maze = "Maze";
     const string _Maze3 = "maze3";
@@ -213,10 +217,12 @@ public class SouvenirModule : MonoBehaviour
     const string _Microcontroller = "Microcontroller";
     const string _Minesweeper = "MinesweeperModule";
     const string _ModernCipher = "modernCipher";
+    const string _ModuleListening = "moduleListening";
     const string _ModuleMaze = "ModuleMaze";
     const string _MonsplodeFight = "monsplodeFight";
     const string _MonsplodeTradingCards = "monsplodeCards";
     const string _Moon = "moon";
+    const string _MoreCode = "MoreCode";
     const string _MorseAMaze = "MorseAMaze";
     const string _MorseButtons = "morseButtons";
     const string _Morsematics = "MorseV2";
@@ -258,6 +264,7 @@ public class SouvenirModule : MonoBehaviour
     const string _PurpleArrows = "purpleArrowsModule";
     const string _Quintuples = "quintuples";
     const string _RailwayCargoLoading = "RailwayCargoLoading";
+    const string _RainbowArrows = "ksmRainbowArrows";
     const string _RecoloredSwitches = "R4YRecoloredSwitches";
     const string _RedArrows = "redArrowsModule";
     const string _Retirement = "retirement";
@@ -307,6 +314,7 @@ public class SouvenirModule : MonoBehaviour
     const string _TapCode = "tapCode";
     const string _TashaSqueals = "tashaSqueals";
     const string _TenButtonColorCode = "TenButtonColorCode";
+    const string _Tenpins = "tenpins";
     const string _TextField = "TextField";
     const string _ThinkingWires = "thinkingWiresModule";
     const string _ThirdBase = "ThirdBase";
@@ -384,6 +392,7 @@ public class SouvenirModule : MonoBehaviour
             { _ChineseCounting, ProcessChineseCounting },
             { _ChordQualities, ProcessChordQualities },
             { _Code, ProcessCode },
+            { _Codenames, ProcessCodenames },
             { _Coffeebucks, ProcessCoffeebucks },
             { _ColorBraille, ProcessColorBraille },
             { _ColorDecoding, ProcessColorDecoding },
@@ -408,6 +417,7 @@ public class SouvenirModule : MonoBehaviour
             { _EncryptedEquations, ProcessEncryptedEquations },
             { _EncryptedHangman, ProcessEncryptedHangman },
             { _EncryptedMorse, ProcessEncryptedMorse },
+            { _EncryptionBingo, ProcessEncryptionBingo },
             { _EquationsX, ProcessEquationsX },
             { _Etterna, ProcessEtterna },
             { _FactoryMaze, ProcessFactoryMaze },
@@ -450,6 +460,8 @@ public class SouvenirModule : MonoBehaviour
             { _LondonUnderground, ProcessLondonUnderground },
             { _Mafia, ProcessMafia },
             { _Mahjong, ProcessMahjong },
+            { _MandMs, ProcessMandMs },
+            { _MandNs, ProcessMandNs },
             { _MaritimeFlags, ProcessMaritimeFlags },
             { _Maze, ProcessMaze },
             { _Maze3, ProcessMaze3 },
@@ -462,10 +474,12 @@ public class SouvenirModule : MonoBehaviour
             { _Microcontroller, ProcessMicrocontroller },
             { _Minesweeper, ProcessMinesweeper },
             { _ModernCipher, ProcessModernCipher },
+            { _ModuleListening, ProcessModuleListening },
             { _ModuleMaze, ProcessModuleMaze },
             { _MonsplodeFight, ProcessMonsplodeFight },
             { _MonsplodeTradingCards, ProcessMonsplodeTradingCards },
             { _Moon, ProcessMoon },
+            { _MoreCode, ProcessMoreCode },
             { _MorseAMaze, ProcessMorseAMaze },
             { _MorseButtons, ProcessMorseButtons },
             { _Morsematics, ProcessMorsematics },
@@ -507,6 +521,7 @@ public class SouvenirModule : MonoBehaviour
             { _PurpleArrows, ProcessPurpleArrows },
             { _Quintuples, ProcessQuintuples },
             { _RailwayCargoLoading, ProcessRailwayCargoLoading },
+            { _RainbowArrows, ProcessRainbowArrows },
             { _RecoloredSwitches, ProcessRecoloredSwitches },
             { _RedArrows, ProcessRedArrows },
             { _RegularCrazyTalk, ProcessRegularCrazyTalk },
@@ -556,6 +571,7 @@ public class SouvenirModule : MonoBehaviour
             { _TapCode, ProcessTapCode },
             { _TashaSqueals, ProcessTashaSqueals },
             { _TenButtonColorCode, ProcessTenButtonColorCode },
+            { _Tenpins, ProcessTenpins },
             { _TextField, ProcessTextField },
             { _ThinkingWires, ProcessThinkingWires },
             { _ThirdBase, ProcessThirdBase },
@@ -752,13 +768,13 @@ public class SouvenirModule : MonoBehaviour
                         string type; string displayName;
                         switch (typeCode)
                         {
-                            case 3: type = "BigButton"; displayName = "The Button"; break;
-                            case 5: type = "Simon"; displayName = "Simon Says"; break;
-                            case 6: type = "WhosOnFirst"; displayName = "Who’s on First"; break;
-                            case 7: type = "Memory"; displayName = "Memory"; break;
-                            case 10: type = "WireSequence"; displayName = "Wire Sequence"; break;
-                            case 11: type = "Maze"; displayName = "Maze"; break;
-                            default: continue;  // Other components are not supported modules.
+                        case 3: type = "BigButton"; displayName = "The Button"; break;
+                        case 5: type = "Simon"; displayName = "Simon Says"; break;
+                        case 6: type = "WhosOnFirst"; displayName = "Who’s on First"; break;
+                        case 7: type = "Memory"; displayName = "Memory"; break;
+                        case 10: type = "WireSequence"; displayName = "Wire Sequence"; break;
+                        case 11: type = "Maze"; displayName = "Maze"; break;
+                        default: continue;  // Other components are not supported modules.
                         }
                         module = gameObject.AddComponent<KMBombModule>();
                         module.ModuleType = type;
@@ -834,42 +850,42 @@ public class SouvenirModule : MonoBehaviour
             {
                 switch (attr.Type)
                 {
-                    case AnswerType.Sprites:
-                        var answerSprites = attr.SpriteField == null ? ExampleSprites : (Sprite[]) typeof(SouvenirModule).GetField(attr.SpriteField, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleSprites;
-                        if (answerSprites != null)
-                            answerSprites.Shuffle();
-                        SetQuestion(new QandASprite(
-                            module: attr.ModuleNameWithThe,
-                            question: string.Format(attr.QuestionText, fmt),
-                            correct: 0,
-                            answers: answerSprites));
-                        break;
+                case AnswerType.Sprites:
+                var answerSprites = attr.SpriteField == null ? ExampleSprites : (Sprite[]) typeof(SouvenirModule).GetField(attr.SpriteField, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleSprites;
+                if (answerSprites != null)
+                    answerSprites.Shuffle();
+                SetQuestion(new QandASprite(
+                    module: attr.ModuleNameWithThe,
+                    question: string.Format(attr.QuestionText, fmt),
+                    correct: 0,
+                    answers: answerSprites));
+                break;
 
-                    default:
-                        var answers = new List<string>(attr.NumAnswers);
-                        if (attr.AllAnswers != null) answers.AddRange(attr.AllAnswers);
-                        else if (attr.ExampleAnswers != null) answers.AddRange(attr.ExampleAnswers);
-                        if (answers.Count <= attr.NumAnswers)
-                        {
-                            if (attr.AnswerGenerator != null)
-                                answers.AddRange(attr.AnswerGenerator.GetAnswers(this).Except(answers).Distinct().Take(attr.NumAnswers - answers.Count));
-                            answers.Shuffle();
-                        }
-                        else
-                        {
-                            answers.Shuffle();
-                            answers.RemoveRange(attr.NumAnswers, answers.Count - attr.NumAnswers);
-                        }
-                        SetQuestion(new QandAText(
-                            module: attr.ModuleNameWithThe,
-                            question: string.Format(attr.QuestionText, fmt),
-                            correct: 0,
-                            answers: answers.ToArray(),
-                            font: Fonts[attr.Type == AnswerType.DynamicFont ? 0 : (int) attr.Type],
-                            fontTexture: FontTextures[attr.Type == AnswerType.DynamicFont ? 0 : (int) attr.Type],
-                            fontMaterial: FontMaterial,
-                            layout: attr.Layout));
-                        break;
+                default:
+                var answers = new List<string>(attr.NumAnswers);
+                if (attr.AllAnswers != null) answers.AddRange(attr.AllAnswers);
+                else if (attr.ExampleAnswers != null) answers.AddRange(attr.ExampleAnswers);
+                if (answers.Count <= attr.NumAnswers)
+                {
+                    if (attr.AnswerGenerator != null)
+                        answers.AddRange(attr.AnswerGenerator.GetAnswers(this).Except(answers).Distinct().Take(attr.NumAnswers - answers.Count));
+                    answers.Shuffle();
+                }
+                else
+                {
+                    answers.Shuffle();
+                    answers.RemoveRange(attr.NumAnswers, answers.Count - attr.NumAnswers);
+                }
+                SetQuestion(new QandAText(
+                    module: attr.ModuleNameWithThe,
+                    question: string.Format(attr.QuestionText, fmt),
+                    correct: 0,
+                    answers: answers.ToArray(),
+                    font: Fonts[attr.Type == AnswerType.DynamicFont ? 0 : (int) attr.Type],
+                    fontTexture: FontTextures[attr.Type == AnswerType.DynamicFont ? 0 : (int) attr.Type],
+                    fontMaterial: FontMaterial,
+                    layout: attr.Layout));
+                break;
                 }
             }
             catch (FormatException e)
@@ -1541,17 +1557,17 @@ public class SouvenirModule : MonoBehaviour
 
         switch (number)
         {
-            case 1: return "first";
-            case 2: return "second";
-            case 3: return "third";
+        case 1: return "first";
+        case 2: return "second";
+        case 3: return "third";
         }
 
         switch ((number / 10) % 10 == 1 ? 0 : number % 10)
         {
-            case 1: return number + "st";
-            case 2: return number + "nd";
-            case 3: return number + "rd";
-            default: return number + "th";
+        case 1: return number + "st";
+        case 2: return number + "nd";
+        case 3: return number + "rd";
+        default: return number + "th";
         }
     }
     #endregion
@@ -1866,17 +1882,11 @@ public class SouvenirModule : MonoBehaviour
             if (newStage != curStage)
             {
                 if (letterDisplay.text.Length != 1 || letterDisplay.text[0] < 'A' || letterDisplay.text[0] > 'Z')
-                {
-                    Debug.LogFormat("<Souvenir #{0}> Abandoning Alphabetical Ruling because ‘LetterDisplay’ shows {1} (expected single letter A–Z).", _moduleId, letterDisplay.text);
-                    yield break;
-                }
+                    throw new AbandonModuleException("‘LetterDisplay’ shows {0} (expected single letter A–Z).", letterDisplay.text);
                 letters[newStage - 1] = letterDisplay.text[0];
                 int number;
                 if (!int.TryParse(numberDisplays[0].text, out number) || number < 1 || number > 9)
-                {
-                    Debug.LogFormat("<Souvenir #{0}> Abandoning Alphabetical Ruling because ‘NumberDisplay[0]’ shows {1} (expected integer 1–9).", _moduleId, numberDisplays[0].text);
-                    yield break;
-                }
+                    throw new AbandonModuleException("‘NumberDisplay[0]’ shows {0} (expected integer 1–9).", numberDisplays[0].text);
                 numbers[newStage - 1] = number;
                 curStage = newStage;
             }
@@ -1886,10 +1896,7 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_AlphabeticalRuling);
 
         if (letters.Any(l => l < 'A' || l > 'Z') || numbers.Any(n => n < 1 || n > 9))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Alphabetical Ruling because the captured letters/numbers are unexpected (letters: [{1}], numbers: [{2}]).", _moduleId, letters.JoinString(", "), numbers.JoinString(", "));
-            yield break;
-        }
+            throw new AbandonModuleException("The captured letters/numbers are unexpected (letters: [{0}], numbers: [{1}]).", letters.JoinString(", "), numbers.JoinString(", "));
 
         var qs = new List<QandA>();
         for (var ix = 0; ix < letters.Length; ix++)
@@ -1908,11 +1915,7 @@ public class SouvenirModule : MonoBehaviour
 
         var displayedCharacters = new[] { "displayTL", "displayML", "displayBL", "displayTR", "displayMR", "displayBR" }.Select(fieldName => GetField<TextMesh>(comp, fieldName, isPublic: true).Get().text.Trim()).ToArray();
         if (displayedCharacters.Any(ch => ch.Length != 1 || ((ch[0] < 'A' || ch[0] > 'V') && (ch[0] < '0' || ch[0] > '9'))))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Alpha-Bits because the displayed characters are {1} (expected six single-character strings 0–9/A–V each).",
-                _moduleId, displayedCharacters.Select(str => string.Format(@"""{0}""", str)).JoinString(", "));
-            yield break;
-        }
+            throw new AbandonModuleException("The displayed characters are {0} (expected six single-character strings 0–9/A–V each).", displayedCharacters.Select(str => string.Format(@"""{0}""", str)).JoinString(", "));
 
         while (!isSolved)
             yield return new WaitForSeconds(.1f);
@@ -2031,10 +2034,7 @@ public class SouvenirModule : MonoBehaviour
         var colorIndex = fldColorIndex.Get(expectedLength: 8);
 
         if (displayTexts[0].Any(str => string.IsNullOrEmpty(str)))
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Bamboozled Again because 'displayText[0]' contains null or an empty string: [{1}]", _moduleId, displayTexts[0].Select(str => str ?? "<null>").JoinString(", "));
-            yield break;
-        }
+            throw new AbandonModuleException("'displayText[0]' contains null or an empty string: [{0}]", displayTexts[0].Select(str => str ?? "<null>").JoinString(", "));
 
         displayTexts[0] = displayTexts[0].Select(str => Regex.Replace(str, "#", " ")).ToArray();
 
@@ -2295,10 +2295,7 @@ public class SouvenirModule : MonoBehaviour
             selectables[i].OnInteract = prevInteracts[i];
 
         if (lastPress == null)
-        {
-            Debug.LogFormat("[Souvenir #{0}] Abandoning Blockbusters because no pressed letter was retrieved.", _moduleId);
-            yield break;
-        }
+            throw new AbandonModuleException("No pressed letter was retrieved.");
 
         addQuestion(module, Question.BlockbustersLastLetter, correctAnswers: new[] { lastPress }, preferredWrongAnswers: legalLetters.ToArray());
     }
@@ -2515,11 +2512,11 @@ public class SouvenirModule : MonoBehaviour
             string answer;
             switch (color)
             {
-                case 0: answer = "red"; break;
-                case 1: answer = "blue"; break;
-                case 2: answer = "yellow"; break;
-                case 3: answer = "white"; break;
-                default: Debug.LogFormat("<Souvenir #{0}> Abandoning The Button because IndicatorColor is out of range ({1}).", _moduleId, color); yield break;
+            case 0: answer = "red"; break;
+            case 1: answer = "blue"; break;
+            case 2: answer = "yellow"; break;
+            case 3: answer = "white"; break;
+            default: throw new AbandonModuleException("IndicatorColor is out of range ({0}).", color);
             }
             addQuestion(module, Question.ButtonLightColor, correctAnswers: new[] { answer });
         }
@@ -2720,6 +2717,21 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, makeQuestion(Question.CodeDisplayNumber, _Code, correctAnswers: new[] { code.ToString() }));
     }
 
+    private IEnumerable<object> ProcessCodenames(KMBombModule module)
+    {
+        var comp = GetComponent(module, "codenames");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Codenames);
+
+        var words = GetArrayField<string>(comp, "grid").Get(expectedLength: 25);
+        var solution = GetArrayField<bool>(comp, "solution").Get(expectedLength: 25);
+        var solutionWords = words.Where((w, i) => solution[i]).ToArray();
+        addQuestion(module, Question.CodenamesAnswers, correctAnswers: solutionWords, preferredWrongAnswers: words.Where(x => !solutionWords.Contains(x)).ToArray());
+    }
+
     private IEnumerable<object> ProcessCoffeebucks(KMBombModule module)
     {
         var comp = GetComponent(module, "coffeebucksScript");
@@ -2764,10 +2776,7 @@ public class SouvenirModule : MonoBehaviour
 
         var allWordsType = comp.GetType().Assembly.GetType("ColorBraille.WordsData");
         if (allWordsType == null)
-        {
-            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Color Braille because I cannot find the ColorBraille.WordsData type.", _moduleId);
-            yield break;
-        }
+            throw new AbandonModuleException("I cannot find the ColorBraille.WordsData type.");
         var allWords = GetStaticField<Dictionary<string, int[]>>(allWordsType, "Words", isPublic: true).Get().Keys.ToArray();
 
         var words = GetArrayField<string>(comp, "_words").Get(expectedLength: 3);
@@ -2862,16 +2871,10 @@ public class SouvenirModule : MonoBehaviour
             inputButtons[ix].OnInteract = origInteract[ix];
 
         if (isAbandoned)
-        {
-            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Color Decoding.", _moduleId);
-            yield break;
-        }
+            throw new AbandonModuleException("See error logged earlier.");
 
         if (Enumerable.Range(0, 3).Any(k => !patterns.ContainsKey(k) || !colors.ContainsKey(k)))
-        {
-            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Color Decoding because I have a discontinuous set of stages: {1}/{2}.", _moduleId, patterns.Keys.JoinString(", "), colors.Keys.JoinString(", "));
-            yield break;
-        }
+            throw new AbandonModuleException(@"I have a discontinuous set of stages: {0}/{1}.", patterns.Keys.JoinString(", "), colors.Keys.JoinString(", "));
 
         addQuestions(module, Enumerable.Range(0, 3).SelectMany(stage => Ut.NewArray(
              colors[stage].Length <= 3 ? makeQuestion(Question.ColorDecodingIndicatorColors, _ColorDecoding, new[] { "appeared", ordinal(stage + 1) }, colors[stage]) : null,
@@ -3244,10 +3247,7 @@ public class SouvenirModule : MonoBehaviour
 
         // Check the value of color1 because we might have reassigned it inside the button handler
         if (color1 < 0 || color1 > 4)
-        {
-            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Double Color because first stage color has unexpected value: {1} (expected 0 to 4).", _moduleId, color1);
-            yield break;
-        }
+            throw new AbandonModuleException(@"First stage color has unexpected value: {0} (expected 0 to 4).", color1);
 
         var color2 = fldColor.Get(min: 0, max: 4);
 
@@ -3269,10 +3269,7 @@ public class SouvenirModule : MonoBehaviour
 
         var submitIndex = GetField<Array>(comp, "_functions").Get().Cast<object>().IndexOf(f => f.ToString() == "Submit");
         if (submitIndex < 0 || submitIndex > 4)
-        {
-            Debug.LogFormat(@"<Souvenir #{0}> Abandoning Double-Oh because submit button is at index {1} (expected 0–4).", _moduleId, submitIndex);
-            yield break;
-        }
+            throw new AbandonModuleException(@"Submit button is at index {0} (expected 0–4).", submitIndex);
 
         addQuestion(module, Question.DoubleOhSubmitButton, correctAnswers: new[] { "↕↔⇔⇕◆".Substring(submitIndex, 1) });
     }
@@ -3378,6 +3375,26 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.EncryptedMorseCallResponse, _EncryptedMorse, new[] { "sent response" }, new[] { formatResponses[index] }, formatResponses));
     }
 
+    private IEnumerable<object> ProcessEncryptionBingo(KMBombModule module)
+    {
+        var comp = GetComponent(module, "encryptionBingoScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldBall = GetField<bool>(comp, "ballOut");
+        var stampedSquares = GetField<List<int>>(comp, "stampedSquares").Get();
+        var encodingNames = GetArrayField<string>(comp, "encryptions").Get();
+
+        // When the first correct(!) square is pressed, Encryption Bingo adds an entry to stampedSquares but helpfully waits .25 sec before changing any variables, including encryptionIndex
+        while (!fldBall.Get() || stampedSquares.Count == 0)
+            yield return null;  // don’t wait .1 sec here because it’s important to not miss the moment
+        var encoding = GetIntField(comp, "encryptionIndex").Get();
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_EncryptionBingo);
+
+        addQuestion(module, Question.EncryptionBingoEncoding, correctAnswers: new[] { encodingNames[encoding] }, preferredWrongAnswers: encodingNames);
+    }
+
     private IEnumerable<object> ProcessEquationsX(KMBombModule module)
     {
         var comp = GetComponent(module, "EquationsScript");
@@ -3395,24 +3412,24 @@ public class SouvenirModule : MonoBehaviour
         // Equations X uses symbols that don’t translate well to Souvenir. This switch statement is used to correctly translate the answer.
         switch (symbol)
         {
-            case "c":
-                symbol = "χ";
-                break;
-            case "R":
-                symbol = "P";
-                break;
-            case "w":
-                symbol = "ω";
-                break;
-            case "t":
-                symbol = "τ";
-                break;
-            case "m":
-                symbol = "μ";
-                break;
-            case "a":
-                symbol = "α";
-                break;
+        case "c":
+        symbol = "χ";
+        break;
+        case "R":
+        symbol = "P";
+        break;
+        case "w":
+        symbol = "ω";
+        break;
+        case "t":
+        symbol = "τ";
+        break;
+        case "m":
+        symbol = "μ";
+        break;
+        case "a":
+        symbol = "α";
+        break;
         }
 
         while (!fldSolved.Get())
@@ -3721,11 +3738,9 @@ public class SouvenirModule : MonoBehaviour
             if (streak == 6 && !animating && !activated)
             {
                 var numDisplay = fldNumDisplay.Get();
-                if (numDisplay == null)
-                    yield break;
                 numbers = numDisplay.GetComponent<TextMesh>().text;
                 if (numbers == null)
-                    yield break;
+                    throw new AbandonModuleException("numDisplay TextMesh text was null.");
                 activated = true;
             }
             if (streak == 0)
@@ -3750,8 +3765,6 @@ public class SouvenirModule : MonoBehaviour
         var fldSolved = GetField<bool>(comp, "_isSolved");
 
         var colors = GetAnswers(Question.GridLockStartingColor);
-        if (colors == null)
-            yield break;
 
         while (!_isActivated)
             yield return new WaitForSeconds(0.1f);
@@ -3835,8 +3848,6 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "HexamazeModule");
         var fldSolved = GetField<bool>(comp, "_isSolved");
-        if (comp == null | GetIntField(comp, "_pawnColor") == null || fldSolved == null)
-            yield break;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -4020,43 +4031,11 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Hyperlink);
 
-        var moduleNames = new Dictionary<string, string>
-        {
-            // Sorry if I made a mess here
-            { "yK-2RwenHyg", "3D Maze" }, { "3lrvgMc7DBU", "Adjacent Letters" }, { "mXXJXNloTUU", "Adventure Game" }, { "Jhr4S7Kihsw", "Alphabet" },
-            { "1OU2zBusTc4", "Anagrams" }, { "7cXvqgU7S30", "Answering Questions" }, { "ZJ3SuU4CLxI", "Astrology" }, { "-AuTWClc0ps", "Backgrounds" },
-            { "NCfhGSThp34", "Battleship" }, { "I9YpqNbE04o", "Big Circle" }, { "i2GX_yllT2Y", "Bitmaps" }, { "TMoFq0D1Jtc", "Blind Alley" },
-            { "4MoIHkNqkKU", "Blind Maze" }, { "Bq1B82pitLg", "Braille" }, { "OJsfwTb6XB8", "Broken Buttons" }, { "mIYYazRkppQ", "Burglar Alarm" },
-            { "AAwWgzyEcEY", "Button Sequence" }, { "Q4BoxQkR5AU", "Caesar Cipher" }, { "FJv-xV4eiB4", "Capacitor Discharge" }, { "J95TbfQymxw", "Cheap Checkout" },
-            { "j7ij3a6Bckc", "Chess" }, { "jbRg53U7mYU", "Chord Qualities" }, { "w1RMQXnpZFQ", "Color Flash" }, { "rSsPgkwyg_8", "Colored Squares" },
-            { "6NPhJnUGbcI", "Colored Switches" }, { "KrAoelzn9Rw", "Combination Lock" }, { "b0i84rMMYPA", "Complicated Buttons"},
-            { "KirbywLSysw", "Complicated Wires" }, { "pveM77kyHhI", "Connection Check" }, { "NUAIL5KmIjM", "Cooking" }, { "A8trsxRrlGQ", "Coordinates"},
-            { "_KqeKlop-yI", "Crazy Talk" }, { "Ffu5F3R_64s", "Creation" }, { "l6qyz5IlONY", "Cryptography" }, { "0SB5lP8Al-k", "Double-Oh"},
-            { "A3Jhga1sZHE", "Emoji Math" }, { "qhu4xOxPqTw", "English Test" }, { "f7QZgLYrqeU", "European Travel" }, { "e17aNUgJXks", "Faulty Backgrounds"},
-            { "GHzOOs8nwao", "Filibuster" }, { "qkZaHNiVLEM", "Follow The Leader" }, { "4UHeMpXnW9k", "Foreign Exchange Rates" }, { "w7eDs_IBLdY", "Forget Me Not"},
-            { "QnSE5V9mLw0", "Friendship" }, { "78xZYSxRZWA", "Game Of Life Cruel" }, { "uPcTIV_MSQk", "Game Of Life Simple" }, { "fNDZo8-FOs0", "Hexamaze"},
-            { "bz7MDHiWggM", "HTTP Response" }, { "sl0GFlbRhNA", "Hunting" }, { "R9zIPRwfTjw", "Ice Cream" }, { "iFEFBxTiV7g", "Keypad" }, { "1947_K2AkQU", "Knob"},
-            { "HU30V1yHdIY", "Laundry" }, { "EQ6TU53wgts", "Letter Keys" }, { "wAuv2CuUP6Q", "Light Cycle" }, { "72ruZA1wDBw", "Lights Out"},
-            { "Nd_aTIEaby4", "Listening" }, { "d7QaktxKVUQ", "Logic" }, { "iFAQUEjPS-k", "Math" }, { "xvoRyekWpK8", "Maze" }, { "PCUxXuW9Opk", "Memory"},
-            { "W1aZAIaM0t0", "Microcontroller" }, { "wicpqX_Krnc", "Module Against Humanity" }, { "6EU46vycYGk", "Monsplode Trading Cards"},
-            { "wAOF8whYH5I", "Monsplode, Fight!" }, { "EiTW9_xQlSw", "Morse Code" }, { "RYIVFIoTyMc", "Morsematics" }, { "5IoMa4zJiK4", "Mortal Kombat"},
-            { "gchTqBMFzUc", "Motion Sense" }, { "zOMum_E9SGA", "Mouse In The Maze" }, { "O0lk5-R2LtM", "Murder" }, { "hIDYMNgdMwE", "Mystic Square"},
-            { "X49hRnXG_1w", "Neutralization" }, { "WeXZ4WOQQEM", "Number Pad" }, { "F-XI2PkX6c0", "Orientation Cube" }, { "D_1uqiSsPZA", "Password"},
-            { "G0CSfXeXn3M", "Perspective Pegs" }, { "fPdW5IoioAE", "Piano Keys" }, { "3S8czpKKjhI", "Plumbing" }, { "VhWXl5U3BGQ", "Probing"},
-            { "Rsess4phjq0", "Resistors" }, { "p9JuSc9DxVc", "Rock-Paper-Scissors-Lizard-Spock" }, { "T8WoIt8idzo", "Rotary Phone"},
-            { "GaHcyRsMiOU", "Round Keypad" }, { "sW21j4GjPPI", "Safety Safe" }, { "ywC_66oZjq0", "Sea Shells" }, { "lQbHkyHsnuA", "Semaphore"},
-            { "cTMRqTUh9lE", "Shape Shift" }, { "sEU5-gmMSUk", "Silly Slots" }, { "S-WQzD3lwLc", "Simon Says" }, { "immQAJbBEwA", "Simon Screams"},
-            { "g_YbHXNFGlk", "Simon States" }, { "7sWLtJVIjDk", "Skewed Slots" }, { "5JyzJedWD1E", "Souvenir" }, { "7m-kwhUlMGY", "Square Button"},
-            { "Mg-6WN4wFrI", "Switches" }, { "N-wQknYVJrE", "Symbolic Coordinates" }, { "ZFBf8QYEBa4", "Symbolic Password" }, { "7sgIf3LkXzg", "Tetris"},
-            { "fRHEKFQcRqE", "Text Field" }, { "rxYNbApHeBE", "The Bulb" }, { "MZ_9fyNFkSY", "The Button" }, { "enHhcG0CalY", "The Clock"},
-            { "78UHE6IlE4Q", "The Gamepad" }, { "UY69PZNcO7Y", "The iPhone" }, { "bnMuRYRucQU", "The Moon" }, { "42A8kJmydrI", "The Stopwatch"},
-            { "osXQYG8xv3w", "The Sun" }, { "Pi-8AnblXwc", "The Swan" }, { "5Tqm2UKGRDo", "Third Base" }, { "5bvvRHCiQtM", "Tic-Tac-Toe"},
-            { "daftUGvdqnY", "Turn The Key" }, { "7VyuGADPlmE", "Turn The Keys" }, { "k6-vQpPZ25o", "Two Bits" }, { "_4uJAjXmnbg", "Venting Gas"},
-            { "nCyAsnjScCc", "Who's On First" }, { "WpTXswUJh_I", "Who's That Monsplode" }, { "yqjcnLZabeI", "Wire Placement" }, { "vCsnOyF4Vvk", "Wire Sequence"},
-            { "tt5T7qYqQwE", "Wires" }, { "X7gSRu7xQ2c", "Word Scramble" }, { "8qcovi-pR9k", "Word Search" }, { "P4Lrnmdxr5A", "Zoo"}
-        };
-
-        var hyperlink = GetField<string>(comp, "selectedString").Get();
+        var moduleNamesType = comp.GetType().Assembly.GetType("IDList");
+        if (moduleNamesType == null)
+            throw new AbandonModuleException("I cannot find the IDList type.");
+        var moduleNames = GetStaticField<string[]>(moduleNamesType, "phrases", isPublic: true).Get(validator: ar => ar.Length % 2 != 0 ? "expected even number of items" : null);
+        var hyperlink = GetField<string>(comp, "selectedString").Get(validator: str => Array.IndexOf(moduleNames, str) % 2 != 0 ? "‘selectedString’ is not in ‘IDList.phrases’" : null);
 
         addQuestions(module,
             makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "first" }, new[] { hyperlink[0].ToString() }),
@@ -4070,7 +4049,7 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "9th" }, new[] { hyperlink[8].ToString() }),
             makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "10th" }, new[] { hyperlink[9].ToString() }),
             makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "11th" }, new[] { hyperlink[10].ToString() }),
-            makeQuestion(Question.HyperlinkAnswer, _Hyperlink, correctAnswers: new[] { moduleNames[hyperlink] }));
+            makeQuestion(Question.HyperlinkAnswer, _Hyperlink, correctAnswers: new[] { moduleNames[Array.IndexOf(moduleNames, hyperlink) + 1] }));
     }
 
     private IEnumerable<object> ProcessIceCream(KMBombModule module)
@@ -4667,6 +4646,47 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.MahjongMatches, _Mahjong, new[] { "second" }, correctAnswers: matchedTileSprites.Skip(2).Take(2).ToArray(), preferredWrongAnswers: tileSprites));
     }
 
+    private IEnumerable<object> ProcessMandMs(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MandMs");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_MandMs);
+
+        var colorNames = new string[] { "red", "green", "orange", "blue", "yellow", "brown" };
+        var colors = GetArrayField<int>(comp, "buttonColors").Get();
+        var labels = GetArrayField<string>(comp, "labels").Get();
+        var qs = new List<QandA>();
+        for (int i = 0; i < 5; i++)
+        {
+            qs.Add(makeQuestion(Question.MandMsColors, _MandMs, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorNames[colors[i]] }));
+            qs.Add(makeQuestion(Question.MandMsLabels, _MandMs, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { labels[i] }, preferredWrongAnswers: labels));
+        }
+        addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessMandNs(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MandNs");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_MandNs);
+
+        var colorNames = new string[] { "red", "green", "orange", "blue", "yellow", "brown" };
+        var colors = GetArrayField<int>(comp, "buttonColors").Get();
+        var labels = GetArrayField<string>(comp, "convertedValues").Get();
+        var solution = GetIntField(comp, "solution").Get();
+        var qs = new List<QandA>();
+        for (int i = 0; i < 5; i++)
+            qs.Add(makeQuestion(Question.MandNsColors, _MandNs, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorNames[colors[i]] }));
+        qs.Add(makeQuestion(Question.MandNsLabel, _MandNs, correctAnswers: new[] { labels[solution] }, preferredWrongAnswers: labels));
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessMaritimeFlags(KMBombModule module)
     {
         var comp = GetComponent(module, "MaritimeFlagsModule");
@@ -4889,10 +4909,7 @@ public class SouvenirModule : MonoBehaviour
 
         string stage1word, stage2word;
         if (!dictionary.TryGetValue("Stage1", out stage1word) || !dictionary.TryGetValue("Stage2", out stage2word) || stage1word == null || stage2word == null)
-        {
-            Debug.LogFormat("<Souvenir #{0}> Abandoning Modern Cipher because there is no word for {1}.", _moduleId, stage1word == null ? "stage 1" : "stage 2");
-            yield break;
-        }
+            throw new AbandonModuleException("There is no word for {0}.", stage1word == null ? "stage 1" : "stage 2");
 
         Debug.LogFormat("<Souvenir #{0}> Modern Cipher words: {1} {2}.", _moduleId, stage1word, stage2word);
 
@@ -4903,6 +4920,25 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.ModernCipherWord, _ModernCipher, new[] { "first" }, new[] { stage1word }, new[] { stage2word }),
             makeQuestion(Question.ModernCipherWord, _ModernCipher, new[] { "second" }, new[] { stage2word }, new[] { stage1word }));
+    }
+
+    private IEnumerable<object> ProcessModuleListening(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ModuleListening");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ModuleListening);
+
+        var moduleNames = GetArrayField<string>(comp, "moduleNames").Get();
+        var indices = GetArrayField<int>(comp, "moduleIndex").Get(validator: ar => ar.Length != 4 ? "expected length 4" : ar.Any(v => v < 0 || v >= moduleNames.Length) ? string.Format("out of range for moduleNames (0–{0})", moduleNames.Length - 1) : null);
+        var colorNames = GetArrayField<string>(comp, "buttonColors").Get(expectedLength: 4);
+        var colorOrder = GetArrayField<int>(comp, "btnColors").Get(validator: ar => ar.Length != 4 ? "expected length 4" : ar.Any(v => v < 0 || v >= colorNames.Length) ? string.Format("out of range for colorNames (0–{0})", colorNames.Length - 1) : null);
+        var qs = new List<QandA>();
+        for (int i = 0; i < 4; i++)
+            qs.Add(makeQuestion(Question.ModuleListeningSounds, _ModuleListening, formatArgs: new[] { colorNames[colorOrder[i]] }, correctAnswers: new[] { moduleNames[indices[i]] }, preferredWrongAnswers: moduleNames));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessModuleMaze(KMBombModule module)
@@ -5091,6 +5127,20 @@ public class SouvenirModule : MonoBehaviour
         var qNames = new[] { "first initially lit", "second initially lit", "third initially lit", "fourth initially lit", "first initially unlit", "second initially unlit", "third initially unlit", "fourth initially unlit" };
         var aNames = new[] { "south", "south-west", "west", "north-west", "north", "north-east", "east", "south-east" };
         addQuestions(module, Enumerable.Range(0, 8).Select(i => makeQuestion(Question.MoonLitUnlit, _Moon, new[] { qNames[i] }, new[] { aNames[(i + lightIndex) % 8] })));
+    }
+
+    private IEnumerable<object> ProcessMoreCode(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MoreCode");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_MoreCode);
+
+        var word = GetField<string>(comp, Encoding.UTF8.GetString(Convert.FromBase64String("RnVja0FpZHM="))).Get();     // Avoid having objectionable field names in this source file
+        word = word.Substring(0, 1) + word.Substring(1).ToLowerInvariant();
+        addQuestion(module, Question.MoreCodeWord, correctAnswers: new[] { word });
     }
 
     private IEnumerable<object> ProcessMorseAMaze(KMBombModule module)
@@ -5956,12 +6006,12 @@ public class SouvenirModule : MonoBehaviour
         var colorNames = new[] { "red", "yellow", "green", "blue", "purple" };
         switch (keyNumber % 10)
         {
-            case 0: case 3: keyColour = "ColourRed"; break;
-            case 4: case 9: keyColour = "ColourYellow"; break;
-            case 1: case 7: keyColour = "ColourGreen"; break;
-            case 5: case 8: keyColour = "ColourBlue"; break;
-            case 2: case 6: keyColour = "ColourPurple"; break;
-            default: yield break;
+        case 0: case 3: keyColour = "ColourRed"; break;
+        case 4: case 9: keyColour = "ColourYellow"; break;
+        case 1: case 7: keyColour = "ColourGreen"; break;
+        case 5: case 8: keyColour = "ColourBlue"; break;
+        case 2: case 6: keyColour = "ColourPurple"; break;
+        default: throw new AbandonModuleException("Invalid keyNumber % 10.");
         }
 
         var colourMeshes = GetField<MeshRenderer[,]>(comp, "ColourMeshes").Get();
@@ -6207,68 +6257,68 @@ public class SouvenirModule : MonoBehaviour
             string ruleName;
             switch (ruleResourceName)
             {
-                case "Sulfuric Acid":
-                case "Nitric Acid":
-                    ruleName = "Over 700 industrial gas";
-                    break;
-                case "Automobiles":
-                    ruleName = "Over 5 automobiles";
-                    break;
-                case "Farming Equipment":
-                case "Military Hardware":
-                case "Wings":
-                    ruleName = "Over 7 large objects";
-                    break;
-                case "Grain":
-                case "Sand":
-                case "Clay":
-                case "Cement":
-                case "Iron Ore":
-                case "Gold Ore":
-                    ruleName = "Over 500 loose bulk (excl. coal)";
-                    break;
-                case "Coal":
-                    ruleName = "Over 100 coal";
-                    break;
-                case "Meat":
-                case "Vegetables":
-                case "Fruit":
-                    ruleName = "Over 150 food";
-                    break;
-                case "Helium":
-                case "Argon":
-                case "Nitrogen":
-                case "Acetylene":
-                    ruleName = "Over 700 industrial gas";
-                    break;
-                case "Kerosene":
-                case "Gasoline":
-                case "Diesel":
-                    ruleName = "Over 100 liquid fuel";
-                    break;
-                case "Milk":
-                case "Water":
-                case "Resin":
-                    ruleName = "Over 600 milk/water/resin";
-                    break;
-                case "Livestock":
-                    ruleName = "Over 30 livestock";
-                    break;
-                case "Mail":
-                    ruleName = "Over 400 mail";
-                    break;
-                case "Crude Oil":
-                    ruleName = "Over 250 crude oil";
-                    break;
-                case "Sheet Metal":
-                    ruleName = "Over 100 sheet metal";
-                    break;
-                case "Lumber":
-                case "Logs":
-                    ruleName = "Over 150 lumber/75 logs";
-                    break;
-                default:
-                    throw new AbandonModuleException("There was an invalid resource found for one of the freight table rules: {0}", ruleResourceName);
+            case "Sulfuric Acid":
+            case "Nitric Acid":
+            ruleName = "Over 700 industrial gas";
+            break;
+            case "Automobiles":
+            ruleName = "Over 5 automobiles";
+            break;
+            case "Farming Equipment":
+            case "Military Hardware":
+            case "Wings":
+            ruleName = "Over 7 large objects";
+            break;
+            case "Grain":
+            case "Sand":
+            case "Clay":
+            case "Cement":
+            case "Iron Ore":
+            case "Gold Ore":
+            ruleName = "Over 500 loose bulk (excl. coal)";
+            break;
+            case "Coal":
+            ruleName = "Over 100 coal";
+            break;
+            case "Meat":
+            case "Vegetables":
+            case "Fruit":
+            ruleName = "Over 150 food";
+            break;
+            case "Helium":
+            case "Argon":
+            case "Nitrogen":
+            case "Acetylene":
+            ruleName = "Over 700 industrial gas";
+            break;
+            case "Kerosene":
+            case "Gasoline":
+            case "Diesel":
+            ruleName = "Over 100 liquid fuel";
+            break;
+            case "Milk":
+            case "Water":
+            case "Resin":
+            ruleName = "Over 600 milk/water/resin";
+            break;
+            case "Livestock":
+            ruleName = "Over 30 livestock";
+            break;
+            case "Mail":
+            ruleName = "Over 400 mail";
+            break;
+            case "Crude Oil":
+            ruleName = "Over 250 crude oil";
+            break;
+            case "Sheet Metal":
+            ruleName = "Over 100 sheet metal";
+            break;
+            case "Lumber":
+            case "Logs":
+            ruleName = "Over 150 lumber/75 logs";
+            break;
+            default:
+            throw new AbandonModuleException("There was an invalid resource found for one of the freight table rules: {0}", ruleResourceName);
             }
 
             if (metAtStage < 15)
@@ -6286,6 +6336,18 @@ public class SouvenirModule : MonoBehaviour
             qs.Add(makeQuestion(Question.RailwayCargoLoadingFreightTableRules, _RailwayCargoLoading, formatArgs: new[] { "wasn’t met" }, correctAnswers: unmetRules.ToArray(), preferredWrongAnswers: metRules.ToArray()));
 
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessRainbowArrows(KMBombModule module)
+    {
+        var comp = GetComponent(module, "RainbowArrows");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_RainbowArrows);
+
+        addQuestion(module, Question.RainbowArrowsNumber, correctAnswers: new[] { GetIntField(comp, "displayedDigits").Get().ToString() });
     }
 
     private IEnumerable<object> ProcessRecoloredSwitches(KMBombModule module)
@@ -6337,15 +6399,15 @@ public class SouvenirModule : MonoBehaviour
         var selected = GetField<int>(comp, "_selectedPhraseIx").Get();
 
         var selectedPhrase = phrases[selected];
-        var phraseText = GetField<string>(selectedPhrase, "Phrase", isPublic: true).Get();
+        var phraseText = GetField<string>(selectedPhrase, "Phrase", isPublic: true).Get(v => string.IsNullOrEmpty(v) ? "‘Phrase’ is empty" : null);
         var displayDigit = GetField<int>(selectedPhrase, "ExpectedDigit", isPublic: true).Get();
 
         string modifier = "[PHRASE]";
 
-        if (phraseText.Length >= 9 && phraseText.Substring(0, 10) == "It says: “") modifier = "It says: “[PHRASE]”";
-        else if (phraseText.Length >= 8 && phraseText.Substring(0, 9) == "“It says:") modifier = "“It says: [PHRASE]”";
-        else if (phraseText.Length >= 7 && phraseText.Substring(0, 8) == "It says:") modifier = "It says: [PHRASE]";
-        else if (phraseText.Length >= 5 && phraseText.Substring(0, 6) == "Quote:") modifier = "Quote: [PHRASE] End quote";
+        if (phraseText.Length >= 10 && phraseText.Substring(0, 10) == "It says: “") modifier = "It says: “[PHRASE]”";
+        else if (phraseText.Length >= 9 && phraseText.Substring(0, 9) == "“It says:") modifier = "“It says: [PHRASE]”";
+        else if (phraseText.Length >= 8 && phraseText.Substring(0, 8) == "It says:") modifier = "It says: [PHRASE]";
+        else if (phraseText.Length >= 6 && phraseText.Substring(0, 6) == "Quote:") modifier = "Quote: [PHRASE] End quote";
         else if (phraseText.Substring(0, 1) == "“") modifier = "“[PHRASE]”";
 
         addQuestions(module,
@@ -6982,18 +7044,12 @@ public class SouvenirModule : MonoBehaviour
         var stage4Flash = flashList.Invoke(4);
         var stage5Flash = flashList.Invoke(5);
 
-        addQuestions(module, indicators.Select((ans, i) =>
-            makeQuestion(Question.SimonStagesIndicator, _SimonStages, new[] { ordinal(i + 1) }, new[] { ans })).Concat(
-            stage1Flash.Select((ans, i) =>
-            makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "first" }, new[] { ans }))).Concat(
-            stage2Flash.Select((ans, i) =>
-            makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "second" }, new[] { ans }))).Concat(
-            stage3Flash.Select((ans, i) =>
-            makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "third" }, new[] { ans }))).Concat(
-            stage4Flash.Select((ans, i) =>
-            makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "4th" }, new[] { ans }))).Concat(
-            stage5Flash.Select((ans, i) =>
-            makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "5th" }, new[] { ans }))));
+        addQuestions(module, indicators.Select((ans, i) => makeQuestion(Question.SimonStagesIndicator, _SimonStages, new[] { ordinal(i + 1) }, new[] { ans }))
+            .Concat(stage1Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "first" }, new[] { ans })))
+            .Concat(stage2Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "second" }, new[] { ans })))
+            .Concat(stage3Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "third" }, new[] { ans })))
+            .Concat(stage4Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "4th" }, new[] { ans })))
+            .Concat(stage5Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "5th" }, new[] { ans }))));
     }
 
     private IEnumerable<object> ProcessSimonStates(KMBombModule module)
@@ -7538,6 +7594,24 @@ public class SouvenirModule : MonoBehaviour
         var colorNames = new[] { "red", "green", "blue" };
         addQuestions(module, new[] { firstStageColors, secondStageColors }.SelectMany((colors, stage) => Enumerable.Range(0, 10)
             .Select(slot => makeQuestion(Question.TenButtonColorCodeInitialColors, _TenButtonColorCode, new[] { ordinal(slot + 1), ordinal(stage + 1) }, new[] { colorNames[colors[slot]] }))));
+    }
+
+    private IEnumerable<object> ProcessTenpins(KMBombModule module)
+    {
+        var comp = GetComponent(module, "tenpins");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Tenpins);
+
+        var splitNames = new string[] { "Goal Posts", "Cincinnati", "Woolworth Store", "Lily", "3-7 Split", "Cocked Hat", "4-7-10 Split", "Big Four", "Greek Church", "Big Five", "Big Six", "HOW" };
+        var splits = GetArrayField<int>(comp, "splits").Get(validator: ar => ar.Length != 3 ? "expected length 3" : ar.Any(v => v < 0 || v >= splitNames.Length) ? string.Format("out of range for splitNames (0–{0})", splitNames.Length - 1) : null);
+        var colorNames = new string[] { "red", "green", "blue" };
+        var qs = new List<QandA>();
+        for (int i = 0; i < 3; i++)
+            qs.Add(makeQuestion(Question.TenpinsSplits, _Tenpins, formatArgs: new[] { colorNames[i] }, correctAnswers: new[] { splitNames[splits[i]] }, preferredWrongAnswers: splits.Select(x => splitNames[x]).ToArray()));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessTextField(KMBombModule module)

@@ -201,6 +201,9 @@ namespace Souvenir
         [AnswerGenerator.Integers(999, 9999)]
         CodeDisplayNumber,
 
+        [SouvenirQuestion("Which of these words was submitted in {0}?", "Codenames", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "Hyperborean", "Weenus", "Melody", "King" })]
+        CodenamesAnswers,
+
         [SouvenirQuestion("What was the last served coffee in {0}?", "Coffeebucks", AnswerLayout.OneColumn4Answers, "Twix Frappuccino", "The Blue Drink", "Matcha & Espresso Fusion", "Caramel Snickerdoodle Macchiato", "Liquid Cocaine", "S’mores Hot Chocolate", "The Pink Drink", "Grasshopper Frappuccino")]
         CoffeebucksCoffee,
 
@@ -321,6 +324,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the {1} on {0}?", "Encrypted Morse", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "Detonate", "Ready Now", "Please No", "Cheesecake" },
             ExampleExtraFormatArguments = new[] { "received call", "sent response" }, ExampleExtraFormatArgumentGroupSize = 1)]
         EncryptedMorseCallResponse,
+
+        [SouvenirQuestion("What was the first encoding used in {0}?", "Encryption Bingo", AnswerLayout.OneColumn4Answers, ExampleAnswers = new[] { "Morse code", "Braille", "Semaphore", "Lombax" })]
+        EncryptionBingoEncoding,
 
         [SouvenirQuestion("What was the displayed symbol in {0}?", "Equations X", AnswerLayout.ThreeColumns6Answers, "H(T)", "P", "\u03C7", "\u03C9", "Z(T)", "\u03C4", "\u03BC", "\u03B1", "K")]
         EquationsXSymbols,
@@ -573,6 +579,21 @@ namespace Souvenir
         [SouvenirQuestion("Who was a player, but not the Godfather, in {0}?", "Mafia", AnswerLayout.ThreeColumns6Answers, "Rob", "Tim", "Mary", "Briane", "Hunter", "Macy", "John", "Will", "Lacy", "Claire", "Kenny", "Rick", "Walter", "Bonnie", "Luke", "Bill", "Sarah", "Larry", "Kate", "Stacy", "Diane", "Mac", "Jim", "Clyde", "Tommy", "Lenny", "Molly", "Benny", "Phil", "Bob", "Gary", "Ted", "Kim", "Nate", "Cher", "Ron", "Thomas", "Sam", "Duke", "Jack", "Ed", "Ronny", "Terry", "Claira", "Nick", "Cob", "Ash", "Don", "Jerry", "Simon")]
         MafiaPlayers,
 
+        [SouvenirQuestion("What color was the text on the {1} button in {0}?", "M&Ms", AnswerLayout.ThreeColumns6Answers, "red", "green", "orange", "blue", "yellow", "brown",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        MandMsColors,
+        [SouvenirQuestion("What was the text on the {1} button in {0}?", "M&Ms", AnswerLayout.ThreeColumns6Answers,
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings(5, 'M', 'N')]
+        MandMsLabels,
+
+        [SouvenirQuestion("What color was the text on the {1} button in {0}?", "M&Ns", AnswerLayout.ThreeColumns6Answers, "red", "green", "orange", "blue", "yellow", "brown",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        MandNsColors,
+        [SouvenirQuestion("What was the text on the correct button in {0}?", "M&Ns", AnswerLayout.ThreeColumns6Answers)]
+        [AnswerGenerator.Strings(5, 'M', 'N')]
+        MandNsLabel,
+
         [SouvenirQuestion("What bearing was signalled in {0}?", "Maritime Flags", AnswerLayout.ThreeColumns6Answers, "355", "109", "250", "308", "260", "356", "236", "28", "346", "78", "265", "357", "129", "23", "170", "121", "259", "316", "12", "105", "297", "107", "76", "190", "258", "332", "29", "99", "73", "165", "293", "43", "191", "279", "202", "193", "119", "294", "10", "194", "141", "1", "295", "217", "241", "94", "219", "177", "162", "214", "123", "228", "246", "306", "290", "163", "130", "198", "138", "324", "301", "225", "140", "20", "229", "27", "42", "13", "333", "147", "309", "327", "331", "289", "134", "158", "231", "238", "139", "351", "201", "143", "4", "137", "287", "60", "350", "62", "98", "11", "86", "243", "178", "133", "49", "337", "358", "89", "68", "172", "195", "323", "187", "262", "67", "15", "148", "118", "239", "145", "330", "156", "174", "227", "230", "204", "300", "292", "9", "210", "237", "354", "100", "30", "233", "74", "85", "253", "335", "153", "281", "164", "82", "221", "36", "325", "261", "161", "343", "182", "154", "65", "51", "205", "52", "298", "44", "189", "87", "282", "53", "111", "91", "285", "103", "69", "126", "110", "61", "71", "353", "215", "188", "166", "66", "41", "92", "277", "235", "155", "122", "283", "197", "116", "95", "81", "302", "276", "169", "180", "186", "34", "171", "340", "2", "106", "284", "5", "348", "244", "209", "157", "47", "310", "6", "97", "179", "252", "266", "31", "347", "249", "271", "77", "125", "75", "254", "113", "38", "334", "311", "159", "274", "135", "339", "149", "317", "37", "70", "108", "90", "183", "257", "315", "269", "329", "146", "35", "14", "167", "17", "26", "286", "39", "115", "33", "207", "93", "345", "79", "319", "291", "206", "58", "117", "22", "245", "220", "275", "25", "299", "247", "142", "45", "84", "196", "83", "50", "199", "268", "181", "19", "234", "273", "263", "132", "226", "59", "359", "57", "213", "314", "3", "242", "185", "203", "124", "342", "307", "255", "18", "54", "63", "270", "175", "305", "338", "267", "114", "251", "102", "150", "313", "127", "21", "173", "322", "46", "349", "131", "303", "318", "326", "55", "321", "212", "278", "7", "341", "223", "151", "211", "222", "218", "101")]
         MaritimeFlagsBearing,
 
@@ -640,6 +661,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ModernCipherWord,
 
+        [SouvenirQuestion("Which module did the sound played by the {1} button belong to in {0}?", "Module Listening", AnswerLayout.OneColumn4Answers, ExampleAnswers = new[] { "Zoni", "Lucky Dice", "Qwirkle", "Battleship" },
+            ExampleExtraFormatArguments = new[] { "red", "green", "blue", "yellow" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ModuleListeningSounds,
+
         [SouvenirQuestion("Which of the following was the starting icon for {0}?", "Module Maze", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites)]
         ModuleMazeStartingIcon,
 
@@ -664,6 +689,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first initially lit", "second initially lit", "third initially lit", "fourth initially lit", "first initially unlit", "second initially unlit", "third initially unlit", "fourth initially unlit" },
             ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         MoonLitUnlit,
+
+        [SouvenirQuestion("What was the flashing word in {0}?", "More Code", AnswerLayout.TwoColumns4Answers, "Allocate", "Bulwarks", "Compiler", "Disposal", "Encipher", "Formulae", "Gauntlet", "Hunkered", "Illusory", "Jousting", "Kinetics", "Linkwork", "Monolith", "Nanobots", "Octangle", "Postsync", "Quartics", "Revolved", "Stanzaic", "Tomahawk", "Ultrahot", "Vendetta", "Wafflers", "Yokozuna", "Zugzwang", "Allotype", "Bulkhead", "Computer", "Dispatch", "Encrypts", "Fortunes", "Gateways", "Huntress", "Illusion", "Junction", "Kilobyte", "Linkages", "Monogram", "Nanogram", "Octuples", "Positron", "Quintics", "Revealed", "Stoccata", "Tomogram", "Ultrared", "Venomous", "Weakened", "Xenolith", "Yeasayer", "Zymogram",
+            ExampleAnswers = new[] { "Allocate", "Bulwarks", "Compiler", "Disposal", "Encipher", "Formulae", "Gauntlet", "Hunkered", "Illusory", "Jousting", "Kinetics", "Linkwork" })]
+        MoreCodeWord,
 
         [SouvenirQuestion("What was the starting location in {0}?", "Morse-A-Maze", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Strings("A-F", "1-6")]
@@ -901,6 +930,10 @@ namespace Souvenir
         [SouvenirQuestion("Which freight table rule {1} in {0}?", "Railway Cargo Loading", AnswerLayout.OneColumn4Answers, "Over 150 lumber/75 logs", "Over 100 sheet metal", "Over 250 crude oil", "Over 400 mail", "Over 30 livestock", "Over 600 milk/water/resin", "Over 100 liquid fuel", "Over 700 industrial gas", "Over 150 food", "Over 100 coal", "Over 500 loose bulk (excl. coal)", "Over 7 large objects", "Over 5 automobiles", "Over 700 industrial gas",
             ExampleExtraFormatArguments = new[] { "was met", "wasn’t met" }, ExampleExtraFormatArgumentGroupSize = 1)]
         RailwayCargoLoadingFreightTableRules,
+
+        [SouvenirQuestion("What was the displayed number in {0}?", "Rainbow Arrows", AnswerLayout.ThreeColumns6Answers)]
+        [AnswerGenerator.Integers(0, 99)]
+        RainbowArrowsNumber,
 
         [SouvenirQuestion("What was the color of the {1} LED in {0}?", "Recolored Switches", AnswerLayout.TwoColumns4Answers, "red", "green", "blue", "turquoise", "orange", "purple", "white",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -1154,6 +1187,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "first", "second", "first", "first", "second", "second", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
         TenButtonColorCodeInitialColors,
 
+        [SouvenirQuestion("What was the {1} split in {0}?", "Tenpins", AnswerLayout.OneColumn4Answers, "Goal Posts", "Cincinnati", "Woolworth Store", "Lily", "3-7 Split", "Cocked Hat", "4-7-10 Split", "Big Four", "Greek Church", "Big Five", "Big Six", "HOW",
+            ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        TenpinsSplits,
+
         [SouvenirQuestion("What was the displayed letter in {0}?", "Text Field", AnswerLayout.ThreeColumns6Answers, "A", "B", "C", "D", "E", "F")]
         TextFieldDisplay,
 
@@ -1252,7 +1289,6 @@ namespace Souvenir
         [SouvenirQuestion("What was the color of the {1} dial in {0}?", "Wire", AnswerLayout.ThreeColumns6Answers, "blue", "green", "grey", "orange", "purple", "red",
             ExampleExtraFormatArguments = new[] { "top", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         WireDialColors,
-
         [SouvenirQuestion("What was the displayed number in {0}?", "Wire", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "top", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         [AnswerGenerator.Integers(0, 9)]
