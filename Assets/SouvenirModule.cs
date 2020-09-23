@@ -5077,7 +5077,7 @@ public class SouvenirModule : MonoBehaviour
 
         var stageCount = GetIntField(comp, "offerCount", isPublic: true).Get(min: 3, max: 3);
         var data = GetField<object>(comp, "CD", isPublic: true).Get();
-        var monsplodeNames = GetArrayField<string>(data, "names", isPublic: true).Get();
+        var monsplodeNames = GetArrayField<string>(data, "names", isPublic: true).Get().Select(s => s.Replace("\r", "").Replace("\n", " ")).ToArray();
 
         while (fldStage.Get() < stageCount)
             yield return new WaitForSeconds(.1f);
@@ -5094,7 +5094,7 @@ public class SouvenirModule : MonoBehaviour
         var fldPrintChar = GetField<char>(offer, "printChar", isPublic: true);
 
         var monsplodeIds = new[] { fldMonsplode.Get(0, monsplodeNames.Length - 1) }.Concat(deck.Select(card => fldMonsplode.GetFrom(card, 0, monsplodeNames.Length - 1))).ToArray();
-        var monsplodes = monsplodeIds.Select(mn => monsplodeNames[mn].Replace("\r", "").Replace("\n", " ")).ToArray();
+        var monsplodes = monsplodeIds.Select(mn => monsplodeNames[mn]).ToArray();
         var qs = new List<QandA>();
         qs.Add(makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, new[] { "card on offer" }, new[] { monsplodes[0] }, monsplodeNames));
         qs.Add(makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, new[] { "first card in your hand" }, new[] { monsplodes[1] }, monsplodeNames));
