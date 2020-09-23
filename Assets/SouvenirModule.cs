@@ -4535,6 +4535,9 @@ public class SouvenirModule : MonoBehaviour
         var fldDestinationOptions = GetArrayField<string>(comp, "destinationOptions");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
 
+        var mustReevaluate = false;
+        module.OnStrike += delegate { mustReevaluate = true; return false; };
+
         var departures = new List<string>();
         var destinations = new List<string>();
         var extraOptions = new HashSet<string>();
@@ -4542,14 +4545,15 @@ public class SouvenirModule : MonoBehaviour
         while (!fldSolved.Get())
         {
             var stage = fldStage.Get();
-            if (stage != lastStage)
+            if (stage != lastStage || mustReevaluate)
             {
-                if (stage == 0)
+                if (mustReevaluate)
                 {
                     // The player got a strike and the module reset
                     departures.Clear();
                     destinations.Clear();
                     extraOptions.Clear();
+                    mustReevaluate = false;
                 }
                 departures.Add(fldDepartureStation.Get());
                 destinations.Add(fldDestinationStation.Get());
