@@ -216,8 +216,7 @@ namespace Souvenir
         [SouvenirQuestion("What was the {1}-stage indicator pattern in {0}?", "Color Decoding", AnswerLayout.TwoColumns4Answers, "Checkered", "Horizontal", "Vertical", "Solid",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ColorDecodingIndicatorPattern,
-
-        [SouvenirQuestion("Which color {1} in the {2}-stage indicator pattern in {0}?", "Color Decoding", AnswerLayout.TwoColumns4Answers, "Black", "Green", "Purple", "Red", "Blue", "Yellow",
+        [SouvenirQuestion("Which color {1} in the {2}-stage indicator pattern in {0}?", "Color Decoding", AnswerLayout.TwoColumns4Answers, "Green", "Purple", "Red", "Blue", "Yellow",
             ExampleExtraFormatArguments = new[] { "appeared", "first", "appeared", "second", "appeared", "third", "did not appear", "first", "did not appear", "second", "did not appear", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
         ColorDecodingIndicatorColors,
 
