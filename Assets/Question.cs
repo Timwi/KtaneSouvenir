@@ -106,7 +106,7 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 16)]
         Bitmaps,
 
-        [SouvenirQuestion("What color was the {1} button in {0}?", "Blind Maze", AnswerLayout.TwoColumns4Answers, "red", "blue", "yellow", "green", "gray",
+        [SouvenirQuestion("What color was the {1} button in {0}?", "Blind Maze", AnswerLayout.TwoColumns4Answers, "Red", "Green", "Blue", "Gray", "Yellow",
             ExampleExtraFormatArguments = new[] { "north", "east", "west", "south" }, ExampleExtraFormatArgumentGroupSize = 1)]
         BlindMazeColors,
         [SouvenirQuestion("Which maze did you solve {0} on?", "Blind Maze", AnswerLayout.ThreeColumns6Answers)]

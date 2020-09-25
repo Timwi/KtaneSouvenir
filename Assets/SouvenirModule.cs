@@ -2211,7 +2211,12 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_BinaryLEDs);
 
-        if (answer != -1)
+        if (answer == -1)
+        {
+            Debug.LogFormat("[Souvenir #{0}] No question for Binary LEDs because the module auto-solved after all three wires were cut incorrectly.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+        }
+        else
             addQuestion(module, Question.BinaryLEDsValue, correctAnswers: new[] { answer.ToString() });
     }
 
