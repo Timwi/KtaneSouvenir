@@ -1,5 +1,4 @@
 using System;
-using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -5355,11 +5354,19 @@ public class SouvenirModule : MonoBehaviour
         var fldMystifiedModule = GetField<KMBombModule>(comp, "mystifiedModule");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldAnimating = GetField<bool>(comp, "animating");
+        var fldFailsolve = GetField<bool>(comp, "failsolve");
 
-        while (fldKeyModules.Get(nullAllowed: true) == null)
+        while (fldKeyModules.Get(nullAllowed: true) == null && !fldFailsolve.Get())
             yield return null;
-        while (fldMystifiedModule.Get(nullAllowed: true) == null)
+        while (fldMystifiedModule.Get(nullAllowed: true) == null && !fldFailsolve.Get())
             yield return null;
+
+        if (fldFailsolve.Get())
+        {
+            Debug.LogFormat("[Souvenir #{0}] No question for Mystery Module because no module was hidden.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
 
         var keyModule = fldKeyModules.Get(ar => ar.Count == 0 ? "empty" : null)[0];
         var mystifiedModule = fldMystifiedModule.Get();
