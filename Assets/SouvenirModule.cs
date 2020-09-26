@@ -3930,7 +3930,13 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Hogwarts);
 
-        var dic = fldModuleNames.Get(d => d.Count == 0 ? "empty" : null);
+        var dic = fldModuleNames.Get();
+        if (dic.Count == 0)
+        {
+            Debug.LogFormat("[Souvenir #{0}] No question on Hogwarts because no module solves were awarded to it.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
 
         // Rock-Paper-Scissors-Lizard-Spock needs to be broken up in the question because hyphens don't word-wrap.
         addQuestions(module,
