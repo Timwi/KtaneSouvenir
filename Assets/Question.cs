@@ -677,9 +677,6 @@ namespace Souvenir
         [SouvenirQuestion("What was the {1} before the last action in {0}?", "Monsplode Trading Cards", AnswerLayout.TwoColumns4Answers, "Aluga", "Asteran", "Bob", "Buhar", "Caadarim", "Clondar", "Cutie Pie", "Docsplode", "Flaurim", "Gloorim", "Lanaluff", "Lugirit", "Magmy", "Melbor", "Mountoise", "Myrchat", "Nibs", "Percy", "Pouse", "Ukkens", "Vellarim", "Violan", "Zapra", "Zenlad", "Aluga, The Fighter", "Bob, The Ancestor", "Buhar, The Protector", "Melbor, The Web Bug",
             ExampleExtraFormatArguments = new[] { "first card in your hand", "second card in your hand", "third card in your hand", "card on offer" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MonsplodeTradingCardsCards,
-        [SouvenirQuestion("What was the rarity of the {1} before the last action in {0}?", "Monsplode Trading Cards", AnswerLayout.TwoColumns4Answers, "common", "uncommon", "rare", "ultra rare",
-            ExampleExtraFormatArguments = new[] { "first card in your hand", "second card in your hand", "third card in your hand", "card on offer" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        MonsplodeTradingCardsRarities,
         [SouvenirQuestion("What was the print version of the {1} before the last action in {0}?", "Monsplode Trading Cards", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "first card in your hand", "second card in your hand", "third card in your hand", "card on offer" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Strings("A-J", "1-9")]
@@ -1111,10 +1108,6 @@ namespace Souvenir
         [SouvenirQuestion("Which color {1} {2} in the final sequence of {0}?", "Simon Stores", AnswerLayout.TwoColumns4Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
             ExampleExtraFormatArguments = new[] { "flashed", "first", "flashed", "second", "was among the colors flashed", "first", "was among the colors flashed", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
         SimonStoresColors,
-        [SouvenirQuestion("What was the correct answer in the {1} stage of {0}?", "Simon Stores", AnswerLayout.ThreeColumns6Answers,
-            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        [AnswerGenerator.Integers(-364, 364)]
-        SimonStoresAnswers,
 
         [SouvenirQuestion("What were the original numbers in {0}?", "Skewed Slots", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Integers(0, 999, "000")]

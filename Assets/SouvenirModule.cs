@@ -5099,7 +5099,6 @@ public class SouvenirModule : MonoBehaviour
         var deck = GetField<Array>(comp, "deck", isPublic: true).Get(ar => ar.Length != 3 ? "expected length 3" : null).Cast<object>().ToArray();
         var offer = GetField<object>(comp, "offer", isPublic: true).Get();
         var fldMonsplode = GetIntField(offer, "monsplode", isPublic: true);
-        var fldRarity = GetIntField(offer, "rarity", isPublic: true);
         var fldPrintDigit = GetIntField(offer, "printDigit", isPublic: true);
         var fldPrintChar = GetField<char>(offer, "printChar", isPublic: true);
 
@@ -5110,13 +5109,6 @@ public class SouvenirModule : MonoBehaviour
         qs.Add(makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, new[] { "first card in your hand" }, new[] { monsplodes[1] }, monsplodeNames));
         qs.Add(makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, new[] { "second card in your hand" }, new[] { monsplodes[2] }, monsplodeNames));
         qs.Add(makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, new[] { "third card in your hand" }, new[] { monsplodes[3] }, monsplodeNames));
-
-        var rarityNames = new[] { "common", "uncommon", "rare", "ultra rare" };
-        var rarityIds = new[] { fldRarity.Get(min: 0, max: rarityNames.Length - 1) }.Concat(deck.Select(card => fldRarity.GetFrom(card, min: 0, max: rarityNames.Length - 1))).ToArray();
-        qs.Add(makeQuestion(Question.MonsplodeTradingCardsRarities, _MonsplodeTradingCards, new[] { "card on offer" }, new[] { rarityNames[rarityIds[0]] }));
-        qs.Add(makeQuestion(Question.MonsplodeTradingCardsRarities, _MonsplodeTradingCards, new[] { "first card in your hand" }, new[] { rarityNames[rarityIds[1]] }));
-        qs.Add(makeQuestion(Question.MonsplodeTradingCardsRarities, _MonsplodeTradingCards, new[] { "second card in your hand" }, new[] { rarityNames[rarityIds[2]] }));
-        qs.Add(makeQuestion(Question.MonsplodeTradingCardsRarities, _MonsplodeTradingCards, new[] { "third card in your hand" }, new[] { rarityNames[rarityIds[3]] }));
 
         var printVersions = new[] { fldPrintChar.Get() + "" + fldPrintDigit.Get() }.Concat(deck.Select(card => fldPrintChar.GetFrom(card) + "" + fldPrintDigit.GetFrom(card))).ToArray();
         qs.Add(makeQuestion(Question.MonsplodeTradingCardsPrintVersions, _MonsplodeTradingCards, new[] { "card on offer" }, new[] { printVersions[0] }, printVersions));
@@ -5624,6 +5616,10 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_NotWhosOnFirst);
 
+        Debug.LogFormat("[Souvenir #{0}] No question for Not Who’s On First because there’s a bug in it that needs fixing.", _moduleId);
+        _legitimatelyNoQuestions.Add(module);
+        yield break;
+
         var positions = _attributes[Question.NotWhosOnFirstPressedPosition].AllAnswers;
         var sumCorrectAnswers = new[] { fldSum.Get().ToString() };
 
@@ -5633,7 +5629,7 @@ public class SouvenirModule : MonoBehaviour
             qs.Add(makeQuestion(Question.NotWhosOnFirstPressedPosition, _NotWhosOnFirst, new[] { ordinal(i + 1) }, new[] { positions[fldPositions.Get()[i]] }));
             qs.Add(makeQuestion(Question.NotWhosOnFirstPressedLabel, _NotWhosOnFirst, new[] { ordinal(i + 1) }, new[] { fldLabels.Get()[i] }));
         }
-        for (var i = 4; i < 6; i++)
+        for (var i = 4; i < 5; i++)
         {
             qs.Add(makeQuestion(Question.NotWhosOnFirstReferencePosition, _NotWhosOnFirst, new[] { ordinal(i + 1) }, new[] { positions[fldPositions.Get()[i]] }));
             qs.Add(makeQuestion(Question.NotWhosOnFirstReferenceLabel, _NotWhosOnFirst, new[] { ordinal(i + 1) }, new[] { fldLabels.Get()[i] }));
@@ -5853,15 +5849,19 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_Palindromes);
 
         var vars = new[] { fldN, fldX, fldY, fldZ };
-        byte randomVar = (byte) Rnd.Range(0, vars.Length);
-        byte randomInd = (byte) Rnd.Range(0, randomVar < 2 ? 5 : 4);  // 5 if x or n, else 4
-        string numString = vars[randomVar].Get();
-        char digit = numString[numString.Length - 1 - randomInd];
-        if (digit < '0' || digit > '9')
-            throw new AbandonModuleException("The chosen character was unexpected ('{0}').", digit);
+        var qs = new List<QandA>();
+        for (var varIx = 0; varIx < vars.Length; varIx++)
+            for (var digitIx = 0; digitIx < (varIx < 2 ? 5 : 4); digitIx++)       // 5 if x or n, else 4
+            {
+                var numString = vars[varIx].Get();
+                var digit = numString[numString.Length - 1 - digitIx];
+                if (digit < '0' || digit > '9')
+                    throw new AbandonModuleException("The chosen character ('{0}') was unexpected (expected a digit 0–9).", digit);
 
-        string[] labels = new string[] { "the screen", "X", "Y", "Z" };
-        addQuestion(module, Question.PalindromesNumbers, new[] { labels[randomVar], ordinal(randomInd + 1) }, correctAnswers: new[] { digit.ToString() });
+                var labels = new string[] { "the screen", "X", "Y", "Z" };
+                qs.Add(makeQuestion(Question.PalindromesNumbers, _Palindromes, new[] { labels[varIx], ordinal(digitIx + 1) }, correctAnswers: new[] { digit.ToString() }));
+            }
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessPartialDerivatives(KMBombModule module)
@@ -7150,16 +7150,6 @@ public class SouvenirModule : MonoBehaviour
                 throw new AbandonModuleException("'flashingColours' contains value with duplicated colors, invalid color, or unexpected length (expected: 1-3): [flash: {0}, length: {1}]", flash, flash.Length);
         }
 
-        var correctAnswers = GetArrayField<int[]>(comp, "step").Get(expectedLength: 3, validator: answer => answer.Length != 6 ? "expected length 6" : null);
-
-        int[] integerAnswers = new int[3];
-        integerAnswers[0] = correctAnswers[0][3];
-        integerAnswers[1] = correctAnswers[1][4];
-        integerAnswers[2] = correctAnswers[2][5];
-
-        if (integerAnswers.Any(answer => answer <= -365 || answer >= 365))
-            throw new AbandonModuleException("‘step’ contains an invalid answer to a stage (expected -364 to 364): [{0}]", integerAnswers.JoinString(", "));
-
         var colorNames = new Dictionary<char, string> {
             { 'R', "Red" },
             { 'G', "Green" },
@@ -7174,12 +7164,6 @@ public class SouvenirModule : MonoBehaviour
             qs.Add(makeQuestion(Question.SimonStoresColors, _SimonStores,
                 formatArgs: new[] { flashSequences[i].Length == 1 ? "flashed" : "was among the colors flashed", ordinal(i + 1) },
                 correctAnswers: flashSequences[i].Select(ch => colorNames[ch]).ToArray()));
-
-        for (var i = 0; i < 3; i++)
-            qs.Add(makeQuestion(Question.SimonStoresAnswers, _SimonStores,
-                formatArgs: new[] { ordinal(i + 1) },
-                correctAnswers: new[] { integerAnswers[i].ToString() }));
-
         addQuestions(module, qs);
     }
 
