@@ -410,14 +410,10 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 99, "00")]
         GreenArrowsLastScreen,
 
-        [SouvenirQuestion("What was the starting location in {0}?", "Gridlock", AnswerLayout.ThreeColumns6Answers)]
-        [AnswerGenerator.Strings("A-D", "1-4")]
+        [SouvenirQuestion("What was the starting location in {0}?", "Gridlock", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "Tiles4x4Sprites")]
         GridLockStartingLocation,
-
-        [SouvenirQuestion("What was the ending location in {0}?", "Gridlock", AnswerLayout.ThreeColumns6Answers)]
-        [AnswerGenerator.Strings("A-D", "1-4")]
+        [SouvenirQuestion("What was the ending location in {0}?", "Gridlock", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "Tiles4x4Sprites")]
         GridLockEndingLocation,
-
         [SouvenirQuestion("What was the starting color in {0}?", "Gridlock", AnswerLayout.TwoColumns4Answers, "Green", "Yellow", "Red", "Blue")]
         GridLockStartingColor,
 
@@ -1124,7 +1120,7 @@ namespace Souvenir
         [SouvenirQuestion("Which dragon shout was selectable, but not the solution, in {0}?", "Skyrim", AnswerLayout.TwoColumns4Answers, "Disarm", "Dismay", "Dragonrend", "Fire Breath", "Ice Form", "Kyne’s Peace", "Slow Time", "Unrelenting Force", "Whirlwind Sprint")]
         SkyrimDragonShout,
 
-        [SouvenirQuestion("How many red balls were there at the start of {0}?", "Snooker", AnswerLayout.TwoColumns4Answers, "8", "9", "10")]
+        [SouvenirQuestion("How many red balls were there at the start of {0}?", "Snooker", AnswerLayout.TwoColumns4Answers, "8", "9", "10", "11")]
         SnookerReds,
 
         [SouvenirQuestion("What positions were the last swap used to solve {0}?", "Sorting", AnswerLayout.ThreeColumns6Answers, "1 & 2", "1 & 3", "1 & 4", "1 & 5", "2 & 3", "2 & 4", "2 & 5", "3 & 4", "3 & 5", "4 & 5")]
@@ -1176,7 +1172,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         TashaSquealsColors,
 
-        [SouvenirQuestion("What was the initial color of the {1} button in the {2} stage of {0}?", "Ten-Button Color Code", AnswerLayout.TwoColumns4Answers, "red", "green", "blue",
+        [SouvenirQuestion("What was the initial color of the {1} button in the {2} stage of {0}?", "Ten-Button Color Code", AnswerLayout.TwoColumns4Answers, "red", "green", "blue", "yellow",
             ExampleExtraFormatArguments = new[] { "first", "first", "second", "first", "first", "second", "second", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
         TenButtonColorCodeInitialColors,
 

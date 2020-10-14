@@ -3782,8 +3782,8 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_GridLock);
         addQuestions(module,
-            makeQuestion(Question.GridLockStartingLocation, _GridLock, correctAnswers: new[] { ((char) ('A' + start % 4)).ToString() + (char) ('1' + start / 4) }),
-            makeQuestion(Question.GridLockEndingLocation, _GridLock, correctAnswers: new[] { ((char) ('A' + solution % 4)).ToString() + (char) ('1' + solution / 4) }),
+            makeQuestion(Question.GridLockStartingLocation, _GridLock, preferredWrongAnswers: Tiles4x4Sprites, correctAnswers: new[] { Tiles4x4Sprites[start] }),
+            makeQuestion(Question.GridLockEndingLocation, _GridLock, preferredWrongAnswers: Tiles4x4Sprites, correctAnswers: new[] { Tiles4x4Sprites[solution] }),
             makeQuestion(Question.GridLockStartingColor, _GridLock, correctAnswers: new[] { colors[(pages[0][start] >> 4) - 1] }));
     }
 
