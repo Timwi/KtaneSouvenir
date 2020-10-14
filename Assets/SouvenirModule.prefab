@@ -189,8 +189,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -381104716, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11420650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -200,8 +200,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1702003387, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   Parent: {fileID: 0}
   Children:
   - {fileID: 114000014135153358}
@@ -228,8 +228,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -119419473, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ModuleType: SouvenirModule
   ModuleDisplayName: Souvenir
   RequiresTimerVisibility: 0
@@ -242,8 +242,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -706292897, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   HighlightScale: {x: 1, y: 1, z: 1}
   OutlineAmount: 0
 --- !u!114 &11489182
@@ -255,8 +255,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58770dc53560fba42a154c339a421c7a, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   Bomb: {fileID: 11489324}
   Module: {fileID: 11429752}
   Audio: {fileID: 11496072}
@@ -508,12 +508,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e1263b4aff97c2b4aae3419f96bd9614, type: 3}
   - {fileID: 21300000, guid: 2f99e34f288d3ec43b006440a4ee5c36, type: 3}
   - {fileID: 21300000, guid: 4a6c5fc59d7e3814bac7bc44fd05ba75, type: 3}
-  PerspectivePegsSprites:
-  - {fileID: 21300000, guid: a10d924c9007d4b4787eab376f88b3aa, type: 3}
-  - {fileID: 21300000, guid: 26c73a60250c4794d95f368d14d358f3, type: 3}
-  - {fileID: 21300000, guid: 98fa98424f6b7174cad7e62b6db47116, type: 3}
-  - {fileID: 21300000, guid: 9ef9eb1722e492b48a41c24c2c2c1961, type: 3}
-  - {fileID: 21300000, guid: 84e50e9c217e241488950ab09af66e09, type: 3}
   PlanetsSprites:
   - {fileID: 21300000, guid: 7c74171015cf3c94893846f743961046, type: 3}
   - {fileID: 21300000, guid: bbba2fe2ff9274e4cadf610f67d8a16d, type: 3}
@@ -764,6 +758,16 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1012aba1bc2fd0e4a8cc939d08960d82, type: 3}
   - {fileID: 21300000, guid: 7bbd713a73a15f74299a51e4425c293f, type: 3}
   - {fileID: 21300000, guid: 4151ca675e31aa2459bb0fedbb677a18, type: 3}
+  SimonSpeaksSprites:
+  - {fileID: 21300000, guid: bd9a1344dd788474dbf296db3dbf80a3, type: 3}
+  - {fileID: 21300000, guid: 93f4df7d7c38bae49b06d7622b92d212, type: 3}
+  - {fileID: 21300000, guid: 0c66ddc03287bbc469f120c1df7d8874, type: 3}
+  - {fileID: 21300000, guid: a5df373759b3b7a40830dc0806e85b60, type: 3}
+  - {fileID: 21300000, guid: a2a20e0536a3e0d4c914f27a8a8c703b, type: 3}
+  - {fileID: 21300000, guid: d92029e2a4357024da07342f95aa9414, type: 3}
+  - {fileID: 21300000, guid: 11b759febbff37343b816b802b7c7436, type: 3}
+  - {fileID: 21300000, guid: c87de933c9c77884d92c402bc4fc2383, type: 3}
+  - {fileID: 21300000, guid: 57d970cdf01d4d94a8b14c28dc6f2b78, type: 3}
   TextMesh: {fileID: 102000012539687798}
   TextRenderer: {fileID: 23000013337156738}
   SurfaceRenderer: {fileID: 23000012396776310}
@@ -784,7 +788,7 @@ MonoBehaviour:
   HighlightShort: {fileID: 4300000, guid: baf42807f85fb5b4ab0eb79f10f1a70b, type: 3}
   HighlightLong: {fileID: 4300000, guid: 0e132af13d16f3d4cae4df71d33e54a1, type: 3}
   HighlightVeryLong: {fileID: 4300000, guid: 57bd849898e2b244490f7a4e1838ab25, type: 3}
-  TestQuestion:
+  TestQuestion: 
   ModulePresent: 0
 --- !u!114 &11489324
 MonoBehaviour:
@@ -795,8 +799,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 2144496390, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11496072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -806,8 +810,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1675560866, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -2767,8 +2771,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ShaderNames:
   - Mobile/Diffuse
 --- !u!114 &114000010073328944
@@ -2780,8 +2784,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -706292897, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   HighlightScale: {x: 1, y: 1, z: 1}
   OutlineAmount: 0
 --- !u!114 &114000010332806742
@@ -2793,8 +2797,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ShaderNames:
   - GUI/KT 3D Text
 --- !u!114 &114000010409768310
@@ -2806,8 +2810,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -706292897, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   HighlightScale: {x: 1, y: 1, z: 1}
   OutlineAmount: 0
 --- !u!114 &114000010500079962
@@ -2819,8 +2823,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1702003387, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   Parent: {fileID: 11420650}
   Children: []
   IsPassThrough: 0
@@ -2842,8 +2846,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ShaderNames: []
 --- !u!114 &114000010760792106
 MonoBehaviour:
@@ -2854,8 +2858,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ShaderNames:
   - GUI/KT 3D Text
 --- !u!114 &114000011843881926
@@ -2867,8 +2871,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -706292897, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   HighlightScale: {x: 1, y: 1, z: 1}
   OutlineAmount: 0
 --- !u!114 &114000011952089442
@@ -2880,8 +2884,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ShaderNames:
   - Legacy Shaders/Diffuse
 --- !u!114 &114000012056702406
@@ -2893,8 +2897,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ShaderNames:
   - GUI/KT 3D Text
 --- !u!114 &114000012285031004
@@ -2906,8 +2910,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ShaderNames:
   - GUI/KT 3D Text
 --- !u!114 &114000012327646082
@@ -2919,8 +2923,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -706292897, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   HighlightScale: {x: 1, y: 1, z: 1}
   OutlineAmount: 0
 --- !u!114 &114000012742290558
@@ -2932,8 +2936,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1702003387, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   Parent: {fileID: 11420650}
   Children: []
   IsPassThrough: 0
@@ -2955,8 +2959,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1702003387, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   Parent: {fileID: 11420650}
   Children: []
   IsPassThrough: 0
@@ -2978,8 +2982,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1702003387, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   Parent: {fileID: 11420650}
   Children: []
   IsPassThrough: 0
@@ -3001,8 +3005,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ShaderNames:
   - GUI/KT 3D Text
 --- !u!114 &114000013518447996
@@ -3014,8 +3018,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ShaderNames:
   - GUI/KT 3D Text
 --- !u!114 &114000013547531446
@@ -3027,8 +3031,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -706292897, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   HighlightScale: {x: 1, y: 1, z: 1}
   OutlineAmount: 0
 --- !u!114 &114000013579694808
@@ -3040,8 +3044,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1702003387, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   Parent: {fileID: 11420650}
   Children: []
   IsPassThrough: 0
@@ -3063,8 +3067,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ShaderNames:
   - GUI/KT 3D Text
 --- !u!114 &114000014135153358
@@ -3076,8 +3080,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1702003387, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   Parent: {fileID: 11420650}
   Children: []
   IsPassThrough: 0
@@ -3099,8 +3103,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -706292897, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   HighlightScale: {x: 1, y: 1, z: 1}
   OutlineAmount: 0
 --- !u!114 &114016678735042614
@@ -3112,8 +3116,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ShaderNames:
   - GUI/KT 3D Text
 --- !u!114 &114131094778450898
@@ -3125,8 +3129,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ShaderNames:
   - Sprites/Default
 --- !u!114 &114273640170527056
@@ -3138,10 +3142,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -289456416, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  Settings:
-  SettingsPath:
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Settings: 
+  SettingsPath: 
 --- !u!114 &114302481683170714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3151,8 +3155,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ShaderNames:
   - Sprites/Default
 --- !u!114 &114370520071837174
@@ -3164,8 +3168,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ShaderNames:
   - GUI/KT 3D Text
 --- !u!114 &114391877488911500
@@ -3177,8 +3181,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ShaderNames:
   - GUI/KT 3D Text
 --- !u!114 &114434108630110322
@@ -3190,8 +3194,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ShaderNames:
   - GUI/KT 3D Text
 --- !u!114 &114518471276173620
@@ -3203,8 +3207,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ShaderNames:
   - Sprites/Default
 --- !u!114 &114658067249429392
@@ -3216,8 +3220,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ShaderNames:
   - GUI/KT 3D Text
 --- !u!114 &114726651962284372
@@ -3229,8 +3233,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ShaderNames:
   - Sprites/Default
 --- !u!114 &114796993372590070
@@ -3242,8 +3246,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ShaderNames:
   - GUI/KT 3D Text
 --- !u!114 &114880155665114538
@@ -3255,8 +3259,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ShaderNames:
   - Sprites/Default
 --- !u!114 &114880811013771744
@@ -3268,8 +3272,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96a2fc4ae3e690a498a0d85a2b5e0b99, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114957443516020880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3279,8 +3283,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ShaderNames:
   - Sprites/Default
 --- !u!114 &114982620081588216
@@ -3292,8 +3296,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   ShaderNames:
   - Sprites/Default
 --- !u!212 &212005677732987026
