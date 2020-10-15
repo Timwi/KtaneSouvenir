@@ -70,7 +70,7 @@ namespace Souvenir
             _layout = layout;
         }
         public override IEnumerable<string> DebugAnswers { get { return _answers; } }
-        public override double DesiredHeightFactor { get { return _layout == AnswerLayout.OneColumn4Answers ? .825 : 1.1; } }
+        public override double DesiredHeightFactor { get { return _layout == AnswerLayout.OneColumn4Answers || _layout == AnswerLayout.OneColumn2Answers ? .825 : 1.1; } }
 
         public override void SetAnswers(SouvenirModule souvenir)
         {
@@ -79,6 +79,14 @@ namespace Souvenir
                 SetupAnswers(souvenir, souvenir.HighlightVeryLong,
                     getX: i => -18.125f,
                     getZ: i => -17f + 5 * (3 - i),
+                    boxCenter: new Vector3(17, 0, 0),
+                    boxSize: new Vector3(38, 5, 3));
+            }
+            else if (_layout == AnswerLayout.OneColumn2Answers)
+            {
+                SetupAnswers(souvenir, souvenir.HighlightVeryLong,
+                    getX: i => -18.125f,
+                    getZ: i => (-17f + 5 * (3 - i)) * 2,
                     boxCenter: new Vector3(17, 0, 0),
                     boxSize: new Vector3(38, 5, 3));
             }
@@ -91,7 +99,7 @@ namespace Souvenir
 
                 mesh.text = i < _answers.Length ? _answers[i] : "•";
                 mesh.font = _font;
-                mesh.fontSize = _layout == AnswerLayout.OneColumn4Answers ? 40 : 48;
+                mesh.fontSize = _layout == AnswerLayout.OneColumn4Answers || _layout == AnswerLayout.OneColumn2Answers ? 40 : 48;
                 mesh.GetComponent<MeshRenderer>().material = _fontMaterial;
                 mesh.GetComponent<MeshRenderer>().material.mainTexture = _fontTexture;
 
@@ -100,9 +108,23 @@ namespace Souvenir
                 mesh.transform.eulerAngles = new Vector3(90, 0, 0);
                 mesh.transform.localScale = new Vector3(1, 1, 1);
                 var bounds = mesh.GetComponent<Renderer>().bounds.size;
-                var fac = (_layout == AnswerLayout.OneColumn4Answers ? 1.5 : _answers.Length > 4 ? .45 : .7) * souvenir.SurfaceSizeFactor;
+                var fac = (_layout == AnswerLayout.OneColumn4Answers || _layout == AnswerLayout.OneColumn2Answers ? 1.5 : _answers.Length > 4 ? .45 : .7) * souvenir.SurfaceSizeFactor;
+                
                 if (bounds.x > fac)
-                    mesh.transform.localScale = new Vector3((float) (fac / bounds.x), 1, 1);
+                {
+                    // Places a line break in the middlemost space character.
+                    if (_layout == AnswerLayout.OneColumn2Answers)
+                    {
+                        var result = mesh.text.Select((c, ind) => new { Char = c, Index = ind }).Where(item => item.Char == ' ').Skip(mesh.text.Count(char.IsWhiteSpace) / 2).FirstOrDefault();
+                        mesh.text = mesh.text.Remove(result.Index, 1).Insert(result.Index, "\n");
+
+                        bounds = mesh.GetComponent<Renderer>().bounds.size;
+                    }
+
+                    // It might need to still be squished even after a line break has been placed.
+                    if (bounds.x > fac)
+                        mesh.transform.localScale = new Vector3((float) (fac / bounds.x), 1, 1);
+                }
                 mesh.transform.localRotation = origRotation;
             }
         }

@@ -367,6 +367,13 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 12)]
         FlashingLightsLEDFrequency,
 
+        [SouvenirQuestion("What were the cylinders during stage {1} in {0}?", "Forget Any Color", AnswerLayout.OneColumn4Answers, ExampleAnswers = new[] { "Red, Red, Red", "Orange, Yellow, Green", "Yellow, Cyan, Purple", "Green, Purple, Orange" },
+            ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ForgetAnyColorCylinder,
+        [SouvenirQuestion("What figure was used during stage {1} in {0}?", "Forget Any Color", AnswerLayout.ThreeColumns6Answers, "LLLMR", "LMMMR", "LMRRR", "LMMRR", "LLMRR", "LLMMR",
+            ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ForgetAnyColorSequence,
+
         [SouvenirQuestion("What number was on the gear during stage {1} in {0}?", "Forget the Colors", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 9)]
@@ -382,7 +389,7 @@ namespace Souvenir
         [SouvenirQuestion("What color was the gear during stage {1} in {0}?", "Forget the Colors", AnswerLayout.ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "Pink", "Maroon", "White", "Gray",
             ExampleExtraFormatArguments = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ForgetTheColorsGearColor,
-        [SouvenirQuestion("Which edgework-based rule was applied to the total number during stage {1} in {0}?", "Forget the Colors", AnswerLayout.ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "Pink", "Maroon", "White", "Gray",
+        [SouvenirQuestion("Which edgework-based rule was applied to the sum of nixies and gear during stage {1} in {0}?", "Forget the Colors", AnswerLayout.ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "Pink", "Maroon", "White", "Gray",
             ExampleExtraFormatArguments = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ForgetTheColorsRuleColor,
 
@@ -410,12 +417,10 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 99, "00")]
         GreenArrowsLastScreen,
 
-        [SouvenirQuestion("What was the starting location in {0}?", "Gridlock", AnswerLayout.ThreeColumns6Answers)]
-        [AnswerGenerator.Strings("A-D", "1-4")]
+        [SouvenirQuestion("What was the starting location in {0}?", "Gridlock", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "Tiles4x4Sprites")]
         GridLockStartingLocation,
 
-        [SouvenirQuestion("What was the ending location in {0}?", "Gridlock", AnswerLayout.ThreeColumns6Answers)]
-        [AnswerGenerator.Strings("A-D", "1-4")]
+        [SouvenirQuestion("What was the ending location in {0}?", "Gridlock", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "Tiles4x4Sprites")]
         GridLockEndingLocation,
 
         [SouvenirQuestion("What was the starting color in {0}?", "Gridlock", AnswerLayout.TwoColumns4Answers, "Green", "Yellow", "Red", "Blue")]
@@ -940,6 +945,12 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9)]
         RedArrowsStartNumber,
 
+        [SouvenirQuestion("What did the solving condition state in {0}?", "Reformed Role Reversal", AnswerLayout.OneColumn2Answers, ExampleAnswers = new[] { "If there's less indicators sharing a letter in \"Role\" than numbers in the serial number", "If there are 7 wires with matching colors", "If there are less vowels in the serial number than violet wires", "If there are less consonants in the serial number than lapis wires", "If all values are in decending order", "If the second, 5th, or 6th wire share any color", "If there are 6 or more blueish wires", "Cut the first purpleish wire", "If the serial number has a digit matching the amount of the most common wires or total wires" })]
+        ReformedRoleReversalCondition,
+        [SouvenirQuestion("What color was the {1} wire in {0}?", "Reformed Role Reversal", AnswerLayout.ThreeColumns6Answers, "Navy", "Lapis", "Blue", "Sky", "Teal", "Plum", "Violet", "Purple", "Magenta", "Lavender",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th", "6th", "7th", "8th", "9th", "10th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ReformedRoleReversalWire,
+
         [SouvenirQuestion("What was the displayed digit that corresponded to the solution phrase in {0}?", "Regular Crazy Talk", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Integers(0, 9)]
         RegularCrazyTalkDigit,
@@ -1124,7 +1135,7 @@ namespace Souvenir
         [SouvenirQuestion("Which dragon shout was selectable, but not the solution, in {0}?", "Skyrim", AnswerLayout.TwoColumns4Answers, "Disarm", "Dismay", "Dragonrend", "Fire Breath", "Ice Form", "Kyne’s Peace", "Slow Time", "Unrelenting Force", "Whirlwind Sprint")]
         SkyrimDragonShout,
 
-        [SouvenirQuestion("How many red balls were there at the start of {0}?", "Snooker", AnswerLayout.TwoColumns4Answers, "8", "9", "10")]
+        [SouvenirQuestion("How many red balls were there at the start of {0}?", "Snooker", AnswerLayout.TwoColumns4Answers, "8", "9", "10", "11")]
         SnookerReds,
 
         [SouvenirQuestion("What positions were the last swap used to solve {0}?", "Sorting", AnswerLayout.ThreeColumns6Answers, "1 & 2", "1 & 3", "1 & 4", "1 & 5", "2 & 3", "2 & 4", "2 & 5", "3 & 4", "3 & 5", "4 & 5")]
@@ -1176,7 +1187,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         TashaSquealsColors,
 
-        [SouvenirQuestion("What was the initial color of the {1} button in the {2} stage of {0}?", "Ten-Button Color Code", AnswerLayout.TwoColumns4Answers, "red", "green", "blue",
+        [SouvenirQuestion("What was the initial color of the {1} button in the {2} stage of {0}?", "Ten-Button Color Code", AnswerLayout.TwoColumns4Answers, "red", "green", "blue", "yellow",
             ExampleExtraFormatArguments = new[] { "first", "first", "second", "first", "first", "second", "second", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
         TenButtonColorCodeInitialColors,
 

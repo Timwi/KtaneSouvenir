@@ -32,6 +32,7 @@ namespace Souvenir
                     case AnswerLayout.TwoColumns4Answers: return 4;
                     case AnswerLayout.ThreeColumns6Answers: return 6;
                     case AnswerLayout.OneColumn4Answers: return 4;
+                    case AnswerLayout.OneColumn2Answers: return 2;
                     default: throw new InvalidOperationException("Unexpected AnswerLayout value.");
                 }
             }

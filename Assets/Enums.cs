@@ -17,6 +17,7 @@
     {
         TwoColumns4Answers = 0,
         ThreeColumns6Answers = 1,
-        OneColumn4Answers = 2
+        OneColumn4Answers = 2,
+        OneColumn2Answers = 3
     }
 }

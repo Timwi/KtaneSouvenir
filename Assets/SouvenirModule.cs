@@ -167,6 +167,7 @@ public class SouvenirModule : MonoBehaviour
     const string _FaultyRGBMaze = "faultyrgbMaze";
     const string _Flags = "FlagsModule";
     const string _FlashingLights = "flashingLights";
+    const string _ForgetAnyColor = "ForgetAnyColor";
     const string _ForgetTheColors = "ForgetTheColors";
     const string _FreeParking = "freeParking";
     const string _Functions = "qFunctions";
@@ -266,6 +267,7 @@ public class SouvenirModule : MonoBehaviour
     const string _RainbowArrows = "ksmRainbowArrows";
     const string _RecoloredSwitches = "R4YRecoloredSwitches";
     const string _RedArrows = "redArrowsModule";
+    const string _ReformedRoleReversal = "ReformedRoleReversal";
     const string _Retirement = "retirement";
     const string _RegularCrazyTalk = "RegularCrazyTalkModule";
     const string _ReverseMorse = "reverseMorse";
@@ -424,6 +426,7 @@ public class SouvenirModule : MonoBehaviour
             { _FaultyRGBMaze, ProcessFaultyRGBMaze },
             { _Flags, ProcessFlags },
             { _FlashingLights, ProcessFlashingLights },
+            { _ForgetAnyColor, ProcessForgetAnyColor },
             { _ForgetTheColors, ProcessForgetTheColors },
             { _FreeParking, ProcessFreeParking },
             { _Functions, ProcessFunctions },
@@ -523,6 +526,7 @@ public class SouvenirModule : MonoBehaviour
             { _RainbowArrows, ProcessRainbowArrows },
             { _RecoloredSwitches, ProcessRecoloredSwitches },
             { _RedArrows, ProcessRedArrows },
+            { _ReformedRoleReversal, ProcessReformedRoleReversal },
             { _RegularCrazyTalk, ProcessRegularCrazyTalk },
             { _Retirement, ProcessRetirement },
             { _ReverseMorse, ProcessReverseMorse },
@@ -3592,9 +3596,65 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessForgetAnyColor(KMBombModule module)
+    {
+        var comp = GetComponent(module, "FACScript");
+
+        // Waits until lights come on.
+        var fldInit = GetField<object>(comp, "init");
+        var fldStage = GetIntField(fldInit.Get(), "stage");
+        var fldCalculate = GetField<object>(fldInit.Get(), "calculate");
+        var fldCylinders = GetField<Array>(fldInit.Get(), "cylinders");
+        var fldSequences = GetListField<bool?>(fldCalculate.Get(), "sequences");
+        var fldFigures = GetListField<int>(fldCalculate.Get(), "figureSequences");
+
+        int facCount;
+        if (_moduleCounts.TryGetValue(_ForgetAnyColor, out facCount) && facCount > 1)
+        {
+            Debug.LogFormat("[Souvenir #{0}] No question for Forget Any Color because there is more than one of them.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
+
+        while (fldSequences.Get(minLength: 0, maxLength: int.MaxValue, nullArrayAllowed: false, nullContentAllowed: true).Count == 0)
+            yield return null;
+
+        var fldMaxStage = GetIntField(fldInit.Get(), "maxStage");
+        var maxStage = fldMaxStage.Get() + 1;
+        var randomStage = Rnd.Range(0, Math.Min(5, maxStage - 1));
+
+        Debug.LogFormat("<Souvenir #{0}> Waiting for stage {1} of ForgetAnyColor.", _moduleId, randomStage + 1);
+        while (fldStage.Get() <= randomStage && fldFigures.Get().Count < randomStage + 1)
+            yield return null;  // Don’t wait .1 seconds so that we are absolutely sure we get the right stage
+        _modulesSolved.IncSafe(_ForgetAnyColor);
+
+        if (maxStage < fldStage.Get())
+            throw new AbandonModuleException("‘stage’ had an unexpected value: expected 0-{0}, was {1}.", maxStage, fldStage.Get());
+
+        if (fldCylinders.Get().GetLength(0) != maxStage || fldCylinders.Get().GetLength(1) != 3)
+            throw new AbandonModuleException("‘fldCylinders’ has incorrect number of entries (Expected {1}, 3): {2}, {3}", _moduleId, maxStage, fldCylinders.Get().GetLength(0), fldCylinders.Get().GetLength(1));
+        
+        if (fldFigures.Get().Count < randomStage)
+            throw new AbandonModuleException("‘fldFigures’ has incorrect number of entries (Expected at least {1} and at most {2}): {3}", _moduleId, randomStage, maxStage, fldFigures.Get().Count);
+
+        var colors = new[] { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "White" };
+        var figures = new[] { "LLLMR", "LMMMR", "LMRRR", "LMMRR", "LLMRR", "LLMMR" };
+        var preferredCylinders = new string[3];
+
+        for (int i = 0; i < preferredCylinders.Length; i++)
+        {
+            var indexes = Enumerable.Range(0, colors.Length).ToArray().Shuffle();
+            preferredCylinders[i] = colors[indexes[0]] + ", " + colors[indexes[1]] + ", " + colors[indexes[2]];
+        }
+
+        addQuestions(module,
+            makeQuestion(Question.ForgetAnyColorCylinder, _ForgetAnyColor, new[] { (randomStage + 1).ToString() }, correctAnswers: new[] { colors[(int) fldCylinders.Get().GetValue(randomStage, 0)] + ", " + colors[(int) fldCylinders.Get().GetValue(randomStage, 1)] + ", " + colors[(int) fldCylinders.Get().GetValue(randomStage, 2)] }, preferredWrongAnswers: preferredCylinders),
+            makeQuestion(Question.ForgetAnyColorSequence, _ForgetAnyColor, new[] { (randomStage + 1).ToString() }, correctAnswers: new[] { figures[fldFigures.Get()[randomStage]] }, preferredWrongAnswers: figures));
+    }
+
     private IEnumerable<object> ProcessForgetTheColors(KMBombModule module)
     {
-        var comp = GetComponent(module, "FTC");
+        var comp = GetComponent(module, "FTCScript");
         var fldStage = GetIntField(comp, "stage");
 
         int ftcCount;
@@ -3620,7 +3680,7 @@ public class SouvenirModule : MonoBehaviour
 
         var randomStage = 0;
         // Uncomment the line below if you want the module to pick a random stage instead of only stage 0.
-        // var randomStage = Rnd.Range(0, Math.Min(maxStage, _coroutinesActive)) % 100;
+        // randomStage = Rnd.Range(0, Math.Min(maxStage, _coroutinesActive)) % 100;
         Debug.LogFormat("<Souvenir #{0}> Waiting for stage {1} of ForgetTheColors.", _moduleId, randomStage);
         while (fldStage.Get() <= randomStage)
             yield return null;  // Don’t wait .1 seconds so that we are absolutely sure we get the right stage
@@ -3782,8 +3842,8 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_GridLock);
         addQuestions(module,
-            makeQuestion(Question.GridLockStartingLocation, _GridLock, correctAnswers: new[] { ((char) ('A' + start % 4)).ToString() + (char) ('1' + start / 4) }),
-            makeQuestion(Question.GridLockEndingLocation, _GridLock, correctAnswers: new[] { ((char) ('A' + solution % 4)).ToString() + (char) ('1' + solution / 4) }),
+            makeQuestion(Question.GridLockStartingLocation, _GridLock, preferredWrongAnswers: Tiles4x4Sprites, correctAnswers: new[] { Tiles4x4Sprites[start] }),
+            makeQuestion(Question.GridLockEndingLocation, _GridLock, preferredWrongAnswers: Tiles4x4Sprites, correctAnswers: new[] { Tiles4x4Sprites[solution] }),
             makeQuestion(Question.GridLockStartingColor, _GridLock, correctAnswers: new[] { colors[(pages[0][start] >> 4) - 1] }));
     }
 
@@ -3881,9 +3941,9 @@ public class SouvenirModule : MonoBehaviour
         var cipherWrongAnswers = octOS ? validPhrases.SelectMany(str => Enumerable.Range(0, str.Length - 6).Select(ix => str.Substring(ix, 6))).ToArray() : validCharacters.SelectMany(c1 => validCharacters.Select(c2 => string.Concat(c1, c2))).ToArray();
 
         var wrongAnswers = octOS
-            // generate every combination of 0, 1, 2, & 3 so long as the left two numbers don’t match the right (3031 is valid but 3131 is not)
+            // Generate every combination of 0, 1, 2, & 3 so long as the left two numbers don’t match the right (3031 is valid but 3131 is not)
             ? Enumerable.Range(0, 256).Where(i => i / 16 != i % 16).Select(i => new[] { i / 64, (i / 16) % 4, (i / 4) % 4, i % 4 }.JoinString()).ToArray()
-            // generate every combination of 0, 1, & 2 so long as the left two numbers don’t match the right (2021 is valid but 2121 is not)
+            // Generate every combination of 0, 1, & 2 so long as the left two numbers don’t match the right (2021 is valid but 2121 is not)
             : Enumerable.Range(0, 81).Where(i => i / 9 != i % 9).Select(i => new[] { i / 27, (i / 9) % 3, (i / 3) % 3, i % 3 }.JoinString()).ToArray();
 
         qs.Add(octOS
@@ -6406,6 +6466,63 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_RedArrows);
 
         addQuestion(module, Question.RedArrowsStartNumber, correctAnswers: new[] { GetIntField(comp, "start").Get(min: 0, max: 9).ToString() });
+    }
+
+    private IEnumerable<object> ProcessReformedRoleReversal(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ReformedRoleReversal");
+        var fldInit = GetField<object>(comp, "Init");
+        var fldConditions = GetField<Array>(fldInit.Get(), "Conditions");
+        var fldHandleManual = GetField<object>(fldInit.Get(), "Manual");
+        var fldSolved = GetField<bool>(fldInit.Get(), "Solved");
+        var fldIndex = GetArrayField<int>(fldHandleManual.Get(), "SouvenirIndex");
+        var fldWires = GetArrayField<int>(fldHandleManual.Get(), "SouvenirWires");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ReformedRoleReversal);
+
+        if (fldConditions.Get().GetLength(0) != 8 || fldConditions.Get().GetLength(1) != 8)
+            throw new AbandonModuleException("‘fldConditions’ contains invalid lengths: {0}, {1}", fldConditions.Get().GetLength(0), fldConditions.Get().GetLength(1));
+
+        if (fldIndex.Get().Length != 2)
+            throw new AbandonModuleException("‘fldIndex’ contains invalid length: {0}", fldIndex.Get().Length);
+
+        if (fldWires.Get().Length < 3 || fldWires.Get().Length > 9)
+            throw new AbandonModuleException("‘fldWires’ contains invalid length: {0}", fldWires.Get().Length);
+
+        if (fldWires.Get().Any(i => i > 9 || i < 0))
+            throw new AbandonModuleException("‘fldWires’ contains invalid values: {0}", fldIndex.Get().Join(", "));
+
+        List<string> conditions = new List<string>();
+
+        // 50% chance of either using the 'if' statements, or the 'then' statements.
+        var ifCondition = Rnd.Range(0f, 1f) > 0.5;
+
+        // 1 excludes the tutorial.
+        for (int i = 1; i < 8; i++)
+        {
+            // 1 excludes the first condition.
+            for (int j = 1; j < 8; j++)
+            {
+                string temp = GetField<string>(fldConditions.Get().GetValue(i, j), "Text").Get();
+
+                if (temp.Count(c => c == ',') > 0)
+                {
+                    temp = ifCondition ? temp.Substring(0, temp.LastIndexOf(',')).Replace(".", "")
+                                       : temp.Substring(temp.LastIndexOf(',') + 2).Replace(".", "");
+                }
+
+                // Capitalizes the first letter.
+                conditions.Add(char.ToUpper(temp[0]) + temp.Substring(1));
+            }
+        }
+
+        string[] colors = { "Navy", "Lapis", "Blue", "Sky", "Teal", "Plum", "Violet", "Purple", "Magenta", "Lavender" };
+        var index = Rnd.Range(0, fldWires.Get().Length);
+        addQuestions(module, 
+            makeQuestion(Question.ReformedRoleReversalCondition, _ReformedRoleReversal, correctAnswers: new[] { conditions[((fldIndex.Get()[0] - 1) * 7) + (fldIndex.Get()[1] - 1)] }, preferredWrongAnswers: conditions.ToArray()),
+            makeQuestion(Question.ReformedRoleReversalWire, _ReformedRoleReversal, new[] { ordinal(index + 1) }, correctAnswers: new[] { colors[fldWires.Get()[index]] }, preferredWrongAnswers: colors));
     }
 
     private IEnumerable<object> ProcessRegularCrazyTalk(KMBombModule module)
