@@ -1205,14 +1205,14 @@ public class SouvenirModule : MonoBehaviour
                         WarningIcon.SetActive(true);
                         yield break;
                     }
+                    if (!canMoveNext)
+                        break;
+                    yield return e.Current;
                     if (TwitchAbandonModule.Contains(module))
                     {
                         Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because Twitch Plays told me to.", _moduleId, module.ModuleDisplayName);
                         yield break;
                     }
-                    if (!canMoveNext)
-                        break;
-                    yield return e.Current;
                 }
             }
 
@@ -3640,7 +3640,7 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.ForgetAnyColorCylinder, _ForgetAnyColor, new[] { (randomStage + 1).ToString() },
                 correctAnswers: new[] { correctCylinder }, preferredWrongAnswers: preferredCylinders.ToArray()),
-            makeQuestion(Question.ForgetAnyColorSequence, _ForgetAnyColor, new[] { (randomStage + 1).ToString() }, 
+            makeQuestion(Question.ForgetAnyColorSequence, _ForgetAnyColor, new[] { (randomStage + 1).ToString() },
                 correctAnswers: new[] { figureNames[figures[randomStage]] }, preferredWrongAnswers: figureNames));
     }
 
