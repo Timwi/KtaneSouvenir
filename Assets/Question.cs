@@ -422,7 +422,6 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the ending location in {0}?", "Gridlock", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "Tiles4x4Sprites")]
         GridLockEndingLocation,
-
         [SouvenirQuestion("What was the starting color in {0}?", "Gridlock", AnswerLayout.TwoColumns4Answers, "Green", "Yellow", "Red", "Blue")]
         GridLockStartingColor,
 
