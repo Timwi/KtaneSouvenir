@@ -367,6 +367,14 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 12)]
         FlashingLightsLEDFrequency,
 
+        [SouvenirQuestion("What were the cylinders during stage {1} in {0}?", "Forget Any Color", AnswerLayout.OneColumn4Answers, null,
+            ExampleAnswers = new[] { "Orange, Yellow, Green", "Yellow, Cyan, Purple", "Green, Purple, Orange" },
+            ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ForgetAnyColorCylinder,
+        [SouvenirQuestion("What figure was used during stage {1} in {0}?", "Forget Any Color", AnswerLayout.ThreeColumns6Answers, "LLLMR", "LMMMR", "LMRRR", "LMMRR", "LLMRR", "LLMMR",
+            ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ForgetAnyColorSequence,
+
         [SouvenirQuestion("What number was on the gear during stage {1} in {0}?", "Forget the Colors", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 9)]
@@ -382,7 +390,7 @@ namespace Souvenir
         [SouvenirQuestion("What color was the gear during stage {1} in {0}?", "Forget the Colors", AnswerLayout.ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "Pink", "Maroon", "White", "Gray",
             ExampleExtraFormatArguments = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ForgetTheColorsGearColor,
-        [SouvenirQuestion("Which edgework-based rule was applied to the total number during stage {1} in {0}?", "Forget the Colors", AnswerLayout.ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "Pink", "Maroon", "White", "Gray",
+        [SouvenirQuestion("Which edgework-based rule was applied to the sum of nixies and gear during stage {1} in {0}?", "Forget the Colors", AnswerLayout.ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "Pink", "Maroon", "White", "Gray",
             ExampleExtraFormatArguments = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ForgetTheColorsRuleColor,
 

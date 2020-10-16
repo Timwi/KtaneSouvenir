@@ -27,7 +27,7 @@ public class Config
             { "Listings", new List<Dictionary<string, object>>
                 {
                     new Dictionary<string, object> { { "Key", "ExcludeVanillaModules" }, { "Text", "Exclude vanilla modules" }, { "Description", "avoid questions about vanilla modules" } },
-                    new Dictionary<string, object> { { "Key", "ExcludeIgnoredModules" }, { "Text", "Exclude ignored modules" }, { "Description", "avoid questions about e.g. Forget The Colors; does not affect other Souvenirs" } },
+                    new Dictionary<string, object> { { "Key", "ExcludeIgnoredModules" }, { "Text", "Exclude ignored modules" }, { "Description", "avoid questions about boss modules (except other Souvenirs)" } },
 
                     new Dictionary<string, object> { { "Text", "Exclude specific modules" }, { "Type", "Section" } },
                     new Dictionary<string, object> { { "Key", "ExcludeMysteryModule" }, { "Text", "Mystery Module" } },

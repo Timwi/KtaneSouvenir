@@ -167,6 +167,7 @@ public class SouvenirModule : MonoBehaviour
     const string _FaultyRGBMaze = "faultyrgbMaze";
     const string _Flags = "FlagsModule";
     const string _FlashingLights = "flashingLights";
+    const string _ForgetAnyColor = "ForgetAnyColor";
     const string _ForgetTheColors = "ForgetTheColors";
     const string _FreeParking = "freeParking";
     const string _Functions = "qFunctions";
@@ -424,6 +425,7 @@ public class SouvenirModule : MonoBehaviour
             { _FaultyRGBMaze, ProcessFaultyRGBMaze },
             { _Flags, ProcessFlags },
             { _FlashingLights, ProcessFlashingLights },
+            { _ForgetAnyColor, ProcessForgetAnyColor },
             { _ForgetTheColors, ProcessForgetTheColors },
             { _FreeParking, ProcessFreeParking },
             { _Functions, ProcessFunctions },
@@ -3592,9 +3594,59 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessForgetAnyColor(KMBombModule module)
+    {
+        var comp = GetComponent(module, "FACScript");
+
+        var init = GetField<object>(comp, "init").Get();
+        var fldStage = GetIntField(init, "stage");
+        var fldCylinders = GetField<Array>(init, "cylinders");
+        var calculate = GetField<object>(init, "calculate").Get();
+        var fldSequences = GetListField<bool?>(calculate, "sequences");
+        var fldFigures = GetListField<int>(calculate, "figureSequences");
+
+        int facCount;
+        if (_moduleCounts.TryGetValue(_ForgetAnyColor, out facCount) && facCount > 1)
+        {
+            Debug.LogFormat("[Souvenir #{0}] No question for Forget Any Color because there is more than one of them.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
+
+        while (fldSequences.Get(minLength: 0, maxLength: int.MaxValue, nullContentAllowed: true).Count == 0)
+            yield return null;
+
+        var maxStage = GetIntField(init, "maxStage").Get() + 1;
+        var randomStage = Rnd.Range(0, Math.Min(5, maxStage - 1));
+
+        Debug.LogFormat("<Souvenir #{0}> Forget Any Color: Waiting for stage {1}.", _moduleId, randomStage + 1);
+        while (fldFigures.Get().Count < randomStage + 1)
+            yield return null;  // Don’t wait .1 seconds so that we are absolutely sure we get the right stage
+        _modulesSolved.IncSafe(_ForgetAnyColor);
+
+        if (maxStage < fldStage.Get())
+            throw new AbandonModuleException("‘stage’ had an unexpected value: expected 0-{0}, was {1}.", maxStage, fldStage.Get());
+
+        var cylinders = fldCylinders.Get(v => v.Rank != 2 || v.GetLength(0) != maxStage || v.GetLength(1) != 3 ? string.Format("expected a {0}×3 2D array", maxStage) : null);
+        var figures = fldFigures.Get(v => v.Count < randomStage + 1 ? string.Format("expected at least {0} entries", randomStage + 1) : null);
+
+        var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "White" };
+        var figureNames = new[] { "LLLMR", "LMMMR", "LMRRR", "LMMRR", "LLMRR", "LLMMR" };
+        var correctCylinder = Enumerable.Range(0, 2).Select(ix => colorNames[(int) cylinders.GetValue(randomStage, ix)]).JoinString(", ");
+        var preferredCylinders = new HashSet<string> { correctCylinder };
+        while (preferredCylinders.Count < 6)
+            preferredCylinders.Add(Enumerable.Range(0, colorNames.Length).ToArray().Shuffle().Select(ix => colorNames[ix]).JoinString(", "));
+
+        addQuestions(module,
+            makeQuestion(Question.ForgetAnyColorCylinder, _ForgetAnyColor, new[] { (randomStage + 1).ToString() },
+                correctAnswers: new[] { correctCylinder }, preferredWrongAnswers: preferredCylinders.ToArray()),
+            makeQuestion(Question.ForgetAnyColorSequence, _ForgetAnyColor, new[] { (randomStage + 1).ToString() }, 
+                correctAnswers: new[] { figureNames[figures[randomStage]] }, preferredWrongAnswers: figureNames));
+    }
+
     private IEnumerable<object> ProcessForgetTheColors(KMBombModule module)
     {
-        var comp = GetComponent(module, "FTC");
+        var comp = GetComponent(module, "FTCScript");
         var fldStage = GetIntField(comp, "stage");
 
         int ftcCount;
@@ -3618,16 +3670,14 @@ public class SouvenirModule : MonoBehaviour
 
         string[] colors = { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "Pink", "Maroon", "White", "Gray" };
 
-        var randomStage = 0;
-        // Uncomment the line below if you want the module to pick a random stage instead of only stage 0.
-        // var randomStage = Rnd.Range(0, Math.Min(maxStage, _coroutinesActive)) % 100;
-        Debug.LogFormat("<Souvenir #{0}> Waiting for stage {1} of ForgetTheColors.", _moduleId, randomStage);
-        while (fldStage.Get() <= randomStage)
+        var chosenStage = 0;
+        Debug.LogFormat("<Souvenir #{0}> Forget The Colors: Waiting for stage {1}.", _moduleId, chosenStage);
+        while (fldStage.Get() <= chosenStage)
             yield return null;  // Don’t wait .1 seconds so that we are absolutely sure we get the right stage
         _modulesSolved.IncSafe(_ForgetTheColors);
 
-        if (gear.Count <= randomStage || largeDisplay.Count <= randomStage || sineNumber.Count <= randomStage || gearColor.Count <= randomStage || ruleColor.Count <= randomStage)
-            throw new AbandonModuleException("One or more of the lists have an unexpected level of entries. (Expected less than or equal {1}): Gear: {2}, LargeDisplay: {3}, SineNumber: {4}, GearColor: {5}, RuleColor: {6}", _moduleId, randomStage, gear.Count, largeDisplay.Count, sineNumber.Count, gearColor.Count, ruleColor.Count);
+        if (gear.Count <= chosenStage || largeDisplay.Count <= chosenStage || sineNumber.Count <= chosenStage || gearColor.Count <= chosenStage || ruleColor.Count <= chosenStage)
+            throw new AbandonModuleException("One or more of the lists have an unexpected level of entries. (Expected less than or equal {1}): Gear: {2}, LargeDisplay: {3}, SineNumber: {4}, GearColor: {5}, RuleColor: {6}", _moduleId, chosenStage, gear.Count, largeDisplay.Count, sineNumber.Count, gearColor.Count, ruleColor.Count);
 
         if (!new[] { gear.Count, largeDisplay.Count, sineNumber.Count, gearColor.Count, ruleColor.Count }.All(x => x == gear.Count))
             throw new AbandonModuleException("One or more of the lists aren't all the same length. (Expected {1}): Gear: {1}, LargeDisplay: {2}, SineNumber: {3}, GearColor: {4}, RuleColor: {5}", _moduleId, gear.Count, largeDisplay.Count, sineNumber.Count, gearColor.Count, ruleColor.Count);
@@ -3647,11 +3697,11 @@ public class SouvenirModule : MonoBehaviour
         }
 
         var qs = new List<QandA>();
-        qs.Add(makeQuestion(Question.ForgetTheColorsGearNumber, _ForgetTheColors, new[] { randomStage.ToString() }, correctAnswers: new[] { gear[randomStage].ToString() }, preferredWrongAnswers: new[] { Rnd.Range(0, 10).ToString() }));
-        qs.Add(makeQuestion(Question.ForgetTheColorsLargeDisplay, _ForgetTheColors, new[] { randomStage.ToString() }, correctAnswers: new[] { largeDisplay[randomStage].ToString() }, preferredWrongAnswers: new[] { Rnd.Range(0, 991).ToString() }));
-        qs.Add(makeQuestion(Question.ForgetTheColorsSineNumber, _ForgetTheColors, new[] { randomStage.ToString() }, correctAnswers: new[] { (Mathf.Abs(sineNumber[randomStage]) % 10).ToString() }, preferredWrongAnswers: new[] { Rnd.Range(0, 10).ToString() }));
-        qs.Add(makeQuestion(Question.ForgetTheColorsGearColor, _ForgetTheColors, new[] { randomStage.ToString() }, correctAnswers: new[] { gearColor[randomStage].ToString() }, preferredWrongAnswers: new[] { colors[Rnd.Range(0, colors.Length)] }));
-        qs.Add(makeQuestion(Question.ForgetTheColorsRuleColor, _ForgetTheColors, new[] { randomStage.ToString() }, correctAnswers: new[] { ruleColor[randomStage].ToString() }, preferredWrongAnswers: new[] { colors[Rnd.Range(0, colors.Length)] }));
+        qs.Add(makeQuestion(Question.ForgetTheColorsGearNumber, _ForgetTheColors, new[] { chosenStage.ToString() }, correctAnswers: new[] { gear[chosenStage].ToString() }, preferredWrongAnswers: new[] { Rnd.Range(0, 10).ToString() }));
+        qs.Add(makeQuestion(Question.ForgetTheColorsLargeDisplay, _ForgetTheColors, new[] { chosenStage.ToString() }, correctAnswers: new[] { largeDisplay[chosenStage].ToString() }, preferredWrongAnswers: new[] { Rnd.Range(0, 991).ToString() }));
+        qs.Add(makeQuestion(Question.ForgetTheColorsSineNumber, _ForgetTheColors, new[] { chosenStage.ToString() }, correctAnswers: new[] { (Mathf.Abs(sineNumber[chosenStage]) % 10).ToString() }, preferredWrongAnswers: new[] { Rnd.Range(0, 10).ToString() }));
+        qs.Add(makeQuestion(Question.ForgetTheColorsGearColor, _ForgetTheColors, new[] { chosenStage.ToString() }, correctAnswers: new[] { gearColor[chosenStage].ToString() }, preferredWrongAnswers: new[] { colors[Rnd.Range(0, colors.Length)] }));
+        qs.Add(makeQuestion(Question.ForgetTheColorsRuleColor, _ForgetTheColors, new[] { chosenStage.ToString() }, correctAnswers: new[] { ruleColor[chosenStage].ToString() }, preferredWrongAnswers: new[] { colors[Rnd.Range(0, colors.Length)] }));
         addQuestions(module, qs);
     }
 
@@ -3881,9 +3931,9 @@ public class SouvenirModule : MonoBehaviour
         var cipherWrongAnswers = octOS ? validPhrases.SelectMany(str => Enumerable.Range(0, str.Length - 6).Select(ix => str.Substring(ix, 6))).ToArray() : validCharacters.SelectMany(c1 => validCharacters.Select(c2 => string.Concat(c1, c2))).ToArray();
 
         var wrongAnswers = octOS
-            // generate every combination of 0, 1, 2, & 3 so long as the left two numbers don’t match the right (3031 is valid but 3131 is not)
+            // Generate every combination of 0, 1, 2, & 3 so long as the left two numbers don’t match the right (3031 is valid but 3131 is not)
             ? Enumerable.Range(0, 256).Where(i => i / 16 != i % 16).Select(i => new[] { i / 64, (i / 16) % 4, (i / 4) % 4, i % 4 }.JoinString()).ToArray()
-            // generate every combination of 0, 1, & 2 so long as the left two numbers don’t match the right (2021 is valid but 2121 is not)
+            // Generate every combination of 0, 1, & 2 so long as the left two numbers don’t match the right (2021 is valid but 2121 is not)
             : Enumerable.Range(0, 81).Where(i => i / 9 != i % 9).Select(i => new[] { i / 27, (i / 9) % 3, (i / 3) % 3, i % 3 }.JoinString()).ToArray();
 
         qs.Add(octOS
