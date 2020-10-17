@@ -944,6 +944,12 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9)]
         RedArrowsStartNumber,
 
+        [SouvenirQuestion("Which condition was the solving condition in {0}?", "Reformed Role Reversal", AnswerLayout.ThreeColumns6Answers, "first", "second", "third", "4th", "5th", "6th", "7th", "8th")]
+        ReformedRoleReversalCondition,
+        [SouvenirQuestion("What color was the {1} wire in {0}?", "Reformed Role Reversal", AnswerLayout.ThreeColumns6Answers, "Navy", "Lapis", "Blue", "Sky", "Teal", "Plum", "Violet", "Purple", "Magenta", "Lavender",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th", "6th", "7th", "8th", "9th", "10th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ReformedRoleReversalWire,
+
         [SouvenirQuestion("What was the displayed digit that corresponded to the solution phrase in {0}?", "Regular Crazy Talk", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Integers(0, 9)]
         RegularCrazyTalkDigit,

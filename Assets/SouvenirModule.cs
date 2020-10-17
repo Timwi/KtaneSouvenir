@@ -267,6 +267,7 @@ public class SouvenirModule : MonoBehaviour
     const string _RainbowArrows = "ksmRainbowArrows";
     const string _RecoloredSwitches = "R4YRecoloredSwitches";
     const string _RedArrows = "redArrowsModule";
+    const string _ReformedRoleReversal = "ReformedRoleReversal";
     const string _Retirement = "retirement";
     const string _RegularCrazyTalk = "RegularCrazyTalkModule";
     const string _ReverseMorse = "reverseMorse";
@@ -525,6 +526,7 @@ public class SouvenirModule : MonoBehaviour
             { _RainbowArrows, ProcessRainbowArrows },
             { _RecoloredSwitches, ProcessRecoloredSwitches },
             { _RedArrows, ProcessRedArrows },
+            { _ReformedRoleReversal, ProcessReformedRoleReversal },
             { _RegularCrazyTalk, ProcessRegularCrazyTalk },
             { _Retirement, ProcessRetirement },
             { _ReverseMorse, ProcessReverseMorse },
@@ -6456,6 +6458,30 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_RedArrows);
 
         addQuestion(module, Question.RedArrowsStartNumber, correctAnswers: new[] { GetIntField(comp, "start").Get(min: 0, max: 9).ToString() });
+    }
+
+    private IEnumerable<object> ProcessReformedRoleReversal(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ReformedRoleReversal");
+        var init = GetField<object>(comp, "Init").Get();
+        var handleManual = GetField<object>(init, "Manual").Get();
+        var fldSolved = GetField<bool>(init, "Solved");
+        var fldIndex = GetArrayField<int>(handleManual, "SouvenirIndex");
+        var fldWires = GetArrayField<int>(handleManual, "SouvenirWires");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ReformedRoleReversal);
+
+        var index = fldIndex.Get(expectedLength: 2);
+        var wires = fldWires.Get(minLength: 3, maxLength: 9, validator: i => i < 0 || i > 9 ? "expected value 0–9" : null);
+
+        var colors = new[] { "Navy", "Lapis", "Blue", "Sky", "Teal", "Plum", "Violet", "Purple", "Magenta", "Lavender" };
+        var qs = new List<QandA>();
+        qs.Add(makeQuestion(Question.ReformedRoleReversalCondition, _ReformedRoleReversal, correctAnswers: new[] { ordinal(index[1] + 1) }));
+        for (var ix = 0; ix < wires.Length; ix++)
+            qs.Add(makeQuestion(Question.ReformedRoleReversalWire, _ReformedRoleReversal, new[] { ordinal(ix + 1) }, correctAnswers: new[] { colors[wires[ix]] }));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessRegularCrazyTalk(KMBombModule module)
