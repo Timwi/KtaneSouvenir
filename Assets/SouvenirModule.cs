@@ -3634,10 +3634,10 @@ public class SouvenirModule : MonoBehaviour
 
         var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "White" };
         var figureNames = new[] { "LLLMR", "LMMMR", "LMRRR", "LMMRR", "LLMRR", "LLMMR" };
-        var correctCylinder = Enumerable.Range(0, 2).Select(ix => colorNames[(int) cylinders.GetValue(randomStage, ix)]).JoinString(", ");
+        var correctCylinder = Enumerable.Range(0, 3).Select(ix => colorNames[(int) cylinders.GetValue(randomStage, ix)]).JoinString(", ");
         var preferredCylinders = new HashSet<string> { correctCylinder };
         while (preferredCylinders.Count < 6)
-            preferredCylinders.Add(Enumerable.Range(0, colorNames.Length).ToArray().Shuffle().Select(ix => colorNames[ix]).JoinString(", "));
+            preferredCylinders.Add(Enumerable.Range(0, 3).Select(i => colorNames.PickRandom()).Join(", "));
 
         addQuestions(module,
             makeQuestion(Question.ForgetAnyColorCylinder, _ForgetAnyColor, new[] { (randomStage + 1).ToString() },
