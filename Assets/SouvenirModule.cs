@@ -5293,13 +5293,13 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "MouseInTheMazeModule");
         var fldSolved = GetField<bool>(comp, "_isSolved");
-        var sphereColors = GetArrayField<int>(comp, "sphereColors").Get(expectedLength: 4);
+        var sphereColors = GetArrayField<int>(comp, "_sphereColors").Get(expectedLength: 4);
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
 
-        var goalPos = GetIntField(comp, "goalPosition").Get(min: 0, max: 3);
-        var torusColor = GetIntField(comp, "torusColor").Get(min: 0, max: 3);
+        var goalPos = GetIntField(comp, "_goalPosition").Get(min: 0, max: 3);
+        var torusColor = GetIntField(comp, "_torusColor").Get(min: 0, max: 3);
         var goalColor = sphereColors[goalPos];
         if (goalColor < 0 || goalColor > 3)
             throw new AbandonModuleException("Unexpected color (torus={0}; goal={1})", torusColor, goalColor);
