@@ -5668,10 +5668,6 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_NotWhosOnFirst);
 
-        Debug.LogFormat("[Souvenir #{0}] No question for Not Who’s On First because there’s a bug in it that needs fixing.", _moduleId);
-        _legitimatelyNoQuestions.Add(module);
-        yield break;
-
         var positions = _attributes[Question.NotWhosOnFirstPressedPosition].AllAnswers;
         var sumCorrectAnswers = new[] { fldSum.Get().ToString() };
 
@@ -5681,10 +5677,10 @@ public class SouvenirModule : MonoBehaviour
             qs.Add(makeQuestion(Question.NotWhosOnFirstPressedPosition, _NotWhosOnFirst, new[] { ordinal(i + 1) }, new[] { positions[fldPositions.Get()[i]] }));
             qs.Add(makeQuestion(Question.NotWhosOnFirstPressedLabel, _NotWhosOnFirst, new[] { ordinal(i + 1) }, new[] { fldLabels.Get()[i] }));
         }
-        for (var i = 4; i < 5; i++)
+        for (var i = 4; i < 6; i++)
         {
-            qs.Add(makeQuestion(Question.NotWhosOnFirstReferencePosition, _NotWhosOnFirst, new[] { ordinal(i + 1) }, new[] { positions[fldPositions.Get()[i]] }));
-            qs.Add(makeQuestion(Question.NotWhosOnFirstReferenceLabel, _NotWhosOnFirst, new[] { ordinal(i + 1) }, new[] { fldLabels.Get()[i] }));
+            qs.Add(makeQuestion(Question.NotWhosOnFirstReferencePosition, _NotWhosOnFirst, new[] { ordinal(i - 1) }, new[] { positions[fldPositions.Get()[i]] }));
+            qs.Add(makeQuestion(Question.NotWhosOnFirstReferenceLabel, _NotWhosOnFirst, new[] { ordinal(i - 1) }, new[] { fldLabels.Get()[i] }));
         }
         qs.Add(makeQuestion(Question.NotWhosOnFirstSum, _NotWhosOnFirst, correctAnswers: sumCorrectAnswers));
         addQuestions(module, qs);
