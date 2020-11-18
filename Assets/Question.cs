@@ -913,6 +913,10 @@ namespace Souvenir
         [SouvenirQuestion("What was the target word on {0}?", "Purple Arrows", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "Thesis", "Immune", "Agency", "Height", "Active", "Bother", "Viable" })]
         PurpleArrowsFinish,
 
+        [SouvenirQuestion("What was the {1} sequence's answer in {0}?", "Quaver", AnswerLayout.OneColumn4Answers, ExampleAnswers = new[] { "4", "10", "87", "320", "3, 3, 2, 3", "87, 85, 82, 84" },
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        QuaverArrows,
+
         [SouvenirQuestion("What was the {1} digit in the {2} slot in {0}?", "Quintuples", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "first", "first", "first", "second", "second", "first", "second", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
         [AnswerGenerator.Integers(0, 9)]
