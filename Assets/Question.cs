@@ -867,7 +867,7 @@ namespace Souvenir
         [SouvenirQuestion("Which symbol was highlighted in {0}?", "Pattern Cube", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "PatternCubeSprites")]
         PatternCubeHighlightedSymbol,
 
-        [SouvenirQuestion("What was the {1} color in the key sequence in {0}?", "Perspective Pegs", AnswerLayout.ThreeColumns6Answers, "red", "yellow", "green", "blue", "purple",
+        [SouvenirQuestion("What was the {1} color in the initial sequence in {0}?", "Perspective Pegs", AnswerLayout.ThreeColumns6Answers, "red", "yellow", "green", "blue", "purple",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PerspectivePegsColorSequence,
 
