@@ -748,6 +748,11 @@ namespace Souvenir
         [SouvenirQuestion("Which module was hidden by {0}?", "Mystery Module", AnswerLayout.OneColumn4Answers, null, ExampleAnswers = new[] { "Probing", "Kudosudoku", "Ten-Button Color Code", "The Jukebox" })]
         MysteryModuleHiddenModule,
 
+        [SouvenirQuestion("Which module was the first requested to be solved by {0}?", "Mystery Widget", AnswerLayout.OneColumn4Answers, null, ExampleAnswers = new[] { "Probing", "Kudosudoku", "Ten-Button Color Code", "The Jukebox", "Rock-Paper-Scissors-L.-Sp." })]
+        MysteryWidgetFirstKey,
+        [SouvenirQuestion("Which widget type was hidden by {0}?", "Mystery Widget", AnswerLayout.OneColumn4Answers, null, ExampleAnswers = new[] { "Serial Number", "Battery", "Port Plate", "Indicator", "Modded Widget" })]
+        MysteryWidgetHiddenWidget,
+
         [SouvenirQuestion("Where was the skull in {0}?", "Mystic Square", AnswerLayout.TwoColumns4Answers, "top left", "top middle", "top right", "middle left", "center", "middle right", "bottom left", "bottom middle", "bottom right")]
         MysticSquareSkull,
 

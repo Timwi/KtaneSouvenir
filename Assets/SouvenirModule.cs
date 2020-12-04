@@ -231,6 +231,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Murder = "murder";
     const string _MysticSquare = "MysticSquareModule";
     const string _MysteryModule = "mysterymodule";
+    const string _MysteryWidget = "widgetModule";
     const string _Necronomicon = "necronomicon";
     const string _Neutralization = "neutralization";
     const string _NandMs = "NandMs";
@@ -490,6 +491,7 @@ public class SouvenirModule : MonoBehaviour
             { _Murder, ProcessMurder },
             { _MysticSquare, ProcessMysticSquare },
             { _MysteryModule, ProcessMysteryModule },
+            { _MysteryWidget, ProcessMysteryWidget },
             { _Necronomicon, ProcessNecronomicon },
             { _Neutralization, ProcessNeutralization },
             { _NandMs, ProcessNandMs },
@@ -5433,6 +5435,45 @@ public class SouvenirModule : MonoBehaviour
 
         if (mystifiedModule == Module)
             _avoidQuestions--;
+    }
+
+    private IEnumerable<object> ProcessMysteryWidget(KMBombModule module)
+    {
+        var comp = GetComponent(module, "WidgetMagic");
+        var fldKeyModule = GetField<String>(comp, "keyModule");
+        var fldHiddenWidget = GetField<String>(comp, "hiddenType");
+        var fldSolved = GetField<bool>(comp, "isSolved");
+        var fldFailsolve = GetField<bool>(comp, "isAutoSolved");
+        var fldPreferredEdgework = GetField<List<String>>(comp, "preferredEdgework");
+
+        if (fldKeyModule == null || fldHiddenWidget == null || fldSolved == null || fldFailsolve == null || fldPreferredEdgework == null)
+        {
+            yield break;
+        }
+
+        while (fldKeyModule.Get(nullAllowed: true) == null && !fldFailsolve.Get())
+            yield return null;
+        while (fldHiddenWidget.Get(nullAllowed: true) == null && !fldFailsolve.Get())
+            yield return null;
+
+        if (fldFailsolve.Get())
+        {
+            Debug.LogFormat("[Souvenir #{0}] No question for Mystery Widget because no widget was hidden.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
+
+        var keyModule = fldKeyModule.Get();
+        var hiddenWidget = fldHiddenWidget.Get();
+        var preferredEdgework = fldPreferredEdgework.Get();
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_MysteryWidget);
+
+        addQuestions(module,
+            makeQuestion(Question.MysteryWidgetFirstKey, _MysteryWidget, correctAnswers: new[] { keyModule }, preferredWrongAnswers: Bomb.GetSolvableModuleNames().ToArray()),
+            makeQuestion(Question.MysteryWidgetHiddenWidget, _MysteryWidget, correctAnswers: new[] { hiddenWidget }, preferredWrongAnswers: preferredEdgework.ToArray()));
     }
 
     private IEnumerable<object> ProcessNecronomicon(KMBombModule module)
