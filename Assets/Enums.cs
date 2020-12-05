@@ -8,6 +8,7 @@
         TurtleRobotFont = 2,
         TicTacToeFont = 3,  // also used by The Bulb
         UnownFont = 4,
+        SugarSkullsFont = 5, // used by Sugar Skulls
 
         Sprites = -1,           // Special value that doesn’t translate to a font (used for answers that use sprites)
         DynamicFont = -2    // Special value to indicate that the module handler will obtain the font from the client module
