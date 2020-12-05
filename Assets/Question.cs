@@ -196,7 +196,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ChallengeAndContactAnswers,
 
-        [SouvenirQuestion("What was the {1} paid amount in {0}?", "Cheap Checkout", AnswerLayout.TwoColumns4Answers,
+        [SouvenirQuestion("What was the {1}paid amount in {0}?", "Cheap Checkout", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "", "first ", "second " }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(5, 50, "$0\".00\"")]
         CheapCheckoutPaid,
