@@ -263,6 +263,7 @@ public class SouvenirModule : MonoBehaviour
     const string _PolyhedralMaze = "PolyhedralMazeModule";
     const string _Probing = "Probing";
     const string _PurpleArrows = "purpleArrowsModule";
+    const string _Quaver = "Quaver";
     const string _Quintuples = "quintuples";
     const string _RailwayCargoLoading = "RailwayCargoLoading";
     const string _RainbowArrows = "ksmRainbowArrows";
@@ -523,6 +524,7 @@ public class SouvenirModule : MonoBehaviour
             { _PolyhedralMaze, ProcessPolyhedralMaze },
             { _Probing, ProcessProbing },
             { _PurpleArrows, ProcessPurpleArrows },
+            { _Quaver, ProcessQuaver },
             { _Quintuples, ProcessQuintuples },
             { _RailwayCargoLoading, ProcessRailwayCargoLoading },
             { _RainbowArrows, ProcessRainbowArrows },
@@ -6300,6 +6302,30 @@ public class SouvenirModule : MonoBehaviour
         wordScreenTextMesh.text = "SOLVED";
 
         addQuestion(module, Question.PurpleArrowsFinish, correctAnswers: new[] { Regex.Replace(finishWord, @"(?<!^).", m => m.Value.ToLowerInvariant()) }, preferredWrongAnswers: wordList.Select(w => w[0] + w.Substring(1).ToLowerInvariant()).ToArray());
+    }
+
+    private IEnumerable<object> ProcessQuaver(KMBombModule module)
+    {
+        var comp = GetComponent(module, "QuaverScript");
+        var init = GetField<object>(comp, "init").Get();
+        var fldSolved = GetField<bool>(init, "solved");
+        var fldCorrectValues = GetListField<int[]>(init, "correctValues");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Quaver);
+
+        var correctValues = fldCorrectValues.Get(minLength: 1, maxLength: 20, validator: arr => arr.Length != 1 && arr.Length != 4 ? "expected array of length 1 or 4" : null);
+        var qs = new List<QandA>();
+
+        for (var i = 0; i < correctValues.Count; i++)
+        {
+            var preferredWrongAnswers = new HashSet<string>();
+            while (preferredWrongAnswers.Count < 6)
+                preferredWrongAnswers.Add(correctValues[i].Select(x => Math.Max(x + Rnd.Range(-4, 5), 1)).JoinString(", "));
+            qs.Add(makeQuestion(Question.QuaverArrows, _Quaver, new[] { ordinal(i + 1) }, correctAnswers: new[] { correctValues[i].JoinString(", ") }, preferredWrongAnswers: preferredWrongAnswers.ToArray()));
+        }
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessQuintuples(KMBombModule module)
