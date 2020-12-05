@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 using KModkit;
@@ -97,6 +98,7 @@ public class SouvenirModule : MonoBehaviour
 
     #region Module ID constant declarations
     // The values here are the “ModuleType” property on the KMBombModule components.
+    const string _1000Words = "OneThousandWords";
     const string _100LevelsOfDefusal = "100LevelsOfDefusal";
     const string _3DMaze = "spwiz3DMaze";
     const string _3DTunnels = "3dTunnels";
@@ -105,17 +107,21 @@ public class SouvenirModule : MonoBehaviour
     const string _AffineCycle = "affineCycle";
     const string _Algebra = "algebra";
     const string _AlphabeticalRuling = "alphabeticalRuling";
+    const string _AlphabetTiles = "AlphabetTiles";
     const string _AlphaBits = "alphaBits";
     const string _Arithmelogic = "arithmelogic";
     const string _BamboozledAgain = "bamboozledAgain";
     const string _BamboozlingButton = "bamboozlingButton";
     const string _Bartending = "BartendingModule";
     const string _BigCircle = "BigCircle";
+    const string _Binary = "Binary";
     const string _BinaryLEDs = "BinaryLeds";
     const string _Bitmaps = "BitmapsModule";
+    const string _BlackCipher = "blackCipher";
     const string _BlindMaze = "BlindMaze";
     const string _Blockbusters = "blockbusters";
     const string _BlueArrows = "blueArrowsModule";
+    const string _BlueCipher = "blueCipher";
     const string _BobBarks = "ksmBobBarks";
     const string _Boggle = "boggle";
     const string _Boxing = "boxing";
@@ -130,6 +136,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Calendar = "calendar";
     const string _ChallengeAndContact = "challengeAndContact";
     const string _CheapCheckout = "CheapCheckoutModule";
+    const string _CheepCheckout = "cheepCheckout";
     const string _Chess = "ChessModule";
     const string _ChineseCounting = "chineseCounting";
     const string _ChordQualities = "ChordQualities";
@@ -145,16 +152,22 @@ public class SouvenirModule : MonoBehaviour
     const string _ColourFlash = "ColourFlash";
     const string _Coordinates = "CoordinatesModule";
     const string _Corners = "CornersModule";
+    const string _Cosmic = "CosmicModule";
     const string _Creation = "CreationModule";
     const string _CrypticCycle = "crypticCycle";
     const string _Cube = "cube";
     const string _DACHMaze = "DACH";
+    const string _DeafAlley = "deafAlleyModule";
     const string _DeckOfManyThings = "deckOfManyThings";
     const string _DecoloredSquares = "DecoloredSquaresModule";
     const string _DiscoloredSquares = "DiscoloredSquaresModule";
+    const string _DivisibleNumbers = "divisibleNumbers";
     const string _DoubleColor = "doubleColor";
     const string _DoubleOh = "DoubleOhModule";
     const string _DrDoctor = "DrDoctorModule";
+    const string _Dreamcipher = "ksmDreamcipher";
+    const string _DumbWaiters = "dumbWaiters";
+    const string _eeBgnillepS = "eeBgnilleps";
     const string _ElderFuthark = "elderFuthark";
     const string _EncryptedEquations = "EncryptedEquationsModule";
     const string _EncryptedHangman = "encryptedHangman";
@@ -172,10 +185,13 @@ public class SouvenirModule : MonoBehaviour
     const string _FreeParking = "freeParking";
     const string _Functions = "qFunctions";
     const string _Gamepad = "TheGamepadModule";
+    const string _GrayCipher = "grayCipher";
     const string _GreenArrows = "greenArrowsModule";
+    const string _GreenCipher = "greenCipher";
     const string _GridLock = "GridlockModule";
+    const string _GroceryStore = "groceryStore";
     const string _Gryphons = "gryphons";
-    const string _LogicalButtons = "logicalButtonsModule";
+    const string _GuessWho = "GuessWho";
     const string _HereditaryBaseNotation = "hereditaryBaseNotationModule";
     const string _Hexabutton = "hexabutton";
     const string _Hexamaze = "HexamazeModule";
@@ -183,6 +199,7 @@ public class SouvenirModule : MonoBehaviour
     const string _HiddenColors = "lgndHiddenColors";
     const string _HillCycle = "hillCycle";
     const string _Hogwarts = "HogwartsModule";
+    const string _HoldUps = "KritHoldUps";
     const string _HorribleMemory = "horribleMemory";
     const string _HumanResources = "HumanResourcesModule";
     const string _Hunting = "hunting";
@@ -190,6 +207,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Hyperlink = "hyperlink";
     const string _IceCream = "iceCreamModule";
     const string _IdentityParade = "identityParade";
+    const string _IndigoCipher = "indigoCipher";
     const string _iPhone = "iPhone";
     const string _JewelVault = "jewelVault";
     const string _JumbleCycle = "jumbleCycle";
@@ -199,6 +217,7 @@ public class SouvenirModule : MonoBehaviour
     const string _LEDMath = "lgndLEDMath";
     const string _LEGOs = "LEGOModule";
     const string _Listening = "Listening";
+    const string _LogicalButtons = "logicalButtonsModule";
     const string _LogicGates = "logicGates";
     const string _LondonUnderground = "londonUnderground";
     const string _Mafia = "MafiaModule";
@@ -206,6 +225,7 @@ public class SouvenirModule : MonoBehaviour
     const string _MandMs = "MandMs";
     const string _MandNs = "MandNs";
     const string _MaritimeFlags = "MaritimeFlagsModule";
+    const string _Matrix = "matrix";
     const string _Maze = "Maze";
     const string _Maze3 = "maze3";
     const string _Mazematics = "mazematics";
@@ -229,12 +249,12 @@ public class SouvenirModule : MonoBehaviour
     const string _MorseWar = "MorseWar";
     const string _MouseInTheMaze = "MouseInTheMaze";
     const string _Murder = "murder";
-    const string _MysticSquare = "MysticSquareModule";
     const string _MysteryModule = "mysterymodule";
-    const string _Necronomicon = "necronomicon";
-    const string _Neutralization = "neutralization";
+    const string _MysticSquare = "MysticSquareModule";
     const string _NandMs = "NandMs";
     const string _Navinums = "navinums";
+    const string _Necronomicon = "necronomicon";
+    const string _Neutralization = "neutralization";
     const string _NotButton = "NotButton";
     const string _NotKeypad = "NotKeypad";
     const string _NotMaze = "NotMaze";
@@ -242,10 +262,12 @@ public class SouvenirModule : MonoBehaviour
     const string _NotSimaze = "NotSimaze";
     const string _NotWhosOnFirst = "NotWhosOnFirst";
     const string _NumberedButtons = "numberedButtonsModule";
+    const string _Numbers = "Numbers";
     const string _ObjectShows = "objectShows";
     const string _OddOneOut = "OddOneOutModule";
     const string _OnlyConnect = "OnlyConnectModule";
     const string _OrangeArrows = "orangeArrowsModule";
+    const string _OrangeCipher = "orangeCipher";
     const string _OrderedKeys = "orderedKeys";
     const string _OrientationCube = "OrientationCube";
     const string _Palindromes = "palindromes";
@@ -267,21 +289,25 @@ public class SouvenirModule : MonoBehaviour
     const string _RainbowArrows = "ksmRainbowArrows";
     const string _RecoloredSwitches = "R4YRecoloredSwitches";
     const string _RedArrows = "redArrowsModule";
+    const string _RedCipher = "redCipher";
     const string _ReformedRoleReversal = "ReformedRoleReversal";
-    const string _Retirement = "retirement";
     const string _RegularCrazyTalk = "RegularCrazyTalkModule";
+    const string _Retirement = "retirement";
     const string _ReverseMorse = "reverseMorse";
     const string _RGBMaze = "rgbMaze";
     const string _Rhythms = "MusicRhythms";
+    const string _Roger = "roger";
     const string _RoleReversal = "roleReversal";
     const string _Rule = "theRule";
     const string _ScavengerHunt = "scavengerHunt";
     const string _SchlagDenBomb = "qSchlagDenBomb";
     const string _SeaShells = "SeaShells";
     const string _Semamorse = "semamorse";
+    const string _Sequencyclopedia = "TheSequencyclopedia";
     const string _ShapesBombs = "ShapesBombs";
     const string _ShapeShift = "shapeshift";
     const string _ShellGame = "shellGame";
+    const string _ShiftingMaze = "MazeShifting";
     const string _SillySlots = "SillySlots";
     const string _SimonSamples = "simonSamples";
     const string _SimonSays = "Simon";
@@ -305,10 +331,17 @@ public class SouvenirModule : MonoBehaviour
     const string _SonicTheHedgehog = "sonic";
     const string _Sorting = "sorting";
     const string _Souvenir = "SouvenirModule";
+    const string _SpellingBee = "spellingBee";
     const string _Sphere = "sphere";
     const string _SplittingTheLoot = "SplittingTheLootModule";
+    const string _SpotTheDifference = "SpotTheDifference";
+    const string _Stars = "stars";
+    const string _StateOfAggregation = "stateOfAggregation";
+    const string _SubscribeToPewdiepie = "subscribeToPewdiepie";
+    const string _SugarSkulls = "sugarSkulls";
     const string _Switch = "BigSwitch";
     const string _Switches = "switchModule";
+    const string _SwitchingMaze = "MazeSwitching";
     const string _SymbolCycle = "SymbolCycleModule";
     const string _SymbolicCoordinates = "symbolicCoordinates";
     const string _Synonyms = "synonyms";
@@ -321,9 +354,11 @@ public class SouvenirModule : MonoBehaviour
     const string _ThirdBase = "ThirdBase";
     const string _TicTacToe = "TicTacToeModule";
     const string _Timezone = "timezone";
+    const string _TopsyTurvy = "topsyTurvy";
     const string _TransmittedMorse = "transmittedMorseModule";
     const string _TurtleRobot = "turtleRobot";
     const string _TwoBits = "TwoBits";
+    const string _UltimateCipher = "ultimateCipher";
     const string _UltimateCycle = "ultimateCycle";
     const string _Ultracube = "TheUltracubeModule";
     const string _UncoloredSquares = "UncoloredSquaresModule";
@@ -331,18 +366,24 @@ public class SouvenirModule : MonoBehaviour
     const string _UnfairCipher = "unfairCipher";
     const string _UnownCipher = "UnownCipher";
     const string _USAMaze = "USA";
+    const string _V = "V";
     const string _VaricoloredSquares = "VaricoloredSquaresModule";
     const string _Vcrcs = "VCRCS";
     const string _Vectors = "vectorsModule";
     const string _Vexillology = "vexillology";
+    const string _VioletCipher = "violetCipher";
     const string _VisualImpairment = "visual_impairment";
     const string _Wavetapping = "Wavetapping";
+    const string _WhatsOnSecond = "WhatsOnSecond";
+    const string _WhiteCipher = "whiteCipher";
     const string _WhosOnFirst = "WhosOnFirst";
     const string _Wire = "wire";
     const string _WireOrdering = "kataWireOrdering";
     const string _WireSequence = "WireSequence";
+    const string _WorkingTitle = "workingTitle";
     const string _Yahtzee = "YahtzeeModule";
     const string _YellowArrows = "yellowArrowsModule";
+    const string _YellowCipher = "yellowCipher";
     const string _Zoni = "lgndZoni";
     #endregion
 
@@ -356,6 +397,7 @@ public class SouvenirModule : MonoBehaviour
 
         _moduleProcessors = new Dictionary<string, Func<KMBombModule, IEnumerable<object>>>()
         {
+            { _1000Words, Process1000Words },
             { _100LevelsOfDefusal, Process100LevelsOfDefusal },
             { _3DMaze, Process3DMaze },
             { _3DTunnels, Process3DTunnels },
@@ -364,17 +406,21 @@ public class SouvenirModule : MonoBehaviour
             { _AffineCycle, ProcessAffineCycle },
             { _Algebra, ProcessAlgebra },
             { _AlphabeticalRuling, ProcessAlphabeticalRuling },
+            { _AlphabetTiles, ProcessAlphabetTiles },
             { _AlphaBits, ProcessAlphaBits },
             { _Arithmelogic, ProcessArithmelogic },
             { _BamboozledAgain, ProcessBamboozledAgain },
             { _BamboozlingButton, ProcessBamboozlingButton },
             { _Bartending, ProcessBartending },
             { _BigCircle, ProcessBigCircle },
+            { _Binary, ProcessBinary },
             { _BinaryLEDs, ProcessBinaryLEDs },
             { _Bitmaps, ProcessBitmaps },
+            { _BlackCipher, ProcessBlackCipher },
             { _BlindMaze, ProcessBlindMaze },
             { _Blockbusters, ProcessBlockbusters },
             { _BlueArrows, ProcessBlueArrows },
+            { _BlueCipher, ProcessBlueCipher },
             { _BobBarks, ProcessBobBarks },
             { _Boggle, ProcessBoggle },
             { _Boxing, ProcessBoxing },
@@ -389,6 +435,7 @@ public class SouvenirModule : MonoBehaviour
             { _Calendar, ProcessCalendar },
             { _ChallengeAndContact, ProcessChallengeAndContact },
             { _CheapCheckout, ProcessCheapCheckout },
+            { _CheepCheckout, ProcessCheepCheckout },
             { _Chess, ProcessChess },
             { _ChineseCounting, ProcessChineseCounting },
             { _ChordQualities, ProcessChordQualities },
@@ -404,16 +451,21 @@ public class SouvenirModule : MonoBehaviour
             { _ColourFlash, ProcessColourFlash },
             { _Coordinates, ProcessCoordinates },
             { _Corners, ProcessCorners },
+            { _Cosmic, ProcessCosmic },
             { _Creation, ProcessCreation },
             { _CrypticCycle, ProcessCrypticCycle },
             { _Cube, ProcessCube },
             { _DACHMaze, ProcessDACHMaze },
+            { _DeafAlley, ProcessDeafAlley },
             { _DeckOfManyThings, ProcessDeckOfManyThings },
             { _DecoloredSquares, ProcessDecoloredSquares },
             { _DiscoloredSquares, ProcessDiscoloredSquares },
-            { _DoubleColor, ProcessDoubleColor },
+            { _DivisibleNumbers, ProcessDivisibleNumbers },
             { _DoubleOh, ProcessDoubleOh },
             { _DrDoctor, ProcessDrDoctor },
+            { _Dreamcipher, ProcessDreamcipher },
+            { _DumbWaiters, ProcessDumbWaiters },
+            { _eeBgnillepS, ProcesseeBgnillepS },
             { _ElderFuthark, ProcessElderFuthark },
             { _EncryptedEquations, ProcessEncryptedEquations },
             { _EncryptedHangman, ProcessEncryptedHangman },
@@ -431,9 +483,13 @@ public class SouvenirModule : MonoBehaviour
             { _FreeParking, ProcessFreeParking },
             { _Functions, ProcessFunctions },
             { _Gamepad, ProcessGamepad },
+            { _GrayCipher, ProcessGrayCipher },
             { _GreenArrows, ProcessGreenArrows },
+            { _GreenCipher, ProcessGreenCipher },
             { _GridLock, ProcessGridLock },
+            { _GroceryStore, ProcessGroceryStore },
             { _Gryphons, ProcessGryphons },
+            { _GuessWho, ProcessGuessWho },
             { _HereditaryBaseNotation, ProcessHereditaryBaseNotation },
             { _Hexabutton, ProcessHexabutton },
             { _Hexamaze, ProcessHexamaze },
@@ -441,6 +497,7 @@ public class SouvenirModule : MonoBehaviour
             { _HiddenColors, ProcessHiddenColors },
             { _HillCycle, ProcessHillCycle },
             { _Hogwarts, ProcessHogwarts },
+            { _HoldUps, ProcessHoldUps },
             { _HorribleMemory, ProcessHorribleMemory },
             { _HumanResources, ProcessHumanResources },
             { _Hunting, ProcessHunting },
@@ -448,6 +505,7 @@ public class SouvenirModule : MonoBehaviour
             { _Hyperlink, ProcessHyperlink },
             { _IceCream, ProcessIceCream },
             { _IdentityParade, ProcessIdentityParade },
+            { _IndigoCipher, ProcessIndigoCipher },
             { _iPhone, ProcessiPhone },
             { _JewelVault, ProcessJewelVault },
             { _JumbleCycle, ProcessJumbleCycle },
@@ -465,6 +523,7 @@ public class SouvenirModule : MonoBehaviour
             { _MandMs, ProcessMandMs },
             { _MandNs, ProcessMandNs },
             { _MaritimeFlags, ProcessMaritimeFlags },
+            { _Matrix, ProcessMatrix },
             { _Maze, ProcessMaze },
             { _Maze3, ProcessMaze3 },
             { _Mazematics, ProcessMazematics },
@@ -488,12 +547,12 @@ public class SouvenirModule : MonoBehaviour
             { _MorseWar, ProcessMorseWar },
             { _MouseInTheMaze, ProcessMouseInTheMaze },
             { _Murder, ProcessMurder },
-            { _MysticSquare, ProcessMysticSquare },
             { _MysteryModule, ProcessMysteryModule },
-            { _Necronomicon, ProcessNecronomicon },
-            { _Neutralization, ProcessNeutralization },
+            { _MysticSquare, ProcessMysticSquare },
             { _NandMs, ProcessNandMs },
             { _Navinums, ProcessNavinums },
+            { _Necronomicon, ProcessNecronomicon },
+            { _Neutralization, ProcessNeutralization },
             { _NotButton, ProcessNotButton },
             { _NotKeypad, ProcessNotKeypad },
             { _NotMaze, ProcessNotMaze },
@@ -501,10 +560,12 @@ public class SouvenirModule : MonoBehaviour
             { _NotSimaze, ProcessNotSimaze },
             { _NotWhosOnFirst, ProcessNotWhosOnFirst },
             { _NumberedButtons, ProcessNumberedButtons },
+            { _Numbers, ProcessNumbers },
             { _ObjectShows, ProcessObjectShows },
             { _OddOneOut, ProcessOddOneOut },
             { _OnlyConnect, ProcessOnlyConnect },
             { _OrangeArrows, ProcessOrangeArrows },
+            { _OrangeCipher, ProcessOrangeCipher },
             { _OrderedKeys, ProcessOrderedKeys },
             { _OrientationCube, ProcessOrientationCube },
             { _Palindromes, ProcessPalindromes },
@@ -526,21 +587,25 @@ public class SouvenirModule : MonoBehaviour
             { _RainbowArrows, ProcessRainbowArrows },
             { _RecoloredSwitches, ProcessRecoloredSwitches },
             { _RedArrows, ProcessRedArrows },
+            { _RedCipher, ProcessRedCipher },
             { _ReformedRoleReversal, ProcessReformedRoleReversal },
             { _RegularCrazyTalk, ProcessRegularCrazyTalk },
             { _Retirement, ProcessRetirement },
             { _ReverseMorse, ProcessReverseMorse },
             { _RGBMaze, ProcessRGBMaze},
             { _Rhythms, ProcessRhythms },
+            { _Roger, ProcessRoger },
             { _RoleReversal, ProcessRoleReversal },
             { _Rule, ProcessRule },
             { _ScavengerHunt, ProcessScavengerHunt },
             { _SchlagDenBomb, ProcessSchlagDenBomb },
             { _SeaShells, ProcessSeaShells },
             { _Semamorse, ProcessSemamorse },
+            { _Sequencyclopedia, ProcessSequencyclopedia},
             { _ShapesBombs, ProcessShapesAndBombs },
             { _ShapeShift, ProcessShapeShift },
             { _ShellGame, ProcessShellGame },
+            { _ShiftingMaze, ProcessShiftingMaze },
             { _SillySlots, ProcessSillySlots },
             { _SimonSamples, ProcessSimonSamples },
             { _SimonSays, ProcessSimonSays },
@@ -564,10 +629,17 @@ public class SouvenirModule : MonoBehaviour
             { _SonicTheHedgehog, ProcessSonicTheHedgehog },
             { _Sorting, ProcessSorting },
             { _Souvenir, ProcessSouvenir },
+            { _SpellingBee, ProcessSpellingBee },
             { _Sphere, ProcessSphere },
             { _SplittingTheLoot, ProcessSplittingTheLoot },
+            { _SpotTheDifference, ProcessSpotTheDifference },
+            { _Stars, ProcessStars },
+            { _StateOfAggregation, ProcessStateOfAggregation },
+            { _SubscribeToPewdiepie, ProcessSubscribeToPewdiepie },
+            { _SugarSkulls, ProcessSugarSkulls },
             { _Switch, ProcessSwitch },
             { _Switches, ProcessSwitches },
+            { _SwitchingMaze, ProcessSwitchingMaze },
             { _SymbolCycle, ProcessSymbolCycle },
             { _SymbolicCoordinates, ProcessSymbolicCoordinates },
             { _Synonyms, ProcessSynonyms },
@@ -580,9 +652,11 @@ public class SouvenirModule : MonoBehaviour
             { _ThirdBase, ProcessThirdBase },
             { _TicTacToe, ProcessTicTacToe },
             { _Timezone, ProcessTimezone },
+            { _TopsyTurvy, ProcessTopsyTurvy },
             { _TransmittedMorse, ProcessTransmittedMorse },
             { _TurtleRobot, ProcessTurtleRobot },
             { _TwoBits, ProcessTwoBits },
+            { _UltimateCipher, ProcessUltimateCipher },
             { _UltimateCycle, ProcessUltimateCycle },
             { _Ultracube, ProcessUltracube },
             { _UncoloredSquares, ProcessUncoloredSquares },
@@ -590,18 +664,24 @@ public class SouvenirModule : MonoBehaviour
             { _UnfairCipher, ProcessUnfairCipher },
             { _UnownCipher, ProcessUnownCipher },
             { _USAMaze, ProcessUSAMaze },
+            { _V, ProcessV },
             { _VaricoloredSquares, ProcessVaricoloredSquares },
-            {  _Vcrcs, ProcessVcrcs },
+            { _Vcrcs, ProcessVcrcs },
             { _Vectors, ProcessVectors },
             { _Vexillology, ProcessVexillology },
+            { _VioletCipher, ProcessVioletCipher },
             { _VisualImpairment, ProcessVisualImpairment },
             { _Wavetapping, ProcessWavetapping },
+            { _WhatsOnSecond, ProcessWhatsOnSecond },
+            { _WhiteCipher, ProcessWhiteCipher },
             { _WhosOnFirst, ProcessWhosOnFirst },
             { _Wire, ProcessWire },
             { _WireOrdering, ProcessWireOrdering },
             { _WireSequence, ProcessWireSequence },
+            { _WorkingTitle, ProcessWorkingTitle },
             { _Yahtzee, ProcessYahtzee },
             { _YellowArrows, ProcessYellowArrows },
+            { _YellowCipher, ProcessYellowCipher },
             { _Zoni, ProcessZoni }
         };
 
@@ -1658,6 +1738,24 @@ public class SouvenirModule : MonoBehaviour
 
         addQuestions(module, makeQuestion(question, moduleCode, correctAnswers: new[] { origin }, preferredWrongAnswers: states));
     }
+    
+    //Used by Red, Orange, Yellow, Green, Blue, Indigo, Violet, White, Gray, Black, and Ultimate Cipher
+    private IEnumerable<object> processColoredCiphers(KMBombModule module, string componentName, Question question, string moduleId)
+    {
+        var comp = GetComponent(module, componentName);
+       
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+        
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+            
+        _modulesSolved.IncSafe(moduleId);
+        
+        string Memory = GetField<string>(comp, "answer").Get();
+        string[] AnswerList = GetArrayField<string>(comp, "wordList", isPublic: true).Get();
+        addQuestions(module, makeQuestion(question, moduleId, null, new[] { Memory }, AnswerList));
+    }
 
     // Used by The Hypercube and The Ultracube
     private IEnumerable<object> processHypercubeUltracube(KMBombModule module, string componentName, Question question, string moduleId)
@@ -1682,7 +1780,69 @@ public class SouvenirModule : MonoBehaviour
 
 
     /* Actual module processors start here */
-
+    private IEnumerable<object> Process1000Words(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ThousandWordsScript");
+        var fldSolved = GetField<bool>(comp, "ModuleSolved");
+        List<string> WordsWritten = new List<string>();
+        string[] Phrases = {"OYERS","SWEEL","RANGY","NOSES","CHAPT","PHUTS","PINGO","HYLAS","PODIA","VIZOR","METES","GULCH","KHETS","LUMME","SKEPS","YABBY","ROWAN","SIRIH","AINGA","TAXER","TEELS","YCOND","BACHS","DHUTI","VAUNT","GLOST","BELON","CENTS","MUSIT","PRIEF","JERID","EVERY","PUERS","DUDES","FANGO","TAPET","LOUTS","PROSS","LEMON","BLADS","COWAN","RIEVE","IDEAS","ANOMY","OPINE","INERT","PREES","BLEED","BIDED","LESBO","COLLS","FRAUD","VISON","WAKER","MUMUS","JUCOS","DIOLS","REIGN","ERUPT","EBONS","LUACH","CONTO","ALEWS","FACIA","SPINS","IMSHY","CURNS","LINNS","DOING","LIENS","SEELY","JIBES","DIMLY","UNPEN","MOCHA","MINED","SWORD","MATTS","KALIS","WHIRR","MAROR","SAGES","DONNA","PUNGS","INANE","STONN","WEKAS","OLLIE","EARST","BEGET","QUAKE","SCURS","AULAS","BOSOM","CUPID","PETTI","DOMAL","TAUTS","LOHAN","KOELS","FIARS","SANTS","LUSER","HONED","COCCO","MANED","PAPES","FLEME","SNAFU","DROVE","PEWIT","RAWIN","BAMBI","TETRA","GIRLS","DOWAR","REAPS","BELCH","DAMES","ZINGY","SOLVE","QUITS","BEAUS","RAREE","FENIS","SKEET","SCULP","TIFTS","LAXER","BUNDH","KAVAS","SEPIA","RIBES","CYNIC","PROWL","THEES","CLADE","GHEST","RACHE","MUSET","NUDES","VAIRE","ZURFS","ROTOR","WHOSE","TRAYS","BUNTS","GROKS","WUSSY","MIXUP","SURED","KOORI","ROKED","SLOVE","CRAMP","HIDED","AGAZE","AURAS","GLOBS","KEDGE","PONES","BLITZ","DARKY","BONNY","INORB","PARES","VENTS","GRASP","CRAZE","TROPE","DUOMO","QUAYS","EBBET","FOIST","TAKHI","UPPER","SHIRE","RAMIS","ROWME","SEDES","ROOTY","PANED","NACRE","FRONT","SPALD","ADOWN","EBBED","BUSED","COXED","WHAPS","WAGED","SEELD","SCALD","STICH","LASER","PECAN","KEEFS","PLUCK","BOZOS","APPAL","FADER","SISAL","CRAWS","SORTS","WAXES","KAGUS","MICHE","SENGI","EXEAT","MAULS","MASSA","MASTY","FIEFS","AHEAD","RAIAS","ESKAR","SHALL","DONNE","JODEL","BOWER","MERIL","VIRID","JIRDS","MOLLA","REWET","HAFIZ","ZANZE","AROMA","STUCK","BAHUT","DRIED","GIVEN","PSHAW","BAUDS","WRYLY","BAHTS","NOOPS","TINGE","STOTS","CAUSA","STILT","GIBUS","CLYPE","CEAZE","WOVEN","BLUES","MIAOW","SWABS","REDIA","TABES","QUANT","USUAL","TINTS","CREME","ABOMA","ACTIN","JEDIS","EMMEW","JEBEL","RIPES","BROOL","JEWEL","EMEND","FLUKY","LYASE","FOILS","BROKE","CETES","BUSES","PATIN","CREEP","LOUSE","REARS","LUNES","SCOUG","VARDY","LENIS","RHINE","GASTS","APAYD","BANGS","DANKS","ABORE","BEDEW","MICOS","ANNAL","SUNNA","REGUR","SPUMY","TANTI","CRUST","GOLPS","SLUMS","BIRTH","GARBE","MONAD","MOXIE","CRAVE","MEARE","PETRE","AMEER","HEIDS","RUGGY","SPOOL","SOOTS","TUPIK","NUDER","COVER","MORNE","FONDA","CHELP","BITES","SKYED","TEXTS","NOVAE","GENUA","WEEST","MORNS","LINEN","BLAST","BOWES","CHEKA","THOFT","PORTY","SUMAC","GREET","WHEYS","WARKS","UNWED","SUMMA","CHIRU","HEXED","QUERN","SABOT","SPITS","BOYAU","SLUTS","YIRTH","ZAXES","KAIES","PORAE","ANTRA","GHOST","SOUMS","MARRY","PLESH","ROYAL","RUSSE","FAIRS","TRUGS","LEGGE","LIMAS","LAZAR","CHAIN","DIVED","BLAME","AARTI","BUCHU","TRIOS","RATAL","MUDRA","SYRAH","FLUOR","EWHOW","SATES","OPENS","NICKS","MENDS","NOYAU","GREAT","COINS","DURZI","CESTA","IMAGE","GENUS","GOWKS","PIKED","KARKS","NUDGE","YOGIC","GREWS","RONTS","TOYOS","LURES","SKITS","KOLAS","GOOPS","WAZIR","BARDE","SPATE","ZINKY","DRAPE","INCOG","SLACK","LYSED","FETCH","NOWTS","STASH","NIEVE","MURES","PECKE","RONES","EARTH","EVITE","EXEME","KNUTS","ENDER","PSOAE","MEZZO","COOPT","PEEKS","MAMBO","RANCH","MUSCA","SPICE","ALARM","SANED","PEEOY","BEACH","BARDY","SKEIN","ALIBI","SIFTS","UMBEL","WOLFS","SKIMP","MARGS","ERVEN","STRUM","DEFIS","WEIRS","RIPED","SOUCE","DENET","GREBE","UNMEW","CANDY","SADHU","DEISM","METHS","SCRIP","VIGIA","INGOT","SLADE","EALES","NAPOO","PIETY","SCOOT","RECCO","CRAME","SHIPS","YODHS","FANON","FELLY","CHILL","MIGHT","GONNA","ICTIC","GOOFY","HAPPY","DECOY","PROYN","SMITS","GAMBO","SHTUM","RIDGY","DWELT","TUFTY","POOHS","AZIDE","BEFOG","FOUND","ARTEL","MOMMA","NIFES","BIGHA","KINGS","WAURS","BONKS","APSES","KENOS","TOMMY","FRITZ","MINKS","BIOTA","PLATY","IDENT","AREFY","SLATY","DORKS","AVERS","BOCHE","PARVE","JEEPS","STYES","BEIGY","HAHAS","HAMAL","TEIID","ETHER","BEVVY","IMPIS","BINDI","VIGIL","JIGOT","MYOMA","THEMA","GROSS","LUCES","POTIN","OUIJA","SNOEP","VITAE","LEPID","STARR","SYENS","PAILS","DESSE","SPREW","HUHUS","JUTTY","OCTET","NIFFY","NICKY","ROBOT","LEVER","GIGHE","JOLES","KUSSO","ORANT","VISTO","STIVE","BOOTS","LISKS","RICHT","CATER","VROWS","CLEEP","ADAPT","BITOU","ZEBRA","KAURY","SMAAK","LOIRS","SEGOS","FIRMS","CAUMS","ANTAE","DUPLE","READY","DOTAL","MOMUS","MORPH","WHENS","HYLIC","WATER","NAKED","KHUDS","TWEET","WOXEN","KNEES","ALODS","MULLA","COKED","CODEC","NICOL","MACHO","SHEET","DRAYS","SNAKY","LASES","WOOTZ","DISCI","JUREL","SMELT","KIKOI","OSHAC","SHUSH","POORT","SWALY","LAXES","YESKS","READD","PAVIS","LENTI","CYMAS","TARTS","CONNE","GAPED","IDIOT","ARGLE","DAZER","LINGO","ANVIL","AHINT","MARRI","BURSE","FILOS","WISPS","BOATS","BAJUS","BOOFY","OPERA","PLOYS","AWEEL","COONS","ZEALS","HALER","VARVE","BELLS","VINED","CYMOL","DHOLL","KNOUT","EMBAY","RITTS","VEINS","SKIVY","FAERY","CLEPT","BESOT","LUMEN","BEARD","BLITE","DEBIT","NONES","AIMED","WACKY","WASES","FRONS","HUIAS","TAUPE","SLOGS","STUPE","NETOP","ARABA","HOOKS","AXILE","PORES","TEASE","BANAL","HERBS","ALMES","GHAZI","ARENE","PARKI","PUZEL","SNARF","LEECH","TWIER","DRICE","RAWLY","EMAIL","PRINK","EASED","MACHE","WISTS","BITOS","ELPEE","NOULS","PIGMY","AFORE","PRATY","MILDS","FILUM","ACTED","HEFTE","SIALS","JAGGY","SCATS","YMPES","MAUND","PIPIT","LAPSE","HAYER","MOPPY","CAMAN","RIMAE","FIFTH","NEESE","STURE","KYNDE","JAMES","BEIGE","CAIDS","SEARS","BIMAS","ODALS","DENTS","INDIE","SOLOS","BRING","SAROD","NAUCH","KINOS","CHEER","FORKY","ADSUM","ABORD","NANAS","TELIA","KILOS","ARHAT","WHISK","LOUED","GAMED","LINDY","GAZOO","OPAHS","VALES","NAZIR","RENIN","HOWKS","GUNNY","FELON","RAUNS","TUXES","LAWKS","CARKS","THEIC","SWARM","NONIS","PYXIS","WADER","LOSER","SINKS","PAVER","MENSH","HAZEL","JUROR","MUCIC","HUMID","CATCH","TAELS","MOYLS","AMENT","HUCKS","PIXES","DRUPE","STIMY","HEATH","HOKUM","HEARD","BLART","ANILS","TROCK","SHALY","SEWEN","REALS","SLOES","CHURL","PLONK","SNODS","ONSET","ACHES","SAPOR","ASPER","BURRS","THANE","SIDHA","SAUTE","JESUS","TOFUS","LYSOL","KHETH","ORATE","REIRD","FAVAS","SMEEK","FARSE","CULLY","MAURI","REBUS","CHILD","ROUTS","QUIFF","WOOER","VISTA","PIEND","PARTS","FAIRY","KNURS","STAMP","CHIMB","AUDIO","JOKED","FEUAR","SMUGS","MOTES","BLUME","CASED","LEMED","BROTH","KICKS","STOTT","JOTUN","EUROS","MINCE","LUBRA","SOUTH","HAZAN","SHAKO","CIMEX","SCAMS","FJORD","PILEI","RELIC","BUNKO","SIXER","WISER","LARKY","ATAXY","LINGA","SHOLA","PLUMY","UHLAN","DAINE","SCOOP","PAGLE","JUMPS","LOOTS","CRUVE","ELOPE","FOIDS","LOCOS","ABBED","IDOLA","FECAL","ZOBUS","WAMUS","SORES","OZONE","BORTS","LIMBA","EASER","TICCA","RHONE","KNIFE","KEREL","LUTER","FANGA","KAILS","UNDEE","PUKED","QUOTH","BESEE","WHOPS","SCOWS","TALCY","POLTS","KERMA","SAYED","FROWS","RIPEN","VOLTI","COSED","WAMES","IRIDS","FRITT","STULM","CUING","STEEN","BRAVA","PUPIL","SHILL","GALOP","AUGER","SHORT","ALANS","WEXED","THURL","ARUMS","WILJA","LEISH","LEGGY","GULFY","FATES","BILGE","NIZAM","COPER","MINGS","DIKES","POTTY","RETRY","LOOFS","VELLS","PARRY","BERME","YOKEL","CARED","SETAE","ESTOC","OSMOL","ALERT","MOOED","AIDER","COARB","SHOED","PATUS","GAGES","DINGE","OBIIT","APERS","SENDS","GENTY","PROST","FRYER","CURIA","KURRE","BIPED","DOCHT","BONUS","VAUCH","AZOTE","XENON","MEINT","FOALS","YELMS","KOKUM","HERYE","AXLES","SPRAY","DOOBS","GAVOT","SPRUE","BUNJE","FLOWN","PIANS","RATTY","LUNKS","VARUS","SUNNY","DRUBS","MINAS","HYKES","WAUKS","KOMBU","PEANS","STYLI","REMIT","WINZE","MINDS","LURER","TRAWL","MILER","MITIS","DRYLY","JUKES","KOLOS","BOYGS","RATED","PINKS","DANIO","CEDIS","EYASS","DONGS","UGALI","HANDY","SHOYU","CONKS","HARMS","SWOPS","STIPE","LUSTY","GODLY","DACES","TOLTS","HINNY","TUTTI","JOINT","TEENE","REGGO","GUSLI","CAVER","BASHO","EXITS","ARUHE","DOVED","EVHOE","HOWSO","DONEE","MONAL","KINAS","FIRTH","PRANA","TOFFS","SOBAS","TROTH","SCHMO","YAWEY","FRANK","HOLDS","PAMPA","INFER","BIERS","GAYER","HULKY","RUTTY","PAGED","PURED","CHOMP","DITAL","SERFS","ARDRI","APIAN","GANEV","HAIKA","MORRA","BASKS","BUFFS","EXING","ABOUT","CRAYS","PLEAS","STAYS","SPIAL","SPEIR","CALIF","DREYS","BIGGS","VILDE","HALOS","FABLE","DISAS","DESEX","LOWAN","NOSED","SAIMS","EXPAT","UMPED","OULKS","CONCH","CHANT","TACOS","GOBBY","OVATE","CLANG","WRING","EMITS","DIALS","NAIAD","SHLUB","SWANS","TITAN","WAGER","ATOCS","POULP","DAGGY","POONS","GRAMP","CONIN","MOHUR","COALY","DITTO","AYAHS","ADEEM","STOAT","LATCH","FAWNS","XYLIC","SODAS","FRAGS","GANGS","WITHS","YIPPY","BIRLE","SPAZZ","CLASP","TWANG","DEADS","PRIGS","CADGE","ICHOR","BARNS","CYCAD","SALOL","RAZED","LAVAS","KAYAK","CURES","STOMP","NATIS","KORAS","CHESS","CIVIL","SACKS","CUSKS","GEMMY","LIART","SHINE","YARKS","TAWAI","TACTS","HOPES","INRUN","CIVES","DRATS","FUCUS","APART","HENNA","REAME","SCUTS","BALES","TENTY","DEARS","UNPEG","BELAH","DICTA","BETES","HOGHS","GAULT","REPEG","CADEE","GRISY","WHIRL","SUTOR","DINER","UREDO","PILCH","VASTS","MALAR","ROJAK","HILUM","CRACK","LAIDS","FRAYS","ROATE","GARBS","QUOIT","LOGGY","TRINE","VIBEY","STAIN","TSKED","VIEWS","CYBER","HALVE","TANNA","OCHER","PHOTS","AMATE","INKED","YORPS","AQUAE","CREPE","ACNES","NOTAL","SCROW","MINTY","GEOID","DURGY","BREED","PEATY","KERRY","LAMAS","FAVOR","PINNA","LOVEY","SMOWT","NUKED","CREWE","GLOBY","GEITS","VADES","ROULE","SHEAR","MOMES","ENJOY","HEDGY","GONIA","ALBAS","ZOOKS","FUZES","PREYS","HERLS","HAARS","TETHS","SHOOK","LEAST","LUCKY","FEOFF","LITHE","COWRY","FRUST","THIOL","DOWRY","PIANO","EPOXY","SLOTH","SCOUT","ANENT","RHINO","OOBIT","SPEED","PIPES","SOLID","POKEY","CHAWK","MACES","AWAKE","FAULT","FARCY","COMBI","REEVE","EATEN","RUDDY","GRABS","CLANK","TRAIL","KITTY","PALPI","THILK","KETAS","VODUN","CORAM","TEWED","SAVOR","SULLY","LABEL","ANODE","MOIRE","FAYED","RUBUS","KESAR","PANTY","VIRUS","RATAN","FUGGY","CYANO","SCOWL","MILTS","ACRES","BAWLS","KLICK","ALPHA","SHOES","IRONE","CREES","JOYED","LUNAR","SKATT","BESTS","YRNEH","YARTO","SESEY","DONSY","LEONE","THORO","ANCHO","SLOPY","GEYER","SLAVE","BHUTS","LOBES","SESSA","OMBER","ONIUM","DERES","GAIRS","GNAWS","MILKY","SPAZA","KERKY","SNATH","TENDS","MANIS","DALES","KENCH","DRAWS","PEPOS","HARDY","ALOIN","SNEAD","TAILS","SYNCH","JAGAS","STEED","UMBLE","BRIKS","IDLES","SKIFF","MYNAH","DHOLE","LARUM","HOWRE","MIAOU","WEFTE","HERTZ","WIMPY","RETES","OHING","TYNED","PEENS","DARGA","THUNK","BOOZY","ELAND","TONUS","JAAPS","VIVID","MAXES","CROCI","YEWEN","CHIRM","RASTA","BUTUT","GIRTH","DIDOS","ANKUS","REIFY","ATUAS","BOORD","ERSES","GRAZE","SPITZ","SKEOS","EXINE","TOTAL","SCOFF","CHIDE","FOUER","SIBYL","GRAAL","SKENE","RATIO","AIDOS","BLIMP","GESSO","CHEST","BLAMS","ALGIN","FLANS","VINCA","HOYLE","WAFER","PRAHU","SORTA","BREES","DAWAH","CASAS","MAIKO","BROND","NAANS","BRISE","LOCUM","AXONE","CLOFF","PISES","NEEZE","PRIOR","CROWS","RORTS","GRUFE","TENNY","NOMAS","TOUCH","ORVAL","MYTHI","BUDDY","DUROS","LURVE","DUNAM","WEAVE","REENS","SOYAS","SNUSH","STIRS","MIFFS","CUTIS","DOABS","PAYEE","HOWFF","GRIPT","YUKOS","RAVED","MATLO","NAIFS","SAPPY","QORMA","BLEAT","FEMAL","BANED","BANDA","RIVER","SKEWS","LOUND","PUNJI","SAILS","HAITH","SELLA","DRUNK","RANKE","AWFUL","ADIOS","BEDYE","WRICK","ORFES","FIFTY","PEATS","ULCER","CRARE","RESAW","AUGHT","AMNIC","RIGID","MILPA","SAMAN","SAYER","SALMI","BUIKS","LITRE","RUDES","VIAND","BIRSY","GILET","RATHE","GUESS","RANGE","BAKEN","JAUKS","RURUS","TICES","ILIAC","NIPAS","MULSE","UNZIP","NOVAS","THARM","DIPPY","TOOLS","GNATS","WOOSE","JAGGS","PAWED","FAUGH","UNDER","SORAL","ACYLS","LIANE","SAVEY","PULER","SORGO","BUAZE","BOUGE","MANIC","INPUT","FAROS","STUNT","YLEMS","HESPS","CAUDA","RAIDS","HAROS","SAKIS","VALID","GARBO","WHIFF","SUETS","ETNAS","WIGHT","LOWLY","SALTY","LANKY","LIBRI","UNWET","CREPY","MURLY","GUARS","SWATS","SHADS","YENTA","DAISY","BRAKY","ALUMS","SEKOS","GHYLL","MOGGY","STOWP","MEATH","MANGS","AFROS","LESTS","NEAPS","GRIPY","URSAE","REDES","KRAUT","GOPIK","ROLES","PLOTS","JINNE","IMIDO","CUTER","VOLVE","REALM","AMPUL","RUANA","FIATS","TUANS","VEILS","ELITE","OXIME","WHISS","SPEUG","PECHS","NARIC","RUDIE","KUTIS","DUKED","SYTHE","ENOKI","YEAST","ALIKE","MONTE","TASSE","COBBY","IDEAL","LEGIT","THRIP","KUTCH","GLADE","GRENZ","SWEIR","HOARS","MODUS","SCAMP","OATER","BALKS","DOGMA","SINED","COVET","RAPER","DEELY","MUSHY","SWEET","JAUNT","RUBAI","SIEVE","LOBOS","PYATS","MEZZE","KANJI","FAVER","SNUBS","CRIES","NGANA","COGUE","SIZAR","BLOKE","CENTU","ADOPT","EPHAS","NABLA","CLAPS","ALIEN","SOUPS","LURCH","TIRES","TASAR","HANGS","BULSE","FAGOT","WHORT","BARMY","SPELK","FOYER","SKYFS","FURRS","JAGRA","LEAZE","SALAD","MORTS","ZONES","UMIAC","DATES","USURY","CLACK","ROVES","MISER","MORRO","REDDS","CREDS","TIARS","DRIVE","TABER","HOMAS","TOLES","SOUCT","PELFS","GELID","EMBUS","VIMEN","EMCEE","RESTO","BRACH","SNEER","PAUSE","JOWLY","PSYCH","SHULN","TEAKS","TUBAE","FRETS","SLUFF","FINER","GOLDY","YORKS","PYOID","DOWDS","BORTZ","GRAPH","ALLOT","TRULL","FISHY","KATIS","BORAL","VICED","DOMES","STENT","SATAY","NEEMB","KIBLA","WARBY","SHOPS","REBIT","LEIRS","FARTS","FRIZZ","DOLMA","ALECS","JOMON","IGGED","FAZES","MUDIR","ROUPY","LEGES","PUNNY","OMLAH","GUANO","SIDES","BOYAR","BOARS","BARCA","DOLCE","TIERS","HELVE","INNED","HALTS","ETYMA","CURER","CAWKS","HEWED","GROWL","BONZE","CARGO","WAIFS","VANES","COMAE","LAKHS","KRAIT","ICHES","OUGHT","REPLA","SHOOL","COBZA","RUMPS","TUTEE","MERCS","DEGUM","BOTCH","OLEIC","CURDS","YERBA","URVAS","PREVE","FEESE","CLOYS","BINES","MERDE","LADLE","WRYER","BASED","GINGE","CLANS","BRAZE","WOOSH","SNARL","CRICK","DUANS","SHANK","WADTS","ALGID","SOOTE","PECKS","GRUMP","CAFFS","CUTIE","SNOTS","WRITE","TEMPO","TUBBY","FYCES","MOITS","ACTON","DROOP","RUGBY","APTLY","HYPER","CAVAS","CAAED","CHAFT","RAFFS","AMAZE","SWEES","LAIKS","ASSES","MODGE","JABOT","THERM","PROLE","COALA","FRORE","TUMMY","GLAUM","TACKY","PALLS","CLEAN","JEHUS","MEANS","KNAGS","HALED","LULUS","BEADY","RONDE","CLOUD","PUTTS","BRAYS","BLING","WORKS","ERGOT","SLUNG","BUDOS","BAYED","AHULL","PALAS","DELES","SLYPE","TAVER","FRENA","POSEY","PROSY","BORMS","POUKS","LOWES","SAVED","MANSE","TAULD","SOLON","DEBUD","BUOYS","POWRE","GOFER","FOUNT","IOTAS","SCENT","ANTES","NADIR","MORES","FORAM","ARRAH","SPIEL","FAQIR","OWNED","KANAE","CHAYA","CHIRR","WIFES","DURED","HAGGS","JIVED","STUNG","BISON","TERRY","TRANS","WHEFT","LYTED","NUTSY","GENOA","BERRY","SEANS","TATHS","REDON","QADIS","DITAS","GASPS","HUFFY","WIZES","AWNED","PARGE","STUNK","GIPPO","BOKED","LEBEN","FUGLY","BEAUX","RATCH","REDLY","NAGOR","RIMES","PYINS","JUNKS","HURRY","REDOX","BLAIN","SECCO","LEEPS","GRYPT","NUFFS","DRAFT","JADES","MITES","STERN","KAMIS","LYNES","TYRES","CAPUT","DOILY","WHITE","BEVEL","AHURU","LUDOS","FILMS","NODUS","CLAVI","BOLIX","BOGGY","OUTER","KYPES","URALI","FLOCK","NOIRS","POSIT","CALLS","TRIST","DRIBS","KIBBE","CHADO","TEERS","EQUIP","BUFFY","FELLS","KERNS","SWEEP","PLUNK","WHALE","COOLY","BARRO","URINE","AVENS","NERTZ","SYPES","VIBES","FEATS","OCHES","NYAFF","FRACT","WIGAN","ESSAY","SDAYN","VOILA","PEDRO","OATHS","STOPS","CLEVE","ENOWS","WYLES","APAID","PELON","CARDS","BURQA","SIMAR","STUFF","VENIN","DINES","GEYAN","PIGHT","FROTH","INFRA","FAINS","PUJAS","DECKO","MILLS","DUPED","GUNDY","LIFES","GURRY","GUCKY","SHULE","SOLDO","KABAR","CLAWS","RALES","SOWCE","VEXED","CAUKS","SKANK","QUIDS","WEARS","OPTIC","DASHY","NIPPY","GREGE","GAUMS","STRIG","SEATS","NEMPT","SPERM","METRE","AWASH","OGGIN","SUCKY","DAMPY","HOWES","EXAMS","CEDER","TOYON","AMBAN","FLAYS","ALMUG","BETHS","BOVID","YOKES","DOODY","BRANT","QUEER","QUINE","HANTS","PSALM","VOCES","THYMY","FINAL","RAPHE","POULT","TAPAS","BUXOM","REDAN","GLEBE","PRYSE","AUMIL","MACHI","OMENS","KIERS","LENSE","DEVIL","CANON","TAWED","MAZUT","SQUAD","BEAST","STEIL","BREVE","LUAUS","RATER","LIONS","PRUNT","KANGA","FINCA","BOING","ALMUD","CAPOS","FOGIE","STRAW","PORNO","DUMBO","DIBBS","SICKS","TARRY","KREEP","KYBOS","SORNS","EXCEL","BYRES","THONG","WOOFS","SEROW","FORBS","JUNTA","SIEUR","HEJAB","DYKED","VINTS","KAIAK","LAPIS","GYNIE","EPHOD","GYPPY","CUVEE","AGREE","SKEGS","HEEDS"};
+        
+        while (!_isActivated)
+            yield return new WaitForSeconds(.1f);
+        
+        var YesAndNo = GetArrayField<KMSelectable>(comp, "Buttons", isPublic: true).Get(expectedLength: 2);
+        var IndexNumber = GetField<int>(comp, "WordIndex");
+        var StageNumber = GetField<int>(comp, "Stage");
+        
+        for (int i = 0; i < YesAndNo.Length; i++)
+        {
+            // Need an extra scope to work around bug in Mono 2.0 C# compiler
+            new Action<int, KMSelectable.OnInteractHandler>((j, oldInteract) =>
+            {
+                YesAndNo[j].OnInteract = delegate
+                {
+                   WordsWritten.Add(Phrases[IndexNumber.Get()]);
+                   var result = oldInteract();
+                    
+                    if (StageNumber.Get() == 5)
+                    {
+                        if (fldSolved.Get())
+                        {
+                            return result;
+                        }
+                        
+                        else
+                        {
+                            WordsWritten = new List<string>();
+                            return result;
+                        }
+                    }
+                    
+                    else
+                    {
+                        return result;
+                    }
+                };
+            })(i, YesAndNo[i].OnInteract);
+        }
+        
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_1000Words);
+        
+        if (WordsWritten.Count() != 5)
+        {
+            throw new AbandonModuleException("Unable to gather all 5 words in 1000 Words.");
+        }
+        
+        addQuestions(module,
+            makeQuestion(Question._1000WordsWords, _1000Words, new[] { "first" }, new[] { WordsWritten[0] }, Phrases),
+            makeQuestion(Question._1000WordsWords, _1000Words, new[] { "second" }, new[] { WordsWritten[1] }, Phrases),
+            makeQuestion(Question._1000WordsWords, _1000Words, new[] { "third" }, new[] { WordsWritten[2] }, Phrases),
+            makeQuestion(Question._1000WordsWords, _1000Words, new[] { "fourth" }, new[] { WordsWritten[3] }, Phrases),
+            makeQuestion(Question._1000WordsWords, _1000Words, new[] { "fifth" }, new[] { WordsWritten[4] }, Phrases));
+    }
+    
     private IEnumerable<object> Process100LevelsOfDefusal(KMBombModule module)
     {
         var comp = GetComponent(module, "OneHundredLevelsOfDefusal");
@@ -1908,6 +2068,30 @@ public class SouvenirModule : MonoBehaviour
             qs.Add(makeQuestion(Question.AlphabeticalRulingNumber, _AlphabeticalRuling, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { numbers[ix].ToString() }));
         addQuestions(module, qs);
     }
+	
+	private IEnumerable<object> ProcessAlphabetTiles(KMBombModule module)
+    {
+		var comp = GetComponent(module, "AlphabetTilesScript");
+		
+        var isSolved = false;
+        module.OnPass += delegate { isSolved = true; return false; };
+		
+		while (!isSolved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_AlphabetTiles);
+		
+		string[] Shuffled = GetArrayField<string>(comp, "ShuffledAlphabet").Get();
+		string[] LettersShown = GetArrayField<string>(comp, "LettersShown").Get();
+		
+		addQuestions(module,
+            makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, new[] { "first" }, new[] { LettersShown[0] }, Shuffled),
+            makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, new[] { "second" }, new[] { LettersShown[1] }, Shuffled),
+            makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, new[] { "third" }, new[] { LettersShown[2] }, Shuffled),
+            makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, new[] { "fourth" }, new[] { LettersShown[3] }, Shuffled),
+            makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, new[] { "fifth" }, new[] { LettersShown[4] }, Shuffled),
+			makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, new[] { "sixth" }, new[] { LettersShown[5] }, Shuffled),
+			makeQuestion(Question.AlphabetTilesMissingLetter, _AlphabetTiles, null, new[] { Shuffled[25] }, Shuffled));
+	}
 
     private IEnumerable<object> ProcessAlphaBits(KMBombModule module)
     {
@@ -2141,6 +2325,22 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, GetField<Array>(comp, "_currentSolution").Get(v => v.Length != 3 ? "expected length 3" : null).Cast<object>()
             .Select((color, ix) => makeQuestion(Question.BigCircleColors, _BigCircle, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { color.ToString() })));
     }
+	
+	private IEnumerable<object> ProcessBinary(KMBombModule module)
+    {
+		var comp = GetComponent(module, "Binary");
+		var solved = false;
+		
+        module.OnPass += delegate { solved = true; return false; };
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Binary);
+		
+		string[] BinaryWords = {"AH", "AT", "AM", "AS", "AN", "BE", "BY", "GO", "IF", "IN", "IS", "IT", "MU", "NU", "NO", "NU", "OF", "PI", "TO", "UP", "US", "WE", "XI", "ACE", "AIM", "AIR", "BED", "BOB", "BUT", "BUY", "CAN", "CAT", "CHI", "CUT", "DAY", "DIE", "DOG", "DOT", "EAT", "EYE", "FOR", "FLY", "GET", "GUT", "HAD", "HAT", "HOT", "ICE", "LIE", "LIT", "MAD", "MAP", "MAY", "NEW", "NOT", "NOW", "ONE", "PAY", "PHI", "PIE", "PSI", "RED", "RHO", "SAD", "SAY", "SEA", "SEE", "SET", "SIX", "SKY", "TAU", "THE", "TOO", "TWO", "WHY", "WIN", "YES", "ZOO", "ALFA", "BETA",  "BLUE", "CHAT", "CYAN", "DEMO", "DOOR", "EAST", "EASY", "EACH", "EDIT", "FAIL", "FALL", "FIRE", "FIVE", "FOUR", "GAME", "GOLF", "GRID", "HARD", "HATE", "HELP", "HOLD", "IOTA", "KILO", "LIMA", "LIME", "LIST", "LOCK", "LOST", "STOP", "TEST", "TIME", "TREE", "TYPE", "WEST", "WIRE", "WOOD", "XRAY", "YELL", "ZERO", "ZETA", "ZULU", "ABORT", "ABOUT", "ALPHA", "BLACK", "BRAVO", "CLOCK", "CLOSE", "COULD", "CRASH", "DELTA", "DIGIT", "EIGHT", "GAMMA", "GLASS", "GREEN", "GUESS", "HOTEL", "INDIA", "KAPPA", "LATER", "LEAST", "LEMON", "MONTH", "MORSE", "NORTH", "OMEGA", "OSCAR", "PANIC", "PRESS", "ROMEO", "SEVEN", "SIGMA", "SMASH", "SOUTH", "TANGO", "TIMER", "VOICE", "WHILE", "WHITE", "WORLD", "WORRY", "WOULD", "BINARY", "DEFUSE", "DISARM", "EXPERT", "FINISH", "FORGET", "LAMBDA", "MANUAL", "MODULE", "NUMBER", "ORANGE", "PERIOD", "PURPLE", "QUEBEC", "SHOULD", "SIERRA", "SOURCE", "STRIKE", "SUBMIT", "TWITCH", "VICTOR", "VIOLET", "WINDOW", "YELLOW", "YANKEE", "CHARLIE", "EPSILON", "EXPLODE", "FOXTROT", "JULIETT", "MEASURE", "MISSION", "OMICRON", "SUBJECT", "UNIFORM", "UPSILON", "WHISKEY", "DETONATE", "NOTSOLVE", "NOVEMBER"};
+		int Word = GetField<int>(comp, "te").Get();
+		
+		addQuestions(module, makeQuestion(Question.BinaryWord, _Binary, null, new[] { BinaryWords[Word] }, BinaryWords));
+	}
 
     private IEnumerable<object> ProcessBinaryLEDs(KMBombModule module)
     {
@@ -2251,6 +2451,11 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.Bitmaps, _Bitmaps, new[] { "black", "bottom left" }, new[] { (16 - qCounts[2]).ToString() }, preferredWrongAnswers),
             makeQuestion(Question.Bitmaps, _Bitmaps, new[] { "black", "bottom right" }, new[] { (16 - qCounts[3]).ToString() }, preferredWrongAnswers));
     }
+    
+    private IEnumerable<object> ProcessBlackCipher(KMBombModule module)
+    {
+        return processColoredCiphers(module, "ultimateCipher", Question.BlackCipherAnswer, _BlackCipher);
+    }
 
     private IEnumerable<object> ProcessBlindMaze(KMBombModule module)
     {
@@ -2321,6 +2526,11 @@ public class SouvenirModule : MonoBehaviour
         string[] letters = { "CA", "C1", "CB", "C8", "CF", "C4", "CE", "C6", "3A", "31", "3B", "38", "3F", "34", "3E", "36", "GA", "G1", "GB", "G8", "GF", "G4", "GE", "G6", "7A", "71", "7B", "78", "7F", "74", "7E", "76", "DA", "D1", "DB", "D8", "DF", "D4", "DE", "D6", "5A", "51", "5B", "58", "5F", "54", "5E", "56", "HA", "H1", "HB", "H8", "HF", "H4", "HE", "H6", "2A", "21", "2B", "28", "2F", "24", "2E", "26" };
         string coord = fldCoord.Get(v => !letters.Contains(v) ? string.Format("expected one of: [{0}]", letters.JoinString(", ")) : null);
         addQuestion(module, Question.BlueArrowsInitialLetters, correctAnswers: new[] { coord });
+    }
+    
+    private IEnumerable<object> ProcessBlueCipher(KMBombModule module)
+    {
+        return processColoredCiphers(module, "ultimateCipher", Question.BlueCipherAnswer, _BlueCipher);
     }
 
     private IEnumerable<object> ProcessBobBarks(KMBombModule module)
@@ -2637,6 +2847,34 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, paids.Select((p, i) => makeQuestion(Question.CheapCheckoutPaid, _CheapCheckout,
             formatArgs: new[] { paids.Count == 1 ? "" : ordinal(i + 1) + " " },
             correctAnswers: new[] { "$" + p.ToString("N2") })));
+    }
+    
+    private IEnumerable<object> ProcessCheepCheckout(KMBombModule module)
+    {
+        var comp = GetComponent(module, "cheepCheckoutScript");
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+        
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_CheepCheckout);
+           
+        List<int> ShuffledList = GetField<List<int>>(comp, "numberList", isPublic: true).Get();
+        List<string> Birdnames = GetField<List<string>>(comp, "birdNames", isPublic: true).Get();
+        Birdnames.Remove("[Unicorn Bastard]");
+        List<string> RefinedBirdnames = new List<string>();
+        
+        for (int x = 0; x < 5; x++)
+        {
+            if (ShuffledList[x] != 26)
+            {
+                RefinedBirdnames.Add(Birdnames[ShuffledList[x]]);
+            }
+        }
+        
+        addQuestions(module,
+           makeQuestion(Question.CheepCheckoutBirds, _CheepCheckout, formatArgs: new[] { "was" }, correctAnswers: RefinedBirdnames.ToArray(), preferredWrongAnswers: Birdnames.ToArray()),
+           makeQuestion(Question.CheepCheckoutBirds, _CheepCheckout, formatArgs: new[] { "was not" }, correctAnswers: Birdnames.Where(a => !RefinedBirdnames.Contains(a)).ToArray(), preferredWrongAnswers: Birdnames.ToArray()));
     }
 
     private IEnumerable<object> ProcessChess(KMBombModule module)
@@ -3073,6 +3311,19 @@ public class SouvenirModule : MonoBehaviour
         qs.AddRange(colorNames.Select((col, colIx) => makeQuestion(Question.CornersColorCount, _Corners, formatArgs: new[] { col }, correctAnswers: new[] { clampColors.Count(cc => cc == colIx).ToString() })));
         addQuestions(module, qs);
     }
+    
+    private IEnumerable<object> ProcessCosmic(KMBombModule module)
+    {
+        var comp = GetComponent(module, "CosmicModule");
+        var fldSolved = GetField<bool>(comp, "isSolved");
+        string Answer = GetField<TextMesh>(comp, "DisplayText", isPublic: true).Get().text;
+        
+         while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Cosmic);
+        
+        addQuestion(module, Question.CosmicNumber, correctAnswers: new[] { Answer });
+    }
 
     private IEnumerable<object> ProcessCreation(KMBombModule module)
     {
@@ -3134,6 +3385,21 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessDACHMaze(KMBombModule module)
     {
         return processWorldMaze(module, "DACHMaze", _DACHMaze, Question.DACHMazeOrigin);
+    }
+    
+    private IEnumerable<object> ProcessDeafAlley(KMBombModule module)
+    {
+        var comp = GetComponent(module, "DeafAlleyScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_DeafAlley);
+        
+        int Pinpoint = GetField<int>(comp, "selectedShape").Get();
+        string[] Shapes = GetArrayField<string>(comp, "shapes").Get();
+        
+        addQuestions(module, makeQuestion(Question.DeafAlleyShape, _DeafAlley, null, new[] { Shapes[Pinpoint] }, Shapes));
     }
 
     private IEnumerable<object> ProcessDeckOfManyThings(KMBombModule module)
@@ -3223,6 +3489,110 @@ public class SouvenirModule : MonoBehaviour
                 preferredWrongAnswers: Tiles4x4Sprites,
                 correctAnswers: new[] { Tiles4x4Sprites[positions[3]] }));
     }
+    
+    private IEnumerable<object> ProcessDivisibleNumbers(KMBombModule module)
+    {
+        var comp = GetComponent(module, "DivisableNumbers");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        
+        while (!_isActivated)
+            yield return new WaitForSeconds(0.1f);
+        
+        var hadStrike = false;
+        module.OnStrike += delegate { hadStrike = true; return false; };
+        
+        List<string> Answers = new List<string>();
+        var StageNumber = GetField<int>(comp, "round");
+        
+        var Yes = GetField<KMSelectable>(comp, "Yea", isPublic: true).Get();
+        var No = GetField<KMSelectable>(comp, "Nay", isPublic: true).Get();
+        
+        var prevInteract1 = Yes.OnInteract;
+        var prevInteract2 = No.OnInteract;
+        
+        Yes.OnInteract = delegate
+        {
+            if (Answers.Count() < StageNumber.Get())
+            {
+                string Number = GetField<string>(comp, "numbertext").Get();
+                Answers.Add(Number);
+            }
+            var ret = prevInteract1();
+            
+            return ret;
+        };
+        
+        No.OnInteract = delegate
+        {
+            if (Answers.Count() < StageNumber.Get())
+            {
+                string Number = GetField<string>(comp, "numbertext").Get();
+                Answers.Add(Number);
+            }
+            var ret = prevInteract2();
+            
+            return ret;
+        };
+            
+         while (!fldSolved.Get())
+        {
+            if (hadStrike)
+            {
+                Answers = new List<string>();
+                hadStrike = false;
+            }
+            yield return null;
+        }
+        _modulesSolved.IncSafe(_DivisibleNumbers);
+        
+        if (Answers.Count() != 3)
+        {
+            throw new AbandonModuleException("Unable to gather the stages properly");
+        }
+        
+        List<string> Object = new List<string>();
+        List<int> BaseNumbers = new List<int>();
+        
+        Debug:
+        for (int x = 0; x < 23; x++)
+        {
+            int RNG = UnityEngine.Random.Range(0, 10000);
+            string RNGText = RNG.ToString();
+            while (RNGText.Length < 4)
+            {
+                RNGText = "0" + RNGText;
+            }
+            
+            Object.Add(RNGText);
+            BaseNumbers.Add(RNG);
+            
+            if (RNGText == Answers[0] || RNGText == Answers[1])
+            {
+                Object = new List<string>();
+                BaseNumbers = new List<int>();
+                goto Debug;
+            }
+        }
+        
+        BaseNumbers.Sort();
+        for (int a = 0; a < 22; a++)
+        {
+            if (BaseNumbers[a] == BaseNumbers[a+1])
+            {
+                Object = new List<string>();
+                BaseNumbers = new List<int>();
+                goto Debug;
+            }
+        }
+        
+        Object.Add(Answers[0]);
+        Object.Add(Answers[1]);
+        
+        addQuestions(module,
+            makeQuestion(Question.DivisibleNumbersNumbers, _DivisibleNumbers, new[] { "first" }, new[] { Answers[0] }, Object.ToArray()),
+            makeQuestion(Question.DivisibleNumbersNumbers, _DivisibleNumbers, new[] { "second" }, new[] { Answers[1] }, Object.ToArray()));
+
+    }
 
     private IEnumerable<object> ProcessDoubleColor(KMBombModule module)
     {
@@ -3298,6 +3668,62 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.DrDoctorDiseases, _DrDoctor, correctAnswers: diagnoses.Except(new[] { diagnoseText.text }).ToArray()),
             makeQuestion(Question.DrDoctorSymptoms, _DrDoctor, correctAnswers: symptoms));
+    }
+    
+    private IEnumerable<object> ProcessDreamcipher(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Dreamcipher");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Dreamcipher);
+        
+        string TargetWord = GetField<string>(comp, "targetWord").Get().ToLower();
+        string[] OtherAnswers = {"aardvark", "aardwolf", "abdicating", "abdominal", "abetting", "abeyance", "abhorrent", "abilities", "ablative", "ablution", "abnegation", "abnormality", "abominable", "aborigine", "abortionist", "abortive", "aboveboard", "abridgment", "abrogated", "absinthe", "absolute", "absolved", "abstemious", "abstention", "abstinent", "absurdities", "abundance", "abutting", "academia", "accentuate", "accession", "acclimatizing", "accompanied", "accountability", "acculturation", "accurate", "accusing", "achievement", "acidifies", "acknowledge", "acquisition", "acquittal", "acrimonious", "acrostic", "activity", "actualized", "actuarial", "actuated", "acupuncture", "adaptability", "addition", "addressee", "adenoidal", "adequate", "adhesion", "adjacent", "adjuring", "adjustor", "administer", "administration", "admirably", "admonish", "adorable", "adrenaline", "adulthood", "advancing", "adventitious", "adverbial", "adversary", "adversity", "advertiser", "aerodynamically", "aeronautics", "affection", "affiliation", "affirmation", "affluence", "aficionado", "aforethought", "aftereffect", "aftershock", "agglutination", "aggravating", "aggressor", "agitating", "agnostic", "agricultural", "agronomist", "aircraft", "airdropped", "algebraically", "alienated", "alimentary", "alkalinity", "allegation", "allegory", "allergen", "alliance", "alliteration", "allocation", "allowance", "alluvium", "almighty", "alphabetize", "altercation", "alternator", "altitude", "altruistically", "aluminum", "amanuensis", "ambassador", "ambiguity", "ambiguous", "ambivalent", "ambulance", "amendment", "amenities", "amethyst", "amicably", "amnesiac", "amortize", "amphitheater", "amplifier", "amputation", "amusement", "anachronistic", "anaerobic", "anaesthesia", "anaesthetize", "analytical", "analyzer", "anarchist", "anathema", "ancestries", "anchorwoman", "anchovies", "ancillaries", "androgynous", "anecdotal", "anesthetic", "angstrom", "annexation", "annihilated", "anniversaries", "announcer", "annulled", "anonymity", "antagonism", "anthologies", "anthropology", "anthropomorphic", "anticipation", "anticking", "antipasti", "antipathies", "antiquate", "antithetical", "anxieties", "anybodies", "anything", "anywhere", "apathetically", "aperitif", "apocryphal", "apologized", "apostolic", "apostrophe", "apothecaries", "apparatus", "appellation", "appendectomy", "appendix", "appertain", "appetizer", "applesauce", "appliance", "appreciation", "apprehend", "approximate", "aptitude", "aquamarine", "aquaplaning", "aquiculture", "arbitration", "arboreta", "archaism", "archangel", "archbishop", "archeological", "archetype", "architecture", "archived", "argosies", "argument", "aromatic", "arpeggio", "arranged", "arrangement", "arrogate", "artefact", "arterial", "arthritic", "artificer", "artillery", "asbestos", "ascendant", "ascribing", "ascription", "asparagus", "asphyxiated", "aspiring", "assertion", "assessment", "assimilating", "assistant", "associate", "assortment", "assuring", "asterisk", "asteroid", "astonishment", "astringency", "astronaut", "astronomic", "astrophysicist", "asymptotic", "atmospheric", "atrocious", "atrocities", "atrophies", "attendant", "attentive", "attitudinized", "attribute", "audiovisual", "audition", "austerity", "authorize", "authorship", "autobiography", "autocratically", "autoimmune", "automating", "autonomous", "autopsied", "autoworker", "auxiliary", "availability", "avenging", "averaged", "averring", "aviatrix", "avoirdupois", "awestricken", "awestruck", "awkwardly", "axiomatic", "babushka", "baccalaureate", "bachelor", "backbreaking", "backdrop", "background", "backlash", "backlogged", "backpack", "backpedalling", "backslide", "backstabbing", "backstairs", "backstory", "backwoods", "badminton", "bailiwick", "bakeries", "balalaika", "balustrade", "bamboozled", "bandaged", "banditry", "bandwagon", "banister", "banknote", "baptized", "barbarian", "barbeque", "barberries", "barbershop", "barefoot", "barehanded", "barnyard", "barracuda", "barrelling", "basilica", "bastardize", "bathroom", "battalion", "battleground", "battleship", "bayberries", "bayonetted", "bearskin", "beastliness", "beautician", "beautifies", "beautify", "becoming", "bedazzling", "bedraggled", "bedridden", "bedstead", "beefsteak", "befallen", "befriend", "befuddling", "beginner", "begrudged", "beguiling", "behalves", "behavior", "behemoth", "believable", "believed", "belittling", "belladonna", "belligerence", "bemusing", "benefactor", "benefitted", "benevolence", "benighted", "bereavement", "besetting", "besmirch", "bestiaries", "bestirring", "bestseller", "bestowal", "beverage", "bewilderment", "bibulous", "bicycling", "bidirectional", "bifurcation", "bigamist", "bigmouth", "bilateral", "billiards", "bimonthly", "binderies", "binomial", "biochemistry", "biodegradable", "biodiversity", "biologist", "biophysics", "biopsied", "biotechnology", "birdbath", "birdbrained", "birdcage", "birthday", "bisexuality", "bittersweet", "bivouacked", "biweekly", "blabbermouth", "blackberries", "blackbird", "blackboard", "blackcurrant", "blackmail", "blackthorn", "blandishment", "blasphemous", "blastoff", "blindfold", "blindsiding", "blithest", "blizzard", "blockaded", "blockbuster", "blockhouse", "blogging", "bloodcurdling", "bloodied", "bloodshed", "bloodthirsty", "blowtorch", "blowziest", "bludgeon", "blueberry", "bluegrass", "bluestocking", "blunderbuss", "blurrier", "blustery", "boardinghouse", "boardwalk", "bobwhite", "bodyguard", "bogeyman", "boldface", "bombardment", "bondsmen", "bookmark", "bookstore", "boomerang", "bootlegger", "borderline", "botanist", "bottling", "bouffant", "bouillabaisse", "bouillon", "boulevard", "boundary", "bowdlerize", "bowsprit", "bowstring", "boysenberry", "brackish", "brainchild", "brandish", "brashest", "brassiere", "brawniness", "breadwinner", "breakdown", "breakfast", "breakthrough", "breastplate", "breaststroke", "breathtaking", "brethren", "breweries", "brickbat", "bridesmaid", "bridging", "brigandage", "brilliant", "brinkmanship", "briquette", "briskest", "bristlier", "broadloom", "broadsided", "brocading", "brochure", "bronchus", "broomstick", "brotherhood", "browbeat", "brunette", "brushwood", "bruskest", "brusquer", "brutality", "brutalize", "bulkiness", "bulldogged", "bulldozer", "bulldozing", "bullfrog", "bundling", "bunkhouse", "buoyancy", "burglarized", "burlesque", "bushelled", "bushiest", "businesslike", "businessmen", "butterfly", "butternut", "buttermilk", "buzzkill", "bystander", "cackling", "cacophonous", "caesurae", "cafeteria", "caffeinated", "cajolery", "calamities", "calcifies", "calculation", "calisthenic", "calliope", "cameraman", "camouflage", "campanili", "camshaft", "candidate", "canister", "cannibalistic", "cannonading", "canopies", "cantaloupe", "cantankerous", "canvasback", "caparison", "capillary", "capitalized", "capitulation", "capricious", "carbohydrate", "carcinomata", "cardinal", "cardiopulmonary", "cardiovascular", "cardsharp", "caretaker", "carnation", "carnival", "carnivore", "caroused", "carpentry", "carpetbag", "cartography", "cartridge", "cartwheel", "cascaded", "caseload", "casework", "cashmere", "casserole", "cassette", "catafalque", "catalogued", "catamaran", "cataract", "catastrophic", "catatonic", "catchier", "categorization", "caterpillar", "catnapping", "cattiest", "caucussed", "cauldron", "caustically", "cauterize", "cavalier", "cavalryman", "ceasefire", "celebration", "celebrity", "cellophane", "cellulose", "cemetery", "censorship", "centenarian", "centigrade", "centralization", "centrifuge", "cephalic", "ceremonious", "cerulean", "chagrinned", "chairmanship", "chalkiest", "challenged", "chamomile", "champagne", "champion", "chancellor", "changeling", "changeover", "channelling", "chanties", "chaplaincies", "chapping", "character", "characterize", "charging", "charismatic", "charitably", "chauffeur", "checkmate", "checkroom", "cheekiness", "cheerily", "cheeriness", "cheesecake", "cheesier", "chemotherapy", "chenille", "cherubim", "chessboard", "chiaroscuro", "chicaneries", "chickenpox", "chickweed", "chiefest", "chieftain", "childbearing", "chilliest", "chimaera", "chinchilla", "chinstrap", "chintzier", "chiropractic", "chirrupped", "chiselled", "chivalrous", "chlorinated", "chocolate", "choosing", "choppiness", "chromatic", "chronicle", "chronicled", "chronometer", "chuckling", "chunkiness", "chutzpah", "cicatrice", "cilantro", "cinematographer", "cinnabar", "circularity", "circularizing", "circulating", "circumnavigate", "circumspection", "circumstanced", "citizenship", "civility", "clairvoyance", "clammier", "clapping", "clarification", "classical", "claustrophobic", "clavichord", "clavicle", "clayiest", "cleanliest", "cleaving", "clerestory", "clergies", "cleverest", "cliffhanger", "clingiest", "clipping", "clodhopper", "closefisted", "clotting", "cloudburst", "cloverleaf", "clubfeet", "clumsiness", "clunkiest", "coagulate", "coalescence", "coalition", "coccyges", "cockatoo", "cockeyed", "cockiest", "cockroach", "codependency", "codifies", "coffeecake", "cognition", "cognomen", "coherence", "coiffing", "coinciding", "collapse", "collectivized", "colloquial", "colloquy", "collusion", "colonialist", "colonization", "coloration", "colossus", "combustible", "comedienne", "comestible", "commenced", "commendation", "commensurate", "commentated", "commercialize", "commission", "commitment", "committing", "commodious", "commodore", "commonplace", "communed", "communicable", "communicant", "communique", "commutation", "commuting", "compactor", "companionship", "comparative", "compassionate", "compatriot", "competitor", "complacency", "complete", "complexion", "complexity", "compliance", "component", "composing", "compositor", "comprehend", "compress", "compromising", "compulsory", "computed", "computerized", "comradeship", "conceivable", "concentrating", "concentric", "conceptualize", "concerto", "concierge", "concrete", "concubine", "concurrence", "concussion", "condemnation", "condensed", "condescend", "condoned", "conducing", "conductive", "confabbing", "confectionery", "conferring", "confident", "confidential", "confined", "confinement", "confirmation", "confiscated", "conflagration", "conformity", "confrontational", "confusion", "conglomerate", "congratulation", "congregated", "congressmen", "congruence", "congruent", "congruity", "coniferous", "conjectural", "conjunctivitis", "conjurer", "connection", "connivance", "connoting", "conqueror", "conquest", "conquistador", "consecration", "consensual", "conservator", "consider", "considerate", "consolation", "consonance", "conspiracies", "conspiring", "constant", "constellation", "constipate", "constipated", "constituent", "constitutional", "construct", "construing", "consulate", "contagion", "containment", "contemptibly", "continued", "contraband", "contractor", "contradict", "contravened", "contretemps", "contribution", "contrive", "controller", "controversy", "contumacious", "conurbation", "convenience", "converging", "conversant", "convertor", "convexity", "convulsed", "cookbook", "cooperating", "coordination", "copperhead", "copywriter", "coquetting", "coquettish", "cordiality", "cormorant", "cornmeal", "cornstalk", "corporate", "corpulence", "corrective", "correlated", "correspondent", "corroborated", "corruption", "cortisone", "coruscate", "cosignatories", "cosmetologist", "cosmogony", "cosmologies", "costarred", "costlier", "costliest", "cottonmouth", "cottonwood", "countenanced", "countermand", "counterpoint", "counterweight", "countryside", "courageous", "courtesy", "courthouse", "cowardice", "cowardliness", "coworker", "coxswain", "coziness", "crabbiness", "crackpot", "craftiest", "craggiest", "crankcase", "crannies", "crappier", "crassest", "crawfish", "crayfish", "creamiest", "creasing", "creation", "creativity", "creature", "credenza", "creditably", "credulous", "crestfallen", "cribbing", "crinkling", "crinoline", "crisscross", "critique", "criticizing", "crookedest", "croquette", "crossbow", "crosscheck", "crossfire", "crossword", "croupier", "crowdfund", "crucifix", "cruddiest", "crueller", "cruising", "crumbier", "crumpling", "crunchiest", "crustacean", "cryogenics", "cryptography", "crystalline", "crystallization", "cubbyhole", "cuddling", "culinary", "culmination", "culpability", "cultivating", "cultured", "cumulative", "cuneiform", "cupboard", "curdling", "curlicue", "curliest", "curmudgeon", "cursorily", "curtsied", "curvaceous", "curvature", "custodian", "customary", "cutthroat", "cybernetic", "cyberspace", "cytoplasm", "dachshund", "daffodil", "daguerreotype", "daintily", "daiquiri", "dairyman", "dalmatian", "damnably", "damnation", "dandelion", "dandling", "daredevil", "dateline", "daughter", "davenport", "dawdling", "daybreak", "daydream", "dazzling", "deadbeat", "deadpanned", "deathlike", "deathtrap", "debarkation", "debilitating", "debonair", "decadent", "decaffeinate", "deceleration", "decisive", "deckhand", "declination", "declining", "decongestant", "decorative", "decryption", "deducible", "defamation", "defection", "defensible", "definition", "deflated", "deflection", "defogger", "dehydration", "dejection", "deleterious", "delicacy", "delicatessen", "delinquent", "deliquescent", "delirium", "delphinium", "deluging", "demijohn", "demitasse", "democratize", "demographic", "demolish", "demoniac", "demonstrably", "demonstration", "demurring", "dendrite", "denigrating", "denominational", "denouement", "denouncement", "dentistry", "deodorizer", "departure", "dependencies", "deplorable", "deployment", "depository", "depravity", "deprecation", "depreciation", "depressive", "deputation", "deputing", "deriving", "derivative", "dermatology", "derogatory", "derringer", "desalination", "descriptive", "describable", "described", "desecrate", "desertion", "desiccate", "desideratum", "desolation", "desperado", "desperate", "despised", "destitution", "destruction", "detainment", "detentes", "determining", "determinism", "deterrence", "detestation", "detonating", "detoxification", "detoxify", "detritus", "devastate", "deviance", "devilish", "deviltry", "devolution", "devotional", "devoutest", "dewberry", "dexterity", "dexterous", "dextrous", "diagnosis", "diagnostician", "diagonal", "diagrammatic", "diametrical", "dialectal", "dialyses", "diaphanous", "dictator", "dictatorial", "didactic", "dieresis", "dietitian", "difference", "difficulties", "diffusion", "digitizing", "digression", "dilettanti", "dillydally", "diluting", "dimension", "diminutive", "dimwitted", "dinghies", "diocesan", "diplomacy", "dipsomaniac", "dipstick", "directional", "directive", "disabling", "disciplinarian", "discipline", "discombobulate", "discommoded", "disconsolate", "discouraged", "discovery", "discrete", "discretion", "discriminatory", "discussion", "disgruntling", "dishcloth", "dishevelled", "dishtowel", "disparate", "dispenser", "dispersal", "dispirit", "disposal", "disputed", "disquisition", "dissident", "dissipating", "dissociation", "dissonance", "dissuade", "distanced", "distinctive", "distinguish", "distortion", "distraught", "distributing", "diuretic", "diversification", "diversify", "diversion", "divinities", "divisive", "divorcing", "divulging", "dizziness", "docility", "docudrama", "documentaries", "doggerel", "doggiest", "dogmatic", "domestic", "domestication", "domicile", "dominance", "doodling", "doomsday", "doorstep", "dorkiest", "dormitories", "dormancy", "doubloon", "doughnut", "doughtier", "dovetail", "dowdiness", "dowelled", "downgraded", "download", "downpour", "downscale", "downsize", "downstate", "draconian", "draftsmen", "dramatically", "dramatization", "drastically", "drawbridge", "drawstring", "dreadlocks", "dreadnought", "dreamier", "dressiest", "dripping", "drivelling", "drizzling", "drolleries", "droopiest", "drowsiness", "drudgery", "drumming", "drumstick", "drunkard", "ductility", "dulcimer", "dumbfound", "duplicated", "duplication", "durability", "dustiness", "dwindled", "dyestuff", "dynamite", "dysfunctional", "dyslexia", "dyspepsia", "earphone", "earsplitting", "earthenware", "earthshaking", "easiness", "easternmost", "eavesdrop", "ebullience", "eccentricity", "eclectic", "eclipsed", "economic", "economize", "ecosystem", "ecstatically", "edelweiss", "edgewise", "edibility", "editorialized", "educable", "education", "eeriness", "effectual", "effeminate", "effervesce", "effervescence", "efficacy", "efficiency", "effusion", "eggbeater", "eglantine", "egocentric", "egregious", "eigenvalue", "eighteenth", "ejection", "elaborated", "elbowroom", "elderberry", "election", "electric", "electrification", "electrocute", "electrode", "electrolysis", "electromagnet", "electronica", "electrostatic", "elemental", "elementary", "elephantine", "elevator", "eliminate", "ellipsis", "elliptical", "elongation", "eloquence", "elsewhere", "elucidate", "emanating", "emancipate", "emasculation", "embarrassment", "embedding", "embellish", "embezzle", "embitter", "emblazon", "emblematic", "embolden", "embracing", "emergency", "emigrating", "emissary", "emission", "emolument", "emotional", "empathetic", "empathize", "emphatically", "emphysema", "emulsification", "enabling", "enactment", "enamelled", "encampment", "encapsulate", "enchilada", "encouraged", "encroachment", "encrustation", "encryption", "encumber", "encyclical", "encyclopedic", "endorsing", "energies", "enervating", "enfeebled", "enforcer", "enhanced", "enigmatic", "enjoyment", "enlarging", "ennobled", "enquired", "enraptured", "enrollment", "ensconce", "enshrine", "enslavement", "enslaving", "entangle", "enterprise", "enthroned", "enthusiasm", "entirety", "entomology", "entrance", "entrapment", "entryway", "entwined", "enumeration", "enunciation", "envelopment", "envision", "ephemeral", "epidemiology", "epidermis", "epileptic", "epilogue", "epistemology", "equality", "equalization", "equalled", "equanimity", "equation", "equestrian", "equidistant", "equilibrium", "equipment", "equipoise", "equities", "equivalence", "equivocate", "eradicate", "erratically", "erroneous", "erstwhile", "eruption", "erythrocyte", "escapism", "eschatology", "esoterically", "espousing", "estimable", "estrangement", "etymology", "eucalyptus", "euphemism", "evacuated", "evaluation", "evaporating", "evenhanded", "eventide", "eventuate", "evergreen", "everybody", "evidence", "evillest", "exacerbate", "exaggerated", "exampling", "exasperated", "excavated", "exception", "exchequer", "excitable", "exclusive", "excruciating", "exculpated", "excusing", "executable", "executrix", "exegesis", "exemplary", "exemption", "exercising", "exhaustive", "exigency", "existent", "exonerate", "exorbitant", "exorcize", "exotically", "expansion", "expatiated", "expatriation", "expectorate", "expedience", "expedient", "expedition", "expelled", "expenditure", "experiencing", "expiated", "expletive", "explicate", "exploding", "exploration", "explosive", "exponential", "exportation", "exposure", "expressionist", "expunged", "extensional", "extirpated", "extortionist", "extractor", "extrapolated", "extravagant", "extremer", "extrinsically", "extrovert", "eyeliner", "eyewitness", "fabrication", "facilities", "factorization", "factotum", "fainthearted", "fallacious", "fallibility", "familiarity", "fanciful", "fantasize", "fantastic", "farmhouse", "fashionista", "fatality", "faultfinding", "faultily", "feasible", "featherweight", "federate", "federation", "feldspar", "felicity", "felonious", "femininity", "feminist", "fertilizer", "fervency", "festivities", "feverish", "fiberboard", "fictionalize", "fictitious", "fiddlesticks", "fiduciaries", "filibuster", "filigree", "filmmaker", "filtration", "finagler", "finality", "finessing", "fingernail", "finickiest", "fireball", "firebrand", "fireflies", "fireplace", "fireproof", "firestorm", "firewall", "firmware", "firstborn", "fishbowl", "fishermen", "fishhook", "fisticuffs", "fixation", "fizziest", "flabbergast", "flagella", "flagpole", "flagstaff", "flamboyant", "flammability", "flapjack", "flashbulb", "flashiest", "flashily", "flatfish", "flatfoot", "flattery", "flexibility", "flibbertigibbet", "flightiness", "flimsily", "flitting", "floorboard", "flopping", "flotilla", "flounder", "flourish", "flowerpot", "fluctuating", "fluoresce", "fluoridating", "fluorite", "flurries", "flyspeck", "flywheel", "foamiest", "foggiest", "foodstuff", "foolhardiness", "footprint", "footstep", "footwork", "foreboding", "forecast", "foreclosing", "forefeet", "forehand", "foremost", "forensic", "foreshorten", "forestry", "forethought", "foreword", "forfeiture", "forgather", "formaldehyde", "formality", "formalized", "formidably", "forsooth", "forthcoming", "forthright", "fortnight", "fortress", "fortuitous", "fossilizing", "foundation", "fourfold", "foursquare", "foxglove", "foxhound", "foxtrotting", "fractional", "fractious", "fragrance", "framework", "franchised", "frankfurter", "frantically", "fraternities", "fraternized", "frazzled", "freelancer", "freethinker", "frenetic", "frenzied", "freshwater", "fretting", "fricasseed", "friendlier", "frigidity", "frivolous", "frizzling", "frolicking", "frontage", "frostbit", "frostiness", "frowsier", "fructify", "fruitcake", "fruition", "frustrate", "fuelling", "fulminating", "fumbling", "fumigation", "functional", "fundamental", "fungicide", "funkiest", "fuselage", "futuristic", "futurities", "fuzziness", "gabbiest", "gabbling", "gaberdine", "gadabout", "gadflies", "galaxies", "galleries", "galvanize", "galvanometer", "gambolling", "gamecock", "gamesmanship", "gangland", "garbanzo", "garbling", "gargantuan", "garrotted", "garrulity", "gaslight", "gasoline", "gastronomy", "gasworks", "gaudiest", "gazetted", "gemstone", "genderfluid", "genealogical", "genealogy", "generalized", "generate", "generative", "generically", "geniality", "gentlefolk", "gentleman", "gentrification", "geocache", "geographer", "geographic", "geological", "geometry", "geophysics", "geopolitical", "germicide", "germinate", "gesticulated", "ghastliness", "ghostliness", "giddiest", "gigahertz", "gimcrack", "gimmickry", "gingersnap", "girlfriend", "giveaway", "gladioli", "glamourize", "glitziest", "globalization", "glockenspiel", "gloomiest", "glossary", "glowworm", "gluttony", "glycogen", "gnarliest", "goatherd", "godfather", "goldbrick", "goldenrod", "gondolier", "goodwill", "gourmand", "grabbing", "graduate", "graduation", "graffiti", "gramophone", "granaries", "grandfather", "grandiloquence", "grandiose", "grandmother", "grapevine", "grappling", "grassland", "gratification", "gratifies", "gravelled", "gravestone", "gravitation", "greasiness", "greedily", "greenback", "greenery", "greenhouse", "greensward", "greyhound", "gridiron", "grimaced", "grimmest", "grindstone", "grinning", "gripping", "grizzliest", "grogginess", "groovier", "groundwork", "grousing", "groveller", "grubbiest", "grubstake", "gruelling", "gruesomest", "grumbling", "grumpily", "guaranteed", "guardhouse", "guardianship", "guesstimated", "guesswork", "guideline", "guillotine", "guiltiest", "gullibility", "gumption", "gunpowder", "guzzling", "gynecologist", "gyration", "gyroscope", "haberdashery", "habitability", "habituated", "hairdressing", "hairsplitting", "hairstylist", "halfback", "halfhearted", "halftime", "halitosis", "hallmark", "hallucinogen", "hamburger", "hammerhead", "handcart", "handicap", "handmade", "handshake", "haphazard", "harangue", "hardback", "hardheaded", "harebrained", "harlequin", "harmonica", "harmonize", "haughtily", "hazelnut", "headache", "headfirst", "headhunter", "headlight", "headwind", "healthiness", "heartache", "heartbroken", "heartstrings", "heartthrob", "heartwarming", "heartier", "heaviest", "heckling", "hedgehog", "hedonist", "hegemony", "helicopter", "hellebore", "helpline", "hematologist", "hemispherical", "hemoglobin", "herbicide", "herbivorous", "herdsman", "hereafter", "hermetically", "herringbone", "hesitant", "hesitating", "heterodox", "heuristic", "hexadecimal", "hexagonal", "hibernation", "hideaway", "hierarchical", "highfaluting", "highlight", "hilarious", "hindquarter", "hindrance", "hindsight", "hinterland", "hippopotamus", "historic", "histrionic", "hitchhiker", "hoariness", "hoarsest", "hobgoblin", "holdover", "hologram", "homeliness", "homemade", "homesick", "hometown", "homewrecker", "homophone", "honeymoon", "honorarium", "hoodwink", "hormonal", "horoscope", "horrible", "horrified", "horseplay", "horseshoed", "horsewhipping", "horsiest", "horticultural", "hospitality", "hostelries", "hostilities", "hostility", "housebreak", "houseplant", "housewares", "huffiest", "hullabaloo", "humanitarian", "humanize", "humbugging", "humidifier", "humiliated", "humongous", "humorist", "humorous", "hundredth", "hundredweight", "hungover", "huntsman", "hurricane", "husbandry", "hyacinth", "hybridize", "hydraulic", "hydroelectric", "hydrofoil", "hydrolysis", "hydroplane", "hygrometer", "hyperbolic", "hyphenation", "hypnosis", "hypnotism", "hypocrite", "hypotenuse", "hypothesize", "hypothetical", "hysteresis", "ibuprofen", "icebreaker", "iconoclast", "idealizing", "identify", "identities", "ideograph", "ideologist", "idiomatic", "idiosyncrasy", "idolized", "ignition", "ignominious", "ignorant", "illegality", "illegibility", "illegitimacy", "illuminate", "illustration", "illustrious", "imaginary", "imbroglio", "imitated", "immaculate", "immersion", "impairment", "impeccable", "impersonator", "impervious", "implacability", "implicated", "imploring", "importance", "impostor", "impregnable", "impresario", "impressive", "impromptu", "impulsive", "inadequacies", "inanities", "inadvertent", "inasmuch", "inauguration", "incapacitated", "incarcerate", "incarnate", "incinerate", "incinerating", "incitement", "inclined", "incontestably", "incorporating", "incorrigible", "incrimination", "incubation", "inculcated", "incumbency", "indefatigable", "indefinably", "indelible", "indemnifies", "indeterminacy", "indicated", "indicative", "indignation", "indispensably", "indisputably", "indivisibly", "indoctrination", "indomitable", "inducement", "indulgent", "industries", "inebriated", "ineffably", "ineptitude", "inequalities", "inertial", "inevitability", "inexcusably", "inexorably", "inextricable", "infarction", "infatuated", "inferring", "infiltrator", "infinitesimal", "infinity", "infirmity", "inflation", "influenced", "influential", "influenza", "infuriating", "ingenious", "inhalation", "inheritor", "inimitably", "iniquities", "iniquitous", "initialized", "innermost", "innkeeper", "innocent", "inoculate", "inordinate", "inquiries", "inquisition", "inquisitor", "insatiable", "inscription", "inscrutably", "insertion", "insinuating", "insistent", "insomniac", "inspirational", "inspiring", "installment", "instituting", "instruction", "instrumental", "insularity", "insurgence", "intaglio", "integrating", "integrity", "integument", "intellectual", "intelligibly", "intensive", "interaction", "interception", "intercessor", "interchangeably", "interface", "interfere", "interlude", "intermediary", "intermediate", "intermezzo", "intermission", "internalize", "internist", "interpersonal", "interplanetary", "interpolated", "interpretation", "intersect", "intersection", "interspersed", "intertwining", "intervene", "intervention", "intestine", "intimidated", "intoxicate", "intransigent", "intriguing", "intrinsic", "introductory", "intruding", "inundation", "invading", "inventory", "investigative", "invigorated", "invincibly", "inviolability", "invoking", "involved", "involvement", "iodizing", "ionizing", "ionosphere", "irascible", "ironclad", "iridescence", "irregularity", "irrelevant", "irremediable", "irreparably", "irresistible", "irresolution", "irrespective", "irresponsible", "irretrievably", "irrevocable", "irritability", "irritate", "isolated", "isomorphic", "isosceles", "italicize", "itemizing", "iterator", "iteration", "itinerary", "jackknife", "jackrabbit", "jaggedest", "jailbreak", "jalopies", "jamboree", "jangling", "jauntiness", "jawboning", "jawbreaker", "jazziest", "jeopardize", "jeopardy", "jerkwater", "jessamine", "jewelled", "jingoism", "jinrikisha", "jitterbug", "jitteriest", "jocularity", "jocundity", "jodhpurs", "joggling", "jolliness", "jostling", "joyrider", "joystick", "jubilant", "judgment", "judicious", "juiciness", "jumbling", "jumpiness", "junkyard", "juridical", "jurisdiction", "justifiable", "juxtapose", "juxtaposition", "kaleidoscope", "kangaroo", "keepsake", "kerosine", "keybinding", "keynoting", "keypunch", "keystroke", "kielbasy", "kilobyte", "kilohertz", "kilometer", "kilowatt", "kindliness", "kindling", "kingship", "kittenish", "kleptomaniac", "klutziest", "knackwurst", "kneecapping", "knickknack", "knobbier", "knobbiest", "knockout", "knockwurst", "knucklehead", "kohlrabi", "kookiness", "labelled", "laboratories", "laburnum", "laceration", "ladylike", "lamebrain", "lamentably", "laminate", "lamppost", "lampshade", "landlord", "landslide", "languorous", "lankiest", "lapidary", "larcenies", "laryngitis", "laughingstock", "laundress", "laundries", "lavatory", "lawrencium", "laxative", "layperson", "laziness", "leafletting", "leakiest", "leasehold", "leeriest", "leftwards", "legalized", "legendary", "legislator", "legitimate", "leitmotif", "lemonade", "lengthier", "lengthwise", "lethargically", "lethargy", "leukocyte", "levelling", "leverage", "leveraged", "levitating", "liability", "liaising", "libelous", "liberated", "libretto", "licentiate", "lifeboat", "lifeforms", "lifeguard", "lifelike", "lifesaver", "lifetime", "lightest", "lightheaded", "lighthouse", "likeliest", "limelight", "limpidity", "linesmen", "lionized", "liquefaction", "liquefies", "liquidation", "litanies", "literate", "litigation", "litigious", "littoral", "liturgical", "liveliness", "liveries", "localities", "localizing", "locating", "lockstep", "loganberry", "logarithm", "loggerhead", "lollipop", "lollygagging", "lonesome", "longhorn", "lookalike", "loquacious", "loquacity", "lordliest", "loveliness", "lowercase", "lowliness", "lubricant", "lumberman", "luminosity", "lunacies", "lunchbox", "luncheonette", "lunchroom", "lunchtime", "luxurious", "lynchpin", "lyricist", "macaroni", "machination", "machinist", "macintosh", "macrocosm", "macroscopic", "mademoiselle", "madhouse", "magazine", "magician", "magnanimity", "magnetize", "magnolia", "maharajah", "mahogany", "mainlined", "mainspring", "mainstay", "majestically", "majorette", "majority", "makeshift", "maladies", "malefactor", "malevolent", "malformation", "malinger", "malleability", "malpractice", "mammalian", "mandating", "mandible", "mandolin", "mandrake", "mandrill", "maneuver", "maneuverability", "manifest", "manipulated", "mantissa", "mantlepiece", "mantling", "manufacture", "marchioness", "marginal", "marigold", "marinade", "marinate", "marionette", "marketplace", "marksman", "marquess", "marquetry", "marriage", "marshmallow", "marshalling", "marsupial", "marvelled", "masculine", "massacre", "masterwork", "matchmaking", "material", "mathematics", "matriculation", "matrimony", "maturation", "maturing", "maxillae", "mayonnaise", "mayoralty", "mazourka", "meadowlark", "meatball", "mechanic", "medalist", "mediating", "mediocre", "meditate", "meditating", "megalith", "melancholy", "mellifluous", "meltdown", "membrane", "memorandum", "menacing", "mendacity", "menopause", "mercerize", "merchandized", "mesdemoiselles", "mesmerized", "mesmerizing", "messiest", "metabolize", "metallic", "metaphysical", "metastasis", "metastasize", "methadone", "metronome", "microbiologist", "microcosm", "microfiche", "microprocessor", "microscope", "microscopically", "microsecond", "microwave", "middlemen", "middling", "migrated", "migratory", "militarism", "military", "militiamen", "milkmaid", "millennium", "millipede", "milquetoast", "mimicked", "mimicries", "mincemeat", "mindbogglingly", "mineralogy", "minestrone", "miniaturization", "minibike", "minimizing", "ministration", "minuting", "misanthropy", "miserably", "misfeasance", "misogynist", "misshapen", "mistiness", "mistletoe", "mitigation", "mizzenmast", "mnemonic", "mobility", "mobilize", "modelled", "modernization", "moderated", "modification", "modifier", "modulated", "moistest", "moisturizing", "molecular", "mollifies", "mollycoddle", "molybdenum", "momentary", "momentous", "monastic", "monaural", "monetary", "monetize", "moneybag", "moneymaker", "mongoose", "monicker", "monochromatic", "monolingual", "monopolies", "monotone", "monotonically", "monotony", "monstrosities", "moonlight", "moonshine", "moorland", "moralist", "morality", "moralizing", "moreover", "moribund", "morphological", "morphology", "mortgage", "mortised", "mosquito", "motocross", "motorbike", "motorboat", "motorcade", "motorcycled", "motorizing", "mottling", "mountainside", "mousetrapping", "moustache", "muckrake", "muffling", "multinational", "multiplex", "multiplication", "multiplicity", "multipurpose", "multitasking", "multiverse", "multivitamin", "mummification", "munchies", "muralist", "murderous", "murkiest", "muscling", "musculature", "musicianship", "musketry", "mutilation", "mysterious", "mystifies", "mystique", "mythology", "namesake", "nanosecond", "nanotechnology", "narcissist", "narcosis", "narcotic", "narration", "narrator", "narrowest", "nasalized", "nattiest", "naturalizing", "nauseating", "nautical", "navigable", "naysayer", "nearsighted", "nebulous", "necessaries", "necessitate", "necrosis", "nectarine", "negation", "negative", "negativity", "negligence", "negotiable", "neighborliness", "neoclassical", "nettlesome", "neurological", "neuralgic", "neuroses", "neutrality", "neutralization", "nevertheless", "newfangled", "newsworthy", "nightclothes", "nightmarish", "nightstick", "nincompoop", "nineties", "nitrated", "nitrogen", "nitroglycerine", "noblewomen", "nocturnal", "nocturne", "noisemaker", "nominate", "nonbinary", "nondescript", "nonesuch", "nonpareil", "noodling", "normality", "normalizing", "normative", "northeastern", "northwesterly", "nosedive", "nostalgic", "notarize", "notification", "novelette", "novitiate", "nuisance", "nullification", "numbskull", "numeracy", "numerator", "nurtured", "nutrition", "nutshell", "nuzzling", "obeisant", "obfuscate", "obfuscation", "objection", "objectivity", "obligated", "obliging", "obliterated", "obnoxious", "obscurity", "obsequious", "observation", "obsidian", "obsolescence", "obstinate", "obstreperous", "obtruded", "obtusest", "obviating", "occlusion", "oceanography", "official", "officiating", "offshoot", "offshore", "oleander", "olfactory", "oligarchies", "omelette", "omnipotent", "omniscient", "oncology", "oncoming", "onionskin", "onomatopoeia", "openhanded", "operation", "ophthalmic", "ophthalmology", "opprobrious", "optometry", "oracular", "orangutang", "oratorical", "orchestration", "orderliness", "organically", "organization", "orientation", "originator", "ornamental", "ostracizing", "otherwise", "otherworldly", "outlandish", "outmoded", "outsider", "outwitted", "overwhelm", "ownership", "oxidation", "oxygenation", "oxymoron", "pacesetter", "pachyderm", "pacification", "paginating", "painkiller", "pairwise", "palimpsest", "palindromic", "palisade", "palliating", "palomino", "palpable", "palpitation", "paltriness", "pamphleteer", "pancaked", "pancreas", "panelling", "panhandle", "panicking", "pantaloons", "pantheon", "pantries", "paperwork", "parabola", "parachuting", "paradigmatic", "paradoxical", "paragliding", "parakeet", "paralegal", "paralysis", "paralytic", "paramecium", "parameter", "parasitic", "parchment", "parenthesis", "parlance", "parliamentary", "parodies", "partaking", "partiality", "participant", "particle", "particularize", "partisan", "partisanship", "password", "pasteboard", "pasteurized", "pastiest", "patchwork", "patellae", "paternal", "pathetic", "pathogen", "pathological", "patrolling", "pavilion", "pawnbroker", "paycheck", "pedalled", "pedantically", "peddling", "pederasty", "pedestrian", "pediatrician", "peekaboo", "penitential", "penniless", "pennyweight", "pentagonal", "pentathlon", "penurious", "peppermint", "perceptual", "perchance", "percolating", "percussion", "perfectest", "perfidious", "perforated", "perfunctorily", "perihelia", "perilous", "periwinkle", "perjured", "permanent", "permeability", "permissibly", "permitted", "permutation", "pernicious", "peroxide", "perpendicular", "perpetrated", "perpetual", "perplexity", "perquisite", "persecute", "perseverance", "persnickety", "personality", "personalized", "personified", "perspicacious", "perspiration", "pertinence", "peskiest", "pessimism", "pessimistically", "pesticide", "pestilent", "petrifaction", "petroleum", "pettifogging", "petulant", "pharmaceutical", "pharmacy", "phenotype", "philanthropic", "philatelist", "philosophy", "phlebitis", "phonetician", "phoniness", "phonology", "phosphorescence", "photocopy", "phototypesetter", "phrenology", "physical", "physiognomy", "physiology", "physique", "pianoforte", "picaresque", "picayune", "piccalilli", "pickerel", "pickpocket", "picturesque", "picturing", "piddling", "piecemeal", "pigmentation", "pillowcase", "pigeonholing", "pinafore", "pinpoint", "pipsqueak", "piquancy", "pirouette", "pithiest", "pittance", "pizzeria", "pizzicato", "placated", "plagiarism", "plagiarizing", "plaguing", "plaintiff", "planetarium", "plantation", "plasterboard", "plasticity", "platonic", "plausibly", "playroom", "plenipotentiary", "plethora", "ploughshare", "pluckiest", "plunging", "plurality", "pluralized", "plushier", "plutonium", "pneumatic", "podiatry", "poignancy", "poinsettia", "polarity", "polarization", "politesse", "pollination", "polonium", "poltergeist", "polyethylene", "polygamy", "polygraph", "polyhedron", "polymerization", "polyphony", "pommelled", "porpoise", "porridge", "portability", "portaging", "portfolio", "portmanteaux", "portraitist", "possessor", "possibility", "postponing", "postulated", "potassium", "potbellied", "potentiality", "potsherd", "powerhouse", "practical", "practicalities", "practice", "practitioner", "prancing", "prankster", "pratfall", "precious", "precipice", "preciser", "predication", "predicative", "prefabbed", "preferably", "premonition", "preparatory", "preponderating", "preposterous", "preppiest", "prerogative", "prescribed", "preservation", "presidential", "pressure", "pressurized", "prestigious", "presumably", "pretentious", "preternatural", "prettiest", "prevarication", "previous", "prickling", "primeval", "primogeniture", "primordial", "princelier", "printout", "privater", "privatizing", "probabilistic", "probably", "problematic", "procedural", "proclaim", "proclamation", "procrastinated", "procuring", "prodigal", "prodigality", "prodigies", "profanities", "profligacy", "profligate", "prognoses", "programmable", "programmer", "prohibition", "projectile", "projection", "prolific", "prolixity", "prominent", "promised", "promontories", "promoter", "promulgate", "pronghorn", "pronunciation", "propaganda", "propellent", "propelling", "property", "prophetically", "propinquity", "propitiate", "proportionality", "propositional", "propound", "prorated", "proscenium", "prosecution", "proselyte", "prosperous", "prostheses", "protozoan", "provably", "provenance", "providential", "provoked", "prurient", "psychoanalysis", "psychology", "ptarmigan", "ptomaine", "puffiness", "pulmonary", "pulpiest", "pulsation", "pummelling", "punctuality", "punctuate", "pungency", "purblind", "purchaser", "purification", "purified", "pursuant", "purulence", "pushiness", "pusillanimity", "putrefied", "puzzling", "pyorrhea", "pyrotechnic", "quackery", "quadrant", "quadriplegia", "quadrilateral", "quadruplicate", "quagmire", "quaintest", "qualities", "qualification", "quandaries", "quantitative", "quarrelling", "quarterback", "quartermaster", "quartette", "queasiest", "queenliest", "queerest", "quesadilla", "question", "questionably", "questionnaire", "quibbler", "quicksand", "quicksilver", "quiescence", "quintessential", "quintupled", "quipping", "quirkiest", "quitting", "quixotic", "quizzing", "quotable", "quotient", "racehorse", "racketeer", "racquetball", "radiated", "radiator", "radioactivity", "rafflesia", "raffling", "ragamuffin", "raggedier", "railroad", "rainfall", "rainforest", "rainstorm", "rambunctious", "ramification", "ramrodding", "rapprochement", "rapscallion", "rarities", "raspberry", "rathskeller", "ratifies", "rattlesnake", "rattletrap", "raunchiest", "reactionary", "readiest", "realized", "reasonably", "rebuttal", "recalcitrance", "receiver", "recentest", "receptacle", "reciprocate", "reckless", "reclining", "recognizing", "recoveries", "recriminate", "rectories", "recuperative", "recurring", "reducing", "reference", "referring", "refineries", "reformatories", "refreshment", "refrigeration", "regimental", "regional", "regressive", "regrettably", "regulating", "regurgitating", "rehearsal", "reinforced", "rejection", "rejoicing", "rejuvenating", "relationship", "relative", "relaxation", "relieving", "relinquish", "reluctant", "remedied", "remembrance", "remonstrate", "renascence", "rendition", "renegade", "renovating", "repairmen", "repatriated", "repleted", "replicate", "reprehend", "representative", "reprieving", "reprising", "reproach", "reptilian", "repudiated", "repulsive", "reputation", "requirement", "requiring", "requisition", "requital", "resembled", "reservation", "reservoir", "residency", "residential", "residual", "resolute", "resonating", "respiratory", "responsibly", "restaurant", "restitution", "restorer", "restroom", "resultant", "resumption", "resurrect", "resuscitation", "retention", "retaliatory", "reticent", "retirement", "retrenchment", "retributive", "retrievable", "retrofitted", "retrospect", "reveille", "revelries", "revenged", "reviling", "revoking", "revolutionized", "revolving", "revulsion", "rhapsody", "rhetorical", "rheumatic", "rhinoceros", "rhododendron", "rhomboid", "rhythmical", "riboflavin", "ricketier", "ricochet", "ridiculous", "rightmost", "rigmarole", "riskiness", "ritziest", "rivalries", "riverside", "roadkill", "roadwork", "robocall", "rockiness", "roentgen", "rollerskating", "rotaries", "rotation", "rotisserie", "rotogravure", "roundabout", "roundhouse", "routinizing", "royalist", "rubicund", "rucksack", "ruddiest", "rudimentary", "ruffling", "ruination", "runniest", "rustically", "saboteur", "saccharine", "sackcloth", "sacrilege", "saddlebag", "safeguard", "safflower", "sagebrush", "salesclerk", "salesperson", "salivating", "saltpetre", "saluting", "sampling", "sanctify", "sanctimonious", "sanctuary", "sandbagging", "sandiness", "sandwich", "sanitizing", "sapphire", "sapsucker", "sarcastic", "sarcophagus", "sardonically", "sarsaparilla", "sassafras", "satellite", "satiating", "satinwood", "satisfaction", "sauciest", "sauerkraut", "savagery", "scallywag", "scamming", "scandalous", "scantiest", "scarcity", "scarecrow", "scathing", "scatterbrain", "scavenging", "scheduler", "scheming", "schizophrenia", "schlemiel", "schmaltzy", "schmooze", "schnapps", "schnauzer", "scholastically", "schoolbook", "schooldays", "schooner", "scientifically", "scientist", "scimitar", "scintillating", "scofflaw", "scorpion", "scoundrel", "scrabble", "scrambled", "scrammed", "scrapbook", "scratchiest", "scrawniest", "screenplay", "screwdriver", "screwiest", "scrimmage", "scriptwriter", "scrounged", "scrubber", "scruffiest", "scrumptious", "scrunchy", "scrupulous", "scrutinized", "scrutiny", "sculptural", "scummiest", "scuttlebutt", "scuzziest", "scything", "seafaring", "seamanship", "seaplane", "searchlight", "seascape", "seashell", "seasonal", "seclusion", "sectarian", "securities", "sedative", "sedimentary", "sedulous", "seediness", "seething", "segmentation", "seismograph", "selenium", "selfsame", "selvedge", "semantically", "semaphore", "sensitize", "sentience", "sentimentalize", "sentinel", "separation", "sepulchral", "sequencer", "sequester", "sequestration", "sequitur", "seraglio", "seraphim", "serendipity", "serenity", "serializing", "serpentine", "serviced", "servitude", "servomechanism", "severance", "shabbier", "shadowbox", "shagginess", "shakiest", "shamrock", "shapeshifter", "sharpshooter", "shatterproof", "shedding", "sheepdog", "sheepish", "shelving", "sherbert", "shiftier", "shiitake", "shimmied", "shiniest", "shipmate", "shipshape", "shockproof", "shoestring", "shootout", "shopkeeper", "shopping", "shoreline", "shortcake", "shortsighted", "showdown", "showplace", "shrewdest", "shrinkage", "shuffleboard", "shuttlecock", "shuttling", "sideboard", "sideburns", "sidelined", "sidestep", "sidestroked", "sidewall", "sightseeing", "sightseer", "signalling", "signatories", "signature", "significant", "silenced", "silhouette", "silicone", "silkworm", "silverware", "simplicity", "simulation", "simultaneous", "singularity", "sinister", "sinusoidal", "sizzling", "skeleton", "skeptical", "skidding", "skipping", "skirmish", "skydiver", "skywriting", "slamming", "slantwise", "sleazily", "slenderize", "slimiest", "slipperier", "sloppiness", "slovenliness", "slumming", "slushiest", "smarmiest", "smoggiest", "smokiness", "smudging", "smuggling", "snakiest", "snapdragon", "snarkiest", "snazziest", "sniffling", "snobbish", "snootiest", "snorkelled", "snowblower", "snowflake", "snubbing", "snuffling", "snuggling", "soapiest", "soapsuds", "sobriety", "sobriquet", "sociably", "socialized", "sociopath", "solenoid", "solidifies", "soliloquized", "soliloquy", "solitaire", "solitude", "solvency", "somebody", "sometime", "somnambulist", "songwriter", "sophomore", "sororities", "sourpuss", "southbound", "southeast", "southpaw", "southwestern", "souvenir", "spaceship", "spacesuit", "spaghetti", "spangled", "sparkler", "sparring", "sparsest", "sparsity", "spasmodic", "spearmint", "specializing", "specialty", "specification", "specimen", "spectrum", "spectroscopy", "speculative", "speedboat", "speedier", "spellbind", "spheroid", "spikiest", "spindliest", "spiralling", "spitting", "splashdown", "splotchy", "splurging", "spoilsport", "spokesman", "spoliation", "spongier", "sponsorship", "spontaneity", "spookiest", "sporadically", "sportscast", "sportsmanship", "spottiness", "springiness", "sprinkled", "spurious", "spurring", "spyglass", "squabbling", "squadron", "squander", "squarest", "squalidest", "squashiest", "squatting", "squeakiest", "squeegee", "squiggly", "squintest", "squirmiest", "squirrel", "squishiest", "stabbing", "staccato", "staidest", "stairway", "stakeout", "stalactite", "stalagmite", "stalemate", "stampede", "standardize", "standout", "standstill", "staphylococcus", "starling", "starriest", "starvation", "statehouse", "statewide", "statistical", "statuette", "statutory", "staunchest", "steadfast", "steadied", "stealthiest", "steerage", "stemming", "stencilled", "stepchild", "steppingstone", "stethoscope", "stickler", "stifling", "stigmatized", "stiletto", "stimulant", "stingray", "stipulation", "stockaded", "stonewall", "stoplight", "stopwatch", "storefront", "stormily", "stoutest", "straddle", "straggler", "straight", "straightaway", "straightedge", "straightforward", "straitjacket", "stranglehold", "strangulation", "strapped", "strategist", "strategy", "streamline", "streetlight", "strenuous", "stretchiest", "striated", "stricken", "stridden", "strikeout", "striking", "stringent", "stringier", "striving", "structured", "struggling", "strutting", "strychnine", "stubbier", "stubbornest", "studentship", "stuffiness", "stultify", "stupefied", "stupendous", "stylistically", "stymying", "subjectivity", "subjugation", "subjunctive", "sublimation", "sublimest", "submersed", "submitted", "submitting", "subordinate", "subscriber", "subservient", "subsidization", "subsidize", "substantiate", "substitute", "subterfuge", "subversive", "succinct", "succotash", "succulent", "suchlike", "sufficient", "sufficing", "suffusion", "sugarcane", "sugariest", "suggestion", "suitably", "sullenest", "sulphurous", "summarizing", "sunbonnet", "sundries", "superficiality", "superintendent", "superseding", "superstition", "supplementary", "supplicant", "supplies", "supposing", "surcharged", "surfacing", "surliest", "surprise", "surreptitious", "surveyor", "survived", "suspension", "swaddling", "swankest", "swashbuckling", "swaybacked", "sweatshirt", "sweetbriar", "sweetmeat", "swellest", "swordsman", "symbolizing", "symmetric", "sympathetically", "sympathized", "symphonic", "symphonies", "synchronized", "syncopation", "syndicating", "syndrome", "synopsis", "syntactical", "synthesis", "syringed", "systematically", "tableaux", "tableland", "tabulate", "tachometer", "tackiness", "tailgating", "taillight", "takeaways", "talisman", "tangibly", "tanneries", "tantalize", "tapestry", "tarantula", "tardiest", "tasselled", "tastiness", "tautology", "tawdrier", "tawniest", "taxonomic", "teamster", "teamwork", "teariest", "tearjerker", "technicolor", "technomancer", "technomancy", "technicalities", "technique", "tectonics", "teensiest", "telegram", "telekinesis", "telemarketing", "telemeter", "telemetry", "telepathically", "telepathy", "telephonic", "telescope", "telescoping", "televise", "telltale", "temerity", "temporizing", "tenacity", "tenancies", "tendentious", "tenderest", "tenderloin", "tenement", "tenuring", "terabyte", "terminal", "termination", "terrapin", "terrarium", "territory", "tertiary", "testimony", "tetrahedron", "textbook", "texturing", "thallium", "theologian", "theorized", "theosophy", "therapeutically", "thereafter", "therefore", "theremin", "thermodynamic", "thespian", "thickest", "thievish", "thingamajig", "thirteen", "thistledown", "thoroughest", "thoroughfare", "thousandth", "threaten", "thriftier", "throatiness", "thumbnail", "thunderclap", "thunderous", "tiddlywinks", "tidiness", "tiebreaker", "tightrope", "timekeeper", "timescale", "timetabling", "timidest", "timidity", "timpanist", "tincture", "tincturing", "titillation", "titmouse", "toadstool", "toastiest", "toastmaster", "toggling", "toiletries", "toilsome", "tolerable", "tollbooth", "tonsillectomy", "toothache", "topographical", "toppling", "torchlight", "tortoise", "torturing", "torrential", "totality", "totalled", "touchdown", "tourmaline", "tournament", "tourniquet", "tousling", "towelled", "townhouse", "townspeople", "toxicology", "traceries", "tracheae", "trademark", "tradition", "trafficker", "tragically", "tragicomedy", "trailblazer", "traipsed", "trajectory", "tranquil", "tranquility", "tranquilizer", "transact", "transaction", "transceiver", "transfer", "transfinite", "transfixt", "transfusing", "transformation", "transgender", "transgressor", "transiency", "transistor", "transition", "transitory", "transitting", "translating", "transliterate", "translucent", "transmissible", "transmittable", "transmogrify", "transmute", "transparent", "transpiration", "transpiring", "transplant", "transportation", "transpose", "transverse", "trapdoor", "trapezoid", "trapezohedron", "trashier", "travelled", "travelogue", "traverse", "travesty", "treacherous", "treadmill", "treasure", "treatment", "trekking", "trembling", "trepidation", "triangle", "triangulation", "triathlon", "trickiest", "triglyceride", "trigonometry", "trillion", "trimmest", "trinities", "triplicate", "tripling", "tripping", "triptych", "triumphal", "trivialities", "troglodyte", "troposphere", "troubadour", "troubleshoot", "trouncing", "trousseaux", "truckling", "trudging", "truncate", "trustworthy", "tubercle", "tungsten", "tunnelling", "turbulence", "turbojet", "turgidity", "turmeric", "turnabout", "turnover", "turnpike", "turpentine", "turquoise", "tutelage", "tutorial", "turtledove", "turtleneck", "twaddled", "tweediest", "tweezers", "twenties", "twilight", "twinging", "twinkling", "tympanum", "typeface", "typesetting", "typewriter", "typhlosis", "tyrannical", "tyrannize", "tyrannosaur", "ubiquitous", "ubiquity", "ugliness", "ulterior", "ultimate", "ultimatum", "ultrasonic", "ultrasound", "ultraviolet", "ululated", "umbrella", "umpteenth", "unalterably", "unanimous", "unbeknown", "unbelievably", "unctuous", "underachieved", "underact", "underbidding", "underbrush", "undercarriage", "undercharging", "underclothes", "undercoat", "underestimating", "underfed", "undergrowth", "underlie", "underline", "undermost", "underpants", "underrate", "understaffed", "understating", "undertaking", "undertone", "undervaluing", "underwriter", "undulate", "unflappable", "unforgettably", "ungulate", "unicycle", "unidirectional", "universe", "uniquest", "unobtainium", "unquenchable", "unruliness", "unsightly", "unspeakably", "unutterable", "unwieldiest", "upcoming", "upholstery", "uppercase", "uppercut", "upraised", "upsurged", "urbanity", "urbanizing", "username", "usurpation", "utilized", "vacation", "vacating", "vaccination", "vacillated", "vacillating", "vagabond", "vagaries", "vagrancy", "vainglory", "valedictory", "validated", "validity", "vamoosed", "vanadium", "vandalized", "vanquish", "vaporized", "vaporous", "varicolored", "vaudeville", "vegetative", "vehement", "velocities", "venerate", "ventriloquism", "ventured", "veracity", "verbalize", "verbatim", "vermicelli", "vermillion", "verminous", "vernacular", "versatile", "vertebrae", "veterinaries", "vexatious", "viburnum", "vicissitude", "victories", "victorious", "videocassette", "videotape", "vignette", "villainy", "vindication", "vineyard", "violated", "violence", "violoncello", "virtuoso", "virtuous", "viscount", "visibility", "visualizing", "vitalized", "viticulture", "vituperate", "vituperated", "vituperative", "vivacious", "vividest", "vivified", "vivisection", "vixenish", "vocalist", "vocalize", "vocation", "vociferate", "voicemail", "volatile", "volatility", "voluminous", "voluptuaries", "voluptuous", "voracity", "vortices", "vouchsafe", "vulcanization", "vulgarity", "vulgarize", "vulnerabilities", "vulnerable", "vuvuzela", "wackiest", "waddling", "waffling", "wainscotted", "wanderlust", "warbling", "wardroom", "warehoused", "wariness", "warmhearted", "warmonger", "warranty", "wartiest", "washboard", "washerwoman", "washroom", "wastepaper", "wastewater", "watchband", "watchdog", "watercress", "waterfall", "wateriest", "waterlogged", "waterproof", "watershed", "watertight", "waterworks", "weakling", "wealthier", "weariest", "weariness", "weatherman", "weatherproof", "webmaster", "webmistress", "weeknight", "weightiness", "weirdest", "welcomed", "welterweight", "werewolf", "westerly", "westernized", "whatchamacallit", "whatever", "whatsoever", "wheeziest", "whenever", "whereabouts", "wherever", "whimsical", "whinnied", "whipcord", "whiplash", "whippersnapper", "whippoorwill", "whirligig", "whirlpool", "whistler", "whittled", "whodunnit", "wholehearted", "wholesale", "wholesaling", "whomsoever", "whopping", "wickerwork", "widescreen", "wigwagging", "wildcatted", "wildebeest", "wildflower", "willpower", "windburn", "windiest", "windjammer", "windowsill", "windshield", "windstorm", "windsurf", "winsomest", "winteriest", "winterize", "wintertime", "wiretapped", "wishbone", "witchcraft", "withdraw", "withstood", "wittiness", "wizardry", "wobbling", "woebegone", "womankind", "womanliest", "womenfolk", "woodchuck", "woodcutting", "woodiest", "woodwind", "woolgathering", "wooliest", "woollies", "wooziness", "workbook", "workmanship", "workshop", "workweek", "worldliest", "wormhole", "worrywart", "worshipped", "wreckage", "wrestler", "writhing", "wrongdoer", "wrongest", "xerographic", "xylophone", "xylophonist", "yachtsmen", "yardstick", "yarmulke", "yearbook", "yearlies", "yellowish", "yesterday", "yesteryear", "yodelling", "yoghourt", "youngest", "youngish", "yuckiest", "yummiest", "yuletide", "zaniness", "zeppelin", "zigzagging", "zirconium", "zucchini", "zoological", "zucchini", "zwieback", "zwitterion"};
+        
+        addQuestions(module, makeQuestion(Question.DreamcipherWord, _Dreamcipher, null, new[] { TargetWord }, OtherAnswers));
+    }
+    
+    private IEnumerable<object> ProcessDumbWaiters(KMBombModule module)
+    {
+        var comp = GetComponent(module, "dumbWaiters");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_DumbWaiters);
+        
+        string[] Players = GetStaticField<string[]>(comp.GetType(), "names").Get();
+        int[] PlayersAvaiable = GetArrayField<int>(comp, "presentPlayers").Get();
+        List<string> AvailablePlayers = new List<string>();
+        
+        for (int x = 0; x < PlayersAvaiable.Length; x++)
+        {
+            AvailablePlayers.Add(Players[PlayersAvaiable[x]]);
+        }
+        
+        string[] Converter = AvailablePlayers.ToArray();
+        
+        addQuestions(module,
+           makeQuestion(Question.DumbWaitersPlayerAvailable, _DumbWaiters, formatArgs: new[] { "was" }, correctAnswers: Converter, preferredWrongAnswers: Players),
+           makeQuestion(Question.DumbWaitersPlayerAvailable, _DumbWaiters, formatArgs: new[] { "was not" }, correctAnswers: Players.Where(a => !Converter.Contains(a)).ToArray(), preferredWrongAnswers: Players));
+        
+    }
+    
+    private IEnumerable<object> ProcesseeBgnillepS(KMBombModule module)
+    {
+        var comp = GetComponent(module, "tpircSeeBgnillepS");
+        var fldSolved = GetField<bool>(comp, "devloSeludom");
+        
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_eeBgnillepS);
+        string Focus = GetField<string>(comp, "drowyek").Get().ToLowerInvariant();
+        string[] SpellTheWord = {"accommodation", "acquiesce", "antediluvian", "appoggiatura", "autochthonous", "bouillabaisse", "bourgeoisie", "chauffeur", "chiaroscurist", "cholmondeley", "chrematistic", "chrysanthemum", "cnemidophorous", "conscientious", "courtoisie", "cymotrichous", "daquiri", "demitasse", "elucubrate", "embarrass", "eudaemonic", "euonym", "featherstonehaugh", "feuilleton", "fluorescent", "foudroyant", "gnocchi", "idiosyncracy", "irascible", "kierkagaardian", "laodicean", "liaison", "logorrhea", "mainwaring", "malfeasance", "manoeuvre", "memento", "milquetoast", "minuscule", "odontalgia", "onomatopoeia", "paraphernalia", "pharaoh", "playwright", "pococurante", "precocious", "privilege", "prospicience", "psittaceous", "psoriasis", "pterodactyl", "questionnaire", "rhythm", "sacreligious", "scherenschnitte", "sergeant", "smaragdine", "stromuhr", "succedaneum", "surveillance", "taaffeite", "unconscious", "ursprache", "vengeance", "vivisepulture", "wednesday", "withhold", "worcestershire", "xanthosis", "ytterbium"};
+    
+        addQuestions(module, makeQuestion(Question.eeBgnillepSWord, _eeBgnillepS, null, new[] { Focus }, SpellTheWord));
     }
 
     private IEnumerable<object> ProcessElderFuthark(KMBombModule module)
@@ -3776,6 +4202,11 @@ public class SouvenirModule : MonoBehaviour
         digits1.GetComponent<TextMesh>().text = "--";
         digits2.GetComponent<TextMesh>().text = "--";
     }
+    
+    private IEnumerable<object> ProcessGrayCipher(KMBombModule module)
+    {
+        return processColoredCiphers(module, "ultimateCipher", Question.GrayCipherAnswer, _GrayCipher);
+    }
 
     private IEnumerable<object> ProcessGreenArrows(KMBombModule module)
     {
@@ -3814,6 +4245,11 @@ public class SouvenirModule : MonoBehaviour
 
         addQuestions(module, makeQuestion(Question.GreenArrowsLastScreen, _GreenArrows, correctAnswers: new[] { number.ToString() }));
     }
+    
+    private IEnumerable<object> ProcessGreenCipher(KMBombModule module)
+    {
+        return processColoredCiphers(module, "ultimateCipher", Question.GreenCipherAnswer, _GreenCipher);
+    }
 
     private IEnumerable<object> ProcessGridLock(KMBombModule module)
     {
@@ -3838,6 +4274,34 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.GridLockEndingLocation, _GridLock, preferredWrongAnswers: Tiles4x4Sprites, correctAnswers: new[] { Tiles4x4Sprites[solution] }),
             makeQuestion(Question.GridLockStartingColor, _GridLock, correctAnswers: new[] { colors[(pages[0][start] >> 4) - 1] }));
     }
+    
+    private IEnumerable<object> ProcessGroceryStore(KMBombModule module)
+    {
+        var comp = GetComponent(module, "GroceryStoreBehav");
+        var solved = false;
+        var Display = GetField<TextMesh>(comp, "displayTxt", isPublic: true);
+        
+        string FinalAnswer = Display.Get().text;
+        module.OnPass += delegate { solved = true; return false; };
+        
+        var hadStrike = false;
+        module.OnStrike += delegate { hadStrike = true; return false; };
+        
+        while (!solved)
+        {
+            if (hadStrike)
+            {
+                FinalAnswer = Display.Get().text;
+                hadStrike = false;
+            }
+            yield return null;
+        }
+        
+        _modulesSolved.IncSafe(_GroceryStore);
+        string[] StoreItems = {"Apples", "Bananas", "Bottled Water", "Bread", "Butter", "Candy", "Cat Food", "Cheese", "Coffee", "Cookies", "Detergent", "Eggs", "Flour", "Glass Cleaner", "Hot Sauce", "Jelly", "Lettuce", "Milk", "Paper Towels", "Peanut Butter", "Pepper", "Pork", "Potatoes", "Salt", "Sausage", "Soda", "Soup", "Steak", "Sugar", "Toilet Paper", "Tomatoes", "Toothpaste", "Turkey"};
+        
+        addQuestions(module, makeQuestion(Question.GroceryStoreFirstItem, _GroceryStore, null, new[] { FinalAnswer }, StoreItems));
+    }
 
     private IEnumerable<object> ProcessGryphons(KMBombModule module)
     {
@@ -3855,6 +4319,23 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.GryphonsName, _Gryphons, correctAnswers: new[] { name }),
             makeQuestion(Question.GryphonsAge, _Gryphons, correctAnswers: new[] { age.ToString() }, preferredWrongAnswers:
                 Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(23, 34).ToString()).Distinct().Take(6).ToArray()));
+    }
+    
+    private IEnumerable<object> ProcessGuessWho(KMBombModule module)
+    {
+        var comp = GetComponent(module, "GuessWhoScript");
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_GuessWho);
+        
+        int NameBaseline = GetField<int>(comp, "TheCombination").Get();
+        string[] Names = new string[256] { "Aaron", "Albin", "Andre", "Audie", "Aydan", "Brock", "Billy", "Brent", "Bryce", "Butch", "Chris", "Chuck", "Clide", "Cliff", "Colby", "David", "Derek", "Devon", "Drake", "Dylon", "Edgar", "Elias", "Elroy", "Elvis", "Emmet", "Felix", "Flint", "Flynn", "Frank", "Fritz", "Garey", "Greye", "Gavin", "Geoff", "Gregg", "Howie", "Henry", "Heath", "Harry", "Homer", "Isaac", "Isiah", "Isham", "Irvin", "Isaak", "Jacky", "Jakob", "Jamil", "James", "Jared", "Kadyn", "Kenji", "Kevin", "Kieth", "Kraig", "Lamar", "Larry", "Lloyd", "Logan", "Lonny", "Marco", "Micah", "Micky", "Mikal", "Mitch", "Nipal", "Nikko", "Nixon", "North", "Nolan", "Oscar", "Owenn", "Orris", "Orvil", "Oddie", "Pablo", "Pedro", "Peter", "Perry", "Price", "Quint", "Quinn", "Quill", "Quiet", "Quick", "Ryder", "Romeo", "River", "Rocky", "Ralph", "Storm", "Steve", "Scott", "Shaun", "Simon", "Trent", "Tyson", "Tyler", "Timmy", "Tommy", "Uncle", "Unlit", "Urban", "Uriah", "Urnas", "Vince", "Virge", "Vance", "Vidal", "Verne", "Waldo", "Wally", "Wayde", "Woody", "Wyatt", "Xylla", "Xynpa", "Xaker", "Yahir", "Yusef", "Yltim", "Yvale", "Yverm", "Zarek", "Zethe", "Zkutt", "Zymon", "Zteev", "Abbie", "Agnes", "Alexa", "Ariel", "Ashly", "Becky", "Belle", "Bonny", "Brook", "Bulah", "Carie", "Casey", "Cecil", "Cindi", "Coral", "Daisy", "Debbi", "Doris", "Diana", "Delle", "Edith", "Elena", "Elisa", "Ellen", "Ethyl", "Fiona", "Faith", "Flora", "Freya", "Frona", "Giana", "Gilda", "Grace", "Glenn", "Greta", "Haley", "Hanna", "Hazel", "Helen", "Holly", "Idell", "India", "Ivory", "Irene", "Itzel", "Jesse", "Julie", "Jaden", "Jewel", "Jenna", "Karen", "Karma", "Kelly", "Kelsy", "Katie", "Lexis", "Lynda", "Layla", "Lacie", "Lucia", "Merri", "Mindy", "Megan", "Misty", "Molly", "Nancy", "Naomi", "Nokia", "Norma", "Norpy", "Olive", "Olina", "Oleta", "Orpha", "Oprah", "Paige", "Phebe", "Penny", "Paola", "Pearl", "Qiana", "Queen", "Qatar", "Qubec", "Qyfer", "Rikki", "Rhoda", "Ruthe", "Robyn", "Renae", "Sally", "Shona", "Sinda", "Syndi", "Sylva", "Trixy", "Tanya", "Terri", "Texas", "Trudi", "Ursla", "Umber", "Urkel", "Usnoo", "Usnee", "Venus", "Vicky", "Velma", "Viola", "Verde", "Wanda", "Wendy", "Windy", "Wisky", "Wilta", "Xokra", "Xarly", "Xymph", "Yvett", "Yetta", "Yanky", "Yedna", "Yorda", "Zohee", "Zemfy", "Zorka", "Zanky", "Zonka" };
+        string CorrectAnswer = Names[NameBaseline];
+        
+        addQuestions(module, makeQuestion(Question.GuessWhoPerson, _GuessWho, null, new[] { CorrectAnswer }, Names));
     }
 
     private IEnumerable<object> ProcessHereditaryBaseNotation(KMBombModule module)
@@ -3999,6 +4480,103 @@ public class SouvenirModule : MonoBehaviour
                     formatArgs: new[] { house.ToString() },
                     correctAnswers: new[] { dic[house].ToString() },
                     preferredWrongAnswers: Bomb.GetSolvableModuleNames().ToArray()))));
+    }
+    
+    private IEnumerable<object> ProcessHoldUps(KMBombModule module)
+    {
+        var comp = GetComponent(module, "HoldUpsScript");
+        var solved = false;
+        
+        var StageNumber = GetField<int>(comp, "StageNr");
+        var IsItFiveStages = GetField<bool>(comp, "FiveDowns");
+        
+        List<string> Shadows = new List<string>();
+        var HoldUps1 = GetField<KMSelectable>(comp, "Move1Button", isPublic: true).Get();
+        var HoldUps2 = GetField<KMSelectable>(comp, "Move2Button", isPublic: true).Get();
+        var HoldUps3 = GetField<KMSelectable>(comp, "Move3Button", isPublic: true).Get();
+        var HoldUps4 = GetField<KMSelectable>(comp, "Move4Button", isPublic: true).Get();
+        
+        var prevInteract1 = HoldUps1.OnInteract;
+        var prevInteract2 = HoldUps2.OnInteract;
+        var prevInteract3 = HoldUps3.OnInteract;
+        var prevInteract4 = HoldUps4.OnInteract;
+        
+        HoldUps1.OnInteract = delegate
+        {
+            if (Shadows.Count() < StageNumber.Get())
+            {
+                string Shadow = GetField<TextMesh>(comp, "ShadowName", isPublic: true).Get().text;
+                Shadows.Add(Shadow);
+            }
+            var ret = prevInteract1();
+            
+            return ret;
+        };
+        
+        HoldUps2.OnInteract = delegate
+        {
+            if (Shadows.Count() < StageNumber.Get())
+            {
+                string Shadow = GetField<TextMesh>(comp, "ShadowName", isPublic: true).Get().text;
+                Shadows.Add(Shadow);
+            }
+            
+            var ret = prevInteract2();
+            
+            return ret;
+        };
+        
+        HoldUps3.OnInteract = delegate
+        {
+            if (Shadows.Count() < StageNumber.Get())
+            {
+                string Shadow = GetField<TextMesh>(comp, "ShadowName", isPublic: true).Get().text;
+                Shadows.Add(Shadow);
+            }
+            
+            var ret = prevInteract3();
+            
+            return ret;
+        };
+        
+        HoldUps4.OnInteract = delegate
+        {
+            if (Shadows.Count() < StageNumber.Get())
+            {
+                string Shadow = GetField<TextMesh>(comp, "ShadowName", isPublic: true).Get().text;
+                Shadows.Add(Shadow);
+            }
+            
+            var ret = prevInteract4();
+            
+            return ret;
+        };
+        
+        module.OnPass += delegate { solved = true; return false; };
+        
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_HoldUps);
+        
+        string[] ShadowNames = {"Mandrake", "Silky", "Koropokguru", "Nue", "Jack Frost", "Leanan Sidhe", "Hua Po", "Orthrus", "Lamia", "Bicorn", "Kelpie", "Apsaras", "Makami", "Nekomata", "Sandman", "Naga", "Agathion", "Berith", "Mokoi", "Inugami", "High Pixie", "Yaksini", "Anzu", "Take-Minakata", "Thoth", "Isis", "Incubis", "Onmoraki", "Koppa-Tengu", "Orobas", "Rakshasa", "Pixie", "Angel", "Jack O' Lantern", "Succubus", "Andras"};
+        
+        if (IsItFiveStages.Get())
+        {
+                addQuestions(module,
+            makeQuestion(Question.HoldUpsShadows, _HoldUps, new[] { "first" }, new[] { Shadows[0] }, ShadowNames),
+            makeQuestion(Question.HoldUpsShadows, _HoldUps, new[] { "second" }, new[] { Shadows[1] }, ShadowNames),
+            makeQuestion(Question.HoldUpsShadows, _HoldUps, new[] { "third" }, new[] { Shadows[2] }, ShadowNames),
+            makeQuestion(Question.HoldUpsShadows, _HoldUps, new[] { "fourth" }, new[] { Shadows[3] }, ShadowNames),
+            makeQuestion(Question.HoldUpsShadows, _HoldUps, new[] { "fifth" }, new[] { Shadows[4] }, ShadowNames));
+        }
+        
+        else
+        {
+                addQuestions(module,
+            makeQuestion(Question.HoldUpsShadows, _HoldUps, new[] { "first" }, new[] { Shadows[0] }, ShadowNames),
+            makeQuestion(Question.HoldUpsShadows, _HoldUps, new[] { "second" }, new[] { Shadows[1] }, ShadowNames),
+            makeQuestion(Question.HoldUpsShadows, _HoldUps, new[] { "third" }, new[] { Shadows[2] }, ShadowNames));
+        }
     }
 
     private IEnumerable<object> ProcessHorribleMemory(KMBombModule module)
@@ -4203,6 +4781,11 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.IdentityParadeBuilds, _IdentityParade, formatArgs: new[] { "was not" }, correctAnswers: validBuilds.Except(builds).ToArray()),
             makeQuestion(Question.IdentityParadeAttires, _IdentityParade, formatArgs: new[] { "was" }, correctAnswers: attires.ToArray()),
             makeQuestion(Question.IdentityParadeAttires, _IdentityParade, formatArgs: new[] { "was not" }, correctAnswers: validAttires.Except(attires).ToArray()));
+    }
+    
+    private IEnumerable<object> ProcessIndigoCipher(KMBombModule module)
+    {
+        return processColoredCiphers(module, "ultimateCipher", Question.IndigoCipherAnswer, _IndigoCipher);
     }
 
     private IEnumerable<object> ProcessiPhone(KMBombModule module)
@@ -4769,6 +5352,54 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.MaritimeFlagsBearing, _MaritimeFlags, correctAnswers: new[] { bearing.ToString() }),
             makeQuestion(Question.MaritimeFlagsCallsign, _MaritimeFlags, correctAnswers: new[] { callsign.ToLowerInvariant() }));
+    }
+    
+    private IEnumerable<object> ProcessMatrix(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MatrixScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        
+         while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Matrix);
+        
+        List<string> SelectedNames = GetArrayField<string>(comp, "selectedNames").Get().ToList();
+        List<string> AccessCodes = new List<string>();
+        AccessCodes.AddRange(GetArrayField<string>(comp, "xNameOptions", isPublic: true).Get());
+        AccessCodes.AddRange(GetArrayField<string>(comp, "yNameOptions", isPublic: true).Get());
+        for (int x = 0; x < SelectedNames.Count(); x++)
+        {
+            for (int y = 0; y < AccessCodes.Count(); y++)
+            {
+                if (SelectedNames[x].Length != AccessCodes[y].Length)
+                {
+                    continue;
+                }
+                
+                var s1Array = SelectedNames[x].ToLower().ToCharArray();
+                var s2Array = AccessCodes[y].ToLower().ToCharArray();
+                
+                Array.Sort(s1Array);
+                Array.Sort(s2Array);
+
+                string s1 = new string(s1Array);
+                string s2 = new string(s2Array);
+                
+                if (s1 == s2)
+                {
+                    SelectedNames[x] = AccessCodes[y];
+                    break;
+                }
+            }
+        }
+        
+        List<string> MatrixWords = GetArrayField<string>(comp, "insideWordList", isPublic: true).Get().ToList();
+        MatrixWords = MatrixWords.ConvertAll(d => d.ToLower());
+        string IllegalWord = GetField<string>(comp, "illegalWordText").Get();
+        
+        addQuestions(module,
+            makeQuestion(Question.MatrixAccessCode, _Matrix, null, SelectedNames.ToArray(), AccessCodes.ToArray()),
+            makeQuestion(Question.MatrixGlitchWord, _Matrix, null, new[] { IllegalWord.ToLower() }, MatrixWords.ToArray()));
     }
 
     private IEnumerable<object> ProcessMaze(KMBombModule module)
@@ -5707,6 +6338,54 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_NumberedButtons);
         addQuestion(module, Question.NumberedButtonsButtons, correctAnswers: expectedButtons);
     }
+    
+    private IEnumerable<object> ProcessNumbers(KMBombModule module)
+    {
+        var comp = GetComponent(module, "WAnumbersScript");
+        var fldSolved = GetField<bool>(comp, "isSolved");
+        
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+            _modulesSolved.IncSafe(_Numbers);
+        
+        int numberValue1 = GetField<int>(comp, "numberValue1").Get();
+        int numberValue2 = GetField<int>(comp, "numberValue2").Get();
+        string Answer = numberValue1.ToString() + numberValue2.ToString();
+        
+        List<string> Object = new List<string>();
+        List<int> BaseNumbers = new List<int>();
+        
+        Debug:
+        for (int x = 0; x < 7; x++)
+        {
+            int RNG = UnityEngine.Random.Range(0, 100);
+            string NumberBundle = RNG < 10 ? "0" + RNG.ToString() : RNG.ToString();
+
+            Object.Add(NumberBundle);
+            BaseNumbers.Add(RNG);
+            
+            if (NumberBundle == Answer)
+            {
+                Object = new List<string>();
+                BaseNumbers = new List<int>();
+                goto Debug;
+            }
+        }
+        
+        BaseNumbers.Sort();
+        for (int a = 0; a < 6; a++)
+        {
+            if (BaseNumbers[a] == BaseNumbers[a+1])
+            {
+                Object = new List<string>();
+                BaseNumbers = new List<int>();
+                goto Debug;
+            }
+        }
+        
+        Object.Add(Answer);
+        addQuestions(module, makeQuestion(Question.NumbersTwoDigit, _Numbers, null, new[] { Answer }, Object.ToArray()));
+    }
 
     private IEnumerable<object> ProcessObjectShows(KMBombModule module)
     {
@@ -5822,6 +6501,11 @@ public class SouvenirModule : MonoBehaviour
                 qs.Add(makeQuestion(Question.OrangeArrowsSequences, _OrangeArrows, new[] { ordinal(j + 1), ordinal(i + 1) }, new[] { correctMoves[i][j].Substring(0, 1) + correctMoves[i][j].Substring(1).ToLowerInvariant() }));
 
         addQuestions(module, qs);
+    }
+    
+    private IEnumerable<object> ProcessOrangeCipher(KMBombModule module)
+    {
+        return processColoredCiphers(module, "ultimateCipher", Question.OrangeCipherAnswer, _OrangeCipher);
     }
 
     private IEnumerable<object> ProcessOrderedKeys(KMBombModule module)
@@ -6455,6 +7139,11 @@ public class SouvenirModule : MonoBehaviour
 
         addQuestion(module, Question.RedArrowsStartNumber, correctAnswers: new[] { GetIntField(comp, "start").Get(min: 0, max: 9).ToString() });
     }
+    
+    private IEnumerable<object> ProcessRedCipher(KMBombModule module)
+    {
+        return processColoredCiphers(module, "ultimateCipher", Question.RedCipherAnswer, _RedCipher);
+    }
 
     private IEnumerable<object> ProcessReformedRoleReversal(KMBombModule module)
     {
@@ -6592,7 +7281,62 @@ public class SouvenirModule : MonoBehaviour
         var color = GetIntField(comp, "lightColor").Get(min: 0, max: 3);
         addQuestion(module, Question.RhythmsColor, correctAnswers: new[] { new[] { "Blue", "Red", "Green", "Yellow" }[color] });
     }
+    
+    private IEnumerable<object> ProcessRoger(KMBombModule module)
+    {
+        var comp = GetComponent(module, "rogerScript");
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+        
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Roger);
+        
+        string SeededAnswer = GetField<int>(comp, "seed").Get().ToString();
+        while (SeededAnswer.Length < 4)
+        {
+            SeededAnswer = "0" + SeededAnswer;
+        }
+        
+        List<string> Object = new List<string>();
+        List<int> BaseNumbers = new List<int>();
+        
+        Debug:
+        for (int x = 0; x < 7; x++)
+        {
+            int RNG = UnityEngine.Random.Range(0, 10000);
+            string NumberBundle = RNG.ToString();
+            while (NumberBundle.Length < 4)
+            {
+                NumberBundle = "0" + NumberBundle;
+            }
 
+            Object.Add(NumberBundle);
+            BaseNumbers.Add(RNG);
+            
+            if (NumberBundle == SeededAnswer)
+            {
+                Object = new List<string>();
+                BaseNumbers = new List<int>();
+                goto Debug;
+            }
+        }
+        
+        BaseNumbers.Sort();
+        for (int a = 0; a < 6; a++)
+        {
+            if (BaseNumbers[a] == BaseNumbers[a+1])
+            {
+                Object = new List<string>();
+                BaseNumbers = new List<int>();
+                goto Debug;
+            }
+        }
+        
+        Object.Add(SeededAnswer);
+        addQuestions(module, makeQuestion(Question.RogerSeed, _Roger, null, new[] { SeededAnswer }, Object.ToArray()));
+    }
+    
     private IEnumerable<object> ProcessRoleReversal(KMBombModule module)
     {
         var comp = GetComponent(module, "roleReversal");
@@ -6757,6 +7501,77 @@ public class SouvenirModule : MonoBehaviour
         qs.Add(makeQuestion(Question.SemamorseLetters, _Semamorse, formatArgs: new[] { "Morse" }, correctAnswers: new[] { ((char) ('A' + letters[1][relevantIx])).ToString() }));
         addQuestions(module, qs);
     }
+    
+    private IEnumerable<object> ProcessSequencyclopedia(KMBombModule module)
+    {
+        var comp = GetComponent(module, "TheSequencyclopediaScript");
+        var fldSolved = GetField<bool>(comp, "ModuleSolved");
+        
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Sequencyclopedia);
+        
+        var Number = GetField<string>(comp, "Tridal").Get();
+        if (Number == "")
+        {
+            throw new AbandonModuleException("The module was unable to gather the amount of sequence in https://oeis.org/");
+        }
+        
+        List<string> Object = new List<string>();
+        List<int> BaseNumbers = new List<int>();
+        string Answer = GetField<string>(comp, "APass").Get();
+        
+        if (Number == null || Answer == null)
+        {
+            throw new AbandonModuleException("The module was unable to gather some variables");
+        }
+        
+        Debug:
+        for (int x = 0; x < 5; x++)
+        {
+            int RNG = UnityEngine.Random.Range(1, Int32.Parse(Number) + 1);
+            string ListofA = "A";
+            string Chronicler = RNG.ToString();
+            int BuiltInNumber = 0;
+            for (int m = 0; m < Number.Length; m++)
+            {
+                if (m < Number.Length - Chronicler.Length)
+                {
+                    ListofA += "0";
+                }
+                
+                else
+                {
+                    ListofA += Chronicler[BuiltInNumber].ToString();
+                    BuiltInNumber++;
+                }
+            }
+            
+            Object.Add(ListofA);
+            BaseNumbers.Add(RNG);
+            
+            if (ListofA == Answer)
+            {
+                Object = new List<string>();
+                BaseNumbers = new List<int>();
+                goto Debug;
+            }
+        }
+        
+        BaseNumbers.Sort();
+        for (int a = 0; a < 4; a++)
+        {
+            if (BaseNumbers[a] == BaseNumbers[a+1])
+            {
+                Object = new List<string>();
+                BaseNumbers = new List<int>();
+                goto Debug;
+            }
+        }
+        
+        Object.Add(Answer);
+        addQuestions(module, makeQuestion(Question.SequencyclopediaSequence, _Sequencyclopedia, null, new[] { Answer }, Object.ToArray()));
+    }
 
     private IEnumerable<object> ProcessShapesAndBombs(KMBombModule module)
     {
@@ -6815,6 +7630,59 @@ public class SouvenirModule : MonoBehaviour
         int initialCup = GetIntField(comp, "endingCup").Get(min: 0, max: 2);
         string[] position = new string[3] { "Left", "Middle", "Right" };
         addQuestions(module, makeQuestion(Question.ShellGameInitialCupFinalPosition, _ShellGame, correctAnswers: new[] { position[initialCup] }));
+    }
+    
+    private IEnumerable<object> ProcessShiftingMaze(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ShiftingMazeScript");
+        var fldSolved = GetField<bool>(comp, "ModuleSolved");
+        string Seed = GetField<TextMesh>(comp, "Seedling", isPublic: true).Get().text;
+        
+        var hadStrike = false;
+        module.OnStrike += delegate { hadStrike = true; return false; };
+        
+        while (!fldSolved.Get())
+        {
+            if (hadStrike)
+            {
+                Seed = GetField<TextMesh>(comp, "Seedling", isPublic: true).Get().text;
+                hadStrike = false;
+            }
+            yield return null;
+        }
+        
+        _modulesSolved.IncSafe(_ShiftingMaze);
+        
+        List<string> Object = new List<string>();
+        string[] Alphabreak = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "/" };
+        string[] SeedSplit = Regex.Replace(Seed, " ", "").Split(':');
+        
+        Debug:
+        for (int x = 0; x < 3; x++)
+        {
+            string SeedPacket = "";
+            for (int a = 0; a < 8; a++)
+            {
+                SeedPacket += Alphabreak[UnityEngine.Random.Range(0, Alphabreak.Length)];
+            }
+            
+            Object.Add(SeedPacket);
+            
+            if (SeedPacket == SeedSplit[1])
+            {
+                Object = new List<string>();
+                goto Debug;
+            }
+        }
+        
+        if (Object[0] == Object[1] || Object[0] == Object[2] || Object[1] == Object[2])
+        {
+            Object = new List<string>();
+            goto Debug;
+        }
+        
+        Object.Add(SeedSplit[1]);
+        addQuestions(module, makeQuestion(Question.ShiftingMazeSeed, _ShiftingMaze, null, new[] { SeedSplit[1] }, Object.ToArray()));
     }
 
     private IEnumerable<object> ProcessSillySlots(KMBombModule module)
@@ -7415,6 +8283,21 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_Souvenir);
         addQuestion(module, Question.SouvenirFirstQuestion, null, new[] { firstModule }, modules.ToArray());
     }
+    
+    private IEnumerable<object> ProcessSpellingBee(KMBombModule module)
+    {
+        var comp = GetComponent(module, "spellingBeeScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_SpellingBee);
+        int Focus = GetField<int>(comp, "chosenWord").Get();
+        string[] SpellTheWord = {"abecedarian", "accretionary", "aggressor", "allocation", "ambiance", "auxiliary", "bacciferous", "bankruptcy", "bronchoscope", "camouflage", "chambray", "chihuahua", "chimera", "cilia", "cloying", "coffering", "conceptualize", "connoisseur", "controversial", "cortisol", "covenant", "crinoline", "deceit", "deleteriously", "demitasse", "disillusion", "dubonnet", "duologue", "effluent", "emollience", "entrepreneur", "expediently", "fatuously", "fluorescence", "garrulous", "glaucous", "griseous", "hemorrhage", "horripilation", "imposture", "incendiary", "inconsequential", "inexorable", "kalamata", "knickerbocker", "knoll", "malachite", "marginalia", "meerkat", "mellifluous", "metaphysicize", "metoposcopy", "monopsony", "nodule", "obsolescence", "occasionally", "opprobrious", "palliative", "panache", "parietal", "parturition", "parvanimity", "pelagic", "perambulate", "pishposh", "placidly", "placoderm", "predecessor", "protrusile", "pseudologist", "quadrennium", "quintessence", "revelry", "saccade", "salvageable", "scrofulous", "sedge", "sojourner", "solipsistic", "somesthetic", "sorghum", "stereognosis", "stymie", "subsultory", "supposition", "surveillance", "surficial", "symptomatology", "taffeta", "telenovela", "termagant", "thyroidectomy", "transilient", "trough", "unanimity", "upholstery", "vermilion", "vervain", "vestibule", "worcestershire"};
+    
+        addQuestions(module, makeQuestion(Question.SpellingBeeWord, _SpellingBee, null, new[] { SpellTheWord[Focus] }, SpellTheWord));
+    }
 
     private IEnumerable<object> ProcessSphere(KMBombModule module)
     {
@@ -7457,6 +8340,99 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_SplittingTheLoot);
 
         addQuestion(module, Question.SplittingTheLootColoredBag, correctAnswers: new[] { bagLabels[paintedBag] }, preferredWrongAnswers: bagLabels);
+    }
+    
+    private IEnumerable<object> ProcessSpotTheDifference(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SpotTheDifference");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        
+         while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_SpotTheDifference);
+        
+        int FaultyBall = GetField<int>(comp, "jon").Get();
+        string[] TheColors = {"Blue", "Green", "Orange", "Red"};
+        
+        addQuestions(module, makeQuestion(Question.SpotTheDifferenceFaultyBall, _SpotTheDifference, null, new[] { TheColors[FaultyBall] }, TheColors));
+    }
+    
+    private IEnumerable<object> ProcessStars(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Stars2Script");
+        var fldSolved = GetField<bool>(comp, "ModuleSolved");
+        
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Stars);
+        
+        int Focus = GetField<int>(comp, "Costing").Get();
+        addQuestion(module, Question.StarsCenter, correctAnswers: new[] { Focus.ToString() });
+    }
+    
+    private IEnumerable<object> ProcessStateOfAggregation(KMBombModule module)
+    {
+        var comp = GetComponent(module, "StateOfAggregation");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+        
+        while (!_isActivated)
+           yield return new WaitForSeconds(.1f);
+        
+        string Element = GetField<TextMesh>(comp, "Element", isPublic: true).Get().text;
+        
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_StateOfAggregation);
+        
+        // Convert to proper case.
+        TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+        Element = textInfo.ToTitleCase(Element.ToLower());
+        
+        string[] Elements = {"H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne", "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca", "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Ga", "Ge", "As", "Se", "Br", "Kr", "Rb", "Sr", "Y", "Zr", "Nb", "Mo", "Tc", "Ru", "Rh", "Pd", "Ag", "Cd", "In", "Sn", "Sb", "Te", "I", "Xe", "Cs", "Ba", "La", "Ce", "Pr", "Nd", "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg", "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Ac", "Th", "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm", "Md", "No", "Lr", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og"};
+        addQuestions(module, makeQuestion(Question.StateOfAggregationElement, _StateOfAggregation, null, new[] { Element }, Elements));
+    }
+    
+    private IEnumerable<object> ProcessSubscribeToPewdiepie(KMBombModule module)
+    {
+        var comp = GetComponent(module, "subscribeToPewdiepieScript");
+        var fldSolved = GetField<bool>(comp, "solved");
+        
+        int PewdiepieNumber = GetField<int>(comp, "startingPewdiepie").Get();
+        int TSeriesNumber = GetField<int>(comp, "startingTSeries").Get();
+        
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SubscribeToPewdiepie);
+        
+        addQuestions(module,
+           makeQuestion(Question.SubscribeToPewdiepieSubCount, _SubscribeToPewdiepie, formatArgs: new[] { "PewDiePie" }, correctAnswers: new[] {PewdiepieNumber.ToString()}),
+           makeQuestion(Question.SubscribeToPewdiepieSubCount, _SubscribeToPewdiepie, formatArgs: new[] { "T-Series" }, correctAnswers: new[] {TSeriesNumber.ToString()}));
+    }
+    
+    private IEnumerable<object> ProcessSugarSkulls(KMBombModule module)
+    {
+        var comp = GetComponent(module, "sugarSkulls");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SugarSkulls);
+        
+        string[] SkullConfig = {"A", "C", "E", "G", "I", "K", "M", "O", "P", "R", "T", "V", "X", "Z", "b", "d", "f", "h", "j", "l", "n", "p", "r", "t", "v", "x", "z"};
+        List<string> Skulls = new List<string>();
+        TextMesh[] TextInfo = GetArrayField<TextMesh>(comp, "texts", isPublic: true).Get();
+        for (int x = 0; x < TextInfo.Length; x++)
+        {
+            Skulls.Add(TextInfo[x].text);
+        }
+        
+        addQuestions(module,
+           makeQuestion(Question.SugarSkullsSkull, _SugarSkulls, formatArgs: new[] { "top" }, correctAnswers: new[] { Skulls[0] }, preferredWrongAnswers: SkullConfig),
+           makeQuestion(Question.SugarSkullsSkull, _SugarSkulls, formatArgs: new[] { "bottom-left" }, correctAnswers: new[] { Skulls[1] }, preferredWrongAnswers: SkullConfig),
+           makeQuestion(Question.SugarSkullsSkull, _SugarSkulls, formatArgs: new[] { "bottom-right" }, correctAnswers: new[] { Skulls[2] }, preferredWrongAnswers: SkullConfig),
+           makeQuestion(Question.SugarSkullsAvailability, _SugarSkulls, formatArgs: new[] { "was" }, correctAnswers: Skulls.ToArray() , preferredWrongAnswers: SkullConfig),
+           makeQuestion(Question.SugarSkullsAvailability, _SugarSkulls, formatArgs: new[] { "was not" }, correctAnswers: SkullConfig.Where(a => !Skulls.Contains(a)).ToArray() , preferredWrongAnswers: SkullConfig));
     }
 
     private IEnumerable<object> ProcessSwitch(KMBombModule module)
@@ -7525,6 +8501,70 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_Switches);
 
         addQuestion(module, Question.SwitchesInitialPosition, correctAnswers: new[] { initialState });
+    }
+    
+    private IEnumerable<object> ProcessSwitchingMaze(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SwitchingMazeScript");
+        var fldSolved = GetField<bool>(comp, "ModuleSolved");
+           
+        while (!_isActivated)
+            yield return new WaitForSeconds(.1f);
+            
+        string Seed = GetField<TextMesh>(comp, "Seedling", isPublic: true).Get().text;
+        int NumberBasis = GetField<int>(comp, "NumberBasis").Get();
+        
+        var hadStrike = false;
+        module.OnStrike += delegate { hadStrike = true; return false; };
+        
+        while (!fldSolved.Get())
+        {
+            if (hadStrike)
+            {
+                Seed = GetField<TextMesh>(comp, "Seedling", isPublic: true).Get().text;
+                NumberBasis = GetField<int>(comp, "NumberBasis").Get();
+                hadStrike = false;
+            }
+            yield return null;
+        }
+        
+        _modulesSolved.IncSafe(_SwitchingMaze);
+        
+        List<string> Object = new List<string>();
+        string[] Alphabreak = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "/" };
+        string[] SeedSplit = Regex.Replace(Seed, " ", "").Split(':');
+        
+        Debug:
+        for (int x = 0; x < 3; x++)
+        {
+            string SeedPacket = "";
+            for (int a = 0; a < 8; a++)
+            {
+                SeedPacket += Alphabreak[UnityEngine.Random.Range(0, Alphabreak.Length)];
+            }
+            
+            Object.Add(SeedPacket);
+            
+            if (SeedPacket == SeedSplit[1])
+            {
+                Object = new List<string>();
+                goto Debug;
+            }
+        }
+        
+        if (Object[0] == Object[1] || Object[0] == Object[2] || Object[1] == Object[2])
+        {
+            Object = new List<string>();
+            goto Debug;
+        }
+        
+        string[] ColorsOfTheMaze = GetArrayField<string>(comp, "ColorsOfMaze").Get();
+        
+        Object.Add(SeedSplit[1]);
+        
+        addQuestions(module,
+            makeQuestion(Question.SwitchingMazeSeed, _SwitchingMaze, null, new[] { SeedSplit[1] }, Object.ToArray()),
+            makeQuestion(Question.SwitchingMazeColor, _SwitchingMaze, null, new[] { ColorsOfTheMaze[NumberBasis] }, ColorsOfTheMaze));
     }
 
     private IEnumerable<object> ProcessSymbolCycle(KMBombModule module)
@@ -7824,6 +8864,21 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.TimezoneCities, _Timezone, new[] { "departure" }, new[] { fldFromCity.Get() }),
             makeQuestion(Question.TimezoneCities, _Timezone, new[] { "destination" }, new[] { fldToCity.Get() }));
     }
+    
+    private IEnumerable<object> ProcessTopsyTurvy(KMBombModule module)
+    {
+        var comp = GetComponent(module, "topsyTurvy");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_TopsyTurvy);
+        
+        int UpsideDown = GetField<int>(comp, "displayIndex").Get();
+        string[] Guide = {"Topsy", "Robot", "Cloud", "Round", "Quilt", "Found", "Plaid", "Curve", "Water", "Ovals", "Verse", "Sandy", "Frown", "Windy", "Curse", "Ghost"};
+        
+        addQuestions(module, makeQuestion(Question.TopsyTurvyWord, _TopsyTurvy, null, new[] { Guide[UpsideDown] }, Guide));
+    }
 
     private IEnumerable<object> ProcessTransmittedMorse(KMBombModule module)
     {
@@ -7906,7 +8961,12 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.TwoBitsResponse, _TwoBits, new[] { "second" }, new[] { secondResponse.ToString("00") }, preferredWrongAnswers),
             makeQuestion(Question.TwoBitsResponse, _TwoBits, new[] { "third" }, new[] { thirdResponse.ToString("00") }, preferredWrongAnswers));
     }
-
+    
+    private IEnumerable<object> ProcessUltimateCipher(KMBombModule module)
+    {
+        return processColoredCiphers(module, "ultimateCipher", Question.UltimateCipherAnswer, _UltimateCipher);
+    }
+    
     private IEnumerable<object> ProcessUltimateCycle(KMBombModule module)
     {
         return processSpeakingEvilCycle2(module, "UltimateCycleScript", Question.UltimateCycleWord, _UltimateCycle);
@@ -7989,6 +9049,24 @@ public class SouvenirModule : MonoBehaviour
     {
         return processWorldMaze(module, "USAMaze", _USAMaze, Question.USAMazeOrigin);
     }
+    
+    private IEnumerable<object> ProcessV(KMBombModule module)
+    {
+        var comp = GetComponent(module, "qkV");
+       
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_V);
+        
+        string[] allWords = GetArrayField<string>(comp, "allWords").Get();
+        List<string>CurrentWords = GetField<List<string>>(comp, "currentWords").Get();
+        
+        addQuestions(module,
+           makeQuestion(Question.VWords, _V, formatArgs: new[] { "was" }, correctAnswers: CurrentWords.ToArray(), preferredWrongAnswers: allWords),
+           makeQuestion(Question.VWords, _V, formatArgs: new[] { "was not" }, correctAnswers: allWords.Where(a => !CurrentWords.Contains(a)).ToArray(), preferredWrongAnswers: allWords));
+    }
 
     private IEnumerable<object> ProcessVaricoloredSquares(KMBombModule module)
     {
@@ -8070,6 +9148,11 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.VexillologyColors, _Vexillology, new[] { "second" }, new[] { colors[color2] }, new[] { colors[color1], colors[color3] }),
             makeQuestion(Question.VexillologyColors, _Vexillology, new[] { "third" }, new[] { colors[color3] }, new[] { colors[color2], colors[color1] }));
     }
+    
+    private IEnumerable<object> ProcessVioletCipher(KMBombModule module)
+    {
+        return processColoredCiphers(module, "ultimateCipher", Question.VioletCipherAnswer, _VioletCipher);
+    }
 
     private IEnumerable<object> ProcessVisualImpairment(KMBombModule module)
     {
@@ -8139,6 +9222,38 @@ public class SouvenirModule : MonoBehaviour
                 correctAnswers: new[] { colorNames[stageColors[stage]] }));
 
         addQuestions(module, qs);
+    }
+    
+    private IEnumerable<object> ProcessWhatsOnSecond(KMBombModule module)
+    {
+        var comp = GetComponent(module, "WhatsonSecondScript");
+        var fldSolved = GetField<bool>(comp, "ModuleSolved");
+        
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+            _modulesSolved.IncSafe(_WhatsOnSecond);
+        
+        
+        string[] Labels = GetArrayField<string>(comp, "Answers").Get(expectedLength: 2).ToArray();
+        string[] LabelColors = GetArrayField<string>(comp, "AnswerColors").Get(expectedLength: 2).ToArray();
+        string[] OtherLabels = GetArrayField<string>(comp, "Phrase").Get().ToArray();
+        string[] Colors = {"Red", "Green", "Blue", "Yellow", "Magenta", "Cyan"};
+        
+        if (Labels == null || LabelColors == null)
+        {
+            throw new AbandonModuleException("Unable to gather colors/words");
+        }
+
+        addQuestions(module,
+           makeQuestion(Question.WhatsOnSecondDisplayText, _WhatsOnSecond, new[] { "first" }, new[] { Labels[0] }, OtherLabels),
+           makeQuestion(Question.WhatsOnSecondDisplayText, _WhatsOnSecond, new[] { "second" }, new[] { Labels[1] }, OtherLabels),
+           makeQuestion(Question.WhatsOnSecondDisplayColor, _WhatsOnSecond, new[] { "first" }, new[] { LabelColors[0] }, Colors),
+           makeQuestion(Question.WhatsOnSecondDisplayColor, _WhatsOnSecond, new[] { "second" }, new[] { LabelColors[1] }, Colors));
+    }
+    
+    private IEnumerable<object> ProcessWhiteCipher(KMBombModule module)
+    {
+        return processColoredCiphers(module, "ultimateCipher", Question.WhiteCipherAnswer, _WhiteCipher);
     }
 
     private IEnumerable<object> ProcessWhosOnFirst(KMBombModule module)
@@ -8248,6 +9363,26 @@ public class SouvenirModule : MonoBehaviour
         }
         addQuestions(module, qs);
     }
+    
+    private IEnumerable<object> ProcessWorkingTitle(KMBombModule module)
+    {
+        var comp = GetComponent(module, "workingTitleCode");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        
+        string CorrectAnswer = GetField<TextMesh>(comp, "screenText", isPublic: true).Get().text;
+        string[] OneLongWord = {"foo", "foobar", "quuz", "garply", "plugh", "wibble", "flob", "fuga", "toto", "tutu", "eggs", "alice", "lorem ipsum", "widget", "eek", "bat", "haystack", "blarg", "kalaa", "sub", "momo", "change this", "hi", "thing", "xyz", "bar", "qux", "corge", "waldo", "xyzzy", "wobble", "hoge", "hogera", "tata", "spam", "raboof", "bob", "do stuff", "bla", "moof", "shme", "beekeeper", "dothestuff", "mum", "temp", "var", "placeholder", "hello", "stuff", "text", "baz", "quux", "grault", "fred", "thud", "wubble", "piyo", "hogehoge", "titi", "ham", "fruit", "john doe", "data", "gadget", "gleep", "needle", "blah", "grault", "puppu", "test", "change", "null", "hey", "something", "abc"};
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_WorkingTitle);
+        
+        if (CorrectAnswer == null)
+        {
+            throw new AbandonModuleException("Unable to gather the word that was generated");
+        }
+        
+        addQuestions(module, makeQuestion(Question.WorkingTitleLabel, _WorkingTitle, null, new[] { CorrectAnswer }, OneLongWord));
+    }
 
     private IEnumerable<object> ProcessYahtzee(KMBombModule module)
     {
@@ -8312,6 +9447,11 @@ public class SouvenirModule : MonoBehaviour
 
         int letterIndex = GetIntField(comp, "letindex").Get(min: 0, max: 25);
         addQuestion(module, Question.YellowArrowsStartingRow, correctAnswers: new[] { ((char) ('A' + letterIndex)).ToString() });
+    }
+    
+    private IEnumerable<object> ProcessYellowCipher(KMBombModule module)
+    {
+        return processColoredCiphers(module, "ultimateCipher", Question.YellowCipherAnswer, _YellowCipher);
     }
 
     private IEnumerable<object> ProcessZoni(KMBombModule module)
