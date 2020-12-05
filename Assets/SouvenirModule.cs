@@ -2068,30 +2068,30 @@ public class SouvenirModule : MonoBehaviour
             qs.Add(makeQuestion(Question.AlphabeticalRulingNumber, _AlphabeticalRuling, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { numbers[ix].ToString() }));
         addQuestions(module, qs);
     }
-	
-	private IEnumerable<object> ProcessAlphabetTiles(KMBombModule module)
+    
+    private IEnumerable<object> ProcessAlphabetTiles(KMBombModule module)
     {
-		var comp = GetComponent(module, "AlphabetTilesScript");
-		
+        var comp = GetComponent(module, "AlphabetTilesScript");
+        
         var isSolved = false;
         module.OnPass += delegate { isSolved = true; return false; };
-		
-		while (!isSolved)
+        
+        while (!isSolved)
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_AlphabetTiles);
-		
-		string[] Shuffled = GetArrayField<string>(comp, "ShuffledAlphabet").Get();
-		string[] LettersShown = GetArrayField<string>(comp, "LettersShown").Get();
-		
-		addQuestions(module,
+        
+        string[] Shuffled = GetArrayField<string>(comp, "ShuffledAlphabet").Get();
+        string[] LettersShown = GetArrayField<string>(comp, "LettersShown").Get();
+        
+        addQuestions(module,
             makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, new[] { "first" }, new[] { LettersShown[0] }, Shuffled),
             makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, new[] { "second" }, new[] { LettersShown[1] }, Shuffled),
             makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, new[] { "third" }, new[] { LettersShown[2] }, Shuffled),
             makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, new[] { "fourth" }, new[] { LettersShown[3] }, Shuffled),
             makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, new[] { "fifth" }, new[] { LettersShown[4] }, Shuffled),
-			makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, new[] { "sixth" }, new[] { LettersShown[5] }, Shuffled),
-			makeQuestion(Question.AlphabetTilesMissingLetter, _AlphabetTiles, null, new[] { Shuffled[25] }, Shuffled));
-	}
+            makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, new[] { "sixth" }, new[] { LettersShown[5] }, Shuffled),
+            makeQuestion(Question.AlphabetTilesMissingLetter, _AlphabetTiles, null, new[] { Shuffled[25] }, Shuffled));
+    }
 
     private IEnumerable<object> ProcessAlphaBits(KMBombModule module)
     {
@@ -2325,22 +2325,22 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, GetField<Array>(comp, "_currentSolution").Get(v => v.Length != 3 ? "expected length 3" : null).Cast<object>()
             .Select((color, ix) => makeQuestion(Question.BigCircleColors, _BigCircle, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { color.ToString() })));
     }
-	
-	private IEnumerable<object> ProcessBinary(KMBombModule module)
+    
+    private IEnumerable<object> ProcessBinary(KMBombModule module)
     {
-		var comp = GetComponent(module, "Binary");
-		var solved = false;
-		
+        var comp = GetComponent(module, "Binary");
+        var solved = false;
+        
         module.OnPass += delegate { solved = true; return false; };
         while (!solved)
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Binary);
-		
-		string[] BinaryWords = {"AH", "AT", "AM", "AS", "AN", "BE", "BY", "GO", "IF", "IN", "IS", "IT", "MU", "NU", "NO", "NU", "OF", "PI", "TO", "UP", "US", "WE", "XI", "ACE", "AIM", "AIR", "BED", "BOB", "BUT", "BUY", "CAN", "CAT", "CHI", "CUT", "DAY", "DIE", "DOG", "DOT", "EAT", "EYE", "FOR", "FLY", "GET", "GUT", "HAD", "HAT", "HOT", "ICE", "LIE", "LIT", "MAD", "MAP", "MAY", "NEW", "NOT", "NOW", "ONE", "PAY", "PHI", "PIE", "PSI", "RED", "RHO", "SAD", "SAY", "SEA", "SEE", "SET", "SIX", "SKY", "TAU", "THE", "TOO", "TWO", "WHY", "WIN", "YES", "ZOO", "ALFA", "BETA",  "BLUE", "CHAT", "CYAN", "DEMO", "DOOR", "EAST", "EASY", "EACH", "EDIT", "FAIL", "FALL", "FIRE", "FIVE", "FOUR", "GAME", "GOLF", "GRID", "HARD", "HATE", "HELP", "HOLD", "IOTA", "KILO", "LIMA", "LIME", "LIST", "LOCK", "LOST", "STOP", "TEST", "TIME", "TREE", "TYPE", "WEST", "WIRE", "WOOD", "XRAY", "YELL", "ZERO", "ZETA", "ZULU", "ABORT", "ABOUT", "ALPHA", "BLACK", "BRAVO", "CLOCK", "CLOSE", "COULD", "CRASH", "DELTA", "DIGIT", "EIGHT", "GAMMA", "GLASS", "GREEN", "GUESS", "HOTEL", "INDIA", "KAPPA", "LATER", "LEAST", "LEMON", "MONTH", "MORSE", "NORTH", "OMEGA", "OSCAR", "PANIC", "PRESS", "ROMEO", "SEVEN", "SIGMA", "SMASH", "SOUTH", "TANGO", "TIMER", "VOICE", "WHILE", "WHITE", "WORLD", "WORRY", "WOULD", "BINARY", "DEFUSE", "DISARM", "EXPERT", "FINISH", "FORGET", "LAMBDA", "MANUAL", "MODULE", "NUMBER", "ORANGE", "PERIOD", "PURPLE", "QUEBEC", "SHOULD", "SIERRA", "SOURCE", "STRIKE", "SUBMIT", "TWITCH", "VICTOR", "VIOLET", "WINDOW", "YELLOW", "YANKEE", "CHARLIE", "EPSILON", "EXPLODE", "FOXTROT", "JULIETT", "MEASURE", "MISSION", "OMICRON", "SUBJECT", "UNIFORM", "UPSILON", "WHISKEY", "DETONATE", "NOTSOLVE", "NOVEMBER"};
-		int Word = GetField<int>(comp, "te").Get();
-		
-		addQuestions(module, makeQuestion(Question.BinaryWord, _Binary, null, new[] { BinaryWords[Word] }, BinaryWords));
-	}
+        
+        string[] BinaryWords = {"AH", "AT", "AM", "AS", "AN", "BE", "BY", "GO", "IF", "IN", "IS", "IT", "MU", "NU", "NO", "NU", "OF", "PI", "TO", "UP", "US", "WE", "XI", "ACE", "AIM", "AIR", "BED", "BOB", "BUT", "BUY", "CAN", "CAT", "CHI", "CUT", "DAY", "DIE", "DOG", "DOT", "EAT", "EYE", "FOR", "FLY", "GET", "GUT", "HAD", "HAT", "HOT", "ICE", "LIE", "LIT", "MAD", "MAP", "MAY", "NEW", "NOT", "NOW", "ONE", "PAY", "PHI", "PIE", "PSI", "RED", "RHO", "SAD", "SAY", "SEA", "SEE", "SET", "SIX", "SKY", "TAU", "THE", "TOO", "TWO", "WHY", "WIN", "YES", "ZOO", "ALFA", "BETA",  "BLUE", "CHAT", "CYAN", "DEMO", "DOOR", "EAST", "EASY", "EACH", "EDIT", "FAIL", "FALL", "FIRE", "FIVE", "FOUR", "GAME", "GOLF", "GRID", "HARD", "HATE", "HELP", "HOLD", "IOTA", "KILO", "LIMA", "LIME", "LIST", "LOCK", "LOST", "STOP", "TEST", "TIME", "TREE", "TYPE", "WEST", "WIRE", "WOOD", "XRAY", "YELL", "ZERO", "ZETA", "ZULU", "ABORT", "ABOUT", "ALPHA", "BLACK", "BRAVO", "CLOCK", "CLOSE", "COULD", "CRASH", "DELTA", "DIGIT", "EIGHT", "GAMMA", "GLASS", "GREEN", "GUESS", "HOTEL", "INDIA", "KAPPA", "LATER", "LEAST", "LEMON", "MONTH", "MORSE", "NORTH", "OMEGA", "OSCAR", "PANIC", "PRESS", "ROMEO", "SEVEN", "SIGMA", "SMASH", "SOUTH", "TANGO", "TIMER", "VOICE", "WHILE", "WHITE", "WORLD", "WORRY", "WOULD", "BINARY", "DEFUSE", "DISARM", "EXPERT", "FINISH", "FORGET", "LAMBDA", "MANUAL", "MODULE", "NUMBER", "ORANGE", "PERIOD", "PURPLE", "QUEBEC", "SHOULD", "SIERRA", "SOURCE", "STRIKE", "SUBMIT", "TWITCH", "VICTOR", "VIOLET", "WINDOW", "YELLOW", "YANKEE", "CHARLIE", "EPSILON", "EXPLODE", "FOXTROT", "JULIETT", "MEASURE", "MISSION", "OMICRON", "SUBJECT", "UNIFORM", "UPSILON", "WHISKEY", "DETONATE", "NOTSOLVE", "NOVEMBER"};
+        int Word = GetField<int>(comp, "te").Get();
+        
+        addQuestions(module, makeQuestion(Question.BinaryWord, _Binary, null, new[] { BinaryWords[Word] }, BinaryWords));
+    }
 
     private IEnumerable<object> ProcessBinaryLEDs(KMBombModule module)
     {

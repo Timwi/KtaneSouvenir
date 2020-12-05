@@ -51,7 +51,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 9)]
         AlphabeticalRulingNumber,
-		
+        
         [SouvenirQuestion("What was the {1} letter shown during the cycle in {0}?", "Alphabet Tiles", AnswerLayout.ThreeColumns6Answers, null,
         ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         AlphabetTilesCycle,
@@ -110,8 +110,8 @@ namespace Souvenir
         [SouvenirQuestion("At which numeric value did you cut the correct wire in {0}?", "Binary LEDs", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Integers(0, 31)]
         BinaryLEDsValue,
-		
-		[SouvenirQuestion("What word was displayed in {0}?", "Binary", AnswerLayout.ThreeColumns6Answers, null)]
+        
+        [SouvenirQuestion("What word was displayed in {0}?", "Binary", AnswerLayout.ThreeColumns6Answers, null)]
         BinaryWord,
 
         [SouvenirQuestion("How many pixels were {1} in the {2} quadrant in {0}?", "Bitmaps", AnswerLayout.ThreeColumns6Answers,
