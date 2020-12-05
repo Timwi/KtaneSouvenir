@@ -461,6 +461,7 @@ public class SouvenirModule : MonoBehaviour
             { _DecoloredSquares, ProcessDecoloredSquares },
             { _DiscoloredSquares, ProcessDiscoloredSquares },
             { _DivisibleNumbers, ProcessDivisibleNumbers },
+            { _DoubleColor, ProcessDoubleColor },
             { _DoubleOh, ProcessDoubleOh },
             { _DrDoctor, ProcessDrDoctor },
             { _Dreamcipher, ProcessDreamcipher },
