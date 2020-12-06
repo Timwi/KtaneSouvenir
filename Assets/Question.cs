@@ -295,6 +295,13 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "Blue", "Red", "Yellow", "Green", "Magenta" }, ExampleExtraFormatArgumentGroupSize = 1)]
         DiscoloredSquaresRememberedPositions,
 
+        [SouvenirQuestion("What were the correct button presses in {0}?", "Divisible Numbers", AnswerLayout.OneColumn4Answers, "Nay, Nay, Nay", "Nay, Nay, Yea", "Nay, Yea, Nay", "Nay, Yea, Yea", "Yea, Nay, Nay", "Yea, Nay, Yea", "Yea, Yea, Nay", "Yea, Yea, Yea")]
+        DivisibleNumbersAnswers,
+        [SouvenirQuestion("What was the {1} stage’s number in {0}?", "Divisible Numbers", AnswerLayout.ThreeColumns6Answers, null,
+            ExampleExtraFormatArguments = new[] { "first", "second", "third"}, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 9999)]
+        DivisibleNumbersNumbers,
+
         [SouvenirQuestion("What was the screen color on the {1} stage of {0}?", "Double Color", AnswerLayout.ThreeColumns6Answers, "Green", "Blue", "Red", "Pink", "Yellow",
             ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
         DoubleColorColors,
