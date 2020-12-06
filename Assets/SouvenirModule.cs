@@ -2550,7 +2550,7 @@ public class SouvenirModule : MonoBehaviour
 
         var obj = panelInfo.GetValue(0, 0);
         var fldColor = GetIntField(obj, "color", isPublic: true);
-        var colorNames = GetArrayField<string>(comp, "ColorNames").Get();
+        var colorNames = GetStaticField<string[]>(comp.GetType(), "ColorNames").Get();
         var colorOccurrences = new Dictionary<int, int>();
         for (int i = panelInfo.GetLength(0) - 1; i >= 0; i--)
             for (int j = 0; j < 3; j++)
