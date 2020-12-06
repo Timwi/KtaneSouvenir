@@ -152,6 +152,7 @@ public class SouvenirModule : MonoBehaviour
     const string _DeckOfManyThings = "deckOfManyThings";
     const string _DecoloredSquares = "DecoloredSquaresModule";
     const string _DiscoloredSquares = "DiscoloredSquaresModule";
+    const string _DivisibleNumbers = "divisibleNumbers";
     const string _DoubleColor = "doubleColor";
     const string _DoubleOh = "DoubleOhModule";
     const string _DrDoctor = "DrDoctorModule";
@@ -413,6 +414,7 @@ public class SouvenirModule : MonoBehaviour
             { _DeckOfManyThings, ProcessDeckOfManyThings },
             { _DecoloredSquares, ProcessDecoloredSquares },
             { _DiscoloredSquares, ProcessDiscoloredSquares },
+            { _DivisibleNumbers, ProcessDivisibleNumbers },
             { _DoubleColor, ProcessDoubleColor },
             { _DoubleOh, ProcessDoubleOh },
             { _DrDoctor, ProcessDrDoctor },
@@ -3226,6 +3228,40 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.DiscoloredSquaresRememberedPositions, _DiscoloredSquares, new[] { colors[3] },
                 preferredWrongAnswers: Tiles4x4Sprites,
                 correctAnswers: new[] { Tiles4x4Sprites[positions[3]] }));
+    }
+
+    private IEnumerable<object> ProcessDivisibleNumbers(KMBombModule module)
+    {
+        var comp = GetComponent(module, "DivisableNumbers");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_DivisibleNumbers);
+
+        var finalAnswers = GetArrayField<string>(comp, "finalAnswers").Get(expectedLength: 3);
+        var finalNumbers = GetArrayField<int>(comp, "finalNumbers").Get(expectedLength: 3);
+
+        var qs = new List<QandA>();
+
+        for (int i = 0; i < finalNumbers.Length; i++)
+        {
+            var number = finalNumbers[i];
+
+            if (number < 0 || number > 9999)
+                throw new AbandonModuleException("One or more of the stage's numbers is outside the range 0-9999 (got “{0}”)", number);
+            else
+                qs.Add(makeQuestion(Question.DivisibleNumbersNumbers, _DivisibleNumbers, new[] { ordinal(i + 1) }, new[] { number.ToString() }));
+        }
+
+        foreach (var answer in finalAnswers)
+        {
+            if (answer != "Yea" && answer != "Nay")
+                throw new AbandonModuleException("One or more of the stage's answers is an unexpected value (expected either “Yea” or “Nea” but got “{0}”)", answer);
+        }
+
+        qs.Add(makeQuestion(Question.DivisibleNumbersAnswers, _DivisibleNumbers, correctAnswers: new[] { string.Join(", ", finalAnswers) }));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessDoubleColor(KMBombModule module)
