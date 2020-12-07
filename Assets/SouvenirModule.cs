@@ -605,7 +605,7 @@ public class SouvenirModule : MonoBehaviour
             { _SchlagDenBomb, ProcessSchlagDenBomb },
             { _SeaShells, ProcessSeaShells },
             { _Semamorse, ProcessSemamorse },
-            { _Sequencyclopedia, ProcessSequencyclopedia},
+            { _Sequencyclopedia, ProcessSequencyclopedia },
             { _ShapesBombs, ProcessShapesAndBombs },
             { _ShapeShift, ProcessShapeShift },
             { _ShellGame, ProcessShellGame },
@@ -7308,11 +7308,15 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Sequencyclopedia);
 
-        // We don’t need the value for this field, but we need to check if it’s empty
-        GetField<string>(comp, "Tridal").Get(str => str == "" ? "Tridal is empty, meaning module was unable to gather the amount of sequence" : null);
-
+        var maxSeqId = int.Parse(GetField<string>(comp, "Tridal").Get(str => str == "" ? "Tridal is empty, meaning module was unable to gather the amount of sequence" : null));
         var answer = GetField<string>(comp, "APass").Get();
-        addQuestions(module, makeQuestion(Question.SequencyclopediaSequence, _Sequencyclopedia, null, new[] { answer }));
+        var wrongAnswers = new HashSet<string>();
+        wrongAnswers.Add(answer);
+        while (wrongAnswers.Count < 6)
+            foreach (var ans in new AnswerGenerator.Integers(0, maxSeqId, "'A'000000").GetAnswers(this).Take(6 - wrongAnswers.Count))
+                wrongAnswers.Add(ans);
+
+        addQuestions(module, makeQuestion(Question.SequencyclopediaSequence, _Sequencyclopedia, correctAnswers: new[] { answer }, preferredWrongAnswers: wrongAnswers.ToArray()));
     }
 
     private IEnumerable<object> ProcessShapesAndBombs(KMBombModule module)
