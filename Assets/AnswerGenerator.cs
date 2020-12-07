@@ -221,6 +221,9 @@ namespace Souvenir
             /// <param name="count">The number of characters to choose.</param>
             /// <param name="chars">The list of characters to choose from.</param>
             public Strings(int count, params char[] chars) : this(new CharacterList(count, chars, null)) { }
+            /// <param name="count">The number of characters to choose.</param>
+            /// <param name="chars">The list of characters to choose from.</param>
+            public Strings(int count, string chars) : this(new CharacterList(count, chars.ToCharArray(), null)) { }
             /// <param name="first">The inclusive lower bound of the range of characters to choose from.</param>
             /// <param name="last">The inclusive upper bound of the range of characters to choose from.</param>
             public Strings(char first, char last) : this(new CharacterList(1, null, new[] { first, last })) { }
