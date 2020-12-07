@@ -385,8 +385,7 @@ namespace Souvenir
         [SouvenirQuestion("What room did you start in in {0}?", "Factory Maze", AnswerLayout.OneColumn4Answers, "Bathroom", "Assembly Line", "Cafeteria", "Room A9", "Broom Closet", "Basement", "Copy Room", "Unnecessarily Long-Named Room", "Library", "Break Room", "Empty Room with Two Doors", "Arcade", "Classroom", "Module Testing Room", "Music Studio", "Computer Room", "Infirmary", "Bomb Room", "Space", "Storage Room", "Lounge", "Conference Room", "Kitchen", "Incinerator")]
         FactoryMazeStartRoom,
 
-        [SouvenirQuestion("What was the last pair of letters in {0}?", "Fast Math", AnswerLayout.ThreeColumns6Answers)]
-        [AnswerGenerator.Strings(2, "ABCDEGKNPSTXZ")]
+        [SouvenirQuestion("What was the last pair of letters in {0}?", "Fast Math", AnswerLayout.ThreeColumns6Answers, null)]
         FastMathLastLetters,
 
         [SouvenirQuestion("What was the exit coordinate in {0}?", "Faulty RGB Maze", AnswerLayout.ThreeColumns6Answers)]
@@ -1431,10 +1430,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         WavetappingPatterns,
 
-        [SouvenirQuestion("What was the display text in the {1} stage of {0}?", "What's on Second", AnswerLayout.ThreeColumns6Answers, null,
+        [SouvenirQuestion("What was the display text in the {1} stage of {0}?", "What’s on Second", AnswerLayout.ThreeColumns6Answers, null,
             ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
         WhatsOnSecondDisplayText,
-        [SouvenirQuestion("What was the display text color in the {1} stage of {0}?", "What's on Second", AnswerLayout.ThreeColumns6Answers, null,
+        [SouvenirQuestion("What was the display text color in the {1} stage of {0}?", "What’s on Second", AnswerLayout.ThreeColumns6Answers, null,
             ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
         WhatsOnSecondDisplayColor,
 

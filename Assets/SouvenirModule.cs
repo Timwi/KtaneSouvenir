@@ -3796,11 +3796,12 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "FastMathModule");
         var fldScreen = GetField<TextMesh>(comp, "Screen", isPublic: true);
         var fldSolved = GetField<bool>(comp, "_isSolved");
+        var usableLetters = GetField<string>(comp, "letters").Get();
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
 
-        var prevLetters = new HashSet<string>();
+        var wrongAnswers = new HashSet<string>();
         string letters = null;
         while (!fldSolved.Get())
         {
@@ -3808,14 +3809,19 @@ public class SouvenirModule : MonoBehaviour
             if (display.Length != 3)
                 throw new AbandonModuleException("The screen contains something other than three characters: “{0}” ({1} characters).", display, display.Length);
             letters = display[0] + "" + display[2];
-            prevLetters.Add(letters);
+            wrongAnswers.Add(letters);
             yield return new WaitForSeconds(.1f);
         }
         if (letters == null)
             throw new AbandonModuleException("No letters were extracted before the module was solved.");
 
         _modulesSolved.IncSafe(_FastMath);
-        addQuestion(module, Question.FastMathLastLetters, correctAnswers: new[] { letters }, preferredWrongAnswers: prevLetters.ToArray());
+
+        while (wrongAnswers.Count < 6)
+            foreach (var ans in new AnswerGenerator.Strings(2, usableLetters).GetAnswers(this).Take(6 - wrongAnswers.Count))
+                wrongAnswers.Add(ans);
+
+        addQuestion(module, Question.FastMathLastLetters, correctAnswers: new[] { letters }, preferredWrongAnswers: wrongAnswers.ToArray());
     }
 
     private IEnumerable<object> ProcessFaultyRGBMaze(KMBombModule module)
@@ -7304,7 +7310,7 @@ public class SouvenirModule : MonoBehaviour
 
         // We don’t need the value for this field, but we need to check if it’s empty
         GetField<string>(comp, "Tridal").Get(str => str == "" ? "Tridal is empty, meaning module was unable to gather the amount of sequence" : null);
-        
+
         var answer = GetField<string>(comp, "APass").Get();
         addQuestions(module, makeQuestion(Question.SequencyclopediaSequence, _Sequencyclopedia, null, new[] { answer }));
     }
