@@ -640,7 +640,7 @@ public class SouvenirModule : MonoBehaviour
             { _Stars, ProcessStars },
             { _StateOfAggregation, ProcessStateOfAggregation },
             { _SubscribeToPewdiepie, ProcessSubscribeToPewdiepie },
-            //{ _SugarSkulls, ProcessSugarSkulls },
+            { _SugarSkulls, ProcessSugarSkulls },
             { _Switch, ProcessSwitch },
             { _Switches, ProcessSwitches },
             { _SwitchingMaze, ProcessSwitchingMaze },
@@ -1757,8 +1757,8 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(moduleId);
 
         var memory = GetField<string>(comp, "answer").Get();
-        var answerList = GetArrayField<string>(comp, "wordList", isPublic: true).Get();
-        addQuestions(module, makeQuestion(question, moduleId, null, new[] { memory }, answerList));
+        var answerList = GetArrayField<string>(comp, "wordList", isPublic: true).Get().Select(str => str.ToLowerInvariant()).ToArray();
+        addQuestions(module, makeQuestion(question, moduleId, null, new[] { memory.ToLowerInvariant() }, answerList));
     }
 
     // Used by The Hypercube and The Ultracube
@@ -7302,9 +7302,10 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Sequencyclopedia);
 
-        var number = GetField<string>(comp, "Tridal").Get(str => str == "" ? "Tridal is empty, meaning module was unable to gather the amount of sequence" : null);
+        // We don’t need the value for this field, but we need to check if it’s empty
+        GetField<string>(comp, "Tridal").Get(str => str == "" ? "Tridal is empty, meaning module was unable to gather the amount of sequence" : null);
+        
         var answer = GetField<string>(comp, "APass").Get();
-
         addQuestions(module, makeQuestion(Question.SequencyclopediaSequence, _Sequencyclopedia, null, new[] { answer }));
     }
 
