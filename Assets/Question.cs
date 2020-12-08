@@ -953,6 +953,13 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PerspectivePegsColorSequence,
 
+        [SouvenirQuestion("What was the offset in {0}?", "Phosphorescence", AnswerLayout.ThreeColumns6Answers)]
+        [AnswerGenerator.Integers(0, 419)]
+        PhosphorescenceOffset,
+        [SouvenirQuestion("What was the {1} button press in {0}?", "Phosphorescence", AnswerLayout.ThreeColumns6Answers, new[] { "Azure", "Blue", "Crimson", "Diamond", "Emerald", "Fuchsia", "Green", "Ice", "Jade", "Kiwi", "Lime", "Magenta", "Navy", "Orange", "Purple", "Quartz", "Red", "Salmon", "Tan", "Ube", "Vibe", "White", "Xotic", "Yellow", "Zen" },
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th", "6th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        PhosphorescenceButtonPresses,
+
         [SouvenirQuestion("What was the {1} digit of the displayed number in {0}?", "Pie", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 9)]
