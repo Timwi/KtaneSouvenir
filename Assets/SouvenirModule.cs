@@ -275,6 +275,7 @@ public class SouvenirModule : MonoBehaviour
     const string _PassportControl = "passportControl";
     const string _PatternCube = "PatternCubeModule";
     const string _PerspectivePegs = "spwizPerspectivePegs";
+    const string _Phosphorescence = "Phosphorescence";
     const string _Pie = "pieModule";
     const string _PigpenCycle = "pigpenCycle";
     const string _PlaceholderTalk = "placeholderTalk";
@@ -576,6 +577,7 @@ public class SouvenirModule : MonoBehaviour
             { _PassportControl, ProcessPassportControl },
             { _PatternCube, ProcessPatternCube },
             { _PerspectivePegs, ProcessPerspectivePegs },
+            { _Phosphorescence, ProcessPhosphorescence },
             { _Pie, ProcessPie },
             { _PigpenCycle, ProcessPigpenCycle },
             { _PlaceholderTalk, ProcessPlaceholderTalk },
@@ -6591,6 +6593,28 @@ public class SouvenirModule : MonoBehaviour
             .Select(i => (pegIndex + i) % 5)
             .Select(n => colorNames.First(cn => colourMeshes[n, n].sharedMaterial.name.Substring(6).StartsWith(cn, StringComparison.InvariantCultureIgnoreCase)))
             .Select((col, ix) => makeQuestion(Question.PerspectivePegsColorSequence, _PerspectivePegs, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { col })));
+    }
+
+    private IEnumerable<object> ProcessPhosphorescence(KMBombModule module)
+    {
+        var comp = GetComponent(module, "PhosphorescenceScript");
+        var init = GetField<object>(comp, "init").Get();
+        var fldSolved = GetField<bool>(init, "isSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Phosphorescence);
+
+        var index = GetIntField(init, "index").Get(min: 0, max: 419);
+        var buttonPresses = GetField<Array>(init, "buttonPresses").Get(ar => ar.Length < 3 || ar.Length > 6 ? "expected length 3-6" : ar.OfType<object>().Select(o => o.ToString()).Any(v => !new[] { "Azure", "Blue", "Crimson", "Diamond", "Emerald", "Fuchsia", "Green", "Ice", "Jade", "Kiwi", "Lime", "Magenta", "Navy", "Orange", "Purple", "Quartz", "Red", "Salmon", "Tan", "Ube", "Vibe", "White", "Xotic", "Yellow", "Zen" }.Contains(v)) ? "contains unknown color" : null);
+
+        var qs = new List<QandA>();
+        qs.Add(makeQuestion(Question.PhosphorescenceOffset, _Phosphorescence, correctAnswers: new[] { index.ToString() }));
+
+        for (int i = 0; i < buttonPresses.GetLength(0); i++)
+            qs.Add(makeQuestion(Question.PhosphorescenceButtonPresses, _Phosphorescence, new[] { ordinal(i + 1) }, correctAnswers: new[] { buttonPresses.GetValue(i).ToString() }));
+
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessPie(KMBombModule module)
