@@ -215,6 +215,7 @@ public class SouvenirModule : MonoBehaviour
     const string _LEDEncryption = "LEDEnc";
     const string _LEDMath = "lgndLEDMath";
     const string _LEGOs = "LEGOModule";
+    const string _Linq = "Linq";
     const string _Listening = "Listening";
     const string _LogicalButtons = "logicalButtonsModule";
     const string _LogicGates = "logicGates";
@@ -517,6 +518,7 @@ public class SouvenirModule : MonoBehaviour
             { _LEDEncryption, ProcessLEDEncryption },
             { _LEDMath, ProcessLEDMath },
             { _LEGOs, ProcessLEGOs },
+            { _Linq, ProcessLinq },
             { _Listening, ProcessListening },
             { _LogicalButtons, ProcessLogicalButtons },
             { _LogicGates, ProcessLogicGates },
@@ -4802,6 +4804,27 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_LEGOs);
         var colorNames = new[] { "red", "green", "blue", "cyan", "magenta", "yellow" };
         addQuestions(module, Enumerable.Range(0, 6).Select(i => makeQuestion(Question.LEGOsPieceDimensions, _LEGOs, new[] { colorNames[brickColors[i]] }, new[] { brickDimensions[i][0] + "×" + brickDimensions[i][1] })));
+    }
+
+    private IEnumerable<object> ProcessLinq(KMBombModule module)
+    {
+        var comp = GetComponent(module, "LinqScript");
+        var fldSolved = GetProperty<bool>(comp, "IsSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Linq);
+        
+        var select = GetField<object>(comp, "select").Get();
+        var functions = GetField<Array>(select, "functions").Get(ar =>
+            ar.Length != 6 ? "expected length 6" :
+            ar.OfType<object>().Any(v => !_attributes[Question.Linq].AllAnswers.Contains(v.ToString())) ? "contains unknown function" : null);
+
+        var qs = new List<QandA>();
+        for (int i = 0; i < functions.GetLength(0); i++)
+            qs.Add(makeQuestion(Question.Linq, _Linq, new[] { ordinal(i + 1) }, correctAnswers: new[] { functions.GetValue(i).ToString() }));
+
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessListening(KMBombModule module)

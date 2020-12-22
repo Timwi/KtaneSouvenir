@@ -617,6 +617,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "red", "green", "blue", "cyan", "magenta", "yellow" }, ExampleExtraFormatArgumentGroupSize = 1)]
         LEGOsPieceDimensions,
 
+        [SouvenirQuestion("What was the {1} function in {0}?", "Linq", AnswerLayout.ThreeColumns6Answers, new[] { "First", "Last", "Min", "Max", "Distinct", "Skip", "SkipLast", "Take", "TakeLast", "ElementAt", "Except", "Intersect", "Concat", "Append", "Prepend" },
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th", "6th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        Linq,
+
         [SouvenirQuestion("What was the correct code you entered in {0}?", "Listening", AnswerLayout.ThreeColumns6Answers, "&&&**", "&$#$&", "$#$*&", "#$$**", "$#$#*", "**$*#", "#$$&*", "##*$*", "$#*$&", "**#**", "#&&*#", "&#**&", "$&**#", "&#$$#", "$&&**", "#&$##", "&*$*$", "&$$&*", "#&&&&", "**$$$", "*&*&&", "*#&*&", "**###", "&&$&*", "&$**&", "#$#&$", "&#&&#", "$$*$*", "$&#$$", "&**$$", "$&&*&", "&$&##", "#&$*&", "$*$**", "*#$&&", "###&$", "*$$&$", "$*&##", "#&$&&", "$&$$*", "*$*$*")]
         Listening,
 
