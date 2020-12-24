@@ -7108,19 +7108,17 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_ReversePolishNotation);
 
-        var usedChars = GetArrayField<string[]>(comp, "usedChars").Get(expectedLength: 3, validator: x => x.Any(character => !Regex.IsMatch(character, @"[0-9A-G]")) ? "expected character to be in the range of 0-9 or A-G" : null);
+        var usedChars = GetArrayField<string[]>(comp, "usedChars")
+            .Get(expectedLength: 3, validator: x => x.Any(character => !Regex.IsMatch(character, @"^[0-9A-G]$")) ? "expected character to be in the range of 0-9 or A-G" : null);
 
         var qs = new List<QandA>();
-
-        var questionWords = new string[2] { "was", "wasn't" };
         var allChars = new string[17] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G" };
 
         for (int i = 0; i < 3; i++)
         {
             if (usedChars[i].Length != i + 3)
                 throw new AbandonModuleException("usedChars[{0}] is of an irregular length: {1}", i, string.Join(", ", usedChars[i]));
-            for (int j = 0; j < 2; j++)
-                qs.Add(makeQuestion(Question.ReversePolishNotationCharacter, _ReversePolishNotation, formatArgs: new[] { questionWords[j], ordinal(i + 1) }, correctAnswers: j == 0 ? usedChars[i] : allChars.Except(usedChars[i]).ToArray()));
+            qs.Add(makeQuestion(Question.ReversePolishNotationCharacter, _ReversePolishNotation, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: usedChars[i]));
         }
 
         addQuestions(module, qs);

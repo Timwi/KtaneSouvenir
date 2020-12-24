@@ -1060,8 +1060,8 @@ namespace Souvenir
         [AnswerGenerator.Strings("A-Z0-9")]
         ReverseMorseCharacters,
 
-        [SouvenirQuestion("What character {1} used in the {2} round of {0}?", "Reverse Polish Notation", AnswerLayout.ThreeColumns6Answers,
-            ExampleExtraFormatArguments = new[] { "was", "first", "was", "second", "was", "third", "wasn't", "first", "wasn't", "second", "wasn't", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        [SouvenirQuestion("What character was used in the {1} round of {0}?", "Reverse Polish Notation", AnswerLayout.ThreeColumns6Answers,
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Strings("A-G0-9")]
         ReversePolishNotationCharacter,
 
