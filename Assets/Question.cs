@@ -1060,6 +1060,11 @@ namespace Souvenir
         [AnswerGenerator.Strings("A-Z0-9")]
         ReverseMorseCharacters,
 
+        [SouvenirQuestion("What character was used in the {1} round of {0}?", "Reverse Polish Notation", AnswerLayout.ThreeColumns6Answers,
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("A-G0-9")]
+        ReversePolishNotationCharacter,
+
         [SouvenirQuestion("What was the exit coordinate in {0}?", "RGB Maze", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Strings("A-H", "1-8")]
         RGBMazeExit,
