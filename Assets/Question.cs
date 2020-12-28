@@ -619,10 +619,10 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the {1} function in {0}?", "Linq", AnswerLayout.ThreeColumns6Answers, new[] { "First", "Last", "Min", "Max", "Distinct", "Skip", "SkipLast", "Take", "TakeLast", "ElementAt", "Except", "Intersect", "Concat", "Append", "Prepend" },
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th", "6th" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        Linq,
+        LinqFunction,
 
         [SouvenirQuestion("What was the correct code you entered in {0}?", "Listening", AnswerLayout.ThreeColumns6Answers, "&&&**", "&$#$&", "$#$*&", "#$$**", "$#$#*", "**$*#", "#$$&*", "##*$*", "$#*$&", "**#**", "#&&*#", "&#**&", "$&**#", "&#$$#", "$&&**", "#&$##", "&*$*$", "&$$&*", "#&&&&", "**$$$", "*&*&&", "*#&*&", "**###", "&&$&*", "&$**&", "#$#&$", "&#&&#", "$$*$*", "$&#$$", "&**$$", "$&&*&", "&$&##", "#&$*&", "$*$**", "*#$&&", "###&$", "*$$&$", "$*&##", "#&$&&", "$&$$*", "*$*$*")]
-        Listening,
+        ListeningCode,
 
         [SouvenirQuestion("What was the color of the {1} button in the {2} stage of {0}?", "Logical Buttons", AnswerLayout.TwoColumns4Answers, "Red", "Blue", "Green", "Yellow", "Purple", "White", "Orange", "Cyan", "Grey",
             ExampleExtraFormatArguments = new[] { "top", "first", "bottom-left", "first", "bottom-right", "first", "top", "second", "bottom-left", "second", "bottom-right", "second", "top", "third", "bottom-left", "third", "bottom-right", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]

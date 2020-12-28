@@ -4816,15 +4816,15 @@ public class SouvenirModule : MonoBehaviour
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Linq);
-        
+
         var select = GetField<object>(comp, "select").Get();
         var functions = GetField<Array>(select, "functions").Get(ar =>
             ar.Length != 6 ? "expected length 6" :
-            ar.OfType<object>().Any(v => !_attributes[Question.Linq].AllAnswers.Contains(v.ToString())) ? "contains unknown function" : null);
+            ar.OfType<object>().Any(v => !_attributes[Question.LinqFunction].AllAnswers.Contains(v.ToString())) ? "contains unknown function" : null);
 
         var qs = new List<QandA>();
         for (int i = 0; i < functions.GetLength(0); i++)
-            qs.Add(makeQuestion(Question.Linq, _Linq, new[] { ordinal(i + 1) }, correctAnswers: new[] { functions.GetValue(i).ToString() }));
+            qs.Add(makeQuestion(Question.LinqFunction, _Linq, new[] { ordinal(i + 1) }, correctAnswers: new[] { functions.GetValue(i).ToString() }));
 
         addQuestions(module, qs);
     }
@@ -4837,7 +4837,7 @@ public class SouvenirModule : MonoBehaviour
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
 
-        var attr = _attributes.Get(Question.Listening);
+        var attr = _attributes.Get(Question.ListeningCode);
         if (attr == null)
             throw new AbandonModuleException("Abandoning Listening because SouvenirQuestionAttribute for Question.Listening is null.");
 
@@ -4884,7 +4884,7 @@ public class SouvenirModule : MonoBehaviour
             buttons[i].OnInteract = prevInteracts[i];
 
         _modulesSolved.IncSafe(_Listening);
-        addQuestion(module, Question.Listening, correctAnswers: new[] { correctCode });
+        addQuestion(module, Question.ListeningCode, correctAnswers: new[] { correctCode });
     }
 
     private IEnumerable<object> ProcessLogicalButtons(KMBombModule module)
@@ -6631,8 +6631,8 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_Phosphorescence);
 
         var index = GetIntField(init, "index").Get(min: 0, max: 419);
-        var buttonPresses = GetField<Array>(init, "buttonPresses").Get(ar => 
-            ar.Length < 3 || ar.Length > 6 ? "expected length 3–6" : 
+        var buttonPresses = GetField<Array>(init, "buttonPresses").Get(ar =>
+            ar.Length < 3 || ar.Length > 6 ? "expected length 3–6" :
             ar.OfType<object>().Any(v => !_attributes[Question.PhosphorescenceButtonPresses].AllAnswers.Contains(v.ToString())) ? "contains unknown color" : null);
 
         var qs = new List<QandA>();
@@ -7135,15 +7135,12 @@ public class SouvenirModule : MonoBehaviour
             .Get(expectedLength: 3, validator: x => x.Any(character => !Regex.IsMatch(character, @"^[0-9A-G]$")) ? "expected character to be in the range of 0-9 or A-G" : null);
 
         var qs = new List<QandA>();
-        var allChars = new string[17] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G" };
-
         for (int i = 0; i < 3; i++)
         {
             if (usedChars[i].Length != i + 3)
                 throw new AbandonModuleException("usedChars[{0}] is of an irregular length: {1}", i, string.Join(", ", usedChars[i]));
             qs.Add(makeQuestion(Question.ReversePolishNotationCharacter, _ReversePolishNotation, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: usedChars[i]));
         }
-
         addQuestions(module, qs);
     }
 
