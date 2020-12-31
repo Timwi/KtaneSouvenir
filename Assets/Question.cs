@@ -568,6 +568,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
         IceCreamCustomer,
 
+        [SouvenirQuestion("Which part name was shown first in {0}?", "Iconic", AnswerLayout.OneColumn4Answers, null)]
+        IconicFirstPress,
+
         [SouvenirQuestion("Which hair color {1} listed in {0}?", "Identity Parade", AnswerLayout.TwoColumns4Answers, "Black", "Blonde", "Brown", "Grey", "Red", "White",
             ExampleExtraFormatArguments = new[] { "was", "was not" }, ExampleExtraFormatArgumentGroupSize = 1)]
         IdentityParadeHairColors,
