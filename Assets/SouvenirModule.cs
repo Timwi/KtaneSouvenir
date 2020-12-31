@@ -206,6 +206,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Hypercube = "TheHypercubeModule";
     const string _Hyperlink = "hyperlink";
     const string _IceCream = "iceCreamModule";
+    const string _Iconic = "iconic";
     const string _IdentityParade = "identityParade";
     const string _IndigoCipher = "indigoCipher";
     const string _iPhone = "iPhone";
@@ -511,6 +512,7 @@ public class SouvenirModule : MonoBehaviour
             { _Hypercube, ProcessHypercube },
             { _Hyperlink, ProcessHyperlink },
             { _IceCream, ProcessIceCream },
+            { _Iconic, ProcessIconic },
             { _IdentityParade, ProcessIdentityParade },
             { _IndigoCipher, ProcessIndigoCipher },
             { _iPhone, ProcessiPhone },
@@ -4597,6 +4599,35 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessIconic(KMBombModule module) {
+        var comp = GetComponent(module, "iconicScript");
+        var fldOkay = GetField<bool>(comp, "SouvReady");
+        //Since it'll be asking about the first thing you press on Iconic I'm making this so that it'll give Souvenir the answers after Iconic has enough wrong answers to give.
+        var fldAbort = GetField<bool>(comp, "SouvStop");
+        //And since this isn't solve based this variable is here to stop Souvenir from asking the question if there's multiple Iconics.
+
+        while (!fldOkay.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Iconic);
+
+        if (fldAbort.Get()) {
+            Debug.LogFormat("[Souvenir #{0}] There is more than one Iconic modules on this bomb. Not asking any questions about them.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
+
+        var fldYes = GetField<string>(comp, "SouvYes");
+        var fldNo = GetListField<string>(comp, "SouvNo").Get(expectedLength: 3);
+
+        if (fldYes.Get() == "")
+            throw new AbandonModuleException("I cannot find the SouvYes string.");
+
+        var wrong = fldNo;
+
+        addQuestion(module, Question.IconicFirstPress,
+        correctAnswers: new[] { fldYes.Get() }, preferredWrongAnswers: wrong.ToArray() );
     }
 
     private IEnumerable<object> ProcessIdentityParade(KMBombModule module)
