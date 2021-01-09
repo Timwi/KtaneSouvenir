@@ -3660,10 +3660,22 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "HangmanScript");
         var fldSolved = GetField<bool>(comp, "isSolved", isPublic: true);
+        var fldInAnimation = GetField<bool>(comp, "inAnimation", isPublic: true);
+        var fldUncipheredAnswer = GetField<string>(comp, "uncipheredanswer", isPublic: true);
+        var fldAnswerDisp = GetField<TextMesh>(comp, "AnswerDisp", isPublic: true);
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_EncryptedHangman);
+
+        // Dirty trick to circumvent the solve animation
+        fldUncipheredAnswer.Set("");
+
+        // Wait for the solve animation to finish (it still does one iteration despite the above trick)
+        while (fldInAnimation.Get())
+            yield return new WaitForSeconds(.1f);
+
+        fldAnswerDisp.Get().text = "G O O D\nJ O B";
 
         var moduleName = GetField<string>(comp, "moduleName", isPublic: true).Get();
         if (moduleName.Length == 0)
