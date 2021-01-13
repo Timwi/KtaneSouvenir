@@ -81,6 +81,7 @@ public class SouvenirModule : MonoBehaviour
     private bool _animating = false;
     private bool _exploded = false;
     private int _avoidQuestions = 0;   // While this is > 0, temporarily avoid asking questions; currently only used when Souvenir is hidden by a Mystery Module
+    private bool _showWarning = false;
 
     [NonSerialized]
     public double SurfaceSizeFactor;
@@ -891,7 +892,7 @@ public class SouvenirModule : MonoBehaviour
                         (entry.Value.ExampleAnswers == null || entry.Value.ExampleAnswers.Length == 0) && entry.Value.AnswerGenerator == null)
                     {
                         Debug.LogWarningFormat("<Souvenir #{0}> Question {1} has no answers. You should specify either SouvenirQuestionAttribute.AllAnswers or SouvenirQuestionAttribute.ExampleAnswers (with preferredWrongAnswers in-game), or add an AnswerGeneratorAttribute to the question enum value.", _moduleId, entry.Key);
-                        WarningIcon.SetActive(true);
+                        _showWarning = true;
                     }
                 }
                 StartCoroutine(TestModeCoroutine());
@@ -1157,6 +1158,7 @@ public class SouvenirModule : MonoBehaviour
         Debug.LogFormat("[Souvenir #{0}] Questions exhausted. Module solved.", _moduleId);
         _isSolved = true;
         Module.HandlePass();
+        WarningIcon.SetActive(_showWarning);
     }
 
     private void SetQuestion(QandA q)
@@ -1288,13 +1290,13 @@ public class SouvenirModule : MonoBehaviour
                     catch (AbandonModuleException ex)
                     {
                         Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because: {2}", _moduleId, module.ModuleDisplayName, ex.Message);
-                        WarningIcon.SetActive(true);
+                        _showWarning = true;
                         yield break;
                     }
                     catch (Exception ex)
                     {
                         Debug.LogFormat("<Souvenir #{0}> The {1} handler threw an exception ({2}):\n{3}", _moduleId, module.ModuleDisplayName, ex.GetType().FullName, ex.StackTrace);
-                        WarningIcon.SetActive(true);
+                        _showWarning = true;
                         yield break;
                     }
                     if (!canMoveNext)
@@ -1311,7 +1313,7 @@ public class SouvenirModule : MonoBehaviour
             if (!_legitimatelyNoQuestions.Contains(module) && !_questions.Any(q => q.Module == module))
             {
                 Debug.LogFormat("[Souvenir #{0}] There was no question generated for {1}. Please report this to Timwi or the implementer for that module as this may indicate a bug in Souvenir. Remember to send them this logfile.", _moduleId, module.ModuleDisplayName);
-                WarningIcon.SetActive(true);
+                _showWarning = true;
             }
             Debug.LogFormat("<Souvenir #{1}> Module {0}: Finished processing.", moduleType, _moduleId);
         }
