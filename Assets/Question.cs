@@ -794,7 +794,7 @@ namespace Souvenir
         [AnswerGenerator.Strings('A', 'Z')]
         MorsematicsReceivedLetters,
 
-        [SouvenirQuestion("What were the LEDs in the {1} row in {0} (1 = on, 0 = off)?", "Morse War", AnswerLayout.ThreeColumns6Answers, "1100", "1010", "1001", "0110", "0101", "0011",
+        [SouvenirQuestion("What were the LEDs in the {1} row in {0} (1\u00a0=\u00a0on, 0\u00a0=\u00a0off)?", "Morse War", AnswerLayout.ThreeColumns6Answers, "1100", "1010", "1001", "0110", "0101", "0011",
             ExampleExtraFormatArguments = new[] { "bottom", "middle", "top" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MorseWarLeds,
         [SouvenirQuestion("What code was transmitted in {0}?", "Morse War", AnswerLayout.ThreeColumns6Answers, "ABR", "RBS", "SVR", "ZUX", "ZAQ", "MOI", "OPA", "VZQ", "XRP", "OLL", "AIR", "RHG", "MJN", "VTT", "XZS", "SUN")]
