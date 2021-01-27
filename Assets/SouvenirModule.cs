@@ -101,6 +101,7 @@ public class SouvenirModule : MonoBehaviour
     const string _100LevelsOfDefusal = "100LevelsOfDefusal";
     const string _3DMaze = "spwiz3DMaze";
     const string _3DTunnels = "3dTunnels";
+    const string _7 = "7";
     const string _Accumulation = "accumulation";
     const string _AdventureGame = "spwizAdventureGame";
     const string _AffineCycle = "affineCycle";
@@ -178,6 +179,7 @@ public class SouvenirModule : MonoBehaviour
     const string _FastMath = "fastMath";
     const string _FaultyRGBMaze = "faultyrgbMaze";
     const string _Flags = "FlagsModule";
+    const string _FlashingArrows = "flashingArrowsModule";
     const string _FlashingLights = "flashingLights";
     const string _ForgetAnyColor = "ForgetAnyColor";
     const string _ForgetTheColors = "ForgetTheColors";
@@ -199,6 +201,7 @@ public class SouvenirModule : MonoBehaviour
     const string _HillCycle = "hillCycle";
     const string _Hogwarts = "HogwartsModule";
     const string _HoldUps = "KritHoldUps";
+    const string _Homophones = "homophones";
     const string _HorribleMemory = "horribleMemory";
     const string _HumanResources = "HumanResourcesModule";
     const string _Hunting = "hunting";
@@ -255,6 +258,7 @@ public class SouvenirModule : MonoBehaviour
     const string _NandMs = "NandMs";
     const string _Navinums = "navinums";
     const string _Necronomicon = "necronomicon";
+    const string _Negativity = "Negativity";
     const string _Neutralization = "neutralization";
     const string _NotButton = "NotButton";
     const string _NotKeypad = "NotKeypad";
@@ -284,6 +288,7 @@ public class SouvenirModule : MonoBehaviour
     const string _PlayfairCycle = "playfairCycle";
     const string _Poetry = "poetry";
     const string _PolyhedralMaze = "PolyhedralMazeModule";
+    const string _PrimeEncryption = "primeEncryption";
     const string _Probing = "Probing";
     const string _PurpleArrows = "purpleArrowsModule";
     const string _Quaver = "Quaver";
@@ -368,6 +373,7 @@ public class SouvenirModule : MonoBehaviour
     const string _UncoloredSquares = "UncoloredSquaresModule";
     const string _UncoloredSwitches = "R4YUncoloredSwitches";
     const string _UnfairCipher = "unfairCipher";
+    const string _UnfairsRevenge = "unfairsRevenge";
     const string _UnownCipher = "UnownCipher";
     const string _USAMaze = "USA";
     const string _V = "V";
@@ -405,6 +411,7 @@ public class SouvenirModule : MonoBehaviour
             { _100LevelsOfDefusal, Process100LevelsOfDefusal },
             { _3DMaze, Process3DMaze },
             { _3DTunnels, Process3DTunnels },
+            { _7, Process7 },
             { _Accumulation, ProcessAccumulation },
             { _AdventureGame, ProcessAdventureGame },
             { _AffineCycle, ProcessAffineCycle },
@@ -439,7 +446,7 @@ public class SouvenirModule : MonoBehaviour
             { _Calendar, ProcessCalendar },
             { _ChallengeAndContact, ProcessChallengeAndContact },
             { _CheapCheckout, ProcessCheapCheckout },
-            //{ _CheepCheckout, ProcessCheepCheckout },
+            { _CheepCheckout, ProcessCheepCheckout },
             { _Chess, ProcessChess },
             { _ChineseCounting, ProcessChineseCounting },
             { _ChordQualities, ProcessChordQualities },
@@ -482,6 +489,7 @@ public class SouvenirModule : MonoBehaviour
             { _FastMath, ProcessFastMath },
             { _FaultyRGBMaze, ProcessFaultyRGBMaze },
             { _Flags, ProcessFlags },
+            { _FlashingArrows, ProcessFlashingArrows },
             { _FlashingLights, ProcessFlashingLights },
             { _ForgetAnyColor, ProcessForgetAnyColor },
             { _ForgetTheColors, ProcessForgetTheColors },
@@ -503,6 +511,7 @@ public class SouvenirModule : MonoBehaviour
             { _HillCycle, ProcessHillCycle },
             { _Hogwarts, ProcessHogwarts },
             { _HoldUps, ProcessHoldUps },
+            { _Homophones, ProcessHomophones },
             { _HorribleMemory, ProcessHorribleMemory },
             { _HumanResources, ProcessHumanResources },
             { _Hunting, ProcessHunting },
@@ -559,6 +568,7 @@ public class SouvenirModule : MonoBehaviour
             { _NandMs, ProcessNandMs },
             { _Navinums, ProcessNavinums },
             { _Necronomicon, ProcessNecronomicon },
+            { _Negativity, ProcessNegativity },
             { _Neutralization, ProcessNeutralization },
             { _NotButton, ProcessNotButton },
             { _NotKeypad, ProcessNotKeypad },
@@ -588,6 +598,7 @@ public class SouvenirModule : MonoBehaviour
             { _PlayfairCycle, ProcessPlayfairCycle },
             { _Poetry, ProcessPoetry },
             { _PolyhedralMaze, ProcessPolyhedralMaze },
+            { _PrimeEncryption, ProcessPrimeEncryption },
             { _Probing, ProcessProbing },
             { _PurpleArrows, ProcessPurpleArrows },
             { _Quaver, ProcessQuaver },
@@ -672,6 +683,7 @@ public class SouvenirModule : MonoBehaviour
             { _UncoloredSquares, ProcessUncoloredSquares },
             { _UncoloredSwitches, ProcessUncoloredSwitches },
             { _UnfairCipher, ProcessUnfairCipher },
+            { _UnfairsRevenge, ProcessUnfairsRevenge },
             { _UnownCipher, ProcessUnownCipher },
             { _USAMaze, ProcessUSAMaze },
             { _V, ProcessV },
@@ -1898,6 +1910,46 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, targetNodeNames.Select((tn, ix) => makeQuestion(Question._3DTunnelsTargetNode, _3DTunnels, new[] { ordinal(ix + 1) }, new[] { tn }, targetNodeNames)));
     }
 
+    private IEnumerable<object> Process7(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SevenHandler");
+        var isSolved = false;
+        module.OnPass += delegate { isSolved = true; return false; };
+
+        while (!isSolved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_7);
+
+        var allDisplayedValues = GetListField<int[]>(comp, "displayedValues")
+            .Get(stg => stg.Any(a => a.Length != 3) ? "at least 1 stage's array does not have exactly a length of 3" : null);
+        // Check if all of the stages have exactly 3 sets of values.
+        var allIdxDisplayedOperators = GetListField<int>(comp, "idxOperations").Get(
+            idx => !idx.Skip(1).All(a => a >= 0 && a <= 3) ? "After stage 0, at least 1 stage does not have a valid index between 0 and 3 inclusive" : // Check after stage 0 if all indexes are within 0-3 inclusive
+            !(idx.First() == -1) ? "Stage 0 does not have an index of -1." : // Then check if stage 0 has an idx of -1.
+            null);
+
+        var allQuestions = new List<QandA>();
+
+        var colorReference = new[] { "red", "green", "blue", "white" };
+
+        for (int x = 0; x < allDisplayedValues.Count; x++)
+        {
+            if (x == 0) // Stage 0 is denoted as the initial stage on this module.
+            {
+                for (int y = 0; y < 3; y++)
+                    allQuestions.Add(makeQuestion(Question._7InitialValues, _7, new[] { colorReference.ElementAt(y) }, new[] { allDisplayedValues[x][y].ToString() }));
+            }
+            else
+            {
+                allQuestions.Add(makeQuestion(Question._7LEDColors, _7, new[] { x.ToString() }, new[] { colorReference.ElementAt(allIdxDisplayedOperators.ElementAt(x))}, colorReference));
+                for (int y = 0; y < 3; y++)
+                    allQuestions.Add(makeQuestion(Question._7StageValues, _7, new[] { colorReference.ElementAt(y), x.ToString() }, new[] { allDisplayedValues[x][y].ToString() }));
+            }
+        }
+
+        addQuestions(module, allQuestions.ToArray());
+    }
+
     private IEnumerable<object> ProcessAccumulation(KMBombModule module)
     {
         var comp = GetComponent(module, "accumulationScript");
@@ -2852,12 +2904,13 @@ public class SouvenirModule : MonoBehaviour
         var shuffledList = GetField<List<int>>(comp, "numberList", isPublic: true).Get();
         var birdnames = GetField<List<string>>(comp, "birdNames", isPublic: true).Get();
         birdnames.Remove("[Unicorn Bastard]");
+        birdnames.Remove("[Low, Low, Low]");
         var refinedBirdnames = new List<string>();
 
         for (int x = 0; x < 5; x++)
             if (shuffledList[x] != 26)
                 refinedBirdnames.Add(birdnames[shuffledList[x]]);
-
+        //Debug.LogFormat("Remaining Names: {0}", refinedBirdnames.Join(",")); // Used to debug any possible birds that are present in the module.
         addQuestions(module,
            makeQuestion(Question.CheepCheckoutBirds, _CheepCheckout, formatArgs: new[] { "was" }, correctAnswers: refinedBirdnames.ToArray(), preferredWrongAnswers: birdnames.ToArray()),
            makeQuestion(Question.CheepCheckoutBirds, _CheepCheckout, formatArgs: new[] { "was not" }, correctAnswers: birdnames.Where(a => !refinedBirdnames.Contains(a)).ToArray(), preferredWrongAnswers: birdnames.ToArray()));
@@ -3897,6 +3950,30 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.FlagsCountries, _Flags, correctAnswers: otherCountrySprites, preferredWrongAnswers: FlagsSprites));
     }
 
+    private IEnumerable<object> ProcessFlashingArrows(KMBombModule module)
+    {
+        var comp = GetComponent(module, "FlashingArrowsScript");
+        var isSolved = false;
+        module.OnPass += delegate { isSolved = true; return false; };
+        while (!isSolved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_FlashingArrows);
+        var colorReference = GetArrayField<string>(comp, "debugColors").Get(expectedLength: 7);
+        var displayedValue = GetField<int>(comp, "displayNumber").Get(num => num < 0 || num >= 100 ? "Expected the displayed value to be within 0 and 99 inclusive." : null );
+        var idxReferencedArrow = GetField<int>(comp, "idxReferencedArrow").Get(num => num < 0 || num >= 4 ? "Expected the value to be within 0 and 3 inclusive." : null);
+        var idxFlashedArrows = GetArrayField<int[]>(comp, "idxColorFlashingArrows").Get(expectedLength: 4);
+        var arrowSet = idxFlashedArrows[idxReferencedArrow];
+        var idxBlack = Array.IndexOf(arrowSet, -1);
+        var colorAfterBlack = arrowSet[(idxBlack + 1) % 3];
+        var colorBeforeBlack = arrowSet[(idxBlack + 2) % 3];
+
+        addQuestions(module,
+            makeQuestion(Question.FlashingArrowsDisplayedValue, _FlashingArrows, null, new[] { displayedValue.ToString() }),
+            makeQuestion(Question.FlashingArrowsReferredArrow, _FlashingArrows, new[] { "before" }, new[] { colorReference[colorBeforeBlack] }, colorReference),
+            makeQuestion(Question.FlashingArrowsReferredArrow, _FlashingArrows, new[] { "after" }, new[] { colorReference[colorAfterBlack] }, colorReference)
+            );
+    }
+
     private IEnumerable<object> ProcessFlashingLights(KMBombModule module)
     {
         var comp = GetComponent(module, "doubleNegativesScript");
@@ -4408,6 +4485,51 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_HoldUps);
 
         addQuestions(module, Enumerable.Range(0, isItFiveStages.Get() ? 5 : 3).Select(stage => makeQuestion(Question.HoldUpsShadows, _HoldUps, new[] { ordinal(stage + 1) }, new[] { shadows[stage] })));
+    }
+
+    private IEnumerable<object> ProcessHomophones(KMBombModule module)
+    {
+        var comp = GetComponent(module, "HomophonesScript");
+        var isSolved = GetField<bool>(comp, "moduleSolved");
+        while (!isSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Homophones);
+
+        var selectedWords = GetArrayField<string>(comp, "selectedWords", true).Get(expectedLength: 4);
+        // Set up a trick to prevent the answer from being obvious
+        var allIWords = GetArrayField<string>(comp, "iWords").Get(expectedLength: 10);
+        var allLWords = GetArrayField<string>(comp, "lWords").Get(expectedLength: 10);
+        var allCWords = GetArrayField<string>(comp, "cWords").Get(expectedLength: 10);
+        var allOneWords = GetArrayField<string>(comp, "oneWords").Get(expectedLength: 10);
+
+        List<QandA> possibleQuestions = new List<QandA>();
+
+        for (int i = 0; i < selectedWords.Length; i++)
+        {
+            string thisWord = selectedWords[i];
+            if (allCWords.Contains(thisWord))
+            {
+                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, _Homophones, new[] { ordinal(i + 1) }, new[] { thisWord }, selectedWords.Union(allCWords).ToArray()));
+            }
+            else if (allLWords.Contains(thisWord))
+            {
+                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, _Homophones, new[] { ordinal(i + 1) }, new[] { thisWord }, selectedWords.Union(allLWords).ToArray()));
+            }
+            else if (allIWords.Contains(thisWord))
+            {
+                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, _Homophones, new[] { ordinal(i + 1) }, new[] { thisWord }, selectedWords.Union(allIWords).ToArray()));
+            }
+            else if (allOneWords.Contains(thisWord))
+            {
+                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, _Homophones, new[] { ordinal(i + 1) }, new[] { thisWord }, selectedWords.Union(allOneWords).ToArray()));
+            }
+            else
+            {
+                throw new AbandonModuleException("The given phrase \"{0}\" is not one of the possible words that can be found in Homophones.", thisWord);
+            }
+        }
+
+        addQuestions(module, possibleQuestions.ToArray());
     }
 
     private IEnumerable<object> ProcessHorribleMemory(KMBombModule module)
@@ -5963,6 +6085,41 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.NecronomiconChapters, _Necronomicon, new[] { "seventh" }, new[] { chaptersString[6] }, chaptersString));
     }
 
+    private IEnumerable<object> ProcessNegativity(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NegativityScript");
+        var isSolved = false;
+        module.OnPass += delegate { isSolved = true; return false; };
+        while (!isSolved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Negativity);
+
+        var convertedNums = GetArrayField<int>(comp, "NumberingConverted").Get();
+        var expectedTotal = GetField<int>(comp, "Totale").Get();
+        // Generate possible incorrect answers for this module
+        
+        List<int> incorrectValues = new List<int>();
+        while (incorrectValues.Count < 5)
+        {
+            var sumPossible = 0;
+            for (int i = 0; i < convertedNums.Length; i++)
+            {
+                int aValue = convertedNums[i];
+                if (Rnd.value < 0.5f)
+                    sumPossible += aValue;
+                else
+                    sumPossible -= aValue;
+            }
+            if (sumPossible != expectedTotal && !incorrectValues.Contains(sumPossible))
+                incorrectValues.Add(sumPossible);
+        }
+        
+        addQuestions(module,
+            makeQuestion(Question.NegativitySubmittedValue, _Negativity, null, new[] { expectedTotal.ToString() }, incorrectValues.Select(a => a.ToString()).ToArray()));
+          //makeQuestion(Question.NegativitySubmittedValue, _Negativity, null, new[] { expectedTotal.ToString() }));
+
+    }
+
     private IEnumerable<object> ProcessNeutralization(KMBombModule module)
     {
         var comp = GetComponent(module, "neutralization");
@@ -6759,6 +6916,36 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_PolyhedralMaze);
 
         addQuestion(module, Question.PolyhedralMazeStartPosition, null, new[] { GetIntField(comp, "_startFace").Get().ToString() });
+    }
+
+    private IEnumerable<object> ProcessPrimeEncryption(KMBombModule module)
+    {
+        var comp = GetComponent(module, "PrimeEncryptionScript");
+        var isSolved = GetField<bool>(comp, "moduleSolved");
+        while (!isSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_PrimeEncryption);
+
+        
+        var displayedValue = GetField<int>(comp, "encryption").Get();
+        var allPrimeNumbersUsed = GetArrayField<int>(comp, "primeNumbers").Get();
+        // Generate wrong answers based on a combination of prime numbers determined from the module.
+        List<int> incorrectValues = new List<int>();
+        while (incorrectValues.Count < 5)
+        {
+            var onePrime = allPrimeNumbersUsed.PickRandom();
+            var anotherPrime = allPrimeNumbersUsed.PickRandom();
+            while (anotherPrime == onePrime)
+                anotherPrime = allPrimeNumbersUsed.PickRandom();
+
+            var productPrimes = onePrime * anotherPrime;
+            if (productPrimes != displayedValue && !incorrectValues.Contains(productPrimes))
+                incorrectValues.Add(productPrimes);
+        }
+
+        addQuestion(module, Question.PrimeEncryptionDisplayedValue, null,
+            correctAnswers: new[] { displayedValue.ToString() },
+            preferredWrongAnswers: incorrectValues.Select(a => a.ToString()).ToArray());
     }
 
     private IEnumerable<object> ProcessProbing(KMBombModule module)
@@ -8784,6 +8971,23 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.UnfairCipherInstructions, _UnfairCipher, new[] { "second" }, new[] { instructions[1] }),
             makeQuestion(Question.UnfairCipherInstructions, _UnfairCipher, new[] { "third" }, new[] { instructions[2] }),
             makeQuestion(Question.UnfairCipherInstructions, _UnfairCipher, new[] { "fourth" }, new[] { instructions[3] }));
+    }
+
+    private IEnumerable<object> ProcessUnfairsRevenge(KMBombModule module)
+    {
+        var comp = GetComponent(module, "UnfairsRevengeHandler");
+        var fldSolved = GetField<bool>(comp, "isFinished");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_UnfairsRevenge);
+
+        var instructions = GetListField<string>(comp, "splittedInstructions").Get(expectedLength: 4);
+        addQuestions(module,
+            makeQuestion(Question.UnfairsRevengeInstructions, _UnfairsRevenge, new[] { "first" }, new[] { instructions[0] }),
+            makeQuestion(Question.UnfairsRevengeInstructions, _UnfairsRevenge, new[] { "second" }, new[] { instructions[1] }),
+            makeQuestion(Question.UnfairsRevengeInstructions, _UnfairsRevenge, new[] { "third" }, new[] { instructions[2] }),
+            makeQuestion(Question.UnfairsRevengeInstructions, _UnfairsRevenge, new[] { "fourth" }, new[] { instructions[3] }));
     }
 
     private IEnumerable<object> ProcessUnownCipher(KMBombModule module)
