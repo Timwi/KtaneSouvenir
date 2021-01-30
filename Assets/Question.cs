@@ -906,6 +906,12 @@ namespace Souvenir
         [SouvenirQuestion("Which of these was a contestant on {0} but not the final winner?", "Object Shows", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "Battleship", "Big Circle", "Jack O’ Lantern", "Lego", "Moon", "Radio", "Combination Lock", "Cookie Jar", "Fidget Spinner" })]
         ObjectShowsContestants,
 
+        [SouvenirQuestion("What was the starting sphere in {0}?", "The Octadecayotton", AnswerLayout.OneColumn4Answers, ExampleAnswers = new[] { "--+", "-+-+-++-+", "-++-+--+-", "+++-+-++-", "--++-++-+-++" })]
+        OctadecayottonSphere,
+        [SouvenirQuestion("What was one of the subrotations in the {1} rotation in {0}?", "The Octadecayotton", AnswerLayout.OneColumn4Answers, ExampleAnswers = new[] { "-X", "+Y-Z", "+U+V+W", "-R+S+T-O", "+P-Q-X+Y-Z" },
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        OctadecayottonRotations,
+
         [SouvenirQuestion("What was the button you pressed in the {1} stage of {0}?", "Odd One Out", AnswerLayout.TwoColumns4Answers, "top-left", "top-middle", "top-right", "bottom-left", "bottom-middle", "bottom-right",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         OddOneOutButton,
