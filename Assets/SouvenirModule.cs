@@ -4848,7 +4848,7 @@ public class SouvenirModule : MonoBehaviour
 
         var select = GetField<object>(comp, "select").Get();
         var functions = GetField<Array>(select, "functions").Get(ar =>
-            ar.Length != 6 ? "expected length 6" :
+            ar.Length != 3 ? "expected length 3" :
             ar.OfType<object>().Any(v => !_attributes[Question.LinqFunction].AllAnswers.Contains(v.ToString())) ? "contains unknown function" : null);
 
         var qs = new List<QandA>();
