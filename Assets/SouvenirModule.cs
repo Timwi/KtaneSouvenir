@@ -4603,7 +4603,8 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessIconic(KMBombModule module) {
+    private IEnumerable<object> ProcessIconic(KMBombModule module)
+    {
         var comp = GetComponent(module, "iconicScript");
         var fldOkay = GetField<bool>(comp, "SouvReady");
         //Since it'll be asking about the first thing you press on Iconic I'm making this so that it'll give Souvenir the answers after Iconic has enough wrong answers to give.
@@ -4614,7 +4615,8 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Iconic);
 
-        if (fldAbort.Get()) {
+        if (fldAbort.Get())
+        {
             Debug.LogFormat("[Souvenir #{0}] There is more than one Iconic modules on this bomb. Not asking any questions about them.", _moduleId);
             _legitimatelyNoQuestions.Add(module);
             yield break;
@@ -4629,7 +4631,7 @@ public class SouvenirModule : MonoBehaviour
         var wrong = fldNo;
 
         addQuestion(module, Question.IconicFirstPress,
-        correctAnswers: new[] { fldYes.Get() }, preferredWrongAnswers: wrong.ToArray() );
+        correctAnswers: new[] { fldYes.Get() }, preferredWrongAnswers: wrong.ToArray());
     }
 
     private IEnumerable<object> ProcessIdentityParade(KMBombModule module)
@@ -9219,7 +9221,7 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_XmORseCode);
 
-        var displayLetters = GetArrayField<int>(comp, "displayed").Get(expectedLength: 5,validator: number => number < 0 || number > 25 ? "expected range 0–25" : null);
+        var displayLetters = GetArrayField<int>(comp, "displayed").Get(expectedLength: 5, validator: number => number < 0 || number > 25 ? "expected range 0–25" : null);
         var answerWord = words[GetIntField(comp, "answer").Get(validator: number => number < 0 || number > 45 ? "expected range 0–45" : null)];
 
         var qs = new List<QandA>();
