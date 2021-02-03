@@ -9212,7 +9212,7 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "XmORseCode");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
 
-        var words = new[] { "ADMIT", "AWARD", "BANJO", "BRAVO", "CHILL", "CYCLE", "DECOR", "DISCO", "EERIE", "ERUPT", "FEWER", "FUZZY", "GERMS", "GUSTO", "HAULT", "HEXED", "ICHOR", "INFER", "JEWEL", "KTANE", "LADLE", "LYRIC", "MANGO", "MUTED", "NERDS", "NIXIE", "OOZED", "OXIDE", "PARTY", "PURSE", "QUEST", "RETRO", "ROUGH", "SCOWL", "SIXTH", "THANK", "TWINE", "UNBOX", "USHER", "VIBES", "VOICE", "WHIZZ", "WRUNG", "XENON", "YOLKS", "ZILCH" };
+        var words = _attributes[Question.XmORseCodeWord].AllAnswers;
         var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
         while (!fldSolved.Get())
