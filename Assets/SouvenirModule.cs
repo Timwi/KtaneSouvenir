@@ -388,6 +388,7 @@ public class SouvenirModule : MonoBehaviour
     const string _WireOrdering = "kataWireOrdering";
     const string _WireSequence = "WireSequence";
     const string _WorkingTitle = "workingTitle";
+    const string _XmORseCode = "xmorse";
     const string _Yahtzee = "YahtzeeModule";
     const string _YellowArrows = "yellowArrowsModule";
     const string _YellowCipher = "yellowCipher";
@@ -694,6 +695,7 @@ public class SouvenirModule : MonoBehaviour
             { _WireOrdering, ProcessWireOrdering },
             { _WireSequence, ProcessWireSequence },
             { _WorkingTitle, ProcessWorkingTitle },
+            { _XmORseCode, ProcessXmORseCode },
             { _Yahtzee, ProcessYahtzee },
             { _YellowArrows, ProcessYellowArrows },
             { _YellowCipher, ProcessYellowCipher },
@@ -9203,6 +9205,28 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_WorkingTitle);
 
         addQuestions(module, makeQuestion(Question.WorkingTitleLabel, _WorkingTitle, null, new[] { correctAnswer }));
+    }
+
+    private IEnumerable<object> ProcessXmORseCode(KMBombModule module)
+    {
+        var comp = GetComponent(module, "XmORseCode");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        var words = new[] { "ADMIT", "AWARD", "BANJO", "BRAVO", "CHILL", "CYCLE", "DECOR", "DISCO", "EERIE", "ERUPT", "FEWER", "FUZZY", "GERMS", "GUSTO", "HAULT", "HEXED", "ICHOR", "INFER", "JEWEL", "KTANE", "LADLE", "LYRIC", "MANGO", "MUTED", "NERDS", "NIXIE", "OOZED", "OXIDE", "PARTY", "PURSE", "QUEST", "RETRO", "ROUGH", "SCOWL", "SIXTH", "THANK", "TWINE", "UNBOX", "USHER", "VIBES", "VOICE", "WHIZZ", "WRUNG", "XENON", "YOLKS", "ZILCH" };
+        var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_XmORseCode);
+
+        var displayLetters = GetArrayField<int>(comp, "displayed").Get(expectedLength: 5,validator: number => number < 0 || number > 25 ? "expected range 0–25" : null);
+        var answerWord = words[GetIntField(comp, "answer").Get(validator: number => number < 0 || number > 45 ? "expected range 0–45" : null)];
+
+        var qs = new List<QandA>();
+        for (int i = 0; i < 5; i++)
+            qs.Add(makeQuestion(Question.XmORseCodeDisplayedLetters, _XmORseCode, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { alphabet.Substring(displayLetters[i], 1) }, preferredWrongAnswers: displayLetters.Select(x => alphabet.Substring(x, 1)).ToArray()));
+        qs.Add(makeQuestion(Question.XmORseCodeWord, _XmORseCode, correctAnswers: new[] { answerWord }));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessYahtzee(KMBombModule module)
