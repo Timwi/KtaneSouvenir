@@ -1765,7 +1765,7 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(moduleId);
 
         var memory = GetField<string>(comp, "answer").Get();
-        var answerList = GetArrayField<string>(comp, "wordList", isPublic: true).Get().Select(str => str.ToLowerInvariant()).ToArray();
+        var answerList = GetListField<List<string>>(comp, "wordList").Get()[2].Select(str => str.ToLowerInvariant()).ToArray();
         addQuestions(module, makeQuestion(question, moduleId, null, new[] { memory.ToLowerInvariant() }, answerList));
     }
 
