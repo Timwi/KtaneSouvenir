@@ -737,7 +737,20 @@ public class SouvenirModule : MonoBehaviour
         Debug.LogFormat(@"<Souvenir #{0}> Ignored modules: {1}", _moduleId, ignoredList.JoinString(", "));
         ignoredModules.UnionWith(ignoredList);
 
-        Bomb.OnBombExploded += delegate { _exploded = true; StopAllCoroutines(); };
+        Bomb.OnBombExploded += delegate
+        {
+            _exploded = true;
+            StopAllCoroutines();
+            if (!_isSolved)
+            {
+                if (_questions.Count == 0)
+                    Debug.LogFormat(@"[Souvenir #{0}] When bomb exploded, there were no pending questions.", _moduleId);
+                else if (_questions.Count == 1)
+                    Debug.LogFormat(@"[Souvenir #{0}] When bomb exploded, 1 question was pending for: {1}.", _moduleId, _questions.Select(q => q.Module.ModuleDisplayName).OrderBy(q => q).JoinString(", "));
+                else
+                    Debug.LogFormat(@"[Souvenir #{0}] When bomb exploded, {1} questions were pending for: {2}.", _moduleId, _questions.Count, _questions.Select(q => q.Module.ModuleDisplayName).OrderBy(q => q).JoinString(", "));
+            }
+        };
         Bomb.OnBombSolved += delegate
         {
             // This delegate gets invoked when _any_ bomb in the room is solved,
