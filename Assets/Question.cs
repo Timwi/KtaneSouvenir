@@ -67,7 +67,7 @@ namespace Souvenir
         ArithmelogicSubmit,
         [SouvenirQuestion("Which number was selectable, but not the solution, in the {1} screen on {0}?", "Arithmelogic", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "left", "middle", "right" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        [AnswerGenerator.Integers(10, 99)]
+        [AnswerGenerator.Integers(10, 40)]
         ArithmelogicNumbers,
 
         [SouvenirQuestion("What color was the {1} correct button in {0}?", "Bamboozled Again", AnswerLayout.TwoColumns4Answers, "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose", "White", "Grey", "Black",
