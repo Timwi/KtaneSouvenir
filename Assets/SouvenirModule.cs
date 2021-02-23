@@ -1942,8 +1942,11 @@ public class SouvenirModule : MonoBehaviour
             else
             {
                 allQuestions.Add(makeQuestion(Question._7LEDColors, _7, new[] { x.ToString() }, new[] { colorReference.ElementAt(allIdxDisplayedOperators.ElementAt(x))}, colorReference));
+                // Comment this portion out to ask fewer overall questions.
+                /*
                 for (int y = 0; y < 3; y++)
                     allQuestions.Add(makeQuestion(Question._7StageValues, _7, new[] { colorReference.ElementAt(y), x.ToString() }, new[] { allDisplayedValues[x][y].ToString() }));
+                */
             }
         }
 
@@ -6096,6 +6099,7 @@ public class SouvenirModule : MonoBehaviour
 
         var convertedNums = GetArrayField<int>(comp, "NumberingConverted").Get();
         var expectedTotal = GetField<int>(comp, "Totale").Get();
+        var submittedTernary = GetField<string>(comp, "Tables").Get(a => a.Any(b => !"+-".Contains(b)) ? "At least 1 character from the submitted ternary is not familar. (Accepted: '+','-')" : null);
         // Generate possible incorrect answers for this module
         
         List<int> incorrectValues = new List<int>();
@@ -6113,9 +6117,25 @@ public class SouvenirModule : MonoBehaviour
             if (sumPossible != expectedTotal && !incorrectValues.Contains(sumPossible))
                 incorrectValues.Add(sumPossible);
         }
-        
+
+        List<string> incorrectSubmittedTernary = new List<string>();
+        while (incorrectSubmittedTernary.Count < 5)
+        {
+            string onePossible = "";
+            var wantedLength = Rnd.Range(Mathf.Max(2, submittedTernary.Length - 1), Mathf.Min(11, Mathf.Max(submittedTernary.Length + 1, 5)));
+            for (var x = 0; x < wantedLength; x++)
+                onePossible += "+-".PickRandom();
+            if (!incorrectSubmittedTernary.Contains(onePossible) && onePossible != submittedTernary)
+            {
+                incorrectSubmittedTernary.Add(onePossible);
+            }
+        }
+
         addQuestions(module,
-            makeQuestion(Question.NegativitySubmittedValue, _Negativity, null, new[] { expectedTotal.ToString() }, incorrectValues.Select(a => a.ToString()).ToArray()));
+            new[] {
+            makeQuestion(Question.NegativitySubmittedValue, _Negativity, null, new[] { expectedTotal.ToString() }, incorrectValues.Select(a => a.ToString()).ToArray()),
+            makeQuestion(Question.NegativitySubmittedTernary, _Negativity, null, new[] { string.IsNullOrEmpty(submittedTernary) ? "(empty)" : submittedTernary }, incorrectSubmittedTernary.ToArray())
+            });
           //makeQuestion(Question.NegativitySubmittedValue, _Negativity, null, new[] { expectedTotal.ToString() }));
 
     }
