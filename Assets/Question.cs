@@ -863,6 +863,8 @@ namespace Souvenir
 
         [SouvenirQuestion("In base 10, what was the value submitted in {0}?", "Negativity", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "0", "9990", "-9990", "-1234", "5678", "-90" })]
         NegativitySubmittedValue,
+        [SouvenirQuestion("Excluding 0s, what was the submitted ternary in {0}?", "Negativity", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "+-", "-++", "++-+-", "++++-", "-----", "+-----++++" })]
+        NegativitySubmittedTernary,
 
         [SouvenirQuestion("What was the acid’s color in {0}?", "Neutralization", AnswerLayout.TwoColumns4Answers, "Yellow", "Green", "Red", "Blue")]
         NeutralizationColor,
