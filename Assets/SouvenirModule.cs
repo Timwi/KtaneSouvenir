@@ -8054,11 +8054,23 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "snookerScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var activeReds = GetIntField(comp, "activeReds").Get(min: 8, max: 10);
+        var fldActiveReds = GetIntField(comp, "activeReds");
+        var activeReds = 0;
+
+        var getNewValue = true;
+        module.OnStrike += delegate { getNewValue = true; return true; };
 
         while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
+        {
+            if (getNewValue)
+            {
+                activeReds = fldActiveReds.Get(min: 8, max: 10);
+                getNewValue = false;
+            }
+            yield return null;
+        }
         _modulesSolved.IncSafe(_Snooker);
+        yield return new WaitForSeconds(.1f);
 
         addQuestion(module, Question.SnookerReds, correctAnswers: new[] { activeReds.ToString() });
     }
