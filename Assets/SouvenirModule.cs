@@ -1942,7 +1942,8 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_7);
 
         var allDisplayedValues = GetListField<int[]>(comp, "displayedValues")
-            .Get(stg => stg.Any(a => a.Length != 3) ? "at least 1 stage's array does not have exactly a length of 3" : null);
+            .Get(stg => stg.Any(a => a.Length != 3) ? "at least 1 stage’s array does not have exactly a length of 3" : null);
+
         // Check if all of the stages have exactly 3 sets of values.
         var allIdxDisplayedOperators = GetListField<int>(comp, "idxOperations").Get(
             idx => !idx.Skip(1).All(a => a >= 0 && a <= 3) ? "After stage 0, at least 1 stage does not have a valid index between 0 and 3 inclusive" : // Check after stage 0 if all indexes are within 0-3 inclusive
@@ -1953,22 +1954,15 @@ public class SouvenirModule : MonoBehaviour
 
         var colorReference = new[] { "red", "green", "blue", "white" };
 
-        for (int x = 0; x < allDisplayedValues.Count; x++)
+        for (var x = 0; x < allDisplayedValues.Count; x++)
         {
             if (x == 0) // Stage 0 is denoted as the initial stage on this module.
             {
                 for (int y = 0; y < 3; y++)
-                    allQuestions.Add(makeQuestion(Question._7InitialValues, _7, new[] { colorReference.ElementAt(y) }, new[] { allDisplayedValues[x][y].ToString() }));
+                    allQuestions.Add(makeQuestion(Question._7InitialValues, _7, new[] { colorReference[y] }, new[] { allDisplayedValues[x][y].ToString() }));
             }
             else
-            {
-                allQuestions.Add(makeQuestion(Question._7LEDColors, _7, new[] { x.ToString() }, new[] { colorReference.ElementAt(allIdxDisplayedOperators.ElementAt(x))}, colorReference));
-                // Comment this portion out to ask fewer overall questions.
-                /*
-                for (int y = 0; y < 3; y++)
-                    allQuestions.Add(makeQuestion(Question._7StageValues, _7, new[] { colorReference.ElementAt(y), x.ToString() }, new[] { allDisplayedValues[x][y].ToString() }));
-                */
-            }
+                allQuestions.Add(makeQuestion(Question._7LedColors, _7, new[] { x.ToString() }, new[] { colorReference[allIdxDisplayedOperators[x]] }, colorReference));
         }
 
         addQuestions(module, allQuestions.ToArray());
@@ -3989,13 +3983,15 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessFlashingArrows(KMBombModule module)
     {
         var comp = GetComponent(module, "FlashingArrowsScript");
+
         var isSolved = false;
         module.OnPass += delegate { isSolved = true; return false; };
         while (!isSolved)
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_FlashingArrows);
+
         var colorReference = GetArrayField<string>(comp, "debugColors").Get(expectedLength: 7);
-        var displayedValue = GetField<int>(comp, "displayNumber").Get(num => num < 0 || num >= 100 ? "Expected the displayed value to be within 0 and 99 inclusive." : null );
+        var displayedValue = GetField<int>(comp, "displayNumber").Get(num => num < 0 || num >= 100 ? "Expected the displayed value to be within 0 and 99 inclusive." : null);
         var idxReferencedArrow = GetField<int>(comp, "idxReferencedArrow").Get(num => num < 0 || num >= 4 ? "Expected the value to be within 0 and 3 inclusive." : null);
         var idxFlashedArrows = GetArrayField<int[]>(comp, "idxColorFlashingArrows").Get(expectedLength: 4);
         var arrowSet = idxFlashedArrows[idxReferencedArrow];
@@ -4006,8 +4002,7 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.FlashingArrowsDisplayedValue, _FlashingArrows, null, new[] { displayedValue.ToString() }),
             makeQuestion(Question.FlashingArrowsReferredArrow, _FlashingArrows, new[] { "before" }, new[] { colorReference[colorBeforeBlack] }, colorReference),
-            makeQuestion(Question.FlashingArrowsReferredArrow, _FlashingArrows, new[] { "after" }, new[] { colorReference[colorAfterBlack] }, colorReference)
-            );
+            makeQuestion(Question.FlashingArrowsReferredArrow, _FlashingArrows, new[] { "after" }, new[] { colorReference[colorAfterBlack] }, colorReference));
     }
 
     private IEnumerable<object> ProcessFlashingLights(KMBombModule module)
@@ -4532,40 +4527,31 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_Homophones);
 
         var selectedWords = GetArrayField<string>(comp, "selectedWords", true).Get(expectedLength: 4);
+
         // Set up a trick to prevent the answer from being obvious
         var allIWords = GetArrayField<string>(comp, "iWords").Get(expectedLength: 10);
         var allLWords = GetArrayField<string>(comp, "lWords").Get(expectedLength: 10);
         var allCWords = GetArrayField<string>(comp, "cWords").Get(expectedLength: 10);
         var allOneWords = GetArrayField<string>(comp, "oneWords").Get(expectedLength: 10);
 
-        List<QandA> possibleQuestions = new List<QandA>();
+        var possibleQuestions = new List<QandA>();
 
         for (int i = 0; i < selectedWords.Length; i++)
         {
             string thisWord = selectedWords[i];
             if (allCWords.Contains(thisWord))
-            {
                 possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, _Homophones, new[] { ordinal(i + 1) }, new[] { thisWord }, selectedWords.Union(allCWords).ToArray()));
-            }
             else if (allLWords.Contains(thisWord))
-            {
                 possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, _Homophones, new[] { ordinal(i + 1) }, new[] { thisWord }, selectedWords.Union(allLWords).ToArray()));
-            }
             else if (allIWords.Contains(thisWord))
-            {
                 possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, _Homophones, new[] { ordinal(i + 1) }, new[] { thisWord }, selectedWords.Union(allIWords).ToArray()));
-            }
             else if (allOneWords.Contains(thisWord))
-            {
                 possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, _Homophones, new[] { ordinal(i + 1) }, new[] { thisWord }, selectedWords.Union(allOneWords).ToArray()));
-            }
             else
-            {
-                throw new AbandonModuleException("The given phrase \"{0}\" is not one of the possible words that can be found in Homophones.", thisWord);
-            }
+                throw new AbandonModuleException("The given phrase “{0}” is not one of the possible words that can be found in Homophones.", thisWord);
         }
 
-        addQuestions(module, possibleQuestions.ToArray());
+        addQuestions(module, possibleQuestions);
     }
 
     private IEnumerable<object> ProcessHorribleMemory(KMBombModule module)
@@ -6163,45 +6149,39 @@ public class SouvenirModule : MonoBehaviour
 
         var convertedNums = GetArrayField<int>(comp, "NumberingConverted").Get();
         var expectedTotal = GetField<int>(comp, "Totale").Get();
-        var submittedTernary = GetField<string>(comp, "Tables").Get(a => a.Any(b => !"+-".Contains(b)) ? "At least 1 character from the submitted ternary is not familar. (Accepted: '+','-')" : null);
+        var submittedTernary = GetField<string>(comp, "Tables").Get(str => str.Any(ch => !"+-".Contains(ch)) ? "At least 1 character from the submitted ternary is not familar. (Accepted: '+','-')" : null);
+
         // Generate possible incorrect answers for this module
-        
-        List<int> incorrectValues = new List<int>();
+        var incorrectValues = new HashSet<int>();
         while (incorrectValues.Count < 5)
         {
             var sumPossible = 0;
-            for (int i = 0; i < convertedNums.Length; i++)
+            for (var i = 0; i < convertedNums.Length; i++)
             {
-                int aValue = convertedNums[i];
-                if (Rnd.value < 0.5f)
+                var aValue = convertedNums[i];
+                if (Rnd.Range(0, 2) != 0)
                     sumPossible += aValue;
                 else
                     sumPossible -= aValue;
             }
-            if (sumPossible != expectedTotal && !incorrectValues.Contains(sumPossible))
+            if (sumPossible != expectedTotal)
                 incorrectValues.Add(sumPossible);
         }
 
-        List<string> incorrectSubmittedTernary = new List<string>();
+        var incorrectSubmittedTernary = new HashSet<string>();
         while (incorrectSubmittedTernary.Count < 5)
         {
-            string onePossible = "";
+            var onePossible = "";
             var wantedLength = Rnd.Range(Mathf.Max(2, submittedTernary.Length - 1), Mathf.Min(11, Mathf.Max(submittedTernary.Length + 1, 5)));
             for (var x = 0; x < wantedLength; x++)
                 onePossible += "+-".PickRandom();
-            if (!incorrectSubmittedTernary.Contains(onePossible) && onePossible != submittedTernary)
-            {
+            if (onePossible != submittedTernary)
                 incorrectSubmittedTernary.Add(onePossible);
-            }
         }
 
         addQuestions(module,
-            new[] {
             makeQuestion(Question.NegativitySubmittedValue, _Negativity, null, new[] { expectedTotal.ToString() }, incorrectValues.Select(a => a.ToString()).ToArray()),
-            makeQuestion(Question.NegativitySubmittedTernary, _Negativity, null, new[] { string.IsNullOrEmpty(submittedTernary) ? "(empty)" : submittedTernary }, incorrectSubmittedTernary.ToArray())
-            });
-          //makeQuestion(Question.NegativitySubmittedValue, _Negativity, null, new[] { expectedTotal.ToString() }));
-
+            makeQuestion(Question.NegativitySubmittedTernary, _Negativity, null, new[] { string.IsNullOrEmpty(submittedTernary) ? "(empty)" : submittedTernary }, incorrectSubmittedTernary.ToArray()));
     }
 
     private IEnumerable<object> ProcessNeutralization(KMBombModule module)
@@ -7018,7 +6998,7 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_PolyhedralMaze);
 
-        addQuestion(module, Question.PolyhedralMazeStartPosition, null, new[] { GetIntField(comp, "_startFace").Get().ToString() });
+        addQuestion(module, Question.PolyhedralMazeStartPosition, correctAnswers: new[] { GetIntField(comp, "_startFace").Get().ToString() });
     }
 
     private IEnumerable<object> ProcessPrimeEncryption(KMBombModule module)
@@ -7029,11 +7009,11 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_PrimeEncryption);
 
-        
         var displayedValue = GetField<int>(comp, "encryption").Get();
         var allPrimeNumbersUsed = GetArrayField<int>(comp, "primeNumbers").Get();
+
         // Generate wrong answers based on a combination of prime numbers determined from the module.
-        List<int> incorrectValues = new List<int>();
+        var incorrectValues = new List<int>();
         while (incorrectValues.Count < 5)
         {
             var onePrime = allPrimeNumbersUsed.PickRandom();
@@ -7046,9 +7026,9 @@ public class SouvenirModule : MonoBehaviour
                 incorrectValues.Add(productPrimes);
         }
 
-        addQuestion(module, Question.PrimeEncryptionDisplayedValue, null,
+        addQuestion(module, Question.PrimeEncryptionDisplayedValue,
             correctAnswers: new[] { displayedValue.ToString() },
-            preferredWrongAnswers: incorrectValues.Select(a => a.ToString()).ToArray());
+            preferredWrongAnswers: incorrectValues.Select(val => val.ToString()).ToArray());
     }
 
     private IEnumerable<object> ProcessProbing(KMBombModule module)

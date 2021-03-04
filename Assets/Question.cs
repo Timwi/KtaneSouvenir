@@ -21,17 +21,13 @@ namespace Souvenir
         [AnswerGenerator.Strings("a-z.")]
         _3DTunnelsTargetNode,
 
-        [SouvenirQuestion("What was {1} channel's initial value in {0}?", "7", AnswerLayout.ThreeColumns6Answers,
+        [SouvenirQuestion("What was the {1} channel’s initial value in {0}?", "7", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(-9, 9)]
         _7InitialValues,
-        [SouvenirQuestion("What was {1} channel's displayed value on stage {2} of {0}?", "7", AnswerLayout.ThreeColumns6Answers,
-            ExampleExtraFormatArguments = new[] { "red", "1", "green", "2", "blue", "3" }, ExampleExtraFormatArgumentGroupSize = 2)]
-        [AnswerGenerator.Integers(-9, 9)]
-        _7StageValues,
-        [SouvenirQuestion("What LED color was shown on stage {1} of {0}?", "7", AnswerLayout.TwoColumns4Answers,
+        [SouvenirQuestion("What LED color was shown in stage {1} of {0}?", "7", AnswerLayout.TwoColumns4Answers,
             ExampleExtraFormatArguments = new[] { "1", "2", "3" }, ExampleExtraFormatArgumentGroupSize = 1, ExampleAnswers = new[] { "red", "blue", "green", "white" })]
-        _7LEDColors,
+        _7LedColors,
 
         [SouvenirQuestion("What was the background color on the {1} stage in {0}?", "Accumulation", AnswerLayout.ThreeColumns6Answers, "Blue", "Brown", "Green", "Grey", "Lime", "Orange", "Pink", "Red", "White", "Yellow",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -421,10 +417,10 @@ namespace Souvenir
         FlagsCountries,
 
         [SouvenirQuestion("What number was displayed on {0}?", "Flashing Arrows", AnswerLayout.ThreeColumns6Answers)]
-        [AnswerGenerator.Integers(0,99)]
+        [AnswerGenerator.Integers(0, 99)]
         FlashingArrowsDisplayedValue,
-        [SouvenirQuestion("What color {1} black flashed from the arrow determined on {0}?", "Flashing Arrows", AnswerLayout.ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { "before", "after" },
-            ExampleExtraFormatArgumentGroupSize = 1, ExampleAnswers = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White" })]
+        [SouvenirQuestion("What color flashed {1} black on the relevant arrow in {0}?", "Flashing Arrows", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White" },
+            ExampleExtraFormatArguments = new[] { "before", "after" }, ExampleExtraFormatArgumentGroupSize = 1)]
         FlashingArrowsReferredArrow,
 
         [SouvenirQuestion("How many times did the {1} LED flash {2} on {0}?", "Flashing Lights", AnswerLayout.ThreeColumns6Answers,
@@ -561,7 +557,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the {1} displayed phrase in {0}?", "Homophones", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth" }, ExampleExtraFormatArgumentGroupSize = 1,
-            ExampleAnswers = new[] {"i", "C", "L", "1", "sees", "leemer", "aye-aye", "One" })]
+            ExampleAnswers = new[] { "i", "C", "L", "1", "sees", "leemer", "aye-aye", "One" })]
         HomophonesDisplayedPhrases,
 
         [SouvenirQuestion("Which was a descriptor shown in {1} in {0}?", "Human Resources", AnswerLayout.TwoColumns4Answers, "Intellectual", "Deviser", "Confidant", "Helper", "Auditor", "Innovator", "Defender", "Chameleon", "Director", "Designer", "Educator", "Advocate", "Manager", "Showman", "Contributor", "Entertainer",
@@ -863,7 +859,7 @@ namespace Souvenir
 
         [SouvenirQuestion("In base 10, what was the value submitted in {0}?", "Negativity", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "0", "9990", "-9990", "-1234", "5678", "-90" })]
         NegativitySubmittedValue,
-        [SouvenirQuestion("Excluding 0s, what was the submitted ternary in {0}?", "Negativity", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "+-", "-++", "++-+-", "++++-", "-----", "+-----++++" })]
+        [SouvenirQuestion("Excluding 0s, what was the submitted balanced ternary in {0}?", "Negativity", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "+-", "-++", "++-+-", "++++-", "-----", "+-----++++" })]
         NegativitySubmittedTernary,
 
         [SouvenirQuestion("What was the acid’s color in {0}?", "Neutralization", AnswerLayout.TwoColumns4Answers, "Yellow", "Green", "Red", "Blue")]
@@ -1447,7 +1443,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         UnfairCipherInstructions,
 
-        [SouvenirQuestion("What was the {1} decrypted instruction in {0}?", "Unfair's Revenge", AnswerLayout.ThreeColumns6Answers, "PCR", "PCG", "PCB", "SCC", "SCM", "SCY", "SUB", "MIT", "CHK", "PRN", "BOB", "REP", "EAT", "STR", "IKE", "SIG", "PVP", "NXP", "PVS", "NXS", "OPP",
+        [SouvenirQuestion("What was the {1} decrypted instruction in {0}?", "Unfair’s Revenge", AnswerLayout.ThreeColumns6Answers, "PCR", "PCG", "PCB", "SCC", "SCM", "SCY", "SUB", "MIT", "CHK", "PRN", "BOB", "REP", "EAT", "STR", "IKE", "SIG", "PVP", "NXP", "PVS", "NXS", "OPP",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         UnfairsRevengeInstructions,
 
