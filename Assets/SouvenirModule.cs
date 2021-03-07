@@ -407,7 +407,7 @@ public class SouvenirModule : MonoBehaviour
         _moduleId = _moduleIdCounter;
         _moduleIdCounter++;
 
-        Debug.LogFormat(@"[Souvenir #{0}] Souvenir version: 2.5", _moduleId);
+        Debug.LogFormat(@"[Souvenir #{0}] Souvenir version: 2.6", _moduleId);
 
         _moduleProcessors = new Dictionary<string, Func<KMBombModule, IEnumerable<object>>>()
         {
@@ -8433,13 +8433,13 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "Stars2Script");
         var fldSolved = GetField<bool>(comp, "ModuleSolved");
+        var originalNumber = GetField<TextMesh>(comp, "Number", isPublic: true).Get().text;
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Stars);
 
-        var costing = GetField<int>(comp, "Costing").Get();
-        addQuestion(module, Question.StarsCenter, correctAnswers: new[] { costing.ToString() });
+        addQuestion(module, Question.StarsCenter, correctAnswers: new[] { originalNumber });
     }
 
     private IEnumerable<object> ProcessStateOfAggregation(KMBombModule module)
