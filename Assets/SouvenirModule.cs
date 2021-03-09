@@ -100,6 +100,7 @@ public class SouvenirModule : MonoBehaviour
     // The values here are the “ModuleType” property on the KMBombModule components.
     const string _1000Words = "OneThousandWords";
     const string _100LevelsOfDefusal = "100LevelsOfDefusal";
+    const string _1DChess = "1DChess";
     const string _3DMaze = "spwiz3DMaze";
     const string _3DTunnels = "3dTunnels";
     const string _7 = "7";
@@ -413,6 +414,7 @@ public class SouvenirModule : MonoBehaviour
         {
             { _1000Words, Process1000Words },
             { _100LevelsOfDefusal, Process100LevelsOfDefusal },
+            { _1DChess, Process1DChess },
             { _3DMaze, Process3DMaze },
             { _3DTunnels, Process3DTunnels },
             { _7, Process7 },
@@ -1881,6 +1883,47 @@ public class SouvenirModule : MonoBehaviour
 
         addQuestions(module, display.Select((ans, i) =>
             makeQuestion(Question._100LevelsOfDefusalLetters, _100LevelsOfDefusal, new[] { ordinal(i + 1) }, new[] { ans.ToString() })));
+    }
+
+    private IEnumerable<object> Process1DChess(KMBombModule module)
+    {
+        var comp = GetComponent(module, "OneDimensionalChessScript");
+        var fldSolved = GetProperty<bool>(comp, "IsSolve", isPublic: true);
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_1DChess);
+
+        var moves = GetListField<string>(comp, "souvenirPositions").Get();
+
+        const string Alphabet = "abcdefghi";
+
+        var preferredWrongAnswers = new string[36];
+        for (int i = 0; i < preferredWrongAnswers.Length; i++)
+        {
+            switch (i % 6)
+            {
+                // King and Rook
+                case 0:
+                case 4:
+                    preferredWrongAnswers[i] = (i % 6 == 0 ? "k" : "r") + "->" + Alphabet.Substring(Rnd.Range(0, 8), 2);
+                    break;
+                // Knight and Bishop
+                case 1:
+                case 3:
+                    preferredWrongAnswers[i] = (i % 6 == 1 ? "n" : "b") + "->" + Alphabet.Substring(Rnd.Range(0, 7), 3).Remove(1, 1);
+                    break;
+                // Pawn and Queen
+                case 2:
+                case 5:
+                    string temp = (i % 6 == 2 ? "p" : "q") + "->" + Alphabet.Substring(Rnd.Range(0, 7), Rnd.Range(2, 3));
+                    preferredWrongAnswers[i] = temp.Length == 3 ? temp.Remove(1, 1) : temp;
+                    break;
+            }
+        }
+
+        for (int i = 0; i < moves.Count; i++)
+            addQuestion(module, Question._1DChessMoves, new[] { new[] { "your first move", "Rustmate's first move", "your second move", "Rustmate's second move", "your third move", "Rustmate's third move", "your fourth move", "Rustmate's fourth move", "your fifth move", "Rustmate's fifth move", "your sixth move", "Rustmate's sixth move", "your seventh move", "Rustmate's seventh move", "your eighth move", "Rustmate's eighth move" }[i] }, correctAnswers: new[] { moves[i].ToLowerInvariant() }, preferredWrongAnswers: preferredWrongAnswers);
     }
 
     private IEnumerable<object> Process3DMaze(KMBombModule module)

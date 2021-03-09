@@ -10,6 +10,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         _100LevelsOfDefusalLetters,
 
+        [SouvenirQuestion("What was {1} in {0}?", "1D Chess", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "n->bd", "n->ge", "n->df", "k->hg", "q->cd", "n->ec", "k->ab", "n->ce", "n->fh", "k->gh", "q->de" },
+            ExampleExtraFormatArguments = new[] { "your first move", "Rustmate's first move", "your second move", "Rustmate's second move", "your third move", "Rustmate's third move", "your fourth move", "Rustmate's fourth move", "your fifth move", "Rustmate's fifth move", "your sixth move", "Rustmate's sixth move", "your seventh move", "Rustmate's seventh move", "your eighth move", "Rustmate's eighth move", }, ExampleExtraFormatArgumentGroupSize = 1)]
+        _1DChessMoves,
+
         [SouvenirQuestion("What were the markings in {0}?", "3D Maze", AnswerLayout.ThreeColumns6Answers, "ABC", "ABD", "ABH", "ACD", "ACH", "ADH", "BCD", "BCH", "BDH", "CDH")]
         _3DMazeMarkings,
 
