@@ -242,6 +242,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the last served coffee in {0}?", "Coffeebucks", AnswerLayout.OneColumn4Answers, "Twix Frappuccino", "The Blue Drink", "Matcha & Espresso Fusion", "Caramel Snickerdoodle Macchiato", "Liquid Cocaine", "S’mores Hot Chocolate", "The Pink Drink", "Grasshopper Frappuccino")]
         CoffeebucksCoffee,
 
+        [SouvenirQuestion("Which coin was flipped in {0}?", "Coinage", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "e4", "h5", "d4", "h4", "c4", "h3", "c3", "g2", "f3", "h1", "f7" })]
+        CoinageFlip,
+
         [SouvenirQuestion("What mangling was applied in {0}?", "Color Braille", AnswerLayout.OneColumn4Answers, "Top row shifted to the right", "Top row shifted to the left", "Middle row shifted to the right", "Middle row shifted to the left", "Bottom row shifted to the right", "Bottom row shifted to the left", "Each letter upside-down", "Each letter horizontally flipped", "Each letter vertically flipped", "Dots are inverted")]
         ColorBrailleMangling,
         [SouvenirQuestion("What was the {1} word in {0}?", "Color Braille", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "advent", "barman", "carrying", "drowning", "holding", "landowner", "mandate", "narrowed", "remain", "shallow", "therefore", "western", "yield" },

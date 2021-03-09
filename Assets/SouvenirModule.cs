@@ -145,6 +145,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Code = "theCodeModule";
     const string _Codenames = "codenames";
     const string _Coffeebucks = "coffeebucks";
+    const string _Coinage = "Coinage";
     const string _ColorBraille = "ColorBrailleModule";
     const string _ColorDecoding = "Color Decoding";
     const string _ColoredKeys = "lgndColoredKeys";
@@ -459,6 +460,7 @@ public class SouvenirModule : MonoBehaviour
             { _Code, ProcessCode },
             { _Codenames, ProcessCodenames },
             { _Coffeebucks, ProcessCoffeebucks },
+            { _Coinage, ProcessCoinage },
             { _ColorBraille, ProcessColorBraille },
             { _ColorDecoding, ProcessColorDecoding },
             { _ColoredKeys, ProcessColoredKeys },
@@ -3095,6 +3097,20 @@ public class SouvenirModule : MonoBehaviour
             coffees[i] = coffees[i].Replace("\n", " ");
 
         addQuestion(module, Question.CoffeebucksCoffee, correctAnswers: new[] { coffees[currCoffee] }, preferredWrongAnswers: coffees);
+    }
+
+    private IEnumerable<object> ProcessCoinage(KMBombModule module)
+    {
+        var comp = GetComponent(module, "CoinageScript");
+        var fldSolved = GetProperty<bool>(comp, "IsSolve", isPublic: true);
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Coinage);
+
+        var coinFlipped = GetField<string>(comp, "souvenirCoin").Get();
+
+        addQuestion(module, Question.CoinageFlip, correctAnswers: new[] { coinFlipped }, preferredWrongAnswers: Enumerable.Range(0, 64).Select(i => "abcdefgh"[i % 8].ToString() + "87654321"[i / 8]).ToArray());
     }
 
     private IEnumerable<object> ProcessColorBraille(KMBombModule module)
