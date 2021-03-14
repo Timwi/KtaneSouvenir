@@ -2559,7 +2559,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessBlackCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "ultimateCipher", Question.BlackCipherAnswer, _BlackCipher);
+        return processColoredCiphers(module, "blackCipher", Question.BlackCipherAnswer, _BlackCipher);
     }
 
     private IEnumerable<object> ProcessBlindMaze(KMBombModule module)
@@ -2635,7 +2635,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessBlueCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "ultimateCipher", Question.BlueCipherAnswer, _BlueCipher);
+        return processColoredCiphers(module, "blueCipher", Question.BlueCipherAnswer, _BlueCipher);
     }
 
     private IEnumerable<object> ProcessBobBarks(KMBombModule module)
@@ -4271,7 +4271,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessGrayCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "ultimateCipher", Question.GrayCipherAnswer, _GrayCipher);
+        return processColoredCiphers(module, "grayCipher", Question.GrayCipherAnswer, _GrayCipher);
     }
 
     private IEnumerable<object> ProcessGreenArrows(KMBombModule module)
@@ -4314,7 +4314,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessGreenCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "ultimateCipher", Question.GreenCipherAnswer, _GreenCipher);
+        return processColoredCiphers(module, "greenCipher", Question.GreenCipherAnswer, _GreenCipher);
     }
 
     private IEnumerable<object> ProcessGridLock(KMBombModule module)
@@ -4850,7 +4850,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessIndigoCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "ultimateCipher", Question.IndigoCipherAnswer, _IndigoCipher);
+        return processColoredCiphers(module, "indigoCipher", Question.IndigoCipherAnswer, _IndigoCipher);
     }
 
     private IEnumerable<object> ProcessiPhone(KMBombModule module)
@@ -6645,7 +6645,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessOrangeCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "ultimateCipher", Question.OrangeCipherAnswer, _OrangeCipher);
+        return processColoredCiphers(module, "orangeCipher", Question.OrangeCipherAnswer, _OrangeCipher);
     }
 
     private IEnumerable<object> ProcessOrderedKeys(KMBombModule module)
@@ -7360,7 +7360,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessRedCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "ultimateCipher", Question.RedCipherAnswer, _RedCipher);
+        return processColoredCiphers(module, "redCipher", Question.RedCipherAnswer, _RedCipher);
     }
 
     private IEnumerable<object> ProcessReformedRoleReversal(KMBombModule module)
@@ -9263,7 +9263,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessVioletCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "ultimateCipher", Question.VioletCipherAnswer, _VioletCipher);
+        return processColoredCiphers(module, "violetCipher", Question.VioletCipherAnswer, _VioletCipher);
     }
 
     private IEnumerable<object> ProcessVisualImpairment(KMBombModule module)
@@ -9359,7 +9359,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessWhiteCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "ultimateCipher", Question.WhiteCipherAnswer, _WhiteCipher);
+        return processColoredCiphers(module, "whiteCipher", Question.WhiteCipherAnswer, _WhiteCipher);
     }
 
     private IEnumerable<object> ProcessWhosOnFirst(KMBombModule module)
@@ -9573,7 +9573,7 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessYellowCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "ultimateCipher", Question.YellowCipherAnswer, _YellowCipher);
+        return processColoredCiphers(module, "yellowCipher", Question.YellowCipherAnswer, _YellowCipher);
     }
 
     private IEnumerable<object> ProcessZoni(KMBombModule module)
