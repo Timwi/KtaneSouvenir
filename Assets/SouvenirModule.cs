@@ -409,7 +409,7 @@ public class SouvenirModule : MonoBehaviour
         _moduleId = _moduleIdCounter;
         _moduleIdCounter++;
 
-        Debug.LogFormat(@"[Souvenir #{0}] Souvenir version: 2.6", _moduleId);
+        Debug.LogFormat(@"[Souvenir #{0}] Souvenir version: 2.7", _moduleId);
 
         _moduleProcessors = new Dictionary<string, Func<KMBombModule, IEnumerable<object>>>()
         {
@@ -1890,42 +1890,17 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> Process1DChess(KMBombModule module)
     {
         var comp = GetComponent(module, "OneDimensionalChessScript");
-        var fldSolved = GetProperty<bool>(comp, "IsSolve", isPublic: true);
+        var fldSolved = GetProperty<bool>(comp, "IsSolved", isPublic: true);
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_1DChess);
 
         var moves = GetListField<string>(comp, "souvenirPositions").Get();
-
-        const string Alphabet = "abcdefghi";
-
-        var preferredWrongAnswers = new string[36];
-        for (int i = 0; i < preferredWrongAnswers.Length; i++)
-        {
-            switch (i % 6)
-            {
-                // King and Rook
-                case 0:
-                case 4:
-                    preferredWrongAnswers[i] = (i % 6 == 0 ? "k" : "r") + "->" + Alphabet.Substring(Rnd.Range(0, 8), 2);
-                    break;
-                // Knight and Bishop
-                case 1:
-                case 3:
-                    preferredWrongAnswers[i] = (i % 6 == 1 ? "n" : "b") + "->" + Alphabet.Substring(Rnd.Range(0, 7), 3).Remove(1, 1);
-                    break;
-                // Pawn and Queen
-                case 2:
-                case 5:
-                    string temp = (i % 6 == 2 ? "p" : "q") + "->" + Alphabet.Substring(Rnd.Range(0, 7), Rnd.Range(2, 3));
-                    preferredWrongAnswers[i] = temp.Length == 3 ? temp.Remove(1, 1) : temp;
-                    break;
-            }
-        }
-
-        for (int i = 0; i < moves.Count; i++)
-            addQuestion(module, Question._1DChessMoves, new[] { new[] { "your first move", "Rustmate's first move", "your second move", "Rustmate's second move", "your third move", "Rustmate's third move", "your fourth move", "Rustmate's fourth move", "your fifth move", "Rustmate's fifth move", "your sixth move", "Rustmate's sixth move", "your seventh move", "Rustmate's seventh move", "your eighth move", "Rustmate's eighth move" }[i] }, correctAnswers: new[] { moves[i].ToLowerInvariant() }, preferredWrongAnswers: preferredWrongAnswers);
+        addQuestions(module, moves.Select((move, ix) =>
+            makeQuestion(Question._1DChessMoves, _1DChess,
+                formatArgs: new[] { new[] { "your first move", "Rustmate’s first move", "your second move", "Rustmate’s second move", "your third move", "Rustmate’s third move", "your fourth move", "Rustmate’s fourth move", "your fifth move", "Rustmate’s fifth move", "your sixth move", "Rustmate’s sixth move", "your seventh move", "Rustmate’s seventh move", "your eighth move", "Rustmate’s eighth move" }[ix] },
+                correctAnswers: new[] { move })));
     }
 
     private IEnumerable<object> Process3DMaze(KMBombModule module)
@@ -3102,15 +3077,15 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessCoinage(KMBombModule module)
     {
         var comp = GetComponent(module, "CoinageScript");
-        var fldSolved = GetProperty<bool>(comp, "IsSolve", isPublic: true);
+        var fldSolved = GetProperty<bool>(comp, "IsSolved", isPublic: true);
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Coinage);
 
-        var coinFlipped = GetField<string>(comp, "souvenirCoin").Get();
-
-        addQuestion(module, Question.CoinageFlip, correctAnswers: new[] { coinFlipped }, preferredWrongAnswers: Enumerable.Range(0, 64).Select(i => "abcdefgh"[i % 8].ToString() + "87654321"[i / 8]).ToArray());
+        addQuestion(module, Question.CoinageFlip,
+            correctAnswers: new[] { GetField<string>(comp, "souvenirCoin").Get() },
+            preferredWrongAnswers: Enumerable.Range(0, 64).Select(i => "abcdefgh"[i % 8].ToString() + "87654321"[i / 8]).ToArray());
     }
 
     private IEnumerable<object> ProcessColorBraille(KMBombModule module)
