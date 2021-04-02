@@ -129,6 +129,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Boxing = "boxing";
     const string _Braille = "BrailleModule";
     const string _BrokenButtons = "BrokenButtonsModule";
+    const string _BrownCipher = "brownCipher";
     const string _BrushStrokes = "brushStrokes";
     const string _Bulb = "TheBulbModule";
     const string _BurglarAlarm = "burglarAlarm";
@@ -444,6 +445,7 @@ public class SouvenirModule : MonoBehaviour
             { _Boxing, ProcessBoxing },
             { _Braille, ProcessBraille },
             { _BrokenButtons, ProcessBrokenButtons },
+            { _BrownCipher, ProcessBrownCipher },
             { _BrushStrokes, ProcessBrushStrokes },
             { _Bulb, ProcessBulb },
             { _BurglarAlarm, ProcessBurglarAlarm },
@@ -1786,7 +1788,7 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, makeQuestion(question, moduleCode, correctAnswers: new[] { origin }, preferredWrongAnswers: states));
     }
 
-    // Used by Red, Orange, Yellow, Green, Blue, Indigo, Violet, White, Gray, Black, and Ultimate Cipher
+    // Used by Red, Orange, Yellow, Green, Blue, Indigo, Violet, White, Gray, Black, Brown and Ultimate Cipher
     private IEnumerable<object> processColoredCiphers(KMBombModule module, string componentName, Question question, string moduleId)
     {
         var comp = GetComponent(module, componentName);
@@ -2735,6 +2737,11 @@ public class SouvenirModule : MonoBehaviour
 
         // skip the literally blank buttons.
         addQuestions(module, pressed.Select((p, i) => p.Length == 0 ? null : makeQuestion(Question.BrokenButtons, _BrokenButtons, new[] { ordinal(i + 1) }, new[] { p }, pressed.Except(new[] { "" }).ToArray())));
+    }
+    
+    private IEnumerable<object> ProcessBrownCipher(KMBombModule module)
+    {
+        return processColoredCiphers(module, "brownCipher", Question.BrownCipherAnswer, _BrownCipher);
     }
 
     private IEnumerable<object> ProcessBrushStrokes(KMBombModule module)
