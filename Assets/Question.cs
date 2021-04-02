@@ -723,10 +723,10 @@ namespace Souvenir
         MaritimeFlagsCallsign,
 
         [SouvenirQuestion("What was the answer in {0}?", "Mashematics", AnswerLayout.ThreeColumns6Answers, null)]
-        [AnswerGenerator.Integers(0, 100)]
+        [AnswerGenerator.Integers(0, 99)]
         MashematicsAnswer,
         [SouvenirQuestion("What was the {1} number in the calculation in {0}?", "Mashematics", AnswerLayout.ThreeColumns6Answers, null, ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        [AnswerGenerator.Integers(0, 100)]
+        [AnswerGenerator.Integers(0, 99)]
         MashematicsCalculation,
 
         [SouvenirQuestion("Which word was part of the latest access code in {0}?", "Matrix", AnswerLayout.TwoColumns4Answers, null, AddThe = true)]
