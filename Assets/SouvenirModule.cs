@@ -234,6 +234,7 @@ public class SouvenirModule : MonoBehaviour
     const string _MandMs = "MandMs";
     const string _MandNs = "MandNs";
     const string _MaritimeFlags = "MaritimeFlagsModule";
+    const string _Mashematics = "mashematics";
     const string _Matrix = "matrix";
     const string _Maze = "Maze";
     const string _Maze3 = "maze3";
@@ -551,6 +552,7 @@ public class SouvenirModule : MonoBehaviour
             { _MandMs, ProcessMandMs },
             { _MandNs, ProcessMandNs },
             { _MaritimeFlags, ProcessMaritimeFlags },
+            { _Mashematics, ProcessMashematics },
             { _Matrix, ProcessMatrix },
             { _Maze, ProcessMaze },
             { _Maze3, ProcessMaze3 },
@@ -4150,9 +4152,9 @@ public class SouvenirModule : MonoBehaviour
         var questions = new List<QandA>();
         for (int i = 0; i < 12; i++)
         {
-            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownAnswer, _ForgetsUltimateShowdown, new[]{ordinal(i + 1)}, new[]{answer[i].ToString()}, Enumerable.Range(0,9).Where(x => x != int.Parse(answer[i].ToString())).Select(x => x.ToString()).ToArray()));
-            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownBottom, _ForgetsUltimateShowdown, new[]{ordinal(i + 1)}, new[]{bottom[i].ToString()}, Enumerable.Range(0,9).Where(x => x != int.Parse(bottom[i].ToString())).Select(x => x.ToString()).ToArray()));
-            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownInitial, _ForgetsUltimateShowdown, new[]{ordinal(i + 1)}, new[]{initial[i].ToString()}, Enumerable.Range(0,9).Where(x => x != int.Parse(initial[i].ToString())).Select(x => x.ToString()).ToArray()));
+            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownAnswer, _ForgetsUltimateShowdown, new[]{ordinal(i + 1)}, new[]{answer[i].ToString()}, Enumerable.Range(0,10).Where(x => x != int.Parse(answer[i].ToString())).Select(x => x.ToString()).ToArray()));
+            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownBottom, _ForgetsUltimateShowdown, new[]{ordinal(i + 1)}, new[]{bottom[i].ToString()}, Enumerable.Range(0,10).Where(x => x != int.Parse(bottom[i].ToString())).Select(x => x.ToString()).ToArray()));
+            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownInitial, _ForgetsUltimateShowdown, new[]{ordinal(i + 1)}, new[]{initial[i].ToString()}, Enumerable.Range(0,10).Where(x => x != int.Parse(initial[i].ToString())).Select(x => x.ToString()).ToArray()));
         }
         for (int i = 0; i < 6; i++)
         {
@@ -5461,6 +5463,37 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.MaritimeFlagsBearing, _MaritimeFlags, correctAnswers: new[] { bearing.ToString() }),
             makeQuestion(Question.MaritimeFlagsCallsign, _MaritimeFlags, correctAnswers: new[] { callsign.ToLowerInvariant() }));
+    }
+
+    private IEnumerable<object> ProcessMashematics(KMBombModule module)
+    {
+        var comp = GetComponent(module, "mashematicsScript");
+        var fldSolved = GetField<bool>(comp, "isSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        
+        _modulesSolved.IncSafe(_Mashematics);
+        var numberClass = GetField<object>(comp, "number").Get();
+        var method = GetMethod<int>(numberClass, "GetNumberOfRequiredPush", numParameters: 0, isPublic: true);
+
+        var answer = method.Invoke();
+        var number1 = GetField<int>(numberClass, "Number1", isPublic: true).Get();
+        var number2 = GetField<int>(numberClass, "Number2", isPublic: true).Get();
+        var number3 = GetField<int>(numberClass, "Number3", isPublic: true).Get();
+
+        var questions = new List<QandA>
+        {
+            makeQuestion(Question.MashematicsAnswer, _Mashematics, correctAnswers: new[] {answer.ToString()},
+                preferredWrongAnswers: Enumerable.Range(0, 100).Where(x => x != answer).Select(x => x.ToString())
+                    .ToArray())
+        };
+        for (int i = 0; i < 3; i++)
+        {
+            var number = i == 0 ? number1 : (i == 1 ? number2 : number3);
+            questions.Add(makeQuestion(Question.MashematicsCalculation, _Mashematics, new[]{ordinal(i+1)}, correctAnswers: new[]{number.ToString()}, preferredWrongAnswers: Enumerable.Range(0,100).Where(x => x != number).Select(x => x.ToString()).ToArray()));
+        }
+        addQuestions(module, questions);
     }
 
     private IEnumerable<object> ProcessMatrix(KMBombModule module)
