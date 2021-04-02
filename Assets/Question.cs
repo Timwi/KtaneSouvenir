@@ -458,7 +458,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 9)]
         ForgetsUltimateShowdownBottom,
-        [SouvenirQuestion("What was the {1} method used in {0}?", "Forget’s Ultimate Showdown", AnswerLayout.OneColumn4Answers, null, "Forget Me Not", "Simon’s Stages", "Forget Me Later", "Forget Infinity", "A>N<D", "Forget Me Now", "Forget Everything", "Forget Us Not",
+        [SouvenirQuestion("What was the {1} method used in {0}?", "Forget’s Ultimate Showdown", AnswerLayout.OneColumn4Answers, "Forget Me Not", "Simon’s Stages", "Forget Me Later", "Forget Infinity", "A>N<D", "Forget Me Now", "Forget Everything", "Forget Us Not",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ForgetsUltimateShowdownMethod,
 

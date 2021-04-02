@@ -4137,11 +4137,6 @@ public class SouvenirModule : MonoBehaviour
         if (methods.Count != 6)
             throw new AbandonModuleException("‘methods’ had an invalid length: {0}, expected 6", methods.Count);
 
-        var possibleMethods = new[]
-        {
-            "Forget Me Not", "Simon's Stages", "Forget Me Later", "Forget Infinity", "A>N<D", "Forget Me Now",
-            "Forget Everything", "Forget Us Not"
-        };
         var answer = GetField<string>(comp, "_answer").Get();
         var initial = GetField<string>(comp, "_initialNumber").Get();
         var bottom = GetField<string>(comp, "_bottomNumber").Get();
@@ -4155,7 +4150,7 @@ public class SouvenirModule : MonoBehaviour
             questions.Add(makeQuestion(Question.ForgetsUltimateShowdownInitial, _ForgetsUltimateShowdown, new[] { ordinal(i + 1) }, new[] { initial[i].ToString() }));
         }
         for (int i = 0; i < 6; i++)
-            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownMethod, _ForgetsUltimateShowdown, new[] { ordinal(i + 1) }, new[] { methodNames[i].Replace("'", "’") }, possibleMethods));
+            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownMethod, _ForgetsUltimateShowdown, new[] { ordinal(i + 1) }, new[] { methodNames[i].Replace("'", "’") }));
         addQuestions(module, questions);
     }
 
