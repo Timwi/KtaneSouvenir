@@ -2742,7 +2742,7 @@ public class SouvenirModule : MonoBehaviour
         // skip the literally blank buttons.
         addQuestions(module, pressed.Select((p, i) => p.Length == 0 ? null : makeQuestion(Question.BrokenButtons, _BrokenButtons, new[] { ordinal(i + 1) }, new[] { p }, pressed.Except(new[] { "" }).ToArray())));
     }
-    
+
     private IEnumerable<object> ProcessBrownCipher(KMBombModule module)
     {
         return processColoredCiphers(module, "brownCipher", Question.BrownCipherAnswer, _BrownCipher);
@@ -4132,12 +4132,10 @@ public class SouvenirModule : MonoBehaviour
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
-        
+
         _modulesSolved.IncSafe(_ForgetsUltimateShowdown);
         if (methods.Count != 6)
-        {
-            throw new AbandonModuleException("'methods' had an invalid length: {0}, expected 6", methods.Count);
-        }
+            throw new AbandonModuleException("‘methods’ had an invalid length: {0}, expected 6", methods.Count);
 
         var possibleMethods = new[]
         {
@@ -4152,14 +4150,12 @@ public class SouvenirModule : MonoBehaviour
         var questions = new List<QandA>();
         for (int i = 0; i < 12; i++)
         {
-            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownAnswer, _ForgetsUltimateShowdown, new[]{ordinal(i + 1)}, new[]{answer[i].ToString()}, Enumerable.Range(0,10).Where(x => x != int.Parse(answer[i].ToString())).Select(x => x.ToString()).ToArray()));
-            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownBottom, _ForgetsUltimateShowdown, new[]{ordinal(i + 1)}, new[]{bottom[i].ToString()}, Enumerable.Range(0,10).Where(x => x != int.Parse(bottom[i].ToString())).Select(x => x.ToString()).ToArray()));
-            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownInitial, _ForgetsUltimateShowdown, new[]{ordinal(i + 1)}, new[]{initial[i].ToString()}, Enumerable.Range(0,10).Where(x => x != int.Parse(initial[i].ToString())).Select(x => x.ToString()).ToArray()));
+            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownAnswer, _ForgetsUltimateShowdown, new[] { ordinal(i + 1) }, new[] { answer[i].ToString() }));
+            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownBottom, _ForgetsUltimateShowdown, new[] { ordinal(i + 1) }, new[] { bottom[i].ToString() }));
+            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownInitial, _ForgetsUltimateShowdown, new[] { ordinal(i + 1) }, new[] { initial[i].ToString() }));
         }
         for (int i = 0; i < 6; i++)
-        {
-            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownMethod, _ForgetsUltimateShowdown, new[]{ordinal(i + 1)}, new[]{methodNames[i]}, possibleMethods.Where(x => x != methodNames[i]).ToArray()));
-        }
+            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownMethod, _ForgetsUltimateShowdown, new[] { ordinal(i + 1) }, new[] { methodNames[i].Replace("'", "’") }, possibleMethods));
         addQuestions(module, questions);
     }
 
@@ -5472,26 +5468,19 @@ public class SouvenirModule : MonoBehaviour
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
-        
+
         _modulesSolved.IncSafe(_Mashematics);
         var numberClass = GetField<object>(comp, "number").Get();
-        var method = GetMethod<int>(numberClass, "GetNumberOfRequiredPush", numParameters: 0, isPublic: true);
-
-        var answer = method.Invoke();
+        var answer = GetMethod<int>(numberClass, "GetNumberOfRequiredPush", numParameters: 0, isPublic: true).Invoke();
         var number1 = GetField<int>(numberClass, "Number1", isPublic: true).Get();
         var number2 = GetField<int>(numberClass, "Number2", isPublic: true).Get();
         var number3 = GetField<int>(numberClass, "Number3", isPublic: true).Get();
 
-        var questions = new List<QandA>
-        {
-            makeQuestion(Question.MashematicsAnswer, _Mashematics, correctAnswers: new[] {answer.ToString()},
-                preferredWrongAnswers: Enumerable.Range(0, 100).Where(x => x != answer).Select(x => x.ToString())
-                    .ToArray())
-        };
+        var questions = new List<QandA> { makeQuestion(Question.MashematicsAnswer, _Mashematics, correctAnswers: new[] { answer.ToString() }) };
         for (int i = 0; i < 3; i++)
         {
             var number = i == 0 ? number1 : (i == 1 ? number2 : number3);
-            questions.Add(makeQuestion(Question.MashematicsCalculation, _Mashematics, new[]{ordinal(i+1)}, correctAnswers: new[]{number.ToString()}, preferredWrongAnswers: Enumerable.Range(0,100).Where(x => x != number).Select(x => x.ToString()).ToArray()));
+            questions.Add(makeQuestion(Question.MashematicsCalculation, _Mashematics, new[] { ordinal(i + 1) }, correctAnswers: new[] { number.ToString() }));
         }
         addQuestions(module, questions);
     }

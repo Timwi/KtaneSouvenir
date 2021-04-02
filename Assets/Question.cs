@@ -177,7 +177,7 @@ namespace Souvenir
         [SouvenirQuestion("What was the {1} correct button you pressed in {0}?", "Broken Buttons", AnswerLayout.ThreeColumns6Answers, "bomb", "blast", "boom", "burst", "wire", "button", "module", "light", "led", "switch", "RJ-45", "DVI-D", "RCA", "PS/2", "serial", "port", "row", "column", "one", "two", "three", "four", "five", "six", "seven", "eight", "size", "this", "that", "other", "submit", "abort", "drop", "thing", "blank", "broken", "too", "to", "yes", "see", "sea", "c", "wait", "word", "bob", "no", "not", "first", "hold", "late", "fail",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         BrokenButtons,
-        
+
         [SouvenirQuestion("What was the answer in {0}?", "Brown Cipher", AnswerLayout.ThreeColumns6Answers, null)]
         BrownCipherAnswer,
 
@@ -445,14 +445,21 @@ namespace Souvenir
         [SouvenirQuestion("What figure was used during stage {1} in {0}?", "Forget Any Color", AnswerLayout.ThreeColumns6Answers, "LLLMR", "LMMMR", "LMRRR", "LMMRR", "LLMRR", "LLMMR",
             ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ForgetAnyColorSequence,
-        
-        [SouvenirQuestion("What was the {1} digit of the answer in {0}?", "Forget's Ultimate Showdown", AnswerLayout.ThreeColumns6Answers, null)]
+
+        [SouvenirQuestion("What was the {1} digit of the answer in {0}?", "Forget’s Ultimate Showdown", AnswerLayout.ThreeColumns6Answers, null,
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 9)]
         ForgetsUltimateShowdownAnswer,
-        [SouvenirQuestion("What was the {1} digit of the initial number in {0}?", "Forget's Ultimate Showdown", AnswerLayout.ThreeColumns6Answers, null)]
+        [SouvenirQuestion("What was the {1} digit of the initial number in {0}?", "Forget’s Ultimate Showdown", AnswerLayout.ThreeColumns6Answers, null,
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 9)]
         ForgetsUltimateShowdownInitial,
-        [SouvenirQuestion("What was the {1} digit of the bottom number in {0}?", "Forget's Ultimate Showdown", AnswerLayout.ThreeColumns6Answers, null)]
+        [SouvenirQuestion("What was the {1} digit of the bottom number in {0}?", "Forget’s Ultimate Showdown", AnswerLayout.ThreeColumns6Answers, null,
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 9)]
         ForgetsUltimateShowdownBottom,
-        [SouvenirQuestion("What was the {1} method used in {0}?", "Forget's Ultimate Showdown", AnswerLayout.OneColumn4Answers, null)]
+        [SouvenirQuestion("What was the {1} method used in {0}?", "Forget’s Ultimate Showdown", AnswerLayout.OneColumn4Answers, null, "Forget Me Not", "Simon’s Stages", "Forget Me Later", "Forget Infinity", "A>N<D", "Forget Me Now", "Forget Everything", "Forget Us Not",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ForgetsUltimateShowdownMethod,
 
         [SouvenirQuestion("What number was on the gear during stage {1} in {0}?", "Forget the Colors", AnswerLayout.ThreeColumns6Answers,
@@ -714,12 +721,14 @@ namespace Souvenir
 
         [SouvenirQuestion("Which callsign was signalled in {0}?", "Maritime Flags", AnswerLayout.TwoColumns4Answers, "1stmate", "2ndmate", "3rdmate", "abandon", "admiral", "advance", "aground", "allides", "anchors", "athwart", "azimuth", "bailers", "ballast", "barrack", "beached", "beacons", "beamend", "beamsea", "bearing", "beating", "belayed", "bermuda", "bobstay", "boilers", "bollard", "bonnets", "boomkin", "bounder", "bowline", "brailed", "breadth", "bridges", "brigged", "bringto", "bulwark", "bumboat", "bumpkin", "burthen", "caboose", "capsize", "capstan", "captain", "caravel", "careens", "carrack", "carrier", "catboat", "cathead", "chained", "channel", "charley", "charter", "citadel", "cleared", "cleated", "clinker", "clipper", "coaming", "coasted", "consort", "convoys", "corinth", "cotchel", "counter", "cranzes", "crewing", "cringle", "crojack", "cruiser", "cutters", "dandies", "deadrun", "debunks", "derrick", "dipping", "disrate", "dogvane", "doldrum", "dolphin", "draught", "drifter", "drogues", "drydock", "dunnage", "dunsels", "earings", "echelon", "embayed", "ensigns", "escorts", "fairway", "falkusa", "fantail", "fardage", "fathoms", "fenders", "ferries", "fitting", "flanked", "flaring", "flattop", "flemish", "floated", "floored", "flotsam", "folding", "follows", "forcing", "forward", "foulies", "founder", "framing", "freight", "frigate", "funnels", "furling", "galleon", "galleys", "galliot", "gangway", "garbled", "general", "georges", "ghosted", "ginpole", "giveway", "gondola", "graving", "gripies", "grounds", "growler", "guineas", "gundeck", "gunport", "gunwale", "halyard", "hammock", "hampers", "hangars", "harbors", "harbour", "hauling", "hawsers", "heading", "headsea", "heaving", "herring", "hogging", "holiday", "huffler", "inboard", "inirons", "inshore", "instays", "inwater", "inwayof", "jackies", "jacktar", "jennies", "jetties", "jiggers", "joggles", "jollies", "juryrig", "keelson", "kellets", "kicking", "killick", "kitchen", "lanyard", "laydays", "lazaret", "leehelm", "leeside", "leeward", "liberty", "lighter", "lizards", "loading", "lockers", "lofting", "lolling", "lookout", "lubbers", "luffing", "luggers", "lugsail", "maewest", "manowar", "marconi", "mariner", "matelot", "mizzens", "mooring", "mousing", "narrows", "nippers", "officer", "offpier", "oilskin", "oldsalt", "onboard", "oreboat", "outhaul", "outward", "painter", "panting", "parcels", "parleys", "parrels", "passage", "pelagic", "pendant", "pennant", "pickets", "pinnace", "pintles", "pirates", "pivoted", "pursers", "pursued", "quarter", "quaying", "rabbets", "ratline", "reduced", "reefers", "repairs", "rigging", "ripraps", "rompers", "rowlock", "rudders", "ruffles", "rummage", "sagging", "sailors", "salties", "salvors", "sampans", "sampson", "sculled", "scupper", "scuttle", "seacock", "sealing", "seekers", "serving", "sextant", "shelter", "shipped", "shiprig", "sickbay", "skipper", "skysail", "slinged", "slipway", "snagged", "snotter", "spliced", "splices", "sponson", "sponsor", "springs", "squares", "stackie", "standon", "starter", "station", "steamer", "steered", "steeves", "steward", "stopper", "stovein", "stowage", "strikes", "sunfish", "swimmie", "systems", "tacking", "thwarts", "tinclad", "tompion", "tonnage", "topmast", "topsail", "torpedo", "tossers", "trading", "traffic", "tramper", "transom", "trawler", "trenail", "trennel", "trimmer", "trooper", "trunnel", "tugboat", "turntwo", "unships", "upbound", "vessels", "voicing", "voyager", "weather", "whalers", "wharves", "whelkie", "whistle", "winches", "windage", "working", "yardarm")]
         MaritimeFlagsCallsign,
-        
+
         [SouvenirQuestion("What was the answer in {0}?", "Mashematics", AnswerLayout.ThreeColumns6Answers, null)]
+        [AnswerGenerator.Integers(0, 100)]
         MashematicsAnswer,
-        [SouvenirQuestion("What was the {1} number in the calculation in {0}?", "Mashematics", AnswerLayout.ThreeColumns6Answers, null)]
+        [SouvenirQuestion("What was the {1} number in the calculation in {0}?", "Mashematics", AnswerLayout.ThreeColumns6Answers, null, ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 100)]
         MashematicsCalculation,
-        
+
         [SouvenirQuestion("Which word was part of the latest access code in {0}?", "Matrix", AnswerLayout.TwoColumns4Answers, null, AddThe = true)]
         MatrixAccessCode,
         [SouvenirQuestion("What was the glitched word in {0}?", "Matrix", AnswerLayout.TwoColumns4Answers, null, AddThe = true)]
