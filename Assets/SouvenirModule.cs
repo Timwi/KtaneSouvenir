@@ -4142,12 +4142,18 @@ public class SouvenirModule : MonoBehaviour
         var bottom = GetField<string>(comp, "_bottomNumber").Get();
         var methodNames = methods.Cast<object>().Select(x => GetProperty<string>(x, "Name", isPublic: true).Get()).ToList();
 
+        var used = Rnd.Range(0, 3);
+        var questionUsed = used == 0
+            ? Question.ForgetsUltimateShowdownAnswer
+            : (used == 1 ? Question.ForgetsUltimateShowdownBottom : Question.ForgetsUltimateShowdownInitial);
+        var numberUsed = used == 0
+            ? answer
+            : (used == 1 ? bottom : initial);
+        
         var questions = new List<QandA>();
         for (int i = 0; i < 12; i++)
         {
-            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownAnswer, _ForgetsUltimateShowdown, new[] { ordinal(i + 1) }, new[] { answer[i].ToString() }));
-            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownBottom, _ForgetsUltimateShowdown, new[] { ordinal(i + 1) }, new[] { bottom[i].ToString() }));
-            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownInitial, _ForgetsUltimateShowdown, new[] { ordinal(i + 1) }, new[] { initial[i].ToString() }));
+            questions.Add(makeQuestion(questionUsed, _ForgetsUltimateShowdown, new[] { ordinal(i + 1) }, new[] { numberUsed[i].ToString() }));
         }
         for (int i = 0; i < 6; i++)
             questions.Add(makeQuestion(Question.ForgetsUltimateShowdownMethod, _ForgetsUltimateShowdown, new[] { ordinal(i + 1) }, new[] { methodNames[i].Replace("'", "’") }));
@@ -7364,7 +7370,6 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessRecoloredSwitches(KMBombModule module)
     {
-        throw new AbandonModuleException("Recolored Switches support is temporarily disabled after a change was made to the module.");
         var comp = GetComponent(module, "Recolored_Switches");
 
         var isSolved = false;
@@ -7378,7 +7383,7 @@ public class SouvenirModule : MonoBehaviour
             { 'R', "red" },
             { 'G', "green" },
             { 'B', "blue" },
-            { 'T', "turquoise" },
+            { 'C', "cyan" },
             { 'O', "orange" },
             { 'P', "purple" },
             { 'W', "white" }
