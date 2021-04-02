@@ -445,6 +445,15 @@ namespace Souvenir
         [SouvenirQuestion("What figure was used during stage {1} in {0}?", "Forget Any Color", AnswerLayout.ThreeColumns6Answers, "LLLMR", "LMMMR", "LMRRR", "LMMRR", "LLMRR", "LLMMR",
             ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ForgetAnyColorSequence,
+        
+        [SouvenirQuestion("What was the {1} digit of the answer in {0}", "Forget's Ultimate Showdown", AnswerLayout.ThreeColumns6Answers, null)]
+        ForgetsUltimateShowdownAnswer,
+        [SouvenirQuestion("What was the {1} digit of the initial number in {0}", "Forget's Ultimate Showdown", AnswerLayout.ThreeColumns6Answers, null)]
+        ForgetsUltimateShowdownInitial,
+        [SouvenirQuestion("What was the {1} digit of the bottom number in {0}", "Forget's Ultimate Showdown", AnswerLayout.ThreeColumns6Answers, null)]
+        ForgetsUltimateShowdownBottom,
+        [SouvenirQuestion("What was the {1} method used in {0}", "Forget's Ultimate Showdown", AnswerLayout.OneColumn4Answers, null)]
+        ForgetsUltimateShowdownMethod,
 
         [SouvenirQuestion("What number was on the gear during stage {1} in {0}?", "Forget the Colors", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }, ExampleExtraFormatArgumentGroupSize = 1)]

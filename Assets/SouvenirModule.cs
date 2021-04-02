@@ -186,6 +186,7 @@ public class SouvenirModule : MonoBehaviour
     const string _FlashingArrows = "flashingArrowsModule";
     const string _FlashingLights = "flashingLights";
     const string _ForgetAnyColor = "ForgetAnyColor";
+    const string _ForgetsUltimateShowdown = "ForgetsUltimateShowdownModule";
     const string _ForgetTheColors = "ForgetTheColors";
     const string _FreeParking = "freeParking";
     const string _Functions = "qFunctions";
@@ -502,6 +503,7 @@ public class SouvenirModule : MonoBehaviour
             { _FlashingArrows, ProcessFlashingArrows },
             { _FlashingLights, ProcessFlashingLights },
             { _ForgetAnyColor, ProcessForgetAnyColor },
+            { _ForgetsUltimateShowdown, ProcessForgetsUltimateShowdown },
             { _ForgetTheColors, ProcessForgetTheColors },
             { _FreeParking, ProcessFreeParking },
             { _Functions, ProcessFunctions },
@@ -4118,6 +4120,45 @@ public class SouvenirModule : MonoBehaviour
                 correctAnswers: new[] { correctCylinder }, preferredWrongAnswers: preferredCylinders.ToArray()),
             makeQuestion(Question.ForgetAnyColorSequence, _ForgetAnyColor, new[] { (randomStage + 1).ToString() },
                 correctAnswers: new[] { figureNames[figures[randomStage]] }, preferredWrongAnswers: figureNames));
+    }
+
+    private IEnumerable<object> ProcessForgetsUltimateShowdown(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ForgetsUltimateShowdownScript");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+        var methods = GetField<IList>(comp, "_usedMethods").Get();
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        
+        _modulesSolved.IncSafe(_ForgetsUltimateShowdown);
+        if (methods.Count != 6)
+        {
+            throw new AbandonModuleException("'methods' had an invalid length: {0}, expected 6", methods.Count);
+        }
+
+        var possibleMethods = new[]
+        {
+            "Forget Me Not", "Simon's Stages", "Forget Me Later", "Forget Infinity", "A>N<D", "Forget Me Now",
+            "Forget Everything", "Forget Us Not"
+        };
+        var answer = GetField<string>(comp, "_answer").Get();
+        var initial = GetField<string>(comp, "_initialNumber").Get();
+        var bottom = GetField<string>(comp, "_bottomNumber").Get();
+        var methodNames = methods.Cast<object>().Select(x => GetProperty<string>(x, "Name", isPublic: true).Get()).ToList();
+
+        var questions = new List<QandA>();
+        for (int i = 0; i < 12; i++)
+        {
+            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownAnswer, _ForgetsUltimateShowdown, new[]{ordinal(i + 1)}, new[]{answer[i].ToString()}, Enumerable.Range(0,9).Where(x => x != int.Parse(answer[i].ToString())).Select(x => x.ToString()).ToArray()));
+            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownBottom, _ForgetsUltimateShowdown, new[]{ordinal(i + 1)}, new[]{bottom[i].ToString()}, Enumerable.Range(0,9).Where(x => x != int.Parse(bottom[i].ToString())).Select(x => x.ToString()).ToArray()));
+            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownInitial, _ForgetsUltimateShowdown, new[]{ordinal(i + 1)}, new[]{initial[i].ToString()}, Enumerable.Range(0,9).Where(x => x != int.Parse(initial[i].ToString())).Select(x => x.ToString()).ToArray()));
+        }
+        for (int i = 0; i < 6; i++)
+        {
+            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownMethod, _ForgetsUltimateShowdown, new[]{ordinal(i + 1)}, new[]{methodNames[i]}, possibleMethods.Where(x => x != methodNames[i]).ToArray()));
+        }
+        addQuestions(module, questions);
     }
 
     private IEnumerable<object> ProcessForgetTheColors(KMBombModule module)
