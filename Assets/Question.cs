@@ -261,6 +261,19 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "appeared", "first", "appeared", "second", "appeared", "third", "did not appear", "first", "did not appear", "second", "did not appear", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
         ColorDecodingIndicatorColors,
 
+        [SouvenirQuestion("What was the submitted score in {0}?", "Colors Maximization",
+            AnswerLayout.ThreeColumns6Answers)]
+        ColorsMaximizationSubmittedScore,
+        [SouvenirQuestion("What color was submitted as part of the solution in {0}?", "Colors Maximization",
+            AnswerLayout.TwoColumns4Answers)]
+        ColorsMaximizationSubmittedColor,
+        [SouvenirQuestion("What color was not submitted as part of the solution in {0}?", "Colors Maximization",
+            AnswerLayout.TwoColumns4Answers)]
+        ColorsMaximizationNotSubmittedColor,
+        [SouvenirQuestion("How many buttons were {1} in {0}?", "Colors Maximization",
+            AnswerLayout.ThreeColumns6Answers)]
+        ColorsMaximizationColorCount,
+
         [SouvenirQuestion("What was the displayed word in {0}?", "Colored Keys", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "blue", "white" })]
         ColoredKeysDisplayWord,
         [SouvenirQuestion("What was the displayed word’s color in {0}?", "Colored Keys", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "blue", "white" })]

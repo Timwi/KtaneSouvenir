@@ -149,6 +149,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Coinage = "Coinage";
     const string _ColorBraille = "ColorBrailleModule";
     const string _ColorDecoding = "Color Decoding";
+    const string _ColorsMaximization = "colors_maximization";
     const string _ColoredKeys = "lgndColoredKeys";
     const string _ColoredSquares = "ColoredSquaresModule";
     const string _ColoredSwitches = "ColoredSwitchesModule";
@@ -467,6 +468,7 @@ public class SouvenirModule : MonoBehaviour
             { _Coinage, ProcessCoinage },
             { _ColorBraille, ProcessColorBraille },
             { _ColorDecoding, ProcessColorDecoding },
+            { _ColorsMaximization, ProcessColorsMaximization },
             { _ColoredKeys, ProcessColoredKeys },
             { _ColoredSquares, ProcessColoredSquares },
             { _ColoredSwitches, ProcessColoredSwitches },
@@ -3228,6 +3230,66 @@ public class SouvenirModule : MonoBehaviour
              colors[stage].Length <= 2 ? makeQuestion(Question.ColorDecodingIndicatorColors, _ColorDecoding, new[] { "appeared", ordinal(stage + 1) }, colors[stage]) : null,
              colors[stage].Length >= 3 ? makeQuestion(Question.ColorDecodingIndicatorColors, _ColorDecoding, new[] { "did not appear", ordinal(stage + 1) }, colorNameMapping.Values.Except(colors[stage]).ToArray()) : null,
              makeQuestion(Question.ColorDecodingIndicatorPattern, _ColorDecoding, new[] { ordinal(stage + 1) }, new[] { patterns[stage] }))));
+    }
+
+    private IEnumerable<object> ProcessColorsMaximization(KMBombModule module)
+    {
+        Component comp = GetComponent(module, "ColorsMaximizationModule");
+        PropertyInfo<bool> fldPassed = GetProperty<bool>(comp, "passed", true);
+        while (!fldPassed.Get()) yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ColorsMaximization);
+        List<QandA> questions = new List<QandA>();
+        int submittedScore = GetProperty<int>(comp, "submittedScore", true).Get();
+        int[] scorePreferredWrongAnswers = new int[5];
+        {
+            int min = submittedScore;
+            int max = submittedScore;
+            int discentsCount = Rnd.Range(0, scorePreferredWrongAnswers.Length + 1);
+            for (int i = 0; i < scorePreferredWrongAnswers.Length; i++) {
+                int diff = Rnd.Range(1, 5);
+                if (discentsCount > i && min > diff) {
+                    min -= diff;
+                    scorePreferredWrongAnswers[i] = min;
+                } else {
+                    max += diff;
+                    scorePreferredWrongAnswers[i] = max;
+                }
+            }
+        }
+        questions.Add(makeQuestion(Question.ColorsMaximizationSubmittedScore, _ColorsMaximization, null,
+            new string[] { submittedScore.ToString() },
+            scorePreferredWrongAnswers.Select(i => i.ToString()).ToArray()));
+        HashSet<Color> submittedColors = GetProperty<HashSet<Color>>(comp, "submittedColors", true).Get();
+        Color[] allColors = GetStaticField<Color[]>(comp.GetType(), "allColors", true).Get();
+        Color[] notSubmittedColors = allColors.Where(c => !submittedColors.Contains(c)).ToArray();
+        var colorsName = GetStaticField<Dictionary<Color, string>>(comp.GetType(), "colorsName", true).Get();
+        questions.Add(makeQuestion(Question.ColorsMaximizationSubmittedColor, _ColorsMaximization, null,
+            submittedColors.Select(c => colorsName[c]).ToArray(),
+            notSubmittedColors.Select(c => colorsName[c]).ToArray()));
+        questions.Add(makeQuestion(Question.ColorsMaximizationNotSubmittedColor, _ColorsMaximization, null,
+            notSubmittedColors.Select(c => colorsName[c]).ToArray(),
+            submittedColors.Select(c => colorsName[c]).ToArray()));
+        Color randColor = allColors[Rnd.Range(0, allColors.Length)];
+        int countOfColor = GetMethod<int>(comp, "countOfColor", 1, true).Invoke(randColor);
+        int[] countPreferredWrongAnswers = new int[5];
+        {
+            int min = countOfColor;
+            int max = countOfColor;
+            int discentsCount = Rnd.Range(0, countPreferredWrongAnswers.Length + 1);
+            for (int i = 0; i < countPreferredWrongAnswers.Length; i++) {
+                if (discentsCount > i && min > 0) {
+                    min -= 1;
+                    countPreferredWrongAnswers[i] = min;
+                } else {
+                    max += 1;
+                    countPreferredWrongAnswers[i] = max;
+                }
+            }
+        }
+        questions.Add(makeQuestion(Question.ColorsMaximizationColorCount, _ColorsMaximization,
+            new string[] { colorsName[randColor] }, new string[] { countOfColor.ToString() },
+            countPreferredWrongAnswers.Select(c => c.ToString()).ToArray()));
+        addQuestions(module, questions);
     }
 
     private IEnumerable<object> ProcessColoredKeys(KMBombModule module)
