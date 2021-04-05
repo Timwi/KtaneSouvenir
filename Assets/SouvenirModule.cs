@@ -149,11 +149,11 @@ public class SouvenirModule : MonoBehaviour
     const string _Coinage = "Coinage";
     const string _ColorBraille = "ColorBrailleModule";
     const string _ColorDecoding = "Color Decoding";
-    const string _ColorsMaximization = "colors_maximization";
     const string _ColoredKeys = "lgndColoredKeys";
     const string _ColoredSquares = "ColoredSquaresModule";
     const string _ColoredSwitches = "ColoredSwitchesModule";
     const string _ColorMorse = "ColorMorseModule";
+    const string _ColorsMaximization = "colors_maximization";
     const string _ColourFlash = "ColourFlash";
     const string _Coordinates = "CoordinatesModule";
     const string _Corners = "CornersModule";
@@ -468,11 +468,11 @@ public class SouvenirModule : MonoBehaviour
             { _Coinage, ProcessCoinage },
             { _ColorBraille, ProcessColorBraille },
             { _ColorDecoding, ProcessColorDecoding },
-            { _ColorsMaximization, ProcessColorsMaximization },
             { _ColoredKeys, ProcessColoredKeys },
             { _ColoredSquares, ProcessColoredSquares },
             { _ColoredSwitches, ProcessColoredSwitches },
             { _ColorMorse, ProcessColorMorse },
+            { _ColorsMaximization, ProcessColorsMaximization },
             { _ColourFlash, ProcessColourFlash },
             { _Coordinates, ProcessCoordinates },
             { _Corners, ProcessCorners },
@@ -3234,23 +3234,30 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessColorsMaximization(KMBombModule module)
     {
-        Component comp = GetComponent(module, "ColorsMaximizationModule");
-        PropertyInfo<bool> fldPassed = GetProperty<bool>(comp, "passed", true);
-        while (!fldPassed.Get()) yield return new WaitForSeconds(.1f);
+        var comp = GetComponent(module, "ColorsMaximizationModule");
+        var fldPassed = GetProperty<bool>(comp, "passed", true);
+
+        while (!fldPassed.Get())
+            yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_ColorsMaximization);
-        List<QandA> questions = new List<QandA>();
-        int submittedScore = GetProperty<int>(comp, "submittedScore", true).Get();
-        int[] scorePreferredWrongAnswers = new int[5];
+
+        var questions = new List<QandA>();
+        var submittedScore = GetProperty<int>(comp, "submittedScore", true).Get();
+        var scorePreferredWrongAnswers = new int[5];
         {
             int min = submittedScore;
             int max = submittedScore;
             int discentsCount = Rnd.Range(0, scorePreferredWrongAnswers.Length + 1);
-            for (int i = 0; i < scorePreferredWrongAnswers.Length; i++) {
+            for (int i = 0; i < scorePreferredWrongAnswers.Length; i++)
+            {
                 int diff = Rnd.Range(1, 5);
-                if (discentsCount > i && min > diff) {
+                if (discentsCount > i && min > diff)
+                {
                     min -= diff;
                     scorePreferredWrongAnswers[i] = min;
-                } else {
+                }
+                else
+                {
                     max += diff;
                     scorePreferredWrongAnswers[i] = max;
                 }
@@ -3259,9 +3266,10 @@ public class SouvenirModule : MonoBehaviour
         questions.Add(makeQuestion(Question.ColorsMaximizationSubmittedScore, _ColorsMaximization, null,
             new string[] { submittedScore.ToString() },
             scorePreferredWrongAnswers.Select(i => i.ToString()).ToArray()));
-        HashSet<Color> submittedColors = GetProperty<HashSet<Color>>(comp, "submittedColors", true).Get();
-        Color[] allColors = GetStaticField<Color[]>(comp.GetType(), "allColors", true).Get();
-        Color[] notSubmittedColors = allColors.Where(c => !submittedColors.Contains(c)).ToArray();
+
+        var submittedColors = GetProperty<HashSet<Color>>(comp, "submittedColors", true).Get();
+        var allColors = GetStaticField<Color[]>(comp.GetType(), "allColors", true).Get();
+        var notSubmittedColors = allColors.Where(c => !submittedColors.Contains(c)).ToArray();
         var colorsName = GetStaticField<Dictionary<Color, string>>(comp.GetType(), "colorsName", true).Get();
         questions.Add(makeQuestion(Question.ColorsMaximizationSubmittedColor, _ColorsMaximization, null,
             submittedColors.Select(c => colorsName[c]).ToArray(),
@@ -3269,18 +3277,23 @@ public class SouvenirModule : MonoBehaviour
         questions.Add(makeQuestion(Question.ColorsMaximizationNotSubmittedColor, _ColorsMaximization, null,
             notSubmittedColors.Select(c => colorsName[c]).ToArray(),
             submittedColors.Select(c => colorsName[c]).ToArray()));
-        Color randColor = allColors[Rnd.Range(0, allColors.Length)];
-        int countOfColor = GetMethod<int>(comp, "countOfColor", 1, true).Invoke(randColor);
-        int[] countPreferredWrongAnswers = new int[5];
+
+        var randColor = allColors[Rnd.Range(0, allColors.Length)];
+        var countOfColor = GetMethod<int>(comp, "countOfColor", 1, true).Invoke(randColor);
+        var countPreferredWrongAnswers = new int[5];
         {
             int min = countOfColor;
             int max = countOfColor;
             int discentsCount = Rnd.Range(0, countPreferredWrongAnswers.Length + 1);
-            for (int i = 0; i < countPreferredWrongAnswers.Length; i++) {
-                if (discentsCount > i && min > 0) {
+            for (int i = 0; i < countPreferredWrongAnswers.Length; i++)
+            {
+                if (discentsCount > i && min > 0)
+                {
                     min -= 1;
                     countPreferredWrongAnswers[i] = min;
-                } else {
+                }
+                else
+                {
                     max += 1;
                     countPreferredWrongAnswers[i] = max;
                 }
