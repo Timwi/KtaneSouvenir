@@ -107,6 +107,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Accumulation = "accumulation";
     const string _AdventureGame = "spwizAdventureGame";
     const string _AffineCycle = "affineCycle";
+    const string _AlfaBravo = "alfa_bravo";
     const string _Algebra = "algebra";
     const string _AlphabeticalRuling = "alphabeticalRuling";
     const string _AlphabetTiles = "AlphabetTiles";
@@ -425,6 +426,7 @@ public class SouvenirModule : MonoBehaviour
             { _Accumulation, ProcessAccumulation },
             { _AdventureGame, ProcessAdventureGame },
             { _AffineCycle, ProcessAffineCycle },
+            { _AlfaBravo, ProcessAlfaBravo },
             { _Algebra, ProcessAlgebra },
             { _AlphabeticalRuling, ProcessAlphabeticalRuling },
             { _AlphabetTiles, ProcessAlphabetTiles },
@@ -2096,6 +2098,30 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessAffineCycle(KMBombModule module)
     {
         return processSpeakingEvilCycle1(module, "AffineCycleScript", Question.AffineCycleWord, _AffineCycle);
+    }
+
+    private IEnumerable<object> ProcessAlfaBravo(KMBombModule module)
+    {
+        Component comp = GetComponent(module, "AlfaBravoModule");
+        PropertyInfo<bool> fldSolved = GetProperty<bool>(comp, "solved", true);
+        while (!fldSolved.Get()) yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_AlfaBravo);
+        string[] allLetters = new string[26].Select((_, i) => ((char)('A' + i)).ToString()).ToArray();
+        string[] allDigits = new string[10].Select((_, i) => i.ToString()).ToArray();
+        addQuestions(module, new QandA[] {
+            makeQuestion(Question.AlfaBravoPressedLetter, _AlfaBravo, null, new string[] {
+                GetProperty<char>(comp, "pressedLetter", true).Get().ToString()
+            }, allLetters),
+            makeQuestion(Question.AlfaBravoLeftPressedLetter, _AlfaBravo, null, new string[] {
+                GetProperty<char>(comp, "letterToTheLeftOfPressedOne", true).Get().ToString()
+            }, allLetters),
+            makeQuestion(Question.AlfaBravoRightPressedLetter, _AlfaBravo, null, new string[] {
+                GetProperty<char>(comp, "letterToTheRightOfPressedOne", true).Get().ToString()
+            }, allLetters),
+            makeQuestion(Question.AlfaBravoDigit, _AlfaBravo, null, new string[] {
+                GetProperty<int>(comp, "displayedDigit", true).Get().ToString()
+            }, allDigits),
+        });
     }
 
     private IEnumerable<object> ProcessAlgebra(KMBombModule module)
