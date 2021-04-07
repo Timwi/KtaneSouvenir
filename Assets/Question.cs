@@ -718,6 +718,11 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "gate A", "gate B", "gate C", "gate D", "gate E", "gate F", "gate G", "the duplicated gate" }, ExampleExtraFormatArgumentGroupSize = 1)]
         LogicGatesGates,
 
+        [SouvenirQuestion("What was the {1} letter on the button in {0}?", "Lombax Cubes", AnswerLayout.ThreeColumns6Answers, null,
+            ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("A-Z")]
+        LombaxCubesLetters,
+
         [SouvenirQuestion("Where did the {1} journey on {0} {2}?", "London Underground", AnswerLayout.OneColumn4Answers, null, AddThe = true, ExampleAnswers = new[] { "Great Portland Street", "High Street Kensington", "King's Cross St. Pancras", "Mornington Crescent", "Shepherd's Bush Market", "Tottenham Court Road", "Walthamstow Central", "White City/Wood Lane" },
             ExampleExtraFormatArguments = new[] { "first", "depart from", "second", "depart from", "first", "arrive to", "second", "arrive to" }, ExampleExtraFormatArgumentGroupSize = 2)]
         LondonUndergroundStations,

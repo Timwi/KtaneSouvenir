@@ -231,6 +231,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Listening = "Listening";
     const string _LogicalButtons = "logicalButtonsModule";
     const string _LogicGates = "logicGates";
+    const string _LombaxCubes = "lgndLombaxCubes";
     const string _LondonUnderground = "londonUnderground";
     const string _Mafia = "MafiaModule";
     const string _Mahjong = "MahjongModule";
@@ -555,6 +556,7 @@ public class SouvenirModule : MonoBehaviour
             { _Listening, ProcessListening },
             { _LogicalButtons, ProcessLogicalButtons },
             { _LogicGates, ProcessLogicGates },
+            { _LombaxCubes, ProcessLombaxCubes },
             { _LondonUnderground, ProcessLondonUnderground },
             { _Mafia, ProcessMafia },
             { _Mahjong, ProcessMahjong },
@@ -5382,6 +5384,24 @@ public class SouvenirModule : MonoBehaviour
         if (!isDuplicateInvalid)
             qs.Add(makeQuestion(Question.LogicGatesGates, _LogicGates, new[] { "the duplicated gate" }, new[] { duplicate }));
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessLombaxCubes(KMBombModule module)
+    {
+        var comp = GetComponent(module, "LombaxCubesScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldLetter1 = GetIntField(comp, "ButtonLetter1");
+        var fldLetter2 = GetIntField(comp, "ButtonLetter2");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_LombaxCubes);
+
+        addQuestions(module,
+            makeQuestion(Question.LombaxCubesLetters, _LombaxCubes, new[] { "first" },
+                new[] { "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[fldLetter1.Get() - 1].ToString() }),
+            makeQuestion(Question.LombaxCubesLetters, _LombaxCubes, new[] { "second" },
+                new[] { "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[fldLetter2.Get() - 1].ToString() }));
     }
 
     private IEnumerable<object> ProcessLondonUnderground(KMBombModule module)
