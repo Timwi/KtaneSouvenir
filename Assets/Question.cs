@@ -1460,6 +1460,13 @@ namespace Souvenir
         [SouvenirQuestion("What was the {1} rotation in {0}?", "Ultracube", AnswerLayout.ThreeColumns6Answers, "XY", "YX", "XZ", "ZX", "XW", "WX", "XV", "VX", "YZ", "ZY", "YW", "WY", "YV", "VY", "ZW", "WZ", "ZV", "VZ", "WV", "VW", AddThe = true,
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         UltracubeRotations,
+        
+        [SouvenirQuestion("What was the {1} rotation in the {2} stage of {0}?", "UltraStores", AnswerLayout.ThreeColumns6Answers, null,
+            ExampleExtraFormatArguments = new []{"first", "second", "third", "4th", "5th"}, ExampleExtraFormatArgumentGroupSize = 1)]
+        UltraStoresSingleRotation,
+        [SouvenirQuestion("What was the {1} rotation in the {2} stage of {0}?", "UltraStores", AnswerLayout.TwoColumns4Answers, null,
+            ExampleExtraFormatArguments = new []{"first", "second", "third", "4th", "5th"}, ExampleExtraFormatArgumentGroupSize = 1)]
+        UltraStoresMultiRotation,
 
         [SouvenirQuestion("What was the {1} color in reading order used in the first stage of {0}?", "Uncolored Squares", AnswerLayout.ThreeColumns6Answers, "White", "Red", "Blue", "Green", "Yellow", "Magenta",
             ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
