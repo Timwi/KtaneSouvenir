@@ -1494,6 +1494,13 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         UltracubeRotations,
 
+        [SouvenirQuestion("What was the {1} rotation in the {2} stage of {0}?", "UltraStores", AnswerLayout.ThreeColumns6Answers, null,
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        UltraStoresSingleRotation,
+        [SouvenirQuestion("What was the {1} rotation in the {2} stage of {0}?", "UltraStores", AnswerLayout.TwoColumns4Answers, null,
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        UltraStoresMultiRotation,
+
         [SouvenirQuestion("What was the {1} color in reading order used in the first stage of {0}?", "Uncolored Squares", AnswerLayout.ThreeColumns6Answers, "White", "Red", "Blue", "Green", "Yellow", "Magenta",
             ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
         UncoloredSquaresFirstStage,

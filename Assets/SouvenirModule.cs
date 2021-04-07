@@ -383,6 +383,7 @@ public class SouvenirModule : MonoBehaviour
     const string _UltimateCipher = "ultimateCipher";
     const string _UltimateCycle = "ultimateCycle";
     const string _Ultracube = "TheUltracubeModule";
+    const string _UltraStores = "UltraStores";
     const string _UncoloredSquares = "UncoloredSquaresModule";
     const string _UncoloredSwitches = "R4YUncoloredSwitches";
     const string _UnfairCipher = "unfairCipher";
@@ -706,6 +707,7 @@ public class SouvenirModule : MonoBehaviour
             { _UltimateCipher, ProcessUltimateCipher },
             { _UltimateCycle, ProcessUltimateCycle },
             { _Ultracube, ProcessUltracube },
+            { _UltraStores, ProcessUltraStores },
             { _UncoloredSquares, ProcessUncoloredSquares },
             { _UncoloredSwitches, ProcessUncoloredSwitches },
             { _UnfairCipher, ProcessUnfairCipher },
@@ -9266,6 +9268,42 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessUltracube(KMBombModule module)
     {
         return processHypercubeUltracube(module, "TheUltracubeModule", Question.UltracubeRotations, _Ultracube);
+    }
+
+    private IEnumerable<object> ProcessUltraStores(KMBombModule module)
+    {
+        var comp = GetComponent(module, "UltraStoresScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldStage = GetIntField(comp, "stage");
+        var fldRotations = GetListField<string>(comp, "rotlist");
+        var possibleRotations = GetArrayField<List<string>[]>(comp, "rotations").Get();
+        var prevStage = 0;
+
+        var rotations = new List<List<string>> { fldRotations.Get().ToList() };
+
+        while (!fldSolved.Get())
+        {
+            var nextStage = fldStage.Get();
+            if (nextStage != prevStage)
+            {
+                rotations.Add(fldRotations.Get().ToList());
+                prevStage = nextStage;
+            }
+            yield return new WaitForSeconds(.1f);
+        }
+        _modulesSolved.IncSafe(_UltraStores);
+
+        var questions = new List<QandA>();
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < i + 3; j++)
+            {
+                var possibleWrong = possibleRotations[rotations[i][j].Count(ch => ch == ',')].SelectMany(x => x).ToArray();
+                questions.Add(makeQuestion(rotations[i][j].Split(',').Length - 1 == 0 ? Question.UltraStoresSingleRotation : Question.UltraStoresMultiRotation, _UltraStores, new[] { ordinal(j + 1), ordinal(i + 1) }, new[] { rotations[i][j] }, possibleWrong));
+            }
+        }
+        addQuestions(module, questions);
     }
 
     private IEnumerable<object> ProcessUncoloredSquares(KMBombModule module)
