@@ -196,6 +196,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Functions = "qFunctions";
     const string _Gamepad = "TheGamepadModule";
     const string _GrayCipher = "grayCipher";
+    const string _GreatVoid = "greatVoid";
     const string _GreenArrows = "greenArrowsModule";
     const string _GreenCipher = "greenCipher";
     const string _GridLock = "GridlockModule";
@@ -521,6 +522,7 @@ public class SouvenirModule : MonoBehaviour
             { _Functions, ProcessFunctions },
             { _Gamepad, ProcessGamepad },
             { _GrayCipher, ProcessGrayCipher },
+            { _GreatVoid, ProcessGreatVoid },
             { _GreenArrows, ProcessGreenArrows },
             { _GreenCipher, ProcessGreenCipher },
             { _GridLock, ProcessGridLock },
@@ -4433,6 +4435,28 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessGrayCipher(KMBombModule module)
     {
         return processColoredCiphers(module, "grayCipher", Question.GrayCipherAnswer, _GrayCipher);
+    }
+
+    private IEnumerable<object> ProcessGreatVoid(KMBombModule module)
+    {
+        var comp = GetComponent(module, "TheGreatVoid");
+        var fldSolved = GetField<bool>(comp, "Solved");
+        var fldDigits = GetArrayField<int>(comp, "Displays");
+        var fldColors = GetArrayField<int>(comp, "ColorNums");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_GreatVoid);
+
+        var colorNames = new[] { "Red", "Green", "Blue", "Magenta", "Yellow", "Cyan", "White" };
+
+        var questions = new List<QandA>();
+        for (int i = 0; i < 6; i++)
+        {
+            questions.Add(makeQuestion(Question.GreatVoidDigit, _GreatVoid, new[] { ordinal(i + 1) }, new[] { fldDigits.Get()[i].ToString() }));
+            questions.Add(makeQuestion(Question.GreatVoidColor, _GreatVoid, new[] { ordinal(i + 1) }, new[] { colorNames[fldColors.Get()[i]] }));
+        }
+        addQuestions(module, questions);
     }
 
     private IEnumerable<object> ProcessGreenArrows(KMBombModule module)

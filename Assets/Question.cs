@@ -538,6 +538,14 @@ namespace Souvenir
         [SouvenirQuestion("What was the answer in {0}?", "Gray Cipher", AnswerLayout.ThreeColumns6Answers, null)]
         GrayCipherAnswer,
 
+        [SouvenirQuestion("What was the {1} color in {0}?", "Great Void", AnswerLayout.ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Yellow", "Cyan", "White", AddThe = true,
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th", "6th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        GreatVoidColor,
+        [SouvenirQuestion("What was the {1} digit in {0}?", "Great Void", AnswerLayout.ThreeColumns6Answers, null, AddThe = true,
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th", "6th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 9)]
+        GreatVoidDigit,
+
         [SouvenirQuestion("What was the last number on the display on {0}?", "Green Arrows", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Integers(0, 99, "00")]
         GreenArrowsLastScreen,
