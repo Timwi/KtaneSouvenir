@@ -385,6 +385,7 @@ public class SouvenirModule : MonoBehaviour
     const string _UncoloredSwitches = "R4YUncoloredSwitches";
     const string _UnfairCipher = "unfairCipher";
     const string _UnfairsRevenge = "unfairsRevenge";
+    const string _Unicode = "UnicodeModule";
     const string _UnownCipher = "UnownCipher";
     const string _USAMaze = "USA";
     const string _V = "V";
@@ -706,6 +707,7 @@ public class SouvenirModule : MonoBehaviour
             { _UncoloredSwitches, ProcessUncoloredSwitches },
             { _UnfairCipher, ProcessUnfairCipher },
             { _UnfairsRevenge, ProcessUnfairsRevenge },
+            { _Unicode, ProcessUnicode },
             { _UnownCipher, ProcessUnownCipher },
             { _USAMaze, ProcessUSAMaze },
             { _V, ProcessV },
@@ -9269,6 +9271,36 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.UnfairsRevengeInstructions, _UnfairsRevenge, new[] { "second" }, new[] { instructions[1] }),
             makeQuestion(Question.UnfairsRevengeInstructions, _UnfairsRevenge, new[] { "third" }, new[] { instructions[2] }),
             makeQuestion(Question.UnfairsRevengeInstructions, _UnfairsRevenge, new[] { "fourth" }, new[] { instructions[3] }));
+    }
+
+    private IEnumerable<object> ProcessUnicode(KMBombModule module)
+    {
+        var comp = GetComponent(module, "UnicodeScript");
+        var solved = false;
+        module.OnPass += delegate 
+        { 
+            solved = true;
+            return false;
+        };
+
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+        
+        _modulesSolved.IncSafe(_Unicode);
+
+        var symbols = GetField<IEnumerable>(comp, "SelectedSymbols").Get().Cast<object>().Select(x => GetProperty<string>(x, "Code", isPublic:true).Get()).ToList();
+
+        if (symbols.Count != 4)
+        {
+            throw new AbandonModuleException("Symbols has an unexpected length, length: {0} (expected 4)",
+                symbols.Count);
+        }
+        
+        addQuestions(module,
+            makeQuestion(Question.UnicodeSortedAnswer, _Unicode, new[] { "first" }, new[] { symbols[0] }),
+            makeQuestion(Question.UnicodeSortedAnswer, _Unicode, new[] { "second" }, new[] { symbols[1] }),
+            makeQuestion(Question.UnicodeSortedAnswer, _Unicode, new[] { "third" }, new[] { symbols[2] }),
+            makeQuestion(Question.UnicodeSortedAnswer, _Unicode, new[] { "fourth" }, new[] { symbols[3] }));
     }
 
     private IEnumerable<object> ProcessUnownCipher(KMBombModule module)
