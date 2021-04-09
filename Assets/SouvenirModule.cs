@@ -3243,7 +3243,7 @@ public class SouvenirModule : MonoBehaviour
 
         var questions = new List<QandA>();
         var submittedScore = GetProperty<int>(comp, "submittedScore", true).Get();
-        var scorePreferredWrongAnswers = new int[5];
+        var scorePreferredWrongAnswers = new string[5];
         {
             int min = submittedScore;
             int max = submittedScore;
@@ -3254,33 +3254,31 @@ public class SouvenirModule : MonoBehaviour
                 if (discentsCount > i && min > diff)
                 {
                     min -= diff;
-                    scorePreferredWrongAnswers[i] = min;
+                    scorePreferredWrongAnswers[i] = min.ToString();
                 }
                 else
                 {
                     max += diff;
-                    scorePreferredWrongAnswers[i] = max;
+                    scorePreferredWrongAnswers[i] = max.ToString();
                 }
             }
         }
-        questions.Add(makeQuestion(Question.ColorsMaximizationSubmittedScore, _ColorsMaximization, null,
-            new string[] { submittedScore.ToString() },
-            scorePreferredWrongAnswers.Select(i => i.ToString()).ToArray()));
+        questions.Add(makeQuestion(Question.ColorsMaximizationSubmittedScore, _ColorsMaximization, null, new string[] { submittedScore.ToString() }, scorePreferredWrongAnswers));
 
         var submittedColors = GetProperty<HashSet<Color>>(comp, "submittedColors", true).Get();
+        var colorNameDic = GetStaticField<Dictionary<Color, string>>(comp.GetType(), "colorsName", true).Get();
+        var colorNames = colorNameDic.Values.ToArray();
         var allColors = GetStaticField<Color[]>(comp.GetType(), "allColors", true).Get();
-        var notSubmittedColors = allColors.Where(c => !submittedColors.Contains(c)).ToArray();
-        var colorsName = GetStaticField<Dictionary<Color, string>>(comp.GetType(), "colorsName", true).Get();
-        questions.Add(makeQuestion(Question.ColorsMaximizationSubmittedColor, _ColorsMaximization, null,
-            submittedColors.Select(c => colorsName[c]).ToArray(),
-            notSubmittedColors.Select(c => colorsName[c]).ToArray()));
-        questions.Add(makeQuestion(Question.ColorsMaximizationNotSubmittedColor, _ColorsMaximization, null,
-            notSubmittedColors.Select(c => colorsName[c]).ToArray(),
-            submittedColors.Select(c => colorsName[c]).ToArray()));
+        questions.Add(makeQuestion(Question.ColorsMaximizationSubmittedColor, _ColorsMaximization,
+            correctAnswers: submittedColors.Select(c => colorNameDic[c]).ToArray(),
+            preferredWrongAnswers: colorNames));
+        questions.Add(makeQuestion(Question.ColorsMaximizationNotSubmittedColor, _ColorsMaximization,
+            correctAnswers: allColors.Where(c => !submittedColors.Contains(c)).Select(c => colorNameDic[c]).ToArray(),
+            preferredWrongAnswers: colorNames));
 
         var randColor = allColors[Rnd.Range(0, allColors.Length)];
         var countOfColor = GetMethod<int>(comp, "countOfColor", 1, true).Invoke(randColor);
-        var countPreferredWrongAnswers = new int[5];
+        var countPreferredWrongAnswers = new string[5];
         {
             int min = countOfColor;
             int max = countOfColor;
@@ -3290,18 +3288,16 @@ public class SouvenirModule : MonoBehaviour
                 if (discentsCount > i && min > 0)
                 {
                     min -= 1;
-                    countPreferredWrongAnswers[i] = min;
+                    countPreferredWrongAnswers[i] = min.ToString();
                 }
                 else
                 {
                     max += 1;
-                    countPreferredWrongAnswers[i] = max;
+                    countPreferredWrongAnswers[i] = max.ToString();
                 }
             }
         }
-        questions.Add(makeQuestion(Question.ColorsMaximizationColorCount, _ColorsMaximization,
-            new string[] { colorsName[randColor] }, new string[] { countOfColor.ToString() },
-            countPreferredWrongAnswers.Select(c => c.ToString()).ToArray()));
+        questions.Add(makeQuestion(Question.ColorsMaximizationColorCount, _ColorsMaximization, new string[] { colorNameDic[randColor] }, new string[] { countOfColor.ToString() }, countPreferredWrongAnswers));
         addQuestions(module, questions);
     }
 
