@@ -7390,7 +7390,6 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessRecoloredSwitches(KMBombModule module)
     {
-        throw new AbandonModuleException("Recolored Switches support is temporarily disabled after a change was made to the module.");
         var comp = GetComponent(module, "Recolored_Switches");
 
         var isSolved = false;
@@ -7404,7 +7403,7 @@ public class SouvenirModule : MonoBehaviour
             { 'R', "red" },
             { 'G', "green" },
             { 'B', "blue" },
-            { 'T', "turquoise" },
+            { 'C', "cyan" },
             { 'O', "orange" },
             { 'P', "purple" },
             { 'W', "white" }

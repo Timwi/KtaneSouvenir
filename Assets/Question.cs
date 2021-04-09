@@ -1115,7 +1115,7 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 99)]
         RainbowArrowsNumber,
 
-        [SouvenirQuestion("What was the color of the {1} LED in {0}?", "Recolored Switches", AnswerLayout.TwoColumns4Answers, "red", "green", "blue", "turquoise", "orange", "purple", "white",
+        [SouvenirQuestion("What was the color of the {1} LED in {0}?", "Recolored Switches", AnswerLayout.TwoColumns4Answers, "red", "green", "blue", "cyan", "orange", "purple", "white",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         RecoloredSwitchesLedColors,
 
