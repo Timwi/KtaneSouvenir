@@ -695,7 +695,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "gate A", "gate B", "gate C", "gate D", "gate E", "gate F", "gate G", "the duplicated gate" }, ExampleExtraFormatArgumentGroupSize = 1)]
         LogicGatesGates,
         
-        [SouvenirQuestion("What was the {1} letter on the button in {0}", "Lombax Cubes", AnswerLayout.ThreeColumns6Answers, null,
+        [SouvenirQuestion("What was the {1} letter on the button in {0}?", "Lombax Cubes", AnswerLayout.ThreeColumns6Answers, null,
             ExampleExtraFormatArguments = new[] { "first", "second"}, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Strings("A-Z")]
         LombaxCubesLetters,
@@ -1500,7 +1500,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         UnfairsRevengeInstructions,
         
-        [SouvenirQuestion("What was the {1} submitted code in {0}", "Unicode", AnswerLayout.ThreeColumns6Answers, "00A7", "00B6", "0126", "04D4", "017F", "01F6", "01F7", "2042", "037C", "03C2", "040B", "20AA", "042E", "0460", "046C", "20B0", "222F", "222B", "2569", "04EC", "260A", "04A6", "2626", "FB21", "0428", "03A9", "0583", "2592", "254B", "2318", "2234", "2205", "2104", "04A8", "2605", "019B", "03EA", "062A", "067C", "063A", "06BA", "00FE", "0194", "0239",
+        [SouvenirQuestion("What was the {1} submitted code in {0}?", "Unicode", AnswerLayout.ThreeColumns6Answers, "00A7", "00B6", "0126", "04D4", "017F", "01F6", "01F7", "2042", "037C", "03C2", "040B", "20AA", "042E", "0460", "046C", "20B0", "222F", "222B", "2569", "04EC", "260A", "04A6", "2626", "FB21", "0428", "03A9", "0583", "2592", "254B", "2318", "2234", "2205", "2104", "04A8", "2605", "019B", "03EA", "062A", "067C", "063A", "06BA", "00FE", "0194", "0239",
             ExampleExtraFormatArguments = new[]{"first", "second", "third", "fourth"}, ExampleExtraFormatArgumentGroupSize = 1)]
         UnicodeSortedAnswer,
 

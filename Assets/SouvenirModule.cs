@@ -3470,7 +3470,7 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_Creation);
         addQuestions(module, allWeather.Select((t, i) => makeQuestion(Question.CreationWeather, _Creation, new[] { ordinal(i + 1) }, new[] { t })));
     }
-
+    
     private IEnumerable<object> ProcessCrypticCycle(KMBombModule module)
     {
         return processSpeakingEvilCycle2(module, "CrypticCycleScript", Question.CrypticCycleWord, _CrypticCycle);
@@ -9194,8 +9194,8 @@ public class SouvenirModule : MonoBehaviour
         {
             for (int j = 0; j < i + 3; j++)
             {
-                var possibleWrong = fldPossibleRotations[-1 + rotations[i][j].Split(',').Length].SelectMany(x => x).ToArray();
-                questions.Add(makeQuestion(-1 + rotations[i][j].Split(',').Length == 0 ? Question.UltraStoresSingleRotation : Question.UltraStoresMultiRotation, _UltraStores, new[] { ordinal(j + 1), ordinal(i + 1)}, new[]{ rotations[i][j] }, possibleWrong));
+                var possibleWrong = fldPossibleRotations[rotations[i][j].Split(',').Length - 1].SelectMany(x => x).ToArray();
+                questions.Add(makeQuestion(rotations[i][j].Split(',').Length - 1 == 0 ? Question.UltraStoresSingleRotation : Question.UltraStoresMultiRotation, _UltraStores, new[] { ordinal(j + 1), ordinal(i + 1)}, new[]{ rotations[i][j] }, possibleWrong));
             }
         }
         addQuestions(module, questions);
