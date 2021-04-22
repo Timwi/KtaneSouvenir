@@ -154,6 +154,7 @@ public class SouvenirModule : MonoBehaviour
     const string _ColoredSquares = "ColoredSquaresModule";
     const string _ColoredSwitches = "ColoredSwitchesModule";
     const string _ColorMorse = "ColorMorseModule";
+    const strinf _ColorsMaximization = "colors_maximization";
     const string _ColourFlash = "ColourFlash";
     const string _Coordinates = "CoordinatesModule";
     const string _Corners = "CornersModule";
@@ -349,6 +350,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SonicTheHedgehog = "sonic";
     const string _Sorting = "sorting";
     const string _Souvenir = "SouvenirModule";
+    const string _SpaceTranders = "space_traders",
     const string _SpellingBee = "spellingBee";
     const string _Sphere = "sphere";
     const string _SplittingTheLoot = "SplittingTheLootModule";
@@ -473,6 +475,7 @@ public class SouvenirModule : MonoBehaviour
             { _ColoredSquares, ProcessColoredSquares },
             { _ColoredSwitches, ProcessColoredSwitches },
             { _ColorMorse, ProcessColorMorse },
+            { _ColorsMaximization, ProcessColorsMaximization },
             { _ColourFlash, ProcessColourFlash },
             { _Coordinates, ProcessCoordinates },
             { _Corners, ProcessCorners },
@@ -668,6 +671,7 @@ public class SouvenirModule : MonoBehaviour
             { _SonicTheHedgehog, ProcessSonicTheHedgehog },
             { _Sorting, ProcessSorting },
             { _Souvenir, ProcessSouvenir },
+            { _SpaceTranders, ProcessSpaceTraders },
             { _SpellingBee, ProcessSpellingBee },
             { _Sphere, ProcessSphere },
             { _SplittingTheLoot, ProcessSplittingTheLoot },
@@ -2103,16 +2107,29 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessAlfaBravo(KMBombModule module)
     {
         var comp = GetComponent(module, "AlfaBravoModule");
-        var fldSolved = GetProperty<bool>(comp, "solved", true);
+        var fldSolved = GetProperty<bool>(comp, "solved");
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_AlfaBravo);
+        if (GetField<bool>(comp, "forceSolved").Get())
+            yield break;
+        var questions = new List<QandA>();
 
-        addQuestions(module,
-            makeQuestion(Question.AlfaBravoPressedLetter, _AlfaBravo, null, new[] { GetProperty<char>(comp, "pressedLetter", true).Get().ToString() }),
-            makeQuestion(Question.AlfaBravoLeftPressedLetter, _AlfaBravo, null, new[] { GetProperty<char>(comp, "letterToTheLeftOfPressedOne", true).Get().ToString() }),
-            makeQuestion(Question.AlfaBravoRightPressedLetter, _AlfaBravo, null, new[] { GetProperty<char>(comp, "letterToTheRightOfPressedOne", true).Get().ToString() }),
-            makeQuestion(Question.AlfaBravoDigit, _AlfaBravo, null, new[] { GetProperty<int>(comp, "displayedDigit", true).Get().ToString() }));
+        char pressedLetter = GetField<char>(comp, "souvenirPressedLetter").Get();
+        if (pressedLetter != 0)
+            questions.Add(makeQuestion(Question.AlfaBravoPressedLetter, _AlfaBravo, correctAnswers: new[] { pressedLetter.ToString() }));
+
+        char letterToTheLeftOfPressedOne = GetField<char>(comp, "souvenirLetterToTheLeftOfPressedOne").Get();
+        if (letterToTheLeftOfPressedOne != 0)
+            questions.Add(makeQuestion(Question.AlfaBravoLeftPressedLetter, _AlfaBravo, correctAnswers: new[] { letterToTheLeftOfPressedOne.ToString() }));
+
+        char letterToTheRightOfPressedOne = GetField<char>(comp, "souvenirLetterToTheRightOfPressedOne").Get();
+        if (letterToTheRightOfPressedOne != 0)
+            questions.Add(makeQuestion(Question.AlfaBravoRightPressedLetter, _AlfaBravo, correctAnswers: new[] { letterToTheRightOfPressedOne.ToString() }));
+
+        questions.Add(makeQuestion(Question.AlfaBravoDigit, _AlfaBravo, correctAnswers: new[] { GetProperty<int>(comp, "souvenirDisplayedDigit").Get().ToString() }));
+
+        addQuestions(module, questions);
     }
 
     private IEnumerable<object> ProcessAlgebra(KMBombModule module)
@@ -3337,6 +3354,31 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, Enumerable.Range(0, 3).SelectMany(ix => Ut.NewArray(
              makeQuestion(Question.ColorMorseColor, _ColorMorse, new[] { ordinal(ix + 1) }, new[] { flashedColorNames[ix] }, flashedColorNames),
              makeQuestion(Question.ColorMorseCharacter, _ColorMorse, new[] { ordinal(ix + 1) }, new[] { flashedCharacters[ix] }, flashedCharacters))));
+    }
+
+    private IEnumerable<object> ProcessColorsMaximization(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ColorsMaximizationModule");
+        var fldSolved = GetField<bool>(comp, "solved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ColorsMaximization);
+        if (GetField<bool>(comp, "forceSolved").Get())
+            yield break;
+        var submittedScore = GetField<int>(comp, "submittedScore").Get();
+        var submittedScorePreferredWrongAnswers = GetArrayProperty<int>(comp, "souvenirSubmittedScorePreferredWrongAnswers").Get();
+        var submittedColors = GetField<HashSet<Color>>(comp, "submittedColors").Get();
+        var colorNameDic = GetStaticField<Dictionary<Color, string>>(comp.GetType(), "colorNames").Get();
+        var colorNames = colorNameDic.Values.ToArray();
+        var allColors = GetStaticField<Color[]>(comp.GetType(), "allColors").Get();
+        var randColor = allColors[Rnd.Range(0, allColors.Length)];
+        var countOfColor = GetMethod<int>(comp, "countOfColor", 1).Invoke(randColor);
+        var countOfColorPreferredWrongAnswers = GetArrayProperty<int>(comp, "souvenirCountOfColorPreferredWrongAnswers");
+        addQuestions(module,
+            makeQuestion(Question.ColorsMaximizationSubmittedScore, _ColorsMaximization, correctAnswers: new string[] { submittedScore.ToString() }, preferredWrongAnswers: submittedScorePreferredWrongAnswers.Select(s => s.ToString())),
+            makeQuestion(Question.ColorsMaximizationSubmittedColor, _ColorsMaximization, correctAnswers: submittedColors.Select(c => colorNameDic[c]).ToArray(), preferredWrongAnswers: colorNames),
+            makeQuestion(Question.ColorsMaximizationNotSubmittedColor, _ColorsMaximization, correctAnswers: allColors.Where(c => !submittedColors.Contains(c)).Select(c => colorNameDic[c]).ToArray(), preferredWrongAnswers: colorNames),
+            makeQuestion(Question.ColorsMaximizationColorCount, _ColorsMaximization, new string[] { colorNameDic[randColor] }, new string[] { countOfColor.ToString() }, countOfColorPreferredWrongAnswers));
     }
 
     private IEnumerable<object> ProcessColourFlash(KMBombModule module)
@@ -8473,6 +8515,24 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_Souvenir);
         addQuestion(module, Question.SouvenirFirstQuestion, null, new[] { firstModule }, modules.ToArray());
+    }
+
+    private IEnumerable<object> ProcessSpaceTraders(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SpaceTradersModule");
+        var fldSolved = GetProperty<bool>(comp, "solved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_AlfaBravo);
+        if (GetField<bool>(comp, "forceSolved").Get())
+            yield break;
+        var maxTaxAmount = GetProperty<int>(comp, "maxTaxAmount", true).Get();
+        var maxPossibleTaxAmount = GetField<int>(comp, "maxPossibleTaxAmount").Get();
+        var productsToBeSoldCount = GetProperty<int>(comp, "productsToBeSoldCount", true).Get();
+        var maxProductsToBeSoldCount = GetField<int>(comp, "maxProductsToBeSoldCount").Get();
+        addQuestions(module,
+            makeQuestion(Question.SpaceTradersMaxTaxAmount, _SpaceTranders, correctAnswers: new[] { maxTaxAmount.ToString() }, preferredWrongAnswers: Enumerable.Range(0, maxPossibleTaxAmount - 1).Select(t => t.ToString()).ToArray()),
+            makeQuestion(Question.SpaceTradersSoldProductsCount, _SpaceTranders, correctAnswers: new[] { maxProductsToBeSoldCount.ToString() }, preferredWrongAnswers: Enumerable.Range(1, maxProductsToBeSoldCount - 2).Select(p => p.ToString())));
     }
 
     private IEnumerable<object> ProcessSpellingBee(KMBombModule module)
