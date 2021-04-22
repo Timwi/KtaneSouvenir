@@ -413,7 +413,7 @@ public class SouvenirModule : MonoBehaviour
         _moduleId = _moduleIdCounter;
         _moduleIdCounter++;
 
-        Debug.LogFormat(@"[Souvenir #{0}] Souvenir version: 2.7", _moduleId);
+        Debug.LogFormat(@"[Souvenir #{0}] Souvenir version: 2.8", _moduleId);
 
         _moduleProcessors = new Dictionary<string, Func<KMBombModule, IEnumerable<object>>>()
         {
@@ -6595,9 +6595,11 @@ public class SouvenirModule : MonoBehaviour
         var sphere = GetField<string>(comp, "souvenirSphere").Get().Where(c => c == '-' || c == '+').Join("");
         var rotations = GetField<string>(comp, "souvenirRotations").Get().Split('&').ToArray();
 
-        addQuestion(module, Question.OctadecayottonSphere, correctAnswers: new[] { sphere }, preferredWrongAnswers: Enumerable.Range(0, (int) Math.Pow(2, dimension)).Select(i => Convert.ToString(i, 2).Select(s => s == '0' ? '-' : '+').Join("").PadLeft(dimension, '-')).ToArray());
+        var qs = new List<QandA>();
+        qs.Add(makeQuestion(Question.OctadecayottonSphere, _Octadecayotton, correctAnswers: new[] { sphere }, preferredWrongAnswers: Enumerable.Range(0, (int) Math.Pow(2, dimension)).Select(i => Convert.ToString(i, 2).Select(s => s == '0' ? '-' : '+').Join("").PadLeft(dimension, '-')).ToArray()));
         for (int i = 0; i < rotations.Length; i++)
-            addQuestion(module, Question.OctadecayottonRotations, new[] { ordinal(i + 1) }, correctAnswers: rotations[i].Split(',').Select(s => s.Trim()).ToArray(), preferredWrongAnswers: Enumerable.Range(1, 10).Select(n => "XYZWUVRSTOPQ".Substring(0, dimension).ToCharArray().Shuffle().Take(Rnd.Range(1, Math.Min(6, dimension + 1))).Select(c => (Rnd.Range(0, 1f) > 0.5 ? "+" : "-") + c).Join("")).ToArray());
+            qs.Add(makeQuestion(Question.OctadecayottonRotations, _Octadecayotton, new[] { ordinal(i + 1) }, correctAnswers: rotations[i].Split(',').Select(s => s.Trim()).ToArray(), preferredWrongAnswers: Enumerable.Range(1, 10).Select(n => "XYZWUVRSTOPQ".Substring(0, dimension).ToCharArray().Shuffle().Take(Rnd.Range(1, Math.Min(6, dimension + 1))).Select(c => (Rnd.Range(0, 1f) > 0.5 ? "+" : "-") + c).Join("")).ToArray()));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessOddOneOut(KMBombModule module)
