@@ -56,7 +56,7 @@ namespace Souvenir
         AlfaBravoLeftPressedLetter,
         [SouvenirQuestion("Which letter was to the right of the pressed one in {0}?", "Alfa-Bravo", AnswerLayout.ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")]
         AlfaBravoRightPressedLetter,
-        [SouvenirQuestion("What digit was on the small display when the correct letter was pressed in {0}?", "Alfa-Bravo", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
+        [SouvenirQuestion("What was the last digit on the small display in {0}?", "Alfa-Bravo", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
         AlfaBravoDigit,
 
         [SouvenirQuestion("What was the first equation in {0}?", "Algebra", AnswerLayout.TwoColumns4Answers, "a=3z", "a=5+y", "a=6-x", "a=7x", "a=8y", "a=9+z", "a=x/2", "a=x+1", "a=y/4", "a=y-2", "a=z/10", "a=z-7")]
@@ -302,6 +302,15 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Strings("0-9A-Z")]
         ColorMorseCharacter,
+
+        [SouvenirQuestion("What was the submitted score in {0}?", "Colors Maximization", AnswerLayout.ThreeColumns6Answers)]
+        ColorsMaximizationSubmittedScore,
+        [SouvenirQuestion("What color was submitted as part of the solution in {0}?", "Colors Maximization", AnswerLayout.TwoColumns4Answers)]
+        ColorsMaximizationSubmittedColor,
+        [SouvenirQuestion("What color was not submitted as part of the solution in {0}?", "Colors Maximization", AnswerLayout.TwoColumns4Answers)]
+        ColorsMaximizationNotSubmittedColor,
+        [SouvenirQuestion("How many buttons were {1} in {0}?", "Colors Maximization", AnswerLayout.ThreeColumns6Answers)]
+        ColorsMaximizationColorCount,
 
         [SouvenirQuestion("What was the color of the last word in the sequence in {0}?", "Colour Flash", AnswerLayout.ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Magenta", "White")]
         ColourFlashLastColor,
@@ -1339,6 +1348,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the first module asked about in the other Souvenir on this bomb?", "Souvenir", AnswerLayout.OneColumn4Answers, null,
             ExampleAnswers = new[] { "Probing", "Microcontroller", "Third Base", "Kudosudoku", "Quintuples", "3D Tunnels", "Uncolored Squares", "Pattern Cube", "Synonyms", "The Moon", "Human Resources", "Algebra" })]
         SouvenirFirstQuestion,
+
+        [SouvenirQuestion("What was the maximum tax amount per vessel in {0}", "Space Traders", AnswerLayout.ThreeColumns6Answers)]
+        SpaceTradersMaxTax,
 
         [SouvenirQuestion("What was the {1} picture on {0}?", "Sonic The Hedgehog", AnswerLayout.TwoColumns4Answers, "Annoyed Sonic", "Ballhog", "Blue Lamppost", "Burrobot", "Buzz Bomber", "Crab Meat", "Dead Sonic", "Drowned Sonic", "Falling Sonic", "Moto Bug", "Red Lamppost", "Red Spring", "Standing Sonic", "Switch", "Yellow Spring",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
