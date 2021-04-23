@@ -132,6 +132,13 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 31)]
         BinaryLEDsValue,
 
+        [SouvenirQuestion("What was the initial number at {1} in {0}?", "Binary Shift", AnswerLayout.ThreeColumns6Answers)]
+        BinaryShiftInitialNumber,
+        [SouvenirQuestion("What number was selected at stage #{1} in {0}?", "Binary Shift", AnswerLayout.ThreeColumns6Answers)]
+        BinaryShiftSelectedNumberPossition,
+        [SouvenirQuestion("What number was not selected at stage #{1} in {0}?", "Binary Shift", AnswerLayout.ThreeColumns6Answers)]
+        BinaryShiftNotSelectedNumberPossition,
+
         [SouvenirQuestion("What word was displayed in {0}?", "Binary", AnswerLayout.ThreeColumns6Answers, null)]
         BinaryWord,
 
@@ -389,6 +396,15 @@ namespace Souvenir
 
         [SouvenirQuestion("What word was asked to be spelled in {0}?", "eeB gnillepS", AnswerLayout.TwoColumns4Answers, null)]
         eeBgnillepSWord,
+
+        [SouvenirQuestion("What was the last digit on small display in {0}?", "Eight", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
+        EightLastSmallDisplayDigit,
+        [SouvenirQuestion("What was the position of last broken digit in {0}?", "Eight", AnswerLayout.ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8")]
+        EightLastBrokenDigitPosition,
+        [SouvenirQuestion("What was the last resulting digits in {0}?", "Eight", AnswerLayout.ThreeColumns6Answers)]
+        EightLastResultingDigits,
+        [SouvenirQuestion("What was the last displayed number in {0}?", "Eight", AnswerLayout.ThreeColumns6Answers)]
+        EightLastDisplayedNumber,
 
         [SouvenirQuestion("What was the {1} rune shown on {0}?", "Elder Futhark", AnswerLayout.TwoColumns4Answers, "Algiz", "Ansuz", "Berkana", "Dagaz", "Ehwaz", "Eihwaz", "Fehu", "Gebo", "Hagalaz", "Isa", "Jera", "Kenaz", "Laguz", "Mannaz", "Nauthiz", "Othila", "Perthro", "Raido", "Sowulo", "Teiwaz", "Thurisaz", "Uruz", "Wunjo",
             ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -1417,6 +1433,9 @@ namespace Souvenir
         [SouvenirQuestion("Which number was displayed on {0}?", "Synonyms", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Integers(0, 9)]
         SynonymsNumber,
+
+        [SouvenirQuestion("What error code did you fix in {0}?", "Sysadmin", AnswerLayout.ThreeColumns6Answers)]
+        SysadminFixedErrorCodes,
 
         [SouvenirQuestion("What was the received word in {0}?", "Tap Code", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "child", "style", "shake", "alive", "axion", "wreck", "cause", "pupil", "cheat", "watch" })]
         TapCodeReceivedWord,

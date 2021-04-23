@@ -119,6 +119,7 @@ public class SouvenirModule : MonoBehaviour
     const string _BigCircle = "BigCircle";
     const string _Binary = "Binary";
     const string _BinaryLEDs = "BinaryLeds";
+    const string _BinaryShift = "binary_shift";
     const string _Bitmaps = "BitmapsModule";
     const string _BlackCipher = "blackCipher";
     const string _BlindMaze = "BlindMaze";
@@ -174,6 +175,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Dreamcipher = "ksmDreamcipher";
     const string _DumbWaiters = "dumbWaiters";
     const string _eeBgnillepS = "eeBgnilleps";
+    const string _Eight = "eight";
     const string _ElderFuthark = "elderFuthark";
     const string _EncryptedEquations = "EncryptedEquationsModule";
     const string _EncryptedHangman = "encryptedHangman";
@@ -365,6 +367,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SymbolCycle = "SymbolCycleModule";
     const string _SymbolicCoordinates = "symbolicCoordinates";
     const string _Synonyms = "synonyms";
+    const string _Sysadmin = "sysadmin";
     const string _TapCode = "tapCode";
     const string _TashaSqueals = "tashaSqueals";
     const string _TenButtonColorCode = "TenButtonColorCode";
@@ -440,6 +443,7 @@ public class SouvenirModule : MonoBehaviour
             { _BigCircle, ProcessBigCircle },
             { _Binary, ProcessBinary },
             { _BinaryLEDs, ProcessBinaryLEDs },
+            { _BinaryShift, ProcessBinaryShift },
             { _Bitmaps, ProcessBitmaps },
             { _BlackCipher, ProcessBlackCipher },
             { _BlindMaze, ProcessBlindMaze },
@@ -495,6 +499,7 @@ public class SouvenirModule : MonoBehaviour
             { _Dreamcipher, ProcessDreamcipher },
             { _DumbWaiters, ProcessDumbWaiters },
             { _eeBgnillepS, ProcessEeBgnillepS },
+            { _Eight, ProcessEight },
             { _ElderFuthark, ProcessElderFuthark },
             { _EncryptedEquations, ProcessEncryptedEquations },
             { _EncryptedHangman, ProcessEncryptedHangman },
@@ -686,6 +691,7 @@ public class SouvenirModule : MonoBehaviour
             { _SymbolCycle, ProcessSymbolCycle },
             { _SymbolicCoordinates, ProcessSymbolicCoordinates },
             { _Synonyms, ProcessSynonyms },
+            { _Sysadmin, ProcessSysadmin },
             { _TapCode, ProcessTapCode },
             { _TashaSqueals, ProcessTashaSqueals },
             { _TenButtonColorCode, ProcessTenButtonColorCode },
@@ -2543,6 +2549,29 @@ public class SouvenirModule : MonoBehaviour
             addQuestion(module, Question.BinaryLEDsValue, correctAnswers: new[] { answer.ToString() });
     }
 
+    private IEnumerable<object> ProcessBinaryShift(KMBombModule module)
+    {
+        var comp = GetComponent(module, "BinaryShiftModule");
+        var fldSolved = GetProperty<bool>(comp, "solved", true);
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_BinaryShift);
+        if (GetProperty<bool>(comp, "forceSolved", true).Get())
+            yield break;
+        var allPositions = ["top-left", "top-middle", "top-right", "left-middle", "center", "right-middle", "bottom-left", "bottom-middle", "bottom-right"];
+        var randPosition = Rnd.Range(0, 9);
+        var positionTitle = allPositions[randPosition];
+        var initialNumber = GetMethod<int>(comp, "GetInitialNumber", 1, true).Invoke(randPosition);
+        var possibleInitialNumbers = GetProperty<HashSet<int>>(comp, "possibleInitialNumbers", true).Get();
+        var stagesCount = GetProperty<int>(comp, "stagesCount", true).Get();
+        var randStage = Rnd.Range(0, stagesCount);
+        var selectedNumberPositions = GetMethod<HashSet<int>>(comp, "GetSelectedNumberPositions", 1, true).Invoke(randStage);
+        var questions = new List<QandA> { makeQuestion(Question.BinaryShiftInitialNumber, _BinaryShift, new[] { positionTitle }, new[] { initialNumber.ToString() }, possibleInitialNumbers.ToArray()) };
+        if (selectedNumberPositions.Count < 5) questions.Add(makeQuestion(Question.BinaryShiftSelectedNumberPossition, _BinaryShift, new[] { randStage.ToString() }, selectedNumberPositions.Select(p => allPositions[p]).ToArray(), allPositions));
+        else if (selectedNumberPositions.Count > 5) questions.Add(makeQuestion(Question.BinaryShiftNotSelectedNumberPossition, _BinaryShift, new[] { randStage.ToString() }, Enumerable.Range(0, 9).Where(p => !selectedNumberPositions.Contains(p)).Select(p => allPositions[p]).ToArray(), allPositions));
+        addQuestions(module, questions);
+    }
+
     private IEnumerable<object> ProcessBitmaps(KMBombModule module)
     {
         var comp = GetComponent(module, "BitmapsModule");
@@ -3792,6 +3821,26 @@ public class SouvenirModule : MonoBehaviour
         var spellTheWord = new[] { "accommodation", "acquiesce", "antediluvian", "appoggiatura", "autochthonous", "bouillabaisse", "bourgeoisie", "chauffeur", "chiaroscurist", "cholmondeley", "chrematistic", "chrysanthemum", "cnemidophorous", "conscientious", "courtoisie", "cymotrichous", "daquiri", "demitasse", "elucubrate", "embarrass", "eudaemonic", "euonym", "featherstonehaugh", "feuilleton", "fluorescent", "foudroyant", "gnocchi", "idiosyncracy", "irascible", "kierkagaardian", "laodicean", "liaison", "logorrhea", "mainwaring", "malfeasance", "manoeuvre", "memento", "milquetoast", "minuscule", "odontalgia", "onomatopoeia", "paraphernalia", "pharaoh", "playwright", "pococurante", "precocious", "privilege", "prospicience", "psittaceous", "psoriasis", "pterodactyl", "questionnaire", "rhythm", "sacreligious", "scherenschnitte", "sergeant", "smaragdine", "stromuhr", "succedaneum", "surveillance", "taaffeite", "unconscious", "ursprache", "vengeance", "vivisepulture", "wednesday", "withhold", "worcestershire", "xanthosis", "ytterbium" };
 
         addQuestions(module, makeQuestion(Question.eeBgnillepSWord, _eeBgnillepS, null, new[] { focus }, spellTheWord));
+    }
+
+    private IEnumerable<object> ProcessEight(KMBombModule module)
+    {
+        var comp = GetComponent(module, "EightModule");
+        var fldSolved = GetField<bool>(comp, "solved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SpaceTranders);
+        if (GetField<bool>(comp, "forceSolved").Get())
+            yield break;
+        var questions = new List<QandA> {
+            questions.Add(makeQuestion(Question.EightLastSmallDisplayDigit, _Eight, correctAnswers: new[] { GetProperty<int>(comp, "souvenirLastStageDigit", true).Get() })),
+            questions.Add(makeQuestion(Question.EightLastBrokenDigitPosition, _Eight, correctAnswers: new[] { GetProperty<int>(comp, "souvenirLastBrokenDigitPosition", true).Get() })),
+            questions.Add(makeQuestion(Question.EightLastResultingDigits, _Eight, correctAnswers: new[] { GetProperty<int>(comp, "souvenirLastResultingDigits", true).Get() }, preferredWrongAnswers: GetProperty<int[]>(comp, "souvenirPossibleLastResultingDigits", true)))
+        };
+        var lastDisplayedNumber = GetProperty<int>(comp, "souvenirLastDisplayedNumber", true).Get();
+        if (lastDisplayedNumber != -1)
+            questions.Add(makeQuestion(Question.EightLastDisplayedNumber, _Eight, correctAnswers: new[] { lastDisplayedNumber }, preferredWrongAnswers: GetProperty<int[]>(comp, "souvenirPossibleLastNumbers", true)));
+        addQuestions(module, questions);
     }
 
     private IEnumerable<object> ProcessElderFuthark(KMBombModule module)
@@ -8862,6 +8911,20 @@ public class SouvenirModule : MonoBehaviour
         GetField<TextMesh>(comp, "GoodLabel", isPublic: true).Get().text = "ACCEPTED";
 
         addQuestion(module, Question.SynonymsNumber, correctAnswers: new[] { number.ToString() });
+    }
+
+    private IEnumerable<object> ProcessSysadmin(KMBombModule module)
+    {
+        var comp = GetComponent(module, "EightModule");
+        var fldSolved = GetField<bool>(comp, "solved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SpaceTranders);
+        if (GetField<bool>(comp, "forceSolved").Get())
+            yield break;
+        var allErrorCodes = GetStaticProperty<HashSet<string>>(comp.GetType(), "allErrorCodes", true).Get();
+        var fixedErrorCodes = GetProperty<HashSet<string>>(comp, "fixedErrorCodes", true).Get();
+        addQuestion(module, Question.SysadminFixedErrorCodes, correctAnswers: fixedErrorCodes.ToArray(), preferredWrongAnswers: allErrorCodes.ToArray());
     }
 
     private IEnumerable<object> ProcessTapCode(KMBombModule module)
