@@ -351,6 +351,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SonicTheHedgehog = "sonic";
     const string _Sorting = "sorting";
     const string _Souvenir = "SouvenirModule";
+    const string _SpaceTraders = "space_traders";
     const string _SpellingBee = "spellingBee";
     const string _Sphere = "sphere";
     const string _SplittingTheLoot = "SplittingTheLootModule";
@@ -672,6 +673,7 @@ public class SouvenirModule : MonoBehaviour
             { _SonicTheHedgehog, ProcessSonicTheHedgehog },
             { _Sorting, ProcessSorting },
             { _Souvenir, ProcessSouvenir },
+            { _SpaceTraders, ProcessSpaceTraders },
             { _SpellingBee, ProcessSpellingBee },
             { _Sphere, ProcessSphere },
             { _SplittingTheLoot, ProcessSplittingTheLoot },
@@ -8539,6 +8541,32 @@ public class SouvenirModule : MonoBehaviour
 
         _modulesSolved.IncSafe(_Souvenir);
         addQuestion(module, Question.SouvenirFirstQuestion, null, new[] { firstModule }, modules.ToArray());
+    }
+
+    private IEnumerable<object> ProcessSpaceTraders(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SpaceTradersModule");
+        var fldSolved = GetProperty<bool>(comp, "solved", true);
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SpaceTraders);
+
+        if (GetProperty<bool>(comp, "forceSolved", true).Get())
+        {
+            Debug.LogFormat("[Souvenir #{0}] No question for Space Traders because the module was force-solved.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
+
+        var maxTaxAmount = GetProperty<int>(comp, "maxTax", true).Get();
+        var maxPossibleTaxAmount = GetProperty<int>(comp, "maxPossibleTaxAmount", true).Get();
+        if (maxPossibleTaxAmount < 4)
+        {
+            Debug.LogFormat("[Souvenir #{0}] No question for Space Traders because all paths from the solar system are too short.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
+        addQuestions(module, makeQuestion(Question.SpaceTradersMaxTax, _SpaceTraders, correctAnswers: new[] { maxTaxAmount.ToString() + " GCr" }, preferredWrongAnswers: Enumerable.Range(0, maxPossibleTaxAmount).Select(n => n.ToString() + " GCr").ToArray()));
     }
 
     private IEnumerable<object> ProcessSpellingBee(KMBombModule module)

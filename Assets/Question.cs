@@ -1358,6 +1358,9 @@ namespace Souvenir
             ExampleAnswers = new[] { "Probing", "Microcontroller", "Third Base", "Kudosudoku", "Quintuples", "3D Tunnels", "Uncolored Squares", "Pattern Cube", "Synonyms", "The Moon", "Human Resources", "Algebra" })]
         SouvenirFirstQuestion,
 
+        [SouvenirQuestion("What was the maximum tax amount per vessel in {0}?", "Space Traders", AnswerLayout.ThreeColumns6Answers)]
+        SpaceTradersMaxTax,
+
         [SouvenirQuestion("What was the {1} picture on {0}?", "Sonic The Hedgehog", AnswerLayout.TwoColumns4Answers, "Annoyed Sonic", "Ballhog", "Blue Lamppost", "Burrobot", "Buzz Bomber", "Crab Meat", "Dead Sonic", "Drowned Sonic", "Falling Sonic", "Moto Bug", "Red Lamppost", "Red Spring", "Standing Sonic", "Switch", "Yellow Spring",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SonicTheHedgehogPictures,
