@@ -2552,13 +2552,13 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessBinaryShift(KMBombModule module)
     {
         var comp = GetComponent(module, "BinaryShiftModule");
-        var fldSolved = GetProperty<bool>(comp, "solved", true);
+        var fldSolved = GetField<bool>(comp, "solved");
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_BinaryShift);
         if (GetProperty<bool>(comp, "forceSolved", true).Get())
             yield break;
-        var allPositions = ["top-left", "top-middle", "top-right", "left-middle", "center", "right-middle", "bottom-left", "bottom-middle", "bottom-right"];
+        var allPositions = new[] { "top-left", "top-middle", "top-right", "left-middle", "center", "right-middle", "bottom-left", "bottom-middle", "bottom-right" };
         var randPosition = Rnd.Range(0, 9);
         var positionTitle = allPositions[randPosition];
         var initialNumber = GetMethod<int>(comp, "GetInitialNumber", 1, true).Invoke(randPosition);
@@ -2566,7 +2566,7 @@ public class SouvenirModule : MonoBehaviour
         var stagesCount = GetProperty<int>(comp, "stagesCount", true).Get();
         var randStage = Rnd.Range(0, stagesCount);
         var selectedNumberPositions = GetMethod<HashSet<int>>(comp, "GetSelectedNumberPositions", 1, true).Invoke(randStage);
-        var questions = new List<QandA> { makeQuestion(Question.BinaryShiftInitialNumber, _BinaryShift, new[] { positionTitle }, new[] { initialNumber.ToString() }, possibleInitialNumbers.ToArray()) };
+        var questions = new List<QandA> { makeQuestion(Question.BinaryShiftInitialNumber, _BinaryShift, new[] { positionTitle }, new[] { initialNumber.ToString() }, possibleInitialNumbers.Select(n => n.ToString()).ToArray()) };
         if (selectedNumberPositions.Count < 5) questions.Add(makeQuestion(Question.BinaryShiftSelectedNumberPossition, _BinaryShift, new[] { randStage.ToString() }, selectedNumberPositions.Select(p => allPositions[p]).ToArray(), allPositions));
         else if (selectedNumberPositions.Count > 5) questions.Add(makeQuestion(Question.BinaryShiftNotSelectedNumberPossition, _BinaryShift, new[] { randStage.ToString() }, Enumerable.Range(0, 9).Where(p => !selectedNumberPositions.Contains(p)).Select(p => allPositions[p]).ToArray(), allPositions));
         addQuestions(module, questions);
@@ -3829,17 +3829,17 @@ public class SouvenirModule : MonoBehaviour
         var fldSolved = GetField<bool>(comp, "solved");
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_SpaceTranders);
-        if (GetField<bool>(comp, "forceSolved").Get())
+        _modulesSolved.IncSafe(_Eight);
+        if (GetProperty<bool>(comp, "forceSolved", true).Get())
             yield break;
         var questions = new List<QandA> {
-            questions.Add(makeQuestion(Question.EightLastSmallDisplayDigit, _Eight, correctAnswers: new[] { GetProperty<int>(comp, "souvenirLastStageDigit", true).Get() })),
-            questions.Add(makeQuestion(Question.EightLastBrokenDigitPosition, _Eight, correctAnswers: new[] { GetProperty<int>(comp, "souvenirLastBrokenDigitPosition", true).Get() })),
-            questions.Add(makeQuestion(Question.EightLastResultingDigits, _Eight, correctAnswers: new[] { GetProperty<int>(comp, "souvenirLastResultingDigits", true).Get() }, preferredWrongAnswers: GetProperty<int[]>(comp, "souvenirPossibleLastResultingDigits", true)))
+            makeQuestion(Question.EightLastSmallDisplayDigit, _Eight, correctAnswers: new[] { GetProperty<int>(comp, "souvenirLastStageDigit", true).Get().ToString() }),
+            makeQuestion(Question.EightLastBrokenDigitPosition, _Eight, correctAnswers: new[] { (GetProperty<int>(comp, "souvenirLastBrokenDigitPosition", true).Get() + 1).ToString() }),
+            makeQuestion(Question.EightLastResultingDigits, _Eight, correctAnswers: new[] { GetProperty<int>(comp, "souvenirLastResultingDigits", true).Get().ToString() }, preferredWrongAnswers: GetProperty<HashSet<int>>(comp, "souvenirPossibleLastResultingDigits", true).Get().Select(n => n.ToString().PadLeft(2, '0')).ToArray()),
         };
         var lastDisplayedNumber = GetProperty<int>(comp, "souvenirLastDisplayedNumber", true).Get();
         if (lastDisplayedNumber != -1)
-            questions.Add(makeQuestion(Question.EightLastDisplayedNumber, _Eight, correctAnswers: new[] { lastDisplayedNumber }, preferredWrongAnswers: GetProperty<int[]>(comp, "souvenirPossibleLastNumbers", true)));
+            questions.Add(makeQuestion(Question.EightLastDisplayedNumber, _Eight, correctAnswers: new[] { lastDisplayedNumber.ToString() }, preferredWrongAnswers: GetProperty<HashSet<int>>(comp, "souvenirPossibleLastNumbers", true).Get().Select(n => n.ToString().PadLeft(2, '0')).ToArray()));
         addQuestions(module, questions);
     }
 
@@ -8573,11 +8573,15 @@ public class SouvenirModule : MonoBehaviour
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_SpaceTranders);
-        if (GetField<bool>(comp, "forceSolved", true).Get())
+        if (GetProperty<bool>(comp, "forceSolved", true).Get())
             yield break;
         var maxTaxAmount = GetProperty<int>(comp, "maxTax", true).Get();
         var maxPossibleTaxAmount = GetProperty<int>(comp, "maxPossibleTaxAmount", true).Get();
-        addQuestions(module, makeQuestion(Question.SpaceTradersMaxTax, _SpaceTranders, correctAnswers: new[] { maxTaxAmount.ToString() }, preferredWrongAnswers: Enumerable.Range(0, maxPossibleTaxAmount - 1).Select(n => n.ToString()).ToArray()));
+        if (maxPossibleTaxAmount < 4) {
+            Debug.LogFormat("[Souvenir #{0}] No question for Space Traders because all paths from the solar system are too short.", _moduleId);
+            yield break;
+        }
+        addQuestions(module, makeQuestion(Question.SpaceTradersMaxTax, _SpaceTranders, correctAnswers: new[] { maxTaxAmount.ToString() + " GCr" }, preferredWrongAnswers: Enumerable.Range(0, maxPossibleTaxAmount).Select(n => n.ToString() + " GCr").ToArray()));
     }
 
     private IEnumerable<object> ProcessSpellingBee(KMBombModule module)
@@ -8915,15 +8919,20 @@ public class SouvenirModule : MonoBehaviour
 
     private IEnumerable<object> ProcessSysadmin(KMBombModule module)
     {
-        var comp = GetComponent(module, "EightModule");
-        var fldSolved = GetField<bool>(comp, "solved");
+        var comp = GetComponent(module, "SysadminModule");
+        var fldSolved = GetProperty<bool>(comp, "solved", true);
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_SpaceTranders);
-        if (GetField<bool>(comp, "forceSolved").Get())
+        _modulesSolved.IncSafe(_Sysadmin);
+        if (GetProperty<bool>(comp, "forceSolved", true).Get())
             yield break;
-        var allErrorCodes = GetStaticProperty<HashSet<string>>(comp.GetType(), "allErrorCodes", true).Get();
         var fixedErrorCodes = GetProperty<HashSet<string>>(comp, "fixedErrorCodes", true).Get();
+        if (fixedErrorCodes.Count == 0)
+        {
+            Debug.LogFormat("[Souvenir #{0}] No question for Sysadmin because there are no errors to ask about.", _moduleId);
+            yield break;
+        }
+        var allErrorCodes = GetStaticProperty<HashSet<string>>(comp.GetType(), "allErrorCodes", true).Get();
         addQuestion(module, Question.SysadminFixedErrorCodes, correctAnswers: fixedErrorCodes.ToArray(), preferredWrongAnswers: allErrorCodes.ToArray());
     }
 
