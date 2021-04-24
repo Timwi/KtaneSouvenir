@@ -132,6 +132,13 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 31)]
         BinaryLEDsValue,
 
+        [SouvenirQuestion("What was the {1} initial number in {0}?", "Binary Shift", AnswerLayout.ThreeColumns6Answers)]
+        BinaryShiftInitialNumber,
+        [SouvenirQuestion("What number was selected at stage {1} in {0}?", "Binary Shift", AnswerLayout.ThreeColumns6Answers)]
+        BinaryShiftSelectedNumberPossition,
+        [SouvenirQuestion("What number was not selected at stage {1} in {0}?", "Binary Shift", AnswerLayout.ThreeColumns6Answers)]
+        BinaryShiftNotSelectedNumberPossition,
+
         [SouvenirQuestion("What word was displayed in {0}?", "Binary", AnswerLayout.ThreeColumns6Answers, null)]
         BinaryWord,
 

@@ -119,6 +119,7 @@ public class SouvenirModule : MonoBehaviour
     const string _BigCircle = "BigCircle";
     const string _Binary = "Binary";
     const string _BinaryLEDs = "BinaryLeds";
+    const string _BinaryShift = "binary_shift";
     const string _Bitmaps = "BitmapsModule";
     const string _BlackCipher = "blackCipher";
     const string _BlindMaze = "BlindMaze";
@@ -442,6 +443,7 @@ public class SouvenirModule : MonoBehaviour
             { _BigCircle, ProcessBigCircle },
             { _Binary, ProcessBinary },
             { _BinaryLEDs, ProcessBinaryLEDs },
+            { _BinaryShift, ProcessBinaryShift },
             { _Bitmaps, ProcessBitmaps },
             { _BlackCipher, ProcessBlackCipher },
             { _BlindMaze, ProcessBlindMaze },
@@ -2551,6 +2553,41 @@ public class SouvenirModule : MonoBehaviour
         }
         else
             addQuestion(module, Question.BinaryLEDsValue, correctAnswers: new[] { answer.ToString() });
+    }
+
+    private IEnumerable<object> ProcessBinaryShift(KMBombModule module)
+    {
+        var comp = GetComponent(module, "BinaryShiftModule");
+        var fldSolved = GetField<bool>(comp, "solved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_BinaryShift);
+
+        if (GetProperty<bool>(comp, "forceSolved", true).Get())
+        {
+            Debug.LogFormat("[Souvenir #{0}] No question for Binary Shift because the module was force-solved.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
+
+        var allPositions = new[] { "top-left", "top-middle", "top-right", "left-middle", "center", "right-middle", "bottom-left", "bottom-middle", "bottom-right" };
+        var questions = new List<QandA>();
+        for (var position = 0; position < 9; position++)
+        {
+            var initialNumber = GetMethod<int>(comp, "GetInitialNumber", 1, true).Invoke(position);
+            var possibleInitialNumbers = GetProperty<HashSet<int>>(comp, "possibleInitialNumbers", true).Get();
+            questions.Add(makeQuestion(Question.BinaryShiftInitialNumber, _BinaryShift, new[] { allPositions[position] }, new[] { initialNumber.ToString() }, possibleInitialNumbers.Select(n => n.ToString()).ToArray()));
+        }
+        var stagesCount = GetProperty<int>(comp, "stagesCount", true).Get();
+        for (var stage = 0; stage < stagesCount; stage++)
+        {
+            var selectedNumberPositions = GetMethod<HashSet<int>>(comp, "GetSelectedNumberPositions", 1, true).Invoke(stage);
+            if (selectedNumberPositions.Count < 5)
+                questions.Add(makeQuestion(Question.BinaryShiftSelectedNumberPossition, _BinaryShift, new[] { stage.ToString() }, selectedNumberPositions.Select(p => allPositions[p]).ToArray(), allPositions));
+            else if (selectedNumberPositions.Count > 5)
+                questions.Add(makeQuestion(Question.BinaryShiftNotSelectedNumberPossition, _BinaryShift, new[] { stage.ToString() }, Enumerable.Range(0, 9).Except(selectedNumberPositions).Select(p => allPositions[p]).ToArray(), allPositions));
+        }
+        addQuestions(module, questions);
     }
 
     private IEnumerable<object> ProcessBitmaps(KMBombModule module)
