@@ -56,7 +56,7 @@ namespace Souvenir
         AlfaBravoLeftPressedLetter,
         [SouvenirQuestion("Which letter was to the right of the pressed one in {0}?", "Alfa-Bravo", AnswerLayout.ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")]
         AlfaBravoRightPressedLetter,
-        [SouvenirQuestion("What digit was on the small display when the correct letter was pressed in {0}?", "Alfa-Bravo", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
+        [SouvenirQuestion("What was the last digit on the small display in {0}?", "Alfa-Bravo", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
         AlfaBravoDigit,
 
         [SouvenirQuestion("What was the first equation in {0}?", "Algebra", AnswerLayout.TwoColumns4Answers, "a=3z", "a=5+y", "a=6-x", "a=7x", "a=8y", "a=9+z", "a=x/2", "a=x+1", "a=y/4", "a=y-2", "a=z/10", "a=z-7")]

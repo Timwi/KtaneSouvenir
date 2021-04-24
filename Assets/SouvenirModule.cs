@@ -2116,11 +2116,30 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_AlfaBravo);
 
-        addQuestions(module,
-            makeQuestion(Question.AlfaBravoPressedLetter, _AlfaBravo, null, new[] { GetProperty<char>(comp, "pressedLetter", true).Get().ToString() }),
-            makeQuestion(Question.AlfaBravoLeftPressedLetter, _AlfaBravo, null, new[] { GetProperty<char>(comp, "letterToTheLeftOfPressedOne", true).Get().ToString() }),
-            makeQuestion(Question.AlfaBravoRightPressedLetter, _AlfaBravo, null, new[] { GetProperty<char>(comp, "letterToTheRightOfPressedOne", true).Get().ToString() }),
-            makeQuestion(Question.AlfaBravoDigit, _AlfaBravo, null, new[] { GetProperty<int>(comp, "displayedDigit", true).Get().ToString() }));
+        if (GetProperty<bool>(comp, "forceSolved", true).Get())
+        {
+            Debug.LogFormat("[Souvenir #{0}] No question for Alfa-Bravo because the module was force-solved.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
+
+        var questions = new List<QandA>();
+
+        var pressedLetter = GetProperty<char>(comp, "souvenirPressedLetter", true).Get();
+        if (pressedLetter != 0)
+            questions.Add(makeQuestion(Question.AlfaBravoPressedLetter, _AlfaBravo, correctAnswers: new[] { pressedLetter.ToString() }));
+
+        var letterToTheLeftOfPressedOne = GetProperty<char>(comp, "souvenirLetterToTheLeftOfPressedOne", true).Get();
+        if (letterToTheLeftOfPressedOne != 0)
+            questions.Add(makeQuestion(Question.AlfaBravoLeftPressedLetter, _AlfaBravo, correctAnswers: new[] { letterToTheLeftOfPressedOne.ToString() }));
+
+        var letterToTheRightOfPressedOne = GetProperty<char>(comp, "souvenirLetterToTheRightOfPressedOne", true).Get();
+        if (letterToTheRightOfPressedOne != 0)
+            questions.Add(makeQuestion(Question.AlfaBravoRightPressedLetter, _AlfaBravo, correctAnswers: new[] { letterToTheRightOfPressedOne.ToString() }));
+
+        questions.Add(makeQuestion(Question.AlfaBravoDigit, _AlfaBravo, correctAnswers: new[] { GetProperty<int>(comp, "souvenirDisplayedDigit", true).Get().ToString() }));
+
+        addQuestions(module, questions);
     }
 
     private IEnumerable<object> ProcessAlgebra(KMBombModule module)
