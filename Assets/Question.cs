@@ -390,6 +390,15 @@ namespace Souvenir
         [SouvenirQuestion("What word was asked to be spelled in {0}?", "eeB gnillepS", AnswerLayout.TwoColumns4Answers, null)]
         eeBgnillepSWord,
 
+        [SouvenirQuestion("What was the last digit on the small display in {0}?", "Eight", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
+        EightLastSmallDisplayDigit,
+        [SouvenirQuestion("What was the position of the last broken digit in {0}?", "Eight", AnswerLayout.ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8")]
+        EightLastBrokenDigitPosition,
+        [SouvenirQuestion("What were the last resulting digits in {0}?", "Eight", AnswerLayout.ThreeColumns6Answers)]
+        EightLastResultingDigits,
+        [SouvenirQuestion("What was the last displayed number in {0}?", "Eight", AnswerLayout.ThreeColumns6Answers)]
+        EightLastDisplayedNumber,
+
         [SouvenirQuestion("What was the {1} rune shown on {0}?", "Elder Futhark", AnswerLayout.TwoColumns4Answers, "Algiz", "Ansuz", "Berkana", "Dagaz", "Ehwaz", "Eihwaz", "Fehu", "Gebo", "Hagalaz", "Isa", "Jera", "Kenaz", "Laguz", "Mannaz", "Nauthiz", "Othila", "Perthro", "Raido", "Sowulo", "Teiwaz", "Thurisaz", "Uruz", "Wunjo",
             ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ElderFutharkRunes,

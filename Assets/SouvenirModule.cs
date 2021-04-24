@@ -174,6 +174,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Dreamcipher = "ksmDreamcipher";
     const string _DumbWaiters = "dumbWaiters";
     const string _eeBgnillepS = "eeBgnilleps";
+    const string _Eight = "eight";
     const string _ElderFuthark = "elderFuthark";
     const string _EncryptedEquations = "EncryptedEquationsModule";
     const string _EncryptedHangman = "encryptedHangman";
@@ -494,6 +495,7 @@ public class SouvenirModule : MonoBehaviour
             { _Dreamcipher, ProcessDreamcipher },
             { _DumbWaiters, ProcessDumbWaiters },
             { _eeBgnillepS, ProcessEeBgnillepS },
+            { _Eight, ProcessEight },
             { _ElderFuthark, ProcessElderFuthark },
             { _EncryptedEquations, ProcessEncryptedEquations },
             { _EncryptedHangman, ProcessEncryptedHangman },
@@ -3788,6 +3790,32 @@ public class SouvenirModule : MonoBehaviour
         var spellTheWord = new[] { "accommodation", "acquiesce", "antediluvian", "appoggiatura", "autochthonous", "bouillabaisse", "bourgeoisie", "chauffeur", "chiaroscurist", "cholmondeley", "chrematistic", "chrysanthemum", "cnemidophorous", "conscientious", "courtoisie", "cymotrichous", "daquiri", "demitasse", "elucubrate", "embarrass", "eudaemonic", "euonym", "featherstonehaugh", "feuilleton", "fluorescent", "foudroyant", "gnocchi", "idiosyncracy", "irascible", "kierkagaardian", "laodicean", "liaison", "logorrhea", "mainwaring", "malfeasance", "manoeuvre", "memento", "milquetoast", "minuscule", "odontalgia", "onomatopoeia", "paraphernalia", "pharaoh", "playwright", "pococurante", "precocious", "privilege", "prospicience", "psittaceous", "psoriasis", "pterodactyl", "questionnaire", "rhythm", "sacreligious", "scherenschnitte", "sergeant", "smaragdine", "stromuhr", "succedaneum", "surveillance", "taaffeite", "unconscious", "ursprache", "vengeance", "vivisepulture", "wednesday", "withhold", "worcestershire", "xanthosis", "ytterbium" };
 
         addQuestions(module, makeQuestion(Question.eeBgnillepSWord, _eeBgnillepS, null, new[] { focus }, spellTheWord));
+    }
+
+    private IEnumerable<object> ProcessEight(KMBombModule module)
+    {
+        var comp = GetComponent(module, "EightModule");
+        var fldSolved = GetField<bool>(comp, "solved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Eight);
+
+        if (GetProperty<bool>(comp, "forceSolved", true).Get())
+        {
+            Debug.LogFormat("[Souvenir #{0}] No question for Eight because the module was force-solved.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
+
+        var questions = new List<QandA> {
+            makeQuestion(Question.EightLastSmallDisplayDigit, _Eight, correctAnswers: new[] { GetProperty<int>(comp, "souvenirLastStageDigit", true).Get().ToString() }),
+            makeQuestion(Question.EightLastBrokenDigitPosition, _Eight, correctAnswers: new[] { (GetProperty<int>(comp, "souvenirLastBrokenDigitPosition", true).Get() + 1).ToString() }),
+            makeQuestion(Question.EightLastResultingDigits, _Eight, correctAnswers: new[] { GetProperty<int>(comp, "souvenirLastResultingDigits", true).Get().ToString() }, preferredWrongAnswers: GetProperty<HashSet<int>>(comp, "souvenirPossibleLastResultingDigits", true).Get().Select(n => n.ToString().PadLeft(2, '0')).ToArray()),
+        };
+        var lastDisplayedNumber = GetProperty<int>(comp, "souvenirLastDisplayedNumber", true).Get();
+        if (lastDisplayedNumber != -1)
+            questions.Add(makeQuestion(Question.EightLastDisplayedNumber, _Eight, correctAnswers: new[] { lastDisplayedNumber.ToString() }, preferredWrongAnswers: GetProperty<HashSet<int>>(comp, "souvenirPossibleLastNumbers", true).Get().Select(n => n.ToString().PadLeft(2, '0')).ToArray()));
+        addQuestions(module, questions);
     }
 
     private IEnumerable<object> ProcessElderFuthark(KMBombModule module)
