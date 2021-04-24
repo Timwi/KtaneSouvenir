@@ -2567,8 +2567,10 @@ public class SouvenirModule : MonoBehaviour
         var randStage = Rnd.Range(0, stagesCount);
         var selectedNumberPositions = GetMethod<HashSet<int>>(comp, "GetSelectedNumberPositions", 1, true).Invoke(randStage);
         var questions = new List<QandA> { makeQuestion(Question.BinaryShiftInitialNumber, _BinaryShift, new[] { positionTitle }, new[] { initialNumber.ToString() }, possibleInitialNumbers.Select(n => n.ToString()).ToArray()) };
-        if (selectedNumberPositions.Count < 5) questions.Add(makeQuestion(Question.BinaryShiftSelectedNumberPossition, _BinaryShift, new[] { randStage.ToString() }, selectedNumberPositions.Select(p => allPositions[p]).ToArray(), allPositions));
-        else if (selectedNumberPositions.Count > 5) questions.Add(makeQuestion(Question.BinaryShiftNotSelectedNumberPossition, _BinaryShift, new[] { randStage.ToString() }, Enumerable.Range(0, 9).Where(p => !selectedNumberPositions.Contains(p)).Select(p => allPositions[p]).ToArray(), allPositions));
+        if (selectedNumberPositions.Count < 5)
+            questions.Add(makeQuestion(Question.BinaryShiftSelectedNumberPossition, _BinaryShift, new[] { randStage.ToString() }, selectedNumberPositions.Select(p => allPositions[p]).ToArray(), allPositions));
+        else if (selectedNumberPositions.Count > 5)
+            questions.Add(makeQuestion(Question.BinaryShiftNotSelectedNumberPossition, _BinaryShift, new[] { randStage.ToString() }, Enumerable.Range(0, 9).Where(p => !selectedNumberPositions.Contains(p)).Select(p => allPositions[p]).ToArray(), allPositions));
         addQuestions(module, questions);
     }
 
@@ -8577,7 +8579,8 @@ public class SouvenirModule : MonoBehaviour
             yield break;
         var maxTaxAmount = GetProperty<int>(comp, "maxTax", true).Get();
         var maxPossibleTaxAmount = GetProperty<int>(comp, "maxPossibleTaxAmount", true).Get();
-        if (maxPossibleTaxAmount < 4) {
+        if (maxPossibleTaxAmount < 4)
+        {
             Debug.LogFormat("[Souvenir #{0}] No question for Space Traders because all paths from the solar system are too short.", _moduleId);
             yield break;
         }
