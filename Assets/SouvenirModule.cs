@@ -154,6 +154,7 @@ public class SouvenirModule : MonoBehaviour
     const string _ColoredSquares = "ColoredSquaresModule";
     const string _ColoredSwitches = "ColoredSwitchesModule";
     const string _ColorMorse = "ColorMorseModule";
+    const string _ColorsMaximization = "colors_maximization";
     const string _ColourFlash = "ColourFlash";
     const string _Coordinates = "CoordinatesModule";
     const string _Corners = "CornersModule";
@@ -473,6 +474,7 @@ public class SouvenirModule : MonoBehaviour
             { _ColoredSquares, ProcessColoredSquares },
             { _ColoredSwitches, ProcessColoredSwitches },
             { _ColorMorse, ProcessColorMorse },
+            { _ColorsMaximization, ProcessColorsMaximization },
             { _ColourFlash, ProcessColourFlash },
             { _Coordinates, ProcessCoordinates },
             { _Corners, ProcessCorners },
@@ -3337,6 +3339,42 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, Enumerable.Range(0, 3).SelectMany(ix => Ut.NewArray(
              makeQuestion(Question.ColorMorseColor, _ColorMorse, new[] { ordinal(ix + 1) }, new[] { flashedColorNames[ix] }, flashedColorNames),
              makeQuestion(Question.ColorMorseCharacter, _ColorMorse, new[] { ordinal(ix + 1) }, new[] { flashedCharacters[ix] }, flashedCharacters))));
+    }
+
+    private IEnumerable<object> ProcessColorsMaximization(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ColorsMaximizationModule");
+        var fldSolved = GetField<bool>(comp, "solved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ColorsMaximization);
+
+        if (GetProperty<bool>(comp, "forceSolved", true).Get())
+        {
+            Debug.LogFormat("[Souvenir #{0}] No question for Colors Maximization because the module was force-solved.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
+
+        var submittedScore = GetProperty<int>(comp, "submittedScore", true).Get();
+        var submittedScoreWrongAnswers = GetProperty<int[]>(comp, "souvenirSubmittedScoreWrongAnswers", true).Get();
+        var submittedColors = GetProperty<HashSet<Color>>(comp, "submittedColors", true).Get();
+        var colorNameDic = GetStaticField<Dictionary<Color, string>>(comp.GetType(), "colorNames", true).Get();
+        var colorNames = colorNameDic.Values.ToArray();
+        var allColors = GetStaticField<Color[]>(comp.GetType(), "allColors").Get();
+        var questions = new List<QandA>()
+        {
+            makeQuestion(Question.ColorsMaximizationSubmittedScore, _ColorsMaximization, correctAnswers: new string[] { submittedScore.ToString() }, preferredWrongAnswers: submittedScoreWrongAnswers.Select(s => s.ToString()).ToArray()),
+            makeQuestion(Question.ColorsMaximizationSubmittedColor, _ColorsMaximization, correctAnswers: submittedColors.Select(c => colorNameDic[c]).ToArray(), preferredWrongAnswers: colorNames),
+            makeQuestion(Question.ColorsMaximizationNotSubmittedColor, _ColorsMaximization, correctAnswers: allColors.Except(submittedColors).Select(c => colorNameDic[c]).ToArray(), preferredWrongAnswers: colorNames)
+        };
+        foreach (var color in allColors)
+        {
+            var colorCount = GetField<Dictionary<Color, int>>(comp, "countOfColor").Get()[color];
+            var colorCountWrongAnswers = GetMethod<int[]>(comp, "GenerateSouvenirColorCountWrongAnswers", 1, true).Invoke(color);
+            questions.Add(makeQuestion(Question.ColorsMaximizationColorCount, _ColorsMaximization, new string[] { colorNameDic[color] }, new string[] { colorCount.ToString() }, colorCountWrongAnswers.Select(c => c.ToString()).ToArray()));
+        }
+        addQuestions(module, questions);
     }
 
     private IEnumerable<object> ProcessColourFlash(KMBombModule module)

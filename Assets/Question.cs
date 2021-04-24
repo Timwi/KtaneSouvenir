@@ -303,6 +303,15 @@ namespace Souvenir
         [AnswerGenerator.Strings("0-9A-Z")]
         ColorMorseCharacter,
 
+        [SouvenirQuestion("What was the submitted score in {0}?", "Colors Maximization", AnswerLayout.ThreeColumns6Answers)]
+        ColorsMaximizationSubmittedScore,
+        [SouvenirQuestion("What color was submitted as part of the solution in {0}?", "Colors Maximization", AnswerLayout.TwoColumns4Answers)]
+        ColorsMaximizationSubmittedColor,
+        [SouvenirQuestion("What color was not submitted as part of the solution in {0}?", "Colors Maximization", AnswerLayout.TwoColumns4Answers)]
+        ColorsMaximizationNotSubmittedColor,
+        [SouvenirQuestion("How many buttons were {1} in {0}?", "Colors Maximization", AnswerLayout.ThreeColumns6Answers)]
+        ColorsMaximizationColorCount,
+
         [SouvenirQuestion("What was the color of the last word in the sequence in {0}?", "Colour Flash", AnswerLayout.ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Magenta", "White")]
         ColourFlashLastColor,
 
