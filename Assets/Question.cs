@@ -1427,6 +1427,9 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9)]
         SynonymsNumber,
 
+        [SouvenirQuestion("What error code did you fix in {0}?", "Sysadmin", AnswerLayout.ThreeColumns6Answers)]
+        SysadminFixedErrorCodes,
+
         [SouvenirQuestion("What was the received word in {0}?", "Tap Code", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "child", "style", "shake", "alive", "axion", "wreck", "cause", "pupil", "cheat", "watch" })]
         TapCodeReceivedWord,
 

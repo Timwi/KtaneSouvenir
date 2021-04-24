@@ -366,6 +366,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SymbolCycle = "SymbolCycleModule";
     const string _SymbolicCoordinates = "symbolicCoordinates";
     const string _Synonyms = "synonyms";
+    const string _Sysadmin = "sysadmin";
     const string _TapCode = "tapCode";
     const string _TashaSqueals = "tashaSqueals";
     const string _TenButtonColorCode = "TenButtonColorCode";
@@ -688,6 +689,7 @@ public class SouvenirModule : MonoBehaviour
             { _SymbolCycle, ProcessSymbolCycle },
             { _SymbolicCoordinates, ProcessSymbolicCoordinates },
             { _Synonyms, ProcessSynonyms },
+            { _Sysadmin, ProcessSysadmin },
             { _TapCode, ProcessTapCode },
             { _TashaSqueals, ProcessTashaSqueals },
             { _TenButtonColorCode, ProcessTenButtonColorCode },
@@ -8900,6 +8902,32 @@ public class SouvenirModule : MonoBehaviour
         GetField<TextMesh>(comp, "GoodLabel", isPublic: true).Get().text = "ACCEPTED";
 
         addQuestion(module, Question.SynonymsNumber, correctAnswers: new[] { number.ToString() });
+    }
+
+    private IEnumerable<object> ProcessSysadmin(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SysadminModule");
+        var fldSolved = GetProperty<bool>(comp, "solved", true);
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Sysadmin);
+
+        if (GetProperty<bool>(comp, "forceSolved", true).Get())
+        {
+            Debug.LogFormat("[Souvenir #{0}] No question for Alfa-Bravo because the module was force-solved.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
+
+        var fixedErrorCodes = GetProperty<HashSet<string>>(comp, "fixedErrorCodes", true).Get();
+        if (fixedErrorCodes.Count == 0)
+        {
+            Debug.LogFormat("[Souvenir #{0}] No question for Sysadmin because there are no errors to ask about.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
+        var allErrorCodes = GetStaticProperty<HashSet<string>>(comp.GetType(), "allErrorCodes", true).Get();
+        addQuestion(module, Question.SysadminFixedErrorCodes, correctAnswers: fixedErrorCodes.ToArray(), preferredWrongAnswers: allErrorCodes.ToArray());
     }
 
     private IEnumerable<object> ProcessTapCode(KMBombModule module)
