@@ -942,12 +942,6 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NavinumsDirectionalButtons,
 
-        [SouvenirQuestion("What colors did the light glow in {0}?", "Not the Button", AnswerLayout.ThreeColumns6Answers, "white", "red", "yellow", "green", "blue", "white/red", "white/yellow", "white/green", "white/blue", "red/yellow", "red/green", "red/blue", "yellow/green", "yellow/blue", "green/blue")]
-        NotButtonLightColor,
-        [SouvenirQuestion("How many times did you press the button in {0}?", "Not the Button", AnswerLayout.ThreeColumns6Answers)]
-        [AnswerGenerator.Integers(10, 99)]
-        NotButtonMashCount,
-
         [SouvenirQuestion("What color flashed {1} in the final sequence in {0}?", "Not Keypad", AnswerLayout.ThreeColumns6Answers, "red", "orange", "yellow", "green", "cyan", "blue", "purple", "magenta", "pink", "brown", "grey", "white",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NotKeypadColor,
@@ -970,6 +964,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the goal position in {0}?", "Not Simaze", AnswerLayout.TwoColumns4Answers)]
         [AnswerGenerator.Inherit(NotSimazeStart)]
         NotSimazeGoal,
+
+        [SouvenirQuestion("What colors did the light glow in {0}?", "Not the Button", AnswerLayout.ThreeColumns6Answers, "white", "red", "yellow", "green", "blue", "white/red", "white/yellow", "white/green", "white/blue", "red/yellow", "red/green", "red/blue", "yellow/green", "yellow/blue", "green/blue")]
+        NotTheButtonLightColor,
 
         [SouvenirQuestion("In which position was the button you pressed in the {1} stage on {0}?", "Not Who's on First", AnswerLayout.TwoColumns4Answers, "top left", "top right", "middle left", "middle right", "bottom left", "bottom right",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]

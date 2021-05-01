@@ -270,11 +270,11 @@ public class SouvenirModule : MonoBehaviour
     const string _Necronomicon = "necronomicon";
     const string _Negativity = "Negativity";
     const string _Neutralization = "neutralization";
-    const string _NotButton = "NotButton";
     const string _NotKeypad = "NotKeypad";
     const string _NotMaze = "NotMaze";
     const string _NotMorseCode = "NotMorseCode";
     const string _NotSimaze = "NotSimaze";
+    const string _NotTheButton = "NotButton";
     const string _NotWhosOnFirst = "NotWhosOnFirst";
     const string _NumberedButtons = "numberedButtonsModule";
     const string _Numbers = "Numbers";
@@ -593,11 +593,11 @@ public class SouvenirModule : MonoBehaviour
             { _Necronomicon, ProcessNecronomicon },
             { _Negativity, ProcessNegativity },
             { _Neutralization, ProcessNeutralization },
-            { _NotButton, ProcessNotButton },
             { _NotKeypad, ProcessNotKeypad },
             { _NotMaze, ProcessNotMaze },
             { _NotMorseCode, ProcessNotMorseCode },
             { _NotSimaze, ProcessNotSimaze },
+            { _NotTheButton, ProcessNotTheButton },
             { _NotWhosOnFirst, ProcessNotWhosOnFirst },
             { _NumberedButtons, ProcessNumberedButtons },
             { _Numbers, ProcessNumbers },
@@ -6476,42 +6476,6 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessNotButton(KMBombModule module)
-    {
-        var comp = GetComponent(module, "NotButton");
-        var propSolved = GetProperty<bool>(comp, "Solved", isPublic: true);
-        var propLightColour = GetProperty<object>(comp, "LightColour", isPublic: true); // actual type is an enum
-        var propMashCount = GetIntField(comp, "MashCount", isPublic: true);
-
-        var lightColor = 0;
-        var mashCount = 0;
-        while (!propSolved.Get())
-        {
-            mashCount = propMashCount.Get();
-            lightColor = (int) propLightColour.Get();   // casting boxed enum value to int
-            yield return null;  // Don’t wait for .1 seconds so we don’t miss it
-        }
-        _modulesSolved.IncSafe(_NotButton);
-
-        if (lightColor != 0)
-        {
-            var strings = _attributes[Question.NotButtonLightColor].AllAnswers;
-            if (lightColor <= 0 || lightColor > strings.Length)
-                throw new AbandonModuleException("‘LightColour’ is out of range ({0}).", lightColor);
-            addQuestion(module, Question.NotButtonLightColor, correctAnswers: new[] { strings[lightColor - 1] });
-        }
-        else if (mashCount > 1)
-        {
-            var wrongAnswerStrings = Enumerable.Range(0, 20).Select(_ => Rnd.Range(10, 100)).Where(i => i != mashCount).Distinct().Take(5).Select(i => i.ToString()).ToArray();
-            addQuestion(module, Question.NotButtonMashCount, correctAnswers: new[] { mashCount.ToString() }, preferredWrongAnswers: wrongAnswerStrings);
-        }
-        else
-        {
-            Debug.LogFormat("[Souvenir #{0}] No question for Not the Button because the button was tapped (or I missed the light color).", _moduleId);
-            _legitimatelyNoQuestions.Add(module);
-        }
-    }
-
     private IEnumerable<object> ProcessNotKeypad(KMBombModule module)
     {
         var comp = GetComponent(module, "NotKeypad");
@@ -6589,6 +6553,34 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.NotSimazeMaze, _NotSimaze, correctAnswers: new[] { colours[fldMazeIndex.Get()] }),
             makeQuestion(Question.NotSimazeStart, _NotSimaze, correctAnswers: startPositionArray, preferredWrongAnswers: goalPositionArray),
             makeQuestion(Question.NotSimazeGoal, _NotSimaze, correctAnswers: goalPositionArray, preferredWrongAnswers: startPositionArray));
+    }
+
+    private IEnumerable<object> ProcessNotTheButton(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NotButton");
+        var propSolved = GetProperty<bool>(comp, "Solved", isPublic: true);
+        var propLightColour = GetProperty<object>(comp, "LightColour", isPublic: true); // actual type is an enum
+
+        var lightColor = 0;
+        while (!propSolved.Get())
+        {
+            lightColor = (int) propLightColour.Get();   // casting boxed enum value to int
+            yield return null;  // Don’t wait for .1 seconds so we don’t miss it
+        }
+        _modulesSolved.IncSafe(_NotTheButton);
+
+        if (lightColor != 0)
+        {
+            var strings = _attributes[Question.NotTheButtonLightColor].AllAnswers;
+            if (lightColor <= 0 || lightColor > strings.Length)
+                throw new AbandonModuleException("‘LightColour’ is out of range ({0}).", lightColor);
+            addQuestion(module, Question.NotTheButtonLightColor, correctAnswers: new[] { strings[lightColor - 1] });
+        }
+        else
+        {
+            Debug.LogFormat("[Souvenir #{0}] No question for Not the Button because the strip didn’t light up (or I missed the light color).", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+        }
     }
 
     private IEnumerable<object> ProcessNotWhosOnFirst(KMBombModule module)
