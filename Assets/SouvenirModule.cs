@@ -407,6 +407,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Wire = "wire";
     const string _WireOrdering = "kataWireOrdering";
     const string _WireSequence = "WireSequence";
+    const string _WolfGoatAndCabbage = "wolfGoatCabbageModule";
     const string _WorkingTitle = "workingTitle";
     const string _XmORseCode = "xmorse";
     const string _Yahtzee = "YahtzeeModule";
@@ -734,6 +735,7 @@ public class SouvenirModule : MonoBehaviour
             { _Wire, ProcessWire },
             { _WireOrdering, ProcessWireOrdering },
             { _WireSequence, ProcessWireSequence },
+            { _WolfGoatAndCabbage, ProcessWolfGoatAndCabbage },
             { _WorkingTitle, ProcessWorkingTitle },
             { _XmORseCode, ProcessXmORseCode },
             { _Yahtzee, ProcessYahtzee },
@@ -9772,6 +9774,34 @@ public class SouvenirModule : MonoBehaviour
             qs.Add(makeQuestion(Question.WireSequenceColorCount, _WireSequence, new[] { new[] { "black", "blue", "red" }[color] }, new[] { counts[color].ToString() }, preferredWrongAnswers));
         }
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessWolfGoatAndCabbage(KMBombModule module)
+    {
+        var comp = GetComponent(module, "WolfGoatCabbageScript");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+
+        yield return null;
+
+        var animalsPresent = GetListField<string>(comp, "_startShore").Get().ToArray();
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_WolfGoatAndCabbage);
+
+        var boatSize = GetIntField(comp, "_boatSize").Get();
+        var allAnimals = _attributes[Question.WolfGoatAndCabbageAnimals].AllAnswers;
+
+        var questions = new List<QandA>();
+        foreach (var present in new[] { false, true })
+        {
+            questions.Add(makeQuestion(Question.WolfGoatAndCabbageAnimals, _WolfGoatAndCabbage,
+                formatArgs: new[] { present ? "present" : "not present" },
+                correctAnswers: present ? animalsPresent : allAnimals.Except(animalsPresent).ToArray(),
+                preferredWrongAnswers: present ? allAnimals : animalsPresent));
+        }
+        questions.Add(makeQuestion(Question.WolfGoatAndCabbageBoatSize, _WolfGoatAndCabbage, null, new[] { boatSize.ToString() }));
+        addQuestions(module, questions);
     }
 
     private IEnumerable<object> ProcessWorkingTitle(KMBombModule module)

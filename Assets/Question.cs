@@ -1614,6 +1614,13 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9)]
         WireSequenceColorCount,
 
+        [SouvenirQuestion("Which of these was {1} on {0}?", "Wolf, Goat, and Cabbage", AnswerLayout.ThreeColumns6Answers, "Cat", "Wolf", "Rabbit", "Berry", "Fish", "Dog", "Duck", "Goat", "Fox", "Grass", "Rice", "Mouse", "Bear", "Cabbage", "Chicken", "Goose", "Corn", "Carrot", "Horse", "Earthworm", "Kiwi", "Seeds",
+            ExampleExtraFormatArguments = new[] { "present", "not present" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        WolfGoatAndCabbageAnimals,
+        [SouvenirQuestion("What was the boat size in {0}?", "Wolf, Goat, and Cabbage", AnswerLayout.ThreeColumns6Answers, null)]
+        [AnswerGenerator.Integers(0, 9)]
+        WolfGoatAndCabbageBoatSize,
+
         [SouvenirQuestion("What was the label shown in {0}?", "Working Title", AnswerLayout.OneColumn4Answers, "foo", "foobar", "quuz", "garply", "plugh", "wibble", "flob", "fuga", "toto", "tutu", "eggs", "alice", "lorem ipsum", "widget", "eek", "bat", "haystack", "blarg", "kalaa", "sub", "momo", "change this", "hi", "thing", "xyz", "bar", "qux", "corge", "waldo", "xyzzy", "wobble", "hoge", "hogera", "tata", "spam", "raboof", "bob", "do stuff", "bla", "moof", "shme", "beekeeper", "dothestuff", "mum", "temp", "var", "placeholder", "hello", "stuff", "text", "baz", "quux", "grault", "fred", "thud", "wubble", "piyo", "hogehoge", "titi", "ham", "fruit", "john doe", "data", "gadget", "gleep", "needle", "blah", "grault", "puppu", "test", "change", "null", "hey", "something", "abc")]
         WorkingTitleLabel,
 
