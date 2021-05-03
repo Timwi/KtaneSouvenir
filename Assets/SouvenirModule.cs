@@ -402,6 +402,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Wire = "wire";
     const string _WireOrdering = "kataWireOrdering";
     const string _WireSequence = "WireSequence";
+    const string _WolfGoatAndCabbage = "wolfGoatCabbageModule";
     const string _WorkingTitle = "workingTitle";
     const string _XmORseCode = "xmorse";
     const string _Yahtzee = "YahtzeeModule";
@@ -724,6 +725,7 @@ public class SouvenirModule : MonoBehaviour
             { _Wire, ProcessWire },
             { _WireOrdering, ProcessWireOrdering },
             { _WireSequence, ProcessWireSequence },
+            { _WolfGoatAndCabbage, ProcessWolfGoatAndCabbage },
             { _WorkingTitle, ProcessWorkingTitle },
             { _XmORseCode, ProcessXmORseCode },
             { _Yahtzee, ProcessYahtzee },
@@ -3470,7 +3472,7 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_Creation);
         addQuestions(module, allWeather.Select((t, i) => makeQuestion(Question.CreationWeather, _Creation, new[] { ordinal(i + 1) }, new[] { t })));
     }
-    
+
     private IEnumerable<object> ProcessCrypticCycle(KMBombModule module)
     {
         return processSpeakingEvilCycle2(module, "CrypticCycleScript", Question.CrypticCycleWord, _CrypticCycle);
@@ -9627,6 +9629,36 @@ public class SouvenirModule : MonoBehaviour
             qs.Add(makeQuestion(Question.WireSequenceColorCount, _WireSequence, new[] { new[] { "black", "blue", "red" }[color] }, new[] { counts[color].ToString() }, preferredWrongAnswers));
         }
         addQuestions(module, qs);
+    }
+    
+    private IEnumerable<object> ProcessWolfGoatAndCabbage(KMBombModule module)
+    {
+        var comp = GetComponent(module, "WolfGoatCabbageScript");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+
+        yield return null;
+        
+        var animals = GetListField<string>(comp, "_startShore").Get().ToArray();
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_WolfGoatAndCabbage);
+
+        var boatSize = GetIntField(comp, "_boatSize").Get();
+        var possibleAnimals = new[]
+        {
+            "Cat", "Wolf", "Rabbit", "Berry", "Fish", "Dog", "Duck", "Goat", "Fox", "Grass", "Rice", "Mouse", "Bear",
+            "Cabbage", "Chicken", "Goose", "Corn", "Carrot", "Horse", "Earthworm", "Kiwi", "Seeds"
+        };
+        var answers = possibleAnimals.Where(x => !animals.Contains(x)).ToArray();
+
+        var questions = new List<QandA>();
+        foreach (var answer in answers)
+        {
+            questions.Add(makeQuestion(Question.WolfGoatAndCabbageAnimals, _WolfGoatAndCabbage, null, correctAnswers: new[]{ answer }, preferredWrongAnswers: animals));
+        }
+        questions.Add(makeQuestion(Question.WolfGoatAndCabbageBoatSize, _WolfGoatAndCabbage, null, new[]{ boatSize.ToString() }));
+        addQuestions(module, questions);
     }
 
     private IEnumerable<object> ProcessWorkingTitle(KMBombModule module)
