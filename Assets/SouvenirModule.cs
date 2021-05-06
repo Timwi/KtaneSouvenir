@@ -6806,7 +6806,7 @@ public class SouvenirModule : MonoBehaviour
         {
             var info = fldInfo.Get(expectedLength: 6, validator: arr => arr == null ? "null" : arr.Length != 4 ? "expected length 4" : null);
             var newStage = fldStage.Get(min: 1, max: 3);
-            if (curStage != newStage || moduleData[newStage - 1] == null || Enumerable.Range(0, 6).All(ix => info[ix].SequenceEqual(moduleData[newStage - 1][ix])))
+            if (curStage != newStage || moduleData[newStage - 1] == null || !Enumerable.Range(0, 6).All(ix => info[ix].SequenceEqual(moduleData[newStage - 1][ix])))
             {
                 curStage = newStage;
                 moduleData[curStage - 1] = info.Select(arr => arr.ToArray()).ToArray(); // Take a copy of the array.
