@@ -265,7 +265,6 @@ public class SouvenirModule : MonoBehaviour
     const string _MouseInTheMaze = "MouseInTheMaze";
     const string _Murder = "murder";
     const string _MysteryModule = "mysterymodule";
-    const string _MysteryWidget = "widgetModule";
     const string _MysticSquare = "MysticSquareModule";
     const string _NandMs = "NandMs";
     const string _Navinums = "navinums";
@@ -593,7 +592,6 @@ public class SouvenirModule : MonoBehaviour
             { _MouseInTheMaze, ProcessMouseInTheMaze },
             { _Murder, ProcessMurder },
             { _MysteryModule, ProcessMysteryModule },
-            { _MysteryWidget, ProcessMysteryWidget },
             { _MysticSquare, ProcessMysticSquare },
             { _NandMs, ProcessNandMs },
             { _Navinums, ProcessNavinums },
@@ -947,15 +945,18 @@ public class SouvenirModule : MonoBehaviour
             if (Application.isEditor && !ModulePresent)
             {
                 // Testing in Unity
+                var sb = new StringBuilder();
                 foreach (var entry in _attributes)
                 {
                     if (entry.Value.Type != AnswerType.Sprites && (entry.Value.AllAnswers == null || entry.Value.AllAnswers.Length == 0) &&
                         (entry.Value.ExampleAnswers == null || entry.Value.ExampleAnswers.Length == 0) && entry.Value.AnswerGenerator == null)
                     {
                         Debug.LogWarningFormat("<Souvenir #{0}> Question {1} has no answers. You should specify either SouvenirQuestionAttribute.AllAnswers or SouvenirQuestionAttribute.ExampleAnswers (with preferredWrongAnswers in-game), or add an AnswerGeneratorAttribute to the question enum value.", _moduleId, entry.Key);
-                        _showWarning = true;
+                        sb.AppendLineFormat(@"""{0}"",", Regex.Replace(Regex.Escape(entry.Value.QuestionText), @"\\\{\d+\}", m => m.Value == @"\{0}" ? entry.Value.ModuleNameWithThe : ".*"));
                     }
                 }
+                if (sb.Length > 0)
+                    Debug.Log(sb.ToString());
                 StartCoroutine(TestModeCoroutine());
             }
             else
@@ -1037,6 +1038,7 @@ public class SouvenirModule : MonoBehaviour
                             correct: 0,
                             answers: answers.ToArray(),
                             font: Fonts[attr.Type == AnswerType.DynamicFont ? 0 : (int) attr.Type],
+                            fontSize: attr.FontSize,
                             fontTexture: FontTextures[attr.Type == AnswerType.DynamicFont ? 0 : (int) attr.Type],
                             fontMaterial: FontMaterial,
                             layout: attr.Layout));
@@ -1574,11 +1576,8 @@ public class SouvenirModule : MonoBehaviour
             (attr, q, correct, answers) =>
             {
                 if (attr.Type == AnswerType.DynamicFont || attr.Type == AnswerType.Sprites)
-                {
-                    Debug.LogErrorFormat("<Souvenir #{0}> The module handler for {1} attempted to output a question that requires a sprite or dynamic font, but didn’t supply one.", _moduleId, moduleKey);
-                    throw new InvalidOperationException();
-                }
-                return new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), Fonts[(int) attr.Type], FontTextures[(int) attr.Type], FontMaterial, attr.Layout);
+                    throw new AbandonModuleException("The module handler attempted to output a question that requires a sprite or dynamic font, but didn’t supply one.");
+                return new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), Fonts[(int) attr.Type], attr.FontSize, FontTextures[(int) attr.Type], FontMaterial, attr.Layout);
             },
             formatArgs, correctAnswers, preferredWrongAnswers);
     }
@@ -1589,11 +1588,8 @@ public class SouvenirModule : MonoBehaviour
             (attr, q, correct, answers) =>
             {
                 if (attr.Type != AnswerType.DynamicFont)
-                {
-                    Debug.LogErrorFormat("<Souvenir #{0}> The module handler for {1} attempted to use a dynamic font but the corresponding question is not marked as AnswerType.DynamicFont.", _moduleId, moduleKey);
-                    throw new InvalidOperationException();
-                }
-                return new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), font, fontTexture, FontMaterial, attr.Layout);
+                    throw new AbandonModuleException("The module handler attempted to use a dynamic font but the corresponding question is not marked as AnswerType.DynamicFont.");
+                return new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), font, attr.FontSize, fontTexture, FontMaterial, attr.Layout);
             },
             formatArgs, correctAnswers, preferredWrongAnswers);
     }
@@ -2583,8 +2579,8 @@ public class SouvenirModule : MonoBehaviour
         for (var position = 0; position < 9; position++)
         {
             var initialNumber = GetMethod<int>(comp, "GetInitialNumber", 1, true).Invoke(position);
-            var possibleInitialNumbers = GetProperty<HashSet<int>>(comp, "possibleInitialNumbers", true).Get();
-            questions.Add(makeQuestion(Question.BinaryShiftInitialNumber, _BinaryShift, new[] { allPositions[position] }, new[] { initialNumber.ToString() }, possibleInitialNumbers.Select(n => n.ToString()).ToArray()));
+            var possibleInitialNumbers = GetProperty<HashSet<int>>(comp, "possibleInitialNumbers", true).Get().Select(n => n.ToString()).ToArray();
+            questions.Add(makeQuestion(Question.BinaryShiftInitialNumber, _BinaryShift, new[] { allPositions[position] }, new[] { initialNumber.ToString() }, possibleInitialNumbers));
         }
         var stagesCount = GetProperty<int>(comp, "stagesCount", true).Get();
         for (var stage = 0; stage < stagesCount; stage++)
@@ -6340,40 +6336,6 @@ public class SouvenirModule : MonoBehaviour
             _avoidQuestions--;
     }
 
-    private IEnumerable<object> ProcessMysteryWidget(KMBombModule module)
-    {
-        var comp = GetComponent(module, "WidgetMagic");
-        var fldKeyModule = GetField<string>(comp, "keyModule");
-        var fldHiddenWidget = GetField<string>(comp, "hiddenType");
-        var fldSolved = GetField<bool>(comp, "isSolved");
-        var fldFailsolve = GetField<bool>(comp, "isAutoSolved");
-        var fldPreferredEdgework = GetListField<string>(comp, "preferredEdgework");
-
-        while (fldKeyModule.Get(nullAllowed: true) == null && !fldFailsolve.Get())
-            yield return null;
-        while (fldHiddenWidget.Get(nullAllowed: true) == null && !fldFailsolve.Get())
-            yield return null;
-
-        if (fldFailsolve.Get())
-        {
-            Debug.LogFormat("[Souvenir #{0}] No question for Mystery Widget because no widget was hidden.", _moduleId);
-            _legitimatelyNoQuestions.Add(module);
-            yield break;
-        }
-
-        var keyModule = fldKeyModule.Get();
-        var hiddenWidget = fldHiddenWidget.Get();
-        var preferredEdgework = fldPreferredEdgework.Get();
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_MysteryWidget);
-
-        addQuestions(module,
-            makeQuestion(Question.MysteryWidgetFirstKey, _MysteryWidget, correctAnswers: new[] { keyModule }, preferredWrongAnswers: Bomb.GetSolvableModuleNames().ToArray()),
-            makeQuestion(Question.MysteryWidgetHiddenWidget, _MysteryWidget, correctAnswers: new[] { hiddenWidget }, preferredWrongAnswers: preferredEdgework.ToArray()));
-    }
-
     private IEnumerable<object> ProcessNecronomicon(KMBombModule module)
     {
         var comp = GetComponent(module, "necronomiconScript");
@@ -9595,8 +9557,6 @@ public class SouvenirModule : MonoBehaviour
                 break;
 
             var newColor = fldColor.Get(min: 0, max: 3);
-            if (newColor != colorsPerStage[newStage])
-                Debug.LogFormat("<Souvenir #{0}> Visual Impairment: stage {1} color changed to {2} ({3}).", _moduleId, newStage, newColor, newColor >= 0 && newColor < 4 ? colorNames[newColor] : "<out of range>");
             colorsPerStage[newStage] = newColor;
             yield return new WaitForSeconds(.1f);
         }

@@ -57,14 +57,16 @@ namespace Souvenir
     {
         private readonly string[] _answers;
         private readonly Font _font;
+        private readonly int _fontSize;
         private readonly Texture _fontTexture;
         private readonly Material _fontMaterial;
         private readonly AnswerLayout _layout;
-        public QandAText(string module, string question, int correct, string[] answers, Font font, Texture fontTexture, Material fontMaterial, AnswerLayout layout)
+        public QandAText(string module, string question, int correct, string[] answers, Font font, int fontSize, Texture fontTexture, Material fontMaterial, AnswerLayout layout)
             : base(module, question, correct, answers.Length)
         {
             _answers = answers;
             _font = font;
+            _fontSize = fontSize;
             _fontTexture = fontTexture;
             _fontMaterial = fontMaterial;
             _layout = layout;
@@ -91,7 +93,7 @@ namespace Souvenir
 
                 mesh.text = i < _answers.Length ? _answers[i] : "•";
                 mesh.font = _font;
-                mesh.fontSize = _layout == AnswerLayout.OneColumn4Answers ? 40 : 48;
+                mesh.fontSize = _fontSize;
                 mesh.GetComponent<MeshRenderer>().material = _fontMaterial;
                 mesh.GetComponent<MeshRenderer>().material.mainTexture = _fontTexture;
 

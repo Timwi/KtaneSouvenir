@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Souvenir
 {
@@ -20,6 +17,7 @@ namespace Souvenir
         public AnswerType Type { get; set; }
         public AnswerLayout Layout { get; set; }
         public string SpriteField { get; set; }
+        public int FontSize { get; set; }
 
         public string ModuleNameWithThe { get { return (AddThe ? "The " : "") + ModuleName; } }
 
@@ -44,6 +42,7 @@ namespace Souvenir
             Layout = layout;
             AllAnswers = allAnswers == null || allAnswers.Length == 0 ? null : allAnswers;
             Type = AnswerType.Default;
+            FontSize = layout == AnswerLayout.OneColumn4Answers ? 40 : 48;
         }
     }
 }
