@@ -421,7 +421,7 @@ public class SouvenirModule : MonoBehaviour
         _moduleId = _moduleIdCounter;
         _moduleIdCounter++;
 
-        Debug.LogFormat(@"[Souvenir #{0}] Souvenir version: 3.1", _moduleId);
+        Debug.LogFormat(@"[Souvenir #{0}] Souvenir version: 3.2", _moduleId);
 
         _moduleProcessors = new Dictionary<string, Func<KMBombModule, IEnumerable<object>>>()
         {
@@ -2218,17 +2218,17 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_AlphabetTiles);
 
-        string[] shuffled = GetArrayField<string>(comp, "ShuffledAlphabet").Get();
-        string[] lettersShown = GetArrayField<string>(comp, "LettersShown").Get();
+        var shuffled = GetArrayField<string>(comp, "ShuffledAlphabet").Get(expectedLength: 26);
+        var lettersShown = GetArrayField<string>(comp, "LettersShown").Get(expectedLength: 6);
 
         addQuestions(module,
-            makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, new[] { "first" }, new[] { lettersShown[0] }, shuffled),
-            makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, new[] { "second" }, new[] { lettersShown[1] }, shuffled),
-            makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, new[] { "third" }, new[] { lettersShown[2] }, shuffled),
-            makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, new[] { "fourth" }, new[] { lettersShown[3] }, shuffled),
-            makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, new[] { "fifth" }, new[] { lettersShown[4] }, shuffled),
-            makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, new[] { "sixth" }, new[] { lettersShown[5] }, shuffled),
-            makeQuestion(Question.AlphabetTilesMissingLetter, _AlphabetTiles, null, new[] { shuffled[25] }, shuffled));
+            makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, formatArgs: new[] { "first" }, correctAnswers: new[] { lettersShown[0] }),
+            makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, formatArgs: new[] { "second" }, correctAnswers: new[] { lettersShown[1] }),
+            makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, formatArgs: new[] { "third" }, correctAnswers: new[] { lettersShown[2] }),
+            makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, formatArgs: new[] { "fourth" }, correctAnswers: new[] { lettersShown[3] }),
+            makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, formatArgs: new[] { "fifth" }, correctAnswers: new[] { lettersShown[4] }),
+            makeQuestion(Question.AlphabetTilesCycle, _AlphabetTiles, formatArgs: new[] { "sixth" }, correctAnswers: new[] { lettersShown[5] }),
+            makeQuestion(Question.AlphabetTilesMissingLetter, _AlphabetTiles, correctAnswers: new[] { shuffled[25] }));
     }
 
     private IEnumerable<object> ProcessAlphaBits(KMBombModule module)
@@ -2474,8 +2474,7 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Binary);
 
-        var binaryWords = new[] { "AH", "AT", "AM", "AS", "AN", "BE", "BY", "GO", "IF", "IN", "IS", "IT", "MU", "NU", "NO", "NU", "OF", "PI", "TO", "UP", "US", "WE", "XI", "ACE", "AIM", "AIR", "BED", "BOB", "BUT", "BUY", "CAN", "CAT", "CHI", "CUT", "DAY", "DIE", "DOG", "DOT", "EAT", "EYE", "FOR", "FLY", "GET", "GUT", "HAD", "HAT", "HOT", "ICE", "LIE", "LIT", "MAD", "MAP", "MAY", "NEW", "NOT", "NOW", "ONE", "PAY", "PHI", "PIE", "PSI", "RED", "RHO", "SAD", "SAY", "SEA", "SEE", "SET", "SIX", "SKY", "TAU", "THE", "TOO", "TWO", "WHY", "WIN", "YES", "ZOO", "ALFA", "BETA", "BLUE", "CHAT", "CYAN", "DEMO", "DOOR", "EAST", "EASY", "EACH", "EDIT", "FAIL", "FALL", "FIRE", "FIVE", "FOUR", "GAME", "GOLF", "GRID", "HARD", "HATE", "HELP", "HOLD", "IOTA", "KILO", "LIMA", "LIME", "LIST", "LOCK", "LOST", "STOP", "TEST", "TIME", "TREE", "TYPE", "WEST", "WIRE", "WOOD", "XRAY", "YELL", "ZERO", "ZETA", "ZULU", "ABORT", "ABOUT", "ALPHA", "BLACK", "BRAVO", "CLOCK", "CLOSE", "COULD", "CRASH", "DELTA", "DIGIT", "EIGHT", "GAMMA", "GLASS", "GREEN", "GUESS", "HOTEL", "INDIA", "KAPPA", "LATER", "LEAST", "LEMON", "MONTH", "MORSE", "NORTH", "OMEGA", "OSCAR", "PANIC", "PRESS", "ROMEO", "SEVEN", "SIGMA", "SMASH", "SOUTH", "TANGO", "TIMER", "VOICE", "WHILE", "WHITE", "WORLD", "WORRY", "WOULD", "BINARY", "DEFUSE", "DISARM", "EXPERT", "FINISH", "FORGET", "LAMBDA", "MANUAL", "MODULE", "NUMBER", "ORANGE", "PERIOD", "PURPLE", "QUEBEC", "SHOULD", "SIERRA", "SOURCE", "STRIKE", "SUBMIT", "TWITCH", "VICTOR", "VIOLET", "WINDOW", "YELLOW", "YANKEE", "CHARLIE", "EPSILON", "EXPLODE", "FOXTROT", "JULIETT", "MEASURE", "MISSION", "OMICRON", "SUBJECT", "UNIFORM", "UPSILON", "WHISKEY", "DETONATE", "NOTSOLVE", "NOVEMBER" };
-        addQuestions(module, makeQuestion(Question.BinaryWord, _Binary, null, new[] { binaryWords[GetField<int>(comp, "te").Get()] }, binaryWords));
+        addQuestions(module, makeQuestion(Question.BinaryWord, _Binary, null, new[] { _attributes[Question.BinaryWord].AllAnswers[GetField<int>(comp, "te").Get()] }));
     }
 
     private IEnumerable<object> ProcessBinaryLEDs(KMBombModule module)
@@ -3036,18 +3035,11 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_CheepCheckout);
 
         var shuffledList = GetField<List<int>>(comp, "numberList", isPublic: true).Get();
-        var birdnames = GetField<List<string>>(comp, "birdNames", isPublic: true).Get();
-        birdnames.Remove("[Unicorn Bastard]");
-        birdnames.Remove("[Low, Low, Low]");
-        var refinedBirdnames = new List<string>();
+        var birdsPresent = shuffledList.Take(5).Where(ix => ix < 26).Select(ix => _attributes[Question.CheepCheckoutBirds].AllAnswers[ix]).ToArray();
 
-        for (int x = 0; x < 5; x++)
-            if (shuffledList[x] != 26)
-                refinedBirdnames.Add(birdnames[shuffledList[x]]);
-        //Debug.LogFormat("Remaining Names: {0}", refinedBirdnames.Join(",")); // Used to debug any possible birds that are present in the module.
         addQuestions(module,
-           makeQuestion(Question.CheepCheckoutBirds, _CheepCheckout, formatArgs: new[] { "was" }, correctAnswers: refinedBirdnames.ToArray(), preferredWrongAnswers: birdnames.ToArray()),
-           makeQuestion(Question.CheepCheckoutBirds, _CheepCheckout, formatArgs: new[] { "was not" }, correctAnswers: birdnames.Where(a => !refinedBirdnames.Contains(a)).ToArray(), preferredWrongAnswers: birdnames.ToArray()));
+           makeQuestion(Question.CheepCheckoutBirds, _CheepCheckout, formatArgs: new[] { "was" }, correctAnswers: birdsPresent),
+           makeQuestion(Question.CheepCheckoutBirds, _CheepCheckout, formatArgs: new[] { "was not" }, correctAnswers: _attributes[Question.CheepCheckoutBirds].AllAnswers.Except(birdsPresent).ToArray()));
     }
 
     private IEnumerable<object> ProcessChess(KMBombModule module)
@@ -3423,23 +3415,21 @@ public class SouvenirModule : MonoBehaviour
         }
 
         var submittedScore = GetProperty<int>(comp, "submittedScore", true).Get();
-        var submittedScoreWrongAnswers = GetProperty<int[]>(comp, "souvenirSubmittedScoreWrongAnswers", true).Get();
         var submittedColors = GetProperty<HashSet<Color>>(comp, "submittedColors", true).Get();
         var colorNameDic = GetStaticField<Dictionary<Color, string>>(comp.GetType(), "colorNames", true).Get();
         var colorNames = colorNameDic.Values.ToArray();
         var allColors = GetStaticField<Color[]>(comp.GetType(), "allColors").Get();
-        var questions = new List<QandA>()
-        {
-            makeQuestion(Question.ColorsMaximizationSubmittedScore, _ColorsMaximization, correctAnswers: new string[] { submittedScore.ToString() }, preferredWrongAnswers: submittedScoreWrongAnswers.Select(s => s.ToString()).ToArray()),
-            makeQuestion(Question.ColorsMaximizationSubmittedColor, _ColorsMaximization, correctAnswers: submittedColors.Select(c => colorNameDic[c]).ToArray(), preferredWrongAnswers: colorNames),
-            makeQuestion(Question.ColorsMaximizationNotSubmittedColor, _ColorsMaximization, correctAnswers: allColors.Except(submittedColors).Select(c => colorNameDic[c]).ToArray(), preferredWrongAnswers: colorNames)
-        };
+
+        var questions = new List<QandA>();
+        questions.Add(makeQuestion(Question.ColorsMaximizationSubmittedScore, _ColorsMaximization, correctAnswers: new string[] { submittedScore.ToString() }));
+        questions.Add(makeQuestion(Question.ColorsMaximizationSubmittedColor, _ColorsMaximization, formatArgs: new[] { "was" }, correctAnswers: submittedColors.Select(c => colorNameDic[c]).ToArray(), preferredWrongAnswers: colorNames));
+        questions.Add(makeQuestion(Question.ColorsMaximizationSubmittedColor, _ColorsMaximization, formatArgs: new[] { "was not" }, correctAnswers: allColors.Except(submittedColors).Select(c => colorNameDic[c]).ToArray(), preferredWrongAnswers: colorNames));
+
         foreach (var color in allColors)
-        {
-            var colorCount = GetField<Dictionary<Color, int>>(comp, "countOfColor").Get()[color];
-            var colorCountWrongAnswers = GetMethod<int[]>(comp, "GenerateSouvenirColorCountWrongAnswers", 1, true).Invoke(color);
-            questions.Add(makeQuestion(Question.ColorsMaximizationColorCount, _ColorsMaximization, new string[] { colorNameDic[color] }, new string[] { colorCount.ToString() }, colorCountWrongAnswers.Select(c => c.ToString()).ToArray()));
-        }
+            questions.Add(makeQuestion(Question.ColorsMaximizationColorCount, _ColorsMaximization,
+                formatArgs: new string[] { colorNameDic[color] },
+                correctAnswers: new string[] { GetField<Dictionary<Color, int>>(comp, "countOfColor").Get()[color].ToString() }));
+
         addQuestions(module, questions);
     }
 
@@ -3620,8 +3610,7 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_DeafAlley);
 
         var pinpoint = GetField<int>(comp, "selectedShape").Get();
-        var shapes = GetArrayField<string>(comp, "shapes").Get();
-        addQuestions(module, makeQuestion(Question.DeafAlleyShape, _DeafAlley, null, new[] { shapes[pinpoint] }, shapes));
+        addQuestions(module, makeQuestion(Question.DeafAlleyShape, _DeafAlley, null, new[] { _attributes[Question.DeafAlleyShape].AllAnswers[pinpoint] }));
     }
 
     private IEnumerable<object> ProcessDeckOfManyThings(KMBombModule module)
@@ -5645,31 +5634,14 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Matrix);
 
-        var selectedNames = GetArrayField<string>(comp, "selectedNames").Get().ToArray();
-        var accessCodes =
-            GetArrayField<string>(comp, "xNameOptions", isPublic: true).Get().Concat(
-            GetArrayField<string>(comp, "yNameOptions", isPublic: true).Get()).ToArray();
-
-        for (int x = 0; x < selectedNames.Length; x++)
-        {
-            for (int y = 0; y < accessCodes.Length; y++)
-            {
-                if (selectedNames[x].Length != accessCodes[y].Length)
-                    continue;
-
-                if (selectedNames[x].ToLowerInvariant().OrderBy(ch => ch).JoinString() == accessCodes[y].ToLowerInvariant().OrderBy(ch => ch).JoinString())
-                {
-                    selectedNames[x] = accessCodes[y];
-                    break;
-                }
-            }
-        }
-
-        var matrixWords = GetArrayField<string>(comp, "insideWordList", isPublic: true).Get().Select(d => d.ToLowerInvariant()).ToArray();
+        // “selectedNames” contains the scrambled versions of the names. Find the unscrambled name.
+        var unscrambledNames = GetArrayField<string>(comp, "selectedNames").Get()
+            .Select(n => _attributes[Question.MatrixAccessCode].AllAnswers.FirstOrDefault(ac => n.ToLowerInvariant().OrderBy(ch => ch).JoinString() == ac.ToLowerInvariant().OrderBy(ch => ch).JoinString()))
+            .ToArray();
 
         addQuestions(module,
-            makeQuestion(Question.MatrixAccessCode, _Matrix, null, selectedNames, accessCodes.ToArray()),
-            makeQuestion(Question.MatrixGlitchWord, _Matrix, null, new[] { GetField<string>(comp, "illegalWordText").Get().ToLowerInvariant() }, matrixWords));
+            makeQuestion(Question.MatrixAccessCode, _Matrix, correctAnswers: unscrambledNames),
+            makeQuestion(Question.MatrixGlitchWord, _Matrix, correctAnswers: new[] { GetField<string>(comp, "illegalWordText").Get().ToLowerInvariant() }));
     }
 
     private IEnumerable<object> ProcessMaze(KMBombModule module)
@@ -8586,16 +8558,14 @@ public class SouvenirModule : MonoBehaviour
             _legitimatelyNoQuestions.Add(module);
             yield break;
         }
-
-        var maxTaxAmount = GetProperty<int>(comp, "maxTax", true).Get();
-        var maxPossibleTaxAmount = GetProperty<int>(comp, "maxPossibleTaxAmount", true).Get();
-        if (maxPossibleTaxAmount < 4)
+        if (GetProperty<int>(comp, "maxPossibleTaxAmount", true).Get() < 4)
         {
             Debug.LogFormat("[Souvenir #{0}] No question for Space Traders because all paths from the solar system are too short.", _moduleId);
             _legitimatelyNoQuestions.Add(module);
             yield break;
         }
-        addQuestions(module, makeQuestion(Question.SpaceTradersMaxTax, _SpaceTraders, correctAnswers: new[] { maxTaxAmount.ToString() + " GCr" }, preferredWrongAnswers: Enumerable.Range(0, maxPossibleTaxAmount).Select(n => n.ToString() + " GCr").ToArray()));
+
+        addQuestions(module, makeQuestion(Question.SpaceTradersMaxTax, _SpaceTraders, correctAnswers: new[] { GetProperty<int>(comp, "maxTax", true).Get().ToString() + " GCr" }));
     }
 
     private IEnumerable<object> ProcessSpellingBee(KMBombModule module)
@@ -9173,14 +9143,12 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "topsyTurvy");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var wordList = GetStaticField<string[]>(comp.GetType(), "displayWords").Get();
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_TopsyTurvy);
 
-        var wordIndex = GetField<int>(comp, "displayIndex").Get();
-        addQuestions(module, makeQuestion(Question.TopsyTurvyWord, _TopsyTurvy, null, new[] { wordList[wordIndex] }, wordList));
+        addQuestions(module, makeQuestion(Question.TopsyTurvyWord, _TopsyTurvy, null, new[] { _attributes[Question.TopsyTurvyWord].AllAnswers[GetField<int>(comp, "displayIndex").Get()] }));
     }
 
     private IEnumerable<object> ProcessTransmittedMorse(KMBombModule module)
@@ -9613,14 +9581,12 @@ public class SouvenirModule : MonoBehaviour
 
         var labels = GetArrayField<string>(comp, "Answers").Get(expectedLength: 2);
         var labelColors = GetArrayField<string>(comp, "AnswerColors").Get(expectedLength: 2);
-        var otherLabels = GetArrayField<string>(comp, "Phrase").Get();
-        var colorNames = new[] { "Red", "Green", "Blue", "Yellow", "Magenta", "Cyan" };
 
         addQuestions(module,
-           makeQuestion(Question.WhatsOnSecondDisplayText, _WhatsOnSecond, new[] { "first" }, new[] { labels[0] }, otherLabels),
-           makeQuestion(Question.WhatsOnSecondDisplayText, _WhatsOnSecond, new[] { "second" }, new[] { labels[1] }, otherLabels),
-           makeQuestion(Question.WhatsOnSecondDisplayColor, _WhatsOnSecond, new[] { "first" }, new[] { labelColors[0] }, colorNames),
-           makeQuestion(Question.WhatsOnSecondDisplayColor, _WhatsOnSecond, new[] { "second" }, new[] { labelColors[1] }, colorNames));
+           makeQuestion(Question.WhatsOnSecondDisplayText, _WhatsOnSecond, new[] { "first" }, new[] { labels[0].ToLowerInvariant() }),
+           makeQuestion(Question.WhatsOnSecondDisplayText, _WhatsOnSecond, new[] { "second" }, new[] { labels[1].ToLowerInvariant() }),
+           makeQuestion(Question.WhatsOnSecondDisplayColor, _WhatsOnSecond, new[] { "first" }, new[] { labelColors[0] }),
+           makeQuestion(Question.WhatsOnSecondDisplayColor, _WhatsOnSecond, new[] { "second" }, new[] { labelColors[1] }));
     }
 
     private IEnumerable<object> ProcessWhiteCipher(KMBombModule module)
