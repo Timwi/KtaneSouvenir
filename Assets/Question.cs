@@ -1308,6 +1308,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "first", "first", "second", "first", "third", "second", "first", "second", "second", "second", "third", "third", "first", "third", "second", "third", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
         SimonSingsFlashing,
 
+        [SouvenirQuestion("Which letter flashed on the {1} button in {0}?", "Simon Shouts", AnswerLayout.ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+            ExampleExtraFormatArguments = new[] { "top", "left", "right", "bottom" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SimonShoutsFlashingLetter,
+
         [SouvenirQuestion("How many spaces clockwise from the arrow was the {1} flash in the final sequence in {0}?", "Simon Shrieks", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonShrieksFlashingButton,

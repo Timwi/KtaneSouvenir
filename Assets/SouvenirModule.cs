@@ -336,6 +336,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SimonScreams = "SimonScreamsModule";
     const string _SimonSelects = "simonSelectsModule";
     const string _SimonSends = "SimonSendsModule";
+    const string _SimonShouts = "SimonShoutsModule";
     const string _SimonShrieks = "SimonShrieksModule";
     const string _SimonSimons = "simonSimons";
     const string _SimonSings = "SimonSingsModule";
@@ -663,6 +664,7 @@ public class SouvenirModule : MonoBehaviour
             { _SimonScreams, ProcessSimonScreams },
             { _SimonSelects, ProcessSimonSelects },
             { _SimonSends, ProcessSimonSends },
+            { _SimonShouts, ProcessSimonShouts },
             { _SimonShrieks, ProcessSimonShrieks },
             { _SimonSimons, ProcessSimonSimons },
             { _SimonSings, ProcessSimonSings },
@@ -8129,6 +8131,25 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.SimonSendsReceivedLetters, _SimonSends, new[] { "red" }, new[] { charR }, new[] { charG, charB }),
             makeQuestion(Question.SimonSendsReceivedLetters, _SimonSends, new[] { "green" }, new[] { charG }, new[] { charR, charB }),
             makeQuestion(Question.SimonSendsReceivedLetters, _SimonSends, new[] { "blue" }, new[] { charB }, new[] { charR, charG }));
+    }
+
+    private IEnumerable<object> ProcessSimonShouts(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SimonShoutsModule");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SimonShouts);
+
+        var diagramBPositions = GetArrayField<int>(comp, "_diagramBPositions").Get(expectedLength: 4, validator: b => b < 0 || b > 24 ? "expected range 0–24" : null);
+        var diagramB = GetField<string>(comp, "_diagramB").Get(str => str.Length != 24 ? "expected length 24" : str.Any(ch => ch < 'A' || ch > 'Z') ? "expected letters A–Z" : null);
+
+        var qs = new List<QandA>();
+        var buttonNames = new[] { "top", "right", "bottom", "left" };
+        for (int i = 0; i < 4; i++)
+            qs.Add(makeQuestion(Question.SimonShoutsFlashingLetter, _SimonShouts, formatArgs: new[] { buttonNames[i] }, correctAnswers: new[] { diagramB[diagramBPositions[i]].ToString() }));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessSimonShrieks(KMBombModule module)
