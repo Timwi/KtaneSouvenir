@@ -4272,8 +4272,8 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
 
         _modulesSolved.IncSafe(_ForgetsUltimateShowdown);
-        if (methods.Count != 6)
-            throw new AbandonModuleException("‘methods’ had an invalid length: {0}, expected 6", methods.Count);
+        if (methods.Count != 4)
+            throw new AbandonModuleException("‘methods’ had an invalid length: {0}, expected 4", methods.Count);
 
         var answer = GetField<string>(comp, "_answer").Get();
         var initial = GetField<string>(comp, "_initialNumber").Get();
@@ -4287,7 +4287,7 @@ public class SouvenirModule : MonoBehaviour
             questions.Add(makeQuestion(Question.ForgetsUltimateShowdownBottom, _ForgetsUltimateShowdown, new[] { ordinal(i + 1) }, new[] { bottom[i].ToString() }));
             questions.Add(makeQuestion(Question.ForgetsUltimateShowdownInitial, _ForgetsUltimateShowdown, new[] { ordinal(i + 1) }, new[] { initial[i].ToString() }));
         }
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 4; i++)
             questions.Add(makeQuestion(Question.ForgetsUltimateShowdownMethod, _ForgetsUltimateShowdown, new[] { ordinal(i + 1) }, new[] { methodNames[i].Replace("'", "’") }));
         addQuestions(module, questions);
     }
