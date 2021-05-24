@@ -422,7 +422,7 @@ public class SouvenirModule : MonoBehaviour
         _moduleId = _moduleIdCounter;
         _moduleIdCounter++;
 
-        Debug.LogFormat(@"[Souvenir #{0}] Souvenir version: 3.2", _moduleId);
+        Debug.LogFormat(@"[Souvenir #{0}] Souvenir version: 3.3", _moduleId);
 
         _moduleProcessors = new Dictionary<string, Func<KMBombModule, IEnumerable<object>>>()
         {
@@ -5885,19 +5885,16 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessModuleMaze(KMBombModule module)
     {
         var comp = GetComponent(module, "ModuleMazeModule");
-        var fldSprites = GetArrayField<Sprite>(comp, "souvenirSprites", true);
+        var fldSprites = GetArrayField<Sprite>(comp, "gSprites", true);
 
         while (fldSprites.Get().Count() < 6)
             yield return new WaitForSeconds(.1f);
-
-        var sprites = fldSprites.Get();
-        var start = GetField<string>(comp, "souvenirStart", true).Get();
 
         _modulesSolved.IncSafe(_ModuleMaze);
 
         addQuestions(module,
             makeQuestion(Question.ModuleMazeStartingIcon, _ModuleMaze,
-                correctAnswers: new[] { sprites.FirstOrDefault(spr => spr.name == start) }, preferredWrongAnswers: sprites));
+                correctAnswers: new[] { GetField<Sprite>(comp, "souvenirStart").Get() }, preferredWrongAnswers: fldSprites.Get()));
     }
 
     private IEnumerable<object> ProcessMonsplodeFight(KMBombModule module)
