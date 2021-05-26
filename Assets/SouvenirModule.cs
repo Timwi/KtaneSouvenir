@@ -422,7 +422,7 @@ public class SouvenirModule : MonoBehaviour
         _moduleId = _moduleIdCounter;
         _moduleIdCounter++;
 
-        Debug.LogFormat(@"[Souvenir #{0}] Souvenir version: 3.3", _moduleId);
+        Debug.LogFormat(@"[Souvenir #{0}] Souvenir version: 3.4", _moduleId);
 
         _moduleProcessors = new Dictionary<string, Func<KMBombModule, IEnumerable<object>>>()
         {
@@ -8986,7 +8986,7 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessTenButtonColorCode(KMBombModule module)
     {
         var comp = GetComponent(module, "scr_colorCode");
-        var fldSolvedFirstStage = GetField<bool>(comp, "solvedFirst");
+        var fldSolvedFirstStage = GetField<bool>(comp, "solvedFirstStage");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldColors = GetArrayField<int>(comp, "prevColors");
 
