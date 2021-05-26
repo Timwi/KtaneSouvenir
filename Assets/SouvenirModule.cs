@@ -5886,8 +5886,9 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "ModuleMazeModule");
         var fldSprites = GetArrayField<Sprite>(comp, "gSprites", true);
+        var fldSolved = GetField<bool>(comp, "solved");
 
-        while (fldSprites.Get().Count() < 6)
+        while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
 
         _modulesSolved.IncSafe(_ModuleMaze);
