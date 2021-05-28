@@ -984,19 +984,19 @@ namespace Souvenir
         [SouvenirQuestion("What colors did the light glow in {0}?", "Not the Button", AnswerLayout.ThreeColumns6Answers, "white", "red", "yellow", "green", "blue", "white/red", "white/yellow", "white/green", "white/blue", "red/yellow", "red/green", "red/blue", "yellow/green", "yellow/blue", "green/blue")]
         NotTheButtonLightColor,
 
-        [SouvenirQuestion("In which position was the button you pressed in the {1} stage on {0}?", "Not Who's on First", AnswerLayout.TwoColumns4Answers, "top left", "top right", "middle left", "middle right", "bottom left", "bottom right",
+        [SouvenirQuestion("In which position was the button you pressed in the {1} stage on {0}?", "Not Who’s on First", AnswerLayout.TwoColumns4Answers, "top left", "top right", "middle left", "middle right", "bottom left", "bottom right",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NotWhosOnFirstPressedPosition,
-        [SouvenirQuestion("What was the label on the button you pressed in the {1} stage on {0}?", "Not Who's on First", AnswerLayout.ThreeColumns6Answers, "BLANK", "DONE", "FIRST", "HOLD", "LEFT", "LIKE", "MIDDLE", "NEXT", "NO", "NOTHING", "OKAY", "PRESS", "READY", "RIGHT", "SURE", "U", "UH HUH", "UH UH", "UHHH", "UR", "WAIT", "WHAT", "WHAT?", "YES", "YOU", "YOU ARE", "YOU'RE", "YOUR",
+        [SouvenirQuestion("What was the label on the button you pressed in the {1} stage on {0}?", "Not Who’s on First", AnswerLayout.ThreeColumns6Answers, "BLANK", "DONE", "FIRST", "HOLD", "LEFT", "LIKE", "MIDDLE", "NEXT", "NO", "NOTHING", "OKAY", "PRESS", "READY", "RIGHT", "SURE", "U", "UH HUH", "UH UH", "UHHH", "UR", "WAIT", "WHAT", "WHAT?", "YES", "YOU", "YOU ARE", "YOU'RE", "YOUR",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NotWhosOnFirstPressedLabel,
-        [SouvenirQuestion("In which position was the reference button in the {1} stage on {0}?", "Not Who's on First", AnswerLayout.TwoColumns4Answers, "top left", "top right", "middle left", "middle right", "bottom left", "bottom right",
+        [SouvenirQuestion("In which position was the reference button in the {1} stage on {0}?", "Not Who’s on First", AnswerLayout.TwoColumns4Answers, "top left", "top right", "middle left", "middle right", "bottom left", "bottom right",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NotWhosOnFirstReferencePosition,
-        [SouvenirQuestion("What was the label on the reference button in the {1} stage on {0}?", "Not Who's on First", AnswerLayout.ThreeColumns6Answers, "BLANK", "DONE", "FIRST", "HOLD", "LEFT", "LIKE", "MIDDLE", "NEXT", "NO", "NOTHING", "OKAY", "PRESS", "READY", "RIGHT", "SURE", "U", "UH HUH", "UH UH", "UHHH", "UR", "WAIT", "WHAT", "WHAT?", "YES", "YOU", "YOU ARE", "YOU'RE", "YOUR",
+        [SouvenirQuestion("What was the label on the reference button in the {1} stage on {0}?", "Not Who’s on First", AnswerLayout.ThreeColumns6Answers, "BLANK", "DONE", "FIRST", "HOLD", "LEFT", "LIKE", "MIDDLE", "NEXT", "NO", "NOTHING", "OKAY", "PRESS", "READY", "RIGHT", "SURE", "U", "UH HUH", "UH UH", "UHHH", "UR", "WAIT", "WHAT", "WHAT?", "YES", "YOU", "YOU ARE", "YOU'RE", "YOUR",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NotWhosOnFirstReferenceLabel,
-        [SouvenirQuestion("What was the calculated number in the second stage on {0}?", "Not Who's on First", AnswerLayout.ThreeColumns6Answers)]
+        [SouvenirQuestion("What was the calculated number in the second stage on {0}?", "Not Who’s on First", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Integers(1, 60)]
         NotWhosOnFirstSum,
 

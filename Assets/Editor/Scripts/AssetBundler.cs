@@ -29,7 +29,7 @@ public class AssetBundler
     /// <summary>
     /// List of managed assemblies to ignore in the build (because they already exist in KTaNE itself)
     /// </summary>
-    static List<string> EXCLUDED_ASSEMBLIES = new List<string> { "KMFramework.dll" };
+    static List<string> EXCLUDED_ASSEMBLIES = new List<string> { "KMFramework.dll", "KeepCoding_Editor.dll" };
 
     /// <summary>
     /// Location of MSBuild.exe tool

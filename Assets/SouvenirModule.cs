@@ -58,16 +58,7 @@ public class SouvenirModule : MonoBehaviour
     /// <summary>May be used if the prefab of a different module is available in the project</summary>
     public bool ModulePresent;
 
-    public static readonly string[] _defaultIgnoredModules = {
-        "Souvenir",
-        "Forget Everything",
-        "Forget Me Not",
-        "Forget This",
-        "Turn The Key",
-        "The Time Keeper",
-        "Simon's Stages",
-        "Purgatory"
-    };
+    public static readonly string[] _defaultIgnoredModules = { "The Heart", "The Swan", "+", "14", "42", "501", "A>N<D", "Bamboozling Time Keeper", "Black Arrows", "Brainf---", "Busy Beaver", "Cube Synchronization", "Don't Touch Anything", "Floor Lights", "Forget Any Color", "Forget Enigma", "Forget Everything", "Forget Infinity", "Forget Maze Not", "Forget It Not", "Forget Me Not", "Forget Me Later", "Forget Perspective", "Forget The Colors", "Forget This", "Forget Them All", "Forget Us Not", "Iconic", "Keypad Directionality", "Kugelblitz", "Multitask", "OmegaDestroyer", "OmegaForget", "Organization", "Password Destroyer", "Purgatory", "RPS Judging", "Security Council", "Shoddy Chess", "Simon Forgets", "Simon's Stages", "Soulscream", "Souvenir", "Tallordered Keys", "The Time Keeper", "The Troll", "The Twin", "The Very Annoying Button", "Timing is Everything", "Turn The Key", "Ultimate Custom Night", "Whiteout", "Übermodule" };
 
     private Config config;
     private readonly List<QuestionBatch> _questions = new List<QuestionBatch>();
@@ -830,14 +821,14 @@ public class SouvenirModule : MonoBehaviour
             "Go ahead, solve my bomb.", // “Go ahead, make my day.” (Sudden Impact / Dirty Harry series)
             "May the bomb be with you.",    // “May the Force be with you.” (Star Wars IV: A New Hope)
             "I love the smell of explosions in the morning.",   // “I love the smell of napalm in the morning.” (Apocalypse Now)
-            "Blowing up means never having to say you’re sorry.",   // “Love means never having to say you're sorry.” (Love Story)
+            "Blowing up means never having to say you’re sorry.",   // “Love means never having to say you’re sorry.” (Love Story)
             "The stuff that bombs are made of.",    // “The Stuff That Dreams Are Made Of” (“Coming Around Again” album by Carly Simon)
             "E.T. defuse bomb.",    // “E.T. phone home.” (E.T. the Extra-Terrestrial)
             "Bomb. James Bomb.",    // “Bond. James Bond.” (Dr. No / James Bond series)
             "You can’t handle the bomb!",   // “You can’t handle the truth!” (A Few Good Men)
             "Blow up the usual suspects.",  // “Round up the usual suspects.” (Casablanca)
             "You’re gonna need a bigger bomb.", // “You’re gonna need a bigger boat.” (Jaws)
-            "Bombs are like a box of chocolates. You never know what you’re gonna get.",    // “My mom always said life was like a box of chocolates. You never know what you're gonna get.” (Forrest Gump)
+            "Bombs are like a box of chocolates. You never know what you’re gonna get.",    // “My mom always said life was like a box of chocolates. You never know what you’re gonna get.” (Forrest Gump)
             "Houston, we have a module.",   // “Houston, we have a problem.” (Apollo 13)
             "Elementary, my dear expert.",  // “Elementary, my dear Watson.” (Sherlock Holmes) (misquote)
             "Forget it, Jake, it’s KTANE.",     // “Forget it, Jake, it’s Chinatown.” (Chinatown)
@@ -915,7 +906,7 @@ public class SouvenirModule : MonoBehaviour
                     if (vanillaModule != null)
                     {
                         // For vanilla modules, we will attach a temporary KMBombModule component to the module.
-                        // We'll remove it after the coroutine starts.
+                        // We’ll remove it after the coroutine starts.
                         // The routine will already have a reference to the actual BombComponent by then.
                         if (fldType == null) fldType = GetField<object>(vanillaModule.GetType(), "ComponentType", true);
                         if (fldType == null) continue;
@@ -1085,7 +1076,7 @@ public class SouvenirModule : MonoBehaviour
                 {
                     var i = questions.IndexOf(q => q.ToString().StartsWith(TestQuestion, StringComparison.InvariantCultureIgnoreCase));
                     if (i < 0)
-                        Debug.LogFormat(this, "<Souvenir #{0}> No question matching '{1}' was found.", _moduleId, TestQuestion);
+                        Debug.LogFormat(this, "<Souvenir #{0}> No question matching ‘{1}’ was found.", _moduleId, TestQuestion);
                     else
                     {
                         curQuestion = i;
@@ -1660,7 +1651,7 @@ public class SouvenirModule : MonoBehaviour
                     answers.AddRange(attr.AnswerGenerator.GetAnswers(this).Except(answers.Concat(correctAnswers) as IEnumerable<string>).Distinct().Take(attr.NumAnswers - 1 - answers.Count) as IEnumerable<T>);
                 if (answers.Count == 0 && (preferredWrongAnswers == null || preferredWrongAnswers.Length == 0))
                 {
-                    Debug.LogErrorFormat("<Souvenir #{0}> Question {1}'s answer generator did not generate any answers.", _moduleId, question);
+                    Debug.LogErrorFormat("<Souvenir #{0}> Question {1}’s answer generator did not generate any answers.", _moduleId, question);
                     return null;
                 }
             }
