@@ -4890,7 +4890,7 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "9th" }, new[] { hyperlink[8].ToString() }),
             makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "10th" }, new[] { hyperlink[9].ToString() }),
             makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "11th" }, new[] { hyperlink[10].ToString() }),
-            makeQuestion(Question.HyperlinkAnswer, _Hyperlink, correctAnswers: new[] { moduleNames[Array.IndexOf(moduleNames, hyperlink) + 1] }));
+            makeQuestion(Question.HyperlinkAnswer, _Hyperlink, correctAnswers: new[] { moduleNames[Array.IndexOf(moduleNames, hyperlink) + 1].Replace("'", "’") }));
     }
 
     private IEnumerable<object> ProcessIceCream(KMBombModule module)
@@ -9623,7 +9623,7 @@ public class SouvenirModule : MonoBehaviour
                 while (!propButtonsEmerged.Get())
                     yield return new WaitForSeconds(0.1f);
 
-                displayWords[i] = propText.Get();
+                displayWords[i] = propText.Get().Replace("'", "’");
 
                 while (propButtonsEmerged.Get())
                     yield return new WaitForSeconds(0.1f);
