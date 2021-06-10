@@ -4476,7 +4476,7 @@ public class SouvenirModule : MonoBehaviour
         if (number < 0 || number > 99)
             throw new AbandonModuleException("The number on the screen is out of range: number = {1}, expected 0-99", number);
 
-        addQuestions(module, makeQuestion(Question.GreenArrowsLastScreen, _GreenArrows, correctAnswers: new[] { number.ToString() }));
+        addQuestions(module, makeQuestion(Question.GreenArrowsLastScreen, _GreenArrows, correctAnswers: new[] { number.ToString("00") }));
     }
 
     private IEnumerable<object> ProcessGreenCipher(KMBombModule module)
