@@ -5395,11 +5395,13 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessLombaxCubes(KMBombModule module)
     {
         var comp = GetComponent(module, "LombaxCubesScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldLetter1 = GetIntField(comp, "ButtonLetter1");
         var fldLetter2 = GetIntField(comp, "ButtonLetter2");
 
-        while (!fldSolved.Get())
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+
+        while (!solved)
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_LombaxCubes);
 
