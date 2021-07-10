@@ -777,7 +777,7 @@ namespace Souvenir
         [SouvenirQuestion("What was the answer in {0}?", "Mashematics", AnswerLayout.ThreeColumns6Answers, null)]
         [AnswerGenerator.Integers(0, 99)]
         MashematicsAnswer,
-        [SouvenirQuestion("What was the {1} number in the calculation in {0}?", "Mashematics", AnswerLayout.ThreeColumns6Answers, null, ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was the {1} number in the equation on {0}?", "Mashematics", AnswerLayout.ThreeColumns6Answers, null, ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 99)]
         MashematicsCalculation,
 
