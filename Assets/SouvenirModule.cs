@@ -4866,7 +4866,7 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessHyperlink(KMBombModule module)
     {
         var comp = GetComponent(module, "hyperlinkScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldSolved = GetField<bool>(comp, "moduleSolved", isPublic: true);
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -4876,21 +4876,15 @@ public class SouvenirModule : MonoBehaviour
         if (moduleNamesType == null)
             throw new AbandonModuleException("I cannot find the IDList type.");
         var moduleNames = GetStaticField<string[]>(moduleNamesType, "phrases", isPublic: true).Get(validator: ar => ar.Length % 2 != 0 ? "expected even number of items" : null);
-        var hyperlink = GetField<string>(comp, "selectedString").Get(validator: str => Array.IndexOf(moduleNames, str) % 2 != 0 ? "‘selectedString’ is not in ‘IDList.phrases’" : null);
+        var hyperlink = GetField<string>(comp, "selectedString").Get();
+        var anchor = GetIntField(comp, "anchor").Get();
 
-        addQuestions(module,
-            makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "first" }, new[] { hyperlink[0].ToString() }),
-            makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "second" }, new[] { hyperlink[1].ToString() }),
-            makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "third" }, new[] { hyperlink[2].ToString() }),
-            makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "4th" }, new[] { hyperlink[3].ToString() }),
-            makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "5th" }, new[] { hyperlink[4].ToString() }),
-            makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "6th" }, new[] { hyperlink[5].ToString() }),
-            makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "7th" }, new[] { hyperlink[6].ToString() }),
-            makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "8th" }, new[] { hyperlink[7].ToString() }),
-            makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "9th" }, new[] { hyperlink[8].ToString() }),
-            makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "10th" }, new[] { hyperlink[9].ToString() }),
-            makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { "11th" }, new[] { hyperlink[10].ToString() }),
-            makeQuestion(Question.HyperlinkAnswer, _Hyperlink, correctAnswers: new[] { moduleNames[Array.IndexOf(moduleNames, hyperlink) + 1].Replace("'", "’") }));
+        var questions = new List<QandA>();
+        for (var i = 0; i < 11; i++)
+            questions.Add(makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] {ordinal(i + 1)}, new[] { hyperlink[i].ToString() }));
+        questions.Add(makeQuestion(Question.HyperlinkAnswer, _Hyperlink, correctAnswers: new[] { moduleNames[anchor + 1].Replace("'", "’") }));
+
+        addQuestions(module, questions);
     }
 
     private IEnumerable<object> ProcessIceCream(KMBombModule module)
