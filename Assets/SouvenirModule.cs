@@ -5872,7 +5872,7 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessModuleMaze(KMBombModule module)
     {
         var comp = GetComponent(module, "ModuleMazeModule");
-        var fldSprites = GetArrayField<Sprite>(comp, "gSprites", true);
+        var fldSprites = GetArrayField<Sprite>(comp, "sprites", true);
         var fldSolved = GetField<bool>(comp, "solved");
 
         while (!fldSolved.Get())
