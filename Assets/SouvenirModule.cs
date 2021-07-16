@@ -1928,7 +1928,20 @@ public class SouvenirModule : MonoBehaviour
 
         var map = GetField<object>(comp, "map").Get();
         var mapData = GetField<Array>(map, "mapData").Get(arr => arr.GetLength(0) != 8 || arr.GetLength(1) != 8 ? string.Format("size {0},{1}, expected 8,8", arr.GetLength(0), arr.GetLength(1)) : null);
-        var bearing = GetIntField(map, "end_dir").Get(min: 0, max: 3);
+
+        IntFieldInfo fldBearing = null;
+        try { fldBearing = GetIntField(map, "end_dir"); }
+        catch (AbandonModuleException)
+        {
+            Debug.LogFormat("[Souvenir #{0}] You are running an old version of the 3D Maze module.");
+            Debug.LogFormat("[Souvenir #{0}] Please UNSUBSCRIBE here: https://steamcommunity.com/workshop/filedetails/?id=752338147");
+            Debug.LogFormat("[Souvenir #{0}] Please SUBSCRIBE here: https://steamcommunity.com/workshop/filedetails/?id=2164996443");
+            _legitimatelyNoQuestions.Add(module);
+            _showWarning = true;
+            yield break;
+        }
+
+        int bearing = fldBearing.Get(min: 0, max: 3);
         var fldLabel = GetField<char>(mapData.GetValue(0, 0), "label", isPublic: true);
         var chars = new HashSet<char>();
         for (int i = 0; i < 8; i++)
@@ -4881,7 +4894,7 @@ public class SouvenirModule : MonoBehaviour
 
         var questions = new List<QandA>();
         for (var i = 0; i < 11; i++)
-            questions.Add(makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] {ordinal(i + 1)}, new[] { hyperlink[i].ToString() }));
+            questions.Add(makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { ordinal(i + 1) }, new[] { hyperlink[i].ToString() }));
         questions.Add(makeQuestion(Question.HyperlinkAnswer, _Hyperlink, correctAnswers: new[] { moduleNames[anchor + 1].Replace("'", "’") }));
 
         addQuestions(module, questions);
@@ -5874,6 +5887,18 @@ public class SouvenirModule : MonoBehaviour
         var comp = GetComponent(module, "ModuleMazeModule");
         var fldSprites = GetArrayField<Sprite>(comp, "sprites", true);
         var fldSolved = GetField<bool>(comp, "solved");
+
+        try
+        {
+            GetArrayField<Sprite>(comp, "gSprites", true);
+            Debug.LogFormat("[Souvenir #{0}] You are running an old version of the Module Maze module. Please unsubscribe and re-subscribe here: https://steamcommunity.com/sharedfiles/filedetails/?id=1650854883", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+            _showWarning = true;
+            yield break;
+        }
+        catch (AbandonModuleException)
+        {
+        }
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
