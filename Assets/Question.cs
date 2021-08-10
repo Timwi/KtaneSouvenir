@@ -677,6 +677,11 @@ namespace Souvenir
         [SouvenirQuestion("What was the answer in {0}?", "Indigo Cipher", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "beaver", "indent", "lonely", "pillar", "refuge", "ripped", "stolen", "tumble", "whimsy", "wyvern" })]
         IndigoCipherAnswer,
 
+        [SouvenirQuestion("What color was the LED in {0}?", "Inner Connections", AnswerLayout.ThreeColumns6Answers, "Black", "Blue", "Red", "White", "Yellow", "Green")]
+        InnerConnectionsLED,
+        [SouvenirQuestion("What was the digit flashed in Morse in {0}?", "Inner Connections", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
+        InnerConnectionsMorse,
+
         [SouvenirQuestion("What was the {1} PIN digit in {0}?", "iPhone", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         [AnswerGenerator.Integers(0, 9)]

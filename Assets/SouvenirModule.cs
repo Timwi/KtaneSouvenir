@@ -211,6 +211,7 @@ public class SouvenirModule : MonoBehaviour
     const string _IceCream = "iceCreamModule";
     const string _IdentityParade = "identityParade";
     const string _IndigoCipher = "indigoCipher";
+    const string _InnerConnections = "InnerConnectionsModule";
     const string _iPhone = "iPhone";
     const string _JewelVault = "jewelVault";
     const string _JumbleCycle = "jumbleCycle";
@@ -539,6 +540,7 @@ public class SouvenirModule : MonoBehaviour
             { _IceCream, ProcessIceCream },
             { _IdentityParade, ProcessIdentityParade },
             { _IndigoCipher, ProcessIndigoCipher },
+            { _InnerConnections, ProcessInnerConnections },
             { _iPhone, ProcessiPhone },
             { _JewelVault, ProcessJewelVault },
             { _JumbleCycle, ProcessJumbleCycle },
@@ -4995,6 +4997,24 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessIndigoCipher(KMBombModule module)
     {
         return processColoredCiphers(module, "indigoCipher", Question.IndigoCipherAnswer, _IndigoCipher);
+    }
+
+    private IEnumerable<object> ProcessInnerConnections(KMBombModule module)
+    {
+        var comp = GetComponent(module, "InnerConnectionsScript");
+        var morseNumber = GetField<int>(comp, "morseNumber").Get();
+        var rndLEDColour = GetField<int>(comp, "rndLEDColour").Get();
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_InnerConnections);
+
+        var colourList = new[] { "Black", "Blue", "Red", "White", "Yellow" };
+
+        addQuestions(module,
+            makeQuestion(Question.InnerConnectionsLED, _InnerConnections, correctAnswers: new[] { colourList[rndLEDColour] }),
+            makeQuestion(Question.InnerConnectionsMorse, _InnerConnections, correctAnswers: new[] { morseNumber.ToString() }));
     }
 
     private IEnumerable<object> ProcessiPhone(KMBombModule module)
