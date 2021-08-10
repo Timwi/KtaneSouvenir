@@ -3610,13 +3610,14 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "DeafAlleyScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var shapes = GetField<string[]>(comp, "shapes").Get();
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_DeafAlley);
 
-        var pinpoint = GetField<int>(comp, "selectedShape").Get();
-        addQuestions(module, makeQuestion(Question.DeafAlleyShape, _DeafAlley, null, new[] { _attributes[Question.DeafAlleyShape].AllAnswers[pinpoint] }));
+        var selectedShape = GetField<int>(comp, "selectedShape").Get();
+        addQuestions(module, makeQuestion(Question.DeafAlleyShape, _DeafAlley, correctAnswers: new[] { shapes[selectedShape] }, preferredWrongAnswers: shapes));
     }
 
     private IEnumerable<object> ProcessDeckOfManyThings(KMBombModule module)
