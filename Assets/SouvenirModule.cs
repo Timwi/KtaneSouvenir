@@ -5188,7 +5188,7 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessLinq(KMBombModule module)
     {
         var comp = GetComponent(module, "LinqScript");
-        var fldSolved = GetProperty<bool>(comp, "IsSolved");
+        var fldSolved = GetProperty<bool>(comp, "IsSolved", isPublic: true);
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
