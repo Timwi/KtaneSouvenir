@@ -288,6 +288,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Pie = "pieModule";
     const string _PigpenCycle = "pigpenCycle";
     const string _PlaceholderTalk = "placeholderTalk";
+    const string _PlacementRoulette = "PlacementRouletteModule";
     const string _Planets = "planets";
     const string _PlayfairCycle = "playfairCycle";
     const string _Poetry = "poetry";
@@ -617,6 +618,7 @@ public class SouvenirModule : MonoBehaviour
             { _Pie, ProcessPie },
             { _PigpenCycle, ProcessPigpenCycle },
             { _PlaceholderTalk, ProcessPlaceholderTalk },
+            { _PlacementRoulette, ProcessPlacementRoulette },
             { _Planets, ProcessPlanets },
             { _PlayfairCycle, ProcessPlayfairCycle },
             { _Poetry, ProcessPoetry },
@@ -1466,7 +1468,7 @@ public class SouvenirModule : MonoBehaviour
         throw new AbandonModuleException("Type {0} does not contain {1} field {2}. Fields are: {3}", targetType, isPublic ? "public" : "non-public", name,
             targetType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(f => string.Format("{0} {1} {2}", f.IsPublic ? "public" : "private", f.FieldType.FullName, f.Name)).JoinString(", "));
 
-        found:
+    found:
         if (!typeof(T).IsAssignableFrom(fld.FieldType))
         {
             if (noThrow)
@@ -7149,6 +7151,32 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessPlacementRoulette(KMBombModule module)
+    {
+        var comp = GetComponent(module, "PlacementRouletteModule");
+        var fldSolved = GetField<bool>(comp, "isSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_PlacementRoulette);
+
+        var character = GetField<string>(comp, "Character").Get();
+        var vehicleType = GetField<string>(comp, "VehicleType").Get();
+        var drift = GetField<string>(comp, "Drift").Get();
+        var trackType = GetField<string>(comp, "TrackType").Get();
+        var vehicle = GetField<string>(comp, "Vehicle").Get();
+        var track = GetField<string>(comp, "Track").Get();
+
+        addQuestions(module,
+            makeQuestion(Question.PlacementRouletteChar, _PlacementRoulette, correctAnswers: new[] { character }),
+            makeQuestion(Question.PlacementRouletteVehicleType, _PlacementRoulette, correctAnswers: new[] { vehicleType }),
+            makeQuestion(Question.PlacementRouletteDrift, _PlacementRoulette, correctAnswers: new[] { drift }),
+            makeQuestion(Question.PlacementRouletteTrackType, _PlacementRoulette, correctAnswers: new[] { trackType }),
+            makeQuestion(Question.PlacementRouletteTrack, _PlacementRoulette, correctAnswers: new[] { track }),
+            makeQuestion(Question.PlacementRouletteVehicle, _PlacementRoulette, correctAnswers: new[] { vehicle })
+        );
+    }
+
     private IEnumerable<object> ProcessPlanets(KMBombModule module)
     {
         var comp = GetComponent(module, "planetsModScript");
@@ -7829,7 +7857,7 @@ public class SouvenirModule : MonoBehaviour
             }
         }
 
-        solved:
+    solved:
         _modulesSolved.IncSafe(_SeaShells);
 
         var qs = new List<QandA>();
