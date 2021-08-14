@@ -682,6 +682,10 @@ namespace Souvenir
         [SouvenirQuestion("What was the digit flashed in Morse in {0}?", "Inner Connections", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
         InnerConnectionsMorse,
 
+        [SouvenirQuestion("What symbol was the correct answer in {0}?", "IPA", AnswerLayout.ThreeColumns6Answers, null,
+            Type = AnswerType.DynamicFont, ExampleAnswers = new[] { "p", "b", "t", "d", "c", "ɟ", "k", "g", "q", "ɢ", "ʔ", "m", "n", "ɲ", "ŋ", "ʙ", "r", "ʀ", "ⱱ", "ɾ" })]
+        IpaSymbol,
+
         [SouvenirQuestion("What was the {1} PIN digit in {0}?", "iPhone", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         [AnswerGenerator.Integers(0, 9)]

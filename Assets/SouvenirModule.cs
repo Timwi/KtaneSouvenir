@@ -217,6 +217,7 @@ public class SouvenirModule : MonoBehaviour
     const string _IdentityParade = "identityParade";
     const string _IndigoCipher = "indigoCipher";
     const string _InnerConnections = "InnerConnectionsModule";
+    const string _IPA = "ipa";
     const string _iPhone = "iPhone";
     const string _JewelVault = "jewelVault";
     const string _JumbleCycle = "jumbleCycle";
@@ -549,6 +550,7 @@ public class SouvenirModule : MonoBehaviour
             { _IdentityParade, ProcessIdentityParade },
             { _IndigoCipher, ProcessIndigoCipher },
             { _InnerConnections, ProcessInnerConnections },
+            { _IPA, ProcessIPA },
             { _iPhone, ProcessiPhone },
             { _JewelVault, ProcessJewelVault },
             { _JumbleCycle, ProcessJumbleCycle },
@@ -5028,6 +5030,22 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.InnerConnectionsLED, _InnerConnections, correctAnswers: new[] { colourList[rndLEDColour] }),
             makeQuestion(Question.InnerConnectionsMorse, _InnerConnections, correctAnswers: new[] { morseNumber.ToString() }));
+    }
+
+    private IEnumerable<object> ProcessIPA(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ipa");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var symbols = GetStaticField<string[]>(comp.GetType(), "symbols").Get();
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_IPA);
+
+        var soundIx = GetIntField(comp, "soundPresent").Get(0, symbols.Length - 1);
+        var textMesh = GetArrayField<TextMesh>(comp, "buttonTexts", isPublic: true).Get(expectedLength: 9)[0];
+        addQuestions(module, makeQuestion(Question.IpaSymbol, _IPA, textMesh.font, textMesh.GetComponent<MeshRenderer>().sharedMaterial.mainTexture,
+            correctAnswers: new[] { symbols[soundIx] }, preferredWrongAnswers: symbols));
     }
 
     private IEnumerable<object> ProcessiPhone(KMBombModule module)
