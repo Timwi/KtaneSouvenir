@@ -175,6 +175,7 @@ public class SouvenirModule : MonoBehaviour
     const string _ElderFuthark = "elderFuthark";
     const string _EncryptedEquations = "EncryptedEquationsModule";
     const string _EncryptedHangman = "encryptedHangman";
+    const string _EncryptedMaze = "encryptedMaze";
     const string _EncryptedMorse = "EncryptedMorse";
     const string _EncryptionBingo = "encryptionBingo";
     const string _EquationsX = "equationsXModule";
@@ -508,6 +509,7 @@ public class SouvenirModule : MonoBehaviour
             { _ElderFuthark, ProcessElderFuthark },
             { _EncryptedEquations, ProcessEncryptedEquations },
             { _EncryptedHangman, ProcessEncryptedHangman },
+            { _EncryptedMaze, ProcessEncryptedMaze },
             { _EncryptedMorse, ProcessEncryptedMorse },
             { _EncryptionBingo, ProcessEncryptionBingo },
             { _EquationsX, ProcessEquationsX },
@@ -3970,6 +3972,26 @@ public class SouvenirModule : MonoBehaviour
         qs.Add(makeQuestion(Question.EncryptedHangmanEncryptionMethod, _EncryptedHangman, correctAnswers: new[] { encryptionMethodNames[encryptionMethod] }));
 
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessEncryptedMaze(KMBombModule module)
+    {
+        var comp = GetComponent(module, "encryptedMazeScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var shapeCw = GetIntField(comp, "shapeMarkerCw").Get(0, 4);
+        var shapeCcw = GetIntField(comp, "shapeMarkerCcw").Get(0, 4);
+        var markerCw = GetIntField(comp, "featureMarkerCw").Get(0, 5);
+        var markerCcw = GetIntField(comp, "featureMarkerCcw").Get(0, 5);
+        var markerCharacters = GetField<string[,]>(comp, "markerIndex").Get(validator: arr => arr.GetLength(0) != 5 ? "expected length 5 in dimension 0" : arr.GetLength(1) != 6 ? "expected length 6 in dimension 1" : null);
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_EncryptedMaze);
+
+        var textMesh = GetArrayField<TextMesh>(comp, "mazeIndex", isPublic: true).Get(expectedLength: 36)[0];
+        addQuestions(module,
+            makeQuestion(Question.EncryptedMazeSymbols, _EncryptedMaze, textMesh.font, textMesh.GetComponent<MeshRenderer>().sharedMaterial.mainTexture, formatArgs: new[] { "clockwise" }, correctAnswers: new[] { markerCharacters[shapeCw, markerCw] }, preferredWrongAnswers: new[] { markerCharacters[shapeCcw, markerCcw] }),
+            makeQuestion(Question.EncryptedMazeSymbols, _EncryptedMaze, textMesh.font, textMesh.GetComponent<MeshRenderer>().sharedMaterial.mainTexture, formatArgs: new[] { "counter-clockwise" }, correctAnswers: new[] { markerCharacters[shapeCcw, markerCcw] }, preferredWrongAnswers: new[] { markerCharacters[shapeCw, markerCw] }));
     }
 
     private IEnumerable<object> ProcessEncryptedMorse(KMBombModule module)

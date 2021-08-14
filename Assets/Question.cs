@@ -427,6 +427,10 @@ namespace Souvenir
         [SouvenirQuestion("What module name was encrypted by {0}?", "Encrypted Hangman", AnswerLayout.OneColumn4Answers, ExampleAnswers = new[] { "Anagrams", "Word Scramble", "Two Bits", "Switches", "Lights Out", "Emoji Math", "Math", "Semaphore", "Piano Keys", "Colour Flash" })]
         EncryptedHangmanModule,
 
+        [SouvenirQuestion("Which symbol on {0} was spinning {1}?", "Encrypted Maze", AnswerLayout.ThreeColumns6Answers, "f", "H", "$", "l", "B", "N", "g", "I", "%", "m", "C", "O", "h", "J", "&", "n", "D", "P", "i", "K", "'", "o", "E", "Q", "j", "L", "(", "p", "F", "R",
+            Type = AnswerType.DynamicFont, ExampleExtraFormatArguments = new[] { "clockwise", "counter-clockwise" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        EncryptedMazeSymbols,
+
         [SouvenirQuestion("What was the {1} on {0}?", "Encrypted Morse", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "Detonate", "Ready Now", "Please No", "Cheesecake" },
             ExampleExtraFormatArguments = new[] { "received call", "sent response" }, ExampleExtraFormatArgumentGroupSize = 1)]
         EncryptedMorseCallResponse,
