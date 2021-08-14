@@ -85,6 +85,7 @@ public class SouvenirModule : MonoBehaviour
     private int _moduleId;
     private Dictionary<string, Func<KMBombModule, IEnumerable<object>>> _moduleProcessors;
     private Dictionary<Question, SouvenirQuestionAttribute> _attributes;
+    private Action<double> TimeModeAwardPoints;
     #endregion
 
     #region Module ID constant declarations
@@ -1142,6 +1143,8 @@ public class SouvenirModule : MonoBehaviour
         _animating = true;
         Audio.PlaySoundAtTransform("Answer", transform);
         dismissQuestion();
+        if (TimeModeAwardPoints != null)
+            TimeModeAwardPoints(1);
         yield return new WaitForSeconds(.5f);
         _animating = false;
     }
@@ -1468,7 +1471,7 @@ public class SouvenirModule : MonoBehaviour
         throw new AbandonModuleException("Type {0} does not contain {1} field {2}. Fields are: {3}", targetType, isPublic ? "public" : "non-public", name,
             targetType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(f => string.Format("{0} {1} {2}", f.IsPublic ? "public" : "private", f.FieldType.FullName, f.Name)).JoinString(", "));
 
-    found:
+        found:
         if (!typeof(T).IsAssignableFrom(fld.FieldType))
         {
             if (noThrow)
@@ -7857,7 +7860,7 @@ public class SouvenirModule : MonoBehaviour
             }
         }
 
-    solved:
+        solved:
         _modulesSolved.IncSafe(_SeaShells);
 
         var qs = new List<QandA>();
