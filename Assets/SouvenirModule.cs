@@ -85,7 +85,11 @@ public class SouvenirModule : MonoBehaviour
     private int _moduleId;
     private Dictionary<string, Func<KMBombModule, IEnumerable<object>>> _moduleProcessors;
     private Dictionary<Question, SouvenirQuestionAttribute> _attributes;
+
+#pragma warning disable 649
     private Action<double> TimeModeAwardPoints;
+#pragma warning restore 649
+
     #endregion
 
     #region Module ID constant declarations
