@@ -919,6 +919,11 @@ namespace Souvenir
         [SouvenirQuestion("Which color sphere was the goal in {0}?", "Mouse in the Maze", AnswerLayout.TwoColumns4Answers, "white", "green", "blue", "yellow")]
         MouseInTheMazeSphere,
 
+        [SouvenirQuestion("What color was the {1} LED on the {2} row when the tiny LED was {3} in {0}?", "Multicolored Switches", AnswerLayout.TwoColumns4Answers, "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white",
+            ExampleExtraFormatArguments = new[] { "first", "top", "lit", "second", "top", "lit", "third", "top", "lit", "first", "bottom", "lit", "second", "bottom", "lit", "third", "bottom", "lit", "first", "top", "unlit", "second", "top", "unlit", "third", "top", "unlit", "first", "bottom", "unlit", "second", "bottom", "unlit", "third", "bottom", "unlit" },
+            ExampleExtraFormatArgumentGroupSize = 3)]
+        MulticoloredSwitchesLedColor,
+
         [SouvenirQuestion("Where was the body found in {0}?", "Murder", AnswerLayout.TwoColumns4Answers, "Dining Room", "Study", "Kitchen", "Lounge", "Billiard Room", "Conservatory", "Ballroom", "Hall", "Library")]
         MurderBodyFound,
 
