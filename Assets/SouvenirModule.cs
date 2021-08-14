@@ -180,6 +180,7 @@ public class SouvenirModule : MonoBehaviour
     const string _EncryptionBingo = "encryptionBingo";
     const string _EquationsX = "equationsXModule";
     const string _Etterna = "etterna";
+    const string _Exoplanets = "exoplanets";
     const string _FactoryMaze = "factoryMaze";
     const string _FastMath = "fastMath";
     const string _FaultyRGBMaze = "faultyrgbMaze";
@@ -514,6 +515,7 @@ public class SouvenirModule : MonoBehaviour
             { _EncryptionBingo, ProcessEncryptionBingo },
             { _EquationsX, ProcessEquationsX },
             { _Etterna, ProcessEtterna },
+            { _Exoplanets, ProcessExoplanets },
             { _FactoryMaze, ProcessFactoryMaze },
             { _FastMath, ProcessFastMath },
             { _FaultyRGBMaze, ProcessFaultyRGBMaze },
@@ -4087,6 +4089,30 @@ public class SouvenirModule : MonoBehaviour
 
         var correct = GetArrayField<byte>(comp, "correct").Get(expectedLength: 4, validator: b => b > 32 || b == 0 ? "expected 1–32" : null);
         addQuestions(module, correct.Select((answer, ix) => makeQuestion(Question.EtternaNumber, _Etterna, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { answer.ToString() })));
+    }
+
+    private IEnumerable<object> ProcessExoplanets(KMBombModule module)
+    {
+        var comp = GetComponent(module, "exoplanets");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Exoplanets);
+
+        var targetPlanet = GetIntField(comp, "targetPlanet").Get(0, 2);
+        var targetDigit = GetIntField(comp, "targetDigit").Get(0, 9);
+
+        var startingTargetPlanet = GetIntField(comp, "startingTargetPlanet").Get(0, 2);
+        var startingTargetDigit = GetIntField(comp, "startingTargetDigit").Get(0, 9);
+
+        var positionNames = GetStaticField<string[]>(comp.GetType(), "positionNames").Get(validator: arr => arr.Length != 3 ? "expected length 3" : null);
+
+        addQuestions(module,
+            makeQuestion(Question.ExoplanetsStartingTargetPlanet, _Exoplanets, correctAnswers: new[] { positionNames[startingTargetPlanet] }),
+            makeQuestion(Question.ExoplanetsStartingTargetDigit, _Exoplanets, correctAnswers: new[] { startingTargetDigit.ToString() }),
+            makeQuestion(Question.ExoplanetsTargetPlanet, _Exoplanets, correctAnswers: new[] { positionNames[targetPlanet] }),
+            makeQuestion(Question.ExoplanetsTargetDigit, _Exoplanets, correctAnswers: new[] { targetDigit.ToString() }));
     }
 
     private IEnumerable<object> ProcessFactoryMaze(KMBombModule module)

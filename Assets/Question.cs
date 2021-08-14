@@ -446,6 +446,15 @@ namespace Souvenir
         [AnswerGenerator.Integers(1, 32)]
         EtternaNumber,
 
+        [SouvenirQuestion("What was the starting target planet in {0}?", "Exoplanets", AnswerLayout.TwoColumns4Answers, "outer", "middle", "inner", "none")]
+        ExoplanetsStartingTargetPlanet,
+        [SouvenirQuestion("What was the starting target digit in {0}?", "Exoplanets", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
+        ExoplanetsStartingTargetDigit,
+        [SouvenirQuestion("What was the final target planet in {0}?", "Exoplanets", AnswerLayout.TwoColumns4Answers, "outer", "middle", "inner", "none")]
+        ExoplanetsTargetPlanet,
+        [SouvenirQuestion("What was the final target digit in {0}?", "Exoplanets", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
+        ExoplanetsTargetDigit,
+
         [SouvenirQuestion("What room did you start in in {0}?", "Factory Maze", AnswerLayout.OneColumn4Answers, "Bathroom", "Assembly Line", "Cafeteria", "Room A9", "Broom Closet", "Basement", "Copy Room", "Unnecessarily Long-Named Room", "Library", "Break Room", "Empty Room with Two Doors", "Arcade", "Classroom", "Module Testing Room", "Music Studio", "Computer Room", "Infirmary", "Bomb Room", "Space", "Storage Room", "Lounge", "Conference Room", "Kitchen", "Incinerator")]
         FactoryMazeStartRoom,
 
