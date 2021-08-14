@@ -362,6 +362,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SwitchingMaze = "MazeSwitching";
     const string _SymbolCycle = "SymbolCycleModule";
     const string _SymbolicCoordinates = "symbolicCoordinates";
+    const string _Sync_125_3 = "sync125_3";
     const string _Synonyms = "synonyms";
     const string _Sysadmin = "sysadmin";
     const string _TapCode = "tapCode";
@@ -693,6 +694,7 @@ public class SouvenirModule : MonoBehaviour
             { _SwitchingMaze, ProcessSwitchingMaze },
             { _SymbolCycle, ProcessSymbolCycle },
             { _SymbolicCoordinates, ProcessSymbolicCoordinates },
+            { _Sync_125_3, ProcessSync_125_3 },
             { _Synonyms, ProcessSynonyms },
             { _Sysadmin, ProcessSysadmin },
             { _TapCode, ProcessTapCode },
@@ -8996,6 +8998,39 @@ public class SouvenirModule : MonoBehaviour
             formatArgs: new[] { position[pos], ordinal(stage + 1) },
             correctAnswers: new[] { SymbolicCoordinatesSprites["ACELP".IndexOf(letter, StringComparison.Ordinal)] },
             preferredWrongAnswers: SymbolicCoordinatesSprites))));
+    }
+
+    private IEnumerable<object> ProcessSync_125_3(KMBombModule module)
+    {
+        var comp = GetComponent(module, "sync125_3");
+        var fldTextId = GetIntField(comp, "textId");
+        var fldStage = GetIntField(comp, "stage");
+        var words = GetArrayField<string>(comp, "words").Get();
+        var screenText = GetField<TextMesh>(comp, "screenText", isPublic: true).Get();
+        var submitButton = GetField<KMSelectable>(comp, "submitButton", isPublic: true).Get();
+
+        var textIds = new int[4];
+
+        while (!_isActivated)
+            yield return null;
+
+        var oldInteract = submitButton.OnInteract;
+        submitButton.OnInteract = () =>
+        {
+            textIds[fldStage.Get(0, 3)] = fldTextId.Get();
+            return oldInteract();
+        };
+
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Sync_125_3);
+
+        var qs = new List<QandA>();
+        for (var stage = 0; stage < 3; stage++)
+            qs.Add(makeQuestion(Question.Sync125_3Word, _Sync_125_3, screenText.font, screenText.GetComponent<MeshRenderer>().sharedMaterial.mainTexture, formatArgs: new[] { (stage + 1).ToString() }, correctAnswers: new[] { words[textIds[stage]] }, preferredWrongAnswers: words));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessSynonyms(KMBombModule module)

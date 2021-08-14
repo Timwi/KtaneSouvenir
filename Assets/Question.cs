@@ -1466,6 +1466,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "left", "first", "left", "second", "left", "third", "middle", "first", "middle", "second", "middle", "third", "right", "first", "right", "second", "right", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
         SymbolicCoordinateSymbols,
 
+        [SouvenirQuestion("What was displayed on the screen in stage {1} of {0}?", "SYNC-125 [3]", AnswerLayout.TwoColumns4Answers, null, Type = AnswerType.DynamicFont, ExampleAnswers = new[] { "İ'ms'", "ăĠ'n'", "kğ'i", "kĞ'p'", "ăut'", "ăġ'r", "ăġ'm", "ărs", "kğp'", "kğk" })]
+        Sync125_3Word,
+
         [SouvenirQuestion("Which number was displayed on {0}?", "Synonyms", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Integers(0, 9)]
         SynonymsNumber,
