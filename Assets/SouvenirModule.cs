@@ -112,6 +112,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Arithmelogic = "arithmelogic";
     const string _BamboozledAgain = "bamboozledAgain";
     const string _BamboozlingButton = "bamboozlingButton";
+    const string _BarcodeCipher = "BarcodeCipherModule";
     const string _Bartending = "BartendingModule";
     const string _BigCircle = "BigCircle";
     const string _Binary = "Binary";
@@ -289,6 +290,7 @@ public class SouvenirModule : MonoBehaviour
     const string _OrangeArrows = "orangeArrowsModule";
     const string _OrangeCipher = "orangeCipher";
     const string _OrderedKeys = "orderedKeys";
+    const string _OrderPicking = "OrderPickingModule";
     const string _OrientationCube = "OrientationCube";
     const string _Palindromes = "palindromes";
     const string _PartialDerivatives = "partialDerivatives";
@@ -449,6 +451,7 @@ public class SouvenirModule : MonoBehaviour
             { _Arithmelogic, ProcessArithmelogic },
             { _BamboozledAgain, ProcessBamboozledAgain },
             { _BamboozlingButton, ProcessBamboozlingButton },
+            { _BarcodeCipher, ProcessBarcodeCipher },
             { _Bartending, ProcessBartending },
             { _BigCircle, ProcessBigCircle },
             { _Binary, ProcessBinary },
@@ -626,6 +629,7 @@ public class SouvenirModule : MonoBehaviour
             { _OrangeArrows, ProcessOrangeArrows },
             { _OrangeCipher, ProcessOrangeCipher },
             { _OrderedKeys, ProcessOrderedKeys },
+            { _OrderPicking, ProcessOrderPicking },
             { _OrientationCube, ProcessOrientationCube },
             { _Palindromes, ProcessPalindromes },
             { _PartialDerivatives, ProcessPartialDerivatives },
@@ -2454,17 +2458,42 @@ public class SouvenirModule : MonoBehaviour
         var qs = new List<QandA>();
         for (var i = 0; i < 2; i++)
         {
-            qs.Add(makeQuestion(Question.BamboozlingButtonColor, _BamboozlingButton, new[] { ordinal(i + 1) }, new[] { colors[moduleData[i][0]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplayColor, _BamboozlingButton, new[] { ordinal(i + 1), "fourth" }, new[] { colors[moduleData[i][1]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplayColor, _BamboozlingButton, new[] { ordinal(i + 1), "fifth" }, new[] { colors[moduleData[i][2]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, _BamboozlingButton, new[] { ordinal(i + 1), "first" }, new[] { texts[moduleData[i][3]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, _BamboozlingButton, new[] { ordinal(i + 1), "third" }, new[] { texts[moduleData[i][4]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, _BamboozlingButton, new[] { ordinal(i + 1), "fourth" }, new[] { texts[moduleData[i][5]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, _BamboozlingButton, new[] { ordinal(i + 1), "fifth" }, new[] { texts[moduleData[i][6]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonLabel, _BamboozlingButton, new[] { ordinal(i + 1), "top" }, new[] { texts[moduleData[i][7]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonLabel, _BamboozlingButton, new[] { ordinal(i + 1), "bottom" }, new[] { texts[moduleData[i][8]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonColor, _BamboozlingButton, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colors[moduleData[i][0]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplayColor, _BamboozlingButton, formatArgs: new[] { ordinal(i + 1), "fourth" }, correctAnswers: new[] { colors[moduleData[i][1]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplayColor, _BamboozlingButton, formatArgs: new[] { ordinal(i + 1), "fifth" }, correctAnswers: new[] { colors[moduleData[i][2]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, _BamboozlingButton, formatArgs: new[] { ordinal(i + 1), "first" }, correctAnswers: new[] { texts[moduleData[i][3]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, _BamboozlingButton, formatArgs: new[] { ordinal(i + 1), "third" }, correctAnswers: new[] { texts[moduleData[i][4]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, _BamboozlingButton, formatArgs: new[] { ordinal(i + 1), "fourth" }, correctAnswers: new[] { texts[moduleData[i][5]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, _BamboozlingButton, formatArgs: new[] { ordinal(i + 1), "fifth" }, correctAnswers: new[] { texts[moduleData[i][6]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonLabel, _BamboozlingButton, formatArgs: new[] { ordinal(i + 1), "top" }, correctAnswers: new[] { texts[moduleData[i][7]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonLabel, _BamboozlingButton, formatArgs: new[] { ordinal(i + 1), "bottom" }, correctAnswers: new[] { texts[moduleData[i][8]] }));
         }
 
+        addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessBarcodeCipher(KMBombModule module)
+    {
+        var comp = GetComponent(module, "BarcodeCipherScript");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+
+        var edgeworkInfos = GetField<Array>(comp, "edgework").Get();
+        var fldName = GetField<string>(edgeworkInfos.GetValue(0), "Name", isPublic: true);
+        var barcodes = new[] { fldName.GetFrom(edgeworkInfos.GetValue(0)), fldName.GetFrom(edgeworkInfos.GetValue(1)), fldName.GetFrom(edgeworkInfos.GetValue(2)) };
+        var fldScreenNumber = GetField<string>(comp, "screenNumber").Get(validator: str => str.Length != 6 ? "expected length 6" : str.Any(ch => ch < '0' || ch > '9') ? "expected digits 0–9" : null);
+        var answers = GetArrayField<int>(comp, "answerNumbers").Get(validator: arr => arr.Length != 3 ? "expected length 3" : arr.Any(n => n < 0 || n > 8) ? "expected numbers 0–8" : null);
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_BarcodeCipher);
+
+        var qs = new List<QandA>();
+        qs.Add(makeQuestion(Question.BarcodeCipherScreenNumber, _BarcodeCipher, correctAnswers: new[] { fldScreenNumber }));
+        for (int i = 0; i < 3; i++)
+        {
+            qs.Add(makeQuestion(Question.BarcodeCipherBarcodeEdgework, _BarcodeCipher, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { barcodes[i] }));
+            qs.Add(makeQuestion(Question.BarcodeCipherBarcodeAnswers, _BarcodeCipher, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { answers[i].ToString() }));
+        }
         addQuestions(module, qs);
     }
 
@@ -6981,10 +7010,52 @@ public class SouvenirModule : MonoBehaviour
         {
             for (var key = 0; key < 6; key++)
             {
-                qs.Add(makeQuestion(Question.OrderedKeysColors, _OrderedKeys, new[] { ordinal(stage + 1), ordinal(key + 1) }, new[] { colors[moduleData[stage][key][0]] }));
-                qs.Add(makeQuestion(Question.OrderedKeysLabels, _OrderedKeys, new[] { ordinal(stage + 1), ordinal(key + 1) }, new[] { (moduleData[stage][key][3] + 1).ToString() }));
-                qs.Add(makeQuestion(Question.OrderedKeysLabelColors, _OrderedKeys, new[] { ordinal(stage + 1), ordinal(key + 1) }, new[] { colors[moduleData[stage][key][1]] }));
+                qs.Add(makeQuestion(Question.OrderedKeysColors, _OrderedKeys, formatArgs: new[] { ordinal(stage + 1), ordinal(key + 1) }, correctAnswers: new[] { colors[moduleData[stage][key][0]] }));
+                qs.Add(makeQuestion(Question.OrderedKeysLabels, _OrderedKeys, formatArgs: new[] { ordinal(stage + 1), ordinal(key + 1) }, correctAnswers: new[] { (moduleData[stage][key][3] + 1).ToString() }));
+                qs.Add(makeQuestion(Question.OrderedKeysLabelColors, _OrderedKeys, formatArgs: new[] { ordinal(stage + 1), ordinal(key + 1) }, correctAnswers: new[] { colors[moduleData[stage][key][1]] }));
             }
+        }
+
+        addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessOrderPicking(KMBombModule module)
+    {
+        var comp = GetComponent(module, "OrderPickingScript");
+
+        var fldProductId = GetField<int>(comp, "productId");
+        var fldOrderId = GetField<int>(comp, "orderNumber");
+        var fldPallet = GetField<string>(comp, "pallet");
+
+        var orderCount = GetField<int>(comp, "orderCount").Get();
+        var orderList = new int[orderCount];
+        var productList = new int[orderCount];
+        var palletList = new string[orderCount];
+
+        var fldNewOrder = GetField<int>(comp, "currentOrder");
+        var curOrder = 0;
+
+        while (fldNewOrder.Get() <= orderCount)
+        {
+            var newOrder = fldNewOrder.Get();
+            if (curOrder != newOrder)
+            {
+                curOrder = newOrder;
+                orderList[curOrder - 1] = fldOrderId.Get();
+                productList[curOrder - 1] = fldProductId.Get();
+                palletList[curOrder - 1] = fldPallet.Get();
+            }
+            yield return new WaitForSeconds(.1f);
+        }
+        _modulesSolved.IncSafe(_OrderPicking);
+
+        var qs = new List<QandA>();
+
+        for (int order = 0; order < orderCount; order++)
+        {
+            qs.Add(makeQuestion(Question.OrderPickingOrder, _OrderPicking, formatArgs: new[] { ordinal(order + 1) }, correctAnswers: new[] { orderList[order].ToString() }));
+            qs.Add(makeQuestion(Question.OrderPickingProduct, _OrderPicking, formatArgs: new[] { ordinal(order + 1) }, correctAnswers: new[] { productList[order].ToString() }));
+            qs.Add(makeQuestion(Question.OrderPickingPallet, _OrderPicking, formatArgs: new[] { ordinal(order + 1) }, correctAnswers: new[] { palletList[order] }));
         }
 
         addQuestions(module, qs);

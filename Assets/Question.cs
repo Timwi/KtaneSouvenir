@@ -120,6 +120,16 @@ namespace Souvenir
           ExampleExtraFormatArguments = new[] { "first", "fourth", "first", "fifth", "second", "fourth", "second", "fifth" }, ExampleExtraFormatArgumentGroupSize = 2)]
         BamboozlingButtonDisplayColor,
 
+        [SouvenirQuestion("What was the screen number in {0}?", "Barcode Cipher", AnswerLayout.OneColumn4Answers, "637842", "145612", "765465", "523987", "452387")]
+        [AnswerGenerator.Integers(100000, 999999)]
+        BarcodeCipherScreenNumber,
+        [SouvenirQuestion("What was the edgework represented by the {1} barcode in {0}?", "Barcode Cipher", AnswerLayout.OneColumn4Answers, "SERIAL NUMBER", "BATTERIES", "BATTERY HOLDERS", "PORTS", "PORT PLATES", "LIT INDICATORS", "UNLIT INDICATORS", "INDICATORS",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        BarcodeCipherBarcodeEdgework,
+        [SouvenirQuestion("What was the answer for the {1} barcode in {0}?", "Barcode Cipher", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        BarcodeCipherBarcodeAnswers,
+
         [SouvenirQuestion("Which ingredient was in the {1} position on {0}?", "Bartending", AnswerLayout.TwoColumns4Answers, "Adelhyde", "Flanergide", "Bronson Extract", "Karmotrine", "Powdered Delta",
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         BartendingIngredients,
@@ -1079,6 +1089,18 @@ namespace Souvenir
         [SouvenirQuestion("What color was the label of the {2} key in the {1} stage of {0}?", "Ordered Keys", AnswerLayout.ThreeColumns6Answers, "Red", "Blue", "Green", "Yellow", "Cyan", "Magenta",
             ExampleExtraFormatArguments = new[] { "first", "first", "first", "second", "second", "first", "second", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
         OrderedKeysLabelColors,
+
+        [SouvenirQuestion("What was the order ID in the {1} order of {0}?", "Order Picking", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "3141", "7946", "6905", "6408", "5030", "2803", "6918", "6642", "4645", "4356", "2868", "1887" },
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1000, 9999)]
+        OrderPickingOrder,
+        [SouvenirQuestion("What was the product ID in the {1} order of {0}?", "Order Picking", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "3141", "7946", "6905", "6408", "5030", "2803", "6918", "6642", "4645", "4356", "2868", "1887" },
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1000, 9999)]
+        OrderPickingProduct,
+        [SouvenirQuestion("What was the pallet in the {1} order of {0}?", "Order Picking", AnswerLayout.ThreeColumns6Answers, "CHEP", "SIPPL", "SLPR", "EWHITE", "ECHEP", "ESIPPL", "ESLPR",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        OrderPickingPallet,
 
         [SouvenirQuestion("What was the observer’s intial position in {0}?", "Orientation Cube", AnswerLayout.TwoColumns4Answers, "front", "left", "back", "right")]
         OrientationCubeInitialObserverPosition,
