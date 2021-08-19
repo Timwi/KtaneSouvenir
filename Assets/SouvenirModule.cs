@@ -431,7 +431,7 @@ public class SouvenirModule : MonoBehaviour
         _moduleId = _moduleIdCounter;
         _moduleIdCounter++;
 
-        Debug.LogFormat(@"[Souvenir #{0}] Souvenir version: 3.5", _moduleId);
+        Debug.LogFormat(@"[Souvenir #{0}] Souvenir version: 3.6", _moduleId);
 
         _moduleProcessors = new Dictionary<string, Func<KMBombModule, IEnumerable<object>>>()
         {
