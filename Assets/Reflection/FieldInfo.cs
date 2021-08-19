@@ -8,7 +8,7 @@ namespace Souvenir.Reflection
 {
     class FieldInfo<T>
     {
-        private readonly object _target;
+        protected readonly object _target;
         public readonly FieldInfo Field;
 
         public FieldInfo(object target, FieldInfo field)
@@ -73,12 +73,22 @@ namespace Souvenir.Reflection
 
         public TCollection Get(int expectedLength, bool nullArrayAllowed = false, bool nullContentAllowed = false, Func<TElement, string> validator = null)
         {
-            return Get(expectedLength, expectedLength, nullArrayAllowed, nullContentAllowed, validator);
+            return GetFrom(_target, expectedLength, expectedLength, nullArrayAllowed, nullContentAllowed, validator);
         }
 
         public TCollection Get(int minLength, int maxLength, bool nullArrayAllowed = false, bool nullContentAllowed = false, Func<TElement, string> validator = null)
         {
-            var collection = base.Get(nullAllowed: nullArrayAllowed);
+            return GetFrom(_target, minLength, maxLength, nullArrayAllowed, nullContentAllowed, validator);
+        }
+
+        public TCollection GetFrom(object target, int expectedLength, bool nullArrayAllowed = false, bool nullContentAllowed = false, Func<TElement, string> validator = null)
+        {
+            return GetFrom(target, expectedLength, expectedLength, nullArrayAllowed, nullContentAllowed, validator);
+        }
+
+        public TCollection GetFrom(object target, int minLength, int maxLength, bool nullArrayAllowed = false, bool nullContentAllowed = false, Func<TElement, string> validator = null)
+        {
+            var collection = base.GetFrom(target, nullAllowed: nullArrayAllowed);
             if (collection == null)
                 return collection;
             if (collection.Count < minLength || collection.Count > maxLength)

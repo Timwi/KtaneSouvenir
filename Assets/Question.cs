@@ -849,8 +849,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 4)]
         MemoryDisplay,
-        [SouvenirQuestion("In what position was the button that you pressed in the {1} stage of {0}?", "Memory", AnswerLayout.TwoColumns4Answers, null, Type = AnswerType.Sprites, SpriteField = "MemorySprites",
-            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("In what position was the button that you pressed in the {1} stage of {0}?", "Memory", AnswerLayout.TwoColumns4Answers, null, Type = AnswerType.Sprites,
+            SpriteField = "MemorySprites", ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MemoryPosition,
         [SouvenirQuestion("What was the label of the button that you pressed in the {1} stage of {0}?", "Memory", AnswerLayout.TwoColumns4Answers,
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -1701,6 +1701,16 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the answer in {0}?", "Yellow Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "although", "business", "children", "director", "exchange", "function", "guidance", "hospital", "industry", "junction", "keyboard", "language", "material", "numerous", "offering", "possible", "question", "research", "software", "together", "ultimate", "valuable", "wireless", "xenolith", "yourself", "zucchini" })]
         YellowCipherAnswer,
+
+        [SouvenirQuestion("What color was the {1} star in {0}?", "Zero, Zero", AnswerLayout.TwoColumns4Answers, "black", "blue", "green", "cyan", "red", "magenta", "yellow", "white",
+            ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ZeroZeroStarColors,
+        [SouvenirQuestion("How many points were on the {1} star in {0}?", "Zero, Zero", AnswerLayout.ThreeColumns6Answers, "2", "3", "4", "5", "6", "7", "8",
+            ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ZeroZeroStarPoints,
+        [SouvenirQuestion("Where was the {1} square in {0}?", "Zero, Zero", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites,
+            SpriteField = "Tiles7x7Sprites", ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ZeroZeroSquares,
 
         [SouvenirQuestion("What was the {1} decrypted word in {0}?", "Zoni", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "angel", "thing", "dance", "heavy", "quote" },
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
