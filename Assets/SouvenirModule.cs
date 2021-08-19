@@ -100,6 +100,7 @@ public class SouvenirModule : MonoBehaviour
     const string _1DChess = "1DChess";
     const string _3DMaze = "spwiz3DMaze";
     const string _3DTunnels = "3dTunnels";
+    const string _3LEDs = "threeLEDsModule";
     const string _7 = "7";
     const string _Accumulation = "accumulation";
     const string _AdventureGame = "spwizAdventureGame";
@@ -439,6 +440,7 @@ public class SouvenirModule : MonoBehaviour
             { _1DChess, Process1DChess },
             { _3DMaze, Process3DMaze },
             { _3DTunnels, Process3DTunnels },
+            { _3LEDs, Process3LEDs },
             { _7, Process7 },
             { _Accumulation, ProcessAccumulation },
             { _AdventureGame, ProcessAdventureGame },
@@ -2007,6 +2009,19 @@ public class SouvenirModule : MonoBehaviour
             .Select(tn => symbols[tn].ToString())
             .ToArray();
         addQuestions(module, targetNodeNames.Select((tn, ix) => makeQuestion(Question._3DTunnelsTargetNode, _3DTunnels, new[] { ordinal(ix + 1) }, new[] { tn }, targetNodeNames)));
+    }
+
+    private IEnumerable<object> Process3LEDs(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ThreeLEDsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_3LEDs);
+
+        var initialStates = GetArrayField<bool>(comp, "initialStates").Get(expectedLength: 3);
+        addQuestion(module, Question._3LEDsInitialState, correctAnswers: new[] { initialStates.Select(s => s ? "on" : "off").JoinString("/") });
     }
 
     private IEnumerable<object> Process7(KMBombModule module)

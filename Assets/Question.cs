@@ -25,6 +25,9 @@ namespace Souvenir
         [AnswerGenerator.Strings("a-z.")]
         _3DTunnelsTargetNode,
 
+        [SouvenirQuestion("What was the initial state of the LEDs in {0} (in reading order)?", "3 LEDs", AnswerLayout.TwoColumns4Answers, "off/off/off", "off/off/on", "off/on/off", "off/on/on", "on/off/off", "on/off/on", "on/on/off", "on/on/on")]
+        _3LEDsInitialState,
+
         [SouvenirQuestion("What was the {1} channel’s initial value in {0}?", "7", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(-9, 9)]
