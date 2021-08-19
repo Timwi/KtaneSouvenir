@@ -1027,6 +1027,17 @@ namespace Souvenir
         [AnswerGenerator.Integers(1, 60)]
         NotWhosOnFirstSum,
 
+        [SouvenirQuestion("What table were we in in {0} (numbered 1–8 in reading order in the manual)?", "Not X-Ray", AnswerLayout.ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8")]
+        NotXRayTable,
+        [SouvenirQuestion("What direction was button {1} in {0}?", "Not X-Ray", AnswerLayout.ThreeColumns6Answers, "Up", "Right", "Down", "Left",
+            ExampleExtraFormatArguments = new[] { "1", "2", "3", "4" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        NotXRayDirections,
+        [SouvenirQuestion("Which button went {1} in {0}?", "Not X-Ray", AnswerLayout.ThreeColumns6Answers, "1", "2", "3", "4",
+            ExampleExtraFormatArguments = new[] { "up", "right", "down", "left" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        NotXRayButtons,
+        [SouvenirQuestion("What was the scanner color in {0}?", "Not X-Ray", AnswerLayout.TwoColumns4Answers, "Red", "Yellow", "Blue", "White")]
+        NotXRayScannerColor,
+
         [SouvenirQuestion("Which number was correctly pressed on {0}?", "Numbered Buttons", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Integers(1, 100)]
         NumberedButtonsButtons,

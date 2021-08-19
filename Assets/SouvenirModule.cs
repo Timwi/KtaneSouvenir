@@ -278,6 +278,7 @@ public class SouvenirModule : MonoBehaviour
     const string _NotSimaze = "NotSimaze";
     const string _NotTheButton = "NotButton";
     const string _NotWhosOnFirst = "NotWhosOnFirst";
+    const string _NotXRay = "NotXRayModule";
     const string _NumberedButtons = "numberedButtonsModule";
     const string _Numbers = "Numbers";
     const string _ObjectShows = "objectShows";
@@ -613,6 +614,7 @@ public class SouvenirModule : MonoBehaviour
             { _NotSimaze, ProcessNotSimaze },
             { _NotTheButton, ProcessNotTheButton },
             { _NotWhosOnFirst, ProcessNotWhosOnFirst },
+            { _NotXRay, ProcessNotXRay },
             { _NumberedButtons, ProcessNumberedButtons },
             { _Numbers, ProcessNumbers },
             { _ObjectShows, ProcessObjectShows },
@@ -6739,6 +6741,30 @@ public class SouvenirModule : MonoBehaviour
             qs.Add(makeQuestion(Question.NotWhosOnFirstReferenceLabel, _NotWhosOnFirst, new[] { ordinal(i - 1) }, new[] { fldLabels.Get()[i] }));
         }
         qs.Add(makeQuestion(Question.NotWhosOnFirstSum, _NotWhosOnFirst, correctAnswers: sumCorrectAnswers));
+        addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessNotXRay(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NotXRayModule");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_NotXRay);
+
+        var table = GetIntField(comp, "_table").Get(0, 7);
+        var directions = GetField<Array>(comp, "_directions").Get(validator: arr => arr.Length != 4 ? "expected length 4" : null);
+        var scannerColor = GetField<object>(comp, "_scannerColor").Get(v => v == null ? "did not expected null" : !_attributes[Question.NotXRayScannerColor].AllAnswers.Contains(v.ToString()) ? "expected " + _attributes[Question.NotXRayScannerColor].AllAnswers.Join(", ") : null);
+
+        var qs = new List<QandA>();
+        qs.Add(makeQuestion(Question.NotXRayTable, _NotXRay, correctAnswers: new[] { (table + 1).ToString() }));
+        qs.Add(makeQuestion(Question.NotXRayScannerColor, _NotXRay, correctAnswers: new[] { scannerColor.ToString() }));
+        for (var i = 0; i < 4; i++)
+        {
+            qs.Add(makeQuestion(Question.NotXRayDirections, _NotXRay, formatArgs: new[] { (i + 1).ToString() }, correctAnswers: new[] { directions.GetValue(i).ToString() }));
+            qs.Add(makeQuestion(Question.NotXRayButtons, _NotXRay, formatArgs: new[] { directions.GetValue(i).ToString().ToLowerInvariant() }, correctAnswers: new[] { (i + 1).ToString() }));
+        }
         addQuestions(module, qs);
     }
 
