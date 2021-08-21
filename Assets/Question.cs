@@ -706,6 +706,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the answer in {0}?", "Indigo Cipher", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "beaver", "indent", "lonely", "pillar", "refuge", "ripped", "stolen", "tumble", "whimsy", "wyvern" })]
         IndigoCipherAnswer,
 
+        [SouvenirQuestion("What was the selected word in {0}?", "Infinite Loop", AnswerLayout.TwoColumns4Answers, "anchor", "axions", "brutal", "bunker", "ceased", "cypher", "demote", "devoid", "ejects", "expend", "fixate", "fondly", "geyser", "guitar", "hexing", "hybrid", "incite", "inject", "jacked", "jigsaw", "kayaks", "komodo", "lazuli", "logjam", "maimed", "musket", "nebula", "nuking", "overdo", "oblong", "photon", "probed", "quartz", "quebec", "refute", "regime", "sierra", "swerve", "tenacy", "thymes", "ultima", "utopia", "valved", "viable", "wither", "wrench", "xenons", "xylose", "yanked", "yellow", "zigged", "zodiac")]
+        InfiniteLoopSelectedWord,
+
         [SouvenirQuestion("What color was the LED in {0}?", "Inner Connections", AnswerLayout.ThreeColumns6Answers, "Black", "Blue", "Red", "White", "Yellow", "Green")]
         InnerConnectionsLED,
         [SouvenirQuestion("What was the digit flashed in Morse in {0}?", "Inner Connections", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
@@ -1170,6 +1173,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the {1} in {0}?", "Pigpen Cycle", AnswerLayout.TwoColumns4Answers, "Advanced", "Addition", "Allotype", "Allotted", "Binaries", "Billions", "Bullhorn", "Bulwarks", "Ciphered", "Circuits", "Commando", "Compiler", "Decrypts", "Division", "Dispatch", "Discrete", "Encipher", "Entrance", "Equators", "Equalise", "Finished", "Findings", "Formulae", "Fortunes", "Gauntlet", "Gambling", "Gatepost", "Gateways", "Hazarded", "Haziness", "Huntress", "Hungrier", "Indicate", "Indigoes", "Illusory", "Illuding", "Jigsawed", "Jimmying", "Junkyard", "Juncture", "Kilowatt", "Kinetics", "Knocking", "Knowable", "Limiting", "Linearly", "Linkwork", "Lingered", "Monogram", "Monotone", "Multiton", "Mulcting", "Nanogram", "Nanotube", "Numerous", "Numerate", "Octangle", "Octuples", "Obstruct", "Obstacle", "Progress", "Projects", "Postsync", "Positron", "Quadrant", "Quadrics", "Quirkish", "Quitters", "Reversed", "Revolved", "Rotators", "Relative", "Starting", "Standard", "Stockade", "Stoccata", "Triggers", "Triangle", "Tomogram", "Tomahawk", "Underrun", "Underlie", "Ulterior", "Ultrahot", "Vicinity", "Viceless", "Volition", "Voluming", "Wingding", "Winnable", "Whatness", "Whatsits", "Yellowed", "Yeasayer", "Yokozuna", "Yourself", "Zippered", "Zigzaggy", "Zymology", "Zymogene",
           ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PigpenCycleWord,
+
+        [SouvenirQuestion("What was the keyword in {0}?", "Pixel Cipher", AnswerLayout.ThreeColumns6Answers, "HEART", "HAPPY", "HOUSE", "ARROW", "ARMOR", "ACORN", "CROSS", "CHORD", "CLOCK", "DONUT", "DELTA", "DUCKY", "EQUAL", "EMOJI", "EDGES", "LIBRA", "LUCKY", "LUNAR", "MEDAL", "MOVIE", "MUSIC", "PANDA", "PEARL", "PIANO", "PIXEL")]
+        PixelCipherKeyword,
 
         [SouvenirQuestion("What was the first half of the first phrase in {0}?", "Placeholder Talk", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "", "IS IN THE", "IS THE", "IS IN UH", "IS", "IS AT", "IS INN", "IS THE IN", "IN IS", "IS IN.", "IS IN", "THE", "FIRST-", "IN", "UH IS IN", "AT", "LAST-", "UH", "KEYBORD", "A" })]
         PlaceholderTalkFirstPhrase,

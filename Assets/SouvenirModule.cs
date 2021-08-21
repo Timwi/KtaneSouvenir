@@ -222,6 +222,7 @@ public class SouvenirModule : MonoBehaviour
     const string _IceCream = "iceCreamModule";
     const string _IdentityParade = "identityParade";
     const string _IndigoCipher = "indigoCipher";
+    const string _InfiniteLoop = "InfiniteLoop";
     const string _InnerConnections = "InnerConnectionsModule";
     const string _Interpunct = "interpunct";
     const string _IPA = "ipa";
@@ -304,6 +305,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Phosphorescence = "Phosphorescence";
     const string _Pie = "pieModule";
     const string _PigpenCycle = "pigpenCycle";
+    const string _PixelCipher = "pixelcipher";
     const string _PlaceholderTalk = "placeholderTalk";
     const string _PlacementRoulette = "PlacementRouletteModule";
     const string _Planets = "planets";
@@ -565,6 +567,7 @@ public class SouvenirModule : MonoBehaviour
             { _IceCream, ProcessIceCream },
             { _IdentityParade, ProcessIdentityParade },
             { _IndigoCipher, ProcessIndigoCipher },
+            { _InfiniteLoop, ProcessInfiniteLoop },
             { _InnerConnections, ProcessInnerConnections },
             { _Interpunct, ProcessInterpunct },
             { _IPA, ProcessIPA },
@@ -647,6 +650,7 @@ public class SouvenirModule : MonoBehaviour
             { _Phosphorescence, ProcessPhosphorescence },
             { _Pie, ProcessPie },
             { _PigpenCycle, ProcessPigpenCycle },
+            { _PixelCipher, ProcessPixelCipher },
             { _PlaceholderTalk, ProcessPlaceholderTalk },
             { _PlacementRoulette, ProcessPlacementRoulette },
             { _Planets, ProcessPlanets },
@@ -5133,6 +5137,21 @@ public class SouvenirModule : MonoBehaviour
         return processColoredCiphers(module, "indigoCipher", Question.IndigoCipherAnswer, _IndigoCipher);
     }
 
+    private IEnumerable<object> ProcessInfiniteLoop(KMBombModule module)
+    {
+        var comp = GetComponent(module, "InfiniteLoop");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_InfiniteLoop);
+
+        var selectedWord = GetField<string>(comp, "SelectedWord").Get();
+
+        addQuestions(module,
+            makeQuestion(Question.InfiniteLoopSelectedWord, _InfiniteLoop, correctAnswers: new[] { selectedWord }));
+    }
+
     private IEnumerable<object> ProcessInnerConnections(KMBombModule module)
     {
         var comp = GetComponent(module, "InnerConnectionsScript");
@@ -5159,14 +5178,18 @@ public class SouvenirModule : MonoBehaviour
 
         var currentStage = 0;
         var texts = new string[3];
+        var hasStruck = false;
+        module.OnStrike += delegate () { hasStruck = true; return false; };
+
         while(currentStage < 3)
         {
             yield return null;
             var nextStage = fldStage.Get(1, 3);
-            if (currentStage != nextStage)
+            if (currentStage != nextStage || hasStruck)
             {
                 texts[currentStage] = fldDisplay.Get();
                 currentStage = nextStage;
+                hasStruck = false;
             }
         }
         _modulesSolved.IncSafe(_Interpunct);
@@ -7448,6 +7471,27 @@ public class SouvenirModule : MonoBehaviour
         qs.Add(makeQuestion(Question.PlaceholderTalkFirstPhrase, _PlaceholderTalk, correctAnswers: new[] { firstString }, preferredWrongAnswers: firstPhrase));
         qs.Add(makeQuestion(Question.PlaceholderTalkOrdinal, _PlaceholderTalk, correctAnswers: new[] { currentOrdinal }, preferredWrongAnswers: ordinals));
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessPixelCipher(KMBombModule module)
+    {
+        var comp = GetComponent(module, "pixelcipherScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_PixelCipher);
+
+        var keywords = new[] { "HEART", "HAPPY", "HOUSE", "ARROW", "ARMOR",
+            "ACORN", "CROSS", "CHORD", "CLOCK", "DONUT",
+            "DELTA", "DUCKY", "EQUAL", "EMOJI", "EDGES",
+            "LIBRA", "LUCKY", "LUNAR", "MEDAL", "MOVIE",
+            "MUSIC", "PANDA", "PEARL", "PIANO", "PIXEL" };
+
+        var pickedKeyword = GetIntField(comp, "pickedKeyword").Get(0, 24);
+
+        addQuestions(module,
+            makeQuestion(Question.PixelCipherKeyword, _PixelCipher, correctAnswers: new[] { keywords[pickedKeyword] }));
     }
 
     private IEnumerable<object> ProcessPlacementRoulette(KMBombModule module)
