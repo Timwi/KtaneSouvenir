@@ -360,6 +360,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         CreationWeather,
 
+        [SouvenirQuestion("What was the alteration colour used in {0}?", "Critters", AnswerLayout.TwoColumns4Answers, "Yellow", "Pink", "Blue", "White")]
+        CrittersAlterationColour,
+
         [SouvenirQuestion("What was the {1} in {0}?", "Cryptic Cycle", AnswerLayout.TwoColumns4Answers, "Advanced", "Addition", "Allocate", "Altering", "Binaries", "Billions", "Bulkhead", "Bulleted", "Ciphered", "Circuits", "Computer", "Continue", "Decrypts", "Division", "Discover", "Disposal", "Examined", "Examples", "Equation", "Equipped", "Finished", "Findings", "Fortress", "Forwards", "Gauntlet", "Gambling", "Gathered", "Glooming", "Hazarded", "Haziness", "Hunkered", "Huntsman", "Indicate", "Indigoes", "Illusion", "Illumine", "Jigsawed", "Jimmying", "Junction", "Judgment", "Kilowatt", "Kinetics", "Knockout", "Knuckled", "Limiting", "Linearly", "Linkages", "Labeling", "Monogram", "Monotone", "Multiply", "Mulligan", "Nanogram", "Nanotube", "Numbered", "Numerals", "Octangle", "Octuples", "Observed", "Obscured", "Progress", "Projects", "Position", "Positive", "Quadrant", "Quadplex", "Quickest", "Quintics", "Reversed", "Revolved", "Rotation", "Relation", "Starting", "Standard", "Stopping", "Stopword", "Triggers", "Triangle", "Toggling", "Together", "Underrun", "Underlie", "Ultimate", "Ultrared", "Vicinity", "Viceless", "Voltages", "Volatile", "Wingding", "Winnable", "Whatever", "Whatnots", "Yellowed", "Yeasayer", "Yielding", "Yourself", "Zippered", "Zigzaggy", "Zugzwang", "Zymogram",
           ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
         CrypticCycleWord,
@@ -707,6 +710,10 @@ namespace Souvenir
         InnerConnectionsLED,
         [SouvenirQuestion("What was the digit flashed in Morse in {0}?", "Inner Connections", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
         InnerConnectionsMorse,
+
+        [SouvenirQuestion("What was the symbol displayed in stage {1} of {0}?", "Interpunct", AnswerLayout.ThreeColumns6Answers, @"(", @",", @">", @"/", @"}", @"]", @"_", @"-", "\"", @"|", @"»", @":", @".", @"{", @"<", @"”", @"«", @"`", @"[", @"?", @")", @"!", @"\", @"'", @";", 
+            ExampleExtraFormatArguments = new[] { "one", "two", "three" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        InterpunctDisplay,
 
         [SouvenirQuestion("What symbol was the correct answer in {0}?", "IPA", AnswerLayout.ThreeColumns6Answers, null,
             Type = AnswerType.DynamicFont, ExampleAnswers = new[] { "p", "b", "t", "d", "c", "ɟ", "k", "g", "q", "ɢ", "ʔ", "m", "n", "ɲ", "ŋ", "ʙ", "r", "ʀ", "ⱱ", "ɾ" })]
@@ -1123,6 +1130,23 @@ namespace Souvenir
         [SouvenirQuestion("What was the passport expiration year of the {1} inspected passenger in {0}?", "Passport Control", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "1931", "1956", "1977", "1980", "1991", "2000", "2004", "2019", "2047" },
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PassportControlPassenger,
+
+        [SouvenirQuestion("What was the Raw Value when you solved {0}?", "Password Destroyer", AnswerLayout.TwoColumns4Answers)]
+        [AnswerGenerator.Integers(1000000, 9999999)]
+        PasswordDestroyerRawValue,
+        [SouvenirQuestion("What was the Increase Factor when you solved {0}?", "Password Destroyer", AnswerLayout.TwoColumns4Answers)]
+        [AnswerGenerator.Integers(-1000000, 1000000)]
+        PasswordDestroyerIncreaseFactor,
+        [SouvenirQuestion("What was the TFA1 value when you solved {0}?", "Password Destroyer", AnswerLayout.ThreeColumns6Answers)]
+        [AnswerGenerator.Integers(0, 999)]
+        PasswordDestroyerTF1,
+        [SouvenirQuestion("What was the TFA2 value when you solved {0}?", "Password Destroyer", AnswerLayout.ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9")]
+        PasswordDestroyerTF2,
+        [SouvenirQuestion("What was the 2FAST value when you solved {0}?", "Password Destroyer", AnswerLayout.ThreeColumns6Answers)]
+        [AnswerGenerator.Integers(100100, 999999)]
+        PasswordDestroyerTwoFactorV2,
+        [SouvenirQuestion("What was the percentage of solved modules used in the final calculation when you solved {0}?", "Password Destroyer", AnswerLayout.ThreeColumns6Answers, "1%", "2%", "3%", "4%", "5%", "6%", "7%", "8%", "9%", "10%", "11%", "12%", "13%", "14%", "15%", "16%", "17%", "18%", "19%", "20%", "21%", "22%", "23%", "24%", "25%", "26%", "27%", "28%", "29%", "30%", "31%", "32%", "33%", "34%", "35%", "36%", "37%", "38%", "39%", "40%", "41%", "42%", "43%", "44%", "45%", "46%", "47%", "48%", "49%", "50%", "51%", "52%", "53%", "54%", "55%", "56%", "57%", "58%", "59%", "60%", "61%", "62%", "63%", "64%", "65%", "66%", "67%", "68%", "69%", "70%", "71%", "72%", "73%", "74%", "75%", "76%", "77%", "78%", "79%", "80%", "81%", "82%", "83%", "84%", "85%", "86%", "87%", "88%", "89%", "90%", "91%", "92%", "93%", "94%", "95%", "96%", "97%", "98%", "99%")]
+        PasswordDestroyerSolvePercentage,
 
         [SouvenirQuestion("Which symbol was highlighted in {0}?", "Pattern Cube", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "PatternCubeSprites")]
         PatternCubeHighlightedSymbol,

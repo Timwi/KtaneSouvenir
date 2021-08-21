@@ -160,6 +160,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Corners = "CornersModule";
     const string _Cosmic = "CosmicModule";
     const string _Creation = "CreationModule";
+    const string _Critters = "CrittersModule";
     const string _CrypticCycle = "crypticCycle";
     const string _Cube = "cube";
     const string _DACHMaze = "DACH";
@@ -222,6 +223,7 @@ public class SouvenirModule : MonoBehaviour
     const string _IdentityParade = "identityParade";
     const string _IndigoCipher = "indigoCipher";
     const string _InnerConnections = "InnerConnectionsModule";
+    const string _Interpunct = "interpunct";
     const string _IPA = "ipa";
     const string _iPhone = "iPhone";
     const string _JewelVault = "jewelVault";
@@ -296,6 +298,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Palindromes = "palindromes";
     const string _PartialDerivatives = "partialDerivatives";
     const string _PassportControl = "passportControl";
+    const string _PasswordDestroyer = "pwDestroyer";
     const string _PatternCube = "PatternCubeModule";
     const string _PerspectivePegs = "spwizPerspectivePegs";
     const string _Phosphorescence = "Phosphorescence";
@@ -431,7 +434,7 @@ public class SouvenirModule : MonoBehaviour
         _moduleId = _moduleIdCounter;
         _moduleIdCounter++;
 
-        Debug.LogFormat(@"[Souvenir #{0}] Souvenir version: 3.6", _moduleId);
+        Debug.LogFormat(@"[Souvenir #{0}] Souvenir version: 3.7", _moduleId);
 
         _moduleProcessors = new Dictionary<string, Func<KMBombModule, IEnumerable<object>>>()
         {
@@ -500,6 +503,7 @@ public class SouvenirModule : MonoBehaviour
             { _Corners, ProcessCorners },
             { _Cosmic, ProcessCosmic },
             { _Creation, ProcessCreation },
+            { _Critters, ProcessCritters },
             { _CrypticCycle, ProcessCrypticCycle },
             { _Cube, ProcessCube },
             { _DACHMaze, ProcessDACHMaze },
@@ -562,6 +566,7 @@ public class SouvenirModule : MonoBehaviour
             { _IdentityParade, ProcessIdentityParade },
             { _IndigoCipher, ProcessIndigoCipher },
             { _InnerConnections, ProcessInnerConnections },
+            { _Interpunct, ProcessInterpunct },
             { _IPA, ProcessIPA },
             { _iPhone, ProcessiPhone },
             { _JewelVault, ProcessJewelVault },
@@ -636,6 +641,7 @@ public class SouvenirModule : MonoBehaviour
             { _Palindromes, ProcessPalindromes },
             { _PartialDerivatives, ProcessPartialDerivatives },
             { _PassportControl, ProcessPassportControl },
+            { _PasswordDestroyer, ProcessPasswordDestroyer },
             { _PatternCube, ProcessPatternCube },
             { _PerspectivePegs, ProcessPerspectivePegs },
             { _Phosphorescence, ProcessPhosphorescence },
@@ -3650,6 +3656,22 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, allWeather.Select((t, i) => makeQuestion(Question.CreationWeather, _Creation, new[] { ordinal(i + 1) }, new[] { t })));
     }
 
+    private IEnumerable<object> ProcessCritters(KMBombModule module)
+    {
+        var comp = GetComponent(module, "CrittersScript");
+        var fldSolved = GetField<bool>(comp, "_isModuleSolved");
+        var fldRandomiser = GetIntField(comp, "_randomiser");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Critters);
+
+        var colourNames = new[] { "Yellow", "Pink", "Blue" };
+        var randomiser = fldRandomiser.Get(0, 2);
+
+        addQuestions(module, makeQuestion(Question.CrittersAlterationColour, _Critters, correctAnswers: new[] { colourNames[randomiser] }));
+    }
+
     private IEnumerable<object> ProcessCrypticCycle(KMBombModule module)
     {
         return processSpeakingEvilCycle2(module, "CrypticCycleScript", Question.CrypticCycleWord, _CrypticCycle);
@@ -5127,6 +5149,33 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module,
             makeQuestion(Question.InnerConnectionsLED, _InnerConnections, correctAnswers: new[] { colourList[rndLEDColour] }),
             makeQuestion(Question.InnerConnectionsMorse, _InnerConnections, correctAnswers: new[] { morseNumber.ToString() }));
+    }
+
+    private IEnumerable<object> ProcessInterpunct(KMBombModule module)
+    {
+        var comp = GetComponent(module, "InterpunctScript");
+        var fldDisplay = GetField<string>(comp, "displaySymbol");
+        var fldStage = GetIntField(comp, "stage");
+
+        var currentStage = 0;
+        var texts = new string[3];
+        while(currentStage < 3)
+        {
+            yield return null;
+            var nextStage = fldStage.Get(1, 3);
+            if (currentStage != nextStage)
+            {
+                texts[currentStage] = fldDisplay.Get();
+                currentStage = nextStage;
+            }
+        }
+        _modulesSolved.IncSafe(_Interpunct);
+
+        var qs = new List<QandA>();
+        for (int i = 0; i < 3; i++)
+            qs.Add(makeQuestion(Question.InterpunctDisplay, _Interpunct, formatArgs: new[] { new[] { "one", "two", "three" }[i] }, correctAnswers: new[] { texts[i] }));
+
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessIPA(KMBombModule module)
@@ -7244,6 +7293,31 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "first" }, new[] { expirationDates[0].ToString() }, altDates[0]),
             makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "second" }, new[] { expirationDates[1].ToString() }, altDates[1]),
             makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "third" }, new[] { expirationDates[2].ToString() }, altDates[2]));
+    }
+
+    private IEnumerable<object> ProcessPasswordDestroyer(KMBombModule module)
+    {
+        var comp = GetComponent(module, "passwordDestroyer");
+        var fldSolved = GetField<bool>(comp, "solvedState");
+
+        var fldRawValue = GetIntField(comp, "CountUpBaseNumber");       // Rv value
+        var fldIncreaseFactor = GetIntField(comp, "increaseFactor");    // If value
+        var fldTwoFactorV2 = GetIntField(comp, "identityDigit");        // 2FAST value
+        var fldTwoFactorAuth1 = GetIntField(comp, "identityDigit1");    // Left half
+        var fldTwoFactorAuth2 = GetIntField(comp, "identityDigit2");    // Right half
+        var fldSolvePercentage = GetIntField(comp, "solvePercentage");  // Solve Percentage
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_PasswordDestroyer);
+
+        addQuestions(module,
+            makeQuestion(Question.PasswordDestroyerRawValue, _PasswordDestroyer, correctAnswers: new[] { fldRawValue.Get(1000000, 9999999).ToString() }),
+            makeQuestion(Question.PasswordDestroyerIncreaseFactor, _PasswordDestroyer, correctAnswers: new[] { fldIncreaseFactor.Get(-1000000, 1000000).ToString() }),
+            makeQuestion(Question.PasswordDestroyerTwoFactorV2, _PasswordDestroyer, correctAnswers: new[] { fldTwoFactorV2.Get(100100, 999999).ToString() }),
+            makeQuestion(Question.PasswordDestroyerTF1, _PasswordDestroyer, correctAnswers: new[] { (fldTwoFactorAuth1.Get(100, 999) - 100).ToString() }),
+            makeQuestion(Question.PasswordDestroyerTF2, _PasswordDestroyer, correctAnswers: new[] { (fldTwoFactorAuth2.Get(100, 999) % 9 == 0 ? 9 : fldTwoFactorAuth2.Get() % 9).ToString() }),
+            makeQuestion(Question.PasswordDestroyerSolvePercentage, _PasswordDestroyer, correctAnswers: new[] { fldSolvePercentage.Get(1, 99).ToString() + "%" }));
     }
 
     private IEnumerable<object> ProcessPatternCube(KMBombModule module)
