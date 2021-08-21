@@ -36,6 +36,15 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "1", "2", "3" }, ExampleExtraFormatArgumentGroupSize = 1, ExampleAnswers = new[] { "red", "blue", "green", "white" })]
         _7LedColors,
 
+        [SouvenirQuestion("What was the number of ball {1} in {0}?", "9-Ball", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "2", "3", "4", "5", "6", "7" },
+            ExampleExtraFormatArguments = new[] { "A", "B", "C", "D", "E", "F", "G" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(2, 8)]
+        _9BallLetters,
+        [SouvenirQuestion("What was the letter of ball {1} in {0}?", "9-Ball", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "A", "B", "C", "D", "E", "F" },
+            ExampleExtraFormatArguments = new[] { "2", "3", "4", "5", "6", "7", "8" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("A-G")]
+        _9BallNumbers,
+
         [SouvenirQuestion("What was the background color on the {1} stage in {0}?", "Accumulation", AnswerLayout.ThreeColumns6Answers, "Blue", "Brown", "Green", "Grey", "Lime", "Orange", "Pink", "Red", "White", "Yellow",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         AccumulationBackgroundColor,
@@ -453,6 +462,33 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the first encoding used in {0}?", "Encryption Bingo", AnswerLayout.OneColumn4Answers, ExampleAnswers = new[] { "Morse code", "Braille", "Semaphore", "Lombax" })]
         EncryptionBingoEncoding,
+
+        [SouvenirQuestion("What was the first number shown in {0}?", "Entry Number Four", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" })]
+        [AnswerGenerator.Integers(10000000, 99999999, 1, "00000000")]
+        EntryNumberFourNumber1,
+        [SouvenirQuestion("What was the second number shown in {0}?", "Entry Number Four", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" })]
+        [AnswerGenerator.Integers(0, 99999999, 1, "00000000")]
+        EntryNumberFourNumber2,
+        [SouvenirQuestion("What was the third number shown in {0}?", "Entry Number Four", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" })]
+        [AnswerGenerator.Integers(0, 99999999, 1, "00000000")]
+        EntryNumberFourNumber3,
+        [SouvenirQuestion("What was the expected fourth entry in {0}?", "Entry Number Four", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" })]
+        [AnswerGenerator.Integers(0, 99999999, 1, "00000000")]
+        EntryNumberFourExpected,
+        [SouvenirQuestion("What was the constant coefficient in {0}?", "Entry Number Four", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" })]
+        [AnswerGenerator.Integers(10000000, 99999999, 1, "00000000")]
+        EntryNumberFourCoeff,
+
+        [SouvenirQuestion("What was the {1} number shown in {0}?", "Entry Number One", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" },
+            ExampleExtraFormatArguments = new[] { "second", "third", "fourth" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 99999999, 1, "00000000")]
+        EntryNumberOneNumbers,
+        [SouvenirQuestion("What was the expected first entry in {0}?", "Entry Number One", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" })]
+        [AnswerGenerator.Integers(10000000, 99999999, 1, "00000000")]
+        EntryNumberOneExpected,
+        [SouvenirQuestion("What was the constant coefficient in {0}?", "Entry Number One", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" })]
+        [AnswerGenerator.Integers(10000000, 99999999, 1, "00000000")]
+        EntryNumberOneCoeff,
 
         [SouvenirQuestion("What was the displayed symbol in {0}?", "Equations X", AnswerLayout.ThreeColumns6Answers, "H(T)", "P", "\u03C7", "\u03C9", "Z(T)", "\u03C4", "\u03BC", "\u03B1", "K")]
         EquationsXSymbols,
@@ -1581,6 +1617,11 @@ namespace Souvenir
         [SouvenirQuestion("What was the {1} split in {0}?", "Tenpins", AnswerLayout.OneColumn4Answers, "Goal Posts", "Cincinnati", "Woolworth Store", "Lily", "3-7 Split", "Cocked Hat", "4-7-10 Split", "Big Four", "Greek Church", "Big Five", "Big Six", "HOW",
             ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
         TenpinsSplits,
+
+        [SouvenirQuestion("What was on the indicator in {0}?", "Ternary Tiles", AnswerLayout.OneColumn4Answers, null,
+            Type = AnswerType.TernaryTilesFont, ExampleAnswers = new[] { "ABCABCABCABC", "123412341234", "++++++++++++", "ABC1234+ABC1" })]
+        [AnswerGenerator.Strings("12*A-C1-4+")]
+        TernaryTiles,
 
         [SouvenirQuestion("What was the displayed letter in {0}?", "Text Field", AnswerLayout.ThreeColumns6Answers, "A", "B", "C", "D", "E", "F")]
         TextFieldDisplay,
