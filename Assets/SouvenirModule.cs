@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using Random = System.Random;
 using KModkit;
 using Newtonsoft.Json;
 using Souvenir;
@@ -103,6 +104,7 @@ public class SouvenirModule : MonoBehaviour
     const string _3DTunnels = "3dTunnels";
     const string _3LEDs = "threeLEDsModule";
     const string _7 = "7";
+    const string _9Ball = "GSNineBall";
     const string _Accumulation = "accumulation";
     const string _AdventureGame = "spwizAdventureGame";
     const string _AffineCycle = "affineCycle";
@@ -183,6 +185,8 @@ public class SouvenirModule : MonoBehaviour
     const string _EncryptedMaze = "encryptedMaze";
     const string _EncryptedMorse = "EncryptedMorse";
     const string _EncryptionBingo = "encryptionBingo";
+    const string _EntryNumberFour = "GSEntryNumberFour";
+    const string _EntryNumberOne = "GSEntryNumberOne";
     const string _EquationsX = "equationsXModule";
     const string _Etterna = "etterna";
     const string _Exoplanets = "exoplanets";
@@ -389,6 +393,7 @@ public class SouvenirModule : MonoBehaviour
     const string _TashaSqueals = "tashaSqueals";
     const string _TenButtonColorCode = "TenButtonColorCode";
     const string _Tenpins = "tenpins";
+    const string _TernaryTiles = "GSTernaryTiles";
     const string _TextField = "TextField";
     const string _ThinkingWires = "thinkingWiresModule";
     const string _ThirdBase = "ThirdBase";
@@ -450,6 +455,7 @@ public class SouvenirModule : MonoBehaviour
             { _3DTunnels, Process3DTunnels },
             { _3LEDs, Process3LEDs },
             { _7, Process7 },
+            { _9Ball, Process9Ball },
             { _Accumulation, ProcessAccumulation },
             { _AdventureGame, ProcessAdventureGame },
             { _AffineCycle, ProcessAffineCycle },
@@ -530,6 +536,8 @@ public class SouvenirModule : MonoBehaviour
             { _EncryptedMaze, ProcessEncryptedMaze },
             { _EncryptedMorse, ProcessEncryptedMorse },
             { _EncryptionBingo, ProcessEncryptionBingo },
+            { _EntryNumberFour, ProcessEntryNumberFour },
+            { _EntryNumberOne, ProcessEntryNumberOne },
             { _EquationsX, ProcessEquationsX },
             { _Etterna, ProcessEtterna },
             { _Exoplanets, ProcessExoplanets },
@@ -736,6 +744,7 @@ public class SouvenirModule : MonoBehaviour
             { _TashaSqueals, ProcessTashaSqueals },
             { _TenButtonColorCode, ProcessTenButtonColorCode },
             { _Tenpins, ProcessTenpins },
+            { _TernaryTiles, ProcessTernaryTiles },
             { _TextField, ProcessTextField },
             { _ThinkingWires, ProcessThinkingWires },
             { _ThirdBase, ProcessThirdBase },
@@ -2074,6 +2083,34 @@ public class SouvenirModule : MonoBehaviour
         }
 
         addQuestions(module, allQuestions.ToArray());
+    }
+
+    private IEnumerable<object> Process9Ball(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NineBallScript");
+        var potted = GetField<bool[]>(comp, "Potted");
+
+        while (potted.Get().Count(x => x) != 9)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_9Ball);
+
+        var balls = GetField<int[]>(comp, "RndBallNums").Get();
+
+        addQuestions(module,
+            makeQuestion(Question._9BallLetters, _9Ball, new[] { "A" }, correctAnswers: new[] { (balls[0] + 1).ToString() }),
+            makeQuestion(Question._9BallLetters, _9Ball, new[] { "B" }, correctAnswers: new[] { (balls[1] + 1).ToString() }),
+            makeQuestion(Question._9BallLetters, _9Ball, new[] { "C" }, correctAnswers: new[] { (balls[2] + 1).ToString() }),
+            makeQuestion(Question._9BallLetters, _9Ball, new[] { "D" }, correctAnswers: new[] { (balls[3] + 1).ToString() }),
+            makeQuestion(Question._9BallLetters, _9Ball, new[] { "E" }, correctAnswers: new[] { (balls[4] + 1).ToString() }),
+            makeQuestion(Question._9BallLetters, _9Ball, new[] { "F" }, correctAnswers: new[] { (balls[5] + 1).ToString() }),
+            makeQuestion(Question._9BallLetters, _9Ball, new[] { "G" }, correctAnswers: new[] { (balls[6] + 1).ToString() }),
+            makeQuestion(Question._9BallNumbers, _9Ball, new[] { "2" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 1)] }),
+            makeQuestion(Question._9BallNumbers, _9Ball, new[] { "3" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 2)] }),
+            makeQuestion(Question._9BallNumbers, _9Ball, new[] { "4" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 3)] }),
+            makeQuestion(Question._9BallNumbers, _9Ball, new[] { "5" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 4)] }),
+            makeQuestion(Question._9BallNumbers, _9Ball, new[] { "6" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 5)] }),
+            makeQuestion(Question._9BallNumbers, _9Ball, new[] { "7" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 6)] }),
+            makeQuestion(Question._9BallNumbers, _9Ball, new[] { "8" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 7)] }));
     }
 
     private IEnumerable<object> ProcessAccumulation(KMBombModule module)
@@ -4112,6 +4149,50 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_EncryptionBingo);
 
         addQuestion(module, Question.EncryptionBingoEncoding, correctAnswers: new[] { encodingNames[encoding] }, preferredWrongAnswers: encodingNames);
+    }
+
+    private IEnumerable<object> ProcessEntryNumberFour(KMBombModule module)
+    {
+        var comp = GetComponent(module, "EntryNumberFourScript");
+        var fldSolved = GetField<bool>(comp, "Solved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_EntryNumberFour);
+
+        var num1 = GetIntField(comp, "Num1").Get().ToString("00000000");
+        var num2 = GetIntField(comp, "Num2").Get().ToString("00000000");
+        var num3 = GetIntField(comp, "Num3").Get().ToString("00000000");
+        var expected = GetIntField(comp, "Expected").Get().ToString("00000000");
+        var coeff = GetIntField(comp, "Add").Get().ToString("00000000");
+
+        addQuestions(module,
+            makeQuestion(Question.EntryNumberFourNumber1, _EntryNumberFour, formatArgs: null, correctAnswers: new[] { num1 }),
+            makeQuestion(Question.EntryNumberFourNumber2, _EntryNumberFour, formatArgs: null, correctAnswers: new[] { num2 }),
+            makeQuestion(Question.EntryNumberFourNumber3, _EntryNumberFour, formatArgs: null, correctAnswers: new[] { num3 }),
+            makeQuestion(Question.EntryNumberFourExpected, _EntryNumberFour, formatArgs: null, correctAnswers: new[] { expected }),
+            makeQuestion(Question.EntryNumberFourCoeff, _EntryNumberFour, formatArgs: null, correctAnswers: new[] { coeff }));
+    }
+
+    private IEnumerable<object> ProcessEntryNumberOne(KMBombModule module)
+    {
+        var comp = GetComponent(module, "EntryNumberOneScript");
+        var fldSolved = GetField<bool>(comp, "Solved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_EntryNumberOne);
+
+        var num2 = GetIntField(comp, "Num2").Get().ToString("00000000");
+        var num3 = GetIntField(comp, "Num3").Get().ToString("00000000");
+        var num4 = GetIntField(comp, "Num4").Get().ToString("00000000");
+        var expected = GetIntField(comp, "Expected").Get().ToString("00000000");
+        var coeff = (100000000 - GetIntField(comp, "Subtract").Get()).ToString("00000000");
+
+        addQuestions(module,
+            makeQuestion(Question.EntryNumberOneNumbers, _EntryNumberOne, new[] { "second" }, correctAnswers: new[] { num2 }),
+            makeQuestion(Question.EntryNumberOneNumbers, _EntryNumberOne, new[] { "third" }, correctAnswers: new[] { num3 }),
+            makeQuestion(Question.EntryNumberOneNumbers, _EntryNumberOne, new[] { "fourth" }, correctAnswers: new[] { num4 }),
+            makeQuestion(Question.EntryNumberOneExpected, _EntryNumberOne, formatArgs: null, correctAnswers: new[] { expected }),
+            makeQuestion(Question.EntryNumberOneCoeff, _EntryNumberOne, formatArgs: null, correctAnswers: new[] { coeff }));
     }
 
     private IEnumerable<object> ProcessEquationsX(KMBombModule module)
@@ -9494,6 +9575,20 @@ public class SouvenirModule : MonoBehaviour
         for (int i = 0; i < 3; i++)
             qs.Add(makeQuestion(Question.TenpinsSplits, _Tenpins, formatArgs: new[] { colorNames[i] }, correctAnswers: new[] { splitNames[splits[i]] }, preferredWrongAnswers: splits.Select(x => splitNames[x]).ToArray()));
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessTernaryTiles(KMBombModule module)
+    {
+        var comp = GetComponent(module, "TernaryTilesScript");
+        var fldSolved = GetField<bool>(comp, "Solved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_TernaryTiles);
+
+        var indicator = GetField<string>(comp, "IndicatorTextVariable").Get();
+
+        addQuestion(module, Question.TernaryTiles, formatArguments: null, correctAnswers: new[] { indicator }, preferredWrongAnswers: null);
     }
 
     private IEnumerable<object> ProcessTextField(KMBombModule module)
