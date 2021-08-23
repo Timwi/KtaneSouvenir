@@ -377,6 +377,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Sphere = "sphere";
     const string _SplittingTheLoot = "SplittingTheLootModule";
     const string _SpotTheDifference = "SpotTheDifference";
+    const string _StackedSequences = "stackedSequences";
     const string _Stars = "stars";
     const string _StateOfAggregation = "stateOfAggregation";
     const string _SubscribeToPewdiepie = "subscribeToPewdiepie";
@@ -430,6 +431,7 @@ public class SouvenirModule : MonoBehaviour
     const string _WireSequence = "WireSequence";
     const string _WolfGoatAndCabbage = "wolfGoatCabbageModule";
     const string _WorkingTitle = "workingTitle";
+    const string _Xenocryst = "GSXenocryst";
     const string _XmORseCode = "xmorse";
     const string _Yahtzee = "YahtzeeModule";
     const string _YellowArrows = "yellowArrowsModule";
@@ -728,6 +730,7 @@ public class SouvenirModule : MonoBehaviour
             { _Sphere, ProcessSphere },
             { _SplittingTheLoot, ProcessSplittingTheLoot },
             { _SpotTheDifference, ProcessSpotTheDifference },
+            { _StackedSequences, ProcessStackedSequences },
             { _Stars, ProcessStars },
             { _StateOfAggregation, ProcessStateOfAggregation },
             { _SubscribeToPewdiepie, ProcessSubscribeToPewdiepie },
@@ -781,6 +784,7 @@ public class SouvenirModule : MonoBehaviour
             { _WireSequence, ProcessWireSequence },
             { _WolfGoatAndCabbage, ProcessWolfGoatAndCabbage },
             { _WorkingTitle, ProcessWorkingTitle },
+            { _Xenocryst, ProcessXenocryst },
             { _XmORseCode, ProcessXmORseCode },
             { _Yahtzee, ProcessYahtzee },
             { _YellowArrows, ProcessYellowArrows },
@@ -9178,6 +9182,20 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, makeQuestion(Question.SpotTheDifferenceFaultyBall, _SpotTheDifference, null, new[] { colorNames[faultyBall] }, colorNames));
     }
 
+    private IEnumerable<object> ProcessStackedSequences(KMBombModule module)
+    {
+        var comp = GetComponent(module, "stackedSequencesScript");
+        var fldSolved = GetField<bool>(comp, "solved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_StackedSequences);
+
+        var sequences = GetArrayField<List<int>>(comp, "answer").Get();
+
+        addQuestion(module, Question.StackedSequences, formatArguments: null, correctAnswers: sequences.Select(x => x.Count.ToString()).ToArray());
+    }
+
     private IEnumerable<object> ProcessStars(KMBombModule module)
     {
         var comp = GetComponent(module, "Stars2Script");
@@ -10348,6 +10366,24 @@ public class SouvenirModule : MonoBehaviour
         for (int i = 0; i < 5; i++)
             qs.Add(makeQuestion(Question.XmORseCodeDisplayedLetters, _XmORseCode, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { alphabet.Substring(displayLetters[i], 1) }, preferredWrongAnswers: displayLetters.Select(x => alphabet.Substring(x, 1)).ToArray()));
         qs.Add(makeQuestion(Question.XmORseCodeWord, _XmORseCode, correctAnswers: new[] { answerWord }));
+        addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessXenocryst(KMBombModule module)
+    {
+        var comp = GetComponent(module, "XenocrystScript");
+        var fldSolved = GetField<bool>(comp, "Solved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Xenocryst);
+
+        var flashes = GetArrayField<int>(comp, "Outputs").Get();
+
+        var qs = new List<QandA>();
+
+        for (int i = 0; i < 10; i++)
+            qs.Add(makeQuestion(Question.Xenocryst, _Xenocryst, new[] { new[]{ "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth" }[i] }, new[] { new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet" }[flashes[i]] }, new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet" }));
         addQuestions(module, qs);
     }
 

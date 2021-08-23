@@ -1558,6 +1558,10 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the color of the faulty sphere in {0}?", "Spot the Difference", AnswerLayout.TwoColumns4Answers, "Blue", "Green", "Orange", "Red")]
         SpotTheDifferenceFaultyBall,
+        
+        [SouvenirQuestion("Which of these is the length of a sequence in {0}?", "Stacked Sequences", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "3", "4", "5", "6" })]
+        [AnswerGenerator.Integers(3, 9)]
+        StackedSequences,
 
         [SouvenirQuestion("What was the digit in the center of {0}?", "Stars", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Integers(0, 9)]
@@ -1801,6 +1805,10 @@ namespace Souvenir
         XmORseCodeDisplayedLetters,
         [SouvenirQuestion("What word did you decrypt in {0}?", "XmORse Code", AnswerLayout.ThreeColumns6Answers, "ADMIT", "AWARD", "BANJO", "BRAVO", "CHILL", "CYCLE", "DECOR", "DISCO", "EERIE", "ERUPT", "FEWER", "FUZZY", "GERMS", "GUSTO", "HAULT", "HEXED", "ICHOR", "INFER", "JEWEL", "KTANE", "LADLE", "LYRIC", "MANGO", "MUTED", "NERDS", "NIXIE", "OOZED", "OXIDE", "PARTY", "PURSE", "QUEST", "RETRO", "ROUGH", "SCOWL", "SIXTH", "THANK", "TWINE", "UNBOX", "USHER", "VIBES", "VOICE", "WHIZZ", "WRUNG", "XENON", "YOLKS", "ZILCH")]
         XmORseCodeWord,
+
+        [SouvenirQuestion("What was the colour of the {1} flash in {0}?", "Xenocryst", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Indigo" },
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
+        Xenocryst,
 
         [SouvenirQuestion("What was the initial roll on {0}?", "Yahtzee", AnswerLayout.TwoColumns4Answers, "Yahtzee", "large straight", "small straight", "four of a kind", "full house", "three of a kind", "two pairs", "pair")]
         YahtzeeInitialRoll,
