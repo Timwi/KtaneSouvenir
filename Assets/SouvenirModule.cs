@@ -323,6 +323,7 @@ public class SouvenirModule : MonoBehaviour
     const string _PrimeEncryption = "primeEncryption";
     const string _Probing = "Probing";
     const string _PurpleArrows = "purpleArrowsModule";
+    const string _PuzzleIdentification = "GSPuzzleIdentification";
     const string _Quaver = "Quaver";
     const string _Quintuples = "quintuples";
     const string _RailwayCargoLoading = "RailwayCargoLoading";
@@ -677,6 +678,7 @@ public class SouvenirModule : MonoBehaviour
             { _PrimeEncryption, ProcessPrimeEncryption },
             { _Probing, ProcessProbing },
             { _PurpleArrows, ProcessPurpleArrows },
+            { _PuzzleIdentification, ProcessPuzzleIdentification },
             { _Quaver, ProcessQuaver },
             { _Quintuples, ProcessQuintuples },
             { _RailwayCargoLoading, ProcessRailwayCargoLoading },
@@ -7818,6 +7820,42 @@ public class SouvenirModule : MonoBehaviour
         wordScreenTextMesh.text = "SOLVED";
 
         addQuestion(module, Question.PurpleArrowsFinish, correctAnswers: new[] { Regex.Replace(finishWord, @"(?<!^).", m => m.Value.ToLowerInvariant()) }, preferredWrongAnswers: wordList.Select(w => w[0] + w.Substring(1).ToLowerInvariant()).ToArray());
+    }
+
+    private IEnumerable<object> ProcessPuzzleIdentification (KMBombModule module)
+    {
+        var comp = GetComponent(module, "PuzzleIdentificationScript");
+        var fldSolved = GetField<bool>(comp, "Solved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_PuzzleIdentification);
+
+        var namesType = comp.GetType().Assembly.GetType("PuzzleIdentification.Data");
+        if (namesType == null)
+            throw new AbandonModuleException("I cannot find the PuzzleIdentification.Data type.");
+        var names = GetStaticField<string[][]>(namesType, "PuzzleNames", isPublic: true).Get();
+
+        //Grabs the first two puzzle numbers and their games of origin
+        var puzzlesOneAndTwo = GetArrayField<int>(comp, "ChosenPuzzles").Get();
+        //Grabs the third puzzle number
+        var puzzleThree = GetField<int>(comp, "ChosenPuzzle").Get();
+        //Grabs the third game of origin
+        var gameThree = GetField<int>(comp, "ChosenGame").Get();
+        string[] games = new[] { "Professor Layton and the Curious Village", "Professor Layton and Pandora's Box", "Professor Layton and the Lost Future", "Professor Layton and the Spectre's Call",
+            "Professor Layton and the Miracle Mask", "Professor Layton and the Azran Legacy" };
+
+        addQuestions(module,
+            makeQuestion(Question.PuzzleIdentificationNum, _PuzzleIdentification, new[] { "first" }, new[] { (puzzlesOneAndTwo[0] + 1).ToString("000") }),
+            makeQuestion(Question.PuzzleIdentificationNum, _PuzzleIdentification, new[] { "second" }, new[] { (puzzlesOneAndTwo[1] + 1).ToString("000") }),
+            makeQuestion(Question.PuzzleIdentificationNum, _PuzzleIdentification, new[] { "third" }, new[] { (puzzleThree + 1).ToString("000") }),
+            makeQuestion(Question.PuzzleIdentificationGame, _PuzzleIdentification, new[] { "first" }, new[] { games[puzzlesOneAndTwo[2]] }, games),
+            makeQuestion(Question.PuzzleIdentificationGame, _PuzzleIdentification, new[] { "second" }, new[] { games[puzzlesOneAndTwo[3]] }, games),
+            makeQuestion(Question.PuzzleIdentificationGame, _PuzzleIdentification, new[] { "third" }, new[] { games[gameThree] }, games),
+            makeQuestion(Question.PuzzleIdentificationName, _PuzzleIdentification, new[] { "first" }, new[] { names[puzzlesOneAndTwo[2]][puzzlesOneAndTwo[0]] }, names[puzzlesOneAndTwo[2]]),
+            makeQuestion(Question.PuzzleIdentificationName, _PuzzleIdentification, new[] { "second" }, new[] { names[puzzlesOneAndTwo[3]][puzzlesOneAndTwo[1]] }, names[puzzlesOneAndTwo[3]]),
+            makeQuestion(Question.PuzzleIdentificationName, _PuzzleIdentification, new[] { "third" }, new[] { names[gameThree][puzzleThree] }, names[gameThree])
+            );
     }
 
     private IEnumerable<object> ProcessQuaver(KMBombModule module)
