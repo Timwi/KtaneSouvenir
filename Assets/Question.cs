@@ -1280,6 +1280,17 @@ namespace Souvenir
         [SouvenirQuestion("What was the target word on {0}?", "Purple Arrows", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "Thesis", "Immune", "Agency", "Height", "Active", "Bother", "Viable" })]
         PurpleArrowsFinish,
 
+        [SouvenirQuestion("What was the puzzle number of the {1} puzzle in {0}?", "Puzzle Identification", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "001", "002", "003", "004", "005", "006" },
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1, 170, 1, "000")]
+        PuzzleIdentificationNum,
+        [SouvenirQuestion("What game did the {1} puzzle come from in {0}?", "Puzzle Identification", AnswerLayout.OneColumn4Answers, null, ExampleAnswers = new[] { "Professor Layton and the Curious Village", "Professor Layton and Pandora's Box", "Professor Layton and the Lost Future", "Professor Layton and the Spectre's Call" },
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        PuzzleIdentificationGame,
+        [SouvenirQuestion("What was the name of the {1} puzzle in {0}?", "Puzzle Identification", AnswerLayout.OneColumn4Answers, null, ExampleAnswers = new[] { "Where's the Village?", "Dr Schrader's Map", "A Party Crasher", "A Secret Message" },
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        PuzzleIdentificationName,
+
         [SouvenirQuestion("What was the {1} sequence’s answer in {0}?", "Quaver", AnswerLayout.OneColumn4Answers, ExampleAnswers = new[] { "4", "10", "87", "320", "3, 3, 2, 3", "87, 85, 82, 84" },
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         QuaverArrows,
