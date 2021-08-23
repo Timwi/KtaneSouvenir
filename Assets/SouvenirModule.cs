@@ -7,12 +7,12 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using Random = System.Random;
 using KModkit;
 using Newtonsoft.Json;
 using Souvenir;
 using Souvenir.Reflection;
 using UnityEngine;
+using Random = System.Random;
 using Rnd = UnityEngine.Random;
 
 /// <summary>
@@ -256,6 +256,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Matrix = "matrix";
     const string _Maze = "Maze";
     const string _Maze3 = "maze3";
+    const string _MazeIdentification = "GSMazeIdentification";
     const string _Mazematics = "mazematics";
     const string _MazeScrambler = "MazeScrambler";
     const string _MegaMan2 = "megaMan2";
@@ -609,6 +610,7 @@ public class SouvenirModule : MonoBehaviour
             { _Matrix, ProcessMatrix },
             { _Maze, ProcessMaze },
             { _Maze3, ProcessMaze3 },
+            { _MazeIdentification, ProcessMazeIdentification },
             { _Mazematics, ProcessMazematics },
             { _MazeScrambler, ProcessMazeScrambler },
             { _MegaMan2, ProcessMegaMan2 },
@@ -6020,6 +6022,29 @@ public class SouvenirModule : MonoBehaviour
         addQuestion(module, Question.Maze3StartingFace, correctAnswers: new[] { colors[node / 9] });
     }
 
+    private IEnumerable<object> ProcessMazeIdentification(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MazeIdentificationScript");
+        var fldSolved = GetField<bool>(comp, "Solved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_MazeIdentification);
+
+        var seed = GetArrayField<int>(comp, "Quadrants").Get(validator: x => x.Any(y => y >= 4 || y < 0) ? "quadrants out of range" : null);
+        var buttonFuncs = GetArrayField<int>(comp, "ButtonFunctions").Get(validator: x => x.Any(y => y >= 4 || y < 0) ? "functions out of range" : null);
+        addQuestions(module,
+            makeQuestion(Question.MazeIdentificationSeed, _MazeIdentification, correctAnswers: new[] { seed.Select(x => x + 1).Join("") }),
+            makeQuestion(Question.MazeIdentificationNum, _MazeIdentification, formatArgs: new[] { "1" }, correctAnswers: new[] { new[] { "Forwards", "Clockwise", "Backwards", "Counter-clockwise" }[buttonFuncs[0]] }),
+            makeQuestion(Question.MazeIdentificationNum, _MazeIdentification, formatArgs: new[] { "2" }, correctAnswers: new[] { new[] { "Forwards", "Clockwise", "Backwards", "Counter-clockwise" }[buttonFuncs[1]] }),
+            makeQuestion(Question.MazeIdentificationNum, _MazeIdentification, formatArgs: new[] { "3" }, correctAnswers: new[] { new[] { "Forwards", "Clockwise", "Backwards", "Counter-clockwise" }[buttonFuncs[2]] }),
+            makeQuestion(Question.MazeIdentificationNum, _MazeIdentification, formatArgs: new[] { "4" }, correctAnswers: new[] { new[] { "Forwards", "Clockwise", "Backwards", "Counter-clockwise" }[buttonFuncs[3]] }),
+            makeQuestion(Question.MazeIdentificationFunc, _MazeIdentification, formatArgs: new[] { "moved you forwards" }, correctAnswers: new[] { (Array.IndexOf(buttonFuncs, 0) + 1).ToString() }),
+            makeQuestion(Question.MazeIdentificationFunc, _MazeIdentification, formatArgs: new[] { "turned you clockwise" }, correctAnswers: new[] { (Array.IndexOf(buttonFuncs, 1) + 1).ToString() }),
+            makeQuestion(Question.MazeIdentificationFunc, _MazeIdentification, formatArgs: new[] { "moved you backwards" }, correctAnswers: new[] { (Array.IndexOf(buttonFuncs, 2) + 1).ToString() }),
+            makeQuestion(Question.MazeIdentificationFunc, _MazeIdentification, formatArgs: new[] { "turned you counter-clockwise" }, correctAnswers: new[] { (Array.IndexOf(buttonFuncs, 3) + 1).ToString() }));
+    }
+
     private IEnumerable<object> ProcessMazematics(KMBombModule module)
     {
         var solved = false;
@@ -10383,7 +10408,7 @@ public class SouvenirModule : MonoBehaviour
         var qs = new List<QandA>();
 
         for (int i = 0; i < 10; i++)
-            qs.Add(makeQuestion(Question.Xenocryst, _Xenocryst, new[] { new[]{ "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth" }[i] }, new[] { new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet" }[flashes[i]] }, new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet" }));
+            qs.Add(makeQuestion(Question.Xenocryst, _Xenocryst, new[] { new[] { "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth" }[i] }, new[] { new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet" }[flashes[i]] }, new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet" }));
         addQuestions(module, qs);
     }
 
