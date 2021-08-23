@@ -883,6 +883,16 @@ namespace Souvenir
         [SouvenirQuestion("What was the color of the starting face in {0}?", "Maze³", AnswerLayout.ThreeColumns6Answers, "Red", "Blue", "Yellow", "Green", "Magenta", "Orange")]
         Maze3StartingFace,
 
+        [SouvenirQuestion("What was the seed of the maze in {0}?", "Maze Identification", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "1234", "1111", "2222", "3333", "4444", "4321" })]
+        [AnswerGenerator.Strings("4*1-4")]
+        MazeIdentificationSeed,
+        [SouvenirQuestion("What was the function of button {1} in {0}?", "Maze Identification", AnswerLayout.OneColumn4Answers, new[] { "Forwards", "Clockwise", "Backwards", "Counter-clockwise" }, ExampleAnswers = new[] { "forwards", "clockwise", "backwards", "counter-clockwise" },
+            ExampleExtraFormatArguments = new[] { "1", "2", "3", "4" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        MazeIdentificationNum,
+        [SouvenirQuestion("Which button {1} in {0}?", "Maze Identification", AnswerLayout.TwoColumns4Answers, new[] { "1", "2", "3", "4" }, ExampleAnswers = new[] { "1", "2", "3", "4" },
+            ExampleExtraFormatArguments = new[] { "moved you forwards", "turned you clockwise", "moved you backwards", "turned you counter-clockwise" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        MazeIdentificationFunc,
+
         [SouvenirQuestion("Which was the {1} value in {0}?", "Mazematics", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "30", "42", "51" },
             ExampleExtraFormatArguments = new[] { "initial", "goal" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MazematicsValue,
