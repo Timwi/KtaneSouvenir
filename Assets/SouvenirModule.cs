@@ -185,6 +185,7 @@ public class SouvenirModule : MonoBehaviour
     const string _EquationsX = "equationsXModule";
     const string _Etterna = "etterna";
     const string _Exoplanets = "exoplanets";
+    const string _FactoringMaze = "factoringMaze";
     const string _FactoryMaze = "factoryMaze";
     const string _FastMath = "fastMath";
     const string _FaultyRGBMaze = "faultyrgbMaze";
@@ -530,6 +531,7 @@ public class SouvenirModule : MonoBehaviour
             { _EquationsX, ProcessEquationsX },
             { _Etterna, ProcessEtterna },
             { _Exoplanets, ProcessExoplanets },
+            { _FactoringMaze, ProcessFactoringMaze },
             { _FactoryMaze, ProcessFactoryMaze },
             { _FastMath, ProcessFastMath },
             { _FaultyRGBMaze, ProcessFaultyRGBMaze },
@@ -4188,6 +4190,23 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.ExoplanetsStartingTargetDigit, _Exoplanets, correctAnswers: new[] { startingTargetDigit.ToString() }),
             makeQuestion(Question.ExoplanetsTargetPlanet, _Exoplanets, correctAnswers: new[] { positionNames[targetPlanet] }),
             makeQuestion(Question.ExoplanetsTargetDigit, _Exoplanets, correctAnswers: new[] { targetDigit.ToString() }));
+    }
+
+    private IEnumerable<object> ProcessFactoringMaze(KMBombModule module)
+    {
+        var comp = GetComponent(module, "FactoringMazeScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_FactoringMaze);
+        
+        var chosenPrimes = GetArrayField<int>(comp, "chosenPrimes").Get(expectedLength: 4);
+        var chosenPrimesInStrings = new[] { "", "", "", "" };
+        for (int i = 0; i < chosenPrimes.Length; i++)
+            chosenPrimesInStrings[i] = chosenPrimes[i].ToString();
+
+        addQuestion(module, Question.FactoringMazeChosenPrimes, correctAnswers: chosenPrimesInStrings);
     }
 
     private IEnumerable<object> ProcessFactoryMaze(KMBombModule module)
