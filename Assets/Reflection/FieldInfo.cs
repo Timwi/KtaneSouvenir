@@ -76,7 +76,7 @@ namespace Souvenir.Reflection
             return GetFrom(_target, expectedLength, expectedLength, nullArrayAllowed, nullContentAllowed, validator);
         }
 
-        public TCollection Get(int minLength, int maxLength, bool nullArrayAllowed = false, bool nullContentAllowed = false, Func<TElement, string> validator = null)
+        public TCollection Get(int minLength, int? maxLength = null, bool nullArrayAllowed = false, bool nullContentAllowed = false, Func<TElement, string> validator = null)
         {
             return GetFrom(_target, minLength, maxLength, nullArrayAllowed, nullContentAllowed, validator);
         }
@@ -86,14 +86,15 @@ namespace Souvenir.Reflection
             return GetFrom(target, expectedLength, expectedLength, nullArrayAllowed, nullContentAllowed, validator);
         }
 
-        public TCollection GetFrom(object target, int minLength, int maxLength, bool nullArrayAllowed = false, bool nullContentAllowed = false, Func<TElement, string> validator = null)
+        public TCollection GetFrom(object target, int minLength, int? maxLength = null, bool nullArrayAllowed = false, bool nullContentAllowed = false, Func<TElement, string> validator = null)
         {
             var collection = base.GetFrom(target, nullAllowed: nullArrayAllowed);
             if (collection == null)
                 return collection;
-            if (collection.Count < minLength || collection.Count > maxLength)
+            if (collection.Count < minLength || (maxLength != null && collection.Count > maxLength.Value))
                 throw new AbandonModuleException("Collection field {0}.{1} has length {2} (expected {3}{4}).", Field.DeclaringType.FullName, Field.Name, collection.Count,
-                    minLength, maxLength != minLength ? "–" + maxLength : "");
+                    maxLength == null ? "at least " : minLength.ToString(),
+                    maxLength == null ? minLength.ToString() : maxLength.Value != minLength ? "–" + maxLength.Value : "");
             int pos;
             if (!nullContentAllowed && (pos = collection.IndexOf(v => v == null)) != -1)
                 throw new AbandonModuleException("Collection field {0}.{1} (length {2}) contained a null value at index {3}.", Field.DeclaringType.FullName, Field.Name, collection.Count, pos);

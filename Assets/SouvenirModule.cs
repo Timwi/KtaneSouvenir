@@ -236,6 +236,7 @@ public class SouvenirModule : MonoBehaviour
     const string _LEDMath = "lgndLEDMath";
     const string _LEGOs = "LEGOModule";
     const string _Linq = "Linq";
+    const string _LionsShare = "LionsShareModule";
     const string _Listening = "Listening";
     const string _LogicalButtons = "logicalButtonsModule";
     const string _LogicGates = "logicGates";
@@ -582,6 +583,7 @@ public class SouvenirModule : MonoBehaviour
             { _LEDMath, ProcessLEDMath },
             { _LEGOs, ProcessLEGOs },
             { _Linq, ProcessLinq },
+            { _LionsShare, ProcessLionsShare },
             { _Listening, ProcessListening },
             { _LogicalButtons, ProcessLogicalButtons },
             { _LogicGates, ProcessLogicGates },
@@ -5444,6 +5446,29 @@ public class SouvenirModule : MonoBehaviour
             qs.Add(makeQuestion(Question.LinqFunction, _Linq, new[] { ordinal(i + 1) }, correctAnswers: new[] { functions.GetValue(i).ToString() }));
 
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessLionsShare(KMBombModule module)
+    {
+        var comp = GetComponent(module, "LionsShareModule");
+        var yearText = GetField<TextMesh>(comp, "Year", isPublic: true).Get().text;
+        int year;
+        if (!int.TryParse(yearText, out year) || year < 1 || year > 16)
+            throw new AbandonModuleException("Expected year number between 1 and 16; got: {0}", yearText);
+
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_LionsShare);
+
+        var lionNames = GetArrayField<string>(comp, "_lionNames").Get(minLength: 2);
+        var correctPortions = GetArrayField<int>(comp, "_correctPortions").Get(expectedLength: lionNames.Length);
+        var removedLions = Enumerable.Range(0, lionNames.Length).Where(ix => correctPortions[ix] == 0).Select(ix => lionNames[ix]).ToArray();
+        var allLionNames = GetListField<string>(comp, "_allLionNames").Get(expectedLength: 35);
+
+        addQuestions(module,
+            makeQuestion(Question.LionsShareYear, _LionsShare, correctAnswers: new[] { yearText }),
+            makeQuestion(Question.LionsShareRemovedLions, _LionsShare, correctAnswers: removedLions, preferredWrongAnswers: allLionNames.ToArray()));
     }
 
     private IEnumerable<object> ProcessListening(KMBombModule module)
@@ -10327,7 +10352,7 @@ public class SouvenirModule : MonoBehaviour
         var stars = GetField<Array>(comp, "stars").Get(validator: arr => arr.Length != 4 ? "expected length 4" : null);
         var fldChannels = GetArrayField<bool>(stars.GetValue(0), "channels");
         var fldPoints = GetIntField(stars.GetValue(0), "points");
-        var gridSquares = GetArrayField<MeshRenderer>(comp, "gridColors", isPublic: true).Get(49);
+        var gridSquares = GetArrayField<MeshRenderer>(comp, "gridColors", isPublic: true).Get(expectedLength: 49);
 
         Color? white = null;
         for (var i = 0; i < gridSquares.Length && white == null; i++)
@@ -10348,7 +10373,7 @@ public class SouvenirModule : MonoBehaviour
         var colorNames = new[] { "black", "blue", "green", "cyan", "red", "magenta", "yellow", "white" };
         for (var starIx = 0; starIx < 4; starIx++)
         {
-            var channels = fldChannels.GetFrom(stars.GetValue(starIx), 3);
+            var channels = fldChannels.GetFrom(stars.GetValue(starIx), expectedLength: 3);
             qs.Add(makeQuestion(Question.ZeroZeroStarColors, _ZeroZero, formatArgs: new[] { positionNames[starIx] }, correctAnswers: new[] { colorNames[(channels[0] ? 4 : 0) + (channels[1] ? 2 : 0) + (channels[2] ? 1 : 0)] }));
             var points = fldPoints.GetFrom(stars.GetValue(starIx), 2, 8);
             qs.Add(makeQuestion(Question.ZeroZeroStarPoints, _ZeroZero, formatArgs: new[] { positionNames[starIx] }, correctAnswers: new[] { points.ToString() }));
