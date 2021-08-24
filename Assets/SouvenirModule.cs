@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using KModkit;
@@ -3668,16 +3669,16 @@ public class SouvenirModule : MonoBehaviour
     {
         var comp = GetComponent(module, "CrittersScript");
         var fldSolved = GetField<bool>(comp, "_isModuleSolved");
-        var fldRandomiser = GetIntField(comp, "_randomiser");
+        var fldColorIx = GetIntField(comp, "_randomiser");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Critters);
 
-        var colourNames = new[] { "Yellow", "Pink", "Blue" };
-        var randomiser = fldRandomiser.Get(0, 2);
+        var colorNames = new[] { "Yellow", "Pink", "Blue" };
+        var colorIx = fldColorIx.Get(min: 0, max: 2);
 
-        addQuestions(module, makeQuestion(Question.CrittersAlterationColour, _Critters, correctAnswers: new[] { colourNames[randomiser] }));
+        addQuestions(module, makeQuestion(Question.CrittersAlterationColor, _Critters, correctAnswers: new[] { colorNames[colorIx] }));
     }
 
     private IEnumerable<object> ProcessCrypticCycle(KMBombModule module)
@@ -4202,13 +4203,9 @@ public class SouvenirModule : MonoBehaviour
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_FactoringMaze);
-        
-        var chosenPrimes = GetArrayField<int>(comp, "chosenPrimes").Get(expectedLength: 4);
-        var chosenPrimesInStrings = new[] { "", "", "", "" };
-        for (int i = 0; i < chosenPrimes.Length; i++)
-            chosenPrimesInStrings[i] = chosenPrimes[i].ToString();
 
-        addQuestion(module, Question.FactoringMazeChosenPrimes, correctAnswers: chosenPrimesInStrings);
+        var chosenPrimes = GetArrayField<int>(comp, "chosenPrimes").Get(expectedLength: 4);
+        addQuestion(module, Question.FactoringMazeChosenPrimes, correctAnswers: chosenPrimes.Select(i => i.ToString()).ToArray());
     }
 
     private IEnumerable<object> ProcessFactoryMaze(KMBombModule module)
@@ -5168,9 +5165,7 @@ public class SouvenirModule : MonoBehaviour
         _modulesSolved.IncSafe(_InfiniteLoop);
 
         var selectedWord = GetField<string>(comp, "SelectedWord").Get();
-
-        addQuestions(module,
-            makeQuestion(Question.InfiniteLoopSelectedWord, _InfiniteLoop, correctAnswers: new[] { selectedWord }));
+        addQuestions(module, makeQuestion(Question.InfiniteLoopSelectedWord, _InfiniteLoop, correctAnswers: new[] { selectedWord }));
     }
 
     private IEnumerable<object> ProcessInnerConnections(KMBombModule module)
@@ -5202,14 +5197,14 @@ public class SouvenirModule : MonoBehaviour
         var hasStruck = false;
         module.OnStrike += delegate () { hasStruck = true; return false; };
 
-        while(currentStage < 3)
+        while (currentStage < 3)
         {
             yield return null;
-            var nextStage = fldStage.Get(1, 3);
+            var nextStage = fldStage.Get(min: 1, max: 3);   // stage numbers are 1–3, not 0–2
             if (currentStage != nextStage || hasStruck)
             {
-                texts[currentStage] = fldDisplay.Get();
                 currentStage = nextStage;
+                texts[currentStage - 1] = fldDisplay.Get();
                 hasStruck = false;
             }
         }
@@ -5217,7 +5212,7 @@ public class SouvenirModule : MonoBehaviour
 
         var qs = new List<QandA>();
         for (int i = 0; i < 3; i++)
-            qs.Add(makeQuestion(Question.InterpunctDisplay, _Interpunct, formatArgs: new[] { new[] { "one", "two", "three" }[i] }, correctAnswers: new[] { texts[i] }));
+            qs.Add(makeQuestion(Question.InterpunctDisplay, _Interpunct, formatArgs: new[] { (i + 1).ToString() }, correctAnswers: new[] { texts[i] }));
 
         addQuestions(module, qs);
     }
@@ -7526,13 +7521,8 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_PixelCipher);
 
-        var keywords = new[] { "HEART", "HAPPY", "HOUSE", "ARROW", "ARMOR",
-            "ACORN", "CROSS", "CHORD", "CLOCK", "DONUT",
-            "DELTA", "DUCKY", "EQUAL", "EMOJI", "EDGES",
-            "LIBRA", "LUCKY", "LUNAR", "MEDAL", "MOVIE",
-            "MUSIC", "PANDA", "PEARL", "PIANO", "PIXEL" };
-
-        var pickedKeyword = GetIntField(comp, "pickedKeyword").Get(0, 24);
+        var keywords = GetArrayField<string>(comp, "pixelKeyword").Get();
+        var pickedKeyword = GetIntField(comp, "pickedKeyword").Get(0, keywords.Length - 1);
 
         addQuestions(module,
             makeQuestion(Question.PixelCipherKeyword, _PixelCipher, correctAnswers: new[] { keywords[pickedKeyword] }));
