@@ -165,6 +165,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Creation = "CreationModule";
     const string _Critters = "CrittersModule";
     const string _CrypticCycle = "crypticCycle";
+    const string _CrypticKeypad = "GSCrypticKeypad";
     const string _Cube = "cube";
     const string _DACHMaze = "DACH";
     const string _DeafAlley = "deafAlleyModule";
@@ -520,6 +521,7 @@ public class SouvenirModule : MonoBehaviour
             { _Creation, ProcessCreation },
             { _Critters, ProcessCritters },
             { _CrypticCycle, ProcessCrypticCycle },
+            { _CrypticKeypad, ProcessCrypticKeypad },
             { _Cube, ProcessCube },
             { _DACHMaze, ProcessDACHMaze },
             { _DeafAlley, ProcessDeafAlley },
@@ -3729,6 +3731,29 @@ public class SouvenirModule : MonoBehaviour
     private IEnumerable<object> ProcessCrypticCycle(KMBombModule module)
     {
         return processSpeakingEvilCycle2(module, "CrypticCycleScript", Question.CrypticCycleWord, _CrypticCycle);
+    }
+
+    private IEnumerable<object> ProcessCrypticKeypad(KMBombModule module)
+    {
+        var comp = GetComponent(module, "CrypticKeypadScript");
+        var fldSolved = GetField<bool>(comp, "Solved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_CrypticKeypad);
+
+        var letters = GetArrayField<string>(comp, "Letters2").Get();
+        var rotations = GetArrayField<int>(comp, "Rotations").Get();
+
+        var qs = new List<QandA>();
+        var directions = new[] { "top-left", "top-right", "bottom-left", "bottom-right" };
+        var cardinalDirections = new[] { "North", "East", "South", "West" };
+        for (int i = 0; i < 4; i++)
+        {
+            qs.Add(makeQuestion(Question.CrypticKeypadLabels, _CrypticKeypad, formatArgs: new[] { directions[i] }, correctAnswers: new[] { letters[i] }));
+            qs.Add(makeQuestion(Question.CrypticKeypadRotations, _CrypticKeypad, formatArgs: new[] { directions[i] }, correctAnswers: new[] { cardinalDirections[rotations[i]] }));
+        }
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessCube(KMBombModule module)
