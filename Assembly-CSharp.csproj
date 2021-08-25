@@ -51,26 +51,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AbandonModuleException.cs" />
-     <Compile Include="Assets\AnswerGenerator.cs" />
-     <Compile Include="Assets\Config.cs" />
-     <Compile Include="Assets\Enums.cs" />
-     <Compile Include="Assets\KMScripts\Easing.cs" />
      <Compile Include="Assets\KMScripts\GeneralExtensions.cs" />
-     <Compile Include="Assets\KMScripts\KMBombInfoExtensions.cs" />
-     <Compile Include="Assets\KMScripts\KMBossModule.cs" />
-     <Compile Include="Assets\KMScripts\KMColorblindMode.cs" />
-     <Compile Include="Assets\KMScripts\KMRuleSeedable.cs" />
      <Compile Include="Assets\KMScripts\PrivateWhenPlayingAttribute.cs" />
      <Compile Include="Assets\KMScripts\ReadOnlyWhenPlayingAttribute.cs" />
-     <Compile Include="Assets\QandA.cs" />
-     <Compile Include="Assets\Question.cs" />
-     <Compile Include="Assets\QuestionBatch.cs" />
-     <Compile Include="Assets\Reflection\FieldInfo.cs" />
-     <Compile Include="Assets\Reflection\MethodInfo.cs" />
-     <Compile Include="Assets\Reflection\PropertyInfo.cs" />
-     <Compile Include="Assets\SouvenirModule.cs" />
-     <Compile Include="Assets\SouvenirQuestionAttribute.cs" />
      <Compile Include="Assets\TestHarness\EdgeworkConfiguration.cs" />
      <Compile Include="Assets\TestHarness\NeedyTimer.cs" />
      <Compile Include="Assets\TestHarness\SevenSegDisplay.cs" />
@@ -90,7 +73,6 @@
      <Compile Include="Assets\TestHarness\Widgets\SerialNumber.cs" />
      <Compile Include="Assets\TestHarness\Widgets\TwoFactorWidget.cs" />
      <Compile Include="Assets\TestHarness\Widgets\Widget.cs" />
-     <Compile Include="Assets\Ut.cs" />
      <None Include="Assets\Shaders\KT_3D_Text-Diffuse.shader" />
      <None Include="Assets\Shaders\BlendTwoTexturesUnlit.shader" />
      <None Include="Assets\Shaders\BlendTwoTexturesLitAndUnlitVertexColor.shader" />
@@ -274,6 +256,12 @@
  </Reference>
  <Reference Include="Newtonsoft.Json">
  <HintPath>D:/c/KTANE/Souvenir/Assets/Plugins/Managed/Newtonsoft.Json.dll</HintPath>
+ </Reference>
+ <Reference Include="SouvenirLib">
+ <HintPath>D:/c/KTANE/Souvenir/Assets/Plugins/Managed/SouvenirLib.dll</HintPath>
+ </Reference>
+ <Reference Include="ValueTupleBridge">
+ <HintPath>D:/c/KTANE/Souvenir/Assets/Plugins/Managed/ValueTupleBridge.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>C:/Users/Timwi/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.13/UnityEngine.Analytics.dll</HintPath>

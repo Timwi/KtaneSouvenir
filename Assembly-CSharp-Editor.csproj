@@ -348,6 +348,12 @@
  <Reference Include="Newtonsoft.Json">
  <HintPath>D:/c/KTANE/Souvenir/Assets/Plugins/Managed/Newtonsoft.Json.dll</HintPath>
  </Reference>
+ <Reference Include="SouvenirLib">
+ <HintPath>D:/c/KTANE/Souvenir/Assets/Plugins/Managed/SouvenirLib.dll</HintPath>
+ </Reference>
+ <Reference Include="ValueTupleBridge">
+ <HintPath>D:/c/KTANE/Souvenir/Assets/Plugins/Managed/ValueTupleBridge.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>C:/Users/Timwi/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>

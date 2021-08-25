@@ -33,6 +33,8 @@
 ExportedObj/
 .consulo/
 *.unityproj
+*.sln
+*.csproj
 *.suo
 *.tmp
 *.user
@@ -68,3 +70,8 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 Manual/css/font.css
 Manual/font/SpecialElite.ttf
+
+Lib/obj/
+Lib/bin/
+Lib/.vs/
+Lib/packages/
