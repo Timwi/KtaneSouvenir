@@ -2104,7 +2104,7 @@ public class SouvenirModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_9Ball);
 
-        var balls = GetField<int[]>(comp, "RndBallNums").Get();
+        var balls = GetArrayField<int>(comp, "RndBallNums").Get(expectedLength: 7);
 
         addQuestions(module,
             makeQuestion(Question._9BallLetters, _9Ball, new[] { "A" }, correctAnswers: new[] { (balls[0] + 1).ToString() }),
@@ -4199,11 +4199,11 @@ public class SouvenirModule : MonoBehaviour
         var coeff = GetIntField(comp, "Add").Get().ToString("00000000");
 
         addQuestions(module,
-            makeQuestion(Question.EntryNumberFourNumber1, _EntryNumberFour, formatArgs: null, correctAnswers: new[] { num1 }),
-            makeQuestion(Question.EntryNumberFourNumber2, _EntryNumberFour, formatArgs: null, correctAnswers: new[] { num2 }),
-            makeQuestion(Question.EntryNumberFourNumber3, _EntryNumberFour, formatArgs: null, correctAnswers: new[] { num3 }),
-            makeQuestion(Question.EntryNumberFourExpected, _EntryNumberFour, formatArgs: null, correctAnswers: new[] { expected }),
-            makeQuestion(Question.EntryNumberFourCoeff, _EntryNumberFour, formatArgs: null, correctAnswers: new[] { coeff }));
+            makeQuestion(Question.EntryNumberFourNumber1, _EntryNumberFour, correctAnswers: new[] { num1 }),
+            makeQuestion(Question.EntryNumberFourNumber2, _EntryNumberFour, correctAnswers: new[] { num2 }),
+            makeQuestion(Question.EntryNumberFourNumber3, _EntryNumberFour, correctAnswers: new[] { num3 }),
+            makeQuestion(Question.EntryNumberFourExpected, _EntryNumberFour, correctAnswers: new[] { expected }),
+            makeQuestion(Question.EntryNumberFourCoeff, _EntryNumberFour, correctAnswers: new[] { coeff }));
     }
 
     private IEnumerable<object> ProcessEntryNumberOne(KMBombModule module)
@@ -4221,11 +4221,11 @@ public class SouvenirModule : MonoBehaviour
         var coeff = (100000000 - GetIntField(comp, "Subtract").Get()).ToString("00000000");
 
         addQuestions(module,
-            makeQuestion(Question.EntryNumberOneNumbers, _EntryNumberOne, new[] { "second" }, correctAnswers: new[] { num2 }),
-            makeQuestion(Question.EntryNumberOneNumbers, _EntryNumberOne, new[] { "third" }, correctAnswers: new[] { num3 }),
-            makeQuestion(Question.EntryNumberOneNumbers, _EntryNumberOne, new[] { "fourth" }, correctAnswers: new[] { num4 }),
-            makeQuestion(Question.EntryNumberOneExpected, _EntryNumberOne, formatArgs: null, correctAnswers: new[] { expected }),
-            makeQuestion(Question.EntryNumberOneCoeff, _EntryNumberOne, formatArgs: null, correctAnswers: new[] { coeff }));
+            makeQuestion(Question.EntryNumberOneNumbers, _EntryNumberOne, formatArgs: new[] { "second" }, correctAnswers: new[] { num2 }),
+            makeQuestion(Question.EntryNumberOneNumbers, _EntryNumberOne, formatArgs: new[] { "third" }, correctAnswers: new[] { num3 }),
+            makeQuestion(Question.EntryNumberOneNumbers, _EntryNumberOne, formatArgs: new[] { "fourth" }, correctAnswers: new[] { num4 }),
+            makeQuestion(Question.EntryNumberOneExpected, _EntryNumberOne, correctAnswers: new[] { expected }),
+            makeQuestion(Question.EntryNumberOneCoeff, _EntryNumberOne, correctAnswers: new[] { coeff }));
     }
 
     private IEnumerable<object> ProcessEquationsX(KMBombModule module)
@@ -6060,12 +6060,13 @@ public class SouvenirModule : MonoBehaviour
 
         var seed = GetArrayField<int>(comp, "Quadrants").Get(validator: x => x.Any(y => y >= 4 || y < 0) ? "quadrants out of range" : null);
         var buttonFuncs = GetArrayField<int>(comp, "ButtonFunctions").Get(validator: x => x.Any(y => y >= 4 || y < 0) ? "functions out of range" : null);
+        var directions = new[] { "Forwards", "Clockwise", "Backwards", "Counter-clockwise" };
         addQuestions(module,
             makeQuestion(Question.MazeIdentificationSeed, _MazeIdentification, correctAnswers: new[] { seed.Select(x => x + 1).Join("") }),
-            makeQuestion(Question.MazeIdentificationNum, _MazeIdentification, formatArgs: new[] { "1" }, correctAnswers: new[] { new[] { "Forwards", "Clockwise", "Backwards", "Counter-clockwise" }[buttonFuncs[0]] }),
-            makeQuestion(Question.MazeIdentificationNum, _MazeIdentification, formatArgs: new[] { "2" }, correctAnswers: new[] { new[] { "Forwards", "Clockwise", "Backwards", "Counter-clockwise" }[buttonFuncs[1]] }),
-            makeQuestion(Question.MazeIdentificationNum, _MazeIdentification, formatArgs: new[] { "3" }, correctAnswers: new[] { new[] { "Forwards", "Clockwise", "Backwards", "Counter-clockwise" }[buttonFuncs[2]] }),
-            makeQuestion(Question.MazeIdentificationNum, _MazeIdentification, formatArgs: new[] { "4" }, correctAnswers: new[] { new[] { "Forwards", "Clockwise", "Backwards", "Counter-clockwise" }[buttonFuncs[3]] }),
+            makeQuestion(Question.MazeIdentificationNum, _MazeIdentification, formatArgs: new[] { "1" }, correctAnswers: new[] { directions[buttonFuncs[0]] }),
+            makeQuestion(Question.MazeIdentificationNum, _MazeIdentification, formatArgs: new[] { "2" }, correctAnswers: new[] { directions[buttonFuncs[1]] }),
+            makeQuestion(Question.MazeIdentificationNum, _MazeIdentification, formatArgs: new[] { "3" }, correctAnswers: new[] { directions[buttonFuncs[2]] }),
+            makeQuestion(Question.MazeIdentificationNum, _MazeIdentification, formatArgs: new[] { "4" }, correctAnswers: new[] { directions[buttonFuncs[3]] }),
             makeQuestion(Question.MazeIdentificationFunc, _MazeIdentification, formatArgs: new[] { "moved you forwards" }, correctAnswers: new[] { (Array.IndexOf(buttonFuncs, 0) + 1).ToString() }),
             makeQuestion(Question.MazeIdentificationFunc, _MazeIdentification, formatArgs: new[] { "turned you clockwise" }, correctAnswers: new[] { (Array.IndexOf(buttonFuncs, 1) + 1).ToString() }),
             makeQuestion(Question.MazeIdentificationFunc, _MazeIdentification, formatArgs: new[] { "moved you backwards" }, correctAnswers: new[] { (Array.IndexOf(buttonFuncs, 2) + 1).ToString() }),
@@ -7847,7 +7848,7 @@ public class SouvenirModule : MonoBehaviour
         addQuestion(module, Question.PurpleArrowsFinish, correctAnswers: new[] { Regex.Replace(finishWord, @"(?<!^).", m => m.Value.ToLowerInvariant()) }, preferredWrongAnswers: wordList.Select(w => w[0] + w.Substring(1).ToLowerInvariant()).ToArray());
     }
 
-    private IEnumerable<object> ProcessPuzzleIdentification (KMBombModule module)
+    private IEnumerable<object> ProcessPuzzleIdentification(KMBombModule module)
     {
         var comp = GetComponent(module, "PuzzleIdentificationScript");
         var fldSolved = GetField<bool>(comp, "Solved");
@@ -7861,26 +7862,24 @@ public class SouvenirModule : MonoBehaviour
             throw new AbandonModuleException("I cannot find the PuzzleIdentification.Data type.");
         var names = GetStaticField<string[][]>(namesType, "PuzzleNames", isPublic: true).Get();
 
-        //Grabs the first two puzzle numbers and their games of origin
+        // Grabs the first two puzzle numbers and their games of origin
         var puzzlesOneAndTwo = GetArrayField<int>(comp, "ChosenPuzzles").Get();
-        //Grabs the third puzzle number
+        // Grabs the third puzzle number
         var puzzleThree = GetField<int>(comp, "ChosenPuzzle").Get();
-        //Grabs the third game of origin
+        // Grabs the third game of origin
         var gameThree = GetField<int>(comp, "ChosenGame").Get();
-        string[] games = new[] { "Professor Layton and the Curious Village", "Professor Layton and Pandora's Box", "Professor Layton and the Lost Future", "Professor Layton and the Spectre's Call",
-            "Professor Layton and the Miracle Mask", "Professor Layton and the Azran Legacy" };
+        var gameNames = GetField<string[]>(comp, "GameNames").Get();
 
         addQuestions(module,
             makeQuestion(Question.PuzzleIdentificationNum, _PuzzleIdentification, new[] { "first" }, new[] { (puzzlesOneAndTwo[0] + 1).ToString("000") }),
             makeQuestion(Question.PuzzleIdentificationNum, _PuzzleIdentification, new[] { "second" }, new[] { (puzzlesOneAndTwo[1] + 1).ToString("000") }),
             makeQuestion(Question.PuzzleIdentificationNum, _PuzzleIdentification, new[] { "third" }, new[] { (puzzleThree + 1).ToString("000") }),
-            makeQuestion(Question.PuzzleIdentificationGame, _PuzzleIdentification, new[] { "first" }, new[] { games[puzzlesOneAndTwo[2]] }, games),
-            makeQuestion(Question.PuzzleIdentificationGame, _PuzzleIdentification, new[] { "second" }, new[] { games[puzzlesOneAndTwo[3]] }, games),
-            makeQuestion(Question.PuzzleIdentificationGame, _PuzzleIdentification, new[] { "third" }, new[] { games[gameThree] }, games),
+            makeQuestion(Question.PuzzleIdentificationGame, _PuzzleIdentification, new[] { "first" }, new[] { gameNames[puzzlesOneAndTwo[2]] }, gameNames),
+            makeQuestion(Question.PuzzleIdentificationGame, _PuzzleIdentification, new[] { "second" }, new[] { gameNames[puzzlesOneAndTwo[3]] }, gameNames),
+            makeQuestion(Question.PuzzleIdentificationGame, _PuzzleIdentification, new[] { "third" }, new[] { gameNames[gameThree] }, gameNames),
             makeQuestion(Question.PuzzleIdentificationName, _PuzzleIdentification, new[] { "first" }, new[] { names[puzzlesOneAndTwo[2]][puzzlesOneAndTwo[0]] }, names[puzzlesOneAndTwo[2]]),
             makeQuestion(Question.PuzzleIdentificationName, _PuzzleIdentification, new[] { "second" }, new[] { names[puzzlesOneAndTwo[3]][puzzlesOneAndTwo[1]] }, names[puzzlesOneAndTwo[3]]),
-            makeQuestion(Question.PuzzleIdentificationName, _PuzzleIdentification, new[] { "third" }, new[] { names[gameThree][puzzleThree] }, names[gameThree])
-            );
+            makeQuestion(Question.PuzzleIdentificationName, _PuzzleIdentification, new[] { "third" }, new[] { names[gameThree][puzzleThree] }, names[gameThree]));
     }
 
     private IEnumerable<object> ProcessQuaver(KMBombModule module)
@@ -9281,7 +9280,7 @@ public class SouvenirModule : MonoBehaviour
 
         var sequences = GetArrayField<List<int>>(comp, "answer").Get();
 
-        addQuestion(module, Question.StackedSequences, formatArguments: null, correctAnswers: sequences.Select(x => x.Count.ToString()).ToArray());
+        addQuestion(module, Question.StackedSequences, correctAnswers: sequences.Select(x => x.Count.ToString()).ToArray());
     }
 
     private IEnumerable<object> ProcessStars(KMBombModule module)
@@ -9694,7 +9693,7 @@ public class SouvenirModule : MonoBehaviour
 
         var indicator = GetField<string>(comp, "IndicatorTextVariable").Get();
 
-        addQuestion(module, Question.TernaryTiles, formatArguments: null, correctAnswers: new[] { indicator }, preferredWrongAnswers: null);
+        addQuestion(module, Question.TernaryTiles, correctAnswers: new[] { indicator });
     }
 
     private IEnumerable<object> ProcessTextField(KMBombModule module)
@@ -10470,8 +10469,13 @@ public class SouvenirModule : MonoBehaviour
 
         var qs = new List<QandA>();
 
+        var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet" };
         for (int i = 0; i < 10; i++)
-            qs.Add(makeQuestion(Question.Xenocryst, _Xenocryst, new[] { new[] { "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth" }[i] }, new[] { new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet" }[flashes[i]] }, new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet" }));
+            qs.Add(makeQuestion(Question.Xenocryst, _Xenocryst,
+                formatArgs: new[] { ordinal(i + 1) },
+                correctAnswers: new[] { colorNames[flashes[i]] },
+                preferredWrongAnswers: colorNames));
+
         addQuestions(module, qs);
     }
 

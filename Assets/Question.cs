@@ -40,7 +40,6 @@ namespace Souvenir
         ExampleExtraFormatArguments = new[] { "A", "B", "C", "D", "E", "F", "G" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(2, 8)]
         _9BallLetters,
-
         [SouvenirQuestion("What was the letter of ball {1} in {0}?", "9-Ball", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "A", "B", "C", "D", "E", "F" },
         ExampleExtraFormatArguments = new[] { "2", "3", "4", "5", "6", "7", "8" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Strings("A-G")]
@@ -475,32 +474,26 @@ namespace Souvenir
         [SouvenirQuestion("What was the first number shown in {0}?", "Entry Number Four", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" })]
         [AnswerGenerator.Integers(10000000, 99999999, 1, "00000000")]
         EntryNumberFourNumber1,
-
         [SouvenirQuestion("What was the second number shown in {0}?", "Entry Number Four", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" })]
         [AnswerGenerator.Integers(0, 99999999, 1, "00000000")]
         EntryNumberFourNumber2,
-
         [SouvenirQuestion("What was the third number shown in {0}?", "Entry Number Four", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" })]
         [AnswerGenerator.Integers(0, 99999999, 1, "00000000")]
         EntryNumberFourNumber3,
-
         [SouvenirQuestion("What was the expected fourth entry in {0}?", "Entry Number Four", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" })]
         [AnswerGenerator.Integers(0, 99999999, 1, "00000000")]
         EntryNumberFourExpected,
-
         [SouvenirQuestion("What was the constant coefficient in {0}?", "Entry Number Four", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" })]
         [AnswerGenerator.Integers(10000000, 99999999, 1, "00000000")]
         EntryNumberFourCoeff,
 
         [SouvenirQuestion("What was the {1} number shown in {0}?", "Entry Number One", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" },
-        ExampleExtraFormatArguments = new[] { "second", "third", "fourth" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "second", "third", "fourth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 99999999, 1, "00000000")]
         EntryNumberOneNumbers,
-
         [SouvenirQuestion("What was the expected first entry in {0}?", "Entry Number One", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" })]
         [AnswerGenerator.Integers(10000000, 99999999, 1, "00000000")]
         EntryNumberOneExpected,
-
         [SouvenirQuestion("What was the constant coefficient in {0}?", "Entry Number One", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" })]
         [AnswerGenerator.Integers(10000000, 99999999, 1, "00000000")]
         EntryNumberOneCoeff,
@@ -901,11 +894,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the seed of the maze in {0}?", "Maze Identification", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "1234", "1111", "2222", "3333", "4444", "4321" })]
         [AnswerGenerator.Strings("4*1-4")]
         MazeIdentificationSeed,
-
         [SouvenirQuestion("What was the function of button {1} in {0}?", "Maze Identification", AnswerLayout.OneColumn4Answers, new[] { "Forwards", "Clockwise", "Backwards", "Counter-clockwise" }, ExampleAnswers = new[] { "forwards", "clockwise", "backwards", "counter-clockwise" },
         ExampleExtraFormatArguments = new[] { "1", "2", "3", "4" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MazeIdentificationNum,
-
         [SouvenirQuestion("Which button {1} in {0}?", "Maze Identification", AnswerLayout.TwoColumns4Answers, new[] { "1", "2", "3", "4" }, ExampleAnswers = new[] { "1", "2", "3", "4" },
             ExampleExtraFormatArguments = new[] { "moved you forwards", "turned you clockwise", "moved you backwards", "turned you counter-clockwise" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MazeIdentificationFunc,
@@ -1591,8 +1582,8 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the color of the faulty sphere in {0}?", "Spot the Difference", AnswerLayout.TwoColumns4Answers, "Blue", "Green", "Orange", "Red")]
         SpotTheDifferenceFaultyBall,
-        
-        [SouvenirQuestion("Which of these is the length of a sequence in {0}?", "Stacked Sequences", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "3", "4", "5", "6" })]
+
+        [SouvenirQuestion("Which of these is the length of a sequence in {0}?", "Stacked Sequences", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "3", "4", "5", "6" })]
         [AnswerGenerator.Integers(3, 9)]
         StackedSequences,
 
@@ -1662,7 +1653,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
         TenpinsSplits,
 
-        [SouvenirQuestion("What was on the indicator in {0}?", "Ternary Tiles", AnswerLayout.OneColumn4Answers, ExampleAnswers = new[] { "ABCABCABCABC", "123412341234", "++++++++++++", "ABC1234+ABC1" }, Type = AnswerType.TernaryTilesFont)]
+        [SouvenirQuestion("What was on the indicator in {0}?", "Ternary Tiles", AnswerLayout.OneColumn4Answers, null,
+            Type = AnswerType.TernaryTilesFont, ExampleAnswers = new[] { "ABCABCABCABC", "123412341234", "++++++++++++", "ABC1234+ABC1" })]
         [AnswerGenerator.Strings("12*A-C1-4+")]
         TernaryTiles,
 
