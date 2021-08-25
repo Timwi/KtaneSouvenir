@@ -377,6 +377,14 @@ namespace Souvenir
           ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
         CrypticCycleWord,
 
+        [SouvenirQuestion("What was the label of the {1} key in {0}?", "Cryptic Keypad", AnswerLayout.ThreeColumns6Answers,
+            ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("A-Z")]
+        CrypticKeypadLabels,
+        [SouvenirQuestion("Which cardinal direction was the {1} key rotated to in {0}?", "Cryptic Keypad", AnswerLayout.TwoColumns4Answers, "North", "East", "South", "West",
+            ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        CrypticKeypadRotations,
+
         [SouvenirQuestion("What was the {1} cube rotation in {0}?", "Cube", AnswerLayout.TwoColumns4Answers, "rotate cw", "tip left", "tip backwards", "rotate ccw", "tip right", "tip forwards",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         CubeRotations,
