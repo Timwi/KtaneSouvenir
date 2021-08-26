@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace Souvenir
@@ -10,17 +9,21 @@ namespace Souvenir
     {
         public string ModuleNameWithThe { get; private set; }
         public string QuestionText { get; private set; }
+        public Sprite QuestionSprite { get; private set; }
         public int CorrectIndex { get; private set; }
         public int NumAnswers { get; private set; } // must be 4 or 6
-        public QandA(string module, string question, int correct, int numAnswers)
+
+        public QandA(string module, string question, int correct, int numAnswers, Sprite sprite = null)
         {
             ModuleNameWithThe = module;
             QuestionText = question;
+            QuestionSprite = sprite;
             CorrectIndex = correct;
             NumAnswers = numAnswers;
         }
+
         public abstract void SetAnswers(SouvenirModule souvenir);
-        public string DebugString { get { return string.Format("{0} — {1}", QuestionText, DebugAnswers.Select((a, ix) => string.Format(ix == CorrectIndex ? "[_{0}_]" : "{0}", a)).JoinString(" | ")); } }
+        public string DebugString => string.Format("{0} — {1}", QuestionText, DebugAnswers.Select((a, ix) => string.Format(ix == CorrectIndex ? "[_{0}_]" : "{0}", a)).JoinString(" | "));
         public abstract IEnumerable<string> DebugAnswers { get; }
         public abstract double DesiredHeightFactor { get; }
         public abstract void BlinkCorrectAnswer(bool on, SouvenirModule souvenir);
@@ -71,8 +74,8 @@ namespace Souvenir
             _fontMaterial = fontMaterial;
             _layout = layout;
         }
-        public override IEnumerable<string> DebugAnswers { get { return _answers; } }
-        public override double DesiredHeightFactor { get { return _layout == AnswerLayout.OneColumn4Answers ? .825 : 1.1; } }
+        public override IEnumerable<string> DebugAnswers => _answers;
+        public override double DesiredHeightFactor => _layout == AnswerLayout.OneColumn4Answers ? .825 : 1.1;
 
         public override void SetAnswers(SouvenirModule souvenir)
         {
@@ -119,8 +122,8 @@ namespace Souvenir
     {
         private readonly Sprite[] _answers;
         public QandASprite(string module, string question, int correct, Sprite[] answers) : base(module, question, correct, answers.Length) { _answers = answers; }
-        public override IEnumerable<string> DebugAnswers { get { return _answers.Select(s => s.name); } }
-        public override double DesiredHeightFactor { get { return 1; } }
+        public override IEnumerable<string> DebugAnswers => _answers.Select(s => s.name);
+        public override double DesiredHeightFactor => 1;
 
         public override void SetAnswers(SouvenirModule souvenir)
         {

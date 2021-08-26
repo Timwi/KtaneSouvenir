@@ -35,10 +35,10 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_ScavengerHunt);
 
         addQuestions(module,
-            makeQuestion(Question.ScavengerHuntKeySquare, _ScavengerHunt, correctAnswers: new[] { Tiles4x4Sprites[keySquare] }, preferredWrongAnswers: Tiles4x4Sprites),
-            makeQuestion(Question.ScavengerHuntColoredTiles, _ScavengerHunt, formatArgs: new[] { "red" }, correctAnswers: redTiles.Select(c => Tiles4x4Sprites[c]).ToArray(), preferredWrongAnswers: Tiles4x4Sprites),
-            makeQuestion(Question.ScavengerHuntColoredTiles, _ScavengerHunt, formatArgs: new[] { "green" }, correctAnswers: greenTiles.Select(c => Tiles4x4Sprites[c]).ToArray(), preferredWrongAnswers: Tiles4x4Sprites),
-            makeQuestion(Question.ScavengerHuntColoredTiles, _ScavengerHunt, formatArgs: new[] { "blue" }, correctAnswers: blueTiles.Select(c => Tiles4x4Sprites[c]).ToArray(), preferredWrongAnswers: Tiles4x4Sprites));
+            makeQuestion(Question.ScavengerHuntKeySquare, _ScavengerHunt, correctAnswers: new[] { new Coord(4, 4, keySquare) }),
+            makeQuestion(Question.ScavengerHuntColoredTiles, _ScavengerHunt, formatArgs: new[] { "red" }, correctAnswers: redTiles.Select(c => new Coord(4, 4, c)).ToArray()),
+            makeQuestion(Question.ScavengerHuntColoredTiles, _ScavengerHunt, formatArgs: new[] { "green" }, correctAnswers: greenTiles.Select(c => new Coord(4, 4, c)).ToArray()),
+            makeQuestion(Question.ScavengerHuntColoredTiles, _ScavengerHunt, formatArgs: new[] { "blue" }, correctAnswers: blueTiles.Select(c => new Coord(4, 4, c)).ToArray()));
     }
 
     private IEnumerable<object> ProcessSchlagDenBomb(KMBombModule module)
@@ -106,9 +106,9 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (int i = 0; i < 3; i++)
         {
-            qs.Add(makeQuestion(Question.SeaShells1, _SeaShells, new[] { ordinal(i + 1) }, new[] { new[] { "she sells", "she shells", "sea shells", "sea sells" }[rows[i]] }));
-            qs.Add(makeQuestion(Question.SeaShells2, _SeaShells, new[] { ordinal(i + 1) }, new[] { new[] { "sea shells", "she shells", "sea sells", "she sells" }[cols[i]] }));
-            qs.Add(makeQuestion(Question.SeaShells3, _SeaShells, new[] { ordinal(i + 1) }, new[] { new[] { "sea shore", "she sore", "she sure", "seesaw" }[keynums[i]] }));
+            qs.Add(makeQuestion(Question.SeaShells1, _SeaShells, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { new[] { "she sells", "she shells", "sea shells", "sea sells" }[rows[i]] }));
+            qs.Add(makeQuestion(Question.SeaShells2, _SeaShells, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { new[] { "sea shells", "she shells", "sea sells", "she sells" }[cols[i]] }));
+            qs.Add(makeQuestion(Question.SeaShells3, _SeaShells, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { new[] { "sea shore", "she sore", "she sure", "seesaw" }[keynums[i]] }));
         }
         addQuestions(module, qs);
     }
@@ -234,7 +234,7 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(_ShiftingMaze);
         var seedSplit = Regex.Replace(seed, " ", "").Split(':');
-        addQuestions(module, makeQuestion(Question.ShiftingMazeSeed, _ShiftingMaze, null, new[] { seedSplit[1] }));
+        addQuestions(module, makeQuestion(Question.ShiftingMazeSeed, _ShiftingMaze, formatArgs: null, correctAnswers: new[] { seedSplit[1] }));
     }
 
     private IEnumerable<object> ProcessSillySlots(KMBombModule module)
@@ -266,7 +266,7 @@ public partial class SouvenirModule
         {
             var slotStrings = ((Array) prevSlots[stage]).Cast<object>().Select(obj => (fldColor.GetFrom(obj).ToString() + " " + fldShape.GetFrom(obj).ToString()).ToLowerInvariant()).ToArray();
             for (int slot = 0; slot < slotStrings.Length; slot++)
-                qs.Add(makeQuestion(Question.SillySlots, _SillySlots, new[] { ordinal(slot + 1), ordinal(stage + 1) }, new[] { slotStrings[slot] }, slotStrings));
+                qs.Add(makeQuestion(Question.SillySlots, _SillySlots, formatArgs: new[] { ordinal(slot + 1), ordinal(stage + 1) }, correctAnswers: new[] { slotStrings[slot] }, preferredWrongAnswers: slotStrings));
         }
         addQuestions(module, qs);
     }
@@ -285,7 +285,7 @@ public partial class SouvenirModule
             throw new AbandonModuleException("_calls=[{0}]; expected each element to start with the previous.", calls.Select(c => string.Format(@"""{0}""", c)).JoinString(", "));
 
         var formatArgs = new[] { "played in the first stage", "added in the second stage", "added in the third stage" };
-        addQuestions(module, calls.Select((c, ix) => makeQuestion(Question.SimonSamplesSamples, _SimonSamples, new[] { formatArgs[ix] }, new[] { (ix == 0 ? c : c.Substring(calls[ix - 1].Length)).Replace("0", "K").Replace("1", "S").Replace("2", "H").Replace("3", "O") })));
+        addQuestions(module, calls.Select((c, ix) => makeQuestion(Question.SimonSamplesSamples, _SimonSamples, formatArgs: new[] { formatArgs[ix] }, correctAnswers: new[] { (ix == 0 ? c : c.Substring(calls[ix - 1].Length)).Replace("0", "K").Replace("1", "S").Replace("2", "H").Replace("3", "O") })));
     }
 
     private IEnumerable<object> ProcessSimonSays(KMBombModule module)
@@ -340,7 +340,7 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         var lastSeq = seqs.Last();
         foreach (var i in stageIxs)     // Only ask about the flashing colors that were relevant in the big table
-            qs.Add(makeQuestion(Question.SimonScreamsFlashing, _SimonScreams, new[] { ordinal(i + 1) }, new[] { colors[lastSeq[i]] }));
+            qs.Add(makeQuestion(Question.SimonScreamsFlashing, _SimonScreams, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colors[lastSeq[i]] }));
 
         // First determine which rule applied in which stage
         var fldCheck = GetField<Func<int[], bool>>(rules.GetValue(0), "Check", isPublic: true);
@@ -363,9 +363,9 @@ public partial class SouvenirModule
                     applicableStages.Add(ordinal(stage + 1));
             if (applicableStages.Count > 0)
                 qs.Add(makeQuestion(Question.SimonScreamsRule, _SimonScreams,
-                    new[] { fldRuleName.GetFrom(rules.GetValue(rule)) },
-                    new[] { applicableStages.Count == stageRules.Length ? "all of them" : applicableStages.JoinString(", ", lastSeparator: " and ") },
-                    applicableStages.Count == 1
+                    formatArgs: new[] { fldRuleName.GetFrom(rules.GetValue(rule)) },
+                    correctAnswers: new[] { applicableStages.Count == stageRules.Length ? "all of them" : applicableStages.JoinString(", ", lastSeparator: " and ") },
+                    preferredWrongAnswers: applicableStages.Count == 1
                         ? Enumerable.Range(1, seqs.Length).Select(i => ordinal(i)).ToArray()
                         : Enumerable.Range(1, seqs.Length).SelectMany(a => Enumerable.Range(a + 1, seqs.Length - a).Select(b => ordinal(a) + " and " + ordinal(b))).Concat(new[] { "all of them" }).ToArray()));
         }
@@ -430,9 +430,9 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(_SimonSends);
         addQuestions(module,
-            makeQuestion(Question.SimonSendsReceivedLetters, _SimonSends, new[] { "red" }, new[] { charR }, new[] { charG, charB }),
-            makeQuestion(Question.SimonSendsReceivedLetters, _SimonSends, new[] { "green" }, new[] { charG }, new[] { charR, charB }),
-            makeQuestion(Question.SimonSendsReceivedLetters, _SimonSends, new[] { "blue" }, new[] { charB }, new[] { charR, charG }));
+            makeQuestion(Question.SimonSendsReceivedLetters, _SimonSends, formatArgs: new[] { "red" }, correctAnswers: new[] { charR }, preferredWrongAnswers: new[] { charG, charB }),
+            makeQuestion(Question.SimonSendsReceivedLetters, _SimonSends, formatArgs: new[] { "green" }, correctAnswers: new[] { charG }, preferredWrongAnswers: new[] { charR, charB }),
+            makeQuestion(Question.SimonSendsReceivedLetters, _SimonSends, formatArgs: new[] { "blue" }, correctAnswers: new[] { charB }, preferredWrongAnswers: new[] { charR, charG }));
     }
 
     private IEnumerable<object> ProcessSimonShouts(KMBombModule module)
@@ -498,7 +498,7 @@ public partial class SouvenirModule
 
         var noteNames = new[] { "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B" };
         var flashingColorSequences = GetArrayField<int[]>(comp, "_flashingColors").Get(expectedLength: 3, validator: seq => seq.Any(col => col < 0 || col >= noteNames.Length) ? string.Format("expected range 0–{0}", noteNames.Length - 1) : null);
-        addQuestions(module, flashingColorSequences.SelectMany((seq, stage) => seq.Select((col, ix) => makeQuestion(Question.SimonSingsFlashing, _SimonSings, new[] { ordinal(ix + 1), ordinal(stage + 1) }, new[] { noteNames[col] }))));
+        addQuestions(module, flashingColorSequences.SelectMany((seq, stage) => seq.Select((col, ix) => makeQuestion(Question.SimonSingsFlashing, _SimonSings, formatArgs: new[] { ordinal(ix + 1), ordinal(stage + 1) }, correctAnswers: new[] { noteNames[col] }))));
     }
 
     private IEnumerable<object> ProcessSimonSounds(KMBombModule module)
@@ -556,7 +556,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_SimonsStar);
 
-        addQuestions(module, flashes.Select((f, ix) => makeQuestion(Question.SimonsStarColors, _SimonsStar, new[] { ordinal(ix + 1) }, new[] { f })));
+        addQuestions(module, flashes.Select((f, ix) => makeQuestion(Question.SimonsStarColors, _SimonsStar, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { f })));
     }
 
     private IEnumerable<object> ProcessSimonStages(KMBombModule module)
@@ -577,12 +577,12 @@ public partial class SouvenirModule
         var stage4Flash = flashList.Invoke(4);
         var stage5Flash = flashList.Invoke(5);
 
-        addQuestions(module, indicators.Select((ans, i) => makeQuestion(Question.SimonStagesIndicator, _SimonStages, new[] { ordinal(i + 1) }, new[] { ans }))
-            .Concat(stage1Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "first" }, new[] { ans })))
-            .Concat(stage2Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "second" }, new[] { ans })))
-            .Concat(stage3Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "third" }, new[] { ans })))
-            .Concat(stage4Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "4th" }, new[] { ans })))
-            .Concat(stage5Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, _SimonStages, new[] { ordinal(i + 1), "5th" }, new[] { ans }))));
+        addQuestions(module, indicators.Select((ans, i) => makeQuestion(Question.SimonStagesIndicator, _SimonStages, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { ans }))
+            .Concat(stage1Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, _SimonStages, formatArgs: new[] { ordinal(i + 1), "first" }, correctAnswers: new[] { ans })))
+            .Concat(stage2Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, _SimonStages, formatArgs: new[] { ordinal(i + 1), "second" }, correctAnswers: new[] { ans })))
+            .Concat(stage3Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, _SimonStages, formatArgs: new[] { ordinal(i + 1), "third" }, correctAnswers: new[] { ans })))
+            .Concat(stage4Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, _SimonStages, formatArgs: new[] { ordinal(i + 1), "4th" }, correctAnswers: new[] { ans })))
+            .Concat(stage5Flash.Select((ans, i) => makeQuestion(Question.SimonStagesFlashes, _SimonStages, formatArgs: new[] { ordinal(i + 1), "5th" }, correctAnswers: new[] { ans }))));
     }
 
     private IEnumerable<object> ProcessSimonStates(KMBombModule module)
@@ -615,12 +615,12 @@ public partial class SouvenirModule
             var c = puzzleDisplay[i].Count(b => b);
             if (c != 3)
                 qs.Add(makeQuestion(Question.SimonStatesDisplay, _SimonStates,
-                    new[] { "color(s) flashed", ordinal(i + 1) },
-                    new[] { c == 4 ? "all 4" : puzzleDisplay[i].Select((v, j) => v ? colorNames[j] : null).Where(x => x != null).JoinString(", ") }));
+                    formatArgs: new[] { "color(s) flashed", ordinal(i + 1) },
+                    correctAnswers: new[] { c == 4 ? "all 4" : puzzleDisplay[i].Select((v, j) => v ? colorNames[j] : null).Where(x => x != null).JoinString(", ") }));
             if (c != 1)
                 qs.Add(makeQuestion(Question.SimonStatesDisplay, _SimonStates,
-                    new[] { "color(s) didn’t flash", ordinal(i + 1) },
-                    new[] { c == 4 ? "none" : puzzleDisplay[i].Select((v, j) => v ? null : colorNames[j]).Where(x => x != null).JoinString(", ") }));
+                    formatArgs: new[] { "color(s) didn’t flash", ordinal(i + 1) },
+                    correctAnswers: new[] { c == 4 ? "none" : puzzleDisplay[i].Select((v, j) => v ? null : colorNames[j]).Where(x => x != null).JoinString(", ") }));
         }
         addQuestions(module, qs);
     }
@@ -639,7 +639,7 @@ public partial class SouvenirModule
 
         var colors = GetArrayField<string>(comp, "outputSequence").Get(expectedLength: 5);
         addQuestions(module, colors.Select((color, ix) =>
-             makeQuestion(Question.SimonStopsColors, _SimonStops, new[] { ordinal(ix + 1) }, new[] { color }, colors)));
+             makeQuestion(Question.SimonStopsColors, _SimonStops, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { color }, preferredWrongAnswers: colors)));
     }
 
     private IEnumerable<object> ProcessSimonStores(KMBombModule module)
@@ -798,16 +798,16 @@ public partial class SouvenirModule
                 makeQuestion(
                     Question.SonicTheHedgehogPictures,
                     _SonicTheHedgehog,
-                    new[] { ordinal(i + 1) },
-                    new[] { pictureNameMapping[pics[i].name].Name },
-                    pictureNameMapping.Values.Where(inf => inf.Stage == i).Select(inf => inf.Name).ToArray()))
+                    formatArgs: new[] { ordinal(i + 1) },
+                    correctAnswers: new[] { pictureNameMapping[pics[i].name].Name },
+                    preferredWrongAnswers: pictureNameMapping.Values.Where(inf => inf.Stage == i).Select(inf => inf.Name).ToArray()))
             .Concat(new[] { "Running Boots", "Invincibility", "Extra Life", "Rings" }.Select((screenName, i) =>
                 makeQuestion(
                     Question.SonicTheHedgehogSounds,
                     _SonicTheHedgehog,
-                    new[] { screenName },
-                    new[] { soundNameMapping[sounds[i]] },
-                    sounds.Select(s => soundNameMapping[s]).ToArray()))));
+                    formatArgs: new[] { screenName },
+                    correctAnswers: new[] { soundNameMapping[sounds[i]] },
+                    preferredWrongAnswers: sounds.Select(s => soundNameMapping[s]).ToArray()))));
     }
 
     private IEnumerable<object> ProcessSorting(KMBombModule module)
@@ -864,7 +864,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(0.1f);
 
         _modulesSolved.IncSafe(_Souvenir);
-        addQuestion(module, Question.SouvenirFirstQuestion, null, new[] { firstModule }, modules.ToArray());
+        addQuestion(module, Question.SouvenirFirstQuestion, correctAnswers: new[] { firstModule }, preferredWrongAnswers: modules.ToArray());
     }
 
     private IEnumerable<object> ProcessSpaceTraders(KMBombModule module)
@@ -902,7 +902,7 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(_SpellingBee);
         var focus = GetField<int>(comp, "chosenWord").Get();
-        addQuestions(module, makeQuestion(Question.SpellingBeeWord, _SpellingBee, null, new[] { wordList[focus] }, wordList.ToArray()));
+        addQuestions(module, makeQuestion(Question.SpellingBeeWord, _SpellingBee, formatArgs: null, correctAnswers: new[] { wordList[focus] }, preferredWrongAnswers: wordList.ToArray()));
     }
 
     private IEnumerable<object> ProcessSphere(KMBombModule module)
@@ -918,11 +918,11 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(_Sphere);
         addQuestions(module,
-            makeQuestion(Question.SphereColors, _Sphere, new[] { "first" }, new[] { colorNames[colors[0]] }),
-            makeQuestion(Question.SphereColors, _Sphere, new[] { "second" }, new[] { colorNames[colors[1]] }),
-            makeQuestion(Question.SphereColors, _Sphere, new[] { "third" }, new[] { colorNames[colors[2]] }),
-            makeQuestion(Question.SphereColors, _Sphere, new[] { "fourth" }, new[] { colorNames[colors[3]] }),
-            makeQuestion(Question.SphereColors, _Sphere, new[] { "fifth" }, new[] { colorNames[colors[4]] }));
+            makeQuestion(Question.SphereColors, _Sphere, formatArgs: new[] { "first" }, correctAnswers: new[] { colorNames[colors[0]] }),
+            makeQuestion(Question.SphereColors, _Sphere, formatArgs: new[] { "second" }, correctAnswers: new[] { colorNames[colors[1]] }),
+            makeQuestion(Question.SphereColors, _Sphere, formatArgs: new[] { "third" }, correctAnswers: new[] { colorNames[colors[2]] }),
+            makeQuestion(Question.SphereColors, _Sphere, formatArgs: new[] { "fourth" }, correctAnswers: new[] { colorNames[colors[3]] }),
+            makeQuestion(Question.SphereColors, _Sphere, formatArgs: new[] { "fifth" }, correctAnswers: new[] { colorNames[colors[4]] }));
     }
 
     private IEnumerable<object> ProcessSplittingTheLoot(KMBombModule module)
@@ -960,7 +960,7 @@ public partial class SouvenirModule
 
         var faultyBall = GetField<int>(comp, "jon").Get();
         var colorNames = new[] { "Blue", "Green", "Orange", "Red" };
-        addQuestions(module, makeQuestion(Question.SpotTheDifferenceFaultyBall, _SpotTheDifference, null, new[] { colorNames[faultyBall] }, colorNames));
+        addQuestions(module, makeQuestion(Question.SpotTheDifferenceFaultyBall, _SpotTheDifference, formatArgs: null, correctAnswers: new[] { colorNames[faultyBall] }, preferredWrongAnswers: colorNames));
     }
 
     private IEnumerable<object> ProcessStackedSequences(KMBombModule module)
@@ -1005,7 +1005,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_StateOfAggregation);
 
         // Convert to proper case.
-        addQuestions(module, makeQuestion(Question.StateOfAggregationElement, _StateOfAggregation, null, new[] { element.Substring(0, 1).ToUpperInvariant() + element.Substring(1).ToLowerInvariant() }));
+        addQuestions(module, makeQuestion(Question.StateOfAggregationElement, _StateOfAggregation, formatArgs: null, correctAnswers: new[] { element.Substring(0, 1).ToUpperInvariant() + element.Substring(1).ToLowerInvariant() }));
     }
 
     private IEnumerable<object> ProcessSubscribeToPewdiepie(KMBombModule module)
@@ -1092,10 +1092,10 @@ public partial class SouvenirModule
             throw new AbandonModuleException("topColor1/bottomColor1/topColor2/bottomColor2 have unexpected values: {1}, {2}, {3}, {4} (expected 1–6).", _moduleId, topColor1, bottomColor1, topColor2, bottomColor2);
 
         addQuestions(module,
-            makeQuestion(Question.SwitchInitialColor, _Switch, new[] { "top", "first" }, new[] { colorNames[topColor1 - 1] }),
-            makeQuestion(Question.SwitchInitialColor, _Switch, new[] { "bottom", "first" }, new[] { colorNames[bottomColor1 - 1] }),
-            makeQuestion(Question.SwitchInitialColor, _Switch, new[] { "top", "second" }, new[] { colorNames[topColor2 - 1] }),
-            makeQuestion(Question.SwitchInitialColor, _Switch, new[] { "bottom", "second" }, new[] { colorNames[bottomColor2 - 1] }));
+            makeQuestion(Question.SwitchInitialColor, _Switch, formatArgs: new[] { "top", "first" }, correctAnswers: new[] { colorNames[topColor1 - 1] }),
+            makeQuestion(Question.SwitchInitialColor, _Switch, formatArgs: new[] { "bottom", "first" }, correctAnswers: new[] { colorNames[bottomColor1 - 1] }),
+            makeQuestion(Question.SwitchInitialColor, _Switch, formatArgs: new[] { "top", "second" }, correctAnswers: new[] { colorNames[topColor2 - 1] }),
+            makeQuestion(Question.SwitchInitialColor, _Switch, formatArgs: new[] { "bottom", "second" }, correctAnswers: new[] { colorNames[bottomColor2 - 1] }));
     }
 
     private IEnumerable<object> ProcessSwitches(KMBombModule module)
@@ -1148,8 +1148,8 @@ public partial class SouvenirModule
         var colorsOfTheMaze = GetArrayField<string>(comp, "ColorsOfMaze").Get();
 
         addQuestions(module,
-            makeQuestion(Question.SwitchingMazeSeed, _SwitchingMaze, null, new[] { seedSplit[1] }),
-            makeQuestion(Question.SwitchingMazeColor, _SwitchingMaze, null, new[] { colorsOfTheMaze[numberBasis] }, colorsOfTheMaze));
+            makeQuestion(Question.SwitchingMazeSeed, _SwitchingMaze, formatArgs: null, correctAnswers: new[] { seedSplit[1] }),
+            makeQuestion(Question.SwitchingMazeColor, _SwitchingMaze, formatArgs: null, correctAnswers: new[] { colorsOfTheMaze[numberBasis] }, preferredWrongAnswers: colorsOfTheMaze));
     }
 
     private IEnumerable<object> ProcessSymbolCycle(KMBombModule module)
@@ -1174,7 +1174,7 @@ public partial class SouvenirModule
             throw new AbandonModuleException("No cycles.");
 
         _modulesSolved.IncSafe(_SymbolCycle);
-        addQuestions(module, new[] { "left", "right" }.Select((screen, ix) => makeQuestion(Question.SymbolCycleSymbolCounts, _SymbolCycle, new[] { screen }, new[] { cycles[ix].Length.ToString() })));
+        addQuestions(module, new[] { "left", "right" }.Select((screen, ix) => makeQuestion(Question.SymbolCycleSymbolCounts, _SymbolCycle, formatArgs: new[] { screen }, correctAnswers: new[] { cycles[ix].Length.ToString() })));
     }
 
     private IEnumerable<object> ProcessSymbolicCoordinates(KMBombModule module)

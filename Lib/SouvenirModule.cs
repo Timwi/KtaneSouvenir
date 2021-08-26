@@ -38,14 +38,13 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] SymbolicCoordinatesSprites;
     public Sprite[] WavetappingSprites;
     public Sprite[] FlagsSprites;
-    public Sprite[] Tiles4x4Sprites;    // Arranged in reading order
-    public Sprite[] Tiles7x7Sprites;    // Used by Zero, Zero
     public Sprite[] EncryptedEquationsSprites;
     public Sprite[] SimonSpeaksSprites;
 
     public TextMesh TextMesh;
     public Renderer TextRenderer;
     public Renderer SurfaceRenderer;
+    public SpriteRenderer QuestionSprite;
     public GameObject WarningIcon;
     public Material FontMaterial;
     public Font[] Fonts;
@@ -245,7 +244,7 @@ public partial class SouvenirModule : MonoBehaviour
             "There... are... FOUR! BOMBS!!!", // “There... are... FOUR! LIGHTS!!!” (Star Trek TNG, Chain of Command)
             "It’s a beautiful thing, the detonation of bombs." // “It’s a beautiful thing, the destruction of words.” (1984)
 
-        ).PickRandom(), 1.75);
+        ).PickRandom(), 1.75, useQuestionSprite: false);
 
         if (transform.parent != null)
         {
@@ -438,6 +437,7 @@ public partial class SouvenirModule : MonoBehaviour
     private void disappear()
     {
         TextMesh.gameObject.SetActive(false);
+        QuestionSprite.gameObject.SetActive(false);
         AnswersParent.SetActive(false);
     }
 
@@ -557,13 +557,15 @@ public partial class SouvenirModule : MonoBehaviour
     {
         Debug.LogFormat("[Souvenir #{0}] Asking question: {1}", _moduleId, q.DebugString);
         _currentQuestion = q;
-        SetWordWrappedText(q.QuestionText, q.DesiredHeightFactor);
+        SetWordWrappedText(q.QuestionText, q.DesiredHeightFactor, q.QuestionSprite != null);
+        QuestionSprite.gameObject.SetActive(q.QuestionSprite != null);
+        QuestionSprite.sprite = q.QuestionSprite;
         q.SetAnswers(this);
         AnswersParent.SetActive(true);
         Audio.PlaySoundAtTransform("Question", transform);
     }
 
-    private static readonly double[][] _acceptableWidths = Ut.NewArray(
+    private static readonly double[][] _acceptableWidthsWithoutQuestionSprite = Ut.NewArray(
         // First value is y (vertical text advancement), second value is width of the Surface mesh at this y
         new[] { 0.834 - 0.834, 0.834 + 0.3556 },
         new[] { 0.834 - 0.7628, 0.834 + 0.424 },
@@ -571,11 +573,20 @@ public partial class SouvenirModule : MonoBehaviour
         new[] { 0.834 - 0.528, 0.834 + 0.5102 },
         new[] { 0.834 - 0.4452, 0.834 + 0.6618 },
         new[] { 0.834 - 0.4452, 0.834 + 0.7745 },
-        new[] { 0.834 - 0.391, 0.834 + 0.834 }
-    );
+        new[] { 0.834 - 0.391, 0.834 + 0.834 });
 
-    private void SetWordWrappedText(string text, double desiredHeightFactor)
+    private static readonly double[][] _acceptableWidthsWithQuestionSprite = Ut.NewArray(
+        // First value is y (vertical text advancement), second value is width of the Surface mesh at this y
+        new[] { 0.834 - 0.834, 0.834 + 0.3556 },
+        new[] { 0.834 - 0.7628, 0.834 + 0.424 },
+        new[] { 0.834 - 0.6864, 0.834 + 0.424 },
+        new[] { 0.834 - 0.528, 0.834 + 0.5102 },
+        new[] { 0.834 + 0.255, 0.834 + 0.5102 },
+        new[] { 0.834 + 0.256, 0.834 + 0.834 });
+
+    private void SetWordWrappedText(string text, double desiredHeightFactor, bool useQuestionSprite)
     {
+        var acceptableWidths = useQuestionSprite ? _acceptableWidthsWithQuestionSprite : _acceptableWidthsWithoutQuestionSprite;
         var low = 1;
         var high = 256;
         var desiredHeight = desiredHeightFactor * SurfaceSizeFactor;
@@ -606,14 +617,14 @@ public partial class SouvenirModule : MonoBehaviour
                     while (wrapWidths.Count < line)
                         wrapWidths.Add(0);
                     var i = 1;
-                    while (i < _acceptableWidths.Length && _acceptableWidths[i][0] < y)
+                    while (i < acceptableWidths.Length && acceptableWidths[i][0] < y)
                         i++;
-                    if (i == _acceptableWidths.Length)
-                        wrapWidths.Add(_acceptableWidths[i - 1][1] * SurfaceSizeFactor);
+                    if (i == acceptableWidths.Length)
+                        wrapWidths.Add(acceptableWidths[i - 1][1] * SurfaceSizeFactor);
                     else
                     {
-                        var lambda = (y - _acceptableWidths[i - 1][0]) / (_acceptableWidths[i][0] - _acceptableWidths[i - 1][0]);
-                        wrapWidths.Add((_acceptableWidths[i - 1][1] * (1 - lambda) + _acceptableWidths[i][1] * lambda) * SurfaceSizeFactor);
+                        var lambda = (y - acceptableWidths[i - 1][0]) / (acceptableWidths[i][0] - acceptableWidths[i - 1][0]);
+                        wrapWidths.Add((acceptableWidths[i - 1][1] * (1 - lambda) + acceptableWidths[i][1] * lambda) * SurfaceSizeFactor);
                     }
 
                     return wrapWidths[line];
@@ -694,7 +705,8 @@ public partial class SouvenirModule : MonoBehaviour
                     if (!canMoveNext)
                         break;
                     yield return e.Current;
-                    if (TwitchAbandonModule.Contains(module))
+
+                    if (TwitchAbandonModule.Contains(module) && Environment.MachineName != "CORNFLOWER")    // CORNFLOWER = Timwi’s computer
                     {
                         Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because Twitch Plays told me to.", _moduleId, module.ModuleDisplayName);
                         yield break;
@@ -862,14 +874,14 @@ public partial class SouvenirModule : MonoBehaviour
     #endregion
 
     #region Methods for adding questions to the pool (used by module handlers)
-    private void addQuestion(KMBombModule module, Question question, string[] formatArguments = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null)
+    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string[] formatArguments = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null)
     {
-        addQuestions(module, makeQuestion(question, module.ModuleType, formatArguments, correctAnswers, preferredWrongAnswers));
+        addQuestions(module, makeQuestion(question, module.ModuleType, questionSprite, formatArguments, correctAnswers, preferredWrongAnswers));
     }
 
-    private void addQuestion(KMBombModule module, Question question, string[] formatArguments = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null)
+    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string[] formatArguments = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null)
     {
-        addQuestions(module, makeQuestion(question, module.ModuleType, formatArguments, correctAnswers, preferredWrongAnswers));
+        addQuestions(module, makeQuestion(question, module.ModuleType, questionSprite, formatArguments, correctAnswers, preferredWrongAnswers));
     }
 
     private void addQuestions(KMBombModule module, IEnumerable<QandA> questions)
@@ -894,59 +906,52 @@ public partial class SouvenirModule : MonoBehaviour
         addQuestions(module, (IEnumerable<QandA>) questions);
     }
 
-    private string titleCase(string str)
-    {
-        return str.Length < 1 ? str : char.ToUpperInvariant(str[0]) + str.Substring(1).ToLowerInvariant();
-    }
+    private static readonly AnswerType[] _standardAnswerTypes = ((AnswerType[]) Enum.GetValues(typeof(AnswerType))).Where(a => (int) a >= 0).ToArray();
 
-    private QandA makeQuestion(Question question, string moduleKey, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null)
+    private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null) =>
+        makeQuestion(question, moduleKey,
+            (attr, q, correct, answers) => new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), Fonts[(int) attr.Type], attr.FontSize, FontTextures[(int) attr.Type], FontMaterial, attr.Layout),
+            formatArgs, correctAnswers, preferredWrongAnswers, null, questionSprite, _standardAnswerTypes);
+
+    private QandA makeQuestion(Question question, string moduleKey, Font font, Texture fontTexture, Sprite questionSprite = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null) =>
+        makeQuestion(question, moduleKey,
+            (attr, q, correct, answers) => new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), font, attr.FontSize, fontTexture, FontMaterial, attr.Layout),
+            formatArgs, correctAnswers, preferredWrongAnswers, null, questionSprite, AnswerType.DynamicFont);
+
+    private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null) =>
+        makeQuestion(question, moduleKey,
+            (attr, q, correct, answers) => new QandASprite(attr.ModuleNameWithThe, q, correct, answers.ToArray()),
+            formatArgs, correctAnswers, preferredWrongAnswers, null, questionSprite, AnswerType.Sprites);
+
+    private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string[] formatArgs = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null)
     {
+        var w = correctAnswers[0].Width;
+        var h = correctAnswers[0].Height;
+        if (correctAnswers.Concat(preferredWrongAnswers ?? Enumerable.Empty<Coord>()).Any(c => c.Width != w || c.Height != h))
+        {
+            Debug.LogErrorFormat("<Souvenir #{0}> The module handler for {1} provided grid coordinates for different sizes of grids.", _moduleId, moduleKey);
+            throw new InvalidOperationException();
+        }
         return makeQuestion(question, moduleKey,
-            (attr, q, correct, answers) =>
-            {
-                if (attr.Type == AnswerType.DynamicFont || attr.Type == AnswerType.Sprites)
-                    throw new AbandonModuleException("The module handler attempted to output a question that requires a sprite or dynamic font, but didn’t supply one.");
-                return new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), Fonts[(int) attr.Type], attr.FontSize, FontTextures[(int) attr.Type], FontMaterial, attr.Layout);
-            },
-            formatArgs, correctAnswers, preferredWrongAnswers);
+            (attr, q, correct, answers) => new QandASprite(attr.ModuleNameWithThe, q, correct, answers.Select(ans => generateGridSprite(ans, 1)).ToArray()),
+            formatArgs, correctAnswers, preferredWrongAnswers, Enumerable.Range(0, w * h).Select(ix => new Coord(w, h, ix)).ToArray(), questionSprite, AnswerType.Grid);
     }
 
-    private QandA makeQuestion(Question question, string moduleKey, Font font, Texture fontTexture, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null)
-    {
-        return makeQuestion(question, moduleKey,
-            (attr, q, correct, answers) =>
-            {
-                if (attr.Type != AnswerType.DynamicFont)
-                    throw new AbandonModuleException("The module handler attempted to use a dynamic font but the corresponding question is not marked as AnswerType.DynamicFont.");
-                return new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), font, attr.FontSize, fontTexture, FontMaterial, attr.Layout);
-            },
-            formatArgs, correctAnswers, preferredWrongAnswers);
-    }
-
-    private QandA makeQuestion(Question question, string moduleKey, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null)
-    {
-        return makeQuestion(question, moduleKey,
-            (attr, q, correct, answers) =>
-            {
-                if (attr.Type != AnswerType.Sprites)
-                {
-                    Debug.LogErrorFormat("<Souvenir #{0}> The module handler for {1} attempted to use a sprite but the corresponding question is not marked as AnswerType.Sprite.", _moduleId, moduleKey);
-                    throw new InvalidOperationException();
-                }
-                return new QandASprite(attr.ModuleNameWithThe, q, correct, answers.ToArray());
-            },
-            formatArgs, correctAnswers, preferredWrongAnswers);
-    }
-
-    private QandA makeQuestion<T>(Question question, string moduleKey, Func<SouvenirQuestionAttribute, string, int, T[], QandA> questionConstructor, string[] formatArgs = null, T[] correctAnswers = null, T[] preferredWrongAnswers = null)
+    private QandA makeQuestion<T>(Question question, string moduleKey, Func<SouvenirQuestionAttribute, string, int, T[], QandA> questionConstructor,
+        string[] formatArgs, T[] correctAnswers, T[] preferredWrongAnswers, T[] allAnswers, Sprite questionSprite, params AnswerType[] acceptableTypes)
     {
         if (!_attributes.TryGetValue(question, out var attr))
         {
             Debug.LogErrorFormat("<Souvenir #{1}> Question {0} has no SouvenirQuestionAttribute.", question, _moduleId);
             return null;
         }
+        if (!acceptableTypes.Contains(attr.Type))
+        {
+            Debug.LogErrorFormat("<Souvenir #{0}> The module handler for {1} attempted to generate question {2} (type={3}) but used the wrong answer type.", _moduleId, moduleKey, question, attr.Type);
+            return null;
+        }
 
-        var allAnswers = attr.AllAnswers as T[];
+        allAnswers ??= attr.AllAnswers as T[];
         if (allAnswers != null)
         {
             var inconsistency = correctAnswers.Except(allAnswers).FirstOrDefault();
@@ -979,7 +984,8 @@ public partial class SouvenirModule : MonoBehaviour
         else
         {
             // Pick 𝑛−1 random wrong answers.
-            if (allAnswers != null) answers.AddRange(allAnswers.Except(correctAnswers));
+            if (allAnswers != null)
+                answers.AddRange(allAnswers.Except(correctAnswers));
             if (answers.Count <= attr.NumAnswers - 1)
             {
                 if (attr.AnswerGenerator != null && typeof(T) == typeof(string))
@@ -1000,7 +1006,8 @@ public partial class SouvenirModule : MonoBehaviour
                 answers.AddRange(preferredWrongAnswers.Except(answers.Concat(correctAnswers)).Distinct());
         }
         answers.Shuffle();
-        if (answers.Count >= attr.NumAnswers) answers.RemoveRange(attr.NumAnswers - 1, answers.Count - (attr.NumAnswers - 1));
+        if (answers.Count >= attr.NumAnswers)
+            answers.RemoveRange(attr.NumAnswers - 1, answers.Count - (attr.NumAnswers - 1));
 
         var correctIndex = Rnd.Range(0, answers.Count + 1);
         answers.Insert(correctIndex, correctAnswers.PickRandom());
@@ -1026,6 +1033,8 @@ public partial class SouvenirModule : MonoBehaviour
         ? throw new InvalidOperationException(string.Format("<Souvenir #{0}> Question {1} is missing from the _attributes dictionary.", _moduleId, question))
         : attr.AllAnswers;
 
+    private string titleCase(string str) => str.Length < 1 ? str : char.ToUpperInvariant(str[0]) + str.Substring(1).ToLowerInvariant();
+
     private string ordinal(int number)
     {
         if (number < 0)
@@ -1045,6 +1054,30 @@ public partial class SouvenirModule : MonoBehaviour
             case 3: return number + "rd";
             default: return number + "th";
         }
+    }
+    #endregion
+
+    #region
+    private readonly Dictionary<string, Texture2D> _gridSpriteCache = new Dictionary<string, Texture2D>();
+    private Sprite generateGridSprite(Coord coord, float size)
+    {
+        var tw = 4 * coord.Width + 1;
+        var th = 4 * coord.Height + 1;
+        var key = $"{coord.Width}:{coord.Height}:{coord.Index}";
+        if (!_gridSpriteCache.TryGetValue(key, out var tx))
+        {
+            tx = new Texture2D(tw, th, TextureFormat.ARGB32, false);
+            tx.SetPixels32(Ut.NewArray(tw * th, ix =>
+                (ix % tw) % 4 == 0 || (ix / tw) % 4 == 0 ? new Color32(0xFF, 0xF8, 0xDD, 0xFF) :
+                (ix % tw) / 4 + coord.Width * (coord.Height - 1 - (ix / tw / 4)) == coord.Index ? new Color32(0xD8, 0x40, 0x00, 0xFF) : new Color32(0xFF, 0xF8, 0xDD, 0x00)));
+            tx.Apply();
+            tx.wrapMode = TextureWrapMode.Clamp;
+            tx.filterMode = FilterMode.Point;
+            _gridSpriteCache.Add(key, tx);
+        }
+        var sprite = Sprite.Create(tx, new Rect(0, 0, tw, th), new Vector2(.5f, .5f), th * (60f / 17) * size);
+        sprite.name = coord.ToString();
+        return sprite;
     }
     #endregion
 

@@ -56,10 +56,10 @@ public partial class SouvenirModule
         var labelColors = GetArrayField<string>(comp, "AnswerColors").Get(expectedLength: 2);
 
         addQuestions(module,
-           makeQuestion(Question.WhatsOnSecondDisplayText, _WhatsOnSecond, new[] { "first" }, new[] { labels[0].ToLowerInvariant() }),
-           makeQuestion(Question.WhatsOnSecondDisplayText, _WhatsOnSecond, new[] { "second" }, new[] { labels[1].ToLowerInvariant() }),
-           makeQuestion(Question.WhatsOnSecondDisplayColor, _WhatsOnSecond, new[] { "first" }, new[] { labelColors[0] }),
-           makeQuestion(Question.WhatsOnSecondDisplayColor, _WhatsOnSecond, new[] { "second" }, new[] { labelColors[1] }));
+           makeQuestion(Question.WhatsOnSecondDisplayText, _WhatsOnSecond, formatArgs: new[] { "first" }, correctAnswers: new[] { labels[0].ToLowerInvariant() }),
+           makeQuestion(Question.WhatsOnSecondDisplayText, _WhatsOnSecond, formatArgs: new[] { "second" }, correctAnswers: new[] { labels[1].ToLowerInvariant() }),
+           makeQuestion(Question.WhatsOnSecondDisplayColor, _WhatsOnSecond, formatArgs: new[] { "first" }, correctAnswers: new[] { labelColors[0] }),
+           makeQuestion(Question.WhatsOnSecondDisplayColor, _WhatsOnSecond, formatArgs: new[] { "second" }, correctAnswers: new[] { labelColors[1] }));
     }
 
     private IEnumerable<object> ProcessWhiteCipher(KMBombModule module)
@@ -96,7 +96,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(0.1f);
 
         _modulesSolved.IncSafe(_WhosOnFirst);
-        addQuestions(module, displayWords.Select((word, stage) => makeQuestion(Question.WhosOnFirstDisplay, _WhosOnFirst, new[] { ordinal(stage + 1) }, new[] { word }, displayWords)));
+        addQuestions(module, displayWords.Select((word, stage) => makeQuestion(Question.WhosOnFirstDisplay, _WhosOnFirst, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { word }, preferredWrongAnswers: displayWords)));
     }
 
     private IEnumerable<object> ProcessWire(KMBombModule module)
@@ -110,9 +110,9 @@ public partial class SouvenirModule
 
         var dials = GetArrayField<Renderer>(comp, "renderers", isPublic: true).Get(expectedLength: 3);
         addQuestions(module,
-            makeQuestion(Question.WireDialColors, _Wire, new[] { "top" }, new[] { dials[0].material.mainTexture.name.Replace("Mat", "") }),
-            makeQuestion(Question.WireDialColors, _Wire, new[] { "bottom-left" }, new[] { dials[1].material.mainTexture.name.Replace("Mat", "") }),
-            makeQuestion(Question.WireDialColors, _Wire, new[] { "bottom-right" }, new[] { dials[2].material.mainTexture.name.Replace("Mat", "") }),
+            makeQuestion(Question.WireDialColors, _Wire, formatArgs: new[] { "top" }, correctAnswers: new[] { dials[0].material.mainTexture.name.Replace("Mat", "") }),
+            makeQuestion(Question.WireDialColors, _Wire, formatArgs: new[] { "bottom-left" }, correctAnswers: new[] { dials[1].material.mainTexture.name.Replace("Mat", "") }),
+            makeQuestion(Question.WireDialColors, _Wire, formatArgs: new[] { "bottom-right" }, correctAnswers: new[] { dials[2].material.mainTexture.name.Replace("Mat", "") }),
             makeQuestion(Question.WireDisplayedNumber, _Wire, correctAnswers: new[] { GetIntField(comp, "displayedNumber").Get().ToString() }));
     }
 
@@ -136,9 +136,9 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (var ix = 0; ix < 4; ix++)
         {
-            qs.Add(makeQuestion(Question.WireOrderingDisplayColor, _WireOrdering, new[] { ordinal(ix + 1) }, new[] { colors[chosenColorsDisplay[ix]] }));
-            qs.Add(makeQuestion(Question.WireOrderingDisplayNumber, _WireOrdering, new[] { ordinal(ix + 1) }, new[] { chosenDisplayNumbers[ix].ToString() }));
-            qs.Add(makeQuestion(Question.WireOrderingWireColor, _WireOrdering, new[] { ordinal(ix + 1) }, new[] { colors[chosenColorsWire[ix]] }));
+            qs.Add(makeQuestion(Question.WireOrderingDisplayColor, _WireOrdering, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { colors[chosenColorsDisplay[ix]] }));
+            qs.Add(makeQuestion(Question.WireOrderingDisplayNumber, _WireOrdering, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { chosenDisplayNumbers[ix].ToString() }));
+            qs.Add(makeQuestion(Question.WireOrderingWireColor, _WireOrdering, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { colors[chosenColorsWire[ix]] }));
         }
         addQuestions(module, qs);
     }
@@ -170,7 +170,7 @@ public partial class SouvenirModule
             for (int i = 0; i < 3; i++)
                 preferredWrongAnswers[i] = counts[i].ToString();
             preferredWrongAnswers[3] = (counts[color] == 0 ? 1 : counts[color] - 1).ToString();
-            qs.Add(makeQuestion(Question.WireSequenceColorCount, _WireSequence, new[] { new[] { "black", "blue", "red" }[color] }, new[] { counts[color].ToString() }, preferredWrongAnswers));
+            qs.Add(makeQuestion(Question.WireSequenceColorCount, _WireSequence, formatArgs: new[] { new[] { "black", "blue", "red" }[color] }, correctAnswers: new[] { counts[color].ToString() }, preferredWrongAnswers: preferredWrongAnswers));
         }
         addQuestions(module, qs);
     }
@@ -199,7 +199,7 @@ public partial class SouvenirModule
                 correctAnswers: present ? animalsPresent : allAnimals.Except(animalsPresent).ToArray(),
                 preferredWrongAnswers: present ? allAnimals : animalsPresent));
         }
-        questions.Add(makeQuestion(Question.WolfGoatAndCabbageBoatSize, _WolfGoatAndCabbage, null, new[] { boatSize.ToString() }));
+        questions.Add(makeQuestion(Question.WolfGoatAndCabbageBoatSize, _WolfGoatAndCabbage, formatArgs: null, correctAnswers: new[] { boatSize.ToString() }));
         addQuestions(module, questions);
     }
 
@@ -214,6 +214,6 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_WorkingTitle);
 
-        addQuestions(module, makeQuestion(Question.WorkingTitleLabel, _WorkingTitle, null, new[] { correctAnswer }));
+        addQuestions(module, makeQuestion(Question.WorkingTitleLabel, _WorkingTitle, formatArgs: null, correctAnswers: new[] { correctAnswer }));
     }
 }

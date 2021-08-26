@@ -82,8 +82,8 @@ public partial class SouvenirModule
         var rowColor = GetField<string>(comp, "_color2").Get();
 
         addQuestions(module,
-            makeQuestion(Question.DecoloredSquaresStartingPos, _DecoloredSquares, new[] { "column" }, new[] { colColor }),
-            makeQuestion(Question.DecoloredSquaresStartingPos, _DecoloredSquares, new[] { "row" }, new[] { rowColor }));
+            makeQuestion(Question.DecoloredSquaresStartingPos, _DecoloredSquares, formatArgs: new[] { "column" }, correctAnswers: new[] { colColor }),
+            makeQuestion(Question.DecoloredSquaresStartingPos, _DecoloredSquares, formatArgs: new[] { "row" }, correctAnswers: new[] { rowColor }));
     }
 
     private IEnumerable<object> ProcessDiscoloredSquares(KMBombModule module)
@@ -99,19 +99,8 @@ public partial class SouvenirModule
         var positions = GetArrayField<int>(comp, "_rememberedPositions").Get(expectedLength: 4);
         var colors = colorsRaw.Cast<object>().Select(obj => obj.ToString()).ToArray();
 
-        addQuestions(module,
-            makeQuestion(Question.DiscoloredSquaresRememberedPositions, _DiscoloredSquares, new[] { colors[0] },
-                preferredWrongAnswers: Tiles4x4Sprites,
-                correctAnswers: new[] { Tiles4x4Sprites[positions[0]] }),
-            makeQuestion(Question.DiscoloredSquaresRememberedPositions, _DiscoloredSquares, new[] { colors[1] },
-                preferredWrongAnswers: Tiles4x4Sprites,
-                correctAnswers: new[] { Tiles4x4Sprites[positions[1]] }),
-            makeQuestion(Question.DiscoloredSquaresRememberedPositions, _DiscoloredSquares, new[] { colors[2] },
-                preferredWrongAnswers: Tiles4x4Sprites,
-                correctAnswers: new[] { Tiles4x4Sprites[positions[2]] }),
-            makeQuestion(Question.DiscoloredSquaresRememberedPositions, _DiscoloredSquares, new[] { colors[3] },
-                preferredWrongAnswers: Tiles4x4Sprites,
-                correctAnswers: new[] { Tiles4x4Sprites[positions[3]] }));
+        addQuestions(module, Enumerable.Range(0, 4).Select(color =>
+            makeQuestion(Question.DiscoloredSquaresRememberedPositions, _DiscoloredSquares, formatArgs: new[] { colors[color] }, correctAnswers: new[] { new Coord(4, 4, positions[color]) })));
     }
 
     private IEnumerable<object> ProcessDivisibleNumbers(KMBombModule module)
@@ -172,8 +161,8 @@ public partial class SouvenirModule
         var colorNames = new[] { "Green", "Blue", "Red", "Pink", "Yellow" };
 
         addQuestions(module,
-            makeQuestion(Question.DoubleColorColors, _DoubleColor, new[] { "first" }, new[] { colorNames[color1] }),
-            makeQuestion(Question.DoubleColorColors, _DoubleColor, new[] { "second" }, new[] { colorNames[color2] }));
+            makeQuestion(Question.DoubleColorColors, _DoubleColor, formatArgs: new[] { "first" }, correctAnswers: new[] { colorNames[color1] }),
+            makeQuestion(Question.DoubleColorColors, _DoubleColor, formatArgs: new[] { "second" }, correctAnswers: new[] { colorNames[color2] }));
     }
 
     private IEnumerable<object> ProcessDoubleOh(KMBombModule module)
@@ -221,7 +210,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_Dreamcipher);
 
         string targetWord = GetField<string>(comp, "targetWord").Get().ToLowerInvariant();
-        addQuestions(module, makeQuestion(Question.DreamcipherWord, _Dreamcipher, null, new[] { targetWord }, wordList));
+        addQuestions(module, makeQuestion(Question.DreamcipherWord, _Dreamcipher, formatArgs: null, correctAnswers: new[] { targetWord }, preferredWrongAnswers: wordList));
     }
 
     private IEnumerable<object> ProcessDumbWaiters(KMBombModule module)

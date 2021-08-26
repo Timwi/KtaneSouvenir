@@ -34,7 +34,7 @@ public partial class SouvenirModule
         }
 
         invalidAnswer.Add(answer);
-        addQuestions(module, makeQuestion(Question.HereditaryBaseNotationInitialNumber, _HereditaryBaseNotation, null, new[] { answer }, invalidAnswer.ToArray()));
+        addQuestions(module, makeQuestion(Question.HereditaryBaseNotationInitialNumber, _HereditaryBaseNotation, formatArgs: null, correctAnswers: new[] { answer }, preferredWrongAnswers: invalidAnswer.ToArray()));
     }
 
     private IEnumerable<object> ProcessHexabutton(KMBombModule module)
@@ -94,7 +94,7 @@ public partial class SouvenirModule
             : makeQuestion(Question.HexOSCipher, _HexOS, correctAnswers: new[] { decipher.JoinString(), decipher.Reverse().JoinString() }, preferredWrongAnswers: cipherWrongAnswers));
         qs.Add(makeQuestion(Question.HexOSSum, _HexOS, correctAnswers: new[] { sum }, preferredWrongAnswers: wrongAnswers));
         for (var offset = 0; offset < 10; offset++)
-            qs.Add(makeQuestion(Question.HexOSScreen, _HexOS, new[] { ordinal(offset + 1) }, correctAnswers: new[] { screen.Substring(offset * 3, 3) }));
+            qs.Add(makeQuestion(Question.HexOSScreen, _HexOS, formatArgs: new[] { ordinal(offset + 1) }, correctAnswers: new[] { screen.Substring(offset * 3, 3) }));
         addQuestions(module, qs);
     }
 
@@ -114,7 +114,7 @@ public partial class SouvenirModule
 
         if (colors.Length == 9)
             led.material = colors[8];
-        addQuestion(module, Question.HiddenColorsLED, null, new[] { ledcolors[ledcolor] });
+        addQuestion(module, Question.HiddenColorsLED, correctAnswers: new[] { ledcolors[ledcolor] });
     }
 
     private IEnumerable<object> ProcessHillCycle(KMBombModule module)
@@ -180,7 +180,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_HoldUps);
 
-        addQuestions(module, Enumerable.Range(0, isItFiveStages.Get() ? 5 : 3).Select(stage => makeQuestion(Question.HoldUpsShadows, _HoldUps, new[] { ordinal(stage + 1) }, new[] { shadows[stage] })));
+        addQuestions(module, Enumerable.Range(0, isItFiveStages.Get() ? 5 : 3).Select(stage => makeQuestion(Question.HoldUpsShadows, _HoldUps, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { shadows[stage] })));
     }
 
     private IEnumerable<object> ProcessHomophones(KMBombModule module)
@@ -205,13 +205,13 @@ public partial class SouvenirModule
         {
             string thisWord = selectedWords[i];
             if (allCWords.Contains(thisWord))
-                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, _Homophones, new[] { ordinal(i + 1) }, new[] { thisWord }, selectedWords.Union(allCWords).ToArray()));
+                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, _Homophones, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { thisWord }, preferredWrongAnswers: selectedWords.Union(allCWords).ToArray()));
             else if (allLWords.Contains(thisWord))
-                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, _Homophones, new[] { ordinal(i + 1) }, new[] { thisWord }, selectedWords.Union(allLWords).ToArray()));
+                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, _Homophones, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { thisWord }, preferredWrongAnswers: selectedWords.Union(allLWords).ToArray()));
             else if (allIWords.Contains(thisWord))
-                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, _Homophones, new[] { ordinal(i + 1) }, new[] { thisWord }, selectedWords.Union(allIWords).ToArray()));
+                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, _Homophones, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { thisWord }, preferredWrongAnswers: selectedWords.Union(allIWords).ToArray()));
             else if (allOneWords.Contains(thisWord))
-                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, _Homophones, new[] { ordinal(i + 1) }, new[] { thisWord }, selectedWords.Union(allOneWords).ToArray()));
+                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, _Homophones, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { thisWord }, preferredWrongAnswers: selectedWords.Union(allOneWords).ToArray()));
             else
                 throw new AbandonModuleException("The given phrase “{0}” is not one of the possible words that can be found in Homophones.", thisWord);
         }
@@ -233,18 +233,18 @@ public partial class SouvenirModule
         var colors = GetListField<string>(comp, "correctStageColours", isPublic: true).Get(expectedLength: 5);
 
         addQuestions(module,
-            makeQuestion(Question.HorribleMemoryPositions, _HorribleMemory, new[] { "first" }, new[] { pos[0].ToString() }),
-            makeQuestion(Question.HorribleMemoryPositions, _HorribleMemory, new[] { "second" }, new[] { pos[1].ToString() }),
-            makeQuestion(Question.HorribleMemoryPositions, _HorribleMemory, new[] { "third" }, new[] { pos[2].ToString() }),
-            makeQuestion(Question.HorribleMemoryPositions, _HorribleMemory, new[] { "fourth" }, new[] { pos[3].ToString() }),
-            makeQuestion(Question.HorribleMemoryLabels, _HorribleMemory, new[] { "first" }, new[] { lbl[0].ToString() }),
-            makeQuestion(Question.HorribleMemoryLabels, _HorribleMemory, new[] { "second" }, new[] { lbl[1].ToString() }),
-            makeQuestion(Question.HorribleMemoryLabels, _HorribleMemory, new[] { "third" }, new[] { lbl[2].ToString() }),
-            makeQuestion(Question.HorribleMemoryLabels, _HorribleMemory, new[] { "fourth" }, new[] { lbl[3].ToString() }),
-            makeQuestion(Question.HorribleMemoryColors, _HorribleMemory, new[] { "first" }, new[] { colors[0] }),
-            makeQuestion(Question.HorribleMemoryColors, _HorribleMemory, new[] { "second" }, new[] { colors[1] }),
-            makeQuestion(Question.HorribleMemoryColors, _HorribleMemory, new[] { "third" }, new[] { colors[2] }),
-            makeQuestion(Question.HorribleMemoryColors, _HorribleMemory, new[] { "fourth" }, new[] { colors[3] }));
+            makeQuestion(Question.HorribleMemoryPositions, _HorribleMemory, formatArgs: new[] { "first" }, correctAnswers: new[] { pos[0].ToString() }),
+            makeQuestion(Question.HorribleMemoryPositions, _HorribleMemory, formatArgs: new[] { "second" }, correctAnswers: new[] { pos[1].ToString() }),
+            makeQuestion(Question.HorribleMemoryPositions, _HorribleMemory, formatArgs: new[] { "third" }, correctAnswers: new[] { pos[2].ToString() }),
+            makeQuestion(Question.HorribleMemoryPositions, _HorribleMemory, formatArgs: new[] { "fourth" }, correctAnswers: new[] { pos[3].ToString() }),
+            makeQuestion(Question.HorribleMemoryLabels, _HorribleMemory, formatArgs: new[] { "first" }, correctAnswers: new[] { lbl[0].ToString() }),
+            makeQuestion(Question.HorribleMemoryLabels, _HorribleMemory, formatArgs: new[] { "second" }, correctAnswers: new[] { lbl[1].ToString() }),
+            makeQuestion(Question.HorribleMemoryLabels, _HorribleMemory, formatArgs: new[] { "third" }, correctAnswers: new[] { lbl[2].ToString() }),
+            makeQuestion(Question.HorribleMemoryLabels, _HorribleMemory, formatArgs: new[] { "fourth" }, correctAnswers: new[] { lbl[3].ToString() }),
+            makeQuestion(Question.HorribleMemoryColors, _HorribleMemory, formatArgs: new[] { "first" }, correctAnswers: new[] { colors[0] }),
+            makeQuestion(Question.HorribleMemoryColors, _HorribleMemory, formatArgs: new[] { "second" }, correctAnswers: new[] { colors[1] }),
+            makeQuestion(Question.HorribleMemoryColors, _HorribleMemory, formatArgs: new[] { "third" }, correctAnswers: new[] { colors[2] }),
+            makeQuestion(Question.HorribleMemoryColors, _HorribleMemory, formatArgs: new[] { "fourth" }, correctAnswers: new[] { colors[3] }));
     }
 
     private IEnumerable<object> ProcessHumanResources(KMBombModule module)
@@ -265,10 +265,10 @@ public partial class SouvenirModule
 
         var descs = GetArrayField<int>(comp, "_availableDescs").Get(expectedLength: 5);
         addQuestions(module,
-            makeQuestion(Question.HumanResourcesDescriptors, _HumanResources, new[] { "red" }, descs.Take(3).Select(ix => fldDesc.GetFrom(people.GetValue(ix))).ToArray()),
-            makeQuestion(Question.HumanResourcesDescriptors, _HumanResources, new[] { "green" }, descs.Skip(3).Select(ix => fldDesc.GetFrom(people.GetValue(ix))).ToArray()),
-            makeQuestion(Question.HumanResourcesHiredFired, _HumanResources, new[] { "fired" }, new[] { fldName.GetFrom(people.GetValue(personToFire)) }),
-            makeQuestion(Question.HumanResourcesHiredFired, _HumanResources, new[] { "hired" }, new[] { fldName.GetFrom(people.GetValue(personToHire)) }));
+            makeQuestion(Question.HumanResourcesDescriptors, _HumanResources, formatArgs: new[] { "red" }, correctAnswers: descs.Take(3).Select(ix => fldDesc.GetFrom(people.GetValue(ix))).ToArray()),
+            makeQuestion(Question.HumanResourcesDescriptors, _HumanResources, formatArgs: new[] { "green" }, correctAnswers: descs.Skip(3).Select(ix => fldDesc.GetFrom(people.GetValue(ix))).ToArray()),
+            makeQuestion(Question.HumanResourcesHiredFired, _HumanResources, formatArgs: new[] { "fired" }, correctAnswers: new[] { fldName.GetFrom(people.GetValue(personToFire)) }),
+            makeQuestion(Question.HumanResourcesHiredFired, _HumanResources, formatArgs: new[] { "hired" }, correctAnswers: new[] { fldName.GetFrom(people.GetValue(personToHire)) }));
     }
 
     private IEnumerable<object> ProcessHunting(KMBombModule module)
@@ -320,7 +320,7 @@ public partial class SouvenirModule
 
         var questions = new List<QandA>();
         for (var i = 0; i < 11; i++)
-            questions.Add(makeQuestion(Question.HyperlinkCharacters, _Hyperlink, new[] { ordinal(i + 1) }, new[] { hyperlink[i].ToString() }));
+            questions.Add(makeQuestion(Question.HyperlinkCharacters, _Hyperlink, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { hyperlink[i].ToString() }));
         questions.Add(makeQuestion(Question.HyperlinkAnswer, _Hyperlink, correctAnswers: new[] { moduleNames[anchor + 1].Replace("'", "’") }));
 
         addQuestions(module, questions);

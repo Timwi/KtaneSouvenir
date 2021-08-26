@@ -43,10 +43,10 @@ public partial class SouvenirModule
 
         for (var i = 0; i < 3; i++)
         {
-            qs.Add(makeQuestion(Question.IceCreamFlavour, _IceCream, new[] { "was on offer, but not sold,", ordinal(i + 1) }, flavours[i].Where(ix => ix != solution[i]).Select(ix => flavourNames[ix]).ToArray()));
-            qs.Add(makeQuestion(Question.IceCreamFlavour, _IceCream, new[] { "was not on offer", ordinal(i + 1) }, flavourNames.Where((f, ix) => !flavours[i].Contains(ix)).ToArray()));
+            qs.Add(makeQuestion(Question.IceCreamFlavour, _IceCream, formatArgs: new[] { "was on offer, but not sold,", ordinal(i + 1) }, correctAnswers: flavours[i].Where(ix => ix != solution[i]).Select(ix => flavourNames[ix]).ToArray()));
+            qs.Add(makeQuestion(Question.IceCreamFlavour, _IceCream, formatArgs: new[] { "was not on offer", ordinal(i + 1) }, correctAnswers: flavourNames.Where((f, ix) => !flavours[i].Contains(ix)).ToArray()));
             if (i != 2)
-                qs.Add(makeQuestion(Question.IceCreamCustomer, _IceCream, new[] { ordinal(i + 1) }, new[] { customerNames[customers[i]] }, preferredWrongAnswers: customers.Select(ix => customerNames[ix]).ToArray()));
+                qs.Add(makeQuestion(Question.IceCreamCustomer, _IceCream, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { customerNames[customers[i]] }, preferredWrongAnswers: customers.Select(ix => customerNames[ix]).ToArray()));
         }
 
         addQuestions(module, qs);
@@ -190,9 +190,9 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_iPhone);
 
         addQuestions(module,
-            makeQuestion(Question.iPhoneDigits, _iPhone, new[] { "first" }, new[] { digits[0] }, new[] { digits[1], digits[2], digits[3] }),
-            makeQuestion(Question.iPhoneDigits, _iPhone, new[] { "second" }, new[] { digits[1] }, new[] { digits[0], digits[2], digits[3] }),
-            makeQuestion(Question.iPhoneDigits, _iPhone, new[] { "third" }, new[] { digits[2] }, new[] { digits[1], digits[0], digits[3] }),
-            makeQuestion(Question.iPhoneDigits, _iPhone, new[] { "fourth" }, new[] { digits[3] }, new[] { digits[1], digits[2], digits[0] }));
+            makeQuestion(Question.iPhoneDigits, _iPhone, formatArgs: new[] { "first" }, correctAnswers: new[] { digits[0] }, preferredWrongAnswers: new[] { digits[1], digits[2], digits[3] }),
+            makeQuestion(Question.iPhoneDigits, _iPhone, formatArgs: new[] { "second" }, correctAnswers: new[] { digits[1] }, preferredWrongAnswers: new[] { digits[0], digits[2], digits[3] }),
+            makeQuestion(Question.iPhoneDigits, _iPhone, formatArgs: new[] { "third" }, correctAnswers: new[] { digits[2] }, preferredWrongAnswers: new[] { digits[1], digits[0], digits[3] }),
+            makeQuestion(Question.iPhoneDigits, _iPhone, formatArgs: new[] { "fourth" }, correctAnswers: new[] { digits[3] }, preferredWrongAnswers: new[] { digits[1], digits[2], digits[0] }));
     }
 }

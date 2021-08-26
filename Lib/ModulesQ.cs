@@ -27,7 +27,7 @@ public partial class SouvenirModule
             var preferredWrongAnswers = new HashSet<string>();
             while (preferredWrongAnswers.Count < 6)
                 preferredWrongAnswers.Add(correctValues[i].Select(x => Math.Max(x + Rnd.Range(-4, 5), 1)).JoinString(", "));
-            qs.Add(makeQuestion(Question.QuaverArrows, _Quaver, new[] { ordinal(i + 1) }, correctAnswers: new[] { correctValues[i].JoinString(", ") }, preferredWrongAnswers: preferredWrongAnswers.ToArray()));
+            qs.Add(makeQuestion(Question.QuaverArrows, _Quaver, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { correctValues[i].JoinString(", ") }, preferredWrongAnswers: preferredWrongAnswers.ToArray()));
         }
         addQuestions(module, qs);
     }
@@ -47,8 +47,8 @@ public partial class SouvenirModule
         var colorNames = GetArrayField<string>(comp, "potentialColorsName", isPublic: true).Get(expectedLength: 5);
 
         addQuestions(module,
-            numbers.Select((n, ix) => makeQuestion(Question.QuintuplesNumbers, _Quintuples, new[] { ordinal(ix % 5 + 1), ordinal(ix / 5 + 1) }, new[] { (n % 10).ToString() })).Concat(
-            colors.Select((color, ix) => makeQuestion(Question.QuintuplesColors, _Quintuples, new[] { ordinal(ix % 5 + 1), ordinal(ix / 5 + 1) }, new[] { color }))).Concat(
-            colorCounts.Select((cc, ix) => makeQuestion(Question.QuintuplesColorCounts, _Quintuples, new[] { colorNames[ix] }, new[] { cc.ToString() }))));
+            numbers.Select((n, ix) => makeQuestion(Question.QuintuplesNumbers, _Quintuples, formatArgs: new[] { ordinal(ix % 5 + 1), ordinal(ix / 5 + 1) }, correctAnswers: new[] { (n % 10).ToString() })).Concat(
+            colors.Select((color, ix) => makeQuestion(Question.QuintuplesColors, _Quintuples, formatArgs: new[] { ordinal(ix % 5 + 1), ordinal(ix / 5 + 1) }, correctAnswers: new[] { color }))).Concat(
+            colorCounts.Select((cc, ix) => makeQuestion(Question.QuintuplesColorCounts, _Quintuples, formatArgs: new[] { colorNames[ix] }, correctAnswers: new[] { cc.ToString() }))));
     }
 }

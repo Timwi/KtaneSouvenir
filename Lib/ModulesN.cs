@@ -21,13 +21,13 @@ public partial class SouvenirModule
         string[] chaptersString = chapters.Select(x => x.ToString()).ToArray();
 
         addQuestions(module,
-            makeQuestion(Question.NecronomiconChapters, _Necronomicon, new[] { "first" }, new[] { chaptersString[0] }, chaptersString),
-            makeQuestion(Question.NecronomiconChapters, _Necronomicon, new[] { "second" }, new[] { chaptersString[1] }, chaptersString),
-            makeQuestion(Question.NecronomiconChapters, _Necronomicon, new[] { "third" }, new[] { chaptersString[2] }, chaptersString),
-            makeQuestion(Question.NecronomiconChapters, _Necronomicon, new[] { "fourth" }, new[] { chaptersString[3] }, chaptersString),
-            makeQuestion(Question.NecronomiconChapters, _Necronomicon, new[] { "fifth" }, new[] { chaptersString[4] }, chaptersString),
-            makeQuestion(Question.NecronomiconChapters, _Necronomicon, new[] { "sixth" }, new[] { chaptersString[5] }, chaptersString),
-            makeQuestion(Question.NecronomiconChapters, _Necronomicon, new[] { "seventh" }, new[] { chaptersString[6] }, chaptersString));
+            makeQuestion(Question.NecronomiconChapters, _Necronomicon, formatArgs: new[] { "first" }, correctAnswers: new[] { chaptersString[0] }, preferredWrongAnswers: chaptersString),
+            makeQuestion(Question.NecronomiconChapters, _Necronomicon, formatArgs: new[] { "second" }, correctAnswers: new[] { chaptersString[1] }, preferredWrongAnswers: chaptersString),
+            makeQuestion(Question.NecronomiconChapters, _Necronomicon, formatArgs: new[] { "third" }, correctAnswers: new[] { chaptersString[2] }, preferredWrongAnswers: chaptersString),
+            makeQuestion(Question.NecronomiconChapters, _Necronomicon, formatArgs: new[] { "fourth" }, correctAnswers: new[] { chaptersString[3] }, preferredWrongAnswers: chaptersString),
+            makeQuestion(Question.NecronomiconChapters, _Necronomicon, formatArgs: new[] { "fifth" }, correctAnswers: new[] { chaptersString[4] }, preferredWrongAnswers: chaptersString),
+            makeQuestion(Question.NecronomiconChapters, _Necronomicon, formatArgs: new[] { "sixth" }, correctAnswers: new[] { chaptersString[5] }, preferredWrongAnswers: chaptersString),
+            makeQuestion(Question.NecronomiconChapters, _Necronomicon, formatArgs: new[] { "seventh" }, correctAnswers: new[] { chaptersString[6] }, preferredWrongAnswers: chaptersString));
     }
 
     private IEnumerable<object> ProcessNegativity(KMBombModule module)
@@ -72,8 +72,8 @@ public partial class SouvenirModule
         }
 
         addQuestions(module,
-            makeQuestion(Question.NegativitySubmittedValue, _Negativity, null, new[] { expectedTotal.ToString() }, incorrectValues.Select(a => a.ToString()).ToArray()),
-            makeQuestion(Question.NegativitySubmittedTernary, _Negativity, null, new[] { string.IsNullOrEmpty(submittedTernary) ? "(empty)" : submittedTernary }, incorrectSubmittedTernary.ToArray()));
+            makeQuestion(Question.NegativitySubmittedValue, _Negativity, formatArgs: null, correctAnswers: new[] { expectedTotal.ToString() }, preferredWrongAnswers: incorrectValues.Select(a => a.ToString()).ToArray()),
+            makeQuestion(Question.NegativitySubmittedTernary, _Negativity, formatArgs: null, correctAnswers: new[] { string.IsNullOrEmpty(submittedTernary) ? "(empty)" : submittedTernary }, preferredWrongAnswers: incorrectSubmittedTernary.ToArray()));
     }
 
     private IEnumerable<object> ProcessNeutralization(KMBombModule module)
@@ -178,8 +178,8 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (var stage = 0; stage < colours.Length; stage++)
         {
-            qs.Add(makeQuestion(Question.NotKeypadColor, _NotKeypad, new[] { ordinal(stage + 1) }, new[] { strings[(int) colours.GetValue(stage) - 1] }));
-            qs.Add(makeQuestion(Question.NotKeypadSymbol, _NotKeypad, new[] { ordinal(stage + 1) }, new[] { KeypadSprites[(int) symbols.GetValue(buttons[stage])] }, sprites));
+            qs.Add(makeQuestion(Question.NotKeypadColor, _NotKeypad, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { strings[(int) colours.GetValue(stage) - 1] }));
+            qs.Add(makeQuestion(Question.NotKeypadSymbol, _NotKeypad, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { KeypadSprites[(int) symbols.GetValue(buttons[stage])] }, preferredWrongAnswers: sprites));
         }
         addQuestions(module, qs);
     }
@@ -284,13 +284,13 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (var i = 0; i < 4; i++)
         {
-            qs.Add(makeQuestion(Question.NotWhosOnFirstPressedPosition, _NotWhosOnFirst, new[] { ordinal(i + 1) }, new[] { positions[fldPositions.Get()[i]] }));
-            qs.Add(makeQuestion(Question.NotWhosOnFirstPressedLabel, _NotWhosOnFirst, new[] { ordinal(i + 1) }, new[] { fldLabels.Get()[i] }));
+            qs.Add(makeQuestion(Question.NotWhosOnFirstPressedPosition, _NotWhosOnFirst, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { positions[fldPositions.Get()[i]] }));
+            qs.Add(makeQuestion(Question.NotWhosOnFirstPressedLabel, _NotWhosOnFirst, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { fldLabels.Get()[i] }));
         }
         for (var i = 4; i < 6; i++)
         {
-            qs.Add(makeQuestion(Question.NotWhosOnFirstReferencePosition, _NotWhosOnFirst, new[] { ordinal(i - 1) }, new[] { positions[fldPositions.Get()[i]] }));
-            qs.Add(makeQuestion(Question.NotWhosOnFirstReferenceLabel, _NotWhosOnFirst, new[] { ordinal(i - 1) }, new[] { fldLabels.Get()[i] }));
+            qs.Add(makeQuestion(Question.NotWhosOnFirstReferencePosition, _NotWhosOnFirst, formatArgs: new[] { ordinal(i - 1) }, correctAnswers: new[] { positions[fldPositions.Get()[i]] }));
+            qs.Add(makeQuestion(Question.NotWhosOnFirstReferenceLabel, _NotWhosOnFirst, formatArgs: new[] { ordinal(i - 1) }, correctAnswers: new[] { fldLabels.Get()[i] }));
         }
         qs.Add(makeQuestion(Question.NotWhosOnFirstSum, _NotWhosOnFirst, correctAnswers: sumCorrectAnswers));
         addQuestions(module, qs);
@@ -355,6 +355,6 @@ public partial class SouvenirModule
         var numberValue1 = GetField<int>(comp, "numberValue1").Get();
         var numberValue2 = GetField<int>(comp, "numberValue2").Get();
         var answer = numberValue1.ToString() + numberValue2.ToString();
-        addQuestions(module, makeQuestion(Question.NumbersTwoDigit, _Numbers, null, new[] { answer }));
+        addQuestions(module, makeQuestion(Question.NumbersTwoDigit, _Numbers, formatArgs: null, correctAnswers: new[] { answer }));
     }
 }

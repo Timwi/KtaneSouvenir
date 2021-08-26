@@ -11,8 +11,9 @@
         SugarSkullsFont = 5,
         TernaryTilesFont = 6,
 
-        Sprites = -1,           // Special value that doesn’t translate to a font (used for answers that use sprites)
-        DynamicFont = -2    // Special value to indicate that the module handler will obtain the font from the client module
+        Sprites = -1,               // Special value for answers that use sprites
+        DynamicFont = -2,    // Special value to indicate that the module handler will obtain the font from the client module
+        Grid = -3                   // Special value for answers that are positions within an orthogonal rectangular grid (generates a dynamic sprite)
     }
 
     enum AnswerLayout

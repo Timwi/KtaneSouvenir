@@ -30,7 +30,7 @@ public partial class SouvenirModule
         for (int i = 1; i < 14; i++)
             connectedCars[i - 1] = fldCarName.GetFrom(trainCars.GetValue(i));
         for (int i = 0; i < 13; i++)
-            qs.Add(makeQuestion(Question.RailwayCargoLoadingCars, _RailwayCargoLoading, new[] { ordinal(i + 2) }, new[] { connectedCars[i] }, connectedCars));
+            qs.Add(makeQuestion(Question.RailwayCargoLoadingCars, _RailwayCargoLoading, formatArgs: new[] { ordinal(i + 2) }, correctAnswers: new[] { connectedCars[i] }, preferredWrongAnswers: connectedCars));
 
         // Ask about the met or unmet freight table rules
         var fldTableRuleMet = GetIntField(freightTableRules.GetValue(0), "_metAtStage", isPublic: false);
@@ -204,7 +204,7 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         qs.Add(makeQuestion(Question.ReformedRoleReversalCondition, _ReformedRoleReversal, correctAnswers: new[] { ordinal(index[1] + 1) }));
         for (var ix = 0; ix < wires.Length; ix++)
-            qs.Add(makeQuestion(Question.ReformedRoleReversalWire, _ReformedRoleReversal, new[] { ordinal(ix + 1) }, correctAnswers: new[] { colors[wires[ix]] }));
+            qs.Add(makeQuestion(Question.ReformedRoleReversalWire, _ReformedRoleReversal, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { colors[wires[ix]] }));
         addQuestions(module, qs);
     }
 
@@ -266,8 +266,8 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (int i = 0; i < 6; i++)
         {
-            qs.Add(makeQuestion(Question.ReverseMorseCharacters, _ReverseMorse, new[] { ordinal(i + 1), "first" }, new[] { message1[i] }, message1.ToArray()));
-            qs.Add(makeQuestion(Question.ReverseMorseCharacters, _ReverseMorse, new[] { ordinal(i + 1), "second" }, new[] { message2[i] }, message2.ToArray()));
+            qs.Add(makeQuestion(Question.ReverseMorseCharacters, _ReverseMorse, formatArgs: new[] { ordinal(i + 1), "first" }, correctAnswers: new[] { message1[i] }, preferredWrongAnswers: message1.ToArray()));
+            qs.Add(makeQuestion(Question.ReverseMorseCharacters, _ReverseMorse, formatArgs: new[] { ordinal(i + 1), "second" }, correctAnswers: new[] { message2[i] }, preferredWrongAnswers: message2.ToArray()));
         }
         addQuestions(module, qs);
     }
@@ -354,7 +354,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_Roger);
 
         var seededAnswer = GetField<int>(comp, "seed").Get().ToString().PadLeft(4, '0');
-        addQuestions(module, makeQuestion(Question.RogerSeed, _Roger, null, new[] { seededAnswer }));
+        addQuestions(module, makeQuestion(Question.RogerSeed, _Roger, formatArgs: null, correctAnswers: new[] { seededAnswer }));
     }
 
     private IEnumerable<object> ProcessRoleReversal(KMBombModule module)
@@ -379,10 +379,10 @@ public partial class SouvenirModule
 
         var answerIndex = GetField<byte>(comp, "souvenir").Get(b => b < 2 || b > 8 ? "expected range 2–8" : null);
         addQuestions(module,
-            makeQuestion(Question.RoleReversalWires, _RoleReversal, new[] { "warm-colored" }, correctAnswers: new[] { (redWires.Count + orangeWires.Count + yellowWires.Count).ToString() }),
-            makeQuestion(Question.RoleReversalWires, _RoleReversal, new[] { "cold-colored" }, correctAnswers: new[] { (greenWires.Count + blueWires.Count + purpleWires.Count).ToString() }),
-            makeQuestion(Question.RoleReversalWires, _RoleReversal, new[] { "primary-colored" }, correctAnswers: new[] { (redWires.Count + yellowWires.Count + blueWires.Count).ToString() }),
-            makeQuestion(Question.RoleReversalWires, _RoleReversal, new[] { "secondary-colored" }, correctAnswers: new[] { (orangeWires.Count + greenWires.Count + purpleWires.Count).ToString() }),
+            makeQuestion(Question.RoleReversalWires, _RoleReversal, formatArgs: new[] { "warm-colored" }, correctAnswers: new[] { (redWires.Count + orangeWires.Count + yellowWires.Count).ToString() }),
+            makeQuestion(Question.RoleReversalWires, _RoleReversal, formatArgs: new[] { "cold-colored" }, correctAnswers: new[] { (greenWires.Count + blueWires.Count + purpleWires.Count).ToString() }),
+            makeQuestion(Question.RoleReversalWires, _RoleReversal, formatArgs: new[] { "primary-colored" }, correctAnswers: new[] { (redWires.Count + yellowWires.Count + blueWires.Count).ToString() }),
+            makeQuestion(Question.RoleReversalWires, _RoleReversal, formatArgs: new[] { "secondary-colored" }, correctAnswers: new[] { (orangeWires.Count + greenWires.Count + purpleWires.Count).ToString() }),
             makeQuestion(Question.RoleReversalNumber, _RoleReversal, correctAnswers: new[] { answerIndex.ToString() }, preferredWrongAnswers: new[] { "2", "3", "4", "5", "6", "7", "8" }));
     }
 

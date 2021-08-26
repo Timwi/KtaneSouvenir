@@ -400,7 +400,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "column", "row" }, ExampleExtraFormatArgumentGroupSize = 1)]
         DecoloredSquaresStartingPos,
 
-        [SouvenirQuestion("What was {1}’s remembered position in {0}?", "Discolored Squares", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "Tiles4x4Sprites",
+        [SouvenirQuestion("What was {1}’s remembered position in {0}?", "Discolored Squares", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Grid,
             ExampleExtraFormatArguments = new[] { "Blue", "Red", "Yellow", "Green", "Magenta" }, ExampleExtraFormatArgumentGroupSize = 1)]
         DiscoloredSquaresRememberedPositions,
 
@@ -636,9 +636,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the answer in {0}?", "Green Cipher", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "barber", "elixir", "hardly", "jacked", "lamest", "octave", "umpire", "unveil", "waffle", "zoning" })]
         GreenCipherAnswer,
 
-        [SouvenirQuestion("What was the starting location in {0}?", "Gridlock", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "Tiles4x4Sprites")]
+        [SouvenirQuestion("What was the starting location in {0}?", "Gridlock", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Grid)]
         GridLockStartingLocation,
-        [SouvenirQuestion("What was the ending location in {0}?", "Gridlock", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "Tiles4x4Sprites")]
+        [SouvenirQuestion("What was the ending location in {0}?", "Gridlock", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Grid)]
         GridLockEndingLocation,
         [SouvenirQuestion("What was the starting color in {0}?", "Gridlock", AnswerLayout.TwoColumns4Answers, "Green", "Yellow", "Red", "Blue")]
         GridLockStartingColor,
@@ -782,7 +782,7 @@ namespace Souvenir
           ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
         JumbleCycleWord,
 
-        [SouvenirQuestion("Which square was {1} in {0}?", "Kudosudoku", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "Tiles4x4Sprites",
+        [SouvenirQuestion("Which square was {1} in {0}?", "Kudosudoku", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Grid,
             ExampleExtraFormatArguments = new[] { "pre-filled", "not pre-filled" }, ExampleExtraFormatArgumentGroupSize = 1)]
         KudosudokuPrefilled,
 
@@ -1287,14 +1287,14 @@ namespace Souvenir
         [SouvenirQuestion("What was the target word on {0}?", "Purple Arrows", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "Thesis", "Immune", "Agency", "Height", "Active", "Bother", "Viable" })]
         PurpleArrowsFinish,
 
-        [SouvenirQuestion("What was the puzzle number of the {1} puzzle in {0}?", "Puzzle Identification", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "001", "002", "003", "004", "005", "006" },
+        [SouvenirQuestion("What was the {1} puzzle number in {0}?", "Puzzle Identification", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "001", "002", "003", "004", "005", "006" },
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 170, 1, "000")]
         PuzzleIdentificationNum,
-        [SouvenirQuestion("What game did the {1} puzzle come from in {0}?", "Puzzle Identification", AnswerLayout.OneColumn4Answers, null, ExampleAnswers = new[] { "Professor Layton and the Curious Village", "Professor Layton and Pandora's Box", "Professor Layton and the Lost Future", "Professor Layton and the Spectre's Call" },
+        [SouvenirQuestion("What game was the {1} puzzle in {0} from?", "Puzzle Identification", AnswerLayout.OneColumn4Answers, null, ExampleAnswers = new[] { "Professor Layton and the Curious Village", "Professor Layton and Pandora's Box", "Professor Layton and the Lost Future", "Professor Layton and the Spectre's Call" },
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PuzzleIdentificationGame,
-        [SouvenirQuestion("What was the name of the {1} puzzle in {0}?", "Puzzle Identification", AnswerLayout.OneColumn4Answers, null, ExampleAnswers = new[] { "Where's the Village?", "Dr Schrader's Map", "A Party Crasher", "A Secret Message" },
+        [SouvenirQuestion("What was the {1} puzzle in {0}?", "Puzzle Identification", AnswerLayout.OneColumn4Answers, null, ExampleAnswers = new[] { "Where's the Village?", "Dr Schrader's Map", "A Party Crasher", "A Secret Message" },
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PuzzleIdentificationName,
 
@@ -1390,9 +1390,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "warm-colored", "cold-colored", "primary-colored", "secondary-colored" }, ExampleExtraFormatArgumentGroupSize = 1)]
         RoleReversalWires,
 
-        [SouvenirQuestion("Which tile was correctly submitted in the first stage of {0}?", "Scavenger Hunt", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "Tiles4x4Sprites")]
+        [SouvenirQuestion("Which tile was correctly submitted in the first stage of {0}?", "Scavenger Hunt", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Grid)]
         ScavengerHuntKeySquare,
-        [SouvenirQuestion("Which of these tiles was {1} in the first stage of {0}?", "Scavenger Hunt", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "Tiles4x4Sprites",
+        [SouvenirQuestion("Which of these tiles was {1} in the first stage of {0}?", "Scavenger Hunt", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Grid,
             ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ScavengerHuntColoredTiles,
 
@@ -1848,8 +1848,8 @@ namespace Souvenir
         [SouvenirQuestion("How many points were on the {1} star in {0}?", "Zero, Zero", AnswerLayout.ThreeColumns6Answers, "2", "3", "4", "5", "6", "7", "8",
             ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ZeroZeroStarPoints,
-        [SouvenirQuestion("Where was the {1} square in {0}?", "Zero, Zero", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites,
-            SpriteField = "Tiles7x7Sprites", ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("Where was the {1} square in {0}?", "Zero, Zero", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Grid,
+            ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ZeroZeroSquares,
 
         [SouvenirQuestion("What was the {1} decrypted word in {0}?", "Zoni", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "angel", "thing", "dance", "heavy", "quote" },

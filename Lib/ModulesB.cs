@@ -224,7 +224,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Binary);
 
-        addQuestions(module, makeQuestion(Question.BinaryWord, _Binary, null, new[] { GetAnswers(Question.BinaryWord)[GetField<int>(comp, "te").Get()] }));
+        addQuestions(module, makeQuestion(Question.BinaryWord, _Binary, formatArgs: null, correctAnswers: new[] { GetAnswers(Question.BinaryWord)[GetField<int>(comp, "te").Get()] }));
     }
 
     private IEnumerable<object> ProcessBinaryLEDs(KMBombModule module)
@@ -329,16 +329,16 @@ public partial class SouvenirModule
         {
             var initialNumber = GetMethod<int>(comp, "GetInitialNumber", 1, true).Invoke(position);
             var possibleInitialNumbers = GetProperty<HashSet<int>>(comp, "possibleInitialNumbers", true).Get().Select(n => n.ToString()).ToArray();
-            questions.Add(makeQuestion(Question.BinaryShiftInitialNumber, _BinaryShift, new[] { allPositions[position] }, new[] { initialNumber.ToString() }, possibleInitialNumbers));
+            questions.Add(makeQuestion(Question.BinaryShiftInitialNumber, _BinaryShift, formatArgs: new[] { allPositions[position] }, correctAnswers: new[] { initialNumber.ToString() }, preferredWrongAnswers: possibleInitialNumbers));
         }
         var stagesCount = GetProperty<int>(comp, "stagesCount", true).Get();
         for (var stage = 0; stage < stagesCount; stage++)
         {
             var selectedNumberPositions = GetMethod<HashSet<int>>(comp, "GetSelectedNumberPositions", 1, true).Invoke(stage);
             if (selectedNumberPositions.Count < 5)
-                questions.Add(makeQuestion(Question.BinaryShiftSelectedNumberPossition, _BinaryShift, new[] { stage.ToString() }, selectedNumberPositions.Select(p => allPositions[p]).ToArray(), allPositions));
+                questions.Add(makeQuestion(Question.BinaryShiftSelectedNumberPossition, _BinaryShift, formatArgs: new[] { stage.ToString() }, correctAnswers: selectedNumberPositions.Select(p => allPositions[p]).ToArray(), preferredWrongAnswers: allPositions));
             else if (selectedNumberPositions.Count > 5)
-                questions.Add(makeQuestion(Question.BinaryShiftNotSelectedNumberPossition, _BinaryShift, new[] { stage.ToString() }, Enumerable.Range(0, 9).Except(selectedNumberPositions).Select(p => allPositions[p]).ToArray(), allPositions));
+                questions.Add(makeQuestion(Question.BinaryShiftNotSelectedNumberPossition, _BinaryShift, formatArgs: new[] { stage.ToString() }, correctAnswers: Enumerable.Range(0, 9).Except(selectedNumberPositions).Select(p => allPositions[p]).ToArray(), preferredWrongAnswers: allPositions));
         }
         addQuestions(module, questions);
     }
@@ -362,14 +362,14 @@ public partial class SouvenirModule
         var preferredWrongAnswers = qCounts.SelectMany(i => new[] { i, 16 - i }).Distinct().Select(i => i.ToString()).ToArray();
 
         addQuestions(module,
-            makeQuestion(Question.Bitmaps, _Bitmaps, new[] { "white", "top left" }, new[] { qCounts[0].ToString() }, preferredWrongAnswers),
-            makeQuestion(Question.Bitmaps, _Bitmaps, new[] { "white", "top right" }, new[] { qCounts[1].ToString() }, preferredWrongAnswers),
-            makeQuestion(Question.Bitmaps, _Bitmaps, new[] { "white", "bottom left" }, new[] { qCounts[2].ToString() }, preferredWrongAnswers),
-            makeQuestion(Question.Bitmaps, _Bitmaps, new[] { "white", "bottom right" }, new[] { qCounts[3].ToString() }, preferredWrongAnswers),
-            makeQuestion(Question.Bitmaps, _Bitmaps, new[] { "black", "top left" }, new[] { (16 - qCounts[0]).ToString() }, preferredWrongAnswers),
-            makeQuestion(Question.Bitmaps, _Bitmaps, new[] { "black", "top right" }, new[] { (16 - qCounts[1]).ToString() }, preferredWrongAnswers),
-            makeQuestion(Question.Bitmaps, _Bitmaps, new[] { "black", "bottom left" }, new[] { (16 - qCounts[2]).ToString() }, preferredWrongAnswers),
-            makeQuestion(Question.Bitmaps, _Bitmaps, new[] { "black", "bottom right" }, new[] { (16 - qCounts[3]).ToString() }, preferredWrongAnswers));
+            makeQuestion(Question.Bitmaps, _Bitmaps, formatArgs: new[] { "white", "top left" }, correctAnswers: new[] { qCounts[0].ToString() }, preferredWrongAnswers: preferredWrongAnswers),
+            makeQuestion(Question.Bitmaps, _Bitmaps, formatArgs: new[] { "white", "top right" }, correctAnswers: new[] { qCounts[1].ToString() }, preferredWrongAnswers: preferredWrongAnswers),
+            makeQuestion(Question.Bitmaps, _Bitmaps, formatArgs: new[] { "white", "bottom left" }, correctAnswers: new[] { qCounts[2].ToString() }, preferredWrongAnswers: preferredWrongAnswers),
+            makeQuestion(Question.Bitmaps, _Bitmaps, formatArgs: new[] { "white", "bottom right" }, correctAnswers: new[] { qCounts[3].ToString() }, preferredWrongAnswers: preferredWrongAnswers),
+            makeQuestion(Question.Bitmaps, _Bitmaps, formatArgs: new[] { "black", "top left" }, correctAnswers: new[] { (16 - qCounts[0]).ToString() }, preferredWrongAnswers: preferredWrongAnswers),
+            makeQuestion(Question.Bitmaps, _Bitmaps, formatArgs: new[] { "black", "top right" }, correctAnswers: new[] { (16 - qCounts[1]).ToString() }, preferredWrongAnswers: preferredWrongAnswers),
+            makeQuestion(Question.Bitmaps, _Bitmaps, formatArgs: new[] { "black", "bottom left" }, correctAnswers: new[] { (16 - qCounts[2]).ToString() }, preferredWrongAnswers: preferredWrongAnswers),
+            makeQuestion(Question.Bitmaps, _Bitmaps, formatArgs: new[] { "black", "bottom right" }, correctAnswers: new[] { (16 - qCounts[3]).ToString() }, preferredWrongAnswers: preferredWrongAnswers));
     }
 
     private IEnumerable<object> ProcessBlackCipher(KMBombModule module)
@@ -575,7 +575,7 @@ public partial class SouvenirModule
         }
 
         // skip the literally blank buttons.
-        addQuestions(module, pressed.Select((p, i) => p.Length == 0 ? null : makeQuestion(Question.BrokenButtons, _BrokenButtons, new[] { ordinal(i + 1) }, new[] { p }, pressed.Except(new[] { "" }).ToArray())));
+        addQuestions(module, pressed.Select((p, i) => p.Length == 0 ? null : makeQuestion(Question.BrokenButtons, _BrokenButtons, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { p }, preferredWrongAnswers: pressed.Except(new[] { "" }).ToArray())));
     }
 
     private IEnumerable<object> ProcessBrownCipher(KMBombModule module)
@@ -629,7 +629,7 @@ public partial class SouvenirModule
         displayText.text = "";
 
         var moduleNumber = GetArrayField<int>(comp, "moduleNumber").Get(expectedLength: 8, validator: mn => mn < 0 || mn > 9 ? "expected 0–9" : null);
-        addQuestions(module, moduleNumber.Select((mn, ix) => makeQuestion(Question.BurglarAlarmDigits, _BurglarAlarm, new[] { ordinal(ix + 1) }, new[] { mn.ToString() }, moduleNumber.Select(n => n.ToString()).ToArray())));
+        addQuestions(module, moduleNumber.Select((mn, ix) => makeQuestion(Question.BurglarAlarmDigits, _BurglarAlarm, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { mn.ToString() }, preferredWrongAnswers: moduleNumber.Select(n => n.ToString()).ToArray())));
     }
 
     private IEnumerable<object> ProcessButton(KMBombModule module)

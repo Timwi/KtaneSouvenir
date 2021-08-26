@@ -53,7 +53,7 @@ public partial class SouvenirModule
             for (int j = 0; j < i + 3; j++)
             {
                 var possibleWrong = possibleRotations[rotations[i][j].Count(ch => ch == ',')].SelectMany(x => x).ToArray();
-                questions.Add(makeQuestion(rotations[i][j].Split(',').Length - 1 == 0 ? Question.UltraStoresSingleRotation : Question.UltraStoresMultiRotation, _UltraStores, new[] { ordinal(j + 1), ordinal(i + 1) }, new[] { rotations[i][j] }, possibleWrong));
+                questions.Add(makeQuestion(rotations[i][j].Split(',').Length - 1 == 0 ? Question.UltraStoresSingleRotation : Question.UltraStoresMultiRotation, _UltraStores, formatArgs: new[] { ordinal(j + 1), ordinal(i + 1) }, correctAnswers: new[] { rotations[i][j] }, preferredWrongAnswers: possibleWrong));
             }
         }
         addQuestions(module, questions);
@@ -69,8 +69,8 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(_UncoloredSquares);
         addQuestions(module,
-            makeQuestion(Question.UncoloredSquaresFirstStage, _UncoloredSquares, new[] { "first" }, new[] { GetField<object>(comp, "_firstStageColor1").Get().ToString() }),
-            makeQuestion(Question.UncoloredSquaresFirstStage, _UncoloredSquares, new[] { "second" }, new[] { GetField<object>(comp, "_firstStageColor2").Get().ToString() }));
+            makeQuestion(Question.UncoloredSquaresFirstStage, _UncoloredSquares, formatArgs: new[] { "first" }, correctAnswers: new[] { GetField<object>(comp, "_firstStageColor1").Get().ToString() }),
+            makeQuestion(Question.UncoloredSquaresFirstStage, _UncoloredSquares, formatArgs: new[] { "second" }, correctAnswers: new[] { GetField<object>(comp, "_firstStageColor2").Get().ToString() }));
     }
 
     private IEnumerable<object> ProcessUncoloredSwitches(KMBombModule module)
@@ -108,10 +108,10 @@ public partial class SouvenirModule
 
         var instructions = GetArrayField<string>(comp, "Message").Get(expectedLength: 4);
         addQuestions(module,
-            makeQuestion(Question.UnfairCipherInstructions, _UnfairCipher, new[] { "first" }, new[] { instructions[0] }),
-            makeQuestion(Question.UnfairCipherInstructions, _UnfairCipher, new[] { "second" }, new[] { instructions[1] }),
-            makeQuestion(Question.UnfairCipherInstructions, _UnfairCipher, new[] { "third" }, new[] { instructions[2] }),
-            makeQuestion(Question.UnfairCipherInstructions, _UnfairCipher, new[] { "fourth" }, new[] { instructions[3] }));
+            makeQuestion(Question.UnfairCipherInstructions, _UnfairCipher, formatArgs: new[] { "first" }, correctAnswers: new[] { instructions[0] }),
+            makeQuestion(Question.UnfairCipherInstructions, _UnfairCipher, formatArgs: new[] { "second" }, correctAnswers: new[] { instructions[1] }),
+            makeQuestion(Question.UnfairCipherInstructions, _UnfairCipher, formatArgs: new[] { "third" }, correctAnswers: new[] { instructions[2] }),
+            makeQuestion(Question.UnfairCipherInstructions, _UnfairCipher, formatArgs: new[] { "fourth" }, correctAnswers: new[] { instructions[3] }));
     }
 
     private IEnumerable<object> ProcessUnfairsRevenge(KMBombModule module)
@@ -125,10 +125,10 @@ public partial class SouvenirModule
 
         var instructions = GetListField<string>(comp, "splittedInstructions").Get(expectedLength: 4);
         addQuestions(module,
-            makeQuestion(Question.UnfairsRevengeInstructions, _UnfairsRevenge, new[] { "first" }, new[] { instructions[0] }),
-            makeQuestion(Question.UnfairsRevengeInstructions, _UnfairsRevenge, new[] { "second" }, new[] { instructions[1] }),
-            makeQuestion(Question.UnfairsRevengeInstructions, _UnfairsRevenge, new[] { "third" }, new[] { instructions[2] }),
-            makeQuestion(Question.UnfairsRevengeInstructions, _UnfairsRevenge, new[] { "fourth" }, new[] { instructions[3] }));
+            makeQuestion(Question.UnfairsRevengeInstructions, _UnfairsRevenge, formatArgs: new[] { "first" }, correctAnswers: new[] { instructions[0] }),
+            makeQuestion(Question.UnfairsRevengeInstructions, _UnfairsRevenge, formatArgs: new[] { "second" }, correctAnswers: new[] { instructions[1] }),
+            makeQuestion(Question.UnfairsRevengeInstructions, _UnfairsRevenge, formatArgs: new[] { "third" }, correctAnswers: new[] { instructions[2] }),
+            makeQuestion(Question.UnfairsRevengeInstructions, _UnfairsRevenge, formatArgs: new[] { "fourth" }, correctAnswers: new[] { instructions[3] }));
     }
 
     private IEnumerable<object> ProcessUnicode(KMBombModule module)
@@ -149,10 +149,10 @@ public partial class SouvenirModule
             throw new AbandonModuleException("‘SelectedSymbols’ has an unexpected length, length: {0} (expected 4).", symbols.Count);
 
         addQuestions(module,
-            makeQuestion(Question.UnicodeSortedAnswer, _Unicode, new[] { "first" }, new[] { symbols[0] }),
-            makeQuestion(Question.UnicodeSortedAnswer, _Unicode, new[] { "second" }, new[] { symbols[1] }),
-            makeQuestion(Question.UnicodeSortedAnswer, _Unicode, new[] { "third" }, new[] { symbols[2] }),
-            makeQuestion(Question.UnicodeSortedAnswer, _Unicode, new[] { "fourth" }, new[] { symbols[3] }));
+            makeQuestion(Question.UnicodeSortedAnswer, _Unicode, formatArgs: new[] { "first" }, correctAnswers: new[] { symbols[0] }),
+            makeQuestion(Question.UnicodeSortedAnswer, _Unicode, formatArgs: new[] { "second" }, correctAnswers: new[] { symbols[1] }),
+            makeQuestion(Question.UnicodeSortedAnswer, _Unicode, formatArgs: new[] { "third" }, correctAnswers: new[] { symbols[2] }),
+            makeQuestion(Question.UnicodeSortedAnswer, _Unicode, formatArgs: new[] { "fourth" }, correctAnswers: new[] { symbols[3] }));
     }
 
     private IEnumerable<object> ProcessUnownCipher(KMBombModule module)
@@ -165,7 +165,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_UnownCipher);
 
         var unownAnswer = GetArrayField<int>(comp, "letterIndexes").Get(expectedLength: 5, validator: v => v < 0 || v > 25 ? "expected 0–25" : null);
-        addQuestions(module, unownAnswer.Select((ans, i) => makeQuestion(Question.UnownCipherAnswers, _UnownCipher, new[] { ordinal(i + 1) }, new[] { ((char) ('A' + ans)).ToString() })));
+        addQuestions(module, unownAnswer.Select((ans, i) => makeQuestion(Question.UnownCipherAnswers, _UnownCipher, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { ((char) ('A' + ans)).ToString() })));
     }
 
     private IEnumerable<object> ProcessUSAMaze(KMBombModule module)

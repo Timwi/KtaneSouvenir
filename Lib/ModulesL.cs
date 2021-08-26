@@ -21,7 +21,7 @@ public partial class SouvenirModule
         var laserOrder = GetListField<int>(comp, "_laserOrder").Get(expectedLength: 9);
         var hatchesPressed = GetListField<int>(comp, "_hatchesAlreadyPressed").Get(expectedLength: 7);
         var hatchNames = new[] { "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right" };
-        addQuestions(module, hatchesPressed.Select((hatch, ix) => makeQuestion(Question.LasersHatches, _Lasers, new[] { hatchNames[hatch] }, new[] { laserOrder[hatch].ToString() }, hatchesPressed.Select(number => laserOrder[number].ToString()).ToArray())));
+        addQuestions(module, hatchesPressed.Select((hatch, ix) => makeQuestion(Question.LasersHatches, _Lasers, formatArgs: new[] { hatchNames[hatch] }, correctAnswers: new[] { laserOrder[hatch].ToString() }, preferredWrongAnswers: hatchesPressed.Select(number => laserOrder[number].ToString()).ToArray())));
     }
 
     private IEnumerable<object> ProcessLEDEncryption(KMBombModule module)
@@ -73,7 +73,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_LEDEncryption);
         addQuestions(module, Enumerable.Range(0, pressedLetters.Length - 1)
             .Where(i => pressedLetters[i] != null)
-            .Select(stage => makeQuestion(Question.LEDEncryptionPressedLetters, _LEDEncryption, new[] { ordinal(stage + 1) }, new[] { pressedLetters[stage] }, wrongLetters.ToArray())));
+            .Select(stage => makeQuestion(Question.LEDEncryptionPressedLetters, _LEDEncryption, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { pressedLetters[stage] }, preferredWrongAnswers: wrongLetters.ToArray())));
     }
 
     private IEnumerable<object> ProcessLEDMath(KMBombModule module)
@@ -91,9 +91,9 @@ public partial class SouvenirModule
         var ledColors = new[] { "Red", "Blue", "Green", "Yellow" };
 
         addQuestions(module,
-            makeQuestion(Question.LEDMathLights, _LEDMath, new[] { "LED A" }, new[] { ledColors[ledA] }),
-            makeQuestion(Question.LEDMathLights, _LEDMath, new[] { "LED B" }, new[] { ledColors[ledB] }),
-            makeQuestion(Question.LEDMathLights, _LEDMath, new[] { "the operator LED" }, new[] { ledColors[ledOp] }));
+            makeQuestion(Question.LEDMathLights, _LEDMath, formatArgs: new[] { "LED A" }, correctAnswers: new[] { ledColors[ledA] }),
+            makeQuestion(Question.LEDMathLights, _LEDMath, formatArgs: new[] { "LED B" }, correctAnswers: new[] { ledColors[ledB] }),
+            makeQuestion(Question.LEDMathLights, _LEDMath, formatArgs: new[] { "the operator LED" }, correctAnswers: new[] { ledColors[ledOp] }));
     }
 
     private IEnumerable<object> ProcessLEGOs(KMBombModule module)
@@ -139,7 +139,7 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(_LEGOs);
         var colorNames = new[] { "red", "green", "blue", "cyan", "magenta", "yellow" };
-        addQuestions(module, Enumerable.Range(0, 6).Select(i => makeQuestion(Question.LEGOsPieceDimensions, _LEGOs, new[] { colorNames[brickColors[i]] }, new[] { brickDimensions[i][0] + "×" + brickDimensions[i][1] })));
+        addQuestions(module, Enumerable.Range(0, 6).Select(i => makeQuestion(Question.LEGOsPieceDimensions, _LEGOs, formatArgs: new[] { colorNames[brickColors[i]] }, correctAnswers: new[] { brickDimensions[i][0] + "×" + brickDimensions[i][1] })));
     }
 
     private IEnumerable<object> ProcessLinq(KMBombModule module)
@@ -158,7 +158,7 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
         for (int i = 0; i < functions.GetLength(0); i++)
-            qs.Add(makeQuestion(Question.LinqFunction, _Linq, new[] { ordinal(i + 1) }, correctAnswers: new[] { functions.GetValue(i).ToString() }));
+            qs.Add(makeQuestion(Question.LinqFunction, _Linq, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { functions.GetValue(i).ToString() }));
 
         addQuestions(module, qs);
     }
@@ -323,9 +323,9 @@ public partial class SouvenirModule
 
         var _logicalButtonsButtonNames = new[] { "top", "bottom-left", "bottom-right" };
         addQuestions(module,
-            colors.SelectMany((clrs, stage) => clrs.Select((clr, btnIx) => makeQuestion(Question.LogicalButtonsColor, _LogicalButtons, new[] { _logicalButtonsButtonNames[btnIx], ordinal(stage + 1) }, new[] { clr })))
-                .Concat(labels.SelectMany((lbls, stage) => lbls.Select((lbl, btnIx) => makeQuestion(Question.LogicalButtonsLabel, _LogicalButtons, new[] { _logicalButtonsButtonNames[btnIx], ordinal(stage + 1) }, new[] { lbl }))))
-                .Concat(initialOperators.Select((op, stage) => makeQuestion(Question.LogicalButtonsOperator, _LogicalButtons, new[] { ordinal(stage + 1) }, new[] { op }))));
+            colors.SelectMany((clrs, stage) => clrs.Select((clr, btnIx) => makeQuestion(Question.LogicalButtonsColor, _LogicalButtons, formatArgs: new[] { _logicalButtonsButtonNames[btnIx], ordinal(stage + 1) }, correctAnswers: new[] { clr })))
+                .Concat(labels.SelectMany((lbls, stage) => lbls.Select((lbl, btnIx) => makeQuestion(Question.LogicalButtonsLabel, _LogicalButtons, formatArgs: new[] { _logicalButtonsButtonNames[btnIx], ordinal(stage + 1) }, correctAnswers: new[] { lbl }))))
+                .Concat(initialOperators.Select((op, stage) => makeQuestion(Question.LogicalButtonsOperator, _LogicalButtons, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { op }))));
     }
 
     private IEnumerable<object> ProcessLogicGates(KMBombModule module)
@@ -373,9 +373,9 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
         for (int i = 0; i < gateTypeNames.Length; i++)
-            qs.Add(makeQuestion(Question.LogicGatesGates, _LogicGates, new[] { "gate " + (char) ('A' + i) }, new[] { gateTypeNames[i] }));
+            qs.Add(makeQuestion(Question.LogicGatesGates, _LogicGates, formatArgs: new[] { "gate " + (char) ('A' + i) }, correctAnswers: new[] { gateTypeNames[i] }));
         if (!isDuplicateInvalid)
-            qs.Add(makeQuestion(Question.LogicGatesGates, _LogicGates, new[] { "the duplicated gate" }, new[] { duplicate }));
+            qs.Add(makeQuestion(Question.LogicGatesGates, _LogicGates, formatArgs: new[] { "the duplicated gate" }, correctAnswers: new[] { duplicate }));
         addQuestions(module, qs);
     }
 
@@ -393,10 +393,10 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_LombaxCubes);
 
         addQuestions(module,
-            makeQuestion(Question.LombaxCubesLetters, _LombaxCubes, new[] { "first" },
-                new[] { "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[fldLetter1.Get() - 1].ToString() }),
-            makeQuestion(Question.LombaxCubesLetters, _LombaxCubes, new[] { "second" },
-                new[] { "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[fldLetter2.Get() - 1].ToString() }));
+            makeQuestion(Question.LombaxCubesLetters, _LombaxCubes, formatArgs: new[] { "first" },
+                correctAnswers: new[] { "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[fldLetter1.Get() - 1].ToString() }),
+            makeQuestion(Question.LombaxCubesLetters, _LombaxCubes, formatArgs: new[] { "second" },
+                correctAnswers: new[] { "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[fldLetter2.Get() - 1].ToString() }));
     }
 
     private IEnumerable<object> ProcessLondonUnderground(KMBombModule module)
@@ -446,7 +446,7 @@ public partial class SouvenirModule
             primary = primary.Union(extraOptions).ToArray();
 
         addQuestions(module,
-            departures.Select((dep, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { ordinal(ix + 1), "depart from" }, new[] { dep }, primary)).Concat(
-            destinations.Select((dest, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, new[] { ordinal(ix + 1), "arrive to" }, new[] { dest }, primary))));
+            departures.Select((dep, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, formatArgs: new[] { ordinal(ix + 1), "depart from" }, correctAnswers: new[] { dep }, preferredWrongAnswers: primary)).Concat(
+            destinations.Select((dest, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, formatArgs: new[] { ordinal(ix + 1), "arrive to" }, correctAnswers: new[] { dest }, preferredWrongAnswers: primary))));
     }
 }

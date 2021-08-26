@@ -53,8 +53,8 @@ public partial class SouvenirModule
         var questions = new List<QandA>();
         for (int i = 0; i < 6; i++)
         {
-            questions.Add(makeQuestion(Question.GreatVoidDigit, _GreatVoid, new[] { ordinal(i + 1) }, new[] { fldDigits.Get()[i].ToString() }));
-            questions.Add(makeQuestion(Question.GreatVoidColor, _GreatVoid, new[] { ordinal(i + 1) }, new[] { colorNames[fldColors.Get()[i]] }));
+            questions.Add(makeQuestion(Question.GreatVoidDigit, _GreatVoid, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { fldDigits.Get()[i].ToString() }));
+            questions.Add(makeQuestion(Question.GreatVoidColor, _GreatVoid, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorNames[fldColors.Get()[i]] }));
         }
         addQuestions(module, questions);
     }
@@ -121,8 +121,8 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(_GridLock);
         addQuestions(module,
-            makeQuestion(Question.GridLockStartingLocation, _GridLock, preferredWrongAnswers: Tiles4x4Sprites, correctAnswers: new[] { Tiles4x4Sprites[start] }),
-            makeQuestion(Question.GridLockEndingLocation, _GridLock, preferredWrongAnswers: Tiles4x4Sprites, correctAnswers: new[] { Tiles4x4Sprites[solution] }),
+            makeQuestion(Question.GridLockStartingLocation, _GridLock, correctAnswers: new[] { new Coord(4, 4, start) }),
+            makeQuestion(Question.GridLockEndingLocation, _GridLock, correctAnswers: new[] { new Coord(4, 4, solution) }),
             makeQuestion(Question.GridLockStartingColor, _GridLock, correctAnswers: new[] { colors[(pages[0][start] >> 4) - 1] }));
     }
 
@@ -150,7 +150,7 @@ public partial class SouvenirModule
         }
 
         _modulesSolved.IncSafe(_GroceryStore);
-        addQuestions(module, makeQuestion(Question.GroceryStoreFirstItem, _GroceryStore, null, new[] { finalAnswer }, items));
+        addQuestions(module, makeQuestion(Question.GroceryStoreFirstItem, _GroceryStore, formatArgs: null, correctAnswers: new[] { finalAnswer }, preferredWrongAnswers: items));
     }
 
     private IEnumerable<object> ProcessGryphons(KMBombModule module)
@@ -184,6 +184,6 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_GuessWho);
 
         var correctAnswer = names[GetField<int>(comp, "TheCombination").Get()];
-        addQuestions(module, makeQuestion(Question.GuessWhoPerson, _GuessWho, null, new[] { correctAnswer }, names));
+        addQuestions(module, makeQuestion(Question.GuessWhoPerson, _GuessWho, formatArgs: null, correctAnswers: new[] { correctAnswer }, preferredWrongAnswers: names));
     }
 }

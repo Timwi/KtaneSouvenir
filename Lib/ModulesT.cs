@@ -37,11 +37,11 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(_TashaSqueals);
         addQuestions(module,
-            makeQuestion(Question.TashaSquealsColors, _TashaSqueals, new[] { "first" }, new[] { colors[sequence[0]] }),
-            makeQuestion(Question.TashaSquealsColors, _TashaSqueals, new[] { "second" }, new[] { colors[sequence[1]] }),
-            makeQuestion(Question.TashaSquealsColors, _TashaSqueals, new[] { "third" }, new[] { colors[sequence[2]] }),
-            makeQuestion(Question.TashaSquealsColors, _TashaSqueals, new[] { "fourth" }, new[] { colors[sequence[3]] }),
-            makeQuestion(Question.TashaSquealsColors, _TashaSqueals, new[] { "fifth" }, new[] { colors[sequence[4]] }));
+            makeQuestion(Question.TashaSquealsColors, _TashaSqueals, formatArgs: new[] { "first" }, correctAnswers: new[] { colors[sequence[0]] }),
+            makeQuestion(Question.TashaSquealsColors, _TashaSqueals, formatArgs: new[] { "second" }, correctAnswers: new[] { colors[sequence[1]] }),
+            makeQuestion(Question.TashaSquealsColors, _TashaSqueals, formatArgs: new[] { "third" }, correctAnswers: new[] { colors[sequence[2]] }),
+            makeQuestion(Question.TashaSquealsColors, _TashaSqueals, formatArgs: new[] { "fourth" }, correctAnswers: new[] { colors[sequence[3]] }),
+            makeQuestion(Question.TashaSquealsColors, _TashaSqueals, formatArgs: new[] { "fifth" }, correctAnswers: new[] { colors[sequence[4]] }));
     }
 
     private IEnumerable<object> ProcessTenButtonColorCode(KMBombModule module)
@@ -65,7 +65,7 @@ public partial class SouvenirModule
 
         var colorNames = new[] { "red", "green", "blue" };
         addQuestions(module, new[] { firstStageColors, secondStageColors }.SelectMany((colors, stage) => Enumerable.Range(0, 10)
-            .Select(slot => makeQuestion(Question.TenButtonColorCodeInitialColors, _TenButtonColorCode, new[] { ordinal(slot + 1), ordinal(stage + 1) }, new[] { colorNames[colors[slot]] }))));
+            .Select(slot => makeQuestion(Question.TenButtonColorCodeInitialColors, _TenButtonColorCode, formatArgs: new[] { ordinal(slot + 1), ordinal(stage + 1) }, correctAnswers: new[] { colorNames[colors[slot]] }))));
     }
 
     private IEnumerable<object> ProcessTenpins(KMBombModule module)
@@ -147,9 +147,9 @@ public partial class SouvenirModule
             throw new AbandonModuleException("‘displayNumber’ has an unexpected value: {0}", displayNumber);
 
         addQuestions(module,
-            makeQuestion(Question.ThinkingWiresFirstWire, _ThinkingWires, null, new[] { firstCorrectWire.ToString() }),
-            makeQuestion(Question.ThinkingWiresSecondWire, _ThinkingWires, null, new[] { secondCorrectWire }),
-            makeQuestion(Question.ThinkingWiresDisplayNumber, _ThinkingWires, null, new[] { displayNumber }));
+            makeQuestion(Question.ThinkingWiresFirstWire, _ThinkingWires, formatArgs: null, correctAnswers: new[] { firstCorrectWire.ToString() }),
+            makeQuestion(Question.ThinkingWiresSecondWire, _ThinkingWires, formatArgs: null, correctAnswers: new[] { secondCorrectWire }),
+            makeQuestion(Question.ThinkingWiresDisplayNumber, _ThinkingWires, formatArgs: null, correctAnswers: new[] { displayNumber }));
     }
 
     private IEnumerable<object> ProcessThirdBase(KMBombModule module)
@@ -181,7 +181,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(0.1f);
 
         _modulesSolved.IncSafe(_ThirdBase);
-        addQuestions(module, displayWords.Select((word, stage) => makeQuestion(Question.ThirdBaseDisplay, _ThirdBase, new[] { ordinal(stage + 1) }, new[] { word })));
+        addQuestions(module, displayWords.Select((word, stage) => makeQuestion(Question.ThirdBaseDisplay, _ThirdBase, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { word })));
     }
 
     private IEnumerable<object> ProcessTicTacToe(KMBombModule module)
@@ -229,8 +229,8 @@ public partial class SouvenirModule
         textFromCity.text = "WELL";
         textToCity.text = "DONE!";
         addQuestions(module,
-            makeQuestion(Question.TimezoneCities, _Timezone, new[] { "departure" }, new[] { fldFromCity.Get() }),
-            makeQuestion(Question.TimezoneCities, _Timezone, new[] { "destination" }, new[] { fldToCity.Get() }));
+            makeQuestion(Question.TimezoneCities, _Timezone, formatArgs: new[] { "departure" }, correctAnswers: new[] { fldFromCity.Get() }),
+            makeQuestion(Question.TimezoneCities, _Timezone, formatArgs: new[] { "destination" }, correctAnswers: new[] { fldToCity.Get() }));
     }
 
     private IEnumerable<object> ProcessTopsyTurvy(KMBombModule module)
@@ -242,7 +242,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_TopsyTurvy);
 
-        addQuestions(module, makeQuestion(Question.TopsyTurvyWord, _TopsyTurvy, null, new[] { GetAnswers(Question.TopsyTurvyWord)[GetField<int>(comp, "displayIndex").Get()] }));
+        addQuestions(module, makeQuestion(Question.TopsyTurvyWord, _TopsyTurvy, formatArgs: null, correctAnswers: new[] { GetAnswers(Question.TopsyTurvyWord)[GetField<int>(comp, "displayIndex").Get()] }));
     }
 
     private IEnumerable<object> ProcessTransmittedMorse(KMBombModule module)
@@ -297,7 +297,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(0.1f);
 
         _modulesSolved.IncSafe(_TurtleRobot);
-        addQuestions(module, bugs.Take(2).Select((bug, ix) => makeQuestion(Question.TurtleRobotCodeLines, _TurtleRobot, new[] { ordinal(ix + 1) }, new[] { bug }, codeLines)));
+        addQuestions(module, bugs.Take(2).Select((bug, ix) => makeQuestion(Question.TurtleRobotCodeLines, _TurtleRobot, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { bug }, preferredWrongAnswers: codeLines)));
     }
 
     private IEnumerable<object> ProcessTwoBits(KMBombModule module)
@@ -322,8 +322,8 @@ public partial class SouvenirModule
         var preferredWrongAnswers = new[] { zerothNumCode.ToString("00"), firstResponse.ToString("00"), secondResponse.ToString("00"), thirdResponse.ToString("00") };
 
         addQuestions(module,
-            makeQuestion(Question.TwoBitsResponse, _TwoBits, new[] { "first" }, new[] { firstResponse.ToString("00") }, preferredWrongAnswers),
-            makeQuestion(Question.TwoBitsResponse, _TwoBits, new[] { "second" }, new[] { secondResponse.ToString("00") }, preferredWrongAnswers),
-            makeQuestion(Question.TwoBitsResponse, _TwoBits, new[] { "third" }, new[] { thirdResponse.ToString("00") }, preferredWrongAnswers));
+            makeQuestion(Question.TwoBitsResponse, _TwoBits, formatArgs: new[] { "first" }, correctAnswers: new[] { firstResponse.ToString("00") }, preferredWrongAnswers: preferredWrongAnswers),
+            makeQuestion(Question.TwoBitsResponse, _TwoBits, formatArgs: new[] { "second" }, correctAnswers: new[] { secondResponse.ToString("00") }, preferredWrongAnswers: preferredWrongAnswers),
+            makeQuestion(Question.TwoBitsResponse, _TwoBits, formatArgs: new[] { "third" }, correctAnswers: new[] { thirdResponse.ToString("00") }, preferredWrongAnswers: preferredWrongAnswers));
     }
 }

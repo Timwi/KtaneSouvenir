@@ -35,9 +35,9 @@ public partial class SouvenirModule
         gridSquares[bluePos].material.color = white.Value;
 
         var qs = new List<QandA>();
-        qs.Add(makeQuestion(Question.ZeroZeroSquares, _ZeroZero, formatArgs: new[] { "red" }, correctAnswers: new[] { Tiles7x7Sprites[redPos] }, preferredWrongAnswers: Tiles7x7Sprites));
-        qs.Add(makeQuestion(Question.ZeroZeroSquares, _ZeroZero, formatArgs: new[] { "green" }, correctAnswers: new[] { Tiles7x7Sprites[greenPos] }, preferredWrongAnswers: Tiles7x7Sprites));
-        qs.Add(makeQuestion(Question.ZeroZeroSquares, _ZeroZero, formatArgs: new[] { "blue" }, correctAnswers: new[] { Tiles7x7Sprites[bluePos] }, preferredWrongAnswers: Tiles7x7Sprites));
+        qs.Add(makeQuestion(Question.ZeroZeroSquares, _ZeroZero, formatArgs: new[] { "red" }, correctAnswers: new[] { new Coord(7, 7, redPos) }));
+        qs.Add(makeQuestion(Question.ZeroZeroSquares, _ZeroZero, formatArgs: new[] { "green" }, correctAnswers: new[] { new Coord(7, 7, greenPos) }));
+        qs.Add(makeQuestion(Question.ZeroZeroSquares, _ZeroZero, formatArgs: new[] { "blue" }, correctAnswers: new[] { new Coord(7, 7, bluePos) }));
         var positionNames = new[] { "top-left", "top-right", "bottom-left", "bottom-right" };
         var colorNames = new[] { "black", "blue", "green", "cyan", "red", "magenta", "yellow", "white" };
         for (var starIx = 0; starIx < 4; starIx++)
@@ -90,8 +90,8 @@ public partial class SouvenirModule
             throw new AbandonModuleException("The received number of valid words was not 3: was {0}.", wordsAnswered.Count);
 
         addQuestions(module,
-            makeQuestion(Question.ZoniWords, _Zoni, new[] { "first" }, new[] { words[wordsAnswered[0]] }, words),
-            makeQuestion(Question.ZoniWords, _Zoni, new[] { "second" }, new[] { words[wordsAnswered[1]] }, words),
-            makeQuestion(Question.ZoniWords, _Zoni, new[] { "third" }, new[] { words[wordsAnswered[2]] }, words));
+            makeQuestion(Question.ZoniWords, _Zoni, formatArgs: new[] { "first" }, correctAnswers: new[] { words[wordsAnswered[0]] }, preferredWrongAnswers: words),
+            makeQuestion(Question.ZoniWords, _Zoni, formatArgs: new[] { "second" }, correctAnswers: new[] { words[wordsAnswered[1]] }, preferredWrongAnswers: words),
+            makeQuestion(Question.ZoniWords, _Zoni, formatArgs: new[] { "third" }, correctAnswers: new[] { words[wordsAnswered[2]] }, preferredWrongAnswers: words));
     }
 }

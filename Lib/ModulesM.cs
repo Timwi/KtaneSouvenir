@@ -77,8 +77,8 @@ public partial class SouvenirModule
 
         addQuestions(module,
             makeQuestion(Question.MahjongCountingTile, _Mahjong, correctAnswers: new[] { countingTileSprite }, preferredWrongAnswers: GetArrayField<int>(comp, "_countingRow").Get().Select(ix => MahjongSprites[ix]).ToArray()),
-            makeQuestion(Question.MahjongMatches, _Mahjong, new[] { "first" }, correctAnswers: matchedTileSprites.Take(2).ToArray(), preferredWrongAnswers: tileSprites),
-            makeQuestion(Question.MahjongMatches, _Mahjong, new[] { "second" }, correctAnswers: matchedTileSprites.Skip(2).Take(2).ToArray(), preferredWrongAnswers: tileSprites));
+            makeQuestion(Question.MahjongMatches, _Mahjong, formatArgs: new[] { "first" }, correctAnswers: matchedTileSprites.Take(2).ToArray(), preferredWrongAnswers: tileSprites),
+            makeQuestion(Question.MahjongMatches, _Mahjong, formatArgs: new[] { "second" }, correctAnswers: matchedTileSprites.Skip(2).Take(2).ToArray(), preferredWrongAnswers: tileSprites));
     }
 
     private IEnumerable<object> ProcessMandMs(KMBombModule module)
@@ -159,7 +159,7 @@ public partial class SouvenirModule
         for (int i = 0; i < 3; i++)
         {
             var number = i == 0 ? number1 : (i == 1 ? number2 : number3);
-            questions.Add(makeQuestion(Question.MashematicsCalculation, _Mashematics, new[] { ordinal(i + 1) }, correctAnswers: new[] { number.ToString() }));
+            questions.Add(makeQuestion(Question.MashematicsCalculation, _Mashematics, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { number.ToString() }));
         }
         addQuestions(module, questions);
     }
@@ -252,8 +252,8 @@ public partial class SouvenirModule
         string[] possibleGoalVals = Enumerable.Range(0, 50).Select(x => x.ToString()).ToArray();
 
         addQuestions(module,
-            makeQuestion(Question.MazematicsValue, _Mazematics, new[] { "initial" }, new[] { startVal }, possibleStartVals),
-            makeQuestion(Question.MazematicsValue, _Mazematics, new[] { "goal" }, new[] { goalVal }, possibleGoalVals));
+            makeQuestion(Question.MazematicsValue, _Mazematics, formatArgs: new[] { "initial" }, correctAnswers: new[] { startVal }, preferredWrongAnswers: possibleStartVals),
+            makeQuestion(Question.MazematicsValue, _Mazematics, formatArgs: new[] { "goal" }, correctAnswers: new[] { goalVal }, preferredWrongAnswers: possibleGoalVals));
     }
 
     private IEnumerable<object> ProcessMazeScrambler(KMBombModule module)
@@ -320,8 +320,8 @@ public partial class SouvenirModule
         {
             if (partsPerSlot[i] != -1)
             {
-                qs.Add(makeQuestion(Question.MelodySequencerParts, _MelodySequencer, new[] { (partsPerSlot[i] + 1).ToString() }, new[] { (i + 1).ToString() }, preferredWrongAnswers: givenSlots));
-                qs.Add(makeQuestion(Question.MelodySequencerSlots, _MelodySequencer, new[] { (i + 1).ToString() }, new[] { (partsPerSlot[i] + 1).ToString() }, preferredWrongAnswers: givenParts));
+                qs.Add(makeQuestion(Question.MelodySequencerParts, _MelodySequencer, formatArgs: new[] { (partsPerSlot[i] + 1).ToString() }, correctAnswers: new[] { (i + 1).ToString() }, preferredWrongAnswers: givenSlots));
+                qs.Add(makeQuestion(Question.MelodySequencerSlots, _MelodySequencer, formatArgs: new[] { (i + 1).ToString() }, correctAnswers: new[] { (partsPerSlot[i] + 1).ToString() }, preferredWrongAnswers: givenParts));
             }
         }
         addQuestions(module, qs);
@@ -338,7 +338,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_MemorableButtons);
 
         var combinedCode = GetField<string>(comp, "combinedCode", isPublic: true).Get(str => str.Length < 10 || str.Length > 15 ? "expected length 10–15" : null);
-        addQuestions(module, combinedCode.Select((ch, ix) => makeQuestion(Question.MemorableButtonsSymbols, _MemorableButtons, buttonLabels[0].font, buttonLabels[0].GetComponent<MeshRenderer>().sharedMaterial.mainTexture, new[] { ordinal(ix + 1) }, correctAnswers: new[] { ch.ToString() })));
+        addQuestions(module, combinedCode.Select((ch, ix) => makeQuestion(Question.MemorableButtonsSymbols, _MemorableButtons, buttonLabels[0].font, buttonLabels[0].GetComponent<MeshRenderer>().sharedMaterial.mainTexture, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { ch.ToString() })));
     }
 
     private IEnumerable<object> ProcessMemory(KMBombModule module)
@@ -356,9 +356,9 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (var stage = 0; stage < 4; stage++)
         {
-            qs.Add(makeQuestion(Question.MemoryDisplay, "Memory", new[] { ordinal(stage + 1) }, new[] { displaySequence[stage].ToString() }));
-            qs.Add(makeQuestion(Question.MemoryPosition, "Memory", new[] { ordinal(stage + 1) }, new[] { MemorySprites[indices[stage]] }, MemorySprites));
-            qs.Add(makeQuestion(Question.MemoryLabel, "Memory", new[] { ordinal(stage + 1) }, new[] { labels[stage][labels[stage].Length - 1].ToString() }));
+            qs.Add(makeQuestion(Question.MemoryDisplay, "Memory", formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { displaySequence[stage].ToString() }));
+            qs.Add(makeQuestion(Question.MemoryPosition, "Memory", formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { MemorySprites[indices[stage]] }, preferredWrongAnswers: MemorySprites));
+            qs.Add(makeQuestion(Question.MemoryLabel, "Memory", formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { labels[stage][labels[stage].Length - 1].ToString() }));
         }
         addQuestions(module, qs);
     }
@@ -420,8 +420,8 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(_ModernCipher);
         addQuestions(module,
-            makeQuestion(Question.ModernCipherWord, _ModernCipher, new[] { "first" }, new[] { stage1word }, new[] { stage2word }),
-            makeQuestion(Question.ModernCipherWord, _ModernCipher, new[] { "second" }, new[] { stage2word }, new[] { stage1word }));
+            makeQuestion(Question.ModernCipherWord, _ModernCipher, formatArgs: new[] { "first" }, correctAnswers: new[] { stage1word }, preferredWrongAnswers: new[] { stage2word }),
+            makeQuestion(Question.ModernCipherWord, _ModernCipher, formatArgs: new[] { "second" }, correctAnswers: new[] { stage2word }, preferredWrongAnswers: new[] { stage1word }));
     }
 
     private IEnumerable<object> ProcessModuleListening(KMBombModule module)
@@ -574,8 +574,8 @@ public partial class SouvenirModule
 
         addQuestions(module,
             makeQuestion(Question.MonsplodeFightCreature, _MonsplodeFight, correctAnswers: new[] { displayedCreature }),
-            makeQuestion(Question.MonsplodeFightMove, _MonsplodeFight, new[] { "was" }, displayedMoves),
-            makeQuestion(Question.MonsplodeFightMove, _MonsplodeFight, new[] { "was not" }, GetAnswers(Question.MonsplodeFightMove).Except(displayedMoves).ToArray()));
+            makeQuestion(Question.MonsplodeFightMove, _MonsplodeFight, formatArgs: new[] { "was" }, correctAnswers: displayedMoves),
+            makeQuestion(Question.MonsplodeFightMove, _MonsplodeFight, formatArgs: new[] { "was not" }, correctAnswers: GetAnswers(Question.MonsplodeFightMove).Except(displayedMoves).ToArray()));
     }
 
     private IEnumerable<object> ProcessMonsplodeTradingCards(KMBombModule module)
@@ -603,16 +603,16 @@ public partial class SouvenirModule
         var monsplodeIds = new[] { fldMonsplode.Get(0, monsplodeNames.Length - 1) }.Concat(deck.Select(card => fldMonsplode.GetFrom(card, 0, monsplodeNames.Length - 1))).ToArray();
         var monsplodes = monsplodeIds.Select(mn => monsplodeNames[mn]).ToArray();
         var qs = new List<QandA>();
-        qs.Add(makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, new[] { "card on offer" }, new[] { monsplodes[0] }, monsplodeNames));
-        qs.Add(makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, new[] { "first card in your hand" }, new[] { monsplodes[1] }, monsplodeNames));
-        qs.Add(makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, new[] { "second card in your hand" }, new[] { monsplodes[2] }, monsplodeNames));
-        qs.Add(makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, new[] { "third card in your hand" }, new[] { monsplodes[3] }, monsplodeNames));
+        qs.Add(makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, formatArgs: new[] { "card on offer" }, correctAnswers: new[] { monsplodes[0] }, preferredWrongAnswers: monsplodeNames));
+        qs.Add(makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, formatArgs: new[] { "first card in your hand" }, correctAnswers: new[] { monsplodes[1] }, preferredWrongAnswers: monsplodeNames));
+        qs.Add(makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, formatArgs: new[] { "second card in your hand" }, correctAnswers: new[] { monsplodes[2] }, preferredWrongAnswers: monsplodeNames));
+        qs.Add(makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, formatArgs: new[] { "third card in your hand" }, correctAnswers: new[] { monsplodes[3] }, preferredWrongAnswers: monsplodeNames));
 
         var printVersions = new[] { fldPrintChar.Get() + "" + fldPrintDigit.Get() }.Concat(deck.Select(card => fldPrintChar.GetFrom(card) + "" + fldPrintDigit.GetFrom(card))).ToArray();
-        qs.Add(makeQuestion(Question.MonsplodeTradingCardsPrintVersions, _MonsplodeTradingCards, new[] { "card on offer" }, new[] { printVersions[0] }, printVersions));
-        qs.Add(makeQuestion(Question.MonsplodeTradingCardsPrintVersions, _MonsplodeTradingCards, new[] { "first card in your hand" }, new[] { printVersions[1] }, printVersions));
-        qs.Add(makeQuestion(Question.MonsplodeTradingCardsPrintVersions, _MonsplodeTradingCards, new[] { "second card in your hand" }, new[] { printVersions[2] }, printVersions));
-        qs.Add(makeQuestion(Question.MonsplodeTradingCardsPrintVersions, _MonsplodeTradingCards, new[] { "third card in your hand" }, new[] { printVersions[3] }, printVersions));
+        qs.Add(makeQuestion(Question.MonsplodeTradingCardsPrintVersions, _MonsplodeTradingCards, formatArgs: new[] { "card on offer" }, correctAnswers: new[] { printVersions[0] }, preferredWrongAnswers: printVersions));
+        qs.Add(makeQuestion(Question.MonsplodeTradingCardsPrintVersions, _MonsplodeTradingCards, formatArgs: new[] { "first card in your hand" }, correctAnswers: new[] { printVersions[1] }, preferredWrongAnswers: printVersions));
+        qs.Add(makeQuestion(Question.MonsplodeTradingCardsPrintVersions, _MonsplodeTradingCards, formatArgs: new[] { "second card in your hand" }, correctAnswers: new[] { printVersions[2] }, preferredWrongAnswers: printVersions));
+        qs.Add(makeQuestion(Question.MonsplodeTradingCardsPrintVersions, _MonsplodeTradingCards, formatArgs: new[] { "third card in your hand" }, correctAnswers: new[] { printVersions[3] }, preferredWrongAnswers: printVersions));
 
         addQuestions(module, qs);
     }
@@ -630,7 +630,7 @@ public partial class SouvenirModule
         var lightIndex = GetIntField(comp, "lightIndex").Get(min: 0, max: 7);
         var qNames = new[] { "first initially lit", "second initially lit", "third initially lit", "fourth initially lit", "first initially unlit", "second initially unlit", "third initially unlit", "fourth initially unlit" };
         var aNames = new[] { "south", "south-west", "west", "north-west", "north", "north-east", "east", "south-east" };
-        addQuestions(module, Enumerable.Range(0, 8).Select(i => makeQuestion(Question.MoonLitUnlit, _Moon, new[] { qNames[i] }, new[] { aNames[(i + lightIndex) % 8] })));
+        addQuestions(module, Enumerable.Range(0, 8).Select(i => makeQuestion(Question.MoonLitUnlit, _Moon, formatArgs: new[] { qNames[i] }, correctAnswers: new[] { aNames[(i + lightIndex) % 8] })));
     }
 
     private IEnumerable<object> ProcessMoreCode(KMBombModule module)
@@ -685,18 +685,18 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(_MorseButtons);
         addQuestions(module,
-            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, new[] { "first" }, new[] { alphabet[letters[0]].ToString() }, alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, new[] { "second" }, new[] { alphabet[letters[1]].ToString() }, alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, new[] { "third" }, new[] { alphabet[letters[2]].ToString() }, alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, new[] { "fourth" }, new[] { alphabet[letters[3]].ToString() }, alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, new[] { "fifth" }, new[] { alphabet[letters[4]].ToString() }, alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, new[] { "sixth" }, new[] { alphabet[letters[5]].ToString() }, alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, new[] { "first" }, new[] { colorNames[colors[0]].ToString() }, colorNames),
-            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, new[] { "second" }, new[] { colorNames[colors[1]].ToString() }, colorNames),
-            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, new[] { "third" }, new[] { colorNames[colors[2]].ToString() }, colorNames),
-            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, new[] { "fourth" }, new[] { colorNames[colors[3]].ToString() }, colorNames),
-            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, new[] { "fifth" }, new[] { colorNames[colors[4]].ToString() }, colorNames),
-            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, new[] { "sixth" }, new[] { colorNames[colors[5]].ToString() }, colorNames));
+            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, formatArgs: new[] { "first" }, correctAnswers: new[] { alphabet[letters[0]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
+            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, formatArgs: new[] { "second" }, correctAnswers: new[] { alphabet[letters[1]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
+            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, formatArgs: new[] { "third" }, correctAnswers: new[] { alphabet[letters[2]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
+            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, formatArgs: new[] { "fourth" }, correctAnswers: new[] { alphabet[letters[3]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
+            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, formatArgs: new[] { "fifth" }, correctAnswers: new[] { alphabet[letters[4]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
+            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, formatArgs: new[] { "sixth" }, correctAnswers: new[] { alphabet[letters[5]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
+            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, formatArgs: new[] { "first" }, correctAnswers: new[] { colorNames[colors[0]].ToString() }, preferredWrongAnswers: colorNames),
+            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, formatArgs: new[] { "second" }, correctAnswers: new[] { colorNames[colors[1]].ToString() }, preferredWrongAnswers: colorNames),
+            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, formatArgs: new[] { "third" }, correctAnswers: new[] { colorNames[colors[2]].ToString() }, preferredWrongAnswers: colorNames),
+            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, formatArgs: new[] { "fourth" }, correctAnswers: new[] { colorNames[colors[3]].ToString() }, preferredWrongAnswers: colorNames),
+            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, formatArgs: new[] { "fifth" }, correctAnswers: new[] { colorNames[colors[4]].ToString() }, preferredWrongAnswers: colorNames),
+            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, formatArgs: new[] { "sixth" }, correctAnswers: new[] { colorNames[colors[5]].ToString() }, preferredWrongAnswers: colorNames));
     }
 
     private IEnumerable<object> ProcessMorsematics(KMBombModule module)
@@ -709,7 +709,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
 
         _modulesSolved.IncSafe(_Morsematics);
-        addQuestions(module, Enumerable.Range(0, 3).Select(i => makeQuestion(Question.MorsematicsReceivedLetters, _Morsematics, new[] { ordinal(i + 1) }, new[] { chars[i] }, chars)));
+        addQuestions(module, Enumerable.Range(0, 3).Select(i => makeQuestion(Question.MorsematicsReceivedLetters, _Morsematics, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { chars[i] }, preferredWrongAnswers: chars)));
     }
 
     private IEnumerable<object> ProcessMorseWar(KMBombModule module)
@@ -817,18 +817,18 @@ public partial class SouvenirModule
 
         addQuestions(module,
             makeQuestion(Question.MurderSuspect, _Murder,
-                new[] { "a suspect but not the murderer" },
-                Enumerable.Range(0, 6).Where(suspectIx => skipDisplay[0, suspectIx] == 0 && suspectIx != actualSuspect).Select(suspectIx => names[0, suspectIx]).ToArray()),
+                formatArgs: new[] { "a suspect but not the murderer" },
+                correctAnswers: Enumerable.Range(0, 6).Where(suspectIx => skipDisplay[0, suspectIx] == 0 && suspectIx != actualSuspect).Select(suspectIx => names[0, suspectIx]).ToArray()),
             makeQuestion(Question.MurderSuspect, _Murder,
-                new[] { "not a suspect" },
-                Enumerable.Range(0, 6).Where(suspectIx => skipDisplay[0, suspectIx] == 1).Select(suspectIx => names[0, suspectIx]).ToArray()),
+                formatArgs: new[] { "not a suspect" },
+                correctAnswers: Enumerable.Range(0, 6).Where(suspectIx => skipDisplay[0, suspectIx] == 1).Select(suspectIx => names[0, suspectIx]).ToArray()),
 
             makeQuestion(Question.MurderWeapon, _Murder,
-                new[] { "a potential weapon but not the murder weapon" },
-                Enumerable.Range(0, 6).Where(weaponIx => skipDisplay[1, weaponIx] == 0 && weaponIx != actualWeapon).Select(weaponIx => names[1, weaponIx]).ToArray()),
+                formatArgs: new[] { "a potential weapon but not the murder weapon" },
+                correctAnswers: Enumerable.Range(0, 6).Where(weaponIx => skipDisplay[1, weaponIx] == 0 && weaponIx != actualWeapon).Select(weaponIx => names[1, weaponIx]).ToArray()),
             makeQuestion(Question.MurderWeapon, _Murder,
-                new[] { "not a potential weapon" },
-                Enumerable.Range(0, 6).Where(weaponIx => skipDisplay[1, weaponIx] == 1).Select(weaponIx => names[1, weaponIx]).ToArray()),
+                formatArgs: new[] { "not a potential weapon" },
+                correctAnswers: Enumerable.Range(0, 6).Where(weaponIx => skipDisplay[1, weaponIx] == 1).Select(weaponIx => names[1, weaponIx]).ToArray()),
 
             bodyFound == actualRoom ? null : makeQuestion(Question.MurderBodyFound, _Murder, correctAnswers: new[] { names[2, bodyFound] }));
     }

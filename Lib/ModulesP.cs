@@ -35,7 +35,7 @@ public partial class SouvenirModule
                     throw new AbandonModuleException("The chosen character ('{0}') was unexpected (expected a digit 0–9).", digit);
 
                 var labels = new string[] { "the screen", "X", "Y", "Z" };
-                qs.Add(makeQuestion(Question.PalindromesNumbers, _Palindromes, new[] { labels[varIx], ordinal(digitIx + 1) }, correctAnswers: new[] { digit.ToString() }));
+                qs.Add(makeQuestion(Question.PalindromesNumbers, _Palindromes, formatArgs: new[] { labels[varIx], ordinal(digitIx + 1) }, correctAnswers: new[] { digit.ToString() }));
             }
         addQuestions(module, qs);
     }
@@ -157,9 +157,9 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(_PassportControl);
         addQuestions(module,
-            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "first" }, new[] { expirationDates[0].ToString() }, altDates[0]),
-            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "second" }, new[] { expirationDates[1].ToString() }, altDates[1]),
-            makeQuestion(Question.PassportControlPassenger, _PassportControl, new[] { "third" }, new[] { expirationDates[2].ToString() }, altDates[2]));
+            makeQuestion(Question.PassportControlPassenger, _PassportControl, formatArgs: new[] { "first" }, correctAnswers: new[] { expirationDates[0].ToString() }, preferredWrongAnswers: altDates[0]),
+            makeQuestion(Question.PassportControlPassenger, _PassportControl, formatArgs: new[] { "second" }, correctAnswers: new[] { expirationDates[1].ToString() }, preferredWrongAnswers: altDates[1]),
+            makeQuestion(Question.PassportControlPassenger, _PassportControl, formatArgs: new[] { "third" }, correctAnswers: new[] { expirationDates[2].ToString() }, preferredWrongAnswers: altDates[2]));
     }
 
     private IEnumerable<object> ProcessPasswordDestroyer(KMBombModule module)
@@ -202,7 +202,7 @@ public partial class SouvenirModule
 
         var symbols = selectableSymbolObjects.Concat(placeableSymbolObjects.Where(r => r.gameObject.activeSelf))
             .Select(r => PatternCubeSprites[int.Parse(r.sharedMaterial.mainTexture.name.Substring(6))]).ToArray();
-        addQuestion(module, Question.PatternCubeHighlightedSymbol, null, new[] { symbols[highlightPos] }, symbols);
+        addQuestion(module, Question.PatternCubeHighlightedSymbol, correctAnswers: new[] { symbols[highlightPos] }, preferredWrongAnswers: symbols);
     }
 
     private IEnumerable<object> ProcessPerspectivePegs(KMBombModule module)
@@ -271,7 +271,7 @@ public partial class SouvenirModule
         qs.Add(makeQuestion(Question.PhosphorescenceOffset, _Phosphorescence, correctAnswers: new[] { index.ToString() }));
 
         for (int i = 0; i < buttonPresses.GetLength(0); i++)
-            qs.Add(makeQuestion(Question.PhosphorescenceButtonPresses, _Phosphorescence, new[] { ordinal(i + 1) }, correctAnswers: new[] { buttonPresses.GetValue(i).ToString() }));
+            qs.Add(makeQuestion(Question.PhosphorescenceButtonPresses, _Phosphorescence, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { buttonPresses.GetValue(i).ToString() }));
 
         addQuestions(module, qs);
     }
@@ -376,7 +376,7 @@ public partial class SouvenirModule
 
         var stripNames = new[] { "Aqua", "Blue", "Green", "Lime", "Orange", "Red", "Yellow", "White", "Off" };
         addQuestions(module,
-            stripColors.Select((strip, count) => makeQuestion(Question.PlanetsStrips, _Planets, new[] { ordinal(count + 1) }, new[] { stripNames[strip] }))
+            stripColors.Select((strip, count) => makeQuestion(Question.PlanetsStrips, _Planets, formatArgs: new[] { ordinal(count + 1) }, correctAnswers: new[] { stripNames[strip] }))
                 .Concat(new[] { makeQuestion(Question.PlanetsPlanet, _Planets, correctAnswers: new[] { PlanetsSprites[planetShown] }, preferredWrongAnswers: (DateTime.Now.Month == 4 && DateTime.Now.Day == 1) ? PlanetsSprites : PlanetsSprites.Take(PlanetsSprites.Length - 2).ToArray()) }));
     }
 
@@ -488,7 +488,7 @@ public partial class SouvenirModule
         var wireFrequenciesRaw = GetField<Array>(comp, "mWires").Get(ar => ar.Length != 6 ? "expected length 6" : ar.Cast<int>().Any(v => !frequencyDic.ContainsKey(v)) ? "contains unknown frequency value" : null);
         var wireFrequencies = wireFrequenciesRaw.Cast<int>().Select(val => frequencyDic[val]).ToArray();
 
-        addQuestions(module, wireFrequencies.Select((wf, ix) => makeQuestion(Question.ProbingFrequencies, _Probing, new[] { wireNames[ix] }, new[] { wf })));
+        addQuestions(module, wireFrequencies.Select((wf, ix) => makeQuestion(Question.ProbingFrequencies, _Probing, formatArgs: new[] { wireNames[ix] }, correctAnswers: new[] { wf })));
     }
 
     private IEnumerable<object> ProcessPurpleArrows(KMBombModule module)
@@ -542,14 +542,14 @@ public partial class SouvenirModule
         var gameNames = GetField<string[]>(comp, "GameNames").Get();
 
         addQuestions(module,
-            makeQuestion(Question.PuzzleIdentificationNum, _PuzzleIdentification, new[] { "first" }, new[] { (puzzlesOneAndTwo[0] + 1).ToString("000") }),
-            makeQuestion(Question.PuzzleIdentificationNum, _PuzzleIdentification, new[] { "second" }, new[] { (puzzlesOneAndTwo[1] + 1).ToString("000") }),
-            makeQuestion(Question.PuzzleIdentificationNum, _PuzzleIdentification, new[] { "third" }, new[] { (puzzleThree + 1).ToString("000") }),
-            makeQuestion(Question.PuzzleIdentificationGame, _PuzzleIdentification, new[] { "first" }, new[] { gameNames[puzzlesOneAndTwo[2]] }, gameNames),
-            makeQuestion(Question.PuzzleIdentificationGame, _PuzzleIdentification, new[] { "second" }, new[] { gameNames[puzzlesOneAndTwo[3]] }, gameNames),
-            makeQuestion(Question.PuzzleIdentificationGame, _PuzzleIdentification, new[] { "third" }, new[] { gameNames[gameThree] }, gameNames),
-            makeQuestion(Question.PuzzleIdentificationName, _PuzzleIdentification, new[] { "first" }, new[] { names[puzzlesOneAndTwo[2]][puzzlesOneAndTwo[0]] }, names[puzzlesOneAndTwo[2]]),
-            makeQuestion(Question.PuzzleIdentificationName, _PuzzleIdentification, new[] { "second" }, new[] { names[puzzlesOneAndTwo[3]][puzzlesOneAndTwo[1]] }, names[puzzlesOneAndTwo[3]]),
-            makeQuestion(Question.PuzzleIdentificationName, _PuzzleIdentification, new[] { "third" }, new[] { names[gameThree][puzzleThree] }, names[gameThree]));
+            makeQuestion(Question.PuzzleIdentificationNum, _PuzzleIdentification, formatArgs: new[] { "first" }, correctAnswers: new[] { (puzzlesOneAndTwo[0] + 1).ToString("000") }),
+            makeQuestion(Question.PuzzleIdentificationNum, _PuzzleIdentification, formatArgs: new[] { "second" }, correctAnswers: new[] { (puzzlesOneAndTwo[1] + 1).ToString("000") }),
+            makeQuestion(Question.PuzzleIdentificationNum, _PuzzleIdentification, formatArgs: new[] { "third" }, correctAnswers: new[] { (puzzleThree + 1).ToString("000") }),
+            makeQuestion(Question.PuzzleIdentificationGame, _PuzzleIdentification, formatArgs: new[] { "first" }, correctAnswers: new[] { gameNames[puzzlesOneAndTwo[2]] }, preferredWrongAnswers: gameNames),
+            makeQuestion(Question.PuzzleIdentificationGame, _PuzzleIdentification, formatArgs: new[] { "second" }, correctAnswers: new[] { gameNames[puzzlesOneAndTwo[3]] }, preferredWrongAnswers: gameNames),
+            makeQuestion(Question.PuzzleIdentificationGame, _PuzzleIdentification, formatArgs: new[] { "third" }, correctAnswers: new[] { gameNames[gameThree] }, preferredWrongAnswers: gameNames),
+            makeQuestion(Question.PuzzleIdentificationName, _PuzzleIdentification, formatArgs: new[] { "first" }, correctAnswers: new[] { names[puzzlesOneAndTwo[2]][puzzlesOneAndTwo[0]] }, preferredWrongAnswers: names[puzzlesOneAndTwo[2]]),
+            makeQuestion(Question.PuzzleIdentificationName, _PuzzleIdentification, formatArgs: new[] { "second" }, correctAnswers: new[] { names[puzzlesOneAndTwo[3]][puzzlesOneAndTwo[1]] }, preferredWrongAnswers: names[puzzlesOneAndTwo[3]]),
+            makeQuestion(Question.PuzzleIdentificationName, _PuzzleIdentification, formatArgs: new[] { "third" }, correctAnswers: new[] { names[gameThree][puzzleThree] }, preferredWrongAnswers: names[gameThree]));
     }
 }

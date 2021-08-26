@@ -40,7 +40,7 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         qs.Add(makeQuestion(Question.OctadecayottonSphere, _Octadecayotton, correctAnswers: new[] { sphere }, preferredWrongAnswers: Enumerable.Range(0, (int) Math.Pow(2, dimension)).Select(i => Convert.ToString(i, 2).Select(s => s == '0' ? '-' : '+').JoinString().PadLeft(dimension, '-')).ToArray()));
         for (int i = 0; i < rotations.Length; i++)
-            qs.Add(makeQuestion(Question.OctadecayottonRotations, _Octadecayotton, new[] { ordinal(i + 1) }, correctAnswers: rotations[i].Split(',').Select(s => s.Trim()).ToArray(), preferredWrongAnswers: Enumerable.Range(1, 10).Select(n => "XYZWUVRSTOPQ".Substring(0, dimension).ToCharArray().Shuffle().Take(Rnd.Range(1, Math.Min(6, dimension + 1))).Select(c => (Rnd.Range(0, 1f) > 0.5 ? "+" : "-") + c).JoinString()).ToArray()));
+            qs.Add(makeQuestion(Question.OctadecayottonRotations, _Octadecayotton, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: rotations[i].Split(',').Select(s => s.Trim()).ToArray(), preferredWrongAnswers: Enumerable.Range(1, 10).Select(n => "XYZWUVRSTOPQ".Substring(0, dimension).ToCharArray().Shuffle().Take(Rnd.Range(1, Math.Min(6, dimension + 1))).Select(c => (Rnd.Range(0, 1f) > 0.5 ? "+" : "-") + c).JoinString()).ToArray()));
         addQuestions(module, qs);
     }
 
@@ -59,12 +59,12 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(_OddOneOut);
         addQuestions(module,
-            makeQuestion(Question.OddOneOutButton, _OddOneOut, new[] { "first" }, new[] { btnNames[stageBtn[0]] }),
-            makeQuestion(Question.OddOneOutButton, _OddOneOut, new[] { "second" }, new[] { btnNames[stageBtn[1]] }),
-            makeQuestion(Question.OddOneOutButton, _OddOneOut, new[] { "third" }, new[] { btnNames[stageBtn[2]] }),
-            makeQuestion(Question.OddOneOutButton, _OddOneOut, new[] { "fourth" }, new[] { btnNames[stageBtn[3]] }),
-            makeQuestion(Question.OddOneOutButton, _OddOneOut, new[] { "fifth" }, new[] { btnNames[stageBtn[4]] }),
-            makeQuestion(Question.OddOneOutButton, _OddOneOut, new[] { "sixth" }, new[] { btnNames[stageBtn[5]] }));
+            makeQuestion(Question.OddOneOutButton, _OddOneOut, formatArgs: new[] { "first" }, correctAnswers: new[] { btnNames[stageBtn[0]] }),
+            makeQuestion(Question.OddOneOutButton, _OddOneOut, formatArgs: new[] { "second" }, correctAnswers: new[] { btnNames[stageBtn[1]] }),
+            makeQuestion(Question.OddOneOutButton, _OddOneOut, formatArgs: new[] { "third" }, correctAnswers: new[] { btnNames[stageBtn[2]] }),
+            makeQuestion(Question.OddOneOutButton, _OddOneOut, formatArgs: new[] { "fourth" }, correctAnswers: new[] { btnNames[stageBtn[3]] }),
+            makeQuestion(Question.OddOneOutButton, _OddOneOut, formatArgs: new[] { "fifth" }, correctAnswers: new[] { btnNames[stageBtn[4]] }),
+            makeQuestion(Question.OddOneOutButton, _OddOneOut, formatArgs: new[] { "sixth" }, correctAnswers: new[] { btnNames[stageBtn[5]] }));
     }
 
     private IEnumerable<object> ProcessOnlyConnect(KMBombModule module)
@@ -82,7 +82,7 @@ public partial class SouvenirModule
 
         var hieroglyphs = new[] { "Two Reeds", "Lion", "Twisted Flax", "Horned Viper", "Water", "Eye of Horus" };
         var positions = new[] { "top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right" };
-        addQuestions(module, positions.Select((p, i) => makeQuestion(Question.OnlyConnectHieroglyphs, _OnlyConnect, new[] { p }, new[] { hieroglyphs[hieroglyphsDisplayed[i]] })));
+        addQuestions(module, positions.Select((p, i) => makeQuestion(Question.OnlyConnectHieroglyphs, _OnlyConnect, formatArgs: new[] { p }, correctAnswers: new[] { hieroglyphs[hieroglyphsDisplayed[i]] })));
     }
 
     private IEnumerable<object> ProcessOrangeArrows(KMBombModule module)
@@ -139,7 +139,7 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
-                qs.Add(makeQuestion(Question.OrangeArrowsSequences, _OrangeArrows, new[] { ordinal(j + 1), ordinal(i + 1) }, new[] { correctMoves[i][j].Substring(0, 1) + correctMoves[i][j].Substring(1).ToLowerInvariant() }));
+                qs.Add(makeQuestion(Question.OrangeArrowsSequences, _OrangeArrows, formatArgs: new[] { ordinal(j + 1), ordinal(i + 1) }, correctAnswers: new[] { correctMoves[i][j].Substring(0, 1) + correctMoves[i][j].Substring(1).ToLowerInvariant() }));
 
         addQuestions(module, qs);
     }

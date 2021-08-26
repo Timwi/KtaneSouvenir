@@ -160,9 +160,9 @@ public partial class SouvenirModule
         var colorBeforeBlack = arrowSet[(idxBlack + 2) % 3];
 
         addQuestions(module,
-            makeQuestion(Question.FlashingArrowsDisplayedValue, _FlashingArrows, null, new[] { displayedValue.ToString() }),
-            makeQuestion(Question.FlashingArrowsReferredArrow, _FlashingArrows, new[] { "before" }, new[] { colorReference[colorBeforeBlack] }, colorReference),
-            makeQuestion(Question.FlashingArrowsReferredArrow, _FlashingArrows, new[] { "after" }, new[] { colorReference[colorAfterBlack] }, colorReference));
+            makeQuestion(Question.FlashingArrowsDisplayedValue, _FlashingArrows, correctAnswers: new[] { displayedValue.ToString() }),
+            makeQuestion(Question.FlashingArrowsReferredArrow, _FlashingArrows, formatArgs: new[] { "before" }, correctAnswers: new[] { colorReference[colorBeforeBlack] }, preferredWrongAnswers: colorReference),
+            makeQuestion(Question.FlashingArrowsReferredArrow, _FlashingArrows, formatArgs: new[] { "after" }, correctAnswers: new[] { colorReference[colorAfterBlack] }, preferredWrongAnswers: colorReference));
     }
 
     private IEnumerable<object> ProcessFlashingLights(KMBombModule module)
@@ -183,8 +183,8 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (int i = 0; i < 5; i++)
         {
-            qs.Add(makeQuestion(Question.FlashingLightsLEDFrequency, _FlashingLights, new[] { "top", colorNames[i] }, new[] { topTotals[i].ToString() }, new[] { bottomTotals[i].ToString() }));
-            qs.Add(makeQuestion(Question.FlashingLightsLEDFrequency, _FlashingLights, new[] { "bottom", colorNames[i] }, new[] { bottomTotals[i].ToString() }, new[] { topTotals[i].ToString() }));
+            qs.Add(makeQuestion(Question.FlashingLightsLEDFrequency, _FlashingLights, formatArgs: new[] { "top", colorNames[i] }, correctAnswers: new[] { topTotals[i].ToString() }, preferredWrongAnswers: new[] { bottomTotals[i].ToString() }));
+            qs.Add(makeQuestion(Question.FlashingLightsLEDFrequency, _FlashingLights, formatArgs: new[] { "bottom", colorNames[i] }, correctAnswers: new[] { bottomTotals[i].ToString() }, preferredWrongAnswers: new[] { topTotals[i].ToString() }));
         }
         addQuestions(module, qs);
     }
@@ -233,9 +233,9 @@ public partial class SouvenirModule
             preferredCylinders.Add(Enumerable.Range(0, 3).Select(i => colorNames.PickRandom()).JoinString(", "));
 
         addQuestions(module,
-            makeQuestion(Question.ForgetAnyColorCylinder, _ForgetAnyColor, new[] { (randomStage + 1).ToString() },
+            makeQuestion(Question.ForgetAnyColorCylinder, _ForgetAnyColor, formatArgs: new[] { (randomStage + 1).ToString() },
                 correctAnswers: new[] { correctCylinder }, preferredWrongAnswers: preferredCylinders.ToArray()),
-            makeQuestion(Question.ForgetAnyColorSequence, _ForgetAnyColor, new[] { (randomStage + 1).ToString() },
+            makeQuestion(Question.ForgetAnyColorSequence, _ForgetAnyColor, formatArgs: new[] { (randomStage + 1).ToString() },
                 correctAnswers: new[] { figureNames[figures[randomStage]] }, preferredWrongAnswers: figureNames));
     }
 
@@ -260,12 +260,12 @@ public partial class SouvenirModule
         var questions = new List<QandA>();
         for (int i = 0; i < 12; i++)
         {
-            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownAnswer, _ForgetsUltimateShowdown, new[] { ordinal(i + 1) }, new[] { answer[i].ToString() }));
-            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownBottom, _ForgetsUltimateShowdown, new[] { ordinal(i + 1) }, new[] { bottom[i].ToString() }));
-            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownInitial, _ForgetsUltimateShowdown, new[] { ordinal(i + 1) }, new[] { initial[i].ToString() }));
+            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownAnswer, _ForgetsUltimateShowdown, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { answer[i].ToString() }));
+            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownBottom, _ForgetsUltimateShowdown, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { bottom[i].ToString() }));
+            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownInitial, _ForgetsUltimateShowdown, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { initial[i].ToString() }));
         }
         for (int i = 0; i < 4; i++)
-            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownMethod, _ForgetsUltimateShowdown, new[] { ordinal(i + 1) }, new[] { methodNames[i].Replace("'", "’") }));
+            questions.Add(makeQuestion(Question.ForgetsUltimateShowdownMethod, _ForgetsUltimateShowdown, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { methodNames[i].Replace("'", "’") }));
         addQuestions(module, questions);
     }
 
@@ -322,11 +322,11 @@ public partial class SouvenirModule
         }
 
         var qs = new List<QandA>();
-        qs.Add(makeQuestion(Question.ForgetTheColorsGearNumber, _ForgetTheColors, new[] { chosenStage.ToString() }, correctAnswers: new[] { gear[chosenStage].ToString() }, preferredWrongAnswers: new[] { Rnd.Range(0, 10).ToString() }));
-        qs.Add(makeQuestion(Question.ForgetTheColorsLargeDisplay, _ForgetTheColors, new[] { chosenStage.ToString() }, correctAnswers: new[] { largeDisplay[chosenStage].ToString() }, preferredWrongAnswers: new[] { Rnd.Range(0, 991).ToString() }));
-        qs.Add(makeQuestion(Question.ForgetTheColorsSineNumber, _ForgetTheColors, new[] { chosenStage.ToString() }, correctAnswers: new[] { (Mathf.Abs(sineNumber[chosenStage]) % 10).ToString() }, preferredWrongAnswers: new[] { Rnd.Range(0, 10).ToString() }));
-        qs.Add(makeQuestion(Question.ForgetTheColorsGearColor, _ForgetTheColors, new[] { chosenStage.ToString() }, correctAnswers: new[] { gearColor[chosenStage].ToString() }, preferredWrongAnswers: new[] { colors[Rnd.Range(0, colors.Length)] }));
-        qs.Add(makeQuestion(Question.ForgetTheColorsRuleColor, _ForgetTheColors, new[] { chosenStage.ToString() }, correctAnswers: new[] { ruleColor[chosenStage].ToString() }, preferredWrongAnswers: new[] { colors[Rnd.Range(0, colors.Length)] }));
+        qs.Add(makeQuestion(Question.ForgetTheColorsGearNumber, _ForgetTheColors, formatArgs: new[] { chosenStage.ToString() }, correctAnswers: new[] { gear[chosenStage].ToString() }, preferredWrongAnswers: new[] { Rnd.Range(0, 10).ToString() }));
+        qs.Add(makeQuestion(Question.ForgetTheColorsLargeDisplay, _ForgetTheColors, formatArgs: new[] { chosenStage.ToString() }, correctAnswers: new[] { largeDisplay[chosenStage].ToString() }, preferredWrongAnswers: new[] { Rnd.Range(0, 991).ToString() }));
+        qs.Add(makeQuestion(Question.ForgetTheColorsSineNumber, _ForgetTheColors, formatArgs: new[] { chosenStage.ToString() }, correctAnswers: new[] { (Mathf.Abs(sineNumber[chosenStage]) % 10).ToString() }, preferredWrongAnswers: new[] { Rnd.Range(0, 10).ToString() }));
+        qs.Add(makeQuestion(Question.ForgetTheColorsGearColor, _ForgetTheColors, formatArgs: new[] { chosenStage.ToString() }, correctAnswers: new[] { gearColor[chosenStage].ToString() }, preferredWrongAnswers: new[] { colors[Rnd.Range(0, colors.Length)] }));
+        qs.Add(makeQuestion(Question.ForgetTheColorsRuleColor, _ForgetTheColors, formatArgs: new[] { chosenStage.ToString() }, correctAnswers: new[] { ruleColor[chosenStage].ToString() }, preferredWrongAnswers: new[] { colors[Rnd.Range(0, colors.Length)] }));
         addQuestions(module, qs);
     }
 

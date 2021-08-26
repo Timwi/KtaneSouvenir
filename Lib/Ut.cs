@@ -473,5 +473,13 @@ namespace Souvenir
             }
             return -1;
         }
+
+        public static T[] NewArray<T>(int length, Func<int, T> fnc)
+        {
+            var arr = new T[length];
+            for (int i = 0; i < length; i++)
+                arr[i] = fnc(i);
+            return arr;
+        }
     }
 }

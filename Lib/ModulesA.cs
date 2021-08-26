@@ -38,11 +38,11 @@ public partial class SouvenirModule
 
         addQuestions(module,
             makeQuestion(Question.AccumulationBorderColor, _Accumulation, correctAnswers: new[] { colorNames[borderIx] }),
-            makeQuestion(Question.AccumulationBackgroundColor, _Accumulation, new[] { "first" }, new[] { bgNames[0] }, bgNames),
-            makeQuestion(Question.AccumulationBackgroundColor, _Accumulation, new[] { "second" }, new[] { bgNames[1] }, bgNames),
-            makeQuestion(Question.AccumulationBackgroundColor, _Accumulation, new[] { "third" }, new[] { bgNames[2] }, bgNames),
-            makeQuestion(Question.AccumulationBackgroundColor, _Accumulation, new[] { "fourth" }, new[] { bgNames[3] }, bgNames),
-            makeQuestion(Question.AccumulationBackgroundColor, _Accumulation, new[] { "fifth" }, new[] { bgNames[4] }, bgNames));
+            makeQuestion(Question.AccumulationBackgroundColor, _Accumulation, formatArgs: new[] { "first" }, correctAnswers: new[] { bgNames[0] }, preferredWrongAnswers: bgNames),
+            makeQuestion(Question.AccumulationBackgroundColor, _Accumulation, formatArgs: new[] { "second" }, correctAnswers: new[] { bgNames[1] }, preferredWrongAnswers: bgNames),
+            makeQuestion(Question.AccumulationBackgroundColor, _Accumulation, formatArgs: new[] { "third" }, correctAnswers: new[] { bgNames[2] }, preferredWrongAnswers: bgNames),
+            makeQuestion(Question.AccumulationBackgroundColor, _Accumulation, formatArgs: new[] { "fourth" }, correctAnswers: new[] { bgNames[3] }, preferredWrongAnswers: bgNames),
+            makeQuestion(Question.AccumulationBackgroundColor, _Accumulation, formatArgs: new[] { "fifth" }, correctAnswers: new[] { bgNames[4] }, preferredWrongAnswers: bgNames));
     }
 
     private IEnumerable<object> ProcessAdventureGame(KMBombModule module)
@@ -82,7 +82,7 @@ public partial class SouvenirModule
             {
                 // If the length of the inventory has changed, the user used a correct non-weapon item.
                 var itemIndex = ++correctItemsUsed;
-                qs.Add(() => makeQuestion(Question.AdventureGameCorrectItem, _AdventureGame, new[] { ordinal(itemIndex) }, new[] { titleCase(mthItemName.Invoke(itemUsed)) }));
+                qs.Add(() => makeQuestion(Question.AdventureGameCorrectItem, _AdventureGame, formatArgs: new[] { ordinal(itemIndex) }, correctAnswers: new[] { titleCase(mthItemName.Invoke(itemUsed)) }));
                 origInvValues.Clear();
                 origInvValues.AddRange(invValues.Cast<int>());
             }

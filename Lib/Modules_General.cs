@@ -728,8 +728,8 @@ public partial class SouvenirModule
         var message = Regex.Replace(messages[index], @"(?<!^).", m => m.Value.ToLowerInvariant());
         var response = Regex.Replace(responses[index], @"(?<!^).", m => m.Value.ToLowerInvariant());
         addQuestions(module,
-          makeQuestion(question, moduleId, new[] { "message" }, new[] { message }, new[] { response }),
-          makeQuestion(question, moduleId, new[] { "response" }, new[] { response }, new[] { message }));
+          makeQuestion(question, moduleId, formatArgs: new[] { "message" }, correctAnswers: new[] { message }, preferredWrongAnswers: new[] { response }),
+          makeQuestion(question, moduleId, formatArgs: new[] { "response" }, correctAnswers: new[] { response }, preferredWrongAnswers: new[] { message }));
     }
 
     // Used by Cryptic Cycle, Hill Cycle, Jumble Cycle and Ultimate Cycle
@@ -753,8 +753,8 @@ public partial class SouvenirModule
         var message = Regex.Replace(messages[index], @"(?<!^).", m => m.Value.ToLowerInvariant());
         var response = Regex.Replace(responses[index], @"(?<!^).", m => m.Value.ToLowerInvariant());
         addQuestions(module,
-          makeQuestion(question, moduleId, new[] { "message" }, new[] { message }, new[] { response }),
-          makeQuestion(question, moduleId, new[] { "response" }, new[] { response }, new[] { message }));
+          makeQuestion(question, moduleId, formatArgs: new[] { "message" }, correctAnswers: new[] { message }, preferredWrongAnswers: new[] { response }),
+          makeQuestion(question, moduleId, formatArgs: new[] { "response" }, correctAnswers: new[] { response }, preferredWrongAnswers: new[] { message }));
     }
 
     // Used by the World Mazes modules (currently: USA Maze, DACH Maze)
@@ -804,7 +804,7 @@ public partial class SouvenirModule
 
         var memory = GetField<string>(comp, "answer").Get();
         var answerList = GetListField<List<string>>(comp, "wordList").Get()[2].Select(str => str.ToLowerInvariant()).ToArray();
-        addQuestions(module, makeQuestion(question, moduleId, null, new[] { memory.ToLowerInvariant() }, answerList));
+        addQuestions(module, makeQuestion(question, moduleId, formatArgs: null, correctAnswers: new[] { memory.ToLowerInvariant() }, preferredWrongAnswers: answerList));
     }
 
     // Used by The Hypercube and The Ultracube
@@ -821,10 +821,10 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(moduleId);
         addQuestions(module,
-            makeQuestion(question, moduleId, new[] { "first" }, new[] { rotations[sequence[0]] }),
-            makeQuestion(question, moduleId, new[] { "second" }, new[] { rotations[sequence[1]] }),
-            makeQuestion(question, moduleId, new[] { "third" }, new[] { rotations[sequence[2]] }),
-            makeQuestion(question, moduleId, new[] { "fourth" }, new[] { rotations[sequence[3]] }),
-            makeQuestion(question, moduleId, new[] { "fifth" }, new[] { rotations[sequence[4]] }));
+            makeQuestion(question, moduleId, formatArgs: new[] { "first" }, correctAnswers: new[] { rotations[sequence[0]] }),
+            makeQuestion(question, moduleId, formatArgs: new[] { "second" }, correctAnswers: new[] { rotations[sequence[1]] }),
+            makeQuestion(question, moduleId, formatArgs: new[] { "third" }, correctAnswers: new[] { rotations[sequence[2]] }),
+            makeQuestion(question, moduleId, formatArgs: new[] { "fourth" }, correctAnswers: new[] { rotations[sequence[3]] }),
+            makeQuestion(question, moduleId, formatArgs: new[] { "fifth" }, correctAnswers: new[] { rotations[sequence[4]] }));
     }
 }

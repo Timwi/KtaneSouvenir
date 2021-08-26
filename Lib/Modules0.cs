@@ -45,11 +45,11 @@ public partial class SouvenirModule
             throw new AbandonModuleException("Unable to gather all 5 words in 1000 Words.");
 
         addQuestions(module,
-            makeQuestion(Question._1000WordsWords, _1000Words, new[] { "first" }, new[] { wordsWritten[0] }, phrases),
-            makeQuestion(Question._1000WordsWords, _1000Words, new[] { "second" }, new[] { wordsWritten[1] }, phrases),
-            makeQuestion(Question._1000WordsWords, _1000Words, new[] { "third" }, new[] { wordsWritten[2] }, phrases),
-            makeQuestion(Question._1000WordsWords, _1000Words, new[] { "fourth" }, new[] { wordsWritten[3] }, phrases),
-            makeQuestion(Question._1000WordsWords, _1000Words, new[] { "fifth" }, new[] { wordsWritten[4] }, phrases));
+            makeQuestion(Question._1000WordsWords, _1000Words, formatArgs: new[] { "first" }, correctAnswers: new[] { wordsWritten[0] }, preferredWrongAnswers: phrases),
+            makeQuestion(Question._1000WordsWords, _1000Words, formatArgs: new[] { "second" }, correctAnswers: new[] { wordsWritten[1] }, preferredWrongAnswers: phrases),
+            makeQuestion(Question._1000WordsWords, _1000Words, formatArgs: new[] { "third" }, correctAnswers: new[] { wordsWritten[2] }, preferredWrongAnswers: phrases),
+            makeQuestion(Question._1000WordsWords, _1000Words, formatArgs: new[] { "fourth" }, correctAnswers: new[] { wordsWritten[3] }, preferredWrongAnswers: phrases),
+            makeQuestion(Question._1000WordsWords, _1000Words, formatArgs: new[] { "fifth" }, correctAnswers: new[] { wordsWritten[4] }, preferredWrongAnswers: phrases));
     }
 
     private IEnumerable<object> Process100LevelsOfDefusal(KMBombModule module)
@@ -64,7 +64,7 @@ public partial class SouvenirModule
         var display = GetArrayField<char>(comp, "displayedLetters").Get(expectedLength: 12);
 
         addQuestions(module, display.Select((ans, i) =>
-            makeQuestion(Question._100LevelsOfDefusalLetters, _100LevelsOfDefusal, new[] { ordinal(i + 1) }, new[] { ans.ToString() })));
+            makeQuestion(Question._100LevelsOfDefusalLetters, _100LevelsOfDefusal, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { ans.ToString() })));
     }
 
     private IEnumerable<object> Process1DChess(KMBombModule module)
@@ -141,7 +141,7 @@ public partial class SouvenirModule
             .Get(tns => tns.Any(tn => tn < 0 || tn >= symbols.Length) ? "invalid symbols" : null)
             .Select(tn => symbols[tn].ToString())
             .ToArray();
-        addQuestions(module, targetNodeNames.Select((tn, ix) => makeQuestion(Question._3DTunnelsTargetNode, _3DTunnels, new[] { ordinal(ix + 1) }, new[] { tn }, targetNodeNames)));
+        addQuestions(module, targetNodeNames.Select((tn, ix) => makeQuestion(Question._3DTunnelsTargetNode, _3DTunnels, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { tn }, preferredWrongAnswers: targetNodeNames)));
     }
 
     private IEnumerable<object> Process3LEDs(KMBombModule module)
@@ -185,10 +185,10 @@ public partial class SouvenirModule
             if (x == 0) // Stage 0 is denoted as the initial stage on this module.
             {
                 for (int y = 0; y < 3; y++)
-                    allQuestions.Add(makeQuestion(Question._7InitialValues, _7, new[] { colorReference[y] }, new[] { allDisplayedValues[x][y].ToString() }));
+                    allQuestions.Add(makeQuestion(Question._7InitialValues, _7, formatArgs: new[] { colorReference[y] }, correctAnswers: new[] { allDisplayedValues[x][y].ToString() }));
             }
             else
-                allQuestions.Add(makeQuestion(Question._7LedColors, _7, new[] { x.ToString() }, new[] { colorReference[allIdxDisplayedOperators[x]] }, colorReference));
+                allQuestions.Add(makeQuestion(Question._7LedColors, _7, formatArgs: new[] { x.ToString() }, correctAnswers: new[] { colorReference[allIdxDisplayedOperators[x]] }, preferredWrongAnswers: colorReference));
         }
 
         addQuestions(module, allQuestions.ToArray());
@@ -206,19 +206,19 @@ public partial class SouvenirModule
         var balls = GetArrayField<int>(comp, "RndBallNums").Get(expectedLength: 7);
 
         addQuestions(module,
-            makeQuestion(Question._9BallLetters, _9Ball, new[] { "A" }, correctAnswers: new[] { (balls[0] + 1).ToString() }),
-            makeQuestion(Question._9BallLetters, _9Ball, new[] { "B" }, correctAnswers: new[] { (balls[1] + 1).ToString() }),
-            makeQuestion(Question._9BallLetters, _9Ball, new[] { "C" }, correctAnswers: new[] { (balls[2] + 1).ToString() }),
-            makeQuestion(Question._9BallLetters, _9Ball, new[] { "D" }, correctAnswers: new[] { (balls[3] + 1).ToString() }),
-            makeQuestion(Question._9BallLetters, _9Ball, new[] { "E" }, correctAnswers: new[] { (balls[4] + 1).ToString() }),
-            makeQuestion(Question._9BallLetters, _9Ball, new[] { "F" }, correctAnswers: new[] { (balls[5] + 1).ToString() }),
-            makeQuestion(Question._9BallLetters, _9Ball, new[] { "G" }, correctAnswers: new[] { (balls[6] + 1).ToString() }),
-            makeQuestion(Question._9BallNumbers, _9Ball, new[] { "2" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 1)] }),
-            makeQuestion(Question._9BallNumbers, _9Ball, new[] { "3" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 2)] }),
-            makeQuestion(Question._9BallNumbers, _9Ball, new[] { "4" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 3)] }),
-            makeQuestion(Question._9BallNumbers, _9Ball, new[] { "5" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 4)] }),
-            makeQuestion(Question._9BallNumbers, _9Ball, new[] { "6" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 5)] }),
-            makeQuestion(Question._9BallNumbers, _9Ball, new[] { "7" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 6)] }),
-            makeQuestion(Question._9BallNumbers, _9Ball, new[] { "8" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 7)] }));
+            makeQuestion(Question._9BallLetters, _9Ball, formatArgs: new[] { "A" }, correctAnswers: new[] { (balls[0] + 1).ToString() }),
+            makeQuestion(Question._9BallLetters, _9Ball, formatArgs: new[] { "B" }, correctAnswers: new[] { (balls[1] + 1).ToString() }),
+            makeQuestion(Question._9BallLetters, _9Ball, formatArgs: new[] { "C" }, correctAnswers: new[] { (balls[2] + 1).ToString() }),
+            makeQuestion(Question._9BallLetters, _9Ball, formatArgs: new[] { "D" }, correctAnswers: new[] { (balls[3] + 1).ToString() }),
+            makeQuestion(Question._9BallLetters, _9Ball, formatArgs: new[] { "E" }, correctAnswers: new[] { (balls[4] + 1).ToString() }),
+            makeQuestion(Question._9BallLetters, _9Ball, formatArgs: new[] { "F" }, correctAnswers: new[] { (balls[5] + 1).ToString() }),
+            makeQuestion(Question._9BallLetters, _9Ball, formatArgs: new[] { "G" }, correctAnswers: new[] { (balls[6] + 1).ToString() }),
+            makeQuestion(Question._9BallNumbers, _9Ball, formatArgs: new[] { "2" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 1)] }),
+            makeQuestion(Question._9BallNumbers, _9Ball, formatArgs: new[] { "3" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 2)] }),
+            makeQuestion(Question._9BallNumbers, _9Ball, formatArgs: new[] { "4" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 3)] }),
+            makeQuestion(Question._9BallNumbers, _9Ball, formatArgs: new[] { "5" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 4)] }),
+            makeQuestion(Question._9BallNumbers, _9Ball, formatArgs: new[] { "6" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 5)] }),
+            makeQuestion(Question._9BallNumbers, _9Ball, formatArgs: new[] { "7" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 6)] }),
+            makeQuestion(Question._9BallNumbers, _9Ball, formatArgs: new[] { "8" }, correctAnswers: new[] { new[] { "A", "B", "C", "D", "E", "F", "G" }[Array.IndexOf(balls, 7)] }));
     }
 }
