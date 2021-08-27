@@ -909,7 +909,7 @@ namespace Souvenir
         [AnswerGenerator.Strings("4*1-4")]
         MazeIdentificationSeed,
         [SouvenirQuestion("What was the function of button {1} in {0}?", "Maze Identification", AnswerLayout.OneColumn4Answers, new[] { "Forwards", "Clockwise", "Backwards", "Counter-clockwise" }, ExampleAnswers = new[] { "forwards", "clockwise", "backwards", "counter-clockwise" },
-        ExampleExtraFormatArguments = new[] { "1", "2", "3", "4" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "1", "2", "3", "4" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MazeIdentificationNum,
         [SouvenirQuestion("Which button {1} in {0}?", "Maze Identification", AnswerLayout.TwoColumns4Answers, new[] { "1", "2", "3", "4" }, ExampleAnswers = new[] { "1", "2", "3", "4" },
             ExampleExtraFormatArguments = new[] { "moved you forwards", "turned you clockwise", "moved you backwards", "turned you counter-clockwise" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -1316,16 +1316,14 @@ namespace Souvenir
         PurpleArrowsFinish,
 
         [SouvenirQuestion("What was the puzzle number of the {1} puzzle in {0}?", "Puzzle Identification", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "001", "002", "003", "004", "005", "006" },
-        ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 170, 1, "000")]
         PuzzleIdentificationNum,
-
         [SouvenirQuestion("What game did the {1} puzzle come from in {0}?", "Puzzle Identification", AnswerLayout.OneColumn4Answers, null, ExampleAnswers = new[] { "Professor Layton and the Curious Village", "Professor Layton and Pandora's Box", "Professor Layton and the Lost Future", "Professor Layton and the Spectre's Call" },
-        ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PuzzleIdentificationGame,
-
         [SouvenirQuestion("What was the name of the {1} puzzle in {0}?", "Puzzle Identification", AnswerLayout.OneColumn4Answers, null, ExampleAnswers = new[] { "Where's the Village?", "Dr Schrader's Map", "A Party Crasher", "A Secret Message" },
-        ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PuzzleIdentificationName,
 
         [SouvenirQuestion("What was the {1} sequence’s answer in {0}?", "Quaver", AnswerLayout.OneColumn4Answers, ExampleAnswers = new[] { "4", "10", "87", "320", "3, 3, 2, 3", "87, 85, 82, 84" },
