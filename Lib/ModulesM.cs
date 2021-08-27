@@ -282,6 +282,32 @@ public partial class SouvenirModule
             makeQuestion(Question.MazeScramblerIndicators, _MazeScrambler, correctAnswers: new[] { positionNames[ind1Y * 3 + ind1X], positionNames[ind2Y * 3 + ind2X] }, preferredWrongAnswers: positionNames));
     }
 
+    private IEnumerable<object> ProcessMazeseeker(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MazeseekerScript");
+        var fldSolved = GetField<bool>(comp, "Solved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Mazeseeker);
+
+        var nums = GetField<int[,]>(comp, "Grid").Get();
+        var startRow = GetField<int>(comp, "StartingRow").Get();
+        var startColumn = GetField<int>(comp, "StartingColumn").Get();
+        var goalRow = GetField<int>(comp, "GoalRow").Get();
+        var goalColumn = GetField<int>(comp, "GoalColumn").Get();
+
+        var qs = new List<QandA>();
+        for (int i = 0; i < 36; i++)
+            qs.Add(makeQuestion(Question.MazeseekerCell, _Mazeseeker, questionSprite: generateGridSprite(new Coord(6, 6, i)), correctAnswers: new[] { nums[i / 6, i % 6].ToString() }));
+        for (int i = 0; i < 36; i++)
+            qs.Add(makeQuestion(Question.MazeseekerStart, _Mazeseeker, correctAnswers: new[] { generateGridSprite(new Coord(6, 6, startColumn, startRow)) }));
+        for (int i = 0; i < 36; i++)
+            qs.Add(makeQuestion(Question.MazeseekerGoal, _Mazeseeker, correctAnswers: new[] { generateGridSprite(new Coord(6, 6, goalColumn, goalRow)) }));
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessMegaMan2(KMBombModule module)
     {
         var comp = GetComponent(module, "Megaman2");

@@ -266,6 +266,19 @@ public partial class SouvenirModule
         }
     }
 
+    private IEnumerable<object> ProcessNotTheScrew(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NotTheScrewModule");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+        var position = GetField<int>(comp, "_curPos").Get();
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_NotTheScrew);
+
+        addQuestion(module, Question.NotTheScrewInitialPosition, correctAnswers: new[] { new Coord(6, 4, position) });
+    }
+
     private IEnumerable<object> ProcessNotWhosOnFirst(KMBombModule module)
     {
         var comp = GetComponent(module, "NotWhosOnFirst");

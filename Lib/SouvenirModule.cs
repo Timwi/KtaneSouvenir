@@ -890,6 +890,11 @@ public partial class SouvenirModule : MonoBehaviour
         addQuestions(module, makeQuestion(question, module.ModuleType, questionSprite, formatArguments, correctAnswers, preferredWrongAnswers));
     }
 
+    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string[] formatArguments = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null)
+    {
+        addQuestions(module, makeQuestion(question, module.ModuleType, questionSprite, formatArguments, correctAnswers, preferredWrongAnswers));
+    }
+
     private void addQuestions(KMBombModule module, IEnumerable<QandA> questions)
     {
         var qs = questions.Where(q => q != null).ToArray();
@@ -1065,7 +1070,7 @@ public partial class SouvenirModule : MonoBehaviour
 
     #region
     private readonly Dictionary<string, Texture2D> _gridSpriteCache = new Dictionary<string, Texture2D>();
-    private Sprite generateGridSprite(Coord coord, float size)
+    private Sprite generateGridSprite(Coord coord, float size = 1f)
     {
         var tw = 4 * coord.Width + 1;
         var th = 4 * coord.Height + 1;

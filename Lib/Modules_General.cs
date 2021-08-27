@@ -174,6 +174,7 @@ public partial class SouvenirModule
     const string _MazeIdentification = "GSMazeIdentification";
     const string _Mazematics = "mazematics";
     const string _MazeScrambler = "MazeScrambler";
+    const string _Mazeseeker = "GSMazeseeker";
     const string _MegaMan2 = "megaMan2";
     const string _MelodySequencer = "melodySequencer";
     const string _MemorableButtons = "memorableButtons";
@@ -206,6 +207,7 @@ public partial class SouvenirModule
     const string _NotMorseCode = "NotMorseCode";
     const string _NotSimaze = "NotSimaze";
     const string _NotTheButton = "NotButton";
+    const string _NotTheScrew = "notTheScrew";
     const string _NotWhosOnFirst = "NotWhosOnFirst";
     const string _NotXRay = "NotXRayModule";
     const string _NumberedButtons = "numberedButtonsModule";
@@ -524,6 +526,7 @@ public partial class SouvenirModule
             { _MazeIdentification, ProcessMazeIdentification },
             { _Mazematics, ProcessMazematics },
             { _MazeScrambler, ProcessMazeScrambler },
+            { _Mazeseeker, ProcessMazeseeker },
             { _MegaMan2, ProcessMegaMan2 },
             { _MelodySequencer, ProcessMelodySequencer },
             { _MemorableButtons, ProcessMemorableButtons },
@@ -556,6 +559,7 @@ public partial class SouvenirModule
             { _NotMorseCode, ProcessNotMorseCode },
             { _NotSimaze, ProcessNotSimaze },
             { _NotTheButton, ProcessNotTheButton },
+            { _NotTheScrew, ProcessNotTheScrew },
             { _NotWhosOnFirst, ProcessNotWhosOnFirst },
             { _NotXRay, ProcessNotXRay },
             { _NumberedButtons, ProcessNumberedButtons },

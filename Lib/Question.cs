@@ -915,6 +915,13 @@ namespace Souvenir
         [SouvenirQuestion("Which of these positions was a maze marking on {0}?", "Maze Scrambler", AnswerLayout.TwoColumns4Answers, "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right")]
         MazeScramblerIndicators,
 
+        [SouvenirQuestion("How many walls surrounded this cell in {0}?", "Mazeseeker", AnswerLayout.TwoColumns4Answers, "0", "1", "2", "3", UsesQuestionSprite = true)]
+        MazeseekerCell,
+        [SouvenirQuestion("Where was the start in {0}?", "Mazeseeker", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Grid)]
+        MazeseekerStart,
+        [SouvenirQuestion("Where was the goal in {0}?", "Mazeseeker", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Grid)]
+        MazeseekerGoal,
+
         [SouvenirQuestion("Who was the master shown in {0}?", "Mega Man 2", AnswerLayout.TwoColumns4Answers, "Cold Man", "Magma Man", "Dust Man", "Sword Man", "Splash Woman", "Ice Man", "Quick Man", "Hard Man", "Pharaoh Man", "Charge Man", "Pirate Man", "Pump Man", "Galaxy Man", "Grenade Man", "Snake Man", "Burst Man", "Cut Man", "Air Man", "Magnet Man", "Toad Man", "Gyro Man", "Tomahawk Man", "Wood Man", "Strike Man", "Blade Man", "Aqua Man", "Shade Man", "Flash Man", "Flame Man", "Concrete Man", "Metal Man", "Needle Man", "Wave Man", "Knight Man", "Slash Man", "Shadow Man", "Sheep Man", "Ground Man", "Wind Man", "Fire Man", "Stone Man", "Tengu Man", "Bright Man", "Centaur Man", "Cloud Man", "Frost Man", "Dynamo Man", "Chill Man", "Turbo Man", "Napalm Man", "Jewel Man", "Drill Man", "Freeze Man", "Blizzard Man", "Gravity Man", "Junk Man", "Clown Man", "Hornet Man", "Skull Man", "Solar Man", "Commando Man", "Yamato Man", "Dive Man", "Search Man", "Gemini Man", "Bubble Man", "Guts Man", "Tornado Man", "Astro Man", "Plug Man", "Elec Man", "Crystal Man", "Nitro Man", "Burner Man", "Spark Man", "Spring Man", "Plant Man", "Star Man", "Ring Man", "Top Man", "Crash Man", "Bomb Man", "Heat Man", "Magic Man")]
         MegaMan2SelectedMaster,
         [SouvenirQuestion("Whose weapon was shown in {0}?", "Mega Man 2", AnswerLayout.TwoColumns4Answers, "Cold Man", "Magma Man", "Dust Man", "Sword Man", "Splash Woman", "Ice Man", "Quick Man", "Hard Man", "Pharaoh Man", "Charge Man", "Pirate Man", "Pump Man", "Galaxy Man", "Grenade Man", "Snake Man", "Burst Man", "Cut Man", "Air Man", "Magnet Man", "Toad Man", "Gyro Man", "Tomahawk Man", "Wood Man", "Strike Man", "Blade Man", "Aqua Man", "Shade Man", "Flash Man", "Flame Man", "Concrete Man", "Metal Man", "Needle Man", "Wave Man", "Knight Man", "Slash Man", "Shadow Man", "Sheep Man", "Ground Man", "Wind Man", "Fire Man", "Stone Man", "Tengu Man", "Bright Man", "Centaur Man", "Cloud Man", "Frost Man", "Dynamo Man", "Chill Man", "Turbo Man", "Napalm Man", "Jewel Man", "Drill Man", "Freeze Man", "Blizzard Man", "Gravity Man", "Junk Man", "Clown Man", "Hornet Man", "Skull Man", "Solar Man", "Commando Man", "Yamato Man", "Dive Man", "Search Man", "Gemini Man", "Bubble Man", "Guts Man", "Tornado Man", "Astro Man", "Plug Man", "Elec Man", "Crystal Man", "Nitro Man", "Burner Man", "Spark Man", "Spring Man", "Plant Man", "Star Man", "Ring Man", "Top Man", "Crash Man", "Bomb Man", "Heat Man", "Magic Man")]
@@ -1098,6 +1105,9 @@ namespace Souvenir
 
         [SouvenirQuestion("What colors did the light glow in {0}?", "Not the Button", AnswerLayout.ThreeColumns6Answers, "white", "red", "yellow", "green", "blue", "white/red", "white/yellow", "white/green", "white/blue", "red/yellow", "red/green", "red/blue", "yellow/green", "yellow/blue", "green/blue")]
         NotTheButtonLightColor,
+
+        [SouvenirQuestion("What was the initial position in {0}?", "Not the Screw", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Grid)]
+        NotTheScrewInitialPosition,
 
         [SouvenirQuestion("In which position was the button you pressed in the {1} stage on {0}?", "Not Who’s on First", AnswerLayout.TwoColumns4Answers, "top left", "top right", "middle left", "middle right", "bottom left", "bottom right",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -1856,7 +1866,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ZeroZeroSquares,
 
-        [SouvenirQuestion("What was the {1} decrypted word in {0}?", "Zoni", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "angel", "thing", "dance", "heavy", "quote" },
+        [SouvenirQuestion("What was the {1} decrypted word in {0}?", "Zoni", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "angel", "thing", "dance", "heavy", "quote", "radio" },
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ZoniWords
     }
