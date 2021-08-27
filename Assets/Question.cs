@@ -783,9 +783,23 @@ namespace Souvenir
           ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
         JumbleCycleWord,
 
+        [SouvenirQuestion("What was a food item displayed in the last successful round of {0}?", "Kanye Encounter", AnswerLayout.TwoColumns4Answers,
+            "Onion", "Corn", "big MIOLK", "Yam", "Corn Cube", "Egg", "Eggchips", "hamger", "Tyler the Creator", "Onionade", "Soup", "jeb",  AddThe = true)]
+        KanyeEncounterFoods,
+
+        [SouvenirQuestion("What was the position of the LED in {0}?", "Keypad Magnified", AnswerLayout.TwoColumns4Answers, "Top-left", "Top-right", "Bottom-left", "Bottom-right")]
+        KeypadMagnifiedLED,
+
         [SouvenirQuestion("Which square was {1} in {0}?", "Kudosudoku", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "Tiles4x4Sprites",
             ExampleExtraFormatArguments = new[] { "pre-filled", "not pre-filled" }, ExampleExtraFormatArgumentGroupSize = 1)]
         KudosudokuPrefilled,
+
+        [SouvenirQuestion("Which color was present on the second ladder in {0}?", "Ladders", AnswerLayout.TwoColumns4Answers, 
+            "Red", "Orange", "Yellow", "Green", "Blue", "Cyan", "Purple", "Gray")]
+        LaddersStage2Colors,
+        [SouvenirQuestion("What color was missing on the third ladder in {0}?", "Ladders", AnswerLayout.ThreeColumns6Answers,
+            "Red", "Orange", "Yellow", "Green", "Blue", "Cyan", "Purple", "Gray")]
+        LaddersStage3Missing,
 
         [SouvenirQuestion("What was the number on the {1} hatch on {0}?", "Lasers", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "top-left", "top-middle", "top-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -942,6 +956,10 @@ namespace Souvenir
         [AnswerGenerator.Integers(1, 4)]
         MemoryLabel,
 
+        [SouvenirQuestion("What was the extracted letter in {0}?", "Metamorse", AnswerLayout.ThreeColumns6Answers, null)]
+        [AnswerGenerator.Strings("A-Z")]
+        MetamorseExtractedLetter,
+
         [SouvenirQuestion("Which pin lit up {1} in {0}?", "Microcontroller", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 10)]
@@ -1063,6 +1081,9 @@ namespace Souvenir
         [AnswerGenerator.Strings(5, 'M', 'N')]
         NandMsAnswer,
 
+        [SouvenirQuestion("What was the {1} index in {0}?", "Name Codes", AnswerLayout.TwoColumns4Answers, "2", "3", "4", "5", ExampleExtraFormatArguments = new[] { "left", "right" } )]
+        NameCodesIndices,
+
         [SouvenirQuestion("What was the initial middle digit in {0}?", "Navinums", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Integers(1, 9)]
         NavinumsMiddleDigit,
@@ -1130,6 +1151,12 @@ namespace Souvenir
         [SouvenirQuestion("What two-digit number was given in {0}?", "Numbers", AnswerLayout.ThreeColumns6Answers, null)]
         [AnswerGenerator.Integers(0, 99, "00")]
         NumbersTwoDigit,
+
+        [SouvenirQuestion("What was the color of the number on {0}?", "Numpath", AnswerLayout.ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple")]
+        NumpathColor,
+        [SouvenirQuestion("What was the number displayed on {0}?", "Numpath", AnswerLayout.ThreeColumns6Answers, null)]
+        [AnswerGenerator.Integers(1, 9)]
+        NumpathDigit,
 
         [SouvenirQuestion("Which of these was a contestant on {0} but not the final winner?", "Object Shows", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "Battleship", "Big Circle", "Jack O’ Lantern", "Lego", "Moon", "Radio", "Combination Lock", "Cookie Jar", "Fidget Spinner" })]
         ObjectShowsContestants,
@@ -1535,6 +1562,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "flashed", "first", "flashed", "second", "was among the colors flashed", "first", "was among the colors flashed", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
         SimonStoresColors,
 
+        [SouvenirQuestion("What was the {1} topic in {0}?", "Simon Supports", AnswerLayout.TwoColumns4Answers, "Boss", "Cruel", "Faulty", "Lookalike", "Puzzle", "Simon", "Time-Based", "Translated", 
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" })]
+        SimonSupportsTopics,
+
         [SouvenirQuestion("What were the original numbers in {0}?", "Skewed Slots", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Integers(0, 999, "000")]
         SkewedSlotsOriginalNumbers,
@@ -1593,6 +1624,11 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the element shown in {0}?", "State of Aggregation", AnswerLayout.ThreeColumns6Answers, "H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne", "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca", "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Ga", "Ge", "As", "Se", "Br", "Kr", "Rb", "Sr", "Y", "Zr", "Nb", "Mo", "Tc", "Ru", "Rh", "Pd", "Ag", "Cd", "In", "Sn", "Sb", "Te", "I", "Xe", "Cs", "Ba", "La", "Ce", "Pr", "Nd", "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg", "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Ac", "Th", "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm", "Md", "No", "Lr", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og")]
         StateOfAggregationElement,
+
+        [SouvenirQuestion("What was the value of the {1} arrow in {0}", "Stupid Slots", AnswerLayout.ThreeColumns6Answers, null,
+            ExampleExtraFormatArguments = new[] { "Top-left", "Top-middle", "Top-right", "Bottom-left", "Bottom-middle", "Bottom-right" })]
+        [AnswerGenerator.Integers(-30, 30)]
+        StupidSlotsValues,
 
         [SouvenirQuestion("How many subscribers does {1} have in {0}?", "Subscribe to Pewdiepie", AnswerLayout.TwoColumns4Answers, null,
             ExampleExtraFormatArguments = new[] { "PewDiePie", "T-Series" }, ExampleExtraFormatArgumentGroupSize = 1)]

@@ -236,7 +236,10 @@ public class SouvenirModule : MonoBehaviour
     const string _iPhone = "iPhone";
     const string _JewelVault = "jewelVault";
     const string _JumbleCycle = "jumbleCycle";
+    const string _KanyeEncounter = "TheKanyeEncounter";
+    const string _KeypadMagnified = "keypadMagnified";
     const string _Kudosudoku = "KudosudokuModule";
+    const string _Ladders = "ladders";
     const string _Lasers = "lasers";
     const string _LEDEncryption = "LEDEnc";
     const string _LEDMath = "lgndLEDMath";
@@ -264,6 +267,7 @@ public class SouvenirModule : MonoBehaviour
     const string _MelodySequencer = "melodySequencer";
     const string _MemorableButtons = "memorableButtons";
     const string _Memory = "Memory";
+    const string _Metamorse = "metamorse";
     const string _Microcontroller = "Microcontroller";
     const string _Minesweeper = "MinesweeperModule";
     const string _ModernCipher = "modernCipher";
@@ -282,6 +286,7 @@ public class SouvenirModule : MonoBehaviour
     const string _Murder = "murder";
     const string _MysteryModule = "mysterymodule";
     const string _MysticSquare = "MysticSquareModule";
+    const string _NameCodes = "nameCodes";
     const string _NandMs = "NandMs";
     const string _Navinums = "navinums";
     const string _Necronomicon = "necronomicon";
@@ -296,6 +301,7 @@ public class SouvenirModule : MonoBehaviour
     const string _NotXRay = "NotXRayModule";
     const string _NumberedButtons = "numberedButtonsModule";
     const string _Numbers = "Numbers";
+    const string _Numpath = "numpath";
     const string _ObjectShows = "objectShows";
     const string _Octadecayotton = "TheOctadecayotton";
     const string _OddOneOut = "OddOneOutModule";
@@ -369,6 +375,7 @@ public class SouvenirModule : MonoBehaviour
     const string _SimonStates = "SimonV2";
     const string _SimonStops = "simonStops";
     const string _SimonStores = "simonStores";
+    const string _SimonSupports = "simonSupports";
     const string _SkewedSlots = "SkewedSlotsModule";
     const string _Skyrim = "skyrim";
     const string _Snooker = "snooker";
@@ -383,6 +390,7 @@ public class SouvenirModule : MonoBehaviour
     const string _StackedSequences = "stackedSequences";
     const string _Stars = "stars";
     const string _StateOfAggregation = "stateOfAggregation";
+    const string _StupidSlots = "stupidSlots";
     const string _SubscribeToPewdiepie = "subscribeToPewdiepie";
     const string _SugarSkulls = "sugarSkulls";
     const string _Switch = "BigSwitch";
@@ -592,7 +600,10 @@ public class SouvenirModule : MonoBehaviour
             { _iPhone, ProcessiPhone },
             { _JewelVault, ProcessJewelVault },
             { _JumbleCycle, ProcessJumbleCycle },
+            { _KanyeEncounter, ProcessKanyeEncounter },
+            { _KeypadMagnified, ProcessKeypadMagnified },
             { _Kudosudoku, ProcessKudosudoku },
+            { _Ladders, ProcessLadders },
             { _Lasers, ProcessLasers },
             { _LEDEncryption, ProcessLEDEncryption },
             { _LEDMath, ProcessLEDMath },
@@ -620,6 +631,7 @@ public class SouvenirModule : MonoBehaviour
             { _MelodySequencer, ProcessMelodySequencer },
             { _MemorableButtons, ProcessMemorableButtons },
             { _Memory, ProcessMemory },
+            { _Metamorse, ProcessMetamorse },
             { _Microcontroller, ProcessMicrocontroller },
             { _Minesweeper, ProcessMinesweeper },
             { _ModernCipher, ProcessModernCipher },
@@ -638,6 +650,7 @@ public class SouvenirModule : MonoBehaviour
             { _Murder, ProcessMurder },
             { _MysteryModule, ProcessMysteryModule },
             { _MysticSquare, ProcessMysticSquare },
+            { _NameCodes, ProcessNameCodes },
             { _NandMs, ProcessNandMs },
             { _Navinums, ProcessNavinums },
             { _Necronomicon, ProcessNecronomicon },
@@ -652,6 +665,7 @@ public class SouvenirModule : MonoBehaviour
             { _NotXRay, ProcessNotXRay },
             { _NumberedButtons, ProcessNumberedButtons },
             { _Numbers, ProcessNumbers },
+            { _Numpath, ProcessNumpath },
             { _ObjectShows, ProcessObjectShows },
             { _Octadecayotton, ProcessOctadecayotton },
             { _OddOneOut, ProcessOddOneOut },
@@ -725,6 +739,7 @@ public class SouvenirModule : MonoBehaviour
             { _SimonStates, ProcessSimonStates },
             { _SimonStops, ProcessSimonStops },
             { _SimonStores, ProcessSimonStores },
+            { _SimonSupports, ProcessSimonSupports },
             { _SkewedSlots, ProcessSkewedSlots },
             { _Skyrim, ProcessSkyrim },
             { _Snooker, ProcessSnooker },
@@ -739,6 +754,7 @@ public class SouvenirModule : MonoBehaviour
             { _StackedSequences, ProcessStackedSequences },
             { _Stars, ProcessStars },
             { _StateOfAggregation, ProcessStateOfAggregation },
+            { _StupidSlots, ProcessStupidSlots },
             { _SubscribeToPewdiepie, ProcessSubscribeToPewdiepie },
             { _SugarSkulls, ProcessSugarSkulls },
             { _Switch, ProcessSwitch },
@@ -5384,6 +5400,39 @@ public class SouvenirModule : MonoBehaviour
         return processSpeakingEvilCycle2(module, "JumbleCycleScript", Question.JumbleCycleWord, _JumbleCycle);
     }
 
+    private IEnumerable<object> ProcessKanyeEncounter(KMBombModule module)
+    {
+        var comp = GetComponent(module, "TheKanyeEncounter");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        var fldFoodsAvailable = GetArrayField<int>(comp, "FooderPickerNumberSelector");
+        string[] foodNames = GetField<string[]>(comp, "FoodsButCodeText").Get();
+        for (int i = 0; i < foodNames.Length; i++)
+            if (foodNames[i] == "Corn [inedible]")
+                foodNames[i] = "Corn";
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_KanyeEncounter);
+
+        int[] selectedFoods = fldFoodsAvailable.Get(expectedLength: 3);
+        string[] selectedFoodNames = selectedFoods.Select(x => foodNames[x]).ToArray();
+        addQuestion(module, Question.KanyeEncounterFoods, correctAnswers: selectedFoodNames);
+    }
+    private IEnumerable<object> ProcessKeypadMagnified(KMBombModule module)
+    {
+        var comp = GetComponent(module, "KeypadMagnifiedScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        int LEDPos = GetIntField(comp, "chosenPosition").Get(min: 0, max: 3);
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_KeypadMagnified);
+
+        string[] posNames = { "Top-left", "Top-right", "Bottom-left", "Bottom-right" };
+        addQuestion(module, Question.KeypadMagnifiedLED, correctAnswers: new[] { posNames[LEDPos] });
+    }
+
     private IEnumerable<object> ProcessKudosudoku(KMBombModule module)
     {
         var comp = GetComponent(module, "KudosudokuModule");
@@ -5401,6 +5450,28 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.KudosudokuPrefilled, _Kudosudoku, new[] { "not pre-filled" },
                 preferredWrongAnswers: Tiles4x4Sprites,
                 correctAnswers: Enumerable.Range(0, 16).Where(ix => !shown[ix]).Select(coord => Tiles4x4Sprites[coord]).ToArray()));
+    }
+
+    private IEnumerable<object> ProcessLadders(KMBombModule module)
+    {
+        var comp = GetComponent(module, "LaddersScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        var fldLadderCols = GetArrayField<int[]>(comp, "ladderColors");
+        var fldMissing = GetIntField(comp, "missingColor");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_Ladders);
+
+        int[] secondLadder = fldLadderCols.Get(expectedLength: 3)[1];
+        int missing = fldMissing.Get(min: 0, max: 7);
+        string[] colorNames = { "Red", "Orange", "Yellow", "Green", "Blue", "Cyan", "Purple", "Gray" };
+
+        addQuestions(module,
+            makeQuestion(Question.LaddersStage2Colors, _Ladders, correctAnswers: secondLadder.Distinct().Select(x => colorNames[x]).ToArray()),
+            makeQuestion(Question.LaddersStage3Missing, _Ladders, correctAnswers: new[] { colorNames[missing] }));
+
     }
 
     private IEnumerable<object> ProcessLasers(KMBombModule module)
@@ -6199,6 +6270,18 @@ public class SouvenirModule : MonoBehaviour
         }
         addQuestions(module, qs);
     }
+    
+    private IEnumerable<object> ProcessMetamorse(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MetamorseScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldBigChar = GetField<char>(comp, "greaterLetter");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_Metamorse);
+        addQuestion(module, Question.MetamorseExtractedLetter, correctAnswers: new[] { fldBigChar.Get().ToString() });
+    }
 
     private IEnumerable<object> ProcessMicrocontroller(KMBombModule module)
     {
@@ -6843,6 +6926,22 @@ public class SouvenirModule : MonoBehaviour
             makeQuestion(Question.NeutralizationColor, _Neutralization, correctAnswers: new[] { new[] { "Yellow", "Green", "Red", "Blue" }[acidType] }),
             makeQuestion(Question.NeutralizationVolume, _Neutralization, correctAnswers: new[] { acidVol.ToString() }));
     }
+    private IEnumerable<object> ProcessNameCodes(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NameCodesScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_NameCodes);
+
+        string leftIx = GetIntField(comp, "leftIndex").Get().ToString();
+        string rightIx = GetIntField(comp, "rightIndex").Get().ToString();
+        addQuestions(module, new[] {
+            makeQuestion(Question.NameCodesIndices, _NameCodes, formatArgs: new[] { "left" }, correctAnswers: new[]{ leftIx }),
+            makeQuestion(Question.NameCodesIndices, _NameCodes, formatArgs: new[] { "right" }, correctAnswers: new[]{ rightIx }),
+        });
+    }
 
     private IEnumerable<object> ProcessNandMs(KMBombModule module)
     {
@@ -7099,6 +7198,24 @@ public class SouvenirModule : MonoBehaviour
         var numberValue2 = GetField<int>(comp, "numberValue2").Get();
         var answer = numberValue1.ToString() + numberValue2.ToString();
         addQuestions(module, makeQuestion(Question.NumbersTwoDigit, _Numbers, null, new[] { answer }));
+    }
+
+    private IEnumerable<object> ProcessNumpath(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NumpathScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        yield return null;
+        var disp = GetField<TextMesh>(comp, "screen", isPublic: true).Get().text;
+        int color = GetIntField(comp, "colorIndex").Get();
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_Numpath);
+
+        string[] colorNames = { "Red", "Green", "Blue", "Yellow", "Purple", "Orange" };
+        addQuestions(module,
+        makeQuestion(Question.NumpathColor, _Numpath, correctAnswers: new[] { colorNames[color] }),
+        makeQuestion(Question.NumpathDigit, _Numpath, correctAnswers: new[] { disp }));
     }
 
     private IEnumerable<object> ProcessObjectShows(KMBombModule module)
@@ -8984,6 +9101,26 @@ public class SouvenirModule : MonoBehaviour
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessSimonSupports(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SimonSupportsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_SimonSupports);
+
+        bool[][] combo = GetField<bool[][]>(comp, "combo").Get();
+        int[] traits = GetArrayField<int>(comp, "tra").Get(expectedLength: 8);
+        string[] traitNames = { "Boss", "Cruel", "Faulty", "Lookalike", "Puzzle", "Simon", "Time-Based", "Translated" };
+        string[] chosenTopics = Enumerable.Range(0, 3).Select(x => traitNames[traits[x]]).ToArray();
+
+        var qs = new List<QandA>();
+        for (int i = 0; i < 3; i++)
+            qs.Add(makeQuestion(Question.SimonSupportsTopics, _SimonSupports, new[] { ordinal(i + 1) }, new[] { chosenTopics[i] }, chosenTopics));
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessSkewedSlots(KMBombModule module)
     {
         var comp = GetComponent(module, "SkewedModule");
@@ -9312,6 +9449,24 @@ public class SouvenirModule : MonoBehaviour
 
         // Convert to proper case.
         addQuestions(module, makeQuestion(Question.StateOfAggregationElement, _StateOfAggregation, null, new[] { element.Substring(0, 1).ToUpperInvariant() + element.Substring(1).ToLowerInvariant() }));
+    }
+
+    private IEnumerable<object> ProcessStupidSlots(KMBombModule module)
+    {
+        var comp = GetComponent(module, "StupidSlotsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_StupidSlots);
+
+        int[] values = GetArrayField<int>(comp, "allValues").Get(expectedLength: 6);
+        var validPositions = Enumerable.Range(0, 6).Where(x => values[x] != 0);
+        string[] posNames = { "Top-left", "Top-middle", "Top-right", "Bottom-left", "Bottom-middle", "Bottom-right" };
+
+        var qs = new List<QandA>();
+        foreach (int pos in validPositions)
+            qs.Add(makeQuestion(Question.StupidSlotsValues, _StupidSlots, formatArgs: new[] { posNames[pos] }, correctAnswers: new[] { values[pos].ToString() }));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessSubscribeToPewdiepie(KMBombModule module)
