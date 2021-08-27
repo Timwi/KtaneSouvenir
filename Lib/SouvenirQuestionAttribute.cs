@@ -13,6 +13,7 @@ namespace Souvenir
         public string[] ExampleExtraFormatArguments { get; set; }
         public int ExampleExtraFormatArgumentGroupSize { get; set; }
         public bool AddThe { get; set; }
+        public bool UsesQuestionSprite { get; set; }
         public string[] ExampleAnswers { get; set; }
         public AnswerType Type { get; set; }
         public AnswerLayout Layout { get; set; }

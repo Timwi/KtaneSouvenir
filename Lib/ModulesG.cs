@@ -7,6 +7,42 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
+    private IEnumerable<object> ProcessGameOfLifeCruel(KMBombModule module)
+    {
+        var comp = GetComponent(module, "GameOfLifeCruel");
+        var fldSolved = GetField<bool>(comp, "isSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_GameOfLifeCruel);
+
+        var colors = new[] { "Black", "White", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Brown" };
+        var colors1 = GetArrayField<int>(comp, "BtnColor1init").Get();
+        var colors2 = GetArrayField<int>(comp, "BtnColor2init").Get();
+        var qs = new List<QandA>();
+
+        var answersList = new List<string>();
+        for (int i = 0; i < 9; i++)
+            for (int j = 0; j < 9; j++)
+                if (j != 1 && (i != 0 || j > 1))
+                    answersList.Add(colors[i] == colors[j] ? $"Solid {colors[i]}" : $"{colors[i]}/{colors[j]}");
+        var answers = answersList.ToArray();
+
+        for (int i = 0; i < 48; i++)
+            if (colors1[i] > 1 || colors2[i] > 1)
+                qs.Add(makeQuestion(Question.GameOfLifeCruelColors, _GameOfLifeCruel, questionSprite: generateGridSprite(new Coord(6, 8, i), 1.5f),
+                    correctAnswers: colors1[i] == colors2[i] ? new[] { $"Solid {colors[colors1[i]]}" } : new[] { $"{colors[colors1[i]]}/{colors[colors2[i]]}", $"{colors[colors2[i]]}/{colors[colors1[i]]}" },
+                    preferredWrongAnswers: answers));
+
+        if (qs.Count == 0)
+        {
+            Debug.LogFormat("[Souvenir #{0}] No questions for Game of Life Cruel because there were no colored squares. This should never happen.", _moduleId);
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessGamepad(KMBombModule module)
     {
         var comp = GetComponent(module, "GamepadModule");

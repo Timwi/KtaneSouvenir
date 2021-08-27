@@ -7,7 +7,7 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
-    const string Version = "3.8";
+    const string Version = "4.0";
 
     // The values here are the “ModuleType” property on the KMBombModule components.
     const string _1000Words = "OneThousandWords";
@@ -116,6 +116,7 @@ public partial class SouvenirModule
     const string _ForgetTheColors = "ForgetTheColors";
     const string _FreeParking = "freeParking";
     const string _Functions = "qFunctions";
+    const string _GameOfLifeCruel = "GameOfLifeCruel";
     const string _Gamepad = "TheGamepadModule";
     const string _GrayCipher = "grayCipher";
     const string _GreatVoid = "greatVoid";
@@ -465,6 +466,7 @@ public partial class SouvenirModule
             { _ForgetTheColors, ProcessForgetTheColors },
             { _FreeParking, ProcessFreeParking },
             { _Functions, ProcessFunctions },
+            { _GameOfLifeCruel, ProcessGameOfLifeCruel },
             { _Gamepad, ProcessGamepad },
             { _GrayCipher, ProcessGrayCipher },
             { _GreatVoid, ProcessGreatVoid },

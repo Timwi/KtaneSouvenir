@@ -13,11 +13,11 @@ namespace Souvenir
         public int CorrectIndex { get; private set; }
         public int NumAnswers { get; private set; } // must be 4 or 6
 
-        public QandA(string module, string question, int correct, int numAnswers, Sprite sprite = null)
+        public QandA(string module, string question, int correct, int numAnswers, Sprite questionSprite)
         {
             ModuleNameWithThe = module;
             QuestionText = question;
-            QuestionSprite = sprite;
+            QuestionSprite = questionSprite;
             CorrectIndex = correct;
             NumAnswers = numAnswers;
         }
@@ -64,8 +64,8 @@ namespace Souvenir
         private readonly Texture _fontTexture;
         private readonly Material _fontMaterial;
         private readonly AnswerLayout _layout;
-        public QandAText(string module, string question, int correct, string[] answers, Font font, int fontSize, Texture fontTexture, Material fontMaterial, AnswerLayout layout)
-            : base(module, question, correct, answers.Length)
+        public QandAText(string module, string question, int correct, string[] answers, Font font, int fontSize, Texture fontTexture, Material fontMaterial, AnswerLayout layout, Sprite questionSprite)
+            : base(module, question, correct, answers.Length, questionSprite)
         {
             _answers = answers;
             _font = font;
@@ -121,7 +121,7 @@ namespace Souvenir
     sealed class QandASprite : QandA
     {
         private readonly Sprite[] _answers;
-        public QandASprite(string module, string question, int correct, Sprite[] answers) : base(module, question, correct, answers.Length) { _answers = answers; }
+        public QandASprite(string module, string question, int correct, Sprite[] answers, Sprite questionSprite) : base(module, question, correct, answers.Length, questionSprite) { _answers = answers; }
         public override IEnumerable<string> DebugAnswers => _answers.Select(s => s.name);
         public override double DesiredHeightFactor => 1;
 

@@ -614,6 +614,10 @@ namespace Souvenir
         [AnswerGenerator.Integers(1, 999)]
         FunctionsRightNumber,
 
+        [SouvenirQuestion("What were the colors of this cell in {0}?", "Game of Life Cruel", AnswerLayout.TwoColumns4Answers, UsesQuestionSprite = true,
+            ExampleAnswers = new[] { "Red/Orange", "Orange/Yellow", "Yellow/Green", "Green/Blue" })]
+        GameOfLifeCruelColors,
+
         [SouvenirQuestion("What were the numbers on {0}?", "Gamepad", AnswerLayout.ThreeColumns6Answers, null, AddThe = true)]
         [AnswerGenerator.Strings("2*0-9", ":", "2*0-9")]
         GamepadNumbers,
