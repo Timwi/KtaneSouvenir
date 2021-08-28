@@ -425,6 +425,29 @@ public partial class SouvenirModule
         addQuestion(module, Question.MinesweeperStartingColor, correctAnswers: new[] { color });
     }
 
+    private IEnumerable<object> ProcessMirror(KMBombModule module)
+    {
+        var comp = GetComponent(module, "mirror");
+        var fldModuleReady = GetField<bool>(comp, "moduleReady");
+        var candidateWords =
+            GetStaticField<string[]>(comp.GetType(), "table1").Get().Concat(
+            GetStaticField<string[]>(comp.GetType(), "table2").Get().Concat(
+            GetStaticField<string[]>(comp.GetType(), "table3").Get())).ToArray();
+        var fldModuleSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldModuleReady.Get())
+            yield return null;
+
+        var position = GetIntField(comp, "fontPosition").Get(min: 0, max: 2);
+        var texts = GetArrayField<TextMesh>(comp, "mirrorTexts", isPublic: true).Get(expectedLength: 3);
+
+        while (!fldModuleSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Mirror);
+
+        addQuestion(module, Question.MirrorWord, correctAnswers: new[] { texts[position].text }, preferredWrongAnswers: candidateWords);
+    }
+
     private IEnumerable<object> ProcessModernCipher(KMBombModule module)
     {
         var comp = GetComponent(module, "modernCipher");

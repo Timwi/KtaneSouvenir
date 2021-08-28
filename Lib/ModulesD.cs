@@ -86,6 +86,40 @@ public partial class SouvenirModule
             makeQuestion(Question.DecoloredSquaresStartingPos, _DecoloredSquares, formatArgs: new[] { "row" }, correctAnswers: new[] { rowColor }));
     }
 
+    private IEnumerable<object> ProcessDevilishEggs(KMBombModule module)
+    {
+        var comp = GetComponent(module, "devilishEggs");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var prismTexts = GetArrayField<TextMesh>(comp, "prismTexts", isPublic: true).Get(expectedLength: 3);
+        var digits = prismTexts[0].text.Split(' ');
+        var letters = prismTexts[1].text.Split(' ');
+        if (digits.Length != 8 || digits.Any(str => str.Length != 1 || str[0] < '0' || str[0] > '9'))
+            throw new AbandonModuleException("Expected 8 digits; got {0} ({1})", digits.Length, digits.JoinString("; "));
+        if (letters.Length != 8 || letters.Any(str => str.Length != 1 || str[0] < 'A' || str[0] > 'Z'))
+            throw new AbandonModuleException("Expected 8 letters; got {0} ({1})", letters.Length, letters.JoinString("; "));
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_DevilishEggs);
+
+        var topRotations = GetField<Array>(comp, "topRotations").Get(validator: arr => arr.Length != 6 ? "expected length 6" : null).Cast<object>().Select(rot => rot.ToString()).ToArray();
+        var bottomRotations = GetField<Array>(comp, "bottomRotations").Get(validator: arr => arr.Length != 6 ? "expected length 6" : null).Cast<object>().Select(rot => rot.ToString()).ToArray();
+        var allRotations = topRotations.Concat(bottomRotations).ToArray();
+
+        var qs = new List<QandA>();
+        for (var rotIx = 0; rotIx < 6; rotIx++)
+        {
+            qs.Add(makeQuestion(Question.DevilishEggsRotations, _DevilishEggs, formatArgs: new[] { "top", ordinal(rotIx + 1) }, correctAnswers: new[] { topRotations.GetValue(rotIx).ToString() }, preferredWrongAnswers: allRotations));
+            qs.Add(makeQuestion(Question.DevilishEggsRotations, _DevilishEggs, formatArgs: new[] { "bottom", ordinal(rotIx + 1) }, correctAnswers: new[] { bottomRotations.GetValue(rotIx).ToString() }, preferredWrongAnswers: allRotations));
+        }
+        for (var ix = 0; ix < 8; ix++)
+        {
+            qs.Add(makeQuestion(Question.DevilishEggsNumbers, _DevilishEggs, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { digits[ix] }, preferredWrongAnswers: digits));
+            qs.Add(makeQuestion(Question.DevilishEggsLetters, _DevilishEggs, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { letters[ix] }, preferredWrongAnswers: letters));
+        }
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessDiscoloredSquares(KMBombModule module)
     {
         var comp = GetComponent(module, "DiscoloredSquaresModule");

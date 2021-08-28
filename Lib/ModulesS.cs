@@ -1008,6 +1008,23 @@ public partial class SouvenirModule
         addQuestions(module, makeQuestion(Question.StateOfAggregationElement, _StateOfAggregation, formatArgs: null, correctAnswers: new[] { element.Substring(0, 1).ToUpperInvariant() + element.Substring(1).ToLowerInvariant() }));
     }
 
+    private IEnumerable<object> ProcessStellar(KMBombModule module)
+    {
+        var comp = GetComponent(module, "StellarScript");
+        var propSolved = GetProperty<bool>(comp, "IsSolved", isPublic: true);
+
+        while (!propSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Stellar);
+
+        var lastPlayed = GetField<string>(comp, "lastPlayed").Get(validator: str => str.Length != 3 ? "expected length 3" : str.Any(ch => ch < 'a' || ch > 'z') ? "expected letters a–z" : null);
+        var allLetters = lastPlayed.Select(c => c.ToString()).ToArray();
+        addQuestions(module,
+            makeQuestion(Question.StellarLetters, _Stellar, formatArgs: new[] { "Braille" }, correctAnswers: new[] { lastPlayed[0].ToString() }, preferredWrongAnswers: allLetters),
+            makeQuestion(Question.StellarLetters, _Stellar, formatArgs: new[] { "tap code" }, correctAnswers: new[] { lastPlayed[1].ToString() }, preferredWrongAnswers: allLetters),
+            makeQuestion(Question.StellarLetters, _Stellar, formatArgs: new[] { "Morse code" }, correctAnswers: new[] { lastPlayed[2].ToString() }, preferredWrongAnswers: allLetters));
+    }
+
     private IEnumerable<object> ProcessSubscribeToPewdiepie(KMBombModule module)
     {
         var comp = GetComponent(module, "subscribeToPewdiepieScript");

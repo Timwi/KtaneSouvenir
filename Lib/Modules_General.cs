@@ -84,6 +84,7 @@ public partial class SouvenirModule
     const string _DeafAlley = "deafAlleyModule";
     const string _DeckOfManyThings = "deckOfManyThings";
     const string _DecoloredSquares = "DecoloredSquaresModule";
+    const string _DevilishEggs = "devilishEggs";
     const string _DiscoloredSquares = "DiscoloredSquaresModule";
     const string _DivisibleNumbers = "divisibleNumbers";
     const string _DoubleColor = "doubleColor";
@@ -181,6 +182,7 @@ public partial class SouvenirModule
     const string _Memory = "Memory";
     const string _Microcontroller = "Microcontroller";
     const string _Minesweeper = "MinesweeperModule";
+    const string _Mirror = "mirror";
     const string _ModernCipher = "modernCipher";
     const string _ModuleListening = "moduleListening";
     const string _ModuleMaze = "ModuleMaze";
@@ -299,6 +301,7 @@ public partial class SouvenirModule
     const string _StackedSequences = "stackedSequences";
     const string _Stars = "stars";
     const string _StateOfAggregation = "stateOfAggregation";
+    const string _Stellar = "stellar";
     const string _SubscribeToPewdiepie = "subscribeToPewdiepie";
     const string _SugarSkulls = "sugarSkulls";
     const string _Switch = "BigSwitch";
@@ -436,6 +439,7 @@ public partial class SouvenirModule
             { _DeafAlley, ProcessDeafAlley },
             { _DeckOfManyThings, ProcessDeckOfManyThings },
             { _DecoloredSquares, ProcessDecoloredSquares },
+            { _DevilishEggs, ProcessDevilishEggs },
             { _DiscoloredSquares, ProcessDiscoloredSquares },
             { _DivisibleNumbers, ProcessDivisibleNumbers },
             { _DoubleColor, ProcessDoubleColor },
@@ -533,6 +537,7 @@ public partial class SouvenirModule
             { _Memory, ProcessMemory },
             { _Microcontroller, ProcessMicrocontroller },
             { _Minesweeper, ProcessMinesweeper },
+            { _Mirror, ProcessMirror },
             { _ModernCipher, ProcessModernCipher },
             { _ModuleListening, ProcessModuleListening },
             { _ModuleMaze, ProcessModuleMaze },
@@ -651,6 +656,7 @@ public partial class SouvenirModule
             { _StackedSequences, ProcessStackedSequences },
             { _Stars, ProcessStars },
             { _StateOfAggregation, ProcessStateOfAggregation },
+            { _Stellar, ProcessStellar },
             { _SubscribeToPewdiepie, ProcessSubscribeToPewdiepie },
             { _SugarSkulls, ProcessSugarSkulls },
             { _Switch, ProcessSwitch },
