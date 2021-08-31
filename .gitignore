@@ -33,8 +33,6 @@
 ExportedObj/
 .consulo/
 *.unityproj
-*.sln
-*.csproj
 *.suo
 *.tmp
 *.user
@@ -68,8 +66,9 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
-Manual/css/font.css
-Manual/font/SpecialElite.ttf
+
+/*.csproj
+/*.sln
 
 Lib/obj/
 Lib/bin/
