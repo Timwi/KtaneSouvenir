@@ -145,7 +145,7 @@ public class WorkshopEditorWindow : EditorWindow
             
             if(dir.GetFiles("modInfo_Harmony.json").Length > 0)
 			{
-				EditorGUILayout.HelpBox("Your mod uses the Harmony library. This means it won't work without the Harmony mod, so on the Workshop, please either add the Harmony mod as a dependency or mention it in the description!", MessageType.Warning);
+				EditorGUILayout.HelpBox("Your mod uses the Harmony library. This means it won't work without the Tweaks mod, so on the Workshop, please either add Tweaks as a dependency or mention it in the description!", MessageType.Warning);
 			}
 
 
