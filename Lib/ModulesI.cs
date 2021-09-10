@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -112,6 +114,24 @@ public partial class SouvenirModule
 
         var selectedWord = GetField<string>(comp, "SelectedWord").Get();
         addQuestions(module, makeQuestion(Question.InfiniteLoopSelectedWord, _InfiniteLoop, correctAnswers: new[] { selectedWord }));
+    }
+
+    private IEnumerable<object> ProcessIngredients(KMBombModule module)
+    {
+        var comp = GetComponent(module, "IngredientsScript");
+        var initialIngredients = GetField<Array>(comp, "InitialIngredientsList").Get().Cast<object>().Select(ev => ev.ToString()).ToArray();
+        var fldSolved = GetField<bool>(comp, "IsSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Ingredients);
+
+        var unusedIngredients = GetField<IList>(comp, "CurrentIngredientsList").Get().Cast<object>().Select(ev => ev.ToString()).ToArray();
+        var usedIngredients = initialIngredients.Except(unusedIngredients).ToArray();
+
+        addQuestions(module,
+            makeQuestion(Question.IngredientsIngredients, _Ingredients, correctAnswers: usedIngredients, preferredWrongAnswers: unusedIngredients),
+            makeQuestion(Question.IngredientsNonIngredients, _Ingredients, correctAnswers: unusedIngredients, preferredWrongAnswers: usedIngredients));
     }
 
     private IEnumerable<object> ProcessInnerConnections(KMBombModule module)

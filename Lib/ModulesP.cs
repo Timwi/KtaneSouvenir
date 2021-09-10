@@ -321,6 +321,26 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessPinkButton(KMBombModule module)
+    {
+        var comp = GetComponent(module, "PinkButtonScript");
+        var words = GetArrayField<int>(comp, "_words").Get(expectedLength: 4, validator: v => v < 0 || v > 7 ? "expected range 0–7" : null);
+        var colors = GetArrayField<int>(comp, "_colors").Get(expectedLength: 4, validator: v => v < 0 || v > 7 ? "expected range 0–7" : null);
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+
+        var abbreviatedColorNames = GetStaticField<string[]>(comp.GetType(), "_abbreviatedColorNames").Get(v => v.Length != 8 ? "expected length 8" : null);
+        var colorNames = GetStaticField<string[]>(comp.GetType(), "_colorNames").Get(v => v.Length != 8 ? "expected length 8" : null);
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_PinkButton);
+
+        addQuestions(module,
+            Enumerable.Range(0, 4).SelectMany(ix => Ut.NewArray(
+                 makeQuestion(Question.PinkButtonWords, _PinkButton, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { abbreviatedColorNames[words[ix]] }),
+                 makeQuestion(Question.PinkButtonColors, _PinkButton, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { colorNames[colors[ix]] }))));
+    }
+
     private IEnumerable<object> ProcessPixelCipher(KMBombModule module)
     {
         var comp = GetComponent(module, "pixelcipherScript");

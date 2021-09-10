@@ -145,6 +145,7 @@ public partial class SouvenirModule
     const string _IdentityParade = "identityParade";
     const string _IndigoCipher = "indigoCipher";
     const string _InfiniteLoop = "InfiniteLoop";
+    const string _Ingredients = "ingredients";
     const string _InnerConnections = "InnerConnectionsModule";
     const string _Interpunct = "interpunct";
     const string _IPA = "ipa";
@@ -238,6 +239,7 @@ public partial class SouvenirModule
     const string _Phosphorescence = "Phosphorescence";
     const string _Pie = "pieModule";
     const string _PigpenCycle = "pigpenCycle";
+    const string _PinkButton = "PinkButtonModule";
     const string _PixelCipher = "pixelcipher";
     const string _PlaceholderTalk = "placeholderTalk";
     const string _PlacementRoulette = "PlacementRouletteModule";
@@ -508,6 +510,7 @@ public partial class SouvenirModule
             { _IdentityParade, ProcessIdentityParade },
             { _IndigoCipher, ProcessIndigoCipher },
             { _InfiniteLoop, ProcessInfiniteLoop },
+            { _Ingredients, ProcessIngredients },
             { _InnerConnections, ProcessInnerConnections },
             { _Interpunct, ProcessInterpunct },
             { _IPA, ProcessIPA },
@@ -601,6 +604,7 @@ public partial class SouvenirModule
             { _Phosphorescence, ProcessPhosphorescence },
             { _Pie, ProcessPie },
             { _PigpenCycle, ProcessPigpenCycle },
+            { _PinkButton, ProcessPinkButton },
             { _PixelCipher, ProcessPixelCipher },
             { _PlaceholderTalk, ProcessPlaceholderTalk },
             { _PlacementRoulette, ProcessPlacementRoulette },
