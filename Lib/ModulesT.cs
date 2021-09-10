@@ -86,20 +86,6 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessTernaryTiles(KMBombModule module)
-    {
-        var comp = GetComponent(module, "TernaryTilesScript");
-        var fldSolved = GetField<bool>(comp, "Solved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_TernaryTiles);
-
-        var indicator = GetField<string>(comp, "IndicatorTextVariable").Get();
-
-        addQuestion(module, Question.TernaryTiles, correctAnswers: new[] { indicator });
-    }
-
     private IEnumerable<object> ProcessTextField(KMBombModule module)
     {
         var comp = GetComponent(module, "TextField");

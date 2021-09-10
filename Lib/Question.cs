@@ -1728,11 +1728,6 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
         TenpinsSplits,
 
-        [SouvenirQuestion("What was on the indicator in {0}?", "Ternary Tiles", AnswerLayout.OneColumn4Answers, null,
-            Type = AnswerType.TernaryTilesFont, ExampleAnswers = new[] { "ABCABCABCABC", "123412341234", "++++++++++++", "ABC1234+ABC1" })]
-        [AnswerGenerator.Strings("12*A-C1-4+")]
-        TernaryTiles,
-
         [SouvenirQuestion("What was the displayed letter in {0}?", "Text Field", AnswerLayout.ThreeColumns6Answers, "A", "B", "C", "D", "E", "F")]
         TextFieldDisplay,
 

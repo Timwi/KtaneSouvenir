@@ -326,7 +326,6 @@ public partial class SouvenirModule
     const string _TashaSqueals = "tashaSqueals";
     const string _TenButtonColorCode = "TenButtonColorCode";
     const string _Tenpins = "tenpins";
-    const string _TernaryTiles = "GSTernaryTiles";
     const string _TextField = "TextField";
     const string _ThinkingWires = "thinkingWiresModule";
     const string _ThirdBase = "ThirdBase";
@@ -691,7 +690,6 @@ public partial class SouvenirModule
             { _TashaSqueals, ProcessTashaSqueals },
             { _TenButtonColorCode, ProcessTenButtonColorCode },
             { _Tenpins, ProcessTenpins },
-            { _TernaryTiles, ProcessTernaryTiles },
             { _TextField, ProcessTextField },
             { _ThinkingWires, ProcessThinkingWires },
             { _ThirdBase, ProcessThirdBase },
