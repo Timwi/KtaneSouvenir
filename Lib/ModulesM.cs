@@ -389,6 +389,18 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessMetamorse(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MetamorseScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldBigChar = GetField<char>(comp, "greaterLetter");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_Metamorse);
+        addQuestion(module, Question.MetamorseExtractedLetter, correctAnswers: new[] { fldBigChar.Get().ToString() });
+    }
+
     private IEnumerable<object> ProcessMicrocontroller(KMBombModule module)
     {
         var comp = GetComponent(module, "Micro");

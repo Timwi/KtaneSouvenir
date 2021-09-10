@@ -9,6 +9,27 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
+    private IEnumerable<object> ProcessLadders(KMBombModule module)
+    {
+        var comp = GetComponent(module, "LaddersScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        var fldLadderCols = GetArrayField<int[]>(comp, "ladderColors");
+        var fldMissing = GetIntField(comp, "missingColor");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_Ladders);
+
+        var secondLadder = fldLadderCols.Get(expectedLength: 3)[1];
+        var missing = fldMissing.Get(min: 0, max: 7);
+        var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Cyan", "Purple", "Gray" };
+
+        addQuestions(module,
+            makeQuestion(Question.LaddersStage2Colors, _Ladders, correctAnswers: secondLadder.Distinct().Select(x => colorNames[x]).ToArray()),
+            makeQuestion(Question.LaddersStage3Missing, _Ladders, correctAnswers: new[] { colorNames[missing] }));
+    }
+
     private IEnumerable<object> ProcessLasers(KMBombModule module)
     {
         var comp = GetComponent(module, "LasersModule");

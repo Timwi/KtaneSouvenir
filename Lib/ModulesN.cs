@@ -100,6 +100,23 @@ public partial class SouvenirModule
             makeQuestion(Question.NeutralizationVolume, _Neutralization, correctAnswers: new[] { acidVol.ToString() }));
     }
 
+    private IEnumerable<object> ProcessNameCodes(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NameCodesScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_NameCodes);
+
+        var leftIx = GetIntField(comp, "leftIndex").Get().ToString();
+        var rightIx = GetIntField(comp, "rightIndex").Get().ToString();
+        addQuestions(module, new[] {
+            makeQuestion(Question.NameCodesIndices, _NameCodes, formatArgs: new[] { "left" }, correctAnswers: new[] { leftIx }),
+            makeQuestion(Question.NameCodesIndices, _NameCodes, formatArgs: new[] { "right" }, correctAnswers: new[] { rightIx }),
+        });
+    }
+
     private IEnumerable<object> ProcessNandMs(KMBombModule module)
     {
         var comp = GetComponent(module, "NandMs");
@@ -369,5 +386,22 @@ public partial class SouvenirModule
         var numberValue2 = GetField<int>(comp, "numberValue2").Get();
         var answer = numberValue1.ToString() + numberValue2.ToString();
         addQuestions(module, makeQuestion(Question.NumbersTwoDigit, _Numbers, formatArgs: null, correctAnswers: new[] { answer }));
+    }
+
+    private IEnumerable<object> ProcessNumpath(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NumpathScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var disp = GetField<TextMesh>(comp, "screen", isPublic: true).Get().text;
+        var color = GetIntField(comp, "colorIndex").Get();
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_Numpath);
+
+        var colorNames = new[] { "Red", "Green", "Blue", "Yellow", "Purple", "Orange" };
+        addQuestions(module,
+            makeQuestion(Question.NumpathColor, _Numpath, correctAnswers: new[] { colorNames[color] }),
+            makeQuestion(Question.NumpathDigit, _Numpath, correctAnswers: new[] { disp }));
     }
 }

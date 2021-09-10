@@ -151,7 +151,10 @@ public partial class SouvenirModule
     const string _iPhone = "iPhone";
     const string _JewelVault = "jewelVault";
     const string _JumbleCycle = "jumbleCycle";
+    const string _KanyeEncounter = "TheKanyeEncounter";
+    const string _KeypadMagnified = "keypadMagnified";
     const string _Kudosudoku = "KudosudokuModule";
+    const string _Ladders = "ladders";
     const string _Lasers = "lasers";
     const string _LEDEncryption = "LEDEnc";
     const string _LEDMath = "lgndLEDMath";
@@ -180,6 +183,7 @@ public partial class SouvenirModule
     const string _MelodySequencer = "melodySequencer";
     const string _MemorableButtons = "memorableButtons";
     const string _Memory = "Memory";
+    const string _Metamorse = "metamorse";
     const string _Microcontroller = "Microcontroller";
     const string _Minesweeper = "MinesweeperModule";
     const string _Mirror = "mirror";
@@ -199,6 +203,7 @@ public partial class SouvenirModule
     const string _Murder = "murder";
     const string _MysteryModule = "mysterymodule";
     const string _MysticSquare = "MysticSquareModule";
+    const string _NameCodes = "nameCodes";
     const string _NandMs = "NandMs";
     const string _Navinums = "navinums";
     const string _Necronomicon = "necronomicon";
@@ -214,6 +219,7 @@ public partial class SouvenirModule
     const string _NotXRay = "NotXRayModule";
     const string _NumberedButtons = "numberedButtonsModule";
     const string _Numbers = "Numbers";
+    const string _Numpath = "numpath";
     const string _ObjectShows = "objectShows";
     const string _Octadecayotton = "TheOctadecayotton";
     const string _OddOneOut = "OddOneOutModule";
@@ -287,6 +293,7 @@ public partial class SouvenirModule
     const string _SimonStates = "SimonV2";
     const string _SimonStops = "simonStops";
     const string _SimonStores = "simonStores";
+    const string _SimonSupports = "simonSupports";
     const string _SkewedSlots = "SkewedSlotsModule";
     const string _Skyrim = "skyrim";
     const string _Snooker = "snooker";
@@ -302,6 +309,7 @@ public partial class SouvenirModule
     const string _Stars = "stars";
     const string _StateOfAggregation = "stateOfAggregation";
     const string _Stellar = "stellar";
+    const string _StupidSlots = "stupidSlots";
     const string _SubscribeToPewdiepie = "subscribeToPewdiepie";
     const string _SugarSkulls = "sugarSkulls";
     const string _Switch = "BigSwitch";
@@ -506,7 +514,10 @@ public partial class SouvenirModule
             { _iPhone, ProcessiPhone },
             { _JewelVault, ProcessJewelVault },
             { _JumbleCycle, ProcessJumbleCycle },
+            { _KanyeEncounter, ProcessKanyeEncounter },
+            { _KeypadMagnified, ProcessKeypadMagnified },
             { _Kudosudoku, ProcessKudosudoku },
+            { _Ladders, ProcessLadders },
             { _Lasers, ProcessLasers },
             { _LEDEncryption, ProcessLEDEncryption },
             { _LEDMath, ProcessLEDMath },
@@ -535,6 +546,7 @@ public partial class SouvenirModule
             { _MelodySequencer, ProcessMelodySequencer },
             { _MemorableButtons, ProcessMemorableButtons },
             { _Memory, ProcessMemory },
+            { _Metamorse, ProcessMetamorse },
             { _Microcontroller, ProcessMicrocontroller },
             { _Minesweeper, ProcessMinesweeper },
             { _Mirror, ProcessMirror },
@@ -554,6 +566,7 @@ public partial class SouvenirModule
             { _Murder, ProcessMurder },
             { _MysteryModule, ProcessMysteryModule },
             { _MysticSquare, ProcessMysticSquare },
+            { _NameCodes, ProcessNameCodes },
             { _NandMs, ProcessNandMs },
             { _Navinums, ProcessNavinums },
             { _Necronomicon, ProcessNecronomicon },
@@ -569,6 +582,7 @@ public partial class SouvenirModule
             { _NotXRay, ProcessNotXRay },
             { _NumberedButtons, ProcessNumberedButtons },
             { _Numbers, ProcessNumbers },
+            { _Numpath, ProcessNumpath },
             { _ObjectShows, ProcessObjectShows },
             { _Octadecayotton, ProcessOctadecayotton },
             { _OddOneOut, ProcessOddOneOut },
@@ -642,6 +656,7 @@ public partial class SouvenirModule
             { _SimonStates, ProcessSimonStates },
             { _SimonStops, ProcessSimonStops },
             { _SimonStores, ProcessSimonStores },
+            { _SimonSupports, ProcessSimonSupports },
             { _SkewedSlots, ProcessSkewedSlots },
             { _Skyrim, ProcessSkyrim },
             { _Snooker, ProcessSnooker },
@@ -657,6 +672,7 @@ public partial class SouvenirModule
             { _Stars, ProcessStars },
             { _StateOfAggregation, ProcessStateOfAggregation },
             { _Stellar, ProcessStellar },
+            { _StupidSlots, ProcessStupidSlots },
             { _SubscribeToPewdiepie, ProcessSubscribeToPewdiepie },
             { _SugarSkulls, ProcessSugarSkulls },
             { _Switch, ProcessSwitch },

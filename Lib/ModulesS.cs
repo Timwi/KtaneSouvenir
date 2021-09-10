@@ -678,6 +678,26 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessSimonSupports(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SimonSupportsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_SimonSupports);
+
+        var combo = GetField<bool[][]>(comp, "combo").Get();
+        var traits = GetArrayField<int>(comp, "tra").Get(expectedLength: 8);
+        var traitNames = new[] { "Boss", "Cruel", "Faulty", "Lookalike", "Puzzle", "Simon", "Time-Based", "Translated" };
+        var chosenTopics = Enumerable.Range(0, 3).Select(x => traitNames[traits[x]]).ToArray();
+
+        var qs = new List<QandA>();
+        for (int i = 0; i < 3; i++)
+            qs.Add(makeQuestion(Question.SimonSupportsTopics, _SimonSupports, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { chosenTopics[i] }, preferredWrongAnswers: chosenTopics));
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessSkewedSlots(KMBombModule module)
     {
         var comp = GetComponent(module, "SkewedModule");
@@ -1023,6 +1043,24 @@ public partial class SouvenirModule
             makeQuestion(Question.StellarLetters, _Stellar, formatArgs: new[] { "Braille" }, correctAnswers: new[] { lastPlayed[0].ToString() }, preferredWrongAnswers: allLetters),
             makeQuestion(Question.StellarLetters, _Stellar, formatArgs: new[] { "tap code" }, correctAnswers: new[] { lastPlayed[1].ToString() }, preferredWrongAnswers: allLetters),
             makeQuestion(Question.StellarLetters, _Stellar, formatArgs: new[] { "Morse code" }, correctAnswers: new[] { lastPlayed[2].ToString() }, preferredWrongAnswers: allLetters));
+    }
+
+    private IEnumerable<object> ProcessStupidSlots(KMBombModule module)
+    {
+        var comp = GetComponent(module, "StupidSlotsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_StupidSlots);
+
+        var values = GetArrayField<int>(comp, "allValues").Get(expectedLength: 6);
+        var validPositions = Enumerable.Range(0, 6).Where(x => values[x] != 0);
+        var posNames = new[] { "top-left", "top-middle", "top-right", "bottom-left", "bottom-middle", "bottom-right" };
+
+        var qs = new List<QandA>();
+        foreach (var pos in validPositions)
+            qs.Add(makeQuestion(Question.StupidSlotsValues, _StupidSlots, formatArgs: new[] { posNames[pos] }, correctAnswers: new[] { values[pos].ToString() }));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessSubscribeToPewdiepie(KMBombModule module)
