@@ -109,8 +109,8 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (var rotIx = 0; rotIx < 6; rotIx++)
         {
-            qs.Add(makeQuestion(Question.DevilishEggsRotations, _DevilishEggs, formatArgs: new[] { "top", ordinal(rotIx + 1) }, correctAnswers: new[] { topRotations.GetValue(rotIx).ToString() }, preferredWrongAnswers: allRotations));
-            qs.Add(makeQuestion(Question.DevilishEggsRotations, _DevilishEggs, formatArgs: new[] { "bottom", ordinal(rotIx + 1) }, correctAnswers: new[] { bottomRotations.GetValue(rotIx).ToString() }, preferredWrongAnswers: allRotations));
+            qs.Add(makeQuestion(Question.DevilishEggsRotations, _DevilishEggs, formatArgs: new[] { "top", ordinal(rotIx + 1) }, correctAnswers: new[] { topRotations[rotIx] }, preferredWrongAnswers: allRotations));
+            qs.Add(makeQuestion(Question.DevilishEggsRotations, _DevilishEggs, formatArgs: new[] { "bottom", ordinal(rotIx + 1) }, correctAnswers: new[] { bottomRotations[rotIx] }, preferredWrongAnswers: allRotations));
         }
         for (var ix = 0; ix < 8; ix++)
         {
