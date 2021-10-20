@@ -258,41 +258,31 @@ public partial class SouvenirModule : MonoBehaviour
             for (int i = 0; i < transform.parent.childCount; i++)
             {
                 var gameObject = transform.parent.GetChild(i).gameObject;
-                var module = gameObject.GetComponent<KMBombModule>();
-                if (module != null)
+                if (gameObject.GetComponent<KMBombModule>() is KMBombModule moddedModule)
+                    StartCoroutine(ProcessModule(moddedModule));
+                else if (!_config.ExcludeVanillaModules && transform.parent.GetChild(i).gameObject.GetComponent("BombComponent") is Component vanillaModule)
                 {
-                    if (_config.IsExcluded(module, _ignoredModules))
-                        Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because it is excluded in the mod settings.", _moduleId, module.ModuleDisplayName);
-                    else
-                        StartCoroutine(ProcessModule(module));
-                }
-                else if (!_config.ExcludeVanillaModules)
-                {
-                    var vanillaModule = transform.parent.GetChild(i).gameObject.GetComponent("BombComponent");
-                    if (vanillaModule != null)
+                    // For vanilla modules, we will attach a temporary KMBombModule component to the module.
+                    // We’ll remove it after the coroutine starts.
+                    // The routine will already have a reference to the actual BombComponent by then.
+                    if (fldType == null) fldType = GetField<object>(vanillaModule.GetType(), "ComponentType", true);
+                    if (fldType == null) continue;
+                    var typeCode = (int) fldType.GetFrom(vanillaModule);
+                    string type, displayName;
+                    switch (typeCode)
                     {
-                        // For vanilla modules, we will attach a temporary KMBombModule component to the module.
-                        // We’ll remove it after the coroutine starts.
-                        // The routine will already have a reference to the actual BombComponent by then.
-                        if (fldType == null) fldType = GetField<object>(vanillaModule.GetType(), "ComponentType", true);
-                        if (fldType == null) continue;
-                        var typeCode = (int) fldType.GetFrom(vanillaModule);
-                        string type; string displayName;
-                        switch (typeCode)
-                        {
-                            case 3: type = "BigButton"; displayName = "The Button"; break;
-                            case 5: type = "Simon"; displayName = "Simon Says"; break;
-                            case 6: type = "WhosOnFirst"; displayName = "Who’s on First"; break;
-                            case 7: type = "Memory"; displayName = "Memory"; break;
-                            case 10: type = "WireSequence"; displayName = "Wire Sequence"; break;
-                            case 11: type = "Maze"; displayName = "Maze"; break;
-                            default: continue;  // Other components are not supported modules.
-                        }
-                        module = gameObject.AddComponent<KMBombModule>();
-                        module.ModuleType = type;
-                        module.ModuleDisplayName = displayName;
-                        StartCoroutine(ProcessModule(module));
+                        case 3: type = "BigButton"; displayName = "The Button"; break;
+                        case 5: type = "Simon"; displayName = "Simon Says"; break;
+                        case 6: type = "WhosOnFirst"; displayName = "Who’s on First"; break;
+                        case 7: type = "Memory"; displayName = "Memory"; break;
+                        case 10: type = "WireSequence"; displayName = "Wire Sequence"; break;
+                        case 11: type = "Maze"; displayName = "Maze"; break;
+                        default: continue;  // Other components are not supported modules.
                     }
+                    var kmModule = gameObject.AddComponent<KMBombModule>();
+                    kmModule.ModuleType = type;
+                    kmModule.ModuleDisplayName = displayName;
+                    StartCoroutine(ProcessModule(kmModule));
                 }
             }
         }
@@ -561,7 +551,8 @@ public partial class SouvenirModule : MonoBehaviour
 
     private void SetQuestion(QandA q)
     {
-        Debug.LogFormat("[Souvenir #{0}] Asking question: {1}", _moduleId, q.DebugString);
+        Debug.Log($"[Souvenir #{_moduleId}] Asking question: {q.DebugString}");
+        Debug.Log($"<Souvenir #{_moduleId}> _avoidQuestions = {_avoidQuestions}");
         _currentQuestion = q;
         SetWordWrappedText(q.QuestionText, q.DesiredHeightFactor, q.QuestionSprite != null);
         QuestionSprite.gameObject.SetActive(q.QuestionSprite != null);
@@ -700,12 +691,14 @@ public partial class SouvenirModule : MonoBehaviour
                     {
                         Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because: {2}", _moduleId, module.ModuleDisplayName, ex.Message);
                         _showWarning = true;
+                        _coroutinesActive--;
                         yield break;
                     }
                     catch (Exception ex)
                     {
                         Debug.LogFormat("<Souvenir #{0}> The {1} handler threw an exception ({2}):\n{3}", _moduleId, module.ModuleDisplayName, ex.GetType().FullName, ex.StackTrace);
                         _showWarning = true;
+                        _coroutinesActive--;
                         yield break;
                     }
                     if (!canMoveNext)
@@ -715,6 +708,7 @@ public partial class SouvenirModule : MonoBehaviour
                     if (TwitchAbandonModule.Contains(module) && Environment.MachineName != "CORNFLOWER")    // CORNFLOWER = Timwi’s computer
                     {
                         Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because Twitch Plays told me to.", _moduleId, module.ModuleDisplayName);
+                        _coroutinesActive--;
                         yield break;
                     }
                 }
@@ -897,6 +891,13 @@ public partial class SouvenirModule : MonoBehaviour
 
     private void addQuestions(KMBombModule module, IEnumerable<QandA> questions)
     {
+        if (_config.IsExcluded(module, _ignoredModules))
+        {
+            Debug.LogFormat("<Souvenir #{0}> Discarding questions for {1} because it is excluded in the mod settings.", _moduleId, module.ModuleDisplayName);
+            _legitimatelyNoQuestions.Add(module);
+            return;
+        }
+
         var qs = questions.Where(q => q != null).ToArray();
         if (qs.Length == 0)
         {

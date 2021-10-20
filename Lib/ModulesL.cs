@@ -403,8 +403,8 @@ public partial class SouvenirModule
     private IEnumerable<object> ProcessLombaxCubes(KMBombModule module)
     {
         var comp = GetComponent(module, "LombaxCubesScript");
-        var fldLetter1 = GetIntField(comp, "ButtonLetter1");
-        var fldLetter2 = GetIntField(comp, "ButtonLetter2");
+        var fldLetter1 = GetField<TextMesh>(comp, "buttonLetter1", isPublic: true);
+        var fldLetter2 = GetField<TextMesh>(comp, "buttonLetter2", isPublic: true);
 
         var solved = false;
         module.OnPass += delegate { solved = true; return false; };
@@ -415,9 +415,9 @@ public partial class SouvenirModule
 
         addQuestions(module,
             makeQuestion(Question.LombaxCubesLetters, _LombaxCubes, formatArgs: new[] { "first" },
-                correctAnswers: new[] { "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[fldLetter1.Get() - 1].ToString() }),
+                correctAnswers: new[] { fldLetter1.Get().text }),
             makeQuestion(Question.LombaxCubesLetters, _LombaxCubes, formatArgs: new[] { "second" },
-                correctAnswers: new[] { "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[fldLetter2.Get() - 1].ToString() }));
+                correctAnswers: new[] { fldLetter2.Get().text }));
     }
 
     private IEnumerable<object> ProcessLondonUnderground(KMBombModule module)
