@@ -248,7 +248,8 @@ public partial class SouvenirModule : MonoBehaviour
             "Defuser, I’ve come to bargain.", // “Dormammu, I’ve come to bargain.” (Doctor Strange)
             "I can do this all day.", // direct quote (Captain America: Civil War)
             "There... are... FOUR! BOMBS!!!", // “There... are... FOUR! LIGHTS!!!” (Star Trek TNG, Chain of Command)
-            "It’s a beautiful thing, the detonation of bombs." // “It’s a beautiful thing, the destruction of words.” (1984)
+            "It’s a beautiful thing, the detonation of bombs.", // “It’s a beautiful thing, the destruction of words.” (1984)
+            "Ich bin ein Defuser." // “Ich bin ein Berliner”, John F. Kennedy, 1963
 
         ).PickRandom(), 1.75, useQuestionSprite: false);
 
