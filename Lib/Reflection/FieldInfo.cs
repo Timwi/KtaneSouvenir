@@ -1,55 +1,18 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 
 namespace Souvenir.Reflection
 {
-    class FieldInfo<T>
+    class FieldInfo<T> : InfoBase<T>
     {
-        protected readonly object _target;
         public readonly FieldInfo Field;
+        protected override string LoggingString => $"Field {Field.DeclaringType.FullName}.{Field.Name}";
+        public FieldInfo(object target, FieldInfo field) : base(target) { Field = field; }
 
-        public FieldInfo(object target, FieldInfo field)
-        {
-            _target = target;
-            Field = field;
-        }
-
-        public T Get(Func<T, string> validator = null, bool nullAllowed = false)
-        {
-            var value = (T) Field.GetValue(_target);
-            if (!nullAllowed && value == null)
-                throw new AbandonModuleException("Field {0}.{1} is null.", Field.DeclaringType.FullName, Field.Name);
-            string validatorFailMessage;
-            if (validator != null && (validatorFailMessage = validator(value)) != null)
-                throw new AbandonModuleException("Field {0}.{1} with value {2} did not pass validity check: {3}.", Field.DeclaringType.FullName, Field.Name, stringify(value), validatorFailMessage);
-            return value;
-        }
-
-        public T GetFrom(object obj, Func<T, string> validator = null, bool nullAllowed = false)
-        {
-            var value = (T) Field.GetValue(obj);
-            if (!nullAllowed && value == null)
-                throw new AbandonModuleException("Field {0}.{1} is null.", Field.DeclaringType.FullName, Field.Name);
-            string validatorFailMessage;
-            if (validator != null && (validatorFailMessage = validator(value)) != null)
-                throw new AbandonModuleException("Field {0}.{1} with value {2} did not pass validity check: {3}.", Field.DeclaringType.FullName, Field.Name, stringify(value), validatorFailMessage);
-            return value;
-        }
-
+        protected override T GetValue() => (T) Field.GetValue(_target);
+        protected override T GetValue(object from) => (T) Field.GetValue(from);
         public void Set(T value) { Field.SetValue(_target, value); }
-
-        protected string stringify(object value)
-        {
-            if (value == null)
-                return "<null>";
-            var list = value as IList;
-            if (list != null)
-                return string.Format("[{0}]", list.Cast<object>().Select(stringify).JoinString(", "));
-            return string.Format("“{0}”", value);
-        }
     }
 
     sealed class IntFieldInfo : FieldInfo<int>

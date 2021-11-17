@@ -546,8 +546,12 @@ public class TestHarness : MonoBehaviour
         NeedyModules = FindObjectsOfType<KMNeedyModule>().ToList();
         var allModules = Modules.ToArray().Concat<Component>(NeedyModules.ToArray());
         foreach (Component moduleComponent in allModules)
+        {
+            if(moduleComponent is KMBombModule)
+		        fakeInfo.modules.Add(new KeyValuePair<KMBombModule, bool>((KMBombModule)moduleComponent, false));
             Handlers(moduleComponent.GetComponent<KMBombInfo>());
-
+        }
+        fakeInfo.needyModules = NeedyModules.ToList();
         ReplaceBombInfo();
         AddHighlightables();
         AddSelectables();
@@ -1054,14 +1058,12 @@ public class TestHarness : MonoBehaviour
         PrepareBomb(modules, needyModules, ref fakeInfo.widgets);
 
         fakeInfo.TimerModule = _timer;
-        fakeInfo.needyModules = needyModules.ToList();
         UpdateRoot(GetComponent<TestSelectable>());
         for (int i = 0; i < modules.Count; i++)
         {
             KMBombModule mod = modules[i];
             StatusLight statuslight = CreateStatusLight(mod.transform);
 
-            fakeInfo.modules.Add(new KeyValuePair<KMBombModule, bool>(modules[i], false));
             modules[i].OnPass = delegate ()
             {
                 KeyValuePair<KMBombModule, bool> kvp = fakeInfo.modules.First(t => t.Key.Equals(mod));

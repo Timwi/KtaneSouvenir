@@ -472,6 +472,46 @@ public partial class SouvenirModule
         addQuestion(module, Question.BlueArrowsInitialLetters, correctAnswers: new[] { coord });
     }
 
+    private IEnumerable<object> ProcessBlueButton(KMBombModule module)
+    {
+        var comp = GetComponent(module, "BlueButtonScript");
+
+        var fldStage = GetField<object>(comp, "_stage");
+        while (fldStage.Get().ToString() != "Solved")
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_BlueButton);
+
+        var suitsGoal = GetArrayField<int>(comp, "_suitsGoal").Get(expectedLength: 4);
+        var colorStageColors = GetArrayField<int>(comp, "_colorStageColors").Get();
+        var jumps = GetArrayField<int>(comp, "_jumps").Get(expectedLength: 4, validator: v => v < 0 || v >= 4 ? "expected range 0–3" : null);
+        var equationOffsets = GetArrayField<int>(comp, "_equationOffsets").Get(expectedLength: 4);
+
+        var colorNames = new[] { "Blue", "Green", "Cyan", "Red", "Magenta", "Yellow" };
+
+        var valD = Array.IndexOf(suitsGoal, 3); // 1–4
+        var valE = jumps[0];    // 0–3
+        var valF = jumps[1];    // 0–3
+        var valG = jumps[2];    // 0–3
+        var valH = jumps[3];    // 0–3
+        var valM = equationOffsets[3];  // 1–9
+        var valN = colorStageColors.Length; // 4–9
+        var valP = suitsGoal.Where(s => s != 3).Select(s => "♠♣♥"[s]).JoinString(); // permutation of ♠♣♥
+        var valQ = colorNames[colorStageColors[3]]; // color
+        var valX = equationOffsets[2];  // 1–5
+
+        addQuestions(module,
+            makeQuestion(Question.BlueButtonD, _BlueButton, correctAnswers: new[] { valD.ToString() }),
+            makeQuestion(Question.BlueButtonEFGH, _BlueButton, formatArgs: new[] { "E" }, correctAnswers: new[] { valE.ToString() }),
+            makeQuestion(Question.BlueButtonEFGH, _BlueButton, formatArgs: new[] { "F" }, correctAnswers: new[] { valF.ToString() }),
+            makeQuestion(Question.BlueButtonEFGH, _BlueButton, formatArgs: new[] { "G" }, correctAnswers: new[] { valG.ToString() }),
+            makeQuestion(Question.BlueButtonEFGH, _BlueButton, formatArgs: new[] { "H" }, correctAnswers: new[] { valH.ToString() }),
+            makeQuestion(Question.BlueButtonM, _BlueButton, correctAnswers: new[] { valM.ToString() }),
+            makeQuestion(Question.BlueButtonN, _BlueButton, correctAnswers: new[] { valN.ToString() }),
+            makeQuestion(Question.BlueButtonP, _BlueButton, correctAnswers: new[] { valP }),
+            makeQuestion(Question.BlueButtonQ, _BlueButton, correctAnswers: new[] { valQ }),
+            makeQuestion(Question.BlueButtonX, _BlueButton, correctAnswers: new[] { valX.ToString() }));
+    }
+
     private IEnumerable<object> ProcessBlueCipher(KMBombModule module)
     {
         return processColoredCiphers(module, "blueCipher", Question.BlueCipherAnswer, _BlueCipher);

@@ -539,6 +539,25 @@ public partial class SouvenirModule
         addQuestion(module, Question.PurpleArrowsFinish, correctAnswers: new[] { Regex.Replace(finishWord, @"(?<!^).", m => m.Value.ToLowerInvariant()) }, preferredWrongAnswers: wordList.Select(w => w[0] + w.Substring(1).ToLowerInvariant()).ToArray());
     }
 
+    private IEnumerable<object> ProcessPurpleButton(KMBombModule module)
+    {
+        var comp = GetComponent(module, "PurpleButtonScript");
+        var cyclingNumbers = GetArrayField<int>(comp, "_cyclingNumbers").Get(expectedLength: 6);
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_PurpleButton);
+
+        var preferredWrongNumbers = Enumerable.Range(0, cyclingNumbers.Max() + 1).ToList();
+        while (preferredWrongNumbers.Count < 6)
+            preferredWrongNumbers.Add(preferredWrongNumbers.Max() + 1);
+        var preferredWrongAnswers = preferredWrongNumbers.Select(n => n.ToString()).ToArray();
+
+        addQuestions(module, Enumerable.Range(0, 6).Select(ix =>
+            makeQuestion(Question.PurpleButtonNumbers, _PurpleButton, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { cyclingNumbers[ix].ToString() }, preferredWrongAnswers: preferredWrongAnswers)));
+    }
+
     private IEnumerable<object> ProcessPuzzleIdentification(KMBombModule module)
     {
         var comp = GetComponent(module, "PuzzleIdentificationScript");

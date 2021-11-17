@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Souvenir;
 using UnityEngine;
 
@@ -66,6 +67,26 @@ public partial class SouvenirModule
         digits2.GetComponent<TextMesh>().text = "--";
     }
 
+    private IEnumerable<object> ProcessGrayButton(KMBombModule module)
+    {
+        var comp = GetComponent(module, "GrayButtonScript");
+
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        var text = GetField<TextMesh>(comp, "GrayButtonText", isPublic: true).Get();
+        var m = Regex.Match(text.text, @"^(\d), (\d)$");
+        if (!m.Success)
+            throw new AbandonModuleException("Unexpected text on Gray Button display: {0}", text.text);
+        _modulesSolved.IncSafe(_GrayButton);
+
+        addQuestions(module,
+            makeQuestion(Question.GrayButtonCoordinates, _GrayButton, formatArgs: new[] { "horizontal" }, correctAnswers: new[] { m.Groups[1].Value }),
+            makeQuestion(Question.GrayButtonCoordinates, _GrayButton, formatArgs: new[] { "vertical" }, correctAnswers: new[] { m.Groups[2].Value }));
+        text.text = "Nice!";
+    }
+
     private IEnumerable<object> ProcessGrayCipher(KMBombModule module)
     {
         return processColoredCiphers(module, "grayCipher", Question.GrayCipherAnswer, _GrayCipher);
@@ -129,6 +150,22 @@ public partial class SouvenirModule
             throw new AbandonModuleException("The number on the screen is out of range: number = {1}, expected 0-99", number);
 
         addQuestions(module, makeQuestion(Question.GreenArrowsLastScreen, _GreenArrows, correctAnswers: new[] { number.ToString("00") }));
+    }
+
+    private IEnumerable<object> ProcessGreenButton(KMBombModule module)
+    {
+        var comp = GetComponent(module, "GreenButtonScript");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+        var words = GetStaticField<List<string>>(comp.GetType(), "_words").Get().Select(w => w[0] + w.Substring(1).ToLowerInvariant()).ToArray();
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_GreenButton);
+
+        var displayedString = GetField<string>(comp, "_displayedString").Get(validator: str => str.Length != 7 ? "expected length 7" : null);
+        var submission = GetArrayField<bool>(comp, "_submission").Get(expectedLength: 7);
+        var submittedWord = Enumerable.Range(0, displayedString.Length).Select(ix => submission[ix] ? displayedString.Substring(ix, 1) : "").JoinString();
+        addQuestions(module, makeQuestion(Question.GreenButtonWord, _GreenButton, correctAnswers: new[] { submittedWord[0] + submittedWord.Substring(1).ToLowerInvariant() }, preferredWrongAnswers: words));
     }
 
     private IEnumerable<object> ProcessGreenCipher(KMBombModule module)

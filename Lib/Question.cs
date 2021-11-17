@@ -196,6 +196,27 @@ namespace Souvenir
         [SouvenirQuestion("What were the letters on the screen in {0}?", "Blue Arrows", AnswerLayout.ThreeColumns6Answers, "CA", "C1", "CB", "C8", "CF", "C4", "CE", "C6", "3A", "31", "3B", "38", "3F", "34", "3E", "36", "GA", "G1", "GB", "G8", "GF", "G4", "GE", "G6", "7A", "71", "7B", "78", "7F", "74", "7E", "76", "DA", "D1", "DB", "D8", "DF", "D4", "DE", "D6", "5A", "51", "5B", "58", "5F", "54", "5E", "56", "HA", "H1", "HB", "H8", "HF", "H4", "HE", "H6", "2A", "21", "2B", "28", "2F", "24", "2E", "26")]
         BlueArrowsInitialLetters,
 
+        [SouvenirQuestion("What was D in {0}?", "Blue Button", AnswerLayout.TwoColumns4Answers, AddThe = true)]
+        [AnswerGenerator.Integers(1, 4)]
+        BlueButtonD,
+        [SouvenirQuestion("What was {1} in {0}?", "Blue Button", AnswerLayout.TwoColumns4Answers, AddThe = true,
+            ExampleExtraFormatArguments = new[] { "E", "F", "G", "H" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 3)]
+        BlueButtonEFGH,
+        [SouvenirQuestion("What was M in {0}?", "Blue Button", AnswerLayout.ThreeColumns6Answers, AddThe = true)]
+        [AnswerGenerator.Integers(1, 9)]
+        BlueButtonM,
+        [SouvenirQuestion("What was N in {0}?", "Blue Button", AnswerLayout.ThreeColumns6Answers, AddThe = true)]
+        [AnswerGenerator.Integers(4, 9)]
+        BlueButtonN,
+        [SouvenirQuestion("What was P in {0}?", "Blue Button", AnswerLayout.ThreeColumns6Answers, "♠♥♣", "♠♣♥", "♥♠♣", "♥♣♠", "♣♠♥", "♣♥♠", AddThe = true)]
+        BlueButtonP,
+        [SouvenirQuestion("What was Q in {0}?", "Blue Button", AnswerLayout.ThreeColumns6Answers, "Blue", "Green", "Cyan", "Red", "Magenta", "Yellow", AddThe = true)]
+        BlueButtonQ,
+        [SouvenirQuestion("What was X in {0}?", "Blue Button", AnswerLayout.TwoColumns4Answers, AddThe = true)]
+        [AnswerGenerator.Integers(1, 5)]
+        BlueButtonX,
+
         [SouvenirQuestion("What was the answer in {0}?", "Blue Cipher", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "anchor", "attain", "decide", "jailor", "lights", "offers", "poetic", "unison", "vector", "vision" })]
         BlueCipherAnswer,
 
@@ -640,6 +661,11 @@ namespace Souvenir
         [AnswerGenerator.Strings("2*0-9", ":", "2*0-9")]
         GamepadNumbers,
 
+        [SouvenirQuestion("What was the {1} coordinate on the display in {0}?", "Gray Button", AnswerLayout.ThreeColumns6Answers, AddThe = true,
+            ExampleExtraFormatArguments = new[] { "horizontal", "vertical" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 9)]
+        GrayButtonCoordinates,
+
         [SouvenirQuestion("What was the answer in {0}?", "Gray Cipher", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "assume", "embryo", "gambit", "lament", "learnt", "nebula", "needed", "object", "photon", "quarry" })]
         GrayCipherAnswer,
 
@@ -654,6 +680,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the last number on the display on {0}?", "Green Arrows", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Integers(0, 99, "00")]
         GreenArrowsLastScreen,
+
+        [SouvenirQuestion("What was the word submitted in {0}?", "Green Button", AnswerLayout.ThreeColumns6Answers, null, AddThe = true)]
+        GreenButtonWord,
 
         [SouvenirQuestion("What was the answer in {0}?", "Green Cipher", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "barber", "elixir", "hardly", "jacked", "lamest", "octave", "umpire", "unveil", "waffle", "zoning" })]
         GreenCipherAnswer,
@@ -1138,6 +1167,12 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NavinumsDirectionalButtons,
 
+        [SouvenirQuestion("Which Greek letter appeared on {0} (case-sensitive)?", "Navy Button", AnswerLayout.ThreeColumns6Answers, "Α", "Β", "Γ", "Δ", "Ε", "Ζ", "Η", "Θ", "Ι", "Κ", "Λ", "Μ", "Ν", "Ξ", "Ο", "Π", "Ρ", "Σ", "Τ", "Υ", "Φ", "Χ", "Ψ", "Ω", "α", "β", "γ", "δ", "ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ", "ο", "π", "ρ", "σ", "τ", "υ", "φ", "χ", "ψ", "ω", AddThe = true)]
+        NavyButtonGreekLetters,
+        [SouvenirQuestion("What was the {1} of the given in {0} (0-indexed)?", "Navy Button", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", AddThe = true,
+            ExampleExtraFormatArguments = new[] { "column", "row", "value" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        NavyButtonGiven,
+
         [SouvenirQuestion("What color flashed {1} in the final sequence in {0}?", "Not Keypad", AnswerLayout.ThreeColumns6Answers, "red", "orange", "yellow", "green", "cyan", "blue", "purple", "magenta", "pink", "brown", "grey", "white",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NotKeypadColor,
@@ -1371,6 +1406,10 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the target word on {0}?", "Purple Arrows", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "Thesis", "Immune", "Agency", "Height", "Active", "Bother", "Viable" })]
         PurpleArrowsFinish,
+
+        [SouvenirQuestion("What was the {1} number in the cyclic sequence on {0}?", "Purple Button", AnswerLayout.ThreeColumns6Answers, null, AddThe = true,
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        PurpleButtonNumbers,
 
         [SouvenirQuestion("What was the {1} puzzle number in {0}?", "Puzzle Identification", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "001", "002", "003", "004", "005", "006" },
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -1942,6 +1981,10 @@ namespace Souvenir
         [SouvenirQuestion("What was the starting row letter in {0}?", "Yellow Arrows", AnswerLayout.ThreeColumns6Answers, null)]
         [AnswerGenerator.Strings('A', 'Z')]
         YellowArrowsStartingRow,
+
+        [SouvenirQuestion("What was the {1} color in {0}?", "Yellow Button", AnswerLayout.TwoColumns4Answers, "Red", "Yellow", "Green", "Cyan", "Blue", "Magenta", AddThe = true,
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        YellowButtonColors,
 
         [SouvenirQuestion("What was the answer in {0}?", "Yellow Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "although", "business", "children", "director", "exchange", "function", "guidance", "hospital", "industry", "junction", "keyboard", "language", "material", "numerous", "offering", "possible", "question", "research", "software", "together", "ultimate", "valuable", "wireless", "xenolith", "yourself", "zucchini" })]
         YellowCipherAnswer,

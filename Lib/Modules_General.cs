@@ -42,6 +42,7 @@ public partial class SouvenirModule
     const string _BlindMaze = "BlindMaze";
     const string _Blockbusters = "blockbusters";
     const string _BlueArrows = "blueArrowsModule";
+    const string _BlueButton = "BlueButtonModule";
     const string _BlueCipher = "blueCipher";
     const string _BobBarks = "ksmBobBarks";
     const string _Boggle = "boggle";
@@ -121,9 +122,11 @@ public partial class SouvenirModule
     const string _Functions = "qFunctions";
     const string _GameOfLifeCruel = "GameOfLifeCruel";
     const string _Gamepad = "TheGamepadModule";
+    const string _GrayButton = "GrayButtonModule";
     const string _GrayCipher = "grayCipher";
     const string _GreatVoid = "greatVoid";
     const string _GreenArrows = "greenArrowsModule";
+    const string _GreenButton = "GreenButtonModule";
     const string _GreenCipher = "greenCipher";
     const string _GridLock = "GridlockModule";
     const string _GroceryStore = "groceryStore";
@@ -211,6 +214,7 @@ public partial class SouvenirModule
     const string _NameCodes = "nameCodes";
     const string _NandMs = "NandMs";
     const string _Navinums = "navinums";
+    const string _NavyButton = "NavyButtonModule";
     const string _Necronomicon = "necronomicon";
     const string _Negativity = "Negativity";
     const string _Neutralization = "neutralization";
@@ -254,6 +258,7 @@ public partial class SouvenirModule
     const string _PrimeEncryption = "primeEncryption";
     const string _Probing = "Probing";
     const string _PurpleArrows = "purpleArrowsModule";
+    const string _PurpleButton = "PurpleButtonModule";
     const string _PuzzleIdentification = "GSPuzzleIdentification";
     const string _Quaver = "Quaver";
     const string _Quintuples = "quintuples";
@@ -372,6 +377,7 @@ public partial class SouvenirModule
     const string _XmORseCode = "xmorse";
     const string _Yahtzee = "YahtzeeModule";
     const string _YellowArrows = "yellowArrowsModule";
+    const string _YellowButton = "YellowButtonModule";
     const string _YellowCipher = "yellowCipher";
     const string _ZeroZero = "zeroZero";
     const string _Zoni = "lgndZoni";
@@ -412,6 +418,7 @@ public partial class SouvenirModule
             { _BlindMaze, ProcessBlindMaze },
             { _Blockbusters, ProcessBlockbusters },
             { _BlueArrows, ProcessBlueArrows },
+            { _BlueButton, ProcessBlueButton },
             { _BlueCipher, ProcessBlueCipher },
             { _BobBarks, ProcessBobBarks },
             { _Boggle, ProcessBoggle },
@@ -491,9 +498,11 @@ public partial class SouvenirModule
             { _Functions, ProcessFunctions },
             { _GameOfLifeCruel, ProcessGameOfLifeCruel },
             { _Gamepad, ProcessGamepad },
+            { _GrayButton, ProcessGrayButton },
             { _GrayCipher, ProcessGrayCipher },
             { _GreatVoid, ProcessGreatVoid },
             { _GreenArrows, ProcessGreenArrows },
+            { _GreenButton, ProcessGreenButton },
             { _GreenCipher, ProcessGreenCipher },
             { _GridLock, ProcessGridLock },
             { _GroceryStore, ProcessGroceryStore },
@@ -581,6 +590,7 @@ public partial class SouvenirModule
             { _NameCodes, ProcessNameCodes },
             { _NandMs, ProcessNandMs },
             { _Navinums, ProcessNavinums },
+            { _NavyButton, ProcessNavyButton },
             { _Necronomicon, ProcessNecronomicon },
             { _Negativity, ProcessNegativity },
             { _Neutralization, ProcessNeutralization },
@@ -624,6 +634,7 @@ public partial class SouvenirModule
             { _PrimeEncryption, ProcessPrimeEncryption },
             { _Probing, ProcessProbing },
             { _PurpleArrows, ProcessPurpleArrows },
+            { _PurpleButton, ProcessPurpleButton },
             { _PuzzleIdentification, ProcessPuzzleIdentification },
             { _Quaver, ProcessQuaver },
             { _Quintuples, ProcessQuintuples },
@@ -742,6 +753,7 @@ public partial class SouvenirModule
             { _XmORseCode, ProcessXmORseCode },
             { _Yahtzee, ProcessYahtzee },
             { _YellowArrows, ProcessYellowArrows },
+            { _YellowButton, ProcessYellowButton },
             { _YellowCipher, ProcessYellowCipher },
             { _ZeroZero, ProcessZeroZero },
             { _Zoni, ProcessZoni }

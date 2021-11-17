@@ -176,6 +176,30 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessNavyButton(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NavyButtonScript");
+        var puzzle = GetField<object>(comp, "_puzzle").Get();
+
+        var greekLetters = GetProperty<int[]>(puzzle, "GreekLetterIxs", isPublic: true)
+            .Get(validator: arr => arr.Any(v => v < 0 || v >= 48) ? "expected range 0–48" : null)
+            .Select(ix => "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψω"[ix].ToString())
+            .ToArray();
+        var givenIndex = GetProperty<int>(puzzle, "GivenIndex", isPublic: true).Get(validator: v => v < 0 || v >= 16 ? "expected range 0–16" : null);
+        var givenValue = GetProperty<int>(puzzle, "GivenValue", isPublic: true).Get(validator: v => v < 0 || v >= 4 ? "expected range 0–4" : null);
+
+        var fldStage = GetField<object>(comp, "_stage");
+        while (fldStage.Get().ToString() != "Solved")
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_NavyButton);
+
+        addQuestions(module,
+            makeQuestion(Question.NavyButtonGreekLetters, _NavyButton, correctAnswers: greekLetters),
+            makeQuestion(Question.NavyButtonGiven, _NavyButton, formatArgs: new[] { "column" }, correctAnswers: new[] { (givenIndex % 4).ToString() }),
+            makeQuestion(Question.NavyButtonGiven, _NavyButton, formatArgs: new[] { "row" }, correctAnswers: new[] { (givenIndex / 4).ToString() }),
+            makeQuestion(Question.NavyButtonGiven, _NavyButton, formatArgs: new[] { "value" }, correctAnswers: new[] { givenValue.ToString() }));
+    }
+
     private IEnumerable<object> ProcessNotKeypad(KMBombModule module)
     {
         var comp = GetComponent(module, "NotKeypad");

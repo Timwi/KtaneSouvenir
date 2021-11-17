@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Souvenir;
 using UnityEngine;
 
@@ -68,6 +69,25 @@ public partial class SouvenirModule
 
         int letterIndex = GetIntField(comp, "letindex").Get(min: 0, max: 25);
         addQuestion(module, Question.YellowArrowsStartingRow, correctAnswers: new[] { ((char) ('A' + letterIndex)).ToString() });
+    }
+
+    private IEnumerable<object> ProcessYellowButton(KMBombModule module)
+    {
+        var comp = GetComponent(module, "YellowButtonScript");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_YellowButton);
+
+        var sqs = GetArrayField<MeshRenderer>(comp, "ColorSquares", isPublic: true).Get(expectedLength: 8);
+        var colorNames = _attributes[Question.YellowButtonColors].AllAnswers;
+        addQuestions(module, sqs.Select((sq, ix) =>
+        {
+            var m = Regex.Match(sq.sharedMaterial.name, @"^Color([0-5])$");
+            if (!m.Success)
+                throw new AbandonModuleException("Expected material name “Color0–5”, got: “{0}”", sq.sharedMaterial.name);
+            return makeQuestion(Question.YellowButtonColors, _YellowButton, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { colorNames[int.Parse(m.Groups[1].Value)] });
+        }));
     }
 
     private IEnumerable<object> ProcessYellowCipher(KMBombModule module)

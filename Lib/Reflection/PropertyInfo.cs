@@ -1,35 +1,25 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 
 namespace Souvenir.Reflection
 {
-    sealed class PropertyInfo<T>
+    sealed class PropertyInfo<T> : InfoBase<T>
     {
-        private readonly object _target;
         public readonly PropertyInfo Property;
+        protected override string LoggingString => $"Property {Property.DeclaringType.FullName}.{Property.Name}";
+        public PropertyInfo(object target, PropertyInfo property) : base(target) { Property = property; }
+        protected override T GetValue() => (T) Property.GetValue(_target, null);
+        protected override T GetValue(object from) => (T) Property.GetValue(from, null);
 
-        public PropertyInfo(object target, PropertyInfo property)
+        public T Get(object[] index, Func<T, string> validator = null, bool nullAllowed = false)
         {
-            _target = target;
-            Property = property;
-        }
-
-        public T Get(bool nullAllowed = false)
-        {
-            // “This value should be null for non-indexed properties.” (MSDN)
-            return Get(null, nullAllowed);
-        }
-
-        public T Get(object[] index, bool nullAllowed = false)
-        {
-            var t = (T) Property.GetValue(_target, index);
-            if (!nullAllowed && t == null)
+            var value = (T) Property.GetValue(_target, index);
+            if (!nullAllowed && value == null)
                 throw new AbandonModuleException("Property {1}.{0} is null.", Property.Name, Property.DeclaringType.FullName);
-            return t;
-        }
-
-        public T GetFrom(object obj, bool nullAllowed = false)
-        {
-            return GetFrom(obj, null, nullAllowed);
+            string validatorFailMessage;
+            if (validator != null && (validatorFailMessage = validator(value)) != null)
+                throw new AbandonModuleException("Property {0}.{1} with value {2} did not pass validity check: {3}.", Property.DeclaringType.FullName, Property.Name, stringify(value), validatorFailMessage);
+            return value;
         }
 
         public T GetFrom(object obj, object[] index, bool nullAllowed = false)
