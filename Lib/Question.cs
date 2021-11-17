@@ -761,6 +761,13 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
         IceCreamCustomer,
 
+        [SouvenirQuestion("What was the {1} shape used in {0}?", "Identification Crisis", AnswerLayout.TwoColumns4Answers, "Circle", "Square", "Diamond", "Heart", "Star", "Triangle", "Pentagon", "Hexagon",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        IdentificationCrisisShape,
+        [SouvenirQuestion("What was the {1} identification module used in {0}?", "Identification Crisis", AnswerLayout.OneColumn4Answers, "Morse Identification", "Boozleglyph Identification", "Plant Identification", "Pickup Identification", "Emotiguy Identification", "Ars Goetia Identification", "Mii Identification", "Customer identification", "Spongebob Birthday Identification", "VTuber Identification",
+           ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        IdentificationCrisisDataset,
+
         [SouvenirQuestion("Which hair color {1} listed in {0}?", "Identity Parade", AnswerLayout.TwoColumns4Answers, "Black", "Blonde", "Brown", "Grey", "Red", "White",
             ExampleExtraFormatArguments = new[] { "was", "was not" }, ExampleExtraFormatArgumentGroupSize = 1)]
         IdentityParadeHairColors,

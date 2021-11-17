@@ -144,6 +144,7 @@ public partial class SouvenirModule
     const string _Hypercube = "TheHypercubeModule";
     const string _Hyperlink = "hyperlink";
     const string _IceCream = "iceCreamModule";
+    const string _IdentificationCrisis = "identificationCrisis";
     const string _IdentityParade = "identityParade";
     const string _IndigoCipher = "indigoCipher";
     const string _InfiniteLoop = "InfiniteLoop";
@@ -512,6 +513,7 @@ public partial class SouvenirModule
             { _Hypercube, ProcessHypercube },
             { _Hyperlink, ProcessHyperlink },
             { _IceCream, ProcessIceCream },
+            { _IdentificationCrisis, ProcessIdentificationCrisis },
             { _IdentityParade, ProcessIdentityParade },
             { _IndigoCipher, ProcessIndigoCipher },
             { _InfiniteLoop, ProcessInfiniteLoop },

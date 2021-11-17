@@ -54,6 +54,27 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessIdentificationCrisis(KMBombModule module)
+    {
+        var comp = GetComponent(module, "identificationCrisis");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_IdentificationCrisis);
+
+        var shapes = GetArrayField<int>(comp, "shapesUsed").Get();
+        var datasets = GetArrayField<int>(comp, "datasetsUsed").Get();
+        var shapeNames = GetStaticField<string[]>(comp.GetType(), "shapeNames").Get();
+        var datasetNames = new[] { "Morse Identification", "Boozleglyph Identification", "Plant Identification", "Pickup Identification", "Emotiguy Identification", "Ars Goetia Identification", "Mii Identification", "Customer identification", "Spongebob Birthday Identification", "VTuber Identification" };
+        var qs = new List<QandA>();
+        for (int i = 0; i < 3; i++)
+        {
+            qs.Add(makeQuestion(Question.IdentificationCrisisShape, _IdentificationCrisis, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { shapeNames[shapes[i]] }));
+            qs.Add(makeQuestion(Question.IdentificationCrisisDataset, _IdentificationCrisis, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { datasetNames[datasets[i]] }));
+        }
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessIdentityParade(KMBombModule module)
     {
         var comp = GetComponent(module, "identityParadeScript");
