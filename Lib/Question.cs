@@ -1639,6 +1639,14 @@ namespace Souvenir
         [SouvenirQuestion("Which dragon shout was selectable, but not the solution, in {0}?", "Skyrim", AnswerLayout.TwoColumns4Answers, "Disarm", "Dismay", "Dragonrend", "Fire Breath", "Ice Form", "Kyne’s Peace", "Slow Time", "Unrelenting Force", "Whirlwind Sprint")]
         SkyrimDragonShout,
 
+        [SouvenirQuestion("How much did the sequence shift by in {0}?", "Small Circle", AnswerLayout.ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8")]
+        SmallCircleShift,
+        [SouvenirQuestion("Which wedge made the different noise in the beginning of {0}?", "Small Circle", AnswerLayout.TwoColumns4Answers, "red", "orange", "yellow", "green", "blue", "magenta", "white", "black")]
+        SmallCircleWedge,
+        [SouvenirQuestion("Which color was {1} in the solution to {0}?", "Small Circle", AnswerLayout.TwoColumns4Answers, "red", "orange", "yellow", "green", "blue", "magenta", "white", "black",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SmallCircleSolution,
+
         [SouvenirQuestion("How many red balls were there at the start of {0}?", "Snooker", AnswerLayout.TwoColumns4Answers, "8", "9", "10", "11")]
         SnookerReds,
 

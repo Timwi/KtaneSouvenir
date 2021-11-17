@@ -784,6 +784,28 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessSmallCircle(KMBombModule module)
+    {
+        var comp = GetComponent(module, "smallCircle");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SmallCircle);
+
+        var shift = GetField<int>(comp, "shift").Get();
+        var tableColor = GetField<int>(comp, "tableColor").Get();
+        var solution = GetArrayField<int>(comp, "solution").Get();
+        var colorNames = GetStaticField<string[]>(comp.GetType(), "colorNames").Get().Select(x => x[0].ToString().ToUpperInvariant() + x.Substring(1)).ToArray();
+        var qs = new List<QandA>
+        {
+            makeQuestion(Question.SmallCircleShift, _SmallCircle, correctAnswers: new[] { shift.ToString() }),
+            makeQuestion(Question.SmallCircleWedge, _SmallCircle, correctAnswers: new[] { colorNames[tableColor] })
+        };
+        for (int i = 0; i < 3; i++)
+            qs.Add(makeQuestion(Question.SmallCircleSolution, _SmallCircle, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorNames[solution[i]] }));
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessSnooker(KMBombModule module)
     {
         var comp = GetComponent(module, "snookerScript");
