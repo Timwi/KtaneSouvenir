@@ -235,7 +235,7 @@ public partial class SouvenirModule : MonoBehaviour
             "We defuse bombs.",  // “We rob banks.” (Bonnie and Clyde)
             "Somebody set up us the bomb.",  // direct quote (Zero Wing)
             "Luke, I am your expert.", // “Luke, I am your father.” (Star Wars V: The Empire Strikes Back) (misquote)
-            "Everybody knows that the best way to learn is under intense life threatening crisis.", // direct quote (Spider-Man: Into the Spider-Verse)
+            "Everybody knows that the best way to learn is under intense life threatening pressure.", // direct quote (Spider-Man: Into the Spider-Verse)
             "It needs to be about 20 percent more exploded.", // “It needs to be about 20 percent cooler.” (MLP:FiM, Suited for Success)
             "I am a bomb. What’s your excuse?", // “I am a child. What’s your excuse?” (Steven Universe, Change your Mind)
             "The same thing we do every night, expert. Try to defuse the bomb!", // “The same thing we do every night, Pinky. Try to take over the world!” (Pinky and the Brain)
@@ -249,7 +249,9 @@ public partial class SouvenirModule : MonoBehaviour
             "I can do this all day.", // direct quote (Captain America: Civil War)
             "There... are... FOUR! BOMBS!!!", // “There... are... FOUR! LIGHTS!!!” (Star Trek TNG, Chain of Command)
             "It’s a beautiful thing, the detonation of bombs.", // “It’s a beautiful thing, the destruction of words.” (1984)
-            "Ich bin ein Defuser." // “Ich bin ein Berliner”, John F. Kennedy, 1963
+            "Ich bin ein Defuser.", // “Ich bin ein Berliner”, John F. Kennedy, 1963
+            "Ask not the double decker how the Centurion solves!", // Ask not the sparrow how the eagle soars! (Kill la Kill)
+            "Someone thinks they’re too clever for me. They all think that at first." // Someone thinks they’re too clever for us. They all thin that at first (Invincible)
 
         ).PickRandom(), 1.75, useQuestionSprite: false);
 
