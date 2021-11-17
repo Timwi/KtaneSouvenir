@@ -14,6 +14,7 @@ public partial class SouvenirModule
     const string _100LevelsOfDefusal = "100LevelsOfDefusal";
     const string _1DChess = "1DChess";
     const string _3DMaze = "spwiz3DMaze";
+    const string _3DTapCode = "3DTapCodeModule";
     const string _3DTunnels = "3dTunnels";
     const string _3LEDs = "threeLEDsModule";
     const string _7 = "7";
@@ -188,6 +189,7 @@ public partial class SouvenirModule
     const string _Microcontroller = "Microcontroller";
     const string _Minesweeper = "MinesweeperModule";
     const string _Mirror = "mirror";
+    const string _MisterSoftee = "misterSoftee";
     const string _ModernCipher = "modernCipher";
     const string _ModuleListening = "moduleListening";
     const string _ModuleMaze = "ModuleMaze";
@@ -378,6 +380,7 @@ public partial class SouvenirModule
             { _100LevelsOfDefusal, Process100LevelsOfDefusal },
             { _1DChess, Process1DChess },
             { _3DMaze, Process3DMaze },
+            { _3DTapCode, Process3DTapCode },
             { _3DTunnels, Process3DTunnels },
             { _3LEDs, Process3LEDs },
             { _7, Process7 },
@@ -552,6 +555,7 @@ public partial class SouvenirModule
             { _Microcontroller, ProcessMicrocontroller },
             { _Minesweeper, ProcessMinesweeper },
             { _Mirror, ProcessMirror },
+            { _MisterSoftee, ProcessMisterSoftee },
             { _ModernCipher, ProcessModernCipher },
             { _ModuleListening, ProcessModuleListening },
             { _ModuleMaze, ProcessModuleMaze },

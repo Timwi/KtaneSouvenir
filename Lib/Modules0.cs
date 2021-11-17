@@ -127,6 +127,21 @@ public partial class SouvenirModule
             makeQuestion(Question._3DMazeBearing, _3DMaze, correctAnswers: new[] { new[] { "North", "East", "South", "West" }[bearing] }));
     }
 
+    private IEnumerable<object> Process3DTapCode(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ThreeDTapCodeScript");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_3DTapCode);
+
+        var uncapitalizedWord = GetField<string>(comp, "_chosenWord").Get();
+        var word = uncapitalizedWord[0] + uncapitalizedWord.Substring(1).ToLowerInvariant();
+        var allWords = GetArrayField<string>(comp, "_chosenWordList").Get(expectedLength: 125).Select(x => x[0] + x.Substring(1).ToLowerInvariant()).ToArray();
+        addQuestion(module, Question._3DTapCodeWord, correctAnswers: new[] { word }, preferredWrongAnswers: allWords);
+    }
+
     private IEnumerable<object> Process3DTunnels(KMBombModule module)
     {
         var comp = GetComponent(module, "ThreeDTunnels");

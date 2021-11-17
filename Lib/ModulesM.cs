@@ -460,13 +460,31 @@ public partial class SouvenirModule
         addQuestion(module, Question.MirrorWord, correctAnswers: new[] { texts[position].text }, preferredWrongAnswers: candidateWords);
     }
 
+    private IEnumerable<object> ProcessMisterSoftee(KMBombModule module)
+    {
+        var comp = GetComponent(module, "misterSoftee");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_MisterSoftee);
+
+        var iceCreams = GetArrayField<int>(comp, "iceCreamsPresent").Get();
+        var iceCreamNames = GetStaticField<string[]>(comp.GetType(), "iceCreamNames").Get();
+        var ix = Array.IndexOf(iceCreams, 14);
+        var directions = new[] { "TL", "TM", "TR", "ML", "MM", "MR", "BL", "BM", "BR" };
+        addQuestions(module,
+            makeQuestion(Question.MisterSofteeSpongebobPosition, _MisterSoftee, correctAnswers: new[] { directions[ix] }),
+            makeQuestion(Question.MisterSofteeTreatsPresent, _MisterSoftee, correctAnswers: iceCreams.Where(x => x != 14).Select(x => iceCreamNames[x]).ToArray()));
+    }
+
     private IEnumerable<object> ProcessModernCipher(KMBombModule module)
     {
         var comp = GetComponent(module, "modernCipher");
         var fldSolved = GetField<bool>(comp, "_isSolved");
 
         while (!fldSolved.Get())
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(.1f);
 
         var dictionary = GetField<Dictionary<string, string>>(comp, "chosenWords").Get();
 
