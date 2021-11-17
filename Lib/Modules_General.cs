@@ -83,6 +83,7 @@ public partial class SouvenirModule
     const string _CrypticCycle = "crypticCycle";
     const string _CrypticKeypad = "GSCrypticKeypad";
     const string _Cube = "cube";
+    const string _CyanButton = "CyanButtonModule";
     const string _DACHMaze = "DACH";
     const string _DeafAlley = "deafAlleyModule";
     const string _DeckOfManyThings = "deckOfManyThings";
@@ -221,6 +222,7 @@ public partial class SouvenirModule
     const string _NotKeypad = "NotKeypad";
     const string _NotMaze = "NotMaze";
     const string _NotMorseCode = "NotMorseCode";
+    const string _NotNumberPad = "notNumberPad";
     const string _NotSimaze = "NotSimaze";
     const string _NotTheButton = "NotButton";
     const string _NotTheScrew = "notTheScrew";
@@ -277,6 +279,7 @@ public partial class SouvenirModule
     const string _Roger = "roger";
     const string _RoleReversal = "roleReversal";
     const string _Rule = "theRule";
+    const string _RuleOfThree = "RuleOfThreeModule";
     const string _Samsung = "theSamsung";
     const string _ScavengerHunt = "scavengerHunt";
     const string _SchlagDenBomb = "qSchlagDenBomb";
@@ -459,6 +462,7 @@ public partial class SouvenirModule
             { _CrypticCycle, ProcessCrypticCycle },
             { _CrypticKeypad, ProcessCrypticKeypad },
             { _Cube, ProcessCube },
+            { _CyanButton, ProcessCyanButton },
             { _DACHMaze, ProcessDACHMaze },
             { _DeafAlley, ProcessDeafAlley },
             { _DeckOfManyThings, ProcessDeckOfManyThings },
@@ -597,6 +601,7 @@ public partial class SouvenirModule
             { _NotKeypad, ProcessNotKeypad },
             { _NotMaze, ProcessNotMaze },
             { _NotMorseCode, ProcessNotMorseCode },
+            { _NotNumberPad, ProcessNotNumberPad },
             { _NotSimaze, ProcessNotSimaze },
             { _NotTheButton, ProcessNotTheButton },
             { _NotTheScrew, ProcessNotTheScrew },
@@ -653,6 +658,7 @@ public partial class SouvenirModule
             { _Roger, ProcessRoger },
             { _RoleReversal, ProcessRoleReversal },
             { _Rule, ProcessRule },
+            { _RuleOfThree, ProcessRuleOfThree },
             { _Samsung, ProcessSamsung },
             { _ScavengerHunt, ProcessScavengerHunt },
             { _SchlagDenBomb, ProcessSchlagDenBomb },

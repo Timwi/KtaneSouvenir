@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -256,6 +257,30 @@ public partial class SouvenirModule
             formatArgs: new[] { ordinal(stage + 1) },
             correctAnswers: new[] { words[channels[stage]] },
             preferredWrongAnswers: words.Concat(Enumerable.Range(0, 50).Select(_ => columns.PickRandom().PickRandom())).Except(new[] { words[channels[stage]] }).Distinct().Take(8).ToArray())));
+    }
+
+    private IEnumerable<object> ProcessNotNumberPad(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NotNumberPadScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_NotNumberPad);
+
+        var flashes = GetField<IList>(comp, "flashes").Get();
+        var mthGetNumbers = GetMethod<int[]>(flashes[0], "GetNumbers", 0, isPublic: true);
+        var numbers = Enumerable.Range(0, 3).Select(stage => mthGetNumbers.InvokeOn(flashes[stage]).Select(i => i.ToString()).ToArray()).ToArray();
+
+        var qs = new List<QandA>();
+        var numStrs = Enumerable.Range(0, 10).Select(i => i.ToString()).ToArray();
+        for (int stage = 0; stage < 3; stage++)
+        {
+            if (numbers[stage].Length >= 3)
+                qs.Add(makeQuestion(Question.NotNumberPadFlashes, _NotNumberPad, formatArgs: new[] { "did not flash", (stage + 1).ToString() }, correctAnswers: numStrs.Except(numbers[stage]).ToArray()));
+            qs.Add(makeQuestion(Question.NotNumberPadFlashes, _NotNumberPad, formatArgs: new[] { "flashed", (stage + 1).ToString() }, correctAnswers: numbers[stage]));
+        }
+
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessNotSimaze(KMBombModule module)

@@ -398,4 +398,37 @@ public partial class SouvenirModule
 
         addQuestion(module, Question.RuleNumber, correctAnswers: new[] { GetIntField(comp, "ruleNumber").Get().ToString() });
     }
+
+    private IEnumerable<object> ProcessRuleOfThree(KMBombModule module)
+    {
+        var comp = GetComponent(module, "RuleOfThreeScript");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_RuleOfThree);
+
+        var colorNames = new[] { "red", "yellow", "blue" };
+        var qs = new List<QandA>();
+
+        // Coordiantes
+        var redValues = GetArrayField<int>(comp, "_redValues").Get(expectedLength: 3);
+        var yellowValues = GetArrayField<int>(comp, "_yellowValues").Get(expectedLength: 3);
+        var blueValues = GetArrayField<int>(comp, "_blueValues").Get(expectedLength: 3);
+        var values = new[] { redValues, yellowValues, blueValues };
+        for (int color = 0; color < 3; color++)
+            for (int coord = 0; coord < 3; coord++)
+                qs.Add(makeQuestion(Question.RuleOfThreeCoordinates, _RuleOfThree, formatArgs: new[] { "XYZ"[coord].ToString(), colorNames[color] }, correctAnswers: new[] { values[color][coord].ToString() }));
+        
+        //Cycles
+        var redCoords = GetArrayField<int[]>(comp, "_redCoords").Get(expectedLength: 3, validator: arr => arr.Length != 3 ? "expected length 3" : null);
+        var yellowCoords = GetArrayField<int[]>(comp, "_yellowCoords").Get(expectedLength: 3, validator: arr => arr.Length != 3 ? "expected length 3" : null);
+        var blueCoords = GetArrayField<int[]>(comp, "_blueCoords").Get(expectedLength: 3, validator: arr => arr.Length != 3 ? "expected length 3" : null);
+        var coords = new[] { redCoords, yellowCoords, blueCoords };
+        for (int color = 0; color < 3; color++)
+            for (int axis = 0; axis < 3; axis++)
+                for (int cycle = 0; cycle < 3; cycle++)
+                    qs.Add(makeQuestion(Question.RuleOfThreeCycles, _RuleOfThree, formatArgs: new[] { colorNames[color], "XYZ"[axis].ToString(), ordinal(cycle + 1) }, correctAnswers: new[] { coords[color][cycle][axis].ToString() }));
+
+        addQuestions(module, qs);
+    }
 }

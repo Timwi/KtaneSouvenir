@@ -416,6 +416,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         CubeRotations,
 
+        [SouvenirQuestion("Where was the button at Stage {1} in {0}?", "Cyan Button", AnswerLayout.TwoColumns4Answers, "top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right", 
+            ExampleExtraFormatArguments = new[] {"1", "2", "3", "4", "5", "6"}, ExampleExtraFormatArgumentGroupSize =1, AddThe = true)]
+        CyanButtonPositions,
+
         [SouvenirQuestion("Which region did you depart from in {0}?", "DACH Maze", AnswerLayout.OneColumn4Answers, "Burgenland, A", "Carinthia, A", "Lower Austria, A", "North Tyrol, A", "Upper Austria, A", "East Tyrol, A", "Salzburg, A", "Styria, A", "Vorarlberg, A", "Vienna, A", "Aargau, CH", "Appenzell Inner Rhodes, CH", "Appenzell Outer Rhodes, CH", "Basel Country, CH", "Bern, CH", "Basel City, CH", "Fribourg, CH", "Geneva, CH", "Glarus, CH", "Grisons, CH", "Jura, CH", "Luzern, CH", "Nidwalden, CH", "Neuchâtel, CH", "Obwalden, CH", "Schaffhausen, CH", "St. Gallen, CH", "Solothurn, CH", "Schwyz, CH", "Thurgau, CH", "Ticino, CH", "Uri, CH", "Vaud, CH", "Valais, CH", "Zug, CH", "Zürich, CH", "Brandenburg, D", "Berlin, D", "Baden-Württemberg, D", "Bavaria, D", "Bremen, D", "Hesse, D", "Hamburg, D", "Mecklenburg-Vorpommern, D", "Lower Saxony, D", "North Rhine-Westphalia, D", "Rhineland-Palatinate, D", "Schleswig-Holstein, D", "Saarland, D", "Saxony, D", "Saxony-Anhalt, D", "Thuringia, D", "Liechtenstein")]
         DACHMazeOrigin,
 
@@ -1188,6 +1192,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NotMorseCodeWord,
 
+        [SouvenirQuestion("Which of these numbers {1} at Stage {2} of {0}?", "Not Number Pad", AnswerLayout.TwoColumns4Answers, ExampleExtraFormatArguments = new[] {"flashed", "1", "did not flash", "2"}, ExampleExtraFormatArgumentGroupSize = 2)]
+        [AnswerGenerator.Integers(0, 9)]
+        NotNumberPadFlashes,
+
         [SouvenirQuestion("Which maze was used in {0}?", "Not Simaze", AnswerLayout.ThreeColumns6Answers, "red", "orange", "yellow", "green", "blue", "purple")]
         NotSimazeMaze,
         [SouvenirQuestion("What was the starting position in {0}?", "Not Simaze", AnswerLayout.TwoColumns4Answers, "(red, red)", "(red, orange)", "(red, yellow)", "(red, green)", "(red, blue)", "(red, purple)", "(orange, red)", "(orange, orange)", "(orange, yellow)", "(orange, green)", "(orange, blue)", "(orange, purple)", "(yellow, red)", "(yellow, orange)", "(yellow, yellow)", "(yellow, green)", "(yellow, blue)", "(yellow, purple)", "(green, red)", "(green, orange)", "(green, yellow)", "(green, green)", "(green, blue)", "(green, purple)", "(blue, red)", "(blue, orange)", "(blue, yellow)", "(blue, green)", "(blue, blue)", "(blue, purple)", "(purple, red)", "(purple, orange)", "(purple, yellow)", "(purple, green)", "(purple, blue)", "(purple, purple)")]
@@ -1513,6 +1521,14 @@ namespace Souvenir
         [SouvenirQuestion("How many {1} wires were there in {0}?", "Role Reversal", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7",
             ExampleExtraFormatArguments = new[] { "warm-colored", "cold-colored", "primary-colored", "secondary-colored" }, ExampleExtraFormatArgumentGroupSize = 1)]
         RoleReversalWires,
+
+        [SouvenirQuestion("What was the {1} coordinate of the {2} vertex in {0}?", "Rule of Three", AnswerLayout.ThreeColumns6Answers,
+            ExampleExtraFormatArguments = new[] { "X", "red", "Y", "yellow", "Z", "blue" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        [AnswerGenerator.Integers(-13, 13)]
+        RuleOfThreeCoordinates,
+        [SouvenirQuestion("What was the position of the {1} sphere on the {2} axis in the {3} cycle in {0}?", "Rule of Three", AnswerLayout.TwoColumns4Answers, "-", "0", "+",
+            ExampleExtraFormatArguments = new[] { "red", "X", "first", "yellow", "Y", "second", "blue", "Z", "third" }, ExampleExtraFormatArgumentGroupSize = 3)]
+        RuleOfThreeCycles,
 
         [SouvenirQuestion("Where was {1} in {0}?", "Samsung", AnswerLayout.ThreeColumns6Answers, null, AddThe = true)]
         SamsungAppPositions,

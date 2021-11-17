@@ -697,4 +697,16 @@ public partial class SouvenirModule
 
         addQuestions(module, rotations.Select((rot, ix) => makeQuestion(Question.CubeRotations, _Cube, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { rotationNames[rot] }, preferredWrongAnswers: allRotations)));
     }
+
+    private IEnumerable<object> ProcessCyanButton(KMBombModule module)
+    {
+        var comp = GetComponent(module, "CyanButtonScript");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_CyanButton);
+        var positions = GetArrayField<int>(comp, "_buttonPositions").Get(expectedLength: 6);
+
+        addQuestions(module, Enumerable.Range(0, 6).Select(stage => makeQuestion(Question.CyanButtonPositions, _CyanButton, formatArgs: new[] { (stage + 1).ToString() }, correctAnswers: new[] { _attributes[Question.CyanButtonPositions].AllAnswers[positions[stage]] })));
+    }
 }
