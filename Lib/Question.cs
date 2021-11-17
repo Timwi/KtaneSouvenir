@@ -1468,6 +1468,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "warm-colored", "cold-colored", "primary-colored", "secondary-colored" }, ExampleExtraFormatArgumentGroupSize = 1)]
         RoleReversalWires,
 
+        [SouvenirQuestion("Where was {1} in {0}?", "Samsung", AnswerLayout.ThreeColumns6Answers, null, AddThe = true)]
+        SamsungAppPositions,
+
         [SouvenirQuestion("Which tile was correctly submitted in the first stage of {0}?", "Scavenger Hunt", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Grid)]
         ScavengerHuntKeySquare,
         [SouvenirQuestion("Which of these tiles was {1} in the first stage of {0}?", "Scavenger Hunt", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Grid,

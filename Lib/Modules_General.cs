@@ -271,6 +271,7 @@ public partial class SouvenirModule
     const string _Roger = "roger";
     const string _RoleReversal = "roleReversal";
     const string _Rule = "theRule";
+    const string _Samsung = "theSamsung";
     const string _ScavengerHunt = "scavengerHunt";
     const string _SchlagDenBomb = "qSchlagDenBomb";
     const string _SeaShells = "SeaShells";
@@ -638,6 +639,7 @@ public partial class SouvenirModule
             { _Roger, ProcessRoger },
             { _RoleReversal, ProcessRoleReversal },
             { _Rule, ProcessRule },
+            { _Samsung, ProcessSamsung },
             { _ScavengerHunt, ProcessScavengerHunt },
             { _SchlagDenBomb, ProcessSchlagDenBomb },
             { _SeaShells, ProcessSeaShells },

@@ -10,6 +10,23 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
+    private IEnumerable<object> ProcessSamsung(KMBombModule module)
+    {
+        var comp = GetComponent(module, "theSamsung");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Samsung);
+
+        var appPositions = GetListField<int>(comp, "positionNumbers").Get();
+        var appNames = new[] { "Duolingo", "Google Maps", "Kindle", "Google Authenticator", "Photomath", "Spotify", "Google Arts & Culture", "Discord" };
+        var directions = new[] { "TL", "TM", "TR", "ML", "MM", "MR", "BL", "BM", "BR" };
+        var qs = new List<QandA>();
+        for (int i = 0; i < 8; i++)
+            qs.Add(makeQuestion(Question.SamsungAppPositions, _Samsung, formatArgs: new[] { appNames[i] }, correctAnswers: new[] { directions[appPositions[i]] }, preferredWrongAnswers: directions));
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessScavengerHunt(KMBombModule module)
     {
         var comp = GetComponent(module, "scavengerHunt");
@@ -100,7 +117,7 @@ public partial class SouvenirModule
             }
         }
 
-        solved:
+    solved:
         _modulesSolved.IncSafe(_SeaShells);
 
         var qs = new List<QandA>();
