@@ -135,6 +135,10 @@ namespace Souvenir
           ExampleExtraFormatArguments = new[] { "first", "fourth", "first", "fifth", "second", "fourth", "second", "fifth" }, ExampleExtraFormatArgumentGroupSize = 2)]
         BamboozlingButtonDisplayColor,
 
+        [SouvenirQuestion("Which menu item was present in {0}?", "Bakery", AnswerLayout.OneColumn4Answers, null,
+            ExampleAnswers = new[] { "Butter slab", "Sugar cookie", "Applie pie", "Tea biscuit", "Tuile", "Sprinkles Cookie" })]
+        BakeryItems,
+
         [SouvenirQuestion("What was the screen number in {0}?", "Barcode Cipher", AnswerLayout.OneColumn4Answers, "637842", "145612", "765465", "523987", "452387")]
         [AnswerGenerator.Integers(100000, 999999)]
         BarcodeCipherScreenNumber,

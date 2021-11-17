@@ -161,6 +161,29 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessBakery(KMBombModule module)
+    {
+        var comp = GetComponent(module, "bakery");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Bakery);
+
+        var cookieTypes = GetField<Array>(comp, "allCookieCategories").Get(validator: arr => arr.Length != 12 ? "expected length 12" : null).Cast<object>().Select(x => x.ToString()).ToArray();
+        var cookieIndices = GetArrayField<int>(comp, "cookieIndices").Get(validator: arr => arr.Length != 12 ? "expected length 12" : null);
+        var allNameArrays = new string[8][];
+        var enumNames = new[] { "regular", "teaBiscuit", "chocolateButterBiscuit", "branded", "danishButter", "macaron", "notCookie", "seasonal" };
+        var nameArrayNames = new[] { "regularCookieNames", "teaBiscuitNames", "chocolateButterBiscuitNames", "brandedNames", "danishButterCookieNames", "macaronNames", "notCookieNames", "seasonalCookieNames" };
+        for (int i = 0; i < 8; i++)
+            allNameArrays[i] = GetStaticField<string[]>(comp.GetType(), nameArrayNames[i]).Get();
+        var everySingleName = allNameArrays.SelectMany(x => x).ToArray();
+        var qs = new List<QandA>();
+        for (int i = 0; i < 12; i++)
+            qs.Add(makeQuestion(Question.BakeryItems, _Bakery, correctAnswers: new[] { allNameArrays[Array.IndexOf(enumNames, cookieTypes[i])][cookieIndices[i]] }, preferredWrongAnswers: everySingleName));
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessBarcodeCipher(KMBombModule module)
     {
         var comp = GetComponent(module, "BarcodeCipherScript");

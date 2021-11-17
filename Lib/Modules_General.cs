@@ -30,6 +30,7 @@ public partial class SouvenirModule
     const string _Arithmelogic = "arithmelogic";
     const string _BamboozledAgain = "bamboozledAgain";
     const string _BamboozlingButton = "bamboozlingButton";
+    const string _Bakery = "bakery";
     const string _BarcodeCipher = "BarcodeCipherModule";
     const string _Bartending = "BartendingModule";
     const string _BigCircle = "BigCircle";
@@ -396,6 +397,7 @@ public partial class SouvenirModule
             { _Arithmelogic, ProcessArithmelogic },
             { _BamboozledAgain, ProcessBamboozledAgain },
             { _BamboozlingButton, ProcessBamboozlingButton },
+            { _Bakery, ProcessBakery },
             { _BarcodeCipher, ProcessBarcodeCipher },
             { _Bartending, ProcessBartending },
             { _BigCircle, ProcessBigCircle },
