@@ -19,7 +19,7 @@ namespace Souvenir
         [SouvenirQuestion("What was the cardinal direction in {0}?", "3D Maze", AnswerLayout.TwoColumns4Answers, "North", "South", "West", "East")]
         _3DMazeBearing,
 
-        [SouvenirQuestion("What was the recieved word in {0}?", "3D Tap Code", AnswerLayout.ThreeColumns6Answers, null,
+        [SouvenirQuestion("What was the received word in {0}?", "3D Tap Code", AnswerLayout.ThreeColumns6Answers, null,
             ExampleAnswers = new[] { "Aback", "Backs", "Habit", "Oasis" })]
         _3DTapCodeWord,
 
