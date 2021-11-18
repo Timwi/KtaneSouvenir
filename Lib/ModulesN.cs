@@ -276,8 +276,8 @@ public partial class SouvenirModule
         for (int stage = 0; stage < 3; stage++)
         {
             if (numbers[stage].Length >= 3)
-                qs.Add(makeQuestion(Question.NotNumberPadFlashes, _NotNumberPad, formatArgs: new[] { "did not flash", (stage + 1).ToString() }, correctAnswers: numStrs.Except(numbers[stage]).ToArray()));
-            qs.Add(makeQuestion(Question.NotNumberPadFlashes, _NotNumberPad, formatArgs: new[] { "flashed", (stage + 1).ToString() }, correctAnswers: numbers[stage]));
+                qs.Add(makeQuestion(Question.NotNumberPadFlashes, _NotNumberPad, formatArgs: new[] { "did not flash", ordinal(stage + 1) }, correctAnswers: numStrs.Except(numbers[stage]).ToArray()));
+            qs.Add(makeQuestion(Question.NotNumberPadFlashes, _NotNumberPad, formatArgs: new[] { "flashed", ordinal(stage + 1) }, correctAnswers: numbers[stage]));
         }
 
         addQuestions(module, qs);

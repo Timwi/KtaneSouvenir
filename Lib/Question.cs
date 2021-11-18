@@ -416,8 +416,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth", "sixth" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         CubeRotations,
 
-        [SouvenirQuestion("Where was the button at Stage {1} in {0}?", "Cyan Button", AnswerLayout.TwoColumns4Answers, "top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right", 
-            ExampleExtraFormatArguments = new[] {"1", "2", "3", "4", "5", "6"}, ExampleExtraFormatArgumentGroupSize =1, AddThe = true)]
+        [SouvenirQuestion("Where was the button at the {1} stage in {0}?", "Cyan Button", AnswerLayout.TwoColumns4Answers, "top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th", "6th" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         CyanButtonPositions,
 
         [SouvenirQuestion("Which region did you depart from in {0}?", "DACH Maze", AnswerLayout.OneColumn4Answers, "Burgenland, A", "Carinthia, A", "Lower Austria, A", "North Tyrol, A", "Upper Austria, A", "East Tyrol, A", "Salzburg, A", "Styria, A", "Vorarlberg, A", "Vienna, A", "Aargau, CH", "Appenzell Inner Rhodes, CH", "Appenzell Outer Rhodes, CH", "Basel Country, CH", "Bern, CH", "Basel City, CH", "Fribourg, CH", "Geneva, CH", "Glarus, CH", "Grisons, CH", "Jura, CH", "Luzern, CH", "Nidwalden, CH", "Neuchâtel, CH", "Obwalden, CH", "Schaffhausen, CH", "St. Gallen, CH", "Solothurn, CH", "Schwyz, CH", "Thurgau, CH", "Ticino, CH", "Uri, CH", "Vaud, CH", "Valais, CH", "Zug, CH", "Zürich, CH", "Brandenburg, D", "Berlin, D", "Baden-Württemberg, D", "Bavaria, D", "Bremen, D", "Hesse, D", "Hamburg, D", "Mecklenburg-Vorpommern, D", "Lower Saxony, D", "North Rhine-Westphalia, D", "Rhineland-Palatinate, D", "Schleswig-Holstein, D", "Saarland, D", "Saxony, D", "Saxony-Anhalt, D", "Thuringia, D", "Liechtenstein")]
@@ -1192,7 +1192,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NotMorseCodeWord,
 
-        [SouvenirQuestion("Which of these numbers {1} at Stage {2} of {0}?", "Not Number Pad", AnswerLayout.TwoColumns4Answers, ExampleExtraFormatArguments = new[] {"flashed", "1", "did not flash", "2"}, ExampleExtraFormatArgumentGroupSize = 2)]
+        [SouvenirQuestion("Which of these numbers {1} at the {2} stage of {0}?", "Not Number Pad", AnswerLayout.TwoColumns4Answers,
+            ExampleExtraFormatArguments = new[] { "flashed", "first", "flashed", "second", "did not flash", "first", "did not flash", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
         [AnswerGenerator.Integers(0, 9)]
         NotNumberPadFlashes,
 

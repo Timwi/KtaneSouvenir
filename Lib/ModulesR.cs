@@ -410,7 +410,7 @@ public partial class SouvenirModule
         var colorNames = new[] { "red", "yellow", "blue" };
         var qs = new List<QandA>();
 
-        // Coordiantes
+        // Coordinates
         var redValues = GetArrayField<int>(comp, "_redValues").Get(expectedLength: 3);
         var yellowValues = GetArrayField<int>(comp, "_yellowValues").Get(expectedLength: 3);
         var blueValues = GetArrayField<int>(comp, "_blueValues").Get(expectedLength: 3);
@@ -419,7 +419,7 @@ public partial class SouvenirModule
             for (int coord = 0; coord < 3; coord++)
                 qs.Add(makeQuestion(Question.RuleOfThreeCoordinates, _RuleOfThree, formatArgs: new[] { "XYZ"[coord].ToString(), colorNames[color] }, correctAnswers: new[] { values[color][coord].ToString() }));
         
-        //Cycles
+        // Cycles
         var redCoords = GetArrayField<int[]>(comp, "_redCoords").Get(expectedLength: 3, validator: arr => arr.Length != 3 ? "expected length 3" : null);
         var yellowCoords = GetArrayField<int[]>(comp, "_yellowCoords").Get(expectedLength: 3, validator: arr => arr.Length != 3 ? "expected length 3" : null);
         var blueCoords = GetArrayField<int[]>(comp, "_blueCoords").Get(expectedLength: 3, validator: arr => arr.Length != 3 ? "expected length 3" : null);

@@ -707,6 +707,6 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_CyanButton);
         var positions = GetArrayField<int>(comp, "_buttonPositions").Get(expectedLength: 6);
 
-        addQuestions(module, Enumerable.Range(0, 6).Select(stage => makeQuestion(Question.CyanButtonPositions, _CyanButton, formatArgs: new[] { (stage + 1).ToString() }, correctAnswers: new[] { _attributes[Question.CyanButtonPositions].AllAnswers[positions[stage]] })));
+        addQuestions(module, Enumerable.Range(0, 6).Select(stage => makeQuestion(Question.CyanButtonPositions, _CyanButton, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { _attributes[Question.CyanButtonPositions].AllAnswers[positions[stage]] })));
     }
 }
