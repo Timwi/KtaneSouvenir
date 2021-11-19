@@ -1262,6 +1262,10 @@ namespace Souvenir
         [AnswerGenerator.Integers(1, 60)]
         NotWhosOnFirstSum,
 
+        [SouvenirQuestion("Which sector value {1} present on {0}?", "Not X01", AnswerLayout.ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+            ExampleExtraFormatArguments = new[] { "was", "was not" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        NotX01SectorValues,
+
         [SouvenirQuestion("What table were we in in {0} (numbered 1–8 in reading order in the manual)?", "Not X-Ray", AnswerLayout.ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8")]
         NotXRayTable,
         [SouvenirQuestion("What direction was button {1} in {0}?", "Not X-Ray", AnswerLayout.ThreeColumns6Answers, "Up", "Right", "Down", "Left",

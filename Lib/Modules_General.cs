@@ -235,6 +235,7 @@ public partial class SouvenirModule
     const string _NotTheButton = "NotButton";
     const string _NotTheScrew = "notTheScrew";
     const string _NotWhosOnFirst = "NotWhosOnFirst";
+    const string _NotX01 = "notX01";
     const string _NotXRay = "NotXRayModule";
     const string _NumberedButtons = "numberedButtonsModule";
     const string _Numbers = "Numbers";
@@ -624,6 +625,7 @@ public partial class SouvenirModule
             { _NotTheButton, ProcessNotTheButton },
             { _NotTheScrew, ProcessNotTheScrew },
             { _NotWhosOnFirst, ProcessNotWhosOnFirst },
+            { _NotX01, ProcessNotX01 },
             { _NotXRay, ProcessNotXRay },
             { _NumberedButtons, ProcessNumberedButtons },
             { _Numbers, ProcessNumbers },

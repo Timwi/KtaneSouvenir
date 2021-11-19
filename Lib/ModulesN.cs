@@ -437,6 +437,24 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessNotX01(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NX01Script");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_NotX01);
+        var qs = new List<QandA>();
+
+        var nums = GetArrayField<int>(comp, "nums").Get();
+        var numsStr = nums.Select(i => i.ToString()).ToArray();
+        var numsNotPresent = Enumerable.Range(1, 20).Except(nums).Select(i => i.ToString()).ToArray();
+
+        addQuestions(module,
+            makeQuestion(Question.NotX01SectorValues, _NotX01, formatArgs: new[] { "was" }, correctAnswers: numsStr, preferredWrongAnswers: numsNotPresent),
+            makeQuestion(Question.NotX01SectorValues, _NotX01, formatArgs: new[] { "was not" }, correctAnswers: numsNotPresent, preferredWrongAnswers: numsStr));
+    }
+
     private IEnumerable<object> ProcessNotXRay(KMBombModule module)
     {
         var comp = GetComponent(module, "NotXRayModule");
