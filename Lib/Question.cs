@@ -1790,6 +1790,13 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "left", "first", "left", "second", "left", "third", "middle", "first", "middle", "second", "middle", "third", "right", "first", "right", "second", "right", "third" }, ExampleExtraFormatArgumentGroupSize = 2)]
         SymbolicCoordinateSymbols,
 
+        [SouvenirQuestion("Which button flashed {1} in the final sequence of {0}?", "Symbolic Tasha", AnswerLayout.ThreeColumns6Answers, "Top", "Right", "Bottom", "Left", "Pink", "Green", "Yellow", "Blue",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SymbolicTashaFlashes,
+        [SouvenirQuestion("Which symbol was on the {1} button in {0}?", "Symbolic Tasha", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "SymbolicTashaSprites",
+            ExampleExtraFormatArguments = new[] { "top", "right", "bottom", "left", "blue", "green", "yellow", "pink" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SymbolicTashaSymbols,
+
         [SouvenirQuestion("What was displayed on the screen in stage {1} of {0}?", "SYNC-125 [3]", AnswerLayout.TwoColumns4Answers, null, Type = AnswerType.DynamicFont, ExampleAnswers = new[] { "İ'ms'", "ăĠ'n'", "kğ'i", "kĞ'p'", "ăut'", "ăġ'r", "ăġ'm", "ărs", "kğp'", "kğk" })]
         Sync125_3Word,
 

@@ -333,6 +333,7 @@ public partial class SouvenirModule
     const string _SwitchingMaze = "MazeSwitching";
     const string _SymbolCycle = "SymbolCycleModule";
     const string _SymbolicCoordinates = "symbolicCoordinates";
+    const string _SymbolicTasha = "symbolicTasha";
     const string _Sync_125_3 = "sync125_3";
     const string _Synonyms = "synonyms";
     const string _Sysadmin = "sysadmin";
@@ -712,6 +713,7 @@ public partial class SouvenirModule
             { _SwitchingMaze, ProcessSwitchingMaze },
             { _SymbolCycle, ProcessSymbolCycle },
             { _SymbolicCoordinates, ProcessSymbolicCoordinates },
+            { _SymbolicTasha, ProcessSymbolicTasha },
             { _Sync_125_3, ProcessSync_125_3 },
             { _Synonyms, ProcessSynonyms },
             { _Sysadmin, ProcessSysadmin },

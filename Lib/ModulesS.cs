@@ -1311,6 +1311,41 @@ public partial class SouvenirModule
             preferredWrongAnswers: SymbolicCoordinatesSprites))));
     }
 
+    private IEnumerable<object> ProcessSymbolicTasha(KMBombModule module)
+    {
+        var comp = GetComponent(module, "symbolicTasha");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SymbolicTasha);
+
+        var positionNames = new[] { "Top", "Right", "Bottom", "Left" };
+        var colorNames = new[] { "Pink", "Green", "Yellow", "Blue" };
+
+        var positionNamesLc = new[] { "top", "right", "bottom", "left" };
+        var colorNamesLc = new[] { "pink", "green", "yellow", "blue" };
+
+        var cracked = GetArrayField<bool>(comp, "cracked").Get();
+        var flashing = GetArrayField<int>(comp, "flashing").Get();
+        var presentSymbols = GetField<Array>(comp, "presentSymbols").Get(validator: arr => arr.Length != 4 ? "expected length 4" : null).Cast<object>().Select(obj => (int) obj).ToArray();
+        var buttonColors = GetField<Array>(comp, "buttonColors").Get(validator: arr => arr.Length != 4 ? "expected length 4" : null).Cast<object>().Select(obj => (int) obj).ToArray();
+
+        var qs = new List<QandA>();
+        for (var pos = 0; pos < 5; pos++)
+            qs.Add(makeQuestion(Question.SymbolicTashaFlashes, _SymbolicTasha, formatArgs: new[] { ordinal(pos + 1) },
+                correctAnswers: new[] { positionNames[flashing[pos]], colorNames[buttonColors[flashing[pos]]] }));
+
+        for (var btn = 0; btn < 4; btn++)
+            if (presentSymbols[btn] < 0)
+            {
+                qs.Add(makeQuestion(Question.SymbolicTashaSymbols, _SymbolicTasha, formatArgs: new[] { positionNamesLc[btn] }, correctAnswers: new[] { SymbolicTashaSprites[-presentSymbols[btn] - 1] }, preferredWrongAnswers: SymbolicTashaSprites));
+                qs.Add(makeQuestion(Question.SymbolicTashaSymbols, _SymbolicTasha, formatArgs: new[] { colorNamesLc[buttonColors[btn]] }, correctAnswers: new[] { SymbolicTashaSprites[-presentSymbols[btn] - 1] }, preferredWrongAnswers: SymbolicTashaSprites));
+            }
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessSync_125_3(KMBombModule module)
     {
         var comp = GetComponent(module, "sync125_3");

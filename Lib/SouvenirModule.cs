@@ -7,7 +7,6 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Souvenir;
 using Souvenir.Reflection;
 using UnityEngine;
@@ -36,6 +35,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] PatternCubeSprites;
     public Sprite[] PlanetsSprites;
     public Sprite[] SymbolicCoordinatesSprites;
+    public Sprite[] SymbolicTashaSprites;
     public Sprite[] WavetappingSprites;
     public Sprite[] FlagsSprites;
     public Sprite[] EncryptedEquationsSprites;
