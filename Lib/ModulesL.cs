@@ -163,6 +163,25 @@ public partial class SouvenirModule
         addQuestions(module, Enumerable.Range(0, 6).Select(i => makeQuestion(Question.LEGOsPieceDimensions, _LEGOs, formatArgs: new[] { colorNames[brickColors[i]] }, correctAnswers: new[] { brickDimensions[i][0] + "×" + brickDimensions[i][1] })));
     }
 
+    private IEnumerable<object> ProcessLetterMath(KMBombModule module)
+    {
+        var comp = GetComponent(module, "LetterMathModule");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+
+        var characters = GetArrayField<int>(comp, "characters").Get();
+        var letters = Enumerable.Range(0, 2).ToArray().Select(i => "ABCDEFGHIJKLMNOPQRSTUVWXYZ".Substring(characters[i], 1)).ToArray();
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_LetterMath);
+
+        var wrongLetters = Enumerable.Range(0, 26).ToArray().Select(i => "ABCDEFGHIJKLMNOPQRSTUVWXYZ".Substring(i, 1)).ToArray();
+
+        addQuestions(module,
+            makeQuestion(Question.LetterMathDisplay, _LetterMath, formatArgs: new[] { "left" }, correctAnswers: new[] { letters[0] }, preferredWrongAnswers: wrongLetters),
+            makeQuestion(Question.LetterMathDisplay, _LetterMath, formatArgs: new[] { "right" }, correctAnswers: new[] { letters[1] }, preferredWrongAnswers: wrongLetters));
+    }
+
     private IEnumerable<object> ProcessLinq(KMBombModule module)
     {
         var comp = GetComponent(module, "LinqScript");
