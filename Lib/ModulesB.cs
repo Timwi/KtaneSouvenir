@@ -177,11 +177,9 @@ public partial class SouvenirModule
         var nameArrayNames = new[] { "regularCookieNames", "teaBiscuitNames", "chocolateButterBiscuitNames", "brandedNames", "danishButterCookieNames", "macaronNames", "notCookieNames", "seasonalCookieNames" };
         for (int i = 0; i < 8; i++)
             allNameArrays[i] = GetStaticField<string[]>(comp.GetType(), nameArrayNames[i]).Get();
-        var everySingleName = allNameArrays.SelectMany(x => x).ToArray();
-        var qs = new List<QandA>();
-        for (int i = 0; i < 12; i++)
-            qs.Add(makeQuestion(Question.BakeryItems, _Bakery, correctAnswers: new[] { allNameArrays[Array.IndexOf(enumNames, cookieTypes[i])][cookieIndices[i]] }, preferredWrongAnswers: everySingleName));
-        addQuestions(module, qs);
+        addQuestion(module, Question.BakeryItems,
+            correctAnswers: Enumerable.Range(0, 12).Select(i => allNameArrays[Array.IndexOf(enumNames, cookieTypes[i])][cookieIndices[i]]).ToArray(),
+            preferredWrongAnswers: allNameArrays.SelectMany(x => x).ToArray());
     }
 
     private IEnumerable<object> ProcessBarcodeCipher(KMBombModule module)
