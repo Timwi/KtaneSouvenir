@@ -552,40 +552,11 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
 
         _modulesSolved.IncSafe(_Coordinates);
-        var shortenCoordinate = Ut.Lambda((string str) =>
-        {
-            if (str == null)
-                return null;
-
-            str = str.Replace("\n", " ");
-            if (str.Length > 13)
-            {
-                str = str
-                    .Replace(",", "")
-                    .Replace("north", "N")
-                    .Replace("south", "S")
-                    .Replace("west", "W")
-                    .Replace("east", "E")
-                    .Replace("up", "U")
-                    .Replace("down", "D")
-                    .Replace("left", "L")
-                    .Replace("right", "R")
-                    .Replace("top", "T")
-                    .Replace("bottom", "B")
-                    .Replace("middle", "M")
-                    .Replace("center", "C")
-                    .Replace("from", "fr.")
-                    .Replace(" o’clock", "")
-                    .Replace(" corner", "");
-                str = Regex.Replace(str, @"\b[A-Z] [A-Z]\b", m => m.Value.Remove(1, 1));
-            }
-            return str;
-        });
 
         // The size clue is the only one where fldClueSystem is null
         var sizeClue = clues.Cast<object>().Where(szCl => fldClueSystem.GetFrom(szCl, nullAllowed: true) == null).FirstOrDefault();
         addQuestions(module,
-            makeQuestion(Question.CoordinatesFirstSolution, _Coordinates, correctAnswers: new[] { shortenCoordinate(clueText) }, preferredWrongAnswers: clues.Cast<object>().Select(c => shortenCoordinate(fldClueText.GetFrom(c))).Where(t => t != null).ToArray()),
+            makeQuestion(Question.CoordinatesFirstSolution, _Coordinates, correctAnswers: new[] { clueText.Replace("\n", " ") }, preferredWrongAnswers: clues.Cast<object>().Select(c => fldClueText.GetFrom(c).Replace("\n", " ")).Where(t => t != null).ToArray()),
             sizeClue == null ? null : makeQuestion(Question.CoordinatesSize, _Coordinates, correctAnswers: new[] { fldClueText.GetFrom(sizeClue) }));
     }
 

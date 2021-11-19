@@ -199,6 +199,22 @@ public partial class SouvenirModule
             makeQuestion(Question.DoubleColorColors, _DoubleColor, formatArgs: new[] { "second" }, correctAnswers: new[] { colorNames[color2] }));
     }
 
+    private IEnumerable<object> ProcessDoubleDigits(KMBombModule module)
+    {
+        var comp = GetComponent(module, "DoubleDigitsScript");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_DoubleDigits);
+
+        var d = GetArrayField<int>(comp, "digits").Get();
+        var digits = Enumerable.Range(0, d.Length).Select(str => d[str].ToString()).ToArray();
+
+        addQuestions(module,
+            makeQuestion(Question.DoubleDigitsDisplays, _DoubleDigits, formatArgs: new[] { "left" }, correctAnswers: new[] { digits[0] }),
+            makeQuestion(Question.DoubleDigitsDisplays, _DoubleDigits, formatArgs: new[] { "right" }, correctAnswers: new[] { digits[1] }));
+    }
+
     private IEnumerable<object> ProcessDoubleOh(KMBombModule module)
     {
         var comp = GetComponent(module, "DoubleOhModule");

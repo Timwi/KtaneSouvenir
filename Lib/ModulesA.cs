@@ -278,4 +278,30 @@ public partial class SouvenirModule
                 correctAnswers: Enumerable.Range(0, 4).Where(ix => ix != curDisp[i]).Select(ix => selVal[i][ix].ToString()).ToArray()));
         addQuestions(module, qs);
     }
+
+    private IEnumerable<object> ProcessASquare(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ASquareScript");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ASquare);
+        var qs = new List<QandA>();
+        var colorNames = new[] { "Orange", "Pink", "Cyan", "Yellow", "Lavender", "Brown", "Tan", "Blue", "Jade", "Indigo", "White" };
+
+        // Index colors
+        var indexColors = GetListField<int>(comp, "_indexColors").Get();
+        var indexColorNames = Enumerable.Range(0, indexColors.Count).Select(index => colorNames[indexColors[index]]).ToArray();
+
+        qs.Add(makeQuestion(Question.ASquareIndexColors, _ASquare, correctAnswers: indexColorNames, preferredWrongAnswers: colorNames));
+
+        // Correct colors
+        var correctColors = GetArrayField<int>(comp, "_correctColors").Get(expectedLength: 3);
+        var correctColorNames = Enumerable.Range(0, correctColors.Length).Select(correct => colorNames[correctColors[correct]]).ToArray();
+        Debug.LogFormat("<> {0} {1} {2}", correctColorNames[0], correctColorNames[1], correctColorNames[2]);
+        for (int correct = 0; correct < 3; correct++)
+            qs.Add(makeQuestion(Question.ASquareCorrectColors, _ASquare, formatArgs: new[] { ordinal(correct + 1) }, correctAnswers: new[] { correctColorNames[correct] }, preferredWrongAnswers: colorNames));
+
+        addQuestions(module, qs);
+    }
 }

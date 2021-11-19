@@ -28,6 +28,7 @@ public partial class SouvenirModule
     const string _AlphabetTiles = "AlphabetTiles";
     const string _AlphaBits = "alphaBits";
     const string _Arithmelogic = "arithmelogic";
+    const string _ASquare = "ASquareModule";
     const string _BamboozledAgain = "bamboozledAgain";
     const string _BamboozlingButton = "bamboozlingButton";
     const string _Bakery = "bakery";
@@ -93,6 +94,7 @@ public partial class SouvenirModule
     const string _DiscoloredSquares = "DiscoloredSquaresModule";
     const string _DivisibleNumbers = "divisibleNumbers";
     const string _DoubleColor = "doubleColor";
+    const string _DoubleDigits = "doubleDigitsModule";
     const string _DoubleOh = "DoubleOhModule";
     const string _DrDoctor = "DrDoctorModule";
     const string _Dreamcipher = "ksmDreamcipher";
@@ -222,6 +224,7 @@ public partial class SouvenirModule
     const string _Necronomicon = "necronomicon";
     const string _Negativity = "Negativity";
     const string _Neutralization = "neutralization";
+    const string _NotCoordinates = "notCoordinates";
     const string _NotKeypad = "NotKeypad";
     const string _NotMaze = "NotMaze";
     const string _NotMorseCode = "NotMorseCode";
@@ -412,6 +415,7 @@ public partial class SouvenirModule
             { _AlphabetTiles, ProcessAlphabetTiles },
             { _AlphaBits, ProcessAlphaBits },
             { _Arithmelogic, ProcessArithmelogic },
+            { _ASquare, ProcessASquare },
             { _BamboozledAgain, ProcessBamboozledAgain },
             { _BamboozlingButton, ProcessBamboozlingButton },
             { _Bakery, ProcessBakery },
@@ -477,6 +481,7 @@ public partial class SouvenirModule
             { _DiscoloredSquares, ProcessDiscoloredSquares },
             { _DivisibleNumbers, ProcessDivisibleNumbers },
             { _DoubleColor, ProcessDoubleColor },
+            { _DoubleDigits, ProcessDoubleDigits },
             { _DoubleOh, ProcessDoubleOh },
             { _DrDoctor, ProcessDrDoctor },
             { _Dreamcipher, ProcessDreamcipher },
@@ -606,6 +611,7 @@ public partial class SouvenirModule
             { _Necronomicon, ProcessNecronomicon },
             { _Negativity, ProcessNegativity },
             { _Neutralization, ProcessNeutralization },
+            { _NotCoordinates, ProcessNotCoordinates },
             { _NotKeypad, ProcessNotKeypad },
             { _NotMaze, ProcessNotMaze },
             { _NotMorseCode, ProcessNotMorseCode },

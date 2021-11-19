@@ -201,6 +201,34 @@ public partial class SouvenirModule
             makeQuestion(Question.NavyButtonGiven, _NavyButton, formatArgs: new[] { "value" }, correctAnswers: new[] { givenValue.ToString() }));
     }
 
+    private IEnumerable<object> ProcessNotCoordinates(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NCooScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_NotCoordinates);
+
+        var qs = new List<QandA>();
+
+        // Step 1: Finding square
+        var disp = GetListField<string>(comp, "disp").Get(minLength: 3);
+        var seq = GetArrayField<List<int>>(comp, "seq").Get(expectedLength: 2, validator: i => i.Count < 3 ? "expected length at least 3" : null);
+        var answers = seq[0].Take(3).Select(coord => disp[seq[1].IndexOf(coord)]).ToArray();
+        qs.Add(makeQuestion(Question.NotCoordinatesSquareCoords, _NotCoordinates, correctAnswers: answers, preferredWrongAnswers: disp.ToArray()));
+
+        // Step 2: Grid navigation
+        var dir = GetArrayField<int>(comp, "dir").Get(expectedLength: 4, validator: i => (i < 0 || i >= 4) ? "expected 0 to 3" : null);
+        var back = GetArrayField<bool>(comp, "back").Get(expectedLength: 4);
+
+        var dirNames = new[] { "big down", "big up", "big right", "big left", "small down", "small up", "small right", "small left" };
+        for (int button = 0; button < 2; button++)
+            for (int digit = 0; digit < 2; digit++)
+                qs.Add(makeQuestion(Question.NotCoordinatesButtonFuncs, _NotCoordinates, formatArgs: new[] { button == 0 ? "left" : "right", digit == 0 ? "even" : "odd" }, correctAnswers: new[] { dirNames[2 * dir[2 * button + digit] + (back[2 * button + digit] ? 1 : 0)] }));
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessNotKeypad(KMBombModule module)
     {
         var comp = GetComponent(module, "NotKeypad");

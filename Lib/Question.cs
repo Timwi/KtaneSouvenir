@@ -106,6 +106,11 @@ namespace Souvenir
         [AnswerGenerator.Integers(10, 40)]
         ArithmelogicNumbers,
 
+        [SouvenirQuestion("Which of these was an index color in {0}?", "A Square", AnswerLayout.ThreeColumns6Answers, "Orange", "Pink", "Cyan", "Yellow", "Lavender", "Brown", "Tan", "Blue", "Jade", "Indigo", "White")]
+        ASquareIndexColors,
+        [SouvenirQuestion("Which color was submitted {1} in {0}?", "A Square", AnswerLayout.ThreeColumns6Answers, "Orange", "Pink", "Cyan", "Yellow", "Lavender", "Brown", "Tan", "Blue", "Jade", "Indigo", "White")]
+        ASquareCorrectColors,
+
         [SouvenirQuestion("What color was the {1} correct button in {0}?", "Bamboozled Again", AnswerLayout.TwoColumns4Answers, "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose", "White", "Grey", "Black",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         BamboozledAgainButtonColor,
@@ -383,10 +388,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the color of the last word in the sequence in {0}?", "Colour Flash", AnswerLayout.ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Magenta", "White")]
         ColourFlashLastColor,
 
-        [SouvenirQuestion("What was the solution you selected first in {0}?", "Coordinates", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "[4,7]", "C4", "<0, 2>", "3, 1", "(6,2)", "B-1", "“1, 0”", "4/3", "[12]", "#23", "四十七" })]
+        [SouvenirQuestion("What was the solution you selected first in {0}?", "Coordinates", AnswerLayout.OneColumn4Answers, null, ExampleAnswers = new[] { "[4,7]", "C4", "<0, 2>", "3, 1", "(6,2)", "B-1", "“1, 0”", "4/3", "[12]", "#23", "四十七" })]
         CoordinatesFirstSolution,
-
-        [SouvenirQuestion("What was the grid size in {0}?", "Coordinates", AnswerLayout.ThreeColumns6Answers, "9", "15", "25", "21", "35", "49", "(9)", "(15)", "(21)", "(25)", "(35)", "(49)", "3 by 3", "4 by 3", "5 by 3", "6 by 3", "7 by 3", "3 by 4", "4 by 4", "5 by 4", "6 by 4", "7 by 4", "3 by 5", "4 by 5", "5 by 5", "6 by 5", "7 by 5", "3 by 6", "4 by 6", "5 by 6", "6 by 6", "7 by 6", "3 by 7", "4 by 7", "5 by 7", "6 by 7", "7 by 7", "9*3", "12*4", "15*5", "18*6", "21*7", "12*3", "16*4", "20*5", "24*6", "28*7", "15*3", "20*4", "25*5", "30*6", "35*7", "18*3", "24*4", "30*5", "36*6", "42*7", "21*3", "28*4", "35*5", "42*6", "49*7", "9 : 3", "12 : 3", "15 : 3", "18 : 3", "21 : 3", "12 : 4", "16 : 4", "20 : 4", "24 : 4", "28 : 4", "15 : 5", "20 : 5", "25 : 5", "30 : 5", "35 : 5", "18 : 6", "24 : 6", "30 : 6", "36 : 6", "42 : 6", "21 : 7", "28 : 7", "35 : 7", "42 : 7", "49 : 7", "3×3", "3×4", "3×5", "3×6", "3×7", "4×3", "4×4", "4×5", "4×6", "4×7", "5×3", "5×4", "5×5", "5×6", "5×7", "6×3", "6×4", "6×5", "6×6", "6×7", "7×3", "7×4", "7×5", "7×6", "7×7")]
+        [SouvenirQuestion("What was the grid size in {0}?", "Coordinates", AnswerLayout.OneColumn4Answers, "9", "15", "25", "21", "35", "49", "(9)", "(15)", "(21)", "(25)", "(35)", "(49)", "3 by 3", "4 by 3", "5 by 3", "6 by 3", "7 by 3", "3 by 4", "4 by 4", "5 by 4", "6 by 4", "7 by 4", "3 by 5", "4 by 5", "5 by 5", "6 by 5", "7 by 5", "3 by 6", "4 by 6", "5 by 6", "6 by 6", "7 by 6", "3 by 7", "4 by 7", "5 by 7", "6 by 7", "7 by 7", "9*3", "12*4", "15*5", "18*6", "21*7", "12*3", "16*4", "20*5", "24*6", "28*7", "15*3", "20*4", "25*5", "30*6", "35*7", "18*3", "24*4", "30*5", "36*6", "42*7", "21*3", "28*4", "35*5", "42*6", "49*7", "9 : 3", "12 : 3", "15 : 3", "18 : 3", "21 : 3", "12 : 4", "16 : 4", "20 : 4", "24 : 4", "28 : 4", "15 : 5", "20 : 5", "25 : 5", "30 : 5", "35 : 5", "18 : 6", "24 : 6", "30 : 6", "36 : 6", "42 : 6", "21 : 7", "28 : 7", "35 : 7", "42 : 7", "49 : 7", "3×3", "3×4", "3×5", "3×6", "3×7", "4×3", "4×4", "4×5", "4×6", "4×7", "5×3", "5×4", "5×5", "5×6", "5×7", "6×3", "6×4", "6×5", "6×6", "6×7", "7×3", "7×4", "7×5", "7×6", "7×7")]
         CoordinatesSize,
 
         [SouvenirQuestion("What was the color of the {1} corner in {0}?", "Corners", AnswerLayout.TwoColumns4Answers, "red", "green", "blue", "yellow",
@@ -464,6 +468,10 @@ namespace Souvenir
         [SouvenirQuestion("What was the screen color on the {1} stage of {0}?", "Double Color", AnswerLayout.ThreeColumns6Answers, "Green", "Blue", "Red", "Pink", "Yellow",
             ExampleExtraFormatArguments = new[] { "first", "second" }, ExampleExtraFormatArgumentGroupSize = 1)]
         DoubleColorColors,
+
+        [SouvenirQuestion("What was the digit on the {1} display in {0}?", "Double Digits", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+            ExampleExtraFormatArguments = new[] {"left", "right"}, ExampleExtraFormatArgumentGroupSize = 1)]
+        DoubleDigitsDisplays,
 
         [SouvenirQuestion("Which button was the submit button in {0}?", "Double-Oh", AnswerLayout.ThreeColumns6Answers, "↕", "⇕", "↔", "⇔", "◆")]
         DoubleOhSubmitButton,
@@ -1191,6 +1199,12 @@ namespace Souvenir
         [SouvenirQuestion("What was the {1} of the given in {0} (0-indexed)?", "Navy Button", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", AddThe = true,
             ExampleExtraFormatArguments = new[] { "column", "row", "value" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NavyButtonGiven,
+
+        [SouvenirQuestion("Which coordinate was part of the square in {0}?", "Not Coordinates", AnswerLayout.OneColumn4Answers, null, ExampleAnswers = new[] { "[4,7]", "C4", "<0, 2>", "3, 1", "(6,2)", "B-1", "“1, 0”", "4/3", "[12]", "#23", "四十七" })]
+        NotCoordinatesSquareCoords,
+        [SouvenirQuestion("What was the function of the {1} button on an {2} digit in {0}?", "Not Coordinates", AnswerLayout.TwoColumns4Answers, "big down", "big up", "small down", "small up", "big right", "big left", "small right", "small left",
+            ExampleExtraFormatArguments = new[] { "left", "odd", "right", "even" },ExampleExtraFormatArgumentGroupSize = 2)]
+        NotCoordinatesButtonFuncs,
 
         [SouvenirQuestion("What color flashed {1} in the final sequence in {0}?", "Not Keypad", AnswerLayout.ThreeColumns6Answers, "red", "orange", "yellow", "green", "cyan", "blue", "purple", "magenta", "pink", "brown", "grey", "white",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
