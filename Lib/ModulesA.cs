@@ -304,4 +304,18 @@ public partial class SouvenirModule
 
         addQuestions(module, qs);
     }
+
+    private IEnumerable<object> ProcessASCIIMaze(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ASCIIMazeScript");
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+        var characters = GetArrayField<string>(comp, "detchars").Get(expectedLength: 12).Select(ch => ch == " " ? "(space)" : ch).ToArray();
+
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ASCIIMaze);
+
+        addQuestions(module, Enumerable.Range(0, 12).Select(ix => makeQuestion(Question.ASCIIMazeCharacters, _ASCIIMaze, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { characters[ix] }, preferredWrongAnswers: characters)));
+    }
 }

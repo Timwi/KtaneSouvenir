@@ -28,6 +28,7 @@ public partial class SouvenirModule
     const string _AlphabetTiles = "AlphabetTiles";
     const string _AlphaBits = "alphaBits";
     const string _Arithmelogic = "arithmelogic";
+    const string _ASCIIMaze = "asciiMaze";
     const string _ASquare = "ASquareModule";
     const string _BamboozledAgain = "bamboozledAgain";
     const string _BamboozlingButton = "bamboozlingButton";
@@ -420,6 +421,7 @@ public partial class SouvenirModule
             { _AlphabetTiles, ProcessAlphabetTiles },
             { _AlphaBits, ProcessAlphaBits },
             { _Arithmelogic, ProcessArithmelogic },
+            { _ASCIIMaze, ProcessASCIIMaze },
             { _ASquare, ProcessASquare },
             { _BamboozledAgain, ProcessBamboozledAgain },
             { _BamboozlingButton, ProcessBamboozlingButton },

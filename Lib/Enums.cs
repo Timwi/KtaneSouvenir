@@ -9,7 +9,7 @@
         TicTacToeFont = 3,  // also used by The Bulb
         UnownFont = 4,
         SugarSkullsFont = 5,
-        TernaryTilesFont = 6,
+        AsciiMazeFont = 6,
 
         Sprites = -1,               // Special value for answers that use sprites
         DynamicFont = -2,    // Special value to indicate that the module handler will obtain the font from the client module
