@@ -1221,6 +1221,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NotMorseCodeWord,
 
+        [SouvenirQuestion("What was the transmitted word on {0}?", "Not Morsematics", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "ABORT", "AFTER", "AGONY", "ALIGN", "AMONG", "AMBER", "ANGST", "AZURE", "BAKER", "BAYOU", "BEACH", "BLACK", "BOGUS", "BOXES", "BRASH", "BUDGE", "CABLE", "CAULK", "CHIEF", "CLOVE", "CODEX", "CRAZE", "CRISP", "CRUEL"})]
+        NotMorsematicsWord,
+
         [SouvenirQuestion("Which of these numbers {1} at the {2} stage of {0}?", "Not Number Pad", AnswerLayout.TwoColumns4Answers,
             ExampleExtraFormatArguments = new[] { "flashed", "first", "flashed", "second", "did not flash", "first", "did not flash", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
         [AnswerGenerator.Integers(0, 9)]

@@ -287,6 +287,23 @@ public partial class SouvenirModule
             preferredWrongAnswers: words.Concat(Enumerable.Range(0, 50).Select(_ => columns.PickRandom().PickRandom())).Except(new[] { words[channels[stage]] }).Distinct().Take(8).ToArray())));
     }
 
+    private IEnumerable<object> ProcessNotMorsematics(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NMorScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_NotMorsematics);
+
+        var word = GetArrayField<string>(comp, "word").Get(expectedLength: 2);
+        var wordList = GetArrayField<string>(comp, "keywords").Get();
+
+        var wordLower = word[0].Substring(0, 1) + word[0].Substring(1).ToLowerInvariant();
+        var wordListLower = Enumerable.Range(0, wordList.Length).Select(word => wordList[word].Substring(0, 1) + wordList[word].Substring(1).ToLowerInvariant()).ToArray();
+
+        addQuestions(module, makeQuestion(Question.NotMorsematicsWord, _NotMorsematics, correctAnswers: new[] { wordLower }, preferredWrongAnswers: wordListLower));
+    }
+
     private IEnumerable<object> ProcessNotNumberPad(KMBombModule module)
     {
         var comp = GetComponent(module, "NotNumberPadScript");
