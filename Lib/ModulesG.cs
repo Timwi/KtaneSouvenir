@@ -67,6 +67,30 @@ public partial class SouvenirModule
         digits2.GetComponent<TextMesh>().text = "--";
     }
 
+    private IEnumerable<object> ProcessGlitchedButton(KMBombModule module)
+    {
+        var comp = GetComponent(module, "GlitchedButtonScript");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_GlitchedButton);
+
+        var correctAnswer = GetField<string>(comp, "_cyclingBits").Get();
+        var wrongAnswers = new List<string>();
+        var gen = new AnswerGenerator.Strings(12, "01");
+        foreach (var wrong in gen.GetAnswers(this))
+        {
+            if (Enumerable.Range(0, 12).Any(amount => wrong.Substring(amount) + wrong.Substring(0, amount) == correctAnswer))
+                continue;
+            wrongAnswers.Add(wrong);
+            if (wrongAnswers.Count == 3)
+                break;
+        }
+
+        addQuestion(module, Question.GlitchedButtonSequence, correctAnswers: Enumerable.Range(0, 12).Select(amount => correctAnswer.Substring(amount) + correctAnswer.Substring(0, amount)).ToArray(), preferredWrongAnswers: wrongAnswers.ToArray());
+    }
+
     private IEnumerable<object> ProcessGrayButton(KMBombModule module)
     {
         var comp = GetComponent(module, "GrayButtonScript");

@@ -123,6 +123,7 @@ public partial class SouvenirModule
     const string _Functions = "qFunctions";
     const string _GameOfLifeCruel = "GameOfLifeCruel";
     const string _Gamepad = "TheGamepadModule";
+    const string _GlitchedButton = "GlitchedButtonModule";
     const string _GrayButton = "GrayButtonModule";
     const string _GrayCipher = "grayCipher";
     const string _GreatVoid = "greatVoid";
@@ -504,6 +505,7 @@ public partial class SouvenirModule
             { _Functions, ProcessFunctions },
             { _GameOfLifeCruel, ProcessGameOfLifeCruel },
             { _Gamepad, ProcessGamepad },
+            { _GlitchedButton, ProcessGlitchedButton },
             { _GrayButton, ProcessGrayButton },
             { _GrayCipher, ProcessGrayCipher },
             { _GreatVoid, ProcessGreatVoid },

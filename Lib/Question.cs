@@ -665,6 +665,9 @@ namespace Souvenir
         [AnswerGenerator.Strings("2*0-9", ":", "2*0-9")]
         GamepadNumbers,
 
+        [SouvenirQuestion("What was the cycling bit sequence in {0}?", "Glitched Button", AnswerLayout.OneColumn4Answers, null, AddThe = true)]
+        GlitchedButtonSequence,
+
         [SouvenirQuestion("What was the {1} coordinate on the display in {0}?", "Gray Button", AnswerLayout.ThreeColumns6Answers, AddThe = true,
             ExampleExtraFormatArguments = new[] { "horizontal", "vertical" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 9)]
