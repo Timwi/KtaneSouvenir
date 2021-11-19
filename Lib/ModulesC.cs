@@ -31,6 +31,25 @@ public partial class SouvenirModule
         addQuestion(module, Question.CalendarLedColor, correctAnswers: new[] { colorblindText.text });
     }
 
+    private IEnumerable<object> ProcessCartinese(KMBombModule module)
+    {
+        var comp = GetComponent(module, "cartinese");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Cartinese);
+
+        var buttonColors = GetArrayField<int>(comp, "buttonColors").Get(expectedLength: 4);
+        var buttonLyrics = GetArrayField<string>(comp, "buttonLyrics").Get(expectedLength: 4);
+
+        var buttonNames = new[] { "up", "right", "down", "left" };
+
+        addQuestions(module,
+            Enumerable.Range(0, 4).Select(btn => makeQuestion(Question.CartineseButtonColors, _Cartinese, formatArgs: new[] { buttonNames[btn] }, correctAnswers: new[] { GetAnswers(Question.CartineseButtonColors)[buttonColors[btn]] }))
+            .Concat(Enumerable.Range(0, 4).Select(btn => makeQuestion(Question.CartineseLyrics, _Cartinese, formatArgs: new[] { buttonNames[btn] }, correctAnswers: new[] { buttonLyrics[btn] }))));
+    }
+
     private IEnumerable<object> ProcessChallengeAndContact(KMBombModule module)
     {
         var comp = GetComponent(module, "moduleScript");

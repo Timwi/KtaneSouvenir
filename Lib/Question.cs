@@ -276,6 +276,13 @@ namespace Souvenir
         [SouvenirQuestion("What was the LED color in {0}?", "Calendar", AnswerLayout.TwoColumns4Answers, "Green", "Yellow", "Red", "Blue")]
         CalendarLedColor,
 
+        [SouvenirQuestion("What color was the {1} button in {0}?", "Cartinese", AnswerLayout.TwoColumns4Answers, "Red", "Yellow", "Green", "Blue",
+            ExampleExtraFormatArguments = new[] { "up", "right", "down", "left" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        CartineseButtonColors,
+        [SouvenirQuestion("What lyric was played by the {1} button in {0}?", "Cartinese", AnswerLayout.TwoColumns4Answers, "Aingobodirou", "Dongifubounan", "Ayofumylu", "Dimycamilayw", "Dogosemiu", "Bitgosemiu", "Iwittyluyu", "Herolideca", "Anseweke", "Likwoveke", "Omeygah", "Dediamnatifney",
+            ExampleExtraFormatArguments = new[] { "up", "right", "down", "left" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        CartineseLyrics,
+
         [SouvenirQuestion("What was the {1} submitted answer in {0}?", "Challenge & Contact", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "Accumulation", "Coffeebucks", "Perplexing", "Zoo", "Sunstone", "Bob" },
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ChallengeAndContactAnswers,
