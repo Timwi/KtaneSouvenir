@@ -349,6 +349,23 @@ public partial class SouvenirModule
             makeQuestion(Question.NotSimazeGoal, _NotSimaze, correctAnswers: goalPositionArray, preferredWrongAnswers: startPositionArray));
     }
 
+    private IEnumerable<object> ProcessNotTheBulb(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NtBScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_NotTheBulb);
+
+        var words = GetArrayField<string>(comp, "words").Get();
+        var wordList = GetArrayField<string>(comp, "wordlist").Get();
+
+        var targetWord = words[2].Substring(0, 1) + words[2].Substring(1).ToLowerInvariant();
+        var wordListLower = Enumerable.Range(0, wordList.Length).Select(word => wordList[word].Substring(0, 1) + wordList[word].Substring(1).ToLowerInvariant()).ToArray();
+
+        addQuestions(module, makeQuestion(Question.NotTheBulbWord, _NotTheBulb, correctAnswers: new[] { targetWord }, preferredWrongAnswers: wordListLower));
+    }
+
     private IEnumerable<object> ProcessNotTheButton(KMBombModule module)
     {
         var comp = GetComponent(module, "NotButton");

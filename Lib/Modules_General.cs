@@ -231,6 +231,7 @@ public partial class SouvenirModule
     const string _NotMorsematics = "notMorsematics";
     const string _NotNumberPad = "notNumberPad";
     const string _NotSimaze = "NotSimaze";
+    const string _NotTheBulb = "notTheBulb";
     const string _NotTheButton = "NotButton";
     const string _NotTheScrew = "notTheScrew";
     const string _NotWhosOnFirst = "NotWhosOnFirst";
@@ -619,6 +620,7 @@ public partial class SouvenirModule
             { _NotMorsematics, ProcessNotMorsematics },
             { _NotNumberPad, ProcessNotNumberPad },
             { _NotSimaze, ProcessNotSimaze },
+            { _NotTheBulb, ProcessNotTheBulb },
             { _NotTheButton, ProcessNotTheButton },
             { _NotTheScrew, ProcessNotTheScrew },
             { _NotWhosOnFirst, ProcessNotWhosOnFirst },

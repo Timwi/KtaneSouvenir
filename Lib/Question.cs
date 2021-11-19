@@ -470,7 +470,7 @@ namespace Souvenir
         DoubleColorColors,
 
         [SouvenirQuestion("What was the digit on the {1} display in {0}?", "Double Digits", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-            ExampleExtraFormatArguments = new[] {"left", "right"}, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "left", "right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         DoubleDigitsDisplays,
 
         [SouvenirQuestion("Which button was the submit button in {0}?", "Double-Oh", AnswerLayout.ThreeColumns6Answers, "↕", "⇕", "↔", "⇔", "◆")]
@@ -901,8 +901,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "red", "green", "blue", "cyan", "magenta", "yellow" }, ExampleExtraFormatArgumentGroupSize = 1)]
         LEGOsPieceDimensions,
 
-        [SouvenirQuestion("What was the letter on the {1} display in {0}?", "Letter Math", AnswerLayout.ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", 
-            ExampleExtraFormatArguments = new[] { "left", "right"}, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was the letter on the {1} display in {0}?", "Letter Math", AnswerLayout.ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+            ExampleExtraFormatArguments = new[] { "left", "right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Strings("A-Z")]
         LetterMathDisplay,
 
@@ -1194,6 +1194,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NavinumsDirectionalButtons,
 
+        [SouvenirQuestion("What word flashed on {0}?", "Not The Bulb", AnswerLayout.OneColumn4Answers, ExampleAnswers = new[] { "Amplitude", "Boulevard", "Chemistry", "Duplicate", "Eightfold", "Filaments", "Goldsmith", "Harlequin", "Injectors", "Juxtapose", "Kilohertz", "Labyrinth", "Moustache", "Neighbour", "Obscurity", "Penumbral", "Quicksand", "Rhapsodic", "Squawking", "Triglyphs", "Universal", "Vexations", "Whizbangs", "Xenoglyph", "Yardstick", "Zigamorph" })]
+        NotTheBulbWord,
+
         [SouvenirQuestion("Which Greek letter appeared on {0} (case-sensitive)?", "Navy Button", AnswerLayout.ThreeColumns6Answers, "Α", "Β", "Γ", "Δ", "Ε", "Ζ", "Η", "Θ", "Ι", "Κ", "Λ", "Μ", "Ν", "Ξ", "Ο", "Π", "Ρ", "Σ", "Τ", "Υ", "Φ", "Χ", "Ψ", "Ω", "α", "β", "γ", "δ", "ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ", "ο", "π", "ρ", "σ", "τ", "υ", "φ", "χ", "ψ", "ω", AddThe = true)]
         NavyButtonGreekLetters,
         [SouvenirQuestion("What was the {1} of the given in {0} (0-indexed)?", "Navy Button", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", AddThe = true,
@@ -1203,7 +1206,7 @@ namespace Souvenir
         [SouvenirQuestion("Which coordinate was part of the square in {0}?", "Not Coordinates", AnswerLayout.OneColumn4Answers, null, ExampleAnswers = new[] { "[4,7]", "C4", "<0, 2>", "3, 1", "(6,2)", "B-1", "“1, 0”", "4/3", "[12]", "#23", "四十七" })]
         NotCoordinatesSquareCoords,
         [SouvenirQuestion("What was the function of the {1} button on an {2} digit in {0}?", "Not Coordinates", AnswerLayout.TwoColumns4Answers, "big down", "big up", "small down", "small up", "big right", "big left", "small right", "small left",
-            ExampleExtraFormatArguments = new[] { "left", "odd", "right", "even" },ExampleExtraFormatArgumentGroupSize = 2)]
+            ExampleExtraFormatArguments = new[] { "left", "odd", "right", "even" }, ExampleExtraFormatArgumentGroupSize = 2)]
         NotCoordinatesButtonFuncs,
 
         [SouvenirQuestion("What color flashed {1} in the final sequence in {0}?", "Not Keypad", AnswerLayout.ThreeColumns6Answers, "red", "orange", "yellow", "green", "cyan", "blue", "purple", "magenta", "pink", "brown", "grey", "white",
@@ -1221,7 +1224,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NotMorseCodeWord,
 
-        [SouvenirQuestion("What was the transmitted word on {0}?", "Not Morsematics", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "ABORT", "AFTER", "AGONY", "ALIGN", "AMONG", "AMBER", "ANGST", "AZURE", "BAKER", "BAYOU", "BEACH", "BLACK", "BOGUS", "BOXES", "BRASH", "BUDGE", "CABLE", "CAULK", "CHIEF", "CLOVE", "CODEX", "CRAZE", "CRISP", "CRUEL"})]
+        [SouvenirQuestion("What was the transmitted word on {0}?", "Not Morsematics", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "ABORT", "AFTER", "AGONY", "ALIGN", "AMONG", "AMBER", "ANGST", "AZURE", "BAKER", "BAYOU", "BEACH", "BLACK", "BOGUS", "BOXES", "BRASH", "BUDGE", "CABLE", "CAULK", "CHIEF", "CLOVE", "CODEX", "CRAZE", "CRISP", "CRUEL" })]
         NotMorsematicsWord,
 
         [SouvenirQuestion("Which of these numbers {1} at the {2} stage of {0}?", "Not Number Pad", AnswerLayout.TwoColumns4Answers,
