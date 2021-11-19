@@ -117,7 +117,7 @@ public partial class SouvenirModule
             }
         }
 
-    solved:
+        solved:
         _modulesSolved.IncSafe(_SeaShells);
 
         var qs = new List<QandA>();
@@ -227,6 +227,27 @@ public partial class SouvenirModule
         int initialCup = GetIntField(comp, "endingCup").Get(min: 0, max: 2);
         string[] position = new string[3] { "Left", "Middle", "Right" };
         addQuestions(module, makeQuestion(Question.ShellGameInitialCupFinalPosition, _ShellGame, correctAnswers: new[] { position[initialCup] }));
+    }
+
+    private IEnumerable<object> ProcessShiftedMaze(KMBombModule module)
+    {
+        var comp = GetComponent(module, "shiftedMazeScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var expectedCBTexts = new[] { "W", "B", "Y", "M", "G" };
+        var colorNames = new[] { "White", "Blue", "Yellow", "Magenta", "Green" };
+        var cornerNames = new[] { "top-left", "top-right", "bottom-left", "bottom-right" };
+
+        var colorblindTexts = GetArrayField<TextMesh>(comp, "colorblindTexts", isPublic: true).Get(expectedLength: 4).Select(c => c.text).ToArray();
+        var invalid = colorblindTexts.IndexOf(c => !expectedCBTexts.Contains(c));
+        if (invalid != -1)
+            throw new AbandonModuleException("Found unexpected color text: “{0}”.", colorblindTexts[invalid]);
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ShiftedMaze);
+
+        addQuestions(module, Enumerable.Range(0, 4).Select(corner => makeQuestion(Question.ShiftedMazeColors, _ShiftedMaze,
+            formatArgs: new[] { cornerNames[corner] }, correctAnswers: new[] { colorNames[Array.IndexOf(expectedCBTexts, colorblindTexts[corner])] })));
     }
 
     private IEnumerable<object> ProcessShiftingMaze(KMBombModule module)
