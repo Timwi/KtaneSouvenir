@@ -1194,9 +1194,6 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NavinumsDirectionalButtons,
 
-        [SouvenirQuestion("What word flashed on {0}?", "Not The Bulb", AnswerLayout.OneColumn4Answers, ExampleAnswers = new[] { "Amplitude", "Boulevard", "Chemistry", "Duplicate", "Eightfold", "Filaments", "Goldsmith", "Harlequin", "Injectors", "Juxtapose", "Kilohertz", "Labyrinth", "Moustache", "Neighbour", "Obscurity", "Penumbral", "Quicksand", "Rhapsodic", "Squawking", "Triglyphs", "Universal", "Vexations", "Whizbangs", "Xenoglyph", "Yardstick", "Zigamorph" })]
-        NotTheBulbWord,
-
         [SouvenirQuestion("Which Greek letter appeared on {0} (case-sensitive)?", "Navy Button", AnswerLayout.ThreeColumns6Answers, "Α", "Β", "Γ", "Δ", "Ε", "Ζ", "Η", "Θ", "Ι", "Κ", "Λ", "Μ", "Ν", "Ξ", "Ο", "Π", "Ρ", "Σ", "Τ", "Υ", "Φ", "Χ", "Ψ", "Ω", "α", "β", "γ", "δ", "ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ", "ο", "π", "ρ", "σ", "τ", "υ", "φ", "χ", "ψ", "ω", AddThe = true)]
         NavyButtonGreekLetters,
         [SouvenirQuestion("What was the {1} of the given in {0} (0-indexed)?", "Navy Button", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", AddThe = true,
@@ -1239,6 +1236,13 @@ namespace Souvenir
         [SouvenirQuestion("What was the goal position in {0}?", "Not Simaze", AnswerLayout.TwoColumns4Answers)]
         [AnswerGenerator.Inherit(NotSimazeStart)]
         NotSimazeGoal,
+
+        [SouvenirQuestion("What word flashed on {0}?", "Not The Bulb", AnswerLayout.OneColumn4Answers, ExampleAnswers = new[] { "Amplitude", "Boulevard", "Chemistry", "Duplicate", "Eightfold", "Filaments", "Goldsmith", "Harlequin", "Injectors", "Juxtapose", "Kilohertz", "Labyrinth", "Moustache", "Neighbour", "Obscurity", "Penumbral", "Quicksand", "Rhapsodic", "Squawking", "Triglyphs", "Universal", "Vexations", "Whizbangs", "Xenoglyph", "Yardstick", "Zigamorph" })]
+        NotTheBulbWord,
+        [SouvenirQuestion("What color was the bulb on {0}?", "Not The Bulb", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] {"Red", "Green", "Blue", "Yellow", "Purple", "White"})]
+        NotTheBulbColor,
+        [SouvenirQuestion("What was the material of the screw cap on {0}?", "Not The Bulb", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "Copper", "Silver", "Gold", "Plastic", "Carbon Fibre", "Ceramic" })]
+        NotTheBulbScrewCap,
 
         [SouvenirQuestion("What colors did the light glow in {0}?", "Not the Button", AnswerLayout.ThreeColumns6Answers, "white", "red", "yellow", "green", "blue", "white/red", "white/yellow", "white/green", "white/blue", "red/yellow", "red/green", "red/blue", "yellow/green", "yellow/blue", "green/blue")]
         NotTheButtonLightColor,

@@ -356,14 +356,27 @@ public partial class SouvenirModule
         while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
         _modulesSolved.IncSafe(_NotTheBulb);
+        var qs = new List<QandA>();
 
+        // Transmitted word
         var words = GetArrayField<string>(comp, "words").Get();
         var wordList = GetArrayField<string>(comp, "wordlist").Get();
-
         var targetWord = words[2].Substring(0, 1) + words[2].Substring(1).ToLowerInvariant();
         var wordListLower = Enumerable.Range(0, wordList.Length).Select(word => wordList[word].Substring(0, 1) + wordList[word].Substring(1).ToLowerInvariant()).ToArray();
+        qs.Add(makeQuestion(Question.NotTheBulbWord, _NotTheBulb, correctAnswers: new[] { targetWord }, preferredWrongAnswers: wordListLower));
 
-        addQuestions(module, makeQuestion(Question.NotTheBulbWord, _NotTheBulb, correctAnswers: new[] { targetWord }, preferredWrongAnswers: wordListLower));
+        // Bulb color
+        var properties = GetArrayField<int>(comp, "properties").Get();
+        var colorNames = new[] { "Red", "Green", "Blue", "Yellow", "Purple", "White" };
+        var bulbColor = colorNames[properties[0]];
+        qs.Add(makeQuestion(Question.NotTheBulbColor, _NotTheBulb, correctAnswers: new[] { bulbColor }, preferredWrongAnswers: colorNames));
+
+        // Screw cap material
+        var screwCapNames = new[] { "Copper", "Silver", "Gold", "Plastic", "Carbon Fibre", "Ceramic" };
+        var screwCap = screwCapNames[properties[1]];
+        qs.Add(makeQuestion(Question.NotTheBulbScrewCap, _NotTheBulb, correctAnswers: new[] { screwCap }, preferredWrongAnswers: screwCapNames));
+
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessNotTheButton(KMBombModule module)
