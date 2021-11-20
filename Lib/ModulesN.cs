@@ -330,6 +330,39 @@ public partial class SouvenirModule
         addQuestions(module, makeQuestion(Question.NotMorsematicsWord, _NotMorsematics, correctAnswers: new[] { wordLower }, preferredWrongAnswers: wordListLower));
     }
 
+    private IEnumerable<object> ProcessNotMurder(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NMurScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        // whats displayed
+        var dispinfo = GetArrayField<List<int>>(comp, "dispinfo").Get(expectedLength: 3).Select(i => i.ToArray()).ToArray();
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_NotMurder);
+        var qs = new List<QandA>();
+
+        // turn number, then suspect, then room/weapon
+        var turns = GetListField<List<int[]>>(comp, "turns").Get(expectedLength: 6);
+        var states = new[] { "the initial state", "turn 1", "turn 2", "turn 3", "turn 4", "turn 5" };
+        var suspectNames = new[] { "Miss Scarlett", "Colonel Mustard", "Reverend Green", "Mrs Peacock", "Professor Plum", "Mrs White" };
+        var weaponNames = new[] { "Candlestick", "Dagger", "Lead Pipe", "Revolver", "Rope", "Spanner" };
+        var roomNames = new[] { "Ballroom", "Billiard Room", "Conservatory", "Dining Room", "Hall", "Kitchen", "Library", "Lounge", "Study" };
+
+        Debug.LogFormat("<> DispInfo {0}", dispinfo.Select(arr => arr.JoinString("/")).JoinString("; "));
+        Debug.LogFormat("<> Turns {0}", turns.Select(arr => arr.Select(arr2 => arr2.JoinString("/")).JoinString(", ")).JoinString("; "));
+
+        for (int turn = 0; turn < 5; turn++)
+        {
+            for (int suspect = 0; suspect < 5; suspect++)
+            {
+                qs.Add(makeQuestion(Question.NotMurderRoom, _NotMurder, formatArgs: new[] { suspectNames[dispinfo[0][suspect]], states[turn] }, correctAnswers: new[] { roomNames[turns[turn][suspect][0]] }));
+                qs.Add(makeQuestion(Question.NotMurderWeapon, _NotMurder, formatArgs: new[] { suspectNames[dispinfo[0][suspect]], states[turn] }, correctAnswers: new[] { weaponNames[turns[turn][suspect][1]] }));
+            }
+        }
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessNotNumberPad(KMBombModule module)
     {
         var comp = GetComponent(module, "NotNumberPadScript");
