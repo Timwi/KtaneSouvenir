@@ -212,25 +212,17 @@ public partial class SouvenirModule
         var positions = new[] { "top left", "top right", "bottom left", "bottom right" };
 
         // Flashes
-        Debug.LogFormat("<> 1");
         var ops = GetArrayField<int>(comp, "ops").Get();
-        Debug.LogFormat("<> 2");
         var puncMarkNames = new[] { "+", "-", ".", ":", "/", "_", "=", "," };
-        Debug.LogFormat("<> 3");
         var puncMarks = Enumerable.Range(0, ops.Length).Select(i => puncMarkNames[ops[i]]).ToArray();
-        Debug.LogFormat("<> 4");
         for (int p = 0; p < 4; p++)
             qs.Add(makeQuestion(Question.NotConnectionCheckFlashes, _NotConnectionCheck, formatArgs: new[] { positions[p] }, correctAnswers: new[] { puncMarks[p] }));
-        Debug.LogFormat("<> 5");
 
         // Values
         var outputs = GetArrayField<int>(comp, "outputs").Get();
-        Debug.LogFormat("<> 6");
         var vals = Enumerable.Range(0, outputs.Length).Select(i => outputs[i].ToString()).ToArray();
-        Debug.LogFormat("<> 7");
         for (int p = 0; p < 4; p++)
             qs.Add(makeQuestion(Question.NotConnectionCheckValues, _NotConnectionCheck, formatArgs: new[] { positions[p] }, correctAnswers: new[] { vals[p] }, preferredWrongAnswers: Enumerable.Range(1, 9).Select(i => i.ToString()).ToArray()));
-        Debug.LogFormat("<> 8");
 
         addQuestions(module, qs);
     }
