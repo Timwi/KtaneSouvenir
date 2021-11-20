@@ -1200,6 +1200,13 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "column", "row", "value" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NavyButtonGiven,
 
+        [SouvenirQuestion("What symbol flashed on the {1} button in {0}?", "Not Connection Check", AnswerLayout.ThreeColumns6Answers, "+", "-", ".", ":", "/", "_", "=", ",",
+            ExampleExtraFormatArguments = new[] { "top left", "top right", "bottom left", "bottom right" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        NotConnectionCheckFlashes,
+        [SouvenirQuestion("What was the value of the {1} button in {0}?", "Not Connection Check", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+            ExampleExtraFormatArguments = new[] { "top left", "top right", "bottom left", "bottom right" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        NotConnectionCheckValues,
+
         [SouvenirQuestion("Which coordinate was part of the square in {0}?", "Not Coordinates", AnswerLayout.OneColumn4Answers, null, ExampleAnswers = new[] { "[4,7]", "C4", "<0, 2>", "3, 1", "(6,2)", "B-1", "“1, 0”", "4/3", "[12]", "#23", "四十七" })]
         NotCoordinatesSquareCoords,
         [SouvenirQuestion("What was the function of the {1} button on an {2} digit in {0}?", "Not Coordinates", AnswerLayout.TwoColumns4Answers, "big down", "big up", "small down", "small up", "big right", "big left", "small right", "small left",
@@ -1239,7 +1246,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What word flashed on {0}?", "Not The Bulb", AnswerLayout.OneColumn4Answers, ExampleAnswers = new[] { "Amplitude", "Boulevard", "Chemistry", "Duplicate", "Eightfold", "Filaments", "Goldsmith", "Harlequin", "Injectors", "Juxtapose", "Kilohertz", "Labyrinth", "Moustache", "Neighbour", "Obscurity", "Penumbral", "Quicksand", "Rhapsodic", "Squawking", "Triglyphs", "Universal", "Vexations", "Whizbangs", "Xenoglyph", "Yardstick", "Zigamorph" })]
         NotTheBulbWord,
-        [SouvenirQuestion("What color was the bulb on {0}?", "Not The Bulb", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] {"Red", "Green", "Blue", "Yellow", "Purple", "White"})]
+        [SouvenirQuestion("What color was the bulb on {0}?", "Not The Bulb", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "Red", "Green", "Blue", "Yellow", "Purple", "White" })]
         NotTheBulbColor,
         [SouvenirQuestion("What was the material of the screw cap on {0}?", "Not The Bulb", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "Copper", "Silver", "Gold", "Plastic", "Carbon Fibre", "Ceramic" })]
         NotTheBulbScrewCap,

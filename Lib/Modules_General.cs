@@ -224,6 +224,7 @@ public partial class SouvenirModule
     const string _Necronomicon = "necronomicon";
     const string _Negativity = "Negativity";
     const string _Neutralization = "neutralization";
+    const string _NotConnectionCheck = "notConnectionCheck";
     const string _NotCoordinates = "notCoordinates";
     const string _NotKeypad = "NotKeypad";
     const string _NotMaze = "NotMaze";
@@ -614,6 +615,7 @@ public partial class SouvenirModule
             { _Necronomicon, ProcessNecronomicon },
             { _Negativity, ProcessNegativity },
             { _Neutralization, ProcessNeutralization },
+            { _NotConnectionCheck, ProcessNotConnectionCheck },
             { _NotCoordinates, ProcessNotCoordinates },
             { _NotKeypad, ProcessNotKeypad },
             { _NotMaze, ProcessNotMaze },
