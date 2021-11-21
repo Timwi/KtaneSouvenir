@@ -117,6 +117,23 @@ public partial class SouvenirModule
             makeQuestion(Question.LEDMathLights, _LEDMath, formatArgs: new[] { "the operator LED" }, correctAnswers: new[] { ledColors[ledOp] }));
     }
 
+    private IEnumerable<object> ProcessLEDs(KMBombModule module)
+    {
+        var comp = GetComponent(module, "LEDsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_LEDs);
+
+        var fldInitColor = GetField<object>(comp, "colorChangedTo");
+        var fldActualColor = GetField<object>(comp, "currentDisplayOnChanged");
+
+        string initStr = fldInitColor.Get(col => (int) col > 7 || (int) col < 0 ? "expected value 0-7" : null).ToString();
+        string actualStr = fldActualColor.Get(col => (int) col > 7 || (int) col < 0 ? "expected value 0-7" : null).ToString();
+
+        addQuestion(module, Question.LEDsOriginalColor, correctAnswers: new[] { initStr }, preferredWrongAnswers: new[] { actualStr });
+    }
     private IEnumerable<object> ProcessLEGOs(KMBombModule module)
     {
         var comp = GetComponent(module, "LEGOModule");

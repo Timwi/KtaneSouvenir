@@ -838,6 +838,24 @@ public partial class SouvenirModule
             makeQuestion(Question.MouseInTheMazeTorus, _MouseInTheMaze, correctAnswers: new[] { new[] { "white", "green", "blue", "yellow" }[torusColor] }));
     }
 
+    private IEnumerable<object> ProcessMSeq(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MSeqScript");
+        var fldState = GetField<object>(comp, "state"); //Uses an enum value.
+        while (fldState.Get().ToString() != "Solved") 
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_MSeq);
+
+        int[] obtainedDigits = GetArrayField<int>(comp, "obtainedDigits").Get(expectedLength: 3);
+        int submittedNum = GetIntField(comp, "finalNumber").Get(min: 25, max: 225);
+
+        addQuestions(module,
+            makeQuestion(Question.MSeqObtained, _MSeq, correctAnswers: new[] { obtainedDigits[0].ToString() }, formatArgs: new[] { "first" }),
+            makeQuestion(Question.MSeqObtained, _MSeq, correctAnswers: new[] { obtainedDigits[1].ToString() }, formatArgs: new[] { "second" }),
+            makeQuestion(Question.MSeqObtained, _MSeq, correctAnswers: new[] { obtainedDigits[2].ToString() }, formatArgs: new[] { "third" }),
+            makeQuestion(Question.MSeqSubmitted, _MSeq, correctAnswers: new[] { submittedNum.ToString() }));
+    }
+
     private IEnumerable<object> ProcessMulticoloredSwitches(KMBombModule module)
     {
         var comp = GetComponent(module, "MultiColoredSwitches");

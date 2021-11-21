@@ -275,6 +275,20 @@ public partial class SouvenirModule
         addQuestions(module, makeQuestion(Question.ShiftingMazeSeed, _ShiftingMaze, formatArgs: null, correctAnswers: new[] { seedSplit[1] }));
     }
 
+    private IEnumerable<object> ProcessShogiIdentification(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ShogiIdentificationScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ShogiIdentification);
+
+        var fldPiece = GetField<object>(comp, "chosenPiece");
+        var propName = GetProperty<string>(fldPiece.Get(), "name", isPublic: true);
+
+        addQuestion(module, Question.ShogiIdentificationPiece, correctAnswers: new[] { propName.Get() });
+    }
     private IEnumerable<object> ProcessSillySlots(KMBombModule module)
     {
         var comp = GetComponent(module, "SillySlots");
@@ -1162,6 +1176,19 @@ public partial class SouvenirModule
            makeQuestion(Question.SugarSkullsAvailability, _SugarSkulls, formatArgs: new[] { "was not" }, correctAnswers: GetAnswers(Question.SugarSkullsAvailability).Except(skulls).ToArray()));
     }
 
+    private IEnumerable<object> ProcessSuperparsing(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SuperparsingScript");
+        bool solved = false;
+        module.OnPass += delegate () { solved = true; return false; };
+
+        while (!solved)
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_Superparsing);
+
+        string disp = GetField<string>(comp, "displayedWord").Get(str => str.Length != 4 ? "expected length 4" : null);
+        addQuestion(module, Question.SuperparsingDisplayed, correctAnswers: new[] { disp });
+    }
     private IEnumerable<object> ProcessSwitch(KMBombModule module)
     {
         var comp = GetComponent(module, "Switch");

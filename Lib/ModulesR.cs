@@ -184,6 +184,20 @@ public partial class SouvenirModule
         return processColoredCiphers(module, "redCipher", Question.RedCipherAnswer, _RedCipher);
     }
 
+    private IEnumerable<object> ProcessRedHerring(KMBombModule module)
+    {
+        var comp = GetComponent(module, "RedHerring");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_RedHerring);
+
+        string[] colorNames = { "Green", "Blue", "Purple", "Orange" };
+        int firstColor = GetArrayField<int>(comp, "colorIndices").Get(expectedLength: 4).First();
+        addQuestion(module, Question.RedHerringFirstFlash, correctAnswers: new[] { colorNames[firstColor] });
+    }
+
     private IEnumerable<object> ProcessReformedRoleReversal(KMBombModule module)
     {
         var comp = GetComponent(module, "ReformedRoleReversal");

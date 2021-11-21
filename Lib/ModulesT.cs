@@ -231,6 +231,64 @@ public partial class SouvenirModule
         addQuestions(module, makeQuestion(Question.TopsyTurvyWord, _TopsyTurvy, formatArgs: null, correctAnswers: new[] { GetAnswers(Question.TopsyTurvyWord)[GetField<int>(comp, "displayIndex").Get()] }));
     }
 
+    private IEnumerable<object> ProcessTouchTransmission(KMBombModule module)
+    {
+        var comp = GetComponent(module, "TouchTransmissionScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_TouchTransmission);
+
+        var fldGenWord = GetField<string>(comp, "generatedWord");
+        var fldOrder = GetField<object>(comp, "chosenOrder");
+
+        addQuestions(module,
+            makeQuestion(Question.TouchTransmissionWord, _TouchTransmission, correctAnswers: new[] { fldGenWord.Get().ToLower() }),
+            makeQuestion(Question.TouchTransmissionOrder, _TouchTransmission, correctAnswers: new[] { fldOrder.Get().ToString().Replace('_', ' ') }));
+    }
+
+    private IEnumerable<object> ProcessTrajectory(KMBombModule module)
+    {
+        var comp = GetComponent(module, "TrajectoryModule");
+        var fldSolved = GetField<bool>(comp, "IsSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Trajectory);
+
+        object puzzle = GetField<object>(comp, "puzzle").Get();
+
+        Array configs = GetField<Array>(puzzle, "configurations").Get(arr => arr.Length == 3 ? null : "expected length 3");
+        string[] colorNames = { "red", "green", "blue" };
+        string[][] functions = new string[3][] { new string[3], new string[3], new string[3] };
+        for (int buttonIx = 0; buttonIx < 3; buttonIx++)
+        {
+            object config = configs.GetValue(buttonIx);
+            int[] xMovements = GetArrayField<int>(config, "dxs").Get(expectedLength: 3);
+            int[] yMovements = GetArrayField<int>(config, "dys").Get(expectedLength: 3);
+            for (int componentIx = 0; componentIx < 3; componentIx++)
+            {
+                string function = colorNames[componentIx] + " ";
+                int xmove = xMovements[componentIx];
+                int ymove = yMovements[componentIx];
+                if (xmove == 0 && ymove == 0)
+                    function += "reverse";
+                else if (xmove == 0 && ymove == +1)
+                    function += "up";
+                else if (xmove == 0 && ymove == -1)
+                    function += "down";
+                else if (xmove == -1 && ymove == 0)
+                    function += "left";
+                else if (xmove == +1 && ymove == 0)
+                    function += "right";
+                functions[buttonIx][componentIx] = function;
+            }
+        }
+        addQuestions(module,
+            makeQuestion(Question.TrajectoryButtonFunctions, _Trajectory, formatArgs: new[] { "A" }, correctAnswers: functions[0], preferredWrongAnswers: functions.SelectMany<string[], string>(x => x).ToArray()),
+            makeQuestion(Question.TrajectoryButtonFunctions, _Trajectory, formatArgs: new[] { "B" }, correctAnswers: functions[1], preferredWrongAnswers: functions.SelectMany<string[], string>(x => x).ToArray()),
+            makeQuestion(Question.TrajectoryButtonFunctions, _Trajectory, formatArgs: new[] { "C" }, correctAnswers: functions[2], preferredWrongAnswers: functions.SelectMany<string[], string>(x => x).ToArray()));
+    }
     private IEnumerable<object> ProcessTransmittedMorse(KMBombModule module)
     {
         var comp = GetComponent(module, "TransmittedMorseScript");

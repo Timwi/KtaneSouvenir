@@ -618,6 +618,21 @@ public partial class SouvenirModule
         addQuestion(module, Question.BrailleWord, correctAnswers: new[] { GetField<string>(comp, "_word").Get() });
     }
 
+    private IEnumerable<object> ProcessBreakfastEgg(KMBombModule module)
+    {
+        var comp = GetComponent(module, "breakfastEggScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_BreakfastEgg);
+
+        string[] colors = new[] { "Crimson", "Orange", "Pink", "Beige", "Cyan", "Lime", "Petrol" };
+        int yolkA = GetIntField(comp, "yolkNumA").Get(min: 0, max: 7);
+        int yolkB = GetIntField(comp, "yolkNumB").Get(min: 0, max: 7);
+        addQuestion(module, Question.BreakfastEggColor, correctAnswers: new[] { colors[yolkA], colors[yolkB] });
+    }
+
     private IEnumerable<object> ProcessBrokenButtons(KMBombModule module)
     {
         var comp = GetComponent(module, "BrokenButtonModule");

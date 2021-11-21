@@ -10,6 +10,7 @@
         UnownFont = 4,
         SugarSkullsFont = 5,
         AsciiMazeFont = 6,
+        PianoKeysFont = 7,
 
         Sprites = -1,               // Special value for answers that use sprites
         DynamicFont = -2,    // Special value to indicate that the module handler will obtain the font from the client module

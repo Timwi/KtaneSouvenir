@@ -387,6 +387,22 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessNotPianoKeys(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NotPianoKeysScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_NotPianoKeys);
+
+        var symbols = GetField<Array>(comp, "displayedSymbols").Get(arr => arr.Length == 3 ? null : "expected length 3");
+        var propName = GetProperty<char>(symbols.GetValue(0), "symbol", true);
+
+        addQuestions(module,
+            makeQuestion(Question.NotPianoKeysFirstSymbol, _NotPianoKeys, correctAnswers: new[] { propName.GetFrom(symbols.GetValue(0)).ToString() }),
+            makeQuestion(Question.NotPianoKeysSecondSymbol, _NotPianoKeys, correctAnswers: new[] { propName.GetFrom(symbols.GetValue(1)).ToString() }),
+            makeQuestion(Question.NotPianoKeysThirdSymbol, _NotPianoKeys, correctAnswers: new[] { propName.GetFrom(symbols.GetValue(2)).ToString() }));
+    }
     private IEnumerable<object> ProcessNotSimaze(KMBombModule module)
     {
         var comp = GetComponent(module, "NotSimaze");
@@ -408,6 +424,34 @@ public partial class SouvenirModule
             makeQuestion(Question.NotSimazeGoal, _NotSimaze, correctAnswers: goalPositionArray, preferredWrongAnswers: startPositionArray));
     }
 
+    private IEnumerable<object> ProcessNotTextField(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NotTextFieldScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        bool hasStruck = false;
+        module.OnStrike += delegate () { hasStruck = true; return false; };
+
+        var fldSolution = GetArrayField<char>(comp, "solution");
+        string[] solution = fldSolution.Get(expectedLength: 3).Select(x => x.ToString()).ToArray();
+        var fldBG = GetField<char>(comp, "bgChar");
+
+        while (!fldSolved.Get())
+        {
+            if (hasStruck)
+            {
+                hasStruck = false;
+                solution = fldSolution.Get(expectedLength: 3).Select(x => x.ToString()).ToArray();
+            }
+            yield return new WaitForSeconds(0.1f);
+        }
+        _modulesSolved.IncSafe(_NotTextField);
+
+        char bgChar = fldBG.Get(ch => ch < 'A' || ch > 'F' ? "expected in range A-F" : null);
+        
+        addQuestions(module,
+            makeQuestion(Question.NotTextFieldBackgroundLetter, _NotTextField, correctAnswers: new[] { bgChar.ToString() }),
+            makeQuestion(Question.NotTextFieldInitialPresses, _NotTextField, correctAnswers: solution));
+    }
     private IEnumerable<object> ProcessNotTheBulb(KMBombModule module)
     {
         var comp = GetComponent(module, "NtBScript");
@@ -507,6 +551,22 @@ public partial class SouvenirModule
         }
         qs.Add(makeQuestion(Question.NotWhosOnFirstSum, _NotWhosOnFirst, correctAnswers: sumCorrectAnswers));
         addQuestions(module, qs);
+    }
+    
+    private IEnumerable<object> ProcessNotWordSearch(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NWSScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_NotWordSearch);
+
+        string[] missingConsonants = GetArrayField<string>(comp, "missing").Get(expectedLength: 3);
+        string[] pressed = GetArrayField<string>(comp, "ans").Get(expectedLength: 12);
+
+        addQuestions(module,
+            makeQuestion(Question.NotWordSearchMissing, _NotWordSearch, correctAnswers: missingConsonants),
+            makeQuestion(Question.NotWordSearchFirstPress, _NotWordSearch, correctAnswers: new[] { pressed[0] }));
     }
 
     private IEnumerable<object> ProcessNotX01(KMBombModule module)

@@ -24,6 +24,7 @@ public partial class SouvenirModule
     const string _AffineCycle = "affineCycle";
     const string _AlfaBravo = "alfa_bravo";
     const string _Algebra = "algebra";
+    const string _Algorithmia = "algorithmia";
     const string _AlphabeticalRuling = "alphabeticalRuling";
     const string _AlphabetTiles = "AlphabetTiles";
     const string _AlphaBits = "alphaBits";
@@ -50,6 +51,7 @@ public partial class SouvenirModule
     const string _Boggle = "boggle";
     const string _Boxing = "boxing";
     const string _Braille = "BrailleModule";
+    const string _BreakfastEgg = "breakfastEgg";
     const string _BrokenButtons = "BrokenButtonsModule";
     const string _BrownCipher = "brownCipher";
     const string _BrushStrokes = "brushStrokes";
@@ -92,6 +94,7 @@ public partial class SouvenirModule
     const string _DeckOfManyThings = "deckOfManyThings";
     const string _DecoloredSquares = "DecoloredSquaresModule";
     const string _DevilishEggs = "devilishEggs";
+    const string _Digisibility = "digisibility";
     const string _DiscoloredSquares = "DiscoloredSquaresModule";
     const string _DivisibleNumbers = "divisibleNumbers";
     const string _DoubleColor = "doubleColor";
@@ -120,7 +123,9 @@ public partial class SouvenirModule
     const string _Flags = "FlagsModule";
     const string _FlashingArrows = "flashingArrowsModule";
     const string _FlashingLights = "flashingLights";
+    const string _Flyswatting = "flyswatting";
     const string _ForgetAnyColor = "ForgetAnyColor";
+    const string _ForgetMe = "forgetMe";
     const string _ForgetsUltimateShowdown = "ForgetsUltimateShowdownModule";
     const string _ForgetTheColors = "ForgetTheColors";
     const string _FreeParking = "freeParking";
@@ -171,6 +176,7 @@ public partial class SouvenirModule
     const string _Lasers = "lasers";
     const string _LEDEncryption = "LEDEnc";
     const string _LEDMath = "lgndLEDMath";
+    const string _LEDs = "leds";
     const string _LEGOs = "LEGOModule";
     const string _LetterMath = "letterMath";
     const string _Linq = "Linq";
@@ -214,6 +220,7 @@ public partial class SouvenirModule
     const string _Morsematics = "MorseV2";
     const string _MorseWar = "MorseWar";
     const string _MouseInTheMaze = "MouseInTheMaze";
+    const string _MSeq = "mSeq";
     const string _MulticoloredSwitches = "R4YMultiColoredSwitches";
     const string _Murder = "murder";
     const string _MysteryModule = "mysterymodule";
@@ -233,11 +240,14 @@ public partial class SouvenirModule
     const string _NotMorsematics = "notMorsematics";
     const string _NotMurder = "notMurder";
     const string _NotNumberPad = "notNumberPad";
+    const string _NotPianoKeys = "notPianoKeys";
     const string _NotSimaze = "NotSimaze";
+    const string _NotTextField = "notTextField";
     const string _NotTheBulb = "notTheBulb";
     const string _NotTheButton = "NotButton";
     const string _NotTheScrew = "notTheScrew";
     const string _NotWhosOnFirst = "NotWhosOnFirst";
+    const string _NotWordSearch = "notWordSearch";
     const string _NotX01 = "notX01";
     const string _NotXRay = "NotXRayModule";
     const string _NumberedButtons = "numberedButtonsModule";
@@ -281,6 +291,7 @@ public partial class SouvenirModule
     const string _RecoloredSwitches = "R4YRecoloredSwitches";
     const string _RedArrows = "redArrowsModule";
     const string _RedCipher = "redCipher";
+    const string _RedHerring = "RedHerring";
     const string _ReformedRoleReversal = "ReformedRoleReversal";
     const string _RegularCrazyTalk = "RegularCrazyTalkModule";
     const string _Retirement = "retirement";
@@ -303,6 +314,7 @@ public partial class SouvenirModule
     const string _ShellGame = "shellGame";
     const string _ShiftedMaze = "shiftedMaze";
     const string _ShiftingMaze = "MazeShifting";
+    const string _ShogiIdentification = "shogiIdentification";
     const string _SillySlots = "SillySlots";
     const string _SimonSamples = "simonSamples";
     const string _SimonSays = "Simon";
@@ -341,6 +353,7 @@ public partial class SouvenirModule
     const string _StupidSlots = "stupidSlots";
     const string _SubscribeToPewdiepie = "subscribeToPewdiepie";
     const string _SugarSkulls = "sugarSkulls";
+    const string _Superparsing = "superparsing";
     const string _Switch = "BigSwitch";
     const string _Switches = "switchModule";
     const string _SwitchingMaze = "MazeSwitching";
@@ -360,6 +373,8 @@ public partial class SouvenirModule
     const string _TicTacToe = "TicTacToeModule";
     const string _Timezone = "timezone";
     const string _TopsyTurvy = "topsyTurvy";
+    const string _TouchTransmission = "touchTransmission";
+    const string _Trajectory = "Trajectory";
     const string _TransmittedMorse = "transmittedMorseModule";
     const string _TurtleRobot = "turtleRobot";
     const string _TwoBits = "TwoBits";
@@ -417,6 +432,7 @@ public partial class SouvenirModule
             { _AffineCycle, ProcessAffineCycle },
             { _AlfaBravo, ProcessAlfaBravo },
             { _Algebra, ProcessAlgebra },
+            { _Algorithmia, ProcessAlgorithmia },
             { _AlphabeticalRuling, ProcessAlphabeticalRuling },
             { _AlphabetTiles, ProcessAlphabetTiles },
             { _AlphaBits, ProcessAlphaBits },
@@ -443,6 +459,7 @@ public partial class SouvenirModule
             { _Boggle, ProcessBoggle },
             { _Boxing, ProcessBoxing },
             { _Braille, ProcessBraille },
+            { _BreakfastEgg, ProcessBreakfastEgg },
             { _BrokenButtons, ProcessBrokenButtons },
             { _BrownCipher, ProcessBrownCipher },
             { _BrushStrokes, ProcessBrushStrokes },
@@ -485,6 +502,7 @@ public partial class SouvenirModule
             { _DeckOfManyThings, ProcessDeckOfManyThings },
             { _DecoloredSquares, ProcessDecoloredSquares },
             { _DevilishEggs, ProcessDevilishEggs },
+            { _Digisibility, ProcessDigisibility },
             { _DiscoloredSquares, ProcessDiscoloredSquares },
             { _DivisibleNumbers, ProcessDivisibleNumbers },
             { _DoubleColor, ProcessDoubleColor },
@@ -513,7 +531,9 @@ public partial class SouvenirModule
             { _Flags, ProcessFlags },
             { _FlashingArrows, ProcessFlashingArrows },
             { _FlashingLights, ProcessFlashingLights },
+            { _Flyswatting, ProcessFlyswatting },
             { _ForgetAnyColor, ProcessForgetAnyColor },
+            { _ForgetMe, ProcessForgetMe },
             { _ForgetsUltimateShowdown, ProcessForgetsUltimateShowdown },
             { _ForgetTheColors, ProcessForgetTheColors },
             { _FreeParking, ProcessFreeParking },
@@ -564,6 +584,7 @@ public partial class SouvenirModule
             { _Lasers, ProcessLasers },
             { _LEDEncryption, ProcessLEDEncryption },
             { _LEDMath, ProcessLEDMath },
+            { _LEDs, ProcessLEDs },
             { _LEGOs, ProcessLEGOs },
             { _LetterMath, ProcessLetterMath },
             { _Linq, ProcessLinq },
@@ -610,6 +631,7 @@ public partial class SouvenirModule
             { _MulticoloredSwitches, ProcessMulticoloredSwitches },
             { _Murder, ProcessMurder },
             { _MysteryModule, ProcessMysteryModule },
+            { _MSeq, ProcessMSeq },
             { _MysticSquare, ProcessMysticSquare },
             { _NameCodes, ProcessNameCodes },
             { _NandMs, ProcessNandMs },
@@ -626,11 +648,14 @@ public partial class SouvenirModule
             { _NotMorsematics, ProcessNotMorsematics },
             { _NotMurder, ProcessNotMurder },
             { _NotNumberPad, ProcessNotNumberPad },
+            { _NotPianoKeys, ProcessNotPianoKeys },
             { _NotSimaze, ProcessNotSimaze },
+            { _NotTextField, ProcessNotTextField },
             { _NotTheBulb, ProcessNotTheBulb },
             { _NotTheButton, ProcessNotTheButton },
             { _NotTheScrew, ProcessNotTheScrew },
             { _NotWhosOnFirst, ProcessNotWhosOnFirst },
+            { _NotWordSearch, ProcessNotWordSearch },
             { _NotX01, ProcessNotX01 },
             { _NotXRay, ProcessNotXRay },
             { _NumberedButtons, ProcessNumberedButtons },
@@ -674,6 +699,7 @@ public partial class SouvenirModule
             { _RecoloredSwitches, ProcessRecoloredSwitches },
             { _RedArrows, ProcessRedArrows },
             { _RedCipher, ProcessRedCipher },
+            { _RedHerring, ProcessRedHerring },
             { _ReformedRoleReversal, ProcessReformedRoleReversal },
             { _RegularCrazyTalk, ProcessRegularCrazyTalk },
             { _Retirement, ProcessRetirement },
@@ -696,6 +722,7 @@ public partial class SouvenirModule
             { _ShellGame, ProcessShellGame },
             { _ShiftedMaze, ProcessShiftedMaze },
             { _ShiftingMaze, ProcessShiftingMaze },
+            { _ShogiIdentification, ProcessShogiIdentification },
             { _SillySlots, ProcessSillySlots },
             { _SimonSamples, ProcessSimonSamples },
             { _SimonSays, ProcessSimonSays },
@@ -734,6 +761,7 @@ public partial class SouvenirModule
             { _StupidSlots, ProcessStupidSlots },
             { _SubscribeToPewdiepie, ProcessSubscribeToPewdiepie },
             { _SugarSkulls, ProcessSugarSkulls },
+            { _Superparsing, ProcessSuperparsing },
             { _Switch, ProcessSwitch },
             { _Switches, ProcessSwitches },
             { _SwitchingMaze, ProcessSwitchingMaze },
@@ -753,6 +781,8 @@ public partial class SouvenirModule
             { _TicTacToe, ProcessTicTacToe },
             { _Timezone, ProcessTimezone },
             { _TopsyTurvy, ProcessTopsyTurvy },
+            { _TouchTransmission, ProcessTouchTransmission },
+            { _Trajectory, ProcessTrajectory },
             { _TransmittedMorse, ProcessTransmittedMorse },
             { _TurtleRobot, ProcessTurtleRobot },
             { _TwoBits, ProcessTwoBits },

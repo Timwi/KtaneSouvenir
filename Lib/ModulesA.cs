@@ -160,6 +160,35 @@ public partial class SouvenirModule
             correctAnswers: new[] { GetField<Texture>(comp, string.Format("level{0}Equation", i + 1)).Get().name.Replace(';', '/') })));
     }
 
+    private IEnumerable<object> ProcessAlgorithmia(KMBombModule module)
+    {
+        var comp = GetComponent(module, "AlgorithmiaScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        int startingPos = GetIntField(comp, "currentPos").Get(min: 0, max: 15);
+        int goalPos = GetIntField(comp, "goalPos").Get(min: 0, max: 15);
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Algorithmia);
+
+        var fldColor = GetField<object>(comp, "mazeAlg");
+        string color = fldColor.Get(col => (int) col < 0 || (int) col >= 6 ? "expected in range 0-5" : null).ToString();
+
+        var fldSeed = GetField<object>(comp, "seed");
+        var prpSeedValues = GetProperty<int[]>(fldSeed.Get(), "values", true);
+        int[] seedVals = prpSeedValues.Get(arr =>
+            arr.Length != 10 ? "expected length 10" :
+            arr.Any(val => val < 0 || val > 99) ? "expected in range 0-99" :
+            null);
+
+        addQuestions(module,
+            makeQuestion(Question.AlgorithmiaPositions, _Algorithmia, formatArgs: new[] { "starting" }, correctAnswers: new[] { new Coord(4, 4, startingPos) }, preferredWrongAnswers: new[] { new Coord(4, 4, goalPos) }),
+            makeQuestion(Question.AlgorithmiaPositions, _Algorithmia, formatArgs: new[] { "goal" }, correctAnswers: new[] { new Coord(4, 4, goalPos) }, preferredWrongAnswers: new[] { new Coord(4, 4, startingPos) }),
+            makeQuestion(Question.AlgorithmiaColor, _Algorithmia, correctAnswers: new[] { color }),
+            makeQuestion(Question.AlgorithmiaSeed, _Algorithmia, correctAnswers: seedVals.Select(x => x.ToString()).ToArray()));
+    }
+
     private IEnumerable<object> ProcessAlphabeticalRuling(KMBombModule module)
     {
         var comp = GetComponent(module, "AlphabeticalRuling");

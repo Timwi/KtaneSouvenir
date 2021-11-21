@@ -189,6 +189,27 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessFlyswatting(KMBombModule module)
+    {
+        var comp = GetComponent(module, "flyswattingScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+     
+        bool[] swatted = GetArrayField<int>(comp, "answers").Get(expectedLength: 5).Select(x => x == 1).ToArray();
+        
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_Flyswatting);
+
+        string[] letters = GetArrayField<string>(comp, "chosens").Get(expectedLength: 5);
+        string[] outsideLetters = letters.Where((_, pos) => !swatted[pos]).ToArray();
+        if (outsideLetters.Length == 0)
+        {
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Flyswatting because every fly was part of the solution.");
+            _legitimatelyNoQuestions.Add(module);
+        }
+        else 
+            addQuestion(module, Question.FlyswattingUnpressed, correctAnswers: outsideLetters);
+    }
     private IEnumerable<object> ProcessForgetAnyColor(KMBombModule module)
     {
         var comp = GetComponent(module, "FACScript");
@@ -237,6 +258,21 @@ public partial class SouvenirModule
                 correctAnswers: new[] { correctCylinder }, preferredWrongAnswers: preferredCylinders.ToArray()),
             makeQuestion(Question.ForgetAnyColorSequence, _ForgetAnyColor, formatArgs: new[] { (randomStage + 1).ToString() },
                 correctAnswers: new[] { figureNames[figures[randomStage]] }, preferredWrongAnswers: figureNames));
+    }
+
+    private IEnumerable<object> ProcessForgetMe(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NotForgetMeNotScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ForgetMe);
+
+        string[] positions = { "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right" };
+        int[] initState = GetArrayField<int>(comp, "givenPuzzle").Get(expectedLength: 9);
+        addQuestions(module,
+            Enumerable.Range(0, 9).Where(ix => initState[ix] != 0).Select(ix =>
+            makeQuestion(Question.ForgetMeInitialState, _ForgetMe, formatArgs: new[] { positions[ix] }, correctAnswers: new[] { initState[ix].ToString() })));
     }
 
     private IEnumerable<object> ProcessForgetsUltimateShowdown(KMBombModule module)
