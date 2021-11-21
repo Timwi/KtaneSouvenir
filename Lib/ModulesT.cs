@@ -244,7 +244,7 @@ public partial class SouvenirModule
         var fldOrder = GetField<object>(comp, "chosenOrder");
 
         addQuestions(module,
-            makeQuestion(Question.TouchTransmissionWord, _TouchTransmission, correctAnswers: new[] { fldGenWord.Get().ToLower() }),
+            makeQuestion(Question.TouchTransmissionWord, _TouchTransmission, correctAnswers: new[] { fldGenWord.Get().ToLowerInvariant() }),
             makeQuestion(Question.TouchTransmissionOrder, _TouchTransmission, correctAnswers: new[] { fldOrder.Get().ToString().Replace('_', ' ') }));
     }
 
@@ -285,9 +285,9 @@ public partial class SouvenirModule
             }
         }
         addQuestions(module,
-            makeQuestion(Question.TrajectoryButtonFunctions, _Trajectory, formatArgs: new[] { "A" }, correctAnswers: functions[0], preferredWrongAnswers: functions.SelectMany<string[], string>(x => x).ToArray()),
-            makeQuestion(Question.TrajectoryButtonFunctions, _Trajectory, formatArgs: new[] { "B" }, correctAnswers: functions[1], preferredWrongAnswers: functions.SelectMany<string[], string>(x => x).ToArray()),
-            makeQuestion(Question.TrajectoryButtonFunctions, _Trajectory, formatArgs: new[] { "C" }, correctAnswers: functions[2], preferredWrongAnswers: functions.SelectMany<string[], string>(x => x).ToArray()));
+            makeQuestion(Question.TrajectoryButtonFunctions, _Trajectory, formatArgs: new[] { "A" }, correctAnswers: functions[0], preferredWrongAnswers: functions.SelectMany(x => x).ToArray()),
+            makeQuestion(Question.TrajectoryButtonFunctions, _Trajectory, formatArgs: new[] { "B" }, correctAnswers: functions[1], preferredWrongAnswers: functions.SelectMany(x => x).ToArray()),
+            makeQuestion(Question.TrajectoryButtonFunctions, _Trajectory, formatArgs: new[] { "C" }, correctAnswers: functions[2], preferredWrongAnswers: functions.SelectMany(x => x).ToArray()));
     }
     private IEnumerable<object> ProcessTransmittedMorse(KMBombModule module)
     {

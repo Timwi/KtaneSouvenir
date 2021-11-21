@@ -442,12 +442,12 @@ public partial class SouvenirModule
                 hasStruck = false;
                 solution = fldSolution.Get(expectedLength: 3).Select(x => x.ToString()).ToArray();
             }
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(.1f);
         }
         _modulesSolved.IncSafe(_NotTextField);
 
         char bgChar = fldBG.Get(ch => ch < 'A' || ch > 'F' ? "expected in range A-F" : null);
-        
+
         addQuestions(module,
             makeQuestion(Question.NotTextFieldBackgroundLetter, _NotTextField, correctAnswers: new[] { bgChar.ToString() }),
             makeQuestion(Question.NotTextFieldInitialPresses, _NotTextField, correctAnswers: solution));
@@ -552,7 +552,7 @@ public partial class SouvenirModule
         qs.Add(makeQuestion(Question.NotWhosOnFirstSum, _NotWhosOnFirst, correctAnswers: sumCorrectAnswers));
         addQuestions(module, qs);
     }
-    
+
     private IEnumerable<object> ProcessNotWordSearch(KMBombModule module)
     {
         var comp = GetComponent(module, "NWSScript");
