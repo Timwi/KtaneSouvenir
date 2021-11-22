@@ -75,7 +75,7 @@ namespace Souvenir
             _layout = layout;
         }
         public override IEnumerable<string> DebugAnswers => _answers;
-        public override double DesiredHeightFactor => _layout == AnswerLayout.OneColumn4Answers ? .825 : 1.1;
+        public override double DesiredHeightFactor  => _layout == AnswerLayout.OneColumn4Answers ? .825 : 1.1;
 
         public override void SetAnswers(SouvenirModule souvenir)
         {

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using Souvenir;
 using UnityEngine;
 
 using Rnd = UnityEngine.Random;
@@ -175,6 +174,7 @@ namespace Souvenir
         }
 
         public static T[] NewArray<T>(params T[] array) { return array; }
+        public static List<T> NewList<T>(params T[] array) { return array.ToList(); }
 
         /// <summary>
         ///     Turns all elements in the enumerable to strings and joins them using the specified <paramref

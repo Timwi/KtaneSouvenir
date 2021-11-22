@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{4C3C8D4A-C793-467E-B02A-2ADC1937A9FF}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>SouvenirLib</RootNamespace>
+    <RootNamespace>Souvenir</RootNamespace>
     <AssemblyName>SouvenirLib</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -145,11 +145,16 @@
     <Compile Include="Reflection\PropertyInfo.cs" />
     <Compile Include="SouvenirModule.cs" />
     <Compile Include="SouvenirQuestionAttribute.cs" />
+    <Compile Include="Translation.cs" />
+    <Compile Include="TranslationEO.cs" />
+    <Compile Include="TranslationInfo.cs" />
+    <Compile Include="TranslationJA.cs" />
     <Compile Include="Ut.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /y "$(TargetDir)*.dll" "$(ProjectDir)..\Assets\Plugins\Managed"
-xcopy /y "$(TargetDir)*.dll" "$(GameFolder)mods\Souvenir"</PostBuildEvent>
+xcopy /y "$(TargetDir)*.dll" "$(GameFolder)mods\Souvenir"
+..\..\Tr\bin\Release\SouvenirTr.exe $(TargetDir)SouvenirLib.dll $(ProjectDir)</PostBuildEvent>
   </PropertyGroup>
 </Project>
