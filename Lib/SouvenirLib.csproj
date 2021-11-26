@@ -147,7 +147,9 @@
     <Compile Include="SouvenirModule.cs" />
     <Compile Include="SouvenirQuestionAttribute.cs" />
     <Compile Include="Translation.cs" />
+    <Compile Include="TranslationDE.cs" />
     <Compile Include="TranslationEO.cs" />
+    <Compile Include="TranslationES.cs" />
     <Compile Include="TranslationInfo.cs" />
     <Compile Include="TranslationJA.cs" />
     <Compile Include="Ut.cs" />

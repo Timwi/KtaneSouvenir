@@ -65,7 +65,7 @@ namespace SouvenirTr
             Console.WriteLine("--------------------------");
             Console.WriteLine(string.Join("\r\n", trFArgs));
 
-            foreach (var language in "ja,eo".Split(','))
+            foreach (var language in "de,eo,es,ja".Split(','))
             {
                 string tr(string text) => language != "ja" ? text : !japanese.ContainsKey(text) ? text : japanese[text];
                 var alreadyType = assembly.GetType($"Souvenir.Translation_{language}");

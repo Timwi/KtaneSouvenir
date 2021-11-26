@@ -2,24 +2,24 @@ using System.Collections.Generic;
 
 namespace Souvenir
 {
-    public class Translation_eo : Translation
+    public class Translation_de : Translation
     {
         public override string FormatModuleName(string moduleName, bool addSolveCount, int numSolved, bool addThe) =>
-            addSolveCount ? string.Format("la {0} solvita {1}", moduleName, ordinal(numSolved, adv: true)) : addThe ? "La\u00a0" + moduleName : moduleName;
-        public override string Ordinal(int number) => ordinal(number, adv: false);
-        private string ordinal(int num, bool adv = false) => (num < 0 ? $"({num})" : num switch
+            addSolveCount ? string.Format("das als {1}es gelöste {0}", moduleName, ordinal(numSolved)) : addThe ? "Das\u00a0" + moduleName : moduleName;
+        public override string Ordinal(int number) => ordinal(number);
+        private string ordinal(int num) => (num < 0 ? $"({num})." : num switch
         {
-            1 => "unu",
-            2 => "du",
-            3 => "tri",
-            4 => "kvar",
-            5 => "kvin",
-            6 => "ses",
-            7 => "sep",
-            8 => "ok",
-            9 => "naŭ",
+            1 => "erst",
+            2 => "zweit",
+            3 => "dritt",
+            4 => "viert",
+            5 => "fünft",
+            6 => "sechst",
+            7 => "siebt",
+            8 => "acht",
+            9 => "neun",
             _ => num.ToString()
-        }) + (adv ? "e" : "a");
+        });
 
         #region Translatable strings
         public override Dictionary<Question, TranslationInfo> Translations => new Dictionary<Question, TranslationInfo>
@@ -29,8 +29,7 @@ namespace Souvenir
             // What was the first word shown in 1000 Words?
             [Question._1000WordsWords] = new TranslationInfo
             {
-                QuestionText = "Kio estis la {1} vorto afiŝita en {0}?",
-                ModuleName = "1000 Vortoj",
+                QuestionText = "What was the {1} word shown in {0}?",
             },
 
             // 100 Levels of Defusal
@@ -38,8 +37,7 @@ namespace Souvenir
             // What was the first displayed letter in 100 Levels of Defusal?
             [Question._100LevelsOfDefusalLetters] = new TranslationInfo
             {
-                QuestionText = "Kio estis la {1} litero afiŝita en {0}?",
-                ModuleName = "100 Niveloj de Maldanĝerigo",
+                QuestionText = "What was the {1} displayed letter in {0}?",
             },
 
             // 1D Chess
@@ -47,26 +45,25 @@ namespace Souvenir
             // What was your first move in 1D Chess?
             [Question._1DChessMoves] = new TranslationInfo
             {
-                QuestionText = "Kio estis {1} en {0}?",
-                ModuleName = "1D-Ŝako",
+                QuestionText = "What was {1} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["your first move"] = "via unua movo",
-                    ["Rustmate’s first move"] = "la unua movo de Rustmate",
-                    ["your second move"] = "via dua movo",
-                    ["Rustmate’s second move"] = "la dua movo de Rustmate",
-                    ["your third move"] = "via tria movo",
-                    ["Rustmate’s third move"] = "la tria movo de Rustmate",
-                    ["your fourth move"] = "via kvara movo",
-                    ["Rustmate’s fourth move"] = "la kvara movo de Rustmate",
-                    ["your fifth move"] = "via kvina movo",
-                    ["Rustmate’s fifth move"] = "la kvina movo de Rustmate",
-                    ["your sixth move"] = "via sesa movo",
-                    ["Rustmate’s sixth move"] = "la sesa movo de Rustmate",
-                    ["your seventh move"] = "via sepa movo",
-                    ["Rustmate’s seventh move"] = "la sepa movo de Rustmate",
-                    ["your eighth move"] = "via oka movo",
-                    ["Rustmate’s eighth move"] = "la oka movo de Rustmate",
+                    ["your first move"] = "your first move",
+                    ["Rustmate’s first move"] = "Rustmate’s first move",
+                    ["your second move"] = "your second move",
+                    ["Rustmate’s second move"] = "Rustmate’s second move",
+                    ["your third move"] = "your third move",
+                    ["Rustmate’s third move"] = "Rustmate’s third move",
+                    ["your fourth move"] = "your fourth move",
+                    ["Rustmate’s fourth move"] = "Rustmate’s fourth move",
+                    ["your fifth move"] = "your fifth move",
+                    ["Rustmate’s fifth move"] = "Rustmate’s fifth move",
+                    ["your sixth move"] = "your sixth move",
+                    ["Rustmate’s sixth move"] = "Rustmate’s sixth move",
+                    ["your seventh move"] = "your seventh move",
+                    ["Rustmate’s seventh move"] = "Rustmate’s seventh move",
+                    ["your eighth move"] = "your eighth move",
+                    ["Rustmate’s eighth move"] = "Rustmate’s eighth move",
                 },
             },
 
@@ -75,21 +72,19 @@ namespace Souvenir
             // What were the markings in 3D Maze?
             [Question._3DMazeMarkings] = new TranslationInfo
             {
-                QuestionText = "Kio estis la markoj en{0}?",
-                ModuleName = "3D-Labirinto",
+                QuestionText = "What were the markings in {0}?",
             },
             // What was the cardinal direction in {0}?
             // What was the cardinal direction in 3D Maze?
             [Question._3DMazeBearing] = new TranslationInfo
             {
-                QuestionText = "Kio estis la kompasa direkto en {0}?",
-                ModuleName = "3D-Labirinto",
+                QuestionText = "What was the cardinal direction in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["North"] = "nordo",
-                    ["South"] = "sudo",
-                    ["West"] = "oriento",
-                    ["East"] = "okcidento",
+                    ["North"] = "North",
+                    ["South"] = "South",
+                    ["West"] = "West",
+                    ["East"] = "East",
                 },
             },
 
@@ -98,8 +93,7 @@ namespace Souvenir
             // What was the received word in 3D Tap Code?
             [Question._3DTapCodeWord] = new TranslationInfo
             {
-                QuestionText = "Kio estis la vorto ricevita en {0}?",
-                ModuleName = "3D-Frapkodo",
+                QuestionText = "What was the received word in {0}?",
             },
 
             // 3D Tunnels
@@ -107,8 +101,7 @@ namespace Souvenir
             // What was the first goal node in 3D Tunnels?
             [Question._3DTunnelsTargetNode] = new TranslationInfo
             {
-                QuestionText = "Kio estis la {1} celpozicio en {0}?",
-                ModuleName = "3D-Tuneloj",
+                QuestionText = "What was the {1} goal node in {0}?",
             },
 
             // 3 LEDs
@@ -116,8 +109,7 @@ namespace Souvenir
             // What was the initial state of the LEDs in 3 LEDs (in reading order)?
             [Question._3LEDsInitialState] = new TranslationInfo
             {
-                QuestionText = "Kio estis la komencstato de la LED-oj en {0} (en legordo)?",
-                ModuleName = "3 LED-oj",
+                QuestionText = "What was the initial state of the LEDs in {0} (in reading order)?",
             },
 
             // 7
@@ -125,21 +117,19 @@ namespace Souvenir
             // What was the red channel’s initial value in 7?
             [Question._7InitialValues] = new TranslationInfo
             {
-                QuestionText = "Kio estis la komencvaloro de la {1} kanalo en {0}?",
-                ModuleName = "7",
+                QuestionText = "What was the {1} channel’s initial value in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "ruĝa",
-                    ["green"] = "verda",
-                    ["blue"] = "blua",
+                    ["red"] = "red",
+                    ["green"] = "green",
+                    ["blue"] = "blue",
                 },
             },
             // What LED color was shown in stage {1} of {0}?
             // What LED color was shown in stage 1 of 7?
             [Question._7LedColors] = new TranslationInfo
             {
-                QuestionText = "Kiu koloro ĉeestis en staĝo {1} de {0}?",
-                ModuleName = "7",
+                QuestionText = "What LED color was shown in stage {1} of {0}?",
             },
 
             // 9-Ball
@@ -147,14 +137,13 @@ namespace Souvenir
             // What was the number of ball A in 9-Ball?
             [Question._9BallLetters] = new TranslationInfo
             {
-                QuestionText = "Kiu numero estis sur globo {1} en {0}?",
-                ModuleName = "9 Globoj",
+                QuestionText = "What was the number of ball {1} in {0}?",
             },
             // What was the letter of ball {1} in {0}?
             // What was the letter of ball 2 in 9-Ball?
             [Question._9BallNumbers] = new TranslationInfo
             {
-                QuestionText = "Kiu litero apartenis al globo {1} en {0}?",
+                QuestionText = "What was the letter of ball {1} in {0}?",
             },
 
             // Accumulation
@@ -162,8 +151,7 @@ namespace Souvenir
             // What was the background color on the first stage in Accumulation?
             [Question.AccumulationBackgroundColor] = new TranslationInfo
             {
-                QuestionText = "Kio estis la fonkoloro en staĝo {1} en {0}?",
-                ModuleName = "Amasigo",
+                QuestionText = "What was the background color on the {1} stage in {0}?",
                 Answers = new Dictionary<string, string>
                 {
                     ["Blue"] = "Blue",
