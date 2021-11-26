@@ -411,9 +411,9 @@ public partial class SouvenirModule : MonoBehaviour
                         question: string.Format(translateQuestion(_exampleQuestions[_curExampleQuestion]), fmt),
                         correct: 0,
                         answers: answers.Select(ans => attr.TranslateAnswers ? translateAnswer(_exampleQuestions[_curExampleQuestion], ans) : ans).ToArray(),
-                        font: Fonts[attr.Type == AnswerType.DynamicFont ? 0 : (int) attr.Type],
+                        font: Fonts[attr.Type == AnswerType.DynamicFont || attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type],
                         fontSize: attr.FontSize,
-                        fontTexture: FontTextures[attr.Type == AnswerType.DynamicFont ? 0 : (int) attr.Type],
+                        fontTexture: FontTextures[attr.Type == AnswerType.DynamicFont || attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type],
                         fontMaterial: FontMaterial,
                         layout: attr.Layout,
                         questionSprite: attr.UsesQuestionSprite ? SymbolicCoordinatesSprites[0] : null));
@@ -574,6 +574,10 @@ public partial class SouvenirModule : MonoBehaviour
         Debug.Log($"[Souvenir #{_moduleId}] Asking question: {q.DebugString}");
         Debug.Log($"<Souvenir #{_moduleId}> _avoidQuestions = {_avoidQuestions}");
         _currentQuestion = q;
+        TextMesh.font = Fonts[_translation?.DefaultFontIndex ?? 0];
+        TextMesh.GetComponent<MeshRenderer>().material = FontMaterial;
+        TextMesh.GetComponent<MeshRenderer>().material.mainTexture = FontTextures[_translation?.DefaultFontIndex ?? 0];
+        TextMesh.lineSpacing = _translation?.LineSpacing ?? 0.525f;
         SetWordWrappedText(q.QuestionText, q.DesiredHeightFactor, q.QuestionSprite != null);
         QuestionSprite.gameObject.SetActive(q.QuestionSprite != null);
         QuestionSprite.sprite = q.QuestionSprite;
@@ -655,6 +659,7 @@ public partial class SouvenirModule : MonoBehaviour
                 allowBreakingWordsApart: _translation?.AllowBreakingWords ?? false
             ))
             {
+                Debug.LogFormat($"Word-wrapping [{text}] — line: [{line}]");
                 if (line == null)
                 {
                     // There was a word that was too long to fit into a line.
@@ -942,7 +947,7 @@ public partial class SouvenirModule : MonoBehaviour
 
     private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null) =>
         makeQuestion(question, moduleKey,
-            (attr, q, correct, answers) => new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), Fonts[(int) attr.Type], attr.FontSize, FontTextures[(int) attr.Type], FontMaterial, attr.Layout, questionSprite),
+            (attr, q, correct, answers) => new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), Fonts[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], attr.FontSize, FontTextures[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], FontMaterial, attr.Layout, questionSprite),
             formatArgs, correctAnswers, preferredWrongAnswers, null, questionSprite, _standardAnswerTypes);
 
     private QandA makeQuestion(Question question, string moduleKey, Font font, Texture fontTexture, Sprite questionSprite = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null) =>

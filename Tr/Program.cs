@@ -81,6 +81,11 @@ namespace SouvenirTr
                         var id = fld.GetValue(null);
                         var qText = (string) attr.QuestionText;
                         sb.AppendLine($"            // {qText}");
+                        var exFormatArgs = new[] { (string) attr.ModuleNameWithThe };
+                        if (attr.ExampleExtraFormatArguments != null)
+                            exFormatArgs = exFormatArgs.Concat(((string[]) attr.ExampleExtraFormatArguments).Take((int) attr.ExampleExtraFormatArgumentGroupSize).Select(str => str == "\ufffdordinal" ? "first" : str)).ToArray();
+                        try { sb.AppendLine($"            // {string.Format(qText, exFormatArgs)}"); }
+                        catch { }
                         var answers = attr.AllAnswers == null || attr.AllAnswers.Length == 0 ? null : (string[]) attr.AllAnswers;
                         var formatArgs = attr.ExampleExtraFormatArguments == null || attr.ExampleExtraFormatArguments.Length == 0 ? null : ((string[]) attr.ExampleExtraFormatArguments).Distinct().ToArray();
                         dynamic ti = already?.Contains(id) == true ? already[id] : null;
