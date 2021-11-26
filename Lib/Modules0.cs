@@ -45,11 +45,11 @@ public partial class SouvenirModule
             throw new AbandonModuleException("Unable to gather all 5 words in 1000 Words.");
 
         addQuestions(module,
-            makeQuestion(Question._1000WordsWords, _1000Words, formatArgs: new[] { "first" }, correctAnswers: new[] { wordsWritten[0] }, preferredWrongAnswers: phrases),
-            makeQuestion(Question._1000WordsWords, _1000Words, formatArgs: new[] { "second" }, correctAnswers: new[] { wordsWritten[1] }, preferredWrongAnswers: phrases),
-            makeQuestion(Question._1000WordsWords, _1000Words, formatArgs: new[] { "third" }, correctAnswers: new[] { wordsWritten[2] }, preferredWrongAnswers: phrases),
-            makeQuestion(Question._1000WordsWords, _1000Words, formatArgs: new[] { "fourth" }, correctAnswers: new[] { wordsWritten[3] }, preferredWrongAnswers: phrases),
-            makeQuestion(Question._1000WordsWords, _1000Words, formatArgs: new[] { "fifth" }, correctAnswers: new[] { wordsWritten[4] }, preferredWrongAnswers: phrases));
+            makeQuestion(Question._1000WordsWords, _1000Words, formatArgs: new[] { ordinal(1) }, correctAnswers: new[] { wordsWritten[0] }, preferredWrongAnswers: phrases),
+            makeQuestion(Question._1000WordsWords, _1000Words, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { wordsWritten[1] }, preferredWrongAnswers: phrases),
+            makeQuestion(Question._1000WordsWords, _1000Words, formatArgs: new[] { ordinal(3) }, correctAnswers: new[] { wordsWritten[2] }, preferredWrongAnswers: phrases),
+            makeQuestion(Question._1000WordsWords, _1000Words, formatArgs: new[] { ordinal(4) }, correctAnswers: new[] { wordsWritten[3] }, preferredWrongAnswers: phrases),
+            makeQuestion(Question._1000WordsWords, _1000Words, formatArgs: new[] { ordinal(5) }, correctAnswers: new[] { wordsWritten[4] }, preferredWrongAnswers: phrases));
     }
 
     private IEnumerable<object> Process100LevelsOfDefusal(KMBombModule module)

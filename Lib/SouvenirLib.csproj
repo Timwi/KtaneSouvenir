@@ -139,6 +139,7 @@
     <Compile Include="QandA.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="QuestionBatch.cs" />
+    <Compile Include="QuestionJa.cs" />
     <Compile Include="Reflection\InfoBase.cs" />
     <Compile Include="Reflection\FieldInfo.cs" />
     <Compile Include="Reflection\MethodInfo.cs" />

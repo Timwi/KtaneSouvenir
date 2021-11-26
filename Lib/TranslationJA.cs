@@ -4,13 +4,20 @@ namespace Souvenir
 {
     public class Translation_ja : Translation
     {
+        public override string Ordinal(int number) => number.ToString();
+        public override string FormatModuleName(string moduleName, bool addSolveCount, int numSolved, bool addThe) => addSolveCount
+            ? string.Format("the {0} you solved {1}", moduleName, Ordinal(numSolved))
+            : addThe ? "The\u00a0" + moduleName : moduleName;
+        public override bool AllowBreakingWords => true;
+
+        #region Translatable strings
         public override Dictionary<Question, TranslationInfo> Translations => new Dictionary<Question, TranslationInfo>
         {
             // 1000 Words
             // What was the {1} word shown in {0}?
             [Question._1000WordsWords] = new TranslationInfo
             {
-                QuestionText = "What was the {1} word shown in {0}?",
+                QuestionText = "{0}の{1}番目の単語は何？",
             },
 
             // 100 Levels of Defusal
@@ -24,33 +31,40 @@ namespace Souvenir
             // What was {1} in {0}?
             [Question._1DChessMoves] = new TranslationInfo
             {
-                QuestionText = "What was {1} in {0}?",
+                QuestionText = "{0}で{1}はどれだったか？",
             },
 
             // 3D Maze
             // What were the markings in {0}?
             [Question._3DMazeMarkings] = new TranslationInfo
             {
-                QuestionText = "What were the markings in {0}?",
+                QuestionText = "{0}の迷路の文字は何？",
             },
             // What was the cardinal direction in {0}?
             [Question._3DMazeBearing] = new TranslationInfo
             {
-                QuestionText = "What was the cardinal direction in {0}?",
+                QuestionText = "{0}ゴールの方向はどこ？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["North"] = "北",
+                    ["South"] = "南",
+                    ["West"] = "西",
+                    ["East"] = "東",
+                },
             },
 
             // 3D Tap Code
             // What was the received word in {0}?
             [Question._3DTapCodeWord] = new TranslationInfo
             {
-                QuestionText = "What was the received word in {0}?",
+                QuestionText = "{0}で受信した単語は？",
             },
 
             // 3D Tunnels
             // What was the {1} goal node in {0}?
             [Question._3DTunnelsTargetNode] = new TranslationInfo
             {
-                QuestionText = "What was the {1} goal node in {0}?",
+                QuestionText = "{0}の{1}番目のゴールの目印は何？",
             },
 
             // 3 LEDs
@@ -65,6 +79,12 @@ namespace Souvenir
             [Question._7InitialValues] = new TranslationInfo
             {
                 QuestionText = "What was the {1} channel’s initial value in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                },
             },
             // What LED color was shown in stage {1} of {0}?
             [Question._7LedColors] = new TranslationInfo
@@ -76,36 +96,62 @@ namespace Souvenir
             // What was the number of ball {1} in {0}?
             [Question._9BallLetters] = new TranslationInfo
             {
-                QuestionText = "What was the number of ball {1} in {0}?",
+                QuestionText = "{0}のボール{1}の数字は？",
             },
             // What was the letter of ball {1} in {0}?
             [Question._9BallNumbers] = new TranslationInfo
             {
-                QuestionText = "What was the letter of ball {1} in {0}?",
+                QuestionText = "{0}のボール{1}の文字は？",
             },
 
             // Accumulation
             // What was the background color on the {1} stage in {0}?
             [Question.AccumulationBackgroundColor] = new TranslationInfo
             {
-                QuestionText = "What was the background color on the {1} stage in {0}?",
+                QuestionText = "{0}のステージ{1}の背景の色は何？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Blue"] = "青",
+                    ["Brown"] = "茶",
+                    ["Green"] = "緑",
+                    ["Grey"] = "灰",
+                    ["Lime"] = "黄緑",
+                    ["Orange"] = "オレンジ",
+                    ["Pink"] = "ピンク",
+                    ["Red"] = "赤",
+                    ["White"] = "白",
+                    ["Yellow"] = "黄色",
+                },
             },
             // What was the border color in {0}?
             [Question.AccumulationBorderColor] = new TranslationInfo
             {
-                QuestionText = "What was the border color in {0}?",
+                QuestionText = "{0}の境界線の色は何？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Blue"] = "青",
+                    ["Brown"] = "茶",
+                    ["Green"] = "緑",
+                    ["Grey"] = "灰",
+                    ["Lime"] = "黄緑",
+                    ["Orange"] = "オレンジ",
+                    ["Pink"] = "ピンク",
+                    ["Red"] = "赤",
+                    ["White"] = "白",
+                    ["Yellow"] = "黄色",
+                },
             },
 
             // Adventure Game
             // Which item was the {1} correct item you used in {0}?
             [Question.AdventureGameCorrectItem] = new TranslationInfo
             {
-                QuestionText = "Which item was the {1} correct item you used in {0}?",
+                QuestionText = "{0}で{1}番目に正しく使用したアイテムはどれ？",
             },
             // What enemy were you fighting in {0}?
             [Question.AdventureGameEnemy] = new TranslationInfo
             {
-                QuestionText = "What enemy were you fighting in {0}?",
+                QuestionText = "{0}でどの敵と戦ったか？",
             },
 
             // Affine Cycle
@@ -141,12 +187,12 @@ namespace Souvenir
             // What was the first equation in {0}?
             [Question.AlgebraEquation1] = new TranslationInfo
             {
-                QuestionText = "What was the first equation in {0}?",
+                QuestionText = "{0}の最初の方程式は何？",
             },
             // What was the second equation in {0}?
             [Question.AlgebraEquation2] = new TranslationInfo
             {
-                QuestionText = "What was the second equation in {0}?",
+                QuestionText = "{0}の二番目の方程式は何？",
             },
 
             // Algorithmia
@@ -170,12 +216,12 @@ namespace Souvenir
             // What was the letter displayed in the {1} stage of {0}?
             [Question.AlphabeticalRulingLetter] = new TranslationInfo
             {
-                QuestionText = "What was the letter displayed in the {1} stage of {0}?",
+                QuestionText = "{0}のステージ{1}で表示された文字は何？",
             },
             // What was the number displayed in the {1} stage of {0}?
             [Question.AlphabeticalRulingNumber] = new TranslationInfo
             {
-                QuestionText = "What was the number displayed in the {1} stage of {0}?",
+                QuestionText = "{0}のステージ{1}で表示された数字は何？",
             },
 
             // Alphabet Tiles
@@ -195,6 +241,10 @@ namespace Souvenir
             [Question.AlphaBitsDisplayedCharacters] = new TranslationInfo
             {
                 QuestionText = "What character was displayed on the {1} screen on the {2} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["left"] = "左",
+                },
             },
 
             // Arithmelogic
@@ -207,6 +257,12 @@ namespace Souvenir
             [Question.ArithmelogicNumbers] = new TranslationInfo
             {
                 QuestionText = "Which number was selectable, but not the solution, in the {1} screen on {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["left"] = "左",
+                    ["middle"] = "中央",
+                    ["right"] = "右",
+                },
             },
 
             // ASCII Maze
@@ -233,11 +289,110 @@ namespace Souvenir
             [Question.BamboozledAgainButtonColor] = new TranslationInfo
             {
                 QuestionText = "What color was the {1} correct button in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Yellow"] = "黄色",
+                    ["Lime"] = "黄緑",
+                    ["Green"] = "緑",
+                    ["Jade"] = "Jade",
+                    ["Cyan"] = "シアン",
+                    ["Azure"] = "Azure",
+                    ["Blue"] = "青",
+                    ["Violet"] = "Violet",
+                    ["Magenta"] = "マゼンタ",
+                    ["Rose"] = "Rose",
+                    ["White"] = "白",
+                    ["Grey"] = "灰",
+                    ["Black"] = "黒",
+                },
             },
             // What was the text on the {1} correct button in {0}?
             [Question.BamboozledAgainButtonText] = new TranslationInfo
             {
                 QuestionText = "What was the text on the {1} correct button in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["THE LETTER"] = "THE LETTER",
+                    ["ONE LETTER"] = "ONE LETTER",
+                    ["THE COLOUR"] = "THE COLOUR",
+                    ["ONE COLOUR"] = "ONE COLOUR",
+                    ["THE PHRASE"] = "THE PHRASE",
+                    ["ONE PHRASE"] = "ONE PHRASE",
+                    ["ALPHA"] = "ALPHA",
+                    ["BRAVO"] = "BRAVO",
+                    ["CHARLIE"] = "CHARLIE",
+                    ["DELTA"] = "DELTA",
+                    ["ECHO"] = "ECHO",
+                    ["GOLF"] = "GOLF",
+                    ["KILO"] = "KILO",
+                    ["QUEBEC"] = "QUEBEC",
+                    ["TANGO"] = "TANGO",
+                    ["WHISKEY"] = "WHISKEY",
+                    ["VICTOR"] = "VICTOR",
+                    ["YANKEE"] = "YANKEE",
+                    ["ECHO ECHO"] = "ECHO ECHO",
+                    ["E THEN E"] = "E THEN E",
+                    ["ALPHA PAPA"] = "ALPHA PAPA",
+                    ["PAPA ALPHA"] = "PAPA ALPHA",
+                    ["PAPHA ALPA"] = "PAPHA ALPA",
+                    ["T GOLF"] = "T GOLF",
+                    ["TANGOLF"] = "TANGOLF",
+                    ["WHISKEE"] = "WHISKEE",
+                    ["WHISKY"] = "WHISKY",
+                    ["CHARLIE C"] = "CHARLIE C",
+                    ["C CHARLIE"] = "C CHARLIE",
+                    ["YANGO"] = "YANGO",
+                    ["DELTA NEXT"] = "DELTA NEXT",
+                    ["CUEBEQ"] = "CUEBEQ",
+                    ["MILO"] = "MILO",
+                    ["KI LO"] = "KI LO",
+                    ["HI-LO"] = "HI-LO",
+                    ["VVICTOR"] = "VVICTOR",
+                    ["VICTORR"] = "VICTORR",
+                    ["LIME BRAVO"] = "LIME BRAVO",
+                    ["BLUE BRAVO"] = "BLUE BRAVO",
+                    ["G IN JADE"] = "G IN JADE",
+                    ["G IN ROSE"] = "G IN ROSE",
+                    ["BLUE IN RED"] = "BLUE IN RED",
+                    ["YES BUT NO"] = "YES BUT NO",
+                    ["COLOUR"] = "COLOUR",
+                    ["MESSAGE"] = "MESSAGE",
+                    ["CIPHER"] = "CIPHER",
+                    ["BUTTON"] = "BUTTON",
+                    ["TWO BUTTONS"] = "TWO BUTTONS",
+                    ["SIX BUTTONS"] = "SIX BUTTONS",
+                    ["I GIVE UP"] = "I GIVE UP",
+                    ["ONE ELEVEN"] = "ONE ELEVEN",
+                    ["ONE ONE ONE"] = "ONE ONE ONE",
+                    ["THREE ONES"] = "THREE ONES",
+                    ["WHAT?"] = "WHAT?",
+                    ["THIS?"] = "THIS?",
+                    ["THAT?"] = "THAT?",
+                    ["BLUE!"] = "BLUE!",
+                    ["ECHO!"] = "ECHO!",
+                    ["BLANK"] = "BLANK",
+                    ["BLANK?!"] = "BLANK?!",
+                    ["NOTHING"] = "NOTHING",
+                    ["YELLOW TEXT"] = "YELLOW TEXT",
+                    ["BLACK TEXT?"] = "BLACK TEXT?",
+                    ["QUOTE V"] = "QUOTE V",
+                    ["END QUOTE"] = "END QUOTE",
+                    ["\"QUOTE K\""] = "\"QUOTE K\"",
+                    ["IN RED"] = "IN RED",
+                    ["ORANGE"] = "オレンジ",
+                    ["IN YELLOW"] = "IN YELLOW",
+                    ["LIME"] = "黄緑",
+                    ["IN GREEN"] = "IN GREEN",
+                    ["JADE"] = "JADE",
+                    ["IN CYAN"] = "IN CYAN",
+                    ["AZURE"] = "AZURE",
+                    ["IN BLUE"] = "IN BLUE",
+                    ["VIOLET"] = "VIOLET",
+                    ["IN MAGENTA"] = "IN MAGENTA",
+                    ["ROSE"] = "ROSE",
+                },
             },
             // What was the {1} decrypted text on the display in {0}?
             [Question.BamboozledAgainDisplayTexts1] = new TranslationInfo
@@ -253,6 +408,23 @@ namespace Souvenir
             [Question.BamboozledAgainDisplayColor] = new TranslationInfo
             {
                 QuestionText = "What color was the {1} text on the display in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Yellow"] = "黄色",
+                    ["Lime"] = "黄緑",
+                    ["Green"] = "緑",
+                    ["Jade"] = "Jade",
+                    ["Cyan"] = "シアン",
+                    ["Azure"] = "Azure",
+                    ["Blue"] = "青",
+                    ["Violet"] = "Violet",
+                    ["Magenta"] = "マゼンタ",
+                    ["Rose"] = "Rose",
+                    ["White"] = "白",
+                    ["Grey"] = "灰",
+                },
             },
 
             // Bamboozling Button
@@ -260,11 +432,33 @@ namespace Souvenir
             [Question.BamboozlingButtonColor] = new TranslationInfo
             {
                 QuestionText = "What color was the button in the {1} stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Yellow"] = "黄色",
+                    ["Lime"] = "黄緑",
+                    ["Green"] = "緑",
+                    ["Jade"] = "Jade",
+                    ["Cyan"] = "シアン",
+                    ["Azure"] = "Azure",
+                    ["Blue"] = "青",
+                    ["Violet"] = "Violet",
+                    ["Magenta"] = "マゼンタ",
+                    ["Rose"] = "Rose",
+                    ["White"] = "白",
+                    ["Grey"] = "灰",
+                    ["Black"] = "黒",
+                },
             },
             // What was the {2} label on the button in the {1} stage of {0}?
             [Question.BamboozlingButtonLabel] = new TranslationInfo
             {
                 QuestionText = "What was the {2} label on the button in the {1} stage of {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上",
+                },
             },
             // What was the {2} display in the {1} stage of {0}?
             [Question.BamboozlingButtonDisplay] = new TranslationInfo
@@ -275,6 +469,23 @@ namespace Souvenir
             [Question.BamboozlingButtonDisplayColor] = new TranslationInfo
             {
                 QuestionText = "What was the color of the {2} display in the {1} stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Yellow"] = "黄色",
+                    ["Lime"] = "黄緑",
+                    ["Green"] = "緑",
+                    ["Jade"] = "Jade",
+                    ["Cyan"] = "シアン",
+                    ["Azure"] = "Azure",
+                    ["Blue"] = "青",
+                    ["Violet"] = "Violet",
+                    ["Magenta"] = "マゼンタ",
+                    ["Rose"] = "Rose",
+                    ["White"] = "白",
+                    ["Grey"] = "灰",
+                },
             },
 
             // Bakery
@@ -312,14 +523,25 @@ namespace Souvenir
             // What color was {1} in the solution to {0}?
             [Question.BigCircleColors] = new TranslationInfo
             {
-                QuestionText = "What color was {1} in the solution to {0}?",
+                QuestionText = "{0}の解法において{1}番目の色は？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Yellow"] = "黄色",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Magenta"] = "マゼンタ",
+                    ["White"] = "白",
+                    ["Black"] = "黒",
+                },
             },
 
             // Binary LEDs
             // At which numeric value did you cut the correct wire in {0}?
             [Question.BinaryLEDsValue] = new TranslationInfo
             {
-                QuestionText = "At which numeric value did you cut the correct wire in {0}?",
+                QuestionText = "{0}でどの数字の時に正しいワイヤーを切った？",
             },
 
             // Binary Shift
@@ -343,14 +565,23 @@ namespace Souvenir
             // What word was displayed in {0}?
             [Question.BinaryWord] = new TranslationInfo
             {
-                QuestionText = "What word was displayed in {0}?",
+                QuestionText = "{0}で表示された単語は？",
             },
 
             // Bitmaps
             // How many pixels were {1} in the {2} quadrant in {0}?
             [Question.Bitmaps] = new TranslationInfo
             {
-                QuestionText = "How many pixels were {1} in the {2} quadrant in {0}?",
+                QuestionText = "{0}で{2}区域の{1}ピクセル数は？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["white"] = "白",
+                    ["top left"] = "左上",
+                    ["top right"] = "右上",
+                    ["bottom left"] = "左下",
+                    ["bottom right"] = "右下",
+                    ["black"] = "黒",
+                },
             },
 
             // Black Cipher
@@ -365,6 +596,21 @@ namespace Souvenir
             [Question.BlindMazeColors] = new TranslationInfo
             {
                 QuestionText = "What color was the {1} button in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Gray"] = "灰",
+                    ["Yellow"] = "黄色",
+                },
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["north"] = "north",
+                    ["east"] = "east",
+                    ["west"] = "西",
+                    ["south"] = "南",
+                },
             },
             // Which maze did you solve {0} on?
             [Question.BlindMazeMaze] = new TranslationInfo
@@ -376,14 +622,14 @@ namespace Souvenir
             // What was the last letter pressed on {0}?
             [Question.BlockbustersLastLetter] = new TranslationInfo
             {
-                QuestionText = "What was the last letter pressed on {0}?",
+                QuestionText = "{0}で最後に押した文字は何？",
             },
 
             // Blue Arrows
             // What were the letters on the screen in {0}?
             [Question.BlueArrowsInitialLetters] = new TranslationInfo
             {
-                QuestionText = "What were the letters on the screen in {0}?",
+                QuestionText = "{0}でスクリーンに表示された文字は何？",
             },
 
             // The Blue Button
@@ -395,7 +641,7 @@ namespace Souvenir
             // What was {1} in {0}?
             [Question.BlueButtonEFGH] = new TranslationInfo
             {
-                QuestionText = "What was {1} in {0}?",
+                QuestionText = "{0}で{1}はどれだったか？",
             },
             // What was M in {0}?
             [Question.BlueButtonM] = new TranslationInfo
@@ -435,11 +681,25 @@ namespace Souvenir
             [Question.BobBarksIndicators] = new TranslationInfo
             {
                 QuestionText = "What was the {1} indicator label in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top left"] = "左上",
+                    ["top right"] = "右上",
+                    ["bottom left"] = "左下",
+                    ["bottom right"] = "右下",
+                },
             },
             // Which button flashed {1} in sequence in {0}?
             [Question.BobBarksPositions] = new TranslationInfo
             {
                 QuestionText = "Which button flashed {1} in sequence in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["top left"] = "左上",
+                    ["top right"] = "右上",
+                    ["bottom left"] = "左下",
+                    ["bottom right"] = "右下",
+                },
             },
 
             // Boggle
@@ -470,7 +730,7 @@ namespace Souvenir
             // What was the solution word in {0}?
             [Question.BrailleWord] = new TranslationInfo
             {
-                QuestionText = "What was the solution word in {0}?",
+                QuestionText = "{0}の答えの単語は何？",
             },
 
             // Breakfast Egg
@@ -484,7 +744,61 @@ namespace Souvenir
             // What was the {1} correct button you pressed in {0}?
             [Question.BrokenButtons] = new TranslationInfo
             {
-                QuestionText = "What was the {1} correct button you pressed in {0}?",
+                QuestionText = "{0}で{1}番目に押したボタンはどれ？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["bomb"] = "bomb",
+                    ["blast"] = "blast",
+                    ["boom"] = "boom",
+                    ["burst"] = "burst",
+                    ["wire"] = "wire",
+                    ["button"] = "button",
+                    ["module"] = "module",
+                    ["light"] = "light",
+                    ["led"] = "led",
+                    ["switch"] = "switch",
+                    ["RJ-45"] = "RJ-45",
+                    ["DVI-D"] = "DVI-D",
+                    ["RCA"] = "RCA",
+                    ["PS/2"] = "PS/2",
+                    ["serial"] = "serial",
+                    ["port"] = "port",
+                    ["row"] = "段",
+                    ["column"] = "列",
+                    ["one"] = "one",
+                    ["two"] = "two",
+                    ["three"] = "three",
+                    ["four"] = "four",
+                    ["five"] = "five",
+                    ["six"] = "six",
+                    ["seven"] = "seven",
+                    ["eight"] = "eight",
+                    ["size"] = "size",
+                    ["this"] = "this",
+                    ["that"] = "that",
+                    ["other"] = "other",
+                    ["submit"] = "submit",
+                    ["abort"] = "abort",
+                    ["drop"] = "drop",
+                    ["thing"] = "thing",
+                    ["blank"] = "blank",
+                    ["broken"] = "broken",
+                    ["too"] = "too",
+                    ["to"] = "to",
+                    ["yes"] = "yes",
+                    ["see"] = "see",
+                    ["sea"] = "sea",
+                    ["c"] = "c",
+                    ["wait"] = "wait",
+                    ["word"] = "word",
+                    ["bob"] = "bob",
+                    ["no"] = "no",
+                    ["not"] = "not",
+                    ["first"] = "1",
+                    ["hold"] = "hold",
+                    ["late"] = "late",
+                    ["fail"] = "fail",
+                },
             },
 
             // Brown Cipher
@@ -499,6 +813,24 @@ namespace Souvenir
             [Question.BrushStrokesMiddleColor] = new TranslationInfo
             {
                 QuestionText = "What was the color of the middle contact point in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Yellow"] = "黄色",
+                    ["Lime"] = "黄緑",
+                    ["Green"] = "緑",
+                    ["Cyan"] = "シアン",
+                    ["Sky"] = "Sky",
+                    ["Blue"] = "青",
+                    ["Purple"] = "紫",
+                    ["Magenta"] = "マゼンタ",
+                    ["Brown"] = "茶",
+                    ["White"] = "白",
+                    ["Gray"] = "灰",
+                    ["Black"] = "黒",
+                    ["Pink"] = "ピンク",
+                },
             },
 
             // The Bulb
@@ -519,7 +851,14 @@ namespace Souvenir
             // What color did the light glow in {0}?
             [Question.ButtonLightColor] = new TranslationInfo
             {
-                QuestionText = "What color did the light glow in {0}?",
+                QuestionText = "{0}で光ったライトの色は？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["blue"] = "青",
+                    ["yellow"] = "黄色",
+                    ["white"] = "白",
+                },
             },
 
             // Button Sequence
@@ -527,6 +866,13 @@ namespace Souvenir
             [Question.ButtonSequencesColorOccurrences] = new TranslationInfo
             {
                 QuestionText = "How many of the buttons in {0} were {1}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["blue"] = "青",
+                    ["yellow"] = "黄色",
+                    ["white"] = "白",
+                },
             },
 
             // Caesar Cycle
@@ -541,6 +887,13 @@ namespace Souvenir
             [Question.CalendarLedColor] = new TranslationInfo
             {
                 QuestionText = "What was the LED color in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Green"] = "緑",
+                    ["Yellow"] = "黄色",
+                    ["Red"] = "赤",
+                    ["Blue"] = "青",
+                },
             },
 
             // Cartinese
@@ -588,6 +941,18 @@ namespace Souvenir
             [Question.ChineseCountingLED] = new TranslationInfo
             {
                 QuestionText = "What color was the {1} LED in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["White"] = "白",
+                    ["Red"] = "赤",
+                    ["Green"] = "緑",
+                    ["Orange"] = "オレンジ",
+                },
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["left"] = "左",
+                    ["right"] = "右",
+                },
             },
 
             // Chord Qualities
@@ -640,6 +1005,12 @@ namespace Souvenir
             [Question.ColorBrailleWords] = new TranslationInfo
             {
                 QuestionText = "What was the {1} word in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                },
             },
 
             // Color Decoding
@@ -652,6 +1023,19 @@ namespace Souvenir
             [Question.ColorDecodingIndicatorColors] = new TranslationInfo
             {
                 QuestionText = "Which color {1} in the {2}-stage indicator pattern in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Green"] = "緑",
+                    ["Purple"] = "紫",
+                    ["Red"] = "赤",
+                    ["Blue"] = "青",
+                    ["Yellow"] = "黄色",
+                },
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["appeared"] = "appeared",
+                    ["did not appear"] = "did not appear",
+                },
             },
 
             // Colored Keys
@@ -680,31 +1064,50 @@ namespace Souvenir
             // What was the first color group in {0}?
             [Question.ColoredSquaresFirstGroup] = new TranslationInfo
             {
-                QuestionText = "What was the first color group in {0}?",
+                QuestionText = "{0}の最初の色グループは？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["White"] = "白",
+                    ["Red"] = "赤",
+                    ["Blue"] = "青",
+                    ["Green"] = "緑",
+                    ["Yellow"] = "黄色",
+                    ["Magenta"] = "マゼンタ",
+                },
             },
 
             // Colored Switches
             // What was the initial position of the switches in {0}?
             [Question.ColoredSwitchesInitialPosition] = new TranslationInfo
             {
-                QuestionText = "What was the initial position of the switches in {0}?",
+                QuestionText = "{0}の最初の状態は？",
             },
             // What was the position of the switches when the LEDs came on in {0}?
             [Question.ColoredSwitchesWhenLEDsCameOn] = new TranslationInfo
             {
-                QuestionText = "What was the position of the switches when the LEDs came on in {0}?",
+                QuestionText = "{0}のLEDが示したスイッチの位置は？",
             },
 
             // Color Morse
             // What was the color of the {1} LED in {0}?
             [Question.ColorMorseColor] = new TranslationInfo
             {
-                QuestionText = "What was the color of the {1} LED in {0}?",
+                QuestionText = "{0}の{1}番目のLEDは何色？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Blue"] = "青",
+                    ["Green"] = "緑",
+                    ["Orange"] = "オレンジ",
+                    ["Purple"] = "紫",
+                    ["Red"] = "赤",
+                    ["Yellow"] = "黄色",
+                    ["White"] = "白",
+                },
             },
             // What character was flashed by the {1} LED in {0}?
             [Question.ColorMorseCharacter] = new TranslationInfo
             {
-                QuestionText = "What character was flashed by the {1} LED in {0}?",
+                QuestionText = "{0}の{1}番目のLEDが示す文字は？",
             },
 
             // Colors Maximization
@@ -717,18 +1120,42 @@ namespace Souvenir
             [Question.ColorsMaximizationSubmittedColor] = new TranslationInfo
             {
                 QuestionText = "What color {1} submitted as part of the solution in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Blue"] = "青",
+                    ["Green"] = "緑",
+                    ["Magenta"] = "マゼンタ",
+                    ["Red"] = "赤",
+                    ["White"] = "白",
+                    ["Yellow"] = "黄色",
+                },
             },
             // How many buttons were {1} in {0}?
             [Question.ColorsMaximizationColorCount] = new TranslationInfo
             {
                 QuestionText = "How many buttons were {1} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                },
             },
 
             // Colour Flash
             // What was the color of the last word in the sequence in {0}?
             [Question.ColourFlashLastColor] = new TranslationInfo
             {
-                QuestionText = "What was the color of the last word in the sequence in {0}?",
+                QuestionText = "{0}のシーケンスの最後の単語は何色？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Yellow"] = "黄色",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Magenta"] = "マゼンタ",
+                    ["White"] = "白",
+                },
             },
 
             // Coordinates
@@ -748,11 +1175,25 @@ namespace Souvenir
             [Question.CornersColors] = new TranslationInfo
             {
                 QuestionText = "What was the color of the {1} corner in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                    ["yellow"] = "黄色",
+                },
             },
             // How many corners in {0} were {1}?
             [Question.CornersColorCount] = new TranslationInfo
             {
                 QuestionText = "How many corners in {0} were {1}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                    ["yellow"] = "黄色",
+                },
             },
 
             // Cosmic
@@ -774,6 +1215,13 @@ namespace Souvenir
             [Question.CrittersAlterationColor] = new TranslationInfo
             {
                 QuestionText = "What was the alteration color used in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Yellow"] = "黄色",
+                    ["Pink"] = "ピンク",
+                    ["Blue"] = "青",
+                    ["White"] = "白",
+                },
             },
 
             // Cryptic Cycle
@@ -793,6 +1241,13 @@ namespace Souvenir
             [Question.CrypticKeypadRotations] = new TranslationInfo
             {
                 QuestionText = "Which cardinal direction was the {1} key rotated to in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["North"] = "北",
+                    ["East"] = "東",
+                    ["South"] = "南",
+                    ["West"] = "西",
+                },
             },
 
             // The Cube
@@ -820,7 +1275,7 @@ namespace Souvenir
             // What was the shape generated in {0}?
             [Question.DeafAlleyShape] = new TranslationInfo
             {
-                QuestionText = "What was the shape generated in {0}?",
+                QuestionText = "{0}で生成された文字は？",
             },
 
             // The Deck of Many Things
@@ -834,7 +1289,21 @@ namespace Souvenir
             // What was the starting {1} defining color in {0}?
             [Question.DecoloredSquaresStartingPos] = new TranslationInfo
             {
-                QuestionText = "What was the starting {1} defining color in {0}?",
+                QuestionText = "{0}の開始位置の{1}は何色？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["White"] = "白",
+                    ["Red"] = "赤",
+                    ["Blue"] = "青",
+                    ["Green"] = "緑",
+                    ["Yellow"] = "黄色",
+                    ["Magenta"] = "マゼンタ",
+                },
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["column"] = "列",
+                    ["row"] = "段",
+                },
             },
 
             // Devilish Eggs
@@ -842,6 +1311,11 @@ namespace Souvenir
             [Question.DevilishEggsRotations] = new TranslationInfo
             {
                 QuestionText = "What was the {1} egg’s {2} rotation in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上",
+                    ["bottom"] = "下",
+                },
             },
             // What was the {1} digit in the string of numbers on {0}?
             [Question.DevilishEggsNumbers] = new TranslationInfo
@@ -865,7 +1339,15 @@ namespace Souvenir
             // What was {1}’s remembered position in {0}?
             [Question.DiscoloredSquaresRememberedPositions] = new TranslationInfo
             {
-                QuestionText = "What was {1}’s remembered position in {0}?",
+                QuestionText = "{0}で色の覚えた位置は？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["Blue"] = "青",
+                    ["Red"] = "赤",
+                    ["Yellow"] = "黄色",
+                    ["Green"] = "緑",
+                    ["Magenta"] = "マゼンタ",
+                },
             },
 
             // Divisible Numbers
@@ -885,6 +1367,14 @@ namespace Souvenir
             [Question.DoubleColorColors] = new TranslationInfo
             {
                 QuestionText = "What was the screen color on the {1} stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Red"] = "赤",
+                    ["Pink"] = "ピンク",
+                    ["Yellow"] = "黄色",
+                },
             },
 
             // Double Digits
@@ -898,7 +1388,7 @@ namespace Souvenir
             // Which button was the submit button in {0}?
             [Question.DoubleOhSubmitButton] = new TranslationInfo
             {
-                QuestionText = "Which button was the submit button in {0}?",
+                QuestionText = "{0}の送信ボタンは？",
             },
 
             // Dr. Doctor
@@ -1035,6 +1525,12 @@ namespace Souvenir
             [Question.EntryNumberOneNumbers] = new TranslationInfo
             {
                 QuestionText = "What was the {1} number shown in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["second"] = "2",
+                    ["third"] = "3",
+                    ["fourth"] = "4",
+                },
             },
             // What was the expected first entry in {0}?
             [Question.EntryNumberOneExpected] = new TranslationInfo
@@ -1066,6 +1562,13 @@ namespace Souvenir
             [Question.ExoplanetsStartingTargetPlanet] = new TranslationInfo
             {
                 QuestionText = "What was the starting target planet in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["outer"] = "outer",
+                    ["middle"] = "中央",
+                    ["inner"] = "inner",
+                    ["none"] = "なし",
+                },
             },
             // What was the starting target digit in {0}?
             [Question.ExoplanetsStartingTargetDigit] = new TranslationInfo
@@ -1076,6 +1579,13 @@ namespace Souvenir
             [Question.ExoplanetsTargetPlanet] = new TranslationInfo
             {
                 QuestionText = "What was the final target planet in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["outer"] = "outer",
+                    ["middle"] = "中央",
+                    ["inner"] = "inner",
+                    ["none"] = "なし",
+                },
             },
             // What was the final target digit in {0}?
             [Question.ExoplanetsTargetDigit] = new TranslationInfo
@@ -1101,7 +1611,7 @@ namespace Souvenir
             // What was the last pair of letters in {0}?
             [Question.FastMathLastLetters] = new TranslationInfo
             {
-                QuestionText = "What was the last pair of letters in {0}?",
+                QuestionText = "{0}の最後の英字のペアは？",
             },
 
             // Faulty RGB Maze
@@ -1114,11 +1624,23 @@ namespace Souvenir
             [Question.FaultyRGBMazeKeys] = new TranslationInfo
             {
                 QuestionText = "Where was the {1} key in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                },
             },
             // Which maze number was the {1} maze in {0}?
             [Question.FaultyRGBMazeNumber] = new TranslationInfo
             {
                 QuestionText = "Which maze number was the {1} maze in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                },
             },
 
             // Flags
@@ -1155,6 +1677,16 @@ namespace Souvenir
             [Question.FlashingLightsLEDFrequency] = new TranslationInfo
             {
                 QuestionText = "How many times did the {1} LED flash {2} on {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上",
+                    ["blue"] = "青",
+                    ["green"] = "緑",
+                    ["red"] = "赤",
+                    ["purple"] = "紫",
+                    ["orange"] = "オレンジ",
+                    ["bottom"] = "下",
+                },
             },
 
             // Flyswatting
@@ -1225,11 +1757,39 @@ namespace Souvenir
             [Question.ForgetTheColorsGearColor] = new TranslationInfo
             {
                 QuestionText = "What color was the gear during stage {1} in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Yellow"] = "黄色",
+                    ["Green"] = "緑",
+                    ["Cyan"] = "シアン",
+                    ["Blue"] = "青",
+                    ["Purple"] = "紫",
+                    ["Pink"] = "ピンク",
+                    ["Maroon"] = "Maroon",
+                    ["White"] = "白",
+                    ["Gray"] = "灰",
+                },
             },
             // Which edgework-based rule was applied to the sum of nixies and gear during stage {1} in {0}?
             [Question.ForgetTheColorsRuleColor] = new TranslationInfo
             {
                 QuestionText = "Which edgework-based rule was applied to the sum of nixies and gear during stage {1} in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Yellow"] = "黄色",
+                    ["Green"] = "緑",
+                    ["Cyan"] = "シアン",
+                    ["Blue"] = "青",
+                    ["Purple"] = "紫",
+                    ["Pink"] = "ピンク",
+                    ["Maroon"] = "Maroon",
+                    ["White"] = "白",
+                    ["Gray"] = "灰",
+                },
             },
 
             // Free Parking
@@ -1301,6 +1861,16 @@ namespace Souvenir
             [Question.GreatVoidColor] = new TranslationInfo
             {
                 QuestionText = "What was the {1} color in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Magenta"] = "マゼンタ",
+                    ["Yellow"] = "黄色",
+                    ["Cyan"] = "シアン",
+                    ["White"] = "白",
+                },
             },
             // What was the {1} digit in {0}?
             [Question.GreatVoidDigit] = new TranslationInfo
@@ -1344,6 +1914,13 @@ namespace Souvenir
             [Question.GridLockStartingColor] = new TranslationInfo
             {
                 QuestionText = "What was the starting color in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Green"] = "緑",
+                    ["Yellow"] = "黄色",
+                    ["Red"] = "赤",
+                    ["Blue"] = "青",
+                },
             },
 
             // Grocery Store
@@ -1384,6 +1961,15 @@ namespace Souvenir
             [Question.HexabuttonLabel] = new TranslationInfo
             {
                 QuestionText = "What label was printed on {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Jump"] = "Jump",
+                    ["Boom"] = "Boom",
+                    ["Claim"] = "Claim",
+                    ["Button"] = "ボタン",
+                    ["Hold"] = "Hold",
+                    ["Blue"] = "青",
+                },
             },
 
             // Hexamaze
@@ -1391,6 +1977,15 @@ namespace Souvenir
             [Question.HexamazePawnColor] = new TranslationInfo
             {
                 QuestionText = "What was the color of the pawn in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Yellow"] = "黄色",
+                    ["Green"] = "緑",
+                    ["Cyan"] = "シアン",
+                    ["Blue"] = "青",
+                    ["Pink"] = "ピンク",
+                },
             },
 
             // hexOS
@@ -1420,6 +2015,17 @@ namespace Souvenir
             [Question.HiddenColorsLED] = new TranslationInfo
             {
                 QuestionText = "What was the color of the main LED in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Blue"] = "青",
+                    ["Green"] = "緑",
+                    ["Yellow"] = "黄色",
+                    ["Orange"] = "オレンジ",
+                    ["Purple"] = "紫",
+                    ["Magenta"] = "マゼンタ",
+                    ["White"] = "白",
+                },
             },
 
             // Hill Cycle
@@ -1463,6 +2069,15 @@ namespace Souvenir
             [Question.HorribleMemoryColors] = new TranslationInfo
             {
                 QuestionText = "What color was the button pressed on the {1} stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["blue"] = "青",
+                    ["green"] = "緑",
+                    ["red"] = "赤",
+                    ["orange"] = "オレンジ",
+                    ["purple"] = "紫",
+                    ["pink"] = "ピンク",
+                },
             },
 
             // Homophones
@@ -1477,6 +2092,11 @@ namespace Souvenir
             [Question.HumanResourcesDescriptors] = new TranslationInfo
             {
                 QuestionText = "Which was a descriptor shown in {1} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                },
             },
             // Who was {1} in {0}?
             [Question.HumanResourcesHiredFired] = new TranslationInfo
@@ -1489,13 +2109,29 @@ namespace Souvenir
             [Question.HuntingColumnsRows] = new TranslationInfo
             {
                 QuestionText = "Which of the first three stages of {0} had the {1} symbol {2}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["none"] = "なし",
+                    ["first"] = "1",
+                    ["second"] = "2",
+                    ["first two"] = "first two",
+                    ["third"] = "3",
+                    ["first & third"] = "first & third",
+                    ["second & third"] = "second & third",
+                    ["all three"] = "all three",
+                },
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["column"] = "列",
+                    ["row"] = "段",
+                },
             },
 
             // The Hypercube
             // What was the {1} rotation in {0}?
             [Question.HypercubeRotations] = new TranslationInfo
             {
-                QuestionText = "What was the {1} rotation in {0}?",
+                QuestionText = "{0}の{1}番目の回転方向は？",
             },
 
             // The Hyperlink
@@ -1515,6 +2151,11 @@ namespace Souvenir
             [Question.IceCreamFlavour] = new TranslationInfo
             {
                 QuestionText = "Which one of these flavours {1} to the {2} customer in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["was on offer, but not sold,"] = "was on offer, but not sold,",
+                    ["was not on offer"] = "was not on offer",
+                },
             },
             // Who was the {1} customer in {0}?
             [Question.IceCreamCustomer] = new TranslationInfo
@@ -1539,6 +2180,15 @@ namespace Souvenir
             [Question.IdentityParadeHairColors] = new TranslationInfo
             {
                 QuestionText = "Which hair color {1} listed in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Black"] = "黒",
+                    ["Blonde"] = "Blonde",
+                    ["Brown"] = "茶",
+                    ["Grey"] = "灰",
+                    ["Red"] = "赤",
+                    ["White"] = "白",
+                },
             },
             // Which build {1} listed in {0}?
             [Question.IdentityParadeBuilds] = new TranslationInfo
@@ -1563,6 +2213,61 @@ namespace Souvenir
             [Question.InfiniteLoopSelectedWord] = new TranslationInfo
             {
                 QuestionText = "What was the selected word in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["anchor"] = "anchor",
+                    ["axions"] = "axions",
+                    ["brutal"] = "brutal",
+                    ["bunker"] = "bunker",
+                    ["ceased"] = "ceased",
+                    ["cypher"] = "cypher",
+                    ["demote"] = "demote",
+                    ["devoid"] = "devoid",
+                    ["ejects"] = "ejects",
+                    ["expend"] = "expend",
+                    ["fixate"] = "fixate",
+                    ["fondly"] = "fondly",
+                    ["geyser"] = "geyser",
+                    ["guitar"] = "guitar",
+                    ["hexing"] = "hexing",
+                    ["hybrid"] = "hybrid",
+                    ["incite"] = "incite",
+                    ["inject"] = "inject",
+                    ["jacked"] = "jacked",
+                    ["jigsaw"] = "jigsaw",
+                    ["kayaks"] = "kayaks",
+                    ["komodo"] = "komodo",
+                    ["lazuli"] = "lazuli",
+                    ["logjam"] = "logjam",
+                    ["maimed"] = "maimed",
+                    ["musket"] = "musket",
+                    ["nebula"] = "nebula",
+                    ["nuking"] = "nuking",
+                    ["overdo"] = "overdo",
+                    ["oblong"] = "oblong",
+                    ["photon"] = "photon",
+                    ["probed"] = "probed",
+                    ["quartz"] = "quartz",
+                    ["quebec"] = "quebec",
+                    ["refute"] = "refute",
+                    ["regime"] = "regime",
+                    ["sierra"] = "sierra",
+                    ["swerve"] = "swerve",
+                    ["tenacy"] = "tenacy",
+                    ["thymes"] = "thymes",
+                    ["ultima"] = "ultima",
+                    ["utopia"] = "utopia",
+                    ["valved"] = "valved",
+                    ["viable"] = "viable",
+                    ["wither"] = "wither",
+                    ["wrench"] = "wrench",
+                    ["xenons"] = "xenons",
+                    ["xylose"] = "xylose",
+                    ["yanked"] = "yanked",
+                    ["yellow"] = "黄色",
+                    ["zigged"] = "zigged",
+                    ["zodiac"] = "zodiac",
+                },
             },
 
             // Ingredients
@@ -1570,11 +2275,135 @@ namespace Souvenir
             [Question.IngredientsIngredients] = new TranslationInfo
             {
                 QuestionText = "Which ingredient was used in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Veal"] = "Veal",
+                    ["Beef"] = "Beef",
+                    ["Quail"] = "Quail",
+                    ["FiletMignon"] = "FiletMignon",
+                    ["Crab"] = "Crab",
+                    ["Scallop"] = "Scallop",
+                    ["Lobster"] = "Lobster",
+                    ["Sole"] = "Sole",
+                    ["Eel"] = "Eel",
+                    ["SeaBass"] = "SeaBass",
+                    ["Mussel"] = "Mussel",
+                    ["Cod"] = "Cod",
+                    ["Pumpkin"] = "Pumpkin",
+                    ["Zucchini"] = "Zucchini",
+                    ["Onion"] = "Onion",
+                    ["Tomato"] = "Tomato",
+                    ["Eggplant"] = "Eggplant",
+                    ["Carrot"] = "Carrot",
+                    ["Garlic"] = "Garlic",
+                    ["Celery"] = "Celery",
+                    ["Morel"] = "Morel",
+                    ["Porcini"] = "Porcini",
+                    ["Chanterelle"] = "Chanterelle",
+                    ["Portobello"] = "Portobello",
+                    ["BlackTruffle"] = "BlackTruffle",
+                    ["KingOysterMushroom"] = "KingOysterMushroom",
+                    ["BlackTrumpet"] = "BlackTrumpet",
+                    ["MillerMushroom"] = "MillerMushroom",
+                    ["Cloves"] = "Cloves",
+                    ["Rosemary"] = "Rosemary",
+                    ["Thyme"] = "Thyme",
+                    ["BayLeaf"] = "BayLeaf",
+                    ["Basil"] = "Basil",
+                    ["Dill"] = "Dill",
+                    ["Parsley"] = "Parsley",
+                    ["Saffron"] = "Saffron",
+                    ["Apricot"] = "Apricot",
+                    ["Gooseberry"] = "Gooseberry",
+                    ["Lemon"] = "Lemon",
+                    ["Orange"] = "オレンジ",
+                    ["Raspberry"] = "Raspberry",
+                    ["Pear"] = "Pear",
+                    ["Blackberry"] = "Blackberry",
+                    ["Apple"] = "Apple",
+                    ["Cheese"] = "Cheese",
+                    ["Chocolate"] = "Chocolate",
+                    ["Caviar"] = "Caviar",
+                    ["Butter"] = "Butter",
+                    ["OliveOil"] = "OliveOil",
+                    ["Cornichon"] = "Cornichon",
+                    ["Rice"] = "Rice",
+                    ["Honey"] = "Honey",
+                    ["SourCherry"] = "SourCherry",
+                    ["Strawberry"] = "Strawberry",
+                    ["BloodOrange"] = "BloodOrange",
+                    ["Banana"] = "Banana",
+                    ["Grapes"] = "Grapes",
+                    ["Melon"] = "Melon",
+                    ["Watermelon"] = "Watermelon",
+                },
             },
             // Which ingredient was listed but not used in {0}?
             [Question.IngredientsNonIngredients] = new TranslationInfo
             {
                 QuestionText = "Which ingredient was listed but not used in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Veal"] = "Veal",
+                    ["Beef"] = "Beef",
+                    ["Quail"] = "Quail",
+                    ["FiletMignon"] = "FiletMignon",
+                    ["Crab"] = "Crab",
+                    ["Scallop"] = "Scallop",
+                    ["Lobster"] = "Lobster",
+                    ["Sole"] = "Sole",
+                    ["Eel"] = "Eel",
+                    ["SeaBass"] = "SeaBass",
+                    ["Mussel"] = "Mussel",
+                    ["Cod"] = "Cod",
+                    ["Pumpkin"] = "Pumpkin",
+                    ["Zucchini"] = "Zucchini",
+                    ["Onion"] = "Onion",
+                    ["Tomato"] = "Tomato",
+                    ["Eggplant"] = "Eggplant",
+                    ["Carrot"] = "Carrot",
+                    ["Garlic"] = "Garlic",
+                    ["Celery"] = "Celery",
+                    ["Morel"] = "Morel",
+                    ["Porcini"] = "Porcini",
+                    ["Chanterelle"] = "Chanterelle",
+                    ["Portobello"] = "Portobello",
+                    ["BlackTruffle"] = "BlackTruffle",
+                    ["KingOysterMushroom"] = "KingOysterMushroom",
+                    ["BlackTrumpet"] = "BlackTrumpet",
+                    ["MillerMushroom"] = "MillerMushroom",
+                    ["Cloves"] = "Cloves",
+                    ["Rosemary"] = "Rosemary",
+                    ["Thyme"] = "Thyme",
+                    ["BayLeaf"] = "BayLeaf",
+                    ["Basil"] = "Basil",
+                    ["Dill"] = "Dill",
+                    ["Parsley"] = "Parsley",
+                    ["Saffron"] = "Saffron",
+                    ["Apricot"] = "Apricot",
+                    ["Gooseberry"] = "Gooseberry",
+                    ["Lemon"] = "Lemon",
+                    ["Orange"] = "オレンジ",
+                    ["Raspberry"] = "Raspberry",
+                    ["Pear"] = "Pear",
+                    ["Blackberry"] = "Blackberry",
+                    ["Apple"] = "Apple",
+                    ["Cheese"] = "Cheese",
+                    ["Chocolate"] = "Chocolate",
+                    ["Caviar"] = "Caviar",
+                    ["Butter"] = "Butter",
+                    ["OliveOil"] = "OliveOil",
+                    ["Cornichon"] = "Cornichon",
+                    ["Rice"] = "Rice",
+                    ["Honey"] = "Honey",
+                    ["SourCherry"] = "SourCherry",
+                    ["Strawberry"] = "Strawberry",
+                    ["BloodOrange"] = "BloodOrange",
+                    ["Banana"] = "Banana",
+                    ["Grapes"] = "Grapes",
+                    ["Melon"] = "Melon",
+                    ["Watermelon"] = "Watermelon",
+                },
             },
 
             // Inner Connections
@@ -1582,6 +2411,15 @@ namespace Souvenir
             [Question.InnerConnectionsLED] = new TranslationInfo
             {
                 QuestionText = "What color was the LED in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Black"] = "黒",
+                    ["Blue"] = "青",
+                    ["Red"] = "赤",
+                    ["White"] = "白",
+                    ["Yellow"] = "黄色",
+                    ["Green"] = "緑",
+                },
             },
             // What was the digit flashed in Morse in {0}?
             [Question.InnerConnectionsMorse] = new TranslationInfo
@@ -1642,7 +2480,12 @@ namespace Souvenir
             // Which square was {1} in {0}?
             [Question.KudosudokuPrefilled] = new TranslationInfo
             {
-                QuestionText = "Which square was {1} in {0}?",
+                QuestionText = "{0}で最初に{1}四角はどれ？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["pre-filled"] = "埋められていた",
+                    ["not pre-filled"] = "埋められていなかった",
+                },
             },
 
             // Ladders
@@ -1650,11 +2493,33 @@ namespace Souvenir
             [Question.LaddersStage2Colors] = new TranslationInfo
             {
                 QuestionText = "Which color was present on the second ladder in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Yellow"] = "黄色",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Cyan"] = "シアン",
+                    ["Purple"] = "紫",
+                    ["Gray"] = "灰",
+                },
             },
             // What color was missing on the third ladder in {0}?
             [Question.LaddersStage3Missing] = new TranslationInfo
             {
                 QuestionText = "What color was missing on the third ladder in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Yellow"] = "黄色",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Cyan"] = "シアン",
+                    ["Purple"] = "紫",
+                    ["Gray"] = "灰",
+                },
             },
 
             // Lasers
@@ -1676,6 +2541,13 @@ namespace Souvenir
             [Question.LEDMathLights] = new TranslationInfo
             {
                 QuestionText = "What color was {1} in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Blue"] = "青",
+                    ["Yellow"] = "黄色",
+                    ["Green"] = "緑",
+                },
             },
 
             // LEDs
@@ -1690,6 +2562,15 @@ namespace Souvenir
             [Question.LEGOsPieceDimensions] = new TranslationInfo
             {
                 QuestionText = "What were the dimensions of the {1} piece in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                    ["cyan"] = "シアン",
+                    ["magenta"] = "マゼンタ",
+                    ["yellow"] = "黄色",
+                },
             },
 
             // Letter Math
@@ -1704,6 +2585,24 @@ namespace Souvenir
             [Question.LinqFunction] = new TranslationInfo
             {
                 QuestionText = "What was the {1} function in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["First"] = "1",
+                    ["Last"] = "Last",
+                    ["Min"] = "Min",
+                    ["Max"] = "Max",
+                    ["Distinct"] = "Distinct",
+                    ["Skip"] = "Skip",
+                    ["SkipLast"] = "SkipLast",
+                    ["Take"] = "Take",
+                    ["TakeLast"] = "TakeLast",
+                    ["ElementAt"] = "ElementAt",
+                    ["Except"] = "Except",
+                    ["Intersect"] = "Intersect",
+                    ["Concat"] = "Concat",
+                    ["Append"] = "Append",
+                    ["Prepend"] = "Prepend",
+                },
             },
 
             // Lion’s Share
@@ -1722,7 +2621,7 @@ namespace Souvenir
             // What was the correct code you entered in {0}?
             [Question.ListeningCode] = new TranslationInfo
             {
-                QuestionText = "What was the correct code you entered in {0}?",
+                QuestionText = "{0}で入力した正しいコードは？",
             },
 
             // Logical Buttons
@@ -1730,11 +2629,33 @@ namespace Souvenir
             [Question.LogicalButtonsColor] = new TranslationInfo
             {
                 QuestionText = "What was the color of the {1} button in the {2} stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Blue"] = "青",
+                    ["Green"] = "緑",
+                    ["Yellow"] = "黄色",
+                    ["Purple"] = "紫",
+                    ["White"] = "白",
+                    ["Orange"] = "オレンジ",
+                    ["Cyan"] = "シアン",
+                    ["Grey"] = "灰",
+                },
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上",
+                    ["bottom-left"] = "bottom-left",
+                },
             },
             // What was the label on the {1} button in the {2} stage of {0}?
             [Question.LogicalButtonsLabel] = new TranslationInfo
             {
                 QuestionText = "What was the label on the {1} button in the {2} stage of {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上",
+                    ["bottom-left"] = "bottom-left",
+                },
             },
             // What was the final operator in the {1} stage of {0}?
             [Question.LogicalButtonsOperator] = new TranslationInfo
@@ -1746,7 +2667,18 @@ namespace Souvenir
             // What was {1} in {0}?
             [Question.LogicGatesGates] = new TranslationInfo
             {
-                QuestionText = "What was {1} in {0}?",
+                QuestionText = "{0}で{1}はどれだったか？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["gate A"] = "ゲートA",
+                    ["gate B"] = "ゲートB",
+                    ["gate C"] = "ゲートC",
+                    ["gate D"] = "ゲートD",
+                    ["gate E"] = "ゲートE",
+                    ["gate F"] = "ゲートF",
+                    ["gate G"] = "ゲートG",
+                    ["the duplicated gate"] = "重複したゲート",
+                },
             },
 
             // Lombax Cubes
@@ -1761,6 +2693,10 @@ namespace Souvenir
             [Question.LondonUndergroundStations] = new TranslationInfo
             {
                 QuestionText = "Where did the {1} journey on {0} {2}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["depart from"] = "depart from",
+                },
             },
 
             // Mahjong
@@ -1787,6 +2723,15 @@ namespace Souvenir
             [Question.MandMsColors] = new TranslationInfo
             {
                 QuestionText = "What color was the text on the {1} button in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["orange"] = "オレンジ",
+                    ["blue"] = "青",
+                    ["yellow"] = "黄色",
+                    ["brown"] = "茶",
+                },
             },
             // What was the text on the {1} button in {0}?
             [Question.MandMsLabels] = new TranslationInfo
@@ -1799,6 +2744,15 @@ namespace Souvenir
             [Question.MandNsColors] = new TranslationInfo
             {
                 QuestionText = "What color was the text on the {1} button in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["orange"] = "オレンジ",
+                    ["blue"] = "青",
+                    ["yellow"] = "黄色",
+                    ["brown"] = "茶",
+                },
             },
             // What was the text on the correct button in {0}?
             [Question.MandNsLabel] = new TranslationInfo
@@ -1828,6 +2782,10 @@ namespace Souvenir
             [Question.MashematicsCalculation] = new TranslationInfo
             {
                 QuestionText = "What was the {1} number in the equation on {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["�ordinal"] = "1",
+                },
             },
 
             // The Matrix
@@ -1840,6 +2798,109 @@ namespace Souvenir
             [Question.MatrixGlitchWord] = new TranslationInfo
             {
                 QuestionText = "What was the glitched word in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["headjack"] = "headjack",
+                    ["phone"] = "phone",
+                    ["dystopia"] = "dystopia",
+                    ["control"] = "control",
+                    ["paradise"] = "paradise",
+                    ["utopia"] = "utopia",
+                    ["version"] = "version",
+                    ["nebuchadnezzar"] = "nebuchadnezzar",
+                    ["zion"] = "zion",
+                    ["fight"] = "fight",
+                    ["utopia"] = "utopia",
+                    ["mind"] = "mind",
+                    ["squiddy"] = "squiddy",
+                    ["guns"] = "guns",
+                    ["trace"] = "trace",
+                    ["spoon"] = "spoon",
+                    ["machine"] = "machine",
+                    ["red"] = "赤",
+                    ["white"] = "白",
+                    ["paradise"] = "paradise",
+                    ["metacortex"] = "metacortex",
+                    ["flint"] = "flint",
+                    ["nova"] = "nova",
+                    ["white"] = "白",
+                    ["rabbit"] = "rabbit",
+                    ["follow"] = "follow",
+                    ["matrix"] = "matrix",
+                    ["free"] = "free",
+                    ["neural"] = "neural",
+                    ["mind"] = "mind",
+                    ["fight"] = "fight",
+                    ["free"] = "free",
+                    ["nova"] = "nova",
+                    ["blue"] = "青",
+                    ["fields"] = "fields",
+                    ["choice"] = "choice",
+                    ["battery"] = "battery",
+                    ["program"] = "program",
+                    ["flint"] = "flint",
+                    ["headjack"] = "headjack",
+                    ["kungfu"] = "kungfu",
+                    ["choi"] = "choi",
+                    ["red"] = "赤",
+                    ["blue"] = "青",
+                    ["pill"] = "pill",
+                    ["jump"] = "jump",
+                    ["program"] = "program",
+                    ["agent"] = "agent",
+                    ["sentient"] = "sentient",
+                    ["squiddy"] = "squiddy",
+                    ["dystopia"] = "dystopia",
+                    ["rabbit"] = "rabbit",
+                    ["jump"] = "jump",
+                    ["code"] = "code",
+                    ["mirror"] = "mirror",
+                    ["cookie"] = "cookie",
+                    ["human"] = "human",
+                    ["pill"] = "pill",
+                    ["follow"] = "follow",
+                    ["version"] = "version",
+                    ["sentinel"] = "sentinel",
+                    ["machine"] = "machine",
+                    ["prison"] = "prison",
+                    ["human"] = "human",
+                    ["fields"] = "fields",
+                    ["battery"] = "battery",
+                    ["code"] = "code",
+                    ["training"] = "training",
+                    ["guns"] = "guns",
+                    ["hel"] = "hel",
+                    ["elevator"] = "elevator",
+                    ["sentinel"] = "sentinel",
+                    ["choi"] = "choi",
+                    ["matrix"] = "matrix",
+                    ["nebuchadnezzar"] = "nebuchadnezzar",
+                    ["control"] = "control",
+                    ["metacortex"] = "metacortex",
+                    ["sentient"] = "sentient",
+                    ["unplug"] = "unplug",
+                    ["hardwire"] = "hardwire",
+                    ["trainman"] = "trainman",
+                    ["spoon"] = "spoon",
+                    ["cookie"] = "cookie",
+                    ["elevator"] = "elevator",
+                    ["hardwire"] = "hardwire",
+                    ["choice"] = "choice",
+                    ["trace"] = "trace",
+                    ["mirror"] = "mirror",
+                    ["unplug"] = "unplug",
+                    ["interface"] = "interface",
+                    ["prison"] = "prison",
+                    ["kungfu"] = "kungfu",
+                    ["interface"] = "interface",
+                    ["neural"] = "neural",
+                    ["trainman"] = "trainman",
+                    ["hel"] = "hel",
+                    ["agent"] = "agent",
+                    ["training"] = "training",
+                    ["zion"] = "zion",
+                    ["phone"] = "phone",
+                },
             },
 
             // Maze
@@ -1847,6 +2908,13 @@ namespace Souvenir
             [Question.MazeStartingPosition] = new TranslationInfo
             {
                 QuestionText = "In which {1} was the starting position in {0}, counting from the {2}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["column"] = "列",
+                    ["left"] = "左",
+                    ["row"] = "段",
+                    ["top"] = "上",
+                },
             },
 
             // Maze³
@@ -1854,6 +2922,15 @@ namespace Souvenir
             [Question.Maze3StartingFace] = new TranslationInfo
             {
                 QuestionText = "What was the color of the starting face in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Blue"] = "青",
+                    ["Yellow"] = "黄色",
+                    ["Green"] = "緑",
+                    ["Magenta"] = "マゼンタ",
+                    ["Orange"] = "オレンジ",
+                },
             },
 
             // Maze Identification
@@ -1949,17 +3026,17 @@ namespace Souvenir
             // What was the displayed number in the {1} stage of {0}?
             [Question.MemoryDisplay] = new TranslationInfo
             {
-                QuestionText = "What was the displayed number in the {1} stage of {0}?",
+                QuestionText = "{0}のステージ{1}で表示された数は？",
             },
             // In what position was the button that you pressed in the {1} stage of {0}?
             [Question.MemoryPosition] = new TranslationInfo
             {
-                QuestionText = "In what position was the button that you pressed in the {1} stage of {0}?",
+                QuestionText = "{0}のステージ{1}で押したボタンの位置は？",
             },
             // What was the label of the button that you pressed in the {1} stage of {0}?
             [Question.MemoryLabel] = new TranslationInfo
             {
-                QuestionText = "What was the label of the button that you pressed in the {1} stage of {0}?",
+                QuestionText = "{0}のステージ{1}で押したボタンのラベルは？",
             },
 
             // Metamorse
@@ -1980,7 +3057,17 @@ namespace Souvenir
             // What was the color of the starting cell in {0}?
             [Question.MinesweeperStartingColor] = new TranslationInfo
             {
-                QuestionText = "What was the color of the starting cell in {0}?",
+                QuestionText = "{0}の開始のマスは何色？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["orange"] = "オレンジ",
+                    ["yellow"] = "黄色",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                    ["purple"] = "紫",
+                    ["black"] = "黒",
+                },
             },
 
             // Mirror
@@ -2007,6 +3094,749 @@ namespace Souvenir
             [Question.ModernCipherWord] = new TranslationInfo
             {
                 QuestionText = "What was the decrypted word of the {1} stage in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Absent"] = "Absent",
+                    ["Abstract"] = "Abstract",
+                    ["Abysmal"] = "Abysmal",
+                    ["Accident"] = "Accident",
+                    ["Activate"] = "Activate",
+                    ["Adjacent"] = "Adjacent",
+                    ["Afraid"] = "Afraid",
+                    ["Agenda"] = "Agenda",
+                    ["Agony"] = "Agony",
+                    ["Alchemy"] = "Alchemy",
+                    ["Alcohol"] = "Alcohol",
+                    ["Alive"] = "Alive",
+                    ["Allergic"] = "Allergic",
+                    ["Allergy"] = "Allergy",
+                    ["Alpha"] = "Alpha",
+                    ["Alphabet"] = "Alphabet",
+                    ["Already"] = "Already",
+                    ["Amethyst"] = "Amethyst",
+                    ["Amnesty"] = "Amnesty",
+                    ["Amperage"] = "Amperage",
+                    ["Ancient"] = "Ancient",
+                    ["Animals"] = "Animals",
+                    ["Animate"] = "Animate",
+                    ["Anthrax"] = "Anthrax",
+                    ["Anxious"] = "Anxious",
+                    ["Aquarium"] = "Aquarium",
+                    ["Aquarius"] = "Aquarius",
+                    ["Arcade"] = "Arcade",
+                    ["Arrange"] = "Arrange",
+                    ["Arrow"] = "Arrow",
+                    ["Artefact"] = "Artefact",
+                    ["Asterisk"] = "Asterisk",
+                    ["Atrophy"] = "Atrophy",
+                    ["Audio"] = "Audio",
+                    ["Author"] = "Author",
+                    ["Avoid"] = "Avoid",
+                    ["Awesome"] = "Awesome",
+                    ["Balance"] = "Balance",
+                    ["Banana"] = "Banana",
+                    ["Bandit"] = "Bandit",
+                    ["Bankrupt"] = "Bankrupt",
+                    ["Basket"] = "Basket",
+                    ["Battle"] = "Battle",
+                    ["Bazaar"] = "Bazaar",
+                    ["Beard"] = "Beard",
+                    ["Beauty"] = "Beauty",
+                    ["Beaver"] = "Beaver",
+                    ["Becoming"] = "Becoming",
+                    ["Beetle"] = "Beetle",
+                    ["Beseech"] = "Beseech",
+                    ["Between"] = "Between",
+                    ["Bicycle"] = "Bicycle",
+                    ["Bigger"] = "Bigger",
+                    ["Biggest"] = "Biggest",
+                    ["Biology"] = "Biology",
+                    ["Birthday"] = "Birthday",
+                    ["Bistro"] = "Bistro",
+                    ["Bites"] = "Bites",
+                    ["Blight"] = "Blight",
+                    ["Blockade"] = "Blockade",
+                    ["Blubber"] = "Blubber",
+                    ["Bomb"] = "Bomb",
+                    ["Bonobo"] = "Bonobo",
+                    ["Books"] = "Books",
+                    ["Bottle"] = "Bottle",
+                    ["Brazil"] = "Brazil",
+                    ["Brief"] = "Brief",
+                    ["Broccoli"] = "Broccoli",
+                    ["Broken"] = "Broken",
+                    ["Brother"] = "Brother",
+                    ["Bubble"] = "Bubble",
+                    ["Budget"] = "Budget",
+                    ["Bulkhead"] = "Bulkhead",
+                    ["Bumper"] = "Bumper",
+                    ["Bunny"] = "Bunny",
+                    ["Button"] = "ボタン",
+                    ["Bytes"] = "Bytes",
+                    ["Cables"] = "Cables",
+                    ["Caliber"] = "Caliber",
+                    ["Campaign"] = "Campaign",
+                    ["Canada"] = "Canada",
+                    ["Canister"] = "Canister",
+                    ["Caption"] = "Caption",
+                    ["Caution"] = "Caution",
+                    ["Cavity"] = "Cavity",
+                    ["Chalk"] = "Chalk",
+                    ["Chamber"] = "Chamber",
+                    ["Chamfer"] = "Chamfer",
+                    ["Champion"] = "Champion",
+                    ["Changes"] = "Changes",
+                    ["Chicken"] = "Chicken",
+                    ["Children"] = "Children",
+                    ["Chlorine"] = "Chlorine",
+                    ["Chord"] = "Chord",
+                    ["Chronic"] = "Chronic",
+                    ["Church"] = "Church",
+                    ["Cinnamon"] = "Cinnamon",
+                    ["Civic"] = "Civic",
+                    ["Cleric"] = "Cleric",
+                    ["Clock"] = "Clock",
+                    ["Cocoon"] = "Cocoon",
+                    ["Combat"] = "Combat",
+                    ["Combine"] = "Combine",
+                    ["Comedy"] = "Comedy",
+                    ["Comics"] = "Comics",
+                    ["Comma"] = "Comma",
+                    ["Command"] = "Command",
+                    ["Comment"] = "Comment",
+                    ["Compost"] = "Compost",
+                    ["Computer"] = "Computer",
+                    ["Condom"] = "Condom",
+                    ["Conflict"] = "Conflict",
+                    ["Consider"] = "Consider",
+                    ["Contour"] = "Contour",
+                    ["Control"] = "Control",
+                    ["Corrupt"] = "Corrupt",
+                    ["Costume"] = "Costume",
+                    ["Criminal"] = "Criminal",
+                    ["Crunch"] = "Crunch",
+                    ["Cryptic"] = "Cryptic",
+                    ["Cuboid"] = "Cuboid",
+                    ["Cypher"] = "Cypher",
+                    ["Daddy"] = "Daddy",
+                    ["Dancer"] = "Dancer",
+                    ["Dancing"] = "Dancing",
+                    ["Daughter"] = "Daughter",
+                    ["Dead"] = "Dead",
+                    ["Decapod"] = "Decapod",
+                    ["Decay"] = "Decay",
+                    ["Decoy"] = "Decoy",
+                    ["Defeat"] = "Defeat",
+                    ["Defuser"] = "Defuser",
+                    ["Degree"] = "Degree",
+                    ["Delay"] = "Delay",
+                    ["Demigod"] = "Demigod",
+                    ["Dentist"] = "Dentist",
+                    ["Desert"] = "Desert",
+                    ["Design"] = "Design",
+                    ["Desire"] = "Desire",
+                    ["Dessert"] = "Dessert",
+                    ["Detail"] = "Detail",
+                    ["Develop"] = "Develop",
+                    ["Device"] = "Device",
+                    ["Diamond"] = "Diamond",
+                    ["Dictate"] = "Dictate",
+                    ["Diffuse"] = "Diffuse",
+                    ["Dilemma"] = "Dilemma",
+                    ["Dingy"] = "Dingy",
+                    ["Dinosaur"] = "Dinosaur",
+                    ["Disease"] = "Disease",
+                    ["Disgust"] = "Disgust",
+                    ["Document"] = "Document",
+                    ["Doubled"] = "Doubled",
+                    ["Doubt"] = "Doubt",
+                    ["Downbeat"] = "Downbeat",
+                    ["Dragon"] = "Dragon",
+                    ["Drawer"] = "Drawer",
+                    ["Dream"] = "Dream",
+                    ["Drink"] = "Drink",
+                    ["Drunken"] = "Drunken",
+                    ["Dungeon"] = "Dungeon",
+                    ["Dynasty"] = "Dynasty",
+                    ["Dyslexia"] = "Dyslexia",
+                    ["Eclipse"] = "Eclipse",
+                    ["Eldritch"] = "Eldritch",
+                    ["Email"] = "Email",
+                    ["Emulator"] = "Emulator",
+                    ["Encrypt"] = "Encrypt",
+                    ["England"] = "England",
+                    ["Enlist"] = "Enlist",
+                    ["Enough"] = "Enough",
+                    ["Ensure"] = "Ensure",
+                    ["Equality"] = "Equality",
+                    ["Equation"] = "Equation",
+                    ["Eruption"] = "Eruption",
+                    ["Eternity"] = "Eternity",
+                    ["Euphoria"] = "Euphoria",
+                    ["Exact"] = "Exact",
+                    ["Exclaim"] = "Exclaim",
+                    ["Exhaust"] = "Exhaust",
+                    ["Expert"] = "Expert",
+                    ["Expertly"] = "Expertly",
+                    ["Explain"] = "Explain",
+                    ["Explodes"] = "Explodes",
+                    ["Fabric"] = "Fabric",
+                    ["Factory"] = "Factory",
+                    ["Faded"] = "Faded",
+                    ["Faint"] = "Faint",
+                    ["Fair"] = "Fair",
+                    ["False"] = "False",
+                    ["Falter"] = "Falter",
+                    ["Famous"] = "Famous",
+                    ["Fantasy"] = "Fantasy",
+                    ["Farm"] = "Farm",
+                    ["Father"] = "Father",
+                    ["Faucet"] = "Faucet",
+                    ["Faulty"] = "Faulty",
+                    ["Fearsome"] = "Fearsome",
+                    ["Feast"] = "Feast",
+                    ["February"] = "February",
+                    ["Feint"] = "Feint",
+                    ["Festival"] = "Festival",
+                    ["Fiction"] = "Fiction",
+                    ["Fighter"] = "Fighter",
+                    ["Figure"] = "Figure",
+                    ["Finish"] = "Finish",
+                    ["Fireman"] = "Fireman",
+                    ["Firework"] = "Firework",
+                    ["First"] = "1",
+                    ["Fixture"] = "Fixture",
+                    ["Flagrant"] = "Flagrant",
+                    ["Flagship"] = "Flagship",
+                    ["Flamingo"] = "Flamingo",
+                    ["Flesh"] = "Flesh",
+                    ["Flipper"] = "Flipper",
+                    ["Fluorine"] = "Fluorine",
+                    ["Flush"] = "Flush",
+                    ["Foreign"] = "Foreign",
+                    ["Forensic"] = "Forensic",
+                    ["Fractal"] = "Fractal",
+                    ["Fragrant"] = "Fragrant",
+                    ["France"] = "France",
+                    ["Frantic"] = "Frantic",
+                    ["Freak"] = "Freak",
+                    ["Friction"] = "Friction",
+                    ["Friday"] = "Friday",
+                    ["Friendly"] = "Friendly",
+                    ["Frighten"] = "Frighten",
+                    ["Furor"] = "Furor",
+                    ["Fused"] = "Fused",
+                    ["Garage"] = "Garage",
+                    ["Genes"] = "Genes",
+                    ["Genetic"] = "Genetic",
+                    ["Genius"] = "Genius",
+                    ["Gentle"] = "Gentle",
+                    ["Glacier"] = "Glacier",
+                    ["Glitch"] = "Glitch",
+                    ["Goat"] = "Goat",
+                    ["Golden"] = "Golden",
+                    ["Granular"] = "Granular",
+                    ["Graphics"] = "Graphics",
+                    ["Graphite"] = "Graphite",
+                    ["Grateful"] = "Grateful",
+                    ["Gridlock"] = "Gridlock",
+                    ["Ground"] = "Ground",
+                    ["Guitar"] = "Guitar",
+                    ["Gumption"] = "Gumption",
+                    ["Halogen"] = "Halogen",
+                    ["Harmony"] = "Harmony",
+                    ["Hawk"] = "Hawk",
+                    ["Headache"] = "Headache",
+                    ["Heard"] = "Heard",
+                    ["Hedgehog"] = "Hedgehog",
+                    ["Heinous"] = "Heinous",
+                    ["Herd"] = "Herd",
+                    ["Heretic"] = "Heretic",
+                    ["Hexagon"] = "Hexagon",
+                    ["Hiccup"] = "Hiccup",
+                    ["Highway"] = "Highway",
+                    ["Holiday"] = "Holiday",
+                    ["Home"] = "Home",
+                    ["Homesick"] = "Homesick",
+                    ["Honest"] = "Honest",
+                    ["Horror"] = "Horror",
+                    ["Horse"] = "Horse",
+                    ["House"] = "House",
+                    ["Huge"] = "Huge",
+                    ["Humanity"] = "Humanity",
+                    ["Hungry"] = "Hungry",
+                    ["Hydrogen"] = "Hydrogen",
+                    ["Hysteria"] = "Hysteria",
+                    ["Imagine"] = "Imagine",
+                    ["Industry"] = "Industry",
+                    ["Infamous"] = "Infamous",
+                    ["Inside"] = "Inside",
+                    ["Integral"] = "Integral",
+                    ["Interest"] = "Interest",
+                    ["Ironclad"] = "Ironclad",
+                    ["Issue"] = "Issue",
+                    ["Italic"] = "Italic",
+                    ["Italy"] = "Italy",
+                    ["Itch"] = "Itch",
+                    ["Jaundice"] = "Jaundice",
+                    ["Jeans"] = "Jeans",
+                    ["Jeopardy"] = "Jeopardy",
+                    ["Joyful"] = "Joyful",
+                    ["Joystick"] = "Joystick",
+                    ["Juice"] = "Juice",
+                    ["Juncture"] = "Juncture",
+                    ["Jungle"] = "Jungle",
+                    ["Junkyard"] = "Junkyard",
+                    ["Justice"] = "Justice",
+                    ["Keep"] = "Keep",
+                    ["Keyboard"] = "Keyboard",
+                    ["Kilobyte"] = "Kilobyte",
+                    ["Kilogram"] = "Kilogram",
+                    ["Kingdom"] = "Kingdom",
+                    ["Kitchen"] = "Kitchen",
+                    ["Kitten"] = "Kitten",
+                    ["Knife"] = "Knife",
+                    ["Krypton"] = "Krypton",
+                    ["Ladylike"] = "Ladylike",
+                    ["Language"] = "Language",
+                    ["Large"] = "Large",
+                    ["Laughter"] = "Laughter",
+                    ["Launch"] = "Launch",
+                    ["Leaders"] = "Leaders",
+                    ["Learn"] = "Learn",
+                    ["Leave"] = "Leave",
+                    ["Leopard"] = "Leopard",
+                    ["Level"] = "Level",
+                    ["Liberal"] = "Liberal",
+                    ["Liberty"] = "Liberty",
+                    ["Lifeboat"] = "Lifeboat",
+                    ["Ligament"] = "Ligament",
+                    ["Light"] = "Light",
+                    ["Liquid"] = "Liquid",
+                    ["Listen"] = "Listen",
+                    ["Little"] = "Little",
+                    ["Lobster"] = "Lobster",
+                    ["Logical"] = "Logical",
+                    ["Love"] = "Love",
+                    ["Lucky"] = "Lucky",
+                    ["Lulled"] = "Lulled",
+                    ["Lunatic"] = "Lunatic",
+                    ["Lurks"] = "Lurks",
+                    ["Machine"] = "Machine",
+                    ["Madam"] = "Madam",
+                    ["Magnetic"] = "Magnetic",
+                    ["Manager"] = "Manager",
+                    ["Manual"] = "Manual",
+                    ["Marina"] = "Marina",
+                    ["Marine"] = "Marine",
+                    ["Martian"] = "Martian",
+                    ["Master"] = "Master",
+                    ["Matrix"] = "Matrix",
+                    ["Measure"] = "Measure",
+                    ["Meaty"] = "Meaty",
+                    ["Meddle"] = "Meddle",
+                    ["Medical"] = "Medical",
+                    ["Mental"] = "Mental",
+                    ["Menu"] = "Menu",
+                    ["Meow"] = "Meow",
+                    ["Merchant"] = "Merchant",
+                    ["Message"] = "Message",
+                    ["Messes"] = "Messes",
+                    ["Metal"] = "Metal",
+                    ["Method"] = "Method",
+                    ["Mettle"] = "Mettle",
+                    ["Militant"] = "Militant",
+                    ["Minim"] = "Minim",
+                    ["Minimum"] = "Minimum",
+                    ["Miracle"] = "Miracle",
+                    ["Mirror"] = "Mirror",
+                    ["Misjudge"] = "Misjudge",
+                    ["Misplace"] = "Misplace",
+                    ["Misses"] = "Misses",
+                    ["Mistake"] = "Mistake",
+                    ["Mixture"] = "Mixture",
+                    ["Mnemonic"] = "Mnemonic",
+                    ["Mobile"] = "Mobile",
+                    ["Modern"] = "Modern",
+                    ["Modest"] = "Modest",
+                    ["Module"] = "Module",
+                    ["Moist"] = "Moist",
+                    ["Money"] = "Money",
+                    ["Morning"] = "Morning",
+                    ["Most"] = "Most",
+                    ["Mother"] = "Mother",
+                    ["Movies"] = "Movies",
+                    ["Multiple"] = "Multiple",
+                    ["Munch"] = "Munch",
+                    ["Musical"] = "Musical",
+                    ["Mustache"] = "Mustache",
+                    ["Mystery"] = "Mystery",
+                    ["Mystic"] = "Mystic",
+                    ["Mystique"] = "Mystique",
+                    ["Mythic"] = "Mythic",
+                    ["Narcotic"] = "Narcotic",
+                    ["Nasty"] = "Nasty",
+                    ["Nature"] = "Nature",
+                    ["Navigate"] = "Navigate",
+                    ["Network"] = "Network",
+                    ["Neutral"] = "Neutral",
+                    ["Nobelium"] = "Nobelium",
+                    ["Nobody"] = "Nobody",
+                    ["Noise"] = "Noise",
+                    ["Notice"] = "Notice",
+                    ["Noun"] = "Noun",
+                    ["Nuclear"] = "Nuclear",
+                    ["Numeral"] = "Numeral",
+                    ["Nutrient"] = "Nutrient",
+                    ["Nymph"] = "Nymph",
+                    ["Obelisk"] = "Obelisk",
+                    ["Obstacle"] = "Obstacle",
+                    ["Obvious"] = "Obvious",
+                    ["Octopus"] = "Octopus",
+                    ["Offset"] = "Offset",
+                    ["Omega"] = "Omega",
+                    ["Opaque"] = "Opaque",
+                    ["Opinion"] = "Opinion",
+                    ["Orange"] = "オレンジ",
+                    ["Organic"] = "Organic",
+                    ["Ouch"] = "Ouch",
+                    ["Outbreak"] = "Outbreak",
+                    ["Outdo"] = "Outdo",
+                    ["Overcast"] = "Overcast",
+                    ["Overlaps"] = "Overlaps",
+                    ["Package"] = "Package",
+                    ["Padlock"] = "Padlock",
+                    ["Pancake"] = "Pancake",
+                    ["Panda"] = "Panda",
+                    ["Panic"] = "Panic",
+                    ["Paper"] = "Paper",
+                    ["Papers"] = "Papers",
+                    ["Parent"] = "Parent",
+                    ["Park"] = "Park",
+                    ["Particle"] = "Particle",
+                    ["Passive"] = "Passive",
+                    ["Patented"] = "Patented",
+                    ["Pathetic"] = "Pathetic",
+                    ["Patient"] = "Patient",
+                    ["Peace"] = "Peace",
+                    ["Peasant"] = "Peasant",
+                    ["Penalty"] = "Penalty",
+                    ["Pencil"] = "Pencil",
+                    ["Penguin"] = "Penguin",
+                    ["Perfect"] = "Perfect",
+                    ["Person"] = "Person",
+                    ["Persuade"] = "Persuade",
+                    ["Perusing"] = "Perusing",
+                    ["Phone"] = "Phone",
+                    ["Physical"] = "Physical",
+                    ["Piano"] = "Piano",
+                    ["Picture"] = "Picture",
+                    ["Piglet"] = "Piglet",
+                    ["Pilfer"] = "Pilfer",
+                    ["Pillage"] = "Pillage",
+                    ["Pinch"] = "Pinch",
+                    ["Pirate"] = "Pirate",
+                    ["Pitcher"] = "Pitcher",
+                    ["Pizza"] = "Pizza",
+                    ["Plane"] = "Plane",
+                    ["Planet"] = "Planet",
+                    ["Platonic"] = "Platonic",
+                    ["Player"] = "Player",
+                    ["Please"] = "Please",
+                    ["Plucky"] = "Plucky",
+                    ["Plunder"] = "Plunder",
+                    ["Plurals"] = "Plurals",
+                    ["Pocket"] = "Pocket",
+                    ["Police"] = "Police",
+                    ["Portrait"] = "Portrait",
+                    ["Potato"] = "Potato",
+                    ["Potently"] = "Potently",
+                    ["Pounce"] = "Pounce",
+                    ["Poverty"] = "Poverty",
+                    ["Practice"] = "Practice",
+                    ["Predict"] = "Predict",
+                    ["Prefect"] = "Prefect",
+                    ["Premium"] = "Premium",
+                    ["Present"] = "Present",
+                    ["Prince"] = "Prince",
+                    ["Printer"] = "Printer",
+                    ["Prison"] = "Prison",
+                    ["Profit"] = "Profit",
+                    ["Promise"] = "Promise",
+                    ["Prophet"] = "Prophet",
+                    ["Protein"] = "Protein",
+                    ["Province"] = "Province",
+                    ["Psalm"] = "Psalm",
+                    ["Psychic"] = "Psychic",
+                    ["Puddle"] = "Puddle",
+                    ["Punchbag"] = "Punchbag",
+                    ["Pungent"] = "Pungent",
+                    ["Punish"] = "Punish",
+                    ["Purchase"] = "Purchase",
+                    ["Quagmire"] = "Quagmire",
+                    ["Qualify"] = "Qualify",
+                    ["Quantify"] = "Quantify",
+                    ["Quantize"] = "Quantize",
+                    ["Quarter"] = "Quarter",
+                    ["Querying"] = "Querying",
+                    ["Queue"] = "Queue",
+                    ["Quiche"] = "Quiche",
+                    ["Quick"] = "Quick",
+                    ["Rabbit"] = "Rabbit",
+                    ["Racoon"] = "Racoon",
+                    ["Radar"] = "Radar",
+                    ["Radical"] = "Radical",
+                    ["Rainbow"] = "Rainbow",
+                    ["Random"] = "Random",
+                    ["Rattle"] = "Rattle",
+                    ["Ravenous"] = "Ravenous",
+                    ["Reason"] = "Reason",
+                    ["Rebuke"] = "Rebuke",
+                    ["Refine"] = "Refine",
+                    ["Regular"] = "Regular",
+                    ["Reindeer"] = "Reindeer",
+                    ["Request"] = "Request",
+                    ["Resort"] = "Resort",
+                    ["Respect"] = "Respect",
+                    ["Retire"] = "Retire",
+                    ["Revolt"] = "Revolt",
+                    ["Reward"] = "Reward",
+                    ["Rhapsody"] = "Rhapsody",
+                    ["Rhenium"] = "Rhenium",
+                    ["Rhodium"] = "Rhodium",
+                    ["Rhomboid"] = "Rhomboid",
+                    ["Rhyme"] = "Rhyme",
+                    ["Rhythm"] = "Rhythm",
+                    ["Ridicule"] = "Ridicule",
+                    ["Roadwork"] = "Roadwork",
+                    ["Roar"] = "Roar",
+                    ["Roast"] = "Roast",
+                    ["Room"] = "Room",
+                    ["Rooster"] = "Rooster",
+                    ["Roster"] = "Roster",
+                    ["Rotor"] = "Rotor",
+                    ["Rotunda"] = "Rotunda",
+                    ["Royal"] = "Royal",
+                    ["Ruler"] = "Ruler",
+                    ["Rural"] = "Rural",
+                    ["Sailor"] = "Sailor",
+                    ["Sainted"] = "Sainted",
+                    ["Sales"] = "Sales",
+                    ["Sally"] = "Sally",
+                    ["Satisfy"] = "Satisfy",
+                    ["Saunter"] = "Saunter",
+                    ["Scale"] = "Scale",
+                    ["Scandal"] = "Scandal",
+                    ["Schedule"] = "Schedule",
+                    ["School"] = "School",
+                    ["Science"] = "Science",
+                    ["Scratch"] = "Scratch",
+                    ["Screen"] = "Screen",
+                    ["Sensible"] = "Sensible",
+                    ["Separate"] = "Separate",
+                    ["Serious"] = "Serious",
+                    ["Several"] = "Several",
+                    ["Shampoo"] = "Shampoo",
+                    ["Shares"] = "Shares",
+                    ["Shelter"] = "Shelter",
+                    ["Shift"] = "Shift",
+                    ["Ship"] = "Ship",
+                    ["Shirt"] = "Shirt",
+                    ["Shiver"] = "Shiver",
+                    ["Shorten"] = "Shorten",
+                    ["Showcase"] = "Showcase",
+                    ["Shuffle"] = "Shuffle",
+                    ["Silent"] = "Silent",
+                    ["Similar"] = "Similar",
+                    ["Sister"] = "Sister",
+                    ["Sixth"] = "Sixth",
+                    ["Sixty"] = "Sixty",
+                    ["Skater"] = "Skater",
+                    ["Skyward"] = "Skyward",
+                    ["Slander"] = "Slander",
+                    ["Slayer"] = "Slayer",
+                    ["Sleek"] = "Sleek",
+                    ["Slipper"] = "Slipper",
+                    ["Smart"] = "Smart",
+                    ["Smeared"] = "Smeared",
+                    ["Soccer"] = "Soccer",
+                    ["Society"] = "Society",
+                    ["Source"] = "Source",
+                    ["Spain"] = "Spain",
+                    ["Spare"] = "Spare",
+                    ["Spark"] = "Spark",
+                    ["Spatula"] = "Spatula",
+                    ["Speaker"] = "Speaker",
+                    ["Special"] = "Special",
+                    ["Spectate"] = "Spectate",
+                    ["Spectrum"] = "Spectrum",
+                    ["Spicy"] = "Spicy",
+                    ["Spinach"] = "Spinach",
+                    ["Spiral"] = "Spiral",
+                    ["Splendid"] = "Splendid",
+                    ["Splinter"] = "Splinter",
+                    ["Sprayed"] = "Sprayed",
+                    ["Spread"] = "Spread",
+                    ["Spring"] = "Spring",
+                    ["Squadron"] = "Squadron",
+                    ["Squander"] = "Squander",
+                    ["Squash"] = "Squash",
+                    ["Squib"] = "Squib",
+                    ["Squid"] = "Squid",
+                    ["Squish"] = "Squish",
+                    ["Stake"] = "Stake",
+                    ["Stalking"] = "Stalking",
+                    ["Steak"] = "Steak",
+                    ["Steam"] = "Steam",
+                    ["Sticker"] = "Sticker",
+                    ["Stinky"] = "Stinky",
+                    ["Stocking"] = "Stocking",
+                    ["Stone"] = "Stone",
+                    ["Store"] = "Store",
+                    ["Stormy"] = "Stormy",
+                    ["Strange"] = "Strange",
+                    ["Strike"] = "Strike",
+                    ["Stutter"] = "Stutter",
+                    ["Subway"] = "Subway",
+                    ["Suffer"] = "Suffer",
+                    ["Supreme"] = "Supreme",
+                    ["Surf"] = "Surf",
+                    ["Surplus"] = "Surplus",
+                    ["Survey"] = "Survey",
+                    ["Switch"] = "Switch",
+                    ["Symbol"] = "Symbol",
+                    ["System"] = "System",
+                    ["Systemic"] = "Systemic",
+                    ["Table"] = "Table",
+                    ["Tadpole"] = "Tadpole",
+                    ["Talking"] = "Talking",
+                    ["Tangle"] = "Tangle",
+                    ["Tank"] = "Tank",
+                    ["Tapeworm"] = "Tapeworm",
+                    ["Target"] = "Target",
+                    ["Tarot"] = "Tarot",
+                    ["Teach"] = "Teach",
+                    ["Teamwork"] = "Teamwork",
+                    ["Terminal"] = "Terminal",
+                    ["Terminus"] = "Terminus",
+                    ["Terror"] = "Terror",
+                    ["Testify"] = "Testify",
+                    ["Their"] = "Their",
+                    ["There"] = "There",
+                    ["Thick"] = "Thick",
+                    ["Thief"] = "Thief",
+                    ["Think"] = "Think",
+                    ["Throat"] = "Throat",
+                    ["Through"] = "Through",
+                    ["Thunder"] = "Thunder",
+                    ["Thyme"] = "Thyme",
+                    ["Ticket"] = "Ticket",
+                    ["Time"] = "Time",
+                    ["Toaster"] = "Toaster",
+                    ["Tomato"] = "Tomato",
+                    ["Tone"] = "Tone",
+                    ["Torque"] = "Torque",
+                    ["Tortoise"] = "Tortoise",
+                    ["Touchy"] = "Touchy",
+                    ["Toupe"] = "Toupe",
+                    ["Tower"] = "Tower",
+                    ["Transfix"] = "Transfix",
+                    ["Transit"] = "Transit",
+                    ["Trash"] = "Trash",
+                    ["Trauma"] = "Trauma",
+                    ["Treason"] = "Treason",
+                    ["Treasure"] = "Treasure",
+                    ["Trick"] = "Trick",
+                    ["Tripod"] = "Tripod",
+                    ["Trouble"] = "Trouble",
+                    ["Truck"] = "Truck",
+                    ["Trumpet"] = "Trumpet",
+                    ["Turtle"] = "Turtle",
+                    ["Twinkle"] = "Twinkle",
+                    ["Ugly"] = "Ugly",
+                    ["Ultra"] = "Ultra",
+                    ["Umbrella"] = "Umbrella",
+                    ["Underway"] = "Underway",
+                    ["Unique"] = "Unique",
+                    ["Unknown"] = "Unknown",
+                    ["Unsteady"] = "Unsteady",
+                    ["Untoward"] = "Untoward",
+                    ["Unwashed"] = "Unwashed",
+                    ["Upgrade"] = "Upgrade",
+                    ["Urban"] = "Urban",
+                    ["Used"] = "Used",
+                    ["Useless"] = "Useless",
+                    ["Utopia"] = "Utopia",
+                    ["Vacuum"] = "Vacuum",
+                    ["Vampire"] = "Vampire",
+                    ["Vanish"] = "Vanish",
+                    ["Vanquish"] = "Vanquish",
+                    ["Various"] = "Various",
+                    ["Vast"] = "Vast",
+                    ["Velocity"] = "Velocity",
+                    ["Vendor"] = "Vendor",
+                    ["Verb"] = "Verb",
+                    ["Verbatim"] = "Verbatim",
+                    ["Verdict"] = "Verdict",
+                    ["Vexation"] = "Vexation",
+                    ["Vicious"] = "Vicious",
+                    ["Victim"] = "Victim",
+                    ["Victory"] = "Victory",
+                    ["Video"] = "Video",
+                    ["View"] = "View",
+                    ["Viking"] = "Viking",
+                    ["Village"] = "Village",
+                    ["Violent"] = "Violent",
+                    ["Violin"] = "Violin",
+                    ["Virulent"] = "Virulent",
+                    ["Visceral"] = "Visceral",
+                    ["Vision"] = "Vision",
+                    ["Volatile"] = "Volatile",
+                    ["Voltage"] = "Voltage",
+                    ["Vortex"] = "Vortex",
+                    ["Vulgar"] = "Vulgar",
+                    ["Warden"] = "Warden",
+                    ["Warlock"] = "Warlock",
+                    ["Warning"] = "Warning",
+                    ["Wealth"] = "Wealth",
+                    ["Weapon"] = "Weapon",
+                    ["Wedding"] = "Wedding",
+                    ["Weight"] = "Weight",
+                    ["Whack"] = "Whack",
+                    ["Wharf"] = "Wharf",
+                    ["What"] = "What",
+                    ["When"] = "When",
+                    ["Whisk"] = "Whisk",
+                    ["Whistle"] = "Whistle",
+                    ["Wicked"] = "Wicked",
+                    ["Window"] = "Window",
+                    ["Winter"] = "Winter",
+                    ["Witness"] = "Witness",
+                    ["Wizard"] = "Wizard",
+                    ["Wrench"] = "Wrench",
+                    ["Wretch"] = "Wretch",
+                    ["Wrinkle"] = "Wrinkle",
+                    ["Writer"] = "Writer",
+                    ["Xanthous"] = "Xanthous",
+                    ["Yacht"] = "Yacht",
+                    ["Yarn"] = "Yarn",
+                    ["Yawn"] = "Yawn",
+                    ["Yeah"] = "Yeah",
+                    ["Yearlong"] = "Yearlong",
+                    ["Yearn"] = "Yearn",
+                    ["Yeoman"] = "Yeoman",
+                    ["Yodel"] = "Yodel",
+                    ["Yoga"] = "Yoga",
+                    ["Yonder"] = "Yonder",
+                    ["Youngest"] = "Youngest",
+                    ["Yourself"] = "Yourself",
+                    ["Zealot"] = "Zealot",
+                    ["Zebra"] = "Zebra",
+                    ["Zenith"] = "Zenith",
+                    ["Zither"] = "Zither",
+                    ["Zodiac"] = "Zodiac",
+                    ["Zombie"] = "Zombie",
+                },
             },
 
             // Module Listening
@@ -2014,6 +3844,13 @@ namespace Souvenir
             [Question.ModuleListeningSounds] = new TranslationInfo
             {
                 QuestionText = "Which module did the sound played by the {1} button belong to in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                    ["yellow"] = "黄色",
+                },
             },
 
             // Module Maze
@@ -2052,6 +3889,17 @@ namespace Souvenir
             [Question.MoonLitUnlit] = new TranslationInfo
             {
                 QuestionText = "What was the {1} set in clockwise order in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["south"] = "南",
+                    ["south-west"] = "south-west",
+                    ["west"] = "西",
+                    ["north-west"] = "north-west",
+                    ["north"] = "north",
+                    ["north-east"] = "north-east",
+                    ["east"] = "east",
+                    ["south-east"] = "south-east",
+                },
             },
 
             // More Code
@@ -2088,6 +3936,15 @@ namespace Souvenir
             [Question.MorseButtonsButtonColor] = new TranslationInfo
             {
                 QuestionText = "What was the color flashed by the {1} button in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["blue"] = "青",
+                    ["green"] = "緑",
+                    ["yellow"] = "黄色",
+                    ["orange"] = "オレンジ",
+                    ["purple"] = "紫",
+                },
             },
 
             // Morsematics
@@ -2102,6 +3959,12 @@ namespace Souvenir
             [Question.MorseWarLeds] = new TranslationInfo
             {
                 QuestionText = "What were the LEDs in the {1} row in {0} (1 = on, 0 = off)?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["bottom"] = "下",
+                    ["middle"] = "中央",
+                    ["top"] = "上",
+                },
             },
             // What code was transmitted in {0}?
             [Question.MorseWarCode] = new TranslationInfo
@@ -2114,11 +3977,25 @@ namespace Souvenir
             [Question.MouseInTheMazeTorus] = new TranslationInfo
             {
                 QuestionText = "What color was the torus in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["white"] = "白",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                    ["yellow"] = "黄色",
+                },
             },
             // Which color sphere was the goal in {0}?
             [Question.MouseInTheMazeSphere] = new TranslationInfo
             {
                 QuestionText = "Which color sphere was the goal in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["white"] = "白",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                    ["yellow"] = "黄色",
+                },
             },
 
             // M-Seq
@@ -2137,7 +4014,24 @@ namespace Souvenir
             // What color was the {1} LED on the {2} row when the tiny LED was {3} in {0}?
             [Question.MulticoloredSwitchesLedColor] = new TranslationInfo
             {
-                QuestionText = "What color was the {1} LED on the {2} row when the tiny LED was {3} in {0}?",
+                QuestionText = "{0}で小さなLEDが{3}時の{2}段LEDの{1}番目は？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["black"] = "黒",
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["yellow"] = "黄色",
+                    ["blue"] = "青",
+                    ["magenta"] = "マゼンタ",
+                    ["cyan"] = "シアン",
+                    ["white"] = "白",
+                },
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上",
+                    ["lit"] = "lit",
+                    ["unlit"] = "unlit",
+                },
             },
 
             // Murder
@@ -2173,7 +4067,19 @@ namespace Souvenir
             // Where was the skull in {0}?
             [Question.MysticSquareSkull] = new TranslationInfo
             {
-                QuestionText = "Where was the skull in {0}?",
+                QuestionText = "{0}のどくろの位置は？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["top left"] = "左上",
+                    ["top middle"] = "上中央",
+                    ["top right"] = "右上",
+                    ["middle left"] = "左中央",
+                    ["center"] = "中央",
+                    ["middle right"] = "右中央",
+                    ["bottom left"] = "左下",
+                    ["bottom middle"] = "下中央",
+                    ["bottom right"] = "右下",
+                },
             },
 
             // The Necronomicon
@@ -2200,6 +4106,13 @@ namespace Souvenir
             [Question.NeutralizationColor] = new TranslationInfo
             {
                 QuestionText = "What was the acid’s color in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Yellow"] = "黄色",
+                    ["Green"] = "緑",
+                    ["Red"] = "赤",
+                    ["Blue"] = "青",
+                },
             },
             // What was the acid’s volume in {0}?
             [Question.NeutralizationVolume] = new TranslationInfo
@@ -2219,6 +4132,11 @@ namespace Souvenir
             [Question.NameCodesIndices] = new TranslationInfo
             {
                 QuestionText = "What was the {1} index in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["left"] = "左",
+                    ["right"] = "右",
+                },
             },
 
             // Navinums
@@ -2231,6 +4149,13 @@ namespace Souvenir
             [Question.NavinumsDirectionalButtons] = new TranslationInfo
             {
                 QuestionText = "What was the {1} directional button pressed in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["up"] = "下",
+                    ["left"] = "左",
+                    ["right"] = "右",
+                    ["down"] = "下",
+                },
             },
 
             // The Navy Button
@@ -2274,6 +4199,21 @@ namespace Souvenir
             [Question.NotKeypadColor] = new TranslationInfo
             {
                 QuestionText = "What color flashed {1} in the final sequence in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["orange"] = "オレンジ",
+                    ["yellow"] = "黄色",
+                    ["green"] = "緑",
+                    ["cyan"] = "シアン",
+                    ["blue"] = "青",
+                    ["purple"] = "紫",
+                    ["magenta"] = "マゼンタ",
+                    ["pink"] = "ピンク",
+                    ["brown"] = "茶",
+                    ["grey"] = "灰",
+                    ["white"] = "白",
+                },
             },
             // Which symbol was on the button that flashed {1} in the final sequence in {0}?
             [Question.NotKeypadSymbol] = new TranslationInfo
@@ -2319,6 +4259,11 @@ namespace Souvenir
             [Question.NotNumberPadFlashes] = new TranslationInfo
             {
                 QuestionText = "Which of these numbers {1} at the {2} stage of {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["flashed"] = "flashed",
+                    ["did not flash"] = "did not flash",
+                },
             },
 
             // Not Piano Keys
@@ -2343,6 +4288,15 @@ namespace Souvenir
             [Question.NotSimazeMaze] = new TranslationInfo
             {
                 QuestionText = "Which maze was used in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["orange"] = "オレンジ",
+                    ["yellow"] = "黄色",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                    ["purple"] = "紫",
+                },
             },
             // What was the starting position in {0}?
             [Question.NotSimazeStart] = new TranslationInfo
@@ -2389,6 +4343,24 @@ namespace Souvenir
             [Question.NotTheButtonLightColor] = new TranslationInfo
             {
                 QuestionText = "What colors did the light glow in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["white"] = "白",
+                    ["red"] = "赤",
+                    ["yellow"] = "黄色",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                    ["white/red"] = "white/red",
+                    ["white/yellow"] = "white/yellow",
+                    ["white/green"] = "white/green",
+                    ["white/blue"] = "white/blue",
+                    ["red/yellow"] = "red/yellow",
+                    ["red/green"] = "red/green",
+                    ["red/blue"] = "red/blue",
+                    ["yellow/green"] = "yellow/green",
+                    ["yellow/blue"] = "yellow/blue",
+                    ["green/blue"] = "green/blue",
+                },
             },
 
             // Not the Screw
@@ -2403,21 +4375,101 @@ namespace Souvenir
             [Question.NotWhosOnFirstPressedPosition] = new TranslationInfo
             {
                 QuestionText = "In which position was the button you pressed in the {1} stage on {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["top left"] = "左上",
+                    ["top right"] = "右上",
+                    ["middle left"] = "左中央",
+                    ["middle right"] = "右中央",
+                    ["bottom left"] = "左下",
+                    ["bottom right"] = "右下",
+                },
             },
             // What was the label on the button you pressed in the {1} stage on {0}?
             [Question.NotWhosOnFirstPressedLabel] = new TranslationInfo
             {
                 QuestionText = "What was the label on the button you pressed in the {1} stage on {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["BLANK"] = "BLANK",
+                    ["DONE"] = "DONE",
+                    ["FIRST"] = "1",
+                    ["HOLD"] = "HOLD",
+                    ["LEFT"] = "LEFT",
+                    ["LIKE"] = "LIKE",
+                    ["MIDDLE"] = "MIDDLE",
+                    ["NEXT"] = "NEXT",
+                    ["NO"] = "NO",
+                    ["NOTHING"] = "NOTHING",
+                    ["OKAY"] = "OKAY",
+                    ["PRESS"] = "PRESS",
+                    ["READY"] = "READY",
+                    ["RIGHT"] = "RIGHT",
+                    ["SURE"] = "SURE",
+                    ["U"] = "U",
+                    ["UH HUH"] = "UH HUH",
+                    ["UH UH"] = "UH UH",
+                    ["UHHH"] = "UHHH",
+                    ["UR"] = "UR",
+                    ["WAIT"] = "WAIT",
+                    ["WHAT"] = "WHAT",
+                    ["WHAT?"] = "WHAT?",
+                    ["YES"] = "YES",
+                    ["YOU"] = "YOU",
+                    ["YOU ARE"] = "YOU ARE",
+                    ["YOU'RE"] = "YOU'RE",
+                    ["YOUR"] = "YOUR",
+                },
             },
             // In which position was the reference button in the {1} stage on {0}?
             [Question.NotWhosOnFirstReferencePosition] = new TranslationInfo
             {
                 QuestionText = "In which position was the reference button in the {1} stage on {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["top left"] = "左上",
+                    ["top right"] = "右上",
+                    ["middle left"] = "左中央",
+                    ["middle right"] = "右中央",
+                    ["bottom left"] = "左下",
+                    ["bottom right"] = "右下",
+                },
             },
             // What was the label on the reference button in the {1} stage on {0}?
             [Question.NotWhosOnFirstReferenceLabel] = new TranslationInfo
             {
                 QuestionText = "What was the label on the reference button in the {1} stage on {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["BLANK"] = "BLANK",
+                    ["DONE"] = "DONE",
+                    ["FIRST"] = "1",
+                    ["HOLD"] = "HOLD",
+                    ["LEFT"] = "LEFT",
+                    ["LIKE"] = "LIKE",
+                    ["MIDDLE"] = "MIDDLE",
+                    ["NEXT"] = "NEXT",
+                    ["NO"] = "NO",
+                    ["NOTHING"] = "NOTHING",
+                    ["OKAY"] = "OKAY",
+                    ["PRESS"] = "PRESS",
+                    ["READY"] = "READY",
+                    ["RIGHT"] = "RIGHT",
+                    ["SURE"] = "SURE",
+                    ["U"] = "U",
+                    ["UH HUH"] = "UH HUH",
+                    ["UH UH"] = "UH UH",
+                    ["UHHH"] = "UHHH",
+                    ["UR"] = "UR",
+                    ["WAIT"] = "WAIT",
+                    ["WHAT"] = "WHAT",
+                    ["WHAT?"] = "WHAT?",
+                    ["YES"] = "YES",
+                    ["YOU"] = "YOU",
+                    ["YOU ARE"] = "YOU ARE",
+                    ["YOU'RE"] = "YOU'RE",
+                    ["YOUR"] = "YOUR",
+                },
             },
             // What was the calculated number in the second stage on {0}?
             [Question.NotWhosOnFirstSum] = new TranslationInfo
@@ -2454,16 +4506,37 @@ namespace Souvenir
             [Question.NotXRayDirections] = new TranslationInfo
             {
                 QuestionText = "What direction was button {1} in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Up"] = "下",
+                    ["Right"] = "右",
+                    ["Down"] = "下",
+                    ["Left"] = "左",
+                },
             },
             // Which button went {1} in {0}?
             [Question.NotXRayButtons] = new TranslationInfo
             {
                 QuestionText = "Which button went {1} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["up"] = "下",
+                    ["right"] = "右",
+                    ["down"] = "下",
+                    ["left"] = "左",
+                },
             },
             // What was the scanner color in {0}?
             [Question.NotXRayScannerColor] = new TranslationInfo
             {
                 QuestionText = "What was the scanner color in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Yellow"] = "黄色",
+                    ["Blue"] = "青",
+                    ["White"] = "白",
+                },
             },
 
             // Numbered Buttons
@@ -2485,6 +4558,15 @@ namespace Souvenir
             [Question.NumpathColor] = new TranslationInfo
             {
                 QuestionText = "What was the color of the number on {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Yellow"] = "黄色",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Purple"] = "紫",
+                },
             },
             // What was the number displayed on {0}?
             [Question.NumpathDigit] = new TranslationInfo
@@ -2503,12 +4585,12 @@ namespace Souvenir
             // What was the starting sphere in {0}?
             [Question.OctadecayottonSphere] = new TranslationInfo
             {
-                QuestionText = "What was the starting sphere in {0}?",
+                QuestionText = "{0}のスタートボールは？",
             },
             // What was one of the subrotations in the {1} rotation in {0}?
             [Question.OctadecayottonRotations] = new TranslationInfo
             {
-                QuestionText = "What was one of the subrotations in the {1} rotation in {0}?",
+                QuestionText = "{0}で{1}番目の回転の二次変形の一つであるのは？",
             },
 
             // Odd One Out
@@ -2523,6 +4605,15 @@ namespace Souvenir
             [Question.OnlyConnectHieroglyphs] = new TranslationInfo
             {
                 QuestionText = "Which Egyptian hieroglyph was in the {1} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top left"] = "左上",
+                    ["top middle"] = "上中央",
+                    ["top right"] = "右上",
+                    ["bottom left"] = "左下",
+                    ["bottom middle"] = "下中央",
+                    ["bottom right"] = "右下",
+                },
             },
 
             // Orange Arrows
@@ -2530,6 +4621,13 @@ namespace Souvenir
             [Question.OrangeArrowsSequences] = new TranslationInfo
             {
                 QuestionText = "What was the {1} arrow on the display of the {2} stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Up"] = "下",
+                    ["Right"] = "右",
+                    ["Down"] = "下",
+                    ["Left"] = "左",
+                },
             },
 
             // Orange Cipher
@@ -2544,6 +4642,15 @@ namespace Souvenir
             [Question.OrderedKeysColors] = new TranslationInfo
             {
                 QuestionText = "What color was the {2} key in the {1} stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Blue"] = "青",
+                    ["Green"] = "緑",
+                    ["Yellow"] = "黄色",
+                    ["Cyan"] = "シアン",
+                    ["Magenta"] = "マゼンタ",
+                },
             },
             // What was the label on the {2} key in the {1} stage of {0}?
             [Question.OrderedKeysLabels] = new TranslationInfo
@@ -2554,6 +4661,15 @@ namespace Souvenir
             [Question.OrderedKeysLabelColors] = new TranslationInfo
             {
                 QuestionText = "What color was the label of the {2} key in the {1} stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Blue"] = "青",
+                    ["Green"] = "緑",
+                    ["Yellow"] = "黄色",
+                    ["Cyan"] = "シアン",
+                    ["Magenta"] = "マゼンタ",
+                },
             },
 
             // Order Picking
@@ -2577,7 +4693,14 @@ namespace Souvenir
             // What was the observer’s intial position in {0}?
             [Question.OrientationCubeInitialObserverPosition] = new TranslationInfo
             {
-                QuestionText = "What was the observer’s intial position in {0}?",
+                QuestionText = "{0}の最初の観測者の位置は？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["front"] = "正面",
+                    ["left"] = "左",
+                    ["back"] = "後",
+                    ["right"] = "右",
+                },
             },
 
             // Palindromes
@@ -2585,6 +4708,12 @@ namespace Souvenir
             [Question.PalindromesNumbers] = new TranslationInfo
             {
                 QuestionText = "What was {1}’s {2} digit from the right in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["X"] = "X",
+                    ["Y"] = "Y",
+                    ["the screen"] = "the screen",
+                },
             },
 
             // Partial Derivatives
@@ -2592,6 +4721,15 @@ namespace Souvenir
             [Question.PartialDerivativesLedColors] = new TranslationInfo
             {
                 QuestionText = "What was the LED color in the {1} stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["blue"] = "青",
+                    ["green"] = "緑",
+                    ["orange"] = "オレンジ",
+                    ["purple"] = "紫",
+                    ["red"] = "赤",
+                    ["yellow"] = "黄色",
+                },
             },
             // What was the {1} term in {0}?
             [Question.PartialDerivativesTerms] = new TranslationInfo
@@ -2649,7 +4787,15 @@ namespace Souvenir
             // What was the {1} color in the initial sequence in {0}?
             [Question.PerspectivePegsColorSequence] = new TranslationInfo
             {
-                QuestionText = "What was the {1} color in the initial sequence in {0}?",
+                QuestionText = "What was the {1} color in the initial sequence in {0}の最初の色シーケンスで{1}番目の色は？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["yellow"] = "黄色",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                    ["purple"] = "紫",
+                },
             },
 
             // Phosphorescence
@@ -2662,6 +4808,34 @@ namespace Souvenir
             [Question.PhosphorescenceButtonPresses] = new TranslationInfo
             {
                 QuestionText = "What was the {1} button press in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Azure"] = "Azure",
+                    ["Blue"] = "青",
+                    ["Crimson"] = "Crimson",
+                    ["Diamond"] = "Diamond",
+                    ["Emerald"] = "Emerald",
+                    ["Fuchsia"] = "Fuchsia",
+                    ["Green"] = "緑",
+                    ["Ice"] = "Ice",
+                    ["Jade"] = "Jade",
+                    ["Kiwi"] = "Kiwi",
+                    ["Lime"] = "黄緑",
+                    ["Magenta"] = "マゼンタ",
+                    ["Navy"] = "Navy",
+                    ["Orange"] = "オレンジ",
+                    ["Purple"] = "紫",
+                    ["Quartz"] = "Quartz",
+                    ["Red"] = "赤",
+                    ["Salmon"] = "Salmon",
+                    ["Tan"] = "Tan",
+                    ["Ube"] = "Ube",
+                    ["Vibe"] = "Vibe",
+                    ["White"] = "白",
+                    ["Xotic"] = "Xotic",
+                    ["Yellow"] = "黄色",
+                    ["Zen"] = "Zen",
+                },
             },
 
             // Pie
@@ -2683,11 +4857,33 @@ namespace Souvenir
             [Question.PinkButtonWords] = new TranslationInfo
             {
                 QuestionText = "What was the {1} word in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["BLK"] = "BLK",
+                    ["RED"] = "赤",
+                    ["GRN"] = "GRN",
+                    ["YLW"] = "YLW",
+                    ["BLU"] = "BLU",
+                    ["MGT"] = "MGT",
+                    ["CYN"] = "CYN",
+                    ["WHT"] = "WHT",
+                },
             },
             // What was the {1} color in {0}?
             [Question.PinkButtonColors] = new TranslationInfo
             {
                 QuestionText = "What was the {1} color in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["black"] = "黒",
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["yellow"] = "黄色",
+                    ["blue"] = "青",
+                    ["magenta"] = "マゼンタ",
+                    ["cyan"] = "シアン",
+                    ["white"] = "白",
+                },
             },
 
             // Pixel Cipher
@@ -2756,6 +4952,18 @@ namespace Souvenir
             [Question.PlanetsStrips] = new TranslationInfo
             {
                 QuestionText = "What was the color of the {1} strip (from the top) in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Aqua"] = "Aqua",
+                    ["Blue"] = "青",
+                    ["Green"] = "緑",
+                    ["Lime"] = "黄緑",
+                    ["Orange"] = "オレンジ",
+                    ["Red"] = "赤",
+                    ["Yellow"] = "黄色",
+                    ["White"] = "白",
+                    ["Off"] = "Off",
+                },
             },
 
             // Playfair Cycle
@@ -2791,6 +4999,15 @@ namespace Souvenir
             [Question.ProbingFrequencies] = new TranslationInfo
             {
                 QuestionText = "What was the missing frequency in the {1} wire in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red-white"] = "red-white",
+                    ["yellow-black"] = "yellow-black",
+                    ["green"] = "緑",
+                    ["gray"] = "灰",
+                    ["yellow-red"] = "yellow-red",
+                    ["red-blue"] = "red-blue",
+                },
             },
 
             // Purple Arrows
@@ -2841,11 +5058,27 @@ namespace Souvenir
             [Question.QuintuplesColors] = new TranslationInfo
             {
                 QuestionText = "What color was the {1} digit in the {2} slot in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["blue"] = "青",
+                    ["orange"] = "オレンジ",
+                    ["green"] = "緑",
+                    ["pink"] = "ピンク",
+                },
             },
             // How many numbers were {1} in {0}?
             [Question.QuintuplesColorCounts] = new TranslationInfo
             {
                 QuestionText = "How many numbers were {1} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["blue"] = "青",
+                    ["orange"] = "オレンジ",
+                    ["green"] = "緑",
+                    ["pink"] = "ピンク",
+                },
             },
 
             // Railway Cargo Loading
@@ -2853,6 +5086,22 @@ namespace Souvenir
             [Question.RailwayCargoLoadingCars] = new TranslationInfo
             {
                 QuestionText = "What was the {1} coupled car in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["second"] = "2",
+                    ["third"] = "3",
+                    ["4th"] = "4",
+                    ["5th"] = "5",
+                    ["6th"] = "6",
+                    ["7th"] = "7",
+                    ["8th"] = "8",
+                    ["9th"] = "9",
+                    ["10th"] = "10",
+                    ["11th"] = "11th",
+                    ["12th"] = "12th",
+                    ["13th"] = "13th",
+                    ["14th"] = "14",
+                },
             },
             // Which freight table rule {1} in {0}?
             [Question.RailwayCargoLoadingFreightTableRules] = new TranslationInfo
@@ -2871,7 +5120,17 @@ namespace Souvenir
             // What was the color of the {1} LED in {0}?
             [Question.RecoloredSwitchesLedColors] = new TranslationInfo
             {
-                QuestionText = "What was the color of the {1} LED in {0}?",
+                QuestionText = "{0}の{1}番目のLEDは何色？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                    ["cyan"] = "シアン",
+                    ["orange"] = "オレンジ",
+                    ["purple"] = "紫",
+                    ["white"] = "白",
+                },
             },
 
             // Red Arrows
@@ -2900,11 +5159,34 @@ namespace Souvenir
             [Question.ReformedRoleReversalCondition] = new TranslationInfo
             {
                 QuestionText = "Which condition was the solving condition in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["second"] = "2",
+                    ["third"] = "3",
+                    ["4th"] = "4",
+                    ["5th"] = "5",
+                    ["6th"] = "6",
+                    ["7th"] = "7",
+                    ["8th"] = "8",
+                },
             },
             // What color was the {1} wire in {0}?
             [Question.ReformedRoleReversalWire] = new TranslationInfo
             {
                 QuestionText = "What color was the {1} wire in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Navy"] = "Navy",
+                    ["Lapis"] = "Lapis",
+                    ["Blue"] = "青",
+                    ["Sky"] = "Sky",
+                    ["Teal"] = "Teal",
+                    ["Plum"] = "Plum",
+                    ["Violet"] = "Violet",
+                    ["Purple"] = "紫",
+                    ["Magenta"] = "マゼンタ",
+                    ["Lavender"] = "Lavender",
+                },
             },
 
             // Regular Crazy Talk
@@ -2950,11 +5232,23 @@ namespace Souvenir
             [Question.RGBMazeKeys] = new TranslationInfo
             {
                 QuestionText = "Where was the {1} key in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                },
             },
             // Which maze number was the {1} maze in {0}?
             [Question.RGBMazeNumber] = new TranslationInfo
             {
                 QuestionText = "Which maze number was the {1} maze in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                },
             },
 
             // Rhythms
@@ -2962,6 +5256,13 @@ namespace Souvenir
             [Question.RhythmsColor] = new TranslationInfo
             {
                 QuestionText = "What was the color in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Blue"] = "青",
+                    ["Red"] = "赤",
+                    ["Green"] = "緑",
+                    ["Yellow"] = "黄色",
+                },
             },
 
             // The Rule
@@ -3000,6 +5301,12 @@ namespace Souvenir
             [Question.RuleOfThreeCycles] = new TranslationInfo
             {
                 QuestionText = "What was the position of the {1} sphere on the {2} axis in the {3} cycle in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["yellow"] = "黄色",
+                    ["Z"] = "Z",
+                },
             },
 
             // The Samsung
@@ -3019,6 +5326,12 @@ namespace Souvenir
             [Question.ScavengerHuntColoredTiles] = new TranslationInfo
             {
                 QuestionText = "Which of these tiles was {1} in the first stage of {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                },
             },
 
             // Schlag den Bomb
@@ -3065,6 +5378,14 @@ namespace Souvenir
             [Question.SemamorseColor] = new TranslationInfo
             {
                 QuestionText = "What was the color of the display involved in the starting value in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["cyan"] = "シアン",
+                    ["indigo"] = "indigo",
+                    ["pink"] = "ピンク",
+                },
             },
 
             // The Sequencyclopedia
@@ -3085,7 +5406,7 @@ namespace Souvenir
             // What was the initial shape in {0}?
             [Question.ShapeShiftInitialShape] = new TranslationInfo
             {
-                QuestionText = "What was the initial shape in {0}?",
+                QuestionText = "{0}の最初の図形は？",
             },
 
             // Shell Game
@@ -3093,6 +5414,12 @@ namespace Souvenir
             [Question.ShellGameInitialCupFinalPosition] = new TranslationInfo
             {
                 QuestionText = "What was the final position of the initial cup in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Left"] = "左",
+                    ["Middle"] = "中央",
+                    ["Right"] = "右",
+                },
             },
 
             // Shifted Maze
@@ -3128,6 +5455,12 @@ namespace Souvenir
             [Question.SimonSamplesSamples] = new TranslationInfo
             {
                 QuestionText = "What were the call samples {1} of {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["played in the first stage"] = "played in the first stage",
+                    ["added in the second stage"] = "added in the second stage",
+                    ["added in the third stage"] = "added in the third stage",
+                },
             },
 
             // Simon Says
@@ -3135,6 +5468,13 @@ namespace Souvenir
             [Question.SimonSaysFlash] = new TranslationInfo
             {
                 QuestionText = "What color flashed {1} in the final sequence in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["yellow"] = "黄色",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                },
             },
 
             // Simon Scrambles
@@ -3142,6 +5482,13 @@ namespace Souvenir
             [Question.SimonScramblesColors] = new TranslationInfo
             {
                 QuestionText = "What color flashed {1} in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Yellow"] = "黄色",
+                },
             },
 
             // Simon Screams
@@ -3149,11 +5496,28 @@ namespace Souvenir
             [Question.SimonScreamsFlashing] = new TranslationInfo
             {
                 QuestionText = "Which color flashed {1} in the final sequence in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Yellow"] = "黄色",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Purple"] = "紫",
+                },
             },
             // In which stage(s) of {0} was “{1}” the applicable rule?
             [Question.SimonScreamsRule] = new TranslationInfo
             {
                 QuestionText = "In which stage(s) of {0} was “{1}” the applicable rule?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["three adjacent colors flashing in clockwise order"] = "three adjacent colors flashing in clockwise order",
+                    ["a color flashing, then an adjacent color, then the first again"] = "a color flashing, then an adjacent color, then the first again",
+                    ["at most one color flashing out of red, yellow, and blue"] = "at most one color flashing out of red, yellow, and blue",
+                    ["two colors opposite each other that didn’t flash"] = "two colors opposite each other that didn’t flash",
+                    ["two (but not three) adjacent colors flashing in clockwise order"] = "two (but not three) adjacent colors flashing in clockwise order",
+                },
             },
 
             // Simon Selects
@@ -3161,6 +5525,17 @@ namespace Souvenir
             [Question.SimonSelectsOrder] = new TranslationInfo
             {
                 QuestionText = "Which color flashed {1} in the {2} stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Yellow"] = "黄色",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Purple"] = "紫",
+                    ["Magenta"] = "マゼンタ",
+                    ["Cyan"] = "シアン",
+                },
             },
 
             // Simon Sends
@@ -3168,6 +5543,12 @@ namespace Souvenir
             [Question.SimonSendsReceivedLetters] = new TranslationInfo
             {
                 QuestionText = "What was the {1} received letter in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                },
             },
 
             // Simon Simons
@@ -3189,6 +5570,13 @@ namespace Souvenir
             [Question.SimonShoutsFlashingLetter] = new TranslationInfo
             {
                 QuestionText = "Which letter flashed on the {1} button in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上",
+                    ["left"] = "左",
+                    ["right"] = "右",
+                    ["bottom"] = "下",
+                },
             },
 
             // Simon Shrieks
@@ -3203,6 +5591,13 @@ namespace Souvenir
             [Question.SimonSoundsFlashingColors] = new TranslationInfo
             {
                 QuestionText = "Which sample button sounded {1} in the final sequence in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["blue"] = "青",
+                    ["yellow"] = "黄色",
+                    ["green"] = "緑",
+                },
             },
 
             // Simon Speaks
@@ -3225,11 +5620,107 @@ namespace Souvenir
             [Question.SimonSpeaksWords] = new TranslationInfo
             {
                 QuestionText = "Which word was in the bubble that flashed fourth in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["black"] = "黒",
+                    ["sort"] = "sort",
+                    ["zwart"] = "zwart",
+                    ["nigra"] = "nigra",
+                    ["musta"] = "musta",
+                    ["noir"] = "noir",
+                    ["schwarz"] = "schwarz",
+                    ["fekete"] = "fekete",
+                    ["nero"] = "nero",
+                    ["blue"] = "青",
+                    ["blå"] = "blå",
+                    ["blauw"] = "blauw",
+                    ["blua"] = "blua",
+                    ["sininen"] = "sininen",
+                    ["bleu"] = "bleu",
+                    ["blau"] = "blau",
+                    ["kék"] = "kék",
+                    ["blu"] = "blu",
+                    ["green"] = "緑",
+                    ["grøn"] = "grøn",
+                    ["groen"] = "groen",
+                    ["verda"] = "verda",
+                    ["vihreä"] = "vihreä",
+                    ["vert"] = "vert",
+                    ["grün"] = "grün",
+                    ["zöld"] = "zöld",
+                    ["verde"] = "verde",
+                    ["cyan"] = "シアン",
+                    ["turkis"] = "turkis",
+                    ["turkoois"] = "turkoois",
+                    ["turkisa"] = "turkisa",
+                    ["turkoosi"] = "turkoosi",
+                    ["turquoise"] = "水色",
+                    ["türkis"] = "türkis",
+                    ["türkiz"] = "türkiz",
+                    ["turchese"] = "turchese",
+                    ["red"] = "赤",
+                    ["rød"] = "rød",
+                    ["rood"] = "rood",
+                    ["ruĝa"] = "ruĝa",
+                    ["punainen"] = "punainen",
+                    ["rouge"] = "rouge",
+                    ["rot"] = "rot",
+                    ["piros"] = "piros",
+                    ["rosso"] = "rosso",
+                    ["purple"] = "紫",
+                    ["lilla"] = "lilla",
+                    ["purper"] = "purper",
+                    ["purpura"] = "purpura",
+                    ["purppura"] = "purppura",
+                    ["pourpre"] = "pourpre",
+                    ["lila"] = "lila",
+                    ["bíbor"] = "bíbor",
+                    ["porpora"] = "porpora",
+                    ["yellow"] = "黄色",
+                    ["gul"] = "gul",
+                    ["geel"] = "geel",
+                    ["flava"] = "flava",
+                    ["keltainen"] = "keltainen",
+                    ["jaune"] = "jaune",
+                    ["gelb"] = "gelb",
+                    ["sárga"] = "sárga",
+                    ["giallo"] = "giallo",
+                    ["white"] = "白",
+                    ["hvid"] = "hvid",
+                    ["wit"] = "wit",
+                    ["blanka"] = "blanka",
+                    ["valkoinen"] = "valkoinen",
+                    ["blanc"] = "blanc",
+                    ["weiß"] = "weiß",
+                    ["fehér"] = "fehér",
+                    ["bianco"] = "bianco",
+                    ["gray"] = "灰",
+                    ["grå"] = "grå",
+                    ["grijs"] = "grijs",
+                    ["griza"] = "griza",
+                    ["harmaa"] = "harmaa",
+                    ["gris"] = "gris",
+                    ["grau"] = "grau",
+                    ["szürke"] = "szürke",
+                    ["grigio"] = "grigio",
+                },
             },
             // What color was the bubble that flashed fifth in {0}?
             [Question.SimonSpeaksColors] = new TranslationInfo
             {
                 QuestionText = "What color was the bubble that flashed fifth in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["black"] = "黒",
+                    ["blue"] = "青",
+                    ["green"] = "緑",
+                    ["cyan"] = "シアン",
+                    ["red"] = "赤",
+                    ["purple"] = "紫",
+                    ["yellow"] = "黄色",
+                    ["white"] = "白",
+                    ["gray"] = "灰",
+                },
             },
 
             // Simon’s Star
@@ -3237,6 +5728,14 @@ namespace Souvenir
             [Question.SimonsStarColors] = new TranslationInfo
             {
                 QuestionText = "Which color flashed {1} in sequence in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["yellow"] = "黄色",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                    ["purple"] = "紫",
+                },
             },
 
             // Simon Stages
@@ -3244,18 +5743,64 @@ namespace Souvenir
             [Question.SimonStagesFlashes] = new TranslationInfo
             {
                 QuestionText = "Which color flashed {1} in the {2} stage in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["blue"] = "青",
+                    ["yellow"] = "黄色",
+                    ["orange"] = "オレンジ",
+                    ["magenta"] = "マゼンタ",
+                    ["green"] = "緑",
+                    ["pink"] = "ピンク",
+                    ["lime"] = "黄緑",
+                    ["cyan"] = "シアン",
+                    ["white"] = "白",
+                },
             },
             // What color was the indicator in the {1} stage in {0}?
             [Question.SimonStagesIndicator] = new TranslationInfo
             {
                 QuestionText = "What color was the indicator in the {1} stage in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["blue"] = "青",
+                    ["yellow"] = "黄色",
+                    ["orange"] = "オレンジ",
+                    ["magenta"] = "マゼンタ",
+                    ["green"] = "緑",
+                    ["pink"] = "ピンク",
+                    ["lime"] = "黄緑",
+                    ["cyan"] = "シアン",
+                    ["white"] = "白",
+                },
             },
 
             // Simon States
             // Which {1} in the {2} stage in {0}?
             [Question.SimonStatesDisplay] = new TranslationInfo
             {
-                QuestionText = "Which {1} in the {2} stage in {0}?",
+                QuestionText = "{0}でステージ{2}ではどの色が{1}？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Yellow"] = "黄色",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Red, Yellow"] = "赤,黄色",
+                    ["Red, Green"] = "赤,緑",
+                    ["Red, Blue"] = "赤,青",
+                    ["Yellow, Green"] = "黄色,緑",
+                    ["Yellow, Blue"] = "黄色,青",
+                    ["Green, Blue"] = "緑, 青",
+                    ["all 4"] = "4色すべて",
+                    ["none"] = "なし",
+                },
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["color(s) flashed"] = "color(s) flashed",
+                    ["color(s) didn’t flash"] = "color(s) didn’t flash",
+                },
             },
 
             // Simon Stops
@@ -3263,6 +5808,15 @@ namespace Souvenir
             [Question.SimonStopsColors] = new TranslationInfo
             {
                 QuestionText = "Which color flashed {1} in the output sequence in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Yellow"] = "黄色",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Violet"] = "Violet",
+                },
             },
 
             // Simon Stores
@@ -3270,6 +5824,20 @@ namespace Souvenir
             [Question.SimonStoresColors] = new TranslationInfo
             {
                 QuestionText = "Which color {1} {2} in the final sequence of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Cyan"] = "シアン",
+                    ["Magenta"] = "マゼンタ",
+                    ["Yellow"] = "黄色",
+                },
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["flashed"] = "flashed",
+                    ["was among the colors flashed"] = "was among the colors flashed",
+                },
             },
 
             // Simon Supports
@@ -3291,6 +5859,18 @@ namespace Souvenir
             [Question.SkyrimRace] = new TranslationInfo
             {
                 QuestionText = "Which race was selectable, but not the solution, in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Nord"] = "Nord",
+                    ["Khajiit"] = "Khajiit",
+                    ["Breton"] = "Breton",
+                    ["Argonian"] = "Argonian",
+                    ["Dunmer"] = "Dunmer",
+                    ["Altmer"] = "Altmer",
+                    ["Redguard"] = "赤guard",
+                    ["Orc"] = "Orc",
+                    ["Imperial"] = "Imperial",
+                },
             },
             // Which weapon was selectable, but not the solution, in {0}?
             [Question.SkyrimWeapon] = new TranslationInfo
@@ -3334,7 +5914,7 @@ namespace Souvenir
             // How many red balls were there at the start of {0}?
             [Question.SnookerReds] = new TranslationInfo
             {
-                QuestionText = "How many red balls were there at the start of {0}?",
+                QuestionText = "How many 赤 balls were there at the start of {0}?",
             },
 
             // Sorting
@@ -3348,7 +5928,7 @@ namespace Souvenir
             // What was the first module asked about in the other Souvenir on this bomb?
             [Question.SouvenirFirstQuestion] = new TranslationInfo
             {
-                QuestionText = "What was the first module asked about in the other Souvenir on this bomb?",
+                QuestionText = "他の「思い出」モジュールが最初に質問したのは、何のモジュールについて？",
             },
 
             // Space Traders
@@ -3375,6 +5955,17 @@ namespace Souvenir
             [Question.SphereColors] = new TranslationInfo
             {
                 QuestionText = "What was the {1} flashed color in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["blue"] = "青",
+                    ["green"] = "緑",
+                    ["orange"] = "オレンジ",
+                    ["pink"] = "ピンク",
+                    ["purple"] = "紫",
+                    ["grey"] = "灰",
+                    ["white"] = "白",
+                },
             },
 
             // Spelling Bee
@@ -3396,6 +5987,13 @@ namespace Souvenir
             [Question.SpotTheDifferenceFaultyBall] = new TranslationInfo
             {
                 QuestionText = "What was the color of the faulty sphere in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Blue"] = "青",
+                    ["Green"] = "緑",
+                    ["Orange"] = "オレンジ",
+                    ["Red"] = "赤",
+                },
             },
 
             // Stacked Sequences
@@ -3445,6 +6043,12 @@ namespace Souvenir
             [Question.SugarSkullsSkull] = new TranslationInfo
             {
                 QuestionText = "What skull was shown on the {1} square in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上",
+                    ["bottom-left"] = "bottom-left",
+                    ["bottom-right"] = "bottom-right",
+                },
             },
             // Which skull {1} present in {0}?
             [Question.SugarSkullsAvailability] = new TranslationInfo
@@ -3464,13 +6068,27 @@ namespace Souvenir
             [Question.SwitchInitialColor] = new TranslationInfo
             {
                 QuestionText = "What color was the {1} LED on the {2} flip of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["orange"] = "オレンジ",
+                    ["yellow"] = "黄色",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                    ["purple"] = "紫",
+                },
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上",
+                    ["bottom"] = "下",
+                },
             },
 
             // Switches
             // What was the initial position of the switches in {0}?
             [Question.SwitchesInitialPosition] = new TranslationInfo
             {
-                QuestionText = "What was the initial position of the switches in {0}?",
+                QuestionText = "{0}の最初の状態は？",
             },
 
             // Switching Maze
@@ -3483,6 +6101,15 @@ namespace Souvenir
             [Question.SwitchingMazeColor] = new TranslationInfo
             {
                 QuestionText = "What was the starting maze color in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Blue"] = "青",
+                    ["Cyan"] = "シアン",
+                    ["Magenta"] = "マゼンタ",
+                    ["Orange"] = "オレンジ",
+                    ["Red"] = "赤",
+                    ["White"] = "白",
+                },
             },
 
             // Symbol Cycle
@@ -3490,6 +6117,11 @@ namespace Souvenir
             [Question.SymbolCycleSymbolCounts] = new TranslationInfo
             {
                 QuestionText = "How many symbols were cycling on the {1} screen in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["left"] = "左",
+                    ["right"] = "右",
+                },
             },
 
             // Symbolic Coordinates
@@ -3497,6 +6129,11 @@ namespace Souvenir
             [Question.SymbolicCoordinateSymbols] = new TranslationInfo
             {
                 QuestionText = "What was the {1} symbol in the {2} stage of {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["left"] = "左",
+                    ["middle"] = "中央",
+                },
             },
 
             // Symbolic Tasha
@@ -3536,7 +6173,7 @@ namespace Souvenir
             // What was the received word in {0}?
             [Question.TapCodeReceivedWord] = new TranslationInfo
             {
-                QuestionText = "What was the received word in {0}?",
+                QuestionText = "{0}で受信した単語は？",
             },
 
             // Tasha Squeals
@@ -3544,6 +6181,13 @@ namespace Souvenir
             [Question.TashaSquealsColors] = new TranslationInfo
             {
                 QuestionText = "What was the {1} flashed color in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Pink"] = "ピンク",
+                    ["Green"] = "緑",
+                    ["Yellow"] = "黄色",
+                    ["Blue"] = "青",
+                },
             },
 
             // Ten-Button Color Code
@@ -3551,6 +6195,13 @@ namespace Souvenir
             [Question.TenButtonColorCodeInitialColors] = new TranslationInfo
             {
                 QuestionText = "What was the initial color of the {1} button in the {2} stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                    ["yellow"] = "黄色",
+                },
             },
 
             // Tenpins
@@ -3558,13 +6209,19 @@ namespace Souvenir
             [Question.TenpinsSplits] = new TranslationInfo
             {
                 QuestionText = "What was the {1} split in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                },
             },
 
             // Text Field
             // What was the displayed letter in {0}?
             [Question.TextFieldDisplay] = new TranslationInfo
             {
-                QuestionText = "What was the displayed letter in {0}?",
+                QuestionText = "{0}で表示された文字は？",
             },
 
             // Thinking Wires
@@ -3577,6 +6234,18 @@ namespace Souvenir
             [Question.ThinkingWiresSecondWire] = new TranslationInfo
             {
                 QuestionText = "What color did the second valid wire to cut have to have in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Cyan"] = "シアン",
+                    ["Magenta"] = "マゼンタ",
+                    ["Yellow"] = "黄色",
+                    ["White"] = "白",
+                    ["Black"] = "黒",
+                    ["Any"] = "Any",
+                },
             },
             // What was the display number in {0}?
             [Question.ThinkingWiresDisplayNumber] = new TranslationInfo
@@ -3588,7 +6257,7 @@ namespace Souvenir
             // What was the display word in the {1} stage on {0}?
             [Question.ThirdBaseDisplay] = new TranslationInfo
             {
-                QuestionText = "What was the display word in the {1} stage on {0}?",
+                QuestionText = "{0}のステージ{1}で表示された単語は？",
             },
 
             // Tic Tac Toe
@@ -3636,6 +6305,53 @@ namespace Souvenir
             [Question.TransmittedMorseMessage] = new TranslationInfo
             {
                 QuestionText = "What was the {1} received message in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["BOMBS"] = "BOMBS",
+                    ["SHORT"] = "SHORT",
+                    ["UNDERSTOOD"] = "UNDERSTOOD",
+                    ["W1RES"] = "W1RES",
+                    ["SOS"] = "SOS",
+                    ["MANUAL"] = "MANUAL",
+                    ["STRIKED"] = "STRIKED",
+                    ["WEREDEAD"] = "WEREDEAD",
+                    ["GOTASOUV"] = "GOTASOUV",
+                    ["EXPLOSION"] = "EXPLOSION",
+                    ["EXPERT"] = "EXPERT",
+                    ["RIP"] = "RIP",
+                    ["LISTEN"] = "LISTEN",
+                    ["DETONATE"] = "DETONATE",
+                    ["ROGER"] = "ROGER",
+                    ["WELOSTBRO"] = "WELOSTBRO",
+                    ["AMIDEAF"] = "AMIDEAF",
+                    ["KEYPAD"] = "KEYPAD",
+                    ["DEFUSER"] = "DEFUSER",
+                    ["NUCLEARWEAPONS"] = "NUCLEARWEAPONS",
+                    ["KAPPA"] = "KAPPA",
+                    ["DELTA"] = "DELTA",
+                    ["PI3"] = "PI3",
+                    ["SMOKE"] = "SMOKE",
+                    ["SENDHELP"] = "SENDHELP",
+                    ["LOST"] = "LOST",
+                    ["SWAN"] = "SWAN",
+                    ["NOMNOM"] = "NOMNOM",
+                    ["BLUE"] = "青",
+                    ["BOOM"] = "BOOM",
+                    ["CANCEL"] = "CANCEL",
+                    ["DEFUSED"] = "DEFUSED",
+                    ["BROKEN"] = "BROKEN",
+                    ["MEMORY"] = "MEMORY",
+                    ["R6S8T"] = "R6S8T",
+                    ["TRANSMISSION"] = "TRANSMISSION",
+                    ["UMWHAT"] = "UMWHAT",
+                    ["GREEN"] = "緑",
+                    ["EQUATIONSX"] = "EQUATIONSX",
+                    ["RED"] = "赤",
+                    ["ENERGY"] = "ENERGY",
+                    ["JESTER"] = "JESTER",
+                    ["CONTACT"] = "CONTACT",
+                    ["LONG"] = "LONG",
+                },
             },
 
             // Turtle Robot
@@ -3649,7 +6365,7 @@ namespace Souvenir
             // What was the {1} correct query response from {0}?
             [Question.TwoBitsResponse] = new TranslationInfo
             {
-                QuestionText = "What was the {1} correct query response from {0}?",
+                QuestionText = "{0}で{1}番目のクエリの返答は？",
             },
 
             // Ultimate Cipher
@@ -3670,7 +6386,7 @@ namespace Souvenir
             // What was the {1} rotation in {0}?
             [Question.UltracubeRotations] = new TranslationInfo
             {
-                QuestionText = "What was the {1} rotation in {0}?",
+                QuestionText = "{0}の{1}番目の回転方向は？",
             },
 
             // UltraStores
@@ -3689,19 +6405,39 @@ namespace Souvenir
             // What was the {1} color in reading order used in the first stage of {0}?
             [Question.UncoloredSquaresFirstStage] = new TranslationInfo
             {
-                QuestionText = "What was the {1} color in reading order used in the first stage of {0}?",
+                QuestionText = "{0}の最初のステージで利用したもののうち読み順で{1}番目の色は何色？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["White"] = "白",
+                    ["Red"] = "赤",
+                    ["Blue"] = "青",
+                    ["Green"] = "緑",
+                    ["Yellow"] = "黄色",
+                    ["Magenta"] = "マゼンタ",
+                },
             },
 
             // Uncolored Switches
             // What was the initial state of the switches in {0}?
             [Question.UncoloredSwitchesInitialState] = new TranslationInfo
             {
-                QuestionText = "What was the initial state of the switches in {0}?",
+                QuestionText = "{0}の最初のスイッチの状態は？",
             },
             // What color was the {1} LED in reading order in {0}?
             [Question.UncoloredSwitchesLedColors] = new TranslationInfo
             {
-                QuestionText = "What color was the {1} LED in reading order in {0}?",
+                QuestionText = "{0}の読み順で{1}番目のLEDは何色？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                    ["turquoise"] = "水色",
+                    ["orange"] = "オレンジ",
+                    ["purple"] = "紫",
+                    ["white"] = "白",
+                    ["black"] = "黒",
+                },
             },
 
             // Unfair Cipher
@@ -3750,7 +6486,16 @@ namespace Souvenir
             // What was the initially pressed color on {0}?
             [Question.VaricoloredSquaresInitialColor] = new TranslationInfo
             {
-                QuestionText = "What was the initially pressed color on {0}?",
+                QuestionText = "{0}で最初に押した色は？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["White"] = "白",
+                    ["Red"] = "赤",
+                    ["Blue"] = "青",
+                    ["Green"] = "緑",
+                    ["Yellow"] = "黄色",
+                    ["Magenta"] = "マゼンタ",
+                },
             },
 
             // Vcrcs
@@ -3765,6 +6510,22 @@ namespace Souvenir
             [Question.VectorsColors] = new TranslationInfo
             {
                 QuestionText = "What was the color of the {1} vector in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Yellow"] = "黄色",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Purple"] = "紫",
+                },
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["first"] = "1",
+                    ["second"] = "2",
+                    ["third"] = "3",
+                    ["only"] = "only",
+                },
             },
 
             // Vexillology
@@ -3772,6 +6533,17 @@ namespace Souvenir
             [Question.VexillologyColors] = new TranslationInfo
             {
                 QuestionText = "What was the {1} flagpole color on {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Green"] = "緑",
+                    ["Yellow"] = "黄色",
+                    ["Blue"] = "青",
+                    ["Aqua"] = "Aqua",
+                    ["White"] = "白",
+                    ["Black"] = "黒",
+                },
             },
 
             // Violet Cipher
@@ -3786,6 +6558,13 @@ namespace Souvenir
             [Question.VisualImpairmentColors] = new TranslationInfo
             {
                 QuestionText = "What was the desired color in the {1} stage on {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Blue"] = "青",
+                    ["Green"] = "緑",
+                    ["Red"] = "赤",
+                    ["White"] = "白",
+                },
             },
 
             // Wavetapping
@@ -3793,6 +6572,25 @@ namespace Souvenir
             [Question.WavetappingColors] = new TranslationInfo
             {
                 QuestionText = "What was the color on the {1} stage in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Orange-Yellow"] = "Orange-Yellow",
+                    ["Chartreuse"] = "Chartreuse",
+                    ["Lime"] = "黄緑",
+                    ["Green"] = "緑",
+                    ["Seafoam Green"] = "Seafoam Green",
+                    ["Cyan-Green"] = "Cyan-Green",
+                    ["Turquoise"] = "Turquoise",
+                    ["Dark Blue"] = "Dark Blue",
+                    ["Indigo"] = "Indigo",
+                    ["Purple"] = "紫",
+                    ["Purple-Magenta"] = "Purple-Magenta",
+                    ["Magenta"] = "マゼンタ",
+                    ["Pink"] = "ピンク",
+                    ["Gray"] = "灰",
+                },
             },
             // What was the correct pattern on the {1} stage in {0}?
             [Question.WavetappingPatterns] = new TranslationInfo
@@ -3805,11 +6603,73 @@ namespace Souvenir
             [Question.WhatsOnSecondDisplayText] = new TranslationInfo
             {
                 QuestionText = "What was the display text in the {1} stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["got it"] = "got it",
+                    ["says"] = "says",
+                    ["display"] = "display",
+                    ["leed"] = "leed",
+                    ["their"] = "their",
+                    ["blank"] = "blank",
+                    ["right"] = "右",
+                    ["reed"] = "reed",
+                    ["hold"] = "hold",
+                    ["they are"] = "they are",
+                    ["louder"] = "louder",
+                    ["lead"] = "lead",
+                    ["repeat"] = "repeat",
+                    ["ready"] = "ready",
+                    ["none"] = "なし",
+                    ["led"] = "led",
+                    ["ur"] = "ur",
+                    ["you’re"] = "you’re",
+                    ["no"] = "no",
+                    ["you"] = "you",
+                    ["nothing"] = "nothing",
+                    ["middle"] = "中央",
+                    ["done"] = "done",
+                    ["empty"] = "empty",
+                    ["your"] = "your",
+                    ["hold on"] = "hold on",
+                    ["like"] = "like",
+                    ["read"] = "read",
+                    ["wait"] = "wait",
+                    ["left"] = "左",
+                    ["press"] = "press",
+                    ["what?"] = "what?",
+                    ["uh uh"] = "uh uh",
+                    ["they’re"] = "they’re",
+                    ["uhhh"] = "uhhh",
+                    ["c"] = "c",
+                    ["error"] = "error",
+                    ["you are"] = "you are",
+                    ["next"] = "next",
+                    ["yes"] = "yes",
+                    ["u"] = "u",
+                    ["sure"] = "sure",
+                    ["okay"] = "okay",
+                    ["what"] = "what",
+                    ["cee"] = "cee",
+                    ["first"] = "1",
+                    ["see"] = "see",
+                    ["uh huh"] = "uh huh",
+                    ["there"] = "there",
+                    ["red"] = "赤",
+                },
             },
             // What was the display text color in the {1} stage of {0}?
             [Question.WhatsOnSecondDisplayColor] = new TranslationInfo
             {
                 QuestionText = "What was the display text color in the {1} stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Blue"] = "青",
+                    ["Cyan"] = "シアン",
+                    ["Green"] = "緑",
+                    ["Magenta"] = "マゼンタ",
+                    ["Red"] = "赤",
+                    ["Yellow"] = "黄色",
+                },
             },
 
             // White Cipher
@@ -3824,6 +6684,40 @@ namespace Souvenir
             [Question.WhosOnFirstDisplay] = new TranslationInfo
             {
                 QuestionText = "What was the display in the {1} stage on {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    [""] = "",
+                    ["BLANK"] = "BLANK",
+                    ["C"] = "C",
+                    ["CEE"] = "CEE",
+                    ["DISPLAY"] = "DISPLAY",
+                    ["FIRST"] = "1",
+                    ["HOLD ON"] = "HOLD ON",
+                    ["LEAD"] = "LEAD",
+                    ["LED"] = "LED",
+                    ["LEED"] = "LEED",
+                    ["NO"] = "NO",
+                    ["NOTHING"] = "NOTHING",
+                    ["OK"] = "OK",
+                    ["OKAY"] = "OKAY",
+                    ["READ"] = "READ",
+                    ["RED"] = "赤",
+                    ["REED"] = "REED",
+                    ["SAY"] = "SAY",
+                    ["SAYS"] = "SAYS",
+                    ["SEE"] = "SEE",
+                    ["THEIR"] = "THEIR",
+                    ["THERE"] = "THERE",
+                    ["THEY ARE"] = "THEY ARE",
+                    ["THEY’RE"] = "THEY’RE",
+                    ["U"] = "U",
+                    ["UR"] = "UR",
+                    ["YES"] = "YES",
+                    ["YOU"] = "YOU",
+                    ["YOU ARE"] = "YOU ARE",
+                    ["YOU’RE"] = "YOU’RE",
+                    ["YOUR"] = "YOUR",
+                },
             },
 
             // The Wire
@@ -3831,11 +6725,32 @@ namespace Souvenir
             [Question.WireDialColors] = new TranslationInfo
             {
                 QuestionText = "What was the color of the {1} dial in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["blue"] = "青",
+                    ["green"] = "緑",
+                    ["grey"] = "灰",
+                    ["orange"] = "オレンジ",
+                    ["purple"] = "紫",
+                    ["red"] = "赤",
+                },
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上",
+                    ["bottom-left"] = "bottom-left",
+                    ["bottom-right"] = "bottom-right",
+                },
             },
             // What was the displayed number in {0}?
             [Question.WireDisplayedNumber] = new TranslationInfo
             {
                 QuestionText = "What was the displayed number in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上",
+                    ["bottom-left"] = "bottom-left",
+                    ["bottom-right"] = "bottom-right",
+                },
             },
 
             // Wire Ordering
@@ -3843,6 +6758,17 @@ namespace Souvenir
             [Question.WireOrderingDisplayColor] = new TranslationInfo
             {
                 QuestionText = "What color was the {1} display from the left in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["orange"] = "オレンジ",
+                    ["yellow"] = "黄色",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                    ["purple"] = "紫",
+                    ["white"] = "白",
+                    ["black"] = "黒",
+                },
             },
             // What number was on the {1} display from the left in {0}?
             [Question.WireOrderingDisplayNumber] = new TranslationInfo
@@ -3853,6 +6779,17 @@ namespace Souvenir
             [Question.WireOrderingWireColor] = new TranslationInfo
             {
                 QuestionText = "What color was the {1} wire from the left in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["orange"] = "オレンジ",
+                    ["yellow"] = "黄色",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                    ["purple"] = "紫",
+                    ["white"] = "白",
+                    ["black"] = "黒",
+                },
             },
 
             // Wire Sequence
@@ -3860,6 +6797,12 @@ namespace Souvenir
             [Question.WireSequenceColorCount] = new TranslationInfo
             {
                 QuestionText = "How many {1} wires were there in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["blue"] = "青",
+                    ["black"] = "黒",
+                },
             },
 
             // Wolf, Goat, and Cabbage
@@ -3904,7 +6847,18 @@ namespace Souvenir
             // What was the initial roll on {0}?
             [Question.YahtzeeInitialRoll] = new TranslationInfo
             {
-                QuestionText = "What was the initial roll on {0}?",
+                QuestionText = "{0}の最初のロール後の状態は？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Yahtzee"] = "ヤッツィー",
+                    ["large straight"] = "大ストレート",
+                    ["small straight"] = "小ストレート",
+                    ["four of a kind"] = "フォーオブカインド",
+                    ["full house"] = "フルハウス",
+                    ["three of a kind"] = "スリーオブカインド",
+                    ["two pairs"] = "ツーペア",
+                    ["pair"] = "ワンペア",
+                },
             },
 
             // Yellow Arrows
@@ -3933,6 +6887,17 @@ namespace Souvenir
             [Question.ZeroZeroStarColors] = new TranslationInfo
             {
                 QuestionText = "What color was the {1} star in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["black"] = "黒",
+                    ["blue"] = "青",
+                    ["green"] = "緑",
+                    ["cyan"] = "シアン",
+                    ["red"] = "赤",
+                    ["magenta"] = "マゼンタ",
+                    ["yellow"] = "黄色",
+                    ["white"] = "白",
+                },
             },
             // How many points were on the {1} star in {0}?
             [Question.ZeroZeroStarPoints] = new TranslationInfo
@@ -3943,6 +6908,12 @@ namespace Souvenir
             [Question.ZeroZeroSquares] = new TranslationInfo
             {
                 QuestionText = "Where was the {1} square in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                },
             },
 
             // Zoni
@@ -3953,5 +6924,6 @@ namespace Souvenir
             },
 
         };
+        #endregion
     }
 }

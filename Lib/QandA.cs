@@ -7,6 +7,7 @@ namespace Souvenir
 {
     abstract class QandA
     {
+        public const string Ordinal = "\ufffdordinal";
         public string ModuleNameWithThe { get; private set; }
         public string QuestionText { get; private set; }
         public Sprite QuestionSprite { get; private set; }
@@ -75,7 +76,7 @@ namespace Souvenir
             _layout = layout;
         }
         public override IEnumerable<string> DebugAnswers => _answers;
-        public override double DesiredHeightFactor  => _layout == AnswerLayout.OneColumn4Answers ? .825 : 1.1;
+        public override double DesiredHeightFactor => _layout == AnswerLayout.OneColumn4Answers ? .825 : 1.1;
 
         public override void SetAnswers(SouvenirModule souvenir)
         {
