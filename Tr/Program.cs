@@ -15,11 +15,9 @@ namespace SouvenirTr
             var assembly = Assembly.LoadFrom(args[0]);
             var questionsType = assembly.GetType("Souvenir.Question");
             var attributeType = assembly.GetType("Souvenir.SouvenirQuestionAttribute");
-            var tmpJaQuestionsType = assembly.GetType("Souvenir.QuestionJa");
 
             var allInfos = new Dictionary<string, List<(FieldInfo fld, dynamic attr)>>();
             var addThe = new Dictionary<string, bool>();
-            var japanese = new Dictionary<string, string>();
             var trAnswers = new HashSet<string>();
             var trFArgs = new HashSet<string>();
 
@@ -31,34 +29,6 @@ namespace SouvenirTr
                     allInfos.Add(key, new List<(FieldInfo fld, dynamic attr)>());
                 allInfos[key].Add((fld, attr));
                 addThe[key] = attr.AddThe;
-
-                var japaneseFld = tmpJaQuestionsType.GetField(fld.Name, BindingFlags.Public | BindingFlags.Static);
-                if (japaneseFld != null)
-                {
-                    dynamic japaneseAttr = japaneseFld.GetCustomAttribute(attributeType);
-                    japanese[key] = japaneseAttr.ModuleName;
-                    japanese[attr.QuestionText] = japaneseAttr.QuestionText;
-
-                    var jaAns = (string[]) japaneseAttr.AllAnswers;
-                    var ans = (string[]) attr.AllAnswers;
-                    if (ans != null && ans.Length > 0 && ans.Length == jaAns.Length)
-                        for (var i = 0; i < ans.Length; i++)
-                            if (ans[i] != jaAns[i])
-                            {
-                                trAnswers.Add(fld.GetValue(null).ToString());
-                                japanese[ans[i]] = jaAns[i];
-                            }
-
-                    var jaFArgs = (string[]) japaneseAttr.ExampleExtraFormatArguments;
-                    var fArgs = (string[]) attr.ExampleExtraFormatArguments;
-                    if (fArgs != null && fArgs.Length > 0 && fArgs.Length == jaFArgs.Length)
-                        for (var i = 0; i < fArgs.Length; i++)
-                            if (fArgs[i] != jaFArgs[i])
-                            {
-                                trFArgs.Add(fld.GetValue(null).ToString());
-                                japanese[fArgs[i]] = jaFArgs[i];
-                            }
-                }
             }
 
             Console.WriteLine(string.Join("\r\n", trAnswers));
@@ -67,7 +37,6 @@ namespace SouvenirTr
 
             foreach (var language in "de,eo,es,ja".Split(','))
             {
-                string tr(string text) => language != "ja" ? text : !japanese.ContainsKey(text) ? text : japanese[text];
                 var alreadyType = assembly.GetType($"Souvenir.Translation_{language}");
                 var already = (IDictionary) (alreadyType == null ? null : (dynamic) Activator.CreateInstance(alreadyType))?.Translations;
                 var sb = new StringBuilder();
@@ -91,15 +60,15 @@ namespace SouvenirTr
                         dynamic ti = already?.Contains(id) == true ? already[id] : null;
                         sb.AppendLine($@"            [Question.{id}] = new TranslationInfo");
                         sb.AppendLine("            {");
-                        sb.AppendLine($@"                QuestionText = ""{tr((string) (ti?.QuestionText) ?? qText).CLiteralEscape()}"",");
+                        sb.AppendLine($@"                QuestionText = ""{((string) (ti?.QuestionText) ?? qText).CLiteralEscape()}"",");
                         if (ti?.ModuleName != null)
-                            sb.AppendLine($@"                ModuleName = ""{tr((string) ti.ModuleName).CLiteralEscape()}"",");
+                            sb.AppendLine($@"                ModuleName = ""{((string) ti.ModuleName).CLiteralEscape()}"",");
                         if (answers != null && attr.TranslateAnswers)
                         {
                             sb.AppendLine("                Answers = new Dictionary<string, string>");
                             sb.AppendLine("                {");
                             foreach (var answer in answers)
-                                sb.AppendLine($@"                    [""{answer.CLiteralEscape()}""] = ""{tr((ti?.Answers?.ContainsKey(answer) == true ? (string) ti.Answers[answer] : answer)).CLiteralEscape()}"",");
+                                sb.AppendLine($@"                    [""{answer.CLiteralEscape()}""] = ""{(ti?.Answers?.ContainsKey(answer) == true ? (string) ti.Answers[answer] : answer).CLiteralEscape()}"",");
                             sb.AppendLine("                },");
                         }
                         if (formatArgs != null && attr.TranslateFormatArgs != null && Enumerable.Contains(attr.TranslateFormatArgs, true))
@@ -108,7 +77,7 @@ namespace SouvenirTr
                             sb.AppendLine("                {");
                             for (var fArgIx = 0; fArgIx < formatArgs.Length; fArgIx++)
                                 if (attr.TranslateFormatArgs[fArgIx % attr.ExampleExtraFormatArgumentGroupSize])
-                                    sb.AppendLine($@"                    [""{formatArgs[fArgIx].CLiteralEscape()}""] = ""{tr((ti?.FormatArgs?.ContainsKey((string) formatArgs[fArgIx]) == true ? (string) ti.FormatArgs[(string) formatArgs[fArgIx]] : formatArgs[fArgIx])).CLiteralEscape()}"",");
+                                    sb.AppendLine($@"                    [""{formatArgs[fArgIx].CLiteralEscape()}""] = ""{(ti?.FormatArgs?.ContainsKey((string) formatArgs[fArgIx]) == true ? (string) ti.FormatArgs[(string) formatArgs[fArgIx]] : formatArgs[fArgIx]).CLiteralEscape()}"",");
                             sb.AppendLine("                },");
                         }
                         sb.AppendLine("            },");
