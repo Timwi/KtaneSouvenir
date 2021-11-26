@@ -158,6 +158,6 @@
   <PropertyGroup>
     <PostBuildEvent>xcopy /y "$(TargetDir)*.dll" "$(ProjectDir)..\Assets\Plugins\Managed"
 xcopy /y "$(TargetDir)*.dll" "$(GameFolder)mods\Souvenir"
-..\..\Tr\bin\Release\SouvenirTr.exe $(TargetDir)SouvenirLib.dll $(ProjectDir)</PostBuildEvent>
+..\..\Tr\bin\Release\SouvenirTr.exe "$(TargetDir)SouvenirLib.dll" "$(ProjectDir)"</PostBuildEvent>
   </PropertyGroup>
 </Project>
