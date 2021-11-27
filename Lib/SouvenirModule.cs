@@ -66,6 +66,7 @@ public partial class SouvenirModule : MonoBehaviour
     private readonly HashSet<string> _supportedModuleNames = new HashSet<string>();
     private readonly HashSet<string> _ignoredModules = new HashSet<string>();
     private bool _isActivated = false;
+    private Translation _translation;
 
     private QandA _currentQuestion = null;
     private bool _isSolved = false;
@@ -106,7 +107,7 @@ public partial class SouvenirModule : MonoBehaviour
 
         Debug.LogFormat(@"[Souvenir #{0}] Souvenir version: {1}", _moduleId, Version);
 
-        if (!string.IsNullOrEmpty(ModSettings.SettingsPath))
+        if (!string.IsNullOrEmpty(ModSettings.Settings))
         {
             bool rewriteFile;
             try
@@ -134,10 +135,10 @@ public partial class SouvenirModule : MonoBehaviour
                 _config = new Config();
                 rewriteFile = true;
             }
-            if (rewriteFile)
+            if (rewriteFile && !string.IsNullOrEmpty(ModSettings.SettingsPath) && !Application.isEditor)
             {
-                using (var writer = new StreamWriter(ModSettings.SettingsPath))
-                    new JsonSerializer() { Formatting = Formatting.Indented }.Serialize(writer, _config);
+                using var writer = new StreamWriter(ModSettings.SettingsPath);
+                new JsonSerializer() { Formatting = Formatting.Indented }.Serialize(writer, _config);
             }
         }
         else
@@ -146,6 +147,10 @@ public partial class SouvenirModule : MonoBehaviour
         var ignoredList = BossModule.GetIgnoredModules(Module, _defaultIgnoredModules);
         Debug.LogFormat(@"<Souvenir #{0}> Ignored modules: {1}", _moduleId, ignoredList.JoinString(", "));
         _ignoredModules.UnionWith(ignoredList);
+
+        if (_config.Language != null && Translation.AllTranslations.ContainsKey(_config.Language))
+            _translation = Translation.AllTranslations[_config.Language];
+        Debug.LogFormat(@"<Souvenir #{0}> Language: {1} ({2})", _moduleId, _config.Language, _translation == null ? "absent" : "present");
 
         Bomb.OnBombExploded += delegate
         {
@@ -305,12 +310,15 @@ public partial class SouvenirModule : MonoBehaviour
                 var sb = new StringBuilder();
                 foreach (var entry in _attributes)
                 {
-                    if (entry.Value.Type != AnswerType.Sprites && entry.Value.Type != AnswerType.Grid && (entry.Value.AllAnswers == null || entry.Value.AllAnswers.Length == 0) &&
-                        (entry.Value.ExampleAnswers == null || entry.Value.ExampleAnswers.Length == 0) && entry.Value.AnswerGenerator == null)
+                    var (q, attr) = (entry.Key, entry.Value);
+                    if (attr.Type != AnswerType.Sprites && attr.Type != AnswerType.Grid && (attr.AllAnswers == null || attr.AllAnswers.Length == 0) &&
+                        (attr.ExampleAnswers == null || attr.ExampleAnswers.Length == 0) && attr.AnswerGenerator == null)
                     {
-                        Debug.LogErrorFormat("<Souvenir #{0}> Question {1} has no answers. Specify either SouvenirQuestionAttribute.AllAnswers or SouvenirQuestionAttribute.ExampleAnswers (with preferredWrongAnswers in-game), or add an AnswerGeneratorAttribute to the question enum value.", _moduleId, entry.Key);
-                        sb.AppendLine($@"""{Regex.Replace(Regex.Escape(entry.Value.QuestionText), @"\\\{\d+\}", m => m.Value == @"\{0}" ? entry.Value.ModuleNameWithThe : ".*")}"",");
+                        Debug.LogErrorFormat("<Souvenir #{0}> Question {1} has no answers. Specify either SouvenirQuestionAttribute.AllAnswers or SouvenirQuestionAttribute.ExampleAnswers (with preferredWrongAnswers in-game), or add an AnswerGeneratorAttribute to the question enum value.", _moduleId, q);
+                        sb.AppendLine($@"""{Regex.Replace(Regex.Escape(attr.QuestionText), @"\\\{\d+\}", m => m.Value == @"\{0}" ? attr.ModuleNameWithThe : ".*")}"",");
                     }
+                    if (attr.TranslateFormatArgs != null && attr.TranslateFormatArgs.Length != attr.ExampleExtraFormatArgumentGroupSize)
+                        Debug.LogErrorFormat("<Souvenir #{0}> Question {1}: The length of the ‘{2}’ array must match ‘{3}’.", _moduleId, q, nameof(attr.TranslateFormatArgs), nameof(attr.ExampleExtraFormatArgumentGroupSize));
                 }
                 if (sb.Length > 0)
                     Debug.Log(sb.ToString());
@@ -366,9 +374,12 @@ public partial class SouvenirModule : MonoBehaviour
             _curExampleVariant = (_curExampleVariant % numExamples + numExamples) % numExamples;
         }
         var fmt = new object[attr.ExampleExtraFormatArgumentGroupSize + 1];
-        fmt[0] = _curExampleOrdinal == 0 ? attr.AddThe ? "The\u00a0" + attr.ModuleName : attr.ModuleName : string.Format("the {0} you solved {1}", attr.ModuleName, ordinal(_curExampleOrdinal));
+        fmt[0] = formatModuleName(attr.ModuleName, _curExampleOrdinal > 0, _curExampleOrdinal, attr.AddThe);
         for (int i = 0; i < attr.ExampleExtraFormatArgumentGroupSize; i++)
-            fmt[i + 1] = attr.ExampleExtraFormatArguments[_curExampleVariant * attr.ExampleExtraFormatArgumentGroupSize + i];
+        {
+            var arg = attr.ExampleExtraFormatArguments[_curExampleVariant * attr.ExampleExtraFormatArgumentGroupSize + i];
+            fmt[i + 1] = arg == QandA.Ordinal ? ordinal(Rnd.Range(1, 6)) : translateFormatArg(_exampleQuestions[_curExampleQuestion], arg);
+        }
         try
         {
             switch (attr.Type)
@@ -401,13 +412,13 @@ public partial class SouvenirModule : MonoBehaviour
                         answers.RemoveRange(attr.NumAnswers, answers.Count - attr.NumAnswers);
                     }
                     SetQuestion(new QandAText(
-                        module: attr.ModuleNameWithThe,
-                        question: string.Format(attr.QuestionText, fmt),
+                        module: translateModuleNameWithThe(_exampleQuestions[_curExampleQuestion]),
+                        question: string.Format(translateQuestion(_exampleQuestions[_curExampleQuestion]), fmt),
                         correct: 0,
-                        answers: answers.ToArray(),
-                        font: Fonts[attr.Type == AnswerType.DynamicFont ? 0 : (int) attr.Type],
+                        answers: answers.Select(ans => attr.TranslateAnswers ? translateAnswer(_exampleQuestions[_curExampleQuestion], ans) : ans).ToArray(),
+                        font: Fonts[attr.Type == AnswerType.DynamicFont || attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type],
                         fontSize: attr.FontSize,
-                        fontTexture: FontTextures[attr.Type == AnswerType.DynamicFont ? 0 : (int) attr.Type],
+                        fontTexture: FontTextures[attr.Type == AnswerType.DynamicFont || attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type],
                         fontMaterial: FontMaterial,
                         layout: attr.Layout,
                         questionSprite: attr.UsesQuestionSprite ? SymbolicCoordinatesSprites[0] : null));
@@ -419,6 +430,12 @@ public partial class SouvenirModule : MonoBehaviour
             Debug.LogErrorFormat("<Souvenir #{3}> FormatException {0}\nQuestionText={1}\nfmt=[{2}]", e.Message, attr.QuestionText, fmt.JoinString(", ", "\"", "\""), _moduleId);
         }
     }
+
+    private string translateModuleName(Question question) => _translation?.Translations[question].ModuleName ?? _attributes[question].ModuleName;
+    private string translateModuleNameWithThe(Question question) => _translation?.Translations[question].ModuleNameWithThe ?? _translation?.Translations[question].ModuleName ?? _attributes[question].ModuleNameWithThe;
+    private string translateQuestion(Question question) => _translation?.Translations[question].QuestionText ?? _attributes[question].QuestionText;
+    private string translateFormatArg(Question question, string arg) => arg == null ? null : _translation?.Translations[question].FormatArgs?.Get(arg, arg) ?? arg;
+    private string translateAnswer(Question question, string answ) => answ == null ? null : _translation?.Translations[question].Answers?.Get(answ, answ) ?? answ;
 
     private static SouvenirQuestionAttribute GetQuestionAttribute(FieldInfo field)
     {
@@ -562,6 +579,10 @@ public partial class SouvenirModule : MonoBehaviour
         Debug.Log($"[Souvenir #{_moduleId}] Asking question: {q.DebugString}");
         Debug.Log($"<Souvenir #{_moduleId}> _avoidQuestions = {_avoidQuestions}");
         _currentQuestion = q;
+        TextMesh.font = Fonts[_translation?.DefaultFontIndex ?? 0];
+        TextMesh.GetComponent<MeshRenderer>().material = FontMaterial;
+        TextMesh.GetComponent<MeshRenderer>().material.mainTexture = FontTextures[_translation?.DefaultFontIndex ?? 0];
+        TextMesh.lineSpacing = _translation?.LineSpacing ?? 0.525f;
         SetWordWrappedText(q.QuestionText, q.DesiredHeightFactor, q.QuestionSprite != null);
         QuestionSprite.gameObject.SetActive(q.QuestionSprite != null);
         QuestionSprite.sprite = q.QuestionSprite;
@@ -640,9 +661,10 @@ public partial class SouvenirModule : MonoBehaviour
                     TextMesh.text = str;
                     return TextRenderer.bounds.size.x;
                 },
-                allowBreakingWordsApart: false
+                allowBreakingWordsApart: _translation?.AllowBreakingWords ?? false
             ))
             {
+                Debug.LogFormat($"Word-wrapping [{text}] — line: [{line}]");
                 if (line == null)
                 {
                     // There was a word that was too long to fit into a line.
@@ -930,7 +952,7 @@ public partial class SouvenirModule : MonoBehaviour
 
     private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null) =>
         makeQuestion(question, moduleKey,
-            (attr, q, correct, answers) => new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), Fonts[(int) attr.Type], attr.FontSize, FontTextures[(int) attr.Type], FontMaterial, attr.Layout, questionSprite),
+            (attr, q, correct, answers) => new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), Fonts[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], attr.FontSize, FontTextures[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], FontMaterial, attr.Layout, questionSprite),
             formatArgs, correctAnswers, preferredWrongAnswers, null, questionSprite, _standardAnswerTypes);
 
     private QandA makeQuestion(Question question, string moduleKey, Font font, Texture fontTexture, Sprite questionSprite = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null) =>
@@ -1031,6 +1053,9 @@ public partial class SouvenirModule : MonoBehaviour
 
         var correctIndex = Rnd.Range(0, answers.Count + 1);
         answers.Insert(correctIndex, correctAnswers.PickRandom());
+        if (answers[0] is string && attr.TranslateAnswers)
+            for (var i = 0; i < answers.Count; i++)
+                answers[i] = (T) (object) translateAnswer(question, (string) (object) answers[i]);
 
         var numSolved = _modulesSolved.Get(moduleKey);
         if (numSolved < 1)
@@ -1040,41 +1065,41 @@ public partial class SouvenirModule : MonoBehaviour
         }
 
         var allFormatArgs = new string[formatArgs != null ? formatArgs.Length + 1 : 1];
-        allFormatArgs[0] = _moduleCounts.Get(moduleKey) > 1
-            ? string.Format("the {0} you solved {1}", attr.ModuleName, ordinal(numSolved))
-            : attr.AddThe ? "The\u00a0" + attr.ModuleName : attr.ModuleName;
+        allFormatArgs[0] = formatModuleName(attr.ModuleName, _moduleCounts.Get(moduleKey) > 1, numSolved, attr.AddThe);
         if (formatArgs != null)
-            Array.Copy(formatArgs, 0, allFormatArgs, 1, formatArgs.Length);
+            for (var i = 0; i < formatArgs.Length; i++)
+                allFormatArgs[i + 1] = translateFormatArg(question, formatArgs[i]);
 
-        return questionConstructor(attr, string.Format(attr.QuestionText, allFormatArgs), correctIndex, answers.ToArray());
+        return questionConstructor(attr, string.Format(translateQuestion(question), allFormatArgs), correctIndex, answers.ToArray());
     }
 
-    internal string[] GetAnswers(Question question) => !_attributes.TryGetValue(question, out var attr)
+    private string formatModuleName(string moduleName, bool addSolveCount, int numSolved, bool addThe) => _translation != null
+        ? _translation.FormatModuleName(moduleName, addSolveCount, numSolved, addThe)
+        : addSolveCount ? string.Format("the {0} you solved {1}", moduleName, ordinal(numSolved)) : addThe ? "The\u00a0" + moduleName : moduleName;
+
+    public string[] GetAnswers(Question question) => !_attributes.TryGetValue(question, out var attr)
         ? throw new InvalidOperationException(string.Format("<Souvenir #{0}> Question {1} is missing from the _attributes dictionary.", _moduleId, question))
         : attr.AllAnswers;
 
     private string titleCase(string str) => str.Length < 1 ? str : char.ToUpperInvariant(str[0]) + str.Substring(1).ToLowerInvariant();
 
-    private string ordinal(int number)
-    {
-        if (number < 0)
-            return "(" + number + ")th";
-
-        switch (number)
-        {
-            case 1: return "first";
-            case 2: return "second";
-            case 3: return "third";
-        }
-
-        switch ((number / 10) % 10 == 1 ? 0 : number % 10)
-        {
-            case 1: return number + "st";
-            case 2: return number + "nd";
-            case 3: return number + "rd";
-            default: return number + "th";
-        }
-    }
+    private string ordinal(int number) => _translation != null
+            ? _translation.Ordinal(number)
+            : number < 0
+                ? "(" + number + ")th"
+                : number switch
+                {
+                    1 => "first",
+                    2 => "second",
+                    3 => "third",
+                    _ => ((number / 10) % 10 == 1 ? 0 : number % 10) switch
+                    {
+                        1 => number + "st",
+                        2 => number + "nd",
+                        3 => number + "rd",
+                        _ => number + "th",
+                    },
+                };
     #endregion
 
     #region

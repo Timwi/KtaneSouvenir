@@ -4,14 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using Souvenir;
 using UnityEngine;
 
 using Rnd = UnityEngine.Random;
 
 namespace Souvenir
 {
-    static class Ut
+    public static class Ut
     {
         public static Vector3 SetX(this Vector3 orig, float x) { return new Vector3(x, orig.y, orig.z); }
 
@@ -175,6 +174,7 @@ namespace Souvenir
         }
 
         public static T[] NewArray<T>(params T[] array) { return array; }
+        public static List<T> NewList<T>(params T[] array) { return array.ToList(); }
 
         /// <summary>
         ///     Turns all elements in the enumerable to strings and joins them using the specified <paramref
@@ -300,6 +300,13 @@ namespace Souvenir
         ///     any difference.</summary>
         public static Func<T1, T2, T3, T4, TResult> Lambda<T1, T2, T3, T4, TResult>(Func<T1, T2, T3, T4, TResult> method) { return method; }
 
+        private static readonly string[] _joshi = "でなければ|について|かしら|くらい|けれど|なのか|ばかり|ながら|ことよ|こそ|こと|さえ|しか|した|たり|だけ|だに|だの|つつ|ても|てよ|でも|とも|から|など|なり|ので|のに|ほど|まで|もの|やら|より|って|で|と|な|に|ね|の|も|は|ば|へ|や|わ|を|か|が|さ|し|ぞ|て".Split('|');
+        private static readonly string _punctuation = ".,。、！!？?〉》」』｣)）]】〕〗〙〛}>)❩❫❭❯❱❳❵｝";
+        private static readonly (char from, char to)[] _breakableRanges = new (char from, char to)[] {
+            ('\u4E00', '\u9FA0'),   // CJK
+            ('\u3041','\u30ff'),    // Hiragana + Katakana
+        };
+
         public static IEnumerable<string> WordWrap(this string text, Func<int, double> wrapWidth, double widthOfASpace, Func<string, double> measure, bool allowBreakingWordsApart)
         {
             var curLine = 0;
@@ -318,6 +325,7 @@ namespace Souvenir
                 sb.Append(' ', numSpaces);
                 x += numSpaces * widthOfASpace;
                 actualWidth = Math.Max(actualWidth, x);
+                numSpaces = 0;
             });
 
             var renderPieces = Lambda(() =>
@@ -342,15 +350,35 @@ namespace Souvenir
                 x = 0;
                 atStartOfLine = true;
                 curLine++;
+                numSpaces = 0;
                 return line;
             });
 
             var i = 0;
             while (i < text.Length)
             {
-                // Check whether we are looking at a whitespace character or not, and if not, find the end of the word.
+                // Check whether we are at the start of a word, and if so, how long the word is.
                 int lengthOfWord = 0;
-                while (lengthOfWord + i < text.Length && !isWrappableAfter(text, lengthOfWord + i) && text[lengthOfWord + i] != '\n')
+                // Japanese: joshi
+                var p = _joshi.IndexOf(j => i + j.Length <= text.Length && text.Substring(i, j.Length) == j);
+                if (p != -1)
+                    lengthOfWord = _joshi[p].Length;
+                else
+                {
+                    if ((p = _breakableRanges.IndexOf(range => text[i] >= range.from && text[i] <= range.to)) != -1)
+                        lengthOfWord = 1;
+                    else
+                    {
+                        while (lengthOfWord + i < text.Length && !isWrappableAfter(text, lengthOfWord + i) && text[lengthOfWord + i] != '\n' && !_breakableRanges.Any(range => text[lengthOfWord + i] >= range.from && text[lengthOfWord + i] <= range.to))
+                            lengthOfWord++;
+                    }
+
+                    // If the word is followed by a joshi, don’t wrap it
+                    if ((p = _joshi.IndexOf(j => i + lengthOfWord + j.Length <= text.Length && text.Substring(i + lengthOfWord, j.Length) == j)) != -1)
+                        lengthOfWord += _joshi[p].Length;
+                }
+                // If the word is followed by a punctuation mark, don’t wrap it
+                while (lengthOfWord + i < text.Length && _punctuation.Contains(text[lengthOfWord + i]))
                     lengthOfWord++;
 
                 if (lengthOfWord > 0)
@@ -404,23 +432,22 @@ namespace Souvenir
                     wordPiecesWidths.Add(fragmentWidth);
                     wordPiecesWidthsSum += fragmentWidth;
                     i += lengthOfWord;
-                    continue;
                 }
 
-                // We encounter a whitespace character. All the word pieces fit on the current line, so render them.
+                // We encounter the end of a word. All the word pieces fit on the current line, so render them.
                 if (wordPieces.Count > 0)
                 {
                     renderPieces();
                     atStartOfLine = false;
                 }
 
-                if (text[i] == '\n')
+                if (i < text.Length && text[i] == '\n')
                 {
                     // If the whitespace character is actually a newline, start a new paragraph.
                     yield return advanceToNextLine(true);
                     i++;
                 }
-                else
+                else if (i < text.Length && char.IsWhiteSpace(text, i))
                 {
                     // Discover the extent of the spaces.
                     numSpaces = 0;

@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{4C3C8D4A-C793-467E-B02A-2ADC1937A9FF}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>SouvenirLib</RootNamespace>
+    <RootNamespace>Souvenir</RootNamespace>
     <AssemblyName>SouvenirLib</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -31,9 +31,6 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="ValueTupleBridge, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ValueTupleBridge.0.1.5\lib\net35\ValueTupleBridge.dll</HintPath>
-    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>$(GameFolder)ktane_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
@@ -98,6 +95,9 @@
       <HintPath>$(GameFolder)ktane_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="ValueTupleBridge, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ValueTupleBridge.0.1.5\lib\net35\ValueTupleBridge.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbandonModuleException.cs" />
@@ -145,11 +145,21 @@
     <Compile Include="Reflection\PropertyInfo.cs" />
     <Compile Include="SouvenirModule.cs" />
     <Compile Include="SouvenirQuestionAttribute.cs" />
+    <Compile Include="Translation.cs" />
+    <Compile Include="TranslationDE.cs" />
+    <Compile Include="TranslationEO.cs" />
+    <Compile Include="TranslationES.cs" />
+    <Compile Include="TranslationInfo.cs" />
+    <Compile Include="TranslationJA.cs" />
     <Compile Include="Ut.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /y "$(TargetDir)*.dll" "$(ProjectDir)..\Assets\Plugins\Managed"
-xcopy /y "$(TargetDir)*.dll" "$(GameFolder)mods\Souvenir"</PostBuildEvent>
+xcopy /y "$(TargetDir)*.dll" "$(GameFolder)mods\Souvenir"
+..\..\Tr\bin\Release\SouvenirTr.exe "$(TargetDir)SouvenirLib.dll" "$(ProjectDir)."</PostBuildEvent>
   </PropertyGroup>
 </Project>

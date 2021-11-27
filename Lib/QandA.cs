@@ -7,6 +7,7 @@ namespace Souvenir
 {
     abstract class QandA
     {
+        public const string Ordinal = "\ufffdordinal";
         public string ModuleNameWithThe { get; private set; }
         public string QuestionText { get; private set; }
         public Sprite QuestionSprite { get; private set; }

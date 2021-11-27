@@ -937,6 +937,7 @@ MonoBehaviour:
   - {fileID: 12800000, guid: 543398df9f2f38149b4dca0a529fddfb, type: 3}
   - {fileID: 12800000, guid: 7dc814b8607a3f04ebc4f1d58d025050, type: 3}
   - {fileID: 12800000, guid: 9c957ec899eb50c42a5e6130413505dd, type: 3}
+  - {fileID: 12800000, guid: 8ee6c1da95bf42446ac204a87c3bfba2, type: 3}
   FontTextures:
   - {fileID: 2800000, guid: 2cc5074422ed950489fe2e35af896c57, type: 3}
   - {fileID: 2800000, guid: 7eb251b1ccb04364aaed7e7915ea8c49, type: 3}
@@ -946,6 +947,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 543398df9f2f38149b4dca0a529fddfb, type: 3}
   - {fileID: 2800000, guid: 7dc814b8607a3f04ebc4f1d58d025050, type: 3}
   - {fileID: 2800000, guid: 9c957ec899eb50c42a5e6130413505dd, type: 3}
+  - {fileID: 2800000, guid: 8ee6c1da95bf42446ac204a87c3bfba2, type: 3}
   HighlightShort: {fileID: 4300000, guid: baf42807f85fb5b4ab0eb79f10f1a70b, type: 3}
   HighlightLong: {fileID: 4300000, guid: 0e132af13d16f3d4cae4df71d33e54a1, type: 3}
   HighlightVeryLong: {fileID: 4300000, guid: 57bd849898e2b244490f7a4e1838ab25, type: 3}
