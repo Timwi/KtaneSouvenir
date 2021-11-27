@@ -40,6 +40,11 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] FlagsSprites;
     public Sprite[] EncryptedEquationsSprites;
     public Sprite[] SimonSpeaksSprites;
+    public Sprite[] MathEmSprites;
+    public Sprite[] USACycleSprites;
+    public Sprite[] TasqueManagingSprites;
+    public Sprite[] SimonShapesSprites;
+    public Sprite[] JengaSprites;
 
     public TextMesh TextMesh;
     public Renderer TextRenderer;

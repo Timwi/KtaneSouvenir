@@ -167,6 +167,7 @@ public partial class SouvenirModule
     const string _Interpunct = "interpunct";
     const string _IPA = "ipa";
     const string _iPhone = "iPhone";
+    const string _Jenga = "jenga";
     const string _JewelVault = "jewelVault";
     const string _JumbleCycle = "jumbleCycle";
     const string _KanyeEncounter = "TheKanyeEncounter";
@@ -192,6 +193,7 @@ public partial class SouvenirModule
     const string _MandNs = "MandNs";
     const string _MaritimeFlags = "MaritimeFlagsModule";
     const string _Mashematics = "mashematics";
+    const string _MathEm = "mathem";
     const string _Matrix = "matrix";
     const string _Maze = "Maze";
     const string _Maze3 = "maze3";
@@ -322,6 +324,7 @@ public partial class SouvenirModule
     const string _SimonScreams = "SimonScreamsModule";
     const string _SimonSelects = "simonSelectsModule";
     const string _SimonSends = "SimonSendsModule";
+    const string _SimonShapes = "SimonShapesModule";
     const string _SimonShouts = "SimonShoutsModule";
     const string _SimonShrieks = "SimonShrieksModule";
     const string _SimonSimons = "simonSimons";
@@ -365,6 +368,7 @@ public partial class SouvenirModule
     const string _Sysadmin = "sysadmin";
     const string _TapCode = "tapCode";
     const string _TashaSqueals = "tashaSqueals";
+    const string _TasqueManaging = "tasqueManaging";
     const string _TenButtonColorCode = "TenButtonColorCode";
     const string _Tenpins = "tenpins";
     const string _TextField = "TextField";
@@ -388,6 +392,7 @@ public partial class SouvenirModule
     const string _UnfairsRevenge = "unfairsRevenge";
     const string _Unicode = "UnicodeModule";
     const string _UnownCipher = "UnownCipher";
+    const string _USACycle = "USACycle";
     const string _USAMaze = "USA";
     const string _V = "V";
     const string _VaricoloredSquares = "VaricoloredSquaresModule";
@@ -575,6 +580,7 @@ public partial class SouvenirModule
             { _Interpunct, ProcessInterpunct },
             { _IPA, ProcessIPA },
             { _iPhone, ProcessiPhone },
+            { _Jenga, ProcessJenga },
             { _JewelVault, ProcessJewelVault },
             { _JumbleCycle, ProcessJumbleCycle },
             { _KanyeEncounter, ProcessKanyeEncounter },
@@ -600,6 +606,7 @@ public partial class SouvenirModule
             { _MandNs, ProcessMandNs },
             { _MaritimeFlags, ProcessMaritimeFlags },
             { _Mashematics, ProcessMashematics },
+            { _MathEm, ProcessMathEm },
             { _Matrix, ProcessMatrix },
             { _Maze, ProcessMaze },
             { _Maze3, ProcessMaze3 },
@@ -730,6 +737,7 @@ public partial class SouvenirModule
             { _SimonScreams, ProcessSimonScreams },
             { _SimonSelects, ProcessSimonSelects },
             { _SimonSends, ProcessSimonSends },
+            { _SimonShapes, ProcessSimonShapes },
             { _SimonShouts, ProcessSimonShouts },
             { _SimonShrieks, ProcessSimonShrieks },
             { _SimonSimons, ProcessSimonSimons },
@@ -773,6 +781,7 @@ public partial class SouvenirModule
             { _Sysadmin, ProcessSysadmin },
             { _TapCode, ProcessTapCode },
             { _TashaSqueals, ProcessTashaSqueals },
+            { _TasqueManaging, ProcessTasqueManaging },
             { _TenButtonColorCode, ProcessTenButtonColorCode },
             { _Tenpins, ProcessTenpins },
             { _TextField, ProcessTextField },
@@ -796,6 +805,7 @@ public partial class SouvenirModule
             { _UnfairsRevenge, ProcessUnfairsRevenge },
             { _Unicode, ProcessUnicode },
             { _UnownCipher, ProcessUnownCipher },
+            { _USACycle, ProcessUSACycle },
             { _USAMaze, ProcessUSAMaze },
             { _V, ProcessV },
             { _VaricoloredSquares, ProcessVaricoloredSquares },
