@@ -129,17 +129,17 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(0.1f);
         _modulesSolved.IncSafe(_Digisibility);
 
-        var fldData = GetField<int[][]>(comp, "Data");
-        int[] displayedNums = fldData.Get().First();
+        var displayedNums = GetField<int[][]>(comp, "Data").Get().First();
 
         var qs = new List<QandA>();
         for (int i = 0; i < 9; i++)
-            qs.Add(makeQuestion(Question.DigisibilityDisplayedNumber, _Digisibility, 
-                formatArgs: new[] { ordinal(i + 1) }, 
+            qs.Add(makeQuestion(Question.DigisibilityDisplayedNumber, _Digisibility,
+                formatArgs: new[] { ordinal(i + 1) },
                 correctAnswers: new[] { displayedNums[i].ToString() },
                 preferredWrongAnswers: displayedNums.Select(x => x.ToString()).ToArray()));
         addQuestions(module, qs);
     }
+
     private IEnumerable<object> ProcessDiscoloredSquares(KMBombModule module)
     {
         var comp = GetComponent(module, "DiscoloredSquaresModule");

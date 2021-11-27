@@ -256,7 +256,7 @@ public partial class SouvenirModule
         var fldOrder = GetField<object>(comp, "chosenOrder");
 
         addQuestions(module,
-            makeQuestion(Question.TouchTransmissionWord, _TouchTransmission, correctAnswers: new[] { fldGenWord.Get().ToLower() }),
+            makeQuestion(Question.TouchTransmissionWord, _TouchTransmission, correctAnswers: new[] { fldGenWord.Get().ToLowerInvariant() }),
             makeQuestion(Question.TouchTransmissionOrder, _TouchTransmission, correctAnswers: new[] { fldOrder.Get().ToString().Replace('_', ' ') }));
     }
 

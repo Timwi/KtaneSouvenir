@@ -134,6 +134,7 @@ public partial class SouvenirModule
 
         addQuestion(module, Question.LEDsOriginalColor, correctAnswers: new[] { initStr }, preferredWrongAnswers: new[] { actualStr });
     }
+
     private IEnumerable<object> ProcessLEGOs(KMBombModule module)
     {
         var comp = GetComponent(module, "LEGOModule");
