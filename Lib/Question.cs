@@ -886,6 +886,9 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9)]
         iPhoneDigits,
 
+        [SouvenirQuestion("Which symbol was on the first correctly pulled block in {0}?", "Jenga", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "JengaSprites")]
+        JengaFirstBlock,
+
         [SouvenirQuestion("What number was wheel {1} in {0}?", "Jewel Vault", AnswerLayout.TwoColumns4Answers,
             ExampleExtraFormatArguments = new[] { "A", "B", "C", "D" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         [AnswerGenerator.Integers(1, 4)]
@@ -1009,6 +1012,11 @@ namespace Souvenir
         [SouvenirQuestion("What was the {1} number in the equation on {0}?", "Mashematics", AnswerLayout.ThreeColumns6Answers, null, ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 99)]
         MashematicsCalculation,
+
+        [SouvenirQuestion("What was the color of this tile before the shuffle on {0}?", "Math ’em", AnswerLayout.TwoColumns4Answers, "White", "Bronze", "Silver", "Gold", UsesQuestionSprite = true)]
+        MathEmColor,
+        [SouvenirQuestion("What was the design on this tile before the shuffle on {0}?", "Math ’em", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "MathEmSprites")]
+        MathEmLabel,
 
         [SouvenirQuestion("Which word was part of the latest access code in {0}?", "Matrix", AnswerLayout.TwoColumns4Answers, "Twins", "Neo", "Seraph", "Cypher", "Persephone", "Tank", "Dozer", "Mouse", "Switch", "Architect", "Smith", "Merovingian", "Morpheus", "Niobe", "Bane", "Oracle", "Keymaker", "Link", "Trinity", "Apoc", AddThe = true)]
         MatrixAccessCode,
@@ -1744,6 +1752,9 @@ namespace Souvenir
         [AnswerGenerator.Strings('A', 'Z')]
         SimonSendsReceivedLetters,
 
+        [SouvenirQuestion("What was the shape submitted at the end of {0}?", "Simon Shapes", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "SimonShapesSprites")]
+        SimonShapesSubmittedShape,
+
         [SouvenirQuestion("What was the {1} flash in the final sequence in {0}?", "Simon Simons", AnswerLayout.ThreeColumns6Answers, "TR", "TY", "TG", "TB", "LR", "LY", "LG", "LB", "RR", "RY", "RG", "RB", "BR", "BY", "BG", "BB",
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSimonsFlashingColors,
@@ -1940,6 +1951,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "first", "second", "third", "fourth", "fifth" }, ExampleExtraFormatArgumentGroupSize = 1)]
         TashaSquealsColors,
 
+        [SouvenirQuestion("Where was the starting position in {0}?", "Tasque Managing", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "TasqueManagingSprites")]
+        TasqueManagingStartingPos,
+
         [SouvenirQuestion("What was the initial color of the {1} button in the {2} stage of {0}?", "Ten-Button Color Code", AnswerLayout.TwoColumns4Answers, "red", "green", "blue", "yellow",
             ExampleExtraFormatArguments = new[] { "first", "first", "second", "first", "first", "second", "second", "second" }, ExampleExtraFormatArgumentGroupSize = 2)]
         TenButtonColorCodeInitialColors,
@@ -2043,6 +2057,10 @@ namespace Souvenir
             Type = AnswerType.UnownFont, ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th", "5th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Strings('A', 'Z')]
         UnownCipherAnswers,
+
+        [SouvenirQuestion("Which state was displayed in {0}?", "USA Cycle", AnswerLayout.TwoColumns4Answers, 
+            Type = AnswerType.Sprites, SpriteField = "USACycleSprites")]
+        USACycleDisplayed,
 
         [SouvenirQuestion("Which state did you depart from in {0}?", "USA Maze", AnswerLayout.TwoColumns4Answers, "Alaska", "Alabama", "Arkansas", "Arizona", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Iowa", "Idaho", "Illinois", "Indiana", "Kansas", "Kentucky", "Louisiana", "Massachusetts", "Maryland", "Maine", "Michigan", "Minnesota", "Missouri", "Mississippi", "Montana", "North Carolina", "North Dakota", "Nebraska", "New Hampshire", "New Jersey", "New Mexico", "Nevada", "New York", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Virginia", "Vermont", "Washington", "Wisconsin", "West Virginia", "Wyoming")]
         USAMazeOrigin,

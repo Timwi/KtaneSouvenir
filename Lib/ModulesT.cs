@@ -44,6 +44,18 @@ public partial class SouvenirModule
             makeQuestion(Question.TashaSquealsColors, _TashaSqueals, formatArgs: new[] { "fifth" }, correctAnswers: new[] { colors[sequence[4]] }));
     }
 
+    private IEnumerable<object> ProcessTasqueManaging(KMBombModule module)
+    {
+        var comp = GetComponent(module, "tasqueManaging");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_TasqueManaging);
+        addQuestion(module, Question.TasqueManagingStartingPos,
+            correctAnswers: new[] { TasqueManagingSprites[GetIntField(comp, "startingPosition").Get(min: 0, max: 15)] },
+            preferredWrongAnswers: TasqueManagingSprites);
+    }
+
     private IEnumerable<object> ProcessTenButtonColorCode(KMBombModule module)
     {
         var comp = GetComponent(module, "scr_colorCode");
@@ -285,9 +297,9 @@ public partial class SouvenirModule
             }
         }
         addQuestions(module,
-            makeQuestion(Question.TrajectoryButtonFunctions, _Trajectory, formatArgs: new[] { "A" }, correctAnswers: functions[0], preferredWrongAnswers: functions.SelectMany<string[], string>(x => x).ToArray()),
-            makeQuestion(Question.TrajectoryButtonFunctions, _Trajectory, formatArgs: new[] { "B" }, correctAnswers: functions[1], preferredWrongAnswers: functions.SelectMany<string[], string>(x => x).ToArray()),
-            makeQuestion(Question.TrajectoryButtonFunctions, _Trajectory, formatArgs: new[] { "C" }, correctAnswers: functions[2], preferredWrongAnswers: functions.SelectMany<string[], string>(x => x).ToArray()));
+            makeQuestion(Question.TrajectoryButtonFunctions, _Trajectory, formatArgs: new[] { "A" }, correctAnswers: functions[0], preferredWrongAnswers: functions.SelectMany(x => x).ToArray()),
+            makeQuestion(Question.TrajectoryButtonFunctions, _Trajectory, formatArgs: new[] { "B" }, correctAnswers: functions[1], preferredWrongAnswers: functions.SelectMany(x => x).ToArray()),
+            makeQuestion(Question.TrajectoryButtonFunctions, _Trajectory, formatArgs: new[] { "C" }, correctAnswers: functions[2], preferredWrongAnswers: functions.SelectMany(x => x).ToArray()));
     }
     private IEnumerable<object> ProcessTransmittedMorse(KMBombModule module)
     {

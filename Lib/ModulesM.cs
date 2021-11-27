@@ -164,6 +164,44 @@ public partial class SouvenirModule
         addQuestions(module, questions);
     }
 
+    private IEnumerable<object> ProcessMathEm(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MathemScript");
+        
+        bool solved = false;
+        module.OnPass += delegate () { solved = true; return false; };
+
+        var fldArrangements = GetField<int[][]>(comp, "tarrange");
+        var fldProps = GetField<int[,]>(comp, "tprops");
+        var fldMats = GetArrayField<Material>(comp, "tpatterns", isPublic: true);
+
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_MathEm);
+
+        int[] initialArrangement = fldArrangements.Get().First();
+        int[,] props = fldProps.Get();
+
+        List<QandA> qs = new List<QandA>();
+        string[] colorNames = { "White", "Bronze", "Silver", "Gold" };
+        Sprite[] displayedMarkings = Enumerable.Range(0, 16).Select(ix => MathEmSprites[(props[initialArrangement[ix], 0] * 10) + props[initialArrangement[ix], 2]]).ToArray();
+                                                                                                                   //0123456789ABCDEFGHIJ+-/^
+
+        for (int tileIx = 0; tileIx < 16; tileIx++)
+        {
+            qs.Add(makeQuestion(Question.MathEmColor, _MathEm,
+                questionSprite: generateGridSprite(new Coord(4, 4, tileIx)),
+                correctAnswers: new[] { colorNames[props[initialArrangement[tileIx], 1]] }));
+            qs.Add(makeQuestion(Question.MathEmLabel, _MathEm,
+                questionSprite: generateGridSprite(new Coord(4, 4, tileIx)),
+                correctAnswers: new[] { displayedMarkings[tileIx] },
+                preferredWrongAnswers: displayedMarkings
+                ));
+        }
+        addQuestions(module, qs);
+
+    }
+
     private IEnumerable<object> ProcessMatrix(KMBombModule module)
     {
         var comp = GetComponent(module, "MatrixScript");

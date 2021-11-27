@@ -487,6 +487,42 @@ public partial class SouvenirModule
             makeQuestion(Question.SimonSendsReceivedLetters, _SimonSends, formatArgs: new[] { "blue" }, correctAnswers: new[] { charB }, preferredWrongAnswers: new[] { charR, charG }));
     }
 
+    private IEnumerable<object> ProcessSimonShapes(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SimonShapesScript");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+        var fldAllFinalShapes = GetListField<List<int>>(comp, "_possibleFinalShapes");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SimonShapes);
+
+        List<int> solutionShape = fldAllFinalShapes.Get(minLength: 1).First();
+
+        //Aligns the shape with the top-left corner of the grid.
+        List<int> alignedSolutionShape = new List<int>(); 
+        int hOffset = solutionShape.Min(x => x % 3); 
+        int vOffset = solutionShape.Min(x => x / 3);
+        foreach (int pos in solutionShape)
+            alignedSolutionShape.Add(3 * (pos / 3 - vOffset) + (pos % 3 - hOffset));
+        //Converts the shape into a binary number where a present square is a 1 and an absent square is a 0.
+        int binaryValue = 0;
+        for (int pos = 0; pos < 9; pos++)
+        {
+            binaryValue <<= 1;
+            if (alignedSolutionShape.Contains(pos))
+                binaryValue++;
+        }
+        //Every shape (in reading order of Table B) converted into binary using the above method.
+        int[] allBinaries = { 150, 294, 376, 402, 472, 94, 307, 480, 240, 403, 448, 180, 292, 214, 416, 456, 120, 432, 313, 408, 400, 312, 440, 422, 304, 409, 406, 182, 420, 384, 244, 488, 436, 176, 288, 306 };
+
+        if (allBinaries.Contains(binaryValue))
+            addQuestion(module, Question.SimonShapesSubmittedShape,
+                correctAnswers: new[] { SimonShapesSprites[Array.IndexOf(allBinaries, binaryValue)] },
+                preferredWrongAnswers: SimonShapesSprites);
+        else
+            throw new AbandonModuleException("Error in shape capturing! Obtained binary value {0} does not match any entry corresponding to a shape.", binaryValue);
+    }
     private IEnumerable<object> ProcessSimonShouts(KMBombModule module)
     {
         var comp = GetComponent(module, "SimonShoutsModule");
