@@ -167,7 +167,7 @@ public partial class SouvenirModule
     private IEnumerable<object> ProcessMathEm(KMBombModule module)
     {
         var comp = GetComponent(module, "MathemScript");
-        
+
         bool solved = false;
         module.OnPass += delegate () { solved = true; return false; };
 
@@ -185,7 +185,6 @@ public partial class SouvenirModule
         List<QandA> qs = new List<QandA>();
         string[] colorNames = { "White", "Bronze", "Silver", "Gold" };
         Sprite[] displayedMarkings = Enumerable.Range(0, 16).Select(ix => MathEmSprites[(props[initialArrangement[ix], 0] * 10) + props[initialArrangement[ix], 2]]).ToArray();
-                                                                                                                   //0123456789ABCDEFGHIJ+-/^
 
         for (int tileIx = 0; tileIx < 16; tileIx++)
         {
@@ -195,8 +194,7 @@ public partial class SouvenirModule
             qs.Add(makeQuestion(Question.MathEmLabel, _MathEm,
                 questionSprite: generateGridSprite(new Coord(4, 4, tileIx)),
                 correctAnswers: new[] { displayedMarkings[tileIx] },
-                preferredWrongAnswers: displayedMarkings
-                ));
+                preferredWrongAnswers: displayedMarkings));
         }
         addQuestions(module, qs);
 
@@ -880,7 +878,7 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "MSeqScript");
         var fldState = GetField<object>(comp, "state"); //Uses an enum value.
-        while (fldState.Get().ToString() != "Solved") 
+        while (fldState.Get().ToString() != "Solved")
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_MSeq);
 

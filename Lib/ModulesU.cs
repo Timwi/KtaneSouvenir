@@ -179,10 +179,11 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_USACycle);
 
         int[] stateIndices = fldStateIndices.Get(minLength: 4).Where(ix => ix != 5 && ix != 49).ToArray();
-                                                                        //Colorado and Wyoming are practically indistinguishable
+
+        //Colorado and Wyoming are practically indistinguishable
         addQuestion(module, Question.USACycleDisplayed,
             correctAnswers: stateIndices.Select(ix => USACycleSprites[ix]).ToArray(),
-            preferredWrongAnswers: USACycleSprites.Where((_,pos) => pos !=  5 && pos != 49).ToArray());
+            preferredWrongAnswers: USACycleSprites.Where((_, pos) => pos != 5 && pos != 49).ToArray());
     }
 
     private IEnumerable<object> ProcessUSAMaze(KMBombModule module)

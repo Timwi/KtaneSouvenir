@@ -661,10 +661,9 @@ public partial class SouvenirModule : MonoBehaviour
                     TextMesh.text = str;
                     return TextRenderer.bounds.size.x;
                 },
-                allowBreakingWordsApart: _translation?.AllowBreakingWords ?? false
+                allowBreakingWordsApart: false
             ))
             {
-                Debug.LogFormat($"Word-wrapping [{text}] — line: [{line}]");
                 if (line == null)
                 {
                     // There was a word that was too long to fit into a line.

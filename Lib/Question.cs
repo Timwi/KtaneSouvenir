@@ -1018,7 +1018,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the color of this tile before the shuffle on {0}?", "Math ’em", AnswerLayout.TwoColumns4Answers, "White", "Bronze", "Silver", "Gold", UsesQuestionSprite = true)]
         MathEmColor,
-        [SouvenirQuestion("What was the design on this tile before the shuffle on {0}?", "Math ’em", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "MathEmSprites")]
+        [SouvenirQuestion("What was the design on this tile before the shuffle on {0}?", "Math ’em", AnswerLayout.ThreeColumns6Answers, null, UsesQuestionSprite = true, Type = AnswerType.Sprites, SpriteField = "MathEmSprites")]
         MathEmLabel,
 
         [SouvenirQuestion("Which word was part of the latest access code in {0}?", "Matrix", AnswerLayout.TwoColumns4Answers, "Twins", "Neo", "Seraph", "Cypher", "Persephone", "Tank", "Dozer", "Mouse", "Switch", "Architect", "Smith", "Merovingian", "Morpheus", "Niobe", "Bane", "Oracle", "Keymaker", "Link", "Trinity", "Apoc", AddThe = true)]
@@ -2059,7 +2059,7 @@ namespace Souvenir
         [AnswerGenerator.Strings('A', 'Z')]
         UnownCipherAnswers,
 
-        [SouvenirQuestion("Which state was displayed in {0}?", "USA Cycle", AnswerLayout.TwoColumns4Answers, 
+        [SouvenirQuestion("Which state was displayed in {0}?", "USA Cycle", AnswerLayout.TwoColumns4Answers,
             Type = AnswerType.Sprites, SpriteField = "USACycleSprites")]
         USACycleDisplayed,
 

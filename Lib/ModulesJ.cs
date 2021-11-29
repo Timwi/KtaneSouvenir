@@ -6,7 +6,6 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
-
     private IEnumerable<object> ProcessJenga(KMBombModule module)
     {
         var comp = GetComponent(module, "JengaModule");

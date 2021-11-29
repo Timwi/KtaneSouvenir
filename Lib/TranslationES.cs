@@ -2722,6 +2722,14 @@ namespace Souvenir
                 QuestionText = "What was the {1} PIN digit in {0}?",
             },
 
+            // Jenga
+            // Which symbol was on the first correctly pulled block in {0}?
+            // Which symbol was on the first correctly pulled block in Jenga?
+            [Question.JengaFirstBlock] = new TranslationInfo
+            {
+                QuestionText = "Which symbol was on the first correctly pulled block in {0}?",
+            },
+
             // The Jewel Vault
             // What number was wheel {1} in {0}?
             // What number was wheel A in The Jewel Vault?
@@ -3094,6 +3102,20 @@ namespace Souvenir
                 {
                     ["�ordinal"] = "�ordinal",
                 },
+            },
+
+            // Math ’em
+            // What was the color of this tile before the shuffle on {0}?
+            // What was the color of this tile before the shuffle on Math ’em?
+            [Question.MathEmColor] = new TranslationInfo
+            {
+                QuestionText = "What was the color of this tile before the shuffle on {0}?",
+            },
+            // What was the design on this tile before the shuffle on {0}?
+            // What was the design on this tile before the shuffle on Math ’em?
+            [Question.MathEmLabel] = new TranslationInfo
+            {
+                QuestionText = "What was the design on this tile before the shuffle on {0}?",
             },
 
             // The Matrix
@@ -6074,6 +6096,14 @@ namespace Souvenir
                 },
             },
 
+            // Simon Shapes
+            // What was the shape submitted at the end of {0}?
+            // What was the shape submitted at the end of Simon Shapes?
+            [Question.SimonShapesSubmittedShape] = new TranslationInfo
+            {
+                QuestionText = "What was the shape submitted at the end of {0}?",
+            },
+
             // Simon Simons
             // What was the {1} flash in the final sequence in {0}?
             // What was the first flash in the final sequence in Simon Simons?
@@ -6770,6 +6800,14 @@ namespace Souvenir
                 },
             },
 
+            // Tasque Managing
+            // Where was the starting position in {0}?
+            // Where was the starting position in Tasque Managing?
+            [Question.TasqueManagingStartingPos] = new TranslationInfo
+            {
+                QuestionText = "Where was the starting position in {0}?",
+            },
+
             // Ten-Button Color Code
             // What was the initial color of the {1} button in the {2} stage of {0}?
             // What was the initial color of the first button in the first stage of Ten-Button Color Code?
@@ -7074,6 +7112,14 @@ namespace Souvenir
             [Question.UnownCipherAnswers] = new TranslationInfo
             {
                 QuestionText = "What was the {1} submitted letter in {0}?",
+            },
+
+            // USA Cycle
+            // Which state was displayed in {0}?
+            // Which state was displayed in USA Cycle?
+            [Question.USACycleDisplayed] = new TranslationInfo
+            {
+                QuestionText = "Which state was displayed in {0}?",
             },
 
             // USA Maze
