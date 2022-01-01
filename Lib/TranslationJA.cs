@@ -8,7 +8,8 @@ namespace Souvenir
         public override string FormatModuleName(string moduleName, bool addSolveCount, int numSolved, bool addThe) => addSolveCount
             ? string.Format("{1}番目に解除された{0}", moduleName, Ordinal(numSolved))
             : addThe ? "\u00a0" + moduleName : moduleName;
-        public override bool AllowBreakingWords => true;
+            
+        
         public override int DefaultFontIndex => 8;
         public override float LineSpacing => 0.7f;
 
@@ -60,9 +61,10 @@ namespace Souvenir
                 },
             },
 
-            // 3D迷路
-            // {0}の迷路の文字は何？
-            // 3D迷路の迷路の文字は何？
+
+            // 3D Maze
+            // What were the markings in {0}?
+            // What were the markings in 3D Maze?
             [Question._3DMazeMarkings] = new TranslationInfo
             {
                 QuestionText = "{0}の迷路の文字は何？",
@@ -1153,6 +1155,7 @@ namespace Souvenir
             // 色の解読でステージ1のインジケーターのパターンに現れたのは何色？
                 Answers = new Dictionary<string, string>
                 {
+
                     ["Green"] = "緑",
                     ["Purple"] = "紫",
                     ["Red"] = "赤",
@@ -2482,12 +2485,14 @@ namespace Souvenir
             [Question.IdentityParadeAttires] = new TranslationInfo
             {
                 QuestionText = "{0}のリストに{1}のはどの服装？",
+
             },  
                  FormatArgs = new Dictionary<string, string>
                 {
                     ["was"] = "ある",
                     ["was not"] = "ない",
                 },
+
 
             // #Indigo Cipher
             // What was the answer in {0}?
@@ -2743,6 +2748,14 @@ namespace Souvenir
             [Question.iPhoneDigits] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}番目のPINの数字は？",
+            },
+
+            // Jenga
+            // Which symbol was on the first correctly pulled block in {0}?
+            // Which symbol was on the first correctly pulled block in Jenga?
+            [Question.JengaFirstBlock] = new TranslationInfo
+            {
+                QuestionText = "Which symbol was on the first correctly pulled block in {0}?",
             },
 
             // #The Jewel Vault
@@ -3119,6 +3132,21 @@ namespace Souvenir
                 },
             },
 
+
+            // Math ’em
+            // What was the color of this tile before the shuffle on {0}?
+            // What was the color of this tile before the shuffle on Math ’em?
+            [Question.MathEmColor] = new TranslationInfo
+            {
+                QuestionText = "What was the color of this tile before the shuffle on {0}?",
+            },
+            // What was the design on this tile before the shuffle on {0}?
+            // What was the design on this tile before the shuffle on Math ’em?
+            [Question.MathEmLabel] = new TranslationInfo
+            {
+                QuestionText = "What was the design on this tile before the shuffle on {0}?",
+            },
+            
             // #The Matrix
             // Which word was part of the latest access code in {0}?
             // Which word was part of the latest access code in The Matrix?
@@ -6110,6 +6138,17 @@ namespace Souvenir
                 },
             },
 
+            // Simon Shapes
+            // What was the shape submitted at the end of {0}?
+            // What was the shape submitted at the end of Simon Shapes?
+            [Question.SimonShapesSubmittedShape] = new TranslationInfo
+            {
+                QuestionText = "What was the shape submitted at the end of {0}?",
+            },
+
+            // Simon Simons
+            // What was the {1} flash in the final sequence in {0}?
+            // What was the first flash in the final sequence in Simon Simons?
             // #Simon Simons
             // {0}の最終シークエンスにおいて、{1}番目に点滅した色は？
             // Simon Simonsの最終シークエンスにおいて、1番目に点滅した色は？
@@ -6807,9 +6846,17 @@ namespace Souvenir
                 },
             },
 
-            // #Ten-Button Color Code
-            // {0}のステージ{2}における{1}番目のボタンの初期の色は？
-            // Ten-Button Color Codeのステージ1における1番目のボタンの初期の色は？
+            // Tasque Managing
+            // Where was the starting position in {0}?
+            // Where was the starting position in Tasque Managing?
+            [Question.TasqueManagingStartingPos] = new TranslationInfo
+            {
+                QuestionText = "Where was the starting position in {0}?",
+            },
+
+            // Ten-Button Color Code
+            // What was the initial color of the {1} button in the {2} stage of {0}?
+            // What was the initial color of the first button in the first stage of Ten-Button Color Code?
             [Question.TenButtonColorCodeInitialColors] = new TranslationInfo
             {
                 QuestionText = "{0}のステージ{2}における{1}番目のボタンの初期の色は？",
@@ -7113,6 +7160,14 @@ namespace Souvenir
             [Question.UnownCipherAnswers] = new TranslationInfo
             {
                 QuestionText = "{0}にて送信した単語の{1}番目の英字は？",
+            },
+
+            // USA Cycle
+            // Which state was displayed in {0}?
+            // Which state was displayed in USA Cycle?
+            [Question.USACycleDisplayed] = new TranslationInfo
+            {
+                QuestionText = "Which state was displayed in {0}?",
             },
 
             // #USA Maze

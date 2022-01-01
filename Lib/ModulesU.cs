@@ -168,6 +168,24 @@ public partial class SouvenirModule
         addQuestions(module, unownAnswer.Select((ans, i) => makeQuestion(Question.UnownCipherAnswers, _UnownCipher, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { ((char) ('A' + ans)).ToString() })));
     }
 
+    private IEnumerable<object> ProcessUSACycle(KMBombModule module)
+    {
+        var comp = GetComponent(module, "USACycle");
+        var fldSolved = GetField<bool>(comp, "ModuleSolved");
+        var fldStateIndices = GetListField<int>(comp, "StateIndexes");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_USACycle);
+
+        int[] stateIndices = fldStateIndices.Get(minLength: 4).Where(ix => ix != 5 && ix != 49).ToArray();
+
+        //Colorado and Wyoming are practically indistinguishable
+        addQuestion(module, Question.USACycleDisplayed,
+            correctAnswers: stateIndices.Select(ix => USACycleSprites[ix]).ToArray(),
+            preferredWrongAnswers: USACycleSprites.Where((_, pos) => pos != 5 && pos != 49).ToArray());
+    }
+
     private IEnumerable<object> ProcessUSAMaze(KMBombModule module)
     {
         return processWorldMaze(module, "USAMaze", _USAMaze, Question.USAMazeOrigin);

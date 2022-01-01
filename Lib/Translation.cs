@@ -5,7 +5,6 @@ namespace Souvenir
     public abstract class Translation
     {
         public abstract Dictionary<Question, TranslationInfo> Translations { get; }
-        public virtual bool AllowBreakingWords => false;
         public virtual int DefaultFontIndex => 0;
         public virtual float LineSpacing => 0.525f;
 
