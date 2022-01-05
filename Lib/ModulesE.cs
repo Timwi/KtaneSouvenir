@@ -182,6 +182,25 @@ public partial class SouvenirModule
         addQuestion(module, Question.EncryptionBingoEncoding, correctAnswers: new[] { encodingNames[encoding] }, preferredWrongAnswers: encodingNames);
     }
 
+    private IEnumerable<object> ProcessEnigmaCycle(KMBombModule module)
+    {
+        var comp = GetComponent(module, "EnigmaCycleScript");
+        var fldSolved = GetField<bool>(comp, "isSolving");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_EnigmaCycle);
+
+        var kvp = GetField<KeyValuePair<string, string>>(comp, "selectedMessageResponsePair").Get();
+        var message = kvp.Key.Substring(0, 1) + kvp.Key.Substring(1).ToLowerInvariant();
+        var response = kvp.Value.Substring(0, 1) + kvp.Value.Substring(1).ToLowerInvariant();
+        var wl = new[] { "ABNORMAL", "AUTHORED", "BACKDOOR", "BOULDERS", "CHANGING", "CUMBERED", "DEBUGGED", "DODGIEST", "EDITABLE", "EXCESSES", "FAIRYISM", "FRAGMENT", "GIBBERED", "GROANING", "HEADACHE", "HUDDLING", "ILLUSORY", "IRONICAL", "JOKINGLY", "JUDGMENT", "KEYNOTES", "KINDLING", "LIKENESS", "LOCKOUTS", "MOBILITY", "MUFFLING", "NEUTRALS", "NOTIONAL", "OFFTRACK", "ORDERING", "PHANTASM", "PROVOKED", "QUITTERS", "QUOTABLE", "RHETORIC", "ROULETTE", "SHUTDOWN", "SUBLIMES", "TARTNESS", "TYPHONIC", "UNPURGED", "UGLINESS", "VARIANCE", "VOLATILE", "WACKIEST", "WORKFLOW", "XENOLITH", "XANTHENE", "YABBERED", "YOURSELF", "ZAPPIEST", "ZILLIONS" };
+        var wordList = Enumerable.Range(0, wl.Length).Select(word => wl[word].Substring(0, 1) + wl[word].Substring(1).ToLowerInvariant()).ToArray();
+
+        addQuestions(module,
+          makeQuestion(Question.EnigmaCycleWords, _EnigmaCycle, formatArgs: new[] { "message" }, correctAnswers: new[] { message }, preferredWrongAnswers: wordList),
+          makeQuestion(Question.EnigmaCycleWords, _EnigmaCycle, formatArgs: new[] { "response" }, correctAnswers: new[] { response }, preferredWrongAnswers: wordList));
+    }
+
     private IEnumerable<object> ProcessEntryNumberFour(KMBombModule module)
     {
         var comp = GetComponent(module, "EntryNumberFourScript");

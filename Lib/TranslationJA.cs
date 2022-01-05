@@ -1671,6 +1671,14 @@ namespace Souvenir
                 QuestionText = "What was the first encoding used in {0}？",
             },
 
+            // Enigma Cycle
+            // What was the {1} in {0}?
+            // What was the message in Enigma Cycle?
+            [Question.EnigmaCycleWords] = new TranslationInfo
+            {
+                QuestionText = "What was the {1} in {0}?",
+            },
+
             // Entry Number Four
             // What was the first number shown in {0}?
             // What was the first number shown in Entry Number Four?

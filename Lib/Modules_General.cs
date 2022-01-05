@@ -111,6 +111,7 @@ public partial class SouvenirModule
     const string _EncryptedMaze = "encryptedMaze";
     const string _EncryptedMorse = "EncryptedMorse";
     const string _EncryptionBingo = "encryptionBingo";
+    const string _EnigmaCycle = "enigmaCycle";
     const string _EntryNumberFour = "GSEntryNumberFour";
     const string _EntryNumberOne = "GSEntryNumberOne";
     const string _EquationsX = "equationsXModule";
@@ -524,6 +525,7 @@ public partial class SouvenirModule
             { _EncryptedMaze, ProcessEncryptedMaze },
             { _EncryptedMorse, ProcessEncryptedMorse },
             { _EncryptionBingo, ProcessEncryptionBingo },
+            { _EnigmaCycle, ProcessEnigmaCycle },
             { _EntryNumberFour, ProcessEntryNumberFour },
             { _EntryNumberOne, ProcessEntryNumberOne },
             { _EquationsX, ProcessEquationsX },
