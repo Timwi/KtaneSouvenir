@@ -116,7 +116,7 @@ public partial class SouvenirModule
             }
         }
 
-    solved:
+        solved:
         _modulesSolved.IncSafe(_SeaShells);
 
         var qs = new List<QandA>();
@@ -338,8 +338,8 @@ public partial class SouvenirModule
 
         var outMessages = GetArrayField<string>(comp, "outMessages").Get();
         var messages = new[] { outMessages[0], outMessages[2] };
-        for (int message = 0; message < 1; message++)
-            qs.Add(makeQuestion(Question.SiloAuthorizationEncryptedMessage, _SiloAuthorization, formatArgs: new[] { ordinal(message + 1) }, correctAnswers: new[] { messages[message] }));
+        for (int message = 0; message < 2; message++)
+            qs.Add(makeQuestion(Question.SiloAuthorizationEncryptedMessage, _SiloAuthorization, formatArgs: new[] { ordinal(message + 1) }, correctAnswers: new[] { messages[message] }, preferredWrongAnswers: messages));
 
         qs.Add(makeQuestion(Question.SiloAuthorizationAuthCode, _SiloAuthorization, correctAnswers: new[] { GetField<int>(comp, "outAuthCode").Get().ToString("0000") }));
 
@@ -523,8 +523,8 @@ public partial class SouvenirModule
         List<int> solutionShape = fldAllFinalShapes.Get(minLength: 1).First();
 
         //Aligns the shape with the top-left corner of the grid.
-        List<int> alignedSolutionShape = new List<int>(); 
-        int hOffset = solutionShape.Min(x => x % 3); 
+        List<int> alignedSolutionShape = new List<int>();
+        int hOffset = solutionShape.Min(x => x % 3);
         int vOffset = solutionShape.Min(x => x / 3);
         foreach (int pos in solutionShape)
             alignedSolutionShape.Add(3 * (pos / 3 - vOffset) + (pos % 3 - hOffset));
