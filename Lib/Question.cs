@@ -1724,6 +1724,16 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 2)]
         SillySlots,
 
+        [SouvenirQuestion("What was the message type in {0}?", "Silo Authorization", AnswerLayout.TwoColumns4Answers, "Red-Alpha", "Yellow-Alpha", "Green-Alpha")]
+        SiloAuthorizationMessageType,
+        [SouvenirQuestion("What was the {1} part of the encrypted message in {0}?", "Silo Authorization", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "A1B2", "BC84", "QW47", "B420", "AFS2", "FUN9" },
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings(4, "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")]
+        SiloAuthorizationEncryptedMessage,
+        [SouvenirQuestion("What was the received authentication code in {0}?", "Silo Authorization", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "1234", "5678", "1357", "2468", "0001", "9999" })]
+        [AnswerGenerator.Integers(0, 9999, "0000")]
+        SiloAuthorizationAuthCode,
+
         [SouvenirQuestion("What were the call samples {1} of {0}?", "Simon Samples", AnswerLayout.ThreeColumns6Answers, "KKSS", "KKSH", "KSSH", "KHSS", "KHSH", "KHSO", "KHOH", "KOSH", "KOSO", "SKSK", "SHHS", TranslateFormatArgs = new[] { true },
             ExampleExtraFormatArguments = new[] { "played in the first stage", "added in the second stage", "added in the third stage" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSamplesSamples,

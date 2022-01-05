@@ -5999,6 +5999,26 @@ namespace Souvenir
                 QuestionText = "{0}のステージ{2}において、{1}回目のスロットは？",
             },
 
+            // Silo Authorization
+            // What was the message type in {0}?
+            // What was the message type in Silo Authorization?
+            [Question.SiloAuthorizationMessageType] = new TranslationInfo
+            {
+                QuestionText = "What was the message type in {0}?",
+            },
+            // What was the {1} part of the encrypted message in {0}?
+            // What was the first part of the encrypted message in Silo Authorization?
+            [Question.SiloAuthorizationEncryptedMessage] = new TranslationInfo
+            {
+                QuestionText = "What was the {1} part of the encrypted message in {0}?",
+            },
+            // What was the received authentication code in {0}?
+            // What was the received authentication code in Silo Authorization?
+            [Question.SiloAuthorizationAuthCode] = new TranslationInfo
+            {
+                QuestionText = "What was the received authentication code in {0}?",
+            },
+
             // Simon Samples
             // What were the call samples {1} of {0}?
             // What were the call samples played in the first stage of Simon Samples?
