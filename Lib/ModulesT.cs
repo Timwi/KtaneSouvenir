@@ -10,15 +10,17 @@ public partial class SouvenirModule
     private IEnumerable<object> ProcessTapCode(KMBombModule module)
     {
         var comp = GetComponent(module, "TapCodeScript");
-        var fldSolved = GetField<bool>(comp, "modulepass");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_TapCode);
 
-        var words = GetArrayField<string>(comp, "words").Get();
-        var chosenWord = GetField<string>(comp, "chosenWord").Get(str => !words.Contains(str) ? string.Format("word is not in list: {0}", words.JoinString(", ")) : null);
-        addQuestion(module, Question.TapCodeReceivedWord, correctAnswers: new[] { chosenWord }, preferredWrongAnswers: words);
+        var words = GetStaticField<string[]>(comp.GetType(), "_wordList").Get();
+        var chosenWord = GetField<string>(comp, "_chosenWord").Get(str => !words.Contains(str) ? string.Format("word is not in list: {0}", words.JoinString(", ")) : null);
+        var w = words.Select(i => i.Substring(0, 1).ToUpperInvariant() + i.Substring(1).ToLowerInvariant()).ToArray();
+        var cw = chosenWord.Substring(0, 1).ToUpperInvariant() + chosenWord.Substring(1).ToLowerInvariant();
+        addQuestion(module, Question.TapCodeReceivedWord, correctAnswers: new[] { cw }, preferredWrongAnswers: w);
     }
 
     private IEnumerable<object> ProcessTashaSqueals(KMBombModule module)
