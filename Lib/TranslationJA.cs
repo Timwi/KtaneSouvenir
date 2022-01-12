@@ -5152,8 +5152,8 @@ namespace Souvenir
             },
 
             // Orientation Cube
-            // What was the observer’s intial position in {0}?
-            // What was the observer’s intial position in Orientation Cube?
+            // What was the observer’s initial position in {0}?
+            // What was the observer’s initial position in Orientation Cube?
             [Question.OrientationCubeInitialObserverPosition] = new TranslationInfo
             {
                 QuestionText = "{0}の最初の観測者の位置は？",

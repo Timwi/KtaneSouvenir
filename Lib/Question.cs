@@ -1424,7 +1424,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         OrderPickingPallet,
 
-        [SouvenirQuestion("What was the observer’s intial position in {0}?", "Orientation Cube", AnswerLayout.TwoColumns4Answers, "front", "left", "back", "right", TranslateAnswers = true)]
+        [SouvenirQuestion("What was the observer’s initial position in {0}?", "Orientation Cube", AnswerLayout.TwoColumns4Answers, "front", "left", "back", "right", TranslateAnswers = true)]
         OrientationCubeInitialObserverPosition,
 
         [SouvenirQuestion("What was {1}’s {2} digit from the right in {0}?", "Palindromes", AnswerLayout.ThreeColumns6Answers, TranslateFormatArgs = new[] { true, false },
