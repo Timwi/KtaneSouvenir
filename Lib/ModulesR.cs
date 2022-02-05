@@ -133,7 +133,7 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessRainbowArrows(KMBombModule module)
     {
-        var comp = GetComponent(module, "RainbowArrows");
+        var comp = GetComponent(module, "ksmRainbowArrows");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
 
         while (!fldSolved.Get())
