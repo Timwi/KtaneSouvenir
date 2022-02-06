@@ -751,13 +751,13 @@ public partial class SouvenirModule
     private IEnumerable<object> ProcessMoreCode(KMBombModule module)
     {
         var comp = GetComponent(module, "MoreCode");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldSolved = GetField<bool>(comp, "ModuleSolved");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_MoreCode);
 
-        var word = GetField<string>(comp, Encoding.UTF8.GetString(Convert.FromBase64String("RnVja0FpZHM="))).Get();     // Avoid having objectionable field names in this source file
+        var word = GetField<string>(comp, "SolutionWord").Get();
         word = word.Substring(0, 1) + word.Substring(1).ToLowerInvariant();
         addQuestion(module, Question.MoreCodeWord, correctAnswers: new[] { word });
     }
