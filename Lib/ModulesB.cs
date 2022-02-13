@@ -486,7 +486,7 @@ public partial class SouvenirModule
 
         var colorNames = new[] { "Blue", "Green", "Cyan", "Red", "Magenta", "Yellow" };
 
-        var valD = Array.IndexOf(suitsGoal, 3); // 1–4
+        var valD = Array.IndexOf(suitsGoal, 3) + 1; // 1–4
         var valE = jumps[0];    // 0–3
         var valF = jumps[1];    // 0–3
         var valG = jumps[2];    // 0–3
