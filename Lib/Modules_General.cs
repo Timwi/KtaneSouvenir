@@ -314,7 +314,6 @@ public partial class SouvenirModule
     const string _Sequencyclopedia = "TheSequencyclopedia";
     const string _ShapesBombs = "ShapesBombs";
     const string _ShapeShift = "shapeshift";
-    const string _ShellGame = "shellGame";
     const string _ShiftedMaze = "shiftedMaze";
     const string _ShiftingMaze = "MazeShifting";
     const string _ShogiIdentification = "shogiIdentification";
@@ -729,7 +728,6 @@ public partial class SouvenirModule
             { _Sequencyclopedia, ProcessSequencyclopedia },
             { _ShapesBombs, ProcessShapesAndBombs },
             { _ShapeShift, ProcessShapeShift },
-            { _ShellGame, ProcessShellGame },
             { _ShiftedMaze, ProcessShiftedMaze },
             { _ShiftingMaze, ProcessShiftingMaze },
             { _ShogiIdentification, ProcessShogiIdentification },

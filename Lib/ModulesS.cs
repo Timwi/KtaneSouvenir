@@ -214,20 +214,6 @@ public partial class SouvenirModule
             addQuestion(module, Question.ShapeShiftInitialShape, correctAnswers: new[] { ((char) ('A' + stR + (4 * stL))).ToString() }, preferredWrongAnswers: answers.ToArray());
     }
 
-    private IEnumerable<object> ProcessShellGame(KMBombModule module)
-    {
-        var comp = GetComponent(module, "shellGame");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_ShellGame);
-
-        int initialCup = GetIntField(comp, "endingCup").Get(min: 0, max: 2);
-        string[] position = new string[3] { "Left", "Middle", "Right" };
-        addQuestions(module, makeQuestion(Question.ShellGameInitialCupFinalPosition, _ShellGame, correctAnswers: new[] { position[initialCup] }));
-    }
-
     private IEnumerable<object> ProcessShiftedMaze(KMBombModule module)
     {
         var comp = GetComponent(module, "shiftedMazeScript");
