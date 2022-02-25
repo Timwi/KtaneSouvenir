@@ -308,7 +308,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         ChallengeAndContactAnswers,
 
-        [SouvenirQuestion("What was the {1} character in {0}?", "Character Codes", AnswerLayout.ThreeColumns6Answers)]
+        [SouvenirQuestion("What was the {1} character in {0}?", "Character Codes", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "♥", "♣", "•" })]
         CharacterCodesCharacter,
 
         [SouvenirQuestion("What was the {1}paid amount in {0}?", "Cheap Checkout", AnswerLayout.ThreeColumns6Answers,

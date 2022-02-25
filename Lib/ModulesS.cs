@@ -1118,7 +1118,7 @@ public partial class SouvenirModule
         var ledStates = GetArrayField<int>(comp, "ledStates").Get();
         var litLedStates = ledStates.Where(l => l != 5).ToArray();
         for (int i = 0; i < litLedStates.Length; i++)
-            qs.Add(makeQuestion(Question.StabilityLedColors, _Stability, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorNames[ledStates[i]] }));
+            qs.Add(makeQuestion(Question.StabilityLedColors, _Stability, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorNames[litLedStates[i]] }));
 
         if (litLedStates.Length > 3) {
             var idNumber = GetField<string>(comp, "idNumber").Get();
