@@ -7,7 +7,7 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
-    const string Version = "4.5";
+    const string Version = "4.6";
 
     // The values here are the “ModuleType” property on the KMBombModule components.
     const string _1000Words = "OneThousandWords";
