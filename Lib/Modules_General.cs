@@ -63,6 +63,7 @@ public partial class SouvenirModule
     const string _Cartinese = "cartinese";
     const string _Calendar = "calendar";
     const string _ChallengeAndContact = "challengeAndContact";
+    const string _CharacterCodes = "characterCodes";
     const string _CheapCheckout = "CheapCheckoutModule";
     const string _CheepCheckout = "cheepCheckout";
     const string _Chess = "ChessModule";
@@ -350,6 +351,7 @@ public partial class SouvenirModule
     const string _Sphere = "sphere";
     const string _SplittingTheLoot = "SplittingTheLootModule";
     const string _SpotTheDifference = "SpotTheDifference";
+    const string _Stability = "stabilityModule";
     const string _StackedSequences = "stackedSequences";
     const string _Stars = "stars";
     const string _StateOfAggregation = "stateOfAggregation";
@@ -477,6 +479,7 @@ public partial class SouvenirModule
             { _Calendar, ProcessCalendar },
             { _Cartinese, ProcessCartinese },
             { _ChallengeAndContact, ProcessChallengeAndContact },
+            { _CharacterCodes, ProcessCharacterCodes },
             { _CheapCheckout, ProcessCheapCheckout },
             { _CheepCheckout, ProcessCheepCheckout },
             { _Chess, ProcessChess },
@@ -764,6 +767,7 @@ public partial class SouvenirModule
             { _Sphere, ProcessSphere },
             { _SplittingTheLoot, ProcessSplittingTheLoot },
             { _SpotTheDifference, ProcessSpotTheDifference },
+            { _Stability, ProcessStability },
             { _StackedSequences, ProcessStackedSequences },
             { _Stars, ProcessStars },
             { _StateOfAggregation, ProcessStateOfAggregation },

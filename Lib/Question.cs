@@ -308,6 +308,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         ChallengeAndContactAnswers,
 
+        [SouvenirQuestion("What was the {1} character in {0}?", "Character Codes", AnswerLayout.ThreeColumns6Answers)]
+        CharacterCodesCharacter,
+
         [SouvenirQuestion("What was the {1}paid amount in {0}?", "Cheap Checkout", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "", "first ", "second " }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(5, 50, "$0\".00\"")]
@@ -1886,6 +1889,13 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the color of the faulty sphere in {0}?", "Spot the Difference", AnswerLayout.TwoColumns4Answers, "Blue", "Green", "Orange", "Red", TranslateAnswers = true)]
         SpotTheDifferenceFaultyBall,
+
+        [SouvenirQuestion("What was the color of the {1} lit LED in {0}?", "Stability", AnswerLayout.TwoColumns4Answers, "Red", "Yellow", "Blue")]
+        StabilityLedColors,
+
+        [SouvenirQuestion("What was the identification number in {0}?", "Stability", AnswerLayout.ThreeColumns6Answers)]
+        [AnswerGenerator.Integers(0, 9999, "0000")]
+        StabilityIdNumber,
 
         [SouvenirQuestion("Which of these is the length of a sequence in {0}?", "Stacked Sequences", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "3", "4", "5", "6" })]
         [AnswerGenerator.Integers(3, 9)]

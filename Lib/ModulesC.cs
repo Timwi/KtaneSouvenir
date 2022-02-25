@@ -84,6 +84,20 @@ public partial class SouvenirModule
             makeQuestion(Question.ChallengeAndContactAnswers, _ChallengeAndContact, formatArgs: new[] { "third" }, correctAnswers: new[] { answers[2] }, preferredWrongAnswers: allAnswers.Where(x => x[0] == answers[2][0]).ToArray()));
     }
 
+    private IEnumerable<object> ProcessCharacterCodes(KMBombModule module)
+    {
+        var comp = GetComponent(module, "CharacterCodes");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_CharacterCodes);
+
+        var code = GetArrayField<string>(comp, "chosenLetters").Get();
+        var allChars = GetStaticField<Dictionary<ushort, string>>(comp.GetType(), "characterList").Get().Values.ToArray();
+        addQuestions(module, code.Select((c, i) => makeQuestion(Question.CharacterCodesCharacter, _CharacterCodes, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { c }, preferredWrongAnswers: allChars)));
+    }
+
     private IEnumerable<object> ProcessCheapCheckout(KMBombModule module)
     {
         var comp = GetComponent(module, "CheapCheckoutModule");

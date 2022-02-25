@@ -1102,6 +1102,32 @@ public partial class SouvenirModule
         addQuestions(module, makeQuestion(Question.SpotTheDifferenceFaultyBall, _SpotTheDifference, formatArgs: null, correctAnswers: new[] { colorNames[faultyBall] }, preferredWrongAnswers: colorNames));
     }
 
+    private IEnumerable<object> ProcessStability(KMBombModule module)
+    {
+        var colorNames = new[] { "Red", "Yellow", "Blue" };
+
+        var comp = GetComponent(module, "StabilityScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Stability);
+
+        var qs = new List<QandA>();
+
+        var ledStates = GetArrayField<int>(comp, "ledStates").Get();
+        var litLedStates = ledStates.Where(l => l != 5).ToArray();
+        for (int i = 0; i < litLedStates.Length; i++)
+            qs.Add(makeQuestion(Question.StabilityLedColors, _Stability, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorNames[ledStates[i]] }));
+
+        if (litLedStates.Length > 3) {
+            var idNumber = GetField<string>(comp, "idNumber").Get();
+            qs.Add(makeQuestion(Question.StabilityIdNumber, _Stability, correctAnswers: new[] { idNumber }));
+        }
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessStackedSequences(KMBombModule module)
     {
         var comp = GetComponent(module, "stackedSequencesScript");
