@@ -1115,15 +1115,12 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
 
-        var ledStates = GetArrayField<int>(comp, "ledStates").Get();
-        var litLedStates = ledStates.Where(l => l != 5).ToArray();
+        var litLedStates = GetArrayField<int>(comp, "ledStates").Get().Where(l => l != 5).ToArray();
         for (int i = 0; i < litLedStates.Length; i++)
             qs.Add(makeQuestion(Question.StabilityLedColors, _Stability, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorNames[litLedStates[i]] }));
 
-        if (litLedStates.Length > 3) {
-            var idNumber = GetField<string>(comp, "idNumber").Get();
-            qs.Add(makeQuestion(Question.StabilityIdNumber, _Stability, correctAnswers: new[] { idNumber }));
-        }
+        if (litLedStates.Length > 3)
+            qs.Add(makeQuestion(Question.StabilityIdNumber, _Stability, correctAnswers: new[] { GetField<string>(comp, "idNumber").Get() }));
 
         addQuestions(module, qs);
     }

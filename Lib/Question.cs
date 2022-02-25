@@ -308,7 +308,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         ChallengeAndContactAnswers,
 
-        [SouvenirQuestion("What was the {1} character in {0}?", "Character Codes", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "♥", "♣", "•" })]
+        [SouvenirQuestion("What was the {1} character in {0}?", "Character Codes", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "♥", "♣", "•" },
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         CharacterCodesCharacter,
 
         [SouvenirQuestion("What was the {1}paid amount in {0}?", "Cheap Checkout", AnswerLayout.ThreeColumns6Answers,
@@ -1890,9 +1891,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the color of the faulty sphere in {0}?", "Spot the Difference", AnswerLayout.TwoColumns4Answers, "Blue", "Green", "Orange", "Red", TranslateAnswers = true)]
         SpotTheDifferenceFaultyBall,
 
-        [SouvenirQuestion("What was the color of the {1} lit LED in {0}?", "Stability", AnswerLayout.TwoColumns4Answers, "Red", "Yellow", "Blue")]
+        [SouvenirQuestion("What was the color of the {1} lit LED in {0}?", "Stability", AnswerLayout.TwoColumns4Answers, "Red", "Yellow", "Blue",
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         StabilityLedColors,
-
         [SouvenirQuestion("What was the identification number in {0}?", "Stability", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Integers(0, 9999, "0000")]
         StabilityIdNumber,

@@ -1034,6 +1034,14 @@ namespace Souvenir
                 QuestionText = "What was the {1} submitted answer in {0}?",
             },
 
+            // Character Codes
+            // What was the {1} character in {0}?
+            // What was the first character in Character Codes?
+            [Question.CharacterCodesCharacter] = new TranslationInfo
+            {
+                QuestionText = "What was the {1} character in {0}?",
+            },
+
             // Cheap Checkout
             // What was the {1}paid amount in {0}?
             // What was the paid amount in Cheap Checkout?
@@ -6624,6 +6632,20 @@ namespace Souvenir
                     ["Orange"] = "Orange",
                     ["Red"] = "Red",
                 },
+            },
+
+            // Stability
+            // What was the color of the {1} lit LED in {0}?
+            // What was the color of the first lit LED in Stability?
+            [Question.StabilityLedColors] = new TranslationInfo
+            {
+                QuestionText = "What was the color of the {1} lit LED in {0}?",
+            },
+            // What was the identification number in {0}?
+            // What was the identification number in Stability?
+            [Question.StabilityIdNumber] = new TranslationInfo
+            {
+                QuestionText = "What was the identification number in {0}?",
             },
 
             // Stacked Sequences
