@@ -952,17 +952,17 @@ public partial class SouvenirModule : MonoBehaviour
     private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null) =>
         makeQuestion(question, moduleKey,
             (attr, q, correct, answers) => new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), Fonts[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], attr.FontSize, FontTextures[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], FontMaterial, attr.Layout, questionSprite),
-            formatArgs, correctAnswers, preferredWrongAnswers, null, questionSprite, _standardAnswerTypes);
+            formatArgs, correctAnswers, preferredWrongAnswers, null, _standardAnswerTypes);
 
     private QandA makeQuestion(Question question, string moduleKey, Font font, Texture fontTexture, Sprite questionSprite = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null) =>
         makeQuestion(question, moduleKey,
             (attr, q, correct, answers) => new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), font, attr.FontSize, fontTexture, FontMaterial, attr.Layout, questionSprite),
-            formatArgs, correctAnswers, preferredWrongAnswers, null, questionSprite, AnswerType.DynamicFont);
+            formatArgs, correctAnswers, preferredWrongAnswers, null, AnswerType.DynamicFont);
 
     private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null) =>
         makeQuestion(question, moduleKey,
             (attr, q, correct, answers) => new QandASprite(attr.ModuleNameWithThe, q, correct, answers.ToArray(), questionSprite),
-            formatArgs, correctAnswers, preferredWrongAnswers, null, questionSprite, AnswerType.Sprites);
+            formatArgs, correctAnswers, preferredWrongAnswers, null, AnswerType.Sprites);
 
     private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string[] formatArgs = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null)
     {
@@ -975,11 +975,11 @@ public partial class SouvenirModule : MonoBehaviour
         }
         return makeQuestion(question, moduleKey,
             (attr, q, correct, answers) => new QandASprite(attr.ModuleNameWithThe, q, correct, answers.Select(ans => generateGridSprite(ans, 1)).ToArray(), questionSprite),
-            formatArgs, correctAnswers, preferredWrongAnswers, Enumerable.Range(0, w * h).Select(ix => new Coord(w, h, ix)).ToArray(), questionSprite, AnswerType.Grid);
+            formatArgs, correctAnswers, preferredWrongAnswers, Enumerable.Range(0, w * h).Select(ix => new Coord(w, h, ix)).ToArray(), AnswerType.Grid);
     }
 
     private QandA makeQuestion<T>(Question question, string moduleKey, Func<SouvenirQuestionAttribute, string, int, T[], QandA> questionConstructor,
-        string[] formatArgs, T[] correctAnswers, T[] preferredWrongAnswers, T[] allAnswers, Sprite questionSprite, params AnswerType[] acceptableTypes)
+        string[] formatArgs, T[] correctAnswers, T[] preferredWrongAnswers, T[] allAnswers, params AnswerType[] acceptableTypes)
     {
         if (!_attributes.TryGetValue(question, out var attr))
         {

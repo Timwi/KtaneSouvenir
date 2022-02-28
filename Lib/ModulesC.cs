@@ -574,6 +574,11 @@ public partial class SouvenirModule
             sizeClue == null ? null : makeQuestion(Question.CoordinatesSize, _Coordinates, correctAnswers: new[] { fldClueText.GetFrom(sizeClue) }));
     }
 
+    private IEnumerable<object> ProcessCoralCipher(KMBombModule module)
+    {
+        return processColoredCiphers(module, "coralCipher", Question.CoralCipherAnswer, _CoralCipher);
+    }
+
     private IEnumerable<object> ProcessCorners(KMBombModule module)
     {
         var comp = GetComponent(module, "CornersModule");
@@ -593,6 +598,11 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessCornflowerCipher(KMBombModule module)
+    {
+        return processColoredCiphers(module, "cornflowerCipher", Question.CornflowerCipherAnswer, _CornflowerCipher);
+    }
+
     private IEnumerable<object> ProcessCosmic(KMBombModule module)
     {
         var comp = GetComponent(module, "CosmicModule");
@@ -604,6 +614,11 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_Cosmic);
 
         addQuestion(module, Question.CosmicNumber, correctAnswers: new[] { answer });
+    }
+
+    private IEnumerable<object> ProcessCreamCipher(KMBombModule module)
+    {
+        return processColoredCiphers(module, "creamCipher", Question.CreamCipherAnswer, _CreamCipher);
     }
 
     private IEnumerable<object> ProcessCreation(KMBombModule module)
@@ -640,6 +655,11 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(_Creation);
         addQuestions(module, allWeather.Select((t, i) => makeQuestion(Question.CreationWeather, _Creation, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { t })));
+    }
+
+    private IEnumerable<object> ProcessCrimsonCipher(KMBombModule module)
+    {
+        return processColoredCiphers(module, "crimsonCipher", Question.CrimsonCipherAnswer, _CrimsonCipher);
     }
 
     private IEnumerable<object> ProcessCritters(KMBombModule module)

@@ -21,6 +21,11 @@ public partial class SouvenirModule
         addQuestion(module, Question.MafiaPlayers, correctAnswers: suspects.Cast<object>().Select(obj => obj.ToString()).Except(new[] { godfather.ToString() }).ToArray());
     }
 
+    private IEnumerable<object> ProcessMagentaCipher(KMBombModule module)
+    {
+        return processColoredCiphers(module, "magentaCipher", Question.MagentaCipherAnswer, _MagentaCipher);
+    }
+
     private IEnumerable<object> ProcessMahjong(KMBombModule module)
     {
         var comp = GetComponent(module, "MahjongModule");
@@ -138,6 +143,11 @@ public partial class SouvenirModule
         addQuestions(module,
             makeQuestion(Question.MaritimeFlagsBearing, _MaritimeFlags, correctAnswers: new[] { bearing.ToString() }),
             makeQuestion(Question.MaritimeFlagsCallsign, _MaritimeFlags, correctAnswers: new[] { callsign.ToLowerInvariant() }));
+    }
+
+    private IEnumerable<object> ProcessMaroonCipher(KMBombModule module)
+    {
+        return processColoredCiphers(module, "maroonCipher", Question.MaroonCipherAnswer, _MaroonCipher);
     }
 
     private IEnumerable<object> ProcessMashematics(KMBombModule module)

@@ -432,7 +432,7 @@ public partial class SouvenirModule
         for (int color = 0; color < 3; color++)
             for (int coord = 0; coord < 3; coord++)
                 qs.Add(makeQuestion(Question.RuleOfThreeCoordinates, _RuleOfThree, formatArgs: new[] { "XYZ"[coord].ToString(), colorNames[color] }, correctAnswers: new[] { values[color][coord].ToString() }));
-        
+
         // Cycles
         var redCoords = GetArrayField<int[]>(comp, "_redCoords").Get(expectedLength: 3, validator: arr => arr.Length != 3 ? "expected length 3" : null);
         var yellowCoords = GetArrayField<int[]>(comp, "_yellowCoords").Get(expectedLength: 3, validator: arr => arr.Length != 3 ? "expected length 3" : null);

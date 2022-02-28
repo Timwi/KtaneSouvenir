@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Souvenir;
 using UnityEngine;
+
+using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
@@ -31,9 +34,9 @@ public partial class SouvenirModule
     const string _Arithmelogic = "arithmelogic";
     const string _ASCIIMaze = "asciiMaze";
     const string _ASquare = "ASquareModule";
+    const string _Bakery = "bakery";
     const string _BamboozledAgain = "bamboozledAgain";
     const string _BamboozlingButton = "bamboozlingButton";
-    const string _Bakery = "bakery";
     const string _BarcodeCipher = "BarcodeCipherModule";
     const string _Bartending = "BartendingModule";
     const string _BigCircle = "BigCircle";
@@ -60,8 +63,8 @@ public partial class SouvenirModule
     const string _Button = "BigButton";
     const string _ButtonSequences = "buttonSequencesModule";
     const string _CaesarCycle = "caesarCycle";
-    const string _Cartinese = "cartinese";
     const string _Calendar = "calendar";
+    const string _Cartinese = "cartinese";
     const string _ChallengeAndContact = "challengeAndContact";
     const string _CharacterCodes = "characterCodes";
     const string _CheapCheckout = "CheapCheckoutModule";
@@ -82,9 +85,13 @@ public partial class SouvenirModule
     const string _ColorsMaximization = "colors_maximization";
     const string _ColourFlash = "ColourFlash";
     const string _Coordinates = "CoordinatesModule";
+    const string _CoralCipher = "coralCipher";
     const string _Corners = "CornersModule";
+    const string _CornflowerCipher = "cornflowerCipher";
     const string _Cosmic = "CosmicModule";
+    const string _CreamCipher = "creamCipher";
     const string _Creation = "CreationModule";
+    const string _CrimsonCipher = "crimsonCipher";
     const string _Critters = "CrittersModule";
     const string _CrypticCycle = "crypticCycle";
     const string _CrypticKeypad = "GSCrypticKeypad";
@@ -126,6 +133,7 @@ public partial class SouvenirModule
     const string _FlashingArrows = "flashingArrowsModule";
     const string _FlashingLights = "flashingLights";
     const string _Flyswatting = "flyswatting";
+    const string _ForestCipher = "forestCipher";
     const string _ForgetAnyColor = "ForgetAnyColor";
     const string _ForgetMe = "forgetMe";
     const string _ForgetsUltimateShowdown = "ForgetsUltimateShowdownModule";
@@ -190,10 +198,12 @@ public partial class SouvenirModule
     const string _LombaxCubes = "lgndLombaxCubes";
     const string _LondonUnderground = "londonUnderground";
     const string _Mafia = "MafiaModule";
+    const string _MagentaCipher = "magentaCipher";
     const string _Mahjong = "MahjongModule";
     const string _MandMs = "MandMs";
     const string _MandNs = "MandNs";
     const string _MaritimeFlags = "MaritimeFlagsModule";
+    const string _MaroonCipher = "maroonCipher";
     const string _Mashematics = "mashematics";
     const string _MathEm = "mathem";
     const string _Matrix = "matrix";
@@ -447,9 +457,9 @@ public partial class SouvenirModule
             { _Arithmelogic, ProcessArithmelogic },
             { _ASCIIMaze, ProcessASCIIMaze },
             { _ASquare, ProcessASquare },
+            { _Bakery, ProcessBakery },
             { _BamboozledAgain, ProcessBamboozledAgain },
             { _BamboozlingButton, ProcessBamboozlingButton },
-            { _Bakery, ProcessBakery },
             { _BarcodeCipher, ProcessBarcodeCipher },
             { _Bartending, ProcessBartending },
             { _BigCircle, ProcessBigCircle },
@@ -498,9 +508,13 @@ public partial class SouvenirModule
             { _ColorsMaximization, ProcessColorsMaximization },
             { _ColourFlash, ProcessColourFlash },
             { _Coordinates, ProcessCoordinates },
+            { _CoralCipher, ProcessCoralCipher },
             { _Corners, ProcessCorners },
+            { _CornflowerCipher, ProcessCornflowerCipher },
             { _Cosmic, ProcessCosmic },
+            { _CreamCipher, ProcessCreamCipher },
             { _Creation, ProcessCreation },
+            { _CrimsonCipher, ProcessCrimsonCipher },
             { _Critters, ProcessCritters },
             { _CrypticCycle, ProcessCrypticCycle },
             { _CrypticKeypad, ProcessCrypticKeypad },
@@ -542,6 +556,7 @@ public partial class SouvenirModule
             { _FlashingArrows, ProcessFlashingArrows },
             { _FlashingLights, ProcessFlashingLights },
             { _Flyswatting, ProcessFlyswatting },
+            { _ForestCipher, ProcessForestCipher },
             { _ForgetAnyColor, ProcessForgetAnyColor },
             { _ForgetMe, ProcessForgetMe },
             { _ForgetsUltimateShowdown, ProcessForgetsUltimateShowdown },
@@ -606,10 +621,12 @@ public partial class SouvenirModule
             { _LombaxCubes, ProcessLombaxCubes },
             { _LondonUnderground, ProcessLondonUnderground },
             { _Mafia, ProcessMafia },
+            { _MagentaCipher, ProcessMagentaCipher },
             { _Mahjong, ProcessMahjong },
             { _MandMs, ProcessMandMs },
             { _MandNs, ProcessMandNs },
             { _MaritimeFlags, ProcessMaritimeFlags },
+            { _MaroonCipher, ProcessMaroonCipher },
             { _Mashematics, ProcessMashematics },
             { _MathEm, ProcessMathEm },
             { _Matrix, ProcessMatrix },
@@ -640,10 +657,10 @@ public partial class SouvenirModule
             { _Morsematics, ProcessMorsematics },
             { _MorseWar, ProcessMorseWar },
             { _MouseInTheMaze, ProcessMouseInTheMaze },
+            { _MSeq, ProcessMSeq },
             { _MulticoloredSwitches, ProcessMulticoloredSwitches },
             { _Murder, ProcessMurder },
             { _MysteryModule, ProcessMysteryModule },
-            { _MSeq, ProcessMSeq },
             { _MysticSquare, ProcessMysticSquare },
             { _NameCodes, ProcessNameCodes },
             { _NandMs, ProcessNandMs },
@@ -936,9 +953,108 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(moduleId);
 
-        var memory = GetField<string>(comp, "answer").Get();
-        var answerList = GetListField<List<string>>(comp, "wordList").Get()[2].Select(str => str.ToLowerInvariant()).ToArray();
-        addQuestions(module, makeQuestion(question, moduleId, formatArgs: null, correctAnswers: new[] { memory.ToLowerInvariant() }, preferredWrongAnswers: answerList));
+        var pages = GetField<IList>(comp, "pages").Get(v => v.Count == 0 ? "expected at least one page" : null);
+        var fldScreens = GetProperty<IList>(pages[0], "Screens", isPublic: true);
+        var fldText = GetProperty<string>(fldScreens.Get(v => v.Count == 0 ? "expected at least one screen per page" : null)[0], "Text", isPublic: true);
+        var fldAvoid = GetProperty<bool>(fldScreens.Get(v => v.Count == 0 ? "expected at least one screen per page" : null)[0], "SouvenirAvoid", isPublic: true);
+
+        var allWordsType = comp.GetType().Assembly.GetType("Words.Data");
+        if (allWordsType == null)
+            throw new AbandonModuleException("I cannot find the Words.Data type.");
+        var allWordsObj = Activator.CreateInstance(allWordsType);
+        var allWords = GetListField<List<string>>(allWordsObj, "allWords", isPublic: true).Get(expectedLength: 5);
+
+        string[] generateWrongAnswers(string correctAnswer, AnswerGeneratorAttribute gen)
+        {
+            var set = new HashSet<string> { correctAnswer };
+            while (set.Count < 6)
+                foreach (var ans in gen.GetAnswers(this).Take(6 - set.Count))
+                    set.Add(ans);
+            return set.ToArray();
+        }
+
+        string[] generateWrongAnswersFnc(string correctAnswer, Func<string> gen)
+        {
+            var set = new HashSet<string> { correctAnswer };
+            while (set.Count < 6)
+                set.Add(gen());
+            return set.ToArray();
+        }
+
+        var screenNames = new[] { "top", "middle", "bottom" };
+        var romanNumerals = new[] { "I", "II", "III", "IV", "V", "VI", "VII", "VIII" };
+        addQuestions(module, Enumerable.Range(0, pages.Count).SelectMany(pageIx =>
+        {
+            var screenObjs = fldScreens.GetFrom(pages[pageIx], v => v.Count == 0 ? "expected at least one screen per page" : null);
+            var screenTexts = Enumerable.Range(0, screenObjs.Count).Select(scrIx => (page: pageIx, screen: scrIx, text: fldText.GetFrom(screenObjs[scrIx], nullAllowed: true), avoid: fldAvoid.GetFrom(screenObjs[scrIx])));
+            return screenTexts.Where(tup => !tup.avoid && !string.IsNullOrEmpty(tup.text)).Select(tup =>
+            {
+                // Black Cipher special case: A-VII-IV-V
+                var rom = romanNumerals.JoinString("|");
+                if (Regex.IsMatch(tup.text, $@"^[ABC]-({rom})-({rom})-({rom})$"))
+                    return makeQuestion(question, module.ModuleType, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
+                        preferredWrongAnswers: generateWrongAnswersFnc(tup.text, () => $"{"ABC"[Rnd.Range(0, 3)]}-{romanNumerals.ToArray().Shuffle().Take(3).JoinString("-")}"));
+
+                // Black Cipher special case: NJ-SG-CV
+                if (Regex.IsMatch(tup.text, @"^[A-Z]{2}(-[A-Z]{2})+$"))
+                {
+                    var n = (tup.text.Length + 1) / 3;
+                    string gen()
+                    {
+                        var shuffle = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray().Shuffle().Take(2 * n).JoinString();
+                        for (var i = n - 1; i >= 1; i--)
+                            shuffle = shuffle.Insert(2 * i, "-");
+                        return shuffle;
+                    }
+                    return makeQuestion(question, module.ModuleType, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
+                        preferredWrongAnswers: generateWrongAnswersFnc(tup.text, gen));
+                }
+
+                // Brown Cipher page 2 screen 3 will only have letters A to F
+                if (Regex.IsMatch(tup.text, @"^[A-F]+$"))
+                    return makeQuestion(question, module.ModuleType, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
+                        preferredWrongAnswers: generateWrongAnswers(tup.text, new AnswerGenerator.Strings(tup.text.Length, 'A', 'F')));
+
+                // Cornflower Cipher special case: three letters and a digit
+                if (Regex.IsMatch(tup.text, @"^[A-Z]{3} \d$"))
+                    return makeQuestion(question, module.ModuleType, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
+                        preferredWrongAnswers: generateWrongAnswersFnc(tup.text, () => $"{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Rnd.Range(0, 26)]}{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Rnd.Range(0, 26)]}{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Rnd.Range(0, 26)]} {Rnd.Range(0, 10)}"));
+
+                // Indigo Cipher special case: 24 ? 52 = 12
+                if (Regex.IsMatch(tup.text, @"^\d+ \? \d+ = \d+$"))
+                    return makeQuestion(question, module.ModuleType, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
+                        preferredWrongAnswers: generateWrongAnswersFnc(tup.text, () => $"{Rnd.Range(0, 64)} ? {Rnd.Range(0, 64)} = {Rnd.Range(0, 64)}"));
+
+                // Yellow Cipher special case: 8-5-7-20
+                if (Regex.IsMatch(tup.text, @"^\d+-\d+-\d+-\d+$"))
+                    return makeQuestion(question, module.ModuleType, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
+                        preferredWrongAnswers: generateWrongAnswersFnc(tup.text, () => $"{Rnd.Range(0, 26)}-{Rnd.Range(0, 26)}-{Rnd.Range(0, 26)}-{Rnd.Range(0, 26)}"));
+
+                // Screens that have a word on them: pick other words of the same length as wrong answers
+                if (tup.text.Length >= 4 && tup.text.Length <= 8 && allWords[tup.text.Length - 4].Contains(tup.text))
+                    return makeQuestion(question, module.ModuleType, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
+                        preferredWrongAnswers: allWords[tup.text.Length - 4].ToArray());
+
+                // Screens that have only 0s and 1s on them
+                if (tup.text.All(ch => ch == '0' || ch == '1'))
+                    return makeQuestion(question, module.ModuleType, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
+                        preferredWrongAnswers: generateWrongAnswers(tup.text, new AnswerGenerator.Strings(tup.text.Length, '0', '1')));
+
+                // Screens that have only digits on them
+                if (tup.text.All(ch => ch >= '0' && ch <= '9'))
+                    return makeQuestion(question, module.ModuleType, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
+                        preferredWrongAnswers: generateWrongAnswers(tup.text, new AnswerGenerator.Strings(tup.text.Length, '0', '9')));
+
+                // Screens that have only capital letters on them
+                if (tup.text.All(ch => ch >= 'A' && ch <= 'Z'))
+                    return makeQuestion(question, module.ModuleType, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
+                        preferredWrongAnswers: generateWrongAnswers(tup.text, new AnswerGenerator.Strings(tup.text.Length, 'A', 'Z')));
+
+                // All other cases: jumble of letters and digits
+                return makeQuestion(question, module.ModuleType, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
+                    preferredWrongAnswers: generateWrongAnswers(tup.text, new AnswerGenerator.Strings(tup.text.Length, "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")));
+            });
+        }));
     }
 
     // Used by The Hypercube and The Ultracube

@@ -89,9 +89,13 @@ public partial class SouvenirModule
         if (wordsAnswered.Count != 3)
             throw new AbandonModuleException("The received number of valid words was not 3: was {0}.", wordsAnswered.Count);
 
+        var textbox = GetField<TextMesh>(comp, "textBox", isPublic: true).Get();
+        var font = textbox.font;
+        var fontTexture = textbox.GetComponent<MeshRenderer>().sharedMaterial.mainTexture;
+
         addQuestions(module,
-            makeQuestion(Question.ZoniWords, _Zoni, formatArgs: new[] { "first" }, correctAnswers: new[] { words[wordsAnswered[0]] }, preferredWrongAnswers: words),
-            makeQuestion(Question.ZoniWords, _Zoni, formatArgs: new[] { "second" }, correctAnswers: new[] { words[wordsAnswered[1]] }, preferredWrongAnswers: words),
-            makeQuestion(Question.ZoniWords, _Zoni, formatArgs: new[] { "third" }, correctAnswers: new[] { words[wordsAnswered[2]] }, preferredWrongAnswers: words));
+            makeQuestion(Question.ZoniWords, _Zoni, formatArgs: new[] { "first" }, font: font, fontTexture: fontTexture, correctAnswers: new[] { words[wordsAnswered[0]] }, preferredWrongAnswers: words),
+            makeQuestion(Question.ZoniWords, _Zoni, formatArgs: new[] { "second" }, font: font, fontTexture: fontTexture, correctAnswers: new[] { words[wordsAnswered[1]] }, preferredWrongAnswers: words),
+            makeQuestion(Question.ZoniWords, _Zoni, formatArgs: new[] { "third" }, font: font, fontTexture: fontTexture, correctAnswers: new[] { words[wordsAnswered[2]] }, preferredWrongAnswers: words));
     }
 }
