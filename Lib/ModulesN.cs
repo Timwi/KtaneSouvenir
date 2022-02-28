@@ -274,8 +274,8 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (var stage = 0; stage < colours.Length; stage++)
         {
-            qs.Add(makeQuestion(Question.NotKeypadColor, _NotKeypad, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { strings[(int) colours.GetValue(stage) - 1] }));
-            qs.Add(makeQuestion(Question.NotKeypadSymbol, _NotKeypad, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { KeypadSprites[(int) symbols.GetValue(buttons[stage])] }, preferredWrongAnswers: sprites));
+            qs.Add(makeQuestion(Question.NotKeypadColor, _NotKeypad, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { strings[(int)colours.GetValue(stage) - 1] }));
+            qs.Add(makeQuestion(Question.NotKeypadSymbol, _NotKeypad, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { KeypadSprites[(int)symbols.GetValue(buttons[stage])] }, preferredWrongAnswers: sprites));
         }
         addQuestions(module, qs);
     }
@@ -344,7 +344,6 @@ public partial class SouvenirModule
 
         // turn number, then suspect, then room/weapon
         var turns = GetListField<List<int[]>>(comp, "turns").Get(expectedLength: 6);
-        var states = new[] { "the initial state", "turn 1", "turn 2", "turn 3", "turn 4", "turn 5" };
         var suspectNames = new[] { "Miss Scarlett", "Colonel Mustard", "Reverend Green", "Mrs Peacock", "Professor Plum", "Mrs White" };
         var weaponNames = new[] { "Candlestick", "Dagger", "Lead Pipe", "Revolver", "Rope", "Spanner" };
         var roomNames = new[] { "Ballroom", "Billiard Room", "Conservatory", "Dining Room", "Hall", "Kitchen", "Library", "Lounge", "Study" };
@@ -352,13 +351,10 @@ public partial class SouvenirModule
         Debug.LogFormat("<> DispInfo {0}", dispinfo.Select(arr => arr.JoinString("/")).JoinString("; "));
         Debug.LogFormat("<> Turns {0}", turns.Select(arr => arr.Select(arr2 => arr2.JoinString("/")).JoinString(", ")).JoinString("; "));
 
-        for (int turn = 0; turn < 5; turn++)
+        for (int suspect = 0; suspect < 5; suspect++)
         {
-            for (int suspect = 0; suspect < 5; suspect++)
-            {
-                qs.Add(makeQuestion(Question.NotMurderRoom, _NotMurder, formatArgs: new[] { suspectNames[dispinfo[0][suspect]], states[turn] }, correctAnswers: new[] { roomNames[turns[turn][suspect][0]] }));
-                qs.Add(makeQuestion(Question.NotMurderWeapon, _NotMurder, formatArgs: new[] { suspectNames[dispinfo[0][suspect]], states[turn] }, correctAnswers: new[] { weaponNames[turns[turn][suspect][1]] }));
-            }
+            qs.Add(makeQuestion(Question.NotMurderRoom, _NotMurder, formatArgs: new[] { suspectNames[dispinfo[0][suspect]] }, correctAnswers: new[] { roomNames[turns[0][suspect][0]] }));
+            qs.Add(makeQuestion(Question.NotMurderWeapon, _NotMurder, formatArgs: new[] { suspectNames[dispinfo[0][suspect]] }, correctAnswers: new[] { weaponNames[turns[0][suspect][1]] }));
         }
         addQuestions(module, qs);
     }
@@ -464,7 +460,7 @@ public partial class SouvenirModule
         // Transmitted word
         var words = GetArrayField<string>(comp, "words").Get();
         var wordList = GetArrayField<string>(comp, "wordlist").Get();
-        var targetWord = words[2].Substring(0, 1) + words[2].Substring(1).ToLowerInvariant();
+        var targetWord = words[0].Substring(0, 1) + words[0].Substring(1).ToLowerInvariant();
         var wordListLower = Enumerable.Range(0, wordList.Length).Select(word => wordList[word].Substring(0, 1) + wordList[word].Substring(1).ToLowerInvariant()).ToArray();
         qs.Add(makeQuestion(Question.NotTheBulbWord, _NotTheBulb, correctAnswers: new[] { targetWord }, preferredWrongAnswers: wordListLower));
 
@@ -491,7 +487,7 @@ public partial class SouvenirModule
         var lightColor = 0;
         while (!propSolved.Get())
         {
-            lightColor = (int) propLightColour.Get();   // casting boxed enum value to int
+            lightColor = (int)propLightColour.Get();   // casting boxed enum value to int
             yield return null;  // Don’t wait for .1 seconds so we don’t miss it
         }
         _modulesSolved.IncSafe(_NotTheButton);

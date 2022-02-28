@@ -1285,11 +1285,11 @@ namespace Souvenir
         [SouvenirQuestion("What was the transmitted word on {0}?", "Not Morsematics", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "ABORT", "AFTER", "AGONY", "ALIGN", "AMONG", "AMBER", "ANGST", "AZURE", "BAKER", "BAYOU", "BEACH", "BLACK", "BOGUS", "BOXES", "BRASH", "BUDGE", "CABLE", "CAULK", "CHIEF", "CLOVE", "CODEX", "CRAZE", "CRISP", "CRUEL" })]
         NotMorsematicsWord,
 
-        [SouvenirQuestion("What room was {1} in during {2} on {0}?", "Not Murder", AnswerLayout.TwoColumns4Answers, "Ballroom", "Billiard Room", "Conservatory", "Dining Room", "Hall", "Kitchen", "Library", "Lounge", "Study",
-            ExampleExtraFormatArguments = new[] { "Miss Scarlett", "the initial state", "Colonel Mustard", "turn 1", "Reverend Green", "turn 2", "Mrs Peacock", "turn 3", "Professor Plum", "turn 4", "Mrs White", "turn 5" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        [SouvenirQuestion("What room was {1} in during the initial state on {0}?", "Not Murder", AnswerLayout.TwoColumns4Answers, "Ballroom", "Billiard Room", "Conservatory", "Dining Room", "Hall", "Kitchen", "Library", "Lounge", "Study",
+            ExampleExtraFormatArguments = new[] { "Miss Scarlett", "Colonel Mustard", "Reverend Green", "Mrs Peacock", "Professor Plum", "Mrs White", }, ExampleExtraFormatArgumentGroupSize = 1)]
         NotMurderRoom,
-        [SouvenirQuestion("What weapon did {1} possess during {2} on {0}?", "Not Murder", AnswerLayout.TwoColumns4Answers, "Candlestick", "Dagger", "Lead Pipe", "Revolver", "Rope", "Spanner",
-            ExampleExtraFormatArguments = new[] { "Miss Scarlett", "the initial state", "Colonel Mustard", "turn 1", "Reverend Green", "turn 2", "Mrs Peacock", "turn 3", "Professor Plum", "turn 4", "Mrs White", "turn 5" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        [SouvenirQuestion("What weapon did {1} possess during the initial state on {0}?", "Not Murder", AnswerLayout.TwoColumns4Answers, "Candlestick", "Dagger", "Lead Pipe", "Revolver", "Rope", "Spanner",
+            ExampleExtraFormatArguments = new[] { "Miss Scarlett", "Colonel Mustard", "Reverend Green", "Mrs Peacock", "Professor Plum", "Mrs White", }, ExampleExtraFormatArgumentGroupSize = 1)]
         NotMurderWeapon,
 
         [SouvenirQuestion("Which of these numbers {1} at the {2} stage of {0}?", "Not Number Pad", AnswerLayout.TwoColumns4Answers, TranslateFormatArgs = new[] { true, false },

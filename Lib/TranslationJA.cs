@@ -4668,13 +4668,13 @@ namespace Souvenir
             },
 
             // Not Murder
-            // What room was {1} in during {2} on {0}?
+            // What room was {1} in during the initial state on {0}?
             // What room was Miss Scarlett in during the initial state on Not Murder?
             [Question.NotMurderRoom] = new TranslationInfo
             {
                 QuestionText = "What room was {1} in during {2} on {0}？",
             },
-            // What weapon did {1} possess during {2} on {0}?
+            // What weapon did {1} possess during the initial state on {0}?
             // What weapon did Miss Scarlett possess during the initial state on Not Murder?
             [Question.NotMurderWeapon] = new TranslationInfo
             {
