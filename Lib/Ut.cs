@@ -70,11 +70,7 @@ namespace Souvenir
             {
                 int item = Rnd.Range(0, j);
                 if (item < j - 1)
-                {
-                    var t = list[item];
-                    list[item] = list[j - 1];
-                    list[j - 1] = t;
-                }
+                    (list[j - 1], list[item]) = (list[item], list[j - 1]);
             }
             return list;
         }
@@ -160,14 +156,13 @@ namespace Souvenir
         ///     Key to look up.</param>
         /// <param name="defaultVal">
         ///     Value to return if key is not contained in the dictionary.</param>
-        public static TValue Get<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key, TValue defaultVal = default(TValue))
+        public static TValue Get<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key, TValue defaultVal = default)
         {
             if (dict == null)
                 throw new ArgumentNullException("dict");
             if (key == null)
                 throw new ArgumentNullException("key", "Null values cannot be used for keys in dictionaries.");
-            TValue value;
-            if (dict.TryGetValue(key, out value))
+            if (dict.TryGetValue(key, out var value))
                 return value;
             else
                 return defaultVal;
@@ -203,38 +198,36 @@ namespace Souvenir
             if (lastSeparator == null)
                 lastSeparator = separator;
 
-            using (var enumerator = values.GetEnumerator())
+            using var enumerator = values.GetEnumerator();
+            if (!enumerator.MoveNext())
+                return "";
+
+            // Optimize the case where there is only one element
+            var one = enumerator.Current;
+            if (!enumerator.MoveNext())
+                return prefix + one + suffix;
+
+            // Optimize the case where there are only two elements
+            var two = enumerator.Current;
+            if (!enumerator.MoveNext())
             {
-                if (!enumerator.MoveNext())
-                    return "";
-
-                // Optimise the case where there is only one element
-                var one = enumerator.Current;
-                if (!enumerator.MoveNext())
-                    return prefix + one + suffix;
-
-                // Optimise the case where there are only two elements
-                var two = enumerator.Current;
-                if (!enumerator.MoveNext())
-                {
-                    // Optimise the (common) case where there is no prefix/suffix; this prevents an array allocation when calling string.Concat()
-                    if (prefix == null && suffix == null)
-                        return one + lastSeparator + two;
-                    return prefix + one + suffix + lastSeparator + prefix + two + suffix;
-                }
-
-                StringBuilder sb = new StringBuilder()
-                    .Append(prefix).Append(one).Append(suffix).Append(separator)
-                    .Append(prefix).Append(two).Append(suffix);
-                var prev = enumerator.Current;
-                while (enumerator.MoveNext())
-                {
-                    sb.Append(separator).Append(prefix).Append(prev).Append(suffix);
-                    prev = enumerator.Current;
-                }
-                sb.Append(lastSeparator).Append(prefix).Append(prev).Append(suffix);
-                return sb.ToString();
+                // Optimize the (common) case where there is no prefix/suffix; this prevents an array allocation when calling string.Concat()
+                if (prefix == null && suffix == null)
+                    return one + lastSeparator + two;
+                return prefix + one + suffix + lastSeparator + prefix + two + suffix;
             }
+
+            StringBuilder sb = new StringBuilder()
+                .Append(prefix).Append(one).Append(suffix).Append(separator)
+                .Append(prefix).Append(two).Append(suffix);
+            var prev = enumerator.Current;
+            while (enumerator.MoveNext())
+            {
+                sb.Append(separator).Append(prefix).Append(prev).Append(suffix);
+                prev = enumerator.Current;
+            }
+            sb.Append(lastSeparator).Append(prefix).Append(prev).Append(suffix);
+            return sb.ToString();
         }
 
         public static T PickRandom<T>(this IEnumerable<T> src)
@@ -470,23 +463,21 @@ namespace Souvenir
 
         private static bool isWrappableAfter(string txt, int index)
         {
-            // Return false for all the whitespace characters that should NOT be wrappable
             switch (txt[index])
             {
+                // Return false for all the whitespace characters that should NOT be wrappable
                 case '\u00a0':   // NO-BREAK SPACE
                 case '\u202f':    // NARROW NO-BREAK SPACE
                     return false;
-            }
 
-            // Return true for all the NON-whitespace characters that SHOULD be wrappable
-            switch (txt[index])
-            {
+                // Return true for all the NON-whitespace characters that SHOULD be wrappable
                 case '\u200b':   // ZERO WIDTH SPACE
                     return true;
-            }
 
-            // Apart from the above exceptions, wrap at whitespace characters.
-            return char.IsWhiteSpace(txt, index);
+                // Apart from the above exceptions, wrap at whitespace characters.
+                default:
+                    return char.IsWhiteSpace(txt, index);
+            }
         }
 
         public static int IndexOf<T>(this IEnumerable<T> source, Func<T, bool> predicate)

@@ -211,8 +211,7 @@ public partial class SouvenirModule
                 if (letterDisplay.text.Length != 1 || letterDisplay.text[0] < 'A' || letterDisplay.text[0] > 'Z')
                     throw new AbandonModuleException("‘LetterDisplay’ shows {0} (expected single letter A–Z).", letterDisplay.text);
                 letters[newStage - 1] = letterDisplay.text[0];
-                int number;
-                if (!int.TryParse(numberDisplays[0].text, out number) || number < 1 || number > 9)
+                if (!int.TryParse(numberDisplays[0].text, out var number) || number < 1 || number > 9)
                     throw new AbandonModuleException("‘NumberDisplay[0]’ shows {0} (expected integer 1–9).", numberDisplays[0].text);
                 numbers[newStage - 1] = number;
                 curStage = newStage;

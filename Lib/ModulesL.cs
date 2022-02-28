@@ -225,8 +225,7 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "LionsShareModule");
         var yearText = GetField<TextMesh>(comp, "Year", isPublic: true).Get().text;
-        int year;
-        if (!int.TryParse(yearText, out year) || year < 1 || year > 16)
+        if (!int.TryParse(yearText, out var year) || year < 1 || year > 16)
             throw new AbandonModuleException("Expected year number between 1 and 16; got: {0}", yearText);
 
         var fldSolved = GetField<bool>(comp, "_isSolved");
@@ -268,28 +267,24 @@ public partial class SouvenirModule
 
         var code = "";
         var solved = false;
-        for (int i = 0; i < 4; i++)
+        foreach (var i in Enumerable.Range(0, 4))    // Do not use ‘for’ loop as the loop variable is captured by a lambda
         {
-            // Workaround bug in Mono 2.0 C# compiler
-            new Action<int>(j =>
+            buttons[i].OnInteract = delegate
             {
-                buttons[i].OnInteract = delegate
+                var ret = prevInteracts[i]();
+                code += "$#*&"[i];
+                if (code.Length == 5)
                 {
-                    var ret = prevInteracts[j]();
-                    code += "$#*&"[j];
-                    if (code.Length == 5)
+                    if (code == correctCode)
                     {
-                        if (code == correctCode)
-                        {
-                            solved = true;
-                            // Sneaky: make it so that the player can no longer play the sound
-                            fldIsActivated.Set(false);
-                        }
-                        code = "";
+                        solved = true;
+                        // Sneaky: make it so that the player can no longer play the sound
+                        fldIsActivated.Set(false);
                     }
-                    return ret;
-                };
-            })(i);
+                    code = "";
+                }
+                return ret;
+            };
         }
 
         while (!solved)
@@ -328,9 +323,9 @@ public partial class SouvenirModule
             var buttons = fldButtons.Get(ar => ar.Length != 3 ? "expected length 3" : null);
             var infs = buttons.Cast<object>().Select(obj =>
             {
-                fldLabel = fldLabel ?? GetField<string>(obj, "<Label>k__BackingField");
-                fldColor = fldColor ?? GetField<object>(obj, "<Color>k__BackingField");
-                fldIndex = fldIndex ?? GetIntField(obj, "<Index>k__BackingField");
+                fldLabel ??= GetField<string>(obj, "<Label>k__BackingField");
+                fldColor ??= GetField<object>(obj, "<Color>k__BackingField");
+                fldIndex ??= GetIntField(obj, "<Index>k__BackingField");
                 return fldLabel == null || fldColor == null || fldIndex == null
                     ? null
                     : new { Label = fldLabel.GetFrom(obj), Color = fldColor.GetFrom(obj), Index = fldIndex.GetFrom(obj) };

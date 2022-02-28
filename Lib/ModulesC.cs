@@ -361,28 +361,25 @@ public partial class SouvenirModule
         });
         update();
 
-        for (int ix = 0; ix < inputButtons.Length; ix++)
+        foreach (var i in Enumerable.Range(0, inputButtons.Length))    // Do not use ‘for’ loop as the loop variable is captured by a lambda
         {
-            new Action<int>(i =>
+            inputButtons[i].OnInteract = delegate
             {
-                inputButtons[i].OnInteract = delegate
-                {
-                    var ret = origInteract[i]();
-                    if (isSolved || isAbandoned)
-                        return ret;
-
-                    if (fldStageNum.Get() >= 3)
-                    {
-                        for (int j = 0; j < indicatorGrid.Length; j++)
-                            indicatorGrid[j].GetComponent<MeshRenderer>().material.color = Color.black;
-                        isSolved = true;
-                    }
-                    else
-                        update();
-
+                var ret = origInteract[i]();
+                if (isSolved || isAbandoned)
                     return ret;
-                };
-            })(ix);
+
+                if (fldStageNum.Get() >= 3)
+                {
+                    for (int j = 0; j < indicatorGrid.Length; j++)
+                        indicatorGrid[j].GetComponent<MeshRenderer>().material.color = Color.black;
+                    isSolved = true;
+                }
+                else
+                    update();
+
+                return ret;
+            };
         }
 
         while (!isSolved && !isAbandoned)

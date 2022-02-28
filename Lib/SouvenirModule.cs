@@ -493,8 +493,7 @@ public partial class SouvenirModule : MonoBehaviour
         _animating = true;
         Audio.PlaySoundAtTransform("Answer", transform);
         dismissQuestion();
-        if (TimeModeAwardPoints != null)
-            TimeModeAwardPoints(1);
+        TimeModeAwardPoints?.Invoke(1);
         yield return new WaitForSeconds(.5f);
         _animating = false;
     }

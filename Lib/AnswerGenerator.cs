@@ -197,7 +197,7 @@ namespace Souvenir
                 }
             }
 
-            private CharacterList[] characterLists;
+            private readonly CharacterList[] characterLists;
 
             /// <param name="characterLists">A list of expressions specifying character lists.</param>
             /// <remarks>

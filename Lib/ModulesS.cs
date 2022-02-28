@@ -284,7 +284,7 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(_SillySlots);
 
-        var prevSlots = GetField<IList>(comp, "mPreviousSlots").Get(lst => lst.Cast<object>().Any(obj => !(obj is Array) || ((Array) obj).Length != 3) ? "expected arrays of length 3" : null);
+        var prevSlots = GetField<IList>(comp, "mPreviousSlots").Get(lst => lst.Cast<object>().Any(obj => !(obj is Array ar) || ar.Length != 3) ? "expected arrays of length 3" : null);
         if (prevSlots.Count < 2)
         {
             // Legitimate: first stage was a keep already
@@ -975,8 +975,7 @@ public partial class SouvenirModule
             yield break;
         }
 
-        int souvenirCount;
-        if (!_moduleCounts.TryGetValue(_Souvenir, out souvenirCount) || souvenirCount != 2)
+        if (!_moduleCounts.TryGetValue(_Souvenir, out var souvenirCount) || souvenirCount != 2)
         {
             if (souvenirCount > 2)
                 Debug.LogFormat("[Souvenir #{0}] There are more than two Souvenir modules on this bomb. Not asking any questions about them.", _moduleId);
@@ -1070,7 +1069,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
 
         var comp = GetComponent(module, "SplittingTheLootScript");
-        var bags = (IList) GetField<object>(comp, "bags").Get(lst => !(lst is IList) ? "expected an IList" : ((IList) lst).Count != 7 ? "expected length 7" : null);
+        var bags = (IList) GetField<object>(comp, "bags").Get(lst => !(lst is IList list) ? "expected an IList" : list.Count != 7 ? "expected length 7" : null);
         var fldBagColor = GetField<object>(bags[0], "Color");
         var fldBagLabel = GetField<string>(bags[0], "Label");
         var bagColors = bags.Cast<object>().Select(obj => fldBagColor.GetFrom(obj)).ToArray();
@@ -1501,8 +1500,7 @@ public partial class SouvenirModule
         var fldSolved = GetField<bool>(comp, "_isSolved");
         var numberText = GetField<TextMesh>(comp, "NumberText", isPublic: true).Get();
 
-        int number;
-        if (numberText.text == null || !int.TryParse(numberText.text, out number) || number < 0 || number > 9)
+        if (numberText.text == null || !int.TryParse(numberText.text, out var number) || number < 0 || number > 9)
             throw new AbandonModuleException("The display text (“{0}”) is not an integer 0–9.", numberText.text ?? "<null>");
 
         while (!fldSolved.Get())

@@ -21,20 +21,17 @@ public partial class SouvenirModule
         var indexNumber = GetField<int>(comp, "WordIndex");
         var stageNumber = GetField<int>(comp, "Stage");
 
-        for (int i = 0; i < yesAndNo.Length; i++)
+        foreach (var i in Enumerable.Range(0, yesAndNo.Length))    // Do not use ‘for’ loop as the loop variable is captured by a lambda
         {
-            // Need an extra scope to work around bug in Mono 2.0 C# compiler
-            new Action<int, KMSelectable.OnInteractHandler>((j, oldInteract) =>
+            var oldInteract = yesAndNo[i].OnInteract;
+            yesAndNo[i].OnInteract = delegate
             {
-                yesAndNo[j].OnInteract = delegate
-                {
-                    wordsWritten.Add(phrases[indexNumber.Get()]);
-                    var result = oldInteract();
-                    if (stageNumber.Get() == 5 && !fldSolved.Get())
-                        wordsWritten = new List<string>();
-                    return result;
-                };
-            })(i, yesAndNo[i].OnInteract);
+                wordsWritten.Add(phrases[indexNumber.Get()]);
+                var result = oldInteract();
+                if (stageNumber.Get() == 5 && !fldSolved.Get())
+                    wordsWritten = new List<string>();
+                return result;
+            };
         }
 
         while (!fldSolved.Get())

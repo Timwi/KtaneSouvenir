@@ -227,8 +227,7 @@ public partial class SouvenirModule
         var fldSequences = GetListField<bool?>(calculate, "sequences");
         var fldFigures = GetListField<int>(calculate, "figureSequences");
 
-        int facCount;
-        if (_moduleCounts.TryGetValue(_ForgetAnyColor, out facCount) && facCount > 1)
+        if (_moduleCounts.TryGetValue(_ForgetAnyColor, out var facCount) && facCount > 1)
         {
             Debug.LogFormat("[Souvenir #{0}] No question for Forget Any Color because there is more than one of them.", _moduleId);
             _legitimatelyNoQuestions.Add(module);
@@ -316,8 +315,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "FTCScript");
         var fldStage = GetIntField(comp, "stage");
 
-        int ftcCount;
-        if (_moduleCounts.TryGetValue(_ForgetTheColors, out ftcCount) && ftcCount > 1)
+        if (_moduleCounts.TryGetValue(_ForgetTheColors, out var ftcCount) && ftcCount > 1)
         {
             Debug.LogFormat("[Souvenir #{0}] No question for Forget The Colors because there is more than one of them.", _moduleId);
             _legitimatelyNoQuestions.Add(module);

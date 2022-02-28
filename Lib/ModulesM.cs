@@ -534,8 +534,7 @@ public partial class SouvenirModule
 
         var dictionary = GetField<Dictionary<string, string>>(comp, "chosenWords").Get();
 
-        string stage1word, stage2word;
-        if (!dictionary.TryGetValue("Stage1", out stage1word) || !dictionary.TryGetValue("Stage2", out stage2word) || stage1word == null || stage2word == null)
+        if (!dictionary.TryGetValue("Stage1", out var stage1word) || stage1word == null || !dictionary.TryGetValue("Stage2", out var stage2word) || stage2word == null)
             throw new AbandonModuleException("There is no word for {0}.", stage1word == null ? "stage 1" : "stage 2");
 
         Debug.LogFormat("<Souvenir #{0}> Modern Cipher words: {1} {2}.", _moduleId, stage1word, stage2word);
@@ -617,73 +616,69 @@ public partial class SouvenirModule
         var finished = false;
 
         var origInteracts = buttons.Select(btn => btn.OnInteract).ToArray();
-        for (int i = 0; i < buttons.Length; i++)
+        foreach (var i in Enumerable.Range(0, buttons.Length))    // Do not use ‘for’ loop as the loop variable is captured by a lambda
         {
-            // Need an extra scope to work around bug in Mono 2.0 C# compiler
-            new Action<int>(j =>
+            buttons[i].OnInteract = delegate
             {
-                buttons[j].OnInteract = delegate
+                // Before processing the button push, get the creature and moves
+                string curCreatureName = null;
+                string[] curMoveNames = null;
+
+                var creatureID = fldCreatureID.Get();
+                if (creatureID == -1)
                 {
-                    // Before processing the button push, get the creature and moves
-                    string curCreatureName = null;
-                    string[] curMoveNames = null;
-
-                    var creatureID = fldCreatureID.Get();
-                    if (creatureID == -1)
-                    {
-                        // Missingno: do nothing
-                    }
-                    else if (creatureID < 0 || creatureID >= creatureNames.Length || string.IsNullOrEmpty(creatureNames[creatureID]))
-                        Debug.LogFormat("<Souvenir #{2}> Monsplode, Fight!: Unexpected creature ID: {0}; creature names are: [{1}]", creatureID, creatureNames.Select(cn => cn == null ? "null" : '"' + cn + '"').JoinString(", "), _moduleId);
+                    // Missingno: do nothing
+                }
+                else if (creatureID < 0 || creatureID >= creatureNames.Length || string.IsNullOrEmpty(creatureNames[creatureID]))
+                    Debug.LogFormat("<Souvenir #{2}> Monsplode, Fight!: Unexpected creature ID: {0}; creature names are: [{1}]", creatureID, creatureNames.Select(cn => cn == null ? "null" : '"' + cn + '"').JoinString(", "), _moduleId);
+                else
+                {
+                    // Make sure not to throw exceptions inside of the module’s button handler!
+                    var moveIDs = fldMoveIDs.Get(nullAllowed: true);
+                    if (moveIDs == null || moveIDs.Length != 4 || moveIDs.Any(mid => mid >= moveNames.Length || string.IsNullOrEmpty(moveNames[mid])))
+                        Debug.LogFormat("<Souvenir #{2}> Monsplode, Fight!: Unexpected move IDs: {0}; moves names are: [{1}]",
+                            moveIDs == null ? null : "[" + moveIDs.JoinString(", ") + "]",
+                            moveNames.Select(mn => mn == null ? "null" : '"' + mn + '"').JoinString(", "),
+                            _moduleId);
                     else
                     {
-                        // Make sure not to throw exceptions inside of the module’s button handler!
-                        var moveIDs = fldMoveIDs.Get(nullAllowed: true);
-                        if (moveIDs == null || moveIDs.Length != 4 || moveIDs.Any(mid => mid >= moveNames.Length || string.IsNullOrEmpty(moveNames[mid])))
-                            Debug.LogFormat("<Souvenir #{2}> Monsplode, Fight!: Unexpected move IDs: {0}; moves names are: [{1}]",
-                                moveIDs == null ? null : "[" + moveIDs.JoinString(", ") + "]",
-                                moveNames.Select(mn => mn == null ? "null" : '"' + mn + '"').JoinString(", "),
-                                _moduleId);
-                        else
-                        {
-                            curCreatureName = creatureNames[creatureID];
-                            curMoveNames = moveIDs.Select(mid => moveNames[mid].Replace("\r", "").Replace("\n", " ")).ToArray();
-                        }
+                        curCreatureName = creatureNames[creatureID];
+                        curMoveNames = moveIDs.Select(mid => moveNames[mid].Replace("\r", "").Replace("\n", " ")).ToArray();
                     }
+                }
 
-                    var ret = origInteracts[j]();
+                var ret = origInteracts[i]();
 
-                    if (creatureID == -1)
-                    {
-                        Debug.LogFormat("[Souvenir #{0}] No question on Monsplode, Fight! because the creature displayed was Missingno.", _moduleId);
-                        _legitimatelyNoQuestions.Add(module);
-                        displayedCreature = null;
-                        displayedMoves = null;
+                if (creatureID == -1)
+                {
+                    Debug.LogFormat("[Souvenir #{0}] No question on Monsplode, Fight! because the creature displayed was Missingno.", _moduleId);
+                    _legitimatelyNoQuestions.Add(module);
+                    displayedCreature = null;
+                    displayedMoves = null;
+                    finished = true;
+                }
+                else if (curCreatureName == null || curMoveNames == null)
+                {
+                    Debug.LogFormat("<Souvenir #{0}> Monsplode, Fight!: Abandoning due to error above.", _moduleId);
+                    // Set these to null to signal that something went wrong and we need to abort
+                    displayedCreature = null;
+                    displayedMoves = null;
+                    finished = true;
+                }
+                else
+                {
+                    // If ‘revive’ is ‘false’, there is not going to be another stage.
+                    if (!fldRevive.Get())
                         finished = true;
-                    }
-                    else if (curCreatureName == null || curMoveNames == null)
-                    {
-                        Debug.LogFormat("<Souvenir #{0}> Monsplode, Fight!: Abandoning due to error above.", _moduleId);
-                        // Set these to null to signal that something went wrong and we need to abort
-                        displayedCreature = null;
-                        displayedMoves = null;
-                        finished = true;
-                    }
-                    else
-                    {
-                        // If ‘revive’ is ‘false’, there is not going to be another stage.
-                        if (!fldRevive.Get())
-                            finished = true;
 
-                        if (curCreatureName != null && curMoveNames != null)
-                        {
-                            displayedCreature = curCreatureName;
-                            displayedMoves = curMoveNames;
-                        }
+                    if (curCreatureName != null && curMoveNames != null)
+                    {
+                        displayedCreature = curCreatureName;
+                        displayedMoves = curMoveNames;
                     }
-                    return ret;
-                };
-            })(i);
+                }
+                return ret;
+            };
         }
 
         while (!finished)

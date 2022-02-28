@@ -262,58 +262,55 @@ public partial class SouvenirModule
         int answer = -1;
         var wires = GetArrayField<KMSelectable>(comp, "wires", isPublic: true).Get(expectedLength: 3);
 
-        for (int i = 0; i < wires.Length; i++)
+        foreach (var i in Enumerable.Range(0, wires.Length))    // Do not use ‘for’ loop as the loop variable is captured by a lambda
         {
-            // Need an extra scope to work around bug in Mono 2.0 C# compiler
-            new Action<int, KMSelectable.OnInteractHandler>((j, oldInteract) =>
+            var oldInteract = wires[i].OnInteract;
+            wires[i].OnInteract = delegate
             {
-                wires[j].OnInteract = delegate
-                {
-                    wires[j].OnInteract = oldInteract;  // Restore original interaction, so that this can only ever be called once per wire.
-                    var wasSolved = fldSolved.Get();    // Get this before calling oldInteract()
-                    var seqIx = fldSequenceIndex.Get();
-                    var numIx = mthGetIndexFromTime.Invoke(Time.time, fldBlinkDelay.Get());
-                    var colors = fldColors.Get(nullAllowed: true);  // We cannot risk throwing an exception during the module’s button handler
-                    var solutions = fldSolutions.Get(nullAllowed: true);
-                    var result = oldInteract();
+                wires[i].OnInteract = oldInteract;  // Restore original interaction, so that this can only ever be called once per wire.
+                var wasSolved = fldSolved.Get();    // Get this before calling oldInteract()
+                var seqIx = fldSequenceIndex.Get();
+                var numIx = mthGetIndexFromTime.Invoke(Time.time, fldBlinkDelay.Get());
+                var colors = fldColors.Get(nullAllowed: true);  // We cannot risk throwing an exception during the module’s button handler
+                var solutions = fldSolutions.Get(nullAllowed: true);
+                var result = oldInteract();
 
-                    if (wasSolved)
-                        return result;
-
-                    if (colors == null || colors.Length <= j)
-                    {
-                        Debug.LogFormat("<Souvenir #{0}> Abandoning Binary LEDs because ‘colors’ array has unexpected length ({1}).", _moduleId,
-                            colors == null ? "null" : colors.Length.ToString());
-                        return result;
-                    }
-
-                    if (solutions == null || solutions.GetLength(0) <= seqIx || solutions.GetLength(1) <= colors[j])
-                    {
-                        Debug.LogFormat("<Souvenir #{0}> Abandoning Binary LEDs because ‘solutions’ array has unexpected lengths ({1}, {2}).", _moduleId,
-                            solutions == null ? "null" : solutions.GetLength(0).ToString(),
-                            solutions == null ? "null" : solutions.GetLength(1).ToString());
-                        return result;
-                    }
-
-                    // Ignore if this wasn’t a solve
-                    if (solutions[seqIx, colors[j]] != numIx)
-                        return result;
-
-                    // Find out which value is displayed
-                    var sequences = fldSequences.Get(nullAllowed: true);
-
-                    if (sequences == null || sequences.GetLength(0) <= seqIx || sequences.GetLength(1) <= numIx)
-                    {
-                        Debug.LogFormat("<Souvenir #{0}> Abandoning Binary LEDs because ‘sequences’ array has unexpected lengths ({1}, {2}).", _moduleId,
-                            sequences == null ? "null" : sequences.GetLength(0).ToString(),
-                            sequences == null ? "null" : sequences.GetLength(1).ToString());
-                        return result;
-                    }
-
-                    answer = sequences[seqIx, numIx];
+                if (wasSolved)
                     return result;
-                };
-            })(i, wires[i].OnInteract);
+
+                if (colors == null || colors.Length <= i)
+                {
+                    Debug.LogFormat("<Souvenir #{0}> Abandoning Binary LEDs because ‘colors’ array has unexpected length ({1}).", _moduleId,
+                        colors == null ? "null" : colors.Length.ToString());
+                    return result;
+                }
+
+                if (solutions == null || solutions.GetLength(0) <= seqIx || solutions.GetLength(1) <= colors[i])
+                {
+                    Debug.LogFormat("<Souvenir #{0}> Abandoning Binary LEDs because ‘solutions’ array has unexpected lengths ({1}, {2}).", _moduleId,
+                        solutions == null ? "null" : solutions.GetLength(0).ToString(),
+                        solutions == null ? "null" : solutions.GetLength(1).ToString());
+                    return result;
+                }
+
+                // Ignore if this wasn’t a solve
+                if (solutions[seqIx, colors[i]] != numIx)
+                    return result;
+
+                // Find out which value is displayed
+                var sequences = fldSequences.Get(nullAllowed: true);
+
+                if (sequences == null || sequences.GetLength(0) <= seqIx || sequences.GetLength(1) <= numIx)
+                {
+                    Debug.LogFormat("<Souvenir #{0}> Abandoning Binary LEDs because ‘sequences’ array has unexpected lengths ({1}, {2}).", _moduleId,
+                        sequences == null ? "null" : sequences.GetLength(0).ToString(),
+                        sequences == null ? "null" : sequences.GetLength(1).ToString());
+                    return result;
+                }
+
+                answer = sequences[seqIx, numIx];
+                return result;
+            };
         }
 
         while (!fldSolved.Get())
@@ -729,15 +726,14 @@ public partial class SouvenirModule
         }
         else
         {
-            string answer;
-            switch (color)
+            var answer = color switch
             {
-                case 0: answer = "red"; break;
-                case 1: answer = "blue"; break;
-                case 2: answer = "yellow"; break;
-                case 3: answer = "white"; break;
-                default: throw new AbandonModuleException("IndicatorColor is out of range ({0}).", color);
-            }
+                0 => "red",
+                1 => "blue",
+                2 => "yellow",
+                3 => "white",
+                _ => throw new AbandonModuleException("IndicatorColor is out of range ({0}).", color),
+            };
             addQuestion(module, Question.ButtonLightColor, correctAnswers: new[] { answer });
         }
     }

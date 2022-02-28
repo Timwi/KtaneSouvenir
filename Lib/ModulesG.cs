@@ -167,8 +167,7 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(_GreenArrows);
 
-        int number;
-        if (!int.TryParse(numbers, out number))
+        if (!int.TryParse(numbers, out var number))
             throw new AbandonModuleException("The screen is not an integer: “{0}”.", number);
         if (number < 0 || number > 99)
             throw new AbandonModuleException("The number on the screen is out of range: number = {1}, expected 0-99", number);
