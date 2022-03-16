@@ -967,17 +967,25 @@ public partial class SouvenirModule
         string[] generateWrongAnswers(string correctAnswer, AnswerGeneratorAttribute gen)
         {
             var set = new HashSet<string> { correctAnswer };
-            while (set.Count < 6)
+            var iter = 0;
+            while (set.Count < 6 && iter < 100)
+            {
                 foreach (var ans in gen.GetAnswers(this).Take(6 - set.Count))
                     set.Add(ans);
+                iter++;
+            }
             return set.ToArray();
         }
 
         string[] generateWrongAnswersFnc(string correctAnswer, Func<string> gen)
         {
             var set = new HashSet<string> { correctAnswer };
-            while (set.Count < 6)
+            var iter = 0;
+            while (set.Count < 6 && iter < 100)
+            {
                 set.Add(gen());
+                iter++;
+            }
             return set.ToArray();
         }
 
@@ -1036,7 +1044,7 @@ public partial class SouvenirModule
                         preferredWrongAnswers: allWords[tup.text.Length - 4].ToArray());
 
                 // Screens that have only 0s and 1s on them
-                if (tup.text.All(ch => ch == '0' || ch == '1'))
+                if (tup.text.Length >= 3 && tup.text.All(ch => ch == '0' || ch == '1'))
                     return makeQuestion(question, module.ModuleType, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
                         preferredWrongAnswers: generateWrongAnswers(tup.text, new AnswerGenerator.Strings(tup.text.Length, '0', '1')));
 
