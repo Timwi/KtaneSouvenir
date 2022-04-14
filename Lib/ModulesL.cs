@@ -246,54 +246,19 @@ public partial class SouvenirModule
     private IEnumerable<object> ProcessListening(KMBombModule module)
     {
         var comp = GetComponent(module, "Listening");
-        var fldIsActivated = GetField<bool>(comp, "isActivated");
+        var fldCode = GetArrayField<char>(comp, "codeInput");
 
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
 
-        var attr = _attributes.Get(Question.ListeningCode);
-        if (attr == null)
-            throw new AbandonModuleException("Abandoning Listening because SouvenirQuestionAttribute for Question.Listening is null.");
-
-        var sound = GetField<object>(comp, "sound").Get();
-        var buttons = new[] { "DollarButton", "PoundButton", "StarButton", "AmpersandButton" }.Select(fieldName => GetField<KMSelectable>(comp, fieldName, isPublic: true).Get()).ToArray();
-
-        var prevInteracts = buttons.Select(btn => btn.OnInteract).ToArray();
-        var nullIndex = Array.IndexOf(prevInteracts, null);
-        if (nullIndex != -1)
-            throw new AbandonModuleException("Abandoning Listening because buttons[{0}].OnInteract is null.", nullIndex);
-
-        var correctCode = GetField<string>(sound, "code", isPublic: true).Get();
-
-        var code = "";
         var solved = false;
-        foreach (var i in Enumerable.Range(0, 4))    // Do not use ‘for’ loop as the loop variable is captured by a lambda
-        {
-            buttons[i].OnInteract = delegate
-            {
-                var ret = prevInteracts[i]();
-                code += "$#*&"[i];
-                if (code.Length == 5)
-                {
-                    if (code == correctCode)
-                    {
-                        solved = true;
-                        // Sneaky: make it so that the player can no longer play the sound
-                        fldIsActivated.Set(false);
-                    }
-                    code = "";
-                }
-                return ret;
-            };
-        }
+        module.OnPass += delegate { solved = true; return false; };
 
         while (!solved)
             yield return new WaitForSeconds(.1f);
 
-        for (int i = 0; i < 4; i++)
-            buttons[i].OnInteract = prevInteracts[i];
-
         _modulesSolved.IncSafe(_Listening);
+        var correctCode = fldCode.Get(expectedLength: 5).JoinString();
         addQuestion(module, Question.ListeningCode, correctAnswers: new[] { correctCode });
     }
 
