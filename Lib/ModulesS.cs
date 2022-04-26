@@ -1086,21 +1086,6 @@ public partial class SouvenirModule
         addQuestion(module, Question.SplittingTheLootColoredBag, correctAnswers: new[] { bagLabels[paintedBag] }, preferredWrongAnswers: bagLabels);
     }
 
-    private IEnumerable<object> ProcessSpotTheDifference(KMBombModule module)
-    {
-        var comp = GetComponent(module, "SpotTheDifference");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-
-        _modulesSolved.IncSafe(_SpotTheDifference);
-
-        var faultyBall = GetField<int>(comp, "jon").Get();
-        var colorNames = new[] { "Blue", "Green", "Orange", "Red" };
-        addQuestions(module, makeQuestion(Question.SpotTheDifferenceFaultyBall, _SpotTheDifference, formatArgs: null, correctAnswers: new[] { colorNames[faultyBall] }, preferredWrongAnswers: colorNames));
-    }
-
     private IEnumerable<object> ProcessStability(KMBombModule module)
     {
         var colorNames = new[] { "Red", "Yellow", "Blue" };

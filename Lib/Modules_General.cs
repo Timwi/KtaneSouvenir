@@ -360,7 +360,6 @@ public partial class SouvenirModule
     const string _SpellingBee = "spellingBee";
     const string _Sphere = "sphere";
     const string _SplittingTheLoot = "SplittingTheLootModule";
-    const string _SpotTheDifference = "SpotTheDifference";
     const string _Stability = "stabilityModule";
     const string _StackedSequences = "stackedSequences";
     const string _Stars = "stars";
@@ -783,7 +782,6 @@ public partial class SouvenirModule
             { _SpellingBee, ProcessSpellingBee },
             { _Sphere, ProcessSphere },
             { _SplittingTheLoot, ProcessSplittingTheLoot },
-            { _SpotTheDifference, ProcessSpotTheDifference },
             { _Stability, ProcessStability },
             { _StackedSequences, ProcessStackedSequences },
             { _Stars, ProcessStars },

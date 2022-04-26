@@ -6675,21 +6675,6 @@ namespace Souvenir
                 QuestionText = "What bag was initially colored in {0}?",
             },
 
-            // Spot the Difference
-            // What was the color of the faulty sphere in {0}?
-            // What was the color of the faulty sphere in Spot the Difference?
-            [Question.SpotTheDifferenceFaultyBall] = new TranslationInfo
-            {
-                QuestionText = "What was the color of the faulty sphere in {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
-                    ["Orange"] = "Orange",
-                    ["Red"] = "Red",
-                },
-            },
-
             // Stability
             // What was the color of the {1} lit LED in {0}?
             // What was the color of the first lit LED in Stability?

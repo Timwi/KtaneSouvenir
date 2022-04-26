@@ -6665,21 +6665,6 @@ namespace Souvenir
                 QuestionText = "{0}にて初期から色付けされていた袋は？",
             },
 
-            // Spot the Difference
-            // What was the color of the faulty sphere in {0}?
-            // What was the color of the faulty sphere in Spot the Difference?
-            [Question.SpotTheDifferenceFaultyBall] = new TranslationInfo
-            {
-                QuestionText = "{0}における間違ったな球の色は？",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Blue"] = "青",
-                    ["Green"] = "緑",
-                    ["Orange"] = "オレンジ",
-                    ["Red"] = "赤",
-                },
-            },
-
             // Stability
             // What was the color of the {1} lit LED in {0}?
             // What was the color of the first lit LED in Stability?

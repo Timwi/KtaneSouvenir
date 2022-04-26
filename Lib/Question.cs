@@ -1923,9 +1923,6 @@ namespace Souvenir
         [SouvenirQuestion("What bag was initially colored in {0}?", "Splitting The Loot", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "A5", "E6", "19", "82" })]
         SplittingTheLootColoredBag,
 
-        [SouvenirQuestion("What was the color of the faulty sphere in {0}?", "Spot the Difference", AnswerLayout.TwoColumns4Answers, "Blue", "Green", "Orange", "Red", TranslateAnswers = true)]
-        SpotTheDifferenceFaultyBall,
-
         [SouvenirQuestion("What was the color of the {1} lit LED in {0}?", "Stability", AnswerLayout.TwoColumns4Answers, "Red", "Yellow", "Blue",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         StabilityLedColors,
