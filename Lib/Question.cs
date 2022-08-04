@@ -1287,6 +1287,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "column", "row", "value" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NavyButtonGiven,
 
+        [SouvenirQuestion("What was the encrypted word in {0}?", "Not Colored Switches", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "Adjust", "Anchor", "Bowtie", "Button", "Cipher", "Corner" })]
+        NotColoredSwithcesWord,
+
         [SouvenirQuestion("What symbol flashed on the {1} button in {0}?", "Not Connection Check", AnswerLayout.ThreeColumns6Answers, "+", "-", ".", ":", "/", "_", "=", ",",
             ExampleExtraFormatArguments = new[] { "top left", "top right", "bottom left", "bottom right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NotConnectionCheckFlashes,
@@ -1296,9 +1299,6 @@ namespace Souvenir
 
         [SouvenirQuestion("Which coordinate was part of the square in {0}?", "Not Coordinates", AnswerLayout.OneColumn4Answers, null, ExampleAnswers = new[] { "[4,7]", "C4", "<0, 2>", "3, 1", "(6,2)", "B-1", "“1, 0”", "4/3", "[12]", "#23", "四十七" })]
         NotCoordinatesSquareCoords,
-        [SouvenirQuestion("What was the function of the {1} button on an {2} digit in {0}?", "Not Coordinates", AnswerLayout.TwoColumns4Answers, "big down", "big up", "small down", "small up", "big right", "big left", "small right", "small left",
-            ExampleExtraFormatArguments = new[] { "left", "odd", "right", "even" }, ExampleExtraFormatArgumentGroupSize = 2)]
-        NotCoordinatesButtonFuncs,
 
         [SouvenirQuestion("What color flashed {1} in the final sequence in {0}?", "Not Keypad", AnswerLayout.ThreeColumns6Answers, "red", "orange", "yellow", "green", "cyan", "blue", "purple", "magenta", "pink", "brown", "grey", "white", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -1329,6 +1329,16 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "flashed", QandA.Ordinal, "did not flash", QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 2)]
         [AnswerGenerator.Integers(0, 9)]
         NotNumberPadFlashes,
+
+        [SouvenirQuestion("What was the position of the {1} flashing peg on {0}?", "Not Perspective Pegs", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "top", "top-right", "bottom-right", "bottom-left", "top-left"},
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        NotPerspectivePegsPosition,
+        [SouvenirQuestion("From what perspective did the {1} peg flash on {0}?", "Not Perspective Pegs", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "top", "top-right", "bottom-right", "bottom-left", "top-left" },
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        NotPerspectivePegsPerspective,
+        [SouvenirQuestion("What was the color of the {1} flashing peg on {0}?", "Not Perspective Pegs", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "blue", "green", "purple", "red", "yellow" },
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        NotPerspectivePegsColor,
 
         [SouvenirQuestion("What was the first displayed symbol on {0}?", "Not Piano Keys", AnswerLayout.TwoColumns4Answers, "b", "n", "#", "", Type = AnswerType.PianoKeysFont)]
         NotPianoKeysFirstSymbol, //There are only 4 possibilities for the first symbol.
@@ -1716,6 +1726,11 @@ namespace Souvenir
         [SouvenirQuestion("What was the bomb’s score in {0}?", "Schlag den Bomb", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Integers(0, 75)]
         SchlagDenBombBombScore,
+
+        [SouvenirQuestion("What was the {1} encrypted word in {0}?", "Scramboozled Eggain", AnswerLayout.ThreeColumns6Answers, null,
+            ExampleAnswers = new[] { "Basted", "Boiled", "Boxing", "Carton", "Dumpty", "French" },
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ScramboozledEggainWord,
 
         [SouvenirQuestion("What were the first and second words in the {1} phrase in {0}?", "Sea Shells", AnswerLayout.TwoColumns4Answers, "she sells", "she shells", "sea shells", "sea sells",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]

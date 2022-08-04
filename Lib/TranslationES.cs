@@ -4676,6 +4676,14 @@ namespace Souvenir
                 QuestionText = "What was the {1} of the given in {0} (0-indexed)?",
             },
 
+            // Not Colored Switches
+            // What was the encrypted word in {0}?
+            // What was the encrypted word in Not Colored Switches?
+            [Question.NotColoredSwithcesWord] = new TranslationInfo
+            {
+                QuestionText = "What was the encrypted word in {0}?",
+            },
+
             // Not Connection Check
             // What symbol flashed on the {1} button in {0}?
             // What symbol flashed on the top left button in Not Connection Check?
@@ -4696,12 +4704,6 @@ namespace Souvenir
             [Question.NotCoordinatesSquareCoords] = new TranslationInfo
             {
                 QuestionText = "Which coordinate was part of the square in {0}?",
-            },
-            // What was the function of the {1} button on an {2} digit in {0}?
-            // What was the function of the left button on an odd digit in Not Coordinates?
-            [Question.NotCoordinatesButtonFuncs] = new TranslationInfo
-            {
-                QuestionText = "What was the function of the {1} button on an {2} digit in {0}?",
             },
 
             // Not Keypad
@@ -4782,6 +4784,26 @@ namespace Souvenir
                     ["flashed"] = "flashed",
                     ["did not flash"] = "did not flash",
                 },
+            },
+
+            // Not Perspective Pegs
+            // What was the position of the {1} flashing peg on {0}?
+            // What was the position of the first flashing peg on Not Perspective Pegs?
+            [Question.NotPerspectivePegsPosition] = new TranslationInfo
+            {
+                QuestionText = "What was the position of the {1} flashing peg on {0}?",
+            },
+            // From what perspective did the {1} peg flash on {0}?
+            // From what perspective did the first peg flash on Not Perspective Pegs?
+            [Question.NotPerspectivePegsPerspective] = new TranslationInfo
+            {
+                QuestionText = "From what perspective did the {1} peg flash on {0}?",
+            },
+            // What was the color of the {1} flashing peg on {0}?
+            // What was the color of the first flashing peg on Not Perspective Pegs?
+            [Question.NotPerspectivePegsColor] = new TranslationInfo
+            {
+                QuestionText = "What was the color of the {1} flashing peg on {0}?",
             },
 
             // Not Piano Keys
@@ -5983,6 +6005,14 @@ namespace Souvenir
             [Question.SchlagDenBombBombScore] = new TranslationInfo
             {
                 QuestionText = "What was the bomb’s score in {0}?",
+            },
+
+            // Scramboozled Eggain
+            // What was the {1} encrypted word in {0}?
+            // What was the first encrypted word in Scramboozled Eggain?
+            [Question.ScramboozledEggainWord] = new TranslationInfo
+            {
+                QuestionText = "What was the {1} encrypted word in {0}?",
             },
 
             // Sea Shells

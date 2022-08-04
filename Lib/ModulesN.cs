@@ -201,6 +201,19 @@ public partial class SouvenirModule
             makeQuestion(Question.NavyButtonGiven, _NavyButton, formatArgs: new[] { "value" }, correctAnswers: new[] { givenValue.ToString() }));
     }
 
+    private IEnumerable<object> ProcessNotColoredSwitches(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NotColoredSwitchesScript");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_NotColoredSwitches);
+        var wordList = GetStaticField<string[]>(comp.GetType(), "_wordList").Get().Select(i => i.Substring(0, 1) + i.Substring(1).ToLowerInvariant()).ToArray();
+        var solutionWord = GetField<string>(comp, "_chosenWord").Get().Substring(0, 1) + GetField<string>(comp, "_chosenWord").Get().Substring(1).ToLowerInvariant();
+
+        addQuestions(module, makeQuestion(Question.NotColoredSwithcesWord, _NotColoredSwitches, correctAnswers: new[] { solutionWord }, preferredWrongAnswers: wordList));
+    }
+
     private IEnumerable<object> ProcessNotConnectionCheck(KMBombModule module)
     {
         var comp = GetComponent(module, "NCCScript");
@@ -242,15 +255,6 @@ public partial class SouvenirModule
         var seq = GetArrayField<List<int>>(comp, "seq").Get(expectedLength: 2, validator: i => i.Count < 3 ? "expected length at least 3" : null);
         var answers = seq[0].Take(3).Select(coord => disp[seq[1].IndexOf(coord)]).ToArray();
         qs.Add(makeQuestion(Question.NotCoordinatesSquareCoords, _NotCoordinates, correctAnswers: answers, preferredWrongAnswers: disp.ToArray()));
-
-        // Step 2: Grid navigation
-        var dir = GetArrayField<int>(comp, "dir").Get(expectedLength: 4, validator: i => (i < 0 || i >= 4) ? "expected 0 to 3" : null);
-        var back = GetArrayField<bool>(comp, "back").Get(expectedLength: 4);
-
-        var dirNames = new[] { "big down", "big up", "big right", "big left", "small down", "small up", "small right", "small left" };
-        for (int button = 0; button < 2; button++)
-            for (int digit = 0; digit < 2; digit++)
-                qs.Add(makeQuestion(Question.NotCoordinatesButtonFuncs, _NotCoordinates, formatArgs: new[] { button == 0 ? "left" : "right", digit == 0 ? "even" : "odd" }, correctAnswers: new[] { dirNames[2 * dir[2 * button + digit] + (back[2 * button + digit] ? 1 : 0)] }));
 
         addQuestions(module, qs);
     }
@@ -380,6 +384,34 @@ public partial class SouvenirModule
             qs.Add(makeQuestion(Question.NotNumberPadFlashes, _NotNumberPad, formatArgs: new[] { "flashed", ordinal(stage + 1) }, correctAnswers: numbers[stage]));
         }
 
+        addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessNotPerspectivePegs(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NotPerspectivePegsScript");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_NotPerspectivePegs);
+        var posNames = new[] { "top", "top-right", "bottom-right", "bottom-left", "top-left" };
+        // Peg position
+        var positions = GetArrayField<int>(comp, "_flashPegPosition").Get();
+        var qs = new List<QandA>();
+        for (int i = 0; i < 5; i++)
+            qs.Add(makeQuestion(Question.NotPerspectivePegsPosition, _NotPerspectivePegs, formatArgs: new[] { ordinal(i + 1) },
+                correctAnswers: new[] { posNames[positions[i]] }, preferredWrongAnswers: Enumerable.Range(0, 5).Select(i => posNames[i]).ToArray()));
+        // Peg perspective
+        var perspectives = GetArrayField<int>(comp, "_flashPegPerspective").Get();
+        for (int i = 0; i < 5; i++)
+            qs.Add(makeQuestion(Question.NotPerspectivePegsPerspective, _NotPerspectivePegs, formatArgs: new[] { ordinal(i + 1) },
+                correctAnswers: new[] { posNames[perspectives[i]] }, preferredWrongAnswers: Enumerable.Range(0, 5).Select(i => posNames[i]).ToArray()));
+        // Peg color
+        var colors = GetArrayField<int>(comp, "_flashPegColor").Get();
+        var colorNames = new[] { "blue", "green", "purple", "red", "yellow" };
+        for (int i = 0; i < 5; i++)
+            qs.Add(makeQuestion(Question.NotPerspectivePegsColor, _NotPerspectivePegs, formatArgs: new[] { ordinal(i + 1) },
+                correctAnswers: new[] { colorNames[colors[i]] }, preferredWrongAnswers: Enumerable.Range(0, 5).Select(i => colorNames[i]).ToArray()));
         addQuestions(module, qs);
     }
 

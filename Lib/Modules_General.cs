@@ -246,6 +246,7 @@ public partial class SouvenirModule
     const string _Necronomicon = "necronomicon";
     const string _Negativity = "Negativity";
     const string _Neutralization = "neutralization";
+    const string _NotColoredSwitches = "NotColoredSwitchesModule";
     const string _NotConnectionCheck = "notConnectionCheck";
     const string _NotCoordinates = "notCoordinates";
     const string _NotKeypad = "NotKeypad";
@@ -254,6 +255,7 @@ public partial class SouvenirModule
     const string _NotMorsematics = "notMorsematics";
     const string _NotMurder = "notMurder";
     const string _NotNumberPad = "notNumberPad";
+    const string _NotPerspectivePegs = "NotPerspectivePegsModule";
     const string _NotPianoKeys = "notPianoKeys";
     const string _NotSimaze = "NotSimaze";
     const string _NotTextField = "notTextField";
@@ -320,6 +322,7 @@ public partial class SouvenirModule
     const string _Samsung = "theSamsung";
     const string _ScavengerHunt = "scavengerHunt";
     const string _SchlagDenBomb = "qSchlagDenBomb";
+    const string _ScramboozledAgain = "ScramboozledEggainModule";
     const string _SeaShells = "SeaShells";
     const string _Semamorse = "semamorse";
     const string _Sequencyclopedia = "TheSequencyclopedia";
@@ -668,6 +671,7 @@ public partial class SouvenirModule
             { _Necronomicon, ProcessNecronomicon },
             { _Negativity, ProcessNegativity },
             { _Neutralization, ProcessNeutralization },
+            { _NotColoredSwitches, ProcessNotColoredSwitches },
             { _NotConnectionCheck, ProcessNotConnectionCheck },
             { _NotCoordinates, ProcessNotCoordinates },
             { _NotKeypad, ProcessNotKeypad },
@@ -676,6 +680,7 @@ public partial class SouvenirModule
             { _NotMorsematics, ProcessNotMorsematics },
             { _NotMurder, ProcessNotMurder },
             { _NotNumberPad, ProcessNotNumberPad },
+            { _NotPerspectivePegs, ProcessNotPerspectivePegs },
             { _NotPianoKeys, ProcessNotPianoKeys },
             { _NotSimaze, ProcessNotSimaze },
             { _NotTextField, ProcessNotTextField },
@@ -742,6 +747,7 @@ public partial class SouvenirModule
             { _Samsung, ProcessSamsung },
             { _ScavengerHunt, ProcessScavengerHunt },
             { _SchlagDenBomb, ProcessSchlagDenBomb },
+            { _ScramboozledAgain, ProcessScramboozledEggain },
             { _SeaShells, ProcessSeaShells },
             { _Semamorse, ProcessSemamorse },
             { _Sequencyclopedia, ProcessSequencyclopedia },

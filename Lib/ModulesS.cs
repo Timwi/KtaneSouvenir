@@ -78,6 +78,24 @@ public partial class SouvenirModule
                Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(0, 75).ToString()).Distinct().Take(6).ToArray()));
     }
 
+    private IEnumerable<object> ProcessScramboozledEggain(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ScramboozledEggainScript");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_ScramboozledAgain);
+
+        var wordList = GetStaticField<string[]>(comp.GetType(), "_wordList").Get().Select(i => i.Substring(0, 1) + i.Substring(1).ToLowerInvariant()).ToArray();
+        var selectedWords = GetArrayField<string>(comp, "_selectedWords").Get().Select(i => i.Substring(0, 1) + i.Substring(1).ToLowerInvariant()).ToArray();
+
+        var qs = new List<QandA>();
+        for (int i = 0; i < 4; i++)
+            qs.Add(makeQuestion(Question.ScramboozledEggainWord, _ScramboozledAgain, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { selectedWords[i] }, preferredWrongAnswers: wordList));
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessSeaShells(KMBombModule module)
     {
         var comp = GetComponent(module, "SeaShellsModule");
