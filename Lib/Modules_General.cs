@@ -966,7 +966,7 @@ public partial class SouvenirModule
         if (allWordsType == null)
             throw new AbandonModuleException("I cannot find the Words.Data type.");
         var allWordsObj = Activator.CreateInstance(allWordsType);
-        var allWords = GetListField<List<string>>(allWordsObj, "allWords", isPublic: true).Get(expectedLength: 5);
+        var allWords = GetArrayField<List<string>>(allWordsObj, "_allWords").Get(expectedLength: 5);
 
         string[] generateWrongAnswers(string correctAnswer, AnswerGeneratorAttribute gen)
         {
