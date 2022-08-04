@@ -4645,7 +4645,7 @@ namespace Souvenir
             // Not Colored Switches
             // What was the encrypted word in {0}?
             // What was the encrypted word in Not Colored Switches?
-            [Question.NotColoredSwithcesWord] = new TranslationInfo
+            [Question.NotColoredSwitchesWord] = new TranslationInfo
             {
                 QuestionText = "What was the encrypted word in {0}?",
             },

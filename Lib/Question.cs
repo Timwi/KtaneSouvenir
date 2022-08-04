@@ -1288,7 +1288,7 @@ namespace Souvenir
         NavyButtonGiven,
 
         [SouvenirQuestion("What was the encrypted word in {0}?", "Not Colored Switches", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "Adjust", "Anchor", "Bowtie", "Button", "Cipher", "Corner" })]
-        NotColoredSwithcesWord,
+        NotColoredSwitchesWord,
 
         [SouvenirQuestion("What symbol flashed on the {1} button in {0}?", "Not Connection Check", AnswerLayout.ThreeColumns6Answers, "+", "-", ".", ":", "/", "_", "=", ",",
             ExampleExtraFormatArguments = new[] { "top left", "top right", "bottom left", "bottom right" }, ExampleExtraFormatArgumentGroupSize = 1)]

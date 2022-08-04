@@ -209,9 +209,10 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(0.1f);
         _modulesSolved.IncSafe(_NotColoredSwitches);
         var wordList = GetStaticField<string[]>(comp.GetType(), "_wordList").Get().Select(i => i.Substring(0, 1) + i.Substring(1).ToLowerInvariant()).ToArray();
-        var solutionWord = GetField<string>(comp, "_chosenWord").Get().Substring(0, 1) + GetField<string>(comp, "_chosenWord").Get().Substring(1).ToLowerInvariant();
+        var solutionWordRaw = GetField<string>(comp, "_chosenWord").Get();
+        var solutionWord = solutionWordRaw.Substring(0, 1) + solutionWordRaw.Substring(1).ToLowerInvariant();
 
-        addQuestions(module, makeQuestion(Question.NotColoredSwithcesWord, _NotColoredSwitches, correctAnswers: new[] { solutionWord }, preferredWrongAnswers: wordList));
+        addQuestions(module, makeQuestion(Question.NotColoredSwitchesWord, _NotColoredSwitches, correctAnswers: new[] { solutionWord }, preferredWrongAnswers: wordList));
     }
 
     private IEnumerable<object> ProcessNotConnectionCheck(KMBombModule module)
