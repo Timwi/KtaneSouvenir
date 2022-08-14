@@ -346,4 +346,43 @@ public partial class SouvenirModule
 
         addQuestions(module, Enumerable.Range(0, 12).Select(ix => makeQuestion(Question.ASCIIMazeCharacters, _ASCIIMaze, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { characters[ix] }, preferredWrongAnswers: characters)));
     }
+
+    private IEnumerable<object> ProcessAzureButton(KMBombModule module)
+    {
+        var comp = GetComponent(module, "AzureButtonScript");
+        var fldSolved = GetField<bool>(comp, "_solved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_AzureButton);
+
+        var qs = new List<QandA>();
+
+        var cards = GetListField<int>(comp, "_cards").Get(expectedLength: 7);
+        var cardT = cards.Last();
+        qs.Add(makeQuestion(Question.AzureButtonT, _AzureButton, correctAnswers: new[] { AzureButtonSprites[cardT] }, preferredWrongAnswers: cards.Select(c => AzureButtonSprites[c]).ToArray()));
+        qs.Add(makeQuestion(Question.AzureButtonNotT, _AzureButton, correctAnswers: cards.Take(6).Select(c => AzureButtonSprites[c]).ToArray(), preferredWrongAnswers: cards.Select(c => AzureButtonSprites[c]).ToArray()));
+
+        var m = Math.Abs(GetField<int>(comp, "_offset").Get(v => Math.Abs(v) >= 1 && Math.Abs(v) <= 9 ? null : "value out of range 1–9 (or -1–-9)"));
+        qs.Add(makeQuestion(Question.AzureButtonM, _AzureButton, correctAnswers: new[] { m.ToString() }));
+
+        var puzzle = GetField<object>(comp, "_puzzle").Get();
+        var arrows = GetField<Array>(puzzle, "Arrows", isPublic: true).Get(a => a.Length != 5 ? "expected length 5" : null);
+        var fldArrowDirections = GetProperty<int[]>(arrows.GetValue(0), "Directions", isPublic: true);
+        var dirNames = GetAnswers(Question.AzureButtonDecoyArrowDirection);
+
+        for (var arrowIx = 0; arrowIx < 5; arrowIx++)
+        {
+            var dirs = fldArrowDirections.GetFrom(arrows.GetValue(arrowIx), validator: ar => ar.Length != 3 ? "expected length 3" : null);
+            for (var dirIx = 0; dirIx < 3; dirIx++)
+            {
+                qs.Add(makeQuestion(
+                    arrowIx == 0 ? Question.AzureButtonDecoyArrowDirection : Question.AzureButtonNonDecoyArrowDirection,
+                    _AzureButton,
+                    formatArgs: arrowIx == 0 ? new[] { ordinal(dirIx + 1) } : new[] { ordinal(dirIx + 1), ordinal(arrowIx) },
+                    correctAnswers: new[] { dirNames[dirs[dirIx]] }));
+            }
+        }
+
+        addQuestions(module, qs);
+    }
 }

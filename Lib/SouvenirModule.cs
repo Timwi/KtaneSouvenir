@@ -45,6 +45,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] TasqueManagingSprites;
     public Sprite[] SimonShapesSprites;
     public Sprite[] JengaSprites;
+    public Sprite[] AzureButtonSprites;
 
     public TextMesh TextMesh;
     public Renderer TextRenderer;
@@ -961,7 +962,7 @@ public partial class SouvenirModule : MonoBehaviour
     private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null) =>
         makeQuestion(question, moduleKey,
             (attr, q, correct, answers) => new QandASprite(attr.ModuleNameWithThe, q, correct, answers.ToArray(), questionSprite),
-            formatArgs, correctAnswers, preferredWrongAnswers, null, AnswerType.Sprites);
+            formatArgs, correctAnswers, preferredWrongAnswers, GetAllSprites(question), AnswerType.Sprites);
 
     private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string[] formatArgs = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null)
     {
@@ -1078,6 +1079,19 @@ public partial class SouvenirModule : MonoBehaviour
     public string[] GetAnswers(Question question) => !_attributes.TryGetValue(question, out var attr)
         ? throw new InvalidOperationException(string.Format("<Souvenir #{0}> Question {1} is missing from the _attributes dictionary.", _moduleId, question))
         : attr.AllAnswers;
+
+    private static readonly Dictionary<string, Sprite[]> _spritesCache = new Dictionary<string, Sprite[]>();
+    private Sprite[] GetAllSprites(Question question)
+    {
+        var attr = _attributes[question];
+        if (attr.Type != AnswerType.Sprites)
+            throw new InvalidOperationException("GetAllSprites() was called on a question that doesn’t use sprites or doesn’t have an associated sprites field.");
+        if (attr.SpriteField == null)
+            return null;
+        if (!_spritesCache.TryGetValue(attr.SpriteField, out var result))
+            _spritesCache[attr.SpriteField] = result = GetField<Sprite[]>(this, attr.SpriteField, isPublic: true).Get();
+        return result;
+    }
 
     private string titleCase(string str) => str.Length < 1 ? str : char.ToUpperInvariant(str[0]) + str.Substring(1).ToLowerInvariant();
 

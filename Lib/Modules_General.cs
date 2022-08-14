@@ -34,6 +34,7 @@ public partial class SouvenirModule
     const string _Arithmelogic = "arithmelogic";
     const string _ASCIIMaze = "asciiMaze";
     const string _ASquare = "ASquareModule";
+    const string _AzureButton = "AzureButtonModule";
     const string _Bakery = "bakery";
     const string _BamboozledAgain = "bamboozledAgain";
     const string _BamboozlingButton = "bamboozlingButton";
@@ -459,6 +460,7 @@ public partial class SouvenirModule
             { _Arithmelogic, ProcessArithmelogic },
             { _ASCIIMaze, ProcessASCIIMaze },
             { _ASquare, ProcessASquare },
+            { _AzureButton, ProcessAzureButton },
             { _Bakery, ProcessBakery },
             { _BamboozledAgain, ProcessBamboozledAgain },
             { _BamboozlingButton, ProcessBamboozlingButton },

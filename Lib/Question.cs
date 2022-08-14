@@ -124,6 +124,19 @@ namespace Souvenir
         [SouvenirQuestion("Which color was submitted {1} in {0}?", "A Square", AnswerLayout.ThreeColumns6Answers, "Orange", "Pink", "Cyan", "Yellow", "Lavender", "Brown", "Tan", "Blue", "Jade", "Indigo", "White")]
         ASquareCorrectColors,
 
+        [SouvenirQuestion("What was T in {0}?", "Azure Button", AnswerLayout.ThreeColumns6Answers, AddThe = true, Type = AnswerType.Sprites, SpriteField = "AzureButtonSprites")]
+        AzureButtonT,
+        [SouvenirQuestion("Which of these cards was shown in Stage 1, but not T, in {0}?", "Azure Button", AnswerLayout.ThreeColumns6Answers, AddThe = true, Type = AnswerType.Sprites, SpriteField = "AzureButtonSprites")]
+        AzureButtonNotT,
+        [SouvenirQuestion("What was M in {0}?", "Azure Button", AnswerLayout.ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", AddThe = true)]
+        AzureButtonM,
+        [SouvenirQuestion("What was the {1} direction in the decoy arrow in {0}?", "Azure Button", AnswerLayout.TwoColumns4Answers, "north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west",
+            AddThe = true, ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        AzureButtonDecoyArrowDirection,
+        [SouvenirQuestion("What was the {1} direction in the {2} non-decoy arrow in {0}?", "Azure Button", AnswerLayout.TwoColumns4Answers, "north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west",
+            AddThe = true, ExampleExtraFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 2)]
+        AzureButtonNonDecoyArrowDirection,
+
         [SouvenirQuestion("What color was the {1} correct button in {0}?", "Bamboozled Again", AnswerLayout.TwoColumns4Answers, "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose", "White", "Grey", "Black", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         BamboozledAgainButtonColor,
@@ -1330,7 +1343,7 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9)]
         NotNumberPadFlashes,
 
-        [SouvenirQuestion("What was the position of the {1} flashing peg on {0}?", "Not Perspective Pegs", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "top", "top-right", "bottom-right", "bottom-left", "top-left"},
+        [SouvenirQuestion("What was the position of the {1} flashing peg on {0}?", "Not Perspective Pegs", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "top", "top-right", "bottom-right", "bottom-left", "top-left" },
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         NotPerspectivePegsPosition,
         [SouvenirQuestion("From what perspective did the {1} peg flash on {0}?", "Not Perspective Pegs", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "top", "top-right", "bottom-right", "bottom-left", "top-left" },

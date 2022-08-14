@@ -349,6 +349,38 @@ namespace Souvenir
                 QuestionText = "Which color was submitted {1} in {0}?",
             },
 
+            // The Azure Button
+            // What was T in {0}?
+            // What was T in The Azure Button?
+            [Question.AzureButtonT] = new TranslationInfo
+            {
+                QuestionText = "What was T in {0}?",
+            },
+            // Which of these cards was shown in Stage 1, but not T, in {0}?
+            // Which of these cards was shown in Stage 1, but not T, in The Azure Button?
+            [Question.AzureButtonNotT] = new TranslationInfo
+            {
+                QuestionText = "Which of these cards was shown in Stage 1, but not T, in {0}?",
+            },
+            // What was M in {0}?
+            // What was M in The Azure Button?
+            [Question.AzureButtonM] = new TranslationInfo
+            {
+                QuestionText = "What was M in {0}?",
+            },
+            // What was the {1} direction in the decoy arrow in {0}?
+            // What was the first direction in the decoy arrow in The Azure Button?
+            [Question.AzureButtonDecoyArrowDirection] = new TranslationInfo
+            {
+                QuestionText = "What was the {1} direction in the decoy arrow in {0}?",
+            },
+            // What was the {1} direction in the {2} non-decoy arrow in {0}?
+            // What was the first direction in the first non-decoy arrow in The Azure Button?
+            [Question.AzureButtonNonDecoyArrowDirection] = new TranslationInfo
+            {
+                QuestionText = "What was the {1} direction in the {2} non-decoy arrow in {0}?",
+            },
+
             // Bamboozled Again
             // What color was the {1} correct button in {0}?
             // What color was the first correct button in Bamboozled Again?
