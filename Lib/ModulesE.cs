@@ -64,6 +64,34 @@ public partial class SouvenirModule
             makeQuestion(Question.ElderFutharkRunes, _ElderFuthark, correctAnswers: new[] { pickedRuneNames[2] }, formatArgs: new[] { "third" }, preferredWrongAnswers: pickedRuneNames));
     }
 
+    private IEnumerable<object> ProcessEnaCipher(KMBombModule module)
+    {
+        var comp = GetComponent(module, "enaCipherScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        var encryptedWord = GetField<string>(comp, "encrypted").Get();
+        var keywords = GetField<string[]>(comp, "keywords").Get().ToArray();
+        var extNumbers = GetField<int[]>(comp, "reversed").Get().AsEnumerable().ToArray().JoinString();
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_EnaCipher);
+
+        var allWordsType = comp.GetType().Assembly.GetType("Words.Data");
+        if (allWordsType == null)
+            throw new AbandonModuleException("I cannot find the Words.Data type.");
+        var allWordsObj = Activator.CreateInstance(allWordsType);
+        var allWords = GetArrayField<List<string>>(allWordsObj, "_allWords").Get(expectedLength: 6);
+
+
+        addQuestions(module, makeQuestion(Question.EnaCipherKeywordAnswer, _EnaCipher, formatArgs: new[] { "1st" }, correctAnswers: new[] { keywords[0] }, preferredWrongAnswers: allWords[keywords[0].Length].ToArray()),
+            makeQuestion(Question.EnaCipherKeywordAnswer, _EnaCipher, formatArgs: new[] { "2nd" }, correctAnswers: new[] { keywords[1] }, preferredWrongAnswers: allWords[keywords[1].Length].ToArray()),
+            makeQuestion(Question.EnaCipherExtAnswer, _EnaCipher, correctAnswers: new[] { extNumbers }),
+            makeQuestion(Question.EnaCipherEncryptedAnswer, _EnaCipher, correctAnswers: new[] { encryptedWord }));
+
+
+    }
+
     private IEnumerable<object> ProcessEncryptedEquations(KMBombModule module)
     {
         var comp = GetComponent(module, "EncryptedEquations");

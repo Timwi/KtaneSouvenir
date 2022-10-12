@@ -565,6 +565,16 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         ElderFutharkRunes,
 
+        [SouvenirQuestion("What was the {1} keyword in {0}?", "ENA Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },
+            ExampleExtraFormatArguments = new[] {"1st", "2nd"}, ExampleExtraFormatArgumentGroupSize = 1)]
+        EnaCipherKeywordAnswer,
+        [SouvenirQuestion("What was the transposition key in {0}?", "ENA Cipher", AnswerLayout.TwoColumns4Answers, null)]
+        [AnswerGenerator.Strings(6, "123456")]
+        EnaCipherExtAnswer,
+        [SouvenirQuestion("What was the encrypted word in {0}?", "ENA Cipher", AnswerLayout.TwoColumns4Answers, null)]
+        [AnswerGenerator.Strings(6, "ABCDEFGHIJKLMNOPQRSTUVWXYZ")]
+        EnaCipherEncryptedAnswer,
+
         [SouvenirQuestion("Which shape was the {1} operand in {0}?", "Encrypted Equations", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "EncryptedEquationsSprites",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         EncryptedEquationsShapes,
