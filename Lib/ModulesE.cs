@@ -70,8 +70,8 @@ public partial class SouvenirModule
         var fldSolved = GetField<bool>(comp, "moduleSolved");
 
         var encryptedWord = GetField<string>(comp, "encrypted").Get();
-        var keywords = GetField<string[]>(comp, "keywords").Get().ToArray();
-        var extNumbers = GetField<int[]>(comp, "reversed").Get().AsEnumerable().ToArray().JoinString();
+        var keywords = GetField<string[]>(comp, "keywords").Get();
+        var extNumbers = GetField<int[]>(comp, "reversed").Get().JoinString();
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -83,13 +83,10 @@ public partial class SouvenirModule
         var allWordsObj = Activator.CreateInstance(allWordsType);
         var allWords = GetArrayField<List<string>>(allWordsObj, "_allWords").Get(expectedLength: 6);
 
-
-        addQuestions(module, makeQuestion(Question.EnaCipherKeywordAnswer, _EnaCipher, formatArgs: new[] { "1st" }, correctAnswers: new[] { keywords[0] }, preferredWrongAnswers: allWords[keywords[0].Length].ToArray()),
-            makeQuestion(Question.EnaCipherKeywordAnswer, _EnaCipher, formatArgs: new[] { "2nd" }, correctAnswers: new[] { keywords[1] }, preferredWrongAnswers: allWords[keywords[1].Length].ToArray()),
+        addQuestions(module, makeQuestion(Question.EnaCipherKeywordAnswer, _EnaCipher, formatArgs: new[] { "1st" }, correctAnswers: new[] { keywords[0] }, preferredWrongAnswers: allWords[keywords[0].Length - 3].ToArray()),
+            makeQuestion(Question.EnaCipherKeywordAnswer, _EnaCipher, formatArgs: new[] { "2nd" }, correctAnswers: new[] { keywords[1] }, preferredWrongAnswers: allWords[keywords[1].Length - 3].ToArray()),
             makeQuestion(Question.EnaCipherExtAnswer, _EnaCipher, correctAnswers: new[] { extNumbers }),
             makeQuestion(Question.EnaCipherEncryptedAnswer, _EnaCipher, correctAnswers: new[] { encryptedWord }));
-
-
     }
 
     private IEnumerable<object> ProcessEncryptedEquations(KMBombModule module)

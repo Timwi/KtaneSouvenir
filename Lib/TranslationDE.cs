@@ -1707,6 +1707,26 @@ namespace Souvenir
                 QuestionText = "What was the {1} rune shown on {0}?",
             },
 
+            // ENA Cipher
+            // What was the {1} keyword in {0}?
+            // What was the 1st keyword in ENA Cipher?
+            [Question.EnaCipherKeywordAnswer] = new TranslationInfo
+            {
+                QuestionText = "What was the {1} keyword in {0}?",
+            },
+            // What was the transposition key in {0}?
+            // What was the transposition key in ENA Cipher?
+            [Question.EnaCipherExtAnswer] = new TranslationInfo
+            {
+                QuestionText = "What was the transposition key in {0}?",
+            },
+            // What was the encrypted word in {0}?
+            // What was the encrypted word in ENA Cipher?
+            [Question.EnaCipherEncryptedAnswer] = new TranslationInfo
+            {
+                QuestionText = "What was the encrypted word in {0}?",
+            },
+
             // Encrypted Equations
             // Which shape was the {1} operand in {0}?
             // Which shape was the first operand in Encrypted Equations?
