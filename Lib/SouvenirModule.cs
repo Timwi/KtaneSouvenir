@@ -577,7 +577,6 @@ public partial class SouvenirModule : MonoBehaviour
     private void SetQuestion(QandA q)
     {
         Debug.Log($"[Souvenir #{_moduleId}] Asking question: {q.DebugString}");
-        Debug.Log($"<Souvenir #{_moduleId}> _avoidQuestions = {_avoidQuestions}");
         _currentQuestion = q;
         TextMesh.font = Fonts[_translation?.DefaultFontIndex ?? 0];
         TextMesh.GetComponent<MeshRenderer>().material = FontMaterial;
