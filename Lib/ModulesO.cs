@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
@@ -16,11 +17,11 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_ObjectShows);
 
-        var contestantNames = GetArrayField<string>(comp, "charnames", isPublic: true).Get();
-        var solutionObjs = GetField<Array>(comp, "solution").Get(ar => ar.Length != 5 ? "expected length 5" : ar.Cast<object>().Any(obj => obj == null) ? "contains null" : null).Cast<object>().ToArray();
-        var fldId = GetIntField(solutionObjs[0], "id", isPublic: true);
-        var solutionNames = solutionObjs.Select(c => contestantNames[fldId.GetFrom(c, min: 0, max: contestantNames.Length - 1)]).ToArray();
-        addQuestion(module, Question.ObjectShowsContestants, correctAnswers: solutionNames, preferredWrongAnswers: contestantNames);
+        var contestantsPresent = GetField<IList>(comp, "contestantsPresent").Get(lst => lst.Count != 6 ? "expected length 6" : null);
+        var fldId = GetField<int>(contestantsPresent[0], "id", isPublic: true);
+        var allContestantNames = GetStaticField<string[]>(comp.GetType(), "characterNames").Get(v => v.Length != 30 ? "expected length 30" : null);
+        var contestantNames = Enumerable.Range(0, contestantsPresent.Count).Select(ix => allContestantNames[fldId.GetFrom(contestantsPresent[ix], v => v < 0 || v >= 30 ? "expected range 0–29" : null)]).ToArray();
+        addQuestion(module, Question.ObjectShowsContestants, correctAnswers: contestantNames, preferredWrongAnswers: allContestantNames);
     }
 
     private IEnumerable<object> ProcessOctadecayotton(KMBombModule module)
