@@ -31,6 +31,7 @@ public partial class SouvenirModule
     const string _AlphabeticalRuling = "alphabeticalRuling";
     const string _AlphabetTiles = "AlphabetTiles";
     const string _AlphaBits = "alphaBits";
+    const string _AngelHernandez = "AngelHernandezModule";
     const string _Arithmelogic = "arithmelogic";
     const string _ASCIIMaze = "asciiMaze";
     const string _ASquare = "ASquareModule";
@@ -459,6 +460,7 @@ public partial class SouvenirModule
             { _AlphabeticalRuling, ProcessAlphabeticalRuling },
             { _AlphabetTiles, ProcessAlphabetTiles },
             { _AlphaBits, ProcessAlphaBits },
+            { _AngelHernandez, ProcessAngelHernandez },
             { _Arithmelogic, ProcessArithmelogic },
             { _ASCIIMaze, ProcessASCIIMaze },
             { _ASquare, ProcessASquare },

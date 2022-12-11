@@ -281,6 +281,41 @@ public partial class SouvenirModule
                 .GetAnswers(this).Distinct().Take(6).ToArray())));
     }
 
+    private IEnumerable<object> ProcessAngelHernandez(KMBombModule module)
+    {
+        var comp = GetComponent(module, "AngelHernandezScript");
+        var fldActivated = GetField<bool>(comp, "_canPress");
+        var fldStage = GetIntField(comp, "_currentStage");
+        var fldMainLetter = GetIntField(comp, "_mainLetter");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+
+        while (!fldActivated.Get())
+            yield return new WaitForSeconds(0.1f);
+
+        var displayedLetters = new string[2];
+        var alph = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".Select(i => i.ToString()).ToArray();
+
+        for (int i = 0; i < 2; i++)
+        {
+            while (fldStage.Get() == i)
+            {
+                while (!fldActivated.Get())
+                    yield return new WaitForSeconds(0.1f);
+
+                displayedLetters[i] = alph[fldMainLetter.Get()];
+
+                while (fldActivated.Get())
+                    yield return new WaitForSeconds(0.1f);
+            }
+        }        
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+
+        _modulesSolved.IncSafe(_AngelHernandez);
+        addQuestions(module, displayedLetters.Select((word, stage) => makeQuestion(Question.AngelHernandezMainLetter, _AngelHernandez, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { word }, preferredWrongAnswers: alph)));
+    }
+
     private IEnumerable<object> ProcessArithmelogic(KMBombModule module)
     {
         var comp = GetComponent(module, "Arithmelogic");

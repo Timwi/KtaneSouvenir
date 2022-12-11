@@ -298,6 +298,14 @@ namespace Souvenir
                 },
             },
 
+            // Ángel Hernández
+            // What letter was shown by the raised buttons on the {1} stage on {0}?
+            // What letter was shown by the raised buttons on the first stage on Ángel Hernández?
+            [Question.AngelHernandezMainLetter] = new TranslationInfo
+            {
+                QuestionText = "What letter was shown by the raised buttons on the {1} stage on {0}?",
+            },
+
             // Arithmelogic
             // What was the symbol on the submit button in {0}?
             // What was the symbol on the submit button in Arithmelogic?

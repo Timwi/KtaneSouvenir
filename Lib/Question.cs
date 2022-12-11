@@ -108,6 +108,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal, "left", QandA.Ordinal, "right" }, ExampleExtraFormatArgumentGroupSize = 2)]
         AlphaBitsDisplayedCharacters,
 
+        [SouvenirQuestion("What letter was shown by the raised buttons on the {1} stage on {0}?", "Ángel Hernández", AnswerLayout.ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        AngelHernandezMainLetter,
+
         [SouvenirQuestion("What was the symbol on the submit button in {0}?", "Arithmelogic", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "ArithmelogicSprites")]
         ArithmelogicSubmit,
         [SouvenirQuestion("Which number was selectable, but not the solution, in the {1} screen on {0}?", "Arithmelogic", AnswerLayout.ThreeColumns6Answers, TranslateFormatArgs = new[] { true },
