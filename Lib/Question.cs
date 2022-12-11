@@ -1923,6 +1923,9 @@ namespace Souvenir
         [SouvenirQuestion("Which dragon shout was selectable, but not the solution, in {0}?", "Skyrim", AnswerLayout.TwoColumns4Answers, "Disarm", "Dismay", "Dragonrend", "Fire Breath", "Ice Form", "Kyne’s Peace", "Slow Time", "Unrelenting Force", "Whirlwind Sprint")]
         SkyrimDragonShout,
 
+        [SouvenirQuestion("What was the last pair of letters in {0}?", "Slow Math", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "ABC", "DEG", "KNP", "STX", "ZAB", "CDE", "GKN", "PST", "XZA", "BCD" })]
+        SlowMathLastLetters,
+
         [SouvenirQuestion("How much did the sequence shift by in {0}?", "Small Circle", AnswerLayout.ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8")]
         SmallCircleShift,
         [SouvenirQuestion("Which wedge made the different noise in the beginning of {0}?", "Small Circle", AnswerLayout.TwoColumns4Answers, "red", "orange", "yellow", "green", "blue", "magenta", "white", "black")]

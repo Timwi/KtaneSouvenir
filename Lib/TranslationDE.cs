@@ -6656,6 +6656,14 @@ namespace Souvenir
                 QuestionText = "Which dragon shout was selectable, but not the solution, in {0}?",
             },
 
+            // Slow Math
+            // What was the last pair of letters in {0}?
+            // What was the last pair of letters in Slow Math?
+            [Question.SlowMathLastLetters] = new TranslationInfo
+            {
+                QuestionText = "What was the last pair of letters in {0}?",
+            },
+
             // Small Circle
             // How much did the sequence shift by in {0}?
             // How much did the sequence shift by in Small Circle?

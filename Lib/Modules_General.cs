@@ -356,6 +356,7 @@ public partial class SouvenirModule
     const string _SimonSupports = "simonSupports";
     const string _SkewedSlots = "SkewedSlotsModule";
     const string _Skyrim = "skyrim";
+    const string _SlowMath = "SlowMathModule";
     const string _SmallCircle = "smallCircle";
     const string _Snooker = "snooker";
     const string _SonicTheHedgehog = "sonic";
@@ -783,6 +784,7 @@ public partial class SouvenirModule
             { _SimonSupports, ProcessSimonSupports },
             { _SkewedSlots, ProcessSkewedSlots },
             { _Skyrim, ProcessSkyrim },
+            { _SlowMath, ProcessSlowMath },
             { _SmallCircle, ProcessSmallCircle },
             { _Snooker, ProcessSnooker },
             { _SonicTheHedgehog, ProcessSonicTheHedgehog },
