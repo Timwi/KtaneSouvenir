@@ -7387,6 +7387,20 @@ namespace Souvenir
                 },
             },
 
+            // Varicolour Flash
+            // What was the word of the {1} goal in {0}?
+            // What was the word of the first goal in Varicolour Flash?
+            [Question.VaricolourFlashWords] = new TranslationInfo
+            {
+                QuestionText = "What was the word of the {1} goal in {0}?",
+            },
+            // What was the color of the {1} goal in {0}?
+            // What was the color of the first goal in Varicolour Flash?
+            [Question.VaricolourFlashColors] = new TranslationInfo
+            {
+                QuestionText = "What was the colour of the {1} goal in {0}?",
+            },
+
             // Vcrcs
             // What was the word in {0}?
             // What was the word in Vcrcs?

@@ -420,6 +420,7 @@ public partial class SouvenirModule
     const string _USAMaze = "USA";
     const string _V = "V";
     const string _VaricoloredSquares = "VaricoloredSquaresModule";
+    const string _VaricolourFlash = "varicolourFlash";
     const string _Vcrcs = "VCRCS";
     const string _Vectors = "vectorsModule";
     const string _Vexillology = "vexillology";
@@ -855,6 +856,7 @@ public partial class SouvenirModule
             { _USAMaze, ProcessUSAMaze },
             { _V, ProcessV },
             { _VaricoloredSquares, ProcessVaricoloredSquares },
+            { _VaricolourFlash, ProcessVaricolourFlash },
             { _Vcrcs, ProcessVcrcs },
             { _Vectors, ProcessVectors },
             { _Vexillology, ProcessVexillology },

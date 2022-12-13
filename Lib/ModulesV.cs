@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -35,6 +34,34 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_VaricoloredSquares);
 
         addQuestion(module, Question.VaricoloredSquaresInitialColor, correctAnswers: new[] { GetField<object>(comp, "_firstStageColor").Get().ToString() });
+    }
+
+    private IEnumerable<object> ProcessVaricolourFlash(KMBombModule module)
+    {
+        var comp = GetComponent(module, "VCFScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        var words = new int[4];
+        var colors = new int[4];
+        var names = new string[] { "Red", "Green", "Blue", "Magenta", "Yellow", "White" };
+        while (!fldSolved.Get())
+        {
+            int s = GetField<int>(comp, "stage").Get();
+            if (s < 4)
+            {
+                var goal = GetArrayField<int>(comp, "sequence").Get()[4];
+                words[s] = goal / 6;
+                colors[s] = goal % 6;
+            }
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        _modulesSolved.IncSafe(_VaricolourFlash);
+
+        var qs = new List<QandA>();
+        qs.AddRange(words.Select((val, ix) => makeQuestion(Question.VaricolourFlashWords, _VaricolourFlash, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { names[val] }, preferredWrongAnswers: names)));
+        qs.AddRange(colors.Select((val, ix) => makeQuestion(Question.VaricolourFlashColors, _VaricolourFlash, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { names[val] }, preferredWrongAnswers: names)));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessVcrcs(KMBombModule module)
