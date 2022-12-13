@@ -1821,6 +1821,10 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9999, "0000")]
         SiloAuthorizationAuthCode,
 
+        [SouvenirQuestion("What color was pressed in the {1} stage of {0}?", "Simon Said", AnswerLayout.TwoColumns4Answers, "Red", "Green", "Blue", "Yellow", TranslateAnswers = true,
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SimonSaidPresses,
+
         [SouvenirQuestion("What were the call samples {1} of {0}?", "Simon Samples", AnswerLayout.ThreeColumns6Answers, "KKSS", "KKSH", "KSSH", "KHSS", "KHSH", "KHSO", "KHOH", "KOSH", "KOSO", "SKSK", "SHHS", TranslateFormatArgs = new[] { true },
             ExampleExtraFormatArguments = new[] { "played in the first stage", "added in the second stage", "added in the third stage" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSamplesSamples,

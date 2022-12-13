@@ -339,6 +339,7 @@ public partial class SouvenirModule
     const string _ShogiIdentification = "shogiIdentification";
     const string _SillySlots = "SillySlots";
     const string _SiloAuthorization = "siloAuthorization";
+    const string _SimonSaid = "simonSaidModule";
     const string _SimonSamples = "simonSamples";
     const string _SimonSays = "Simon";
     const string _SimonScrambles = "simonScrambles";
@@ -773,6 +774,7 @@ public partial class SouvenirModule
             { _ShogiIdentification, ProcessShogiIdentification },
             { _SillySlots, ProcessSillySlots },
             { _SiloAuthorization, ProcessSiloAuthorization },
+            { _SimonSaid, ProcessSimonSaid },
             { _SimonSamples, ProcessSimonSamples },
             { _SimonSays, ProcessSimonSays },
             { _SimonScrambles, ProcessSimonScrambles },

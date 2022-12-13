@@ -6189,6 +6189,21 @@ namespace Souvenir
                 QuestionText = "What was the received authentication code in {0}?",
             },
 
+            // Simon Said
+            // What color was pressed in the {1} stage of {0}?
+            // What color was pressed in the first stage of Simon Said?
+            [Question.SimonSaidPresses] = new TranslationInfo
+            {
+                QuestionText = "What color was pressed in the {1} stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Yellow"] = "Yellow",
+                },
+            },
+
             // Simon Samples
             // What were the call samples {1} of {0}?
             // What were the call samples played in the first stage of Simon Samples?

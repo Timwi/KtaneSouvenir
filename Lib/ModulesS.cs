@@ -350,6 +350,22 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessSimonSaid(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SimonSaidScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_SimonSaid);
+
+        var btnColors = GetListField<int>(comp, "btnColors").Get();
+        var colorNames = GetArrayField<string>(comp, "colorNames").Get();
+        var correctPresses = GetListField<int>(comp, "correctBtnPresses").Get();
+
+        addQuestions(module, correctPresses.Select((val, ix) => makeQuestion(Question.SimonSaidPresses, _SimonSaid, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { colorNames[btnColors[val]] })));
+    }
+
     private IEnumerable<object> ProcessSimonSamples(KMBombModule module)
     {
         var comp = GetComponent(module, "SimonSamples");
