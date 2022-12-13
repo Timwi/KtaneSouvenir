@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
@@ -84,6 +85,20 @@ public partial class SouvenirModule
         addQuestions(module,
             makeQuestion(Question.DecoloredSquaresStartingPos, _DecoloredSquares, formatArgs: new[] { "column" }, correctAnswers: new[] { colColor }),
             makeQuestion(Question.DecoloredSquaresStartingPos, _DecoloredSquares, formatArgs: new[] { "row" }, correctAnswers: new[] { rowColor }));
+    }
+
+    // TODO
+    private IEnumerable<object> ProcessDecolourFlash(KMBombModule module)
+    {
+        var comp = GetComponent(module, "DecolourFlashScript");
+        var fldSolved = GetField<int>(comp, "_stage");
+
+        while (fldSolved.Get() != 4)
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_DecolourFlash);
+
+        var goals = GetField<IList>(comp, "_goals").Get();
+        var hexGrid = GetField<Dictionary<IList, int>>(comp, "_hexes").Get();
     }
 
     private IEnumerable<object> ProcessDevilishEggs(KMBombModule module)

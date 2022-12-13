@@ -103,6 +103,7 @@ public partial class SouvenirModule
     const string _DeafAlley = "deafAlleyModule";
     const string _DeckOfManyThings = "deckOfManyThings";
     const string _DecoloredSquares = "DecoloredSquaresModule";
+    const string _DecolourFlash = "DecolourFlashScript";
     const string _DevilishEggs = "devilishEggs";
     const string _Digisibility = "digisibility";
     const string _DiscoloredSquares = "DiscoloredSquaresModule";
@@ -318,6 +319,7 @@ public partial class SouvenirModule
     const string _ReversePolishNotation = "revPolNot";
     const string _RGBMaze = "rgbMaze";
     const string _Rhythms = "MusicRhythms";
+    const string _RoboScanner = "roboScannerModule";
     const string _Roger = "roger";
     const string _RoleReversal = "roleReversal";
     const string _Rule = "theRule";
@@ -532,6 +534,7 @@ public partial class SouvenirModule
             { _DeafAlley, ProcessDeafAlley },
             { _DeckOfManyThings, ProcessDeckOfManyThings },
             { _DecoloredSquares, ProcessDecoloredSquares },
+            { _DecolourFlash, ProcessDecolourFlash },
             { _DevilishEggs, ProcessDevilishEggs },
             { _Digisibility, ProcessDigisibility },
             { _DiscoloredSquares, ProcessDiscoloredSquares },
@@ -747,6 +750,7 @@ public partial class SouvenirModule
             { _ReversePolishNotation, ProcessReversePolishNotation },
             { _RGBMaze, ProcessRGBMaze },
             { _Rhythms, ProcessRhythms },
+            { _RoboScanner, ProcessRoboScanner },
             { _Roger, ProcessRoger },
             { _RoleReversal, ProcessRoleReversal },
             { _Rule, ProcessRule },

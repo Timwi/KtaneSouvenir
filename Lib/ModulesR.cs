@@ -357,6 +357,21 @@ public partial class SouvenirModule
         addQuestion(module, Question.RhythmsColor, correctAnswers: new[] { new[] { "Blue", "Red", "Green", "Yellow" }[color] });
     }
 
+    private IEnumerable<object> ProcessRoboScanner(KMBombModule module)
+    {
+        var comp = GetComponent(module, "RoboScannerScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_RoboScanner);
+
+        var emptyCell = GetIntField(comp, "emptyCell").Get();
+        var sol = "ABCDE"[emptyCell % 5].ToString() + "12345"[emptyCell / 5].ToString();
+        var nums = Enumerable.Range(0, 25).Where(i => i != 12).ToArray().Shuffle().Select(i => "ABCDE"[i % 5].ToString() + "12345"[i / 5].ToString()).ToArray();
+        addQuestion(module, Question.RoboScannerEmptyCell, correctAnswers: new[] { sol }, preferredWrongAnswers: nums);
+    }
+
     private IEnumerable<object> ProcessRoger(KMBombModule module)
     {
         var comp = GetComponent(module, "rogerScript");

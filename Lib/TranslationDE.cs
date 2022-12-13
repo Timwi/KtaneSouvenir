@@ -5954,6 +5954,14 @@ namespace Souvenir
                 QuestionText = "What was the rule number in {0}?",
             },
 
+            // Robo-Scanner
+            // Where was the empty cell in {0}?
+            // Where was the empty cell in Robo-Scanner?
+            [Question.RoboScannerEmptyCell] = new TranslationInfo
+            {
+                QuestionText = "Where was the empty cell in {0}?",
+            },
+
             // Roger
             // What four-digit number was given in {0}?
             // What four-digit number was given in Roger?
