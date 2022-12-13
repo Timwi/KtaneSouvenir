@@ -5,6 +5,29 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
+    private IEnumerable<object> ProcessXenocryst(KMBombModule module)
+    {
+        var comp = GetComponent(module, "XenocrystScript");
+        var fldSolved = GetField<bool>(comp, "Solved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Xenocryst);
+
+        var flashes = GetArrayField<int>(comp, "Outputs").Get();
+
+        var qs = new List<QandA>();
+
+        var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet" };
+        for (int i = 0; i < 10; i++)
+            qs.Add(makeQuestion(Question.Xenocryst, _Xenocryst,
+                formatArgs: new[] { ordinal(i + 1) },
+                correctAnswers: new[] { colorNames[flashes[i]] },
+                preferredWrongAnswers: colorNames));
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessXmORseCode(KMBombModule module)
     {
         var comp = GetComponent(module, "XmORseCode");
@@ -27,26 +50,18 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessXenocryst(KMBombModule module)
+    private IEnumerable<object> ProcessXobekuJehT(KMBombModule module)
     {
-        var comp = GetComponent(module, "XenocrystScript");
-        var fldSolved = GetField<bool>(comp, "Solved");
+        var comp = GetComponent(module, "tpircSxobekuJ");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Xenocryst);
+        _modulesSolved.IncSafe(_XobekuJehT);
 
-        var flashes = GetArrayField<int>(comp, "Outputs").Get();
+        var songIx = GetIntField(comp, "songselect").Get();
+        var songList = GetArrayField<string>(comp, "titles").Get();
 
-        var qs = new List<QandA>();
-
-        var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet" };
-        for (int i = 0; i < 10; i++)
-            qs.Add(makeQuestion(Question.Xenocryst, _Xenocryst,
-                formatArgs: new[] { ordinal(i + 1) },
-                correctAnswers: new[] { colorNames[flashes[i]] },
-                preferredWrongAnswers: colorNames));
-
-        addQuestions(module, qs);
+        addQuestion(module, Question.XobekuJehTSong, correctAnswers: new[] { songList[songIx] }, preferredWrongAnswers: songList);
     }
 }

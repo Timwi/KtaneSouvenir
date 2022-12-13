@@ -7702,6 +7702,14 @@ namespace Souvenir
                 QuestionText = "{0}にて表示されたラベルは？",
             },
 
+            // The Xenocryst
+            // What was the color of the {1} flash in {0}?
+            // What was the color of the first flash in The Xenocryst?
+            [Question.Xenocryst] = new TranslationInfo
+            {
+                QuestionText = "{0}の{1}番目の点滅の色は？",
+            },
+
             // XmORse Code
             // What was the {1} displayed letter (in reading order) in {0}?
             // What was the first displayed letter (in reading order) in XmORse Code?
@@ -7716,12 +7724,12 @@ namespace Souvenir
                 QuestionText = "{0}で解読した単語は？",
             },
 
-            // The Xenocryst
-            // What was the color of the {1} flash in {0}?
-            // What was the color of the first flash in The Xenocryst?
-            [Question.Xenocryst] = new TranslationInfo
+            // xobekuJ ehT
+            // What song was played on {0}?
+            // What song was played on xobekuJ ehT?
+            [Question.XobekuJehTSong] = new TranslationInfo
             {
-                QuestionText = "{0}の{1}番目の点滅の色は？",
+                QuestionText = "What song was played on {0}?",
             },
 
             // Yahtzee

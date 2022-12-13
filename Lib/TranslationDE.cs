@@ -7712,6 +7712,14 @@ namespace Souvenir
                 QuestionText = "What was the label shown in {0}?",
             },
 
+            // The Xenocryst
+            // What was the color of the {1} flash in {0}?
+            // What was the color of the first flash in The Xenocryst?
+            [Question.Xenocryst] = new TranslationInfo
+            {
+                QuestionText = "What was the color of the {1} flash in {0}?",
+            },
+
             // XmORse Code
             // What was the {1} displayed letter (in reading order) in {0}?
             // What was the first displayed letter (in reading order) in XmORse Code?
@@ -7726,12 +7734,12 @@ namespace Souvenir
                 QuestionText = "What word did you decrypt in {0}?",
             },
 
-            // The Xenocryst
-            // What was the color of the {1} flash in {0}?
-            // What was the color of the first flash in The Xenocryst?
-            [Question.Xenocryst] = new TranslationInfo
+            // xobekuJ ehT
+            // What song was played on {0}?
+            // What song was played on xobekuJ ehT?
+            [Question.XobekuJehTSong] = new TranslationInfo
             {
-                QuestionText = "What was the color of the {1} flash in {0}?",
+                QuestionText = "What song was played on {0}?",
             },
 
             // Yahtzee

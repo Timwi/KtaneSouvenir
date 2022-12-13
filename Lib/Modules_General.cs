@@ -433,6 +433,7 @@ public partial class SouvenirModule
     const string _WorkingTitle = "workingTitle";
     const string _Xenocryst = "GSXenocryst";
     const string _XmORseCode = "xmorse";
+    const string _XobekuJehT = "xobekuj";
     const string _Yahtzee = "YahtzeeModule";
     const string _YellowArrows = "yellowArrowsModule";
     const string _YellowButton = "YellowButtonModule";
@@ -864,6 +865,7 @@ public partial class SouvenirModule
             { _WorkingTitle, ProcessWorkingTitle },
             { _Xenocryst, ProcessXenocryst },
             { _XmORseCode, ProcessXmORseCode },
+            { _XobekuJehT, ProcessXobekuJehT },
             { _Yahtzee, ProcessYahtzee },
             { _YellowArrows, ProcessYellowArrows },
             { _YellowButton, ProcessYellowButton },
