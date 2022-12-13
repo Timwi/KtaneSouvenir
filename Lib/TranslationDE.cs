@@ -5336,6 +5336,14 @@ namespace Souvenir
                 },
             },
 
+            // Parity
+            // What was shown on the display on {0}?
+            // What was shown on the display on Parity?
+            [Question.ParityDisplay] = new TranslationInfo
+            {
+                QuestionText = "What was shown on the display on {0}?",
+            },
+
             // Partial Derivatives
             // What was the LED color in the {1} stage of {0}?
             // What was the LED color in the first stage of Partial Derivatives?

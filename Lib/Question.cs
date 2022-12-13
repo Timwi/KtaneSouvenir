@@ -1507,6 +1507,9 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9)]
         PalindromesNumbers,
 
+        [SouvenirQuestion("What was shown on the display on {0}?", "Parity", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] {"A1", "B2", "C3", "D4", "E5", "F6"})]
+        ParityDisplay,
+
         [SouvenirQuestion("What was the LED color in the {1} stage of {0}?", "Partial Derivatives", AnswerLayout.ThreeColumns6Answers, "blue", "green", "orange", "purple", "red", "yellow", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         PartialDerivativesLedColors,

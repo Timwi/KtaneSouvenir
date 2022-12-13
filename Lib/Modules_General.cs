@@ -283,6 +283,7 @@ public partial class SouvenirModule
     const string _OrderPicking = "OrderPickingModule";
     const string _OrientationCube = "OrientationCube";
     const string _Palindromes = "palindromes";
+    const string _Parity = "parity";
     const string _PartialDerivatives = "partialDerivatives";
     const string _PassportControl = "passportControl";
     const string _PasswordDestroyer = "pwDestroyer";
@@ -716,6 +717,7 @@ public partial class SouvenirModule
             { _OrderPicking, ProcessOrderPicking },
             { _OrientationCube, ProcessOrientationCube },
             { _Palindromes, ProcessPalindromes },
+            { _Parity, ProcessParity },
             { _PartialDerivatives, ProcessPartialDerivatives },
             { _PassportControl, ProcessPassportControl },
             { _PasswordDestroyer, ProcessPasswordDestroyer },

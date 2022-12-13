@@ -40,6 +40,24 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessParity(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ParityScript");
+        var fldSolved = GetField<bool>(comp, "_solved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+
+        _modulesSolved.IncSafe(_Parity);
+
+        var text = GetField<string>(comp, "_displayedText").Get();
+        var pairs = new List<string>();
+        for (int i = 0; i < 26; i++)
+            for (int j = 0; j < 10; j++)
+                pairs.Add("ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i].ToString() + j.ToString());
+        addQuestion(module, Question.ParityDisplay, correctAnswers: new[] { text }, preferredWrongAnswers: pairs.ToArray());
+    }
+
     private IEnumerable<object> ProcessPartialDerivatives(KMBombModule module)
     {
         var comp = GetComponent(module, "PartialDerivativesScript");
