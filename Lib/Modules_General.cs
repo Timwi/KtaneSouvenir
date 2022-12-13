@@ -401,6 +401,7 @@ public partial class SouvenirModule
     const string _TouchTransmission = "touchTransmission";
     const string _Trajectory = "Trajectory";
     const string _TransmittedMorse = "transmittedMorseModule";
+    const string _TripleTerm = "tripleTermModule";
     const string _TurtleRobot = "turtleRobot";
     const string _TwoBits = "TwoBits";
     const string _UltimateCipher = "ultimateCipher";
@@ -833,6 +834,7 @@ public partial class SouvenirModule
             { _TouchTransmission, ProcessTouchTransmission },
             { _Trajectory, ProcessTrajectory },
             { _TransmittedMorse, ProcessTransmittedMorse },
+            { _TripleTerm, ProcessTripleTerm },
             { _TurtleRobot, ProcessTurtleRobot },
             { _TwoBits, ProcessTwoBits },
             { _UltimateCipher, ProcessUltimateCipher },

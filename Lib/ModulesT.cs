@@ -327,6 +327,20 @@ public partial class SouvenirModule
             preferredWrongAnswers: messages)));
     }
 
+    private IEnumerable<object> ProcessTripleTerm(KMBombModule module)
+    {
+        var comp = GetComponent(module, "TripleTermScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_TripleTerm);
+
+        var wordList = GetArrayField<string>(comp, "wordList").Get().Select(i => i.Substring(0, 1).ToUpperInvariant() + i.Substring(1).ToLowerInvariant()).ToArray();
+        var chosenWords = GetArrayField<int>(comp, "chosenWords").Get().Select(i => wordList[i]).ToArray();
+
+        addQuestions(module, makeQuestion(Question.TripleTermPasswords, _TripleTerm, correctAnswers: chosenWords, preferredWrongAnswers: wordList));
+    }
+
     private IEnumerable<object> ProcessTurtleRobot(KMBombModule module)
     {
         var comp = GetComponent(module, "TurtleRobot");

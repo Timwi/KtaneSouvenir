@@ -570,7 +570,7 @@ namespace Souvenir
         ElderFutharkRunes,
 
         [SouvenirQuestion("What was the {1} keyword in {0}?", "ENA Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },
-            ExampleExtraFormatArguments = new[] {"1st", "2nd"}, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "1st", "2nd" }, ExampleExtraFormatArgumentGroupSize = 1)]
         EnaCipherKeywordAnswer,
         [SouvenirQuestion("What was the transposition key in {0}?", "ENA Cipher", AnswerLayout.TwoColumns4Answers, null)]
         [AnswerGenerator.Strings(6, "123456")]
@@ -2109,6 +2109,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the {1} received message in {0}?", "Transmitted Morse", AnswerLayout.TwoColumns4Answers, "BOMBS", "SHORT", "UNDERSTOOD", "W1RES", "SOS", "MANUAL", "STRIKED", "WEREDEAD", "GOTASOUV", "EXPLOSION", "EXPERT", "RIP", "LISTEN", "DETONATE", "ROGER", "WELOSTBRO", "AMIDEAF", "KEYPAD", "DEFUSER", "NUCLEARWEAPONS", "KAPPA", "DELTA", "PI3", "SMOKE", "SENDHELP", "LOST", "SWAN", "NOMNOM", "BLUE", "BOOM", "CANCEL", "DEFUSED", "BROKEN", "MEMORY", "R6S8T", "TRANSMISSION", "UMWHAT", "GREEN", "EQUATIONSX", "RED", "ENERGY", "JESTER", "CONTACT", "LONG", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         TransmittedMorseMessage,
+
+        [SouvenirQuestion("Which of these was one of the passwords in {0}?", "Triple Term", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "Three", "Every", "These", "Would", "Where", "First", "Still", "Plant", "Small", })]
+        TripleTermPasswords,
 
         [SouvenirQuestion("What was the {1} line you commented out in {0}?", "Turtle Robot", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "LT 90", "FD 1", "RT 180 2", "LT 90 2", "RT 180", "FD 6", "RT 90 2" },
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.TurtleRobotFont)]

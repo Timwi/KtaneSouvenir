@@ -7221,6 +7221,14 @@ namespace Souvenir
                 },
             },
 
+            // Triple Term
+            // Which of these was one of the passwords in {0}?
+            // Which of these was one of the passwords in Triple Term?
+            [Question.TripleTermPasswords] = new TranslationInfo
+            {
+                QuestionText = "Which of these was one of the passwords in {0}?",
+            },
+
             // Turtle Robot
             // What was the {1} line you commented out in {0}?
             // What was the first line you commented out in Turtle Robot?
