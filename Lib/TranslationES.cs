@@ -1572,6 +1572,22 @@ namespace Souvenir
                 },
             },
 
+            // Decolour Flash
+            // What was the {1} of the {2} goal in {0}?
+            [Question.DecolourFlashGoal] = new TranslationInfo
+            {
+                QuestionText = "What was the {1} of the {2} goal in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Blue"] = "Blue",
+                    ["Green"] = "Green",
+                    ["Red"] = "Red",
+                    ["Magenta"] = "Magenta",
+                    ["Yellow"] = "Yellow",
+                    ["White"] = "White",
+                },
+            },
+
             // Devilish Eggs
             // What was the {1} egg’s {2} rotation in {0}?
             // What was the top egg’s first rotation in Devilish Eggs?

@@ -500,6 +500,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "column", "row" }, ExampleExtraFormatArgumentGroupSize = 1)]
         DecoloredSquaresStartingPos,
 
+        [SouvenirQuestion("What was the {1} of the {2} goal in {0}?", "Decolour Flash", AnswerLayout.ThreeColumns6Answers, "Blue", "Green", "Red", "Magenta", "Yellow", "White", TranslateAnswers = true)]
+        DecolourFlashGoal,
+
         [SouvenirQuestion("What was the {1} egg’s {2} rotation in {0}?", "Devilish Eggs", AnswerLayout.TwoColumns4Answers, "W90CW", "W180CW", "W270CW", "W360CW", "W90CCW", "W180CCW", "W270CCW", "W360CCW", "T90CW", "T180CW", "T270CW", "T360CW", "T90CCW", "T180CCW", "T270CCW", "T360CCW", TranslateFormatArgs = new[] { true, false },
             ExampleExtraFormatArguments = new[] { "top", QandA.Ordinal, "bottom", QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 2)]
         DevilishEggsRotations,
@@ -1507,7 +1510,7 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9)]
         PalindromesNumbers,
 
-        [SouvenirQuestion("What was shown on the display on {0}?", "Parity", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] {"A1", "B2", "C3", "D4", "E5", "F6"})]
+        [SouvenirQuestion("What was shown on the display on {0}?", "Parity", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "A1", "B2", "C3", "D4", "E5", "F6" })]
         ParityDisplay,
 
         [SouvenirQuestion("What was the LED color in the {1} stage of {0}?", "Partial Derivatives", AnswerLayout.ThreeColumns6Answers, "blue", "green", "orange", "purple", "red", "yellow", TranslateAnswers = true,

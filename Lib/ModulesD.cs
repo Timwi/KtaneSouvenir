@@ -87,7 +87,6 @@ public partial class SouvenirModule
             makeQuestion(Question.DecoloredSquaresStartingPos, _DecoloredSquares, formatArgs: new[] { "row" }, correctAnswers: new[] { rowColor }));
     }
 
-    // TODO
     private IEnumerable<object> ProcessDecolourFlash(KMBombModule module)
     {
         var comp = GetComponent(module, "DecolourFlashScript");
@@ -97,8 +96,24 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(0.1f);
         _modulesSolved.IncSafe(_DecolourFlash);
 
-        var goals = GetField<IList>(comp, "_goals").Get();
-        var hexGrid = GetField<Dictionary<IList, int>>(comp, "_hexes").Get();
+        var names = new[] { "Blue", "Green", "Red", "Magenta", "Yellow", "White" };
+        var goals = GetField<IList>(comp, "_goals").Get(validator: l => l.Count != 3 ? "expected length 3" : null);
+        var hexGrid = GetField<IDictionary>(comp, "_hexes").Get(validator: d => !goals.Cast<object>().All(g => d.Contains(g)) ? "key missing in dictionary" : null);
+        var infos = goals.Cast<object>().Select(goal => hexGrid[goal]).ToArray();
+        var fldColour = GetField<object>(infos[0], "ColourIx");
+        var fldWord = GetField<object>(infos[0], "Word");
+        var colours = infos.Select(inf => (int) fldColour.GetFrom(inf)).ToArray();
+        var words = infos.Select(inf => (int) fldWord.GetFrom(inf)).ToArray();
+        if (colours.Any(c => c < 0 || c >= 6) || words.Any(w => w < 0 || w >= 6))
+            throw new AbandonModuleException("colours/words are: [{0}], [{1}]; expected values 0–5", colours.JoinString(", "), words.JoinString(", "));
+
+        var qs = new List<QandA>();
+        for (var i = 0; i < 3; i++)
+        {
+            qs.Add(makeQuestion(Question.DecolourFlashGoal, _DecolourFlash, formatArgs: new[] { "colour", ordinal(i + 1) }, correctAnswers: new[] { names[colours[i]] }));
+            qs.Add(makeQuestion(Question.DecolourFlashGoal, _DecolourFlash, formatArgs: new[] { "word", ordinal(i + 1) }, correctAnswers: new[] { names[words[i]] }));
+        }
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessDevilishEggs(KMBombModule module)

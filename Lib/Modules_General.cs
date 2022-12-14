@@ -103,7 +103,7 @@ public partial class SouvenirModule
     const string _DeafAlley = "deafAlleyModule";
     const string _DeckOfManyThings = "deckOfManyThings";
     const string _DecoloredSquares = "DecoloredSquaresModule";
-    const string _DecolourFlash = "DecolourFlashScript";
+    const string _DecolourFlash = "DecolourFlashModule";
     const string _DevilishEggs = "devilishEggs";
     const string _Digisibility = "digisibility";
     const string _DiscoloredSquares = "DiscoloredSquaresModule";
