@@ -1821,7 +1821,7 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9999, "0000")]
         SiloAuthorizationAuthCode,
 
-        [SouvenirQuestion("What color was pressed in the {1} stage of {0}?", "Simon Said", AnswerLayout.TwoColumns4Answers, "Red", "Green", "Blue", "Yellow", TranslateAnswers = true,
+        [SouvenirQuestion("What color was pressed {1} in the final sequence of {0}?", "Simon Said", AnswerLayout.TwoColumns4Answers, "Red", "Green", "Blue", "Yellow", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSaidPresses,
 
@@ -1937,7 +1937,8 @@ namespace Souvenir
         [SouvenirQuestion("Which dragon shout was selectable, but not the solution, in {0}?", "Skyrim", AnswerLayout.TwoColumns4Answers, "Disarm", "Dismay", "Dragonrend", "Fire Breath", "Ice Form", "Kyne’s Peace", "Slow Time", "Unrelenting Force", "Whirlwind Sprint")]
         SkyrimDragonShout,
 
-        [SouvenirQuestion("What was the last pair of letters in {0}?", "Slow Math", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "ABC", "DEG", "KNP", "STX", "ZAB", "CDE", "GKN", "PST", "XZA", "BCD" })]
+        [SouvenirQuestion("What was the last triplet of letters in {0}?", "Slow Math", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "ABC", "DEG", "KNP", "STX", "ZAB", "CDE", "GKN", "PST", "XZA", "BCD" })]
+        [AnswerGenerator.Strings(3, "ABCDEGKNPSTXZ")]
         SlowMathLastLetters,
 
         [SouvenirQuestion("How much did the sequence shift by in {0}?", "Small Circle", AnswerLayout.ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8")]
@@ -2190,11 +2191,11 @@ namespace Souvenir
         [SouvenirQuestion("What was the initially pressed color on {0}?", "Varicolored Squares", AnswerLayout.ThreeColumns6Answers, "White", "Red", "Blue", "Green", "Yellow", "Magenta", TranslateAnswers = true)]
         VaricoloredSquaresInitialColor,
 
-        [SouvenirQuestion("What was the word of the {1} goal in {0}?", "Varicolour Flash", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "Red", "Green", "Blue", "Magenta", "Yellow", "White" }, TranslateAnswers = true,
-            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was the word of the {1} goal in {0}?", "Varicolour Flash", AnswerLayout.ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Yellow", "White",
+            TranslateAnswers = true, ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         VaricolourFlashWords,
-        [SouvenirQuestion("What was the color of the {1} goal in {0}?", "Varicolour Flash", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "Red", "Green", "Blue", "Magenta", "Yellow", "White" }, TranslateAnswers = true,
-        ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was the color of the {1} goal in {0}?", "Varicolour Flash", AnswerLayout.ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Yellow", "White",
+            TranslateAnswers = true, ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         VaricolourFlashColors,
 
         [SouvenirQuestion("What was the word in {0}?", "Vcrcs", AnswerLayout.TwoColumns4Answers, "destiny", "control", "refresh", "grouped", "wedging", "summary", "kitchen", "teacher", "concern", "section", "similar", "western", "dropper", "checker", "xeroses", "sunrise", "abolish", "harvest", "protest", "shallow", "plotted", "deafens", "colored", "aroused", "unsling", "holiday", "dictate", "dribble", "retreat", "episode", "crashed", "crazily", "silvers", "usurped", "witcher", "jealous", "village", "wizards", "prosper", "recycle", "pounced", "nonfood", "imblaze", "dryable", "swiftly", "mention", "rubbish", "realize", "collect", "surgeon", "gearbox", "schnozz", "passion", "freshen", "society", "passive", "archive", "shelter", "harmful", "freedom", "papayas", "thwarts", "railway", "teapots", "ravines", "density", "provide", "diagram", "lighter", "general", "upriver", "editors", "mingled", "ransoms", "prairie", "balance", "applied", "history", "calorie", "realism", "liquids", "validly", "varying", "wickers", "isolate", "falsify", "painter", "mixture", "bedroom", "dilemma", "skylike", "ranging", "simplex", "gallied", "missile", "posture", "highway", "prevent", "bracket", "project")]

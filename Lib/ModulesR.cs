@@ -366,10 +366,9 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(0.1f);
         _modulesSolved.IncSafe(_RoboScanner);
 
-        var emptyCell = GetIntField(comp, "emptyCell").Get();
+        var emptyCell = GetIntField(comp, "emptyCell").Get(min: 0, max: 24);
         var sol = "ABCDE"[emptyCell % 5].ToString() + "12345"[emptyCell / 5].ToString();
-        var nums = Enumerable.Range(0, 25).Where(i => i != 12).ToArray().Shuffle().Select(i => "ABCDE"[i % 5].ToString() + "12345"[i / 5].ToString()).ToArray();
-        addQuestion(module, Question.RoboScannerEmptyCell, correctAnswers: new[] { sol }, preferredWrongAnswers: nums);
+        addQuestion(module, Question.RoboScannerEmptyCell, correctAnswers: new[] { sol });
     }
 
     private IEnumerable<object> ProcessRoger(KMBombModule module)

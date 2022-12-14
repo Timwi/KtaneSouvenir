@@ -906,19 +906,8 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_SlowMath);
 
-        var ogLetters = GetListField<string>(comp, "_chosenLetters").Get();
-        var letters = new List<string>();
-        var correct = ogLetters.Last();
-        var alph = "ABCDEGKNPSTXZ";
-        do
-        {
-            letters = new List<string>();
-            letters.AddRange(ogLetters);
-            for (int i = 0; i < 6 - ogLetters.Count; i++)
-                letters.Add(Enumerable.Range(0, 13).ToArray().Shuffle().Take(3).Select(i => alph[i]).ToArray().JoinString(""));
-        }
-        while (letters.Distinct().Count() < 6);
-        addQuestion(module, Question.SlowMathLastLetters, correctAnswers: new[] { correct }, preferredWrongAnswers: letters.ToArray());
+        var ogLetters = GetListField<string>(comp, "_chosenLetters").Get(minLength: 3, maxLength: 5);
+        addQuestion(module, Question.SlowMathLastLetters, correctAnswers: new[] { ogLetters.Last() });
     }
 
     private IEnumerable<object> ProcessSmallCircle(KMBombModule module)

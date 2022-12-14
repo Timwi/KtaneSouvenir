@@ -40,16 +40,20 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "VCFScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldStage = GetIntField(comp, "stage");
+        var fldGoal = GetArrayField<int>(comp, "sequence");
 
         var words = new int[4];
         var colors = new int[4];
         var names = new string[] { "Red", "Green", "Blue", "Magenta", "Yellow", "White" };
         while (!fldSolved.Get())
         {
-            int s = GetField<int>(comp, "stage").Get();
+            int s = fldStage.Get(min: 0, max: 5);
             if (s < 4)
             {
-                var goal = GetArrayField<int>(comp, "sequence").Get()[4];
+                var goal = fldGoal.Get(expectedLength: 5)[4];
+                if (goal < 0 || goal >= 36)
+                    throw new AbandonModuleException("‘sequence[4]’ has value {0} (expected 0–35)", goal);
                 words[s] = goal / 6;
                 colors[s] = goal % 6;
             }
@@ -59,8 +63,8 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_VaricolourFlash);
 
         var qs = new List<QandA>();
-        qs.AddRange(words.Select((val, ix) => makeQuestion(Question.VaricolourFlashWords, _VaricolourFlash, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { names[val] }, preferredWrongAnswers: names)));
-        qs.AddRange(colors.Select((val, ix) => makeQuestion(Question.VaricolourFlashColors, _VaricolourFlash, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { names[val] }, preferredWrongAnswers: names)));
+        qs.AddRange(words.Select((val, ix) => makeQuestion(Question.VaricolourFlashWords, _VaricolourFlash, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { names[val] })));
+        qs.AddRange(colors.Select((val, ix) => makeQuestion(Question.VaricolourFlashColors, _VaricolourFlash, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { names[val] })));
         addQuestions(module, qs);
     }
 

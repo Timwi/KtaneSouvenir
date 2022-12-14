@@ -300,12 +300,12 @@ public partial class SouvenirModule
             while (fldStage.Get() == i)
             {
                 while (!fldActivated.Get())
-                    yield return new WaitForSeconds(0.1f);
+                    yield return null;
 
                 displayedLetters[i] = alph[fldMainLetter.Get()];
 
                 while (fldActivated.Get())
-                    yield return new WaitForSeconds(0.1f);
+                    yield return null;
             }
         }        
 

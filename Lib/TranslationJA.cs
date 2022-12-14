@@ -6190,8 +6190,8 @@ namespace Souvenir
             },
 
             // Simon Said
-            // What color was pressed in the {1} stage of {0}?
-            // What color was pressed in the first stage of Simon Said?
+            // What color was pressed {1} in the final sequence of {0}?
+            // What color was pressed first in the final sequence of Simon Said?
             [Question.SimonSaidPresses] = new TranslationInfo
             {
                 QuestionText = "What color was pressed in the {1} stage of {0}?",
@@ -6686,8 +6686,8 @@ namespace Souvenir
             },
 
             // Slow Math
-            // What was the last pair of letters in {0}?
-            // What was the last pair of letters in Slow Math?
+            // What was the last triplet of letters in {0}?
+            // What was the last triplet of letters in Slow Math?
             [Question.SlowMathLastLetters] = new TranslationInfo
             {
                 QuestionText = "What was the last pair of letters in {0}?",
@@ -7393,12 +7393,30 @@ namespace Souvenir
             [Question.VaricolourFlashWords] = new TranslationInfo
             {
                 QuestionText = "What was the word of the {1} goal in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Magenta"] = "Magenta",
+                    ["Yellow"] = "Yellow",
+                    ["White"] = "White",
+                },
             },
             // What was the color of the {1} goal in {0}?
             // What was the color of the first goal in Varicolour Flash?
             [Question.VaricolourFlashColors] = new TranslationInfo
             {
                 QuestionText = "What was the colour of the {1} goal in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Magenta"] = "Magenta",
+                    ["Yellow"] = "Yellow",
+                    ["White"] = "White",
+                },
             },
 
             // Vcrcs
