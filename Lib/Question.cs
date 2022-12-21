@@ -1524,9 +1524,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         PassportControlPassenger,
 
-        [SouvenirQuestion("What was the raw value when you solved {0}?", "Password Destroyer", AnswerLayout.TwoColumns4Answers)]
+        [SouvenirQuestion("What was the starting value when you solved {0}?", "Password Destroyer", AnswerLayout.TwoColumns4Answers)]
         [AnswerGenerator.Integers(1000000, 9999999)]
-        PasswordDestroyerRawValue,
+        PasswordDestroyerStartingValue,
         [SouvenirQuestion("What was the increase factor when you solved {0}?", "Password Destroyer", AnswerLayout.TwoColumns4Answers)]
         [AnswerGenerator.Integers(-1000000, 1000000)]
         PasswordDestroyerIncreaseFactor,

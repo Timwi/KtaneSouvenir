@@ -5404,9 +5404,9 @@ namespace Souvenir
             },
 
             // Password Destroyer
-            // What was the raw value when you solved {0}?
-            // What was the raw value when you solved Password Destroyer?
-            [Question.PasswordDestroyerRawValue] = new TranslationInfo
+            // What was the starting value when you solved {0}?
+            // What was the starting value when you solved Password Destroyer?
+            [Question.PasswordDestroyerStartingValue] = new TranslationInfo
             {
                 QuestionText = "What was the raw value when you solved {0}?",
             },

@@ -185,7 +185,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "passwordDestroyer");
         var fldSolved = GetField<bool>(comp, "solvedState");
 
-        var fldRawValue = GetIntField(comp, "CountUpBaseNumber");       // Rv value
+        var fldStartingValue = GetIntField(comp, "CountUpBaseNumber");       // Rv value
         var fldIncreaseFactor = GetIntField(comp, "increaseFactor");    // If value
         var fldTwoFactorV2 = GetIntField(comp, "identityDigit");        // 2FAST value
         var fldTwoFactorAuth1 = GetIntField(comp, "identityDigit1");    // Left half
@@ -197,7 +197,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_PasswordDestroyer);
 
         addQuestions(module,
-            makeQuestion(Question.PasswordDestroyerRawValue, _PasswordDestroyer, correctAnswers: new[] { fldRawValue.Get(1000000, 9999999).ToString() }),
+            makeQuestion(Question.PasswordDestroyerStartingValue, _PasswordDestroyer, correctAnswers: new[] { fldStartingValue.Get(1000000, 9999999).ToString() }),
             makeQuestion(Question.PasswordDestroyerIncreaseFactor, _PasswordDestroyer, correctAnswers: new[] { fldIncreaseFactor.Get(-1000000, 1000000).ToString() }),
             makeQuestion(Question.PasswordDestroyerTwoFactorV2, _PasswordDestroyer, correctAnswers: new[] { fldTwoFactorV2.Get(100100, 999999).ToString() }),
             makeQuestion(Question.PasswordDestroyerTF1, _PasswordDestroyer, correctAnswers: new[] { (fldTwoFactorAuth1.Get(100, 999) - 100).ToString() }),
