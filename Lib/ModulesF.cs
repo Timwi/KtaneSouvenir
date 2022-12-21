@@ -176,7 +176,7 @@ public partial class SouvenirModule
 
         var topColors = GetListField<int>(comp, "selectedColours").Get(expectedLength: 12);
         var bottomColors = GetListField<int>(comp, "selectedColours2").Get(expectedLength: 12);
-        var colorNames = new[] { "blue", "green", "red", "purple", "orange" };
+        var colorNames = new[] { "cyan", "green", "red", "purple", "orange" };
         var topTotals = Enumerable.Range(1, 5).Select(num => topColors.Count(x => x == num)).ToArray();
         var bottomTotals = Enumerable.Range(1, 5).Select(num => bottomColors.Count(x => x == num)).ToArray();
 

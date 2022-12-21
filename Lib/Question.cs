@@ -687,7 +687,7 @@ namespace Souvenir
         FlashingArrowsReferredArrow,
 
         [SouvenirQuestion("How many times did the {1} LED flash {2} on {0}?", "Flashing Lights", AnswerLayout.ThreeColumns6Answers, TranslateFormatArgs = new[] { true, true },
-            ExampleExtraFormatArguments = new[] { "top", "blue", "top", "green", "top", "red", "top", "purple", "top", "orange", "bottom", "blue", "bottom", "green", "bottom", "red", "bottom", "purple", "bottom", "orange" }, ExampleExtraFormatArgumentGroupSize = 2)]
+            ExampleExtraFormatArguments = new[] { "top", "cyan", "top", "green", "top", "red", "top", "purple", "top", "orange", "bottom", "cyan", "bottom", "green", "bottom", "red", "bottom", "purple", "bottom", "orange" }, ExampleExtraFormatArgumentGroupSize = 2)]
         [AnswerGenerator.Integers(0, 12)]
         FlashingLightsLEDFrequency,
 

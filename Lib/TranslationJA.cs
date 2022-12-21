@@ -2001,14 +2001,14 @@ namespace Souvenir
 
             // Flashing Lights
             // How many times did the {1} LED flash {2} on {0}?
-            // How many times did the top LED flash blue on Flashing Lights?
+            // How many times did the top LED flash cyan on Flashing Lights?
             [Question.FlashingLightsLEDFrequency] = new TranslationInfo
             {
                 QuestionText = "{0}で{1}のLEDは{2}色に何回光った？",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "上",
-                    ["blue"] = "青",
+                    ["cyan"] = "cyan",
                     ["green"] = "緑",
                     ["red"] = "赤",
                     ["purple"] = "紫",
