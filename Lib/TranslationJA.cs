@@ -1342,6 +1342,14 @@ namespace Souvenir
                 },
             },
 
+            // Connection Check
+            // What pair of numbers was present in {0}?
+            // What pair of numbers was present in Connection Check?
+            [Question.ConnectionCheckNumbers] = new TranslationInfo
+            {
+                QuestionText = "What pair of numbers was present in {0}?",
+            },
+
             // Coordinates
             // What was the solution you selected first in {0}?
             // What was the solution you selected first in Coordinates?

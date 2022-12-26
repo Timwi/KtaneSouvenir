@@ -86,6 +86,7 @@ public partial class SouvenirModule
     const string _ColorMorse = "ColorMorseModule";
     const string _ColorsMaximization = "colors_maximization";
     const string _ColourFlash = "ColourFlash";
+    const string _ConnectionCheck = "graphModule";
     const string _Coordinates = "CoordinatesModule";
     const string _CoralCipher = "coralCipher";
     const string _Corners = "CornersModule";
@@ -522,6 +523,7 @@ public partial class SouvenirModule
             { _ColorMorse, ProcessColorMorse },
             { _ColorsMaximization, ProcessColorsMaximization },
             { _ColourFlash, ProcessColourFlash },
+            { _ConnectionCheck, ProcessConnectionCheck },
             { _Coordinates, ProcessCoordinates },
             { _CoralCipher, ProcessCoralCipher },
             { _Corners, ProcessCorners },
