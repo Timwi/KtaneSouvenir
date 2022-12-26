@@ -846,7 +846,7 @@ public partial class SouvenirModule : MonoBehaviour
         throw new AbandonModuleException("Type {0} does not contain {1} field {2}. Fields are: {3}", targetType, isPublic ? "public" : "non-public", name,
             targetType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(f => string.Format("{0} {1} {2}", f.IsPublic ? "public" : "private", f.FieldType.FullName, f.Name)).JoinString(", "));
 
-        found:
+    found:
         if (!typeof(T).IsAssignableFrom(fld.FieldType))
         {
             if (noThrow)
@@ -1018,7 +1018,7 @@ public partial class SouvenirModule : MonoBehaviour
         }
 
         var answers = new List<T>(attr.NumAnswers);
-        if (allAnswers == null && attr.AnswerGenerator == null)
+        if (allAnswers == null && attr.AnswerGenerator == null && (attr.SpriteAnswerGenerator == null || typeof(T) != typeof(Sprite)))
         {
             if (preferredWrongAnswers == null || preferredWrongAnswers.Length == 0)
             {
@@ -1027,7 +1027,7 @@ public partial class SouvenirModule : MonoBehaviour
             }
             answers.AddRange(preferredWrongAnswers.Except(correctAnswers).Distinct());
         }
-        else
+        else if (allAnswers != null || attr.AnswerGenerator != null)
         {
             // Pick 𝑛−1 random wrong answers.
             if (allAnswers != null)
@@ -1048,6 +1048,18 @@ public partial class SouvenirModule : MonoBehaviour
                 answers.RemoveRange(attr.NumAnswers - 1, answers.Count - (attr.NumAnswers - 1));
             }
             // Add the preferred wrong answers, if any. If we had added them earlier, they’d come up too rarely.
+            if (preferredWrongAnswers != null)
+                answers.AddRange(preferredWrongAnswers.Except(answers.Concat(correctAnswers)).Distinct());
+        }
+        else
+        {
+            if (attr.SpriteAnswerGenerator != null && typeof(T) == typeof(Sprite))
+                answers.AddRange(attr.SpriteAnswerGenerator.GetAnswers(this).Except(answers.Concat(correctAnswers) as IEnumerable<Sprite>).Distinct().Take(attr.NumAnswers - 1 - answers.Count) as IEnumerable<T>);
+            if (answers.Count == 0 && (preferredWrongAnswers == null || preferredWrongAnswers.Length == 0))
+            {
+                Debug.LogErrorFormat("<Souvenir #{0}> Question {1}’s answer generator did not generate any answers.", _moduleId, question);
+                return null;
+            }
             if (preferredWrongAnswers != null)
                 answers.AddRange(preferredWrongAnswers.Except(answers.Concat(correctAnswers)).Distinct());
         }
