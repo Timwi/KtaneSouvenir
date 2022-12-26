@@ -2940,6 +2940,28 @@ namespace Souvenir
                 },
             },
 
+            // The Labyrinth
+            // Where was one of the portals in layer {1} in {0}?
+            // Where was one of the portals in layer 1 (Red) in The Labyrinth?
+            [Question.LabyrinthPortalLocations] = new TranslationInfo
+            {
+                QuestionText = "Where was one of the portals in layer {1} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["1 (Red)"] = "1 (Red)",
+                    ["2 (Orange)"] = "2 (Orange)",
+                    ["3 (Yellow)"] = "3 (Yellow)",
+                    ["4 (Green)"] = "4 (Green)",
+                    ["5 (Blue)"] = "5 (Blue)",
+                },
+            },
+            // In which layer was this portal in {0}?
+            // In which layer was this portal in The Labyrinth?
+            [Question.LabyrinthPortalStage] = new TranslationInfo
+            {
+                QuestionText = "In which layer was this portal in {0}?",
+            },
+
             // Ladders
             // Which color was present on the second ladder in {0}?
             // Which color was present on the second ladder in Ladders?

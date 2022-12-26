@@ -985,6 +985,14 @@ namespace Souvenir
         [AnswerGenerator.Grid(4, 4)]
         KudosudokuPrefilled,
 
+        [SouvenirQuestion("Where was one of the portals in layer {1} in {0}?", "Labyrinth", AnswerLayout.ThreeColumns6Answers, null, AddThe = true, Type = AnswerType.Grid, TranslateFormatArgs = new[] { true },
+            ExampleExtraFormatArguments = new[] { "1 (Red)", "2 (Orange)", "3 (Yellow)", "4 (Green)", "5 (Blue)" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Grid(6, 7)]
+        LabyrinthPortalLocations,
+        [SouvenirQuestion("In which layer was this portal in {0}?", "Labyrinth", AnswerLayout.TwoColumns4Answers, "1 (Red)", "2 (Orange)", "3 (Yellow)", "4 (Green)", "5 (Blue)", AddThe = true,
+            UsesQuestionSprite = true)]
+        LabyrinthPortalStage,
+
         [SouvenirQuestion("Which color was present on the second ladder in {0}?", "Ladders", AnswerLayout.TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Cyan", "Purple", "Gray", TranslateAnswers = true)]
         LaddersStage2Colors,
         [SouvenirQuestion("What color was missing on the third ladder in {0}?", "Ladders", AnswerLayout.ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Cyan", "Purple", "Gray", TranslateAnswers = true)]

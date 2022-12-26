@@ -188,6 +188,7 @@ public partial class SouvenirModule
     const string _KanyeEncounter = "TheKanyeEncounter";
     const string _KeypadMagnified = "keypadMagnified";
     const string _Kudosudoku = "KudosudokuModule";
+    const string _Labyrinth = "labyrinth";
     const string _Ladders = "ladders";
     const string _Lasers = "lasers";
     const string _LEDEncryption = "LEDEnc";
@@ -625,6 +626,7 @@ public partial class SouvenirModule
             { _KanyeEncounter, ProcessKanyeEncounter },
             { _KeypadMagnified, ProcessKeypadMagnified },
             { _Kudosudoku, ProcessKudosudoku },
+            { _Labyrinth, ProcessLabyrinth },
             { _Ladders, ProcessLadders },
             { _Lasers, ProcessLasers },
             { _LEDEncryption, ProcessLEDEncryption },

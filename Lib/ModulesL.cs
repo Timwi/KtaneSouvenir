@@ -9,6 +9,51 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
+    private IEnumerable<object> ProcessLabyrinth(KMBombModule module)
+    {
+        var comp = GetComponent(module, "labyrinthScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_Labyrinth);
+
+        var l1 = new object[]{
+            GetField<object>(comp, "level1Info", true).Get(),
+            GetField<object>(comp, "level2Info", true).Get(),
+            GetField<object>(comp, "level3Info", true).Get(),
+            GetField<object>(comp, "level4Info", true).Get(),
+            GetField<object>(comp, "level5Info", true).Get()
+            };
+        var t1 = GetFieldImpl<int>(l1[0].GetType(), "target1", true, BindingFlags.Public | BindingFlags.Instance);
+        var t2 = GetFieldImpl<int>(l1[0].GetType(), "target2", true, BindingFlags.Public | BindingFlags.Instance);
+        var portals = l1.Select(info =>
+            new int[] { (int) t1.GetValue(info), (int) t2.GetValue(info) }
+                .Select(t => t >= 5 ? t + 1 : t).ToArray()) // Top-right corner
+            .ToArray();
+        var flatPortals = portals.SelectMany(i => i).ToArray();
+        var distinctPortals = flatPortals.Distinct().ToArray();
+
+        List<QandA> qs = new List<QandA>(15);
+
+        string[] args = new string[] { "1 (Red)", "2 (Orange)", "3 (Yellow)", "4 (Green)", "5 (Blue)" };
+        for (int layer = 0; layer < 5; ++layer)
+            qs.Add(makeQuestion(Question.LabyrinthPortalLocations, _Labyrinth, formatArgs: new[] { args[layer] }, correctAnswers: new[] { new Coord(6, 7, portals[layer][0]), new Coord(6, 7, portals[layer][1]) }, preferredWrongAnswers: distinctPortals.Select(i => new Coord(6, 7, i)).ToArray()));
+
+        foreach (int p in distinctPortals)
+        {
+            List<string> correct = new List<string>(1);
+            for (int i = 0; i < 10; ++i)
+                if (flatPortals[i] == p)
+                    correct.Add(args[i / 2]); // Integer division gives layer #
+            if (correct.Distinct().Count() > 2)
+                continue; // Don't have a question with less than 4 answers
+            qs.Add(makeQuestion(Question.LabyrinthPortalStage, _Labyrinth, questionSprite: Grid.GenerateGridSprite(new Coord(6, 7, p)), correctAnswers: correct.Distinct().ToArray()));
+        }
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessLadders(KMBombModule module)
     {
         var comp = GetComponent(module, "LaddersScript");
