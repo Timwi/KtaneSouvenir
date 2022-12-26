@@ -386,9 +386,12 @@ public partial class SouvenirModule : MonoBehaviour
             switch (attr.Type)
             {
                 case AnswerType.Sprites:
+                case AnswerType.Grid:
                     var answerSprites = attr.SpriteField == null ? ExampleSprites : (Sprite[]) typeof(SouvenirModule).GetField(attr.SpriteField, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleSprites;
                     if (answerSprites != null)
                         answerSprites.Shuffle();
+                    if (attr.SpriteAnswerGenerator != null)
+                        answerSprites = attr.SpriteAnswerGenerator.GetAnswers(this).OrderBy(_ => Rnd.value).Take(attr.NumAnswers).ToArray();
                     SetQuestion(new QandASprite(
                         module: attr.ModuleNameWithThe,
                         question: string.Format(attr.QuestionText, fmt),
@@ -442,7 +445,10 @@ public partial class SouvenirModule : MonoBehaviour
     {
         var attribute = field.GetCustomAttribute<SouvenirQuestionAttribute>();
         if (attribute != null)
+        {
             attribute.AnswerGenerator = field.GetCustomAttribute<AnswerGeneratorAttribute>();
+            attribute.SpriteAnswerGenerator = field.GetCustomAttribute<SpriteAnswerGeneratorAttribute>();
+        }
         return attribute;
     }
 
@@ -973,7 +979,7 @@ public partial class SouvenirModule : MonoBehaviour
             throw new InvalidOperationException();
         }
         return makeQuestion(question, moduleKey,
-            (attr, q, correct, answers) => new QandASprite(attr.ModuleNameWithThe, q, correct, answers.Select(ans => generateGridSprite(ans, 1)).ToArray(), questionSprite),
+            (attr, q, correct, answers) => new QandASprite(attr.ModuleNameWithThe, q, correct, answers.Select(ans => Grid.GenerateGridSprite(ans, 1)).ToArray(), questionSprite),
             formatArgs, correctAnswers, preferredWrongAnswers, Enumerable.Range(0, w * h).Select(ix => new Coord(w, h, ix)).ToArray(), AnswerType.Grid);
     }
 
@@ -1111,30 +1117,6 @@ public partial class SouvenirModule : MonoBehaviour
                         _ => number + "th",
                     },
                 };
-    #endregion
-
-    #region
-    private readonly Dictionary<string, Texture2D> _gridSpriteCache = new Dictionary<string, Texture2D>();
-    private Sprite generateGridSprite(Coord coord, float size = 1f)
-    {
-        var tw = 4 * coord.Width + 1;
-        var th = 4 * coord.Height + 1;
-        var key = $"{coord.Width}:{coord.Height}:{coord.Index}";
-        if (!_gridSpriteCache.TryGetValue(key, out var tx))
-        {
-            tx = new Texture2D(tw, th, TextureFormat.ARGB32, false);
-            tx.SetPixels32(Ut.NewArray(tw * th, ix =>
-                (ix % tw) % 4 == 0 || (ix / tw) % 4 == 0 ? new Color32(0xFF, 0xF8, 0xDD, 0xFF) :
-                (ix % tw) / 4 + coord.Width * (coord.Height - 1 - (ix / tw / 4)) == coord.Index ? new Color32(0xD8, 0x40, 0x00, 0xFF) : new Color32(0xFF, 0xF8, 0xDD, 0x00)));
-            tx.Apply();
-            tx.wrapMode = TextureWrapMode.Clamp;
-            tx.filterMode = FilterMode.Point;
-            _gridSpriteCache.Add(key, tx);
-        }
-        var sprite = Sprite.Create(tx, new Rect(0, 0, tw, th), new Vector2(.5f, .5f), th * (60f / 17) / size);
-        sprite.name = coord.ToString();
-        return sprite;
-    }
     #endregion
 
     #region Twitch Plays

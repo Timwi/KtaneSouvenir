@@ -81,6 +81,7 @@ namespace Souvenir
         AlgebraEquation2,
 
         [SouvenirQuestion("Which position was the {1} position in {0}?", "Algorithmia", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Grid, ExampleExtraFormatArguments = new[] { "starting", "goal" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Grid(4, 4)]
         AlgorithmiaPositions,
         [SouvenirQuestion("What was the color of the colored bulb in {0}?", "Algorithmia", AnswerLayout.ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Yellow", "Magenta")]
         AlgorithmiaColor,
@@ -524,6 +525,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was {1}’s remembered position in {0}?", "Discolored Squares", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Grid, TranslateFormatArgs = new[] { true },
             ExampleExtraFormatArguments = new[] { "Blue", "Red", "Yellow", "Green", "Magenta" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Grid(4, 4)]
         DiscoloredSquaresRememberedPositions,
 
         [SouvenirQuestion("What were the correct button presses in {0}?", "Divisible Numbers", AnswerLayout.OneColumn4Answers, "Nay, Nay, Nay", "Nay, Nay, Yea", "Nay, Yea, Nay", "Nay, Yea, Yea", "Yea, Nay, Nay", "Yea, Nay, Yea", "Yea, Yea, Nay", "Yea, Yea, Yea")]
@@ -808,8 +810,10 @@ namespace Souvenir
         GreenCipherAnswer,
 
         [SouvenirQuestion("What was the starting location in {0}?", "Gridlock", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Grid)]
+        [AnswerGenerator.Grid(4, 4)]
         GridLockStartingLocation,
         [SouvenirQuestion("What was the ending location in {0}?", "Gridlock", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Grid)]
+        [AnswerGenerator.Grid(4, 4)]
         GridLockEndingLocation,
         [SouvenirQuestion("What was the starting color in {0}?", "Gridlock", AnswerLayout.TwoColumns4Answers, "Green", "Yellow", "Red", "Blue", TranslateAnswers = true)]
         GridLockStartingColor,
@@ -978,6 +982,7 @@ namespace Souvenir
 
         [SouvenirQuestion("Which square was {1} in {0}?", "Kudosudoku", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Grid, TranslateFormatArgs = new[] { true },
             ExampleExtraFormatArguments = new[] { "pre-filled", "not pre-filled" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Grid(4, 4)]
         KudosudokuPrefilled,
 
         [SouvenirQuestion("Which color was present on the second ladder in {0}?", "Ladders", AnswerLayout.TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Cyan", "Purple", "Gray", TranslateAnswers = true)]
@@ -1133,8 +1138,10 @@ namespace Souvenir
         [SouvenirQuestion("How many walls surrounded this cell in {0}?", "Mazeseeker", AnswerLayout.TwoColumns4Answers, "0", "1", "2", "3", UsesQuestionSprite = true)]
         MazeseekerCell,
         [SouvenirQuestion("Where was the start in {0}?", "Mazeseeker", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Grid)]
+        [AnswerGenerator.Grid(6, 6)]
         MazeseekerStart,
         [SouvenirQuestion("Where was the goal in {0}?", "Mazeseeker", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Grid)]
+        [AnswerGenerator.Grid(6, 6)]
         MazeseekerGoal,
 
         [SouvenirQuestion("Who was the master shown in {0}?", "Mega Man 2", AnswerLayout.TwoColumns4Answers, "Cold Man", "Magma Man", "Dust Man", "Sword Man", "Splash Woman", "Ice Man", "Quick Man", "Hard Man", "Pharaoh Man", "Charge Man", "Pirate Man", "Pump Man", "Galaxy Man", "Grenade Man", "Snake Man", "Burst Man", "Cut Man", "Air Man", "Magnet Man", "Toad Man", "Gyro Man", "Tomahawk Man", "Wood Man", "Strike Man", "Blade Man", "Aqua Man", "Shade Man", "Flash Man", "Flame Man", "Concrete Man", "Metal Man", "Needle Man", "Wave Man", "Knight Man", "Slash Man", "Shadow Man", "Sheep Man", "Ground Man", "Wind Man", "Fire Man", "Stone Man", "Tengu Man", "Bright Man", "Centaur Man", "Cloud Man", "Frost Man", "Dynamo Man", "Chill Man", "Turbo Man", "Napalm Man", "Jewel Man", "Drill Man", "Freeze Man", "Blizzard Man", "Gravity Man", "Junk Man", "Clown Man", "Hornet Man", "Skull Man", "Solar Man", "Commando Man", "Yamato Man", "Dive Man", "Search Man", "Gemini Man", "Bubble Man", "Guts Man", "Tornado Man", "Astro Man", "Plug Man", "Elec Man", "Crystal Man", "Nitro Man", "Burner Man", "Spark Man", "Spring Man", "Plant Man", "Star Man", "Ring Man", "Top Man", "Crash Man", "Bomb Man", "Heat Man", "Magic Man")]
@@ -1407,6 +1414,7 @@ namespace Souvenir
         NotTheButtonLightColor,
 
         [SouvenirQuestion("What was the initial position in {0}?", "Not the Screw", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Grid)]
+        [AnswerGenerator.Grid(6, 4)]
         NotTheScrewInitialPosition,
 
         [SouvenirQuestion("In which position was the button you pressed in the {1} stage on {0}?", "Not Who’s on First", AnswerLayout.TwoColumns4Answers, "top left", "top right", "middle left", "middle right", "bottom left", "bottom right", TranslateAnswers = true,
@@ -1753,9 +1761,11 @@ namespace Souvenir
         SamsungAppPositions,
 
         [SouvenirQuestion("Which tile was correctly submitted in the first stage of {0}?", "Scavenger Hunt", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Grid)]
+        [AnswerGenerator.Grid(4, 4)]
         ScavengerHuntKeySquare,
         [SouvenirQuestion("Which of these tiles was {1} in the first stage of {0}?", "Scavenger Hunt", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Grid, TranslateFormatArgs = new[] { true },
             ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Grid(4, 4)]
         ScavengerHuntColoredTiles,
 
         [SouvenirQuestion("What was the contestant’s name in {0}?", "Schlag den Bomb", AnswerLayout.TwoColumns4Answers, "Ron", "Don", "Julia", "Cory", "Greg", "Paula", "Val", "Lisa", "Ozy", "Ozzy", "Elsa", "Cori", "Harry", "Gale", "Daniel", "Albert", "Spike", "Tommy", "Greta", "Tina", "Rob", "Edgar", "Julia", "Peter", "Millie", "Isolde", "Eris")]
@@ -2316,6 +2326,7 @@ namespace Souvenir
         ZeroZeroStarPoints,
         [SouvenirQuestion("Where was the {1} square in {0}?", "Zero, Zero", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Grid, TranslateFormatArgs = new[] { true },
             ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Grid(6, 6)]
         ZeroZeroSquares,
 
         [SouvenirQuestion("What was the {1} word in {0}?", "Zoni", AnswerLayout.OneColumn4Answers, null, ExampleAnswers = new[] { "angel", "thing", "dance", "heavy", "quote", "radio" },

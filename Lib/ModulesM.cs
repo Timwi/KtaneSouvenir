@@ -199,10 +199,10 @@ public partial class SouvenirModule
         for (int tileIx = 0; tileIx < 16; tileIx++)
         {
             qs.Add(makeQuestion(Question.MathEmColor, _MathEm,
-                questionSprite: generateGridSprite(new Coord(4, 4, tileIx)),
+                questionSprite: Grid.GenerateGridSprite(new Coord(4, 4, tileIx)),
                 correctAnswers: new[] { colorNames[props[initialArrangement[tileIx], 1]] }));
             qs.Add(makeQuestion(Question.MathEmLabel, _MathEm,
-                questionSprite: generateGridSprite(new Coord(4, 4, tileIx)),
+                questionSprite: Grid.GenerateGridSprite(new Coord(4, 4, tileIx)),
                 correctAnswers: new[] { displayedMarkings[tileIx] },
                 preferredWrongAnswers: displayedMarkings));
         }
@@ -345,11 +345,11 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
         for (int i = 0; i < 36; i++)
-            qs.Add(makeQuestion(Question.MazeseekerCell, _Mazeseeker, questionSprite: generateGridSprite(new Coord(6, 6, i)), correctAnswers: new[] { nums[i / 6, i % 6].ToString() }));
+            qs.Add(makeQuestion(Question.MazeseekerCell, _Mazeseeker, questionSprite: Grid.GenerateGridSprite(new Coord(6, 6, i)), correctAnswers: new[] { nums[i / 6, i % 6].ToString() }));
         for (int i = 0; i < 36; i++)
-            qs.Add(makeQuestion(Question.MazeseekerStart, _Mazeseeker, correctAnswers: new[] { generateGridSprite(new Coord(6, 6, startColumn, startRow)) }));
+            qs.Add(makeQuestion(Question.MazeseekerStart, _Mazeseeker, correctAnswers: new[] { Grid.GenerateGridSprite(new Coord(6, 6, startColumn, startRow)) }));
         for (int i = 0; i < 36; i++)
-            qs.Add(makeQuestion(Question.MazeseekerGoal, _Mazeseeker, correctAnswers: new[] { generateGridSprite(new Coord(6, 6, goalColumn, goalRow)) }));
+            qs.Add(makeQuestion(Question.MazeseekerGoal, _Mazeseeker, correctAnswers: new[] { Grid.GenerateGridSprite(new Coord(6, 6, goalColumn, goalRow)) }));
 
         addQuestions(module, qs);
     }

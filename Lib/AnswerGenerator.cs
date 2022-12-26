@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Souvenir
@@ -33,6 +34,12 @@ namespace Souvenir
     public abstract class AnswerGeneratorAttribute : Attribute
     {
         public abstract IEnumerable<string> GetAnswers(SouvenirModule module);
+    }
+
+    [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = false)]
+    public abstract class SpriteAnswerGeneratorAttribute : Attribute
+    {
+        public abstract IEnumerable<Sprite> GetAnswers(SouvenirModule module);
     }
 
     public static class AnswerGenerator
@@ -288,6 +295,29 @@ namespace Souvenir
                     answers.Shuffle();
                     foreach (var answer in answers) yield return answer;
                 }
+            }
+        }
+
+        /// <summary>An answer generator that generates answers consisting of randomly selected grid cells.</summary>
+        public class Grid : SpriteAnswerGeneratorAttribute
+        {
+            private int _width;
+            private int _height;
+            private float _size;
+
+            private int Count { get { return _width * _height; } }
+
+            public Grid(int width, int height, float size = 1f)
+            {
+                _width = width;
+                _height = height;
+                _size = size;
+            }
+
+            public override IEnumerable<Sprite> GetAnswers(SouvenirModule module)
+            {
+                for (int ix = 0; ix < Count; ++ix)
+                    yield return Souvenir.Grid.GenerateGridSprite(_width, _height, ix, _size);
             }
         }
     }

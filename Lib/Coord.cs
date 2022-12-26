@@ -3,7 +3,7 @@
 namespace Souvenir
 {
     /// <summary>Represents a position in an orthogonal, rectangular grid.</summary>
-    class Coord : IEquatable<Coord>
+    public class Coord : IEquatable<Coord>
     {
         private readonly int _index;
         private readonly int _width;
