@@ -1455,7 +1455,7 @@ namespace Souvenir
         [AnswerGenerator.Integers(1, 9)]
         NumpathDigit,
 
-        [SouvenirQuestion("Which of these was a contestant on {0} but not the final winner?", "Object Shows", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "Battleship", "Big Circle", "Jack O’ Lantern", "Lego", "Moon", "Radio", "Combination Lock", "Cookie Jar", "Fidget Spinner" })]
+        [SouvenirQuestion("Which of these was a contestant on {0}?", "Object Shows", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "Battleship", "Big Circle", "Jack O’ Lantern", "Lego", "Moon", "Radio", "Combination Lock", "Cookie Jar", "Fidget Spinner" })]
         ObjectShowsContestants,
 
         [SouvenirQuestion("What was the starting sphere in {0}?", "The Octadecayotton", AnswerLayout.OneColumn4Answers, ExampleAnswers = new[] { "--+", "-+-+-++-+", "-++-+--+-", "+++-+-++-", "--++-++-+-++" })]

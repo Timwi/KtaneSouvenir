@@ -5186,8 +5186,8 @@ namespace Souvenir
             },
 
             // Object Shows
-            // Which of these was a contestant on {0} but not the final winner?
-            // Which of these was a contestant on Object Shows but not the final winner?
+            // Which of these was a contestant on {0}?
+            // Which of these was a contestant on Object Shows?
             [Question.ObjectShowsContestants] = new TranslationInfo
             {
                 QuestionText = "Which of these was a contestant on {0} but not the final winner？",
