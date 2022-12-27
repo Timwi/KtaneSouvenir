@@ -1301,20 +1301,6 @@ namespace Souvenir
         [SouvenirQuestion("Where was the skull in {0}?", "Mystic Square", AnswerLayout.TwoColumns4Answers, "top left", "top middle", "top right", "middle left", "center", "middle right", "bottom left", "bottom middle", "bottom right", TranslateAnswers = true)]
         MysticSquareSkull,
 
-        [SouvenirQuestion("What was the chapter number of the {1} page in {0}?", "Necronomicon", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "1", "24", "36" }, AddThe = true,
-            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
-        NecronomiconChapters,
-
-        [SouvenirQuestion("In base 10, what was the value submitted in {0}?", "Negativity", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "0", "9990", "-9990", "-1234", "5678", "-90" })]
-        NegativitySubmittedValue,
-        [SouvenirQuestion("Excluding 0s, what was the submitted balanced ternary in {0}?", "Negativity", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "+-", "-++", "++-+-", "++++-", "-----", "+-----++++" })]
-        NegativitySubmittedTernary,
-
-        [SouvenirQuestion("What was the acid’s color in {0}?", "Neutralization", AnswerLayout.TwoColumns4Answers, "Yellow", "Green", "Red", "Blue", TranslateAnswers = true)]
-        NeutralizationColor,
-        [SouvenirQuestion("What was the acid’s volume in {0}?", "Neutralization", AnswerLayout.TwoColumns4Answers, "5", "10", "15", "20")]
-        NeutralizationVolume,
-
         [SouvenirQuestion("What was the label of the correct button in {0}?", "N&Ms", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Strings(5, 'M', 'N')]
         NandMsAnswer,
@@ -1335,6 +1321,23 @@ namespace Souvenir
         [SouvenirQuestion("What was the {1} of the given in {0} (0-indexed)?", "Navy Button", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", AddThe = true,
             ExampleExtraFormatArguments = new[] { "column", "row", "value" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NavyButtonGiven,
+
+        [SouvenirQuestion("What was the chapter number of the {1} page in {0}?", "Necronomicon", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "1", "24", "36" }, AddThe = true,
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        NecronomiconChapters,
+
+        [SouvenirQuestion("In base 10, what was the value submitted in {0}?", "Negativity", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "0", "9990", "-9990", "-1234", "5678", "-90" })]
+        NegativitySubmittedValue,
+        [SouvenirQuestion("Excluding 0s, what was the submitted balanced ternary in {0}?", "Negativity", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "+-", "-++", "++-+-", "++++-", "-----", "+-----++++" })]
+        NegativitySubmittedTernary,
+
+        [SouvenirQuestion("What was the acid’s color in {0}?", "Neutralization", AnswerLayout.TwoColumns4Answers, "Yellow", "Green", "Red", "Blue", TranslateAnswers = true)]
+        NeutralizationColor,
+        [SouvenirQuestion("What was the acid’s volume in {0}?", "Neutralization", AnswerLayout.TwoColumns4Answers, "5", "10", "15", "20")]
+        NeutralizationVolume,
+
+        [SouvenirQuestion(debugText: "Which button flashed for the {1} stage in {0}?", "❖", AnswerLayout.TwoColumns4Answers, Type = AnswerType.Sprites, SpriteField = "NonverbalSimonSprites")]
+        NonverbalSimonFlashes,
 
         [SouvenirQuestion("What was the encrypted word in {0}?", "Not Colored Switches", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "Adjust", "Anchor", "Bowtie", "Button", "Cipher", "Corner" })]
         NotColoredSwitchesWord,

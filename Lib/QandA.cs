@@ -24,7 +24,7 @@ namespace Souvenir
         }
 
         public abstract void SetAnswers(SouvenirModule souvenir);
-        public string DebugString => string.Format("{0} — {1}", QuestionText, DebugAnswers.Select((a, ix) => string.Format(ix == CorrectIndex ? "[_{0}_]" : "{0}", a)).JoinString(" | "));
+        public virtual string DebugString => string.Format("{0} — {1}", QuestionText, DebugAnswers.Select((a, ix) => string.Format(ix == CorrectIndex ? "[_{0}_]" : "{0}", a)).JoinString(" | "));
         public abstract IEnumerable<string> DebugAnswers { get; }
         public abstract double DesiredHeightFactor { get; }
         public abstract void BlinkCorrectAnswer(bool on, SouvenirModule souvenir);
@@ -119,7 +119,7 @@ namespace Souvenir
         }
     }
 
-    sealed class QandASprite : QandA
+    class QandASprite : QandA
     {
         private readonly Sprite[] _answers;
         public QandASprite(string module, string question, int correct, Sprite[] answers, Sprite questionSprite) : base(module, question, correct, answers.Length, questionSprite) { _answers = answers; }
@@ -141,5 +141,12 @@ namespace Souvenir
         {
             souvenir.Answers[CorrectIndex].transform.Find("SpriteHolder").gameObject.SetActive(on);
         }
+    }
+
+    sealed class QandAEntireSprite : QandASprite
+    {
+        public QandAEntireSprite(string debugQuestion, string debugName, int correct, Sprite[] answers, Sprite questionSprite) : base(debugName, debugQuestion, correct, answers, questionSprite) { }
+
+        public override string DebugString => string.Format("(Depicted Visually) {0} — {1}", QuestionText, DebugAnswers.Select((a, ix) => string.Format(ix == CorrectIndex ? "[_{0}_]" : "{0}", a)).JoinString(" | "));
     }
 }

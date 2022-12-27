@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Souvenir
 {
@@ -6,6 +7,7 @@ namespace Souvenir
     public sealed class SouvenirQuestionAttribute : Attribute
     {
         public string QuestionText { get; private set; }
+        public bool IsEntireQuestionSprite { get; private set; }
         public string ModuleName { get; private set; }
         public string[] AllAnswers { get; private set; }
         public AnswerGeneratorAttribute AnswerGenerator { get; internal set; }
@@ -41,6 +43,18 @@ namespace Souvenir
             AllAnswers = allAnswers == null || allAnswers.Length == 0 ? null : allAnswers;
             Type = AnswerType.Default;
             FontSize = layout == AnswerLayout.OneColumn4Answers ? 40 : 48;
+        }
+
+        /// <summary>
+        /// Used for the Nonverbal Simon question
+        /// </summary>
+        public SouvenirQuestionAttribute(string debugText, string debugName, AnswerLayout layout)
+        {
+            QuestionText = debugText;
+            ModuleName = debugName;
+            Layout = layout;
+            Type = AnswerType.Sprites;
+            IsEntireQuestionSprite = true;
         }
     }
 }

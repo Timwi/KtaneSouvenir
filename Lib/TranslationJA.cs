@@ -4649,49 +4649,6 @@ namespace Souvenir
                 },
             },
 
-            // The Necronomicon
-            // What was the chapter number of the {1} page in {0}?
-            // What was the chapter number of the first page in The Necronomicon?
-            [Question.NecronomiconChapters] = new TranslationInfo
-            {
-                QuestionText = "What was the chapter number of the {1} page in {0}？",
-            },
-
-            // Negativity
-            // In base 10, what was the value submitted in {0}?
-            // In base 10, what was the value submitted in Negativity?
-            [Question.NegativitySubmittedValue] = new TranslationInfo
-            {
-                QuestionText = "In base 10, what was the value submitted in {0}？",
-            },
-            // Excluding 0s, what was the submitted balanced ternary in {0}?
-            // Excluding 0s, what was the submitted balanced ternary in Negativity?
-            [Question.NegativitySubmittedTernary] = new TranslationInfo
-            {
-                QuestionText = "Excluding 0s, what was the submitted balanced ternary in {0}？",
-            },
-
-            // Neutralization
-            // What was the acid’s color in {0}?
-            // What was the acid’s color in Neutralization?
-            [Question.NeutralizationColor] = new TranslationInfo
-            {
-                QuestionText = "What was the acid’s color in {0}？",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Yellow"] = "黄",
-                    ["Green"] = "緑",
-                    ["Red"] = "赤",
-                    ["Blue"] = "青",
-                },
-            },
-            // What was the acid’s volume in {0}?
-            // What was the acid’s volume in Neutralization?
-            [Question.NeutralizationVolume] = new TranslationInfo
-            {
-                QuestionText = "What was the acid’s volume in {0}？",
-            },
-
             // N&Ms
             // What was the label of the correct button in {0}?
             // What was the label of the correct button in N&Ms?
@@ -4746,6 +4703,56 @@ namespace Souvenir
             [Question.NavyButtonGiven] = new TranslationInfo
             {
                 QuestionText = "What was the {1} of the given in {0} (0-indexed)？",
+            },
+
+            // The Necronomicon
+            // What was the chapter number of the {1} page in {0}?
+            // What was the chapter number of the first page in The Necronomicon?
+            [Question.NecronomiconChapters] = new TranslationInfo
+            {
+                QuestionText = "What was the chapter number of the {1} page in {0}？",
+            },
+
+            // Negativity
+            // In base 10, what was the value submitted in {0}?
+            // In base 10, what was the value submitted in Negativity?
+            [Question.NegativitySubmittedValue] = new TranslationInfo
+            {
+                QuestionText = "In base 10, what was the value submitted in {0}？",
+            },
+            // Excluding 0s, what was the submitted balanced ternary in {0}?
+            // Excluding 0s, what was the submitted balanced ternary in Negativity?
+            [Question.NegativitySubmittedTernary] = new TranslationInfo
+            {
+                QuestionText = "Excluding 0s, what was the submitted balanced ternary in {0}？",
+            },
+
+            // Neutralization
+            // What was the acid’s color in {0}?
+            // What was the acid’s color in Neutralization?
+            [Question.NeutralizationColor] = new TranslationInfo
+            {
+                QuestionText = "What was the acid’s color in {0}？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Yellow"] = "黄",
+                    ["Green"] = "緑",
+                    ["Red"] = "赤",
+                    ["Blue"] = "青",
+                },
+            },
+            // What was the acid’s volume in {0}?
+            // What was the acid’s volume in Neutralization?
+            [Question.NeutralizationVolume] = new TranslationInfo
+            {
+                QuestionText = "What was the acid’s volume in {0}？",
+            },
+
+            // ❖
+            // Which button flashed for the {1} stage in {0}?
+            [Question.NonverbalSimonFlashes] = new TranslationInfo
+            {
+                QuestionText = "Which button flashed for stage {1} in {0}?",
             },
 
             // Not Colored Switches

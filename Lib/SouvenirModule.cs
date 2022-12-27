@@ -46,11 +46,15 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] SimonShapesSprites;
     public Sprite[] JengaSprites;
     public Sprite[] AzureButtonSprites;
+    public Sprite[] NonverbalSimonSprites;
+    public Texture2D[] NonverbalSimonQuestions;
+    private readonly List<Texture2D> _temporaryQuestions = new List<Texture2D>();
 
     public TextMesh TextMesh;
     public Renderer TextRenderer;
     public Renderer SurfaceRenderer;
     public SpriteRenderer QuestionSprite;
+    public SpriteRenderer EntireQuestionSprite;
     public GameObject WarningIcon;
     public Material FontMaterial;
     public Font[] Fonts;
@@ -369,6 +373,14 @@ public partial class SouvenirModule : MonoBehaviour
             Debug.LogErrorFormat("<Souvenir #{1}> Error: Question {0} has no attribute.", _exampleQuestions[_curExampleQuestion], _moduleId);
             return;
         }
+        if (attr.IsEntireQuestionSprite)
+        {
+            var answerSprites = attr.SpriteField == null ? ExampleSprites : (Sprite[]) typeof(SouvenirModule).GetField(attr.SpriteField, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleSprites;
+            if (answerSprites != null)
+                answerSprites.Shuffle();
+            SetQuestion(new QandAEntireSprite(attr.QuestionText, attr.ModuleName, 0, answerSprites, WavetappingSprites[0]));
+            return;
+        }
         if (attr.ExampleExtraFormatArguments != null && attr.ExampleExtraFormatArguments.Length > 0 && attr.ExampleExtraFormatArgumentGroupSize > 0)
         {
             var numExamples = attr.ExampleExtraFormatArguments.Length / attr.ExampleExtraFormatArgumentGroupSize;
@@ -466,6 +478,7 @@ public partial class SouvenirModule : MonoBehaviour
     {
         TextMesh.gameObject.SetActive(false);
         QuestionSprite.gameObject.SetActive(false);
+        EntireQuestionSprite.gameObject.SetActive(false);
         AnswersParent.SetActive(false);
     }
 
@@ -584,13 +597,24 @@ public partial class SouvenirModule : MonoBehaviour
     {
         Debug.Log($"[Souvenir #{_moduleId}] Asking question: {q.DebugString}");
         _currentQuestion = q;
-        TextMesh.font = Fonts[_translation?.DefaultFontIndex ?? 0];
-        TextMesh.GetComponent<MeshRenderer>().material = FontMaterial;
-        TextMesh.GetComponent<MeshRenderer>().material.mainTexture = FontTextures[_translation?.DefaultFontIndex ?? 0];
-        TextMesh.lineSpacing = _translation?.LineSpacing ?? 0.525f;
-        SetWordWrappedText(q.QuestionText, q.DesiredHeightFactor, q.QuestionSprite != null);
-        QuestionSprite.gameObject.SetActive(q.QuestionSprite != null);
-        QuestionSprite.sprite = q.QuestionSprite;
+        if (q is QandAEntireSprite qes)
+        {
+            TextMesh.gameObject.SetActive(false);
+            EntireQuestionSprite.gameObject.SetActive(true);
+            EntireQuestionSprite.sprite = qes.QuestionSprite;
+        }
+        else
+        {
+            EntireQuestionSprite.gameObject.SetActive(false);
+            TextMesh.gameObject.SetActive(true);
+            TextMesh.font = Fonts[_translation?.DefaultFontIndex ?? 0];
+            TextMesh.GetComponent<MeshRenderer>().material = FontMaterial;
+            TextMesh.GetComponent<MeshRenderer>().material.mainTexture = FontTextures[_translation?.DefaultFontIndex ?? 0];
+            TextMesh.lineSpacing = _translation?.LineSpacing ?? 0.525f;
+            SetWordWrappedText(q.QuestionText, q.DesiredHeightFactor, q.QuestionSprite != null);
+            QuestionSprite.gameObject.SetActive(q.QuestionSprite != null);
+            QuestionSprite.sprite = q.QuestionSprite;
+        }
         q.SetAnswers(this);
         AnswersParent.SetActive(true);
         Audio.PlaySoundAtTransform("Question", transform);
@@ -761,6 +785,13 @@ public partial class SouvenirModule : MonoBehaviour
         }
 
         _coroutinesActive--;
+    }
+
+    private void OnDestroy()
+    {
+        foreach (var tx in _temporaryQuestions)
+            Destroy(tx);
+        _temporaryQuestions.Clear();
     }
     #endregion
 
@@ -968,6 +999,11 @@ public partial class SouvenirModule : MonoBehaviour
         makeQuestion(question, moduleKey,
             (attr, q, correct, answers) => new QandASprite(attr.ModuleNameWithThe, q, correct, answers.ToArray(), questionSprite),
             formatArgs, correctAnswers, preferredWrongAnswers, GetAllSprites(question), AnswerType.Sprites);
+   
+    private QandA makeQuestion(Sprite entireQuestionSprite, Question debugQuestion, string moduleKey, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null) =>
+        makeQuestion(debugQuestion, moduleKey,
+            (attr, q, correct, answers) => new QandAEntireSprite(q, attr.ModuleNameWithThe, correct, answers.ToArray(), entireQuestionSprite),
+            formatArgs, correctAnswers, preferredWrongAnswers, GetAllSprites(debugQuestion), AnswerType.Sprites);
 
     private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string[] formatArgs = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null)
     {

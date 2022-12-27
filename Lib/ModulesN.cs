@@ -101,6 +101,52 @@ public partial class SouvenirModule
             makeQuestion(Question.NeutralizationVolume, _Neutralization, correctAnswers: new[] { acidVol.ToString() }));
     }
 
+    private IEnumerable<object> ProcessNonverbalSimon(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NonverbalSimonHandler");
+        var fldSolved = GetField<bool>(comp, "isActive");
+
+        while (!fldSolved.Get()) // isActive is set in KMBombModule.OnActivate, so we need to wait for it
+            yield return new WaitForSeconds(0.1f);
+        while (fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_NonverbalSimon);
+
+        List<string> flashes = GetMethod<List<string>>(comp, "GrabCombinedFlashes", 0, true).Invoke(new object[0]);
+        List<QandA> qs = new List<QandA>(flashes.Count);
+        string[] names = new string[] { "Red", "Orange", "Yellow", "Green" };
+
+        for (int stage = 0; stage < flashes.Count; ++stage)
+        {
+            var name = $"{flashes.Count}-{stage + 1}";
+            Texture2D tex = NonverbalSimonQuestions.First(t => t.name.Contains(name));
+
+            if (_moduleCounts.Get(_NonverbalSimon) > 1)
+            {
+                var num = _modulesSolved.Get(_NonverbalSimon).ToString();
+                var tmp = new Texture2D(400, 320, TextureFormat.ARGB32, false);
+                tmp.SetPixels(tex.GetPixels());
+                tex = NonverbalSimonQuestions.First(t => t.name.Contains("Name"));
+                tmp.SetPixels(40, 120, tex.width, tex.height, tex.GetPixels());
+                for (int digit = 0; digit < num.Length; ++digit)
+                {
+                    tex = NonverbalSimonQuestions.First(t => t.name.Contains($"d{num[digit]}"));
+                    tmp.SetPixels(100 + 60 * digit, 120, tex.width, tex.height, tex.GetPixels());
+                }
+
+                tmp.Apply(false, true);
+                _temporaryQuestions.Add(tmp);
+                tex = tmp;
+            }
+
+            Sprite q = Sprite.Create(tex, Rect.MinMaxRect(0f, 0f, 400f, 320f), new Vector2(.5f, .5f), 1280f, 1u, SpriteMeshType.Tight);
+            q.name = $"NVSQ{stage}-{_moduleCounts.Get(_NonverbalSimon)}";
+            qs.Add(makeQuestion(q, Question.NonverbalSimonFlashes, _NonverbalSimon, new[] { ordinal(stage + 1) }, new[] { NonverbalSimonSprites[Array.IndexOf(names, flashes[stage])] }, NonverbalSimonSprites));
+        }
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessNameCodes(KMBombModule module)
     {
         var comp = GetComponent(module, "NameCodesScript");
