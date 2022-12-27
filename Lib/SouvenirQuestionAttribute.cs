@@ -48,7 +48,7 @@ namespace Souvenir
         /// <summary>
         /// Used for the Nonverbal Simon question
         /// </summary>
-        public SouvenirQuestionAttribute(string debugText, string debugName, AnswerLayout layout)
+        public SouvenirQuestionAttribute(AnswerLayout layout, string debugText, string debugName)
         {
             QuestionText = debugText;
             ModuleName = debugName;
