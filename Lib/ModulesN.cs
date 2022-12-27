@@ -127,11 +127,11 @@ public partial class SouvenirModule
                 var tmp = new Texture2D(400, 320, TextureFormat.ARGB32, false);
                 tmp.SetPixels(tex.GetPixels());
                 tex = NonverbalSimonQuestions.First(t => t.name.Contains("Name"));
-                tmp.SetPixels(40, 120, tex.width, tex.height, tex.GetPixels());
+                tmp.SetPixels(40, 90, tex.width, tex.height, tex.GetPixels());
                 for (int digit = 0; digit < num.Length; ++digit)
                 {
                     tex = NonverbalSimonQuestions.First(t => t.name.Contains($"d{num[digit]}"));
-                    tmp.SetPixels(100 + 60 * digit, 120, tex.width, tex.height, tex.GetPixels());
+                    tmp.SetPixels(100 + 40 * digit, 90, tex.width, tex.height, tex.GetPixels());
                 }
 
                 tmp.Apply(false, true);
