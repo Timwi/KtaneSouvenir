@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Souvenir
 {
-    public class Grid
+    public static class Grid
     {
         private static readonly Dictionary<string, Texture2D> _gridSpriteCache = new Dictionary<string, Texture2D>();
         public static Sprite GenerateGridSprite(Coord coord, float size = 1f)

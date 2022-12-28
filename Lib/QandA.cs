@@ -11,16 +11,18 @@ namespace Souvenir
         public string ModuleNameWithThe { get; private set; }
         public string QuestionText { get; private set; }
         public Sprite QuestionSprite { get; private set; }
+        public float QuestionSpriteRotation { get; private set; }
         public int CorrectIndex { get; private set; }
         public int NumAnswers { get; private set; } // must be 4 or 6
 
-        public QandA(string module, string question, int correct, int numAnswers, Sprite questionSprite)
+        public QandA(string module, string question, int correct, int numAnswers, Sprite questionSprite, float questionSpriteRotation = 0f)
         {
             ModuleNameWithThe = module;
             QuestionText = question;
             QuestionSprite = questionSprite;
             CorrectIndex = correct;
             NumAnswers = numAnswers;
+            QuestionSpriteRotation = questionSpriteRotation;
         }
 
         public abstract void SetAnswers(SouvenirModule souvenir);
@@ -65,8 +67,8 @@ namespace Souvenir
         private readonly Texture _fontTexture;
         private readonly Material _fontMaterial;
         private readonly AnswerLayout _layout;
-        public QandAText(string module, string question, int correct, string[] answers, Font font, int fontSize, Texture fontTexture, Material fontMaterial, AnswerLayout layout, Sprite questionSprite)
-            : base(module, question, correct, answers.Length, questionSprite)
+        public QandAText(string module, string question, int correct, string[] answers, Font font, int fontSize, Texture fontTexture, Material fontMaterial, AnswerLayout layout, Sprite questionSprite, float spriteRotation = 0f)
+            : base(module, question, correct, answers.Length, questionSprite, spriteRotation)
         {
             _answers = answers;
             _font = font;

@@ -362,6 +362,7 @@ public partial class SouvenirModule
     const string _SimonStates = "SimonV2";
     const string _SimonStops = "simonStops";
     const string _SimonStores = "simonStores";
+    const string _SimonSubdivides = "simonSubdivides";
     const string _SimonSupports = "simonSupports";
     const string _SkewedSlots = "SkewedSlotsModule";
     const string _Skyrim = "skyrim";
@@ -802,6 +803,7 @@ public partial class SouvenirModule
             { _SimonStates, ProcessSimonStates },
             { _SimonStops, ProcessSimonStops },
             { _SimonStores, ProcessSimonStores },
+            { _SimonSubdivides, ProcessSimonSubdivides },
             { _SimonSupports, ProcessSimonSupports },
             { _SkewedSlots, ProcessSkewedSlots },
             { _Skyrim, ProcessSkyrim },

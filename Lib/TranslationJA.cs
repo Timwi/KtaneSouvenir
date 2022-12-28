@@ -6698,6 +6698,14 @@ namespace Souvenir
                 },
             },
 
+            // Simon Subdivides
+            // What color was the button at this position in {0}?
+            // What color was the button at this position in Simon Subdivides?
+            [Question.SimonSubdividesButton] = new TranslationInfo
+            {
+                QuestionText = "What color was the button at this position in {0}?",
+            },
+
             // Simon Supports
             // What was the {1} topic in {0}?
             // What was the first topic in Simon Supports?

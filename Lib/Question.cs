@@ -1956,6 +1956,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "flashed", QandA.Ordinal, "was among the colors flashed", QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 2)]
         SimonStoresColors,
 
+        [SouvenirQuestion("What color was the button at this position in {0}?", "Simon Subdivides", AnswerLayout.TwoColumns4Answers, new[] { "Blue", "Green", "Red", "Violet" },
+            UsesQuestionSprite = true)]
+        SimonSubdividesButton,
+
         [SouvenirQuestion("What was the {1} topic in {0}?", "Simon Supports", AnswerLayout.TwoColumns4Answers, "Boss", "Cruel", "Faulty", "Lookalike", "Puzzle", "Simon", "Time-Based", "Translated",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSupportsTopics,
