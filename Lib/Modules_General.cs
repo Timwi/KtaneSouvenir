@@ -109,6 +109,7 @@ public partial class SouvenirModule
     const string _Digisibility = "digisibility";
     const string _DiscoloredSquares = "DiscoloredSquaresModule";
     const string _DivisibleNumbers = "divisibleNumbers";
+    const string _DoubleArrows = "doubleArrows";
     const string _DoubleColor = "doubleColor";
     const string _DoubleDigits = "doubleDigitsModule";
     const string _DoubleOh = "DoubleOhModule";
@@ -548,6 +549,7 @@ public partial class SouvenirModule
             { _Digisibility, ProcessDigisibility },
             { _DiscoloredSquares, ProcessDiscoloredSquares },
             { _DivisibleNumbers, ProcessDivisibleNumbers },
+            { _DoubleArrows, ProcessDoubleArrows },
             { _DoubleColor, ProcessDoubleColor },
             { _DoubleDigits, ProcessDoubleDigits },
             { _DoubleOh, ProcessDoubleOh },

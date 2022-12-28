@@ -1625,6 +1625,26 @@ namespace Souvenir
                 QuestionText = "{0}でのステージ{1}の数字は？",
             },
 
+            // Double Arrows
+            // What was the starting position in {0}?
+            // What was the starting position in Double Arrows?
+            [Question.DoubleArrowsStart] = new TranslationInfo
+            {
+                QuestionText = "What was the starting position in {0}?",
+            },
+            // Which {1} arrow moved {2} in the grid in {0}?
+            // Which inner arrow moved up in the grid in Double Arrows?
+            [Question.DoubleArrowsArrow] = new TranslationInfo
+            {
+                QuestionText = "Which {1} arrow moved {2} in the grid in {0}?",
+            },
+            // Which direction in the grid did the {1} arrow move in {0}?
+            // Which direction in the grid did the inner up arrow move in Double Arrows?
+            [Question.DoubleArrowsMovement] = new TranslationInfo
+            {
+                QuestionText = "Which direction in the grid did the {1} arrow move in {0}?",
+            },
+
             // Double Color
             // What was the screen color on the {1} stage of {0}?
             // What was the screen color on the first stage of Double Color?

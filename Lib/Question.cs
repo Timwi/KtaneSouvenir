@@ -535,6 +535,16 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9999)]
         DivisibleNumbersNumbers,
 
+        [SouvenirQuestion("What was the starting position in {0}?", "Double Arrows", AnswerLayout.ThreeColumns6Answers, null)]
+        [AnswerGenerator.Integers(1, 81, "00")]
+        DoubleArrowsStart,
+        [SouvenirQuestion("Which {1} arrow moved {2} in the grid in {0}?", "Double Arrows", AnswerLayout.TwoColumns4Answers, "Up", "Right", "Left", "Down",
+            ExampleExtraFormatArguments = new[] { "inner", "up", "outer", "up", "inner", "down", "outer", "down", "inner", "left", "outer", "left", "inner", "riight", "outer", "right" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        DoubleArrowsArrow,
+        [SouvenirQuestion("Which direction in the grid did the {1} arrow move in {0}?", "Double Arrows", AnswerLayout.TwoColumns4Answers, "Up", "Right", "Left", "Down",
+            ExampleExtraFormatArguments = new[] { "inner up", "inner down", "inner left", "inner right", "outer up", "outer down", "outer left", "outer right" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        DoubleArrowsMovement,
+
         [SouvenirQuestion("What was the screen color on the {1} stage of {0}?", "Double Color", AnswerLayout.ThreeColumns6Answers, "Green", "Blue", "Red", "Pink", "Yellow", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         DoubleColorColors,

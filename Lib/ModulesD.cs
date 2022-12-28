@@ -207,6 +207,36 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessDoubleArrows(KMBombModule module)
+    {
+        var comp = GetComponent(module, "DoubleArrowsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldPresses = GetField<int>(comp, "pressCount");
+        var display = GetField<TextMesh>(comp, "disp", true).Get();
+        string start = string.Empty;
+
+        while (!fldSolved.Get())
+        {
+            if (display.text.Length == 2)
+                start = display.text; // This resets on a strike.
+            yield return new WaitForSeconds(.1f);
+        }
+        _modulesSolved.IncSafe(_DoubleArrows);
+
+        var qs = new List<QandA>(17) { makeQuestion(Question.DoubleArrowsStart, _DoubleArrows, correctAnswers: new[] { start }) };
+        var callib = GetArrayField<int[]>(comp, "callib").Get(expectedLength: 2);
+        var dirs = new[] { "Left", "Up", "Right", "Down" };
+        for (int i = 0; i < 8; ++i)
+        {
+            qs.Add(makeQuestion(Question.DoubleArrowsMovement, _DoubleArrows, formatArgs: new[] { $"{(i < 4 ? "inner" : "outer")} {dirs[i % 4].ToLower()}" }, correctAnswers: new[] { dirs[callib[i / 4][i % 4]] }));
+            qs.Add(makeQuestion(Question.DoubleArrowsArrow, _DoubleArrows, formatArgs: new[] { i < 4 ? "inner" : "outer", dirs[callib[i / 4][i % 4]].ToLower() }, correctAnswers: new[] { dirs[i % 4] }));
+        }
+
+        addQuestions(module, qs);
+
+        yield break;
+    }
+
     private IEnumerable<object> ProcessDoubleColor(KMBombModule module)
     {
         var comp = GetComponent(module, "doubleColor");
