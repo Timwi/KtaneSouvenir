@@ -134,7 +134,7 @@ public partial class SouvenirModule
             }
         }
 
-    solved:
+        solved:
         _modulesSolved.IncSafe(_SeaShells);
 
         var qs = new List<QandA>();
@@ -824,17 +824,17 @@ public partial class SouvenirModule
         var qs = new List<QandA>(12);
         var dirs = new[] { new Vector2Int(0, 0), new Vector2Int(1, 0), new Vector2Int(1, 1), new Vector2Int(0, 1) };
         var colors = new[] { "Red", "Blue", "Violet", "Green" };
-        for (int a = 0; a < 4; ++a)
+        for (int a = 0; a < 4; a++)
         {
-            qs.Add(makeQuestion(Question.SimonSubdividesButton, _SimonSubdivides, Grid.GenerateGridSprite(new Coord(2, 2, dirs[a].x, dirs[a].y)), correctAnswers: new[] { colors[arrange[0, a]] }, spriteRotation: 45f));
+            qs.Add(makeQuestion(Question.SimonSubdividesButton, _SimonSubdivides, Grid.GenerateGridSprite(new Coord(2, 2, dirs[a].x, dirs[a].y)), correctAnswers: new[] { colors[arrange[0, a]] }, questionSpriteRotation: 45f));
             if (split[0][a])
             {
-                for (int b = 0; b < 4; ++b)
+                for (int b = 0; b < 4; b++)
                 {
-                    qs.Add(makeQuestion(Question.SimonSubdividesButton, _SimonSubdivides, Grid.GenerateGridSprite(new Coord(4, 4, dirs[a].x * 2 + dirs[b].x, dirs[a].y * 2 + dirs[b].y)), correctAnswers: new[] { colors[arrange[a + 1, b]] }, spriteRotation: 45f));
+                    qs.Add(makeQuestion(Question.SimonSubdividesButton, _SimonSubdivides, Grid.GenerateGridSprite(new Coord(4, 4, dirs[a].x * 2 + dirs[b].x, dirs[a].y * 2 + dirs[b].y)), correctAnswers: new[] { colors[arrange[a + 1, b]] }, questionSpriteRotation: 45f));
                     if (split[a + 1][b])
-                        for (int c = 0; c < 4; ++c)
-                            qs.Add(makeQuestion(Question.SimonSubdividesButton, _SimonSubdivides, Grid.GenerateGridSprite(new Coord(8, 8, dirs[a].x * 4 + dirs[b].x * 2 + dirs[c].x, dirs[a].y * 4 + dirs[b].y * 2 + dirs[c].y)), correctAnswers: new[] { colors[arrange[(a + 1) * 4 + b + 1, c]] }, spriteRotation: 45f));
+                        for (int c = 0; c < 4; c++)
+                            qs.Add(makeQuestion(Question.SimonSubdividesButton, _SimonSubdivides, Grid.GenerateGridSprite(new Coord(8, 8, dirs[a].x * 4 + dirs[b].x * 2 + dirs[c].x, dirs[a].y * 4 + dirs[b].y * 2 + dirs[c].y)), correctAnswers: new[] { colors[arrange[(a + 1) * 4 + b + 1, c]] }, questionSpriteRotation: 45f));
                 }
             }
         }

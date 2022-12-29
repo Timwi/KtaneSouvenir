@@ -1346,7 +1346,7 @@ namespace Souvenir
         [SouvenirQuestion("What was the acid’s volume in {0}?", "Neutralization", AnswerLayout.TwoColumns4Answers, "5", "10", "15", "20")]
         NeutralizationVolume,
 
-        [SouvenirQuestion(AnswerLayout.TwoColumns4Answers, "Which button flashed for the {1} stage in {0}?", "❖", Type = AnswerType.Sprites, SpriteField = "NonverbalSimonSprites")]
+        [SouvenirQuestion("Which button flashed for the {1} stage in {0}?", "❖", AnswerLayout.TwoColumns4Answers, IsEntireQuestionSprite = true, Type = AnswerType.Sprites, SpriteField = "NonverbalSimonSprites")]
         NonverbalSimonFlashes,
 
         [SouvenirQuestion("What was the encrypted word in {0}?", "Not Colored Switches", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "Adjust", "Anchor", "Bowtie", "Button", "Cipher", "Corner" })]

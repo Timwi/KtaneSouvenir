@@ -986,9 +986,9 @@ public partial class SouvenirModule : MonoBehaviour
 
     private static readonly AnswerType[] _standardAnswerTypes = Ut.GetEnumValues<AnswerType>().Where(a => (int) a >= 0).ToArray();
 
-    private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, float spriteRotation = 0f) =>
+    private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, float questionSpriteRotation = 0f) =>
         makeQuestion(question, moduleKey,
-            (attr, q, correct, answers) => new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), Fonts[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], attr.FontSize, FontTextures[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], FontMaterial, attr.Layout, questionSprite, spriteRotation),
+            (attr, q, correct, answers) => new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), Fonts[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], attr.FontSize, FontTextures[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], FontMaterial, attr.Layout, questionSprite, questionSpriteRotation),
             formatArgs, correctAnswers, preferredWrongAnswers, null, _standardAnswerTypes);
 
     private QandA makeQuestion(Question question, string moduleKey, Font font, Texture fontTexture, Sprite questionSprite = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null) =>

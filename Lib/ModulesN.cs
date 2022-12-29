@@ -104,33 +104,33 @@ public partial class SouvenirModule
     private IEnumerable<object> ProcessNonverbalSimon(KMBombModule module)
     {
         var comp = GetComponent(module, "NonverbalSimonHandler");
-        var fldSolved = GetField<bool>(comp, "isActive");
+        var fldIsActive = GetField<bool>(comp, "isActive");
 
-        while (!fldSolved.Get()) // isActive is set in KMBombModule.OnActivate, so we need to wait for it
+        while (!_isActivated)     // isActive is set in KMBombModule.OnActivate, so we need to wait for it
             yield return new WaitForSeconds(0.1f);
-        while (fldSolved.Get())
+        while (fldIsActive.Get())
             yield return new WaitForSeconds(0.1f);
         _modulesSolved.IncSafe(_NonverbalSimon);
 
-        List<string> flashes = GetMethod<List<string>>(comp, "GrabCombinedFlashes", 0, true).Invoke(new object[0]);
-        List<QandA> qs = new List<QandA>(flashes.Count);
-        string[] names = new string[] { "Red", "Orange", "Yellow", "Green" };
+        var flashes = GetMethod<List<string>>(comp, "GrabCombinedFlashes", 0, true).Invoke(new object[0]);
+        var qs = new List<QandA>(flashes.Count);
+        var names = new string[] { "Red", "Orange", "Yellow", "Green" };
 
-        for (int stage = 0; stage < flashes.Count; ++stage)
+        for (int stage = 0; stage < flashes.Count; stage++)
         {
             var name = $"{flashes.Count}-{stage + 1}";
-            Texture2D tex = NonverbalSimonQuestions.First(t => t.name.Contains(name));
+            var tex = NonverbalSimonQuestions.First(t => t.name.Equals(name));
 
             if (_moduleCounts.Get(_NonverbalSimon) > 1)
             {
                 var num = _modulesSolved.Get(_NonverbalSimon).ToString();
                 var tmp = new Texture2D(400, 320, TextureFormat.ARGB32, false);
                 tmp.SetPixels(tex.GetPixels());
-                tex = NonverbalSimonQuestions.First(t => t.name.Contains("Name"));
+                tex = NonverbalSimonQuestions.First(t => t.name.Equals("Name"));
                 tmp.SetPixels(40, 90, tex.width, tex.height, tex.GetPixels());
-                for (int digit = 0; digit < num.Length; ++digit)
+                for (var digit = 0; digit < num.Length; digit++)
                 {
-                    tex = NonverbalSimonQuestions.First(t => t.name.Contains($"d{num[digit]}"));
+                    tex = NonverbalSimonQuestions.First(t => t.name.Equals($"d{num[digit]}"));
                     tmp.SetPixels(100 + 40 * digit, 90, tex.width, tex.height, tex.GetPixels());
                 }
 
@@ -139,7 +139,7 @@ public partial class SouvenirModule
                 tex = tmp;
             }
 
-            Sprite q = Sprite.Create(tex, Rect.MinMaxRect(0f, 0f, 400f, 320f), new Vector2(.5f, .5f), 1280f, 1u, SpriteMeshType.Tight);
+            var q = Sprite.Create(tex, Rect.MinMaxRect(0f, 0f, 400f, 320f), new Vector2(.5f, .5f), 1280f, 1u, SpriteMeshType.Tight);
             q.name = $"NVSQ{stage}-{_moduleCounts.Get(_NonverbalSimon)}";
             qs.Add(makeQuestion(q, Question.NonverbalSimonFlashes, _NonverbalSimon, new[] { ordinal(stage + 1) }, new[] { NonverbalSimonSprites[Array.IndexOf(names, flashes[stage])] }, NonverbalSimonSprites));
         }
@@ -325,8 +325,8 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (var stage = 0; stage < colours.Length; stage++)
         {
-            qs.Add(makeQuestion(Question.NotKeypadColor, _NotKeypad, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { strings[(int)colours.GetValue(stage) - 1] }));
-            qs.Add(makeQuestion(Question.NotKeypadSymbol, _NotKeypad, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { KeypadSprites[(int)symbols.GetValue(buttons[stage])] }, preferredWrongAnswers: sprites));
+            qs.Add(makeQuestion(Question.NotKeypadColor, _NotKeypad, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { strings[(int) colours.GetValue(stage) - 1] }));
+            qs.Add(makeQuestion(Question.NotKeypadSymbol, _NotKeypad, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { KeypadSprites[(int) symbols.GetValue(buttons[stage])] }, preferredWrongAnswers: sprites));
         }
         addQuestions(module, qs);
     }
@@ -566,7 +566,7 @@ public partial class SouvenirModule
         var lightColor = 0;
         while (!propSolved.Get())
         {
-            lightColor = (int)propLightColour.Get();   // casting boxed enum value to int
+            lightColor = (int) propLightColour.Get();   // casting boxed enum value to int
             yield return null;  // Don’t wait for .1 seconds so we don’t miss it
         }
         _modulesSolved.IncSafe(_NotTheButton);
