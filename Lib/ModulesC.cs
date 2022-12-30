@@ -557,18 +557,16 @@ public partial class SouvenirModule
             !valid.Contains(v.y) ? $"y out of bounds (got: {v.y})" :
             v.y <= v.x ? $"y less than or equal to x (got: {v.x} {v.y})" : null);
 
+        _modulesSolved.IncSafe(_ConnectionCheck);
+        addQuestion(module, Question.ConnectionCheckNumbers, correctAnswers: queries.SelectMany(v => new string[] { $"{v.x} {v.y}", $"{v.y} {v.x}" }).ToArray());
+
         var L = GetArrayField<GameObject>(comp, "L", true).Get(expectedLength: 4);
         var R = GetArrayField<GameObject>(comp, "R", true).Get(expectedLength: 4);
-
         foreach (var num in Enumerable.Range(0, 4).SelectMany(i => new GameObject[] { L[i], R[i] }))
         {
             num.GetComponentInChildren<TextMesh>().text = "!";
             yield return new WaitForSeconds(.1f);
         }
-
-        _modulesSolved.IncSafe(_ConnectionCheck);
-
-        addQuestion(module, Question.ConnectionCheckNumbers, correctAnswers: queries.SelectMany(v => new string[] { $"{v.x} {v.y}", $"{v.y} {v.x}" }).ToArray());
     }
 
     private IEnumerable<object> ProcessCoordinates(KMBombModule module)
