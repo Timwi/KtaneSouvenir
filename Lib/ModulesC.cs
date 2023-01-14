@@ -131,7 +131,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_CheepCheckout);
 
-        var shuffledList = GetField<List<int>>(comp, "numberList", isPublic: true).Get();
+        var shuffledList = GetField<List<int>>(comp, "numberList", isPublic: false).Get();
         var birdsPresent = shuffledList.Take(5).Where(ix => ix < 26).Select(ix => GetAnswers(Question.CheepCheckoutBirds)[ix]).ToArray();
 
         addQuestions(module,
