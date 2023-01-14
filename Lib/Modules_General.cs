@@ -10,7 +10,7 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
-    const string Version = "4.72";
+    const string Version = "4.73";
 
     // The values here are the “ModuleType” property on the KMBombModule components.
     const string _1000Words = "OneThousandWords";
