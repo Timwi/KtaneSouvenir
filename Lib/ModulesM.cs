@@ -347,9 +347,9 @@ public partial class SouvenirModule
         for (int i = 0; i < 36; i++)
             qs.Add(makeQuestion(Question.MazeseekerCell, _Mazeseeker, questionSprite: Grid.GenerateGridSprite(new Coord(6, 6, i)), correctAnswers: new[] { nums[i / 6, i % 6].ToString() }));
         for (int i = 0; i < 36; i++)
-            qs.Add(makeQuestion(Question.MazeseekerStart, _Mazeseeker, correctAnswers: new[] { Grid.GenerateGridSprite(new Coord(6, 6, startColumn, startRow)) }));
+            qs.Add(makeQuestion(Question.MazeseekerStart, _Mazeseeker, correctAnswers: new[] { new Coord(6, 6, startColumn, startRow) }));
         for (int i = 0; i < 36; i++)
-            qs.Add(makeQuestion(Question.MazeseekerGoal, _Mazeseeker, correctAnswers: new[] { Grid.GenerateGridSprite(new Coord(6, 6, goalColumn, goalRow)) }));
+            qs.Add(makeQuestion(Question.MazeseekerGoal, _Mazeseeker, correctAnswers: new[] { new Coord(6, 6, goalColumn, goalRow) }));
 
         addQuestions(module, qs);
     }

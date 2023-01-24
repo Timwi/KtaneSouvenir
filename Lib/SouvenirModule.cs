@@ -755,7 +755,7 @@ public partial class SouvenirModule : MonoBehaviour
                     }
                     catch (Exception ex)
                     {
-                        Debug.LogFormat("<Souvenir #{0}> The {1} handler threw an exception ({2}):\n{3}", _moduleId, module.ModuleDisplayName, ex.GetType().FullName, ex.StackTrace);
+                        Debug.LogFormat("<Souvenir #{0}> The {1} handler threw an exception ({2}):\n{3}\n{4}", _moduleId, module.ModuleDisplayName, ex.GetType().FullName, ex.Message, ex.StackTrace);
                         _showWarning = true;
                         _coroutinesActive--;
                         yield break;
@@ -878,7 +878,7 @@ public partial class SouvenirModule : MonoBehaviour
         throw new AbandonModuleException("Type {0} does not contain {1} field {2}. Fields are: {3}", targetType, isPublic ? "public" : "non-public", name,
             targetType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(f => string.Format("{0} {1} {2}", f.IsPublic ? "public" : "private", f.FieldType.FullName, f.Name)).JoinString(", "));
 
-    found:
+        found:
         if (!typeof(T).IsAssignableFrom(fld.FieldType))
         {
             if (noThrow)
@@ -1000,7 +1000,7 @@ public partial class SouvenirModule : MonoBehaviour
         makeQuestion(question, moduleKey,
             (attr, q, correct, answers) => new QandASprite(attr.ModuleNameWithThe, q, correct, answers.ToArray(), questionSprite),
             formatArgs, correctAnswers, preferredWrongAnswers, GetAllSprites(question), AnswerType.Sprites);
-   
+
     private QandA makeQuestion(Sprite entireQuestionSprite, Question debugQuestion, string moduleKey, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null) =>
         makeQuestion(debugQuestion, moduleKey,
             (attr, q, correct, answers) => new QandAEntireSprite(q, attr.ModuleNameWithThe, correct, answers.ToArray(), entireQuestionSprite),
@@ -1139,7 +1139,7 @@ public partial class SouvenirModule : MonoBehaviour
     {
         var attr = _attributes[question];
         if (attr.Type != AnswerType.Sprites)
-            throw new InvalidOperationException("GetAllSprites() was called on a question that doesn’t use sprites or doesn’t have an associated sprites field.");
+            throw new AbandonModuleException("GetAllSprites() was called on a question that doesn’t use sprites or doesn’t have an associated sprites field.");
         if (attr.SpriteField == null)
             return null;
         if (!_spritesCache.TryGetValue(attr.SpriteField, out var result))
