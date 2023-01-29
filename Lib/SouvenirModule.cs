@@ -150,7 +150,7 @@ public partial class SouvenirModule : MonoBehaviour
             _config = new Config();
 
         var ignoredList = BossModule.GetIgnoredModules(Module, _defaultIgnoredModules);
-        Debug.LogFormat(@"<Souvenir #{0}> Ignored modules: {1}", _moduleId, ignoredList.JoinString(", "));
+        Debug.LogFormat(@"‹Souvenir #{0}› Ignored modules: {1}", _moduleId, ignoredList.JoinString(", "));
         _ignoredModules.UnionWith(ignoredList);
 
         if (_config.Language != null && Translation.AllTranslations.ContainsKey(_config.Language))
@@ -737,7 +737,7 @@ public partial class SouvenirModule : MonoBehaviour
         {
             _supportedModuleNames.Add(module.ModuleDisplayName);
             yield return null;  // Ensures that the module’s Start() method has run
-            Debug.LogFormat("<Souvenir #{1}> Module {0}: Start processing.", moduleType, _moduleId);
+            Debug.LogFormat("‹Souvenir #{1}› Module {0}: Start processing.", moduleType, _moduleId);
 
             // I’d much rather just put a ‘foreach’ loop inside a ‘try’ block, but Unity’s C# version doesn’t allow ‘yield return’ inside of ‘try’ blocks yet
             using (var e = iterator(module).GetEnumerator())
@@ -778,11 +778,11 @@ public partial class SouvenirModule : MonoBehaviour
                 Debug.LogFormat("[Souvenir #{0}] There was no question generated for {1}. Please report this to Timwi or the implementer for that module as this may indicate a bug in Souvenir. Remember to send them this logfile.", _moduleId, module.ModuleDisplayName);
                 _showWarning = true;
             }
-            Debug.LogFormat("<Souvenir #{1}> Module {0}: Finished processing.", moduleType, _moduleId);
+            Debug.LogFormat("‹Souvenir #{1}› Module {0}: Finished processing.", moduleType, _moduleId);
         }
         else
         {
-            Debug.LogFormat("<Souvenir #{1}> Module {0}: Not supported.", moduleType, _moduleId);
+            Debug.LogFormat("‹Souvenir #{1}› Module {0}: Not supported.", moduleType, _moduleId);
         }
 
         _coroutinesActive--;
@@ -970,7 +970,7 @@ public partial class SouvenirModule : MonoBehaviour
             Debug.LogFormat("<Souvenir #{0}> Empty question batch provided for {1}.", _moduleId, module.ModuleDisplayName);
             return;
         }
-        Debug.LogFormat("<Souvenir #{0}> Adding question batch:\n{1}", _moduleId, qs.Select(q => "    • " + q.DebugString).JoinString("\n"));
+        Debug.LogFormat("‹Souvenir #{0}› Adding question batch:\n{1}", _moduleId, qs.Select(q => "    • " + q.DebugString).JoinString("\n"));
         _questions.Add(new QuestionBatch
         {
             NumSolved = Bomb.GetSolvedModuleNames().Count,
@@ -1034,13 +1034,15 @@ public partial class SouvenirModule : MonoBehaviour
             return null;
         }
 
+        var allAnswersWasNull = allAnswers == null;
         allAnswers ??= attr.AllAnswers as T[];
         if (allAnswers != null)
         {
             var inconsistency = correctAnswers.Except(allAnswers).FirstOrDefault();
             if (inconsistency != null)
             {
-                Debug.LogErrorFormat("<Souvenir #{2}> Question {0}: invalid answer: {1}.", question, inconsistency.ToString() ?? "<null>", _moduleId);
+                Debug.LogErrorFormat("<Souvenir #{2}> Question {0}: invalid answer: {1}.\nallAnswers: {3}; [{4}]\ncorrectAnswers: [{5}]", question, inconsistency.ToString() ?? "<null>", _moduleId,
+                    allAnswersWasNull ? "was null" : "was not null", allAnswers.Select(s => $"{s} ({s.GetHashCode()})").JoinString(", "), correctAnswers.Select(s => $"{s} ({s.GetHashCode()})").JoinString(", "));
                 return null;
             }
             if (preferredWrongAnswers != null)
