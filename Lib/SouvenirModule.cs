@@ -1134,17 +1134,12 @@ public partial class SouvenirModule : MonoBehaviour
         ? throw new InvalidOperationException(string.Format("<Souvenir #{0}> Question {1} is missing from the _attributes dictionary.", _moduleId, question))
         : attr.AllAnswers;
 
-    private static readonly Dictionary<string, Sprite[]> _spritesCache = new Dictionary<string, Sprite[]>();
     private Sprite[] GetAllSprites(Question question)
     {
         var attr = _attributes[question];
         if (attr.Type != AnswerType.Sprites)
             throw new AbandonModuleException("GetAllSprites() was called on a question that doesn’t use sprites or doesn’t have an associated sprites field.");
-        if (attr.SpriteField == null)
-            return null;
-        if (!_spritesCache.TryGetValue(attr.SpriteField, out var result))
-            _spritesCache[attr.SpriteField] = result = GetField<Sprite[]>(this, attr.SpriteField, isPublic: true).Get();
-        return result;
+        return attr.SpriteField == null ? null : GetField<Sprite[]>(this, attr.SpriteField, isPublic: true).Get();
     }
 
     private string titleCase(string str) => str.Length < 1 ? str : char.ToUpperInvariant(str[0]) + str.Substring(1).ToLowerInvariant();
