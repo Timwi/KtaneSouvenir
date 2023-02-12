@@ -549,7 +549,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         DoubleColorColors,
 
-        [SouvenirQuestion("What was the digit on the {1} display in {0}?", "Double Digits", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+        [SouvenirQuestion("What was the most recent digit on the {1} display in {0}?", "Double Digits", AnswerLayout.ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
             ExampleExtraFormatArguments = new[] { "left", "right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         DoubleDigitsDisplays,
 
