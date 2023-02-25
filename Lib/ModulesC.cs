@@ -562,11 +562,15 @@ public partial class SouvenirModule
 
         var L = GetArrayField<GameObject>(comp, "L", true).Get(expectedLength: 4);
         var R = GetArrayField<GameObject>(comp, "R", true).Get(expectedLength: 4);
-        foreach (var num in Enumerable.Range(0, 4).SelectMany(i => new GameObject[] { L[i], R[i] }))
+        IEnumerator removeDisplays()
         {
-            num.GetComponentInChildren<TextMesh>().text = "!";
-            yield return new WaitForSeconds(.1f);
+            foreach (var num in Enumerable.Range(0, 4).SelectMany(i => new[] { L[i], R[i] }))
+            {
+                num.GetComponentInChildren<TextMesh>().text = "!";
+                yield return new WaitForSeconds(.1f);
+            }
         }
+        StartCoroutine(removeDisplays());
     }
 
     private IEnumerable<object> ProcessCoordinates(KMBombModule module)
