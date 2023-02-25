@@ -764,7 +764,7 @@ public partial class SouvenirModule : MonoBehaviour
                         break;
                     yield return e.Current;
 
-                    if (TwitchAbandonModule.Contains(module) && Environment.MachineName != "CORNFLOWER")    // CORNFLOWER = Timwi’s computer
+                    if (TwitchAbandonModule.Contains(module))
                     {
                         Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because Twitch Plays told me to.", _moduleId, module.ModuleDisplayName);
                         _coroutinesActive--;
