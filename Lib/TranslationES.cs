@@ -1696,8 +1696,8 @@ namespace Souvenir
             },
 
             // Double Digits
-            // What was the digit on the {1} display in {0}?
-            // What was the digit on the left display in Double Digits?
+            // What was the most recent digit on the {1} display in {0}?
+            // What was the most recent digit on the left display in Double Digits?
             [Question.DoubleDigitsDisplays] = new TranslationInfo
             {
                 QuestionText = "What was the digit on the {1} display in {0}?",
