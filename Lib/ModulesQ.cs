@@ -32,6 +32,30 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessQuickArithmetic(KMBombModule module)
+    {
+        var comp = GetComponent(module, "QuickArithmetic");
+        var fldSolved = GetField<bool>(comp, "ModuleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_QuickArithmetic);
+
+        var seqColors = GetArrayField<int>(comp, "ColorSequence").Get(expectedLength: 8);
+        var primSeqDigits = GetArrayField<int>(comp, "LeftSequenceN").Get(expectedLength: 8);
+        var secSeqDigits = GetArrayField<int>(comp, "RightSequence").Get(expectedLength: 8);
+        var colorRef = new[] { "red", "blue", "green", "yellow", "white", "black", "orange", "pink", "purple", "cyan", "brown" };
+        var allQuestions = new List<QandA>();
+        for (var x = 0; x < 8; x++)
+        {
+            allQuestions.Add(makeQuestion(Question.QuickArithmeticColors, _QuickArithmetic, formatArgs: new[] { ordinal(x + 1) }, correctAnswers: new[] { colorRef[seqColors[x]] }, preferredWrongAnswers: colorRef));
+            allQuestions.Add(makeQuestion(Question.QuickArithmeticPrimSecDigits, _QuickArithmetic, formatArgs: new[] { ordinal(x + 1), "primary" }, correctAnswers: new[] { primSeqDigits[x].ToString() }));
+            allQuestions.Add(makeQuestion(Question.QuickArithmeticPrimSecDigits, _QuickArithmetic, formatArgs: new[] { ordinal(x + 1), "secondary" }, correctAnswers: new[] { secSeqDigits[x].ToString() }));
+        }
+
+        addQuestions(module, allQuestions);
+    }
+
     private IEnumerable<object> ProcessQuintuples(KMBombModule module)
     {
         var comp = GetComponent(module, "quintuplesScript");

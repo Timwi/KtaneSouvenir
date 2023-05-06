@@ -155,6 +155,14 @@ namespace Souvenir
                 ModuleName = "Bola 9",
             },
 
+            // Abyss
+            // What was the {1} character displayed on {0}?
+            // What was the first character displayed on Abyss?
+            [Question.AbyssSeed] = new TranslationInfo
+            {
+                QuestionText = "What was the {1} character displayed on {0}?",
+            },
+
             // Accumulation
             // What was the background color on the {1} stage in {0}?
             // What was the background color on the first stage in Accumulation?
@@ -1194,6 +1202,14 @@ namespace Souvenir
             [Question.CoinageFlip] = new TranslationInfo
             {
                 QuestionText = "Which coin was flipped in {0}?",
+            },
+
+            // Color Addition
+            // What was {1}'s number in {0}?
+            // What was red's number in Color Addition?
+            [Question.ColorAdditionNumbers] = new TranslationInfo
+            {
+                QuestionText = "What was {1}'s number in {0}?",
             },
 
             // Color Braille
@@ -5584,6 +5600,14 @@ namespace Souvenir
                 QuestionText = "What was the {1} digit of the displayed number in {0}?",
             },
 
+            // Pie Flash
+            // What number was NOT displayed in {0}?
+            // What number was NOT displayed in Pie Flash?
+            [Question.PieFlashDigits] = new TranslationInfo
+            {
+                QuestionText = "What number was NOT displayed in {0}?",
+            },
+
             // Pigpen Cycle
             // What was the {1} in {0}?
             // What was the message in Pigpen Cycle?
@@ -5811,6 +5835,20 @@ namespace Souvenir
             [Question.QuaverArrows] = new TranslationInfo
             {
                 QuestionText = "What was the {1} sequence’s answer in {0}?",
+            },
+
+            // Quick Arithmetic
+            // What was the {1} color in the primary sequence in {0}?
+            // What was the first color in the primary sequence in Quick Arithmetic?
+            [Question.QuickArithmeticColors] = new TranslationInfo
+            {
+                QuestionText = "What was the {1} color in the primary sequence in {0}?",
+            },
+            // What was the {1} digit in the {2} sequence in {0}?
+            // What was the first digit in the primary sequence in Quick Arithmetic?
+            [Question.QuickArithmeticPrimSecDigits] = new TranslationInfo
+            {
+                QuestionText = "What was the {1} digit in the {2} sequence in {0}?",
             },
 
             // Quintuples
@@ -7725,6 +7763,45 @@ namespace Souvenir
                 QuestionText = "What was the answer in {0}?",
             },
 
+            // WhoOF
+            // What was the display in the {1} stage on {0}?
+            // What was the display in the first stage on WhoOF?
+            [Question.WhoOFDisplay] = new TranslationInfo
+            {
+                QuestionText = "What was the display in the {1} stage on {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["FIRST"] = "FIRST",
+                    ["OKAY"] = "OKAY",
+                    ["C"] = "C",
+                    ["BLANK"] = "BLANK",
+                    ["YOU"] = "YOU",
+                    ["READ"] = "READ",
+                    ["YOUR"] = "YOUR",
+                    ["UR"] = "UR",
+                    ["YES"] = "YES",
+                    ["LED"] = "LED",
+                    ["THEIR"] = "THEIR",
+                    ["RED"] = "RED",
+                    ["HIRE"] = "HIRE",
+                    ["THERE"] = "THERE",
+                    ["THEY"] = "THEY",
+                    ["THING"] = "THING",
+                    ["CEE"] = "CEE",
+                    ["LEED"] = "LEED",
+                    ["NO"] = "NO",
+                    ["HOLD"] = "HOLD",
+                    ["PLAY"] = "PLAY",
+                    ["LEAD"] = "LEAD",
+                    ["HARE"] = "HARE",
+                    ["HERE"] = "HERE",
+                    [" "] = " ",
+                    ["REED"] = "REED",
+                    ["SAYS"] = "SAYS",
+                    ["SEE"] = "SEE",
+                },
+            },
+
             // Who’s on First
             // What was the display in the {1} stage on {0}?
             // What was the display in the first stage on Who’s on First?
@@ -7764,6 +7841,47 @@ namespace Souvenir
                     ["YOU ARE"] = "YOU ARE",
                     ["YOU’RE"] = "YOU’RE",
                     ["YOUR"] = "YOUR",
+                },
+            },
+
+            // Who’s on Morse
+            // What word was transmitted in the {1} stage on {0}?
+            // What word was transmitted in the first stage on Who’s on Morse?
+            [Question.WhosOnMorseTransmitDisplay] = new TranslationInfo
+            {
+                QuestionText = "What word was transmitted in the {1} stage on {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["SHELL"] = "SHELL",
+                    ["HALLS"] = "HALLS",
+                    ["SLICK"] = "SLICK",
+                    ["TRICK"] = "TRICK",
+                    ["BOXES"] = "BOXES",
+                    ["LEAKS"] = "LEAKS",
+                    ["STROBE"] = "STROBE",
+                    ["BISTRO"] = "BISTRO",
+                    ["FLICK"] = "FLICK",
+                    ["BOMBS"] = "BOMBS",
+                    ["BREAK"] = "BREAK",
+                    ["BRICK"] = "BRICK",
+                    ["STEAK"] = "STEAK",
+                    ["STING"] = "STING",
+                    ["VECTOR"] = "VECTOR",
+                    ["BEATS"] = "BEATS",
+                    ["CURSE"] = "CURSE",
+                    ["NICE"] = "NICE",
+                    ["VERB"] = "VERB",
+                    ["NEARLY"] = "NEARLY",
+                    ["CREEK"] = "CREEK",
+                    ["TRIBE"] = "TRIBE",
+                    ["CYBER"] = "CYBER",
+                    ["CINEMA"] = "CINEMA",
+                    ["KOALA"] = "KOALA",
+                    ["WATER"] = "WATER",
+                    ["WHISK"] = "WHISK",
+                    ["MATTER"] = "MATTER",
+                    ["KEYS"] = "KEYS",
+                    ["STUCK"] = "STUCK",
                 },
             },
 

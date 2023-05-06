@@ -67,6 +67,25 @@ public partial class SouvenirModule
         return processColoredCiphers(module, "whiteCipher", Question.WhiteCipherAnswer, _WhiteCipher);
     }
 
+    private IEnumerable<object> ProcessWhoOF(KMBombModule module)
+    {
+        var comp = GetComponent(module, "whoOFScript");
+        var fldSolved = GetField<bool>(comp, "mod_Done");
+        var displayTextMesh = GetField<TextMesh>(comp, "Disp_Text", true);
+        var curStageField = GetField<int>(comp, "stage");
+        var storedDisplays = new string[2];
+        for (var x = 0; x < 2; x++)
+            while (curStageField.Get() == x + 1)
+            {
+                storedDisplays[x] = displayTextMesh.Get().text;
+                yield return new WaitForSeconds(0.1f);
+            }
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_WhoOF);
+        addQuestions(module, storedDisplays.Select((disp, stage) => makeQuestion(Question.WhoOFDisplay, _WhoOF, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { disp }, preferredWrongAnswers: storedDisplays)));
+    }
+
     private IEnumerable<object> ProcessWhosOnFirst(KMBombModule module)
     {
         var comp = GetComponent(module, "WhosOnFirstComponent");
@@ -97,6 +116,26 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(_WhosOnFirst);
         addQuestions(module, displayWords.Select((word, stage) => makeQuestion(Question.WhosOnFirstDisplay, _WhosOnFirst, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { word }, preferredWrongAnswers: displayWords)));
+    }
+
+    private IEnumerable<object> ProcessWhosOnMorse(KMBombModule module)
+    {
+        var comp = GetComponent(module, "WhosOnMorseScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var curStageField = GetField<int>(comp, "stage");
+        var wordBank = GetField<string[]>(comp, "aWords").Get(); // The entire word bank from Who's On Morse. 
+        var idxMorseWord = GetField<int>(comp, "lightMorsePos");
+        var storedIdxDisplays = new int[2];
+        for (var x = 0; x < 2; x++)
+            while (curStageField.Get() == x)
+            {
+                storedIdxDisplays[x] = idxMorseWord.Get();
+                yield return new WaitForSeconds(0.1f);
+            }
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_WhosOnMorse);
+        addQuestions(module, storedIdxDisplays.Select((idxDisp, stage) => makeQuestion(Question.WhosOnMorseTransmitDisplay, _WhosOnMorse, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { wordBank[idxDisp] }, preferredWrongAnswers: storedIdxDisplays.Select(a => wordBank[a]).ToArray())));
     }
 
     private IEnumerable<object> ProcessWire(KMBombModule module)
