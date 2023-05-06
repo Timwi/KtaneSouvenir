@@ -273,6 +273,21 @@ public partial class SouvenirModule
             preferredWrongAnswers: Enumerable.Range(0, 64).Select(i => "abcdefgh"[i % 8].ToString() + "87654321"[i / 8]).ToArray());
     }
 
+    private IEnumerable<object> ProcessColorAddition(KMBombModule module)
+    {
+        var script = GetComponent(module, "ColorAddition");
+        var modSolvedField = GetField<bool>(script, "moduleSolved");
+        var numbersField = GetField<string[]>(script, "numbers");
+        while (!modSolvedField.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_ColorAddition);
+        var numbersObtained = numbersField.Get();
+        var channelRefs = new[] { "red", "green", "blue", };
+        addQuestions(module, channelRefs.Select((chn, idx) => makeQuestion(Question.ColorAdditionNumbers, _ColorAddition, formatArgs: new[] { chn }, correctAnswers: new[] { numbersObtained[idx] })));
+
+    }
+
     private IEnumerable<object> ProcessColorBraille(KMBombModule module)
     {
         var comp = GetComponent(module, "ColorBrailleModule");

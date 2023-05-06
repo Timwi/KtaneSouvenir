@@ -22,6 +22,7 @@ public partial class SouvenirModule
     const string _3LEDs = "threeLEDsModule";
     const string _7 = "7";
     const string _9Ball = "GSNineBall";
+    const string _Abyss = "GSAbyss";
     const string _Accumulation = "accumulation";
     const string _AdventureGame = "spwizAdventureGame";
     const string _AffineCycle = "affineCycle";
@@ -78,6 +79,7 @@ public partial class SouvenirModule
     const string _Codenames = "codenames";
     const string _Coffeebucks = "coffeebucks";
     const string _Coinage = "Coinage";
+    const string _ColorAddition = "colorAddition";
     const string _ColorBraille = "ColorBrailleModule";
     const string _ColorDecoding = "Color Decoding";
     const string _ColoredKeys = "lgndColoredKeys";
@@ -295,6 +297,7 @@ public partial class SouvenirModule
     const string _PerspectivePegs = "spwizPerspectivePegs";
     const string _Phosphorescence = "Phosphorescence";
     const string _Pie = "pieModule";
+    const string _PieFlash = "pieFlash";
     const string _PigpenCycle = "pigpenCycle";
     const string _PinkButton = "PinkButtonModule";
     const string _PixelCipher = "pixelcipher";
@@ -310,6 +313,7 @@ public partial class SouvenirModule
     const string _PurpleButton = "PurpleButtonModule";
     const string _PuzzleIdentification = "GSPuzzleIdentification";
     const string _Quaver = "Quaver";
+    const string _QuickArithmetic = "QuickArithmetic";
     const string _Quintuples = "quintuples";
     const string _RailwayCargoLoading = "RailwayCargoLoading";
     const string _RainbowArrows = "ksmRainbowArrows";
@@ -434,7 +438,9 @@ public partial class SouvenirModule
     const string _Wavetapping = "Wavetapping";
     const string _WhatsOnSecond = "WhatsOnSecond";
     const string _WhiteCipher = "whiteCipher";
+    const string _WhoOF = "whoOF";
     const string _WhosOnFirst = "WhosOnFirst";
+    const string _WhosOnMorse = "whosOnMorseModule";
     const string _Wire = "wire";
     const string _WireOrdering = "kataWireOrdering";
     const string _WireSequence = "WireSequence";
@@ -463,6 +469,7 @@ public partial class SouvenirModule
             { _3LEDs, Process3LEDs },
             { _7, Process7 },
             { _9Ball, Process9Ball },
+            { _Abyss, ProcessAbyss },
             { _Accumulation, ProcessAccumulation },
             { _AdventureGame, ProcessAdventureGame },
             { _AffineCycle, ProcessAffineCycle },
@@ -519,6 +526,7 @@ public partial class SouvenirModule
             { _Codenames, ProcessCodenames },
             { _Coffeebucks, ProcessCoffeebucks },
             { _Coinage, ProcessCoinage },
+            { _ColorAddition, ProcessColorAddition },
             { _ColorBraille, ProcessColorBraille },
             { _ColorDecoding, ProcessColorDecoding },
             { _ColoredKeys, ProcessColoredKeys },
@@ -736,6 +744,7 @@ public partial class SouvenirModule
             { _PerspectivePegs, ProcessPerspectivePegs },
             { _Phosphorescence, ProcessPhosphorescence },
             { _Pie, ProcessPie },
+            { _PieFlash, ProcessPieFlash },
             { _PigpenCycle, ProcessPigpenCycle },
             { _PinkButton, ProcessPinkButton },
             { _PixelCipher, ProcessPixelCipher },
@@ -751,6 +760,7 @@ public partial class SouvenirModule
             { _PurpleButton, ProcessPurpleButton },
             { _PuzzleIdentification, ProcessPuzzleIdentification },
             { _Quaver, ProcessQuaver },
+            { _QuickArithmetic, ProcessQuickArithmetic },
             { _Quintuples, ProcessQuintuples },
             { _RailwayCargoLoading, ProcessRailwayCargoLoading },
             { _RainbowArrows, ProcessRainbowArrows },
@@ -875,7 +885,9 @@ public partial class SouvenirModule
             { _Wavetapping, ProcessWavetapping },
             { _WhatsOnSecond, ProcessWhatsOnSecond },
             { _WhiteCipher, ProcessWhiteCipher },
+            { _WhoOF, ProcessWhoOF },
             { _WhosOnFirst, ProcessWhosOnFirst },
+            { _WhosOnMorse, ProcessWhosOnMorse },
             { _Wire, ProcessWire },
             { _WireOrdering, ProcessWireOrdering },
             { _WireSequence, ProcessWireSequence },

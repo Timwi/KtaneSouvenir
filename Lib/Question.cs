@@ -49,6 +49,10 @@ namespace Souvenir
         [AnswerGenerator.Strings("A-G")]
         _9BallNumbers,
 
+        [SouvenirQuestion("What was the {1} character displayed on {0}?", "Abyss", AnswerLayout.ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings(1, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")]
+        AbyssSeed,
+
         [SouvenirQuestion("What was the background color on the {1} stage in {0}?", "Accumulation", AnswerLayout.ThreeColumns6Answers, "Blue", "Brown", "Green", "Grey", "Lime", "Orange", "Pink", "Red", "White", "Yellow", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         AccumulationBackgroundColor,
@@ -369,6 +373,10 @@ namespace Souvenir
 
         [SouvenirQuestion("Which coin was flipped in {0}?", "Coinage", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "e4", "h5", "d4", "h4", "c4", "h3", "c3", "g2", "f3", "h1", "f7" })]
         CoinageFlip,
+
+        [SouvenirQuestion("What was {1}'s number in {0}?", "Color Addition", AnswerLayout.ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings(3, "0123456789")]
+        ColorAdditionNumbers,
 
         [SouvenirQuestion("What mangling was applied in {0}?", "Color Braille", AnswerLayout.OneColumn4Answers, "Top row shifted to the right", "Top row shifted to the left", "Middle row shifted to the right", "Middle row shifted to the left", "Bottom row shifted to the right", "Bottom row shifted to the left", "Each letter upside-down", "Each letter horizontally flipped", "Each letter vertically flipped", "Dots are inverted")]
         ColorBrailleMangling,
@@ -1593,6 +1601,9 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9)]
         PieDigits,
 
+        [SouvenirQuestion("What number was NOT displayed in {0}?", "Pie Flash", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "31415", "62643", "28410", "93105", })]
+        PieFlashDigits,
+
         [SouvenirQuestion("What was the {1} in {0}?", "Pigpen Cycle", AnswerLayout.TwoColumns4Answers, "Advanced", "Addition", "Allotype", "Allotted", "Binaries", "Billions", "Bullhorn", "Bulwarks", "Ciphered", "Circuits", "Commando", "Compiler", "Decrypts", "Division", "Dispatch", "Discrete", "Encipher", "Entrance", "Equators", "Equalise", "Finished", "Findings", "Formulae", "Fortunes", "Gauntlet", "Gambling", "Gatepost", "Gateways", "Hazarded", "Haziness", "Huntress", "Hungrier", "Indicate", "Indigoes", "Illusory", "Illuding", "Jigsawed", "Jimmying", "Junkyard", "Juncture", "Kilowatt", "Kinetics", "Knocking", "Knowable", "Limiting", "Linearly", "Linkwork", "Lingered", "Monogram", "Monotone", "Multiton", "Mulcting", "Nanogram", "Nanotube", "Numerous", "Numerate", "Octangle", "Octuples", "Obstruct", "Obstacle", "Progress", "Projects", "Postsync", "Positron", "Quadrant", "Quadrics", "Quirkish", "Quitters", "Reversed", "Revolved", "Rotators", "Relative", "Starting", "Standard", "Stockade", "Stoccata", "Triggers", "Triangle", "Tomogram", "Tomahawk", "Underrun", "Underlie", "Ulterior", "Ultrahot", "Vicinity", "Viceless", "Volition", "Voluming", "Wingding", "Winnable", "Whatness", "Whatsits", "Yellowed", "Yeasayer", "Yokozuna", "Yourself", "Zippered", "Zigzaggy", "Zymology", "Zymogene",
           ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PigpenCycleWord,
@@ -1674,6 +1685,14 @@ namespace Souvenir
         [SouvenirQuestion("What was the {1} sequence’s answer in {0}?", "Quaver", AnswerLayout.OneColumn4Answers, ExampleAnswers = new[] { "4", "10", "87", "320", "3, 3, 2, 3", "87, 85, 82, 84" },
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         QuaverArrows,
+
+        [SouvenirQuestion("What was the {1} color in the primary sequence in {0}?", "Quick Arithmetic", AnswerLayout.ThreeColumns6Answers,
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1, ExampleAnswers = new[] { "red", "blue", "green", "yellow", "white", "black", "orange", "pink", "purple", "cyan", "brown" } )]
+        QuickArithmeticColors,
+        [SouvenirQuestion("What was the {1} digit in the {2} sequence in {0}?", "Quick Arithmetic", AnswerLayout.ThreeColumns6Answers,
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal, "primary", QandA.Ordinal, "secondary" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        [AnswerGenerator.Integers(0, 9)]
+        QuickArithmeticPrimSecDigits,
 
         [SouvenirQuestion("What was the {1} digit in the {2} slot in {0}?", "Quintuples", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 2)]
@@ -2277,9 +2296,17 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
         WhiteCipherAnswer,
 
+        [SouvenirQuestion("What was the display in the {1} stage on {0}?", "WhoOF", AnswerLayout.ThreeColumns6Answers, "FIRST", "OKAY", "C", "BLANK", "YOU", "READ", "YOUR", "UR", "YES", "LED", "THEIR", "RED", "HIRE", "THERE", "THEY", "THING", "CEE", "LEED", "NO", "HOLD", "PLAY", "LEAD" , "HARE", "HERE", " ", "REED", "SAYS", "SEE", TranslateAnswers = true,
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        WhoOFDisplay,
+
         [SouvenirQuestion("What was the display in the {1} stage on {0}?", "Who’s on First", AnswerLayout.ThreeColumns6Answers, "", "BLANK", "C", "CEE", "DISPLAY", "FIRST", "HOLD ON", "LEAD", "LED", "LEED", "NO", "NOTHING", "OK", "OKAY", "READ", "RED", "REED", "SAY", "SAYS", "SEE", "THEIR", "THERE", "THEY ARE", "THEY’RE", "U", "UR", "YES", "YOU", "YOU ARE", "YOU’RE", "YOUR", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         WhosOnFirstDisplay,
+
+        [SouvenirQuestion("What word was transmitted in the {1} stage on {0}?", "Who’s on Morse", AnswerLayout.ThreeColumns6Answers, "SHELL", "HALLS", "SLICK", "TRICK", "BOXES", "LEAKS", "STROBE", "BISTRO", "FLICK", "BOMBS", "BREAK", "BRICK", "STEAK", "STING", "VECTOR", "BEATS", "CURSE", "NICE", "VERB", "NEARLY", "CREEK", "TRIBE", "CYBER", "CINEMA", "KOALA", "WATER", "WHISK", "MATTER", "KEYS", "STUCK", TranslateAnswers = true,
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        WhosOnMorseTransmitDisplay,
 
         [SouvenirQuestion("What was the color of the {1} dial in {0}?", "Wire", AnswerLayout.ThreeColumns6Answers, "blue", "green", "grey", "orange", "purple", "red", TranslateAnswers = true, TranslateFormatArgs = new[] { true },
             ExampleExtraFormatArguments = new[] { "top", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]

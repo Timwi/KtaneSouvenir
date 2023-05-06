@@ -7,6 +7,17 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
+    private IEnumerable<object> ProcessAbyss(KMBombModule module)
+    {
+        var comp = GetComponent(module, "AbyssScript");
+        var fldSolved = GetField<bool>(comp, "Solved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        var seedAbyss = GetField<string>(comp, "SeedVar").Get();
+        _modulesSolved.IncSafe(_Abyss);
+        addQuestions(module, seedAbyss.Select((aChar, idx) => makeQuestion(Question.AbyssSeed, _Abyss, formatArgs: new[] { ordinal(idx + 1) } , correctAnswers: new[] { aChar.ToString() })));
+    }
+
     private IEnumerable<object> ProcessAccumulation(KMBombModule module)
     {
         var comp = GetComponent(module, "accumulationScript");

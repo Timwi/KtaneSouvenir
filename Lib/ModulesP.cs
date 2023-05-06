@@ -307,6 +307,25 @@ public partial class SouvenirModule
         addQuestions(module, digits.Select((digit, ix) => makeQuestion(Question.PieDigits, _Pie, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { digit }, preferredWrongAnswers: digits)));
     }
 
+    private IEnumerable<object> ProcessPieFlash(KMBombModule module)
+    {
+        var comp = GetComponent(module, "pieFlashScript");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+        var digits = GetArrayField<string>(comp, "codes").Get(expectedLength: 3);
+        
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_PieFlash);
+        // Create a valid answer in pi that does not overlap with any of the other strings.
+        var pistring = GetField<string>(comp, "pi").Get();
+        var lengthPiString = pistring.Length;
+        var selectedPieString = pistring.Substring(Enumerable.Range(0, lengthPiString - 5).PickRandom(), 5);
+        while (digits.Contains(selectedPieString))
+            selectedPieString = pistring.Substring(Enumerable.Range(0, lengthPiString - 5).PickRandom(), 5);
+
+        addQuestions(module, makeQuestion(Question.PieFlashDigits, _PieFlash, correctAnswers: new[] { selectedPieString }, preferredWrongAnswers: digits));
+    }
+
     private IEnumerable<object> ProcessPigpenCycle(KMBombModule module)
     {
         return processSpeakingEvilCycle1(module, "PigpenCycleScript", Question.PigpenCycleWord, _PigpenCycle);
