@@ -23,7 +23,6 @@ public partial class SouvenirModule : MonoBehaviour
     public KMBombModule Module;
     public KMAudio Audio;
     public KMBossModule BossModule;
-    public KMModSettings ModSettings;
     public KMSelectable[] Answers;
     public GameObject AnswersParent;
     public GameObject[] TpNumbers;
@@ -112,42 +111,9 @@ public partial class SouvenirModule : MonoBehaviour
 
         Debug.LogFormat(@"[Souvenir #{0}] Souvenir version: {1}", _moduleId, Version);
 
-        if (!string.IsNullOrEmpty(ModSettings.Settings))
-        {
-            bool rewriteFile;
-            try
-            {
-                _config = JsonConvert.DeserializeObject<Config>(ModSettings.Settings);
-                if (_config != null)
-                {
-                    var dictionary = JsonConvert.DeserializeObject<IDictionary<string, object>>(ModSettings.Settings);
-                    object key;
-                    // Rewrite the file if any keys have been added or removed in TweaksEditorSettings
-                    var listings = ((List<Dictionary<string, object>>) Config.TweaksEditorSettings[0]["Listings"]);
-                    rewriteFile = listings.Any(o => o.TryGetValue("Key", out key) && !dictionary.ContainsKey((string) key)) ||
-                        dictionary.Any(p => !listings.Any(o => o.TryGetValue("Key", out key) && key.Equals(p.Key)));
-                }
-                else
-                {
-                    _config = new Config();
-                    rewriteFile = true;
-                }
-            }
-            catch (JsonSerializationException ex)
-            {
-                Debug.LogErrorFormat("<Souvenir #{0}> The mod settings file is invalid.", _moduleId);
-                Debug.LogException(ex, this);
-                _config = new Config();
-                rewriteFile = true;
-            }
-            if (rewriteFile && !string.IsNullOrEmpty(ModSettings.SettingsPath) && !Application.isEditor)
-            {
-                using var writer = new StreamWriter(ModSettings.SettingsPath);
-                new JsonSerializer() { Formatting = Formatting.Indented }.Serialize(writer, _config);
-            }
-        }
-        else
-            _config = new Config();
+        // Use Souvenir-settings.txt as opposed to SouvenirSettings.json for existing settings
+        ModSettings<Config> modConfig = new ModSettings<Config>("Souvenir-settings");
+        _config = modConfig.Read();
 
         var ignoredList = BossModule.GetIgnoredModules(Module, _defaultIgnoredModules);
         Debug.LogFormat(@"‹Souvenir #{0}› Ignored modules: {1}", _moduleId, ignoredList.JoinString(", "));

@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 11496072}
   - component: {fileID: 11489182}
   - component: {fileID: 114880811013771744}
-  - component: {fileID: 114273640170527056}
   m_Layer: 0
   m_Name: SouvenirModule
   m_TagString: Untagged
@@ -263,7 +262,6 @@ MonoBehaviour:
   Module: {fileID: 11429752}
   Audio: {fileID: 11496072}
   BossModule: {fileID: 114880811013771744}
-  ModSettings: {fileID: 114273640170527056}
   Answers:
   - {fileID: 114000014135153358}
   - {fileID: 114000013579694808}
@@ -3480,19 +3478,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShaderNames:
   - Sprites/Default
---- !u!114 &114273640170527056
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 127088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -289456416, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Settings: 
-  SettingsPath: 
 --- !u!114 &114302481683170714
 MonoBehaviour:
   m_ObjectHideFlags: 1

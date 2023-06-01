@@ -103,6 +103,7 @@
     <Compile Include="AbandonModuleException.cs" />
     <Compile Include="Coord.cs" />
     <Compile Include="Grid.cs" />
+    <Compile Include="ModSettings.cs" />
     <Compile Include="Modules0.cs" />
     <Compile Include="ModulesA.cs" />
     <Compile Include="ModulesB.cs" />
