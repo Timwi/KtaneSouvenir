@@ -125,9 +125,10 @@ public partial class SouvenirModule
         var curStageField = GetField<int>(comp, "stage");
         var wordBank = GetField<string[]>(comp, "aWords").Get(); // The entire word bank from Who's On Morse. 
         var idxMorseWord = GetField<int>(comp, "lightMorsePos");
-        var storedIdxDisplays = new int[2];
-        for (var x = 0; x < 2; x++)
-            while (curStageField.Get() == x)
+        var storedIdxDisplays = new int?[3];
+
+        for (var x = 0; x < 3 && !fldSolved.Get(); x++)
+            while (curStageField.Get() == x && !fldSolved.Get())
             {
                 storedIdxDisplays[x] = idxMorseWord.Get();
                 yield return new WaitForSeconds(0.1f);
@@ -135,7 +136,12 @@ public partial class SouvenirModule
         while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
         _modulesSolved.IncSafe(_WhosOnMorse);
-        addQuestions(module, storedIdxDisplays.Select((idxDisp, stage) => makeQuestion(Question.WhosOnMorseTransmitDisplay, _WhosOnMorse, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { wordBank[idxDisp] }, preferredWrongAnswers: storedIdxDisplays.Select(a => wordBank[a]).ToArray())));
+
+        var qs = new List<QandA>();
+        for (var stage = 0; stage < storedIdxDisplays.Length; stage++)
+            if (storedIdxDisplays[stage] != null)
+                qs.Add(makeQuestion(Question.WhosOnMorseTransmitDisplay, _WhosOnMorse, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { wordBank[storedIdxDisplays[stage].Value] }, preferredWrongAnswers: storedIdxDisplays.Select(a => a == null ? null : wordBank[a.Value]).Where(s => s != null).ToArray()));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessWire(KMBombModule module)

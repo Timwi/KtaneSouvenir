@@ -1059,7 +1059,7 @@ public partial class SouvenirModule
         }
 
         // Prefer names of supported modules on the bomb other than Souvenir.
-        IEnumerable<string> modules = _supportedModuleNames.Except(new[] { "Souvenir" });
+        IEnumerable<string> modules = _supportedModuleNames.Except(new[] { "Souvenir" }).Select(m => m.Replace("'", "’"));
         if (_supportedModuleNames.Count < 5)
         {
             // If there are less than 4 eligible modules, fill the remaining spaces with random other modules.
