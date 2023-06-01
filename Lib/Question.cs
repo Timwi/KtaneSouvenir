@@ -1601,7 +1601,7 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9)]
         PieDigits,
 
-        [SouvenirQuestion("What number was NOT displayed in {0}?", "Pie Flash", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "31415", "62643", "28410", "93105", })]
+        [SouvenirQuestion("What number was not displayed in {0}?", "Pie Flash", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "31415", "62643", "28410", "93105" })]
         PieFlashDigits,
 
         [SouvenirQuestion("What was the {1} in {0}?", "Pigpen Cycle", AnswerLayout.TwoColumns4Answers, "Advanced", "Addition", "Allotype", "Allotted", "Binaries", "Billions", "Bullhorn", "Bulwarks", "Ciphered", "Circuits", "Commando", "Compiler", "Decrypts", "Division", "Dispatch", "Discrete", "Encipher", "Entrance", "Equators", "Equalise", "Finished", "Findings", "Formulae", "Fortunes", "Gauntlet", "Gambling", "Gatepost", "Gateways", "Hazarded", "Haziness", "Huntress", "Hungrier", "Indicate", "Indigoes", "Illusory", "Illuding", "Jigsawed", "Jimmying", "Junkyard", "Juncture", "Kilowatt", "Kinetics", "Knocking", "Knowable", "Limiting", "Linearly", "Linkwork", "Lingered", "Monogram", "Monotone", "Multiton", "Mulcting", "Nanogram", "Nanotube", "Numerous", "Numerate", "Octangle", "Octuples", "Obstruct", "Obstacle", "Progress", "Projects", "Postsync", "Positron", "Quadrant", "Quadrics", "Quirkish", "Quitters", "Reversed", "Revolved", "Rotators", "Relative", "Starting", "Standard", "Stockade", "Stoccata", "Triggers", "Triangle", "Tomogram", "Tomahawk", "Underrun", "Underlie", "Ulterior", "Ultrahot", "Vicinity", "Viceless", "Volition", "Voluming", "Wingding", "Winnable", "Whatness", "Whatsits", "Yellowed", "Yeasayer", "Yokozuna", "Yourself", "Zippered", "Zigzaggy", "Zymology", "Zymogene",
@@ -1686,8 +1686,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         QuaverArrows,
 
-        [SouvenirQuestion("What was the {1} color in the primary sequence in {0}?", "Quick Arithmetic", AnswerLayout.ThreeColumns6Answers,
-            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1, ExampleAnswers = new[] { "red", "blue", "green", "yellow", "white", "black", "orange", "pink", "purple", "cyan", "brown" } )]
+        [SouvenirQuestion("What was the {1} color in the primary sequence in {0}?", "Quick Arithmetic", AnswerLayout.ThreeColumns6Answers, "red", "blue", "green", "yellow", "white", "black", "orange", "pink", "purple", "cyan", "brown",
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         QuickArithmeticColors,
         [SouvenirQuestion("What was the {1} digit in the {2} sequence in {0}?", "Quick Arithmetic", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal, "primary", QandA.Ordinal, "secondary" }, ExampleExtraFormatArgumentGroupSize = 2)]
@@ -2296,7 +2296,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
         WhiteCipherAnswer,
 
-        [SouvenirQuestion("What was the display in the {1} stage on {0}?", "WhoOF", AnswerLayout.ThreeColumns6Answers, "FIRST", "OKAY", "C", "BLANK", "YOU", "READ", "YOUR", "UR", "YES", "LED", "THEIR", "RED", "HIRE", "THERE", "THEY", "THING", "CEE", "LEED", "NO", "HOLD", "PLAY", "LEAD" , "HARE", "HERE", " ", "REED", "SAYS", "SEE", TranslateAnswers = true,
+        [SouvenirQuestion("What was the display in the {1} stage on {0}?", "WhoOF", AnswerLayout.ThreeColumns6Answers, "FIRST", "OKAY", "C", "BLANK", "YOU", "READ", "YOUR", "UR", "YES", "LED", "THEIR", "RED", "HIRE", "THERE", "THEY", "THING", "CEE", "LEED", "NO", "HOLD", "PLAY", "LEAD", "HARE", "HERE", " ", "REED", "SAYS", "SEE", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         WhoOFDisplay,
 

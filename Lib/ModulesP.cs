@@ -312,18 +312,15 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "pieFlashScript");
         var fldSolved = GetField<bool>(comp, "_moduleSolved");
         var digits = GetArrayField<string>(comp, "codes").Get(expectedLength: 3);
-        
+
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_PieFlash);
-        // Create a valid answer in pi that does not overlap with any of the other strings.
-        var pistring = GetField<string>(comp, "pi").Get();
-        var lengthPiString = pistring.Length;
-        var selectedPieString = pistring.Substring(Enumerable.Range(0, lengthPiString - 5).PickRandom(), 5);
-        while (digits.Contains(selectedPieString))
-            selectedPieString = pistring.Substring(Enumerable.Range(0, lengthPiString - 5).PickRandom(), 5);
 
-        addQuestions(module, makeQuestion(Question.PieFlashDigits, _PieFlash, correctAnswers: new[] { selectedPieString }, preferredWrongAnswers: digits));
+        // Find valid answers within pi that do not overlap with any of the other strings
+        var piString = GetField<string>(comp, "pi").Get();
+        var validAnswers = Enumerable.Range(0, piString.Length - 5).Select(ix => piString.Substring(ix, 5)).Where(sps => !digits.Contains(sps)).ToArray();
+        addQuestions(module, makeQuestion(Question.PieFlashDigits, _PieFlash, correctAnswers: validAnswers, preferredWrongAnswers: digits));
     }
 
     private IEnumerable<object> ProcessPigpenCycle(KMBombModule module)

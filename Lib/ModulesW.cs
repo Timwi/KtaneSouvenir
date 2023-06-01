@@ -71,7 +71,7 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "whoOFScript");
         var fldSolved = GetField<bool>(comp, "mod_Done");
-        var displayTextMesh = GetField<TextMesh>(comp, "Disp_Text", true);
+        var displayTextMesh = GetField<TextMesh>(comp, "Disp_Text", isPublic: true);
         var curStageField = GetField<int>(comp, "stage");
         var storedDisplays = new string[2];
         for (var x = 0; x < 2; x++)

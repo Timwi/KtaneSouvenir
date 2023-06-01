@@ -5577,8 +5577,8 @@ namespace Souvenir
             },
 
             // Pie Flash
-            // What number was NOT displayed in {0}?
-            // What number was NOT displayed in Pie Flash?
+            // What number was not displayed in {0}?
+            // What number was not displayed in Pie Flash?
             [Question.PieFlashDigits] = new TranslationInfo
             {
                 QuestionText = "What number was NOT displayed in {0}?",

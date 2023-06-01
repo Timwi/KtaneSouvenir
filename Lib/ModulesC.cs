@@ -277,15 +277,14 @@ public partial class SouvenirModule
     {
         var script = GetComponent(module, "ColorAddition");
         var modSolvedField = GetField<bool>(script, "moduleSolved");
-        var numbersField = GetField<string[]>(script, "numbers");
+        var numbersField = GetArrayField<string>(script, "numbers");
         while (!modSolvedField.Get())
             yield return new WaitForSeconds(.1f);
 
         _modulesSolved.IncSafe(_ColorAddition);
-        var numbersObtained = numbersField.Get();
-        var channelRefs = new[] { "red", "green", "blue", };
+        var numbersObtained = numbersField.Get(expectedLength: 3);
+        var channelRefs = new[] { "red", "green", "blue" };
         addQuestions(module, channelRefs.Select((chn, idx) => makeQuestion(Question.ColorAdditionNumbers, _ColorAddition, formatArgs: new[] { chn }, correctAnswers: new[] { numbersObtained[idx] })));
-
     }
 
     private IEnumerable<object> ProcessColorBraille(KMBombModule module)
