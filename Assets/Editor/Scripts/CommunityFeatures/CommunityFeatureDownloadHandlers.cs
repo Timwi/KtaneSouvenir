@@ -35,6 +35,7 @@ public partial class CommunityFeaturesDownloader
         protected WWW Query { get; private set; }
         
         public string Filename;
+        public bool IsSourceCode;
 
         private ulong Bytes;
         private string ConvertedSize;
@@ -51,8 +52,14 @@ public partial class CommunityFeaturesDownloader
                     return true;
                 if (Query.isDone)
                 {
-                    Finish();
-                    Query = null;
+                    try
+                    {
+                        Finish();
+                    }
+                    finally
+                    {
+                        Query = null;
+                    }
                     return true;
                 }
                 return false;
@@ -68,7 +75,9 @@ public partial class CommunityFeaturesDownloader
                     return LastConvertedProgress;
                 DownloadProgress prog;
                 prog.Progress = progress;
-                prog.ConvertedProgress = String.Format("({0} / {1})", Convert((ulong)(Bytes * LastProgress)), ConvertedSize);
+                prog.ConvertedProgress = Bytes > 0
+                    ? String.Format("({0} / {1})", Convert((ulong)(Bytes * LastProgress)), ConvertedSize)
+                    : String.Empty;
                 LastProgress = progress;
                 LastConvertedProgress = prog;
                 return prog;
@@ -79,7 +88,8 @@ public partial class CommunityFeaturesDownloader
         {
             Query = new WWW(URL);
             Bytes = bytes;
-            ConvertedSize = Convert(Bytes);
+            if(Bytes > 0)
+                ConvertedSize = Convert(Bytes);
         }
         
         protected void EnsureDirectoryExists(string dir)
@@ -161,6 +171,22 @@ public partial class CommunityFeaturesDownloader
             }
         }
 
+        private static IEnumerable<ZipEntry> GetEntries(ZipFile zip, string root)
+        {
+            var rootLength = root.Length;
+            foreach (var e in zip.ToArray())
+            {
+                if (e.FileName.Length < rootLength)
+                    continue;
+                var name = e.FileName.Substring(rootLength);
+                if (!string.IsNullOrEmpty(name))
+                {
+                    e.FileName = name;
+                    yield return e;
+                }
+            }
+        }
+
         protected override void Finish()
         {
             var directory = Path.Combine(DataPath, "../Temp");
@@ -168,29 +194,38 @@ public partial class CommunityFeaturesDownloader
             NotImplementedException error = null;
             if(!Directory.Exists(directory))
                 Directory.CreateDirectory(directory);
-            File.WriteAllBytes(zip, Query.bytes);
+            try
+            {
+                File.WriteAllBytes(zip, Query.bytes);
+            }
+            catch(IOException)
+            {
+                return;
+            }
             using (var file = ZipFile.Read(zip))
             {
+                var root = IsSourceCode ? file.First().FileName : String.Empty;
                 foreach(var target in Feature.ZipTargets)
                 {
-                    var target_location = target.Target;
+                    var target_location = root + target.Target;
                     var location = target.Location;
                     var TargetType = target.TargetType;
                     var filename = Path.GetFileName(target_location);
                     var modkitLocation = Path.Combine(DataPath, location);
                     EnsureDirectoryExists(location);
-                    if (target_location == "*")
+                    if (target_location == root + "*")
                     {
-                        file.ExtractAll(modkitLocation, ExtractExistingFileAction.OverwriteSilently);
-                        Import(location);
+                        foreach(var e in GetEntries(file, root))
+                            e.Extract(modkitLocation, ExtractExistingFileAction.OverwriteSilently);
+                        //Import(location);
                     }
                     else switch (TargetType)
                     {
                         case FeatureInfo.ZipTarget.ZipTargetType.Directory:
                             EnsureDirectoryExists(location);
-                            foreach (var e in file.Where(e => e.FileName.StartsWith(target_location)))
+                            foreach (var e in GetEntries(file, root).Where(e => e.FileName.StartsWith(target.Target)))
                                 e.Extract(modkitLocation, ExtractExistingFileAction.OverwriteSilently);
-                            Import(Path.Combine(location, filename));
+                            //Import(Path.Combine(location, filename));
                             break;
                         case FeatureInfo.ZipTarget.ZipTargetType.File:
                             var entry = file[target_location];

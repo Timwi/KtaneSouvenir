@@ -86,7 +86,7 @@ namespace KModkit
         		var fieldMember = type.GetCachedMember<FieldInfo>(member);
         		var propertyMember = type.GetCachedMember<PropertyInfo>(member);
         
-        		return (T) ((fieldMember != null ? fieldMember.GetValue(target) : default(T)) ?? (propertyMember != null ? propertyMember.GetValue(target, null) : default(T)));
+			return (T) (fieldMember != null ? fieldMember.GetValue(target) : propertyMember != null ? propertyMember.GetValue(target, null) : default(T));
         	}
         
         	public static void SetValue(this Type type, string member, object value, object target = null)

@@ -59,6 +59,8 @@ public static class GameFixes
     
     public static void UpdateChildrenProperly(this KMSelectable selectable, KMSelectable childToSelect = null)
     {
+        if(selectable == null)
+            return;
         foreach (var child in selectable.Children)
             child.UpdateSettings();
         selectable.UpdateSettings();
@@ -67,7 +69,7 @@ public static class GameFixes
 
     public static void UpdateSettings(this KMSelectable selectable)
     {
-        if (CopySettingsFromProxyMethod != null)
+        if (selectable != null && CopySettingsFromProxyMethod != null)
             CopySettingsFromProxyMethod.Invoke(
                 selectable.GetComponent(ModSelectableType) ?? selectable.gameObject.AddComponent(ModSelectableType),
                 new object[0]);

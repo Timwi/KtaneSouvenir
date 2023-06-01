@@ -143,7 +143,7 @@ public class WorkshopEditorWindow : EditorWindow
                 EditorGUILayout.HelpBox("Change notes must be entered before publishing to Workshop", MessageType.Warning);
             }
             
-            if(dir.GetFiles("modInfo_Harmony.json").Length > 0)
+            if(dir.Exists && dir.GetFiles("modInfo_Harmony.json").Length > 0)
 			{
 				EditorGUILayout.HelpBox("Your mod uses the Harmony library. This means it won't work without the Tweaks mod, so on the Workshop, please either add Tweaks as a dependency or mention it in the description!", MessageType.Warning);
 			}

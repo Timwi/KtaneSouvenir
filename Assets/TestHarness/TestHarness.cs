@@ -568,44 +568,25 @@ public class TestHarness : MonoBehaviour
         Debug.LogErrorFormat("There is an unassigned {0} on the following object: {1}", unassigned, string.Join(" > ", str.ToArray()));
     }
 
-    Component LogReplaceBombInfoError(FieldInfo f, MonoBehaviour s)
-    {
-        Component component = (Component) f.GetValue(s);
-        if (component == null)
-        {
-            var obj = s.transform;
-            LogErrorAtTransform(obj, string.Format("component of type {0}", f.FieldType.Name));
-        }
-        return component;
-    }
-
     void ReplaceBombInfo()
     {
-        HashSet<Component> components = new HashSet<Component>();
-        MonoBehaviour[] scripts = FindObjectsOfType<MonoBehaviour>();
-        foreach (MonoBehaviour s in scripts)
+        var components = new HashSet<Component>();
+        foreach (var gameInfo in FindObjectsOfType<KMGameInfo>())
         {
-            IEnumerable<FieldInfo> fields = s.GetType().GetFields();
-            foreach (FieldInfo f in fields)
+            if (!components.Add(gameInfo))
+                continue;
+            var info = gameInfo;
+            fakeInfo.OnLights += on =>
             {
-                if (f.FieldType == typeof(KMGameInfo))
-                {
-                    KMGameInfo component = (KMGameInfo) LogReplaceBombInfoError(f, s);
-                    if (component == null || !components.Add(component)) continue;
-
-                    component.OnLightsChange += new KMGameInfo.KMLightsChangeDelegate(fakeInfo.OnLightsChange);
-                    //component.OnAlarmClockChange += new KMGameInfo.KMAlarmClockChangeDelegate(fakeInfo.OnAlarm);
-                    continue;
-                }
-                if (f.FieldType == typeof(KMGameCommands))
-                {
-                    KMGameCommands component = (KMGameCommands) LogReplaceBombInfoError(f, s);
-                    if (component == null || !components.Add(component)) continue;
-
-                    component.OnCauseStrike += new KMGameCommands.KMCauseStrikeDelegate(fakeInfo.HandleStrike);
-                    continue;
-                }
-            }
+                if(info.OnLightsChange != null)
+                    info.OnLightsChange(on);
+            };
+        }
+        foreach (var gameCommands in FindObjectsOfType<KMGameCommands>())
+        {
+            if (!components.Add(gameCommands))
+                continue;
+            gameCommands.OnCauseStrike += fakeInfo.HandleStrike;
         }
     }
 
@@ -1543,6 +1524,7 @@ public class TestHarness : MonoBehaviour
                 {
                     AddHighlightables();
                     AddSelectables();
+                    testSelectable.UpdateChildrenPositions();
 
                     if (currentSelectable == testSelectable)
                     {

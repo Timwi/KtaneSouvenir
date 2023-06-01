@@ -12,7 +12,7 @@ public partial class CommunityFeaturesDownloader : EditorWindow
     {
         private void OnGUI()
         {
-            GUILayout.Label("To add your plugin to the list, contact Qkrisi#4982 on Discord.\nMake sure you have a build of your plugin ready and a proper documentation.");
+            GUILayout.Label("To add your plugin to the list, contact Qkrisi#4982 on Discord.\nMake sure you have a build of your plugin ready alongside a proper documentation.");
             GUILayout.Space(30);
             if (GUILayout.Button("OK"))
             {
@@ -30,6 +30,9 @@ public partial class CommunityFeaturesDownloader : EditorWindow
         window.maximized = true;
         window.Show();
     }
+
+    public const string VERSION = "1.2.1.0";
+    public readonly Version PARSED_VERSION = new Version(VERSION);
 
     private static readonly string[] Sizes = {"KB", "MB", "GB", "TB" };
     private const int Divisor = 1000;
@@ -208,9 +211,19 @@ public partial class CommunityFeaturesDownloader : EditorWindow
                 var downloadedPlugin = DownloadedPlugins.FirstOrDefault(p => p.Name == CurrentFeature.Name);
                 if (downloadedPlugin == null)
                 {
-                    CurrentFeature.Handler.Draw();
-                    if (GUILayout.Button("Install", GUILayout.Width(DownloadButtonWidth)))
-                        DownloadedPlugins.Add(CurrentFeature.Handler.Download());
+                    if (CurrentFeature.ParsedMinVersion <= PARSED_VERSION && CurrentFeature.ParsedMaxVersion >= PARSED_VERSION)
+                    {
+                        CurrentFeature.Handler.Draw();
+                        if (GUILayout.Button("Install", GUILayout.Width(DownloadButtonWidth)))
+                            DownloadedPlugins.Add(CurrentFeature.Handler.Download());
+                    }
+                    else
+                    {
+                        GUILayout.Label(string.Format(
+                            "<color=red>This plugin is not compatible with this version of the modkit ({0})</color>",
+                            VERSION), RichStyle, GUILayout.ExpandWidth(false));
+                    }
+
                     SavePlugins();
                 }
                 else
@@ -221,8 +234,11 @@ public partial class CommunityFeaturesDownloader : EditorWindow
                     GUILayout.Space(5);
                     if (GUILayout.Button("Remove", GUILayout.Width(DownloadButtonWidth)))
                     {
-                        foreach (var file in downloadedPlugin.Files)
+                        foreach (var _file in downloadedPlugin.Files)
                         {
+                            var file = _file;
+                            if(file.EndsWith("/*"))
+                                file = file.Remove(file.Length - 2);
                             var ModkitPath = Path.Combine(DataPath, file);
                             if (CurrentFeature.Integration)
                             {
@@ -267,7 +283,7 @@ public partial class CommunityFeaturesDownloader : EditorWindow
                 EditorGUILayout.EndVertical();
                 EditorGUILayout.EndHorizontal();
         }
-        catch (ArgumentException)
+        catch (ArgumentException)   //Repaint
         {
         }
         catch (Exception ex)

@@ -210,7 +210,7 @@ public class AssetBundler
         }
 
         //modify the csproj (if needed)
-        var csproj = File.ReadAllText("ktanemodkit.CSharp.csproj");
+        var csproj = File.ReadAllText("Assembly-CSharp.csproj");
         csproj = csproj.Replace("<AssemblyName>Assembly-CSharp</AssemblyName>", "<AssemblyName>" + assemblyName + "</AssemblyName>");
         File.WriteAllText("modkithelper.CSharp.csproj", csproj);
 
@@ -254,13 +254,17 @@ public class AssetBundler
         string allDefines = playerDefines + "KMBUILD;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_3_5;UNITY_5_3;UNITY_5;UNITY_64;ENABLE_NEW_BUGREPORTER;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_SPRITE_POLYGON;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;ENABLE_EDITOR_TESTS_RUNNER;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_LOG_MIXED_STACKTRACE;ENABLE_UNITYWEBREQUEST;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS";
         string outputFilename = outputFolder + "/" + assemblyName + ".dll";
 
+        var applicationContentsPath = EditorApplication.applicationContentsPath;
+        
         List<string> managedReferences = AssetDatabase.GetAllAssetPaths()
             .Where(path => path.EndsWith(".dll") && path.StartsWith("Assets/Plugins/Managed"))
-            .Select(path => "Assets/Plugins/Managed/" + Path.GetFileNameWithoutExtension(path))
+            .Select(path => "Assets/Plugins/Managed/" + Path.GetFileNameWithoutExtension(path)).Concat(new[]
+            {
+                "Managed/UnityEngine",
+                "UnityExtensions/Unity/GUISystem/UnityEngine.UI"
+            }.Select(p => Path.Combine(applicationContentsPath, p)))
             .ToList();
-
-        managedReferences.Add(Path.Combine(EditorApplication.applicationContentsPath, "Managed/UnityEngine"));
-
+        
         //Next we need to grab some type references and use reflection to build things the way Unity does.
         //Note that EditorUtility.CompileCSharp will do *almost* exactly the same thing, but it unfortunately
         //defaults to "unity" rather than "2.0" when selecting the .NET support for the classlib_profile.
@@ -286,6 +290,7 @@ public class AssetBundler
         //CompilerMessage
         var compilerMessageType = assembly.GetType("UnityEditor.Scripting.Compilers.CompilerMessage");
         FieldInfo messageField = compilerMessageType.GetField("message");
+        FieldInfo messageTypeField = compilerMessageType.GetField("type");
 
         //Start compiling
         beginCompilingMethod.Invoke(monoCompiler, null);
@@ -301,7 +306,10 @@ public class AssetBundler
         foreach (object cm in cmArray)
         {
             string str = (string) messageField.GetValue(cm);
-            Debug.LogFormat("Compiler: {0}", str);
+            int type = (int)messageTypeField.GetValue(cm);
+            if (type > 0)
+                type++;     //Skip LogType.Assert (1)
+            Debug.unityLogger.LogFormat((LogType)type, "Compiler: {0}", str);
         }
 
         if (!File.Exists(outputFilename))

@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using UnityEngine;
 
+[HelpURL("https://github.com/Qkrisi/ktanemodkit/wiki/KMColorblindMode")]
 public class KMColorblindMode : MonoBehaviour
 {
     [SerializeField]

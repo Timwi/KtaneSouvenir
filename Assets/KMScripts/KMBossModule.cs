@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[HelpURL("https://github.com/Qkrisi/ktanemodkit/wiki/KMBossModule")]
 public class KMBossModule : MonoBehaviour
 {
     public string[] GetIgnoredModules(KMBombModule module, string[] @default = null)
