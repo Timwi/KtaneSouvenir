@@ -5401,6 +5401,19 @@ namespace Souvenir
                 },
             },
 
+            // Orientation Hypercube
+            // What was the observer’s initial position in {0}?
+            // What was the observer’s initial position in Orientation Hypercube?
+            [Question.OrientationHypercubeInitialObserverPosition] = new TranslationInfo
+            {
+                QuestionText = "What was the observer’s initial position in {0}?",
+            },
+            // What was the initial colour of the {1} face in {0}?
+            [Question.OrientationHypercubeInitialFaceColour] = new TranslationInfo
+            {
+                QuestionText = "What was the initial colour of the {1} face in {0}?",
+            },
+
             // Palindromes
             // What was {1}’s {2} digit from the right in {0}?
             // What was X’s first digit from the right in Palindromes?

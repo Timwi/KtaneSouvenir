@@ -249,4 +249,37 @@ public partial class SouvenirModule
 
         addQuestion(module, Question.OrientationCubeInitialObserverPosition, correctAnswers: new[] { new[] { "front", "left", "back", "right" }[initialAnglePos] });
     }
+
+    private IEnumerable<object> ProcessOrientationHypercube(KMBombModule module) {
+        var comp = GetComponent(module, "OrientationHypercubeModule");
+        var fldIsSolved = GetField<bool>(comp, "_isSolved");
+        
+        while (!fldIsSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_OrientationHypercube);
+
+        var initialObserverPosition = GetField<string>(comp, "_initialEyePosition").Get();
+        var colourTexts = GetField<Dictionary<string, string>>(GetField<object>(comp, "_readGenerator").Get(), "_cbTexts").Get();
+        var faceNames = new Dictionary<string, string>
+        {
+            {"+X", "right"},
+            {"-X", "left"},
+            {"+Y", "top"},
+            {"-Y", "bottom"},
+            {"+Z", "back"},
+            {"-Z", "front"},
+            {"+W", "zag"},
+            {"-W", "zig"}
+        };
+        var qs = new List<QandA>();
+        
+        foreach (string key in faceNames.Keys)
+        {
+            qs.Add(makeQuestion(Question.OrientationHypercubeInitialFaceColour, _OrientationHypercube, formatArgs: new[] { faceNames[key] }, correctAnswers: new[] { colourTexts[key] }));
+        }
+
+        qs.Add(makeQuestion(Question.OrientationHypercubeInitialObserverPosition, _OrientationHypercube, correctAnswers: new[] { initialObserverPosition }));
+
+        addQuestions(module, qs);
+    }
 }
