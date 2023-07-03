@@ -288,6 +288,7 @@ public partial class SouvenirModule
     const string _OrderedKeys = "orderedKeys";
     const string _OrderPicking = "OrderPickingModule";
     const string _OrientationCube = "OrientationCube";
+    const string _OrientationHypercube = "OrientationHypercube";
     const string _Palindromes = "palindromes";
     const string _Parity = "parity";
     const string _PartialDerivatives = "partialDerivatives";
@@ -735,6 +736,7 @@ public partial class SouvenirModule
             { _OrderedKeys, ProcessOrderedKeys },
             { _OrderPicking, ProcessOrderPicking },
             { _OrientationCube, ProcessOrientationCube },
+            { _OrientationHypercube, ProcessOrientationHypercube },
             { _Palindromes, ProcessPalindromes },
             { _Parity, ProcessParity },
             { _PartialDerivatives, ProcessPartialDerivatives },
