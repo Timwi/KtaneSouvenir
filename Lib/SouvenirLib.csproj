@@ -1,6 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -8,10 +6,12 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Souvenir</RootNamespace>
     <AssemblyName>SouvenirLib</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFramework>net35</TargetFramework>
     <LangVersion>8.0</LangVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -20,17 +20,12 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <OutputPath>..\Assets\Plugins\Managed\</OutputPath>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <GameFolder Condition="'$(GameFolder)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Keep Talking and Nobody Explodes\</GameFolder>
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="ValueTupleBridge" Version="0.1.5" GeneratePathProperty="true" />
-  </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -102,70 +97,11 @@
       <HintPath>$(GameFolder)ktane_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="ValueTupleBridge">
-      <HintPath>$(PkgValueTupleBridge)\lib\net35\ValueTupleBridge.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbandonModuleException.cs" />
-    <Compile Include="Coord.cs" />
-    <Compile Include="Grid.cs" />
-    <Compile Include="ModSettings.cs" />
-    <Compile Include="Modules0.cs" />
-    <Compile Include="ModulesA.cs" />
-    <Compile Include="ModulesB.cs" />
-    <Compile Include="ModulesC.cs" />
-    <Compile Include="ModulesD.cs" />
-    <Compile Include="ModulesE.cs" />
-    <Compile Include="ModulesF.cs" />
-    <Compile Include="ModulesG.cs" />
-    <Compile Include="ModulesH.cs" />
-    <Compile Include="ModulesI.cs" />
-    <Compile Include="ModulesJ.cs" />
-    <Compile Include="ModulesK.cs" />
-    <Compile Include="ModulesL.cs" />
-    <Compile Include="ModulesM.cs" />
-    <Compile Include="ModulesN.cs" />
-    <Compile Include="ModulesO.cs" />
-    <Compile Include="ModulesP.cs" />
-    <Compile Include="ModulesQ.cs" />
-    <Compile Include="ModulesR.cs" />
-    <Compile Include="ModulesS.cs" />
-    <Compile Include="ModulesT.cs" />
-    <Compile Include="ModulesU.cs" />
-    <Compile Include="ModulesV.cs" />
-    <Compile Include="ModulesW.cs" />
-    <Compile Include="ModulesX.cs" />
-    <Compile Include="ModulesY.cs" />
-    <Compile Include="ModulesZ.cs" />
-    <Compile Include="Modules_General.cs" />
-    <Compile Include="AnswerGenerator.cs" />
-    <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Config.cs" />
-    <Compile Include="Enums.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="KMBossModule.cs" />
-    <Compile Include="QandA.cs" />
-    <Compile Include="Question.cs" />
-    <Compile Include="QuestionBatch.cs" />
-    <Compile Include="Reflection\InfoBase.cs" />
-    <Compile Include="Reflection\FieldInfo.cs" />
-    <Compile Include="Reflection\MethodInfo.cs" />
-    <Compile Include="Reflection\PropertyInfo.cs" />
-    <Compile Include="SouvenirModule.cs" />
-    <Compile Include="SouvenirQuestionAttribute.cs" />
-    <Compile Include="Translation.cs" />
-    <Compile Include="TranslationDE.cs" />
-    <Compile Include="TranslationEO.cs" />
-    <Compile Include="TranslationES.cs" />
-    <Compile Include="TranslationInfo.cs" />
-    <Compile Include="TranslationJA.cs" />
-    <Compile Include="Ut.cs" />
+    <PackageReference Include="ValueTupleBridge" Version="0.1.5" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>xcopy /y "$(TargetDir)*.dll" "$(ProjectDir)..\Assets\Plugins\Managed"
-xcopy /y "$(TargetDir)*.dll" "$(GameFolder)mods\Souvenir"
-..\..\Tr\bin\Release\SouvenirTr.exe "$(TargetDir)SouvenirLib.dll" "$(ProjectDir)."</PostBuildEvent>
-  </PropertyGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="&#xA;xcopy /y &quot;$(TargetDir)*.dll&quot; &quot;$(GameFolder)mods\Souvenir&quot;&#xD;&#xA;..\Tr\bin\Release\SouvenirTr.exe &quot;$(TargetDir)SouvenirLib.dll&quot; &quot;$(ProjectDir).&quot;" />
+  </Target>
 </Project>
