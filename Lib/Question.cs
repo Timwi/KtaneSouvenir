@@ -1548,7 +1548,8 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the observer’s initial position in {0}?", "Orientation Hypercube", AnswerLayout.TwoColumns4Answers, "front", "left", "back", "right")]
         OrientationHypercubeInitialObserverPosition,
-        [SouvenirQuestion("What was the initial colour of the {1} face in {0}?", "Orientation Hypercube", AnswerLayout.ThreeColumns6Answers, "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white")]
+        [SouvenirQuestion("What was the initial colour of the {1} face in {0}?", "Orientation Hypercube", AnswerLayout.ThreeColumns6Answers, "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white",
+             ExampleExtraFormatArguments = new[] { "right", "left", "top", "bottom", "back", "front", "zag", "zig" }, ExampleExtraFormatArgumentGroupSize = 1)]
         OrientationHypercubeInitialFaceColour,
 
         [SouvenirQuestion("What was {1}’s {2} digit from the right in {0}?", "Palindromes", AnswerLayout.ThreeColumns6Answers, TranslateFormatArgs = new[] { true, false },

@@ -5409,6 +5409,7 @@ namespace Souvenir
                 QuestionText = "What was the observer’s initial position in {0}?",
             },
             // What was the initial colour of the {1} face in {0}?
+            // What was the initial colour of the right face in Orientation Hypercube?
             [Question.OrientationHypercubeInitialFaceColour] = new TranslationInfo
             {
                 QuestionText = "What was the initial colour of the {1} face in {0}?",
