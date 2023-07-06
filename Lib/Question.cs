@@ -1670,6 +1670,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "red-white", "yellow-black", "green", "gray", "yellow-red", "red-blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ProbingFrequencies,
 
+        [SouvenirQuestion("What was the initial seed in {0}?", "Procedural Maze", AnswerLayout.TwoColumns4Answers)]
+        [AnswerGenerator.Strings("6*0-1")]
+        ProceduralMazeInitialSeed,
+
         [SouvenirQuestion("What was the target word on {0}?", "Purple Arrows", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "Thesis", "Immune", "Agency", "Height", "Active", "Bother", "Viable" })]
         PurpleArrowsFinish,
 
@@ -2146,6 +2150,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
         TenpinsSplits,
 
+        [SouvenirQuestion("What colour triangle pulsed {1} in {0}?", "Tetriamonds", AnswerLayout.ThreeColumns6Answers, "orange", "lime", "jade", "azure", "violet", "rose", "grey", ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        TetriamondsPulsingColours,
+
         [SouvenirQuestion("What was the displayed letter in {0}?", "Text Field", AnswerLayout.ThreeColumns6Answers, "A", "B", "C", "D", "E", "F")]
         TextFieldDisplay,
 
@@ -2168,6 +2175,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "departure", "destination" }, ExampleExtraFormatArgumentGroupSize = 1)]
         TimezoneCities,
 
+        [SouvenirQuestion("Which of these squares was safe in row {1} in {0}?", "Tip Toe", AnswerLayout.ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { "9", "10" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 9)]
+        TipToeSafeSquares,
+
         [SouvenirQuestion("What was the word initially shown in {0}?", "Topsy Turvy", AnswerLayout.ThreeColumns6Answers, "Topsy", "Robot", "Cloud", "Round", "Quilt", "Found", "Plaid", "Curve", "Water", "Ovals", "Verse", "Sandy", "Frown", "Windy", "Curse", "Ghost")]
         TopsyTurvyWord,
 
@@ -2184,6 +2195,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the {1} received message in {0}?", "Transmitted Morse", AnswerLayout.TwoColumns4Answers, "BOMBS", "SHORT", "UNDERSTOOD", "W1RES", "SOS", "MANUAL", "STRIKED", "WEREDEAD", "GOTASOUV", "EXPLOSION", "EXPERT", "RIP", "LISTEN", "DETONATE", "ROGER", "WELOSTBRO", "AMIDEAF", "KEYPAD", "DEFUSER", "NUCLEARWEAPONS", "KAPPA", "DELTA", "PI3", "SMOKE", "SENDHELP", "LOST", "SWAN", "NOMNOM", "BLUE", "BOOM", "CANCEL", "DEFUSED", "BROKEN", "MEMORY", "R6S8T", "TRANSMISSION", "UMWHAT", "GREEN", "EQUATIONSX", "RED", "ENERGY", "JESTER", "CONTACT", "LONG", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         TransmittedMorseMessage,
+
+        [SouvenirQuestion("What colour triangle pulsed {1} in {0}?", "Triamonds", AnswerLayout.ThreeColumns6Answers, "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        TriamondsPulsingColours,
 
         [SouvenirQuestion("Which of these was one of the passwords in {0}?", "Triple Term", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "Three", "Every", "These", "Would", "Where", "First", "Still", "Plant", "Small", })]
         TripleTermPasswords,

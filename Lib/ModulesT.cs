@@ -100,6 +100,11 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessTetriamonds(KMBombModule module)
+    {
+        return ProcessPolyiamonds(module, "tetriamondsScript", Question.TetriamondsPulsingColours, _Tetriamonds, new[] { "orange", "lime", "jade", "azure", "violet", "rose", "grey" });
+    }
+
     private IEnumerable<object> ProcessTextField(KMBombModule module)
     {
         var comp = GetComponent(module, "TextField");
@@ -233,6 +238,31 @@ public partial class SouvenirModule
             makeQuestion(Question.TimezoneCities, _Timezone, formatArgs: new[] { "destination" }, correctAnswers: new[] { fldToCity.Get() }));
     }
 
+    private IEnumerable<object> ProcessTipToe(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Main");
+        var fldSolved = GetField<bool>(comp, "ModuleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_TipToe);
+
+        Array grid = GetField<Array>(comp, "Grid").Get();
+        var rowNineSafeSquares = new List<string>();
+        var rowTenSafeSquares = new List<string>();
+
+        for (int col = 0; col < 10; col++) {
+            if (!GetField<bool>(grid.GetValue(0, col), "Flicker").Get())
+                rowTenSafeSquares.Add(((col + 1) % 10).ToString());
+            if (!GetField<bool>(grid.GetValue(1, col), "Flicker").Get())
+                rowNineSafeSquares.Add(((col + 1) % 10).ToString());
+        }
+
+        addQuestions(module,
+            makeQuestion(Question.TipToeSafeSquares, _TipToe, formatArgs: new[] { "9" }, correctAnswers: rowNineSafeSquares.ToArray()),
+            makeQuestion(Question.TipToeSafeSquares, _TipToe, formatArgs: new[] { "10" }, correctAnswers: rowTenSafeSquares.ToArray()));
+    }
+
     private IEnumerable<object> ProcessTopsyTurvy(KMBombModule module)
     {
         var comp = GetComponent(module, "topsyTurvy");
@@ -325,6 +355,11 @@ public partial class SouvenirModule
             formatArgs: new[] { ordinal(index + 1) },
             correctAnswers: new[] { msg },
             preferredWrongAnswers: messages)));
+    }
+
+    private IEnumerable<object> ProcessTriamonds(KMBombModule module)
+    {
+        return ProcessPolyiamonds(module, "triamondsScript", Question.TriamondsPulsingColours, _Tetriamonds, new[] { "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white" });
     }
 
     private IEnumerable<object> ProcessTripleTerm(KMBombModule module)

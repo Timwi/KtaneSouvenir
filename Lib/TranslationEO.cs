@@ -5795,6 +5795,14 @@ namespace Souvenir
                 },
             },
 
+            // Procedural Maze
+            // What was the initial seed in {0}?
+            // What was the initial seed in Procedural Maze?
+            [Question.ProceduralMazeInitialSeed] = new TranslationInfo
+            {
+                QuestionText = "What was the initial seed in {0}?",
+            },
+
             // Purple Arrows
             // What was the target word on {0}?
             // What was the target word on Purple Arrows?
@@ -7216,6 +7224,14 @@ namespace Souvenir
                 },
             },
 
+            // Tetriamonds
+            // What colour triangle pulsed {1} in {0}?
+            // What colour triangle pulsed first in Tetriamonds?
+            [Question.TetriamondsPulsingColours] = new TranslationInfo
+            {
+                QuestionText = "What colour triangle pulsed {1} in {0}?",
+            },
+
             // Text Field
             // What was the displayed letter in {0}?
             // What was the displayed letter in Text Field?
@@ -7278,6 +7294,14 @@ namespace Souvenir
             [Question.TimezoneCities] = new TranslationInfo
             {
                 QuestionText = "What was the {1} city in {0}?",
+            },
+
+            // Tip Toe
+            // Which of these squares was safe in row {1} in {0}?
+            // Which of these squares was safe in row 9 in Tip Toe?
+            [Question.TipToeSafeSquares] = new TranslationInfo
+            {
+                QuestionText = "Which of these squares was safe in row {1} in {0}?",
             },
 
             // Topsy Turvy
@@ -7363,6 +7387,14 @@ namespace Souvenir
                     ["CONTACT"] = "CONTACT",
                     ["LONG"] = "LONG",
                 },
+            },
+
+            // Triamonds
+            // What colour triangle pulsed {1} in {0}?
+            // What colour triangle pulsed first in Triamonds?
+            [Question.TriamondsPulsingColours] = new TranslationInfo
+            {
+                QuestionText = "What colour triangle pulsed {1} in {0}?",
             },
 
             // Triple Term

@@ -310,6 +310,7 @@ public partial class SouvenirModule
     const string _PolyhedralMaze = "PolyhedralMazeModule";
     const string _PrimeEncryption = "primeEncryption";
     const string _Probing = "Probing";
+    const string _ProceduralMaze = "ProceduralMaze";
     const string _PurpleArrows = "purpleArrowsModule";
     const string _PurpleButton = "PurpleButtonModule";
     const string _PuzzleIdentification = "GSPuzzleIdentification";
@@ -404,15 +405,18 @@ public partial class SouvenirModule
     const string _TasqueManaging = "tasqueManaging";
     const string _TenButtonColorCode = "TenButtonColorCode";
     const string _Tenpins = "tenpins";
+    const string _Tetriamonds = "tetriamonds";
     const string _TextField = "TextField";
     const string _ThinkingWires = "thinkingWiresModule";
     const string _ThirdBase = "ThirdBase";
     const string _TicTacToe = "TicTacToeModule";
     const string _Timezone = "timezone";
+    const string _TipToe = "TipToe";
     const string _TopsyTurvy = "topsyTurvy";
     const string _TouchTransmission = "touchTransmission";
     const string _Trajectory = "Trajectory";
     const string _TransmittedMorse = "transmittedMorseModule";
+    const string _Triamonds = "triamonds";
     const string _TripleTerm = "tripleTermModule";
     const string _TurtleRobot = "turtleRobot";
     const string _TwoBits = "TwoBits";
@@ -758,6 +762,7 @@ public partial class SouvenirModule
             { _PolyhedralMaze, ProcessPolyhedralMaze },
             { _PrimeEncryption, ProcessPrimeEncryption },
             { _Probing, ProcessProbing },
+            { _ProceduralMaze, ProcessProceduralMaze },
             { _PurpleArrows, ProcessPurpleArrows },
             { _PurpleButton, ProcessPurpleButton },
             { _PuzzleIdentification, ProcessPuzzleIdentification },
@@ -852,15 +857,18 @@ public partial class SouvenirModule
             { _TasqueManaging, ProcessTasqueManaging },
             { _TenButtonColorCode, ProcessTenButtonColorCode },
             { _Tenpins, ProcessTenpins },
+            { _Tetriamonds, ProcessTetriamonds },
             { _TextField, ProcessTextField },
             { _ThinkingWires, ProcessThinkingWires },
             { _ThirdBase, ProcessThirdBase },
             { _TicTacToe, ProcessTicTacToe },
             { _Timezone, ProcessTimezone },
+            { _TipToe, ProcessTipToe },
             { _TopsyTurvy, ProcessTopsyTurvy },
             { _TouchTransmission, ProcessTouchTransmission },
             { _Trajectory, ProcessTrajectory },
             { _TransmittedMorse, ProcessTransmittedMorse },
+            { _Triamonds, ProcessTriamonds },
             { _TripleTerm, ProcessTripleTerm },
             { _TurtleRobot, ProcessTurtleRobot },
             { _TwoBits, ProcessTwoBits },
@@ -1134,5 +1142,24 @@ public partial class SouvenirModule
             makeQuestion(question, moduleId, formatArgs: new[] { "third" }, correctAnswers: new[] { rotations[sequence[2]] }),
             makeQuestion(question, moduleId, formatArgs: new[] { "fourth" }, correctAnswers: new[] { rotations[sequence[3]] }),
             makeQuestion(question, moduleId, formatArgs: new[] { "fifth" }, correctAnswers: new[] { rotations[sequence[4]] }));
+    }
+
+    // Used by Triamonds and Tetriamonds
+    private IEnumerable<object> ProcessPolyiamonds(KMBombModule module, string componentName, Question question, string moduleId, string[] colourNames) {
+        var comp = GetComponent(module, componentName);
+        var fldSolved = GetField<bool>(comp, "solved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(moduleId);
+
+        var positions = new string[] { "first", "second", "third" };
+        var posColour = GetField<int[]>(comp, "poscolour").Get();
+        var pulsing = GetField<int[]>(comp, "pulsing").Get();
+
+        var qs = new List<QandA>();
+        for (int pos = 0; pos < 3; pos++)
+            qs.Add(makeQuestion(question, _Tetriamonds, formatArgs: new[] { positions[pos] }, correctAnswers: new[] { colourNames[posColour[pulsing[pos]]] }));
+        addQuestions(module, qs);
     }
 }
