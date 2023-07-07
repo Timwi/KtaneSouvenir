@@ -3227,6 +3227,14 @@ namespace Souvenir
                 },
             },
 
+            // Long Words
+            // What was the word on the top display on {0}
+            // What was the word on the top display on Long Words
+            [Question.LongWordsWord] = new TranslationInfo
+            {
+                QuestionText = "What was the word on the top display on {0}",
+            },
+
             // Mahjong
             // Which tile was part of the {1} matched pair in {0}?
             // Which tile was part of the first matched pair in Mahjong?

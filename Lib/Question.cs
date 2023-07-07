@@ -1077,6 +1077,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal, "depart from", QandA.Ordinal, "arrive to" }, ExampleExtraFormatArgumentGroupSize = 2)]
         LondonUndergroundStations,
 
+        [SouvenirQuestion("What was the word on the top display on {0}", "Long Words", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "ABOARD", "ABRUPT", "SAFEST", "LAMBDA", "NARROW", "ECHOES", "VALVES", "YONDER", "ZIGGED", "UNBIND" })]
+        LongWordsWord,
+
         [SouvenirQuestion("Which tile was part of the {1} matched pair in {0}?", "Mahjong", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "MahjongSprites",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         MahjongMatches,
