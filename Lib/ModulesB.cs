@@ -674,6 +674,29 @@ public partial class SouvenirModule
         addQuestion(module, Question.BrushStrokesMiddleColor, correctAnswers: new[] { char.ToUpperInvariant(colorNames[colors[4]][0]) + colorNames[colors[4]].Substring(1) });
     }
 
+    private IEnumerable<object> ProcessBurgerAlarm(KMBombModule module)
+    {
+        var comp = GetComponent(module, "burgerAlarmScript");
+        var fldSolved = GetField<bool>(comp, "solved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_BurgerAlarm);
+
+        var qs = new List<QandA>();
+
+        var displayedNumber = GetField<int[]>(comp, "number").Get();
+        var orders = GetField<string[]>(comp, "orderStrings").Get();
+        for (int pos = 0; pos < 7; pos++)
+        {
+            qs.Add(makeQuestion(Question.BurgerAlarmDigits, _BurgerAlarm, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { displayedNumber[pos].ToString() }));
+            if (pos < 5)
+                qs.Add(makeQuestion(Question.BurgerAlarmOrderNumbers, _BurgerAlarm, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { orders[pos].Replace("no.    ", "") }));
+        }
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessBulb(KMBombModule module)
     {
         var comp = GetComponent(module, "TheBulbModule");

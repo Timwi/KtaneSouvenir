@@ -61,6 +61,7 @@ public partial class SouvenirModule
     const string _BrokenButtons = "BrokenButtonsModule";
     const string _BrownCipher = "brownCipher";
     const string _BrushStrokes = "brushStrokes";
+    const string _BurgerAlarm = "burgerAlarm";
     const string _Bulb = "TheBulbModule";
     const string _BurglarAlarm = "burglarAlarm";
     const string _Button = "BigButton";
@@ -516,6 +517,7 @@ public partial class SouvenirModule
             { _BrokenButtons, ProcessBrokenButtons },
             { _BrownCipher, ProcessBrownCipher },
             { _BrushStrokes, ProcessBrushStrokes },
+            { _BurgerAlarm, ProcessBurgerAlarm },
             { _Bulb, ProcessBulb },
             { _BurglarAlarm, ProcessBurglarAlarm },
             { _Button, ProcessButton },

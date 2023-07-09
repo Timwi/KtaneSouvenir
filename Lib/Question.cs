@@ -299,6 +299,13 @@ namespace Souvenir
         [SouvenirQuestion("What was the color of the middle contact point in {0}?", "Brush Strokes", AnswerLayout.ThreeColumns6Answers, "Red", "Orange", "Yellow", "Lime", "Green", "Cyan", "Sky", "Blue", "Purple", "Magenta", "Brown", "White", "Gray", "Black", "Pink", TranslateAnswers = true)]
         BrushStrokesMiddleColor,
 
+        [SouvenirQuestion("What was the {1} displayed digit in {0}?", "Burger Alarm", AnswerLayout.ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 9)]
+        BurgerAlarmDigits,
+        [SouvenirQuestion("What was the {1} order number in {0}?", "Burger Alarm", AnswerLayout.ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 99, "00")]
+        BurgerAlarmOrderNumbers,
+
         [SouvenirQuestion("What were the correct button presses in {0}?", "Bulb", AnswerLayout.ThreeColumns6Answers, "OOO", "OOI", "OIO", "OII", "IOO", "IOI", "IIO", "III", AddThe = true, Type = AnswerType.TicTacToeFont)]
         BulbButtonPresses,
 
