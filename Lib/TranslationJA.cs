@@ -5773,6 +5773,14 @@ namespace Souvenir
                 },
             },
 
+            // Procedural Maze
+            // What was the initial seed in {0}?
+            // What was the initial seed in Procedural Maze?
+            [Question.ProceduralMazeInitialSeed] = new TranslationInfo
+            {
+                QuestionText = "What was the initial seed in {0}?",
+            },
+
             // Purple Arrows
             // What was the target word on {0}?
             // What was the target word on Purple Arrows?

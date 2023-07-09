@@ -310,6 +310,7 @@ public partial class SouvenirModule
     const string _PolyhedralMaze = "PolyhedralMazeModule";
     const string _PrimeEncryption = "primeEncryption";
     const string _Probing = "Probing";
+    const string _ProceduralMaze = "ProceduralMaze";
     const string _PurpleArrows = "purpleArrowsModule";
     const string _PurpleButton = "PurpleButtonModule";
     const string _PuzzleIdentification = "GSPuzzleIdentification";
@@ -758,6 +759,7 @@ public partial class SouvenirModule
             { _PolyhedralMaze, ProcessPolyhedralMaze },
             { _PrimeEncryption, ProcessPrimeEncryption },
             { _Probing, ProcessProbing },
+            { _ProceduralMaze, ProcessProceduralMaze },
             { _PurpleArrows, ProcessPurpleArrows },
             { _PurpleButton, ProcessPurpleButton },
             { _PuzzleIdentification, ProcessPuzzleIdentification },

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -543,6 +544,21 @@ public partial class SouvenirModule
         var wireFrequencies = wireFrequenciesRaw.Cast<int>().Select(val => frequencyDic[val]).ToArray();
 
         addQuestions(module, wireFrequencies.Select((wf, ix) => makeQuestion(Question.ProbingFrequencies, _Probing, formatArgs: new[] { wireNames[ix] }, correctAnswers: new[] { wf })));
+    }
+
+    private IEnumerable<object> ProcessProceduralMaze(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ProceduralMazeModule");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ProceduralMaze);
+
+        string initialSeed = GetField<string>(comp, "_initialSeed").Get();
+
+        StartCoroutine(GetMethod<IEnumerator>(GetField<object>(comp, "_mazeRenderer").Get(), "HideRings", 0, true).Invoke());
+        addQuestion(module, Question.ProceduralMazeInitialSeed, correctAnswers: new[] { initialSeed });
     }
 
     private IEnumerable<object> ProcessPurpleArrows(KMBombModule module)

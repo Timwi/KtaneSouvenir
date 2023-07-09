@@ -1670,6 +1670,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "red-white", "yellow-black", "green", "gray", "yellow-red", "red-blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ProbingFrequencies,
 
+        [SouvenirQuestion("What was the initial seed in {0}?", "Procedural Maze", AnswerLayout.TwoColumns4Answers)]
+        [AnswerGenerator.Strings("6*0-1")]
+        ProceduralMazeInitialSeed,
+
         [SouvenirQuestion("What was the target word on {0}?", "Purple Arrows", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "Thesis", "Immune", "Agency", "Height", "Active", "Bother", "Viable" })]
         PurpleArrowsFinish,
 
