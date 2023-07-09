@@ -7212,6 +7212,14 @@ namespace Souvenir
                 },
             },
 
+            // Tetriamonds
+            // What colour triangle pulsed {1} in {0}?
+            // What colour triangle pulsed first in Tetriamonds?
+            [Question.TetriamondsPulsingColours] = new TranslationInfo
+            {
+                QuestionText = "What colour triangle pulsed {1} in {0}?",
+            },
+
             // Text Field
             // What was the displayed letter in {0}?
             // What was the displayed letter in Text Field?
@@ -7359,6 +7367,14 @@ namespace Souvenir
                     ["CONTACT"] = "CONTACT",
                     ["LONG"] = "LONG",
                 },
+            },
+
+            // Triamonds
+            // What colour triangle pulsed {1} in {0}?
+            // What colour triangle pulsed first in Triamonds?
+            [Question.TriamondsPulsingColours] = new TranslationInfo
+            {
+                QuestionText = "What colour triangle pulsed {1} in {0}?",
             },
 
             // Triple Term

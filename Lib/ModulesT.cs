@@ -100,6 +100,11 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessTetriamonds(KMBombModule module)
+    {
+        return ProcessPolyiamonds(module, "tetriamondsScript", Question.TetriamondsPulsingColours, _Tetriamonds, new[] { "orange", "lime", "jade", "azure", "violet", "rose", "grey" });
+    }
+
     private IEnumerable<object> ProcessTextField(KMBombModule module)
     {
         var comp = GetComponent(module, "TextField");
@@ -325,6 +330,11 @@ public partial class SouvenirModule
             formatArgs: new[] { ordinal(index + 1) },
             correctAnswers: new[] { msg },
             preferredWrongAnswers: messages)));
+    }
+
+    private IEnumerable<object> ProcessTriamonds(KMBombModule module)
+    {
+        return ProcessPolyiamonds(module, "triamondsScript", Question.TriamondsPulsingColours, _Tetriamonds, new[] { "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white" });
     }
 
     private IEnumerable<object> ProcessTripleTerm(KMBombModule module)
