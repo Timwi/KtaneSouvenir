@@ -7,6 +7,26 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
+    private IEnumerable<object> ProcessMadMemory(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MadMemory");
+
+        bool isSolved = false;
+        module.OnPass += () => { isSolved = true; return false; };
+        while (!isSolved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_MadMemory);
+
+        var possibleTexts = GetField<string[]>(comp, "screenTexts", true).Get();
+        var displayedLabels = GetField<int[]>(comp, "screenLabels", true).Get();
+        var stages = new[] { "first", "second", "third", "fourth" };
+
+        var qs = new List<QandA>();
+        for (int stageNum = 0; stageNum < 4; stageNum++)
+            qs.Add(makeQuestion(Question.MadMemoryDisplays, _MadMemory, formatArgs: new[] { stages[stageNum] }, correctAnswers: new[] { possibleTexts[displayedLabels[stageNum]] }));
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessMafia(KMBombModule module)
     {
         var comp = GetComponent(module, "MafiaModule");
