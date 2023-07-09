@@ -102,6 +102,6 @@
     <PackageReference Include="ValueTupleBridge" Version="0.1.5" />
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="&#xA;xcopy /y &quot;$(TargetDir)*.dll&quot; &quot;$(GameFolder)mods\Souvenir&quot;&#xD;&#xA;..\Tr\bin\Release\SouvenirTr.exe &quot;$(TargetDir)SouvenirLib.dll&quot; &quot;$(ProjectDir).&quot;" />
+    <Exec Command="xcopy /y &quot;$(TargetDir)*.dll&quot; &quot;$(GameFolder)mods\Souvenir&quot;&#xD;&#xA;rem ..\Tr\bin\Release\SouvenirTr.exe &quot;$(TargetDir)SouvenirLib.dll&quot; &quot;$(ProjectDir).&quot;" />
   </Target>
 </Project>
