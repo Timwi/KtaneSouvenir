@@ -101,6 +101,7 @@ public partial class SouvenirModule
     const string _CrypticCycle = "crypticCycle";
     const string _CrypticKeypad = "GSCrypticKeypad";
     const string _Cube = "cube";
+    const string _CursedDoubleOh = "CursedDoubleOhModule";
     const string _CyanButton = "CyanButtonModule";
     const string _DACHMaze = "DACH";
     const string _DeafAlley = "deafAlleyModule";
@@ -554,6 +555,7 @@ public partial class SouvenirModule
             { _CrypticCycle, ProcessCrypticCycle },
             { _CrypticKeypad, ProcessCrypticKeypad },
             { _Cube, ProcessCube },
+            { _CursedDoubleOh, ProcessCursedDoubleOh },
             { _CyanButton, ProcessCyanButton },
             { _DACHMaze, ProcessDACHMaze },
             { _DeafAlley, ProcessDeafAlley },

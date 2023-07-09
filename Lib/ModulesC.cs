@@ -764,6 +764,20 @@ public partial class SouvenirModule
         addQuestions(module, rotations.Select((rot, ix) => makeQuestion(Question.CubeRotations, _Cube, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { rotationNames[rot] }, preferredWrongAnswers: allRotations)));
     }
 
+    private IEnumerable<object> ProcessCursedDoubleOh(KMBombModule module)
+    {
+        var comp = GetComponent(module, "DoubleOhModule");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_CursedDoubleOh);
+
+        int firstNumber = GetField<List<int>>(comp, "visitedNumbers").Get().First();
+        string firstDigit = (firstNumber / 10).ToString();
+        addQuestion(module, Question.CursedDoubleOhInitialPosition, correctAnswers: new[] { firstDigit });
+    }
+
     private IEnumerable<object> ProcessCyanButton(KMBombModule module)
     {
         var comp = GetComponent(module, "CyanButtonScript");

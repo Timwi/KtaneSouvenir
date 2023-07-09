@@ -496,6 +496,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         CubeRotations,
 
+        [SouvenirQuestion("What was the first digit of the initially displayed number in {0}?", "Cursed Double-Oh", AnswerLayout.ThreeColumns6Answers)]
+        [AnswerGenerator.Integers(0, 9)]
+        CursedDoubleOhInitialPosition,
+
         [SouvenirQuestion("Where was the button at the {1} stage in {0}?", "Cyan Button", AnswerLayout.TwoColumns4Answers, "top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         CyanButtonPositions,
