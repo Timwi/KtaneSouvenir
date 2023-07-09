@@ -411,6 +411,7 @@ public partial class SouvenirModule
     const string _ThirdBase = "ThirdBase";
     const string _TicTacToe = "TicTacToeModule";
     const string _Timezone = "timezone";
+    const string _TipToe = "TipToe";
     const string _TopsyTurvy = "topsyTurvy";
     const string _TouchTransmission = "touchTransmission";
     const string _Trajectory = "Trajectory";
@@ -862,6 +863,7 @@ public partial class SouvenirModule
             { _ThirdBase, ProcessThirdBase },
             { _TicTacToe, ProcessTicTacToe },
             { _Timezone, ProcessTimezone },
+            { _TipToe, ProcessTipToe },
             { _TopsyTurvy, ProcessTopsyTurvy },
             { _TouchTransmission, ProcessTouchTransmission },
             { _Trajectory, ProcessTrajectory },

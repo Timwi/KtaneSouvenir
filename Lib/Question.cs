@@ -2175,6 +2175,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "departure", "destination" }, ExampleExtraFormatArgumentGroupSize = 1)]
         TimezoneCities,
 
+        [SouvenirQuestion("Which of these squares was safe in row {1} in {0}?", "Tip Toe", AnswerLayout.ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { "9", "10" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 9)]
+        TipToeSafeSquares,
+
         [SouvenirQuestion("What was the word initially shown in {0}?", "Topsy Turvy", AnswerLayout.ThreeColumns6Answers, "Topsy", "Robot", "Cloud", "Round", "Quilt", "Found", "Plaid", "Curve", "Water", "Ovals", "Verse", "Sandy", "Frown", "Windy", "Curse", "Ghost")]
         TopsyTurvyWord,
 

@@ -7296,6 +7296,14 @@ namespace Souvenir
                 QuestionText = "What was the {1} city in {0}?",
             },
 
+            // Tip Toe
+            // Which of these squares was safe in row {1} in {0}?
+            // Which of these squares was safe in row 9 in Tip Toe?
+            [Question.TipToeSafeSquares] = new TranslationInfo
+            {
+                QuestionText = "Which of these squares was safe in row {1} in {0}?",
+            },
+
             // Topsy Turvy
             // What was the word initially shown in {0}?
             // What was the word initially shown in Topsy Turvy?
