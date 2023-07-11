@@ -1691,6 +1691,10 @@ namespace Souvenir
         [AnswerGenerator.Strings("6*0-1")]
         ProceduralMazeInitialSeed,
 
+        [SouvenirQuestion("What was the displayed number in {0}?", "...?", AnswerLayout.ThreeColumns6Answers)]
+        [AnswerGenerator.Integers(0, 99, "00")]
+        PunctuationMarksDisplayedNumber,
+
         [SouvenirQuestion("What was the target word on {0}?", "Purple Arrows", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "Thesis", "Immune", "Agency", "Height", "Active", "Bother", "Viable" })]
         PurpleArrowsFinish,
 

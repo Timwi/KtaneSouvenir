@@ -561,6 +561,19 @@ public partial class SouvenirModule
         addQuestion(module, Question.ProceduralMazeInitialSeed, correctAnswers: new[] { initialSeed });
     }
 
+    private IEnumerable<object> ProcessPunctuationMarks(KMBombModule module)
+    {
+        var comp = GetComponent(module, "script");
+
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_PunctuationMarks);
+
+        var number = GetField<int>(comp, "memoryBankNumber").Get().ToString("00");
+        addQuestion(module, Question.PunctuationMarksDisplayedNumber, correctAnswers: new[] { number });
+    }
+
     private IEnumerable<object> ProcessPurpleArrows(KMBombModule module)
     {
         var comp = GetComponent(module, "PurpleArrowsScript");
