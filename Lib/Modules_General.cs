@@ -60,6 +60,7 @@ public partial class SouvenirModule
     const string _Braille = "BrailleModule";
     const string _BreakfastEgg = "breakfastEgg";
     const string _BrokenButtons = "BrokenButtonsModule";
+    const string _BrokenGuitarChords = "BrokenGuitarChordsModule";
     const string _BrownCipher = "brownCipher";
     const string _BrushStrokes = "brushStrokes";
     const string _BurgerAlarm = "burgerAlarm";
@@ -523,6 +524,7 @@ public partial class SouvenirModule
             { _Braille, ProcessBraille },
             { _BreakfastEgg, ProcessBreakfastEgg },
             { _BrokenButtons, ProcessBrokenButtons },
+            { _BrokenGuitarChords, ProcessBrokenGuitarChords },
             { _BrownCipher, ProcessBrownCipher },
             { _BrushStrokes, ProcessBrushStrokes },
             { _BurgerAlarm, ProcessBurgerAlarm },

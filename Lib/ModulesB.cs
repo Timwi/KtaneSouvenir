@@ -668,6 +668,52 @@ public partial class SouvenirModule
         addQuestions(module, pressed.Select((p, i) => p.Length == 0 ? null : makeQuestion(Question.BrokenButtons, _BrokenButtons, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { p }, preferredWrongAnswers: pressed.Except(new[] { "" }).ToArray())));
     }
 
+    private IEnumerable<object> ProcessBrokenGuitarChords(KMBombModule module)
+    {
+        var comp = GetComponent(module, "BrokenGuitarChordsModule");
+
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_BrokenGuitarChords);
+
+        var chordDisplay = GetField<TextMesh>(comp, "ChordDisplay", isPublic: true).Get();
+        string displayedChord = chordDisplay.text;
+        chordDisplay.text = "";
+
+        foreach (var renderer in GetField<MeshRenderer[]>(comp, "FretRenderers", isPublic: true).Get())
+            renderer.enabled = false;
+        foreach (var renderer in GetField<MeshRenderer[]>(comp, "MuteRenderers", isPublic: true).Get())
+            renderer.enabled = false;
+
+        var qs = new List<QandA>();
+
+        var rootNames = GetStaticField<string[][]>(comp.GetType(), "_noteNames").Get();
+        var rootPositions = Enumerable.Range(0, 12).Select(i => i.ToString("00"));
+        var qualities = new List<string> { "", "m", "6", "7", "9", "add9", "m6", "m7", "maj7", "dim", "dim7", "+", "sus" };
+        var randomChords = new List<string>();
+        while (randomChords.Distinct().Count() < 8)
+            randomChords.Add($"{rootPositions.PickRandom()}{qualities.PickRandom()}");
+        var possibleAnswers = randomChords.Distinct().Select(ans => $"{rootNames[int.Parse(ans.Substring(0, 2))].PickRandom()}{ans.Substring(2)}").ToList();
+
+        if (displayedChord[1] == '#')
+        {
+            var letters = "ABCDEFG";
+            possibleAnswers.Remove($"{letters[(letters.IndexOf(displayedChord[0]) + 1) % 7]}b{displayedChord.Substring(2)}");
+        }
+        else if (displayedChord[1] == 'b')
+        {
+            var letters = "ABCDEFG";
+            possibleAnswers.Remove($"{letters[(letters.IndexOf(displayedChord[0]) + 6) % 7]}b{displayedChord.Substring(2)}");
+        }
+        qs.Add(makeQuestion(Question.BrokenGuitarChordsDisplayedChord, _BrokenGuitarChords, correctAnswers: new[] { displayedChord }, preferredWrongAnswers: possibleAnswers.ToArray()));
+
+        var brokenStringPosition = GetField<int>(comp, "_brokenString").Get() + 1;
+        qs.Add(makeQuestion(Question.BrokenGuitarChordsMutedString, _BrokenGuitarChords, correctAnswers: new[] { brokenStringPosition.ToString() }));
+        
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessBrownCipher(KMBombModule module)
     {
         return processColoredCiphers(module, "brownCipher", Question.BrownCipherAnswer, _BrownCipher);

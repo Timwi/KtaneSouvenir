@@ -295,6 +295,12 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         BrokenButtons,
 
+        [SouvenirQuestion("What was the displayed chord in {0}?", "Broken Guitar Chords", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "C", "Dm", "F#sus", "Gm7", "A9", "Eadd9" })]
+        BrokenGuitarChordsDisplayedChord,
+        [SouvenirQuestion("In which position, from left to right, was the broken string in {0}?", "Broken Guitar Chords", AnswerLayout.ThreeColumns6Answers)]
+        [AnswerGenerator.Integers(1, 6)]
+        BrokenGuitarChordsMutedString,
+
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Brown Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "AROUND", "JUKING", "OCELOT", "PARDON", "SCHOOL", "SOCCER", "SPRING", "TIMING", "VALVES", "VORTEX" },
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
         BrownCipherAnswer,
