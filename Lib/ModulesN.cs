@@ -247,6 +247,19 @@ public partial class SouvenirModule
             makeQuestion(Question.NavyButtonGiven, _NavyButton, formatArgs: new[] { "value" }, correctAnswers: new[] { givenValue.ToString() }));
     }
 
+    private IEnumerable<object> ProcessNotColoredSquares(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NotColoredSquaresScript");
+
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_NotColoredSquares);
+
+        var firstPressedPosition = GetField<int>(comp, "_stageOnePress").Get();
+        addQuestion(module, Question.NotColoredSquaresInitialPosition, correctAnswers: new[] { new Coord(4, 4, firstPressedPosition) });
+    }
+
     private IEnumerable<object> ProcessNotColoredSwitches(KMBombModule module)
     {
         var comp = GetComponent(module, "NotColoredSwitchesScript");

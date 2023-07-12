@@ -1384,6 +1384,10 @@ namespace Souvenir
         [SouvenirQuestion("Which button flashed for the {1} stage in {0}?", "❖", AnswerLayout.TwoColumns4Answers, IsEntireQuestionSprite = true, Type = AnswerType.Sprites, SpriteField = "NonverbalSimonSprites")]
         NonverbalSimonFlashes,
 
+        [SouvenirQuestion("What was the position of the square you initially pressed in {0}?", "Not Colored Squares", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Grid)]
+        [AnswerGenerator.Grid(4, 4)]
+        NotColoredSquaresInitialPosition,
+
         [SouvenirQuestion("What was the encrypted word in {0}?", "Not Colored Switches", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "Adjust", "Anchor", "Bowtie", "Button", "Cipher", "Corner" })]
         NotColoredSwitchesWord,
 

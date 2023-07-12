@@ -262,6 +262,7 @@ public partial class SouvenirModule
     const string _Negativity = "Negativity";
     const string _Neutralization = "neutralization";
     const string _NonverbalSimon = "nonverbalSimon";
+    const string _NotColoredSquares = "NotColoredSquaresModule";
     const string _NotColoredSwitches = "NotColoredSwitchesModule";
     const string _NotConnectionCheck = "notConnectionCheck";
     const string _NotCoordinates = "notCoordinates";
@@ -719,6 +720,7 @@ public partial class SouvenirModule
             { _Negativity, ProcessNegativity },
             { _Neutralization, ProcessNeutralization },
             { _NonverbalSimon, ProcessNonverbalSimon },
+            { _NotColoredSquares, ProcessNotColoredSquares },
             { _NotColoredSwitches, ProcessNotColoredSwitches },
             { _NotConnectionCheck, ProcessNotConnectionCheck },
             { _NotCoordinates, ProcessNotCoordinates },
