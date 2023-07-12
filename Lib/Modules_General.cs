@@ -145,6 +145,7 @@ public partial class SouvenirModule
     const string _FlashingArrows = "flashingArrowsModule";
     const string _FlashingLights = "flashingLights";
     const string _Flyswatting = "flyswatting";
+    const string _FollowMe = "FollowMe";
     const string _ForestCipher = "forestCipher";
     const string _ForgetAnyColor = "ForgetAnyColor";
     const string _ForgetMe = "forgetMe";
@@ -605,6 +606,7 @@ public partial class SouvenirModule
             { _FlashingArrows, ProcessFlashingArrows },
             { _FlashingLights, ProcessFlashingLights },
             { _Flyswatting, ProcessFlyswatting },
+            { _FollowMe, ProcessFollowMe },
             { _ForestCipher, ProcessForestCipher },
             { _ForgetAnyColor, ProcessForgetAnyColor },
             { _ForgetMe, ProcessForgetMe },

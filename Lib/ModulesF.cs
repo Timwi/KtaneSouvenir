@@ -233,6 +233,24 @@ public partial class SouvenirModule
             addQuestion(module, Question.FlyswattingUnpressed, correctAnswers: outsideLetters);
     }
 
+    private IEnumerable<object> ProcessFollowMe(KMBombModule module)
+    {
+        var comp = GetComponent(module, "FollowMe");
+
+        var fldSolved = GetField<bool>(comp, "ModuleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_FollowMe);
+
+        var directionWords = new Dictionary<string, string> { { "U", "Up" }, { "D", "Down" }, { "L", "Left" }, { "R", "Right" } };
+        var path = GetField<List<string>>(comp, "Path").Get();
+        var qs = new List<QandA>();
+
+        for (int pos = 0, length = path.Count(); pos < length; pos++)
+            qs.Add(makeQuestion(Question.FollowMeDisplayedPath, _FollowMe, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { directionWords[path[pos]] }));
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessForestCipher(KMBombModule module)
     {
         return processColoredCiphers(module, "forestCipher", Question.ForestCipherAnswer, _ForestCipher);
