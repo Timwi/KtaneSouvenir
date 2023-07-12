@@ -139,6 +139,7 @@ public partial class SouvenirModule
     const string _FactoringMaze = "factoringMaze";
     const string _FactoryMaze = "factoryMaze";
     const string _FastMath = "fastMath";
+    const string _FaultyButtons = "GSFaultyButtons";
     const string _FaultyRGBMaze = "faultyrgbMaze";
     const string _Flags = "FlagsModule";
     const string _FlashingArrows = "flashingArrowsModule";
@@ -597,6 +598,7 @@ public partial class SouvenirModule
             { _FactoringMaze, ProcessFactoringMaze },
             { _FactoryMaze, ProcessFactoryMaze },
             { _FastMath, ProcessFastMath },
+            { _FaultyButtons, ProcessFaultyButtons },
             { _FaultyRGBMaze, ProcessFaultyRGBMaze },
             { _Flags, ProcessFlags },
             { _FlashingArrows, ProcessFlashingArrows },

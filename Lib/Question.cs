@@ -697,6 +697,13 @@ namespace Souvenir
         [SouvenirQuestion("What was the last pair of letters in {0}?", "Fast Math", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "CT", "DK", "SA", "SG", "SX", "TX", "TZ", "XP", "XX", "ZB" })]
         FastMathLastLetters,
 
+        [SouvenirQuestion("Which button referred to the {1} button in reading order in {0}?", "Faulty Buttons", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Grid, ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Grid(4, 4)]
+        FaultyButtonsReferredToThisButton,
+        [SouvenirQuestion("Which button did the {1} button in reading order refer to in {0}?", "Faulty Buttons", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Grid, ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Grid(4, 4)]
+        FaultyButtonsThisButtonReferredTo,
+
         [SouvenirQuestion("What was the exit coordinate in {0}?", "Faulty RGB Maze", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Strings("A-G", "1-7")]
         FaultyRGBMazeExit,

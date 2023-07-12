@@ -73,6 +73,28 @@ public partial class SouvenirModule
         addQuestion(module, Question.FastMathLastLetters, correctAnswers: new[] { letters }, preferredWrongAnswers: wrongAnswers.ToArray());
     }
 
+    private IEnumerable<object> ProcessFaultyButtons(KMBombModule module)
+    {
+        var comp = GetComponent(module, "FaultyButtonsScript");
+
+        var fldSolved = GetField<bool>(comp, "Solved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_FaultyButtons);
+
+        var referredButtons = GetField<int[]>(comp, "ReferredButtons").Get();
+        var qs = new List<QandA>();
+
+        for (int pos = 0; pos < 16; pos++)
+        {
+            var buttonRefersTo = new Coord(4, 4, referredButtons[pos]);
+            var refersToButton = new Coord(4, 4, Array.IndexOf(referredButtons, pos));
+            qs.Add(makeQuestion(Question.FaultyButtonsReferredToThisButton, _FaultyButtons, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { refersToButton }, preferredWrongAnswers: new[] { buttonRefersTo }));
+            qs.Add(makeQuestion(Question.FaultyButtonsThisButtonReferredTo, _FaultyButtons, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { buttonRefersTo }, preferredWrongAnswers: new[] { refersToButton }));
+        }
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessFaultyRGBMaze(KMBombModule module)
     {
         var comp = GetComponent(module, "FaultyRGBMazeScript");
@@ -193,9 +215,9 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "flyswattingScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-     
+
         bool[] swatted = GetArrayField<int>(comp, "answers").Get(expectedLength: 5).Select(x => x == 1).ToArray();
-        
+
         while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
         _modulesSolved.IncSafe(_Flyswatting);
@@ -207,7 +229,7 @@ public partial class SouvenirModule
             Debug.Log($"[Souvenir #{_moduleId}] No question for Flyswatting because every fly was part of the solution.");
             _legitimatelyNoQuestions.Add(module);
         }
-        else 
+        else
             addQuestion(module, Question.FlyswattingUnpressed, correctAnswers: outsideLetters);
     }
 
