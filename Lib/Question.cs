@@ -581,6 +581,12 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "left", "right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         DoubleDigitsDisplays,
 
+        [SouvenirQuestion("What was the starting key number in {0}?", "Double Expert", AnswerLayout.ThreeColumns6Answers)]
+        [AnswerGenerator.Integers(30, 69)]
+        DoubleExpertStartingKeyNumber,
+        [SouvenirQuestion("What was the word you submitted in {0}?", "Double Expert", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "Echo", "November", "Rodeo", "Words", "Victor", "Zulu" })]
+        DoubleExpertSubmittedWord,
+
         [SouvenirQuestion("Which button was the submit button in {0}?", "Double-Oh", AnswerLayout.ThreeColumns6Answers, "↕", "⇕", "↔", "⇔", "◆")]
         DoubleOhSubmitButton,
 

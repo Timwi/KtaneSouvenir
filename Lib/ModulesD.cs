@@ -293,6 +293,27 @@ public partial class SouvenirModule
             makeQuestion(Question.DoubleDigitsDisplays, _DoubleDigits, formatArgs: new[] { "right" }, correctAnswers: new[] { digits[1] }));
     }
 
+    private IEnumerable<object> ProcessDoubleExpert(KMBombModule module)
+    {
+        var comp = GetComponent(module, "doubleExpertScript");
+
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_DoubleExpert);
+
+        var startingKeyNumber = GetField<int>(comp, "startKeyNumber").Get();
+        var keywords = GetField<List<string>>(comp, "keywords").Get().ToArray();
+        var correctKeywordIndex = GetField<int>(comp, "correctKeyword").Get();
+
+        var qs = new List<QandA>
+        {
+            makeQuestion(Question.DoubleExpertStartingKeyNumber, _DoubleExpert, correctAnswers: new[] { startingKeyNumber.ToString() }),
+            makeQuestion(Question.DoubleExpertSubmittedWord, _DoubleExpert, correctAnswers: new[] { keywords[correctKeywordIndex] }, preferredWrongAnswers: keywords)
+        };
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessDoubleOh(KMBombModule module)
     {
         var comp = GetComponent(module, "DoubleOhModule");

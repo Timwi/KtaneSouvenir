@@ -118,6 +118,7 @@ public partial class SouvenirModule
     const string _DoubleArrows = "doubleArrows";
     const string _DoubleColor = "doubleColor";
     const string _DoubleDigits = "doubleDigitsModule";
+    const string _DoubleExpert = "doubleExpert";
     const string _DoubleOh = "DoubleOhModule";
     const string _DrDoctor = "DrDoctorModule";
     const string _Dreamcipher = "ksmDreamcipher";
@@ -582,6 +583,7 @@ public partial class SouvenirModule
             { _DoubleArrows, ProcessDoubleArrows },
             { _DoubleColor, ProcessDoubleColor },
             { _DoubleDigits, ProcessDoubleDigits },
+            { _DoubleExpert, ProcessDoubleExpert },
             { _DoubleOh, ProcessDoubleOh },
             { _DrDoctor, ProcessDrDoctor },
             { _Dreamcipher, ProcessDreamcipher },
