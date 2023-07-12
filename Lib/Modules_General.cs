@@ -55,6 +55,7 @@ public partial class SouvenirModule
     const string _BlueCipher = "blueCipher";
     const string _BobBarks = "ksmBobBarks";
     const string _Boggle = "boggle";
+    const string _BooleanWires = "booleanWires";
     const string _Boxing = "boxing";
     const string _Braille = "BrailleModule";
     const string _BreakfastEgg = "breakfastEgg";
@@ -512,6 +513,7 @@ public partial class SouvenirModule
             { _BlueCipher, ProcessBlueCipher },
             { _BobBarks, ProcessBobBarks },
             { _Boggle, ProcessBoggle },
+            { _BooleanWires, ProcessBooleanWires },
             { _Boxing, ProcessBoxing },
             { _Braille, ProcessBraille },
             { _BreakfastEgg, ProcessBreakfastEgg },

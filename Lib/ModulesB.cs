@@ -570,6 +570,23 @@ public partial class SouvenirModule
         addQuestion(module, Question.BoggleLetters, correctAnswers: visible.Select(v => v.ToString()).ToArray(), preferredWrongAnswers: letters.ToArray());
     }
 
+    private IEnumerable<object> ProcessBooleanWires(KMBombModule module)
+    {
+        var comp = GetComponent(module, "BooleanWiresScript");
+
+        var fldSolved = GetField<bool>(comp, "solved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_BooleanWires);
+
+        var operators = GetField<List<string>>(comp, "Entered", isPublic: true).Get();
+        var qs = new List<QandA>();
+
+        for (int pos = 0; pos < 5; pos++)
+            qs.Add(makeQuestion(Question.BooleanWiresEnteredOperators, _BooleanWires, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { operators[2 * pos] }));
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessBoxing(KMBombModule module)
     {
         var comp = GetComponent(module, "boxing");
