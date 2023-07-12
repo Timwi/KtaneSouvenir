@@ -1734,6 +1734,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         QuaverArrows,
 
+        [SouvenirQuestion("Which of these symbols was part of the flashing sequence in {0}?", "Question Mark", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "QuestionMarkSprites")]
+        QuestionMarkFlashedSymbols,
+
         [SouvenirQuestion("What was the {1} color in the primary sequence in {0}?", "Quick Arithmetic", AnswerLayout.ThreeColumns6Answers, "red", "blue", "green", "yellow", "white", "black", "orange", "pink", "purple", "cyan", "brown",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         QuickArithmeticColors,

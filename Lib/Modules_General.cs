@@ -324,6 +324,7 @@ public partial class SouvenirModule
     const string _PurpleButton = "PurpleButtonModule";
     const string _PuzzleIdentification = "GSPuzzleIdentification";
     const string _Quaver = "Quaver";
+    const string _QuestionMark = "Questionmark";
     const string _QuickArithmetic = "QuickArithmetic";
     const string _Quintuples = "quintuples";
     const string _RailwayCargoLoading = "RailwayCargoLoading";
@@ -784,6 +785,7 @@ public partial class SouvenirModule
             { _PurpleButton, ProcessPurpleButton },
             { _PuzzleIdentification, ProcessPuzzleIdentification },
             { _Quaver, ProcessQuaver },
+            { _QuestionMark, ProcessQuestionMark },
             { _QuickArithmetic, ProcessQuickArithmetic },
             { _Quintuples, ProcessQuintuples },
             { _RailwayCargoLoading, ProcessRailwayCargoLoading },

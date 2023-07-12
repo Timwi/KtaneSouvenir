@@ -32,6 +32,19 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessQuestionMark(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Questionmark");
+
+        var fldSolved = GetField<bool>(comp, "isSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_QuestionMark);
+
+        var flashedSpritePool = GetField<int[]>(comp, "spritePool").Get();
+        addQuestion(module, Question.QuestionMarkFlashedSymbols, correctAnswers: flashedSpritePool.Select(ix => QuestionMarkSprites[ix]).ToArray(), preferredWrongAnswers: QuestionMarkSprites);
+    }
+
     private IEnumerable<object> ProcessQuickArithmetic(KMBombModule module)
     {
         var comp = GetComponent(module, "QuickArithmetic");
