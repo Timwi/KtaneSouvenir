@@ -690,6 +690,19 @@ public partial class SouvenirModule
         addQuestions(module, flashes.Select((f, ix) => makeQuestion(Question.SimonsStarColors, _SimonsStar, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { f })));
     }
 
+    private IEnumerable<object> ProcessSimonStacks(KMBombModule module)
+    {
+        var comp = GetComponent(module, "simonstacksScript");
+
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SimonStacks);
+
+        var colors = GetField<List<string>>(comp, "Colors").Get();
+        addQuestions(module, colors.Select((c, ix) => makeQuestion(Question.SimonStacksColors, _SimonStacks, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { c })));
+    }
+
     private IEnumerable<object> ProcessSimonStages(KMBombModule module)
     {
         var comp = GetComponent(module, "SimonStagesHandler");

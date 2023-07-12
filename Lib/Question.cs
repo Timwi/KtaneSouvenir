@@ -2004,6 +2004,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonsStarColors,
 
+        [SouvenirQuestion("Which color flashed in the {1} stage of {0}?", "Simon Stacks", AnswerLayout.TwoColumns4Answers, "Red", "Green", "Blue", "Yellow", ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SimonStacksColors,
+
         [SouvenirQuestion("Which color flashed {1} in the {2} stage in {0}?", "Simon Stages", AnswerLayout.ThreeColumns6Answers, "red", "blue", "yellow", "orange", "magenta", "green", "pink", "lime", "cyan", "white", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 2)]
         SimonStagesFlashes,

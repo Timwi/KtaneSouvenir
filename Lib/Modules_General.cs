@@ -373,6 +373,7 @@ public partial class SouvenirModule
     const string _SimonSounds = "simonSounds";
     const string _SimonSpeaks = "SimonSpeaksModule";
     const string _SimonsStar = "simonsStar";
+    const string _SimonStacks = "simonstacks";
     const string _SimonStages = "simonStages";
     const string _SimonStates = "SimonV2";
     const string _SimonStops = "simonStops";
@@ -832,6 +833,7 @@ public partial class SouvenirModule
             { _SimonSounds, ProcessSimonSounds },
             { _SimonSpeaks, ProcessSimonSpeaks },
             { _SimonsStar, ProcessSimonsStar },
+            { _SimonStacks, ProcessSimonStacks },
             { _SimonStages, ProcessSimonStages },
             { _SimonStates, ProcessSimonStates },
             { _SimonStops, ProcessSimonStops },
