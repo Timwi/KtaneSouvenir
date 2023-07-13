@@ -1648,6 +1648,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         PhosphorescenceButtonPresses,
 
+        [SouvenirQuestion("What was the code in {0}?", "Pictionary", AnswerLayout.ThreeColumns6Answers)]
+        [AnswerGenerator.Strings("0-579", "0-68", "0-7", "0-68")]
+        PictionaryCode,
+
         [SouvenirQuestion("What was the {1} digit of the displayed number in {0}?", "Pie", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 9)]

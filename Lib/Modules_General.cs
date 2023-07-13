@@ -307,6 +307,7 @@ public partial class SouvenirModule
     const string _PatternCube = "PatternCubeModule";
     const string _PerspectivePegs = "spwizPerspectivePegs";
     const string _Phosphorescence = "Phosphorescence";
+    const string _Pictionary = "pictionaryModule";
     const string _Pie = "pieModule";
     const string _PieFlash = "pieFlash";
     const string _PigpenCycle = "pigpenCycle";
@@ -770,6 +771,7 @@ public partial class SouvenirModule
             { _PatternCube, ProcessPatternCube },
             { _PerspectivePegs, ProcessPerspectivePegs },
             { _Phosphorescence, ProcessPhosphorescence },
+            { _Pictionary, ProcessPictionary },
             { _Pie, ProcessPie },
             { _PieFlash, ProcessPieFlash },
             { _PigpenCycle, ProcessPigpenCycle },

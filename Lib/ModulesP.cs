@@ -295,6 +295,19 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessPictionary(KMBombModule module)
+    {
+        var comp = GetComponent(module, "pictionaryModuleScript");
+
+        var fldSolved = GetField<bool>(comp, "solved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Pictionary);
+
+        var code = GetField<string>(comp, "code").Get();
+        addQuestion(module, Question.PictionaryCode, correctAnswers: new[] { code });
+    }
+
     private IEnumerable<object> ProcessPie(KMBombModule module)
     {
         var comp = GetComponent(module, "PieScript");
