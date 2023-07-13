@@ -2015,6 +2015,11 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonShrieksFlashingButton,
 
+        [SouvenirQuestion("What was the color of the {1} flash in {0}?", "Simon Smothers", AnswerLayout.ThreeColumns6Answers, "Red", "Green", "Yellow", "Blue", "Magenta", "Cyan", ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SimonSmothersColors,
+        [SouvenirQuestion("What was the direction of the {1} flash in {0}?", "Smothers", AnswerLayout.TwoColumns4Answers, "Up", "Down", "Left", "Right", ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SimonSmothersDirections,
+
         [SouvenirQuestion("Which sample button sounded {1} in the final sequence in {0}?", "Simon Sounds", AnswerLayout.TwoColumns4Answers, "red", "blue", "yellow", "green", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSoundsFlashingColors,

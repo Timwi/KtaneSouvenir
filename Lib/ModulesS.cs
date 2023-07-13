@@ -134,7 +134,7 @@ public partial class SouvenirModule
             }
         }
 
-        solved:
+    solved:
         _modulesSolved.IncSafe(_SeaShells);
 
         var qs = new List<QandA>();
@@ -630,6 +630,27 @@ public partial class SouvenirModule
         var noteNames = new[] { "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B" };
         var flashingColorSequences = GetArrayField<int[]>(comp, "_flashingColors").Get(expectedLength: 3, validator: seq => seq.Any(col => col < 0 || col >= noteNames.Length) ? string.Format("expected range 0–{0}", noteNames.Length - 1) : null);
         addQuestions(module, flashingColorSequences.SelectMany((seq, stage) => seq.Select((col, ix) => makeQuestion(Question.SimonSingsFlashing, _SimonSings, formatArgs: new[] { ordinal(ix + 1), ordinal(stage + 1) }, correctAnswers: new[] { noteNames[col] }))));
+    }
+
+    private IEnumerable<object> ProcessSimonSmothers(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SimonSmothersScript");
+
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SimonSmothers);
+
+        var flashes = GetField<IList>(comp, "flashes").Get();
+        var qs = new List<QandA>();
+
+        for (int pos = 0, length = flashes.Count; pos < length; pos++)
+        {
+            string position = ordinal(pos + 1);
+            qs.Add(makeQuestion(Question.SimonSmothersColors, _SimonSmothers, formatArgs: new[] { position }, correctAnswers: new[] { GetField<Enum>(flashes[pos], "color", isPublic: true).Get().ToString() }));
+            qs.Add(makeQuestion(Question.SimonSmothersDirections, _SimonSmothers, formatArgs: new[] { position }, correctAnswers: new[] { GetField<Enum>(flashes[pos], "direction", isPublic: true).Get().ToString() }));
+        }
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessSimonSounds(KMBombModule module)
