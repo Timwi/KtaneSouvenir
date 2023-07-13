@@ -598,6 +598,11 @@ namespace Souvenir
         [SouvenirQuestion("What was the decrypted word in {0}?", "Dreamcipher", AnswerLayout.OneColumn4Answers, null, ExampleAnswers = new[] { "asparagus", "demonstration", "fossilizing", "foursquare", "grinning", "jumpiness", "pasteboard", "prosecution", "sarcastic", "transition" })]
         DreamcipherWord,
 
+        [SouvenirQuestion("How did you approach the duck in {0}?", "Duck", AnswerLayout.OneColumn4Answers, "dove at the duck", "walked to the duck", "ran to the duck", "snuck up on the duck", "swam to the duck", "flew to the duck", "approached the duck with caution", AddThe = true)]
+        DuckApproach,
+        [SouvenirQuestion("What was the color of the curtain in {0}?", "Duck", AnswerLayout.TwoColumns4Answers, "blue", "yellow", "green", "orange", "red", AddThe = true)]
+        DuckCurtainColor,
+
         [SouvenirQuestion("Which player {1} present in {0}?", "Dumb Waiters", AnswerLayout.OneColumn4Answers, null, ExampleAnswers = new[] { "Arceus", "Danny7007", "EpicToast", "eXish", "Fang", "Makebao", "MCD573", "Mr. Peanut", "Mythers", "Xmaster" },
             ExampleExtraFormatArguments = new[] { "was", "was not" }, ExampleExtraFormatArgumentGroupSize = 1)]
         DumbWaitersPlayerAvailable,

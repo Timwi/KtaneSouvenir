@@ -362,6 +362,28 @@ public partial class SouvenirModule
         addQuestions(module, makeQuestion(Question.DreamcipherWord, _Dreamcipher, formatArgs: null, correctAnswers: new[] { targetWord }, preferredWrongAnswers: wordList));
     }
 
+    private IEnumerable<object> ProcessDuck(KMBombModule module)
+    {
+        var comp = GetComponent(module, "theDuckScript");
+
+        var fldSolved = GetField<bool>(comp, "solved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Duck);
+
+        var colorNames = new[] { "blue", "yellow", "green", "orange", "red" };
+        var approaches = new[] { "dove at the duck", "walked to the duck", "ran to the duck", "snuck up on the duck", "swam to the duck", "flew to the duck", "approached the duck with caution" };
+        var curtainColor = colorNames[GetField<int>(comp, "curtainColor").Get()];
+        var chosenApproach = approaches[GetField<int>(comp, "correctApproach").Get()];
+
+        var qs = new List<QandA>
+        {
+            makeQuestion(Question.DuckApproach, _Duck, correctAnswers: new[] { chosenApproach }),
+            makeQuestion(Question.DuckCurtainColor, _Duck, correctAnswers: new[] { curtainColor }),
+        };
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessDumbWaiters(KMBombModule module)
     {
         var comp = GetComponent(module, "dumbWaiters");
