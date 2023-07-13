@@ -514,4 +514,18 @@ public partial class SouvenirModule
             departures.Select((dep, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, formatArgs: new[] { ordinal(ix + 1), "depart from" }, correctAnswers: new[] { dep }, preferredWrongAnswers: primary)).Concat(
             destinations.Select((dest, ix) => makeQuestion(Question.LondonUndergroundStations, _LondonUnderground, formatArgs: new[] { ordinal(ix + 1), "arrive to" }, correctAnswers: new[] { dest }, preferredWrongAnswers: primary))));
     }
+
+    private IEnumerable<object> ProcessLongWords(KMBombModule module)
+    {
+        var comp = GetComponent(module, "LongWords");
+        var fldSolved = GetField<bool>(comp, "ModuleSolved");
+        var fldPossibleWords = GetField<List<string>>(comp, "SixLetterWords");
+        var word = GetField<string>(comp, "chosenSixLetterWord").Get(str => str.Length != 6 ? $"length is {str.Length} instead of 6" : null);
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_LongWords);
+
+        addQuestion(module, Question.LongWordsWord, correctAnswers: new[] { word }, preferredWrongAnswers: fldPossibleWords.Get().ToArray());
+    }
 }

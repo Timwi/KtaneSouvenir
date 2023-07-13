@@ -206,6 +206,7 @@ public partial class SouvenirModule
     const string _LogicGates = "logicGates";
     const string _LombaxCubes = "lgndLombaxCubes";
     const string _LondonUnderground = "londonUnderground";
+    const string _LongWords = "LongWords";
     const string _Mafia = "MafiaModule";
     const string _MagentaCipher = "magentaCipher";
     const string _Mahjong = "MahjongModule";
@@ -658,6 +659,7 @@ public partial class SouvenirModule
             { _LogicGates, ProcessLogicGates },
             { _LombaxCubes, ProcessLombaxCubes },
             { _LondonUnderground, ProcessLondonUnderground },
+            { _LongWords, ProcessLongWords },
             { _Mafia, ProcessMafia },
             { _MagentaCipher, ProcessMagentaCipher },
             { _Mahjong, ProcessMahjong },
