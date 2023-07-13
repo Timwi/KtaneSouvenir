@@ -1078,6 +1078,9 @@ namespace Souvenir
         [AnswerGenerator.Strings("A-Z")]
         LetterMathDisplay,
 
+        [SouvenirQuestion("What was the color of the {1} bulb in {0}?", "Light Bulbs", AnswerLayout.ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Cyan", "Magenta", ExampleExtraFormatArguments = new[] { "left", "right" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        LightBulbsColors,
+
         [SouvenirQuestion("What was the {1} function in {0}?", "Linq", AnswerLayout.ThreeColumns6Answers, "First", "Last", "Min", "Max", "Distinct", "Skip", "SkipLast", "Take", "TakeLast", "ElementAt", "Except", "Intersect", "Concat", "Append", "Prepend", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         LinqFunction,

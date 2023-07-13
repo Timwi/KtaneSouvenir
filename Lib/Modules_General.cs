@@ -206,6 +206,7 @@ public partial class SouvenirModule
     const string _LEDs = "leds";
     const string _LEGOs = "LEGOModule";
     const string _LetterMath = "letterMath";
+    const string _LightBulbs = "LightBulbs";
     const string _Linq = "Linq";
     const string _LionsShare = "LionsShareModule";
     const string _Listening = "Listening";
@@ -673,6 +674,7 @@ public partial class SouvenirModule
             { _LEDs, ProcessLEDs },
             { _LEGOs, ProcessLEGOs },
             { _LetterMath, ProcessLetterMath },
+            { _LightBulbs, ProcessLightBulbs },
             { _Linq, ProcessLinq },
             { _LionsShare, ProcessLionsShare },
             { _Listening, ProcessListening },

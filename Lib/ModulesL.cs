@@ -247,6 +247,24 @@ public partial class SouvenirModule
             makeQuestion(Question.LetterMathDisplay, _LetterMath, formatArgs: new[] { "right" }, correctAnswers: new[] { letters[1] }, preferredWrongAnswers: wrongLetters));
     }
 
+    private IEnumerable<object> ProcessLightBulbs(KMBombModule module)
+    {
+        var comp = GetComponent(module, "LightBulbsScript");
+
+        var fldSolved = GetField<bool>(comp, "isSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_LightBulbs);
+
+        var bulbs = GetField<IList>(comp, "Bulbs").Get();
+        var qs = new List<QandA>
+        {
+            makeQuestion(Question.LightBulbsColors, _LightBulbs, formatArgs: new[] { "left" }, correctAnswers: new[] { GetField<Enum>(bulbs[0], "Color", isPublic: true).Get().ToString() }),
+            makeQuestion(Question.LightBulbsColors, _LightBulbs, formatArgs: new[] { "right" }, correctAnswers: new[] { GetField<Enum>(bulbs[2], "Color", isPublic: true).Get().ToString() })
+        };
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessLinq(KMBombModule module)
     {
         var comp = GetComponent(module, "LinqScript");
