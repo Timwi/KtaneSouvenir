@@ -604,6 +604,7 @@ public partial class SouvenirModule
             { _Functions, ProcessFunctions },
             { _GameOfLifeCruel, ProcessGameOfLifeCruel },
             { _Gamepad, ProcessGamepad },
+            { _Girlfriend, ProcessGirlfriend },
             { _GlitchedButton, ProcessGlitchedButton },
             { _GrayButton, ProcessGrayButton },
             { _GrayCipher, ProcessGrayCipher },
