@@ -167,6 +167,26 @@ public partial class SouvenirModule
         addQuestions(module, Enumerable.Range(0, 10).Select(ix => makeQuestion(Question.RecoloredSwitchesLedColors, _RecoloredSwitches, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { colorNames[ledColors[ix]] })));
     }
 
+    private IEnumerable<object> ProcessRecursivePassword(KMBombModule module)
+    {
+        var comp = GetComponent(module, "RecursivePassword");
+
+        var solved = false;
+        module.OnPass += () => { solved = true; return false; };
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_RecursivePassword);
+
+        var wordList = GetField<string[]>(comp, "WordList").Get();
+        var selectedWords = GetField<int[]>(comp, "SelectedWords").Get().Select(ix => wordList[ix]).ToArray();
+        var password = wordList[GetField<int>(comp, "Password").Get()];
+        addQuestions(
+            module,
+            makeQuestion(Question.RecursivePasswordNonPasswordWords, _RecursivePassword, correctAnswers: selectedWords, preferredWrongAnswers: wordList),
+            makeQuestion(Question.RecursivePasswordPassword, _RecursivePassword, correctAnswers: new[] { password }, preferredWrongAnswers: selectedWords)
+        );
+    }
+
     private IEnumerable<object> ProcessRedArrows(KMBombModule module)
     {
         var comp = GetComponent(module, "RedArrowsScript");

@@ -336,6 +336,7 @@ public partial class SouvenirModule
     const string _RailwayCargoLoading = "RailwayCargoLoading";
     const string _RainbowArrows = "ksmRainbowArrows";
     const string _RecoloredSwitches = "R4YRecoloredSwitches";
+    const string _RecursivePassword = "RecursivePassword";
     const string _RedArrows = "redArrowsModule";
     const string _RedCipher = "redCipher";
     const string _RedHerring = "RedHerring";
@@ -804,6 +805,7 @@ public partial class SouvenirModule
             { _RailwayCargoLoading, ProcessRailwayCargoLoading },
             { _RainbowArrows, ProcessRainbowArrows },
             { _RecoloredSwitches, ProcessRecoloredSwitches },
+            { _RecursivePassword, ProcessRecursivePassword },
             { _RedArrows, ProcessRedArrows },
             { _RedCipher, ProcessRedCipher },
             { _RedHerring, ProcessRedHerring },

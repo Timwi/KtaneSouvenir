@@ -1799,6 +1799,11 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         RecoloredSwitchesLedColors,
 
+        [SouvenirQuestion("Which of these words appeared, but was not the password, in {0}?", "Recursive Password", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "Abyss", "Ingot", "Nonce", "Whelk", "Obeys", "Lobed" })]
+        RecursivePasswordNonPasswordWords,
+        [SouvenirQuestion("What was the password in {0}?", "Recursive Password", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "Abyss", "Ingot", "Nonce", "Whelk", "Obeys", "Lobed" })]
+        RecursivePasswordPassword,
+
         [SouvenirQuestion("What was the starting number in {0}?", "Red Arrows", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Integers(0, 9)]
         RedArrowsStartNumber,
