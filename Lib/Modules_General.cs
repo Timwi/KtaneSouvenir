@@ -292,6 +292,7 @@ public partial class SouvenirModule
     const string _ObjectShows = "objectShows";
     const string _Octadecayotton = "TheOctadecayotton";
     const string _OddOneOut = "OddOneOutModule";
+    const string _OldFogey = "oldFogey";
     const string _OnlyConnect = "OnlyConnectModule";
     const string _OrangeArrows = "orangeArrowsModule";
     const string _OrangeCipher = "orangeCipher";
@@ -756,6 +757,7 @@ public partial class SouvenirModule
             { _ObjectShows, ProcessObjectShows },
             { _Octadecayotton, ProcessOctadecayotton },
             { _OddOneOut, ProcessOddOneOut },
+            { _OldFogey, ProcessOldFogey },
             { _OnlyConnect, ProcessOnlyConnect },
             { _OrangeArrows, ProcessOrangeArrows },
             { _OrangeCipher, ProcessOrangeCipher },

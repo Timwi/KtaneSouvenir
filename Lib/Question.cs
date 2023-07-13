@@ -1555,6 +1555,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         OddOneOutButton,
 
+        [SouvenirQuestion("What was the initial colour of the status light in {0}?", "Old Fogey", AnswerLayout.ThreeColumns6Answers, "Red", "Green", "Yellow", "Blue", "Magenta", "Cyan", "White")]
+        OldFogeyStartingColor,
+
         [SouvenirQuestion("Which Egyptian hieroglyph was in the {1} in {0}?", "Only Connect", AnswerLayout.TwoColumns4Answers, "Two Reeds", "Lion", "Twisted Flax", "Horned Viper", "Water", "Eye of Horus", TranslateFormatArgs = new[] { true },
             ExampleExtraFormatArguments = new[] { "top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         OnlyConnectHieroglyphs,

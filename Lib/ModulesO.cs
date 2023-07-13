@@ -68,6 +68,19 @@ public partial class SouvenirModule
             makeQuestion(Question.OddOneOutButton, _OddOneOut, formatArgs: new[] { "sixth" }, correctAnswers: new[] { btnNames[stageBtn[5]] }));
     }
 
+    private IEnumerable<object> ProcessOldFogey(KMBombModule module)
+    {
+        var comp = GetComponent(module, "OldFogey");
+
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_OldFogey);
+
+        var startingColor = GetMethod<string>(comp, "GetStartingColor", 0).Invoke();
+        addQuestion(module, Question.OldFogeyStartingColor, correctAnswers: new[] { startingColor });
+    }
+
     private IEnumerable<object> ProcessOnlyConnect(KMBombModule module)
     {
         var comp = GetComponent(module, "OnlyConnectModule");
