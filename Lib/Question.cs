@@ -795,6 +795,10 @@ namespace Souvenir
         [AnswerGenerator.Strings("2*0-9", ":", "2*0-9")]
         GamepadNumbers,
 
+        [SouvenirQuestion("What was the language sang in {0}?", "Girlfriend", AnswerLayout.TwoColumns4Answers, null, 
+            ExampleAnswers = new[] { "English", "French", "German", "Italian"})]
+        GirlfriendLanguage,
+
         [SouvenirQuestion("What was the cycling bit sequence in {0}?", "Glitched Button", AnswerLayout.OneColumn4Answers, null, AddThe = true)]
         [AnswerGenerator.Strings(12, "01")]
         GlitchedButtonSequence,
