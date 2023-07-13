@@ -67,6 +67,20 @@ public partial class SouvenirModule
         digits2.GetComponent<TextMesh>().text = "--";
     }
 
+    private IEnumerable<object> ProcessGirlfriend(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Girlfriend");
+        var fldSolved = GetField<bool>(comp, "ModuleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Girlfriend);
+
+        var languageArr = GetField<string[]>(comp, "languages", isPublic: false).Get();
+        var answerIndex = GetField<int>(comp, "answerIndex", isPublic: false).Get();
+
+        addQuestion(module, Question.GirlfriendLanguage, correctAnswers: new string[] { languageArr[answerIndex] }, preferredWrongAnswers: languageArr);
+    }
+
     private IEnumerable<object> ProcessGlitchedButton(KMBombModule module)
     {
         var comp = GetComponent(module, "GlitchedButtonScript");
