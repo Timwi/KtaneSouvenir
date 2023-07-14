@@ -693,7 +693,7 @@ public partial class SouvenirModule
         while (randomChords.Count < 8)
             randomChords.Add($"{rootPositions.PickRandom()}{qualities.PickRandom()}");
         var possibleAnswers = randomChords.Select(chord => $"{rootNames[int.Parse(chord.Substring(0, 2))].PickRandom()}{chord.Substring(2)}").ToList();
-        if ("#b".Contains(displayedChord[1]))
+        if (displayedChord.Length > 1 && "#b".Contains(displayedChord[1]))
         {
             var letters = "ABCDEFG";
             var offset = displayedChord[1] == '#' ? 1 : 6;
