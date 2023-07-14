@@ -120,10 +120,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 11489182, guid: 52b9f1e2083908e4c97cbfcd050b0505, type: 2}
-      propertyPath: QuestionMarkSprites.Array.size
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 474250, guid: 52b9f1e2083908e4c97cbfcd050b0505, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -156,81 +152,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 11489182, guid: 52b9f1e2083908e4c97cbfcd050b0505, type: 2}
-      propertyPath: QuestionMarkSprites.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: 59f833f9c8968c24fbc544b3daa2f183,
-        type: 3}
-    - target: {fileID: 11489182, guid: 52b9f1e2083908e4c97cbfcd050b0505, type: 2}
-      propertyPath: QuestionMarkSprites.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: a6a8d426ec2570b4b861ebdb41acaa97,
-        type: 3}
-    - target: {fileID: 11489182, guid: 52b9f1e2083908e4c97cbfcd050b0505, type: 2}
-      propertyPath: QuestionMarkSprites.Array.data[2]
-      value: 
-      objectReference: {fileID: 21300000, guid: 6cb4218e4a06e0545adeef1b924d64ef,
-        type: 3}
-    - target: {fileID: 11489182, guid: 52b9f1e2083908e4c97cbfcd050b0505, type: 2}
-      propertyPath: QuestionMarkSprites.Array.data[3]
-      value: 
-      objectReference: {fileID: 21300000, guid: 82162d916395a164498aa9b6b131f399,
-        type: 3}
-    - target: {fileID: 11489182, guid: 52b9f1e2083908e4c97cbfcd050b0505, type: 2}
-      propertyPath: QuestionMarkSprites.Array.data[4]
-      value: 
-      objectReference: {fileID: 21300000, guid: 073c7c28981c2874fa94757059c3c034,
-        type: 3}
-    - target: {fileID: 11489182, guid: 52b9f1e2083908e4c97cbfcd050b0505, type: 2}
-      propertyPath: QuestionMarkSprites.Array.data[5]
-      value: 
-      objectReference: {fileID: 21300000, guid: 626f9f54eff7d674cb446bd46ea4981d,
-        type: 3}
-    - target: {fileID: 11489182, guid: 52b9f1e2083908e4c97cbfcd050b0505, type: 2}
-      propertyPath: QuestionMarkSprites.Array.data[6]
-      value: 
-      objectReference: {fileID: 21300000, guid: 9cd9cc6504225474284d22c70d1cc8c3,
-        type: 3}
-    - target: {fileID: 11489182, guid: 52b9f1e2083908e4c97cbfcd050b0505, type: 2}
-      propertyPath: QuestionMarkSprites.Array.data[7]
-      value: 
-      objectReference: {fileID: 21300000, guid: 2d136c3866b1e8c469b247ea4dc1e006,
-        type: 3}
-    - target: {fileID: 11489182, guid: 52b9f1e2083908e4c97cbfcd050b0505, type: 2}
-      propertyPath: QuestionMarkSprites.Array.data[8]
-      value: 
-      objectReference: {fileID: 21300000, guid: 6ce8763c178fd6247908e1b2bbc6eefc,
-        type: 3}
-    - target: {fileID: 11489182, guid: 52b9f1e2083908e4c97cbfcd050b0505, type: 2}
-      propertyPath: QuestionMarkSprites.Array.data[9]
-      value: 
-      objectReference: {fileID: 21300000, guid: ebace99b86f3af94a8a002e3472a9bcc,
-        type: 3}
-    - target: {fileID: 11489182, guid: 52b9f1e2083908e4c97cbfcd050b0505, type: 2}
-      propertyPath: QuestionMarkSprites.Array.data[10]
-      value: 
-      objectReference: {fileID: 21300000, guid: 7a16d5e3e212a36469d06e561262d401,
-        type: 3}
-    - target: {fileID: 11489182, guid: 52b9f1e2083908e4c97cbfcd050b0505, type: 2}
-      propertyPath: QuestionMarkSprites.Array.data[11]
-      value: 
-      objectReference: {fileID: 21300000, guid: 3850f5c75cc9c5a408557c44398fd17f,
-        type: 3}
-    - target: {fileID: 11489182, guid: 52b9f1e2083908e4c97cbfcd050b0505, type: 2}
-      propertyPath: QuestionMarkSprites.Array.data[12]
-      value: 
-      objectReference: {fileID: 21300000, guid: 4f4c032cb027f1c46abe54760f90b3ff,
-        type: 3}
-    - target: {fileID: 11489182, guid: 52b9f1e2083908e4c97cbfcd050b0505, type: 2}
-      propertyPath: QuestionMarkSprites.Array.data[13]
-      value: 
-      objectReference: {fileID: 21300000, guid: 7d79fd5e999c1304ca296fb9c7594f1a,
-        type: 3}
-    - target: {fileID: 11489182, guid: 52b9f1e2083908e4c97cbfcd050b0505, type: 2}
-      propertyPath: QuestionMarkSprites.Array.data[14]
-      value: 
-      objectReference: {fileID: 21300000, guid: 54395654e5efc4148a5bf6d3390af4f1,
-        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52b9f1e2083908e4c97cbfcd050b0505, type: 2}
   m_IsPrefabParent: 0

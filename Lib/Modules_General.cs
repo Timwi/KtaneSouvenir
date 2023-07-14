@@ -686,6 +686,8 @@ public partial class SouvenirModule
             { _LogicGates, ProcessLogicGates },
             { _LombaxCubes, ProcessLombaxCubes },
             { _LondonUnderground, ProcessLondonUnderground },
+            { _LongWords, ProcessLongWords },
+            { _MadMemory, ProcessMadMemory },
             { _Mafia, ProcessMafia },
             { _MagentaCipher, ProcessMagentaCipher },
             { _Mahjong, ProcessMahjong },

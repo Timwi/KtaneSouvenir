@@ -304,7 +304,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Pictionary);
 
-        var code = GetField<string>(comp, "code").Get();
+        var code = GetField<string>(comp, "code").Get(c => c.Length != 4 || c.Any(ch => !char.IsDigit(ch)) ? "expected a sequence of four digits" : null);
         addQuestion(module, Question.PictionaryCode, correctAnswers: new[] { code });
     }
 
@@ -583,7 +583,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_PunctuationMarks);
 
-        var number = GetField<int>(comp, "memoryBankNumber").Get().ToString("00");
+        var number = GetIntField(comp, "memoryBankNumber").Get(min: 0, max: 99).ToString("00");
         addQuestion(module, Question.PunctuationMarksDisplayedNumber, correctAnswers: new[] { number });
     }
 

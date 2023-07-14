@@ -302,16 +302,15 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_DoubleExpert);
 
-        var startingKeyNumber = GetField<int>(comp, "startKeyNumber").Get();
-        var keywords = GetField<List<string>>(comp, "keywords").Get().ToArray();
-        var correctKeywordIndex = GetField<int>(comp, "correctKeyword").Get();
+        var startingKeyNumber = GetIntField(comp, "startKeyNumber").Get(min: 30, max: 69);
+        var keywords = GetListField<string>(comp, "keywords").Get().ToArray();
+        var correctKeywordIndex = GetIntField(comp, "correctKeyword").Get(min: 0, max: keywords.Length - 1);
 
-        var qs = new List<QandA>
-        {
+        addQuestions(
+            module,
             makeQuestion(Question.DoubleExpertStartingKeyNumber, _DoubleExpert, correctAnswers: new[] { startingKeyNumber.ToString() }),
             makeQuestion(Question.DoubleExpertSubmittedWord, _DoubleExpert, correctAnswers: new[] { keywords[correctKeywordIndex] }, preferredWrongAnswers: keywords)
-        };
-        addQuestions(module, qs);
+        );
     }
 
     private IEnumerable<object> ProcessDoubleOh(KMBombModule module)
@@ -373,15 +372,14 @@ public partial class SouvenirModule
 
         var colorNames = new[] { "blue", "yellow", "green", "orange", "red" };
         var approaches = new[] { "dove at the duck", "walked to the duck", "ran to the duck", "snuck up on the duck", "swam to the duck", "flew to the duck", "approached the duck with caution" };
-        var curtainColor = colorNames[GetField<int>(comp, "curtainColor").Get()];
-        var chosenApproach = approaches[GetField<int>(comp, "correctApproach").Get()];
+        var curtainColor = colorNames[GetIntField(comp, "curtainColor").Get(min: 0, max: 4)];
+        var chosenApproach = approaches[GetIntField(comp, "correctApproach").Get(min: 0, max: 6)];
 
-        var qs = new List<QandA>
-        {
+        addQuestions(
+            module,
             makeQuestion(Question.DuckApproach, _Duck, correctAnswers: new[] { chosenApproach }),
-            makeQuestion(Question.DuckCurtainColor, _Duck, correctAnswers: new[] { curtainColor }),
-        };
-        addQuestions(module, qs);
+            makeQuestion(Question.DuckCurtainColor, _Duck, correctAnswers: new[] { curtainColor })
+        );
     }
 
     private IEnumerable<object> ProcessDumbWaiters(KMBombModule module)

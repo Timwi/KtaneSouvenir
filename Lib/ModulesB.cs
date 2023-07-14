@@ -579,9 +579,8 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_BooleanWires);
 
-        var operators = GetField<List<string>>(comp, "Entered", isPublic: true).Get();
+        var operators = GetListField<string>(comp, "Entered", isPublic: true).Get(expectedLength: 10);
         var qs = new List<QandA>();
-
         for (int pos = 0; pos < 5; pos++)
             qs.Add(makeQuestion(Question.BooleanWiresEnteredOperators, _BooleanWires, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { operators[2 * pos] }));
         addQuestions(module, qs);
@@ -686,32 +685,28 @@ public partial class SouvenirModule
         foreach (var renderer in GetField<MeshRenderer[]>(comp, "MuteRenderers", isPublic: true).Get())
             renderer.enabled = false;
 
-        var qs = new List<QandA>();
-
-        var rootNames = GetStaticField<string[][]>(comp.GetType(), "_noteNames").Get();
+        var rootNames = GetStaticField<string[][]>(comp.GetType(), "_noteNames").Get(arr => arr.Length != 12 ? "expected length 12" : null);
         var rootPositions = Enumerable.Range(0, 12).Select(i => i.ToString("00"));
-        var qualities = new List<string> { "", "m", "6", "7", "9", "add9", "m6", "m7", "maj7", "dim", "dim7", "+", "sus" };
-        var randomChords = new List<string>();
-        while (randomChords.Distinct().Count() < 8)
+        var qualities = new[] { "", "m", "6", "7", "9", "add9", "m6", "m7", "maj7", "dim", "dim7", "+", "sus" };
+
+        var randomChords = new HashSet<string>();
+        while (randomChords.Count < 8)
             randomChords.Add($"{rootPositions.PickRandom()}{qualities.PickRandom()}");
-        var possibleAnswers = randomChords.Distinct().Select(ans => $"{rootNames[int.Parse(ans.Substring(0, 2))].PickRandom()}{ans.Substring(2)}").ToList();
-
-        if (displayedChord[1] == '#')
+        var possibleAnswers = randomChords.Select(chord => $"{rootNames[int.Parse(chord.Substring(0, 2))].PickRandom()}{chord.Substring(2)}").ToList();
+        if ("#b".Contains(displayedChord[1]))
         {
             var letters = "ABCDEFG";
-            possibleAnswers.Remove($"{letters[(letters.IndexOf(displayedChord[0]) + 1) % 7]}b{displayedChord.Substring(2)}");
+            var offset = displayedChord[1] == '#' ? 1 : 6;
+            possibleAnswers.Remove($"{letters[(letters.IndexOf(displayedChord[0]) + offset) % 7]}b{(displayedChord.Length > 2 ? displayedChord.Substring(2) : "")}");
         }
-        else if (displayedChord[1] == 'b')
-        {
-            var letters = "ABCDEFG";
-            possibleAnswers.Remove($"{letters[(letters.IndexOf(displayedChord[0]) + 6) % 7]}b{displayedChord.Substring(2)}");
-        }
-        qs.Add(makeQuestion(Question.BrokenGuitarChordsDisplayedChord, _BrokenGuitarChords, correctAnswers: new[] { displayedChord }, preferredWrongAnswers: possibleAnswers.ToArray()));
 
-        var brokenStringPosition = GetField<int>(comp, "_brokenString").Get() + 1;
-        qs.Add(makeQuestion(Question.BrokenGuitarChordsMutedString, _BrokenGuitarChords, correctAnswers: new[] { brokenStringPosition.ToString() }));
-        
-        addQuestions(module, qs);
+        var brokenStringPosition = GetIntField(comp, "_brokenString").Get(min: 0, max: 5) + 1;
+
+        addQuestions(
+            module,
+            makeQuestion(Question.BrokenGuitarChordsDisplayedChord, _BrokenGuitarChords, correctAnswers: new[] { displayedChord }, preferredWrongAnswers: possibleAnswers.ToArray()),
+            makeQuestion(Question.BrokenGuitarChordsMutedString, _BrokenGuitarChords, correctAnswers: new[] { brokenStringPosition.ToString() })
+        );
     }
 
     private IEnumerable<object> ProcessBrownCipher(KMBombModule module)
@@ -746,17 +741,16 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_BurgerAlarm);
 
-        var qs = new List<QandA>();
+        var displayedNumber = GetArrayField<int>(comp, "number").Get(expectedLength: 7);
+        var orders = GetArrayField<string>(comp, "orderStrings").Get(expectedLength: 5);
 
-        var displayedNumber = GetField<int[]>(comp, "number").Get();
-        var orders = GetField<string[]>(comp, "orderStrings").Get();
+        var qs = new List<QandA>();
         for (int pos = 0; pos < 7; pos++)
         {
             qs.Add(makeQuestion(Question.BurgerAlarmDigits, _BurgerAlarm, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { displayedNumber[pos].ToString() }));
             if (pos < 5)
                 qs.Add(makeQuestion(Question.BurgerAlarmOrderNumbers, _BurgerAlarm, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { orders[pos].Replace("no.    ", "") }));
         }
-
         addQuestions(module, qs);
     }
 

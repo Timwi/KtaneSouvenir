@@ -767,8 +767,8 @@ public partial class SouvenirModule
     private IEnumerable<object> ProcessCursedDoubleOh(KMBombModule module)
     {
         var comp = GetComponent(module, "DoubleOhModule");
-        var fldSolved = GetField<bool>(comp, "_isSolved");
 
+        var fldSolved = GetField<bool>(comp, "_isSolved");
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_CursedDoubleOh);

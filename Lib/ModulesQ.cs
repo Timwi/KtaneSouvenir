@@ -41,7 +41,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_QuestionMark);
 
-        var flashedSpritePool = GetField<int[]>(comp, "spritePool").Get();
+        var flashedSpritePool = GetArrayField<int>(comp, "spritePool").Get(expectedLength: 4);
         addQuestion(module, Question.QuestionMarkFlashedSymbols, correctAnswers: flashedSpritePool.Select(ix => QuestionMarkSprites[ix]).ToArray(), preferredWrongAnswers: QuestionMarkSprites);
     }
 

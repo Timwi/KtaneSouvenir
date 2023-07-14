@@ -643,7 +643,6 @@ public partial class SouvenirModule
 
         var flashes = GetField<IList>(comp, "flashes").Get();
         var qs = new List<QandA>();
-
         for (int pos = 0, length = flashes.Count; pos < length; pos++)
         {
             string position = ordinal(pos + 1);
@@ -720,7 +719,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_SimonStacks);
 
-        var colors = GetField<List<string>>(comp, "Colors").Get();
+        var colors = GetListField<string>(comp, "Colors").Get(minLength: 3, maxLength: 5);
         addQuestions(module, colors.Select((c, ix) => makeQuestion(Question.SimonStacksColors, _SimonStacks, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { c })));
     }
 

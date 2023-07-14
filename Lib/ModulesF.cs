@@ -84,7 +84,6 @@ public partial class SouvenirModule
 
         var referredButtons = GetField<int[]>(comp, "ReferredButtons").Get();
         var qs = new List<QandA>();
-
         for (int pos = 0; pos < 16; pos++)
         {
             var buttonRefersTo = new Coord(4, 4, referredButtons[pos]);
@@ -243,10 +242,10 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_FollowMe);
 
         var directionWords = new Dictionary<string, string> { { "U", "Up" }, { "D", "Down" }, { "L", "Left" }, { "R", "Right" } };
-        var path = GetField<List<string>>(comp, "Path").Get();
-        var qs = new List<QandA>();
+        var path = GetListField<string>(comp, "Path").Get(minLength: 1, validator: x => !directionWords.ContainsKey(x) ? $"expected only {directionWords.Keys.JoinString(", ")}" : null);
 
-        for (int pos = 0, length = path.Count(); pos < length; pos++)
+        var qs = new List<QandA>();
+        for (int pos = 0; pos < path.Count; pos++)
             qs.Add(makeQuestion(Question.FollowMeDisplayedPath, _FollowMe, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { directionWords[path[pos]] }));
         addQuestions(module, qs);
     }

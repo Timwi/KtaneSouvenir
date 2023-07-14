@@ -17,13 +17,12 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_MadMemory);
 
-        var possibleTexts = GetField<string[]>(comp, "screenTexts", true).Get();
-        var displayedLabels = GetField<int[]>(comp, "screenLabels", true).Get();
-        var stages = new[] { "first", "second", "third", "fourth" };
+        var possibleTexts = GetArrayField<string>(comp, "screenTexts", true).Get(expectedLength: 16);
+        var displayedLabels = GetArrayField<int>(comp, "screenLabels", true).Get(expectedLength: 4);
 
         var qs = new List<QandA>();
         for (int stageNum = 0; stageNum < 4; stageNum++)
-            qs.Add(makeQuestion(Question.MadMemoryDisplays, _MadMemory, formatArgs: new[] { stages[stageNum] }, correctAnswers: new[] { possibleTexts[displayedLabels[stageNum]] }));
+            qs.Add(makeQuestion(Question.MadMemoryDisplays, _MadMemory, formatArgs: new[] { ordinal(stageNum + 1) }, correctAnswers: new[] { possibleTexts[displayedLabels[stageNum]] }));
         addQuestions(module, qs);
     }
 

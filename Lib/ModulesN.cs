@@ -256,7 +256,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_NotColoredSquares);
 
-        var firstPressedPosition = GetField<int>(comp, "_stageOnePress").Get();
+        var firstPressedPosition = GetIntField(comp, "_stageOnePress").Get(min: 0, max: 15);
         addQuestion(module, Question.NotColoredSquaresInitialPosition, correctAnswers: new[] { new Coord(4, 4, firstPressedPosition) });
     }
 

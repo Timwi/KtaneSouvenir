@@ -256,13 +256,13 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_LightBulbs);
 
-        var bulbs = GetField<IList>(comp, "Bulbs").Get();
-        var qs = new List<QandA>
-        {
+        var bulbs = GetField<IList>(comp, "Bulbs").Get(lst => lst.Count != 3 ? "expected length 3" : null);
+
+        addQuestions(
+            module,
             makeQuestion(Question.LightBulbsColors, _LightBulbs, formatArgs: new[] { "left" }, correctAnswers: new[] { GetField<Enum>(bulbs[0], "Color", isPublic: true).Get().ToString() }),
             makeQuestion(Question.LightBulbsColors, _LightBulbs, formatArgs: new[] { "right" }, correctAnswers: new[] { GetField<Enum>(bulbs[2], "Color", isPublic: true).Get().ToString() })
-        };
-        addQuestions(module, qs);
+        );
     }
 
     private IEnumerable<object> ProcessLinq(KMBombModule module)

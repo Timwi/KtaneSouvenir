@@ -177,9 +177,10 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_RecursivePassword);
 
-        var wordList = GetField<string[]>(comp, "WordList").Get();
-        var selectedWords = GetField<int[]>(comp, "SelectedWords").Get().Select(ix => wordList[ix]).ToArray();
-        var password = wordList[GetField<int>(comp, "Password").Get()];
+        var wordList = GetArrayField<string>(comp, "WordList").Get(expectedLength: 52);
+        var selectedWords = GetArrayField<int>(comp, "SelectedWords").Get(expectedLength: 5, validator: ix => ix < 0 || ix >= wordList.Length ? $"expected range 0-{wordList.Length - 1}" : null).Select(ix => wordList[ix]).ToArray();
+        var password = wordList[GetIntField(comp, "Password").Get(min: 0, max: wordList.Length - 1)];
+
         addQuestions(
             module,
             makeQuestion(Question.RecursivePasswordNonPasswordWords, _RecursivePassword, correctAnswers: selectedWords, preferredWrongAnswers: wordList),
