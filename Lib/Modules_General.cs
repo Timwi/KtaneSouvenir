@@ -797,7 +797,7 @@ public partial class SouvenirModule
             { _ScavengerHunt, ProcessScavengerHunt },
             { _SchlagDenBomb, ProcessSchlagDenBomb },
             { _ScramboozledAgain, ProcessScramboozledEggain },
-            { _ScrutinySquares,  }
+            { _ScrutinySquares,  ProcessScrutinySquares},
             { _SeaShells, ProcessSeaShells },
             { _Semamorse, ProcessSemamorse },
             { _Sequencyclopedia, ProcessSequencyclopedia },

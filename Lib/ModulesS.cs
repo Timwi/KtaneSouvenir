@@ -89,18 +89,27 @@ public partial class SouvenirModule
 
         var pathCells = GetField<IList>(comp, "pathCells").Get();
         var direction = GetField<Enum>(pathCells[0], "direction").Get();
+        var possibleAnswers = new string[] { "Word", "Color around word", "Color of background", "Color of word" };
+
 
         var answer = "";
-
-        switch (direction)
+        switch (direction.ToString().ToUpper())
         {
-            case Enum.Up:
-                answer = "word";
+            case "UP":
+                answer = possibleAnswers[0];
+                break;
+            case "LEFT":
+                answer = possibleAnswers[1];
+                break;
+            case "RIGHT":
+                answer = possibleAnswers[2];
+                break;
+            default: //DOWN
+                answer = possibleAnswers[3];
                 break;
         }
 
-
-
+        addQuestion(module, Question.ScrutinySquaresFirstDifference, correctAnswers: new string[] { answer }, preferredWrongAnswers: possibleAnswers);
     }
 
     private IEnumerable<object> ProcessScramboozledEggain(KMBombModule module)
