@@ -1161,6 +1161,19 @@ public partial class SouvenirModule
         addQuestion(module, Question.SplittingTheLootColoredBag, correctAnswers: new[] { bagLabels[paintedBag] }, preferredWrongAnswers: bagLabels);
     }
 
+    private IEnumerable<object> ProcessSpiderman2004(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Spiderman2004");
+        bool solved = false;
+        module.OnPass += delegate () { solved = true; return false; };
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Spiderman2004);
+
+        addQuestion(module, Question.SpidermanPressCount, correctAnswers: new[] { "2004" } );
+
+    }
+
     private IEnumerable<object> ProcessStability(KMBombModule module)
     {
         var colorNames = new[] { "Red", "Yellow", "Blue" };
