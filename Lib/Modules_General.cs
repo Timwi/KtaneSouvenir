@@ -341,6 +341,7 @@ public partial class SouvenirModule
     const string _ScavengerHunt = "scavengerHunt";
     const string _SchlagDenBomb = "qSchlagDenBomb";
     const string _ScramboozledAgain = "ScramboozledEggainModule";
+    const string _ScrutinySquares = "scrutinySquares";
     const string _SeaShells = "SeaShells";
     const string _Semamorse = "semamorse";
     const string _Sequencyclopedia = "TheSequencyclopedia";
@@ -796,6 +797,7 @@ public partial class SouvenirModule
             { _ScavengerHunt, ProcessScavengerHunt },
             { _SchlagDenBomb, ProcessSchlagDenBomb },
             { _ScramboozledAgain, ProcessScramboozledEggain },
+            { _ScrutinySquares,  }
             { _SeaShells, ProcessSeaShells },
             { _Semamorse, ProcessSemamorse },
             { _Sequencyclopedia, ProcessSequencyclopedia },

@@ -78,6 +78,31 @@ public partial class SouvenirModule
                Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(0, 75).ToString()).Distinct().Take(6).ToArray()));
     }
 
+    private IEnumerable<object> ProcessScrutinySquares(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ScrutinySquaresScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SchlagDenBomb);
+
+        var pathCells = GetField<IList>(comp, "pathCells").Get();
+        var direction = GetField<Enum>(pathCells[0], "direction").Get();
+
+        var answer = "";
+
+        switch (direction)
+        {
+            case Enum.Up:
+                answer = "word";
+                break;
+        }
+
+
+
+    }
+
     private IEnumerable<object> ProcessScramboozledEggain(KMBombModule module)
     {
         var comp = GetComponent(module, "ScramboozledEggainScript");

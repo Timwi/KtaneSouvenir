@@ -1838,6 +1838,9 @@ namespace Souvenir
             ExampleAnswers = new[] { "Basted", "Boiled", "Boxing", "Carton", "Dumpty", "French" },
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         ScramboozledEggainWord,
+        [SouvenirQuestion("what property was changed about the first display in {0}?", "Scrutiny Squares", AnswerLayout.TwoColumns4Answers, null,
+            ExampleAnswers = new[] { "Word", "Color of word", "Color of background", "Color around word" })]
+        ScrutinySquaresFirstDifference,
 
         [SouvenirQuestion("What were the first and second words in the {1} phrase in {0}?", "Sea Shells", AnswerLayout.TwoColumns4Answers, "she sells", "she shells", "sea shells", "sea sells",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
