@@ -85,7 +85,7 @@ public partial class SouvenirModule
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_SchlagDenBomb);
+        _modulesSolved.IncSafe(_ScrutinySquares);
 
         var pathCells = GetField<IList>(comp, "pathCells").Get();
         var direction = GetField<Enum>(pathCells[0], "direction").Get();
