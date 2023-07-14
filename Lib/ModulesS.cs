@@ -88,10 +88,8 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_ScrutinySquares);
 
         var pathCells = GetField<IList>(comp, "pathCells").Get();
-        var direction = GetField<Enum>(pathCells[0], "direction").Get();
+        var direction = GetField<Enum>(pathCells[0], "direction", isPublic: true).Get(); 
         var possibleAnswers = new string[] { "Word", "Color around word", "Color of background", "Color of word" };
-
-
 
         var answer = "";
         switch (direction.ToString().ToUpper())
