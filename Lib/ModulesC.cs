@@ -50,6 +50,24 @@ public partial class SouvenirModule
             .Concat(Enumerable.Range(0, 4).Select(btn => makeQuestion(Question.CartineseLyrics, _Cartinese, formatArgs: new[] { buttonNames[btn] }, correctAnswers: new[] { buttonLyrics[btn] }))));
     }
 
+    private IEnumerable<object> ProcessCatchphrase(KMBombModule module)
+    {
+        var comp = GetComponent(module, "catchphraseScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Catchphrase);
+
+        var panelColors = GetListField<string>(comp, "selectedColours").Get(expectedLength: 4);
+        var panelNames = new[] { "top-left", "top-right", "bottom-left", "bottom-right" };
+
+        panelColors = panelColors.Select(x => Char.ToUpper(x[0]) + x.Substring(1)).ToList();
+
+        addQuestions(module,
+            Enumerable.Range(0, 4).Select(panel => makeQuestion(Question.CatchphraseColor, _Catchphrase, formatArgs: new[] { panelNames[panel] }, correctAnswers: new[] { panelColors[panel] })));
+    }
+
     private IEnumerable<object> ProcessChallengeAndContact(KMBombModule module)
     {
         var comp = GetComponent(module, "moduleScript");

@@ -170,6 +170,21 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessDigitString(KMBombModule module)
+    {
+        var comp = GetComponent(module, "digitString");
+        var solved = false;
+        module.OnPass += delegate () { solved = true; return false; };
+
+        while (!solved)
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_DigitString);
+
+        var storedInitialString = GetField<string>(comp, "shownString").Get(x => x.Length != 8 ? "Expected length 8" : null);
+
+        addQuestion(module, Question.DigitStringInitialNumber, correctAnswers: new[] { storedInitialString });
+    }
+
     private IEnumerable<object> ProcessDiscoloredSquares(KMBombModule module)
     {
         var comp = GetComponent(module, "DiscoloredSquaresModule");
