@@ -500,6 +500,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the alteration color used in {0}?", "Critters", AnswerLayout.TwoColumns4Answers, "Yellow", "Pink", "Blue", "White", TranslateAnswers = true)]
         CrittersAlterationColor,
 
+        [SouvenirQuestion("What was the displayed word in {0}?", "Cruel Binary", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "LEAST", "YELLOW", "SIERRA", "WHITE" })]
+        CruelBinaryDisplayedWord,
+
         [SouvenirQuestion("What was the {1} in {0}?", "Cryptic Cycle", AnswerLayout.TwoColumns4Answers, "Advanced", "Addition", "Allocate", "Altering", "Binaries", "Billions", "Bulkhead", "Bulleted", "Ciphered", "Circuits", "Computer", "Continue", "Decrypts", "Division", "Discover", "Disposal", "Examined", "Examples", "Equation", "Equipped", "Finished", "Findings", "Fortress", "Forwards", "Gauntlet", "Gambling", "Gathered", "Glooming", "Hazarded", "Haziness", "Hunkered", "Huntsman", "Indicate", "Indigoes", "Illusion", "Illumine", "Jigsawed", "Jimmying", "Junction", "Judgment", "Kilowatt", "Kinetics", "Knockout", "Knuckled", "Limiting", "Linearly", "Linkages", "Labeling", "Monogram", "Monotone", "Multiply", "Mulligan", "Nanogram", "Nanotube", "Numbered", "Numerals", "Octangle", "Octuples", "Observed", "Obscured", "Progress", "Projects", "Position", "Positive", "Quadrant", "Quadplex", "Quickest", "Quintics", "Reversed", "Revolved", "Rotation", "Relation", "Starting", "Standard", "Stopping", "Stopword", "Triggers", "Triangle", "Toggling", "Together", "Underrun", "Underlie", "Ultimate", "Ultrared", "Vicinity", "Viceless", "Voltages", "Volatile", "Wingding", "Winnable", "Whatever", "Whatnots", "Yellowed", "Yeasayer", "Yielding", "Yourself", "Zippered", "Zigzaggy", "Zugzwang", "Zymogram",
           ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
         CrypticCycleWord,

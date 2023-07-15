@@ -720,6 +720,20 @@ public partial class SouvenirModule
         addQuestions(module, makeQuestion(Question.CrittersAlterationColor, _Critters, correctAnswers: new[] { colorNames[colorIx] }));
     }
 
+    private IEnumerable<object> ProcessCruelBinary(KMBombModule module)
+    {
+        var comp = GetComponent(module, "CruelBinary");
+
+        var fldSolved = GetField<bool>(comp, "solved", isPublic: true);
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_CruelBinary);
+
+        var wordList = GetArrayField<string>(comp, "_WordList", isPublic: true).Get();
+        var displayedWord = GetField<string>(comp, "h", isPublic: true).Get();
+        addQuestion(module, Question.CruelBinaryDisplayedWord, correctAnswers: new[] { displayedWord }, preferredWrongAnswers: wordList);
+    }
+
     private IEnumerable<object> ProcessCrypticCycle(KMBombModule module)
     {
         return processSpeakingEvilCycle2(module, "CrypticCycleScript", Question.CrypticCycleWord, _CrypticCycle);
