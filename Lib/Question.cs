@@ -832,6 +832,11 @@ namespace Souvenir
         [AnswerGenerator.Integers(1, 999)]
         FunctionsRightNumber,
 
+        [SouvenirQuestion("What was your current weapon in {0}?", "Gadgetron Vendor", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "GadgetronVendorIconSprites")]
+        GadgetronVendorCurrentWeapon,
+        [SouvenirQuestion("What was the weapon up for sale in {0}?", "Gadgetron Vendor", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "GadgetronVendorWeaponSprites")]
+        GadgetronVendorWeaponForSale,
+
         [SouvenirQuestion("Which of these was a color combination that occurred in {0}?", "Game of Life Cruel", AnswerLayout.TwoColumns4Answers, null,
             ExampleAnswers = new[] { "Red/Orange", "Orange/Yellow", "Yellow/Green", "Green/Blue" })]
         GameOfLifeCruelColors,

@@ -8,6 +8,28 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
+    private IEnumerable<object> ProcessGadgetronVendor(KMBombModule module)
+    {
+        var comp = GetComponent(module, "GadgetronVendorScript");
+
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_GadgetronVendor);
+
+        GetField<TextMesh>(comp, "currentAmmo", isPublic: true).Get().text = "";
+        GetField<TextMesh>(comp, "maxAmmo", isPublic: true).Get().text = "";
+        GetField<SpriteRenderer>(comp, "yourWeaponIcon", isPublic: true).Get().enabled = false;
+
+        var currentWeaponIndex = GetIntField(comp, "yourWeaponIndex").Get(min: 0, max: GadgetronVendorIconSprites.Length);
+        var saleWeaponIndex = GetIntField(comp, "saleWeaponIndex").Get(min: 0, max: GadgetronVendorWeaponSprites.Length);
+        addQuestions(
+            module,
+            makeQuestion(Question.GadgetronVendorCurrentWeapon, _GadgetronVendor, correctAnswers: new[] { GadgetronVendorIconSprites[currentWeaponIndex] }, preferredWrongAnswers: GadgetronVendorIconSprites),
+            makeQuestion(Question.GadgetronVendorWeaponForSale, _GadgetronVendor, correctAnswers: new[] { GadgetronVendorWeaponSprites[saleWeaponIndex] }, preferredWrongAnswers: GadgetronVendorWeaponSprites)
+        );
+    }
+
     private IEnumerable<object> ProcessGameOfLifeCruel(KMBombModule module)
     {
         var comp = GetComponent(module, "GameOfLifeCruel");

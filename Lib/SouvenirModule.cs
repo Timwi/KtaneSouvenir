@@ -47,6 +47,8 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] AzureButtonSprites;
     public Sprite[] NonverbalSimonSprites;
     public Sprite[] QuestionMarkSprites;
+    public Sprite[] GadgetronVendorIconSprites;
+    public Sprite[] GadgetronVendorWeaponSprites;
     public Texture2D[] NonverbalSimonQuestions;
     private readonly List<Texture2D> _temporaryQuestions = new List<Texture2D>();
 
