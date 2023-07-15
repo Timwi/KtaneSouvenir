@@ -74,6 +74,7 @@ public partial class SouvenirModule
     const string _CaesarCycle = "caesarCycle";
     const string _Calendar = "calendar";
     const string _Cartinese = "cartinese";
+    const string _Catchphrase = "catchphrase";
     const string _ChallengeAndContact = "challengeAndContact";
     const string _CharacterCodes = "characterCodes";
     const string _CheapCheckout = "CheapCheckoutModule";
@@ -118,6 +119,7 @@ public partial class SouvenirModule
     const string _DecolourFlash = "DecolourFlashModule";
     const string _DevilishEggs = "devilishEggs";
     const string _Digisibility = "digisibility";
+    const string _DigitString = "digitString";
     const string _DiscoloredSquares = "DiscoloredSquaresModule";
     const string _DivisibleNumbers = "divisibleNumbers";
     const string _DoubleArrows = "doubleArrows";
@@ -562,6 +564,7 @@ public partial class SouvenirModule
             { _CaesarCycle, ProcessCaesarCycle },
             { _Calendar, ProcessCalendar },
             { _Cartinese, ProcessCartinese },
+            { _Catchphrase, ProcessCatchphrase },
             { _ChallengeAndContact, ProcessChallengeAndContact },
             { _CharacterCodes, ProcessCharacterCodes },
             { _CheapCheckout, ProcessCheapCheckout },
@@ -606,6 +609,7 @@ public partial class SouvenirModule
             { _DecolourFlash, ProcessDecolourFlash },
             { _DevilishEggs, ProcessDevilishEggs },
             { _Digisibility, ProcessDigisibility },
+            { _DigitString, ProcessDigitString },
             { _DiscoloredSquares, ProcessDiscoloredSquares },
             { _DivisibleNumbers, ProcessDivisibleNumbers },
             { _DoubleArrows, ProcessDoubleArrows },
