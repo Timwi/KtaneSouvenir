@@ -311,6 +311,7 @@ public partial class SouvenirModule
     const string _PassportControl = "passportControl";
     const string _PasswordDestroyer = "pwDestroyer";
     const string _PatternCube = "PatternCubeModule";
+    const string _PeriodicWords = "periodicWordsRB";
     const string _PerspectivePegs = "spwizPerspectivePegs";
     const string _Phosphorescence = "Phosphorescence";
     const string _Pictionary = "pictionaryModule";
@@ -786,6 +787,7 @@ public partial class SouvenirModule
             { _PassportControl, ProcessPassportControl },
             { _PasswordDestroyer, ProcessPasswordDestroyer },
             { _PatternCube, ProcessPatternCube },
+            { _PeriodicWords, ProcessPeriodicWords },
             { _PerspectivePegs, ProcessPerspectivePegs },
             { _Phosphorescence, ProcessPhosphorescence },
             { _Pictionary, ProcessPictionary },

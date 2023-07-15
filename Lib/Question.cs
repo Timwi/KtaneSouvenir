@@ -1660,6 +1660,9 @@ namespace Souvenir
         [SouvenirQuestion("Which symbol was highlighted in {0}?", "Pattern Cube", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "PatternCubeSprites")]
         PatternCubeHighlightedSymbol,
 
+        [SouvenirQuestion("What word was on the display in the {1} stage of {0}?", "Periodic Words", AnswerLayout.OneColumn4Answers, ExampleAnswers = new[] { "ATTACKERS", "BUY", "SUPERPOSITION", "WHO" }, ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        PeriodicWordsDisplayedWords,
+
         [SouvenirQuestion("What was the {1} color in the initial sequence in {0}?", "Perspective Pegs", AnswerLayout.ThreeColumns6Answers, "red", "yellow", "green", "blue", "purple", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         PerspectivePegsColorSequence,

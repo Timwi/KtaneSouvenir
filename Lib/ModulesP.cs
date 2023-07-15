@@ -224,6 +224,19 @@ public partial class SouvenirModule
         addQuestion(module, Question.PatternCubeHighlightedSymbol, correctAnswers: new[] { symbols[highlightPos] }, preferredWrongAnswers: symbols);
     }
 
+    private IEnumerable<object> ProcessPeriodicWords(KMBombModule module)
+    {
+        var comp = GetComponent(module, "PeriodicWordsScript");
+
+        var fldSolved = GetField<bool>(comp, "Solved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_PeriodicWords);
+
+        var words = GetArrayField<string>(comp, "Words").Get().Take(4).ToArray();
+        addQuestions(module, Enumerable.Range(0, 3).Select(stage => makeQuestion(Question.PeriodicWordsDisplayedWords, _PeriodicWords, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { words[stage] }, preferredWrongAnswers: words)));
+    }
+
     private IEnumerable<object> ProcessPerspectivePegs(KMBombModule module)
     {
         var comp = GetComponent(module, "PerspectivePegsModule");
