@@ -38,22 +38,23 @@ MonoBehaviour:
     that aren\u2019t required for solving a module (e.g. initial red/green state in
     Connection Check).\r\n[*]No questions that could under any circumstances be impossible
     to answer. This includes things that are removed/reset when striking on a module.\r\n[*]No
-    questions about modules that are part of an ongoing [url=https://ktane.timwi.de/More/FAQs.html#challenge]manual
-    challenge[/url].\r\n[*]Questions about [url=https://ktane.timwi.de/More/FAQs.html#boss-module]boss
-    modules[/url] are allowed as long as they satisfy the above guidelines, and are
-    not about information that the boss module itself already requires recording (e.g.
-    calculated digits in Forget Me Not). The boss modules should remain on Souvenir's
-    ignore list.\r\n[/list]\r\n\r\nThe following vanilla modules are supported by
-    Souvenir: The Button, Maze, Memory, Simon Says, Wire Sequence. These may be excluded
-    using a setting in the ModSettings file. This file will be created the first time
-    a Souvenir module is loaded on a bomb. After that, the mod settings may be edited
-    using a text editor or the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=801400247]Mod
-    Selector[/url] tablet with the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1366808675]Tweaks[/url]
+    questions about modules that are part of an ongoing [manual challenge](https://ktane.timwi.de/More/FAQs.html#challenge).\r\n[*]Questions
+    about [boss modules](https://ktane.timwi.de/More/FAQs.html#boss-module) are allowed
+    as long as they satisfy the above guidelines. The boss modules should remain on
+    Souvenir's ignore list.\r\n[*]Prefer questions that ask what was actually shown
+    on the module rather than what the defuser had to input to solve it (e.g. prefer
+    displayed digits over calculated digits in Forget Me Not).\r\n[/list]\r\n\r\nThe
+    following vanilla modules are supported by Souvenir: The Button, Maze, Memory,
+    Simon Says, Wire Sequence. These may be excluded using a setting in the ModSettings
+    file. This file will be created the first time a Souvenir module is loaded on
+    a bomb. After that, the mod settings may be edited using a text editor or the
+    [url=https://steamcommunity.com/sharedfiles/filedetails/?id=801400247]Mod Selector[/url]
+    tablet with the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1366808675]Tweaks[/url]
     mod. Souvenir itself and other boss modules may also be excluded this way.\r\n\r\nThis
     module was forked at some point, but has returned here to its original author
     and maintainer. Many thanks to Andrio for taking care of Souvenir in the interim.
     If you were subscribed to Andrio\u2019s version, please [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2018009170]unsubscribe
     from it[/url]."
-  version: 4.74
+  version: 4.8
   outputFolder: build
   previewImage: {fileID: 2800000, guid: bd5c1f4881f57d54481b44e4c8a7779a, type: 3}
