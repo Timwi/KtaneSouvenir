@@ -129,7 +129,7 @@ public partial class SouvenirModule
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_ALetter);
-        var initialLetter = GetField<string>(comp, "LetterList").Get(x => x.Length != 26 ? "Expected length 26." : null)[0];
+        var initialLetter = GetField<string>(comp, "LetterList").Get(x => x.Length != 26 ? "expected length 26" : null)[0];
 
         addQuestion(module, Question.ALetterInitialLetter, correctAnswers: new[] { initialLetter.ToString() });
     }
