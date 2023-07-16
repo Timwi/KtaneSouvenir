@@ -6,6 +6,42 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
+    private IEnumerable<object> ProcessKanji(KMBombModule module)
+    {
+        var comp = GetComponent(module, "KanjiModule");
+
+        var fldSolved = GetField<bool>(comp, "ModuleSolved");
+        var fldCalculating = GetField<bool>(comp, "Calculating");
+        var fldStage = GetIntField(comp, "Stage");
+        var screen = GetField<TextMesh>(comp, "ScreenText", isPublic: true).Get();
+        var displayedWords = new string[3];
+
+        while (screen.text == "爆発")
+            yield return null; // Don’t wait .1 seconds so that we are absolutely sure we get the right stage. (yes I stole this comment :D)
+        displayedWords[0] = screen.text;
+
+        for (int stage = 1; stage <= 2; stage++)
+        {
+            while (fldStage.Get(min: stage, max: stage + 1) == stage)
+                yield return new WaitForSeconds(.1f); // Stage animation takes much longer than .1 seconds anyway.
+            while (fldCalculating.Get())
+                yield return null; // Don’t wait .1 seconds so that we are absolutely sure we get the right stage.
+            displayedWords[stage] = screen.text;
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Kanji);
+
+        var wordLists = new string[][]
+        {
+            GetArrayField<string>(comp, "Stage1Words").Get(arr => !arr.Contains(displayedWords[0]) ? $"expected array to contain \"{displayedWords[0]}\"" : null),
+            GetArrayField<string>(comp, "Stage2Char").Get(arr => !arr.Contains(displayedWords[1]) ? $"expected array to contain \"{displayedWords[1]}\"" : null),
+            GetArrayField<string>(comp, "Stage3Words").Get(arr => !arr.Contains(displayedWords[2]) ? $"expected array to contain \"{displayedWords[2]}\"" : null)
+        };
+        addQuestions(module, Enumerable.Range(0, 3).Select(stage => makeQuestion(Question.KanjiDisplayedWords, _Kanji, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { displayedWords[stage] }, preferredWrongAnswers: wordLists[stage])));
+    }
+
     private IEnumerable<object> ProcessKanyeEncounter(KMBombModule module)
     {
         var comp = GetComponent(module, "TheKanyeEncounter");
