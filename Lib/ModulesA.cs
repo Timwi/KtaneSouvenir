@@ -15,7 +15,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         var seedAbyss = GetField<string>(comp, "SeedVar").Get();
         _modulesSolved.IncSafe(_Abyss);
-        addQuestions(module, seedAbyss.Select((aChar, idx) => makeQuestion(Question.AbyssSeed, _Abyss, formatArgs: new[] { ordinal(idx + 1) } , correctAnswers: new[] { aChar.ToString() })));
+        addQuestions(module, seedAbyss.Select((aChar, idx) => makeQuestion(Question.AbyssSeed, _Abyss, formatArgs: new[] { ordinal(idx + 1) }, correctAnswers: new[] { aChar.ToString() })));
     }
 
     private IEnumerable<object> ProcessAccumulation(KMBombModule module)
@@ -255,6 +255,37 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessAlphabetNumbers(KMBombModule module)
+    {
+        var comp = GetComponent(module, "alphabeticalOrderScript");
+
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldStageNumber = GetIntField(comp, "stage");
+        var labels = GetArrayField<object>(comp, "buttons", isPublic: true).Get(expectedLength: 6).Select(b => GetField<TextMesh>(b, "text", isPublic: true).Get());
+        var stageOptionCounts = new[] { 22, 28, 28, 32 };
+        var allOptions = Enumerable.Range(1, 32).Select(pos => pos.ToString());
+        var displayedNumberSets = new List<string[]>();
+
+        var fldLevelOrdered = GetField<IList>(comp, "levelOrdered", isPublic: true);
+        while (fldLevelOrdered.Get().Count == 0) // Make sure labels have been set for the first time.
+            yield return null; // Don’t wait .1 seconds so that we are absolutely sure we get the right stage.
+
+        var qs = new List<QandA>();
+        do
+        {
+            while (fldStageNumber.Get(min: displayedNumberSets.Count - 1, max: displayedNumberSets.Count) < displayedNumberSets.Count)
+                yield return null; // Don’t wait .1 seconds so that we are absolutely sure we get the right stage.
+            displayedNumberSets.Add(labels.Select(l => l.text).ToArray());
+        }
+        while (displayedNumberSets.Count < 4);
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_AlphabetNumbers);
+        
+        addQuestions(module, displayedNumberSets.Select((numArr, stage) => makeQuestion(Question.AlphabetNumbersDisplayedNumbers, _AlphabetNumbers, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: displayedNumberSets[stage], preferredWrongAnswers: allOptions.Take(stageOptionCounts[stage]).ToArray())));
+    }
+
     private IEnumerable<object> ProcessAlphabetTiles(KMBombModule module)
     {
         var comp = GetComponent(module, "AlphabetTilesScript");
@@ -330,7 +361,7 @@ public partial class SouvenirModule
                 while (fldActivated.Get())
                     yield return null;
             }
-        }        
+        }
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);

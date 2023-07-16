@@ -31,6 +31,7 @@ public partial class SouvenirModule
     const string _Algebra = "algebra";
     const string _Algorithmia = "algorithmia";
     const string _AlphabeticalRuling = "alphabeticalRuling";
+    const string _AlphabetNumbers = "alphabetNumbers";
     const string _AlphabetTiles = "AlphabetTiles";
     const string _AlphaBits = "alphaBits";
     const string _AngelHernandez = "AngelHernandezModule";
@@ -511,6 +512,7 @@ public partial class SouvenirModule
             { _Algebra, ProcessAlgebra },
             { _Algorithmia, ProcessAlgorithmia },
             { _AlphabeticalRuling, ProcessAlphabeticalRuling },
+            { _AlphabetNumbers, ProcessAlphabetNumbers },
             { _AlphabetTiles, ProcessAlphabetTiles },
             { _AlphaBits, ProcessAlphaBits },
             { _AngelHernandez, ProcessAngelHernandez },

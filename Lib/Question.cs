@@ -106,6 +106,10 @@ namespace Souvenir
         [AnswerGenerator.Integers(1, 9)]
         AlphabeticalRulingNumber,
 
+        [SouvenirQuestion("Which of these numbers was on one of the buttons in the {1} stage of {0}?", "Alphabet Numbers", AnswerLayout.ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1, 32)]
+        AlphabetNumbersDisplayedNumbers,
+
         [SouvenirQuestion("What was the {1} letter shown during the cycle in {0}?", "Alphabet Tiles", AnswerLayout.ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         AlphabetTilesCycle,
