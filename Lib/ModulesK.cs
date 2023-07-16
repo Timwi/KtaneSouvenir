@@ -15,22 +15,24 @@ public partial class SouvenirModule
         var fldStage = GetIntField(comp, "Stage");
         var screen = GetField<TextMesh>(comp, "ScreenText", isPublic: true).Get();
         var displayedWords = new string[3];
+        var stage = 0;
+
+        module.OnStrike += () => { stage--; return false; }; // Grab the text on the screen again on strike.
 
         while (screen.text == "爆発")
             yield return null; // Don’t wait .1 seconds so that we are absolutely sure we get the right stage. (yes I stole this comment :D)
         displayedWords[0] = screen.text;
 
-        for (int stage = 1; stage <= 2; stage++)
+        for (stage = 1; stage <= 2 || !fldSolved.Get(); stage++)
         {
             while (fldStage.Get(min: stage, max: stage + 1) == stage)
                 yield return new WaitForSeconds(.1f); // Stage animation takes much longer than .1 seconds anyway.
             while (fldCalculating.Get())
                 yield return null; // Don’t wait .1 seconds so that we are absolutely sure we get the right stage.
-            displayedWords[stage] = screen.text;
+            if (stage < 3)
+                displayedWords[stage] = screen.text;
+            yield return new WaitForSeconds(.1f); // Keep looping until solve here so we can still grab the text in the event of a strike on the last stage.
         }
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Kanji);
 
         var wordLists = new string[][]
