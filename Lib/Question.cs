@@ -276,6 +276,9 @@ namespace Souvenir
         [SouvenirQuestion("What letter was initially visible on {0}?", "Boggle", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "A", "E", "G", "M", "T", "W" })]
         BoggleLetters,
 
+        [SouvenirQuestion("What was the license number in {0}?", "Bomb Diffusal", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "A4BIK5", "HI391D", "ZX98O1", "12K9PL" })]
+        BombDiffusalLicenseNumber,
+
         [SouvenirQuestion("Which operator did you submit in the {1} stage of {0}?", "Boolean Wires", AnswerLayout.TwoColumns4Answers, "OR", "XOR", "AND", "NAND", "NOR", ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         BooleanWiresEnteredOperators,
 

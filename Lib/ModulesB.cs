@@ -570,6 +570,30 @@ public partial class SouvenirModule
         addQuestion(module, Question.BoggleLetters, correctAnswers: visible.Select(v => v.ToString()).ToArray(), preferredWrongAnswers: letters.ToArray());
     }
 
+    private IEnumerable<object> ProcessBombDiffusal(KMBombModule module)
+    {
+        var comp = GetComponent(module, "bombDiffusalScript");
+
+        var solved = false;
+        module.OnPass += () => { solved = true; return false; };
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_BombDiffusal);
+
+        var fldLicenseNumber = GetField<string>(comp, "licenseNo");
+        var mthGenerateRandomLicenseNumber = GetMethod(comp, "GenerateLicenseNo", 0);
+        var answers = new HashSet<string>();
+        var correctAnswer = fldLicenseNumber.Get(x => x.Length != 6 || x.Any(c => !char.IsLetterOrDigit(c)) ? "expected 6 alphanumeric characters" : null);
+
+        while (answers.Count < 4)
+        {
+            mthGenerateRandomLicenseNumber.Invoke();
+            answers.Add(fldLicenseNumber.Get(x => x.Length != 6 || x.Any(c => !char.IsLetterOrDigit(c)) ? "expected 6 alphanumeric characters" : null));
+        }
+        fldLicenseNumber.Set(correctAnswer); // Set the license number back to what it was to allow other Souvenir modules to access it.
+        addQuestion(module, Question.BombDiffusalLicenseNumber, correctAnswers: new[] { correctAnswer }, preferredWrongAnswers: answers.ToArray());
+    }
+
     private IEnumerable<object> ProcessBooleanWires(KMBombModule module)
     {
         var comp = GetComponent(module, "BooleanWiresScript");
