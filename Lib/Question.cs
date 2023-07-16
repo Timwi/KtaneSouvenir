@@ -1923,6 +1923,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         ScramboozledEggainWord,
 
+        [SouvenirQuestion("What was the submitted data type of the variable in {0}?", "Scripting", AnswerLayout.TwoColumns4Answers, "int", "bool", "float", "char")]
+        ScriptingVariableDataType,
+
         [SouvenirQuestion("What were the first and second words in the {1} phrase in {0}?", "Sea Shells", AnswerLayout.TwoColumns4Answers, "she sells", "she shells", "sea shells", "sea sells",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         SeaShells1,

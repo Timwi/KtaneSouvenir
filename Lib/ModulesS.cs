@@ -118,6 +118,20 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessScripting(KMBombModule module)
+    {
+        var comp = GetComponent(module, "KritScript");
+
+        var solved = false;
+        module.OnPass += () => { solved = true; return false; };
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Scripting);
+
+        var variableType = GetField<string>(comp, "VariableKindValue", isPublic: true).Get();
+        addQuestion(module, Question.ScriptingVariableDataType, correctAnswers: new[] { variableType });
+    }
+
     private IEnumerable<object> ProcessSeaShells(KMBombModule module)
     {
         var comp = GetComponent(module, "SeaShellsModule");
