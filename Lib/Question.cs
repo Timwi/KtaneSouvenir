@@ -1304,6 +1304,10 @@ namespace Souvenir
         [AnswerGenerator.Strings("A-Z")]
         MetamorseExtractedLetter,
 
+        [SouvenirQuestion("What was the final answer in {0}?", "Metapuzzle", AnswerLayout.TwoColumns4Answers, null,
+            ExampleAnswers = new[] { "GIBBONS", "GIRAFFE",  "MISUSED", "RUSHING", "DUSTMAN", "STATICS" })]
+        MetapuzzleAnswer,
+
         [SouvenirQuestion("Which pin lit up {1} in {0}?", "Microcontroller", AnswerLayout.ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 10)]

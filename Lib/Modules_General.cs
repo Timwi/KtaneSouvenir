@@ -251,6 +251,7 @@ public partial class SouvenirModule
     const string _MemorableButtons = "memorableButtons";
     const string _Memory = "Memory";
     const string _Metamorse = "metamorse";
+    const string _Metapuzzle = "metapuzzle";
     const string _Microcontroller = "Microcontroller";
     const string _Minesweeper = "MinesweeperModule";
     const string _Mirror = "mirror";
@@ -741,6 +742,7 @@ public partial class SouvenirModule
             { _MemorableButtons, ProcessMemorableButtons },
             { _Memory, ProcessMemory },
             { _Metamorse, ProcessMetamorse },
+            { _Metapuzzle, ProcessMetapuzzle },
             { _Microcontroller, ProcessMicrocontroller },
             { _Minesweeper, ProcessMinesweeper },
             { _Mirror, ProcessMirror },
