@@ -78,6 +78,39 @@ public partial class SouvenirModule
                Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(0, 75).ToString()).Distinct().Take(6).ToArray()));
     }
 
+    private IEnumerable<object> ProcessScrutinySquares(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ScrutinySquaresScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ScrutinySquares);
+
+        var pathCells = GetField<IList>(comp, "pathCells").Get();
+        var direction = GetField<Enum>(pathCells[0], "direction", isPublic: true).Get();
+        var possibleAnswers = new string[] { "Word", "Color around word", "Color of background", "Color of word" };
+
+        var answer = "";
+        switch (direction.ToString().ToUpper())
+        {
+            case "UP":
+                answer = possibleAnswers[0];
+                break;
+            case "LEFT":
+                answer = possibleAnswers[1];
+                break;
+            case "RIGHT":
+                answer = possibleAnswers[2];
+                break;
+            default: //DOWN
+                answer = possibleAnswers[3];
+                break;
+        }
+
+        addQuestion(module, Question.ScrutinySquaresFirstDifference, correctAnswers: new string[] { answer }, preferredWrongAnswers: possibleAnswers);
+    }
+
     private IEnumerable<object> ProcessScramboozledEggain(KMBombModule module)
     {
         var comp = GetComponent(module, "ScramboozledEggainScript");
