@@ -122,6 +122,18 @@ public partial class SouvenirModule
         return processSpeakingEvilCycle1(module, "AffineCycleScript", Question.AffineCycleWord, _AffineCycle);
     }
 
+    private IEnumerable<object> ProcessALetter(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Letter");
+        var fldSolved = GetField<bool>(comp, "ModuleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ALetter);
+        var initialLetter = GetField<string>(comp, "LetterList").Get(x => x.Length != 26 ? "Expected length 26." : null)[0];
+
+        addQuestion(module, Question.ALetterInitialLetter, correctAnswers: new[] { initialLetter.ToString() });
+    }
+
     private IEnumerable<object> ProcessAlfaBravo(KMBombModule module)
     {
         var comp = GetComponent(module, "AlfaBravoModule");

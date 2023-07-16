@@ -70,6 +70,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
         AffineCycleWord,
 
+        [SouvenirQuestion("What was the initial letter in {0}?", "A Letter", AnswerLayout.ThreeColumns6Answers)]
+        [AnswerGenerator.Strings("A-Z")]
+        ALetterInitialLetter,
+
         [SouvenirQuestion("Which letter was pressed in {0}?", "Alfa-Bravo", AnswerLayout.ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")]
         AlfaBravoPressedLetter,
         [SouvenirQuestion("Which letter was to the left of the pressed one in {0}?", "Alfa-Bravo", AnswerLayout.ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")]

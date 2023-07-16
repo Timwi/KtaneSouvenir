@@ -26,6 +26,7 @@ public partial class SouvenirModule
     const string _Accumulation = "accumulation";
     const string _AdventureGame = "spwizAdventureGame";
     const string _AffineCycle = "affineCycle";
+    const string _ALetter = "LetterModule";
     const string _AlfaBravo = "alfa_bravo";
     const string _Algebra = "algebra";
     const string _Algorithmia = "algorithmia";
@@ -497,6 +498,7 @@ public partial class SouvenirModule
             { _Accumulation, ProcessAccumulation },
             { _AdventureGame, ProcessAdventureGame },
             { _AffineCycle, ProcessAffineCycle },
+            { _ALetter, ProcessALetter },
             { _AlfaBravo, ProcessAlfaBravo },
             { _Algebra, ProcessAlgebra },
             { _Algorithmia, ProcessAlgorithmia },
