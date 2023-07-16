@@ -402,6 +402,7 @@ public partial class SouvenirModule
     const string _SpaceTraders = "space_traders";
     const string _SpellingBee = "spellingBee";
     const string _Sphere = "sphere";
+    const string _Spiderman2004 = "Spiderman2004";
     const string _SplittingTheLoot = "SplittingTheLootModule";
     const string _Stability = "stabilityModule";
     const string _StackedSequences = "stackedSequences";
@@ -875,6 +876,7 @@ public partial class SouvenirModule
             { _SpaceTraders, ProcessSpaceTraders },
             { _SpellingBee, ProcessSpellingBee },
             { _Sphere, ProcessSphere },
+            { _Spiderman2004, ProcessSpiderman2004},
             { _SplittingTheLoot, ProcessSplittingTheLoot },
             { _Stability, ProcessStability },
             { _StackedSequences, ProcessStackedSequences },

@@ -2136,6 +2136,10 @@ namespace Souvenir
         [SouvenirQuestion("What word was asked to be spelled in {0}?", "Spelling Bee", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "allocation", "auxiliary", "cloying", "connoisseur", "controversial", "deceit", "garrulous", "malachite", "perambulate", "sedge" })]
         SpellingBeeWord,
 
+        [SouvenirQuestion("How many times did you press the Spiderman 2004 in {0}?", "Spiderman 2004", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "1000", "2000", "3000", "4000", "5000", "6000" })]
+        [AnswerGenerator.Integers(1000, 9999)]
+        SpidermanPressCount,
+
         [SouvenirQuestion("What bag was initially colored in {0}?", "Splitting The Loot", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "A5", "E6", "19", "82" })]
         SplittingTheLootColoredBag,
 
