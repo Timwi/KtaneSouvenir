@@ -752,6 +752,9 @@ namespace Souvenir
         [AnswerGenerator.Strings("0-9a-f")]
         FaultyRGBMazeNumber,
 
+        [SouvenirQuestion("Which of these words was on the display in {0}?", "Five Letter Words", AnswerLayout.ThreeColumns6Answers, ExampleAnswers = new[] { "ABAFF", "MAYOR", "PANUS", "FRIZE", "NIRIS", "TEJON" })]
+        FiveLetterWordsDisplayedWords,
+
         [SouvenirQuestion("What was the displayed number in {0}?", "Flags", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Integers(1, 7)]
         FlagsDisplayedNumber,

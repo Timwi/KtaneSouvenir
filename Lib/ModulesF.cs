@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using Souvenir;
 using UnityEngine;
 
@@ -128,6 +129,20 @@ public partial class SouvenirModule
             correctAnswers: new[] { "ABCDEFG"[exitPos[2]] + (exitPos[1] + 1).ToString() }));
 
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessFiveLetterWords(KMBombModule module)
+    {
+        var comp = GetComponent(module, "FiveLetterWords");
+
+        var fldSolved = GetField<bool>(comp, "ModuleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_FiveLetterWords);
+
+        var wordList = JsonConvert.DeserializeObject<string[]>(GetField<TextAsset>(comp, "FiverData", isPublic: true).Get().text);
+        var displayedWords = GetArrayField<string>(comp, "TheNames").Get(expectedLength: 3, validator: name => name.Length != 5 ? "expected length 5" : null);
+        addQuestion(module, Question.FiveLetterWordsDisplayedWords, correctAnswers: displayedWords, preferredWrongAnswers: wordList);
     }
 
     private IEnumerable<object> ProcessFlags(KMBombModule module)

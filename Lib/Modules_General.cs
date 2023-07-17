@@ -149,6 +149,7 @@ public partial class SouvenirModule
     const string _FastMath = "fastMath";
     const string _FaultyButtons = "GSFaultyButtons";
     const string _FaultyRGBMaze = "faultyrgbMaze";
+    const string _FiveLetterWords = "FiveLetterWords";
     const string _Flags = "FlagsModule";
     const string _FlashingArrows = "flashingArrowsModule";
     const string _FlashingLights = "flashingLights";
@@ -633,6 +634,7 @@ public partial class SouvenirModule
             { _FastMath, ProcessFastMath },
             { _FaultyButtons, ProcessFaultyButtons },
             { _FaultyRGBMaze, ProcessFaultyRGBMaze },
+            { _FiveLetterWords, ProcessFiveLetterWords },
             { _Flags, ProcessFlags },
             { _FlashingArrows, ProcessFlashingArrows },
             { _FlashingLights, ProcessFlashingLights },
