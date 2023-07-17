@@ -192,6 +192,7 @@ public partial class SouvenirModule
     const string _IceCream = "iceCreamModule";
     const string _IdentificationCrisis = "identificationCrisis";
     const string _IdentityParade = "identityParade";
+    const string _Imposter = "impostor";
     const string _IndigoCipher = "indigoCipher";
     const string _InfiniteLoop = "InfiniteLoop";
     const string _Ingredients = "ingredients";
@@ -674,6 +675,7 @@ public partial class SouvenirModule
             { _IceCream, ProcessIceCream },
             { _IdentificationCrisis, ProcessIdentificationCrisis },
             { _IdentityParade, ProcessIdentityParade },
+            { _Imposter, ProcessImposter },
             { _IndigoCipher, ProcessIndigoCipher },
             { _InfiniteLoop, ProcessInfiniteLoop },
             { _Ingredients, ProcessIngredients },

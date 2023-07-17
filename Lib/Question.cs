@@ -1012,6 +1012,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "was", "was not" }, ExampleExtraFormatArgumentGroupSize = 1)]
         IdentityParadeAttires,
 
+        [SouvenirQuestion("Which module was {0} pretending to be?", "Imposter", AnswerLayout.OneColumn4Answers, ExampleAnswers = new[] { "Ice Cream", "Microcontroller", "Sea Shells", "Combination Lock" }, AddThe = true)]
+        ImposterDisguise,
+
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Indigo Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "BEAVER", "INDENT", "LONELY", "PILLAR", "REFUGE", "RIPPED", "STOLEN", "TUMBLE", "WHIMSY", "WYVERN" },
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
         IndigoCipherAnswer,
