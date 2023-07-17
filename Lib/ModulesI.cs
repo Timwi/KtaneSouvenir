@@ -119,18 +119,18 @@ public partial class SouvenirModule
             makeQuestion(Question.IdentityParadeAttires, _IdentityParade, formatArgs: new[] { "was not" }, correctAnswers: validAttires.Except(attires).ToArray()));
     }
 
-    private IEnumerable<object> ProcessImposter(KMBombModule module)
+    private IEnumerable<object> ProcessImpostor(KMBombModule module)
     {
         var comp = GetComponent(module, "impostorScript");
 
         var fldSolved = GetField<bool>(comp, "solved");
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Imposter);
+        _modulesSolved.IncSafe(_Impostor);
 
         var possibleModuleNames = GetArrayField<GameObject>(comp, "Prefabs", isPublic: true).Get().Select(pref => pref.name).ToArray();
         var chosenModIndex = GetIntField(comp, "chosenMod").Get(min: 0, max: possibleModuleNames.Length - 1);
-        addQuestion(module, Question.ImposterDisguise, correctAnswers: new[] { possibleModuleNames[chosenModIndex] }, preferredWrongAnswers: possibleModuleNames);
+        addQuestion(module, Question.ImpostorDisguise, correctAnswers: new[] { possibleModuleNames[chosenModIndex] }, preferredWrongAnswers: possibleModuleNames);
     }
 
     private IEnumerable<object> ProcessIndigoCipher(KMBombModule module)

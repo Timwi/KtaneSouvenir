@@ -10,7 +10,7 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
-    const string Version = "4.8";
+    const string Version = "4.81";
 
     // The values here are the “ModuleType” property on the KMBombModule components.
     const string _1000Words = "OneThousandWords";
@@ -194,7 +194,7 @@ public partial class SouvenirModule
     const string _IceCream = "iceCreamModule";
     const string _IdentificationCrisis = "identificationCrisis";
     const string _IdentityParade = "identityParade";
-    const string _Imposter = "impostor";
+    const string _Impostor = "impostor";
     const string _IndigoCipher = "indigoCipher";
     const string _InfiniteLoop = "InfiniteLoop";
     const string _Ingredients = "ingredients";
@@ -680,7 +680,7 @@ public partial class SouvenirModule
             { _IceCream, ProcessIceCream },
             { _IdentificationCrisis, ProcessIdentificationCrisis },
             { _IdentityParade, ProcessIdentityParade },
-            { _Imposter, ProcessImposter },
+            { _Impostor, ProcessImpostor },
             { _IndigoCipher, ProcessIndigoCipher },
             { _InfiniteLoop, ProcessInfiniteLoop },
             { _Ingredients, ProcessIngredients },
