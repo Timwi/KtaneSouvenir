@@ -1057,7 +1057,7 @@ namespace Souvenir
           ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
         JumbleCycleWord,
 
-        [SouvenirQuestion("What was the displayed word in the {1} stage of {0}?", "Kanji", AnswerLayout.TwoColumns4Answers, ExampleAnswers = new[] { "ばくはつ", "でんき", "でんしゃ", "でんわ" }, ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was the displayed word in the {1} stage of {0}?", "Kanji", AnswerLayout.TwoColumns4Answers, Type = AnswerType.JapaneseFont, ExampleAnswers = new[] { "ばくはつ", "でんき", "でんしゃ", "でんわ" }, ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         KanjiDisplayedWords,
 
         [SouvenirQuestion("What was a food item displayed in {0}?", "Kanye Encounter", AnswerLayout.TwoColumns4Answers,
