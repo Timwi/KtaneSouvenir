@@ -404,6 +404,7 @@ public partial class SouvenirModule
     const string _SlowMath = "SlowMathModule";
     const string _SmallCircle = "smallCircle";
     const string _Snooker = "snooker";
+    const string _Snowflakes = "snowflakes";
     const string _SonicTheHedgehog = "sonic";
     const string _Sorting = "sorting";
     const string _Souvenir = "SouvenirModule";
@@ -885,6 +886,7 @@ public partial class SouvenirModule
             { _SlowMath, ProcessSlowMath },
             { _SmallCircle, ProcessSmallCircle },
             { _Snooker, ProcessSnooker },
+            { _Snowflakes, ProcessSnowflakes },
             { _SonicTheHedgehog, ProcessSonicTheHedgehog },
             { _Sorting, ProcessSorting },
             { _Souvenir, ProcessSouvenir },

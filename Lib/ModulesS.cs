@@ -1055,6 +1055,21 @@ public partial class SouvenirModule
         addQuestion(module, Question.SnookerReds, correctAnswers: new[] { activeReds.ToString() });
     }
 
+    private IEnumerable<object> ProcessSnowflakes(KMBombModule module)
+    {
+        var comp = GetComponent(module, "snowflakes");
+
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Snowflakes);
+        yield return new WaitForSeconds(4); // Wait for the snowflakes to disappear
+
+        var displays = GetArrayField<TextMesh>(comp, "displays", isPublic: true).Get(expectedLength: 4);
+        var directions = new[] { "top", "right", "bottom", "left" };
+        addQuestions(module, directions.Select((dir, ix) => makeQuestion(Question.SnowflakesDisplayedSnowflakes, _Snowflakes, formatArgs: new[] { dir }, correctAnswers: new[] { displays[ix].text })));
+    }
+
     private IEnumerable<object> ProcessSonicTheHedgehog(KMBombModule module)
     {
         var comp = GetComponent(module, "sonicScript");

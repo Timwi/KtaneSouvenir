@@ -2135,6 +2135,10 @@ namespace Souvenir
         [SouvenirQuestion("How many red balls were there at the start of {0}?", "Snooker", AnswerLayout.TwoColumns4Answers, "8", "9", "10", "11")]
         SnookerReds,
 
+        [SouvenirQuestion("Which snowflake was on the {1} button of {0}?", "Snowflakes", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.SnowflakesFont, FontSize = 80, ExampleExtraFormatArguments = new[] { "top", "right", "bottom", "left" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("A-Za-z")]
+        SnowflakesDisplayedSnowflakes,
+
         [SouvenirQuestion("What positions were the last swap used to solve {0}?", "Sorting", AnswerLayout.ThreeColumns6Answers, "1 & 2", "1 & 3", "1 & 4", "1 & 5", "2 & 3", "2 & 4", "2 & 5", "3 & 4", "3 & 5", "4 & 5")]
         SortingLastSwap,
 
