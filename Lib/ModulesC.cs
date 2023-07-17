@@ -734,6 +734,36 @@ public partial class SouvenirModule
         addQuestion(module, Question.CruelBinaryDisplayedWord, correctAnswers: new[] { displayedWord }, preferredWrongAnswers: wordList);
     }
 
+    private IEnumerable<object> ProcessCruelKeypads(KMBombModule module)
+    {
+        var comp = GetComponent(module, "CruelKeypadScript");
+
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_CruelKeypads);
+
+        var firstTwoColors = GetField<Array>(comp, "StageColor").Get(arr => arr.Length != 2 ? "expected length 2" : null);
+        var colors = new string[]
+        {
+            firstTwoColors.GetValue(0).ToString(),
+            firstTwoColors.GetValue(1).ToString(),
+            GetField<Enum>(comp, "stripColor").Get().ToString()
+        };
+        var fieldNames = new[] { "Stage1Symbols", "Stage2Symbols", "pickedSymbols" };
+        // Unfortunately, these are stored as IList<char> types instead of just List<char>, so we can't used GetListField.
+        string[][] displayedSymbolSets = fieldNames.Select(name => GetField<IList<char>>(comp, name).Get(list => list.Count != 4 ? "expected length 4" : null).Select(c => c.ToString()).ToArray()).ToArray();
+
+        var qs = new List<QandA>();
+        for (int stage = 0; stage < 3; stage++)
+        {
+            string stageNum = ordinal(stage + 1);
+            qs.Add(makeQuestion(Question.CruelKeypadsColors, _CruelKeypads, formatArgs: new[] { stageNum }, correctAnswers: new[] { colors[stage] }));
+            qs.Add(makeQuestion(Question.CruelKeypadsDisplayedSymbols, _CruelKeypads, formatArgs: new[] { stageNum }, correctAnswers: displayedSymbolSets[stage]));
+        }
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessCrypticCycle(KMBombModule module)
     {
         return processSpeakingEvilCycle2(module, "CrypticCycleScript", Question.CrypticCycleWord, _CrypticCycle);

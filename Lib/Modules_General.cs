@@ -105,6 +105,7 @@ public partial class SouvenirModule
     const string _CrimsonCipher = "crimsonCipher";
     const string _Critters = "CrittersModule";
     const string _CruelBinary = "CruelBinary";
+    const string _CruelKeypads = "CruelKeypads";
     const string _CrypticCycle = "crypticCycle";
     const string _CrypticKeypad = "GSCrypticKeypad";
     const string _Cube = "cube";
@@ -588,6 +589,7 @@ public partial class SouvenirModule
             { _CrimsonCipher, ProcessCrimsonCipher },
             { _Critters, ProcessCritters },
             { _CruelBinary, ProcessCruelBinary },
+            { _CruelKeypads, ProcessCruelKeypads },
             { _CrypticCycle, ProcessCrypticCycle },
             { _CrypticKeypad, ProcessCrypticKeypad },
             { _Cube, ProcessCube },
