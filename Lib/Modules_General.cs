@@ -1198,13 +1198,12 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(moduleId);
 
-        var positions = new string[] { "first", "second", "third" };
         var posColour = GetField<int[]>(comp, "poscolour").Get();
         var pulsing = GetField<int[]>(comp, "pulsing").Get();
 
         var qs = new List<QandA>();
         for (int pos = 0; pos < 3; pos++)
-            qs.Add(makeQuestion(question, _Tetriamonds, formatArgs: new[] { positions[pos] }, correctAnswers: new[] { colourNames[posColour[pulsing[pos]]] }));
+            qs.Add(makeQuestion(question, _Tetriamonds, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { colourNames[posColour[pulsing[pos]]] }));
         addQuestions(module, qs);
     }
 }

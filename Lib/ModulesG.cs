@@ -77,7 +77,7 @@ public partial class SouvenirModule
 
         var languageArr = GetArrayField<string>(comp, "languages").Get();
         var answerIndex = GetIntField(comp, "answerIndex").Get(min: 0, max: languageArr.Length - 1);
-        addQuestion(module, Question.GirlfriendLanguage, correctAnswers: new string[] { languageArr[answerIndex] });
+        addQuestion(module, Question.GirlfriendLanguage, correctAnswers: new[] { languageArr[answerIndex] });
     }
 
     private IEnumerable<object> ProcessGlitchedButton(KMBombModule module)

@@ -114,7 +114,7 @@ public partial class SouvenirModule
 
         var flashes = GetMethod<List<string>>(comp, "GrabCombinedFlashes", 0, true).Invoke(new object[0]);
         var qs = new List<QandA>(flashes.Count);
-        var names = new string[] { "Red", "Orange", "Yellow", "Green" };
+        var names = new[] { "Red", "Orange", "Yellow", "Green" };
 
         for (int stage = 0; stage < flashes.Count; stage++)
         {

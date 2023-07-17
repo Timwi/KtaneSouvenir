@@ -38,7 +38,7 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>(15);
 
-        var args = new string[] { "1 (Red)", "2 (Orange)", "3 (Yellow)", "4 (Green)", "5 (Blue)" };
+        var args = new[] { "1 (Red)", "2 (Orange)", "3 (Yellow)", "4 (Green)", "5 (Blue)" };
         for (var layer = 0; layer < 5; layer++)
             qs.Add(makeQuestion(Question.LabyrinthPortalLocations, _Labyrinth, formatArgs: new[] { args[layer] }, correctAnswers: new[] { new Coord(6, 7, portals[layer][0]), new Coord(6, 7, portals[layer][1]) }, preferredWrongAnswers: distinctPortals.Select(i => new Coord(6, 7, i)).ToArray()));
 

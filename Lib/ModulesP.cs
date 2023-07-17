@@ -35,7 +35,7 @@ public partial class SouvenirModule
                 if (digit < '0' || digit > '9')
                     throw new AbandonModuleException("The chosen character ('{0}') was unexpected (expected a digit 0–9).", digit);
 
-                var labels = new string[] { "the screen", "X", "Y", "Z" };
+                var labels = new[] { "the screen", "X", "Y", "Z" };
                 qs.Add(makeQuestion(Question.PalindromesNumbers, _Palindromes, formatArgs: new[] { labels[varIx], ordinal(digitIx + 1) }, correctAnswers: new[] { digit.ToString() }));
             }
         addQuestions(module, qs);

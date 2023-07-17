@@ -97,7 +97,7 @@ public partial class SouvenirModule
             "Down" => "Color of word",
             _ => throw new AbandonModuleException($"Unexpected value of ‘direction’: {direction}")
         };
-        addQuestion(module, Question.ScrutinySquaresFirstDifference, correctAnswers: new string[] { answer });
+        addQuestion(module, Question.ScrutinySquaresFirstDifference, correctAnswers: new[] { answer });
     }
 
     private IEnumerable<object> ProcessScramboozledEggain(KMBombModule module)
@@ -180,7 +180,7 @@ public partial class SouvenirModule
 
         var letters = GetArrayField<int[]>(comp, "displayedLetters").Get(expectedLength: 2, validator: arr => arr.Length != 5 ? "expected length 5" : arr.Any(v => v < 0 || v > 25) ? "expected range 0–25" : null);
         var relevantIx = Enumerable.Range(0, letters[0].Length).First(ix => letters[0][ix] != letters[1][ix]);
-        var colorNames = new string[] { "red", "green", "cyan", "indigo", "pink" };
+        var colorNames = new[] { "red", "green", "cyan", "indigo", "pink" };
         var colors = GetArrayField<int>(comp, "displayedColors").Get(expectedLength: 5, validator: c => c < 0 || c >= colorNames.Length ? string.Format("expected range 0–{0}", colorNames.Length - 1) : null);
         var qs = new List<QandA>();
         qs.Add(makeQuestion(Question.SemamorseColor, _Semamorse, correctAnswers: new[] { colorNames[colors[relevantIx]] }));

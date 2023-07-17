@@ -529,14 +529,14 @@ public partial class SouvenirModule
         var allColors = GetStaticField<Color[]>(comp.GetType(), "allColors").Get();
 
         var questions = new List<QandA>();
-        questions.Add(makeQuestion(Question.ColorsMaximizationSubmittedScore, _ColorsMaximization, correctAnswers: new string[] { submittedScore.ToString() }));
+        questions.Add(makeQuestion(Question.ColorsMaximizationSubmittedScore, _ColorsMaximization, correctAnswers: new[] { submittedScore.ToString() }));
         questions.Add(makeQuestion(Question.ColorsMaximizationSubmittedColor, _ColorsMaximization, formatArgs: new[] { "was" }, correctAnswers: submittedColors.Select(c => colorNameDic[c]).ToArray(), preferredWrongAnswers: colorNames));
         questions.Add(makeQuestion(Question.ColorsMaximizationSubmittedColor, _ColorsMaximization, formatArgs: new[] { "was not" }, correctAnswers: allColors.Except(submittedColors).Select(c => colorNameDic[c]).ToArray(), preferredWrongAnswers: colorNames));
 
         foreach (var color in allColors)
             questions.Add(makeQuestion(Question.ColorsMaximizationColorCount, _ColorsMaximization,
-                formatArgs: new string[] { colorNameDic[color] },
-                correctAnswers: new string[] { GetField<Dictionary<Color, int>>(comp, "countOfColor").Get()[color].ToString() }));
+                formatArgs: new[] { colorNameDic[color] },
+                correctAnswers: new[] { GetField<Dictionary<Color, int>>(comp, "countOfColor").Get()[color].ToString() }));
 
         addQuestions(module, questions);
     }
@@ -572,7 +572,7 @@ public partial class SouvenirModule
             v.y <= v.x ? $"y less than or equal to x (got: {v.x} {v.y})" : null);
 
         _modulesSolved.IncSafe(_ConnectionCheck);
-        addQuestion(module, Question.ConnectionCheckNumbers, correctAnswers: queries.SelectMany(v => new string[] { $"{v.x} {v.y}", $"{v.y} {v.x}" }).ToArray());
+        addQuestion(module, Question.ConnectionCheckNumbers, correctAnswers: queries.SelectMany(v => new[] { $"{v.x} {v.y}", $"{v.y} {v.x}" }).ToArray());
 
         var L = GetArrayField<GameObject>(comp, "L", true).Get(expectedLength: 4);
         var R = GetArrayField<GameObject>(comp, "R", true).Get(expectedLength: 4);

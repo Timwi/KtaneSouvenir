@@ -114,7 +114,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_MandMs);
 
-        var colorNames = new string[] { "red", "green", "orange", "blue", "yellow", "brown" };
+        var colorNames = new[] { "red", "green", "orange", "blue", "yellow", "brown" };
         var colors = GetArrayField<int>(comp, "buttonColors").Get();
         var labels = GetArrayField<string>(comp, "labels").Get();
         var qs = new List<QandA>();
@@ -135,7 +135,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_MandNs);
 
-        var colorNames = new string[] { "red", "green", "orange", "blue", "yellow", "brown" };
+        var colorNames = new[] { "red", "green", "orange", "blue", "yellow", "brown" };
         var colors = GetArrayField<int>(comp, "buttonColors").Get();
         var labels = GetArrayField<string>(comp, "convertedValues").Get();
         var solution = GetIntField(comp, "solution").Get();

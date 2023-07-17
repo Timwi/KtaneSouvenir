@@ -45,7 +45,7 @@ public partial class SouvenirModule
 
         var words = new int[4];
         var colors = new int[4];
-        var names = new string[] { "Red", "Green", "Blue", "Magenta", "Yellow", "White" };
+        var names = new[] { "Red", "Green", "Blue", "Magenta", "Yellow", "White" };
         while (!fldSolved.Get())
         {
             int s = fldStage.Get(min: 0, max: 5);
