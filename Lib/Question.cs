@@ -840,8 +840,7 @@ namespace Souvenir
         [AnswerGenerator.Strings("2*0-9", ":", "2*0-9")]
         GamepadNumbers,
 
-        [SouvenirQuestion("What was the language sang in {0}?", "Girlfriend", AnswerLayout.TwoColumns4Answers, null,
-         ExampleAnswers = new[] { "English", "Portuguese", "German", "Italian" })]
+        [SouvenirQuestion("What was the language sung in {0}?", "Girlfriend", AnswerLayout.TwoColumns4Answers, "English", "French", "German", "Italian", "Japanese", "Mandarin", "Portuguese", "Spanish")]
         GirlfriendLanguage,
 
         [SouvenirQuestion("What was the cycling bit sequence in {0}?", "Glitched Button", AnswerLayout.OneColumn4Answers, null, AddThe = true)]
@@ -2139,8 +2138,7 @@ namespace Souvenir
         [SouvenirQuestion("What bag was initially colored in {0}?", "Splitting The Loot", AnswerLayout.ThreeColumns6Answers, null, ExampleAnswers = new[] { "A5", "E6", "19", "82" })]
         SplittingTheLootColoredBag,
 
-        [SouvenirQuestion("What was the changed property of the first display in {0}?", "Scrutiny Squares", AnswerLayout.OneColumn4Answers, null,
-            ExampleAnswers = new[] { "Word", "Color of word", "Color of background", "Color around word" })]
+        [SouvenirQuestion("What was the changed property of the first display in {0}?", "Scrutiny Squares", AnswerLayout.OneColumn4Answers, "Word", "Color around word", "Color of background", "Color of word")]
         ScrutinySquaresFirstDifference,
 
         [SouvenirQuestion("What was the color of the {1} lit LED in {0}?", "Stability", AnswerLayout.TwoColumns4Answers, "Red", "Yellow", "Blue",

@@ -89,26 +89,15 @@ public partial class SouvenirModule
 
         var pathCells = GetField<IList>(comp, "pathCells").Get();
         var direction = GetField<Enum>(pathCells[0], "direction", isPublic: true).Get();
-        var possibleAnswers = new string[] { "Word", "Color around word", "Color of background", "Color of word" };
-
-        var answer = "";
-        switch (direction.ToString().ToUpper())
+        var answer = direction.ToString() switch
         {
-            case "UP":
-                answer = possibleAnswers[0];
-                break;
-            case "LEFT":
-                answer = possibleAnswers[1];
-                break;
-            case "RIGHT":
-                answer = possibleAnswers[2];
-                break;
-            default: //DOWN
-                answer = possibleAnswers[3];
-                break;
-        }
-
-        addQuestion(module, Question.ScrutinySquaresFirstDifference, correctAnswers: new string[] { answer }, preferredWrongAnswers: possibleAnswers);
+            "Up" => "Word",
+            "Left" => "Color around word",
+            "Right" => "Color of background",
+            "Down" => "Color of word",
+            _ => throw new AbandonModuleException($"Unexpected value of ‘direction’: {direction}")
+        };
+        addQuestion(module, Question.ScrutinySquaresFirstDifference, correctAnswers: new string[] { answer });
     }
 
     private IEnumerable<object> ProcessScramboozledEggain(KMBombModule module)
@@ -167,7 +156,7 @@ public partial class SouvenirModule
             }
         }
 
-    solved:
+        solved:
         _modulesSolved.IncSafe(_SeaShells);
 
         var qs = new List<QandA>();

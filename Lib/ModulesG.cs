@@ -75,9 +75,9 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Girlfriend);
 
-        var languageArr = GetArrayField<string>(comp, "languages", isPublic: false).Get();
-        var answerIndex = GetIntField(comp, "answerIndex", isPublic: false).Get(min: 0, max: languageArr.Length - 1);
-        addQuestion(module, Question.GirlfriendLanguage, correctAnswers: new string[] { languageArr[answerIndex] }, preferredWrongAnswers: languageArr);
+        var languageArr = GetArrayField<string>(comp, "languages").Get();
+        var answerIndex = GetIntField(comp, "answerIndex").Get(min: 0, max: languageArr.Length - 1);
+        addQuestion(module, Question.GirlfriendLanguage, correctAnswers: new string[] { languageArr[answerIndex] });
     }
 
     private IEnumerable<object> ProcessGlitchedButton(KMBombModule module)
