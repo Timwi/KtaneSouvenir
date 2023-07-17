@@ -64,15 +64,17 @@ namespace Souvenir
         private readonly string[] _answers;
         private readonly Font _font;
         private readonly int _fontSize;
+        private readonly float _characterSize;
         private readonly Texture _fontTexture;
         private readonly Material _fontMaterial;
         private readonly AnswerLayout _layout;
-        public QandAText(string module, string question, int correct, string[] answers, Font font, int fontSize, Texture fontTexture, Material fontMaterial, AnswerLayout layout, Sprite questionSprite, float spriteRotation = 0f)
+        public QandAText(string module, string question, int correct, string[] answers, Font font, int fontSize, float characterSize, Texture fontTexture, Material fontMaterial, AnswerLayout layout, Sprite questionSprite, float spriteRotation = 0f)
             : base(module, question, correct, answers.Length, questionSprite, spriteRotation)
         {
             _answers = answers;
             _font = font;
             _fontSize = fontSize;
+            _characterSize = characterSize;
             _fontTexture = fontTexture;
             _fontMaterial = fontMaterial;
             _layout = layout;
@@ -100,6 +102,7 @@ namespace Souvenir
                 mesh.text = i < _answers.Length ? _answers[i] : "•";
                 mesh.font = _font;
                 mesh.fontSize = _fontSize;
+                mesh.characterSize = _characterSize;
                 mesh.GetComponent<MeshRenderer>().material = _fontMaterial;
                 mesh.GetComponent<MeshRenderer>().material.mainTexture = _fontTexture;
 

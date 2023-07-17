@@ -403,6 +403,7 @@ public partial class SouvenirModule : MonoBehaviour
                         answers: answers.Select(ans => attr.TranslateAnswers ? translateAnswer(_exampleQuestions[_curExampleQuestion], ans) : ans).ToArray(),
                         font: Fonts[attr.Type == AnswerType.DynamicFont || attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type],
                         fontSize: attr.FontSize,
+                        characterSize: attr.CharacterSize,
                         fontTexture: FontTextures[attr.Type == AnswerType.DynamicFont || attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type],
                         fontMaterial: FontMaterial,
                         layout: attr.Layout,
@@ -957,12 +958,12 @@ public partial class SouvenirModule : MonoBehaviour
 
     private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, float questionSpriteRotation = 0f) =>
         makeQuestion(question, moduleKey,
-            (attr, q, correct, answers) => new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), Fonts[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], attr.FontSize, FontTextures[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], FontMaterial, attr.Layout, questionSprite, questionSpriteRotation),
+            (attr, q, correct, answers) => new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), Fonts[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], attr.FontSize, attr.CharacterSize, FontTextures[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], FontMaterial, attr.Layout, questionSprite, questionSpriteRotation),
             formatArgs, correctAnswers, preferredWrongAnswers, null, _standardAnswerTypes);
 
     private QandA makeQuestion(Question question, string moduleKey, Font font, Texture fontTexture, Sprite questionSprite = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null) =>
         makeQuestion(question, moduleKey,
-            (attr, q, correct, answers) => new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), font, attr.FontSize, fontTexture, FontMaterial, attr.Layout, questionSprite),
+            (attr, q, correct, answers) => new QandAText(attr.ModuleNameWithThe, q, correct, answers.ToArray(), font, attr.FontSize, attr.CharacterSize, fontTexture, FontMaterial, attr.Layout, questionSprite),
             formatArgs, correctAnswers, preferredWrongAnswers, null, AnswerType.DynamicFont);
 
     private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null) =>

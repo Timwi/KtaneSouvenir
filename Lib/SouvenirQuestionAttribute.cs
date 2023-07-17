@@ -22,6 +22,7 @@ namespace Souvenir
         public AnswerLayout Layout { get; set; }
         public string SpriteField { get; set; }
         public int FontSize { get; set; }
+        public float CharacterSize { get; set; } = 1;
         public bool IsEntireQuestionSprite { get; set; }
 
         public string ModuleNameWithThe => (AddThe ? "The " : "") + ModuleName;
