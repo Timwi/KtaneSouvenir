@@ -61,4 +61,39 @@ public partial class SouvenirModule
     {
         return processSpeakingEvilCycle2(module, "JumbleCycleScript", Question.JumbleCycleWord, _JumbleCycle);
     }
+
+    private IEnumerable<object> ProcessJuxtacoloredSquares(KMBombModule module)
+    {
+        var comp = GetComponent(module, "JuxtacoloredSquaresModule");
+
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+        var fldColors = GetField<Array>(comp, "_colors");
+        var colors = fldColors.Get(); // Prevent compiler from complaining about this being an unassigned local variable.
+        var needToUpdate = true;
+        module.OnStrike += () => { needToUpdate = true; return false; };
+
+        while (!fldSolved.Get())
+        {
+            if (needToUpdate)
+            {
+                yield return null; // Wait for fldColors to update.
+                colors = fldColors.Get(arr => arr.Length != 16 ? "expected length 16" : null).Clone() as Array;
+                needToUpdate = false;
+            }
+            yield return null; // Do not wait .1 seconds to make sure we get get the colors before any squares are pressed.
+        }
+        _modulesSolved.IncSafe(_JuxtacoloredSquares);
+
+        var qs = new List<QandA>();
+        for (int pos = 0; pos < 16; pos++)
+        {
+            var colorName = colors.GetValue(pos).ToString();
+            if (colorName == "DarkBlue")
+                colorName = "Blue";
+            var coordinate = new Coord(4, 4, pos);
+            qs.Add(makeQuestion(Question.JuxtacoloredSquaresColorsByPosition, _JuxtacoloredSquares, questionSprite: Grid.GenerateGridSprite(coordinate), correctAnswers: new[] { colorName }));
+            qs.Add(makeQuestion(Question.JuxtacoloredSquaresPositionsByColor, _JuxtacoloredSquares, formatArgs: new[] { colorName.ToLower() }, correctAnswers: new[] { coordinate }));
+        }
+        addQuestions(module, qs);
+    }
 }

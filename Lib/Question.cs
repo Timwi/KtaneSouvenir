@@ -1065,6 +1065,12 @@ namespace Souvenir
           ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
         JumbleCycleWord,
 
+        [SouvenirQuestion("What was the color of this square in {0}?", "Juxtacolored Squares", AnswerLayout.ThreeColumns6Answers, "Red", "Blue", "Yellow", "Green", "Magenta", "Orange", "Cyan", "Purple", "Chestnut", "Brown", "Mauve", "Azure", "Jade", "Forest", "Gray", "Black", UsesQuestionSprite = true)]
+        JuxtacoloredSquaresColorsByPosition,
+        [SouvenirQuestion("Which square was {1} in {0}?", "Juxtacolored Squares", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Grid, ExampleExtraFormatArguments = new[] { "chestnut", "brown", "mauve", "azure", "jade", "forest", "gray", "black" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Grid(4, 4)]
+        JuxtacoloredSquaresPositionsByColor,
+
         [SouvenirQuestion("What was the displayed word in the {1} stage of {0}?", "Kanji", AnswerLayout.TwoColumns4Answers, Type = AnswerType.JapaneseFont, ExampleAnswers = new[] { "ばくはつ", "でんき", "でんしゃ", "でんわ" }, ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         KanjiDisplayedWords,
 

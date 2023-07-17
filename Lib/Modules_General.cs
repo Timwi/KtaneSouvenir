@@ -205,6 +205,7 @@ public partial class SouvenirModule
     const string _Jenga = "jenga";
     const string _JewelVault = "jewelVault";
     const string _JumbleCycle = "jumbleCycle";
+    const string _JuxtacoloredSquares = "JuxtacoloredSquaresModule";
     const string _Kanji = "KanjiModule";
     const string _KanyeEncounter = "TheKanyeEncounter";
     const string _KeypadMagnified = "keypadMagnified";
@@ -690,6 +691,7 @@ public partial class SouvenirModule
             { _Jenga, ProcessJenga },
             { _JewelVault, ProcessJewelVault },
             { _JumbleCycle, ProcessJumbleCycle },
+            { _JuxtacoloredSquares, ProcessJuxtacoloredSquares },
             { _Kanji, ProcessKanji },
             { _KanyeEncounter, ProcessKanyeEncounter },
             { _KeypadMagnified, ProcessKeypadMagnified },
