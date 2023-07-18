@@ -169,6 +169,26 @@ public partial class SouvenirModule
         addQuestion(module, Question._3LEDsInitialState, correctAnswers: new[] { initialStates.Select(s => s ? "on" : "off").JoinString("/") });
     }
 
+    private IEnumerable<object> Process64(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SixtyFourScript");
+
+        var solved = false;
+        module.OnPass += () => { solved = true; return false; };
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_64);
+
+        var base64Characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+        var displayedNumber = GetField<string>(comp, "numberIn64").Get(num => num.Length == 0 || num.Length > 4 || num.Any(c => !base64Characters.Contains(c)) ? "expected 1-4 base-64 digits" : null);
+        var mthConvertToBase = GetStaticMethod<string>(comp, "DecimalToArbitrarySystem", 2, isPublic: true);
+        var answers = new HashSet<string> { displayedNumber };
+
+        while (answers.Count < 6)
+            answers.Add(mthConvertToBase.Invoke(UnityEngine.Random.Range(0, 16777216), 64));
+        addQuestion(module, Question._64DisplayedNumber, correctAnswers: new[] { displayedNumber }, preferredWrongAnswers: answers.ToArray());
+    }
+
     private IEnumerable<object> Process7(KMBombModule module)
     {
         var comp = GetComponent(module, "SevenHandler");

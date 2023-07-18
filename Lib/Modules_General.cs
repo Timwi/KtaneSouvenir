@@ -20,6 +20,7 @@ public partial class SouvenirModule
     const string _3DTapCode = "3DTapCodeModule";
     const string _3DTunnels = "3dTunnels";
     const string _3LEDs = "threeLEDsModule";
+    const string _64 = "64";
     const string _7 = "7";
     const string _9Ball = "GSNineBall";
     const string _Abyss = "GSAbyss";
@@ -517,6 +518,7 @@ public partial class SouvenirModule
             { _3DMaze, Process3DMaze },
             { _3DTapCode, Process3DTapCode },
             { _3DTunnels, Process3DTunnels },
+            { _64, Process64 },
             { _3LEDs, Process3LEDs },
             { _7, Process7 },
             { _9Ball, Process9Ball },
