@@ -1983,9 +1983,6 @@ namespace Souvenir
         [AnswerGenerator.Strings('A', 'P')]
         ShapeShiftInitialShape,
 
-        [SouvenirQuestion("What was the final position of the initial cup in {0}?", "Shell Game", AnswerLayout.TwoColumns4Answers, "Left", "Middle", "Right", TranslateAnswers = true)]
-        ShellGameInitialCupFinalPosition,
-
         [SouvenirQuestion("What color was the {1} marker in {0}?", "Shifted Maze", AnswerLayout.TwoColumns4Answers, "White", "Blue", "Yellow", "Magenta", "Green",
             ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ShiftedMazeColors,

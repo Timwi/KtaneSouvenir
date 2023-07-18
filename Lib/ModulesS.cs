@@ -1400,6 +1400,7 @@ public partial class SouvenirModule
         string disp = GetField<string>(comp, "displayedWord").Get(str => str.Length != 4 ? "expected length 4" : null);
         addQuestion(module, Question.SuperparsingDisplayed, correctAnswers: new[] { disp });
     }
+
     private IEnumerable<object> ProcessSwitch(KMBombModule module)
     {
         var comp = GetComponent(module, "Switch");

@@ -19,7 +19,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 - Accumulation — luisdiogo98
 - Adventure Game — Timwi
 - Affine Cycle — TasThiluna
-- Alchemy — Timwi
 - Alfa-Bravo — NickLatkovich
 - Algebra — Timwi
 - Algorithmia — tandyCake
@@ -82,21 +81,17 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 - Connection Check — BakersDozenBagels
 - Coordinates — Timwi
 - Coral Cipher — Timwi
-- Cornflower Cipher — Timwi
-- Cream Cipher — Timwi
-- Crimson Cipher — Timwi
-- Forest Cipher — Timwi
-- Magenta Cipher — Timwi
-- Maroon Cipher — Timwi
-- Stability — NickLatkovich
 - Corners — Timwi
+- Cornflower Cipher — Timwi
 - Cosmic — BigCrunch22
+- Cream Cipher — Timwi
 - Creation — CaitSith2
+- Crimson Cipher — Timwi
 - Critters — Eltrick
 - Cruel Binary — Kuro
 - Cruel Keypads — Kuro
 - Cryptic Cycle — TasThiluna
-- Cryptic Keypad  — Timwi
+- Cryptic Keypad — Timwi
 - Cursed Double-Oh — Kuro
 - DACH Maze — Timwi
 - Deaf Alley — BigCrunch22
@@ -114,13 +109,12 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 - Dr. Doctor — Timwi
 - Dreamcipher — BigCrunch22
 - Dumb Waiters — BigCrunch22
-- ENA Cipher — KiloBites
 - Eight — NickLatkovich
 - Elder Futhark — Goofy
-- Encryped Morse — luisdiogo98
 - Encrypted Equations — Timwi
 - Encrypted Hangman — Timwi
 - Encrypted Maze — Timwi
+- Encrypted Morse — luisdiogo98
 - Encryption Bingo — TasThiluna
 - Enigma Cycle — Timwi
 - Entry Number Four — GhostSalt
@@ -139,8 +133,8 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 - Flashing Lights — luisdiogo98
 - Flyswatting — tandyCake
 - Follow Me — Kuro
+- Forest Cipher — Timwi
 - Forget Any Color — Emik
-- Forget Me Not — Timwi
 - Forget Me — tandyCake
 - Forget The Colors — Emik
 - Forget’s Ultimate Showdown — Marksam
@@ -148,16 +142,14 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 - Functions — JerryEris
 - Gadgetron Vendor — Kuro
 - Game of Life Cruel — GhostSalt
-- Gamepad — Timwi
 - Girlfriend — Hawker
-- Glitched Button — Timwi
 - Gray Cipher — BigCrunch22
 - Green Arrows — kavinkul
 - Green Cipher — BigCrunch22
 - Gridlock — CaitSith2
 - Grocery Store — BigCrunch22
 - Gryphons — JerryEris
-- Guess Who — BigCrunch22
+- Guess Who? — BigCrunch22
 - Hereditary Base Notation — kavinkul
 - Hexamaze — Timwi
 - Hidden Colors — TasThiluna
@@ -176,7 +168,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 - Infinite Loop — Eltrick
 - Ingredients — Timwi
 - Inner Connections — Brawlboxgaming
-- Instructions — Timwi
 - Interpunct — Eltrick
 - Jenga — tandyCake
 - Jumble Cycle — TasThiluna
@@ -196,7 +187,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 - Lion’s Share — Timwi
 - Listening — Timwi
 - Logic Gates — Timwi
-- Logic — Timwi
 - Logical Buttons — Timwi
 - Lombax Cubes — Marksam
 - Long Words — GoodHood
@@ -205,10 +195,12 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 - M-Seq — tandyCake
 - Mad Memory — Kuro
 - Mafia — Timwi
+- Magenta Cipher — Timwi
 - Mahjong — River
 - Maritime Flags — Timwi
+- Maroon Cipher — Timwi
 - Mashematics — Marksam
-- Math ’Em — tandyCake
+- Math ’em — tandyCake
 - Maze Identification — GhostSalt
 - Maze Scrambler — luisdiogo98
 - Maze — Andrio Celos
@@ -220,6 +212,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 - Memorable Buttons — Timwi
 - Memory — Andrio Celos
 - Metamorse — tandyCake
+- Microcontroller — Timwi
 - Minesweeper — CaitSith2
 - Mirror — Timwi
 - Mister Softee — TasThiluna
@@ -298,6 +291,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 - Poetry — Timwi
 - Polyhedral Maze — Timwi
 - Prime Encryption — VFlyer
+- Probing — Timwi
 - Procedural Maze — Kuro
 - Purple Arrows — kavinkul
 - Puzzle Identification — GhostSalt
@@ -333,7 +327,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 - Semamorse — Timwi
 - Shape Shift — Timwi
 - Shapes And Bombs — KingSlendy
-- Shell Game — kavinkul
 - Shifted Maze — Timwi
 - Shifting Maze — BigCrunch22
 - Shogi Identification — tandyCake
@@ -374,6 +367,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 - Space Traders — NickLatkovich
 - Spelling Bee — BigCrunch22
 - Splitting The Loot — luisdiogo98
+- Stability — NickLatkovich
 - Stacked Sequences — GhostSalt
 - Stars — BigCrunch22
 - State of Aggregation — BigCrunch22
@@ -405,6 +399,8 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 - The Cyan Button — QuinnWuest
 - The Deck of Many Things — luisdiogo98
 - The Duck — Kuro
+- The Gamepad — Timwi
+- The Glitched Button — Timwi
 - The Gray Button — Timwi
 - The Great Void — Marksam
 - The Green Button — Timwi
@@ -427,6 +423,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 - The Samsung — TasThiluna
 - The Sequencyclopedia — BigCrunch22
 - The Sphere — luisdiogo98
+- The Switch — Timwi
 - The Ultracube — luisdiogo98
 - The Wire — Timwi
 - The Xenocryst — GhostSalt
@@ -449,7 +446,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 - USA Maze — luisdiogo98
 - Ultimate Cipher — BigCrunch22
 - Ultimate Cycle — TasThiluna
-- Ultrastores — Marksam
+- UltraStores — Marksam
 - Uncolored Squares — Timwi
 - Uncolored Switches — Timwi
 - Unfair Cipher — luisdiogo98
@@ -472,7 +469,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 - Who’s on Morse — VFlyer
 - Wire Ordering — Andrio Celos
 - Wire Sequence — Andrio Celos
-- Wolf, Goat, And Cabbage — Marksam
+- Wolf, Goat, and Cabbage — Marksam
 - Working Title — BigCrunch22
 - XmORse Code — shortc1rcuit
 - Yahtzee — Timwi
@@ -480,8 +477,9 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 - Yellow Cipher — BigCrunch22
 - Zero, Zero — Timwi
 - Zoni — luisdiogo98
-- eeBgnillepS — BigCrunch22
+- eeB gnillepS — BigCrunch22
 - hexOS — Emik
 - xobekuJ ehT — QuinnWuest
 - Ángel Hernández — QuinnWuest
+- ƎNA Cipher — KiloBites
 - ❖ — BakersDozenBagels

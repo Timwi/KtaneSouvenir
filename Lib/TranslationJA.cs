@@ -6256,20 +6256,6 @@ namespace Souvenir
                 QuestionText = "{0}の最初の図形は？",
             },
 
-            // Shell Game
-            // What was the final position of the initial cup in {0}?
-            // What was the final position of the initial cup in Shell Game?
-            [Question.ShellGameInitialCupFinalPosition] = new TranslationInfo
-            {
-                QuestionText = "{0}の初期カップの最終位置は？",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Left"] = "左",
-                    ["Middle"] = "中央",
-                    ["Right"] = "右",
-                },
-            },
-
             // Shifted Maze
             // What color was the {1} marker in {0}?
             // What color was the top-left marker in Shifted Maze?
