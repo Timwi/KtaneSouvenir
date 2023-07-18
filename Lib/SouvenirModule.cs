@@ -847,7 +847,7 @@ public partial class SouvenirModule : MonoBehaviour
         throw new AbandonModuleException("Type {0} does not contain {1} field {2}. Fields are: {3}", targetType, isPublic ? "public" : "non-public", name,
             targetType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(f => string.Format("{0} {1} {2}", f.IsPublic ? "public" : "private", f.FieldType.FullName, f.Name)).JoinString(", "));
 
-        found:
+    found:
         if (!typeof(T).IsAssignableFrom(fld.FieldType))
         {
             if (noThrow)
@@ -867,18 +867,28 @@ public partial class SouvenirModule : MonoBehaviour
         return GetMethodImpl<object>(typeof(void), target, name, numParameters, isPublic);
     }
 
-    private MethodInfo<T> GetMethodImpl<T>(Type returnType, object target, string name, int numParameters, bool isPublic = false)
+    private MethodInfo<T> GetStaticMethod<T>(object target, string name, int numParameters, bool isPublic = false)
+    {
+        return GetMethodImpl<T>(typeof(T), target, name, numParameters, isPublic, isStatic: true);
+    }
+
+    private MethodInfo<object> GetStaticMethod(object target, string name, int numParameters, bool isPublic = false)
+    {
+        return GetMethodImpl<object>(typeof(void), target, name, numParameters, isPublic, isStatic: true);
+    }
+
+    private MethodInfo<T> GetMethodImpl<T>(Type returnType, object target, string name, int numParameters, bool isPublic = false, bool isStatic = false)
     {
         if (target == null)
-            throw new AbandonModuleException("Attempt to get {1} method {0} of return type {2} from a null object.", name, isPublic ? "public" : "non-public", returnType.FullName);
+            throw new AbandonModuleException("Attempt to get {1} {2} method {0} of return type {3} from a null object.", name, isPublic ? "public" : "non-public", isStatic ? "static" : "instance", returnType.FullName);
 
-        var bindingFlags = (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | BindingFlags.Instance;
+        var bindingFlags = (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | (isStatic ? BindingFlags.Static : BindingFlags.Instance);
         var targetType = target.GetType();
         var mths = targetType.GetMethods(bindingFlags).Where(m => m.Name == name && m.GetParameters().Length == numParameters && returnType.IsAssignableFrom(m.ReturnType)).Take(2).ToArray();
         if (mths.Length == 0)
-            throw new AbandonModuleException("Type {0} does not contain {1} method {2} with return type {3} and {4} parameters.", targetType, isPublic ? "public" : "non-public", name, returnType.FullName, numParameters);
+            throw new AbandonModuleException("Type {0} does not contain a {1} {2} method {3} with return type {4} and {5} parameters.", targetType, isPublic ? "public" : "non-public", isStatic ? "static" : "instance", name, returnType.FullName, numParameters);
         if (mths.Length > 1)
-            throw new AbandonModuleException("Type {0} contains multiple {1} methods {2} with return type {3} and {4} parameters.", targetType, isPublic ? "public" : "non-public", name, returnType.FullName, numParameters);
+            throw new AbandonModuleException("Type {0} contains multiple {1} {2} methods {3} with return type {4} and {5} parameters.", targetType, isPublic ? "public" : "non-public", isStatic ? "static" : "instance", name, returnType.FullName, numParameters);
         return new MethodInfo<T>(target, mths[0]);
     }
 
