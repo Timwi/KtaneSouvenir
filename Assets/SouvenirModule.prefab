@@ -478,6 +478,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 33aacc46e9c1abc45a30399abd6180c1, type: 3}
   - {fileID: 21300000, guid: 586120f0c8a5b8040be73b16c024d787, type: 3}
   - {fileID: 21300000, guid: 4fae1e0b47c29314d99e8e2325c44214, type: 3}
+  HingesSprites:
+  - {fileID: 21300000, guid: 220c963295e5c544ba9d8dc2ea137e12, type: 3}
+  - {fileID: 21300000, guid: b102fc4e9dc13ba4784454551e8607d6, type: 3}
+  - {fileID: 21300000, guid: d17015da3857b1745bbb93271d5a123d, type: 3}
+  - {fileID: 21300000, guid: f0d47c5338c2b4e4ebc5636dd6cb9a3b, type: 3}
+  - {fileID: 21300000, guid: 1e109f7710f1499499ef49154a39ad3c, type: 3}
+  - {fileID: 21300000, guid: c66defe8955d605418c619eb7b4d597b, type: 3}
+  - {fileID: 21300000, guid: 694895073dd57504caabec1775649d99, type: 3}
+  - {fileID: 21300000, guid: c93d087ff86f47341a29b62c8d0d2fe5, type: 3}
   JengaSprites:
   - {fileID: 21300000, guid: cf943e420edfca349aff0043ebb9a2be, type: 3}
   - {fileID: 21300000, guid: ebe1f440b8fcf7049ab54ae435b62287, type: 3}

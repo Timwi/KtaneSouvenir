@@ -122,6 +122,30 @@ public partial class SouvenirModule
         return processSpeakingEvilCycle2(module, "HillCycleScript", Question.HillCycleWord, _HillCycle);
     }
 
+    private IEnumerable<object> ProcessHinges(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Hinges");
+        var initialHingesStatus = GetArrayField<int>(comp, "hingeStatus").Get(expectedLength: 8, validator: i => i != 0 && i != 1 ? "expected value 0 or 1" : null).ToArray();
+
+        var fldSolved = GetField<bool>(comp, "solved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Hinges);
+
+        var qs = new List<QandA>();
+        var presentHinges = new List<Sprite>();
+        var absentHinges = new List<Sprite>();
+        for (int pos = 0; pos < 8; pos++)
+            (initialHingesStatus[pos] == 1 ? presentHinges : absentHinges).Add(HingesSprites[pos]);
+
+        // There are eight hinges in total, so at least one question will generate.
+        if (presentHinges.Count <= 4)
+            qs.Add(makeQuestion(Question.HingesInitialHinges, _Hinges, formatArgs: new[] { "present on" }, correctAnswers: presentHinges.ToArray()));
+        if (absentHinges.Count <= 4)
+            qs.Add(makeQuestion(Question.HingesInitialHinges, _Hinges, formatArgs: new[] { "absent from" }, correctAnswers: absentHinges.ToArray()));
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessHogwarts(KMBombModule module)
     {
         var comp = GetComponent(module, "HogwartsModule");

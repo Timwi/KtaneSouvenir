@@ -189,6 +189,7 @@ public partial class SouvenirModule
     const string _HexOS = "hexOS";
     const string _HiddenColors = "lgndHiddenColors";
     const string _HillCycle = "hillCycle";
+    const string _Hinges = "hinges";
     const string _Hogwarts = "HogwartsModule";
     const string _HoldUps = "KritHoldUps";
     const string _Homophones = "homophones";
@@ -688,6 +689,7 @@ public partial class SouvenirModule
             { _HexOS, ProcessHexOS },
             { _HiddenColors, ProcessHiddenColors },
             { _HillCycle, ProcessHillCycle },
+            { _Hinges, ProcessHinges },
             { _Hogwarts, ProcessHogwarts },
             { _HoldUps, ProcessHoldUps },
             { _Homophones, ProcessHomophones },

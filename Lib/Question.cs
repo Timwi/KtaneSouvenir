@@ -970,6 +970,9 @@ namespace Souvenir
           ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
         HillCycleWord,
 
+        [SouvenirQuestion("Which of these hinges was initially {1} {0}?", "Hinges", AnswerLayout.TwoColumns4Answers, Type = AnswerType.Sprites, SpriteField = "HingesSprites", ExampleExtraFormatArguments = new[] { "present on", "absent from" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        HingesInitialHinges,
+
         [SouvenirQuestion("Which House was {1} solved\u00a0for in {0}?", "Hogwarts", AnswerLayout.TwoColumns4Answers, "Gryffindor", "Hufflepuff", "Slytherin", "Ravenclaw",
             ExampleExtraFormatArguments = new[] { "Binary Puzzle", "Zoni", "Rock-Paper- Scissors-L.-Sp.", "Modules Against Humanity", "Monsplode Trading Cards" }, ExampleExtraFormatArgumentGroupSize = 1)]
         HogwartsHouse,
