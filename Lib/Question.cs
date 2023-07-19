@@ -539,6 +539,10 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9)]
         CursedDoubleOhInitialPosition,
 
+        [SouvenirQuestion("Who was the {1} customer in {0}?", "Customer Identification", AnswerLayout.OneColumn4Answers,
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal}, ExampleExtraFormatArgumentGroupSize = 1)]
+        CustomerIdentificationCustomer,
+
         [SouvenirQuestion("Where was the button at the {1} stage in {0}?", "Cyan Button", AnswerLayout.TwoColumns4Answers, "top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
         CyanButtonPositions,
