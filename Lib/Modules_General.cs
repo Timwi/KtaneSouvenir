@@ -138,6 +138,7 @@ public partial class SouvenirModule
     const string _Eight = "eight";
     const string _ElderFuthark = "elderFuthark";
     const string _EnaCipher = "enaCipher";
+    const string _EncryptedDice = "EncryptedDice";
     const string _EncryptedEquations = "EncryptedEquationsModule";
     const string _EncryptedHangman = "encryptedHangman";
     const string _EncryptedMaze = "encryptedMaze";
@@ -638,6 +639,7 @@ public partial class SouvenirModule
             { _Eight, ProcessEight },
             { _ElderFuthark, ProcessElderFuthark },
             { _EnaCipher, ProcessEnaCipher },
+            { _EncryptedDice, ProcessEncryptedDice },
             { _EncryptedEquations, ProcessEncryptedEquations },
             { _EncryptedHangman, ProcessEncryptedHangman },
             { _EncryptedMaze, ProcessEncryptedMaze },

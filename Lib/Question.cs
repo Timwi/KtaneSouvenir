@@ -675,6 +675,10 @@ namespace Souvenir
         [AnswerGenerator.Strings(6, "ABCDEFGHIJKLMNOPQRSTUVWXYZ")]
         EnaCipherEncryptedAnswer,
 
+        [SouvenirQuestion("Which of these numbers appeared on a die in the {1} stage of {0}?", "Encrypted Dice", AnswerLayout.TwoColumns4Answers, ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1, 6)]
+        EncryptedDice,
+
         [SouvenirQuestion("Which shape was the {1} operand in {0}?", "Encrypted Equations", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "EncryptedEquationsSprites",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         EncryptedEquationsShapes,

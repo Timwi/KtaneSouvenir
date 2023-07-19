@@ -89,6 +89,38 @@ public partial class SouvenirModule
             makeQuestion(Question.EnaCipherEncryptedAnswer, _EnaCipher, correctAnswers: new[] { encryptedWord }));
     }
 
+    private IEnumerable<object> ProcessEncryptedDice(KMBombModule module)
+    {
+        var comp = GetComponent(module, "EncrypedDice");
+
+        var fldSolved = GetField<bool>(comp, "solved");
+        var fldCanRoll = GetField<bool>(comp, "canRoll");
+        var fldRolledValues = GetArrayField<int>(comp, "rolledValues");
+        var fldStageNumber = GetIntField(comp, "stagesCompleted");
+
+        var stage = 0;
+        var rolledValues = new int[3][];
+
+        module.OnStrike += () => { stage--; return false; };
+        module.OnActivate += () => { stage--; };
+
+        while (!fldSolved.Get())
+        {
+            if (fldStageNumber.Get(min: stage, max: stage + 1) > stage)
+            {
+                if (stage > 2)
+                    throw new AbandonModuleException("Expected 3 stages but we have now exceeded this amount");
+                while (!fldCanRoll.Get())
+                    yield return null; // Do not wait .1 seconds so we are absolutely sure we get the right stage.
+                stage++;
+                rolledValues[stage] = fldRolledValues.Get(expectedLength: 3, validator: val => val < 1 || val > 6 ? "expected range 1-6" : null).ToArray();
+            }
+            yield return new WaitForSeconds(.1f); // Roll animation is much longer than .1 seconds anyway.
+        }
+        _modulesSolved.IncSafe(_EncryptedDice);
+        addQuestions(module, rolledValues.Select((vals, ix) => makeQuestion(Question.EncryptedDice, _EncryptedDice, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: vals.Select(val => (val).ToString()).ToArray())));
+    }
+
     private IEnumerable<object> ProcessEncryptedEquations(KMBombModule module)
     {
         var comp = GetComponent(module, "EncryptedEquations");

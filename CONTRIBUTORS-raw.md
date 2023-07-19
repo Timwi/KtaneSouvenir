@@ -6,6 +6,7 @@
 - 3D Maze — Timwi
 - 3D Tap Code — TasThiluna
 - 3D Tunnels — Timwi
+- 64 — Kuro
 - 7 — VFlyer
 - 9-Ball — GhostSalt
 - A Letter — Sierra
@@ -112,6 +113,7 @@
 - eeB gnillepS — BigCrunch22
 - Eight — NickLatkovich
 - Elder Futhark — Goofy
+- Encrypted Dice — Kuro
 - Encrypted Equations — Timwi
 - Encrypted Hangman — Timwi
 - Encrypted Maze — Timwi
@@ -156,6 +158,7 @@
 - hexOS — Emik
 - Hidden Colors — TasThiluna
 - Hill Cycle — TasThiluna
+- Hinges — Kur
 - Hogwarts — Timwi
 - Hold Ups — BigCrunch22
 - Homophones — VFlyer
