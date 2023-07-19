@@ -475,6 +475,7 @@ public partial class SouvenirModule
     const string _VioletCipher = "violetCipher";
     const string _VisualImpairment = "visual_impairment";
     const string _Wavetapping = "Wavetapping";
+    const string _WeakestLink = "TheWeakestLink";
     const string _WhatsOnSecond = "WhatsOnSecond";
     const string _WhiteCipher = "whiteCipher";
     const string _WhoOF = "whoOF";
@@ -961,6 +962,7 @@ public partial class SouvenirModule
             { _VioletCipher, ProcessVioletCipher },
             { _VisualImpairment, ProcessVisualImpairment },
             { _Wavetapping, ProcessWavetapping },
+            { _WeakestLink, ProcessWeakestLink},
             { _WhatsOnSecond, ProcessWhatsOnSecond },
             { _WhiteCipher, ProcessWhiteCipher },
             { _WhoOF, ProcessWhoOF },

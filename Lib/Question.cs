@@ -2438,6 +2438,21 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         WavetappingPatterns,
 
+        [SouvenirQuestion("Who was the person you eliminated in {0}?", "Weakest Link", AnswerLayout.OneColumn4Answers, null, AddThe = true, ExampleAnswers = new[] { "Annie", "Albert", "Josephine", "Frederick" })]
+        WeakestLinkElimination,
+
+        [SouvenirQuestion("Who was the person who made it to the Money Phase with you in {0}?", "Weakest Link", AnswerLayout.OneColumn4Answers, null, AddThe = true, ExampleAnswers = new[] { "Annie", "Albert", "Josephine", "Frederick" })]
+        WeakestLinkMoneyPhaseName,
+
+        [SouvenirQuestion("What was {1}'s skill in {0}?", "Weakest Link", AnswerLayout.OneColumn4Answers, "Geography", "Language", "Wildlife", "Biology", "Maths", "KTANE", "History", "Other", AddThe = true, ExampleAnswers = new[] { "KTANE", "Geography", "Language", "Wildlife" },
+            ExampleExtraFormatArguments = new[] { "Annie", "Albert", "Josephine", "Frederick" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        WeakestLinkSkill,
+
+        [SouvenirQuestion("What was the ratio {1} got in the Question Phase in {0}?", "Weakest Link",  AnswerLayout.OneColumn4Answers, null, AddThe = true, ExampleAnswers = new[] { "1/2", "3/4", "6/8", "3/5" },
+            ExampleExtraFormatArguments = new[] { "Annie", "Albert", "Josephine", "Frederick" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("0-4", "/", "56")]
+        WeakestLinkRatio,
+
         [SouvenirQuestion("What was the display text in the {1} stage of {0}?", "What’s on Second", AnswerLayout.ThreeColumns6Answers, "got it", "says", "display", "leed", "their", "blank", "right", "reed", "hold", "they are", "louder", "lead", "repeat", "ready", "none", "led", "ur", "you’re", "no", "you", "nothing", "middle", "done", "empty", "your", "hold on", "like", "read", "wait", "left", "press", "what?", "uh uh", "they’re", "uhhh", "c", "error", "you are", "next", "yes", "u", "sure", "okay", "what", "cee", "first", "see", "uh huh", "there", "red", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         WhatsOnSecondDisplayText,

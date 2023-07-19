@@ -1,8 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 using Souvenir;
 using UnityEngine;
+using UnityEngine.Events;
 
 public partial class SouvenirModule
 {
@@ -41,6 +44,51 @@ public partial class SouvenirModule
                 correctAnswers: new[] { colorNames[stageColors[stage]] }));
 
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessWeakestLink(KMBombModule module)
+    {
+        var comp = GetComponent(module, "WeakestLink");
+        var fldSolved = GetField<bool>(comp, "ModuleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_WeakestLink);
+
+        var contestantArr = GetArrayField<object>(comp, "contestants").Get(expectedLength: 3);
+
+        var ratioArr = new string[3];
+        var names = new string[3];
+        var skill = new Enum[3];
+
+        for (int i = 0; i < 3; i++)
+        {
+            var person = contestantArr[i];
+            var ratio = GetIntField(person, "CorrectAnswer", isPublic: true).Get() + "/" + GetIntField(person, "QuestionsAsked", isPublic: true).Get();
+            skill[i] = GetField<Enum>(person, "Category", isPublic: true).Get();
+
+            ratioArr[i] = ratio;
+            names[i] = GetField<string>(person, "Name", isPublic: true).Get();
+
+        }
+        
+        var eliminatedPerson = GetField<object>(comp, "personToEliminate").Get();
+        var eliminationPersonName = GetField<string>(eliminatedPerson, "Name").Get();
+
+        var moneyPhaseName = eliminationPersonName == names[1] ? names[2] : names[1];
+
+        var jsonReader = GetStaticField<object>(comp.GetType(), "jsonData").Get();
+
+        var randomNames = GetStaticProperty<List<string>>(jsonReader.GetType(), "ContestantNames", isPublic: true).Get();
+
+        addQuestions(module,
+            makeQuestion(Question.WeakestLinkElimination, _WeakestLink, correctAnswers: new[] { eliminationPersonName }, preferredWrongAnswers: randomNames.ToArray()),
+            makeQuestion(Question.WeakestLinkMoneyPhaseName, _WeakestLink, correctAnswers: new[] { moneyPhaseName }, preferredWrongAnswers: randomNames.ToArray()),
+            makeQuestion(Question.WeakestLinkSkill, _WeakestLink, formatArgs: new[] { names[1] }, correctAnswers: new[] { skill[1].ToString() }),
+            makeQuestion(Question.WeakestLinkSkill, _WeakestLink, formatArgs: new[] { names[2] }, correctAnswers: new[] { skill[2].ToString() }),
+            makeQuestion(Question.WeakestLinkRatio, _WeakestLink, formatArgs: new[] { "you" }, correctAnswers: new[] { ratioArr[0] }),
+            makeQuestion(Question.WeakestLinkRatio, _WeakestLink, formatArgs: new[] { names[1] }, correctAnswers: new[] { ratioArr[1] }),
+            makeQuestion(Question.WeakestLinkRatio, _WeakestLink, formatArgs: new[] { names[2] }, correctAnswers: new[] { ratioArr[2] }));
     }
 
     private IEnumerable<object> ProcessWhatsOnSecond(KMBombModule module)
