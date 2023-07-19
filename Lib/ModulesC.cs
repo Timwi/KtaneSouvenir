@@ -822,6 +822,49 @@ public partial class SouvenirModule
         addQuestion(module, Question.CursedDoubleOhInitialPosition, correctAnswers: new[] { firstDigit });
     }
 
+    private IEnumerable<object> ProcessCustomerIdentification(KMBombModule module)
+    {
+        var comp = GetComponent(module, "CustomerIdentificationScript");
+
+        var solved = false;
+
+        module.OnPass += () =>
+        {
+            solved = true;
+            return false;
+        };
+
+        while (!solved)
+        {
+            yield return new WaitForSeconds(.1f);
+        }
+
+        _modulesSolved.IncSafe(_CustomerIdentification);
+
+        var SeedPacketIdentifier = GetField<Sprite[]>(comp, "SeedPacketIdentifier", isPublic: true).Get();
+        var Unique = GetArrayField<int>(comp, "Unique").Get();
+
+        var names = SeedPacketIdentifier.Select(x => x.name).ToArray();
+
+        var answers = new string[3];
+
+        for (int i = 0; i < 3; i++)
+        {
+            answers[i] = names[Unique[i]];
+        }
+
+        Debug.Log(string.Join(", ", answers));
+
+        var qs = new List<QandA>();
+
+        for (int i = 0; i < 3; i++)
+        {
+            qs.Add(makeQuestion(Question.CustomerIdentificationCustomer, _CustomerIdentification, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { answers[i] }, preferredWrongAnswers: names));
+        }
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessCyanButton(KMBombModule module)
     {
         var comp = GetComponent(module, "CyanButtonScript");
