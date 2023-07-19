@@ -345,6 +345,8 @@ public partial class SouvenirModule
     const string _QuestionMark = "Questionmark";
     const string _QuickArithmetic = "QuickArithmetic";
     const string _Quintuples = "quintuples";
+    const string _Qwirkle = "qwirkle";
+    const string _RaidingTemples = "raidingTemples";
     const string _RailwayCargoLoading = "RailwayCargoLoading";
     const string _RainbowArrows = "ksmRainbowArrows";
     const string _RecoloredSwitches = "R4YRecoloredSwitches";
@@ -831,6 +833,8 @@ public partial class SouvenirModule
             { _QuestionMark, ProcessQuestionMark },
             { _QuickArithmetic, ProcessQuickArithmetic },
             { _Quintuples, ProcessQuintuples },
+            { _Qwirkle, ProcessQwirkle },
+            { _RaidingTemples, ProcessRaidingTemples },
             { _RailwayCargoLoading, ProcessRailwayCargoLoading },
             { _RainbowArrows, ProcessRainbowArrows },
             { _RecoloredSwitches, ProcessRecoloredSwitches },

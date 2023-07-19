@@ -9,6 +9,22 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
+    private IEnumerable<object> ProcessRaidingTemples(KMBombModule module)
+    {
+        var comp = GetComponent(module, "raidingTemplesScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_RaidingTemples);
+
+        var startingCommonPool = GetField<int>(comp, "startingCommonPool");
+        var commonPoolText = GetField<TextMesh>(comp, "commonPoolText", isPublic: true).Get();
+
+        commonPoolText.text = "";
+        addQuestion(module, Question.RaidingTemplesStartingCommonPool, correctAnswers: new[] { startingCommonPool.Get().ToString() });
+    }
+
     private IEnumerable<object> ProcessRailwayCargoLoading(KMBombModule module)
     {
         var comp = GetComponent(module, "TrainLoading");
