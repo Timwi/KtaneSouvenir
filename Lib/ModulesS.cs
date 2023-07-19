@@ -1245,6 +1245,44 @@ public partial class SouvenirModule
         addQuestion(module, Question.SplittingTheLootColoredBag, correctAnswers: new[] { bagLabels[paintedBag] }, preferredWrongAnswers: bagLabels);
     }
 
+    private IEnumerable<object> ProcessSpongebobBirthdayIdentification(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SpongebobBirthdayIdentificationScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+       
+        List<string> answers = new List<string>();
+        var stageCountVariable = GetIntField(comp, "stage");
+        int currentStage = stageCountVariable.Get();
+        while (!fldSolved.Get())
+        {
+            if (currentStage != stageCountVariable.Get())
+            {
+                answers.Add(GetField<string>(comp, "answer").Get());
+                currentStage = stageCountVariable.Get();
+            }
+            yield return new WaitForSeconds(.1f);
+        }
+
+        _modulesSolved.IncSafe(_SpongebobBirthdayIdentification);
+
+        if (answers.Count < 3)
+        {
+            answers.Add(GetField<string>(comp, "answer").Get());
+        }
+
+        var allTexturesArr = GetField<Texture[]>(comp, "allImages", isPublic: true).Get();
+        var allNames = allTexturesArr.Select(x => x.name);
+
+        var qs = new List<QandA>();
+
+        for (int i = 0; i < 3; i++)
+        {
+            qs.Add(makeQuestion(Question.SpongebobBirthdayIdentificationChildren, _SpongebobBirthdayIdentification, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { answers[i] }, preferredWrongAnswers: allNames.ToArray()));
+        }
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessStability(KMBombModule module)
     {
         var colorNames = new[] { "Red", "Yellow", "Blue" };
