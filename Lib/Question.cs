@@ -1829,6 +1829,14 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 25)]
         QuintuplesColorCounts,
 
+        [SouvenirQuestion("What tile did you place {1} in {0}?", "Qwirkle", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "QwirkleSprites",
+            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        QwirkleTilesPlaced,
+
+        [SouvenirQuestion("How many jewels were in the starting common pool in {0}?", "Raiding Temples", AnswerLayout.ThreeColumns6Answers)]
+        [AnswerGenerator.Integers(0, 10)]
+        RaidingTemplesStartingCommonPool,
+
         [SouvenirQuestion("What was the {1} coupled car in {0}?", "Railway Cargo Loading", AnswerLayout.OneColumn4Answers, "Baggage Car", "Closed Coach", "Dining Car", "Dome Car", "Double-decker", "Open Coach", "Sleeper Car", "Auto Rack", "Box Car", "Coil Car", "Flat Car", "Hopper Car", "Refrigerated Wagon", "Schnabel Car", "Stock Car", "Tank Car", "Crew Car", "Traveling Post Office", TranslateFormatArgs = new[] { true },
             ExampleExtraFormatArguments = new[] { "second", "third", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th" }, ExampleExtraFormatArgumentGroupSize = 1)]
         RailwayCargoLoadingCars,

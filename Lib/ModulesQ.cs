@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
+using System.Collections;
 
 using Rnd = UnityEngine.Random;
 
@@ -87,5 +88,29 @@ public partial class SouvenirModule
             numbers.Select((n, ix) => makeQuestion(Question.QuintuplesNumbers, _Quintuples, formatArgs: new[] { ordinal(ix % 5 + 1), ordinal(ix / 5 + 1) }, correctAnswers: new[] { (n % 10).ToString() })).Concat(
             colors.Select((color, ix) => makeQuestion(Question.QuintuplesColors, _Quintuples, formatArgs: new[] { ordinal(ix % 5 + 1), ordinal(ix / 5 + 1) }, correctAnswers: new[] { color }))).Concat(
             colorCounts.Select((cc, ix) => makeQuestion(Question.QuintuplesColorCounts, _Quintuples, formatArgs: new[] { colorNames[ix] }, correctAnswers: new[] { cc.ToString() }))));
+    }
+
+    private IEnumerable<object> ProcessQwirkle(KMBombModule module)
+    {
+        var comp = GetComponent(module, "qwirkleScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Qwirkle);
+
+        var tilesPlaces = GetField<IList>(comp, "placed").Get(l => l.Count != 4 ? "expected length 4" : null);
+        var tilesIndex = new int[4];
+
+        for (int i = 0; i < 4; i++)
+        {
+            var colourIndex = GetIntField(tilesPlaces[i], "color", isPublic: true).Get(min: 0, max: 5);
+            var shapeIndex = GetIntField(tilesPlaces[i], "shape", isPublic: true).Get(min: 0, max: 5);
+            tilesIndex[i] = shapeIndex * 6 + colourIndex;
+        }
+
+        addQuestions(module, 
+            Enumerable.Range(0, 4).Select(tile => makeQuestion(Question.QwirkleTilesPlaced, _Qwirkle, 
+            formatArgs: new[] { ordinal(tile+1) }, correctAnswers: new[] { QwirkleSprites[tilesIndex[tile]] })));
     }
 }
