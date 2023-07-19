@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Souvenir;
@@ -87,6 +88,27 @@ public partial class SouvenirModule
             preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(i => string.Format("{0:00}:{1:00}", Rnd.Range(1, 99), Rnd.Range(1, 99))).Distinct().Take(6).ToArray()));
         digits1.GetComponent<TextMesh>().text = "--";
         digits2.GetComponent<TextMesh>().text = "--";
+    }
+
+    private IEnumerable<object> ProcessGarnetThief(KMBombModule module)
+    {
+        var comp = GetComponent(module, "TheGarnetThiefScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_GarnetTheif);
+
+        var contestant = GetArrayField<object>(comp, "contestants").Get();
+
+        var qs = new List<QandA>();
+
+        for (int i = 0; i < 7; i++)
+        {
+            qs.Add(makeQuestion(Question.GarnetThiefClaim, _GarnetTheif, formatArgs: new[] { GetField<Enum>(contestant[i], "name", isPublic: true).Get().ToString() }, correctAnswers: new[] { GetField<Enum>(contestant[i], "claimedFaction", isPublic: true).Get().ToString() }));
+        }
+
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessGirlfriend(KMBombModule module)

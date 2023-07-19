@@ -871,6 +871,10 @@ namespace Souvenir
         [AnswerGenerator.Strings("2*0-9", ":", "2*0-9")]
         GamepadNumbers,
 
+        [SouvenirQuestion("Which faction did {1} claim to be in {0}?", "Garnet Theif", AnswerLayout.OneColumn4Answers, "Mafia", "Cartel", "Beggar", "Police", AddThe = true, 
+            ExampleExtraFormatArguments = new[] { "Jungmoon", "Yeonseung", "Jinho", "Dongmin", "Kyunghoon", "Kyungran", "Yoohyun", "Junseok", "Sangmin", "Yohwan", "Yoonsun", "Hyunmin", "Junghyun" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        GarnetThiefClaim,
+
         [SouvenirQuestion("What was the language sung in {0}?", "Girlfriend", AnswerLayout.TwoColumns4Answers, "English", "French", "German", "Italian", "Japanese", "Mandarin", "Portuguese", "Spanish")]
         GirlfriendLanguage,
 

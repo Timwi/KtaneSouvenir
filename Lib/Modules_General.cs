@@ -167,6 +167,7 @@ public partial class SouvenirModule
     const string _GadgetronVendor = "lgndGadgetronVendor";
     const string _GameOfLifeCruel = "GameOfLifeCruel";
     const string _Gamepad = "TheGamepadModule";
+    const string _GarnetTheif = "theGarnetThief";
     const string _Girlfriend = "Girlfriend";
     const string _GlitchedButton = "GlitchedButtonModule";
     const string _GrayButton = "GrayButtonModule";
@@ -661,6 +662,7 @@ public partial class SouvenirModule
             { _GadgetronVendor, ProcessGadgetronVendor },
             { _GameOfLifeCruel, ProcessGameOfLifeCruel },
             { _Gamepad, ProcessGamepad },
+            { _GarnetTheif, ProcessGarnetThief },
             { _Girlfriend, ProcessGirlfriend },
             { _GlitchedButton, ProcessGlitchedButton },
             { _GrayButton, ProcessGrayButton },
