@@ -463,6 +463,7 @@ public partial class SouvenirModule
     const string _UnfairCipher = "unfairCipher";
     const string _UnfairsRevenge = "unfairsRevenge";
     const string _Unicode = "UnicodeModule";
+    const string _UNO = "UNO";
     const string _UnownCipher = "UnownCipher";
     const string _USACycle = "USACycle";
     const string _USAMaze = "USA";
@@ -950,6 +951,7 @@ public partial class SouvenirModule
             { _UnfairCipher, ProcessUnfairCipher },
             { _UnfairsRevenge, ProcessUnfairsRevenge },
             { _Unicode, ProcessUnicode },
+            { _UNO, ProcessUNO },
             { _UnownCipher, ProcessUnownCipher },
             { _USACycle, ProcessUSACycle },
             { _USAMaze, ProcessUSAMaze },

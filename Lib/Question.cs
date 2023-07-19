@@ -2386,6 +2386,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         UnicodeSortedAnswer,
 
+        [SouvenirQuestion("What was the initial card in {0}?", "UNO!", AnswerLayout.OneColumn4Answers)]
+        UnoInitialCard,
+
         [SouvenirQuestion("What was the {1} submitted letter in {0}?", "Unown Cipher", AnswerLayout.ThreeColumns6Answers,
             Type = AnswerType.UnownFont, ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Strings('A', 'Z')]

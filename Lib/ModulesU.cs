@@ -155,6 +155,23 @@ public partial class SouvenirModule
             makeQuestion(Question.UnicodeSortedAnswer, _Unicode, formatArgs: new[] { "fourth" }, correctAnswers: new[] { symbols[3] }));
     }
 
+    private IEnumerable<object> ProcessUNO(KMBombModule module)
+    {
+        var comp = GetComponent(module, "UNO");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_UNO);
+
+        var allAnswers = GetListField<string>(comp, "nicerNames").Get();
+        var firstInDeck = GetField<string>(comp, "firstInDeck").Get();
+        var GetUnoNameMethod = GetMethod<string>(comp, "better", 1);
+        var answer = titleCase(GetUnoNameMethod.Invoke(firstInDeck));
+
+        addQuestion(module, Question.UnoInitialCard, correctAnswers: new string[] { answer },preferredWrongAnswers: allAnswers.ToArray());
+    }
+
     private IEnumerable<object> ProcessUnownCipher(KMBombModule module)
     {
         var comp = GetComponent(module, "UnownCipher");
@@ -163,7 +180,7 @@ public partial class SouvenirModule
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_UnownCipher);
-
+        
         var unownAnswer = GetArrayField<int>(comp, "letterIndexes").Get(expectedLength: 5, validator: v => v < 0 || v > 25 ? "expected 0–25" : null);
         addQuestions(module, unownAnswer.Select((ans, i) => makeQuestion(Question.UnownCipherAnswers, _UnownCipher, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { ((char) ('A' + ans)).ToString() })));
     }
