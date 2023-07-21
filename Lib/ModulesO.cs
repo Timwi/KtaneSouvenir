@@ -68,6 +68,31 @@ public partial class SouvenirModule
             makeQuestion(Question.OddOneOutButton, _OddOneOut, formatArgs: new[] { "sixth" }, correctAnswers: new[] { btnNames[stageBtn[5]] }));
     }
 
+    private IEnumerable<object> ProcessOldAI(KMBombModule module){
+        var comp = GetComponent(module, "SCP079");
+        var fldSolved = GetField<bool>(comp,"ModuleSolved");
+        var fldSeed = GetField<int>(comp,"Seed");
+        if(comp==null||fldSolved==null||fldSeed==null){
+            yield break;
+        }
+
+        yield return null;
+
+
+
+        while(!fldSolved.Get()){
+            yield return new WaitForSeconds(.1f);
+        }
+       
+        _modulesSolved.IncSafe(_OldAI);
+        var Seed = fldSeed.Get();
+
+        addQuestions(module,
+            makeQuestion(Question.OldAIGroup,_OldAI,formatArgs: new[]{"Group"},correctAnswers: new[] {System.Convert.ToString((Seed-1)/5+1)} ),
+            makeQuestion(Question.OldAIGroup,_OldAI,formatArgs: new[]{"Sub-Group"},correctAnswers: new[] {System.Convert.ToString((Seed-1)%5+1)})
+            );
+
+    }
     private IEnumerable<object> ProcessOldFogey(KMBombModule module)
     {
         var comp = GetComponent(module, "OldFogey");

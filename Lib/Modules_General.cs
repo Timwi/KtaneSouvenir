@@ -101,6 +101,7 @@ public partial class SouvenirModule
     const string _Corners = "CornersModule";
     const string _CornflowerCipher = "cornflowerCipher";
     const string _Cosmic = "CosmicModule";
+    const string _CrazyHamburger = "GSCrazyHamburger";
     const string _CreamCipher = "creamCipher";
     const string _Creation = "CreationModule";
     const string _CrimsonCipher = "crimsonCipher";
@@ -310,6 +311,7 @@ public partial class SouvenirModule
     const string _ObjectShows = "objectShows";
     const string _Octadecayotton = "TheOctadecayotton";
     const string _OddOneOut = "OddOneOutModule";
+    const string _OldAI = "SCP079";
     const string _OldFogey = "oldFogey";
     const string _OnlyConnect = "OnlyConnectModule";
     const string _OrangeArrows = "orangeArrowsModule";
@@ -597,6 +599,7 @@ public partial class SouvenirModule
             { _Corners, ProcessCorners },
             { _CornflowerCipher, ProcessCornflowerCipher },
             { _Cosmic, ProcessCosmic },
+            { _CrazyHamburger, ProcessCrazyHamburger },
             { _CreamCipher, ProcessCreamCipher },
             { _Creation, ProcessCreation },
             { _CrimsonCipher, ProcessCrimsonCipher },
@@ -806,6 +809,7 @@ public partial class SouvenirModule
             { _ObjectShows, ProcessObjectShows },
             { _Octadecayotton, ProcessOctadecayotton },
             { _OddOneOut, ProcessOddOneOut },
+            { _OldAI, ProcessOldAI },
             { _OldFogey, ProcessOldFogey },
             { _OnlyConnect, ProcessOnlyConnect },
             { _OrangeArrows, ProcessOrangeArrows },
