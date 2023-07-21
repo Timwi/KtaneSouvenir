@@ -658,6 +658,57 @@ public partial class SouvenirModule
         addQuestion(module, Question.CosmicNumber, correctAnswers: new[] { answer });
     }
 
+    private IEnumerable<object> ProcessCrazyHamburger(KMBombModule module) {
+        var comp = GetComponent(module, "CrazyHamburgerScript");
+        var fldSolved = GetField<bool>(comp,"Solved");
+        var fldIngredients = GetField<string>(comp,"Ingredients");
+
+        while (!fldSolved.Get()) {
+            yield return new WaitForSeconds(.1f);
+        }
+
+        var Ingredients = fldIngredients.Get();
+
+        if (Ingredients.Length > 10) {
+            Ingredients = Ingredients.Substring(0, 10);
+        }
+
+        Dictionary<char, string> TheDictionary = new Dictionary<char, string>(){ 
+            { 'B',"Bread" },
+            { 'C',"Cheese" },
+            { 'G',"Grass" },
+            { 'H',"Meat" },
+            { 'O',"Oil" },
+            { 'R',"Peppers" }
+        };
+
+        Dictionary<int, string> IntegerToIndex = new Dictionary<int, string>(){
+            {1,"first"},
+            {2,"second"},
+            {3,"third"},
+            {4,"fourth"},
+            {5,"fifth"},
+            {6,"sixth"},
+            {7,"seventh"},
+            {8,"eighth"},
+            {9,"ninth"},
+            {10,"tenth"},
+        };
+
+        var qs = new List<QandA>();
+
+        Debug.LogFormat("<Souvenir> Ingredients are {0}",Ingredients);
+
+        _modulesSolved.IncSafe(_CrazyHamburger);
+
+        for (int i = 0; i < Ingredients.Length; i++) {
+            Debug.LogFormat("<Souvenir> Doing the {0}", i+1);
+            qs.Add(makeQuestion(Question.CrazyHamburgerIngredient,_CrazyHamburger,formatArgs: new string[] { IntegerToIndex[i+1] },correctAnswers: new[] { TheDictionary[Ingredients[i]] }));
+        }
+
+        addQuestions(module,qs);
+    }
+
     private IEnumerable<object> ProcessCreamCipher(KMBombModule module)
     {
         return processColoredCiphers(module, "creamCipher", Question.CreamCipherAnswer, _CreamCipher);

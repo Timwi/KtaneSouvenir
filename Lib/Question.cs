@@ -492,6 +492,9 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9999)]
         CosmicNumber,
 
+        [SouvenirQuestion("What was the {1} ingredient shown in {0}?","Crazy hamburger", AnswerLayout.ThreeColumns6Answers,"Bread","Cheese","Grass","Meat","Oil","Peppers", ExampleExtraFormatArguments = new[] { "first", "second","third","fourth","fifth","sixth","seventh","eighth","ninth","tenth"}, ExampleExtraFormatArgumentGroupSize = 1)]
+        CrazyHamburgerIngredient,
+
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Cream Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
         CreamCipherAnswer,
@@ -1604,6 +1607,9 @@ namespace Souvenir
         [SouvenirQuestion("What was the button you pressed in the {1} stage of {0}?", "Odd One Out", AnswerLayout.TwoColumns4Answers, "top-left", "top-middle", "top-right", "bottom-left", "bottom-middle", "bottom-right",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         OddOneOutButton,
+
+        [SouvenirQuestion("What was the correct {1} shown in {0}?","Old AI",AnswerLayout.TwoColumns4Answers,"1","2","3","4","5", ExampleExtraFormatArguments = new[] {"Group","Sub-group"}, ExampleExtraFormatArgumentGroupSize =1)]
+        OldAIGroup,
 
         [SouvenirQuestion("What was the initial color of the status light in {0}?", "Old Fogey", AnswerLayout.ThreeColumns6Answers, "Red", "Green", "Yellow", "Blue", "Magenta", "Cyan", "White")]
         OldFogeyStartingColor,
