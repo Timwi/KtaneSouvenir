@@ -45,6 +45,7 @@ public partial class SouvenirModule
     const string _BamboozlingButton = "bamboozlingButton";
     const string _BarcodeCipher = "BarcodeCipherModule";
     const string _Bartending = "BartendingModule";
+    const string _Beans = "beans";
     const string _BigCircle = "BigCircle";
     const string _Binary = "Binary";
     const string _BinaryLEDs = "BinaryLeds";
@@ -550,6 +551,7 @@ public partial class SouvenirModule
             [_BamboozlingButton] = (ProcessBamboozlingButton, "Bamboozling Button", "TasThiluna"),
             [_BarcodeCipher] = (ProcessBarcodeCipher, "Barcode Cipher", "Brawlboxgaming"),
             [_Bartending] = (ProcessBartending, "Bartending", "Timwi"),
+            [_Beans, (ProcessBeans, "Beans", "Anonymous"),
             [_BigCircle] = (ProcessBigCircle, "Big Circle", "CaitSith2"),
             [_Binary] = (ProcessBinary, "Binary", "BigCrunch22"),
             [_BinaryLEDs] = (ProcessBinaryLEDs, "Binary LEDs", "Timwi"),
