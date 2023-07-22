@@ -242,6 +242,29 @@ public partial class SouvenirModule
         addQuestions(module, Enumerable.Range(0, 9).Where(i => eaten[i].transform.localScale.magnitude <= Mathf.Epsilon).Select(beansQ));
     }
 
+    private IEnumerable<object> ProcessBigBean(KMBombModule module)
+    {
+        var comp = GetComponent(module, "bigBeanScript");
+        var fldSolved = GetField<int>(comp, "eatensteps");
+
+        while (fldSolved.Get() < 3)
+            yield return new WaitForSeconds(.1f);
+
+        var bn = GetField<int>(comp, "bean").Get(i => i < 0 || i >= 6 ? "Bad bean value" : null);
+
+        _modulesSolved.IncSafe(_BigBean);
+        string[] flavors = new[] { "Not Wobbly Orange", "Not Wobbly Yellow", "Not Wobbly Green", "Wobbly Orange", "Wobbly Yellow", "Wobbly Green" };
+        int? match = bn switch
+        {
+            0 => 5,
+            5 => 0,
+            2 => 3,
+            3 => 2,
+            _ => null
+        };
+        addQuestion(module, Question.BigBeanColor, correctAnswers: new[] { flavors[bn] }, preferredWrongAnswers: match is null ? null : new[] { flavors[match.Value] });
+    }
+
     private IEnumerable<object> ProcessBigCircle(KMBombModule module)
     {
         var comp = GetComponent(module, "TheBigCircle");
