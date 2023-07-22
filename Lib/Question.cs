@@ -210,6 +210,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" })]
         BeansColors,
 
+        [SouvenirQuestion("What was the bean in {0}?", "Big Bean", AnswerLayout.OneColumn4Answers)]
+        [AnswerGenerator.Inherit(BeansColors)]
+        BigBeanColor,
+
         [SouvenirQuestion("What color was {1} in the solution to {0}?", "Big Circle", AnswerLayout.ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         BigCircleColors,

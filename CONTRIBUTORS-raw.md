@@ -30,6 +30,7 @@
 - Barcode Cipher — Brawlboxgaming
 - Bartending — Timwi
 - Beans — Anonymous
+- Big Bean — Anonymous
 - Big Circle — CaitSith2
 - Binary LEDs — Timwi
 - Binary Shift — NickLatkovich
