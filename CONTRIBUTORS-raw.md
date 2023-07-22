@@ -76,7 +76,7 @@
 - Colored Switches — Timwi
 - Colors Maximization — NickLatkovich
 - Colour Flash — LotsOfS
-- Connection Check — BakersDozenBagels
+- Connection Check — Anonymous
 - Coordinates — Timwi
 - Coral Cipher — Timwi
 - Corners — Timwi
@@ -103,7 +103,7 @@
 - Digit String — GoodHood
 - Discolored Squares — luisdiogo98
 - Divisible Numbers — shortc1rcuit
-- Double Arrows — BakersDozenBagels
+- Double Arrows — Anonymous
 - Double Color — luisdiogo98
 - Double Digits — QuinnWuest
 - Double Expert — Kuro
@@ -362,7 +362,7 @@
 - Simon States — Timwi
 - Simon Stops — JerryEris
 - Simon Stores — kavinkul
-- Simon Subdivides — BakersDozenBagels
+- Simon Subdivides — Anonymous
 - Simon Supports — tandyCake
 - Simon’s Star — TasThiluna
 - Skewed Slots — Timwi
@@ -424,7 +424,7 @@
 - The iPhone — luisdiogo98
 - The Jewel Vault — luisdiogo98
 - The Kanye Encounter — tandyCake
-- The Labyrinth — BakersDozenBagels
+- The Labyrinth — Anonymous
 - The London Underground — Timwi
 - The Matrix — BigCrunch22
 - The Moon — Timwi
@@ -495,4 +495,4 @@
 - Zoni — luisdiogo98
 - Ángel Hernández — QuinnWuest
 - ƎNA Cipher — KiloBites
-- ❖ — BakersDozenBagels
+- ❖ — Anonymous
