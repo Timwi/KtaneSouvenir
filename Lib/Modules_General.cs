@@ -46,6 +46,7 @@ public partial class SouvenirModule
     const string _BarcodeCipher = "BarcodeCipherModule";
     const string _Bartending = "BartendingModule";
     const string _Beans = "beans";
+    const string _BeanSprouts = "beanSprouts";
     const string _BigBean = "bigBean";
     const string _BigCircle = "BigCircle";
     const string _Binary = "Binary";
@@ -551,6 +552,7 @@ public partial class SouvenirModule
             { _BarcodeCipher, ProcessBarcodeCipher },
             { _Bartending, ProcessBartending },
             { _Beans, ProcessBeans },
+            { _BeanSprouts, ProcessBeanSprouts },
             { _BigBean, ProcessBigBean },
             { _BigCircle, ProcessBigCircle },
             { _Binary, ProcessBinary },

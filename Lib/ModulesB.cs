@@ -239,6 +239,27 @@ public partial class SouvenirModule
         addQuestions(module, Enumerable.Range(0, 9).Where(i => eaten[i].transform.localScale.magnitude <= Mathf.Epsilon).Select(beansQ));
     }
 
+    private IEnumerable<object> ProcessBeanSprouts(KMBombModule module)
+    {
+        var comp = GetComponent(module, "beanSproutsScript");
+        var fldSolved = GetField<int>(comp, "eatenbeans");
+
+        while (fldSolved.Get() < 3)
+            yield return new WaitForSeconds(.1f);
+
+        var bns = GetField<int[]>(comp, "beanArray").Get(a => a.Length != 9 ? "Bad length" : a.Any(i => i < 0 || i >= 9) ? "Bad bean value" : null);
+        var eaten = GetField<KMSelectable[]>(comp, "Beans", true).Get(a => a.Length != 9 ? "Bad length" : null);
+
+        _modulesSolved.IncSafe(_BeanSprouts);
+        string[] flavors = new[] { "Raw", "Cooked", "Burnt" };
+        string[] flavors2 = new[] { "Left", "None", "Right" };
+        IEnumerable<QandA> beansQ(int i) {
+            yield return makeQuestion(Question.BeanSproutsColors, _BeanSprouts, null, new string[] { (i + 1).ToString() }, new string[] { flavors[bns[i] % 3] });
+            yield return makeQuestion(Question.BeanSproutsBeans, _BeanSprouts, null, new string[] { (i + 1).ToString() }, new string[] { flavors2[bns[i] / 3] });
+        };
+        addQuestions(module, Enumerable.Range(0, 9).Where(i => eaten[i].transform.localScale.magnitude <= Mathf.Epsilon).SelectMany(beansQ));
+    }
+
     private IEnumerable<object> ProcessBigBean(KMBombModule module)
     {
         var comp = GetComponent(module, "bigBeanScript");

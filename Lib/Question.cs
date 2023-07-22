@@ -210,6 +210,17 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" })]
         BeansColors,
 
+        [SouvenirQuestion("What was sprout {1} in {0}?", "Bean Sprouts", AnswerLayout.TwoColumns4Answers,
+            "Raw", "Cooked", "Burnt", "Fake",
+            ExampleExtraFormatArgumentGroupSize = 1,
+            ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" })]
+        BeanSproutsColors,
+        [SouvenirQuestion("What bean was on sprout {1} in {0}?", "Bean Sprouts", AnswerLayout.TwoColumns4Answers,
+            "Left", "Right", "None", "Both",
+            ExampleExtraFormatArgumentGroupSize = 1,
+            ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" })]
+        BeanSproutsBeans,
+
         [SouvenirQuestion("What was the bean in {0}?", "Big Bean", AnswerLayout.OneColumn4Answers)]
         [AnswerGenerator.Inherit(BeansColors)]
         BigBeanColor,
