@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -265,7 +266,7 @@ namespace Souvenir
             }
         }
 
-        /// <summary>An answer generator that copies answers from another question's list. The question used must not use another answer generator.</summary>
+        /// <summary>An answer generator that copies answers from another question's list.</summary>
         /// <example>
         /// <code>
         ///     [SouvenirQuestion("What was the goal position in {0}?", "Not Simaze", 4)]
@@ -284,7 +285,8 @@ namespace Souvenir
 
             public override IEnumerable<string> GetAnswers(SouvenirModule module)
             {
-                var answers = module.GetAnswers(Source);
+                var attr = module.GetQuestion(Source);
+                var answers = attr.AllAnswers ?? attr.AnswerGenerator.GetAnswers(module).ToArray();
                 if (answers != null)
                 {
                     if (answers.Length >= 10)
@@ -319,6 +321,16 @@ namespace Souvenir
                 for (int ix = 0; ix < Count; ++ix)
                     yield return Souvenir.Grid.GenerateGridSprite(_width, _height, ix, _size);
             }
+        }
+
+        /// <summary>An answer generator that copies sprite answers from another question's list.</summary>
+        public class InheritSprites : SpriteAnswerGeneratorAttribute
+        {
+            public Question Source { get; private set; }
+
+            public InheritSprites(Question source) => Source = source;
+
+            public override IEnumerable<Sprite> GetAnswers(SouvenirModule module) => module.GetQuestion(Source).SpriteAnswerGenerator.GetAnswers(module);
         }
     }
 }

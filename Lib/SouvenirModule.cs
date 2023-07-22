@@ -335,9 +335,21 @@ public partial class SouvenirModule : MonoBehaviour
         };
     }
 
+    internal bool TryGetQuestion(Question question, out SouvenirQuestionAttribute attr)
+    {
+        return _attributes.TryGetValue(question, out attr);
+    }
+
+    internal SouvenirQuestionAttribute GetQuestion(Question question)
+    {
+        return !TryGetQuestion(question, out var attr)
+            ? throw new InvalidOperationException(string.Format("<Souvenir #{0}> Question {1} is missing from the _attributes dictionary.", _moduleId, question))
+            : attr;
+    }
+
     void showExampleQuestion()
     {
-        if (!_attributes.TryGetValue(_exampleQuestions[_curExampleQuestion], out var attr))
+        if (!TryGetQuestion(_exampleQuestions[_curExampleQuestion], out var attr))
         {
             Debug.LogErrorFormat("<Souvenir #{1}> Error: Question {0} has no attribute.", _exampleQuestions[_curExampleQuestion], _moduleId);
             return;
@@ -1003,7 +1015,7 @@ public partial class SouvenirModule : MonoBehaviour
     private QandA makeQuestion<T>(Question question, string moduleKey, Func<SouvenirQuestionAttribute, string, int, T[], QandA> questionConstructor,
         string[] formatArgs, T[] correctAnswers, T[] preferredWrongAnswers, T[] allAnswers, params AnswerType[] acceptableTypes)
     {
-        if (!_attributes.TryGetValue(question, out var attr))
+        if (!TryGetQuestion(question, out var attr))
         {
             Debug.LogErrorFormat("<Souvenir #{1}> Question {0} has no SouvenirQuestionAttribute.", question, _moduleId);
             return null;
@@ -1112,7 +1124,7 @@ public partial class SouvenirModule : MonoBehaviour
         ? _translation.FormatModuleName(moduleName, addSolveCount, numSolved, addThe)
         : addSolveCount ? string.Format("the {0} you solved {1}", moduleName, ordinal(numSolved)) : addThe ? "The\u00a0" + moduleName : moduleName;
 
-    public string[] GetAnswers(Question question) => !_attributes.TryGetValue(question, out var attr)
+    public string[] GetAnswers(Question question) => !TryGetQuestion(question, out var attr)
         ? throw new InvalidOperationException(string.Format("<Souvenir #{0}> Question {1} is missing from the _attributes dictionary.", _moduleId, question))
         : attr.AllAnswers;
 
