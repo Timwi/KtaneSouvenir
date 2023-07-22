@@ -222,6 +222,23 @@ public partial class SouvenirModule
         addQuestions(module, ingIxs.Select((ingIx, pos) => makeQuestion(Question.BartendingIngredients, _Bartending, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { ingredientNames[ingIx] })));
     }
 
+    private IEnumerable<object> ProcessBeans(KMBombModule module)
+    {
+        var comp = GetComponent(module, "beansScript");
+        var fldSolved = GetField<int>(comp, "eatenbeans");
+
+        while (fldSolved.Get() < 3)
+            yield return new WaitForSeconds(.1f);
+
+        var bns = GetField<int[]>(comp, "beanArray").Get(a => a.Length != 9 ? "Bad length" : a.Any(i => i < 0 || i >= 6) ? "Bad bean value" : null);
+        var eaten = GetField<KMSelectable[]>(comp, "Beans", true).Get(a => a.Length != 9 ? "Bad length" : null);
+
+        _modulesSolved.IncSafe(_Beans);
+        string[] flavors = new[] { "Not Wobbly Orange", "Not Wobbly Yellow", "Not Wobbly Green", "Wobbly Orange", "Wobbly Yellow", "Wobbly Green" };
+        QandA beansQ(int i) => makeQuestion(Question.BeansColors, _Beans, Grid.GenerateGridSprite(3, 3, i), new string[] { (i + 1).ToString() }, new string[] { flavors[bns[i]] });
+        addQuestions(module, Enumerable.Range(0, 9).Where(i => eaten[i].transform.localScale.magnitude <= Mathf.Epsilon).Select(beansQ));
+    }
+
     private IEnumerable<object> ProcessBigCircle(KMBombModule module)
     {
         var comp = GetComponent(module, "TheBigCircle");

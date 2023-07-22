@@ -204,6 +204,12 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         BartendingIngredients,
 
+        [SouvenirQuestion("What was bean {1} in {0}?", "Beans", AnswerLayout.OneColumn4Answers,
+            "Wobbly Orange", "Wobbly Yellow", "Wobbly Green", "Not Wobbly Orange", "Not Wobbly Yellow", "Not Wobbly Green",
+            UsesQuestionSprite = true, ExampleExtraFormatArgumentGroupSize = 1,
+            ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" })]
+        BeansColors,
+
         [SouvenirQuestion("What color was {1} in the solution to {0}?", "Big Circle", AnswerLayout.ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         BigCircleColors,
