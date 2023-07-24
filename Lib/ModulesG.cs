@@ -148,7 +148,7 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessGrayCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "grayCipher", Question.GrayCipherAnswer, _GrayCipher);
+        return processColoredCiphers(module, "grayCipher", Question.GrayCipherScreen, _GrayCipher);
     }
 
     private IEnumerable<object> ProcessGreatVoid(KMBombModule module)
@@ -228,7 +228,7 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessGreenCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "greenCipher", Question.GreenCipherAnswer, _GreenCipher);
+        return processColoredCiphers(module, "greenCipher", Question.GreenCipherScreen, _GreenCipher);
     }
 
     private IEnumerable<object> ProcessGridLock(KMBombModule module)

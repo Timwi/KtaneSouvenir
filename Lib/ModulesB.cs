@@ -392,7 +392,7 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessBlackCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "blackCipher", Question.BlackCipherAnswer, _BlackCipher);
+        return processColoredCiphers(module, "blackCipher", Question.BlackCipherScreen, _BlackCipher);
     }
 
     private IEnumerable<object> ProcessBlindMaze(KMBombModule module)
@@ -509,7 +509,7 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessBlueCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "blueCipher", Question.BlueCipherAnswer, _BlueCipher);
+        return processColoredCiphers(module, "blueCipher", Question.BlueCipherScreen, _BlueCipher);
     }
 
     private IEnumerable<object> ProcessBobBarks(KMBombModule module)
@@ -735,7 +735,7 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessBrownCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "brownCipher", Question.BrownCipherAnswer, _BrownCipher);
+        return processColoredCiphers(module, "brownCipher", Question.BrownCipherScreen, _BrownCipher);
     }
 
     private IEnumerable<object> ProcessBrushStrokes(KMBombModule module)

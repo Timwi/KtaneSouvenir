@@ -135,7 +135,7 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessIndigoCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "indigoCipher", Question.IndigoCipherAnswer, _IndigoCipher);
+        return processColoredCiphers(module, "indigoCipher", Question.IndigoCipherScreen, _IndigoCipher);
     }
 
     private IEnumerable<object> ProcessInfiniteLoop(KMBombModule module)

@@ -267,7 +267,7 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessForestCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "forestCipher", Question.ForestCipherAnswer, _ForestCipher);
+        return processColoredCiphers(module, "forestCipher", Question.ForestCipherScreen, _ForestCipher);
     }
 
     private IEnumerable<object> ProcessForgetAnyColor(KMBombModule module)

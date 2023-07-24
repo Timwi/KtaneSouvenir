@@ -42,7 +42,7 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessMagentaCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "magentaCipher", Question.MagentaCipherAnswer, _MagentaCipher);
+        return processColoredCiphers(module, "magentaCipher", Question.MagentaCipherScreen, _MagentaCipher);
     }
 
     private IEnumerable<object> ProcessMahjong(KMBombModule module)
@@ -166,7 +166,7 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessMaroonCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "maroonCipher", Question.MaroonCipherAnswer, _MaroonCipher);
+        return processColoredCiphers(module, "maroonCipher", Question.MaroonCipherScreen, _MaroonCipher);
     }
 
     private IEnumerable<object> ProcessMashematics(KMBombModule module)

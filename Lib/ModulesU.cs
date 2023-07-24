@@ -10,7 +10,7 @@ public partial class SouvenirModule
 {
     private IEnumerable<object> ProcessUltimateCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "ultimateCipher", Question.UltimateCipherAnswer, _UltimateCipher);
+        return processColoredCiphers(module, "ultimateCipher", Question.UltimateCipherScreen, _UltimateCipher);
     }
 
     private IEnumerable<object> ProcessUltimateCycle(KMBombModule module)

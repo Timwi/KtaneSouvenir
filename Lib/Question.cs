@@ -229,7 +229,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Black Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
-        BlackCipherAnswer,
+        BlackCipherScreen,
 
         [SouvenirQuestion("What color was the {1} button in {0}?", "Blind Maze", AnswerLayout.TwoColumns4Answers, "Red", "Green", "Blue", "Gray", "Yellow", TranslateAnswers = true, TranslateFormatArgs = new[] { true },
             ExampleExtraFormatArguments = new[] { "north", "east", "west", "south" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -268,7 +268,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Blue Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "ANCHOR", "ATTAIN", "DECIDE", "JAILOR", "LIGHTS", "OFFERS", "POETIC", "UNISON", "VECTOR", "VISION" },
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
-        BlueCipherAnswer,
+        BlueCipherScreen,
 
         [SouvenirQuestion("What was the {1} indicator label in {0}?", "Bob Barks", AnswerLayout.ThreeColumns6Answers, "BOB", "CAR", "CLR", "IND", "FRK", "FRQ", "MSA", "NSA", "SIG", "SND", "TRN", "BUB", "DOG", "ETC", "KEY", TranslateFormatArgs = new[] { true },
             ExampleExtraFormatArguments = new[] { "top left", "top right", "bottom left", "bottom right" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -314,7 +314,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Brown Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "AROUND", "JUKING", "OCELOT", "PARDON", "SCHOOL", "SOCCER", "SPRING", "TIMING", "VALVES", "VORTEX" },
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
-        BrownCipherAnswer,
+        BrownCipherScreen,
 
         [SouvenirQuestion("What was the color of the middle contact point in {0}?", "Brush Strokes", AnswerLayout.ThreeColumns6Answers, "Red", "Orange", "Yellow", "Lime", "Green", "Cyan", "Sky", "Blue", "Purple", "Magenta", "Brown", "White", "Gray", "Black", "Pink", TranslateAnswers = true)]
         BrushStrokesMiddleColor,
@@ -475,7 +475,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Coral Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
-        CoralCipherAnswer,
+        CoralCipherScreen,
 
         [SouvenirQuestion("What was the color of the {1} corner in {0}?", "Corners", AnswerLayout.TwoColumns4Answers, "red", "green", "blue", "yellow", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-right", "bottom-left" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -486,7 +486,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Cornflower Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
-        CornflowerCipherAnswer,
+        CornflowerCipherScreen,
 
         [SouvenirQuestion("What was the number initially shown in {0}?", "Cosmic", AnswerLayout.ThreeColumns6Answers)]
         [AnswerGenerator.Integers(0, 9999)]
@@ -494,7 +494,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Cream Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
-        CreamCipherAnswer,
+        CreamCipherScreen,
 
         [SouvenirQuestion("What were the weather conditions on the {1} day in {0}?", "Creation", AnswerLayout.TwoColumns4Answers, "Clear", "Heat Wave", "Meteor Shower", "Rain", "Windy",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -502,7 +502,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Crimson Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
-        CrimsonCipherAnswer,
+        CrimsonCipherScreen,
 
         [SouvenirQuestion("What was the alteration color used in {0}?", "Critters", AnswerLayout.TwoColumns4Answers, "Yellow", "Pink", "Blue", "White", TranslateAnswers = true)]
         CrittersAlterationColor,
@@ -784,7 +784,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Forest Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
-        ForestCipherAnswer,
+        ForestCipherScreen,
 
         [SouvenirQuestion("What were the cylinders during stage {1} in {0}?", "Forget Any Color", AnswerLayout.OneColumn4Answers, null,
             ExampleAnswers = new[] { "Orange, Yellow, Green", "Yellow, Cyan, Purple", "Green, Purple, Orange" },
@@ -877,7 +877,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Gray Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "ASSUME", "EMBRYO", "GAMBIT", "LAMENT", "LEARNT", "NEBULA", "NEEDED", "OBJECT", "PHOTON", "QUARRY" },
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
-        GrayCipherAnswer,
+        GrayCipherScreen,
 
         [SouvenirQuestion("What was the {1} color in {0}?", "Great Void", AnswerLayout.ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Yellow", "Cyan", "White", AddThe = true, TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -896,7 +896,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Green Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "BARBER", "ELIXIR", "HARDLY", "JACKED", "LAMEST", "OCTAVE", "UMPIRE", "UNVEIL", "WAFFLE", "ZONING" },
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
-        GreenCipherAnswer,
+        GreenCipherScreen,
 
         [SouvenirQuestion("What was the starting location in {0}?", "Gridlock", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Grid)]
         [AnswerGenerator.Grid(4, 4)]
@@ -1025,7 +1025,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Indigo Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "BEAVER", "INDENT", "LONELY", "PILLAR", "REFUGE", "RIPPED", "STOLEN", "TUMBLE", "WHIMSY", "WYVERN" },
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
-        IndigoCipherAnswer,
+        IndigoCipherScreen,
 
         [SouvenirQuestion("What was the selected word in {0}?", "Infinite Loop", AnswerLayout.TwoColumns4Answers, "anchor", "axions", "brutal", "bunker", "ceased", "cypher", "demote", "devoid", "ejects", "expend", "fixate", "fondly", "geyser", "guitar", "hexing", "hybrid", "incite", "inject", "jacked", "jigsaw", "kayaks", "komodo", "lazuli", "logjam", "maimed", "musket", "nebula", "nuking", "overdo", "oblong", "photon", "probed", "quartz", "quebec", "refute", "regime", "sierra", "swerve", "tenacy", "thymes", "ultima", "utopia", "valved", "viable", "wither", "wrench", "xenons", "xylose", "yanked", "yellow", "zigged", "zodiac", TranslateAnswers = true)]
         InfiniteLoopSelectedWord,
@@ -1180,7 +1180,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Magenta Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
-        MagentaCipherAnswer,
+        MagentaCipherScreen,
 
         [SouvenirQuestion("What color was the text on the {1} button in {0}?", "M&Ms", AnswerLayout.ThreeColumns6Answers, "red", "green", "orange", "blue", "yellow", "brown", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -1205,7 +1205,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Maroon Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
-        MaroonCipherAnswer,
+        MaroonCipherScreen,
 
         [SouvenirQuestion("What was the answer in {0}?", "Mashematics", AnswerLayout.ThreeColumns6Answers, null)]
         [AnswerGenerator.Integers(0, 99)]
@@ -1618,7 +1618,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Orange Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "FORMAL", "FREEZE", "GLANCE", "JACKED", "JAMMED", "JAMMER", "NECTAR", "NEEDED", "QUEENS", "UTOPIA" },
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
-        OrangeCipherAnswer,
+        OrangeCipherScreen,
 
         [SouvenirQuestion("What color was the {2} key in the {1} stage of {0}?", "Ordered Keys", AnswerLayout.ThreeColumns6Answers, "Red", "Blue", "Green", "Yellow", "Cyan", "Magenta", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 2)]
@@ -1855,7 +1855,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Red Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "EATING", "GOBLET", "INCOME", "INSIDE", "MARKED", "POWDER", "STRING", "WIZARD", "WOBBLE", "YELLOW" },
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
-        RedCipherAnswer,
+        RedCipherScreen,
 
         [SouvenirQuestion("What was the first color flashed by {0}?", "Red Herring", AnswerLayout.TwoColumns4Answers, "Green", "Blue", "Purple", "Orange")]
         RedHerringFirstFlash,
@@ -2346,7 +2346,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Ultimate Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "ACCESS", "EMPIRE", "EXPEND", "INDUCE", "LOCATE", "MELODY", "SPIRIT", "STOLEN", "VESSEL", "WIGGLE" },
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
-        UltimateCipherAnswer,
+        UltimateCipherScreen,
 
         [SouvenirQuestion("What was the {1} in {0}?", "Ultimate Cycle", AnswerLayout.TwoColumns4Answers, "Advanced", "Adverted", "Advocate", "Addition", "Allocate", "Allotype", "Allotted", "Altering", "Binaries", "Binormal", "Binomial", "Billions", "Bulkhead", "Bullhorn", "Bulleted", "Bulwarks", "Ciphered", "Circuits", "Connects", "Conquers", "Commando", "Compiler", "Computer", "Continue", "Decrypts", "Deceived", "Decimate", "Division", "Discover", "Discrete", "Dispatch", "Disposal", "Encipher", "Encrypts", "Encoding", "Entrance", "Equalise", "Equators", "Equation", "Equipped", "Finalise", "Finished", "Findings", "Finnicky", "Formulae", "Fortunes", "Fortress", "Forwards", "Garrison", "Garnered", "Gatepost", "Gateways", "Gauntlet", "Gambling", "Gathered", "Glooming", "Hazarded", "Haziness", "Hotlinks", "Hotheads", "Hundreds", "Hunkered", "Huntsman", "Huntress", "Incoming", "Indicate", "Indirect", "Indigoes", "Illuding", "Illusion", "Illusory", "Illumine", "Jigsawed", "Jimmying", "Journeys", "Jousting", "Junction", "Juncture", "Junkyard", "Judgment", "Kilowatt", "Kilovolt", "Kilobyte", "Kinetics", "Knocking", "Knockout", "Knowable", "Knuckled", "Language", "Landmark", "Limiting", "Linearly", "Lingered", "Linkages", "Linkwork", "Labeling", "Monogram", "Monolith", "Monomial", "Monotone", "Multiton", "Multiply", "Mulcting", "Mulligan", "NANOBOTS", "Nanogram", "Nanowatt", "Nanotube", "Numbered", "Numerous", "Numerals", "Numerate", "Octangle", "Octuples", "Ordering", "Ordinals", "Observed", "Obscured", "Obstruct", "Obstacle", "Progress", "Projects", "Prophase", "Prophecy", "Postsync", "Possible", "Positron", "Positive", "Quadrant", "Quadrics", "Quartile", "Quartics", "Quickest", "Quirkish", "Quintics", "Quitters", "Reversed", "Revolved", "Revealed", "Rotation", "Rotators", "Relation", "Relative", "Relaying", "Starting", "Standard", "Standout", "Stanzaic", "Stoccata", "Stockade", "Stopping", "Stopword", "Trickier", "Trigonal", "Triggers", "Triangle", "Tomogram", "Tomahawk", "Toggling", "Together", "Underrun", "UnderwaY", "Underlie", "Undoings", "Ulterior", "Ultimate", "Ultrared", "Ultrahot", "Venomous", "Vendetta", "Vicinity", "Viceless", "Volition", "Voltages", "Volatile", "Voluming", "Weakened", "Weaponed", "Wingding", "Winnable", "Whatever", "Whatness", "Whatnots", "Whatsits", "Yellowed", "Yearlong", "Yearning", "Yeasayer", "Yielding", "Yielders", "Yokozuna", "Yourself", "Zippered", "Ziggurat", "Zigzaggy", "Zugzwang", "Zygomata", "Zygotene", "Zymology", "Zymogram",
           ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -2425,7 +2425,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Violet Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "DISMAY", "FRIDGE", "GALLON", "JAMMER", "KIDNEY", "RITUAL", "TRIPOD", "VIKING", "YEANED", "ZIPPER" },
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
-        VioletCipherAnswer,
+        VioletCipherScreen,
 
         [SouvenirQuestion("What was the desired color in the {1} stage on {0}?", "Visual Impairment", AnswerLayout.TwoColumns4Answers, "Blue", "Green", "Red", "White", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -2447,7 +2447,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "White Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "ATTEND", "BREATH", "CRUNCH", "EFFECT", "JAILED", "JUMPER", "PLASMA", "UPROAR", "VERTEX", "VIEWED" },
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
-        WhiteCipherAnswer,
+        WhiteCipherScreen,
 
         [SouvenirQuestion("What was the display in the {1} stage on {0}?", "WhoOF", AnswerLayout.ThreeColumns6Answers, "FIRST", "OKAY", "C", "BLANK", "YOU", "READ", "YOUR", "UR", "YES", "LED", "THEIR", "RED", "HIRE", "THERE", "THEY", "THING", "CEE", "LEED", "NO", "HOLD", "PLAY", "LEAD", "HARE", "HERE", " ", "REED", "SAYS", "SEE", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -2521,7 +2521,7 @@ namespace Souvenir
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Yellow Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "ALTHOUGH", "BUSINESS", "CHILDREN", "DIRECTOR", "EXCHANGE", "FUNCTION", "GUIDANCE", "HOSPITAL", "INDUSTRY", "JUNCTION", "KEYBOARD", "LANGUAGE", "MATERIAL", "NUMEROUS", "OFFERING", "POSSIBLE", "QUESTION", "RESEARCH", "SOFTWARE", "TOGETHER", "ULTIMATE", "VALUABLE", "WIRELESS", "XENOLITH", "YOURSELF", "ZUCCHINI" },
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
-        YellowCipherAnswer,
+        YellowCipherScreen,
 
         [SouvenirQuestion("What color was the {1} star in {0}?", "Zero, Zero", AnswerLayout.TwoColumns4Answers, "black", "blue", "green", "cyan", "red", "magenta", "yellow", "white", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]

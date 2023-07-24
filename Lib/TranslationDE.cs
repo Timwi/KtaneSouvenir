@@ -721,7 +721,7 @@ namespace Souvenir
             // Black Cipher
             // What was on the {1} screen on page {2} in {0}?
             // What was on the top screen on page 1 in Black Cipher?
-            [Question.BlackCipherAnswer] = new TranslationInfo
+            [Question.BlackCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
             },
@@ -818,7 +818,7 @@ namespace Souvenir
             // Blue Cipher
             // What was on the {1} screen on page {2} in {0}?
             // What was on the top screen on page 1 in Blue Cipher?
-            [Question.BlueCipherAnswer] = new TranslationInfo
+            [Question.BlueCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
             },
@@ -960,7 +960,7 @@ namespace Souvenir
             // Brown Cipher
             // What was on the {1} screen on page {2} in {0}?
             // What was on the top screen on page 1 in Brown Cipher?
-            [Question.BrownCipherAnswer] = new TranslationInfo
+            [Question.BrownCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
             },
@@ -1393,7 +1393,7 @@ namespace Souvenir
             // Coral Cipher
             // What was on the {1} screen on page {2} in {0}?
             // What was on the top screen on page 1 in Coral Cipher?
-            [Question.CoralCipherAnswer] = new TranslationInfo
+            [Question.CoralCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was on the {1} screen on page {2} in {0}?",
             },
@@ -1429,7 +1429,7 @@ namespace Souvenir
             // Cornflower Cipher
             // What was on the {1} screen on page {2} in {0}?
             // What was on the top screen on page 1 in Cornflower Cipher?
-            [Question.CornflowerCipherAnswer] = new TranslationInfo
+            [Question.CornflowerCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was on the {1} screen on page {2} in {0}?",
             },
@@ -1445,7 +1445,7 @@ namespace Souvenir
             // Cream Cipher
             // What was on the {1} screen on page {2} in {0}?
             // What was on the top screen on page 1 in Cream Cipher?
-            [Question.CreamCipherAnswer] = new TranslationInfo
+            [Question.CreamCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was on the {1} screen on page {2} in {0}?",
             },
@@ -1461,7 +1461,7 @@ namespace Souvenir
             // Crimson Cipher
             // What was on the {1} screen on page {2} in {0}?
             // What was on the top screen on page 1 in Crimson Cipher?
-            [Question.CrimsonCipherAnswer] = new TranslationInfo
+            [Question.CrimsonCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was on the {1} screen on page {2} in {0}?",
             },
@@ -2082,7 +2082,7 @@ namespace Souvenir
             // Forest Cipher
             // What was on the {1} screen on page {2} in {0}?
             // What was on the top screen on page 1 in Forest Cipher?
-            [Question.ForestCipherAnswer] = new TranslationInfo
+            [Question.ForestCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was on the {1} screen on page {2} in {0}?",
             },
@@ -2264,7 +2264,7 @@ namespace Souvenir
             // Gray Cipher
             // What was on the {1} screen on page {2} in {0}?
             // What was on the top screen on page 1 in Gray Cipher?
-            [Question.GrayCipherAnswer] = new TranslationInfo
+            [Question.GrayCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
             },
@@ -2312,7 +2312,7 @@ namespace Souvenir
             // Green Cipher
             // What was on the {1} screen on page {2} in {0}?
             // What was on the top screen on page 1 in Green Cipher?
-            [Question.GreenCipherAnswer] = new TranslationInfo
+            [Question.GreenCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
             },
@@ -2658,7 +2658,7 @@ namespace Souvenir
             // Indigo Cipher
             // What was on the {1} screen on page {2} in {0}?
             // What was on the top screen on page 1 in Indigo Cipher?
-            [Question.IndigoCipherAnswer] = new TranslationInfo
+            [Question.IndigoCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
             },
@@ -3240,7 +3240,7 @@ namespace Souvenir
             // Magenta Cipher
             // What was on the {1} screen on page {2} in {0}?
             // What was on the top screen on page 1 in Magenta Cipher?
-            [Question.MagentaCipherAnswer] = new TranslationInfo
+            [Question.MagentaCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was on the {1} screen on page {2} in {0}?",
             },
@@ -3308,7 +3308,7 @@ namespace Souvenir
             // Maroon Cipher
             // What was on the {1} screen on page {2} in {0}?
             // What was on the top screen on page 1 in Maroon Cipher?
-            [Question.MaroonCipherAnswer] = new TranslationInfo
+            [Question.MaroonCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was on the {1} screen on page {2} in {0}?",
             },
@@ -5333,7 +5333,7 @@ namespace Souvenir
             // Orange Cipher
             // What was on the {1} screen on page {2} in {0}?
             // What was on the top screen on page 1 in Orange Cipher?
-            [Question.OrangeCipherAnswer] = new TranslationInfo
+            [Question.OrangeCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
             },
@@ -5952,7 +5952,7 @@ namespace Souvenir
             // Red Cipher
             // What was on the {1} screen on page {2} in {0}?
             // What was on the top screen on page 1 in Red Cipher?
-            [Question.RedCipherAnswer] = new TranslationInfo
+            [Question.RedCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
             },
@@ -7398,7 +7398,7 @@ namespace Souvenir
             // Ultimate Cipher
             // What was on the {1} screen on page {2} in {0}?
             // What was on the top screen on page 1 in Ultimate Cipher?
-            [Question.UltimateCipherAnswer] = new TranslationInfo
+            [Question.UltimateCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
             },
@@ -7634,7 +7634,7 @@ namespace Souvenir
             // Violet Cipher
             // What was on the {1} screen on page {2} in {0}?
             // What was on the top screen on page 1 in Violet Cipher?
-            [Question.VioletCipherAnswer] = new TranslationInfo
+            [Question.VioletCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
             },
@@ -7766,7 +7766,7 @@ namespace Souvenir
             // White Cipher
             // What was on the {1} screen on page {2} in {0}?
             // What was on the top screen on page 1 in White Cipher?
-            [Question.WhiteCipherAnswer] = new TranslationInfo
+            [Question.WhiteCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
             },
@@ -8074,7 +8074,7 @@ namespace Souvenir
             // Yellow Cipher
             // What was on the {1} screen on page {2} in {0}?
             // What was on the top screen on page 1 in Yellow Cipher?
-            [Question.YellowCipherAnswer] = new TranslationInfo
+            [Question.YellowCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
             },

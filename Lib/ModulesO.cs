@@ -160,7 +160,7 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessOrangeCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "orangeCipher", Question.OrangeCipherAnswer, _OrangeCipher);
+        return processColoredCiphers(module, "orangeCipher", Question.OrangeCipherScreen, _OrangeCipher);
     }
 
     private IEnumerable<object> ProcessOrderedKeys(KMBombModule module)

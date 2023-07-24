@@ -92,6 +92,6 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessYellowCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "yellowCipher", Question.YellowCipherAnswer, _YellowCipher);
+        return processColoredCiphers(module, "yellowCipher", Question.YellowCipherScreen, _YellowCipher);
     }
 }

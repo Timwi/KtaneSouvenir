@@ -138,7 +138,7 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessVioletCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "violetCipher", Question.VioletCipherAnswer, _VioletCipher);
+        return processColoredCiphers(module, "violetCipher", Question.VioletCipherScreen, _VioletCipher);
     }
 
     private IEnumerable<object> ProcessVisualImpairment(KMBombModule module)

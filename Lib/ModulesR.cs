@@ -202,7 +202,7 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessRedCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "redCipher", Question.RedCipherAnswer, _RedCipher);
+        return processColoredCiphers(module, "redCipher", Question.RedCipherScreen, _RedCipher);
     }
 
     private IEnumerable<object> ProcessRedHerring(KMBombModule module)

@@ -64,7 +64,7 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessWhiteCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "whiteCipher", Question.WhiteCipherAnswer, _WhiteCipher);
+        return processColoredCiphers(module, "whiteCipher", Question.WhiteCipherScreen, _WhiteCipher);
     }
 
     private IEnumerable<object> ProcessWhoOF(KMBombModule module)

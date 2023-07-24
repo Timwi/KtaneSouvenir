@@ -618,7 +618,7 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessCoralCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "coralCipher", Question.CoralCipherAnswer, _CoralCipher);
+        return processColoredCiphers(module, "coralCipher", Question.CoralCipherScreen, _CoralCipher);
     }
 
     private IEnumerable<object> ProcessCorners(KMBombModule module)
@@ -642,7 +642,7 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessCornflowerCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "cornflowerCipher", Question.CornflowerCipherAnswer, _CornflowerCipher);
+        return processColoredCiphers(module, "cornflowerCipher", Question.CornflowerCipherScreen, _CornflowerCipher);
     }
 
     private IEnumerable<object> ProcessCosmic(KMBombModule module)
@@ -660,7 +660,7 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessCreamCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "creamCipher", Question.CreamCipherAnswer, _CreamCipher);
+        return processColoredCiphers(module, "creamCipher", Question.CreamCipherScreen, _CreamCipher);
     }
 
     private IEnumerable<object> ProcessCreation(KMBombModule module)
@@ -701,7 +701,7 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessCrimsonCipher(KMBombModule module)
     {
-        return processColoredCiphers(module, "crimsonCipher", Question.CrimsonCipherAnswer, _CrimsonCipher);
+        return processColoredCiphers(module, "crimsonCipher", Question.CrimsonCipherScreen, _CrimsonCipher);
     }
 
     private IEnumerable<object> ProcessCritters(KMBombModule module)
