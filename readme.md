@@ -55,13 +55,14 @@ To add a new module, the following steps are required:
     - If your question can be varied with things inserted into the sentence (e.g. “left display” vs. “right display”), use `{1}`, `{2}` etc. for those inserted bits, and then make sure to supply `ExampleExtraFormatArguments` and `ExampleExtraFormatArgumentGroupSize` correctly (examples: `DecoloredSquaresStartingPos` (one piece, so group size is 1); `RedCipherScreen` (two pieces, so group size is 2 and the example arguments come in pairs)).
     - If the inserted bit is an ordinal number (first, second, third, etc.), use `QandA.Ordinal` instead of a string (example: `SwitchInitialColor`).
     - If your targeted module’s name starts with “The”, make sure to specify the name without “The” but include `AddThe = true` (example: `DeckOfManyThingsFirstCard`).
-- Add a string constant in `Modules_General.cs` containing the `ModuleType` value on the targeted module’s `KMBombModule` component. This is also sometimes known as the “module ID”. For example, for *3D Maze*, this is `spwiz3DMaze`.
+- Add a string constant in `Modules_General.cs` containing the `ModuleType` value on the targeted module’s `KMBombModule` component. This is also sometimes known as the “module ID”. For example, for *3D Maze*, this is `spwiz3DMaze`. Omit “The” in the constant name (for example: `_Bulb`, not `_TheBulb`).
 - Find an existing handler for a module that is similar to the one you wish to implement. The handlers have names beginning with `Process` (for example: `ProcessMafia` in `ModulesM.cs`). Study it carefully to understand how it works.
-- Implement a similar handler and place it alphabetically in the correct file (`ModulesA.cs` to `ModulesZ.cs`, or `Modules0.cs`). Omit “The” in the handler name (for example: `ProcessBulb`, not `ProcessTheBulb`).
+- Implement a similar handler and place it alphabetically in the correct file (`ModulesA.cs` to `ModulesZ.cs`, or `Modules0.cs`). Omit “The” in the handler name as well.
     - Make sure to handle the case where the player gets a strike on the module and the information changes. Souvenir must not ask about information from stages that struck.
     - If there is a corner case where Souvenir should not ask a question, output a log message and add the module to `_legitimatelyNoQuestions` (see `ProcessShapeShift` or `ProcessSillySlots` for examples).
 - Go back to `Modules_General.cs`, find the `Awake()` method, and add an entry to the large dictionary mapping from your string constant to the method you just created.
 - Compile the project.
+- Run Souvenir in Unity and issue a TP command (such as `!1 bulb`) to see your question to make sure that it looks okay.
 - Test your Souvenir modifications in-game (e.g. by using Dynamic Mission Generator). Test all corner cases, including getting a strike on the module.
 - If your question does not show up and/or Souvenir displays a warning triangle, look at your logfile for error messages from Souvenir. You can Ctrl+F in the logfile for `<Souvenir` to find them.
 - Add your name and the module to `CONTRIBUTORS-raw.md`.
@@ -69,6 +70,7 @@ To add a new module, the following steps are required:
 - Make the relevant changes to KtaneContent:
     - The HTML manual:
         - Add your new question anywhere (you can add it right at the top).
+        - If the module name starts with “The”, use the correct formatting — see Duck for an example.
         - Uncomment the JavaScript code at the bottom by adding a `/` at the start of the line that says “use this to reflow the questions”.
         - Open the manual in your browser. The JS code will automatically alphabetize and reflow the questions.
         - Right-click the manual, Inspect Element, and find the `<div class="section">` element (right after `<body>`).
@@ -80,4 +82,4 @@ To add a new module, the following steps are required:
         ```
         "Souvenir": { "Status": "Supported" },
         ```
-    - Zip up the new HTML manual and those JSON files and send them to me when you submit your pull request.
+    - Zip up the new HTML manual and those JSON files and send them to me (Timwi on Discord) when you submit your pull request.
