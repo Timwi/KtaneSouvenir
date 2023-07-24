@@ -10,7 +10,6 @@
 - 9-Ball — GhostSalt
 - A Letter — Sierra
 - A Square — QuinnWuest
-- ASCII Maze — Timwi
 - Abyss — VFlyer
 - Accumulation — luisdiogo98
 - Adventure Game — Timwi
@@ -23,6 +22,7 @@
 - Alphabet Tiles — BigCrunch22
 - Alphabetical Ruling — Timwi
 - Arithmelogic — JerryEris
+- ASCII Maze — Timwi
 - Bakery — TasThiluna
 - Bamboozled Again — kavinkul
 - Bamboozling Button — TasThiluna
@@ -105,6 +105,7 @@
 - Dr. Doctor — Timwi
 - Dreamcipher — BigCrunch22
 - Dumb Waiters — BigCrunch22
+- eeB gnillepS — BigCrunch22
 - Eight — NickLatkovich
 - Elder Futhark — Goofy
 - Encrypted Equations — Timwi
@@ -148,6 +149,7 @@
 - Guess Who? — BigCrunch22
 - Hereditary Base Notation — kavinkul
 - Hexamaze — Timwi
+- hexOS — Emik
 - Hidden Colors — TasThiluna
 - Hill Cycle — TasThiluna
 - Hogwarts — Timwi
@@ -156,7 +158,6 @@
 - Horrible Memory — luisdiogo98
 - Human Resources — Timwi
 - Hunting — Timwi
-- IPA — Timwi
 - Ice Cream — CaitSith2
 - Identification Crisis — TasThiluna
 - Identity Parade — Timwi
@@ -165,18 +166,19 @@
 - Ingredients — Timwi
 - Inner Connections — Brawlboxgaming
 - Interpunct — Eltrick
+- IPA — Timwi
 - Jenga — tandyCake
 - Jumble Cycle — TasThiluna
 - Juxtacolored Squares — Kuro
 - Kanji — Kuro
 - Keypad Magnified — tandyCake
 - Kudosudoku — Timwi
+- Ladders — tandyCake
+- Lasers — luisdiogo98
 - LED Encryption — CaitSith2
 - LED Math — TasThiluna
 - LEDs — tandyCake
 - LEGOs — luisdiogo98
-- Ladders — tandyCake
-- Lasers — luisdiogo98
 - Letter Math — QuinnWuest
 - Light Bulbs — Kuro
 - Linq — Emik
@@ -247,12 +249,12 @@
 - Not Simaze — Andrio Celos
 - Not Text Field — tandyCake
 - Not The Bulb — QuinnWuest
+- Not the Button — Andrio Celos
 - Not The Screw — GhostSalt
 - Not Who’s on First — Andrio Celos
 - Not Word Search — tandyCake
 - Not X-Ray — Timwi
 - Not X01 — QuinnWuest
-- Not the Button — Andrio Celos
 - Numbered Buttons — Eltrick
 - Numbers — BigCrunch22
 - Numpath — tandyCake
@@ -295,7 +297,6 @@
 - Question Mark — Kuro
 - Quick Arithmetic — VFlyer
 - Quintuples — Timwi
-- RGB Maze — kavinkul
 - Railway Cargo Loading — LotsOfS
 - Rainbow Arrows — TasThiluna
 - Recolored Switches — Timwi
@@ -308,12 +309,12 @@
 - Retirement — luisdiogo98
 - Reverse Morse — luisdiogo98
 - Reverse Polish Notation — shortc1rcuit
+- RGB Maze — kavinkul
 - Rhythms — Timwi
 - Robo-Scanner — QuinnWuest
 - Roger — BigCrunch22
 - Role Reversal — Emik
 - Rule of Three — QuinnWuest
-- SYNC-125 [3] — Timwi
 - Scavenger Hunt — Timwi
 - Schlag den Bomb — JerryEris
 - Scramboozled Eggain — QuinnWuest
@@ -377,6 +378,7 @@
 - Symbol Cycle — CaitSith2
 - Symbolic Coordinates — CaitSith2
 - Symbolic Tasha — Timwi
+- SYNC-125 [3] — Timwi
 - Synonyms — Timwi
 - Sysadmin — NickLatkovich
 - Tap Code — Timwi
@@ -404,6 +406,7 @@
 - The Hypercube — luisdiogo98
 - The Hyperlink — Espik
 - The Impostor — Kuro
+- The iPhone — luisdiogo98
 - The Jewel Vault — luisdiogo98
 - The Kanye Encounter — tandyCake
 - The Labyrinth — BakersDozenBagels
@@ -424,7 +427,6 @@
 - The Wire — Timwi
 - The Xenocryst — GhostSalt
 - The Yellow Button — Timwi
-- The iPhone — luisdiogo98
 - Thinking Wires — kavinkul
 - Third Base — CaitSith2
 - Tic Tac Toe — Timwi
@@ -438,8 +440,6 @@
 - Triple Term — QuinnWuest
 - Turtle Robot — CaitSith2
 - Two Bits — Timwi
-- USA Cycle — tandyCake
-- USA Maze — luisdiogo98
 - Ultimate Cipher — BigCrunch22
 - Ultimate Cycle — TasThiluna
 - UltraStores — Marksam
@@ -449,6 +449,8 @@
 - Unfair’s Revenge — VFlyer
 - Unicode — Marksam
 - Unown Cipher — kavinkul
+- USA Cycle — tandyCake
+- USA Maze — luisdiogo98
 - V — BigCrunch22
 - Varicolored Squares — luisdiogo98
 - Varicolour Flash — QuinnWuest
@@ -468,14 +470,12 @@
 - Wolf, Goat, and Cabbage — Marksam
 - Working Title — BigCrunch22
 - XmORse Code — shortc1rcuit
+- xobekuJ ehT — QuinnWuest
 - Yahtzee — Timwi
 - Yellow Arrows — kavinkul
 - Yellow Cipher — BigCrunch22
 - Zero, Zero — Timwi
 - Zoni — luisdiogo98
-- eeB gnillepS — BigCrunch22
-- hexOS — Emik
-- xobekuJ ehT — QuinnWuest
 - Ángel Hernández — QuinnWuest
 - ƎNA Cipher — KiloBites
 - ❖ — BakersDozenBagels
