@@ -113,10 +113,10 @@ public partial class SouvenirModule
 
         var correctAnswer = GetField<string>(comp, "_cyclingBits").Get();
         var wrongAnswers = new List<string>();
-        var gen = new AnswerGenerator.Strings(12, "01");
+        var gen = new AnswerGenerator.Strings(16, "01");
         foreach (var wrong in gen.GetAnswers(this))
         {
-            if (Enumerable.Range(0, 12).Any(amount => wrong.Substring(amount) + wrong.Substring(0, amount) == correctAnswer))
+            if (Enumerable.Range(0, 16).Any(amount => wrong.Substring(amount) + wrong.Substring(0, amount) == correctAnswer))
                 continue;
             wrongAnswers.Add(wrong);
             if (wrongAnswers.Count == 3)
@@ -143,7 +143,6 @@ public partial class SouvenirModule
         addQuestions(module,
             makeQuestion(Question.GrayButtonCoordinates, _GrayButton, formatArgs: new[] { "horizontal" }, correctAnswers: new[] { m.Groups[1].Value }),
             makeQuestion(Question.GrayButtonCoordinates, _GrayButton, formatArgs: new[] { "vertical" }, correctAnswers: new[] { m.Groups[2].Value }));
-        text.text = "Nice!";
     }
 
     private IEnumerable<object> ProcessGrayCipher(KMBombModule module)
