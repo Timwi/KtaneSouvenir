@@ -4,10 +4,10 @@
 
 This is a mod module for [_Keep Talking and Nobody Explodes_](https://keeptalkinggame.com/). This module asks you questions about some of the other modules on your bomb after you’ve solved them. It requires you to remember or write down things that you used to solve those other modules.
 
-A build is available on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2018009170).
+A build is available on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=810934485).
 The manual is available on the [Repository of Manual Pages](https://ktane.timwi.de/HTML/Souvenir.html).
 
-Based on the [_Keep Talking and Nobody Explodes_ modkit](https://github.com/keeptalkinggame/ktanemodkit/).
+Based on the [_Keep Talking and Nobody Explodes_ modkit](https://github.com/Qkrisi/ktanemodkit/).
 
 ## Contributing
 
