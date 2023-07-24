@@ -356,7 +356,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "up", "right", "down", "left" }, ExampleExtraFormatArgumentGroupSize = 1)]
         CartineseLyrics,
 
-        [SouvenirQuestion("What was the color of the {1} panel in {0}?", "Catchphrase", AnswerLayout.ThreeColumns6Answers, "Red", "Green", "Blue", "Orange", "Purple", "Yellow", 
+        [SouvenirQuestion("What was the color of the {1} panel in {0}?", "Catchphrase", AnswerLayout.ThreeColumns6Answers, "Red", "Green", "Blue", "Orange", "Purple", "Yellow",
             ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         CatchphraseColor,
 
@@ -496,7 +496,8 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9999)]
         CosmicNumber,
 
-        [SouvenirQuestion("What was the {1} ingredient shown in {0}?","Crazy hamburger", AnswerLayout.ThreeColumns6Answers,"Bread","Cheese","Grass","Meat","Oil","Peppers", ExampleExtraFormatArguments = new[] { "first", "second","third","fourth","fifth","sixth","seventh","eighth","ninth","tenth"}, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was the {1} ingredient shown in {0}?", "Crazy Hamburger", AnswerLayout.ThreeColumns6Answers, "Bread", "Cheese", "Grass", "Meat", "Oil", "Peppers",
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         CrazyHamburgerIngredient,
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Cream Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },
@@ -542,8 +543,8 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9)]
         CursedDoubleOhInitialPosition,
 
-        [SouvenirQuestion("Who was the {1} customer in {0}?", "Customer Identification", AnswerLayout.OneColumn4Answers,
-            ExampleExtraFormatArguments = new[] { QandA.Ordinal}, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("Who was the {1} customer in {0}?", "Customer Identification", AnswerLayout.OneColumn4Answers, "Akari", "Alberto", "Allan", "Amy", "Austin", "Bertha", "Big Pauly", "Boomer", "Boopsy & Bill", "Brody", "Bruna Romano", "C.J. Friskins", "Cameo", "Captain Cori", "Carlo Romano", "Cecilia", "Cherissa", "Chester", "Chuck", "Clair", "Cletus", "Clover", "Connor", "Cooper", "Crystal", "Daniela", "Deano", "Didar", "Doan", "Drakson", "Duke Gotcha", "Edna", "Elle", "Ember", "Emmlette", "Evelyn", "Fernanda", "Foodini", "Franco", "Georgito", "Gino Romano", "Greg", "Gremmie", "Hacky Zak", "Hank", "Hope", "Hugo", "Iggy", "Indigo", "Ivy", "James", "Janana", "Johnny", "Jojo", "Joy", "Julep", "Kahuna", "Kaleb", "Kasey O", "Kayla", "Kenji", "Kenton", "Kingsley", "Koilee", "LePete", "Liezel", "Lisa", "Little Edoardo", "Maggie", "Mandi", "Marty", "Mary", "Matt", "Mayor Mallow", "Mesa", "Mindy", "Mitch", "Moe", "Mousse", "Mr. Bombolony", "Nevada", "Nick", "Ninjoy", "Nye", "Okalani", "Olga", "Olivia", "Pally", "Papa Louie", "Peggy", "Penny", "Perri", "Petrona", "Pinch Hitwell", "Professor Fitz", "Prudence", "Quinn", "Radlynn", "Rhonda", "Rico", "Ripley", "Rita", "Robby", "Rollie", "Roy", "Rudy", "Santa", "Sarge Fan", "Sasha", "Scarlett", "Scooter", "Shannon", "Sienna", "Simone", "Skip", "Skyler", "Sprinks The Clown", "Steven", "Sue", "Taylor", "The Dynamoe", "Timm", "Tohru", "Tony", "Trishna", "Utah", "Vicky", "Vincent", "Wally", "Wendy", "Whiff", "Whippa", "Willow", "Wylan B", "Xandra", "Xolo", "Yippy", "Yui", "Zoe",
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         CustomerIdentificationCustomer,
 
         [SouvenirQuestion("Where was the button at the {1} stage in {0}?", "Cyan Button", AnswerLayout.TwoColumns4Answers, "top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right",
@@ -585,7 +586,7 @@ namespace Souvenir
         [AnswerGenerator.Strings("1-9", "6*0-9", "1-9")]
         DigitStringInitialNumber,
 
-        [SouvenirQuestion("What was {1}’s remembered position in {0}?", "Discolored Squares", AnswerLayout.TwoColumns4Answers, null, Type = AnswerType.Grid, TranslateFormatArgs = new[] { true },
+        [SouvenirQuestion("What was {1}’s remembered position in {0}?", "Discolored Squares", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Grid, TranslateFormatArgs = new[] { true },
             ExampleExtraFormatArguments = new[] { "Blue", "Red", "Yellow", "Green", "Magenta" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Grid(4, 4)]
         DiscoloredSquaresRememberedPositions,
@@ -878,7 +879,7 @@ namespace Souvenir
         [AnswerGenerator.Strings("2*0-9", ":", "2*0-9")]
         GamepadNumbers,
 
-        [SouvenirQuestion("Which faction did {1} claim to be in {0}?", "Garnet Theif", AnswerLayout.OneColumn4Answers, "Mafia", "Cartel", "Beggar", "Police", AddThe = true, 
+        [SouvenirQuestion("Which faction did {1} claim to be in {0}?", "Garnet Theif", AnswerLayout.OneColumn4Answers, "Mafia", "Cartel", "Beggar", "Police", AddThe = true,
             ExampleExtraFormatArguments = new[] { "Jungmoon", "Yeonseung", "Jinho", "Dongmin", "Kyunghoon", "Kyungran", "Yoohyun", "Junseok", "Sangmin", "Yohwan", "Yoonsun", "Hyunmin", "Junghyun" }, ExampleExtraFormatArgumentGroupSize = 1)]
         GarnetThiefClaim,
 
@@ -1316,7 +1317,7 @@ namespace Souvenir
         MetamorseExtractedLetter,
 
         [SouvenirQuestion("What was the final answer in {0}?", "Metapuzzle", AnswerLayout.TwoColumns4Answers, null,
-            ExampleAnswers = new[] { "GIBBONS", "GIRAFFE",  "MISUSED", "RUSHING", "DUSTMAN", "STATICS" })]
+            ExampleAnswers = new[] { "GIBBONS", "GIRAFFE", "MISUSED", "RUSHING", "DUSTMAN", "STATICS" })]
         MetapuzzleAnswer,
 
         [SouvenirQuestion("Which pin lit up {1} in {0}?", "Microcontroller", AnswerLayout.ThreeColumns6Answers,
@@ -1628,7 +1629,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         OddOneOutButton,
 
-        [SouvenirQuestion("What was the correct {1} shown in {0}?","Old AI",AnswerLayout.TwoColumns4Answers,"1","2","3","4","5", ExampleExtraFormatArguments = new[] {"Group","Sub-group"}, ExampleExtraFormatArgumentGroupSize =1)]
+        [SouvenirQuestion("What was the correct {1} shown in {0}?", "Old AI", AnswerLayout.TwoColumns4Answers, "1", "2", "3", "4", "5",
+            ExampleExtraFormatArguments = new[] { "group", "sub-group" }, ExampleExtraFormatArgumentGroupSize = 1)]
         OldAIGroup,
 
         [SouvenirQuestion("What was the initial color of the status light in {0}?", "Old Fogey", AnswerLayout.ThreeColumns6Answers, "Red", "Green", "Yellow", "Blue", "Magenta", "Cyan", "White")]
@@ -1856,7 +1858,7 @@ namespace Souvenir
         QuintuplesColorCounts,
 
         [SouvenirQuestion("What tile did you place {1} in {0}?", "Qwirkle", AnswerLayout.ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "QwirkleSprites",
-            ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         QwirkleTilesPlaced,
 
         [SouvenirQuestion("How many jewels were in the starting common pool in {0}?", "Raiding Temples", AnswerLayout.ThreeColumns6Answers)]
@@ -2424,7 +2426,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         UnicodeSortedAnswer,
 
-        [SouvenirQuestion("What was the initial card in {0}?", "UNO!", AnswerLayout.OneColumn4Answers)]
+        [SouvenirQuestion("What was the initial card in {0}?", "UNO!", AnswerLayout.OneColumn4Answers, "Red 0", "Red 1", "Red 2", "Red 3", "Red 4", "Red 5", "Red 6", "Red 7", "Red 8", "Red 9", "Red +2", "Red Skip", "Red Reverse", "Green 0", "Green 1", "Green 2", "Green 3", "Green 4", "Green 5", "Green 6", "Green 7", "Green 8", "Green 9", "Green +2", "Green Skip", "Green Reverse", "Yellow 0", "Yellow 1", "Yellow 2", "Yellow 3", "Yellow 4", "Yellow 5", "Yellow 6", "Yellow 7", "Yellow 8", "Yellow 9", "Yellow +2", "Yellow Skip", "Yellow Reverse", "Blue 0", "Blue 1", "Blue 2", "Blue 3", "Blue 4", "Blue 5", "Blue 6", "Blue 7", "Blue 8", "Blue 9", "Blue +2", "Blue Skip", "Blue Reverse", "+4", "Wild")]
         UnoInitialCard,
 
         [SouvenirQuestion("What was the {1} submitted letter in {0}?", "Unown Cipher", AnswerLayout.ThreeColumns6Answers,
@@ -2481,18 +2483,15 @@ namespace Souvenir
 
         [SouvenirQuestion("Who was the person you eliminated in {0}?", "Weakest Link", AnswerLayout.OneColumn4Answers, null, AddThe = true, ExampleAnswers = new[] { "Annie", "Albert", "Josephine", "Frederick" })]
         WeakestLinkElimination,
-
         [SouvenirQuestion("Who was the person who made it to the Money Phase with you in {0}?", "Weakest Link", AnswerLayout.OneColumn4Answers, null, AddThe = true, ExampleAnswers = new[] { "Annie", "Albert", "Josephine", "Frederick" })]
         WeakestLinkMoneyPhaseName,
-
-        [SouvenirQuestion("What was {1}'s skill in {0}?", "Weakest Link", AnswerLayout.OneColumn4Answers, "Geography", "Language", "Wildlife", "Biology", "Maths", "KTANE", "History", "Other", AddThe = true, ExampleAnswers = new[] { "KTANE", "Geography", "Language", "Wildlife" },
-            ExampleExtraFormatArguments = new[] { "Annie", "Albert", "Josephine", "Frederick" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        WeakestLinkSkill,
-
-        [SouvenirQuestion("What was the ratio {1} got in the Question Phase in {0}?", "Weakest Link",  AnswerLayout.OneColumn4Answers, null, AddThe = true, ExampleAnswers = new[] { "1/2", "3/4", "6/8", "3/5" },
+        [SouvenirQuestion("What was the ratio {1} got in the Question Phase in {0}?", "Weakest Link", AnswerLayout.OneColumn4Answers, null, AddThe = true, ExampleAnswers = new[] { "1/2", "3/4", "6/8", "3/5" },
             ExampleExtraFormatArguments = new[] { "Annie", "Albert", "Josephine", "Frederick" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Strings("0-4", "/", "56")]
         WeakestLinkRatio,
+        [SouvenirQuestion("What was {1}'s skill in {0}?", "Weakest Link", AnswerLayout.OneColumn4Answers, "Geography", "Language", "Wildlife", "Biology", "Maths", "KTANE", "History", "Other", AddThe = true, ExampleAnswers = new[] { "KTANE", "Geography", "Language", "Wildlife" },
+            ExampleExtraFormatArguments = new[] { "Annie", "Albert", "Josephine", "Frederick" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        WeakestLinkSkill,
 
         [SouvenirQuestion("What was the display text in the {1} stage of {0}?", "What’s on Second", AnswerLayout.ThreeColumns6Answers, "got it", "says", "display", "leed", "their", "blank", "right", "reed", "hold", "they are", "louder", "lead", "repeat", "ready", "none", "led", "ur", "you’re", "no", "you", "nothing", "middle", "done", "empty", "your", "hold on", "like", "read", "wait", "left", "press", "what?", "uh uh", "they’re", "uhhh", "c", "error", "you are", "next", "yes", "u", "sure", "okay", "what", "cee", "first", "see", "uh huh", "there", "red", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]

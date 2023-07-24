@@ -1249,38 +1249,34 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "SpongebobBirthdayIdentificationScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-       
-        List<string> answers = new List<string>();
-        var stageCountVariable = GetIntField(comp, "stage");
-        int currentStage = stageCountVariable.Get();
+        var fldStage = GetIntField(comp, "stage");
+        var fldAnswer = GetField<string>(comp, "answer");
+
+        var answers = new List<string>();
+        var currentStage = fldStage.Get();
         while (!fldSolved.Get())
         {
-            if (currentStage != stageCountVariable.Get())
+            var newStage = fldStage.Get();
+            if (currentStage != newStage)
             {
-                answers.Add(GetField<string>(comp, "answer").Get());
-                currentStage = stageCountVariable.Get();
+                answers.Add(fldAnswer.Get());
+                currentStage = newStage;
             }
-            yield return new WaitForSeconds(.1f);
+            yield return null;
         }
-
+        yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_SpongebobBirthdayIdentification);
 
         if (answers.Count < 3)
-        {
-            answers.Add(GetField<string>(comp, "answer").Get());
-        }
+            answers.Add(fldAnswer.Get());
 
-        var allTexturesArr = GetField<Texture[]>(comp, "allImages", isPublic: true).Get();
-        var allNames = allTexturesArr.Select(x => x.name);
-
-        var qs = new List<QandA>();
-
-        for (int i = 0; i < 3; i++)
-        {
-            qs.Add(makeQuestion(Question.SpongebobBirthdayIdentificationChildren, _SpongebobBirthdayIdentification, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { answers[i] }, preferredWrongAnswers: allNames.ToArray()));
-        }
-
-        addQuestions(module, qs);
+        var allNames = GetField<Texture[]>(comp, "allImages", isPublic: true).Get().Select(x => x.name).ToArray();
+        addQuestions(module, Enumerable.Range(0, 3).Select(i => makeQuestion(
+            question: Question.SpongebobBirthdayIdentificationChildren,
+            moduleKey: _SpongebobBirthdayIdentification,
+            formatArgs: new[] { ordinal(i + 1) },
+            correctAnswers: new[] { answers[i] },
+            preferredWrongAnswers: allNames)));
     }
 
     private IEnumerable<object> ProcessStability(KMBombModule module)

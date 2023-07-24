@@ -97,18 +97,17 @@ public partial class SouvenirModule
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_GarnetTheif);
+        _modulesSolved.IncSafe(_GarnetThief);
 
         var contestant = GetArrayField<object>(comp, "contestants").Get();
+        var fldName = GetField<Enum>(contestant[0], "name", isPublic: true);
+        var fldClaimedFaction = GetField<Enum>(contestant[0], "claimedFaction", isPublic: true);
 
-        var qs = new List<QandA>();
-
-        for (int i = 0; i < 7; i++)
-        {
-            qs.Add(makeQuestion(Question.GarnetThiefClaim, _GarnetTheif, formatArgs: new[] { GetField<Enum>(contestant[i], "name", isPublic: true).Get().ToString() }, correctAnswers: new[] { GetField<Enum>(contestant[i], "claimedFaction", isPublic: true).Get().ToString() }));
-        }
-
-        addQuestions(module, qs);
+        addQuestions(module, Enumerable.Range(0, 7).Select(i => makeQuestion(
+            question: Question.GarnetThiefClaim,
+            moduleKey: _GarnetThief,
+            formatArgs: new[] { fldName.GetFrom(contestant[i]).ToString() },
+            correctAnswers: new[] { fldClaimedFaction.GetFrom(contestant[i]).ToString() })));
     }
 
     private IEnumerable<object> ProcessGirlfriend(KMBombModule module)

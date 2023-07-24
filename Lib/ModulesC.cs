@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using Souvenir;
 using UnityEngine;
 
@@ -62,7 +61,7 @@ public partial class SouvenirModule
         var panelColors = GetListField<string>(comp, "selectedColours").Get(expectedLength: 4);
         var panelNames = new[] { "top-left", "top-right", "bottom-left", "bottom-right" };
 
-        panelColors = panelColors.Select(x => Char.ToUpper(x[0]) + x.Substring(1)).ToList();
+        panelColors = panelColors.Select(x => char.ToUpperInvariant(x[0]) + x.Substring(1)).ToList();
 
         addQuestions(module,
             Enumerable.Range(0, 4).Select(panel => makeQuestion(Question.CatchphraseColor, _Catchphrase, formatArgs: new[] { panelNames[panel] }, correctAnswers: new[] { panelColors[panel] })));
@@ -676,55 +675,34 @@ public partial class SouvenirModule
         addQuestion(module, Question.CosmicNumber, correctAnswers: new[] { answer });
     }
 
-    private IEnumerable<object> ProcessCrazyHamburger(KMBombModule module) {
+    private IEnumerable<object> ProcessCrazyHamburger(KMBombModule module)
+    {
         var comp = GetComponent(module, "CrazyHamburgerScript");
-        var fldSolved = GetField<bool>(comp,"Solved");
-        var fldIngredients = GetField<string>(comp,"Ingredients");
+        var fldSolved = GetField<bool>(comp, "Solved");
+        var fldIngredients = GetField<string>(comp, "Ingredients");
 
-        while (!fldSolved.Get()) {
+        while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
-        }
-
-        var Ingredients = fldIngredients.Get();
-
-        if (Ingredients.Length > 10) {
-            Ingredients = Ingredients.Substring(0, 10);
-        }
-
-        Dictionary<char, string> TheDictionary = new Dictionary<char, string>(){ 
-            { 'B',"Bread" },
-            { 'C',"Cheese" },
-            { 'G',"Grass" },
-            { 'H',"Meat" },
-            { 'O',"Oil" },
-            { 'R',"Peppers" }
-        };
-
-        Dictionary<int, string> IntegerToIndex = new Dictionary<int, string>(){
-            {1,"first"},
-            {2,"second"},
-            {3,"third"},
-            {4,"fourth"},
-            {5,"fifth"},
-            {6,"sixth"},
-            {7,"seventh"},
-            {8,"eighth"},
-            {9,"ninth"},
-            {10,"tenth"},
-        };
-
-        var qs = new List<QandA>();
-
-        Debug.LogFormat("<Souvenir> Ingredients are {0}",Ingredients);
-
         _modulesSolved.IncSafe(_CrazyHamburger);
 
-        for (int i = 0; i < Ingredients.Length; i++) {
-            Debug.LogFormat("<Souvenir> Doing the {0}", i+1);
-            qs.Add(makeQuestion(Question.CrazyHamburgerIngredient,_CrazyHamburger,formatArgs: new string[] { IntegerToIndex[i+1] },correctAnswers: new[] { TheDictionary[Ingredients[i]] }));
-        }
+        var dic = new Dictionary<char, string>()
+        {
+            ['B'] = "Bread",
+            ['C'] = "Cheese",
+            ['G'] = "Grass",
+            ['H'] = "Meat",
+            ['O'] = "Oil",
+            ['R'] = "Peppers"
+        };
 
-        addQuestions(module,qs);
+        var ingredients = fldIngredients.Get(v => v.Any(ch => !dic.ContainsKey(ch)) ? $"expected only characters {dic.Keys.JoinString()}" : null);
+
+        addQuestions(module, ingredients.Select((ing, i) =>
+            makeQuestion(
+                question: Question.CrazyHamburgerIngredient,
+                moduleKey: _CrazyHamburger,
+                formatArgs: new string[] { ordinal(i + 1) },
+                correctAnswers: new[] { dic[ing] })));
     }
 
     private IEnumerable<object> ProcessCreamCipher(KMBombModule module)
@@ -896,42 +874,21 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "CustomerIdentificationScript");
 
         var solved = false;
-
-        module.OnPass += () =>
-        {
-            solved = true;
-            return false;
-        };
+        module.OnPass += () => { solved = true; return false; };
 
         while (!solved)
-        {
             yield return new WaitForSeconds(.1f);
-        }
-
         _modulesSolved.IncSafe(_CustomerIdentification);
 
-        var SeedPacketIdentifier = GetField<Sprite[]>(comp, "SeedPacketIdentifier", isPublic: true).Get();
-        var Unique = GetArrayField<int>(comp, "Unique").Get();
+        var seedPacketIdentifier = GetField<Sprite[]>(comp, "SeedPacketIdentifier", isPublic: true).Get();
+        var unique = GetArrayField<int>(comp, "Unique").Get(expectedLength: 3);
+        var answers = unique.Select(uq => seedPacketIdentifier[uq].name).ToArray();
 
-        var names = SeedPacketIdentifier.Select(x => x.name).ToArray();
-
-        var answers = new string[3];
-
-        for (int i = 0; i < 3; i++)
-        {
-            answers[i] = names[Unique[i]];
-        }
-
-        Debug.Log(string.Join(", ", answers));
-
-        var qs = new List<QandA>();
-
-        for (int i = 0; i < 3; i++)
-        {
-            qs.Add(makeQuestion(Question.CustomerIdentificationCustomer, _CustomerIdentification, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { answers[i] }, preferredWrongAnswers: names));
-        }
-
-        addQuestions(module, qs);
+        addQuestions(module, Enumerable.Range(0, 3).Select(i => makeQuestion(
+            question: Question.CustomerIdentificationCustomer,
+            moduleKey: _CustomerIdentification,
+            formatArgs: new[] { ordinal(i + 1) },
+            correctAnswers: new[] { answers[i] })));
     }
 
     private IEnumerable<object> ProcessCyanButton(KMBombModule module)

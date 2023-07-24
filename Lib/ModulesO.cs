@@ -68,31 +68,22 @@ public partial class SouvenirModule
             makeQuestion(Question.OddOneOutButton, _OddOneOut, formatArgs: new[] { "sixth" }, correctAnswers: new[] { btnNames[stageBtn[5]] }));
     }
 
-    private IEnumerable<object> ProcessOldAI(KMBombModule module){
+    private IEnumerable<object> ProcessOldAI(KMBombModule module)
+    {
         var comp = GetComponent(module, "SCP079");
-        var fldSolved = GetField<bool>(comp,"ModuleSolved");
-        var fldSeed = GetField<int>(comp,"Seed");
-        if(comp==null||fldSolved==null||fldSeed==null){
-            yield break;
-        }
+        var fldSolved = GetField<bool>(comp, "ModuleSolved");
+        var fldSeed = GetField<int>(comp, "Seed");
 
-        yield return null;
-
-
-
-        while(!fldSolved.Get()){
+        while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
-        }
-       
         _modulesSolved.IncSafe(_OldAI);
-        var Seed = fldSeed.Get();
 
+        var seed = fldSeed.Get();
         addQuestions(module,
-            makeQuestion(Question.OldAIGroup,_OldAI,formatArgs: new[]{"Group"},correctAnswers: new[] {System.Convert.ToString((Seed-1)/5+1)} ),
-            makeQuestion(Question.OldAIGroup,_OldAI,formatArgs: new[]{"Sub-Group"},correctAnswers: new[] {System.Convert.ToString((Seed-1)%5+1)})
-            );
-
+            makeQuestion(Question.OldAIGroup, _OldAI, formatArgs: new[] { "group" }, correctAnswers: new[] { ((seed - 1) / 5 + 1).ToString() }),
+            makeQuestion(Question.OldAIGroup, _OldAI, formatArgs: new[] { "sub-group" }, correctAnswers: new[] { ((seed - 1) % 5 + 1).ToString() }));
     }
+
     private IEnumerable<object> ProcessOldFogey(KMBombModule module)
     {
         var comp = GetComponent(module, "OldFogey");

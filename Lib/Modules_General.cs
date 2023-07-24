@@ -10,7 +10,7 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
-    const string Version = "4.82";
+    const string Version = "4.83";
 
     // The values here are the “ModuleType” property on the KMBombModule components.
     const string _1000Words = "OneThousandWords";
@@ -169,7 +169,7 @@ public partial class SouvenirModule
     const string _GadgetronVendor = "lgndGadgetronVendor";
     const string _GameOfLifeCruel = "GameOfLifeCruel";
     const string _Gamepad = "TheGamepadModule";
-    const string _GarnetTheif = "theGarnetThief";
+    const string _GarnetThief = "theGarnetThief";
     const string _Girlfriend = "Girlfriend";
     const string _GlitchedButton = "GlitchedButtonModule";
     const string _GrayButton = "GrayButtonModule";
@@ -667,7 +667,7 @@ public partial class SouvenirModule
             { _GadgetronVendor, ProcessGadgetronVendor },
             { _GameOfLifeCruel, ProcessGameOfLifeCruel },
             { _Gamepad, ProcessGamepad },
-            { _GarnetTheif, ProcessGarnetThief },
+            { _GarnetThief, ProcessGarnetThief },
             { _Girlfriend, ProcessGirlfriend },
             { _GlitchedButton, ProcessGlitchedButton },
             { _GrayButton, ProcessGrayButton },

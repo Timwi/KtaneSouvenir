@@ -471,18 +471,16 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "metapuzzleScript");
         var fldSolved = GetField<bool>(comp, "solved");
 
-        var wordsType = comp.GetType().Assembly.GetType("SevenLetterWords");
-        if (wordsType == null)
-            throw new AbandonModuleException("I cannot find the SevenLetterWords type.");
+        var wordsType = comp.GetType().Assembly.GetType("SevenLetterWords") ?? throw new AbandonModuleException("I cannot find the SevenLetterWords type.");
         var words = GetStaticField<string[]>(wordsType, "List", isPublic: true).Get();
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
         _modulesSolved.IncSafe(_Metapuzzle);
 
-        var Answer = GetField<string>(comp, "metaAnswer").Get(x => x.Length != 7 ? "Expected length 8" : null);
+        var answer = GetField<string>(comp, "metaAnswer").Get(x => x.Length != 7 ? "expected length 7" : null);
 
-        addQuestion(module, Question.MetapuzzleAnswer, correctAnswers: new[] { Answer }, preferredWrongAnswers: words);
+        addQuestion(module, Question.MetapuzzleAnswer, correctAnswers: new[] { answer }, preferredWrongAnswers: words);
     }
 
     private IEnumerable<object> ProcessMicrocontroller(KMBombModule module)

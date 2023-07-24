@@ -2,10 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 using Souvenir;
 using UnityEngine;
-using UnityEngine.Events;
 
 public partial class SouvenirModule
 {
@@ -56,6 +54,10 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_WeakestLink);
 
         var contestantArr = GetArrayField<object>(comp, "contestants").Get(expectedLength: 3);
+        var fldCorrectAnswer = GetIntField(contestantArr[0], "CorrectAnswer", isPublic: true);
+        var fldQuestionsAsked = GetIntField(contestantArr[0], "QuestionsAsked", isPublic: true);
+        var fldCategory = GetField<Enum>(contestantArr[0], "Category", isPublic: true);
+        var fldName = GetField<string>(contestantArr[0], "Name", isPublic: true);
 
         var ratioArr = new string[3];
         var names = new string[3];
@@ -64,26 +66,20 @@ public partial class SouvenirModule
         for (int i = 0; i < 3; i++)
         {
             var person = contestantArr[i];
-            var ratio = GetIntField(person, "CorrectAnswer", isPublic: true).Get() + "/" + GetIntField(person, "QuestionsAsked", isPublic: true).Get();
-            skill[i] = GetField<Enum>(person, "Category", isPublic: true).Get();
-
-            ratioArr[i] = ratio;
-            names[i] = GetField<string>(person, "Name", isPublic: true).Get();
-
+            skill[i] = fldCategory.GetFrom(person);
+            ratioArr[i] = fldCorrectAnswer.GetFrom(person) + "/" + fldQuestionsAsked.GetFrom(person);
+            names[i] = fldName.GetFrom(person);
         }
-        
+
         var eliminatedPerson = GetField<object>(comp, "personToEliminate").Get();
         var eliminationPersonName = GetField<string>(eliminatedPerson, "Name").Get();
-
         var moneyPhaseName = eliminationPersonName == names[1] ? names[2] : names[1];
-
         var jsonReader = GetStaticField<object>(comp.GetType(), "jsonData").Get();
-
-        var randomNames = GetStaticProperty<List<string>>(jsonReader.GetType(), "ContestantNames", isPublic: true).Get();
+        var allNames = GetStaticProperty<List<string>>(jsonReader.GetType(), "ContestantNames", isPublic: true).Get().ToArray();
 
         addQuestions(module,
-            makeQuestion(Question.WeakestLinkElimination, _WeakestLink, correctAnswers: new[] { eliminationPersonName }, preferredWrongAnswers: randomNames.ToArray()),
-            makeQuestion(Question.WeakestLinkMoneyPhaseName, _WeakestLink, correctAnswers: new[] { moneyPhaseName }, preferredWrongAnswers: randomNames.ToArray()),
+            makeQuestion(Question.WeakestLinkElimination, _WeakestLink, correctAnswers: new[] { eliminationPersonName }, preferredWrongAnswers: allNames),
+            makeQuestion(Question.WeakestLinkMoneyPhaseName, _WeakestLink, correctAnswers: new[] { moneyPhaseName }, preferredWrongAnswers: allNames),
             makeQuestion(Question.WeakestLinkSkill, _WeakestLink, formatArgs: new[] { names[1] }, correctAnswers: new[] { skill[1].ToString() }),
             makeQuestion(Question.WeakestLinkSkill, _WeakestLink, formatArgs: new[] { names[2] }, correctAnswers: new[] { skill[2].ToString() }),
             makeQuestion(Question.WeakestLinkRatio, _WeakestLink, formatArgs: new[] { "you" }, correctAnswers: new[] { ratioArr[0] }),
