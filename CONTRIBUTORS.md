@@ -145,6 +145,16 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Critters        │  Infinite Loop  │  Numbered Buttons    │  Pixel Cipher
     Factoring Maze  │  Interpunct     │  Password Destroyer  │
 
+## Implemented by Hawker (7)
+
+    Customer Identification  │  Girlfriend        │  Spongebob Birthday Identification  │  Weakest Link, The
+    Garnet Thief, The        │  Scrutiny Squares  │  UNO!                               │
+
+## Implemented by GoodHood (6)
+
+    Catchphrase   │  Long Words  │  Qwirkle
+    Digit String  │  Metapuzzle  │  Raiding Temples
+
 ## Others
 
     MODULE                   │  IMPLEMENTED BY
@@ -157,22 +167,22 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Bob Barks                │  Kaito Sinclaire
     Colour Flash             │  LotsOfS
     Connection Check         │  BakersDozenBagels
+    Crazy Hamburger          │  noting3548
     Divisible Numbers        │  shortc1rcuit
     Double Arrows            │  BakersDozenBagels
     Elder Futhark            │  Goofy
     ƎNA Cipher               │  KiloBites
     Exoplanets               │  Brawlboxgaming
     Functions                │  JerryEris
-    Girlfriend               │  Hawker
     Gryphons                 │  JerryEris
     Hyperlink, The           │  Espik
     Inner Connections        │  Brawlboxgaming
     Labyrinth, The           │  BakersDozenBagels
-    Long Words               │  GoodHood
     Mahjong                  │  River
     Mega Man 2               │  Goofy
     Melody Sequencer         │  Goofy
     Module Maze              │  River
+    Old AI                   │  noting3548
     Order Picking            │  Brawlboxgaming
     Placement Roulette       │  Brawlboxgaming
     Planets                  │  KingSlendy
@@ -180,7 +190,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Regular Crazy Talk       │  Espik
     Reverse Polish Notation  │  shortc1rcuit
     Schlag den Bomb          │  JerryEris
-    Scrutiny Squares         │  Hawker
     Shapes And Bombs         │  KingSlendy
     Simon Selects            │  tachatat18
     Simon Sends              │  EternityShack

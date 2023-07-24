@@ -55,6 +55,7 @@
 - Caesar Cycle — TasThiluna
 - Calendar — Timwi
 - Cartinese — Timwi
+- Catchphrase — GoodHood
 - Challenge & Contact — luisdiogo98
 - Character Codes — NickLatkovich
 - Cheap Checkout — Timwi
@@ -80,6 +81,7 @@
 - Corners — Timwi
 - Cornflower Cipher — Timwi
 - Cosmic — BigCrunch22
+- Crazy Hamburger — noting3548
 - Cream Cipher — Timwi
 - Creation — CaitSith2
 - Crimson Cipher — Timwi
@@ -89,12 +91,14 @@
 - Cryptic Cycle — TasThiluna
 - Cryptic Keypad — Timwi
 - Cursed Double-Oh — Kuro
+- Customer Identification — Hawker
 - DACH Maze — Timwi
 - Deaf Alley — BigCrunch22
 - Decolored Squares — luisdiogo98
 - Decolour Flash — Timwi
 - Devilish Eggs — Timwi
 - Digisibility — tandyCake
+- Digit String — GoodHood
 - Discolored Squares — luisdiogo98
 - Divisible Numbers — shortc1rcuit
 - Double Arrows — BakersDozenBagels
@@ -210,6 +214,7 @@
 - Memorable Buttons — Timwi
 - Memory — Andrio Celos
 - Metamorse — tandyCake
+- Metapuzzle — GoodHood
 - Microcontroller — Timwi
 - Minesweeper — CaitSith2
 - Mirror — Timwi
@@ -260,6 +265,7 @@
 - Numpath — tandyCake
 - Object Shows — Timwi
 - Odd One Out — luisdiogo98
+- Old AI — noting3548
 - Old Fogey — Kuro
 - Only Connect — Timwi
 - Orange Arrows — kavinkul
@@ -297,6 +303,8 @@
 - Question Mark — Kuro
 - Quick Arithmetic — VFlyer
 - Quintuples — Timwi
+- Qwirkle — GoodHood
+- Raiding Temples — GoodHood
 - Railway Cargo Loading — LotsOfS
 - Rainbow Arrows — TasThiluna
 - Recolored Switches — Timwi
@@ -364,6 +372,7 @@
 - Space Traders — NickLatkovich
 - Spelling Bee — BigCrunch22
 - Splitting The Loot — luisdiogo98
+- Spongebob Birthday Identification — Hawker
 - Stability — NickLatkovich
 - Stacked Sequences — GhostSalt
 - Stars — BigCrunch22
@@ -398,6 +407,7 @@
 - The Deck of Many Things — luisdiogo98
 - The Duck — Kuro
 - The Gamepad — Timwi
+- The Garnet Thief — Hawker
 - The Glitched Button — Timwi
 - The Gray Button — Timwi
 - The Great Void — Marksam
@@ -424,6 +434,7 @@
 - The Sphere — luisdiogo98
 - The Switch — Timwi
 - The Ultracube — luisdiogo98
+- The Weakest Link — Hawker
 - The Wire — Timwi
 - The Xenocryst — GhostSalt
 - The Yellow Button — Timwi
@@ -448,6 +459,7 @@
 - Unfair Cipher — luisdiogo98
 - Unfair’s Revenge — VFlyer
 - Unicode — Marksam
+- UNO! — Hawker
 - Unown Cipher — kavinkul
 - USA Cycle — tandyCake
 - USA Maze — luisdiogo98
