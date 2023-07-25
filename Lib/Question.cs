@@ -359,9 +359,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "up", "right", "down", "left" }, ExampleExtraFormatArgumentGroupSize = 1)]
         CartineseLyrics,
 
-        [SouvenirQuestion("What was the color of the {1} panel in {0}?", "Catchphrase", AnswerLayout.ThreeColumns6Answers, "Red", "Green", "Blue", "Orange", "Purple", "Yellow",
+        [SouvenirQuestion("What was the colour of the {1} panel in {0}?", "Catchphrase", AnswerLayout.ThreeColumns6Answers, "Red", "Green", "Blue", "Orange", "Purple", "Yellow",
             ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        CatchphraseColor,
+        CatchphraseColour,
 
         [SouvenirQuestion("What was the {1} submitted answer in {0}?", "Challenge & Contact", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "Accumulation", "Coffeebucks", "Perplexing", "Zoo", "Sunstone", "Bob" },
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -1639,7 +1639,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         OddOneOutButton,
 
-        [SouvenirQuestion("What was the correct {1} shown in {0}?", "Old AI", AnswerLayout.TwoColumns4Answers, "1", "2", "3", "4", "5",
+        [SouvenirQuestion("What was the {1} of the numbers shown in {0}?", "Old AI", AnswerLayout.TwoColumns4Answers, "1", "2", "3", "4", "5",
             ExampleExtraFormatArguments = new[] { "group", "sub-group" }, ExampleExtraFormatArgumentGroupSize = 1)]
         OldAIGroup,
 

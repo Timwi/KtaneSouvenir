@@ -64,7 +64,7 @@ public partial class SouvenirModule
         panelColors = panelColors.Select(x => char.ToUpperInvariant(x[0]) + x.Substring(1)).ToList();
 
         addQuestions(module,
-            Enumerable.Range(0, 4).Select(panel => makeQuestion(Question.CatchphraseColor, _Catchphrase, formatArgs: new[] { panelNames[panel] }, correctAnswers: new[] { panelColors[panel] })));
+            Enumerable.Range(0, 4).Select(panel => makeQuestion(Question.CatchphraseColour, _Catchphrase, formatArgs: new[] { panelNames[panel] }, correctAnswers: new[] { panelColors[panel] })));
     }
 
     private IEnumerable<object> ProcessChallengeAndContact(KMBombModule module)
