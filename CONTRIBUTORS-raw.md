@@ -158,7 +158,7 @@
 - hexOS — Emik
 - Hidden Colors — TasThiluna
 - Hill Cycle — TasThiluna
-- Hinges — Kur
+- Hinges — Kuro
 - Hogwarts — Timwi
 - Hold Ups — BigCrunch22
 - Homophones — VFlyer

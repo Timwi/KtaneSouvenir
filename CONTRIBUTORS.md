@@ -57,15 +57,16 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cosmic          │  Guess Who?     │  Sequencyclopedia, The  │  Topsy Turvy             │
     Deaf Alley      │  Hold Ups       │  Shifting Maze          │  Ultimate Cipher         │
 
-## Implemented by Kuro (35)
+## Implemented by Kuro (38)
 
-    ...?                  │  Cruel Keypads      │  Gadgetron Vendor      │  Old Fogey              │  Scripting
-    Alphabet Numbers      │  Cursed Double-Oh   │  Impostor, The         │  Orientation Hypercube  │  Simon Smothers
-    Bomb Diffusal         │  Double Expert      │  Juxtacolored Squares  │  Periodic Words         │  Simon Stacks
-    Boolean Wires         │  Duck, The          │  Kanji                 │  Pictionary             │  Snowflakes
-    Broken Guitar Chords  │  Faulty Buttons     │  Light Bulbs           │  Procedural Maze        │  Tetriamonds
-    Burger Alarm          │  Five Letter Words  │  Mad Memory            │  Question Mark          │  Tip Toe
-    Cruel Binary          │  Follow Me          │  Not Colored Squares   │  Recursive Password     │  Triamonds
+    ...?                  │  Cruel Keypads      │  Gadgetron Vendor      │  Old Fogey              │  Simon Smothers
+    64                    │  Cursed Double-Oh   │  Hinges                │  Orientation Hypercube  │  Simon Stacks
+    Alphabet Numbers      │  Double Expert      │  Impostor, The         │  Periodic Words         │  Snowflakes
+    Bomb Diffusal         │  Duck, The          │  Juxtacolored Squares  │  Pictionary             │  Tetriamonds
+    Boolean Wires         │  Encrypted Dice     │  Kanji                 │  Procedural Maze        │  Tip Toe
+    Broken Guitar Chords  │  Faulty Buttons     │  Light Bulbs           │  Question Mark          │  Triamonds
+    Burger Alarm          │  Five Letter Words  │  Mad Memory            │  Recursive Password     │
+    Cruel Binary          │  Follow Me          │  Not Colored Squares   │  Scripting              │
 
 ## Implemented by TasThiluna (31)
 

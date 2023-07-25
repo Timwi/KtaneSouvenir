@@ -2499,7 +2499,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "Annie", "Albert", "Josephine", "Frederick" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Strings("0-5", "/", "56")]
         WeakestLinkRatio,
-        [SouvenirQuestion("What was {1}'s skill in {0}?", "Weakest Link", AnswerLayout.OneColumn4Answers, "Geography", "Language", "Wildlife", "Biology", "Maths", "KTANE", "History", "Other", AddThe = true, ExampleAnswers = new[] { "KTANE", "Geography", "Language", "Wildlife" },
+        [SouvenirQuestion("What was {1}’s skill in {0}?", "Weakest Link", AnswerLayout.OneColumn4Answers, "Geography", "Language", "Wildlife", "Biology", "Maths", "KTANE", "History", "Other", AddThe = true, ExampleAnswers = new[] { "KTANE", "Geography", "Language", "Wildlife" },
             ExampleExtraFormatArguments = new[] { "Annie", "Albert", "Josephine", "Frederick" }, ExampleExtraFormatArgumentGroupSize = 1)]
         WeakestLinkSkill,
 

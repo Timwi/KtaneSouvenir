@@ -96,31 +96,34 @@ public partial class SouvenirModule
 
         // Use OnPass instead of the solved field to make sure we clear the sprites before the cards flip.
         var solved = false;
+        var qs = new List<QandA>();
+
         module.OnPass += () =>
         {
             solved = true;
-            Array.ForEach(
-                GetField<Array>(comp, "contestants").Get(arr => arr.Length != 7 ? "expected length 7" : null) as object[],
-                cont => GetField<bool>(cont, "lying", isPublic: true).Set(true)
-            );
-            GetArrayField<Color>(comp, "frameColors").Set(Enumerable.Range(0, 4).Select(_ => Color.gray).ToArray());
+            var contestants = GetField<Array>(comp, "contestants").Get(arr => arr.Length != 7 ? "expected length 7" : null) as object[];
+            var fldLying = GetField<bool>(contestants[0], "lying", isPublic: true);
+            var fldName = GetField<Enum>(contestants[0], "name", isPublic: true);
+            var fldClaimedFaction = GetField<Enum>(contestants[0], "claimedFaction", isPublic: true);
+
+            foreach (var cont in contestants)
+                fldLying.SetTo(cont, true);
+
+            GetArrayField<Color>(comp, "frameColors").Set(Enumerable.Repeat(Color.gray, 4).ToArray());
             GetArrayField<Sprite>(comp, "allFactionIcons", isPublic: true).Set(new Sprite[4]);
+
+            qs.AddRange(Enumerable.Range(0, 7).Select(i => makeQuestion(
+                question: Question.GarnetThiefClaim,
+                moduleKey: _GarnetThief,
+                formatArgs: new[] { fldName.GetFrom(contestants[i]).ToString() },
+                correctAnswers: new[] { fldClaimedFaction.GetFrom(contestants[i]).ToString() })));
             return false;
         };
 
         while (!solved)
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_GarnetThief);
-
-        var contestant = GetArrayField<object>(comp, "contestants").Get();
-        var fldName = GetField<Enum>(contestant[0], "name", isPublic: true);
-        var fldClaimedFaction = GetField<Enum>(contestant[0], "claimedFaction", isPublic: true);
-
-        addQuestions(module, Enumerable.Range(0, 7).Select(i => makeQuestion(
-            question: Question.GarnetThiefClaim,
-            moduleKey: _GarnetThief,
-            formatArgs: new[] { fldName.GetFrom(contestant[i]).ToString() },
-            correctAnswers: new[] { fldClaimedFaction.GetFrom(contestant[i]).ToString() })));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessGirlfriend(KMBombModule module)

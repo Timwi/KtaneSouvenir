@@ -13,6 +13,7 @@ namespace Souvenir.Reflection
         protected override T GetValue() => (T) Field.GetValue(_target);
         protected override T GetValue(object from) => (T) Field.GetValue(from);
         public void Set(T value) { Field.SetValue(_target, value); }
+        public void SetTo(object target, T value) { Field.SetValue(target, value); }
     }
 
     sealed class IntFieldInfo : FieldInfo<int>
