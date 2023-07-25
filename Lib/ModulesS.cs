@@ -1267,15 +1267,14 @@ public partial class SouvenirModule
         yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_SpongebobBirthdayIdentification);
 
-        if (answers.Count < 3)
-            answers.Add(fldAnswer.Get());
+        answers.Add(fldAnswer.Get());
 
         var allNames = GetField<Texture[]>(comp, "allImages", isPublic: true).Get().Select(x => x.name).ToArray();
-        addQuestions(module, Enumerable.Range(0, 3).Select(i => makeQuestion(
+        addQuestions(module, answers.Select((ans, ix) => makeQuestion(
             question: Question.SpongebobBirthdayIdentificationChildren,
             moduleKey: _SpongebobBirthdayIdentification,
-            formatArgs: new[] { ordinal(i + 1) },
-            correctAnswers: new[] { answers[i] },
+            formatArgs: new[] { ordinal(ix + 1) },
+            correctAnswers: new[] { ans },
             preferredWrongAnswers: allNames)));
     }
 
