@@ -53,17 +53,17 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_WeakestLink);
 
-        var contestantArr = GetArrayField<object>(comp, "contestants").Get(expectedLength: 3);
+        var contestantArr = GetArrayField<object>(comp, "contestants").Get(expectedLength: 3).Skip(1).ToArray();
         var fldCorrectAnswer = GetIntField(contestantArr[0], "CorrectAnswer", isPublic: true);
         var fldQuestionsAsked = GetIntField(contestantArr[0], "QuestionsAsked", isPublic: true);
         var fldCategory = GetField<Enum>(contestantArr[0], "Category", isPublic: true);
         var fldName = GetField<string>(contestantArr[0], "Name", isPublic: true);
 
-        var ratioArr = new string[3];
-        var names = new string[3];
-        var skill = new Enum[3];
+        var ratioArr = new string[2];
+        var names = new string[2];
+        var skill = new Enum[2];
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
             var person = contestantArr[i];
             skill[i] = fldCategory.GetFrom(person);
@@ -82,9 +82,9 @@ public partial class SouvenirModule
             makeQuestion(Question.WeakestLinkMoneyPhaseName, _WeakestLink, correctAnswers: new[] { moneyPhaseName }, preferredWrongAnswers: allNames),
             makeQuestion(Question.WeakestLinkSkill, _WeakestLink, formatArgs: new[] { names[1] }, correctAnswers: new[] { skill[1].ToString() }),
             makeQuestion(Question.WeakestLinkSkill, _WeakestLink, formatArgs: new[] { names[2] }, correctAnswers: new[] { skill[2].ToString() }),
-            makeQuestion(Question.WeakestLinkRatio, _WeakestLink, formatArgs: new[] { "you" }, correctAnswers: new[] { ratioArr[0] }),
             makeQuestion(Question.WeakestLinkRatio, _WeakestLink, formatArgs: new[] { names[1] }, correctAnswers: new[] { ratioArr[1] }),
-            makeQuestion(Question.WeakestLinkRatio, _WeakestLink, formatArgs: new[] { names[2] }, correctAnswers: new[] { ratioArr[2] }));
+            makeQuestion(Question.WeakestLinkRatio, _WeakestLink, formatArgs: new[] { names[2] }, correctAnswers: new[] { ratioArr[2] })
+        );
     }
 
     private IEnumerable<object> ProcessWhatsOnSecond(KMBombModule module)
