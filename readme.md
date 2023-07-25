@@ -68,18 +68,10 @@ To add a new module, the following steps are required:
 - Add your name and the module to `CONTRIBUTORS-raw.md`.
 - Please make a separate git commit for each module you implement. If you made multiple commits for the same module, please squash them into one.
 - Make the relevant changes to KtaneContent:
-    - The HTML manual:
-        - Add your new question anywhere (you can add it right at the top).
-        - If the module name starts with “The”, use the correct formatting — see Duck for an example.
-        - Uncomment the JavaScript code at the bottom by adding a `/` at the start of the line that says “use this to reflow the questions”.
-        - Open the manual in your browser. The JS code will automatically alphabetize and reflow the questions.
-        - Right-click the manual, Inspect Element, and find the `<div class="section">` element (right after `<body>`).
-        - In the inspector, right-click that element → Copy → Copy outerHTML.
-        - Replace the relevant `<div class="section">` tag in the manual with the clipboard contents. The tag starts right after `<body>` (line 60) and ends right before the aforementioned JS code.
-        - Re-comment the JS code by removing the `/` you added earlier.
-        - Press Ctrl+P (“print”) and choose “Save as PDF”. Make sure the paper size is set to Letter. Then save and overwrite the PDF manual (`Manual/pdfs/Modules/Souvenir.pdf`).
     - Change the modules’ JSON files by adding this line (and remove any existing Souvenir info):
         ```
         "Souvenir": { "Status": "Supported" },
         ```
-    - Zip up the new HTML manual and those JSON files and send them to me (Timwi on Discord) when you submit your pull request.
+    - Submit that as a pull request to the repo maintainers.
+    - Write the new questions for the HTML manual using the same HTML as existing questions. If the module name starts with “The”, see Duck for an example.
+    - Paste the HTML for the new questions on GitHub when you submit your pull request to Souvenir. I will do the rest to update the manual.
