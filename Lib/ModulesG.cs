@@ -93,9 +93,22 @@ public partial class SouvenirModule
     private IEnumerable<object> ProcessGarnetThief(KMBombModule module)
     {
         var comp = GetComponent(module, "TheGarnetThiefScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
 
-        while (!fldSolved.Get())
+        // Use OnPass instead of the solved field to make sure we clear the sprites before the cards flip.
+        var solved = false;
+        module.OnPass += () =>
+        {
+            solved = true;
+            Array.ForEach(
+                GetField<Array>(comp, "contestants").Get(arr => arr.Length != 7 ? "expected length 7" : null) as object[],
+                cont => GetField<bool>(cont, "lying", isPublic: true).Set(true)
+            );
+            GetArrayField<Color>(comp, "frameColors").Set(Enumerable.Range(0, 4).Select(_ => Color.gray).ToArray());
+            GetArrayField<Sprite>(comp, "allFactionIcons", isPublic: true).Set(new Sprite[4]);
+            return false;
+        };
+
+        while (!solved)
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_GarnetThief);
 
