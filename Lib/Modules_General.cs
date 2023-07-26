@@ -63,6 +63,7 @@ public partial class SouvenirModule
     const string _Boggle = "boggle";
     const string _BombDiffusal = "bombDiffusal";
     const string _BooleanWires = "booleanWires";
+    const string _BoomtarTheGreat = "boomtarTheGreat";
     const string _Boxing = "boxing";
     const string _Braille = "BrailleModule";
     const string _BreakfastEgg = "breakfastEgg";
@@ -569,6 +570,7 @@ public partial class SouvenirModule
             { _Boggle, ProcessBoggle },
             { _BombDiffusal, ProcessBombDiffusal },
             { _BooleanWires, ProcessBooleanWires },
+            { _BoomtarTheGreat, ProcessBoomtarTheGreat },
             { _Boxing, ProcessBoxing },
             { _Braille, ProcessBraille },
             { _BreakfastEgg, ProcessBreakfastEgg },

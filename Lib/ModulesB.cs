@@ -253,7 +253,8 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_BeanSprouts);
         string[] flavors = new[] { "Raw", "Cooked", "Burnt" };
         string[] flavors2 = new[] { "Left", "None", "Right" };
-        IEnumerable<QandA> beansQ(int i) {
+        IEnumerable<QandA> beansQ(int i)
+        {
             yield return makeQuestion(Question.BeanSproutsColors, _BeanSprouts, null, new string[] { (i + 1).ToString() }, new string[] { flavors[bns[i] % 3] });
             yield return makeQuestion(Question.BeanSproutsBeans, _BeanSprouts, null, new string[] { (i + 1).ToString() }, new string[] { flavors2[bns[i] / 3] });
         };
@@ -669,6 +670,25 @@ public partial class SouvenirModule
         for (int pos = 0; pos < 5; pos++)
             qs.Add(makeQuestion(Question.BooleanWiresEnteredOperators, _BooleanWires, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { operators[2 * pos] }));
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessBoomtarTheGreat(KMBombModule module)
+    {
+
+        var comp = GetComponent(module, "boomtarTheGreat");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_BoomtarTheGreat);
+
+        int rule1 = GetField<int>(comp, "rule1").Get(i => i < 0 || i > 5 ? "Bad rule 1" : null);
+        int rule2 = GetField<int>(comp, "rule2").Get(i => i < 0 || i > 5 ? "Bad rule 2" : null);
+
+        addQuestions(module,
+            makeQuestion(Question.BoomtarTheGreatRules, _BoomtarTheGreat, null, new string[] { "one" }, new string[] { (rule1 + 1).ToString() }, new string[] { (rule2 + 1).ToString() }),
+            makeQuestion(Question.BoomtarTheGreatRules, _BoomtarTheGreat, null, new string[] { "two" }, new string[] { (rule2 + 1).ToString() }, new string[] { (rule1 + 1).ToString() })
+            );
     }
 
     private IEnumerable<object> ProcessBoxing(KMBombModule module)

@@ -46,6 +46,7 @@
 - Boggle — luisdiogo98
 - Bomb Diffusal — Kuro
 - Boolean Wires — Kuro
+- Boomtar the Great — Anonymous
 - Boxing — Timwi
 - Braille — Timwi
 - Breakfast Egg — tandyCake
