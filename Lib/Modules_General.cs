@@ -63,6 +63,7 @@ public partial class SouvenirModule
     const string _Boggle = "boggle";
     const string _BombDiffusal = "bombDiffusal";
     const string _BooleanWires = "booleanWires";
+    const string _BoomtarTheGreat = "boomtarTheGreat";
     const string _Boxing = "boxing";
     const string _Braille = "BrailleModule";
     const string _BreakfastEgg = "breakfastEgg";
@@ -571,6 +572,7 @@ public partial class SouvenirModule
             [_Boggle] = (ProcessBoggle, "Boggle", "luisdiogo98"),
             [_BombDiffusal] = (ProcessBombDiffusal, "Bomb Diffusal", "Kuro"),
             [_BooleanWires] = (ProcessBooleanWires, "Boolean Wires", "Kuro"),
+            [_BoomtarTheGreat] = (ProcessBoomtarTheGreat, "Boomtar the Great", "Anonymous"),
             [_Boxing] = (ProcessBoxing, "Boxing", "Timwi"),
             [_Braille] = (ProcessBraille, "Braille", "Timwi"),
             [_BreakfastEgg] = (ProcessBreakfastEgg, "Breakfast Egg", "tandyCake"),

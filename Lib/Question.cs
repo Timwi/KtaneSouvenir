@@ -310,6 +310,11 @@ namespace Souvenir
         [SouvenirQuestion("Which operator did you submit in the {1} stage of {0}?", "Boolean Wires", AnswerLayout.TwoColumns4Answers, "OR", "XOR", "AND", "NAND", "NOR", ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         BooleanWiresEnteredOperators,
 
+        [SouvenirQuestion("What was rule {1} in {0}?", "Boomtar the Great", AnswerLayout.ThreeColumns6Answers, 
+            ExampleExtraFormatArgumentGroupSize = 1, ExampleExtraFormatArguments = new[] { "one", "two" })]
+        [AnswerGenerator.Integers(1, 6)]
+        BoomtarTheGreatRules,
+
         [SouvenirQuestion("Which {1} appeared on {0}?", "Boxing", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "Muhammad", "Mike", "Floyd", "Joe", "George", "Manny", "Sugar Ray", "Evander" },
             ExampleExtraFormatArguments = new[] { "contestant’s first name", "contestant’s last name", "substitute’s first name", "substitute’s last name" }, ExampleExtraFormatArgumentGroupSize = 1)]
         BoxingNames,

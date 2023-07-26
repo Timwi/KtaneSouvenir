@@ -675,6 +675,23 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessBoomtarTheGreat(KMBombModule module)
+    {
+        var comp = GetComponent(module, "boomtarTheGreat");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_BoomtarTheGreat);
+
+        int rule1 = GetField<int>(comp, "rule1").Get(i => i < 0 || i > 5 ? "Bad rule 1" : null);
+        int rule2 = GetField<int>(comp, "rule2").Get(i => i < 0 || i > 5 ? "Bad rule 2" : null);
+
+        addQuestions(module,
+            makeQuestion(Question.BoomtarTheGreatRules, _BoomtarTheGreat, formatArgs: new string[] { "one" }, correctAnswers: new string[] { (rule1 + 1).ToString() }, preferredWrongAnswers: new string[] { (rule2 + 1).ToString() }),
+            makeQuestion(Question.BoomtarTheGreatRules, _BoomtarTheGreat, formatArgs: new string[] { "two" }, correctAnswers: new string[] { (rule2 + 1).ToString() }, preferredWrongAnswers: new string[] { (rule1 + 1).ToString() }));
+    }
+
     private IEnumerable<object> ProcessBoxing(KMBombModule module)
     {
         var comp = GetComponent(module, "boxing");
