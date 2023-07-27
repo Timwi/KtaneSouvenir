@@ -51,6 +51,8 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] WavetappingSprites;
     public Texture2D[] NonverbalSimonQuestions;
     private readonly List<Texture2D> _temporaryQuestions = new List<Texture2D>();
+    private static readonly HashSet<object> _temporaryTracking = new HashSet<object>();
+    private readonly HashSet<object> _personalTemporaryTracking = new HashSet<object>();
 
     public TextMesh TextMesh;
     public Renderer TextRenderer;
@@ -80,6 +82,8 @@ public partial class SouvenirModule : MonoBehaviour
     private bool _animating = false;
     private bool _exploded = false;
     private int _avoidQuestions = 0;   // While this is > 0, temporarily avoid asking questions; currently only used when Souvenir is hidden by a Mystery Module
+    // Be sure to decrement _delaySolve in a try/finally block so the module won't hang in case of an exception!
+    private int _delaySolve = 0; // While this is > 0, temporarily avoid solving; currently only used when Souvenir is waiting for The Fuse Box to animate
     private bool _showWarning = false;
 
     [NonSerialized]
@@ -536,6 +540,10 @@ public partial class SouvenirModule : MonoBehaviour
             var numSolved = Bomb.GetSolvedModuleNames().Count(x => !_ignoredModules.Contains(x));
             if (_questions.Count == 0 && (numSolved >= numPlayableModules || _coroutinesActive == 0))
             {
+                // Incredibly rare case: another coroutine has indicated that it's waiting for a module to solve and then add another question to the queue
+                while (_questions.Count == 0 && _delaySolve > 0)
+                    yield return new WaitForSeconds(.1f);
+
                 // Very rare case: another coroutine could still be waiting to detect that a module is solved and then add another question to the queue
                 yield return new WaitForSeconds(.1f);
 
@@ -775,6 +783,25 @@ public partial class SouvenirModule : MonoBehaviour
         foreach (var tx in _temporaryQuestions)
             Destroy(tx);
         _temporaryQuestions.Clear();
+        foreach (object o in _personalTemporaryTracking)
+            _temporaryTracking.Remove(o);
+    }
+    #endregion
+
+    #region Miscellaneous Helpers (used by module handlers)
+    /// <summary>
+    /// Used to check if another Souvenir module is already doing something.
+    /// </summary>
+    /// <example>Only close the over of a Fuse Box once by tracking which ones are being closed.</example>
+    /// <param name="o">The object to track.</param>
+    /// <returns><see langword="true"/> if this object was not already tracked.</returns>
+    private bool TryTrack(object o)
+    {
+        if (_temporaryTracking.Contains(o))
+            return false;
+        _temporaryTracking.Add(o);
+        _personalTemporaryTracking.Add(o);
+        return true;
     }
     #endregion
 
