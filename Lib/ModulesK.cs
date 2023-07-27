@@ -78,6 +78,28 @@ public partial class SouvenirModule
         addQuestion(module, Question.KeypadMagnifiedLED, correctAnswers: new[] { posNames[LEDPos] });
     }
 
+    private IEnumerable<object> ProcessKnowYourWay(KMBombModule module)
+    {
+        var comp = GetComponent(module, "KnowYourWayScript");
+
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_KnowYourWay);
+
+        var ledIndex = GetIntField(comp, "LEDLoc").Get(min: 0, max: 3);
+        var arrowIndex = GetIntField(comp, "ArrowLoc").Get(min: 0, max: 3);
+        GetArrayField<GameObject>(comp, "Bars", isPublic: true)
+            .Get(expectedLength: 4)[ledIndex]
+            .GetComponent<MeshRenderer>().material = GetArrayField<Material>(comp, "LEDs", isPublic: true).Get(expectedLength: 2)[0];
+
+        addQuestions(
+            module,
+            makeQuestion(Question.KnowYourWayArrow, _KnowYourWay, correctAnswers: new[] { new[] { "Up", "Left", "Down", "Right" }[arrowIndex] }),
+            makeQuestion(Question.KnowYourWayLed, _KnowYourWay, correctAnswers: new[] { new[] { "Top", "Left", "Bottom", "Right" }[ledIndex] })
+        );
+    }
+
     private IEnumerable<object> ProcessKudosudoku(KMBombModule module)
     {
         var comp = GetComponent(module, "KudosudokuModule");

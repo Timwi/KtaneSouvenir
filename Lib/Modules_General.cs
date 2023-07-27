@@ -218,6 +218,7 @@ public partial class SouvenirModule
     const string _Kanji = "KanjiModule";
     const string _KanyeEncounter = "TheKanyeEncounter";
     const string _KeypadMagnified = "keypadMagnified";
+    const string _KnowYourWay = "KnowYourWay";
     const string _Kudosudoku = "KudosudokuModule";
     const string _Labyrinth = "labyrinth";
     const string _Ladders = "ladders";
@@ -721,6 +722,7 @@ public partial class SouvenirModule
             [_Kanji] = (ProcessKanji, "Kanji", "Kuro"),
             [_KanyeEncounter] = (ProcessKanyeEncounter, "Kanye Encounter, The", "tandyCake"),
             [_KeypadMagnified] = (ProcessKeypadMagnified, "Keypad Magnified", "tandyCake"),
+            [_KnowYourWay] = (ProcessKnowYourWay, "Know Your Way", "Kuro"),
             [_Kudosudoku] = (ProcessKudosudoku, "Kudosudoku", "Timwi"),
             [_Labyrinth] = (ProcessLabyrinth, "Labyrinth, The", "BakersDozenBagels"),
             [_Ladders] = (ProcessLadders, "Ladders", "tandyCake"),
