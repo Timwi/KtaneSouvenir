@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Newtonsoft.Json;
 using Souvenir;
 using UnityEngine;
@@ -467,5 +468,94 @@ public partial class SouvenirModule
             makeQuestion(Question.FunctionsLetter, _Functions, correctAnswers: new[] { theLetter }),
             makeQuestion(Question.FunctionsRightNumber, _Functions, correctAnswers: new[] { rNum.ToString() }, preferredWrongAnswers:
                 Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(1, 999).ToString()).Distinct().Take(6).ToArray()));
+    }
+
+    private IEnumerable<object> ProcessFuseBox(KMBombModule module)
+    {
+        _delaySolve++; // We will have a question eventually, but it might take longer than 0.1 seconds.
+        try
+        {
+            var comp = GetComponent(module, "FuseBoxScript");
+            var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+            while (!fldSolved.Get())
+                yield return new WaitForSeconds(0.1f);
+
+            if (TryTrack(module))
+            {
+                foreach (var button in comp.GetComponent<KMSelectable>().Children)
+                    button.OnInteract = () => false;
+
+                fldSolved = GetField<bool>(comp, "animating");
+                while (fldSolved.Get())
+                    yield return new WaitForSeconds(0.1f);
+                if (GetField<bool>(comp, "opened").Get())
+                    yield return ((MonoBehaviour) comp).StartCoroutine(GetMethod<IEnumerator>(comp, "ToggleDoor", 0).Invoke(new object[0]));
+            }
+            else
+            {
+                fldSolved = GetField<bool>(comp, "animating");
+                var fldOpened = GetField<bool>(comp, "opened");
+                while (fldSolved.Get() || fldOpened.Get())
+                    yield return new WaitForSeconds(0.1f);
+            }
+
+            _modulesSolved.IncSafe(_FuseBox);
+
+            var flashes = GetField<int[]>(comp, "lightColors")
+                .Get(arr => arr.Length != 4 ? "Bad length" : arr.Any(i => i < 0 || i > 3) ? "Bad item" : null)
+                .ToList();
+            var qs = new List<QandA>(8);
+            var arrows = GetField<int[]>(comp, "correctButtons")
+                .Get(arr => arr.Length != 4 ? "Bad length" : arr.Any(i => i < 0 || i > 3) ? "Bad item" : null)
+                .ToList();
+            // var names = new[] { "Red", "Yellow", "Green", "Blue" };
+            // var arrows = "↖↗↙↘";
+
+            for (int ix = 0; ix < 4; ix++)
+            {
+                var tex = FuseBoxQuestions.First(t => t.name.Equals($"flash{ix + 1}"));
+                var tex2 = FuseBoxQuestions.First(t => t.name.Equals($"arrow{ix + 1}"));
+
+                if (_moduleCounts.Get(_FuseBox) > 1)
+                {
+                    var num = _modulesSolved.Get(_FuseBox).ToString();
+                    var tmp = new Texture2D(400, 320, TextureFormat.ARGB32, false);
+                    var tmp2 = new Texture2D(400, 320, TextureFormat.ARGB32, false);
+                    tmp.SetPixels(tex.GetPixels());
+                    tmp2.SetPixels(tex2.GetPixels());
+
+                    tex = FuseBoxQuestions.First(t => t.name.Equals("name"));
+                    tmp.SetPixels(20, 120, tex.width, tex.height, tex.GetPixels());
+                    tmp2.SetPixels(32, 0, tex.width, tex.height, tex.GetPixels());
+                    for (var digit = 0; digit < num.Length; digit++)
+                    {
+                        tex = NonverbalSimonQuestions.First(t => t.name.Equals($"d{num[digit]}"));
+                        tmp.SetPixels(20 + tex.width + 40 * digit, 120, tex.width, tex.height, tex.GetPixels());
+                        tmp2.SetPixels(32 + tex.width + 40 * digit, 0, tex.width, tex.height, tex.GetPixels());
+                    }
+
+                    tmp.Apply(false, true);
+                    tmp2.Apply(false, true);
+                    _temporaryQuestions.Add(tmp);
+                    _temporaryQuestions.Add(tmp2);
+                    tex = tmp;
+                    tex2 = tmp2;
+                }
+
+                var q = Sprite.Create(tex, Rect.MinMaxRect(0f, 0f, 400f, 320f), new Vector2(.5f, .5f), 1280f, 1u, SpriteMeshType.Tight);
+                var q2 = Sprite.Create(tex2, Rect.MinMaxRect(0f, 0f, 400f, 320f), new Vector2(.5f, .5f), 1280f, 1u, SpriteMeshType.Tight);
+                q.name = $"FuseBox-Flash-{ix}-{_moduleCounts.Get(_FuseBox)}";
+                q2.name = $"FuseBox-Arrow-{ix}-{_moduleCounts.Get(_FuseBox)}";
+                qs.Add(makeQuestion(q, Question.FuseBoxFlashes, _FuseBox, new[] { ordinal(ix + 1) }, new[] { FuseBoxColorSprites[flashes[ix]] }));
+                qs.Add(makeQuestion(q2, Question.FuseBoxArrows, _FuseBox, new[] { ordinal(ix + 1) }, new[] { FuseBoxArrowSprites[arrows[ix]] }));
+            }
+
+            addQuestions(module, qs);
+        }
+        finally
+        {
+            _delaySolve--;
+        }
     }
 }

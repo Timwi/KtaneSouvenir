@@ -173,6 +173,7 @@ public partial class SouvenirModule
     const string _ForgetTheColors = "ForgetTheColors";
     const string _FreeParking = "freeParking";
     const string _Functions = "qFunctions";
+    const string _FuseBox = "FuseBox";
     const string _GadgetronVendor = "lgndGadgetronVendor";
     const string _GameOfLifeCruel = "GameOfLifeCruel";
     const string _Gamepad = "TheGamepadModule";
@@ -680,6 +681,7 @@ public partial class SouvenirModule
             { _ForgetTheColors, ProcessForgetTheColors },
             { _FreeParking, ProcessFreeParking },
             { _Functions, ProcessFunctions },
+            { _FuseBox, ProcessFuseBox },
             { _GadgetronVendor, ProcessGadgetronVendor },
             { _GameOfLifeCruel, ProcessGameOfLifeCruel },
             { _Gamepad, ProcessGamepad },

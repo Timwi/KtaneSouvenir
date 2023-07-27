@@ -415,6 +415,7 @@
 - The Cyan Button — QuinnWuest
 - The Deck of Many Things — luisdiogo98
 - The Duck — Kuro
+- The Fuse Box — Anonymous
 - The Gamepad — Timwi
 - The Garnet Thief — Hawker
 - The Glitched Button — Timwi

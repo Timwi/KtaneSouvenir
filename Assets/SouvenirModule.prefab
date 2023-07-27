@@ -446,6 +446,16 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2b18b579da6f455428ec5fb0134151b3, type: 3}
   - {fileID: 21300000, guid: 227832fbd4de6234bad6da4c4ef4d42d, type: 3}
   - {fileID: 21300000, guid: e467e01e7aaf451479e114e425539d52, type: 3}
+  FuseBoxColorSprites:
+  - {fileID: 21300000, guid: 6d84b885e2726bc4388a01ce8e211c2e, type: 3}
+  - {fileID: 21300000, guid: ef44838cc585dec41a1e39cbd4b272e9, type: 3}
+  - {fileID: 21300000, guid: 603071f46cbd1804ea8e86dc4e059816, type: 3}
+  - {fileID: 21300000, guid: 9cc303303f0b12f4a8ceb4243e88210f, type: 3}
+  FuseBoxArrowSprites:
+  - {fileID: 21300000, guid: 86ca06797589bd041996da0bdaf83408, type: 3}
+  - {fileID: 21300000, guid: e92021215dbffbd4fa18a260aea003a7, type: 3}
+  - {fileID: 21300000, guid: 3d76df8f821e6cc42b4341d5de69cd93, type: 3}
+  - {fileID: 21300000, guid: ac6edbfba55ef114a820af06760767f6, type: 3}
   GadgetronVendorIconSprites:
   - {fileID: 21300000, guid: 623d4dcd5a0c8314cbf6568bb6f91450, type: 3}
   - {fileID: 21300000, guid: f4d07e0c501b39f4d92c468a5f8f0e2b, type: 3}
@@ -1126,6 +1136,16 @@ MonoBehaviour:
   - {fileID: 2800000, guid: f5858e9f43ca074498f7365e17020de5, type: 3}
   - {fileID: 2800000, guid: 82307c5009b79e141b3ca4a18fe3f66a, type: 3}
   - {fileID: 2800000, guid: a1e3fe23583527d438a75c6d704599bc, type: 3}
+  FuseBoxQuestions:
+  - {fileID: 2800000, guid: cda5f61570b3d0a4594099e18c684b70, type: 3}
+  - {fileID: 2800000, guid: 7356dc35312b8854b84187adaf24587b, type: 3}
+  - {fileID: 2800000, guid: e270898e9573ff542b9c9c23bd20c466, type: 3}
+  - {fileID: 2800000, guid: fa5bb109f7c1e614fa3ad9059b8c8666, type: 3}
+  - {fileID: 2800000, guid: 3d624cc7c50ebdb48b9e4342d9332e54, type: 3}
+  - {fileID: 2800000, guid: 2d274977dbea09c4b924232abe033c80, type: 3}
+  - {fileID: 2800000, guid: 7531df0b5e7998e479ec9988eaffeaa3, type: 3}
+  - {fileID: 2800000, guid: 7cc7eaff2adbbbb4c8a8283e793266cb, type: 3}
+  - {fileID: 2800000, guid: 36e4eca64d157d740980f42a62d4d8b7, type: 3}
   TextMesh: {fileID: 102000012539687798}
   TextRenderer: {fileID: 23000013337156738}
   SurfaceRenderer: {fileID: 23000012396776310}
