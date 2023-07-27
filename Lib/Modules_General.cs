@@ -10,7 +10,7 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
-    const string Version = "4.84";
+    const string Version = "4.85";
 
     // The values here are the “ModuleType” property on the KMBombModule components.
     const string _1000Words = "OneThousandWords";
@@ -386,6 +386,7 @@ public partial class SouvenirModule
     const string _SeaShells = "SeaShells";
     const string _Semamorse = "semamorse";
     const string _Sequencyclopedia = "TheSequencyclopedia";
+    const string _SetTheory = "SetTheory";
     const string _ShapesAndBombs = "ShapesBombs";
     const string _ShapeShift = "shapeshift";
     const string _ShiftedMaze = "shiftedMaze";
@@ -888,6 +889,7 @@ public partial class SouvenirModule
             { _SeaShells, ProcessSeaShells },
             { _Semamorse, ProcessSemamorse },
             { _Sequencyclopedia, ProcessSequencyclopedia },
+            { _SetTheory, ProcessSetTheory },
             { _ShapesAndBombs, ProcessShapesAndBombs },
             { _ShapeShift, ProcessShapeShift },
             { _ShiftedMaze, ProcessShiftedMaze },

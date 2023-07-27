@@ -223,6 +223,27 @@ public partial class SouvenirModule
         addQuestions(module, makeQuestion(Question.SequencyclopediaSequence, _Sequencyclopedia, correctAnswers: new[] { answer }, preferredWrongAnswers: wrongAnswers.ToArray()));
     }
 
+    private IEnumerable<object> ProcessSetTheory(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SetTheoryScript");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+        var fldEquations = GetField<Array>(comp, "_equations");
+        var mthGenerate = GetMethod<object>(comp, "GenerateEquationForStage", 1);
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SetTheory);
+
+        var equations = fldEquations.Get(v => v.Length != 4 ? "expected length 4" : null).Cast<object>().Select(eq => eq.ToString()).ToArray();
+        addQuestions(module, Enumerable.Range(0, 4).Select(stage =>
+        {
+            var wrongAnswers = new HashSet<string> { equations[stage] };
+            while (wrongAnswers.Count < 4)
+                wrongAnswers.Add(mthGenerate.Invoke(stage).ToString());
+            return makeQuestion(Question.SetTheoryEquations, _SetTheory, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { equations[stage] }, preferredWrongAnswers: wrongAnswers.ToArray());
+        }));
+    }
+
     private IEnumerable<object> ProcessShapesAndBombs(KMBombModule module)
     {
         var comp = GetComponent(module, "ShapesBombs");

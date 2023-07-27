@@ -2027,6 +2027,11 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 1000000, "'A'000000")]
         SequencyclopediaSequence,
 
+        [SouvenirQuestion("What equation was shown in the {1} stage of {0}?", "S.E.T. Theory", AnswerLayout.OneColumn4Answers, null,
+            ExampleAnswers = new[] { "(A ∩ B)", "(A ∪ B)", "(!B ∆ !A)", "(B ∩ !A)", "(!(C − B) ∪ !A)", "((B ∩ A) − C)", "(!(B ∪ A) ∆ (C ∩ !B))", "((A − !C) ∩ !(B ∪ !C))" },
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SetTheoryEquations,
+
         [SouvenirQuestion("What was the initial letter in {0}?", "Shapes And Bombs", AnswerLayout.ThreeColumns6Answers, "A", "B", "D", "E", "G", "I", "K", "L", "N", "O", "P", "S", "T", "X", "Y")]
         ShapesAndBombsInitialLetter,
 
