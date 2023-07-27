@@ -180,6 +180,7 @@
 - Juxtacolored Squares — Kuro
 - Kanji — Kuro
 - Keypad Magnified — tandyCake
+- Know Your Way — Kuro
 - Kudosudoku — Timwi
 - Ladders — tandyCake
 - Lasers — luisdiogo98

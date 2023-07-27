@@ -1116,6 +1116,11 @@ namespace Souvenir
         [SouvenirQuestion("What was the position of the LED in {0}?", "Keypad Magnified", AnswerLayout.TwoColumns4Answers, "Top-left", "Top-right", "Bottom-left", "Bottom-right")]
         KeypadMagnifiedLED,
 
+        [SouvenirQuestion("Which way was the arrow pointing in {0}?", "Know Your Way", AnswerLayout.TwoColumns4Answers, "Up", "Down", "Left", "Right")]
+        KnowYourWayArrow,
+        [SouvenirQuestion("Which LED was green in {0}?", "Know Your Way", AnswerLayout.TwoColumns4Answers, "Top", "Bottom", "Right", "Left")]
+        KnowYourWayLed,
+
         [SouvenirQuestion("Which square was {1} in {0}?", "Kudosudoku", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Grid, TranslateFormatArgs = new[] { true },
             ExampleExtraFormatArguments = new[] { "pre-filled", "not pre-filled" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Grid(4, 4)]
