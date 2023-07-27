@@ -503,6 +503,11 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         CrazyHamburgerIngredient,
 
+        [SouvenirQuestion("What was the {1} location in {0}?", "Crazy Maze", AnswerLayout.ThreeColumns6Answers,
+            ExampleExtraFormatArguments = new[] { "starting", "goal" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("A-Z", "A-Z")]
+        CrazyMazeStartOrGoal,
+
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Cream Cipher", AnswerLayout.TwoColumns4Answers, null, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
         CreamCipherScreen,

@@ -103,6 +103,7 @@ public partial class SouvenirModule
     const string _CornflowerCipher = "cornflowerCipher";
     const string _Cosmic = "CosmicModule";
     const string _CrazyHamburger = "GSCrazyHamburger";
+    const string _CrazyMaze = "CrazyMazeModule";
     const string _CreamCipher = "creamCipher";
     const string _Creation = "CreationModule";
     const string _CrimsonCipher = "crimsonCipher";
@@ -604,6 +605,7 @@ public partial class SouvenirModule
             { _CornflowerCipher, ProcessCornflowerCipher },
             { _Cosmic, ProcessCosmic },
             { _CrazyHamburger, ProcessCrazyHamburger },
+            { _CrazyMaze, ProcessCrazyMaze },
             { _CreamCipher, ProcessCreamCipher },
             { _Creation, ProcessCreation },
             { _CrimsonCipher, ProcessCrimsonCipher },

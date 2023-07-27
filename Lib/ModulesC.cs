@@ -705,6 +705,26 @@ public partial class SouvenirModule
                 correctAnswers: new[] { dic[ing] })));
     }
 
+    private IEnumerable<object> ProcessCrazyMaze(KMBombModule module)
+    {
+        var comp = GetComponent(module, "CrazyMazeScript");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+        var fldStart = GetIntField(comp, "_startingCell");
+        var fldGoal = GetIntField(comp, "_goalCell");
+        var fldCellLetters = GetArrayField<string>(comp, "_cellLetters");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_CrazyMaze);
+
+        var cellLetters = fldCellLetters.Get(expectedLength: 26 * 26);
+        var start = cellLetters[fldStart.Get(min: 0, max: 26 * 26 - 1)];
+        var goal = cellLetters[fldGoal.Get(min: 0, max: 26 * 26 - 1)];
+        addQuestions(module,
+            makeQuestion(Question.CrazyMazeStartOrGoal, _CrazyMaze, formatArgs: new[] { "starting" }, correctAnswers: new[] { start }, preferredWrongAnswers: new[] { goal }),
+            makeQuestion(Question.CrazyMazeStartOrGoal, _CrazyMaze, formatArgs: new[] { "goal" }, correctAnswers: new[] { goal }, preferredWrongAnswers: new[] { start }));
+    }
+
     private IEnumerable<object> ProcessCreamCipher(KMBombModule module)
     {
         return processColoredCiphers(module, "creamCipher", Question.CreamCipherScreen, _CreamCipher);
