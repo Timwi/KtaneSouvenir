@@ -910,6 +910,13 @@ namespace Souvenir
         [AnswerGenerator.Integers(1, 999)]
         FunctionsRightNumber,
 
+        [SouvenirQuestion("What color flashed {1} in {0}?", "Fuse Box", TwoColumns4Answers, Type = AnswerType.Sprites, AddThe = true, IsEntireQuestionSprite = true, SpriteField = "FuseBoxColorSprites",
+            ExampleExtraFormatArgumentGroupSize = 1, ExampleExtraFormatArguments = new[] { QandA.Ordinal })]
+        FuseBoxFlashes,
+        [SouvenirQuestion("What arrow was shown {1} in {0}?", "Fuse Box", TwoColumns4Answers, Type = AnswerType.Sprites, AddThe = true, IsEntireQuestionSprite = true, SpriteField = "FuseBoxArrowSprites",
+            ExampleExtraFormatArgumentGroupSize = 1, ExampleExtraFormatArguments = new[] { QandA.Ordinal })]
+        FuseBoxArrows,
+
         [SouvenirQuestion("What was your current weapon in {0}?", "Gadgetron Vendor", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "GadgetronVendorIconSprites")]
         GadgetronVendorCurrentWeapon,
         [SouvenirQuestion("What was the weapon up for sale in {0}?", "Gadgetron Vendor", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "GadgetronVendorWeaponSprites")]

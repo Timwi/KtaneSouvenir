@@ -29,6 +29,8 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] EncryptedEquationsSprites;
     public Sprite[] ExampleSprites;
     public Sprite[] FlagsSprites;
+    public Sprite[] FuseBoxColorSprites;
+    public Sprite[] FuseBoxArrowSprites;
     public Sprite[] GadgetronVendorIconSprites;
     public Sprite[] GadgetronVendorWeaponSprites;
     public Sprite[] HingesSprites;
@@ -49,8 +51,9 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] TasqueManagingSprites;
     public Sprite[] USACycleSprites;
     public Sprite[] WavetappingSprites;
-    public Texture2D[] NonverbalSimonQuestions;
     public Texture2D[] DigitTextures;
+    public Texture2D[] NonverbalSimonQuestions;
+    public Texture2D[] FuseBoxQuestions;
     private readonly List<Texture2D> _temporaryQuestions = new List<Texture2D>();
 
     public TextMesh TextMesh;

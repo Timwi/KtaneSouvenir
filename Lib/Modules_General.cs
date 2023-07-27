@@ -174,6 +174,7 @@ public partial class SouvenirModule
     const string _ForgetTheColors = "ForgetTheColors";
     const string _FreeParking = "freeParking";
     const string _Functions = "qFunctions";
+    const string _FuseBox = "FuseBox";
     const string _GadgetronVendor = "lgndGadgetronVendor";
     const string _GameOfLifeCruel = "GameOfLifeCruel";
     const string _Gamepad = "TheGamepadModule";
@@ -683,6 +684,7 @@ public partial class SouvenirModule
             [_ForgetTheColors] = (ProcessForgetTheColors, "Forget The Colors", "Emik"),
             [_FreeParking] = (ProcessFreeParking, "Free Parking", "luisdiogo98"),
             [_Functions] = (ProcessFunctions, "Functions", "JerryEris"),
+            [_FuseBox] = (ProcessFuseBox, "The Fuse Box", "Anonymous"),
             [_GadgetronVendor] = (ProcessGadgetronVendor, "Gadgetron Vendor", "Kuro"),
             [_GameOfLifeCruel] = (ProcessGameOfLifeCruel, "Game of Life Cruel", "GhostSalt"),
             [_Gamepad] = (ProcessGamepad, "Gamepad, The", "Timwi"),
