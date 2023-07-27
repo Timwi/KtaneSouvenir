@@ -386,7 +386,7 @@ public partial class SouvenirModule
     const string _SeaShells = "SeaShells";
     const string _Semamorse = "semamorse";
     const string _Sequencyclopedia = "TheSequencyclopedia";
-    const string _ShapesBombs = "ShapesBombs";
+    const string _ShapesAndBombs = "ShapesBombs";
     const string _ShapeShift = "shapeshift";
     const string _ShiftedMaze = "shiftedMaze";
     const string _ShiftingMaze = "MazeShifting";
@@ -888,7 +888,7 @@ public partial class SouvenirModule
             { _SeaShells, ProcessSeaShells },
             { _Semamorse, ProcessSemamorse },
             { _Sequencyclopedia, ProcessSequencyclopedia },
-            { _ShapesBombs, ProcessShapesAndBombs },
+            { _ShapesAndBombs, ProcessShapesAndBombs },
             { _ShapeShift, ProcessShapeShift },
             { _ShiftedMaze, ProcessShiftedMaze },
             { _ShiftingMaze, ProcessShiftingMaze },
