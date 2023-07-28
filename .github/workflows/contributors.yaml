@@ -1,21 +1,21 @@
 name: Generate CONTIBUTORS.md
+run-name: Generation ${{ GITHUB_RUN_NUMBER }}
 on: push
 jobs:
   generate:
-    name: Generate File
+    name: Generate Files
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-#      - name: Get .Net
+#      - name: Setup .Net
 #        uses: actions/setup-dotnet@v3
 #        with:
 #          dotnet-version: #TODO
-      - name: Run
-        run: echo "j" > CONTRIBUTORS.md
-      
+      - name: Generate CONTRIBUTORS.md
+        run: echo "${{ GITHUB_RUN_NUMBER }}" > CONTRIBUTORS.md
       - name: Commit
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
