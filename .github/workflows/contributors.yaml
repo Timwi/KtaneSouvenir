@@ -1,5 +1,5 @@
 name: Generate CONTIBUTORS.md
-run-name: Generation ${{ GITHUB_RUN_NUMBER }}
+run-name: Generation ${{ github.run_number }}
 on: push
 jobs:
   generate:
@@ -15,7 +15,7 @@ jobs:
 #        with:
 #          dotnet-version: #TODO
       - name: Generate CONTRIBUTORS.md
-        run: echo "${{ GITHUB_RUN_NUMBER }}" > CONTRIBUTORS.md
+        run: echo "${{ github.run_number }}" > CONTRIBUTORS.md
       - name: Commit
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
