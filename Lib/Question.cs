@@ -2340,6 +2340,10 @@ namespace Souvenir
         [SouvenirQuestion("Where was the starting position in {0}?", "Tasque Managing", AnswerLayout.ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "TasqueManagingSprites")]
         TasqueManagingStartingPos,
 
+        [SouvenirQuestion("What was the {1} displayed digit in {0}?", "Technical Keypad", AnswerLayout.ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 9)]
+        TechnicalKeypadDisplayedDigits,
+
         [SouvenirQuestion("What was the initial color of the {1} button in the {2} stage of {0}?", "Ten-Button Color Code", AnswerLayout.TwoColumns4Answers, "red", "green", "blue", "yellow", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 2)]
         TenButtonColorCodeInitialColors,

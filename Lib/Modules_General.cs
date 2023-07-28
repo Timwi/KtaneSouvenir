@@ -453,6 +453,7 @@ public partial class SouvenirModule
     const string _TapCode = "tapCode";
     const string _TashaSqueals = "tashaSqueals";
     const string _TasqueManaging = "tasqueManaging";
+    const string _TechnicalKeypad = "TechnicalKeypad";
     const string _TenButtonColorCode = "TenButtonColorCode";
     const string _Tenpins = "tenpins";
     const string _Tetriamonds = "tetriamonds";
@@ -957,6 +958,7 @@ public partial class SouvenirModule
             { _TapCode, ProcessTapCode },
             { _TashaSqueals, ProcessTashaSqueals },
             { _TasqueManaging, ProcessTasqueManaging },
+            { _TechnicalKeypad, ProcessTechnicalKeypad },
             { _TenButtonColorCode, ProcessTenButtonColorCode },
             { _Tenpins, ProcessTenpins },
             { _Tetriamonds, ProcessTetriamonds },

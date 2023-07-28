@@ -58,6 +58,19 @@ public partial class SouvenirModule
             preferredWrongAnswers: TasqueManagingSprites);
     }
 
+    private IEnumerable<object> ProcessTechnicalKeypad(KMBombModule module)
+    {
+        var comp = GetComponent(module, "TechnicalKeypadModule");
+        var digits = GetProperty<string>(GetField<object>(comp, "_keypadInfo").Get(), "Digits", isPublic: true).Get(seq => seq.Length != 12 ? "expected length 12" : null);
+
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_TechnicalKeypad);
+
+        addQuestions(module, digits.Select((d, ix) => makeQuestion(Question.TechnicalKeypadDisplayedDigits, _TechnicalKeypad, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { d.ToString() })));
+    }
+
     private IEnumerable<object> ProcessTenButtonColorCode(KMBombModule module)
     {
         var comp = GetComponent(module, "scr_colorCode");

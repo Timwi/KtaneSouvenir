@@ -399,6 +399,7 @@
 - Tap Code — Timwi
 - Tasha Squeals — luisdiogo98
 - Tasque Managing — tandyCake
+- Technical Keypad — Kuro
 - Ten-Button Color Code — Timwi
 - Tenpins — TasThiluna
 - Tetriamonds — Kuro
