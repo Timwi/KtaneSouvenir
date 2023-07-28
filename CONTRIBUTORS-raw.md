@@ -83,6 +83,7 @@
 - Cornflower Cipher — Timwi
 - Cosmic — BigCrunch22
 - Crazy Hamburger — noting3548
+- Crazy Maze — Timwi
 - Cream Cipher — Timwi
 - Creation — CaitSith2
 - Crimson Cipher — Timwi
@@ -326,6 +327,7 @@
 - Roger — BigCrunch22
 - Role Reversal — Emik
 - Rule of Three — QuinnWuest
+- S.E.T. Theory — Timwi
 - Scavenger Hunt — Timwi
 - Schlag den Bomb — JerryEris
 - Scramboozled Eggain — QuinnWuest
