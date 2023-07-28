@@ -1,0 +1,23 @@
+name: Generate CONTIBUTORS.md
+on: push
+jobs:
+  generate:
+    name: Generate File
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+#      - name: Get .Net
+#        uses: actions/setup-dotnet@v3
+#        with:
+#          dotnet-version: #TODO
+      - name: Run
+        run: echo "j" > CONTRIBUTORS.md
+      
+      - name: Commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update generated files
+          file_pattern: CONTRIBUTORS.md
