@@ -141,7 +141,7 @@ public partial class SouvenirModule
 
             var q = Sprite.Create(tex, Rect.MinMaxRect(0f, 0f, 400f, 320f), new Vector2(.5f, .5f), 1280f, 1u, SpriteMeshType.Tight);
             q.name = $"NVSQ{stage}-{_moduleCounts.Get(_NonverbalSimon)}";
-            qs.Add(makeQuestion(q, Question.NonverbalSimonFlashes, _NonverbalSimon, new[] { ordinal(stage + 1) }, new[] { NonverbalSimonSprites[Array.IndexOf(names, flashes[stage])] }, NonverbalSimonSprites));
+            qs.Add(makeQuestion(q, Question.NonverbalSimonFlashes, _NonverbalSimon, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { NonverbalSimonSprites[Array.IndexOf(names, flashes[stage])] }, preferredWrongAnswers: NonverbalSimonSprites));
         }
 
         addQuestions(module, qs);
