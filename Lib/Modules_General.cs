@@ -165,6 +165,7 @@ public partial class SouvenirModule
     const string _ForestCipher = "forestCipher";
     const string _ForgetAnyColor = "ForgetAnyColor";
     const string _ForgetMe = "forgetMe";
+    const string _ForgetMeNot = "MemoryV2";
     const string _ForgetsUltimateShowdown = "ForgetsUltimateShowdownModule";
     const string _ForgetTheColors = "ForgetTheColors";
     const string _FreeParking = "freeParking";
@@ -669,6 +670,7 @@ public partial class SouvenirModule
             [_ForestCipher] = (ProcessForestCipher, "Forest Cipher", "Timwi"),
             [_ForgetAnyColor] = (ProcessForgetAnyColor, "Forget Any Color", "Emik"),
             [_ForgetMe] = (ProcessForgetMe, "Forget Me", "tandyCake"),
+            [_ForgetMeNot] = (ProcessForgetMeNot, "Forget Me Not", "Kuro"),
             [_ForgetsUltimateShowdown] = (ProcessForgetsUltimateShowdown, "Forget’s Ultimate Showdown", "Marksam"),
             [_ForgetTheColors] = (ProcessForgetTheColors, "Forget The Colors", "Emik"),
             [_FreeParking] = (ProcessFreeParking, "Free Parking", "luisdiogo98"),

@@ -827,6 +827,10 @@ namespace Souvenir
         [AnswerGenerator.Integers(1, 8)]
         ForgetMeInitialState,
 
+        [SouvenirQuestion("What was the digit displayed in the {1} stage of {0}?", "Forget Me Not", AnswerLayout.ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 9)]
+        ForgetMeNotDisplayedDigits,
+
         [SouvenirQuestion("What was the {1} digit of the answer in {0}?", "Forget’s Ultimate Showdown", AnswerLayout.ThreeColumns6Answers, null,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 9)]
