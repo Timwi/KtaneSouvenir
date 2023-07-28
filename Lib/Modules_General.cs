@@ -1100,7 +1100,7 @@ public partial class SouvenirModule
         addQuestions(module, makeQuestion(question, moduleCode, correctAnswers: new[] { origin }, preferredWrongAnswers: states));
     }
 
-    // Used by Red, Orange, Yellow, Green, Blue, Indigo, Violet, White, Gray, Black, Brown and Ultimate Cipher
+    // Used by Black, Blue, Brown, Coral, Cornflower, Cream, Crimson, Forest, Gray, Green, Indigo, Magenta, Maroon, Orange, Red, Violet, White, Yellow, and Ultimate Cipher
     private IEnumerable<object> processColoredCiphers(KMBombModule module, string componentName, Question question, string moduleId)
     {
         var comp = GetComponent(module, componentName);
@@ -1118,9 +1118,7 @@ public partial class SouvenirModule
         var fldText = GetProperty<string>(fldScreens.Get(v => v.Count == 0 ? "expected at least one screen per page" : null)[0], "Text", isPublic: true);
         var fldAvoid = GetProperty<bool>(fldScreens.Get(v => v.Count == 0 ? "expected at least one screen per page" : null)[0], "SouvenirAvoid", isPublic: true);
 
-        var allWordsType = comp.GetType().Assembly.GetType("Words.Data");
-        if (allWordsType == null)
-            throw new AbandonModuleException("I cannot find the Words.Data type.");
+        var allWordsType = comp.GetType().Assembly.GetType("Words.Data") ?? throw new AbandonModuleException("I cannot find the Words.Data type.");
         var allWordsObj = Activator.CreateInstance(allWordsType);
         var allWords = GetArrayField<List<string>>(allWordsObj, "_allWords").Get(expectedLength: 5);
 
@@ -1247,7 +1245,7 @@ public partial class SouvenirModule
     }
 
     // Used by Triamonds and Tetriamonds
-    private IEnumerable<object> ProcessPolyiamonds(KMBombModule module, string componentName, Question question, string moduleId, string[] colourNames)
+    private IEnumerable<object> processPolyiamonds(KMBombModule module, string componentName, Question question, string moduleId, string[] colourNames)
     {
         var comp = GetComponent(module, componentName);
         var fldSolved = GetField<bool>(comp, "solved");

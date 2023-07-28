@@ -102,7 +102,7 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessTetriamonds(KMBombModule module)
     {
-        return ProcessPolyiamonds(module, "tetriamondsScript", Question.TetriamondsPulsingColours, _Tetriamonds, new[] { "orange", "lime", "jade", "azure", "violet", "rose", "grey" });
+        return processPolyiamonds(module, "tetriamondsScript", Question.TetriamondsPulsingColours, _Tetriamonds, new[] { "orange", "lime", "jade", "azure", "violet", "rose", "grey" });
     }
 
     private IEnumerable<object> ProcessTextField(KMBombModule module)
@@ -360,7 +360,7 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessTriamonds(KMBombModule module)
     {
-        return ProcessPolyiamonds(module, "triamondsScript", Question.TriamondsPulsingColours, _Tetriamonds, new[] { "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white" });
+        return processPolyiamonds(module, "triamondsScript", Question.TriamondsPulsingColours, _Tetriamonds, new[] { "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white" });
     }
 
     private IEnumerable<object> ProcessTripleTerm(KMBombModule module)
