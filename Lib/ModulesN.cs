@@ -130,7 +130,7 @@ public partial class SouvenirModule
                 tmp.SetPixels(40, 90, tex.width, tex.height, tex.GetPixels());
                 for (var digit = 0; digit < num.Length; digit++)
                 {
-                    tex = NonverbalSimonQuestions.First(t => t.name.Equals($"d{num[digit]}"));
+                    tex = DigitTextures[num[digit] - '0'];
                     tmp.SetPixels(100 + 40 * digit, 90, tex.width, tex.height, tex.GetPixels());
                 }
 

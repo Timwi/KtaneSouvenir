@@ -1116,6 +1116,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: c44a3c52ae4fd7c47a91c4c1c0b5dafa, type: 3}
   - {fileID: 2800000, guid: 7aeced1c573c0b64d89b06af577c2cf8, type: 3}
   - {fileID: 2800000, guid: 89224d1ae9266244ab8100cef94ea1f3, type: 3}
+  DigitTextures:
   - {fileID: 2800000, guid: bea6aa605f738a54bb355350672398ba, type: 3}
   - {fileID: 2800000, guid: 47d47ddecb6fb1b4784f9a2a756e02b5, type: 3}
   - {fileID: 2800000, guid: 5c97a375726ee104fbfc099dc4b96534, type: 3}
