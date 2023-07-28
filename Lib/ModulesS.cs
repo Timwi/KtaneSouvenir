@@ -85,14 +85,14 @@ public partial class SouvenirModule
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
-        _modulesSolved.IncSafe(_ScramboozledAgain);
+        _modulesSolved.IncSafe(_ScramboozledEggain);
 
         var wordList = GetStaticField<string[]>(comp.GetType(), "_wordList").Get().Select(i => i.Substring(0, 1) + i.Substring(1).ToLowerInvariant()).ToArray();
         var selectedWords = GetArrayField<string>(comp, "_selectedWords").Get().Select(i => i.Substring(0, 1) + i.Substring(1).ToLowerInvariant()).ToArray();
 
         var qs = new List<QandA>();
         for (int i = 0; i < 4; i++)
-            qs.Add(makeQuestion(Question.ScramboozledEggainWord, _ScramboozledAgain, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { selectedWords[i] }, preferredWrongAnswers: wordList));
+            qs.Add(makeQuestion(Question.ScramboozledEggainWord, _ScramboozledEggain, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { selectedWords[i] }, preferredWrongAnswers: wordList));
         addQuestions(module, qs);
     }
 

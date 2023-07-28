@@ -6,12 +6,13 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E15E070F-0D34-4A7C-BCE0-22AF4567C1D1}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>SouvenirTr</RootNamespace>
-    <AssemblyName>SouvenirTr</AssemblyName>
+    <RootNamespace>SouvenirPostBuildTool</RootNamespace>
+    <AssemblyName>SouvenirPostBuildTool</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+	<LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -23,6 +24,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="RT.CommandLine, Version=2.0.1748.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\RT.CommandLine.2.0.1748\lib\netstandard2.0\RT.CommandLine.dll</HintPath>
+    </Reference>
+    <Reference Include="RT.Lingo.Base, Version=2.0.1748.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\RT.Lingo.Base.2.0.1748\lib\netstandard2.0\RT.Lingo.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="RT.PostBuild, Version=2.0.1748.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\RT.PostBuild.2.0.1748\lib\netstandard2.0\RT.PostBuild.dll</HintPath>
+    </Reference>
+    <Reference Include="RT.Serialization, Version=2.0.1748.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\RT.Serialization.2.0.1748\lib\netstandard2.0\RT.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="RT.Util.Core, Version=2.0.1748.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\RT.Util.Core.2.0.1748\lib\netstandard2.0\RT.Util.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -34,7 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

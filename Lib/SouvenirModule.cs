@@ -91,7 +91,7 @@ public partial class SouvenirModule : MonoBehaviour
 
     private static int _moduleIdCounter = 1;
     private int _moduleId;
-    private Dictionary<string, Func<KMBombModule, IEnumerable<object>>> _moduleProcessors;
+    private Dictionary<string, (Func<KMBombModule, IEnumerable<object>> processor, string moduleName, string contributor)> _moduleProcessors;
     private Dictionary<Question, SouvenirQuestionAttribute> _attributes;
 
     // Used in TestHarness only
@@ -701,7 +701,7 @@ public partial class SouvenirModule : MonoBehaviour
         _coroutinesActive++;
         var moduleType = module.ModuleType;
         _moduleCounts.IncSafe(moduleType);
-        var iterator = _moduleProcessors.Get(moduleType, null);
+        var (iterator, _, _) = _moduleProcessors.Get(moduleType, default);
 
         if (iterator != null)
         {
@@ -848,7 +848,7 @@ public partial class SouvenirModule : MonoBehaviour
         throw new AbandonModuleException("Type {0} does not contain {1} field {2}. Fields are: {3}", targetType, isPublic ? "public" : "non-public", name,
             targetType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(f => string.Format("{0} {1} {2}", f.IsPublic ? "public" : "private", f.FieldType.FullName, f.Name)).JoinString(", "));
 
-    found:
+        found:
         if (!typeof(T).IsAssignableFrom(fld.FieldType))
         {
             if (noThrow)

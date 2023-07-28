@@ -842,14 +842,14 @@ public partial class SouvenirModule
         }
     }
 
-    private IEnumerable<object> ProcessButtonSequences(KMBombModule module)
+    private IEnumerable<object> ProcessButtonSequence(KMBombModule module)
     {
         var comp = GetComponent(module, "ButtonSequencesModule");
         var fldButtonsActive = GetField<bool>(comp, "buttonsActive");
 
         while (fldButtonsActive.Get())
             yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_ButtonSequences);
+        _modulesSolved.IncSafe(_ButtonSequence);
 
         var panelInfo = GetField<Array>(comp, "PanelInfo").Get(arr =>
             arr.Rank != 2 ? string.Format("has rank {0}, expected 2", arr.Rank) :
@@ -865,7 +865,7 @@ public partial class SouvenirModule
                 colorOccurrences.IncSafe(fldColor.GetFrom(panelInfo.GetValue(i, j), v => v < 0 || v >= colorNames.Length ? string.Format("out of range; colorNames.Length={0} ([{1}])", colorNames.Length, colorNames.JoinString(", ")) : null));
 
         addQuestions(module, colorOccurrences.Select(kvp =>
-            makeQuestion(Question.ButtonSequencesColorOccurrences, _ButtonSequences,
+            makeQuestion(Question.ButtonSequencesColorOccurrences, _ButtonSequence,
                 formatArgs: new[] { colorNames[kvp.Key].ToLowerInvariant() },
                 correctAnswers: new[] { kvp.Value.ToString() },
                 preferredWrongAnswers: colorOccurrences.Values.Select(v => v.ToString()).ToArray())));

@@ -74,8 +74,8 @@ Lib/obj/
 Lib/bin/
 Lib/.vs/
 Lib/packages/
-Tr/obj/
-Tr/bin/
-Tr/.vs/
-Tr/packages/
+PostBuildTool/obj/
+PostBuildTool/bin/
+PostBuildTool/.vs/
+PostBuildTool/packages/
 .vscode

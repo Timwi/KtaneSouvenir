@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{4C3C8D4A-C793-467E-B02A-2ADC1937A9FF}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -12,6 +12,7 @@
     <Deterministic>true</Deterministic>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <Configurations>Release</Configurations>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -102,6 +103,6 @@
     <PackageReference Include="ValueTupleBridge" Version="0.1.5" />
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy /y &quot;$(TargetDir)*.dll&quot; &quot;$(GameFolder)mods\Souvenir&quot;&#xD;&#xA;rem ..\Tr\bin\Release\SouvenirTr.exe &quot;$(TargetDir)SouvenirLib.dll&quot; &quot;$(ProjectDir).&quot;" />
+    <Exec Command="xcopy /y &quot;$(TargetDir)*.dll&quot; &quot;$(GameFolder)mods\Souvenir&quot;&#xD;&#xA;..\PostBuildTool\bin\Release\SouvenirPostBuildTool.exe &quot;$(TargetDir)SouvenirLib.dll&quot; &quot;$(GameFolder)ktane_Data\Managed&quot; -c &quot;$(ProjectDir)..\CONTRIBUTORS.md&quot;&#xD;&#xA;rem -t &quot;$(ProjectDir).&quot;" />
   </Target>
 </Project>

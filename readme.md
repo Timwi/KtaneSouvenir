@@ -60,12 +60,11 @@ To add a new module, the following steps are required:
 - Implement a similar handler and place it alphabetically in the correct file (`ModulesA.cs` to `ModulesZ.cs`, or `Modules0.cs`). Omit “The” in the handler name as well.
     - Make sure to handle the case where the player gets a strike on the module and the information changes. Souvenir must not ask about information from stages that struck.
     - If there is a corner case where Souvenir should not ask a question, output a log message and add the module to `_legitimatelyNoQuestions` (see `ProcessShapeShift` or `ProcessSillySlots` for examples).
-- Go back to `Modules_General.cs`, find the `Awake()` method, and add an entry to the large dictionary mapping from your string constant to the method you just created.
+- Go back to `Modules_General.cs`, find the `Awake()` method, and add an entry to the large dictionary mapping from your string constant to a 3-tuple containing: the method you just created; the display name of the module; and your name (you will be credited in `CONTRIBUTORS.md`).
 - Compile the project.
 - Run Souvenir in Unity and issue a TP command (such as `!1 bulb`) to see your question to make sure that it looks okay.
 - Test your Souvenir modifications in-game (e.g. by using Dynamic Mission Generator). Test all corner cases, including getting a strike on the module.
 - If your question does not show up and/or Souvenir displays a warning triangle, look at your logfile for error messages from Souvenir. You can Ctrl+F in the logfile for `<Souvenir` to find them.
-- Add your name and the module to `CONTRIBUTORS-raw.md`.
 - Please make a separate git commit for each module you implement. If you made multiple commits for the same module, please squash them into one.
 - Make the relevant changes to KtaneContent:
     - Change the modules’ JSON files by adding this line (and remove any existing Souvenir info):
@@ -74,4 +73,4 @@ To add a new module, the following steps are required:
         ```
     - Submit that as a pull request to the repo maintainers.
     - Write the new questions for the HTML manual using the same HTML as existing questions. If the module name starts with “The”, see Duck for an example.
-    - Paste the HTML for the new questions on GitHub when you submit your pull request to Souvenir. I will do the rest to update the manual.
+    - Paste the HTML for the new questions on GitHub when you submit your pull request to Souvenir, or send it on Discord. I will do the rest to update the manual.
