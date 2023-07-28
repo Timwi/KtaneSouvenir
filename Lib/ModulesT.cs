@@ -58,6 +58,48 @@ public partial class SouvenirModule
             preferredWrongAnswers: TasqueManagingSprites);
     }
 
+    private IEnumerable<object> ProcessTechnicalKeypad(KMBombModule module)
+    {
+        var comp = GetComponent(module, "TechnicalKeypadModule");
+        var digits = GetProperty<string>(GetField<object>(comp, "_keypadInfo").Get(), "Digits", isPublic: true).Get(seq => seq.Length != 12 ? "expected length 12" : null);
+
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_TechnicalKeypad);
+
+        var qs = new List<QandA>();
+        for (int position = 0; position < 12; position++)
+        {
+            var tex = TechnicalKeypadQuestions[position];
+            var tmp = new Texture2D(400, 320, TextureFormat.ARGB32, false);
+
+            tmp.SetPixels(tex.GetPixels());
+            tex = TechnicalKeypadQuestions.First(t => t.name.Equals("name"));
+            tmp.SetPixels(40, 90, tex.width, tex.height, tex.GetPixels());
+
+            var modCount = _moduleCounts.Get(_TechnicalKeypad);
+            if (modCount > 1)
+            {
+                var numText = _modulesSolved.Get(_TechnicalKeypad).ToString();
+                for (int digit = 0; digit < numText.Length; digit++)
+                {
+                    tex = DigitTextures[numText[digit] - '0'];
+                    tmp.SetPixels(140 + 40 * digit, 90, tex.width, tex.height, tex.GetPixels());
+                }
+            }
+
+            tmp.Apply(updateMipmaps: false, makeNoLongerReadable: true);
+            _temporaryQuestions.Add(tmp);
+            tex = tmp;
+
+            var questionSprite = Sprite.Create(tex, Rect.MinMaxRect(0, 0, 400, 320), new Vector2(.5f, .5f), 1280f, 1, SpriteMeshType.Tight);
+            questionSprite.name = $"Technical-Keypad-{position}-{_moduleCounts.Get(_TechnicalKeypad)}";
+            qs.Add(makeSpriteQuestion(questionSprite, Question.TechnicalKeypadDisplayedDigits, _TechnicalKeypad, formatArgs: new[] { ordinal(position + 1) }, correctAnswers: new[] { digits[position].ToString() }));
+        }
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessTenButtonColorCode(KMBombModule module)
     {
         var comp = GetComponent(module, "scr_colorCode");

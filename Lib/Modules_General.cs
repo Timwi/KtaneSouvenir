@@ -459,6 +459,7 @@ public partial class SouvenirModule
     const string _TapCode = "tapCode";
     const string _TashaSqueals = "tashaSqueals";
     const string _TasqueManaging = "tasqueManaging";
+    const string _TechnicalKeypad = "TechnicalKeypad";
     const string _TenButtonColorCode = "TenButtonColorCode";
     const string _Tenpins = "tenpins";
     const string _Tetriamonds = "tetriamonds";
@@ -969,6 +970,7 @@ public partial class SouvenirModule
             [_TapCode] = (ProcessTapCode, "Tap Code", "Timwi"),
             [_TashaSqueals] = (ProcessTashaSqueals, "Tasha Squeals", "luisdiogo98"),
             [_TasqueManaging] = (ProcessTasqueManaging, "Tasque Managing", "tandyCake"),
+            [_TechnicalKeypad] = (ProcessTechnicalKeypad, "Technical Keypad", "Kuro"),
             [_TenButtonColorCode] = (ProcessTenButtonColorCode, "Ten-Button Color Code", "Timwi"),
             [_Tenpins] = (ProcessTenpins, "Tenpins", "TasThiluna"),
             [_Tetriamonds] = (ProcessTetriamonds, "Tetriamonds", "Kuro"),

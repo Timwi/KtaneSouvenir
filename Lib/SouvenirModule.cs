@@ -52,8 +52,9 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] USACycleSprites;
     public Sprite[] WavetappingSprites;
     public Texture2D[] DigitTextures;
-    public Texture2D[] NonverbalSimonQuestions;
     public Texture2D[] FuseBoxQuestions;
+    public Texture2D[] NonverbalSimonQuestions;
+    public Texture2D[] TechnicalKeypadQuestions;
     private readonly List<Texture2D> _temporaryQuestions = new List<Texture2D>();
 
     public TextMesh TextMesh;
