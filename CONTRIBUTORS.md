@@ -127,6 +127,11 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Abyss           │  Homophones       │  Prime Encryption  │  Who’s on Morse
     Color Addition  │  Negativity       │  Quick Arithmetic  │  WhoOF
 
+## Implemented by Anonymous (10)
+
+    ❖             │  Beans     │  Boomtar the Great  │  Double Arrows   │  Simon Subdivides
+    Bean Sprouts  │  Big Bean  │  Connection Check   │  Labyrinth, The  │  The Fuse Box
+
 ## Implemented by GhostSalt (10)
 
     9-Ball             │  Entry Number One    │  Maze Identification  │  Not The Screw          │  Stacked Sequences
@@ -161,17 +166,14 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 
     MODULE                   │  IMPLEMENTED BY
     ═════════════════════════╪═════════════════
-    ❖                        │  Anonymous
     100 Levels of Defusal    │  Espik
     A Letter                 │  Sierra
     Arithmelogic             │  JerryEris
     Barcode Cipher           │  Brawlboxgaming
     Bob Barks                │  Kaito Sinclaire
     Colour Flash             │  LotsOfS
-    Connection Check         │  Anonymous
     Crazy Hamburger          │  noting3548
     Divisible Numbers        │  shortc1rcuit
-    Double Arrows            │  Anonymous
     Elder Futhark            │  Goofy
     ƎNA Cipher               │  KiloBites
     Exoplanets               │  Brawlboxgaming
@@ -179,7 +181,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Gryphons                 │  JerryEris
     Hyperlink, The           │  Espik
     Inner Connections        │  Brawlboxgaming
-    Labyrinth, The           │  Anonymous
     Mahjong                  │  River
     Mega Man 2               │  Goofy
     Melody Sequencer         │  Goofy
@@ -197,7 +198,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Simon Sends              │  EternityShack
     Simon Stages             │  Espik
     Simon Stops              │  JerryEris
-    Simon Subdivides         │  Anonymous
     Wavetapping              │  KingSlendy
     XmORse Code              │  shortc1rcuit
 
