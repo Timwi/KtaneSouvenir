@@ -46,6 +46,18 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Colored Keys         │  Free Parking              │  Maze³             │  Reverse Morse      │  Vexillology
     Cube, The            │  Hexabutton, The           │  Mazematics        │  Simon Scrambles    │  Zoni
 
+## Implemented by Kuro (41)
+
+    ...?                  │  Cursed Double-Oh   │  Hinges                │  Orientation Hypercube  │  Snowflakes
+    64                    │  Double Expert      │  Impostor, The         │  Periodic Words         │  Technical Keypad
+    Alphabet Numbers      │  Duck, The          │  Juxtacolored Squares  │  Pictionary             │  Tetriamonds
+    Bomb Diffusal         │  Encrypted Dice     │  Kanji                 │  Procedural Maze        │  Tip Toe
+    Boolean Wires         │  Faulty Buttons     │  Know Your Way         │  Question Mark          │  Triamonds
+    Broken Guitar Chords  │  Five Letter Words  │  Light Bulbs           │  Recursive Password     │
+    Burger Alarm          │  Follow Me          │  Mad Memory            │  Scripting              │
+    Cruel Binary          │  Forget Me Not      │  Not Colored Squares   │  Simon Smothers         │
+    Cruel Keypads         │  Gadgetron Vendor   │  Old Fogey             │  Simon Stacks           │
+
 ## Implemented by BigCrunch22 (38)
 
     1000 Words      │  Dreamcipher    │  Indigo Cipher          │  Spelling Bee            │  V
@@ -56,17 +68,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cheep Checkout  │  Grocery Store  │  Roger                  │  Switching Maze          │  Yellow Cipher
     Cosmic          │  Guess Who?     │  Sequencyclopedia, The  │  Topsy Turvy             │
     Deaf Alley      │  Hold Ups       │  Shifting Maze          │  Ultimate Cipher         │
-
-## Implemented by Kuro (38)
-
-    ...?                  │  Cruel Keypads      │  Gadgetron Vendor      │  Old Fogey              │  Simon Smothers
-    64                    │  Cursed Double-Oh   │  Hinges                │  Orientation Hypercube  │  Simon Stacks
-    Alphabet Numbers      │  Double Expert      │  Impostor, The         │  Periodic Words         │  Snowflakes
-    Bomb Diffusal         │  Duck, The          │  Juxtacolored Squares  │  Pictionary             │  Tetriamonds
-    Boolean Wires         │  Encrypted Dice     │  Kanji                 │  Procedural Maze        │  Tip Toe
-    Broken Guitar Chords  │  Faulty Buttons     │  Light Bulbs           │  Question Mark          │  Triamonds
-    Burger Alarm          │  Five Letter Words  │  Mad Memory            │  Recursive Password     │
-    Cruel Binary          │  Follow Me          │  Not Colored Squares   │  Scripting              │
 
 ## Implemented by TasThiluna (31)
 
