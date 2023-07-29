@@ -160,18 +160,18 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 ## Others
 
     MODULE                   │  IMPLEMENTED BY
-    ═════════════════════════╪═══════════════════
-    ❖                        │  BakersDozenBagels
+    ═════════════════════════╪═════════════════
+    ❖                        │  Anonymous
     100 Levels of Defusal    │  Espik
     A Letter                 │  Sierra
     Arithmelogic             │  JerryEris
     Barcode Cipher           │  Brawlboxgaming
     Bob Barks                │  Kaito Sinclaire
     Colour Flash             │  LotsOfS
-    Connection Check         │  BakersDozenBagels
+    Connection Check         │  Anonymous
     Crazy Hamburger          │  noting3548
     Divisible Numbers        │  shortc1rcuit
-    Double Arrows            │  BakersDozenBagels
+    Double Arrows            │  Anonymous
     Elder Futhark            │  Goofy
     ƎNA Cipher               │  KiloBites
     Exoplanets               │  Brawlboxgaming
@@ -179,7 +179,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Gryphons                 │  JerryEris
     Hyperlink, The           │  Espik
     Inner Connections        │  Brawlboxgaming
-    Labyrinth, The           │  BakersDozenBagels
+    Labyrinth, The           │  Anonymous
     Mahjong                  │  River
     Mega Man 2               │  Goofy
     Melody Sequencer         │  Goofy
@@ -197,7 +197,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Simon Sends              │  EternityShack
     Simon Stages             │  Espik
     Simon Stops              │  JerryEris
-    Simon Subdivides         │  BakersDozenBagels
+    Simon Subdivides         │  Anonymous
     Wavetapping              │  KingSlendy
     XmORse Code              │  shortc1rcuit
 
