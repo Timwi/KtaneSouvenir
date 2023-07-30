@@ -1079,12 +1079,15 @@ public partial class SouvenirModule
     private IEnumerable<object> ProcessSnowflakes(KMBombModule module)
     {
         var comp = GetComponent(module, "snowflakes");
+        var gameOnPassDelegate = module.OnPass;
+        module.OnPass = () => { return false; };
 
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Snowflakes);
-        yield return new WaitForSeconds(4); // Wait for the snowflakes to disappear
+        yield return new WaitForSeconds(5); // Wait for the snowflakes to disappear
+        gameOnPassDelegate();
 
         var displays = GetArrayField<TextMesh>(comp, "displays", isPublic: true).Get(expectedLength: 4);
         var directions = new[] { "top", "right", "bottom", "left" };
