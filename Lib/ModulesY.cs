@@ -9,7 +9,9 @@ public partial class SouvenirModule
     private IEnumerable<object> ProcessYahtzee(KMBombModule module)
     {
         var comp = GetComponent(module, "YahtzeeModule");
-        var fldSolved = GetField<bool>(comp, "_isSolved");
+
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
 
         // This array only changes its contents, it’s never reassigned, so we only need to get it once
         var diceValues = GetArrayField<int>(comp, "_diceValues").Get();
@@ -50,7 +52,7 @@ public partial class SouvenirModule
             result = null;
         }
 
-        while (!fldSolved.Get())
+        while (!solved)
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Yahtzee);
 

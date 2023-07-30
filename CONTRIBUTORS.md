@@ -129,8 +129,8 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 
 ## Implemented by Anonymous (10)
 
-    ❖             │  Beans     │  Boomtar the Great  │  Double Arrows   │  Simon Subdivides
-    Bean Sprouts  │  Big Bean  │  Connection Check   │  Labyrinth, The  │  The Fuse Box
+    ❖             │  Beans     │  Boomtar the Great  │  Double Arrows  │  Labyrinth, The
+    Bean Sprouts  │  Big Bean  │  Connection Check   │  Fuse Box, The  │  Simon Subdivides
 
 ## Implemented by GhostSalt (10)
 

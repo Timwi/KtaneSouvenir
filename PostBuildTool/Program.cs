@@ -79,10 +79,10 @@ namespace SouvenirPostBuildTool
             const int numColumns = 5;
 
             var sb = new StringBuilder();
-            sb.Append("# Souvenir implementors\n\nThe following is a list of modules supported by Souvenir, and the fine people who have contributed their effort to make it happen:\n\n\n");
+            sb.Append($"# Souvenir implementors{Environment.NewLine}{Environment.NewLine}The following is a list of modules supported by Souvenir, and the fine people who have contributed their effort to make it happen:{Environment.NewLine}{Environment.NewLine}{Environment.NewLine}");
             foreach (var group in contributorToModules.Where(gr => gr.Value.Count > numColumns).OrderByDescending(gr => gr.Value.Count).ThenBy(gr => gr.Key))
             {
-                sb.Append($"## Implemented by {group.Key} ({group.Value.Count})\n\n");
+                sb.Append($"## Implemented by {group.Key} ({group.Value.Count}){Environment.NewLine}{Environment.NewLine}");
                 var tt = new TextTable { ColumnSpacing = 5, VerticalRules = true };
                 var numItems = group.Value.Count;
                 var numRows = (numItems + numColumns - 1) / numColumns;
@@ -94,8 +94,8 @@ namespace SouvenirPostBuildTool
                         tt.SetCell(col, row++, moduleName);
                     col++;
                 }
-                sb.Append(tt.ToString().Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries).Select(row => $"    {row.Trim().Replace("|", "│")}").JoinString("\n"));
-                sb.Append("\n\n");
+                sb.Append(tt.ToString().Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries).Select(row => $"    {row.Trim().Replace("|", "│")}").JoinString(Environment.NewLine));
+                sb.Append(Environment.NewLine + Environment.NewLine);
             }
 
             var remTable = new TextTable { ColumnSpacing = 5, RowSpacing = 1, VerticalRules = true, HorizontalRules = true, HeaderRows = 1 };
@@ -111,7 +111,7 @@ namespace SouvenirPostBuildTool
                 remTable.SetCell(0, i + 1, remaining[i].module);
                 remTable.SetCell(1, i + 1, remaining[i].author);
             }
-            sb.Append($"## Others\n\n{remTable.ToString().Split('\n').Select(r => r.Trim()).Where(row => !string.IsNullOrWhiteSpace(row) && !Regex.IsMatch(row, @"^-*\|-*$")).Select(row => $"    {row.Replace("|", "│").Replace("=│=", "═╪═").Replace("=", "═")}").JoinString("\n")}\n\n");
+            sb.Append($"## Others{Environment.NewLine}{Environment.NewLine}{remTable.ToString().Split('\n').Select(r => r.Trim()).Where(row => !string.IsNullOrWhiteSpace(row) && !Regex.IsMatch(row, @"^-*\|-*$")).Select(row => $"    {row.Replace("|", "│").Replace("=│=", "═╪═").Replace("=", "═")}").JoinString(Environment.NewLine)}{Environment.NewLine}{Environment.NewLine}");
 
             File.WriteAllText(filepath, sb.ToString());
         }

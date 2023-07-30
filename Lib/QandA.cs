@@ -134,7 +134,7 @@ namespace Souvenir
 
             protected virtual void SetUpTwoColumnAnswers(SouvenirModule souvenir)
             {
-                SetupAnswers(souvenir, souvenir.HighlightShort,
+                SetupAnswers(souvenir, souvenir.HighlightLong,
                     getX: i => -18.125f + 19.375f * (i / 2),
                     getZ: i => -16.25f + _multiColumnVerticalSpacing * (1 - i % 2),
                     boxCenter: new Vector3(8, 0, 0),

@@ -10,7 +10,7 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
-    const string Version = "4.85";
+    const string Version = "4.9";
 
     // The values here are the “ModuleType” property on the KMBombModule components.
     const string _1000Words = "OneThousandWords";
@@ -685,7 +685,7 @@ public partial class SouvenirModule
             [_ForgetTheColors] = (ProcessForgetTheColors, "Forget The Colors", "Emik"),
             [_FreeParking] = (ProcessFreeParking, "Free Parking", "luisdiogo98"),
             [_Functions] = (ProcessFunctions, "Functions", "JerryEris"),
-            [_FuseBox] = (ProcessFuseBox, "The Fuse Box", "Anonymous"),
+            [_FuseBox] = (ProcessFuseBox, "Fuse Box, The", "Anonymous"),
             [_GadgetronVendor] = (ProcessGadgetronVendor, "Gadgetron Vendor", "Kuro"),
             [_GameOfLifeCruel] = (ProcessGameOfLifeCruel, "Game of Life Cruel", "GhostSalt"),
             [_Gamepad] = (ProcessGamepad, "Gamepad, The", "Timwi"),
