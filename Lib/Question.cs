@@ -23,7 +23,7 @@ namespace Souvenir
         _3DMazeBearing,
 
         [SouvenirQuestion("What was the received word in {0}?", "3D Tap Code", ThreeColumns6Answers, null,
-            ExampleAnswers = new[] { "Aback", "Backs", "Habit", "Oasis" })]
+            ExampleAnswers = new[] { "Aback", "Backs", "Habit", "Oasis", "Unzip", "Vogue" })]
         _3DTapCodeWord,
 
         [SouvenirQuestion("What was the {1} goal node in {0}?", "3D Tunnels", ThreeColumns6Answers,
@@ -1018,7 +1018,7 @@ namespace Souvenir
           ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
         HillCycleWord,
 
-        [SouvenirQuestion("Which of these hinges was initially {1} {0}?", "Hinges", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteField = "HingesSprites", ExampleExtraFormatArguments = new[] { "present on", "absent from" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("Which of these hinges was initially {1} {0}?", "Hinges", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "HingesSprites", ExampleExtraFormatArguments = new[] { "present on", "absent from" }, ExampleExtraFormatArgumentGroupSize = 1)]
         HingesInitialHinges,
 
         [SouvenirQuestion("Which House was {1} solved\u00a0for in {0}?", "Hogwarts", TwoColumns4Answers, "Gryffindor", "Hufflepuff", "Slytherin", "Ravenclaw",
@@ -1529,7 +1529,7 @@ namespace Souvenir
         [SouvenirQuestion("What was the acid’s volume in {0}?", "Neutralization", TwoColumns4Answers, "5", "10", "15", "20")]
         NeutralizationVolume,
 
-        [SouvenirQuestion("Which button flashed for the {1} stage in {0}?", "❖", TwoColumns4Answers, IsEntireQuestionSprite = true, Type = AnswerType.Sprites, SpriteField = "NonverbalSimonSprites")]
+        [SouvenirQuestion("Which button flashed in the {1} stage in {0}?", "❖", TwoColumns4Answers, IsEntireQuestionSprite = true, Type = AnswerType.Sprites, SpriteField = "NonverbalSimonSprites", ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         NonverbalSimonFlashes,
 
         [SouvenirQuestion("What was the position of the square you initially pressed in {0}?", "Not Colored Squares", ThreeColumns6Answers, Type = AnswerType.Grid)]

@@ -1112,6 +1112,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 74b14a68a15fc584c981f73b35d15a20, type: 3}
   - {fileID: 21300000, guid: de202f5ae4e470e4fa16091de495788d, type: 3}
   - {fileID: 21300000, guid: dbcea737534e7ac4bae027b37d2a88e2, type: 3}
+  DigitTextures:
+  - {fileID: 2800000, guid: bea6aa605f738a54bb355350672398ba, type: 3}
+  - {fileID: 2800000, guid: 47d47ddecb6fb1b4784f9a2a756e02b5, type: 3}
+  - {fileID: 2800000, guid: 5c97a375726ee104fbfc099dc4b96534, type: 3}
+  - {fileID: 2800000, guid: aa83080fafcee7047b417dcc4d0b4931, type: 3}
+  - {fileID: 2800000, guid: d0276bba161410c4fbd66af41bb6666a, type: 3}
+  - {fileID: 2800000, guid: 13cd0b97d7e0d2140a56e2fabdf6b8f1, type: 3}
+  - {fileID: 2800000, guid: 2cbf17718bb57ab45b7b5c786743f632, type: 3}
+  - {fileID: 2800000, guid: f5858e9f43ca074498f7365e17020de5, type: 3}
+  - {fileID: 2800000, guid: 82307c5009b79e141b3ca4a18fe3f66a, type: 3}
+  - {fileID: 2800000, guid: a1e3fe23583527d438a75c6d704599bc, type: 3}
   NonverbalSimonQuestions:
   - {fileID: 2800000, guid: afc5f965bc46ca24881c9b775a578b01, type: 3}
   - {fileID: 2800000, guid: 8fafed124c9b5864091211b8dcbf40d1, type: 3}
@@ -1126,17 +1137,6 @@ MonoBehaviour:
   - {fileID: 2800000, guid: c44a3c52ae4fd7c47a91c4c1c0b5dafa, type: 3}
   - {fileID: 2800000, guid: 7aeced1c573c0b64d89b06af577c2cf8, type: 3}
   - {fileID: 2800000, guid: 89224d1ae9266244ab8100cef94ea1f3, type: 3}
-  DigitTextures:
-  - {fileID: 2800000, guid: bea6aa605f738a54bb355350672398ba, type: 3}
-  - {fileID: 2800000, guid: 47d47ddecb6fb1b4784f9a2a756e02b5, type: 3}
-  - {fileID: 2800000, guid: 5c97a375726ee104fbfc099dc4b96534, type: 3}
-  - {fileID: 2800000, guid: aa83080fafcee7047b417dcc4d0b4931, type: 3}
-  - {fileID: 2800000, guid: d0276bba161410c4fbd66af41bb6666a, type: 3}
-  - {fileID: 2800000, guid: 13cd0b97d7e0d2140a56e2fabdf6b8f1, type: 3}
-  - {fileID: 2800000, guid: 2cbf17718bb57ab45b7b5c786743f632, type: 3}
-  - {fileID: 2800000, guid: f5858e9f43ca074498f7365e17020de5, type: 3}
-  - {fileID: 2800000, guid: 82307c5009b79e141b3ca4a18fe3f66a, type: 3}
-  - {fileID: 2800000, guid: a1e3fe23583527d438a75c6d704599bc, type: 3}
   FuseBoxQuestions:
   - {fileID: 2800000, guid: cda5f61570b3d0a4594099e18c684b70, type: 3}
   - {fileID: 2800000, guid: 7356dc35312b8854b84187adaf24587b, type: 3}

@@ -5,86 +5,125 @@ using UnityEngine;
 
 namespace Souvenir
 {
-    abstract class QandA
+    sealed class QandA
     {
         public const string Ordinal = "\ufffdordinal";
-        public string ModuleNameWithThe { get; private set; }
-        public string QuestionText { get; private set; }
-        public Sprite QuestionSprite { get; private set; }
-        public float QuestionSpriteRotation { get; private set; }
-        public int CorrectIndex { get; private set; }
-        public int NumAnswers { get; private set; } // must be 4 or 6
 
-        public QandA(string module, string question, int correct, int numAnswers, Sprite questionSprite, float questionSpriteRotation = 0f)
+        private readonly Question _question;
+        private readonly AnswerSet _answerSet;
+
+        public QandA(string module, Question question, AnswerSet answerSet, int correctIndex)
         {
             ModuleNameWithThe = module;
-            QuestionText = question;
-            QuestionSprite = questionSprite;
-            CorrectIndex = correct;
-            NumAnswers = numAnswers;
-            QuestionSpriteRotation = questionSpriteRotation;
+            _question = question;
+            _answerSet = answerSet;
+            CorrectIndex = correctIndex;
         }
 
-        public abstract void SetAnswers(SouvenirModule souvenir);
-        public virtual string DebugString => string.Format("{0} — {1}", QuestionText, DebugAnswers.Select((a, ix) => string.Format(ix == CorrectIndex ? "[_{0}_]" : "{0}", a)).JoinString(" | "));
-        public abstract IEnumerable<string> DebugAnswers { get; }
-        public abstract double DesiredHeightFactor { get; }
-        public abstract void BlinkCorrectAnswer(bool on, SouvenirModule souvenir);
+        public string ModuleNameWithThe { get; private set; }
+        public int CorrectIndex { get; private set; }
+        public int NumAnswers => _answerSet.NumAnswers;
 
-        protected void SetupTwoColumnAnswers(SouvenirModule souvenir, float xSpacing, float ySpacing)
+        public string DebugString => string.Format("{0} — {1}", _question.DebugText, DebugAnswers.Select((a, ix) => string.Format(ix == CorrectIndex ? "[_{0}_]" : "{0}", a)).JoinString(" | "));
+        public IEnumerable<string> DebugAnswers => _answerSet.DebugAnswers;
+
+        public void SetQandAs(SouvenirModule souvenir)
         {
-            SetupAnswers(souvenir, NumAnswers > 4 ? souvenir.HighlightShort : souvenir.HighlightLong,
-                getX: i => -18.125f + xSpacing * (i / 2),
-                getZ: i => -16.25f + ySpacing * (1 - i % 2),
-                boxCenter: new Vector3(NumAnswers > 4 ? 5 : 8, 0, 0),
-                boxSize: new Vector3(NumAnswers > 4 ? 13 : 19, 6, 3));
+            _question.SetQuestion(souvenir);
+            _answerSet.SetAnswers(souvenir);
         }
 
-        protected void SetupAnswers(SouvenirModule souvenir, Mesh highlightMesh, Func<int, float> getX, Func<int, float> getZ, Vector3 boxCenter, Vector3 boxSize)
+        public void BlinkCorrectAnswer(bool on, SouvenirModule souvenir) => _answerSet.BlinkAnswer(on, souvenir, CorrectIndex);
+
+        public abstract class Question
         {
-            for (int i = 0; i < souvenir.Answers.Length; i++)
+            protected string _text;
+            public virtual string DebugText => _text;
+
+            protected Question(string question) => _text = question;
+
+            public abstract void SetQuestion(SouvenirModule souvenir);
+        }
+
+        public sealed class TextQuestion : Question
+        {
+            private readonly Sprite _questionSprite;
+            private readonly float _questionSpriteRotation;
+            private readonly double _desiredHeightFactor;
+            private readonly Translation _translation;
+
+            public TextQuestion(string question, AnswerLayout layout, Sprite questionSprite, float questionSpriteRotation, Translation translation)
+                : base(question)
             {
-                souvenir.Answers[i].gameObject.SetActive(Application.isEditor || i < NumAnswers);
-                souvenir.Answers[i].transform.Find("SpriteHolder").gameObject.SetActive(false);
-                souvenir.Answers[i].transform.Find("AnswerText").gameObject.SetActive(false);
-                var h1 = souvenir.Answers[i].transform.Find("Highlight");
-                h1.GetComponent<MeshFilter>().sharedMesh = highlightMesh;
-                var h2 = h1.Find("Highlight(Clone)");
-                if (h2 != null)
-                    h2.GetComponent<MeshFilter>().sharedMesh = highlightMesh;
-                souvenir.Answers[i].transform.localPosition = new Vector3(getX(i), 2.525f, getZ(i));
-                souvenir.Answers[i].GetComponent<BoxCollider>().center = boxCenter;
-                souvenir.Answers[i].GetComponent<BoxCollider>().size = boxSize;
+                _desiredHeightFactor = layout == AnswerLayout.OneColumn4Answers ? .825 : 1.1;
+                _questionSprite = questionSprite;
+                _questionSpriteRotation = questionSpriteRotation;
+                _translation = translation;
+            }
+
+            public override void SetQuestion(SouvenirModule souv)
+            {
+                souv.TextMesh.gameObject.SetActive(true);
+                souv.TextMesh.font = souv.Fonts[_translation?.DefaultFontIndex ?? 0];
+                souv.TextRenderer.material = souv.FontMaterial;
+                souv.TextRenderer.material.mainTexture = souv.FontTextures[_translation?.DefaultFontIndex ?? 0];
+                souv.TextMesh.lineSpacing = _translation?.LineSpacing ?? 0.525f;
+                souv.SetWordWrappedText(_text, _desiredHeightFactor, _questionSprite != null);
+
+                if (_questionSprite != null)
+                {
+                    souv.QuestionSprite.gameObject.SetActive(true);
+                    souv.QuestionSprite.sprite = _questionSprite;
+                    souv.QuestionSprite.transform.localEulerAngles = new Vector3(90, _questionSpriteRotation);
+                }
             }
         }
-    }
 
-    sealed class QandAText : QandA
-    {
-        private readonly string[] _answers;
-        private readonly Font _font;
-        private readonly int _fontSize;
-        private readonly float _characterSize;
-        private readonly Texture _fontTexture;
-        private readonly Material _fontMaterial;
-        private readonly AnswerLayout _layout;
-        public QandAText(string module, string question, int correct, string[] answers, Font font, int fontSize, float characterSize, Texture fontTexture, Material fontMaterial, AnswerLayout layout, Sprite questionSprite, float spriteRotation = 0f)
-            : base(module, question, correct, answers.Length, questionSprite, spriteRotation)
+        public sealed class SpriteQuestion : Question
         {
-            _answers = answers;
-            _font = font;
-            _fontSize = fontSize;
-            _characterSize = characterSize;
-            _fontTexture = fontTexture;
-            _fontMaterial = fontMaterial;
-            _layout = layout;
+            private readonly Sprite _questionSprite;
+
+            public SpriteQuestion(string questionText, Sprite questionSprite) : base(questionText) => _questionSprite = questionSprite;
+
+            public override string DebugText => $"(Depicted visually) {base.DebugText}";
+
+            public override void SetQuestion(SouvenirModule souvenir)
+            {
+                souvenir.EntireQuestionSprite.gameObject.SetActive(true);
+                souvenir.EntireQuestionSprite.sprite = _questionSprite;
+            }
         }
-        public override IEnumerable<string> DebugAnswers => _answers;
-        public override double DesiredHeightFactor => _layout == AnswerLayout.OneColumn4Answers ? .825 : 1.1;
 
-        public override void SetAnswers(SouvenirModule souvenir)
+        public abstract class AnswerSet
         {
-            if (_layout == AnswerLayout.OneColumn4Answers)
+            protected readonly AnswerLayout _layout;
+            protected float _multiColumnVerticalSpacing = 6.25f;
+
+            protected AnswerSet(int numAnswers, AnswerLayout layout)
+            {
+                NumAnswers = numAnswers;
+                _layout = layout;
+            }
+
+            public int NumAnswers { get; private set; } // must be 4 or 6
+            public abstract IEnumerable<string> DebugAnswers { get; }
+
+            public abstract void BlinkAnswer(bool on, SouvenirModule souvenir, int answerIndex);
+            protected abstract void RenderAnswers(SouvenirModule souvenir);
+
+            public void SetAnswers(SouvenirModule souvenir)
+            {
+                switch (_layout)
+                {
+                    case AnswerLayout.OneColumn4Answers: SetUpOneColumnAnswers(souvenir); break;
+                    case AnswerLayout.TwoColumns4Answers: SetUpTwoColumnAnswers(souvenir); break;
+                    case AnswerLayout.ThreeColumns6Answers: SetUpThreeColumnAnswers(souvenir); break;
+                    default: throw new InvalidOperationException("Unexpected AnswerLayout value.");
+                }
+                RenderAnswers(souvenir);
+            }
+
+            protected virtual void SetUpOneColumnAnswers(SouvenirModule souvenir)
             {
                 SetupAnswers(souvenir, souvenir.HighlightVeryLong,
                     getX: i => -18.125f,
@@ -92,66 +131,125 @@ namespace Souvenir
                     boxCenter: new Vector3(17, 0, 0),
                     boxSize: new Vector3(38, 5, 3));
             }
-            else
-                SetupTwoColumnAnswers(souvenir, _answers.Length > 4 ? 13.125f : 19.375f, 6.25f);
-            for (int i = 0; i < souvenir.Answers.Length; i++)
+
+            protected virtual void SetUpTwoColumnAnswers(SouvenirModule souvenir)
             {
-                var mesh = souvenir.Answers[i].transform.Find("AnswerText").GetComponent<TextMesh>();
-                mesh.gameObject.SetActive(true);
+                SetupAnswers(souvenir, souvenir.HighlightShort,
+                    getX: i => -18.125f + 19.375f * (i / 2),
+                    getZ: i => -16.25f + _multiColumnVerticalSpacing * (1 - i % 2),
+                    boxCenter: new Vector3(5, 0, 0),
+                    boxSize: new Vector3(13, 6, 3));
+            }
 
-                mesh.text = i < _answers.Length ? _answers[i] : "•";
-                mesh.font = _font;
-                mesh.fontSize = _fontSize;
-                mesh.characterSize = _characterSize;
-                mesh.GetComponent<MeshRenderer>().material = _fontMaterial;
-                mesh.GetComponent<MeshRenderer>().material.mainTexture = _fontTexture;
+            protected virtual void SetUpThreeColumnAnswers(SouvenirModule souvenir)
+            {
+                SetupAnswers(souvenir, souvenir.HighlightShort,
+                    getX: i => -18.125f + 13.125f * (i / 2),
+                    getZ: i => -16.25f + _multiColumnVerticalSpacing * (1 - i % 2),
+                    boxCenter: new Vector3(8, 0, 0),
+                    boxSize: new Vector3(19, 6, 3));
+            }
 
-                // Determine size of the answer and if it’s too long, shrink it horizontally to make it fit
-                var origRotation = mesh.transform.localRotation;
-                mesh.transform.eulerAngles = new Vector3(90, 0, 0);
-                mesh.transform.localScale = new Vector3(1, 1, 1);
-                var bounds = mesh.GetComponent<Renderer>().bounds.size;
-                var fac = (_layout == AnswerLayout.OneColumn4Answers ? 1.5 : _answers.Length > 4 ? .45 : .7) * souvenir.SurfaceSizeFactor;
-                if (bounds.x > fac)
-                    mesh.transform.localScale = new Vector3((float) (fac / bounds.x), 1, 1);
-                mesh.transform.localRotation = origRotation;
+            protected void SetupAnswers(SouvenirModule souvenir, Mesh highlightMesh, Func<int, float> getX, Func<int, float> getZ, Vector3 boxCenter, Vector3 boxSize)
+            {
+                for (int i = 0; i < souvenir.Answers.Length; i++)
+                {
+                    souvenir.Answers[i].gameObject.SetActive(Application.isEditor || i < NumAnswers);
+                    souvenir.Answers[i].transform.Find("SpriteHolder").gameObject.SetActive(false);
+                    souvenir.Answers[i].transform.Find("AnswerText").gameObject.SetActive(false);
+                    var h1 = souvenir.Answers[i].transform.Find("Highlight");
+                    h1.GetComponent<MeshFilter>().sharedMesh = highlightMesh;
+                    var h2 = h1.Find("Highlight(Clone)");
+                    if (h2 != null)
+                        h2.GetComponent<MeshFilter>().sharedMesh = highlightMesh;
+                    souvenir.Answers[i].transform.localPosition = new Vector3(getX(i), 2.525f, getZ(i));
+                    souvenir.Answers[i].GetComponent<BoxCollider>().center = boxCenter;
+                    souvenir.Answers[i].GetComponent<BoxCollider>().size = boxSize;
+                }
             }
         }
 
-        public override void BlinkCorrectAnswer(bool on, SouvenirModule souvenir)
+        public sealed class TextAnswerSet : AnswerSet
         {
-            souvenir.Answers[CorrectIndex].transform.Find("AnswerText").gameObject.SetActive(on);
-        }
-    }
+            private readonly string[] _answers;
+            private readonly Font _font;
+            private readonly int _fontSize;
+            private readonly float _characterSize;
+            private readonly Texture _fontTexture;
+            private readonly Material _fontMaterial;
 
-    class QandASprite : QandA
-    {
-        private readonly Sprite[] _answers;
-        public QandASprite(string module, string question, int correct, Sprite[] answers, Sprite questionSprite) : base(module, question, correct, answers.Length, questionSprite) { _answers = answers; }
-        public override IEnumerable<string> DebugAnswers => _answers.Select(s => s.name);
-        public override double DesiredHeightFactor => 1;
-
-        public override void SetAnswers(SouvenirModule souvenir)
-        {
-            SetupTwoColumnAnswers(souvenir, _answers.Length > 4 ? 13.125f : 19.375f, 7.75f);
-            for (int i = 0; i < souvenir.Answers.Length; i++)
+            public TextAnswerSet(int numAnswers, AnswerLayout layout, string[] answers, Font font, int fontSize, float characterSize, Texture fontTexture, Material fontMaterial)
+                : base(numAnswers, layout)
             {
-                var spriteRenderer = souvenir.Answers[i].transform.Find("SpriteHolder").GetComponent<SpriteRenderer>();
-                spriteRenderer.gameObject.SetActive(i < _answers.Length);
-                spriteRenderer.sprite = i < _answers.Length ? _answers[i] : null;
+                _answers = answers;
+                _font = font;
+                _fontSize = fontSize;
+                _characterSize = characterSize;
+                _fontTexture = fontTexture;
+                _fontMaterial = fontMaterial;
+            }
+
+            public override IEnumerable<string> DebugAnswers => _answers;
+
+            public override void BlinkAnswer(bool on, SouvenirModule souvenir, int answerIndex)
+            {
+                souvenir.Answers[answerIndex].transform.Find("AnswerText").gameObject.SetActive(on);
+            }
+
+            protected override void RenderAnswers(SouvenirModule souvenir)
+            {
+                for (int i = 0; i < souvenir.Answers.Length; i++)
+                {
+                    var mesh = souvenir.Answers[i].transform.Find("AnswerText").GetComponent<TextMesh>();
+                    mesh.gameObject.SetActive(true);
+
+                    mesh.text = i < _answers.Length ? _answers[i] : "•";
+                    mesh.font = _font;
+                    mesh.fontSize = _fontSize;
+                    mesh.characterSize = _characterSize;
+                    mesh.GetComponent<MeshRenderer>().material = _fontMaterial;
+                    mesh.GetComponent<MeshRenderer>().material.mainTexture = _fontTexture;
+
+                    // Determine size of the answer and if it’s too long, shrink it horizontally to make it fit
+                    var origRotation = mesh.transform.localRotation;
+                    mesh.transform.eulerAngles = new Vector3(90, 0, 0);
+                    mesh.transform.localScale = new Vector3(1, 1, 1);
+                    var bounds = mesh.GetComponent<Renderer>().bounds.size;
+                    var fac = (_layout == AnswerLayout.OneColumn4Answers ? 1.5 : _answers.Length > 4 ? .45 : .7) * souvenir.SurfaceSizeFactor;
+                    if (bounds.x > fac)
+                        mesh.transform.localScale = new Vector3((float) (fac / bounds.x), 1, 1);
+                    mesh.transform.localRotation = origRotation;
+                }
             }
         }
 
-        public override void BlinkCorrectAnswer(bool on, SouvenirModule souvenir)
+        public sealed class SpriteAnswerSet : AnswerSet
         {
-            souvenir.Answers[CorrectIndex].transform.Find("SpriteHolder").gameObject.SetActive(on);
+            private readonly Sprite[] _answers;
+
+            public SpriteAnswerSet(int numAnswers, AnswerLayout layout, Sprite[] answers)
+                : base(numAnswers, layout)
+            {
+                _answers = answers;
+                _multiColumnVerticalSpacing = 7.75f;
+            }
+
+            public override IEnumerable<string> DebugAnswers => _answers.Select(a => a.name);
+
+            public override void BlinkAnswer(bool on, SouvenirModule souvenir, int answerIndex)
+            {
+                souvenir.Answers[answerIndex].transform.Find("SpriteHolder").gameObject.SetActive(on);
+            }
+
+            protected override void RenderAnswers(SouvenirModule souvenir)
+            {
+                for (int i = 0; i < souvenir.Answers.Length; i++)
+                {
+                    var spriteRenderer = souvenir.Answers[i].transform.Find("SpriteHolder").GetComponent<SpriteRenderer>();
+                    spriteRenderer.gameObject.SetActive(i < _answers.Length);
+                    spriteRenderer.sprite = i < _answers.Length ? _answers[i] : null;
+                }
+            }
         }
-    }
-
-    sealed class QandAEntireSprite : QandASprite
-    {
-        public QandAEntireSprite(string debugQuestion, string debugName, int correct, Sprite[] answers, Sprite questionSprite) : base(debugName, debugQuestion, correct, answers, questionSprite) { }
-
-        public override string DebugString => string.Format("(Depicted Visually) {0} — {1}", QuestionText, DebugAnswers.Select((a, ix) => string.Format(ix == CorrectIndex ? "[_{0}_]" : "{0}", a)).JoinString(" | "));
     }
 }
