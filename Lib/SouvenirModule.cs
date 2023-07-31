@@ -66,7 +66,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Material FontMaterial;
     public Font[] Fonts;
     public Texture[] FontTextures;
-    public Mesh HighlightShort; // 6 answers, 2 columns
+    public Mesh HighlightShort; // 6 answers, 3 columns
     public Mesh HighlightLong;  // 4 answers, 2 columns
     public Mesh HighlightVeryLong;  // 4 long answers, 1 column
 
