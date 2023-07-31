@@ -368,7 +368,6 @@ public partial class SouvenirModule : MonoBehaviour
             {
                 var answerSprites = attr.SpriteField == null ? ExampleSprites : (Sprite[]) typeof(SouvenirModule).GetField(attr.SpriteField, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleSprites;
                 answerSprites?.Shuffle();
-                // SetQuestion(new QandAEntireSprite(attr.QuestionText, attr.ModuleName, 0, answerSprites, WavetappingSprites[0]));
                 question = new QandA.SpriteQuestion(questionText, WavetappingSprites[0]);
             }
             else

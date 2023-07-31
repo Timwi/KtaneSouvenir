@@ -137,8 +137,8 @@ namespace Souvenir
                 SetupAnswers(souvenir, souvenir.HighlightShort,
                     getX: i => -18.125f + 19.375f * (i / 2),
                     getZ: i => -16.25f + _multiColumnVerticalSpacing * (1 - i % 2),
-                    boxCenter: new Vector3(5, 0, 0),
-                    boxSize: new Vector3(13, 6, 3));
+                    boxCenter: new Vector3(8, 0, 0),
+                    boxSize: new Vector3(19, 6, 3));
             }
 
             protected virtual void SetUpThreeColumnAnswers(SouvenirModule souvenir)
@@ -146,8 +146,8 @@ namespace Souvenir
                 SetupAnswers(souvenir, souvenir.HighlightShort,
                     getX: i => -18.125f + 13.125f * (i / 2),
                     getZ: i => -16.25f + _multiColumnVerticalSpacing * (1 - i % 2),
-                    boxCenter: new Vector3(8, 0, 0),
-                    boxSize: new Vector3(19, 6, 3));
+                    boxCenter: new Vector3(5, 0, 0),
+                    boxSize: new Vector3(13, 6, 3));
             }
 
             protected void SetupAnswers(SouvenirModule souvenir, Mesh highlightMesh, Func<int, float> getX, Func<int, float> getZ, Vector3 boxCenter, Vector3 boxSize)
