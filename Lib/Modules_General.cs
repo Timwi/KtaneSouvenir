@@ -166,6 +166,7 @@ public partial class SouvenirModule
     const string _FaultyRGBMaze = "faultyrgbMaze";
     const string _FindTheDate = "DateFinder";
     const string _FiveLetterWords = "FiveLetterWords";
+    const string _FizzBuzz = "fizzBuzzModule";
     const string _Flags = "FlagsModule";
     const string _FlashingArrows = "flashingArrowsModule";
     const string _FlashingLights = "flashingLights";
@@ -685,6 +686,7 @@ public partial class SouvenirModule
             [_FaultyRGBMaze] = (ProcessFaultyRGBMaze, "Faulty RGB Maze", "kavinkul"),
             [_FindTheDate] = (ProcessFindTheDate, "Find The Date", "Hawker"),
             [_FiveLetterWords] = (ProcessFiveLetterWords, "Five Letter Words", "Kuro"),
+            [_FizzBuzz] = (ProcessFizzBuzz, "FizzBuzz", "Kuro"),
             [_Flags] = (ProcessFlags, "Flags", "Timwi"),
             [_FlashingArrows] = (ProcessFlashingArrows, "Flashing Arrows", "VFlyer"),
             [_FlashingLights] = (ProcessFlashingLights, "Flashing Lights", "luisdiogo98"),

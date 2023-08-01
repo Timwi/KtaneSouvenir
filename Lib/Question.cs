@@ -840,6 +840,10 @@ namespace Souvenir
         [SouvenirQuestion("Which of these words was on the display in {0}?", "Five Letter Words", ThreeColumns6Answers, ExampleAnswers = new[] { "ABAFF", "MAYOR", "PANUS", "FRIZE", "NIRIS", "TEJON" })]
         FiveLetterWordsDisplayedWords,
 
+        [SouvenirQuestion("What was the {1} digit on the {2} display of {0}?", "FizzBuzz", ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { QandA.Ordinal, "top", QandA.Ordinal, "middle", QandA.Ordinal, "bottom" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        [AnswerGenerator.Integers(0, 9)]
+        FizzBuzzDisplayedNumbers,
+
         [SouvenirQuestion("What was the displayed number in {0}?", "Flags", ThreeColumns6Answers)]
         [AnswerGenerator.Integers(1, 7)]
         FlagsDisplayedNumber,

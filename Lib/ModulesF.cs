@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using Newtonsoft.Json;
 using Souvenir;
 using UnityEngine;
@@ -193,6 +192,44 @@ public partial class SouvenirModule
         var wordList = JsonConvert.DeserializeObject<string[]>(GetField<TextAsset>(comp, "FiverData", isPublic: true).Get().text);
         var displayedWords = GetArrayField<string>(comp, "TheNames").Get(expectedLength: 3, validator: name => name.Length != 5 ? "expected length 5" : null);
         addQuestion(module, Question.FiveLetterWordsDisplayedWords, correctAnswers: displayedWords, preferredWrongAnswers: wordList);
+    }
+
+    private IEnumerable<object> ProcessFizzBuzz(KMBombModule module)
+    {
+        var comp = GetComponent(module, "FizzBuzzModule");
+        var labels = GetArrayField<TextMesh>(comp, "Labels", isPublic: true).Get(expectedLength: 3);
+        var solutions = GetArrayField<int[]>(comp, "Solutions").Get(expectedLength: 2, nullContentAllowed: true);
+
+        while (solutions.GetValue(0) is null)
+            yield return null; // Don't wait 0.1 seconds to make sure we get the labels before they are changed.
+
+        var displayedDigits = labels.Select(t => t.text).ToArray();
+        if (displayedDigits.Any(ds => ds.Length != 7 || ds.Any(d => !char.IsDigit(d))))
+            throw new AbandonModuleException($"Unexpected display value: \"{displayedDigits.First(ds => ds.Length != 7 || ds.Any(d => !char.IsDigit(d)))}\".");
+
+        var fldSolved = GetField<bool>(comp, "isSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_FizzBuzz);
+
+        var qs = new List<QandA>();
+        var displays = new[] { "top", "middle", "bottom" };
+        for (int pos = 0; pos < 3; pos++) {
+            if (displayedDigits[pos] != labels[pos].text)
+            {
+                for (int digit = 0; digit < 6; digit++)
+                    qs.Add(makeQuestion(Question.FizzBuzzDisplayedNumbers, _FizzBuzz, formatArgs: new[] { ordinal(digit + 1), displays[pos] }, correctAnswers: new[] { displayedDigits[pos][digit].ToString() }));
+                if (!labels[pos].text.ToLower().Contains("buzz")) // Do not ask about the last digit if the answer was buzz because there are only two possible correct answers.
+                    qs.Add(makeQuestion(Question.FizzBuzzDisplayedNumbers, _FizzBuzz, formatArgs: new[] { "7th", displays[pos] }, correctAnswers: new[] { displayedDigits[pos][6].ToString() }));
+            }
+        }
+        if (qs.Count == 0)
+        {
+            Debug.Log($"[Souvenir #{_moduleId}] No questions for FizzBuzz because all of the numbers remained on the displays.");
+            _legitimatelyNoQuestions.Add(module);
+        }
+        else
+            addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessFlags(KMBombModule module)

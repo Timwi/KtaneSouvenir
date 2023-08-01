@@ -34,6 +34,18 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Color Decoding       │  Hexamaze              │  Mystery Module           │  Simon Shouts         │
     Color Morse          │  Hogwarts              │  Navinums                 │  Simon Shrieks        │
 
+## Implemented by Kuro (45)
+
+    ...?                  │  Cruel Keypads      │  Forget Me Not         │  Not Colored Squares    │  Simon Smothers
+    64                    │  Cursed Double-Oh   │  Gadgetron Vendor      │  Old Fogey              │  Simon Stacks
+    Alphabet Numbers      │  Double Expert      │  Hinges                │  Orientation Hypercube  │  Snowflakes
+    Blinkstop             │  Duck, The          │  Impostor, The         │  Periodic Words         │  Tea Set, The
+    Bomb Diffusal         │  Encrypted Dice     │  Juxtacolored Squares  │  Pictionary             │  Technical Keypad
+    Boolean Wires         │  Faulty Buttons     │  Kanji                 │  Procedural Maze        │  Tetriamonds
+    Broken Guitar Chords  │  Five Letter Words  │  Know Your Way         │  Question Mark          │  Tip Toe
+    Burger Alarm          │  FizzBuzz           │  Light Bulbs           │  Recursive Password     │  Triamonds
+    Cruel Binary          │  Follow Me          │  Mad Memory            │  Scripting              │  Warning Signs
+
 ## Implemented by luisdiogo98 (45)
 
     Accumulation         │  Deck of Many Things, The  │  Horrible Memory   │  Modern Cipher      │  Sphere, The
@@ -45,18 +57,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Coffeebucks          │  Flashing Lights           │  Maze Scrambler    │  Retirement         │  Varicolored Squares
     Colored Keys         │  Free Parking              │  Maze³             │  Reverse Morse      │  Vexillology
     Cube, The            │  Hexabutton, The           │  Mazematics        │  Simon Scrambles    │  Zoni
-
-## Implemented by Kuro (44)
-
-    ...?                  │  Cruel Keypads      │  Gadgetron Vendor      │  Old Fogey              │  Simon Stacks
-    64                    │  Cursed Double-Oh   │  Hinges                │  Orientation Hypercube  │  Snowflakes
-    Alphabet Numbers      │  Double Expert      │  Impostor, The         │  Periodic Words         │  Tea Set, The
-    Blinkstop             │  Duck, The          │  Juxtacolored Squares  │  Pictionary             │  Technical Keypad
-    Bomb Diffusal         │  Encrypted Dice     │  Kanji                 │  Procedural Maze        │  Tetriamonds
-    Boolean Wires         │  Faulty Buttons     │  Know Your Way         │  Question Mark          │  Tip Toe
-    Broken Guitar Chords  │  Five Letter Words  │  Light Bulbs           │  Recursive Password     │  Triamonds
-    Burger Alarm          │  Follow Me          │  Mad Memory            │  Scripting              │  Warning Signs
-    Cruel Binary          │  Forget Me Not      │  Not Colored Squares   │  Simon Smothers         │
 
 ## Implemented by BigCrunch22 (38)
 
