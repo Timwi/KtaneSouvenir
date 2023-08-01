@@ -399,6 +399,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         CharacterCodesCharacter,
 
+        [SouvenirQuestion("Who was displayed in the {1} slot in stage {2} of {0}?", "Character Slots", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "CharacterSlotsSprites",
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal, "1" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        CharacterSlotsDisplayedCharacters,
+
         [SouvenirQuestion("What was the {1}paid amount in {0}?", "Cheap Checkout", ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "", "first ", "second " }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(5, 50, "$0\".00\"")]
