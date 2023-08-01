@@ -171,7 +171,7 @@ public partial class SouvenirModule
             }
         }
 
-        solved:
+    solved:
         _modulesSolved.IncSafe(_SeaShells);
 
         var qs = new List<QandA>();
@@ -1096,10 +1096,11 @@ public partial class SouvenirModule
     private IEnumerable<object> ProcessSnowflakes(KMBombModule module)
     {
         var comp = GetComponent(module, "snowflakes");
+        
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
         var gameOnPassDelegate = module.OnPass;
         module.OnPass = () => { return false; };
 
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Snowflakes);

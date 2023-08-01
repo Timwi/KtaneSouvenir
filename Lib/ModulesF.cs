@@ -581,6 +581,7 @@ public partial class SouvenirModule
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldAnimating = GetField<bool>(comp, "animating");
         var fldOpened = GetField<bool>(comp, "opened");
+        var mthToggleDoor = GetMethod<IEnumerator>(comp, "ToggleDoor", 0);
 
         // Prevent the module from marking itself as solved
         var gameOnPassDelegate = module.OnPass;
@@ -608,7 +609,7 @@ public partial class SouvenirModule
             while (fldAnimating.Get())
                 yield return new WaitForSeconds(0.1f);
             if (fldOpened.Get())
-                yield return ((MonoBehaviour) comp).StartCoroutine(GetMethod<IEnumerator>(comp, "ToggleDoor", 0).Invoke(new object[0]));
+                yield return ((MonoBehaviour) comp).StartCoroutine(mthToggleDoor.Invoke(new object[0]));
             gameOnPassDelegate();
         }
 
