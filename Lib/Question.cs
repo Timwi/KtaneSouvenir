@@ -2407,6 +2407,9 @@ namespace Souvenir
         [SouvenirQuestion("Where was the starting position in {0}?", "Tasque Managing", ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "TasqueManagingSprites")]
         TasqueManagingStartingPos,
 
+        [SouvenirQuestion("Which ingredient was displayed {1}, from left to right, in {0}?", "Tea Set", ThreeColumns6Answers, AddThe = true, Type = AnswerType.Sprites, SpriteField = "TeaSetSprites", ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        TeaSetDisplayedIngredients,
+
         [SouvenirQuestion("What was the {1} displayed digit in {0}?", "Technical Keypad", ThreeColumns6Answers, IsEntireQuestionSprite = true, ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 9)]
         TechnicalKeypadDisplayedDigits,

@@ -50,6 +50,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] SymbolicCoordinatesSprites;
     public Sprite[] SymbolicTashaSprites;
     public Sprite[] TasqueManagingSprites;
+    public Sprite[] TeaSetSprites;
     public Sprite[] USACycleSprites;
     public Sprite[] WavetappingSprites;
     public Texture2D[] DigitTextures;

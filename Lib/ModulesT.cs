@@ -58,6 +58,19 @@ public partial class SouvenirModule
             preferredWrongAnswers: TasqueManagingSprites);
     }
 
+    private IEnumerable<object> ProcessTeaSet(KMBombModule module)
+    {
+        var comp = GetComponent(module, "TeaSetScript");
+
+        var fldSolved = GetField<bool>(comp, "Solved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_TeaSet);
+
+        var displayedIngredients = GetListField<int>(comp, "Order").Get(expectedLength: 8);
+        addQuestions(module, displayedIngredients.Select((ing, ix) => makeQuestion(Question.TeaSetDisplayedIngredients, _TeaSet, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { TeaSetSprites[ing] }, preferredWrongAnswers: TeaSetSprites)));
+    }
+
     private IEnumerable<object> ProcessTechnicalKeypad(KMBombModule module)
     {
         var comp = GetComponent(module, "TechnicalKeypadModule");

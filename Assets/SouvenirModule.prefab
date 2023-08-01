@@ -987,6 +987,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5bfdc56cc49b1f845ab759d7f1ec7a29, type: 3}
   - {fileID: 21300000, guid: 35cb2c07e5b9e724eb6611eeb962d798, type: 3}
   - {fileID: 21300000, guid: fbf9cdab97fe52044956315fd68de623, type: 3}
+  TeaSetSprites:
+  - {fileID: 21300000, guid: 8653c9755a5c94d4bb0d1c1418bbbdf4, type: 3}
+  - {fileID: 21300000, guid: 19ae1c3e3f381474bb6d2c0225992077, type: 3}
+  - {fileID: 21300000, guid: c72f491ffd812b2428ba8520d7bbc86a, type: 3}
+  - {fileID: 21300000, guid: 9b08ace7bc86e014e88fa28887718989, type: 3}
+  - {fileID: 21300000, guid: acc44804486758f4b8df51b281dc5c38, type: 3}
+  - {fileID: 21300000, guid: 048b15908940cb44abde9e57a9f0ee2b, type: 3}
+  - {fileID: 21300000, guid: fbe753db8439d4c4ca8a6a08f8824976, type: 3}
+  - {fileID: 21300000, guid: 1b91fb895cfd2ae40b7b726ea366d682, type: 3}
   USACycleSprites:
   - {fileID: 21300000, guid: 45ee861c9bd76504dba09e4f17a3bcb1, type: 3}
   - {fileID: 21300000, guid: 4002603c6be1c67428f1126afa774307, type: 3}
