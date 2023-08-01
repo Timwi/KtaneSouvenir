@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
+using Oculus.Platform;
 using Souvenir;
 using UnityEngine;
 
@@ -113,6 +115,33 @@ public partial class SouvenirModule
         var code = GetArrayField<string>(comp, "chosenLetters").Get();
         var allChars = GetStaticField<Dictionary<ushort, string>>(comp.GetType(), "characterList").Get().Values.ToArray();
         addQuestions(module, code.Select((c, i) => makeQuestion(Question.CharacterCodesCharacter, _CharacterCodes, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { c }, preferredWrongAnswers: allChars)));
+    }
+
+    private IEnumerable<object> ProcessCharacterSlots(KMBombModule module)
+    {
+        var comp = GetComponent(module, "CharacterSlotsScript");
+        var fldSolved = GetField<bool>(comp, "IsSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_CharacterSlots);
+
+        var characters = GetField<Array>(comp, "slotStates").Get(arr => arr.Rank != 2 || arr.GetLength(0) != 3 || arr.GetLength(1) != 3 ? "expected size 3 x 3 array" : null);
+
+        var fldName = GetField<Enum>(characters.GetValue(0, 0), "characterName");
+        var stageNumber = GetField<int>(comp, "stageNumber").Get();
+        var qs = new List<QandA>();
+
+        for (int row = 0; row < stageNumber; row++)
+        {
+            for (int col = 0; col < 3; col++)
+            {
+                string name = fldName.GetFrom(characters.GetValue(row, col), ch => !CharacterSlotsSprites.Any(s => s.name.Replace(" ", "") == ch.ToString()) ? "unexpected character name" : null).ToString();
+                qs.Add(makeQuestion(Question.CharacterSlotsDisplayedCharacters, _CharacterSlots, formatArgs: new[] { ordinal(col + 1), (row + 1).ToString() }, correctAnswers: new[] { CharacterSlotsSprites.First(sprite => sprite.name.Replace(" ", "") == name) }, preferredWrongAnswers: CharacterSlotsSprites));
+            }
+        }
+
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessCheapCheckout(KMBombModule module)
