@@ -2573,6 +2573,9 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         VisualImpairmentColors,
 
+        [SouvenirQuestion("What was the displayed sign in {0}?", "Warning Signs", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "WarningSignsSprites")]
+        WarningSignsDisplayedSign,
+
         [SouvenirQuestion("What was the color on the {1} stage in {0}?", "Wavetapping", TwoColumns4Answers, "Red", "Orange", "Orange-Yellow", "Chartreuse", "Lime", "Green", "Seafoam Green", "Cyan-Green", "Turquoise", "Dark Blue", "Indigo", "Purple", "Purple-Magenta", "Magenta", "Pink", "Gray", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         WavetappingColors,

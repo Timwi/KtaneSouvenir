@@ -504,6 +504,7 @@ public partial class SouvenirModule
     const string _Vexillology = "vexillology";
     const string _VioletCipher = "violetCipher";
     const string _VisualImpairment = "visual_impairment";
+    const string _WarningSigns = "warningSigns";
     const string _Wavetapping = "Wavetapping";
     const string _WeakestLink = "TheWeakestLink";
     const string _WhatsOnSecond = "WhatsOnSecond";
@@ -1021,6 +1022,7 @@ public partial class SouvenirModule
             [_Vexillology] = (ProcessVexillology, "Vexillology", "luisdiogo98"),
             [_VioletCipher] = (ProcessVioletCipher, "Violet Cipher", "BigCrunch22"),
             [_VisualImpairment] = (ProcessVisualImpairment, "Visual Impairment", "Timwi"),
+            [_WarningSigns] = (ProcessWarningSigns, "Warning Signs", "Kuro"),
             [_Wavetapping] = (ProcessWavetapping, "Wavetapping", "KingSlendy"),
             [_WeakestLink] = (ProcessWeakestLink, "Weakest Link, The", "Hawker"),
             [_WhatsOnSecond] = (ProcessWhatsOnSecond, "What’s on Second", "BigCrunch22"),

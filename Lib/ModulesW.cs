@@ -7,6 +7,19 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
+    private IEnumerable<object> ProcessWarningSigns(KMBombModule module)
+    {
+        var comp = GetComponent(module, "warningSignSrc");
+
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_WarningSigns);
+
+        var displayedSign = GetIntField(comp, "chosenSign").Get(min: 0, max: 19);
+        addQuestion(module, Question.WarningSignsDisplayedSign, correctAnswers: new[] { WarningSignsSprites[displayedSign] }, preferredWrongAnswers: WarningSignsSprites);
+    }
+
     private IEnumerable<object> ProcessWavetapping(KMBombModule module)
     {
         var comp = GetComponent(module, "scr_wavetapping");
