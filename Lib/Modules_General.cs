@@ -56,6 +56,7 @@ public partial class SouvenirModule
     const string _Bitmaps = "BitmapsModule";
     const string _BlackCipher = "blackCipher";
     const string _BlindMaze = "BlindMaze";
+    const string _Blinkstop = "blinkstopModule";
     const string _Blockbusters = "blockbusters";
     const string _BlueArrows = "blueArrowsModule";
     const string _BlueButton = "BlueButtonModule";
@@ -574,6 +575,7 @@ public partial class SouvenirModule
             [_Bitmaps] = (ProcessBitmaps, "Bitmaps", "Timwi"),
             [_BlackCipher] = (ProcessBlackCipher, "Black Cipher", "BigCrunch22"),
             [_BlindMaze] = (ProcessBlindMaze, "Blind Maze", "Timwi"),
+            [_Blinkstop] = (ProcessBlinkstop, "Blinkstop", "Kuro"),
             [_Blockbusters] = (ProcessBlockbusters, "Blockbusters", "luisdiogo98"),
             [_BlueArrows] = (ProcessBlueArrows, "Blue Arrows", "kavinkul"),
             [_BlueButton] = (ProcessBlueButton, "Blue Button, The", "Timwi"),

@@ -268,6 +268,11 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9)]
         BlindMazeMaze,
 
+        [SouvenirQuestion("How many times did the LED flash in {0}?", "Blinkstop", ThreeColumns6Answers, "30", "33", "37", "39", "42", "44", "47", "51", "55", "59")]
+        BlinkstopNumberOfFlashes,
+        [SouvenirQuestion("Which color did the LED flash the fewest times in {0}?", "Blinkstop", TwoColumns4Answers, "Purple", "Cyan", "Yellow", "Multicolor")]
+        BlinkstopFewestFlashedColor,
+
         [SouvenirQuestion("What was the last letter pressed on {0}?", "Blockbusters", ThreeColumns6Answers)]
         [AnswerGenerator.Strings('A', 'Z')]
         BlockbustersLastLetter,

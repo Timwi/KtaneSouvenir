@@ -46,17 +46,17 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Colored Keys         │  Free Parking              │  Maze³             │  Reverse Morse      │  Vexillology
     Cube, The            │  Hexabutton, The           │  Mazematics        │  Simon Scrambles    │  Zoni
 
-## Implemented by Kuro (43)
+## Implemented by Kuro (44)
 
-    ...?                  │  Cursed Double-Oh   │  Hinges                │  Orientation Hypercube  │  Snowflakes
-    64                    │  Double Expert      │  Impostor, The         │  Periodic Words         │  Tea Set, The
-    Alphabet Numbers      │  Duck, The          │  Juxtacolored Squares  │  Pictionary             │  Technical Keypad
+    ...?                  │  Cruel Keypads      │  Gadgetron Vendor      │  Old Fogey              │  Simon Stacks
+    64                    │  Cursed Double-Oh   │  Hinges                │  Orientation Hypercube  │  Snowflakes
+    Alphabet Numbers      │  Double Expert      │  Impostor, The         │  Periodic Words         │  Tea Set, The
+    Blinkstop             │  Duck, The          │  Juxtacolored Squares  │  Pictionary             │  Technical Keypad
     Bomb Diffusal         │  Encrypted Dice     │  Kanji                 │  Procedural Maze        │  Tetriamonds
     Boolean Wires         │  Faulty Buttons     │  Know Your Way         │  Question Mark          │  Tip Toe
     Broken Guitar Chords  │  Five Letter Words  │  Light Bulbs           │  Recursive Password     │  Triamonds
     Burger Alarm          │  Follow Me          │  Mad Memory            │  Scripting              │  Warning Signs
     Cruel Binary          │  Forget Me Not      │  Not Colored Squares   │  Simon Smothers         │
-    Cruel Keypads         │  Gadgetron Vendor   │  Old Fogey             │  Simon Stacks           │
 
 ## Implemented by BigCrunch22 (38)
 

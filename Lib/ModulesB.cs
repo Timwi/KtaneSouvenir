@@ -482,6 +482,25 @@ public partial class SouvenirModule
                 .Concat(new[] { makeQuestion(Question.BlindMazeMaze, _BlindMaze, correctAnswers: new[] { ((numSolved + lastDigit) % 10).ToString() }) }));
     }
 
+    private IEnumerable<object> ProcessBlinkstop(KMBombModule module)
+    {
+        var comp = GetComponent(module, "BlinkstopScript");
+
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Blinkstop);
+
+        var flashes = GetArrayField<char>(comp, "prevledcols").Get(arr => 
+            !GetAnswers(Question.BlinkstopNumberOfFlashes).Contains(arr.Length.ToString()) ? "unexpected flash count" :
+            arr.Any(f => !"PMYC".Contains(f)) ? "expected only P, M, Y, or C flash values" : null);
+        var leastFlashedColour = new[] { "Multicolor", "Purple", "Yellow", "Cyan" }.OrderBy(col => flashes.Count(f => f == col[0])).First();
+
+        addQuestions(module,
+            makeQuestion(Question.BlinkstopNumberOfFlashes, _Blinkstop, correctAnswers: new[] { flashes.Length.ToString() }),
+            makeQuestion(Question.BlinkstopFewestFlashedColor, _Blinkstop, correctAnswers: new[] { leastFlashedColour }));
+    }
+
     private IEnumerable<object> ProcessBlockbusters(KMBombModule module)
     {
         var comp = GetComponent(module, "blockbustersScript");
