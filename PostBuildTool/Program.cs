@@ -74,7 +74,7 @@ namespace SouvenirPostBuildTool
                 var numItems = group.Value.Count;
                 var numRows = (numItems + numColumns - 1) / numColumns;
                 var col = 0;
-                foreach (var column in group.Value.Order().Split(numRows))
+                foreach (var column in group.Value.Order(StringComparer.InvariantCultureIgnoreCase).Split(numRows))
                 {
                     var row = 0;
                     foreach (var moduleName in column)
@@ -91,7 +91,7 @@ namespace SouvenirPostBuildTool
             var remaining = contributorToModules
                 .Where(gr => gr.Value.Count <= numColumns)
                 .SelectMany(gr => gr.Value.Select(v => (author: gr.Key, module: v)))
-                .OrderBy(tup => tup.module)
+                .OrderBy(tup => tup.module, StringComparer.InvariantCultureIgnoreCase)
                 .ToArray();
             for (var i = 0; i < remaining.Length; i++)
             {

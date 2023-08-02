@@ -10,8 +10,8 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     3D Tunnels           │  Coordinates           │  Identity Parade          │  Not X-Ray            │  Simon Speaks
     Adventure Game       │  Coral Cipher          │  Ingredients              │  Object Shows         │  Simon States
     Algebra              │  Corners               │  IPA                      │  Only Connect         │  Skewed Slots
-    Alphabetical Ruling  │  Cornflower Cipher     │  Kudosudoku               │  Orientation Cube     │  Skyrim
-    Alpha-Bits           │  Crazy Maze            │  Lion’s Share             │  Partial Derivatives  │  Sonic the Hedgehog
+    Alpha-Bits           │  Cornflower Cipher     │  Kudosudoku               │  Orientation Cube     │  Skyrim
+    Alphabetical Ruling  │  Crazy Maze            │  Lion’s Share             │  Partial Derivatives  │  Sonic the Hedgehog
     ASCII Maze           │  Cream Cipher          │  Listening                │  Pattern Cube         │  Stellar
     Azure Button, The    │  Crimson Cipher        │  Logic Gates              │  Pink Button, The     │  Switch, The
     Bartending           │  Cryptic Keypad        │  Logical Buttons          │  Poetry               │  Switches
@@ -81,12 +81,12 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 
 ## Implemented by tandyCake (28)
 
-    Algorithmia    │  Kanye Encounter, The  │  M-Seq            │  Red Herring           │  Tasque Managing
+    Algorithmia    │  Kanye Encounter, The  │  Metamorse        │  Red Herring           │  Tasque Managing
     Breakfast Egg  │  Keypad Magnified      │  Name Codes       │  Shogi Identification  │  Touch Transmission
     Digisibility   │  Ladders               │  Not Piano Keys   │  Simon Shapes          │  Trajectory
     Flyswatting    │  LEDs                  │  Not Text Field   │  Simon Supports        │  USA Cycle
-    Forget Me      │  Math ’em              │  Not Word Search  │  Stupid Slots          │
-    Jenga          │  Metamorse             │  Numpath          │  Superparsing          │
+    Forget Me      │  M-Seq                 │  Not Word Search  │  Stupid Slots          │
+    Jenga          │  Math ’em              │  Numpath          │  Superparsing          │
 
 ## Implemented by QuinnWuest (23)
 
@@ -175,8 +175,8 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Crazy Hamburger          │  noting3548
     Divisible Numbers        │  shortc1rcuit
     Elder Futhark            │  Goofy
-    ƎNA Cipher               │  KiloBites
     Exoplanets               │  Brawlboxgaming
+    ƎNA Cipher               │  KiloBites
     Functions                │  JerryEris
     Gryphons                 │  JerryEris
     Hyperlink, The           │  Espik
