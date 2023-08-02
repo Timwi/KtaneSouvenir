@@ -1,23 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.Collections;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using RT.CommandLine;
 using RT.Util.ExtensionMethods;
 using RT.Util.Text;
-
-[assembly: AssemblyTitle("SouvenirPostBuildTool")]
-[assembly: AssemblyDescription("Provides functionality to be run in a post-build step after compiling SouvenirLib.dll.")]
-[assembly: AssemblyProduct("SouvenirPostBuildTool")]
-[assembly: AssemblyCopyright("Copyright © Timwi 2021–2023")]
-[assembly: Guid("e15e070f-0d34-4a7c-bce0-22af4567c1d1")]
-[assembly: AssemblyVersion("2.0.0.0")]
-[assembly: AssemblyFileVersion("2.0.0.0")]
 
 namespace SouvenirPostBuildTool
 {
