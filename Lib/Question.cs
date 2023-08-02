@@ -34,6 +34,10 @@ namespace Souvenir
         [SouvenirQuestion("What was the initial state of the LEDs in {0} (in reading order)?", "3 LEDs", TwoColumns4Answers, "off/off/off", "off/off/on", "off/on/off", "off/on/on", "on/off/off", "on/off/on", "on/on/off", "on/on/on")]
         _3LEDsInitialState,
 
+        [SouvenirQuestion("What number was initially displayed in {0}?", "3N+1", ThreeColumns6Answers)]
+        [AnswerGenerator.Integers(1,100)]
+        _3NPlus1,
+
         [SouvenirQuestion("What was the displayed number in {0}?", "64", ThreeColumns6Answers, Type = AnswerType.SixtyFourFont, ExampleAnswers = new[] { "A0A3", "bbda", "30", "h3X1", "ABCD", "1234" })]
         _64DisplayedNumber, // Use the font from the module because o and 0 are almost identical in the default font.
 
