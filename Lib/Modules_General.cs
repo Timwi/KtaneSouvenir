@@ -20,6 +20,7 @@ public partial class SouvenirModule
     const string _3DTapCode = "3DTapCodeModule";
     const string _3DTunnels = "3dTunnels";
     const string _3LEDs = "threeLEDsModule";
+    const string _3NPlus1 = "threeNPlusOne";
     const string _64 = "64";
     const string _7 = "7";
     const string _9Ball = "GSNineBall";
@@ -535,6 +536,7 @@ public partial class SouvenirModule
             [_3DTunnels] = (Process3DTunnels, "3D Tunnels", "Timwi"),
             [_64] = (Process64, "64", "Kuro"),
             [_3LEDs] = (Process3LEDs, "3 LEDs", "Timwi"),
+            [_3NPlus1] = (Process3NPlus1, "3N+1", "Hawker"),
             [_7] = (Process7, "7", "VFlyer"),
             [_9Ball] = (Process9Ball, "9-Ball", "GhostSalt"),
             [_Abyss] = (ProcessAbyss, "Abyss", "VFlyer"),

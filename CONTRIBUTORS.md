@@ -127,6 +127,12 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Abyss           │  Homophones       │  Prime Encryption  │  Who’s on Morse
     Color Addition  │  Negativity       │  Quick Arithmetic  │  WhoOF
 
+## Implemented by Hawker (11)
+
+    3N+1                     │  Find The Date      │  Scrutiny Squares                   │  UNO!
+    Character Slots          │  Garnet Thief, The  │  Sign Language                      │  Weakest Link, The
+    Customer Identification  │  Girlfriend         │  Spongebob Birthday Identification  │
+
 ## Implemented by Anonymous (10)
 
     ❖             │  Beans     │  Boomtar the Great  │  Double Arrows  │  Labyrinth, The
@@ -136,11 +142,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 
     9-Ball             │  Entry Number One    │  Maze Identification  │  Not The Screw          │  Stacked Sequences
     Entry Number Four  │  Game of Life Cruel  │  Mazeseeker           │  Puzzle Identification  │  Xenocryst, The
-
-## Implemented by Hawker (10)
-
-    Character Slots          │  Find The Date      │  Girlfriend        │  Sign Language                      │  UNO!
-    Customer Identification  │  Garnet Thief, The  │  Scrutiny Squares  │  Spongebob Birthday Identification  │  Weakest Link, The
 
 ## Implemented by Marksam (8)
 

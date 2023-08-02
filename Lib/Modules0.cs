@@ -169,6 +169,22 @@ public partial class SouvenirModule
         addQuestion(module, Question._3LEDsInitialState, correctAnswers: new[] { initialStates.Select(s => s ? "on" : "off").JoinString("/") });
     }
 
+    private IEnumerable<object> Process3NPlus1(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ThreeNPlusOneScript");
+        var fldSolved = GetField<bool>(comp, "isSolved");
+        var fldDisplayText = GetField<TextMesh>(comp, "DisplayText", isPublic: true);
+        var fldStage = GetField<int>(comp, "Stage");
+
+        int answer = int.Parse(fldDisplayText.Get().text);
+       
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_3NPlus1);
+
+        addQuestion(module, Question._3NPlus1, correctAnswers: new[] { answer.ToString() });
+    }
+
     private IEnumerable<object> Process64(KMBombModule module)
     {
         var comp = GetComponent(module, "SixtyFourScript");
