@@ -812,6 +812,20 @@ namespace Souvenir
         [AnswerGenerator.Strings("0-9a-f")]
         FaultyRGBMazeNumber,
 
+        [SouvenirQuestion("What was the month displayed in stage {1} of {0}", "Find The Date", TwoColumns4Answers, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
+            ExampleExtraFormatArguments = new[] {"1"}, ExampleExtraFormatArgumentGroupSize = 1)]
+        FindTheDateMonth,
+
+        [SouvenirQuestion("What was the date displayed in stage {1} of {0}", "Find The Date", ThreeColumns6Answers,
+            ExampleExtraFormatArguments = new[] { "1" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 31)]
+        FindTheDateDay,
+
+        [SouvenirQuestion("What was the year displayed in stage {1} of {0}", "Find The Date", ThreeColumns6Answers,
+            ExampleExtraFormatArguments = new[] { "1" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 2899, "000")]
+        FindTheDateYear,
+
         [SouvenirQuestion("Which of these words was on the display in {0}?", "Five Letter Words", ThreeColumns6Answers, ExampleAnswers = new[] { "ABAFF", "MAYOR", "PANUS", "FRIZE", "NIRIS", "TEJON" })]
         FiveLetterWordsDisplayedWords,
 
