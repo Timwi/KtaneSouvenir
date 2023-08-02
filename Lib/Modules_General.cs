@@ -400,6 +400,7 @@ public partial class SouvenirModule
     const string _ShiftedMaze = "shiftedMaze";
     const string _ShiftingMaze = "MazeShifting";
     const string _ShogiIdentification = "shogiIdentification";
+    const string _SignLanguage = "signLanguage";
     const string _SillySlots = "SillySlots";
     const string _SiloAuthorization = "siloAuthorization";
     const string _SimonSaid = "simonSaidModule";
@@ -912,6 +913,7 @@ public partial class SouvenirModule
             [_ShiftedMaze] = (ProcessShiftedMaze, "Shifted Maze", "Timwi"),
             [_ShiftingMaze] = (ProcessShiftingMaze, "Shifting Maze", "BigCrunch22"),
             [_ShogiIdentification] = (ProcessShogiIdentification, "Shogi Identification", "tandyCake"),
+            [_SignLanguage] = (ProcessSignLanguage, "Sign Language", "Hawker"),
             [_SillySlots] = (ProcessSillySlots, "Silly Slots", "Timwi"),
             [_SiloAuthorization] = (ProcessSiloAuthorization, "Silo Authorization", "Timwi"),
             [_SimonSaid] = (ProcessSimonSaid, "Simon Said", "QuinnWuest"),

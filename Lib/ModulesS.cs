@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Assets.Scripts.Platform.Common;
 using Souvenir;
 using UnityEngine;
 
@@ -349,6 +350,22 @@ public partial class SouvenirModule
 
         addQuestion(module, Question.ShogiIdentificationPiece, correctAnswers: new[] { propName.Get() });
     }
+
+    private IEnumerable<object> ProcessSignLanguage(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SignLanguageAlphabetScript");
+        var fldSolved = GetField<bool>(comp, "IsSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SignLanguage);
+
+        var entryObj = GetField<object>(comp, "entry").Get();
+        var answer = GetField<string>(entryObj, "word").Get();
+
+        addQuestion(module, Question.SignLanguageWord, correctAnswers: new[] { answer });
+    }
+
     private IEnumerable<object> ProcessSillySlots(KMBombModule module)
     {
         var comp = GetComponent(module, "SillySlots");
