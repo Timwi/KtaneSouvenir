@@ -121,17 +121,17 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Creation    │  LED Encryption  │  Mystic Square  │  Symbolic Coordinates  │  Turtle Robot
     Gridlock    │  Minesweeper     │  Souvenir       │  Text Field            │
 
+## Implemented by Hawker (12)
+
+    3N+1                     │  Dimension Disruption  │  Girlfriend        │  Spongebob Birthday Identification
+    Character Slots          │  Find The Date         │  Scrutiny Squares  │  UNO!
+    Customer Identification  │  Garnet Thief, The     │  Sign Language     │  Weakest Link, The
+
 ## Implemented by VFlyer (12)
 
     7               │  Flashing Arrows  │  Pie Flash         │  Unfair’s Revenge
     Abyss           │  Homophones       │  Prime Encryption  │  Who’s on Morse
     Color Addition  │  Negativity       │  Quick Arithmetic  │  WhoOF
-
-## Implemented by Hawker (11)
-
-    3N+1                     │  Find The Date      │  Scrutiny Squares                   │  UNO!
-    Character Slots          │  Garnet Thief, The  │  Sign Language                      │  Weakest Link, The
-    Customer Identification  │  Girlfriend         │  Spongebob Birthday Identification  │
 
 ## Implemented by Anonymous (10)
 

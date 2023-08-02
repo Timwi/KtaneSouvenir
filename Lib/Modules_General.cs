@@ -130,6 +130,7 @@ public partial class SouvenirModule
     const string _DevilishEggs = "devilishEggs";
     const string _Digisibility = "digisibility";
     const string _DigitString = "digitString";
+    const string _DimensionDisruption = "dimensionDisruption";
     const string _DiscoloredSquares = "DiscoloredSquaresModule";
     const string _DivisibleNumbers = "divisibleNumbers";
     const string _DoubleArrows = "doubleArrows";
@@ -645,6 +646,7 @@ public partial class SouvenirModule
             [_DevilishEggs] = (ProcessDevilishEggs, "Devilish Eggs", "Timwi"),
             [_Digisibility] = (ProcessDigisibility, "Digisibility", "tandyCake"),
             [_DigitString] = (ProcessDigitString, "Digit String", "GoodHood"),
+            [_DimensionDisruption] = (ProcessDimensionDisruption, "Dimension Disruption", "Hawker"),
             [_DiscoloredSquares] = (ProcessDiscoloredSquares, "Discolored Squares", "luisdiogo98"),
             [_DivisibleNumbers] = (ProcessDivisibleNumbers, "Divisible Numbers", "shortc1rcuit"),
             [_DoubleArrows] = (ProcessDoubleArrows, "Double Arrows", "Anonymous"),

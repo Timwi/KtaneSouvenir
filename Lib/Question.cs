@@ -630,6 +630,10 @@ namespace Souvenir
         [AnswerGenerator.Strings("1-9", "6*0-9", "1-9")]
         DigitStringInitialNumber,
 
+        [SouvenirQuestion("What were one of the visible characters in {0}?", "Dimension Disruption", ThreeColumns6Answers)]
+        [AnswerGenerator.Strings("A-Z0-9")]
+        DimensionDisruptionVisibleLetters,
+
         [SouvenirQuestion("What was {1}’s remembered position in {0}?", "Discolored Squares", ThreeColumns6Answers, null, Type = AnswerType.Grid, TranslateFormatArgs = new[] { true },
             ExampleExtraFormatArguments = new[] { "Blue", "Red", "Yellow", "Green", "Magenta" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Grid(4, 4)]
