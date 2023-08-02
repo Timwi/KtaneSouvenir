@@ -2103,6 +2103,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 2)]
         SillySlots,
 
+        [SouvenirQuestion("What was the deciphered word in {0}?", "Sign Language", TwoColumns4Answers,
+            "PHALANX","DIGITAL","ACHIRAL","DEAFENS","LISTENS","EXPLAIN","SPEAKER","TURTLES","QUOTING","MISTAKE","REALIZE","HELPERS","HEARING","STROKES","OVERJOY","ROYALTY","EARDRUM", "COCHLEA","AUDIBLE","KABOOMS","REFUGEE","SWINGER","BALANCE","LIQUIDS","VOYAGED")]
+        SignLanguageWord,
+
         [SouvenirQuestion("What was the message type in {0}?", "Silo Authorization", TwoColumns4Answers, "Red-Alpha", "Yellow-Alpha", "Green-Alpha")]
         SiloAuthorizationMessageType,
         [SouvenirQuestion("What was the {1} part of the encrypted message in {0}?", "Silo Authorization", ThreeColumns6Answers, ExampleAnswers = new[] { "A1B2", "BC84", "QW47", "B420", "AFS2", "FUN9" },
