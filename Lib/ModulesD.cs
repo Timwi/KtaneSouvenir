@@ -185,6 +185,33 @@ public partial class SouvenirModule
         addQuestion(module, Question.DigitStringInitialNumber, correctAnswers: new[] { storedInitialString });
     }
 
+    private IEnumerable<object> ProcessDimensionDisruption(KMBombModule module)
+    {
+        var comp = GetComponent(module, "dimensionDisruptionScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        var letterIndex = new List<int>()
+        {
+            GetField<int>(comp, "letOne").Get(),
+            GetField<int>(comp, "letTwo").Get(),
+            GetField<int>(comp, "letThree").Get(),
+
+        };
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_DimensionDisruption);
+
+        string alphabet = GetField<string>(comp, "alphabet").Get();
+        var answers = new string[3];
+        for (int i = 0; i < 3; i++)
+        {
+            answers[i] = alphabet[letterIndex[i]].ToString();
+        }
+
+        addQuestion(module, Question.DimensionDisruptionVisibleLetters, correctAnswers: answers);
+    }
+
     private IEnumerable<object> ProcessDiscoloredSquares(KMBombModule module)
     {
         var comp = GetComponent(module, "DiscoloredSquaresModule");
