@@ -161,6 +161,7 @@ public partial class SouvenirModule
     const string _FastMath = "fastMath";
     const string _FaultyButtons = "GSFaultyButtons";
     const string _FaultyRGBMaze = "faultyrgbMaze";
+    const string _FindTheDate = "DateFinder";
     const string _FiveLetterWords = "FiveLetterWords";
     const string _Flags = "FlagsModule";
     const string _FlashingArrows = "flashingArrowsModule";
@@ -674,6 +675,7 @@ public partial class SouvenirModule
             [_FastMath] = (ProcessFastMath, "Fast Math", "Timwi"),
             [_FaultyButtons] = (ProcessFaultyButtons, "Faulty Buttons", "Kuro"),
             [_FaultyRGBMaze] = (ProcessFaultyRGBMaze, "Faulty RGB Maze", "kavinkul"),
+            [_FindTheDate] = (ProcessFindTheDate, "Find The Date", "Hawker"),
             [_FiveLetterWords] = (ProcessFiveLetterWords, "Five Letter Words", "Kuro"),
             [_Flags] = (ProcessFlags, "Flags", "Timwi"),
             [_FlashingArrows] = (ProcessFlashingArrows, "Flashing Arrows", "VFlyer"),

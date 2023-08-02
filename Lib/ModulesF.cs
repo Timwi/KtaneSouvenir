@@ -6,7 +6,6 @@ using System.Threading;
 using Newtonsoft.Json;
 using Souvenir;
 using UnityEngine;
-
 using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
@@ -128,6 +127,56 @@ public partial class SouvenirModule
 
         qs.Add(makeQuestion(Question.FaultyRGBMazeExit, _FaultyRGBMaze,
             correctAnswers: new[] { "ABCDEFG"[exitPos[2]] + (exitPos[1] + 1).ToString() }));
+
+        addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessFindTheDate(KMBombModule module)
+    {
+        var comp = GetComponent(module, "DateFinder");
+        var fldStage = GetIntField(comp, "count");
+        var fldDate = GetIntField(comp, "day");
+        var fldMonth = GetField<string>(comp, "month");
+        var fldYear = GetIntField(comp, "year");
+        var fldCentury = GetIntField(comp, "century");
+
+        var solved = false;
+        module.OnPass += () => { solved = true; return false; };
+        var dateArr = new int[3];
+        var yearArr = new string[3];
+        var monthArr = new string[3];
+        var currentStage = -1;
+
+        while (!solved)
+        {
+            var newStage = fldStage.Get();
+            if (currentStage != newStage)
+            {
+                currentStage = newStage;
+                dateArr[newStage] = fldDate.Get();
+                monthArr[newStage] = fldMonth.Get();
+                yearArr[newStage] = "" + fldCentury.Get() + fldYear.Get();
+            }
+            yield return null;
+        }
+        _modulesSolved.IncSafe(_FindTheDate);
+
+        var qs = new List<QandA>();
+
+        for (int i = 0; i < 3; i++)
+        {
+            qs.Add(makeQuestion(Question.FindTheDateMonth, _FindTheDate,
+            formatArgs: new[] { (i + 1).ToString() },
+            correctAnswers: new[] { monthArr[i] }));
+
+            qs.Add(makeQuestion(Question.FindTheDateDay, _FindTheDate,
+            formatArgs: new[] { (i + 1).ToString() },
+            correctAnswers: new[] { dateArr[i].ToString() }));
+
+            qs.Add(makeQuestion(Question.FindTheDateYear, _FindTheDate,
+            formatArgs: new[] { (i + 1).ToString() },
+            correctAnswers: new[] { yearArr[i] }));
+        }
 
         addQuestions(module, qs);
     }

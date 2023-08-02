@@ -137,10 +137,10 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     9-Ball             │  Entry Number One    │  Maze Identification  │  Not The Screw          │  Stacked Sequences
     Entry Number Four  │  Game of Life Cruel  │  Mazeseeker           │  Puzzle Identification  │  Xenocryst, The
 
-## Implemented by Hawker (9)
+## Implemented by Hawker (10)
 
-    Character Slots          │  Garnet Thief, The  │  Scrutiny Squares  │  Spongebob Birthday Identification  │  Weakest Link, The
-    Customer Identification  │  Girlfriend         │  Sign Language     │  UNO!                               │
+    Character Slots          │  Find The Date      │  Girlfriend        │  Sign Language                      │  UNO!
+    Customer Identification  │  Garnet Thief, The  │  Scrutiny Squares  │  Spongebob Birthday Identification  │  Weakest Link, The
 
 ## Implemented by Marksam (8)
 
