@@ -1153,17 +1153,30 @@ public partial class SouvenirModule : MonoBehaviour
 
         if (Application.isEditor)
         {
+            int substringMatch = -1;
             for (var i = 0; i < _exampleQuestions.Length; i++)
             {
                 var j = (i + _curExampleQuestion + 1) % _exampleQuestions.Length;
-                if (Regex.IsMatch(_attributes[_exampleQuestions[j]].ModuleNameWithThe, Regex.Escape(command), RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+                if (Regex.IsMatch(_attributes[_exampleQuestions[j]].ModuleNameWithThe, $"^{Regex.Escape(command)}$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
                 {
                     _curExampleQuestion = j;
                     showExampleQuestion();
                     yield break;
                 }
+
+                if (substringMatch == -1 && Regex.IsMatch(_attributes[_exampleQuestions[j]].ModuleNameWithThe, Regex.Escape(command), RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+                    substringMatch = j;
             }
-            Debug.LogError($"Question containing “{command}” not found.");
+
+            if (substringMatch != -1)
+            {
+                _curExampleQuestion = substringMatch;
+                showExampleQuestion();
+            }
+            else
+            {
+                Debug.LogError($"Question containing “{command}” not found.");
+            }
             yield break;
         }
 
