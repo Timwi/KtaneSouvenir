@@ -1181,6 +1181,9 @@ namespace Souvenir
             UsesQuestionSprite = true)]
         LabyrinthPortalStage,
 
+        [SouvenirQuestion("Which light was on in {0}", "Ladder Lottery", TwoColumns4Answers, "A", "B", "C", "D")]
+        LadderLotteryLightOn,
+
         [SouvenirQuestion("Which color was present on the second ladder in {0}?", "Ladders", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Cyan", "Purple", "Gray", TranslateAnswers = true)]
         LaddersStage2Colors,
         [SouvenirQuestion("What color was missing on the third ladder in {0}?", "Ladders", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Cyan", "Purple", "Gray", TranslateAnswers = true)]

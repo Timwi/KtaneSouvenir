@@ -56,6 +56,19 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessLadderLottery(KMBombModule module)
+    {
+        var comp = GetComponent(module, "LadderLottery");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+        var fldPoint = GetField<Enum>(comp, "_startingPoint");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_LadderLottery);
+
+        addQuestion(module, Question.LadderLotteryLightOn, correctAnswers: new[] { fldPoint.Get().ToString() });
+    }
+
     private IEnumerable<object> ProcessLadders(KMBombModule module)
     {
         var comp = GetComponent(module, "LaddersScript");
