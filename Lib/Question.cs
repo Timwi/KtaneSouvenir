@@ -2053,6 +2053,12 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "red", "X", QandA.Ordinal, "yellow", "Y", QandA.Ordinal, "blue", "Z", QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 3)]
         RuleOfThreeCycles,
 
+        [SouvenirQuestion("What was the digit displayed on the {1} diamond in {0}?", "Safety Square", TwoColumns4Answers, ExampleExtraFormatArguments = new[] { "red", "yellow", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 4)]
+        SafetySquareDigits,
+        [SouvenirQuestion("What was the special rule displayed on the white diamond in {0}?", "Safety Square", OneColumn4Answers, "No special rule", "Reacts with water", "Simple asphyxiant", "Oxidizer")]
+        SafetySquareSpecialRule,
+
         [SouvenirQuestion("Where was {1} in {0}?", "Samsung", ThreeColumns6Answers, "TL", "TM", "TR", "ML", "MM", "MR", "BL", "BM", "BR", AddThe = true)]
         SamsungAppPositions,
 

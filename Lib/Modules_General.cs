@@ -390,6 +390,7 @@ public partial class SouvenirModule
     const string _RoleReversal = "roleReversal";
     const string _Rule = "theRule";
     const string _RuleOfThree = "RuleOfThreeModule";
+    const string _SafetySquare = "safetySquare";
     const string _Samsung = "theSamsung";
     const string _ScavengerHunt = "scavengerHunt";
     const string _SchlagDenBomb = "qSchlagDenBomb";
@@ -910,6 +911,7 @@ public partial class SouvenirModule
             [_RoleReversal] = (ProcessRoleReversal, "Role Reversal", "Emik"),
             [_Rule] = (ProcessRule, "Rule, The", "TasThiluna"),
             [_RuleOfThree] = (ProcessRuleOfThree, "Rule of Three", "QuinnWuest"),
+            [_SafetySquare] = (ProcessSafetySquare, "Safety Square", "Kuro"),
             [_Samsung] = (ProcessSamsung, "Samsung, The", "TasThiluna"),
             [_ScavengerHunt] = (ProcessScavengerHunt, "Scavenger Hunt", "Timwi"),
             [_SchlagDenBomb] = (ProcessSchlagDenBomb, "Schlag den Bomb", "JerryEris"),

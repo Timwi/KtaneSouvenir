@@ -11,6 +11,31 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
+    private IEnumerable<object> ProcessSafetySquare(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SafetySquareScript");
+
+        var specialRules = new Dictionary<string, string>
+        {
+            [" "] = "No special rule",
+            ["W"] = "Reacts with water",
+            ["SA"] = "Simple asphyxiant",
+            ["OX"] = "Oxidizer"
+        };
+        var colors = new[] { "red", "yellow", "blue" };
+        var digits = colors.Select(col => GetField<TextMesh>(comp, $"{col}Text", isPublic: true).Get(mesh => mesh.text.Length != 1 || !"01234".Contains(mesh.text) ? $"text value was \"{mesh.text}\", but expected a single digit from 0-4." : null).text).ToArray();
+        var symbol = GetField<TextMesh>(comp, "whiteText", isPublic: true).Get(mesh => !specialRules.ContainsKey(mesh.text) ? $"text value was \"{mesh.text}\", but expected one of {specialRules.Keys.JoinString(", ", "\"", "\"", " or ")}" : null).text;
+
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SafetySquare);
+
+        var qs = colors.Select((col, ix) => makeQuestion(Question.SafetySquareDigits, _SafetySquare, formatArgs: new[] { col }, correctAnswers: new[] { digits[ix] })).ToList();
+        qs.Add(makeQuestion(Question.SafetySquareSpecialRule, _SafetySquare, correctAnswers: new[] { specialRules[symbol] }));
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessSamsung(KMBombModule module)
     {
         var comp = GetComponent(module, "theSamsung");
@@ -1096,7 +1121,7 @@ public partial class SouvenirModule
     private IEnumerable<object> ProcessSnowflakes(KMBombModule module)
     {
         var comp = GetComponent(module, "snowflakes");
-        
+
         var fldSolved = GetField<bool>(comp, "moduleSolved");
         var gameOnPassDelegate = module.OnPass;
         module.OnPass = () => { return false; };

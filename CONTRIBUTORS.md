@@ -34,18 +34,18 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Color Decoding       │  Hexamaze              │  Mystery Module           │  Simon Shouts         │
     Color Morse          │  Hogwarts              │  Navinums                 │  Simon Shrieks        │
 
-## Implemented by Kuro (46)
+## Implemented by Kuro (47)
 
-    ...?                  │  Cursed Double-Oh   │  Gadgetron Vendor      │  Orientation Hypercube  │  Tea Set, The
-    64                    │  Double Expert      │  Hinges                │  Periodic Words         │  Technical Keypad
-    Alphabet Numbers      │  Duck, The          │  Impostor, The         │  Pictionary             │  Tetriamonds
-    Blinkstop             │  Encrypted Dice     │  Juxtacolored Squares  │  Procedural Maze        │  Tip Toe
-    Bomb Diffusal         │  Faulty Buttons     │  Kanji                 │  Question Mark          │  Triamonds
-    Boolean Wires         │  Five Letter Words  │  Know Your Way         │  Recursive Password     │  Warning Signs
-    Broken Guitar Chords  │  FizzBuzz           │  Light Bulbs           │  Scripting              │
-    Burger Alarm          │  Follow Me          │  Mad Memory            │  Simon Smothers         │
-    Cruel Binary          │  Forget Me Not      │  Not Colored Squares   │  Simon Stacks           │
-    Cruel Keypads         │  Forget The Colors  │  Old Fogey             │  Snowflakes             │
+    ...?                  │  Cursed Double-Oh   │  Gadgetron Vendor      │  Orientation Hypercube  │  Snowflakes
+    64                    │  Double Expert      │  Hinges                │  Periodic Words         │  Tea Set, The
+    Alphabet Numbers      │  Duck, The          │  Impostor, The         │  Pictionary             │  Technical Keypad
+    Blinkstop             │  Encrypted Dice     │  Juxtacolored Squares  │  Procedural Maze        │  Tetriamonds
+    Bomb Diffusal         │  Faulty Buttons     │  Kanji                 │  Question Mark          │  Tip Toe
+    Boolean Wires         │  Five Letter Words  │  Know Your Way         │  Recursive Password     │  Triamonds
+    Broken Guitar Chords  │  FizzBuzz           │  Light Bulbs           │  Safety Square          │  Warning Signs
+    Burger Alarm          │  Follow Me          │  Mad Memory            │  Scripting              │
+    Cruel Binary          │  Forget Me Not      │  Not Colored Squares   │  Simon Smothers         │
+    Cruel Keypads         │  Forget The Colors  │  Old Fogey             │  Simon Stacks           │
 
 ## Implemented by luisdiogo98 (45)
 
