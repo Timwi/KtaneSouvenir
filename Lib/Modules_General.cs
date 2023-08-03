@@ -697,7 +697,7 @@ public partial class SouvenirModule
             [_ForgetMe] = (ProcessForgetMe, "Forget Me", "tandyCake"),
             [_ForgetMeNot] = (ProcessForgetMeNot, "Forget Me Not", "Kuro"),
             [_ForgetsUltimateShowdown] = (ProcessForgetsUltimateShowdown, "Forget’s Ultimate Showdown", "Marksam"),
-            [_ForgetTheColors] = (ProcessForgetTheColors, "Forget The Colors", "Emik"),
+            [_ForgetTheColors] = (ProcessForgetTheColors, "Forget The Colors", "Kuro"),
             [_FreeParking] = (ProcessFreeParking, "Free Parking", "luisdiogo98"),
             [_Functions] = (ProcessFunctions, "Functions", "JerryEris"),
             [_FuseBox] = (ProcessFuseBox, "Fuse Box, The", "Anonymous"),

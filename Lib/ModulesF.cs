@@ -214,7 +214,8 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
         var displays = new[] { "top", "middle", "bottom" };
-        for (int pos = 0; pos < 3; pos++) {
+        for (int pos = 0; pos < 3; pos++)
+        {
             if (displayedDigits[pos] != labels[pos].text)
             {
                 for (int digit = 0; digit < 6; digit++)
@@ -507,64 +508,102 @@ public partial class SouvenirModule
         addQuestions(module, questions);
     }
 
+    private List<List<byte>> _ftcGearNumbers = new List<List<byte>>();
+    private List<List<short>> _ftcLargeDisplays = new List<List<short>>();
+    private List<List<int>> _ftcSineNumbers = new List<List<int>>();
+    private List<List<string>> _ftcGearColors = new List<List<string>>();
+    private List<List<string>> _ftcRuleColors = new List<List<string>>();
     private IEnumerable<object> ProcessForgetTheColors(KMBombModule module)
     {
         var comp = GetComponent(module, "FTCScript");
-        var fldStage = GetIntField(comp, "stage");
-
-        if (_moduleCounts.TryGetValue(_ForgetTheColors, out var ftcCount) && ftcCount > 1)
-        {
-            Debug.LogFormat("[Souvenir #{0}] No question for Forget The Colors because there is more than one of them.", _moduleId);
-            _legitimatelyNoQuestions.Add(module);
-            yield break;
-        }
 
         var maxStage = GetIntField(comp, "maxStage").Get();
-        var stage = fldStage.Get();
-        var gear = GetListField<byte>(comp, "gear").Get();
-        var largeDisplay = GetListField<short>(comp, "largeDisplay").Get();
-        var sineNumber = GetListField<int>(comp, "sineNumber").Get();
-        var gearColor = GetListField<string>(comp, "gearColor").Get();
-        var ruleColor = GetListField<string>(comp, "ruleColor").Get();
+        var myGearNumbers = GetListField<byte>(comp, "gear").Get();
+        var myLargeDisplays = GetListField<short>(comp, "largeDisplay").Get();
+        var mySineNumbers = GetListField<int>(comp, "sineNumber").Get();
+        var myGearColors = GetListField<string>(comp, "gearColor").Get();
+        var myRuleColors = GetListField<string>(comp, "ruleColor").Get();
 
-        if (maxStage < stage)
-            throw new AbandonModuleException("‘stage’ had an unexpected value: expected 0-{0}, was {1}.", maxStage, stage);
+        _ftcGearNumbers.Add(myGearNumbers);
+        _ftcLargeDisplays.Add(myLargeDisplays);
+        _ftcSineNumbers.Add(mySineNumbers);
+        _ftcGearColors.Add(myGearColors);
+        _ftcRuleColors.Add(myRuleColors);
 
-        string[] colors = { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "Pink", "Maroon", "White", "Gray" };
-
-        var chosenStage = 0;
-        Debug.LogFormat("<Souvenir #{0}> Forget The Colors: Waiting for stage {1}.", _moduleId, chosenStage);
-        while (fldStage.Get() <= chosenStage)
-            yield return null;  // Don’t wait .1 seconds so that we are absolutely sure we get the right stage
+        var solved = false;
+        module.OnPass += () => { solved = true; return false; };
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_ForgetTheColors);
 
-        if (gear.Count <= chosenStage || largeDisplay.Count <= chosenStage || sineNumber.Count <= chosenStage || gearColor.Count <= chosenStage || ruleColor.Count <= chosenStage)
-            throw new AbandonModuleException("One or more of the lists have an unexpected level of entries. (Expected less than or equal {1}): Gear: {2}, LargeDisplay: {3}, SineNumber: {4}, GearColor: {5}, RuleColor: {6}", _moduleId, chosenStage, gear.Count, largeDisplay.Count, sineNumber.Count, gearColor.Count, ruleColor.Count);
+        // Wait for all instances of FTC to solve so that all of the lists are fully populated.
+        while (_modulesSolved.Get(_ForgetTheColors) < _moduleCounts[_ForgetTheColors])
+            yield return new WaitForSeconds(.1f);
 
-        if (!new[] { gear.Count, largeDisplay.Count, sineNumber.Count, gearColor.Count, ruleColor.Count }.All(x => x == gear.Count))
-            throw new AbandonModuleException("One or more of the lists aren't all the same length. (Expected {1}): Gear: {1}, LargeDisplay: {2}, SineNumber: {3}, GearColor: {4}, RuleColor: {5}", _moduleId, gear.Count, largeDisplay.Count, sineNumber.Count, gearColor.Count, ruleColor.Count);
+        var allLists = new IList[] { _ftcGearNumbers, _ftcLargeDisplays, _ftcSineNumbers, _ftcGearColors, _ftcRuleColors };
+        if (allLists.Any(l => l.Count != _ftcGearColors.Count))
+            throw new AbandonModuleException("One or more of the lists of sets of information are not the same length as the others. AllGears: {0}, AllLargeDisplays: {1}, AllSineNumbers: {2}, AllGearColors: {3}, AllRuleColors: {4}", _ftcGearNumbers.Count, _ftcLargeDisplays.Count, _ftcSineNumbers.Count, _ftcGearColors.Count, _ftcRuleColors.Count);
 
-        for (int i = 0; i < gear.Count; i++)
+        foreach (var list in allLists)
+            for (int ix = 0; ix < list.Count - 1; ix++)
+                if ((list[ix] as IList).Count != (list[ix + 1] as IList).Count)
+                    throw new AbandonModuleException("One or more of the lists of sets of information have different lengths across modules.");
+
+        if (!new[] { myLargeDisplays.Count, mySineNumbers.Count, myGearColors.Count, myRuleColors.Count }.All(x => x == myGearNumbers.Count))
+            throw new AbandonModuleException("One or more of the lists of information for this module are not the same length as the others. Gears: {0}, LargeDisplays: {1}, SineNumbers: {2}, GearColors: {3}, RuleColors: {4}", myGearNumbers.Count, myLargeDisplays.Count, mySineNumbers.Count, myGearColors.Count, myRuleColors.Count);
+
+        var colors = GetAnswers(Question.ForgetTheColorsGearColor);
+        for (int i = 0; i < myGearNumbers.Count; i++)
         {
-            if (gear[i] < 0 || gear[i] > 9)
-                throw new AbandonModuleException("‘gear[{0}]’ had an unexpected value. (Expected 0-9): {1}", i, gear[i]);
-            if (largeDisplay[i] < 0 || largeDisplay[i] > 990)
-                throw new AbandonModuleException("‘largeDisplay[{0}]’ had an unexpected value. (Expected 0-990): {1}", i, largeDisplay[i]);
-            if (sineNumber[i] < -99999 || sineNumber[i] > 99999)
-                throw new AbandonModuleException("‘sineNumber[{0}]’ had an unexpected value. (Expected (-99999)-99999): {1}", i, sineNumber[i]);
-            if (!colors.Contains(gearColor[i]))
-                throw new AbandonModuleException("‘gearColor[{0}]’ had an unexpected value. (Expected {1}): {2}", i, colors.JoinString(", "), sineNumber[i]);
-            if (!colors.Contains(ruleColor[i]))
-                throw new AbandonModuleException("‘ruleColor[{0}]’ had an unexpected value. (Expected {1}): {2}", i, colors.JoinString(", "), ruleColor[i]);
+            if (myGearNumbers[i] < 0 || myGearNumbers[i] > 9)
+                throw new AbandonModuleException("‘gear[{0}]’ had an unexpected value. (Expected 0-9): {1}", i, myGearNumbers[i]);
+            if (myLargeDisplays[i] < 0 || myLargeDisplays[i] > 990)
+                throw new AbandonModuleException("‘largeDisplay[{0}]’ had an unexpected value. (Expected 0-990): {1}", i, myLargeDisplays[i]);
+            if (mySineNumbers[i] < -99999 || mySineNumbers[i] > 99999)
+                throw new AbandonModuleException("‘sineNumber[{0}]’ had an unexpected value. (Expected (-99999)-99999): {1}", i, mySineNumbers[i]);
+            if (!colors.Contains(myGearColors[i]))
+                throw new AbandonModuleException("‘gearColor[{0}]’ had an unexpected value. (Expected {1}): {2}", i, colors.JoinString(", "), mySineNumbers[i]);
+            if (!colors.Contains(myRuleColors[i]))
+                throw new AbandonModuleException("‘ruleColor[{0}]’ had an unexpected value. (Expected {1}): {2}", i, colors.JoinString(", "), myRuleColors[i]);
         }
 
-        var qs = new List<QandA>();
-        qs.Add(makeQuestion(Question.ForgetTheColorsGearNumber, _ForgetTheColors, formatArgs: new[] { chosenStage.ToString() }, correctAnswers: new[] { gear[chosenStage].ToString() }, preferredWrongAnswers: new[] { Rnd.Range(0, 10).ToString() }));
-        qs.Add(makeQuestion(Question.ForgetTheColorsLargeDisplay, _ForgetTheColors, formatArgs: new[] { chosenStage.ToString() }, correctAnswers: new[] { largeDisplay[chosenStage].ToString() }, preferredWrongAnswers: new[] { Rnd.Range(0, 991).ToString() }));
-        qs.Add(makeQuestion(Question.ForgetTheColorsSineNumber, _ForgetTheColors, formatArgs: new[] { chosenStage.ToString() }, correctAnswers: new[] { (Mathf.Abs(sineNumber[chosenStage]) % 10).ToString() }, preferredWrongAnswers: new[] { Rnd.Range(0, 10).ToString() }));
-        qs.Add(makeQuestion(Question.ForgetTheColorsGearColor, _ForgetTheColors, formatArgs: new[] { chosenStage.ToString() }, correctAnswers: new[] { gearColor[chosenStage].ToString() }, preferredWrongAnswers: new[] { colors[Rnd.Range(0, colors.Length)] }));
-        qs.Add(makeQuestion(Question.ForgetTheColorsRuleColor, _ForgetTheColors, formatArgs: new[] { chosenStage.ToString() }, correctAnswers: new[] { ruleColor[chosenStage].ToString() }, preferredWrongAnswers: new[] { colors[Rnd.Range(0, colors.Length)] }));
-        addQuestions(module, qs);
+        var chosenStage = Rnd.Range(0, myGearNumbers.Count);
+        var formattedName = "Forget The Colors";
+
+        if (_moduleCounts[_ForgetTheColors] > 1)
+        {
+            for (int ix = 0; ix < myGearNumbers.Count; ix++)
+            {
+                if (ix == chosenStage)
+                    continue;
+                if (_ftcGearNumbers.Count(l => l[ix] == myGearNumbers[ix]) == 1)
+                    formattedName = $"the Forget The Colors whose gear number was {myGearNumbers[ix]} in stage {ix}";
+                if (_ftcLargeDisplays.Count(l => l[ix] == myLargeDisplays[ix]) == 1)
+                    formattedName = $"the Forget The Colors which had {myLargeDisplays[ix]} on its large display in stage {ix}";
+                if (_ftcSineNumbers.Count(l => l[ix] == mySineNumbers[ix]) == 1)
+                    formattedName = $"the Forget The Colors whose received sine number in stage {ix} ended with a {Mathf.Abs(mySineNumbers[ix]) % 10}";
+                if (_ftcGearColors.Count(l => l[ix] == myGearColors[ix]) == 1)
+                    formattedName = $"the Forget The Colors whose gear color was {myGearColors[ix]} in stage {ix}";
+                if (_ftcRuleColors.Count(l => l[ix] == myRuleColors[ix]) == 1)
+                    formattedName = $"the Forget The Colors whose rule color was {myRuleColors[ix]} in stage {ix}";
+                if (formattedName != "Forget The Colors")
+                    break;
+            }
+            if (formattedName == "Forget The Colors")
+            {
+                Debug.Log($"[Souvenir #{_moduleId}] No question for Forget The Colors because there are not enough stages at which this one (#{GetIntField(comp, "_moduleId").Get()}) is unique.");
+                _legitimatelyNoQuestions.Add(module);
+                yield break;
+            }
+        }
+
+        var stage = chosenStage.ToString();
+        addQuestions(module,
+            makeQuestion(Question.ForgetTheColorsGearNumber, _ForgetTheColors, formattedModuleName: formattedName, formatArgs: new[] { stage }, correctAnswers: new[] { myGearNumbers[chosenStage].ToString() }),
+            makeQuestion(Question.ForgetTheColorsLargeDisplay, _ForgetTheColors, formattedModuleName: formattedName, formatArgs: new[] { stage }, correctAnswers: new[] { myLargeDisplays[chosenStage].ToString() }),
+            makeQuestion(Question.ForgetTheColorsSineNumber, _ForgetTheColors, formattedModuleName: formattedName, formatArgs: new[] { stage }, correctAnswers: new[] { (Mathf.Abs(mySineNumbers[chosenStage]) % 10).ToString() }),
+            makeQuestion(Question.ForgetTheColorsGearColor, _ForgetTheColors, formattedModuleName: formattedName, formatArgs: new[] { stage }, correctAnswers: new[] { myGearColors[chosenStage].ToString() }),
+            makeQuestion(Question.ForgetTheColorsRuleColor, _ForgetTheColors, formattedModuleName: formattedName, formatArgs: new[] { stage }, correctAnswers: new[] { myRuleColors[chosenStage].ToString() }));
     }
 
     private IEnumerable<object> ProcessFreeParking(KMBombModule module)
