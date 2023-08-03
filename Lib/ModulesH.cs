@@ -8,6 +8,19 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
+    private IEnumerable<object> ProceessH(KMBombModule module)
+    {
+        var comp = GetComponent(module, "HexOS");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_h);
+
+        string alphbet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        string answer = "" + alphbet[GetIntField(comp, "WhatToSubmit").Get()];
+        addQuestion(module, Question.HLetter, correctAnswers: new[] { answer });
+    }
     private IEnumerable<object> ProcessHereditaryBaseNotation(KMBombModule module)
     {
         var comp = GetComponent(module, "hereditaryBaseNotationScript");

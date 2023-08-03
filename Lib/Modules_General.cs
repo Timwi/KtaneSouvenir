@@ -191,6 +191,7 @@ public partial class SouvenirModule
     const string _GroceryStore = "groceryStore";
     const string _Gryphons = "gryphons";
     const string _GuessWho = "GuessWho";
+    const string _h = "Averageh";
     const string _HereditaryBaseNotation = "hereditaryBaseNotationModule";
     const string _Hexabutton = "hexabutton";
     const string _Hexamaze = "HexamazeModule";
@@ -702,6 +703,7 @@ public partial class SouvenirModule
             [_GroceryStore] = (ProcessGroceryStore, "Grocery Store", "BigCrunch22"),
             [_Gryphons] = (ProcessGryphons, "Gryphons", "JerryEris"),
             [_GuessWho] = (ProcessGuessWho, "Guess Who?", "BigCrunch22"),
+            [_h] = (ProceessH, "h", "Hawker"),
             [_HereditaryBaseNotation] = (ProcessHereditaryBaseNotation, "Hereditary Base Notation", "kavinkul"),
             [_Hexabutton] = (ProcessHexabutton, "Hexabutton, The", "luisdiogo98"),
             [_Hexamaze] = (ProcessHexamaze, "Hexamaze", "Timwi"),

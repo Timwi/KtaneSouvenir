@@ -990,6 +990,10 @@ namespace Souvenir
         [SouvenirQuestion("Who was the person recalled in {0}?", "Guess Who?", ThreeColumns6Answers, null, ExampleAnswers = new[] { "Aaron", "Albin", "Andre" })]
         GuessWhoPerson,
 
+        [SouvenirQuestion("What was the transmitted letter in {0}?", "h", ThreeColumns6Answers)]
+        [AnswerGenerator.Strings("A-Z")]
+        HLetter,
+
         [SouvenirQuestion("What was the given number in {0}?", "Hereditary Base Notation", TwoColumns4Answers, null, ExampleAnswers = new[] { "12", "33", "46", "112", "356" })]
         HereditaryBaseNotationInitialNumber,
 
