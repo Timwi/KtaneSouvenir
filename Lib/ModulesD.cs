@@ -194,21 +194,15 @@ public partial class SouvenirModule
         {
             GetField<int>(comp, "letOne").Get(),
             GetField<int>(comp, "letTwo").Get(),
-            GetField<int>(comp, "letThree").Get(),
-
+            GetField<int>(comp, "letThree").Get()
         };
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_DimensionDisruption);
 
-        string alphabet = GetField<string>(comp, "alphabet").Get();
-        var answers = new string[3];
-        for (int i = 0; i < 3; i++)
-        {
-            answers[i] = alphabet[letterIndex[i]].ToString();
-        }
-
+        var alphabet = GetField<string>(comp, "alphabet").Get();
+        var answers = letterIndex.Select(li => alphabet[li].ToString()).ToArray();
         addQuestion(module, Question.DimensionDisruptionVisibleLetters, correctAnswers: answers);
     }
 

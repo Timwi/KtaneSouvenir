@@ -126,7 +126,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_CharacterSlots);
 
-        var characters = GetField<Array>(comp, "slotStates").Get(arr => arr.Rank != 2 || arr.GetLength(0) != 3 || arr.GetLength(1) != 3 ? "expected size 3 x 3 array" : null);
+        var characters = GetField<Array>(comp, "slotStates").Get(arr => arr.Rank != 2 || arr.GetLength(0) != 3 || arr.GetLength(1) != 3 ? "expected size 3×3 array" : null);
 
         var fldName = GetField<Enum>(characters.GetValue(0, 0), "characterName");
         var stageNumber = GetField<int>(comp, "stageNumber").Get();

@@ -176,8 +176,10 @@ public partial class SouvenirModule
         var fldDisplayText = GetField<TextMesh>(comp, "DisplayText", isPublic: true);
         var fldStage = GetField<int>(comp, "Stage");
 
-        int answer = int.Parse(fldDisplayText.Get().text);
-       
+        var text = fldDisplayText.Get().text;
+        if (!int.TryParse(text, out var answer))
+            throw new AbandonModuleException($"“{text}” does not parse as an integer.");
+
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_3NPlus1);

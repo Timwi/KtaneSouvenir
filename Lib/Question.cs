@@ -35,7 +35,7 @@ namespace Souvenir
         _3LEDsInitialState,
 
         [SouvenirQuestion("What number was initially displayed in {0}?", "3N+1", ThreeColumns6Answers)]
-        [AnswerGenerator.Integers(1,100)]
+        [AnswerGenerator.Integers(1, 100)]
         _3NPlus1,
 
         [SouvenirQuestion("What was the displayed number in {0}?", "64", ThreeColumns6Answers, Type = AnswerType.SixtyFourFont, ExampleAnswers = new[] { "A0A3", "bbda", "30", "h3X1", "ABCD", "1234" })]
@@ -630,7 +630,7 @@ namespace Souvenir
         [AnswerGenerator.Strings("1-9", "6*0-9", "1-9")]
         DigitStringInitialNumber,
 
-        [SouvenirQuestion("What were one of the visible characters in {0}?", "Dimension Disruption", ThreeColumns6Answers)]
+        [SouvenirQuestion("Which of these was a visible character in {0}?", "Dimension Disruption", ThreeColumns6Answers)]
         [AnswerGenerator.Strings("A-Z0-9")]
         DimensionDisruptionVisibleLetters,
 
@@ -820,16 +820,14 @@ namespace Souvenir
         [AnswerGenerator.Strings("0-9a-f")]
         FaultyRGBMazeNumber,
 
-        [SouvenirQuestion("What was the month displayed in stage {1} of {0}", "Find The Date", TwoColumns4Answers, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
-            ExampleExtraFormatArguments = new[] {"1"}, ExampleExtraFormatArgumentGroupSize = 1)]
-        FindTheDateMonth,
-
-        [SouvenirQuestion("What was the date displayed in stage {1} of {0}", "Find The Date", ThreeColumns6Answers,
+        [SouvenirQuestion("What was the day displayed in stage {1} of {0}?", "Find The Date", ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "1" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 31)]
         FindTheDateDay,
-
-        [SouvenirQuestion("What was the year displayed in stage {1} of {0}", "Find The Date", ThreeColumns6Answers,
+        [SouvenirQuestion("What was the month displayed in stage {1} of {0}?", "Find The Date", TwoColumns4Answers, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
+            ExampleExtraFormatArguments = new[] { "1" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        FindTheDateMonth,
+        [SouvenirQuestion("What was the year displayed in stage {1} of {0}?", "Find The Date", ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "1" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 2899, "000")]
         FindTheDateYear,
@@ -2126,7 +2124,7 @@ namespace Souvenir
         SillySlots,
 
         [SouvenirQuestion("What was the deciphered word in {0}?", "Sign Language", TwoColumns4Answers,
-            "PHALANX","DIGITAL","ACHIRAL","DEAFENS","LISTENS","EXPLAIN","SPEAKER","TURTLES","QUOTING","MISTAKE","REALIZE","HELPERS","HEARING","STROKES","OVERJOY","ROYALTY","EARDRUM", "COCHLEA","AUDIBLE","KABOOMS","REFUGEE","SWINGER","BALANCE","LIQUIDS","VOYAGED")]
+            "PHALANX", "DIGITAL", "ACHIRAL", "DEAFENS", "LISTENS", "EXPLAIN", "SPEAKER", "TURTLES", "QUOTING", "MISTAKE", "REALIZE", "HELPERS", "HEARING", "STROKES", "OVERJOY", "ROYALTY", "EARDRUM", "COCHLEA", "AUDIBLE", "KABOOMS", "REFUGEE", "SWINGER", "BALANCE", "LIQUIDS", "VOYAGED")]
         SignLanguageWord,
 
         [SouvenirQuestion("What was the message type in {0}?", "Silo Authorization", TwoColumns4Answers, "Red-Alpha", "Yellow-Alpha", "Green-Alpha")]
