@@ -129,6 +129,7 @@ public partial class SouvenirModule
     const string _Digisibility = "digisibility";
     const string _DigitString = "digitString";
     const string _DiscoloredSquares = "DiscoloredSquaresModule";
+    const string _DirectionalButton = "directionalButton";
     const string _DivisibleNumbers = "divisibleNumbers";
     const string _DoubleArrows = "doubleArrows";
     const string _DoubleColor = "doubleColor";
@@ -641,6 +642,7 @@ public partial class SouvenirModule
             [_Digisibility] = (ProcessDigisibility, "Digisibility", "tandyCake"),
             [_DigitString] = (ProcessDigitString, "Digit String", "GoodHood"),
             [_DiscoloredSquares] = (ProcessDiscoloredSquares, "Discolored Squares", "luisdiogo98"),
+            [_DirectionalButton] = (ProcessDirectionalButton, "Directional Button", "Hawker"),
             [_DivisibleNumbers] = (ProcessDivisibleNumbers, "Divisible Numbers", "shortc1rcuit"),
             [_DoubleArrows] = (ProcessDoubleArrows, "Double Arrows", "Anonymous"),
             [_DoubleColor] = (ProcessDoubleColor, "Double Color", "luisdiogo98"),

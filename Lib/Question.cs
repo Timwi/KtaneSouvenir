@@ -627,6 +627,10 @@ namespace Souvenir
         [AnswerGenerator.Grid(4, 4)]
         DiscoloredSquaresRememberedPositions,
 
+        [SouvenirQuestion("How many times did you press the button in stage {1} of {0}", "Directional Button", TwoColumns4Answers, "1", "2", "3", "4",
+        ExampleExtraFormatArguments = new[] { "1" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        DirectionalButtonButtonCount,
+
         [SouvenirQuestion("What were the correct button presses in {0}?", "Divisible Numbers", OneColumn4Answers, "Nay, Nay, Nay", "Nay, Nay, Yea", "Nay, Yea, Nay", "Nay, Yea, Yea", "Yea, Nay, Nay", "Yea, Nay, Yea", "Yea, Yea, Nay", "Yea, Yea, Yea")]
         DivisibleNumbersAnswers,
         [SouvenirQuestion("What was the {1} stage’s number in {0}?", "Divisible Numbers", ThreeColumns6Answers, null,

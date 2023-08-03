@@ -202,6 +202,43 @@ public partial class SouvenirModule
             makeQuestion(Question.DiscoloredSquaresRememberedPositions, _DiscoloredSquares, formatArgs: new[] { colors[color] }, correctAnswers: new[] { new Coord(4, 4, positions[color]) })));
     }
 
+    private IEnumerable<object> ProcessDirectionalButton(KMBombModule module)
+    {
+        var comp = GetComponent(module, "DirectrionalButtonScripty");
+        var fldSolved = GetField<bool>(comp, "ModuleSolved");
+        var fldStage = GetIntField(comp, "Stage");
+        var fldCorrectPres = GetIntField(comp, "CorrectPres");
+
+        var currentStage = 0;
+        var currentCorrectPress = 0;
+        var buttonPresses = new int[5];
+        
+        while (!fldSolved.Get())
+        {
+            var stage = fldStage.Get();
+            var correctPress = fldCorrectPres.Get();
+
+            if (stage != currentStage || correctPress != currentCorrectPress)
+            {
+                currentStage = stage;
+                currentCorrectPress = correctPress;
+                buttonPresses[currentStage - 1] = currentCorrectPress;
+            }
+
+            yield return null;
+        }
+        _modulesSolved.IncSafe(_DirectionalButton);
+
+        var qs = new List<QandA>();
+
+        for(int i = 1; i < 6; i++)
+        {
+            qs.Add(makeQuestion(Question.DirectionalButtonButtonCount, _DirectionalButton, formatArgs: new[] { "" + i }, correctAnswers: new[] { "" + buttonPresses[i - 1] }));
+        }
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessDivisibleNumbers(KMBombModule module)
     {
         var comp = GetComponent(module, "DivisableNumbers");
