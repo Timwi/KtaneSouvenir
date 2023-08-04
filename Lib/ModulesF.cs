@@ -422,12 +422,10 @@ public partial class SouvenirModule
             makeQuestion(Question.ForgetMeInitialState, _ForgetMe, formatArgs: new[] { positions[ix] }, correctAnswers: new[] { initState[ix].ToString() })));
     }
 
-    private int _forgetMeNotCount = 0;
     private List<int[]> _forgetMeNotDisplays = new List<int[]>();
     private IEnumerable<object> ProcessForgetMeNot(KMBombModule module)
     {
         var comp = GetComponent(module, "AdvancedMemory");
-        _forgetMeNotCount++;
 
         var fldDisplayedDigits = GetArrayField<int>(comp, "Display");
         var activated = false;
@@ -441,16 +439,23 @@ public partial class SouvenirModule
             throw new AbandonModuleException("The number of stages in each ‘Display’ is inconsistent.");
         _forgetMeNotDisplays.Add(myDisplay);
 
+        if (myDisplay.Length == 0)
+        {
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Forget Me Not because there were no stages.");
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
+
         var solved = false;
         module.OnPass += () => { solved = true; return false; };
         while (!solved)
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_ForgetMeNot);
 
-        if (_forgetMeNotDisplays.Count != _forgetMeNotCount)
+        if (_forgetMeNotDisplays.Count != _moduleCounts[_ForgetMeNot])
             throw new AbandonModuleException("The number of displays did not match the number of Forget Me Not modules.");
 
-        if (_forgetMeNotCount == 1)
+        if (_moduleCounts[_ForgetMeNot] == 1)
             addQuestions(module, myDisplay.Select((digit, ix) => makeQuestion(Question.ForgetMeNotDisplayedDigits, _ForgetMeNot, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { digit.ToString() })));
         else
         {
@@ -543,6 +548,13 @@ public partial class SouvenirModule
         var allLists = new IList[] { _ftcGearNumbers, _ftcLargeDisplays, _ftcSineNumbers, _ftcGearColors, _ftcRuleColors };
         if (allLists.Any(l => l.Count != _ftcGearColors.Count))
             throw new AbandonModuleException("One or more of the lists of sets of information are not the same length as the others. AllGears: {0}, AllLargeDisplays: {1}, AllSineNumbers: {2}, AllGearColors: {3}, AllRuleColors: {4}", _ftcGearNumbers.Count, _ftcLargeDisplays.Count, _ftcSineNumbers.Count, _ftcGearColors.Count, _ftcRuleColors.Count);
+
+        if (myGearColors.Count == 0)
+        {
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Forget The Colors because there were no stages.");
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
 
         foreach (var list in allLists)
             for (int ix = 0; ix < list.Count - 1; ix++)
