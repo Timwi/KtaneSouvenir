@@ -1094,6 +1094,60 @@ public partial class SouvenirModule
         addQuestions(module, directions.Select((dir, ix) => makeQuestion(Question.SnowflakesDisplayedSnowflakes, _Snowflakes, formatArgs: new[] { dir }, correctAnswers: new[] { displays[ix].text })));
     }
 
+    private IEnumerable<object> ProcessSonicKnuckles(KMBombModule module)
+    {
+        var comp = GetComponent(module, "sonicKnucklesScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        var heroArr = GetArrayField<object>(comp, "heroes", isPublic: true).Get();
+        var badniksArr = GetArrayField<object>(comp, "badniks", isPublic: true).Get();
+        var monitorArr = GetArrayField<object>(comp, "monitors", isPublic: true).Get();
+
+        var fldAttachedSound = GetField<AudioClip>(heroArr[0], "attachedSound", isPublic: true);
+        var fldContainsIllegalSound = GetField<bool>(heroArr[0], "containsIllegalSound", isPublic: true);
+        var fldLabel = GetField<string>(heroArr[0], "label", isPublic: true);
+
+        var mushroomSounds = GetArrayField<AudioClip>(comp, "mushroomSounds", isPublic: true).Get();
+        var noMushroomSounds = GetArrayField<AudioClip>(comp, "noMushroomSounds", isPublic: true).Get();
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SonicKnuckles);
+
+        var hero = heroArr[GetIntField(comp, "heroIndex").Get()];
+        var monitor = monitorArr[GetIntField(comp, "monitorIndex").Get()];
+        var badnik = badniksArr[GetIntField(comp, "badnikIndex").Get()];
+
+        Func<string, string> capitalizeWords = input => 
+        {
+            string[] arr = input.Split(' ');
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                string s = arr[i];
+                arr[i] = s[0].ToString().ToUpper() + s.Substring(1);
+            }
+
+            return string.Join(" ", arr);
+        };
+
+        string monitorName = fldLabel.GetFrom(monitor);
+
+        string badnikName = fldLabel.GetFrom(badnik);
+
+        string illegalSoundName = fldContainsIllegalSound.GetFrom(hero) ? capitalizeWords(fldAttachedSound.GetFrom(hero).name) : 
+                                  fldContainsIllegalSound.GetFrom(monitor) ? capitalizeWords(fldAttachedSound.GetFrom(monitor).name) :
+                                                                            capitalizeWords(fldAttachedSound.GetFrom(badnik).name);
+        List<string> allSoundEffects = new List<string>();
+
+        allSoundEffects.AddRange(mushroomSounds.Select(x => capitalizeWords(x.name)));
+        allSoundEffects.AddRange(noMushroomSounds.Select(x => capitalizeWords(x.name)));
+
+        addQuestions(module,
+                     makeQuestion(Question.SonicKnucklesSounds, _SonicKnuckles, correctAnswers: new[] { illegalSoundName }, preferredWrongAnswers: allSoundEffects.ToArray()),
+                     makeQuestion(Question.SonicKnucklesBadnik, _SonicKnuckles, correctAnswers: new[] { SonicKnucklesBadniksSprites.First(sprite => sprite.name == badnikName) }, preferredWrongAnswers: SonicKnucklesBadniksSprites),
+                     makeQuestion(Question.SonicKnucklesMonitor, _SonicKnuckles, correctAnswers: new[] { SonicKnucklesMonitorsSprites.First(sprite => sprite.name == monitorName) }, preferredWrongAnswers: SonicKnucklesMonitorsSprites));
+    }
     private IEnumerable<object> ProcessSonicTheHedgehog(KMBombModule module)
     {
         var comp = GetComponent(module, "sonicScript");

@@ -433,6 +433,7 @@ public partial class SouvenirModule
     const string _SmallCircle = "smallCircle";
     const string _Snooker = "snooker";
     const string _Snowflakes = "snowflakes";
+    const string _SonicKnuckles = "sonicKnuckles";
     const string _SonicTheHedgehog = "sonic";
     const string _Sorting = "sorting";
     const string _Souvenir = "SouvenirModule";
@@ -947,6 +948,7 @@ public partial class SouvenirModule
             [_SmallCircle] = (ProcessSmallCircle, "Small Circle", "TasThiluna"),
             [_Snooker] = (ProcessSnooker, "Snooker", "TasThiluna"),
             [_Snowflakes] = (ProcessSnowflakes, "Snowflakes", "Kuro"),
+            [_SonicKnuckles] = (ProcessSonicKnuckles, "Sonic & Knuckles", "Hawker"),
             [_SonicTheHedgehog] = (ProcessSonicTheHedgehog, "Sonic the Hedgehog", "Timwi"),
             [_Sorting] = (ProcessSorting, "Sorting", "Emik"),
             [_Souvenir] = (ProcessSouvenir, "Souvenir", "CaitSith2"),

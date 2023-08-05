@@ -860,6 +860,18 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 11b759febbff37343b816b802b7c7436, type: 3}
   - {fileID: 21300000, guid: c87de933c9c77884d92c402bc4fc2383, type: 3}
   - {fileID: 21300000, guid: 57d970cdf01d4d94a8b14c28dc6f2b78, type: 3}
+  SonicKnucklesBadniksSprites:
+  - {fileID: 21300000, guid: 444f62ed8bc2d45459e714d5949ea1ea, type: 3}
+  - {fileID: 21300000, guid: 2f18bd2458d9f8048adfa4e08d8d4360, type: 3}
+  - {fileID: 21300000, guid: 051f705cd01ef924ab384a950c5f4c90, type: 3}
+  - {fileID: 21300000, guid: a462bfc66e6caf14aa64597469da853d, type: 3}
+  - {fileID: 21300000, guid: 82430fb5f5622f94494421bea6dee2d3, type: 3}
+  SonicKnucklesMonitorsSprites:
+  - {fileID: 21300000, guid: 568fc9377ba59f640b3e22939916cf91, type: 3}
+  - {fileID: 21300000, guid: b4938676fdc512a4ea4c442487e41513, type: 3}
+  - {fileID: 21300000, guid: 60fa32a12878fcd4d8a307481621f48a, type: 3}
+  - {fileID: 21300000, guid: 1ce4ff982b3b0dd458c81fc91599a69f, type: 3}
+  - {fileID: 21300000, guid: bcc25b64dc7864a429b15d19f43c4235, type: 3}
   SymbolicCoordinatesSprites:
   - {fileID: 21300000, guid: c46883603a2000a47b888e91c5e1aab8, type: 3}
   - {fileID: 21300000, guid: c34f67901585bec44b5344a32c7e21e9, type: 3}

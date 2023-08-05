@@ -2277,6 +2277,15 @@ namespace Souvenir
         [SouvenirQuestion("What was the maximum tax amount per vessel in {0}?", "Space Traders", ThreeColumns6Answers, "0 GCr", "1 GCr", "2 GCr", "3 GCr", "4 GCr", "5 GCr")]
         SpaceTradersMaxTax,
 
+        [SouvenirQuestion("What was the name of the illegal sound in stage 1 of {0}?", "Sonic & Knuckles", OneColumn4Answers, "Flying Battery Zone Theme", "Not Enough Rings", "Invincibility Theme", "Badnik Kill")]
+        SonicKnucklesSounds,
+
+        [SouvenirQuestion("What was the badnik that was shown in stage 1 of {0}?", "Sonic & Knuckles", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteField = "SonicKnucklesBadniksSprites")]
+        SonicKnucklesBadnik,
+
+        [SouvenirQuestion("What was the monitor that was shown in stage 1 of {0}?", "Sonic & Knuckles", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteField = "SonicKnucklesMonitorsSprites")]
+        SonicKnucklesMonitor,
+
         [SouvenirQuestion("What was the {1} picture on {0}?", "Sonic The Hedgehog", TwoColumns4Answers, "Annoyed Sonic", "Ballhog", "Blue Lamppost", "Burrobot", "Buzz Bomber", "Crab Meat", "Dead Sonic", "Drowned Sonic", "Falling Sonic", "Moto Bug", "Red Lamppost", "Red Spring", "Standing Sonic", "Switch", "Yellow Spring",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         SonicTheHedgehogPictures,
