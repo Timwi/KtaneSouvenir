@@ -994,6 +994,13 @@ namespace Souvenir
         [SouvenirQuestion("Who was the person recalled in {0}?", "Guess Who?", ThreeColumns6Answers, null, ExampleAnswers = new[] { "Aaron", "Albin", "Andre" })]
         GuessWhoPerson,
 
+        [SouvenirQuestion("What was the postion of the player in {0}?", "High Score", TwoColumns4Answers, "1st", "2nd", "3rd", "4th", "5th", AddThe = true)]
+        HighScorePosition,
+
+        [SouvenirQuestion("What was the score of the player in {0}?", "High Score", TwoColumns4Answers, AddThe = true)]
+        [AnswerGenerator.Integers(1750, 999990)]
+        HighScoreScore,
+
         [SouvenirQuestion("What was the transmitted letter in {0}?", "h", ThreeColumns6Answers)]
         [AnswerGenerator.Strings("A-Z")]
         HLetter,

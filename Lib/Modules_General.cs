@@ -198,6 +198,7 @@ public partial class SouvenirModule
     const string _Hexamaze = "HexamazeModule";
     const string _HexOS = "hexOS";
     const string _HiddenColors = "lgndHiddenColors";
+    const string _HighScore = "ksmHighScore";
     const string _HillCycle = "hillCycle";
     const string _Hinges = "hinges";
     const string _Hogwarts = "HogwartsModule";
@@ -713,6 +714,7 @@ public partial class SouvenirModule
             [_Hexamaze] = (ProcessHexamaze, "Hexamaze", "Timwi"),
             [_HexOS] = (ProcessHexOS, "hexOS", "Emik"),
             [_HiddenColors] = (ProcessHiddenColors, "Hidden Colors", "TasThiluna"),
+            [_HighScore] = (ProcessHighScore, "High Score, The", "Hawker"),
             [_HillCycle] = (ProcessHillCycle, "Hill Cycle", "TasThiluna"),
             [_Hinges] = (ProcessHinges, "Hinges", "Kuro"),
             [_Hogwarts] = (ProcessHogwarts, "Hogwarts", "Timwi"),
