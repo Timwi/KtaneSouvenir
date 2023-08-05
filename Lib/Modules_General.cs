@@ -694,7 +694,7 @@ public partial class SouvenirModule
             [_Flyswatting] = (ProcessFlyswatting, "Flyswatting", "tandyCake"),
             [_FollowMe] = (ProcessFollowMe, "Follow Me", "Kuro"),
             [_ForestCipher] = (ProcessForestCipher, "Forest Cipher", "Timwi"),
-            [_ForgetAnyColor] = (ProcessForgetAnyColor, "Forget Any Color", "Emik"),
+            [_ForgetAnyColor] = (ProcessForgetAnyColor, "Forget Any Color", "Kuro"),
             [_ForgetMe] = (ProcessForgetMe, "Forget Me", "tandyCake"),
             [_ForgetMeNot] = (ProcessForgetMeNot, "Forget Me Not", "Kuro"),
             [_ForgetsUltimateShowdown] = (ProcessForgetsUltimateShowdown, "Forget’s Ultimate Showdown", "Marksam"),

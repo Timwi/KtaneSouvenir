@@ -358,53 +358,84 @@ public partial class SouvenirModule
         return processColoredCiphers(module, "forestCipher", Question.ForestCipherScreen, _ForestCipher);
     }
 
+    private List<Array> _facCylinders = new List<Array>();
+    private List<List<int>> _facFigures = new List<List<int>>();
     private IEnumerable<object> ProcessForgetAnyColor(KMBombModule module)
     {
         var comp = GetComponent(module, "FACScript");
 
         var init = GetField<object>(comp, "init").Get();
-        var fldStage = GetIntField(init, "stage");
         var fldCylinders = GetField<Array>(init, "cylinders");
         var calculate = GetField<object>(init, "calculate").Get();
-        var fldSequences = GetListField<bool?>(calculate, "sequences");
         var fldFigures = GetListField<int>(calculate, "figureSequences");
 
-        if (_moduleCounts.TryGetValue(_ForgetAnyColor, out var facCount) && facCount > 1)
+        var activated = false;
+        module.OnActivate += () => activated = true;
+        while (!activated)
+            yield return null;
+        yield return null; // Wait one extra frame to ensure that maxStage has been set.
+
+        var maxStage = GetIntField(init, "maxStage").Get(min: 0);
+        if (maxStage == 0)
         {
-            Debug.LogFormat("[Souvenir #{0}] No question for Forget Any Color because there is more than one of them.", _moduleId);
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Forget Any Color because there were no stages.");
             _legitimatelyNoQuestions.Add(module);
             yield break;
         }
 
-        while (fldSequences.Get(minLength: 0, maxLength: int.MaxValue, nullContentAllowed: true).Count == 0)
-            yield return null;
+        var myCylinders = fldCylinders.Get(v => v.Rank != 2 || v.GetLength(0) != maxStage + 1 || v.GetLength(1) != 3 ? string.Format("expected a {0}×3 2D array", maxStage + 1) : null);
+        var myFigures = fldFigures.Get();
+        _facCylinders.Add(myCylinders);
+        _facFigures.Add(myFigures);
 
-        var maxStage = GetIntField(init, "maxStage").Get() + 1;
-        var randomStage = Rnd.Range(0, Math.Min(5, maxStage - 1));
-
-        Debug.LogFormat("<Souvenir #{0}> Forget Any Color: Waiting for stage {1}.", _moduleId, randomStage + 1);
-        while (fldFigures.Get().Count < randomStage + 1)
-            yield return null;  // Don’t wait .1 seconds so that we are absolutely sure we get the right stage
+        var solved = false;
+        module.OnPass += () => { solved = true; return false; };
+        while (!solved)
+            yield return new WaitForSeconds(.05f);
         _modulesSolved.IncSafe(_ForgetAnyColor);
 
-        if (maxStage < fldStage.Get())
-            throw new AbandonModuleException("‘stage’ had an unexpected value: expected 0-{0}, was {1}.", maxStage, fldStage.Get());
-
-        var cylinders = fldCylinders.Get(v => v.Rank != 2 || v.GetLength(0) != maxStage || v.GetLength(1) != 3 ? string.Format("expected a {0}×3 2D array", maxStage) : null);
-        var figures = fldFigures.Get(v => v.Count < randomStage + 1 ? string.Format("expected at least {0} entries", randomStage + 1) : null);
+        while (_modulesSolved[_ForgetAnyColor] < _moduleCounts[_ForgetAnyColor])
+            yield return new WaitForSeconds(.05f); // Wait for all of the arrays to be fully populated.
 
         var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "White" };
         var figureNames = new[] { "LLLMR", "LMMMR", "LMRRR", "LMMRR", "LLMRR", "LLMMR" };
-        var correctCylinder = Enumerable.Range(0, 3).Select(ix => colorNames[(int) cylinders.GetValue(randomStage, ix)]).JoinString(", ");
-        var preferredCylinders = new HashSet<string> { correctCylinder };
+
+        string getCylinders(Array cylinders, int stage) => Enumerable.Range(0, 3).Select(ix => colorNames[(int) cylinders.GetValue(stage, ix)]).JoinString(", ");
+
+        var randomStage = Rnd.Range(0, maxStage);
+        var formattedName = "Forget Any Color";
+        if (_moduleCounts[_ForgetAnyColor] > 1)
+        {
+            for (int stage = 0; stage < maxStage; stage++)
+            {
+                if (stage == randomStage)
+                    continue;
+                var cylindersThisStage = getCylinders(myCylinders, stage);
+                if (_facFigures.Count(f => f[stage] == myFigures[stage]) == 1)
+                    formattedName = $"the Forget Any Color which used figure {figureNames[myFigures[stage]]} in the {ordinal(stage + 1)} stage";
+                if (_facCylinders.Count(c => getCylinders(c, stage) == cylindersThisStage) == 1)
+                    formattedName = $"the Forget Any Color whose cylinders in the {ordinal(stage + 1)} stage were {cylindersThisStage}";
+                if (formattedName != "Forget Any Color")
+                    break;
+            }
+            if (formattedName == "Forget Any Color")
+            {
+                Debug.Log($"[Souvenir #{_moduleId}] No question for Forget Any Color because there were not enough stages where this one (#{GetIntField(init, "moduleId").Get()}) was unique.");
+                _legitimatelyNoQuestions.Add(module);
+                yield break;
+            }
+        }
+
+        var correctCylinders = getCylinders(myCylinders, randomStage);
+        var preferredCylinders = new HashSet<string> { correctCylinders };
         while (preferredCylinders.Count < 6)
             preferredCylinders.Add(Enumerable.Range(0, 3).Select(i => colorNames.PickRandom()).JoinString(", "));
 
         addQuestions(module,
-            makeQuestion(Question.ForgetAnyColorCylinder, _ForgetAnyColor, formatArgs: new[] { (randomStage + 1).ToString() },
-                correctAnswers: new[] { correctCylinder }, preferredWrongAnswers: preferredCylinders.ToArray()),
-            makeQuestion(Question.ForgetAnyColorSequence, _ForgetAnyColor, formatArgs: new[] { (randomStage + 1).ToString() },
-                correctAnswers: new[] { figureNames[figures[randomStage]] }, preferredWrongAnswers: figureNames));
+            makeQuestion(Question.ForgetAnyColorCylinder, _ForgetAnyColor, formattedModuleName: formattedName, formatArgs: new[] { ordinal(randomStage + 1) },
+                correctAnswers: new[] { correctCylinders }, preferredWrongAnswers: preferredCylinders.ToArray()),
+            makeQuestion(Question.ForgetAnyColorSequence, _ForgetAnyColor, formattedModuleName: formattedName, formatArgs: new[] { ordinal(randomStage + 1) },
+                correctAnswers: new[] { figureNames[myFigures[randomStage]] }));
     }
 
     private IEnumerable<object> ProcessForgetMe(KMBombModule module)

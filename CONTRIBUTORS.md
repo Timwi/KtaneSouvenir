@@ -34,18 +34,18 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Color Decoding       │  Hexamaze              │  Mystery Module           │  Simon Shouts         │
     Color Morse          │  Hogwarts              │  Navinums                 │  Simon Shrieks        │
 
-## Implemented by Kuro (47)
+## Implemented by Kuro (48)
 
-    ...?                  │  Cursed Double-Oh   │  Gadgetron Vendor      │  Orientation Hypercube  │  Snowflakes
-    64                    │  Double Expert      │  Hinges                │  Periodic Words         │  Tea Set, The
-    Alphabet Numbers      │  Duck, The          │  Impostor, The         │  Pictionary             │  Technical Keypad
-    Blinkstop             │  Encrypted Dice     │  Juxtacolored Squares  │  Procedural Maze        │  Tetriamonds
-    Bomb Diffusal         │  Faulty Buttons     │  Kanji                 │  Question Mark          │  Tip Toe
-    Boolean Wires         │  Five Letter Words  │  Know Your Way         │  Recursive Password     │  Triamonds
-    Broken Guitar Chords  │  FizzBuzz           │  Light Bulbs           │  Safety Square          │  Warning Signs
-    Burger Alarm          │  Follow Me          │  Mad Memory            │  Scripting              │
-    Cruel Binary          │  Forget Me Not      │  Not Colored Squares   │  Simon Smothers         │
-    Cruel Keypads         │  Forget The Colors  │  Old Fogey             │  Simon Stacks           │
+    ...?                  │  Cursed Double-Oh   │  Forget The Colors     │  Old Fogey              │  Simon Stacks
+    64                    │  Double Expert      │  Gadgetron Vendor      │  Orientation Hypercube  │  Snowflakes
+    Alphabet Numbers      │  Duck, The          │  Hinges                │  Periodic Words         │  Tea Set, The
+    Blinkstop             │  Encrypted Dice     │  Impostor, The         │  Pictionary             │  Technical Keypad
+    Bomb Diffusal         │  Faulty Buttons     │  Juxtacolored Squares  │  Procedural Maze        │  Tetriamonds
+    Boolean Wires         │  Five Letter Words  │  Kanji                 │  Question Mark          │  Tip Toe
+    Broken Guitar Chords  │  FizzBuzz           │  Know Your Way         │  Recursive Password     │  Triamonds
+    Burger Alarm          │  Follow Me          │  Light Bulbs           │  Safety Square          │  Warning Signs
+    Cruel Binary          │  Forget Any Color   │  Mad Memory            │  Scripting              │
+    Cruel Keypads         │  Forget Me Not      │  Not Colored Squares   │  Simon Smothers         │
 
 ## Implemented by luisdiogo98 (45)
 
@@ -116,11 +116,11 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Creation    │  LED Encryption  │  Mystic Square  │  Symbolic Coordinates  │  Turtle Robot
     Gridlock    │  Minesweeper     │  Souvenir       │  Text Field            │
 
-## Implemented by Emik (14)
+## Implemented by Emik (13)
 
-    1D Chess  │  Forget Any Color  │  Octadecayotton, The  │  Placeholder Talk        │  Role Reversal
-    Coinage   │  hexOS             │  Palindromes          │  Quaver                  │  Sorting
-    Etterna   │  Linq              │  Phosphorescence      │  Reformed Role Reversal  │
+    1D Chess  │  hexOS                │  Palindromes       │  Quaver                  │  Sorting
+    Coinage   │  Linq                 │  Phosphorescence   │  Reformed Role Reversal  │
+    Etterna   │  Octadecayotton, The  │  Placeholder Talk  │  Role Reversal           │
 
 ## Implemented by Hawker (12)
 
