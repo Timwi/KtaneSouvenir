@@ -438,6 +438,65 @@ public partial class SouvenirModule
                 correctAnswers: new[] { figureNames[myFigures[randomStage]] }));
     }
 
+    private List<int[]> _feFirstDisplays = new List<int[]>();
+    private IEnumerable<object> ProcessForgetEverything(KMBombModule module)
+    {
+        var comp = GetComponent(module, "EvilMemory");
+
+        var activated = false;
+        module.OnActivate += () => activated = true;
+        while (!activated)
+            yield return new WaitForSeconds(.1f);
+        yield return null; // Wait one extra frame to ensure DialDisplay is set.
+
+        var allDisplays = GetArrayField<int[]>(comp, "DialDisplay").Get(nullAllowed: true);
+        if (allDisplays is null)
+        {
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Forget Everything because there were no stages.");
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
+        if (allDisplays.Length < 1)
+            throw new AbandonModuleException("\"DialDisplay\" had length 0, when I expected length at least 1.");
+
+        var myFirstDisplay = allDisplays.First();
+        if (myFirstDisplay.Length != 10)
+            throw new AbandonModuleException($"First element of \"DialDisplay\" had length {myFirstDisplay.Length}, when I expected length 10.");
+        _feFirstDisplays.Add(myFirstDisplay);
+
+        var fldSolved = GetField<bool>(comp, "done");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ForgetEverything);
+
+        if (_feFirstDisplays.Count != _moduleCounts[_ForgetEverything])
+            throw new AbandonModuleException($"The number of displays ({_feFirstDisplays.Count}) did not match the number of Forget Everything modules ({_moduleCounts[_ForgetEverything]}).");
+
+        if (_moduleCounts[_ForgetEverything] == 1)
+            addQuestions(module, myFirstDisplay.Select((digit, pos) => makeQuestion(Question.ForgetEverythingStageOneDisplay, _ForgetEverything, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { digit.ToString() })));
+        else
+        {
+            var uniquePositions = Enumerable.Range(0, 10).Where(pos => _feFirstDisplays.Count(dis => dis[pos] == myFirstDisplay[pos]) == 1).Take(2).ToArray();
+            if (!uniquePositions.Any())
+            {
+                Debug.Log($"[Souvenir #{_moduleId}] No question for Forget Everything because this one (#{GetIntField(comp, "thisLoggingID", isPublic: true)}) had a non-unique first stage.");
+                _legitimatelyNoQuestions.Add(module);
+                yield break;
+            }
+            var qs = new List<QandA>();
+            for (int pos = 0; pos < 10; pos++)
+            {
+                if (uniquePositions.Any(p => p != pos))
+                {
+                    var reference = uniquePositions.First(p => p != pos);
+                    qs.Add(makeQuestion(Question.ForgetEverythingStageOneDisplay, _ForgetEverything,
+                        formattedModuleName: $"the Forget Everything whose {ordinal(reference + 1)} displayed digit in this stage was {myFirstDisplay[reference]}", formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { myFirstDisplay[pos].ToString() }));
+                }
+            }
+            addQuestions(module, qs);
+        }
+    }
+
     private IEnumerable<object> ProcessForgetMe(KMBombModule module)
     {
         var comp = GetComponent(module, "NotForgetMeNotScript");

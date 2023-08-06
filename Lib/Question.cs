@@ -883,6 +883,10 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         ForgetAnyColorSequence,
 
+        [SouvenirQuestion("What was the {1} displayed digit in the first stage of {0}?", "Forget Everything", ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 9)]
+        ForgetEverythingStageOneDisplay,
+
         [SouvenirQuestion("What number was in the {1} position of the initial puzzle in {0}?", "Forget Me", ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 8)]
