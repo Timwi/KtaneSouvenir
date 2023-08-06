@@ -34,18 +34,18 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Color Decoding       │  Hexamaze              │  Mystery Module           │  Simon Shouts         │
     Color Morse          │  Hogwarts              │  Navinums                 │  Simon Shrieks        │
 
-## Implemented by Kuro (49)
+## Implemented by Kuro (50)
 
-    ...?                  │  Cursed Double-Oh   │  Forget Me Not         │  Not Colored Squares    │  Simon Smothers
-    64                    │  Double Expert      │  Forget The Colors     │  Old Fogey              │  Simon Stacks
-    Alphabet Numbers      │  Duck, The          │  Gadgetron Vendor      │  Orientation Hypercube  │  Snowflakes
-    Blinkstop             │  Encrypted Dice     │  Hinges                │  Periodic Words         │  Tea Set, The
-    Bomb Diffusal         │  Faulty Buttons     │  Impostor, The         │  Pictionary             │  Technical Keypad
-    Boolean Wires         │  Five Letter Words  │  Juxtacolored Squares  │  Procedural Maze        │  Tetriamonds
-    Broken Guitar Chords  │  FizzBuzz           │  Kanji                 │  Question Mark          │  Tip Toe
-    Burger Alarm          │  Follow Me          │  Know Your Way         │  Recursive Password     │  Triamonds
-    Cruel Binary          │  Forget Any Color   │  Light Bulbs           │  Safety Square          │  Warning Signs
-    Cruel Keypads         │  Forget Everything  │  Mad Memory            │  Scripting              │
+    ...?                  │  Cursed Double-Oh   │  Forget Me Not         │  Mad Memory             │  Scripting
+    64                    │  Double Expert      │  Forget The Colors     │  Not Colored Squares    │  Simon Smothers
+    Alphabet Numbers      │  Duck, The          │  Forget This           │  Old Fogey              │  Simon Stacks
+    Blinkstop             │  Encrypted Dice     │  Gadgetron Vendor      │  Orientation Hypercube  │  Snowflakes
+    Bomb Diffusal         │  Faulty Buttons     │  Hinges                │  Periodic Words         │  Tea Set, The
+    Boolean Wires         │  Five Letter Words  │  Impostor, The         │  Pictionary             │  Technical Keypad
+    Broken Guitar Chords  │  FizzBuzz           │  Juxtacolored Squares  │  Procedural Maze        │  Tetriamonds
+    Burger Alarm          │  Follow Me          │  Kanji                 │  Question Mark          │  Tip Toe
+    Cruel Binary          │  Forget Any Color   │  Know Your Way         │  Recursive Password     │  Triamonds
+    Cruel Keypads         │  Forget Everything  │  Light Bulbs           │  Safety Square          │  Warning Signs
 
 ## Implemented by luisdiogo98 (45)
 

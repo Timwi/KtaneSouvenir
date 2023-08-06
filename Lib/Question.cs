@@ -931,6 +931,12 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ForgetTheColorsRuleColor,
 
+        [SouvenirQuestion("What color was the LED in stage {1} of {0}?", "Forget This", ThreeColumns6Answers, "Cyan", "Magenta", "Yellow", "Black", "White", "Green", ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "5" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ForgetThisColors,
+        [SouvenirQuestion("What was the digit displayed in stage {1} of {0}?", "Forget This", ThreeColumns6Answers, Type = AnswerType.AsciiMazeFont, ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "5" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("0-9A-Z")] // Use this font to make 0 and O distinguishable from each other.
+        ForgetThisDigits,
+
         [SouvenirQuestion("What was the player token in {0}?", "Free Parking", ThreeColumns6Answers, "Dog", "Wheelbarrow", "Cat", "Iron", "Top Hat", "Car", "Battleship")]
         FreeParkingToken,
 

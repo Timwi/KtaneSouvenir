@@ -708,6 +708,67 @@ public partial class SouvenirModule
             makeQuestion(Question.ForgetTheColorsRuleColor, _ForgetTheColors, formattedModuleName: formattedName, formatArgs: new[] { stage }, correctAnswers: new[] { myRuleColors[chosenStage].ToString() }));
     }
 
+    private List<List<int>> _ftColors = new List<List<int>>();
+    private List<List<int>> _ftDigits = new List<List<int>>();
+    private IEnumerable<object> ProcessForgetThis(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ForgetThis");
+
+        if (GetField<bool>(comp, "autoSolved").Get())
+        {
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Forget This because it solved itself due to a lack of stages.");
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
+
+        var myColors = GetListField<int>(comp, "stageColors").Get();
+        var myDigits = GetListField<int>(comp, "stageNumbers").Get();
+
+        if (myColors.Count != myDigits.Count)
+            throw new AbandonModuleException($"The number of colors ({myColors.Count}) did not match the number of digits ({myDigits.Count})");
+        if (_ftColors.Any() && _ftColors.Last().Count != myColors.Count)
+            throw new AbandonModuleException("The number of colors was not consistent across all Forget This modules.");
+        if (_ftDigits.Any() && _ftDigits.Last().Count != myDigits.Count)
+            throw new AbandonModuleException("The number of digits was not consistent across all Forget This modules.");
+
+        _ftColors.Add(myColors);
+        _ftDigits.Add(myDigits);
+
+        var fldSolved = GetField<bool>(comp, "isSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ForgetThis);
+
+        var allColors = new[] { "Cyan", "Magenta", "Yellow", "Black", "White", "Green" };
+        var base36 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var chosenStage = Rnd.Range(0, myColors.Count);
+
+        var formattedName = "Forget This";
+        if (_moduleCounts[_ForgetThis] > 1)
+        {
+            for (int stage = 0; stage < myColors.Count; stage++)
+            {
+                if (stage == chosenStage)
+                    continue;
+                if (_ftColors.Count(c => c[stage] == myColors[stage]) == 1)
+                    formattedName = $"the Forget This whose LED was {allColors[myColors[stage]]} in stage {stage + 1}";
+                if (_ftDigits.Count(d => d[stage] == myDigits[stage]) == 1)
+                    formattedName = $"the Forget This which displayed a {base36[myDigits[stage]]} in stage {stage + 1}";
+                if (formattedName != "Forget This")
+                    break;
+            }
+            if (formattedName == "Forget This")
+            {
+                Debug.Log($"[Souvenir #{_moduleId}] No question for Forget This because there were not enough stages in which this one (#{GetIntField(comp, "_moduleId").Get()}) was unique.");
+                _legitimatelyNoQuestions.Add(module);
+                yield break;
+            }
+        }
+        addQuestions(module,
+            makeQuestion(Question.ForgetThisColors, _ForgetThis, formattedModuleName: formattedName, formatArgs: new[] { (chosenStage + 1).ToString() }, correctAnswers: new[] { allColors[myColors[chosenStage]] }),
+            makeQuestion(Question.ForgetThisDigits, _ForgetThis, formattedModuleName: formattedName, formatArgs: new[] { (chosenStage + 1).ToString() }, correctAnswers: new[] { base36[myDigits[chosenStage]].ToString() }));
+    }
+
     private IEnumerable<object> ProcessFreeParking(KMBombModule module)
     {
         var comp = GetComponent(module, "FreeParkingScript");

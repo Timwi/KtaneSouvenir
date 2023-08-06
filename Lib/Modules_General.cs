@@ -179,6 +179,7 @@ public partial class SouvenirModule
     const string _ForgetMeNot = "MemoryV2";
     const string _ForgetsUltimateShowdown = "ForgetsUltimateShowdownModule";
     const string _ForgetTheColors = "ForgetTheColors";
+    const string _ForgetThis = "forgetThis";
     const string _FreeParking = "freeParking";
     const string _Functions = "qFunctions";
     const string _FuseBox = "FuseBox";
@@ -701,6 +702,7 @@ public partial class SouvenirModule
             [_ForgetMeNot] = (ProcessForgetMeNot, "Forget Me Not", "Kuro"),
             [_ForgetsUltimateShowdown] = (ProcessForgetsUltimateShowdown, "Forget’s Ultimate Showdown", "Marksam"),
             [_ForgetTheColors] = (ProcessForgetTheColors, "Forget The Colors", "Kuro"),
+            [_ForgetThis] = (ProcessForgetThis, "Forget This", "Kuro"),
             [_FreeParking] = (ProcessFreeParking, "Free Parking", "luisdiogo98"),
             [_Functions] = (ProcessFunctions, "Functions", "JerryEris"),
             [_FuseBox] = (ProcessFuseBox, "Fuse Box, The", "Anonymous"),

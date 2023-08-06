@@ -9,7 +9,7 @@
         TicTacToeFont = 3,  // also used by The Bulb
         UnownFont = 4,
         SugarSkullsFont = 5,
-        AsciiMazeFont = 6,
+        AsciiMazeFont = 6, // also used by Forget This
         PianoKeysFont = 7,
         JapaneseFont = 8,   // for the Japanese translation
         SnowflakesFont = 9,
