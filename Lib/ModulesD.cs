@@ -233,7 +233,7 @@ public partial class SouvenirModule
         var currentStage = 0;
         var currentCorrectPress = 0;
         var buttonPresses = new int[5];
-        
+
         while (!fldSolved.Get())
         {
             var stage = fldStage.Get();
@@ -250,14 +250,8 @@ public partial class SouvenirModule
         }
         _modulesSolved.IncSafe(_DirectionalButton);
 
-        var qs = new List<QandA>();
-
-        for(int i = 1; i < 6; i++)
-        {
-            qs.Add(makeQuestion(Question.DirectionalButtonButtonCount, _DirectionalButton, formatArgs: new[] { "" + i }, correctAnswers: new[] { "" + buttonPresses[i - 1] }));
-        }
-
-        addQuestions(module, qs);
+        addQuestions(module, Enumerable.Range(1, 6).Select(i =>
+            makeQuestion(Question.DirectionalButtonButtonCount, _DirectionalButton, formatArgs: new[] { i.ToString() }, correctAnswers: new[] { buttonPresses[i - 1].ToString() })));
     }
 
     private IEnumerable<object> ProcessDivisibleNumbers(KMBombModule module)

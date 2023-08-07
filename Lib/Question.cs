@@ -1037,13 +1037,6 @@ namespace Souvenir
         [SouvenirQuestion("Who was the person recalled in {0}?", "Guess Who?", ThreeColumns6Answers, null, ExampleAnswers = new[] { "Aaron", "Albin", "Andre" })]
         GuessWhoPerson,
 
-        [SouvenirQuestion("What was the postion of the player in {0}?", "High Score", TwoColumns4Answers, "1st", "2nd", "3rd", "4th", "5th", AddThe = true)]
-        HighScorePosition,
-
-        [SouvenirQuestion("What was the score of the player in {0}?", "High Score", TwoColumns4Answers, AddThe = true)]
-        [AnswerGenerator.Integers(1750, 999990)]
-        HighScoreScore,
-
         [SouvenirQuestion("What was the transmitted letter in {0}?", "h", ThreeColumns6Answers)]
         [AnswerGenerator.Strings("A-Z")]
         HLetter,
@@ -1071,6 +1064,12 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the color of the main LED in {0}?", "Hidden Colors", ThreeColumns6Answers, "Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Magenta", "White", TranslateAnswers = true)]
         HiddenColorsLED,
+
+        [SouvenirQuestion("What was the position of the player in {0}?", "High Score", TwoColumns4Answers, "1st", "2nd", "3rd", "4th", "5th", AddThe = true)]
+        HighScorePosition,
+        [SouvenirQuestion("What was the score of the player in {0}?", "High Score", TwoColumns4Answers, AddThe = true)]
+        [AnswerGenerator.Integers(1750, 999990)]
+        HighScoreScore,
 
         [SouvenirQuestion("What was the {1} in {0}?", "Hill Cycle", TwoColumns4Answers, "Adverted", "Advocate", "Allocate", "Altering", "Binormal", "Binomial", "Bulkhead", "Bulleted", "Ciphered", "Circuits", "Compiler", "Commando", "Decimate", "Deceived", "Discover", "Disposal", "Encipher", "Entrance", "Equators", "Equalise", "Finalise", "Finnicky", "Fortress", "Forwards", "Gauntlet", "Gambling", "Gatepost", "Gateways", "Hazarded", "Haziness", "Hungrier", "Huntress", "Incoming", "Indirect", "Illusion", "Illumine", "Jigsawed", "Jiggling", "Junction", "Junkyard", "Kilowatt", "Kilobyte", "Knockout", "Knocking", "Lingered", "Linearly", "Linkages", "Linkwork", "Monogram", "Monomial", "Multiply", "Multiton", "Nanogram", "Nanowatt", "Numerous", "Numerals", "Ordinals", "Ordering", "Observed", "Obscured", "Progress", "Projects", "Prophase", "Prophecy", "Quadrant", "Quadrics", "Quartile", "Quartics", "Reversed", "Revolved", "Rotators", "Relaying", "Stanzaic", "Standout", "Stopping", "Stopword", "Trigonal", "Trickier", "Toggling", "Together", "Underway", "Underlie", "Ultrahot", "Ultrared", "Vicinity", "Viceless", "Volition", "Volatile", "Whatness", "Whatsits", "Whatever", "Whatnots", "Yearlong", "Yeasayer", "Yokozuna", "Yourself", "Zippered", "Zygomata", "Zugzwang", "Zymogene",
           ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -1231,7 +1230,7 @@ namespace Souvenir
             UsesQuestionSprite = true)]
         LabyrinthPortalStage,
 
-        [SouvenirQuestion("Which light was on in {0}", "Ladder Lottery", TwoColumns4Answers, "A", "B", "C", "D")]
+        [SouvenirQuestion("Which light was on in {0}?", "Ladder Lottery", TwoColumns4Answers, "A", "B", "C", "D")]
         LadderLotteryLightOn,
 
         [SouvenirQuestion("Which color was present on the second ladder in {0}?", "Ladders", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Cyan", "Purple", "Gray", TranslateAnswers = true)]
@@ -2327,6 +2326,20 @@ namespace Souvenir
         [AnswerGenerator.Strings("A-Za-z")]
         SnowflakesDisplayedSnowflakes,
 
+        [SouvenirQuestion("Which sound was played but not featured in the chosen zone in {0}?", "Sonic & Knuckles", OneColumn4Answers, "Invincibility Theme", "Jump", "Lightning Shield", "Blue Sphere", "Boss Theme", "Flag Bump", "Not Enough Rings", "Special Stage", "Bumper", "Drown Warning", "Ring Cash-In", "Spin", "Badnik Kill", "Breathe", "Lamppost", "Spikes", "Antigrav Funnel", "Flying Battery", "Mushroom Bounce", "Teleport", "Alarm", "Flying Battery Zone Theme", "Bridge Moving Up", "Regular Shield")]
+        SonicKnucklesSounds,
+        [SouvenirQuestion("Which badnik was shown in {0}?", "Sonic & Knuckles", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteField = "SonicKnucklesBadniksSprites")]
+        SonicKnucklesBadnik,
+        [SouvenirQuestion("Which monitor was shown in {0}?", "Sonic & Knuckles", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteField = "SonicKnucklesMonitorsSprites")]
+        SonicKnucklesMonitor,
+
+        [SouvenirQuestion("What was the {1} picture on {0}?", "Sonic The Hedgehog", TwoColumns4Answers, "Annoyed Sonic", "Ballhog", "Blue Lamppost", "Burrobot", "Buzz Bomber", "Crab Meat", "Dead Sonic", "Drowned Sonic", "Falling Sonic", "Moto Bug", "Red Lamppost", "Red Spring", "Standing Sonic", "Switch", "Yellow Spring",
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SonicTheHedgehogPictures,
+        [SouvenirQuestion("Which sound was played by the {1} screen on {0}?", "Sonic The Hedgehog", TwoColumns4Answers, "Boss Theme", "Breathe", "Continue", "Drown", "Emerald", "Extra Life", "Final Zone", "Invincibility", "Jump", "Lamppost", "Marble Zone", "Bumper", "Skid", "Spikes", "Spin", "Spring",
+            ExampleExtraFormatArguments = new[] { "Running Boots", "Invincibility", "Extra Life", "Rings" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SonicTheHedgehogSounds,
+
         [SouvenirQuestion("What positions were the last swap used to solve {0}?", "Sorting", ThreeColumns6Answers, "1 & 2", "1 & 3", "1 & 4", "1 & 5", "2 & 3", "2 & 4", "2 & 5", "3 & 4", "3 & 5", "4 & 5")]
         SortingLastSwap,
 
@@ -2336,22 +2349,6 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the maximum tax amount per vessel in {0}?", "Space Traders", ThreeColumns6Answers, "0 GCr", "1 GCr", "2 GCr", "3 GCr", "4 GCr", "5 GCr")]
         SpaceTradersMaxTax,
-
-        [SouvenirQuestion("What was the name of the illegal sound in stage 1 of {0}?", "Sonic & Knuckles", OneColumn4Answers, "Flying Battery Zone Theme", "Not Enough Rings", "Invincibility Theme", "Badnik Kill")]
-        SonicKnucklesSounds,
-
-        [SouvenirQuestion("What was the badnik that was shown in stage 1 of {0}?", "Sonic & Knuckles", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteField = "SonicKnucklesBadniksSprites")]
-        SonicKnucklesBadnik,
-
-        [SouvenirQuestion("What was the monitor that was shown in stage 1 of {0}?", "Sonic & Knuckles", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteField = "SonicKnucklesMonitorsSprites")]
-        SonicKnucklesMonitor,
-
-        [SouvenirQuestion("What was the {1} picture on {0}?", "Sonic The Hedgehog", TwoColumns4Answers, "Annoyed Sonic", "Ballhog", "Blue Lamppost", "Burrobot", "Buzz Bomber", "Crab Meat", "Dead Sonic", "Drowned Sonic", "Falling Sonic", "Moto Bug", "Red Lamppost", "Red Spring", "Standing Sonic", "Switch", "Yellow Spring",
-            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
-        SonicTheHedgehogPictures,
-        [SouvenirQuestion("Which sound was played by the {1} screen on {0}?", "Sonic The Hedgehog", TwoColumns4Answers, "Boss Theme", "Breathe", "Continue", "Drown", "Emerald", "Extra Life", "Final Zone", "Invincibility", "Jump", "Lamppost", "Marble Zone", "Bumper", "Skid", "Spikes", "Spin", "Spring",
-            ExampleExtraFormatArguments = new[] { "Running Boots", "Invincibility", "Extra Life", "Rings" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        SonicTheHedgehogSounds,
 
         [SouvenirQuestion("What was the {1} flashed color in {0}?", "Sphere", ThreeColumns6Answers, "red", "blue", "green", "orange", "pink", "purple", "grey", "white", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]

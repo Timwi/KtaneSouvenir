@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.AccessControl;
 using Souvenir;
 using UnityEngine;
 using Rnd = UnityEngine.Random;
@@ -18,10 +17,10 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_h);
 
-        string alphbet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        string answer = "" + alphbet[GetIntField(comp, "WhatToSubmit").Get()];
+        var answer = ((char) ('A' + GetIntField(comp, "WhatToSubmit").Get(min: 0, max: 25))).ToString();
         addQuestion(module, Question.HLetter, correctAnswers: new[] { answer });
     }
+
     private IEnumerable<object> ProcessHereditaryBaseNotation(KMBombModule module)
     {
         var comp = GetComponent(module, "hereditaryBaseNotationScript");
@@ -32,23 +31,18 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_HereditaryBaseNotation);
 
-        int baseN = GetIntField(comp, "baseN").Get(3, 7);
-        int upperBound = new[] { 19682, 60000, 80000, 100000, 100000 }[baseN - 3];
-        int initialNum = GetIntField(comp, "initialNumber").Get(1, upperBound);
+        var baseN = GetIntField(comp, "baseN").Get(3, 7);
+        var upperBound = new[] { 19682, 60000, 80000, 100000, 100000 }[baseN - 3];
+        var initialNum = GetIntField(comp, "initialNumber").Get(1, upperBound);
 
-        string answer = mthNumberToBaseNString.Invoke(baseN, initialNum).ToString();
-        HashSet<string> invalidAnswer = new HashSet<string>();
-        invalidAnswer.Add(answer);
+        var answer = mthNumberToBaseNString.Invoke(baseN, initialNum).ToString();
+        var invalidAnswer = new HashSet<string> { answer };
 
-        //Generate fake options in the same base of the answer.
+        // Generate fake options in the same base of the answer
         while (invalidAnswer.Count() < 4)
-        {
-            var wrongAnswer = Rnd.Range(1, upperBound + 1);
-            invalidAnswer.Add(mthNumberToBaseNString.Invoke(baseN, wrongAnswer).ToString());
-        }
+            invalidAnswer.Add(mthNumberToBaseNString.Invoke(baseN, Rnd.Range(1, upperBound + 1)).ToString());
 
-        invalidAnswer.Add(answer);
-        addQuestions(module, makeQuestion(Question.HereditaryBaseNotationInitialNumber, _HereditaryBaseNotation, formatArgs: null, correctAnswers: new[] { answer }, preferredWrongAnswers: invalidAnswer.ToArray()));
+        addQuestions(module, makeQuestion(Question.HereditaryBaseNotationInitialNumber, _HereditaryBaseNotation, correctAnswers: new[] { answer }, preferredWrongAnswers: invalidAnswer.ToArray()));
     }
 
     private IEnumerable<object> ProcessHexabutton(KMBombModule module)

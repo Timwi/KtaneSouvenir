@@ -132,8 +132,8 @@ public partial class SouvenirModule
     const string _Digisibility = "digisibility";
     const string _DigitString = "digitString";
     const string _DimensionDisruption = "dimensionDisruption";
-    const string _DiscoloredSquares = "DiscoloredSquaresModule";
     const string _DirectionalButton = "directionalButton";
+    const string _DiscoloredSquares = "DiscoloredSquaresModule";
     const string _DivisibleNumbers = "divisibleNumbers";
     const string _DoubleArrows = "doubleArrows";
     const string _DoubleColor = "doubleColor";
@@ -547,9 +547,9 @@ public partial class SouvenirModule
             [_3DMaze] = (Process3DMaze, "3D Maze", "Timwi"),
             [_3DTapCode] = (Process3DTapCode, "3D Tap Code", "TasThiluna"),
             [_3DTunnels] = (Process3DTunnels, "3D Tunnels", "Timwi"),
-            [_64] = (Process64, "64", "Kuro"),
             [_3LEDs] = (Process3LEDs, "3 LEDs", "Timwi"),
             [_3NPlus1] = (Process3NPlus1, "3N+1", "Hawker"),
+            [_64] = (Process64, "64", "Kuro"),
             [_7] = (Process7, "7", "VFlyer"),
             [_9Ball] = (Process9Ball, "9-Ball", "GhostSalt"),
             [_Abyss] = (ProcessAbyss, "Abyss", "VFlyer"),
@@ -660,8 +660,8 @@ public partial class SouvenirModule
             [_Digisibility] = (ProcessDigisibility, "Digisibility", "tandyCake"),
             [_DigitString] = (ProcessDigitString, "Digit String", "GoodHood"),
             [_DimensionDisruption] = (ProcessDimensionDisruption, "Dimension Disruption", "Hawker"),
-            [_DiscoloredSquares] = (ProcessDiscoloredSquares, "Discolored Squares", "luisdiogo98"),
             [_DirectionalButton] = (ProcessDirectionalButton, "Directional Button", "Hawker"),
+            [_DiscoloredSquares] = (ProcessDiscoloredSquares, "Discolored Squares", "luisdiogo98"),
             [_DivisibleNumbers] = (ProcessDivisibleNumbers, "Divisible Numbers", "shortc1rcuit"),
             [_DoubleArrows] = (ProcessDoubleArrows, "Double Arrows", "Anonymous"),
             [_DoubleColor] = (ProcessDoubleColor, "Double Color", "luisdiogo98"),
@@ -766,8 +766,8 @@ public partial class SouvenirModule
             [_KnowYourWay] = (ProcessKnowYourWay, "Know Your Way", "Kuro"),
             [_Kudosudoku] = (ProcessKudosudoku, "Kudosudoku", "Timwi"),
             [_Labyrinth] = (ProcessLabyrinth, "Labyrinth, The", "Anonymous"),
-            [_Ladders] = (ProcessLadders, "Ladders", "tandyCake"),
             [_LadderLottery] = (ProcessLadderLottery, "Ladder Lottery", "Hawker"),
+            [_Ladders] = (ProcessLadders, "Ladders", "tandyCake"),
             [_Lasers] = (ProcessLasers, "Lasers", "luisdiogo98"),
             [_LEDEncryption] = (ProcessLEDEncryption, "LED Encryption", "CaitSith2"),
             [_LEDMath] = (ProcessLEDMath, "LED Math", "TasThiluna"),

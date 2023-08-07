@@ -1181,9 +1181,7 @@ public partial class SouvenirModule : MonoBehaviour
                 showExampleQuestion();
             }
             else
-            {
                 Debug.LogError($"Question containing “{command}” not found.");
-            }
             yield break;
         }
 
