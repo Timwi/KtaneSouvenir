@@ -192,13 +192,14 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "InterpunctScript");
         var fldDisplay = GetField<string>(comp, "displaySymbol");
         var fldStage = GetIntField(comp, "stage");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
 
         var currentStage = 0;
         var texts = new string[3];
         var hasStruck = false;
         module.OnStrike += delegate () { hasStruck = true; return false; };
 
-        while (currentStage < 3)
+        while (!fldSolved.Get())
         {
             yield return null;
             var nextStage = fldStage.Get(min: 1, max: 3);   // stage numbers are 1–3, not 0–2
@@ -211,11 +212,8 @@ public partial class SouvenirModule
         }
         _modulesSolved.IncSafe(_Interpunct);
 
-        var qs = new List<QandA>();
-        for (int i = 0; i < 3; i++)
-            qs.Add(makeQuestion(Question.InterpunctDisplay, _Interpunct, formatArgs: new[] { (i + 1).ToString() }, correctAnswers: new[] { texts[i] }));
-
-        addQuestions(module, qs);
+        addQuestions(module, Enumerable.Range(0, 3).Select(i =>
+            makeQuestion(Question.InterpunctDisplay, _Interpunct, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { texts[i] })));
     }
 
     private IEnumerable<object> ProcessIPA(KMBombModule module)
