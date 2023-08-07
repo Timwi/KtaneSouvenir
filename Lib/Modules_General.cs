@@ -133,6 +133,7 @@ public partial class SouvenirModule
     const string _DigitString = "digitString";
     const string _DimensionDisruption = "dimensionDisruption";
     const string _DiscoloredSquares = "DiscoloredSquaresModule";
+    const string _DirectionalButton = "directionalButton";
     const string _DivisibleNumbers = "divisibleNumbers";
     const string _DoubleArrows = "doubleArrows";
     const string _DoubleColor = "doubleColor";
@@ -199,11 +200,13 @@ public partial class SouvenirModule
     const string _GroceryStore = "groceryStore";
     const string _Gryphons = "gryphons";
     const string _GuessWho = "GuessWho";
+    const string _h = "Averageh";
     const string _HereditaryBaseNotation = "hereditaryBaseNotationModule";
     const string _Hexabutton = "hexabutton";
     const string _Hexamaze = "HexamazeModule";
     const string _HexOS = "hexOS";
     const string _HiddenColors = "lgndHiddenColors";
+    const string _HighScore = "ksmHighScore";
     const string _HillCycle = "hillCycle";
     const string _Hinges = "hinges";
     const string _Hogwarts = "HogwartsModule";
@@ -235,6 +238,7 @@ public partial class SouvenirModule
     const string _KnowYourWay = "KnowYourWay";
     const string _Kudosudoku = "KudosudokuModule";
     const string _Labyrinth = "labyrinth";
+    const string _LadderLottery = "ladderLottery";
     const string _Ladders = "ladders";
     const string _Lasers = "lasers";
     const string _LEDEncryption = "LEDEnc";
@@ -440,6 +444,7 @@ public partial class SouvenirModule
     const string _SmallCircle = "smallCircle";
     const string _Snooker = "snooker";
     const string _Snowflakes = "snowflakes";
+    const string _SonicKnuckles = "sonicKnuckles";
     const string _SonicTheHedgehog = "sonic";
     const string _Sorting = "sorting";
     const string _Souvenir = "SouvenirModule";
@@ -656,6 +661,7 @@ public partial class SouvenirModule
             [_DigitString] = (ProcessDigitString, "Digit String", "GoodHood"),
             [_DimensionDisruption] = (ProcessDimensionDisruption, "Dimension Disruption", "Hawker"),
             [_DiscoloredSquares] = (ProcessDiscoloredSquares, "Discolored Squares", "luisdiogo98"),
+            [_DirectionalButton] = (ProcessDirectionalButton, "Directional Button", "Hawker"),
             [_DivisibleNumbers] = (ProcessDivisibleNumbers, "Divisible Numbers", "shortc1rcuit"),
             [_DoubleArrows] = (ProcessDoubleArrows, "Double Arrows", "Anonymous"),
             [_DoubleColor] = (ProcessDoubleColor, "Double Color", "luisdiogo98"),
@@ -722,11 +728,13 @@ public partial class SouvenirModule
             [_GroceryStore] = (ProcessGroceryStore, "Grocery Store", "BigCrunch22"),
             [_Gryphons] = (ProcessGryphons, "Gryphons", "JerryEris"),
             [_GuessWho] = (ProcessGuessWho, "Guess Who?", "BigCrunch22"),
+            [_h] = (ProceessH, "h", "Hawker"),
             [_HereditaryBaseNotation] = (ProcessHereditaryBaseNotation, "Hereditary Base Notation", "kavinkul"),
             [_Hexabutton] = (ProcessHexabutton, "Hexabutton, The", "luisdiogo98"),
             [_Hexamaze] = (ProcessHexamaze, "Hexamaze", "Timwi"),
             [_HexOS] = (ProcessHexOS, "hexOS", "Emik"),
             [_HiddenColors] = (ProcessHiddenColors, "Hidden Colors", "TasThiluna"),
+            [_HighScore] = (ProcessHighScore, "High Score, The", "Hawker"),
             [_HillCycle] = (ProcessHillCycle, "Hill Cycle", "TasThiluna"),
             [_Hinges] = (ProcessHinges, "Hinges", "Kuro"),
             [_Hogwarts] = (ProcessHogwarts, "Hogwarts", "Timwi"),
@@ -759,6 +767,7 @@ public partial class SouvenirModule
             [_Kudosudoku] = (ProcessKudosudoku, "Kudosudoku", "Timwi"),
             [_Labyrinth] = (ProcessLabyrinth, "Labyrinth, The", "Anonymous"),
             [_Ladders] = (ProcessLadders, "Ladders", "tandyCake"),
+            [_LadderLottery] = (ProcessLadderLottery, "Ladder Lottery", "Hawker"),
             [_Lasers] = (ProcessLasers, "Lasers", "luisdiogo98"),
             [_LEDEncryption] = (ProcessLEDEncryption, "LED Encryption", "CaitSith2"),
             [_LEDMath] = (ProcessLEDMath, "LED Math", "TasThiluna"),
@@ -963,6 +972,7 @@ public partial class SouvenirModule
             [_SmallCircle] = (ProcessSmallCircle, "Small Circle", "TasThiluna"),
             [_Snooker] = (ProcessSnooker, "Snooker", "TasThiluna"),
             [_Snowflakes] = (ProcessSnowflakes, "Snowflakes", "Kuro"),
+            [_SonicKnuckles] = (ProcessSonicKnuckles, "Sonic & Knuckles", "Hawker"),
             [_SonicTheHedgehog] = (ProcessSonicTheHedgehog, "Sonic the Hedgehog", "Timwi"),
             [_Sorting] = (ProcessSorting, "Sorting", "Emik"),
             [_Souvenir] = (ProcessSouvenir, "Souvenir", "CaitSith2"),

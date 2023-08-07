@@ -97,6 +97,13 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Double Digits     │  Not Morsematics       │  Not X01               │  Simon Said           │
     Letter Math       │  Not Murder            │  Parity                │  Slow Math            │
 
+## Implemented by Hawker (17)
+
+    3N+1                     │  Directional Button  │  h                 │  Sign Language                      │  Weakest Link, The
+    Character Slots          │  Find The Date       │  High Score, The   │  Sonic & Knuckles                   │
+    Customer Identification  │  Garnet Thief, The   │  Ladder Lottery    │  Spongebob Birthday Identification  │
+    Dimension Disruption     │  Girlfriend          │  Scrutiny Squares  │  UNO!                               │
+
 ## Implemented by kavinkul (17)
 
     Bamboozled Again  │  Green Arrows              │  Red Arrows    │  Thinking Wires     │  Yellow Arrows
@@ -121,12 +128,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     1D Chess  │  hexOS                │  Palindromes       │  Quaver                  │  Sorting
     Coinage   │  Linq                 │  Phosphorescence   │  Reformed Role Reversal  │
     Etterna   │  Octadecayotton, The  │  Placeholder Talk  │  Role Reversal           │
-
-## Implemented by Hawker (12)
-
-    3N+1                     │  Dimension Disruption  │  Girlfriend        │  Spongebob Birthday Identification
-    Character Slots          │  Find The Date         │  Scrutiny Squares  │  UNO!
-    Customer Identification  │  Garnet Thief, The     │  Sign Language     │  Weakest Link, The
 
 ## Implemented by VFlyer (12)
 

@@ -644,6 +644,10 @@ namespace Souvenir
         [AnswerGenerator.Grid(4, 4)]
         DiscoloredSquaresRememberedPositions,
 
+        [SouvenirQuestion("How many times did you press the button in stage {1} of {0}", "Directional Button", TwoColumns4Answers, "1", "2", "3", "4",
+        ExampleExtraFormatArguments = new[] { "1" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        DirectionalButtonButtonCount,
+
         [SouvenirQuestion("What were the correct button presses in {0}?", "Divisible Numbers", OneColumn4Answers, "Nay, Nay, Nay", "Nay, Nay, Yea", "Nay, Yea, Nay", "Nay, Yea, Yea", "Yea, Nay, Nay", "Yea, Nay, Yea", "Yea, Yea, Nay", "Yea, Yea, Yea")]
         DivisibleNumbersAnswers,
         [SouvenirQuestion("What was the {1} stage’s number in {0}?", "Divisible Numbers", ThreeColumns6Answers, null,
@@ -1033,6 +1037,17 @@ namespace Souvenir
         [SouvenirQuestion("Who was the person recalled in {0}?", "Guess Who?", ThreeColumns6Answers, null, ExampleAnswers = new[] { "Aaron", "Albin", "Andre" })]
         GuessWhoPerson,
 
+        [SouvenirQuestion("What was the postion of the player in {0}?", "High Score", TwoColumns4Answers, "1st", "2nd", "3rd", "4th", "5th", AddThe = true)]
+        HighScorePosition,
+
+        [SouvenirQuestion("What was the score of the player in {0}?", "High Score", TwoColumns4Answers, AddThe = true)]
+        [AnswerGenerator.Integers(1750, 999990)]
+        HighScoreScore,
+
+        [SouvenirQuestion("What was the transmitted letter in {0}?", "h", ThreeColumns6Answers)]
+        [AnswerGenerator.Strings("A-Z")]
+        HLetter,
+
         [SouvenirQuestion("What was the given number in {0}?", "Hereditary Base Notation", TwoColumns4Answers, null, ExampleAnswers = new[] { "12", "33", "46", "112", "356" })]
         HereditaryBaseNotationInitialNumber,
 
@@ -1215,6 +1230,9 @@ namespace Souvenir
         [SouvenirQuestion("In which layer was this portal in {0}?", "Labyrinth", TwoColumns4Answers, "1 (Red)", "2 (Orange)", "3 (Yellow)", "4 (Green)", "5 (Blue)", AddThe = true,
             UsesQuestionSprite = true)]
         LabyrinthPortalStage,
+
+        [SouvenirQuestion("Which light was on in {0}", "Ladder Lottery", TwoColumns4Answers, "A", "B", "C", "D")]
+        LadderLotteryLightOn,
 
         [SouvenirQuestion("Which color was present on the second ladder in {0}?", "Ladders", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Cyan", "Purple", "Gray", TranslateAnswers = true)]
         LaddersStage2Colors,
@@ -2318,6 +2336,15 @@ namespace Souvenir
 
         [SouvenirQuestion("What was the maximum tax amount per vessel in {0}?", "Space Traders", ThreeColumns6Answers, "0 GCr", "1 GCr", "2 GCr", "3 GCr", "4 GCr", "5 GCr")]
         SpaceTradersMaxTax,
+
+        [SouvenirQuestion("What was the name of the illegal sound in stage 1 of {0}?", "Sonic & Knuckles", OneColumn4Answers, "Flying Battery Zone Theme", "Not Enough Rings", "Invincibility Theme", "Badnik Kill")]
+        SonicKnucklesSounds,
+
+        [SouvenirQuestion("What was the badnik that was shown in stage 1 of {0}?", "Sonic & Knuckles", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteField = "SonicKnucklesBadniksSprites")]
+        SonicKnucklesBadnik,
+
+        [SouvenirQuestion("What was the monitor that was shown in stage 1 of {0}?", "Sonic & Knuckles", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteField = "SonicKnucklesMonitorsSprites")]
+        SonicKnucklesMonitor,
 
         [SouvenirQuestion("What was the {1} picture on {0}?", "Sonic The Hedgehog", TwoColumns4Answers, "Annoyed Sonic", "Ballhog", "Blue Lamppost", "Burrobot", "Buzz Bomber", "Crab Meat", "Dead Sonic", "Drowned Sonic", "Falling Sonic", "Moto Bug", "Red Lamppost", "Red Spring", "Standing Sonic", "Switch", "Yellow Spring",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]

@@ -2,12 +2,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using Souvenir;
 using UnityEngine;
 using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
+    private IEnumerable<object> ProceessH(KMBombModule module)
+    {
+        var comp = GetComponent(module, "HexOS");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_h);
+
+        string alphbet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        string answer = "" + alphbet[GetIntField(comp, "WhatToSubmit").Get()];
+        addQuestion(module, Question.HLetter, correctAnswers: new[] { answer });
+    }
     private IEnumerable<object> ProcessHereditaryBaseNotation(KMBombModule module)
     {
         var comp = GetComponent(module, "hereditaryBaseNotationScript");
@@ -115,6 +129,35 @@ public partial class SouvenirModule
         if (colors.Length == 9)
             led.material = colors[8];
         addQuestion(module, Question.HiddenColorsLED, correctAnswers: new[] { ledcolors[ledcolor] });
+    }
+
+    private IEnumerable<object> ProcessHighScore(KMBombModule module)
+    {
+        var comp = GetComponent(module, "HighScore");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_HighScore);
+
+        var highScores = GetField<Array>(comp, "highScores").Get();
+        var fldScore = GetIntField(highScores.GetValue(0), "score", isPublic: true);
+
+        var playerPosition = GetIntField(comp, "entryNum").Get();
+        var playerScore = fldScore.GetFrom(highScores.GetValue(playerPosition));
+
+        var stringPos = playerPosition switch
+        {
+            0 => "1st",
+            1 => "2nd",
+            2 => "3rd",
+            3 => "4th",
+            _ => "5th"
+        };
+
+        addQuestions(module,
+            makeQuestion(Question.HighScorePosition, _HighScore, correctAnswers: new[] { stringPos }),
+            makeQuestion(Question.HighScoreScore, _HighScore, correctAnswers: new[] { "" + playerScore }));
     }
 
     private IEnumerable<object> ProcessHillCycle(KMBombModule module)
