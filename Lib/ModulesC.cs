@@ -137,7 +137,12 @@ public partial class SouvenirModule
             for (int col = 0; col < 3; col++)
             {
                 string name = fldName.GetFrom(characters.GetValue(row, col), ch => !CharacterSlotsSprites.Any(s => s.name.Replace(" ", "") == ch.ToString()) ? "unexpected character name" : null).ToString();
-                qs.Add(makeQuestion(Question.CharacterSlotsDisplayedCharacters, _CharacterSlots, formatArgs: new[] { ordinal(col + 1), (row + 1).ToString() }, correctAnswers: new[] { CharacterSlotsSprites.First(sprite => sprite.name.Replace(" ", "") == name) }, preferredWrongAnswers: CharacterSlotsSprites));
+                qs.Add(makeQuestion(
+                    question: Question.CharacterSlotsDisplayedCharacters,
+                    moduleKey: _CharacterSlots,
+                    formatArgs: new[] { ordinal(col + 1), ordinal(row + 1) },
+                    correctAnswers: new[] { CharacterSlotsSprites.First(sprite => sprite.name.Replace(" ", "") == name) },
+                    preferredWrongAnswers: CharacterSlotsSprites));
             }
         }
 

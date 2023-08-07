@@ -250,8 +250,8 @@ public partial class SouvenirModule
         }
         _modulesSolved.IncSafe(_DirectionalButton);
 
-        addQuestions(module, Enumerable.Range(1, 6).Select(i =>
-            makeQuestion(Question.DirectionalButtonButtonCount, _DirectionalButton, formatArgs: new[] { i.ToString() }, correctAnswers: new[] { buttonPresses[i - 1].ToString() })));
+        addQuestions(module, Enumerable.Range(0, 5).Select(i =>
+            makeQuestion(Question.DirectionalButtonButtonCount, _DirectionalButton, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { buttonPresses[i].ToString() })));
     }
 
     private IEnumerable<object> ProcessDivisibleNumbers(KMBombModule module)

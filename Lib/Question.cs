@@ -46,7 +46,7 @@ namespace Souvenir
         [AnswerGenerator.Integers(-9, 9)]
         _7InitialValues,
         [SouvenirQuestion("What LED color was shown in stage {1} of {0}?", "7", TwoColumns4Answers,
-            ExampleExtraFormatArguments = new[] { "1", "2", "3" }, ExampleExtraFormatArgumentGroupSize = 1, ExampleAnswers = new[] { "red", "blue", "green", "white" })]
+            ExampleExtraFormatArguments = new[] { "0", "1", "2", "3" }, ExampleExtraFormatArgumentGroupSize = 1, ExampleAnswers = new[] { "red", "blue", "green", "white" })]
         _7LedColors,
 
         [SouvenirQuestion("What was the number of ball {1} in {0}?", "9-Ball", ThreeColumns6Answers, ExampleAnswers = new[] { "2", "3", "4", "5", "6", "7" },
@@ -408,8 +408,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         CharacterCodesCharacter,
 
-        [SouvenirQuestion("Who was displayed in the {1} slot in stage {2} of {0}?", "Character Slots", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "CharacterSlotsSprites",
-            ExampleExtraFormatArguments = new[] { QandA.Ordinal, "1" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        [SouvenirQuestion("Who was displayed in the {1} slot in the {2} stage of {0}?", "Character Slots", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "CharacterSlotsSprites",
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 2)]
         CharacterSlotsDisplayedCharacters,
 
         [SouvenirQuestion("What was the {1}paid amount in {0}?", "Cheap Checkout", ThreeColumns6Answers,
@@ -631,7 +631,7 @@ namespace Souvenir
         [AnswerGenerator.Integers(1, 9)]
         DigisibilityDisplayedNumber,
 
-        [SouvenirQuestion("What was the initial number in {0}", "Digit String", TwoColumns4Answers)]
+        [SouvenirQuestion("What was the initial number in {0}?", "Digit String", TwoColumns4Answers)]
         [AnswerGenerator.Strings("1-9", "6*0-9", "1-9")]
         DigitStringInitialNumber,
 
@@ -639,14 +639,14 @@ namespace Souvenir
         [AnswerGenerator.Strings("A-Z0-9")]
         DimensionDisruptionVisibleLetters,
 
+        [SouvenirQuestion("How many times did you press the button in the {1} stage of {0}?", "Directional Button", TwoColumns4Answers, "1", "2", "3", "4",
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        DirectionalButtonButtonCount,
+
         [SouvenirQuestion("What was {1}’s remembered position in {0}?", "Discolored Squares", ThreeColumns6Answers, null, Type = AnswerType.Grid, TranslateFormatArgs = new[] { true },
             ExampleExtraFormatArguments = new[] { "Blue", "Red", "Yellow", "Green", "Magenta" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Grid(4, 4)]
         DiscoloredSquaresRememberedPositions,
-
-        [SouvenirQuestion("How many times did you press the button in stage {1} of {0}", "Directional Button", TwoColumns4Answers, "1", "2", "3", "4",
-        ExampleExtraFormatArguments = new[] { "1" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        DirectionalButtonButtonCount,
 
         [SouvenirQuestion("What were the correct button presses in {0}?", "Divisible Numbers", OneColumn4Answers, "Nay, Nay, Nay", "Nay, Nay, Yea", "Nay, Yea, Nay", "Nay, Yea, Yea", "Yea, Nay, Nay", "Yea, Nay, Yea", "Yea, Yea, Nay", "Yea, Yea, Yea")]
         DivisibleNumbersAnswers,
@@ -829,15 +829,15 @@ namespace Souvenir
         [AnswerGenerator.Strings("0-9a-f")]
         FaultyRGBMazeNumber,
 
-        [SouvenirQuestion("What was the day displayed in stage {1} of {0}?", "Find The Date", ThreeColumns6Answers,
-            ExampleExtraFormatArguments = new[] { "1" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was the day displayed in the {1} stage of {0}?", "Find The Date", ThreeColumns6Answers,
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 31)]
         FindTheDateDay,
-        [SouvenirQuestion("What was the month displayed in stage {1} of {0}?", "Find The Date", TwoColumns4Answers, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
-            ExampleExtraFormatArguments = new[] { "1" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was the month displayed in the {1} stage of {0}?", "Find The Date", TwoColumns4Answers, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         FindTheDateMonth,
-        [SouvenirQuestion("What was the year displayed in stage {1} of {0}?", "Find The Date", ThreeColumns6Answers,
-            ExampleExtraFormatArguments = new[] { "1" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was the year displayed in the {1} stage of {0}?", "Find The Date", ThreeColumns6Answers,
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 2899, "000")]
         FindTheDateYear,
 
@@ -935,10 +935,12 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ForgetTheColorsRuleColor,
 
-        [SouvenirQuestion("What color was the LED in stage {1} of {0}?", "Forget This", ThreeColumns6Answers, "Cyan", "Magenta", "Yellow", "Black", "White", "Green", ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "5" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What color was the LED in the {1} stage of {0}?", "Forget This", ThreeColumns6Answers, "Cyan", "Magenta", "Yellow", "Black", "White", "Green",
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         ForgetThisColors,
-        [SouvenirQuestion("What was the digit displayed in stage {1} of {0}?", "Forget This", ThreeColumns6Answers, Type = AnswerType.AsciiMazeFont, ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "5" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        [AnswerGenerator.Strings("0-9A-Z")] // Use this font to make 0 and O distinguishable from each other.
+        [SouvenirQuestion("What was the digit displayed in the {1} stage of {0}?", "Forget This", ThreeColumns6Answers, Type = AnswerType.AsciiMazeFont, // Use this font to make 0 and O distinguishable from each other.
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("0-9A-Z")]
         ForgetThisDigits,
 
         [SouvenirQuestion("What was the player token in {0}?", "Free Parking", ThreeColumns6Answers, "Dog", "Wheelbarrow", "Cat", "Iron", "Top Hat", "Car", "Battleship")]
@@ -1171,8 +1173,8 @@ namespace Souvenir
         [SouvenirQuestion("What was the digit flashed in Morse in {0}?", "Inner Connections", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")]
         InnerConnectionsMorse,
 
-        [SouvenirQuestion("What was the symbol displayed in stage {1} of {0}?", "Interpunct", ThreeColumns6Answers, "(", ",", ">", "/", "}", "]", "_", "-", "\"", "|", "»", ":", ".", "{", "<", "”", "«", "`", "[", "?", ")", "!", "\\", "'", ";",
-            ExampleExtraFormatArguments = new[] { "1", "2", "3" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was the symbol displayed in the {1} stage of {0}?", "Interpunct", ThreeColumns6Answers, "(", ",", ">", "/", "}", "]", "_", "-", "\"", "|", "»", ":", ".", "{", "<", "”", "«", "`", "[", "?", ")", "!", "\\", "'", ";",
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         InterpunctDisplay,
 
         [SouvenirQuestion("What symbol was the correct answer in {0}?", "IPA", ThreeColumns6Answers, null,
@@ -1302,7 +1304,7 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal, "depart from", QandA.Ordinal, "arrive to" }, ExampleExtraFormatArgumentGroupSize = 2)]
         LondonUndergroundStations,
 
-        [SouvenirQuestion("What was the word on the top display on {0}", "Long Words", ThreeColumns6Answers, null, ExampleAnswers = new[] { "ABOARD", "ABRUPT", "SAFEST", "LAMBDA", "NARROW", "ECHOES", "VALVES", "YONDER", "ZIGGED", "UNBIND" })]
+        [SouvenirQuestion("What was the word on the top display on {0}?", "Long Words", ThreeColumns6Answers, null, ExampleAnswers = new[] { "ABOARD", "ABRUPT", "SAFEST", "LAMBDA", "NARROW", "ECHOES", "VALVES", "YONDER", "ZIGGED", "UNBIND" })]
         LongWordsWord,
 
         [SouvenirQuestion("What was on the display in the {1} stage of {0}?", "Mad Memory", ThreeColumns6Answers, "1", "2", "3", "4", "01", "02", "03", "04", "ONE", "TWO", "THREE", "FOUR", "WON", "TOO", "TREE", "FOR", ExampleExtraFormatArguments = new[] { "first", "second", "third", "4th" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -2435,8 +2437,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { "top", "right", "bottom", "left", "blue", "green", "yellow", "pink" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SymbolicTashaSymbols,
 
-        [SouvenirQuestion("What was displayed on the screen in stage {1} of {0}?", "SYNC-125 [3]", TwoColumns4Answers, null, Type = AnswerType.DynamicFont, ExampleAnswers = new[] { "İ'ms'", "ăĠ'n'", "kğ'i", "kĞ'p'", "ăut'", "ăġ'r", "ăġ'm", "ărs", "kğp'", "kğk" },
-            ExampleExtraFormatArguments = new[] { "1", "2", "3" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was displayed on the screen in the {1} stage of {0}?", "SYNC-125 [3]", TwoColumns4Answers, null, Type = AnswerType.DynamicFont, ExampleAnswers = new[] { "İ'ms'", "ăĠ'n'", "kğ'i", "kĞ'p'", "ăut'", "ăġ'r", "ăġ'm", "ărs", "kğp'", "kğk" },
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         Sync125_3Word,
 
         [SouvenirQuestion("Which number was displayed on {0}?", "Synonyms", ThreeColumns6Answers)]

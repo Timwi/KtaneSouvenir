@@ -764,8 +764,8 @@ public partial class SouvenirModule
             }
         }
         addQuestions(module,
-            makeQuestion(Question.ForgetThisColors, _ForgetThis, formattedModuleName: formattedName, formatArgs: new[] { (chosenStage + 1).ToString() }, correctAnswers: new[] { allColors[myColors[chosenStage]] }),
-            makeQuestion(Question.ForgetThisDigits, _ForgetThis, formattedModuleName: formattedName, formatArgs: new[] { (chosenStage + 1).ToString() }, correctAnswers: new[] { base36[myDigits[chosenStage]].ToString() }));
+            makeQuestion(Question.ForgetThisColors, _ForgetThis, formattedModuleName: formattedName, formatArgs: new[] { ordinal(chosenStage + 1) }, correctAnswers: new[] { allColors[myColors[chosenStage]] }),
+            makeQuestion(Question.ForgetThisDigits, _ForgetThis, formattedModuleName: formattedName, formatArgs: new[] { ordinal(chosenStage + 1) }, correctAnswers: new[] { base36[myDigits[chosenStage]].ToString() }));
     }
 
     private IEnumerable<object> ProcessFreeParking(KMBombModule module)
