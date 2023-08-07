@@ -365,6 +365,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "FACScript");
 
         var init = GetField<object>(comp, "init").Get();
+        var fldCurrentStage = GetIntField(init, "stage");
         var fldCylinders = GetField<Array>(init, "cylinders");
         var calculate = GetField<object>(init, "calculate").Get();
         var fldFigures = GetListField<int>(calculate, "figureSequences");
@@ -388,21 +389,16 @@ public partial class SouvenirModule
         _facCylinders.Add(myCylinders);
         _facFigures.Add(myFigures);
 
-        var solved = false;
-        module.OnPass += () => { solved = true; return false; };
-        while (!solved)
-            yield return new WaitForSeconds(.05f);
+        while (!_noUnignoredModulesLeft)
+            yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_ForgetAnyColor);
-
-        while (_modulesSolved[_ForgetAnyColor] < _moduleCounts[_ForgetAnyColor])
-            yield return new WaitForSeconds(.05f); // Wait for all of the arrays to be fully populated.
 
         var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "White" };
         var figureNames = new[] { "LLLMR", "LMMMR", "LMRRR", "LMMRR", "LLMRR", "LLMMR" };
 
         string getCylinders(Array cylinders, int stage) => Enumerable.Range(0, 3).Select(ix => colorNames[(int) cylinders.GetValue(stage, ix)]).JoinString(", ");
 
-        var randomStage = Rnd.Range(0, maxStage);
+        var randomStage = Rnd.Range(0, fldCurrentStage.Get(min: 0, max: maxStage));
         var formattedName = "Forget Any Color";
         if (_moduleCounts[_ForgetAnyColor] > 1)
         {
@@ -464,10 +460,18 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"First element of \"DialDisplay\" had length {myFirstDisplay.Length}, when I expected length 10.");
         _feFirstDisplays.Add(myFirstDisplay);
 
-        var fldSolved = GetField<bool>(comp, "done");
-        while (!fldSolved.Get())
+        while (!_noUnignoredModulesLeft)
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_ForgetEverything);
+
+        var stageOrdering = GetArrayField<int>(comp, "StageOrdering").Get();
+        var myIgnoredList = GetStaticField<string[]>(comp.GetType(), "ignoredModules", isPublic: true).Get();
+        if (Array.IndexOf(stageOrdering, 0) + 1 > Bomb.GetSolvableModuleNames().Count(x => !myIgnoredList.Contains(x)))
+        {
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Forget Everything because stage one was not displayed before non-ignored modules were solved.");
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
 
         if (_feFirstDisplays.Count != _moduleCounts[_ForgetEverything])
             throw new AbandonModuleException($"The number of displays ({_feFirstDisplays.Count}) did not match the number of Forget Everything modules ({_moduleCounts[_ForgetEverything]}).");
@@ -536,21 +540,22 @@ public partial class SouvenirModule
             yield break;
         }
 
-        var solved = false;
-        module.OnPass += () => { solved = true; return false; };
-        while (!solved)
+        while (!_noUnignoredModulesLeft)
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_ForgetMeNot);
+
+        var myIgnoredList = GetStaticField<string[]>(comp.GetType(), "ignoredModules", isPublic: true).Get();
+        var displayedStageCount = Bomb.GetSolvedModuleNames().Count(x => !myIgnoredList.Contains(x));
 
         if (_forgetMeNotDisplays.Count != _moduleCounts[_ForgetMeNot])
             throw new AbandonModuleException("The number of displays did not match the number of Forget Me Not modules.");
 
         if (_moduleCounts[_ForgetMeNot] == 1)
-            addQuestions(module, myDisplay.Select((digit, ix) => makeQuestion(Question.ForgetMeNotDisplayedDigits, _ForgetMeNot, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { digit.ToString() })));
+            addQuestions(module, myDisplay.Take(displayedStageCount).Select((digit, ix) => makeQuestion(Question.ForgetMeNotDisplayedDigits, _ForgetMeNot, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { digit.ToString() })));
         else
         {
-            var uniqueStages = Enumerable.Range(1, myDisplay.Length).Where(stage => _forgetMeNotDisplays.Count(display => display[stage - 1] == myDisplay[stage - 1]) == 1).Take(2).ToArray();
-            if (uniqueStages.Length == 0 || myDisplay.Length == 1)
+            var uniqueStages = Enumerable.Range(1, displayedStageCount).Where(stage => _forgetMeNotDisplays.Count(display => display[stage - 1] == myDisplay[stage - 1]) == 1).Take(2).ToArray();
+            if (uniqueStages.Length == 0 || displayedStageCount == 1)
             {
                 var fmnId = GetIntField(comp, "thisLoggingID", isPublic: true).Get();
                 Debug.Log($"[Souvenir #{_moduleId}] No question for Forget Me Not because there are not enough stages at which this one (#{fmnId}) had a unique displayed number.");
@@ -559,7 +564,7 @@ public partial class SouvenirModule
             else
             {
                 var qs = new List<QandA>();
-                for (int stage = 0; stage < myDisplay.Length; stage++)
+                for (int stage = 0; stage < displayedStageCount; stage++)
                 {
                     var uniqueStage = uniqueStages.FirstOrDefault(s => s != stage + 1);
                     if (uniqueStage != 0)
@@ -612,7 +617,6 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "FTCScript");
 
-        var maxStage = GetIntField(comp, "maxStage").Get();
         var myGearNumbers = GetListField<byte>(comp, "gear").Get();
         var myLargeDisplays = GetListField<short>(comp, "largeDisplay").Get();
         var mySineNumbers = GetListField<int>(comp, "sineNumber").Get();
@@ -625,15 +629,9 @@ public partial class SouvenirModule
         _ftcGearColors.Add(myGearColors);
         _ftcRuleColors.Add(myRuleColors);
 
-        var solved = false;
-        module.OnPass += () => { solved = true; return false; };
-        while (!solved)
+        while (!_noUnignoredModulesLeft)
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_ForgetTheColors);
-
-        // Wait for all instances of FTC to solve so that all of the lists are fully populated.
-        while (_modulesSolved.Get(_ForgetTheColors) < _moduleCounts[_ForgetTheColors])
-            yield return new WaitForSeconds(.1f);
 
         var allLists = new IList[] { _ftcGearNumbers, _ftcLargeDisplays, _ftcSineNumbers, _ftcGearColors, _ftcRuleColors };
         if (allLists.Any(l => l.Count != _ftcGearColors.Count))
@@ -734,19 +732,20 @@ public partial class SouvenirModule
         _ftColors.Add(myColors);
         _ftDigits.Add(myDigits);
 
-        var fldSolved = GetField<bool>(comp, "isSolved");
-        while (!fldSolved.Get())
+        while (!_noUnignoredModulesLeft)
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_ForgetThis);
 
+        var displayedStagesCount = GetIntField(comp, "curStageNum").Get(min: 0, max: myColors.Count);
+
         var allColors = new[] { "Cyan", "Magenta", "Yellow", "Black", "White", "Green" };
         var base36 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        var chosenStage = Rnd.Range(0, myColors.Count);
+        var chosenStage = Rnd.Range(0, displayedStagesCount);
 
         var formattedName = "Forget This";
         if (_moduleCounts[_ForgetThis] > 1)
         {
-            for (int stage = 0; stage < myColors.Count; stage++)
+            for (int stage = 0; stage < displayedStagesCount; stage++)
             {
                 if (stage == chosenStage)
                     continue;

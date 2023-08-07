@@ -87,6 +87,7 @@ public partial class SouvenirModule : MonoBehaviour
     private bool _isSolved = false;
     private bool _animating = false;
     private bool _exploded = false;
+    private bool _noUnignoredModulesLeft = false;
     private int _avoidQuestions = 0;   // While this is > 0, temporarily avoid asking questions; currently only used when Souvenir is hidden by a Mystery Module
     private bool _showWarning = false;
 
@@ -510,8 +511,7 @@ public partial class SouvenirModule : MonoBehaviour
         if (TwitchPlaysActive)
             ActivateTwitchPlaysNumbers();
 
-        var untrackedModules = _ignoredModules.Except(_supportedModuleNames.Except(new[] { "Souvenir" }));
-        var numPlayableModules = Bomb.GetSolvableModuleNames().Count(x => !untrackedModules.Contains(x));
+        var numPlayableModules = Bomb.GetSolvableModuleNames().Count(x => !_ignoredModules.Contains(x));
 
         while (true)
         {
@@ -519,8 +519,10 @@ public partial class SouvenirModule : MonoBehaviour
             while (_avoidQuestions > 0)
                 yield return new WaitForSeconds(.1f);
 
-            var numSolved = Bomb.GetSolvedModuleNames().Count(x => !untrackedModules.Contains(x));
-            if (_questions.Count == 0 && (numSolved >= numPlayableModules || _coroutinesActive == 0))
+            var numSolved = Bomb.GetSolvedModuleNames().Count(x => !_ignoredModules.Contains(x));
+            _noUnignoredModulesLeft = numSolved >= numPlayableModules;
+
+            if (_questions.Count == 0 && (_noUnignoredModulesLeft || _coroutinesActive == 0))
             {
                 // Very rare case: another coroutine could still be waiting to detect that a module is solved and then add another question to the queue
                 yield return new WaitForSeconds(.1f);
@@ -533,13 +535,13 @@ public partial class SouvenirModule : MonoBehaviour
             IEnumerable<QuestionBatch> eligible = _questions;
 
             // If we reached the end of the bomb, everything is eligible.
-            if (numSolved < numPlayableModules)
+            if (!_noUnignoredModulesLeft)
                 // Otherwise, make sure there has been another solved module since
                 eligible = eligible.Where(e => e.NumSolved < numSolved);
 
             var numEligibles = eligible.Count();
 
-            if ((numSolved < numPlayableModules && numEligibles < 3) || numEligibles == 0)
+            if ((!_noUnignoredModulesLeft && numEligibles < 3) || numEligibles == 0)
             {
                 yield return new WaitForSeconds(1f);
                 continue;
