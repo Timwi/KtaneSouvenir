@@ -97,9 +97,9 @@ namespace Souvenir
             public override IEnumerable<string> GetAnswers(SouvenirModule module)
             {
                 if (MaxSteps >= 10)
-                {
-                    while (true) yield return (Random.Range(0, MaxSteps) * Step + Min).ToString(Format);
-                }
+                    while (true)
+                        yield return (Random.Range(0, MaxSteps) * Step + Min).ToString(Format);
+
                 // With no more than 6 possible values, the above case may go into an infinite loop trying to generate 5 distinct values.
                 // In this case, we will return all possible values in a random order and then halt.
                 var values = new int[MaxSteps];
