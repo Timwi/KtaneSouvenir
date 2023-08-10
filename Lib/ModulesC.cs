@@ -217,13 +217,12 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_ChineseCounting);
 
-        var index1 = GetIntField(comp, "ledIndex").Get(0, 3);
-        var index2 = GetIntField(comp, "led2Index").Get(0, 3);
+        var ledIndices = GetArrayField<int>(comp, "ledIndices").Get(expectedLength: 2, validator: ix => ix < 0 || ix > 3 ? "expected range 0-3" : null);
         var ledColors = new[] { "White", "Red", "Green", "Orange" };
 
         addQuestions(module,
-          makeQuestion(Question.ChineseCountingLED, _ChineseCounting, formatArgs: new[] { "left" }, correctAnswers: new[] { ledColors[index1] }),
-          makeQuestion(Question.ChineseCountingLED, _ChineseCounting, formatArgs: new[] { "right" }, correctAnswers: new[] { ledColors[index2] }));
+          makeQuestion(Question.ChineseCountingLED, _ChineseCounting, formatArgs: new[] { "left" }, correctAnswers: new[] { ledColors[ledIndices[0]] }),
+          makeQuestion(Question.ChineseCountingLED, _ChineseCounting, formatArgs: new[] { "right" }, correctAnswers: new[] { ledColors[ledIndices[1]] }));
     }
 
     private IEnumerable<object> ProcessChordQualities(KMBombModule module)
