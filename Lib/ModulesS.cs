@@ -558,10 +558,7 @@ public partial class SouvenirModule
             if (applicableStages.Count > 0)
                 qs.Add(makeQuestion(Question.SimonScreamsRule, _SimonScreams,
                     formatArgs: new[] { fldRuleName.GetFrom(rules.GetValue(rule)) },
-                    correctAnswers: new[] { applicableStages.Count == stageRules.Length ? "all of them" : applicableStages.JoinString(", ", lastSeparator: " and ") },
-                    preferredWrongAnswers: applicableStages.Count == 1
-                        ? Enumerable.Range(1, seqs.Length).Select(i => ordinal(i)).ToArray()
-                        : Enumerable.Range(1, seqs.Length).SelectMany(a => Enumerable.Range(a + 1, seqs.Length - a).Select(b => ordinal(a) + " and " + ordinal(b))).Concat(new[] { "all of them" }).ToArray()));
+                    correctAnswers: new[] { applicableStages.Count == stageRules.Length ? "all of them" : applicableStages.JoinString(", ", lastSeparator: " and ") }));
         }
 
         addQuestions(module, qs);

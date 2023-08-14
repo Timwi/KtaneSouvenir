@@ -282,7 +282,7 @@ public partial class SouvenirModule
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_AlphabetNumbers);
-        
+
         addQuestions(module, displayedNumberSets.Select((numArr, stage) => makeQuestion(Question.AlphabetNumbersDisplayedNumbers, _AlphabetNumbers, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: displayedNumberSets[stage], preferredWrongAnswers: allOptions.Take(stageOptionCounts[stage]).ToArray())));
     }
 
@@ -317,22 +317,24 @@ public partial class SouvenirModule
         var isSolved = false;
         module.OnPass += delegate { isSolved = true; return false; };
 
-        var displayedCharacters = new[] { "displayTL", "displayML", "displayBL", "displayTR", "displayMR", "displayBR" }.Select(fieldName => GetField<TextMesh>(comp, fieldName, isPublic: true).Get().text.Trim()).ToArray();
-        if (displayedCharacters.Any(ch => ch.Length != 1 || ((ch[0] < 'A' || ch[0] > 'V') && (ch[0] < '0' || ch[0] > '9'))))
-            throw new AbandonModuleException("The displayed characters are {0} (expected six single-character strings 0–9/A–V each).", displayedCharacters.Select(str => string.Format(@"""{0}""", str)).JoinString(", "));
+        var textMeshes = new[] { "displayTL", "displayML", "displayBL", "displayTR", "displayMR", "displayBR" }.Select(fieldName => GetField<TextMesh>(comp, fieldName, isPublic: true).Get()).ToArray();
+        var font = textMeshes[0].font;
+        var fontTexture = textMeshes[0].GetComponent<MeshRenderer>().sharedMaterial.mainTexture;
+        var displayedCharacters = textMeshes.Select(textMesh => textMesh.text.Trim()).ToArray();
+
+        if (displayedCharacters.Any(ch => !(ch.Length == 1 && (ch[0] >= 'A' && ch[0] <= 'V' || ch[0] >= '0' && ch[0] <= '9'))))
+            throw new AbandonModuleException("The displayed characters are {0} (expected six single-character strings 0–9/A–V each).",
+                displayedCharacters.Select(str => string.Format(@"""{0}""", str)).JoinString(", "));
 
         while (!isSolved)
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_AlphaBits);
 
-        // If the correct answer is '0' or 'O', don't include these as wrong answers.
         addQuestions(module, Enumerable.Range(0, 6).Select(displayIx => makeQuestion(
-            Question.AlphaBitsDisplayedCharacters,
-            _AlphaBits,
+            Question.AlphaBitsDisplayedCharacters, _AlphaBits, font, fontTexture,
             formatArgs: new[] { new[] { "top", "middle", "bottom" }[displayIx % 3], new[] { "left", "right" }[displayIx / 3] },
             correctAnswers: new[] { displayedCharacters[displayIx] },
-            preferredWrongAnswers: new AnswerGenerator.Strings(displayedCharacters[displayIx] == "0" || displayedCharacters[displayIx] == "O" ? "1-9A-NP-V" : "0-9A-V")
-                .GetAnswers(this).Distinct().Take(6).ToArray())));
+            preferredWrongAnswers: displayedCharacters)));
     }
 
     private IEnumerable<object> ProcessAngelHernandez(KMBombModule module)

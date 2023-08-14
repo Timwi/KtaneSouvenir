@@ -126,8 +126,8 @@ namespace Souvenir
         AlphabetTilesMissingLetter,
 
         [SouvenirQuestion("What character was displayed on the {1} screen on the {2} in {0}?", "Alpha-Bits", ThreeColumns6Answers, TranslateFormatArgs = new[] { false, true },
-            ExampleAnswers = new[] { "0", "5", "A", "E", "G", "V" },
-            ExampleExtraFormatArguments = new[] { QandA.Ordinal, "left", QandA.Ordinal, "right" }, ExampleExtraFormatArgumentGroupSize = 2)]
+            Type = AnswerType.DynamicFont, ExampleExtraFormatArguments = new[] { QandA.Ordinal, "left", QandA.Ordinal, "right" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        [AnswerGenerator.Strings("0-9A-V")]
         AlphaBitsDisplayedCharacters,
 
         [SouvenirQuestion("What letter was shown by the raised buttons on the {1} stage on {0}?", "Ángel Hernández", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
@@ -2201,9 +2201,8 @@ namespace Souvenir
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonScreamsFlashing,
 
-        [SouvenirQuestion("In which stage(s) of {0} was “{1}” the applicable rule?", "Simon Screams", TwoColumns4Answers, null, TranslateAnswers = true, TranslateFormatArgs = new[] { true },
-            ExampleAnswers = new[] { "first", "second", "third", "first and second", "first and third", "second and third", "all of them" },
-            ExampleExtraFormatArguments = new[] {
+        [SouvenirQuestion("In which stage(s) of {0} was “{1}” the applicable rule?", "Simon Screams", TwoColumns4Answers, "first", "second", "third", "first and second", "first and third", "second and third", "all of them",
+            TranslateAnswers = true, TranslateFormatArgs = new[] { true }, ExampleExtraFormatArguments = new[] {
                 "three adjacent colors flashing in clockwise order",
                 "a color flashing, then an adjacent color, then the first again",
                 "at most one color flashing out of red, yellow, and blue",
