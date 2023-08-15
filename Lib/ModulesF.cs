@@ -238,18 +238,17 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "FlagsModule");
         var fldCanInteract = GetField<bool>(comp, "canInteract");
         var mainCountry = GetField<object>(comp, "mainCountry").Get();
-        var countries = GetField<IList>(comp, "countries").Get();
+        var countries = GetField<IList>(comp, "countries").Get(v => v.Count != 7 ? "expected length 7" : null);
         var number = GetIntField(comp, "number").Get(1, 7);
 
-        if (countries.Count != 7)
-            throw new AbandonModuleException($"‘countries’ has length {countries.Count} (expected 7).");
-
         var propCountryName = GetProperty<string>(mainCountry, "CountryName", isPublic: true);
-        var mainCountrySprite = FlagsSprites.FirstOrDefault(spr => spr.name == propCountryName.GetFrom(mainCountry));
-        var otherCountrySprites = countries.Cast<object>().Select(country => FlagsSprites.FirstOrDefault(spr => spr.name == propCountryName.GetFrom(country))).ToArray();
+        var mainCountryName = propCountryName.GetFrom(mainCountry);
+        var mainCountrySprite = FlagsSprites.FirstOrDefault(spr => spr.name == mainCountryName) ?? throw new AbandonModuleException($"Country name “{mainCountryName}” (main country) has no corresponding sprite.");
 
-        if (mainCountrySprite == null || otherCountrySprites.Any(spr => spr == null))
-            throw new AbandonModuleException($"Abandoning Flags because one of the countries has a name with no corresponding sprite: main country = {propCountryName.GetFrom(mainCountry)}, other countries = [{countries.Cast<object>().Select(country => propCountryName.GetFrom(country)).JoinString(", ")}].");
+        var otherCountrySprites = countries.Cast<object>()
+            .Select(country => propCountryName.GetFrom(country))
+            .Select((countryName, countryIx) => FlagsSprites.FirstOrDefault(spr => spr.name == countryName) ?? throw new AbandonModuleException($"Country name “{countryName}” (country #{countryIx}) has no corresponding sprite."))
+            .ToArray();
 
         while (fldCanInteract.Get())
             yield return new WaitForSeconds(.1f);
@@ -384,7 +383,7 @@ public partial class SouvenirModule
             yield break;
         }
 
-        var myCylinders = fldCylinders.Get(v => v.Rank != 2 || v.GetLength(0) != maxStage + 1 || v.GetLength(1) != 3 ? $"expected a {maxStage + 1}×3 2D array": null);
+        var myCylinders = fldCylinders.Get(v => v.Rank != 2 || v.GetLength(0) != maxStage + 1 || v.GetLength(1) != 3 ? $"expected a {maxStage + 1}×3 2D array" : null);
         var myFigures = fldFigures.Get();
         _facCylinders.Add(myCylinders);
         _facFigures.Add(myFigures);
@@ -453,11 +452,11 @@ public partial class SouvenirModule
             yield break;
         }
         if (allDisplays.Length < 1)
-            throw new AbandonModuleException("\"DialDisplay\" had length 0, when I expected length at least 1.");
+            throw new AbandonModuleException("‘DialDisplay’ had length 0, when I expected length at least 1.");
 
         var myFirstDisplay = allDisplays.First();
         if (myFirstDisplay.Length != 10)
-            throw new AbandonModuleException($"First element of \"DialDisplay\" had length {myFirstDisplay.Length}, when I expected length 10.");
+            throw new AbandonModuleException($"First element of ‘DialDisplay’ had length {myFirstDisplay.Length}, when I expected length 10.");
         _feFirstDisplays.Add(myFirstDisplay);
 
         while (!_noUnignoredModulesLeft)

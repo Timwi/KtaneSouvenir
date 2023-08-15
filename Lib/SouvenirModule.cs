@@ -263,7 +263,7 @@ public partial class SouvenirModule : MonoBehaviour
                     // For vanilla modules, we will attach a temporary KMBombModule component to the module.
                     // We’ll remove it after the coroutine starts.
                     // The routine will already have a reference to the actual BombComponent by then.
-                    if (fldType == null) fldType = GetField<object>(vanillaModule.GetType(), "ComponentType", true);
+                    fldType ??= GetField<object>(vanillaModule, "ComponentType", isPublic: true);
                     if (fldType == null) continue;
                     var typeCode = (int) fldType.GetFrom(vanillaModule);
                     string type, displayName;
@@ -744,115 +744,69 @@ public partial class SouvenirModule : MonoBehaviour
     #endregion
 
     #region Helper methods for Reflection (used by module handlers)
-    private Component GetComponent(KMBombModule module, string name)
-    {
-        return GetComponent(module.gameObject, name);
-    }
-    private Component GetComponent(GameObject module, string name)
-    {
-        var comp = module.GetComponent(name);
-        if (comp == null)
-        {
-            comp = module.GetComponents(typeof(Component)).FirstOrDefault(c => c.GetType().FullName == name);
-            if (comp == null)
-                throw new AbandonModuleException($"{module.name} game object has no {name} component. Components are: {module.GetComponents(typeof(Component)).Select(c => c.GetType().FullName).JoinString(", ")}");
-        }
-        return comp;
-    }
+    private Component GetComponent(KMBombModule module, string name) => GetComponent(module.gameObject, name);
+    private Component GetComponent(GameObject module, string name) => module.GetComponent(name)
+        ?? module.GetComponents(typeof(Component)).FirstOrDefault(c => c.GetType().FullName == name)
+        ?? throw new AbandonModuleException($"{module.name} game object has no {name} component. Components are: {module.GetComponents(typeof(Component)).Select(c => c.GetType().FullName).JoinString(", ")}");
 
-    private FieldInfo<T> GetField<T>(object target, string name, bool isPublic = false)
-    {
-        if (target == null)
-            throw new AbandonModuleException($"Attempt to get {(isPublic ? "public" : "non-public")} field {name} of type {typeof(T).FullName} from a null object.");
-        return new FieldInfo<T>(target, GetFieldImpl<T>(target.GetType(), name, isPublic, BindingFlags.Instance));
-    }
+    private FieldInfo<T> GetField<T>(object target, string name, bool isPublic = false) => new(
+        target ?? throw new AbandonModuleException($"Attempt to get {(isPublic ? "public" : "non-public")} field {name} of type {typeof(T).FullName} from a null object."),
+        GetFieldImpl<T>(target.GetType(), name, isPublic, BindingFlags.Instance));
 
-    private FieldInfo<T> GetField<T>(Type targetType, string name, bool isPublic = false, bool noThrow = false)
-    {
-        if (targetType == null && !noThrow)
-            throw new AbandonModuleException($"Attempt to get {(isPublic ? "public" : "non-public")} field {name} of type {typeof(T).FullName} from a null type.");
-        return new FieldInfo<T>(null, GetFieldImpl<T>(targetType, name, isPublic, BindingFlags.Instance, noThrow));
-    }
+    private FieldInfo<T> GetFieldFromType<T>(Type targetType, string name, bool isPublic = false) => new(null, GetFieldImpl<T>(
+        targetType ?? throw new AbandonModuleException($"Attempt to get {(isPublic ? "public" : "non-public")} field {name} of type {typeof(T).FullName} from a null type."),
+        name, isPublic, BindingFlags.Instance));
 
-    private IntFieldInfo GetIntField(object target, string name, bool isPublic = false)
-    {
-        if (target == null)
-            throw new AbandonModuleException($"Attempt to get {(isPublic ? "public" : "non-public")} field {name} of type int from a null object.");
-        return new IntFieldInfo(target, GetFieldImpl<int>(target.GetType(), name, isPublic, BindingFlags.Instance));
-    }
+    private IntFieldInfo GetIntField(object target, string name, bool isPublic = false) => new(
+        target ?? throw new AbandonModuleException($"Attempt to get {(isPublic ? "public" : "non-public")} field {name} of type int from a null object."),
+        GetFieldImpl<int>(target.GetType(), name, isPublic, BindingFlags.Instance));
 
-    private ArrayFieldInfo<T> GetArrayField<T>(object target, string name, bool isPublic = false)
-    {
-        if (target == null)
-            throw new AbandonModuleException($"Attempt to get {(isPublic ? "public" : "non-public")} field {name} of type {typeof(T).FullName}[] from a null object.");
-        return new ArrayFieldInfo<T>(target, GetFieldImpl<T[]>(target.GetType(), name, isPublic, BindingFlags.Instance));
-    }
+    private ArrayFieldInfo<T> GetArrayField<T>(object target, string name, bool isPublic = false) => new(
+        target ?? throw new AbandonModuleException($"Attempt to get {(isPublic ? "public" : "non-public")} field {name} of type {typeof(T).FullName}[] from a null object."),
+        GetFieldImpl<T[]>(target.GetType(), name, isPublic, BindingFlags.Instance));
 
-    private ListFieldInfo<T> GetListField<T>(object target, string name, bool isPublic = false)
-    {
-        if (target == null)
-            throw new AbandonModuleException($"Attempt to get {(isPublic ? "public" : "non-public")} field {name} of type List<{typeof(T).FullName}> from a null object.");
-        return new ListFieldInfo<T>(target, GetFieldImpl<List<T>>(target.GetType(), name, isPublic, BindingFlags.Instance));
-    }
+    private ListFieldInfo<T> GetListField<T>(object target, string name, bool isPublic = false) => new(
+        target ?? throw new AbandonModuleException($"Attempt to get {(isPublic ? "public" : "non-public")} field {name} of type List<{typeof(T).FullName}> from a null object."),
+        GetFieldImpl<List<T>>(target.GetType(), name, isPublic, BindingFlags.Instance));
 
-    private FieldInfo<T> GetStaticField<T>(Type targetType, string name, bool isPublic = false)
-    {
-        if (targetType == null)
-            throw new AbandonModuleException($"Attempt to get {(isPublic ? "public" : "non-public")} static field {name} of type {typeof(T).FullName} from a null type.");
-        return new FieldInfo<T>(null, GetFieldImpl<T>(targetType, name, isPublic, BindingFlags.Static));
-    }
+    private FieldInfo<T> GetStaticField<T>(Type targetType, string name, bool isPublic = false) => new(null, GetFieldImpl<T>(
+            targetType ?? throw new AbandonModuleException($"Attempt to get {(isPublic ? "public" : "non-public")} static field {name} of type {typeof(T).FullName} from a null type."),
+            name, isPublic, BindingFlags.Static));
 
     private FieldInfo GetFieldImpl<T>(Type targetType, string name, bool isPublic, BindingFlags bindingFlags, bool noThrow = false)
     {
-        FieldInfo fld; Type type = targetType;
+        FieldInfo fld;
+        Type type = targetType;
         while (type != null && type != typeof(object))
         {
-            fld = type.GetField(name, (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | bindingFlags);
-            if (fld != null)
+            if ((fld = type.GetField(name, (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | bindingFlags)) != null)
                 goto found;
 
             // In case it’s actually an auto-implemented property and not a field.
-            fld = type.GetField("<" + name + ">k__BackingField", BindingFlags.NonPublic | bindingFlags);
-            if (fld != null)
+            if ((fld = type.GetField("<" + name + ">k__BackingField", BindingFlags.NonPublic | bindingFlags)) != null)
                 goto found;
 
             // Reflection won’t return private fields in base classes unless we check those explicitly
             type = type.BaseType;
         }
 
-        if (noThrow)
-            return null;
-        throw new AbandonModuleException($"Type {targetType} does not contain {(isPublic ? "public" : "non-public")} field {name}. Fields are: {targetType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(f => $"{(f.IsPublic ? "public" : "private")} {f.FieldType.FullName} {f.Name}").JoinString(", ")}");
+        return noThrow ? null : throw new AbandonModuleException($"Type {targetType} does not contain {(isPublic ? "public" : "non-public")} field {name}. Fields are: {targetType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(f => $"{(f.IsPublic ? "public" : "private")} {f.FieldType.FullName} {f.Name}").JoinString(", ")}");
 
         found:
-        if (!typeof(T).IsAssignableFrom(fld.FieldType))
-        {
-            if (noThrow)
-                return null;
+        return
+            typeof(T).IsAssignableFrom(fld.FieldType) ? fld :
+            noThrow ? null :
             throw new AbandonModuleException($"Type {targetType} has {(isPublic ? "public" : "non-public")} field {name} of type {fld.FieldType.FullName} but expected type {typeof(T).FullName}.");
-        }
-        return fld;
     }
 
-    private MethodInfo<T> GetMethod<T>(object target, string name, int numParameters, bool isPublic = false)
-    {
-        return GetMethodImpl<T>(typeof(T), target, name, numParameters, isPublic);
-    }
-
-    private MethodInfo<object> GetMethod(object target, string name, int numParameters, bool isPublic = false)
-    {
-        return GetMethodImpl<object>(typeof(void), target, name, numParameters, isPublic);
-    }
-
-    private MethodInfo<T> GetStaticMethod<T>(object target, string name, int numParameters, bool isPublic = false)
-    {
-        return GetMethodImpl<T>(typeof(T), target, name, numParameters, isPublic, isStatic: true);
-    }
-
-    private MethodInfo<object> GetStaticMethod(object target, string name, int numParameters, bool isPublic = false)
-    {
-        return GetMethodImpl<object>(typeof(void), target, name, numParameters, isPublic, isStatic: true);
-    }
+    private MethodInfo<T> GetMethod<T>(object target, string name, int numParameters, bool isPublic = false) =>
+        GetMethodImpl<T>(typeof(T), target, name, numParameters, isPublic);
+    private MethodInfo<object> GetMethod(object target, string name, int numParameters, bool isPublic = false) =>
+        GetMethodImpl<object>(typeof(void), target, name, numParameters, isPublic);
+    private MethodInfo<T> GetStaticMethod<T>(object target, string name, int numParameters, bool isPublic = false) =>
+        GetMethodImpl<T>(typeof(T), target, name, numParameters, isPublic, isStatic: true);
+    private MethodInfo<object> GetStaticMethod(object target, string name, int numParameters, bool isPublic = false) =>
+        GetMethodImpl<object>(typeof(void), target, name, numParameters, isPublic, isStatic: true);
 
     private MethodInfo<T> GetMethodImpl<T>(Type returnType, object target, string name, int numParameters, bool isPublic = false, bool isStatic = false)
     {
@@ -869,25 +823,18 @@ public partial class SouvenirModule : MonoBehaviour
         return new MethodInfo<T>(target, mths[0]);
     }
 
-    private PropertyInfo<T> GetProperty<T>(object target, string name, bool isPublic = false)
-    {
-        if (target == null)
-            throw new AbandonModuleException($"Attempt to get {(isPublic ? "public" : "non-public")} property {name} of type {typeof(T).FullName} from a null object.");
-        return GetPropertyImpl<T>(target, target.GetType(), name, isPublic, BindingFlags.Instance);
-    }
+    private PropertyInfo<T> GetProperty<T>(object target, string name, bool isPublic = false) => GetPropertyImpl<T>(
+        target ?? throw new AbandonModuleException($"Attempt to get {(isPublic ? "public" : "non-public")} property {name} of type {typeof(T).FullName} from a null object."),
+        target.GetType(), name, isPublic, BindingFlags.Instance);
 
-    private PropertyInfo<T> GetStaticProperty<T>(Type targetType, string name, bool isPublic = false)
-    {
-        if (targetType == null)
-            throw new AbandonModuleException($"Attempt to get {(isPublic ? "public" : "non-public")} static property {name} of type {typeof(T).FullName} from a null type.");
-        return GetPropertyImpl<T>(null, targetType, name, isPublic, BindingFlags.Static);
-    }
+    private PropertyInfo<T> GetStaticProperty<T>(Type targetType, string name, bool isPublic = false) => GetPropertyImpl<T>(null,
+        targetType ?? throw new AbandonModuleException($"Attempt to get {(isPublic ? "public" : "non-public")} static property {name} of type {typeof(T).FullName} from a null type."),
+        name, isPublic, BindingFlags.Static);
 
     private PropertyInfo<T> GetPropertyImpl<T>(object target, Type targetType, string name, bool isPublic, BindingFlags bindingFlags)
     {
-        var fld = targetType.GetProperty(name, (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | bindingFlags);
-        if (fld == null)
-            throw new AbandonModuleException($"Type {targetType} does not contain {(isPublic ? "public" : "non-public")} property {name}. Properties are: {targetType.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Where(f => f.GetGetMethod() != null).Select(f => $"{(f.GetGetMethod().IsPublic ? "public" : "private")} {f.PropertyType.FullName} {f.Name}").JoinString(", ")}");
+        var fld = targetType.GetProperty(name, (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | bindingFlags)
+            ?? throw new AbandonModuleException($"Type {targetType} does not contain {(isPublic ? "public" : "non-public")} property {name}. Properties are: {targetType.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Where(f => f.GetGetMethod() != null).Select(f => $"{(f.GetGetMethod().IsPublic ? "public" : "private")} {f.PropertyType.FullName} {f.Name}").JoinString(", ")}");
         if (!typeof(T).IsAssignableFrom(fld.PropertyType))
             throw new AbandonModuleException($"Type {targetType} has {(isPublic ? "public" : "non-public")} field {name} of type {fld.PropertyType.FullName} but expected type {typeof(T).FullName}.");
         return new PropertyInfo<T>(target, fld);
@@ -941,7 +888,7 @@ public partial class SouvenirModule : MonoBehaviour
 
     private static readonly AnswerType[] _standardAnswerTypes = Ut.GetEnumValues<AnswerType>().Where(a => (int) a >= 0).ToArray();
 
-    private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, float questionSpriteRotation = 0f) =>
+    private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, float questionSpriteRotation = 0) =>
         makeQuestion(question, moduleKey,
             (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation, _translation),
             (attr, num, answers) => new QandA.TextAnswerSet(num, attr.Layout, answers, Fonts[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], attr.FontSize, attr.CharacterSize, FontTextures[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], FontMaterial),

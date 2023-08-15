@@ -372,9 +372,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Hyperlink);
 
-        var moduleNamesType = comp.GetType().Assembly.GetType("IDList");
-        if (moduleNamesType == null)
-            throw new AbandonModuleException("I cannot find the IDList type.");
+        var moduleNamesType = comp.GetType().Assembly.GetType("IDList") ?? throw new AbandonModuleException("I cannot find the IDList type.");
         var moduleNames = GetStaticField<string[]>(moduleNamesType, "phrases", isPublic: true).Get(validator: ar => ar.Length % 2 != 0 ? "expected even number of items" : null);
         var hyperlink = GetField<string>(comp, "selectedString").Get();
         var anchor = GetIntField(comp, "anchor").Get();

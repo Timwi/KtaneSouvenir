@@ -221,7 +221,7 @@ public partial class SouvenirModule
         var letters = GetArrayField<int[]>(comp, "displayedLetters").Get(expectedLength: 2, validator: arr => arr.Length != 5 ? "expected length 5" : arr.Any(v => v < 0 || v > 25) ? "expected range 0–25" : null);
         var relevantIx = Enumerable.Range(0, letters[0].Length).First(ix => letters[0][ix] != letters[1][ix]);
         var colorNames = new[] { "red", "green", "cyan", "indigo", "pink" };
-        var colors = GetArrayField<int>(comp, "displayedColors").Get(expectedLength: 5, validator: c => c < 0 || c >= colorNames.Length ? $"expected range 0–{colorNames.Length - 1}": null);
+        var colors = GetArrayField<int>(comp, "displayedColors").Get(expectedLength: 5, validator: c => c < 0 || c >= colorNames.Length ? $"expected range 0–{colorNames.Length - 1}" : null);
         var qs = new List<QandA>();
         qs.Add(makeQuestion(Question.SemamorseColor, _Semamorse, correctAnswers: new[] { colorNames[colors[relevantIx]] }));
         qs.Add(makeQuestion(Question.SemamorseLetters, _Semamorse, formatArgs: new[] { "semaphore" }, correctAnswers: new[] { ((char) ('A' + letters[0][relevantIx])).ToString() }));
@@ -636,32 +636,25 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_SimonShapes);
 
-        List<int> solutionShape = fldAllFinalShapes.Get(minLength: 1).First();
+        var solutionShape = fldAllFinalShapes.Get(minLength: 1).First();
 
-        //Aligns the shape with the top-left corner of the grid.
-        List<int> alignedSolutionShape = new List<int>();
-        int hOffset = solutionShape.Min(x => x % 3);
-        int vOffset = solutionShape.Min(x => x / 3);
-        foreach (int pos in solutionShape)
-            alignedSolutionShape.Add(3 * (pos / 3 - vOffset) + (pos % 3 - hOffset));
-        //Converts the shape into a binary number where a present square is a 1 and an absent square is a 0.
-        int binaryValue = 0;
-        for (int pos = 0; pos < 9; pos++)
-        {
-            binaryValue <<= 1;
-            if (alignedSolutionShape.Contains(pos))
-                binaryValue++;
-        }
-        //Every shape (in reading order of Table B) converted into binary using the above method.
-        int[] allBinaries = { 150, 294, 376, 402, 472, 94, 307, 480, 240, 403, 448, 180, 292, 214, 416, 456, 120, 432, 313, 408, 400, 312, 440, 422, 304, 409, 406, 182, 420, 384, 244, 488, 436, 176, 288, 306 };
+        // Converts the shape (aligned with the top-left corner) into a binary number
+        var binaryValue = 0;
+        var hOffset = solutionShape.Min(x => x % 3);
+        var vOffset = solutionShape.Min(x => x / 3);
+        foreach (var pos in solutionShape)
+            binaryValue |= 1 << (3 * (pos / 3 - vOffset) + (pos % 3 - hOffset));
 
-        if (allBinaries.Contains(binaryValue))
-            addQuestion(module, Question.SimonShapesSubmittedShape,
-                correctAnswers: new[] { SimonShapesSprites[Array.IndexOf(allBinaries, binaryValue)] },
-                preferredWrongAnswers: SimonShapesSprites);
-        else
-            throw new AbandonModuleException($"Error in shape capturing! Obtained binary value {binaryValue} does not match any entry corresponding to a shape.");
+        // Every shape (in reading order of Table B) converted into binary using the above method.
+        var binaryIx = Array.IndexOf(new[] { 210, 201, 61, 147, 55, 244, 409, 15, 30, 403, 7, 90, 73, 214, 11, 39, 60, 27, 313, 51, 19, 57, 59, 203, 25, 307, 211, 218, 75, 3, 94, 47, 91, 26, 9, 153 }, binaryValue);
+        if (binaryIx == -1)
+            throw new AbandonModuleException($"Obtained binary value {binaryValue} does not match any entry corresponding to a shape.");
+
+        addQuestion(module, Question.SimonShapesSubmittedShape,
+            correctAnswers: new[] { SimonShapesSprites[binaryIx] },
+            preferredWrongAnswers: SimonShapesSprites);
     }
+
     private IEnumerable<object> ProcessSimonShouts(KMBombModule module)
     {
         var comp = GetComponent(module, "SimonShoutsModule");
@@ -724,7 +717,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_SimonSings);
 
         var noteNames = new[] { "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B" };
-        var flashingColorSequences = GetArrayField<int[]>(comp, "_flashingColors").Get(expectedLength: 3, validator: seq => seq.Any(col => col < 0 || col >= noteNames.Length) ? $"expected range 0–{noteNames.Length - 1}": null);
+        var flashingColorSequences = GetArrayField<int[]>(comp, "_flashingColors").Get(expectedLength: 3, validator: seq => seq.Any(col => col < 0 || col >= noteNames.Length) ? $"expected range 0–{noteNames.Length - 1}" : null);
         addQuestions(module, flashingColorSequences.SelectMany((seq, stage) => seq.Select((col, ix) => makeQuestion(Question.SimonSingsFlashing, _SimonSings, formatArgs: new[] { ordinal(ix + 1), ordinal(stage + 1) }, correctAnswers: new[] { noteNames[col] }))));
     }
 
@@ -1162,7 +1155,7 @@ public partial class SouvenirModule
             fldContainsIllegalSound.GetFrom(hero) ? capitalizeWords(fldAttachedSound.GetFrom(hero).name) :
             fldContainsIllegalSound.GetFrom(monitor) ? capitalizeWords(fldAttachedSound.GetFrom(monitor).name) :
             fldContainsIllegalSound.GetFrom(badnik) ? capitalizeWords(fldAttachedSound.GetFrom(badnik).name) :
-            throw new AbandonModuleException($"None of the three items (hero, monitor, badnik) contain the illegal sound.");
+            throw new AbandonModuleException("None of the three items (hero, monitor, badnik) contain the illegal sound.");
 
         addQuestions(module,
             makeQuestion(Question.SonicKnucklesSounds, _SonicKnuckles, correctAnswers: new[] { illegalSoundName }),
@@ -1308,7 +1301,7 @@ public partial class SouvenirModule
         var fldSolved = GetField<bool>(comp, "moduleSolved");
 
         string[] colorNames = GetArrayField<string>(comp, "colourNames", isPublic: true).Get();
-        int[] colors = GetArrayField<int>(comp, "selectedColourIndices", isPublic: true).Get(expectedLength: 5, validator: c => c < 0 || c >= colorNames.Length ? $"expected range 0–{colorNames.Length - 1}": null);
+        int[] colors = GetArrayField<int>(comp, "selectedColourIndices", isPublic: true).Get(expectedLength: 5, validator: c => c < 0 || c >= colorNames.Length ? $"expected range 0–{colorNames.Length - 1}" : null);
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);

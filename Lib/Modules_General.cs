@@ -1083,8 +1083,8 @@ public partial class SouvenirModule
         var responses = GetArrayField<string>(comp, "response").Get();
         var index = GetIntField(comp, "r").Get(ix =>
             ix < 0 ? "negative" :
-            ix >= messages.Length ? $"greater than ‘message’ length ({messages.Length})":
-            ix >= responses.Length ? $"greater than ‘response’ length ({responses.Length})": null);
+            ix >= messages.Length ? $"greater than ‘message’ length ({messages.Length})" :
+            ix >= responses.Length ? $"greater than ‘response’ length ({responses.Length})" : null);
 
         var message = Regex.Replace(messages[index], @"(?<!^).", m => m.Value.ToLowerInvariant());
         var response = Regex.Replace(responses[index], @"(?<!^).", m => m.Value.ToLowerInvariant());
@@ -1108,8 +1108,8 @@ public partial class SouvenirModule
         var responses = words[1];
         var index = GetIntField(comp, "r").Get(ix =>
             ix < 0 ? "‘r’ is negative." :
-            ix >= messages.Length ? $"‘r’ is greater than ‘message’ length ({messages.Length}).":
-            ix >= responses.Length ? $"‘r’ is greater than ‘response’ length ({responses.Length}).": null);
+            ix >= messages.Length ? $"‘r’ is greater than ‘message’ length ({messages.Length})." :
+            ix >= responses.Length ? $"‘r’ is greater than ‘response’ length ({responses.Length})." : null);
 
         var message = Regex.Replace(messages[index], @"(?<!^).", m => m.Value.ToLowerInvariant());
         var response = Regex.Replace(responses[index], @"(?<!^).", m => m.Value.ToLowerInvariant());
@@ -1136,16 +1136,14 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(moduleCode);
 
-        var stateCodes = mthGetStates.Invoke();
-        if (stateCodes == null)
-            throw new AbandonModuleException("GetAllStates() returned null.");
+        var stateCodes = mthGetStates.Invoke() ?? throw new AbandonModuleException("GetAllStates() returned null.");
         if (stateCodes.Count == 0)
             throw new AbandonModuleException("GetAllStates() returned an empty list.");
 
         var states = stateCodes.Select(code => mthGetName.Invoke(code)).ToArray();
         var origin = mthGetName.Invoke(fldOrigin.Get());
         if (!states.Contains(origin))
-            throw new AbandonModuleException($"‘_originState’ was not contained in the list of all states ({origin} not in: {states.JoinString(", ")}).");
+            throw new AbandonModuleException($"‘_originState’ was not contained in the list of all states (“{origin}” not in: [{states.JoinString(", ")}]).");
 
         addQuestions(module, makeQuestion(question, moduleCode, correctAnswers: new[] { origin }, preferredWrongAnswers: states));
     }
@@ -1278,7 +1276,7 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, componentName);
         var rotations = GetStaticField<string[]>(comp.GetType(), "_rotationNames").Get();
-        var sequence = GetArrayField<int>(comp, "_rotations").Get(expectedLength: 5, validator: rot => rot < 0 || rot >= rotations.Length ? $"expected range 0–{rotations.Length - 1}": null);
+        var sequence = GetArrayField<int>(comp, "_rotations").Get(expectedLength: 5, validator: rot => rot < 0 || rot >= rotations.Length ? $"expected range 0–{rotations.Length - 1}" : null);
 
         var solved = false;
         module.OnPass += delegate { solved = true; return false; };

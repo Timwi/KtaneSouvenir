@@ -360,9 +360,7 @@ public partial class SouvenirModule
             { "DotsAreInverted", "Dots are inverted" }
         };
 
-        var allWordsType = comp.GetType().Assembly.GetType("ColorBraille.WordsData");
-        if (allWordsType == null)
-            throw new AbandonModuleException("I cannot find the ColorBraille.WordsData type.");
+        var allWordsType = comp.GetType().Assembly.GetType("ColorBraille.WordsData") ?? throw new AbandonModuleException("I cannot find the ColorBraille.WordsData type.");
         var allWords = GetStaticField<Dictionary<string, int[]>>(allWordsType, "Words", isPublic: true).Get().Keys.ToArray();
 
         var words = GetArrayField<string>(comp, "_words").Get(expectedLength: 3);

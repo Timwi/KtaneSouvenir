@@ -162,10 +162,7 @@ public partial class SouvenirModule
 
         fldAnswerDisp.Get().text = "G O O D\nJ O B";
 
-        var moduleName = GetField<string>(comp, "moduleName", isPublic: true).Get();
-        if (moduleName.Length == 0)
-            throw new AbandonModuleException("‘moduleName’ is empty.");
-
+        var moduleName = GetField<string>(comp, "moduleName", isPublic: true).Get(v => v.Length == 0 ? "empty string" : null);
         var wrongModuleNames = Bomb.GetSolvableModuleNames();
         // If there are less than 4 eligible modules, fill the remaining spaces with random other modules.
         if (wrongModuleNames.Count < 4)
@@ -314,7 +311,6 @@ public partial class SouvenirModule
 
         if (!new[] { "H(T)", "R", "c", "w", "Z(T)", "t", "m", "a", "K" }.Contains(symbol))
             throw new AbandonModuleException($"‘symbol’ has an unexpected character: {symbol}");
-        Debug.Log($"<Souvenir #{_moduleId}> Equations X: symbol is {symbol}");
 
         // Equations X uses symbols that don’t translate well to Souvenir. This switch statement is used to correctly translate the answer.
         switch (symbol)

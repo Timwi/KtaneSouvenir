@@ -34,10 +34,12 @@ public partial class SouvenirModule
         gridSquares[greenPos].material.color = white.Value;
         gridSquares[bluePos].material.color = white.Value;
 
-        var qs = new List<QandA>();
-        qs.Add(makeQuestion(Question.ZeroZeroSquares, _ZeroZero, formatArgs: new[] { "red" }, correctAnswers: new[] { new Coord(7, 7, redPos) }));
-        qs.Add(makeQuestion(Question.ZeroZeroSquares, _ZeroZero, formatArgs: new[] { "green" }, correctAnswers: new[] { new Coord(7, 7, greenPos) }));
-        qs.Add(makeQuestion(Question.ZeroZeroSquares, _ZeroZero, formatArgs: new[] { "blue" }, correctAnswers: new[] { new Coord(7, 7, bluePos) }));
+        var qs = new List<QandA>
+        {
+            makeQuestion(Question.ZeroZeroSquares, _ZeroZero, formatArgs: new[] { "red" }, correctAnswers: new[] { new Coord(7, 7, redPos) }),
+            makeQuestion(Question.ZeroZeroSquares, _ZeroZero, formatArgs: new[] { "green" }, correctAnswers: new[] { new Coord(7, 7, greenPos) }),
+            makeQuestion(Question.ZeroZeroSquares, _ZeroZero, formatArgs: new[] { "blue" }, correctAnswers: new[] { new Coord(7, 7, bluePos) })
+        };
         var positionNames = new[] { "top-left", "top-right", "bottom-left", "bottom-right" };
         var colorNames = new[] { "black", "blue", "green", "cyan", "red", "magenta", "yellow", "white" };
         for (var starIx = 0; starIx < 4; starIx++)
@@ -59,13 +61,11 @@ public partial class SouvenirModule
 
         var buttons = GetArrayField<KMSelectable>(comp, "buttons", isPublic: true).Get();
         var words = GetArrayField<string>(comp, "wordlist", isPublic: true).Get();
-        int index = fldIndex.Get(0, words.Length - 1);
-        int stage = fldStage.Get();
-        if (stage != 0)
-            throw new AbandonModuleException($"‘solvedStages’ did not start at 0: was {stage}.");
+        var index = fldIndex.Get(0, words.Length - 1);
+        var stage = fldStage.Get(v => v != 0 ? "‘solvedStages’ did not start at 0" : null);
 
         var wordsAnswered = new List<int>();
-        for (int i = 0; i < buttons.Length; i++)
+        for (var i = 0; i < buttons.Length; i++)
         {
             var prevInteract = buttons[i].OnInteract;
             buttons[i].OnInteract = delegate

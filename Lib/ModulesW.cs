@@ -258,8 +258,8 @@ public partial class SouvenirModule
 
         var counts = new int[3];
         var typeWireConfiguration = wireSequence.GetType().GetGenericArguments()[0];
-        var fldNoWire = GetField<bool>(typeWireConfiguration, "NoWire", true);
-        var fldColor = GetField<object>(typeWireConfiguration, "Color", true);
+        var fldNoWire = GetFieldFromType<bool>(typeWireConfiguration, "NoWire", isPublic: true);
+        var fldColor = GetFieldFromType<object>(typeWireConfiguration, "Color", isPublic: true);
 
         foreach (var item in wireSequence.Cast<object>().Take(12))
             if (!fldNoWire.GetFrom(item))

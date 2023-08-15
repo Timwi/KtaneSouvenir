@@ -53,7 +53,7 @@ public partial class SouvenirModule
             {
                 var goal = fldGoal.Get(expectedLength: 5)[4];
                 if (goal < 0 || goal >= 36)
-                    throw new AbandonModuleException($"‘sequence[4]’ has value {goal} (expected 0–35)");
+                    throw new AbandonModuleException($"‘sequence[4]’ has value {goal} (expected 0–35).");
                 words[s] = goal / 6;
                 colors[s] = goal % 6;
             }

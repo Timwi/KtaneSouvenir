@@ -619,9 +619,7 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"‘wordList’ does not contain ‘finishWord’: [Length: {wordList.Length}, finishWord: {finishWord}].");
 
         var wordScreen = GetField<GameObject>(comp, "wordDisplay", isPublic: true).Get();
-        var wordScreenTextMesh = wordScreen.GetComponent<TextMesh>();
-        if (wordScreenTextMesh == null)
-            throw new AbandonModuleException("‘wordDisplay’ does not have a TextMesh component.");
+        var wordScreenTextMesh = wordScreen.GetComponent<TextMesh>() ?? throw new AbandonModuleException("‘wordDisplay’ does not have a TextMesh component.");
         wordScreenTextMesh.text = "SOLVED";
 
         addQuestion(module, Question.PurpleArrowsFinish, correctAnswers: new[] { Regex.Replace(finishWord, @"(?<!^).", m => m.Value.ToLowerInvariant()) }, preferredWrongAnswers: wordList.Select(w => w[0] + w.Substring(1).ToLowerInvariant()).ToArray());
@@ -655,9 +653,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_PuzzleIdentification);
 
-        var namesType = comp.GetType().Assembly.GetType("PuzzleIdentification.Data");
-        if (namesType == null)
-            throw new AbandonModuleException("I cannot find the PuzzleIdentification.Data type.");
+        var namesType = comp.GetType().Assembly.GetType("PuzzleIdentification.Data") ?? throw new AbandonModuleException("I cannot find the PuzzleIdentification.Data type.");
         var names = GetStaticField<string[][]>(namesType, "PuzzleNames", isPublic: true).Get();
 
         // Grabs the first two puzzle numbers and their games of origin

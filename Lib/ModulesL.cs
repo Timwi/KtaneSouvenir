@@ -379,10 +379,7 @@ public partial class SouvenirModule
             var gateOperator = fldGateOperator.Get();
             if (mthGetName == null)
             {
-                var interfaceType = gateOperator.GetType().Assembly.GetType("ILogicalGateOperator");
-                if (interfaceType == null)
-                    throw new AbandonModuleException("Interface type ILogicalGateOperator not found.");
-
+                var interfaceType = gateOperator.GetType().Assembly.GetType("ILogicalGateOperator") ?? throw new AbandonModuleException("Interface type ILogicalGateOperator not found.");
                 var bindingFlags = BindingFlags.Public | BindingFlags.Instance;
                 var mths = interfaceType.GetMethods(bindingFlags).Where(m => m.Name == "get_Name" && m.GetParameters().Length == 0 && typeof(string).IsAssignableFrom(m.ReturnType)).Take(2).ToArray();
                 if (mths.Length == 0)

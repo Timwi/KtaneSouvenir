@@ -56,84 +56,28 @@ public partial class SouvenirModule
         var metRules = new List<string>();
         var unmetRules = new List<string>();
 
-        int metAtStage = 99;
         for (int i = 0; i < 14; i++)
         {
-            metAtStage = fldTableRuleMet.GetFrom(freightTableRules.GetValue(i));
             var ruleResource = fldTableRuleResource.GetFrom(freightTableRules.GetValue(i));
-            var ruleResourceName = fldTableRuleResourceName.GetFrom(ruleResource);
-
-            string ruleName;
-            switch (ruleResourceName)
+            var ruleName = fldTableRuleResourceName.GetFrom(ruleResource) switch
             {
-                case "Sulfuric Acid":
-                case "Nitric Acid":
-                    ruleName = "Over 700 industrial gas";
-                    break;
-                case "Automobiles":
-                    ruleName = "Over 5 automobiles";
-                    break;
-                case "Farming Equipment":
-                case "Military Hardware":
-                case "Wings":
-                    ruleName = "Over 7 large objects";
-                    break;
-                case "Grain":
-                case "Sand":
-                case "Clay":
-                case "Cement":
-                case "Iron Ore":
-                case "Gold Ore":
-                    ruleName = "Over 500 loose bulk (excl. coal)";
-                    break;
-                case "Coal":
-                    ruleName = "Over 100 coal";
-                    break;
-                case "Meat":
-                case "Vegetables":
-                case "Fruit":
-                    ruleName = "Over 150 food";
-                    break;
-                case "Helium":
-                case "Argon":
-                case "Nitrogen":
-                case "Acetylene":
-                    ruleName = "Over 700 industrial gas";
-                    break;
-                case "Kerosene":
-                case "Gasoline":
-                case "Diesel":
-                    ruleName = "Over 100 liquid fuel";
-                    break;
-                case "Milk":
-                case "Water":
-                case "Resin":
-                    ruleName = "Over 600 milk/water/resin";
-                    break;
-                case "Livestock":
-                    ruleName = "Over 30 livestock";
-                    break;
-                case "Mail":
-                    ruleName = "Over 400 mail";
-                    break;
-                case "Crude Oil":
-                    ruleName = "Over 250 crude oil";
-                    break;
-                case "Sheet Metal":
-                    ruleName = "Over 100 sheet metal";
-                    break;
-                case "Lumber":
-                case "Logs":
-                    ruleName = "Over 150 lumber/75 logs";
-                    break;
-                default:
-                    throw new AbandonModuleException($"There was an invalid resource found for one of the freight table rules: {ruleResourceName}");
-            }
-
-            if (metAtStage < 15)
-                metRules.Add(ruleName);
-            else
-                unmetRules.Add(ruleName);
+                "Sulfuric Acid" or "Nitric Acid" => "Over 700 industrial gas",
+                "Automobiles" => "Over 5 automobiles",
+                "Farming Equipment" or "Military Hardware" or "Wings" => "Over 7 large objects",
+                "Grain" or "Sand" or "Clay" or "Cement" or "Iron Ore" or "Gold Ore" => "Over 500 loose bulk (excl. coal)",
+                "Coal" => "Over 100 coal",
+                "Meat" or "Vegetables" or "Fruit" => "Over 150 food",
+                "Helium" or "Argon" or "Nitrogen" or "Acetylene" => "Over 700 industrial gas",
+                "Kerosene" or "Gasoline" or "Diesel" => "Over 100 liquid fuel",
+                "Milk" or "Water" or "Resin" => "Over 600 milk/water/resin",
+                "Livestock" => "Over 30 livestock",
+                "Mail" => "Over 400 mail",
+                "Crude Oil" => "Over 250 crude oil",
+                "Sheet Metal" => "Over 100 sheet metal",
+                "Lumber" or "Logs" => "Over 150 lumber/75 logs",
+                var invalid => throw new AbandonModuleException($"There was an invalid resource found for one of the freight table rules: {invalid}"),
+            };
+            (fldTableRuleMet.GetFrom(freightTableRules.GetValue(i)) < 15 ? metRules : unmetRules).Add(ruleName);
         }
 
         if (metRules.Count + unmetRules.Count != 14)
@@ -179,7 +123,7 @@ public partial class SouvenirModule
             { 'P', "purple" },
             { 'W', "white" }
         };
-        var ledColors = GetField<StringBuilder>(comp, "LEDsColorsString").Get(sb => sb.Length != 10 ? "expected length 10" : Enumerable.Range(0, 10).Any(ix => !colorNames.ContainsKey(sb[ix])) ? $"expected {colorNames.Keys.JoinString()}": null);
+        var ledColors = GetField<StringBuilder>(comp, "LEDsColorsString").Get(sb => sb.Length != 10 ? "expected length 10" : Enumerable.Range(0, 10).Any(ix => !colorNames.ContainsKey(sb[ix])) ? $"expected {colorNames.Keys.JoinString()}" : null);
         addQuestions(module, Enumerable.Range(0, 10).Select(ix => makeQuestion(Question.RecoloredSwitchesLedColors, _RecoloredSwitches, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { colorNames[ledColors[ix]] })));
     }
 
@@ -339,7 +283,7 @@ public partial class SouvenirModule
         for (int i = 0; i < 3; i++)
         {
             if (usedChars[i].Length != i + 3)
-                throw new AbandonModuleException($"usedChars[{i}] is of an irregular length: {string.Join(", ", usedChars[i])}");
+                throw new AbandonModuleException($"‘usedChars[{i}]’ is of an unexpected length (expected {i + 3}): [{string.Join(", ", usedChars[i])}]");
             qs.Add(makeQuestion(Question.ReversePolishNotationCharacter, _ReversePolishNotation, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: usedChars[i]));
         }
         addQuestions(module, qs);

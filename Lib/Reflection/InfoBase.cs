@@ -40,11 +40,17 @@ namespace Souvenir.Reflection
 
         protected string stringify(object value)
         {
-            if (value == null)
-                return "<null>";
-            if (value is IList list)
-                return $"[{list.Cast<object>().Select(stringify).JoinString(", ")}]";
-            return $"“{value}”";
+            return value switch
+            {
+                null => "null",
+                IList list => $"[{list.Cast<object>().Select(stringify).JoinString(", ")}]",
+                int i => i.ToString(),
+                double d => d.ToString(),
+                float f => f.ToString(),
+                bool b => b ? "true" : "false",
+                string s => $"“{s}”",
+                _ => $"{{{value.GetType().FullName}|{value}}}"
+            };
         }
     }
 }
