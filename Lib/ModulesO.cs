@@ -136,7 +136,7 @@ public partial class SouvenirModule
                 var st = fldStage.Get();
                 if (st < 1 || st > 3)
                 {
-                    Debug.LogFormat("<Souvenir #{0}> Abandoning Orange Arrows because ‘stage’ was out of range: {1}.", _moduleId, st);
+                    Debug.Log($"<Souvenir #{_moduleId}> Abandoning Orange Arrows because ‘stage’ was out of range: {st}.");
                     correctMoves = null;
                     for (int j = 0; j < buttons.Length; j++)
                         buttons[j].OnInteract = prevButtonInteracts[j];

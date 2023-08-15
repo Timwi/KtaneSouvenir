@@ -308,7 +308,7 @@ public partial class SouvenirModule
                         answers.Add(((char) ('A' + r + (4 * l))).ToString());
         if (answers.Count < 4)
         {
-            Debug.LogFormat("[Souvenir #{0}] No question for Shape Shift because the answer was the same as the initial state.", _moduleId);
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Shape Shift because the answer was the same as the initial state.");
             _legitimatelyNoQuestions.Add(module);
         }
         else
@@ -405,7 +405,7 @@ public partial class SouvenirModule
         if (prevSlots.Count < 2)
         {
             // Legitimate: first stage was a keep already
-            Debug.LogFormat("[Souvenir #{0}] No question for Silly Slots because there was only one stage.", _moduleId);
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Silly Slots because there was only one stage.");
             _legitimatelyNoQuestions.Add(module);
             yield break;
         }
@@ -1237,7 +1237,7 @@ public partial class SouvenirModule
         if (!_moduleCounts.TryGetValue(_Souvenir, out var souvenirCount) || souvenirCount != 2)
         {
             if (souvenirCount > 2)
-                Debug.LogFormat("[Souvenir #{0}] There are more than two Souvenir modules on this bomb. Not asking any questions about them.", _moduleId);
+                Debug.Log($"[Souvenir #{_moduleId}] There are more than two Souvenir modules on this bomb. Not asking any questions about them.");
             _legitimatelyNoQuestions.Add(module);
             yield break;
         }
@@ -1274,13 +1274,13 @@ public partial class SouvenirModule
 
         if (GetProperty<bool>(comp, "forceSolved", true).Get())
         {
-            Debug.LogFormat("[Souvenir #{0}] No question for Space Traders because the module was force-solved.", _moduleId);
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Space Traders because the module was force-solved.");
             _legitimatelyNoQuestions.Add(module);
             yield break;
         }
         if (GetProperty<int>(comp, "maxPossibleTaxAmount", true).Get() < 4)
         {
-            Debug.LogFormat("[Souvenir #{0}] No question for Space Traders because all paths from the solar system are too short.", _moduleId);
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Space Traders because all paths from the solar system are too short.");
             _legitimatelyNoQuestions.Add(module);
             yield break;
         }
@@ -1802,7 +1802,7 @@ public partial class SouvenirModule
 
         if (GetProperty<bool>(comp, "forceSolved", true).Get())
         {
-            Debug.LogFormat("[Souvenir #{0}] No question for Alfa-Bravo because the module was force-solved.", _moduleId);
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Alfa-Bravo because the module was force-solved.");
             _legitimatelyNoQuestions.Add(module);
             yield break;
         }
@@ -1810,7 +1810,7 @@ public partial class SouvenirModule
         var fixedErrorCodes = GetProperty<HashSet<string>>(comp, "fixedErrorCodes", true).Get();
         if (fixedErrorCodes.Count == 0)
         {
-            Debug.LogFormat("[Souvenir #{0}] No question for Sysadmin because there are no errors to ask about.", _moduleId);
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Sysadmin because there are no errors to ask about.");
             _legitimatelyNoQuestions.Add(module);
             yield break;
         }

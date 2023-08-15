@@ -144,7 +144,7 @@ public partial class SouvenirModule
 
         if (GetProperty<bool>(comp, "forceSolved", true).Get())
         {
-            Debug.LogFormat("[Souvenir #{0}] No question for Alfa-Bravo because the module was force-solved.", _moduleId);
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Alfa-Bravo because the module was force-solved.");
             _legitimatelyNoQuestions.Add(module);
             yield break;
         }
@@ -416,7 +416,6 @@ public partial class SouvenirModule
         // Correct colors
         var correctColors = GetArrayField<int>(comp, "_correctColors").Get(expectedLength: 3);
         var correctColorNames = Enumerable.Range(0, correctColors.Length).Select(correct => colorNames[correctColors[correct]]).ToArray();
-        Debug.LogFormat("<> {0} {1} {2}", correctColorNames[0], correctColorNames[1], correctColorNames[2]);
         for (int correct = 0; correct < 3; correct++)
             qs.Add(makeQuestion(Question.ASquareCorrectColors, _ASquare, formatArgs: new[] { ordinal(correct + 1) }, correctAnswers: new[] { correctColorNames[correct] }, preferredWrongAnswers: colorNames));
 

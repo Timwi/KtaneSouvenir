@@ -795,7 +795,7 @@ public partial class SouvenirModule
         var lastDigit = GetIntField(comp, "firstLastDigit").Get(-1, 9);
         if (lastDigit == -1)
         {
-            Debug.LogFormat("[Souvenir #{0}] No questions for Functions because it was solved with no queries! This isn’t a bug, just impressive (or cheating).", _moduleId);
+            Debug.Log($"[Souvenir #{_moduleId}] No questions for Functions because it was solved with no queries! This isn’t a bug, just impressive (or cheating).");
             _legitimatelyNoQuestions.Add(module);
             yield break;
         }

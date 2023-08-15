@@ -89,21 +89,9 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
 
         var map = GetField<object>(comp, "map").Get();
-        var mapData = GetField<Array>(map, "mapData").Get(arr => arr.GetLength(0) != 8 || arr.GetLength(1) != 8 ? $"size {arr.GetLength(0)},{arr.GetLength(1)}, expected 8,8": null);
+        var mapData = GetField<Array>(map, "mapData").Get(arr => arr.GetLength(0) != 8 || arr.GetLength(1) != 8 ? $"size {arr.GetLength(0)},{arr.GetLength(1)}, expected 8,8" : null);
 
-        IntFieldInfo fldBearing = null;
-        try { fldBearing = GetIntField(map, "end_dir"); }
-        catch (AbandonModuleException)
-        {
-            Debug.LogFormat("[Souvenir #{0}] You are running an old version of the 3D Maze module.");
-            Debug.LogFormat("[Souvenir #{0}] Please UNSUBSCRIBE here: https://steamcommunity.com/workshop/filedetails/?id=752338147");
-            Debug.LogFormat("[Souvenir #{0}] Please SUBSCRIBE here: https://steamcommunity.com/workshop/filedetails/?id=2164996443");
-            _legitimatelyNoQuestions.Add(module);
-            _showWarning = true;
-            yield break;
-        }
-
-        int bearing = fldBearing.Get(min: 0, max: 3);
+        var bearing = GetIntField(map, "end_dir").Get(min: 0, max: 3);
         var fldLabel = GetField<char>(mapData.GetValue(0, 0), "label", isPublic: true);
         var chars = new HashSet<char>();
         for (int i = 0; i < 8; i++)

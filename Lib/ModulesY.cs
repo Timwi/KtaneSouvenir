@@ -24,7 +24,7 @@ public partial class SouvenirModule
         // Capture the first roll
         if (Enumerable.Range(1, 6).Any(i => diceValues.Count(val => val == i) == 5))
         {
-            Debug.LogFormat("[Souvenir #{0}] No question for Yahtzee because the first roll was a Yahtzee.", _moduleId);
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Yahtzee because the first roll was a Yahtzee.");
             _legitimatelyNoQuestions.Add(module);
             result = null;  // don’t yield break here because we need to know when the module is solved in case there are multiple Yahtzees on the bomb
         }
@@ -47,7 +47,7 @@ public partial class SouvenirModule
             result = "pair";
         else
         {
-            Debug.LogFormat("[Souvenir #{0}] No question for Yahtzee because the first roll was nothing.", _moduleId);
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Yahtzee because the first roll was nothing.");
             _legitimatelyNoQuestions.Add(module);
             result = null;
         }

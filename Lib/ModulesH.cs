@@ -196,7 +196,7 @@ public partial class SouvenirModule
         var dic = fldModuleNames.Get();
         if (dic.Count == 0)
         {
-            Debug.LogFormat("[Souvenir #{0}] No question on Hogwarts because no module solves were awarded to it.", _moduleId);
+            Debug.Log($"[Souvenir #{_moduleId}] No question on Hogwarts because no module solves were awarded to it.");
             _legitimatelyNoQuestions.Add(module);
             yield break;
         }

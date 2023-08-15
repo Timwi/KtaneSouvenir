@@ -31,7 +31,7 @@ public partial class SouvenirModule
 
         if (GetProperty<bool>(comp, "forceSolved", true).Get())
         {
-            Debug.LogFormat("[Souvenir #{0}] No question for Eight because the module was force-solved.", _moduleId);
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Eight because the module was force-solved.");
             _legitimatelyNoQuestions.Add(module);
             yield break;
         }
@@ -314,7 +314,7 @@ public partial class SouvenirModule
 
         if (!new[] { "H(T)", "R", "c", "w", "Z(T)", "t", "m", "a", "K" }.Contains(symbol))
             throw new AbandonModuleException($"‘symbol’ has an unexpected character: {symbol}");
-        Debug.LogFormat(@"<Souvenir #{0}> Equations X: symbol is {1}", _moduleId, symbol);
+        Debug.Log($"<Souvenir #{_moduleId}> Equations X: symbol is {symbol}");
 
         // Equations X uses symbols that don’t translate well to Souvenir. This switch statement is used to correctly translate the answer.
         switch (symbol)

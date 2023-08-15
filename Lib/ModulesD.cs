@@ -62,7 +62,7 @@ public partial class SouvenirModule
 
         if (solution == 0)
         {
-            Debug.LogFormat("[Souvenir #{0}] No question for The Deck of Many Things because the solution was the first card.", _moduleId);
+            Debug.Log($"[Souvenir #{_moduleId}] No question for The Deck of Many Things because the solution was the first card.");
             _legitimatelyNoQuestions.Add(module);
             yield break;
         }

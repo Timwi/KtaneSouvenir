@@ -345,16 +345,13 @@ public partial class SouvenirModule
 
                 if (colors == null || colors.Length <= i)
                 {
-                    Debug.LogFormat("<Souvenir #{0}> Abandoning Binary LEDs because ‘colors’ array has unexpected length ({1}).", _moduleId,
-                        colors == null ? "null" : colors.Length.ToString());
+                    Debug.Log($"<Souvenir #{_moduleId}> Abandoning Binary LEDs because ‘colors’ array has unexpected length ({(colors == null ? "null" : colors.Length.ToString())}).");
                     return result;
                 }
 
                 if (solutions == null || solutions.GetLength(0) <= seqIx || solutions.GetLength(1) <= colors[i])
                 {
-                    Debug.LogFormat("<Souvenir #{0}> Abandoning Binary LEDs because ‘solutions’ array has unexpected lengths ({1}, {2}).", _moduleId,
-                        solutions == null ? "null" : solutions.GetLength(0).ToString(),
-                        solutions == null ? "null" : solutions.GetLength(1).ToString());
+                    Debug.Log($"<Souvenir #{_moduleId}> Abandoning Binary LEDs because ‘solutions’ array has unexpected lengths ({(solutions == null ? "null" : solutions.GetLength(0).ToString())}, {(solutions == null ? "null" : solutions.GetLength(1).ToString())}).");
                     return result;
                 }
 
@@ -367,9 +364,7 @@ public partial class SouvenirModule
 
                 if (sequences == null || sequences.GetLength(0) <= seqIx || sequences.GetLength(1) <= numIx)
                 {
-                    Debug.LogFormat("<Souvenir #{0}> Abandoning Binary LEDs because ‘sequences’ array has unexpected lengths ({1}, {2}).", _moduleId,
-                        sequences == null ? "null" : sequences.GetLength(0).ToString(),
-                        sequences == null ? "null" : sequences.GetLength(1).ToString());
+                    Debug.Log($"<Souvenir #{_moduleId}> Abandoning Binary LEDs because ‘sequences’ array has unexpected lengths ({(sequences == null ? "null" : sequences.GetLength(0).ToString())}, {(sequences == null ? "null" : sequences.GetLength(1).ToString())}).");
                     return result;
                 }
 
@@ -384,7 +379,7 @@ public partial class SouvenirModule
 
         if (answer == -1)
         {
-            Debug.LogFormat("[Souvenir #{0}] No question for Binary LEDs because the module auto-solved after all three wires were cut incorrectly.", _moduleId);
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Binary LEDs because the module auto-solved after all three wires were cut incorrectly.");
             _legitimatelyNoQuestions.Add(module);
         }
         else
@@ -401,7 +396,7 @@ public partial class SouvenirModule
 
         if (GetProperty<bool>(comp, "forceSolved", true).Get())
         {
-            Debug.LogFormat("[Souvenir #{0}] No question for Binary Shift because the module was force-solved.", _moduleId);
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Binary Shift because the module was force-solved.");
             _legitimatelyNoQuestions.Add(module);
             yield break;
         }
@@ -783,7 +778,7 @@ public partial class SouvenirModule
         var pressed = GetListField<string>(comp, "Pressed").Get();
         if (pressed.All(p => p.Length == 0))
         {
-            Debug.LogFormat("[Souvenir #{0}] No question for Broken Buttons because the only buttons you pressed were literally blank.", _moduleId);
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Broken Buttons because the only buttons you pressed were literally blank.");
             _legitimatelyNoQuestions.Add(module);
             yield break;
         }
@@ -926,7 +921,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_Button);
         if (color < 0)
         {
-            Debug.LogFormat("[Souvenir #{0}] No question for The Button because the button was tapped (or I missed the light color).", _moduleId);
+            Debug.Log($"[Souvenir #{_moduleId}] No question for The Button because the button was tapped (or I missed the light color).");
             _legitimatelyNoQuestions.Add(module);
         }
         else

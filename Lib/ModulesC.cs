@@ -419,7 +419,7 @@ public partial class SouvenirModule
             }
             catch (AbandonModuleException amex)
             {
-                Debug.LogFormat(@"<Souvenir #{0}> Abandoning Color Decoding because: {1}", _moduleId, amex.Message);
+                Debug.Log($"<Souvenir #{_moduleId}> Abandoning Color Decoding because: {amex.Message}");
                 isAbandoned = true;
             }
         });
@@ -567,7 +567,7 @@ public partial class SouvenirModule
 
         if (GetProperty<bool>(comp, "forceSolved", true).Get())
         {
-            Debug.LogFormat("[Souvenir #{0}] No question for Colors Maximization because the module was force-solved.", _moduleId);
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Colors Maximization because the module was force-solved.");
             _legitimatelyNoQuestions.Add(module);
             yield break;
         }

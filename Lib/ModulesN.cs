@@ -411,9 +411,6 @@ public partial class SouvenirModule
         var weaponNames = new[] { "Candlestick", "Dagger", "Lead Pipe", "Revolver", "Rope", "Spanner" };
         var roomNames = new[] { "Ballroom", "Billiard Room", "Conservatory", "Dining Room", "Hall", "Kitchen", "Library", "Lounge", "Study" };
 
-        Debug.LogFormat("<> DispInfo {0}", dispinfo.Select(arr => arr.JoinString("/")).JoinString("; "));
-        Debug.LogFormat("<> Turns {0}", turns.Select(arr => arr.Select(arr2 => arr2.JoinString("/")).JoinString(", ")).JoinString("; "));
-
         for (int suspect = 0; suspect < 5; suspect++)
         {
             qs.Add(makeQuestion(Question.NotMurderRoom, _NotMurder, formatArgs: new[] { suspectNames[dispinfo[0][suspect]] }, correctAnswers: new[] { roomNames[turns[0][suspect][0]] }));
@@ -592,7 +589,7 @@ public partial class SouvenirModule
         }
         else
         {
-            Debug.LogFormat("[Souvenir #{0}] No question for Not the Button because the strip didn’t light up (or I missed the light color).", _moduleId);
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Not the Button because the strip didn’t light up (or I missed the light color).");
             _legitimatelyNoQuestions.Add(module);
         }
     }

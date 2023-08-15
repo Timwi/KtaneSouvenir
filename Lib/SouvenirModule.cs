@@ -123,19 +123,19 @@ public partial class SouvenirModule : MonoBehaviour
         _moduleId = _moduleIdCounter;
         _moduleIdCounter++;
 
-        Debug.LogFormat(@"[Souvenir #{0}] Souvenir version: {1}", _moduleId, Version);
+        Debug.Log($"[Souvenir #{_moduleId}] Souvenir version: {Version}");
 
         // Use Souvenir-settings.txt as opposed to SouvenirSettings.json for existing settings
         ModSettings<Config> modConfig = new ModSettings<Config>("Souvenir-settings");
         _config = modConfig.Read();
 
         var ignoredList = BossModule.GetIgnoredModules(Module, _defaultIgnoredModules);
-        Debug.LogFormat(@"‹Souvenir #{0}› Ignored modules: {1}", _moduleId, ignoredList.JoinString(", "));
+        Debug.Log($"‹Souvenir #{_moduleId}› Ignored modules: {ignoredList.JoinString(", ")}");
         _ignoredModules.UnionWith(ignoredList);
 
         if (_config.Language != null && Translation.AllTranslations.ContainsKey(_config.Language))
             _translation = Translation.AllTranslations[_config.Language];
-        Debug.LogFormat(@"<Souvenir #{0}> Language: {1} ({2})", _moduleId, _config.Language, _translation == null ? "absent" : "present");
+        Debug.Log($"<Souvenir #{_moduleId}> Language: {_config.Language} ({(_translation == null ? "absent" : "present")})");
 
         Bomb.OnBombExploded += delegate
         {
@@ -144,11 +144,11 @@ public partial class SouvenirModule : MonoBehaviour
             if (!_isSolved)
             {
                 if (_questions.Count == 0)
-                    Debug.LogFormat(@"[Souvenir #{0}] When bomb exploded, there were no pending questions.", _moduleId);
+                    Debug.Log($"[Souvenir #{_moduleId}] When bomb exploded, there were no pending questions.");
                 else if (_questions.Count == 1)
-                    Debug.LogFormat(@"[Souvenir #{0}] When bomb exploded, 1 question was pending for: {1}.", _moduleId, _questions.Select(q => q.Module.ModuleDisplayName).OrderBy(q => q).JoinString(", "));
+                    Debug.Log($"[Souvenir #{_moduleId}] When bomb exploded, 1 question was pending for: {_questions.Select(q => q.Module.ModuleDisplayName).OrderBy(q => q).JoinString(", ")}.");
                 else
-                    Debug.LogFormat(@"[Souvenir #{0}] When bomb exploded, {1} questions were pending for: {2}.", _moduleId, _questions.Count, _questions.Select(q => q.Module.ModuleDisplayName).OrderBy(q => q).JoinString(", "));
+                    Debug.Log($"[Souvenir #{_moduleId}] When bomb exploded, {_questions.Count} questions were pending for: {_questions.Select(q => q.Module.ModuleDisplayName).OrderBy(q => q).JoinString(", ")}.");
             }
         };
         Bomb.OnBombSolved += delegate
@@ -460,7 +460,7 @@ public partial class SouvenirModule : MonoBehaviour
         if (_currentQuestion == null || index >= _currentQuestion.NumAnswers)
             return;
 
-        Debug.LogFormat("[Souvenir #{0}] Clicked answer #{1} ({2}). {3}.", _moduleId, index + 1, _currentQuestion.DebugAnswers.Skip(index).First(), _currentQuestion.CorrectIndex == index ? "Correct" : "Wrong");
+        Debug.Log($"[Souvenir #{_moduleId}] Clicked answer #{index + 1} ({_currentQuestion.DebugAnswers.Skip(index).First()}). {(_currentQuestion.CorrectIndex == index ? "Correct" : "Wrong")}.");
 
         if (_currentQuestion.CorrectIndex == index)
         {
@@ -559,7 +559,7 @@ public partial class SouvenirModule : MonoBehaviour
                 yield return new WaitForSeconds(.5f);
         }
 
-        Debug.LogFormat("[Souvenir #{0}] Questions exhausted. Module solved.", _moduleId);
+        Debug.Log($"[Souvenir #{_moduleId}] Questions exhausted. Module solved.");
         _isSolved = true;
         Module.HandlePass();
         WarningIcon.SetActive(_showWarning);
@@ -690,7 +690,7 @@ public partial class SouvenirModule : MonoBehaviour
         {
             _supportedModuleNames.Add(module.ModuleDisplayName);
             yield return null;  // Ensures that the module’s Start() method has run
-            Debug.LogFormat("‹Souvenir #{1}› Module {0}: Start processing.", moduleType, _moduleId);
+            Debug.Log($"‹Souvenir #{_moduleId}› Module {moduleType}: Start processing.");
 
             // I’d much rather just put a ‘foreach’ loop inside a ‘try’ block, but Unity’s C# version doesn’t allow ‘yield return’ inside of ‘try’ blocks yet
             using (var e = iterator(module).GetEnumerator())
@@ -701,14 +701,14 @@ public partial class SouvenirModule : MonoBehaviour
                     try { canMoveNext = e.MoveNext(); }
                     catch (AbandonModuleException ex)
                     {
-                        Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because: {2}", _moduleId, module.ModuleDisplayName, ex.Message);
+                        Debug.Log($"<Souvenir #{_moduleId}> Abandoning {module.ModuleDisplayName} because: {ex.Message}");
                         _showWarning = true;
                         _coroutinesActive--;
                         yield break;
                     }
                     catch (Exception ex)
                     {
-                        Debug.LogFormat("<Souvenir #{0}> The {1} handler threw an exception ({2}):\n{3}\n{4}", _moduleId, module.ModuleDisplayName, ex.GetType().FullName, ex.Message, ex.StackTrace);
+                        Debug.Log($"<Souvenir #{_moduleId}> The {module.ModuleDisplayName} handler threw an exception ({ex.GetType().FullName}):\n{ex.Message}\n{ex.StackTrace}");
                         _showWarning = true;
                         _coroutinesActive--;
                         yield break;
@@ -719,7 +719,7 @@ public partial class SouvenirModule : MonoBehaviour
 
                     if (TwitchAbandonModule.Contains(module))
                     {
-                        Debug.LogFormat("<Souvenir #{0}> Abandoning {1} because Twitch Plays told me to.", _moduleId, module.ModuleDisplayName);
+                        Debug.Log($"<Souvenir #{_moduleId}> Abandoning {module.ModuleDisplayName} because Twitch Plays told me to.");
                         _coroutinesActive--;
                         yield break;
                     }
@@ -728,14 +728,14 @@ public partial class SouvenirModule : MonoBehaviour
 
             if (!_legitimatelyNoQuestions.Contains(module) && !_questions.Any(q => q.Module == module))
             {
-                Debug.LogFormat("[Souvenir #{0}] There was no question generated for {1}. Please report this to Timwi or the implementer for that module as this may indicate a bug in Souvenir. Remember to send them this logfile.", _moduleId, module.ModuleDisplayName);
+                Debug.Log($"[Souvenir #{_moduleId}] There was no question generated for {module.ModuleDisplayName}. Please report this to Timwi or the implementer for that module as this may indicate a bug in Souvenir. Remember to send them this logfile.");
                 _showWarning = true;
             }
-            Debug.LogFormat("‹Souvenir #{1}› Module {0}: Finished processing.", moduleType, _moduleId);
+            Debug.Log($"‹Souvenir #{_moduleId}› Module {moduleType}: Finished processing.");
         }
         else
         {
-            Debug.LogFormat("‹Souvenir #{1}› Module {0}: Not supported.", moduleType, _moduleId);
+            Debug.Log($"‹Souvenir #{_moduleId}› Module {moduleType}: Not supported.");
         }
 
         _coroutinesActive--;
@@ -920,7 +920,7 @@ public partial class SouvenirModule : MonoBehaviour
     {
         if (_config.IsExcluded(module, _ignoredModules))
         {
-            Debug.LogFormat("<Souvenir #{0}> Discarding questions for {1} because it is excluded in the mod settings.", _moduleId, module.ModuleDisplayName);
+            Debug.Log($"<Souvenir #{_moduleId}> Discarding questions for {module.ModuleDisplayName} because it is excluded in the mod settings.");
             _legitimatelyNoQuestions.Add(module);
             return;
         }
@@ -928,10 +928,10 @@ public partial class SouvenirModule : MonoBehaviour
         var qs = questions.Where(q => q != null).ToArray();
         if (qs.Length == 0)
         {
-            Debug.LogFormat("<Souvenir #{0}> Empty question batch provided for {1}.", _moduleId, module.ModuleDisplayName);
+            Debug.Log($"<Souvenir #{_moduleId}> Empty question batch provided for {module.ModuleDisplayName}.");
             return;
         }
-        Debug.LogFormat("‹Souvenir #{0}› Adding question batch:\n{1}", _moduleId, qs.Select(q => "    • " + q.DebugString).JoinString("\n"));
+        Debug.Log($"‹Souvenir #{_moduleId}› Adding question batch:\n{qs.Select(q => "    • " + q.DebugString).JoinString("\n")}");
         _questions.Add(new QuestionBatch
         {
             NumSolved = Bomb.GetSolvedModuleNames().Count,
@@ -1104,7 +1104,7 @@ public partial class SouvenirModule : MonoBehaviour
 
     private string formatModuleName(string moduleName, bool addSolveCount, int numSolved, bool addThe) => _translation != null
         ? _translation.FormatModuleName(moduleName, addSolveCount, numSolved, addThe)
-        : addSolveCount ? $"the {moduleName} you solved {ordinal(numSolved)}": addThe ? "The\u00a0" + moduleName : moduleName;
+        : addSolveCount ? $"the {moduleName} you solved {ordinal(numSolved)}" : addThe ? "The\u00a0" + moduleName : moduleName;
 
     public string[] GetAnswers(Question question) => !_attributes.TryGetValue(question, out var attr)
         ? throw new InvalidOperationException($"<Souvenir #{_moduleId}> Question {question} is missing from the _attributes dictionary.")
@@ -1137,6 +1137,12 @@ public partial class SouvenirModule : MonoBehaviour
                         _ => number + "th",
                     },
                 };
+
+    private void legitimatelyNoQuestion(KMBombModule module, string logMessage)
+    {
+        Debug.Log($"[Souvenir #{_moduleId}] No question for {module.ModuleDisplayName} because: {logMessage}");
+        _legitimatelyNoQuestions.Add(module);
+    }
     #endregion
 
     #region Twitch Plays

@@ -396,7 +396,7 @@ public partial class SouvenirModule
         var parts = GetArrayField<int[]>(comp, "parts").Get(expectedLength: 8);  // the 8 parts in their “correct” order
         var moduleParts = GetArrayField<int[]>(comp, "moduleParts").Get(expectedLength: 8, nullContentAllowed: true);      // the parts as assigned to the slots
         var partsPerSlot = Enumerable.Range(0, 8).Select(slot => parts.IndexOf(p => ReferenceEquals(p, moduleParts[slot]))).ToArray();
-        Debug.LogFormat("<Souvenir #{0}> Melody Sequencer: parts are: [{1}].", _moduleId, partsPerSlot.JoinString(", "));
+        Debug.Log($"<Souvenir #{_moduleId}> Melody Sequencer: parts are: [{partsPerSlot.JoinString(", ")}].");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -571,7 +571,7 @@ public partial class SouvenirModule
         if (!dictionary.TryGetValue("Stage1", out var stage1word) || stage1word == null || !dictionary.TryGetValue("Stage2", out var stage2word) || stage2word == null)
             throw new AbandonModuleException($"There is no word for {(stage1word == null ? "stage 1" : "stage 2")}.");
 
-        Debug.LogFormat("<Souvenir #{0}> Modern Cipher words: {1} {2}.", _moduleId, stage1word, stage2word);
+        Debug.Log($"<Souvenir #{_moduleId}> Modern Cipher words: {stage1word} {stage2word}.");
 
         stage1word = stage1word.Substring(0, 1).ToUpperInvariant() + stage1word.Substring(1).ToLowerInvariant();
         stage2word = stage2word.Substring(0, 1).ToUpperInvariant() + stage2word.Substring(1).ToLowerInvariant();
@@ -610,7 +610,7 @@ public partial class SouvenirModule
         try
         {
             GetArrayField<Sprite>(comp, "gSprites", true);
-            Debug.LogFormat("[Souvenir #{0}] You are running an old version of the Module Maze module. Please unsubscribe and re-subscribe here: https://steamcommunity.com/sharedfiles/filedetails/?id=1650854883", _moduleId);
+            Debug.Log($"[Souvenir #{_moduleId}] You are running an old version of the Module Maze module. Please unsubscribe and re-subscribe here: https://steamcommunity.com/sharedfiles/filedetails/?id=1650854883");
             _legitimatelyNoQuestions.Add(module);
             _showWarning = true;
             yield break;
@@ -664,16 +664,13 @@ public partial class SouvenirModule
                     // Missingno: do nothing
                 }
                 else if (creatureID < 0 || creatureID >= creatureNames.Length || string.IsNullOrEmpty(creatureNames[creatureID]))
-                    Debug.LogFormat("<Souvenir #{2}> Monsplode, Fight!: Unexpected creature ID: {0}; creature names are: [{1}]", creatureID, creatureNames.Select(cn => cn == null ? "null" : '"' + cn + '"').JoinString(", "), _moduleId);
+                    Debug.Log($"<Souvenir #{_moduleId}> Monsplode, Fight!: Unexpected creature ID: {creatureID}; creature names are: [{creatureNames.Select(cn => cn == null ? "null" : '"' + cn + '"').JoinString(", ")}]");
                 else
                 {
                     // Make sure not to throw exceptions inside of the module’s button handler!
                     var moveIDs = fldMoveIDs.Get(nullAllowed: true);
                     if (moveIDs == null || moveIDs.Length != 4 || moveIDs.Any(mid => mid >= moveNames.Length || string.IsNullOrEmpty(moveNames[mid])))
-                        Debug.LogFormat("<Souvenir #{2}> Monsplode, Fight!: Unexpected move IDs: {0}; moves names are: [{1}]",
-                            moveIDs == null ? null : "[" + moveIDs.JoinString(", ") + "]",
-                            moveNames.Select(mn => mn == null ? "null" : '"' + mn + '"').JoinString(", "),
-                            _moduleId);
+                        Debug.Log($"<Souvenir #{_moduleId}> Monsplode, Fight!: Unexpected move IDs: {(moveIDs == null ? null : "[" + moveIDs.JoinString(", ") + "]")}; moves names are: [{moveNames.Select(mn => mn == null ? "null" : '"' + mn + '"').JoinString(", ")}]");
                     else
                     {
                         curCreatureName = creatureNames[creatureID];
@@ -685,7 +682,7 @@ public partial class SouvenirModule
 
                 if (creatureID == -1)
                 {
-                    Debug.LogFormat("[Souvenir #{0}] No question on Monsplode, Fight! because the creature displayed was Missingno.", _moduleId);
+                    Debug.Log($"[Souvenir #{_moduleId}] No question on Monsplode, Fight! because the creature displayed was Missingno.");
                     _legitimatelyNoQuestions.Add(module);
                     displayedCreature = null;
                     displayedMoves = null;
@@ -693,7 +690,7 @@ public partial class SouvenirModule
                 }
                 else if (curCreatureName == null || curMoveNames == null)
                 {
-                    Debug.LogFormat("<Souvenir #{0}> Monsplode, Fight!: Abandoning due to error above.", _moduleId);
+                    Debug.Log($"<Souvenir #{_moduleId}> Monsplode, Fight!: Abandoning due to error above.");
                     // Set these to null to signal that something went wrong and we need to abort
                     displayedCreature = null;
                     displayedMoves = null;
@@ -1058,7 +1055,7 @@ public partial class SouvenirModule
 
         if (fldFailsolve.Get())
         {
-            Debug.LogFormat("[Souvenir #{0}] No question for Mystery Module because no module was hidden.", _moduleId);
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Mystery Module because no module was hidden.");
             _legitimatelyNoQuestions.Add(module);
             yield break;
         }

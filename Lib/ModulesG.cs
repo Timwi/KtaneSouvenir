@@ -57,7 +57,7 @@ public partial class SouvenirModule
 
         if (correctAnswers.Length == 0)
         {
-            Debug.LogFormat("[Souvenir #{0}] No questions for Game of Life Cruel because there were no colored squares.", _moduleId);
+            Debug.Log($"[Souvenir #{_moduleId}] No questions for Game of Life Cruel because there were no colored squares.");
             _legitimatelyNoQuestions.Add(module);
             yield break;
         }
