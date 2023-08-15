@@ -301,11 +301,11 @@ namespace Souvenir
         /// <summary>An answer generator that generates answers consisting of randomly selected grid cells.</summary>
         public class Grid : SpriteAnswerGeneratorAttribute
         {
-            private int _width;
-            private int _height;
-            private float _size;
+            private readonly int _width;
+            private readonly int _height;
+            private readonly float _size;
 
-            private int Count { get { return _width * _height; } }
+            private int Count => _width * _height;
 
             public Grid(int width, int height, float size = 1f)
             {

@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Souvenir
 {
     public static class Grid
     {
-        private static readonly Dictionary<string, Texture2D> _gridSpriteCache = new Dictionary<string, Texture2D>();
+        private static readonly Dictionary<string, Texture2D> _gridSpriteCache = new();
+
         public static Sprite GenerateGridSprite(Coord coord, float size = 1f)
         {
             var tw = 4 * coord.Width + 1;
@@ -25,10 +23,11 @@ namespace Souvenir
                 tx.filterMode = FilterMode.Point;
                 _gridSpriteCache.Add(key, tx);
             }
-            var sprite = Sprite.Create(tx, new Rect(0, 0, tw, th), new Vector2(.5f, .5f), th * (60f / 17) / size);
+            var sprite = Sprite.Create(tx, new Rect(0, 0, tw, th), new Vector2(0, .5f), th * (60f / 17) / size);
             sprite.name = coord.ToString();
             return sprite;
         }
+
         public static Sprite GenerateGridSprite(int width, int height, int index, float size = 1f)
         {
             return GenerateGridSprite(new Coord(width, height, index), size);

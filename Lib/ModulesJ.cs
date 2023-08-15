@@ -11,17 +11,17 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "JengaModule");
         var fldCorrect = GetIntField(comp, "correct", isPublic: true);
         var fldSprites = GetArrayField<Sprite>(comp, "Characters", isPublic: true);
-        
+
         KMSelectable mostRecentSelectable = null;
         KMSelectable firstCorrectSelectable = null;
         KMSelectable[] allSelectables = GetArrayField<KMSelectable>(comp, "JengaPiece", isPublic: true).Get(expectedLength: 20);
         for (int i = 0; i < 20; i++)
         {
             int ix = i;
-            allSelectables[ix].OnInteract += delegate () 
-            { 
-                mostRecentSelectable = allSelectables[ix]; 
-                return false; 
+            allSelectables[ix].OnInteract += delegate ()
+            {
+                mostRecentSelectable = allSelectables[ix];
+                return false;
             };
         }
         int currentCorrect = fldCorrect.Get();

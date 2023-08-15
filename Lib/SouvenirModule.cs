@@ -60,7 +60,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Texture2D[] FuseBoxQuestions;
     public Texture2D[] NonverbalSimonQuestions;
     public Texture2D[] TechnicalKeypadQuestions;
-    private readonly List<Texture2D> _temporaryQuestions = new List<Texture2D>();
+    private readonly List<Texture2D> _questionTexturesToDestroyLater = new();
 
     public TextMesh TextMesh;
     public Renderer TextRenderer;
@@ -737,9 +737,9 @@ public partial class SouvenirModule : MonoBehaviour
 
     private void OnDestroy()
     {
-        foreach (var tx in _temporaryQuestions)
+        foreach (var tx in _questionTexturesToDestroyLater)
             Destroy(tx);
-        _temporaryQuestions.Clear();
+        _questionTexturesToDestroyLater.Clear();
     }
     #endregion
 

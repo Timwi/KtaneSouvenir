@@ -820,10 +820,6 @@ public partial class SouvenirModule
         var fldOpened = GetField<bool>(comp, "opened");
         var mthToggleDoor = GetMethod<IEnumerator>(comp, "ToggleDoor", 0);
 
-        // Prevent the module from marking itself as solved
-        var gameOnPassDelegate = module.OnPass;
-        module.OnPass = delegate { return false; };
-
         while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
 
@@ -847,7 +843,6 @@ public partial class SouvenirModule
                 yield return new WaitForSeconds(0.1f);
             if (fldOpened.Get())
                 yield return ((MonoBehaviour) comp).StartCoroutine(mthToggleDoor.Invoke(new object[0]));
-            gameOnPassDelegate();
         }
 
         _modulesSolved.IncSafe(_FuseBox);
@@ -885,8 +880,8 @@ public partial class SouvenirModule
 
                 tmp.Apply(false, true);
                 tmp2.Apply(false, true);
-                _temporaryQuestions.Add(tmp);
-                _temporaryQuestions.Add(tmp2);
+                _questionTexturesToDestroyLater.Add(tmp);
+                _questionTexturesToDestroyLater.Add(tmp2);
                 tex = tmp;
                 tex2 = tmp2;
             }

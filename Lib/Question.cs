@@ -210,10 +210,8 @@
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         BartendingIngredients,
 
-        [SouvenirQuestion("What was bean {1} in {0}?", "Beans", OneColumn4Answers,
-            "Wobbly Orange", "Wobbly Yellow", "Wobbly Green", "Not Wobbly Orange", "Not Wobbly Yellow", "Not Wobbly Green",
-            UsesQuestionSprite = true, ExampleExtraFormatArgumentGroupSize = 1,
-            ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" })]
+        [SouvenirQuestion("What was this bean in {0}?", "Beans", OneColumn4Answers, "Wobbly Orange", "Wobbly Yellow", "Wobbly Green", "Not Wobbly Orange", "Not Wobbly Yellow", "Not Wobbly Green",
+            UsesQuestionSprite = true)]
         BeansColors,
 
         [SouvenirQuestion("What was sprout {1} in {0}?", "Bean Sprouts", TwoColumns4Answers,
@@ -1494,11 +1492,9 @@
         [SouvenirQuestion("What was the starting location in {0}?", "Morse-A-Maze", ThreeColumns6Answers)]
         [AnswerGenerator.Strings("A-F", "1-6")]
         MorseAMazeStartingCoordinate,
-
         [SouvenirQuestion("What was the ending location in {0}?", "Morse-A-Maze", ThreeColumns6Answers)]
         [AnswerGenerator.Strings("A-F", "1-6")]
         MorseAMazeEndingCoordinate,
-
         [SouvenirQuestion("What was the word shown as Morse code in {0}?", "Morse-A-Maze", ThreeColumns6Answers, null,
             ExampleAnswers = new[] { "couch", "strobe", "smoke", "assay", "monkey", "glass", "starts", "strode", "office", "essays", "couple", "bosses" })]
         MorseAMazeMorseCodeWord,
@@ -1986,8 +1982,9 @@
         [AnswerGenerator.Integers(0, 10)]
         RaidingTemplesStartingCommonPool,
 
-        [SouvenirQuestion("What was the {1} coupled car in {0}?", "Railway Cargo Loading", OneColumn4Answers, "Baggage Car", "Closed Coach", "Dining Car", "Dome Car", "Double-decker", "Open Coach", "Sleeper Car", "Auto Rack", "Box Car", "Coil Car", "Flat Car", "Hopper Car", "Refrigerated Wagon", "Schnabel Car", "Stock Car", "Tank Car", "Crew Car", "Traveling Post Office", TranslateFormatArgs = new[] { true },
-            ExampleExtraFormatArguments = new[] { "second", "third", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was the {1} car in {0}?", "Railway Cargo Loading", TwoColumns4Answers, Type = AnswerType.Sprites,
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1,
+            TranslateFormatArgs = new[] { true })]
         RailwayCargoLoadingCars,
         [SouvenirQuestion("Which freight table rule {1} in {0}?", "Railway Cargo Loading", OneColumn4Answers, "Over 150 lumber/75 logs", "Over 100 sheet metal", "Over 250 crude oil", "Over 400 mail", "Over 30 livestock", "Over 600 milk/water/resin", "Over 100 liquid fuel", "Over 700 industrial gas", "Over 150 food", "Over 100 coal", "Over 500 loose bulk (excl. coal)", "Over 7 large objects", "Over 5 automobiles", "Over 700 industrial gas",
             ExampleExtraFormatArguments = new[] { "was met", "wasn’t met" }, ExampleExtraFormatArgumentGroupSize = 1)]

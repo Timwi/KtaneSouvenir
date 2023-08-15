@@ -135,7 +135,7 @@ public partial class SouvenirModule
                 }
 
                 tmp.Apply(false, true);
-                _temporaryQuestions.Add(tmp);
+                _questionTexturesToDestroyLater.Add(tmp);
                 tex = tmp;
             }
 

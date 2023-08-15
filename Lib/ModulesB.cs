@@ -237,7 +237,6 @@ public partial class SouvenirModule
         string[] flavors = new[] { "Not Wobbly Orange", "Not Wobbly Yellow", "Not Wobbly Green", "Wobbly Orange", "Wobbly Yellow", "Wobbly Green" };
         QandA beansQ(int i) => makeQuestion(Question.BeansColors, _Beans,
             questionSprite: Grid.GenerateGridSprite(3, 3, i),
-            formatArgs: new string[] { (i + 1).ToString() },
             correctAnswers: new string[] { flavors[bns[i]] });
         addQuestions(module, Enumerable.Range(0, 9).Where(i => eaten[i].transform.localScale.magnitude <= Mathf.Epsilon).Select(beansQ));
     }
@@ -486,7 +485,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Blinkstop);
 
-        var flashes = GetArrayField<char>(comp, "prevledcols").Get(arr => 
+        var flashes = GetArrayField<char>(comp, "prevledcols").Get(arr =>
             !GetAnswers(Question.BlinkstopNumberOfFlashes).Contains(arr.Length.ToString()) ? "unexpected flash count" :
             arr.Any(f => !"PMYC".Contains(f)) ? "expected only P, M, Y, or C flash values" : null);
         var leastFlashedColour = new[] { "Multicolor", "Purple", "Yellow", "Cyan" }.OrderBy(col => flashes.Count(f => f == col[0])).First();
@@ -542,7 +541,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_BlueArrows);
 
         string[] letters = { "CA", "C1", "CB", "C8", "CF", "C4", "CE", "C6", "3A", "31", "3B", "38", "3F", "34", "3E", "36", "GA", "G1", "GB", "G8", "GF", "G4", "GE", "G6", "7A", "71", "7B", "78", "7F", "74", "7E", "76", "DA", "D1", "DB", "D8", "DF", "D4", "DE", "D6", "5A", "51", "5B", "58", "5F", "54", "5E", "56", "HA", "H1", "HB", "H8", "HF", "H4", "HE", "H6", "2A", "21", "2B", "28", "2F", "24", "2E", "26" };
-        string coord = fldCoord.Get(v => !letters.Contains(v) ? $"expected one of: [{letters.JoinString(", ")}]": null);
+        string coord = fldCoord.Get(v => !letters.Contains(v) ? $"expected one of: [{letters.JoinString(", ")}]" : null);
         addQuestion(module, Question.BlueArrowsInitialLetters, correctAnswers: new[] { coord });
     }
 
@@ -606,8 +605,8 @@ public partial class SouvenirModule
         string[] validDirections = { "top left", "top right", "bottom left", "bottom right" };
         string[] validLabels = { "BOB", "CAR", "CLR", "IND", "FRK", "FRQ", "MSA", "NSA", "SIG", "SND", "TRN", "BUB", "DOG", "ETC", "KEY" };
 
-        int[] indicators = fldIndicators.Get(expectedLength: 4, validator: idn => idn < 0 || idn >= validLabels.Length ? $"expected 0–{validLabels.Length - 1}": null);
-        int[] flashes = fldFlashes.Get(expectedLength: 5, validator: fn => fn < 0 || fn >= validDirections.Length ? $"expected 0–{validDirections.Length - 1}": null);
+        int[] indicators = fldIndicators.Get(expectedLength: 4, validator: idn => idn < 0 || idn >= validLabels.Length ? $"expected 0–{validLabels.Length - 1}" : null);
+        int[] flashes = fldFlashes.Get(expectedLength: 5, validator: fn => fn < 0 || fn >= validDirections.Length ? $"expected 0–{validDirections.Length - 1}" : null);
 
         // To provide preferred wrong answers, mostly.
         string[] labelsOnModule = { validLabels[indicators[0]], validLabels[indicators[1]], validLabels[indicators[2]], validLabels[indicators[3]] };
@@ -632,7 +631,7 @@ public partial class SouvenirModule
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
 
-        var map = GetField<char[,]>(comp, "letterMap").Get(m => m.GetLength(0) != 10 || m.GetLength(1) != 10 ? $"size was {m.GetLength(0)}×{m.GetLength(1)}, expected 10×10": null);
+        var map = GetField<char[,]>(comp, "letterMap").Get(m => m.GetLength(0) != 10 || m.GetLength(1) != 10 ? $"size was {m.GetLength(0)}×{m.GetLength(1)}, expected 10×10" : null);
         var visible = GetField<string>(comp, "visableLetters", isPublic: true).Get(v => v.Length != 4 ? "expected length 4" : null);
         var verOffset = GetIntField(comp, "verOffset").Get(min: 0, max: 6);
         var horOffset = GetIntField(comp, "horOffset").Get(min: 0, max: 6);
@@ -948,8 +947,8 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_ButtonSequence);
 
         var panelInfo = GetField<Array>(comp, "PanelInfo").Get(arr =>
-            arr.Rank != 2 ? $"has rank {arr.Rank}, expected 2":
-            arr.GetLength(1) != 3 ? $"GetLength(1) == {arr.GetLength(1)}, expected 3":
+            arr.Rank != 2 ? $"has rank {arr.Rank}, expected 2" :
+            arr.GetLength(1) != 3 ? $"GetLength(1) == {arr.GetLength(1)}, expected 3" :
             Enumerable.Range(0, arr.GetLength(0)).Any(x => Enumerable.Range(0, arr.GetLength(1)).Any(y => arr.GetValue(x, y) == null)) ? "contains null" : null);
 
         var obj = panelInfo.GetValue(0, 0);
@@ -958,7 +957,7 @@ public partial class SouvenirModule
         var colorOccurrences = new Dictionary<int, int>();
         for (int i = panelInfo.GetLength(0) - 1; i >= 0; i--)
             for (int j = 0; j < 3; j++)
-                colorOccurrences.IncSafe(fldColor.GetFrom(panelInfo.GetValue(i, j), v => v < 0 || v >= colorNames.Length ? $"out of range; colorNames.Length={colorNames.Length} ([{colorNames.JoinString(", ")}])": null));
+                colorOccurrences.IncSafe(fldColor.GetFrom(panelInfo.GetValue(i, j), v => v < 0 || v >= colorNames.Length ? $"out of range; colorNames.Length={colorNames.Length} ([{colorNames.JoinString(", ")}])" : null));
 
         addQuestions(module, colorOccurrences.Select(kvp =>
             makeQuestion(Question.ButtonSequencesColorOccurrences, _ButtonSequence,

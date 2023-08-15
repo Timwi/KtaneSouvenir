@@ -35,20 +35,35 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(_RailwayCargoLoading);
 
-        var trainCars = GetField<Array>(comp, "_train").Get(ar => ar.Length != 15 ? "expected length 15" : null);
-        var freightTableRules = GetField<Array>(comp, "_freightTable").Get(ar => ar.Length != 14 ? "expected length 14" : null);
+        // We need to take a copy of the sprites from the module in order to change the ‘pixelsPerUnit’ and ‘pivot’ properties.
+        var allTrainCars = GetField<Array>(comp, "_trainCars").Get();
+        var fldCarAppearance = GetField<Sprite>(allTrainCars.GetValue(0), "Appearance", isPublic: true);
+        var fldCarFriendlyName = GetField<string>(allTrainCars.GetValue(0), "FriendlyName", isPublic: true);
+        var carSpriteDic = allTrainCars.Cast<object>()
+            .Select(car => (sprite: fldCarAppearance.GetFrom(car), name: fldCarFriendlyName.GetFrom(car)))
+            .ToDictionary(tup => tup.sprite, tup =>
+            {
+                var newSprite = Sprite.Create(tup.sprite.texture, tup.sprite.rect, new Vector2(0, .5f), 420);
+                newSprite.name = tup.name;
+                return newSprite;
+            });
+        var allCarSprites = carSpriteDic.Values.ToArray();
+
+        var trainCars = GetField<Array>(comp, "_train")
+            .Get(ar => ar.Length != 15 ? "expected length 15" : null)
+            .Cast<object>()
+            .Select(car => carSpriteDic[fldCarAppearance.GetFrom(car)])
+            .ToArray();
 
         var qs = new List<QandA>();
 
-        // Ask about the correctly connected cars
-        var fldCarName = GetField<string>(trainCars.GetValue(0), "FriendlyName", isPublic: true);
-        var connectedCars = new string[13];
-        for (int i = 1; i < 14; i++)
-            connectedCars[i - 1] = fldCarName.GetFrom(trainCars.GetValue(i));
-        for (int i = 0; i < 13; i++)
-            qs.Add(makeQuestion(Question.RailwayCargoLoadingCars, _RailwayCargoLoading, formatArgs: new[] { ordinal(i + 2) }, correctAnswers: new[] { connectedCars[i] }, preferredWrongAnswers: connectedCars));
+        // Ask about the correctly connected cars/locomotives
+        for (int i = 0; i < 14; i++)    // skip 15 because it’s always the Caboose
+            qs.Add(makeQuestion(Question.RailwayCargoLoadingCars, _RailwayCargoLoading, formatArgs: new[] { ordinal(i + 1) },
+                correctAnswers: new[] { trainCars[i] }, preferredWrongAnswers: allCarSprites));
 
         // Ask about the met or unmet freight table rules
+        var freightTableRules = GetField<Array>(comp, "_freightTable").Get(ar => ar.Length != 14 ? "expected length 14" : null);
         var fldTableRuleMet = GetIntField(freightTableRules.GetValue(0), "_metAtStage", isPublic: false);
         var fldTableRuleResource = GetField<object>(freightTableRules.GetValue(0), "_resource", isPublic: false);
         var fldTableRuleResourceName = GetField<string>(fldTableRuleResource.Get(), "DisplayName", isPublic: true);
