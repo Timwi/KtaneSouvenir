@@ -544,7 +544,7 @@ public partial class SouvenirModule
         {
             stageRules[i] = rules.Cast<object>().IndexOf(rule => fldCheck.GetFrom(rule)(seqs[i]));
             if (stageRules[i] == -1)
-                throw new AbandonModuleException($"Apparently none of the criteria applies to Stage {_moduleId} ({i + 1}).");
+                throw new AbandonModuleException($"Apparently none of the criteria applies to Stage {i + 1} ([{seqs[i].Select(ix => colors[ix]).JoinString(", ")}]).");
         }
 
         // Now set the questions
