@@ -292,21 +292,15 @@ public partial class SouvenirModule : MonoBehaviour
             if (Application.isEditor)
             {
                 // Testing in Unity
-                var sb = new StringBuilder();
                 foreach (var entry in _attributes)
                 {
                     var (q, attr) = (entry.Key, entry.Value);
                     if (attr.Type != AnswerType.Sprites && attr.Type != AnswerType.Grid && (attr.AllAnswers == null || attr.AllAnswers.Length == 0) &&
                         (attr.ExampleAnswers == null || attr.ExampleAnswers.Length == 0) && attr.AnswerGenerator == null)
-                    {
-                        Debug.LogErrorFormat("<Souvenir #{0}> Question {1} has no answers. Specify either SouvenirQuestionAttribute.AllAnswers or SouvenirQuestionAttribute.ExampleAnswers (with preferredWrongAnswers in-game), or add an AnswerGeneratorAttribute to the question enum value.", _moduleId, q);
-                        sb.AppendLine($@"""{Regex.Replace(Regex.Escape(attr.QuestionText), @"\\\{\d+\}", m => m.Value == @"\{0}" ? attr.ModuleNameWithThe : ".*")}"",");
-                    }
+                        Debug.LogError($"<Souvenir #{_moduleId}> Question {q} has no answers. Specify either SouvenirQuestionAttribute.AllAnswers or SouvenirQuestionAttribute.ExampleAnswers (with preferredWrongAnswers in-game), or add an AnswerGeneratorAttribute to the question enum value.");
                     if (attr.TranslateFormatArgs != null && attr.TranslateFormatArgs.Length != attr.ExampleExtraFormatArgumentGroupSize)
-                        Debug.LogErrorFormat("<Souvenir #{0}> Question {1}: The length of the ‘{2}’ array must match ‘{3}’.", _moduleId, q, nameof(attr.TranslateFormatArgs), nameof(attr.ExampleExtraFormatArgumentGroupSize));
+                        Debug.LogError($"<Souvenir #{_moduleId}> Question {q}: The length of the ‘{nameof(attr.TranslateFormatArgs)}’ array must match ‘{nameof(attr.ExampleExtraFormatArgumentGroupSize)}’.");
                 }
-                if (sb.Length > 0)
-                    Debug.Log(sb.ToString());
 
                 Debug.LogFormat(this, "<Souvenir #{0}> Entering Unity testing mode.", _moduleId);
                 _exampleQuestions = Ut.GetEnumValues<Question>();
@@ -350,7 +344,7 @@ public partial class SouvenirModule : MonoBehaviour
     {
         if (!_attributes.TryGetValue(_exampleQuestions[_curExampleQuestion], out var attr))
         {
-            Debug.LogErrorFormat("<Souvenir #{1}> Error: Question {0} has no attribute.", _exampleQuestions[_curExampleQuestion], _moduleId);
+            Debug.LogError($"<Souvenir #{_moduleId}> Error: Question {_exampleQuestions[_curExampleQuestion]} has no attribute.");
             return;
         }
         if (attr.ExampleExtraFormatArguments != null && attr.ExampleExtraFormatArguments.Length > 0 && attr.ExampleExtraFormatArgumentGroupSize > 0)
@@ -413,7 +407,7 @@ public partial class SouvenirModule : MonoBehaviour
         }
         catch (FormatException e)
         {
-            Debug.LogErrorFormat("<Souvenir #{3}> FormatException {0}\nQuestionText={1}\nfmt=[{2}]", e.Message, attr.QuestionText, fmt.JoinString(", ", "\"", "\""), _moduleId);
+            Debug.LogError($"<Souvenir #{_moduleId}> FormatException {e.Message}\nQuestionText={attr.QuestionText}\nfmt=[{fmt.JoinString(", ", "\"", "\"")}]");
         }
     }
 
@@ -983,7 +977,7 @@ public partial class SouvenirModule : MonoBehaviour
         var h = correctAnswers[0].Height;
         if (correctAnswers.Concat(preferredWrongAnswers ?? Enumerable.Empty<Coord>()).Any(c => c.Width != w || c.Height != h))
         {
-            Debug.LogErrorFormat("<Souvenir #{0}> The module handler for {1} provided grid coordinates for different sizes of grids.", _moduleId, moduleKey);
+            Debug.LogError($"<Souvenir #{_moduleId}> The module handler for {moduleKey} provided grid coordinates for different sizes of grids.");
             throw new InvalidOperationException();
         }
         return makeQuestion(question, moduleKey,
@@ -997,12 +991,12 @@ public partial class SouvenirModule : MonoBehaviour
     {
         if (!_attributes.TryGetValue(question, out var attr))
         {
-            Debug.LogErrorFormat("<Souvenir #{1}> Question {0} has no SouvenirQuestionAttribute.", question, _moduleId);
+            Debug.LogError($"<Souvenir #{_moduleId}> Question {question} has no SouvenirQuestionAttribute.");
             return null;
         }
         if (!acceptableTypes.Contains(attr.Type))
         {
-            Debug.LogErrorFormat("<Souvenir #{0}> The module handler for {1} attempted to generate question {2} (type={3}) but used the wrong answer type.", _moduleId, moduleKey, question, attr.Type);
+            Debug.LogError($"<Souvenir #{_moduleId}> The module handler for {moduleKey} attempted to generate question {question} (type={attr.Type}) but used the wrong answer type.");
             return null;
         }
 
@@ -1013,8 +1007,7 @@ public partial class SouvenirModule : MonoBehaviour
             var inconsistency = correctAnswers.Except(allAnswers).FirstOrDefault();
             if (inconsistency != null)
             {
-                Debug.LogErrorFormat("<Souvenir #{2}> Question {0}: invalid answer: {1}.\nallAnswers: {3}; [{4}]\ncorrectAnswers: [{5}]", question, inconsistency.ToString() ?? "<null>", _moduleId,
-                    allAnswersWasNull ? "was null" : "was not null", allAnswers.Select(s => $"{s} ({s.GetHashCode()})").JoinString(", "), correctAnswers.Select(s => $"{s} ({s.GetHashCode()})").JoinString(", "));
+                Debug.LogError($"<Souvenir #{_moduleId}> Question {question}: invalid answer: {inconsistency.ToString() ?? "<null>"}.\nallAnswers: {(allAnswersWasNull ? "was null" : "was not null")}; [{allAnswers.Select(s => $"{s} ({s.GetHashCode()})").JoinString(", ")}]\ncorrectAnswers: [{correctAnswers.Select(s => $"{s} ({s.GetHashCode()})").JoinString(", ")}]");
                 return null;
             }
             if (preferredWrongAnswers != null)
@@ -1022,7 +1015,7 @@ public partial class SouvenirModule : MonoBehaviour
                 var inconsistency2 = preferredWrongAnswers.Except(allAnswers).FirstOrDefault();
                 if (inconsistency2 != null)
                 {
-                    Debug.LogErrorFormat("<Souvenir #{2}> Question {0}: invalid preferred wrong answer: {1}.", question, inconsistency2.ToString() ?? "<null>", _moduleId);
+                    Debug.LogError($"<Souvenir #{_moduleId}> Question {question}: invalid preferred wrong answer: {inconsistency2.ToString() ?? "<null>"}.");
                     return null;
                 }
             }
@@ -1033,7 +1026,7 @@ public partial class SouvenirModule : MonoBehaviour
         {
             if (preferredWrongAnswers == null || preferredWrongAnswers.Length == 0)
             {
-                Debug.LogErrorFormat("<Souvenir #{0}> Question {1} has no answers. You must specify either the full set of possible answers in SouvenirQuestionAttribute.AllAnswers, provide possible wrong answers through the preferredWrongAnswers parameter, or add an AnswerGeneratorAttribute to the question enum value.", _moduleId, question);
+                Debug.LogError($"<Souvenir #{_moduleId}> Question {question} has no answers. You must specify either the full set of possible answers in SouvenirQuestionAttribute.AllAnswers, provide possible wrong answers through the preferredWrongAnswers parameter, or add an AnswerGeneratorAttribute to the question enum value.");
                 return null;
             }
             answers.AddRange(preferredWrongAnswers.Except(correctAnswers).Distinct());
@@ -1049,7 +1042,7 @@ public partial class SouvenirModule : MonoBehaviour
                     answers.AddRange(attr.AnswerGenerator.GetAnswers(this).Except(answers.Concat(correctAnswers) as IEnumerable<string>).Distinct().Take(attr.NumAnswers - 1 - answers.Count) as IEnumerable<T>);
                 if (answers.Count == 0 && (preferredWrongAnswers == null || preferredWrongAnswers.Length == 0))
                 {
-                    Debug.LogErrorFormat("<Souvenir #{0}> Question {1}’s answer generator did not generate any answers.", _moduleId, question);
+                    Debug.LogError($"<Souvenir #{_moduleId}> Question {question}’s answer generator did not generate any answers.");
                     return null;
                 }
             }
@@ -1068,7 +1061,7 @@ public partial class SouvenirModule : MonoBehaviour
                 answers.AddRange(attr.SpriteAnswerGenerator.GetAnswers(this).Except(answers.Concat(correctAnswers) as IEnumerable<Sprite>).Distinct().Take(attr.NumAnswers - 1 - answers.Count) as IEnumerable<T>);
             if (answers.Count == 0 && (preferredWrongAnswers == null || preferredWrongAnswers.Length == 0))
             {
-                Debug.LogErrorFormat("<Souvenir #{0}> Question {1}’s answer generator did not generate any answers.", _moduleId, question);
+                Debug.LogError($"<Souvenir #{_moduleId}> Question {question}’s answer generator did not generate any answers.");
                 return null;
             }
             if (preferredWrongAnswers != null)
@@ -1087,7 +1080,7 @@ public partial class SouvenirModule : MonoBehaviour
         var numSolved = _modulesSolved.Get(moduleKey);
         if (numSolved < 1)
         {
-            Debug.LogErrorFormat("<Souvenir #{0}> Abandoning {1} ({2}) because you forgot to increment the solve count.", _moduleId, attr.ModuleName, moduleKey);
+            Debug.LogError($"<Souvenir #{_moduleId}> Abandoning {attr.ModuleName} ({moduleKey}) because you forgot to increment the solve count.");
             return null;
         }
 

@@ -386,9 +386,9 @@ public partial class SouvenirModule
                 var bindingFlags = BindingFlags.Public | BindingFlags.Instance;
                 var mths = interfaceType.GetMethods(bindingFlags).Where(m => m.Name == "get_Name" && m.GetParameters().Length == 0 && typeof(string).IsAssignableFrom(m.ReturnType)).Take(2).ToArray();
                 if (mths.Length == 0)
-                    throw new AbandonModuleException($"Type {interfaceType} does not contain {"public"} method {name} with return type {"string"} and {0} parameters.");
+                    throw new AbandonModuleException($"Type {interfaceType} does not contain public method {name} with return type string and 0 parameters.");
                 if (mths.Length > 1)
-                    throw new AbandonModuleException($"Type {interfaceType} contains multiple {"public"} methods {name} with return type {"string"} and {0} parameters.");
+                    throw new AbandonModuleException($"Type {interfaceType} contains multiple public methods {name} with return type string and 0 parameters.");
                 mthGetName = new MethodInfo<string>(null, mths[0]);
             }
 
