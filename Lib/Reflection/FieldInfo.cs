@@ -22,12 +22,12 @@ namespace Souvenir.Reflection
 
         public int Get(int? min = null, int? max = null)
         {
-            return Get(v => (min != null && v < min.Value) || (max != null && v > max.Value) ? string.Format("expected {0}–{1}", min, max) : null);
+            return Get(v => (min != null && v < min.Value) || (max != null && v > max.Value) ? $"expected {min}–{max}": null);
         }
 
         public int GetFrom(object obj, int? min = null, int? max = null)
         {
-            return GetFrom(obj, v => (min != null && v < min.Value) || (max != null && v > max.Value) ? string.Format("expected {0}–{1}", min, max) : null);
+            return GetFrom(obj, v => (min != null && v < min.Value) || (max != null && v > max.Value) ? $"expected {min}–{max}": null);
         }
     }
 
@@ -56,18 +56,15 @@ namespace Souvenir.Reflection
             if (collection == null)
                 return collection;
             if (collection.Count < minLength || (maxLength != null && collection.Count > maxLength.Value))
-                throw new AbandonModuleException("Collection field {0}.{1} has length {2} (expected {3}{4}).", Field.DeclaringType.FullName, Field.Name, collection.Count,
-                    maxLength == null ? "at least " : minLength.ToString(),
-                    maxLength == null ? minLength.ToString() : maxLength.Value != minLength ? "–" + maxLength.Value : "");
+                throw new AbandonModuleException($"Collection field {Field.DeclaringType.FullName}.{Field.Name} has length {collection.Count} (expected {(maxLength == null ? "at least " : minLength.ToString())}{(maxLength == null ? minLength.ToString() : maxLength.Value != minLength ? "–" + maxLength.Value : "")}).");
             int pos;
             if (!nullContentAllowed && (pos = collection.IndexOf(v => v == null)) != -1)
-                throw new AbandonModuleException("Collection field {0}.{1} (length {2}) contained a null value at index {3}.", Field.DeclaringType.FullName, Field.Name, collection.Count, pos);
+                throw new AbandonModuleException($"Collection field {Field.DeclaringType.FullName}.{Field.Name} (length {collection.Count}) contained a null value at index {pos}.");
             string validatorFailMessage;
             if (validator != null)
                 for (var ix = 0; ix < collection.Count; ix++)
                     if ((validatorFailMessage = validator(collection[ix])) != null)
-                        throw new AbandonModuleException("Collection field {0}.{1} (length {2}) contained value {3} at index {4} that failed the validator: {5}.",
-                            Field.DeclaringType.FullName, Field.Name, collection.Count, stringify(collection[ix]), ix, validatorFailMessage);
+                        throw new AbandonModuleException($"Collection field {Field.DeclaringType.FullName}.{Field.Name} (length {collection.Count}) contained value {stringify(collection[ix])} at index {ix} that failed the validator: {validatorFailMessage}.");
             return collection;
         }
 
@@ -78,7 +75,7 @@ namespace Souvenir.Reflection
                 return collection;
             var pos = collection.IndexOf(v => v == null);
             if (pos != -1)
-                throw new AbandonModuleException("Collection field {0}.{1} (length {2}) contained a null value at index {3}.", Field.DeclaringType.FullName, Field.Name, collection.Count, pos);
+                throw new AbandonModuleException($"Collection field {Field.DeclaringType.FullName}.{Field.Name} (length {collection.Count}) contained a null value at index {pos}.");
             return collection;
         }
 
@@ -89,7 +86,7 @@ namespace Souvenir.Reflection
                 return collection;
             var pos = collection.IndexOf(v => v == null);
             if (pos != -1)
-                throw new AbandonModuleException("Collection field {0}.{1} (length {2}) contained a null value at index {3}.", Field.DeclaringType.FullName, Field.Name, collection.Count, pos);
+                throw new AbandonModuleException($"Collection field {Field.DeclaringType.FullName}.{Field.Name} (length {collection.Count}) contained a null value at index {pos}.");
             return collection;
         }
     }

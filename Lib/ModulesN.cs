@@ -200,12 +200,11 @@ public partial class SouvenirModule
                     break;
                 var newDirections = fldDirections.Get();
                 if (newDirections.Count != 4)
-                    throw new AbandonModuleException("‘directions’ has unexpected length {1} (expected 4).", newDirections.Count);
+                    throw new AbandonModuleException($"‘directions’ has unexpected length {newDirections.Count} (expected 4).");
 
                 answers[newStage] = newDirections.IndexOf(directionsSorted[lookUp[centerDigit - 1][newStage] - 1]);
                 if (answers[newStage] == -1)
-                    throw new AbandonModuleException("‘directions’ ({0}) does not contain the value from ‘directionsSorted’ ({1}).",
-                        newDirections.JoinString(", "), directionsSorted[lookUp[centerDigit - 1][newStage] - 1]);
+                    throw new AbandonModuleException($"‘directions’ ({newDirections.JoinString(", ")}) does not contain the value from ‘directionsSorted’ ({directionsSorted[lookUp[centerDigit - 1][newStage] - 1]}).");
                 curStage = newStage;
             }
         }
@@ -498,13 +497,13 @@ public partial class SouvenirModule
         var fldMazeIndex = GetIntField(comp, "mazeIndex");
 
         var colours = GetAnswers(Question.NotSimazeMaze);
-        var startPositionArray = new[] { string.Format("({0}, {1})", colours[GetIntField(comp, "x").Get()], colours[GetIntField(comp, "y").Get()]) };
+        var startPositionArray = new[] { $"({colours[GetIntField(comp, "x").Get()]}, {colours[GetIntField(comp, "y").Get()]})"};
 
         while (!propSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_NotSimaze);
 
-        var goalPositionArray = new[] { string.Format("({0}, {1})", colours[GetIntField(comp, "goalX").Get()], colours[GetIntField(comp, "goalY").Get()]) };
+        var goalPositionArray = new[] { $"({colours[GetIntField(comp, "goalX").Get()]}, {colours[GetIntField(comp, "goalY").Get()]})"};
 
         addQuestions(module,
             makeQuestion(Question.NotSimazeMaze, _NotSimaze, correctAnswers: new[] { colours[fldMazeIndex.Get()] }),
@@ -588,7 +587,7 @@ public partial class SouvenirModule
         {
             var strings = GetAnswers(Question.NotTheButtonLightColor);
             if (lightColor <= 0 || lightColor > strings.Length)
-                throw new AbandonModuleException("‘LightColour’ is out of range ({0}).", lightColor);
+                throw new AbandonModuleException($"‘LightColour’ is out of range ({lightColor}).");
             addQuestion(module, Question.NotTheButtonLightColor, correctAnswers: new[] { strings[lightColor - 1] });
         }
         else

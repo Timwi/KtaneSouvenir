@@ -87,7 +87,7 @@ public partial class SouvenirModule
         {
             var m = Regex.Match(sq.sharedMaterial.name, @"^Color([0-5])$");
             if (!m.Success)
-                throw new AbandonModuleException("Expected material name “Color0–5”, got: “{0}”", sq.sharedMaterial.name);
+                throw new AbandonModuleException($"Expected material name “Color0–5”, got: “{sq.sharedMaterial.name}”");
             return makeQuestion(Question.YellowButtonColors, _YellowButton, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { colorNames[int.Parse(m.Groups[1].Value)] });
         }));
     }

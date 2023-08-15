@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Souvenir
 {
     public class Translation_eo : Translation
     {
         public override string FormatModuleName(string moduleName, bool addSolveCount, int numSolved, bool addThe) =>
-            addSolveCount ? string.Format("la {0} solvita {1}", moduleName, ordinal(numSolved, adv: true)) : addThe ? "La\u00a0" + moduleName : moduleName;
+            addSolveCount ? $"la {moduleName} solvita {ordinal(numSolved, adv: true)}": addThe ? "La\u00a0" + moduleName : moduleName;
         public override string Ordinal(int number) => ordinal(number, adv: false);
         private string ordinal(int num, bool adv = false) => (num < 0 ? $"({num})" : num switch
         {

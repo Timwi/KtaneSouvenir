@@ -56,7 +56,7 @@ public partial class SouvenirModule
         {
             var display = fldScreen.Get().text;
             if (display.Length != 3)
-                throw new AbandonModuleException("The screen contains something other than three characters: “{0}” ({1} characters).", display, display.Length);
+                throw new AbandonModuleException($"The screen contains something other than three characters: “{display}” ({display.Length} characters).");
             letters = display[0] + "" + display[2];
             wrongAnswers.Add(letters);
             yield return new WaitForSeconds(.1f);
@@ -108,7 +108,7 @@ public partial class SouvenirModule
         var exitPos = GetArrayField<int>(comp, "exitlocation").Get(expectedLength: 3);
 
         if (exitPos[1] < 0 || exitPos[1] > 6 || exitPos[2] < 0 || exitPos[2] > 6)
-            throw new AbandonModuleException("‘exitPos’ contains invalid coordinate: ({0},{1})", exitPos[2], exitPos[1]);
+            throw new AbandonModuleException($"‘exitPos’ contains invalid coordinate: ({exitPos[2]},{exitPos[1]})");
 
         string[] colors = { "red", "green", "blue" };
 
@@ -242,14 +242,14 @@ public partial class SouvenirModule
         var number = GetIntField(comp, "number").Get(1, 7);
 
         if (countries.Count != 7)
-            throw new AbandonModuleException("‘countries’ has length {0} (expected 7).", countries.Count);
+            throw new AbandonModuleException($"‘countries’ has length {countries.Count} (expected 7).");
 
         var propCountryName = GetProperty<string>(mainCountry, "CountryName", isPublic: true);
         var mainCountrySprite = FlagsSprites.FirstOrDefault(spr => spr.name == propCountryName.GetFrom(mainCountry));
         var otherCountrySprites = countries.Cast<object>().Select(country => FlagsSprites.FirstOrDefault(spr => spr.name == propCountryName.GetFrom(country))).ToArray();
 
         if (mainCountrySprite == null || otherCountrySprites.Any(spr => spr == null))
-            throw new AbandonModuleException("Abandoning Flags because one of the countries has a name with no corresponding sprite: main country = {0}, other countries = [{1}].", propCountryName.GetFrom(mainCountry), countries.Cast<object>().Select(country => propCountryName.GetFrom(country)).JoinString(", "));
+            throw new AbandonModuleException($"Abandoning Flags because one of the countries has a name with no corresponding sprite: main country = {propCountryName.GetFrom(mainCountry)}, other countries = [{countries.Cast<object>().Select(country => propCountryName.GetFrom(country)).JoinString(", ")}].");
 
         while (fldCanInteract.Get())
             yield return new WaitForSeconds(.1f);
@@ -384,7 +384,7 @@ public partial class SouvenirModule
             yield break;
         }
 
-        var myCylinders = fldCylinders.Get(v => v.Rank != 2 || v.GetLength(0) != maxStage + 1 || v.GetLength(1) != 3 ? string.Format("expected a {0}×3 2D array", maxStage + 1) : null);
+        var myCylinders = fldCylinders.Get(v => v.Rank != 2 || v.GetLength(0) != maxStage + 1 || v.GetLength(1) != 3 ? $"expected a {maxStage + 1}×3 2D array": null);
         var myFigures = fldFigures.Get();
         _facCylinders.Add(myCylinders);
         _facFigures.Add(myFigures);
@@ -589,7 +589,7 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(_ForgetsUltimateShowdown);
         if (methods.Count != 4)
-            throw new AbandonModuleException("‘methods’ had an invalid length: {0}, expected 4", methods.Count);
+            throw new AbandonModuleException($"‘methods’ had an invalid length: {methods.Count}, expected 4");
 
         var answer = GetField<string>(comp, "_answer").Get();
         var initial = GetField<string>(comp, "_initialNumber").Get();
@@ -635,7 +635,7 @@ public partial class SouvenirModule
 
         var allLists = new IList[] { _ftcGearNumbers, _ftcLargeDisplays, _ftcSineNumbers, _ftcGearColors, _ftcRuleColors };
         if (allLists.Any(l => l.Count != _ftcGearColors.Count))
-            throw new AbandonModuleException("One or more of the lists of sets of information are not the same length as the others. AllGears: {0}, AllLargeDisplays: {1}, AllSineNumbers: {2}, AllGearColors: {3}, AllRuleColors: {4}", _ftcGearNumbers.Count, _ftcLargeDisplays.Count, _ftcSineNumbers.Count, _ftcGearColors.Count, _ftcRuleColors.Count);
+            throw new AbandonModuleException($"One or more of the lists of sets of information are not the same length as the others. AllGears: {_ftcGearNumbers.Count}, AllLargeDisplays: {_ftcLargeDisplays.Count}, AllSineNumbers: {_ftcSineNumbers.Count}, AllGearColors: {_ftcGearColors.Count}, AllRuleColors: {_ftcRuleColors.Count}");
 
         if (myGearColors.Count == 0)
         {
@@ -650,21 +650,21 @@ public partial class SouvenirModule
                     throw new AbandonModuleException("One or more of the lists of sets of information have different lengths across modules.");
 
         if (!new[] { myLargeDisplays.Count, mySineNumbers.Count, myGearColors.Count, myRuleColors.Count }.All(x => x == myGearNumbers.Count))
-            throw new AbandonModuleException("One or more of the lists of information for this module are not the same length as the others. Gears: {0}, LargeDisplays: {1}, SineNumbers: {2}, GearColors: {3}, RuleColors: {4}", myGearNumbers.Count, myLargeDisplays.Count, mySineNumbers.Count, myGearColors.Count, myRuleColors.Count);
+            throw new AbandonModuleException($"One or more of the lists of information for this module are not the same length as the others. Gears: {myGearNumbers.Count}, LargeDisplays: {myLargeDisplays.Count}, SineNumbers: {mySineNumbers.Count}, GearColors: {myGearColors.Count}, RuleColors: {myRuleColors.Count}");
 
         var colors = GetAnswers(Question.ForgetTheColorsGearColor);
         for (int i = 0; i < myGearNumbers.Count; i++)
         {
             if (myGearNumbers[i] < 0 || myGearNumbers[i] > 9)
-                throw new AbandonModuleException("‘gear[{0}]’ had an unexpected value. (Expected 0-9): {1}", i, myGearNumbers[i]);
+                throw new AbandonModuleException($"‘gear[{i}]’ had an unexpected value. (Expected 0-9): {myGearNumbers[i]}");
             if (myLargeDisplays[i] < 0 || myLargeDisplays[i] > 990)
-                throw new AbandonModuleException("‘largeDisplay[{0}]’ had an unexpected value. (Expected 0-990): {1}", i, myLargeDisplays[i]);
+                throw new AbandonModuleException($"‘largeDisplay[{i}]’ had an unexpected value. (Expected 0-990): {myLargeDisplays[i]}");
             if (mySineNumbers[i] < -99999 || mySineNumbers[i] > 99999)
-                throw new AbandonModuleException("‘sineNumber[{0}]’ had an unexpected value. (Expected (-99999)-99999): {1}", i, mySineNumbers[i]);
+                throw new AbandonModuleException($"‘sineNumber[{i}]’ had an unexpected value. (Expected (-99999)-99999): {mySineNumbers[i]}");
             if (!colors.Contains(myGearColors[i]))
-                throw new AbandonModuleException("‘gearColor[{0}]’ had an unexpected value. (Expected {1}): {2}", i, colors.JoinString(", "), mySineNumbers[i]);
+                throw new AbandonModuleException($"‘gearColor[{i}]’ had an unexpected value. (Expected {colors.JoinString(", ")}): {mySineNumbers[i]}");
             if (!colors.Contains(myRuleColors[i]))
-                throw new AbandonModuleException("‘ruleColor[{0}]’ had an unexpected value. (Expected {1}): {2}", i, colors.JoinString(", "), myRuleColors[i]);
+                throw new AbandonModuleException($"‘ruleColor[{i}]’ had an unexpected value. (Expected {colors.JoinString(", ")}): {myRuleColors[i]}");
         }
 
         var chosenStage = Rnd.Range(0, myGearNumbers.Count);

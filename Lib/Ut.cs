@@ -50,7 +50,7 @@ namespace Souvenir
         {
             var field = instance.GetType().GetAllFields().Single(f => f.Name == fieldName);
             if (!typeof(T).IsAssignableFrom(field.FieldType))
-                throw new InvalidOperationException(string.Format("Field is of type {1}, but was expected to be of type {0} (or derived from it).", typeof(T).FullName, field.FieldType.FullName));
+                throw new InvalidOperationException($"Field is of type {field.FieldType.FullName}, but was expected to be of type {typeof(T).FullName} (or derived from it).");
             return (T) field.GetValue(instance);
         }
 

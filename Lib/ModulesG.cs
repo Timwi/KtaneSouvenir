@@ -81,11 +81,10 @@ public partial class SouvenirModule
         var digits2 = GetField<GameObject>(comp, "Digits2", isPublic: true).Get().GetComponent<TextMesh>();
 
         if (display == null || digits1 == null || digits2 == null)
-            throw new AbandonModuleException("One of the three displays does not have a TextMesh ({0}, {1}, {2}).",
-                display == null ? "null" : "not null", digits1 == null ? "null" : "not null", digits2 == null ? "null" : "not null");
+            throw new AbandonModuleException($"One of the three displays does not have a TextMesh ({(display == null ? "null" : "not null")}, {(digits1 == null ? "null" : "not null")}, {(digits2 == null ? "null" : "not null")}).");
 
-        addQuestions(module, makeQuestion(Question.GamepadNumbers, _Gamepad, correctAnswers: new[] { string.Format("{0:00}:{1:00}", x, y) },
-            preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(i => string.Format("{0:00}:{1:00}", Rnd.Range(1, 99), Rnd.Range(1, 99))).Distinct().Take(6).ToArray()));
+        addQuestions(module, makeQuestion(Question.GamepadNumbers, _Gamepad, correctAnswers: new[] { $"{x:00}:{y:00}"},
+            preferredWrongAnswers: Enumerable.Range(0, int.MaxValue).Select(i => $"{Rnd.Range(1, 99):00}:{Rnd.Range(1, 99):00}").Distinct().Take(6).ToArray()));
         digits1.GetComponent<TextMesh>().text = "--";
         digits2.GetComponent<TextMesh>().text = "--";
     }
@@ -174,7 +173,7 @@ public partial class SouvenirModule
         var text = GetField<TextMesh>(comp, "GrayButtonText", isPublic: true).Get();
         var m = Regex.Match(text.text, @"^(\d), (\d)$");
         if (!m.Success)
-            throw new AbandonModuleException("Unexpected text on Gray Button display: {0}", text.text);
+            throw new AbandonModuleException($"Unexpected text on Gray Button display: {text.text}");
         _modulesSolved.IncSafe(_GrayButton);
 
         addQuestions(module,
@@ -239,9 +238,9 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_GreenArrows);
 
         if (!int.TryParse(numbers, out var number))
-            throw new AbandonModuleException("The screen is not an integer: “{0}”.", number);
+            throw new AbandonModuleException($"The screen is not an integer: “{number}”.");
         if (number < 0 || number > 99)
-            throw new AbandonModuleException("The number on the screen is out of range: number = {1}, expected 0-99", number);
+            throw new AbandonModuleException($"The number on the screen is out of range: number = {number}, expected 0-99");
 
         addQuestions(module, makeQuestion(Question.GreenArrowsLastScreen, _GreenArrows, correctAnswers: new[] { number.ToString("00") }));
     }

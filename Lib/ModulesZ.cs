@@ -62,7 +62,7 @@ public partial class SouvenirModule
         int index = fldIndex.Get(0, words.Length - 1);
         int stage = fldStage.Get();
         if (stage != 0)
-            throw new AbandonModuleException("‘solvedStages’ did not start at 0: was {0}.", stage);
+            throw new AbandonModuleException($"‘solvedStages’ did not start at 0: was {stage}.");
 
         var wordsAnswered = new List<int>();
         for (int i = 0; i < buttons.Length; i++)
@@ -87,7 +87,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_Zoni);
 
         if (wordsAnswered.Count != 3)
-            throw new AbandonModuleException("The received number of valid words was not 3: was {0}.", wordsAnswered.Count);
+            throw new AbandonModuleException($"The received number of valid words was not 3: was {wordsAnswered.Count}.");
 
         var textbox = GetField<TextMesh>(comp, "textBox", isPublic: true).Get();
         var font = textbox.font;

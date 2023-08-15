@@ -163,8 +163,7 @@ public partial class SouvenirModule
 
         var directions = new[] { "UP", "RIGHT", "DOWN", "LEFT" };
         if (correctMoves.Any(arr => arr == null || arr.Any(dir => !directions.Contains(dir))))
-            throw new AbandonModuleException("One of the move arrays has an unexpected value: [{0}].",
-                correctMoves.Select(arr => arr == null ? "null" : string.Format("[{0}]", arr.JoinString(", "))).JoinString(", "));
+            throw new AbandonModuleException($"One of the move arrays has an unexpected value: [{correctMoves.Select(arr => arr == null ? "null" : $"[{arr.JoinString(", ")}]").JoinString(", ")}].");
 
         var qs = new List<QandA>();
         for (int i = 0; i < 3; i++)
@@ -274,7 +273,7 @@ public partial class SouvenirModule
         var initialVirtualViewAngle = GetField<float>(comp, "initialVirtualViewAngle").Get();
         var initialAnglePos = Array.IndexOf(new[] { 0f, 90f, 180f, 270f }, initialVirtualViewAngle);
         if (initialAnglePos == -1)
-            throw new AbandonModuleException("‘initialVirtualViewAngle’ has unexpected value: {0}", initialVirtualViewAngle);
+            throw new AbandonModuleException($"‘initialVirtualViewAngle’ has unexpected value: {initialVirtualViewAngle}");
 
         addQuestion(module, Question.OrientationCubeInitialObserverPosition, correctAnswers: new[] { new[] { "front", "left", "back", "right" }[initialAnglePos] });
     }

@@ -24,7 +24,7 @@ namespace Souvenir
         public int CorrectIndex { get; private set; }
         public int NumAnswers => _answerSet.NumAnswers;
 
-        public string DebugString => string.Format("{0} — {1}", _question.DebugText, DebugAnswers.Select((a, ix) => string.Format(ix == CorrectIndex ? "[_{0}_]" : "{0}", a)).JoinString(" | "));
+        public string DebugString => $"{_question.DebugText} — {DebugAnswers.Select((a, ix) => string.Format(ix == CorrectIndex ? "[_{0}_]" : "{0}", a)).JoinString(" | ")}";
         public IEnumerable<string> DebugAnswers => _answerSet.DebugAnswers;
 
         public void SetQandAs(SouvenirModule souvenir)

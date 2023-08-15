@@ -15,10 +15,10 @@ namespace Souvenir.Reflection
         {
             var value = (T) Property.GetValue(_target, index);
             if (!nullAllowed && value == null)
-                throw new AbandonModuleException("Property {1}.{0} is null.", Property.Name, Property.DeclaringType.FullName);
+                throw new AbandonModuleException($"Property {Property.DeclaringType.FullName}.{Property.Name} is null.");
             string validatorFailMessage;
             if (validator != null && (validatorFailMessage = validator(value)) != null)
-                throw new AbandonModuleException("Property {0}.{1} with value {2} did not pass validity check: {3}.", Property.DeclaringType.FullName, Property.Name, stringify(value), validatorFailMessage);
+                throw new AbandonModuleException($"Property {Property.DeclaringType.FullName}.{Property.Name} with value {stringify(value)} did not pass validity check: {validatorFailMessage}.");
             return value;
         }
 
@@ -26,7 +26,7 @@ namespace Souvenir.Reflection
         {
             var t = (T) Property.GetValue(obj, index);
             if (!nullAllowed && t == null)
-                throw new AbandonModuleException("Property {1}.{0} is null.", Property.Name, Property.DeclaringType.FullName);
+                throw new AbandonModuleException($"Property {Property.DeclaringType.FullName}.{Property.Name} is null.");
             return t;
         }
 

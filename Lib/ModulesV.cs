@@ -53,7 +53,7 @@ public partial class SouvenirModule
             {
                 var goal = fldGoal.Get(expectedLength: 5)[4];
                 if (goal < 0 || goal >= 36)
-                    throw new AbandonModuleException("‘sequence[4]’ has value {0} (expected 0–35)", goal);
+                    throw new AbandonModuleException($"‘sequence[4]’ has value {goal} (expected 0–35)");
                 words[s] = goal / 6;
                 colors[s] = goal % 6;
             }
@@ -100,15 +100,14 @@ public partial class SouvenirModule
         var colorsName = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Purple" };
         var vectorCount = GetIntField(comp, "vectorct").Get(min: 1, max: 3);
         var colors = GetArrayField<string>(comp, "colors").Get(expectedLength: 24, nullContentAllowed: true);
-        var pickedVectors = GetArrayField<int>(comp, "vectorsPicked").Get(expectedLength: 3, validator: v => v < 0 || v >= colors.Length ? string.Format("expected range 0–{0}", colors.Length - 1) : null);
+        var pickedVectors = GetArrayField<int>(comp, "vectorsPicked").Get(expectedLength: 3, validator: v => v < 0 || v >= colors.Length ? $"expected range 0–{colors.Length - 1}": null);
         var nullIx = pickedVectors.Take(vectorCount).IndexOf(ix => colors[ix] == null);
         if (nullIx != -1)
-            throw new AbandonModuleException("‘colors[{0}]’ was null; ‘pickedVectors’ = [{1}]", pickedVectors[nullIx], pickedVectors.JoinString(", "));
+            throw new AbandonModuleException($"‘colors[{pickedVectors[nullIx]}]’ was null; ‘pickedVectors’ = [{pickedVectors.JoinString(", ")}]");
 
         for (int i = 0; i < vectorCount; i++)
             if (!colorsName.Contains(colors[pickedVectors[i]]))
-                throw new AbandonModuleException("‘colors[{1}]’ pointed to illegal color “{2}” (colors=[{3}], pickedVectors=[{4}], index {0}).",
-                    i, pickedVectors[i], colors[pickedVectors[i]], colors.JoinString(", "), pickedVectors.JoinString(", "));
+                throw new AbandonModuleException($"‘colors[{pickedVectors[i]}]’ pointed to illegal color “{colors[pickedVectors[i]]}” (colors=[{colors.JoinString(", ")}], pickedVectors=[{pickedVectors.JoinString(", ")}], index {i}).");
 
         var qs = new List<QandA>();
         for (int i = 0; i < vectorCount; i++)

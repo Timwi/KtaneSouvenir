@@ -84,7 +84,7 @@ public partial class SouvenirModule
         var colorIndex = fldColorIndex.Get(expectedLength: 8);
 
         if (displayTexts[0].Any(str => string.IsNullOrEmpty(str)))
-            throw new AbandonModuleException("'displayText[0]' contains null or an empty string: [{0}]", displayTexts[0].Select(str => str ?? "<null>").JoinString(", "));
+            throw new AbandonModuleException($"'displayText[0]' contains null or an empty string: [{displayTexts[0].Select(str => str ?? "<null>").JoinString(", ")}]");
 
         displayTexts[0] = displayTexts[0].Select(str => Regex.Replace(str, "#", " ")).ToArray();
 
@@ -547,7 +547,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_BlueArrows);
 
         string[] letters = { "CA", "C1", "CB", "C8", "CF", "C4", "CE", "C6", "3A", "31", "3B", "38", "3F", "34", "3E", "36", "GA", "G1", "GB", "G8", "GF", "G4", "GE", "G6", "7A", "71", "7B", "78", "7F", "74", "7E", "76", "DA", "D1", "DB", "D8", "DF", "D4", "DE", "D6", "5A", "51", "5B", "58", "5F", "54", "5E", "56", "HA", "H1", "HB", "H8", "HF", "H4", "HE", "H6", "2A", "21", "2B", "28", "2F", "24", "2E", "26" };
-        string coord = fldCoord.Get(v => !letters.Contains(v) ? string.Format("expected one of: [{0}]", letters.JoinString(", ")) : null);
+        string coord = fldCoord.Get(v => !letters.Contains(v) ? $"expected one of: [{letters.JoinString(", ")}]": null);
         addQuestion(module, Question.BlueArrowsInitialLetters, correctAnswers: new[] { coord });
     }
 
@@ -611,8 +611,8 @@ public partial class SouvenirModule
         string[] validDirections = { "top left", "top right", "bottom left", "bottom right" };
         string[] validLabels = { "BOB", "CAR", "CLR", "IND", "FRK", "FRQ", "MSA", "NSA", "SIG", "SND", "TRN", "BUB", "DOG", "ETC", "KEY" };
 
-        int[] indicators = fldIndicators.Get(expectedLength: 4, validator: idn => idn < 0 || idn >= validLabels.Length ? string.Format("expected 0–{0}", validLabels.Length - 1) : null);
-        int[] flashes = fldFlashes.Get(expectedLength: 5, validator: fn => fn < 0 || fn >= validDirections.Length ? string.Format("expected 0–{0}", validDirections.Length - 1) : null);
+        int[] indicators = fldIndicators.Get(expectedLength: 4, validator: idn => idn < 0 || idn >= validLabels.Length ? $"expected 0–{validLabels.Length - 1}": null);
+        int[] flashes = fldFlashes.Get(expectedLength: 5, validator: fn => fn < 0 || fn >= validDirections.Length ? $"expected 0–{validDirections.Length - 1}": null);
 
         // To provide preferred wrong answers, mostly.
         string[] labelsOnModule = { validLabels[indicators[0]], validLabels[indicators[1]], validLabels[indicators[2]], validLabels[indicators[3]] };
@@ -637,7 +637,7 @@ public partial class SouvenirModule
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
 
-        var map = GetField<char[,]>(comp, "letterMap").Get(m => m.GetLength(0) != 10 || m.GetLength(1) != 10 ? string.Format("size was {0}×{1}, expected 10×10", m.GetLength(0), m.GetLength(1)) : null);
+        var map = GetField<char[,]>(comp, "letterMap").Get(m => m.GetLength(0) != 10 || m.GetLength(1) != 10 ? $"size was {m.GetLength(0)}×{m.GetLength(1)}, expected 10×10": null);
         var visible = GetField<string>(comp, "visableLetters", isPublic: true).Get(v => v.Length != 4 ? "expected length 4" : null);
         var verOffset = GetIntField(comp, "verOffset").Get(min: 0, max: 6);
         var horOffset = GetIntField(comp, "horOffset").Get(min: 0, max: 6);
@@ -852,7 +852,7 @@ public partial class SouvenirModule
         int[] colors = GetArrayField<int>(comp, "colors").Get(expectedLength: 9);
 
         if (colors[4] < 0 || colors[4] >= colorNames.Length)
-            throw new AbandonModuleException("‘colors[4]’ pointed to illegal color: {0}.", colors[4]);
+            throw new AbandonModuleException($"‘colors[4]’ pointed to illegal color: {colors[4]}.");
 
         addQuestion(module, Question.BrushStrokesMiddleColor, correctAnswers: new[] { char.ToUpperInvariant(colorNames[colors[4]][0]) + colorNames[colors[4]].Substring(1) });
     }
@@ -937,7 +937,7 @@ public partial class SouvenirModule
                 1 => "blue",
                 2 => "yellow",
                 3 => "white",
-                _ => throw new AbandonModuleException("IndicatorColor is out of range ({0}).", color),
+                _ => throw new AbandonModuleException($"IndicatorColor is out of range ({color})."),
             };
             addQuestion(module, Question.ButtonLightColor, correctAnswers: new[] { answer });
         }
@@ -953,8 +953,8 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_ButtonSequence);
 
         var panelInfo = GetField<Array>(comp, "PanelInfo").Get(arr =>
-            arr.Rank != 2 ? string.Format("has rank {0}, expected 2", arr.Rank) :
-            arr.GetLength(1) != 3 ? string.Format("GetLength(1) == {0}, expected 3", arr.GetLength(1)) :
+            arr.Rank != 2 ? $"has rank {arr.Rank}, expected 2":
+            arr.GetLength(1) != 3 ? $"GetLength(1) == {arr.GetLength(1)}, expected 3":
             Enumerable.Range(0, arr.GetLength(0)).Any(x => Enumerable.Range(0, arr.GetLength(1)).Any(y => arr.GetValue(x, y) == null)) ? "contains null" : null);
 
         var obj = panelInfo.GetValue(0, 0);
@@ -963,7 +963,7 @@ public partial class SouvenirModule
         var colorOccurrences = new Dictionary<int, int>();
         for (int i = panelInfo.GetLength(0) - 1; i >= 0; i--)
             for (int j = 0; j < 3; j++)
-                colorOccurrences.IncSafe(fldColor.GetFrom(panelInfo.GetValue(i, j), v => v < 0 || v >= colorNames.Length ? string.Format("out of range; colorNames.Length={0} ([{1}])", colorNames.Length, colorNames.JoinString(", ")) : null));
+                colorOccurrences.IncSafe(fldColor.GetFrom(panelInfo.GetValue(i, j), v => v < 0 || v >= colorNames.Length ? $"out of range; colorNames.Length={colorNames.Length} ([{colorNames.JoinString(", ")}])": null));
 
         addQuestions(module, colorOccurrences.Select(kvp =>
             makeQuestion(Question.ButtonSequencesColorOccurrences, _ButtonSequence,

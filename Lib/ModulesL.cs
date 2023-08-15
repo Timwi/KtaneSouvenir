@@ -304,7 +304,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "LionsShareModule");
         var yearText = GetField<TextMesh>(comp, "Year", isPublic: true).Get().text;
         if (!int.TryParse(yearText, out var year) || year < 1 || year > 16)
-            throw new AbandonModuleException("Expected year number between 1 and 16; got: {0}", yearText);
+            throw new AbandonModuleException($"Expected year number between 1 and 16; got: {yearText}");
 
         var fldSolved = GetField<bool>(comp, "_isSolved");
         while (!fldSolved.Get())
@@ -374,7 +374,7 @@ public partial class SouvenirModule
                     : new { Label = fldLabel.GetFrom(obj), Color = fldColor.GetFrom(obj), Index = fldIndex.GetFrom(obj) };
             }).ToArray();
             if (infs.Length != 3 || infs.Any(inf => inf == null || inf.Label == null || inf.Color == null) || infs[0].Index != 0 || infs[1].Index != 1 || infs[2].Index != 2)
-                throw new AbandonModuleException("I got an unexpected value ([{0}]).", infs.Select(inf => inf == null ? "<null>" : inf.ToString()).JoinString(", "));
+                throw new AbandonModuleException($"I got an unexpected value ([{infs.Select(inf => inf == null ? "<null>" : inf.ToString()).JoinString(", ")}]).");
 
             var gateOperator = fldGateOperator.Get();
             if (mthGetName == null)
@@ -386,9 +386,9 @@ public partial class SouvenirModule
                 var bindingFlags = BindingFlags.Public | BindingFlags.Instance;
                 var mths = interfaceType.GetMethods(bindingFlags).Where(m => m.Name == "get_Name" && m.GetParameters().Length == 0 && typeof(string).IsAssignableFrom(m.ReturnType)).Take(2).ToArray();
                 if (mths.Length == 0)
-                    throw new AbandonModuleException("Type {0} does not contain {1} method {2} with return type {3} and {4} parameters.", interfaceType, "public", name, "string", 0);
+                    throw new AbandonModuleException($"Type {interfaceType} does not contain {"public"} method {name} with return type {"string"} and {0} parameters.");
                 if (mths.Length > 1)
-                    throw new AbandonModuleException("Type {0} contains multiple {1} methods {2} with return type {3} and {4} parameters.", interfaceType, "public", name, "string", 0);
+                    throw new AbandonModuleException($"Type {interfaceType} contains multiple {"public"} methods {name} with return type {"string"} and {0} parameters.");
                 mthGetName = new MethodInfo<string>(null, mths[0]);
             }
 
@@ -400,9 +400,9 @@ public partial class SouvenirModule
             if (stage != curStage || !clrs.SequenceEqual(colors[stage - 1]) || !lbls.SequenceEqual(labels[stage - 1]) || iOp != initialOperators[stage - 1])
             {
                 if (stage != curStage && stage != curStage + 1)
-                    throw new AbandonModuleException("I must have missed a stage (it went from {0} to {1}).", curStage, stage);
+                    throw new AbandonModuleException($"I must have missed a stage (it went from {curStage} to {stage}).");
                 if (stage < 1 || stage > 3)
-                    throw new AbandonModuleException("‘stage’ has unexpected value {0} (expected 1–3).", stage);
+                    throw new AbandonModuleException($"‘stage’ has unexpected value {stage} (expected 1–3).");
 
                 colors[stage - 1] = clrs;
                 labels[stage - 1] = lbls;
@@ -415,7 +415,7 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(_LogicalButtons);
         if (initialOperators.Any(io => io == null))
-            throw new AbandonModuleException("There is a null initial operator ([{0}]).", initialOperators.Select(io => io == null ? "<null>" : string.Format(@"""{0}""", io)).JoinString(", "));
+            throw new AbandonModuleException($"There is a null initial operator ([{initialOperators.Select(io => io == null ? "<null>" : $"“{io}”").JoinString(", ")}]).");
 
         var _logicalButtonsButtonNames = new[] { "top", "bottom-left", "bottom-right" };
         addQuestions(module,

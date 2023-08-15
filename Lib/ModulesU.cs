@@ -146,7 +146,7 @@ public partial class SouvenirModule
         var symbols = GetField<IEnumerable>(comp, "SelectedSymbols").Get().Cast<object>().Select(x => (propCode ??= GetProperty<string>(x, "Code", isPublic: true)).GetFrom(x)).ToList();
 
         if (symbols.Count != 4)
-            throw new AbandonModuleException("‘SelectedSymbols’ has an unexpected length, length: {0} (expected 4).", symbols.Count);
+            throw new AbandonModuleException($"‘SelectedSymbols’ has an unexpected length, length: {symbols.Count} (expected 4).");
 
         addQuestions(module,
             makeQuestion(Question.UnicodeSortedAnswer, _Unicode, formatArgs: new[] { "first" }, correctAnswers: new[] { symbols[0] }),

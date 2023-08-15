@@ -127,7 +127,7 @@ public partial class SouvenirModule
                     ruleName = "Over 150 lumber/75 logs";
                     break;
                 default:
-                    throw new AbandonModuleException("There was an invalid resource found for one of the freight table rules: {0}", ruleResourceName);
+                    throw new AbandonModuleException($"There was an invalid resource found for one of the freight table rules: {ruleResourceName}");
             }
 
             if (metAtStage < 15)
@@ -137,7 +137,7 @@ public partial class SouvenirModule
         }
 
         if (metRules.Count + unmetRules.Count != 14)
-            throw new AbandonModuleException("The total amount of freight table rules is not 14. Met: {0}, unmet: {1}", metRules.Count, unmetRules.Count);
+            throw new AbandonModuleException($"The total amount of freight table rules is not 14. Met: {metRules.Count}, unmet: {unmetRules.Count}");
 
         if (metRules.Count >= 1 && unmetRules.Count >= 3)
             qs.Add(makeQuestion(Question.RailwayCargoLoadingFreightTableRules, _RailwayCargoLoading, formatArgs: new[] { "was met" }, correctAnswers: metRules.ToArray(), preferredWrongAnswers: unmetRules.ToArray()));
@@ -179,7 +179,7 @@ public partial class SouvenirModule
             { 'P', "purple" },
             { 'W', "white" }
         };
-        var ledColors = GetField<StringBuilder>(comp, "LEDsColorsString").Get(sb => sb.Length != 10 ? "expected length 10" : Enumerable.Range(0, 10).Any(ix => !colorNames.ContainsKey(sb[ix])) ? string.Format("expected {0}", colorNames.Keys.JoinString()) : null);
+        var ledColors = GetField<StringBuilder>(comp, "LEDsColorsString").Get(sb => sb.Length != 10 ? "expected length 10" : Enumerable.Range(0, 10).Any(ix => !colorNames.ContainsKey(sb[ix])) ? $"expected {colorNames.Keys.JoinString()}": null);
         addQuestions(module, Enumerable.Range(0, 10).Select(ix => makeQuestion(Question.RecoloredSwitchesLedColors, _RecoloredSwitches, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { colorNames[ledColors[ix]] })));
     }
 
@@ -339,7 +339,7 @@ public partial class SouvenirModule
         for (int i = 0; i < 3; i++)
         {
             if (usedChars[i].Length != i + 3)
-                throw new AbandonModuleException("usedChars[{0}] is of an irregular length: {1}", i, string.Join(", ", usedChars[i]));
+                throw new AbandonModuleException($"usedChars[{i}] is of an irregular length: {string.Join(", ", usedChars[i])}");
             qs.Add(makeQuestion(Question.ReversePolishNotationCharacter, _ReversePolishNotation, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: usedChars[i]));
         }
         addQuestions(module, qs);
@@ -359,7 +359,7 @@ public partial class SouvenirModule
         var exitPos = GetArrayField<int>(comp, "exitlocation").Get(expectedLength: 3);
 
         if (exitPos[1] < 0 || exitPos[1] > 7 || exitPos[2] < 0 || exitPos[2] > 7)
-            throw new AbandonModuleException("‘exitPos’ contains invalid coordinate: ({0},{1})", exitPos[2], exitPos[1]);
+            throw new AbandonModuleException($"‘exitPos’ contains invalid coordinate: ({exitPos[2]},{exitPos[1]})");
 
         string[] colors = { "red", "green", "blue" };
 
@@ -440,7 +440,7 @@ public partial class SouvenirModule
 
         var totalWires = redWires.Count + orangeWires.Count + yellowWires.Count + greenWires.Count + blueWires.Count + purpleWires.Count;
         if (totalWires < 2 || totalWires > 7)
-            throw new AbandonModuleException("All wires combined has unexpected value (expected 2-7): {1}", _moduleId, totalWires);
+            throw new AbandonModuleException($"All wires combined has unexpected value (expected 2-7): {totalWires}");
 
         var answerIndex = GetField<byte>(comp, "souvenir").Get(b => b < 2 || b > 8 ? "expected range 2–8" : null);
         addQuestions(module,

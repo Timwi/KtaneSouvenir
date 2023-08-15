@@ -221,7 +221,7 @@ public partial class SouvenirModule
         var letters = GetArrayField<int[]>(comp, "displayedLetters").Get(expectedLength: 2, validator: arr => arr.Length != 5 ? "expected length 5" : arr.Any(v => v < 0 || v > 25) ? "expected range 0–25" : null);
         var relevantIx = Enumerable.Range(0, letters[0].Length).First(ix => letters[0][ix] != letters[1][ix]);
         var colorNames = new[] { "red", "green", "cyan", "indigo", "pink" };
-        var colors = GetArrayField<int>(comp, "displayedColors").Get(expectedLength: 5, validator: c => c < 0 || c >= colorNames.Length ? string.Format("expected range 0–{0}", colorNames.Length - 1) : null);
+        var colors = GetArrayField<int>(comp, "displayedColors").Get(expectedLength: 5, validator: c => c < 0 || c >= colorNames.Length ? $"expected range 0–{colorNames.Length - 1}": null);
         var qs = new List<QandA>();
         qs.Add(makeQuestion(Question.SemamorseColor, _Semamorse, correctAnswers: new[] { colorNames[colors[relevantIx]] }));
         qs.Add(makeQuestion(Question.SemamorseLetters, _Semamorse, formatArgs: new[] { "semaphore" }, correctAnswers: new[] { ((char) ('A' + letters[0][relevantIx])).ToString() }));
@@ -326,7 +326,7 @@ public partial class SouvenirModule
         var colorblindTexts = GetArrayField<TextMesh>(comp, "colorblindTexts", isPublic: true).Get(expectedLength: 4).Select(c => c.text).ToArray();
         var invalid = colorblindTexts.IndexOf(c => !expectedCBTexts.Contains(c));
         if (invalid != -1)
-            throw new AbandonModuleException("Found unexpected color text: “{0}”.", colorblindTexts[invalid]);
+            throw new AbandonModuleException($"Found unexpected color text: “{colorblindTexts[invalid]}”.");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -476,7 +476,7 @@ public partial class SouvenirModule
 
         var calls = GetListField<string>(comp, "_calls").Get(expectedLength: 3);
         if (Enumerable.Range(1, 2).Any(i => calls[i].Length <= calls[i - 1].Length || !calls[i].StartsWith(calls[i - 1])))
-            throw new AbandonModuleException("_calls=[{0}]; expected each element to start with the previous.", calls.Select(c => string.Format(@"""{0}""", c)).JoinString(", "));
+            throw new AbandonModuleException($"_calls=[{calls.Select(c => $"“{c}”").JoinString(", ")}]; expected each element to start with the previous.");
 
         var formatArgs = new[] { "played in the first stage", "added in the second stage", "added in the third stage" };
         addQuestions(module, calls.Select((c, ix) => makeQuestion(Question.SimonSamplesSamples, _SimonSamples, formatArgs: new[] { formatArgs[ix] }, correctAnswers: new[] { (ix == 0 ? c : c.Substring(calls[ix - 1].Length)).Replace("0", "K").Replace("1", "S").Replace("2", "H").Replace("3", "O") })));
@@ -510,7 +510,7 @@ public partial class SouvenirModule
         string[] colors = GetArrayField<string>(comp, "colorNames").Get(expectedLength: 4);
 
         if (sequence[9] < 0 || sequence[9] >= colors.Length)
-            throw new AbandonModuleException("‘sequence[9]’ points to illegal color: {0} (expected 0-3).", sequence[9]);
+            throw new AbandonModuleException($"‘sequence[9]’ points to illegal color: {sequence[9]} (expected 0-3).");
 
         addQuestions(module, sequence.Select((val, ix) => makeQuestion(Question.SimonScramblesColors, _SimonScrambles, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { colors[val] })));
     }
@@ -544,7 +544,7 @@ public partial class SouvenirModule
         {
             stageRules[i] = rules.Cast<object>().IndexOf(rule => fldCheck.GetFrom(rule)(seqs[i]));
             if (stageRules[i] == -1)
-                throw new AbandonModuleException("Apparently none of the criteria applies to Stage {0} ({1}).", _moduleId, i + 1, seqs[i].Select(ix => colors[ix]).JoinString(", "));
+                throw new AbandonModuleException($"Apparently none of the criteria applies to Stage {_moduleId} ({i + 1}).");
         }
 
         // Now set the questions
@@ -573,7 +573,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_SimonSelects);
 
-        var order = Enumerable.Range(0, 3).Select(i => GetArrayField<int>(comp, string.Format("stg{0}order", i + 1)).Get(minLength: 3, maxLength: 5)).ToArray();
+        var order = Enumerable.Range(0, 3).Select(i => GetArrayField<int>(comp, $"stg{i + 1}order").Get(minLength: 3, maxLength: 5)).ToArray();
         var btnRenderers = GetArrayField<Renderer>(comp, "buttonrend", isPublic: true).Get(expectedLength: 8);
 
         // Sequences of colors that flashes in each stage
@@ -592,7 +592,7 @@ public partial class SouvenirModule
         string[] colorNames = { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Magenta", "Cyan" };
 
         if (seqs.Any(seq => seq.Any(color => !colorNames.Contains(color))))
-            throw new AbandonModuleException("‘colors’ contains an invalid color: [{0}]", seqs.Select(seq => seq.JoinString(", ")).JoinString("; "));
+            throw new AbandonModuleException($"‘colors’ contains an invalid color: [{seqs.Select(seq => seq.JoinString(", ")).JoinString("; ")}]");
 
         addQuestions(module, seqs.SelectMany((seq, stage) => seq.Select((col, ix) => makeQuestion(Question.SimonSelectsOrder, _SimonSelects,
             formatArgs: new[] { ordinal(ix + 1), ordinal(stage + 1) },
@@ -612,7 +612,7 @@ public partial class SouvenirModule
         var charB = ((char) ('A' + Array.IndexOf(morse, morseB.Replace("###", "-").Replace("#", ".").Replace("_", "")))).ToString();
 
         if (charR == "@" || charG == "@" || charB == "@")
-            throw new AbandonModuleException("Could not decode Morse code: {0} / {1} / {2}", morseR, morseG, morseB);
+            throw new AbandonModuleException($"Could not decode Morse code: {morseR} / {morseG} / {morseB}");
 
         // Simon Sends sets “_answerSoFar” to null when it’s done
         var fldAnswerSoFar = GetListField<int>(comp, "_answerSoFar");
@@ -660,7 +660,7 @@ public partial class SouvenirModule
                 correctAnswers: new[] { SimonShapesSprites[Array.IndexOf(allBinaries, binaryValue)] },
                 preferredWrongAnswers: SimonShapesSprites);
         else
-            throw new AbandonModuleException("Error in shape capturing! Obtained binary value {0} does not match any entry corresponding to a shape.", binaryValue);
+            throw new AbandonModuleException($"Error in shape capturing! Obtained binary value {binaryValue} does not match any entry corresponding to a shape.");
     }
     private IEnumerable<object> ProcessSimonShouts(KMBombModule module)
     {
@@ -724,7 +724,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_SimonSings);
 
         var noteNames = new[] { "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B" };
-        var flashingColorSequences = GetArrayField<int[]>(comp, "_flashingColors").Get(expectedLength: 3, validator: seq => seq.Any(col => col < 0 || col >= noteNames.Length) ? string.Format("expected range 0–{0}", noteNames.Length - 1) : null);
+        var flashingColorSequences = GetArrayField<int[]>(comp, "_flashingColors").Get(expectedLength: 3, validator: seq => seq.Any(col => col < 0 || col >= noteNames.Length) ? $"expected range 0–{noteNames.Length - 1}": null);
         addQuestions(module, flashingColorSequences.SelectMany((seq, stage) => seq.Select((col, ix) => makeQuestion(Question.SimonSingsFlashing, _SimonSings, formatArgs: new[] { ordinal(ix + 1), ordinal(stage + 1) }, correctAnswers: new[] { noteNames[col] }))));
     }
 
@@ -856,8 +856,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
 
         if (puzzleDisplay.Length != 4 || puzzleDisplay.Any(arr => arr.Length != 4))
-            throw new AbandonModuleException("‘PuzzleDisplay’ has an unexpected length or value: [{0}]",
-                puzzleDisplay.Select(arr => arr == null ? "null" : "[" + arr.JoinString(", ") + "]").JoinString("; "), _moduleId);
+            throw new AbandonModuleException($"‘PuzzleDisplay’ has an unexpected length or value: [{puzzleDisplay.Select(arr => arr == null ? "null" : "[" + arr.JoinString(", ") + "]").JoinString("; ")}]");
 
         var colorNames = new[] { "Red", "Yellow", "Green", "Blue" };
 
@@ -865,7 +864,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         // Consistency check
         if (fldPuzzleDisplay.Get(nullAllowed: true) != null)
-            throw new AbandonModuleException("‘PuzzleDisplay’ was expected to be null when Progress reached 4, but wasn’t.", _moduleId);
+            throw new AbandonModuleException($"‘PuzzleDisplay’ was expected to be null when Progress reached 4, but wasn’t.");
 
         _modulesSolved.IncSafe(_SimonStates);
 
@@ -918,7 +917,7 @@ public partial class SouvenirModule
         {
             var set = new HashSet<char>();
             if (flash.Length < 1 || flash.Length > 3 || flash.Any(color => !set.Add(color) || !colors.Contains(color)))
-                throw new AbandonModuleException("'flashingColours' contains value with duplicated colors, invalid color, or unexpected length (expected: 1-3): [flash: {0}, length: {1}]", flash, flash.Length);
+                throw new AbandonModuleException($"'flashingColours' contains value with duplicated colors, invalid color, or unexpected length (expected: 1-3): [flash: {flash}, length: {flash.Length}]");
         }
 
         var colorNames = new Dictionary<char, string> {
@@ -1221,7 +1220,7 @@ public partial class SouvenirModule
 
         var lastSwap = GetField<byte>(comp, "swapButtons").Get();
         if (lastSwap % 10 == 0 || lastSwap % 10 > 5 || lastSwap / 10 == 0 || lastSwap / 10 > 5 || lastSwap / 10 == lastSwap % 10)
-            throw new AbandonModuleException("‘swap’ has unexpected value (expected two digit number, each with a unique digit from 1-5): {0}", lastSwap);
+            throw new AbandonModuleException($"‘swap’ has unexpected value (expected two digit number, each with a unique digit from 1-5): {lastSwap}");
 
         addQuestions(module, makeQuestion(Question.SortingLastSwap, _Sorting, correctAnswers: new[] { lastSwap.ToString().Insert(1, " & ") }));
     }
@@ -1309,7 +1308,7 @@ public partial class SouvenirModule
         var fldSolved = GetField<bool>(comp, "moduleSolved");
 
         string[] colorNames = GetArrayField<string>(comp, "colourNames", isPublic: true).Get();
-        int[] colors = GetArrayField<int>(comp, "selectedColourIndices", isPublic: true).Get(expectedLength: 5, validator: c => c < 0 || c >= colorNames.Length ? string.Format("expected range 0–{0}", colorNames.Length - 1) : null);
+        int[] colors = GetArrayField<int>(comp, "selectedColourIndices", isPublic: true).Get(expectedLength: 5, validator: c => c < 0 || c >= colorNames.Length ? $"expected range 0–{colorNames.Length - 1}": null);
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -1336,7 +1335,7 @@ public partial class SouvenirModule
         var bagLabels = bags.Cast<object>().Select(obj => fldBagLabel.GetFrom(obj)).ToArray();
         var paintedBag = bagColors.IndexOf(bc => bc.ToString() != "Normal");
         if (paintedBag == -1)
-            throw new AbandonModuleException("No colored bag was found: [{0}]", bagColors.JoinString(", "));
+            throw new AbandonModuleException($"No colored bag was found: [{bagColors.JoinString(", ")}]");
 
         var fldSolved = GetField<bool>(comp, "isSolved");
         while (!fldSolved.Get())
@@ -1577,7 +1576,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_Switch);
 
         if (topColor1 < 1 || topColor1 > 6 || bottomColor1 < 1 || bottomColor1 > 6 || topColor2 < 1 || topColor2 > 6 || bottomColor2 < 1 || bottomColor2 > 6)
-            throw new AbandonModuleException("topColor1/bottomColor1/topColor2/bottomColor2 have unexpected values: {1}, {2}, {3}, {4} (expected 1–6).", _moduleId, topColor1, bottomColor1, topColor2, bottomColor2);
+            throw new AbandonModuleException($"topColor1/bottomColor1/topColor2/bottomColor2 have unexpected values: {topColor1}, {bottomColor1}, {topColor2}, {bottomColor2} (expected 1–6).");
 
         addQuestions(module,
             makeQuestion(Question.SwitchInitialColor, _Switch, formatArgs: new[] { "top", "first" }, correctAnswers: new[] { colorNames[topColor1 - 1] }),
@@ -1675,7 +1674,7 @@ public partial class SouvenirModule
         var stageLetters = new[] { letter1.Split(' '), letter2.Split(' '), letter3.Split(' ') };
 
         if (stageLetters.Any(x => x.Length != 3) || stageLetters.SelectMany(x => x).Any(y => !"ACELP".Contains(y)))
-            throw new AbandonModuleException("One of the stages has fewer than 3 symbols or symbols are of unexpected value (expected symbols “ACELP”, got “{0}”).", stageLetters.Select(x => string.Format("“{0}”", x.JoinString())).JoinString(", "));
+            throw new AbandonModuleException($"One of the stages has fewer than 3 symbols or symbols are of unexpected value (expected symbols “ACELP”, got “{stageLetters.Select(x => $"“{x.JoinString()}”").JoinString(", ")}”).");
 
         var fldStage = GetIntField(comp, "stage");
         while (fldStage.Get() < 4)
@@ -1780,7 +1779,7 @@ public partial class SouvenirModule
         var numberText = GetField<TextMesh>(comp, "NumberText", isPublic: true).Get();
 
         if (numberText.text == null || !int.TryParse(numberText.text, out var number) || number < 0 || number > 9)
-            throw new AbandonModuleException("The display text (“{0}”) is not an integer 0–9.", numberText.text ?? "<null>");
+            throw new AbandonModuleException($"The display text (“{numberText.text ?? "<null>"}”) is not an integer 0–9.");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);

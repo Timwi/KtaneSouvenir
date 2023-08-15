@@ -20,10 +20,10 @@ namespace Souvenir.Reflection
         {
             var value = GetValue();
             if (!nullAllowed && value == null)
-                throw new AbandonModuleException("{0} is null.", LoggingString);
+                throw new AbandonModuleException($"{LoggingString} is null.");
             string validatorFailMessage;
             if (validator != null && (validatorFailMessage = validator(value)) != null)
-                throw new AbandonModuleException("{0} with value {1} did not pass validity check: {2}.", LoggingString, stringify(value), validatorFailMessage);
+                throw new AbandonModuleException($"{LoggingString} with value {stringify(value)} did not pass validity check: {validatorFailMessage}.");
             return value;
         }
 
@@ -31,10 +31,10 @@ namespace Souvenir.Reflection
         {
             var value = GetValue(obj);
             if (!nullAllowed && value == null)
-                throw new AbandonModuleException("{0} is null.", LoggingString);
+                throw new AbandonModuleException($"{LoggingString} is null.");
             string validatorFailMessage;
             if (validator != null && (validatorFailMessage = validator(value)) != null)
-                throw new AbandonModuleException("{0} with value {1} did not pass validity check: {2}.", LoggingString, stringify(value), validatorFailMessage);
+                throw new AbandonModuleException($"{LoggingString} with value {stringify(value)} did not pass validity check: {validatorFailMessage}.");
             return value;
         }
 
@@ -43,8 +43,8 @@ namespace Souvenir.Reflection
             if (value == null)
                 return "<null>";
             if (value is IList list)
-                return string.Format("[{0}]", list.Cast<object>().Select(stringify).JoinString(", "));
-            return string.Format("“{0}”", value);
+                return $"[{list.Cast<object>().Select(stringify).JoinString(", ")}]";
+            return $"“{value}”";
         }
     }
 }

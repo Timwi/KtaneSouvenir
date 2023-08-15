@@ -33,7 +33,7 @@ public partial class SouvenirModule
                 var numString = vars[varIx].Get();
                 var digit = numString[numString.Length - 1 - digitIx];
                 if (digit < '0' || digit > '9')
-                    throw new AbandonModuleException("The chosen character ('{0}') was unexpected (expected a digit 0–9).", digit);
+                    throw new AbandonModuleException($"The chosen character ('{digit}') was unexpected (expected a digit 0–9).");
 
                 var labels = new[] { "the screen", "X", "Y", "Z" };
                 qs.Add(makeQuestion(Question.PalindromesNumbers, _Palindromes, formatArgs: new[] { labels[varIx], ordinal(digitIx + 1) }, correctAnswers: new[] { digit.ToString() }));
@@ -67,7 +67,7 @@ public partial class SouvenirModule
         var display = GetField<TextMesh>(comp, "display", isPublic: true).Get();
         var terms = display.text.Split('\n').Select(term => Regex.Replace(Regex.Replace(term.Trim(), @"^(f.*?=|\+) ", ""), @"^- ", "−")).ToArray();
         if (terms.Length != 3)
-            throw new AbandonModuleException(@"The display does not appear to contain three terms: ""{0}""", _moduleId, display.text.Replace("\r", "").Replace("\n", "\\n"));
+            throw new AbandonModuleException($"The display does not appear to contain three terms: “{_moduleId}”");
 
         var vars = new[] { "x", "y", "z" };
         var exponentStrs = new[] { "²", "³", "⁴", "⁵" };
@@ -158,7 +158,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
 
         if (expirationDates.Count != 3)
-            throw new AbandonModuleException("The number of retrieved sets of information was {0} (expected 3).", expirationDates.Count);
+            throw new AbandonModuleException($"The number of retrieved sets of information was {expirationDates.Count} (expected 3).");
 
         for (int i = 0; i < textToHide1.Length; i++)
             textToHide1[i].GetComponent<TextMesh>().text = "";
@@ -276,7 +276,7 @@ public partial class SouvenirModule
         var colourMeshes = GetField<MeshRenderer[,]>(comp, "ColourMeshes").Get();
         var pegIndex = Enumerable.Range(0, 5).IndexOf(px => Enumerable.Range(0, 5).Count(i => colourMeshes[px, i].sharedMaterial.name.StartsWith(keyColour)) >= 3);
         if (pegIndex == -1)
-            throw new AbandonModuleException("The key peg couldn't be found (the key colour was {0}).", keyColour);
+            throw new AbandonModuleException($"The key peg couldn't be found (the key colour was {keyColour}).");
 
         addQuestions(module, Enumerable.Range(0, 5)
             .Select(i => (pegIndex + i) % 5)
@@ -366,9 +366,9 @@ public partial class SouvenirModule
 
         var answer = GetField<byte>(comp, "answerId").Get(b => b < 0 || b > 16 ? "expected range 0–16" : null) + 1;
         var firstPhrase = GetArrayField<string>(comp, "firstPhrase").Get();
-        var firstString = GetField<string>(comp, "firstString").Get(str => !firstPhrase.Contains(str) ? string.Format("expected string to be contained in “{0}” (‘firstPhrase’)", firstPhrase) : null);
+        var firstString = GetField<string>(comp, "firstString").Get(str => !firstPhrase.Contains(str) ? $"expected string to be contained in “{firstPhrase}” (‘firstPhrase’)": null);
         var ordinals = GetArrayField<string>(comp, "ordinals").Get();
-        var currentOrdinal = GetField<string>(comp, "currentOrdinal").Get(str => !ordinals.Contains(str) ? string.Format("expected string to be contained in “{0}” (‘ordinals’)", ordinals) : null);
+        var currentOrdinal = GetField<string>(comp, "currentOrdinal").Get(str => !ordinals.Contains(str) ? $"expected string to be contained in “{ordinals}” (‘ordinals’)": null);
         var previousModules = GetField<sbyte>(comp, "previousModules").Get();
 
         var qs = new List<QandA>();
@@ -498,8 +498,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_Poetry);
 
         if (answers.Count != fldStageCount.Get())
-            throw new AbandonModuleException("The number of answers captured is not equal to the number of stages played ({0}). Answers were: [{1}]",
-                fldStageCount.Get(), answers.JoinString(", "));
+            throw new AbandonModuleException($"The number of answers captured is not equal to the number of stages played ({fldStageCount.Get()}). Answers were: [{answers.JoinString(", ")}]");
 
         addQuestions(module, answers.Select((ans, st) => makeQuestion(Question.PoetryAnswers, _Poetry, formatArgs: new[] { ordinal(st + 1) }, correctAnswers: new[] { ans }, preferredWrongAnswers: answers.ToArray())));
     }
@@ -617,7 +616,7 @@ public partial class SouvenirModule
         string[] wordList = GetArrayField<string>(comp, "words").Get(expectedLength: 9 * 13);
 
         if (!wordList.Contains(finishWord))
-            throw new AbandonModuleException("‘wordList’ does not contain ‘finishWord’: [Length: {1}, finishWord: {2}].", wordList.Length, finishWord);
+            throw new AbandonModuleException($"‘wordList’ does not contain ‘finishWord’: [Length: {wordList.Length}, finishWord: {finishWord}].");
 
         var wordScreen = GetField<GameObject>(comp, "wordDisplay", isPublic: true).Get();
         var wordScreenTextMesh = wordScreen.GetComponent<TextMesh>();

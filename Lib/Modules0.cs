@@ -89,7 +89,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
 
         var map = GetField<object>(comp, "map").Get();
-        var mapData = GetField<Array>(map, "mapData").Get(arr => arr.GetLength(0) != 8 || arr.GetLength(1) != 8 ? string.Format("size {0},{1}, expected 8,8", arr.GetLength(0), arr.GetLength(1)) : null);
+        var mapData = GetField<Array>(map, "mapData").Get(arr => arr.GetLength(0) != 8 || arr.GetLength(1) != 8 ? $"size {arr.GetLength(0)},{arr.GetLength(1)}, expected 8,8": null);
 
         IntFieldInfo fldBearing = null;
         try { fldBearing = GetIntField(map, "end_dir"); }

@@ -105,7 +105,7 @@ public partial class SouvenirModule
         var colours = infos.Select(inf => (int) fldColour.GetFrom(inf)).ToArray();
         var words = infos.Select(inf => (int) fldWord.GetFrom(inf)).ToArray();
         if (colours.Any(c => c < 0 || c >= 6) || words.Any(w => w < 0 || w >= 6))
-            throw new AbandonModuleException("colours/words are: [{0}], [{1}]; expected values 0–5", colours.JoinString(", "), words.JoinString(", "));
+            throw new AbandonModuleException($"colours/words are: [{colours.JoinString(", ")}], [{words.JoinString(", ")}]; expected values 0–5");
 
         var qs = new List<QandA>();
         for (var i = 0; i < 3; i++)
@@ -124,9 +124,9 @@ public partial class SouvenirModule
         var digits = prismTexts[0].text.Split(' ');
         var letters = prismTexts[1].text.Split(' ');
         if (digits.Length != 8 || digits.Any(str => str.Length != 1 || str[0] < '0' || str[0] > '9'))
-            throw new AbandonModuleException("Expected 8 digits; got {0} ({1})", digits.Length, digits.JoinString("; "));
+            throw new AbandonModuleException($"Expected 8 digits; got {digits.Length} ({digits.JoinString("; ")})");
         if (letters.Length != 8 || letters.Any(str => str.Length != 1 || str[0] < 'A' || str[0] > 'Z'))
-            throw new AbandonModuleException("Expected 8 letters; got {0} ({1})", letters.Length, letters.JoinString("; "));
+            throw new AbandonModuleException($"Expected 8 letters; got {letters.Length} ({letters.JoinString("; ")})");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -333,7 +333,7 @@ public partial class SouvenirModule
 
         // Check the value of color1 because we might have reassigned it inside the button handler
         if (color1 < 0 || color1 > 4)
-            throw new AbandonModuleException(@"First stage color has unexpected value: {0} (expected 0 to 4).", color1);
+            throw new AbandonModuleException($"First stage color has unexpected value: {color1} (expected 0 to 4).");
 
         var color2 = fldColor.Get(min: 0, max: 4);
 
@@ -391,7 +391,7 @@ public partial class SouvenirModule
 
         var submitIndex = GetField<Array>(comp, "_functions").Get().Cast<object>().IndexOf(f => f.ToString() == "Submit");
         if (submitIndex < 0 || submitIndex > 4)
-            throw new AbandonModuleException(@"Submit button is at index {0} (expected 0–4).", submitIndex);
+            throw new AbandonModuleException($"Submit button is at index {submitIndex} (expected 0–4).");
 
         addQuestion(module, Question.DoubleOhSubmitButton, correctAnswers: new[] { "↕↔⇔⇕◆".Substring(submitIndex, 1) });
     }

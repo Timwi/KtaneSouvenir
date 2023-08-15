@@ -222,7 +222,7 @@ public partial class SouvenirModule
         var isItFiveStages = GetField<bool>(comp, "FiveDowns");
 
         var shadows = new List<string>();
-        var holdUps = Enumerable.Range(1, 4).Select(btn => GetField<KMSelectable>(comp, string.Format("Move{0}Button", btn), isPublic: true).Get()).ToArray();
+        var holdUps = Enumerable.Range(1, 4).Select(btn => GetField<KMSelectable>(comp, $"Move{btn}Button", isPublic: true).Get()).ToArray();
         var prevInteracts = holdUps.Select(btn => btn.OnInteract).ToArray();
 
         foreach (var btn in Enumerable.Range(0, holdUps.Length))
@@ -274,7 +274,7 @@ public partial class SouvenirModule
             else if (allOneWords.Contains(thisWord))
                 possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, _Homophones, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { thisWord }, preferredWrongAnswers: selectedWords.Union(allOneWords).ToArray()));
             else
-                throw new AbandonModuleException("The given phrase “{0}” is not one of the possible words that can be found in Homophones.", thisWord);
+                throw new AbandonModuleException($"The given phrase “{thisWord}” is not one of the possible words that can be found in Homophones.");
         }
 
         addQuestions(module, possibleQuestions);

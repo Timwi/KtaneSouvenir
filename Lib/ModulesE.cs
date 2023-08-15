@@ -313,7 +313,7 @@ public partial class SouvenirModule
         var symbol = GetField<GameObject>(comp, "symboldisplay", isPublic: true).Get().GetComponentInChildren<TextMesh>().text;
 
         if (!new[] { "H(T)", "R", "c", "w", "Z(T)", "t", "m", "a", "K" }.Contains(symbol))
-            throw new AbandonModuleException("‘symbol’ has an unexpected character: {0}", symbol);
+            throw new AbandonModuleException($"‘symbol’ has an unexpected character: {symbol}");
         Debug.LogFormat(@"<Souvenir #{0}> Equations X: symbol is {1}", _moduleId, symbol);
 
         // Equations X uses symbols that don’t translate well to Souvenir. This switch statement is used to correctly translate the answer.

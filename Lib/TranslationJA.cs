@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Souvenir
 {
@@ -6,7 +6,7 @@ namespace Souvenir
     {
         public override string Ordinal(int number) => number.ToString();
         public override string FormatModuleName(string moduleName, bool addSolveCount, int numSolved, bool addThe) => addSolveCount
-            ? string.Format("{1}番目に解除された{0}", moduleName, Ordinal(numSolved))
+            ? $"{Ordinal(numSolved)}番目に解除された{moduleName}"
             : addThe ? "\u00a0" + moduleName : moduleName;
         public override int DefaultFontIndex => 8;
         public override float LineSpacing => 0.7f;

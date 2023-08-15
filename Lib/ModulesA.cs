@@ -180,7 +180,7 @@ public partial class SouvenirModule
         addQuestions(module, Enumerable.Range(0, 2).Select(i => makeQuestion(
             question: i == 0 ? Question.AlgebraEquation1 : Question.AlgebraEquation2,
             moduleKey: _Algebra,
-            correctAnswers: new[] { GetField<Texture>(comp, string.Format("level{0}Equation", i + 1)).Get().name.Replace(';', '/') })));
+            correctAnswers: new[] { GetField<Texture>(comp, $"level{i + 1}Equation").Get().name.Replace(';', '/') })));
     }
 
     private IEnumerable<object> ProcessAlgorithmia(KMBombModule module)
@@ -232,10 +232,10 @@ public partial class SouvenirModule
             if (newStage != curStage)
             {
                 if (letterDisplay.text.Length != 1 || letterDisplay.text[0] < 'A' || letterDisplay.text[0] > 'Z')
-                    throw new AbandonModuleException("‘LetterDisplay’ shows {0} (expected single letter A–Z).", letterDisplay.text);
+                    throw new AbandonModuleException($"‘LetterDisplay’ shows {letterDisplay.text} (expected single letter A–Z).");
                 letters[newStage - 1] = letterDisplay.text[0];
                 if (!int.TryParse(numberDisplays[0].text, out var number) || number < 1 || number > 9)
-                    throw new AbandonModuleException("‘NumberDisplay[0]’ shows {0} (expected integer 1–9).", numberDisplays[0].text);
+                    throw new AbandonModuleException($"‘NumberDisplay[0]’ shows {numberDisplays[0].text} (expected integer 1–9).");
                 numbers[newStage - 1] = number;
                 curStage = newStage;
             }
@@ -245,7 +245,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_AlphabeticalRuling);
 
         if (letters.Any(l => l < 'A' || l > 'Z') || numbers.Any(n => n < 1 || n > 9))
-            throw new AbandonModuleException("The captured letters/numbers are unexpected (letters: [{0}], numbers: [{1}]).", letters.JoinString(", "), numbers.JoinString(", "));
+            throw new AbandonModuleException($"The captured letters/numbers are unexpected (letters: [{letters.JoinString(", ")}], numbers: [{numbers.JoinString(", ")}]).");
 
         var qs = new List<QandA>();
         for (var ix = 0; ix < letters.Length; ix++)
@@ -323,8 +323,7 @@ public partial class SouvenirModule
         var displayedCharacters = textMeshes.Select(textMesh => textMesh.text.Trim()).ToArray();
 
         if (displayedCharacters.Any(ch => !(ch.Length == 1 && (ch[0] >= 'A' && ch[0] <= 'V' || ch[0] >= '0' && ch[0] <= '9'))))
-            throw new AbandonModuleException("The displayed characters are {0} (expected six single-character strings 0–9/A–V each).",
-                displayedCharacters.Select(str => string.Format(@"""{0}""", str)).JoinString(", "));
+            throw new AbandonModuleException($"The displayed characters are {displayedCharacters.Select(str => $"“{str}”").JoinString(", ")} (expected six single-character strings 0–9/A–V each).");
 
         while (!isSolved)
             yield return new WaitForSeconds(.1f);
@@ -386,8 +385,8 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_Arithmelogic);
 
         var symbolNum = fldSymbolNum.Get(min: 0, max: 21);
-        var selVal = fldSelectableValues.Get(expectedLength: 3, validator: arr => arr.Length != 4 ? string.Format("length {0}, expected 4", arr.Length) : null);
-        var curDisp = fldCurrentDisplays.Get(expectedLength: 3, validator: val => val < 0 || val >= 4 ? string.Format("expected 0–3") : null);
+        var selVal = fldSelectableValues.Get(expectedLength: 3, validator: arr => arr.Length != 4 ? $"length {arr.Length}, expected 4" : null);
+        var curDisp = fldCurrentDisplays.Get(expectedLength: 3, validator: val => val < 0 || val >= 4 ? $"expected 0–3" : null);
 
         var qs = new List<QandA>();
         qs.Add(makeQuestion(Question.ArithmelogicSubmit, _Arithmelogic, correctAnswers: new[] { ArithmelogicSprites[symbolNum] }, preferredWrongAnswers: ArithmelogicSprites));

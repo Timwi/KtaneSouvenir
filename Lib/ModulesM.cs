@@ -82,7 +82,7 @@ public partial class SouvenirModule
         var countingTileName = countingTile.material.mainTexture.name.Replace(" normal", "");
         var countingTileSprite = MahjongSprites.FirstOrDefault(x => x.name == countingTileName);
         if (countingTileSprite == null)
-            throw new AbandonModuleException("The sprite for the counting tile ({0}) doesn’t exist.", countingTileName);
+            throw new AbandonModuleException($"The sprite for the counting tile ({countingTileName}) doesn’t exist.");
 
         // Stuff for the “matching tiles” question
         var matchRow1 = GetArrayField<int>(comp, "_matchRow1").Get();
@@ -95,9 +95,7 @@ public partial class SouvenirModule
 
         var invalidIx = matchedTileSprites.IndexOf(spr => spr == null);
         if (invalidIx != -1)
-            throw new AbandonModuleException("The sprite for one of the matched tiles ({0}) doesn’t exist. matchedTileSpriteNames=[{1}], matchedTileSprites=[{2}], countingRow=[{3}], matchRow1=[{4}], matchRow2=[{5}], tileSprites=[{6}]",
-                matchedTileSpriteNames[invalidIx], matchedTileSpriteNames.JoinString(", "), matchedTileSprites.Select(spr => spr == null ? "<null>" : spr.name).JoinString(", "),
-                GetArrayField<int>(comp, "_countingRow").Get().JoinString(", "), matchRow1.JoinString(", "), matchRow2.JoinString(", "), tileSprites.Select(spr => spr.name).JoinString(", "));
+            throw new AbandonModuleException($"The sprite for one of the matched tiles ({matchedTileSpriteNames[invalidIx]}) doesn’t exist. matchedTileSpriteNames=[{matchedTileSpriteNames.JoinString(", ")}], matchedTileSprites=[{matchedTileSprites.Select(spr => spr == null ? "<null>" : spr.name).JoinString(", ")}], countingRow=[{GetArrayField<int>(comp, "_countingRow").Get().JoinString(", ")}], matchRow1=[{matchRow1.JoinString(", ")}], matchRow2=[{matchRow2.JoinString(", ")}], tileSprites=[{tileSprites.Select(spr => spr.name).JoinString(", ")}]");
 
         addQuestions(module,
             makeQuestion(Question.MahjongCountingTile, _Mahjong, correctAnswers: new[] { countingTileSprite }, preferredWrongAnswers: GetArrayField<int>(comp, "_countingRow").Get().Select(ix => MahjongSprites[ix]).ToArray()),
@@ -571,7 +569,7 @@ public partial class SouvenirModule
         var dictionary = GetField<Dictionary<string, string>>(comp, "chosenWords").Get();
 
         if (!dictionary.TryGetValue("Stage1", out var stage1word) || stage1word == null || !dictionary.TryGetValue("Stage2", out var stage2word) || stage2word == null)
-            throw new AbandonModuleException("There is no word for {0}.", stage1word == null ? "stage 1" : "stage 2");
+            throw new AbandonModuleException($"There is no word for {(stage1word == null ? "stage 1" : "stage 2")}.");
 
         Debug.LogFormat("<Souvenir #{0}> Modern Cipher words: {1} {2}.", _moduleId, stage1word, stage2word);
 
@@ -594,9 +592,9 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_ModuleListening);
 
         var moduleNames = GetArrayField<string>(comp, "moduleNames").Get();
-        var indices = GetArrayField<int>(comp, "moduleIndex").Get(validator: ar => ar.Length != 4 ? "expected length 4" : ar.Any(v => v < 0 || v >= moduleNames.Length) ? string.Format("out of range for moduleNames (0–{0})", moduleNames.Length - 1) : null);
+        var indices = GetArrayField<int>(comp, "moduleIndex").Get(validator: ar => ar.Length != 4 ? "expected length 4" : ar.Any(v => v < 0 || v >= moduleNames.Length) ? $"out of range for moduleNames (0–{moduleNames.Length - 1})": null);
         var colorNames = GetArrayField<string>(comp, "buttonColors").Get(expectedLength: 4);
-        var colorOrder = GetArrayField<int>(comp, "btnColors").Get(validator: ar => ar.Length != 4 ? "expected length 4" : ar.Any(v => v < 0 || v >= colorNames.Length) ? string.Format("out of range for colorNames (0–{0})", colorNames.Length - 1) : null);
+        var colorOrder = GetArrayField<int>(comp, "btnColors").Get(validator: ar => ar.Length != 4 ? "expected length 4" : ar.Any(v => v < 0 || v >= colorNames.Length) ? $"out of range for colorNames (0–{colorNames.Length - 1})": null);
         var qs = new List<QandA>();
         for (int i = 0; i < 4; i++)
             qs.Add(makeQuestion(Question.ModuleListeningSounds, _ModuleListening, formatArgs: new[] { colorNames[colorOrder[i]] }, correctAnswers: new[] { moduleNames[indices[i]] }, preferredWrongAnswers: moduleNames));
@@ -748,7 +746,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_MonsplodeTradingCards);
 
         if (fldStage.Get() != stageCount)
-            throw new AbandonModuleException("Abandoning Monsplode Trading Cards because ‘correctOffer’ has unexpected value {0} instead of {1}.", fldStage.Get(), stageCount);
+            throw new AbandonModuleException($"Abandoning Monsplode Trading Cards because ‘correctOffer’ has unexpected value {fldStage.Get()} instead of {stageCount}.");
 
         var deck = GetField<Array>(comp, "deck", isPublic: true).Get(ar => ar.Length != 3 ? "expected length 3" : null).Cast<object>().ToArray();
         var offer = GetField<object>(comp, "offer", isPublic: true).Get();
@@ -904,7 +902,7 @@ public partial class SouvenirModule
         var torusColor = GetIntField(comp, "_torusColor").Get(min: 0, max: 3);
         var goalColor = sphereColors[goalPos];
         if (goalColor < 0 || goalColor > 3)
-            throw new AbandonModuleException("Unexpected color (torus={0}; goal={1})", torusColor, goalColor);
+            throw new AbandonModuleException($"Unexpected color (torus={torusColor}; goal={goalColor})");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
@@ -980,14 +978,14 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_Murder);
 
         var solution = GetArrayField<int>(comp, "solution").Get(expectedLength: 3);
-        var skipDisplay = GetField<int[,]>(comp, "skipDisplay").Get(ar => ar.GetLength(0) != 2 || ar.GetLength(1) != 6 ? string.Format("dimensions are {0},{1}; expected 2,6", ar.GetLength(0), ar.GetLength(1)) : null);
-        var names = GetField<string[,]>(comp, "names").Get(ar => ar.GetLength(0) != 3 || ar.GetLength(1) != 9 ? string.Format("dimensions are {0},{1}; expected 3,9", ar.GetLength(0), ar.GetLength(1)) : null);
+        var skipDisplay = GetField<int[,]>(comp, "skipDisplay").Get(ar => ar.GetLength(0) != 2 || ar.GetLength(1) != 6 ? $"dimensions are {ar.GetLength(0)},{ar.GetLength(1)}; expected 2,6": null);
+        var names = GetField<string[,]>(comp, "names").Get(ar => ar.GetLength(0) != 3 || ar.GetLength(1) != 9 ? $"dimensions are {ar.GetLength(0)},{ar.GetLength(1)}; expected 3,9": null);
         var actualSuspect = solution[0];
         var actualWeapon = solution[1];
         var actualRoom = solution[2];
         var bodyFound = GetIntField(comp, "bodyFound").Get();
         if (actualSuspect < 0 || actualSuspect >= 6 || actualWeapon < 0 || actualWeapon >= 6 || actualRoom < 0 || actualRoom >= 9 || bodyFound < 0 || bodyFound >= 9)
-            throw new AbandonModuleException("Unexpected suspect, weapon, room or bodyFound (expected 0–5/0–5/0–8/0–8, got {1}/{2}/{3}/{4}).", _moduleId, actualSuspect, actualWeapon, actualRoom, bodyFound);
+            throw new AbandonModuleException($"Unexpected suspect, weapon, room or bodyFound (expected 0–5/0–5/0–8/0–8, got {actualSuspect}/{actualWeapon}/{actualRoom}/{bodyFound}).");
 
         addQuestions(module,
             makeQuestion(Question.MurderSuspect, _Murder,

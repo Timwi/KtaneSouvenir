@@ -17,7 +17,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_TapCode);
 
         var words = GetStaticField<string[]>(comp.GetType(), "_wordList").Get();
-        var chosenWord = GetField<string>(comp, "_chosenWord").Get(str => !words.Contains(str) ? string.Format("word is not in list: {0}", words.JoinString(", ")) : null);
+        var chosenWord = GetField<string>(comp, "_chosenWord").Get(str => !words.Contains(str) ? $"word is not in list: {words.JoinString(", ")}": null);
         var w = words.Select(i => i.Substring(0, 1).ToUpperInvariant() + i.Substring(1).ToLowerInvariant()).ToArray();
         var cw = chosenWord.Substring(0, 1).ToUpperInvariant() + chosenWord.Substring(1).ToLowerInvariant();
         addQuestion(module, Question.TapCodeReceivedWord, correctAnswers: new[] { cw }, preferredWrongAnswers: w);
@@ -29,7 +29,7 @@ public partial class SouvenirModule
         var fldSolved = GetField<bool>(comp, "solved");
 
         var colors = GetStaticField<string[]>(comp.GetType(), "colorNames").Get(ar => ar.Length != 4 ? "expected length 4" : null).ToArray();
-        var sequence = GetArrayField<int>(comp, "flashing").Get(expectedLength: 5, validator: val => val < 0 || val >= colors.Length ? string.Format("expected range 0–{0}", colors.Length - 1) : null);
+        var sequence = GetArrayField<int>(comp, "flashing").Get(expectedLength: 5, validator: val => val < 0 || val >= colors.Length ? $"expected range 0–{colors.Length - 1}": null);
 
         for (int i = 0; i < colors.Length; i++)
             colors[i] = char.ToUpperInvariant(colors[i][0]) + colors[i].Substring(1);
@@ -147,7 +147,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_Tenpins);
 
         var splitNames = new[] { "Goal Posts", "Cincinnati", "Woolworth Store", "Lily", "3-7 Split", "Cocked Hat", "4-7-10 Split", "Big Four", "Greek Church", "Big Five", "Big Six", "HOW" };
-        var splits = GetArrayField<int>(comp, "splits").Get(validator: ar => ar.Length != 3 ? "expected length 3" : ar.Any(v => v < 0 || v >= splitNames.Length) ? string.Format("out of range for splitNames (0–{0})", splitNames.Length - 1) : null);
+        var splits = GetArrayField<int>(comp, "splits").Get(validator: ar => ar.Length != 3 ? "expected length 3" : ar.Any(v => v < 0 || v >= splitNames.Length) ? $"out of range for splitNames (0–{splitNames.Length - 1})": null);
         var colorNames = new[] { "red", "green", "blue" };
         var qs = new List<QandA>();
         for (int i = 0; i < 3; i++)
@@ -173,7 +173,7 @@ public partial class SouvenirModule
         var possibleAnswers = new[] { "A", "B", "C", "D", "E", "F" };
 
         if (!possibleAnswers.Contains(answer))
-            throw new AbandonModuleException("Answer ‘{0}’ is not of expected value ({1}).", answer ?? "<null>", possibleAnswers.JoinString(", "));
+            throw new AbandonModuleException($"Answer ‘{answer ?? "<null>"}’ is not of expected value ({possibleAnswers.JoinString(", ")}).");
 
         var fldSolved = GetField<bool>(comp, "_isSolved");
         while (!fldSolved.Get())
@@ -198,13 +198,13 @@ public partial class SouvenirModule
 
         var validWires = new[] { "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", "White", "Black", "Any" };
         var firstCorrectWire = GetIntField(comp, "firstWireToCut").Get(min: 1, max: 7);
-        var secondCorrectWire = GetField<string>(comp, "secondWireToCut").Get(str => !validWires.Contains(str) ? string.Format("invalid color; expected: {0}", validWires.JoinString(", ")) : null);
+        var secondCorrectWire = GetField<string>(comp, "secondWireToCut").Get(str => !validWires.Contains(str) ? $"invalid color; expected: {validWires.JoinString(", ")}": null);
         var displayNumber = GetField<string>(comp, "screenNumber").Get();
 
         // List of valid display numbers for validation. 69 happens in the case of "Any" while 11 is expected to be the longest.
         // Basic calculations by hand and algorithm seem to confirm this, but may want to recalculate to ensure it is right.
         if (!new[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "69" }.Contains(displayNumber))
-            throw new AbandonModuleException("‘displayNumber’ has an unexpected value: {0}", displayNumber);
+            throw new AbandonModuleException($"‘displayNumber’ has an unexpected value: {displayNumber}");
 
         addQuestions(module,
             makeQuestion(Question.ThinkingWiresFirstWire, _ThinkingWires, formatArgs: null, correctAnswers: new[] { firstCorrectWire.ToString() }),
@@ -278,7 +278,7 @@ public partial class SouvenirModule
         var textToCity = GetField<TextMesh>(comp, "TextToCity", isPublic: true).Get();
 
         if (fldFromCity.Get() != textFromCity.text || fldToCity.Get() != textToCity.text)
-            throw new AbandonModuleException("The city names don’t match up: “{0}” vs. “{1}” and “{2}” vs. “{3}”.", fldFromCity.Get(), textFromCity.text, fldToCity.Get(), textToCity.text);
+            throw new AbandonModuleException($"The city names don’t match up: “{fldFromCity.Get()}” vs. “{textFromCity.text}” and “{fldToCity.Get()}” vs. “{textToCity.text}”.");
 
         var solved = false;
         module.OnPass += delegate { solved = true; return false; };

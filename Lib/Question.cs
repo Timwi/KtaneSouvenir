@@ -1,4 +1,4 @@
-namespace Souvenir
+﻿namespace Souvenir
 {
     using static AnswerLayout;
 
