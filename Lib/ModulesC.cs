@@ -175,12 +175,20 @@ public partial class SouvenirModule
     private IEnumerable<object> ProcessCheepCheckout(KMBombModule module)
     {
         var comp = GetComponent(module, "cheepCheckoutScript");
+        var fldUnicorn = GetField<bool>(comp, "unicorn");
         var solved = false;
         module.OnPass += delegate { solved = true; return false; };
 
         while (!solved)
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_CheepCheckout);
+
+        if (fldUnicorn.Get())
+        {
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Cheep Checkout because the unicorn happened.");
+            _legitimatelyNoQuestions.Add(module);
+            yield break;
+        }
 
         var shuffledList = GetField<List<int>>(comp, "numberList", isPublic: false).Get();
         var birdsPresent = shuffledList.Take(5).Where(ix => ix < 26).Select(ix => GetAnswers(Question.CheepCheckoutBirds)[ix]).ToArray();
@@ -645,7 +653,7 @@ public partial class SouvenirModule
 
         var fldClues = GetField<IList>(comp, "_clues");
         var clues = fldClues.Get();
-        var index = fldFirstSubmitted.Get(v => v < 0 || v >= clues.Count ? $"out of range; clues.Count={clues.Count}": null).Value;
+        var index = fldFirstSubmitted.Get(v => v < 0 || v >= clues.Count ? $"out of range; clues.Count={clues.Count}" : null).Value;
         var clue = clues[index];
         var fldClueText = GetField<string>(clue, "Text");
         var fldClueSystem = GetField<int?>(clue, "System");
@@ -681,7 +689,7 @@ public partial class SouvenirModule
         var colorNames = new[] { "red", "green", "blue", "yellow" };
         var cornerNames = new[] { "top-left", "top-right", "bottom-right", "bottom-left" };
 
-        var clampColors = GetArrayField<int>(comp, "_clampColors").Get(expectedLength: 4, validator: v => v < 0 || v >= colorNames.Length ? $"expected 0–{colorNames.Length - 1}": null);
+        var clampColors = GetArrayField<int>(comp, "_clampColors").Get(expectedLength: 4, validator: v => v < 0 || v >= colorNames.Length ? $"expected 0–{colorNames.Length - 1}" : null);
         var qs = new List<QandA>();
         qs.AddRange(cornerNames.Select((corner, cIx) => makeQuestion(Question.CornersColors, _Corners, formatArgs: new[] { corner }, correctAnswers: new[] { colorNames[clampColors[cIx]] })));
         qs.AddRange(colorNames.Select((col, colIx) => makeQuestion(Question.CornersColorCount, _Corners, formatArgs: new[] { col }, correctAnswers: new[] { clampColors.Count(cc => cc == colIx).ToString() })));
