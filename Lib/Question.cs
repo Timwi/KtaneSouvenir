@@ -628,7 +628,7 @@
             ExampleExtraFormatArguments = new[] { "column", "row" }, ExampleExtraFormatArgumentGroupSize = 1)]
         DecoloredSquaresStartingPos,
 
-        [SouvenirQuestion("What was the {1} of the {2} goal in {0}?", "Decolour Flash", ThreeColumns6Answers, "Blue", "Green", "Red", "Magenta", "Yellow", "White", TranslateAnswers = true)]
+        [SouvenirQuestion("What was the {1} of the {2} goal in {0}?", "Decolour Flash", ThreeColumns6Answers, "Blue", "Green", "Red", "Magenta", "Yellow", "White", ExampleExtraFormatArguments = new[] { "colour", "1st", "word", "2nd" }, ExampleExtraFormatArgumentGroupSize = 2, TranslateAnswers = true)]
         DecolourFlashGoal,
 
         [SouvenirQuestion("What number was initially shown on display {1} in {0}?", "Denial Displays", ThreeColumns6Answers, null, ExampleAnswers = new[] {"1", "22", "333", "4", "55", "666", "7", "88", "999"},

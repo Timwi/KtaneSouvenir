@@ -789,14 +789,14 @@ public partial class SouvenirModule
     private IEnumerable<object> ProcessBrokenGuitarChords(KMBombModule module)
     {
         var comp = GetComponent(module, "BrokenGuitarChordsModule");
+        var chordDisplay = GetField<TextMesh>(comp, "ChordDisplay", isPublic: true).Get();
+        string displayedChord = chordDisplay.text;
 
         var fldSolved = GetField<bool>(comp, "_isSolved");
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_BrokenGuitarChords);
 
-        var chordDisplay = GetField<TextMesh>(comp, "ChordDisplay", isPublic: true).Get();
-        string displayedChord = chordDisplay.text;
         chordDisplay.text = "";
 
         foreach (var renderer in GetField<MeshRenderer[]>(comp, "FretRenderers", isPublic: true).Get())
