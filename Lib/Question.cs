@@ -2007,6 +2007,10 @@
         [AnswerGenerator.Integers(0, 25)]
         QuintuplesColorCounts,
 
+        [SouvenirQuestion("What was the number initially on the display in {0}?", "Quiz Buzz", ThreeColumns6Answers)]
+        [AnswerGenerator.Integers(6, 74)]
+        QuizBuzzStartingNumber,
+
         [SouvenirQuestion("What tile did you place {1} in {0}?", "Qwirkle", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "QwirkleSprites",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         QwirkleTilesPlaced,

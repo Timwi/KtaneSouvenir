@@ -381,6 +381,7 @@ public partial class SouvenirModule
     const string _QuestionMark = "Questionmark";
     const string _QuickArithmetic = "QuickArithmetic";
     const string _Quintuples = "quintuples";
+    const string _QuizBuzz = "quizBuzz";
     const string _Qwirkle = "qwirkle";
     const string _RaidingTemples = "raidingTemples";
     const string _RailwayCargoLoading = "RailwayCargoLoading";
@@ -918,6 +919,7 @@ public partial class SouvenirModule
             [_QuestionMark] = (ProcessQuestionMark, "Question Mark", "Kuro"),
             [_QuickArithmetic] = (ProcessQuickArithmetic, "Quick Arithmetic", "VFlyer"),
             [_Quintuples] = (ProcessQuintuples, "Quintuples", "Timwi"),
+            [_QuizBuzz] = (ProcessQuizBuzz, "Quiz Buzz", "Kuro"),
             [_Qwirkle] = (ProcessQwirkle, "Qwirkle", "GoodHood"),
             [_RaidingTemples] = (ProcessRaidingTemples, "Raiding Temples", "GoodHood"),
             [_RailwayCargoLoading] = (ProcessRailwayCargoLoading, "Railway Cargo Loading", "LotsOfS"),

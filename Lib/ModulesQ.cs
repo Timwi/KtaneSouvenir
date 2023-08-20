@@ -89,6 +89,19 @@ public partial class SouvenirModule
             colorCounts.Select((cc, ix) => makeQuestion(Question.QuintuplesColorCounts, _Quintuples, formatArgs: new[] { colorNames[ix] }, correctAnswers: new[] { cc.ToString() }))));
     }
 
+    private IEnumerable<object> ProcessQuizBuzz(KMBombModule module)
+    {
+        var comp = GetComponent(module, "quizBuzz");
+
+        var fldSolved = GetField<bool>(comp, "isSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_QuizBuzz);
+
+        var startingNumber = GetIntField(comp, "startNumber").Get(min: 6, max: 74);
+        addQuestion(module, Question.QuizBuzzStartingNumber, correctAnswers: new[] { startingNumber.ToString() });
+    }
+
     private IEnumerable<object> ProcessQwirkle(KMBombModule module)
     {
         var comp = GetComponent(module, "qwirkleScript");
@@ -108,8 +121,8 @@ public partial class SouvenirModule
             tilesIndex[i] = shapeIndex * 6 + colourIndex;
         }
 
-        addQuestions(module, 
-            Enumerable.Range(0, 4).Select(tile => makeQuestion(Question.QwirkleTilesPlaced, _Qwirkle, 
-            formatArgs: new[] { ordinal(tile+1) }, correctAnswers: new[] { QwirkleSprites[tilesIndex[tile]] })));
+        addQuestions(module,
+            Enumerable.Range(0, 4).Select(tile => makeQuestion(Question.QwirkleTilesPlaced, _Qwirkle,
+            formatArgs: new[] { ordinal(tile + 1) }, correctAnswers: new[] { QwirkleSprites[tilesIndex[tile]] })));
     }
 }
