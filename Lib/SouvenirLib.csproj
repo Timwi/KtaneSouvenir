@@ -7,6 +7,7 @@
     <RootNamespace>Souvenir</RootNamespace>
     <AssemblyName>SouvenirLib</AssemblyName>
     <TargetFramework>net35</TargetFramework>
+    <LangVersion>9.0</LangVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
