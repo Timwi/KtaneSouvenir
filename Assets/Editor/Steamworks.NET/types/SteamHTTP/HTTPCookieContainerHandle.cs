@@ -4,6 +4,7 @@
 
 // Changes to this file will be reverted when you update Steamworks.NET
 
+#pragma warning disable 436
 namespace Steamworks {
 	public struct HTTPCookieContainerHandle : System.IEquatable<HTTPCookieContainerHandle>, System.IComparable<HTTPCookieContainerHandle> {
 		public static readonly HTTPCookieContainerHandle Invalid = new HTTPCookieContainerHandle(0);

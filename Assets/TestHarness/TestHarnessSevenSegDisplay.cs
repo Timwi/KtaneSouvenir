@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SevenSegDisplay : MonoBehaviour
+public class TestHarnessSevenSegDisplay : MonoBehaviour
 {
 	public int DisplayValue
 	{

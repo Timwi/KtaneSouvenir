@@ -1,4 +1,6 @@
-﻿using UnityEditor;
+﻿#pragma warning disable 436
+
+using UnityEditor;
 using Steamworks;
 using UnityEngine;
 using System.IO;

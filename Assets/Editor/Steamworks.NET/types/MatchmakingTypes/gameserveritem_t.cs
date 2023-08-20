@@ -4,6 +4,7 @@
 
 // Changes to this file will be reverted when you update Steamworks.NET
 
+#pragma warning disable 436
 using System.Runtime.InteropServices;
 using System.Text;
 

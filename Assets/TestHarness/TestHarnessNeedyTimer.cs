@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class NeedyTimer : MonoBehaviour
+public class TestHarnessNeedyTimer : MonoBehaviour
 {
 	public float TimeRemaining { get; set; }
 	public KMAudio Audio;
@@ -77,7 +77,7 @@ public class NeedyTimer : MonoBehaviour
 		Display.DisplayValue = (int)Mathf.Round(TimeRemaining);
 	}
 
-	public SevenSegDisplay Display;
+	public TestHarnessSevenSegDisplay Display;
 	public float TotalTime;
 	public KMNeedyModule ParentComponent;
 	public float WarnTime = 5f;

@@ -215,7 +215,7 @@ public partial class CommunityFeaturesDownloader
                     EnsureDirectoryExists(location);
                     if (target_location == root + "*")
                     {
-                        foreach(var e in GetEntries(file, root))
+                        foreach(var e in GetEntries(file, root).Where(e => !target.IgnoreFiles.Contains(e.FileName)))
                             e.Extract(modkitLocation, ExtractExistingFileAction.OverwriteSilently);
                         //Import(location);
                     }
@@ -223,7 +223,7 @@ public partial class CommunityFeaturesDownloader
                     {
                         case FeatureInfo.ZipTarget.ZipTargetType.Directory:
                             EnsureDirectoryExists(location);
-                            foreach (var e in GetEntries(file, root).Where(e => e.FileName.StartsWith(target.Target)))
+                            foreach (var e in GetEntries(file, root).Where(e => !target.IgnoreFiles.Contains(e.FileName) && e.FileName.StartsWith(target.Target)))
                                 e.Extract(modkitLocation, ExtractExistingFileAction.OverwriteSilently);
                             //Import(Path.Combine(location, filename));
                             break;

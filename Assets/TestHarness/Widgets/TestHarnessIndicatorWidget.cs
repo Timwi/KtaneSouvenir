@@ -4,7 +4,7 @@ using EdgeworkConfigurator;
 using Newtonsoft.Json;
 using UnityEngine;
 
-public class IndicatorWidget : Widget
+public class TestHarnessIndicatorWidget : TestHarnessWidget
 {
 	static List<string> possibleValues = new List<string>()
 	{
@@ -21,9 +21,9 @@ public class IndicatorWidget : Widget
 	[PrivateWhenPlaying] public Transform LightOnTransform;
 	[PrivateWhenPlaying] public Transform LightOffTransform;
 
-	public static IndicatorWidget CreateComponent(IndicatorWidget where, string label = null, IndicatorState state = IndicatorState.RANDOM)
+	public static TestHarnessIndicatorWidget CreateComponent(TestHarnessIndicatorWidget where, string label = null, IndicatorState state = IndicatorState.RANDOM)
 	{
-		IndicatorWidget widget = Instantiate(where);
+		TestHarnessIndicatorWidget widget = Instantiate(where);
 
 		if (label == null)
 		{

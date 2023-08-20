@@ -4,6 +4,7 @@
 
 // Changes to this file will be reverted when you update Steamworks.NET
 
+#pragma warning disable 436
 namespace Steamworks {
 	public struct SteamLeaderboardEntries_t : System.IEquatable<SteamLeaderboardEntries_t>, System.IComparable<SteamLeaderboardEntries_t> {
 		public ulong m_SteamLeaderboardEntries;

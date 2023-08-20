@@ -4,6 +4,7 @@
 
 // Changes to this file will be reverted when you update Steamworks.NET
 
+#pragma warning disable 436
 namespace Steamworks {
 	public struct ScreenshotHandle : System.IEquatable<ScreenshotHandle>, System.IComparable<ScreenshotHandle> {
 		public static readonly ScreenshotHandle Invalid = new ScreenshotHandle(0);

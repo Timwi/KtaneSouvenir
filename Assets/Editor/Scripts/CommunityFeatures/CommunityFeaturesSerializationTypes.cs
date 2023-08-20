@@ -24,6 +24,14 @@ public partial class CommunityFeaturesDownloader
                 [JsonProperty(Required = Required.Always)] public string Location { get; set; }
                 [JsonProperty(Required = Required.Always)] public string Target { get; set; }
                 [JsonProperty(Required = Required.Always)] public ZipTargetType TargetType { get; set; }
+                [JsonProperty(Required = Required.DisallowNull)] public string[] IgnoreFiles { get; set; }
+
+                [OnDeserialized]
+                private void Init(StreamingContext _)
+                {
+                    if (IgnoreFiles == null)
+                        IgnoreFiles = new string[0];
+                }
             }
             
             [JsonProperty(Required = Required.Always)] public string Name { get; set; }
@@ -86,6 +94,13 @@ public partial class CommunityFeaturesDownloader
             [JsonProperty(Required = Required.Always)] public string Name { get; set; }
             [JsonProperty(Required = Required.Always)] public string Info { get; set; }
             [JsonProperty(Required = Required.Always)] public string[] Files { get; set; }
+        }
+
+        [Serializable]
+        private class FeaturesSave
+        {
+            [JsonProperty(Required = Required.Always)] public List<DownloadInfo> InstalledPlugins { get; set; }
+            [JsonProperty(Required = Required.Always)] public List<string> CustomSources { get; set; }
         }
     #pragma warning restore 649
 }

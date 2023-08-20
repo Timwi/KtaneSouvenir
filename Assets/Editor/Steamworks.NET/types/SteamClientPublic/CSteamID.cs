@@ -4,6 +4,7 @@
 
 // Changes to this file will be reverted when you update Steamworks.NET
 
+#pragma warning disable 436
 namespace Steamworks {
 	public struct CSteamID : System.IEquatable<CSteamID>, System.IComparable<CSteamID> {
 		public static readonly CSteamID Nil = new CSteamID();

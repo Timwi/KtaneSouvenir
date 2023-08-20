@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
 
-public class PortWidget : Widget
+public class TestHarnessPortWidget : TestHarnessWidget
 {
 	[ReadOnlyWhenPlaying] public List<string> ports;
 
@@ -12,9 +12,9 @@ public class PortWidget : Widget
 	[PrivateWhenPlaying] public Transform GraphicPortsTransform;
 	[PrivateWhenPlaying] public Transform GraphicPortsFillerTransform;
 
-	public static PortWidget CreateComponent(PortWidget where, List<string> portNames = null)
+	public static TestHarnessPortWidget CreateComponent(TestHarnessPortWidget where, List<string> portNames = null)
 	{
-		PortWidget widget = Instantiate(where);
+		TestHarnessPortWidget widget = Instantiate(where);
 		widget.ports = new List<string>();
 		string portList = "";
 		if (portNames == null)

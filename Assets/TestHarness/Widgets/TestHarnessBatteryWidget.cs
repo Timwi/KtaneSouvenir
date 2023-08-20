@@ -3,16 +3,16 @@ using System.Linq;
 using Newtonsoft.Json;
 using UnityEngine;
 
-public class BatteryWidget : Widget
+public class TestHarnessBatteryWidget : TestHarnessWidget
 {
 	[ReadOnlyWhenPlaying] public int batt;
 	[PrivateWhenPlaying] public TextMesh BatteryTextMesh;
 	[PrivateWhenPlaying] public Transform[] BatteryHolders;
 	[PrivateWhenPlaying] public Transform[] BatterySets;
 
-	public static BatteryWidget CreateComponent(BatteryWidget where, int battCount = -1)
+	public static TestHarnessBatteryWidget CreateComponent(TestHarnessBatteryWidget where, int battCount = -1)
 	{
-		BatteryWidget widget = Instantiate(where);
+		TestHarnessBatteryWidget widget = Instantiate(where);
 		if (battCount == -1)
 		{
 			widget.batt = Random.Range(1, 3);

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
+﻿using System.IO;
 using UnityEditor;
 using UnityEngine;
 
@@ -84,5 +80,13 @@ public class ModKitSettingsEditor : Editor
         GUILayout.Label(ModConfig.PreviewImage, GUILayout.MaxWidth(128), GUILayout.MaxHeight(128));
         EditorGUILayout.EndHorizontal();
         serializedObject.ApplyModifiedProperties();
+    }
+    
+    // This method is run when closing an inspector window
+    // This will create an Assembly Definition file, which can be used to change the assembly name of the project to something other than Assembly-CSharp.
+    // Unity will generate new csproj files when an Assembly Definition is created, but will not delete old ones, or update the startup project to the new csproj file.
+    void OnDestroy()
+    {
+        AssemblyDefinitions.RunChecks();
     }
 }

@@ -12,7 +12,13 @@ public partial class CommunityFeaturesDownloader : EditorWindow
     {
         private void OnGUI()
         {
-            GUILayout.Label("To add your plugin to the list, contact Qkrisi#4982 on Discord.\nMake sure you have a build of your plugin ready alongside a proper documentation.");
+            GUILayout.Label("To add your plugin to the list, contact qkrisi on Discord.");
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("You can find him on the", GUILayout.ExpandWidth(false));
+            if(LinkButton("KTANE Discord server."))
+                Application.OpenURL("https://discord.gg/K6uQMyBcYZ");
+            GUILayout.EndHorizontal();
+            GUILayout.Label("Make sure you have a build of your plugin ready alongside a proper documentation.");
             GUILayout.Space(30);
             if (GUILayout.Button("OK"))
             {
@@ -23,7 +29,7 @@ public partial class CommunityFeaturesDownloader : EditorWindow
     }
     
     [MenuItem("Keep Talking ModKit/Plugins", false, priority = 950)]
-    private static void ShowWindow() 
+    private static void ShowWindow()
     {
         var window = GetWindow<CommunityFeaturesDownloader>();
         window.titleContent = new GUIContent("KMPlugins");
@@ -31,7 +37,7 @@ public partial class CommunityFeaturesDownloader : EditorWindow
         window.Show();
     }
 
-    public const string VERSION = "1.2.1.0";
+    public const string VERSION = "2.0.3.0";
     public readonly Version PARSED_VERSION = new Version(VERSION);
 
     private static readonly string[] Sizes = {"KB", "MB", "GB", "TB" };
@@ -50,7 +56,8 @@ public partial class CommunityFeaturesDownloader : EditorWindow
         return bytes + "B";
     }
 
-    private static WWW FeaturesFetch;
+    private static LinkedList<WWW> FeaturesFetchList;
+    private static LinkedListNode<WWW> FeaturesFetch;
 
     private static FeatureInfo[] Features;
     private static FeatureInfo CurrentFeature;
@@ -59,9 +66,10 @@ public partial class CommunityFeaturesDownloader : EditorWindow
     private static string InfoFilePath;
     private static string BackupPath;
 
-    private static List<DownloadInfo> DownloadedPlugins = new List<DownloadInfo>();
+    private static FeaturesSave SaveFile;
 
     private static HelpPopup HelpWindow;
+    private static SourceEditorWindow SourceWindow;
     private float time;
     private int dots = 1;
     private const int FeatureButtonWidth = 300;
@@ -69,23 +77,30 @@ public partial class CommunityFeaturesDownloader : EditorWindow
     private const int DownloadButtonWidth = 100;
     private int RefreshButtonWidth = FeatureButtonWidth / 2;
     private readonly GUIStyle RichStyle = new GUIStyle();
+    private readonly string[] DefaultSources = new string[]
+    {
+        "https://qkrisi.xyz/ktane/kmplugins"
+    };
 
     private Vector2 ScrollPos;
-
-
+    
+    
     private void CreateFeatureButton(FeatureInfo feature)
     {
         bool selected = CurrentFeature != null && feature.Name == CurrentFeature.Name;
-        if(GUILayout.Button(String.Format("{0} (By {1})", feature.Name, feature.Author), GUILayout.Width(FeatureButtonWidth)) && !selected)
+        GUI.enabled = !selected;
+        var selectPlugin = GUILayout.Button(String.Format("{0} (By {1})", feature.Name, feature.Author), GUILayout.Width(FeatureButtonWidth));
+        GUI.enabled = true;
+        if(selectPlugin && !selected)
         {
             CurrentFeature = feature;
             Repaint();
         }
     }
 
-    private void SavePlugins()
+    private static void SavePlugins()
     {
-        File.WriteAllText(InfoFilePath, JsonConvert.SerializeObject(DownloadedPlugins));
+        File.WriteAllText(InfoFilePath, JsonConvert.SerializeObject(SaveFile));
     }
 
     private void LoadPlugins()
@@ -94,39 +109,55 @@ public partial class CommunityFeaturesDownloader : EditorWindow
         {
             try
             {
-                DownloadedPlugins = JsonConvert.DeserializeObject<List<DownloadInfo>>(File.ReadAllText(InfoFilePath)) ?? new List<DownloadInfo>();
+                SaveFile = JsonConvert.DeserializeObject<FeaturesSave>(File.ReadAllText(InfoFilePath));
+                return;
             }
             catch (Exception ex)
             {
                 Debug.LogException(ex);
             }
         }
+
+        if (SaveFile == null)
+            SaveFile = new FeaturesSave
+            {
+                InstalledPlugins = new List<DownloadInfo>(),
+                CustomSources = new List<string>()
+            };
     }
-    
-    private void Reset()
+
+    private static void ResetState()
     {
         FeaturesFetch = null;
         Features = null;
         CurrentFeature = null;
-        DownloadedPlugins = new List<DownloadInfo>();
+        SaveFile = null;
         GithubReleaseHandler.ReleaseCache.Clear();
     }
 
-    private bool LinkButton(string text)
+    internal static bool LinkButton(string text)
     {
         return GUILayout.Button(String.Format("<color=blue>{0}</color>", text),
             new GUIStyle(GUI.skin.label) { richText = true });
     }
+
+    private void Update()
+    {
+        Repaint();
+    }
     
     private void OnGUI()
     {
+        if(SaveFile == null)
+            LoadPlugins();
         if (FeaturesFetch == null)
         {
-            FeaturesFetch = new WWW("https://qkrisi.xyz/ktane/kmplugins");
+            FeaturesFetchList =
+                new LinkedList<WWW>(DefaultSources.Concat(SaveFile.CustomSources).Distinct()
+                    .Where(s => !string.IsNullOrEmpty(s.Trim())).Select(s => new WWW(s.Trim())));
+            FeaturesFetch = FeaturesFetchList.First;
             return;
         }
-        if(DownloadedPlugins == null)
-            LoadPlugins();
         if (Event.current.type == EventType.Repaint)
         {
             time += Time.deltaTime;
@@ -139,19 +170,26 @@ public partial class CommunityFeaturesDownloader : EditorWindow
         }
         try
         {
-            if (!FeaturesFetch.isDone || Features != null && Features.Any(f => f.Handler != null && !f.Handler.Ready))
+            if (!FeaturesFetch.Value.isDone ||
+                FeaturesFetch.Next != null ||
+                Features != null && Features.Any(f => f.Handler != null && !f.Handler.Ready))
             {
-                
-                EditorGUILayout.HelpBox("Fetching plugins for the KTaNE Modkit" + new String('.', dots), MessageType.Info, true);
+                if(!string.IsNullOrEmpty(FeaturesFetch.Value.error))
+                    Debug.LogErrorFormat("Failed to fetch source {0}: {1}", FeaturesFetch.Value.url, FeaturesFetch.Value.error);
+                if (FeaturesFetch.Value.isDone && FeaturesFetch.Next != null)
+                    FeaturesFetch = FeaturesFetch.Next;
+                EditorGUILayout.HelpBox("Fetching plugins for the KTaNE Modkit" + new String('.', dots),
+                    MessageType.Info, true);
                 return;
             }
-            if (!String.IsNullOrEmpty(FeaturesFetch.error))
+
+            /*if (!String.IsNullOrEmpty(FeaturesFetch.Value.error))
             {
-                EditorGUILayout.HelpBox("Network error: " + FeaturesFetch.error, MessageType.Error, true);
+                EditorGUILayout.HelpBox("Network error: " + FeaturesFetch.Value.error, MessageType.Error, true);
                 if (GUILayout.Button("Retry"))
                     Reset();
                 return;
-            }
+            }*/
 
             FeatureInfo Downloading = null;
             float height = position.height - 45;
@@ -167,7 +205,20 @@ public partial class CommunityFeaturesDownloader : EditorWindow
                     height -= ProgressBarHeight;
                 }
             }
-            else Features = JsonConvert.DeserializeObject<FeatureInfo[]>(FeaturesFetch.text);
+            else
+            {
+                var _features = new List<FeatureInfo>();
+                foreach (var query in FeaturesFetchList)
+                {
+                    if(!string.IsNullOrEmpty(query.error) || string.IsNullOrEmpty(query.text.Trim()))
+                        continue;
+                    var deserializedFeatures = JsonConvert.DeserializeObject<FeatureInfo[]>(query.text.Trim());
+                    if(deserializedFeatures != null)
+                        _features.AddRange(deserializedFeatures);
+                }
+
+                Features = _features.GroupBy(f => f.Name).Select(g => g.First()).ToArray();
+            }
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.ExpandWidth(false), GUILayout.Width(FeatureButtonWidth));
@@ -176,9 +227,25 @@ public partial class CommunityFeaturesDownloader : EditorWindow
             
             if (GUILayout.Button("Refresh", GUILayout.Width(RefreshButtonWidth)))
             {
-                Reset();
+                ResetState();
                 goto finish;
             }
+
+            EditorGUILayout.BeginVertical();
+            GUILayout.Space(4);
+            if (LinkButton("Edit sources"))
+            {
+                if (SourceWindow == null)
+                {
+                    SourceWindow = GetWindow<SourceEditorWindow>(true, "Edit sources", true);
+                    SourceWindow.position = new Rect(Screen.width / 2 - SourceWindow.position.width / 2f,
+                        Screen.height / 2 - 125, SourceWindow.position.width, 250);
+                    SourceWindow.Show();
+                }
+                else SourceWindow.Focus();
+            }
+            EditorGUILayout.EndVertical();
+            
             EditorGUILayout.EndHorizontal();
             ScrollPos = EditorGUILayout.BeginScrollView(ScrollPos, GUILayout.Height(height), GUILayout.Width(FeatureButtonWidth+20));
             foreach (var feature in Features)
@@ -189,7 +256,7 @@ public partial class CommunityFeaturesDownloader : EditorWindow
                 if (HelpWindow == null)
                 {
                     HelpWindow = GetWindow<HelpPopup>(true, "Adding plugins", true);
-                    HelpWindow.position = new Rect(Screen.width / 2 - 250, Screen.height / 2 - 50, 500, 100);
+                    HelpWindow.position = new Rect(Screen.width / 2 - 250, Screen.height / 2 - 52, 500, 105);
                     HelpWindow.Show();
                 }
                 else HelpWindow.Focus();
@@ -208,20 +275,21 @@ public partial class CommunityFeaturesDownloader : EditorWindow
                 }
                 catch {}
                 GUI.enabled = Downloading == null;
-                var downloadedPlugin = DownloadedPlugins.FirstOrDefault(p => p.Name == CurrentFeature.Name);
+                var downloadedPlugin = SaveFile.InstalledPlugins.FirstOrDefault(p => p.Name == CurrentFeature.Name);
                 if (downloadedPlugin == null)
                 {
                     if (CurrentFeature.ParsedMinVersion <= PARSED_VERSION && CurrentFeature.ParsedMaxVersion >= PARSED_VERSION)
                     {
                         CurrentFeature.Handler.Draw();
                         if (GUILayout.Button("Install", GUILayout.Width(DownloadButtonWidth)))
-                            DownloadedPlugins.Add(CurrentFeature.Handler.Download());
+                            SaveFile.InstalledPlugins.Add(CurrentFeature.Handler.Download());
                     }
                     else
                     {
+                        var versionInfo = CurrentFeature.ParsedMinVersion > PARSED_VERSION ? "minimum version: " + CurrentFeature.MinVersion : "maximum version: " + CurrentFeature.MaxVersion;
                         GUILayout.Label(string.Format(
-                            "<color=red>This plugin is not compatible with this version of the modkit ({0})</color>",
-                            VERSION), RichStyle, GUILayout.ExpandWidth(false));
+                            "<color=red>This plugin is not compatible with this version of the modkit ({0}; {1})</color>",
+                            VERSION, versionInfo), RichStyle, GUILayout.ExpandWidth(false));
                     }
 
                     SavePlugins();
@@ -257,7 +325,7 @@ public partial class CommunityFeaturesDownloader : EditorWindow
                             }
                             Remove(ModkitPath);
                         }
-                        DownloadedPlugins.Remove(downloadedPlugin);
+                        SaveFile.InstalledPlugins.Remove(downloadedPlugin);
                         SavePlugins();
                     }
                 }
@@ -283,8 +351,10 @@ public partial class CommunityFeaturesDownloader : EditorWindow
                 EditorGUILayout.EndVertical();
                 EditorGUILayout.EndHorizontal();
         }
-        catch (ArgumentException)   //Repaint
+        catch (ArgumentException argEx)
         {
+            if(!argEx.Message.StartsWith("Getting control") && !argEx.Message.StartsWith("GUILayout:"))
+                Debug.LogException(argEx);
         }
         catch (Exception ex)
         {

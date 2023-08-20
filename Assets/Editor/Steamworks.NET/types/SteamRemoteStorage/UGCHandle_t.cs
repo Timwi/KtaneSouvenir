@@ -4,6 +4,7 @@
 
 // Changes to this file will be reverted when you update Steamworks.NET
 
+#pragma warning disable 436
 namespace Steamworks {
 	public struct UGCHandle_t : System.IEquatable<UGCHandle_t>, System.IComparable<UGCHandle_t> {
 		public static readonly UGCHandle_t Invalid = new UGCHandle_t(0xffffffffffffffff);

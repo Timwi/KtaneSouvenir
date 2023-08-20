@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
 
-public class TwoFactorWidget : Widget
+public class TwoFactorWidget : TestHarnessWidget
 {
 	private static int counter = 1;
 	[PrivateWhenPlaying] public int instance;

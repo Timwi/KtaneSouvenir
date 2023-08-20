@@ -4,6 +4,7 @@
 
 // Changes to this file will be reverted when you update Steamworks.NET
 
+#pragma warning disable 436
 namespace Steamworks {
 	public struct HServerListRequest : System.IEquatable<HServerListRequest> {
 		public static readonly HServerListRequest Invalid = new HServerListRequest(System.IntPtr.Zero);

@@ -4,6 +4,7 @@
 
 // Changes to this file will be reverted when you update Steamworks.NET
 
+#pragma warning disable 436
 namespace Steamworks {
 	public struct DepotId_t : System.IEquatable<DepotId_t>, System.IComparable<DepotId_t> {
 		public static readonly DepotId_t Invalid = new DepotId_t(0x0);

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
+using ModkitEditorUtils;
 
 /// <summary>
 /// 
@@ -29,7 +30,13 @@ public class AssetBundler
     /// <summary>
     /// List of managed assemblies to ignore in the build (because they already exist in KTaNE itself)
     /// </summary>
-    static List<string> EXCLUDED_ASSEMBLIES = new List<string> { "KMFramework.dll", "Newtonsoft.Json.dll", "0Harmony.dll", "Camera.dll", "Google.ProtocolBuffers.dll", "I18N.dll", "I18N.West.dll", "log4net.dll", "PdfSharp.dll", "SonyNP.dll" };
+    private static List<string> EXCLUDED_ASSEMBLIES = new List<string>
+    {
+        "Assembly-CSharp.dll", "Assembly-CSharp-firstpass.dll", "Assembly-CSharp-forwarder.dll",
+        "Assembly-CSharp-firstpass-forwarder.dll", "KMFramework.dll", "Newtonsoft.Json.dll",
+        "0Harmony.dll", "Camera.dll", "Google.ProtocolBuffers.dll",
+        "I18N.dll", "I18N.West.dll", "log4net.dll", "PdfSharp.dll", "SonyNP.dll", "Mono.Posix.dll", "Mono.Security.dll"
+    };
 
     /// <summary>
     /// Location of MSBuild.exe tool
@@ -48,6 +55,7 @@ public class AssetBundler
 
 
     #region Internal bundler Variables
+
     /// <summary>
     /// The name of the mod's main assembly
     /// </summary>
@@ -59,14 +67,12 @@ public class AssetBundler
     private string outputFolder;
 
     /// <summary>
-    /// List of MonoScripts modified during the bundling process that need to be restored after.
-    /// </summary>
-    private List<string> scriptPathsToRestore = new List<string>();
-
-    /// <summary>
     /// A variable for holding the current BuildTarget, for Mac compatibility.
     /// </summary>
-    BuildTarget target = BuildTarget.StandaloneWindows;
+    static BuildTarget target => Application.platform == RuntimePlatform.OSXEditor
+        ? BuildTarget.StandaloneOSX
+        : BuildTarget.StandaloneWindows;
+
     #endregion
 
     protected enum AssemblyMode
@@ -105,12 +111,16 @@ public class AssetBundler
             Debug.LogError("You must configure your mod from the \"Keep Talking ModKit / Configure Mod\" menu first.");
             return;
         }
+        else if (!AssemblyDefinitions.DefinitionExists())
+        {
+            Debug.LogErrorFormat("The selected mod id ({0}) cannot be used to build this project. Please choose a different id in the \"Keep Talking Modkit / Configure Mod\" menu.", ModConfig.ID);
+            return;
+        }
 
         AssetBundler bundler = new AssetBundler();
 
         bundler.assemblyName = ModConfig.ID;
         bundler.outputFolder = ModConfig.OutputFolder + "/" + bundler.assemblyName;
-        if (Application.platform == RuntimePlatform.OSXEditor) bundler.target = BuildTarget.StandaloneOSX;
 
         bool success = false;
 
@@ -122,9 +132,6 @@ public class AssetBundler
 
             //Delete the cotnents of OUTPUT_FOLDER
             bundler.CleanBuildFolder();
-
-            //Change all non-Editor scripts to reference ASSEMBLY_NAME instead of Assembly-CSharp
-            bundler.AdjustMonoScripts();
 
             //Update material info components for future compatibility checks
             bundler.UpdateMaterialInfo();
@@ -162,11 +169,6 @@ public class AssetBundler
         {
             Debug.LogErrorFormat("Failed to build AssetBundle: {0}\n{1}", e.Message, e.StackTrace);
         }
-        finally
-        {
-            //Restore script references to Assembly-CSharp, as expected by the Unity Editor
-            bundler.RestoreMonoScripts();
-        }
 
         if (success)
         {
@@ -196,7 +198,8 @@ public class AssetBundler
     {
         Debug.Log("Compiling scripts with MSBuild...");
 
-        IEnumerable<string> scriptAssetPaths = AssetDatabase.GetAllAssetPaths().Where(assetPath => assetPath.EndsWith(".cs") && IsIncludedAssetPath(assetPath));
+        IEnumerable<string> scriptAssetPaths = AssetDatabase.GetAllAssetPaths()
+            .Where(assetPath => assetPath.EndsWith(".cs") && IsIncludedAssetPath(assetPath));
 
         if (scriptAssetPaths.Count() == 0)
         {
@@ -211,7 +214,8 @@ public class AssetBundler
 
         //modify the csproj (if needed)
         var csproj = File.ReadAllText("Assembly-CSharp.csproj");
-        csproj = csproj.Replace("<AssemblyName>Assembly-CSharp</AssemblyName>", "<AssemblyName>" + assemblyName + "</AssemblyName>");
+        csproj = csproj.Replace("<AssemblyName>Assembly-CSharp</AssemblyName>",
+            "<AssemblyName>" + assemblyName + "</AssemblyName>");
         File.WriteAllText("modkithelper.CSharp.csproj", csproj);
 
         string path = "modkithelper.CSharp.csproj";
@@ -236,7 +240,8 @@ public class AssetBundler
     void CompileAssemblyWithEditor()
     {
         Debug.Log("Compiling scripts with EditorUtility.CompileCSharp...");
-        IEnumerable<string> scriptAssetPaths = AssetDatabase.GetAllAssetPaths().Where(assetPath => assetPath.EndsWith(".cs") && IsIncludedAssetPath(assetPath));
+        IEnumerable<string> scriptAssetPaths = AssetDatabase.GetAllAssetPaths()
+            .Where(assetPath => assetPath.EndsWith(".cs") && IsIncludedAssetPath(assetPath));
 
         if (scriptAssetPaths.Count() == 0)
         {
@@ -251,145 +256,42 @@ public class AssetBundler
             playerDefines += ";";
         }
 
-        string allDefines = playerDefines + "KMBUILD;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_3_5;UNITY_5_3;UNITY_5;UNITY_64;ENABLE_NEW_BUGREPORTER;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_SPRITE_POLYGON;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;ENABLE_EDITOR_TESTS_RUNNER;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_LOG_MIXED_STACKTRACE;ENABLE_UNITYWEBREQUEST;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS";
+        string allDefines = playerDefines +
+                            "KMBUILD;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_3_5;UNITY_5_3;UNITY_5;UNITY_64;ENABLE_NEW_BUGREPORTER;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_SPRITE_POLYGON;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;ENABLE_EDITOR_TESTS_RUNNER;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_LOG_MIXED_STACKTRACE;ENABLE_UNITYWEBREQUEST;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS";
         string outputFilename = outputFolder + "/" + assemblyName + ".dll";
 
         var applicationContentsPath = EditorApplication.applicationContentsPath;
-        
+
         List<string> managedReferences = AssetDatabase.GetAllAssetPaths()
             .Where(path => path.EndsWith(".dll") && path.StartsWith("Assets/Plugins/Managed"))
-            .Select(path => "Assets/Plugins/Managed/" + Path.GetFileNameWithoutExtension(path)).Concat(new[]
+            .Select(path => path.Substring(0, path.Length - 4)).Concat(new[]
             {
                 "Managed/UnityEngine",
                 "UnityExtensions/Unity/GUISystem/UnityEngine.UI"
             }.Select(p => Path.Combine(applicationContentsPath, p)))
             .ToList();
-        
+
         //Next we need to grab some type references and use reflection to build things the way Unity does.
         //Note that EditorUtility.CompileCSharp will do *almost* exactly the same thing, but it unfortunately
         //defaults to "unity" rather than "2.0" when selecting the .NET support for the classlib_profile.
-
-        string[] scriptArray = scriptAssetPaths.ToArray();
-        string[] referenceArray = managedReferences.ToArray();
+        
         string[] defineArray = allDefines.Split(';');
 
-        //MonoIsland to compile
-        int apiCompatibilityLevel = 1; //NET_2_0 compatibility level is enum value 1
-        Assembly assembly = Assembly.GetAssembly(typeof(MonoScript));
-        var monoIslandType = assembly.GetType("UnityEditor.Scripting.MonoIsland");
-        object monoIsland = Activator.CreateInstance(monoIslandType, target, apiCompatibilityLevel, scriptArray, referenceArray, defineArray, outputFilename);
+        var proxyScripts = scriptAssetPaths.Where(path => path.StartsWith("Assets/Scripts/GameProxies")).ToArray();
 
-        //MonoCompiler itself
-        var monoCompilerType = assembly.GetType("UnityEditor.Scripting.Compilers.MonoCSharpCompiler");
-        object monoCompiler = Activator.CreateInstance(monoCompilerType, monoIsland, false);
+        var success = proxyScripts.Length == 0 || ModkitCompiler.CompileAssembly(proxyScripts,
+            managedReferences.ToArray(),
+            defineArray, outputFolder + "/GameProxies.dll");
 
-        MethodInfo beginCompilingMethod = monoCompilerType.GetMethod("BeginCompiling");
-        MethodInfo pollMethod = monoCompilerType.GetMethod("Poll");
-        MethodInfo getMessagesMethod = monoCompilerType.GetMethod("GetCompilerMessages");
-
-        //CompilerMessage
-        var compilerMessageType = assembly.GetType("UnityEditor.Scripting.Compilers.CompilerMessage");
-        FieldInfo messageField = compilerMessageType.GetField("message");
-        FieldInfo messageTypeField = compilerMessageType.GetField("type");
-
-        //Start compiling
-        beginCompilingMethod.Invoke(monoCompiler, null);
-        while (!(bool) pollMethod.Invoke(monoCompiler, null))
+        if (success)
         {
-            System.Threading.Thread.Sleep(50);
+            if(proxyScripts.Length > 0)
+                managedReferences.Add(outputFolder + "/GameProxies.dll");
+            ModkitCompiler.CompileAssembly(
+                scriptAssetPaths.Where(path => !path.StartsWith("Assets/Scripts/GameProxies")).ToArray(),
+                managedReferences.ToArray(),
+                defineArray, outputFilename);
         }
-
-        //Now check and output any messages returned by the compiler
-        object returnedObj = getMessagesMethod.Invoke(monoCompiler, null);
-        object[] cmArray = ((Array) returnedObj).Cast<object>().ToArray();
-
-        foreach (object cm in cmArray)
-        {
-            string str = (string) messageField.GetValue(cm);
-            int type = (int)messageTypeField.GetValue(cm);
-            if (type > 0)
-                type++;     //Skip LogType.Assert (1)
-            Debug.unityLogger.LogFormat((LogType)type, "Compiler: {0}", str);
-        }
-
-        if (!File.Exists(outputFilename))
-        {
-            throw new Exception("Compilation failed!");
-        }
-
-        //Remove unwanted .mdb file
-        File.Delete(Path.Combine(outputFolder, assemblyName + ".dll.mdb"));
-
-        Debug.Log("Script compilation complete.");
-    }
-
-    /// <summary>
-    /// Change all non-Editor MonoScripts to reference the ASSEMBLY_NAME assembly, rather than the default Assembly-CSharp.
-    /// </summary>
-    protected void AdjustMonoScripts()
-    {
-        Debug.Log("Adjusting scripts...");
-
-        IEnumerable<string> assetFolderPaths = AssetDatabase.GetAllAssetPaths().Where(path => path.EndsWith(".cs") && IsIncludedAssetPath(path));
-
-        scriptPathsToRestore = new List<string>();
-
-        foreach (var path in assetFolderPaths)
-        {
-            MonoScript script = AssetDatabase.LoadAssetAtPath<MonoScript>(path);
-
-            if (script != null)
-            {
-                scriptPathsToRestore.Add(path);
-                ChangeMonoScriptAssembly(script, assemblyName);
-            }
-        }
-    }
-
-    /// <summary>
-    /// Restore the MonoScript references to point to Assembly-CSharp, which is expected by the Unity Editor.
-    /// </summary>
-    protected void RestoreMonoScripts()
-    {
-        Debug.Log("Restoring scripts...");
-
-        foreach (var path in scriptPathsToRestore)
-        {
-            MonoScript script = AssetDatabase.LoadAssetAtPath<MonoScript>(path);
-
-            if (script != null)
-            {
-                RestoreMonoScriptAssembly(script);
-                AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);
-            }
-        }
-    }
-
-    /// <summary>
-    /// Make use of internal Unity functionality to change which assembly a MonoScript points to.
-    /// 
-    /// We change this to allow Unity to reconnect references to the script when loaded into KTaNE. Normally, a MonoScript
-    /// points to the Assembly-CSharp.dll assembly. Because we are forced to build the mod assembly with a different name,
-    /// Unity would not normally be able to reconnect the script. Here we can change the assembly name a MonoScript points to
-    /// and resolve the problem.
-    /// 
-    /// WARNING! The Unity Editor expects MonoScripts to resolve to the Assembly-CSharp assembly, so you MUST change it back
-    /// or else the editor will lose the script reference (and you'll be forced to delete your Library to recover).
-    /// </summary>
-    /// <param name="script"></param>
-    /// <param name="assemblyName"></param>
-    protected void ChangeMonoScriptAssembly(MonoScript script, string assemblyName)
-    {
-        //MonoScript
-        //internal extern void Init(string scriptContents, string className, string nameSpace, string assemblyName, bool isEditorScript);
-        MethodInfo dynMethod = script.GetType().GetMethod("Init", BindingFlags.NonPublic | BindingFlags.Instance);
-        dynMethod.Invoke(script, new object[] { script.text, script.name, "", assemblyName, false });
-        Debug.LogFormat("Changed {0} assembly to {1}", script.name, assemblyName);
-    }
-
-    protected void RestoreMonoScriptAssembly(MonoScript script)
-    {
-        ChangeMonoScriptAssembly(script, "Assembly-CSharp");
     }
 
     /// <summary>
@@ -397,14 +299,16 @@ public class AssetBundler
     /// </summary>
     protected void CopyManagedAssemblies(ref bool UseHarmony)
     {
-        IEnumerable<string> assetPaths = AssetDatabase.GetAllAssetPaths().Where(path => path.EndsWith(".dll") && path.StartsWith("Assets/Plugins"));
+        IEnumerable<string> assetPaths = AssetDatabase.GetAllAssetPaths()
+            .Where(path => path.EndsWith(".dll") && path.StartsWith("Assets/Plugins"));
 
         //Now find any other managed plugins that should be included, other than the EXCLUDED_ASSEMBLIES list
         foreach (string assetPath in assetPaths)
         {
             var pluginImporter = AssetImporter.GetAtPath(assetPath) as PluginImporter;
 
-            if (pluginImporter != null && !pluginImporter.isNativePlugin && pluginImporter.GetCompatibleWithAnyPlatform())
+            if (pluginImporter != null && !pluginImporter.isNativePlugin &&
+                pluginImporter.GetCompatibleWithAnyPlatform())
             {
                 string assetName = Path.GetFileName(assetPath);
                 if (assetName == "0Harmony.dll")
@@ -456,7 +360,8 @@ public class AssetBundler
     /// </summary>
     protected void CreateModInfo(bool UseHarmony)
     {
-        File.WriteAllText(outputFolder + (UseHarmony ? "/modInfo_Harmony.json" : "/modInfo.json"), ModConfig.Instance.ToJson());
+        File.WriteAllText(outputFolder + (UseHarmony ? "/modInfo_Harmony.json" : "/modInfo.json"),
+            ModConfig.Instance.ToJson());
 
         if (ModConfig.PreviewImage != null)
         {
@@ -489,6 +394,7 @@ public class AssetBundler
             File.Copy("Assets/modSettings.json", outputFolder + "/modSettings.json");
         }
     }
+
     /// <summary>
     /// Copies PDF manual pages to Manual folder in OUTPUT_FOLDER to be used for manual combination
     /// </summary>
@@ -531,7 +437,6 @@ public class AssetBundler
             {
                 file.CopyTo(temppath, false);
             }
-
         }
 
         // If copying subdirectories, copy them and their contents to new location.
@@ -557,11 +462,14 @@ public class AssetBundler
         if (Directory.Exists(examplesFolder))
         {
             int numAssetsInBundle = AssetDatabase.FindAssets("b:" + BUNDLE_FILENAME).Length;
-            int numExampleAssetsInBundle = AssetDatabase.FindAssets("b:" + BUNDLE_FILENAME, new string[] { examplesFolder }).Length;
+            int numExampleAssetsInBundle =
+                AssetDatabase.FindAssets("b:" + BUNDLE_FILENAME, new string[] { examplesFolder }).Length;
 
             if ((numExampleAssetsInBundle > 0) && (numAssetsInBundle > numExampleAssetsInBundle))
             {
-                Debug.LogWarningFormat("AssetBundle includes {0} assets under Examples/ tagged with \"mod.bundle\". These will be included in you bundle unless you untag or delete them.", numExampleAssetsInBundle);
+                Debug.LogWarningFormat(
+                    "AssetBundle includes {0} assets under Examples/ tagged with \"mod.bundle\". These will be included in you bundle unless you untag or delete them.",
+                    numExampleAssetsInBundle);
             }
         }
     }
@@ -582,11 +490,12 @@ public class AssetBundler
                 var importer = AssetImporter.GetAtPath(path);
                 if (!importer.assetBundleName.Equals(BUNDLE_FILENAME))
                 {
-                    Debug.LogWarningFormat("Asset \"{0}\" is not tagged for {1} and will not be included in the AssetBundle!", path, BUNDLE_FILENAME);
+                    Debug.LogWarningFormat(
+                        "Asset \"{0}\" is not tagged for {1} and will not be included in the AssetBundle!", path,
+                        BUNDLE_FILENAME);
                 }
             }
         }
-
     }
 
     /// <summary>
@@ -594,10 +503,12 @@ public class AssetBundler
     /// </summary>
     protected void CheckForAssets()
     {
-        string[] assetsInBundle = AssetDatabase.FindAssets(string.Format("t:prefab,t:audioclip,t:scriptableobject,b:", BUNDLE_FILENAME));
+        string[] assetsInBundle =
+            AssetDatabase.FindAssets(string.Format("t:prefab,t:audioclip,t:scriptableobject,b:", BUNDLE_FILENAME));
         if (assetsInBundle.Length == 0)
         {
-            throw new Exception(string.Format("No assets have been tagged for inclusion in the {0} AssetBundle.", BUNDLE_FILENAME));
+            throw new Exception(string.Format("No assets have been tagged for inclusion in the {0} AssetBundle.",
+                BUNDLE_FILENAME));
         }
     }
 
@@ -621,14 +532,15 @@ public class AssetBundler
     protected void UpdateMaterialInfo()
     {
         List<string> supportedShaders = new List<string>
-            {
-                "Legacy Shaders/Diffuse", "Hidden/CubeBlur", "Hidden/CubeCopy", "Hidden/CubeBlend",
-                "UI/Default", "UI/Default Font", "Mobile/Diffuse", "Unlit/Transparent",
-                "Unlit/Transparent Cutout", "Unlit/Color", "Mobile/Unlit (Supports Lightmap)", "Unlit/Texture",
-                "KT/Blend Lit and Unlit", "KT/Blend Lit and Unlit Vertex Color", "KT/Blend Unlit", "GUI/KT 3D Text",
-                "KT/Mobile/Diffuse", "KT/Mobile/DiffuseTint", "KT/Transparent/Mobile Diffuse Underlay200", "KT/Unlit/TexturedLightmap",
-                "KT/Unlit/TransparentVertexColorUnderlay30", "KT/Outline"
-            };
+        {
+            "Legacy Shaders/Diffuse", "Hidden/CubeBlur", "Hidden/CubeCopy", "Hidden/CubeBlend",
+            "UI/Default", "UI/Default Font", "Mobile/Diffuse", "Unlit/Transparent",
+            "Unlit/Transparent Cutout", "Unlit/Color", "Mobile/Unlit (Supports Lightmap)", "Unlit/Texture",
+            "KT/Blend Lit and Unlit", "KT/Blend Lit and Unlit Vertex Color", "KT/Blend Unlit", "GUI/KT 3D Text",
+            "KT/Mobile/Diffuse", "KT/Mobile/DiffuseTint", "KT/Transparent/Mobile Diffuse Underlay200",
+            "KT/Unlit/TexturedLightmap",
+            "KT/Unlit/TransparentVertexColorUnderlay30", "KT/Outline"
+        };
 
         string[] prefabsGUIDs = AssetDatabase.FindAssets("t: prefab");
         foreach (string prefabGUID in prefabsGUIDs)
@@ -639,6 +551,7 @@ public class AssetBundler
             {
                 continue;
             }
+
             foreach (Renderer renderer in go.GetComponentsInChildren<Renderer>())
             {
                 if (renderer.sharedMaterials != null && renderer.sharedMaterials.Length > 0)
@@ -647,6 +560,7 @@ public class AssetBundler
                     {
                         renderer.gameObject.AddComponent<KMMaterialInfo>();
                     }
+
                     KMMaterialInfo materialInfo = renderer.gameObject.GetComponent<KMMaterialInfo>();
                     materialInfo.ShaderNames = new List<string>();
                     foreach (Material material in renderer.sharedMaterials)
@@ -660,18 +574,25 @@ public class AssetBundler
                                 str.Add(obj.gameObject.name);
                                 obj = obj.parent;
                             }
-                            Debug.LogWarningFormat("There is an unassigned material on the following object: {0}", string.Join(" > ", str.ToArray()));
+
+                            Debug.LogWarningFormat("There is an unassigned material on the following object: {0}",
+                                string.Join(" > ", str.ToArray()));
                             continue;
                         }
+
                         materialInfo.ShaderNames.Add(material.shader.name);
 
                         if (material.shader.name == "Standard")
                         {
-                            Debug.LogWarning(string.Format("Use of Standard shader in object {0}. Standard shader should be avoided as it will cause your mod to break in future versions of the game.", renderer.gameObject));
+                            Debug.LogWarning(string.Format(
+                                "Use of Standard shader in object {0}. Standard shader should be avoided as it will cause your mod to break in future versions of the game.",
+                                renderer.gameObject));
                         }
                         else if (!supportedShaders.Contains(material.shader.name))
                         {
-                            Debug.LogWarning(string.Format("Use of custom shader {0} in object {1}. Use of custom shaders will break mod compatibility on game update requiring rebuild. Recommend using only supported shaders.", material.shader.name, renderer.gameObject));
+                            Debug.LogWarning(string.Format(
+                                "Use of custom shader {0} in object {1}. Use of custom shaders will break mod compatibility on game update requiring rebuild. Recommend using only supported shaders.",
+                                material.shader.name, renderer.gameObject));
                         }
                     }
                 }

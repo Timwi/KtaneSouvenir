@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Widget : MonoBehaviour
+public abstract class TestHarnessWidget : MonoBehaviour
 {
 	public abstract string GetResult(string key, string data);
 	public virtual void Activate() { }
@@ -12,9 +12,9 @@ public abstract class Widget : MonoBehaviour
 	public static Vector3 BaseSize = new Vector3(0.06f, 0.03f, 0.06f);
 }
 
-public class WidgetZone
+public class TestHarnessWidgetZone
 {
-	public WidgetZone(GameObject parent, int x, int z, int nX, int nZ, int sX, int sZ)
+	public TestHarnessWidgetZone(GameObject parent, int x, int z, int nX, int nZ, int sX, int sZ)
 	{
 		Parent = parent;
 		X = x;
@@ -35,18 +35,18 @@ public class WidgetZone
 
 	public Quaternion WorldRotation { get; protected set; }
 
-	public static WidgetZone CreateZone(GameObject area)
+	public static TestHarnessWidgetZone CreateZone(GameObject area)
 	{
 		float x = area.transform.lossyScale.x;
 		float z = area.transform.lossyScale.z;
-		int num = (int)(x / Widget.BaseSize.x);
-		int num2 = (int)(z / Widget.BaseSize.z);
-		return new WidgetZone(area, 0, 0, num, num2, num, num2);
+		int num = (int)(x / TestHarnessWidget.BaseSize.x);
+		int num2 = (int)(z / TestHarnessWidget.BaseSize.z);
+		return new TestHarnessWidgetZone(area, 0, 0, num, num2, num, num2);
 	}
 
-	public static List<WidgetZone> SubdivideZoneForWidget(WidgetZone zone, Widget widget)
+	public static List<TestHarnessWidgetZone> SubdivideZoneForWidget(TestHarnessWidgetZone zone, TestHarnessWidget widget)
 	{
-		List<WidgetZone> list = new List<WidgetZone>();
+		List<TestHarnessWidgetZone> list = new List<TestHarnessWidgetZone>();
 		int x;
 		int z;
 		if (widget.SizeX <= zone.SizeX && widget.SizeZ <= zone.SizeZ)
@@ -70,18 +70,18 @@ public class WidgetZone
 		int x3 = x - x2;
 		int z3 = z - z2;
 
-		list.Add(new WidgetZone(zone.Parent, zone.X + x2, zone.Z + z2, zone.NumX, zone.NumZ, zone.SizeX - x, zone.SizeZ - z));
-		if (x2 > 0) list.Add(new WidgetZone(zone.Parent, zone.X, zone.Z, zone.NumX, zone.NumZ, x2, zone.SizeZ));
-		if (z2 > 0) list.Add(new WidgetZone(zone.Parent, zone.X + x2, zone.Z, zone.NumX, zone.NumZ, zone.SizeX - x, z2));
-		if (x3 > 0) list.Add(new WidgetZone(zone.Parent, zone.X + zone.SizeX - x + x2, zone.Z, zone.NumX, zone.NumZ, x - x2, zone.SizeZ));
-		if (z3 > 0) list.Add(new WidgetZone(zone.Parent, zone.X + x2, zone.Z + zone.SizeZ - z + z2, zone.NumX, zone.NumZ, zone.SizeX - x, z - z2));
+		list.Add(new TestHarnessWidgetZone(zone.Parent, zone.X + x2, zone.Z + z2, zone.NumX, zone.NumZ, zone.SizeX - x, zone.SizeZ - z));
+		if (x2 > 0) list.Add(new TestHarnessWidgetZone(zone.Parent, zone.X, zone.Z, zone.NumX, zone.NumZ, x2, zone.SizeZ));
+		if (z2 > 0) list.Add(new TestHarnessWidgetZone(zone.Parent, zone.X + x2, zone.Z, zone.NumX, zone.NumZ, zone.SizeX - x, z2));
+		if (x3 > 0) list.Add(new TestHarnessWidgetZone(zone.Parent, zone.X + zone.SizeX - x + x2, zone.Z, zone.NumX, zone.NumZ, x - x2, zone.SizeZ));
+		if (z3 > 0) list.Add(new TestHarnessWidgetZone(zone.Parent, zone.X + x2, zone.Z + zone.SizeZ - z + z2, zone.NumX, zone.NumZ, zone.SizeX - x, z - z2));
 		return list;
 	}
 
-	public static WidgetZone GetZone(List<WidgetZone> zones, Widget widget)
+	public static TestHarnessWidgetZone GetZone(List<TestHarnessWidgetZone> zones, TestHarnessWidget widget)
 	{
-		List<WidgetZone> list = new List<WidgetZone>();
-		foreach (WidgetZone widgetZone in zones)
+		List<TestHarnessWidgetZone> list = new List<TestHarnessWidgetZone>();
+		foreach (TestHarnessWidgetZone widgetZone in zones)
 		{
 			if (widget.SizeX <= widgetZone.SizeX && widget.SizeZ <= widgetZone.SizeZ)
 			{

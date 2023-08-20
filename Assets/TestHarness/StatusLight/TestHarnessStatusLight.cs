@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StatusLight : MonoBehaviour
+public class TestHarnessStatusLight : MonoBehaviour
 {
 
     public GameObject InactiveLight;

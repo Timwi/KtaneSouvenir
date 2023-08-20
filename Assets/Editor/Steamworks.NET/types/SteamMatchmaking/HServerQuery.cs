@@ -4,6 +4,7 @@
 
 // Changes to this file will be reverted when you update Steamworks.NET
 
+#pragma warning disable 436
 namespace Steamworks {
 	public struct HServerQuery : System.IEquatable<HServerQuery>, System.IComparable<HServerQuery> {
 		public static readonly HServerQuery Invalid = new HServerQuery(-1);

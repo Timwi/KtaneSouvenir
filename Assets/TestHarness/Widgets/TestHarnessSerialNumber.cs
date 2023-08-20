@@ -3,7 +3,7 @@ using EdgeworkConfigurator;
 using Newtonsoft.Json;
 using UnityEngine;
 
-public class SerialNumber : Widget
+public class TestHarnessSerialNumber : TestHarnessWidget
 {
 	[PrivateWhenPlaying] public TextMesh serialTextMesh;
 	[ReadOnlyWhenPlaying] public string serial;
@@ -19,12 +19,12 @@ public class SerialNumber : Widget
 		'5','6','7','8','9'
 	};
 
-	public static SerialNumber CreateComponent(SerialNumber where, EdgeworkConfiguration config)
+	public static TestHarnessSerialNumber CreateComponent(TestHarnessSerialNumber where, EdgeworkConfiguration config)
 	{
 		SerialNumberType sntype = config == null ? SerialNumberType.RANDOM_NORMAL : config.SerialNumberType;
 		string sn = config == null ? string.Empty : config.CustomSerialNumber;
 
-		SerialNumber widget = Instantiate(where);
+		TestHarnessSerialNumber widget = Instantiate(where);
 		if (string.IsNullOrEmpty(sn) && sntype == SerialNumberType.CUSTOM)
 			sntype = SerialNumberType.RANDOM_NORMAL;
 

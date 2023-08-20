@@ -5,6 +5,7 @@
 // Changes to this file will be reverted when you update Steamworks.NET
 
 // If we're running in the Unity Editor we need the editors platform.
+#pragma warning disable 436
 #if UNITY_EDITOR_WIN
 	#define VALVE_CALLBACK_PACK_LARGE
 #elif UNITY_EDITOR_OSX

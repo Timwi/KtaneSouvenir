@@ -1,4 +1,4 @@
-public class ModWidget : Widget
+public class TestHarnessModWidget : TestHarnessWidget
 {
 	private KMWidget _modWidget;
 

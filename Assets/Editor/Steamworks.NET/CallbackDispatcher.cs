@@ -5,6 +5,7 @@
 // Changes to this file will be reverted when you update Steamworks.NET
 
 
+#pragma warning disable 436
 #if UNITY_3_5 || UNITY_4_0 || UNITY_4_1 || UNITY_4_2 || UNITY_4_3 || UNITY_4_5
 	#error Unsupported Unity platform. Steamworks.NET requires Unity 4.6 or higher.
 #elif UNITY_4_6 || UNITY_5 || UNITY_2017
