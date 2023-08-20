@@ -20,6 +20,22 @@ public partial class SouvenirModule
         addQuestion(module, Question.WarningSignsDisplayedSign, correctAnswers: new[] { WarningSignsSprites[displayedSign] }, preferredWrongAnswers: WarningSignsSprites);
     }
 
+    private IEnumerable<object> ProcessWasd(KMBombModule module)
+    {
+        var comp = GetComponent(module, "WasdModule");
+        var display = GetArrayField<TextMesh>(comp, "DisplayTexts", isPublic: true).Get().First();
+        var displayedLocation = display.text;
+
+        var solved = false;
+        module.OnPass += () => { solved = true; return false; };
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Wasd);
+        display.text = "";
+
+        addQuestion(module, Question.WasdDisplayedLocation, correctAnswers: new[] { displayedLocation });
+    }
+
     private IEnumerable<object> ProcessWavetapping(KMBombModule module)
     {
         var comp = GetComponent(module, "scr_wavetapping");
