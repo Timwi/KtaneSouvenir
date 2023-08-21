@@ -514,6 +514,9 @@
         [AnswerGenerator.Integers(0, 11)]
         ColorsMaximizationColorCount,
 
+        [SouvenirQuestion("What was the colour of this {1} in the {2} stage of {0}?", "Coloured Cubes", ThreeColumns6Answers, ExampleAnswers = new[] { "Red", "Green", "Blue", "Yellow", "Cyan", "Magenta" }, ExampleExtraFormatArguments = new[] { "cube", "1st", "stage light", "2nd" }, ExampleExtraFormatArgumentGroupSize = 2, UsesQuestionSprite = true)]
+        ColouredCubesColours,
+
         [SouvenirQuestion("What was the color of the last word in the sequence in {0}?", "Colour Flash", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Magenta", "White", TranslateAnswers = true)]
         ColourFlashLastColor,
 

@@ -103,6 +103,7 @@ public partial class SouvenirModule
     const string _ColoredSwitches = "ColoredSwitchesModule";
     const string _ColorMorse = "ColorMorseModule";
     const string _ColorsMaximization = "colors_maximization";
+    const string _ColouredCubes = "ColouredCubes";
     const string _ColourFlash = "ColourFlash";
     const string _ConnectionCheck = "graphModule";
     const string _Coordinates = "CoordinatesModule";
@@ -641,6 +642,7 @@ public partial class SouvenirModule
             [_ColoredSwitches] = (ProcessColoredSwitches, "Colored Switches", "Timwi"),
             [_ColorMorse] = (ProcessColorMorse, "Color Morse", "Timwi"),
             [_ColorsMaximization] = (ProcessColorsMaximization, "Colors Maximization", "NickLatkovich"),
+            [_ColouredCubes] = (ProcessColouredCubes, "Coloured Cubes", "Kuro"),
             [_ColourFlash] = (ProcessColourFlash, "Colour Flash", "LotsOfS"),
             [_ConnectionCheck] = (ProcessConnectionCheck, "Connection Check", "Anonymous"),
             [_Coordinates] = (ProcessCoordinates, "Coordinates", "Timwi"),

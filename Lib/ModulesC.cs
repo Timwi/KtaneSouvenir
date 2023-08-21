@@ -645,6 +645,61 @@ public partial class SouvenirModule
         addQuestions(module, questions);
     }
 
+    private IEnumerable<object> ProcessColouredCubes(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ColouredCubesModule");
+
+        var screenText = GetField<string>(GetField<object>(comp, "Screen", isPublic: true).Get(), "_defaultText");
+        
+        var cubes = GetField<Array>(comp, "Cubes", isPublic: true).Get(arr => arr.Length != 9 ? "expected length 9" : null);
+        var fldCubePosition = GetIntField(cubes.GetValue(0), "_position");
+        var fldCubeColour = GetField<string>(cubes.GetValue(0), "_colourName");
+        var allCubeColours = GetField<Dictionary<string, string>>(cubes.GetValue(0), "TernaryColourValuesToName").Get().Values.ToArray();
+
+        var stageLights = GetField<Array>(comp, "StageLights", isPublic: true).Get(arr => arr.Length != 3 ? "expected length 3" : null);
+        var fldStageLightNumber = GetIntField(stageLights.GetValue(0), "_stageNumber");
+        var fldStageLightColour = GetField<string>(stageLights.GetValue(0), "_colourName");
+        var allStageLightColours = GetStaticField<Dictionary<string, string>>(stageLights.GetValue(0).GetType(), "BinaryColourValuesToName").Get().Values.ToArray();
+
+        var cubeColours = new string[3, 9];
+        var stageLightColours = new string[2, 3];
+
+        for (int nextStage = 1; nextStage <= 3; nextStage++)
+        {
+            while (screenText.Get(nullAllowed: true) != $"Stage {nextStage}")
+                yield return null; // Do not wait 0.1 seconds to make sure we get the correct colours.
+            foreach (var cube in cubes)
+            {
+                int position = fldCubePosition.GetFrom(cube, min: 0, max: 8);
+                cubeColours[nextStage - 1, position] = fldCubeColour.GetFrom(cube, col => !allCubeColours.Contains(col) ? $"invalid cube colour '{col}'" : null);
+            }
+            if (nextStage != 3)
+            {
+                foreach (var light in stageLights)
+                {
+                    int number = 3 - fldStageLightNumber.GetFrom(light, min: 1, max: 3);
+                    stageLightColours[nextStage - 1, number] = fldStageLightColour.GetFrom(light, col => !allStageLightColours.Contains(col) ? $"invalid stage light colour '{col}'" : null);
+                }
+            }
+        }
+
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ColouredCubes);
+
+        var qs = new List<QandA>();
+        for (int stage = 0; stage < 3; stage++)
+        {
+            for (int ix = 0; ix < 9; ix++)
+                qs.Add(makeQuestion(Question.ColouredCubesColours, _ColouredCubes, Grid.GenerateGridSprite(3, 3, ix), formatArgs: new[] { "cube", ordinal(stage + 1) }, correctAnswers: new[] { cubeColours[stage, ix] }, preferredWrongAnswers: allCubeColours));
+            if (stage < 2)
+                for (int ix = 0; ix < 3; ix++)
+                    qs.Add(makeQuestion(Question.ColouredCubesColours, _ColouredCubes, Grid.GenerateGridSprite(1, 3, ix), formatArgs: new[] { "stage light", ordinal(stage + 1) }, correctAnswers: new[] { stageLightColours[stage, ix] }, preferredWrongAnswers: allStageLightColours));
+        }
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessColourFlash(KMBombModule module)
     {
         var comp = GetComponent(module, "ColourFlashModule");
