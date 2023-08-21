@@ -78,10 +78,10 @@ public partial class SouvenirModule : MonoBehaviour
     public static readonly string[] _defaultIgnoredModules = { "The Heart", "The Swan", "+", "14", "42", "501", "A>N<D", "Bamboozling Time Keeper", "Black Arrows", "Brainf---", "Busy Beaver", "Cube Synchronization", "Don't Touch Anything", "Floor Lights", "Forget Any Color", "Forget Enigma", "Forget Everything", "Forget Infinity", "Forget Maze Not", "Forget It Not", "Forget Me Not", "Forget Me Later", "Forget Perspective", "Forget The Colors", "Forget This", "Forget Them All", "Forget Us Not", "Iconic", "Keypad Directionality", "Kugelblitz", "Multitask", "OmegaDestroyer", "OmegaForget", "Organization", "Password Destroyer", "Purgatory", "RPS Judging", "Security Council", "Shoddy Chess", "Simon Forgets", "Simon's Stages", "Soulscream", "Souvenir", "Tallordered Keys", "The Time Keeper", "The Troll", "The Twin", "The Very Annoying Button", "Timing is Everything", "Turn The Key", "Ultimate Custom Night", "Whiteout", "Übermodule" };
 
     private Config _config;
-    private readonly List<QuestionBatch> _questions = new List<QuestionBatch>();
-    private readonly HashSet<KMBombModule> _legitimatelyNoQuestions = new HashSet<KMBombModule>();
-    private readonly HashSet<string> _supportedModuleNames = new HashSet<string>();
-    private readonly HashSet<string> _ignoredModules = new HashSet<string>();
+    private readonly List<QuestionBatch> _questions = new();
+    private readonly HashSet<KMBombModule> _legitimatelyNoQuestions = new();
+    private readonly HashSet<string> _supportedModuleNames = new();
+    private readonly HashSet<string> _ignoredModules = new();
     private bool _isActivated = false;
     private Translation _translation;
 
@@ -96,8 +96,8 @@ public partial class SouvenirModule : MonoBehaviour
     [NonSerialized]
     public double SurfaceSizeFactor;
 
-    private readonly Dictionary<string, int> _moduleCounts = new Dictionary<string, int>();
-    private readonly Dictionary<string, int> _modulesSolved = new Dictionary<string, int>();
+    private readonly Dictionary<string, int> _moduleCounts = new();
+    private readonly Dictionary<string, int> _modulesSolved = new();
     private int _coroutinesActive;
 
     private static int _moduleIdCounter = 1;
@@ -171,7 +171,7 @@ public partial class SouvenirModule : MonoBehaviour
 
         disappear();
         WarningIcon.SetActive(false);
-        SetWordWrappedText(Ut.NewArray(
+        SetWordWrappedText((_translation?.IntroTexts ?? Ut.NewArray(
             "I see dead defusers.",     // “I see dead people.” (Sixth Sense)
             "Welcome... to the real bomb.",     // “Welcome... to the real world.” (The Matrix)
             "I’m gonna make him a bomb he can’t defuse.",   // “I’m gonna make him an offer he can’t refuse.” (The Godfather)
@@ -246,9 +246,9 @@ public partial class SouvenirModule : MonoBehaviour
             "It’s a beautiful thing, the detonation of bombs.", // “It’s a beautiful thing, the destruction of words.” (1984)
             "Ich bin ein Defuser.", // “Ich bin ein Berliner”, John F. Kennedy, 1963
             "Ask not the double decker how the Centurion solves!", // Ask not the sparrow how the eagle soars! (Kill la Kill)
-            "Someone thinks they’re too clever for me. They all think that at first." // Someone thinks they’re too clever for us. They all thin that at first (Invincible)
+            "Someone thinks they’re too clever for me. They all think that at first." // Someone thinks they’re too clever for us. They all think that at first. (Invincible)
 
-        ).PickRandom(), 1.75, useQuestionSprite: false);
+        )).PickRandom(), 1.75, useQuestionSprite: false);
 
         if (transform.parent != null && !Application.isEditor)
         {

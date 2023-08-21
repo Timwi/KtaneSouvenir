@@ -1349,7 +1349,7 @@
         [SouvenirQuestion("What was the answer in {0}?", "Mashematics", ThreeColumns6Answers, null)]
         [AnswerGenerator.Integers(0, 99)]
         MashematicsAnswer,
-        [SouvenirQuestion("What was the {1} number in the equation on {0}?", "Mashematics", ThreeColumns6Answers, null, ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
+        [SouvenirQuestion("What was the {1} number in the equation on {0}?", "Mashematics", ThreeColumns6Answers, null, ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 99)]
         MashematicsCalculation,
 
@@ -1983,8 +1983,7 @@
         RaidingTemplesStartingCommonPool,
 
         [SouvenirQuestion("What was the {1} car in {0}?", "Railway Cargo Loading", TwoColumns4Answers, Type = AnswerType.Sprites,
-            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1,
-            TranslateFormatArgs = new[] { true })]
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         RailwayCargoLoadingCars,
         [SouvenirQuestion("Which freight table rule {1} in {0}?", "Railway Cargo Loading", OneColumn4Answers, "Over 150 lumber/75 logs", "Over 100 sheet metal", "Over 250 crude oil", "Over 400 mail", "Over 30 livestock", "Over 600 milk/water/resin", "Over 100 liquid fuel", "Over 700 industrial gas", "Over 150 food", "Over 100 coal", "Over 500 loose bulk (excl. coal)", "Over 7 large objects", "Over 5 automobiles", "Over 700 industrial gas",
             ExampleExtraFormatArguments = new[] { "was met", "wasn’t met" }, ExampleExtraFormatArgumentGroupSize = 1)]
