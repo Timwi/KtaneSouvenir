@@ -845,19 +845,19 @@ public partial class SouvenirModule : MonoBehaviour
     #endregion
 
     #region Methods for adding questions to the pool (used by module handlers)
-    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, float spriteRotation = 0f)
+    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0f)
     {
-        addQuestions(module, makeQuestion(question, module.ModuleType, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, spriteRotation));
+        addQuestions(module, makeQuestion(question, module.ModuleType, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation));
     }
 
-    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null)
+    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Sprite[] correctAnswers = null, Sprite[] allAnswers = null, Sprite[] preferredWrongAnswers = null, float questionSpriteRotation = 0f)
     {
-        addQuestions(module, makeQuestion(question, module.ModuleType, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers));
+        addQuestions(module, makeQuestion(question, module.ModuleType, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation));
     }
 
-    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null)
+    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0f)
     {
-        addQuestions(module, makeQuestion(question, module.ModuleType, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers));
+        addQuestions(module, makeQuestion(question, module.ModuleType, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, questionSpriteRotation));
     }
 
     private void addQuestions(KMBombModule module, IEnumerable<QandA> questions)
@@ -891,35 +891,35 @@ public partial class SouvenirModule : MonoBehaviour
 
     private static readonly AnswerType[] _standardAnswerTypes = Ut.GetEnumValues<AnswerType>().Where(a => (int) a >= 0).ToArray();
 
-    private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, float questionSpriteRotation = 0) =>
+    private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0) =>
         makeQuestion(question, moduleKey,
             (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation, _translation),
             (attr, num, answers) => new QandA.TextAnswerSet(num, attr.Layout, answers, Fonts[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], attr.FontSize, attr.CharacterSize, FontTextures[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], FontMaterial),
-            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, null, _standardAnswerTypes);
+            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, _standardAnswerTypes);
 
-    private QandA makeQuestion(Question question, string moduleKey, Font font, Texture fontTexture, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, float questionSpriteRotation = 0) =>
+    private QandA makeQuestion(Question question, string moduleKey, Font font, Texture fontTexture, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0) =>
         makeQuestion(question, moduleKey,
             (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation, _translation),
             (attr, num, answers) => new QandA.TextAnswerSet(num, attr.Layout, answers, font, attr.FontSize, attr.CharacterSize, fontTexture, FontMaterial),
-            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, null, AnswerType.DynamicFont);
+            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, AnswerType.DynamicFont);
 
-    private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null, float questionSpriteRotation = 0) =>
+    private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null, Sprite[] allAnswers = null, float questionSpriteRotation = 0) =>
         makeQuestion(question, moduleKey,
             (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation, _translation),
             (attr, num, answers) => new QandA.SpriteAnswerSet(num, attr.Layout, answers),
-            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, GetAllSprites(question), AnswerType.Sprites);
+            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? GetAllSprites(question), AnswerType.Sprites);
 
-    private QandA makeSpriteQuestion(Sprite questionSprite, Question debugQuestion, string moduleKey, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null) =>
-        makeQuestion(debugQuestion, moduleKey,
+    private QandA makeSpriteQuestion(Sprite questionSprite, Question question, string moduleKey, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null) =>
+        makeQuestion(question, moduleKey,
             (attr, q) => new QandA.SpriteQuestion(q, questionSprite),
             (attr, num, answers) => new QandA.TextAnswerSet(num, attr.Layout, answers, Fonts[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], attr.FontSize, attr.CharacterSize, FontTextures[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], FontMaterial),
             formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, null, _standardAnswerTypes);
 
-    private QandA makeSpriteQuestion(Sprite questionSprite, Question debugQuestion, string moduleKey, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null) =>
-        makeQuestion(debugQuestion, moduleKey,
+    private QandA makeSpriteQuestion(Sprite questionSprite, Question question, string moduleKey, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null) =>
+        makeQuestion(question, moduleKey,
             (attr, q) => new QandA.SpriteQuestion(q, questionSprite),
             (attr, num, answers) => new QandA.SpriteAnswerSet(num, attr.Layout, answers),
-            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, GetAllSprites(debugQuestion), AnswerType.Sprites);
+            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, GetAllSprites(question), AnswerType.Sprites);
 
     private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0)
     {
@@ -936,8 +936,9 @@ public partial class SouvenirModule : MonoBehaviour
             formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, Enumerable.Range(0, w * h).Select(ix => new Coord(w, h, ix)).ToArray(), AnswerType.Grid);
     }
 
-    private QandA makeQuestion<T>(Question question, string moduleKey, Func<SouvenirQuestionAttribute, string, QandA.Question> questionConstructor, Func<SouvenirQuestionAttribute, int, T[], QandA.AnswerSet> answerSetConstructor,
-        string formattedModuleName, string[] formatArgs, T[] correctAnswers, T[] preferredWrongAnswers, T[] allAnswers, params AnswerType[] acceptableTypes)
+    private QandA makeQuestion<T>(Question question, string moduleKey, Func<SouvenirQuestionAttribute, string, QandA.Question> questionConstructor,
+        Func<SouvenirQuestionAttribute, int, T[], QandA.AnswerSet> answerSetConstructor, string formattedModuleName = null, string[] formatArgs = null,
+        T[] correctAnswers = null, T[] preferredWrongAnswers = null, T[] allAnswers = null, params AnswerType[] acceptableTypes)
     {
         if (!_attributes.TryGetValue(question, out var attr))
         {
