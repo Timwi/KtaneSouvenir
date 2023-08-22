@@ -85,6 +85,7 @@ public partial class SouvenirModule
     const string _Catchphrase = "catchphrase";
     const string _ChallengeAndContact = "challengeAndContact";
     const string _CharacterCodes = "characterCodes";
+    const string _CharacterShift = "characterShift";
     const string _CharacterSlots = "characterSlots";
     const string _CheapCheckout = "CheapCheckoutModule";
     const string _CheepCheckout = "cheepCheckout";
@@ -627,6 +628,7 @@ public partial class SouvenirModule
             [_Catchphrase] = (ProcessCatchphrase, "Catchphrase", "GoodHood"),
             [_ChallengeAndContact] = (ProcessChallengeAndContact, "Challenge & Contact", "luisdiogo98"),
             [_CharacterCodes] = (ProcessCharacterCodes, "Character Codes", "NickLatkovich"),
+            [_CharacterShift] = (ProcessCharacterShift, "Character Shift", "Kuro"),
             [_CharacterSlots] = (ProcessCharacterSlots, "Character Slots", "Hawker"),
             [_CheapCheckout] = (ProcessCheapCheckout, "Cheap Checkout", "Timwi"),
             [_CheepCheckout] = (ProcessCheepCheckout, "Cheep Checkout", "BigCrunch22"),

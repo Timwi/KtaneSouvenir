@@ -413,6 +413,13 @@
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         CharacterCodesCharacter,
 
+        [SouvenirQuestion("Which of these letters was present but not submitted on the left slider of {0}?", "Character Shift", ThreeColumns6Answers)]
+        [AnswerGenerator.Strings("A-Z")]
+        CharacterShiftLetters,
+        [SouvenirQuestion("Which of these digits was present but not submitted on the right slider of {0}?", "Character Shift", ThreeColumns6Answers)]
+        [AnswerGenerator.Strings("0-9")]
+        CharacterShiftDigits,
+
         [SouvenirQuestion("Who was displayed in the {1} slot in the {2} stage of {0}?", "Character Slots", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "CharacterSlotsSprites",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 2)]
         CharacterSlotsDisplayedCharacters,
@@ -1470,7 +1477,7 @@
         MemoryLabel,
 
         [SouvenirQuestion("What was the digit displayed in the {1} stage of {0}?", "Memory Wires", ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
-        [AnswerGenerator.Integers(1,6)]
+        [AnswerGenerator.Integers(1, 6)]
         MemoryWiresDisplayedDigits,
         [SouvenirQuestion("What was the colour of wire {1} in {0}?", "Memory Wires", TwoColumns4Answers, "Red", "Yellow", "Blue", "White", "Black", ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "29", "30" }, ExampleExtraFormatArgumentGroupSize = 1)]
         MemoryWiresWireColours,

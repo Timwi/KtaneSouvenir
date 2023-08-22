@@ -165,6 +165,25 @@ public partial class SouvenirModule
         addQuestions(module, code.Select((c, i) => makeQuestion(Question.CharacterCodesCharacter, _CharacterCodes, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { c }, preferredWrongAnswers: allChars)));
     }
 
+    private IEnumerable<object> ProcessCharacterShift(KMBombModule module)
+    {
+        var comp = GetComponent(module, "characterShift");
+
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_CharacterShift);
+
+        var leftAnswer = GetField<TextMesh>(comp, "letterText", isPublic: true).Get().text;
+        var rightAnswer = GetField<TextMesh>(comp, "numberText", isPublic: true).Get().text;
+        var letters = GetArrayField<string>(comp, "letters").Get(expectedLength: 5).Except(new[] { leftAnswer, "*" }).ToArray();
+        var digits = GetArrayField<string>(comp, "numbers").Get(expectedLength: 5).Except(new[] { rightAnswer, "*" }).ToArray();
+
+        addQuestions(module,
+            makeQuestion(Question.CharacterShiftLetters, _CharacterShift, correctAnswers: letters),
+            makeQuestion(Question.CharacterShiftDigits, _CharacterShift, correctAnswers: digits));
+    }
+
     private IEnumerable<object> ProcessCharacterSlots(KMBombModule module)
     {
         var comp = GetComponent(module, "CharacterSlotsScript");
@@ -650,7 +669,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "ColouredCubesModule");
 
         var screenText = GetField<string>(GetField<object>(comp, "Screen", isPublic: true).Get(), "_defaultText");
-        
+
         var cubes = GetField<Array>(comp, "Cubes", isPublic: true).Get(arr => arr.Length != 9 ? "expected length 9" : null);
         var fldCubePosition = GetIntField(cubes.GetValue(0), "_position");
         var fldCubeColour = GetField<string>(cubes.GetValue(0), "_colourName");
