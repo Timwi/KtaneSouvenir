@@ -1265,6 +1265,10 @@
         [SouvenirQuestion("What color was missing on the third ladder in {0}?", "Ladders", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Cyan", "Purple", "Gray", TranslateAnswers = true)]
         LaddersStage3Missing,
 
+        [SouvenirQuestion("Which of these squares was initially {1} in {0}?", "Langton’s Anteater", ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { "black", "white" }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.Grid)]
+        [AnswerGenerator.Grid(5, 5)]
+        LangtonsAnteaterInitialState,
+
         [SouvenirQuestion("What was the number on the {1} hatch on {0}?", "Lasers", ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "top-left", "top-middle", "top-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 9)]

@@ -245,6 +245,7 @@ public partial class SouvenirModule
     const string _Labyrinth = "labyrinth";
     const string _LadderLottery = "ladderLottery";
     const string _Ladders = "ladders";
+    const string _LangtonsAnteater = "GSLangtonsAnteater";
     const string _Lasers = "lasers";
     const string _LEDEncryption = "LEDEnc";
     const string _LEDMath = "lgndLEDMath";
@@ -784,6 +785,7 @@ public partial class SouvenirModule
             [_Labyrinth] = (ProcessLabyrinth, "Labyrinth, The", "Anonymous"),
             [_LadderLottery] = (ProcessLadderLottery, "Ladder Lottery", "Hawker"),
             [_Ladders] = (ProcessLadders, "Ladders", "tandyCake"),
+            [_LangtonsAnteater] = (ProcessLangtonsAnteater, "Langton’s Anteater", "Kuro"),
             [_Lasers] = (ProcessLasers, "Lasers", "luisdiogo98"),
             [_LEDEncryption] = (ProcessLEDEncryption, "LED Encryption", "CaitSith2"),
             [_LEDMath] = (ProcessLEDMath, "LED Math", "TasThiluna"),

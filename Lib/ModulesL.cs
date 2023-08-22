@@ -90,6 +90,35 @@ public partial class SouvenirModule
             makeQuestion(Question.LaddersStage3Missing, _Ladders, correctAnswers: new[] { colorNames[missing] }));
     }
 
+    private IEnumerable<object> ProcessLangtonsAnteater(KMBombModule module)
+    {
+        var comp = GetComponent(module, "LangtonsAnteaterScript");
+
+        var initialStates = GetArrayField<bool>(comp, "Board").Get(expectedLength: 25);
+        var initialWhites = new List<int>();
+        var initialBlacks = new List<int>();
+        for (int pos = 0; pos < 25; pos++)
+            (initialStates[pos] ? initialBlacks : initialWhites).Add(pos);
+            
+        if (initialBlacks.Count == 0 || initialWhites.Count == 0)
+        {
+            legitimatelyNoQuestion(module, "the module generated 25 cells of the same colour.");
+            yield break;
+        }
+
+        var fldSolved = GetField<bool>(comp, "Solved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_LangtonsAnteater);
+
+        var qs = new List<QandA>();
+        if (initialBlacks.Count >= 5)
+            qs.Add(makeQuestion(Question.LangtonsAnteaterInitialState, _LangtonsAnteater, formatArgs: new[] { "white" }, correctAnswers: initialWhites.Select(pos => new Coord(5, 5, pos)).ToArray()));
+        if (initialWhites.Count >= 5)
+            qs.Add(makeQuestion(Question.LangtonsAnteaterInitialState, _LangtonsAnteater, formatArgs: new[] { "black" }, correctAnswers: initialBlacks.Select(pos => new Coord(5, 5, pos)).ToArray()));
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessLasers(KMBombModule module)
     {
         var comp = GetComponent(module, "LasersModule");
