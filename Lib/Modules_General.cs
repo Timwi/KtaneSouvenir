@@ -79,6 +79,7 @@ public partial class SouvenirModule
     const string _Button = "BigButton";
     const string _ButtonSequence = "buttonSequencesModule";
     const string _CaesarCycle = "caesarCycle";
+    const string _CaesarPsycho = "caesarPsycho";
     const string _Calendar = "calendar";
     const string _Cartinese = "cartinese";
     const string _Catchphrase = "catchphrase";
@@ -607,6 +608,7 @@ public partial class SouvenirModule
             [_Button] = (ProcessButton, "Button, The", "Andrio Celos"),
             [_ButtonSequence] = (ProcessButtonSequence, "Button Sequence", "Timwi"),
             [_CaesarCycle] = (ProcessCaesarCycle, "Caesar Cycle", "TasThiluna"),
+            [_CaesarPsycho] = (ProcessCaesarPsycho, "Caesar Psycho", "Quinn Wuest"),
             [_Calendar] = (ProcessCalendar, "Calendar", "Timwi"),
             [_Cartinese] = (ProcessCartinese, "Cartinese", "Timwi"),
             [_Catchphrase] = (ProcessCatchphrase, "Catchphrase", "GoodHood"),

@@ -384,6 +384,13 @@
           ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1)]
         CaesarCycleWord,
 
+        [SouvenirQuestion("What text was on the top display in the {1} stage of {0}?", "Caesar Psycho", ThreeColumns6Answers,
+        ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("5*A-Z")]
+        CaesarPsychoScreenTexts,
+        [SouvenirQuestion("What color was the text on the top display in the second stage of {0}?", "Caesar Psycho", ThreeColumns6Answers, "white", "red", "magenta", "yellow", "green", "cyan", "violet")]
+        CaesarPsychoScreenColor,
+
         [SouvenirQuestion("What was the LED color in {0}?", "Calendar", TwoColumns4Answers, "Green", "Yellow", "Red", "Blue", TranslateAnswers = true)]
         CalendarLedColor,
 

@@ -174,6 +174,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Arithmelogic             │  JerryEris
     Barcode Cipher           │  Brawlboxgaming
     Bob Barks                │  Kaito Sinclaire
+    Caesar Psycho            │  Quinn Wuest
     Colour Flash             │  LotsOfS
     Crazy Hamburger          │  noting3548
     Divisible Numbers        │  shortc1rcuit
