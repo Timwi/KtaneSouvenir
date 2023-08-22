@@ -1,0 +1,10 @@
+{
+  "name": "Souvenir-Editor",
+  "references": [
+    "Souvenir"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": []
+}
