@@ -118,6 +118,7 @@ public partial class SouvenirModule
     const string _Critters = "CrittersModule";
     const string _CruelBinary = "CruelBinary";
     const string _CruelKeypads = "CruelKeypads";
+    const string _CRule = "the_cRule";
     const string _CrypticCycle = "crypticCycle";
     const string _CrypticKeypad = "GSCrypticKeypad";
     const string _Cube = "cube";
@@ -650,6 +651,7 @@ public partial class SouvenirModule
             [_Critters] = (ProcessCritters, "Critters", "Eltrick"),
             [_CruelBinary] = (ProcessCruelBinary, "Cruel Binary", "Kuro"),
             [_CruelKeypads] = (ProcessCruelKeypads, "Cruel Keypads", "Kuro"),
+            [_CRule] = (ProcessCRule, "cRule, The", "Timwi"),
             [_CrypticCycle] = (ProcessCrypticCycle, "Cryptic Cycle", "TasThiluna"),
             [_CrypticKeypad] = (ProcessCrypticKeypad, "Cryptic Keypad", "Timwi"),
             [_Cube] = (ProcessCube, "Cube, The", "luisdiogo98"),

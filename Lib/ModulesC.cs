@@ -918,6 +918,53 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessCRule(KMBombModule module)
+    {
+        var comp = GetComponent(module, "TheCRuleScript");
+        var solved = false;
+        module.OnPass += delegate { solved = true; return false; };
+
+        var symbolTextMeshes = GetArrayField<TextMesh>(comp, "symbols", isPublic: true).Get(expectedLength: 26);
+        var symbols = symbolTextMeshes.Where(tm => !string.IsNullOrEmpty(tm.text)).Select((tm, ix) => (symPair: tm.text, cell: ix)).ToArray();
+
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_CRule);
+
+        // This contains the indexes of the pre-filled squares, but counting from 1
+        var initOn = GetArrayField<int>(comp, "initOn").Get(expectedLength: 10);
+
+        var cells = Enumerable.Range(0, 8).Select(x => (x: 4 * x, y: 0))
+            .Concat(Enumerable.Range(0, 7).Select(x => (x: 4 * x + 2, y: 4)))
+            .Concat(Enumerable.Range(0, 6).Select(x => (x: 4 * x + 4, y: 8)))
+            .Concat(Enumerable.Range(0, 5).Select(x => (x: 4 * x + 6, y: 12)))
+            .ToArray();
+        var cellSprites = Enumerable.Range(0, 26).Select(cell => Grid.GenerateGridSprite("cRule", 4 * 8 + 1, 4 * 4 + 1, cells, cell, $"cRule row {cells[cell].y / 4 + 1} cell {(cells[cell].x - cells[cell].y / 2) / 4 + 1}", 80)).ToArray();
+
+        var qs = new List<QandA>();
+
+        var displayedSymbols = symbols.Select(tup => tup.symPair).ToArray();
+        var displayedCells = symbols.Select(tup => cellSprites[tup.cell]).ToArray();
+        foreach (var (symPair, cell) in symbols)
+        {
+            // "Which symbol pair was here in {0}?"
+            qs.Add(makeQuestion(Question.CRuleSymbolPair, _CRule, questionSprite: cellSprites[cell],
+                correctAnswers: new[] { symPair }, preferredWrongAnswers: displayedSymbols));
+
+            // "Where was {1} in {0}?"
+            qs.Add(makeQuestion(Question.CRuleSymbolPairCell, _CRule, formatArgs: new[] { symPair },
+                correctAnswers: new[] { cellSprites[cell] }, allAnswers: cellSprites, preferredWrongAnswers: displayedCells));
+        }
+
+        // "Which symbol pair was present on {0}?"
+        qs.Add(makeQuestion(Question.CRuleSymbolPairPresent, _CRule, correctAnswers: displayedSymbols));
+
+        // "Which cell was pre-filled at the start of {0}?"
+        qs.Add(makeQuestion(Question.CRulePrefilled, _CRule, correctAnswers: initOn.Select(cellOffBy1 => cellSprites[cellOffBy1 - 1]).ToArray(), allAnswers: cellSprites));
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessCrypticCycle(KMBombModule module)
     {
         return processSpeakingEvilCycle2(module, "CrypticCycleScript", Question.CrypticCycleWord, _CrypticCycle);
