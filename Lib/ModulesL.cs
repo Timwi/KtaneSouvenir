@@ -123,7 +123,7 @@ public partial class SouvenirModule
         var wrongLetters = new HashSet<string>();
         var fldStage = GetIntField(comp, "layer");
 
-        var reassignButton = Ut.Lambda((KMSelectable btn, TextMesh lbl) =>
+        void reassignButton(KMSelectable btn, TextMesh lbl)
         {
             var prevInteract = btn.OnInteract;
             var stage = fldStage.Get();
@@ -135,7 +135,7 @@ public partial class SouvenirModule
                     pressedLetters[stage] = label;
                 return ret;
             };
-        });
+        }
 
         while (fldStage.Get() < numStages)
         {

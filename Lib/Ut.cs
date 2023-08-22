@@ -252,47 +252,6 @@ namespace Souvenir
             return (T[]) Enum.GetValues(typeof(T));
         }
 
-        /// <summary>
-        ///     Allows the use of C#’s powerful type inference when declaring local lambdas whose delegate type doesn't make
-        ///     any difference.</summary>
-        public static Action Lambda(Action method) { return method; }
-        /// <summary>
-        ///     Allows the use of C#’s powerful type inference when declaring local lambdas whose delegate type doesn't make
-        ///     any difference.</summary>
-        public static Action<T> Lambda<T>(Action<T> method) { return method; }
-        /// <summary>
-        ///     Allows the use of C#’s powerful type inference when declaring local lambdas whose delegate type doesn't make
-        ///     any difference.</summary>
-        public static Action<T1, T2> Lambda<T1, T2>(Action<T1, T2> method) { return method; }
-        /// <summary>
-        ///     Allows the use of C#’s powerful type inference when declaring local lambdas whose delegate type doesn't make
-        ///     any difference.</summary>
-        public static Action<T1, T2, T3> Lambda<T1, T2, T3>(Action<T1, T2, T3> method) { return method; }
-        /// <summary>
-        ///     Allows the use of C#’s powerful type inference when declaring local lambdas whose delegate type doesn't make
-        ///     any difference.</summary>
-        public static Action<T1, T2, T3, T4> Lambda<T1, T2, T3, T4>(Action<T1, T2, T3, T4> method) { return method; }
-        /// <summary>
-        ///     Allows the use of C#’s powerful type inference when declaring local lambdas whose delegate type doesn't make
-        ///     any difference.</summary>
-        public static Func<TResult> Lambda<TResult>(Func<TResult> method) { return method; }
-        /// <summary>
-        ///     Allows the use of C#’s powerful type inference when declaring local lambdas whose delegate type doesn't make
-        ///     any difference.</summary>
-        public static Func<T, TResult> Lambda<T, TResult>(Func<T, TResult> method) { return method; }
-        /// <summary>
-        ///     Allows the use of C#’s powerful type inference when declaring local lambdas whose delegate type doesn't make
-        ///     any difference.</summary>
-        public static Func<T1, T2, TResult> Lambda<T1, T2, TResult>(Func<T1, T2, TResult> method) { return method; }
-        /// <summary>
-        ///     Allows the use of C#’s powerful type inference when declaring local lambdas whose delegate type doesn't make
-        ///     any difference.</summary>
-        public static Func<T1, T2, T3, TResult> Lambda<T1, T2, T3, TResult>(Func<T1, T2, T3, TResult> method) { return method; }
-        /// <summary>
-        ///     Allows the use of C#’s powerful type inference when declaring local lambdas whose delegate type doesn't make
-        ///     any difference.</summary>
-        public static Func<T1, T2, T3, T4, TResult> Lambda<T1, T2, T3, T4, TResult>(Func<T1, T2, T3, T4, TResult> method) { return method; }
-
         private static readonly string[] _joshi = "でなければ|について|かしら|くらい|けれど|なのか|ばかり|ながら|ことよ|こそ|こと|さえ|しか|した|たり|だけ|だに|だの|つつ|ても|てよ|でも|とも|から|など|なり|ので|のに|ほど|まで|もの|やら|より|って|で|と|な|に|ね|の|も|は|ば|へ|や|わ|を|か|が|さ|し|ぞ|て".Split('|');
         private static readonly string _punctuation = ".,。、！!？?〉》」』｣)）]】〕〗〙〛}>)❩❫❭❯❱❳❵｝";
         private static readonly (char from, char to)[] _breakableRanges = new (char from, char to)[] {
@@ -313,15 +272,15 @@ namespace Souvenir
 
             var sb = new StringBuilder();
 
-            var renderSpaces = Lambda(() =>
+            void renderSpaces()
             {
                 sb.Append(' ', numSpaces);
                 x += numSpaces * widthOfASpace;
                 actualWidth = Math.Max(actualWidth, x);
                 numSpaces = 0;
-            });
+            }
 
-            var renderPieces = Lambda(() =>
+            void renderPieces()
             {
                 // Add a space if we are not at the beginning of the line.
                 if (!atStartOfLine)
@@ -333,10 +292,10 @@ namespace Souvenir
                 wordPieces.Clear();
                 wordPiecesWidths.Clear();
                 wordPiecesWidthsSum = 0;
-            });
+            }
 
             // The parameter is not used, but it may be useful in future
-            var advanceToNextLine = Lambda((bool newParagraph) =>
+            string advanceToNextLine(bool newParagraph)
             {
                 var line = sb.ToString();
                 sb = new StringBuilder();
@@ -345,7 +304,7 @@ namespace Souvenir
                 curLine++;
                 numSpaces = 0;
                 return line;
-            });
+            }
 
             var i = 0;
             while (i < text.Length)
