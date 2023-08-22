@@ -5,6 +5,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using Souvenir;
 using UnityEngine;
+using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
@@ -113,6 +114,39 @@ public partial class SouvenirModule
             qs.Add(makeQuestion(Question.DecolourFlashGoal, _DecolourFlash, formatArgs: new[] { "colour", ordinal(i + 1) }, correctAnswers: new[] { names[colours[i]] }));
             qs.Add(makeQuestion(Question.DecolourFlashGoal, _DecolourFlash, formatArgs: new[] { "word", ordinal(i + 1) }, correctAnswers: new[] { names[words[i]] }));
         }
+        addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessDenialDisplays(KMBombModule module)
+    {
+        var comp = GetComponent(module, "DenialDisplaysScript");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_DenialDisplays);
+
+        var initial = GetArrayField<int>(comp, "_initialDisplayNums").Get();
+
+        var rands = new List<int>();
+        for (int i = 0; i < 50; i++)
+        {
+            int r = Rnd.Range(0, 3);
+            if (r == 0)
+                rands.Add(Rnd.Range(0, 10));
+            else if (r == 1)
+                rands.Add(Rnd.Range(10, 100));
+            else
+                rands.Add(Rnd.Range(100, 1000));
+        }
+
+        var qs = new List<QandA>();
+        for (int disp = 0; disp < 5; disp++)
+            qs.Add(makeQuestion(Question.DenialDisplaysDisplays, _DenialDisplays,
+                formatArgs: new[] { "ABCDE"[disp].ToString() },
+                correctAnswers: new[] { initial[disp].ToString() },
+                preferredWrongAnswers: rands.Select(i => i.ToString()).ToArray()));
+
         addQuestions(module, qs);
     }
 

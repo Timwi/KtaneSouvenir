@@ -129,6 +129,7 @@ public partial class SouvenirModule
     const string _DeckOfManyThings = "deckOfManyThings";
     const string _DecoloredSquares = "DecoloredSquaresModule";
     const string _DecolourFlash = "DecolourFlashModule";
+    const string _DenialDisplays = "DenialDisplaysModule";
     const string _DevilishEggs = "devilishEggs";
     const string _Digisibility = "digisibility";
     const string _DigitString = "digitString";
@@ -662,6 +663,7 @@ public partial class SouvenirModule
             [_DeckOfManyThings] = (ProcessDeckOfManyThings, "Deck of Many Things, The", "luisdiogo98"),
             [_DecoloredSquares] = (ProcessDecoloredSquares, "Decolored Squares", "luisdiogo98"),
             [_DecolourFlash] = (ProcessDecolourFlash, "Decolour Flash", "Timwi"),
+            [_DenialDisplays] = (ProcessDenialDisplays, "Denial Displays", "Quinn Wuest"),
             [_DevilishEggs] = (ProcessDevilishEggs, "Devilish Eggs", "Timwi"),
             [_Digisibility] = (ProcessDigisibility, "Digisibility", "tandyCake"),
             [_DigitString] = (ProcessDigitString, "Digit String", "GoodHood"),
