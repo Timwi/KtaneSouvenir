@@ -11,7 +11,7 @@ Based on the [_Keep Talking and Nobody Explodes_ modkit](https://github.com/Qkri
 
 ## Contributing
 
-If you wish to see another module added, you can contribute development by submitting pull requests or finding a volunteer modder on the KTaNE Discord guild. Additions would generally be required to satisfy the following guidelines:
+If you wish to see another module added, you can contribute development by submitting pull requests or finding a volunteer modder on the KTaNE Discord server. Additions would generally be required to satisfy the following guidelines:
 
 * No questions about things that can just be read off after the module is solved (e.g. the symbols in Astrology). However, Souvenir may hide this information on some modules, such as Adventure Game.
 * No questions about things that can be re-deduced by re-solving the module (e.g. offset in Caesar Cipher).
@@ -29,6 +29,8 @@ The following vanilla modules are supported by Souvenir: The Button, Maze, Memor
 - The compiled binary `SouvenirLib.dll` is included in the git repo to allow people to build Souvenir in Unity without needing to compile the source.
 
 ## Adding new module support
+
+First, ensure that there isn’t already a contributor working on adding the module you are hoping to implement. The KTANE Discord server has a thread for this (https://discord.com/channels/160061833166716928/1133454524435148860) where our efforts are coordinated.
 
 The actual source code is in `Lib`. Open `Lib/Souvenir.sln` in Visual Studio to get started.
 
