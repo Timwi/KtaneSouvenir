@@ -2259,6 +2259,21 @@
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonShrieksFlashingButton,
 
+        [SouvenirQuestion("What shape was the {1} arrow in {0}?", "Simon Signals", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = nameof(SouvenirModule.SimonSignalsSprites),
+            ExampleExtraFormatArguments = new[] { "red", "green", "blue", "gray" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
+        SimonSignalsColorToShape,
+        [SouvenirQuestion("How many directions did the {1} arrow in {0} have?", "Simon Signals", TwoColumns4Answers, "3", "4", "5", "6",
+            ExampleExtraFormatArguments = new[] { "red", "green", "blue", "gray" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
+        SimonSignalsColorToRotations,
+        [SouvenirQuestion("What color was the arrow with this shape in {0}?", "Simon Signals", TwoColumns4Answers, "red", "green", "blue", "gray", UsesQuestionSprite = true)]
+        SimonSignalsShapeToColor,
+        [SouvenirQuestion("How many directions did the arrow with this shape have in {0}?", "Simon Signals", TwoColumns4Answers, "3", "4", "5", "6", UsesQuestionSprite = true)]
+        SimonSignalsShapeToRotations,
+        [SouvenirQuestion("What color was the arrow with {1} possible directions in {0}?", "Simon Signals", TwoColumns4Answers, "red", "green", "blue", "gray")]
+        SimonSignalsRotationsToColor,
+        [SouvenirQuestion("What shape was the arrow with {1} possible directions in {0}?", "Simon Signals", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteField = nameof(SouvenirModule.SimonSignalsSprites))]
+        SimonSignalsRotationsToShape,
+
         [SouvenirQuestion("What was the color of the {1} flash in {0}?", "Simon Smothers", ThreeColumns6Answers, "Red", "Green", "Yellow", "Blue", "Magenta", "Cyan", ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSmothersColors,
         [SouvenirQuestion("What was the direction of the {1} flash in {0}?", "Smothers", TwoColumns4Answers, "Up", "Down", "Left", "Right", ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]

@@ -935,6 +935,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d9e2e249f8c5a6e4cb5f822bb237ab37, type: 3}
   - {fileID: 21300000, guid: 0cc373086ea5b754f918eae1ad3c9ea7, type: 3}
   - {fileID: 21300000, guid: 0db021f151b7276468ba002626153336, type: 3}
+  SimonSignalsSprites:
+  - {fileID: 21300016, guid: e7d99051bd651364cbcf26ce0223c2b6, type: 3}
+  - {fileID: 21300024, guid: e7d99051bd651364cbcf26ce0223c2b6, type: 3}
+  - {fileID: 21300018, guid: e7d99051bd651364cbcf26ce0223c2b6, type: 3}
+  - {fileID: 21300026, guid: e7d99051bd651364cbcf26ce0223c2b6, type: 3}
+  - {fileID: 21300020, guid: e7d99051bd651364cbcf26ce0223c2b6, type: 3}
+  - {fileID: 21300028, guid: e7d99051bd651364cbcf26ce0223c2b6, type: 3}
+  - {fileID: 21300022, guid: e7d99051bd651364cbcf26ce0223c2b6, type: 3}
+  - {fileID: 21300030, guid: e7d99051bd651364cbcf26ce0223c2b6, type: 3}
   SimonSpeaksSprites:
   - {fileID: 21300000, guid: bd9a1344dd788474dbf296db3dbf80a3, type: 3}
   - {fileID: 21300000, guid: 93f4df7d7c38bae49b06d7622b92d212, type: 3}

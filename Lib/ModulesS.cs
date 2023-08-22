@@ -693,6 +693,58 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessSimonSignals(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SimonSignalsModule");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SimonSignals);
+
+        var numRotations = GetArrayField<int>(comp, "_numRotations").Get(expectedLength: 5);
+        var colorsShapes = GetArrayField<int>(comp, "_colorsShapes").Get(expectedLength: 5);
+        var qs = new List<QandA>();
+
+        var colorNames = new[] { "red", "green", "blue", "gray" };
+
+        for (var i = 0; i < 5; i++)
+        {
+            // If this arrow has a unique color, we can ask for its shape and its number of rotations
+            if (colorsShapes.Count(cs => (cs >> 3) == (colorsShapes[i] >> 3)) == 1)
+            {
+                qs.Add(makeQuestion(Question.SimonSignalsColorToShape, _SimonSignals,
+                    formatArgs: new[] { colorNames[colorsShapes[i] >> 3] }, correctAnswers: new[] { SimonSignalsSprites[colorsShapes[i] & 7] }));
+                qs.Add(makeQuestion(Question.SimonSignalsColorToRotations, _SimonSignals,
+                    formatArgs: new[] { colorNames[colorsShapes[i] >> 3] }, correctAnswers: new[] { numRotations[i].ToString() }));
+            }
+
+            // If this arrow has a unique shape, we can ask for its color and its number of rotations
+            if (colorsShapes.Count(cs => (cs & 7) == (colorsShapes[i] & 7)) == 1)
+            {
+                qs.Add(makeQuestion(Question.SimonSignalsShapeToColor, _SimonSignals,
+                    questionSprite: SimonSignalsSprites[colorsShapes[i] & 7], correctAnswers: new[] { colorNames[colorsShapes[i] >> 3] }));
+                qs.Add(makeQuestion(Question.SimonSignalsShapeToRotations, _SimonSignals,
+                    questionSprite: SimonSignalsSprites[colorsShapes[i] & 7], correctAnswers: new[] { numRotations[i].ToString() }));
+            }
+
+            // If this arrow has a unique number of rotations, we can ask for its color and shape
+            if (numRotations.Count(nr => nr == numRotations[i]) == 1)
+            {
+                qs.Add(makeQuestion(Question.SimonSignalsRotationsToColor, _SimonSignals,
+                    formatArgs: new[] { numRotations[i].ToString() }, correctAnswers: new[] { colorNames[colorsShapes[i] >> 3] }));
+                qs.Add(makeQuestion(Question.SimonSignalsRotationsToShape, _SimonSignals,
+                    formatArgs: new[] { numRotations[i].ToString() }, correctAnswers: new[] { SimonSignalsSprites[colorsShapes[i] & 7] }));
+            }
+        }
+        if (qs.Count == 0)
+        {
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Simon Signals because none of the arrows had a unique color, shape, or number of directions.");
+            _legitimatelyNoQuestions.Add(module);
+        }
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessSimonSimons(KMBombModule module)
     {
         var comp = GetComponent(module, "simonsScript");
