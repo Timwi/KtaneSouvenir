@@ -55,6 +55,6 @@ MonoBehaviour:
     and maintainer. Many thanks to Andrio for taking care of Souvenir in the interim.
     If you were subscribed to Andrio\u2019s version, please [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2018009170]unsubscribe
     from it[/url]."
-  version: 5.3
+  version: 5.4
   outputFolder: build
   previewImage: {fileID: 2800000, guid: bd5c1f4881f57d54481b44e4c8a7779a, type: 3}
