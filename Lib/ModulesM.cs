@@ -189,6 +189,19 @@ public partial class SouvenirModule
         addQuestions(module, questions);
     }
 
+    private IEnumerable<object> ProcessMasterTapes(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MasterTape");
+
+        var fldSolved = GetField<bool>(comp, "ModuleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_MasterTapes);
+
+        var songIndex = GetIntField(comp, "currentSong").Get(min: 1, max: 9) - 1;
+        addQuestion(module, Question.MasterTapesPlayedSong, correctAnswers: new[] { GetAnswers(Question.MasterTapesPlayedSong)[songIndex] });
+    }
+
     private IEnumerable<object> ProcessMatchRefereeing(KMBombModule module)
     {
         var comp = GetComponent(module, "MeteoRefereeingScript");

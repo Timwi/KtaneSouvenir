@@ -1398,6 +1398,9 @@
         [AnswerGenerator.Integers(0, 99)]
         MashematicsCalculation,
 
+        [SouvenirQuestion("Which song was played in {0}?", "Master Tapes", OneColumn4Answers, "Redemption Song", "Do You Want To Know A Secret", "La Bamba", "Rock-A-Hula Baby", "Pickney Gal", "Dogs", "Young Americans", "Duvet", "Shadows Of Lost Days")]
+        MasterTapesPlayedSong,
+
         [SouvenirQuestion("Which planet was present in the {1} stage of {0}?", "Match Refereeing", TwoColumns4Answers, Type = AnswerType.Sprites,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         MatchRefereeingPlanet,
