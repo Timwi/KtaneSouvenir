@@ -1363,6 +1363,10 @@
         [AnswerGenerator.Integers(0, 99)]
         MashematicsCalculation,
 
+        [SouvenirQuestion("Which planet was present in the {1} stage of {0}?", "Match Refereeing", TwoColumns4Answers, "Anasaze", "Bavoom", "Boggob", "Brabbit", "Cavious", "Dawndus", "Firim", "Florias", "Forte", "Freaze", "Geolyte", "Gigagush", "Globin", "Grannest", "Gravitas", "Hevendor", "Hotted", "Jeljel", "Lastar", "Layazero", "Luna=Luna", "Megadom", "Mekks", "Meteo", "Oleana", "Starrii", "Suburbion", "Thirnova", "Vubble", "Wiral", "Wuud", "Yooj",
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        MatchRefereeingPlanet,
+
         [SouvenirQuestion("What was the color of this tile before the shuffle on {0}?", "Math ’em", TwoColumns4Answers, "White", "Bronze", "Silver", "Gold", UsesQuestionSprite = true)]
         MathEmColor,
         [SouvenirQuestion("What was the design on this tile before the shuffle on {0}?", "Math ’em", ThreeColumns6Answers, null, UsesQuestionSprite = true, Type = AnswerType.Sprites, SpriteField = "MathEmSprites")]

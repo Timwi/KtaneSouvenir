@@ -266,6 +266,7 @@ public partial class SouvenirModule
     const string _MaritimeFlags = "MaritimeFlagsModule";
     const string _MaroonCipher = "maroonCipher";
     const string _Mashematics = "mashematics";
+    const string _MatchRefereeing = "matchRefereeing";
     const string _MathEm = "mathem";
     const string _Matrix = "matrix";
     const string _Maze = "Maze";
@@ -797,6 +798,7 @@ public partial class SouvenirModule
             [_MaritimeFlags] = (ProcessMaritimeFlags, "Maritime Flags", "Timwi"),
             [_MaroonCipher] = (ProcessMaroonCipher, "Maroon Cipher", "Timwi"),
             [_Mashematics] = (ProcessMashematics, "Mashematics", "Marksam"),
+            [_MatchRefereeing] = (ProcessMatchRefereeing, "Match Refereeing", "Quinn Wuest"),
             [_MathEm] = (ProcessMathEm, "Math ’em", "tandyCake"),
             [_Matrix] = (ProcessMatrix, "Matrix, The", "BigCrunch22"),
             [_Maze] = (ProcessMaze, "Maze", "Andrio Celos"),

@@ -189,6 +189,37 @@ public partial class SouvenirModule
         addQuestions(module, questions);
     }
 
+    private IEnumerable<object> ProcessMatchRefereeing(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MeteoRefereeingScript");
+        var fldSolved = GetField<bool>(comp, "IsSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_MatchRefereeing);
+
+        Debug.Log("<>1");
+
+        var planetsArr = GetField<Array>(comp, "planetsUsed").Get(x => x.Length != 3 ? "expected length 3" : null);
+        Debug.Log("<>2");
+        for (int i = 0; i < 3; i++)
+            if (((Array) planetsArr.GetValue(i)).Length != 2 + i)
+                throw new AbandonModuleException($"Abandoning Match Refereeing because planetsUsed[{i}] has unexpected length {((Array) planetsArr.GetValue(i)).Length}. Expected {2 + i}.");
+        Debug.Log("<>3");
+        var planetsUsed = planetsArr.Cast<object>().Select(arr => ((Array) arr).Cast<object>().Select(i => i.ToString()).ToArray()).ToArray();
+
+        Debug.Log("<>4");
+        var allPlanetsUsed = planetsUsed.SelectMany(x => x).ToArray();
+
+        Debug.Log("<>5");
+        var qs = new List<QandA>();
+        for (int stage = 0; stage < 2; stage++)
+            qs.Add(makeQuestion(Question.MatchRefereeingPlanet, _MatchRefereeing, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: planetsUsed[stage], preferredWrongAnswers: allPlanetsUsed));
+        Debug.Log("<>6");
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessMathEm(KMBombModule module)
     {
         var comp = GetComponent(module, "MathemScript");

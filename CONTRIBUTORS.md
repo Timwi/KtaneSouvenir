@@ -187,6 +187,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Hyperlink, The           │  Espik
     Inner Connections        │  Brawlboxgaming
     Mahjong                  │  River
+    Match Refereeing         │  Quinn Wuest
     Mega Man 2               │  Goofy
     Melody Sequencer         │  Goofy
     Module Maze              │  River
