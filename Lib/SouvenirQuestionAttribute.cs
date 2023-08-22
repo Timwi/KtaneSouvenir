@@ -25,7 +25,7 @@ namespace Souvenir
         public float CharacterSize { get; set; } = 1;
         public bool IsEntireQuestionSprite { get; set; }
 
-        public string ModuleNameWithThe => (AddThe ? "The " : "") + ModuleName;
+        public string ModuleNameWithThe => (AddThe ? "The\u00a0" : "") + ModuleName;
 
         public int NumAnswers => Layout switch
         {

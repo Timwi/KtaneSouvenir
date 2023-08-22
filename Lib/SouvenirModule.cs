@@ -342,9 +342,10 @@ public partial class SouvenirModule : MonoBehaviour
 
     void showExampleQuestion()
     {
-        if (!_attributes.TryGetValue(_exampleQuestions[_curExampleQuestion], out var attr))
+        var q = _exampleQuestions[_curExampleQuestion];
+        if (!_attributes.TryGetValue(q, out var attr))
         {
-            Debug.LogError($"<Souvenir #{_moduleId}> Error: Question {_exampleQuestions[_curExampleQuestion]} has no attribute.");
+            Debug.LogError($"<Souvenir #{_moduleId}> Error: Question {q} has no attribute.");
             return;
         }
         if (attr.ExampleExtraFormatArguments != null && attr.ExampleExtraFormatArguments.Length > 0 && attr.ExampleExtraFormatArgumentGroupSize > 0)
@@ -353,17 +354,21 @@ public partial class SouvenirModule : MonoBehaviour
             _curExampleVariant = (_curExampleVariant % numExamples + numExamples) % numExamples;
         }
         var fmt = new object[attr.ExampleExtraFormatArgumentGroupSize + 1];
-        fmt[0] = formatModuleName(attr.ModuleName, _curExampleOrdinal > 0, _curExampleOrdinal, attr.AddThe);
+        fmt[0] = formatModuleName(
+            _translation?.Translations[q]?.ModuleName ?? attr.ModuleName,
+            _translation?.Translations[q]?.ModuleNameWithThe ?? _translation?.Translations[q]?.ModuleName ?? attr.ModuleNameWithThe,
+            _curExampleOrdinal > 0,
+            _curExampleOrdinal);
         for (int i = 0; i < attr.ExampleExtraFormatArgumentGroupSize; i++)
         {
             var arg = attr.ExampleExtraFormatArguments[_curExampleVariant * attr.ExampleExtraFormatArgumentGroupSize + i];
-            fmt[i + 1] = arg == QandA.Ordinal ? ordinal(Rnd.Range(1, 6)) : translateFormatArg(_exampleQuestions[_curExampleQuestion], arg);
+            fmt[i + 1] = arg == QandA.Ordinal ? ordinal(Rnd.Range(1, 6)) : translateFormatArg(q, arg);
         }
         QandA.Question question;
         QandA.AnswerSet answerSet;
         try
         {
-            var questionText = string.Format(translateQuestion(_exampleQuestions[_curExampleQuestion]), fmt);
+            var questionText = string.Format(translateQuestion(q), fmt);
             if (attr.IsEntireQuestionSprite)
             {
                 var answerSprites = attr.SpriteField == null ? ExampleSprites : (Sprite[]) typeof(SouvenirModule).GetField(attr.SpriteField, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleSprites;
@@ -397,7 +402,7 @@ public partial class SouvenirModule : MonoBehaviour
                         answers.Shuffle();
                         answers.RemoveRange(attr.NumAnswers, answers.Count - attr.NumAnswers);
                     }
-                    var correctAnswers = answers.Select(ans => attr.TranslateAnswers ? translateAnswer(_exampleQuestions[_curExampleQuestion], ans) : ans).ToArray();
+                    var correctAnswers = answers.Select(ans => attr.TranslateAnswers ? translateAnswer(q, ans) : ans).ToArray();
                     int fontIndex = attr.Type == AnswerType.DynamicFont || attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type;
                     answerSet = new QandA.TextAnswerSet(attr.NumAnswers, attr.Layout, correctAnswers, Fonts[fontIndex], attr.FontSize, attr.CharacterSize, FontTextures[fontIndex], FontMaterial);
                     break;
@@ -411,8 +416,6 @@ public partial class SouvenirModule : MonoBehaviour
         }
     }
 
-    private string translateModuleName(Question question) => _translation?.Translations[question].ModuleName ?? _attributes[question].ModuleName;
-    private string translateModuleNameWithThe(Question question) => _translation?.Translations[question].ModuleNameWithThe ?? _translation?.Translations[question].ModuleName ?? _attributes[question].ModuleNameWithThe;
     private string translateQuestion(Question question) => _translation?.Translations[question].QuestionText ?? _attributes[question].QuestionText;
     private string translateFormatArg(Question question, string arg) => arg == null ? null : _translation?.Translations[question].FormatArgs?.Get(arg, arg) ?? arg;
     private string translateAnswer(Question question, string answ) => answ == null ? null : _translation?.Translations[question].Answers?.Get(answ, answ) ?? answ;
@@ -1032,7 +1035,7 @@ public partial class SouvenirModule : MonoBehaviour
         }
 
         var allFormatArgs = new string[formatArgs != null ? formatArgs.Length + 1 : 1];
-        allFormatArgs[0] = formattedModuleName ?? formatModuleName(attr.ModuleName, _moduleCounts.Get(moduleKey) > 1, numSolved, attr.AddThe);
+        allFormatArgs[0] = formattedModuleName ?? formatModuleName(attr.ModuleName, attr.ModuleNameWithThe, _moduleCounts.Get(moduleKey) > 1, numSolved);
         if (formatArgs != null)
             for (var i = 0; i < formatArgs.Length; i++)
                 allFormatArgs[i + 1] = translateFormatArg(question, formatArgs[i]);
@@ -1042,9 +1045,9 @@ public partial class SouvenirModule : MonoBehaviour
         return new QandA(attr.ModuleNameWithThe, qQuestion, qAnswerSet, correctIndex);
     }
 
-    private string formatModuleName(string moduleName, bool addSolveCount, int numSolved, bool addThe) => _translation != null
-        ? _translation.FormatModuleName(moduleName, addSolveCount, numSolved, addThe)
-        : addSolveCount ? $"the {moduleName} you solved {ordinal(numSolved)}" : addThe ? "The\u00a0" + moduleName : moduleName;
+    private string formatModuleName(string moduleNameWithoutThe, string moduleNameWithThe, bool addSolveCount, int numSolved) => _translation != null
+        ? _translation.FormatModuleName(moduleNameWithoutThe, moduleNameWithThe, addSolveCount, numSolved)
+        : addSolveCount ? $"the {moduleNameWithoutThe} you solved {ordinal(numSolved)}" : moduleNameWithThe;
 
     public string[] GetAnswers(Question question) => !_attributes.TryGetValue(question, out var attr)
         ? throw new InvalidOperationException($"<Souvenir #{_moduleId}> Question {question} is missing from the _attributes dictionary.")

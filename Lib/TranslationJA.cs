@@ -4,10 +4,11 @@ namespace Souvenir
 {
     public class Translation_ja : Translation
     {
+        public override string FormatModuleName(string moduleNameWithoutThe, string moduleNameWithThe, bool addSolveCount, int numSolved) => addSolveCount
+            ? $"{Ordinal(numSolved)}番目に解除された{moduleNameWithThe}"
+            : moduleNameWithThe;
+
         public override string Ordinal(int number) => number.ToString();
-        public override string FormatModuleName(string moduleName, bool addSolveCount, int numSolved, bool addThe) => addSolveCount
-            ? $"{Ordinal(numSolved)}番目に解除された{moduleName}"
-            : addThe ? "\u00a0" + moduleName : moduleName;
         public override int DefaultFontIndex => 8;
         public override float LineSpacing => 0.7f;
 
@@ -19,7 +20,7 @@ namespace Souvenir
             // What was the first word shown in 1000 Words?
             [Question._1000WordsWords] = new TranslationInfo
             {
-                QuestionText = "{0}の{1}番目の単語は何？",
+                QuestionText = "{0}の{1}番目の単語は何？"
             },
 
             // 100 Levels of Defusal

@@ -144,7 +144,7 @@ namespace Souvenir
                     Ranges = ranges;
                 }
 
-                public char Pick()
+                public readonly char Pick()
                 {
                     var n = Chars != null ? Chars.Length : 0;
                     if (Ranges != null)
