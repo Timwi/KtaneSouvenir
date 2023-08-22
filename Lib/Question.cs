@@ -1574,6 +1574,11 @@
             ExampleExtraFormatArguments = new[] { "left", "right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NameCodesIndices,
 
+        [SouvenirQuestion("What was the color of the maze in {0}?", "Navigation Determination", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", TranslateFormatArgs = new[] { true })]
+        NavigationDeterminationColor,
+        [SouvenirQuestion("What was the label of the maze in {0}?", "Navigation Determination", TwoColumns4Answers, "A", "B", "C", "D")]
+        NavigationDeterminationLabel,
+
         [SouvenirQuestion("What was the initial middle digit in {0}?", "Navinums", ThreeColumns6Answers)]
         [AnswerGenerator.Integers(1, 9)]
         NavinumsMiddleDigit,

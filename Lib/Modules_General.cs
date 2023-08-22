@@ -304,6 +304,7 @@ public partial class SouvenirModule
     const string _MysticSquare = "MysticSquareModule";
     const string _NameCodes = "nameCodes";
     const string _NandMs = "NandMs";
+    const string _NavigationDetermination = "NavigationDeterminationModule";
     const string _Navinums = "navinums";
     const string _NavyButton = "NavyButtonModule";
     const string _Necronomicon = "necronomicon";
@@ -836,6 +837,7 @@ public partial class SouvenirModule
             [_MysticSquare] = (ProcessMysticSquare, "Mystic Square", "CaitSith2"),
             [_NameCodes] = (ProcessNameCodes, "Name Codes", "tandyCake"),
             [_NandMs] = (ProcessNandMs, "N&Ms", "TasThiluna"),
+            [_NavigationDetermination] = (ProcessNavigationDetermination, "Navigation Determination", "Quinn Wuest"),
             [_Navinums] = (ProcessNavinums, "Navinums", "Timwi"),
             [_NavyButton] = (ProcessNavyButton, "Navy Button, The", "Timwi"),
             [_Necronomicon] = (ProcessNecronomicon, "Necronomicon, The", "luisdiogo98"),
