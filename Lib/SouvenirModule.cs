@@ -869,13 +869,19 @@ public partial class SouvenirModule : MonoBehaviour
             return;
         }
 
+        if (_questions.Any(qb => qb.Module == module))
+        {
+            _showWarning = true;
+            throw new AbandonModuleException($"The handler for {module.ModuleDisplayName} submitted multiple question batches. Handlers should not call addQuestion/addQuestions multiple times, but instead make a single call to addQuestions() with all of the questions.");
+        }
+
         var qs = questions.Where(q => q != null).ToArray();
         if (qs.Length == 0)
         {
             Debug.Log($"<Souvenir #{_moduleId}> Empty question batch provided for {module.ModuleDisplayName}.");
             return;
         }
-        Debug.Log($"‹Souvenir #{_moduleId}› Adding question batch:\n{qs.Select(q => "    • " + q.DebugString).JoinString("\n")}");
+        Debug.Log($"‹Souvenir #{_moduleId}› Adding question batch for “{module.ModuleDisplayName}”:\n{qs.Select(q => "    • " + q.DebugString).JoinString("\n")}");
         _questions.Add(new QuestionBatch
         {
             NumSolved = Bomb.GetSolvedModuleNames().Count,
