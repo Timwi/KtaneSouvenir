@@ -789,6 +789,9 @@
         [AnswerGenerator.Integers(10000000, 99999999, 1, "00000000")]
         EntryNumberOneCoeff,
 
+        [SouvenirQuestion("What word was asked to be spelled in {0}?", "Épelle-moi Ça", TwoColumns4Answers, ExampleAnswers = new[] { "abasourdi", "aberrant", "abrasive", "acatalectique", "accueil", "acrobatie", "aligot", "amphigourique", "analgésiante", "antipasti" })]
+        EpelleMoiCaWord,
+
         [SouvenirQuestion("What was the displayed symbol in {0}?", "Equations X", ThreeColumns6Answers, "H(T)", "P", "\u03C7", "\u03C9", "Z(T)", "\u03C4", "\u03BC", "\u03B1", "K")]
         EquationsXSymbols,
 

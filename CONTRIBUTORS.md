@@ -179,6 +179,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Crazy Hamburger          │  noting3548
     Divisible Numbers        │  shortc1rcuit
     Elder Futhark            │  Goofy
+    Épelle-moi Ça            │  Quinn Wuest
     Exoplanets               │  Brawlboxgaming
     ƎNA Cipher               │  KiloBites
     Functions                │  JerryEris

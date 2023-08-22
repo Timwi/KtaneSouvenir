@@ -158,6 +158,7 @@ public partial class SouvenirModule
     const string _EnigmaCycle = "enigmaCycle";
     const string _EntryNumberFour = "GSEntryNumberFour";
     const string _EntryNumberOne = "GSEntryNumberOne";
+    const string _EpelleMoiCa = "epelleMoiCa";
     const string _EquationsX = "equationsXModule";
     const string _Etterna = "etterna";
     const string _Exoplanets = "exoplanets";
@@ -688,6 +689,7 @@ public partial class SouvenirModule
             [_EnigmaCycle] = (ProcessEnigmaCycle, "Enigma Cycle", "Timwi"),
             [_EntryNumberFour] = (ProcessEntryNumberFour, "Entry Number Four", "GhostSalt"),
             [_EntryNumberOne] = (ProcessEntryNumberOne, "Entry Number One", "GhostSalt"),
+            [_EpelleMoiCa] = (ProcessEpelleMoiCa, "Épelle-moi Ça", "Quinn Wuest"),
             [_EquationsX] = (ProcessEquationsX, "Equations X", "kavinkul"),
             [_Etterna] = (ProcessEtterna, "Etterna", "Emik"),
             [_Exoplanets] = (ProcessExoplanets, "Exoplanets", "Brawlboxgaming"),

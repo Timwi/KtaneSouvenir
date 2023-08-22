@@ -299,6 +299,21 @@ public partial class SouvenirModule
             makeQuestion(Question.EntryNumberOneCoeff, _EntryNumberOne, correctAnswers: new[] { coeff }));
     }
 
+    private IEnumerable<object> ProcessEpelleMoiCa(KMBombModule module)
+    {
+        var comp = GetComponent(module, "EpelleMoiCaScript");
+        var fldSolved = GetField<bool>(comp, "IsSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_EpelleMoiCa);
+
+        var words = GetField<string[][]>(comp, "wordList").Get().Select(i => i[0]).ToArray();
+        var chosenWord = GetField<int>(comp, "chosenWord").Get();
+
+        addQuestions(module, makeQuestion(Question.EpelleMoiCaWord, _EpelleMoiCa, correctAnswers: new[] { words[chosenWord] }, preferredWrongAnswers: words));
+    }
+
     private IEnumerable<object> ProcessEquationsX(KMBombModule module)
     {
         var comp = GetComponent(module, "EquationsScript");
