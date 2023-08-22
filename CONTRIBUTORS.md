@@ -202,6 +202,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Simon Sends              │  EternityShack
     Simon Stages             │  Espik
     Simon Stops              │  JerryEris
+    Simultaneous Simons      │  Quinn Wuest
     Wavetapping              │  KingSlendy
     XmORse Code              │  shortc1rcuit
 

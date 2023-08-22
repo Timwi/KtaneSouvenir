@@ -439,6 +439,7 @@ public partial class SouvenirModule
     const string _SimonStores = "simonStores";
     const string _SimonSubdivides = "simonSubdivides";
     const string _SimonSupports = "simonSupports";
+    const string _SimultaneousSimons = "simultaneousSimons";
     const string _SkewedSlots = "SkewedSlotsModule";
     const string _Skyrim = "skyrim";
     const string _SlowMath = "SlowMathModule";
@@ -968,6 +969,7 @@ public partial class SouvenirModule
             [_SimonStores] = (ProcessSimonStores, "Simon Stores", "kavinkul"),
             [_SimonSubdivides] = (ProcessSimonSubdivides, "Simon Subdivides", "Anonymous"),
             [_SimonSupports] = (ProcessSimonSupports, "Simon Supports", "tandyCake"),
+            [_SimultaneousSimons] = (ProcessSimultaneousSimons, "Simultaneous Simons", "Quinn Wuest"),
             [_SkewedSlots] = (ProcessSkewedSlots, "Skewed Slots", "Timwi"),
             [_Skyrim] = (ProcessSkyrim, "Skyrim", "Timwi"),
             [_SlowMath] = (ProcessSlowMath, "Slow Math", "QuinnWuest"),

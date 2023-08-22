@@ -2296,6 +2296,10 @@
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSupportsTopics,
 
+        [SouvenirQuestion("What color flashed {1} on the {2} simon in {0}?", "Simultaneous Simons", TwoColumns4Answers,
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 2)]
+        SimultaneousSimonsFlash,
+
         [SouvenirQuestion("What were the original numbers in {0}?", "Skewed Slots", ThreeColumns6Answers)]
         [AnswerGenerator.Integers(0, 999, "000")]
         SkewedSlotsOriginalNumbers,

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Assets.Scripts.Platform.Common;
+using BombGame;
 using Souvenir;
 using UnityEngine;
 
@@ -976,6 +977,29 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (int i = 0; i < 3; i++)
             qs.Add(makeQuestion(Question.SimonSupportsTopics, _SimonSupports, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { chosenTopics[i] }, preferredWrongAnswers: chosenTopics));
+        addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessSimultaneousSimons(KMBombModule module)
+    {
+        var comp = GetComponent(module, "SimultaneousSimons");
+        var fldSolved = GetField<bool>(comp, "ModuleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_SimultaneousSimons);
+
+        var colorNames = GetStaticField<string[]>(comp.GetType(), "colornames").Get();
+        var sequences = GetField<int[,]>(comp, "sequences").Get();
+        var btnColors = GetStaticField<int[]>(comp.GetType(), "buttonColors").Get();
+
+        var qs = new List<QandA>();
+
+        for (int simon = 0; simon < 4; simon++)
+            for (int flash = 0; flash < 4; flash++)
+                qs.Add(makeQuestion(Question.SimultaneousSimonsFlash, _SimultaneousSimons,
+                    formatArgs: new[] { ordinal(simon + 1), ordinal(flash + 1) },
+                    correctAnswers: new[] { colorNames[btnColors[sequences[simon, flash]]] }, preferredWrongAnswers: colorNames));
         addQuestions(module, qs);
     }
 
