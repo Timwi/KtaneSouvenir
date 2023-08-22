@@ -78,6 +78,28 @@ public partial class SouvenirModule
         addQuestion(module, Question.KeypadMagnifiedLED, correctAnswers: new[] { posNames[LEDPos] });
     }
 
+    private IEnumerable<object> ProcessKeywords(KMBombModule module)
+    {
+        var comp = GetComponent(module, "keywordsScript");
+
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Keywords);
+
+        var consonants = "bcdfghjklmnpqrstvwxyz".ToCharArray();
+        var vowels = "aeiou".ToCharArray();
+        var displayedKey = GetField<string>(comp, "displayKey").Get().Substring(0, 4);
+        if (displayedKey.Length != 4 || displayedKey.Count(x => consonants.Contains(x)) != 2 || displayedKey.Count(x => consonants.Contains(x)) != 2)
+            throw new AbandonModuleException($"'displayKey' had an unexpected value of {displayedKey} when I expected a string starting with two consonants and two vowels in any order.");
+
+        var possibleAnswers = new HashSet<string>() { displayedKey };
+        while (possibleAnswers.Count < 6)
+            possibleAnswers.Add(consonants.Shuffle().Take(2).Concat(vowels.Shuffle().Take(2)).ToArray().Shuffle().JoinString());
+
+        addQuestion(module, Question.KeywordsDisplayedKey, correctAnswers: new[] { displayedKey }, preferredWrongAnswers: possibleAnswers.ToArray());
+    }
+
     private IEnumerable<object> ProcessKnowYourWay(KMBombModule module)
     {
         var comp = GetComponent(module, "KnowYourWayScript");
