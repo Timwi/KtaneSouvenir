@@ -491,6 +491,49 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessMemoryWires(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MemoryWiresScript");
+
+        var fldStageNumber = GetIntField(comp, "stage");
+        var fldDisplayNumber = GetIntField(comp, "dispnum");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var displayedDigits = new int[5];
+        var currentStage = 0;
+
+        module.OnStrike += () => { currentStage = -1; return false; };
+
+        var activated = false;
+        module.OnActivate += () => { activated = true; };
+        while (!activated)
+            yield return null; // Do not wait 0.1 seconds to make sure we get the right number.
+        displayedDigits[0] = fldDisplayNumber.Get(min: 1, max: 6);
+
+        while (!fldSolved.Get())
+        {
+            var stage = fldStageNumber.Get(min: 0, max: 4);
+            if (currentStage != stage)
+            {
+                displayedDigits[stage] = fldDisplayNumber.Get(min: 1, max: 6);
+                currentStage = stage;
+            }
+            yield return null; // Do not wait 0.1 seconds to make sure we get the right number each time.
+        }
+
+        _modulesSolved.IncSafe(_MemoryWires);
+
+        var allColours = GetArrayField<string>(comp, "logcol").Get(expectedLength: 5);
+        var wireColours = GetArrayField<int[]>(comp, "colset").Get(expectedLength: 5,
+            validator: innerArr => innerArr.Length != 6 ? "expected length 6" : innerArr.Any(i => i < 0 || i > 4) ? "inner array contained value outside expected range 0-4" : null);
+
+        var qs = new List<QandA>();
+        for (int pos = 0; pos < 30; pos++)
+            qs.Add(makeQuestion(Question.MemoryWiresWireColours, _MemoryWires, formatArgs: new[] { (pos + 1).ToString() }, correctAnswers: new[] { allColours[wireColours[pos / 6][pos % 6]] }));
+        for (int stage = 0; stage < 5; stage++)
+            qs.Add(makeQuestion(Question.MemoryWiresDisplayedDigits, _MemoryWires, formatArgs: new[] { (stage + 1).ToString() }, correctAnswers: new[] { displayedDigits[stage].ToString() }));
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessMetamorse(KMBombModule module)
     {
         var comp = GetComponent(module, "MetamorseScript");

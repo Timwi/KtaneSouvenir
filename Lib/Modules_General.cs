@@ -283,6 +283,7 @@ public partial class SouvenirModule
     const string _MelodySequencer = "melodySequencer";
     const string _MemorableButtons = "memorableButtons";
     const string _Memory = "Memory";
+    const string _MemoryWires = "memoryWires";
     const string _Metamorse = "metamorse";
     const string _Metapuzzle = "metapuzzle";
     const string _Microcontroller = "Microcontroller";
@@ -823,6 +824,7 @@ public partial class SouvenirModule
             [_MelodySequencer] = (ProcessMelodySequencer, "Melody Sequencer", "Goofy"),
             [_MemorableButtons] = (ProcessMemorableButtons, "Memorable Buttons", "Timwi"),
             [_Memory] = (ProcessMemory, "Memory", "Andrio Celos"),
+            [_MemoryWires] = (ProcessMemoryWires, "Memory Wires", "Kuro"),
             [_Metamorse] = (ProcessMetamorse, "Metamorse", "tandyCake"),
             [_Metapuzzle] = (ProcessMetapuzzle, "Metapuzzle", "GoodHood"),
             [_Microcontroller] = (ProcessMicrocontroller, "Microcontroller", "Timwi"),

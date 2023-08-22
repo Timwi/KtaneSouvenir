@@ -1466,6 +1466,12 @@
         [AnswerGenerator.Integers(1, 4)]
         MemoryLabel,
 
+        [SouvenirQuestion("What was the digit displayed in the {1} stage of {0}?", "Memory Wires", ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1,6)]
+        MemoryWiresDisplayedDigits,
+        [SouvenirQuestion("What was the colour of wire {1} in {0}?", "Memory Wires", TwoColumns4Answers, "Red", "Yellow", "Blue", "White", "Black", ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "29", "30" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        MemoryWiresWireColours,
+
         [SouvenirQuestion("What was the extracted letter in {0}?", "Metamorse", ThreeColumns6Answers, null)]
         [AnswerGenerator.Strings("A-Z")]
         MetamorseExtractedLetter,
