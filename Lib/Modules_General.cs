@@ -130,6 +130,7 @@ public partial class SouvenirModule
     const string _DeckOfManyThings = "deckOfManyThings";
     const string _DecoloredSquares = "DecoloredSquaresModule";
     const string _DecolourFlash = "DecolourFlashModule";
+    const string _DenialDisplays = "DenialDisplaysModule";
     const string _DevilishEggs = "devilishEggs";
     const string _Digisibility = "digisibility";
     const string _DigitString = "digitString";
@@ -305,6 +306,7 @@ public partial class SouvenirModule
     const string _MysticSquare = "MysticSquareModule";
     const string _NameCodes = "nameCodes";
     const string _NandMs = "NandMs";
+    const string _NavigationDetermination = "NavigationDeterminationModule";
     const string _Navinums = "navinums";
     const string _NavyButton = "NavyButtonModule";
     const string _Necronomicon = "necronomicon";
@@ -664,6 +666,7 @@ public partial class SouvenirModule
             [_DeckOfManyThings] = (ProcessDeckOfManyThings, "Deck of Many Things, The", "luisdiogo98"),
             [_DecoloredSquares] = (ProcessDecoloredSquares, "Decolored Squares", "luisdiogo98"),
             [_DecolourFlash] = (ProcessDecolourFlash, "Decolour Flash", "Timwi"),
+            [_DenialDisplays] = (ProcessDenialDisplays, "Denial Displays", "Quinn Wuest"),
             [_DevilishEggs] = (ProcessDevilishEggs, "Devilish Eggs", "Timwi"),
             [_Digisibility] = (ProcessDigisibility, "Digisibility", "tandyCake"),
             [_DigitString] = (ProcessDigitString, "Digit String", "GoodHood"),
@@ -839,6 +842,7 @@ public partial class SouvenirModule
             [_MysticSquare] = (ProcessMysticSquare, "Mystic Square", "CaitSith2"),
             [_NameCodes] = (ProcessNameCodes, "Name Codes", "tandyCake"),
             [_NandMs] = (ProcessNandMs, "N&Ms", "TasThiluna"),
+            [_NavigationDetermination] = (ProcessNavigationDetermination, "Navigation Determination", "Quinn Wuest"),
             [_Navinums] = (ProcessNavinums, "Navinums", "Timwi"),
             [_NavyButton] = (ProcessNavyButton, "Navy Button, The", "Timwi"),
             [_Necronomicon] = (ProcessNecronomicon, "Necronomicon, The", "luisdiogo98"),

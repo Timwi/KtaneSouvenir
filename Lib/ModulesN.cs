@@ -8,6 +8,129 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
+    private IEnumerable<object> ProcessNameCodes(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NameCodesScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_NameCodes);
+
+        var leftIx = GetIntField(comp, "leftIndex").Get().ToString();
+        var rightIx = GetIntField(comp, "rightIndex").Get().ToString();
+        addQuestions(module, new[] {
+            makeQuestion(Question.NameCodesIndices, _NameCodes, formatArgs: new[] { "left" }, correctAnswers: new[] { leftIx }),
+            makeQuestion(Question.NameCodesIndices, _NameCodes, formatArgs: new[] { "right" }, correctAnswers: new[] { rightIx }),
+        });
+    }
+
+    private IEnumerable<object> ProcessNandMs(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NandMs");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_NandMs);
+
+        var words = GetArrayField<string>(comp, "otherWords").Get();
+        var index = GetIntField(comp, "otherwordindex").Get(min: 0, max: words.Length - 1);
+        addQuestion(module, Question.NandMsAnswer, correctAnswers: new[] { words[index] });
+    }
+
+    private IEnumerable<object> ProcessNavigationDetermination(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NavigationDeterminationScript");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_NavigationDetermination);
+
+        var chosenPath = GetField<object>(comp, "_chosenPath").Get();
+        var mazeNum = GetIntField(chosenPath, "MazeNum").Get(min: 0, max: 15);
+
+        var maze = GetArrayField<object>(comp, "_mazes").Get(expectedLength: 16).GetValue(mazeNum);
+        var color = GetField<int>(maze, "Color").Get();
+        var label = GetField<char>(maze, "Label").Get();
+
+        var colors = new string[] { "Red", "Yellow", "Green", "Blue" };
+
+        addQuestions(module,
+            makeQuestion(Question.NavigationDeterminationColor, _NavigationDetermination, correctAnswers: new[] { colors[color] }),
+            makeQuestion(Question.NavigationDeterminationLabel, _NavigationDetermination, correctAnswers: new[] { label.ToString() })
+        );
+    }
+
+    private IEnumerable<object> ProcessNavinums(KMBombModule module)
+    {
+        var comp = GetComponent(module, "navinumsScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldStage = GetIntField(comp, "stage");
+        var fldDirections = GetListField<int>(comp, "directions");
+        var lookUp = GetArrayField<int[]>(comp, "lookUp").Get(expectedLength: 9, validator: ar => ar.Length != 8 ? "expected length 8" : null);
+        var directionsSorted = GetListField<int>(comp, "directionsSorted").Get(expectedLength: 4);
+        var centerDigit = GetIntField(comp, "center").Get(min: 1, max: 9);
+
+        var curStage = -1;
+        var answers = new int[8];
+        while (true)
+        {
+            yield return null;
+            var newStage = fldStage.Get();
+            if (newStage != curStage)
+            {
+                if (newStage == 8)
+                    break;
+                var newDirections = fldDirections.Get();
+                if (newDirections.Count != 4)
+                    throw new AbandonModuleException($"‘directions’ has unexpected length {newDirections.Count} (expected 4).");
+
+                answers[newStage] = newDirections.IndexOf(directionsSorted[lookUp[centerDigit - 1][newStage] - 1]);
+                if (answers[newStage] == -1)
+                    throw new AbandonModuleException($"‘directions’ ({newDirections.JoinString(", ")}) does not contain the value from ‘directionsSorted’ ({directionsSorted[lookUp[centerDigit - 1][newStage] - 1]}).");
+                curStage = newStage;
+            }
+        }
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Navinums);
+
+        var directionNames = new[] { "up", "left", "right", "down" };
+
+        var qs = new List<QandA>();
+        for (var stage = 0; stage < 8; stage++)
+            qs.Add(makeQuestion(Question.NavinumsDirectionalButtons, _Navinums, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { directionNames[answers[stage]] }));
+        qs.Add(makeQuestion(Question.NavinumsMiddleDigit, _Navinums, correctAnswers: new[] { centerDigit.ToString() }));
+        addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessNavyButton(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NavyButtonScript");
+        var puzzle = GetField<object>(comp, "_puzzle").Get();
+
+        var greekLetters = GetProperty<int[]>(puzzle, "GreekLetterIxs", isPublic: true)
+            .Get(validator: arr => arr.Any(v => v < 0 || v >= 48) ? "expected range 0–48" : null)
+            .Select(ix => "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψω"[ix].ToString())
+            .ToArray();
+        var givenIndex = GetProperty<int>(puzzle, "GivenIndex", isPublic: true).Get(validator: v => v < 0 || v >= 16 ? "expected range 0–16" : null);
+        var givenValue = GetProperty<int>(puzzle, "GivenValue", isPublic: true).Get(validator: v => v < 0 || v >= 4 ? "expected range 0–4" : null);
+
+        var fldStage = GetField<object>(comp, "_stage");
+        while (fldStage.Get().ToString() != "Solved")
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_NavyButton);
+
+        addQuestions(module,
+            makeQuestion(Question.NavyButtonGreekLetters, _NavyButton, correctAnswers: greekLetters),
+            makeQuestion(Question.NavyButtonGiven, _NavyButton, formatArgs: new[] { "column" }, correctAnswers: new[] { (givenIndex % 4).ToString() }),
+            makeQuestion(Question.NavyButtonGiven, _NavyButton, formatArgs: new[] { "row" }, correctAnswers: new[] { (givenIndex / 4).ToString() }),
+            makeQuestion(Question.NavyButtonGiven, _NavyButton, formatArgs: new[] { "value" }, correctAnswers: new[] { givenValue.ToString() }));
+    }
+
     private IEnumerable<object> ProcessNecronomicon(KMBombModule module)
     {
         var comp = GetComponent(module, "necronomiconScript");
@@ -145,105 +268,6 @@ public partial class SouvenirModule
         }
 
         addQuestions(module, qs);
-    }
-
-    private IEnumerable<object> ProcessNameCodes(KMBombModule module)
-    {
-        var comp = GetComponent(module, "NameCodesScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(0.1f);
-        _modulesSolved.IncSafe(_NameCodes);
-
-        var leftIx = GetIntField(comp, "leftIndex").Get().ToString();
-        var rightIx = GetIntField(comp, "rightIndex").Get().ToString();
-        addQuestions(module, new[] {
-            makeQuestion(Question.NameCodesIndices, _NameCodes, formatArgs: new[] { "left" }, correctAnswers: new[] { leftIx }),
-            makeQuestion(Question.NameCodesIndices, _NameCodes, formatArgs: new[] { "right" }, correctAnswers: new[] { rightIx }),
-        });
-    }
-
-    private IEnumerable<object> ProcessNandMs(KMBombModule module)
-    {
-        var comp = GetComponent(module, "NandMs");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_NandMs);
-
-        var words = GetArrayField<string>(comp, "otherWords").Get();
-        var index = GetIntField(comp, "otherwordindex").Get(min: 0, max: words.Length - 1);
-        addQuestion(module, Question.NandMsAnswer, correctAnswers: new[] { words[index] });
-    }
-
-    private IEnumerable<object> ProcessNavinums(KMBombModule module)
-    {
-        var comp = GetComponent(module, "navinumsScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var fldStage = GetIntField(comp, "stage");
-        var fldDirections = GetListField<int>(comp, "directions");
-        var lookUp = GetArrayField<int[]>(comp, "lookUp").Get(expectedLength: 9, validator: ar => ar.Length != 8 ? "expected length 8" : null);
-        var directionsSorted = GetListField<int>(comp, "directionsSorted").Get(expectedLength: 4);
-        var centerDigit = GetIntField(comp, "center").Get(min: 1, max: 9);
-
-        var curStage = -1;
-        var answers = new int[8];
-        while (true)
-        {
-            yield return null;
-            var newStage = fldStage.Get();
-            if (newStage != curStage)
-            {
-                if (newStage == 8)
-                    break;
-                var newDirections = fldDirections.Get();
-                if (newDirections.Count != 4)
-                    throw new AbandonModuleException($"‘directions’ has unexpected length {newDirections.Count} (expected 4).");
-
-                answers[newStage] = newDirections.IndexOf(directionsSorted[lookUp[centerDigit - 1][newStage] - 1]);
-                if (answers[newStage] == -1)
-                    throw new AbandonModuleException($"‘directions’ ({newDirections.JoinString(", ")}) does not contain the value from ‘directionsSorted’ ({directionsSorted[lookUp[centerDigit - 1][newStage] - 1]}).");
-                curStage = newStage;
-            }
-        }
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Navinums);
-
-        var directionNames = new[] { "up", "left", "right", "down" };
-
-        var qs = new List<QandA>();
-        for (var stage = 0; stage < 8; stage++)
-            qs.Add(makeQuestion(Question.NavinumsDirectionalButtons, _Navinums, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { directionNames[answers[stage]] }));
-        qs.Add(makeQuestion(Question.NavinumsMiddleDigit, _Navinums, correctAnswers: new[] { centerDigit.ToString() }));
-        addQuestions(module, qs);
-    }
-
-    private IEnumerable<object> ProcessNavyButton(KMBombModule module)
-    {
-        var comp = GetComponent(module, "NavyButtonScript");
-        var puzzle = GetField<object>(comp, "_puzzle").Get();
-
-        var greekLetters = GetProperty<int[]>(puzzle, "GreekLetterIxs", isPublic: true)
-            .Get(validator: arr => arr.Any(v => v < 0 || v >= 48) ? "expected range 0–48" : null)
-            .Select(ix => "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψω"[ix].ToString())
-            .ToArray();
-        var givenIndex = GetProperty<int>(puzzle, "GivenIndex", isPublic: true).Get(validator: v => v < 0 || v >= 16 ? "expected range 0–16" : null);
-        var givenValue = GetProperty<int>(puzzle, "GivenValue", isPublic: true).Get(validator: v => v < 0 || v >= 4 ? "expected range 0–4" : null);
-
-        var fldStage = GetField<object>(comp, "_stage");
-        while (fldStage.Get().ToString() != "Solved")
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_NavyButton);
-
-        addQuestions(module,
-            makeQuestion(Question.NavyButtonGreekLetters, _NavyButton, correctAnswers: greekLetters),
-            makeQuestion(Question.NavyButtonGiven, _NavyButton, formatArgs: new[] { "column" }, correctAnswers: new[] { (givenIndex % 4).ToString() }),
-            makeQuestion(Question.NavyButtonGiven, _NavyButton, formatArgs: new[] { "row" }, correctAnswers: new[] { (givenIndex / 4).ToString() }),
-            makeQuestion(Question.NavyButtonGiven, _NavyButton, formatArgs: new[] { "value" }, correctAnswers: new[] { givenValue.ToString() }));
     }
 
     private IEnumerable<object> ProcessNotColoredSquares(KMBombModule module)
@@ -487,6 +511,7 @@ public partial class SouvenirModule
             makeQuestion(Question.NotPianoKeysSecondSymbol, _NotPianoKeys, correctAnswers: new[] { propName.GetFrom(symbols.GetValue(1)).ToString() }),
             makeQuestion(Question.NotPianoKeysThirdSymbol, _NotPianoKeys, correctAnswers: new[] { propName.GetFrom(symbols.GetValue(2)).ToString() }));
     }
+
     private IEnumerable<object> ProcessNotSimaze(KMBombModule module)
     {
         var comp = GetComponent(module, "NotSimaze");
@@ -536,6 +561,7 @@ public partial class SouvenirModule
             makeQuestion(Question.NotTextFieldBackgroundLetter, _NotTextField, correctAnswers: new[] { bgChar.ToString() }),
             makeQuestion(Question.NotTextFieldInitialPresses, _NotTextField, correctAnswers: solution));
     }
+
     private IEnumerable<object> ProcessNotTheBulb(KMBombModule module)
     {
         var comp = GetComponent(module, "NtBScript");

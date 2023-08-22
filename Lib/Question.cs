@@ -631,6 +631,10 @@
         [SouvenirQuestion("What was the {1} of the {2} goal in {0}?", "Decolour Flash", ThreeColumns6Answers, "Blue", "Green", "Red", "Magenta", "Yellow", "White", TranslateAnswers = true)]
         DecolourFlashGoal,
 
+        [SouvenirQuestion("What number was initially shown on display {1} in {0}?", "Denial Displays", ThreeColumns6Answers, null, ExampleAnswers = new[] {"1", "22", "333", "4", "55", "666", "7", "88", "999"},
+            ExampleExtraFormatArguments = new[] {"A", "B", "C", "D", "E"}, ExampleExtraFormatArgumentGroupSize = 1)]
+        DenialDisplaysDisplays,
+
         [SouvenirQuestion("What was the {1} egg’s {2} rotation in {0}?", "Devilish Eggs", TwoColumns4Answers, "W90CW", "W180CW", "W270CW", "W360CW", "W90CCW", "W180CCW", "W270CCW", "W360CCW", "T90CW", "T180CW", "T270CW", "T360CW", "T90CCW", "T180CCW", "T270CCW", "T360CCW", TranslateFormatArgs = new[] { true, false },
             ExampleExtraFormatArguments = new[] { "top", QandA.Ordinal, "bottom", QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 2)]
         DevilishEggsRotations,
@@ -1583,6 +1587,11 @@
         [SouvenirQuestion("What was the {1} index in {0}?", "Name Codes", TwoColumns4Answers, "2", "3", "4", "5", TranslateFormatArgs = new[] { true },
             ExampleExtraFormatArguments = new[] { "left", "right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         NameCodesIndices,
+
+        [SouvenirQuestion("What was the color of the maze in {0}?", "Navigation Determination", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", TranslateFormatArgs = new[] { true })]
+        NavigationDeterminationColor,
+        [SouvenirQuestion("What was the label of the maze in {0}?", "Navigation Determination", TwoColumns4Answers, "A", "B", "C", "D")]
+        NavigationDeterminationLabel,
 
         [SouvenirQuestion("What was the initial middle digit in {0}?", "Navinums", ThreeColumns6Answers)]
         [AnswerGenerator.Integers(1, 9)]

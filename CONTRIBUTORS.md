@@ -80,6 +80,15 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Chinese Counting    │  Jumble Cycle           │  N&Ms              │  Simon’s Star    │
     Codenames           │  LED Math               │  Ordered Keys      │  Small Circle    │
 
+## Implemented by Quinn Wuest (29)
+
+    A Square          │  Épelle-moi Ça             │  Not Coordinates       │  Not X01              │  Simultaneous Simons
+    Ángel Hernández   │  Letter Math               │  Not Morsematics       │  Parity               │  Slow Math
+    Caesar Psycho     │  Match Refereeing          │  Not Murder            │  Robo-Scanner         │  Triple Term
+    Cyan Button, The  │  Navigation Determination  │  Not Number Pad        │  Rule of Three        │  Varicolour Flash
+    Denial Displays   │  Not Colored Switches      │  Not Perspective Pegs  │  Scramboozled Eggain  │  xobekuJ ehT
+    Double Digits     │  Not Connection Check      │  Not The Bulb          │  Simon Said           │
+
 ## Implemented by tandyCake (28)
 
     Algorithmia    │  Kanye Encounter, The  │  Metamorse        │  Red Herring           │  Tasque Managing
@@ -88,15 +97,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Flyswatting    │  LEDs                  │  Not Text Field   │  Simon Supports        │  USA Cycle
     Forget Me      │  M-Seq                 │  Not Word Search  │  Stupid Slots          │
     Jenga          │  Math ’em              │  Numpath          │  Superparsing          │
-
-## Implemented by Quinn Wuest (27)
-
-    A Square          │  Letter Math           │  Not Murder            │  Robo-Scanner         │  Triple Term
-    Ángel Hernández   │  Match Refereeing      │  Not Number Pad        │  Rule of Three        │  Varicolour Flash
-    Caesar Psycho     │  Not Colored Switches  │  Not Perspective Pegs  │  Scramboozled Eggain  │  xobekuJ ehT
-    Cyan Button, The  │  Not Connection Check  │  Not The Bulb          │  Simon Said           │
-    Double Digits     │  Not Coordinates       │  Not X01               │  Simultaneous Simons  │
-    Épelle-moi Ça     │  Not Morsematics       │  Parity                │  Slow Math            │
 
 ## Implemented by Hawker (17)
 
