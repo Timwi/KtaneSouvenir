@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Souvenir
@@ -31,6 +32,34 @@ namespace Souvenir
         public static Sprite GenerateGridSprite(int width, int height, int index, float size = 1f)
         {
             return GenerateGridSprite(new Coord(width, height, index), size);
+        }
+
+        public static Sprite GenerateGridSprite(string spriteKey, int tw, int th, (int x, int y)[] squares, int highlightedCell, string spriteName, float? pixelsPerUnit = null)
+        {
+            var key = $"{spriteKey}:{highlightedCell}";
+            if (!_gridSpriteCache.TryGetValue(key, out var tx))
+            {
+                tx = new Texture2D(tw, th, TextureFormat.ARGB32, false);
+                var pixels = Ut.NewArray(tw * th, _ => new Color32(0xFF, 0xF8, 0xDD, 0x00));
+                for (var sqIx = 0; sqIx < squares.Length; sqIx++)
+                {
+                    var (x, y) = squares[sqIx];
+                    for (var i = 0; i <= 4; i++)
+                        pixels[x + i + tw * (th - 1 - y)] = pixels[x + i + tw * (th - 1 - y - 4)] =
+                            pixels[x + tw * (th - 1 - y - i)] = pixels[x + 4 + tw * (th - 1 - y - i)] = new Color32(0xFF, 0xF8, 0xDD, 0xFF);
+                    if (sqIx == highlightedCell)
+                        for (var i = 0; i < 3 * 3; i++)
+                            pixels[x + 1 + (i % 3) + tw * (th - y - 2 - (i / 3))] = new Color32(0xD8, 0x40, 0x00, 0xFF);
+                }
+                tx.SetPixels32(pixels);
+                tx.Apply();
+                tx.wrapMode = TextureWrapMode.Clamp;
+                tx.filterMode = FilterMode.Point;
+                _gridSpriteCache.Add(key, tx);
+            }
+            var sprite = Sprite.Create(tx, new Rect(0, 0, tw, th), new Vector2(0, .5f), pixelsPerUnit ?? th * (60f / 17));
+            sprite.name = spriteName;
+            return sprite;
         }
     }
 }
