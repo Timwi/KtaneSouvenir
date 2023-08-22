@@ -20,7 +20,7 @@ namespace Souvenir
             // What was the first word shown in 1000 Words?
             [Question._1000WordsWords] = new TranslationInfo
             {
-                QuestionText = "{0}の{1}番目の単語は何？"
+                QuestionText = "{0}の{1}番目の単語は何？",
             },
 
             // 100 Levels of Defusal

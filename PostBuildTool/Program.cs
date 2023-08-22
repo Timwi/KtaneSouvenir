@@ -142,7 +142,7 @@ namespace SouvenirPostBuildTool
                         var id = fld.GetValue(null);
                         var qText = (string) attr.QuestionText;
                         sb.AppendLine($"            // {qText}");
-                        var exFormatArgs = new[] { (string) attr.ModuleNameWithThe };
+                        var exFormatArgs = new[] { ((string) attr.ModuleNameWithThe).Replace("\u00a0", " ") };
                         if (attr.ExampleExtraFormatArguments != null)
                             exFormatArgs = exFormatArgs.Concat(((string[]) attr.ExampleExtraFormatArguments).Take((int) attr.ExampleExtraFormatArgumentGroupSize).Select(str => str == "\ufffdordinal" ? "first" : str)).ToArray();
                         string formatArgsComment = null;

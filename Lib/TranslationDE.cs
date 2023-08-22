@@ -5,7 +5,7 @@ namespace Souvenir
     public class Translation_de : Translation
     {
         public override string FormatModuleName(string moduleNameWithoutThe, string moduleNameWithThe, bool addSolveCount, int numSolved) =>
-            addSolveCount ? $"das als {ordinal(numSolved)}es gelöste {moduleNameWithoutThe}" : moduleNameWithThe;
+            addSolveCount ? $"dem als {ordinal(numSolved)}es gelösten {moduleNameWithoutThe}" : moduleNameWithThe;
 
         public override string Ordinal(int number) => ordinal(number);
         private string ordinal(int num) => (num < 0 ? $"({num})." : num switch
@@ -18,8 +18,8 @@ namespace Souvenir
             6 => "sechst",
             7 => "siebt",
             8 => "acht",
-            9 => "neun",
-            _ => num.ToString()
+            9 => "neunt",
+            _ => $"{num}t"
         });
 
         #region Translatable strings
@@ -30,7 +30,8 @@ namespace Souvenir
             // What was the first word shown in 1000 Words?
             [Question._1000WordsWords] = new TranslationInfo
             {
-                QuestionText = "What was the {1} word shown in {0}?",
+                QuestionText = "Was war das {1}e angezeigte Wort in {0}?",
+                ModuleName = "1000 Wörter",
             },
 
             // 100 Levels of Defusal
@@ -38,7 +39,8 @@ namespace Souvenir
             // What was the first displayed letter in 100 Levels of Defusal?
             [Question._100LevelsOfDefusalLetters] = new TranslationInfo
             {
-                QuestionText = "What was the {1} displayed letter in {0}?",
+                QuestionText = "Was war der {1}e angezeigte Buchstabe in {0}?",
+                ModuleName = "100 Ebenen der Entschärfung",
             },
 
             // 1D Chess
@@ -46,25 +48,25 @@ namespace Souvenir
             // What was your first move in 1D Chess?
             [Question._1DChessMoves] = new TranslationInfo
             {
-                QuestionText = "What was {1} in {0}?",
+                QuestionText = "Was war {1} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["your first move"] = "your first move",
-                    ["Rustmate’s first move"] = "Rustmate’s first move",
-                    ["your second move"] = "your second move",
-                    ["Rustmate’s second move"] = "Rustmate’s second move",
-                    ["your third move"] = "your third move",
-                    ["Rustmate’s third move"] = "Rustmate’s third move",
-                    ["your fourth move"] = "your fourth move",
-                    ["Rustmate’s fourth move"] = "Rustmate’s fourth move",
-                    ["your fifth move"] = "your fifth move",
-                    ["Rustmate’s fifth move"] = "Rustmate’s fifth move",
-                    ["your sixth move"] = "your sixth move",
-                    ["Rustmate’s sixth move"] = "Rustmate’s sixth move",
-                    ["your seventh move"] = "your seventh move",
-                    ["Rustmate’s seventh move"] = "Rustmate’s seventh move",
-                    ["your eighth move"] = "your eighth move",
-                    ["Rustmate’s eighth move"] = "Rustmate’s eighth move",
+                    ["your first move"] = "dein erster Zug",
+                    ["Rustmate’s first move"] = "Rustmates erster Zug",
+                    ["your second move"] = "dein zweiter Zug",
+                    ["Rustmate’s second move"] = "Rustmates zweiter Zug",
+                    ["your third move"] = "dein dritter Zug",
+                    ["Rustmate’s third move"] = "Rustmates dritter Zug",
+                    ["your fourth move"] = "dein vierter Zug",
+                    ["Rustmate’s fourth move"] = "Rustmates vierter Zug",
+                    ["your fifth move"] = "dein fünfter Zug",
+                    ["Rustmate’s fifth move"] = "Rustmates fünfter Zug",
+                    ["your sixth move"] = "dein sechster Zug",
+                    ["Rustmate’s sixth move"] = "Rustmates sechster Zug",
+                    ["your seventh move"] = "dein siebter Zug",
+                    ["Rustmate’s seventh move"] = "Rustmates siebter Zug",
+                    ["your eighth move"] = "dein achter Zug",
+                    ["Rustmate’s eighth move"] = "Rustmates achter Zug",
                 },
             },
 
