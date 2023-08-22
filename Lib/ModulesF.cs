@@ -577,6 +577,19 @@ public partial class SouvenirModule
         }
     }
 
+    private IEnumerable<object> ProcessForgetMeNow(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ForgetMeNow");
+
+        var fldStatus = GetIntField(comp, "moduleStatus");
+        while (fldStatus.Get(min: -1, max: 3) != 3)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ForgetMeNow);
+
+        var displayedDigits = GetArrayField<int>(comp, "displayDigits").Get(expectedLength: Bomb.GetSolvableModuleNames().Count, validator: d => d < 0 || d > 9 ? "expected range 0-9" : null);
+        addQuestions(module, displayedDigits.Select((d, ix) => makeQuestion(Question.ForgetMeNowDisplayedDigits, _ForgetMeNow, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { d.ToString() })));
+    }
+
     private IEnumerable<object> ProcessForgetsUltimateShowdown(KMBombModule module)
     {
         var comp = GetComponent(module, "ForgetsUltimateShowdownScript");

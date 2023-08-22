@@ -932,6 +932,10 @@
         [AnswerGenerator.Integers(0, 9)]
         ForgetMeNotDisplayedDigits,
 
+        [SouvenirQuestion("What was the {1} displayed digit in {0}?", "Forget Me Now", ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 9)]
+        ForgetMeNowDisplayedDigits,
+
         [SouvenirQuestion("What was the {1} digit of the answer in {0}?", "Forget’s Ultimate Showdown", ThreeColumns6Answers, null,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 9)]

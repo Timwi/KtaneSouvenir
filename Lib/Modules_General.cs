@@ -184,6 +184,7 @@ public partial class SouvenirModule
     const string _ForgetEverything = "HexiEvilFMN";
     const string _ForgetMe = "forgetMe";
     const string _ForgetMeNot = "MemoryV2";
+    const string _ForgetMeNow = "ForgetMeNow";
     const string _ForgetsUltimateShowdown = "ForgetsUltimateShowdownModule";
     const string _ForgetTheColors = "ForgetTheColors";
     const string _ForgetThis = "forgetThis";
@@ -727,6 +728,7 @@ public partial class SouvenirModule
             [_ForgetEverything] = (ProcessForgetEverything, "Forget Everything", "Kuro"),
             [_ForgetMe] = (ProcessForgetMe, "Forget Me", "tandyCake"),
             [_ForgetMeNot] = (ProcessForgetMeNot, "Forget Me Not", "Kuro"),
+            [_ForgetMeNow] = (ProcessForgetMeNow, "Forget Me Now", "Kuro"),
             [_ForgetsUltimateShowdown] = (ProcessForgetsUltimateShowdown, "Forget’s Ultimate Showdown", "Marksam"),
             [_ForgetTheColors] = (ProcessForgetTheColors, "Forget The Colors", "Kuro"),
             [_ForgetThis] = (ProcessForgetThis, "Forget This", "Kuro"),
