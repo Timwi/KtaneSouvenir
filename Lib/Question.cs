@@ -1363,7 +1363,7 @@
         [AnswerGenerator.Integers(0, 99)]
         MashematicsCalculation,
 
-        [SouvenirQuestion("Which planet was present in the {1} stage of {0}?", "Match Refereeing", TwoColumns4Answers, "Anasaze", "Bavoom", "Boggob", "Brabbit", "Cavious", "Dawndus", "Firim", "Florias", "Forte", "Freaze", "Geolyte", "Gigagush", "Globin", "Grannest", "Gravitas", "Hevendor", "Hotted", "Jeljel", "Lastar", "Layazero", "Luna=Luna", "Megadom", "Mekks", "Meteo", "Oleana", "Starrii", "Suburbion", "Thirnova", "Vubble", "Wiral", "Wuud", "Yooj",
+        [SouvenirQuestion("Which planet was present in the {1} stage of {0}?", "Match Refereeing", TwoColumns4Answers, Type = AnswerType.Sprites,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         MatchRefereeingPlanet,
 

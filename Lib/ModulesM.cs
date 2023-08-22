@@ -198,25 +198,35 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(0.1f);
         _modulesSolved.IncSafe(_MatchRefereeing);
 
-        Debug.Log("<>1");
-
         var planetsArr = GetField<Array>(comp, "planetsUsed").Get(x => x.Length != 3 ? "expected length 3" : null);
-        Debug.Log("<>2");
-        for (int i = 0; i < 3; i++)
-            if (((Array) planetsArr.GetValue(i)).Length != 2 + i)
-                throw new AbandonModuleException($"Abandoning Match Refereeing because planetsUsed[{i}] has unexpected length {((Array) planetsArr.GetValue(i)).Length}. Expected {2 + i}.");
-        Debug.Log("<>3");
-        var planetsUsed = planetsArr.Cast<object>().Select(arr => ((Array) arr).Cast<object>().Select(i => i.ToString()).ToArray()).ToArray();
+        var planetsUsed = new List<Sprite[]>();
+        var planetImages = GetArrayField<Sprite>(comp, "planetImages", isPublic: true).Get()
+            .Select(sprite => Sprite.Create(sprite.texture, sprite.rect, new Vector2(0, .5f), 280)).ToArray();
 
-        Debug.Log("<>4");
+        for (int stage = 0; stage < 3; stage++)
+        {
+            if (planetsArr.GetValue(stage) is not Array innerArr)
+                throw new AbandonModuleException($"Abandoning Match Refereeing because planetsUsed[{stage}] is not an array.");
+            else if (innerArr.Length != 2 + stage)
+                throw new AbandonModuleException($"Abandoning Match Refereeing because planetsUsed[{stage}] has unexpected length {innerArr.Length}. Expected {2 + stage}.");
+            planetsUsed.Add(innerArr.Cast<object>().Select(pl =>
+            {
+                var intValue = (int) pl;
+                if (intValue < 0 || intValue >= planetImages.Length)
+                    throw new AbandonModuleException($"Abandoning Match Refereeing because planetsUsed[{stage}] contains value {pl} with integer value {intValue}, which is outside the range for planetImages (0–{planetImages.Length - 1}).");
+                return planetImages[intValue];
+            }).ToArray());
+        }
+
         var allPlanetsUsed = planetsUsed.SelectMany(x => x).ToArray();
 
-        Debug.Log("<>5");
         var qs = new List<QandA>();
         for (int stage = 0; stage < 2; stage++)
-            qs.Add(makeQuestion(Question.MatchRefereeingPlanet, _MatchRefereeing, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: planetsUsed[stage], preferredWrongAnswers: allPlanetsUsed));
-        Debug.Log("<>6");
-
+            qs.Add(makeQuestion(Question.MatchRefereeingPlanet, _MatchRefereeing,
+                formatArgs: new[] { ordinal(stage + 1) },
+                correctAnswers: planetsUsed[stage],
+                preferredWrongAnswers: allPlanetsUsed,
+                allAnswers: planetImages));
         addQuestions(module, qs);
     }
 
