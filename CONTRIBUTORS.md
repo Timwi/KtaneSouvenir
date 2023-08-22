@@ -89,13 +89,14 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Forget Me      │  M-Seq                 │  Not Word Search  │  Stupid Slots          │
     Jenga          │  Math ’em              │  Numpath          │  Superparsing          │
 
-## Implemented by QuinnWuest (23)
+## Implemented by Quinn Wuest (27)
 
-    A Square          │  Not Colored Switches  │  Not Number Pad        │  Robo-Scanner         │  Triple Term
-    Ángel Hernández   │  Not Connection Check  │  Not Perspective Pegs  │  Rule of Three        │  Varicolour Flash
-    Cyan Button, The  │  Not Coordinates       │  Not The Bulb          │  Scramboozled Eggain  │  xobekuJ ehT
-    Double Digits     │  Not Morsematics       │  Not X01               │  Simon Said           │
-    Letter Math       │  Not Murder            │  Parity                │  Slow Math            │
+    A Square          │  Letter Math           │  Not Murder            │  Robo-Scanner         │  Triple Term
+    Ángel Hernández   │  Match Refereeing      │  Not Number Pad        │  Rule of Three        │  Varicolour Flash
+    Caesar Psycho     │  Not Colored Switches  │  Not Perspective Pegs  │  Scramboozled Eggain  │  xobekuJ ehT
+    Cyan Button, The  │  Not Connection Check  │  Not The Bulb          │  Simon Said           │
+    Double Digits     │  Not Coordinates       │  Not X01               │  Simultaneous Simons  │
+    Épelle-moi Ça     │  Not Morsematics       │  Parity                │  Slow Math            │
 
 ## Implemented by Hawker (17)
 
@@ -174,12 +175,10 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Arithmelogic             │  JerryEris
     Barcode Cipher           │  Brawlboxgaming
     Bob Barks                │  Kaito Sinclaire
-    Caesar Psycho            │  Quinn Wuest
     Colour Flash             │  LotsOfS
     Crazy Hamburger          │  noting3548
     Divisible Numbers        │  shortc1rcuit
     Elder Futhark            │  Goofy
-    Épelle-moi Ça            │  Quinn Wuest
     Exoplanets               │  Brawlboxgaming
     ƎNA Cipher               │  KiloBites
     Functions                │  JerryEris
@@ -187,7 +186,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Hyperlink, The           │  Espik
     Inner Connections        │  Brawlboxgaming
     Mahjong                  │  River
-    Match Refereeing         │  Quinn Wuest
     Mega Man 2               │  Goofy
     Melody Sequencer         │  Goofy
     Module Maze              │  River
@@ -204,7 +202,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Simon Sends              │  EternityShack
     Simon Stages             │  Espik
     Simon Stops              │  JerryEris
-    Simultaneous Simons      │  Quinn Wuest
     Wavetapping              │  KingSlendy
     XmORse Code              │  shortc1rcuit
 
