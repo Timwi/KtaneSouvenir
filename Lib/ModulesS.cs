@@ -989,17 +989,16 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(0.1f);
         _modulesSolved.IncSafe(_SimultaneousSimons);
 
-        var colorNames = GetStaticField<string[]>(comp.GetType(), "colornames").Get();
         var sequences = GetField<int[,]>(comp, "sequences").Get();
         var btnColors = GetStaticField<int[]>(comp.GetType(), "buttonColors").Get();
+        var colorNames = new[] { "Blue", "Yellow", "Red", "Green" };
 
         var qs = new List<QandA>();
-
         for (int simon = 0; simon < 4; simon++)
             for (int flash = 0; flash < 4; flash++)
                 qs.Add(makeQuestion(Question.SimultaneousSimonsFlash, _SimultaneousSimons,
                     formatArgs: new[] { ordinal(simon + 1), ordinal(flash + 1) },
-                    correctAnswers: new[] { colorNames[btnColors[sequences[simon, flash]]] }, preferredWrongAnswers: colorNames));
+                    correctAnswers: new[] { colorNames[btnColors[sequences[simon, flash]]] }));
         addQuestions(module, qs);
     }
 

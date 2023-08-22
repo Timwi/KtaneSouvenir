@@ -579,7 +579,7 @@
 
         [SouvenirQuestion("Which cell was pre-filled at the start of {0}?", "cRule", TwoColumns4Answers, Type = AnswerType.Sprites, AddThe = true)]
         CRulePrefilled,
-        [SouvenirQuestion("Which symbol pair was here in {0}?", "cRule", ThreeColumns6Answers, "♤♤", "♤♧", "♤♢", "♤♡", "♧♤", "♧♧", "♧♢", "♧♡", "♢♤", "♢♧", "♢♢", "♢♡", "♡♤", "♡♧", "♡♢", "♡♡", AddThe = true)]
+        [SouvenirQuestion("Which symbol pair was here in {0}?", "cRule", ThreeColumns6Answers, "♤♤", "♤♧", "♤♢", "♤♡", "♧♤", "♧♧", "♧♢", "♧♡", "♢♤", "♢♧", "♢♢", "♢♡", "♡♤", "♡♧", "♡♢", "♡♡", AddThe = true, UsesQuestionSprite = true)]
         CRuleSymbolPair,
         [SouvenirQuestion("Which symbol pair was present on {0}?", "cRule", ThreeColumns6Answers, "♤♤", "♤♧", "♤♢", "♤♡", "♧♤", "♧♧", "♧♢", "♧♡", "♢♤", "♢♧", "♢♢", "♢♡", "♡♤", "♡♧", "♡♢", "♡♡", AddThe = true)]
         CRuleSymbolPairPresent,
@@ -2313,7 +2313,7 @@
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSupportsTopics,
 
-        [SouvenirQuestion("What color flashed {1} on the {2} Simon in {0}?", "Simultaneous Simons", TwoColumns4Answers,
+        [SouvenirQuestion("What color flashed {1} on the {2} Simon in {0}?", "Simultaneous Simons", TwoColumns4Answers, "Blue", "Yellow", "Red", "Green",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 2)]
         SimultaneousSimonsFlash,
 
