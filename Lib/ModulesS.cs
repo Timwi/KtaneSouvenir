@@ -737,12 +737,11 @@ public partial class SouvenirModule
                     formatArgs: new[] { numRotations[i].ToString() }, correctAnswers: new[] { SimonSignalsSprites[colorsShapes[i] & 7] }));
             }
         }
+
         if (qs.Count == 0)
-        {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Simon Signals because none of the arrows had a unique color, shape, or number of directions.");
-            _legitimatelyNoQuestions.Add(module);
-        }
-        addQuestions(module, qs);
+            legitimatelyNoQuestion(module, "none of the arrows had a unique color, shape, or number of directions.");
+        else
+            addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessSimonSimons(KMBombModule module)

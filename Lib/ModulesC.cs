@@ -690,14 +690,14 @@ public partial class SouvenirModule
             foreach (var cube in cubes)
             {
                 int position = fldCubePosition.GetFrom(cube, min: 0, max: 8);
-                cubeColours[nextStage - 1, position] = fldCubeColour.GetFrom(cube, col => !allCubeColours.Contains(col) ? $"invalid cube colour '{col}'" : null);
+                cubeColours[nextStage - 1, position] = fldCubeColour.GetFrom(cube, col => !allCubeColours.Contains(col) ? $"invalid cube colour ‘{col}’" : null);
             }
             if (nextStage != 3)
             {
                 foreach (var light in stageLights)
                 {
                     int number = 3 - fldStageLightNumber.GetFrom(light, min: 1, max: 3);
-                    stageLightColours[nextStage - 1, number] = fldStageLightColour.GetFrom(light, col => !allStageLightColours.Contains(col) ? $"invalid stage light colour '{col}'" : null);
+                    stageLightColours[nextStage - 1, number] = fldStageLightColour.GetFrom(light, col => !allStageLightColours.Contains(col) ? $"invalid stage light colour ‘{col}’" : null);
                 }
             }
         }

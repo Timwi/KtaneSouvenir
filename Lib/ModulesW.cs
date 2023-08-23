@@ -23,7 +23,7 @@ public partial class SouvenirModule
     private IEnumerable<object> ProcessWasd(KMBombModule module)
     {
         var comp = GetComponent(module, "WasdModule");
-        var display = GetArrayField<TextMesh>(comp, "DisplayTexts", isPublic: true).Get().First();
+        var display = GetArrayField<TextMesh>(comp, "DisplayTexts", isPublic: true).Get(minLength: 1).First();
         var displayedLocation = display.text;
 
         var solved = false;

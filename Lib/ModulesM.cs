@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Souvenir;
 using UnityEngine;
 
@@ -516,9 +515,7 @@ public partial class SouvenirModule
 
         module.OnStrike += () => { currentStage = -1; return false; };
 
-        var activated = false;
-        module.OnActivate += () => { activated = true; };
-        while (!activated)
+        while (!_isActivated)
             yield return null; // Do not wait 0.1 seconds to make sure we get the right number.
         displayedDigits[0] = fldDisplayNumber.Get(min: 1, max: 6);
 
@@ -834,7 +831,6 @@ public partial class SouvenirModule
         var monsplodeIds = new[] { fldMonsplode.Get(0, monsplodeNames.Length - 1) }.Concat(deck.Select(card => fldMonsplode.GetFrom(card, 0, monsplodeNames.Length - 1))).ToArray();
         var monsplodes = monsplodeIds.Select(mn => monsplodeNames[mn]).ToArray();
         var printVersions = new[] { fldPrintChar.Get() + "" + fldPrintDigit.Get() }.Concat(deck.Select(card => fldPrintChar.GetFrom(card) + "" + fldPrintDigit.GetFrom(card))).ToArray();
-        var qs = new List<QandA>();
         addQuestions(module,
             makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, formatArgs: new[] { "card on offer" }, correctAnswers: new[] { monsplodes[0] }, preferredWrongAnswers: monsplodeNames),
             makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, formatArgs: new[] { "first card in your hand" }, correctAnswers: new[] { monsplodes[1] }, preferredWrongAnswers: monsplodeNames),

@@ -413,10 +413,10 @@
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         CharacterCodesCharacter,
 
-        [SouvenirQuestion("Which of these letters was present but not submitted on the left slider of {0}?", "Character Shift", ThreeColumns6Answers)]
+        [SouvenirQuestion("Which letter was present but not submitted on the left slider of {0}?", "Character Shift", ThreeColumns6Answers)]
         [AnswerGenerator.Strings("A-Z")]
         CharacterShiftLetters,
-        [SouvenirQuestion("Which of these digits was present but not submitted on the right slider of {0}?", "Character Shift", ThreeColumns6Answers)]
+        [SouvenirQuestion("Which digit was present but not submitted on the right slider of {0}?", "Character Shift", ThreeColumns6Answers)]
         [AnswerGenerator.Strings("0-9")]
         CharacterShiftDigits,
 
@@ -521,7 +521,8 @@
         [AnswerGenerator.Integers(0, 11)]
         ColorsMaximizationColorCount,
 
-        [SouvenirQuestion("What was the colour of this {1} in the {2} stage of {0}?", "Coloured Cubes", ThreeColumns6Answers, ExampleAnswers = new[] { "Red", "Green", "Blue", "Yellow", "Cyan", "Magenta" }, ExampleExtraFormatArguments = new[] { "cube", "1st", "stage light", "2nd" }, ExampleExtraFormatArgumentGroupSize = 2, UsesQuestionSprite = true)]
+        [SouvenirQuestion("What was the colour of this {1} in the {2} stage of {0}?", "Coloured Cubes", ThreeColumns6Answers, ExampleAnswers = new[] { "Red", "Green", "Blue", "Yellow", "Cyan", "Magenta" },
+            ExampleExtraFormatArguments = new[] { "cube", QandA.Ordinal, "stage light", QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 2, UsesQuestionSprite = true, TranslateAnswers = true, TranslateFormatArgs = new[] { true, false })]
         ColouredCubesColours,
 
         [SouvenirQuestion("What was the color of the last word in the sequence in {0}?", "Colour Flash", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Magenta", "White", TranslateAnswers = true)]
@@ -641,8 +642,8 @@
         [SouvenirQuestion("What was the {1} of the {2} goal in {0}?", "Decolour Flash", ThreeColumns6Answers, "Blue", "Green", "Red", "Magenta", "Yellow", "White", ExampleExtraFormatArguments = new[] { "colour", "1st", "word", "2nd" }, ExampleExtraFormatArgumentGroupSize = 2, TranslateAnswers = true)]
         DecolourFlashGoal,
 
-        [SouvenirQuestion("What number was initially shown on display {1} in {0}?", "Denial Displays", ThreeColumns6Answers, null, ExampleAnswers = new[] {"1", "22", "333", "4", "55", "666", "7", "88", "999"},
-            ExampleExtraFormatArguments = new[] {"A", "B", "C", "D", "E"}, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What number was initially shown on display {1} in {0}?", "Denial Displays", ThreeColumns6Answers, null, ExampleAnswers = new[] { "1", "22", "333", "4", "55", "666", "7", "88", "999" },
+            ExampleExtraFormatArguments = new[] { "A", "B", "C", "D", "E" }, ExampleExtraFormatArgumentGroupSize = 1)]
         DenialDisplaysDisplays,
 
         [SouvenirQuestion("What was the {1} egg’s {2} rotation in {0}?", "Devilish Eggs", TwoColumns4Answers, "W90CW", "W180CW", "W270CW", "W360CW", "W90CCW", "W180CCW", "W270CCW", "W360CCW", "T90CW", "T180CW", "T270CW", "T360CW", "T90CCW", "T180CCW", "T270CCW", "T360CCW", TranslateFormatArgs = new[] { true, false },
@@ -1279,7 +1280,8 @@
         [SouvenirQuestion("What color was missing on the third ladder in {0}?", "Ladders", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Cyan", "Purple", "Gray", TranslateAnswers = true)]
         LaddersStage3Missing,
 
-        [SouvenirQuestion("Which of these squares was initially {1} in {0}?", "Langton’s Anteater", ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { "black", "white" }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.Grid)]
+        [SouvenirQuestion("Which of these squares was initially {1} in {0}?", "Langton’s Anteater", ThreeColumns6Answers, Type = AnswerType.Grid,
+            ExampleExtraFormatArguments = new[] { "black", "white" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         [AnswerGenerator.Grid(5, 5)]
         LangtonsAnteaterInitialState,
 
@@ -1483,10 +1485,12 @@
         [AnswerGenerator.Integers(1, 4)]
         MemoryLabel,
 
-        [SouvenirQuestion("What was the digit displayed in the {1} stage of {0}?", "Memory Wires", ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was the digit displayed in the {1} stage of {0}?", "Memory Wires", ThreeColumns6Answers,
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 6)]
         MemoryWiresDisplayedDigits,
-        [SouvenirQuestion("What was the colour of wire {1} in {0}?", "Memory Wires", TwoColumns4Answers, "Red", "Yellow", "Blue", "White", "Black", ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "29", "30" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was the colour of wire {1} in {0}?", "Memory Wires", TwoColumns4Answers, "Red", "Yellow", "Blue", "White", "Black",
+            ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "29", "30" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         MemoryWiresWireColours,
 
         [SouvenirQuestion("What was the extracted letter in {0}?", "Metamorse", ThreeColumns6Answers, null)]

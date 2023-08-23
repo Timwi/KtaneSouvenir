@@ -89,9 +89,9 @@ public partial class SouvenirModule
 
         var consonants = "bcdfghjklmnpqrstvwxyz".ToCharArray();
         var vowels = "aeiou".ToCharArray();
-        var displayedKey = GetField<string>(comp, "displayKey").Get().Substring(0, 4);
-        if (displayedKey.Length != 4 || displayedKey.Count(x => consonants.Contains(x)) != 2 || displayedKey.Count(x => consonants.Contains(x)) != 2)
-            throw new AbandonModuleException($"'displayKey' had an unexpected value of {displayedKey} when I expected a string starting with two consonants and two vowels in any order.");
+        var displayedKey = GetField<string>(comp, "displayKey").Get(v => v.Length < 4 ? "expected length at least 4" : null).Substring(0, 4);
+        if (displayedKey.Count(x => consonants.Contains(x)) != 2 || displayedKey.Count(x => vowels.Contains(x)) != 2)
+            throw new AbandonModuleException($"‘displayKey’ had an unexpected value of “{displayedKey}” when I expected a string starting with two consonants and two vowels in any order.");
 
         var possibleAnswers = new HashSet<string>() { displayedKey };
         while (possibleAnswers.Count < 6)
