@@ -261,7 +261,7 @@ public partial class SouvenirModule
         int[] initialArrangement = fldArrangements.Get().First();
         int[,] props = fldProps.Get();
 
-        List<QandA> qs = new List<QandA>();
+        var qs = new List<QandA>();
         string[] colorNames = { "White", "Bronze", "Silver", "Gold" };
         Sprite[] displayedMarkings = Enumerable.Range(0, 16).Select(ix => MathEmSprites[(props[initialArrangement[ix], 0] * 10) + props[initialArrangement[ix], 2]]).ToArray();
 
@@ -833,19 +833,17 @@ public partial class SouvenirModule
 
         var monsplodeIds = new[] { fldMonsplode.Get(0, monsplodeNames.Length - 1) }.Concat(deck.Select(card => fldMonsplode.GetFrom(card, 0, monsplodeNames.Length - 1))).ToArray();
         var monsplodes = monsplodeIds.Select(mn => monsplodeNames[mn]).ToArray();
-        var qs = new List<QandA>();
-        qs.Add(makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, formatArgs: new[] { "card on offer" }, correctAnswers: new[] { monsplodes[0] }, preferredWrongAnswers: monsplodeNames));
-        qs.Add(makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, formatArgs: new[] { "first card in your hand" }, correctAnswers: new[] { monsplodes[1] }, preferredWrongAnswers: monsplodeNames));
-        qs.Add(makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, formatArgs: new[] { "second card in your hand" }, correctAnswers: new[] { monsplodes[2] }, preferredWrongAnswers: monsplodeNames));
-        qs.Add(makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, formatArgs: new[] { "third card in your hand" }, correctAnswers: new[] { monsplodes[3] }, preferredWrongAnswers: monsplodeNames));
-
         var printVersions = new[] { fldPrintChar.Get() + "" + fldPrintDigit.Get() }.Concat(deck.Select(card => fldPrintChar.GetFrom(card) + "" + fldPrintDigit.GetFrom(card))).ToArray();
-        qs.Add(makeQuestion(Question.MonsplodeTradingCardsPrintVersions, _MonsplodeTradingCards, formatArgs: new[] { "card on offer" }, correctAnswers: new[] { printVersions[0] }, preferredWrongAnswers: printVersions));
-        qs.Add(makeQuestion(Question.MonsplodeTradingCardsPrintVersions, _MonsplodeTradingCards, formatArgs: new[] { "first card in your hand" }, correctAnswers: new[] { printVersions[1] }, preferredWrongAnswers: printVersions));
-        qs.Add(makeQuestion(Question.MonsplodeTradingCardsPrintVersions, _MonsplodeTradingCards, formatArgs: new[] { "second card in your hand" }, correctAnswers: new[] { printVersions[2] }, preferredWrongAnswers: printVersions));
-        qs.Add(makeQuestion(Question.MonsplodeTradingCardsPrintVersions, _MonsplodeTradingCards, formatArgs: new[] { "third card in your hand" }, correctAnswers: new[] { printVersions[3] }, preferredWrongAnswers: printVersions));
-
-        addQuestions(module, qs);
+        var qs = new List<QandA>();
+        addQuestions(module,
+            makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, formatArgs: new[] { "card on offer" }, correctAnswers: new[] { monsplodes[0] }, preferredWrongAnswers: monsplodeNames),
+            makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, formatArgs: new[] { "first card in your hand" }, correctAnswers: new[] { monsplodes[1] }, preferredWrongAnswers: monsplodeNames),
+            makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, formatArgs: new[] { "second card in your hand" }, correctAnswers: new[] { monsplodes[2] }, preferredWrongAnswers: monsplodeNames),
+            makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, formatArgs: new[] { "third card in your hand" }, correctAnswers: new[] { monsplodes[3] }, preferredWrongAnswers: monsplodeNames),
+            makeQuestion(Question.MonsplodeTradingCardsPrintVersions, _MonsplodeTradingCards, formatArgs: new[] { "card on offer" }, correctAnswers: new[] { printVersions[0] }, preferredWrongAnswers: printVersions),
+            makeQuestion(Question.MonsplodeTradingCardsPrintVersions, _MonsplodeTradingCards, formatArgs: new[] { "first card in your hand" }, correctAnswers: new[] { printVersions[1] }, preferredWrongAnswers: printVersions),
+            makeQuestion(Question.MonsplodeTradingCardsPrintVersions, _MonsplodeTradingCards, formatArgs: new[] { "second card in your hand" }, correctAnswers: new[] { printVersions[2] }, preferredWrongAnswers: printVersions),
+            makeQuestion(Question.MonsplodeTradingCardsPrintVersions, _MonsplodeTradingCards, formatArgs: new[] { "third card in your hand" }, correctAnswers: new[] { printVersions[3] }, preferredWrongAnswers: printVersions));
     }
 
     private IEnumerable<object> ProcessMoon(KMBombModule module)
@@ -957,8 +955,7 @@ public partial class SouvenirModule
         var wordNum = GetIntField(comp, "wordNum").Get(min: 0, max: wordTable.Length - 1);
         var lights = GetField<string>(comp, "lights").Get(str => str.Length != 3 ? "expected length 3" : str.Any(ch => ch < '1' || ch > '6') ? "expected characters 1–6" : null);
 
-        var qs = new List<QandA>();
-        qs.Add(makeQuestion(Question.MorseWarCode, _MorseWar, correctAnswers: new[] { wordTable[wordNum].ToUpperInvariant() }));
+        var qs = new List<QandA>() { makeQuestion(Question.MorseWarCode, _MorseWar, correctAnswers: new[] { wordTable[wordNum].ToUpperInvariant() }) };
         var rowNames = new[] { "bottom", "middle", "top" };
         for (int i = 0; i < 3; i++)
             qs.Add(makeQuestion(Question.MorseWarLeds, _MorseWar, formatArgs: new[] { rowNames[i] }, correctAnswers: new[] { rowTable[lights[i] - '1'] }));

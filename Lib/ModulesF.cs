@@ -357,8 +357,8 @@ public partial class SouvenirModule
         return processColoredCiphers(module, "forestCipher", Question.ForestCipherScreen, _ForestCipher);
     }
 
-    private List<Array> _facCylinders = new List<Array>();
-    private List<List<int>> _facFigures = new List<List<int>>();
+    private List<Array> _facCylinders = new();
+    private List<List<int>> _facFigures = new();
     private IEnumerable<object> ProcessForgetAnyColor(KMBombModule module)
     {
         var comp = GetComponent(module, "FACScript");
@@ -433,7 +433,7 @@ public partial class SouvenirModule
                 correctAnswers: new[] { figureNames[myFigures[randomStage]] }));
     }
 
-    private List<int[]> _feFirstDisplays = new List<int[]>();
+    private List<int[]> _feFirstDisplays = new();
     private IEnumerable<object> ProcessForgetEverything(KMBombModule module)
     {
         var comp = GetComponent(module, "EvilMemory");
@@ -515,7 +515,7 @@ public partial class SouvenirModule
             makeQuestion(Question.ForgetMeInitialState, _ForgetMe, formatArgs: new[] { positions[ix] }, correctAnswers: new[] { initState[ix].ToString() })));
     }
 
-    private List<int[]> _forgetMeNotDisplays = new List<int[]>();
+    private List<int[]> _forgetMeNotDisplays = new();
     private IEnumerable<object> ProcessForgetMeNot(KMBombModule module)
     {
         var comp = GetComponent(module, "AdvancedMemory");
@@ -620,11 +620,11 @@ public partial class SouvenirModule
         addQuestions(module, questions);
     }
 
-    private List<List<byte>> _ftcGearNumbers = new List<List<byte>>();
-    private List<List<short>> _ftcLargeDisplays = new List<List<short>>();
-    private List<List<int>> _ftcSineNumbers = new List<List<int>>();
-    private List<List<string>> _ftcGearColors = new List<List<string>>();
-    private List<List<string>> _ftcRuleColors = new List<List<string>>();
+    private List<List<byte>> _ftcGearNumbers = new();
+    private List<List<short>> _ftcLargeDisplays = new();
+    private List<List<int>> _ftcSineNumbers = new();
+    private List<List<string>> _ftcGearColors = new();
+    private List<List<string>> _ftcRuleColors = new();
     private IEnumerable<object> ProcessForgetTheColors(KMBombModule module)
     {
         var comp = GetComponent(module, "FTCScript");
@@ -718,8 +718,8 @@ public partial class SouvenirModule
             makeQuestion(Question.ForgetTheColorsRuleColor, _ForgetTheColors, formattedModuleName: formattedName, formatArgs: new[] { stage }, correctAnswers: new[] { myRuleColors[chosenStage].ToString() }));
     }
 
-    private List<List<int>> _ftColors = new List<List<int>>();
-    private List<List<int>> _ftDigits = new List<List<int>>();
+    private List<List<int>> _ftColors = new();
+    private List<List<int>> _ftDigits = new();
     private IEnumerable<object> ProcessForgetThis(KMBombModule module)
     {
         var comp = GetComponent(module, "ForgetThis");

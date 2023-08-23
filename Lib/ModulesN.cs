@@ -216,8 +216,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_Neutralization);
 
         var colorText = GetField<GameObject>(comp, "colorText", isPublic: true).Get(nullAllowed: true);
-        if (colorText != null)
-            colorText.SetActive(false);
+        colorText?.SetActive(false);
 
         addQuestions(module,
             makeQuestion(Question.NeutralizationColor, _Neutralization, correctAnswers: new[] { new[] { "Yellow", "Green", "Red", "Blue" }[acidType] }),
@@ -711,9 +710,10 @@ public partial class SouvenirModule
         var allColors = GetAnswers(Question.NotXRayScannerColor);
         var scannerColor = GetField<object>(comp, "_scannerColor").Get(v => v == null ? "did not expected null" : !allColors.Contains(v.ToString()) ? "expected " + allColors.JoinString(", ") : null);
 
-        var qs = new List<QandA>();
-        qs.Add(makeQuestion(Question.NotXRayTable, _NotXRay, correctAnswers: new[] { (table + 1).ToString() }));
-        qs.Add(makeQuestion(Question.NotXRayScannerColor, _NotXRay, correctAnswers: new[] { scannerColor.ToString() }));
+        var qs = new List<QandA>() {
+            makeQuestion(Question.NotXRayTable, _NotXRay, correctAnswers: new[] { (table + 1).ToString() }),
+            makeQuestion(Question.NotXRayScannerColor, _NotXRay, correctAnswers: new[] { scannerColor.ToString() })
+        };
         for (var i = 0; i < 4; i++)
         {
             qs.Add(makeQuestion(Question.NotXRayDirections, _NotXRay, formatArgs: new[] { (i + 1).ToString() }, correctAnswers: new[] { directions.GetValue(i).ToString() }));
