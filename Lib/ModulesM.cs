@@ -645,9 +645,10 @@ public partial class SouvenirModule
         var iceCreamNames = GetStaticField<string[]>(comp.GetType(), "iceCreamNames").Get();
         var ix = Array.IndexOf(iceCreams, 14);
         var directions = new[] { "top-left", "top-middle", "top-right", "middle-left", "middle-middle", "middle-right", "bottom-left", "bottom-middle", "bottom-right" };
+        var displayedIceCreamSprites = iceCreams.Where(x => x != 14).Select(index => MisterSofteeSprites.First(sprite => sprite.name == iceCreamNames[index])).ToArray();
         addQuestions(module,
             makeQuestion(Question.MisterSofteeSpongebobPosition, _MisterSoftee, correctAnswers: new[] { directions[ix] }),
-            makeQuestion(Question.MisterSofteeTreatsPresent, _MisterSoftee, correctAnswers: iceCreams.Where(x => x != 14).Select(x => iceCreamNames[x]).ToArray()));
+            makeQuestion(Question.MisterSofteeTreatsPresent, _MisterSoftee, correctAnswers: displayedIceCreamSprites, preferredWrongAnswers: MisterSofteeSprites));
     }
 
     private IEnumerable<object> ProcessModernCipher(KMBombModule module)

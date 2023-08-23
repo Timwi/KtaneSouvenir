@@ -708,6 +708,21 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ee2284820dc8664468b4e5b3e680dfbb, type: 3}
   - {fileID: 21300000, guid: ee84d6b32aab06b429c196fdd4a7b679, type: 3}
   - {fileID: 21300000, guid: 78ef3eb6ed9dc9c4eb776cd71a9f3dcb, type: 3}
+  MisterSofteeSprites:
+  - {fileID: 21300000, guid: 972cbb609cbb59e4dbfd2bfb43640459, type: 3}
+  - {fileID: 21300000, guid: 1a37fbb5ea2bbe94187ac66c5ae31807, type: 3}
+  - {fileID: 21300000, guid: 21ceeb9b3cc068943a6c04b9ba602e11, type: 3}
+  - {fileID: 21300000, guid: b8cb40a8fd324ae4daf1be0baf30a105, type: 3}
+  - {fileID: 21300000, guid: 7c3e85ccbd8172943b77e6e9dcfbd789, type: 3}
+  - {fileID: 21300000, guid: 2b05be2ad43192e489f8c6475b88aa1b, type: 3}
+  - {fileID: 21300000, guid: 1c3010504cb5166489a691f8fce651f5, type: 3}
+  - {fileID: 21300000, guid: 89a6a07c050093c40858b8a49ee89051, type: 3}
+  - {fileID: 21300000, guid: b97cf81f1191866449660f11a9d64199, type: 3}
+  - {fileID: 21300000, guid: 92978cf9895b2284bb684a72fcc5a991, type: 3}
+  - {fileID: 21300000, guid: 473a277e1af3f5144a45cefbe52f9a7f, type: 3}
+  - {fileID: 21300000, guid: 6cf688f3eb513af4aac6e26668b9c685, type: 3}
+  - {fileID: 21300000, guid: 2a668f80edafba9439e2c098c253cda0, type: 3}
+  - {fileID: 21300000, guid: eb4c8fc72f2dce14a88390d4f3ddcc21, type: 3}
   NonverbalSimonSprites:
   - {fileID: 21300000, guid: c9b2f2dcf2892984196c26f35351f3b4, type: 3}
   - {fileID: 21300000, guid: d12bfb041eb4d5b43ad37303479d1f37, type: 3}

@@ -40,6 +40,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] MahjongSprites;
     public Sprite[] MathEmSprites;
     public Sprite[] MemorySprites;
+    public Sprite[] MisterSofteeSprites;
     public Sprite[] NonverbalSimonSprites;
     public Sprite[] PatternCubeSprites;
     public Sprite[] PlanetsSprites;
