@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Diagnostics;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -158,6 +157,8 @@ namespace SouvenirPostBuildTool
                         sb.AppendLine($@"                QuestionText = ""{((string) (ti?.QuestionText) ?? qText).CLiteralEscape()}"",");
                         if (ti?.ModuleName != null)
                             sb.AppendLine($@"                ModuleName = ""{((string) ti.ModuleName).CLiteralEscape()}"",");
+                        if (ti?.ModuleNameWithThe != null)
+                            sb.AppendLine($@"                ModuleNameWithThe = ""{((string) ti.ModuleNameWithThe).CLiteralEscape()}"",");
                         if (answers != null && attr.TranslateAnswers)
                         {
                             sb.AppendLine("                Answers = new Dictionary<string, string>");

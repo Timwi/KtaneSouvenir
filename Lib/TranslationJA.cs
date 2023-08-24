@@ -389,6 +389,7 @@ namespace Souvenir
                 QuestionText = "{0}で一致した色は？",
             },
             // Which color was submitted {1} in {0}?
+            // Which color was submitted first in A Square?
             [Question.ASquareCorrectColors] = new TranslationInfo
             {
                 QuestionText = "{0}で{1}番目に送信した色は？",

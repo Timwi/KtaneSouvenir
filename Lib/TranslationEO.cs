@@ -411,6 +411,7 @@ namespace Souvenir
                 QuestionText = "Which of these was an index color in {0}?",
             },
             // Which color was submitted {1} in {0}?
+            // Which color was submitted first in A Square?
             [Question.ASquareCorrectColors] = new TranslationInfo
             {
                 QuestionText = "Which color was submitted {1} in {0}?",

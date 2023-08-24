@@ -406,9 +406,11 @@ namespace Souvenir
                 ModuleName = "Ein Quadrat",
             },
             // Which color was submitted {1} in {0}?
+            // Which color was submitted first in A Square?
             [Question.ASquareCorrectColors] = new TranslationInfo
             {
-                QuestionText = "Which color was submitted {1} in {0}?",
+                QuestionText = "Welche Farbe wurde bei {0} als {1}es eingegeben?",
+                ModuleName = "Ein Quadrat",
             },
 
             // The Azure Button
@@ -416,31 +418,41 @@ namespace Souvenir
             // What was T in The Azure Button?
             [Question.AzureButtonT] = new TranslationInfo
             {
-                QuestionText = "What was T in {0}?",
+                QuestionText = "Was war T bei {0}?",
+                ModuleName = "Azurfarbenen Knopf",
+                ModuleNameWithThe = "Der Azurfarbene Knopf",
             },
             // Which of these cards was shown in Stage 1, but not T, in {0}?
             // Which of these cards was shown in Stage 1, but not T, in The Azure Button?
             [Question.AzureButtonNotT] = new TranslationInfo
             {
-                QuestionText = "Which of these cards was shown in Stage 1, but not T, in {0}?",
+                QuestionText = "Welche Karte war bei {0} in Schritt 1 zu sehen, aber nicht T?",
+                ModuleName = "Azurfarbenen Knopf",
+                ModuleNameWithThe = "Der Azurfarbene Knopf",
             },
             // What was M in {0}?
             // What was M in The Azure Button?
             [Question.AzureButtonM] = new TranslationInfo
             {
-                QuestionText = "What was M in {0}?",
+                QuestionText = "Was war M bei {0}?",
+                ModuleName = "Azurfarbenen Knopf",
+                ModuleNameWithThe = "Der Azurfarbene Knopf",
             },
             // What was the {1} direction in the decoy arrow in {0}?
             // What was the first direction in the decoy arrow in The Azure Button?
             [Question.AzureButtonDecoyArrowDirection] = new TranslationInfo
             {
-                QuestionText = "What was the {1} direction in the decoy arrow in {0}?",
+                QuestionText = "Was war bei {0} die {1}e Richtung im ungenutzten Pfeil?",
+                ModuleName = "Azurfarbenen Knopf",
+                ModuleNameWithThe = "Der Azurfarbene Knopf",
             },
             // What was the {1} direction in the {2} non-decoy arrow in {0}?
             // What was the first direction in the first non-decoy arrow in The Azure Button?
             [Question.AzureButtonNonDecoyArrowDirection] = new TranslationInfo
             {
-                QuestionText = "What was the {1} direction in the {2} non-decoy arrow in {0}?",
+                QuestionText = "Was war bei {0} die {1}e Richtung im {2}en genutzten Pfeil?",
+                ModuleName = "Azurfarbenen Knopf",
+                ModuleNameWithThe = "Der Azurfarbene Knopf",
             },
 
             // Bamboozled Again
