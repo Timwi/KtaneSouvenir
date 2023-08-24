@@ -23,7 +23,7 @@ namespace Souvenir
         }) + (adv ? "o" : "a");
 
         #region Translatable strings
-        public override Dictionary<Question, TranslationInfo> Translations => new Dictionary<Question, TranslationInfo>
+        protected override Dictionary<Question, TranslationInfo> _translations => new()
         {
             // 1000 Words
             // What was the {1} word shown in {0}?
@@ -245,6 +245,11 @@ namespace Souvenir
             {
                 QuestionText = "¿Cuál fue {1} in {0}?",
                 ModuleName = "Ciclado de Afín",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["message"] = "message",
+                    ["response"] = "response",
+                },
             },
 
             // A Letter
@@ -1196,6 +1201,25 @@ namespace Souvenir
             [Question.CaesarCycleWord] = new TranslationInfo
             {
                 QuestionText = "What was the {1} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["message"] = "message",
+                    ["response"] = "response",
+                },
+            },
+
+            // Caesar Psycho
+            // What text was on the top display in the {1} stage of {0}?
+            // What text was on the top display in the first stage of Caesar Psycho?
+            [Question.CaesarPsychoScreenTexts] = new TranslationInfo
+            {
+                QuestionText = "What text was on the top display in the {1} stage of {0}?",
+            },
+            // What color was the text on the top display in the second stage of {0}?
+            // What color was the text on the top display in the second stage of Caesar Psycho?
+            [Question.CaesarPsychoScreenColor] = new TranslationInfo
+            {
+                QuestionText = "What color was the text on the top display in the second stage of {0}?",
             },
 
             // Calendar
@@ -1249,6 +1273,20 @@ namespace Souvenir
             [Question.CharacterCodesCharacter] = new TranslationInfo
             {
                 QuestionText = "What was the {1} character in {0}?",
+            },
+
+            // Character Shift
+            // Which letter was present but not submitted on the left slider of {0}?
+            // Which letter was present but not submitted on the left slider of Character Shift?
+            [Question.CharacterShiftLetters] = new TranslationInfo
+            {
+                QuestionText = "Which letter was present but not submitted on the left slider of {0}?",
+            },
+            // Which digit was present but not submitted on the right slider of {0}?
+            // Which digit was present but not submitted on the right slider of Character Shift?
+            [Question.CharacterShiftDigits] = new TranslationInfo
+            {
+                QuestionText = "Which digit was present but not submitted on the right slider of {0}?",
             },
 
             // Character Slots
@@ -1520,6 +1558,19 @@ namespace Souvenir
                 },
             },
 
+            // Coloured Cubes
+            // What was the colour of this {1} in the {2} stage of {0}?
+            // What was the colour of this cube in the first stage of Coloured Cubes?
+            [Question.ColouredCubesColours] = new TranslationInfo
+            {
+                QuestionText = "What was the colour of this {1} in the {2} stage of {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["cube"] = "cube",
+                    ["stage light"] = "stage light",
+                },
+            },
+
             // Colour Flash
             // What was the color of the last word in the sequence in {0}?
             // What was the color of the last word in the sequence in Colour Flash?
@@ -1688,12 +1739,43 @@ namespace Souvenir
                 QuestionText = "What was the color of the bar in the {1} stage of {0}?",
             },
 
+            // The cRule
+            // Which cell was pre-filled at the start of {0}?
+            // Which cell was pre-filled at the start of The cRule?
+            [Question.CRulePrefilled] = new TranslationInfo
+            {
+                QuestionText = "Which cell was pre-filled at the start of {0}?",
+            },
+            // Which symbol pair was here in {0}?
+            // Which symbol pair was here in The cRule?
+            [Question.CRuleSymbolPair] = new TranslationInfo
+            {
+                QuestionText = "Which symbol pair was here in {0}?",
+            },
+            // Which symbol pair was present on {0}?
+            // Which symbol pair was present on The cRule?
+            [Question.CRuleSymbolPairPresent] = new TranslationInfo
+            {
+                QuestionText = "Which symbol pair was present on {0}?",
+            },
+            // Where was {1} in {0}?
+            // Where was ♤♤ in The cRule?
+            [Question.CRuleSymbolPairCell] = new TranslationInfo
+            {
+                QuestionText = "Where was {1} in {0}?",
+            },
+
             // Cryptic Cycle
             // What was the {1} in {0}?
             // What was the message in Cryptic Cycle?
             [Question.CrypticCycleWord] = new TranslationInfo
             {
                 QuestionText = "What was the {1} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["message"] = "message",
+                    ["response"] = "response",
+                },
             },
 
             // Cryptic Keypad
@@ -1797,6 +1879,7 @@ namespace Souvenir
 
             // Decolour Flash
             // What was the {1} of the {2} goal in {0}?
+            // What was the colour of the 1st goal in Decolour Flash?
             [Question.DecolourFlashGoal] = new TranslationInfo
             {
                 QuestionText = "What was the {1} of the {2} goal in {0}?",
@@ -1809,6 +1892,14 @@ namespace Souvenir
                     ["Yellow"] = "Yellow",
                     ["White"] = "White",
                 },
+            },
+
+            // Denial Displays
+            // What number was initially shown on display {1} in {0}?
+            // What number was initially shown on display A in Denial Displays?
+            [Question.DenialDisplaysDisplays] = new TranslationInfo
+            {
+                QuestionText = "What number was initially shown on display {1} in {0}?",
             },
 
             // Devilish Eggs
@@ -2130,6 +2221,11 @@ namespace Souvenir
             [Question.EnigmaCycleWords] = new TranslationInfo
             {
                 QuestionText = "What was the {1} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["message"] = "message",
+                    ["response"] = "response",
+                },
             },
 
             // Entry Number Four
@@ -2188,6 +2284,14 @@ namespace Souvenir
             [Question.EntryNumberOneCoeff] = new TranslationInfo
             {
                 QuestionText = "What was the constant coefficient in {0}?",
+            },
+
+            // Épelle-moi Ça
+            // What word was asked to be spelled in {0}?
+            // What word was asked to be spelled in Épelle-moi Ça?
+            [Question.EpelleMoiCaWord] = new TranslationInfo
+            {
+                QuestionText = "What word was asked to be spelled in {0}?",
             },
 
             // Equations X
@@ -2464,6 +2568,14 @@ namespace Souvenir
             [Question.ForgetMeNotDisplayedDigits] = new TranslationInfo
             {
                 QuestionText = "What was the digit displayed in the {1} stage of {0}?",
+            },
+
+            // Forget Me Now
+            // What was the {1} displayed digit in {0}?
+            // What was the first displayed digit in Forget Me Now?
+            [Question.ForgetMeNowDisplayedDigits] = new TranslationInfo
+            {
+                QuestionText = "What was the {1} displayed digit in {0}?",
             },
 
             // Forget’s Ultimate Showdown
@@ -2904,6 +3016,11 @@ namespace Souvenir
             [Question.HillCycleWord] = new TranslationInfo
             {
                 QuestionText = "What was the {1} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["message"] = "message",
+                    ["response"] = "response",
+                },
             },
 
             // Hinges
@@ -3386,6 +3503,11 @@ namespace Souvenir
             [Question.JumbleCycleWord] = new TranslationInfo
             {
                 QuestionText = "What was the {1} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["message"] = "message",
+                    ["response"] = "response",
+                },
             },
 
             // Juxtacolored Squares
@@ -3424,6 +3546,14 @@ namespace Souvenir
             [Question.KeypadMagnifiedLED] = new TranslationInfo
             {
                 QuestionText = "What was the position of the LED in {0}?",
+            },
+
+            // Keywords
+            // What were the first four letters on the display in {0}?
+            // What were the first four letters on the display in Keywords?
+            [Question.KeywordsDisplayedKey] = new TranslationInfo
+            {
+                QuestionText = "What were the first four letters on the display in {0}?",
             },
 
             // Know Your Way
@@ -3516,6 +3646,19 @@ namespace Souvenir
                     ["Cyan"] = "Cyan",
                     ["Purple"] = "Purple",
                     ["Gray"] = "Gray",
+                },
+            },
+
+            // Langton’s Anteater
+            // Which of these squares was initially {1} in {0}?
+            // Which of these squares was initially black in Langton’s Anteater?
+            [Question.LangtonsAnteaterInitialState] = new TranslationInfo
+            {
+                QuestionText = "Which of these squares was initially {1} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["black"] = "black",
+                    ["white"] = "white",
                 },
             },
 
@@ -3848,6 +3991,22 @@ namespace Souvenir
                 QuestionText = "What was the {1} number in the equation on {0}?",
             },
 
+            // Master Tapes
+            // Which song was played in {0}?
+            // Which song was played in Master Tapes?
+            [Question.MasterTapesPlayedSong] = new TranslationInfo
+            {
+                QuestionText = "Which song was played in {0}?",
+            },
+
+            // Match Refereeing
+            // Which planet was present in the {1} stage of {0}?
+            // Which planet was present in the first stage of Match Refereeing?
+            [Question.MatchRefereeingPlanet] = new TranslationInfo
+            {
+                QuestionText = "Which planet was present in the {1} stage of {0}?",
+            },
+
             // Math ’em
             // What was the color of this tile before the shuffle on {0}?
             // What was the color of this tile before the shuffle on Math ’em?
@@ -4133,6 +4292,28 @@ namespace Souvenir
             [Question.MemoryLabel] = new TranslationInfo
             {
                 QuestionText = "What was the label of the button that you pressed in the {1} stage of {0}?",
+            },
+
+            // Memory Wires
+            // What was the digit displayed in the {1} stage of {0}?
+            // What was the digit displayed in the first stage of Memory Wires?
+            [Question.MemoryWiresDisplayedDigits] = new TranslationInfo
+            {
+                QuestionText = "What was the digit displayed in the {1} stage of {0}?",
+            },
+            // What was the colour of wire {1} in {0}?
+            // What was the colour of wire 1 in Memory Wires?
+            [Question.MemoryWiresWireColours] = new TranslationInfo
+            {
+                QuestionText = "What was the colour of wire {1} in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Yellow"] = "Yellow",
+                    ["Blue"] = "Blue",
+                    ["White"] = "White",
+                    ["Black"] = "Black",
+                },
             },
 
             // Metamorse
@@ -5241,6 +5422,27 @@ namespace Souvenir
                 },
             },
 
+            // Navigation Determination
+            // What was the color of the maze in {0}?
+            // What was the color of the maze in Navigation Determination?
+            [Question.NavigationDeterminationColor] = new TranslationInfo
+            {
+                QuestionText = "What was the color of the maze in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Yellow"] = "Yellow",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                },
+            },
+            // What was the label of the maze in {0}?
+            // What was the label of the maze in Navigation Determination?
+            [Question.NavigationDeterminationLabel] = new TranslationInfo
+            {
+                QuestionText = "What was the label of the maze in {0}?",
+            },
+
             // Navinums
             // What was the initial middle digit in {0}?
             // What was the initial middle digit in Navinums?
@@ -6161,7 +6363,7 @@ namespace Souvenir
             // What number was not displayed in Pie Flash?
             [Question.PieFlashDigits] = new TranslationInfo
             {
-                QuestionText = "What number was NOT displayed in {0}?",
+                QuestionText = "What number was not displayed in {0}?",
             },
 
             // Pigpen Cycle
@@ -6170,6 +6372,11 @@ namespace Souvenir
             [Question.PigpenCycleWord] = new TranslationInfo
             {
                 QuestionText = "What was the {1} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["message"] = "message",
+                    ["response"] = "response",
+                },
             },
 
             // The Pink Button
@@ -6306,6 +6513,11 @@ namespace Souvenir
             [Question.PlayfairCycleWord] = new TranslationInfo
             {
                 QuestionText = "What was the {1} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["message"] = "message",
+                    ["response"] = "response",
+                },
             },
 
             // Poetry
@@ -6465,6 +6677,14 @@ namespace Souvenir
                     ["green"] = "green",
                     ["pink"] = "pink",
                 },
+            },
+
+            // Quiz Buzz
+            // What was the number initially on the display in {0}?
+            // What was the number initially on the display in Quiz Buzz?
+            [Question.QuizBuzzStartingNumber] = new TranslationInfo
+            {
+                QuestionText = "What was the number initially on the display in {0}?",
             },
 
             // Qwirkle
@@ -7140,6 +7360,56 @@ namespace Souvenir
                 QuestionText = "How many spaces clockwise from the arrow was the {1} flash in the final sequence in {0}?",
             },
 
+            // Simon Signals
+            // What shape was the {1} arrow in {0}?
+            // What shape was the red arrow in Simon Signals?
+            [Question.SimonSignalsColorToShape] = new TranslationInfo
+            {
+                QuestionText = "What shape was the {1} arrow in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "red",
+                    ["green"] = "green",
+                    ["blue"] = "blue",
+                    ["gray"] = "gray",
+                },
+            },
+            // How many directions did the {1} arrow in {0} have?
+            // How many directions did the red arrow in Simon Signals have?
+            [Question.SimonSignalsColorToRotations] = new TranslationInfo
+            {
+                QuestionText = "How many directions did the {1} arrow in {0} have?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "red",
+                    ["green"] = "green",
+                    ["blue"] = "blue",
+                    ["gray"] = "gray",
+                },
+            },
+            // What color was the arrow with this shape in {0}?
+            // What color was the arrow with this shape in Simon Signals?
+            [Question.SimonSignalsShapeToColor] = new TranslationInfo
+            {
+                QuestionText = "What color was the arrow with this shape in {0}?",
+            },
+            // How many directions did the arrow with this shape have in {0}?
+            // How many directions did the arrow with this shape have in Simon Signals?
+            [Question.SimonSignalsShapeToRotations] = new TranslationInfo
+            {
+                QuestionText = "How many directions did the arrow with this shape have in {0}?",
+            },
+            // What color was the arrow with {1} possible directions in {0}?
+            [Question.SimonSignalsRotationsToColor] = new TranslationInfo
+            {
+                QuestionText = "What color was the arrow with {1} possible directions in {0}?",
+            },
+            // What shape was the arrow with {1} possible directions in {0}?
+            [Question.SimonSignalsRotationsToShape] = new TranslationInfo
+            {
+                QuestionText = "What shape was the arrow with {1} possible directions in {0}?",
+            },
+
             // Simon Smothers
             // What was the color of the {1} flash in {0}?
             // What was the color of the first flash in Simon Smothers?
@@ -7444,6 +7714,14 @@ namespace Souvenir
             [Question.SimonSupportsTopics] = new TranslationInfo
             {
                 QuestionText = "What was the {1} topic in {0}?",
+            },
+
+            // Simultaneous Simons
+            // What color flashed {1} on the {2} Simon in {0}?
+            // What color flashed first on the first Simon in Simultaneous Simons?
+            [Question.SimultaneousSimonsFlash] = new TranslationInfo
+            {
+                QuestionText = "What color flashed {1} on the {2} Simon in {0}?",
             },
 
             // Skewed Slots
@@ -8137,6 +8415,11 @@ namespace Souvenir
             [Question.UltimateCycleWord] = new TranslationInfo
             {
                 QuestionText = "What was the {1} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["message"] = "message",
+                    ["response"] = "response",
+                },
             },
 
             // The Ultracube
@@ -8396,6 +8679,14 @@ namespace Souvenir
             [Question.WarningSignsDisplayedSign] = new TranslationInfo
             {
                 QuestionText = "What was the displayed sign in {0}?",
+            },
+
+            // WASD
+            // What was the location displayed in {0}?
+            // What was the location displayed in WASD?
+            [Question.WasdDisplayedLocation] = new TranslationInfo
+            {
+                QuestionText = "What was the location displayed in {0}?",
             },
 
             // Wavetapping

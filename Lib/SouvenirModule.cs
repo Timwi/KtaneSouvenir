@@ -326,9 +326,6 @@ public partial class SouvenirModule : MonoBehaviour
                 setAnswerHandler(3, _ => { _curExampleOrdinal++; showExampleQuestion(); });
                 setAnswerHandler(4, _ => { _curExampleVariant--; showExampleQuestion(); });
                 setAnswerHandler(5, _ => { _curExampleVariant++; showExampleQuestion(); });
-
-                if (TwitchPlaysActive)
-                    ActivateTwitchPlaysNumbers();
             }
             else
             {
@@ -508,7 +505,7 @@ public partial class SouvenirModule : MonoBehaviour
 
     private IEnumerator Play()
     {
-        if (TwitchPlaysActive)
+        if (!Application.isEditor && TwitchPlaysActive)
             ActivateTwitchPlaysNumbers();
 
         var numPlayableModules = Bomb.GetSolvableModuleNames().Count(x => !_ignoredModules.Contains(x));
@@ -1106,27 +1103,37 @@ public partial class SouvenirModule : MonoBehaviour
 
     IEnumerator ProcessTwitchCommand(string command)
     {
-        if (Application.isEditor && !TwitchPlaysActive && command == "tp")
-        {
-            ActivateTwitchPlaysNumbers();
-            TwitchPlaysActive = true;
-            yield break;
-        }
+        Match m;
 
         if (Application.isEditor)
         {
+            if (command == "tp")
+            {
+                yield return null;
+                ActivateTwitchPlaysNumbers();
+                yield break;
+            }
+
+            if ((m = Regex.Match(command, $@"^\s*lang (en|{Translation.AllTranslations.Keys.JoinString("|")})\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)).Success)
+            {
+                yield return null;
+                _translation = m.Groups[1].Value.Equals("en", StringComparison.InvariantCultureIgnoreCase) ? null : Translation.AllTranslations[m.Groups[1].Value.ToLowerInvariant()];
+                showExampleQuestion();
+                yield break;
+            }
+
             int substringMatch = -1;
             for (var i = 0; i < _exampleQuestions.Length; i++)
             {
                 var j = (i + _curExampleQuestion + 1) % _exampleQuestions.Length;
-                if (Regex.IsMatch(_attributes[_exampleQuestions[j]].ModuleNameWithThe, $"^{Regex.Escape(command)}$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+                if (Regex.IsMatch(_translation?.Translations[_exampleQuestions[j]].ModuleNameWithThe ?? _translation?.Translations[_exampleQuestions[j]].ModuleName ?? _attributes[_exampleQuestions[j]].ModuleNameWithThe, $"^{Regex.Escape(command)}$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
                 {
                     _curExampleQuestion = j;
                     showExampleQuestion();
                     yield break;
                 }
 
-                if (substringMatch == -1 && Regex.IsMatch(_attributes[_exampleQuestions[j]].ModuleNameWithThe, Regex.Escape(command), RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+                if (substringMatch == -1 && Regex.IsMatch(_translation?.Translations[_exampleQuestions[j]].ModuleNameWithThe ?? _translation?.Translations[_exampleQuestions[j]].ModuleName ?? _attributes[_exampleQuestions[j]].ModuleNameWithThe, Regex.Escape(command), RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
                     substringMatch = j;
             }
 
@@ -1140,7 +1147,7 @@ public partial class SouvenirModule : MonoBehaviour
             yield break;
         }
 
-        var m = Regex.Match(command.ToLowerInvariant(), @"\A\s*answer\s+(\d)\s*\z");
+        m = Regex.Match(command.ToLowerInvariant(), @"\A\s*answer\s+(\d)\s*\z");
         if (!m.Success || _isSolved)
             yield break;
 

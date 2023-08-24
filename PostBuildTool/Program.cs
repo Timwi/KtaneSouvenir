@@ -132,7 +132,7 @@ namespace SouvenirPostBuildTool
                 var alreadyType = assembly.GetType($"Souvenir.Translation_{language}");
                 var already = (IDictionary) (alreadyType == null ? null : (dynamic) Activator.CreateInstance(alreadyType))?.Translations;
                 var sb = new StringBuilder();
-                sb.AppendLine("        public override Dictionary<Question, TranslationInfo> Translations => new Dictionary<Question, TranslationInfo>");
+                sb.AppendLine("        protected override Dictionary<Question, TranslationInfo> _translations => new()");
                 sb.AppendLine("        {");
                 foreach (var kvp in allInfos)
                 {
