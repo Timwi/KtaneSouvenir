@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Diagnostics;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -151,7 +152,6 @@ namespace SouvenirPostBuildTool
                         if (formatArgsComment != null)
                             sb.AppendLine($"            // {formatArgsComment}");
                         var answers = attr.AllAnswers == null || attr.AllAnswers.Length == 0 ? null : (string[]) attr.AllAnswers;
-                        var formatArgs = attr.ExampleExtraFormatArguments == null || attr.ExampleExtraFormatArguments.Length == 0 ? null : ((string[]) attr.ExampleExtraFormatArguments).Distinct().ToArray();
                         dynamic ti = already?.Contains(id) == true ? already[id] : null;
                         sb.AppendLine($@"            [Question.{id}] = new TranslationInfo");
                         sb.AppendLine("            {");
@@ -166,13 +166,17 @@ namespace SouvenirPostBuildTool
                                 sb.AppendLine($@"                    [""{answer.CLiteralEscape()}""] = ""{(ti?.Answers?.ContainsKey(answer) == true ? (string) ti.Answers[answer] : answer).CLiteralEscape()}"",");
                             sb.AppendLine("                },");
                         }
-                        if (formatArgs != null && attr.TranslateFormatArgs != null && Enumerable.Contains(attr.TranslateFormatArgs, true))
+                        var trFAs = (bool[]) attr.TranslateFormatArgs;
+                        var formatArgs = attr.ExampleExtraFormatArguments == null || attr.ExampleExtraFormatArguments.Length == 0 || trFAs == null || trFAs.Length == 0 ? null :
+                            ((string[]) attr.ExampleExtraFormatArguments).Split((int) attr.ExampleExtraFormatArgumentGroupSize)
+                                .SelectMany(chunk => Enumerable.Range(0, trFAs.Length).Where(ix => trFAs[ix]).Select(ix => chunk.Skip(ix).First()))
+                                .Distinct().ToArray();
+                        if (formatArgs != null)
                         {
                             sb.AppendLine("                FormatArgs = new Dictionary<string, string>");
                             sb.AppendLine("                {");
-                            for (var fArgIx = 0; fArgIx < formatArgs.Length; fArgIx++)
-                                if (attr.TranslateFormatArgs[fArgIx % attr.ExampleExtraFormatArgumentGroupSize])
-                                    sb.AppendLine($@"                    [""{formatArgs[fArgIx].CLiteralEscape()}""] = ""{(ti?.FormatArgs?.ContainsKey((string) formatArgs[fArgIx]) == true ? (string) ti.FormatArgs[(string) formatArgs[fArgIx]] : formatArgs[fArgIx]).CLiteralEscape()}"",");
+                            foreach (var fa in formatArgs)
+                                sb.AppendLine($@"                    [""{fa.CLiteralEscape()}""] = ""{(ti?.FormatArgs?.ContainsKey(fa) == true ? (string) ti.FormatArgs[fa] : fa).CLiteralEscape()}"",");
                             sb.AppendLine("                },");
                         }
                         sb.AppendLine("            },");

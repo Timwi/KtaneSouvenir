@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "With cmdline": {
+      "commandName": "Project",
+      "commandLineArgs": "\"D:\\c\\KTANE\\Souvenir\\Lib\\bin\\SouvenirLib.dll\" \"F:\\SteamLibrary\\steamapps\\common\\Keep Talking and Nobody Explodes\\ktane_Data\\Managed\" -c \"D:\\c\\KTANE\\Souvenir\\CONTRIBUTORS.md\" -t \"D:\\c\\KTANE\\Souvenir\\Lib\""
+    }
+  }
+}

@@ -375,6 +375,7 @@ namespace Souvenir
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["left"] = "izquierda",
+                    ["right"] = "right",
                 },
             },
 
@@ -640,6 +641,7 @@ namespace Souvenir
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "top",
+                    ["bottom"] = "bottom",
                 },
             },
             // What was the {2} display in the {1} stage of {0}?
@@ -3804,6 +3806,7 @@ namespace Souvenir
                 {
                     ["top"] = "top",
                     ["bottom-left"] = "bottom-left",
+                    ["bottom-right"] = "bottom-right",
                 },
             },
             // What was the label on the {1} button in the {2} stage of {0}?
@@ -3815,6 +3818,7 @@ namespace Souvenir
                 {
                     ["top"] = "top",
                     ["bottom-left"] = "bottom-left",
+                    ["bottom-right"] = "bottom-right",
                 },
             },
             // What was the final operator in the {1} stage of {0}?
@@ -3860,6 +3864,7 @@ namespace Souvenir
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["depart from"] = "depart from",
+                    ["arrive to"] = "arrive to",
                 },
             },
 
@@ -5343,6 +5348,7 @@ namespace Souvenir
                 {
                     ["top"] = "top",
                     ["lit"] = "lit",
+                    ["bottom"] = "bottom",
                     ["unlit"] = "unlit",
                 },
             },
@@ -6187,6 +6193,7 @@ namespace Souvenir
                 {
                     ["X"] = "X",
                     ["Y"] = "Y",
+                    ["Z"] = "Z",
                     ["the screen"] = "the screen",
                 },
             },
@@ -6957,7 +6964,7 @@ namespace Souvenir
                 {
                     ["red"] = "red",
                     ["yellow"] = "yellow",
-                    ["Z"] = "Z",
+                    ["blue"] = "blue",
                 },
             },
 
@@ -8087,6 +8094,7 @@ namespace Souvenir
                 {
                     ["left"] = "left",
                     ["middle"] = "middle",
+                    ["right"] = "right",
                 },
             },
 

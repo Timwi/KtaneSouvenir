@@ -147,7 +147,8 @@
 
         [SouvenirQuestion("Which of these was an index color in {0}?", "A Square", ThreeColumns6Answers, "Orange", "Pink", "Cyan", "Yellow", "Lavender", "Brown", "Tan", "Blue", "Jade", "Indigo", "White")]
         ASquareIndexColors,
-        [SouvenirQuestion("Which color was submitted {1} in {0}?", "A Square", ThreeColumns6Answers, "Orange", "Pink", "Cyan", "Yellow", "Lavender", "Brown", "Tan", "Blue", "Jade", "Indigo", "White")]
+        [SouvenirQuestion("Which color was submitted {1} in {0}?", "A Square", ThreeColumns6Answers, "Orange", "Pink", "Cyan", "Yellow", "Lavender", "Brown", "Tan", "Blue", "Jade", "Indigo", "White",
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         ASquareCorrectColors,
 
         [SouvenirQuestion("What was T in {0}?", "Azure Button", ThreeColumns6Answers, AddThe = true, Type = AnswerType.Sprites, SpriteField = "AzureButtonSprites")]
