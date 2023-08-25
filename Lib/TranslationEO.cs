@@ -752,6 +752,12 @@ namespace Souvenir
             [Question.BlackCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Blind Maze
@@ -863,6 +869,12 @@ namespace Souvenir
             [Question.BlueCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Bob Barks
@@ -996,6 +1008,12 @@ namespace Souvenir
             [Question.BrownCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Brush Strokes
@@ -2527,6 +2545,12 @@ namespace Souvenir
             [Question.ForestCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was on the {1} screen on page {2} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Forget Any Color
@@ -2791,6 +2815,12 @@ namespace Souvenir
             [Question.GrayCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // The Great Void
@@ -2839,6 +2869,12 @@ namespace Souvenir
             [Question.GreenCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Gridlock
@@ -3228,6 +3264,12 @@ namespace Souvenir
             [Question.IndigoCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Infinite Loop
@@ -3907,6 +3949,12 @@ namespace Souvenir
             [Question.MagentaCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was on the {1} screen on page {2} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // M&Ms
@@ -3975,6 +4023,12 @@ namespace Souvenir
             [Question.MaroonCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was on the {1} screen on page {2} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Mashematics
@@ -6089,6 +6143,12 @@ namespace Souvenir
             [Question.OrangeCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Ordered Keys
@@ -6773,6 +6833,12 @@ namespace Souvenir
             [Question.RedCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Red Herring
@@ -8410,6 +8476,12 @@ namespace Souvenir
             [Question.UltimateCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Ultimate Cycle
@@ -8659,6 +8731,12 @@ namespace Souvenir
             [Question.VioletCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Visual Impairment
@@ -8833,6 +8911,12 @@ namespace Souvenir
             [Question.WhiteCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // WhoOF
@@ -9141,6 +9225,12 @@ namespace Souvenir
             [Question.YellowCipherScreen] = new TranslationInfo
             {
                 QuestionText = "What was the answer in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Zero, Zero

@@ -783,6 +783,12 @@ namespace Souvenir
             {
                 QuestionText = "{0}の答えは？",
                 ModuleName = "黒色暗号",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Blind Maze
@@ -901,6 +907,12 @@ namespace Souvenir
             {
                 QuestionText = "{0}の答えは？",
                 ModuleName = "青色暗号",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Bob Barks
@@ -1045,6 +1057,12 @@ namespace Souvenir
             [Question.BrownCipherScreen] = new TranslationInfo
             {
                 QuestionText = "{0}の答えは？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Brush Strokes
@@ -2669,6 +2687,12 @@ namespace Souvenir
             [Question.ForestCipherScreen] = new TranslationInfo
             {
                 QuestionText = "{0}のページ{2}の{1}ディスプレーに表示されていたのは？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Forget Any Color
@@ -2933,6 +2957,12 @@ namespace Souvenir
             [Question.GrayCipherScreen] = new TranslationInfo
             {
                 QuestionText = "{0}の答えは？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // The Great Void
@@ -2981,6 +3011,12 @@ namespace Souvenir
             [Question.GreenCipherScreen] = new TranslationInfo
             {
                 QuestionText = "{0}の答えは？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Gridlock
@@ -3370,6 +3406,12 @@ namespace Souvenir
             [Question.IndigoCipherScreen] = new TranslationInfo
             {
                 QuestionText = "{0}の答えは？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Infinite Loop
@@ -4049,6 +4091,12 @@ namespace Souvenir
             [Question.MagentaCipherScreen] = new TranslationInfo
             {
                 QuestionText = "{0}のページ{2}の{1}ディスプレーに表示されていたのは？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // M&Ms
@@ -4117,6 +4165,12 @@ namespace Souvenir
             [Question.MaroonCipherScreen] = new TranslationInfo
             {
                 QuestionText = "{0}のページ{2}の{1}ディスプレーに表示されていたのは？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Mashematics
@@ -6231,6 +6285,12 @@ namespace Souvenir
             [Question.OrangeCipherScreen] = new TranslationInfo
             {
                 QuestionText = "{0}の答えは？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Ordered Keys
@@ -6915,6 +6975,12 @@ namespace Souvenir
             [Question.RedCipherScreen] = new TranslationInfo
             {
                 QuestionText = "{0}の回答は？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Red Herring
@@ -8552,6 +8618,12 @@ namespace Souvenir
             [Question.UltimateCipherScreen] = new TranslationInfo
             {
                 QuestionText = "{0}の回答は？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Ultimate Cycle
@@ -8801,6 +8873,12 @@ namespace Souvenir
             [Question.VioletCipherScreen] = new TranslationInfo
             {
                 QuestionText = "{0}の回答は？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Visual Impairment
@@ -8975,6 +9053,12 @@ namespace Souvenir
             [Question.WhiteCipherScreen] = new TranslationInfo
             {
                 QuestionText = "{0}の回答は？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // WhoOF
@@ -9283,6 +9367,12 @@ namespace Souvenir
             [Question.YellowCipherScreen] = new TranslationInfo
             {
                 QuestionText = "{0}の回答は？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Zero, Zero
