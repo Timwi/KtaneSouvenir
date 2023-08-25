@@ -164,6 +164,10 @@
             AddThe = true, ExampleExtraFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 2)]
         AzureButtonNonDecoyArrowDirection,
 
+        [SouvenirQuestion("Which menu item was present in {0}?", "Bakery", OneColumn4Answers, null,
+            ExampleAnswers = new[] { "Butter slab", "Sugar cookie", "Applie pie", "Tea biscuit", "Tuile", "Sprinkles Cookie" })]
+        BakeryItems,
+
         [SouvenirQuestion("What color was the {1} correct button in {0}?", "Bamboozled Again", TwoColumns4Answers, "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose", "White", "Grey", "Black", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         BamboozledAgainButtonColor,
@@ -192,10 +196,6 @@
         [SouvenirQuestion("What was the color of the {2} display in the {1} stage of {0}?", "Bamboozling Button", TwoColumns4Answers, "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose", "White", "Grey", TranslateAnswers = true,
           ExampleExtraFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 2)]
         BamboozlingButtonDisplayColor,
-
-        [SouvenirQuestion("Which menu item was present in {0}?", "Bakery", OneColumn4Answers, null,
-            ExampleAnswers = new[] { "Butter slab", "Sugar cookie", "Applie pie", "Tea biscuit", "Tuile", "Sprinkles Cookie" })]
-        BakeryItems,
 
         [SouvenirQuestion("What was the screen number in {0}?", "Barcode Cipher", OneColumn4Answers, "637842", "145612", "765465", "523987", "452387")]
         [AnswerGenerator.Integers(100000, 999999)]
@@ -358,15 +358,15 @@
         [SouvenirQuestion("What was the color of the middle contact point in {0}?", "Brush Strokes", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Lime", "Green", "Cyan", "Sky", "Blue", "Purple", "Magenta", "Brown", "White", "Gray", "Black", "Pink", TranslateAnswers = true)]
         BrushStrokesMiddleColor,
 
+        [SouvenirQuestion("What were the correct button presses in {0}?", "Bulb", ThreeColumns6Answers, "OOO", "OOI", "OIO", "OII", "IOO", "IOI", "IIO", "III", AddThe = true, Type = AnswerType.TicTacToeFont)]
+        BulbButtonPresses,
+
         [SouvenirQuestion("What was the {1} displayed digit in {0}?", "Burger Alarm", ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 9)]
         BurgerAlarmDigits,
         [SouvenirQuestion("What was the {1} order number in {0}?", "Burger Alarm", ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 99, "00")]
         BurgerAlarmOrderNumbers,
-
-        [SouvenirQuestion("What were the correct button presses in {0}?", "Bulb", ThreeColumns6Answers, "OOO", "OOI", "OIO", "OII", "IOO", "IOI", "IIO", "III", AddThe = true, Type = AnswerType.TicTacToeFont)]
-        BulbButtonPresses,
 
         [SouvenirQuestion("What was the {1} displayed digit in {0}?", "Burglar Alarm", ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]

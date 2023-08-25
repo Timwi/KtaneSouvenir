@@ -7,6 +7,27 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
+    private IEnumerable<object> ProcessBakery(KMBombModule module)
+    {
+        var comp = GetComponent(module, "bakery");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Bakery);
+
+        var cookieTypes = GetField<Array>(comp, "allCookieCategories").Get(validator: arr => arr.Length != 12 ? "expected length 12" : null).Cast<object>().Select(x => x.ToString()).ToArray();
+        var cookieIndices = GetArrayField<int>(comp, "cookieIndices").Get(validator: arr => arr.Length != 12 ? "expected length 12" : null);
+        var allNameArrays = new string[8][];
+        var enumNames = new[] { "regular", "teaBiscuit", "chocolateButterBiscuit", "branded", "danishButter", "macaron", "notCookie", "seasonal" };
+        var nameArrayNames = new[] { "regularCookieNames", "teaBiscuitNames", "chocolateButterBiscuitNames", "brandedNames", "danishButterCookieNames", "macaronNames", "notCookieNames", "seasonalCookieNames" };
+        for (int i = 0; i < 8; i++)
+            allNameArrays[i] = GetStaticField<string[]>(comp.GetType(), nameArrayNames[i]).Get();
+        addQuestion(module, Question.BakeryItems,
+            correctAnswers: Enumerable.Range(0, 12).Select(i => allNameArrays[Array.IndexOf(enumNames, cookieTypes[i])][cookieIndices[i]]).ToArray(),
+            preferredWrongAnswers: allNameArrays.SelectMany(x => x).ToArray());
+    }
+
     private IEnumerable<object> ProcessBamboozledAgain(KMBombModule module)
     {
         var comp = GetComponent(module, "BamboozledAgainScript");
@@ -159,27 +180,6 @@ public partial class SouvenirModule
         }
 
         addQuestions(module, qs);
-    }
-
-    private IEnumerable<object> ProcessBakery(KMBombModule module)
-    {
-        var comp = GetComponent(module, "bakery");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Bakery);
-
-        var cookieTypes = GetField<Array>(comp, "allCookieCategories").Get(validator: arr => arr.Length != 12 ? "expected length 12" : null).Cast<object>().Select(x => x.ToString()).ToArray();
-        var cookieIndices = GetArrayField<int>(comp, "cookieIndices").Get(validator: arr => arr.Length != 12 ? "expected length 12" : null);
-        var allNameArrays = new string[8][];
-        var enumNames = new[] { "regular", "teaBiscuit", "chocolateButterBiscuit", "branded", "danishButter", "macaron", "notCookie", "seasonal" };
-        var nameArrayNames = new[] { "regularCookieNames", "teaBiscuitNames", "chocolateButterBiscuitNames", "brandedNames", "danishButterCookieNames", "macaronNames", "notCookieNames", "seasonalCookieNames" };
-        for (int i = 0; i < 8; i++)
-            allNameArrays[i] = GetStaticField<string[]>(comp.GetType(), nameArrayNames[i]).Get();
-        addQuestion(module, Question.BakeryItems,
-            correctAnswers: Enumerable.Range(0, 12).Select(i => allNameArrays[Array.IndexOf(enumNames, cookieTypes[i])][cookieIndices[i]]).ToArray(),
-            preferredWrongAnswers: allNameArrays.SelectMany(x => x).ToArray());
     }
 
     private IEnumerable<object> ProcessBarcodeCipher(KMBombModule module)
@@ -851,6 +851,21 @@ public partial class SouvenirModule
         addQuestion(module, Question.BrushStrokesMiddleColor, correctAnswers: new[] { char.ToUpperInvariant(colorNames[colors[4]][0]) + colorNames[colors[4]].Substring(1) });
     }
 
+    private IEnumerable<object> ProcessBulb(KMBombModule module)
+    {
+        var comp = GetComponent(module, "TheBulbModule");
+        var fldStage = GetIntField(comp, "_stage");
+
+        while (!_isActivated)
+            yield return new WaitForSeconds(.1f);
+
+        while (fldStage.Get() != 0)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Bulb);
+
+        addQuestion(module, Question.BulbButtonPresses, correctAnswers: new[] { GetField<string>(comp, "_correctButtonPresses").Get(str => str.Length != 3 ? "expected length 3" : null) });
+    }
+
     private IEnumerable<object> ProcessBurgerAlarm(KMBombModule module)
     {
         var comp = GetComponent(module, "burgerAlarmScript");
@@ -871,21 +886,6 @@ public partial class SouvenirModule
                 qs.Add(makeQuestion(Question.BurgerAlarmOrderNumbers, _BurgerAlarm, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { orders[pos].Replace("no.    ", "") }));
         }
         addQuestions(module, qs);
-    }
-
-    private IEnumerable<object> ProcessBulb(KMBombModule module)
-    {
-        var comp = GetComponent(module, "TheBulbModule");
-        var fldStage = GetIntField(comp, "_stage");
-
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
-
-        while (fldStage.Get() != 0)
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Bulb);
-
-        addQuestion(module, Question.BulbButtonPresses, correctAnswers: new[] { GetField<string>(comp, "_correctButtonPresses").Get(str => str.Length != 3 ? "expected length 3" : null) });
     }
 
     private IEnumerable<object> ProcessBurglarAlarm(KMBombModule module)

@@ -463,28 +463,28 @@ namespace Souvenir
                 QuestionText = "Welche Farbe hatte der {0}e korrekte Knopf bei {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Yellow",
-                    ["Lime"] = "Lime",
-                    ["Green"] = "Green",
+                    ["Yellow"] = "Gelb",
+                    ["Lime"] = "Limette",
+                    ["Green"] = "Grün",
                     ["Jade"] = "Jade",
-                    ["Cyan"] = "Cyan",
-                    ["Azure"] = "Azure",
-                    ["Blue"] = "Blue",
-                    ["Violet"] = "Violet",
+                    ["Cyan"] = "Türkis",
+                    ["Azure"] = "Azur",
+                    ["Blue"] = "Blau",
+                    ["Violet"] = "Violett",
                     ["Magenta"] = "Magenta",
-                    ["Rose"] = "Rose",
-                    ["White"] = "White",
-                    ["Grey"] = "Grey",
-                    ["Black"] = "Black",
+                    ["Rose"] = "Rosa",
+                    ["White"] = "Weiß",
+                    ["Grey"] = "Grau",
+                    ["Black"] = "Schwarz",
                 },
             },
             // What was the text on the {1} correct button in {0}?
             // What was the text on the first correct button in Bamboozled Again?
             [Question.BamboozledAgainButtonText] = new TranslationInfo
             {
-                QuestionText = "What was the text on the {1} correct button in {0}?",
+                QuestionText = "Was war bei {0} die Aufschrift des {1}en korrekten Knopfes?",
                 Answers = new Dictionary<string, string>
                 {
                     ["THE LETTER"] = "THE LETTER",
@@ -571,35 +571,35 @@ namespace Souvenir
             // What was the first decrypted text on the display in Bamboozled Again?
             [Question.BamboozledAgainDisplayTexts1] = new TranslationInfo
             {
-                QuestionText = "What was the {1} decrypted text on the display in {0}?",
+                QuestionText = "Was war bei {0} der {1}e Text auf dem Display, aber  entschlüsselt?",
             },
             // What was the {1} decrypted text on the display in {0}?
             // What was the first decrypted text on the display in Bamboozled Again?
             [Question.BamboozledAgainDisplayTexts2] = new TranslationInfo
             {
-                QuestionText = "What was the {1} decrypted text on the display in {0}?",
+                QuestionText = "Was war bei {0} der {1}e Text auf dem Display, aber  entschlüsselt?",
             },
             // What color was the {1} text on the display in {0}?
             // What color was the first text on the display in Bamboozled Again?
             [Question.BamboozledAgainDisplayColor] = new TranslationInfo
             {
-                QuestionText = "What color was the {1} text on the display in {0}?",
+                QuestionText = "In welcher Farbe wurde bei {0} der {1}e Text auf dem Display angezeigt?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Yellow",
-                    ["Lime"] = "Lime",
-                    ["Green"] = "Green",
+                    ["Yellow"] = "Gelb",
+                    ["Lime"] = "Limette",
+                    ["Green"] = "Grün",
                     ["Jade"] = "Jade",
-                    ["Cyan"] = "Cyan",
-                    ["Azure"] = "Azure",
-                    ["Blue"] = "Blue",
-                    ["Violet"] = "Violet",
+                    ["Cyan"] = "Türkis",
+                    ["Azure"] = "Azur",
+                    ["Blue"] = "Blau",
+                    ["Violet"] = "Violett",
                     ["Magenta"] = "Magenta",
-                    ["Rose"] = "Rose",
-                    ["White"] = "White",
-                    ["Grey"] = "Grey",
+                    ["Rose"] = "Rosa",
+                    ["White"] = "Weiß",
+                    ["Grey"] = "Grau",
                 },
             },
 
@@ -608,64 +608,64 @@ namespace Souvenir
             // What color was the button in the first stage of Bamboozling Button?
             [Question.BamboozlingButtonColor] = new TranslationInfo
             {
-                QuestionText = "What color was the button in the {1} stage of {0}?",
+                QuestionText = "Welche Farbe hatte der Knopf bei {0} im {1}en Schritt?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Yellow",
-                    ["Lime"] = "Lime",
-                    ["Green"] = "Green",
+                    ["Yellow"] = "Gelb",
+                    ["Lime"] = "Limette",
+                    ["Green"] = "Grün",
                     ["Jade"] = "Jade",
-                    ["Cyan"] = "Cyan",
-                    ["Azure"] = "Azure",
-                    ["Blue"] = "Blue",
-                    ["Violet"] = "Violet",
+                    ["Cyan"] = "Türkis",
+                    ["Azure"] = "Azur",
+                    ["Blue"] = "Blau",
+                    ["Violet"] = "Violett",
                     ["Magenta"] = "Magenta",
-                    ["Rose"] = "Rose",
-                    ["White"] = "White",
-                    ["Grey"] = "Grey",
-                    ["Black"] = "Black",
+                    ["Rose"] = "Rosa",
+                    ["White"] = "Weiß",
+                    ["Grey"] = "Grau",
+                    ["Black"] = "Schwarz",
                 },
             },
             // What was the {2} label on the button in the {1} stage of {0}?
             // What was the top label on the button in the first stage of Bamboozling Button?
             [Question.BamboozlingButtonLabel] = new TranslationInfo
             {
-                QuestionText = "What was the {2} label on the button in the {1} stage of {0}?",
+                QuestionText = "Was war bei {0} im {1}en Schritt die {2} Aufschrift auf dem Knopf?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "top",
-                    ["bottom"] = "bottom",
+                    ["top"] = "obere",
+                    ["bottom"] = "untere",
                 },
             },
             // What was the {2} display in the {1} stage of {0}?
             // What was the first display in the first stage of Bamboozling Button?
             [Question.BamboozlingButtonDisplay] = new TranslationInfo
             {
-                QuestionText = "What was the {2} display in the {1} stage of {0}?",
+                QuestionText = "Was war bei {0} im {1}en Schritt die {2}e Anzeige auf dem Display?",
             },
             // What was the color of the {2} display in the {1} stage of {0}?
             // What was the color of the first display in the first stage of Bamboozling Button?
             [Question.BamboozlingButtonDisplayColor] = new TranslationInfo
             {
-                QuestionText = "What was the color of the {2} display in the {1} stage of {0}?",
+                QuestionText = "In welcher Farbe erschien bei {0} im {1}en Schritt die {2}e Anzeige auf dem Display?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Yellow",
-                    ["Lime"] = "Lime",
-                    ["Green"] = "Green",
+                    ["Yellow"] = "Gelb",
+                    ["Lime"] = "Limette",
+                    ["Green"] = "Grün",
                     ["Jade"] = "Jade",
-                    ["Cyan"] = "Cyan",
-                    ["Azure"] = "Azure",
-                    ["Blue"] = "Blue",
-                    ["Violet"] = "Violet",
+                    ["Cyan"] = "Türkis",
+                    ["Azure"] = "Azur",
+                    ["Blue"] = "Blau",
+                    ["Violet"] = "Violett",
                     ["Magenta"] = "Magenta",
-                    ["Rose"] = "Rose",
-                    ["White"] = "White",
-                    ["Grey"] = "Grey",
+                    ["Rose"] = "Rosa",
+                    ["White"] = "Weiß",
+                    ["Grey"] = "Grau",
                 },
             },
 
@@ -674,7 +674,8 @@ namespace Souvenir
             // Which menu item was present in Bakery?
             [Question.BakeryItems] = new TranslationInfo
             {
-                QuestionText = "Which menu item was present in {0}?",
+                QuestionText = "Was stand bei {0} auf dem Menü angeboten?",
+                ModuleName = "Bäckerei",
             },
 
             // Barcode Cipher
@@ -682,13 +683,13 @@ namespace Souvenir
             // What was the screen number in Barcode Cipher?
             [Question.BarcodeCipherScreenNumber] = new TranslationInfo
             {
-                QuestionText = "What was the screen number in {0}?",
+                QuestionText = "Welche Zahl war bei {0} auf dem Display?",
             },
             // What was the edgework represented by the {1} barcode in {0}?
             // What was the edgework represented by the first barcode in Barcode Cipher?
             [Question.BarcodeCipherBarcodeEdgework] = new TranslationInfo
             {
-                QuestionText = "What was the edgework represented by the {1} barcode in {0}?",
+                QuestionText = "Was wurde bei {0} vom {1}en Barcode wiedergegeben?",
             },
             // What was the answer for the {1} barcode in {0}?
             // What was the answer for the first barcode in Barcode Cipher?
