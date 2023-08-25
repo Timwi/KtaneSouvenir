@@ -97,7 +97,7 @@
         [SouvenirQuestion("What was the second equation in {0}?", "Algebra", TwoColumns4Answers, "b=(2x/10)-y", "b=(7x)y", "b=(x+y)-(z/2)", "b=(y/2)-z", "b=(zy)-(2x)", "b=(z-y)/2", "b=2(z+7)", "b=2z+7", "b=xy-(2+x)", "b=xyz")]
         AlgebraEquation2,
 
-        [SouvenirQuestion("Which position was the {1} position in {0}?", "Algorithmia", ThreeColumns6Answers, null, Type = AnswerType.Grid, ExampleExtraFormatArguments = new[] { "starting", "goal" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("Which position was the {1} position in {0}?", "Algorithmia", ThreeColumns6Answers, null, Type = AnswerType.Grid, ExampleExtraFormatArguments = new[] { "starting", "goal" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         [AnswerGenerator.Grid(4, 4)]
         AlgorithmiaPositions,
         [SouvenirQuestion("What was the color of the colored bulb in {0}?", "Algorithmia", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Yellow", "Magenta")]
@@ -171,7 +171,7 @@
         [SouvenirQuestion("What color was the {1} correct button in {0}?", "Bamboozled Again", TwoColumns4Answers, "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose", "White", "Grey", "Black", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         BamboozledAgainButtonColor,
-        [SouvenirQuestion("What was the text on the {1} correct button in {0}?", "Bamboozled Again", TwoColumns4Answers, "THE LETTER", "ONE LETTER", "THE COLOUR", "ONE COLOUR", "THE PHRASE", "ONE PHRASE", "ALPHA", "BRAVO", "CHARLIE", "DELTA", "ECHO", "GOLF", "KILO", "QUEBEC", "TANGO", "WHISKEY", "VICTOR", "YANKEE", "ECHO ECHO", "E THEN E", "ALPHA PAPA", "PAPA ALPHA", "PAPHA ALPA", "T GOLF", "TANGOLF", "WHISKEE", "WHISKY", "CHARLIE C", "C CHARLIE", "YANGO", "DELTA NEXT", "CUEBEQ", "MILO", "KI LO", "HI-LO", "VVICTOR", "VICTORR", "LIME BRAVO", "BLUE BRAVO", "G IN JADE", "G IN ROSE", "BLUE IN RED", "YES BUT NO", "COLOUR", "MESSAGE", "CIPHER", "BUTTON", "TWO BUTTONS", "SIX BUTTONS", "I GIVE UP", "ONE ELEVEN", "ONE ONE ONE", "THREE ONES", "WHAT?", "THIS?", "THAT?", "BLUE!", "ECHO!", "BLANK", "BLANK?!", "NOTHING", "YELLOW TEXT", "BLACK TEXT?", "QUOTE V", "END QUOTE", "\"QUOTE K\"", "IN RED", "ORANGE", "IN YELLOW", "LIME", "IN GREEN", "JADE", "IN CYAN", "AZURE", "IN BLUE", "VIOLET", "IN MAGENTA", "ROSE", TranslateAnswers = true,
+        [SouvenirQuestion("What was the text on the {1} correct button in {0}?", "Bamboozled Again", TwoColumns4Answers, "THE LETTER", "ONE LETTER", "THE COLOUR", "ONE COLOUR", "THE PHRASE", "ONE PHRASE", "ALPHA", "BRAVO", "CHARLIE", "DELTA", "ECHO", "GOLF", "KILO", "QUEBEC", "TANGO", "WHISKEY", "VICTOR", "YANKEE", "ECHO ECHO", "E THEN E", "ALPHA PAPA", "PAPA ALPHA", "PAPHA ALPA", "T GOLF", "TANGOLF", "WHISKEE", "WHISKY", "CHARLIE C", "C CHARLIE", "YANGO", "DELTA NEXT", "CUEBEQ", "MILO", "KI LO", "HI-LO", "VVICTOR", "VICTORR", "LIME BRAVO", "BLUE BRAVO", "G IN JADE", "G IN ROSE", "BLUE IN RED", "YES BUT NO", "COLOUR", "MESSAGE", "CIPHER", "BUTTON", "TWO BUTTONS", "SIX BUTTONS", "I GIVE UP", "ONE ELEVEN", "ONE ONE ONE", "THREE ONES", "WHAT?", "THIS?", "THAT?", "BLUE!", "ECHO!", "BLANK", "BLANK?!", "NOTHING", "YELLOW TEXT", "BLACK TEXT?", "QUOTE V", "END QUOTE", "\"QUOTE K\"", "IN RED", "ORANGE", "IN YELLOW", "LIME", "IN GREEN", "JADE", "IN CYAN", "AZURE", "IN BLUE", "VIOLET", "IN MAGENTA", "ROSE",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         BamboozledAgainButtonText,
         [SouvenirQuestion("What was the {1} decrypted text on the display in {0}?", "Bamboozled Again", TwoColumns4Answers, "THE LETTER", "ONE LETTER", "THE COLOUR", "ONE COLOUR", "THE PHRASE", "ONE PHRASE",
@@ -212,7 +212,7 @@
         BartendingIngredients,
 
         [SouvenirQuestion("What was this bean in {0}?", "Beans", OneColumn4Answers, "Wobbly Orange", "Wobbly Yellow", "Wobbly Green", "Not Wobbly Orange", "Not Wobbly Yellow", "Not Wobbly Green",
-            UsesQuestionSprite = true)]
+            UsesQuestionSprite = true, TranslateAnswers = true)]
         BeansColors,
 
         [SouvenirQuestion("What was sprout {1} in {0}?", "Bean Sprouts", TwoColumns4Answers,
@@ -239,7 +239,7 @@
         BinaryLEDsValue,
 
         [SouvenirQuestion("What was the {1} initial number in {0}?", "Binary Shift", ThreeColumns6Answers, null, ExampleAnswers = new[] { "13", "14", "34", "46", "53", "64", "67", "77", "82", "96" },
-            ExampleExtraFormatArguments = new[] { "top-left", "top-middle", "top-right", "left-middle", "center", "right-middle", "bottom-left", "bottom-middle", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "top-left", "top-middle", "top-right", "left-middle", "center", "right-middle", "bottom-left", "bottom-middle", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         BinaryShiftInitialNumber,
         [SouvenirQuestion("What number was selected at stage {1} in {0}?", "Binary Shift", ThreeColumns6Answers, null, ExampleAnswers = new[] { "bottom-left", "bottom-middle", "bottom-right", "center", "left-middle", "right-middle", "top-left", "top-middle", "top-right" },
             ExampleExtraFormatArguments = new[] { "0", "1", "2" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -328,7 +328,7 @@
         [SouvenirQuestion("Which {1} appeared on {0}?", "Boxing", TwoColumns4Answers, null, ExampleAnswers = new[] { "Muhammad", "Mike", "Floyd", "Joe", "George", "Manny", "Sugar Ray", "Evander" },
             ExampleExtraFormatArguments = new[] { "contestant’s first name", "contestant’s last name", "substitute’s first name", "substitute’s last name" }, ExampleExtraFormatArgumentGroupSize = 1)]
         BoxingNames,
-        [SouvenirQuestion("What was the {1} of the contestant with strength rating {2} on {0}?", "Boxing", TwoColumns4Answers, null, ExampleAnswers = new[] { "Muhammad", "Mike", "Floyd", "Joe", "George", "Manny", "Sugar Ray", "Evander" },
+        [SouvenirQuestion("What was the {1} of the contestant with strength rating {2} on {0}?", "Boxing", TwoColumns4Answers, null, ExampleAnswers = new[] { "Muhammad", "Mike", "Floyd", "Joe", "George", "Manny", "Sugar Ray", "Evander" }, TranslateFormatArgs = new[] { true, false },
             ExampleExtraFormatArguments = new[] { "first name", "0", "first name", "1", "first name", "2", "last name", "0", "last name", "1", "last name", "2", "substitute’s first name", "0", "substitute’s first name", "1", "substitute’s first name", "2", "substitute’s last name", "0", "substitute’s last name", "1", "substitute’s last name", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
         BoxingContestantByStrength,
         [SouvenirQuestion("What was {1}’s strength rating on {0}?", "Boxing", ThreeColumns6Answers, "0", "1", "2", "3", "4",
@@ -341,7 +341,7 @@
         [SouvenirQuestion("Which color appeared on the egg in {0}?", "Breakfast Egg", TwoColumns4Answers, "Crimson", "Orange", "Pink", "Beige", "Cyan", "Lime", "Petrol")]
         BreakfastEggColor,
 
-        [SouvenirQuestion("What was the {1} correct button you pressed in {0}?", "Broken Buttons", ThreeColumns6Answers, "bomb", "blast", "boom", "burst", "wire", "button", "module", "light", "led", "switch", "RJ-45", "DVI-D", "RCA", "PS/2", "serial", "port", "row", "column", "one", "two", "three", "four", "five", "six", "seven", "eight", "size", "this", "that", "other", "submit", "abort", "drop", "thing", "blank", "broken", "too", "to", "yes", "see", "sea", "c", "wait", "word", "bob", "no", "not", "first", "hold", "late", "fail", TranslateAnswers = true,
+        [SouvenirQuestion("What was the {1} correct button you pressed in {0}?", "Broken Buttons", ThreeColumns6Answers, "bomb", "blast", "boom", "burst", "wire", "button", "module", "light", "led", "switch", "RJ-45", "DVI-D", "RCA", "PS/2", "serial", "port", "row", "column", "one", "two", "three", "four", "five", "six", "seven", "eight", "size", "this", "that", "other", "submit", "abort", "drop", "thing", "blank", "broken", "too", "to", "yes", "see", "sea", "c", "wait", "word", "bob", "no", "not", "first", "hold", "late", "fail",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         BrokenButtons,
 
@@ -396,14 +396,14 @@
         CalendarLedColor,
 
         [SouvenirQuestion("What color was the {1} button in {0}?", "Cartinese", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue",
-            ExampleExtraFormatArguments = new[] { "up", "right", "down", "left" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "up", "right", "down", "left" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateAnswers = true, TranslateFormatArgs = new[] { true })]
         CartineseButtonColors,
         [SouvenirQuestion("What lyric was played by the {1} button in {0}?", "Cartinese", TwoColumns4Answers, "Aingobodirou", "Dongifubounan", "Ayofumylu", "Dimycamilayw", "Dogosemiu", "Bitgosemiu", "Iwittyluyu", "Herolideca", "Anseweke", "Likwoveke", "Omeygah", "Dediamnatifney",
-            ExampleExtraFormatArguments = new[] { "up", "right", "down", "left" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "up", "right", "down", "left" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         CartineseLyrics,
 
         [SouvenirQuestion("What was the colour of the {1} panel in {0}?", "Catchphrase", ThreeColumns6Answers, "Red", "Green", "Blue", "Orange", "Purple", "Yellow",
-            ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateAnswers = true, TranslateFormatArgs = new[] { true })]
         CatchphraseColour,
 
         [SouvenirQuestion("What was the {1} submitted answer in {0}?", "Challenge & Contact", TwoColumns4Answers, null, ExampleAnswers = new[] { "Accumulation", "Coffeebucks", "Perplexing", "Zoo", "Sunstone", "Bob" },
@@ -425,13 +425,13 @@
             ExampleExtraFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 2)]
         CharacterSlotsDisplayedCharacters,
 
-        [SouvenirQuestion("What was the {1}paid amount in {0}?", "Cheap Checkout", ThreeColumns6Answers,
-            ExampleExtraFormatArguments = new[] { "", "first ", "second " }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was {1} in {0}?", "Cheap Checkout", ThreeColumns6Answers, TranslateFormatArgs = new[] { true },
+            ExampleExtraFormatArguments = new[] { "the paid amount", "the first paid amount", "the second paid amount" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(5, 50, "$0\".00\"")]
         CheapCheckoutPaid,
 
         [SouvenirQuestion("Which bird {1} present in {0}?", "Cheep Checkout", OneColumn4Answers, "Auklet", "Bluebird", "Chickadee", "Dove", "Egret", "Finch", "Godwit", "Hummingbird", "Ibis", "Jay", "Kinglet", "Loon", "Magpie", "Nuthatch", "Oriole", "Pipit", "Quail", "Raven", "Shrike", "Thrush", "Umbrellabird", "Vireo", "Warbler", "Xantus’s Hummingbird", "Yellowlegs", "Zigzag Heron",
-            ExampleExtraFormatArguments = new[] { "was", "was not" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "was", "was not" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         CheepCheckoutBirds,
 
         [SouvenirQuestion("What was the {1} coordinate in {0}?", "Chess", ThreeColumns6Answers,
@@ -462,7 +462,7 @@
         [SouvenirQuestion("Which coin was flipped in {0}?", "Coinage", ThreeColumns6Answers, ExampleAnswers = new[] { "e4", "h5", "d4", "h4", "c4", "h3", "c3", "g2", "f3", "h1", "f7" })]
         CoinageFlip,
 
-        [SouvenirQuestion("What was {1}'s number in {0}?", "Color Addition", ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was {1}'s number in {0}?", "Color Addition", ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         [AnswerGenerator.Strings(3, "0123456789")]
         ColorAdditionNumbers,
 
@@ -484,10 +484,10 @@
         [SouvenirQuestion("What was the displayed word’s color in {0}?", "Colored Keys", ThreeColumns6Answers, null, ExampleAnswers = new[] { "blue", "white" })]
         ColoredKeysDisplayWordColor,
         [SouvenirQuestion("What was the color of the {1} key in {0}?", "Colored Keys", ThreeColumns6Answers, null, ExampleAnswers = new[] { "blue", "white" },
-            ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         ColoredKeysKeyColor,
         [SouvenirQuestion("What letter was on the {1} key in {0}?", "Colored Keys", ThreeColumns6Answers,
-            ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         [AnswerGenerator.Strings('A', 'Z')]
         ColoredKeysKeyLetter,
 
@@ -516,7 +516,7 @@
         [AnswerGenerator.Integers(27, 65)]
         ColorsMaximizationSubmittedScore,
         [SouvenirQuestion("What color {1} submitted as part of the solution in {0}?", "Colors Maximization", TwoColumns4Answers, "Blue", "Green", "Magenta", "Red", "White", "Yellow", TranslateAnswers = true,
-            ExampleExtraFormatArguments = new[] { "was", "was not" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "was", "was not" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         ColorsMaximizationSubmittedColor,
         [SouvenirQuestion("How many buttons were {1} in {0}?", "Colors Maximization", ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { "red", "green", "blue" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         [AnswerGenerator.Integers(0, 11)]
@@ -539,10 +539,10 @@
         CoordinatesSize,
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Coral Cipher", TwoColumns4Answers, null, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },
-            ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
+            ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { true, false })]
         CoralCipherScreen,
 
-        [SouvenirQuestion("What was the color of the {1} corner in {0}?", "Corners", TwoColumns4Answers, "red", "green", "blue", "yellow", TranslateAnswers = true,
+        [SouvenirQuestion("What was the color of the {1} corner in {0}?", "Corners", TwoColumns4Answers, "red", "green", "blue", "yellow", TranslateAnswers = true, TranslateFormatArgs = new[] { true },
             ExampleExtraFormatArguments = new[] { "top-left", "top-right", "bottom-right", "bottom-left" }, ExampleExtraFormatArgumentGroupSize = 1)]
         CornersColors,
         [SouvenirQuestion("How many corners in {0} were {1}?", "Corners", ThreeColumns6Answers, "0", "1", "2", "3", "4", TranslateFormatArgs = new[] { true },
@@ -550,7 +550,7 @@
         CornersColorCount,
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Cornflower Cipher", TwoColumns4Answers, null, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },
-            ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
+            ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { true, false })]
         CornflowerCipherScreen,
 
         [SouvenirQuestion("What was the number initially shown in {0}?", "Cosmic", ThreeColumns6Answers)]
@@ -562,12 +562,12 @@
         CrazyHamburgerIngredient,
 
         [SouvenirQuestion("What was the {1} location in {0}?", "Crazy Maze", ThreeColumns6Answers,
-            ExampleExtraFormatArguments = new[] { "starting", "goal" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "starting", "goal" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         [AnswerGenerator.Strings("A-Z", "A-Z")]
         CrazyMazeStartOrGoal,
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Cream Cipher", TwoColumns4Answers, null, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },
-            ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
+            ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { true, false })]
         CreamCipherScreen,
 
         [SouvenirQuestion("What were the weather conditions on the {1} day in {0}?", "Creation", TwoColumns4Answers, "Clear", "Heat Wave", "Meteor Shower", "Rain", "Windy",
@@ -575,7 +575,7 @@
         CreationWeather,
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Crimson Cipher", TwoColumns4Answers, null, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },
-            ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2)]
+            ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { true })]
         CrimsonCipherScreen,
 
         [SouvenirQuestion("What was the alteration color used in {0}?", "Critters", TwoColumns4Answers, "Yellow", "Pink", "Blue", "White", TranslateAnswers = true)]
@@ -640,7 +640,7 @@
             ExampleExtraFormatArguments = new[] { "column", "row" }, ExampleExtraFormatArgumentGroupSize = 1)]
         DecoloredSquaresStartingPos,
 
-        [SouvenirQuestion("What was the {1} of the {2} goal in {0}?", "Decolour Flash", ThreeColumns6Answers, "Blue", "Green", "Red", "Magenta", "Yellow", "White", ExampleExtraFormatArguments = new[] { "colour", "1st", "word", "2nd" }, ExampleExtraFormatArgumentGroupSize = 2, TranslateAnswers = true)]
+        [SouvenirQuestion("What was the {1} of the {2} goal in {0}?", "Decolour Flash", ThreeColumns6Answers, "Blue", "Green", "Red", "Magenta", "Yellow", "White", ExampleExtraFormatArguments = new[] { "colour", QandA.Ordinal, "word", QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 2, TranslateAnswers = true, TranslateFormatArgs = new[] { true, false })]
         DecolourFlashGoal,
 
         [SouvenirQuestion("What number was initially shown on display {1} in {0}?", "Denial Displays", ThreeColumns6Answers, null, ExampleAnswers = new[] { "1", "22", "333", "4", "55", "666", "7", "88", "999" },
@@ -804,8 +804,8 @@
         [AnswerGenerator.Integers(10000000, 99999999, 1, "00000000")]
         EntryNumberFourCoeff,
 
-        [SouvenirQuestion("What was the {1} number shown in {0}?", "Entry Number One", TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" }, TranslateFormatArgs = new[] { true },
-            ExampleExtraFormatArguments = new[] { "second", "third", "fourth" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was the {1} number shown in {0}?", "Entry Number One", TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" },
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 99999999, 1, "00000000")]
         EntryNumberOneNumbers,
         [SouvenirQuestion("What was the expected first entry in {0}?", "Entry Number One", TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" })]

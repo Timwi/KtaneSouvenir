@@ -235,7 +235,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_CheapCheckout);
 
         addQuestions(module, paids.Select((p, i) => makeQuestion(Question.CheapCheckoutPaid, _CheapCheckout,
-            formatArgs: new[] { paids.Count == 1 ? "" : ordinal(i + 1) + " " },
+            formatArgs: new[] { paids.Count == 1 ? "the paid amount" : i == 0 ? "the first paid amount" : "the second paid amount" },
             correctAnswers: new[] { "$" + p.ToString("N2") })));
     }
 

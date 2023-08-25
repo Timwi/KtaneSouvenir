@@ -159,14 +159,6 @@ namespace SouvenirPostBuildTool
                             sb.AppendLine($@"                ModuleName = ""{((string) ti.ModuleName).CLiteralEscape()}"",");
                         if (ti?.ModuleNameWithThe != null)
                             sb.AppendLine($@"                ModuleNameWithThe = ""{((string) ti.ModuleNameWithThe).CLiteralEscape()}"",");
-                        if (answers != null && attr.TranslateAnswers)
-                        {
-                            sb.AppendLine("                Answers = new Dictionary<string, string>");
-                            sb.AppendLine("                {");
-                            foreach (var answer in answers)
-                                sb.AppendLine($@"                    [""{answer.CLiteralEscape()}""] = ""{(ti?.Answers?.ContainsKey(answer) == true ? (string) ti.Answers[answer] : answer).CLiteralEscape()}"",");
-                            sb.AppendLine("                },");
-                        }
                         var trFAs = (bool[]) attr.TranslateFormatArgs;
                         var formatArgs = attr.ExampleExtraFormatArguments == null || attr.ExampleExtraFormatArguments.Length == 0 || trFAs == null || trFAs.Length == 0 ? null :
                             ((string[]) attr.ExampleExtraFormatArguments).Split((int) attr.ExampleExtraFormatArgumentGroupSize)
@@ -178,6 +170,14 @@ namespace SouvenirPostBuildTool
                             sb.AppendLine("                {");
                             foreach (var fa in formatArgs)
                                 sb.AppendLine($@"                    [""{fa.CLiteralEscape()}""] = ""{(ti?.FormatArgs?.ContainsKey(fa) == true ? (string) ti.FormatArgs[fa] : fa).CLiteralEscape()}"",");
+                            sb.AppendLine("                },");
+                        }
+                        if (answers != null && attr.TranslateAnswers)
+                        {
+                            sb.AppendLine("                Answers = new Dictionary<string, string>");
+                            sb.AppendLine("                {");
+                            foreach (var answer in answers)
+                                sb.AppendLine($@"                    [""{answer.CLiteralEscape()}""] = ""{(ti?.Answers?.ContainsKey(answer) == true ? (string) ti.Answers[answer] : answer).CLiteralEscape()}"",");
                             sb.AppendLine("                },");
                         }
                         sb.AppendLine("            },");
