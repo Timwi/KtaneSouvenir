@@ -2481,6 +2481,12 @@ namespace Souvenir
             [Question.FizzBuzzDisplayedNumbers] = new TranslationInfo
             {
                 QuestionText = "What was the {1} digit on the {2} display of {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
+                },
             },
 
             // Flags
@@ -2515,6 +2521,11 @@ namespace Souvenir
             [Question.FlashingArrowsReferredArrow] = new TranslationInfo
             {
                 QuestionText = "What color flashed {1} black on the relevant arrow in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["before"] = "before",
+                    ["after"] = "after",
+                },
             },
 
             // Flashing Lights
@@ -2593,6 +2604,18 @@ namespace Souvenir
             [Question.ForgetMeInitialState] = new TranslationInfo
             {
                 QuestionText = "What number was in the {1} position of the initial puzzle in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top-left"] = "top-left",
+                    ["top-middle"] = "top-middle",
+                    ["top-right"] = "top-right",
+                    ["middle-left"] = "middle-left",
+                    ["center"] = "center",
+                    ["middle-right"] = "middle-right",
+                    ["bottom-left"] = "bottom-left",
+                    ["bottom-middle"] = "bottom-middle",
+                    ["bottom-right"] = "bottom-right",
+                },
             },
 
             // Forget Me Not
@@ -2819,6 +2842,11 @@ namespace Souvenir
             [Question.GrayButtonCoordinates] = new TranslationInfo
             {
                 QuestionText = "What was the {1} coordinate on the display in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["horizontal"] = "horizontal",
+                    ["vertical"] = "vertical",
+                },
             },
 
             // Gray Cipher
@@ -3074,6 +3102,11 @@ namespace Souvenir
             [Question.HingesInitialHinges] = new TranslationInfo
             {
                 QuestionText = "Which of these hinges was initially {1} {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["present on"] = "present on",
+                    ["absent from"] = "absent from",
+                },
             },
 
             // Hogwarts
@@ -3082,12 +3115,26 @@ namespace Souvenir
             [Question.HogwartsHouse] = new TranslationInfo
             {
                 QuestionText = "Which House was {1} solved for in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Gryffindor"] = "Gryffindor",
+                    ["Hufflepuff"] = "Hufflepuff",
+                    ["Slytherin"] = "Slytherin",
+                    ["Ravenclaw"] = "Ravenclaw",
+                },
             },
             // Which module was solved for {1} in {0}?
             // Which module was solved for Gryffindor in Hogwarts?
             [Question.HogwartsModule] = new TranslationInfo
             {
                 QuestionText = "Which module was solved for {1} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["Gryffindor"] = "Gryffindor",
+                    ["Hufflepuff"] = "Hufflepuff",
+                    ["Slytherin"] = "Slytherin",
+                    ["Ravenclaw"] = "Ravenclaw",
+                },
             },
 
             // Hold Ups
@@ -3152,6 +3199,11 @@ namespace Souvenir
             [Question.HumanResourcesHiredFired] = new TranslationInfo
             {
                 QuestionText = "Who was {1} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["fired"] = "fired",
+                    ["hired"] = "hired",
+                },
             },
 
             // Hunting

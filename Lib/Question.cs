@@ -878,7 +878,7 @@
         [SouvenirQuestion("Which of these words was on the display in {0}?", "Five Letter Words", ThreeColumns6Answers, ExampleAnswers = new[] { "ABAFF", "MAYOR", "PANUS", "FRIZE", "NIRIS", "TEJON" })]
         FiveLetterWordsDisplayedWords,
 
-        [SouvenirQuestion("What was the {1} digit on the {2} display of {0}?", "FizzBuzz", ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { QandA.Ordinal, "top", QandA.Ordinal, "middle", QandA.Ordinal, "bottom" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        [SouvenirQuestion("What was the {1} digit on the {2} display of {0}?", "FizzBuzz", ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { QandA.Ordinal, "top", QandA.Ordinal, "middle", QandA.Ordinal, "bottom" }, ExampleExtraFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { false, true })]
         [AnswerGenerator.Integers(0, 9)]
         FizzBuzzDisplayedNumbers,
 
@@ -894,7 +894,7 @@
         [AnswerGenerator.Integers(0, 99)]
         FlashingArrowsDisplayedValue,
         [SouvenirQuestion("What color flashed {1} black on the relevant arrow in {0}?", "Flashing Arrows", ThreeColumns6Answers, ExampleAnswers = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White" },
-            ExampleExtraFormatArguments = new[] { "before", "after" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "before", "after" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         FlashingArrowsReferredArrow,
 
         [SouvenirQuestion("How many times did the {1} LED flash {2} on {0}?", "Flashing Lights", ThreeColumns6Answers, TranslateFormatArgs = new[] { true, true },
@@ -925,7 +925,7 @@
         [AnswerGenerator.Integers(0, 9)]
         ForgetEverythingStageOneDisplay,
 
-        [SouvenirQuestion("What number was in the {1} position of the initial puzzle in {0}?", "Forget Me", ThreeColumns6Answers,
+        [SouvenirQuestion("What number was in the {1} position of the initial puzzle in {0}?", "Forget Me", ThreeColumns6Answers, TranslateFormatArgs = new[] { true },
             ExampleExtraFormatArguments = new[] { "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 8)]
         ForgetMeInitialState,
@@ -1029,7 +1029,7 @@
         GlitchedButtonSequence,
 
         [SouvenirQuestion("What was the {1} coordinate on the display in {0}?", "Gray Button", ThreeColumns6Answers, AddThe = true,
-            ExampleExtraFormatArguments = new[] { "horizontal", "vertical" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "horizontal", "vertical" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         [AnswerGenerator.Integers(0, 9)]
         GrayButtonCoordinates,
 
@@ -1115,14 +1115,15 @@
           ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         HillCycleWord,
 
-        [SouvenirQuestion("Which of these hinges was initially {1} {0}?", "Hinges", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "HingesSprites", ExampleExtraFormatArguments = new[] { "present on", "absent from" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("Which of these hinges was initially {1} {0}?", "Hinges", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "HingesSprites",
+            ExampleExtraFormatArguments = new[] { "present on", "absent from" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         HingesInitialHinges,
 
-        [SouvenirQuestion("Which House was {1} solved\u00a0for in {0}?", "Hogwarts", TwoColumns4Answers, "Gryffindor", "Hufflepuff", "Slytherin", "Ravenclaw",
+        [SouvenirQuestion("Which House was {1} solved\u00a0for in {0}?", "Hogwarts", TwoColumns4Answers, "Gryffindor", "Hufflepuff", "Slytherin", "Ravenclaw", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { "Binary Puzzle", "Zoni", "Rock-Paper- Scissors-L.-Sp.", "Modules Against Humanity", "Monsplode Trading Cards" }, ExampleExtraFormatArgumentGroupSize = 1)]
         HogwartsHouse,
         [SouvenirQuestion("Which module was solved\u00a0for {1} in {0}?", "Hogwarts", OneColumn4Answers, null, ExampleAnswers = new[] { "Binary Puzzle", "Zoni", "Rock-Paper-Scissors-L.-Sp.", "Modules Against Humanity", "Monsplode Trading Cards" },
-            ExampleExtraFormatArguments = new[] { "Gryffindor", "Hufflepuff", "Slytherin", "Ravenclaw" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "Gryffindor", "Hufflepuff", "Slytherin", "Ravenclaw" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         HogwartsModule,
 
         [SouvenirQuestion("What was the name of the {1} shadow shown in {0}?", "Hold Ups", OneColumn4Answers, "Mandrake", "Silky", "Koropokguru", "Nue", "Jack Frost", "Leanan Sidhe", "Hua Po", "Orthrus", "Lamia", "Bicorn", "Kelpie", "Apsaras", "Makami", "Nekomata", "Sandman", "Naga", "Agathion", "Berith", "Mokoi", "Inugami", "High Pixie", "Yaksini", "Anzu", "Take-Minakata", "Thoth", "Isis", "Incubis", "Onmoraki", "Koppa-Tengu", "Orobas", "Rakshasa", "Pixie", "Angel", "Jack O' Lantern", "Succubus", "Andras",
@@ -1146,11 +1147,11 @@
             ExampleAnswers = new[] { "i", "C", "L", "1", "sees", "leemer", "aye-aye", "One" })]
         HomophonesDisplayedPhrases,
 
-        [SouvenirQuestion("Which was a descriptor shown in {1} in {0}?", "Human Resources", TwoColumns4Answers, "Intellectual", "Deviser", "Confidant", "Helper", "Auditor", "Innovator", "Defender", "Chameleon", "Director", "Designer", "Educator", "Advocate", "Manager", "Showman", "Contributor", "Entertainer", TranslateFormatArgs = new[] { true },
-            ExampleExtraFormatArguments = new[] { "red", "green" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("Which was a descriptor shown in {1} in {0}?", "Human Resources", TwoColumns4Answers, "Intellectual", "Deviser", "Confidant", "Helper", "Auditor", "Innovator", "Defender", "Chameleon", "Director", "Designer", "Educator", "Advocate", "Manager", "Showman", "Contributor", "Entertainer",
+            ExampleExtraFormatArguments = new[] { "red", "green" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         HumanResourcesDescriptors,
         [SouvenirQuestion("Who was {1} in {0}?", "Human Resources", ThreeColumns6Answers, "Rebecca", "Damian", "Jean", "Mike", "River", "Samuel", "Yoshi", "Caleb", "Ashley", "Tim", "Eliott", "Ursula", "Silas", "Noah", "Quinn", "Dylan",
-            ExampleExtraFormatArguments = new[] { "fired", "hired" }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { "fired", "hired" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         HumanResourcesHiredFired,
 
         [SouvenirQuestion("Which of the first three stages of {0} had the {1} symbol {2}?", "Hunting", TwoColumns4Answers, "none", "first", "second", "first two", "third", "first & third", "second & third", "all three", TranslateAnswers = true, TranslateFormatArgs = new[] { true, false },
