@@ -575,7 +575,7 @@
         CreationWeather,
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Crimson Cipher", TwoColumns4Answers, null, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },
-            ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { true })]
+            ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { true, false })]
         CrimsonCipherScreen,
 
         [SouvenirQuestion("What was the alteration color used in {0}?", "Critters", TwoColumns4Answers, "Yellow", "Pink", "Blue", "White", TranslateAnswers = true)]
@@ -2157,7 +2157,8 @@
         [SouvenirQuestion("What was the special rule displayed on the white diamond in {0}?", "Safety Square", OneColumn4Answers, "No special rule", "Reacts with water", "Simple asphyxiant", "Oxidizer")]
         SafetySquareSpecialRule,
 
-        [SouvenirQuestion("Where was {1} in {0}?", "Samsung", ThreeColumns6Answers, "TL", "TM", "TR", "ML", "MM", "MR", "BL", "BM", "BR", AddThe = true)]
+        [SouvenirQuestion("Where was {1} in {0}?", "Samsung", ThreeColumns6Answers, "TL", "TM", "TR", "ML", "MM", "MR", "BL", "BM", "BR", AddThe = true,
+            ExampleExtraFormatArguments = new[] { "Duolingo", "Google Maps", "Kindle", "Google Authenticator", "Photomath", "Spotify", "Google Arts & Culture", "Discord" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SamsungAppPositions,
 
         [SouvenirQuestion("Which tile was correctly submitted in the first stage of {0}?", "Scavenger Hunt", ThreeColumns6Answers, Type = AnswerType.Grid)]
