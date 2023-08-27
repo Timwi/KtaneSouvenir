@@ -3387,14 +3387,14 @@ namespace Souvenir
             // What was the first shape used in Identification Crisis?
             [Question.IdentificationCrisisShape] = new TranslationInfo
             {
-                QuestionText = "{0}の{1} shape used in？",
+                QuestionText = "{0}で使用された{1}番目の図形は？",
                 ModuleName = "識別危機",
             },
             // What was the {1} identification module used in {0}?
             // What was the first identification module used in Identification Crisis?
             [Question.IdentificationCrisisDataset] = new TranslationInfo
             {
-                QuestionText = "{0}の{1} identification module used in？",
+                QuestionText = "{0}で使用された{1}番目の識別モジュールは？",
                 ModuleName = "識別危機",
             },
 
@@ -3403,7 +3403,7 @@ namespace Souvenir
             // Which hair color was listed in Identity Parade?
             [Question.IdentityParadeHairColors] = new TranslationInfo
             {
-                QuestionText = "{0}の hair color {1} listed in？",
+                QuestionText = "{0}のリストに{1}のはどの髪色？",
                 ModuleName = "容疑者特定",
             },
             // Which build {1} listed in {0}?
@@ -3444,7 +3444,7 @@ namespace Souvenir
             // What was the selected word in Infinite Loop?
             [Question.InfiniteLoopSelectedWord] = new TranslationInfo
             {
-                QuestionText = "{0}のselected word in？",
+                QuestionText = "{0}で選択された単語は？",
                 ModuleName = "無限ループ",
                 Answers = new Dictionary<string, string>
             },
@@ -3454,14 +3454,14 @@ namespace Souvenir
             // Which ingredient was used in Ingredients?
             [Question.IngredientsIngredients] = new TranslationInfo
             {
-                QuestionText = "{0}の ingredient was used in？",
+                QuestionText = "{0}で使用された食材は？",
                 ModuleName = "食材",
             },
             // Which ingredient was listed but not used in {0}?
             // Which ingredient was listed but not used in Ingredients?
             [Question.IngredientsNonIngredients] = new TranslationInfo
             {
-                QuestionText = "{0}の ingredient was listed but not used in？",
+                QuestionText = "{0}の一覧にあったが使用されていない食材は？",
                 ModuleName = "食材",
             },
 
@@ -3470,7 +3470,7 @@ namespace Souvenir
             // What color was the LED in Inner Connections?
             [Question.InnerConnectionsLED] = new TranslationInfo
             {
-                QuestionText = "{0}の color was the LED in？",
+                QuestionText = "{0}のLEDの色は？",
                 ModuleName = "内部接続",
                 Answers = new Dictionary<string, string>
                 {
@@ -3486,7 +3486,7 @@ namespace Souvenir
             // What was the digit flashed in Morse in Inner Connections?
             [Question.InnerConnectionsMorse] = new TranslationInfo
             {
-                QuestionText = "{0}のdigit flashed in Morse in？",
+                QuestionText = "{0}のモールス信号で点滅した数字は？",
                 ModuleName = "内部接続",
             },
 
@@ -3504,7 +3504,7 @@ namespace Souvenir
             // What symbol was the correct answer in IPA?
             [Question.IpaSymbol] = new TranslationInfo
             {
-                QuestionText = "{0}の symbol was the correct answer in？",
+                QuestionText = "{0}の正しい答えの記号は？",
             },
 
             // The iPhone
@@ -3521,7 +3521,7 @@ namespace Souvenir
             // Which symbol was on the first correctly pulled block in Jenga?
             [Question.JengaFirstBlock] = new TranslationInfo
             {
-                QuestionText = "{0}の symbol was on the first correctly pulled block in？",
+                QuestionText = "{0}で最初に正しく引き抜かれたブロックの記号は？",
                 ModuleName = "ジェンガ",
             },
 
@@ -3530,7 +3530,7 @@ namespace Souvenir
             // What number was wheel A in The Jewel Vault?
             [Question.JewelVaultWheels] = new TranslationInfo
             {
-                QuestionText = "{0}の number was wheel {1} in？",
+                QuestionText = "{0}の輪{1}の数字は？",
                 ModuleName = "宝石金庫",
             },
 
@@ -3553,14 +3553,14 @@ namespace Souvenir
             // What was the color of this square in Juxtacolored Squares?
             [Question.JuxtacoloredSquaresColorsByPosition] = new TranslationInfo
             {
-                QuestionText = "{0}のcolor of this square in？",
+                QuestionText = "{0}のこの位置にあった正方形の色は？",
                 ModuleName = "色比べ格子",
             },
             // Which square was {1} in {0}?
             // Which square was chestnut in Juxtacolored Squares?
             [Question.JuxtacoloredSquaresPositionsByColor] = new TranslationInfo
             {
-                QuestionText = "{0}の square was {1} in？",
+                QuestionText = "{0}の{1}色の正方形はどれ？",
                 ModuleName = "色比べ格子",
             },
 
@@ -3578,7 +3578,7 @@ namespace Souvenir
             // What was a food item displayed in The Kanye Encounter?
             [Question.KanyeEncounterFoods] = new TranslationInfo
             {
-                QuestionText = "{0}の was a food item displayed in？",
+                QuestionText = "{0}で表示された食品は？",
                 ModuleName = "カニエ・ウエストとの邂逅",
             },
 
@@ -3587,7 +3587,7 @@ namespace Souvenir
             // What was the position of the LED in Keypad Magnified?
             [Question.KeypadMagnifiedLED] = new TranslationInfo
             {
-                QuestionText = "{0}のposition of the LED in？",
+                QuestionText = "{0}のLEDの位置は？",
                 ModuleName = "拡大キーパッド",
             },
 
@@ -3596,7 +3596,7 @@ namespace Souvenir
             // What were the first four letters on the display in Keywords?
             [Question.KeywordsDisplayedKey] = new TranslationInfo
             {
-                QuestionText = "What were the first four letters on the display in {0}?",
+                QuestionText = "{0}のディスプレー上にあった最初四文字の英字は？",
                 ModuleName = "キーワード",
             },
 
@@ -3605,14 +3605,14 @@ namespace Souvenir
             // Which way was the arrow pointing in Know Your Way?
             [Question.KnowYourWayArrow] = new TranslationInfo
             {
-                QuestionText = "{0}の way was the arrow pointing in？",
+                QuestionText = "{0}の矢印が指していたのはどの方向？",
                 ModuleName = "方向感覚",
             },
             // Which LED was green in {0}?
             // Which LED was green in Know Your Way?
             [Question.KnowYourWayLed] = new TranslationInfo
             {
-                QuestionText = "{0}の LED was green in？",
+                QuestionText = "{0}でLEDが緑色だったのはどれ？",
                 ModuleName = "方向感覚",
             },
 
@@ -3650,7 +3650,7 @@ namespace Souvenir
             // In which layer was this portal in The Labyrinth?
             [Question.LabyrinthPortalStage] = new TranslationInfo
             {
-                QuestionText = "{0}In which layer was this portal in？",
+                QuestionText = "{0}でこのポータルがあったのはどの層？",
                 ModuleName = "迷宮",
             },
 
@@ -3659,7 +3659,7 @@ namespace Souvenir
             // Which light was on in Ladder Lottery?
             [Question.LadderLotteryLightOn] = new TranslationInfo
             {
-                QuestionText = "{0}の light was on in？",
+                QuestionText = "{0}で点灯していたのはどのライト？",
                 ModuleName = "あみだくじ",
             },
 
@@ -3668,7 +3668,7 @@ namespace Souvenir
             // Which color was present on the second ladder in Ladders?
             [Question.LaddersStage2Colors] = new TranslationInfo
             {
-                QuestionText = "{0}の color was present on the second ladder in？",
+                QuestionText = "{0}の二番目の梯子に存在した色は？",
                 ModuleName = "梯子",
                 Answers = new Dictionary<string, string>
                 {
@@ -3686,7 +3686,7 @@ namespace Souvenir
             // What color was missing on the third ladder in Ladders?
             [Question.LaddersStage3Missing] = new TranslationInfo
             {
-                QuestionText = "{0}の color was missing on the third ladder in？",
+                QuestionText = "{0}の三番目の梯子に存在しなかった色は？",
                 ModuleName = "梯子",
                 Answers = new Dictionary<string, string>
                 {
@@ -7277,7 +7277,7 @@ namespace Souvenir
             // How many subscribers does PewDiePie have in Subscribe to Pewdiepie?
             [Question.SubscribeToPewdiepieSubCount] = new TranslationInfo
             {
-                QuestionText = "{0}における{1}のサブスクライバーの数は？",
+                QuestionText = "{0}における{1}の登録者の数は？",
                 ModuleName = "ピューディパイの登録",
             },
 
