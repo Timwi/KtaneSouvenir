@@ -360,7 +360,7 @@ namespace Souvenir
             [Question.AlphabetTilesMissingLetter] = new TranslationInfo
             {
                 QuestionText = "{0}で隠されている文字は何？",
-                ModuleName = "アルファベット番号",
+                ModuleName = "アルファベットタイル",
             },
 
             // Alpha-Bits
@@ -368,7 +368,7 @@ namespace Souvenir
             // What character was displayed on the first screen on the left in Alpha-Bits?
             [Question.AlphaBitsDisplayedCharacters] = new TranslationInfo
             {
-                QuestionText = "{0}で{2}の{1}つめの画面に表示されている文字は何？",
+                QuestionText = "{0}で{2}の{1}つ目の画面に表示されている文字は何？",
                 ModuleName = "アルファビッツ",
                 FormatArgs = new Dictionary<string, string>
                 {
@@ -786,6 +786,12 @@ namespace Souvenir
             {
                 QuestionText = "{0}の答えは？",
                 ModuleName = "黒色暗号",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上部",
+                    ["middle"] = "中央",
+                    ["bottom"] = "下部",
+                },
             },
 
             // Blind Maze
@@ -904,6 +910,12 @@ namespace Souvenir
             {
                 QuestionText = "{0}の答えは？",
                 ModuleName = "青色暗号",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上部",
+                    ["middle"] = "中央",
+                    ["bottom"] = "下部",
+                },
             },
 
             // Bob Barks
@@ -977,7 +989,7 @@ namespace Souvenir
             // Which contestant’s first name appeared on Boxing?
             [Question.BoxingNames] = new TranslationInfo
             {
-                QuestionText = "{0}の{1}番目に現れた出場者は？",
+                QuestionText = "{0}の{1}は？",
             },
             // What was the {1} of the contestant with strength rating {2} on {0}?
             // What was the first name of the contestant with strength rating 0 on Boxing?
@@ -988,8 +1000,8 @@ namespace Souvenir
                 {
                     ["first name"] = "出場者の氏名",
                     ["last name"] = "出場者の姓名",
-                    ["substitute’s first name"] = "対戦者の氏名",
-                    ["substitute’s last name"] = "対戦社の姓名",
+                    ["substitute’s first name"] = "補欠選手の氏名",
+                    ["substitute’s last name"] = "補欠選手の姓名",
                 },
             },
             // What was {1}’s strength rating on {0}?
@@ -1048,6 +1060,12 @@ namespace Souvenir
             [Question.BrownCipherScreen] = new TranslationInfo
             {
                 QuestionText = "{0}の答えは？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上部",
+                    ["middle"] = "中央",
+                    ["bottom"] = "下部",
+                },
             },
 
             // Brush Strokes
@@ -1162,13 +1180,13 @@ namespace Souvenir
             // What text was on the top display in the first stage of Caesar Psycho?
             [Question.CaesarPsychoScreenTexts] = new TranslationInfo
             {
-                QuestionText = "What text was on the top display in the {1} stage of {0}?",
+                QuestionText = "{0}のステージ{1}における上のディスプレーに表示された単語は？",
             },
             // What color was the text on the top display in the second stage of {0}?
             // What color was the text on the top display in the second stage of Caesar Psycho?
             [Question.CaesarPsychoScreenColor] = new TranslationInfo
             {
-                QuestionText = "What color was the text on the top display in the second stage of {0}?",
+                QuestionText = "{0}のステージ2における上のディスプレーに表示された単語の色は？",
             },
 
             // Calendar
@@ -1292,13 +1310,13 @@ namespace Souvenir
             // What was the paid amount in Cheap Checkout?
             [Question.CheapCheckoutPaid] = new TranslationInfo
             {
-                QuestionText = "{0}の{1}回目の支払金額は？",
+                QuestionText = "{0}の{1}は？",
                 ModuleName = "安勘定",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["the paid amount"] = "支払金額",
                     ["the first paid amount"] = "最初の支払金額",
-                    ["the second paid amount"] = "二番目の支払金額",
+                    ["the second paid amount"] = "二回目の支払金額",
                 },
             },
 
@@ -1883,14 +1901,14 @@ namespace Souvenir
             [Question.CrypticKeypadLabels] = new TranslationInfo
             {
                 QuestionText = "{0}で{1}のキーパッドのラベルは？",
-                ModuleName = "暗号化キーパッド",
+                ModuleName = "暗号キーパッド",
             },
             // Which cardinal direction was the {1} key rotated to in {0}?
             // Which cardinal direction was the top-left key rotated to in Cryptic Keypad?
             [Question.CrypticKeypadRotations] = new TranslationInfo
             {
                 QuestionText = "{0}で{1}のキーパッドの回転方向は？",
-                ModuleName = "暗号化キーパッド",
+                ModuleName = "暗号キーパッド",
                 Answers = new Dictionary<string, string>
                 {
                     ["North"] = "北",
@@ -2242,7 +2260,7 @@ namespace Souvenir
             // What was the last digit on the small display in Eight?
             [Question.EightLastSmallDisplayDigit] = new TranslationInfo
             {
-                QuestionText = "{0}の小さなディスプレーに最後表示されていた数字は？",
+                QuestionText = "{0}の小さなディスプレーの下一桁は？",
             },
             // What was the position of the last broken digit in {0}?
             // What was the position of the last broken digit in Eight?
@@ -2607,6 +2625,12 @@ namespace Souvenir
             {
                 QuestionText = "{0}の{2}ディスプレーにあった数の{1}桁目は？",
                 ModuleName = "フィズバズ",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上部",
+                    ["middle"] = "中央",
+                    ["bottom"] = "下部",
+                },
             },
 
             // Flags
@@ -2646,6 +2670,11 @@ namespace Souvenir
             {
                 QuestionText = "{0}で関連する矢印について黒色の{1}に点滅した色は？",
                 ModuleName = "点滅矢印",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["before"] = "前",
+                    ["after"] = "後",
+                },
             },
 
             // Flashing Lights
@@ -2691,6 +2720,12 @@ namespace Souvenir
             {
                 QuestionText = "{0}のページ{2}の{1}ディスプレーに表示されていたのは？",
                 ModuleName = "柚葉色暗号",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上部",
+                    ["middle"] = "中央",
+                    ["bottom"] = "下部",
+                },
             },
 
             // Forget Any Color
@@ -2724,6 +2759,18 @@ namespace Souvenir
             [Question.ForgetMeInitialState] = new TranslationInfo
             {
                 QuestionText = "{0}の初期状態のパズルにおける{1}の数字は？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top-left"] = "top-left",
+                    ["top-middle"] = "top-middle",
+                    ["top-right"] = "top-right",
+                    ["middle-left"] = "middle-left",
+                    ["center"] = "center",
+                    ["middle-right"] = "middle-right",
+                    ["bottom-left"] = "bottom-left",
+                    ["bottom-middle"] = "bottom-middle",
+                    ["bottom-right"] = "bottom-right",
+                },
             },
 
             // Forget Me Not
@@ -2975,6 +3022,11 @@ namespace Souvenir
             {
                 QuestionText = "{0}のディスプレー上に表示された{1}方向の座標は？",
                 ModuleName = "灰色ボタン",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["horizontal"] = "horizontal",
+                    ["vertical"] = "vertical",
+                },
             },
 
             // Gray Cipher
@@ -2984,6 +3036,12 @@ namespace Souvenir
             {
                 QuestionText = "{0}の答えは？",
                 ModuleName = "灰色暗号",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上部",
+                    ["middle"] = "中央",
+                    ["bottom"] = "下部",
+                },
             },
 
             // The Great Void
@@ -3035,6 +3093,12 @@ namespace Souvenir
             {
                 QuestionText = "{0}の答えは？",
                 ModuleName = "緑色暗号",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上部",
+                    ["middle"] = "中央",
+                    ["bottom"] = "下部",
+                },
             },
 
             // Gridlock
@@ -3224,6 +3288,11 @@ namespace Souvenir
             {
                 QuestionText = "{0}の初期状態で存在して{1}蝶番に含まれるのは？",
                 ModuleName = "蝶番",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["present on"] = "いた",
+                    ["absent from"] = "いなかった",
+                },
             },
 
             // Hogwarts
@@ -3233,6 +3302,13 @@ namespace Souvenir
             {
                 QuestionText = "{0}で{1}を解除したのはどの寮？",
                 ModuleName = "ホグワーツ",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Gryffindor"] = "Gryffindor",
+                    ["Hufflepuff"] = "Hufflepuff",
+                    ["Slytherin"] = "Slytherin",
+                    ["Ravenclaw"] = "Ravenclaw",
+                },
             },
             // Which module was solved for {1} in {0}?
             // Which module was solved for Gryffindor in Hogwarts?
@@ -3240,6 +3316,13 @@ namespace Souvenir
             {
                 QuestionText = "{0}で{1}が解除したのはどのモジュール(英名)？",
                 ModuleName = "ホグワーツ",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["Gryffindor"] = "Gryffindor",
+                    ["Hufflepuff"] = "Hufflepuff",
+                    ["Slytherin"] = "Slytherin",
+                    ["Ravenclaw"] = "Ravenclaw",
+                },
             },
 
             // Hold Ups
@@ -3311,6 +3394,11 @@ namespace Souvenir
             {
                 QuestionText = "{0}で{1}のは誰？",
                 ModuleName = "人事部",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["fired"] = "fired",
+                    ["hired"] = "hired",
+                },
             },
 
             // Hunting
@@ -3426,7 +3514,7 @@ namespace Souvenir
             // Which module was The Impostor pretending to be?
             [Question.ImpostorDisguise] = new TranslationInfo
             {
-                QuestionText = "{0}の module was {0} pretending to be？",
+                QuestionText = "{0}が化けていたのはどのモジュール？",
                 ModuleName = "ニセモノ",
             },
 
@@ -3437,6 +3525,12 @@ namespace Souvenir
             {
                 QuestionText = "{0}の答えは？",
                 ModuleName = "藍色暗号",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上部",
+                    ["middle"] = "中央",
+                    ["bottom"] = "下部",
+                },
             },
 
             // Infinite Loop
@@ -3446,7 +3540,6 @@ namespace Souvenir
             {
                 QuestionText = "{0}で選択された単語は？",
                 ModuleName = "無限ループ",
-                Answers = new Dictionary<string, string>
             },
 
             // Ingredients
@@ -3570,7 +3663,7 @@ namespace Souvenir
             [Question.KanjiDisplayedWords] = new TranslationInfo
             {
                 QuestionText = "{0}のステージ{1}で表示された単語は？",
-                ModuleName = "色比べ格子",
+                ModuleName = "漢字",
             },
 
             // The Kanye Encounter
@@ -3579,7 +3672,7 @@ namespace Souvenir
             [Question.KanyeEncounterFoods] = new TranslationInfo
             {
                 QuestionText = "{0}で表示された食品は？",
-                ModuleName = "カニエ・ウエストとの邂逅",
+                ModuleName = "カニエ・ウエストとの遭遇",
             },
 
             // Keypad Magnified
@@ -3596,7 +3689,7 @@ namespace Souvenir
             // What were the first four letters on the display in Keywords?
             [Question.KeywordsDisplayedKey] = new TranslationInfo
             {
-                QuestionText = "{0}のディスプレー上にあった最初四文字の英字は？",
+                QuestionText = "{0}のディスプレー上にあった先頭四文字の英字は？",
                 ModuleName = "キーワード",
             },
 
@@ -4026,7 +4119,7 @@ namespace Souvenir
             // What bearing was signalled in Maritime Flags?
             [Question.MaritimeFlagsBearing] = new TranslationInfo
             {
-                QuestionText = "{0}の bearing was signalled in？",
+                QuestionText = "{0}が示していた方角は？",
                 ModuleName = "海上旗",
             },
             // Which callsign was signalled in {0}?
@@ -4043,6 +4136,12 @@ namespace Souvenir
             [Question.MaroonCipherScreen] = new TranslationInfo
             {
                 QuestionText = "{0}のページ{2}の{1}ディスプレーに表示されていたのは？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上部",
+                    ["middle"] = "中央",
+                    ["bottom"] = "下部",
+                },
             },
 
             // Mashematics
@@ -4328,7 +4427,7 @@ namespace Souvenir
             [Question.MinesweeperStartingColor] = new TranslationInfo
             {
                 QuestionText = "{0}の開始のマスは何色？",
-                ModuleName = "マインスイーパー"
+                ModuleName = "マインスイーパー",
                 Answers = new Dictionary<string, string>
                 {
                     ["red"] = "赤",
@@ -4723,6 +4822,7 @@ namespace Souvenir
             [Question.NavinumsDirectionalButtons] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}番目に押したボタンの方向は？",
+                ModuleName = "ナビ数字",
                 Answers = new Dictionary<string, string>
                 {
                     ["up"] = "下",
@@ -4899,7 +4999,7 @@ namespace Souvenir
             // What was the transmitted word on Not Morsematics?
             [Question.NotMorsematicsWord] = new TranslationInfo
             {
-                QuestionText = "{0}ので送信した単語は？",
+                QuestionText = "{0}で送信した単語は？",
                 ModuleName = "偽モールスマティック",
             },
 
@@ -5350,6 +5450,7 @@ namespace Souvenir
             {
                 QuestionText = "{0}の答えは？",
                 ModuleName = "橙色暗号",
+                FormatArgs = new Dictionary<string, string>
             },
 
             // Ordered Keys
@@ -5552,7 +5653,6 @@ namespace Souvenir
             [Question.PeriodicWordsDisplayedWords] = new TranslationInfo
             {
                 QuestionText = "{0}のステージ{1}で表示された単語は？",
-                ModuleName = "回文",
             },
 
             // Perspective Pegs
@@ -6081,6 +6181,12 @@ namespace Souvenir
             {
                 QuestionText = "{0}の回答は？",
                 ModuleName = "赤色暗号",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上部",
+                    ["middle"] = "中央",
+                    ["bottom"] = "下部",
+                },
             },
 
             // Red Herring
@@ -6412,7 +6518,7 @@ namespace Souvenir
             [Question.SemamorseColor] = new TranslationInfo
             {
                 QuestionText = "{0}の初期値を求める際に使用した表示の色は？",
-                ModuleName = "シーシェル",
+                ModuleName = "セマモールス",
                 Answers = new Dictionary<string, string>
                 {
                     ["red"] = "赤",
@@ -6472,7 +6578,7 @@ namespace Souvenir
             [Question.ShiftingMazeSeed] = new TranslationInfo
             {
                 QuestionText = "{0}のシード値は？",
-                QuestionText = "シフト中迷路",
+                ModuleName = "シフト中迷路",
             },
 
             // Shogi Identification
@@ -6489,7 +6595,7 @@ namespace Souvenir
             // What was the first slot in the first stage in Silly Slots?
             [Question.SillySlots] = new TranslationInfo
             {
-                QuestionText = "{0}のステージ{2}において、{1}回目のスロットは？",
+                QuestionText = "{0}のステージ{2}において、{1}列目のスロットは？",
                 ModuleName = "ヘンテコスロット",
             },
 
@@ -6546,7 +6652,7 @@ namespace Souvenir
             // What were the call samples played in the first stage of Simon Samples?
             [Question.SimonSamplesSamples] = new TranslationInfo
             {
-                QuestionText = "{0}のステージ{1}の呼び出しは？",
+                QuestionText = "{0}の{1}音は？",
                 ModuleName = "サイモンの音源",
                 FormatArgs = new Dictionary<string, string>
                 {
@@ -6804,14 +6910,14 @@ namespace Souvenir
             // Which bubble flashed first in Simon Speaks?
             [Question.SimonSpeaksPositions] = new TranslationInfo
             {
-                QuestionText = "{0}の1番目の点滅の吹き出しの色は？",
+                QuestionText = "{0}の1番目の点滅の吹き出しは？",
                 ModuleName = "サイモンの発話",
             },
             // Which bubble flashed second in {0}?
             // Which bubble flashed second in Simon Speaks?
             [Question.SimonSpeaksShapes] = new TranslationInfo
             {
-                QuestionText = "{0}の2番目の点滅の吹き出しの色は？",
+                QuestionText = "{0}の2番目の点滅の吹き出しは？",
                 ModuleName = "サイモンの発話",
             },
             // Which language was the bubble that flashed third in {0} in?
@@ -7689,6 +7795,12 @@ namespace Souvenir
             [Question.UltimateCipherScreen] = new TranslationInfo
             {
                 QuestionText = "{0}の回答は？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上部",
+                    ["middle"] = "中央",
+                    ["bottom"] = "下部",
+                },
             },
 
             // Ultimate Cycle
@@ -7915,7 +8027,7 @@ namespace Souvenir
                     ["first"] = "1番目",
                     ["second"] = "2番目",
                     ["third"] = "3番目",
-                    ["only"] = "唯一の",
+                    ["only"] = "唯一",
                 },
                 Answers = new Dictionary<string, string>
                 {
@@ -7955,6 +8067,12 @@ namespace Souvenir
             {
                 QuestionText = "{0}の回答は？",
                 ModuleName = "紫色暗号",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上部",
+                    ["middle"] = "中央",
+                    ["bottom"] = "下部",
+                },
             },
 
             // Visual Impairment
@@ -8084,6 +8202,12 @@ namespace Souvenir
             {
                 QuestionText = "{0}の回答は？",
                 ModuleName = "白色暗号",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上部",
+                    ["middle"] = "中央",
+                    ["bottom"] = "下部",
+                },
             },
 
             // WhoOF
@@ -8195,7 +8319,7 @@ namespace Souvenir
             // How many red wires were there in Wire Sequence?
             [Question.WireSequenceColorCount] = new TranslationInfo
             {
-                QuestionText = "{0}(0)の{1}色のワイヤの総数は？",
+                QuestionText = "{0}の{1}色のワイヤの総数は？",
                 ModuleName = "順番ワイヤ",
                 FormatArgs = new Dictionary<string, string>
                 {
@@ -8308,6 +8432,12 @@ namespace Souvenir
             {
                 QuestionText = "{0}の回答は？",
                 ModuleName = "黄色暗号",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上部",
+                    ["middle"] = "中央",
+                    ["bottom"] = "下部",
+                },
             },
 
             // Zero, Zero
@@ -8360,115 +8490,115 @@ namespace Souvenir
         #endregion
 
         public override string[] IntroTexts => Ut.NewArray(
-"あなたを器物損壊罪で訴えます。理由はもちろんおわかりですね。",
-"この爆弾は、わしが育てた。",
-"そんな爆弾で大丈夫か？",
-"見た目は分析担当、頭脳は処理担当！",
-"爆弾はいいぞ。",
-"僕と契約して、爆弾処理班になってよ！",
-"ワイヤは青かった。",
-"このモジュールの戦闘力は53万です。",
-"バルス！",
-"あきらめたらそこで爆発だよ。",
-"解除の反対は爆発ではなく「やらないこと」だ。",
-"みんなも爆弾ゲットじゃぞ〜！",
-"クラムボムはかぷかぷ笑ったよ。",
-"爆弾はともだち！こわくないよ！",
-"ファイナルアンサー？",
-"爆発は春の季語じゃよ。",
-"頭の中に爆弾が！",
-"『なんで、赤を選んだ？』『……梅干しの色』",
-"目の前の爆弾解けんヤツに その先はないっちゅーことや!!",
-"僕は一生爆弾解除します",
-"芸術は爆発だ！",
-"Nice bomb.",
-"我輩は爆弾である、名前はまだ無い。",
-"爆弾処理班はピンチなときほどふてぶてしく笑うものよ。",
-"よろしい、ならば爆弾だ。",
-"起爆スイッチを押させるなァーッ！",
-"爆弾に絶対はないが、そのモジュールには絶対がある。",
-"解けねぇ爆弾はただの爆弾だ。",
-"おまえのモジュールはおれのもの、おれのモジュールもおれのもの。",
-"爆弾解除、行きまーす！",
-"ボタン博士！お許しください！",
-"逃げちゃダメだ、逃げちゃダメだ、逃げちゃダメだ",
-"爆弾は命より重い…",
-"爆弾解除いつやるの？今でしょ！",
-"正しいことをやりましょう。歳をとっても新しい爆弾に挑戦してください。",
-"ヤツはとんでもない物を盗んでいきました。それはあなたのエッジワークです。",
-"解除王におれはなる！！！",
-"解除に不思議の解除あり。爆発に不思議の爆発なし。",
-"このバッテリーが目に入らぬか！",
-"切れよ…好きな色を切れ…",
-"僕は死にません！僕は死にません！爆弾が好きだから！",
-"爆弾かな？爆弾じゃないよ 爆弾だよ(爆弾)",
-"神は乗り越えられる爆弾しか与えない。",
-"神は言っている。ここで死ぬ定めではないと。",
-"鳴かぬなら 爆破してまえ ホトトギス",
-"爆弾に大きいも小さいもない。",
-"赤と青の線が仲良く並んでいる。",
-"難易度イージーが許されるのは小学生までだよねー？",
-"じゃあ、あれか…俺のケツの下に…爆弾があるのか？",
-"あっ、湾岸署の恩田です。至急爆発物処理班を回してください。",
-"爆弾解くのに、こんな面倒なことするのなんでだろう～",
-"順番ワイヤと思ったら〜、パスワードでした〜。チクショー！",
-"お前はもう、死んでいる。",
-"『このモジュールがいいね』と君が言ったから十月九日は爆弾記念日。",
-"マニュアル読まずに爆弾触ると～爆発！ あたりまえ体操～",
-"おお 爆弾処理班よ！ しんでしまうとは なさけない…。",
-"ももたろ社長は 時限爆弾カードを 8枚 手に入れた！ 哀悼！",
-"安心してください、解けてますよ。",
-"もしかしてだけど～もしかしてだけど～今日の爆弾難しいんじゃないの～？",
-"今のままではいけない。だからこそKTaNEは今のままではいけないと思っている。",
-"ばくだんのちからってすげー！",
-"その点爆弾ってすげぇよな、最後までモジュールたっぷりだもん。",
-"もう、爆発してもいいよね…？",
-"爆弾の喜びを知りやがって！",
-"すっげえキモい爆弾だな！",
-"悪いなのび太、この爆弾は三人用なんだ。",
-"せっかくだから、俺はこの赤のワイヤを選ぶぜ！",
-"爆弾の法則が乱れる！",
-"おい、爆弾解除しろよ。",
-"なぜ笑うんだい？彼のマニュアル読みは上手だよ。",
-"爆弾じゃないよ。仮に爆弾だとしても、爆弾という名の紳士だよ。",
-"もう爆弾っていうレベルじゃねぇぞ！オイ！",
-"俺モジュールだけど何か質問ある？",
-"子供に「ワイヤ、ワイヤ」って、言いたくないですよね。",
-"楽しい仲間がぽぽぽぽ～ん！",
-"ば～くだ～ん、ば～くだ～ん、た～っぷ～り～、ば～くだ～ん",
-"玄関開けたら2分で爆弾。",
-"ぜんぶ爆弾のせいだ。",
-"爆弾を相手のゴールにシュゥゥゥーッ！超！エキサイティン！",
-"爆弾はリセットできないがモジュールはリセットできる。ソースは俺。",
-"おまえは今まで解いた爆弾の個数をおぼえているのか?",
-"『モジュール「ワイヤ」に存在する色の名前、5つ挙げてください』『走って！』",
-"やはり爆弾…‼爆弾はすべてを解決する…‼",
-"私のおじいさんがくれた、初めての爆弾。",
-"タイム連打も試してみたけど爆弾相手じゃ意味がない！",
-"選ばれたのは、爆弾でした。",
-"今野、そこにポートはあるんか？",
-"三分間待ってやる！",
-"ドナルドは今、爆弾解除に夢中なんだ。ほらね。自然に体が動いちゃうんだ。",
-"メロンです。爆弾です。",
-"おこしにつけたボムだんご ひとつ私に下さいな。",
-"ごめん、同級会には行けません。いま、爆弾のある密室にいます。",
-"爆弾と共にあらんことを。",
-"ば・く・は・つ Death‼",
-"NO BOMB, NO LIFE.",
-"まだ会ったことのない爆弾を、探している。",
-"あなたが落としたのは、この爆弾ですか？",
-"押すなよ！絶対に押すなよ！",
-"フジ、只今悩み中〜。僕は爆弾回して遊んでる。",
-"どうも、爆弾お兄さんでございますよ。",
-"この爆弾では常識に囚われてはいけないのですね！",
-"ようし！こうなったら……、「地球破壊爆弾」を！",
-"オレが爆弾？…違う…オレは悪魔だ！",
-"俺、この爆弾が終わったら結婚するんだ。",
-"一人で10モジュールぐらい解除すればいけるか…？",
-"つべこべ言わずに解きなさい！",
-"ありがとう。いい爆弾です。",
-"君は完璧で究極の爆弾！",
-"ば く だ ん のせいなのね そうなのね",
+                "あなたを器物損壊罪で訴えます。理由はもちろんおわかりですね。",
+                "この爆弾は、わしが育てた。",
+                "そんな爆弾で大丈夫か？",
+                "見た目は分析担当、頭脳は処理担当！",
+                "爆弾はいいぞ。",
+                "僕と契約して、爆弾処理班になってよ！",
+                "ワイヤは青かった。",
+                "このモジュールの戦闘力は53万です。",
+                "バルス！",
+                "あきらめたらそこで爆発だよ。",
+                "解除の反対は爆発ではなく「やらないこと」だ。",
+                "みんなも爆弾ゲットじゃぞ〜！",
+                "クラムボムはかぷかぷ笑ったよ。",
+                "爆弾はともだち！こわくないよ！",
+                "ファイナルアンサー？",
+                "爆発は春の季語じゃよ。",
+                "頭の中に爆弾が！",
+                "『なんで、赤を選んだ？』『……梅干しの色』",
+                "目の前の爆弾解けんヤツに その先はないっちゅーことや!!",
+                "僕は一生爆弾解除します",
+                "芸術は爆発だ！",
+                "Nice bomb.",
+                "我輩は爆弾である、名前はまだ無い。",
+                "爆弾処理班はピンチなときほどふてぶてしく笑うものよ。",
+                "よろしい、ならば爆弾だ。",
+                "起爆スイッチを押させるなァーッ！",
+                "爆弾に絶対はないが、そのモジュールには絶対がある。",
+                "解けねぇ爆弾はただの爆弾だ。",
+                "おまえのモジュールはおれのもの、おれのモジュールもおれのもの。",
+                "爆弾解除、行きまーす！",
+                "ボタン博士！お許しください！",
+                "逃げちゃダメだ、逃げちゃダメだ、逃げちゃダメだ",
+                "爆弾は命より重い…",
+                "爆弾解除いつやるの？今でしょ！",
+                "正しいことをやりましょう。歳をとっても新しい爆弾に挑戦してください。",
+                "ヤツはとんでもない物を盗んでいきました。それはあなたのエッジワークです。",
+                "解除王におれはなる！！！",
+                "解除に不思議の解除あり。爆発に不思議の爆発なし。",
+                "このバッテリーが目に入らぬか！",
+                "切れよ…好きな色を切れ…",
+                "僕は死にません！僕は死にません！爆弾が好きだから！",
+                "爆弾かな？爆弾じゃないよ 爆弾だよ(爆弾)",
+                "神は乗り越えられる爆弾しか与えない。",
+                "神は言っている。ここで死ぬ定めではないと。",
+                "鳴かぬなら 爆破してまえ ホトトギス",
+                "爆弾に大きいも小さいもない。",
+                "赤と青の線が仲良く並んでいる。",
+                "難易度イージーが許されるのは小学生までだよねー？",
+                "じゃあ、あれか…俺のケツの下に…爆弾があるのか？",
+                "あっ、湾岸署の恩田です。至急爆発物処理班を回してください。",
+                "爆弾解くのに、こんな面倒なことするのなんでだろう～",
+                "順番ワイヤと思ったら〜、パスワードでした〜。チクショー！",
+                "お前はもう、死んでいる。",
+                "『このモジュールがいいね』と君が言ったから十月九日は爆弾記念日。",
+                "マニュアル読まずに爆弾触ると～爆発！ あたりまえ体操～",
+                "おお 爆弾処理班よ！ しんでしまうとは なさけない…。",
+                "ももたろ社長は 時限爆弾カードを 8枚 手に入れた！ 哀悼！",
+                "安心してください、解けてますよ。",
+                "もしかしてだけど～もしかしてだけど～今日の爆弾難しいんじゃないの～？",
+                "今のままではいけない。だからこそKTaNEは今のままではいけないと思っている。",
+                "ばくだんのちからってすげー！",
+                "その点爆弾ってすげぇよな、最後までモジュールたっぷりだもん。",
+                "もう、爆発してもいいよね…？",
+                "爆弾の喜びを知りやがって！",
+                "すっげえキモい爆弾だな！",
+                "悪いなのび太、この爆弾は三人用なんだ。",
+                "せっかくだから、俺はこの赤のワイヤを選ぶぜ！",
+                "爆弾の法則が乱れる！",
+                "おい、爆弾解除しろよ。",
+                "なぜ笑うんだい？彼のマニュアル読みは上手だよ。",
+                "爆弾じゃないよ。仮に爆弾だとしても、爆弾という名の紳士だよ。",
+                "もう爆弾っていうレベルじゃねぇぞ！オイ！",
+                "俺モジュールだけど何か質問ある？",
+                "子供に「ワイヤ、ワイヤ」って、言いたくないですよね。",
+                "楽しい仲間がぽぽぽぽ～ん！",
+                "ば～くだ～ん、ば～くだ～ん、た～っぷ～り～、ば～くだ～ん",
+                "玄関開けたら2分で爆弾。",
+                "ぜんぶ爆弾のせいだ。",
+                "爆弾を相手のゴールにシュゥゥゥーッ！超！エキサイティン！",
+                "爆弾はリセットできないがモジュールはリセットできる。ソースは俺。",
+                "おまえは今まで解いた爆弾の個数をおぼえているのか?",
+                "『モジュール「ワイヤ」に存在する色の名前、5つ挙げてください』『走って！』",
+                "やはり爆弾…‼爆弾はすべてを解決する…‼",
+                "私のおじいさんがくれた、初めての爆弾。",
+                "タイム連打も試してみたけど爆弾相手じゃ意味がない！",
+                "選ばれたのは、爆弾でした。",
+                "今野、そこにポートはあるんか？",
+                "三分間待ってやる！",
+                "ドナルドは今、爆弾解除に夢中なんだ。ほらね。自然に体が動いちゃうんだ。",
+                "メロンです。爆弾です。",
+                "おこしにつけたボムだんご ひとつ私に下さいな。",
+                "ごめん、同級会には行けません。いま、爆弾のある密室にいます。",
+                "爆弾と共にあらんことを。",
+                "ば・く・は・つ Death‼",
+                "NO BOMB, NO LIFE.",
+                "まだ会ったことのない爆弾を、探している。",
+                "あなたが落としたのは、この爆弾ですか？",
+                "押すなよ！絶対に押すなよ！",
+                "フジ、只今悩み中〜。僕は爆弾回して遊んでる。",
+                "どうも、爆弾お兄さんでございますよ。",
+                "この爆弾では常識に囚われてはいけないのですね！",
+                "ようし！こうなったら……、「地球破壊爆弾」を！",
+                "オレが爆弾？…違う…オレは悪魔だ！",
+                "俺、この爆弾が終わったら結婚するんだ。",
+                "一人で10モジュールぐらい解除すればいけるか…？",
+                "つべこべ言わずに解きなさい！",
+                "ありがとう。いい爆弾です。",
+                "君は完璧で究極の爆弾！",
+                "ば く だ ん のせいなのね そうなのね"
         );
     }
 }
