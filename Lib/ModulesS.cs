@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Assets.Scripts.Platform.Common;
-using BombGame;
 using Souvenir;
 using UnityEngine;
 
