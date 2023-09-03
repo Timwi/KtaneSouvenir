@@ -308,10 +308,15 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_EpelleMoiCa);
 
-        var words = GetField<string[][]>(comp, "wordList").Get().Select(i => i[0]).ToArray();
-        var chosenWord = GetField<int>(comp, "chosenWord").Get();
+        var wordList = GetField<string[][]>(comp, "wordList").Get();
+        var inputtedText = GetField<string>(comp, "inputtedText").Get();
+        int index = -1;
+        for (int i = 0; i < wordList.Length; i++)
+            if (wordList[i].Contains(inputtedText))
+                index = i;
+        var words = Enumerable.Range(0, wordList.Length).Except(new[] { index }).Select(i => wordList[i][0]).ToArray();
 
-        addQuestions(module, makeQuestion(Question.EpelleMoiCaWord, _EpelleMoiCa, correctAnswers: new[] { words[chosenWord] }, preferredWrongAnswers: words));
+        addQuestions(module, makeQuestion(Question.EpelleMoiCaWord, _EpelleMoiCa, correctAnswers: new[] { inputtedText }, preferredWrongAnswers: words));
     }
 
     private IEnumerable<object> ProcessEquationsX(KMBombModule module)
