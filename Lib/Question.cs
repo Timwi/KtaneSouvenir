@@ -226,8 +226,7 @@
             ExampleExtraFormatArguments = new[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" })]
         BeanSproutsBeans,
 
-        [SouvenirQuestion("What was the bean in {0}?", "Big Bean", OneColumn4Answers)]
-        [AnswerGenerator.Inherit(BeansColors)]
+        [SouvenirQuestion("What was the bean in {0}?", "Big Bean", OneColumn4Answers, "Wobbly Orange", "Wobbly Yellow", "Wobbly Green", "Not Wobbly Orange", "Not Wobbly Yellow", "Not Wobbly Green", TranslateAnswers = true)]
         BigBeanColor,
 
         [SouvenirQuestion("What color was {1} in the solution to {0}?", "Big Circle", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black", TranslateAnswers = true,
@@ -1515,7 +1514,7 @@
         [SouvenirQuestion("What was the second word written by the original ghost in {0}?", "Mirror", TwoColumns4Answers, null, ExampleAnswers = new[] { "ALPACA", "BUBBLE", "COWBOY", "DIESEL", "EULOGY", "FUSION", "GASKET", "HOODIE", "ICEBOX", "JOYPOP" })]
         MirrorWord,
 
-        [SouvenirQuestion("Where was the SpongeBob Bar on {0}?", "Mister Softee", ThreeColumns6Answers, "TL", "TM", "TR", "ML", "MM", "MR", "BL", "BM", "BR")]
+        [SouvenirQuestion("Where was the SpongeBob Bar on {0}?", "Mister Softee", ThreeColumns6Answers, "top-left", "top-middle", "top-right", "middle-left", "middle-middle", "middle-right", "bottom-left", "bottom-middle", "bottom-right", TranslateAnswers = true)]
         MisterSofteeSpongebobPosition,
         [SouvenirQuestion("Which treat was present on {0}?", "Mister Softee", OneColumn4Answers, "Choco Taco", "Strawberry Shortcake", "Snow Cone", "Firecracker", "Screw Ball", "Chipwich", "King Cone", "Ice Cream Sandwich", "Push-Up Pop", "Drumstick", "Banana Fudge Bomb", "Creamsicle", "Chocolate Eclair", "Fudge Pop")]
         MisterSofteeTreatsPresent,
@@ -1726,10 +1725,9 @@
 
         [SouvenirQuestion("Which maze was used in {0}?", "Not Simaze", ThreeColumns6Answers, "red", "orange", "yellow", "green", "blue", "purple", TranslateAnswers = true)]
         NotSimazeMaze,
-        [SouvenirQuestion("What was the starting position in {0}?", "Not Simaze", TwoColumns4Answers, "(red, red)", "(red, orange)", "(red, yellow)", "(red, green)", "(red, blue)", "(red, purple)", "(orange, red)", "(orange, orange)", "(orange, yellow)", "(orange, green)", "(orange, blue)", "(orange, purple)", "(yellow, red)", "(yellow, orange)", "(yellow, yellow)", "(yellow, green)", "(yellow, blue)", "(yellow, purple)", "(green, red)", "(green, orange)", "(green, yellow)", "(green, green)", "(green, blue)", "(green, purple)", "(blue, red)", "(blue, orange)", "(blue, yellow)", "(blue, green)", "(blue, blue)", "(blue, purple)", "(purple, red)", "(purple, orange)", "(purple, yellow)", "(purple, green)", "(purple, blue)", "(purple, purple)")]
+        [SouvenirQuestion("What was the starting position in {0}?", "Not Simaze", TwoColumns4Answers, "(red, red)", "(red, orange)", "(red, yellow)", "(red, green)", "(red, blue)", "(red, purple)", "(orange, red)", "(orange, orange)", "(orange, yellow)", "(orange, green)", "(orange, blue)", "(orange, purple)", "(yellow, red)", "(yellow, orange)", "(yellow, yellow)", "(yellow, green)", "(yellow, blue)", "(yellow, purple)", "(green, red)", "(green, orange)", "(green, yellow)", "(green, green)", "(green, blue)", "(green, purple)", "(blue, red)", "(blue, orange)", "(blue, yellow)", "(blue, green)", "(blue, blue)", "(blue, purple)", "(purple, red)", "(purple, orange)", "(purple, yellow)", "(purple, green)", "(purple, blue)", "(purple, purple)", TranslateAnswers = true)]
         NotSimazeStart,
-        [SouvenirQuestion("What was the goal position in {0}?", "Not Simaze", TwoColumns4Answers)]
-        [AnswerGenerator.Inherit(NotSimazeStart)]
+        [SouvenirQuestion("What was the goal position in {0}?", "Not Simaze", TwoColumns4Answers, "(red, red)", "(red, orange)", "(red, yellow)", "(red, green)", "(red, blue)", "(red, purple)", "(orange, red)", "(orange, orange)", "(orange, yellow)", "(orange, green)", "(orange, blue)", "(orange, purple)", "(yellow, red)", "(yellow, orange)", "(yellow, yellow)", "(yellow, green)", "(yellow, blue)", "(yellow, purple)", "(green, red)", "(green, orange)", "(green, yellow)", "(green, green)", "(green, blue)", "(green, purple)", "(blue, red)", "(blue, orange)", "(blue, yellow)", "(blue, green)", "(blue, blue)", "(blue, purple)", "(purple, red)", "(purple, orange)", "(purple, yellow)", "(purple, green)", "(purple, blue)", "(purple, purple)", TranslateAnswers = true)]
         NotSimazeGoal,
 
         [SouvenirQuestion("Which letter was pressed in the first stage of {0}?", "Not Text Field", TwoColumns4Answers)]

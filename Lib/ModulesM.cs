@@ -644,7 +644,7 @@ public partial class SouvenirModule
         var iceCreams = GetArrayField<int>(comp, "iceCreamsPresent").Get();
         var iceCreamNames = GetStaticField<string[]>(comp.GetType(), "iceCreamNames").Get();
         var ix = Array.IndexOf(iceCreams, 14);
-        var directions = new[] { "TL", "TM", "TR", "ML", "MM", "MR", "BL", "BM", "BR" };
+        var directions = new[] { "top-left", "top-middle", "top-right", "middle-left", "middle-middle", "middle-right", "bottom-left", "bottom-middle", "bottom-right" };
         addQuestions(module,
             makeQuestion(Question.MisterSofteeSpongebobPosition, _MisterSoftee, correctAnswers: new[] { directions[ix] }),
             makeQuestion(Question.MisterSofteeTreatsPresent, _MisterSoftee, correctAnswers: iceCreams.Where(x => x != 14).Select(x => iceCreamNames[x]).ToArray()));

@@ -671,6 +671,15 @@ namespace Souvenir
             {
                 QuestionText = "Was war bei {0} die Bohne?",
                 ModuleName = "Großbohne",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Wobbly Orange"] = "Wobbly Orange",
+                    ["Wobbly Yellow"] = "Wobbly Yellow",
+                    ["Wobbly Green"] = "Wobbly Green",
+                    ["Not Wobbly Orange"] = "Not Wobbly Orange",
+                    ["Not Wobbly Yellow"] = "Not Wobbly Yellow",
+                    ["Not Wobbly Green"] = "Not Wobbly Green",
+                },
             },
 
             // Big Circle
@@ -4307,6 +4316,18 @@ namespace Souvenir
             [Question.MisterSofteeSpongebobPosition] = new TranslationInfo
             {
                 QuestionText = "Where was the SpongeBob Bar on {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["top-left"] = "top-left",
+                    ["top-middle"] = "top-middle",
+                    ["top-right"] = "top-right",
+                    ["middle-left"] = "middle-left",
+                    ["middle-middle"] = "middle-middle",
+                    ["middle-right"] = "middle-right",
+                    ["bottom-left"] = "bottom-left",
+                    ["bottom-middle"] = "bottom-middle",
+                    ["bottom-right"] = "bottom-right",
+                },
             },
             // Which treat was present on {0}?
             // Which treat was present on Mister Softee?
@@ -4947,12 +4968,90 @@ namespace Souvenir
             [Question.NotSimazeStart] = new TranslationInfo
             {
                 QuestionText = "What was the starting position in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["(red, red)"] = "(red, red)",
+                    ["(red, orange)"] = "(red, orange)",
+                    ["(red, yellow)"] = "(red, yellow)",
+                    ["(red, green)"] = "(red, green)",
+                    ["(red, blue)"] = "(red, blue)",
+                    ["(red, purple)"] = "(red, purple)",
+                    ["(orange, red)"] = "(orange, red)",
+                    ["(orange, orange)"] = "(orange, orange)",
+                    ["(orange, yellow)"] = "(orange, yellow)",
+                    ["(orange, green)"] = "(orange, green)",
+                    ["(orange, blue)"] = "(orange, blue)",
+                    ["(orange, purple)"] = "(orange, purple)",
+                    ["(yellow, red)"] = "(yellow, red)",
+                    ["(yellow, orange)"] = "(yellow, orange)",
+                    ["(yellow, yellow)"] = "(yellow, yellow)",
+                    ["(yellow, green)"] = "(yellow, green)",
+                    ["(yellow, blue)"] = "(yellow, blue)",
+                    ["(yellow, purple)"] = "(yellow, purple)",
+                    ["(green, red)"] = "(green, red)",
+                    ["(green, orange)"] = "(green, orange)",
+                    ["(green, yellow)"] = "(green, yellow)",
+                    ["(green, green)"] = "(green, green)",
+                    ["(green, blue)"] = "(green, blue)",
+                    ["(green, purple)"] = "(green, purple)",
+                    ["(blue, red)"] = "(blue, red)",
+                    ["(blue, orange)"] = "(blue, orange)",
+                    ["(blue, yellow)"] = "(blue, yellow)",
+                    ["(blue, green)"] = "(blue, green)",
+                    ["(blue, blue)"] = "(blue, blue)",
+                    ["(blue, purple)"] = "(blue, purple)",
+                    ["(purple, red)"] = "(purple, red)",
+                    ["(purple, orange)"] = "(purple, orange)",
+                    ["(purple, yellow)"] = "(purple, yellow)",
+                    ["(purple, green)"] = "(purple, green)",
+                    ["(purple, blue)"] = "(purple, blue)",
+                    ["(purple, purple)"] = "(purple, purple)",
+                },
             },
             // What was the goal position in {0}?
             // What was the goal position in Not Simaze?
             [Question.NotSimazeGoal] = new TranslationInfo
             {
                 QuestionText = "What was the goal position in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["(red, red)"] = "(red, red)",
+                    ["(red, orange)"] = "(red, orange)",
+                    ["(red, yellow)"] = "(red, yellow)",
+                    ["(red, green)"] = "(red, green)",
+                    ["(red, blue)"] = "(red, blue)",
+                    ["(red, purple)"] = "(red, purple)",
+                    ["(orange, red)"] = "(orange, red)",
+                    ["(orange, orange)"] = "(orange, orange)",
+                    ["(orange, yellow)"] = "(orange, yellow)",
+                    ["(orange, green)"] = "(orange, green)",
+                    ["(orange, blue)"] = "(orange, blue)",
+                    ["(orange, purple)"] = "(orange, purple)",
+                    ["(yellow, red)"] = "(yellow, red)",
+                    ["(yellow, orange)"] = "(yellow, orange)",
+                    ["(yellow, yellow)"] = "(yellow, yellow)",
+                    ["(yellow, green)"] = "(yellow, green)",
+                    ["(yellow, blue)"] = "(yellow, blue)",
+                    ["(yellow, purple)"] = "(yellow, purple)",
+                    ["(green, red)"] = "(green, red)",
+                    ["(green, orange)"] = "(green, orange)",
+                    ["(green, yellow)"] = "(green, yellow)",
+                    ["(green, green)"] = "(green, green)",
+                    ["(green, blue)"] = "(green, blue)",
+                    ["(green, purple)"] = "(green, purple)",
+                    ["(blue, red)"] = "(blue, red)",
+                    ["(blue, orange)"] = "(blue, orange)",
+                    ["(blue, yellow)"] = "(blue, yellow)",
+                    ["(blue, green)"] = "(blue, green)",
+                    ["(blue, blue)"] = "(blue, blue)",
+                    ["(blue, purple)"] = "(blue, purple)",
+                    ["(purple, red)"] = "(purple, red)",
+                    ["(purple, orange)"] = "(purple, orange)",
+                    ["(purple, yellow)"] = "(purple, yellow)",
+                    ["(purple, green)"] = "(purple, green)",
+                    ["(purple, blue)"] = "(purple, blue)",
+                    ["(purple, purple)"] = "(purple, purple)",
+                },
             },
 
             // Not Text Field

@@ -265,39 +265,6 @@ namespace Souvenir
             }
         }
 
-        /// <summary>An answer generator that copies answers from another question's list. The question used must not use another answer generator.</summary>
-        /// <example>
-        /// <code>
-        ///     [SouvenirQuestion("What was the goal position in {0}?", "Not Simaze", 4)]
-        ///     [AnswerGenerator.Inherit(NotSimazeStart)]
-        ///     NotSimazeGoal
-        /// </code>
-        /// </example>
-        public class Inherit : AnswerGeneratorAttribute
-        {
-            public Question Source { get; private set; }
-
-            public Inherit(Question source)
-            {
-                Source = source;
-            }
-
-            public override IEnumerable<string> GetAnswers(SouvenirModule module)
-            {
-                var answers = module.GetAnswers(Source);
-                if (answers != null)
-                {
-                    if (answers.Length >= 10)
-                    {
-                        while (true) yield return answers.PickRandom();
-                    }
-                    answers = (string[]) answers.Clone();
-                    answers.Shuffle();
-                    foreach (var answer in answers) yield return answer;
-                }
-            }
-        }
-
         /// <summary>An answer generator that generates answers consisting of randomly selected grid cells.</summary>
         public class Grid : SpriteAnswerGeneratorAttribute
         {
