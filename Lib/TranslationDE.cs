@@ -619,7 +619,7 @@ namespace Souvenir
             // What was the answer for the first barcode in Barcode Cipher?
             [Question.BarcodeCipherBarcodeAnswers] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} die Lösung für den {1}en Barcode?",
+                QuestionText = "What was the answer for the {1} barcode in {0}?",
             },
 
             // Bartending
@@ -627,7 +627,7 @@ namespace Souvenir
             // Which ingredient was in the first position on Bartending?
             [Question.BartendingIngredients] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} die Zutat an {1}er Stelle?",
+                QuestionText = "Which ingredient was in the {1} position on {0}?",
             },
 
             // Beans
@@ -635,16 +635,15 @@ namespace Souvenir
             // What was this bean in Beans?
             [Question.BeansColors] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} diese Bohne?",
-                ModuleName = "Bohnen",
+                QuestionText = "What was this bean in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Wobbly Orange"] = "Orange wackelnd",
-                    ["Wobbly Yellow"] = "Gelb wackelnd",
-                    ["Wobbly Green"] = "Grün wackelnd",
-                    ["Not Wobbly Orange"] = "Orange nicht wackelnd",
-                    ["Not Wobbly Yellow"] = "Gelb nicht wackelnd",
-                    ["Not Wobbly Green"] = "Grün nicht wackelnd",
+                    ["Wobbly Orange"] = "Wobbly Orange",
+                    ["Wobbly Yellow"] = "Wobbly Yellow",
+                    ["Wobbly Green"] = "Wobbly Green",
+                    ["Not Wobbly Orange"] = "Not Wobbly Orange",
+                    ["Not Wobbly Yellow"] = "Not Wobbly Yellow",
+                    ["Not Wobbly Green"] = "Not Wobbly Green",
                 },
             },
 
@@ -653,15 +652,13 @@ namespace Souvenir
             // What was sprout 1 in Bean Sprouts?
             [Question.BeanSproutsColors] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} der Spross {1}?",
-                ModuleName = "Bohnensprossen",
+                QuestionText = "What was sprout {1} in {0}?",
             },
             // What bean was on sprout {1} in {0}?
             // What bean was on sprout 1 in Bean Sprouts?
             [Question.BeanSproutsBeans] = new TranslationInfo
             {
-                QuestionText = "Welche Bohne war bei {0} auf Spross {1}?",
-                ModuleName = "Bohnensprossen",
+                QuestionText = "What bean was on sprout {1} in {0}?",
             },
 
             // Big Bean
@@ -669,8 +666,7 @@ namespace Souvenir
             // What was the bean in Big Bean?
             [Question.BigBeanColor] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} die Bohne?",
-                ModuleName = "Großbohne",
+                QuestionText = "What was the bean in {0}?",
             },
 
             // Big Circle
@@ -678,18 +674,17 @@ namespace Souvenir
             // What color was first in the solution to Big Circle?
             [Question.BigCircleColors] = new TranslationInfo
             {
-                QuestionText = "Welche Farbe war bei {0} die {1}e in der Lösung?",
-                ModuleName = "Großer Kreis",
+                QuestionText = "What color was {1} in the solution to {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Rot",
+                    ["Red"] = "Red",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Gelb",
-                    ["Green"] = "Grün",
-                    ["Blue"] = "Blau",
+                    ["Yellow"] = "Yellow",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
                     ["Magenta"] = "Magenta",
-                    ["White"] = "Weiß",
-                    ["Black"] = "Schwarz",
+                    ["White"] = "White",
+                    ["Black"] = "Black",
                 },
             },
 
@@ -698,7 +693,7 @@ namespace Souvenir
             // At which numeric value did you cut the correct wire in Binary LEDs?
             [Question.BinaryLEDsValue] = new TranslationInfo
             {
-                QuestionText = "Bei welchem Zahlenwert wurde bei {0} der korrekte Draht durchtrennt?",
+                QuestionText = "At which numeric value did you cut the correct wire in {0}?",
             },
 
             // Binary Shift
@@ -706,31 +701,31 @@ namespace Souvenir
             // What was the top-left initial number in Binary Shift?
             [Question.BinaryShiftInitialNumber] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} die {1} Anfangszahl?",
+                QuestionText = "What was the {1} initial number in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top-left"] = "obere linke",
-                    ["top-middle"] = "obere mittlere",
-                    ["top-right"] = "obere rechte",
-                    ["left-middle"] = "linke mittlere",
-                    ["center"] = "mittlere",
-                    ["right-middle"] = "rechte mittlere",
-                    ["bottom-left"] = "untere linke",
-                    ["bottom-middle"] = "untere mittlere",
-                    ["bottom-right"] = "untere rechte",
+                    ["top-left"] = "top-left",
+                    ["top-middle"] = "top-middle",
+                    ["top-right"] = "top-right",
+                    ["left-middle"] = "left-middle",
+                    ["center"] = "center",
+                    ["right-middle"] = "right-middle",
+                    ["bottom-left"] = "bottom-left",
+                    ["bottom-middle"] = "bottom-middle",
+                    ["bottom-right"] = "bottom-right",
                 },
             },
             // What number was selected at stage {1} in {0}?
             // What number was selected at stage 0 in Binary Shift?
             [Question.BinaryShiftSelectedNumberPossition] = new TranslationInfo
             {
-                QuestionText = "Welche Zahl wurde bei {0} in Schritt {1} ausgewählt?",
+                QuestionText = "What number was selected at stage {1} in {0}?",
             },
             // What number was not selected at stage {1} in {0}?
             // What number was not selected at stage 0 in Binary Shift?
             [Question.BinaryShiftNotSelectedNumberPossition] = new TranslationInfo
             {
-                QuestionText = "Welche Zahl wurde bei {0} in Schritt {1} nicht ausgewählt?",
+                QuestionText = "What number was not selected at stage {1} in {0}?",
             },
 
             // Binary
@@ -738,7 +733,7 @@ namespace Souvenir
             // What word was displayed in Binary?
             [Question.BinaryWord] = new TranslationInfo
             {
-                QuestionText = "Welches Wort wurde bei {0} angezeigt?",
+                QuestionText = "What word was displayed in {0}?",
             },
 
             // Bitmaps
@@ -746,15 +741,15 @@ namespace Souvenir
             // How many pixels were white in the top left quadrant in Bitmaps?
             [Question.Bitmaps] = new TranslationInfo
             {
-                QuestionText = "Wie viele Pixels waren bei {0} im {2} Quadranten {1}?",
+                QuestionText = "How many pixels were {1} in the {2} quadrant in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["white"] = "weiß",
-                    ["top left"] = "oberen linken",
-                    ["top right"] = "oberen rechten",
-                    ["bottom left"] = "unteren linken",
-                    ["bottom right"] = "unteren rechten",
-                    ["black"] = "schwarz",
+                    ["white"] = "white",
+                    ["top left"] = "top left",
+                    ["top right"] = "top right",
+                    ["bottom left"] = "bottom left",
+                    ["bottom right"] = "bottom right",
+                    ["black"] = "black",
                 },
             },
 
@@ -763,13 +758,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Black Cipher?
             [Question.BlackCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
-                },
+                QuestionText = "What was the answer in {0}?",
             },
 
             // Blind Maze
@@ -880,13 +869,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Blue Cipher?
             [Question.BlueCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
-                },
+                QuestionText = "What was the answer in {0}?",
             },
 
             // Bob Barks
@@ -1019,13 +1002,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Brown Cipher?
             [Question.BrownCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
-                },
+                QuestionText = "What was the answer in {0}?",
             },
 
             // Brush Strokes
@@ -1607,12 +1584,12 @@ namespace Souvenir
             // What was on the top screen on page 1 in Coral Cipher?
             [Question.CoralCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "oberen",
-                    ["middle"] = "mittleren",
-                    ["bottom"] = "unteren",
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
                 },
             },
 
@@ -1656,12 +1633,12 @@ namespace Souvenir
             // What was on the top screen on page 1 in Cornflower Cipher?
             [Question.CornflowerCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "oberen",
-                    ["middle"] = "mittleren",
-                    ["bottom"] = "unteren",
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
                 },
             },
 
@@ -1699,12 +1676,12 @@ namespace Souvenir
             // What was on the top screen on page 1 in Cream Cipher?
             [Question.CreamCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "oberen",
-                    ["middle"] = "mittleren",
-                    ["bottom"] = "unteren",
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
                 },
             },
 
@@ -1721,12 +1698,12 @@ namespace Souvenir
             // What was on the top screen on page 1 in Crimson Cipher?
             [Question.CrimsonCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "oberen",
-                    ["middle"] = "mittleren",
-                    ["bottom"] = "unteren",
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
                 },
             },
 
@@ -2481,12 +2458,6 @@ namespace Souvenir
             [Question.FizzBuzzDisplayedNumbers] = new TranslationInfo
             {
                 QuestionText = "What was the {1} digit on the {2} display of {0}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
-                },
             },
 
             // Flags
@@ -2521,11 +2492,6 @@ namespace Souvenir
             [Question.FlashingArrowsReferredArrow] = new TranslationInfo
             {
                 QuestionText = "What color flashed {1} black on the relevant arrow in {0}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["before"] = "before",
-                    ["after"] = "after",
-                },
             },
 
             // Flashing Lights
@@ -2567,13 +2533,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Forest Cipher?
             [Question.ForestCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
-                },
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
             },
 
             // Forget Any Color
@@ -2604,18 +2564,6 @@ namespace Souvenir
             [Question.ForgetMeInitialState] = new TranslationInfo
             {
                 QuestionText = "What number was in the {1} position of the initial puzzle in {0}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["top-left"] = "top-left",
-                    ["top-middle"] = "top-middle",
-                    ["top-right"] = "top-right",
-                    ["middle-left"] = "middle-left",
-                    ["center"] = "center",
-                    ["middle-right"] = "middle-right",
-                    ["bottom-left"] = "bottom-left",
-                    ["bottom-middle"] = "bottom-middle",
-                    ["bottom-right"] = "bottom-right",
-                },
             },
 
             // Forget Me Not
@@ -2842,11 +2790,6 @@ namespace Souvenir
             [Question.GrayButtonCoordinates] = new TranslationInfo
             {
                 QuestionText = "What was the {1} coordinate on the display in {0}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["horizontal"] = "horizontal",
-                    ["vertical"] = "vertical",
-                },
             },
 
             // Gray Cipher
@@ -2854,13 +2797,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Gray Cipher?
             [Question.GrayCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
-                },
+                QuestionText = "What was the answer in {0}?",
             },
 
             // The Great Void
@@ -2908,13 +2845,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Green Cipher?
             [Question.GreenCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
-                },
+                QuestionText = "What was the answer in {0}?",
             },
 
             // Gridlock
@@ -3102,11 +3033,6 @@ namespace Souvenir
             [Question.HingesInitialHinges] = new TranslationInfo
             {
                 QuestionText = "Which of these hinges was initially {1} {0}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["present on"] = "present on",
-                    ["absent from"] = "absent from",
-                },
             },
 
             // Hogwarts
@@ -3115,26 +3041,12 @@ namespace Souvenir
             [Question.HogwartsHouse] = new TranslationInfo
             {
                 QuestionText = "Which House was {1} solved for in {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Gryffindor"] = "Gryffindor",
-                    ["Hufflepuff"] = "Hufflepuff",
-                    ["Slytherin"] = "Slytherin",
-                    ["Ravenclaw"] = "Ravenclaw",
-                },
             },
             // Which module was solved for {1} in {0}?
             // Which module was solved for Gryffindor in Hogwarts?
             [Question.HogwartsModule] = new TranslationInfo
             {
                 QuestionText = "Which module was solved for {1} in {0}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["Gryffindor"] = "Gryffindor",
-                    ["Hufflepuff"] = "Hufflepuff",
-                    ["Slytherin"] = "Slytherin",
-                    ["Ravenclaw"] = "Ravenclaw",
-                },
             },
 
             // Hold Ups
@@ -3199,11 +3111,6 @@ namespace Souvenir
             [Question.HumanResourcesHiredFired] = new TranslationInfo
             {
                 QuestionText = "Who was {1} in {0}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["fired"] = "fired",
-                    ["hired"] = "hired",
-                },
             },
 
             // Hunting
@@ -3327,13 +3234,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Indigo Cipher?
             [Question.IndigoCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
-                },
+                QuestionText = "What was the answer in {0}?",
             },
 
             // Infinite Loop
@@ -4012,13 +3913,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Magenta Cipher?
             [Question.MagentaCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
-                },
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
             },
 
             // M&Ms
@@ -4086,13 +3981,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Maroon Cipher?
             [Question.MaroonCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
-                },
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
             },
 
             // Mashematics
@@ -6206,13 +6095,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Orange Cipher?
             [Question.OrangeCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
-                },
+                QuestionText = "What was the answer in {0}?",
             },
 
             // Ordered Keys
@@ -6898,13 +6781,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Red Cipher?
             [Question.RedCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
-                },
+                QuestionText = "What was the answer in {0}?",
             },
 
             // Red Herring
@@ -8541,13 +8418,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Ultimate Cipher?
             [Question.UltimateCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
-                },
+                QuestionText = "What was the answer in {0}?",
             },
 
             // Ultimate Cycle
@@ -8745,7 +8616,7 @@ namespace Souvenir
             // What was the word in Vcrcs?
             [Question.VcrcsWord] = new TranslationInfo
             {
-                QuestionText = "Was war das Wort bei {0}?",
+                QuestionText = "What was the word in {0}?",
             },
 
             // Vectors
@@ -8753,23 +8624,22 @@ namespace Souvenir
             // What was the color of the first vector in Vectors?
             [Question.VectorsColors] = new TranslationInfo
             {
-                QuestionText = "Welche Farbe hatte bei {0} der {1} Vektor?",
-                ModuleName = "Vektoren",
+                QuestionText = "What was the color of the {1} vector in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["first"] = "erste",
-                    ["second"] = "zweite",
-                    ["third"] = "dritte",
-                    ["only"] = "einzige",
+                    ["first"] = "first",
+                    ["second"] = "second",
+                    ["third"] = "third",
+                    ["only"] = "only",
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Rot",
+                    ["Red"] = "Red",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Gelb",
-                    ["Green"] = "Grün",
-                    ["Blue"] = "Blau",
-                    ["Purple"] = "Violett",
+                    ["Yellow"] = "Yellow",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Purple"] = "Purple",
                 },
             },
 
@@ -8797,13 +8667,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Violet Cipher?
             [Question.VioletCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
-                },
+                QuestionText = "What was the answer in {0}?",
             },
 
             // Visual Impairment
@@ -8977,13 +8841,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in White Cipher?
             [Question.WhiteCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
-                },
+                QuestionText = "What was the answer in {0}?",
             },
 
             // WhoOF
@@ -9291,13 +9149,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Yellow Cipher?
             [Question.YellowCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
-                },
+                QuestionText = "What was the answer in {0}?",
             },
 
             // Zero, Zero
