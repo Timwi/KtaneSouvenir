@@ -83,8 +83,8 @@ public partial class SouvenirModule
         var allWordsObj = Activator.CreateInstance(allWordsType);
         var allWords = GetArrayField<List<string>>(allWordsObj, "_allWords").Get(expectedLength: 6);
 
-        addQuestions(module, makeQuestion(Question.EnaCipherKeywordAnswer, _EnaCipher, formatArgs: new[] { "1st" }, correctAnswers: new[] { keywords[0] }, preferredWrongAnswers: allWords[keywords[0].Length - 3].ToArray()),
-            makeQuestion(Question.EnaCipherKeywordAnswer, _EnaCipher, formatArgs: new[] { "2nd" }, correctAnswers: new[] { keywords[1] }, preferredWrongAnswers: allWords[keywords[1].Length - 3].ToArray()),
+        addQuestions(module, makeQuestion(Question.EnaCipherKeywordAnswer, _EnaCipher, formatArgs: new[] { ordinal(1) }, correctAnswers: new[] { keywords[0] }, preferredWrongAnswers: allWords[keywords[0].Length - 3].ToArray()),
+            makeQuestion(Question.EnaCipherKeywordAnswer, _EnaCipher, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { keywords[1] }, preferredWrongAnswers: allWords[keywords[1].Length - 3].ToArray()),
             makeQuestion(Question.EnaCipherExtAnswer, _EnaCipher, correctAnswers: new[] { extNumbers }),
             makeQuestion(Question.EnaCipherEncryptedAnswer, _EnaCipher, correctAnswers: new[] { encryptedWord }));
     }
