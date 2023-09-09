@@ -981,6 +981,22 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 60fa32a12878fcd4d8a307481621f48a, type: 3}
   - {fileID: 21300000, guid: 1ce4ff982b3b0dd458c81fc91599a69f, type: 3}
   - {fileID: 21300000, guid: bcc25b64dc7864a429b15d19f43c4235, type: 3}
+  SonicTheHedgehogSprites:
+  - {fileID: 21300000, guid: a63d2f2c66885c3469341b6d023c4fdb, type: 3}
+  - {fileID: 21300000, guid: 0f9f998e32e17854abb93797623c5952, type: 3}
+  - {fileID: 21300000, guid: 8f0a9cc04e1017f438a7e779ca4a8fe3, type: 3}
+  - {fileID: 21300000, guid: 298484005fdd107478f69d68e843f32a, type: 3}
+  - {fileID: 21300000, guid: 473dad2e753e6c04895b051d29fc21ec, type: 3}
+  - {fileID: 21300000, guid: 7c765444255338f4586da32f5325fed1, type: 3}
+  - {fileID: 21300000, guid: 581b8a4d907f93c4fbc0c584a349b78e, type: 3}
+  - {fileID: 21300000, guid: 2bc973f8621b1c54fad11109310def5e, type: 3}
+  - {fileID: 21300000, guid: c78d9f9ccb27a6c44875f421aaa22bcd, type: 3}
+  - {fileID: 21300000, guid: 46df3bb5dc3274d448c302f7bd01fb5f, type: 3}
+  - {fileID: 21300000, guid: 3aa47417e68da6d46a7d65778fd98831, type: 3}
+  - {fileID: 21300000, guid: fa10638ae1981b547b6d3c12cad886ea, type: 3}
+  - {fileID: 21300000, guid: 6ffa6ec356189bf4fa5771df6befc019, type: 3}
+  - {fileID: 21300000, guid: bb81ae0e69d1f6f41b9f1a02f9d2bd17, type: 3}
+  - {fileID: 21300000, guid: 79fa67832aa99994c88d8d947f495d64, type: 3}
   SymbolicCoordinatesSprites:
   - {fileID: 21300000, guid: c46883603a2000a47b888e91c5e1aab8, type: 3}
   - {fileID: 21300000, guid: c34f67901585bec44b5344a32c7e21e9, type: 3}
