@@ -50,6 +50,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] SimonSpeaksSprites;
     public Sprite[] SonicKnucklesBadniksSprites;
     public Sprite[] SonicKnucklesMonitorsSprites;
+    public Sprite[] SonicTheHedgehogSprites;
     public Sprite[] SymbolicCoordinatesSprites;
     public Sprite[] SymbolicTashaSprites;
     public Sprite[] TasqueManagingSprites;

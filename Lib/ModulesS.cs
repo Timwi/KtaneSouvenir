@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text.RegularExpressions;
 using Assets.Scripts.Platform.Common;
 using BombGame;
@@ -1198,31 +1199,76 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_SonicTheHedgehog);
 
-        var soundNameMapping =
-            @"boss=Boss Theme;breathe=Breathe;continueSFX=Continue;drown=Drown;emerald=Emerald;extraLife=Extra Life;finalZone=Final Zone;invincibleSFX=Invincibility;jump=Jump;lamppost=Lamppost;marbleZone=Marble Zone;bumper=Bumper;skid=Skid;spikes=Spikes;spin=Spin;spring=Spring"
-                .Split(';').Select(str => str.Split('=')).ToDictionary(ar => ar[0], ar => ar[1]);
-        var pictureNameMapping =
-            @"annoyedSonic=Annoyed Sonic=2;ballhog=Ballhog=1;blueLamppost=Blue Lamppost=3;burrobot=Burrobot=1;buzzBomber=Buzz Bomber=1;crabMeat=Crab Meat=1;deadSonic=Dead Sonic=2;drownedSonic=Drowned Sonic=2;fallingSonic=Falling Sonic=2;motoBug=Moto Bug=1;redLamppost=Red Lamppost=3;redSpring=Red Spring=3;standingSonic=Standing Sonic=2;switch=Switch=3;yellowSpring=Yellow Spring=3"
-                .Split(';').Select(str => str.Split('=')).ToDictionary(ar => ar[0], ar => new { Name = ar[1], Stage = int.Parse(ar[2]) - 1 });
+        int spriteCount = SonicTheHedgehogSprites.Length;
 
-        var pics = fldsPics.Select(f => f.Get(p => p.name == null || !pictureNameMapping.ContainsKey(p.name) ? "unknown pic" : null)).ToArray();
+        if (spriteCount != 15)
+        {
+           throw new AbandonModuleException("\"Sonic the hedgehog\" should have 15 sprites. Counted " + spriteCount);
+        }
+
+        var soundNameMapping = new Dictionary<string, string>()
+        {
+            ["boss"] = "Boss Theme",
+            ["breathe"] = "Breathe",
+            ["continueSFX"] = "Continue",
+            ["drown"] = "Drown",
+            ["emerald"] = "Emerald",
+            ["extraLife"] = "Extra Life",
+            ["finalZone"] = "Final Zone",
+            ["invincibleSFX"] = "Invincibility",
+            ["jump"] = "Jump",
+            ["lamppost"] = "Lamppost",
+            ["marbleZone"] = "Marble Zone",
+            ["skid"] = "Skid",
+            ["spikes"] = "Spikes",
+            ["spin"] = "Spin",
+            ["spring"] = "Spring",
+            ["bumper"] = "Bumper",
+        };
+
+        var pictureNames = new string[] { "annoyedSonic", "ballhog", "blueLamppost", "burrobot", "buzzBomber", "crabMeat", "deadSonic", "drownedSonic", "fallingSonic", "motoBug", "redLamppost", "redSpring", "standingSonic", "switch", "yellowSpring" };
+        var pics = fldsPics.Select(f => f.Get(p => p.name == null || !pictureNames.Contains(p.name) ? "unknown pic" : null)).ToArray();
         var sounds = fldsButtonSounds.Select(f => f.Get(s => !soundNameMapping.ContainsKey(s) ? "unknown sound" : null)).ToArray();
 
-        addQuestions(module,
-            Enumerable.Range(0, 3).Select(i =>
-                makeQuestion(
-                    Question.SonicTheHedgehogPictures,
-                    _SonicTheHedgehog,
-                    formatArgs: new[] { ordinal(i + 1) },
-                    correctAnswers: new[] { pictureNameMapping[pics[i].name].Name },
-                    preferredWrongAnswers: pictureNameMapping.Values.Where(inf => inf.Stage == i).Select(inf => inf.Name).ToArray()))
-            .Concat(new[] { "Running Boots", "Invincibility", "Extra Life", "Rings" }.Select((screenName, i) =>
-                makeQuestion(
-                    Question.SonicTheHedgehogSounds,
-                    _SonicTheHedgehog,
-                    formatArgs: new[] { screenName },
-                    correctAnswers: new[] { soundNameMapping[sounds[i]] },
-                    preferredWrongAnswers: sounds.Select(s => soundNameMapping[s]).ToArray()))));
+        string[] screenNames = new[] { "Running Boots", "Invincibility", "Extra Life", "Rings" };
+        Sprite[][] spriteArr = new Sprite[][] 
+        { 
+            SonicTheHedgehogSprites.Where(sprite => new[] { "ballhog", "burrobot", "buzzBomber", "crabMeat", "motoBug" }.Contains(sprite.name)).ToArray(),
+            SonicTheHedgehogSprites.Where(sprite => new[] { "annoyedSonic", "deadSonic", "drownedSonic", "fallingSonic", "standingSonic" }.Contains(sprite.name)).ToArray(),
+            SonicTheHedgehogSprites.Where(sprite => new[] { "blueLamppost", "redLamppost", "redSpring", "switch", "yellowSpring" }.Contains(sprite.name)).ToArray()
+        };
+
+        List<QandA> qs = new List<QandA>();
+
+        for (int i = 0; i < 4; i++) 
+        {
+            if (i < 3)
+            {
+                Debug.Log($"Trying to add {pics[i].name} as picture question");
+                qs.Add(makeQuestion(
+                question: Question.SonicTheHedgehogPictures,
+                formatArgs: new[] { ordinal(i + 1) },
+                moduleKey: _SonicTheHedgehog,
+                allAnswers: spriteArr[i],
+                correctAnswers: new[] { spriteArr[i].First(sprite => sprite.name == pics[i].name) }
+                ));
+                Debug.Log($"Successfully added picture question");
+            }
+
+            Debug.Log($"Trying to add {screenNames[i]}'s sound ({soundNameMapping[sounds[i]]}) question");
+
+
+            qs.Add(makeQuestion(
+                Question.SonicTheHedgehogSounds,
+                _SonicTheHedgehog,
+                formatArgs: new[] { screenNames[i] },
+                correctAnswers: new[] { soundNameMapping[sounds[i]] },
+                preferredWrongAnswers: sounds.Select(s => soundNameMapping[s]).ToArray()));
+
+            Debug.Log($"Successfully added picture question");
+        }
+
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessSorting(KMBombModule module)
