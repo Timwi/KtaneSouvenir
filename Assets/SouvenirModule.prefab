@@ -382,6 +382,20 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c7480162c1ac36842a8ad4b2e683b707, type: 3}
   - {fileID: 21300000, guid: 183162492e78cf846a9e61c890c4fb0f, type: 3}
   - {fileID: 21300000, guid: f41f90c87d2c78f4fb64476e9b7110c9, type: 3}
+  BookOfMarioSprites:
+  - {fileID: 21300000, guid: 28f8a87514567424f8dbf18e90b5f18f, type: 3}
+  - {fileID: 21300000, guid: 5e2223beec1fb3040b9f3e46e850fcc2, type: 3}
+  - {fileID: 21300000, guid: 4a598367877766b42906cd8b437c1945, type: 3}
+  - {fileID: 21300000, guid: 361b32801103e164a8b0865e0688309d, type: 3}
+  - {fileID: 21300000, guid: 87237f57b5532fe4696ecbd43a5e3ee3, type: 3}
+  - {fileID: 21300000, guid: 6d01359f6f8cfd644a87209fee0edd82, type: 3}
+  - {fileID: 21300000, guid: 68519f52af48d5f48b0980508c7ec3be, type: 3}
+  - {fileID: 21300000, guid: 6611eb66ac242894888e768e4e629202, type: 3}
+  - {fileID: 21300000, guid: d242e6db6ea543f4daaf4d1f9f93bd09, type: 3}
+  - {fileID: 21300000, guid: 819b9e48e41f50b4380c9e13fca85c09, type: 3}
+  - {fileID: 21300000, guid: 61ebbd683db7fe04a860069275f5e4c7, type: 3}
+  - {fileID: 21300000, guid: 01ac6468c08719e408acacca8a398d79, type: 3}
+  - {fileID: 21300000, guid: c6d7caf7f729b3641a2306ebea4cd610, type: 3}
   CharacterSlotsSprites:
   - {fileID: 21300000, guid: e22b21ce723d9c446a855c39e04a754e, type: 3}
   - {fileID: 21300000, guid: b5693a854a98def40b0a8cad75228c30, type: 3}

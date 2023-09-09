@@ -316,6 +316,14 @@
         [SouvenirQuestion("What was the license number in {0}?", "Bomb Diffusal", TwoColumns4Answers, ExampleAnswers = new[] { "A4BIK5", "HI391D", "ZX98O1", "12K9PL" })]
         BombDiffusalLicenseNumber,
 
+        [SouvenirQuestion("Who said the {1} quote in {0}?", "Book of Mario", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "BookOfMarioSprites",
+            ExampleExtraFormatArguments = new[] {"first", "second", "third"}, ExampleExtraFormatArgumentGroupSize = 1)]
+        BookOfMarioPictures,
+        [SouvenirQuestion("What did {1} say in stage {2} of {0}?", "Book of Mario", OneColumn4Answers, ExampleAnswers = new[] { "Dark Koopatrol. These people just blow hard...", "I came, Mario! You finna", "Absolutely, I came! Got it!", "Well, I’m so desperate, so you better save me…" }, 
+            ExampleExtraFormatArguments = new[] { "Goombell", "1", "Prince Peach", "2", "God Browser", "3", "Mr.Krump", "1", "Mario", "2", "Flavio", "3", "Quiz Thwomb", "1", "Carbon", "2", "Belda", "3", "Make", "1", "Yoshi Kid", "2", "Bob", "3", "Prosecutor Grubba", "1", }, 
+            ExampleExtraFormatArgumentGroupSize = 2)]
+        BookOfMarioQuotes,
+
         [SouvenirQuestion("Which operator did you submit in the {1} stage of {0}?", "Boolean Wires", TwoColumns4Answers, "OR", "XOR", "AND", "NAND", "NOR", ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         BooleanWiresEnteredOperators,
 

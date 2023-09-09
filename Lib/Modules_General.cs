@@ -64,6 +64,7 @@ public partial class SouvenirModule
     const string _BobBarks = "ksmBobBarks";
     const string _Boggle = "boggle";
     const string _BombDiffusal = "bombDiffusal";
+    const string _BookOfMario = "BookOfMarioModule";
     const string _BooleanWires = "booleanWires";
     const string _BoomtarTheGreat = "boomtarTheGreat";
     const string _Boxing = "boxing";
@@ -598,6 +599,7 @@ public partial class SouvenirModule
             [_BobBarks] = (ProcessBobBarks, "Bob Barks", "Kaito Sinclaire"),
             [_Boggle] = (ProcessBoggle, "Boggle", "luisdiogo98"),
             [_BombDiffusal] = (ProcessBombDiffusal, "Bomb Diffusal", "Kuro"),
+            [_BookOfMario] = (ProccessBookOfMario, "Book of Mario", "Hawker"),
             [_BooleanWires] = (ProcessBooleanWires, "Boolean Wires", "Kuro"),
             [_BoomtarTheGreat] = (ProcessBoomtarTheGreat, "Boomtar the Great", "Anonymous"),
             [_Boxing] = (ProcessBoxing, "Boxing", "Timwi"),
