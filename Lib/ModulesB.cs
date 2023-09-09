@@ -672,6 +672,109 @@ public partial class SouvenirModule
         addQuestion(module, Question.BombDiffusalLicenseNumber, correctAnswers: new[] { correctAnswer }, preferredWrongAnswers: answers.ToArray());
     }
 
+    private IEnumerable<object> ProccessBookOfMario(KMBombModule module)
+    {
+        var comp = GetComponent(module, "BookOfMario");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldStage = GetIntField(comp, "stage");
+        var currentStage = 0;
+        var fldNameIndex = GetIntField(comp, "x");
+        var fldQuoteIndex = GetIntField(comp, "y");
+        var quotes = GetStaticField<string[][]>(comp.GetType(), "quotes").Get();
+
+        var answer = new List<KeyValuePair<string, string>>();
+        var dictionary = new Dictionary<string, string[]>();
+
+        bool SamePerson(KeyValuePair<string, string> kv1, KeyValuePair<string, string> kv2)
+        {
+            return kv1.Key == kv2.Key && kv1.Value == kv2.Value;
+        }
+
+        KeyValuePair<string, string> GetPersonKeyValue(int characterIndex, int characterQuote)
+        {
+            return new KeyValuePair<string, string>(UpdateString(quotes[characterIndex][0], false), UpdateString(quotes[characterIndex][fldQuoteIndex.Get()], true));
+        }
+
+        while (!fldSolved.Get())
+        {
+            int characterIndex = fldNameIndex.Get();
+            int quoteIndex = fldQuoteIndex.Get();
+            var newStage = fldStage.Get();
+            var person = GetPersonKeyValue(characterIndex, quoteIndex);
+
+            if (currentStage != newStage)
+            {
+                answer.Add(person);
+                currentStage = newStage;
+            }
+
+            else
+            {
+                if (!SamePerson(answer.Last(), person))
+                {
+                    answer[answer.Count - 1] = person;
+                }
+            }
+            yield return null;
+        }
+        _modulesSolved.IncSafe(_BookOfMario);
+
+        int sprites = BookOfMarioSprites.Length;
+        if (sprites != 13)
+        {
+            throw new AbandonModuleException("Book of Mario should have 13 sprites. Counted " + sprites);
+        }
+
+
+        string UpdateString(string s, bool updateQuote)
+        {
+            const int maxCount = 27;
+            string str = s.Replace("\n", " ").Replace("  ", " ");
+            str = str.Length > maxCount ? str.Substring(0, maxCount) + "..." : str;
+            return str;
+        }
+
+        string[] GetUpdatedQuotes(string name)
+        {
+            foreach (string[] q in quotes)
+            {
+                if (q[0].Replace("\n", "") == name)
+                {
+                    return Enumerable.Range(1, q.Length - 1).Select(i => UpdateString(q[i], true)).ToArray();
+                }
+            }
+
+            return null;
+        }
+
+        var unaviableCharacters = new[] { "Bob", "God Browser", "Flavio", "Make", "Quiz Thwomb", "Yoshi Kid" };
+        var qs = new List<QandA>();
+
+        for (int i = 0; i < answer.Count; i++)
+        {
+            string name = answer[i].Key;
+            int stage = i + 1;
+            qs.Add(makeQuestion(
+                question: Question.BookOfMarioPictures,
+                moduleKey: _BookOfMario,
+                formatArgs: new[] { ordinal(stage) },
+                correctAnswers: new[] { BookOfMarioSprites.First(sprite => sprite.name == name) },
+                preferredWrongAnswers: BookOfMarioSprites));
+
+            if (!unaviableCharacters.Contains(name))
+            {
+                qs.Add(makeQuestion(
+                    question: Question.BookOfMarioQuotes,
+                    moduleKey: _BookOfMario,
+                    formatArgs: new[] { name, "" + stage },
+                    correctAnswers: new[] { answer[i].Value },
+                    preferredWrongAnswers: GetUpdatedQuotes(answer[i].Key)));
+            }
+        }
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessBooleanWires(KMBombModule module)
     {
         var comp = GetComponent(module, "BooleanWiresScript");

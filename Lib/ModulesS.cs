@@ -1292,7 +1292,6 @@ public partial class SouvenirModule
         {
             if (i < 3)
             {
-                Debug.Log($"Trying to add {pics[i].name} as picture question");
                 qs.Add(makeQuestion(
                 question: Question.SonicTheHedgehogPictures,
                 formatArgs: new[] { ordinal(i + 1) },
@@ -1300,11 +1299,7 @@ public partial class SouvenirModule
                 allAnswers: spriteArr[i],
                 correctAnswers: new[] { spriteArr[i].First(sprite => sprite.name == pics[i].name) }
                 ));
-                Debug.Log($"Successfully added picture question");
             }
-
-            Debug.Log($"Trying to add {screenNames[i]}'s sound ({soundNameMapping[sounds[i]]}) question");
-
 
             qs.Add(makeQuestion(
                 Question.SonicTheHedgehogSounds,
@@ -1312,8 +1307,6 @@ public partial class SouvenirModule
                 formatArgs: new[] { screenNames[i] },
                 correctAnswers: new[] { soundNameMapping[sounds[i]] },
                 preferredWrongAnswers: sounds.Select(s => soundNameMapping[s]).ToArray()));
-
-            Debug.Log($"Successfully added picture question");
         }
 
         addQuestions(module, qs);
