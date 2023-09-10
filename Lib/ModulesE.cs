@@ -6,6 +6,33 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
+    private IEnumerable<object> ProcessEarthbound(KMBombModule module)
+    {
+        var comp = GetComponent(module, "EarthboundScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_Earthbound);
+
+
+        if (EarthboundSprites.Length != 30)
+            throw new AbandonModuleException($"Earthbound should have 30 sprites. Counted {EarthboundSprites.Length}");
+
+        int enemyIndex = GetIntField(comp, "enemyIndex").Get(val => val < 0 || val > 29 ? $"expected range: [0, 30) Recieved {val}" : null);
+        var enemyNames = GetArrayField<Sprite>(comp, "enemyOptions", isPublic: true).Get(expectedLength: 30).Select(sprite => sprite.name).ToArray();
+        var backgroundNames = GetArrayField<Material>(comp, "backgroundOptions", isPublic: true).Get(expectedLength: 30).Select(material => material.name).ToArray();
+        var backgroundIndex = GetIntField(comp, "usedBackgroundInt").Get(val => val < 0 || val > 29 ? $"expected range: [0, 30) Recieved {val}" : null);
+        
+        Debug.Log("Enemy names: " + string.Join(", ", enemyNames));
+        Debug.Log("Sprite names: " + string.Join (", ", EarthboundSprites.Select(sprite => sprite.name).ToArray()));
+
+        addQuestions(module,
+            makeQuestion(Question.EarthboundMonster, _Earthbound, correctAnswers: new[] { EarthboundSprites.First(sprite => sprite.name == enemyNames[enemyIndex]) }, preferredWrongAnswers: EarthboundSprites),
+            makeQuestion(Question.EarthboundBackground, _Earthbound, correctAnswers: new[] { backgroundNames[backgroundIndex] }));
+        yield return null;
+    }
     private IEnumerable<object> ProcessEeBgnillepS(KMBombModule module)
     {
         var comp = GetComponent(module, "tpircSeeBgnillepS");

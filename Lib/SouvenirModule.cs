@@ -27,6 +27,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] ArithmelogicSprites;
     public Sprite[] AzureButtonSprites;
     public Sprite[] CharacterSlotsSprites;
+    public Sprite[] EarthboundSprites;
     public Sprite[] EncryptedEquationsSprites;
     public Sprite[] ExampleSprites;
     public Sprite[] FlagsSprites;

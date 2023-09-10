@@ -149,6 +149,7 @@ public partial class SouvenirModule
     const string _Dreamcipher = "ksmDreamcipher";
     const string _Duck = "theDuck";
     const string _DumbWaiters = "dumbWaiters";
+    const string _Earthbound = "EarthboundModule";
     const string _eeBgnillepS = "eeBgnilleps";
     const string _Eight = "eight";
     const string _ElderFuthark = "elderFuthark";
@@ -694,6 +695,7 @@ public partial class SouvenirModule
             [_Dreamcipher] = (ProcessDreamcipher, "Dreamcipher", "BigCrunch22"),
             [_Duck] = (ProcessDuck, "Duck, The", "Kuro"),
             [_DumbWaiters] = (ProcessDumbWaiters, "Dumb Waiters", "BigCrunch22"),
+            [_Earthbound] = (ProcessEarthbound, "Earthbound", "Hawker"),
             [_eeBgnillepS] = (ProcessEeBgnillepS, "eeB gnillepS", "BigCrunch22"),
             [_Eight] = (ProcessEight, "Eight", "NickLatkovich"),
             [_ElderFuthark] = (ProcessElderFuthark, "Elder Futhark", "Goofy"),
