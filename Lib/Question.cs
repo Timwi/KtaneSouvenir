@@ -910,6 +910,9 @@
         [AnswerGenerator.Integers(0, 12)]
         FlashingLightsLEDFrequency,
 
+        [SouvenirQuestion("Which's module flavor text was present in {0}?", "Flavor Text", OneColumn4Answers, ExampleAnswers = new[] { "Totally Accurate Minecraft Simulator", "Rock-Paper-Scissors-Lizard-Spock", "The Octadecayotton", "Power Button" } )]
+        FlavorTextModule,
+
         [SouvenirQuestion("Which fly was present, but not in the solution in {0}?", "Flyswatting", ThreeColumns6Answers, null)]
         [AnswerGenerator.Strings('A', 'Z')]
         FlyswattingUnpressed,
