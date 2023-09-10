@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Policy;
 using System.Text.RegularExpressions;
 using Souvenir;
 using UnityEngine;
@@ -1247,12 +1246,8 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_SonicTheHedgehog);
 
-        int spriteCount = SonicTheHedgehogSprites.Length;
-
-        if (spriteCount != 15)
-        {
-           throw new AbandonModuleException("\"Sonic the hedgehog\" should have 15 sprites. Counted " + spriteCount);
-        }
+        if (SonicTheHedgehogSprites.Length != 15)
+            throw new AbandonModuleException($@"Sonic the Hedgehog should have 15 sprites. Counted {SonicTheHedgehogSprites.Length}");
 
         var soundNameMapping = new Dictionary<string, string>()
         {
@@ -1278,36 +1273,31 @@ public partial class SouvenirModule
         var pics = fldsPics.Select(f => f.Get(p => p.name == null || !pictureNames.Contains(p.name) ? "unknown pic" : null)).ToArray();
         var sounds = fldsButtonSounds.Select(f => f.Get(s => !soundNameMapping.ContainsKey(s) ? "unknown sound" : null)).ToArray();
 
-        string[] screenNames = new[] { "Running Boots", "Invincibility", "Extra Life", "Rings" };
-        Sprite[][] spriteArr = new Sprite[][] 
-        { 
+        var screenNames = new[] { "Running Boots", "Invincibility", "Extra Life", "Rings" };
+        var spriteArr = new Sprite[][]
+        {
             SonicTheHedgehogSprites.Where(sprite => new[] { "ballhog", "burrobot", "buzzBomber", "crabMeat", "motoBug" }.Contains(sprite.name)).ToArray(),
             SonicTheHedgehogSprites.Where(sprite => new[] { "annoyedSonic", "deadSonic", "drownedSonic", "fallingSonic", "standingSonic" }.Contains(sprite.name)).ToArray(),
             SonicTheHedgehogSprites.Where(sprite => new[] { "blueLamppost", "redLamppost", "redSpring", "switch", "yellowSpring" }.Contains(sprite.name)).ToArray()
         };
 
-        List<QandA> qs = new List<QandA>();
+        var qs = new List<QandA>();
 
-        for (int i = 0; i < 4; i++) 
-        {
-            if (i < 3)
-            {
-                qs.Add(makeQuestion(
+        for (var stage = 0; stage < 3; stage++)
+            qs.Add(makeQuestion(
                 question: Question.SonicTheHedgehogPictures,
-                formatArgs: new[] { ordinal(i + 1) },
+                formatArgs: new[] { ordinal(stage + 1) },
                 moduleKey: _SonicTheHedgehog,
-                allAnswers: spriteArr[i],
-                correctAnswers: new[] { spriteArr[i].First(sprite => sprite.name == pics[i].name) }
-                ));
-            }
+                allAnswers: spriteArr[stage],
+                correctAnswers: new[] { spriteArr[stage].First(sprite => sprite.name == pics[stage].name) }));
 
+        for (var screen = 0; screen < 4; screen++)
             qs.Add(makeQuestion(
                 Question.SonicTheHedgehogSounds,
                 _SonicTheHedgehog,
-                formatArgs: new[] { screenNames[i] },
-                correctAnswers: new[] { soundNameMapping[sounds[i]] },
+                formatArgs: new[] { screenNames[screen] },
+                correctAnswers: new[] { soundNameMapping[sounds[screen]] },
                 preferredWrongAnswers: sounds.Select(s => soundNameMapping[s]).ToArray()));
-        }
 
         addQuestions(module, qs);
     }

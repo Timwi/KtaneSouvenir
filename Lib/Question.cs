@@ -317,10 +317,10 @@
         BombDiffusalLicenseNumber,
 
         [SouvenirQuestion("Who said the {1} quote in {0}?", "Book of Mario", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "BookOfMarioSprites",
-            ExampleExtraFormatArguments = new[] {"first", "second", "third"}, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         BookOfMarioPictures,
-        [SouvenirQuestion("What did {1} say in stage {2} of {0}?", "Book of Mario", OneColumn4Answers, ExampleAnswers = new[] { "Dark Koopatrol. These people just blow hard...", "I came, Mario! You finna", "Absolutely, I came! Got it!", "Well, I’m so desperate, so you better save me…" }, 
-            ExampleExtraFormatArguments = new[] { "Goombell", "1", "Prince Peach", "2", "God Browser", "3", "Mr.Krump", "1", "Mario", "2", "Flavio", "3", "Quiz Thwomb", "1", "Carbon", "2", "Belda", "3", "Make", "1", "Yoshi Kid", "2", "Bob", "3", "Prosecutor Grubba", "1", }, 
+        [SouvenirQuestion("What did {1} say in the {2} stage of {0}?", "Book of Mario", OneColumn4Answers, ExampleAnswers = new[] { "Dark Koopatrol. These people just blow hard...", "I came, Mario! You finna", "Absolutely, I came! Got it!", "Well, I’m so desperate, so you better save me…" },
+            ExampleExtraFormatArguments = new[] { "Goombell", QandA.Ordinal, "Prince Peach", QandA.Ordinal, "God Browser", QandA.Ordinal, "Mr.Krump", QandA.Ordinal, "Mario", QandA.Ordinal, "Flavio", QandA.Ordinal, "Quiz Thwomb", QandA.Ordinal, "Carbon", QandA.Ordinal, "Belda", QandA.Ordinal, "Make", QandA.Ordinal, "Yoshi Kid", QandA.Ordinal, "Bob", QandA.Ordinal, "Prosecutor Grubba", QandA.Ordinal },
             ExampleExtraFormatArgumentGroupSize = 2)]
         BookOfMarioQuotes,
 
@@ -910,11 +910,11 @@
         [AnswerGenerator.Integers(0, 12)]
         FlashingLightsLEDFrequency,
 
-        [SouvenirQuestion("Which module's flavor text was shown in {0}?", "Flavor Text", OneColumn4Answers, ExampleAnswers = new[] { "Totally Accurate Minecraft Simulator", "Rock-Paper-Scissors-Lizard-Spock", "The Octadecayotton", "Power Button" } )]
+        [SouvenirQuestion("Which module’s flavor text was shown in {0}?", "Flavor Text", OneColumn4Answers, ExampleAnswers = new[] { "Totally Accurate Minecraft Simulator", "Rock-Paper-Scissors-Lizard-Spock", "The Octadecayotton", "Power Button" })]
         FlavorTextModule,
 
-        [SouvenirQuestion("Which module's flavor text was shown in stage {1} of {0}?", "Flavor Text", OneColumn4Answers, ExampleAnswers = new[] { "Totally Accurate Minecraft Simulator", "Rock-Paper-Scissors-Lizard-Spock", "The Octadecayotton", "Power Button" },
-            ExampleExtraFormatArguments = new[] { "1", "2", "3"}, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("Which module’s flavor text was shown in the {1} stage of {0}?", "Flavor Text", OneColumn4Answers, ExampleAnswers = new[] { "Totally Accurate Minecraft Simulator", "Rock-Paper-Scissors-Lizard-Spock", "The Octadecayotton", "Power Button" },
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         FlavorTextEXModule,
 
         [SouvenirQuestion("Which fly was present, but not in the solution in {0}?", "Flyswatting", ThreeColumns6Answers, null)]
@@ -2441,7 +2441,6 @@
 
         [SouvenirQuestion("What was the {1} picture on {0}?", "Sonic The Hedgehog", TwoColumns4Answers, ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.Sprites, SpriteField = "SonicTheHedgehogSprites")]
         SonicTheHedgehogPictures,
-        SonicTheHedgehogObject,
         [SouvenirQuestion("Which sound was played by the {1} screen on {0}?", "Sonic The Hedgehog", TwoColumns4Answers, "Boss Theme", "Breathe", "Continue", "Drown", "Emerald", "Extra Life", "Final Zone", "Invincibility", "Jump", "Lamppost", "Marble Zone", "Bumper", "Skid", "Spikes", "Spin", "Spring",
             ExampleExtraFormatArguments = new[] { "Running Boots", "Invincibility", "Extra Life", "Rings" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SonicTheHedgehogSounds,

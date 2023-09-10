@@ -682,23 +682,18 @@ public partial class SouvenirModule
         var fldQuoteIndex = GetIntField(comp, "y");
         var quotes = GetStaticField<string[][]>(comp.GetType(), "quotes").Get();
 
-        var answer = new List<KeyValuePair<string, string>>();
+        var answer = new List<(string name, string quote)>();
         var dictionary = new Dictionary<string, string[]>();
 
-        bool SamePerson(KeyValuePair<string, string> kv1, KeyValuePair<string, string> kv2)
+        (string, string) GetPersonKeyValue(int characterIndex, int characterQuote)
         {
-            return kv1.Key == kv2.Key && kv1.Value == kv2.Value;
-        }
-
-        KeyValuePair<string, string> GetPersonKeyValue(int characterIndex, int characterQuote)
-        {
-            return new KeyValuePair<string, string>(UpdateString(quotes[characterIndex][0], false), UpdateString(quotes[characterIndex][fldQuoteIndex.Get()], true));
+            return (UpdateString(quotes[characterIndex][0]), UpdateString(quotes[characterIndex][fldQuoteIndex.Get()]));
         }
 
         while (!fldSolved.Get())
         {
-            int characterIndex = fldNameIndex.Get();
-            int quoteIndex = fldQuoteIndex.Get();
+            var characterIndex = fldNameIndex.Get();
+            var quoteIndex = fldQuoteIndex.Get();
             var newStage = fldStage.Get();
             var person = GetPersonKeyValue(characterIndex, quoteIndex);
 
@@ -707,57 +702,43 @@ public partial class SouvenirModule
                 answer.Add(person);
                 currentStage = newStage;
             }
-
             else
             {
-                if (!SamePerson(answer.Last(), person))
-                {
+                if (!answer.Last().Equals(person))
                     answer[answer.Count - 1] = person;
-                }
             }
             yield return null;
         }
         _modulesSolved.IncSafe(_BookOfMario);
 
-        int sprites = BookOfMarioSprites.Length;
-        if (sprites != 13)
-        {
-            throw new AbandonModuleException("Book of Mario should have 13 sprites. Counted " + sprites);
-        }
+        if (BookOfMarioSprites.Length != 13)
+            throw new AbandonModuleException($"Book of Mario should have 13 sprites. Counted {BookOfMarioSprites.Length}");
 
-
-        string UpdateString(string s, bool updateQuote)
+        string UpdateString(string s)
         {
             const int maxCount = 27;
-            string str = s.Replace("\n", " ").Replace("  ", " ");
-            str = str.Length > maxCount ? str.Substring(0, maxCount) + "..." : str;
-            return str;
+            var str = s.Replace("\n", " ").Replace("  ", " ");
+            return str.Length > maxCount ? str.Substring(0, maxCount) + "..." : str;
         }
 
         string[] GetUpdatedQuotes(string name)
         {
-            foreach (string[] q in quotes)
-            {
+            foreach (var q in quotes)
                 if (q[0].Replace("\n", "") == name)
-                {
-                    return Enumerable.Range(1, q.Length - 1).Select(i => UpdateString(q[i], true)).ToArray();
-                }
-            }
-
+                    return Enumerable.Range(1, q.Length - 1).Select(i => UpdateString(q[i])).ToArray();
             return null;
         }
 
         var unaviableCharacters = new[] { "Bob", "God Browser", "Flavio", "Make", "Quiz Thwomb", "Yoshi Kid" };
         var qs = new List<QandA>();
 
-        for (int i = 0; i < answer.Count; i++)
+        for (var i = 0; i < answer.Count; i++)
         {
-            string name = answer[i].Key;
-            int stage = i + 1;
+            var (name, quote) = answer[i];
             qs.Add(makeQuestion(
                 question: Question.BookOfMarioPictures,
                 moduleKey: _BookOfMario,
-                formatArgs: new[] { ordinal(stage) },
+                formatArgs: new[] { ordinal(i + 1) },
                 correctAnswers: new[] { BookOfMarioSprites.First(sprite => sprite.name == name) },
                 preferredWrongAnswers: BookOfMarioSprites));
 
@@ -766,9 +747,9 @@ public partial class SouvenirModule
                 qs.Add(makeQuestion(
                     question: Question.BookOfMarioQuotes,
                     moduleKey: _BookOfMario,
-                    formatArgs: new[] { name, "" + stage },
-                    correctAnswers: new[] { answer[i].Value },
-                    preferredWrongAnswers: GetUpdatedQuotes(answer[i].Key)));
+                    formatArgs: new[] { name, ordinal(i + 1) },
+                    correctAnswers: new[] { quote },
+                    preferredWrongAnswers: GetUpdatedQuotes(name)));
             }
         }
 

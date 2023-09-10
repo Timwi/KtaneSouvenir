@@ -648,7 +648,7 @@ public partial class SouvenirModule
         var displayedIceCreamSprites = iceCreams.Where(x => x != 14).Select(index => MisterSofteeSprites.First(sprite => sprite.name == iceCreamNames[index])).ToArray();
         addQuestions(module,
             makeQuestion(Question.MisterSofteeSpongebobPosition, _MisterSoftee, correctAnswers: new[] { directions[ix] }),
-            makeQuestion(Question.MisterSofteeTreatsPresent, _MisterSoftee, correctAnswers: displayedIceCreamSprites, preferredWrongAnswers: MisterSofteeSprites));
+            makeQuestion(Question.MisterSofteeTreatsPresent, _MisterSoftee, correctAnswers: displayedIceCreamSprites));
     }
 
     private IEnumerable<object> ProcessModernCipher(KMBombModule module)

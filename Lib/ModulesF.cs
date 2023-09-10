@@ -232,6 +232,7 @@ public partial class SouvenirModule
         else
             addQuestions(module, qs);
     }
+
     private IEnumerable<object> ProcessFlags(KMBombModule module)
     {
         var comp = GetComponent(module, "FlagsModule");
@@ -318,57 +319,46 @@ public partial class SouvenirModule
         module.OnPass += () => { solved = true; return false; };
 
         while (!solved)
-        {
-            yield return new WaitForSeconds(0.1f);
-        }
-
+            yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_FlavorText);
 
         var textOptionList = GetField<IList>(comp, "textOptions").Get();
         var textOption = GetField<object>(comp, "textOption").Get();
         var fldName = GetField<string>(textOption, "name", isPublic: true);
-        var moduleNames = Enumerable.Range(0, textOptionList.Count).Select(index => fldName.GetFrom(textOptionList[index])).ToList();
+        var moduleNames = Enumerable.Range(0, textOptionList.Count).Select(index => fldName.GetFrom(textOptionList[index])).ToArray();
 
         addQuestion(module, Question.FlavorTextModule,
             correctAnswers: new[] { fldName.GetFrom(textOption) },
-            preferredWrongAnswers: moduleNames.ToArray());
+            preferredWrongAnswers: moduleNames);
     }
 
     private IEnumerable<object> ProcessFlavorTextEX(KMBombModule module)
     {
         var comp = GetComponent(module, "FlavorTextCruel");
-        var solved = false;
         var fldStage = GetIntField(comp, "stage");
         var fldtextOption = GetField<object>(comp, "textOption");
-        var answers = new List<string>();
+
+        var solved = false;
         module.OnPass += () => { solved = true; return false; };
-        int currentStage = -1;
-        bool moduleActivated = false;
-        module.OnActivate += () => { moduleActivated = true; };
 
-        while (!moduleActivated)
-        {
+        while (!_isActivated)
             yield return new WaitForSeconds(0.1f);
-        }
 
+        var answers = new List<string>();
+        var currentStage = -1;
         var fldName = GetField<string>(fldtextOption.Get(), "name", isPublic: true);
 
         while (!solved)
         {
-            int newStage = fldStage.Get();
-            string moduleName = fldName.GetFrom(fldtextOption.Get());
+            var newStage = fldStage.Get();
+            var moduleName = fldName.GetFrom(fldtextOption.Get());
             if (currentStage != newStage)
             {
                 answers.Add(moduleName);
                 currentStage = newStage;
             }
-
             else if (answers.Last() != moduleName)
-            {
                 answers[answers.Count - 1] = moduleName;
-            }
-
-
 
             yield return null;
         }
@@ -381,14 +371,12 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
 
         for (int i = 0; i < stageCount; i++)
-        {
             qs.Add(makeQuestion(
                     question: Question.FlavorTextEXModule,
                     moduleKey: _FlavorTextEX,
-                    formatArgs: new[] { "" + (i + 1) },
+                    formatArgs: new[] { ordinal(i + 1) },
                     correctAnswers: new[] { answers[i] },
                     preferredWrongAnswers: moduleNames));
-        }
 
         addQuestions(module, qs);
     }
