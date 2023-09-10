@@ -336,47 +336,38 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "FlavorTextCruel");
         var fldStage = GetIntField(comp, "stage");
-        var fldtextOption = GetField<object>(comp, "textOption");
-
-        var solved = false;
-        module.OnPass += () => { solved = true; return false; };
+        var fldTextOption = GetField<object>(comp, "textOption");
 
         while (!_isActivated)
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(.1f);
 
-        var answers = new List<string>();
-        var currentStage = -1;
-        var fldName = GetField<string>(fldtextOption.Get(), "name", isPublic: true);
+        var maxStageAmount = GetIntField(comp, "maxStageAmount").Get();
+        var answers = new string[maxStageAmount];
+        var fldName = GetField<string>(fldTextOption.Get(), "name", isPublic: true);
 
-        while (!solved)
+        while (fldStage.Get() < maxStageAmount)
         {
-            var newStage = fldStage.Get();
-            var moduleName = fldName.GetFrom(fldtextOption.Get());
-            if (currentStage != newStage)
-            {
-                answers.Add(moduleName);
-                currentStage = newStage;
-            }
-            else if (answers.Last() != moduleName)
-                answers[answers.Count - 1] = moduleName;
-
+            answers[fldStage.Get()] = fldName.GetFrom(fldTextOption.Get());
             yield return null;
         }
-
         _modulesSolved.IncSafe(_FlavorTextEX);
+
+        if (answers.Any(a => a == null))
+            throw new AbandonModuleException($"Abandoning Flavor Text EX because Stage {Array.IndexOf(answers, null)} has a null entry.");
+
         var textOptionList = GetField<IList>(comp, "textOptions").Get();
-        var moduleNames = Enumerable.Range(0, textOptionList.Count - 1).Select(index => fldName.GetFrom(textOptionList[index])).ToArray();
-        var stageCount = GetIntField(comp, "maxStageAmount").Get();
+        var moduleNames = Enumerable.Range(0, textOptionList.Count).Select(index => fldName.GetFrom(textOptionList[index])).ToArray();
 
         var qs = new List<QandA>();
 
-        for (var i = 0; i < stageCount; i++)
+        for (var i = 0; i < maxStageAmount; i++)
             qs.Add(makeQuestion(
                     question: Question.FlavorTextEXModule,
                     moduleKey: _FlavorTextEX,
                     formatArgs: new[] { ordinal(i + 1) },
                     correctAnswers: new[] { answers[i] },
-                    preferredWrongAnswers: moduleNames));
+                    preferredWrongAnswers: answers,
+                    allAnswers: moduleNames));
 
         addQuestions(module, qs);
     }
