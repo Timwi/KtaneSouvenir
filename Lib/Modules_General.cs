@@ -179,6 +179,7 @@ public partial class SouvenirModule
     const string _FlashingArrows = "flashingArrowsModule";
     const string _FlashingLights = "flashingLights";
     const string _FlavorText = "FlavorText";
+    const string _FlavorTextEX = "FlavorTextCruel";
     const string _Flyswatting = "flyswatting";
     const string _FollowMe = "FollowMe";
     const string _ForestCipher = "forestCipher";
@@ -726,6 +727,7 @@ public partial class SouvenirModule
             [_FlashingArrows] = (ProcessFlashingArrows, "Flashing Arrows", "VFlyer"),
             [_FlashingLights] = (ProcessFlashingLights, "Flashing Lights", "luisdiogo98"),
             [_FlavorText] = (ProcessFlavorText, "Flavor Text", "Hawker"),
+            [_FlavorTextEX] = (ProcessFlavorTextEX, "Flavor Text EX", "Hawker"),
             [_Flyswatting] = (ProcessFlyswatting, "Flyswatting", "tandyCake"),
             [_FollowMe] = (ProcessFollowMe, "Follow Me", "Kuro"),
             [_ForestCipher] = (ProcessForestCipher, "Forest Cipher", "Timwi"),
