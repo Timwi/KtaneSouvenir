@@ -888,8 +888,12 @@
         [AnswerGenerator.Integers(0, 12)]
         FlashingLightsLEDFrequency,
 
-        [SouvenirQuestion("Which's module flavor text was present in {0}?", "Flavor Text", OneColumn4Answers, ExampleAnswers = new[] { "Totally Accurate Minecraft Simulator", "Rock-Paper-Scissors-Lizard-Spock", "The Octadecayotton", "Power Button" } )]
+        [SouvenirQuestion("Which module's flavor text was shown in {0}?", "Flavor Text", OneColumn4Answers, ExampleAnswers = new[] { "Totally Accurate Minecraft Simulator", "Rock-Paper-Scissors-Lizard-Spock", "The Octadecayotton", "Power Button" } )]
         FlavorTextModule,
+
+        [SouvenirQuestion("Which module's flavor text was shown in stage {1} of {0}?", "Flavor Text", OneColumn4Answers, ExampleAnswers = new[] { "Totally Accurate Minecraft Simulator", "Rock-Paper-Scissors-Lizard-Spock", "The Octadecayotton", "Power Button" },
+            ExampleExtraFormatArguments = new[] { "1", "2", "3"}, ExampleExtraFormatArgumentGroupSize = 1)]
+        FlavorTextEXModule,
 
         [SouvenirQuestion("Which fly was present, but not in the solution in {0}?", "Flyswatting", ThreeColumns6Answers, null)]
         [AnswerGenerator.Strings('A', 'Z')]

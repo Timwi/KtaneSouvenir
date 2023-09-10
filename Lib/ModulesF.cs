@@ -319,7 +319,7 @@ public partial class SouvenirModule
 
         while (!solved)
         {
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(0.1f);
         }
 
         _modulesSolved.IncSafe(_FlavorText);
@@ -332,6 +332,65 @@ public partial class SouvenirModule
         addQuestion(module, Question.FlavorTextModule,
             correctAnswers: new[] { fldName.GetFrom(textOption) },
             preferredWrongAnswers: moduleNames.ToArray());
+    }
+
+    private IEnumerable<object> ProcessFlavorTextEX(KMBombModule module)
+    {
+        var comp = GetComponent(module, "FlavorTextCruel");
+        var solved = false;
+        var fldStage = GetIntField(comp, "stage");
+        var fldtextOption = GetField<object>(comp, "textOption");
+        var answers = new List<string>();
+        module.OnPass += () => { solved = true; return false; };
+        int currentStage = -1;
+        bool moduleActivated = false;
+        module.OnActivate += () => { moduleActivated = true; };
+
+        while (!moduleActivated)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        var fldName = GetField<string>(fldtextOption.Get(), "name", isPublic: true);
+
+        while (!solved)
+        {
+            int newStage = fldStage.Get();
+            string moduleName = fldName.GetFrom(fldtextOption.Get());
+            if (currentStage != newStage)
+            {
+                answers.Add(moduleName);
+                currentStage = newStage;
+            }
+
+            else if (answers.Last() != moduleName)
+            {
+                answers[answers.Count - 1] = moduleName;
+            }
+
+
+
+            yield return null;
+        }
+
+        _modulesSolved.IncSafe(_FlavorTextEX);
+        var textOptionList = GetField<IList>(comp, "textOptions").Get();
+        var moduleNames = Enumerable.Range(0, textOptionList.Count - 1).Select(index => fldName.GetFrom(textOptionList[index])).ToArray();
+        var stageCount = GetIntField(comp, "maxStageAmount").Get();
+
+        var qs = new List<QandA>();
+
+        for (int i = 0; i < stageCount; i++)
+        {
+            qs.Add(makeQuestion(
+                    question: Question.FlavorTextEXModule,
+                    moduleKey: _FlavorTextEX,
+                    formatArgs: new[] { "" + (i + 1) },
+                    correctAnswers: new[] { answers[i] },
+                    preferredWrongAnswers: moduleNames));
+        }
+
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessFlyswatting(KMBombModule module)
