@@ -232,7 +232,6 @@ public partial class SouvenirModule
         else
             addQuestions(module, qs);
     }
-
     private IEnumerable<object> ProcessFlags(KMBombModule module)
     {
         var comp = GetComponent(module, "FlagsModule");
@@ -310,6 +309,29 @@ public partial class SouvenirModule
             qs.Add(makeQuestion(Question.FlashingLightsLEDFrequency, _FlashingLights, formatArgs: new[] { "bottom", colorNames[i] }, correctAnswers: new[] { bottomTotals[i].ToString() }, preferredWrongAnswers: new[] { topTotals[i].ToString() }));
         }
         addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessFlavorText(KMBombModule module)
+    {
+        var comp = GetComponent(module, "FlavorText");
+        var solved = false;
+        module.OnPass += () => { solved = true; return false; };
+
+        while (!solved)
+        {
+            yield return new WaitForSeconds(.1f);
+        }
+
+        _modulesSolved.IncSafe(_FlavorText);
+
+        var textOptionList = GetField<IList>(comp, "textOptions").Get();
+        var textOption = GetField<object>(comp, "textOption").Get();
+        var fldName = GetField<string>(textOption, "name", isPublic: true);
+        var moduleNames = Enumerable.Range(0, textOptionList.Count).Select(index => fldName.GetFrom(textOptionList[index])).ToList();
+
+        addQuestion(module, Question.FlavorTextModule,
+            correctAnswers: new[] { fldName.GetFrom(textOption) },
+            preferredWrongAnswers: moduleNames.ToArray());
     }
 
     private IEnumerable<object> ProcessFlyswatting(KMBombModule module)

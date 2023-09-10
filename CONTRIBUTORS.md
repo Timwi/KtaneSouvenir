@@ -98,12 +98,12 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Forget Me      │  M-Seq                 │  Not Word Search  │  Stupid Slots          │
     Jenga          │  Math ’em              │  Numpath          │  Superparsing          │
 
-## Implemented by Hawker (18)
+## Implemented by Hawker (19)
 
-    3N+1                     │  Dimension Disruption  │  Girlfriend       │  Scrutiny Squares                   │  UNO!
-    Book of Mario            │  Directional Button    │  h                │  Sign Language                      │  Weakest Link, The
-    Character Slots          │  Find The Date         │  High Score, The  │  Sonic & Knuckles                   │
-    Customer Identification  │  Garnet Thief, The     │  Ladder Lottery   │  Spongebob Birthday Identification  │
+    3N+1                     │  Dimension Disruption  │  Garnet Thief, The  │  Ladder Lottery    │  Spongebob Birthday Identification
+    Book of Mario            │  Directional Button    │  Girlfriend         │  Scrutiny Squares  │  UNO!
+    Character Slots          │  Find The Date         │  h                  │  Sign Language     │  Weakest Link, The
+    Customer Identification  │  Flavor Text           │  High Score, The    │  Sonic & Knuckles  │
 
 ## Implemented by kavinkul (17)
 
