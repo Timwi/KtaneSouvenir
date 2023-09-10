@@ -370,7 +370,7 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
 
-        for (int i = 0; i < stageCount; i++)
+        for (var i = 0; i < stageCount; i++)
             qs.Add(makeQuestion(
                     question: Question.FlavorTextEXModule,
                     moduleKey: _FlavorTextEX,
