@@ -2127,6 +2127,10 @@
         [AnswerGenerator.Integers(0, 9)]
         RGBMazeNumber,
 
+        [SouvenirQuestion("What was the color of the {1} (index 1) LED in {0}?", "RGB Sequences", ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Cyan", "Yellow", "White",
+        ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        RGBSequencesDisplay,
+
         [SouvenirQuestion("What was the color in {0}?", "Rhythms", TwoColumns4Answers, "Blue", "Red", "Green", "Yellow", TranslateAnswers = true)]
         RhythmsColor,
 

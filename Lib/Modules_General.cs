@@ -405,6 +405,7 @@ public partial class SouvenirModule
     const string _ReverseMorse = "reverseMorse";
     const string _ReversePolishNotation = "revPolNot";
     const string _RGBMaze = "rgbMaze";
+    const string _RGBSequences = "RGBSequences";
     const string _Rhythms = "MusicRhythms";
     const string _RoboScanner = "roboScannerModule";
     const string _Roger = "roger";
@@ -951,6 +952,7 @@ public partial class SouvenirModule
             [_ReverseMorse] = (ProcessReverseMorse, "Reverse Morse", "luisdiogo98"),
             [_ReversePolishNotation] = (ProcessReversePolishNotation, "Reverse Polish Notation", "shortc1rcuit"),
             [_RGBMaze] = (ProcessRGBMaze, "RGB Maze", "kavinkul"),
+            [_RGBSequences] = (ProcessRGBSequences, "RGB Sequences", "Hawker"),
             [_Rhythms] = (ProcessRhythms, "Rhythms", "Timwi"),
             [_RoboScanner] = (ProcessRoboScanner, "Robo-Scanner", "Quinn Wuest"),
             [_Roger] = (ProcessRoger, "Roger", "BigCrunch22"),

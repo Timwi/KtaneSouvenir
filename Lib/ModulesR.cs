@@ -340,6 +340,30 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessRGBSequences(KMBombModule module)
+    {
+        var comp = GetComponent(module, "RGBSequences");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_RGBSequences);
+
+        var displayStr = GetField<string>(comp, "StringFour").Get(val => val.Length != 10 ? "expected length of 10" : null);
+
+        var colorDic = new Dictionary<char, string>() 
+        { ['R'] = "Red", ['G'] = "Green", ['B'] = "Blue", ['C'] = "Cyan", ['M'] = "Magenta", ['Y'] = "Yellow", ['W'] = "White" };
+
+        var qs = new List<QandA>();
+
+        for (int i = 0; i < 10; i++)
+        {
+            qs.Add(makeQuestion(Question.RGBSequencesDisplay, _RGBSequences, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorDic[displayStr[i]] }));
+        }
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessRhythms(KMBombModule module)
     {
         var comp = GetComponent(module, "Rhythms");
