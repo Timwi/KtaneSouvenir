@@ -253,6 +253,7 @@ public partial class SouvenirModule : MonoBehaviour
 
         disappear();
         WarningIcon.SetActive(false);
+
         SetWordWrappedText((_translation?.IntroTexts ?? _intros).PickRandom(), 1.75, useQuestionSprite: false);
 
         if (transform.parent != null && !Application.isEditor)
@@ -348,11 +349,6 @@ public partial class SouvenirModule : MonoBehaviour
         if (_showIntros)
         {
             disappear();
-            TextMesh.gameObject.SetActive(true);
-            TextMesh.font = Fonts[_translation?.DefaultFontIndex ?? 0];
-            TextRenderer.material = FontMaterial;
-            TextRenderer.material.mainTexture = FontTextures[_translation?.DefaultFontIndex ?? 0];
-            TextMesh.lineSpacing = _translation?.LineSpacing ?? 0.525f;
             SetWordWrappedText((_translation?.IntroTexts ?? _intros)[_curExampleQuestion], 1.75, useQuestionSprite: false);
             foreach (var ans in Answers)
                 ans.transform.Find("AnswerText").GetComponent<TextMesh>().text = "";
@@ -610,6 +606,12 @@ public partial class SouvenirModule : MonoBehaviour
 
     public void SetWordWrappedText(string text, double desiredHeightFactor, bool useQuestionSprite)
     {
+        TextMesh.gameObject.SetActive(true);
+        TextMesh.font = Fonts[_translation?.DefaultFontIndex ?? 0];
+        TextRenderer.material = FontMaterial;
+        TextRenderer.material.mainTexture = FontTextures[_translation?.DefaultFontIndex ?? 0];
+        TextMesh.lineSpacing = _translation?.LineSpacing ?? 0.525f;
+
         var acceptableWidths = useQuestionSprite ? _acceptableWidthsWithQuestionSprite : _acceptableWidthsWithoutQuestionSprite;
         var low = 1;
         var high = 256;
