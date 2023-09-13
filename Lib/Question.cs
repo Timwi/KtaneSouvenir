@@ -1255,6 +1255,11 @@
             "Onion", "Corn", "big MIOLK", "Yam", "Corn Cube", "Egg", "Eggchips", "hamger", "Tyler the Creator", "Onionade", "Soup", "jeb", AddThe = true)]
         KanyeEncounterFoods,
 
+        [SouvenirQuestion("Which number was displayed on the {1} button, but not part of the answer on {0}?", "Keypad Combinations", ThreeColumns6Answers,
+           ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0,9)]
+        KeypadCombinationWrongNumbers,
+
         [SouvenirQuestion("What was the position of the LED in {0}?", "Keypad Magnified", TwoColumns4Answers, "Top-left", "Top-right", "Bottom-left", "Bottom-right")]
         KeypadMagnifiedLED,
 

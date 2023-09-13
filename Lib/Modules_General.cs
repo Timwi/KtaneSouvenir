@@ -242,6 +242,7 @@ public partial class SouvenirModule
     const string _JuxtacoloredSquares = "JuxtacoloredSquaresModule";
     const string _Kanji = "KanjiModule";
     const string _KanyeEncounter = "TheKanyeEncounter";
+    const string _KeypadCombination = "keypadCombinations";
     const string _KeypadMagnified = "keypadMagnified";
     const string _Keywords = "xtrkeywords";
     const string _KnowYourWay = "KnowYourWay";
@@ -790,6 +791,7 @@ public partial class SouvenirModule
             [_JuxtacoloredSquares] = (ProcessJuxtacoloredSquares, "Juxtacolored Squares", "Kuro"),
             [_Kanji] = (ProcessKanji, "Kanji", "Kuro"),
             [_KanyeEncounter] = (ProcessKanyeEncounter, "Kanye Encounter, The", "tandyCake"),
+            [_KeypadCombination] = (ProcessKeypadCombination, "Keypad Combination", "Hawker"),
             [_KeypadMagnified] = (ProcessKeypadMagnified, "Keypad Magnified", "tandyCake"),
             [_Keywords] = (ProcessKeywords, "Keywords", "Kuro"),
             [_KnowYourWay] = (ProcessKnowYourWay, "Know Your Way", "Kuro"),
