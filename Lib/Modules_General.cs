@@ -408,6 +408,7 @@ public partial class SouvenirModule
     const string _RGBSequences = "RGBSequences";
     const string _Rhythms = "MusicRhythms";
     const string _RoboScanner = "roboScannerModule";
+    const string _RobotProgramming = "robotProgramming";
     const string _Roger = "roger";
     const string _RoleReversal = "roleReversal";
     const string _Rule = "theRule";
@@ -955,6 +956,7 @@ public partial class SouvenirModule
             [_RGBSequences] = (ProcessRGBSequences, "RGB Sequences", "Hawker"),
             [_Rhythms] = (ProcessRhythms, "Rhythms", "Timwi"),
             [_RoboScanner] = (ProcessRoboScanner, "Robo-Scanner", "Quinn Wuest"),
+            [_RobotProgramming] = (ProcessRobotProgramming, "RobotProgramming", "Hawker"),
             [_Roger] = (ProcessRoger, "Roger", "BigCrunch22"),
             [_RoleReversal] = (ProcessRoleReversal, "Role Reversal", "Emik"),
             [_Rule] = (ProcessRule, "Rule, The", "TasThiluna"),
