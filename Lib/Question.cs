@@ -512,6 +512,10 @@
         [AnswerGenerator.Strings(5, 'Q', 'R')]
         ColoredSwitchesWhenLEDsCameOn,
 
+        [SouvenirQuestion("What was the color of the {1} LED on the right side of {0}?", "Color Math", ThreeColumns6Answers, "Blue", "Green", "Purple", "Yellow", "White", "Magenta", "Red", "Orange", "Gray", "Black",
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ColorMathRightColor,
+
         [SouvenirQuestion("What was the color of the {1} LED in {0}?", "Color Morse", ThreeColumns6Answers, "Blue", "Green", "Orange", "Purple", "Red", "Yellow", "White", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         ColorMorseColor,
