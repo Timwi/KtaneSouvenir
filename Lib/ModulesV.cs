@@ -23,6 +23,23 @@ public partial class SouvenirModule
            makeQuestion(Question.VWords, _V, formatArgs: new[] { "was not" }, correctAnswers: allWords.Where(a => !currentWords.Contains(a)).ToArray(), preferredWrongAnswers: allWords));
     }
 
+    private IEnumerable<object> ProcessValves(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Valves");
+        var fldSolved = GetField<bool>(comp, "bombSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Valves);
+
+        if (ValvesSprites.Length != 8)
+            throw new AbandonModuleException($"Valves should have 8 sprites. Counted {ValvesSprites.Length}");
+
+        var valvesColorNums = GetArrayField<int>(comp, "valvesColorNum").Get(expectedLength: 3);
+        var colors = string.Join("", valvesColorNums.Select(i => "" + "WB"[i]).ToArray());
+        addQuestion(module, Question.ValvesInitialState, correctAnswers: new[] { ValvesSprites.First(sprite => sprite.name == colors) }, preferredWrongAnswers: ValvesSprites);
+    }
+
     private IEnumerable<object> ProcessVaricoloredSquares(KMBombModule module)
     {
         var comp = GetComponent(module, "VaricoloredSquaresModule");

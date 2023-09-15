@@ -1,5 +1,6 @@
 ﻿namespace Souvenir
 {
+    using UnityEngine;
     using static AnswerLayout;
 
     public enum Question
@@ -2701,6 +2702,9 @@
         [SouvenirQuestion("Which word {1} shown in {0}?", "V", OneColumn4Answers, null,
         ExampleExtraFormatArguments = new[] { "was", "was not" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true }, ExampleAnswers = new[] { "Vacant", "Valorous", "Volition", "Vermin", "Vanity", "Visage", "Voracious", "Veers", "Vengeance", "Violation", "Vigilant", "Veteran", "Vanguarding", "Villain" })]
         VWords,
+
+        [SouvenirQuestion("What was the initial state of {0}?", "Valves", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "ValvesSprites")]
+        ValvesInitialState,
 
         [SouvenirQuestion("What was the initially pressed color on {0}?", "Varicolored Squares", ThreeColumns6Answers, "White", "Red", "Blue", "Green", "Yellow", "Magenta", TranslateAnswers = true)]
         VaricoloredSquaresInitialColor,

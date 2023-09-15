@@ -527,6 +527,7 @@ public partial class SouvenirModule
     const string _USACycle = "USACycle";
     const string _USAMaze = "USA";
     const string _V = "V";
+    const string _Valves = "valves";
     const string _VaricoloredSquares = "VaricoloredSquaresModule";
     const string _VaricolourFlash = "varicolourFlash";
     const string _Vcrcs = "VCRCS";
@@ -1076,6 +1077,7 @@ public partial class SouvenirModule
             [_USACycle] = (ProcessUSACycle, "USA Cycle", "tandyCake"),
             [_USAMaze] = (ProcessUSAMaze, "USA Maze", "luisdiogo98"),
             [_V] = (ProcessV, "V", "BigCrunch22"),
+            [_Valves] = (ProcessValves, "Valves", "Hawker"),
             [_VaricoloredSquares] = (ProcessVaricoloredSquares, "Varicolored Squares", "luisdiogo98"),
             [_VaricolourFlash] = (ProcessVaricolourFlash, "Varicolour Flash", "Quinn Wuest"),
             [_Vcrcs] = (ProcessVcrcs, "Vcrcs", "Timwi"),
