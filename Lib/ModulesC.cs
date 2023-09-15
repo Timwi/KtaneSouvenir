@@ -611,30 +611,26 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_ColorMath);
 
-        if (GetIntField(comp, "_mode").Get() == 0)
-        {
-            var rightNum = GetIntField(comp, "_right").Get();
-            var _rightcolor = GetField<Array>(comp, "_rightcolor").Get();
-            var colorArr = GetArrayField<string>(comp, "_colorText").Get(expectedLength: 10);
-            int mult = 1000, r = rightNum, tr;
-            var qs = new List<QandA>();
-            for (int i = 0; i < 4; i++)
-            {
-                tr = r / mult;
-                r %= mult;
-               
-                int rightColorValue = (int)_rightcolor.GetValue(i, tr);
-                string color = colorArr[rightColorValue];
-                mult /= 10;
-                qs.Add(makeQuestion(Question.ColorMathRightColor, _ColorMath, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { color }));
-            }
-            addQuestions(module, qs);
-        }
-
-        else
+        if (GetIntField(comp, "_mode").Get(v => v != 0 && v != 1 ? "expected 0 or 1" : null) == 0)
         {
             legitimatelyNoQuestion(module, "The letter was red.");
+            yield break;
         }
+
+        var rightNum = GetIntField(comp, "_right").Get();
+        var rightColor = GetField<int[,]>(comp, "_rightcolor").Get();
+        var colorArr = GetArrayField<string>(comp, "_colorText").Get(expectedLength: 10);
+        int mult = 1000, r = rightNum;
+        var qs = new List<QandA>();
+        for (var i = 0; i < 4; i++)
+        {
+            var tr = r / mult;
+            r %= mult;
+            mult /= 10;
+
+            qs.Add(makeQuestion(Question.ColorMathRightColor, _ColorMath, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorArr[rightColor[i, tr]] }));
+        }
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessColorMorse(KMBombModule module)

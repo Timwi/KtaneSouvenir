@@ -385,12 +385,10 @@ public partial class SouvenirModule
         var enemyNames = GetField<TextMesh>(comp, "DefEnemies", isPublic: true).Get().text.Split('\n').ToArray();
         var maxNum = GetField<TextMesh>(comp, "AtkNum", isPublic: true).Get().text.Replace("[", "").Replace("]", "");
 
-       addQuestions(module, new QandA[] {
-           makeQuestion(Question.ArenaDamage, _Arena, correctAnswers: new[] { maxNum }),
-           makeQuestion(Question.ArenaEnemies, _Arena, correctAnswers: enemyNames),
-           makeQuestion(Question.ArenaNumbers, _Arena, correctAnswers: grabNums)
-       });
-
+        addQuestions(module,
+            makeQuestion(Question.ArenaDamage, _Arena, correctAnswers: new[] { maxNum }),
+            makeQuestion(Question.ArenaEnemies, _Arena, correctAnswers: enemyNames),
+            makeQuestion(Question.ArenaNumbers, _Arena, correctAnswers: grabNums));
     }
 
     private IEnumerable<object> ProcessArithmelogic(KMBombModule module)

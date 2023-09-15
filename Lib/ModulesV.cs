@@ -35,9 +35,9 @@ public partial class SouvenirModule
         if (ValvesSprites.Length != 8)
             throw new AbandonModuleException($"Valves should have 8 sprites. Counted {ValvesSprites.Length}");
 
-        var valvesColorNums = GetArrayField<int>(comp, "valvesColorNum").Get(expectedLength: 3);
-        var colors = string.Join("", valvesColorNums.Select(i => "" + "WB"[i]).ToArray());
-        addQuestion(module, Question.ValvesInitialState, correctAnswers: new[] { ValvesSprites.First(sprite => sprite.name == colors) }, preferredWrongAnswers: ValvesSprites);
+        var valvesColorNums = GetArrayField<int>(comp, "valvesColorNum").Get(expectedLength: 3, validator: val => val != 0 && val != 1 ? "expected 0 or 1" : null);
+        var spriteIx = valvesColorNums.Aggregate(0, (p, n) => (p << 1) | n);
+        addQuestion(module, Question.ValvesInitialState, correctAnswers: new[] { ValvesSprites[spriteIx] });
     }
 
     private IEnumerable<object> ProcessVaricoloredSquares(KMBombModule module)
@@ -117,7 +117,7 @@ public partial class SouvenirModule
         var colorsName = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Purple" };
         var vectorCount = GetIntField(comp, "vectorct").Get(min: 1, max: 3);
         var colors = GetArrayField<string>(comp, "colors").Get(expectedLength: 24, nullContentAllowed: true);
-        var pickedVectors = GetArrayField<int>(comp, "vectorsPicked").Get(expectedLength: 3, validator: v => v < 0 || v >= colors.Length ? $"expected range 0–{colors.Length - 1}": null);
+        var pickedVectors = GetArrayField<int>(comp, "vectorsPicked").Get(expectedLength: 3, validator: v => v < 0 || v >= colors.Length ? $"expected range 0–{colors.Length - 1}" : null);
         var nullIx = pickedVectors.Take(vectorCount).IndexOf(ix => colors[ix] == null);
         if (nullIx != -1)
             throw new AbandonModuleException($"‘colors[{pickedVectors[nullIx]}]’ was null; ‘pickedVectors’ = [{pickedVectors.JoinString(", ")}]");

@@ -73,17 +73,13 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(0.1f);
         _modulesSolved.IncSafe(_KeypadCombination);
 
-        Array buttonNums = GetField<Array>(comp, "buttonnum").Get();
-        string moduleAnswer = GetField<string>(comp, "answer").Get();
-        var qs = new List<QandA>();
+        var buttonNums = GetField<int[,]>(comp, "buttonnum").Get(v => v.GetLength(0) != 4 || v.GetLength(1) != 3 ? "expected 4×3 array" : null);
+        var moduleAnswer = GetField<string>(comp, "answer").Get();
 
-        for (int i = 0; i < 4; i++)
-        {
-            var wrongNums = Enumerable.Range(0, 3).Select(buttonIndex => (int)buttonNums.GetValue(i, buttonIndex)).Where(num => num != int.Parse("" + moduleAnswer[i]));
-            qs.Add(makeQuestion(Question.KeypadCombinationWrongNumbers, _KeypadCombination, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: wrongNums.Select(x => "" + x).ToArray()));
-        }
-
-        addQuestions(module, qs);
+        addQuestions(module, Enumerable.Range(0, 4).Select(i => makeQuestion(Question.KeypadCombinationWrongNumbers, _KeypadCombination,
+            formatArgs: new[] { ordinal(i + 1) },
+            correctAnswers: Enumerable.Range(0, 3).Select(buttonIndex => buttonNums[i, buttonIndex])
+                .Where(num => num != moduleAnswer[i] - '0').Select(num => num.ToString()).ToArray())));
     }
 
     private IEnumerable<object> ProcessKeypadMagnified(KMBombModule module)

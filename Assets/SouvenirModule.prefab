@@ -8,11 +8,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 474250}
+  - component: {fileID: 11489182}
   - component: {fileID: 11429752}
   - component: {fileID: 11420650}
   - component: {fileID: 11489324}
   - component: {fileID: 11496072}
-  - component: {fileID: 11489182}
   - component: {fileID: 114880811013771744}
   m_Layer: 0
   m_Name: SouvenirModule
@@ -1100,14 +1100,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 89b1cb28aeca46340a6219a9c735719e, type: 3}
   - {fileID: 21300000, guid: 75cc0f653f0e6cf45bb3e4669b554559, type: 3}
   ValvesSprites:
-  - {fileID: 21300000, guid: 406a8a18b7d8cd74e90b1db9bd5e3bcd, type: 3}
-  - {fileID: 21300000, guid: ef9b77cf52aa17e49a4d362c3e6b1e68, type: 3}
-  - {fileID: 21300000, guid: fa998e02e4a4e8342a656c41223133b0, type: 3}
-  - {fileID: 21300000, guid: 0c7b4452a41dbf647a6a0e3fb804411e, type: 3}
-  - {fileID: 21300000, guid: 78f89979e2695ac47bb58304dc55d5a0, type: 3}
-  - {fileID: 21300000, guid: c999b8cafb4aae74a9599de692beb816, type: 3}
-  - {fileID: 21300000, guid: 8a0429008babe5e48a196885ec0f2d36, type: 3}
-  - {fileID: 21300000, guid: 0853096099c9896459f9f9fada92467c, type: 3}
+  - {fileID: 21300000, guid: c016fab76049d8542b96918f6e46c327, type: 3}
+  - {fileID: 21300002, guid: c016fab76049d8542b96918f6e46c327, type: 3}
+  - {fileID: 21300004, guid: c016fab76049d8542b96918f6e46c327, type: 3}
+  - {fileID: 21300006, guid: c016fab76049d8542b96918f6e46c327, type: 3}
+  - {fileID: 21300008, guid: c016fab76049d8542b96918f6e46c327, type: 3}
+  - {fileID: 21300010, guid: c016fab76049d8542b96918f6e46c327, type: 3}
+  - {fileID: 21300012, guid: c016fab76049d8542b96918f6e46c327, type: 3}
+  - {fileID: 21300014, guid: c016fab76049d8542b96918f6e46c327, type: 3}
   WarningSignsSprites:
   - {fileID: 21300000, guid: 19fc55fde7d593541bc3873c70404c8e, type: 3}
   - {fileID: 21300000, guid: 88a99e8be90cd3041b7441ba716fe8ac, type: 3}
