@@ -1551,6 +1551,10 @@
             ExampleExtraFormatArguments = new[] { "red", "green", "blue", "yellow" }, ExampleExtraFormatArgumentGroupSize = 1)]
         ModuleListeningSounds,
 
+        [SouvenirQuestion("What was the {1} module shown in {0}?", "Module Movements", TwoColumns4Answers,
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ModuleMovementsDisplay,
+
         [SouvenirQuestion("Which of the following was the starting icon for {0}?", "Module Maze", ThreeColumns6Answers, null, Type = AnswerType.Sprites)]
         ModuleMazeStartingIcon,
 

@@ -706,6 +706,39 @@ public partial class SouvenirModule
                 correctAnswers: new[] { GetField<Sprite>(comp, "souvenirStart").Get() }, preferredWrongAnswers: fldSprites.Get()));
     }
 
+    private IEnumerable<object> ProcessModuleMovements(KMBombModule module)
+    {
+        var comp = GetComponent(module, "moduleMovements");
+        var fldStageNum = GetIntField(comp, "stageNumber");
+        var fldDisplay = GetField<SpriteRenderer>(comp, "display", isPublic: true);
+        int currentStage = -1;
+        var answers = new string[3];
+        bool isSolved = false;
+        var moduleNames = GetArrayField<string>(comp, "modules", true).Get();
+        module.OnPass += () => { isSolved = true; return false; };
+
+        while (!isSolved)
+        {
+            int nextStage = fldStageNum.Get();
+            if (currentStage != nextStage)
+            {
+                currentStage = nextStage;
+                answers[currentStage] = fldDisplay.Get().sprite.name;
+            }
+            yield return null;
+        }
+
+        _modulesSolved.IncSafe(_ModuleMovements);
+
+        var qs = new List<QandA>();
+        for (int i = 0; i < answers.Length; i++)
+        {
+            qs.Add(makeQuestion(Question.ModuleMovementsDisplay, _ModuleMovements, formatArgs: new[] { "" + ordinal(i + 1) }, correctAnswers: new[] { answers[i] }, preferredWrongAnswers: moduleNames));
+        }
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessMonsplodeFight(KMBombModule module)
     {
         var comp = GetComponent(module, "MonsplodeFightModule");

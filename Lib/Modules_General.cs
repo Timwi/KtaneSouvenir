@@ -301,6 +301,7 @@ public partial class SouvenirModule
     const string _ModernCipher = "modernCipher";
     const string _ModuleListening = "moduleListening";
     const string _ModuleMaze = "ModuleMaze";
+    const string _ModuleMovements = "moduleMovements";
     const string _MonsplodeFight = "monsplodeFight";
     const string _MonsplodeTradingCards = "monsplodeCards";
     const string _Moon = "moon";
@@ -853,6 +854,7 @@ public partial class SouvenirModule
             [_ModernCipher] = (ProcessModernCipher, "Modern Cipher", "luisdiogo98"),
             [_ModuleListening] = (ProcessModuleListening, "Module Listening", "TasThiluna"),
             [_ModuleMaze] = (ProcessModuleMaze, "Module Maze", "River"),
+            [_ModuleMovements] = (ProcessModuleMovements, "Module Movements", "Hawker"),
             [_MonsplodeFight] = (ProcessMonsplodeFight, "Monsplode, Fight!", "Timwi"),
             [_MonsplodeTradingCards] = (ProcessMonsplodeTradingCards, "Monsplode Trading Cards", "Timwi"),
             [_Moon] = (ProcessMoon, "Moon, The", "Timwi"),
