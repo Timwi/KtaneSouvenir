@@ -37,6 +37,7 @@ public partial class SouvenirModule
     const string _AlphabetTiles = "AlphabetTiles";
     const string _AlphaBits = "alphaBits";
     const string _AngelHernandez = "AngelHernandezModule";
+    const string _Arena = "TheArena";
     const string _Arithmelogic = "arithmelogic";
     const string _ASCIIMaze = "asciiMaze";
     const string _ASquare = "ASquareModule";
@@ -587,6 +588,7 @@ public partial class SouvenirModule
             [_AlphabetTiles] = (ProcessAlphabetTiles, "Alphabet Tiles", "BigCrunch22"),
             [_AlphaBits] = (ProcessAlphaBits, "Alpha-Bits", "Timwi"),
             [_AngelHernandez] = (ProcessAngelHernandez, "Ángel Hernández", "Quinn Wuest"),
+            [_Arena] = (ProcessArena, "Arena, The", "Hawker"),
             [_Arithmelogic] = (ProcessArithmelogic, "Arithmelogic", "JerryEris"),
             [_ASCIIMaze] = (ProcessASCIIMaze, "ASCII Maze", "Timwi"),
             [_ASquare] = (ProcessASquare, "A Square", "Quinn Wuest"),

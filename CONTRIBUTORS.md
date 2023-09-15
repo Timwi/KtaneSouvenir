@@ -100,13 +100,13 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Forget Me      │  M-Seq                 │  Not Word Search  │  Stupid Slots          │
     Jenga          │  Math ’em              │  Numpath          │  Superparsing          │
 
-## Implemented by Hawker (22)
+## Implemented by Hawker (23)
 
-    3N+1                     │  Earthbound         │  High Score, The     │  Scrutiny Squares                   │  Valves
-    Character Slots          │  Find The Date      │  Keypad Combination  │  Sign Language                      │  Weakest Link, The
-    Customer Identification  │  Garnet Thief, The  │  Ladder Lottery      │  Sonic & Knuckles                   │
-    Dimension Disruption     │  Girlfriend         │  RGB Sequences       │  Spongebob Birthday Identification  │
-    Directional Button       │  h                  │  RobotProgramming    │  UNO!                               │
+    3N+1                     │  Directional Button  │  h                   │  RobotProgramming                   │  UNO!
+    Arena, The               │  Earthbound          │  High Score, The     │  Scrutiny Squares                   │  Valves
+    Character Slots          │  Find The Date       │  Keypad Combination  │  Sign Language                      │  Weakest Link, The
+    Customer Identification  │  Garnet Thief, The   │  Ladder Lottery      │  Sonic & Knuckles                   │
+    Dimension Disruption     │  Girlfriend          │  RGB Sequences       │  Spongebob Birthday Identification  │
 
 ## Implemented by kavinkul (17)
 

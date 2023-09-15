@@ -371,6 +371,28 @@ public partial class SouvenirModule
         addQuestions(module, displayedLetters.Select((word, stage) => makeQuestion(Question.AngelHernandezMainLetter, _AngelHernandez, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { word }, preferredWrongAnswers: alph)));
     }
 
+    private IEnumerable<object> ProcessArena(KMBombModule module)
+    {
+        var comp = GetComponent(module, "TheArena");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+
+        _modulesSolved.IncSafe(_Arena);
+
+        var grabNums = GetArrayField<TextMesh>(comp, "GrbNums", isPublic: true).Get(expectedLength: 9).Select(textMesh => textMesh.text).ToArray();
+        var enemyNames = GetField<TextMesh>(comp, "DefEnemies", isPublic: true).Get().text.Split('\n').ToArray();
+        var maxNum = GetField<TextMesh>(comp, "AtkNum", isPublic: true).Get().text.Replace("[", "").Replace("]", "");
+
+       addQuestions(module, new QandA[] {
+           makeQuestion(Question.ArenaDamage, _Arena, correctAnswers: new[] { maxNum }),
+           makeQuestion(Question.ArenaEnemies, _Arena, correctAnswers: enemyNames),
+           makeQuestion(Question.ArenaNumbers, _Arena, correctAnswers: grabNums)
+       });
+
+    }
+
     private IEnumerable<object> ProcessArithmelogic(KMBombModule module)
     {
         var comp = GetComponent(module, "Arithmelogic");
