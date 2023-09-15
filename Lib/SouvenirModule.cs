@@ -432,9 +432,9 @@ public partial class SouvenirModule : MonoBehaviour
         }
     }
 
-    private string translateQuestion(Question question) => _translation?.Translations[question].QuestionText ?? _attributes[question].QuestionText;
-    private string translateFormatArg(Question question, string arg) => arg == null ? null : _translation?.Translations[question].FormatArgs?.Get(arg, arg) ?? arg;
-    private string translateAnswer(Question question, string answ) => answ == null ? null : _translation?.Translations[question].Answers?.Get(answ, answ) ?? answ;
+    private string translateQuestion(Question question) => _translation?.Translations.Get(question, null)?.QuestionText ?? _attributes[question].QuestionText;
+    private string translateFormatArg(Question question, string arg) => arg == null ? null : _translation?.Translations.Get(question, null)?.FormatArgs?.Get(arg, arg) ?? arg;
+    private string translateAnswer(Question question, string answ) => answ == null ? null : _translation?.Translations.Get(question, null)?.Answers?.Get(answ, answ) ?? answ;
 
     private static SouvenirQuestionAttribute GetQuestionAttribute(FieldInfo field)
     {

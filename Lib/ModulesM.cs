@@ -731,7 +731,7 @@ public partial class SouvenirModule
 
         addQuestions(module, answers.Select((ans, i) =>
             makeQuestion(Question.ModuleMovementsDisplay, _ModuleMovements, formatArgs: new[] { ordinal(i + 1) },
-                correctAnswers: new[] { ans }, preferredWrongAnswers: moduleNames)));
+                correctAnswers: new[] { ans }, preferredWrongAnswers: answers)));
     }
 
     private IEnumerable<object> ProcessMonsplodeFight(KMBombModule module)

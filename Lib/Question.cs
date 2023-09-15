@@ -138,7 +138,7 @@
         [SouvenirQuestion("What was the maximum weapon damage of the attack phase in {0}?", "Arena", ThreeColumns6Answers, AddThe = true)]
         [AnswerGenerator.Integers(1, 99)]
         ArenaDamage,
-        [SouvenirQuestion("Which enemy was present in the defend phase of {0}?", "Arena", ThreeColumns6Answers, "Bat", "Snake", "Spider", "Cobra", "Scorpion", "Mole", "Creeper", "Goblin", "Golem", "Robo-Mouse", "Skeleton", "Undead Guard", "The Reaper", "The Mole’s Dad", AddThe = true)]
+        [SouvenirQuestion("Which enemy was present in the defend phase of {0}?", "Arena", TwoColumns4Answers, "Bat", "Snake", "Spider", "Cobra", "Scorpion", "Mole", "Creeper", "Goblin", "Golem", "Robo-Mouse", "Skeleton", "Undead Guard", "The Reaper", "The Mole’s Dad", AddThe = true)]
         ArenaEnemies,
         [SouvenirQuestion("Which was a number present in the grab phase of {0}?", "Arena", ThreeColumns6Answers, AddThe = true)]
         [AnswerGenerator.Integers(10, 99)]
@@ -1569,7 +1569,7 @@
         [SouvenirQuestion("Which of the following was the starting icon for {0}?", "Module Maze", ThreeColumns6Answers, null, Type = AnswerType.Sprites)]
         ModuleMazeStartingIcon,
 
-        [SouvenirQuestion("What was the {1} module shown in {0}?", "Module Movements", TwoColumns4Answers, "3D Tunnels", "Alchemy", "Braille", "Button Sequences", "Chord Qualities", "Crackbox", "Functions", "Hunting", "Kudosudoku", "Logic Gates", "Morse-A-Maze", "Pattern Cube", "Planets", "Quintuples", "Schlag den Bomb", "Shapes and Bombs", "Simon Samples", "Simon States", "Symbol Cycle", "Turtle Robot", "Wavetapping", "The Wire", "Yahtzee",
+        [SouvenirQuestion("What was the {1} module shown in {0}?", "Module Movements", TwoColumns4Answers, "3D Tunnels", "Alchemy", "Braille", "Button Sequence", "Chord Qualities", "Crackbox", "Functions", "Hunting", "Kudosudoku", "Logic Gates", "Morse-A-Maze", "Pattern Cube", "Planets", "Quintuples", "Schlag den Bomb", "Shapes and Bombs", "Simon Samples", "Simon States", "Symbol Cycle", "Turtle Robot", "Wavetapping", "The Wire", "Yahtzee",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         ModuleMovementsDisplay,
 

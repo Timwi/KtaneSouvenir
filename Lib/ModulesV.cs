@@ -36,7 +36,7 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"Valves should have 8 sprites. Counted {ValvesSprites.Length}");
 
         var valvesColorNums = GetArrayField<int>(comp, "valvesColorNum").Get(expectedLength: 3, validator: val => val != 0 && val != 1 ? "expected 0 or 1" : null);
-        var spriteIx = valvesColorNums.Aggregate(0, (p, n) => (p << 1) | n);
+        var spriteIx = valvesColorNums.Aggregate(0, (p, n) => (p << 1) | (n ^ 1));
         addQuestion(module, Question.ValvesInitialState, correctAnswers: new[] { ValvesSprites[spriteIx] });
     }
 
