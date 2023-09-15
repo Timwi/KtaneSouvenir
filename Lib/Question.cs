@@ -1,5 +1,6 @@
 ﻿namespace Souvenir
 {
+    using UnityEngine;
     using static AnswerLayout;
 
     public enum Question
@@ -133,6 +134,15 @@
         [SouvenirQuestion("What letter was shown by the raised buttons on the {1} stage on {0}?", "Ángel Hernández", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         AngelHernandezMainLetter,
+
+        [SouvenirQuestion("What was the maximum weapon damage of the attack phase in {0}?", "Arena", ThreeColumns6Answers, AddThe = true)]
+        [AnswerGenerator.Integers(1, 99)]
+        ArenaDamage,
+        [SouvenirQuestion("Which enemy was present in the defend phase of {0}?", "Arena", ThreeColumns6Answers, "Bat", "Snake", "Spider", "Cobra", "Scorpion", "Mole", "Creeper", "Goblin", "Golem", "Robo-Mouse", "Skeleton", "Undead Guard", "The Reaper", "The Mole’s Dad", AddThe = true)]
+        ArenaEnemies,
+        [SouvenirQuestion("Which was a number present in the grab phase of {0}?", "Arena", ThreeColumns6Answers, AddThe = true)]
+        [AnswerGenerator.Integers(10, 99)]
+        ArenaNumbers,
 
         [SouvenirQuestion("What was the symbol on the submit button in {0}?", "Arithmelogic", ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "ArithmelogicSprites")]
         ArithmelogicSubmit,
@@ -510,6 +520,10 @@
         [AnswerGenerator.Strings(5, 'Q', 'R')]
         ColoredSwitchesWhenLEDsCameOn,
 
+        [SouvenirQuestion("What was the color of the {1} LED on the right side of {0}?", "Color Math", ThreeColumns6Answers, "Blue", "Green", "Purple", "Yellow", "White", "Magenta", "Red", "Orange", "Gray", "Black",
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ColorMathRightColor,
+
         [SouvenirQuestion("What was the color of the {1} LED in {0}?", "Color Morse", ThreeColumns6Answers, "Blue", "Green", "Orange", "Purple", "Red", "Yellow", "White", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         ColorMorseColor,
@@ -736,6 +750,11 @@
         [SouvenirQuestion("Which player {1} present in {0}?", "Dumb Waiters", OneColumn4Answers, null, ExampleAnswers = new[] { "Arceus", "Danny7007", "EpicToast", "eXish", "Fang", "Makebao", "MCD573", "Mr. Peanut", "Mythers", "Xmaster" },
             ExampleExtraFormatArguments = new[] { "was", "was not" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         DumbWaitersPlayerAvailable,
+
+        [SouvenirQuestion("What was the background number in {0}?", "Earthbound", ThreeColumns6Answers, "57", "97", "77", "43", "53", "32", "18", "88", "31", "16", "76", "20", "13", "89", "44", "35", "48", "86", "90", "67", "45", "26", "24", "87", "22", "84", "47", "93", "49", "33")]
+        EarthboundBackground,
+        [SouvenirQuestion("Which monster was displayed in {0}?", "Earthbound", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "EarthboundSprites")]
+        EarthboundMonster,
 
         [SouvenirQuestion("What word was asked to be spelled in {0}?", "eeB gnillepS", TwoColumns4Answers, null, ExampleAnswers = new[] { "odontalgia", "precocious", "privilege", "prospicience" })]
         eeBgnillepSWord,
@@ -1265,6 +1284,11 @@
             "Onion", "Corn", "big MIOLK", "Yam", "Corn Cube", "Egg", "Eggchips", "hamger", "Tyler the Creator", "Onionade", "Soup", "jeb", AddThe = true)]
         KanyeEncounterFoods,
 
+        [SouvenirQuestion("Which number was displayed on the {1} button, but not part of the answer on {0}?", "Keypad Combinations", ThreeColumns6Answers,
+           ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 9)]
+        KeypadCombinationWrongNumbers,
+
         [SouvenirQuestion("What was the position of the LED in {0}?", "Keypad Magnified", TwoColumns4Answers, "Top-left", "Top-right", "Bottom-left", "Bottom-right")]
         KeypadMagnifiedLED,
 
@@ -1544,6 +1568,10 @@
 
         [SouvenirQuestion("Which of the following was the starting icon for {0}?", "Module Maze", ThreeColumns6Answers, null, Type = AnswerType.Sprites)]
         ModuleMazeStartingIcon,
+
+        [SouvenirQuestion("What was the {1} module shown in {0}?", "Module Movements", TwoColumns4Answers, "3D Tunnels", "Alchemy", "Braille", "Button Sequences", "Chord Qualities", "Crackbox", "Functions", "Hunting", "Kudosudoku", "Logic Gates", "Morse-A-Maze", "Pattern Cube", "Planets", "Quintuples", "Schlag den Bomb", "Shapes and Bombs", "Simon Samples", "Simon States", "Symbol Cycle", "Turtle Robot", "Wavetapping", "The Wire", "Yahtzee",
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ModuleMovementsDisplay,
 
         [SouvenirQuestion("Which creature was displayed in {0}?", "Monsplode, Fight!", TwoColumns4Answers, "Caadarim", "Buhar", "Melbor", "Lanaluff", "Bob", "Mountoise", "Aluga", "Nibs", "Zapra", "Zenlad", "Vellarim", "Ukkens", "Lugirit", "Flaurim", "Myrchat", "Clondar", "Gloorim", "Docsplode", "Magmy", "Pouse", "Asteran", "Violan", "Percy", "Cutie Pie")]
         MonsplodeFightCreature,
@@ -2137,15 +2165,19 @@
         [AnswerGenerator.Integers(0, 9)]
         RGBMazeNumber,
 
+        [SouvenirQuestion("What was the color of the {1} LED in {0}?", "RGB Sequences", ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Cyan", "Yellow", "White",
+        ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        RGBSequencesDisplay,
+
         [SouvenirQuestion("What was the color in {0}?", "Rhythms", TwoColumns4Answers, "Blue", "Red", "Green", "Yellow", TranslateAnswers = true)]
         RhythmsColor,
 
-        [SouvenirQuestion("What was the rule number in {0}?", "Rule", ThreeColumns6Answers, AddThe = true)]
-        [AnswerGenerator.Integers(0, 15)]
-        RuleNumber,
-
         [SouvenirQuestion("Where was the empty cell in {0}?", "Robo-Scanner", ThreeColumns6Answers, "A1", "A2", "A3", "A4", "A5", "B1", "B2", "B3", "B4", "B5", "C1", "C2", "C4", "C5", "D1", "D2", "D3", "D4", "D5", "E1", "E2", "E3", "E4", "E5")]
         RoboScannerEmptyCell,
+
+        [SouvenirQuestion("What was the name of the robot in the {1} position of {0}?", "Robot Programming", TwoColumns4Answers, "R.O.B", "HAL", "R2D2", "Fender",
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        RobotProgrammingName,
 
         [SouvenirQuestion("What four-digit number was given in {0}?", "Roger", ThreeColumns6Answers, null)]
         [AnswerGenerator.Integers(0, 9999, "0000")]
@@ -2156,6 +2188,10 @@
         [SouvenirQuestion("How many {1} wires were there in {0}?", "Role Reversal", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7",
             ExampleExtraFormatArguments = new[] { "warm-colored", "cold-colored", "primary-colored", "secondary-colored" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         RoleReversalWires,
+
+        [SouvenirQuestion("What was the rule number in {0}?", "Rule", ThreeColumns6Answers, AddThe = true)]
+        [AnswerGenerator.Integers(0, 15)]
+        RuleNumber,
 
         [SouvenirQuestion("What was the {1} coordinate of the {2} vertex in {0}?", "Rule of Three", ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "X", "red", "Y", "yellow", "Z", "blue" }, ExampleExtraFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { false, true })]
@@ -2697,6 +2733,9 @@
         [SouvenirQuestion("Which word {1} shown in {0}?", "V", OneColumn4Answers, null,
         ExampleExtraFormatArguments = new[] { "was", "was not" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true }, ExampleAnswers = new[] { "Vacant", "Valorous", "Volition", "Vermin", "Vanity", "Visage", "Voracious", "Veers", "Vengeance", "Violation", "Vigilant", "Veteran", "Vanguarding", "Villain" })]
         VWords,
+
+        [SouvenirQuestion("What was the initial state of {0}?", "Valves", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteField = "ValvesSprites")]
+        ValvesInitialState,
 
         [SouvenirQuestion("What was the initially pressed color on {0}?", "Varicolored Squares", ThreeColumns6Answers, "White", "Red", "Blue", "Green", "Yellow", "Magenta", TranslateAnswers = true)]
         VaricoloredSquaresInitialColor,

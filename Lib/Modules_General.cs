@@ -37,6 +37,7 @@ public partial class SouvenirModule
     const string _AlphabetTiles = "AlphabetTiles";
     const string _AlphaBits = "alphaBits";
     const string _AngelHernandez = "AngelHernandezModule";
+    const string _Arena = "TheArena";
     const string _Arithmelogic = "arithmelogic";
     const string _ASCIIMaze = "asciiMaze";
     const string _ASquare = "ASquareModule";
@@ -103,6 +104,7 @@ public partial class SouvenirModule
     const string _ColoredKeys = "lgndColoredKeys";
     const string _ColoredSquares = "ColoredSquaresModule";
     const string _ColoredSwitches = "ColoredSwitchesModule";
+    const string _ColorMath = "colormath";
     const string _ColorMorse = "ColorMorseModule";
     const string _ColorsMaximization = "colors_maximization";
     const string _ColouredCubes = "ColouredCubes";
@@ -150,6 +152,7 @@ public partial class SouvenirModule
     const string _Dreamcipher = "ksmDreamcipher";
     const string _Duck = "theDuck";
     const string _DumbWaiters = "dumbWaiters";
+    const string _Earthbound = "EarthboundModule";
     const string _eeBgnillepS = "eeBgnilleps";
     const string _Eight = "eight";
     const string _ElderFuthark = "elderFuthark";
@@ -244,6 +247,7 @@ public partial class SouvenirModule
     const string _JuxtacoloredSquares = "JuxtacoloredSquaresModule";
     const string _Kanji = "KanjiModule";
     const string _KanyeEncounter = "TheKanyeEncounter";
+    const string _KeypadCombination = "keypadCombinations";
     const string _KeypadMagnified = "keypadMagnified";
     const string _Keywords = "xtrkeywords";
     const string _KnowYourWay = "KnowYourWay";
@@ -300,6 +304,7 @@ public partial class SouvenirModule
     const string _ModernCipher = "modernCipher";
     const string _ModuleListening = "moduleListening";
     const string _ModuleMaze = "ModuleMaze";
+    const string _ModuleMovements = "moduleMovements";
     const string _MonsplodeFight = "monsplodeFight";
     const string _MonsplodeTradingCards = "monsplodeCards";
     const string _Moon = "moon";
@@ -407,8 +412,10 @@ public partial class SouvenirModule
     const string _ReverseMorse = "reverseMorse";
     const string _ReversePolishNotation = "revPolNot";
     const string _RGBMaze = "rgbMaze";
+    const string _RGBSequences = "RGBSequences";
     const string _Rhythms = "MusicRhythms";
     const string _RoboScanner = "roboScannerModule";
+    const string _RobotProgramming = "robotProgramming";
     const string _Roger = "roger";
     const string _RoleReversal = "roleReversal";
     const string _Rule = "theRule";
@@ -526,6 +533,7 @@ public partial class SouvenirModule
     const string _USACycle = "USACycle";
     const string _USAMaze = "USA";
     const string _V = "V";
+    const string _Valves = "valves";
     const string _VaricoloredSquares = "VaricoloredSquaresModule";
     const string _VaricolourFlash = "varicolourFlash";
     const string _Vcrcs = "VCRCS";
@@ -585,6 +593,7 @@ public partial class SouvenirModule
             [_AlphabetTiles] = (ProcessAlphabetTiles, "Alphabet Tiles", "BigCrunch22"),
             [_AlphaBits] = (ProcessAlphaBits, "Alpha-Bits", "Timwi"),
             [_AngelHernandez] = (ProcessAngelHernandez, "Ángel Hernández", "Quinn Wuest"),
+            [_Arena] = (ProcessArena, "Arena, The", "Hawker"),
             [_Arithmelogic] = (ProcessArithmelogic, "Arithmelogic", "JerryEris"),
             [_ASCIIMaze] = (ProcessASCIIMaze, "ASCII Maze", "Timwi"),
             [_ASquare] = (ProcessASquare, "A Square", "Quinn Wuest"),
@@ -651,6 +660,7 @@ public partial class SouvenirModule
             [_ColoredKeys] = (ProcessColoredKeys, "Colored Keys", "luisdiogo98"),
             [_ColoredSquares] = (ProcessColoredSquares, "Colored Squares", "Timwi"),
             [_ColoredSwitches] = (ProcessColoredSwitches, "Colored Switches", "Timwi"),
+            [_ColorMath] = (ProcessColorMath, "Color Math", "Hawker"),
             [_ColorMorse] = (ProcessColorMorse, "Color Morse", "Timwi"),
             [_ColorsMaximization] = (ProcessColorsMaximization, "Colors Maximization", "NickLatkovich"),
             [_ColouredCubes] = (ProcessColouredCubes, "Coloured Cubes", "Kuro"),
@@ -698,6 +708,7 @@ public partial class SouvenirModule
             [_Dreamcipher] = (ProcessDreamcipher, "Dreamcipher", "BigCrunch22"),
             [_Duck] = (ProcessDuck, "Duck, The", "Kuro"),
             [_DumbWaiters] = (ProcessDumbWaiters, "Dumb Waiters", "BigCrunch22"),
+            [_Earthbound] = (ProcessEarthbound, "Earthbound", "Hawker"),
             [_eeBgnillepS] = (ProcessEeBgnillepS, "eeB gnillepS", "BigCrunch22"),
             [_Eight] = (ProcessEight, "Eight", "NickLatkovich"),
             [_ElderFuthark] = (ProcessElderFuthark, "Elder Futhark", "Goofy"),
@@ -792,6 +803,7 @@ public partial class SouvenirModule
             [_JuxtacoloredSquares] = (ProcessJuxtacoloredSquares, "Juxtacolored Squares", "Kuro"),
             [_Kanji] = (ProcessKanji, "Kanji", "Kuro"),
             [_KanyeEncounter] = (ProcessKanyeEncounter, "Kanye Encounter, The", "tandyCake"),
+            [_KeypadCombination] = (ProcessKeypadCombination, "Keypad Combination", "Hawker"),
             [_KeypadMagnified] = (ProcessKeypadMagnified, "Keypad Magnified", "tandyCake"),
             [_Keywords] = (ProcessKeywords, "Keywords", "Kuro"),
             [_KnowYourWay] = (ProcessKnowYourWay, "Know Your Way", "Kuro"),
@@ -848,6 +860,7 @@ public partial class SouvenirModule
             [_ModernCipher] = (ProcessModernCipher, "Modern Cipher", "luisdiogo98"),
             [_ModuleListening] = (ProcessModuleListening, "Module Listening", "TasThiluna"),
             [_ModuleMaze] = (ProcessModuleMaze, "Module Maze", "River"),
+            [_ModuleMovements] = (ProcessModuleMovements, "Module Movements", "Hawker"),
             [_MonsplodeFight] = (ProcessMonsplodeFight, "Monsplode, Fight!", "Timwi"),
             [_MonsplodeTradingCards] = (ProcessMonsplodeTradingCards, "Monsplode Trading Cards", "Timwi"),
             [_Moon] = (ProcessMoon, "Moon, The", "Timwi"),
@@ -955,8 +968,10 @@ public partial class SouvenirModule
             [_ReverseMorse] = (ProcessReverseMorse, "Reverse Morse", "luisdiogo98"),
             [_ReversePolishNotation] = (ProcessReversePolishNotation, "Reverse Polish Notation", "shortc1rcuit"),
             [_RGBMaze] = (ProcessRGBMaze, "RGB Maze", "kavinkul"),
+            [_RGBSequences] = (ProcessRGBSequences, "RGB Sequences", "Hawker"),
             [_Rhythms] = (ProcessRhythms, "Rhythms", "Timwi"),
             [_RoboScanner] = (ProcessRoboScanner, "Robo-Scanner", "Quinn Wuest"),
+            [_RobotProgramming] = (ProcessRobotProgramming, "RobotProgramming", "Hawker"),
             [_Roger] = (ProcessRoger, "Roger", "BigCrunch22"),
             [_RoleReversal] = (ProcessRoleReversal, "Role Reversal", "Emik"),
             [_Rule] = (ProcessRule, "Rule, The", "TasThiluna"),
@@ -1074,6 +1089,7 @@ public partial class SouvenirModule
             [_USACycle] = (ProcessUSACycle, "USA Cycle", "tandyCake"),
             [_USAMaze] = (ProcessUSAMaze, "USA Maze", "luisdiogo98"),
             [_V] = (ProcessV, "V", "BigCrunch22"),
+            [_Valves] = (ProcessValves, "Valves", "Hawker"),
             [_VaricoloredSquares] = (ProcessVaricoloredSquares, "Varicolored Squares", "luisdiogo98"),
             [_VaricolourFlash] = (ProcessVaricolourFlash, "Varicolour Flash", "Quinn Wuest"),
             [_Vcrcs] = (ProcessVcrcs, "Vcrcs", "Timwi"),

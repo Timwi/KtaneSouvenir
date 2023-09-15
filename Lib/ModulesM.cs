@@ -686,10 +686,9 @@ public partial class SouvenirModule
         var indices = GetArrayField<int>(comp, "moduleIndex").Get(validator: ar => ar.Length != 4 ? "expected length 4" : ar.Any(v => v < 0 || v >= moduleNames.Length) ? $"out of range for moduleNames (0–{moduleNames.Length - 1})" : null);
         var colorNames = GetArrayField<string>(comp, "buttonColors").Get(expectedLength: 4);
         var colorOrder = GetArrayField<int>(comp, "btnColors").Get(validator: ar => ar.Length != 4 ? "expected length 4" : ar.Any(v => v < 0 || v >= colorNames.Length) ? $"out of range for colorNames (0–{colorNames.Length - 1})" : null);
-        var qs = new List<QandA>();
-        for (int i = 0; i < 4; i++)
-            qs.Add(makeQuestion(Question.ModuleListeningSounds, _ModuleListening, formatArgs: new[] { colorNames[colorOrder[i]] }, correctAnswers: new[] { moduleNames[indices[i]] }, preferredWrongAnswers: moduleNames));
-        addQuestions(module, qs);
+        addQuestions(module, Enumerable.Range(0, 4).Select(i =>
+            makeQuestion(Question.ModuleListeningSounds, _ModuleListening, formatArgs: new[] { colorNames[colorOrder[i]] },
+                correctAnswers: new[] { moduleNames[indices[i]] }, preferredWrongAnswers: moduleNames)));
     }
 
     private IEnumerable<object> ProcessModuleMaze(KMBombModule module)
@@ -705,6 +704,34 @@ public partial class SouvenirModule
         addQuestions(module,
             makeQuestion(Question.ModuleMazeStartingIcon, _ModuleMaze,
                 correctAnswers: new[] { GetField<Sprite>(comp, "souvenirStart").Get() }, preferredWrongAnswers: fldSprites.Get()));
+    }
+
+    private IEnumerable<object> ProcessModuleMovements(KMBombModule module)
+    {
+        var comp = GetComponent(module, "moduleMovements");
+        var fldStageNum = GetIntField(comp, "stageNumber");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldDisplay = GetField<SpriteRenderer>(comp, "display", isPublic: true);
+        var currentStage = -1;
+        var answers = new string[3];
+        var moduleNames = GetArrayField<string>(comp, "modules", true).Get();
+
+        while (!fldSolved.Get())
+        {
+            var nextStage = fldStageNum.Get();
+            if (currentStage != nextStage)
+            {
+                currentStage = nextStage;
+                answers[currentStage] = fldDisplay.Get().sprite.name;
+            }
+            yield return null;
+        }
+
+        _modulesSolved.IncSafe(_ModuleMovements);
+
+        addQuestions(module, answers.Select((ans, i) =>
+            makeQuestion(Question.ModuleMovementsDisplay, _ModuleMovements, formatArgs: new[] { ordinal(i + 1) },
+                correctAnswers: new[] { ans }, preferredWrongAnswers: moduleNames)));
     }
 
     private IEnumerable<object> ProcessMonsplodeFight(KMBombModule module)

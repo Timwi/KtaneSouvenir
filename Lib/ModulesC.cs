@@ -602,6 +602,37 @@ public partial class SouvenirModule
             makeQuestion(Question.ColoredSwitchesWhenLEDsCameOn, _ColoredSwitches, correctAnswers: new[] { Enumerable.Range(0, 5).Select(b => (afterReveal & (1 << b)) != 0 ? "Q" : "R").Reverse().JoinString() }));
     }
 
+    private IEnumerable<object> ProcessColorMath(KMBombModule module)
+    {
+        var comp = GetComponent(module, "Colormath");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_ColorMath);
+
+        if (GetIntField(comp, "_mode").Get(v => v != 0 && v != 1 ? "expected 0 or 1" : null) == 0)
+        {
+            legitimatelyNoQuestion(module, "The letter was red.");
+            yield break;
+        }
+
+        var rightNum = GetIntField(comp, "_right").Get();
+        var rightColor = GetField<int[,]>(comp, "_rightcolor").Get();
+        var colorArr = GetArrayField<string>(comp, "_colorText").Get(expectedLength: 10);
+        int mult = 1000, r = rightNum;
+        var qs = new List<QandA>();
+        for (var i = 0; i < 4; i++)
+        {
+            var tr = r / mult;
+            r %= mult;
+            mult /= 10;
+
+            qs.Add(makeQuestion(Question.ColorMathRightColor, _ColorMath, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorArr[rightColor[i, tr]] }));
+        }
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessColorMorse(KMBombModule module)
     {
         var comp = GetComponent(module, "ColorMorseModule");

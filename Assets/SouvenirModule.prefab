@@ -8,11 +8,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 474250}
+  - component: {fileID: 11489182}
   - component: {fileID: 11429752}
   - component: {fileID: 11420650}
   - component: {fileID: 11489324}
   - component: {fileID: 11496072}
-  - component: {fileID: 11489182}
   - component: {fileID: 114880811013771744}
   m_Layer: 0
   m_Name: SouvenirModule
@@ -481,6 +481,37 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 24c2e6f2d97a2f342b0c4d0b278797c7, type: 3}
   - {fileID: 21300000, guid: e7169af83dd0cbc4cb2b42e37147b566, type: 3}
   - {fileID: 21300000, guid: 00ee5aceeb2aa7f4ea772ea91c16cf3f, type: 3}
+  EarthboundSprites:
+  - {fileID: 21300000, guid: 19a4f90fc22369f47b147cf1d712b17a, type: 3}
+  - {fileID: 21300000, guid: b01bd6131850c3442a57c5ad530b94b3, type: 3}
+  - {fileID: 21300000, guid: fd2f74de14157604d9aa4a472b139279, type: 3}
+  - {fileID: 21300000, guid: be4b11fd9a19fc54db899332b3b9c128, type: 3}
+  - {fileID: 21300000, guid: 2a8c4729a54f2cc4da45d0cc25968594, type: 3}
+  - {fileID: 21300000, guid: 884e3023d24db764c847dd1eaabc4f48, type: 3}
+  - {fileID: 21300000, guid: e868c6f57042aab49842252f9b76ba35, type: 3}
+  - {fileID: 21300000, guid: 0f1667e49a9a179489ab375444e3964f, type: 3}
+  - {fileID: 21300000, guid: ecc94ca9657eee34885e1377feefb5f0, type: 3}
+  - {fileID: 21300000, guid: dd0461eacb7685b438473fa645d56143, type: 3}
+  - {fileID: 21300000, guid: 6c607d99fb7452e48b8dc55e73dd01df, type: 3}
+  - {fileID: 21300000, guid: 1e2c8603f3f22d54495c3dfa617598dc, type: 3}
+  - {fileID: 21300000, guid: 858587b4a6143bd4bbe6e886fcbf04cc, type: 3}
+  - {fileID: 21300000, guid: 5166547d0d7a8aa4bab5b90e429902de, type: 3}
+  - {fileID: 21300000, guid: 153c0672f1c5ccb47a98be1c77dd5738, type: 3}
+  - {fileID: 21300000, guid: 22551814ff4e7b84a9127ee51e713b1d, type: 3}
+  - {fileID: 21300000, guid: 49916d15a843ddd48b114e2296c3ab46, type: 3}
+  - {fileID: 21300000, guid: aa828ac9aa9f918459a1b7a3f1c0c069, type: 3}
+  - {fileID: 21300000, guid: 06344eee5e0adb441830f81ad8f6bea3, type: 3}
+  - {fileID: 21300000, guid: 942e6efd71b7b3f4daf36cbd019bb27c, type: 3}
+  - {fileID: 21300000, guid: d00d5b453dfd48c4e8e85de2ec8968be, type: 3}
+  - {fileID: 21300000, guid: 64cd3bc97c44ad040a791c7c5bfc126e, type: 3}
+  - {fileID: 21300000, guid: 064c57a85520d264d9800b17b913c4be, type: 3}
+  - {fileID: 21300000, guid: dc1ee98e7936f9d4aba1294c4a4a32d5, type: 3}
+  - {fileID: 21300000, guid: 61b713777c3327345a153cc5a230011a, type: 3}
+  - {fileID: 21300000, guid: e0251e67a9f4d4941adfcccc12c0abff, type: 3}
+  - {fileID: 21300000, guid: 552bd6c7c4929e44f8e4066156180df6, type: 3}
+  - {fileID: 21300000, guid: 64fd729fb0b83af40b29032028bcb4cd, type: 3}
+  - {fileID: 21300000, guid: e9a19f305b3a9814e94b6aed0f24dee3, type: 3}
+  - {fileID: 21300000, guid: f6e3654cb4f25224184d9eb88967333f, type: 3}
   EncryptedEquationsSprites:
   - {fileID: 21300000, guid: ec3a26799d5ecd940b601d552b404d07, type: 3}
   - {fileID: 21300000, guid: 3ee5d260dc281174cb8b26e41697006b, type: 3}
@@ -1113,6 +1144,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 51d32e58a50aeba419269f1fc24979ac, type: 3}
   - {fileID: 21300000, guid: 89b1cb28aeca46340a6219a9c735719e, type: 3}
   - {fileID: 21300000, guid: 75cc0f653f0e6cf45bb3e4669b554559, type: 3}
+  ValvesSprites:
+  - {fileID: 21300000, guid: c016fab76049d8542b96918f6e46c327, type: 3}
+  - {fileID: 21300002, guid: c016fab76049d8542b96918f6e46c327, type: 3}
+  - {fileID: 21300004, guid: c016fab76049d8542b96918f6e46c327, type: 3}
+  - {fileID: 21300006, guid: c016fab76049d8542b96918f6e46c327, type: 3}
+  - {fileID: 21300008, guid: c016fab76049d8542b96918f6e46c327, type: 3}
+  - {fileID: 21300010, guid: c016fab76049d8542b96918f6e46c327, type: 3}
+  - {fileID: 21300012, guid: c016fab76049d8542b96918f6e46c327, type: 3}
+  - {fileID: 21300014, guid: c016fab76049d8542b96918f6e46c327, type: 3}
   WarningSignsSprites:
   - {fileID: 21300000, guid: 19fc55fde7d593541bc3873c70404c8e, type: 3}
   - {fileID: 21300000, guid: 88a99e8be90cd3041b7441ba716fe8ac, type: 3}

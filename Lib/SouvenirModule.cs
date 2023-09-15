@@ -28,6 +28,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] AzureButtonSprites;
     public Sprite[] BookOfMarioSprites;
     public Sprite[] CharacterSlotsSprites;
+    public Sprite[] EarthboundSprites;
     public Sprite[] EncryptedEquationsSprites;
     public Sprite[] ExampleSprites;
     public Sprite[] FlagsSprites;
@@ -58,6 +59,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] TasqueManagingSprites;
     public Sprite[] TeaSetSprites;
     public Sprite[] USACycleSprites;
+    public Sprite[] ValvesSprites;
     public Sprite[] WarningSignsSprites;
     public Sprite[] WavetappingSprites;
     public Texture2D[] DigitTextures;

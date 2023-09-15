@@ -340,6 +340,22 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessRGBSequences(KMBombModule module)
+    {
+        var comp = GetComponent(module, "RGBSequences");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_RGBSequences);
+
+        var colorDic = new Dictionary<char, string> { ['R'] = "Red", ['G'] = "Green", ['B'] = "Blue", ['C'] = "Cyan", ['M'] = "Magenta", ['Y'] = "Yellow", ['W'] = "White" };
+        var displayStr = GetField<string>(comp, "StringFour").Get(val => val.Length != 10 ? "expected length of 10" : val.Any(ch => !colorDic.ContainsKey(ch)) ? $"expected characters {colorDic.Keys.JoinString()}" : null);
+
+        addQuestions(module, Enumerable.Range(0, 10).Select(i =>
+            makeQuestion(Question.RGBSequencesDisplay, _RGBSequences, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorDic[displayStr[i]] })));
+    }
+
     private IEnumerable<object> ProcessRhythms(KMBombModule module)
     {
         var comp = GetComponent(module, "Rhythms");
@@ -365,6 +381,34 @@ public partial class SouvenirModule
         var emptyCell = GetIntField(comp, "emptyCell").Get(min: 0, max: 24);
         var sol = "ABCDE"[emptyCell % 5].ToString() + "12345"[emptyCell / 5].ToString();
         addQuestion(module, Question.RoboScannerEmptyCell, correctAnswers: new[] { sol });
+    }
+
+    private IEnumerable<object> ProcessRobotProgramming(KMBombModule module)
+    {
+        var comp = GetComponent(module, "robotProgrammingScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_RobotProgramming);
+
+        var namesArr = GetArrayField<string>(comp, "names").Get(expectedLength: 4);
+        var botPositions = GetField<IList>(comp, "robotOrder").Get();
+        var botNames = Enumerable.Range(0, 4).Select(i => namesArr[(int) botPositions[i]]).ToArray();
+
+        Debug.Log("Bot names: " + string.Join(", ", botNames));
+
+        var qs = new List<QandA>();
+
+        for (int i = 0; i < 4; i++)
+        {
+            qs.Add(makeQuestion(Question.RobotProgrammingName,
+                moduleKey: _RobotProgramming,
+                formatArgs: new[] { ordinal(i + 1) },
+                correctAnswers: new[] { botNames[i] }));
+        }
+
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessRoger(KMBombModule module)
