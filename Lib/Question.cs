@@ -753,7 +753,7 @@
 
         [SouvenirQuestion("What was the background number in {0}?", "Earthbound", ThreeColumns6Answers, "57", "97", "77", "43", "53", "32", "18", "88", "31", "16", "76", "20", "13", "89", "44", "35", "48", "86", "90", "67", "45", "26", "24", "87", "22", "84", "47", "93", "49", "33")]
         EarthboundBackground,
-        [SouvenirQuestion("Which monster was displayed in {0}?", "Earthbound", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "EarthboundSprites")]
+        [SouvenirQuestion("Which monster was displayed in {0}?", "Earthbound", ThreeColumns6Answers, Type = AnswerType.Sprites)]
         EarthboundMonster,
 
         [SouvenirQuestion("What word was asked to be spelled in {0}?", "eeB gnillepS", TwoColumns4Answers, null, ExampleAnswers = new[] { "odontalgia", "precocious", "privilege", "prospicience" })]

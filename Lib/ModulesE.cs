@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using Souvenir;
 using UnityEngine;
+using UnityEngine.UI;
 
 public partial class SouvenirModule
 {
@@ -16,16 +18,26 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(_Earthbound);
 
-        if (EarthboundSprites.Length != 30)
-            throw new AbandonModuleException($"Earthbound should have 30 sprites. Counted {EarthboundSprites.Length}");
-
+        Sprite GetNewSprite(Sprite sprite)
+        {
+            int ppu  = sprite.name switch
+            {
+                "Absolutely Safe Capsule" => 350,
+                "Mad Car" or "Mr Passion" => 200,
+                _ => 250,
+            };
+            var newSprite = Sprite.Create(sprite.texture, sprite.rect, new Vector2(0, .5f), ppu);
+            newSprite.name = sprite.name;
+            return newSprite;
+        }
         var enemyIndex = GetIntField(comp, "enemyIndex").Get(val => val < 0 || val > 29 ? "expected range 0–29" : null);
-        var enemyNames = GetArrayField<Sprite>(comp, "enemyOptions", isPublic: true).Get(expectedLength: 30).Select(sprite => sprite.name).ToArray();
+        var enemySprites = GetArrayField<Sprite>(comp, "enemyOptions", isPublic: true).Get(expectedLength: 30).Select(sprite => GetNewSprite(sprite)).ToArray();
+        var enemyNames = enemySprites.Select(sprite => sprite.name.Replace(" (UnityEngine.Sprite)", "")).ToArray();
         var backgroundNames = GetArrayField<Material>(comp, "backgroundOptions", isPublic: true).Get(expectedLength: 30).Select(material => material.name).ToArray();
         var backgroundIndex = GetIntField(comp, "usedBackgroundInt").Get(val => val < 0 || val > 29 ? "expected range 0–29" : null);
 
         addQuestions(module,
-            makeQuestion(Question.EarthboundMonster, _Earthbound, correctAnswers: new[] { EarthboundSprites.First(sprite => sprite.name == enemyNames[enemyIndex]) }, preferredWrongAnswers: EarthboundSprites),
+            makeQuestion(Question.EarthboundMonster, _Earthbound, correctAnswers: new[] { enemySprites.First(sprite => sprite.name == enemyNames[enemyIndex]) }, allAnswers: enemySprites),
             makeQuestion(Question.EarthboundBackground, _Earthbound, correctAnswers: new[] { backgroundNames[backgroundIndex] }));
         yield return null;
     }
