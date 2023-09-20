@@ -611,7 +611,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_ColorMath);
 
-        if (GetIntField(comp, "_mode").Get(v => v != 0 && v != 1 ? "expected 0 or 1" : null) == 0)
+        if (GetIntField(comp, "_mode").Get(v => v != 0 && v != 1 ? "expected 0 or 1" : null) != 0)
         {
             legitimatelyNoQuestion(module, "The letter was red.");
             yield break;
