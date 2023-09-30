@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Souvenir;
 using UnityEngine;
@@ -203,9 +204,14 @@ public partial class SouvenirModule
         while (solutions.GetValue(0) is null)
             yield return null; // Don't wait 0.1 seconds to make sure we get the labels before they are changed.
 
-        var displayedDigits = labels.Select(t => t.text).ToArray();
-        if (displayedDigits.Any(ds => ds.Length != 7 || ds.Any(d => !char.IsDigit(d))))
-            throw new AbandonModuleException($"Unexpected display value: \"{displayedDigits.First(ds => ds.Length != 7 || ds.Any(d => !char.IsDigit(d)))}\".");
+        var labelTexts = labels.Select(t => t.text).ToArray();
+        var displayedDigits = new List<string>();
+        foreach (var text in labelTexts) {
+            var match = Regex.Match(text, @"^(?:[RGBYW]\s)?(\d{7})$");
+            if (!match.Success)
+                throw new AbandonModuleException($"Unexpected display value: \"{text}\".");
+            displayedDigits.Add(match.Groups[1].Value);
+        }
 
         var fldSolved = GetField<bool>(comp, "isSolved");
         while (!fldSolved.Get())
@@ -216,7 +222,7 @@ public partial class SouvenirModule
         var displays = new[] { "top", "middle", "bottom" };
         for (int pos = 0; pos < 3; pos++)
         {
-            if (displayedDigits[pos] != labels[pos].text)
+            if (labelTexts[pos] != labels[pos].text)
             {
                 for (int digit = 0; digit < 6; digit++)
                     qs.Add(makeQuestion(Question.FizzBuzzDisplayedNumbers, _FizzBuzz, formatArgs: new[] { ordinal(digit + 1), displays[pos] }, correctAnswers: new[] { displayedDigits[pos][digit].ToString() }));
