@@ -206,10 +206,11 @@ public partial class SouvenirModule
 
         var labelTexts = labels.Select(t => t.text).ToArray();
         var displayedDigits = new List<string>();
-        foreach (var text in labelTexts) {
+        foreach (var text in labelTexts)
+        {
             var match = Regex.Match(text, @"^(?:[RGBYW]\s)?(\d{7})$");
             if (!match.Success)
-                throw new AbandonModuleException($"Unexpected display value: \"{text}\".");
+                throw new AbandonModuleException($"Unexpected display value: “{text}”.");
             displayedDigits.Add(match.Groups[1].Value);
         }
 
@@ -226,7 +227,7 @@ public partial class SouvenirModule
             {
                 for (int digit = 0; digit < 6; digit++)
                     qs.Add(makeQuestion(Question.FizzBuzzDisplayedNumbers, _FizzBuzz, formatArgs: new[] { ordinal(digit + 1), displays[pos] }, correctAnswers: new[] { displayedDigits[pos][digit].ToString() }));
-                if (!labels[pos].text.ToLower().Contains("buzz")) // Do not ask about the last digit if the answer was buzz because there are only two possible correct answers.
+                if (!labels[pos].text.ToLowerInvariant().Contains("buzz")) // Do not ask about the last digit if the answer was buzz because there are only two possible correct answers.
                     qs.Add(makeQuestion(Question.FizzBuzzDisplayedNumbers, _FizzBuzz, formatArgs: new[] { "7th", displays[pos] }, correctAnswers: new[] { displayedDigits[pos][6].ToString() }));
             }
         }

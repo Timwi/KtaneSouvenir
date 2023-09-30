@@ -92,7 +92,7 @@ public partial class SouvenirModule
                 colorName = "Blue";
             var coordinate = new Coord(4, 4, pos);
             qs.Add(makeQuestion(Question.JuxtacoloredSquaresColorsByPosition, _JuxtacoloredSquares, questionSprite: Grid.GenerateGridSprite(coordinate), correctAnswers: new[] { colorName }));
-            qs.Add(makeQuestion(Question.JuxtacoloredSquaresPositionsByColor, _JuxtacoloredSquares, formatArgs: new[] { colorName.ToLower() }, correctAnswers: new[] { coordinate }));
+            qs.Add(makeQuestion(Question.JuxtacoloredSquaresPositionsByColor, _JuxtacoloredSquares, formatArgs: new[] { colorName.ToLowerInvariant() }, correctAnswers: new[] { coordinate }));
         }
         addQuestions(module, qs);
     }
