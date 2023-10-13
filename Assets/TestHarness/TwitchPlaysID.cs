@@ -466,7 +466,7 @@ public class TwitchPlaysID : MonoBehaviour
 		else if (NeedyModule != null) t.SetParent(NeedyModule.transform, false);
 		else
 		{
-			Debug.Log("This should never happen, but apparently this TwitchPlays instance was spawned without a bomb module nor a needy module");
+			Debug.LogError("This should never happen, but apparently this TwitchPlays instance was spawned without a bomb module nor a needy module");
 			t.gameObject.SetActive(false);
 			_moduleCamerasInUse.Remove(t);
 			_moduleCameras.Insert(0, t);
@@ -671,7 +671,7 @@ public class TwitchPlaysID : MonoBehaviour
 			}
 
 			string str = responseCoroutine.Current as string;
-			if (str != null && SendToTwitchChat(str, "[YOUR_NICKNAME_COULD_BE_HERE]") == SendToTwitchChatResponse.InstantResponse)
+			if(str != null && SendToTwitchChat(str, "[YOUR_NICKNAME_COULD_BE_HERE]") <= SendToTwitchChatResponse.HandledHaltIfUnfocused)
 				yield break;
 		}
 
@@ -788,6 +788,7 @@ public class TwitchPlaysID : MonoBehaviour
 					continue;
 				}
 
+				SendToTwitchChatResponse response;
 				if (currentString.RegexMatch(out match, "^trywaitcancel ([0-9]+(?:\\.[0-9])?)((?: (?:.|\\n)+)?)$") &&
 				    float.TryParse(match.Groups[1].Value, out waitTime))
 				{
@@ -799,9 +800,10 @@ public class TwitchPlaysID : MonoBehaviour
 						break;
 					}
 				}
-				else if (SendToTwitchChat(currentString, "[USER_NICK_NAME_HERE]") != SendToTwitchChatResponse.NotHandled)
+				else if ((response = SendToTwitchChat(currentString, "[USER_NICK_NAME_HERE]")) != SendToTwitchChatResponse.NotHandled)
 				{
-					if (currentString.StartsWith("antitroll") && AntiTrollMode && !AnarchyMode) break;
+					if (response == SendToTwitchChatResponse.HandledMustHalt)
+						break;
 					yield return null;
 					continue;
 				}
@@ -1010,15 +1012,64 @@ public class TwitchPlaysID : MonoBehaviour
 		//Module.parent.parent.localRotation = localQuaternion;
 	}
 
+	static string EscapeFormatting(string text)
+	{
+		int index = -1;
+		int count = 0;
+		for (int i = 0; i < text.Length; i++)
+		{
+			if (text[i] == '{')
+			{
+				count++;
+
+				if (count == 1)
+					index = i;
+			}
+			else if (text[i] == '}')
+			{
+				count--;
+
+				if (count == -1)
+					index = i;
+			}
+		}
+
+		if (index != -1 && count % 2 == 1)
+		{
+			text = text.Substring(0, index) + (count > 0 ? "{" : "}") + text.Substring(index);
+		}
+
+		return text;
+	}
+
 	protected enum SendToTwitchChatResponse
 	{
-		InstantResponse,
-		Handled,
+		HandledMustHalt,
+		HandledHaltIfUnfocused,
+		HandledContinue,
 		NotHandled
 	}
 
 	protected SendToTwitchChatResponse SendToTwitchChat(string message, string userNickName)
 	{
+		SendToTwitchChatResponse instantResponseReturn = SendToTwitchChatResponse.HandledHaltIfUnfocused;
+		bool skipFormatting = false;
+		
+		Match match2;
+		if (message.RegexMatch(out match2, @"^(\w+)!([fh]+) (.+)$"))
+		{
+			string flagsList = match2.Groups[2].ToString().ToLowerInvariant();
+			if (flagsList.Contains('f'))
+				skipFormatting = true;
+			if (flagsList.Contains('h'))
+				instantResponseReturn = SendToTwitchChatResponse.HandledMustHalt;
+
+			message = match2.Groups[1].Value + " " + match2.Groups[3].Value;
+		}
+		
+		if (!skipFormatting)
+			message = EscapeFormatting(message);
+		
 		Match match;
 		float messageDelayTime;
 		// Within the messages, allow variables:
@@ -1027,7 +1078,7 @@ public class TwitchPlaysID : MonoBehaviour
 		if (message.RegexMatch(out match, @"^senddelayedmessage ([0-9]+(?:\.[0-9])?) (\S(?:\S|\s)*)$") && float.TryParse(match.Groups[1].Value, out messageDelayTime))
 		{
 			Debug.LogFormat("Sending delayed message \"{0}\" in {1} seconds", match.Groups[2].Value, match.Groups[1].Value);
-			return SendToTwitchChatResponse.InstantResponse;
+			return instantResponseReturn;
 		}
 
 		if (!message.RegexMatch(out match, @"^(sendtochat|sendtochaterror|strikemessage|antitroll) +(\S(?:\S|\s)*)$")) return SendToTwitchChatResponse.NotHandled;
@@ -1038,18 +1089,18 @@ public class TwitchPlaysID : MonoBehaviour
 		{
 			case "sendtochat":
 				Debug.LogFormat("Sending chat message: {0}", chatMsg);
-				return SendToTwitchChatResponse.InstantResponse;
+				return instantResponseReturn;
 			case "antitroll":
 				if (!AntiTrollMode || AnarchyMode)
 				{
 					Debug.Log("Troll command allowed to happen");
-					return SendToTwitchChatResponse.Handled;
+					return SendToTwitchChatResponse.HandledContinue;
 				}
 				Debug.LogFormat("Troll commmand denied, Sending error message to chat: {0}", chatMsg);
-				return SendToTwitchChatResponse.InstantResponse;
+				return SendToTwitchChatResponse.HandledMustHalt;
 			case "sendtochaterror":
 				Debug.LogFormat("Sending error message to chat: {0}", chatMsg);
-				return SendToTwitchChatResponse.InstantResponse;
+				return instantResponseReturn;
 			case "strikemessage":
 				StrikeMessageConflict |= StrikeCount != _beforeStrikeCount && !string.IsNullOrEmpty(StrikeMessage) && !StrikeMessage.Equals(chatMsg);
 				StrikeMessage = chatMsg;
@@ -1061,7 +1112,7 @@ public class TwitchPlaysID : MonoBehaviour
 				{
 					Debug.LogFormat("Strike message set to {0}", StrikeMessage);
 				}
-				return SendToTwitchChatResponse.Handled;
+				return SendToTwitchChatResponse.HandledContinue;
 			default:
 				return SendToTwitchChatResponse.NotHandled;
 		}
