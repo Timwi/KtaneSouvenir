@@ -50,15 +50,7 @@ public class TestHighlightable : MonoBehaviour
             MeshFilter meshFilter = highlight.AddComponent<MeshFilter>();
             if (GetComponent<MeshFilter>() == null || GetComponent<MeshFilter>().sharedMesh == null)
             {
-                var obj = transform;
-                var list = new List<string>();
-                while (obj != null)
-                {
-                    list.Add(obj.gameObject.name);
-                    obj = obj.parent;
-                }
-                list.Reverse();
-                Debug.LogErrorFormat(@"The following object’s highlightable does not have a mesh. Make sure it has a MeshFilter component with an assigned mesh: {0}", string.Join(" → ", list.ToArray()));
+                Debug.LogErrorFormat(@"The following object’s highlightable does not have a mesh. Make sure it has a MeshFilter component with an assigned mesh: {0}", TestHarness.GetObjectPath(transform));
                 return;
             }
             meshFilter.mesh = Instantiate(GetComponent<MeshFilter>().sharedMesh);

@@ -1,8 +1,7 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using EdgeworkConfigurator;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -1721,6 +1720,20 @@ public class TestHarness : MonoBehaviour
     {
         lightsOn = false;
         UpdateAmbientIntensity();
+    }
+
+    public static string GetObjectPath(Transform transform)
+    {
+        var obj = transform;
+        var list = new List<string>();
+        while (obj != null)
+        {
+            list.Add(obj.gameObject.name);
+            obj = obj.parent;
+        }
+        list.Reverse();
+        var objectPath = string.Join(" → ", list.ToArray());
+        return objectPath;
     }
 }
 
