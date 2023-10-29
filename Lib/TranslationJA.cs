@@ -1606,14 +1606,6 @@ namespace Souvenir
                 ModuleName = "色付きスイッチ",
             },
 
-            // Color Math
-            // What was the color of the {1} LED on the right side of {0}?
-            // What was the color of the first LED on the right side of Color Math?
-            [Question.ColorMathRightColor] = new TranslationInfo
-            {
-                QuestionText = "What was the color of the {1} LED on the right side of {0}?",
-            },
-
             // Color Morse
             // What was the color of the {1} LED in {0}?
             // What was the color of the first LED in Color Morse?
@@ -1855,6 +1847,14 @@ namespace Souvenir
             {
                 QuestionText = "{0}の{1}日目における天気は？",
                 ModuleName = "クリエーション",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Clear"] = "Clear",
+                    ["Heat Wave"] = "Heat Wave",
+                    ["Meteor Shower"] = "Meteor Shower",
+                    ["Rain"] = "Rain",
+                    ["Windy"] = "Windy",
+                },
             },
 
             // Crimson Cipher

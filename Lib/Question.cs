@@ -520,10 +520,6 @@
         [AnswerGenerator.Strings(5, 'Q', 'R')]
         ColoredSwitchesWhenLEDsCameOn,
 
-        [SouvenirQuestion("What was the color of the {1} LED on the right side of {0}?", "Color Math", ThreeColumns6Answers, "Blue", "Green", "Purple", "Yellow", "White", "Magenta", "Red", "Orange", "Gray", "Black",
-            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
-        ColorMathRightColor,
-
         [SouvenirQuestion("What was the color of the {1} LED in {0}?", "Color Morse", ThreeColumns6Answers, "Blue", "Green", "Orange", "Purple", "Red", "Yellow", "White", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         ColorMorseColor,
@@ -592,7 +588,7 @@
         CreamCipherScreen,
 
         [SouvenirQuestion("What were the weather conditions on the {1} day in {0}?", "Creation", TwoColumns4Answers, "Clear", "Heat Wave", "Meteor Shower", "Rain", "Windy",
-            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         CreationWeather,
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Crimson Cipher", TwoColumns4Answers, null, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },

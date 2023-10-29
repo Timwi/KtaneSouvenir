@@ -104,7 +104,6 @@ public partial class SouvenirModule
     const string _ColoredKeys = "lgndColoredKeys";
     const string _ColoredSquares = "ColoredSquaresModule";
     const string _ColoredSwitches = "ColoredSwitchesModule";
-    const string _ColorMath = "colormath";
     const string _ColorMorse = "ColorMorseModule";
     const string _ColorsMaximization = "colors_maximization";
     const string _ColouredCubes = "ColouredCubes";
@@ -660,7 +659,6 @@ public partial class SouvenirModule
             [_ColoredKeys] = (ProcessColoredKeys, "Colored Keys", "luisdiogo98"),
             [_ColoredSquares] = (ProcessColoredSquares, "Colored Squares", "Timwi"),
             [_ColoredSwitches] = (ProcessColoredSwitches, "Colored Switches", "Timwi"),
-            [_ColorMath] = (ProcessColorMath, "Color Math", "Hawker"),
             [_ColorMorse] = (ProcessColorMorse, "Color Morse", "Timwi"),
             [_ColorsMaximization] = (ProcessColorsMaximization, "Colors Maximization", "NickLatkovich"),
             [_ColouredCubes] = (ProcessColouredCubes, "Coloured Cubes", "Kuro"),

@@ -127,7 +127,7 @@ namespace SouvenirPostBuildTool
             Console.WriteLine("--------------------------");
             Console.WriteLine(string.Join("\r\n", trFArgs));
 
-            foreach (var language in "de,eo,es,ja".Split(','))
+            foreach (var language in "de,ja,ru".Split(','))
             {
                 var alreadyType = assembly.GetType($"Souvenir.Translation_{language}");
                 var already = (IDictionary) (alreadyType == null ? null : (dynamic) Activator.CreateInstance(alreadyType))?.Translations;
