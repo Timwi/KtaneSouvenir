@@ -19,6 +19,9 @@ namespace Souvenir
             7 => "siebt",
             8 => "acht",
             9 => "neunt",
+            10 => "zehnt",
+            11 => "elft",
+            12 => "zwölft",
             _ => $"{num}t"
         };
 
