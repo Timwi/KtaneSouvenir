@@ -1100,7 +1100,14 @@ public partial class SouvenirModule : MonoBehaviour
                     1 => "first",
                     2 => "second",
                     3 => "third",
-                    _ => ((number / 10) % 10 == 1 ? 0 : number % 10) switch
+                    4 => "fourth",
+                    5 => "fifth",
+                    6 => "sixth",
+                    7 => "seventh",
+                    8 => "eighth",
+                    9 => "ninth",
+                    10 => "tenth",
+                    _ => (number / 10 % 10 == 1 ? 0 : number % 10) switch
                     {
                         1 => number + "st",
                         2 => number + "nd",
