@@ -710,7 +710,7 @@ namespace Souvenir
             // What color was first in the solution to Big Circle?
             [Question.BigCircleColors] = new TranslationInfo
             {
-                QuestionText = "Welche Farbe war bei {0} die {1}e in der Lösung?",
+                QuestionText = "Welche Farbe war bei {0} die {1}e Farbe in der Lösung?",
                 ModuleName = "Großer Kreis",
                 Answers = new Dictionary<string, string>
                 {
@@ -1937,6 +1937,15 @@ namespace Souvenir
             [Question.CyanButtonPositions] = new TranslationInfo
             {
                 QuestionText = "Where was the button at the {1} stage in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["top left"] = "top left",
+                    ["top middle"] = "top middle",
+                    ["top right"] = "top right",
+                    ["bottom left"] = "bottom left",
+                    ["bottom middle"] = "bottom middle",
+                    ["bottom right"] = "bottom right",
+                },
             },
 
             // DACH Maze
@@ -8395,6 +8404,15 @@ namespace Souvenir
             [Question.YellowButtonColors] = new TranslationInfo
             {
                 QuestionText = "What was the {1} color in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Yellow"] = "Yellow",
+                    ["Green"] = "Green",
+                    ["Cyan"] = "Cyan",
+                    ["Blue"] = "Blue",
+                    ["Magenta"] = "Magenta",
+                },
             },
 
             // Yellow Cipher

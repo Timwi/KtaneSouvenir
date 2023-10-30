@@ -641,7 +641,7 @@
         CustomerIdentificationCustomer,
 
         [SouvenirQuestion("Where was the button at the {1} stage in {0}?", "Cyan Button", TwoColumns4Answers, "top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right",
-            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true, TranslateAnswers = true)]
         CyanButtonPositions,
 
         [SouvenirQuestion("Which region did you depart from in {0}?", "DACH Maze", OneColumn4Answers, "Burgenland, A", "Carinthia, A", "Lower Austria, A", "North Tyrol, A", "Upper Austria, A", "East Tyrol, A", "Salzburg, A", "Styria, A", "Vorarlberg, A", "Vienna, A", "Aargau, CH", "Appenzell Inner Rhodes, CH", "Appenzell Outer Rhodes, CH", "Basel Country, CH", "Bern, CH", "Basel City, CH", "Fribourg, CH", "Geneva, CH", "Glarus, CH", "Grisons, CH", "Jura, CH", "Luzern, CH", "Nidwalden, CH", "Neuchâtel, CH", "Obwalden, CH", "Schaffhausen, CH", "St. Gallen, CH", "Solothurn, CH", "Schwyz, CH", "Thurgau, CH", "Ticino, CH", "Uri, CH", "Vaud, CH", "Valais, CH", "Zug, CH", "Zürich, CH", "Brandenburg, D", "Berlin, D", "Baden-Württemberg, D", "Bavaria, D", "Bremen, D", "Hesse, D", "Hamburg, D", "Mecklenburg-Vorpommern, D", "Lower Saxony, D", "North Rhine-Westphalia, D", "Rhineland-Palatinate, D", "Schleswig-Holstein, D", "Saarland, D", "Saxony, D", "Saxony-Anhalt, D", "Thuringia, D", "Liechtenstein")]
@@ -2864,7 +2864,7 @@
         YellowArrowsStartingRow,
 
         [SouvenirQuestion("What was the {1} color in {0}?", "Yellow Button", TwoColumns4Answers, "Red", "Yellow", "Green", "Cyan", "Blue", "Magenta", AddThe = true,
-            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         YellowButtonColors,
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Yellow Cipher", TwoColumns4Answers, null, ExampleAnswers = new[] { "ALTHOUGH", "BUSINESS", "CHILDREN", "DIRECTOR", "EXCHANGE", "FUNCTION", "GUIDANCE", "HOSPITAL", "INDUSTRY", "JUNCTION", "KEYBOARD", "LANGUAGE", "MATERIAL", "NUMEROUS", "OFFERING", "POSSIBLE", "QUESTION", "RESEARCH", "SOFTWARE", "TOGETHER", "ULTIMATE", "VALUABLE", "WIRELESS", "XENOLITH", "YOURSELF", "ZUCCHINI" },

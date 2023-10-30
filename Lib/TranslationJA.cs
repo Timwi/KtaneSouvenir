@@ -2025,6 +2025,15 @@ namespace Souvenir
             {
                 QuestionText = "{0}のステージ{1}のボタンはどこにあった？",
                 ModuleName = "シアンボタン",
+                Answers = new Dictionary<string, string>
+                {
+                    ["top left"] = "top left",
+                    ["top middle"] = "top middle",
+                    ["top right"] = "top right",
+                    ["bottom left"] = "bottom left",
+                    ["bottom middle"] = "bottom middle",
+                    ["bottom right"] = "bottom right",
+                },
             },
 
             // DACH Maze
@@ -8950,6 +8959,15 @@ namespace Souvenir
             {
                 QuestionText = "{0}の{1}番目の色は？",
                 ModuleName = "黄色ボタン",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Yellow"] = "Yellow",
+                    ["Green"] = "Green",
+                    ["Cyan"] = "Cyan",
+                    ["Blue"] = "Blue",
+                    ["Magenta"] = "Magenta",
+                },
             },
 
             // Yellow Cipher

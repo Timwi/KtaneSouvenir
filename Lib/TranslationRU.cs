@@ -30,8 +30,7 @@ namespace Souvenir
             // What was the first word shown in 1000 Words?
             [Question._1000WordsWords] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} das {1}e angezeigte Wort?",
-                ModuleName = "1000 Wörter",
+                QuestionText = "What was the {1} word shown in {0}?",
             },
 
             // 100 Levels of Defusal
@@ -39,17 +38,16 @@ namespace Souvenir
             // What was the first displayed letter in 100 Levels of Defusal?
             [Question._100LevelsOfDefusalLetters] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} der {1}e angezeigte Buchstabe?",
-                ModuleName = "100 Ebenen der Entschärfung",
+                QuestionText = "What was the {1} displayed letter in {0}?",
             },
 
-            // Одномерные шахматы (1D Chess)
+            // 1D Chess
             // What was {1} in {0}?
             // What was your first move in 1D Chess?
             [Question._1DChessMoves] = new TranslationInfo
             {
                 QuestionText = "Каким был {1} в {0}?",
-				ModuleName = "Одномерных шахматах",
+                ModuleName = "Одномерных шахматах",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["your first move"] = "ваш 1-й ход",
@@ -76,19 +74,19 @@ namespace Souvenir
             // What were the markings in 3D Maze?
             [Question._3DMazeMarkings] = new TranslationInfo
             {
-                QuestionText = "Was waren bei {0} die Markierungen?",
+                QuestionText = "What were the markings in {0}?",
             },
             // What was the cardinal direction in {0}?
             // What was the cardinal direction in 3D Maze?
             [Question._3DMazeBearing] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} die Himmelsrichtung?",
+                QuestionText = "What was the cardinal direction in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["North"] = "Norden",
-                    ["South"] = "Süden",
-                    ["West"] = "Westen",
-                    ["East"] = "Osten",
+                    ["North"] = "North",
+                    ["South"] = "South",
+                    ["West"] = "West",
+                    ["East"] = "East",
                 },
             },
 
@@ -97,16 +95,16 @@ namespace Souvenir
             // What was the received word in 3D Tap Code?
             [Question._3DTapCodeWord] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} das empfangene Wort?",
+                QuestionText = "What was the received word in {0}?",
             },
 
-            // 3В-туннели (3D Tunnels)
+            // 3D Tunnels
             // What was the {1} goal node in {0}?
             // What was the first goal node in 3D Tunnels?
             [Question._3DTunnelsTargetNode] = new TranslationInfo
             {
                 QuestionText = "Какой символ был {1}-м вашей целью в {0}",
-				ModuleName = "3D-туннелях",
+                ModuleName = "3D-туннелях",
             },
 
             // 3 LEDs
@@ -114,7 +112,7 @@ namespace Souvenir
             // What was the initial state of the LEDs in 3 LEDs (in reading order)?
             [Question._3LEDsInitialState] = new TranslationInfo
             {
-                QuestionText = "Was war in Lesereihenfolge der Anfangszustand bei {0}?",
+                QuestionText = "What was the initial state of the LEDs in {0} (in reading order)?",
             },
 
             // 3N+1
@@ -122,7 +120,7 @@ namespace Souvenir
             // What number was initially displayed in 3N+1?
             [Question._3NPlus1] = new TranslationInfo
             {
-                QuestionText = "Welche Zahl war bei {0} anfänglich zu sehen?",
+                QuestionText = "What number was initially displayed in {0}?",
             },
 
             // 64
@@ -130,7 +128,7 @@ namespace Souvenir
             // What was the displayed number in 64?
             [Question._64DisplayedNumber] = new TranslationInfo
             {
-                QuestionText = "Was war die bei {0} angezeigte Zahl?",
+                QuestionText = "What was the displayed number in {0}?",
             },
 
             // 7
@@ -138,19 +136,19 @@ namespace Souvenir
             // What was the red channel’s initial value in 7?
             [Question._7InitialValues] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} der Anfangswert im {1}?",
+                QuestionText = "What was the {1} channel’s initial value in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "Rotkanal",
-                    ["green"] = "Grünkanal",
-                    ["blue"] = "Blaukanal",
+                    ["red"] = "red",
+                    ["green"] = "green",
+                    ["blue"] = "blue",
                 },
             },
             // What LED color was shown in stage {1} of {0}?
             // What LED color was shown in stage 0 of 7?
             [Question._7LedColors] = new TranslationInfo
             {
-                QuestionText = "Was war beim {1}en Schritt von {0} die LED-Farbe?",
+                QuestionText = "What LED color was shown in stage {1} of {0}?",
             },
 
             // 9-Ball
@@ -158,13 +156,13 @@ namespace Souvenir
             // What was the number of ball A in 9-Ball?
             [Question._9BallLetters] = new TranslationInfo
             {
-                QuestionText = "Welche Zahl hatte bei {0} die Kugel {1}?",
+                QuestionText = "What was the number of ball {1} in {0}?",
             },
             // What was the letter of ball {1} in {0}?
             // What was the letter of ball 2 in 9-Ball?
             [Question._9BallNumbers] = new TranslationInfo
             {
-                QuestionText = "Welchen Buchstaben hatte bei {0} die Kugel {1}?",
+                QuestionText = "What was the letter of ball {1} in {0}?",
             },
 
             // Abyss
@@ -172,7 +170,7 @@ namespace Souvenir
             // What was the first character displayed on Abyss?
             [Question.AbyssSeed] = new TranslationInfo
             {
-                QuestionText = "Welcher Buchstabe wurde bei {0} als {1}es angezeigt?",
+                QuestionText = "What was the {1} character displayed on {0}?",
             },
 
             // Accumulation
@@ -180,38 +178,38 @@ namespace Souvenir
             // What was the background color on the first stage in Accumulation?
             [Question.AccumulationBackgroundColor] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} die Hintergrundfarbe im {1}en Schritt?",
+                QuestionText = "What was the background color on the {1} stage in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Blue"] = "Blau",
-                    ["Brown"] = "Braun",
-                    ["Green"] = "Grün",
-                    ["Grey"] = "Grau",
-                    ["Lime"] = "Limette",
+                    ["Blue"] = "Blue",
+                    ["Brown"] = "Brown",
+                    ["Green"] = "Green",
+                    ["Grey"] = "Grey",
+                    ["Lime"] = "Lime",
                     ["Orange"] = "Orange",
                     ["Pink"] = "Pink",
-                    ["Red"] = "Rot",
-                    ["White"] = "Weiß",
-                    ["Yellow"] = "Gelb",
+                    ["Red"] = "Red",
+                    ["White"] = "White",
+                    ["Yellow"] = "Yellow",
                 },
             },
             // What was the border color in {0}?
             // What was the border color in Accumulation?
             [Question.AccumulationBorderColor] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} die Rahmenfarbe?",
+                QuestionText = "What was the border color in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Blue"] = "Blau",
-                    ["Brown"] = "Braun",
-                    ["Green"] = "Grün",
-                    ["Grey"] = "Grau",
-                    ["Lime"] = "Limette",
+                    ["Blue"] = "Blue",
+                    ["Brown"] = "Brown",
+                    ["Green"] = "Green",
+                    ["Grey"] = "Grey",
+                    ["Lime"] = "Lime",
                     ["Orange"] = "Orange",
                     ["Pink"] = "Pink",
-                    ["Red"] = "Rot",
-                    ["White"] = "Weiß",
-                    ["Yellow"] = "Gelb",
+                    ["Red"] = "Red",
+                    ["White"] = "White",
+                    ["Yellow"] = "Yellow",
                 },
             },
 
@@ -220,13 +218,13 @@ namespace Souvenir
             // Which item was the first correct item you used in Adventure Game?
             [Question.AdventureGameCorrectItem] = new TranslationInfo
             {
-                QuestionText = "Welches Objekt wurde bei {0} als {1}es korrekt verwendet?",
+                QuestionText = "Which item was the {1} correct item you used in {0}?",
             },
             // What enemy were you fighting in {0}?
             // What enemy were you fighting in Adventure Game?
             [Question.AdventureGameEnemy] = new TranslationInfo
             {
-                QuestionText = "Welcher Gegner wurde bei {0} bekämpft?",
+                QuestionText = "What enemy were you fighting in {0}?",
             },
 
             // Affine Cycle
@@ -234,11 +232,11 @@ namespace Souvenir
             // What was the message in Affine Cycle?
             [Question.AffineCycleWord] = new TranslationInfo
             {
-                QuestionText = "Was war die {1} in {0}?",
+                QuestionText = "What was the {1} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["message"] = "Nachricht",
-                    ["response"] = "Antwort",
+                    ["message"] = "message",
+                    ["response"] = "response",
                 },
             },
 
@@ -247,8 +245,7 @@ namespace Souvenir
             // What was the initial letter in A Letter?
             [Question.ALetterInitialLetter] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} der Anfangsbuchstabe?",
-                ModuleName = "Ein Buchstabe",
+                QuestionText = "What was the initial letter in {0}?",
             },
 
             // Alfa-Bravo
@@ -256,25 +253,25 @@ namespace Souvenir
             // Which letter was pressed in Alfa-Bravo?
             [Question.AlfaBravoPressedLetter] = new TranslationInfo
             {
-                QuestionText = "Welcher Buchstabe wurde bei {0} eingegeben?",
+                QuestionText = "Which letter was pressed in {0}?",
             },
             // Which letter was to the left of the pressed one in {0}?
             // Which letter was to the left of the pressed one in Alfa-Bravo?
             [Question.AlfaBravoLeftPressedLetter] = new TranslationInfo
             {
-                QuestionText = "Welcher Buchstabe war bei {0} links vom eingegebenen?",
+                QuestionText = "Which letter was to the left of the pressed one in {0}?",
             },
             // Which letter was to the right of the pressed one in {0}?
             // Which letter was to the right of the pressed one in Alfa-Bravo?
             [Question.AlfaBravoRightPressedLetter] = new TranslationInfo
             {
-                QuestionText = "Welcher Buchstabe war bei {0} rechts vom eingegebenen?",
+                QuestionText = "Which letter was to the right of the pressed one in {0}?",
             },
             // What was the last digit on the small display in {0}?
             // What was the last digit on the small display in Alfa-Bravo?
             [Question.AlfaBravoDigit] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} die letzte Ziffer in der kleinen Anzeige?",
+                QuestionText = "What was the last digit on the small display in {0}?",
             },
 
             // Algebra
@@ -282,13 +279,13 @@ namespace Souvenir
             // What was the first equation in Algebra?
             [Question.AlgebraEquation1] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} die erste Gleichung?",
+                QuestionText = "What was the first equation in {0}?",
             },
             // What was the second equation in {0}?
             // What was the second equation in Algebra?
             [Question.AlgebraEquation2] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} die zweite Gleichung?",
+                QuestionText = "What was the second equation in {0}?",
             },
 
             // Algorithmia
@@ -296,7 +293,7 @@ namespace Souvenir
             // Which position was the starting position in Algorithmia?
             [Question.AlgorithmiaPositions] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} die Anfangsposition?",
+                QuestionText = "Which position was the {1} position in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["starting"] = "starting",
@@ -307,13 +304,13 @@ namespace Souvenir
             // What was the color of the colored bulb in Algorithmia?
             [Question.AlgorithmiaColor] = new TranslationInfo
             {
-                QuestionText = "Welche Farbe hatte die gefärbte Glühlampe bei {0}?",
+                QuestionText = "What was the color of the colored bulb in {0}?",
             },
             // Which number was present in the seed in {0}?
             // Which number was present in the seed in Algorithmia?
             [Question.AlgorithmiaSeed] = new TranslationInfo
             {
-                QuestionText = "Welche Zahl war bei {0} im Startwert enthalten?",
+                QuestionText = "Which number was present in the seed in {0}?",
             },
 
             // Alphabetical Ruling
@@ -321,13 +318,13 @@ namespace Souvenir
             // What was the letter displayed in the first stage of Alphabetical Ruling?
             [Question.AlphabeticalRulingLetter] = new TranslationInfo
             {
-                QuestionText = "Welcher Buchstabe wurde bei {0} im {1}en Schritt angezeigt?",
+                QuestionText = "What was the letter displayed in the {1} stage of {0}?",
             },
             // What was the number displayed in the {1} stage of {0}?
             // What was the number displayed in the first stage of Alphabetical Ruling?
             [Question.AlphabeticalRulingNumber] = new TranslationInfo
             {
-                QuestionText = "Welche Zahl wurde bei {0} im {1}en Schritt angezeigt?",
+                QuestionText = "What was the number displayed in the {1} stage of {0}?",
             },
 
             // Alphabet Numbers
@@ -335,7 +332,7 @@ namespace Souvenir
             // Which of these numbers was on one of the buttons in the first stage of Alphabet Numbers?
             [Question.AlphabetNumbersDisplayedNumbers] = new TranslationInfo
             {
-                QuestionText = "Welche Zahl war auf einem der Knöpfe im {1}en Schritt von {0} zu sehen?",
+                QuestionText = "Which of these numbers was on one of the buttons in the {1} stage of {0}?",
             },
 
             // Alphabet Tiles
@@ -343,13 +340,13 @@ namespace Souvenir
             // What was the first letter shown during the cycle in Alphabet Tiles?
             [Question.AlphabetTilesCycle] = new TranslationInfo
             {
-                QuestionText = "Welcher Buchstabe war im Zyklus bei {0} als {1}es zu sehen?",
+                QuestionText = "What was the {1} letter shown during the cycle in {0}?",
             },
             // What was the missing letter in {0}?
             // What was the missing letter in Alphabet Tiles?
             [Question.AlphabetTilesMissingLetter] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} der fehlende Buchstabe?",
+                QuestionText = "What was the missing letter in {0}?",
             },
 
             // Alpha-Bits
@@ -357,11 +354,11 @@ namespace Souvenir
             // What character was displayed on the first screen on the left in Alpha-Bits?
             [Question.AlphaBitsDisplayedCharacters] = new TranslationInfo
             {
-                QuestionText = "Welches Zeichen wurde bei {0} im {1}en {2} Display angezeigt?",
+                QuestionText = "What character was displayed on the {1} screen on the {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["left"] = "linken",
-                    ["right"] = "rechten",
+                    ["left"] = "left",
+                    ["right"] = "right",
                 },
             },
 
@@ -370,7 +367,27 @@ namespace Souvenir
             // What letter was shown by the raised buttons on the first stage on Ángel Hernández?
             [Question.AngelHernandezMainLetter] = new TranslationInfo
             {
-                QuestionText = "Welcher Buchstabe wurde im {1}en Schritt von {0} durch die erhöhten Knöpfe dargestellt?",
+                QuestionText = "What letter was shown by the raised buttons on the {1} stage on {0}?",
+            },
+
+            // The Arena
+            // What was the maximum weapon damage of the attack phase in {0}?
+            // What was the maximum weapon damage of the attack phase in The Arena?
+            [Question.ArenaDamage] = new TranslationInfo
+            {
+                QuestionText = "What was the maximum weapon damage of the attack phase in {0}?",
+            },
+            // Which enemy was present in the defend phase of {0}?
+            // Which enemy was present in the defend phase of The Arena?
+            [Question.ArenaEnemies] = new TranslationInfo
+            {
+                QuestionText = "Which enemy was present in the defend phase of {0}?",
+            },
+            // Which was a number present in the grab phase of {0}?
+            // Which was a number present in the grab phase of The Arena?
+            [Question.ArenaNumbers] = new TranslationInfo
+            {
+                QuestionText = "Which was a number present in the grab phase of {0}?",
             },
 
             // Arithmelogic
@@ -378,20 +395,18 @@ namespace Souvenir
             // What was the symbol on the submit button in Arithmelogic?
             [Question.ArithmelogicSubmit] = new TranslationInfo
             {
-                QuestionText = "Welches Symbol war bei {0} auf dem Eingabeknopf?",
-                ModuleName = "Arithmologik",
+                QuestionText = "What was the symbol on the submit button in {0}?",
             },
             // Which number was selectable, but not the solution, in the {1} screen on {0}?
             // Which number was selectable, but not the solution, in the left screen on Arithmelogic?
             [Question.ArithmelogicNumbers] = new TranslationInfo
             {
-                QuestionText = "Welche Zahl war bei {0} im {1} Bildschirm auswählbar, aber nicht die Lösung?",
-                ModuleName = "Arithmologik",
+                QuestionText = "Which number was selectable, but not the solution, in the {1} screen on {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["left"] = "linken",
-                    ["middle"] = "mittleren",
-                    ["right"] = "rechten",
+                    ["left"] = "left",
+                    ["middle"] = "middle",
+                    ["right"] = "right",
                 },
             },
 
@@ -400,8 +415,7 @@ namespace Souvenir
             // What was the first character displayed on ASCII Maze?
             [Question.ASCIIMazeCharacters] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} das {1}e angezeigte Zeichen?",
-                ModuleName = "ASCII-Labyrinth",
+                QuestionText = "What was the {1} character displayed on {0}?",
             },
 
             // A Square
@@ -409,15 +423,13 @@ namespace Souvenir
             // Which of these was an index color in A Square?
             [Question.ASquareIndexColors] = new TranslationInfo
             {
-                QuestionText = "Welche Indexfarbe kam bei {0} vor?",
-                ModuleName = "Ein Quadrat",
+                QuestionText = "Which of these was an index color in {0}?",
             },
             // Which color was submitted {1} in {0}?
             // Which color was submitted first in A Square?
             [Question.ASquareCorrectColors] = new TranslationInfo
             {
-                QuestionText = "Welche Farbe wurde bei {0} als {1}es eingegeben?",
-                ModuleName = "Ein Quadrat",
+                QuestionText = "Which color was submitted {1} in {0}?",
             },
 
             // The Azure Button
@@ -425,41 +437,31 @@ namespace Souvenir
             // What was T in The Azure Button?
             [Question.AzureButtonT] = new TranslationInfo
             {
-                QuestionText = "Was war T bei {0}?",
-                ModuleName = "Azurfarbenen Knopf",
-                ModuleNameWithThe = "Der Azurfarbene Knopf",
+                QuestionText = "What was T in {0}?",
             },
             // Which of these cards was shown in Stage 1, but not T, in {0}?
             // Which of these cards was shown in Stage 1, but not T, in The Azure Button?
             [Question.AzureButtonNotT] = new TranslationInfo
             {
-                QuestionText = "Welche Karte war bei {0} in Schritt 1 zu sehen, aber nicht T?",
-                ModuleName = "Azurfarbenen Knopf",
-                ModuleNameWithThe = "Der Azurfarbene Knopf",
+                QuestionText = "Which of these cards was shown in Stage 1, but not T, in {0}?",
             },
             // What was M in {0}?
             // What was M in The Azure Button?
             [Question.AzureButtonM] = new TranslationInfo
             {
-                QuestionText = "Was war M bei {0}?",
-                ModuleName = "Azurfarbenen Knopf",
-                ModuleNameWithThe = "Der Azurfarbene Knopf",
+                QuestionText = "What was M in {0}?",
             },
             // What was the {1} direction in the decoy arrow in {0}?
             // What was the first direction in the decoy arrow in The Azure Button?
             [Question.AzureButtonDecoyArrowDirection] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} die {1}e Richtung im ungenutzten Pfeil?",
-                ModuleName = "Azurfarbenen Knopf",
-                ModuleNameWithThe = "Der Azurfarbene Knopf",
+                QuestionText = "What was the {1} direction in the decoy arrow in {0}?",
             },
             // What was the {1} direction in the {2} non-decoy arrow in {0}?
             // What was the first direction in the first non-decoy arrow in The Azure Button?
             [Question.AzureButtonNonDecoyArrowDirection] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} die {1}e Richtung im {2}en genutzten Pfeil?",
-                ModuleName = "Azurfarbenen Knopf",
-                ModuleNameWithThe = "Der Azurfarbene Knopf",
+                QuestionText = "What was the {1} direction in the {2} non-decoy arrow in {0}?",
             },
 
             // Bakery
@@ -467,8 +469,7 @@ namespace Souvenir
             // Which menu item was present in Bakery?
             [Question.BakeryItems] = new TranslationInfo
             {
-                QuestionText = "Was stand bei {0} auf dem Menü angeboten?",
-                ModuleName = "Bäckerei",
+                QuestionText = "Which menu item was present in {0}?",
             },
 
             // Bamboozled Again
@@ -476,65 +477,65 @@ namespace Souvenir
             // What color was the first correct button in Bamboozled Again?
             [Question.BamboozledAgainButtonColor] = new TranslationInfo
             {
-                QuestionText = "Welche Farbe hatte der {0}e korrekte Knopf bei {0}?",
+                QuestionText = "What color was the {1} correct button in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Rot",
+                    ["Red"] = "Red",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Gelb",
-                    ["Lime"] = "Limette",
-                    ["Green"] = "Grün",
+                    ["Yellow"] = "Yellow",
+                    ["Lime"] = "Lime",
+                    ["Green"] = "Green",
                     ["Jade"] = "Jade",
-                    ["Cyan"] = "Türkis",
-                    ["Azure"] = "Azur",
-                    ["Blue"] = "Blau",
-                    ["Violet"] = "Violett",
+                    ["Cyan"] = "Cyan",
+                    ["Azure"] = "Azure",
+                    ["Blue"] = "Blue",
+                    ["Violet"] = "Violet",
                     ["Magenta"] = "Magenta",
-                    ["Rose"] = "Rosa",
-                    ["White"] = "Weiß",
-                    ["Grey"] = "Grau",
-                    ["Black"] = "Schwarz",
+                    ["Rose"] = "Rose",
+                    ["White"] = "White",
+                    ["Grey"] = "Grey",
+                    ["Black"] = "Black",
                 },
             },
             // What was the text on the {1} correct button in {0}?
             // What was the text on the first correct button in Bamboozled Again?
             [Question.BamboozledAgainButtonText] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} die Aufschrift des {1}en korrekten Knopfes?",
+                QuestionText = "What was the text on the {1} correct button in {0}?",
             },
             // What was the {1} decrypted text on the display in {0}?
             // What was the first decrypted text on the display in Bamboozled Again?
             [Question.BamboozledAgainDisplayTexts1] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} der {1}e Text auf dem Display, aber  entschlüsselt?",
+                QuestionText = "What was the {1} decrypted text on the display in {0}?",
             },
             // What was the {1} decrypted text on the display in {0}?
             // What was the first decrypted text on the display in Bamboozled Again?
             [Question.BamboozledAgainDisplayTexts2] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} der {1}e Text auf dem Display, aber  entschlüsselt?",
+                QuestionText = "What was the {1} decrypted text on the display in {0}?",
             },
             // What color was the {1} text on the display in {0}?
             // What color was the first text on the display in Bamboozled Again?
             [Question.BamboozledAgainDisplayColor] = new TranslationInfo
             {
-                QuestionText = "In welcher Farbe wurde bei {0} der {1}e Text auf dem Display angezeigt?",
+                QuestionText = "What color was the {1} text on the display in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Rot",
+                    ["Red"] = "Red",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Gelb",
-                    ["Lime"] = "Limette",
-                    ["Green"] = "Grün",
+                    ["Yellow"] = "Yellow",
+                    ["Lime"] = "Lime",
+                    ["Green"] = "Green",
                     ["Jade"] = "Jade",
-                    ["Cyan"] = "Türkis",
-                    ["Azure"] = "Azur",
-                    ["Blue"] = "Blau",
-                    ["Violet"] = "Violett",
+                    ["Cyan"] = "Cyan",
+                    ["Azure"] = "Azure",
+                    ["Blue"] = "Blue",
+                    ["Violet"] = "Violet",
                     ["Magenta"] = "Magenta",
-                    ["Rose"] = "Rosa",
-                    ["White"] = "Weiß",
-                    ["Grey"] = "Grau",
+                    ["Rose"] = "Rose",
+                    ["White"] = "White",
+                    ["Grey"] = "Grey",
                 },
             },
 
@@ -543,64 +544,64 @@ namespace Souvenir
             // What color was the button in the first stage of Bamboozling Button?
             [Question.BamboozlingButtonColor] = new TranslationInfo
             {
-                QuestionText = "Welche Farbe hatte der Knopf bei {0} im {1}en Schritt?",
+                QuestionText = "What color was the button in the {1} stage of {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Rot",
+                    ["Red"] = "Red",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Gelb",
-                    ["Lime"] = "Limette",
-                    ["Green"] = "Grün",
+                    ["Yellow"] = "Yellow",
+                    ["Lime"] = "Lime",
+                    ["Green"] = "Green",
                     ["Jade"] = "Jade",
-                    ["Cyan"] = "Türkis",
-                    ["Azure"] = "Azur",
-                    ["Blue"] = "Blau",
-                    ["Violet"] = "Violett",
+                    ["Cyan"] = "Cyan",
+                    ["Azure"] = "Azure",
+                    ["Blue"] = "Blue",
+                    ["Violet"] = "Violet",
                     ["Magenta"] = "Magenta",
-                    ["Rose"] = "Rosa",
-                    ["White"] = "Weiß",
-                    ["Grey"] = "Grau",
-                    ["Black"] = "Schwarz",
+                    ["Rose"] = "Rose",
+                    ["White"] = "White",
+                    ["Grey"] = "Grey",
+                    ["Black"] = "Black",
                 },
             },
             // What was the {2} label on the button in the {1} stage of {0}?
             // What was the top label on the button in the first stage of Bamboozling Button?
             [Question.BamboozlingButtonLabel] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} im {1}en Schritt die {2} Aufschrift auf dem Knopf?",
+                QuestionText = "What was the {2} label on the button in the {1} stage of {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "obere",
-                    ["bottom"] = "untere",
+                    ["top"] = "top",
+                    ["bottom"] = "bottom",
                 },
             },
             // What was the {2} display in the {1} stage of {0}?
             // What was the first display in the first stage of Bamboozling Button?
             [Question.BamboozlingButtonDisplay] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} im {1}en Schritt die {2}e Anzeige auf dem Display?",
+                QuestionText = "What was the {2} display in the {1} stage of {0}?",
             },
             // What was the color of the {2} display in the {1} stage of {0}?
             // What was the color of the first display in the first stage of Bamboozling Button?
             [Question.BamboozlingButtonDisplayColor] = new TranslationInfo
             {
-                QuestionText = "In welcher Farbe erschien bei {0} im {1}en Schritt die {2}e Anzeige auf dem Display?",
+                QuestionText = "What was the color of the {2} display in the {1} stage of {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Rot",
+                    ["Red"] = "Red",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Gelb",
-                    ["Lime"] = "Limette",
-                    ["Green"] = "Grün",
+                    ["Yellow"] = "Yellow",
+                    ["Lime"] = "Lime",
+                    ["Green"] = "Green",
                     ["Jade"] = "Jade",
-                    ["Cyan"] = "Türkis",
-                    ["Azure"] = "Azur",
-                    ["Blue"] = "Blau",
-                    ["Violet"] = "Violett",
+                    ["Cyan"] = "Cyan",
+                    ["Azure"] = "Azure",
+                    ["Blue"] = "Blue",
+                    ["Violet"] = "Violet",
                     ["Magenta"] = "Magenta",
-                    ["Rose"] = "Rosa",
-                    ["White"] = "Weiß",
-                    ["Grey"] = "Grau",
+                    ["Rose"] = "Rose",
+                    ["White"] = "White",
+                    ["Grey"] = "Grey",
                 },
             },
 
@@ -609,19 +610,19 @@ namespace Souvenir
             // What was the screen number in Barcode Cipher?
             [Question.BarcodeCipherScreenNumber] = new TranslationInfo
             {
-                QuestionText = "Welche Zahl war bei {0} auf dem Display?",
+                QuestionText = "What was the screen number in {0}?",
             },
             // What was the edgework represented by the {1} barcode in {0}?
             // What was the edgework represented by the first barcode in Barcode Cipher?
             [Question.BarcodeCipherBarcodeEdgework] = new TranslationInfo
             {
-                QuestionText = "Was wurde bei {0} vom {1}en Barcode wiedergegeben?",
+                QuestionText = "What was the edgework represented by the {1} barcode in {0}?",
             },
             // What was the answer for the {1} barcode in {0}?
             // What was the answer for the first barcode in Barcode Cipher?
             [Question.BarcodeCipherBarcodeAnswers] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} die Lösung für den {1}en Barcode?",
+                QuestionText = "What was the answer for the {1} barcode in {0}?",
             },
 
             // Bartending
@@ -629,7 +630,7 @@ namespace Souvenir
             // Which ingredient was in the first position on Bartending?
             [Question.BartendingIngredients] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} die Zutat an {1}er Stelle?",
+                QuestionText = "Which ingredient was in the {1} position on {0}?",
             },
 
             // Beans
@@ -637,16 +638,15 @@ namespace Souvenir
             // What was this bean in Beans?
             [Question.BeansColors] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} diese Bohne?",
-                ModuleName = "Bohnen",
+                QuestionText = "What was this bean in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Wobbly Orange"] = "Orange wackelnd",
-                    ["Wobbly Yellow"] = "Gelb wackelnd",
-                    ["Wobbly Green"] = "Grün wackelnd",
-                    ["Not Wobbly Orange"] = "Orange nicht wackelnd",
-                    ["Not Wobbly Yellow"] = "Gelb nicht wackelnd",
-                    ["Not Wobbly Green"] = "Grün nicht wackelnd",
+                    ["Wobbly Orange"] = "Wobbly Orange",
+                    ["Wobbly Yellow"] = "Wobbly Yellow",
+                    ["Wobbly Green"] = "Wobbly Green",
+                    ["Not Wobbly Orange"] = "Not Wobbly Orange",
+                    ["Not Wobbly Yellow"] = "Not Wobbly Yellow",
+                    ["Not Wobbly Green"] = "Not Wobbly Green",
                 },
             },
 
@@ -655,15 +655,13 @@ namespace Souvenir
             // What was sprout 1 in Bean Sprouts?
             [Question.BeanSproutsColors] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} der Spross {1}?",
-                ModuleName = "Bohnensprossen",
+                QuestionText = "What was sprout {1} in {0}?",
             },
             // What bean was on sprout {1} in {0}?
             // What bean was on sprout 1 in Bean Sprouts?
             [Question.BeanSproutsBeans] = new TranslationInfo
             {
-                QuestionText = "Welche Bohne war bei {0} auf Spross {1}?",
-                ModuleName = "Bohnensprossen",
+                QuestionText = "What bean was on sprout {1} in {0}?",
             },
 
             // Big Bean
@@ -671,8 +669,7 @@ namespace Souvenir
             // What was the bean in Big Bean?
             [Question.BigBeanColor] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} die Bohne?",
-                ModuleName = "Großbohne",
+                QuestionText = "What was the bean in {0}?",
                 Answers = new Dictionary<string, string>
                 {
                     ["Wobbly Orange"] = "Wobbly Orange",
@@ -689,18 +686,17 @@ namespace Souvenir
             // What color was first in the solution to Big Circle?
             [Question.BigCircleColors] = new TranslationInfo
             {
-                QuestionText = "Welche Farbe war bei {0} die {1}e in der Lösung?",
-                ModuleName = "Großer Kreis",
+                QuestionText = "What color was {1} in the solution to {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Rot",
+                    ["Red"] = "Red",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Gelb",
-                    ["Green"] = "Grün",
-                    ["Blue"] = "Blau",
+                    ["Yellow"] = "Yellow",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
                     ["Magenta"] = "Magenta",
-                    ["White"] = "Weiß",
-                    ["Black"] = "Schwarz",
+                    ["White"] = "White",
+                    ["Black"] = "Black",
                 },
             },
 
@@ -709,7 +705,7 @@ namespace Souvenir
             // At which numeric value did you cut the correct wire in Binary LEDs?
             [Question.BinaryLEDsValue] = new TranslationInfo
             {
-                QuestionText = "Bei welchem Zahlenwert wurde bei {0} der korrekte Draht durchtrennt?",
+                QuestionText = "At which numeric value did you cut the correct wire in {0}?",
             },
 
             // Binary Shift
@@ -717,31 +713,31 @@ namespace Souvenir
             // What was the top-left initial number in Binary Shift?
             [Question.BinaryShiftInitialNumber] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} die {1} Anfangszahl?",
+                QuestionText = "What was the {1} initial number in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top-left"] = "obere linke",
-                    ["top-middle"] = "obere mittlere",
-                    ["top-right"] = "obere rechte",
-                    ["left-middle"] = "linke mittlere",
-                    ["center"] = "mittlere",
-                    ["right-middle"] = "rechte mittlere",
-                    ["bottom-left"] = "untere linke",
-                    ["bottom-middle"] = "untere mittlere",
-                    ["bottom-right"] = "untere rechte",
+                    ["top-left"] = "top-left",
+                    ["top-middle"] = "top-middle",
+                    ["top-right"] = "top-right",
+                    ["left-middle"] = "left-middle",
+                    ["center"] = "center",
+                    ["right-middle"] = "right-middle",
+                    ["bottom-left"] = "bottom-left",
+                    ["bottom-middle"] = "bottom-middle",
+                    ["bottom-right"] = "bottom-right",
                 },
             },
             // What number was selected at stage {1} in {0}?
             // What number was selected at stage 0 in Binary Shift?
             [Question.BinaryShiftSelectedNumberPossition] = new TranslationInfo
             {
-                QuestionText = "Welche Zahl wurde bei {0} in Schritt {1} ausgewählt?",
+                QuestionText = "What number was selected at stage {1} in {0}?",
             },
             // What number was not selected at stage {1} in {0}?
             // What number was not selected at stage 0 in Binary Shift?
             [Question.BinaryShiftNotSelectedNumberPossition] = new TranslationInfo
             {
-                QuestionText = "Welche Zahl wurde bei {0} in Schritt {1} nicht ausgewählt?",
+                QuestionText = "What number was not selected at stage {1} in {0}?",
             },
 
             // Binary
@@ -749,7 +745,7 @@ namespace Souvenir
             // What word was displayed in Binary?
             [Question.BinaryWord] = new TranslationInfo
             {
-                QuestionText = "Welches Wort wurde bei {0} angezeigt?",
+                QuestionText = "What word was displayed in {0}?",
             },
 
             // Bitmaps
@@ -757,15 +753,15 @@ namespace Souvenir
             // How many pixels were white in the top left quadrant in Bitmaps?
             [Question.Bitmaps] = new TranslationInfo
             {
-                QuestionText = "Wie viele Pixels waren bei {0} im {2} Quadranten {1}?",
+                QuestionText = "How many pixels were {1} in the {2} quadrant in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["white"] = "weiß",
-                    ["top left"] = "oberen linken",
-                    ["top right"] = "oberen rechten",
-                    ["bottom left"] = "unteren linken",
-                    ["bottom right"] = "unteren rechten",
-                    ["black"] = "schwarz",
+                    ["white"] = "white",
+                    ["top left"] = "top left",
+                    ["top right"] = "top right",
+                    ["bottom left"] = "bottom left",
+                    ["bottom right"] = "bottom right",
+                    ["black"] = "black",
                 },
             },
 
@@ -774,7 +770,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Black Cipher?
             [Question.BlackCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "top",
@@ -891,7 +887,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Blue Cipher?
             [Question.BlueCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "top",
@@ -942,6 +938,20 @@ namespace Souvenir
             [Question.BombDiffusalLicenseNumber] = new TranslationInfo
             {
                 QuestionText = "What was the license number in {0}?",
+            },
+
+            // Book of Mario
+            // Who said the {1} quote in {0}?
+            // Who said the first quote in Book of Mario?
+            [Question.BookOfMarioPictures] = new TranslationInfo
+            {
+                QuestionText = "Who said the {1} quote in {0}?",
+            },
+            // What did {1} say in the {2} stage of {0}?
+            // What did Goombell say in the first stage of Book of Mario?
+            [Question.BookOfMarioQuotes] = new TranslationInfo
+            {
+                QuestionText = "What did {1} say in the {2} stage of {0}?",
             },
 
             // Boolean Wires
@@ -1037,7 +1047,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Brown Cipher?
             [Question.BrownCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "top",
@@ -1072,13 +1082,12 @@ namespace Souvenir
                 },
             },
 
-            // Лампочка (The Bulb)
+            // The Bulb
             // What were the correct button presses in {0}?
             // What were the correct button presses in The Bulb?
             [Question.BulbButtonPresses] = new TranslationInfo
             {
-                QuestionText = "Какие правильные кнопки были нажаты в {0}?",
-				ModuleName = "Лампочке",
+                QuestionText = "What were the correct button presses in {0}?",
             },
 
             // Burger Alarm
@@ -1103,13 +1112,13 @@ namespace Souvenir
                 QuestionText = "What was the {1} displayed digit in {0}?",
             },
 
-            // Кнопка (The Button)
+            // The Button
             // What color did the light glow in {0}?
             // What color did the light glow in The Button?
             [Question.ButtonLightColor] = new TranslationInfo
             {
                 QuestionText = "Каким цветом горела цветная полоска в {0}?",
-				ModuleName = "Кнопке",
+                ModuleName = "Кнопке",
                 Answers = new Dictionary<string, string>
                 {
                     ["red"] = "Красным",
@@ -1119,13 +1128,13 @@ namespace Souvenir
                 },
             },
 
-            // Последовательность кнопок (Button Sequence)
+            // Button Sequence
             // How many of the buttons in {0} were {1}?
             // How many of the buttons in Button Sequence were red?
             [Question.ButtonSequencesColorOccurrences] = new TranslationInfo
             {
                 QuestionText = "Сколько {1} кнопок было в {0}?",
-				ModuleName = "Последовательности кнопок",
+                ModuleName = "Последовательности кнопок",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["red"] = "красных",
@@ -1140,11 +1149,11 @@ namespace Souvenir
             // What was the message in Caesar Cycle?
             [Question.CaesarCycleWord] = new TranslationInfo
             {
-                QuestionText = "Was war die {1} in {0}?",
+                QuestionText = "What was the {1} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["message"] = "Nachricht",
-                    ["response"] = "Antwort",
+                    ["message"] = "message",
+                    ["response"] = "response",
                 },
             },
 
@@ -1274,13 +1283,13 @@ namespace Souvenir
                 QuestionText = "Who was displayed in the {1} slot in the {2} stage of {0}?",
             },
 
-            // Свободная касса (Cheap Checkout)
+            // Cheap Checkout
             // What was {1} in {0}?
             // What was the paid amount in Cheap Checkout?
             [Question.CheapCheckoutPaid] = new TranslationInfo
             {
                 QuestionText = "{1} в {0}?",
-				ModuleName = "Свободной кассе",
+                ModuleName = "Свободной кассе",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["the paid amount"] = "Сколько всего денег было заплачено",
@@ -1302,13 +1311,13 @@ namespace Souvenir
                 },
             },
 
-            // Шахматы (Chess)
+            // Chess
             // What was the {1} coordinate in {0}?
             // What was the first coordinate in Chess?
             [Question.ChessCoordinate] = new TranslationInfo
             {
                 QuestionText = "Какие были {1}-е координаты в {0}?",
-				ModuleName = "Шахматах",
+                ModuleName = "Шахматах",
             },
 
             // Chinese Counting
@@ -1331,20 +1340,20 @@ namespace Souvenir
                 },
             },
 
-            // Аккордные лады (Chord Qualities)
+            // Chord Qualities
             // Which note was part of the given chord in {0}?
             // Which note was part of the given chord in Chord Qualities?
             [Question.ChordQualitiesNotes] = new TranslationInfo
             {
                 QuestionText = "Какая нота присутствовала в начальном аккорде в {0}?",
-				ModuleName = "Аккордных ладах",
+                ModuleName = "Аккордных ладах",
             },
             // What was the given chord quality in {0}?
             // What was the given chord quality in Chord Qualities?
             [Question.ChordQualitiesQuality] = new TranslationInfo
             {
                 QuestionText = "Какой был исходный лад начального аккорда в {0}?",
-				ModuleName = "Аккордных ладах",
+                ModuleName = "Аккордных ладах",
             },
 
             // The Code
@@ -1480,13 +1489,13 @@ namespace Souvenir
                 },
             },
 
-            // Цветные квадраты (Colored Squares)
+            // Colored Squares
             // What was the first color group in {0}?
             // What was the first color group in Colored Squares?
             [Question.ColoredSquaresFirstGroup] = new TranslationInfo
             {
                 QuestionText = "Какого цвета была первая группа в {0}?",
-				ModuleName = "Цветных квадратах",
+                ModuleName = "Цветных квадратах",
                 Answers = new Dictionary<string, string>
                 {
                     ["White"] = "Белая",
@@ -1498,20 +1507,20 @@ namespace Souvenir
                 },
             },
 
-            // Цветные переключатели (Colored Switches)
+            // Colored Switches
             // What was the initial position of the switches in {0}?
             // What was the initial position of the switches in Colored Switches?
             [Question.ColoredSwitchesInitialPosition] = new TranslationInfo
             {
                 QuestionText = "Какое было начальное положение переключателей в {0}?",
-				ModuleName = "Цветных переключателях",
+                ModuleName = "Цветных переключателях",
             },
             // What was the position of the switches when the LEDs came on in {0}?
             // What was the position of the switches when the LEDs came on in Colored Switches?
             [Question.ColoredSwitchesWhenLEDsCameOn] = new TranslationInfo
             {
                 QuestionText = "В каком положении находились переключатели, когда загорелись светодиоды в {0}?",
-				ModuleName = "Цветных переключателях",
+                ModuleName = "Цветных переключателях",
             },
 
             // Color Morse
@@ -1591,13 +1600,13 @@ namespace Souvenir
                 },
             },
 
-            // Цветная вспышка (Colour Flash)
+            // Colour Flash
             // What was the color of the last word in the sequence in {0}?
             // What was the color of the last word in the sequence in Colour Flash?
             [Question.ColourFlashLastColor] = new TranslationInfo
             {
                 QuestionText = "Какого цвета было последнее слово в последовательности в {0}?",
-				ModuleName = "Цветной вспышке",
+                ModuleName = "Цветной вспышке",
                 Answers = new Dictionary<string, string>
                 {
                     ["Red"] = "Красное",
@@ -1609,13 +1618,13 @@ namespace Souvenir
                 },
             },
 
-            // Проверка соединения (Connection Check)
+            // Connection Check
             // What pair of numbers was present in {0}?
             // What pair of numbers was present in Connection Check?
             [Question.ConnectionCheckNumbers] = new TranslationInfo
             {
                 QuestionText = "Какая пара чисел присутствовала в {0}?",
-				ModuleName = "Проверке соединения",
+                ModuleName = "Проверке соединения",
             },
 
             // Coordinates
@@ -1637,12 +1646,12 @@ namespace Souvenir
             // What was on the top screen on page 1 in Coral Cipher?
             [Question.CoralCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "oberen",
-                    ["middle"] = "mittleren",
-                    ["bottom"] = "unteren",
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
                 },
             },
 
@@ -1686,12 +1695,12 @@ namespace Souvenir
             // What was on the top screen on page 1 in Cornflower Cipher?
             [Question.CornflowerCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "oberen",
-                    ["middle"] = "mittleren",
-                    ["bottom"] = "unteren",
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
                 },
             },
 
@@ -1729,22 +1738,30 @@ namespace Souvenir
             // What was on the top screen on page 1 in Cream Cipher?
             [Question.CreamCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "oberen",
-                    ["middle"] = "mittleren",
-                    ["bottom"] = "unteren",
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
                 },
             },
 
-            // Создание (Creation)
+            // Creation
             // What were the weather conditions on the {1} day in {0}?
             // What were the weather conditions on the first day in Creation?
             [Question.CreationWeather] = new TranslationInfo
             {
                 QuestionText = "Какая погода была на {1}-м дне в {0}?",
-				ModuleName = "Создании",
+                ModuleName = "Создании",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Clear"] = "Clear",
+                    ["Heat Wave"] = "Heat Wave",
+                    ["Meteor Shower"] = "Meteor Shower",
+                    ["Rain"] = "Rain",
+                    ["Windy"] = "Windy",
+                },
             },
 
             // Crimson Cipher
@@ -1752,12 +1769,12 @@ namespace Souvenir
             // What was on the top screen on page 1 in Crimson Cipher?
             [Question.CrimsonCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "oberen",
-                    ["middle"] = "mittleren",
-                    ["bottom"] = "unteren",
+                    ["top"] = "top",
+                    ["middle"] = "middle",
+                    ["bottom"] = "bottom",
                 },
             },
 
@@ -1829,11 +1846,11 @@ namespace Souvenir
             // What was the message in Cryptic Cycle?
             [Question.CrypticCycleWord] = new TranslationInfo
             {
-                QuestionText = "Was war die {1} in {0}?",
+                QuestionText = "What was the {1} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["message"] = "Nachricht",
-                    ["response"] = "Antwort",
+                    ["message"] = "message",
+                    ["response"] = "response",
                 },
             },
 
@@ -1900,13 +1917,22 @@ namespace Souvenir
                 QuestionText = "Who was the {1} customer in {0}?",
             },
 
-            // Голубая кнопка (The Cyan Button)
+            // The Cyan Button
             // Where was the button at the {1} stage in {0}?
             // Where was the button at the first stage in The Cyan Button?
             [Question.CyanButtonPositions] = new TranslationInfo
             {
                 QuestionText = "Где была кнопка на {1}-м этапе в {0}?",
-				ModuleName = "Голубой кнопке",
+                ModuleName = "Голубой кнопке",
+                Answers = new Dictionary<string, string>
+                {
+                    ["top left"] = "top left",
+                    ["top middle"] = "top middle",
+                    ["top right"] = "top right",
+                    ["bottom left"] = "bottom left",
+                    ["bottom middle"] = "bottom middle",
+                    ["bottom right"] = "bottom right",
+                },
             },
 
             // DACH Maze
@@ -1933,13 +1959,13 @@ namespace Souvenir
                 QuestionText = "What deck did the first card of {0} belong to?",
             },
 
-            // Обесцвеченные квадраты (Decolored Squares)
+            // Decolored Squares
             // What was the starting {1} defining color in {0}?
             // What was the starting column defining color in Decolored Squares?
             [Question.DecoloredSquaresStartingPos] = new TranslationInfo
             {
                 QuestionText = "Какой цвет определил начальный(-ую) {1} в {0}?",
-				ModuleName = "Обесцвеченных квадратах",
+                ModuleName = "Обесцвеченных квадратах",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["column"] = "столбец",
@@ -2157,13 +2183,13 @@ namespace Souvenir
                 QuestionText = "What was the word you submitted in {0}?",
             },
 
-            // Ноль-ноль (Double-Oh)
+            // Double-Oh
             // Which button was the submit button in {0}?
             // Which button was the submit button in Double-Oh?
             [Question.DoubleOhSubmitButton] = new TranslationInfo
             {
                 QuestionText = "Какая кнопка была кнопкой отправки в модуле {0}?",
-				ModuleName = "Ноль-ноль",
+                ModuleName = "Ноль-ноль",
             },
 
             // Dr. Doctor
@@ -2213,6 +2239,20 @@ namespace Souvenir
                     ["was"] = "was",
                     ["was not"] = "was not",
                 },
+            },
+
+            // Earthbound
+            // What was the background number in {0}?
+            // What was the background number in Earthbound?
+            [Question.EarthboundBackground] = new TranslationInfo
+            {
+                QuestionText = "What was the background number in {0}?",
+            },
+            // Which monster was displayed in {0}?
+            // Which monster was displayed in Earthbound?
+            [Question.EarthboundMonster] = new TranslationInfo
+            {
+                QuestionText = "Which monster was displayed in {0}?",
             },
 
             // eeB gnillepS
@@ -2346,11 +2386,11 @@ namespace Souvenir
             // What was the message in Enigma Cycle?
             [Question.EnigmaCycleWords] = new TranslationInfo
             {
-                QuestionText = "Was war die {1} in {0}?",
+                QuestionText = "What was the {1} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["message"] = "Nachricht",
-                    ["response"] = "Antwort",
+                    ["message"] = "message",
+                    ["response"] = "response",
                 },
             },
 
@@ -2486,13 +2526,13 @@ namespace Souvenir
                 QuestionText = "What room did you start in in {0}?",
             },
 
-            // Быстрая математика (Fast Math)
+            // Fast Math
             // What was the last pair of letters in {0}?
             // What was the last pair of letters in Fast Math?
             [Question.FastMathLastLetters] = new TranslationInfo
             {
                 QuestionText = "Какая пара букв была последней в {0}?",
-				ModuleName = "Быстрой математике",
+                ModuleName = "Быстрой математике",
             },
 
             // Faulty Buttons
@@ -2640,6 +2680,20 @@ namespace Souvenir
                 },
             },
 
+            // Flavor Text
+            // Which module’s flavor text was shown in {0}?
+            // Which module’s flavor text was shown in Flavor Text?
+            [Question.FlavorTextModule] = new TranslationInfo
+            {
+                QuestionText = "Which module’s flavor text was shown in {0}?",
+            },
+            // Which module’s flavor text was shown in the {1} stage of {0}?
+            // Which module’s flavor text was shown in the first stage of Flavor Text?
+            [Question.FlavorTextEXModule] = new TranslationInfo
+            {
+                QuestionText = "Which module’s flavor text was shown in the {1} stage of {0}?",
+            },
+
             // Flyswatting
             // Which fly was present, but not in the solution in {0}?
             // Which fly was present, but not in the solution in Flyswatting?
@@ -2661,7 +2715,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Forest Cipher?
             [Question.ForestCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "top",
@@ -2948,7 +3002,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Gray Cipher?
             [Question.GrayCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "top",
@@ -3002,7 +3056,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Green Cipher?
             [Question.GreenCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "top",
@@ -3092,13 +3146,13 @@ namespace Souvenir
                 QuestionText = "What label was printed on {0}?",
             },
 
-            // Гексабиринт (Hexamaze)
+            // Hexamaze
             // What was the color of the pawn in {0}?
             // What was the color of the pawn in Hexamaze?
             [Question.HexamazePawnColor] = new TranslationInfo
             {
                 QuestionText = "Какого цвета была фигурка в {0}?",
-				ModuleName = "Гексабиринте",
+                ModuleName = "Гексабиринте",
                 Answers = new Dictionary<string, string>
                 {
                     ["Red"] = "Красная",
@@ -3174,11 +3228,11 @@ namespace Souvenir
             // What was the message in Hill Cycle?
             [Question.HillCycleWord] = new TranslationInfo
             {
-                QuestionText = "Was war die {1} in {0}?",
+                QuestionText = "What was the {1} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["message"] = "Nachricht",
-                    ["response"] = "Antwort",
+                    ["message"] = "message",
+                    ["response"] = "response",
                 },
             },
 
@@ -3321,7 +3375,7 @@ namespace Souvenir
             // What was the first rotation in The Hypercube?
             [Question.HypercubeRotations] = new TranslationInfo
             {
-                QuestionText = "Was war die {1}e Rotation in {0}?",
+                QuestionText = "What was the {1} rotation in {0}?",
             },
 
             // The Hyperlink
@@ -3419,7 +3473,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Indigo Cipher?
             [Question.IndigoCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "top",
@@ -3518,11 +3572,11 @@ namespace Souvenir
             // What was the message in Jumble Cycle?
             [Question.JumbleCycleWord] = new TranslationInfo
             {
-                QuestionText = "Was war die {1} in {0}?",
+                QuestionText = "What was the {1} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["message"] = "Nachricht",
-                    ["response"] = "Antwort",
+                    ["message"] = "message",
+                    ["response"] = "response",
                 },
             },
 
@@ -3560,6 +3614,14 @@ namespace Souvenir
             [Question.KanyeEncounterFoods] = new TranslationInfo
             {
                 QuestionText = "What was a food item displayed in {0}?",
+            },
+
+            // Keypad Combinations
+            // Which number was displayed on the {1} button, but not part of the answer on {0}?
+            // Which number was displayed on the first button, but not part of the answer on Keypad Combinations?
+            [Question.KeypadCombinationWrongNumbers] = new TranslationInfo
+            {
+                QuestionText = "Which number was displayed on the {1} button, but not part of the answer on {0}?",
             },
 
             // Keypad Magnified
@@ -3800,13 +3862,13 @@ namespace Souvenir
                 QuestionText = "Which lion was present but removed in {0}?",
             },
 
-            // Аудирование (Listening)
+            // Listening
             // What was the correct code you entered in {0}?
             // What was the correct code you entered in Listening?
             [Question.ListeningCode] = new TranslationInfo
             {
                 QuestionText = "Какой правильный код был введён в {0}?",
-				ModuleName = "Аудировании",
+                ModuleName = "Аудировании",
             },
 
             // Logical Buttons
@@ -3853,13 +3915,13 @@ namespace Souvenir
                 QuestionText = "What was the final operator in the {1} stage of {0}?",
             },
 
-            // Логические элементы (Logic Gates)
+            // Logic Gates
             // What was {1} in {0}?
             // What was gate A in Logic Gates?
             [Question.LogicGatesGates] = new TranslationInfo
             {
                 QuestionText = "Каким был {1} в {0}?",
-				ModuleName = "Логических элементах",
+                ModuleName = "Логических элементах",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["gate A"] = "гейт A",
@@ -3944,7 +4006,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Magenta Cipher?
             [Question.MagentaCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "top",
@@ -4018,7 +4080,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Maroon Cipher?
             [Question.MaroonCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "top",
@@ -4085,13 +4147,13 @@ namespace Souvenir
                 QuestionText = "What was the glitched word in {0}?",
             },
 
-            // Лабиринт (Maze)
+            // Maze
             // In which {1} was the starting position in {0}, counting from the {2}?
             // In which column was the starting position in Maze, counting from the left?
             [Question.MazeStartingPosition] = new TranslationInfo
             {
                 QuestionText = "В какой(-м) {1} была начальная позиция в {0}, считая {2}?",
-				ModuleName = "Лабиринте",
+                ModuleName = "Лабиринте",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["column"] = "столбце",
@@ -4241,27 +4303,27 @@ namespace Souvenir
                 QuestionText = "What was the {1} correct symbol pressed in {0}?",
             },
 
-            // Память (Memory)
+            // Memory
             // What was the displayed number in the {1} stage of {0}?
             // What was the displayed number in the first stage of Memory?
             [Question.MemoryDisplay] = new TranslationInfo
             {
                 QuestionText = "Какая цифра была на экране на {1}-м этапе в {0}?",
-				ModuleName = "Памяти",
+                ModuleName = "Памяти",
             },
             // In what position was the button that you pressed in the {1} stage of {0}?
             // In what position was the button that you pressed in the first stage of Memory?
             [Question.MemoryPosition] = new TranslationInfo
             {
                 QuestionText = "На какой позиции была кнопка, которую вы нажали на {1}-м этапе в {0}?",
-				ModuleName = "Памяти",
+                ModuleName = "Памяти",
             },
             // What was the label of the button that you pressed in the {1} stage of {0}?
             // What was the label of the button that you pressed in the first stage of Memory?
             [Question.MemoryLabel] = new TranslationInfo
             {
                 QuestionText = "С каким значением была кнопка, которую вы нажали на {1}-м этапе в {0}?",
-				ModuleName = "Памяти",
+                ModuleName = "Памяти",
             },
 
             // Memory Wires
@@ -4302,22 +4364,22 @@ namespace Souvenir
                 QuestionText = "What was the final answer in {0}?",
             },
 
-            // Микроконтроллер (Microcontroller)
+            // Microcontroller
             // Which pin lit up {1} in {0}?
             // Which pin lit up first in Microcontroller?
             [Question.MicrocontrollerPinOrder] = new TranslationInfo
             {
                 QuestionText = "Какой контакт загорелся {1}-м в {0}?",
-				ModuleName = "Микроконтроллере",
+                ModuleName = "Микроконтроллере",
             },
 
-            // Сапёр (Minesweeper)
+            // Minesweeper
             // What was the color of the starting cell in {0}?
             // What was the color of the starting cell in Minesweeper?
             [Question.MinesweeperStartingColor] = new TranslationInfo
             {
                 QuestionText = "Какого цвета была начальная клетка в {0}?",
-				ModuleName = "Сапёре",
+                ModuleName = "Сапёре",
                 Answers = new Dictionary<string, string>
                 {
                     ["red"] = "Красная",
@@ -4393,6 +4455,14 @@ namespace Souvenir
             [Question.ModuleMazeStartingIcon] = new TranslationInfo
             {
                 QuestionText = "Which of the following was the starting icon for {0}?",
+            },
+
+            // Module Movements
+            // What was the {1} module shown in {0}?
+            // What was the first module shown in Module Movements?
+            [Question.ModuleMovementsDisplay] = new TranslationInfo
+            {
+                QuestionText = "What was the {1} module shown in {0}?",
             },
 
             // Monsplode, Fight!
@@ -4551,13 +4621,13 @@ namespace Souvenir
                 QuestionText = "What code was transmitted in {0}?",
             },
 
-            // 3D-лабиринт / Мышь в лабиринте (Mouse in the Maze)
+            // Mouse in the Maze
             // What color was the torus in {0}?
             // What color was the torus in Mouse in the Maze?
             [Question.MouseInTheMazeTorus] = new TranslationInfo
             {
                 QuestionText = "Какого цвета было кольцо в {0}?",
-				ModuleName = "3D-лабиринте",
+                ModuleName = "3D-лабиринте",
                 Answers = new Dictionary<string, string>
                 {
                     ["white"] = "Белое",
@@ -4571,7 +4641,7 @@ namespace Souvenir
             [Question.MouseInTheMazeSphere] = new TranslationInfo
             {
                 QuestionText = "Какого цвета была правильная целевая сфера в {0}?",
-				ModuleName = "3D-лабиринте",
+                ModuleName = "3D-лабиринте",
                 Answers = new Dictionary<string, string>
                 {
                     ["white"] = "Белая",
@@ -4857,13 +4927,13 @@ namespace Souvenir
                 QuestionText = "Which coordinate was part of the square in {0}?",
             },
 
-            // НЕ-клавиатура (Not Keypad)
+            // Not Keypad
             // What color flashed {1} in the final sequence in {0}?
             // What color flashed first in the final sequence in Not Keypad?
             [Question.NotKeypadColor] = new TranslationInfo
             {
                 QuestionText = "Какой цвет горел {1}-м на последнем этапе в {0}?",
-				ModuleName = "НЕ-клавиатуре",
+                ModuleName = "НЕ-клавиатуре",
                 Answers = new Dictionary<string, string>
                 {
                     ["red"] = "Красный",
@@ -4885,7 +4955,7 @@ namespace Souvenir
             [Question.NotKeypadSymbol] = new TranslationInfo
             {
                 QuestionText = "Какой символ был на кнопке, которая горела {1} на последнем этапе в {0}?",
-				ModuleName = "НЕ-клавиатуре",
+                ModuleName = "НЕ-клавиатуре",
             },
 
             // Not Maze
@@ -4979,13 +5049,13 @@ namespace Souvenir
                 QuestionText = "What was the third displayed symbol on {0}?",
             },
 
-            // НЕ-Саймон (Not Simaze)
+            // Not Simaze
             // Which maze was used in {0}?
             // Which maze was used in Not Simaze?
             [Question.NotSimazeMaze] = new TranslationInfo
             {
                 QuestionText = "Какой лабиринт был использован в {0}?",
-				ModuleName = "НЕ-Саймоне",
+                ModuleName = "НЕ-Саймоне",
                 Answers = new Dictionary<string, string>
                 {
                     ["red"] = "Красный",
@@ -5001,7 +5071,7 @@ namespace Souvenir
             [Question.NotSimazeStart] = new TranslationInfo
             {
                 QuestionText = "Какая была начальная позиция в {0}?",
-				ModuleName = "НЕ-Саймоне",
+                ModuleName = "НЕ-Саймоне",
                 Answers = new Dictionary<string, string>
                 {
                     ["(red, red)"] = "(К, К)",
@@ -5047,7 +5117,7 @@ namespace Souvenir
             [Question.NotSimazeGoal] = new TranslationInfo
             {
                 QuestionText = "Какая была целевая (конечная) позиция в {0}?",
-				ModuleName = "НЕ-Саймоне",
+                ModuleName = "НЕ-Саймоне",
                 Answers = new Dictionary<string, string>
                 {
                     ["(red, red)"] = "(К, К)",
@@ -5398,7 +5468,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Orange Cipher?
             [Question.OrangeCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "top",
@@ -5465,13 +5535,13 @@ namespace Souvenir
                 QuestionText = "What was the pallet in the {1} order of {0}?",
             },
 
-            // Ориентация куба (Orientation Cube)
+            // Orientation Cube
             // What was the observer’s initial position in {0}?
             // What was the observer’s initial position in Orientation Cube?
             [Question.OrientationCubeInitialObserverPosition] = new TranslationInfo
             {
                 QuestionText = "Какая была начальная позиция у наблюдателя в {0}?",
-				ModuleName = "Ориентации куба",
+                ModuleName = "Ориентации куба",
                 Answers = new Dictionary<string, string>
                 {
                     ["front"] = "Спереди",
@@ -5603,8 +5673,7 @@ namespace Souvenir
             // Which symbol was highlighted in Pattern Cube?
             [Question.PatternCubeHighlightedSymbol] = new TranslationInfo
             {
-                QuestionText = "Welches Symbol war in {0} hervorgehoben?",
-                ModuleName = "Musterwürfel",
+                QuestionText = "Which symbol was highlighted in {0}?",
             },
 
             // Periodic Words
@@ -5615,13 +5684,13 @@ namespace Souvenir
                 QuestionText = "What word was on the display in the {1} stage of {0}?",
             },
 
-            // Взгляд на колшыки (Perspective Pegs)
+            // Perspective Pegs
             // What was the {1} color in the initial sequence in {0}?
             // What was the first color in the initial sequence in Perspective Pegs?
             [Question.PerspectivePegsColorSequence] = new TranslationInfo
             {
                 QuestionText = "Какой цвет был {1}-м в начальной последовательности во {0}?",
-				ModuleName = "Взгляде на колышках",
+                ModuleName = "Взгляде на колышках",
                 Answers = new Dictionary<string, string>
                 {
                     ["red"] = "Красный",
@@ -5637,13 +5706,13 @@ namespace Souvenir
             // What was the offset in Phosphorescence?
             [Question.PhosphorescenceOffset] = new TranslationInfo
             {
-                QuestionText = "Was war das Offset in {0}?",
+                QuestionText = "What was the offset in {0}?",
             },
             // What was the {1} button press in {0}?
             // What was the first button press in Phosphorescence?
             [Question.PhosphorescenceButtonPresses] = new TranslationInfo
             {
-                QuestionText = "Was war die {1}e Eingabe in {0}?",
+                QuestionText = "What was the {1} button press in {0}?",
                 Answers = new Dictionary<string, string>
                 {
                     ["Azure"] = "Azure",
@@ -5679,7 +5748,7 @@ namespace Souvenir
             // What was the code in Pictionary?
             [Question.PictionaryCode] = new TranslationInfo
             {
-                QuestionText = "Was war der Code in {0}?",
+                QuestionText = "What was the code in {0}?",
             },
 
             // Pie
@@ -5687,7 +5756,7 @@ namespace Souvenir
             // What was the first digit of the displayed number in Pie?
             [Question.PieDigits] = new TranslationInfo
             {
-                QuestionText = "Was war die {1}e Ziffer der in {0} angezeigten Zahl?",
+                QuestionText = "What was the {1} digit of the displayed number in {0}?",
             },
 
             // Pie Flash
@@ -5695,7 +5764,7 @@ namespace Souvenir
             // What number was not displayed in Pie Flash?
             [Question.PieFlashDigits] = new TranslationInfo
             {
-                QuestionText = "Welche Zahl war in {0} nicht zu sehen?",
+                QuestionText = "What number was not displayed in {0}?",
             },
 
             // Pigpen Cycle
@@ -5703,11 +5772,11 @@ namespace Souvenir
             // What was the message in Pigpen Cycle?
             [Question.PigpenCycleWord] = new TranslationInfo
             {
-                QuestionText = "Was war die {1} in {0}?",
+                QuestionText = "What was the {1} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["message"] = "Nachricht",
-                    ["response"] = "Antwort",
+                    ["message"] = "message",
+                    ["response"] = "response",
                 },
             },
 
@@ -5833,11 +5902,11 @@ namespace Souvenir
             // What was the message in Playfair Cycle?
             [Question.PlayfairCycleWord] = new TranslationInfo
             {
-                QuestionText = "Was war die {1} in {0}?",
+                QuestionText = "What was the {1} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["message"] = "Nachricht",
-                    ["response"] = "Antwort",
+                    ["message"] = "message",
+                    ["response"] = "response",
                 },
             },
 
@@ -5849,13 +5918,13 @@ namespace Souvenir
                 QuestionText = "What was the {1} correct answer you pressed in {0}?",
             },
 
-            // Многогранный лабиринт (Polyhedral Maze)
+            // Polyhedral Maze
             // What was the starting position in {0}?
             // What was the starting position in Polyhedral Maze?
             [Question.PolyhedralMazeStartPosition] = new TranslationInfo
             {
                 QuestionText = "Какая была начальная позиция в {0}?",
-				ModuleName = "Многогранном лабиринте",
+                ModuleName = "Многогранном лабиринте",
             },
 
             // Prime Encryption
@@ -6097,7 +6166,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Red Cipher?
             [Question.RedCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "top",
@@ -6221,13 +6290,21 @@ namespace Souvenir
                 },
             },
 
-            // Музыкальный ритм (Rhythms)
+            // RGB Sequences
+            // What was the color of the {1} LED in {0}?
+            // What was the color of the first LED in RGB Sequences?
+            [Question.RGBSequencesDisplay] = new TranslationInfo
+            {
+                QuestionText = "What was the color of the {1} LED in {0}?",
+            },
+
+            // Rhythms
             // What was the color in {0}?
             // What was the color in Rhythms?
             [Question.RhythmsColor] = new TranslationInfo
             {
                 QuestionText = "Каким был цвет светодиода в {0}?",
-				ModuleName = "Музыкальном ритме",
+                ModuleName = "Музыкальном ритме",
                 Answers = new Dictionary<string, string>
                 {
                     ["Blue"] = "Синий",
@@ -6237,20 +6314,20 @@ namespace Souvenir
                 },
             },
 
-            // The Rule
-            // What was the rule number in {0}?
-            // What was the rule number in The Rule?
-            [Question.RuleNumber] = new TranslationInfo
-            {
-                QuestionText = "What was the rule number in {0}?",
-            },
-
             // Robo-Scanner
             // Where was the empty cell in {0}?
             // Where was the empty cell in Robo-Scanner?
             [Question.RoboScannerEmptyCell] = new TranslationInfo
             {
                 QuestionText = "Where was the empty cell in {0}?",
+            },
+
+            // Robot Programming
+            // What was the name of the robot in the {1} position of {0}?
+            // What was the name of the robot in the first position of Robot Programming?
+            [Question.RobotProgrammingName] = new TranslationInfo
+            {
+                QuestionText = "What was the name of the robot in the {1} position of {0}?",
             },
 
             // Roger
@@ -6280,6 +6357,14 @@ namespace Souvenir
                     ["primary-colored"] = "primary-colored",
                     ["secondary-colored"] = "secondary-colored",
                 },
+            },
+
+            // The Rule
+            // What was the rule number in {0}?
+            // What was the rule number in The Rule?
+            [Question.RuleNumber] = new TranslationInfo
+            {
+                QuestionText = "What was the rule number in {0}?",
             },
 
             // Rule of Three
@@ -6384,13 +6469,13 @@ namespace Souvenir
                 QuestionText = "What was the {1} encrypted word in {0}?",
             },
 
-            // Скриптинг (Scripting)
+            // Scripting
             // What was the submitted data type of the variable in {0}?
             // What was the submitted data type of the variable in Scripting?
             [Question.ScriptingVariableDataType] = new TranslationInfo
             {
                 QuestionText = "Какой был верный тип данных переменной в {0}?",
-				ModuleName = "Скриптинге",
+                ModuleName = "Скриптинге",
             },
 
             // Scrutiny Squares
@@ -6401,27 +6486,27 @@ namespace Souvenir
                 QuestionText = "What was the modified property of the first display in {0}?",
             },
 
-            // Морские ракушки (Sea Shells)
+            // Sea Shells
             // What were the first and second words in the {1} phrase in {0}?
             // What were the first and second words in the first phrase in Sea Shells?
             [Question.SeaShells1] = new TranslationInfo
             {
                 QuestionText = "Какими были первое и второе слова во фразе на {1}-м этапе в {0}?",
-				ModuleName = "Морских ракушках",
+                ModuleName = "Морских ракушках",
             },
             // What were the third and fourth words in the {1} phrase in {0}?
             // What were the third and fourth words in the first phrase in Sea Shells?
             [Question.SeaShells2] = new TranslationInfo
             {
                 QuestionText = "Какими были третье и четвёртое слова во фразе на {1}-м этапе в {0}?",
-				ModuleName = "Морских ракушках",
+                ModuleName = "Морских ракушках",
             },
             // What was the end of the {1} phrase in {0}?
             // What was the end of the first phrase in Sea Shells?
             [Question.SeaShells3] = new TranslationInfo
             {
                 QuestionText = "Каким был конец фразы на {1}-м этапе в {0}?",
-				ModuleName = "Морских ракушках",
+                ModuleName = "Морских ракушках",
             },
 
             // Semamorse
@@ -6565,13 +6650,13 @@ namespace Souvenir
                 },
             },
 
-            // Семплы Саймона (Simon Samples)
+            // Simon Samples
             // What were the call samples {1} of {0}?
             // What were the call samples played in the first stage of Simon Samples?
             [Question.SimonSamplesSamples] = new TranslationInfo
             {
                 QuestionText = "Какие семплы были проиграны на {1}-м этапе в исходной последовательности в {0}?",
-				ModuleName = "Семплах Саймона",
+                ModuleName = "Семплах Саймона",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["played in the first stage"] = "1",
@@ -6580,13 +6665,13 @@ namespace Souvenir
                 },
             },
 
-            // Саймон говорит (Simon Says)
+            // Simon Says
             // What color flashed {1} in the final sequence in {0}?
             // What color flashed first in the final sequence in Simon Says?
             [Question.SimonSaysFlash] = new TranslationInfo
             {
                 QuestionText = "Какой цвет горел {1}-м на последнем этапе в {0}?",
-				ModuleName = "Саймоне говорит",
+                ModuleName = "Саймоне говорит",
                 Answers = new Dictionary<string, string>
                 {
                     ["red"] = "Красный",
@@ -6611,13 +6696,13 @@ namespace Souvenir
                 },
             },
 
-            // Саймон кричит (Simon Screams)
+            // Simon Screams
             // Which color flashed {1} in the final sequence in {0}?
             // Which color flashed first in the final sequence in Simon Screams?
             [Question.SimonScreamsFlashing] = new TranslationInfo
             {
                 QuestionText = "Какой цвет горел {1}-м на последнем этапе в {0}?",
-				ModuleName = "Саймоне кричит",
+                ModuleName = "Саймоне кричит",
                 Answers = new Dictionary<string, string>
                 {
                     ["Red"] = "Красный",
@@ -6633,7 +6718,7 @@ namespace Souvenir
             [Question.SimonScreamsRule] = new TranslationInfo
             {
                 QuestionText = "На каком(-их) этапе(-ах) в {0} было применимо правило “{1}”?",
-				ModuleName = "Саймоне кричит",
+                ModuleName = "Саймоне кричит",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["three adjacent colors flashing in clockwise order"] = "3 соседние горели по часовой стрелке",
@@ -7170,13 +7255,13 @@ namespace Souvenir
                 QuestionText = "What positions were the last swap used to solve {0}?",
             },
 
-            // Сувенир (Souvenir)
+            // Souvenir
             // What was the first module asked about in the other Souvenir on this bomb?
             // What was the first module asked about in the other Souvenir on this bomb?
             [Question.SouvenirFirstQuestion] = new TranslationInfo
             {
                 QuestionText = "О каком модуле был первый вопрос на другом Сувенире?",
-				ModuleName = "Сувенире",
+                ModuleName = "Сувенире",
             },
 
             // Space Traders
@@ -7398,7 +7483,7 @@ namespace Souvenir
             [Question.SymbolCycleSymbolCounts] = new TranslationInfo
             {
                 QuestionText = "Сколько символов было на {1} экране в {0}?",
-				ModuleName = "Символьном цикле",
+                ModuleName = "Символьном цикле",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["left"] = "левом",
@@ -7712,22 +7797,22 @@ namespace Souvenir
                 QuestionText = "Which of these was one of the passwords in {0}?",
             },
 
-            // Робот черепашка (Turtle Robot)
+            // Turtle Robot
             // What was the {1} line you commented out in {0}?
             // What was the first line you commented out in Turtle Robot?
             [Question.TurtleRobotCodeLines] = new TranslationInfo
             {
                 QuestionText = "Какую строку вы закомментировали {1}-й в {0}?",
-				ModuleName = "Роботе черепашке",
+                ModuleName = "Роботе черепашке",
             },
 
-            // Два бита (Two Bits)
+            // Two Bits
             // What was the {1} correct query response from {0}?
             // What was the first correct query response from Two Bits?
             [Question.TwoBitsResponse] = new TranslationInfo
             {
                 QuestionText = "Какой был {1}-й правильный ответ на запрос в {0}?",
-				ModuleName = "Двух битах",
+                ModuleName = "Двух битах",
             },
 
             // Ultimate Cipher
@@ -7735,7 +7820,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Ultimate Cipher?
             [Question.UltimateCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "top",
@@ -7749,11 +7834,11 @@ namespace Souvenir
             // What was the message in Ultimate Cycle?
             [Question.UltimateCycleWord] = new TranslationInfo
             {
-                QuestionText = "Was war die {1} in {0}?",
+                QuestionText = "What was the {1} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["message"] = "Nachricht",
-                    ["response"] = "Antwort",
+                    ["message"] = "message",
+                    ["response"] = "response",
                 },
             },
 
@@ -7762,7 +7847,7 @@ namespace Souvenir
             // What was the first rotation in The Ultracube?
             [Question.UltracubeRotations] = new TranslationInfo
             {
-                QuestionText = "Was war die {1}e Rotation in {0}?",
+                QuestionText = "What was the {1} rotation in {0}?",
             },
 
             // UltraStores
@@ -7779,13 +7864,13 @@ namespace Souvenir
                 QuestionText = "What was the {1} rotation in the {2} stage of {0}?",
             },
 
-            // Неокрашенные квадраты (Uncolored Squares)
+            // Uncolored Squares
             // What was the {1} color in reading order used in the first stage of {0}?
             // What was the first color in reading order used in the first stage of Uncolored Squares?
             [Question.UncoloredSquaresFirstStage] = new TranslationInfo
             {
                 QuestionText = "Какой был {1}-й цвет в порядке чтения, использованный на первом этапе в {0}?",
-				ModuleName = "Неокрашенных квадратах",
+                ModuleName = "Неокрашенных квадратах",
                 Answers = new Dictionary<string, string>
                 {
                     ["White"] = "Белый",
@@ -7891,6 +7976,14 @@ namespace Souvenir
                 },
             },
 
+            // Valves
+            // What was the initial state of {0}?
+            // What was the initial state of Valves?
+            [Question.ValvesInitialState] = new TranslationInfo
+            {
+                QuestionText = "What was the initial state of {0}?",
+            },
+
             // Varicolored Squares
             // What was the initially pressed color on {0}?
             // What was the initially pressed color on Varicolored Squares?
@@ -7945,7 +8038,7 @@ namespace Souvenir
             // What was the word in Vcrcs?
             [Question.VcrcsWord] = new TranslationInfo
             {
-                QuestionText = "Was war das Wort bei {0}?",
+                QuestionText = "What was the word in {0}?",
             },
 
             // Vectors
@@ -7953,23 +8046,22 @@ namespace Souvenir
             // What was the color of the first vector in Vectors?
             [Question.VectorsColors] = new TranslationInfo
             {
-                QuestionText = "Welche Farbe hatte bei {0} der {1} Vektor?",
-                ModuleName = "Vektoren",
+                QuestionText = "What was the color of the {1} vector in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["first"] = "erste",
-                    ["second"] = "zweite",
-                    ["third"] = "dritte",
-                    ["only"] = "einzige",
+                    ["first"] = "first",
+                    ["second"] = "second",
+                    ["third"] = "third",
+                    ["only"] = "only",
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Rot",
+                    ["Red"] = "Red",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Gelb",
-                    ["Green"] = "Grün",
-                    ["Blue"] = "Blau",
-                    ["Purple"] = "Violett",
+                    ["Yellow"] = "Yellow",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Purple"] = "Purple",
                 },
             },
 
@@ -7997,7 +8089,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Violet Cipher?
             [Question.VioletCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "top",
@@ -8006,13 +8098,13 @@ namespace Souvenir
                 },
             },
 
-            // Повреждённое зрение (Visual Impairment)
+            // Visual Impairment
             // What was the desired color in the {1} stage on {0}?
             // What was the desired color in the first stage on Visual Impairment?
             [Question.VisualImpairmentColors] = new TranslationInfo
             {
                 QuestionText = "Какой был целевой цвет на {1}-м этапе в {0}?",
-				ModuleName = "Повреждённом зрении",
+                ModuleName = "Повреждённом зрении",
                 Answers = new Dictionary<string, string>
                 {
                     ["Blue"] = "Синий",
@@ -8125,7 +8217,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in White Cipher?
             [Question.WhiteCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "top",
@@ -8142,13 +8234,13 @@ namespace Souvenir
                 QuestionText = "What was the display in the {1} stage on {0}?",
             },
 
-            // Меня зовут Авас, а Вас? (Who’s on First)
+            // Who’s on First
             // What was the display in the {1} stage on {0}?
             // What was the display in the first stage on Who’s on First?
             [Question.WhosOnFirstDisplay] = new TranslationInfo
             {
                 QuestionText = "Какое слово было на экране на {1}-м этапе в {0}?",
-				ModuleName = "Меня зовут Авас, а Вас",
+                ModuleName = "Меня зовут Авас, а Вас",
             },
 
             // Who’s on Morse
@@ -8230,13 +8322,13 @@ namespace Souvenir
                 },
             },
 
-            // Последовательность проводов (Wire Sequence)
+            // Wire Sequence
             // How many {1} wires were there in {0}?
             // How many red wires were there in Wire Sequence?
             [Question.WireSequenceColorCount] = new TranslationInfo
             {
                 QuestionText = "Сколько {1} проводов было в {0}?",
-				ModuleName = "Последовательности проводов",
+                ModuleName = "Последовательности проводов",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["red"] = "красных",
@@ -8302,13 +8394,13 @@ namespace Souvenir
                 QuestionText = "What song was played on {0}?",
             },
 
-            // Покер на костях (Yahtzee)
+            // Yahtzee
             // What was the initial roll on {0}?
             // What was the initial roll on Yahtzee?
             [Question.YahtzeeInitialRoll] = new TranslationInfo
             {
                 QuestionText = "Какой был первый бросок в {0}?",
-				ModuleName = "Покере на костях",
+                ModuleName = "Покере на костях",
                 Answers = new Dictionary<string, string>
                 {
                     ["Yahtzee"] = "Покер",
@@ -8330,13 +8422,22 @@ namespace Souvenir
                 QuestionText = "What was the starting row letter in {0}?",
             },
 
-            // Жёлтая кнопка (The Yellow Button)
+            // The Yellow Button
             // What was the {1} color in {0}?
             // What was the first color in The Yellow Button?
             [Question.YellowButtonColors] = new TranslationInfo
             {
                 QuestionText = "Какой был {1}-й цвет в {0}?",
-				ModuleName = "Жёлтой кнопке",
+                ModuleName = "Жёлтой кнопке",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Yellow"] = "Yellow",
+                    ["Green"] = "Green",
+                    ["Cyan"] = "Cyan",
+                    ["Blue"] = "Blue",
+                    ["Magenta"] = "Magenta",
+                },
             },
 
             // Yellow Cipher
@@ -8344,7 +8445,7 @@ namespace Souvenir
             // What was on the top screen on page 1 in Yellow Cipher?
             [Question.YellowCipherScreen] = new TranslationInfo
             {
-                QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                QuestionText = "What was on the {1} screen on page {2} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "top",
