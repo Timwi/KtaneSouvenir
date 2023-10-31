@@ -268,13 +268,15 @@ namespace Souvenir
             // What was the first equation in Algebra?
             [Question.AlgebraEquation1] = new TranslationInfo
             {
-                QuestionText = "What was the first equation in {0}?",
+                QuestionText = "Какое было первое уравнение в {0}?",
+                ModuleName = "Алгебре",
             },
             // What was the second equation in {0}?
             // What was the second equation in Algebra?
             [Question.AlgebraEquation2] = new TranslationInfo
             {
-                QuestionText = "What was the second equation in {0}?",
+                QuestionText = "Какое было второе уравнение в {0}?",
+                ModuleName = "Алгебре",
             },
 
             // Algorithmia
@@ -1000,7 +1002,8 @@ namespace Souvenir
             // What was the solution word in Braille?
             [Question.BrailleWord] = new TranslationInfo
             {
-                QuestionText = "What was the solution word in {0}?",
+                QuestionText = "Какое слово было верным в {0}?",
+                ModuleName = "Шрифте Брайля",
             },
 
             // Breakfast Egg
@@ -3067,25 +3070,28 @@ namespace Souvenir
             // What was the starting location in Gridlock?
             [Question.GridLockStartingLocation] = new TranslationInfo
             {
-                QuestionText = "What was the starting location in {0}?",
+                QuestionText = "Какая была начальная позиция в {0}?",
+                ModuleName = "Тупике",
             },
             // What was the ending location in {0}?
             // What was the ending location in Gridlock?
             [Question.GridLockEndingLocation] = new TranslationInfo
             {
-                QuestionText = "What was the ending location in {0}?",
+                QuestionText = "Какая была конечная позиция в {0}?",
+                ModuleName = "Тупике",
             },
             // What was the starting color in {0}?
             // What was the starting color in Gridlock?
             [Question.GridLockStartingColor] = new TranslationInfo
             {
-                QuestionText = "What was the starting color in {0}?",
+                QuestionText = "Какой был начальный цвет в {0}?",
+                ModuleName = "Тупике",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Green"] = "Green",
-                    ["Yellow"] = "Yellow",
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
+                    ["Green"] = "Зелёный",
+                    ["Yellow"] = "Жёлтый",
+                    ["Red"] = "Красный",
+                    ["Blue"] = "Синий",
                 },
             },
 
@@ -3372,7 +3378,8 @@ namespace Souvenir
             // What was the first rotation in The Hypercube?
             [Question.HypercubeRotations] = new TranslationInfo
             {
-                QuestionText = "What was the {1} rotation in {0}?",
+                QuestionText = "Каким было {1}-е вращение в {0}?",
+                ModuleName = "Гиперкубе",
             },
 
             // The Hyperlink
@@ -3997,7 +4004,8 @@ namespace Souvenir
             // Who was a player, but not the Godfather, in Mafia?
             [Question.MafiaPlayers] = new TranslationInfo
             {
-                QuestionText = "Who was a player, but not the Godfather, in {0}?",
+                QuestionText = "Кто был игроком, но не был крёстным отцом в {0}?",
+                ModuleName = "Мафии",
             },
 
             // Magenta Cipher
@@ -4556,19 +4564,22 @@ namespace Souvenir
             // What was the starting location in Morse-A-Maze?
             [Question.MorseAMazeStartingCoordinate] = new TranslationInfo
             {
-                QuestionText = "What was the starting location in {0}?",
+                QuestionText = "Какая была начальная позиция в {0}?",
+                ModuleName = "Лабиринте Морзе",
             },
             // What was the ending location in {0}?
             // What was the ending location in Morse-A-Maze?
             [Question.MorseAMazeEndingCoordinate] = new TranslationInfo
             {
-                QuestionText = "What was the ending location in {0}?",
+                QuestionText = "Какая была целевая (конечная) позиция в {0}?",
+                ModuleName = "Лабиринте Морзе",
             },
             // What was the word shown as Morse code in {0}?
             // What was the word shown as Morse code in Morse-A-Maze?
             [Question.MorseAMazeMorseCodeWord] = new TranslationInfo
             {
-                QuestionText = "What was the word shown as Morse code in {0}?",
+                QuestionText = "Какое кодовое слово было передано через Морзе в {0}?",
+                ModuleName = "Лабиринте Морзе",
             },
 
             // Morse Buttons
@@ -6253,7 +6264,8 @@ namespace Souvenir
             // What was the first character in the first message of Reverse Morse?
             [Question.ReverseMorseCharacters] = new TranslationInfo
             {
-                QuestionText = "What was the {1} character in the {2} message of {0}?",
+                QuestionText = "Какой был {1}-й символ в {2}-м сообщении в {0}?",
+                ModuleName = "Обратной азбуке Морзе",
             },
 
             // Reverse Polish Notation
@@ -7505,12 +7517,13 @@ namespace Souvenir
             // What was the left symbol in the first stage of Symbolic Coordinates?
             [Question.SymbolicCoordinateSymbols] = new TranslationInfo
             {
-                QuestionText = "What was the {1} symbol in the {2} stage of {0}?",
+                QuestionText = "Какой был {1} символ на {2}-м этапе в {0}?",
+                ModuleName = "Символьных координатах",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["left"] = "left",
-                    ["middle"] = "middle",
-                    ["right"] = "right",
+                    ["left"] = "левый",
+                    ["middle"] = "центральный",
+                    ["right"] = "правый",
                 },
             },
 
@@ -7662,7 +7675,8 @@ namespace Souvenir
             // What was the displayed letter in Text Field?
             [Question.TextFieldDisplay] = new TranslationInfo
             {
-                QuestionText = "What was the displayed letter in {0}?",
+                QuestionText = "Какая буква была показана в {0}?",
+                ModuleName = "Поле из букв",
             },
 
             // Thinking Wires
@@ -7858,7 +7872,8 @@ namespace Souvenir
             // What was the first rotation in The Ultracube?
             [Question.UltracubeRotations] = new TranslationInfo
             {
-                QuestionText = "What was the {1} rotation in {0}?",
+                QuestionText = "Какие было {1}-е вращение в {0}?",
+                ModuleName = "Ультракубе",
             },
 
             // UltraStores
