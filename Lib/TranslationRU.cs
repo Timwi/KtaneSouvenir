@@ -61,19 +61,21 @@ namespace Souvenir
             // What were the markings in 3D Maze?
             [Question._3DMazeMarkings] = new TranslationInfo
             {
-                QuestionText = "What were the markings in {0}?",
+                QuestionText = "Какими буквами был обозначен ваш лабиринт в {0}?",
+                ModuleName = "2,5D-лабиринте",
             },
             // What was the cardinal direction in {0}?
             // What was the cardinal direction in 3D Maze?
             [Question._3DMazeBearing] = new TranslationInfo
             {
-                QuestionText = "What was the cardinal direction in {0}?",
+                QuestionText = "Какая была целевая сторона света в {0}?",
+                ModuleName = "2,5D-лабиринте",
                 Answers = new Dictionary<string, string>
                 {
-                    ["North"] = "North",
-                    ["South"] = "South",
-                    ["West"] = "West",
-                    ["East"] = "East",
+                    ["North"] = "Север",
+                    ["South"] = "Юг",
+                    ["West"] = "Запад",
+                    ["East"] = "Восток",
                 },
             },
 
