@@ -6738,7 +6738,7 @@ namespace Souvenir
             // In which stage(s) of Simon Screams was “three adjacent colors flashing in clockwise order” the applicable rule?
             [Question.SimonScreamsRule] = new TranslationInfo
             {
-                QuestionText = "На каком(-их) этапе(-ах) в {0} было применимо правило “{1}”?",
+                QuestionText = "На каком(-их) этапе(-ах) в {0} было применимо условие “{1}”?",
                 ModuleName = "Саймоне кричит",
                 FormatArgs = new Dictionary<string, string>
                 {
