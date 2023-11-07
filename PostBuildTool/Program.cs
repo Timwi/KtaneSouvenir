@@ -110,8 +110,6 @@ namespace SouvenirPostBuildTool
 
             var allInfos = new Dictionary<string, List<(FieldInfo fld, dynamic attr)>>();
             var addThe = new Dictionary<string, bool>();
-            var trAnswers = new HashSet<string>();
-            var trFArgs = new HashSet<string>();
 
             foreach (var fld in questionsType.GetFields(BindingFlags.Public | BindingFlags.Static))
             {
@@ -122,10 +120,6 @@ namespace SouvenirPostBuildTool
                 allInfos[key].Add((fld, attr));
                 addThe[key] = attr.AddThe;
             }
-
-            Console.WriteLine(string.Join("\r\n", trAnswers));
-            Console.WriteLine("--------------------------");
-            Console.WriteLine(string.Join("\r\n", trFArgs));
 
             foreach (var language in "de,ja,ru".Split(','))
             {

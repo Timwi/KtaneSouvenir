@@ -5,7 +5,7 @@ namespace Souvenir
     public class Translation_ru : Translation
     {
         public override string FormatModuleName(string moduleNameWithoutThe, string moduleNameWithThe, bool addSolveCount, int numSolved) =>
-            addSolveCount ? $"{ordinal(numSolved)} который вы решили {moduleNameWithoutThe}" : moduleNameWithThe;
+            addSolveCount ? $"{Ordinal(numSolved)} который вы решили {moduleNameWithoutThe}" : moduleNameWithThe;
 
         public override string Ordinal(int number) => number.ToString();
 
