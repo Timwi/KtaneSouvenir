@@ -1,6 +1,5 @@
 ﻿namespace Souvenir
 {
-    using UnityEngine;
     using static AnswerLayout;
 
     public enum Question
