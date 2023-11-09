@@ -1597,63 +1597,56 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "subwayScript");
         var fldSolved = GetField<bool>(comp, "solved");
 
-        Array ingredients = GetStaticField<Array>(comp.GetType(), "ingredients").Get();
+        var ingredients = GetStaticField<string[][]>(comp.GetType(), "ingredients")
+            .Get(v => v.Length != 5 ? "expected length 5" : null)
+            // Replace newlines with space
+            .Select(v => v.Select(w => w.Replace("\n", " ")).ToArray())
+            .ToArray();
 
-        string[] allBreads = (string[])ingredients.GetValue(0);
-        string[] allMeats = (string[]) ingredients.GetValue(1);
-        string[] allCheeses = (string[]) ingredients.GetValue(2);
-        string[] allVegatables = (string[]) ingredients.GetValue(3);
-        string[] allCondiments = (string[]) ingredients.GetValue(4);
-
-
+        var allBreads = ingredients[0];
+        var allMeats = ingredients[1];
+        var allCheeses = ingredients[2];
+        var allVegetables = ingredients[3];
+        var allCondiments = ingredients[4];
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_Subway);
 
-
         if (GetField<bool>(comp, "pizzaTime").Get())
         {
-            legitimatelyNoQuestion(module, "The cusomter asked for pizza");
+            legitimatelyNoQuestion(module, "The customer asked for pizza.");
             yield break;
         }
 
         if (GetField<bool>(comp, "asMuch").Get())
         {
-            legitimatelyNoQuestion(module, "You got fired");
+            legitimatelyNoQuestion(module, "You got fired.");
             yield break;
         }
 
+        var order = GetField<List<int>[]>(comp, "order").Get(v => v.Length != 5 ? "expected length 5" : v.Any(lst => lst == null) ? "a list within ‘order’ was null" : v[0].Count == 0 ? "expected an item in ‘order[0]’" : null);
+        var orderedBreadIndex = order[0][0];
+        var orderedMeatIndexes = order[1].ToList(); // Take a copy because we may be modifying it
+        var orderedCheeseIndexes = order[2];
+        var orderedVegetablesIndexes = order[3];
+        var orderedCondimentsIndexes = order[4].ToList(); // Take a copy because we may be modifying it
 
-        Array order = GetField<Array>(comp, "order").Get();
-        int orderedBreadIndex = ((List<int>)order.GetValue(0))[0];
-        List<int> orderedMeatIndexes = ((List<int>) order.GetValue(1));
-        List<int> orderedCheeseIndexes = ((List<int>) order.GetValue(2));
-        List<int> orderedVegatablesIndexes = ((List<int>) order.GetValue(3));
-        List<int> orderedCondimentsIndexes = ((List<int>) order.GetValue(4));
-
-        //if asked for tuna, remove mayo from condiment indicies and add tuna to meat indicies
+        // If asked for tuna, remove mayo from condiment indices and add tuna to meat indices
         if (GetField<bool>(comp, "replaceTuna").Get())
         {
             orderedMeatIndexes.Add(0);
             orderedCondimentsIndexes.Remove(1);
         }
 
-        //replace newlines with space
-        allBreads[2] = "GLUTEN FREE";
-        allMeats[5] = "MYSTERY MEAT";
-        allCheeses[5] = "TOAST THE BREAD";
-
-        string[] allIngredients = allBreads.Concat(allMeats).Concat(allCheeses).Concat(allVegatables).Concat(allCondiments).ToArray();
-
-        string[] requestedItems = orderedMeatIndexes.Select(i => allMeats[i])
+        var requestedItems = orderedMeatIndexes.Select(i => allMeats[i])
             .Concat(orderedCheeseIndexes.Select(i => allCheeses[i]))
-            .Concat(orderedVegatablesIndexes.Select(i => allVegatables[i]))
+            .Concat(orderedVegetablesIndexes.Select(i => allVegetables[i]))
             .Concat(orderedCondimentsIndexes.Select(i => allCondiments[i])).ToArray();
 
         addQuestions(module,
             makeQuestion(Question.SubwayBread, _Subway, correctAnswers: new[] { allBreads[orderedBreadIndex] }),
-            makeQuestion(Question.SubwayItems, _Subway, correctAnswers: allIngredients.Where(x => !requestedItems.Contains(x)).ToArray(), allAnswers: allIngredients)) ; 
+            makeQuestion(Question.SubwayItems, _Subway, correctAnswers: allMeats.Concat(allCheeses).Concat(allVegetables).Concat(allCondiments).Except(requestedItems).ToArray()));
     }
 
     private IEnumerable<object> ProcessSugarSkulls(KMBombModule module)
