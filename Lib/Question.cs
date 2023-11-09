@@ -2532,6 +2532,11 @@
         [AnswerGenerator.Integers(10000000, 99999999)]
         SubscribeToPewdiepieSubCount,
 
+        [SouvenirQuestion("Which bread did the customer ask for in {0}?", "Subway", OneColumn4Answers, "WHITE", "MULTIGRAIN", "GLUTEN FREE", "WHOLE WHEAT")]
+        SubwayBread,
+        [SouvenirQuestion("Which item was not asked for in {0}?", "Subway", OneColumn4Answers, "TUNA", "CHICKEN", "TURKEY", "HAM", "PASTRAMI", "MYSTERY MEAT", "AMERICAN", "MOZZARELLA", "PROVOLONE", "SWISS", "CHEDDAR", "TOAST THE BREAD", "OLIVES", "LETTUCE", "PICKLES", "ONIONS", "TOMATOES", "JALAPENOS", "KETCHUP", "MAYONNAISE", "RANCH", "SALT", "PEPPER", "VINEGAR")]
+        SubwayItems,
+
         [SouvenirQuestion("What skull was shown on the {1} square in {0}?", "Sugar Skulls", ThreeColumns6Answers, "A", "C", "E", "G", "I", "K", "M", "O", "P", "R", "T", "V", "X", "Z", "b", "d", "f", "h", "j", "l", "n", "p", "r", "t", "v", "x", "z", TranslateFormatArgs = new[] { true },
             Type = AnswerType.SugarSkullsFont, FontSize = 432, CharacterSize = 1 / 6f, ExampleExtraFormatArguments = new[] { "top", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SugarSkullsSkull,

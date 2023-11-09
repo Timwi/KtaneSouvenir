@@ -1592,6 +1592,70 @@ public partial class SouvenirModule
            makeQuestion(Question.SubscribeToPewdiepieSubCount, _SubscribeToPewdiepie, formatArgs: new[] { "T-Series" }, correctAnswers: new[] { tSeriesNumber.ToString() }));
     }
 
+    private IEnumerable<object> ProcessSubway(KMBombModule module)
+    {
+        var comp = GetComponent(module, "subwayScript");
+        var fldSolved = GetField<bool>(comp, "solved");
+
+        Array ingredients = GetStaticField<Array>(comp.GetType(), "ingredients").Get();
+
+        string[] allBreads = (string[])ingredients.GetValue(0);
+        string[] allMeats = (string[]) ingredients.GetValue(1);
+        string[] allCheeses = (string[]) ingredients.GetValue(2);
+        string[] allVegatables = (string[]) ingredients.GetValue(3);
+        string[] allCondiments = (string[]) ingredients.GetValue(4);
+
+
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Subway);
+
+
+        if (GetField<bool>(comp, "pizzaTime").Get())
+        {
+            legitimatelyNoQuestion(module, "The cusomter asked for pizza");
+            yield break;
+        }
+
+        if (GetField<bool>(comp, "asMuch").Get())
+        {
+            legitimatelyNoQuestion(module, "You got fired");
+            yield break;
+        }
+
+
+        Array order = GetField<Array>(comp, "order").Get();
+        int orderedBreadIndex = ((List<int>)order.GetValue(0))[0];
+        List<int> orderedMeatIndexes = ((List<int>) order.GetValue(1));
+        List<int> orderedCheeseIndexes = ((List<int>) order.GetValue(2));
+        List<int> orderedVegatablesIndexes = ((List<int>) order.GetValue(3));
+        List<int> orderedCondimentsIndexes = ((List<int>) order.GetValue(4));
+
+        //if asked for tuna, remove mayo from condiment indicies and add tuna to meat indicies
+        if (GetField<bool>(comp, "replaceTuna").Get())
+        {
+            orderedMeatIndexes.Add(0);
+            orderedCondimentsIndexes.Remove(1);
+        }
+
+        //replace newlines with space
+        allBreads[2] = "GLUTEN FREE";
+        allMeats[5] = "MYSTERY MEAT";
+        allCheeses[5] = "TOAST THE BREAD";
+
+        string[] allIngredients = allBreads.Concat(allMeats).Concat(allCheeses).Concat(allVegatables).Concat(allCondiments).ToArray();
+
+        string[] requestedItems = orderedMeatIndexes.Select(i => allMeats[i])
+            .Concat(orderedCheeseIndexes.Select(i => allCheeses[i]))
+            .Concat(orderedVegatablesIndexes.Select(i => allVegatables[i]))
+            .Concat(orderedCondimentsIndexes.Select(i => allCondiments[i])).ToArray();
+
+        addQuestions(module,
+            makeQuestion(Question.SubwayBread, _Subway, correctAnswers: new[] { allBreads[orderedBreadIndex] }),
+            makeQuestion(Question.SubwayItems, _Subway, correctAnswers: allIngredients.Where(x => !requestedItems.Contains(x)).ToArray(), allAnswers: allIngredients)) ; 
+    }
+
     private IEnumerable<object> ProcessSugarSkulls(KMBombModule module)
     {
         var comp = GetComponent(module, "sugarSkulls");

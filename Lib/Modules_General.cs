@@ -485,6 +485,7 @@ public partial class SouvenirModule
     const string _Stellar = "stellar";
     const string _StupidSlots = "stupidSlots";
     const string _SubscribeToPewdiepie = "subscribeToPewdiepie";
+    const string _Subway = "subway";
     const string _SugarSkulls = "sugarSkulls";
     const string _Superparsing = "superparsing";
     const string _Switch = "BigSwitch";
@@ -1040,6 +1041,7 @@ public partial class SouvenirModule
             [_Stellar] = (ProcessStellar, "Stellar", "Timwi"),
             [_StupidSlots] = (ProcessStupidSlots, "Stupid Slots", "tandyCake"),
             [_SubscribeToPewdiepie] = (ProcessSubscribeToPewdiepie, "Subscribe to Pewdiepie", "BigCrunch22"),
+            [_Subway] = (ProcessSubway, "Subway", "Hawker"),
             [_SugarSkulls] = (ProcessSugarSkulls, "Sugar Skulls", "BigCrunch22"),
             [_Superparsing] = (ProcessSuperparsing, "Superparsing", "tandyCake"),
             [_Switch] = (ProcessSwitch, "Switch, The", "Timwi"),
