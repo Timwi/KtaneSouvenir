@@ -32,7 +32,7 @@ The following vanilla modules are supported by Souvenir: The Button, Maze, Memor
 
 First, ensure that there isn’t already a contributor working on adding the module you are hoping to implement. The KTANE Discord server has a thread for this (https://discord.com/channels/160061833166716928/1133454524435148860) where our efforts are coordinated.
 
-The actual source code is in `Lib`. Open `Lib/Souvenir.sln` in Visual Studio to get started.
+The actual source code is in `Lib`. Open `Lib/SouvenirLib.sln` in Visual Studio to get started.
 
 If your installation of KTANE is *not* in the default folder (`C:\Program Files (x86)\Steam\steamapps\common\Keep Talking and Nobody Explodes\`), create a `SouvenirLib.csproj.user` file containing this and change the folder accordingly:
 
@@ -62,18 +62,17 @@ To add a new module, the following steps are required:
 - Find an existing handler for a module that is similar to the one you wish to implement. The handlers have names beginning with `Process` (for example: `ProcessMafia` in `ModulesM.cs`). Study it carefully to understand how it works.
 - Implement a similar handler and place it alphabetically in the correct file (`ModulesA.cs` to `ModulesZ.cs`, or `Modules0.cs`). Omit “The” in the handler name as well.
     - Make sure to handle the case where the player gets a strike on the module and the information changes. Souvenir must not ask about information from stages that struck.
-    - If there is a corner case where Souvenir should not ask a question, output a log message and add the module to `_legitimatelyNoQuestions` (see `ProcessShapeShift` or `ProcessSillySlots` for examples).
+    - If there is a corner case where Souvenir should not ask a question, call `legitimatelyNoQuestions` with an appropriate log message (see `ProcessLangtonsAnteater` or `ProcessSimonSignals` for examples).
 - Go back to `Modules_General.cs`, find the `Awake()` method, and add an entry to the large dictionary mapping from your string constant to a 3-tuple containing: the method you just created; the display name of the module; and your name (you will be credited in `CONTRIBUTORS.md`).
 - Compile the project.
 - Run Souvenir in Unity and issue a TP command (such as `!1 bulb`) to see your question to make sure that it looks okay.
 - Test your Souvenir modifications in-game (e.g. by using Dynamic Mission Generator). Test all corner cases, including getting a strike on the module.
 - If your question does not show up and/or Souvenir displays a warning triangle, look at your logfile for error messages from Souvenir. You can Ctrl+F in the logfile for `<Souvenir` to find them.
 - Please make a separate git commit for each module you implement. If you made multiple commits for the same module, please squash them into one.
-- Make the relevant changes to KtaneContent:
-    - Change the modules’ JSON files by adding this line (and remove any existing Souvenir info):
-        ```
-        "Souvenir": { "Status": "Supported" },
-        ```
-    - Submit that as a pull request to the repo maintainers.
-    - Write the new questions for the HTML manual using the same HTML as existing questions. If the module name starts with “The”, see Duck for an example.
-    - Paste the HTML for the new questions on GitHub when you submit your pull request to Souvenir, or send it on Discord. I will do the rest to update the manual.
+- After submitting the pull request, DM me (Timwi on Discord) the questions to be added to the manual, in the format `Module Name: Question? Question?`, for example:
+    ```
+        Quiz Buzz: What was the number initially on the display?
+        Memory Wires: What were the wire colours? What were the displayed digits?
+        The Matrix: Which word was part of the latest access code? What was the glitched word?
+    ```
+    I will do the rest to update the manual and the info on the repo.

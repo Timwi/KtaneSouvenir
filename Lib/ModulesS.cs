@@ -1246,31 +1246,60 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_SonicTheHedgehog);
 
-        var soundNameMapping =
-            @"boss=Boss Theme;breathe=Breathe;continueSFX=Continue;drown=Drown;emerald=Emerald;extraLife=Extra Life;finalZone=Final Zone;invincibleSFX=Invincibility;jump=Jump;lamppost=Lamppost;marbleZone=Marble Zone;bumper=Bumper;skid=Skid;spikes=Spikes;spin=Spin;spring=Spring"
-                .Split(';').Select(str => str.Split('=')).ToDictionary(ar => ar[0], ar => ar[1]);
-        var pictureNameMapping =
-            @"annoyedSonic=Annoyed Sonic=2;ballhog=Ballhog=1;blueLamppost=Blue Lamppost=3;burrobot=Burrobot=1;buzzBomber=Buzz Bomber=1;crabMeat=Crab Meat=1;deadSonic=Dead Sonic=2;drownedSonic=Drowned Sonic=2;fallingSonic=Falling Sonic=2;motoBug=Moto Bug=1;redLamppost=Red Lamppost=3;redSpring=Red Spring=3;standingSonic=Standing Sonic=2;switch=Switch=3;yellowSpring=Yellow Spring=3"
-                .Split(';').Select(str => str.Split('=')).ToDictionary(ar => ar[0], ar => new { Name = ar[1], Stage = int.Parse(ar[2]) - 1 });
+        if (SonicTheHedgehogSprites.Length != 15)
+            throw new AbandonModuleException($@"Sonic the Hedgehog should have 15 sprites. Counted {SonicTheHedgehogSprites.Length}");
 
-        var pics = fldsPics.Select(f => f.Get(p => p.name == null || !pictureNameMapping.ContainsKey(p.name) ? "unknown pic" : null)).ToArray();
+        var soundNameMapping = new Dictionary<string, string>()
+        {
+            ["boss"] = "Boss Theme",
+            ["breathe"] = "Breathe",
+            ["continueSFX"] = "Continue",
+            ["drown"] = "Drown",
+            ["emerald"] = "Emerald",
+            ["extraLife"] = "Extra Life",
+            ["finalZone"] = "Final Zone",
+            ["invincibleSFX"] = "Invincibility",
+            ["jump"] = "Jump",
+            ["lamppost"] = "Lamppost",
+            ["marbleZone"] = "Marble Zone",
+            ["skid"] = "Skid",
+            ["spikes"] = "Spikes",
+            ["spin"] = "Spin",
+            ["spring"] = "Spring",
+            ["bumper"] = "Bumper",
+        };
+
+        var pictureNames = new string[] { "annoyedSonic", "ballhog", "blueLamppost", "burrobot", "buzzBomber", "crabMeat", "deadSonic", "drownedSonic", "fallingSonic", "motoBug", "redLamppost", "redSpring", "standingSonic", "switch", "yellowSpring" };
+        var pics = fldsPics.Select(f => f.Get(p => p.name == null || !pictureNames.Contains(p.name) ? "unknown pic" : null)).ToArray();
         var sounds = fldsButtonSounds.Select(f => f.Get(s => !soundNameMapping.ContainsKey(s) ? "unknown sound" : null)).ToArray();
 
-        addQuestions(module,
-            Enumerable.Range(0, 3).Select(i =>
-                makeQuestion(
-                    Question.SonicTheHedgehogPictures,
-                    _SonicTheHedgehog,
-                    formatArgs: new[] { ordinal(i + 1) },
-                    correctAnswers: new[] { pictureNameMapping[pics[i].name].Name },
-                    preferredWrongAnswers: pictureNameMapping.Values.Where(inf => inf.Stage == i).Select(inf => inf.Name).ToArray()))
-            .Concat(new[] { "Running Boots", "Invincibility", "Extra Life", "Rings" }.Select((screenName, i) =>
-                makeQuestion(
-                    Question.SonicTheHedgehogSounds,
-                    _SonicTheHedgehog,
-                    formatArgs: new[] { screenName },
-                    correctAnswers: new[] { soundNameMapping[sounds[i]] },
-                    preferredWrongAnswers: sounds.Select(s => soundNameMapping[s]).ToArray()))));
+        var screenNames = new[] { "Running Boots", "Invincibility", "Extra Life", "Rings" };
+        var spriteArr = new Sprite[][]
+        {
+            SonicTheHedgehogSprites.Where(sprite => new[] { "ballhog", "burrobot", "buzzBomber", "crabMeat", "motoBug" }.Contains(sprite.name)).ToArray(),
+            SonicTheHedgehogSprites.Where(sprite => new[] { "annoyedSonic", "deadSonic", "drownedSonic", "fallingSonic", "standingSonic" }.Contains(sprite.name)).ToArray(),
+            SonicTheHedgehogSprites.Where(sprite => new[] { "blueLamppost", "redLamppost", "redSpring", "switch", "yellowSpring" }.Contains(sprite.name)).ToArray()
+        };
+
+        var qs = new List<QandA>();
+
+        for (var stage = 0; stage < 3; stage++)
+            qs.Add(makeQuestion(
+                question: Question.SonicTheHedgehogPictures,
+                formatArgs: new[] { ordinal(stage + 1) },
+                moduleKey: _SonicTheHedgehog,
+                allAnswers: spriteArr[stage],
+                correctAnswers: new[] { spriteArr[stage].First(sprite => sprite.name == pics[stage].name) }));
+
+        for (var screen = 0; screen < 4; screen++)
+            qs.Add(makeQuestion(
+                Question.SonicTheHedgehogSounds,
+                _SonicTheHedgehog,
+                formatArgs: new[] { screenNames[screen] },
+                correctAnswers: new[] { soundNameMapping[sounds[screen]] },
+                preferredWrongAnswers: sounds.Select(s => soundNameMapping[s]).ToArray()));
+
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessSorting(KMBombModule module)
@@ -1561,6 +1590,63 @@ public partial class SouvenirModule
         addQuestions(module,
            makeQuestion(Question.SubscribeToPewdiepieSubCount, _SubscribeToPewdiepie, formatArgs: new[] { "PewDiePie" }, correctAnswers: new[] { pewdiepieNumber.ToString() }),
            makeQuestion(Question.SubscribeToPewdiepieSubCount, _SubscribeToPewdiepie, formatArgs: new[] { "T-Series" }, correctAnswers: new[] { tSeriesNumber.ToString() }));
+    }
+
+    private IEnumerable<object> ProcessSubway(KMBombModule module)
+    {
+        var comp = GetComponent(module, "subwayScript");
+        var fldSolved = GetField<bool>(comp, "solved");
+
+        var ingredients = GetStaticField<string[][]>(comp.GetType(), "ingredients")
+            .Get(v => v.Length != 5 ? "expected length 5" : null)
+            // Replace newlines with space
+            .Select(v => v.Select(w => w.Replace("\n", " ")).ToArray())
+            .ToArray();
+
+        var allBreads = ingredients[0];
+        var allMeats = ingredients[1];
+        var allCheeses = ingredients[2];
+        var allVegetables = ingredients[3];
+        var allCondiments = ingredients[4];
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Subway);
+
+        if (GetField<bool>(comp, "pizzaTime").Get())
+        {
+            legitimatelyNoQuestion(module, "The customer asked for pizza.");
+            yield break;
+        }
+
+        if (GetField<bool>(comp, "asMuch").Get())
+        {
+            legitimatelyNoQuestion(module, "You got fired.");
+            yield break;
+        }
+
+        var order = GetField<List<int>[]>(comp, "order").Get(v => v.Length != 5 ? "expected length 5" : v.Any(lst => lst == null) ? "a list within ‘order’ was null" : v[0].Count == 0 ? "expected an item in ‘order[0]’" : null);
+        var orderedBreadIndex = order[0][0];
+        var orderedMeatIndexes = order[1].ToList(); // Take a copy because we may be modifying it
+        var orderedCheeseIndexes = order[2];
+        var orderedVegetablesIndexes = order[3];
+        var orderedCondimentsIndexes = order[4].ToList(); // Take a copy because we may be modifying it
+
+        // If asked for tuna, remove mayo from condiment indices and add tuna to meat indices
+        if (GetField<bool>(comp, "replaceTuna").Get())
+        {
+            orderedMeatIndexes.Add(0);
+            orderedCondimentsIndexes.Remove(1);
+        }
+
+        var requestedItems = orderedMeatIndexes.Select(i => allMeats[i])
+            .Concat(orderedCheeseIndexes.Select(i => allCheeses[i]))
+            .Concat(orderedVegetablesIndexes.Select(i => allVegetables[i]))
+            .Concat(orderedCondimentsIndexes.Select(i => allCondiments[i])).ToArray();
+
+        addQuestions(module,
+            makeQuestion(Question.SubwayBread, _Subway, correctAnswers: new[] { allBreads[orderedBreadIndex] }),
+            makeQuestion(Question.SubwayItems, _Subway, correctAnswers: allMeats.Concat(allCheeses).Concat(allVegetables).Concat(allCondiments).Except(requestedItems).ToArray()));
     }
 
     private IEnumerable<object> ProcessSugarSkulls(KMBombModule module)

@@ -383,6 +383,26 @@ namespace Souvenir
                 ModuleName = "アンヘル・エルナンデス",
             },
 
+            // The Arena
+            // What was the maximum weapon damage of the attack phase in {0}?
+            // What was the maximum weapon damage of the attack phase in The Arena?
+            [Question.ArenaDamage] = new TranslationInfo
+            {
+                QuestionText = "What was the maximum weapon damage of the attack phase in {0}?",
+            },
+            // Which enemy was present in the defend phase of {0}?
+            // Which enemy was present in the defend phase of The Arena?
+            [Question.ArenaEnemies] = new TranslationInfo
+            {
+                QuestionText = "Which enemy was present in the defend phase of {0}?",
+            },
+            // Which was a number present in the grab phase of {0}?
+            // Which was a number present in the grab phase of The Arena?
+            [Question.ArenaNumbers] = new TranslationInfo
+            {
+                QuestionText = "Which was a number present in the grab phase of {0}?",
+            },
+
             // Arithmelogic
             // What was the symbol on the submit button in {0}?
             // What was the symbol on the submit button in Arithmelogic?
@@ -970,6 +990,20 @@ namespace Souvenir
             {
                 QuestionText = "{0}のライセンス番号は？",
                 ModuleName = "爆弾拡散",
+            },
+
+            // Book of Mario
+            // Who said the {1} quote in {0}?
+            // Who said the first quote in Book of Mario?
+            [Question.BookOfMarioPictures] = new TranslationInfo
+            {
+                QuestionText = "Who said the {1} quote in {0}?",
+            },
+            // What did {1} say in the {2} stage of {0}?
+            // What did Goombell say in the first stage of Book of Mario?
+            [Question.BookOfMarioQuotes] = new TranslationInfo
+            {
+                QuestionText = "What did {1} say in the {2} stage of {0}?",
             },
 
             // Boolean Wires
@@ -1813,6 +1847,14 @@ namespace Souvenir
             {
                 QuestionText = "{0}の{1}日目における天気は？",
                 ModuleName = "クリエーション",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Clear"] = "Clear",
+                    ["Heat Wave"] = "Heat Wave",
+                    ["Meteor Shower"] = "Meteor Shower",
+                    ["Rain"] = "Rain",
+                    ["Windy"] = "Windy",
+                },
             },
 
             // Crimson Cipher
@@ -1983,6 +2025,15 @@ namespace Souvenir
             {
                 QuestionText = "{0}のステージ{1}のボタンはどこにあった？",
                 ModuleName = "シアンボタン",
+                Answers = new Dictionary<string, string>
+                {
+                    ["top left"] = "top left",
+                    ["top middle"] = "top middle",
+                    ["top right"] = "top right",
+                    ["bottom left"] = "bottom left",
+                    ["bottom middle"] = "bottom middle",
+                    ["bottom right"] = "bottom right",
+                },
             },
 
             // DACH Maze
@@ -2306,6 +2357,20 @@ namespace Souvenir
                     ["was"] = "いた",
                     ["was not"] = "いなかった",
                 },
+            },
+
+            // Earthbound
+            // What was the background number in {0}?
+            // What was the background number in Earthbound?
+            [Question.EarthboundBackground] = new TranslationInfo
+            {
+                QuestionText = "What was the background number in {0}?",
+            },
+            // Which monster was displayed in {0}?
+            // Which monster was displayed in Earthbound?
+            [Question.EarthboundMonster] = new TranslationInfo
+            {
+                QuestionText = "Which monster was displayed in {0}?",
             },
 
             // eeB gnillepS
@@ -2766,6 +2831,20 @@ namespace Souvenir
                     ["orange"] = "オレンジ",
                     ["bottom"] = "下",
                 },
+            },
+
+            // Flavor Text
+            // Which module’s flavor text was shown in {0}?
+            // Which module’s flavor text was shown in Flavor Text?
+            [Question.FlavorTextModule] = new TranslationInfo
+            {
+                QuestionText = "Which module’s flavor text was shown in {0}?",
+            },
+            // Which module’s flavor text was shown in the {1} stage of {0}?
+            // Which module’s flavor text was shown in the first stage of Flavor Text?
+            [Question.FlavorTextEXModule] = new TranslationInfo
+            {
+                QuestionText = "Which module’s flavor text was shown in the {1} stage of {0}?",
             },
 
             // Flyswatting
@@ -3768,6 +3847,14 @@ namespace Souvenir
                 ModuleName = "カニエ・ウエストとの遭遇",
             },
 
+            // Keypad Combinations
+            // Which number was displayed on the {1} button, but not part of the answer on {0}?
+            // Which number was displayed on the first button, but not part of the answer on Keypad Combinations?
+            [Question.KeypadCombinationWrongNumbers] = new TranslationInfo
+            {
+                QuestionText = "Which number was displayed on the {1} button, but not part of the answer on {0}?",
+            },
+
             // Keypad Magnified
             // What was the position of the LED in {0}?
             // What was the position of the LED in Keypad Magnified?
@@ -4645,6 +4732,14 @@ namespace Souvenir
             [Question.ModuleMazeStartingIcon] = new TranslationInfo
             {
                 QuestionText = "{0}の開始アイコンは？",
+            },
+
+            // Module Movements
+            // What was the {1} module shown in {0}?
+            // What was the first module shown in Module Movements?
+            [Question.ModuleMovementsDisplay] = new TranslationInfo
+            {
+                QuestionText = "What was the {1} module shown in {0}?",
             },
 
             // Monsplode, Fight!
@@ -6598,6 +6693,14 @@ namespace Souvenir
                 },
             },
 
+            // RGB Sequences
+            // What was the color of the {1} LED in {0}?
+            // What was the color of the first LED in RGB Sequences?
+            [Question.RGBSequencesDisplay] = new TranslationInfo
+            {
+                QuestionText = "What was the color of the {1} LED in {0}?",
+            },
+
             // Rhythms
             // What was the color in {0}?
             // What was the color in Rhythms?
@@ -6614,21 +6717,20 @@ namespace Souvenir
                 },
             },
 
-            // The Rule
-            // What was the rule number in {0}?
-            // What was the rule number in The Rule?
-            [Question.RuleNumber] = new TranslationInfo
-            {
-                QuestionText = "{0}のルール番号は？",
-                ModuleName = "ザ・ルール",
-            },
-
             // Robo-Scanner
             // Where was the empty cell in {0}?
             // Where was the empty cell in Robo-Scanner?
             [Question.RoboScannerEmptyCell] = new TranslationInfo
             {
                 QuestionText = "{0}の空のセルはどこ？",
+            },
+
+            // Robot Programming
+            // What was the name of the robot in the {1} position of {0}?
+            // What was the name of the robot in the first position of Robot Programming?
+            [Question.RobotProgrammingName] = new TranslationInfo
+            {
+                QuestionText = "What was the name of the robot in the {1} position of {0}?",
             },
 
             // Roger
@@ -6659,6 +6761,15 @@ namespace Souvenir
                     ["primary-colored"] = "原色",
                     ["secondary-colored"] = "二次色",
                 },
+            },
+
+            // The Rule
+            // What was the rule number in {0}?
+            // What was the rule number in The Rule?
+            [Question.RuleNumber] = new TranslationInfo
+            {
+                QuestionText = "{0}のルール番号は？",
+                ModuleName = "ザ・ルール",
             },
 
             // Rule of Three
@@ -8369,6 +8480,14 @@ namespace Souvenir
                 },
             },
 
+            // Valves
+            // What was the initial state of {0}?
+            // What was the initial state of Valves?
+            [Question.ValvesInitialState] = new TranslationInfo
+            {
+                QuestionText = "What was the initial state of {0}?",
+            },
+
             // Varicolored Squares
             // What was the initially pressed color on {0}?
             // What was the initially pressed color on Varicolored Squares?
@@ -8840,6 +8959,15 @@ namespace Souvenir
             {
                 QuestionText = "{0}の{1}番目の色は？",
                 ModuleName = "黄色ボタン",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Yellow"] = "Yellow",
+                    ["Green"] = "Green",
+                    ["Cyan"] = "Cyan",
+                    ["Blue"] = "Blue",
+                    ["Magenta"] = "Magenta",
+                },
             },
 
             // Yellow Cipher

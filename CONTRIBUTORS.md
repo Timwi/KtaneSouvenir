@@ -91,6 +91,15 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Denial Displays   │  Not Colored Switches      │  Not Perspective Pegs  │  Scramboozled Eggain  │  xobekuJ ehT
     Double Digits     │  Not Connection Check      │  Not The Bulb          │  Simon Said           │
 
+## Implemented by Hawker (28)
+
+    3N+1                     │  Directional Button  │  Girlfriend          │  RGB Sequences                      │  Subway
+    Arena, The               │  Earthbound          │  h                   │  RobotProgramming                   │  UNO!
+    Book of Mario            │  Find The Date       │  High Score, The     │  Scrutiny Squares                   │  Valves
+    Character Slots          │  Flavor Text         │  Keypad Combination  │  Sign Language                      │  Weakest Link, The
+    Customer Identification  │  Flavor Text EX      │  Ladder Lottery      │  Sonic & Knuckles                   │
+    Dimension Disruption     │  Garnet Thief, The   │  Module Movements    │  Spongebob Birthday Identification  │
+
 ## Implemented by tandyCake (28)
 
     Algorithmia    │  Kanye Encounter, The  │  Metamorse        │  Red Herring           │  Tasque Managing
@@ -99,13 +108,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Flyswatting    │  LEDs                  │  Not Text Field   │  Simon Supports        │  USA Cycle
     Forget Me      │  M-Seq                 │  Not Word Search  │  Stupid Slots          │
     Jenga          │  Math ’em              │  Numpath          │  Superparsing          │
-
-## Implemented by Hawker (17)
-
-    3N+1                     │  Directional Button  │  h                 │  Sign Language                      │  Weakest Link, The
-    Character Slots          │  Find The Date       │  High Score, The   │  Sonic & Knuckles                   │
-    Customer Identification  │  Garnet Thief, The   │  Ladder Lottery    │  Spongebob Birthday Identification  │
-    Dimension Disruption     │  Girlfriend          │  Scrutiny Squares  │  UNO!                               │
 
 ## Implemented by kavinkul (17)
 

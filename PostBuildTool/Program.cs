@@ -110,8 +110,6 @@ namespace SouvenirPostBuildTool
 
             var allInfos = new Dictionary<string, List<(FieldInfo fld, dynamic attr)>>();
             var addThe = new Dictionary<string, bool>();
-            var trAnswers = new HashSet<string>();
-            var trFArgs = new HashSet<string>();
 
             foreach (var fld in questionsType.GetFields(BindingFlags.Public | BindingFlags.Static))
             {
@@ -123,11 +121,7 @@ namespace SouvenirPostBuildTool
                 addThe[key] = attr.AddThe;
             }
 
-            Console.WriteLine(string.Join("\r\n", trAnswers));
-            Console.WriteLine("--------------------------");
-            Console.WriteLine(string.Join("\r\n", trFArgs));
-
-            foreach (var language in "de,eo,es,ja".Split(','))
+            foreach (var language in "de,ja,ru".Split(','))
             {
                 var alreadyType = assembly.GetType($"Souvenir.Translation_{language}");
                 var already = (IDictionary) (alreadyType == null ? null : (dynamic) Activator.CreateInstance(alreadyType))?.Translations;

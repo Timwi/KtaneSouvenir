@@ -8,11 +8,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 474250}
+  - component: {fileID: 11489182}
   - component: {fileID: 11429752}
   - component: {fileID: 11420650}
   - component: {fileID: 11489324}
   - component: {fileID: 11496072}
-  - component: {fileID: 11489182}
   - component: {fileID: 114880811013771744}
   m_Layer: 0
   m_Name: SouvenirModule
@@ -382,6 +382,20 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c7480162c1ac36842a8ad4b2e683b707, type: 3}
   - {fileID: 21300000, guid: 183162492e78cf846a9e61c890c4fb0f, type: 3}
   - {fileID: 21300000, guid: f41f90c87d2c78f4fb64476e9b7110c9, type: 3}
+  BookOfMarioSprites:
+  - {fileID: 21300000, guid: 28f8a87514567424f8dbf18e90b5f18f, type: 3}
+  - {fileID: 21300000, guid: 5e2223beec1fb3040b9f3e46e850fcc2, type: 3}
+  - {fileID: 21300000, guid: 4a598367877766b42906cd8b437c1945, type: 3}
+  - {fileID: 21300000, guid: 361b32801103e164a8b0865e0688309d, type: 3}
+  - {fileID: 21300000, guid: 87237f57b5532fe4696ecbd43a5e3ee3, type: 3}
+  - {fileID: 21300000, guid: 6d01359f6f8cfd644a87209fee0edd82, type: 3}
+  - {fileID: 21300000, guid: 68519f52af48d5f48b0980508c7ec3be, type: 3}
+  - {fileID: 21300000, guid: 6611eb66ac242894888e768e4e629202, type: 3}
+  - {fileID: 21300000, guid: d242e6db6ea543f4daaf4d1f9f93bd09, type: 3}
+  - {fileID: 21300000, guid: 819b9e48e41f50b4380c9e13fca85c09, type: 3}
+  - {fileID: 21300000, guid: 61ebbd683db7fe04a860069275f5e4c7, type: 3}
+  - {fileID: 21300000, guid: 01ac6468c08719e408acacca8a398d79, type: 3}
+  - {fileID: 21300000, guid: c6d7caf7f729b3641a2306ebea4cd610, type: 3}
   CharacterSlotsSprites:
   - {fileID: 21300000, guid: e22b21ce723d9c446a855c39e04a754e, type: 3}
   - {fileID: 21300000, guid: b5693a854a98def40b0a8cad75228c30, type: 3}
@@ -708,6 +722,21 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ee2284820dc8664468b4e5b3e680dfbb, type: 3}
   - {fileID: 21300000, guid: ee84d6b32aab06b429c196fdd4a7b679, type: 3}
   - {fileID: 21300000, guid: 78ef3eb6ed9dc9c4eb776cd71a9f3dcb, type: 3}
+  MisterSofteeSprites:
+  - {fileID: 21300000, guid: 972cbb609cbb59e4dbfd2bfb43640459, type: 3}
+  - {fileID: 21300000, guid: 1a37fbb5ea2bbe94187ac66c5ae31807, type: 3}
+  - {fileID: 21300000, guid: 21ceeb9b3cc068943a6c04b9ba602e11, type: 3}
+  - {fileID: 21300000, guid: b8cb40a8fd324ae4daf1be0baf30a105, type: 3}
+  - {fileID: 21300000, guid: 7c3e85ccbd8172943b77e6e9dcfbd789, type: 3}
+  - {fileID: 21300000, guid: 2b05be2ad43192e489f8c6475b88aa1b, type: 3}
+  - {fileID: 21300000, guid: 1c3010504cb5166489a691f8fce651f5, type: 3}
+  - {fileID: 21300000, guid: 89a6a07c050093c40858b8a49ee89051, type: 3}
+  - {fileID: 21300000, guid: b97cf81f1191866449660f11a9d64199, type: 3}
+  - {fileID: 21300000, guid: 92978cf9895b2284bb684a72fcc5a991, type: 3}
+  - {fileID: 21300000, guid: 473a277e1af3f5144a45cefbe52f9a7f, type: 3}
+  - {fileID: 21300000, guid: 6cf688f3eb513af4aac6e26668b9c685, type: 3}
+  - {fileID: 21300000, guid: 2a668f80edafba9439e2c098c253cda0, type: 3}
+  - {fileID: 21300000, guid: eb4c8fc72f2dce14a88390d4f3ddcc21, type: 3}
   NonverbalSimonSprites:
   - {fileID: 21300000, guid: c9b2f2dcf2892984196c26f35351f3b4, type: 3}
   - {fileID: 21300000, guid: d12bfb041eb4d5b43ad37303479d1f37, type: 3}
@@ -966,6 +995,22 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 60fa32a12878fcd4d8a307481621f48a, type: 3}
   - {fileID: 21300000, guid: 1ce4ff982b3b0dd458c81fc91599a69f, type: 3}
   - {fileID: 21300000, guid: bcc25b64dc7864a429b15d19f43c4235, type: 3}
+  SonicTheHedgehogSprites:
+  - {fileID: 21300000, guid: a63d2f2c66885c3469341b6d023c4fdb, type: 3}
+  - {fileID: 21300000, guid: 0f9f998e32e17854abb93797623c5952, type: 3}
+  - {fileID: 21300000, guid: 8f0a9cc04e1017f438a7e779ca4a8fe3, type: 3}
+  - {fileID: 21300000, guid: 298484005fdd107478f69d68e843f32a, type: 3}
+  - {fileID: 21300000, guid: 473dad2e753e6c04895b051d29fc21ec, type: 3}
+  - {fileID: 21300000, guid: 7c765444255338f4586da32f5325fed1, type: 3}
+  - {fileID: 21300000, guid: 581b8a4d907f93c4fbc0c584a349b78e, type: 3}
+  - {fileID: 21300000, guid: 2bc973f8621b1c54fad11109310def5e, type: 3}
+  - {fileID: 21300000, guid: c78d9f9ccb27a6c44875f421aaa22bcd, type: 3}
+  - {fileID: 21300000, guid: 46df3bb5dc3274d448c302f7bd01fb5f, type: 3}
+  - {fileID: 21300000, guid: 3aa47417e68da6d46a7d65778fd98831, type: 3}
+  - {fileID: 21300000, guid: fa10638ae1981b547b6d3c12cad886ea, type: 3}
+  - {fileID: 21300000, guid: 6ffa6ec356189bf4fa5771df6befc019, type: 3}
+  - {fileID: 21300000, guid: bb81ae0e69d1f6f41b9f1a02f9d2bd17, type: 3}
+  - {fileID: 21300000, guid: 79fa67832aa99994c88d8d947f495d64, type: 3}
   SymbolicCoordinatesSprites:
   - {fileID: 21300000, guid: c46883603a2000a47b888e91c5e1aab8, type: 3}
   - {fileID: 21300000, guid: c34f67901585bec44b5344a32c7e21e9, type: 3}
@@ -1068,6 +1113,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 51d32e58a50aeba419269f1fc24979ac, type: 3}
   - {fileID: 21300000, guid: 89b1cb28aeca46340a6219a9c735719e, type: 3}
   - {fileID: 21300000, guid: 75cc0f653f0e6cf45bb3e4669b554559, type: 3}
+  ValvesSprites:
+  - {fileID: 21300000, guid: c016fab76049d8542b96918f6e46c327, type: 3}
+  - {fileID: 21300002, guid: c016fab76049d8542b96918f6e46c327, type: 3}
+  - {fileID: 21300004, guid: c016fab76049d8542b96918f6e46c327, type: 3}
+  - {fileID: 21300006, guid: c016fab76049d8542b96918f6e46c327, type: 3}
+  - {fileID: 21300008, guid: c016fab76049d8542b96918f6e46c327, type: 3}
+  - {fileID: 21300010, guid: c016fab76049d8542b96918f6e46c327, type: 3}
+  - {fileID: 21300012, guid: c016fab76049d8542b96918f6e46c327, type: 3}
+  - {fileID: 21300014, guid: c016fab76049d8542b96918f6e46c327, type: 3}
   WarningSignsSprites:
   - {fileID: 21300000, guid: 19fc55fde7d593541bc3873c70404c8e, type: 3}
   - {fileID: 21300000, guid: 88a99e8be90cd3041b7441ba716fe8ac, type: 3}
@@ -1328,9 +1382,9 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 8ee6c1da95bf42446ac204a87c3bfba2, type: 3}
   - {fileID: 2800000, guid: 329a20852fb95d54e9aae4714e4e4086, type: 3}
   - {fileID: 2800000, guid: 63b4d4c0cfd2254478465b17d6cd7b7e, type: 3}
-  HighlightShort: {fileID: 4300000, guid: baf42807f85fb5b4ab0eb79f10f1a70b, type: 3}
-  HighlightLong: {fileID: 4300000, guid: 0e132af13d16f3d4cae4df71d33e54a1, type: 3}
-  HighlightVeryLong: {fileID: 4300000, guid: 57bd849898e2b244490f7a4e1838ab25, type: 3}
+  HighlightShort: {fileID: 4300000, guid: bad8a2a5255ad274a8c1de910fca788d, type: 3}
+  HighlightLong: {fileID: 4300000, guid: 3a6993f786424e045a5567c18dc83a71, type: 3}
+  HighlightVeryLong: {fileID: 4300000, guid: b21a8364a7fa30142938501d0d2220bd, type: 3}
 --- !u!114 &11489324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2969,7 +3023,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010484412430}
-  m_Mesh: {fileID: 4300000, guid: baf42807f85fb5b4ab0eb79f10f1a70b, type: 3}
+  m_Mesh: {fileID: 4300000, guid: bad8a2a5255ad274a8c1de910fca788d, type: 3}
 --- !u!33 &33000011358123370
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -2983,35 +3037,35 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013354515264}
-  m_Mesh: {fileID: 4300000, guid: baf42807f85fb5b4ab0eb79f10f1a70b, type: 3}
+  m_Mesh: {fileID: 4300000, guid: bad8a2a5255ad274a8c1de910fca788d, type: 3}
 --- !u!33 &33000011764508030
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012688896642}
-  m_Mesh: {fileID: 4300000, guid: baf42807f85fb5b4ab0eb79f10f1a70b, type: 3}
+  m_Mesh: {fileID: 4300000, guid: bad8a2a5255ad274a8c1de910fca788d, type: 3}
 --- !u!33 &33000011870382768
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011823356668}
-  m_Mesh: {fileID: 4300000, guid: baf42807f85fb5b4ab0eb79f10f1a70b, type: 3}
+  m_Mesh: {fileID: 4300000, guid: bad8a2a5255ad274a8c1de910fca788d, type: 3}
 --- !u!33 &33000013772864354
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012977216480}
-  m_Mesh: {fileID: 4300000, guid: baf42807f85fb5b4ab0eb79f10f1a70b, type: 3}
+  m_Mesh: {fileID: 4300000, guid: bad8a2a5255ad274a8c1de910fca788d, type: 3}
 --- !u!33 &33000014166527966
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011953745090}
-  m_Mesh: {fileID: 4300000, guid: baf42807f85fb5b4ab0eb79f10f1a70b, type: 3}
+  m_Mesh: {fileID: 4300000, guid: bad8a2a5255ad274a8c1de910fca788d, type: 3}
 --- !u!65 &65191893921034904
 BoxCollider:
   m_ObjectHideFlags: 1

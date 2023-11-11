@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Souvenir;
 using UnityEngine;
@@ -203,9 +204,15 @@ public partial class SouvenirModule
         while (solutions.GetValue(0) is null)
             yield return null; // Don't wait 0.1 seconds to make sure we get the labels before they are changed.
 
-        var displayedDigits = labels.Select(t => t.text).ToArray();
-        if (displayedDigits.Any(ds => ds.Length != 7 || ds.Any(d => !char.IsDigit(d))))
-            throw new AbandonModuleException($"Unexpected display value: \"{displayedDigits.First(ds => ds.Length != 7 || ds.Any(d => !char.IsDigit(d)))}\".");
+        var labelTexts = labels.Select(t => t.text).ToArray();
+        var displayedDigits = new List<string>();
+        foreach (var text in labelTexts)
+        {
+            var match = Regex.Match(text, @"^(?:[RGBYW]\s)?(\d{7})$");
+            if (!match.Success)
+                throw new AbandonModuleException($"Unexpected display value: “{text}”.");
+            displayedDigits.Add(match.Groups[1].Value);
+        }
 
         var fldSolved = GetField<bool>(comp, "isSolved");
         while (!fldSolved.Get())
@@ -216,11 +223,11 @@ public partial class SouvenirModule
         var displays = new[] { "top", "middle", "bottom" };
         for (int pos = 0; pos < 3; pos++)
         {
-            if (displayedDigits[pos] != labels[pos].text)
+            if (labelTexts[pos] != labels[pos].text)
             {
                 for (int digit = 0; digit < 6; digit++)
                     qs.Add(makeQuestion(Question.FizzBuzzDisplayedNumbers, _FizzBuzz, formatArgs: new[] { ordinal(digit + 1), displays[pos] }, correctAnswers: new[] { displayedDigits[pos][digit].ToString() }));
-                if (!labels[pos].text.ToLower().Contains("buzz")) // Do not ask about the last digit if the answer was buzz because there are only two possible correct answers.
+                if (!labels[pos].text.ToLowerInvariant().Contains("buzz")) // Do not ask about the last digit if the answer was buzz because there are only two possible correct answers.
                     qs.Add(makeQuestion(Question.FizzBuzzDisplayedNumbers, _FizzBuzz, formatArgs: new[] { "7th", displays[pos] }, correctAnswers: new[] { displayedDigits[pos][6].ToString() }));
             }
         }
@@ -309,6 +316,66 @@ public partial class SouvenirModule
             qs.Add(makeQuestion(Question.FlashingLightsLEDFrequency, _FlashingLights, formatArgs: new[] { "top", colorNames[i] }, correctAnswers: new[] { topTotals[i].ToString() }, preferredWrongAnswers: new[] { bottomTotals[i].ToString() }));
             qs.Add(makeQuestion(Question.FlashingLightsLEDFrequency, _FlashingLights, formatArgs: new[] { "bottom", colorNames[i] }, correctAnswers: new[] { bottomTotals[i].ToString() }, preferredWrongAnswers: new[] { topTotals[i].ToString() }));
         }
+        addQuestions(module, qs);
+    }
+
+    private IEnumerable<object> ProcessFlavorText(KMBombModule module)
+    {
+        var comp = GetComponent(module, "FlavorText");
+        var solved = false;
+        module.OnPass += () => { solved = true; return false; };
+
+        while (!solved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_FlavorText);
+
+        var textOptionList = GetField<IList>(comp, "textOptions").Get();
+        var textOption = GetField<object>(comp, "textOption").Get();
+        var fldName = GetField<string>(textOption, "name", isPublic: true);
+        var moduleNames = Enumerable.Range(0, textOptionList.Count).Select(index => fldName.GetFrom(textOptionList[index])).ToArray();
+
+        addQuestion(module, Question.FlavorTextModule,
+            correctAnswers: new[] { fldName.GetFrom(textOption) },
+            preferredWrongAnswers: moduleNames);
+    }
+
+    private IEnumerable<object> ProcessFlavorTextEX(KMBombModule module)
+    {
+        var comp = GetComponent(module, "FlavorTextCruel");
+        var fldStage = GetIntField(comp, "stage");
+        var fldTextOption = GetField<object>(comp, "textOption");
+
+        while (!_isActivated)
+            yield return new WaitForSeconds(.1f);
+
+        var maxStageAmount = GetIntField(comp, "maxStageAmount").Get();
+        var answers = new string[maxStageAmount];
+        var fldName = GetField<string>(fldTextOption.Get(), "name", isPublic: true);
+
+        while (fldStage.Get() < maxStageAmount)
+        {
+            answers[fldStage.Get()] = fldName.GetFrom(fldTextOption.Get());
+            yield return null;
+        }
+        _modulesSolved.IncSafe(_FlavorTextEX);
+
+        if (answers.Any(a => a == null))
+            throw new AbandonModuleException($"Abandoning Flavor Text EX because Stage {Array.IndexOf(answers, null)} has a null entry.");
+
+        var textOptionList = GetField<IList>(comp, "textOptions").Get();
+        var moduleNames = Enumerable.Range(0, textOptionList.Count).Select(index => fldName.GetFrom(textOptionList[index])).ToArray();
+
+        var qs = new List<QandA>();
+
+        for (var i = 0; i < maxStageAmount; i++)
+            qs.Add(makeQuestion(
+                    question: Question.FlavorTextEXModule,
+                    moduleKey: _FlavorTextEX,
+                    formatArgs: new[] { ordinal(i + 1) },
+                    correctAnswers: new[] { answers[i] },
+                    preferredWrongAnswers: answers,
+                    allAnswers: moduleNames));
+
         addQuestions(module, qs);
     }
 

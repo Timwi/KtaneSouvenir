@@ -134,6 +134,15 @@
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         AngelHernandezMainLetter,
 
+        [SouvenirQuestion("What was the maximum weapon damage of the attack phase in {0}?", "Arena", ThreeColumns6Answers, AddThe = true)]
+        [AnswerGenerator.Integers(1, 99)]
+        ArenaDamage,
+        [SouvenirQuestion("Which enemy was present in the defend phase of {0}?", "Arena", TwoColumns4Answers, "Bat", "Snake", "Spider", "Cobra", "Scorpion", "Mole", "Creeper", "Goblin", "Golem", "Robo-Mouse", "Skeleton", "Undead Guard", "The Reaper", "The Mole’s Dad", AddThe = true)]
+        ArenaEnemies,
+        [SouvenirQuestion("Which was a number present in the grab phase of {0}?", "Arena", ThreeColumns6Answers, AddThe = true)]
+        [AnswerGenerator.Integers(10, 99)]
+        ArenaNumbers,
+
         [SouvenirQuestion("What was the symbol on the submit button in {0}?", "Arithmelogic", ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "ArithmelogicSprites")]
         ArithmelogicSubmit,
         [SouvenirQuestion("Which number was selectable, but not the solution, in the {1} screen on {0}?", "Arithmelogic", ThreeColumns6Answers, TranslateFormatArgs = new[] { true },
@@ -315,6 +324,14 @@
 
         [SouvenirQuestion("What was the license number in {0}?", "Bomb Diffusal", TwoColumns4Answers, ExampleAnswers = new[] { "A4BIK5", "HI391D", "ZX98O1", "12K9PL" })]
         BombDiffusalLicenseNumber,
+
+        [SouvenirQuestion("Who said the {1} quote in {0}?", "Book of Mario", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "BookOfMarioSprites",
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        BookOfMarioPictures,
+        [SouvenirQuestion("What did {1} say in the {2} stage of {0}?", "Book of Mario", OneColumn4Answers, ExampleAnswers = new[] { "Dark Koopatrol. These people just blow hard...", "I came, Mario! You finna", "Absolutely, I came! Got it!", "Well, I’m so desperate, so you better save me…" },
+            ExampleExtraFormatArguments = new[] { "Goombell", QandA.Ordinal, "Prince Peach", QandA.Ordinal, "God Browser", QandA.Ordinal, "Mr.Krump", QandA.Ordinal, "Mario", QandA.Ordinal, "Flavio", QandA.Ordinal, "Quiz Thwomb", QandA.Ordinal, "Carbon", QandA.Ordinal, "Belda", QandA.Ordinal, "Make", QandA.Ordinal, "Yoshi Kid", QandA.Ordinal, "Bob", QandA.Ordinal, "Prosecutor Grubba", QandA.Ordinal },
+            ExampleExtraFormatArgumentGroupSize = 2)]
+        BookOfMarioQuotes,
 
         [SouvenirQuestion("Which operator did you submit in the {1} stage of {0}?", "Boolean Wires", TwoColumns4Answers, "OR", "XOR", "AND", "NAND", "NOR", ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         BooleanWiresEnteredOperators,
@@ -570,7 +587,7 @@
         CreamCipherScreen,
 
         [SouvenirQuestion("What were the weather conditions on the {1} day in {0}?", "Creation", TwoColumns4Answers, "Clear", "Heat Wave", "Meteor Shower", "Rain", "Windy",
-            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         CreationWeather,
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Crimson Cipher", TwoColumns4Answers, null, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },
@@ -623,7 +640,7 @@
         CustomerIdentificationCustomer,
 
         [SouvenirQuestion("Where was the button at the {1} stage in {0}?", "Cyan Button", TwoColumns4Answers, "top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right",
-            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true, TranslateAnswers = true)]
         CyanButtonPositions,
 
         [SouvenirQuestion("Which region did you depart from in {0}?", "DACH Maze", OneColumn4Answers, "Burgenland, A", "Carinthia, A", "Lower Austria, A", "North Tyrol, A", "Upper Austria, A", "East Tyrol, A", "Salzburg, A", "Styria, A", "Vorarlberg, A", "Vienna, A", "Aargau, CH", "Appenzell Inner Rhodes, CH", "Appenzell Outer Rhodes, CH", "Basel Country, CH", "Bern, CH", "Basel City, CH", "Fribourg, CH", "Geneva, CH", "Glarus, CH", "Grisons, CH", "Jura, CH", "Luzern, CH", "Nidwalden, CH", "Neuchâtel, CH", "Obwalden, CH", "Schaffhausen, CH", "St. Gallen, CH", "Solothurn, CH", "Schwyz, CH", "Thurgau, CH", "Ticino, CH", "Uri, CH", "Vaud, CH", "Valais, CH", "Zug, CH", "Zürich, CH", "Brandenburg, D", "Berlin, D", "Baden-Württemberg, D", "Bavaria, D", "Bremen, D", "Hesse, D", "Hamburg, D", "Mecklenburg-Vorpommern, D", "Lower Saxony, D", "North Rhine-Westphalia, D", "Rhineland-Palatinate, D", "Schleswig-Holstein, D", "Saarland, D", "Saxony, D", "Saxony-Anhalt, D", "Thuringia, D", "Liechtenstein")]
@@ -728,6 +745,11 @@
         [SouvenirQuestion("Which player {1} present in {0}?", "Dumb Waiters", OneColumn4Answers, null, ExampleAnswers = new[] { "Arceus", "Danny7007", "EpicToast", "eXish", "Fang", "Makebao", "MCD573", "Mr. Peanut", "Mythers", "Xmaster" },
             ExampleExtraFormatArguments = new[] { "was", "was not" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         DumbWaitersPlayerAvailable,
+
+        [SouvenirQuestion("What was the background number in {0}?", "Earthbound", ThreeColumns6Answers, "57", "97", "77", "43", "53", "32", "18", "88", "31", "16", "76", "20", "13", "89", "44", "35", "48", "86", "90", "67", "45", "26", "24", "87", "22", "84", "47", "93", "49", "33")]
+        EarthboundBackground,
+        [SouvenirQuestion("Which monster was displayed in {0}?", "Earthbound", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+        EarthboundMonster,
 
         [SouvenirQuestion("What word was asked to be spelled in {0}?", "eeB gnillepS", TwoColumns4Answers, null, ExampleAnswers = new[] { "odontalgia", "precocious", "privilege", "prospicience" })]
         eeBgnillepSWord,
@@ -901,6 +923,13 @@
             ExampleExtraFormatArguments = new[] { "top", "cyan", "top", "green", "top", "red", "top", "purple", "top", "orange", "bottom", "cyan", "bottom", "green", "bottom", "red", "bottom", "purple", "bottom", "orange" }, ExampleExtraFormatArgumentGroupSize = 2)]
         [AnswerGenerator.Integers(0, 12)]
         FlashingLightsLEDFrequency,
+
+        [SouvenirQuestion("Which module’s flavor text was shown in {0}?", "Flavor Text", OneColumn4Answers, ExampleAnswers = new[] { "Totally Accurate Minecraft Simulator", "Rock-Paper-Scissors-Lizard-Spock", "The Octadecayotton", "Power Button" })]
+        FlavorTextModule,
+
+        [SouvenirQuestion("Which module’s flavor text was shown in the {1} stage of {0}?", "Flavor Text", OneColumn4Answers, ExampleAnswers = new[] { "Totally Accurate Minecraft Simulator", "Rock-Paper-Scissors-Lizard-Spock", "The Octadecayotton", "Power Button" },
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        FlavorTextEXModule,
 
         [SouvenirQuestion("Which fly was present, but not in the solution in {0}?", "Flyswatting", ThreeColumns6Answers, null)]
         [AnswerGenerator.Strings('A', 'Z')]
@@ -1250,6 +1279,11 @@
             "Onion", "Corn", "big MIOLK", "Yam", "Corn Cube", "Egg", "Eggchips", "hamger", "Tyler the Creator", "Onionade", "Soup", "jeb", AddThe = true)]
         KanyeEncounterFoods,
 
+        [SouvenirQuestion("Which number was displayed on the {1} button, but not part of the answer on {0}?", "Keypad Combinations", ThreeColumns6Answers,
+           ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 9)]
+        KeypadCombinationWrongNumbers,
+
         [SouvenirQuestion("What was the position of the LED in {0}?", "Keypad Magnified", TwoColumns4Answers, "Top-left", "Top-right", "Bottom-left", "Bottom-right")]
         KeypadMagnifiedLED,
 
@@ -1516,7 +1550,7 @@
 
         [SouvenirQuestion("Where was the SpongeBob Bar on {0}?", "Mister Softee", ThreeColumns6Answers, "top-left", "top-middle", "top-right", "middle-left", "middle-middle", "middle-right", "bottom-left", "bottom-middle", "bottom-right", TranslateAnswers = true)]
         MisterSofteeSpongebobPosition,
-        [SouvenirQuestion("Which treat was present on {0}?", "Mister Softee", OneColumn4Answers, "Choco Taco", "Strawberry Shortcake", "Snow Cone", "Firecracker", "Screw Ball", "Chipwich", "King Cone", "Ice Cream Sandwich", "Push-Up Pop", "Drumstick", "Banana Fudge Bomb", "Creamsicle", "Chocolate Eclair", "Fudge Pop")]
+        [SouvenirQuestion("Which treat was present on {0}?", "Mister Softee", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "MisterSofteeSprites")]
         MisterSofteeTreatsPresent,
 
         [SouvenirQuestion("What was the decrypted word of the {1} stage in {0}?", "Modern Cipher", ThreeColumns6Answers, "Absent", "Abstract", "Abysmal", "Accident", "Activate", "Adjacent", "Afraid", "Agenda", "Agony", "Alchemy", "Alcohol", "Alive", "Allergic", "Allergy", "Alpha", "Alphabet", "Already", "Amethyst", "Amnesty", "Amperage", "Ancient", "Animals", "Animate", "Anthrax", "Anxious", "Aquarium", "Aquarius", "Arcade", "Arrange", "Arrow", "Artefact", "Asterisk", "Atrophy", "Audio", "Author", "Avoid", "Awesome", "Balance", "Banana", "Bandit", "Bankrupt", "Basket", "Battle", "Bazaar", "Beard", "Beauty", "Beaver", "Becoming", "Beetle", "Beseech", "Between", "Bicycle", "Bigger", "Biggest", "Biology", "Birthday", "Bistro", "Bites", "Blight", "Blockade", "Blubber", "Bomb", "Bonobo", "Books", "Bottle", "Brazil", "Brief", "Broccoli", "Broken", "Brother", "Bubble", "Budget", "Bulkhead", "Bumper", "Bunny", "Button", "Bytes", "Cables", "Caliber", "Campaign", "Canada", "Canister", "Caption", "Caution", "Cavity", "Chalk", "Chamber", "Chamfer", "Champion", "Changes", "Chicken", "Children", "Chlorine", "Chord", "Chronic", "Church", "Cinnamon", "Civic", "Cleric", "Clock", "Cocoon", "Combat", "Combine", "Comedy", "Comics", "Comma", "Command", "Comment", "Compost", "Computer", "Condom", "Conflict", "Consider", "Contour", "Control", "Corrupt", "Costume", "Criminal", "Crunch", "Cryptic", "Cuboid", "Cypher", "Daddy", "Dancer", "Dancing", "Daughter", "Dead", "Decapod", "Decay", "Decoy", "Defeat", "Defuser", "Degree", "Delay", "Demigod", "Dentist", "Desert", "Design", "Desire", "Dessert", "Detail", "Develop", "Device", "Diamond", "Dictate", "Diffuse", "Dilemma", "Dingy", "Dinosaur", "Disease", "Disgust", "Document", "Doubled", "Doubt", "Downbeat", "Dragon", "Drawer", "Dream", "Drink", "Drunken", "Dungeon", "Dynasty", "Dyslexia", "Eclipse", "Eldritch", "Email", "Emulator", "Encrypt", "England", "Enlist", "Enough", "Ensure", "Equality", "Equation", "Eruption", "Eternity", "Euphoria", "Exact", "Exclaim", "Exhaust", "Expert", "Expertly", "Explain", "Explodes", "Fabric", "Factory", "Faded", "Faint", "Fair", "False", "Falter", "Famous", "Fantasy", "Farm", "Father", "Faucet", "Faulty", "Fearsome", "Feast", "February", "Feint", "Festival", "Fiction", "Fighter", "Figure", "Finish", "Fireman", "Firework", "First", "Fixture", "Flagrant", "Flagship", "Flamingo", "Flesh", "Flipper", "Fluorine", "Flush", "Foreign", "Forensic", "Fractal", "Fragrant", "France", "Frantic", "Freak", "Friction", "Friday", "Friendly", "Frighten", "Furor", "Fused", "Garage", "Genes", "Genetic", "Genius", "Gentle", "Glacier", "Glitch", "Goat", "Golden", "Granular", "Graphics", "Graphite", "Grateful", "Gridlock", "Ground", "Guitar", "Gumption", "Halogen", "Harmony", "Hawk", "Headache", "Heard", "Hedgehog", "Heinous", "Herd", "Heretic", "Hexagon", "Hiccup", "Highway", "Holiday", "Home", "Homesick", "Honest", "Horror", "Horse", "House", "Huge", "Humanity", "Hungry", "Hydrogen", "Hysteria", "Imagine", "Industry", "Infamous", "Inside", "Integral", "Interest", "Ironclad", "Issue", "Italic", "Italy", "Itch", "Jaundice", "Jeans", "Jeopardy", "Joyful", "Joystick", "Juice", "Juncture", "Jungle", "Junkyard", "Justice", "Keep", "Keyboard", "Kilobyte", "Kilogram", "Kingdom", "Kitchen", "Kitten", "Knife", "Krypton", "Ladylike", "Language", "Large", "Laughter", "Launch", "Leaders", "Learn", "Leave", "Leopard", "Level", "Liberal", "Liberty", "Lifeboat", "Ligament", "Light", "Liquid", "Listen", "Little", "Lobster", "Logical", "Love", "Lucky", "Lulled", "Lunatic", "Lurks", "Machine", "Madam", "Magnetic", "Manager", "Manual", "Marina", "Marine", "Martian", "Master", "Matrix", "Measure", "Meaty", "Meddle", "Medical", "Mental", "Menu", "Meow", "Merchant", "Message", "Messes", "Metal", "Method", "Mettle", "Militant", "Minim", "Minimum", "Miracle", "Mirror", "Misjudge", "Misplace", "Misses", "Mistake", "Mixture", "Mnemonic", "Mobile", "Modern", "Modest", "Module", "Moist", "Money", "Morning", "Most", "Mother", "Movies", "Multiple", "Munch", "Musical", "Mustache", "Mystery", "Mystic", "Mystique", "Mythic", "Narcotic", "Nasty", "Nature", "Navigate", "Network", "Neutral", "Nobelium", "Nobody", "Noise", "Notice", "Noun", "Nuclear", "Numeral", "Nutrient", "Nymph", "Obelisk", "Obstacle", "Obvious", "Octopus", "Offset", "Omega", "Opaque", "Opinion", "Orange", "Organic", "Ouch", "Outbreak", "Outdo", "Overcast", "Overlaps", "Package", "Padlock", "Pancake", "Panda", "Panic", "Paper", "Papers", "Parent", "Park", "Particle", "Passive", "Patented", "Pathetic", "Patient", "Peace", "Peasant", "Penalty", "Pencil", "Penguin", "Perfect", "Person", "Persuade", "Perusing", "Phone", "Physical", "Piano", "Picture", "Piglet", "Pilfer", "Pillage", "Pinch", "Pirate", "Pitcher", "Pizza", "Plane", "Planet", "Platonic", "Player", "Please", "Plucky", "Plunder", "Plurals", "Pocket", "Police", "Portrait", "Potato", "Potently", "Pounce", "Poverty", "Practice", "Predict", "Prefect", "Premium", "Present", "Prince", "Printer", "Prison", "Profit", "Promise", "Prophet", "Protein", "Province", "Psalm", "Psychic", "Puddle", "Punchbag", "Pungent", "Punish", "Purchase", "Quagmire", "Qualify", "Quantify", "Quantize", "Quarter", "Querying", "Queue", "Quiche", "Quick", "Rabbit", "Racoon", "Radar", "Radical", "Rainbow", "Random", "Rattle", "Ravenous", "Reason", "Rebuke", "Refine", "Regular", "Reindeer", "Request", "Resort", "Respect", "Retire", "Revolt", "Reward", "Rhapsody", "Rhenium", "Rhodium", "Rhomboid", "Rhyme", "Rhythm", "Ridicule", "Roadwork", "Roar", "Roast", "Room", "Rooster", "Roster", "Rotor", "Rotunda", "Royal", "Ruler", "Rural", "Sailor", "Sainted", "Sales", "Sally", "Satisfy", "Saunter", "Scale", "Scandal", "Schedule", "School", "Science", "Scratch", "Screen", "Sensible", "Separate", "Serious", "Several", "Shampoo", "Shares", "Shelter", "Shift", "Ship", "Shirt", "Shiver", "Shorten", "Showcase", "Shuffle", "Silent", "Similar", "Sister", "Sixth", "Sixty", "Skater", "Skyward", "Slander", "Slayer", "Sleek", "Slipper", "Smart", "Smeared", "Soccer", "Society", "Source", "Spain", "Spare", "Spark", "Spatula", "Speaker", "Special", "Spectate", "Spectrum", "Spicy", "Spinach", "Spiral", "Splendid", "Splinter", "Sprayed", "Spread", "Spring", "Squadron", "Squander", "Squash", "Squib", "Squid", "Squish", "Stake", "Stalking", "Steak", "Steam", "Sticker", "Stinky", "Stocking", "Stone", "Store", "Stormy", "Strange", "Strike", "Stutter", "Subway", "Suffer", "Supreme", "Surf", "Surplus", "Survey", "Switch", "Symbol", "System", "Systemic", "Table", "Tadpole", "Talking", "Tangle", "Tank", "Tapeworm", "Target", "Tarot", "Teach", "Teamwork", "Terminal", "Terminus", "Terror", "Testify", "Their", "There", "Thick", "Thief", "Think", "Throat", "Through", "Thunder", "Thyme", "Ticket", "Time", "Toaster", "Tomato", "Tone", "Torque", "Tortoise", "Touchy", "Toupe", "Tower", "Transfix", "Transit", "Trash", "Trauma", "Treason", "Treasure", "Trick", "Tripod", "Trouble", "Truck", "Trumpet", "Turtle", "Twinkle", "Ugly", "Ultra", "Umbrella", "Underway", "Unique", "Unknown", "Unsteady", "Untoward", "Unwashed", "Upgrade", "Urban", "Used", "Useless", "Utopia", "Vacuum", "Vampire", "Vanish", "Vanquish", "Various", "Vast", "Velocity", "Vendor", "Verb", "Verbatim", "Verdict", "Vexation", "Vicious", "Victim", "Victory", "Video", "View", "Viking", "Village", "Violent", "Violin", "Virulent", "Visceral", "Vision", "Volatile", "Voltage", "Vortex", "Vulgar", "Warden", "Warlock", "Warning", "Wealth", "Weapon", "Wedding", "Weight", "Whack", "Wharf", "What", "When", "Whisk", "Whistle", "Wicked", "Window", "Winter", "Witness", "Wizard", "Wrench", "Wretch", "Wrinkle", "Writer", "Xanthous", "Yacht", "Yarn", "Yawn", "Yeah", "Yearlong", "Yearn", "Yeoman", "Yodel", "Yoga", "Yonder", "Youngest", "Yourself", "Zealot", "Zebra", "Zenith", "Zither", "Zodiac", "Zombie",
@@ -1529,6 +1563,10 @@
 
         [SouvenirQuestion("Which of the following was the starting icon for {0}?", "Module Maze", ThreeColumns6Answers, null, Type = AnswerType.Sprites)]
         ModuleMazeStartingIcon,
+
+        [SouvenirQuestion("What was the {1} module shown in {0}?", "Module Movements", TwoColumns4Answers, "3D Tunnels", "Alchemy", "Braille", "Button Sequence", "Chord Qualities", "Crackbox", "Functions", "Hunting", "Kudosudoku", "Logic Gates", "Morse-A-Maze", "Pattern Cube", "Planets", "Quintuples", "Schlag den Bomb", "Shapes and Bombs", "Simon Samples", "Simon States", "Symbol Cycle", "Turtle Robot", "Wavetapping", "The Wire", "Yahtzee",
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ModuleMovementsDisplay,
 
         [SouvenirQuestion("Which creature was displayed in {0}?", "Monsplode, Fight!", TwoColumns4Answers, "Caadarim", "Buhar", "Melbor", "Lanaluff", "Bob", "Mountoise", "Aluga", "Nibs", "Zapra", "Zenlad", "Vellarim", "Ukkens", "Lugirit", "Flaurim", "Myrchat", "Clondar", "Gloorim", "Docsplode", "Magmy", "Pouse", "Asteran", "Violan", "Percy", "Cutie Pie")]
         MonsplodeFightCreature,
@@ -2122,15 +2160,19 @@
         [AnswerGenerator.Integers(0, 9)]
         RGBMazeNumber,
 
+        [SouvenirQuestion("What was the color of the {1} LED in {0}?", "RGB Sequences", ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Cyan", "Yellow", "White",
+        ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        RGBSequencesDisplay,
+
         [SouvenirQuestion("What was the color in {0}?", "Rhythms", TwoColumns4Answers, "Blue", "Red", "Green", "Yellow", TranslateAnswers = true)]
         RhythmsColor,
 
-        [SouvenirQuestion("What was the rule number in {0}?", "Rule", ThreeColumns6Answers, AddThe = true)]
-        [AnswerGenerator.Integers(0, 15)]
-        RuleNumber,
-
         [SouvenirQuestion("Where was the empty cell in {0}?", "Robo-Scanner", ThreeColumns6Answers, "A1", "A2", "A3", "A4", "A5", "B1", "B2", "B3", "B4", "B5", "C1", "C2", "C4", "C5", "D1", "D2", "D3", "D4", "D5", "E1", "E2", "E3", "E4", "E5")]
         RoboScannerEmptyCell,
+
+        [SouvenirQuestion("What was the name of the robot in the {1} position of {0}?", "Robot Programming", TwoColumns4Answers, "R.O.B", "HAL", "R2D2", "Fender",
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        RobotProgrammingName,
 
         [SouvenirQuestion("What four-digit number was given in {0}?", "Roger", ThreeColumns6Answers, null)]
         [AnswerGenerator.Integers(0, 9999, "0000")]
@@ -2141,6 +2183,10 @@
         [SouvenirQuestion("How many {1} wires were there in {0}?", "Role Reversal", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7",
             ExampleExtraFormatArguments = new[] { "warm-colored", "cold-colored", "primary-colored", "secondary-colored" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         RoleReversalWires,
+
+        [SouvenirQuestion("What was the rule number in {0}?", "Rule", ThreeColumns6Answers, AddThe = true)]
+        [AnswerGenerator.Integers(0, 15)]
+        RuleNumber,
 
         [SouvenirQuestion("What was the {1} coordinate of the {2} vertex in {0}?", "Rule of Three", ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "X", "red", "Y", "yellow", "Z", "blue" }, ExampleExtraFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { false, true })]
@@ -2424,8 +2470,7 @@
         [SouvenirQuestion("Which monitor was shown in {0}?", "Sonic & Knuckles", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteField = "SonicKnucklesMonitorsSprites")]
         SonicKnucklesMonitor,
 
-        [SouvenirQuestion("What was the {1} picture on {0}?", "Sonic The Hedgehog", TwoColumns4Answers, "Annoyed Sonic", "Ballhog", "Blue Lamppost", "Burrobot", "Buzz Bomber", "Crab Meat", "Dead Sonic", "Drowned Sonic", "Falling Sonic", "Moto Bug", "Red Lamppost", "Red Spring", "Standing Sonic", "Switch", "Yellow Spring",
-            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was the {1} picture on {0}?", "Sonic The Hedgehog", TwoColumns4Answers, ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.Sprites, SpriteField = "SonicTheHedgehogSprites")]
         SonicTheHedgehogPictures,
         [SouvenirQuestion("Which sound was played by the {1} screen on {0}?", "Sonic The Hedgehog", TwoColumns4Answers, "Boss Theme", "Breathe", "Continue", "Drown", "Emerald", "Extra Life", "Final Zone", "Invincibility", "Jump", "Lamppost", "Marble Zone", "Bumper", "Skid", "Spikes", "Spin", "Spring",
             ExampleExtraFormatArguments = new[] { "Running Boots", "Invincibility", "Extra Life", "Rings" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -2486,6 +2531,11 @@
             ExampleExtraFormatArguments = new[] { "PewDiePie", "T-Series" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         [AnswerGenerator.Integers(10000000, 99999999)]
         SubscribeToPewdiepieSubCount,
+
+        [SouvenirQuestion("Which bread did the customer ask for in {0}?", "Subway", OneColumn4Answers, "WHITE", "MULTIGRAIN", "GLUTEN FREE", "WHOLE WHEAT")]
+        SubwayBread,
+        [SouvenirQuestion("Which of these was not asked for in {0}?", "Subway", OneColumn4Answers, "TUNA", "CHICKEN", "TURKEY", "HAM", "PASTRAMI", "MYSTERY MEAT", "AMERICAN", "MOZZARELLA", "PROVOLONE", "SWISS", "CHEDDAR", "TOAST THE BREAD", "OLIVES", "LETTUCE", "PICKLES", "ONIONS", "TOMATOES", "JALAPENOS", "KETCHUP", "MAYONNAISE", "RANCH", "SALT", "PEPPER", "VINEGAR")]
+        SubwayItems,
 
         [SouvenirQuestion("What skull was shown on the {1} square in {0}?", "Sugar Skulls", ThreeColumns6Answers, "A", "C", "E", "G", "I", "K", "M", "O", "P", "R", "T", "V", "X", "Z", "b", "d", "f", "h", "j", "l", "n", "p", "r", "t", "v", "x", "z", TranslateFormatArgs = new[] { true },
             Type = AnswerType.SugarSkullsFont, FontSize = 432, CharacterSize = 1 / 6f, ExampleExtraFormatArguments = new[] { "top", "bottom-left", "bottom-right" }, ExampleExtraFormatArgumentGroupSize = 1)]
@@ -2684,6 +2734,9 @@
         ExampleExtraFormatArguments = new[] { "was", "was not" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true }, ExampleAnswers = new[] { "Vacant", "Valorous", "Volition", "Vermin", "Vanity", "Visage", "Voracious", "Veers", "Vengeance", "Violation", "Vigilant", "Veteran", "Vanguarding", "Villain" })]
         VWords,
 
+        [SouvenirQuestion("What was the initial state of {0}?", "Valves", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteField = "ValvesSprites")]
+        ValvesInitialState,
+
         [SouvenirQuestion("What was the initially pressed color on {0}?", "Varicolored Squares", ThreeColumns6Answers, "White", "Red", "Blue", "Green", "Yellow", "Magenta", TranslateAnswers = true)]
         VaricoloredSquaresInitialColor,
 
@@ -2815,7 +2868,7 @@
         YellowArrowsStartingRow,
 
         [SouvenirQuestion("What was the {1} color in {0}?", "Yellow Button", TwoColumns4Answers, "Red", "Yellow", "Green", "Cyan", "Blue", "Magenta", AddThe = true,
-            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         YellowButtonColors,
 
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Yellow Cipher", TwoColumns4Answers, null, ExampleAnswers = new[] { "ALTHOUGH", "BUSINESS", "CHILDREN", "DIRECTOR", "EXCHANGE", "FUNCTION", "GUIDANCE", "HOSPITAL", "INDUSTRY", "JUNCTION", "KEYBOARD", "LANGUAGE", "MATERIAL", "NUMEROUS", "OFFERING", "POSSIBLE", "QUESTION", "RESEARCH", "SOFTWARE", "TOGETHER", "ULTIMATE", "VALUABLE", "WIRELESS", "XENOLITH", "YOURSELF", "ZUCCHINI" },

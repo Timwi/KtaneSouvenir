@@ -18,7 +18,8 @@ namespace Souvenir
         public static Dictionary<string, Translation> AllTranslations = new()
         {
             ["de"] = new Translation_de(),
-            ["ja"] = new Translation_ja()
+            ["ja"] = new Translation_ja(),
+            ["ru"] = new Translation_ru()
         };
     }
 }

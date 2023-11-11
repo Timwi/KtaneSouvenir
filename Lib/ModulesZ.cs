@@ -20,7 +20,7 @@ public partial class SouvenirModule
 
         var stars = GetField<Array>(comp, "stars").Get(validator: arr => arr.Length != 4 ? "expected length 4" : null);
         var fldChannels = GetArrayField<bool>(stars.GetValue(0), "channels");
-        var fldPoints = GetIntField(stars.GetValue(0), "points");
+        var fldPoints = GetIntField(stars.GetValue(0), "Points", isPublic: true);
         var gridSquares = GetArrayField<MeshRenderer>(comp, "gridColors", isPublic: true).Get(expectedLength: 49);
 
         Color? white = null;

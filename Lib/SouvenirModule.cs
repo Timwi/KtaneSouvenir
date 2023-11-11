@@ -26,6 +26,7 @@ public partial class SouvenirModule : MonoBehaviour
     public GameObject[] TpNumbers;
     public Sprite[] ArithmelogicSprites;
     public Sprite[] AzureButtonSprites;
+    public Sprite[] BookOfMarioSprites;
     public Sprite[] CharacterSlotsSprites;
     public Sprite[] EncryptedEquationsSprites;
     public Sprite[] ExampleSprites;
@@ -40,6 +41,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] MahjongSprites;
     public Sprite[] MathEmSprites;
     public Sprite[] MemorySprites;
+    public Sprite[] MisterSofteeSprites;
     public Sprite[] NonverbalSimonSprites;
     public Sprite[] PatternCubeSprites;
     public Sprite[] PlanetsSprites;
@@ -50,11 +52,13 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] SimonSpeaksSprites;
     public Sprite[] SonicKnucklesBadniksSprites;
     public Sprite[] SonicKnucklesMonitorsSprites;
+    public Sprite[] SonicTheHedgehogSprites;
     public Sprite[] SymbolicCoordinatesSprites;
     public Sprite[] SymbolicTashaSprites;
     public Sprite[] TasqueManagingSprites;
     public Sprite[] TeaSetSprites;
     public Sprite[] USACycleSprites;
+    public Sprite[] ValvesSprites;
     public Sprite[] WarningSignsSprites;
     public Sprite[] WavetappingSprites;
     public Texture2D[] DigitTextures;
@@ -250,6 +254,7 @@ public partial class SouvenirModule : MonoBehaviour
 
         disappear();
         WarningIcon.SetActive(false);
+
         SetWordWrappedText((_translation?.IntroTexts ?? _intros).PickRandom(), 1.75, useQuestionSprite: false);
 
         if (transform.parent != null && !Application.isEditor)
@@ -345,11 +350,6 @@ public partial class SouvenirModule : MonoBehaviour
         if (_showIntros)
         {
             disappear();
-            TextMesh.gameObject.SetActive(true);
-            TextMesh.font = Fonts[_translation?.DefaultFontIndex ?? 0];
-            TextRenderer.material = FontMaterial;
-            TextRenderer.material.mainTexture = FontTextures[_translation?.DefaultFontIndex ?? 0];
-            TextMesh.lineSpacing = _translation?.LineSpacing ?? 0.525f;
             SetWordWrappedText((_translation?.IntroTexts ?? _intros)[_curExampleQuestion], 1.75, useQuestionSprite: false);
             foreach (var ans in Answers)
                 ans.transform.Find("AnswerText").GetComponent<TextMesh>().text = "";
@@ -431,9 +431,9 @@ public partial class SouvenirModule : MonoBehaviour
         }
     }
 
-    private string translateQuestion(Question question) => _translation?.Translations[question].QuestionText ?? _attributes[question].QuestionText;
-    private string translateFormatArg(Question question, string arg) => arg == null ? null : _translation?.Translations[question].FormatArgs?.Get(arg, arg) ?? arg;
-    private string translateAnswer(Question question, string answ) => answ == null ? null : _translation?.Translations[question].Answers?.Get(answ, answ) ?? answ;
+    private string translateQuestion(Question question) => _translation?.Translations.Get(question, null)?.QuestionText ?? _attributes[question].QuestionText;
+    private string translateFormatArg(Question question, string arg) => arg == null ? null : _translation?.Translations.Get(question, null)?.FormatArgs?.Get(arg, arg) ?? arg;
+    private string translateAnswer(Question question, string answ) => answ == null ? null : _translation?.Translations.Get(question, null)?.Answers?.Get(answ, answ) ?? answ;
 
     private static SouvenirQuestionAttribute GetQuestionAttribute(FieldInfo field)
     {
@@ -607,6 +607,12 @@ public partial class SouvenirModule : MonoBehaviour
 
     public void SetWordWrappedText(string text, double desiredHeightFactor, bool useQuestionSprite)
     {
+        TextMesh.gameObject.SetActive(true);
+        TextMesh.font = Fonts[_translation?.DefaultFontIndex ?? 0];
+        TextRenderer.material = FontMaterial;
+        TextRenderer.material.mainTexture = FontTextures[_translation?.DefaultFontIndex ?? 0];
+        TextMesh.lineSpacing = _translation?.LineSpacing ?? 0.525f;
+
         var acceptableWidths = useQuestionSprite ? _acceptableWidthsWithQuestionSprite : _acceptableWidthsWithoutQuestionSprite;
         var low = 1;
         var high = 256;
@@ -1094,7 +1100,14 @@ public partial class SouvenirModule : MonoBehaviour
                     1 => "first",
                     2 => "second",
                     3 => "third",
-                    _ => ((number / 10) % 10 == 1 ? 0 : number % 10) switch
+                    4 => "fourth",
+                    5 => "fifth",
+                    6 => "sixth",
+                    7 => "seventh",
+                    8 => "eighth",
+                    9 => "ninth",
+                    10 => "tenth",
+                    _ => (number / 10 % 10 == 1 ? 0 : number % 10) switch
                     {
                         1 => number + "st",
                         2 => number + "nd",

@@ -99,7 +99,7 @@ public partial class SouvenirModule
         var initialBlacks = new List<int>();
         for (int pos = 0; pos < 25; pos++)
             (initialStates[pos] ? initialBlacks : initialWhites).Add(pos);
-            
+
         if (initialBlacks.Count == 0 || initialWhites.Count == 0)
         {
             legitimatelyNoQuestion(module, "the module generated 25 cells of the same colour.");
@@ -345,9 +345,10 @@ public partial class SouvenirModule
         var removedLions = Enumerable.Range(0, lionNames.Length).Where(ix => correctPortions[ix] == 0).Select(ix => lionNames[ix]).ToArray();
         var allLionNames = GetListField<string>(comp, "_allLionNames").Get(expectedLength: 35);
 
-        addQuestions(module,
-            makeQuestion(Question.LionsShareYear, _LionsShare, correctAnswers: new[] { yearText }),
-            makeQuestion(Question.LionsShareRemovedLions, _LionsShare, correctAnswers: removedLions, preferredWrongAnswers: allLionNames.ToArray()));
+        var qs = new List<QandA> { makeQuestion(Question.LionsShareYear, _LionsShare, correctAnswers: new[] { yearText }) };
+        if (removedLions.Length > 0)
+            qs.Add(makeQuestion(Question.LionsShareRemovedLions, _LionsShare, correctAnswers: removedLions, preferredWrongAnswers: allLionNames.ToArray()));
+        addQuestions(module, qs);
     }
 
     private IEnumerable<object> ProcessListening(KMBombModule module)

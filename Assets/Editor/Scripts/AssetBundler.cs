@@ -111,7 +111,7 @@ public class AssetBundler
             Debug.LogError("You must configure your mod from the \"Keep Talking ModKit / Configure Mod\" menu first.");
             return;
         }
-        else if (!AssemblyDefinitions.DefinitionExists())
+        else if (mode != AssemblyMode.None && !AssemblyDefinitions.RunChecks(false))
         {
             Debug.LogErrorFormat("The selected mod id ({0}) cannot be used to build this project. Please choose a different id in the \"Keep Talking Modkit / Configure Mod\" menu.", ModConfig.ID);
             return;

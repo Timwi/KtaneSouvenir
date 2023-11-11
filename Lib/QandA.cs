@@ -63,11 +63,6 @@ namespace Souvenir
 
             public override void SetQuestion(SouvenirModule souv)
             {
-                souv.TextMesh.gameObject.SetActive(true);
-                souv.TextMesh.font = souv.Fonts[_translation?.DefaultFontIndex ?? 0];
-                souv.TextRenderer.material = souv.FontMaterial;
-                souv.TextRenderer.material.mainTexture = souv.FontTextures[_translation?.DefaultFontIndex ?? 0];
-                souv.TextMesh.lineSpacing = _translation?.LineSpacing ?? 0.525f;
                 souv.SetWordWrappedText(_text, _desiredHeightFactor, _questionSprite != null);
 
                 if (_questionSprite != null)

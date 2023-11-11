@@ -64,6 +64,24 @@ public partial class SouvenirModule
         addQuestion(module, Question.KanyeEncounterFoods, correctAnswers: selectedFoodNames);
     }
 
+    private IEnumerable<object> ProcessKeypadCombination(KMBombModule module)
+    {
+        var comp = GetComponent(module, "KeypadCombinations");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_KeypadCombination);
+
+        var buttonNums = GetField<int[,]>(comp, "buttonnum").Get(v => v.GetLength(0) != 4 || v.GetLength(1) != 3 ? "expected 4×3 array" : null);
+        var moduleAnswer = GetField<string>(comp, "answer").Get();
+
+        addQuestions(module, Enumerable.Range(0, 4).Select(i => makeQuestion(Question.KeypadCombinationWrongNumbers, _KeypadCombination,
+            formatArgs: new[] { ordinal(i + 1) },
+            correctAnswers: Enumerable.Range(0, 3).Select(buttonIndex => buttonNums[i, buttonIndex])
+                .Where(num => num != moduleAnswer[i] - '0').Select(num => num.ToString()).ToArray())));
+    }
+
     private IEnumerable<object> ProcessKeypadMagnified(KMBombModule module)
     {
         var comp = GetComponent(module, "KeypadMagnifiedScript");

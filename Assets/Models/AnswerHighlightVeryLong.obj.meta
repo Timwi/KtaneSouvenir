@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 57bd849898e2b244490f7a4e1838ab25
+guid: b21a8364a7fa30142938501d0d2220bd
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: AnswerHighlightVeryLong
-    100002: //RootNode
-    400000: AnswerHighlightVeryLong
-    400002: //RootNode
-    2100000: AnswerHighlightVeryLongMat
-    2300000: AnswerHighlightVeryLong
-    3300000: AnswerHighlightVeryLong
-    4300000: AnswerHighlightVeryLong
+    100000: //RootNode
+    100002: AnswerHighlightVeryLong_AnswerHighlightVeryLong
+    400000: //RootNode
+    400002: AnswerHighlightVeryLong_AnswerHighlightVeryLong
+    2100000: AnswerHighlightVeryLong_AnswerHighlightVeryLongMat
+    2300000: AnswerHighlightVeryLong_AnswerHighlightVeryLong
+    3300000: AnswerHighlightVeryLong_AnswerHighlightVeryLong
+    4300000: AnswerHighlightVeryLong_AnswerHighlightVeryLong
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -44,10 +44,10 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    importVisibility: 1
+    importVisibility: 0
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -55,7 +55,7 @@ ModelImporter:
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
-    indexFormat: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88

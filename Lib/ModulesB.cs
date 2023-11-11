@@ -672,6 +672,90 @@ public partial class SouvenirModule
         addQuestion(module, Question.BombDiffusalLicenseNumber, correctAnswers: new[] { correctAnswer }, preferredWrongAnswers: answers.ToArray());
     }
 
+    private IEnumerable<object> ProccessBookOfMario(KMBombModule module)
+    {
+        var comp = GetComponent(module, "BookOfMario");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        var fldStage = GetIntField(comp, "stage");
+        var currentStage = 0;
+        var fldNameIndex = GetIntField(comp, "x");
+        var fldQuoteIndex = GetIntField(comp, "y");
+        var quotes = GetStaticField<string[][]>(comp.GetType(), "quotes").Get();
+
+        var answer = new List<(string name, string quote)>();
+        var dictionary = new Dictionary<string, string[]>();
+
+        (string, string) GetPersonKeyValue(int characterIndex, int characterQuote)
+        {
+            return (UpdateString(quotes[characterIndex][0]), UpdateString(quotes[characterIndex][fldQuoteIndex.Get()]));
+        }
+
+        while (!fldSolved.Get())
+        {
+            var characterIndex = fldNameIndex.Get();
+            var quoteIndex = fldQuoteIndex.Get();
+            var newStage = fldStage.Get();
+            var person = GetPersonKeyValue(characterIndex, quoteIndex);
+
+            if (currentStage != newStage)
+            {
+                answer.Add(person);
+                currentStage = newStage;
+            }
+            else
+            {
+                if (!answer.Last().Equals(person))
+                    answer[answer.Count - 1] = person;
+            }
+            yield return null;
+        }
+        _modulesSolved.IncSafe(_BookOfMario);
+
+        if (BookOfMarioSprites.Length != 13)
+            throw new AbandonModuleException($"Book of Mario should have 13 sprites. Counted {BookOfMarioSprites.Length}");
+
+        string UpdateString(string s)
+        {
+            const int maxCount = 27;
+            var str = s.Replace("\n", " ").Replace("  ", " ");
+            return str.Length > maxCount ? str.Substring(0, maxCount) + "..." : str;
+        }
+
+        string[] GetUpdatedQuotes(string name)
+        {
+            foreach (var q in quotes)
+                if (q[0].Replace("\n", "") == name)
+                    return Enumerable.Range(1, q.Length - 1).Select(i => UpdateString(q[i])).ToArray();
+            return null;
+        }
+
+        var unaviableCharacters = new[] { "Bob", "God Browser", "Flavio", "Make", "Quiz Thwomb", "Yoshi Kid" };
+        var qs = new List<QandA>();
+
+        for (var i = 0; i < answer.Count; i++)
+        {
+            var (name, quote) = answer[i];
+            qs.Add(makeQuestion(
+                question: Question.BookOfMarioPictures,
+                moduleKey: _BookOfMario,
+                formatArgs: new[] { ordinal(i + 1) },
+                correctAnswers: new[] { BookOfMarioSprites.First(sprite => sprite.name == name) },
+                preferredWrongAnswers: BookOfMarioSprites));
+
+            if (!unaviableCharacters.Contains(name))
+            {
+                qs.Add(makeQuestion(
+                    question: Question.BookOfMarioQuotes,
+                    moduleKey: _BookOfMario,
+                    formatArgs: new[] { name, ordinal(i + 1) },
+                    correctAnswers: new[] { quote },
+                    preferredWrongAnswers: GetUpdatedQuotes(name)));
+            }
+        }
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerable<object> ProcessBooleanWires(KMBombModule module)
     {
         var comp = GetComponent(module, "BooleanWiresScript");

@@ -28,20 +28,22 @@ public static class AssemblyDefinitions
     }
     
     
-    internal static void RunChecks()
+    internal static bool RunChecks(bool warn = true)
     {
         // Don't do anything if the ID hasn't changed. This also avoids a false error from reserved due to the current assembly definition being loaded in the project.
         if (DefinitionExists())
-            return;
+            return true;
         if (reserved.Contains(ModConfig.ID) || string.IsNullOrEmpty(ModConfig.ID))
         {
-            Debug.LogWarningFormat("The selected id [\"{0}\"] cannot be used with this project due to it being reserved or empty. Please choose a different id for your mod.", ModConfig.ID);
-            return;
+            if(warn)
+                Debug.LogWarningFormat("The selected id [\"{0}\"] cannot be used with this project due to it being reserved or empty. Please choose a different id for your mod.", ModConfig.ID);
+            return false;
         }
         // Delete any existing assembly definitions, as they may conflict with the new ones. Meta files are also deleted.
         // Additionally delete any previous .csproj files. These may conflict with Visual Studio Code, and may clutter the root folder if used consecutively.
         RemoveDefinitions();
         CreateDefinitions();
+        return true;
     }
 
     private static void RemoveDefinitions()

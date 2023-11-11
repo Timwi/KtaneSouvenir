@@ -6,6 +6,39 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
+    private IEnumerable<object> ProcessEarthbound(KMBombModule module)
+    {
+        var comp = GetComponent(module, "EarthboundScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        _modulesSolved.IncSafe(_Earthbound);
+
+        Sprite GetNewSprite(Sprite sprite)
+        {
+            var ppu = sprite.name switch
+            {
+                "Absolutely Safe Capsule" => 350,
+                "Mad Car" or "Mr Passion" => 200,
+                _ => 250,
+            };
+            var newSprite = Sprite.Create(sprite.texture, sprite.rect, new Vector2(0, .5f), ppu);
+            newSprite.name = sprite.name;
+            return newSprite;
+        }
+        var enemyIndex = GetIntField(comp, "enemyIndex").Get(val => val < 0 || val > 29 ? "expected range 0–29" : null);
+        var enemySprites = GetArrayField<Sprite>(comp, "enemyOptions", isPublic: true).Get(expectedLength: 30).Select(sprite => GetNewSprite(sprite)).ToArray();
+        var backgroundNames = GetArrayField<Material>(comp, "backgroundOptions", isPublic: true).Get(expectedLength: 30).Select(material => material.name).ToArray();
+        var backgroundIndex = GetIntField(comp, "usedBackgroundInt").Get(val => val < 0 || val > 29 ? "expected range 0–29" : null);
+
+        addQuestions(module,
+            makeQuestion(Question.EarthboundMonster, _Earthbound, correctAnswers: new[] { enemySprites[enemyIndex] }, allAnswers: enemySprites),
+            makeQuestion(Question.EarthboundBackground, _Earthbound, correctAnswers: new[] { backgroundNames[backgroundIndex] }));
+        yield return null;
+    }
+
     private IEnumerable<object> ProcessEeBgnillepS(KMBombModule module)
     {
         var comp = GetComponent(module, "tpircSeeBgnillepS");
