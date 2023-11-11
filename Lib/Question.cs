@@ -927,7 +927,7 @@
         [SouvenirQuestion("Which module’s flavor text was shown in {0}?", "Flavor Text", OneColumn4Answers, ExampleAnswers = new[] { "Totally Accurate Minecraft Simulator", "Rock-Paper-Scissors-Lizard-Spock", "The Octadecayotton", "Power Button" })]
         FlavorTextModule,
 
-        [SouvenirQuestion("Which module’s flavor text was shown in the {1} stage of {0}?", "Flavor Text", OneColumn4Answers, ExampleAnswers = new[] { "Totally Accurate Minecraft Simulator", "Rock-Paper-Scissors-Lizard-Spock", "The Octadecayotton", "Power Button" },
+        [SouvenirQuestion("Which module’s flavor text was shown in the {1} stage of {0}?", "Flavor Text EX", OneColumn4Answers, ExampleAnswers = new[] { "Totally Accurate Minecraft Simulator", "Rock-Paper-Scissors-Lizard-Spock", "The Octadecayotton", "Power Button" },
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         FlavorTextEXModule,
 
