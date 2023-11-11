@@ -1128,7 +1128,7 @@ public partial class SouvenirModule : MonoBehaviour
     private readonly List<KMBombModule> TwitchAbandonModule = new List<KMBombModule>();
 
 #pragma warning disable 414
-    private readonly string TwitchHelpMessage = @"!{0} answer 3 [order is from top to bottom, then left to right] | !{0} lang (en/de/ja) [change the language]";
+    private readonly string TwitchHelpMessage = @"!{0} answer 3 [order is from top to bottom, then left to right]";
 #pragma warning restore 414
 
     IEnumerator ProcessTwitchCommand(string command)
@@ -1142,6 +1142,15 @@ public partial class SouvenirModule : MonoBehaviour
             if (command == "tp")
             {
                 ActivateTwitchPlaysNumbers();
+                yield break;
+            }
+
+            if ((m = Regex.Match(command, $@"^\s*lang (en|{Translation.AllTranslations.Keys.JoinString("|")})\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)).Success)
+            {
+                _translation = m.Groups[1].Value.Equals("en", StringComparison.InvariantCultureIgnoreCase) ? null : Translation.AllTranslations[m.Groups[1].Value.ToLowerInvariant()];
+                if (_showIntros)
+                    _curExampleQuestion = 0;
+                showExampleQuestion();
                 yield break;
             }
 
@@ -1178,14 +1187,7 @@ public partial class SouvenirModule : MonoBehaviour
                 Debug.LogError($"Question containing “{command}” not found.");
             yield break;
         }
-            if ((m = Regex.Match(command, $@"^\s*lang (en|{Translation.AllTranslations.Keys.JoinString("|")})\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)).Success)
-            {
-                _translation = m.Groups[1].Value.Equals("en", StringComparison.InvariantCultureIgnoreCase) ? null : Translation.AllTranslations[m.Groups[1].Value.ToLowerInvariant()];
-                if (_showIntros)
-                    _curExampleQuestion = 0;
-                showExampleQuestion();
-                yield break;
-            }
+
         m = Regex.Match(command.ToLowerInvariant(), @"\A\s*answer\s+(\d)\s*\z");
         if (!m.Success || _isSolved)
             yield break;
