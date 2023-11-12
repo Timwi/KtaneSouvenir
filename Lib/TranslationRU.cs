@@ -5,7 +5,7 @@ namespace Souvenir
     public class Translation_ru : Translation
     {
         public override string FormatModuleName(string moduleNameWithoutThe, string moduleNameWithThe, bool addSolveCount, int numSolved) =>
-            addSolveCount ? $"{ordinal(numSolved)} который вы решили {moduleNameWithoutThe}" : moduleNameWithThe;
+            addSolveCount ? $"{moduleNameWithoutThe}, который вы решили {Ordinal(numSolved)}-м" : moduleNameWithThe;
 
         public override string Ordinal(int number) => number.ToString();
 
@@ -1084,7 +1084,8 @@ namespace Souvenir
             // What were the correct button presses in The Bulb?
             [Question.BulbButtonPresses] = new TranslationInfo
             {
-                QuestionText = "What were the correct button presses in {0}?",
+                QuestionText = "Какие правильные кнопки были нажаты в {0}?",
+				ModuleName = "Лампочке",
             },
 
             // Burger Alarm
@@ -1757,7 +1758,7 @@ namespace Souvenir
                 {
                     ["Clear"] = "Ясно",
                     ["Heat Wave"] = "Жара",
-                    ["Meteor Shower"] = "Метеоритный дождь",
+                    ["Meteor Shower"] = "Метеор. дождь",
                     ["Rain"] = "Дождь",
                     ["Windy"] = "Ветер",
                 },
@@ -3840,11 +3841,12 @@ namespace Souvenir
             // What was the color of the left bulb in Light Bulbs?
             [Question.LightBulbsColors] = new TranslationInfo
             {
-                QuestionText = "What was the color of the {1} bulb in {0}?",
+                QuestionText = "Какой был цвет {1} лампочки в {0}?",
+				ModuleName = "Световых лампочках",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["left"] = "left",
-                    ["right"] = "right",
+                    ["left"] = "левой",
+                    ["right"] = "правой",
                 },
             },
 
@@ -4177,15 +4179,16 @@ namespace Souvenir
             // What was the color of the starting face in Maze³?
             [Question.Maze3StartingFace] = new TranslationInfo
             {
-                QuestionText = "What was the color of the starting face in {0}?",
+                QuestionText = "Какой цвет был у начальной стороны в {0}?",
+				ModuleName = "Лабиринте³",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Magenta"] = "Magenta",
-                    ["Orange"] = "Orange",
+                    ["Red"] = "Красный",
+                    ["Blue"] = "Синий",
+                    ["Yellow"] = "Жёлтый",
+                    ["Green"] = "Зелёный",
+                    ["Magenta"] = "Розовый",
+                    ["Orange"] = "Оранжевый",
                 },
             },
 
@@ -7274,7 +7277,8 @@ namespace Souvenir
             // What positions were the last swap used to solve Sorting?
             [Question.SortingLastSwap] = new TranslationInfo
             {
-                QuestionText = "What positions were the last swap used to solve {0}?",
+                QuestionText = "Какие позиции участвовали в последней замене чисел в {0}?",
+				ModuleName = "Сортировке",
             },
 
             // Souvenir
@@ -7587,7 +7591,8 @@ namespace Souvenir
             // What was the received word in Tap Code?
             [Question.TapCodeReceivedWord] = new TranslationInfo
             {
-                QuestionText = "What was the received word in {0}?",
+                QuestionText = "Какое слово было передано в {0}?",
+				ModuleName = "Нажимном коде",
             },
 
             // Tasha Squeals
