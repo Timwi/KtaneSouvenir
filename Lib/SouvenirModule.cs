@@ -1063,7 +1063,12 @@ public partial class SouvenirModule : MonoBehaviour
         }
 
         var allFormatArgs = new string[formatArgs != null ? formatArgs.Length + 1 : 1];
-        allFormatArgs[0] = formattedModuleName ?? formatModuleName(attr.ModuleName, attr.ModuleNameWithThe, _moduleCounts.Get(moduleKey) > 1, numSolved);
+        allFormatArgs[0] = formattedModuleName ?? formatModuleName(
+            _translation?.Translations[question]?.ModuleName ?? attr.ModuleName,
+            _translation?.Translations[question]?.ModuleNameWithThe ?? _translation?.Translations[question]?.ModuleName ?? attr.ModuleNameWithThe,
+            _moduleCounts.Get(moduleKey) > 1,
+            numSolved);
+
         if (formatArgs != null)
             for (var i = 0; i < formatArgs.Length; i++)
                 allFormatArgs[i + 1] = translateFormatArg(question, formatArgs[i]);

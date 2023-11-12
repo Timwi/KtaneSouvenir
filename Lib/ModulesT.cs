@@ -17,7 +17,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_TapCode);
 
         var words = GetStaticField<string[]>(comp.GetType(), "_wordList").Get();
-        var chosenWord = GetField<string>(comp, "_chosenWord").Get(str => !words.Contains(str) ? $"word is not in list: {words.JoinString(", ")}": null);
+        var chosenWord = GetField<string>(comp, "_chosenWord").Get(str => !words.Contains(str) ? $"word is not in list: {words.JoinString(", ")}" : null);
         var w = words.Select(i => i.Substring(0, 1).ToUpperInvariant() + i.Substring(1).ToLowerInvariant()).ToArray();
         var cw = chosenWord.Substring(0, 1).ToUpperInvariant() + chosenWord.Substring(1).ToLowerInvariant();
         addQuestion(module, Question.TapCodeReceivedWord, correctAnswers: new[] { cw }, preferredWrongAnswers: w);
@@ -29,7 +29,7 @@ public partial class SouvenirModule
         var fldSolved = GetField<bool>(comp, "solved");
 
         var colors = GetStaticField<string[]>(comp.GetType(), "colorNames").Get(ar => ar.Length != 4 ? "expected length 4" : null).ToArray();
-        var sequence = GetArrayField<int>(comp, "flashing").Get(expectedLength: 5, validator: val => val < 0 || val >= colors.Length ? $"expected range 0–{colors.Length - 1}": null);
+        var sequence = GetArrayField<int>(comp, "flashing").Get(expectedLength: 5, validator: val => val < 0 || val >= colors.Length ? $"expected range 0–{colors.Length - 1}" : null);
 
         for (int i = 0; i < colors.Length; i++)
             colors[i] = char.ToUpperInvariant(colors[i][0]) + colors[i].Substring(1);
@@ -147,7 +147,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_Tenpins);
 
         var splitNames = new[] { "Goal Posts", "Cincinnati", "Woolworth Store", "Lily", "3-7 Split", "Cocked Hat", "4-7-10 Split", "Big Four", "Greek Church", "Big Five", "Big Six", "HOW" };
-        var splits = GetArrayField<int>(comp, "splits").Get(validator: ar => ar.Length != 3 ? "expected length 3" : ar.Any(v => v < 0 || v >= splitNames.Length) ? $"out of range for splitNames (0–{splitNames.Length - 1})": null);
+        var splits = GetArrayField<int>(comp, "splits").Get(validator: ar => ar.Length != 3 ? "expected length 3" : ar.Any(v => v < 0 || v >= splitNames.Length) ? $"out of range for splitNames (0–{splitNames.Length - 1})" : null);
         var colorNames = new[] { "red", "green", "blue" };
         var qs = new List<QandA>();
         for (int i = 0; i < 3; i++)
@@ -198,7 +198,7 @@ public partial class SouvenirModule
 
         var validWires = new[] { "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", "White", "Black", "Any" };
         var firstCorrectWire = GetIntField(comp, "firstWireToCut").Get(min: 1, max: 7);
-        var secondCorrectWire = GetField<string>(comp, "secondWireToCut").Get(str => !validWires.Contains(str) ? $"invalid color; expected: {validWires.JoinString(", ")}": null);
+        var secondCorrectWire = GetField<string>(comp, "secondWireToCut").Get(str => !validWires.Contains(str) ? $"invalid color; expected: {validWires.JoinString(", ")}" : null);
         var displayNumber = GetField<string>(comp, "screenNumber").Get();
 
         // List of valid display numbers for validation. 69 happens in the case of "Any" while 11 is expected to be the longest.
@@ -485,8 +485,8 @@ public partial class SouvenirModule
         var preferredWrongAnswers = new[] { zerothNumCode.ToString("00"), firstResponse.ToString("00"), secondResponse.ToString("00"), thirdResponse.ToString("00") };
 
         addQuestions(module,
-            makeQuestion(Question.TwoBitsResponse, _TwoBits, formatArgs: new[] { "first" }, correctAnswers: new[] { firstResponse.ToString("00") }, preferredWrongAnswers: preferredWrongAnswers),
-            makeQuestion(Question.TwoBitsResponse, _TwoBits, formatArgs: new[] { "second" }, correctAnswers: new[] { secondResponse.ToString("00") }, preferredWrongAnswers: preferredWrongAnswers),
-            makeQuestion(Question.TwoBitsResponse, _TwoBits, formatArgs: new[] { "third" }, correctAnswers: new[] { thirdResponse.ToString("00") }, preferredWrongAnswers: preferredWrongAnswers));
+            makeQuestion(Question.TwoBitsResponse, _TwoBits, formatArgs: new[] { ordinal(1) }, correctAnswers: new[] { firstResponse.ToString("00") }, preferredWrongAnswers: preferredWrongAnswers),
+            makeQuestion(Question.TwoBitsResponse, _TwoBits, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { secondResponse.ToString("00") }, preferredWrongAnswers: preferredWrongAnswers),
+            makeQuestion(Question.TwoBitsResponse, _TwoBits, formatArgs: new[] { ordinal(3) }, correctAnswers: new[] { thirdResponse.ToString("00") }, preferredWrongAnswers: preferredWrongAnswers));
     }
 }
