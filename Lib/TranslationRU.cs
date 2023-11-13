@@ -6701,6 +6701,20 @@ namespace Souvenir
                     ["added in the second stage"] = "2",
                     ["added in the third stage"] = "3",
                 },
+                Answers = new Dictionary<string, string>
+                {
+                    ["KKSS"] = "ББММ",
+                    ["KKSH"] = "ББМХ",
+                    ["KSSH"] = "БММХ",
+                    ["KHSS"] = "БХММ",
+                    ["KHSH"] = "БХМХ",
+                    ["KHSO"] = "БХМО",
+                    ["KHOH"] = "БХОХ",
+                    ["KOSH"] = "БОМХ",
+                    ["KOSO"] = "БОМО",
+                    ["SKSK"] = "МБМБ",
+                    ["SHHS"] = "МХХМ",
+                },
             },
 
             // Simon Says
