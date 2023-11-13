@@ -17,7 +17,8 @@ namespace Souvenir
             // What was the first word shown in 1000 Words?
             [Question._1000WordsWords] = new TranslationInfo
             {
-                QuestionText = "What was the {1} word shown in {0}?",
+                QuestionText = "Какое было {1}-е показанное слово в {0}?",
+                ModuleName = "1000 слов",
             },
 
             // 100 Levels of Defusal
@@ -25,7 +26,8 @@ namespace Souvenir
             // What was the first displayed letter in 100 Levels of Defusal?
             [Question._100LevelsOfDefusalLetters] = new TranslationInfo
             {
-                QuestionText = "What was the {1} displayed letter in {0}?",
+                QuestionText = "Какая была {1}-я показанная буква в {0}?",
+                ModuleName = "100 уровней обезвреживания",
             },
 
             // 1D Chess
@@ -1085,7 +1087,7 @@ namespace Souvenir
             [Question.BulbButtonPresses] = new TranslationInfo
             {
                 QuestionText = "Какие правильные кнопки были нажаты в {0}?",
-				ModuleName = "Лампочке",
+                ModuleName = "Лампочке",
             },
 
             // Burger Alarm
@@ -2075,14 +2077,15 @@ namespace Souvenir
             // What was Blue’s remembered position in Discolored Squares?
             [Question.DiscoloredSquaresRememberedPositions] = new TranslationInfo
             {
-                QuestionText = "What was {1}’s remembered position in {0}?",
+                QuestionText = "В какой позиции находился {1} начальный цвет в {0}?",
+                ModuleName = "Бесцветных квадратах",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["Blue"] = "Blue",
-                    ["Red"] = "Red",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Magenta"] = "Magenta",
+                    ["Blue"] = "синий",
+                    ["Red"] = "красный",
+                    ["Yellow"] = "жёлтый",
+                    ["Green"] = "зелёный",
+                    ["Magenta"] = "розовый",
                 },
             },
 
@@ -2951,7 +2954,8 @@ namespace Souvenir
             // Which of these was a color combination that occurred in Game of Life Cruel?
             [Question.GameOfLifeCruelColors] = new TranslationInfo
             {
-                QuestionText = "Which of these was a color combination that occurred in {0}?",
+                QuestionText = "Какие комбинации цветов присутствовали в {0}?",
+                ModuleName = "Жестокой игре Жизнь",
             },
 
             // The Gamepad
@@ -2984,7 +2988,8 @@ namespace Souvenir
             // What was the cycling bit sequence in The Glitched Button?
             [Question.GlitchedButtonSequence] = new TranslationInfo
             {
-                QuestionText = "What was the cycling bit sequence in {0}?",
+                QuestionText = "Какая последовательность битов повторялась в {0}?",
+                ModuleName = "Глитч-кнопке",
             },
 
             // The Gray Button
@@ -2992,11 +2997,12 @@ namespace Souvenir
             // What was the horizontal coordinate on the display in The Gray Button?
             [Question.GrayButtonCoordinates] = new TranslationInfo
             {
-                QuestionText = "What was the {1} coordinate on the display in {0}?",
+                QuestionText = "Какие были {1} координаты на экране в {0}?",
+                ModuleName = "Серой кнопке",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["horizontal"] = "horizontal",
-                    ["vertical"] = "vertical",
+                    ["horizontal"] = "горизонтальные",
+                    ["vertical"] = "вертикальные",
                 },
             },
 
@@ -3043,7 +3049,8 @@ namespace Souvenir
             // What was the last number on the display on Green Arrows?
             [Question.GreenArrowsLastScreen] = new TranslationInfo
             {
-                QuestionText = "What was the last number on the display on {0}?",
+                QuestionText = "Какое последнее число было показано на экране в {0}?",
+                ModuleName = "Зелёных стрелках",
             },
 
             // The Green Button
@@ -3051,7 +3058,8 @@ namespace Souvenir
             // What was the word submitted in The Green Button?
             [Question.GreenButtonWord] = new TranslationInfo
             {
-                QuestionText = "What was the word submitted in {0}?",
+                QuestionText = "Какое слово было введено в {0}?",
+                ModuleName = "Зелёной кнопке",
             },
 
             // Green Cipher
@@ -3842,7 +3850,7 @@ namespace Souvenir
             [Question.LightBulbsColors] = new TranslationInfo
             {
                 QuestionText = "Какой был цвет {1} лампочки в {0}?",
-				ModuleName = "Световых лампочках",
+                ModuleName = "Световых лампочках",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["left"] = "левой",
@@ -4180,7 +4188,7 @@ namespace Souvenir
             [Question.Maze3StartingFace] = new TranslationInfo
             {
                 QuestionText = "Какой цвет был у начальной стороны в {0}?",
-				ModuleName = "Лабиринте³",
+                ModuleName = "Лабиринте³",
                 Answers = new Dictionary<string, string>
                 {
                     ["Red"] = "Красный",
@@ -4975,7 +4983,7 @@ namespace Souvenir
             // Which symbol was on the button that flashed first in the final sequence in Not Keypad?
             [Question.NotKeypadSymbol] = new TranslationInfo
             {
-                QuestionText = "Какой символ был на кнопке, которая горела {1} на последнем этапе в {0}?",
+                QuestionText = "Какой символ был на кнопке, которая горела {1}-й на последнем этапе в {0}?",
                 ModuleName = "НЕ-клавиатуре",
             },
 
@@ -4984,7 +4992,8 @@ namespace Souvenir
             // What was the starting distance in Not Maze?
             [Question.NotMazeStartingDistance] = new TranslationInfo
             {
-                QuestionText = "What was the starting distance in {0}?",
+                QuestionText = "Какая была начальная дистанция в {0}?",
+                ModuleName = "НЕ-лабиринте",
             },
 
             // Not Morse Code
@@ -4992,7 +5001,8 @@ namespace Souvenir
             // What was the first correct word you submitted in Not Morse Code?
             [Question.NotMorseCodeWord] = new TranslationInfo
             {
-                QuestionText = "What was the {1} correct word you submitted in {0}?",
+                QuestionText = "Какое было {1}-е верное слово, которое вы отправили в {0}?",
+                ModuleName = "НЕ-азбуке Морзе",
             },
 
             // Not Morsematics
@@ -5219,24 +5229,25 @@ namespace Souvenir
             // What colors did the light glow in Not the Button?
             [Question.NotTheButtonLightColor] = new TranslationInfo
             {
-                QuestionText = "What colors did the light glow in {0}?",
+                QuestionText = "Какими цветами горела цветная полоска в {0}?",
+                ModuleName = "НЕ-кнопке",
                 Answers = new Dictionary<string, string>
                 {
-                    ["white"] = "white",
-                    ["red"] = "red",
-                    ["yellow"] = "yellow",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
-                    ["white/red"] = "white/red",
-                    ["white/yellow"] = "white/yellow",
-                    ["white/green"] = "white/green",
-                    ["white/blue"] = "white/blue",
-                    ["red/yellow"] = "red/yellow",
-                    ["red/green"] = "red/green",
-                    ["red/blue"] = "red/blue",
-                    ["yellow/green"] = "yellow/green",
-                    ["yellow/blue"] = "yellow/blue",
-                    ["green/blue"] = "green/blue",
+                    ["white"] = "Белым",
+                    ["red"] = "Красным",
+                    ["yellow"] = "Жёлтым",
+                    ["green"] = "Зелёным",
+                    ["blue"] = "Синим",
+                    ["white/red"] = "Красно-белым",
+                    ["white/yellow"] = "Жёлто-белым",
+                    ["white/green"] = "Зелёно-белым",
+                    ["white/blue"] = "Сине-белым",
+                    ["red/yellow"] = "Красно-жёлтым",
+                    ["red/green"] = "Красно-зелёным",
+                    ["red/blue"] = "Красно-синим",
+                    ["yellow/green"] = "Жёлто-зелёным",
+                    ["yellow/blue"] = "Жёлто-синим",
+                    ["green/blue"] = "Сине-зелёным",
                 },
             },
 
@@ -5995,7 +6006,8 @@ namespace Souvenir
             // What was the target word on Purple Arrows?
             [Question.PurpleArrowsFinish] = new TranslationInfo
             {
-                QuestionText = "What was the target word on {0}?",
+                QuestionText = "Какое было целевое слово в {0}?",
+                ModuleName = "Фиолетовых стрелках",
             },
 
             // The Purple Button
@@ -6003,7 +6015,8 @@ namespace Souvenir
             // What was the first number in the cyclic sequence on The Purple Button?
             [Question.PurpleButtonNumbers] = new TranslationInfo
             {
-                QuestionText = "What was the {1} number in the cyclic sequence on {0}?",
+                QuestionText = "Какое {1}-е число было в зацикленной последовательности в {0}?",
+                ModuleName = "Фиолетовой кнопке",
             },
 
             // Puzzle Identification
@@ -6180,7 +6193,8 @@ namespace Souvenir
             // What was the starting number in Red Arrows?
             [Question.RedArrowsStartNumber] = new TranslationInfo
             {
-                QuestionText = "What was the starting number in {0}?",
+                QuestionText = "Какое было начальное число в {0}?",
+                ModuleName = "Красных стрелках",
             },
 
             // Red Cipher
@@ -7278,7 +7292,7 @@ namespace Souvenir
             [Question.SortingLastSwap] = new TranslationInfo
             {
                 QuestionText = "Какие позиции участвовали в последней замене чисел в {0}?",
-				ModuleName = "Сортировке",
+                ModuleName = "Сортировке",
             },
 
             // Souvenir
@@ -7592,7 +7606,7 @@ namespace Souvenir
             [Question.TapCodeReceivedWord] = new TranslationInfo
             {
                 QuestionText = "Какое слово было передано в {0}?",
-				ModuleName = "Нажимном коде",
+                ModuleName = "Нажимном коде",
             },
 
             // Tasha Squeals
@@ -7945,7 +7959,8 @@ namespace Souvenir
             // What was the first received instruction in Unfair Cipher?
             [Question.UnfairCipherInstructions] = new TranslationInfo
             {
-                QuestionText = "What was the {1} received instruction in {0}?",
+                QuestionText = "Какая {1}-я инструкция была зашифрована в {0}?",
+                ModuleName = "Нечестном шифре",
             },
 
             // Unfair’s Revenge
@@ -7953,7 +7968,8 @@ namespace Souvenir
             // What was the first decrypted instruction in Unfair’s Revenge?
             [Question.UnfairsRevengeInstructions] = new TranslationInfo
             {
-                QuestionText = "What was the {1} decrypted instruction in {0}?",
+                QuestionText = "Какая {1}-я инструкция была зашифрована в {0}?",
+                ModuleName = "Нечестной месте шифра",
             },
 
             // Unicode
@@ -7969,7 +7985,7 @@ namespace Souvenir
             // What was the initial card in UNO!?
             [Question.UnoInitialCard] = new TranslationInfo
             {
-                QuestionText = "What was the initial card in {0}?",
+                QuestionText = "Какая была начальная карта в {0}?",
             },
 
             // Unown Cipher
@@ -8001,11 +8017,11 @@ namespace Souvenir
             // Which word was shown in V?
             [Question.VWords] = new TranslationInfo
             {
-                QuestionText = "Which word {1} shown in {0}?",
+                QuestionText = "Какое слово {1} показано в {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["was"] = "was",
-                    ["was not"] = "was not",
+                    ["was"] = "было",
+                    ["was not"] = "не было",
                 },
             },
 
@@ -8014,7 +8030,8 @@ namespace Souvenir
             // What was the initial state of Valves?
             [Question.ValvesInitialState] = new TranslationInfo
             {
-                QuestionText = "What was the initial state of {0}?",
+                QuestionText = "Какое было начальное состояние клапанов в {0}?",
+                ModuleName = "Клапанах",
             },
 
             // Varicolored Squares
@@ -8022,15 +8039,16 @@ namespace Souvenir
             // What was the initially pressed color on Varicolored Squares?
             [Question.VaricoloredSquaresInitialColor] = new TranslationInfo
             {
-                QuestionText = "What was the initially pressed color on {0}?",
+                QuestionText = "Какой был первый нажатый цвет в {0}?",
+                ModuleName = "Разноцветных квадратах",
                 Answers = new Dictionary<string, string>
                 {
-                    ["White"] = "White",
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
-                    ["Yellow"] = "Yellow",
-                    ["Magenta"] = "Magenta",
+                    ["White"] = "Белый",
+                    ["Red"] = "Красный",
+                    ["Blue"] = "Синий",
+                    ["Green"] = "Зелёный",
+                    ["Yellow"] = "Жёлтый",
+                    ["Magenta"] = "Розовый",
                 },
             },
 
@@ -8281,7 +8299,8 @@ namespace Souvenir
             // What word was transmitted in the first stage on Who’s on Morse?
             [Question.WhosOnMorseTransmitDisplay] = new TranslationInfo
             {
-                QuestionText = "What word was transmitted in the {1} stage on {0}?",
+                QuestionText = "Какое слово было передано на {1}-м этапе в {0}?",
+                ModuleName = "Меня зовут Морзе",
             },
 
             // The Wire
@@ -8452,7 +8471,8 @@ namespace Souvenir
             // What was the starting row letter in Yellow Arrows?
             [Question.YellowArrowsStartingRow] = new TranslationInfo
             {
-                QuestionText = "What was the starting row letter in {0}?",
+                QuestionText = "Какая была буква у начальной строки в {0}?",
+                ModuleName = "Жёлтых стрелках",
             },
 
             // The Yellow Button
@@ -8529,7 +8549,8 @@ namespace Souvenir
             // What was the first word in Zoni?
             [Question.ZoniWords] = new TranslationInfo
             {
-                QuestionText = "What was the {1} decrypted word in {0}?",
+                QuestionText = "Какое было {1}-е расшифрованное слово в {0}?",
+                ModuleName = "Zoni",
             },
 
         };
@@ -8546,14 +8567,13 @@ namespace Souvenir
             "Давай, обезвредь мою бомбу.", // “Go ahead, make my day.” (Sudden Impact / Dirty Harry series)
             "Да пребудет с тобой бомба.",    // “May the Force be with you.” (Star Wars IV: A New Hope)
             "Я люблю запах взрывов по утрам.",   // “I love the smell of napalm in the morning.” (Apocalypse Now)
-            "Взорваться — значит никогда не просить прощения.",   // “Love means never having to say you’re sorry.” (Love Story)
-            "То, из чего сделаны бомбы.",    // “The Stuff That Dreams Are Made Of” (“Coming Around Again” album by Carly Simon)
+            "Взорваться – значит никогда не просить прощения.",   // “Love means never having to say you’re sorry.” (Love Story)
             "Алло? Да, я сейчас обезвреживаю бомбу.",    // “E.T. phone home.” (E.T. the Extra-Terrestrial)
             "Бомб. Джеймс Бомб.",    // “Bond. James Bond.” (Dr. No / James Bond series)
             "Ты не справишься с бомбой!",   // “You can’t handle the truth!” (A Few Good Men)
             "Взорвать всех подозреваемых.",  // “Round up the usual suspects.” (Casablanca)
             "Тебе понадобится бомба побольше.", // “You’re gonna need a bigger boat.” (Jaws)
-            "Бомбы — это как коробка шоколадных конфет. Никогда не знаешь, что попадётся.",    // “My mom always said life was like a box of chocolates. You never know what you’re gonna get.” (Forrest Gump)
+            "Бомбы – это как коробка шоколадных конфет. Никогда не знаешь, что попадётся.",    // “My mom always said life was like a box of chocolates. You never know what you’re gonna get.” (Forrest Gump)
             "Хьюстон, у нас бомба.",   // “Houston, we have a problem.” (Apollo 13)
             "Элементарно, мой дорогой эксперт.",  // “Elementary, my dear Watson.” (Sherlock Holmes) (misquote)
             "Забудь об этом, Джейк, это КТАНЕ.",     // “Forget it, Jake, it’s Chinatown.” (Chinatown)
@@ -8561,12 +8581,12 @@ namespace Souvenir
             "Бомба. Взорванная, а не обезвреженная.",   // “A martini. Shaken, not stirred.” (Diamonds Are Forever (novel) / James Bond)
             "Я король бомбы!",    // “I’m the king of the world!” (Titanic)
             "Взорви меня, Скотти.",  // “Beam me up, Scotty!” (Star Trek misquote)
-            "Ябба-дабба-бум!",    // “Yabba dabba doo!” (Flintstones)
+            "Ябба- дабба- бум!",    // “Yabba dabba doo!” (Flintstones)
             "Эта бомба самоуничтожится через пять секунд.",    // “This tape will self-destruct in five seconds.” (Mission: Impossible)
             "Обезвреживание бесполезно.",  // “Resistance is futile.” (Star Trek: The Next Generation)
             "Это твой окончательный ответ?",   // direct quote (Who Wants to be a Millionaire?)
-            "Лучший друг бомбы — это её сапёр.", // “A man’s best friend is his dog.” (attorney George Graham Vest, 1870 Warrensburg)
-            "Держи своих экспертов близко, но свою бомбу — ещё ближе.",   // “Keep your friends close and your enemies closer.” (The Prince / Machiavelli)
+            "Лучший друг бомбы – это её сапёр.", // “A man’s best friend is his dog.” (attorney George Graham Vest, 1870 Warrensburg)
+            "Держи своих экспертов близко, но свою бомбу – ещё ближе.",   // “Keep your friends close and your enemies closer.” (The Prince / Machiavelli)
             "Пристегните ремни безопасности. Это будет взрывная ночь.",   // “Fasten your seat belts, it’s going to be a bumpy night.” (All About Eve)
             "Покажи мне модули!", // “Show me the money!” (Jerry Maguire)
             "У нас всегда будут батарейки.", // “We’ll always have Paris.” (Casablanca)
@@ -8577,7 +8597,6 @@ namespace Souvenir
             "Это не обезвреживание. Это взрыв... со стилем.",    // “This isn’t flying. This is falling... with style.” (Toy Story)
             "Не могли бы Вы описать модуль, сэр?",  // “Could you describe the ruckus, sir?” (The Breakfast Club)
             "Вам нужны виджеты? У меня есть двадцать.",  // “You want thingamabobs? I got twenty.” (The Little Mermaid)
-            "Нам не нужны вонючие виджеты.",   // “We don’t need no stinking badges!” (The Treasure of the Sierra Madre)
             "Скажи мне корпус бомбы ещё раз, чёрт возьми.",  // “Say what one more goddamn time.” (Pulp Fiction)
             "Как вам нравятся эти модули?",    // “How do you like them apples?” (Good Will Hunting)
             "Представляем: Двухъярусную... Бомбу!",   // “Introducing: The Double... Decker... Couch!” (The LEGO Movie)
@@ -8594,20 +8613,18 @@ namespace Souvenir
             "Мы обезвреживаем бомбы.",  // “We rob banks.” (Bonnie and Clyde)
             "Кто-то подложил нам бомбу.",  // direct quote (Zero Wing)
             "Люк, я твой эксперт.", // “Luke, I am your father.” (Star Wars V: The Empire Strikes Back) (misquote)
-            "Всем известно, что лучший способ обучения — это обучение под сильным давлением, угрожающим жизни.", // direct quote (Spider-Man: Into the Spider-Verse)
+            "Всем известно, что лучший способ обучения – это обучение под сильным давлением, угрожающим жизни.", // direct quote (Spider-Man: Into the Spider-Verse)
             "Она должна быть примерно на 20% более взрывоопасной.", // “It needs to be about 20 percent cooler.” (MLP:FiM, Suited for Success)
-            "Я — бомба. Какое у тебя оправдание?", // “I am a child. What’s your excuse?” (Steven Universe, Change your Mind)
             "То же самое, что мы делаем каждый вечер, эксперт. Попробуем обезвредить бомбу!", // “The same thing we do every night, Pinky. Try to take over the world!” (Pinky and the Brain)
             "Кто-нибудь заказывал жареного сапёра?", // “Anybody order fried sauerkraut?” (Once Upon a Time in Hollywood)
             "У меня есть несколько сапёров, которых нужно разнести в пух и прах!", // “I’ve got some children I need to make into corpses!” (Gravity Falls, Weirdmageddon 3: Take Back The Falls)
             "Я представляю себе такой взрыв, что это больше похоже на воспоминания.", // “I imagine death so much it feels more like a memory.” (Hamilton)
-            "Я — неизбежность.", // direct quote (Avengers: Endgame)
+            "Я – неизбежность.", // direct quote (Avengers: Endgame)
             "Бойтесь, бегите! Бомбы все равно взорвутся.", // “Dread it, run from it, destiny still arrives.” (Avengers: Infinity War)
-            "Со временем вы узнаете, каково это — проигрывать. Так отчаянно чувствовать, что ты прав, но все равно получать ошибки.", // “In time, you will know what it’s like to lose. To feel so desperately that you’re right, yet to fail all the same.” (Avengers: Infinity War)
-            "Сапёр, я пришел поторговаться.", // “Dormammu, I’ve come to bargain.” (Doctor Strange)
+            "Со временем вы узнаете, каково это – проигрывать. Так отчаянно чувствовать, что ты прав, но все равно получать ошибки.", // “In time, you will know what it’s like to lose. To feel so desperately that you’re right, yet to fail all the same.” (Avengers: Infinity War)
             "Я могу заниматься этим целый день.", // direct quote (Captain America: Civil War)
             "Там... есть... ЧЕТЫРЕ! БОМБЫ!!!", // “There... are... FOUR! LIGHTS!!!” (Star Trek TNG, Chain of Command)
-            "Это прекрасная вещь — детонация бомб.", // “It’s a beautiful thing, the destruction of words.” (1984)
+            "Это прекрасная вещь – детонация бомб.", // “It’s a beautiful thing, the destruction of words.” (1984)
             "Я есть сапёр.", // “Ich bin ein Berliner”, John F. Kennedy, 1963
             "Не спрашивай двойную бомбу, как решать бомбу-Центурион!", // Ask not the sparrow how the eagle soars! (Kill la Kill)
             "Кто-то считает себя слишком умным для меня. Они все так думают поначалу." // Someone thinks they’re too clever for us. They all think that at first. (Invincible)
