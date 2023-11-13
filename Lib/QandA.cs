@@ -9,17 +9,19 @@ namespace Souvenir
     {
         public const string Ordinal = "\ufffdordinal";
 
-        private readonly Question _question;
+        private readonly QuestionBase _question;
         private readonly AnswerSet _answerSet;
 
-        public QandA(string module, Question question, AnswerSet answerSet, int correctIndex)
+        public QandA(Question q, string module, QuestionBase question, AnswerSet answerSet, int correctIndex)
         {
+            Question = q;
             ModuleNameWithThe = module;
             _question = question;
             _answerSet = answerSet;
             CorrectIndex = correctIndex;
         }
 
+        public Question Question { get; private set; }
         public string ModuleNameWithThe { get; private set; }
         public int CorrectIndex { get; private set; }
         public int NumAnswers => _answerSet.NumAnswers;
@@ -35,17 +37,17 @@ namespace Souvenir
 
         public void BlinkCorrectAnswer(bool on, SouvenirModule souvenir) => _answerSet.BlinkAnswer(on, souvenir, CorrectIndex);
 
-        public abstract class Question
+        public abstract class QuestionBase
         {
             protected string _text;
             public virtual string DebugText => _text;
 
-            protected Question(string question) => _text = question;
+            protected QuestionBase(string question) => _text = question;
 
             public abstract void SetQuestion(SouvenirModule souvenir);
         }
 
-        public sealed class TextQuestion : Question
+        public sealed class TextQuestion : QuestionBase
         {
             private readonly Sprite _questionSprite;
             private readonly float _questionSpriteRotation;
@@ -75,7 +77,7 @@ namespace Souvenir
             }
         }
 
-        public sealed class SpriteQuestion : Question
+        public sealed class SpriteQuestion : QuestionBase
         {
             private readonly Sprite _questionSprite;
 

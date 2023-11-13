@@ -1337,25 +1337,34 @@ public partial class SouvenirModule
         }
 
         // Prefer names of supported modules on the bomb other than Souvenir.
-        IEnumerable<string> modules = _supportedModuleNames.Except(new[] { "Souvenir" }).Select(m => m.Replace("'", "’"));
-        if (_supportedModuleNames.Count < 5)
-        {
-            // If there are less than 4 eligible modules, fill the remaining spaces with random other modules.
-            var allModules = _attributes.Where(x => x.Value != null).Select(x => x.Value.ModuleNameWithThe).Distinct().ToList();
-            modules = modules.Concat(Enumerable.Range(0, 1000).Select(i => allModules[Rnd.Range(0, allModules.Count)]).Except(_supportedModuleNames).Take(5 - _supportedModuleNames.Count));
-        }
+        var preferredWrongAnswers = new List<string>();
+        var allAnswers = new List<string>();
+        var modulesOnTheBomb = _supportedModuleNames.Except(new[] { "Souvenir" }).Select(m => m.Replace("'", "’"));
+        foreach (var (q, attr) in _attributes)
+            if (attr != null)
+            {
+                var origModuleName = attr.ModuleNameWithThe.Replace("\u00a0", " ");
+                var translatedModuleName = _translation?.Translations.Get(q)?.ModuleNameWithThe ?? _translation?.Translations.Get(q)?.ModuleName ?? origModuleName;
+                allAnswers.Add(translatedModuleName);
+                if (modulesOnTheBomb.Contains(origModuleName))
+                    preferredWrongAnswers.Add(translatedModuleName);
+            }
+
         while (comp._currentQuestion == null)
             yield return new WaitForSeconds(0.1f);
 
         var firstQuestion = comp._currentQuestion;
-        var firstModule = firstQuestion.ModuleNameWithThe;
+        var firstModule =
+            _translation?.Translations.Get(firstQuestion.Question)?.ModuleNameWithThe ??
+            _translation?.Translations.Get(firstQuestion.Question)?.ModuleName ??
+            firstQuestion.ModuleNameWithThe;
 
         // Wait for the user to solve that question before asking about it
         while (comp._currentQuestion == firstQuestion)
             yield return new WaitForSeconds(0.1f);
 
         _modulesSolved.IncSafe(_Souvenir);
-        addQuestion(module, Question.SouvenirFirstQuestion, correctAnswers: new[] { firstModule }, preferredWrongAnswers: modules.ToArray());
+        addQuestion(module, Question.SouvenirFirstQuestion, correctAnswers: new[] { firstModule }, preferredWrongAnswers: preferredWrongAnswers.ToArray(), allAnswers: allAnswers.ToArray());
     }
 
     private IEnumerable<object> ProcessSpaceTraders(KMBombModule module)

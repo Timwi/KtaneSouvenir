@@ -458,5 +458,12 @@ namespace Souvenir
                 arr[i] = fnc(i);
             return arr;
         }
+
+        /// <summary>Allows the deconstruction of KeyValuePairs into separate variables.</summary>
+        public static void Deconstruct<TKey, TValue>(this KeyValuePair<TKey, TValue> source, out TKey key, out TValue value)
+        {
+            key = source.Key;
+            value = source.Value;
+        }
     }
 }

@@ -370,8 +370,8 @@ public partial class SouvenirModule : MonoBehaviour
         }
         var fmt = new object[attr.ExampleExtraFormatArgumentGroupSize + 1];
         fmt[0] = formatModuleName(
-            _translation?.Translations[q]?.ModuleName ?? attr.ModuleName,
-            _translation?.Translations[q]?.ModuleNameWithThe ?? _translation?.Translations[q]?.ModuleName ?? attr.ModuleNameWithThe,
+            _translation?.Translations.Get(q)?.ModuleName ?? attr.ModuleName,
+            _translation?.Translations.Get(q)?.ModuleNameWithThe ?? _translation?.Translations.Get(q)?.ModuleName ?? attr.ModuleNameWithThe,
             _curExampleOrdinal > 0,
             _curExampleOrdinal);
         for (int i = 0; i < attr.ExampleExtraFormatArgumentGroupSize; i++)
@@ -379,7 +379,7 @@ public partial class SouvenirModule : MonoBehaviour
             var arg = attr.ExampleExtraFormatArguments[_curExampleVariant * attr.ExampleExtraFormatArgumentGroupSize + i];
             fmt[i + 1] = arg == QandA.Ordinal ? ordinal(Rnd.Range(1, 6)) : translateFormatArg(q, arg);
         }
-        QandA.Question question;
+        QandA.QuestionBase question;
         QandA.AnswerSet answerSet;
         try
         {
@@ -423,7 +423,7 @@ public partial class SouvenirModule : MonoBehaviour
                     break;
             }
             disappear();
-            SetQuestion(new QandA(attr.ModuleNameWithThe, question, answerSet, 0));
+            SetQuestion(new QandA(q, attr.ModuleNameWithThe, question, answerSet, 0));
         }
         catch (FormatException e)
         {
@@ -431,9 +431,9 @@ public partial class SouvenirModule : MonoBehaviour
         }
     }
 
-    private string translateQuestion(Question question) => _translation?.Translations.Get(question, null)?.QuestionText ?? _attributes[question].QuestionText;
-    private string translateFormatArg(Question question, string arg) => arg == null ? null : _translation?.Translations.Get(question, null)?.FormatArgs?.Get(arg, arg) ?? arg;
-    private string translateAnswer(Question question, string answ) => answ == null ? null : _translation?.Translations.Get(question, null)?.Answers?.Get(answ, answ) ?? answ;
+    private string translateQuestion(Question question) => _translation?.Translations.Get(question)?.QuestionText ?? _attributes[question].QuestionText;
+    private string translateFormatArg(Question question, string arg) => arg == null ? null : _translation?.Translations.Get(question)?.FormatArgs?.Get(arg, arg) ?? arg;
+    private string translateAnswer(Question question, string answ) => answ == null ? null : _translation?.Translations.Get(question)?.Answers?.Get(answ, answ) ?? answ;
 
     private static SouvenirQuestionAttribute GetQuestionAttribute(FieldInfo field)
     {
@@ -963,7 +963,7 @@ public partial class SouvenirModule : MonoBehaviour
             formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, Enumerable.Range(0, w * h).Select(ix => new Coord(w, h, ix)).ToArray(), AnswerType.Grid);
     }
 
-    private QandA makeQuestion<T>(Question question, string moduleKey, Func<SouvenirQuestionAttribute, string, QandA.Question> questionConstructor,
+    private QandA makeQuestion<T>(Question question, string moduleKey, Func<SouvenirQuestionAttribute, string, QandA.QuestionBase> questionConstructor,
         Func<SouvenirQuestionAttribute, int, T[], QandA.AnswerSet> answerSetConstructor, string formattedModuleName = null, string[] formatArgs = null,
         T[] correctAnswers = null, T[] preferredWrongAnswers = null, T[] allAnswers = null, params AnswerType[] acceptableTypes)
     {
@@ -1064,8 +1064,8 @@ public partial class SouvenirModule : MonoBehaviour
 
         var allFormatArgs = new string[formatArgs != null ? formatArgs.Length + 1 : 1];
         allFormatArgs[0] = formattedModuleName ?? formatModuleName(
-            _translation?.Translations[question]?.ModuleName ?? attr.ModuleName,
-            _translation?.Translations[question]?.ModuleNameWithThe ?? _translation?.Translations[question]?.ModuleName ?? attr.ModuleNameWithThe,
+            _translation?.Translations.Get(question)?.ModuleName ?? attr.ModuleName,
+            _translation?.Translations.Get(question)?.ModuleNameWithThe ?? _translation?.Translations.Get(question)?.ModuleName ?? attr.ModuleNameWithThe,
             _moduleCounts.Get(moduleKey) > 1,
             numSolved);
 
@@ -1075,7 +1075,7 @@ public partial class SouvenirModule : MonoBehaviour
 
         var qQuestion = questionConstructor(attr, string.Format(translateQuestion(question), allFormatArgs));
         var qAnswerSet = answerSetConstructor(attr, answers.Count, answers.ToArray());
-        return new QandA(attr.ModuleNameWithThe, qQuestion, qAnswerSet, correctIndex);
+        return new QandA(question, attr.ModuleNameWithThe, qQuestion, qAnswerSet, correctIndex);
     }
 
     private string formatModuleName(string moduleNameWithoutThe, string moduleNameWithThe, bool addSolveCount, int numSolved) => _translation != null
@@ -1172,14 +1172,14 @@ public partial class SouvenirModule : MonoBehaviour
             for (var i = 0; i < _exampleQuestions.Length; i++)
             {
                 var j = (i + _curExampleQuestion + 1) % _exampleQuestions.Length;
-                if (Regex.IsMatch(_translation?.Translations[_exampleQuestions[j]].ModuleNameWithThe ?? _translation?.Translations[_exampleQuestions[j]].ModuleName ?? _attributes[_exampleQuestions[j]].ModuleNameWithThe, $"^{Regex.Escape(command)}$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+                if (Regex.IsMatch(_translation?.Translations?.Get(_exampleQuestions[j]).ModuleNameWithThe ?? _translation?.Translations.Get(_exampleQuestions[j]).ModuleName ?? _attributes[_exampleQuestions[j]].ModuleNameWithThe, $"^{Regex.Escape(command)}$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
                 {
                     _curExampleQuestion = j;
                     showExampleQuestion();
                     yield break;
                 }
 
-                if (substringMatch == -1 && Regex.IsMatch(_translation?.Translations[_exampleQuestions[j]].ModuleNameWithThe ?? _translation?.Translations[_exampleQuestions[j]].ModuleName ?? _attributes[_exampleQuestions[j]].ModuleNameWithThe, Regex.Escape(command), RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+                if (substringMatch == -1 && Regex.IsMatch(_translation?.Translations.Get(_exampleQuestions[j]).ModuleNameWithThe ?? _translation?.Translations.Get(_exampleQuestions[j]).ModuleName ?? _attributes[_exampleQuestions[j]].ModuleNameWithThe, Regex.Escape(command), RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
                     substringMatch = j;
             }
 
