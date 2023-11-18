@@ -274,6 +274,7 @@ public partial class SouvenirModule
     const string _Mafia = "MafiaModule";
     const string _MagentaCipher = "magentaCipher";
     const string _Mahjong = "MahjongModule";
+    const string _MainPage = "mainpage";
     const string _MandMs = "MandMs";
     const string _MandNs = "MandNs";
     const string _MaritimeFlags = "MaritimeFlagsModule";
@@ -830,6 +831,7 @@ public partial class SouvenirModule
             [_Mafia] = (ProcessMafia, "Mafia", "Timwi"),
             [_MagentaCipher] = (ProcessMagentaCipher, "Magenta Cipher", "Timwi"),
             [_Mahjong] = (ProcessMahjong, "Mahjong", "River"),
+            [_MainPage] = (ProcessMainPage, "Main Page", "ObjectsCountries"),
             [_MandMs] = (ProcessMandMs, "M&Ms", "TasThiluna"),
             [_MandNs] = (ProcessMandNs, "M&Ns", "TasThiluna"),
             [_MaritimeFlags] = (ProcessMaritimeFlags, "Maritime Flags", "Timwi"),

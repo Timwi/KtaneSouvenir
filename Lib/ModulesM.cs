@@ -99,6 +99,54 @@ public partial class SouvenirModule
             makeQuestion(Question.MahjongMatches, _Mahjong, formatArgs: new[] { "first" }, correctAnswers: matchedTileSprites.Take(2).ToArray(), preferredWrongAnswers: tileSprites),
             makeQuestion(Question.MahjongMatches, _Mahjong, formatArgs: new[] { "second" }, correctAnswers: matchedTileSprites.Skip(2).Take(2).ToArray(), preferredWrongAnswers: tileSprites));
     }
+    
+    private IEnumerable<object> ProcessMainPage(KMBombModule module)
+    {
+        var comp = GetComponent(module, "_mainpagescript");
+        var fldSolved = GetProperty<bool>(GetProperty<object>(comp, "Status", isPublic: true).Get(), "IsSolved", isPublic: true);
+
+        //Homestar and the background
+        var hsbg = GetField<object>(comp, "HSBG", isPublic: true).Get();
+        var hsnum = GetField<int>(hsbg, "HSnumber").Get()+1;
+        var bgnum = GetField<int>(hsbg, "BGnumber").Get()+1;
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_MainPage);
+
+        //The buttons' effects
+        var anims = GetArrayField<KMSelectable>(comp, "menuButtons", isPublic: true).Get(expectedLength: 6);
+        var animComps = anims.Select(b => b.GetComponent("_mpAnims")).ToArray();
+        var animNums = new int[6];
+        for(int i = 0; i < 6; i++)
+            animNums[i] = GetField<int>(animComps[i], "animNum").Get()+1;
+
+        //The color that the bubble did not show
+        var bubblecolornotshown = GetField<string>(comp, "colorNotPresent").Get();
+        bubblecolornotshown = titleCase(bubblecolornotshown);
+
+        //The bubble's messages
+        var bubblefirstmessages = GetArrayField<string>(comp, "chosenFirstMessages").Get();
+        var bubblemessages = GetField<string[,]>(comp, "messages").Get();
+        var bubblemessageindex1 = GetField<int>(comp, "message1").Get();
+        var bubblemessageindex2 = GetField<int>(comp, "message2").Get();
+        var bubblemessageindex3 = GetField<int>(comp, "message3").Get();
+        var bubblemessage1 = bubblefirstmessages[bubblemessageindex1];
+        var bubblemessage2 = bubblemessages[bubblemessageindex2 % 5, bubblemessageindex2 / 5];
+        var bubblemessage3 = bubblemessages[bubblemessageindex3 % 5, bubblemessageindex3 / 5];
+        addQuestions(module,
+            makeQuestion(Question.MainPageHomestarBackgroundOrigin, _MainPage, formatArgs: new[] { "Homestar" }, correctAnswers: new[] { hsnum.ToString() }),
+            makeQuestion(Question.MainPageHomestarBackgroundOrigin, _MainPage, formatArgs: new[] { "the background" }, correctAnswers: new[] { bgnum.ToString() }),
+            makeQuestion(Question.MainPageButtonEffectOrigin, _MainPage, formatArgs: new[] { "Toons" }, correctAnswers: new[] { animNums[0].ToString() }),
+            makeQuestion(Question.MainPageButtonEffectOrigin, _MainPage, formatArgs: new[] { "Games" }, correctAnswers: new[] { animNums[1].ToString() }),
+            makeQuestion(Question.MainPageButtonEffectOrigin, _MainPage, formatArgs: new[] { "Characters" }, correctAnswers: new[] { animNums[2].ToString() }),
+            makeQuestion(Question.MainPageButtonEffectOrigin, _MainPage, formatArgs: new[] { "Downloads" }, correctAnswers: new[] { animNums[3].ToString() }),
+            makeQuestion(Question.MainPageButtonEffectOrigin, _MainPage, formatArgs: new[] { "Store" }, correctAnswers: new[] { animNums[4].ToString() }),
+            makeQuestion(Question.MainPageButtonEffectOrigin, _MainPage, formatArgs: new[] { "Email" }, correctAnswers: new[] { animNums[5].ToString() }),
+            makeQuestion(Question.MainPageBubbleColors, _MainPage, correctAnswers: new[] { bubblecolornotshown }),
+            makeQuestion(Question.MainPageBubbleMessages, _MainPage, formatArgs: new[] { "display" }, correctAnswers: new[] { bubblemessage1, bubblemessage2, bubblemessage3 }),
+            makeQuestion(Question.MainPageBubbleMessages, _MainPage, formatArgs: new[] { "not display" }, correctAnswers: GetAnswers(Question.MainPageBubbleMessages).Except(new[] { bubblemessage1, bubblemessage2, bubblemessage3 }).ToArray()));
+    }
 
     private IEnumerable<object> ProcessMandMs(KMBombModule module)
     {
