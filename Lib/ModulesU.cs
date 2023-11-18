@@ -69,8 +69,8 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(_UncoloredSquares);
         addQuestions(module,
-            makeQuestion(Question.UncoloredSquaresFirstStage, _UncoloredSquares, formatArgs: new[] { "first" }, correctAnswers: new[] { GetField<object>(comp, "_firstStageColor1").Get().ToString() }),
-            makeQuestion(Question.UncoloredSquaresFirstStage, _UncoloredSquares, formatArgs: new[] { "second" }, correctAnswers: new[] { GetField<object>(comp, "_firstStageColor2").Get().ToString() }));
+            makeQuestion(Question.UncoloredSquaresFirstStage, _UncoloredSquares, formatArgs: new[] { ordinal(1) }, correctAnswers: new[] { GetField<object>(comp, "_firstStageColor1").Get().ToString() }),
+            makeQuestion(Question.UncoloredSquaresFirstStage, _UncoloredSquares, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { GetField<object>(comp, "_firstStageColor2").Get().ToString() }));
     }
 
     private IEnumerable<object> ProcessUncoloredSwitches(KMBombModule module)
