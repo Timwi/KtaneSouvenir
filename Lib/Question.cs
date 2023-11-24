@@ -1404,19 +1404,19 @@
             ExampleExtraFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleExtraFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { true, false })]
         MagentaCipherScreen,
 
+        [SouvenirQuestion("Which color did the bubble not display in {0}?", "Main Page", TwoColumns4Answers, "Blue", "Green", "Red", "Yellow")]
+        MainPageBubbleColors,
+        [SouvenirQuestion("Which main page did the {1} button's effect come from in {0}?", "Main Page", ThreeColumns6Answers,
+            ExampleExtraFormatArguments = new[] { "toons", "games", "characters", "downloads", "store", "email" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1, 26)]
+        MainPageButtonEffectOrigin,
+        [SouvenirQuestion("Which of the following messages did the bubble {1} in {0}?", "Main Page", OneColumn4Answers, "play a game", "latest toon", "latest merch", "new strong bad email", "new sbemail a comin", "email soon", "new toon soon", "new cartoon!", "hey, a new toon!!", "more biz cas fri", "biz cas fri", "new biz cas fri!", "short shorts!", "new short shortly", "new short!",
+            ExampleExtraFormatArguments = new[] { "display", "not display" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        MainPageBubbleMessages,
         [SouvenirQuestion("Which main page did {1} come from in {0}?", "Main Page", ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { "Homestar", "the background" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 27)]
         MainPageHomestarBackgroundOrigin,
-        [SouvenirQuestion("Which main page did the {1} button's effect come from in {0}?", "Main Page", ThreeColumns6Answers,
-            ExampleExtraFormatArguments = new[] { "Toons", "Games", "Characters", "Downloads", "Store", "Email" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        [AnswerGenerator.Integers(1, 26)]
-        MainPageButtonEffectOrigin,
-        [SouvenirQuestion("Which color did the bubble not display in {0}?", "Main Page", TwoColumns4Answers, "Blue", "Green", "Red", "Yellow")]
-        MainPageBubbleColors,
-        [SouvenirQuestion("Which of the following messages did the bubble {1} in {0}?", "Main Page", OneColumn4Answers, "play a game", "latest toon", "latest merch", "new strong bad email", "new sbemail a comin", "email soon", "new toon soon", "new cartoon!", "hey, a new toon!!", "more biz cas fri", "biz cas fri", "new biz cas fri!", "short shorts!", "new short shortly", "new short!",
-            ExampleExtraFormatArguments = new[] { "display", "not display" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        MainPageBubbleMessages,
 
         [SouvenirQuestion("What color was the text on the {1} button in {0}?", "M&Ms", ThreeColumns6Answers, "red", "green", "orange", "blue", "yellow", "brown", TranslateAnswers = true,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]

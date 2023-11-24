@@ -173,7 +173,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 ## Others
 
     MODULE                   │  IMPLEMENTED BY
-    ═════════════════════════╪═════════════════
+    ═════════════════════════╪══════════════════
     100 Levels of Defusal    │  Espik
     A Letter                 │  Sierra
     Arithmelogic             │  JerryEris
@@ -190,6 +190,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Hyperlink, The           │  Espik
     Inner Connections        │  Brawlboxgaming
     Mahjong                  │  River
+    Main Page                │  ObjectsCountries
     Mega Man 2               │  Goofy
     Melody Sequencer         │  Goofy
     Module Maze              │  River
