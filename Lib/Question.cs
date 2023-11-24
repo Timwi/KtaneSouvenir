@@ -2114,7 +2114,7 @@
         RailwayCargoLoadingFreightTableRules,
 
         [SouvenirQuestion("What was the displayed number in {0}?", "Rainbow Arrows", ThreeColumns6Answers)]
-        [AnswerGenerator.Integers(0, 99)]
+        [AnswerGenerator.Integers(0, 99, "00")]
         RainbowArrowsNumber,
 
         [SouvenirQuestion("What was the color of the {1} LED in {0}?", "Recolored Switches", TwoColumns4Answers, "red", "green", "blue", "cyan", "orange", "purple", "white", TranslateAnswers = true,

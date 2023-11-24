@@ -108,14 +108,14 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessRainbowArrows(KMBombModule module)
     {
-        var comp = GetComponent(module, "ksmRainbowArrows");
+        var comp = GetComponent(module, "RainbowArrows");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_RainbowArrows);
 
-        addQuestion(module, Question.RainbowArrowsNumber, correctAnswers: new[] { GetIntField(comp, "displayedDigits").Get().ToString() });
+        addQuestion(module, Question.RainbowArrowsNumber, correctAnswers: new[] { GetIntField(comp, "displayedDigits").Get(min: 0, max: 99).ToString("00") });
     }
 
     private IEnumerable<object> ProcessRecoloredSwitches(KMBombModule module)

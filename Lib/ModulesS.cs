@@ -1552,7 +1552,7 @@ public partial class SouvenirModule
     private IEnumerable<object> ProcessStellar(KMBombModule module)
     {
         var comp = GetComponent(module, "StellarScript");
-        var propSolved = GetProperty<bool>(comp, "IsSolved", isPublic: true);
+        var propSolved = GetField<bool>(comp, "_isSolved");
 
         while (!propSolved.Get())
             yield return new WaitForSeconds(.1f);
