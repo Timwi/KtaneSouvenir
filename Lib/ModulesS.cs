@@ -51,31 +51,67 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
     
+    private List<List<int>> _sbemailSongsDisplays = new();
     private IEnumerable<object> ProcessSbemailSongs(KMBombModule module)
     {
         var comp = GetComponent(module, "_sbemailsongs");
-        var fldSolved = GetProperty<bool>(GetProperty<object>(comp, "Status", isPublic: true).Get(), "IsSolved", isPublic: true);
-        
-        while (!fldSolved.Get())
+
+        var fldDisplayedSongNumbers = GetListField<int>(comp, "stages", isPublic: true);
+        var activated = false;
+        module.OnActivate += () => { activated = true; };
+        while (!activated)
             yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_SbemailSongs);
-        
-        var totalNonIgnoredSbemailSongs = GetIntField(comp, "totalNonIgnored").Get();
-        
-        if (totalNonIgnoredSbemailSongs == 0)
+        yield return null; // Wait one frame to make sure the Display field has been set.
+
+        var myDisplay = fldDisplayedSongNumbers.Get(minLength: 0, validator: d => d < 1 || d > 209 ? "expected range 1-209" : null);
+        if (_sbemailSongsDisplays.Any() && myDisplay.Count() != _sbemailSongsDisplays[0].Count())
+            throw new AbandonModuleException("The number of stages in each ‘Display’ is inconsistent.");
+        _sbemailSongsDisplays.Add(myDisplay);
+
+        if (myDisplay.Count() == 0)
         {
-            legitimatelyNoQuestion(module, "all of the other modules were ignored by Sbemail Songs.");
+            Debug.Log($"[Souvenir #{_moduleId}] No question for Sbemail Songs because there were no stages.");
+            _legitimatelyNoQuestions.Add(module);
             yield break;
         }
 
-        var stages = GetListField<int>(comp, "stages").Get();
+        while (!_noUnignoredModulesLeft)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SbemailSongs);
+
+        var myIgnoredList = GetArrayField<string>(comp, "ignoredModules").Get();
+        var displayedStageCount = Bomb.GetSolvedModuleNames().Count(x => !myIgnoredList.Contains(x));
+
+        if (_sbemailSongsDisplays.Count != _moduleCounts[_SbemailSongs])
+            throw new AbandonModuleException("The number of displays did not match the number of Sbemail Songs modules.");
+
         var transcriptionsAbridged = GetArrayField<string>(comp, "transcriptionsAbridged").Get(expectedLength: 209);
-        var hexNumbers = new List<string>();
-        
-        for (int i = 1; i < totalNonIgnoredSbemailSongs + 1; i++)
-            hexNumbers.Add(i.ToString("X2"));
-        
-        addQuestions(module, stages.Select((d, ix) => makeQuestion(Question.SbemailSongsDisplayedAtGivenStage, _SbemailSongs, formatArgs: new[] { hexNumbers[ix] }, correctAnswers: new[] { transcriptionsAbridged[d - 1] })));
+
+        if (_moduleCounts[_SbemailSongs] == 1)
+            addQuestions(module, myDisplay.Take(displayedStageCount).Select((digit, ix) => makeQuestion(Question.SbemailSongsDisplayedAtGivenStage, _SbemailSongs, formatArgs: new[] { (ix+1).ToString("X2") }, correctAnswers: new[] { transcriptionsAbridged[digit-1] }, preferredWrongAnswers: transcriptionsAbridged )));
+        else
+        {
+            var uniqueStages = Enumerable.Range(1, displayedStageCount).Where(stage => _sbemailSongsDisplays.Count(display => display[stage - 1] == myDisplay[stage - 1]) == 1).Take(2).ToArray();
+            if (uniqueStages.Length == 0 || displayedStageCount == 1)
+            {
+                Debug.Log($"[Souvenir #{_moduleId}] No question for Sbemail Songs because there are not enough stages at which at least one of them had a unique displayed number.");
+                _legitimatelyNoQuestions.Add(module);
+            }
+            else
+            {
+                var qs = new List<QandA>();
+                for (int stage = 0; stage < displayedStageCount; stage++)
+                {
+                    var uniqueStage = uniqueStages.FirstOrDefault(s => s != stage + 1);
+                    if (uniqueStage != 0)
+                    {
+                        Debug.Log(uniqueStage);
+                        qs.Add(makeQuestion(Question.SbemailSongsDisplayedAtGivenStage, _SbemailSongs, formattedModuleName: $"the Sbemail Songs which displayed ‘{transcriptionsAbridged[myDisplay[uniqueStage] - 1]}’ in stage {(uniqueStage + 1).ToString("X2")} (hexadecimal)", formatArgs: new[] { (stage + 1).ToString("X2") }, correctAnswers: new[] { transcriptionsAbridged[myDisplay[stage] - 1] }, preferredWrongAnswers: transcriptionsAbridged ));
+                    }
+                }
+                addQuestions(module, qs);
+            }
+        }
     }
 
     private IEnumerable<object> ProcessScavengerHunt(KMBombModule module)
