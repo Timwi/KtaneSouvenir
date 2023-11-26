@@ -34,7 +34,7 @@ First, ensure that there isn’t already a contributor working on adding the mod
 
 The actual source code is in `Lib`. Open `Lib/SouvenirLib.sln` in Visual Studio to get started.
 
-If your installation of KTANE is *not* in the default folder (`C:\Program Files (x86)\Steam\steamapps\common\Keep Talking and Nobody Explodes\`), create a `SouvenirLib.csproj.user` file containing this and change the folder accordingly:
+If your installation of KTANE is *not* in the default folder (`C:\Program Files (x86)\Steam\steamapps\common\Keep Talking and Nobody Explodes\`), create a `SouvenirLib.csproj.user` file containing this and change the folder accordingly. You MUST end your path with a backslash (`\`).
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
