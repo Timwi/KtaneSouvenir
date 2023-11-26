@@ -201,6 +201,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Railway Cargo Loading    │  LotsOfS
     Regular Crazy Talk       │  Espik
     Reverse Polish Notation  │  shortc1rcuit
+    Sbemail Songs            │  ObjectsCountries
     Schlag den Bomb          │  JerryEris
     Shapes And Bombs         │  KingSlendy
     Simon Selects            │  tachatat18

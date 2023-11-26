@@ -50,6 +50,33 @@ public partial class SouvenirModule
             qs.Add(makeQuestion(Question.SamsungAppPositions, _Samsung, formatArgs: new[] { appNames[i] }, correctAnswers: new[] { GetAnswers(Question.SamsungAppPositions)[appPositions[i]] }));
         addQuestions(module, qs);
     }
+    
+    private IEnumerable<object> ProcessSbemailSongs(KMBombModule module)
+    {
+        var comp = GetComponent(module, "_sbemailsongs");
+        var fldSolved = GetProperty<bool>(GetProperty<object>(comp, "Status", isPublic: true).Get(), "IsSolved", isPublic: true);
+        
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SbemailSongs);
+        
+        var totalNonIgnoredSbemailSongs = GetIntField(comp, "totalNonIgnored").Get();
+        
+        if (totalNonIgnoredSbemailSongs == 0)
+        {
+            legitimatelyNoQuestion(module, "all of the other modules were ignored by Sbemail Songs.");
+            yield break;
+        }
+
+        var stages = GetListField<int>(comp, "stages").Get();
+        var transcriptionsAbridged = GetArrayField<string>(comp, "transcriptionsAbridged").Get(expectedLength: 209);
+        var hexNumbers = new List<string>();
+        
+        for (int i = 1; i < totalNonIgnoredSbemailSongs + 1; i++)
+            hexNumbers.Add(i.ToString("X2"));
+        
+        addQuestions(module, stages.Select((d, ix) => makeQuestion(Question.SbemailSongsDisplayedAtGivenStage, _SbemailSongs, formatArgs: new[] { hexNumbers[ix] }, correctAnswers: new[] { transcriptionsAbridged[d - 1] })));
+    }
 
     private IEnumerable<object> ProcessScavengerHunt(KMBombModule module)
     {

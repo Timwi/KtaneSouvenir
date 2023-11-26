@@ -422,6 +422,7 @@ public partial class SouvenirModule
     const string _RuleOfThree = "RuleOfThreeModule";
     const string _SafetySquare = "safetySquare";
     const string _Samsung = "theSamsung";
+    const string _SbemailSongs = "sbemailsongs";
     const string _ScavengerHunt = "scavengerHunt";
     const string _SchlagDenBomb = "qSchlagDenBomb";
     const string _ScramboozledEggain = "ScramboozledEggainModule";
@@ -979,6 +980,7 @@ public partial class SouvenirModule
             [_RuleOfThree] = (ProcessRuleOfThree, "Rule of Three", "Quinn Wuest"),
             [_SafetySquare] = (ProcessSafetySquare, "Safety Square", "Kuro"),
             [_Samsung] = (ProcessSamsung, "Samsung, The", "TasThiluna"),
+            [_SbemailSongs] = (ProcessSbemailSongs, "Sbemail Songs", "ObjectsCountries"),
             [_ScavengerHunt] = (ProcessScavengerHunt, "Scavenger Hunt", "Timwi"),
             [_SchlagDenBomb] = (ProcessSchlagDenBomb, "Schlag den Bomb", "JerryEris"),
             [_ScramboozledEggain] = (ProcessScramboozledEggain, "Scramboozled Eggain", "Quinn Wuest"),
