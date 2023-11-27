@@ -108,7 +108,7 @@ public partial class SouvenirModule
                     if (uniqueStage != 0)
                     {
                         Debug.Log(uniqueStage);
-                        qs.Add(makeQuestion(Question.SbemailSongsDisplayedAtGivenStage, _SbemailSongs, formattedModuleName: $"the Sbemail Songs which displayed ‘{transcriptionsAbridged[myDisplay[uniqueStage] - 1]}’ in stage {(uniqueStage + 1).ToString("X2")} (hexadecimal)", formatArgs: new[] { (stage + 1).ToString("X2") }, correctAnswers: new[] { transcriptionsAbridged[myDisplay[stage] - 1] }, preferredWrongAnswers: transcriptionsAbridged ));
+                        qs.Add(makeQuestion(Question.SbemailSongsDisplayedAtGivenStage, _SbemailSongs, formattedModuleName: $"the Sbemail Songs which displayed ‘{transcriptionsAbridged[myDisplay[uniqueStage - 1] - 1]}’ in stage {uniqueStage.ToString("X2")} (hexadecimal)", formatArgs: new[] { (stage + 1).ToString("X2") }, correctAnswers: new[] { transcriptionsAbridged[myDisplay[stage] - 1] }, preferredWrongAnswers: transcriptionsAbridged ));
                     }
                 }
                 addQuestions(module, qs);
