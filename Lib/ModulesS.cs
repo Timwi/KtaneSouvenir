@@ -68,7 +68,9 @@ public partial class SouvenirModule
             throw new AbandonModuleException("The number of stages in each ‘Display’ is inconsistent.");
         _sbemailSongsDisplays.Add(myDisplay);
 
-        if (myDisplay.Count() == 0)
+        var totalNonIgnoredSbemailSongs = GetIntField(comp, "totalNonIgnored").Get();
+
+        if (myDisplay.Count() == 0 || totalNonIgnoredSbemailSongs == 0)
         {
             Debug.Log($"[Souvenir #{_moduleId}] No question for Sbemail Songs because there were no stages.");
             _legitimatelyNoQuestions.Add(module);
