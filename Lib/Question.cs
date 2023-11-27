@@ -2220,6 +2220,10 @@
             ExampleExtraFormatArguments = new[] { "Duolingo", "Google Maps", "Kindle", "Google Authenticator", "Photomath", "Spotify", "Google Arts & Culture", "Discord" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SamsungAppPositions,
 
+        [SouvenirQuestion("What was the displayed sbemail song for stage {1} (hexadecimal) of {0}?", "Sbemail Songs", OneColumn4Answers, null, ExampleAnswers = new[] { "Oh, who is the guy that…", "I'm gonna check my email all of the time…", "Checkin' my email, checkin' my email…", "I check the email once…", "Checkin' emails is like the best thing I do.", "I check, you check, we all check…", "I am going to check my email.", "I remember the time when I checked my email.", "I've carefully set aside this time…", "I'm totally checking my email…" },
+            ExampleExtraFormatArguments = new[] { "01", "02" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SbemailSongsDisplayedAtGivenStage,
+
         [SouvenirQuestion("Which tile was correctly submitted in the first stage of {0}?", "Scavenger Hunt", ThreeColumns6Answers, Type = AnswerType.Grid)]
         [AnswerGenerator.Grid(4, 4)]
         ScavengerHuntKeySquare,
