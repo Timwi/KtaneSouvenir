@@ -996,7 +996,7 @@ public partial class SouvenirModule
         module.OnPass += delegate { solved = true; return false; };
 
         var symbolTextMeshes = GetArrayField<TextMesh>(comp, "symbols", isPublic: true).Get(expectedLength: 26);
-        var symbols = symbolTextMeshes.Where(tm => !string.IsNullOrEmpty(tm.text)).Select((tm, ix) => (symPair: tm.text, cell: ix)).ToArray();
+        var symbols = symbolTextMeshes.Select((tm, ix) => (symPair: tm.text, cell: ix)).Where(tup => !string.IsNullOrEmpty(tup.symPair)).ToArray();
 
         while (!solved)
             yield return new WaitForSeconds(.1f);
