@@ -2349,6 +2349,14 @@
         [AnswerGenerator.Strings('A', 'Z')]
         SimonSendsReceivedLetters,
 
+        [SouvenirQuestion("Who flashed {1} in course {2} of {0}?", "Simon Serves", ThreeColumns6Answers, "Riley", "Brandon", "Gabriel", "Veronica", "Wendy", "Kayle",
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal, "1", QandA.Ordinal, "2", QandA.Ordinal, "3" }, ExampleExtraFormatArgumentGroupSize = 2)]
+        SimonServesFlash,
+        [SouvenirQuestion("Which item was not served in course {1} of {0}?", "Simon Serves", OneColumn4Answers, null,
+            ExampleAnswers = new[] { "Cruelo Juice", "Defuse Juice", "Simon’s Special Mix", "Boom Lager Beer", "Forget Cocktail", "Wire Shake", "Deto Bull", "Tasha’s Drink" },
+            ExampleExtraFormatArguments = new[] { "1", "2", "3" }, ExampleExtraFormatArgumentGroupSize = 1)]
+        SimonServesFood,
+
         [SouvenirQuestion("What was the shape submitted at the end of {0}?", "Simon Shapes", ThreeColumns6Answers, null, Type = AnswerType.Sprites, SpriteField = "SimonShapesSprites")]
         SimonShapesSubmittedShape,
 
