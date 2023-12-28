@@ -82,6 +82,15 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Chinese Counting    │  Jumble Cycle           │  N&Ms              │  Simon’s Star    │
     Codenames           │  LED Math               │  Ordered Keys      │  Small Circle    │
 
+## Implemented by Hawker (29)
+
+    3N+1                     │  Directional Button  │  Girlfriend          │  RGB Sequences     │  Spongebob Birthday Identification
+    Arena, The               │  Earthbound          │  h                   │  RobotProgramming  │  Subway
+    Book of Mario            │  Find The Date       │  High Score, The     │  Scrutiny Squares  │  UNO!
+    Character Slots          │  Flavor Text         │  Keypad Combination  │  Sign Language     │  Valves
+    Customer Identification  │  Flavor Text EX      │  Ladder Lottery      │  Simon Serves      │  Weakest Link, The
+    Dimension Disruption     │  Garnet Thief, The   │  Module Movements    │  Sonic & Knuckles  │
+
 ## Implemented by Quinn Wuest (29)
 
     A Square          │  Épelle-moi Ça             │  Not Coordinates       │  Not X01              │  Simultaneous Simons
@@ -90,15 +99,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cyan Button, The  │  Navigation Determination  │  Not Number Pad        │  Rule of Three        │  Varicolour Flash
     Denial Displays   │  Not Colored Switches      │  Not Perspective Pegs  │  Scramboozled Eggain  │  xobekuJ ehT
     Double Digits     │  Not Connection Check      │  Not The Bulb          │  Simon Said           │
-
-## Implemented by Hawker (28)
-
-    3N+1                     │  Directional Button  │  Girlfriend          │  RGB Sequences                      │  Subway
-    Arena, The               │  Earthbound          │  h                   │  RobotProgramming                   │  UNO!
-    Book of Mario            │  Find The Date       │  High Score, The     │  Scrutiny Squares                   │  Valves
-    Character Slots          │  Flavor Text         │  Keypad Combination  │  Sign Language                      │  Weakest Link, The
-    Customer Identification  │  Flavor Text EX      │  Ladder Lottery      │  Sonic & Knuckles                   │
-    Dimension Disruption     │  Garnet Thief, The   │  Module Movements    │  Spongebob Birthday Identification  │
 
 ## Implemented by tandyCake (28)
 

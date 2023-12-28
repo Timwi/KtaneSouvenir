@@ -446,6 +446,7 @@ public partial class SouvenirModule
     const string _SimonScreams = "SimonScreamsModule";
     const string _SimonSelects = "simonSelectsModule";
     const string _SimonSends = "SimonSendsModule";
+    const string _SimonServes = "simonServes";
     const string _SimonShapes = "SimonShapesModule";
     const string _SimonShouts = "SimonShoutsModule";
     const string _SimonShrieks = "SimonShrieksModule";
@@ -1003,6 +1004,7 @@ public partial class SouvenirModule
             [_SimonScreams] = (ProcessSimonScreams, "Simon Screams", "Timwi"),
             [_SimonSelects] = (ProcessSimonSelects, "Simon Selects", "tachatat18"),
             [_SimonSends] = (ProcessSimonSends, "Simon Sends", "EternityShack"),
+            [_SimonServes] = (ProcessSimonServes, "Simon Serves", "Hawker"),
             [_SimonShapes] = (ProcessSimonShapes, "Simon Shapes", "tandyCake"),
             [_SimonShouts] = (ProcessSimonShouts, "Simon Shouts", "Timwi"),
             [_SimonShrieks] = (ProcessSimonShrieks, "Simon Shrieks", "Timwi"),
