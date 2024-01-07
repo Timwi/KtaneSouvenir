@@ -28,6 +28,10 @@ The following vanilla modules are supported by Souvenir: The Button, Maze, Memor
 - In Unity, build Souvenir without a separate assembly (keyboard: F7; menu: “Keep Talking ModKit” → “Build AssetBundle (no assembly)”).
 - The compiled binary `SouvenirLib.dll` is included in the git repo to allow people to build Souvenir in Unity without needing to compile the source.
 
+## Translations
+
+For contributing to translations, see [translations.md](https://github.com/Timwi/KtaneSouvenir/blob/master/translations.md).
+
 ## Adding new module support
 
 First, ensure that there isn’t already a contributor working on adding the module you are hoping to implement. The KTANE Discord server has a thread for this (https://discord.com/channels/160061833166716928/1133454524435148860) where our efforts are coordinated.
@@ -36,7 +40,7 @@ The actual source code is in `Lib`. Open `Lib/SouvenirLib.sln` in Visual Studio 
 
 If your installation of KTANE is *not* in the default folder (`C:\Program Files (x86)\Steam\steamapps\common\Keep Talking and Nobody Explodes\`), create a `SouvenirLib.csproj.user` file containing this and change the folder accordingly. You MUST end your path with a backslash (`\`).
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
@@ -59,7 +63,7 @@ To add a new module, the following steps are required:
     - If your targeted module’s name starts with “The”, make sure to specify the name without “The” but include `AddThe = true` (example: `DeckOfManyThingsFirstCard`).
     - Make sure to specify the correct values for `TranslateAnswers` and `TranslateFormatArgs`. If a word or phrase is used to ask a question (e.g. “flash”/“didn’t flash”) or describe something (e.g. color of a button), make it translatable (example: `IndigoCipherScreen`). If a word or phrase is mentioned that is literally shown on the module, then do not make it translatable (example: `IdentityParadeHairColors`).
 - Add a string constant in `Modules_General.cs` containing the `ModuleType` value on the targeted module’s `KMBombModule` component. This is also sometimes known as the “module ID”. For example, for *3D Maze*, this is `spwiz3DMaze`. Omit “The” in the constant name (for example: `_Bulb`, not `_TheBulb`).
-- Find an existing handler for a module that is similar to the one you wish to implement. The handlers have names beginning with `Process` (for example: `ProcessMafia` in `ModulesM.cs`). Study it carefully to understand how it works.
+- Find an existing handler for a module that is similar to the one you wish to implement. The handlers have names beginning with `Process` (for example: `ProcessMafia` in `ModulesM.cs`). Study it carefully to understand how it works. There is documentation at [documentation.md](https://github.com/Timwi/KtaneSouvenir/blob/master/documentation.md).
 - Implement a similar handler and place it alphabetically in the correct file (`ModulesA.cs` to `ModulesZ.cs`, or `Modules0.cs`). Omit “The” in the handler name as well.
     - Make sure to handle the case where the player gets a strike on the module and the information changes. Souvenir must not ask about information from stages that struck.
     - If there is a corner case where Souvenir should not ask a question, call `legitimatelyNoQuestions` with an appropriate log message (see `ProcessLangtonsAnteater` or `ProcessSimonSignals` for examples).
