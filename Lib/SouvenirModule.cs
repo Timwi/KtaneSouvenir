@@ -816,35 +816,38 @@ public partial class SouvenirModule : MonoBehaviour
 
         return noThrow ? null : throw new AbandonModuleException($"Type {targetType} does not contain {(isPublic ? "public" : "non-public")} field {name}. Fields are: {targetType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(f => $"{(f.IsPublic ? "public" : "private")} {f.FieldType.FullName} {f.Name}").JoinString(", ")}");
 
-        found:
+    found:
         return
             typeof(T).IsAssignableFrom(fld.FieldType) ? fld :
             noThrow ? null :
             throw new AbandonModuleException($"Type {targetType} has {(isPublic ? "public" : "non-public")} field {name} of type {fld.FieldType.FullName} but expected type {typeof(T).FullName}.");
     }
 
-    private MethodInfo<T> GetMethod<T>(object target, string name, int numParameters, bool isPublic = false) =>
-        GetMethodImpl<T>(typeof(T), target, name, numParameters, isPublic);
-    private MethodInfo<object> GetMethod(object target, string name, int numParameters, bool isPublic = false) =>
-        GetMethodImpl<object>(typeof(void), target, name, numParameters, isPublic);
-    private MethodInfo<T> GetStaticMethod<T>(object target, string name, int numParameters, bool isPublic = false) =>
-        GetMethodImpl<T>(typeof(T), target, name, numParameters, isPublic, isStatic: true);
-    private MethodInfo<object> GetStaticMethod(object target, string name, int numParameters, bool isPublic = false) =>
-        GetMethodImpl<object>(typeof(void), target, name, numParameters, isPublic, isStatic: true);
+    private MethodInfo<T> GetMethod<T>(object target, string name, int numParameters, bool isPublic = false) => new(
+        target ?? throw new AbandonModuleException($"Attempt to get {(isPublic ? "public" : "non-public")} instance method {name} with return type {typeof(T).FullName} from a null object."),
+        GetMethodImpl<T>(typeof(T), target.GetType(), name, numParameters, isPublic));
 
-    private MethodInfo<T> GetMethodImpl<T>(Type returnType, object target, string name, int numParameters, bool isPublic = false, bool isStatic = false)
+    private MethodInfo<object> GetMethod(object target, string name, int numParameters, bool isPublic = false) => new(
+        target ?? throw new AbandonModuleException($"Attempt to get {(isPublic ? "public" : "non-public")} instance method {name} with return type void from a null object."),
+        GetMethodImpl<object>(typeof(void), target.GetType(), name, numParameters, isPublic));
+
+    private MethodInfo<T> GetStaticMethod<T>(Type targetType, string name, int numParameters, bool isPublic = false) => new(null, GetMethodImpl<T>(
+        typeof(T), targetType ?? throw new AbandonModuleException($"Attempt to get {(isPublic ? "public" : "non-public")} static method {name} with return type {typeof(T).FullName} from a null type."),
+        name, numParameters, isPublic, isStatic: true));
+
+    private MethodInfo<object> GetStaticMethod(Type targetType, string name, int numParameters, bool isPublic = false) => new(null, GetMethodImpl<object>(
+        typeof(void), targetType ?? throw new AbandonModuleException($"Attempt to get {(isPublic ? "public" : "non-public")} static method {name} with return type void from a null type."),
+        name, numParameters, isPublic, isStatic: true));
+
+    private MethodInfo GetMethodImpl<T>(Type returnType, Type targetType, string name, int numParameters, bool isPublic = false, bool isStatic = false)
     {
-        if (target == null)
-            throw new AbandonModuleException($"Attempt to get {(isPublic ? "public" : "non-public")} {(isStatic ? "static" : "instance")} method {name} of return type {returnType.FullName} from a null object.");
-
         var bindingFlags = (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | (isStatic ? BindingFlags.Static : BindingFlags.Instance);
-        var targetType = target.GetType();
         var mths = targetType.GetMethods(bindingFlags).Where(m => m.Name == name && m.GetParameters().Length == numParameters && returnType.IsAssignableFrom(m.ReturnType)).Take(2).ToArray();
         if (mths.Length == 0)
             throw new AbandonModuleException($"Type {targetType} does not contain a {(isPublic ? "public" : "non-public")} {(isStatic ? "static" : "instance")} method {name} with return type {returnType.FullName} and {numParameters} parameters.");
         if (mths.Length > 1)
             throw new AbandonModuleException($"Type {targetType} contains multiple {(isPublic ? "public" : "non-public")} {(isStatic ? "static" : "instance")} methods {name} with return type {returnType.FullName} and {numParameters} parameters.");
-        return new MethodInfo<T>(target, mths[0]);
+        return mths[0];
     }
 
     private PropertyInfo<T> GetProperty<T>(object target, string name, bool isPublic = false) => GetPropertyImpl<T>(
@@ -866,17 +869,17 @@ public partial class SouvenirModule : MonoBehaviour
     #endregion
 
     #region Methods for adding questions to the pool (used by module handlers)
-    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0f)
+    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0)
     {
         addQuestions(module, makeQuestion(question, module.ModuleType, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation));
     }
 
-    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Sprite[] correctAnswers = null, Sprite[] allAnswers = null, Sprite[] preferredWrongAnswers = null, float questionSpriteRotation = 0f)
+    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Sprite[] correctAnswers = null, Sprite[] allAnswers = null, Sprite[] preferredWrongAnswers = null, float questionSpriteRotation = 0)
     {
         addQuestions(module, makeQuestion(question, module.ModuleType, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation));
     }
 
-    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0f)
+    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0)
     {
         addQuestions(module, makeQuestion(question, module.ModuleType, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, questionSpriteRotation));
     }
@@ -936,17 +939,17 @@ public partial class SouvenirModule : MonoBehaviour
             (attr, num, answers) => new QandA.SpriteAnswerSet(num, attr.Layout, answers),
             formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? GetAllSprites(question), AnswerType.Sprites);
 
-    private QandA makeSpriteQuestion(Sprite questionSprite, Question question, string moduleKey, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null) =>
+    private QandA makeSpriteQuestion(Sprite questionSprite, Question question, string moduleKey, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null) =>
         makeQuestion(question, moduleKey,
             (attr, q) => new QandA.SpriteQuestion(q, questionSprite),
             (attr, num, answers) => new QandA.TextAnswerSet(num, attr.Layout, answers, Fonts[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], attr.FontSize, attr.CharacterSize, FontTextures[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], FontMaterial),
-            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, null, _standardAnswerTypes);
+            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, _standardAnswerTypes);
 
-    private QandA makeSpriteQuestion(Sprite questionSprite, Question question, string moduleKey, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null) =>
+    private QandA makeSpriteQuestion(Sprite questionSprite, Question question, string moduleKey, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null, Sprite[] allAnswers = null) =>
         makeQuestion(question, moduleKey,
             (attr, q) => new QandA.SpriteQuestion(q, questionSprite),
             (attr, num, answers) => new QandA.SpriteAnswerSet(num, attr.Layout, answers),
-            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, GetAllSprites(question), AnswerType.Sprites);
+            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? GetAllSprites(question), AnswerType.Sprites);
 
     private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0)
     {

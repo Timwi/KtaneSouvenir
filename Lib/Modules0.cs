@@ -187,7 +187,7 @@ public partial class SouvenirModule
 
         var base64Characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
         var displayedNumber = GetField<string>(comp, "numberIn64").Get(num => num.Length == 0 || num.Length > 4 || num.Any(c => !base64Characters.Contains(c)) ? "expected 1-4 base-64 digits" : null);
-        var mthConvertToBase = GetStaticMethod<string>(comp, "DecimalToArbitrarySystem", 2, isPublic: true);
+        var mthConvertToBase = GetStaticMethod<string>(comp.GetType(), "DecimalToArbitrarySystem", 2, isPublic: true);
         var answers = new HashSet<string> { displayedNumber };
 
         while (answers.Count < 6)

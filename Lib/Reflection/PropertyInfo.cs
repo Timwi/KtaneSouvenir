@@ -34,5 +34,10 @@ namespace Souvenir.Reflection
         {
             Property.SetValue(_target, value, index);
         }
+
+        public void SetTo(object target, T value, object[] index = null)
+        {
+            Property.SetValue(target, value, index);
+        }
     }
 }
