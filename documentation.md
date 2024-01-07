@@ -59,8 +59,6 @@ Note: If you are unsure about the next two, do not specify them as a translator 
 
 `bool[] TranslateFormatArgs` — Should each format argument be translatable?
 
-<!-- TranslateAnswers TranslateFormatArgs -->
-
 ## Reflection helpers
 
 Souvenir uses reflection to access information on other modules on the bomb. There are several types and methods in order to help with this.
@@ -107,7 +105,7 @@ Get an instance property called `name` of type `T` from `target`.
 private PropertyInfo<T> GetStaticProperty<T>(Type targetType, string name, bool isPublic = false);
 ```
 
-Get an static property from `targetType`.
+Get a static property from `targetType`.
 
 #### Methods
 
@@ -198,6 +196,8 @@ public void SetTo(object target, T value, object[] index = null);
 
 ### Invoking Methods
 
+#### MethodInfo&lt;T&gt;
+
 ```cs
 public T Invoke(params object[] arguments);
 public T InvokeOn(object target, params object[] arguments);
@@ -256,7 +256,7 @@ In every case, the meaning of each parameter is equivalent:
 
 `questionSprite` — For non-sprite questions, this is the sprite that appears on the right of the module when the question is asked. For sprite questions, this is the sprite that represents the question.
 
-`formattedModuleName` — Used for boss modules to specify a uniquely-identifying factor for the question being asked about. Leave unset most of the time.
+`formattedModuleName` — Used for boss modules to specify a uniquely identifying factor for the module being asked about. Leave unset most of the time.
 
 `formatArgs` — Extra format arguments used in the question.
 

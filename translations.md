@@ -4,7 +4,7 @@
 
 You may wish to look at an existing translation file to follow along with as an example.
 
-1. Create a file named `TranslationXX.cs` in the `Lib` folder, where `XX` is the relevant language code, and import the `System.Collections.Generic` namespace (it will be needed later). Create a new class called `Translation_xx`, inheriting from `Translation`, in the `Souvenir` namespace: 
+1. Create a file named `TranslationXX.cs` in the `Lib` folder, where `XX` is the relevant language code, and import the `System.Collections.Generic` namespace (it will be needed later). Create a new class called `Translation_xx`, inheriting from `Translation`, in the `Souvenir` namespace:
 
     ```cs
     using System.Collections.Generic;
@@ -37,7 +37,7 @@ You may wish to look at an existing translation file to follow along with as an 
 
     - Return an array which contains the possible texts to be shown on the module at the start of the bomb before the lights turn on.
 
-4. In the `Translation` class, add an entry to the `AllTranslations` dictionary corresponding to the new language:
+4. In the `Translation` class, add an entry to the `AllTranslations` dictionary corresponding to the new language.
 
 ## Adding questions to an existing language
 
@@ -52,7 +52,7 @@ You may wish to look at an existing translation file to follow along with as an 
     - `string QuestionText` — The question itself. Make sure to include the relevant format arguments in the correct order.
     - `string ModuleName` — the name of the module without "The".
     - `string ModuleNameWithThe` — the name of the module with "The", if applicable. If your language does not have an equivalent for "The", leave this unspecified.
-    - `Dictionary<string, string> Answers` — keys are all possible answers in English, values are the corresponding translations. You must set `TranslateAnswers` to `true` in the question definition if you specify this. 
+    - `Dictionary<string, string> Answers` — keys are all possible answers in English, values are the corresponding translations. You must set `TranslateAnswers` to `true` in the question definition if you specify this.
     - `Dictionary<string, string> FormatArgs` — keys are all possible extra format arguments in English, values are the corresponding translations. If specified, you must also specify `TranslateFormatArgs` in the question definition to indicate which format arguments should be translated.
 
 Note:
