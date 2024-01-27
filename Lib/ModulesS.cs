@@ -999,10 +999,10 @@ public partial class SouvenirModule
         {
             if (split[0][a])
             {
-                qs.Add(makeQuestion(Question.SimonSubdividesButton, _SimonSubdivides, questionSprite: Grid.GenerateGridSprite(new Coord(2, 2, dirs[a].x, dirs[a].y)), correctAnswers: new[] { colors[arrange[0, a]] }, questionSpriteRotation: 45f));
+                qs.Add(makeQuestion(Question.SimonSubdividesButton, _SimonSubdivides, questionSprite: Sprites.GenerateGridSprite(new Coord(2, 2, dirs[a].x, dirs[a].y)), correctAnswers: new[] { colors[arrange[0, a]] }, questionSpriteRotation: 45f));
                 for (int b = 0; b < 4; b++)
                     if (split[a + 1][b])
-                        qs.Add(makeQuestion(Question.SimonSubdividesButton, _SimonSubdivides, questionSprite: Grid.GenerateGridSprite(new Coord(4, 4, dirs[a].x * 2 + dirs[b].x, dirs[a].y * 2 + dirs[b].y)), correctAnswers: new[] { colors[arrange[a + 1, b]] }, questionSpriteRotation: 45f));
+                        qs.Add(makeQuestion(Question.SimonSubdividesButton, _SimonSubdivides, questionSprite: Sprites.GenerateGridSprite(new Coord(4, 4, dirs[a].x * 2 + dirs[b].x, dirs[a].y * 2 + dirs[b].y)), correctAnswers: new[] { colors[arrange[a + 1, b]] }, questionSpriteRotation: 45f));
             }
         }
 

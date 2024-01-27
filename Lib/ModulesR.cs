@@ -41,12 +41,7 @@ public partial class SouvenirModule
         var fldCarFriendlyName = GetField<string>(allTrainCars.GetValue(0), "FriendlyName", isPublic: true);
         var carSpriteDic = allTrainCars.Cast<object>()
             .Select(car => (sprite: fldCarAppearance.GetFrom(car), name: fldCarFriendlyName.GetFrom(car)))
-            .ToDictionary(tup => tup.sprite, tup =>
-            {
-                var newSprite = Sprite.Create(tup.sprite.texture, tup.sprite.rect, new Vector2(0, .5f), 420);
-                newSprite.name = tup.name;
-                return newSprite;
-            });
+            .ToDictionary(tup => tup.sprite, tup => tup.sprite.TranslateSprite(420, tup.name));
         var allCarSprites = carSpriteDic.Values.ToArray();
 
         var trainCars = GetField<Array>(comp, "_train")

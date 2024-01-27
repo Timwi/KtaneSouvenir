@@ -708,10 +708,10 @@ public partial class SouvenirModule
         for (int stage = 0; stage < 3; stage++)
         {
             for (int ix = 0; ix < 9; ix++)
-                qs.Add(makeQuestion(Question.ColouredCubesColours, _ColouredCubes, Grid.GenerateGridSprite(3, 3, ix), formatArgs: new[] { "cube", ordinal(stage + 1) }, correctAnswers: new[] { cubeColours[stage, ix] }, preferredWrongAnswers: allCubeColours));
+                qs.Add(makeQuestion(Question.ColouredCubesColours, _ColouredCubes, Sprites.GenerateGridSprite(3, 3, ix), formatArgs: new[] { "cube", ordinal(stage + 1) }, correctAnswers: new[] { cubeColours[stage, ix] }, preferredWrongAnswers: allCubeColours));
             if (stage < 2)
                 for (int ix = 0; ix < 3; ix++)
-                    qs.Add(makeQuestion(Question.ColouredCubesColours, _ColouredCubes, Grid.GenerateGridSprite(1, 3, ix), formatArgs: new[] { "stage light", ordinal(stage + 1) }, correctAnswers: new[] { stageLightColours[stage, ix] }, preferredWrongAnswers: allStageLightColours));
+                    qs.Add(makeQuestion(Question.ColouredCubesColours, _ColouredCubes, Sprites.GenerateGridSprite(1, 3, ix), formatArgs: new[] { "stage light", ordinal(stage + 1) }, correctAnswers: new[] { stageLightColours[stage, ix] }, preferredWrongAnswers: allStageLightColours));
         }
         addQuestions(module, qs);
     }
@@ -1010,7 +1010,7 @@ public partial class SouvenirModule
             .Concat(Enumerable.Range(0, 6).Select(x => (x: 4 * x + 4, y: 8)))
             .Concat(Enumerable.Range(0, 5).Select(x => (x: 4 * x + 6, y: 12)))
             .ToArray();
-        var cellSprites = Enumerable.Range(0, 26).Select(cell => Grid.GenerateGridSprite("cRule", 4 * 8 + 1, 4 * 4 + 1, cells, cell, $"cRule row {cells[cell].y / 4 + 1} cell {(cells[cell].x - cells[cell].y / 2) / 4 + 1}", 80)).ToArray();
+        var cellSprites = Enumerable.Range(0, 26).Select(cell => Sprites.GenerateGridSprite("cRule", 4 * 8 + 1, 4 * 4 + 1, cells, cell, $"cRule row {cells[cell].y / 4 + 1} cell {(cells[cell].x - cells[cell].y / 2) / 4 + 1}", 80)).ToArray();
 
         var qs = new List<QandA>();
 

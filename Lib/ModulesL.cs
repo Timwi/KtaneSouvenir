@@ -50,7 +50,7 @@ public partial class SouvenirModule
                     correct.Add(args[i / 2]); // Integer division gives layer #
             if (correct.Distinct().Count() > 2)
                 continue; // Don't have a question with less than 4 answers
-            qs.Add(makeQuestion(Question.LabyrinthPortalStage, _Labyrinth, questionSprite: Grid.GenerateGridSprite(new Coord(6, 7, p)), correctAnswers: correct.Distinct().ToArray()));
+            qs.Add(makeQuestion(Question.LabyrinthPortalStage, _Labyrinth, questionSprite: Sprites.GenerateGridSprite(new Coord(6, 7, p)), correctAnswers: correct.Distinct().ToArray()));
         }
 
         addQuestions(module, qs);

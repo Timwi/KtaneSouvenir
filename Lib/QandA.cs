@@ -70,6 +70,7 @@ namespace Souvenir
                 if (_questionSprite != null)
                 {
                     var sprite = Sprite.Create(_questionSprite.texture, _questionSprite.rect, new Vector2(1, .5f), _questionSprite.pixelsPerUnit);
+                    sprite.name = _questionSprite.name;
                     souv.QuestionSprite.sprite = sprite;
                     souv.QuestionSprite.transform.localEulerAngles = new Vector3(90, _questionSpriteRotation);
                     souv.QuestionSprite.gameObject.SetActive(true);

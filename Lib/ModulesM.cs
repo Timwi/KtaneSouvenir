@@ -249,8 +249,7 @@ public partial class SouvenirModule
 
         var planetsArr = GetField<Array>(comp, "planetsUsed").Get(x => x.Length != 3 ? "expected length 3" : null);
         var planetsUsed = new List<Sprite[]>();
-        var planetImages = GetArrayField<Sprite>(comp, "planetImages", isPublic: true).Get()
-            .Select(sprite => Sprite.Create(sprite.texture, sprite.rect, new Vector2(0, .5f), 280)).ToArray();
+        var planetImages = GetArrayField<Sprite>(comp, "planetImages", isPublic: true).Get().Select(sprite => sprite.TranslateSprite(280)).ToArray();
 
         for (int stage = 0; stage < 3; stage++)
         {
@@ -304,10 +303,10 @@ public partial class SouvenirModule
         for (int tileIx = 0; tileIx < 16; tileIx++)
         {
             qs.Add(makeQuestion(Question.MathEmColor, _MathEm,
-                questionSprite: Grid.GenerateGridSprite(new Coord(4, 4, tileIx)),
+                questionSprite: Sprites.GenerateGridSprite(new Coord(4, 4, tileIx)),
                 correctAnswers: new[] { colorNames[props[initialArrangement[tileIx], 1]] }));
             qs.Add(makeQuestion(Question.MathEmLabel, _MathEm,
-                questionSprite: Grid.GenerateGridSprite(new Coord(4, 4, tileIx)),
+                questionSprite: Sprites.GenerateGridSprite(new Coord(4, 4, tileIx)),
                 correctAnswers: new[] { displayedMarkings[tileIx] },
                 preferredWrongAnswers: displayedMarkings));
         }
@@ -450,7 +449,7 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
         for (int i = 0; i < 36; i++)
-            qs.Add(makeQuestion(Question.MazeseekerCell, _Mazeseeker, questionSprite: Grid.GenerateGridSprite(new Coord(6, 6, i)), correctAnswers: new[] { nums[i / 6, i % 6].ToString() }));
+            qs.Add(makeQuestion(Question.MazeseekerCell, _Mazeseeker, questionSprite: Sprites.GenerateGridSprite(new Coord(6, 6, i)), correctAnswers: new[] { nums[i / 6, i % 6].ToString() }));
         for (int i = 0; i < 36; i++)
             qs.Add(makeQuestion(Question.MazeseekerStart, _Mazeseeker, correctAnswers: new[] { new Coord(6, 6, startColumn, startRow) }));
         for (int i = 0; i < 36; i++)
@@ -738,9 +737,12 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_ModuleMaze);
 
+        var sprites = fldSprites.Get(expectedLength: 400);
+        var translatedSprites = sprites.Select(spr => spr.TranslateSprite()).ToArray();
+
         addQuestions(module,
             makeQuestion(Question.ModuleMazeStartingIcon, _ModuleMaze,
-                correctAnswers: new[] { GetField<Sprite>(comp, "souvenirStart").Get() }, preferredWrongAnswers: fldSprites.Get()));
+                correctAnswers: new[] { translatedSprites[Array.IndexOf(sprites, GetField<Sprite>(comp, "souvenirStart").Get())] }, preferredWrongAnswers: translatedSprites));
     }
 
     private IEnumerable<object> ProcessModuleMovements(KMBombModule module)

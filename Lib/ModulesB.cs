@@ -236,7 +236,7 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_Beans);
         string[] flavors = new[] { "Not Wobbly Orange", "Not Wobbly Yellow", "Not Wobbly Green", "Wobbly Orange", "Wobbly Yellow", "Wobbly Green" };
         QandA beansQ(int i) => makeQuestion(Question.BeansColors, _Beans,
-            questionSprite: Grid.GenerateGridSprite(3, 3, i),
+            questionSprite: Sprites.GenerateGridSprite(3, 3, i),
             correctAnswers: new string[] { flavors[bns[i]] });
         addQuestions(module, Enumerable.Range(0, 9).Where(i => eaten[i].transform.localScale.magnitude <= Mathf.Epsilon).Select(beansQ));
     }

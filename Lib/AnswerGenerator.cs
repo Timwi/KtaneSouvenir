@@ -284,7 +284,7 @@ namespace Souvenir
             public override IEnumerable<Sprite> GetAnswers(SouvenirModule module)
             {
                 for (int ix = 0; ix < Count; ++ix)
-                    yield return Souvenir.Grid.GenerateGridSprite(_width, _height, ix, _size);
+                    yield return Souvenir.Sprites.GenerateGridSprite(_width, _height, ix, _size);
             }
         }
     }
