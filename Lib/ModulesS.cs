@@ -628,42 +628,50 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessSimonServes(KMBombModule module)
     {
+        // Constants
+        var names = new[] { "Riley", "Brandon", "Gabriel", "Veronica", "Wendy", "Kayle" };
+        var foodCourse = Ut.NewArray(
+            new[] { "Cruelo Juice", "Defuse Juice", "Simon’s Special Mix", "Boom Lager Beer", "Forget Cocktail", "Wire Shake", "Deto Bull", "Tasha’s Drink" },
+            new[] { "Caesar Salad", "Edgework Toast", "Ticking Timecakes", "Big Boom Tortellini", "Status Light Rolls", "Blast Shrimps", "Morse Soup", "Boolean Waffles" },
+            new[] { "Forghetti Bombognese", "NATO Shrimps", "Wire Spaghetti", "Indicator Tar Tar", "Centurion Wings", "Colored Spare Ribs", "Omelette au Bombage", "Veggie Blast Plate" },
+            new[] { "Strike Pie", "Blastwave Compote", "Not Ice Cream", "Defuse au Chocolat", "Solve Cake", "Baked Batterys", "Bamboozling Waffles", "Bomb Brûlée" });
+
+        // Reflection
         var comp = GetComponent(module, "simonServesScript");
         var fldStage = GetIntField(comp, "stage");
         var fldFood = GetArrayField<int>(comp, "foods");
         var fldBlinkingOrder = GetArrayField<int>(comp, "blinkingOrder");
-        bool solved = false;
+
+        // Variables
+        var currentStage = fldStage.Get(min: -1, max: 5);
+        var flashOrder = new string[][] { null, null, null, null };
+        var foodDisplayed = new string[][] { null, null, null, null };
+
+        var solved = false;
         module.OnPass += delegate () { solved = true; return false; };
-        int currentStage = fldStage.Get(min: -1, max: 5);
-        string[] names = new string[] { "Riley", "Brandon", "Gabriel", "Veronica", "Wendy", "Kayle" };
-        string[][] flashOrder = new string[][] { null, null, null, null };
-        string[][] foodCourse = new string[][] { new string[] { "Cruelo Juice", "Defuse Juice", "Simon’s Special Mix", "Boom Lager Beer", "Forget Cocktail", "Wire Shake", "Deto Bull", "Tasha’s Drink" }, 
-                                                 new string[] { "Caesar Salad", "Edgework Toast", "Ticking Timecakes", "Big Boom Tortellini", "Status Light Rolls", "Blast Shrimps", "Morse Soup", "Boolean Waffles" }, 
-                                                 new string[] { "Forghetti Bombognese", "NATO Shrimps", "Wire Spaghetti", "Indicator Tar Tar", "Centurion Wings", "Colored Spare Ribs", "Omelette au Bombage", "Veggie Blast Plate" }, 
-                                                 new string[] { "Strike Pie", "Blastwave Compote", "Not Ice Cream", "Defuse au Chocolat", "Solve Cake", "Baked Batterys", "Bamboozling Waffles", "Bomb Brûlée" } };
-        string[][] foodDisplayed = new string[][] { null, null, null, null };
         while (!solved)
         {
-            int stage = fldStage.Get(min: -1, max: 5);
+            var stage = fldStage.Get(min: -1, max: 5);
             if (currentStage != stage)
-            { 
+            {
                 currentStage = stage;
-                if (stage > -1 && stage < 4)
+                if (stage >= 0 && stage < 4)
                 {
-                    int[] flashes = fldBlinkingOrder.Get(expectedLength: 7, validator: i => i < 0 || i > 6 ? "expected range [0–6]" : null);
-                    flashOrder[stage] = Enumerable.Range(0, 6).Select(i => names[flashes[i]]).ToArray();
-                    int[] food = fldFood.Get(expectedLength: 6, validator: i => i < 0 || i > 7 ? "expected range [0–7]" : null);
+                    var flashes = fldBlinkingOrder.Get(expectedLength: 7, validator: i => i < 0 || i > 6 ? "expected range 0–6" : null);
+                    flashOrder[stage] = flashes.Take(6).Select(flash => names[flash]).ToArray();
+                    var food = fldFood.Get(expectedLength: 6, validator: i => i < 0 || i > 7 ? "expected range 0–7" : null);
                     foodDisplayed[stage] = food.Select(i => foodCourse[stage][i]).ToArray();
                 }
             }
-            yield return new WaitForSeconds(.1f);
+            yield return null;  // no ‘WaitForSeconds’ here to make absolutely sure we don’t miss a stage
         }
         _modulesSolved.IncSafe(_SimonServes);
+
         var qs = new List<QandA>();
         for (int stage = 0; stage < 4; stage++)
         {
-            for (int flashIndex = 0; flashIndex < 6; flashIndex++)
-                qs.Add(makeQuestion(Question.SimonServesFlash, _SimonServes, formatArgs: new[] { ordinal(flashIndex + 1), (stage + 1).ToString() }, correctAnswers: new[] { flashOrder[stage][flashIndex] }));
+            for (int flashIx = 0; flashIx < 6; flashIx++)
+                qs.Add(makeQuestion(Question.SimonServesFlash, _SimonServes, formatArgs: new[] { ordinal(flashIx + 1), (stage + 1).ToString() }, correctAnswers: new[] { flashOrder[stage][flashIx] }));
             qs.Add(makeQuestion(Question.SimonServesFood, _SimonServes, formatArgs: new[] { (stage + 1).ToString() }, allAnswers: foodCourse[stage], correctAnswers: foodCourse[stage].Except(foodDisplayed[stage]).ToArray()));
         }
         addQuestions(module, qs);
