@@ -1391,12 +1391,12 @@ public partial class SouvenirModule
         // Prefer names of supported modules on the bomb other than Souvenir.
         var preferredWrongAnswers = new List<string>();
         var allAnswers = new List<string>();
-        var modulesOnTheBomb = _supportedModuleNames.Except(new[] { "Souvenir" }).Select(m => m.Replace("'", "’"));
+        var modulesOnTheBomb = _supportedModuleNames.Where(s => s != "Souvenir").Select(m => m.Replace("'", "’"));
         foreach (var (q, attr) in _attributes)
             if (attr != null)
             {
                 var origModuleName = attr.ModuleNameWithThe.Replace("\u00a0", " ");
-                var translatedModuleName = _translation?.Translations.Get(q)?.ModuleNameWithThe ?? _translation?.Translations.Get(q)?.ModuleName ?? origModuleName;
+                var translatedModuleName = (_translation?.Translations.Get(q)?.ModuleNameWithThe ?? _translation?.Translations.Get(q)?.ModuleName)?.Replace("\u00a0", " ") ?? origModuleName;
                 allAnswers.Add(translatedModuleName);
                 if (modulesOnTheBomb.Contains(origModuleName))
                     preferredWrongAnswers.Add(translatedModuleName);
@@ -1406,17 +1406,18 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(0.1f);
 
         var firstQuestion = comp._currentQuestion;
-        var firstModule =
+        var firstModule = (
             _translation?.Translations.Get(firstQuestion.Question)?.ModuleNameWithThe ??
             _translation?.Translations.Get(firstQuestion.Question)?.ModuleName ??
-            firstQuestion.ModuleNameWithThe;
+            firstQuestion.ModuleNameWithThe).Replace("\u00a0", " ");
 
         // Wait for the user to solve that question before asking about it
         while (comp._currentQuestion == firstQuestion)
             yield return new WaitForSeconds(0.1f);
 
         _modulesSolved.IncSafe(_Souvenir);
-        addQuestion(module, Question.SouvenirFirstQuestion, correctAnswers: new[] { firstModule }, preferredWrongAnswers: preferredWrongAnswers.ToArray(), allAnswers: allAnswers.ToArray());
+        addQuestion(module, Question.SouvenirFirstQuestion, correctAnswers: new[] { firstModule },
+            preferredWrongAnswers: preferredWrongAnswers.ToArray(), allAnswers: allAnswers.ToArray());
     }
 
     private IEnumerable<object> ProcessSpaceTraders(KMBombModule module)
