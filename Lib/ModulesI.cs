@@ -243,9 +243,9 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_iPhone);
 
         addQuestions(module,
-            makeQuestion(Question.iPhoneDigits, _iPhone, formatArgs: new[] { "first" }, correctAnswers: new[] { digits[0] }, preferredWrongAnswers: new[] { digits[1], digits[2], digits[3] }),
-            makeQuestion(Question.iPhoneDigits, _iPhone, formatArgs: new[] { "second" }, correctAnswers: new[] { digits[1] }, preferredWrongAnswers: new[] { digits[0], digits[2], digits[3] }),
-            makeQuestion(Question.iPhoneDigits, _iPhone, formatArgs: new[] { "third" }, correctAnswers: new[] { digits[2] }, preferredWrongAnswers: new[] { digits[1], digits[0], digits[3] }),
-            makeQuestion(Question.iPhoneDigits, _iPhone, formatArgs: new[] { "fourth" }, correctAnswers: new[] { digits[3] }, preferredWrongAnswers: new[] { digits[1], digits[2], digits[0] }));
+            makeQuestion(Question.iPhoneDigits, _iPhone, formatArgs: new[] { ordinal(1) }, correctAnswers: new[] { digits[0] }, preferredWrongAnswers: new[] { digits[1], digits[2], digits[3] }),
+            makeQuestion(Question.iPhoneDigits, _iPhone, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { digits[1] }, preferredWrongAnswers: new[] { digits[0], digits[2], digits[3] }),
+            makeQuestion(Question.iPhoneDigits, _iPhone, formatArgs: new[] { ordinal(3) }, correctAnswers: new[] { digits[2] }, preferredWrongAnswers: new[] { digits[1], digits[0], digits[3] }),
+            makeQuestion(Question.iPhoneDigits, _iPhone, formatArgs: new[] { ordinal(4) }, correctAnswers: new[] { digits[3] }, preferredWrongAnswers: new[] { digits[1], digits[2], digits[0] }));
     }
 }

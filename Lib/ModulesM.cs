@@ -705,8 +705,8 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(_ModernCipher);
         addQuestions(module,
-            makeQuestion(Question.ModernCipherWord, _ModernCipher, formatArgs: new[] { "first" }, correctAnswers: new[] { stage1word }, preferredWrongAnswers: new[] { stage2word }),
-            makeQuestion(Question.ModernCipherWord, _ModernCipher, formatArgs: new[] { "second" }, correctAnswers: new[] { stage2word }, preferredWrongAnswers: new[] { stage1word }));
+            makeQuestion(Question.ModernCipherWord, _ModernCipher, formatArgs: new[] { ordinal(1) }, correctAnswers: new[] { stage1word }, preferredWrongAnswers: new[] { stage2word }),
+            makeQuestion(Question.ModernCipherWord, _ModernCipher, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { stage2word }, preferredWrongAnswers: new[] { stage1word }));
     }
 
     private IEnumerable<object> ProcessModuleListening(KMBombModule module)

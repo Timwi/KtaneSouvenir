@@ -143,9 +143,9 @@ public partial class SouvenirModule
             allAnswers[i] = char.ToUpperInvariant(allAnswers[i][0]) + allAnswers[i].Substring(1);
 
         addQuestions(module,
-            makeQuestion(Question.ChallengeAndContactAnswers, _ChallengeAndContact, formatArgs: new[] { "first" }, correctAnswers: new[] { answers[0] }, preferredWrongAnswers: allAnswers.Where(x => x[0] == answers[0][0]).ToArray()),
-            makeQuestion(Question.ChallengeAndContactAnswers, _ChallengeAndContact, formatArgs: new[] { "second" }, correctAnswers: new[] { answers[1] }, preferredWrongAnswers: allAnswers.Where(x => x[0] == answers[1][0]).ToArray()),
-            makeQuestion(Question.ChallengeAndContactAnswers, _ChallengeAndContact, formatArgs: new[] { "third" }, correctAnswers: new[] { answers[2] }, preferredWrongAnswers: allAnswers.Where(x => x[0] == answers[2][0]).ToArray()));
+            makeQuestion(Question.ChallengeAndContactAnswers, _ChallengeAndContact, formatArgs: new[] { ordinal(1) }, correctAnswers: new[] { answers[0] }, preferredWrongAnswers: allAnswers.Where(x => x[0] == answers[0][0]).ToArray()),
+            makeQuestion(Question.ChallengeAndContactAnswers, _ChallengeAndContact, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { answers[1] }, preferredWrongAnswers: allAnswers.Where(x => x[0] == answers[1][0]).ToArray()),
+            makeQuestion(Question.ChallengeAndContactAnswers, _ChallengeAndContact, formatArgs: new[] { ordinal(3) }, correctAnswers: new[] { answers[2] }, preferredWrongAnswers: allAnswers.Where(x => x[0] == answers[2][0]).ToArray()));
     }
 
     private IEnumerable<object> ProcessCharacterCodes(KMBombModule module)

@@ -145,13 +145,13 @@ public partial class SouvenirModule
         string[] chaptersString = chapters.Select(x => x.ToString()).ToArray();
 
         addQuestions(module,
-            makeQuestion(Question.NecronomiconChapters, _Necronomicon, formatArgs: new[] { "first" }, correctAnswers: new[] { chaptersString[0] }, preferredWrongAnswers: chaptersString),
-            makeQuestion(Question.NecronomiconChapters, _Necronomicon, formatArgs: new[] { "second" }, correctAnswers: new[] { chaptersString[1] }, preferredWrongAnswers: chaptersString),
-            makeQuestion(Question.NecronomiconChapters, _Necronomicon, formatArgs: new[] { "third" }, correctAnswers: new[] { chaptersString[2] }, preferredWrongAnswers: chaptersString),
-            makeQuestion(Question.NecronomiconChapters, _Necronomicon, formatArgs: new[] { "fourth" }, correctAnswers: new[] { chaptersString[3] }, preferredWrongAnswers: chaptersString),
-            makeQuestion(Question.NecronomiconChapters, _Necronomicon, formatArgs: new[] { "fifth" }, correctAnswers: new[] { chaptersString[4] }, preferredWrongAnswers: chaptersString),
-            makeQuestion(Question.NecronomiconChapters, _Necronomicon, formatArgs: new[] { "sixth" }, correctAnswers: new[] { chaptersString[5] }, preferredWrongAnswers: chaptersString),
-            makeQuestion(Question.NecronomiconChapters, _Necronomicon, formatArgs: new[] { "seventh" }, correctAnswers: new[] { chaptersString[6] }, preferredWrongAnswers: chaptersString));
+            makeQuestion(Question.NecronomiconChapters, _Necronomicon, formatArgs: new[] { ordinal(1) }, correctAnswers: new[] { chaptersString[0] }, preferredWrongAnswers: chaptersString),
+            makeQuestion(Question.NecronomiconChapters, _Necronomicon, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { chaptersString[1] }, preferredWrongAnswers: chaptersString),
+            makeQuestion(Question.NecronomiconChapters, _Necronomicon, formatArgs: new[] { ordinal(3) }, correctAnswers: new[] { chaptersString[2] }, preferredWrongAnswers: chaptersString),
+            makeQuestion(Question.NecronomiconChapters, _Necronomicon, formatArgs: new[] { ordinal(4) }, correctAnswers: new[] { chaptersString[3] }, preferredWrongAnswers: chaptersString),
+            makeQuestion(Question.NecronomiconChapters, _Necronomicon, formatArgs: new[] { ordinal(5) }, correctAnswers: new[] { chaptersString[4] }, preferredWrongAnswers: chaptersString),
+            makeQuestion(Question.NecronomiconChapters, _Necronomicon, formatArgs: new[] { ordinal(6) }, correctAnswers: new[] { chaptersString[5] }, preferredWrongAnswers: chaptersString),
+            makeQuestion(Question.NecronomiconChapters, _Necronomicon, formatArgs: new[] { ordinal(7) }, correctAnswers: new[] { chaptersString[6] }, preferredWrongAnswers: chaptersString));
     }
 
     private IEnumerable<object> ProcessNegativity(KMBombModule module)
