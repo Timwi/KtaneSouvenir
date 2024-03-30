@@ -3752,13 +3752,21 @@ namespace Souvenir
                 },
             },
             // Which square was {1} in {0}?
-            // Which square was chestnut in Juxtacolored Squares?
+            // Which square was red in Juxtacolored Squares?
             [Question.JuxtacoloredSquaresPositionsByColor] = new TranslationInfo
             {
                 QuestionText = "Какой квадрат был {1} в «{0}»?",
                 ModuleName = "Смежно-цветных квадратах",
                 FormatArgs = new Dictionary<string, string>
                 {
+                    ["red"] = "красного цвета",
+                    ["blue"] = "синего цвета",
+                    ["yellow"] = "жёлтого цвета",
+                    ["green"] = "зелёного цвета",
+                    ["magenta"] = "цвета мадженты",
+                    ["orange"] = "оранжевого цвета",
+                    ["cyan"] = "голубого цвета",
+                    ["purple"] = "фиолетового цвета",
                     ["chestnut"] = "каштанового цвета",
                     ["brown"] = "коричневого цвета",
                     ["mauve"] = "лилового цвета",

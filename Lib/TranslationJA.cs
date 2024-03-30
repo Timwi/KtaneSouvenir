@@ -3864,13 +3864,21 @@ namespace Souvenir
                 },
             },
             // Which square was {1} in {0}?
-            // Which square was chestnut in Juxtacolored Squares?
+            // Which square was red in Juxtacolored Squares?
             [Question.JuxtacoloredSquaresPositionsByColor] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}色の正方形はどれ？",
                 ModuleName = "色比べ格子",
                 FormatArgs = new Dictionary<string, string>
                 {
+                    ["red"] = "red",
+                    ["blue"] = "blue",
+                    ["yellow"] = "yellow",
+                    ["green"] = "green",
+                    ["magenta"] = "magenta",
+                    ["orange"] = "orange",
+                    ["cyan"] = "cyan",
+                    ["purple"] = "purple",
                     ["chestnut"] = "chestnut",
                     ["brown"] = "brown",
                     ["mauve"] = "mauve",
