@@ -2697,8 +2697,10 @@ namespace Souvenir
             {
                 QuestionText = "Which module’s flavor text was shown in {0}?",
             },
+
+            // Flavor Text EX
             // Which module’s flavor text was shown in the {1} stage of {0}?
-            // Which module’s flavor text was shown in the first stage of Flavor Text?
+            // Which module’s flavor text was shown in the first stage of Flavor Text EX?
             [Question.FlavorTextEXModule] = new TranslationInfo
             {
                 QuestionText = "Which module’s flavor text was shown in the {1} stage of {0}?",
@@ -3595,12 +3597,42 @@ namespace Souvenir
             [Question.JuxtacoloredSquaresColorsByPosition] = new TranslationInfo
             {
                 QuestionText = "What was the color of this square in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Blue"] = "Blue",
+                    ["Yellow"] = "Yellow",
+                    ["Green"] = "Green",
+                    ["Magenta"] = "Magenta",
+                    ["Orange"] = "Orange",
+                    ["Cyan"] = "Cyan",
+                    ["Purple"] = "Purple",
+                    ["Chestnut"] = "Chestnut",
+                    ["Brown"] = "Brown",
+                    ["Mauve"] = "Mauve",
+                    ["Azure"] = "Azure",
+                    ["Jade"] = "Jade",
+                    ["Forest"] = "Forest",
+                    ["Gray"] = "Gray",
+                    ["Black"] = "Black",
+                },
             },
             // Which square was {1} in {0}?
             // Which square was chestnut in Juxtacolored Squares?
             [Question.JuxtacoloredSquaresPositionsByColor] = new TranslationInfo
             {
                 QuestionText = "Which square was {1} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["chestnut"] = "chestnut",
+                    ["brown"] = "brown",
+                    ["mauve"] = "mauve",
+                    ["azure"] = "azure",
+                    ["jade"] = "jade",
+                    ["forest"] = "forest",
+                    ["gray"] = "gray",
+                    ["black"] = "black",
+                },
             },
 
             // Kanji
@@ -3696,6 +3728,14 @@ namespace Souvenir
             [Question.LabyrinthPortalStage] = new TranslationInfo
             {
                 QuestionText = "In which layer was this portal in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["1 (Red)"] = "1 (Red)",
+                    ["2 (Orange)"] = "2 (Orange)",
+                    ["3 (Yellow)"] = "3 (Yellow)",
+                    ["4 (Green)"] = "4 (Green)",
+                    ["5 (Blue)"] = "5 (Blue)",
+                },
             },
 
             // Ladder Lottery
@@ -4020,6 +4060,32 @@ namespace Souvenir
                     ["middle"] = "middle",
                     ["bottom"] = "bottom",
                 },
+            },
+
+            // Main Page
+            // Which color did the bubble not display in {0}?
+            // Which color did the bubble not display in Main Page?
+            [Question.MainPageBubbleColors] = new TranslationInfo
+            {
+                QuestionText = "Which color did the bubble not display in {0}?",
+            },
+            // Which main page did the {1} button's effect come from in {0}?
+            // Which main page did the toons button's effect come from in Main Page?
+            [Question.MainPageButtonEffectOrigin] = new TranslationInfo
+            {
+                QuestionText = "Which main page did the {1} button's effect come from in {0}?",
+            },
+            // Which of the following messages did the bubble {1} in {0}?
+            // Which of the following messages did the bubble display in Main Page?
+            [Question.MainPageBubbleMessages] = new TranslationInfo
+            {
+                QuestionText = "Which of the following messages did the bubble {1} in {0}?",
+            },
+            // Which main page did {1} come from in {0}?
+            // Which main page did Homestar come from in Main Page?
+            [Question.MainPageHomestarBackgroundOrigin] = new TranslationInfo
+            {
+                QuestionText = "Which main page did {1} come from in {0}?",
             },
 
             // M&Ms
@@ -4696,6 +4762,18 @@ namespace Souvenir
             [Question.MurderBodyFound] = new TranslationInfo
             {
                 QuestionText = "Where was the body found in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Dining Room"] = "Dining Room",
+                    ["Study"] = "Study",
+                    ["Kitchen"] = "Kitchen",
+                    ["Lounge"] = "Lounge",
+                    ["Billiard Room"] = "Billiard Room",
+                    ["Conservatory"] = "Conservatory",
+                    ["Ballroom"] = "Ballroom",
+                    ["Hall"] = "Hall",
+                    ["Library"] = "Library",
+                },
             },
             // Which of these was {1} in {0}?
             // Which of these was a suspect, but not the murderer, in Murder?
@@ -4707,6 +4785,15 @@ namespace Souvenir
                     ["a suspect, but not the murderer,"] = "a suspect, but not the murderer,",
                     ["not a suspect"] = "not a suspect",
                 },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Miss Scarlett"] = "Miss Scarlett",
+                    ["Professor Plum"] = "Professor Plum",
+                    ["Mrs Peacock"] = "Mrs Peacock",
+                    ["Reverend Green"] = "Reverend Green",
+                    ["Colonel Mustard"] = "Colonel Mustard",
+                    ["Mrs White"] = "Mrs White",
+                },
             },
             // Which of these was {1} in {0}?
             // Which of these was a potential weapon, but not the murder weapon, in Murder?
@@ -4717,6 +4804,15 @@ namespace Souvenir
                 {
                     ["a potential weapon, but not the murder weapon,"] = "a potential weapon, but not the murder weapon,",
                     ["not a potential weapon"] = "not a potential weapon",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Candlestick"] = "Candlestick",
+                    ["Dagger"] = "Dagger",
+                    ["Lead Pipe"] = "Lead Pipe",
+                    ["Revolver"] = "Revolver",
+                    ["Rope"] = "Rope",
+                    ["Spanner"] = "Spanner",
                 },
             },
 
@@ -4910,12 +5006,26 @@ namespace Souvenir
             [Question.NotConnectionCheckFlashes] = new TranslationInfo
             {
                 QuestionText = "What symbol flashed on the {1} button in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top left"] = "top left",
+                    ["top right"] = "top right",
+                    ["bottom left"] = "bottom left",
+                    ["bottom right"] = "bottom right",
+                },
             },
             // What was the value of the {1} button in {0}?
             // What was the value of the top left button in Not Connection Check?
             [Question.NotConnectionCheckValues] = new TranslationInfo
             {
                 QuestionText = "What was the value of the {1} button in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top left"] = "top left",
+                    ["top right"] = "top right",
+                    ["bottom left"] = "bottom left",
+                    ["bottom right"] = "bottom right",
+                },
             },
 
             // Not Coordinates
@@ -4985,12 +5095,51 @@ namespace Souvenir
             [Question.NotMurderRoom] = new TranslationInfo
             {
                 QuestionText = "What room was {1} in during {2} on {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["Miss Scarlett"] = "Miss Scarlett",
+                    ["Colonel Mustard"] = "Colonel Mustard",
+                    ["Reverend Green"] = "Reverend Green",
+                    ["Mrs Peacock"] = "Mrs Peacock",
+                    ["Professor Plum"] = "Professor Plum",
+                    ["Mrs White"] = "Mrs White",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Ballroom"] = "Ballroom",
+                    ["Billiard Room"] = "Billiard Room",
+                    ["Conservatory"] = "Conservatory",
+                    ["Dining Room"] = "Dining Room",
+                    ["Hall"] = "Hall",
+                    ["Kitchen"] = "Kitchen",
+                    ["Library"] = "Library",
+                    ["Lounge"] = "Lounge",
+                    ["Study"] = "Study",
+                },
             },
             // What weapon did {1} possess initially on {0}?
             // What weapon did Miss Scarlett possess initially on Not Murder?
             [Question.NotMurderWeapon] = new TranslationInfo
             {
                 QuestionText = "What weapon did {1} possess during {2} on {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["Miss Scarlett"] = "Miss Scarlett",
+                    ["Colonel Mustard"] = "Colonel Mustard",
+                    ["Reverend Green"] = "Reverend Green",
+                    ["Mrs Peacock"] = "Mrs Peacock",
+                    ["Professor Plum"] = "Professor Plum",
+                    ["Mrs White"] = "Mrs White",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Candlestick"] = "Candlestick",
+                    ["Dagger"] = "Dagger",
+                    ["Lead Pipe"] = "Lead Pipe",
+                    ["Revolver"] = "Revolver",
+                    ["Rope"] = "Rope",
+                    ["Spanner"] = "Spanner",
+                },
             },
 
             // Not Number Pad
@@ -5291,6 +5440,11 @@ namespace Souvenir
             [Question.NotX01SectorValues] = new TranslationInfo
             {
                 QuestionText = "Which sector value {1} present on {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["was"] = "was",
+                    ["was not"] = "was not",
+                },
             },
 
             // Not X-Ray
@@ -5439,6 +5593,15 @@ namespace Souvenir
                     ["bottom left"] = "bottom left",
                     ["bottom middle"] = "bottom middle",
                     ["bottom right"] = "bottom right",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Two Reeds"] = "Two Reeds",
+                    ["Lion"] = "Lion",
+                    ["Twisted Flax"] = "Twisted Flax",
+                    ["Horned Viper"] = "Horned Viper",
+                    ["Water"] = "Water",
+                    ["Eye of Horus"] = "Eye of Horus",
                 },
             },
 
@@ -6593,6 +6756,21 @@ namespace Souvenir
             [Question.SillySlots] = new TranslationInfo
             {
                 QuestionText = "What was the {1} slot in the {2} stage in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red bomb"] = "red bomb",
+                    ["red cherry"] = "red cherry",
+                    ["red coin"] = "red coin",
+                    ["red grape"] = "red grape",
+                    ["green bomb"] = "green bomb",
+                    ["green cherry"] = "green cherry",
+                    ["green coin"] = "green coin",
+                    ["green grape"] = "green grape",
+                    ["blue bomb"] = "blue bomb",
+                    ["blue cherry"] = "blue cherry",
+                    ["blue coin"] = "blue coin",
+                    ["blue grape"] = "blue grape",
+                },
             },
 
             // Sign Language
@@ -6649,6 +6827,20 @@ namespace Souvenir
                     ["played in the first stage"] = "played in the first stage",
                     ["added in the second stage"] = "added in the second stage",
                     ["added in the third stage"] = "added in the third stage",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["KKSS"] = "KKSS",
+                    ["KKSH"] = "KKSH",
+                    ["KSSH"] = "KSSH",
+                    ["KHSS"] = "KHSS",
+                    ["KHSH"] = "KHSH",
+                    ["KHSO"] = "KHSO",
+                    ["KHOH"] = "KHOH",
+                    ["KOSH"] = "KOSH",
+                    ["KOSO"] = "KOSO",
+                    ["SKSK"] = "SKSK",
+                    ["SHHS"] = "SHHS",
                 },
             },
 
@@ -6754,6 +6946,20 @@ namespace Souvenir
                     ["green"] = "green",
                     ["blue"] = "blue",
                 },
+            },
+
+            // Simon Serves
+            // Who flashed {1} in course {2} of {0}?
+            // Who flashed first in course 1 of Simon Serves?
+            [Question.SimonServesFlash] = new TranslationInfo
+            {
+                QuestionText = "Who flashed {1} in course {2} of {0}?",
+            },
+            // Which item was not served in course {1} of {0}?
+            // Which item was not served in course 1 of Simon Serves?
+            [Question.SimonServesFood] = new TranslationInfo
+            {
+                QuestionText = "Which item was not served in course {1} of {0}?",
             },
 
             // Simon Shapes
@@ -7372,6 +7578,20 @@ namespace Souvenir
                     ["PewDiePie"] = "PewDiePie",
                     ["T-Series"] = "T-Series",
                 },
+            },
+
+            // Subway
+            // Which bread did the customer ask for in {0}?
+            // Which bread did the customer ask for in Subway?
+            [Question.SubwayBread] = new TranslationInfo
+            {
+                QuestionText = "Which bread did the customer ask for in {0}?",
+            },
+            // Which of these was not asked for in {0}?
+            // Which of these was not asked for in Subway?
+            [Question.SubwayItems] = new TranslationInfo
+            {
+                QuestionText = "Which of these was not asked for in {0}?",
             },
 
             // Sugar Skulls

@@ -2861,10 +2861,11 @@ namespace Souvenir
             {
                 QuestionText = "{0}で表示されたフレーバーテキストは、どのモジュールのもの？",
                 ModuleName = "フレーバーテキスト",
-                
             },
+
+            // Flavor Text EX
             // Which module’s flavor text was shown in the {1} stage of {0}?
-            // Which module’s flavor text was shown in the first stage of Flavor Text?
+            // Which module’s flavor text was shown in the first stage of Flavor Text EX?
             [Question.FlavorTextEXModule] = new TranslationInfo
             {
                 QuestionText = "{0}のステージ{1}で表示されたフレーバーテキストは、どのモジュールのもの？",
@@ -3842,6 +3843,25 @@ namespace Souvenir
             {
                 QuestionText = "{0}のこの位置にあった正方形の色は？",
                 ModuleName = "色比べ格子",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Blue"] = "Blue",
+                    ["Yellow"] = "Yellow",
+                    ["Green"] = "Green",
+                    ["Magenta"] = "Magenta",
+                    ["Orange"] = "Orange",
+                    ["Cyan"] = "Cyan",
+                    ["Purple"] = "Purple",
+                    ["Chestnut"] = "Chestnut",
+                    ["Brown"] = "Brown",
+                    ["Mauve"] = "Mauve",
+                    ["Azure"] = "Azure",
+                    ["Jade"] = "Jade",
+                    ["Forest"] = "Forest",
+                    ["Gray"] = "Gray",
+                    ["Black"] = "Black",
+                },
             },
             // Which square was {1} in {0}?
             // Which square was chestnut in Juxtacolored Squares?
@@ -3849,6 +3869,17 @@ namespace Souvenir
             {
                 QuestionText = "{0}の{1}色の正方形はどれ？",
                 ModuleName = "色比べ格子",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["chestnut"] = "chestnut",
+                    ["brown"] = "brown",
+                    ["mauve"] = "mauve",
+                    ["azure"] = "azure",
+                    ["jade"] = "jade",
+                    ["forest"] = "forest",
+                    ["gray"] = "gray",
+                    ["black"] = "black",
+                },
             },
 
             // Kanji
@@ -3954,6 +3985,14 @@ namespace Souvenir
             {
                 QuestionText = "{0}でこのポータルがあったのはどの層？",
                 ModuleName = "迷宮",
+                Answers = new Dictionary<string, string>
+                {
+                    ["1 (Red)"] = "1 (Red)",
+                    ["2 (Orange)"] = "2 (Orange)",
+                    ["3 (Yellow)"] = "3 (Yellow)",
+                    ["4 (Green)"] = "4 (Green)",
+                    ["5 (Blue)"] = "5 (Blue)",
+                },
             },
 
             // Ladder Lottery
@@ -4302,6 +4341,32 @@ namespace Souvenir
                     ["middle"] = "中央",
                     ["bottom"] = "下部",
                 },
+            },
+
+            // Main Page
+            // Which color did the bubble not display in {0}?
+            // Which color did the bubble not display in Main Page?
+            [Question.MainPageBubbleColors] = new TranslationInfo
+            {
+                QuestionText = "Which color did the bubble not display in {0}?",
+            },
+            // Which main page did the {1} button's effect come from in {0}?
+            // Which main page did the toons button's effect come from in Main Page?
+            [Question.MainPageButtonEffectOrigin] = new TranslationInfo
+            {
+                QuestionText = "Which main page did the {1} button's effect come from in {0}?",
+            },
+            // Which of the following messages did the bubble {1} in {0}?
+            // Which of the following messages did the bubble display in Main Page?
+            [Question.MainPageBubbleMessages] = new TranslationInfo
+            {
+                QuestionText = "Which of the following messages did the bubble {1} in {0}?",
+            },
+            // Which main page did {1} come from in {0}?
+            // Which main page did Homestar come from in Main Page?
+            [Question.MainPageHomestarBackgroundOrigin] = new TranslationInfo
+            {
+                QuestionText = "Which main page did {1} come from in {0}?",
             },
 
             // M&Ms
@@ -5028,6 +5093,18 @@ namespace Souvenir
             {
                 QuestionText = "{0}の死体はどこで見つかった？",
                 ModuleName = "殺人",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Dining Room"] = "Dining Room",
+                    ["Study"] = "Study",
+                    ["Kitchen"] = "Kitchen",
+                    ["Lounge"] = "Lounge",
+                    ["Billiard Room"] = "Billiard Room",
+                    ["Conservatory"] = "Conservatory",
+                    ["Ballroom"] = "Ballroom",
+                    ["Hall"] = "Hall",
+                    ["Library"] = "Library",
+                },
             },
             // Which of these was {1} in {0}?
             // Which of these was a suspect, but not the murderer, in Murder?
@@ -5040,6 +5117,15 @@ namespace Souvenir
                     ["a suspect, but not the murderer,"] = "殺人鬼ではなかった容疑者",
                     ["not a suspect"] = "容疑者ではなかった人物",
                 },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Miss Scarlett"] = "Miss Scarlett",
+                    ["Professor Plum"] = "Professor Plum",
+                    ["Mrs Peacock"] = "Mrs Peacock",
+                    ["Reverend Green"] = "Reverend Green",
+                    ["Colonel Mustard"] = "Colonel Mustard",
+                    ["Mrs White"] = "Mrs White",
+                },
             },
             // Which of these was {1} in {0}?
             // Which of these was a potential weapon, but not the murder weapon, in Murder?
@@ -5051,6 +5137,15 @@ namespace Souvenir
                 {
                     ["a potential weapon, but not the murder weapon,"] = "凶器ではない候補にあった武器",
                     ["not a potential weapon"] = "候補に無かった武器",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Candlestick"] = "Candlestick",
+                    ["Dagger"] = "Dagger",
+                    ["Lead Pipe"] = "Lead Pipe",
+                    ["Revolver"] = "Revolver",
+                    ["Rope"] = "Rope",
+                    ["Spanner"] = "Spanner",
                 },
             },
 
@@ -5258,6 +5353,13 @@ namespace Souvenir
             {
                 QuestionText = "{0}の{1}のボタンが示した記号は？",
                 ModuleName = "偽接続確認",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top left"] = "top left",
+                    ["top right"] = "top right",
+                    ["bottom left"] = "bottom left",
+                    ["bottom right"] = "bottom right",
+                },
             },
             // What was the value of the {1} button in {0}?
             // What was the value of the top left button in Not Connection Check?
@@ -5265,6 +5367,13 @@ namespace Souvenir
             {
                 QuestionText = "{0}の{1}のボタンの値は？",
                 ModuleName = "偽接続確認",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top left"] = "top left",
+                    ["top right"] = "top right",
+                    ["bottom left"] = "bottom left",
+                    ["bottom right"] = "bottom right",
+                },
             },
 
             // Not Coordinates
@@ -5341,6 +5450,27 @@ namespace Souvenir
             {
                 QuestionText = "{0}で{1}が最初にいたのはどの部屋？",
                 ModuleName = "偽殺人",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["Miss Scarlett"] = "Miss Scarlett",
+                    ["Colonel Mustard"] = "Colonel Mustard",
+                    ["Reverend Green"] = "Reverend Green",
+                    ["Mrs Peacock"] = "Mrs Peacock",
+                    ["Professor Plum"] = "Professor Plum",
+                    ["Mrs White"] = "Mrs White",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Ballroom"] = "Ballroom",
+                    ["Billiard Room"] = "Billiard Room",
+                    ["Conservatory"] = "Conservatory",
+                    ["Dining Room"] = "Dining Room",
+                    ["Hall"] = "Hall",
+                    ["Kitchen"] = "Kitchen",
+                    ["Library"] = "Library",
+                    ["Lounge"] = "Lounge",
+                    ["Study"] = "Study",
+                },
             },
             // What weapon did {1} possess initially on {0}?
             // What weapon did Miss Scarlett possess initially on Not Murder?
@@ -5348,6 +5478,24 @@ namespace Souvenir
             {
                 QuestionText = "{0}で{1}が最初に所持していたのはどの武器？",
                 ModuleName = "偽殺人",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["Miss Scarlett"] = "Miss Scarlett",
+                    ["Colonel Mustard"] = "Colonel Mustard",
+                    ["Reverend Green"] = "Reverend Green",
+                    ["Mrs Peacock"] = "Mrs Peacock",
+                    ["Professor Plum"] = "Professor Plum",
+                    ["Mrs White"] = "Mrs White",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Candlestick"] = "Candlestick",
+                    ["Dagger"] = "Dagger",
+                    ["Lead Pipe"] = "Lead Pipe",
+                    ["Revolver"] = "Revolver",
+                    ["Rope"] = "Rope",
+                    ["Spanner"] = "Spanner",
+                },
             },
 
             // Not Number Pad
@@ -5672,6 +5820,11 @@ namespace Souvenir
             [Question.NotX01SectorValues] = new TranslationInfo
             {
                 QuestionText = "{0}に存在{1}セクターは？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["was"] = "was",
+                    ["was not"] = "was not",
+                },
             },
 
             // Not X-Ray
@@ -5833,6 +5986,15 @@ namespace Souvenir
                     ["bottom left"] = "左下",
                     ["bottom middle"] = "下",
                     ["bottom right"] = "右下",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Two Reeds"] = "Two Reeds",
+                    ["Lion"] = "Lion",
+                    ["Twisted Flax"] = "Twisted Flax",
+                    ["Horned Viper"] = "Horned Viper",
+                    ["Water"] = "Water",
+                    ["Eye of Horus"] = "Eye of Horus",
                 },
             },
 
@@ -6203,8 +6365,8 @@ namespace Souvenir
             [Question.PinkButtonColors] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}番目の色は？",
-                 ModuleName = "桃色ボタン",
-                 Answers = new Dictionary<string, string>
+                ModuleName = "桃色ボタン",
+                Answers = new Dictionary<string, string>
                 {
                     ["black"] = "黒",
                     ["red"] = "赤",
@@ -7083,6 +7245,21 @@ namespace Souvenir
             {
                 QuestionText = "{0}のステージ{2}において、{1}列目のスロットは？",
                 ModuleName = "ヘンテコスロット",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red bomb"] = "red bomb",
+                    ["red cherry"] = "red cherry",
+                    ["red coin"] = "red coin",
+                    ["red grape"] = "red grape",
+                    ["green bomb"] = "green bomb",
+                    ["green cherry"] = "green cherry",
+                    ["green coin"] = "green coin",
+                    ["green grape"] = "green grape",
+                    ["blue bomb"] = "blue bomb",
+                    ["blue cherry"] = "blue cherry",
+                    ["blue coin"] = "blue coin",
+                    ["blue grape"] = "blue grape",
+                },
             },
 
             // Sign Language
@@ -7145,6 +7322,20 @@ namespace Souvenir
                     ["played in the first stage"] = "ステージ1で演奏された",
                     ["added in the second stage"] = "ステージ2で演奏された",
                     ["added in the third stage"] = "ステージ3で演奏された",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["KKSS"] = "KKSS",
+                    ["KKSH"] = "KKSH",
+                    ["KSSH"] = "KSSH",
+                    ["KHSS"] = "KHSS",
+                    ["KHSH"] = "KHSH",
+                    ["KHSO"] = "KHSO",
+                    ["KHOH"] = "KHOH",
+                    ["KOSH"] = "KOSH",
+                    ["KOSO"] = "KOSO",
+                    ["SKSK"] = "SKSK",
+                    ["SHHS"] = "SHHS",
                 },
             },
 
@@ -7256,6 +7447,20 @@ namespace Souvenir
                     ["green"] = "緑",
                     ["blue"] = "青",
                 },
+            },
+
+            // Simon Serves
+            // Who flashed {1} in course {2} of {0}?
+            // Who flashed first in course 1 of Simon Serves?
+            [Question.SimonServesFlash] = new TranslationInfo
+            {
+                QuestionText = "Who flashed {1} in course {2} of {0}?",
+            },
+            // Which item was not served in course {1} of {0}?
+            // Which item was not served in course 1 of Simon Serves?
+            [Question.SimonServesFood] = new TranslationInfo
+            {
+                QuestionText = "Which item was not served in course {1} of {0}?",
             },
 
             // Simon Shapes
@@ -7926,8 +8131,8 @@ namespace Souvenir
             {
                 QuestionText = "{0}で客が注文したパンは？",
             },
-            // Which item was not asked for in {0}?
-            // Which item was not asked for in Subway?
+            // Which of these was not asked for in {0}?
+            // Which of these was not asked for in Subway?
             [Question.SubwayItems] = new TranslationInfo
             {
                 QuestionText = "{0}で客が頼まなかったものは？",
