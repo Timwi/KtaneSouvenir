@@ -4776,13 +4776,13 @@ namespace Souvenir
                 },
             },
             // Which of these was {1} in {0}?
-            // Which of these was a suspect, but not the murderer, in Murder?
+            // Which of these was a suspect but not the murderer in Murder?
             [Question.MurderSuspect] = new TranslationInfo
             {
                 QuestionText = "Which of these was {1} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["a suspect, but not the murderer,"] = "a suspect, but not the murderer,",
+                    ["a suspect but not the murderer"] = "a suspect but not the murderer",
                     ["not a suspect"] = "not a suspect",
                 },
                 Answers = new Dictionary<string, string>
@@ -4796,13 +4796,13 @@ namespace Souvenir
                 },
             },
             // Which of these was {1} in {0}?
-            // Which of these was a potential weapon, but not the murder weapon, in Murder?
+            // Which of these was a potential weapon but not the murder weapon in Murder?
             [Question.MurderWeapon] = new TranslationInfo
             {
                 QuestionText = "Which of these was {1} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["a potential weapon, but not the murder weapon,"] = "a potential weapon, but not the murder weapon,",
+                    ["a potential weapon but not the murder weapon"] = "a potential weapon but not the murder weapon",
                     ["not a potential weapon"] = "not a potential weapon",
                 },
                 Answers = new Dictionary<string, string>

@@ -4971,14 +4971,14 @@ namespace Souvenir
                 },
             },
             // Which of these was {1} in {0}?
-            // Which of these was a suspect, but not the murderer, in Murder?
+            // Which of these was a suspect but not the murderer in Murder?
             [Question.MurderSuspect] = new TranslationInfo
             {
                 QuestionText = "Кто {1} в «{0}»?",
                 ModuleName = "Убийстве",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["a suspect, but not the murderer,"] = "не являлся убийцей, но был среди подозреваемых",
+                    ["a suspect but not the murderer"] = "не являлся убийцей, но был среди подозреваемых",
                     ["not a suspect"] = "не был подозреваемым",
                 },
                 Answers = new Dictionary<string, string>
@@ -4992,14 +4992,14 @@ namespace Souvenir
                 },
             },
             // Which of these was {1} in {0}?
-            // Which of these was a potential weapon, but not the murder weapon, in Murder?
+            // Which of these was a potential weapon but not the murder weapon in Murder?
             [Question.MurderWeapon] = new TranslationInfo
             {
                 QuestionText = "{1} «{0}»?",
                 ModuleName = "Убийства",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["a potential weapon, but not the murder weapon,"] = "Какое орудие было найдено, но не являлось орудием",
+                    ["a potential weapon but not the murder weapon"] = "Какое орудие было найдено, но не являлось орудием",
                     ["not a potential weapon"] = "Какого орудия не было среди найденных возможных орудий",
                 },
                 Answers = new Dictionary<string, string>

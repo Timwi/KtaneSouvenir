@@ -5107,14 +5107,14 @@ namespace Souvenir
                 },
             },
             // Which of these was {1} in {0}?
-            // Which of these was a suspect, but not the murderer, in Murder?
+            // Which of these was a suspect but not the murderer in Murder?
             [Question.MurderSuspect] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}に含まれるのは？",
                 ModuleName = "殺人",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["a suspect, but not the murderer,"] = "殺人鬼ではなかった容疑者",
+                    ["a suspect but not the murderer"] = "殺人鬼ではなかった容疑者",
                     ["not a suspect"] = "容疑者ではなかった人物",
                 },
                 Answers = new Dictionary<string, string>
@@ -5128,14 +5128,14 @@ namespace Souvenir
                 },
             },
             // Which of these was {1} in {0}?
-            // Which of these was a potential weapon, but not the murder weapon, in Murder?
+            // Which of these was a potential weapon but not the murder weapon in Murder?
             [Question.MurderWeapon] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}に含まれるのは？",
                 ModuleName = "殺人",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["a potential weapon, but not the murder weapon,"] = "凶器ではない候補にあった武器",
+                    ["a potential weapon but not the murder weapon"] = "凶器ではない候補にあった武器",
                     ["not a potential weapon"] = "候補に無かった武器",
                 },
                 Answers = new Dictionary<string, string>

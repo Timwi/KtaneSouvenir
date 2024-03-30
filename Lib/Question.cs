@@ -1654,10 +1654,10 @@
         [SouvenirQuestion("Where was the body found in {0}?", "Murder", TwoColumns4Answers, "Dining Room", "Study", "Kitchen", "Lounge", "Billiard Room", "Conservatory", "Ballroom", "Hall", "Library", TranslateAnswers = true)]
         MurderBodyFound,
         [SouvenirQuestion("Which of these was {1} in {0}?", "Murder", TwoColumns4Answers, "Miss Scarlett", "Professor Plum", "Mrs Peacock", "Reverend Green", "Colonel Mustard", "Mrs White", TranslateAnswers = true,
-            ExampleExtraFormatArguments = new[] { "a suspect, but not the murderer,", "not a suspect" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
+            ExampleExtraFormatArguments = new[] { "a suspect but not the murderer", "not a suspect" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         MurderSuspect,
         [SouvenirQuestion("Which of these was {1} in {0}?", "Murder", TwoColumns4Answers, "Candlestick", "Dagger", "Lead Pipe", "Revolver", "Rope", "Spanner", TranslateAnswers = true,
-            ExampleExtraFormatArguments = new[] { "a potential weapon, but not the murder weapon,", "not a potential weapon" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
+            ExampleExtraFormatArguments = new[] { "a potential weapon but not the murder weapon", "not a potential weapon" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         MurderWeapon,
 
         [SouvenirQuestion("Which module was the first requested to be solved by {0}?", "Mystery Module", OneColumn4Answers, null, ExampleAnswers = new[] { "Probing", "Kudosudoku", "Ten-Button Color Code", "The Jukebox", "Rock-Paper-Scissors-L.-Sp." })]
