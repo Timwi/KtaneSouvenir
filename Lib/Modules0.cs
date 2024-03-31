@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Souvenir;
 using Souvenir.Reflection;
 using UnityEngine;
@@ -73,7 +74,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_1DChess);
 
-        var moves = GetListField<string>(comp, "souvenirPositions").Get();
+        var moves = GetListField<string>(comp, "souvenirPositions").Get().Select(move => Regex.Replace(move, @"^\[|\]$", "")).ToArray();
         addQuestions(module, moves.Select((move, ix) =>
             makeQuestion(Question._1DChessMoves, _1DChess,
                 formatArgs: new[] { new[] { "your first move", "Rustmate’s first move", "your second move", "Rustmate’s second move", "your third move", "Rustmate’s third move", "your fourth move", "Rustmate’s fourth move", "your fifth move", "Rustmate’s fifth move", "your sixth move", "Rustmate’s sixth move", "your seventh move", "Rustmate’s seventh move", "your eighth move", "Rustmate’s eighth move" }[ix] },
