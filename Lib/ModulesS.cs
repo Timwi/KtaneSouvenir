@@ -539,6 +539,7 @@ public partial class SouvenirModule
         // First determine which rule applied in which stage
         var fldCheck = GetField<Func<int[], bool>>(rules.GetValue(0), "Check", isPublic: true);
         var fldRuleName = GetField<string>(rules.GetValue(0), "Name", isPublic: true);
+        var fldSouvenirCode = GetField<int>(rules.GetValue(0), "SouvenirCode", isPublic: true);
         var stageRules = new int[seqs.Length];
         for (int i = 0; i < seqs.Length; i++)
         {
@@ -549,6 +550,7 @@ public partial class SouvenirModule
 
         // Now set the questions
         // Skip the last rule because it’s the “otherwise” row
+        var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Purple" };
         for (int rule = 0; rule < rules.Length - 1; rule++)
         {
             var applicableStages = new List<string>();
@@ -556,9 +558,22 @@ public partial class SouvenirModule
                 if (stageRules[stage] == rule)
                     applicableStages.Add(ordinal(stage + 1));
             if (applicableStages.Count > 0)
-                qs.Add(makeQuestion(Question.SimonScreamsRule, _SimonScreams,
-                    formatArgs: new[] { fldRuleName.GetFrom(rules.GetValue(rule)) },
-                    correctAnswers: new[] { applicableStages.Count == stageRules.Length ? "all of them" : applicableStages.JoinString(", ", lastSeparator: " and ") }));
+            {
+                var code = fldSouvenirCode.GetFrom(rules.GetValue(rule));
+                if (code == 0)
+                    qs.Add(makeQuestion(Question.SimonScreamsRuleSimple, _SimonScreams,
+                        formatArgs: new[] { fldRuleName.GetFrom(rules.GetValue(rule)) },
+                        correctAnswers: new[] { applicableStages.Count == stageRules.Length ? "all of them" : applicableStages.JoinString(", ", lastSeparator: " and ") }));
+                else
+                {
+                    var color1 = colorNames[code >> 7];
+                    var color2 = colorNames[(code >> 4) & 7];
+                    var color3 = colorNames[(code >> 1) & 7];
+                    qs.Add(makeQuestion(Question.SimonScreamsRuleComplex, _SimonScreams,
+                        formatArgs: new[] { (code & 1) != 0 ? "at least two colors" : "at most one color", color1, color2, color3 },
+                        correctAnswers: new[] { applicableStages.Count == stageRules.Length ? "all of them" : applicableStages.JoinString(", ", lastSeparator: " and ") }));
+                }
+            }
         }
 
         addQuestions(module, qs);

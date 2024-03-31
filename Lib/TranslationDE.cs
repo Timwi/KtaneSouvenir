@@ -6899,17 +6899,74 @@ namespace Souvenir
                 },
             },
             // In which stage(s) of {0} was “{1}” the applicable rule?
-            // In which stage(s) of Simon Screams was “three adjacent colors flashing in clockwise order” the applicable rule?
-            [Question.SimonScreamsRule] = new TranslationInfo
+            // In which stage(s) of Simon Screams was “a color flashed, then a color two away, then the first again” the applicable rule?
+            [Question.SimonScreamsRuleSimple] = new TranslationInfo
             {
                 QuestionText = "In which stage(s) of {0} was “{1}” the applicable rule?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["three adjacent colors flashing in clockwise order"] = "three adjacent colors flashing in clockwise order",
-                    ["a color flashing, then an adjacent color, then the first again"] = "a color flashing, then an adjacent color, then the first again",
-                    ["at most one color flashing out of red, yellow, and blue"] = "at most one color flashing out of red, yellow, and blue",
-                    ["two colors opposite each other that didn’t flash"] = "two colors opposite each other that didn’t flash",
-                    ["two (but not three) adjacent colors flashing in clockwise order"] = "two (but not three) adjacent colors flashing in clockwise order",
+                    ["a color flashed, then a color two away, then the first again"] = "a color flashed, then a color two away, then the first again",
+                    ["a color flashed, then a color two away, then the one opposite that"] = "a color flashed, then a color two away, then the one opposite that",
+                    ["a color flashed, then a color two away, then the one opposite the first"] = "a color flashed, then a color two away, then the one opposite the first",
+                    ["a color flashed, then an adjacent color, then the first again"] = "a color flashed, then an adjacent color, then the first again",
+                    ["a color flashed, then another color, then the first"] = "a color flashed, then another color, then the first",
+                    ["a color flashed, then one adjacent, then the one opposite that"] = "a color flashed, then one adjacent, then the one opposite that",
+                    ["a color flashed, then one adjacent, then the one opposite the first"] = "a color flashed, then one adjacent, then the one opposite the first",
+                    ["a color flashed, then the one opposite, then one adjacent to that"] = "a color flashed, then the one opposite, then one adjacent to that",
+                    ["a color flashed, then the one opposite, then one adjacent to the first"] = "a color flashed, then the one opposite, then one adjacent to the first",
+                    ["a color flashed, then the one opposite, then the first again"] = "a color flashed, then the one opposite, then the first again",
+                    ["every color flashed at least once"] = "every color flashed at least once",
+                    ["exactly one color flashed exactly twice"] = "exactly one color flashed exactly twice",
+                    ["exactly one color flashed more than once"] = "exactly one color flashed more than once",
+                    ["exactly two colors flashed exactly twice"] = "exactly two colors flashed exactly twice",
+                    ["exactly two colors flashed more than once"] = "exactly two colors flashed more than once",
+                    ["no color flashed exactly twice"] = "no color flashed exactly twice",
+                    ["no color flashed more than once"] = "no color flashed more than once",
+                    ["no two adjacent colors flashed in clockwise order"] = "no two adjacent colors flashed in clockwise order",
+                    ["no two adjacent colors flashed in counter-clockwise order"] = "no two adjacent colors flashed in counter-clockwise order",
+                    ["no two colors two apart flashed in clockwise order"] = "no two colors two apart flashed in clockwise order",
+                    ["no two colors two apart flashed in counter-clockwise order"] = "no two colors two apart flashed in counter-clockwise order",
+                    ["the colors flashing first and last are adjacent"] = "the colors flashing first and last are adjacent",
+                    ["the colors flashing first and last are different and not adjacent"] = "the colors flashing first and last are different and not adjacent",
+                    ["the colors flashing first and last are the same"] = "the colors flashing first and last are the same",
+                    ["the number of distinct colors that flashed is even"] = "the number of distinct colors that flashed is even",
+                    ["the number of distinct colors that flashed is odd"] = "the number of distinct colors that flashed is odd",
+                    ["there are at least three colors that didn’t flash"] = "there are at least three colors that didn’t flash",
+                    ["there are exactly two colors that didn’t flash"] = "there are exactly two colors that didn’t flash",
+                    ["there are two colors adjacent to each other that didn’t flash"] = "there are two colors adjacent to each other that didn’t flash",
+                    ["there are two colors opposite each other that didn’t flash"] = "there are two colors opposite each other that didn’t flash",
+                    ["there are two colors two away from each other that didn’t flash"] = "there are two colors two away from each other that didn’t flash",
+                    ["there is exactly one color that didn’t flash"] = "there is exactly one color that didn’t flash",
+                    ["three adjacent colors did not flash"] = "three adjacent colors did not flash",
+                    ["three adjacent colors flashed in clockwise order"] = "three adjacent colors flashed in clockwise order",
+                    ["three adjacent colors flashed in counter-clockwise order"] = "three adjacent colors flashed in counter-clockwise order",
+                    ["three colors, each two apart, flashed in clockwise order"] = "three colors, each two apart, flashed in clockwise order",
+                    ["three colors, each two apart, flashed in counter-clockwise order"] = "three colors, each two apart, flashed in counter-clockwise order",
+                    ["two adjacent colors flashed in clockwise order"] = "two adjacent colors flashed in clockwise order",
+                    ["two adjacent colors flashed in counter-clockwise order"] = "two adjacent colors flashed in counter-clockwise order",
+                    ["two colors two apart flashed in clockwise order"] = "two colors two apart flashed in clockwise order",
+                    ["two colors two apart flashed in counter-clockwise order"] = "two colors two apart flashed in counter-clockwise order",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["first"] = "first",
+                    ["second"] = "second",
+                    ["third"] = "third",
+                    ["first and second"] = "first and second",
+                    ["first and third"] = "first and third",
+                    ["second and third"] = "second and third",
+                    ["all of them"] = "all of them",
+                },
+            },
+            // In which stage(s) of {0} was “{1} flashed out of {2}, {3}, and {4}” the applicable rule?
+            // In which stage(s) of Simon Screams was “at most one color flashed out of Red, Orange, and Yellow” the applicable rule?
+            [Question.SimonScreamsRuleComplex] = new TranslationInfo
+            {
+                QuestionText = "In which stage(s) of {0} was “{1} flashed out of {2}, {3}, and {4}” the applicable rule?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["at most one color"] = "at most one color",
+                    ["at least two colors"] = "at least two colors",
                 },
                 Answers = new Dictionary<string, string>
                 {

@@ -7196,18 +7196,76 @@ namespace Souvenir
                 },
             },
             // In which stage(s) of {0} was “{1}” the applicable rule?
-            // In which stage(s) of Simon Screams was “three adjacent colors flashing in clockwise order” the applicable rule?
-            [Question.SimonScreamsRule] = new TranslationInfo
+            // In which stage(s) of Simon Screams was “a color flashed, then a color two away, then the first again” the applicable rule?
+            [Question.SimonScreamsRuleSimple] = new TranslationInfo
             {
                 QuestionText = "На каком(-их) этапе(-ах) в модуле «{0}» было применимо условие “{1}”?",
                 ModuleName = "Саймон кричит",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["three adjacent colors flashing in clockwise order"] = "3 соседние кнопки горели по часовой стрелке",
-                    ["a color flashing, then an adjacent color, then the first again"] = "2 соседние кнопки чередовались",
-                    ["at most one color flashing out of red, yellow, and blue"] = "среди кнопок К, Ж и С цвета горела максимум одна",
-                    ["two colors opposite each other that didn’t flash"] = "пара кнопок друг напротив друга не горели",
-                    ["two (but not three) adjacent colors flashing in clockwise order"] = "2 (не 3) соседние кнопки горели по часовой стрелке",
+                    ["a color flashed, then a color two away, then the first again"] = "a color flashed, then a color two away, then the first again",
+                    ["a color flashed, then a color two away, then the one opposite that"] = "a color flashed, then a color two away, then the one opposite that",
+                    ["a color flashed, then a color two away, then the one opposite the first"] = "a color flashed, then a color two away, then the one opposite the first",
+                    ["a color flashed, then an adjacent color, then the first again"] = "2 соседние кнопки чередовались",
+                    ["a color flashed, then another color, then the first"] = "a color flashed, then another color, then the first",
+                    ["a color flashed, then one adjacent, then the one opposite that"] = "a color flashed, then one adjacent, then the one opposite that",
+                    ["a color flashed, then one adjacent, then the one opposite the first"] = "a color flashed, then one adjacent, then the one opposite the first",
+                    ["a color flashed, then the one opposite, then one adjacent to that"] = "a color flashed, then the one opposite, then one adjacent to that",
+                    ["a color flashed, then the one opposite, then one adjacent to the first"] = "a color flashed, then the one opposite, then one adjacent to the first",
+                    ["a color flashed, then the one opposite, then the first again"] = "a color flashed, then the one opposite, then the first again",
+                    ["every color flashed at least once"] = "every color flashed at least once",
+                    ["exactly one color flashed exactly twice"] = "exactly one color flashed exactly twice",
+                    ["exactly one color flashed more than once"] = "exactly one color flashed more than once",
+                    ["exactly two colors flashed exactly twice"] = "exactly two colors flashed exactly twice",
+                    ["exactly two colors flashed more than once"] = "exactly two colors flashed more than once",
+                    ["no color flashed exactly twice"] = "no color flashed exactly twice",
+                    ["no color flashed more than once"] = "no color flashed more than once",
+                    ["no two adjacent colors flashed in clockwise order"] = "no two adjacent colors flashed in clockwise order",
+                    ["no two adjacent colors flashed in counter-clockwise order"] = "no two adjacent colors flashed in counter-clockwise order",
+                    ["no two colors two apart flashed in clockwise order"] = "no two colors two apart flashed in clockwise order",
+                    ["no two colors two apart flashed in counter-clockwise order"] = "no two colors two apart flashed in counter-clockwise order",
+                    ["the colors flashing first and last are adjacent"] = "the colors flashing first and last are adjacent",
+                    ["the colors flashing first and last are different and not adjacent"] = "the colors flashing first and last are different and not adjacent",
+                    ["the colors flashing first and last are the same"] = "the colors flashing first and last are the same",
+                    ["the number of distinct colors that flashed is even"] = "the number of distinct colors that flashed is even",
+                    ["the number of distinct colors that flashed is odd"] = "the number of distinct colors that flashed is odd",
+                    ["there are at least three colors that didn’t flash"] = "there are at least three colors that didn’t flash",
+                    ["there are exactly two colors that didn’t flash"] = "there are exactly two colors that didn’t flash",
+                    ["there are two colors adjacent to each other that didn’t flash"] = "there are two colors adjacent to each other that didn’t flash",
+                    ["there are two colors opposite each other that didn’t flash"] = "пара кнопок друг напротив друга не горели",
+                    ["there are two colors two away from each other that didn’t flash"] = "there are two colors two away from each other that didn’t flash",
+                    ["there is exactly one color that didn’t flash"] = "there is exactly one color that didn’t flash",
+                    ["three adjacent colors did not flash"] = "three adjacent colors did not flash",
+                    ["three adjacent colors flashed in clockwise order"] = "3 соседние кнопки горели по часовой стрелке",
+                    ["three adjacent colors flashed in counter-clockwise order"] = "three adjacent colors flashed in counter-clockwise order",
+                    ["three colors, each two apart, flashed in clockwise order"] = "three colors, each two apart, flashed in clockwise order",
+                    ["three colors, each two apart, flashed in counter-clockwise order"] = "three colors, each two apart, flashed in counter-clockwise order",
+                    ["two adjacent colors flashed in clockwise order"] = "2 соседние кнопки горели по часовой стрелке",
+                    ["two adjacent colors flashed in counter-clockwise order"] = "two adjacent colors flashed in counter-clockwise order",
+                    ["two colors two apart flashed in clockwise order"] = "two colors two apart flashed in clockwise order",
+                    ["two colors two apart flashed in counter-clockwise order"] = "two colors two apart flashed in counter-clockwise order",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["first"] = "На 1-м",
+                    ["second"] = "На 2-м",
+                    ["third"] = "На 3-м",
+                    ["first and second"] = "На 1-м и 2-м",
+                    ["first and third"] = "На 1-м и 3-м",
+                    ["second and third"] = "На 2-м и 3-м",
+                    ["all of them"] = "На всех",
+                },
+            },
+            // In which stage(s) of {0} was “{1} flashed out of {2}, {3}, and {4}” the applicable rule?
+            // In which stage(s) of Simon Screams was “at most one color flashed out of Red, Orange, and Yellow” the applicable rule?
+            [Question.SimonScreamsRuleComplex] = new TranslationInfo
+            {
+                QuestionText = "На каком(-их) этапе(-ах) в модуле «{0}» было применимо условие “среди кнопок {2}, {3} и {4} цвета {1}”?",
+                ModuleName = "Саймон кричит",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["at most one color"] = "горела максимум одна",
+                    ["at least two colors"] = "at least two colors",
                 },
                 Answers = new Dictionary<string, string>
                 {
