@@ -2378,7 +2378,7 @@
         SimonScreamsRuleSimple,
         [SouvenirQuestion("In which stage(s) of {0} was “{1} flashed out of {2}, {3}, and {4}” the applicable rule?", "Simon Screams", TwoColumns4Answers,
             "first", "second", "third", "first and second", "first and third", "second and third", "all of them",
-            TranslateAnswers = true, TranslateFormatArgs = new[] { true },
+            TranslateAnswers = true, TranslateFormatArgs = new[] { true, true, true, true },
             ExampleExtraFormatArguments = new[] {
                 "at most one color", "Red", "Orange", "Yellow",
                 "at least two colors", "Green", "Blue", "Purple"

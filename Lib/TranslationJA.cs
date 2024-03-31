@@ -7465,7 +7465,13 @@ namespace Souvenir
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["at most one color"] = "at most one color",
+                    ["Red"] = "Red",
+                    ["Orange"] = "Orange",
+                    ["Yellow"] = "Yellow",
                     ["at least two colors"] = "at least two colors",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Purple"] = "Purple",
                 },
                 Answers = new Dictionary<string, string>
                 {
