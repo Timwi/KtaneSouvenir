@@ -51,27 +51,25 @@ public partial class SouvenirModule
             qs.Add(makeQuestion(Question.SamsungAppPositions, _Samsung, formatArgs: new[] { appNames[i] }, correctAnswers: new[] { GetAnswers(Question.SamsungAppPositions)[appPositions[i]] }));
         addQuestions(module, qs);
     }
-    
+
     private List<List<int>> _sbemailSongsDisplays = new();
     private IEnumerable<object> ProcessSbemailSongs(KMBombModule module)
     {
         var comp = GetComponent(module, "_sbemailsongs");
 
         var fldDisplayedSongNumbers = GetListField<int>(comp, "stages", isPublic: true);
-        var activated = false;
-        module.OnActivate += () => { activated = true; };
-        while (!activated)
+        while (!_isActivated)
             yield return new WaitForSeconds(.1f);
         yield return null; // Wait one frame to make sure the Display field has been set.
 
         var myDisplay = fldDisplayedSongNumbers.Get(minLength: 0, validator: d => d < 1 || d > 209 ? "expected range 1-209" : null);
-        if (_sbemailSongsDisplays.Any() && myDisplay.Count() != _sbemailSongsDisplays[0].Count())
+        if (_sbemailSongsDisplays.Any() && myDisplay.Count != _sbemailSongsDisplays[0].Count)
             throw new AbandonModuleException("The number of stages in each ‘Display’ is inconsistent.");
         _sbemailSongsDisplays.Add(myDisplay);
 
         var totalNonIgnoredSbemailSongs = GetIntField(comp, "totalNonIgnored").Get();
 
-        if (myDisplay.Count() == 0 || totalNonIgnoredSbemailSongs == 0)
+        if (myDisplay.Count == 0 || totalNonIgnoredSbemailSongs == 0)
         {
             Debug.Log($"[Souvenir #{_moduleId}] No question for Sbemail Songs because there were no stages.");
             _legitimatelyNoQuestions.Add(module);
@@ -91,7 +89,7 @@ public partial class SouvenirModule
         var transcriptionsAbridged = GetArrayField<string>(comp, "transcriptionsAbridged").Get(expectedLength: 209);
 
         if (_moduleCounts[_SbemailSongs] == 1)
-            addQuestions(module, myDisplay.Take(displayedStageCount).Select((digit, ix) => makeQuestion(Question.SbemailSongsDisplayedAtGivenStage, _SbemailSongs, formatArgs: new[] { (ix+1).ToString("X2") }, correctAnswers: new[] { transcriptionsAbridged[digit-1] }, preferredWrongAnswers: transcriptionsAbridged )));
+            addQuestions(module, myDisplay.Take(displayedStageCount).Select((digit, ix) => makeQuestion(Question.SbemailSongsSongs, _SbemailSongs, formatArgs: new[] { (ix + 1).ToString("X2") }, correctAnswers: new[] { transcriptionsAbridged[digit - 1] }, preferredWrongAnswers: transcriptionsAbridged)));
         else
         {
             var uniqueStages = Enumerable.Range(1, displayedStageCount).Where(stage => _sbemailSongsDisplays.Count(display => display[stage - 1] == myDisplay[stage - 1]) == 1).Take(2).ToArray();
@@ -107,10 +105,7 @@ public partial class SouvenirModule
                 {
                     var uniqueStage = uniqueStages.FirstOrDefault(s => s != stage + 1);
                     if (uniqueStage != 0)
-                    {
-                        Debug.Log(uniqueStage);
-                        qs.Add(makeQuestion(Question.SbemailSongsDisplayedAtGivenStage, _SbemailSongs, formattedModuleName: $"the Sbemail Songs which displayed ‘{transcriptionsAbridged[myDisplay[uniqueStage - 1] - 1]}’ in stage {uniqueStage.ToString("X2")} (hexadecimal)", formatArgs: new[] { (stage + 1).ToString("X2") }, correctAnswers: new[] { transcriptionsAbridged[myDisplay[stage] - 1] }, preferredWrongAnswers: transcriptionsAbridged ));
-                    }
+                        qs.Add(makeQuestion(Question.SbemailSongsSongs, _SbemailSongs, formattedModuleName: $"the Sbemail Songs which displayed ‘{transcriptionsAbridged[myDisplay[uniqueStage - 1] - 1]}’ in stage {uniqueStage.ToString("X2")} (hexadecimal)", formatArgs: new[] { (stage + 1).ToString("X2") }, correctAnswers: new[] { transcriptionsAbridged[myDisplay[stage] - 1] }, preferredWrongAnswers: transcriptionsAbridged));
                 }
                 addQuestions(module, qs);
             }
