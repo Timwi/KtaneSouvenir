@@ -380,29 +380,28 @@ public partial class SouvenirModule
 
     private IEnumerable<object> ProcessRobotProgramming(KMBombModule module)
     {
-        var comp = GetComponent(module, "robotProgrammingScript");
+        var comp = GetComponent(module, "robotProgramming");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
         _modulesSolved.IncSafe(_RobotProgramming);
 
-        var namesArr = GetArrayField<string>(comp, "names").Get(expectedLength: 4);
-        var botPositions = GetField<IList>(comp, "robotOrder").Get();
-        var botNames = Enumerable.Range(0, 4).Select(i => namesArr[(int) botPositions[i]]).ToArray();
-
-        Debug.Log("Bot names: " + string.Join(", ", botNames));
+        var robotTypes = GetField<Array>(comp, "robotTypes").Get(v => v.Length != 4 ? "expected length 4 array" : null).Cast<object>().Select(tp => tp.ToString() switch
+        {
+            "ROB" => "R.O.B",
+            "HAL" => "HAL",
+            "R2D2" => "R2D2",
+            "Fender" => "Fender",
+            _ => throw new AbandonModuleException("Robot type enum value: expected one of “ROB”, “HAL”, “R2D2” or “Fender”."),
+        }).ToArray();
 
         var qs = new List<QandA>();
-
         for (int i = 0; i < 4; i++)
-        {
             qs.Add(makeQuestion(Question.RobotProgrammingName,
                 moduleKey: _RobotProgramming,
                 formatArgs: new[] { ordinal(i + 1) },
-                correctAnswers: new[] { botNames[i] }));
-        }
-
+                correctAnswers: new[] { robotTypes[i] }));
         addQuestions(module, qs);
     }
 

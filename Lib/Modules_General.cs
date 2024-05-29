@@ -974,7 +974,7 @@ public partial class SouvenirModule
             [_RGBSequences] = (ProcessRGBSequences, "RGB Sequences", "Hawker"),
             [_Rhythms] = (ProcessRhythms, "Rhythms", "Timwi"),
             [_RoboScanner] = (ProcessRoboScanner, "Robo-Scanner", "Quinn Wuest"),
-            [_RobotProgramming] = (ProcessRobotProgramming, "RobotProgramming", "Hawker"),
+            [_RobotProgramming] = (ProcessRobotProgramming, "Robot Programming", "Timwi"),
             [_Roger] = (ProcessRoger, "Roger", "BigCrunch22"),
             [_RoleReversal] = (ProcessRoleReversal, "Role Reversal", "Emik"),
             [_Rule] = (ProcessRule, "Rule, The", "TasThiluna"),
