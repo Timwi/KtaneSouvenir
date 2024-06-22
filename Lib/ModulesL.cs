@@ -367,7 +367,13 @@ public partial class SouvenirModule
 
         _modulesSolved.IncSafe(_Listening);
         var correctCode = fldCode.Get(expectedLength: 5).JoinString();
-        addQuestion(module, Question.ListeningCode, correctAnswers: new[] { correctCode });
+
+        var codes = "$#$#*|$*$**|*&*&&|###&$|&#**&|**$*#|&&$&*|&#&&#|$$*$*|&$#$&|*#&*&|#$#&$|$#$*&|$&$$*|*$*$*|#&$&&|&*$*$|&$**&|&#$$#|&$$&*|**###|*#$&&|$&**#|$&&**|$&#$$|#&&*#|##*$*|$*&##|#$$&*|*$$&$|$#*$&|&&&**|$&&*&|**$$$|**#**|#&&&&|#$$**|#&$##|#&$*&|&**$$|&$&##".Split('|');
+
+        addQuestions(module,
+            makeQuestion(Question.ListeningCode, _Listening, correctAnswers: new[] { correctCode }),
+            makeQuestion(Question.ListeningSound, _Listening, correctAnswers: new[] { ListeningAudio[codes.IndexOf(s => s.Equals(correctCode))] }, allAnswers: ListeningAudio)
+        );
     }
 
     private IEnumerable<object> ProcessLogicalButtons(KMBombModule module)
