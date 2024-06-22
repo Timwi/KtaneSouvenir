@@ -967,6 +967,12 @@ public partial class SouvenirModule : MonoBehaviour
             (attr, num, answers) => new QandA.SpriteAnswerSet(num, attr.Layout, answers),
             formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? GetAllSprites(question), AnswerType.Sprites);
 
+    private QandA makeSpriteQuestion(Sprite questionSprite, Question question, string moduleKey, string formattedModuleName = null, string[] formatArgs = null, AudioClip[] correctAnswers = null, AudioClip[] preferredWrongAnswers = null, AudioClip[] allAnswers = null) =>
+    makeQuestion(question, moduleKey,
+        (attr, q) => new QandA.SpriteQuestion(q, questionSprite),
+        (attr, num, answers) => new QandA.AudioAnswerSet(num, attr.Layout, answers, this, attr.AudioSizeMultiplier),
+        formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, AnswerType.Audio);
+
     private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0)
     {
         var w = correctAnswers[0].Width;
