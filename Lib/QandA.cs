@@ -281,6 +281,8 @@ namespace Souvenir
             public override void BlinkAnswer(bool on, SouvenirModule souvenir, int answerIndex)
             {
                 base.BlinkAnswer(on, souvenir, answerIndex);
+                souvenir.Answers[answerIndex].transform.Find("PlayHead").gameObject.SetActive(on);
+                souvenir.Answers[answerIndex].transform.Find("PlayIcon").gameObject.SetActive(on);
             }
 
             protected override void RenderAnswers(SouvenirModule souvenir)
