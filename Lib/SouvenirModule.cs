@@ -25,6 +25,7 @@ public partial class SouvenirModule : MonoBehaviour
     public GameObject AnswersParent;
     public GameObject[] TpNumbers;
     public Sprite[] ArithmelogicSprites;
+    public Sprite[] AudioSprites;
     public Sprite[] AzureButtonSprites;
     public Sprite[] BookOfMarioSprites;
     public Sprite[] CharacterSlotsSprites;
@@ -65,6 +66,9 @@ public partial class SouvenirModule : MonoBehaviour
     public Texture2D[] FuseBoxQuestions;
     public Texture2D[] NonverbalSimonQuestions;
     public Texture2D[] TechnicalKeypadQuestions;
+
+    public AudioClip[] ExampleAudio;
+
     private readonly List<Texture2D> _questionTexturesToDestroyLater = new();
 
     public TextMesh TextMesh;
@@ -106,7 +110,7 @@ public partial class SouvenirModule : MonoBehaviour
     private int _coroutinesActive;
 
     private static int _moduleIdCounter = 1;
-    private int _moduleId;
+    internal int _moduleId;
     private Dictionary<string, (Func<KMBombModule, IEnumerable<object>> processor, string moduleName, string contributor)> _moduleProcessors;
     private Dictionary<Question, SouvenirQuestionAttribute> _attributes;
 
@@ -302,7 +306,7 @@ public partial class SouvenirModule : MonoBehaviour
                 foreach (var entry in _attributes)
                 {
                     var (q, attr) = (entry.Key, entry.Value);
-                    if (attr.Type != AnswerType.Sprites && attr.Type != AnswerType.Grid && (attr.AllAnswers == null || attr.AllAnswers.Length == 0) &&
+                    if (attr.Type != AnswerType.Sprites && attr.Type != AnswerType.Grid && attr.Type != AnswerType.Audio && (attr.AllAnswers == null || attr.AllAnswers.Length == 0) &&
                         (attr.ExampleAnswers == null || attr.ExampleAnswers.Length == 0) && attr.AnswerGenerator == null)
                         Debug.LogError($"<Souvenir #{_moduleId}> Question {q} has no answers. Specify either SouvenirQuestionAttribute.AllAnswers or SouvenirQuestionAttribute.ExampleAnswers (with preferredWrongAnswers in-game), or add an AnswerGeneratorAttribute to the question enum value.");
                     if (attr.TranslateFormatArgs != null && attr.TranslateFormatArgs.Length != attr.ExampleExtraFormatArgumentGroupSize)
@@ -394,6 +398,11 @@ public partial class SouvenirModule : MonoBehaviour
                 question = new QandA.TextQuestion(questionText, attr.Layout, attr.UsesQuestionSprite ? SymbolicCoordinatesSprites[0] : null, 0, _translation);
             switch (attr.Type)
             {
+                case AnswerType.Audio:
+                    var audioClips = attr.AudioField == null ? ExampleAudio : (AudioClip[]) typeof(SouvenirModule).GetField(attr.AudioField, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleAudio;
+                    audioClips = audioClips?.Shuffle().Take(attr.NumAnswers).ToArray();
+                    answerSet = new QandA.AudioAnswerSet(attr.NumAnswers, attr.Layout, audioClips, this, attr.AudioSizeMultiplier);
+                    break;
                 case AnswerType.Sprites:
                 case AnswerType.Grid:
                     var answerSprites = attr.SpriteField == null ? ExampleSprites : (Sprite[]) typeof(SouvenirModule).GetField(attr.SpriteField, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleSprites;
@@ -451,7 +460,8 @@ public partial class SouvenirModule : MonoBehaviour
         Answers[index].OnInteract = delegate
         {
             Answers[index].AddInteractionPunch();
-            handler(index);
+            if (!_currentQuestion.OnPress(index))
+                handler(index);
             return false;
         };
     }
@@ -884,6 +894,11 @@ public partial class SouvenirModule : MonoBehaviour
         addQuestions(module, makeQuestion(question, module.ModuleType, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, questionSpriteRotation));
     }
 
+    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, AudioClip[] correctAnswers = null, AudioClip[] allAnswers = null, AudioClip[] preferredWrongAnswers = null, float questionSpriteRotation = 0)
+    {
+        addQuestions(module, makeQuestion(question, module.ModuleType, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation));
+    }
+
     private void addQuestions(KMBombModule module, IEnumerable<QandA> questions)
     {
         if (_config.IsExcluded(module, _ignoredModules))
@@ -964,6 +979,13 @@ public partial class SouvenirModule : MonoBehaviour
             (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation, _translation),
             (attr, num, answers) => new QandA.SpriteAnswerSet(num, attr.Layout, answers.Select(ans => Sprites.GenerateGridSprite(ans, 1)).ToArray()),
             formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, Enumerable.Range(0, w * h).Select(ix => new Coord(w, h, ix)).ToArray(), AnswerType.Grid);
+    }
+    private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, AudioClip[] correctAnswers = null, AudioClip[] preferredWrongAnswers = null, AudioClip[] allAnswers = null, float questionSpriteRotation = 0)
+    {
+        return makeQuestion(question, moduleKey,
+            (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation, _translation),
+            (attr, num, answers) => new QandA.AudioAnswerSet(num, attr.Layout, answers, this, attr.AudioSizeMultiplier),
+            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, AnswerType.Audio);
     }
 
     private QandA makeQuestion<T>(Question question, string moduleKey, Func<SouvenirQuestionAttribute, string, QandA.QuestionBase> questionConstructor,

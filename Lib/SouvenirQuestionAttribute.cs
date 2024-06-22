@@ -21,6 +21,8 @@ namespace Souvenir
         public AnswerType Type { get; set; }
         public AnswerLayout Layout { get; set; }
         public string SpriteField { get; set; }
+        public string AudioField { get; set; }
+        public float AudioSizeMultiplier { get; set; } = 2f;
         public int FontSize { get; set; }
         public float CharacterSize { get; set; } = 1;
         public bool IsEntireQuestionSprite { get; set; }

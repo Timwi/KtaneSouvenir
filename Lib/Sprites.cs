@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Threading;
 using UnityEngine;
 
 namespace Souvenir
@@ -8,6 +10,7 @@ namespace Souvenir
     public static class Sprites
     {
         private static readonly Dictionary<string, Texture2D> _gridSpriteCache = new();
+        private static readonly Dictionary<AudioClip, Texture2D> _audioSpriteCache = new();
 
         public static Sprite GenerateGridSprite(Coord coord, float size = 1f)
         {
@@ -72,5 +75,65 @@ namespace Souvenir
 
         public static IEnumerable<Sprite> TranslateSprites(this IEnumerable<Sprite> sprites, float? pixelsPerUnit) =>
             (sprites ?? throw new ArgumentNullException(nameof(sprites))).Select(spr => TranslateSprite(spr, pixelsPerUnit));
+
+        // Currently this takes quite a lot of CPU time to generate.
+        // Perhaps we should:
+        // - Generate all possible sprites on bomb load (with handlers)
+        // - Rewrite this to work on the GPU
+        // - Decrease the resolution
+        // - Generate them at build time
+        //
+        // It's probably fine to discard the extra samples (currently handled in the block scope after the for loop)
+        public static Sprite RenderWaveform(AudioClip answer, SouvenirModule module, float multiplier)
+        {
+            const int WIDTH = 128;
+            // Height must be even
+            const int HEIGHT = 64;
+            Color32 cream = new(0xFF, 0xF8, 0xDD, 0xFF);
+            Color32 black = new(0xFF, 0xF8, 0xDD, 0x00);
+
+            if (!_audioSpriteCache.TryGetValue(answer, out Texture2D tex))
+            {
+                tex = new(WIDTH, HEIGHT, TextureFormat.RGBA32, false, false);
+                _audioSpriteCache.Add(answer, tex);
+
+                answer.LoadAudioData();
+                float[] data = new float[answer.samples * answer.channels];
+                answer.GetData(data, 0);
+
+                if (data.Length < WIDTH)
+                {
+                    Debug.Log($"[Souvenir #{module._moduleId}] Warning!: Audio clip too short (minimum data length = {WIDTH}): {answer.name}");
+                }
+                else
+                {
+                    var columns = new Color32[WIDTH][];
+                    var step = data.Length / WIDTH;
+                    int start = 0;
+                    for (int ix = 0; ix < WIDTH - 1; start += step, ix++)
+                    {
+                        var RMS = Math.Sqrt(data.Skip(start).Take(step).Select(v => v * v).Average());
+                        var lastOn = (int) Mathf.Lerp(1, HEIGHT / 2, (float) RMS * multiplier);
+                        var halfCol = Enumerable.Repeat(cream, lastOn).Concat(Enumerable.Repeat(black, HEIGHT / 2 - lastOn)).ToArray();
+                        columns[ix] = halfCol.Reverse().Concat(halfCol).ToArray();
+                    }
+                    // The final segment might have more data than the rest
+                    {
+                        var RMS = Math.Sqrt(data.Skip(start).Select(v => v * v).Average());
+                        var lastOn = (int) Mathf.Lerp(1, HEIGHT / 2, (float) RMS * multiplier);
+                        var halfCol = Enumerable.Repeat(cream, lastOn).Concat(Enumerable.Repeat(black, HEIGHT / 2 - lastOn)).ToArray();
+                        columns[WIDTH - 1] = halfCol.Reverse().Concat(halfCol).ToArray();
+                    }
+                    tex.SetPixels32(
+                        Enumerable.Range(0, HEIGHT).SelectMany(row => Enumerable.Range(0, WIDTH).Select(col => columns[col][row])).ToArray()
+                    );
+                    tex.Apply(false, true);
+                }
+            }
+
+            Sprite sprite = Sprite.Create(tex, new Rect(0, 0, WIDTH, HEIGHT), new Vector2(0, 0.5f), WIDTH);
+            sprite.name = answer.name;
+            return sprite;
+        }
     }
 }

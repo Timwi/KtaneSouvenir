@@ -15,9 +15,10 @@
         SnowflakesFont = 9,
         SixtyFourFont = 10,
 
-        Sprites = -1,               // Special value for answers that use sprites
-        DynamicFont = -2,    // Special value to indicate that the module handler will obtain the font from the client module
-        Grid = -3                   // Special value for answers that are positions within an orthogonal rectangular grid (generates a dynamic sprite)
+        Sprites = -1,     // Special value for answers that use sprites
+        DynamicFont = -2, // Special value to indicate that the module handler will obtain the font from the client module
+        Grid = -3,        // Special value for answers that are positions within an orthogonal rectangular grid (generates a dynamic sprite)
+        Audio = -4        // Special value for answers that are audio clips
     }
 
     public enum AnswerLayout
