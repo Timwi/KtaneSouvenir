@@ -971,7 +971,7 @@ public partial class SouvenirModule : MonoBehaviour
     makeQuestion(question, moduleKey,
         (attr, q) => new QandA.SpriteQuestion(q, questionSprite),
         (attr, num, answers) => new QandA.AudioAnswerSet(num, attr.Layout, answers, this, attr.AudioSizeMultiplier),
-        formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, AnswerType.Audio);
+        formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? GetAllSounds(question), AnswerType.Audio);
 
     private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0)
     {
@@ -992,7 +992,7 @@ public partial class SouvenirModule : MonoBehaviour
         return makeQuestion(question, moduleKey,
             (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation, _translation),
             (attr, num, answers) => new QandA.AudioAnswerSet(num, attr.Layout, answers, this, attr.AudioSizeMultiplier),
-            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, AnswerType.Audio);
+            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? GetAllSounds(question), AnswerType.Audio);
     }
 
     private QandA makeQuestion<T>(Question question, string moduleKey, Func<SouvenirQuestionAttribute, string, QandA.QuestionBase> questionConstructor,
@@ -1124,6 +1124,14 @@ public partial class SouvenirModule : MonoBehaviour
         if (attr.Type != AnswerType.Sprites)
             throw new AbandonModuleException("GetAllSprites() was called on a question that doesn’t use sprites or doesn’t have an associated sprites field.");
         return attr.SpriteField == null ? null : GetField<Sprite[]>(this, attr.SpriteField, isPublic: true).Get();
+    }
+
+    private AudioClip[] GetAllSounds(Question question)
+    {
+        var attr = _attributes[question];
+        if (attr.Type != AnswerType.Audio)
+            throw new AbandonModuleException("GetAllSounds() was called on a question that doesn’t use sounds or doesn’t have an associated sounds field.");
+        return attr.SpriteField == null ? null : GetField<AudioClip[]>(this, attr.SpriteField, isPublic: true).Get();
     }
 
     private string titleCase(string str) => str.Length < 1 ? str : char.ToUpperInvariant(str[0]) + str.Substring(1).ToLowerInvariant();

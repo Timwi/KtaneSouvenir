@@ -372,7 +372,7 @@ public partial class SouvenirModule
 
         addQuestions(module,
             makeQuestion(Question.ListeningCode, _Listening, correctAnswers: new[] { correctCode }),
-            makeQuestion(Question.ListeningSound, _Listening, correctAnswers: new[] { ListeningAudio[codes.IndexOf(s => s.Equals(correctCode))] }, allAnswers: ListeningAudio)
+            makeQuestion(Question.ListeningSound, _Listening, correctAnswers: new[] { ListeningAudio[codes.IndexOf(s => s.Equals(correctCode))] })
         );
     }
 
