@@ -69,6 +69,7 @@ public partial class SouvenirModule : MonoBehaviour
 
     public AudioClip[] ExampleAudio;
     public AudioClip[] ListeningAudio;
+    public AudioClip[] ModuleListeningAudio;
 
     private readonly List<Texture2D> _questionTexturesToDestroyLater = new();
 

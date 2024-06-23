@@ -718,13 +718,41 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_ModuleListening);
 
+        string[] modules = new string[] {
+            "A Mistake", "Bartending", "Battleship", "Benedict Cumberbatch", "Black Hole", "Blockbusters", "Bob Barks", "Boot Too Big", "British Slang", "Broken Buttons",
+            "Burglar Alarm", "Cheap Checkout", "Chord Qualities", "Christmas Presents", "Colored Keys", "Colored Squares","Cookie Jars", "Creation", "Crystal Maze", "Cube",
+            "Double Expert", "Double-Oh", "Encrypted Equations", "European Travel","Fast Math", "Forget Enigma", "Forget Me Now", "Free Parking", "Friendship", "Gadgetron Vendor",
+            "Graffiti Numbers", "Gridlock", "Guitar Chords", "Hexamaze", "Hidden Colors", "Hieroglyphics", "Hogwarts", "Hypercube", "Instructions", "Jack-O’-Lantern",
+            "Jewel Vault", "Kudosudoku", "Labyrinth", "Laundry", "LED Math", "Lightspeed", "London Underground", "Lucky Dice", "Maintenance", "Mazematics",
+
+            "Mega Man 2", "Minesweeper", "Mortal Kombat", "Necronomicon", "Neutralization", "Number Cipher", "Number Nimbleness", "Only Connect", "Painting", "Partial Derivatives",
+            "Perspective Pegs", "Poetry", "Quiz Buzz", "Qwirkle", "Rhythms", "Rock- Paper- Scissors- Lizard- Spock", "Schlag den Bomb", "Seven Deadly Sins", "Shapes and Bombs", "Silly Slots", "Simon Samples",
+            "Simon Selects", "Simon Sends", "Simon Simons", "Simon Sings", "Simon Stores", "Simon’s Stages", "Sink","Sonic The Hedgehog", "Souvenir", "Sphere",
+            "Street Fighter", "Sun", "Swan", "Synchronization", "Tangrams", "Tasha Squeals", "Tennis", "Turtle Robot", "Unfair Cipher",
+            "Valves", "Visual Impairment", "Waste Management","Wavetapping", "Wire", "Word Search", "X-Ray", "X01", "Yahtzee", "Zoni"
+        };
+
+        var clips = GetArrayField<AudioClip[]>(comp, "audioLibrary").Get(expectedLength: 100);
+        var moduleIndex = GetArrayField<int>(comp, "moduleIndex").Get(expectedLength: 4);
+        var soundIndex = GetArrayField<int>(comp, "moduleIndex").Get(expectedLength: 4);
+
         var moduleNames = GetArrayField<string>(comp, "moduleNames").Get();
         var indices = GetArrayField<int>(comp, "moduleIndex").Get(validator: ar => ar.Length != 4 ? "expected length 4" : ar.Any(v => v < 0 || v >= moduleNames.Length) ? $"out of range for moduleNames (0–{moduleNames.Length - 1})" : null);
         var colorNames = GetArrayField<string>(comp, "buttonColors").Get(expectedLength: 4);
         var colorOrder = GetArrayField<int>(comp, "btnColors").Get(validator: ar => ar.Length != 4 ? "expected length 4" : ar.Any(v => v < 0 || v >= colorNames.Length) ? $"out of range for colorNames (0–{colorNames.Length - 1})" : null);
         addQuestions(module, Enumerable.Range(0, 4).Select(i =>
-            makeQuestion(Question.ModuleListeningSounds, _ModuleListening, formatArgs: new[] { colorNames[colorOrder[i]] },
-                correctAnswers: new[] { moduleNames[indices[i]] }, preferredWrongAnswers: moduleNames)));
+            makeQuestion(Question.ModuleListeningModule, _ModuleListening, formatArgs: new[] { colorNames[colorOrder[i]] },
+                correctAnswers: new[] { moduleNames[indices[i]] }, preferredWrongAnswers: moduleNames)).Concat(
+            Enumerable.Range(0, 4).Select(i =>
+                makeQuestion(Question.ModuleListeningButtonAudio, _ModuleListening, formatArgs: new[] { colorNames[colorOrder[i]] },
+                correctAnswers: new[] { ModuleListeningAudio.First(a => a.name.Equals($"moduleListening_{modules[moduleIndex[i]]}_{clips[moduleIndex[i]][soundIndex[i]].name}")) },
+                // Remove sounds from the same module to avoid situations like Colored Squares
+                preferredWrongAnswers: ModuleListeningAudio.Where(a => !a.name.Substring(16).StartsWith(modules[moduleIndex[i]])).ToArray()))
+            ).Concat(new[] {
+                makeQuestion(Question.ModuleListeningAnyAudio, _ModuleListening,
+                correctAnswers: Enumerable.Range(0,4).Select(i =>  ModuleListeningAudio.First(a => a.name.Equals($"moduleListening_{modules[moduleIndex[i]]}_{clips[moduleIndex[i]][soundIndex[i]].name}"))).ToArray(),
+                preferredWrongAnswers: ModuleListeningAudio.Where(a => !Enumerable.Range(0, 4).Any(i => a.name.Substring(16).StartsWith(modules[moduleIndex[i]]))).ToArray())
+            }));
     }
 
     private IEnumerable<object> ProcessModuleMaze(KMBombModule module)

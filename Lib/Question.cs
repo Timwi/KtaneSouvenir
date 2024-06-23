@@ -1577,7 +1577,12 @@
 
         [SouvenirQuestion("Which module did the sound played by the {1} button belong to in {0}?", "Module Listening", OneColumn4Answers, ExampleAnswers = new[] { "Zoni", "Lucky Dice", "Qwirkle", "Battleship" }, TranslateFormatArgs = new[] { true },
             ExampleExtraFormatArguments = new[] { "red", "green", "blue", "yellow" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        ModuleListeningSounds,
+        ModuleListeningModule,
+        [SouvenirQuestion("Which sound did the {1} button play in {0}?", "Module Listening", ThreeColumns6Answers, TranslateFormatArgs = new[] { true },
+            ExampleExtraFormatArguments = new[] { "red", "green", "blue", "yellow" }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.Audio, AudioField = "ModuleListeningAudio")]
+        ModuleListeningButtonAudio,
+        [SouvenirQuestion("Which sound played in {0}?", "Module Listening", ThreeColumns6Answers, Type = AnswerType.Audio, AudioField = "ModuleListeningAudio")]
+        ModuleListeningAnyAudio,
 
         [SouvenirQuestion("Which of the following was the starting icon for {0}?", "Module Maze", ThreeColumns6Answers, null, Type = AnswerType.Sprites)]
         ModuleMazeStartingIcon,

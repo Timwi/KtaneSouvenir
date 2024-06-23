@@ -4512,7 +4512,7 @@ namespace Souvenir
             // Module Listening
             // Which module did the sound played by the {1} button belong to in {0}?
             // Which module did the sound played by the red button belong to in Module Listening?
-            [Question.ModuleListeningSounds] = new TranslationInfo
+            [Question.ModuleListeningModule] = new TranslationInfo
             {
                 QuestionText = "Which module did the sound played by the {1} button belong to in {0}?",
                 FormatArgs = new Dictionary<string, string>
