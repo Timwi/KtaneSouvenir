@@ -1130,9 +1130,9 @@ public partial class SouvenirModule : MonoBehaviour
     private AudioClip[] GetAllSounds(Question question)
     {
         var attr = _attributes[question];
-        if (attr.Type != AnswerType.Audio)
+        if (attr.Type != AnswerType.Audio || attr.AudioField == null)
             throw new AbandonModuleException("GetAllSounds() was called on a question that doesn’t use sounds or doesn’t have an associated sounds field.");
-        return attr.SpriteField == null ? null : GetField<AudioClip[]>(this, attr.SpriteField, isPublic: true).Get();
+        return GetField<AudioClip[]>(this, attr.AudioField, isPublic: true).Get();
     }
 
     private string titleCase(string str) => str.Length < 1 ? str : char.ToUpperInvariant(str[0]) + str.Substring(1).ToLowerInvariant();
