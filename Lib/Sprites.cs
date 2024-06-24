@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading;
 using UnityEngine;
 
@@ -79,16 +77,18 @@ namespace Souvenir
             (sprites ?? throw new ArgumentNullException(nameof(sprites))).Select(spr => TranslateSprite(spr, pixelsPerUnit));
 
         // Height must be even, should be a power of 2
-        const int HEIGHT = 256;
+        const int HEIGHT = 128;
         const int WIDTH = HEIGHT * 4;
         const int MIN_LINE = 3;
         public static Sprite RenderWaveform(AudioClip answer, SouvenirModule module, float multiplier)
         {
             if (!_audioSpriteCache.TryGetValue(answer, out Texture2D tex))
             {
-                tex = new(WIDTH, HEIGHT, TextureFormat.RGBA32, false, false);
-                tex.wrapMode = TextureWrapMode.Clamp;
-                tex.filterMode = FilterMode.Bilinear;
+                tex = new(WIDTH, HEIGHT, TextureFormat.RGBA32, false, false)
+                {
+                    wrapMode = TextureWrapMode.Clamp,
+                    filterMode = FilterMode.Bilinear
+                };
                 _audioSpriteCache.Add(answer, tex);
 
                 answer.LoadAudioData();
@@ -106,17 +106,17 @@ namespace Souvenir
                     var runner = new GameObject($"Waveform Renderer - {answer.name}", typeof(DataBehaviour));
                     UnityEngine.Object.DontDestroyOnLoad(runner);
                     var behavior = runner.GetComponent<DataBehaviour>();
-                    behavior.result = result;
+                    behavior.Result = result;
                     float[] data = new float[answer.samples * answer.channels];
                     answer.GetData(data, 0);
 
-                    new Thread(() => RenderRMS(data, behavior, multiplier))
+                    var threadLog = $"‹Souvenir #{module._moduleId}› Finished processing waveform: {answer.name}";
+                    new Thread(() => RenderRMS(data, behavior, multiplier, threadLog))
                     {
                         IsBackground = true,
                         Name = $"Waveform Renderer - {answer.name}"
                     }.Start();
                     behavior.StartCoroutine(CopyData(behavior, tex, runner, answer.name, module._moduleId));
-
                 }
             }
 
@@ -127,67 +127,68 @@ namespace Souvenir
 
         private static IEnumerator CopyData(DataBehaviour behavior, Texture2D tex, GameObject runner, string name, int id)
         {
-            Color32 cream = new(0xFF, 0xF8, 0xDD, 0xFF);
-            Color32 black = new(0xFF, 0xF8, 0xDD, 0x00);
+            while (behavior.FinishedColumns <= WIDTH - 1)
+                yield return null;
 
-            for (int applied = 0; applied < WIDTH;)
-            {
-                while (applied >= behavior.done)
-                    yield return null;
-
-                applied = behavior.done;
-                tex.SetPixels(behavior.result);
-                tex.Apply(false, false);
-            }
-
-            tex.SetPixels(behavior.result);
-            tex.Apply(false, false);
+            tex.SetPixels(behavior.Result);
+            tex.Apply(false, true);
             UnityEngine.Object.Destroy(runner);
 
             Debug.Log($"‹Souvenir #{id}› Finished rendering waveform: {name}");
         }
 
-        private static void RenderRMS(float[] data, DataBehaviour behavior, float multiplier)
+        private static void RenderRMS(float[] data, DataBehaviour behavior, float multiplier, string logging)
         {
-            Color32 cream = new(0xFF, 0xF8, 0xDD, 0xFF);
-            Color32 black = new(0xFF, 0xF8, 0xDD, 0x00);
+            try
+            {
+                Color32 cream = new(0xFF, 0xF8, 0xDD, 0xFF);
+                Color32 black = new(0xFF, 0xF8, 0xDD, 0x00);
 
-            var step = data.Length / WIDTH;
-            int start = 0;
-            for (int ix = 0; ix < WIDTH - 1; start += step, ix++)
-            {
-                var RMS = Math.Sqrt(data.Skip(start).Take(step).Select(v => v * v).Average());
-                var creamCount = (int) Mathf.Lerp(MIN_LINE, HEIGHT / 2, (float) RMS * multiplier);
-                var blackCount = HEIGHT / 2 - creamCount;
-                int i = 0;
-                for (; i < blackCount; i++)
-                    behavior.result[ix + i * WIDTH] = black;
-                for (; i < creamCount * 2 + blackCount; i++)
-                    behavior.result[ix + i * WIDTH] = cream;
-                for (; i < HEIGHT; i++)
-                    behavior.result[ix + i * WIDTH] = black;
-                behavior.done++;
+                var step = data.Length / WIDTH;
+                int start = 0;
+                for (int ix = 0; ix < WIDTH - 1; start += step, ix++)
+                {
+                    var RMS = Math.Sqrt(data.Skip(start).Take(step).Select(v => v * v).Average());
+                    var creamCount = (int) Mathf.Lerp(MIN_LINE, HEIGHT / 2, (float) RMS * multiplier);
+                    var blackCount = HEIGHT / 2 - creamCount;
+                    int i = 0;
+                    for (; i < blackCount; i++)
+                        behavior.Result[ix + i * WIDTH] = black;
+                    for (; i < creamCount * 2 + blackCount; i++)
+                        behavior.Result[ix + i * WIDTH] = cream;
+                    for (; i < HEIGHT; i++)
+                        behavior.Result[ix + i * WIDTH] = black;
+                    behavior.FinishedColumns++;
+                }
+                // The final segment might have more data than the rest
+                {
+                    var RMS = Math.Sqrt(data.Skip(start).Select(v => v * v).Average());
+                    var creamCount = (int) Mathf.Lerp(MIN_LINE, HEIGHT / 2, (float) RMS * multiplier);
+                    var blackCount = HEIGHT / 2 - creamCount;
+                    int i = 0;
+                    for (; i < blackCount; i++)
+                        behavior.Result[WIDTH - 1 + i * WIDTH] = black;
+                    for (; i < creamCount * 2 + blackCount; i++)
+                        behavior.Result[WIDTH - 1 + i * WIDTH] = cream;
+                    for (; i < HEIGHT; i++)
+                        behavior.Result[WIDTH - 1 + i * WIDTH] = black;
+                    behavior.FinishedColumns++;
+                }
             }
-            // The final segment might have more data than the rest
+            catch (Exception e)
             {
-                var RMS = Math.Sqrt(data.Skip(start).Select(v => v * v).Average());
-                var creamCount = (int) Mathf.Lerp(MIN_LINE, HEIGHT / 2, (float) RMS * multiplier);
-                var blackCount = HEIGHT / 2 - creamCount;
-                int i = 0;
-                for (; i < blackCount; i++)
-                    behavior.result[WIDTH - 1 + i * WIDTH] = black;
-                for (; i < creamCount * 2 + blackCount; i++)
-                    behavior.result[WIDTH - 1 + i * WIDTH] = cream;
-                for (; i < HEIGHT; i++)
-                    behavior.result[WIDTH - 1 + i * WIDTH] = black;
-                behavior.done++;
+                Debug.LogException(e);
+            }
+            finally
+            {
+                Debug.Log(logging);
             }
         }
 
         private class DataBehaviour : MonoBehaviour
         {
-            public int done = 0;
-            public Color[] result;
+            public int FinishedColumns = 0;
+            public Color[] Result;
         }
     }
 }
