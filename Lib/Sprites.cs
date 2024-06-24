@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -76,64 +78,116 @@ namespace Souvenir
         public static IEnumerable<Sprite> TranslateSprites(this IEnumerable<Sprite> sprites, float? pixelsPerUnit) =>
             (sprites ?? throw new ArgumentNullException(nameof(sprites))).Select(spr => TranslateSprite(spr, pixelsPerUnit));
 
-        // Currently this takes quite a lot of CPU time to generate.
-        // Perhaps we should:
-        // - Generate all possible sprites on bomb load (with handlers)
-        // - Rewrite this to work on the GPU
-        // - Decrease the resolution
-        // - Generate them at build time
-        //
-        // It's probably fine to discard the extra samples (currently handled in the block scope after the for loop)
+        // Height must be even, should be a power of 2
+        const int HEIGHT = 256;
+        const int WIDTH = HEIGHT * 4;
+        const int MIN_LINE = 3;
         public static Sprite RenderWaveform(AudioClip answer, SouvenirModule module, float multiplier)
         {
-            const int WIDTH = 128;
-            // Height must be even
-            const int HEIGHT = 64;
-            Color32 cream = new(0xFF, 0xF8, 0xDD, 0xFF);
-            Color32 black = new(0xFF, 0xF8, 0xDD, 0x00);
-
             if (!_audioSpriteCache.TryGetValue(answer, out Texture2D tex))
             {
                 tex = new(WIDTH, HEIGHT, TextureFormat.RGBA32, false, false);
+                tex.wrapMode = TextureWrapMode.Clamp;
+                tex.filterMode = FilterMode.Bilinear;
                 _audioSpriteCache.Add(answer, tex);
 
                 answer.LoadAudioData();
-                float[] data = new float[answer.samples * answer.channels];
-                answer.GetData(data, 0);
+                Color[] result = Enumerable.Repeat((Color) new Color32(0xFF, 0xF8, 0xDD, 0x00), WIDTH * HEIGHT).ToArray();
+                tex.SetPixels(result);
+                tex.Apply(false, false);
 
-                if (data.Length < WIDTH)
+                if (answer.samples * answer.channels < WIDTH)
                 {
                     Debug.Log($"[Souvenir #{module._moduleId}] Warning!: Audio clip too short (minimum data length = {WIDTH}): {answer.name}");
                 }
                 else
                 {
-                    var columns = new Color32[WIDTH][];
-                    var step = data.Length / WIDTH;
-                    int start = 0;
-                    for (int ix = 0; ix < WIDTH - 1; start += step, ix++)
+                    Debug.Log($"‹Souvenir #{module._moduleId}› Starting thread to render waveform: {answer.name}");
+                    var runner = new GameObject($"Waveform Renderer - {answer.name}", typeof(DataBehaviour));
+                    UnityEngine.Object.DontDestroyOnLoad(runner);
+                    var behavior = runner.GetComponent<DataBehaviour>();
+                    behavior.result = result;
+                    float[] data = new float[answer.samples * answer.channels];
+                    answer.GetData(data, 0);
+
+                    new Thread(() => RenderRMS(data, behavior, multiplier))
                     {
-                        var RMS = Math.Sqrt(data.Skip(start).Take(step).Select(v => v * v).Average());
-                        var lastOn = (int) Mathf.Lerp(1, HEIGHT / 2, (float) RMS * multiplier);
-                        var halfCol = Enumerable.Repeat(cream, lastOn).Concat(Enumerable.Repeat(black, HEIGHT / 2 - lastOn)).ToArray();
-                        columns[ix] = halfCol.Reverse().Concat(halfCol).ToArray();
-                    }
-                    // The final segment might have more data than the rest
-                    {
-                        var RMS = Math.Sqrt(data.Skip(start).Select(v => v * v).Average());
-                        var lastOn = (int) Mathf.Lerp(1, HEIGHT / 2, (float) RMS * multiplier);
-                        var halfCol = Enumerable.Repeat(cream, lastOn).Concat(Enumerable.Repeat(black, HEIGHT / 2 - lastOn)).ToArray();
-                        columns[WIDTH - 1] = halfCol.Reverse().Concat(halfCol).ToArray();
-                    }
-                    tex.SetPixels32(
-                        Enumerable.Range(0, HEIGHT).SelectMany(row => Enumerable.Range(0, WIDTH).Select(col => columns[col][row])).ToArray()
-                    );
-                    tex.Apply(false, true);
+                        IsBackground = true,
+                        Name = $"Waveform Renderer - {answer.name}"
+                    }.Start();
+                    behavior.StartCoroutine(CopyData(behavior, tex, runner, answer.name, module._moduleId));
+
                 }
             }
 
             Sprite sprite = Sprite.Create(tex, new Rect(0, 0, WIDTH, HEIGHT), new Vector2(0, 0.5f), WIDTH);
             sprite.name = answer.name;
             return sprite;
+        }
+
+        private static IEnumerator CopyData(DataBehaviour behavior, Texture2D tex, GameObject runner, string name, int id)
+        {
+            Color32 cream = new(0xFF, 0xF8, 0xDD, 0xFF);
+            Color32 black = new(0xFF, 0xF8, 0xDD, 0x00);
+
+            for (int applied = 0; applied < WIDTH;)
+            {
+                while (applied >= behavior.done)
+                    yield return null;
+
+                applied = behavior.done;
+                tex.SetPixels(behavior.result);
+                tex.Apply(false, false);
+            }
+
+            tex.SetPixels(behavior.result);
+            tex.Apply(false, false);
+            UnityEngine.Object.Destroy(runner);
+
+            Debug.Log($"‹Souvenir #{id}› Finished rendering waveform: {name}");
+        }
+
+        private static void RenderRMS(float[] data, DataBehaviour behavior, float multiplier)
+        {
+            Color32 cream = new(0xFF, 0xF8, 0xDD, 0xFF);
+            Color32 black = new(0xFF, 0xF8, 0xDD, 0x00);
+
+            var step = data.Length / WIDTH;
+            int start = 0;
+            for (int ix = 0; ix < WIDTH - 1; start += step, ix++)
+            {
+                var RMS = Math.Sqrt(data.Skip(start).Take(step).Select(v => v * v).Average());
+                var creamCount = (int) Mathf.Lerp(MIN_LINE, HEIGHT / 2, (float) RMS * multiplier);
+                var blackCount = HEIGHT / 2 - creamCount;
+                int i = 0;
+                for (; i < blackCount; i++)
+                    behavior.result[ix + i * WIDTH] = black;
+                for (; i < creamCount * 2 + blackCount; i++)
+                    behavior.result[ix + i * WIDTH] = cream;
+                for (; i < HEIGHT; i++)
+                    behavior.result[ix + i * WIDTH] = black;
+                behavior.done++;
+            }
+            // The final segment might have more data than the rest
+            {
+                var RMS = Math.Sqrt(data.Skip(start).Select(v => v * v).Average());
+                var creamCount = (int) Mathf.Lerp(MIN_LINE, HEIGHT / 2, (float) RMS * multiplier);
+                var blackCount = HEIGHT / 2 - creamCount;
+                int i = 0;
+                for (; i < blackCount; i++)
+                    behavior.result[WIDTH - 1 + i * WIDTH] = black;
+                for (; i < creamCount * 2 + blackCount; i++)
+                    behavior.result[WIDTH - 1 + i * WIDTH] = cream;
+                for (; i < HEIGHT; i++)
+                    behavior.result[WIDTH - 1 + i * WIDTH] = black;
+                behavior.done++;
+            }
+        }
+
+        private class DataBehaviour : MonoBehaviour
+        {
+            public int done = 0;
+            public Color[] result;
         }
     }
 }
