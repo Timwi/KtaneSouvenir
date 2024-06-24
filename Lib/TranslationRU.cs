@@ -4068,15 +4068,6 @@ namespace Souvenir
                 ModuleName = "Львиной доле",
             },
 
-            // Listening
-            // What was the correct code you entered in {0}?
-            // What was the correct code you entered in Listening?
-            [Question.ListeningCode] = new TranslationInfo
-            {
-                QuestionText = "Какой правильный код был введён в «{0}»?",
-                ModuleName = "Аудировании",
-            },
-
             // Logical Buttons
             // What was the color of the {1} button in the {2} stage of {0}?
             // What was the color of the top button in the first stage of Logical Buttons?
@@ -4686,21 +4677,6 @@ namespace Souvenir
             {
                 QuestionText = "Какое слово было расшифровано на {1}-м этапе в «{0}»?",
                 ModuleName = "Современном шифре",
-            },
-
-            // Module Listening
-            // Which module did the sound played by the {1} button belong to in {0}?
-            // Which module did the sound played by the red button belong to in Module Listening?
-            [Question.ModuleListeningModule] = new TranslationInfo
-            {
-                QuestionText = "Which module did the sound played by the {1} button belong to in «{0}»?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
-                    ["yellow"] = "yellow",
-                },
             },
 
             // Module Maze

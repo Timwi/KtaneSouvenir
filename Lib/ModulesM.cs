@@ -739,18 +739,18 @@ public partial class SouvenirModule
         var indices = GetArrayField<int>(comp, "moduleIndex").Get(validator: ar => ar.Length != 4 ? "expected length 4" : ar.Any(v => v < 0 || v >= moduleNames.Length) ? $"out of range for moduleNames (0–{moduleNames.Length - 1})" : null);
         var colorNames = GetArrayField<string>(comp, "buttonColors").Get(expectedLength: 4);
         var colorOrder = GetArrayField<int>(comp, "btnColors").Get(validator: ar => ar.Length != 4 ? "expected length 4" : ar.Any(v => v < 0 || v >= colorNames.Length) ? $"out of range for colorNames (0–{colorNames.Length - 1})" : null);
-        addQuestions(module, Enumerable.Range(0, 4).Select(i =>
-            makeQuestion(Question.ModuleListeningModule, _ModuleListening, formatArgs: new[] { colorNames[colorOrder[i]] },
-                correctAnswers: new[] { moduleNames[indices[i]] }, preferredWrongAnswers: moduleNames)).Concat(
+        var allUsed = Enumerable.Range(0, 4).Select(i => ModuleListeningAudio.First(a => a.name.Equals($"moduleListening_{modules[indices[i]]}_{clips[indices[i]][soundIndex[i]].name}"))).ToArray();
+        addQuestions(module,            
             Enumerable.Range(0, 4).Select(i =>
                 makeQuestion(Question.ModuleListeningButtonAudio, _ModuleListening, formatArgs: new[] { colorNames[colorOrder[i]] },
                 correctAnswers: new[] { ModuleListeningAudio.First(a => a.name.Equals($"moduleListening_{modules[indices[i]]}_{clips[indices[i]][soundIndex[i]].name}")) },
-                // Remove sounds from the same module to avoid situations like Colored Squares
-                preferredWrongAnswers: ModuleListeningAudio.Where(a => !a.name.Substring(16).StartsWith(modules[indices[i]])).ToArray()))
-            ).Concat(new[] {
+                preferredWrongAnswers: allUsed,
+                // Remove sounds from the same module to avoid situations with nearly-identical sounds (like Colored Squares)
+                allAnswers: ModuleListeningAudio.Where(a => !a.name.Substring(16).StartsWith(modules[indices[i]])).ToArray()))
+            .Concat(new[] {
                 makeQuestion(Question.ModuleListeningAnyAudio, _ModuleListening,
-                correctAnswers: Enumerable.Range(0,4).Select(i =>  ModuleListeningAudio.First(a => a.name.Equals($"moduleListening_{modules[indices[i]]}_{clips[indices[i]][soundIndex[i]].name}"))).ToArray(),
-                preferredWrongAnswers: ModuleListeningAudio.Where(a => !Enumerable.Range(0, 4).Any(i => a.name.Substring(16).StartsWith(modules[indices[i]]))).ToArray())
+                correctAnswers: allUsed,
+                allAnswers: ModuleListeningAudio.Where(a => !Enumerable.Range(0, 4).Any(i => a.name.Substring(16).StartsWith(modules[indices[i]]))).ToArray())
             }));
     }
 

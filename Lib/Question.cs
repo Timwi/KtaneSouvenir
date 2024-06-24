@@ -1361,8 +1361,6 @@
         [SouvenirQuestion("Which lion was present but removed in {0}?", "Lion’s Share", TwoColumns4Answers, null, ExampleAnswers = new[] { "Taka", "Mufasa", "Uru", "Ahadi", "Zama", "Mohatu", "Kion", "Kiara", "Kopa", "Kovu", "Vitani", "Nuka", "Mheetu", "Zira", "Nala", "Simba", "Sarabi", "Sarafina" })]
         LionsShareRemovedLions,
 
-        [SouvenirQuestion("What was the correct code you entered in {0}?", "Listening", ThreeColumns6Answers, "&&&**", "&$#$&", "$#$*&", "#$$**", "$#$#*", "**$*#", "#$$&*", "##*$*", "$#*$&", "**#**", "#&&*#", "&#**&", "$&**#", "&#$$#", "$&&**", "#&$##", "&*$*$", "&$$&*", "#&&&&", "**$$$", "*&*&&", "*#&*&", "**###", "&&$&*", "&$**&", "#$#&$", "&#&&#", "$$*$*", "$&#$$", "&**$$", "$&&*&", "&$&##", "#&$*&", "$*$**", "*#$&&", "###&$", "*$$&$", "$*&##", "#&$&&", "$&$$*", "*$*$*")]
-        ListeningCode,
         [SouvenirQuestion("What clip was played in {0}?", "Listening", ThreeColumns6Answers, AudioField = "ListeningAudio", Type = AnswerType.Audio)]
         ListeningSound,
 
@@ -1575,9 +1573,6 @@
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         ModernCipherWord,
 
-        [SouvenirQuestion("Which module did the sound played by the {1} button belong to in {0}?", "Module Listening", OneColumn4Answers, ExampleAnswers = new[] { "Zoni", "Lucky Dice", "Qwirkle", "Battleship" }, TranslateFormatArgs = new[] { true },
-            ExampleExtraFormatArguments = new[] { "red", "green", "blue", "yellow" }, ExampleExtraFormatArgumentGroupSize = 1)]
-        ModuleListeningModule,
         [SouvenirQuestion("Which sound did the {1} button play in {0}?", "Module Listening", ThreeColumns6Answers, TranslateFormatArgs = new[] { true },
             ExampleExtraFormatArguments = new[] { "red", "green", "blue", "yellow" }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.Audio, AudioField = "ModuleListeningAudio")]
         ModuleListeningButtonAudio,

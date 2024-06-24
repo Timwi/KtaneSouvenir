@@ -4188,15 +4188,6 @@ namespace Souvenir
                 ModuleName = "ライオンの分け前",
             },
 
-            // Listening
-            // What was the correct code you entered in {0}?
-            // What was the correct code you entered in Listening?
-            [Question.ListeningCode] = new TranslationInfo
-            {
-                QuestionText = "{0}で入力した正しいコードは？",
-                ModuleName = "リスニング",
-            },
-
             // Logical Buttons
             // What was the color of the {1} button in the {2} stage of {0}?
             // What was the color of the top button in the first stage of Logical Buttons?
@@ -4817,21 +4808,6 @@ namespace Souvenir
             {
                 QuestionText = "{0}のステージ{1}で復号された単語は？",
                 ModuleName = "現代暗号",
-            },
-
-            // Module Listening
-            // Which module did the sound played by the {1} button belong to in {0}?
-            // Which module did the sound played by the red button belong to in Module Listening?
-            [Question.ModuleListeningModule] = new TranslationInfo
-            {
-                QuestionText = "{0}で{1}色のボタンから再生された音はどのモジュールか？",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["red"] = "赤",
-                    ["green"] = "緑",
-                    ["blue"] = "青",
-                    ["yellow"] = "黄",
-                },
             },
 
             // Module Maze

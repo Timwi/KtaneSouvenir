@@ -3919,14 +3919,6 @@ namespace Souvenir
                 QuestionText = "Which lion was present but removed in {0}?",
             },
 
-            // Listening
-            // What was the correct code you entered in {0}?
-            // What was the correct code you entered in Listening?
-            [Question.ListeningCode] = new TranslationInfo
-            {
-                QuestionText = "What was the correct code you entered in {0}?",
-            },
-
             // Logical Buttons
             // What was the color of the {1} button in the {2} stage of {0}?
             // What was the color of the top button in the first stage of Logical Buttons?
@@ -4507,21 +4499,6 @@ namespace Souvenir
             [Question.ModernCipherWord] = new TranslationInfo
             {
                 QuestionText = "What was the decrypted word of the {1} stage in {0}?",
-            },
-
-            // Module Listening
-            // Which module did the sound played by the {1} button belong to in {0}?
-            // Which module did the sound played by the red button belong to in Module Listening?
-            [Question.ModuleListeningModule] = new TranslationInfo
-            {
-                QuestionText = "Which module did the sound played by the {1} button belong to in {0}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
-                    ["yellow"] = "yellow",
-                },
             },
 
             // Module Maze
