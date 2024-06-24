@@ -733,8 +733,7 @@ public partial class SouvenirModule
         };
 
         var clips = GetArrayField<AudioClip[]>(comp, "audioLibrary").Get(expectedLength: 100);
-        var moduleIndex = GetArrayField<int>(comp, "moduleIndex").Get(expectedLength: 4);
-        var soundIndex = GetArrayField<int>(comp, "moduleIndex").Get(expectedLength: 4);
+        var soundIndex = GetArrayField<int>(comp, "soundIndex").Get(expectedLength: 4);
 
         var moduleNames = GetArrayField<string>(comp, "moduleNames").Get();
         var indices = GetArrayField<int>(comp, "moduleIndex").Get(validator: ar => ar.Length != 4 ? "expected length 4" : ar.Any(v => v < 0 || v >= moduleNames.Length) ? $"out of range for moduleNames (0–{moduleNames.Length - 1})" : null);
@@ -745,13 +744,13 @@ public partial class SouvenirModule
                 correctAnswers: new[] { moduleNames[indices[i]] }, preferredWrongAnswers: moduleNames)).Concat(
             Enumerable.Range(0, 4).Select(i =>
                 makeQuestion(Question.ModuleListeningButtonAudio, _ModuleListening, formatArgs: new[] { colorNames[colorOrder[i]] },
-                correctAnswers: new[] { ModuleListeningAudio.First(a => a.name.Equals($"moduleListening_{modules[moduleIndex[i]]}_{clips[moduleIndex[i]][soundIndex[i]].name}")) },
+                correctAnswers: new[] { ModuleListeningAudio.First(a => a.name.Equals($"moduleListening_{modules[indices[i]]}_{clips[indices[i]][soundIndex[i]].name}")) },
                 // Remove sounds from the same module to avoid situations like Colored Squares
-                preferredWrongAnswers: ModuleListeningAudio.Where(a => !a.name.Substring(16).StartsWith(modules[moduleIndex[i]])).ToArray()))
+                preferredWrongAnswers: ModuleListeningAudio.Where(a => !a.name.Substring(16).StartsWith(modules[indices[i]])).ToArray()))
             ).Concat(new[] {
                 makeQuestion(Question.ModuleListeningAnyAudio, _ModuleListening,
-                correctAnswers: Enumerable.Range(0,4).Select(i =>  ModuleListeningAudio.First(a => a.name.Equals($"moduleListening_{modules[moduleIndex[i]]}_{clips[moduleIndex[i]][soundIndex[i]].name}"))).ToArray(),
-                preferredWrongAnswers: ModuleListeningAudio.Where(a => !Enumerable.Range(0, 4).Any(i => a.name.Substring(16).StartsWith(modules[moduleIndex[i]]))).ToArray())
+                correctAnswers: Enumerable.Range(0,4).Select(i =>  ModuleListeningAudio.First(a => a.name.Equals($"moduleListening_{modules[indices[i]]}_{clips[indices[i]][soundIndex[i]].name}"))).ToArray(),
+                preferredWrongAnswers: ModuleListeningAudio.Where(a => !Enumerable.Range(0, 4).Any(i => a.name.Substring(16).StartsWith(modules[indices[i]]))).ToArray())
             }));
     }
 
