@@ -265,10 +265,10 @@ namespace Souvenir
 
         public class AudioAnswerSet : SpriteAnswerSet
         {
+            private readonly SouvenirModule _parent;
+            private readonly AudioClip[] _clips;
             private int _selected = -1;
-            private SouvenirModule _parent;
             private Coroutine _coroutine;
-            private AudioClip[] _clips;
             KMAudio.KMAudioRef _audioRef;
 
             public AudioAnswerSet(int numAnswers, AnswerLayout layout, AudioClip[] answers, SouvenirModule parent, float multiplier)
@@ -281,7 +281,7 @@ namespace Souvenir
             public override void BlinkAnswer(bool on, SouvenirModule souvenir, int answerIndex)
             {
                 base.BlinkAnswer(on, souvenir, answerIndex);
-                souvenir.Answers[answerIndex].transform.Find("PlayHead").gameObject.SetActive(on);
+                souvenir.Answers[answerIndex].transform.Find("PlayHead").gameObject.SetActive(false);
                 souvenir.Answers[answerIndex].transform.Find("PlayIcon").gameObject.SetActive(on);
             }
 
@@ -306,17 +306,17 @@ namespace Souvenir
             {
                 if (_coroutine != null)
                     _parent.StopCoroutine(_coroutine);
-                if (_audioRef != null)
-                    _audioRef.StopSound();
+
+                if (_selected != -1)
+                    _parent.Answers[_selected].transform.Find("PlayHead").gameObject.SetActive(false);
+
+                _audioRef?.StopSound();
 
                 if (index == _selected)
                     return false;
 
                 if (_selected != -1)
-                {
                     _parent.Answers[_selected].transform.Find("PlayIcon").GetComponent<SpriteRenderer>().sprite = _parent.AudioSprites[0];
-                    _parent.Answers[_selected].transform.Find("PlayHead").gameObject.SetActive(false);
-                }
 
                 _selected = index;
 
