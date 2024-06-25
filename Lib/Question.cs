@@ -1574,9 +1574,9 @@
         ModernCipherWord,
 
         [SouvenirQuestion("Which sound did the {1} button play in {0}?", "Module Listening", ThreeColumns6Answers, TranslateFormatArgs = new[] { true },
-            ExampleExtraFormatArguments = new[] { "red", "green", "blue", "yellow" }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.Audio, AudioField = "ModuleListeningAudio")]
+            ExampleExtraFormatArguments = new[] { "red", "green", "blue", "yellow" }, ExampleExtraFormatArgumentGroupSize = 1, Type = AnswerType.Audio, ForeignAudioID = "moduleListening")]
         ModuleListeningButtonAudio,
-        [SouvenirQuestion("Which sound played in {0}?", "Module Listening", ThreeColumns6Answers, Type = AnswerType.Audio, AudioField = "ModuleListeningAudio")]
+        [SouvenirQuestion("Which sound played in {0}?", "Module Listening", ThreeColumns6Answers, Type = AnswerType.Audio, ForeignAudioID = "moduleListening")]
         ModuleListeningAnyAudio,
 
         [SouvenirQuestion("Which of the following was the starting icon for {0}?", "Module Maze", ThreeColumns6Answers, null, Type = AnswerType.Sprites)]

@@ -267,15 +267,17 @@ namespace Souvenir
         public class AudioAnswerSet : SpriteAnswerSet
         {
             private readonly SouvenirModule _parent;
+            private readonly string _foreignKey;
             private readonly AudioClip[] _clips;
             private int _selected = -1;
             private Coroutine _coroutine;
             KMAudio.KMAudioRef _audioRef;
 
-            public AudioAnswerSet(int numAnswers, AnswerLayout layout, AudioClip[] answers, SouvenirModule parent, float multiplier)
+            public AudioAnswerSet(int numAnswers, AnswerLayout layout, AudioClip[] answers, SouvenirModule parent, float multiplier, string foreignKey)
                 : base(numAnswers, layout, answers.Select(c => Sprites.RenderWaveform(c, parent, multiplier)).ToArray())
             {
                 _parent = parent;
+                _foreignKey = foreignKey;
                 _clips = answers.ToArray();
             }
 
@@ -343,7 +345,9 @@ namespace Souvenir
                 var head = _parent.Answers[_selected].transform.Find("PlayHead");
                 head.gameObject.SetActive(true);
 
-                _audioRef = _parent.Audio.PlaySoundAtTransformWithRef(_clips[index].name, _parent.transform);
+                _audioRef = _foreignKey == null || Application.isEditor
+                    ? _parent.Audio.PlaySoundAtTransformWithRef(_clips[index].name, _parent.transform)
+                    : PlayForeignClip(_clips[index]);
                 _coroutine = _parent.StartCoroutine(AnimatePlayHead(head, _layout switch
                 {
                     AnswerLayout.TwoColumns4Answers => _parent.TwitchPlaysActive ? 14 : 15,
@@ -378,6 +382,24 @@ namespace Souvenir
                 }
                 head.gameObject.SetActive(false);
                 sound.StopSound();
+            }
+
+            private KMAudio.KMAudioRef PlayForeignClip(AudioClip clip)
+            {
+                var aref = new KMAudio.KMAudioRef();
+                var name = _foreignKey + "_" + clip.name;
+                var result = Type.GetType("DarkTonic.MasterAudio.MasterAudio, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null")
+                    .GetMethod("PlaySound3DAtTransform", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static)
+                    .Invoke(null, new object[] { name, _parent.transform, 1f, null, 0f, null, false, false });
+                // Skip setting loop = true since we don't want that anyways
+                aref.StopSound += () =>
+                {
+                    var variation = result.GetType().GetProperty("ActingVariation", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
+                        .GetValue(result, new object[0]);
+                    variation.GetType().GetMethod("Stop", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
+                        .Invoke(variation, new object[] { false, false });
+                };
+                return aref;
             }
         }
     }

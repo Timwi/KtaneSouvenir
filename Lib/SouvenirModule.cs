@@ -69,7 +69,6 @@ public partial class SouvenirModule : MonoBehaviour
 
     public AudioClip[] ExampleAudio;
     public AudioClip[] ListeningAudio;
-    public AudioClip[] ModuleListeningAudio;
 
     private readonly List<Texture2D> _questionTexturesToDestroyLater = new();
 
@@ -403,7 +402,7 @@ public partial class SouvenirModule : MonoBehaviour
                 case AnswerType.Audio:
                     var audioClips = attr.AudioField == null ? ExampleAudio : (AudioClip[]) typeof(SouvenirModule).GetField(attr.AudioField, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleAudio;
                     audioClips = audioClips?.Shuffle().Take(attr.NumAnswers).ToArray();
-                    answerSet = new QandA.AudioAnswerSet(attr.NumAnswers, attr.Layout, audioClips, this, attr.AudioSizeMultiplier);
+                    answerSet = new QandA.AudioAnswerSet(attr.NumAnswers, attr.Layout, audioClips, this, attr.AudioSizeMultiplier, attr.ForeignAudioID);
                     break;
                 case AnswerType.Sprites:
                 case AnswerType.Grid:
@@ -971,7 +970,7 @@ public partial class SouvenirModule : MonoBehaviour
     private QandA makeSpriteQuestion(Sprite questionSprite, Question question, string moduleKey, string formattedModuleName = null, string[] formatArgs = null, AudioClip[] correctAnswers = null, AudioClip[] preferredWrongAnswers = null, AudioClip[] allAnswers = null) =>
     makeQuestion(question, moduleKey,
         (attr, q) => new QandA.SpriteQuestion(q, questionSprite),
-        (attr, num, answers) => new QandA.AudioAnswerSet(num, attr.Layout, answers, this, attr.AudioSizeMultiplier),
+        (attr, num, answers) => new QandA.AudioAnswerSet(num, attr.Layout, answers, this, attr.AudioSizeMultiplier, attr.ForeignAudioID),
         formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? GetAllSounds(question), AnswerType.Audio);
 
     private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0)
@@ -992,7 +991,7 @@ public partial class SouvenirModule : MonoBehaviour
     {
         return makeQuestion(question, moduleKey,
             (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation, _translation),
-            (attr, num, answers) => new QandA.AudioAnswerSet(num, attr.Layout, answers, this, attr.AudioSizeMultiplier),
+            (attr, num, answers) => new QandA.AudioAnswerSet(num, attr.Layout, answers, this, attr.AudioSizeMultiplier, attr.ForeignAudioID),
             formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? GetAllSounds(question), AnswerType.Audio);
     }
 
