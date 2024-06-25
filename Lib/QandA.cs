@@ -312,7 +312,7 @@ namespace Souvenir
 
                 _audioRef?.StopSound();
 
-                if (index == _selected)
+                if (index == _selected || index > NumAnswers)
                     return false;
 
                 if (_selected != -1)
