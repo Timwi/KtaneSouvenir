@@ -2444,6 +2444,11 @@
             ExampleExtraFormatArguments = new[] { "3", "4", "5", "6" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSignalsRotationsToShape,
 
+        [SouvenirQuestion("What sound did the {1} button press make in the last successful run of {0}?", "Simon Smiles", TwoColumns4Answers,
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1,
+            Type = AnswerType.Audio, AudioField = "SimonSmilesAudio", AudioSizeMultiplier = 6)]
+        SimonSmilesSounds,
+
         [SouvenirQuestion("What was the color of the {1} flash in {0}?", "Simon Smothers", ThreeColumns6Answers, "Red", "Green", "Yellow", "Blue", "Magenta", "Cyan", ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         SimonSmothersColors,
         [SouvenirQuestion("What was the direction of the {1} flash in {0}?", "Simon Smothers", TwoColumns4Answers, "Up", "Down", "Left", "Right", ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1, TranslateAnswers = true)]

@@ -1403,6 +1403,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e7edec542ccf84a4399346280fd04b45, type: 3}
   - {fileID: 8300000, guid: 540acc488ec3e014d8b0abc8cce963c0, type: 3}
   - {fileID: 8300000, guid: 03aaddf7ed3a5d44ba7423aed33dfaa6, type: 3}
+  SimonSmilesAudio:
+  - {fileID: 8300000, guid: e9f9e2045740a8a4aa00d524f12db1a2, type: 3}
+  - {fileID: 8300000, guid: c5298a39c2464314da56396c381d3ce9, type: 3}
+  - {fileID: 8300000, guid: 8c6989200f8da7441899600c1d7dff77, type: 3}
+  - {fileID: 8300000, guid: cb1a6ab1c0d764c43a620cc931e95d70, type: 3}
+  - {fileID: 8300000, guid: 16a6b1e0f40230246b8cf6656bd991a2, type: 3}
+  - {fileID: 8300000, guid: cbb645095a1d24f44aa649fbbce5187c, type: 3}
   TextMesh: {fileID: 102000012539687798}
   TextRenderer: {fileID: 23000013337156738}
   SurfaceRenderer: {fileID: 23000012396776310}

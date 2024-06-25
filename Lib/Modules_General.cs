@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using Souvenir;
 using UnityEngine;
@@ -454,6 +455,7 @@ public partial class SouvenirModule
     const string _SimonSignals = "SimonSignalsModule";
     const string _SimonSimons = "simonSimons";
     const string _SimonSings = "SimonSingsModule";
+    const string _SimonSmiles = "SimonSmiles";
     const string _SimonSmothers = "simonSmothers";
     const string _SimonSounds = "simonSounds";
     const string _SimonSpeaks = "SimonSpeaksModule";
@@ -1013,6 +1015,7 @@ public partial class SouvenirModule
             [_SimonSignals] = (ProcessSimonSignals, "Simon Signals", "Timwi"),
             [_SimonSimons] = (ProcessSimonSimons, "Simon Simons", "kavinkul"),
             [_SimonSings] = (ProcessSimonSings, "Simon Sings", "Timwi"),
+            [_SimonSmiles] = (ProcessSimonSmiles, "Simon Smiles", "Anonymous"),
             [_SimonSmothers] = (ProcessSimonSmothers, "Simon Smothers", "Kuro"),
             [_SimonSounds] = (ProcessSimonSounds, "Simon Sounds", "Timwi"),
             [_SimonSpeaks] = (ProcessSimonSpeaks, "Simon Speaks", "Timwi"),

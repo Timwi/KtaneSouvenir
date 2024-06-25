@@ -897,6 +897,24 @@ public partial class SouvenirModule
         addQuestions(module, flashingColorSequences.SelectMany((seq, stage) => seq.Select((col, ix) => makeQuestion(Question.SimonSingsFlashing, _SimonSings, formatArgs: new[] { ordinal(ix + 1), ordinal(stage + 1) }, correctAnswers: new[] { noteNames[col] }))));
     }
 
+    private IEnumerable<object> ProcessSimonSmiles(KMBombModule module)
+    {
+        var comp = GetComponent(module, "ShitassSays");
+
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_SimonSmiles);
+
+        var shitassMode = GetField<bool>(GetField<object>(comp, "Settings").Get(), "shitassMode", true).Get();
+        var sounds = GetField<int[]>(comp, "Sounds")
+            .Get(a => a.Select((b, i) => b < 0 ? $"Sounds[{i}] = {b} < 0" : b > 2 ? $"Sounds[{i}] = {b} > 2" : null).Aggregate((x, y) => x is null ? y : y is null ? x : x + ", " + y));
+        var allAnswers = shitassMode ? SimonSmilesAudio.Skip(3).ToArray() : SimonSmilesAudio.Take(3).ToArray();
+        addQuestions(module, Enumerable.Range(0, 9).Select(ix =>
+            makeQuestion(Question.SimonSmilesSounds, _SimonSmiles, formatArgs: new[] { ordinal(ix + 1) },
+                correctAnswers: new[] { allAnswers[sounds[ix]] }, allAnswers: allAnswers)));
+    }
+
     private IEnumerable<object> ProcessSimonSmothers(KMBombModule module)
     {
         var comp = GetComponent(module, "SimonSmothersScript");
