@@ -22,6 +22,7 @@ namespace Souvenir
             CorrectIndex = correctIndex;
         }
 
+        public AnswerSet Answers => _answerSet;
         public Question Question { get; private set; }
         public string ModuleNameWithThe { get; private set; }
         public int CorrectIndex { get; private set; }
@@ -304,6 +305,21 @@ namespace Souvenir
 
             public override bool OnPress(int index)
             {
+
+                if (index == _selected || index > NumAnswers)
+                {
+                    StopSound();
+
+                    return false;
+                }
+
+                PlaySound(index);
+
+                return true;
+            }
+
+            private void StopSound()
+            {
                 if (_coroutine != null)
                     _parent.StopCoroutine(_coroutine);
 
@@ -311,12 +327,13 @@ namespace Souvenir
                     _parent.Answers[_selected].transform.Find("PlayHead").gameObject.SetActive(false);
 
                 _audioRef?.StopSound();
+            }
 
-                if (index == _selected || index > NumAnswers)
-                    return false;
+            public float PlaySound(int index)
+            {
+                StopSound();
 
-                if (_selected != -1)
-                    _parent.Answers[_selected].transform.Find("PlayIcon").GetComponent<SpriteRenderer>().sprite = _parent.AudioSprites[0];
+                Deselect();
 
                 _selected = index;
 
@@ -334,7 +351,15 @@ namespace Souvenir
                     _ => throw new NotImplementedException(),
                 }, _clips[index].length, _audioRef));
 
-                return true;
+                return _clips[index].length;
+            }
+
+            public void Deselect()
+            {
+                if (_selected != -1)
+                    _parent.Answers[_selected].transform.Find("PlayIcon").GetComponent<SpriteRenderer>().sprite = _parent.AudioSprites[0];
+
+                _selected = -1;
             }
 
             private IEnumerator AnimatePlayHead(Transform head, float end, float duration, KMAudio.KMAudioRef sound)

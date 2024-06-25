@@ -1174,7 +1174,7 @@ public partial class SouvenirModule : MonoBehaviour
     private readonly List<KMBombModule> TwitchAbandonModule = new List<KMBombModule>();
 
 #pragma warning disable 414
-    private readonly string TwitchHelpMessage = @"!{0} answer 3 [order is from top to bottom, then left to right]";
+    private readonly string TwitchHelpMessage = @"!{0} answer 3 [order is from top to bottom, then left to right] | !{0} cycle [play all audio clips]";
 #pragma warning restore 414
 
     IEnumerator ProcessTwitchCommand(string command)
@@ -1231,6 +1231,14 @@ public partial class SouvenirModule : MonoBehaviour
             }
             else
                 Debug.LogError($"Question containing “{command}” not found.");
+            yield break;
+        }
+
+        if (_currentQuestion.Answers is QandA.AudioAnswerSet audio && Regex.IsMatch(command.ToLowerInvariant(), @"\A\s*cycle\s*\z"))
+        {
+            for(int i = 0; i < audio.NumAnswers; i++)
+                yield return audio.PlaySound(i);
+            audio.Deselect();
             yield break;
         }
 
