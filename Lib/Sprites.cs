@@ -148,7 +148,14 @@ namespace Souvenir
                 int start = 0;
                 for (int ix = 0; ix < WIDTH; start += step, ix++)
                 {
-                    var RMS = Math.Sqrt(data.Skip(start).Take(Math.Min(step, 256)).Select(v => v * v).Average());
+                    float total = 0f;
+                    int count = 0;
+                    for(int j = start; j < start + step; j++)
+                    {
+                        total += data[j] * data[j];
+                        count++;
+                    }
+                    var RMS = Math.Sqrt(total / count);
                     var creamCount = (int) Mathf.Lerp(MIN_LINE, HEIGHT / 2, (float) RMS * multiplier);
                     var blackCount = HEIGHT / 2 - creamCount;
                     int i = 0;
