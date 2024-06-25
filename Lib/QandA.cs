@@ -300,6 +300,7 @@ namespace Souvenir
                         _ => throw new NotImplementedException(),
                     };
                     souvenir.Answers[i].transform.Find("PlayIcon").gameObject.SetActive(i < _answers.Length);
+                    souvenir.Answers[i].transform.Find("PlayIcon").GetComponent<SpriteRenderer>().color = new Color32(0x17, 0xF4, 0x19, 0xFF);
                 }
             }
 
@@ -338,6 +339,7 @@ namespace Souvenir
                 _selected = index;
 
                 _parent.Answers[_selected].transform.Find("PlayIcon").GetComponent<SpriteRenderer>().sprite = _parent.AudioSprites[1];
+                _parent.Answers[_selected].transform.Find("PlayIcon").GetComponent<SpriteRenderer>().color = new Color32(0xD8, 0x26, 0x26, 0xFF);
                 var head = _parent.Answers[_selected].transform.Find("PlayHead");
                 head.gameObject.SetActive(true);
 
@@ -357,7 +359,10 @@ namespace Souvenir
             public void Deselect()
             {
                 if (_selected != -1)
+                {
                     _parent.Answers[_selected].transform.Find("PlayIcon").GetComponent<SpriteRenderer>().sprite = _parent.AudioSprites[0];
+                    _parent.Answers[_selected].transform.Find("PlayIcon").GetComponent<SpriteRenderer>().color = new Color32(0x17, 0xF4, 0x19, 0xFF);
+                }
 
                 _selected = -1;
             }
