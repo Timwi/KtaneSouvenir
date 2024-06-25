@@ -148,20 +148,30 @@ namespace Souvenir
                 int start = 0;
                 for (int ix = 0; ix < WIDTH; start += step, ix++)
                 {
-                    float total = 0f;
-                    int count = 0;
-                    for(int j = start; j < start + step; j++)
+                    float totalPlus = 0f, totalMinus = 0f;
+                    int countPlus = 0, countMinus = 0;
+                    for (int j = start; j < start + step; j++)
                     {
-                        total += data[j] * data[j];
-                        count++;
+                        if (data[j] > 0f)
+                        {
+                            totalPlus += data[j] * data[j];
+                            countPlus++;
+                        }
+                        else
+                        {
+                            totalMinus += data[j] * data[j];
+                            countMinus++;
+                        }
                     }
-                    var RMS = Math.Sqrt(total / count);
-                    var creamCount = (int) Mathf.Lerp(MIN_LINE, HEIGHT / 2, (float) RMS * multiplier);
-                    var blackCount = HEIGHT / 2 - creamCount;
+                    var RMSPlus = countPlus == 0 ? 0f : Math.Sqrt(totalPlus / countPlus);
+                    var RMSMinus = countMinus == 0 ? 0f : Math.Sqrt(totalMinus / countMinus);
+                    var creamCountPlus = (int) Mathf.Lerp(MIN_LINE, HEIGHT / 2, (float) RMSPlus * multiplier);
+                    var creamCountMinus = (int) Mathf.Lerp(MIN_LINE, HEIGHT / 2, (float) RMSMinus * multiplier);
+                    var blackCount = HEIGHT / 2 - creamCountPlus;
                     int i = 0;
                     for (; i < blackCount; i++)
                         behavior.Result[ix + i * WIDTH] = black;
-                    for (; i < creamCount * 2 + blackCount; i++)
+                    for (; i < creamCountPlus + creamCountMinus + blackCount; i++)
                         behavior.Result[ix + i * WIDTH] = cream;
                     for (; i < HEIGHT; i++)
                         behavior.Result[ix + i * WIDTH] = black;
