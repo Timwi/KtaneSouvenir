@@ -1170,7 +1170,7 @@ public partial class SouvenirModule : MonoBehaviour
     #endregion
 
     #region Twitch Plays
-    private bool TwitchPlaysActive = false;
+    internal bool TwitchPlaysActive = false;
     private readonly List<KMBombModule> TwitchAbandonModule = new List<KMBombModule>();
 
 #pragma warning disable 414

@@ -292,8 +292,8 @@ namespace Souvenir
                 {
                     souvenir.Answers[i].transform.Find("SpriteHolder").localScale = _layout switch
                     {
-                        AnswerLayout.TwoColumns4Answers => new Vector3(15, 10, 1),
-                        AnswerLayout.ThreeColumns6Answers => new Vector3(10, 10, 1),
+                        AnswerLayout.TwoColumns4Answers => new Vector3(_parent.TwitchPlaysActive ? 14 : 15, 10, 1),
+                        AnswerLayout.ThreeColumns6Answers => new Vector3(_parent.TwitchPlaysActive ? 8 : 10, 10, 1),
                         AnswerLayout.OneColumn4Answers => new Vector3(30, 10, 1),
                         // Unreachable
                         _ => throw new NotImplementedException(),
@@ -327,8 +327,8 @@ namespace Souvenir
                 _audioRef = _parent.Audio.PlaySoundAtTransformWithRef(_clips[index].name, _parent.transform);
                 _coroutine = _parent.StartCoroutine(AnimatePlayHead(head, _layout switch
                 {
-                    AnswerLayout.TwoColumns4Answers => 15,
-                    AnswerLayout.ThreeColumns6Answers => 10,
+                    AnswerLayout.TwoColumns4Answers => _parent.TwitchPlaysActive ? 14 : 15,
+                    AnswerLayout.ThreeColumns6Answers => _parent.TwitchPlaysActive ? 8 : 10,
                     AnswerLayout.OneColumn4Answers => 30,
                     // Unreachable  
                     _ => throw new NotImplementedException(),

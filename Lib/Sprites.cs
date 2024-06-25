@@ -146,9 +146,9 @@ namespace Souvenir
 
                 var step = data.Length / WIDTH;
                 int start = 0;
-                for (int ix = 0; ix < WIDTH - 1; start += step, ix++)
+                for (int ix = 0; ix < WIDTH; start += step, ix++)
                 {
-                    var RMS = Math.Sqrt(data.Skip(start).Take(step).Select(v => v * v).Average());
+                    var RMS = Math.Sqrt(data.Skip(start).Take(Math.Min(step, 256)).Select(v => v * v).Average());
                     var creamCount = (int) Mathf.Lerp(MIN_LINE, HEIGHT / 2, (float) RMS * multiplier);
                     var blackCount = HEIGHT / 2 - creamCount;
                     int i = 0;
@@ -158,20 +158,6 @@ namespace Souvenir
                         behavior.Result[ix + i * WIDTH] = cream;
                     for (; i < HEIGHT; i++)
                         behavior.Result[ix + i * WIDTH] = black;
-                    behavior.FinishedColumns++;
-                }
-                // The final segment might have more data than the rest
-                {
-                    var RMS = Math.Sqrt(data.Skip(start).Select(v => v * v).Average());
-                    var creamCount = (int) Mathf.Lerp(MIN_LINE, HEIGHT / 2, (float) RMS * multiplier);
-                    var blackCount = HEIGHT / 2 - creamCount;
-                    int i = 0;
-                    for (; i < blackCount; i++)
-                        behavior.Result[WIDTH - 1 + i * WIDTH] = black;
-                    for (; i < creamCount * 2 + blackCount; i++)
-                        behavior.Result[WIDTH - 1 + i * WIDTH] = cream;
-                    for (; i < HEIGHT; i++)
-                        behavior.Result[WIDTH - 1 + i * WIDTH] = black;
                     behavior.FinishedColumns++;
                 }
             }
