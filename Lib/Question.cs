@@ -2322,8 +2322,8 @@
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSaidPresses,
 
-        [SouvenirQuestion("What were the call samples {1} of {0}?", "Simon Samples", ThreeColumns6Answers, "KKSS", "KKSH", "KSSH", "KHSS", "KHSH", "KHSO", "KHOH", "KOSH", "KOSO", "SKSK", "SHHS", TranslateFormatArgs = new[] { true },
-            ExampleExtraFormatArguments = new[] { "played in the first stage", "added in the second stage", "added in the third stage" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateAnswers = true)]
+        [SouvenirQuestion("What were the call samples {1} of {0}?", "Simon Samples", ThreeColumns6Answers, AudioField = "SimonSamplesAudio", Type = AnswerType.Audio,
+            TranslateFormatArgs = new[] { true }, ExampleExtraFormatArguments = new[] { "played in the first stage", "added in the second stage", "added in the third stage" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSamplesSamples,
 
         [SouvenirQuestion("What color flashed {1} in the final sequence in {0}?", "Simon Says", TwoColumns4Answers, "red", "yellow", "green", "blue", TranslateAnswers = true,

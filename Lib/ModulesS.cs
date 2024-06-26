@@ -536,9 +536,19 @@ public partial class SouvenirModule
         var calls = GetListField<string>(comp, "_calls").Get(expectedLength: 3);
         if (Enumerable.Range(1, 2).Any(i => calls[i].Length <= calls[i - 1].Length || !calls[i].StartsWith(calls[i - 1])))
             throw new AbandonModuleException($"_calls=[{calls.Select(c => $"“{c}”").JoinString(", ")}]; expected each element to start with the previous.");
+        var possibleCalls = "0012|0112|0212|0213|0011|0211|0312|0313|0011|1010|1221|0232".Split('|');
+        var check = Enumerable.Range(0, 3)
+            .Select(i => calls[i].Substring(4 * i))
+            .Select((s, i) => !possibleCalls.Skip(4 * i).Take(4).Contains(s) ? $"Invalid call for stage {i + 1}: {s}" : null)
+            .Where(s => s is not null)
+            .Aggregate<string, string>(null, (a, b) => a is null ? b : a + "; " + b);
+        if (check is not null)
+            throw new AbandonModuleException(check);
 
         var formatArgs = new[] { "played in the first stage", "added in the second stage", "added in the third stage" };
-        addQuestions(module, calls.Select((c, ix) => makeQuestion(Question.SimonSamplesSamples, _SimonSamples, formatArgs: new[] { formatArgs[ix] }, correctAnswers: new[] { (ix == 0 ? c : c.Substring(calls[ix - 1].Length)).Replace("0", "K").Replace("1", "S").Replace("2", "H").Replace("3", "O") })));
+        addQuestions(module, calls.Select((c, ix) => 
+            makeQuestion(Question.SimonSamplesSamples, _SimonSamples, formatArgs: new[] { formatArgs[ix] },
+            correctAnswers: new[] { SimonSamplesAudio[Array.IndexOf(possibleCalls, c.Substring(ix * 4))] }, preferredWrongAnswers: SimonSamplesAudio.Skip(4 * ix).Take(4).ToArray())));
     }
 
     private IEnumerable<object> ProcessSimonSays(KMBombModule module)

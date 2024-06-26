@@ -69,6 +69,7 @@ public partial class SouvenirModule : MonoBehaviour
 
     public AudioClip[] ExampleAudio;
     public AudioClip[] ListeningAudio;
+    public AudioClip[] SimonSamplesAudio;
     public AudioClip[] SimonSmilesAudio;
     public AudioClip[] SonicTheHedgehogAudio;
 
