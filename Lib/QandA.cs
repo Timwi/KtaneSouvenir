@@ -346,7 +346,7 @@ namespace Souvenir
                 head.gameObject.SetActive(true);
 
                 _audioRef = _foreignKey == null || Application.isEditor
-                    ? _parent.Audio.PlaySoundAtTransformWithRef(_clips[index].name, _parent.transform)
+                    ? _parent.Audio.HandlePlaySoundAtTransformWithRef?.Invoke(_clips[index].name, _parent.transform, false)
                     : PlayForeignClip(_clips[index]);
                 _coroutine = _parent.StartCoroutine(AnimatePlayHead(head, _layout switch
                 {
@@ -355,7 +355,7 @@ namespace Souvenir
                     AnswerLayout.OneColumn4Answers => 30,
                     // Unreachable  
                     _ => throw new NotImplementedException(),
-                }, _clips[index].length, _audioRef));
+                }, _clips[index].length));
 
                 return _clips[index].length;
             }
@@ -371,7 +371,7 @@ namespace Souvenir
                 _selected = -1;
             }
 
-            private IEnumerator AnimatePlayHead(Transform head, float end, float duration, KMAudio.KMAudioRef sound)
+            private IEnumerator AnimatePlayHead(Transform head, float end, float duration)
             {
                 float endTime = Time.time + duration;
                 head.localPosition = new Vector3(1.5f, 0.35f, 0f);
@@ -381,7 +381,6 @@ namespace Souvenir
                     yield return null;
                 }
                 head.gameObject.SetActive(false);
-                sound.StopSound();
             }
 
             private KMAudio.KMAudioRef PlayForeignClip(AudioClip clip)
