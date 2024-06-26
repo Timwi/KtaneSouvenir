@@ -25,7 +25,7 @@ namespace Souvenir
     /// </remarks>
     /// <example>
     /// <code>
-    ///     [SouvenirQuestion("What was the {1} correct query response from {0}?", "Two Bits", 6, ExampleExtraFormatArguments = new[] { "first" }, ExampleExtraFormatArgumentGroupSize = 1)]
+    ///     [SouvenirQuestion("What was the {1} correct query response from {0}?", "Two Bits", ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { "first" }, ExampleExtraFormatArgumentGroupSize = 1)]
     ///     [AnswerGenerator.Integers(0, 99, "00")]
     ///     TwoBitsResponse
     /// </code>
