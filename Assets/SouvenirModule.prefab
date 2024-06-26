@@ -1410,6 +1410,23 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cb1a6ab1c0d764c43a620cc931e95d70, type: 3}
   - {fileID: 8300000, guid: 16a6b1e0f40230246b8cf6656bd991a2, type: 3}
   - {fileID: 8300000, guid: cbb645095a1d24f44aa649fbbce5187c, type: 3}
+  SonicTheHedgehogAudio:
+  - {fileID: 8300000, guid: 49bd880b90f28fb448624de96d7235bd, type: 3}
+  - {fileID: 8300000, guid: c61c4eebe8cda3c47ad2a204ac80494c, type: 3}
+  - {fileID: 8300000, guid: fb69fbce43269a94499cc47ad9879fb4, type: 3}
+  - {fileID: 8300000, guid: fb3288acb4b66754db3ea32f07c93d59, type: 3}
+  - {fileID: 8300000, guid: 69f5e445cfc048041a2e22613386c664, type: 3}
+  - {fileID: 8300000, guid: bc824f091744b014089c4a7b688bb2bf, type: 3}
+  - {fileID: 8300000, guid: 0b11073ba7bc6554c9dc230d2f5b9297, type: 3}
+  - {fileID: 8300000, guid: 456f90525403eaa4789825bfabef5f08, type: 3}
+  - {fileID: 8300000, guid: dcda249c66525994f8193f98d5bfdcf7, type: 3}
+  - {fileID: 8300000, guid: 8273e436846883946b8bbf9f097dc585, type: 3}
+  - {fileID: 8300000, guid: 6ea1f7a89138f6945b4b033008437a72, type: 3}
+  - {fileID: 8300000, guid: f651140b8d6d51241b2003767cec3214, type: 3}
+  - {fileID: 8300000, guid: 22b15f45d12e67940a60368c8a3a11a4, type: 3}
+  - {fileID: 8300000, guid: 262e5afa426a8ec4bb1d252533313235, type: 3}
+  - {fileID: 8300000, guid: 8c07f76b26ee2954598e3e287b476c0e, type: 3}
+  - {fileID: 8300000, guid: 811478d231f019040871059e1d9f1e89, type: 3}
   TextMesh: {fileID: 102000012539687798}
   TextRenderer: {fileID: 23000013337156738}
   SurfaceRenderer: {fileID: 23000012396776310}

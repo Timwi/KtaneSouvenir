@@ -1398,25 +1398,8 @@ public partial class SouvenirModule
         if (SonicTheHedgehogSprites.Length != 15)
             throw new AbandonModuleException($@"Sonic the Hedgehog should have 15 sprites. Counted {SonicTheHedgehogSprites.Length}");
 
-        var soundNameMapping = new Dictionary<string, string>()
-        {
-            ["boss"] = "Boss Theme",
-            ["breathe"] = "Breathe",
-            ["continueSFX"] = "Continue",
-            ["drown"] = "Drown",
-            ["emerald"] = "Emerald",
-            ["extraLife"] = "Extra Life",
-            ["finalZone"] = "Final Zone",
-            ["invincibleSFX"] = "Invincibility",
-            ["jump"] = "Jump",
-            ["lamppost"] = "Lamppost",
-            ["marbleZone"] = "Marble Zone",
-            ["skid"] = "Skid",
-            ["spikes"] = "Spikes",
-            ["spin"] = "Spin",
-            ["spring"] = "Spring",
-            ["bumper"] = "Bumper",
-        };
+        var soundNameMapping = "boss|breathe|bumper|continueSFX|drown|emerald|extraLife|finalZone|invincibleSFX|jump|lamppost|marbleZone|skid|spikes|spin|spring"
+            .Split('|').Select((s, i) => (s, i)).ToDictionary(t => t.s, t => t.i);
 
         var pictureNames = new string[] { "annoyedSonic", "ballhog", "blueLamppost", "burrobot", "buzzBomber", "crabMeat", "deadSonic", "drownedSonic", "fallingSonic", "motoBug", "redLamppost", "redSpring", "standingSonic", "switch", "yellowSpring" };
         var pics = fldsPics.Select(f => f.Get(p => p.name == null || !pictureNames.Contains(p.name) ? "unknown pic" : null)).ToArray();
@@ -1445,8 +1428,8 @@ public partial class SouvenirModule
                 Question.SonicTheHedgehogSounds,
                 _SonicTheHedgehog,
                 formatArgs: new[] { screenNames[screen] },
-                correctAnswers: new[] { soundNameMapping[sounds[screen]] },
-                preferredWrongAnswers: sounds.Select(s => soundNameMapping[s]).ToArray()));
+                correctAnswers: new[] { SonicTheHedgehogAudio[soundNameMapping[sounds[screen]]] },
+                preferredWrongAnswers: sounds.Select(s => SonicTheHedgehogAudio[soundNameMapping[s]]).ToArray()));
 
         addQuestions(module, qs);
     }
