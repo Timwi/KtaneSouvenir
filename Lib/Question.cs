@@ -2444,7 +2444,7 @@
             ExampleExtraFormatArguments = new[] { "3", "4", "5", "6" }, ExampleExtraFormatArgumentGroupSize = 1)]
         SimonSignalsRotationsToShape,
 
-        [SouvenirQuestion("What sound did the {1} button press make in the last successful run of {0}?", "Simon Smiles", TwoColumns4Answers,
+        [SouvenirQuestion("What sound did the {1} button press make {0}?", "Simon Smiles", TwoColumns4Answers,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1,
             Type = AnswerType.Audio, AudioField = "SimonSmilesAudio", AudioSizeMultiplier = 6)]
         SimonSmilesSounds,
