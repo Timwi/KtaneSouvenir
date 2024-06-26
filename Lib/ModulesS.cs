@@ -1367,14 +1367,19 @@ public partial class SouvenirModule
 
         var badnikName = fldLabel.GetFrom(badnik, v => !SonicKnucklesBadniksSprites.Any(s => s.name == v) ? "not a recognized badnik name" : null);
         var monitorName = fldLabel.GetFrom(monitor, v => !SonicKnucklesMonitorsSprites.Any(s => s.name == v) ? "not a recognized monitor name" : null);
-        var illegalSoundName =
-            fldContainsIllegalSound.GetFrom(hero) ? capitalizeWords(fldAttachedSound.GetFrom(hero).name) :
-            fldContainsIllegalSound.GetFrom(monitor) ? capitalizeWords(fldAttachedSound.GetFrom(monitor).name) :
-            fldContainsIllegalSound.GetFrom(badnik) ? capitalizeWords(fldAttachedSound.GetFrom(badnik).name) :
+        var illegalSound =
+            fldContainsIllegalSound.GetFrom(hero) ? fldAttachedSound.GetFrom(hero) :
+            fldContainsIllegalSound.GetFrom(monitor) ? fldAttachedSound.GetFrom(monitor) :
+            fldContainsIllegalSound.GetFrom(badnik) ? fldAttachedSound.GetFrom(badnik) :
             throw new AbandonModuleException("None of the three items (hero, monitor, badnik) contain the illegal sound.");
 
+        var usedSounds = new[] { fldAttachedSound.GetFrom(hero), fldAttachedSound.GetFrom(hero), fldAttachedSound.GetFrom(badnik) };
+        var allSounds = GetArrayField<AudioClip>(comp, "mushroomSounds", true).Get(expectedLength: 4).Concat(
+                GetArrayField<AudioClip>(comp, "noMushroomSounds", true).Get(expectedLength: 20)
+            ).ToArray();
+
         addQuestions(module,
-            makeQuestion(Question.SonicKnucklesSounds, _SonicKnuckles, correctAnswers: new[] { illegalSoundName }),
+            makeQuestion(Question.SonicKnucklesSounds, _SonicKnuckles, correctAnswers: new[] { illegalSound }, preferredWrongAnswers: usedSounds, allAnswers: allSounds),
             makeQuestion(Question.SonicKnucklesBadnik, _SonicKnuckles, correctAnswers: new[] { SonicKnucklesBadniksSprites.First(sprite => sprite.name == badnikName) }, preferredWrongAnswers: SonicKnucklesBadniksSprites),
             makeQuestion(Question.SonicKnucklesMonitor, _SonicKnuckles, correctAnswers: new[] { SonicKnucklesMonitorsSprites.First(sprite => sprite.name == monitorName) }, preferredWrongAnswers: SonicKnucklesMonitorsSprites));
     }

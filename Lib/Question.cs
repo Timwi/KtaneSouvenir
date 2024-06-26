@@ -2541,7 +2541,7 @@
         [AnswerGenerator.Strings("A-Za-z")]
         SnowflakesDisplayedSnowflakes,
 
-        [SouvenirQuestion("Which sound was played but not featured in the chosen zone in {0}?", "Sonic & Knuckles", OneColumn4Answers, "Invincibility Theme", "Jump", "Lightning Shield", "Blue Sphere", "Boss Theme", "Flag Bump", "Not Enough Rings", "Special Stage", "Bumper", "Drown Warning", "Ring Cash-In", "Spin", "Badnik Kill", "Breathe", "Lamppost", "Spikes", "Antigrav Funnel", "Flying Battery", "Mushroom Bounce", "Teleport", "Alarm", "Flying Battery Zone Theme", "Bridge Moving Up", "Regular Shield")]
+        [SouvenirQuestion("Which sound was played but not featured in the chosen zone in {0}?", "Sonic & Knuckles", OneColumn4Answers, Type = AnswerType.Audio, ForeignAudioID = "sonicKnuckles")]
         SonicKnucklesSounds,
         [SouvenirQuestion("Which badnik was shown in {0}?", "Sonic & Knuckles", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteField = "SonicKnucklesBadniksSprites")]
         SonicKnucklesBadnik,
