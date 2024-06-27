@@ -2195,6 +2195,14 @@ namespace Souvenir
                 QuestionText = "What was the word you submitted in {0}?",
             },
 
+            // Double Listening
+            // What clip was played in {0}?
+            // What clip was played in Double Listening?
+            [Question.DoubleListeningSounds] = new TranslationInfo
+            {
+                QuestionText = "What clip was played in {0}?",
+            },
+
             // Double-Oh
             // Which button was the submit button in {0}?
             // Which button was the submit button in Double-Oh?
@@ -3547,11 +3555,11 @@ namespace Souvenir
             },
 
             // IPA
-            // What symbol was the correct answer in {0}?
-            // What symbol was the correct answer in IPA?
+            // What sound played in {0}?
+            // What sound played in IPA?
             [Question.IpaSound] = new TranslationInfo
             {
-                QuestionText = "What symbol was the correct answer in {0}?",
+                QuestionText = "What sound played in {0}?",
             },
 
             // The iPhone
@@ -3917,6 +3925,14 @@ namespace Souvenir
             [Question.LionsShareRemovedLions] = new TranslationInfo
             {
                 QuestionText = "Which lion was present but removed in {0}?",
+            },
+
+            // Listening
+            // What clip was played in {0}?
+            // What clip was played in Listening?
+            [Question.ListeningSound] = new TranslationInfo
+            {
+                QuestionText = "What clip was played in {0}?",
             },
 
             // Logical Buttons
@@ -4499,6 +4515,27 @@ namespace Souvenir
             [Question.ModernCipherWord] = new TranslationInfo
             {
                 QuestionText = "What was the decrypted word of the {1} stage in {0}?",
+            },
+
+            // Module Listening
+            // Which sound did the {1} button play in {0}?
+            // Which sound did the red button play in Module Listening?
+            [Question.ModuleListeningButtonAudio] = new TranslationInfo
+            {
+                QuestionText = "Which sound did the {1} button play in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "red",
+                    ["green"] = "green",
+                    ["blue"] = "blue",
+                    ["yellow"] = "yellow",
+                },
+            },
+            // Which sound played in {0}?
+            // Which sound played in Module Listening?
+            [Question.ModuleListeningAnyAudio] = new TranslationInfo
+            {
+                QuestionText = "Which sound played in {0}?",
             },
 
             // Module Maze
@@ -6561,6 +6598,14 @@ namespace Souvenir
                 QuestionText = "Where was {1} in {0}?",
             },
 
+            // Sbemail Songs
+            // What was the displayed song for stage {1} (hexadecimal) of {0}?
+            // What was the displayed song for stage 01 (hexadecimal) of Sbemail Songs?
+            [Question.SbemailSongsSongs] = new TranslationInfo
+            {
+                QuestionText = "What was the displayed song for stage {1} (hexadecimal) of {0}?",
+            },
+
             // Scavenger Hunt
             // Which tile was correctly submitted in the first stage of {0}?
             // Which tile was correctly submitted in the first stage of Scavenger Hunt?
@@ -6812,20 +6857,6 @@ namespace Souvenir
                     ["played in the first stage"] = "played in the first stage",
                     ["added in the second stage"] = "added in the second stage",
                     ["added in the third stage"] = "added in the third stage",
-                },
-                Answers = new Dictionary<string, string>
-                {
-                    ["KKSS"] = "KKSS",
-                    ["KKSH"] = "KKSH",
-                    ["KSSH"] = "KSSH",
-                    ["KHSS"] = "KHSS",
-                    ["KHSH"] = "KHSH",
-                    ["KHSO"] = "KHSO",
-                    ["KHOH"] = "KHOH",
-                    ["KOSH"] = "KOSH",
-                    ["KOSO"] = "KOSO",
-                    ["SKSK"] = "SKSK",
-                    ["SHHS"] = "SHHS",
                 },
             },
 
@@ -7116,6 +7147,14 @@ namespace Souvenir
             [Question.SimonSignalsRotationsToShape] = new TranslationInfo
             {
                 QuestionText = "What shape was the arrow with {1} possible directions in {0}?",
+            },
+
+            // Simon Smiles
+            // What sound did the {1} button press make {0}?
+            // What sound did the first button press make Simon Smiles?
+            [Question.SimonSmilesSounds] = new TranslationInfo
+            {
+                QuestionText = "What sound did the {1} button press make {0}?",
             },
 
             // Simon Smothers

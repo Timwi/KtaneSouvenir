@@ -135,16 +135,17 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Coinage   │  Linq                 │  Phosphorescence   │  Reformed Role Reversal  │
     Etterna   │  Octadecayotton, The  │  Placeholder Talk  │  Role Reversal           │
 
+## Implemented by Anonymous (12)
+
+    ❖             │  Big Bean           │  Double Arrows     │  Labyrinth, The
+    Bean Sprouts  │  Boomtar the Great  │  Double Listening  │  Simon Smiles
+    Beans         │  Connection Check   │  Fuse Box, The     │  Simon Subdivides
+
 ## Implemented by VFlyer (12)
 
     7               │  Flashing Arrows  │  Pie Flash         │  Unfair’s Revenge
     Abyss           │  Homophones       │  Prime Encryption  │  Who’s on Morse
     Color Addition  │  Negativity       │  Quick Arithmetic  │  WhoOF
-
-## Implemented by Anonymous (10)
-
-    ❖             │  Beans     │  Boomtar the Great  │  Double Arrows  │  Labyrinth, The
-    Bean Sprouts  │  Big Bean  │  Connection Check   │  Fuse Box, The  │  Simon Subdivides
 
 ## Implemented by GhostSalt (10)
 

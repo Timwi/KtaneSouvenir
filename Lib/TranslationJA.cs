@@ -2316,6 +2316,14 @@ namespace Souvenir
                 ModuleName = "ダブル・エキスパート",
             },
 
+            // Double Listening
+            // What clip was played in {0}?
+            // What clip was played in Double Listening?
+            [Question.DoubleListeningSounds] = new TranslationInfo
+            {
+                QuestionText = "What clip was played in {0}?",
+            },
+
             // Double-Oh
             // Which button was the submit button in {0}?
             // Which button was the submit button in Double-Oh?
@@ -3788,11 +3796,11 @@ namespace Souvenir
             },
 
             // IPA
-            // What symbol was the correct answer in {0}?
-            // What symbol was the correct answer in IPA?
+            // What sound played in {0}?
+            // What sound played in IPA?
             [Question.IpaSound] = new TranslationInfo
             {
-                QuestionText = "{0}の正しい答えの記号は？",
+                QuestionText = "What sound played in {0}?",
             },
 
             // The iPhone
@@ -4186,6 +4194,14 @@ namespace Souvenir
             {
                 QuestionText = "{0}に存在したが除外されたライオンは？",
                 ModuleName = "ライオンの分け前",
+            },
+
+            // Listening
+            // What clip was played in {0}?
+            // What clip was played in Listening?
+            [Question.ListeningSound] = new TranslationInfo
+            {
+                QuestionText = "What clip was played in {0}?",
             },
 
             // Logical Buttons
@@ -4808,6 +4824,27 @@ namespace Souvenir
             {
                 QuestionText = "{0}のステージ{1}で復号された単語は？",
                 ModuleName = "現代暗号",
+            },
+
+            // Module Listening
+            // Which sound did the {1} button play in {0}?
+            // Which sound did the red button play in Module Listening?
+            [Question.ModuleListeningButtonAudio] = new TranslationInfo
+            {
+                QuestionText = "Which sound did the {1} button play in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "red",
+                    ["green"] = "green",
+                    ["blue"] = "blue",
+                    ["yellow"] = "yellow",
+                },
+            },
+            // Which sound played in {0}?
+            // Which sound played in Module Listening?
+            [Question.ModuleListeningAnyAudio] = new TranslationInfo
+            {
+                QuestionText = "Which sound played in {0}?",
             },
 
             // Module Maze
@@ -7032,6 +7069,14 @@ namespace Souvenir
                 QuestionText = "{0}の{1}はどこ？",
             },
 
+            // Sbemail Songs
+            // What was the displayed song for stage {1} (hexadecimal) of {0}?
+            // What was the displayed song for stage 01 (hexadecimal) of Sbemail Songs?
+            [Question.SbemailSongsSongs] = new TranslationInfo
+            {
+                QuestionText = "What was the displayed song for stage {1} (hexadecimal) of {0}?",
+            },
+
             // Scavenger Hunt
             // Which tile was correctly submitted in the first stage of {0}?
             // Which tile was correctly submitted in the first stage of Scavenger Hunt?
@@ -7306,20 +7351,6 @@ namespace Souvenir
                     ["played in the first stage"] = "ステージ1で演奏された",
                     ["added in the second stage"] = "ステージ2で演奏された",
                     ["added in the third stage"] = "ステージ3で演奏された",
-                },
-                Answers = new Dictionary<string, string>
-                {
-                    ["KKSS"] = "KKSS",
-                    ["KKSH"] = "KKSH",
-                    ["KSSH"] = "KSSH",
-                    ["KHSS"] = "KHSS",
-                    ["KHSH"] = "KHSH",
-                    ["KHSO"] = "KHSO",
-                    ["KHOH"] = "KHOH",
-                    ["KOSH"] = "KOSH",
-                    ["KOSO"] = "KOSO",
-                    ["SKSK"] = "SKSK",
-                    ["SHHS"] = "SHHS",
                 },
             },
 
@@ -7617,6 +7648,14 @@ namespace Souvenir
             [Question.SimonSignalsRotationsToShape] = new TranslationInfo
             {
                 QuestionText = "{0}で{1}色の方向を指していた矢印の形は？",
+            },
+
+            // Simon Smiles
+            // What sound did the {1} button press make {0}?
+            // What sound did the first button press make Simon Smiles?
+            [Question.SimonSmilesSounds] = new TranslationInfo
+            {
+                QuestionText = "What sound did the {1} button press make {0}?",
             },
 
             // Simon Smothers

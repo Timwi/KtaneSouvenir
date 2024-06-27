@@ -161,7 +161,6 @@ namespace Souvenir
                     souvenir.Answers[i].transform.Find("AnswerText").gameObject.SetActive(false);
                     souvenir.Answers[i].transform.Find("PlayHead").gameObject.SetActive(false);
                     souvenir.Answers[i].transform.Find("PlayIcon").gameObject.SetActive(false);
-                    souvenir.Answers[i].transform.Find("PlayIcon").GetComponent<SpriteRenderer>().sprite = souvenir.AudioSprites[0];
                     var h1 = souvenir.Answers[i].transform.Find("Highlight");
                     h1.GetComponent<MeshFilter>().sharedMesh = highlightMesh;
                     var h2 = h1.Find("Highlight(Clone)");
@@ -302,22 +301,20 @@ namespace Souvenir
                         _ => throw new NotImplementedException(),
                     };
                     souvenir.Answers[i].transform.Find("PlayIcon").gameObject.SetActive(i < _answers.Length);
+                    souvenir.Answers[i].transform.Find("PlayIcon").GetComponent<SpriteRenderer>().sprite = souvenir.AudioSprites[0];
                     souvenir.Answers[i].transform.Find("PlayIcon").GetComponent<SpriteRenderer>().color = new Color32(0x17, 0xF4, 0x19, 0xFF);
                 }
             }
 
             public override bool OnPress(int index)
             {
-
                 if (index == _selected || index > NumAnswers)
                 {
                     StopSound();
-
                     return false;
                 }
 
                 PlaySound(index);
-
                 return true;
             }
 

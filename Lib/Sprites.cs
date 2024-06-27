@@ -110,8 +110,7 @@ namespace Souvenir
                     float[] data = new float[answer.samples * answer.channels];
                     answer.GetData(data, 0);
 
-                    var threadLog = $"‹Souvenir #{module._moduleId}› Finished processing waveform: {answer.name}";
-                    new Thread(() => RenderRMS(data, behavior, multiplier, threadLog))
+                    new Thread(() => RenderRMS(data, behavior, multiplier))
                     {
                         IsBackground = true,
                         Name = $"Waveform Renderer - {answer.name}"
@@ -137,54 +136,43 @@ namespace Souvenir
             Debug.Log($"‹Souvenir #{id}› Finished rendering waveform: {name}");
         }
 
-        private static void RenderRMS(float[] data, DataBehaviour behavior, float multiplier, string logging)
+        private static void RenderRMS(float[] data, DataBehaviour behavior, float multiplier)
         {
-            try
-            {
-                Color32 cream = new(0xFF, 0xF8, 0xDD, 0xFF);
-                Color32 black = new(0xFF, 0xF8, 0xDD, 0x00);
+            Color32 cream = new(0xFF, 0xF8, 0xDD, 0xFF);
+            Color32 black = new(0xFF, 0xF8, 0xDD, 0x00);
 
-                var step = data.Length / WIDTH;
-                int start = 0;
-                for (int ix = 0; ix < WIDTH; start += step, ix++)
+            var step = data.Length / WIDTH;
+            int start = 0;
+            for (int ix = 0; ix < WIDTH; start += step, ix++)
+            {
+                float totalPlus = 0f, totalMinus = 0f;
+                int countPlus = 0, countMinus = 0;
+                for (int j = start; j < start + step; j++)
                 {
-                    float totalPlus = 0f, totalMinus = 0f;
-                    int countPlus = 0, countMinus = 0;
-                    for (int j = start; j < start + step; j++)
+                    if (data[j] > 0f)
                     {
-                        if (data[j] > 0f)
-                        {
-                            totalPlus += data[j] * data[j];
-                            countPlus++;
-                        }
-                        else
-                        {
-                            totalMinus += data[j] * data[j];
-                            countMinus++;
-                        }
+                        totalPlus += data[j] * data[j];
+                        countPlus++;
                     }
-                    var RMSPlus = countPlus == 0 ? 0f : Math.Sqrt(totalPlus / countPlus);
-                    var RMSMinus = countMinus == 0 ? 0f : Math.Sqrt(totalMinus / countMinus);
-                    var creamCountPlus = (int) Mathf.Lerp(MIN_LINE, HEIGHT / 2, (float) RMSPlus * multiplier);
-                    var creamCountMinus = (int) Mathf.Lerp(MIN_LINE, HEIGHT / 2, (float) RMSMinus * multiplier);
-                    var blackCount = HEIGHT / 2 - creamCountPlus;
-                    int i = 0;
-                    for (; i < blackCount; i++)
-                        behavior.Result[ix + i * WIDTH] = black;
-                    for (; i < creamCountPlus + creamCountMinus + blackCount; i++)
-                        behavior.Result[ix + i * WIDTH] = cream;
-                    for (; i < HEIGHT; i++)
-                        behavior.Result[ix + i * WIDTH] = black;
-                    behavior.FinishedColumns++;
+                    else
+                    {
+                        totalMinus += data[j] * data[j];
+                        countMinus++;
+                    }
                 }
-            }
-            catch (Exception e)
-            {
-                Debug.LogException(e);
-            }
-            finally
-            {
-                Debug.Log(logging);
+                var RMSPlus = countPlus == 0 ? 0f : Math.Sqrt(totalPlus / countPlus);
+                var RMSMinus = countMinus == 0 ? 0f : Math.Sqrt(totalMinus / countMinus);
+                var creamCountPlus = (int) Mathf.Lerp(MIN_LINE, HEIGHT / 2, (float) RMSPlus * multiplier);
+                var creamCountMinus = (int) Mathf.Lerp(MIN_LINE, HEIGHT / 2, (float) RMSMinus * multiplier);
+                var blackCount = HEIGHT / 2 - creamCountPlus;
+                int i = 0;
+                for (; i < blackCount; i++)
+                    behavior.Result[ix + i * WIDTH] = black;
+                for (; i < creamCountPlus + creamCountMinus + blackCount; i++)
+                    behavior.Result[ix + i * WIDTH] = cream;
+                for (; i < HEIGHT; i++)
+                    behavior.Result[ix + i * WIDTH] = black;
+                behavior.FinishedColumns++;
             }
         }
 
