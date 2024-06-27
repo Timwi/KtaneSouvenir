@@ -726,6 +726,9 @@
         [SouvenirQuestion("What was the word you submitted in {0}?", "Double Expert", ThreeColumns6Answers, ExampleAnswers = new[] { "Echo", "November", "Rodeo", "Words", "Victor", "Zulu" })]
         DoubleExpertSubmittedWord,
 
+        [SouvenirQuestion("What clip was played in {0}?", "Double Listening", ThreeColumns6Answers, Type = AnswerType.Audio, AudioField = "ListeningAudio")]
+        DoubleListeningSounds,
+
         [SouvenirQuestion("Which button was the submit button in {0}?", "Double-Oh", ThreeColumns6Answers, "↕", "⇕", "↔", "⇔", "◆")]
         DoubleOhSubmitButton,
 

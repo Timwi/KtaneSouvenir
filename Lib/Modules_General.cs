@@ -147,6 +147,7 @@ public partial class SouvenirModule
     const string _DoubleColor = "doubleColor";
     const string _DoubleDigits = "doubleDigitsModule";
     const string _DoubleExpert = "doubleExpert";
+    const string _DoubleListening = "doubleListening";
     const string _DoubleOh = "DoubleOhModule";
     const string _DrDoctor = "DrDoctorModule";
     const string _Dreamcipher = "ksmDreamcipher";
@@ -707,6 +708,7 @@ public partial class SouvenirModule
             [_DoubleColor] = (ProcessDoubleColor, "Double Color", "luisdiogo98"),
             [_DoubleDigits] = (ProcessDoubleDigits, "Double Digits", "Quinn Wuest"),
             [_DoubleExpert] = (ProcessDoubleExpert, "Double Expert", "Kuro"),
+            [_DoubleListening] = (ProcessDoubleListening, "Double Listening", "Anonymous"),
             [_DoubleOh] = (ProcessDoubleOh, "Double-Oh", "Timwi"),
             [_DrDoctor] = (ProcessDrDoctor, "Dr. Doctor", "Timwi"),
             [_Dreamcipher] = (ProcessDreamcipher, "Dreamcipher", "BigCrunch22"),
