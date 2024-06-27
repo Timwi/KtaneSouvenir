@@ -220,16 +220,18 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "ipa");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
-        var symbols = GetStaticField<string[]>(comp.GetType(), "symbols").Get();
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_IPA);
 
-        var soundIx = GetIntField(comp, "soundPresent").Get(0, symbols.Length - 1);
-        var textMesh = GetArrayField<TextMesh>(comp, "buttonTexts", isPublic: true).Get(expectedLength: 9)[0];
-        addQuestions(module, makeQuestion(Question.IpaSymbol, _IPA, textMesh.font, textMesh.GetComponent<MeshRenderer>().sharedMaterial.mainTexture,
-            correctAnswers: new[] { symbols[soundIx] }, preferredWrongAnswers: symbols));
+        var sounds = GetArrayField<AudioClip>(comp, "sounds", true).Get(expectedLength: 71);
+        var cap = GetField<int>(comp, "cap").Get(i => i != 44 && i != 71 ? $"Unknown cap value {i} (expected 44 or 71)" : null);
+
+        var soundIx = GetIntField(comp, "soundPresent").Get(0, sounds.Length - 1);
+        addQuestions(module, makeQuestion(Question.IpaSound, _IPA,
+            correctAnswers: new[] { sounds[soundIx] },
+            allAnswers: sounds.Take(cap).ToArray()));
     }
 
     private IEnumerable<object> ProcessiPhone(KMBombModule module)

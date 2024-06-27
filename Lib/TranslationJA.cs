@@ -3790,7 +3790,7 @@ namespace Souvenir
             // IPA
             // What symbol was the correct answer in {0}?
             // What symbol was the correct answer in IPA?
-            [Question.IpaSymbol] = new TranslationInfo
+            [Question.IpaSound] = new TranslationInfo
             {
                 QuestionText = "{0}の正しい答えの記号は？",
             },

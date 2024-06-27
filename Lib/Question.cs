@@ -1248,9 +1248,9 @@
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         InterpunctDisplay,
 
-        [SouvenirQuestion("What symbol was the correct answer in {0}?", "IPA", ThreeColumns6Answers, null,
-            Type = AnswerType.DynamicFont, ExampleAnswers = new[] { "p", "b", "t", "d", "c", "ɟ", "k", "g", "q", "ɢ", "ʔ", "m", "n", "ɲ", "ŋ", "ʙ", "r", "ʀ", "ⱱ", "ɾ" })]
-        IpaSymbol,
+        [SouvenirQuestion("What sound played in {0}?", "IPA", TwoColumns4Answers, null,
+            Type = AnswerType.Audio, ForeignAudioID = "ipa", AudioSizeMultiplier = 4)]
+        IpaSound,
 
         [SouvenirQuestion("What was the {1} PIN digit in {0}?", "iPhone", ThreeColumns6Answers,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1, AddThe = true)]
