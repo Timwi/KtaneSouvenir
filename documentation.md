@@ -43,7 +43,7 @@ These are additional properties that you may want to set when defining a questio
 - you are not using an `AnswerGenerator`
 - you are not using sprite answers.
 
-`AnswerType Type` — Used to specify a different answer type (grids or sprites) or font. See the definition of `Souvenir.AnswerType` for information on what to specify.
+`AnswerType Type` — Used to specify a different answer type: grids, sprites, font, or audio. See the definition of `Souvenir.AnswerType` for information on what to specify.
 
 `bool UsesQuestionSprite` — A "question sprite" is an image that shows up with the question. See the *Coloured Cubes* question for an example of this.
 
@@ -52,6 +52,14 @@ These are additional properties that you may want to set when defining a questio
 `int FontSize` and `float CharacterSize` — These correspond to their respective `TextMesh` properties. Useful for increasing the resolution of complex fonts, for example in *Snowflakes* and *Sugar Skulls*.
 
 `bool IsEntireQuestionSprite` — Use this if the theme of the module in question warrants it. For example *❖* and *Technical Keypad*.
+
+Note: The next three apply to `AnswerType.Audio`.
+
+`string AudioField` — If the audio is included in the Souvenir project, specify the name of the field holding the `AudioClip[]` as in the *Listening* question. If possible, prefer to use a `ForeignAudioID` instead.
+
+`string ForeignAudioID` — The mod ID where the `AudioClip`s come from. Note that this is *not* the module ID. This is the ID specified in `modInfo.json` and used as the name for a mod's `.dll` file. It is specified in `Assets/Editor/Resources/ModConfig.asset`. This only works if all of the `AudioClip`s can be obtained via reflection. If not, use an `AudioField` instead.
+
+`float AudioSizeMultiplier` — Visually scales waveforms for audio clips. A value of `1f` would be appropriate for constantly peaking audio. Increase this to achieve better visuals. The default value is `2f`.
 
 Note: If you are unsure about the next two, do not specify them as a translator can do this at a later point in time.
 
@@ -241,11 +249,17 @@ private QandA makeQuestion(Question question, string moduleKey, Sprite questionS
 // Grid answers
 private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0);
 
+// Audio answers
+private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, AudioClip[] correctAnswers = null, AudioClip[] preferredWrongAnswers = null, AudioClip[] allAnswers = null, float questionSpriteRotation = 0);
+
 // Sprite question, text answers
 private QandA makeSpriteQuestion(Sprite questionSprite, Question question, string moduleKey, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null);
 
 // Sprite question, sprite answers
 private QandA makeSpriteQuestion(Sprite questionSprite, Question question, string moduleKey, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null, Sprite[] allAnswers = null);
+
+// Sprite question, audio answers
+private QandA makeSpriteQuestion(Sprite questionSprite, Question question, string moduleKey, string formattedModuleName = null, string[] formatArgs = null, AudioClip[] correctAnswers = null, AudioClip[] preferredWrongAnswers = null, AudioClip[] allAnswers = null);
 ```
 
 In every case, the meaning of each parameter is equivalent:
@@ -286,4 +300,6 @@ private void addQuestion(KMBombModule module, Question question, Sprite question
 private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Sprite[] correctAnswers = null, Sprite[] allAnswers = null, Sprite[] preferredWrongAnswers = null, float questionSpriteRotation = 0);
 
 private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0);
+
+private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, AudioClip[] correctAnswers = null, AudioClip[] allAnswers = null, AudioClip[] preferredWrongAnswers = null, float questionSpriteRotation = 0);
 ```
