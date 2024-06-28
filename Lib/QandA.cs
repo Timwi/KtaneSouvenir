@@ -390,10 +390,10 @@ namespace Souvenir
                 // Skip setting loop = true since we don't want that anyways
                 aref.StopSound += () =>
                 {
-                    var variation = result.GetType().GetProperty("ActingVariation", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
-                        .GetValue(result, new object[0]);
-                    variation.GetType().GetMethod("Stop", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
-                        .Invoke(variation, new object[] { false, false });
+                    var variation = result?.GetType().GetProperty("ActingVariation", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
+                        ?.GetValue(result, new object[0]);
+                    variation?.GetType().GetMethod("Stop", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
+                        ?.Invoke(variation, new object[] { false, false });
                 };
                 return aref;
             }
