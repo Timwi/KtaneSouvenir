@@ -485,6 +485,7 @@ public partial class SouvenirModule
     const string _SplittingTheLoot = "SplittingTheLootModule";
     const string _SpongebobBirthdayIdentification = "spongebobBirthdayIdentification";
     const string _Stability = "stabilityModule";
+    const string _StableTimeSignatures = "StableTimeSignatures";
     const string _StackedSequences = "stackedSequences";
     const string _Stars = "stars";
     const string _StateOfAggregation = "stateOfAggregation";
@@ -1047,6 +1048,7 @@ public partial class SouvenirModule
             [_SplittingTheLoot] = (ProcessSplittingTheLoot, "Splitting The Loot", "luisdiogo98"),
             [_SpongebobBirthdayIdentification] = (ProcessSpongebobBirthdayIdentification, "Spongebob Birthday Identification", "Hawker"),
             [_Stability] = (ProcessStability, "Stability", "NickLatkovich"),
+            [_StableTimeSignatures] = (ProcessStableTimeSignatures, "Stable Time Signatures", "Anonymous"),
             [_StackedSequences] = (ProcessStackedSequences, "Stacked Sequences", "GhostSalt"),
             [_Stars] = (ProcessStars, "Stars", "BigCrunch22"),
             [_StateOfAggregation] = (ProcessStateOfAggregation, "State of Aggregation", "BigCrunch22"),

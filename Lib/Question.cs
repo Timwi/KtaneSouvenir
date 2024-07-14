@@ -2588,6 +2588,10 @@
         [AnswerGenerator.Integers(0, 9999, "0000")]
         StabilityIdNumber,
 
+        [SouvenirQuestion("What was the {1} time signature in {0}?", "Stable Time Signatures", ThreeColumns6Answers, "1/1", "2/1", "3/1", "4/1", "5/1", "6/1", "7/1", "8/1", "9/1", "1/2", "2/2", "3/2", "4/2", "5/2", "6/2", "7/2", "8/2", "9/2", "1/4", "2/4", "3/4", "4/4", "5/4", "6/4", "7/4", "8/4", "9/4", "1/8", "2/8", "3/8", "4/8", "5/8", "6/8", "7/8", "8/8", "9/8",
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
+        StableTimeSignaturesSignatures,
+
         [SouvenirQuestion("Which of these is the length of a sequence in {0}?", "Stacked Sequences", TwoColumns4Answers, null, ExampleAnswers = new[] { "3", "4", "5", "6" })]
         [AnswerGenerator.Integers(3, 9)]
         StackedSequences,

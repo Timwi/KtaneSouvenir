@@ -1645,6 +1645,24 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessStableTimeSignatures(KMBombModule module)
+    {
+        var comp = GetComponent(module, "StableTimeSignatures");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_StableTimeSignatures);
+
+        var topSequence = GetListField<string>(comp, "randomSequenceTop", isPublic: true)
+            .Get(validator: l => l.All(s => !"123456789".Contains(s)) ? "Bad digit" : null);
+        var bottomSequence = GetListField<string>(comp, "randomSequenceBottom", isPublic: true)
+            .Get(expectedLength: topSequence.Count, validator: s => !"1248".Contains(s) ? "Bad digit" : null);
+        var answers = Enumerable.Range(0, topSequence.Count).Select(i => $"{topSequence[i]}/{bottomSequence[i]}").ToArray();
+        addQuestions(module, answers.Select((s, i) => makeQuestion(Question.StableTimeSignaturesSignatures, _StableTimeSignatures,
+            formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { s }, preferredWrongAnswers: answers)));
+    }
+
     private IEnumerable<object> ProcessStackedSequences(KMBombModule module)
     {
         var comp = GetComponent(module, "stackedSequencesScript");
