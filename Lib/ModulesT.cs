@@ -269,6 +269,22 @@ public partial class SouvenirModule
             correctAnswers: new[] { placedX[ix] == null ? (ix + 1).ToString() : placedX[ix].Value ? "X" : "O" })));
     }
 
+    private IEnumerable<object> ProcessTimeSignatures(KMBombModule module)
+    {
+        var comp = GetComponent(module, "TimeSigModule");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_TimeSignatures);
+
+        var sequence = GetArrayField<string>(comp, "randomSequence")
+            .Get(expectedLength: 5, validator: s => s.Length != 2 ? "Bad length" : !"123456789".Contains(s[0]) ? "Bad top digit" : !"1248".Contains(s[1]) ? "Bad bottom digit" : null);
+        var answers = sequence.Select(s => $"{s[0]}/{s[1]}").ToArray();
+        addQuestions(module, sequence.Select((s, i) => makeQuestion(Question.TimeSignaturesSignatures, _TimeSignatures,
+            formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { answers[i] }, preferredWrongAnswers: answers)));
+    }
+
     private IEnumerable<object> ProcessTimezone(KMBombModule module)
     {
         var comp = GetComponent(module, "TimezoneScript");

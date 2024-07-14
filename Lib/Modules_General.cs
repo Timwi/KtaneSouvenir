@@ -515,6 +515,7 @@ public partial class SouvenirModule
     const string _ThinkingWires = "thinkingWiresModule";
     const string _ThirdBase = "ThirdBase";
     const string _TicTacToe = "TicTacToeModule";
+    const string _TimeSignatures = "timeSignatures";
     const string _Timezone = "timezone";
     const string _TipToe = "TipToe";
     const string _TopsyTurvy = "topsyTurvy";
@@ -1076,6 +1077,7 @@ public partial class SouvenirModule
             [_ThinkingWires] = (ProcessThinkingWires, "Thinking Wires", "kavinkul"),
             [_ThirdBase] = (ProcessThirdBase, "Third Base", "CaitSith2"),
             [_TicTacToe] = (ProcessTicTacToe, "Tic Tac Toe", "Timwi"),
+            [_TimeSignatures] = (ProcessTimeSignatures, "Time Signatures", "Anonymous"),
             [_Timezone] = (ProcessTimezone, "Timezone", "Timwi"),
             [_TipToe] = (ProcessTipToe, "Tip Toe", "Kuro"),
             [_TopsyTurvy] = (ProcessTopsyTurvy, "Topsy Turvy", "BigCrunch22"),
