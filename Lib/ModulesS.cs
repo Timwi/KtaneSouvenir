@@ -1373,8 +1373,6 @@ public partial class SouvenirModule
         var badnik = badniksArr[GetIntField(comp, "badnikIndex").Get(0, badniksArr.Length - 1)];
         var monitor = monitorArr[GetIntField(comp, "monitorIndex").Get(0, monitorArr.Length - 1)];
 
-        string capitalizeWords(string input) => Regex.Replace(input, @"\b[a-z]", m => m.Value.ToUpperInvariant());
-
         var badnikName = fldLabel.GetFrom(badnik, v => !SonicKnucklesBadniksSprites.Any(s => s.name == v) ? "not a recognized badnik name" : null);
         var monitorName = fldLabel.GetFrom(monitor, v => !SonicKnucklesMonitorsSprites.Any(s => s.name == v) ? "not a recognized monitor name" : null);
         var illegalSound =
