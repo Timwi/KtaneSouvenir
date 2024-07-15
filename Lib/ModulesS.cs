@@ -255,7 +255,7 @@ public partial class SouvenirModule
             }
         }
 
-        solved:
+    solved:
         _modulesSolved.IncSafe(_SeaShells);
 
         var qs = new List<QandA>();
@@ -546,7 +546,7 @@ public partial class SouvenirModule
             throw new AbandonModuleException(check);
 
         var formatArgs = new[] { "played in the first stage", "added in the second stage", "added in the third stage" };
-        addQuestions(module, calls.Select((c, ix) => 
+        addQuestions(module, calls.Select((c, ix) =>
             makeQuestion(Question.SimonSamplesSamples, _SimonSamples, formatArgs: new[] { formatArgs[ix] },
             correctAnswers: new[] { SimonSamplesAudio[Array.IndexOf(possibleCalls, c.Substring(ix * 4))] }, preferredWrongAnswers: SimonSamplesAudio.Skip(4 * ix).Take(4).ToArray())));
     }

@@ -32,9 +32,9 @@ public partial class SouvenirModule
             if (fldCurrentStage.Get() < i)
                 throw new AbandonModuleException($"The stage number went down from {i} to {fldCurrentStage.Get()}.");
 
-            var options = fldFlavourOptions.Get(expectedLength: 3, validator: x => x.Length != 5 ? "expected length 5" : x.Any(y => y < 0 || y >= flavourNames.Length) ? $"expected range 0–{flavourNames.Length - 1}": null);
-            var sol = fldSolution.Get(ar => ar.Any(x => x < 0 || x >= flavourNames.Length) ? $"expected range 0–{flavourNames.Length - 1}": null);
-            var cus = fldCustomers.Get(ar => ar.Any(x => x < 0 || x >= customerNames.Length) ? $"expected range 0–{customerNames.Length - 1}": null);
+            var options = fldFlavourOptions.Get(expectedLength: 3, validator: x => x.Length != 5 ? "expected length 5" : x.Any(y => y < 0 || y >= flavourNames.Length) ? $"expected range 0–{flavourNames.Length - 1}" : null);
+            var sol = fldSolution.Get(ar => ar.Any(x => x < 0 || x >= flavourNames.Length) ? $"expected range 0–{flavourNames.Length - 1}" : null);
+            var cus = fldCustomers.Get(ar => ar.Any(x => x < 0 || x >= customerNames.Length) ? $"expected range 0–{customerNames.Length - 1}" : null);
 
             flavours[i] = options[i].ToArray();
             solution[i] = flavours[i][sol[i]];

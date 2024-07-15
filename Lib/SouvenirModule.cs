@@ -1238,7 +1238,7 @@ public partial class SouvenirModule : MonoBehaviour
 
         if (_currentQuestion.Answers is QandA.AudioAnswerSet audio && Regex.IsMatch(command.ToLowerInvariant(), @"\A\s*cycle\s*\z"))
         {
-            for(int i = 0; i < audio.NumAnswers; i++)
+            for (int i = 0; i < audio.NumAnswers; i++)
                 yield return audio.PlaySound(i);
             audio.Deselect();
             yield break;

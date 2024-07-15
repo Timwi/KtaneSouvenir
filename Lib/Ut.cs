@@ -335,11 +335,11 @@ namespace Souvenir
 
                 if (lengthOfWord > 0)
                 {
-                    // We are looking at a word. (It doesn’t matter whether we’re at the beginning of the word or in the middle of one.)
-                    retry1:
+                // We are looking at a word. (It doesn’t matter whether we’re at the beginning of the word or in the middle of one.)
+                retry1:
                     string fragment = text.Substring(i, lengthOfWord);
                     var fragmentWidth = measure(fragment);
-                    retry2:
+                retry2:
 
                     // If we are at the start of a line, and the word itself doesn’t fit on a line by itself, give up
                     if (atStartOfLine && x + wordPiecesWidthsSum + fragmentWidth > wrapWidth(curLine))

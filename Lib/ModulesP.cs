@@ -366,9 +366,9 @@ public partial class SouvenirModule
 
         var answer = GetField<byte>(comp, "answerId").Get(b => b < 0 || b > 16 ? "expected range 0–16" : null) + 1;
         var firstPhrase = GetArrayField<string>(comp, "firstPhrase").Get();
-        var firstString = GetField<string>(comp, "firstString").Get(str => !firstPhrase.Contains(str) ? $"expected string to be contained in “{firstPhrase}” (‘firstPhrase’)": null);
+        var firstString = GetField<string>(comp, "firstString").Get(str => !firstPhrase.Contains(str) ? $"expected string to be contained in “{firstPhrase}” (‘firstPhrase’)" : null);
         var ordinals = GetArrayField<string>(comp, "ordinals").Get();
-        var currentOrdinal = GetField<string>(comp, "currentOrdinal").Get(str => !ordinals.Contains(str) ? $"expected string to be contained in “{ordinals}” (‘ordinals’)": null);
+        var currentOrdinal = GetField<string>(comp, "currentOrdinal").Get(str => !ordinals.Contains(str) ? $"expected string to be contained in “{ordinals}” (‘ordinals’)" : null);
         var previousModules = GetField<sbyte>(comp, "previousModules").Get();
 
         var qs = new List<QandA>();

@@ -518,13 +518,13 @@ public partial class SouvenirModule
         var fldMazeIndex = GetIntField(comp, "mazeIndex");
 
         var colours = GetAnswers(Question.NotSimazeMaze);
-        var startPositionArray = new[] { $"({colours[GetIntField(comp, "x").Get()]}, {colours[GetIntField(comp, "y").Get()]})"};
+        var startPositionArray = new[] { $"({colours[GetIntField(comp, "x").Get()]}, {colours[GetIntField(comp, "y").Get()]})" };
 
         while (!propSolved.Get())
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(_NotSimaze);
 
-        var goalPositionArray = new[] { $"({colours[GetIntField(comp, "goalX").Get()]}, {colours[GetIntField(comp, "goalY").Get()]})"};
+        var goalPositionArray = new[] { $"({colours[GetIntField(comp, "goalX").Get()]}, {colours[GetIntField(comp, "goalY").Get()]})" };
 
         addQuestions(module,
             makeQuestion(Question.NotSimazeMaze, _NotSimaze, correctAnswers: new[] { colours[fldMazeIndex.Get()] }),

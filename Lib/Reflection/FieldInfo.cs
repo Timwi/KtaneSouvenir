@@ -22,12 +22,12 @@ namespace Souvenir.Reflection
 
         public int Get(int? min = null, int? max = null)
         {
-            return Get(v => (min != null && v < min.Value) || (max != null && v > max.Value) ? $"expected {min}–{max}": null);
+            return Get(v => (min != null && v < min.Value) || (max != null && v > max.Value) ? $"expected {min}–{max}" : null);
         }
 
         public int GetFrom(object obj, int? min = null, int? max = null)
         {
-            return GetFrom(obj, v => (min != null && v < min.Value) || (max != null && v > max.Value) ? $"expected {min}–{max}": null);
+            return GetFrom(obj, v => (min != null && v < min.Value) || (max != null && v > max.Value) ? $"expected {min}–{max}" : null);
         }
     }
 
