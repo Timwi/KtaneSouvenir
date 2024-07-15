@@ -444,6 +444,26 @@ public partial class SouvenirModule
         addQuestions(module, answers.Select((ans, st) => makeQuestion(Question.PoetryAnswers, module, formatArgs: new[] { ordinal(st + 1) }, correctAnswers: new[] { ans }, preferredWrongAnswers: answers.ToArray())));
     }
 
+    private IEnumerator<YieldInstruction> ProcessPointlessMachines(ModuleData module)
+    {
+        var comp = GetComponent(module, "PointlessMachinesScript");
+        yield return WaitForSolve;
+
+        var flashes = GetField<Array>(comp, "_souvenirFlashes")
+            .Get(v =>
+                v.Length != 6 ? "Bad array length" :
+                v.Cast<int>().Select(i => i is >= 0 and < 5 ? null : $"Unknown color {v}")
+                    .Aggregate((a, b) => a is null ? b : b is null ? a : $"{a}, {b}"))
+            .Cast<object>()
+            .Select(v => v.ToString())
+            .ToArray();
+
+        // All 5 colors always appear (with one duplicate), so no need to add preferredWrongAnswers
+        addQuestions(module, flashes.Select((f, i) =>
+            makeQuestion(Question.PointlessMachinesFlashes, module, formatArgs: new[] { ordinal(i + 1) },
+                correctAnswers: new[] { f })));
+    }
+
     private IEnumerator<YieldInstruction> ProcessPolyhedralMaze(ModuleData module)
     {
         var comp = GetComponent(module, "PolyhedralMazeModule");

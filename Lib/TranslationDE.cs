@@ -7071,6 +7071,14 @@ namespace Souvenir
                 QuestionText = "What was the {1} correct answer you pressed in {0}?",
             },
 
+            // Pointless Machines
+            // What color flashed {1} in {0}?
+            // What color flashed first in Pointless Machines?
+            [Question.PointlessMachinesFlashes] = new()
+            {
+                QuestionText = "What color flashed {1} in {0}?",
+            },
+
             // Polyhedral Maze
             // What was the starting position in {0}?
             // What was the starting position in Polyhedral Maze?

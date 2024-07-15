@@ -2087,6 +2087,10 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         PoetryAnswers,
 
+        [SouvenirQuestion("What color flashed {1} in {0}?", "Pointless Machines", TwoColumns4Answers, "White", "Purple", "Red", "Blue", "Yellow",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        PointlessMachinesFlashes,
+
         [SouvenirQuestion("What was the starting position in {0}?", "Polyhedral Maze", ThreeColumns6Answers)]
         [AnswerGenerator.Integers(0, 61)]
         PolyhedralMazeStartPosition,
