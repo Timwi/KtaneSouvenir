@@ -295,10 +295,12 @@ public partial class SouvenirModule
         var expected = GetIntField(comp, "Expected").Get().ToString("00000000");
         var coeff = GetIntField(comp, "Add").Get().ToString("00000000");
 
+        var allShown = new string[] { num1, num2, num3 };
+
         addQuestions(module,
-            makeQuestion(Question.EntryNumberFourNumber1, _EntryNumberFour, correctAnswers: new[] { num1 }),
-            makeQuestion(Question.EntryNumberFourNumber2, _EntryNumberFour, correctAnswers: new[] { num2 }),
-            makeQuestion(Question.EntryNumberFourNumber3, _EntryNumberFour, correctAnswers: new[] { num3 }),
+            makeQuestion(Question.EntryNumberFourNumbers, _EntryNumberFour, correctAnswers: new[] { num1 }, formatArgs: new[] { ordinal(1) }, preferredWrongAnswers: allShown),
+            makeQuestion(Question.EntryNumberFourNumbers, _EntryNumberFour, correctAnswers: new[] { num2 }, formatArgs: new[] { ordinal(2) }, preferredWrongAnswers: allShown),
+            makeQuestion(Question.EntryNumberFourNumbers, _EntryNumberFour, correctAnswers: new[] { num3 }, formatArgs: new[] { ordinal(3) }, preferredWrongAnswers: allShown),
             makeQuestion(Question.EntryNumberFourExpected, _EntryNumberFour, correctAnswers: new[] { expected }),
             makeQuestion(Question.EntryNumberFourCoeff, _EntryNumberFour, correctAnswers: new[] { coeff }));
     }
@@ -317,10 +319,12 @@ public partial class SouvenirModule
         var expected = GetIntField(comp, "Expected").Get().ToString("00000000");
         var coeff = (100000000 - GetIntField(comp, "Subtract").Get()).ToString("00000000");
 
+        var allShown = new string[] { num2, num3, num4 };
+
         addQuestions(module,
-            makeQuestion(Question.EntryNumberOneNumbers, _EntryNumberOne, formatArgs: new[] { "second" }, correctAnswers: new[] { num2 }),
-            makeQuestion(Question.EntryNumberOneNumbers, _EntryNumberOne, formatArgs: new[] { "third" }, correctAnswers: new[] { num3 }),
-            makeQuestion(Question.EntryNumberOneNumbers, _EntryNumberOne, formatArgs: new[] { "fourth" }, correctAnswers: new[] { num4 }),
+            makeQuestion(Question.EntryNumberOneNumbers, _EntryNumberOne, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { num2 }, preferredWrongAnswers: allShown),
+            makeQuestion(Question.EntryNumberOneNumbers, _EntryNumberOne, formatArgs: new[] { ordinal(3) }, correctAnswers: new[] { num3 }, preferredWrongAnswers: allShown),
+            makeQuestion(Question.EntryNumberOneNumbers, _EntryNumberOne, formatArgs: new[] { ordinal(4) }, correctAnswers: new[] { num4 }, preferredWrongAnswers: allShown),
             makeQuestion(Question.EntryNumberOneExpected, _EntryNumberOne, correctAnswers: new[] { expected }),
             makeQuestion(Question.EntryNumberOneCoeff, _EntryNumberOne, correctAnswers: new[] { coeff }));
     }

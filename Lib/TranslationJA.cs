@@ -2547,26 +2547,11 @@ namespace Souvenir
                 },
             },
 
-            // Entry Number Four
-            // What was the first number shown in {0}?
+            // What was the {1} number shown in {0}?
             // What was the first number shown in Entry Number Four?
-            [Question.EntryNumberFourNumber1] = new TranslationInfo
+            [Question.EntryNumberFourNumbers] = new TranslationInfo
             {
-                QuestionText = "{0}の1番目の数字は？",
-                ModuleName = "エントリーナンバー4",
-            },
-            // What was the second number shown in {0}?
-            // What was the second number shown in Entry Number Four?
-            [Question.EntryNumberFourNumber2] = new TranslationInfo
-            {
-                QuestionText = "{0}の2番目の数字は？",
-                ModuleName = "エントリーナンバー4",
-            },
-            // What was the third number shown in {0}?
-            // What was the third number shown in Entry Number Four?
-            [Question.EntryNumberFourNumber3] = new TranslationInfo
-            {
-                QuestionText = "{0}の3番目の数字は？",
+                QuestionText = "{0}の{1}番目の数字は？",
                 ModuleName = "エントリーナンバー4",
             },
             // What was the expected fourth entry in {0}?

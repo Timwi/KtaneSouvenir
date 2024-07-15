@@ -813,15 +813,10 @@
             ExampleExtraFormatArguments = new[] { "message", "response" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         EnigmaCycleWords,
 
-        [SouvenirQuestion("What was the first number shown in {0}?", "Entry Number Four", TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" })]
+        [SouvenirQuestion("What was the {1} number shown in {0}?", "Entry Number Four", TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" },
+            ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(10000000, 99999999, 1, "00000000")]
-        EntryNumberFourNumber1,
-        [SouvenirQuestion("What was the second number shown in {0}?", "Entry Number Four", TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" })]
-        [AnswerGenerator.Integers(0, 99999999, 1, "00000000")]
-        EntryNumberFourNumber2,
-        [SouvenirQuestion("What was the third number shown in {0}?", "Entry Number Four", TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" })]
-        [AnswerGenerator.Integers(0, 99999999, 1, "00000000")]
-        EntryNumberFourNumber3,
+        EntryNumberFourNumbers,
         [SouvenirQuestion("What was the expected fourth entry in {0}?", "Entry Number Four", TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" })]
         [AnswerGenerator.Integers(0, 99999999, 1, "00000000")]
         EntryNumberFourExpected,

@@ -2437,37 +2437,6 @@ namespace Souvenir
                 },
             },
 
-            // Entry Number Four
-            // What was the first number shown in {0}?
-            // What was the first number shown in Entry Number Four?
-            [Question.EntryNumberFourNumber1] = new TranslationInfo
-            {
-                QuestionText = "What was the first number shown in {0}?",
-            },
-            // What was the second number shown in {0}?
-            // What was the second number shown in Entry Number Four?
-            [Question.EntryNumberFourNumber2] = new TranslationInfo
-            {
-                QuestionText = "What was the second number shown in {0}?",
-            },
-            // What was the third number shown in {0}?
-            // What was the third number shown in Entry Number Four?
-            [Question.EntryNumberFourNumber3] = new TranslationInfo
-            {
-                QuestionText = "What was the third number shown in {0}?",
-            },
-            // What was the expected fourth entry in {0}?
-            // What was the expected fourth entry in Entry Number Four?
-            [Question.EntryNumberFourExpected] = new TranslationInfo
-            {
-                QuestionText = "What was the expected fourth entry in {0}?",
-            },
-            // What was the constant coefficient in {0}?
-            // What was the constant coefficient in Entry Number Four?
-            [Question.EntryNumberFourCoeff] = new TranslationInfo
-            {
-                QuestionText = "What was the constant coefficient in {0}?",
-            },
 
             // Entry Number One
             // What was the {1} number shown in {0}?
