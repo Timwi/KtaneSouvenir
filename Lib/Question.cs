@@ -732,6 +732,10 @@
         [SouvenirQuestion("Which button was the submit button in {0}?", "Double-Oh", ThreeColumns6Answers, "↕", "⇕", "↔", "⇔", "◆")]
         DoubleOhSubmitButton,
 
+        [SouvenirQuestion("What color was the {1} screen in the {2} stage of {0}?", "Double Screen", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue",
+            ExampleExtraFormatArguments = new[] { "top", QandA.Ordinal, "bottom", QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 2)]
+        DoubleScreenColors,
+
         [SouvenirQuestion("Which of these symptoms was listed on {0}?", "Dr. Doctor", TwoColumns4Answers, "Bloating", "Chills", "Cold Hands", "Constipation", "Cough", "Diarrhea", "Disappearance of the Ears", "Dizziness", "Excessive Crying", "Fatigue", "Fever", "Foot swelling", "Gas", "Hallucination", "Headache", "Loss of Smell", "Muscle Cramp", "Nausea", "Numbness", "Shortness of Breath", "Sleepiness", "Thirstiness", "Throat irritation")]
         DrDoctorSymptoms,
         [SouvenirQuestion("Which of these diseases was listed on {0}, but not the one treated?", "Dr. Doctor", TwoColumns4Answers, "Alztimer’s", "Braintenance", "Color allergy", "Detonession", "Emojilepsy", "Foot and Morse", "Gout of Life", "HRV", "Indicitis", "Jaundry", "Keypad stones", "Legomania", "Microcontusion", "Narcolization", "OCd", "Piekinson’s", "Quackgrounds", "Royal Flu", "Seizure Siphor", "Tetrinus", "Urinary LEDs", "Verticode", "Widgeting", "XMAs", "Yes-no infection", "Zooties", "Chronic Talk", "Jukepox", "Neurolysis", "Perspective Loss", "Orientitis", "Huntington’s disease")]
