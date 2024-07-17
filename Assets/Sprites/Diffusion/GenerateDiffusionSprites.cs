@@ -1,10 +1,11 @@
+// This file should not be included in the final build.
+#if UNITY_EDITOR
+
 using UnityEngine;
 using UnityEditor;
 using System.IO;
 using System.Linq;
 
-// This class will not be included in the final build.
-#if UNITY_EDITOR
 public class GenerateDiffusionSprites : MonoBehaviour
 {
     [MenuItem("Souvenir/Generate Diffusion Sprites")]
