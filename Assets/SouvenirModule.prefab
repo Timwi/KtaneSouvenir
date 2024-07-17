@@ -484,6 +484,19 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 24c2e6f2d97a2f342b0c4d0b278797c7, type: 3}
   - {fileID: 21300000, guid: e7169af83dd0cbc4cb2b42e37147b566, type: 3}
   - {fileID: 21300000, guid: 00ee5aceeb2aa7f4ea772ea91c16cf3f, type: 3}
+  DiffusionSprites:
+  - {fileID: 21300000, guid: 714b379a4d5d7334b9326735c7143464, type: 3}
+  - {fileID: 21300000, guid: b2878632c04603640a86e647146c86a1, type: 3}
+  - {fileID: 21300000, guid: e027fa210675e44448b7274819c8e2e3, type: 3}
+  - {fileID: 21300000, guid: 6ea75c993e77f304e850bc07066e17c9, type: 3}
+  - {fileID: 21300000, guid: 5a2edefb56fcd61488333c3feb6f8dd9, type: 3}
+  - {fileID: 21300000, guid: 82cdbecbbcdf3a147b3739064daf4c05, type: 3}
+  - {fileID: 21300000, guid: ddcd796138726f941b20b0562cb7deb5, type: 3}
+  - {fileID: 21300000, guid: dbe3910c77edaa547abb4f331d54538a, type: 3}
+  - {fileID: 21300000, guid: 1b849fadbaae71d4394618ba2b5b6878, type: 3}
+  - {fileID: 21300000, guid: ef867cd07989a7a4d89cd657486e2672, type: 3}
+  - {fileID: 21300000, guid: 7f648674aa44e884a94f51df9eaa452e, type: 3}
+  - {fileID: 21300000, guid: b1fd8c54ad069014b8573fedc4ffa716, type: 3}
   EncryptedEquationsSprites:
   - {fileID: 21300000, guid: ec3a26799d5ecd940b601d552b404d07, type: 3}
   - {fileID: 21300000, guid: 3ee5d260dc281174cb8b26e41697006b, type: 3}

@@ -137,6 +137,7 @@ public partial class SouvenirModule
     const string _DecolourFlash = "DecolourFlashModule";
     const string _DenialDisplays = "DenialDisplaysModule";
     const string _DevilishEggs = "devilishEggs";
+    const string _Diffusion = "diffusion";
     const string _Digisibility = "digisibility";
     const string _DigitString = "digitString";
     const string _DimensionDisruption = "dimensionDisruption";
@@ -701,6 +702,7 @@ public partial class SouvenirModule
             [_DecolourFlash] = (ProcessDecolourFlash, "Decolour Flash", "Timwi"),
             [_DenialDisplays] = (ProcessDenialDisplays, "Denial Displays", "Quinn Wuest"),
             [_DevilishEggs] = (ProcessDevilishEggs, "Devilish Eggs", "Timwi"),
+            [_Diffusion] = (ProcessDiffusion, "Diffusion", "Anonymous"),
             [_Digisibility] = (ProcessDigisibility, "Digisibility", "tandyCake"),
             [_DigitString] = (ProcessDigitString, "Digit String", "GoodHood"),
             [_DimensionDisruption] = (ProcessDimensionDisruption, "Dimension Disruption", "Hawker"),
