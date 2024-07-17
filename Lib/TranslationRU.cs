@@ -2109,6 +2109,14 @@ namespace Souvenir
                 QuestionText = "What was the {1} letter in the string of letters on «{0}»?",
             },
 
+            // Diffusion
+            // What was the displayed concentration in this compartment in {0}?
+            // What was the displayed concentration in this compartment in Diffusion?
+            [Question.DiffusionCell] = new TranslationInfo
+            {
+                QuestionText = "What was the displayed concentration in this compartment in {0}?",
+            },
+
             // Digisibility
             // What was the number on the {1} button in {0}?
             // What was the number on the first button in Digisibility?
@@ -2281,6 +2289,14 @@ namespace Souvenir
             {
                 QuestionText = "Какая кнопка была кнопкой отправки в модуле «{0}»?",
                 ModuleName = "Ноль-ноль",
+            },
+
+            // Double Screen
+            // What color was the {1} screen in the {2} stage of {0}?
+            // What color was the top screen in the first stage of Double Screen?
+            [Question.DoubleScreenColors] = new TranslationInfo
+            {
+                QuestionText = "What color was the {1} screen in the {2} stage of {0}?",
             },
 
             // Dr. Doctor
@@ -2483,6 +2499,26 @@ namespace Souvenir
                     ["message"] = "message",
                     ["response"] = "response",
                 },
+            },
+
+            // Entry Number Four
+            // What was the {1} number shown in {0}?
+            // What was the first number shown in Entry Number Four?
+            [Question.EntryNumberFourNumbers] = new TranslationInfo
+            {
+                QuestionText = "What was the {1} number shown in {0}?",
+            },
+            // What was the expected fourth entry in {0}?
+            // What was the expected fourth entry in Entry Number Four?
+            [Question.EntryNumberFourExpected] = new TranslationInfo
+            {
+                QuestionText = "What was the expected fourth entry in {0}?",
+            },
+            // What was the constant coefficient in {0}?
+            // What was the constant coefficient in Entry Number Four?
+            [Question.EntryNumberFourCoeff] = new TranslationInfo
+            {
+                QuestionText = "What was the constant coefficient in {0}?",
             },
 
             // Entry Number One
@@ -7902,6 +7938,14 @@ namespace Souvenir
                 QuestionText = "What was the identification number in «{0}»?",
             },
 
+            // Stable Time Signatures
+            // What was the {1} time signature in {0}?
+            // What was the first time signature in Stable Time Signatures?
+            [Question.StableTimeSignaturesSignatures] = new TranslationInfo
+            {
+                QuestionText = "What was the {1} time signature in {0}?",
+            },
+
             // Stacked Sequences
             // Which of these is the length of a sequence in {0}?
             // Which of these is the length of a sequence in Stacked Sequences?
@@ -8316,6 +8360,14 @@ namespace Souvenir
                     ["bottom-middle"] = "нижней центральной",
                     ["bottom-right"] = "нижней правой",
                 },
+            },
+
+            // Time Signatures
+            // What was the {1} time signature in {0}?
+            // What was the first time signature in Time Signatures?
+            [Question.TimeSignaturesSignatures] = new TranslationInfo
+            {
+                QuestionText = "What was the {1} time signature in {0}?",
             },
 
             // Timezone

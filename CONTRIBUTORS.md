@@ -117,6 +117,13 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Equations X       │  Orange Arrows             │  Simon Simons  │  Unown Cipher       │
     Faulty RGB Maze   │  Purple Arrows             │  Simon Stores  │  Vectors            │
 
+## Implemented by Anonymous (16)
+
+    ❖             │  Boomtar the Great  │  Double Listening  │  Simon Smiles
+    Bean Sprouts  │  Connection Check   │  Double Screen     │  Simon Subdivides
+    Beans         │  Diffusion          │  Fuse Box, The     │  Stable Time Signatures
+    Big Bean      │  Double Arrows      │  Labyrinth, The    │  Time Signatures
+
 ## Implemented by Andrio Celos (14)
 
     Button, The  │  Not Keypad      │  Not Simaze          │  Perspective Pegs  │  Wire Ordering
@@ -134,12 +141,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     1D Chess  │  hexOS                │  Palindromes       │  Quaver                  │  Sorting
     Coinage   │  Linq                 │  Phosphorescence   │  Reformed Role Reversal  │
     Etterna   │  Octadecayotton, The  │  Placeholder Talk  │  Role Reversal           │
-
-## Implemented by Anonymous (12)
-
-    ❖             │  Big Bean           │  Double Arrows     │  Labyrinth, The
-    Bean Sprouts  │  Boomtar the Great  │  Double Listening  │  Simon Smiles
-    Beans         │  Connection Check   │  Fuse Box, The     │  Simon Subdivides
 
 ## Implemented by VFlyer (12)
 

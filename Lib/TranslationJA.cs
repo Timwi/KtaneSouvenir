@@ -2158,6 +2158,14 @@ namespace Souvenir
                 ModuleName = "悪魔の卵",
             },
 
+            // Diffusion
+            // What was the displayed concentration in this compartment in {0}?
+            // What was the displayed concentration in this compartment in Diffusion?
+            [Question.DiffusionCell] = new TranslationInfo
+            {
+                QuestionText = "What was the displayed concentration in this compartment in {0}?",
+            },
+
             // Digisibility
             // What was the number on the {1} button in {0}?
             // What was the number on the first button in Digisibility?
@@ -2331,6 +2339,14 @@ namespace Souvenir
             {
                 QuestionText = "{0}の送信ボタンは？",
                 ModuleName = "ダブル・オー",
+            },
+
+            // Double Screen
+            // What color was the {1} screen in the {2} stage of {0}?
+            // What color was the top screen in the first stage of Double Screen?
+            [Question.DoubleScreenColors] = new TranslationInfo
+            {
+                QuestionText = "What color was the {1} screen in the {2} stage of {0}?",
             },
 
             // Dr. Doctor
@@ -2547,6 +2563,7 @@ namespace Souvenir
                 },
             },
 
+            // Entry Number Four
             // What was the {1} number shown in {0}?
             // What was the first number shown in Entry Number Four?
             [Question.EntryNumberFourNumbers] = new TranslationInfo
@@ -8129,6 +8146,14 @@ namespace Souvenir
                 QuestionText = "{0}の判別番号は？",
             },
 
+            // Stable Time Signatures
+            // What was the {1} time signature in {0}?
+            // What was the first time signature in Stable Time Signatures?
+            [Question.StableTimeSignaturesSignatures] = new TranslationInfo
+            {
+                QuestionText = "What was the {1} time signature in {0}?",
+            },
+
             // Stacked Sequences
             // Which of these is the length of a sequence in {0}?
             // Which of these is the length of a sequence in Stacked Sequences?
@@ -8555,6 +8580,14 @@ namespace Souvenir
                     ["bottom-middle"] = "下",
                     ["bottom-right"] = "右下",
                 },
+            },
+
+            // Time Signatures
+            // What was the {1} time signature in {0}?
+            // What was the first time signature in Time Signatures?
+            [Question.TimeSignaturesSignatures] = new TranslationInfo
+            {
+                QuestionText = "What was the {1} time signature in {0}?",
             },
 
             // Timezone

@@ -255,7 +255,7 @@ public partial class SouvenirModule
             }
         }
 
-    solved:
+        solved:
         _modulesSolved.IncSafe(_SeaShells);
 
         var qs = new List<QandA>();
