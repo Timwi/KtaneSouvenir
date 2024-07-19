@@ -220,6 +220,9 @@
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         BartendingIngredients,
 
+        [SouvenirQuestion("What number was displayed on {0}?", "Base-1", TwoColumns4Answers, "1", "11", "111", "1111", "11111", "111111", "1111111", "11111111", "111111111")]
+        Base1Number,
+
         [SouvenirQuestion("What was this bean in {0}?", "Beans", OneColumn4Answers, "Wobbly Orange", "Wobbly Yellow", "Wobbly Green", "Not Wobbly Orange", "Not Wobbly Yellow", "Not Wobbly Green",
             UsesQuestionSprite = true, TranslateAnswers = true)]
         BeansColors,

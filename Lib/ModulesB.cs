@@ -222,6 +222,28 @@ public partial class SouvenirModule
         addQuestions(module, ingIxs.Select((ingIx, pos) => makeQuestion(Question.BartendingIngredients, _Bartending, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { ingredientNames[ingIx] })));
     }
 
+    private IEnumerable<object> ProcessBase1(KMBombModule module)
+    {
+        var comp = GetComponent(module, "base1Script");
+        var fldSolved = GetField<bool>(comp, "_moduleSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+
+        var text = GetField<TextMesh>(comp, "ScreenText", isPublic: true).Get();
+        var answer = GetField<int>(comp, "_answer").Get(x => x is > 9 or < 1 ? $"Unexpected number {x}" : null);
+        var cur = new string('1', answer);
+        while (cur.Length > 0)
+        {
+            cur = cur.Substring(1);
+            text.text = cur;
+            yield return new WaitForSeconds(0.3f);
+        }
+        _modulesSolved.IncSafe(_Base1);
+
+        addQuestion(module, Question.Base1Number, correctAnswers: new[] { new string('1', answer) });
+    }
+
     private IEnumerable<object> ProcessBeans(KMBombModule module)
     {
         var comp = GetComponent(module, "beansScript");
