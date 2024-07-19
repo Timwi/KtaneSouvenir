@@ -466,6 +466,18 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessNotPassword(KMBombModule module)
+    {
+        var comp = GetComponent(module, "NotPassword");
+        var fldSolved = GetProperty<bool>(comp, "Solved", isPublic: true);
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_NotPassword);
+        
+        var letter = GetField<char>(comp, "MissingLetter", isPublic: true).Get(c => c is < 'A' or > 'Z' ? $"Bad letter {c}" : null);
+        addQuestion(module, Question.NotPasswordLetter, correctAnswers: new[] { letter.ToString() });
+    }
+
     private IEnumerable<object> ProcessNotPerspectivePegs(KMBombModule module)
     {
         var comp = GetComponent(module, "NotPerspectivePegsScript");

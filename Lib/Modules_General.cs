@@ -343,6 +343,7 @@ public partial class SouvenirModule
     const string _NotMorsematics = "notMorsematics";
     const string _NotMurder = "notMurder";
     const string _NotNumberPad = "notNumberPad";
+    const string _NotPassword = "NotPassword";
     const string _NotPerspectivePegs = "NotPerspectivePegsModule";
     const string _NotPianoKeys = "notPianoKeys";
     const string _NotSimaze = "NotSimaze";
@@ -909,6 +910,7 @@ public partial class SouvenirModule
             [_NotMorsematics] = (ProcessNotMorsematics, "Not Morsematics", "Quinn Wuest"),
             [_NotMurder] = (ProcessNotMurder, "Not Murder", "Quinn Wuest"),
             [_NotNumberPad] = (ProcessNotNumberPad, "Not Number Pad", "Quinn Wuest"),
+            [_NotPassword] = (ProcessNotPassword, "Not Password", "Anonymous"),
             [_NotPerspectivePegs] = (ProcessNotPerspectivePegs, "Not Perspective Pegs", "Quinn Wuest"),
             [_NotPianoKeys] = (ProcessNotPianoKeys, "Not Piano Keys", "tandyCake"),
             [_NotSimaze] = (ProcessNotSimaze, "Not Simaze", "Andrio Celos"),

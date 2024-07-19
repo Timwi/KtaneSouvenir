@@ -1771,6 +1771,10 @@
         [AnswerGenerator.Integers(0, 9)]
         NotNumberPadFlashes,
 
+        [SouvenirQuestion("Which letter was missing from {0}?", "Not Password", ThreeColumns6Answers)]
+        [AnswerGenerator.Strings('A', 'Z')]
+        NotPasswordLetter,
+
         [SouvenirQuestion("What was the position of the {1} flashing peg on {0}?", "Not Perspective Pegs", ThreeColumns6Answers, ExampleAnswers = new[] { "top", "top-right", "bottom-right", "bottom-left", "top-left" },
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         NotPerspectivePegsPosition,
