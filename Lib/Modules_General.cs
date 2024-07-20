@@ -376,6 +376,7 @@ public partial class SouvenirModule
     const string _PassportControl = "passportControl";
     const string _PasswordDestroyer = "pwDestroyer";
     const string _PatternCube = "PatternCubeModule";
+    const string _Pentabutton = "GSPentabutton";
     const string _PeriodicWords = "periodicWordsRB";
     const string _PerspectivePegs = "spwizPerspectivePegs";
     const string _Phosphorescence = "Phosphorescence";
@@ -943,6 +944,7 @@ public partial class SouvenirModule
             [_PassportControl] = (ProcessPassportControl, "Passport Control", "luisdiogo98"),
             [_PasswordDestroyer] = (ProcessPasswordDestroyer, "Password Destroyer", "Eltrick"),
             [_PatternCube] = (ProcessPatternCube, "Pattern Cube", "Timwi"),
+            [_Pentabutton] = (ProcessPentabutton, "The Pentabutton", "Anonymous"),
             [_PeriodicWords] = (ProcessPeriodicWords, "Periodic Words", "Kuro"),
             [_PerspectivePegs] = (ProcessPerspectivePegs, "Perspective Pegs", "Andrio Celos"),
             [_Phosphorescence] = (ProcessPhosphorescence, "Phosphorescence", "Emik"),

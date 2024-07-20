@@ -473,7 +473,7 @@ public partial class SouvenirModule
         while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
         _modulesSolved.IncSafe(_NotPassword);
-        
+
         var connector = GetProperty<object>(comp, "Connector").Get();
         var spinners = GetField<IEnumerable>(connector, "spinners").Get().Cast<object>().ToArray();
         var options = GetListField<char>(spinners[0], "Options", isPublic: true);

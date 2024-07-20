@@ -224,6 +224,19 @@ public partial class SouvenirModule
         addQuestion(module, Question.PatternCubeHighlightedSymbol, correctAnswers: new[] { symbols[highlightPos] }, preferredWrongAnswers: symbols);
     }
 
+    private IEnumerable<object> ProcessPentabutton(KMBombModule module)
+    {
+        var comp = GetComponent(module, "PentabuttonScript");
+        var fldSolved = GetField<bool>(comp, "Solved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_Pentabutton);
+
+        var colors = new string[] { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White" };
+        var ans = GetField<int>(comp, "RndColour").Get(i => i is < 0 or > 6 ? $"Unknown color index {i}" : null);
+        addQuestion(module, Question.PentabuttonBaseColor, correctAnswers: new[] { colors[ans] });
+    }
+
     private IEnumerable<object> ProcessPeriodicWords(KMBombModule module)
     {
         var comp = GetComponent(module, "PeriodicWordsScript");

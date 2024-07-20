@@ -195,7 +195,7 @@ public partial class SouvenirModule
 
         var states = GetListField<int>(comp, "diffused").Get(expectedLength: 12, validator: v => v is < 0 or > 24 ? $"Bad number {v}" : null);
         var names = new string[] { "A0B0", "A1B0", "A2B0", "A3B0", "A4B0", "A0B1", "A1B1", "A2B1", "A3B1", "A4B1", "A0B2", "A1B2", "A2B2", "A3B2", "A4B2", "A0B3", "A1B3", "A2B3", "A3B3", "A4B3", "A0B4", "A1B4", "A2B4", "A3B4", "A4B4" };
-        
+
         addQuestions(module, states.Select((s, i) =>
                 makeQuestion(Question.DiffusionCell, _Diffusion, correctAnswers: new[] { names[s] }, questionSprite: DiffusionSprites[i])));
     }

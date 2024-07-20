@@ -1972,6 +1972,9 @@
         [SouvenirQuestion("Which symbol was highlighted in {0}?", "Pattern Cube", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "PatternCubeSprites")]
         PatternCubeHighlightedSymbol,
 
+        [SouvenirQuestion("What was the base colour in {0}?", "Pentabutton", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White", AddThe = true)]
+        PentabuttonBaseColor,
+
         [SouvenirQuestion("What word was on the display in the {1} stage of {0}?", "Periodic Words", OneColumn4Answers, ExampleAnswers = new[] { "ATTACKERS", "BUY", "SUPERPOSITION", "WHO" }, ExampleExtraFormatArguments = new[] { "first", "second", "third" }, ExampleExtraFormatArgumentGroupSize = 1)]
         PeriodicWordsDisplayedWords,
 
