@@ -1743,6 +1743,21 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerable<object> ProcessSubblyJubbly(KMBombModule module)
+    {
+        var comp = GetComponent(module, "JubblyScript");
+        var fldSolved = GetField<bool>(comp, "moduleSolved");
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_SubblyJubbly);
+
+        // Phrases can be customized in mod settings
+        var all = GetField<Dictionary<char, List<string>>>(comp, "subblies").Get(v => v.Count == 26 ? "Subblies dict too big" : null).Values.SelectMany(x => x).ToArray();
+
+        var used = GetArrayField<string>(comp, "subselect").Get(expectedLength: 9, validator: v => all.Contains(v) ? null : $"Unknown word {v}");
+        addQuestion(module, Question.SubblyJubblySubstitutions, allAnswers: all, correctAnswers: used);
+    }
+
     private IEnumerable<object> ProcessSubscribeToPewdiepie(KMBombModule module)
     {
         var comp = GetComponent(module, "subscribeToPewdiepieScript");

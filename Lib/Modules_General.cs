@@ -496,6 +496,7 @@ public partial class SouvenirModule
     const string _StateOfAggregation = "stateOfAggregation";
     const string _Stellar = "stellar";
     const string _StupidSlots = "stupidSlots";
+    const string _SubblyJubbly = "subblyJubbly";
     const string _SubscribeToPewdiepie = "subscribeToPewdiepie";
     const string _Subway = "subway";
     const string _SugarSkulls = "sugarSkulls";
@@ -1065,6 +1066,7 @@ public partial class SouvenirModule
             [_StateOfAggregation] = (ProcessStateOfAggregation, "State of Aggregation", "BigCrunch22"),
             [_Stellar] = (ProcessStellar, "Stellar", "Timwi"),
             [_StupidSlots] = (ProcessStupidSlots, "Stupid Slots", "tandyCake"),
+            [_SubblyJubbly] = (ProcessSubblyJubbly, "Subbly Jubbly", "Anonymous"),
             [_SubscribeToPewdiepie] = (ProcessSubscribeToPewdiepie, "Subscribe to Pewdiepie", "BigCrunch22"),
             [_Subway] = (ProcessSubway, "Subway", "Hawker"),
             [_SugarSkulls] = (ProcessSugarSkulls, "Sugar Skulls", "BigCrunch22"),

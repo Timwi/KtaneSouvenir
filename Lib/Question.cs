@@ -2625,6 +2625,9 @@
         [AnswerGenerator.Integers(-30, 30)]
         StupidSlotsValues,
 
+        [SouvenirQuestion("What was a substitution word in {0}?", "Subbly Jubbly", TwoColumns4Answers, ExampleAnswers = new[] { "AMOGUS", "BOINKY", "CRINGE", "DUMPY", "EUPHEMISM", "FORTNITE" })]
+        SubblyJubblySubstitutions,
+
         [SouvenirQuestion("How many subscribers does {1} have in {0}?", "Subscribe to Pewdiepie", TwoColumns4Answers, null,
             ExampleExtraFormatArguments = new[] { "PewDiePie", "T-Series" }, ExampleExtraFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         [AnswerGenerator.Integers(10000000, 99999999)]
