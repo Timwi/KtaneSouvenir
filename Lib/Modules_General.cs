@@ -549,6 +549,7 @@ public partial class SouvenirModule
     const string _Valves = "valves";
     const string _VaricoloredSquares = "VaricoloredSquaresModule";
     const string _VaricolourFlash = "varicolourFlash";
+    const string _Variety = "VarietyModule";
     const string _Vcrcs = "VCRCS";
     const string _Vectors = "vectorsModule";
     const string _Vexillology = "vexillology";
@@ -1117,6 +1118,7 @@ public partial class SouvenirModule
             [_Valves] = (ProcessValves, "Valves", "Hawker"),
             [_VaricoloredSquares] = (ProcessVaricoloredSquares, "Varicolored Squares", "luisdiogo98"),
             [_VaricolourFlash] = (ProcessVaricolourFlash, "Varicolour Flash", "Quinn Wuest"),
+            [_Variety] = (ProcessVariety, "Variety", "Anonymous"),
             [_Vcrcs] = (ProcessVcrcs, "Vcrcs", "Timwi"),
             [_Vectors] = (ProcessVectors, "Vectors", "kavinkul"),
             [_Vexillology] = (ProcessVexillology, "Vexillology", "luisdiogo98"),
