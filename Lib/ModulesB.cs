@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -233,12 +234,16 @@ public partial class SouvenirModule
         var text = GetField<TextMesh>(comp, "ScreenText", isPublic: true).Get();
         var answer = GetField<int>(comp, "_answer").Get(x => x is > 9 or < 1 ? $"Unexpected number {x}" : null);
         var cur = new string('1', answer);
-        while (cur.Length > 0)
+        IEnumerator Animate()
         {
-            cur = cur.Substring(1);
-            text.text = cur;
-            yield return new WaitForSeconds(0.3f);
+            while (cur.Length > 0)
+            {
+                cur = cur.Substring(1);
+                text.text = cur;
+                yield return new WaitForSeconds(0.2f);
+            }
         }
+        StartCoroutine(Animate());
         _modulesSolved.IncSafe(_Base1);
 
         addQuestion(module, Question.Base1Number, correctAnswers: new[] { new string('1', answer) });
