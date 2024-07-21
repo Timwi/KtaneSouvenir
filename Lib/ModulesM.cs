@@ -196,6 +196,22 @@ public partial class SouvenirModule
             makeQuestion(Question.MaritimeFlagsCallsign, _MaritimeFlags, correctAnswers: new[] { callsign.ToLowerInvariant() }));
     }
 
+    private IEnumerable<object> ProcessMaroonButton(KMBombModule module)
+    {
+        var comp = GetComponent(module, "MaroonButtonScript");
+        var fldSolved = GetField<bool>(comp, "_isSolved");
+
+        while (!fldSolved.Get())
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_MaroonButton);
+
+        var ans = GetField<int>(comp, "solveFlag").Get(v => v is < 0 or > 19 ? $"Bad flag index {v}" : null);
+        var solveParent = GetField<Transform>(comp, "SolveParent", isPublic: true).Get();
+        for (var i = 0; i < solveParent.childCount; i++)
+            solveParent.GetChild(i).gameObject.SetActive(false);
+        addQuestion(module, Question.MaroonButtonA, correctAnswers: new[] { MaroonButtonSprites[ans] });
+    }
+
     private IEnumerable<object> ProcessMaroonCipher(KMBombModule module)
     {
         return processColoredCiphers(module, "maroonCipher", Question.MaroonCipherScreen, _MaroonCipher);

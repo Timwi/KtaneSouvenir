@@ -708,6 +708,27 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d78c6506e60866940ad3c605a40b1dda, type: 3}
   - {fileID: 21300000, guid: 94f212e305de6af46bd2ca78e7a222d7, type: 3}
   - {fileID: 21300000, guid: af24bd193306d204ca8c8947e0fb5656, type: 3}
+  MaroonButtonSprites:
+  - {fileID: 21300000, guid: 3fa0292463d57fa44ba0042702e2f11d, type: 3}
+  - {fileID: 21300000, guid: 3ff1c13699c082c4ea0638c976263032, type: 3}
+  - {fileID: 21300000, guid: d457daa843c4eb2449a46a7212bac0fe, type: 3}
+  - {fileID: 21300000, guid: 46aaf609e3b0b0145b29798885c63f7b, type: 3}
+  - {fileID: 21300000, guid: 33617a47ef6c56049b25f6e3acd3bb54, type: 3}
+  - {fileID: 21300000, guid: 7a86c9fe9485f394698da6cc8f36981d, type: 3}
+  - {fileID: 21300000, guid: 59c558d4fe10c1e44a0777fa20b25827, type: 3}
+  - {fileID: 21300000, guid: 6883cc6ff3fc7a445932b8654e205b98, type: 3}
+  - {fileID: 21300000, guid: 8e883dee7e531e54ea6b57e273d814b3, type: 3}
+  - {fileID: 21300000, guid: b50f015717451984297efe163ae8b751, type: 3}
+  - {fileID: 21300000, guid: 7051f8bc8370e5148a6d42ec4057f07b, type: 3}
+  - {fileID: 21300000, guid: c4885bd8a48ee594dbbed67102f676f3, type: 3}
+  - {fileID: 21300000, guid: 1ff09af0c106d4c4b9f48a3cd18d6bb3, type: 3}
+  - {fileID: 21300000, guid: 8cada3eec81fc1f4ab53312ffb6e893b, type: 3}
+  - {fileID: 21300000, guid: a434ad704baa7e24daf1fc9429c826f8, type: 3}
+  - {fileID: 21300000, guid: 01b5530491795ee4cab5300769a6a31a, type: 3}
+  - {fileID: 21300000, guid: c8182eafe0d010941a6f402208ef63da, type: 3}
+  - {fileID: 21300000, guid: 26cdbff5afcff294aadd7bb863dd1797, type: 3}
+  - {fileID: 21300000, guid: 215f87131dfc7bc4e90a7ee9db1e35c2, type: 3}
+  - {fileID: 21300000, guid: 9bca19833a83585409edbf30eea8e4f1, type: 3}
   MathEmSprites:
   - {fileID: 21300000, guid: ea044e98e10706e4bb4afe116c67d0c5, type: 3}
   - {fileID: 21300000, guid: 193be7a202094d64595183e9fc535914, type: 3}

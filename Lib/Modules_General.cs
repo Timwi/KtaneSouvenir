@@ -283,6 +283,7 @@ public partial class SouvenirModule
     const string _MandMs = "MandMs";
     const string _MandNs = "MandNs";
     const string _MaritimeFlags = "MaritimeFlagsModule";
+    const string _MaroonButton = "MaroonButtonModule";
     const string _MaroonCipher = "maroonCipher";
     const string _Mashematics = "mashematics";
     const string _MasterTapes = "masterTape";
@@ -853,6 +854,7 @@ public partial class SouvenirModule
             [_MandMs] = (ProcessMandMs, "M&Ms", "TasThiluna"),
             [_MandNs] = (ProcessMandNs, "M&Ns", "TasThiluna"),
             [_MaritimeFlags] = (ProcessMaritimeFlags, "Maritime Flags", "Timwi"),
+            [_MaroonButton] = (ProcessMaroonButton, "Maroon Button, The", "Anonymous"),
             [_MaroonCipher] = (ProcessMaroonCipher, "Maroon Cipher", "Timwi"),
             [_Mashematics] = (ProcessMashematics, "Mashematics", "Marksam"),
             [_MasterTapes] = (ProcessMasterTapes, "Master Tapes", "Kuro"),
