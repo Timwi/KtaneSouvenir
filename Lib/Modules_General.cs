@@ -948,7 +948,7 @@ public partial class SouvenirModule
             [_PassportControl] = (ProcessPassportControl, "Passport Control", "luisdiogo98"),
             [_PasswordDestroyer] = (ProcessPasswordDestroyer, "Password Destroyer", "Eltrick"),
             [_PatternCube] = (ProcessPatternCube, "Pattern Cube", "Timwi"),
-            [_Pentabutton] = (ProcessPentabutton, "The Pentabutton", "Anonymous"),
+            [_Pentabutton] = (ProcessPentabutton, "Pentabutton, The", "Anonymous"),
             [_PeriodicWords] = (ProcessPeriodicWords, "Periodic Words", "Kuro"),
             [_PerspectivePegs] = (ProcessPerspectivePegs, "Perspective Pegs", "Andrio Celos"),
             [_Phosphorescence] = (ProcessPhosphorescence, "Phosphorescence", "Emik"),
