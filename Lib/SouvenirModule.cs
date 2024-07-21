@@ -1175,6 +1175,7 @@ public partial class SouvenirModule : MonoBehaviour
     #region Twitch Plays
     internal bool TwitchPlaysActive = false;
     private readonly List<KMBombModule> TwitchAbandonModule = new List<KMBombModule>();
+    private bool TwitchShouldCancelCommand;
 
 #pragma warning disable 414
     private readonly string TwitchHelpMessage = @"!{0} answer 3 [order is from top to bottom, then left to right] | !{0} cycle [play all audio clips]";
@@ -1239,8 +1240,23 @@ public partial class SouvenirModule : MonoBehaviour
 
         if (_currentQuestion.Answers is QandA.AudioAnswerSet audio && Regex.IsMatch(command.ToLowerInvariant(), @"\A\s*cycle\s*\z"))
         {
+            yield return null;
             for (int i = 0; i < audio.NumAnswers; i++)
-                yield return audio.PlaySound(i);
+            {
+                float startTime = Time.time;
+                float endTime = startTime + audio.PlaySound(i);
+                while (Time.time < endTime)
+                {
+                    if (TwitchShouldCancelCommand)
+                    {
+                        audio.StopSound();
+                        audio.Deselect();
+                        yield return "cancelled";
+                        yield break;
+                    }
+                    yield return null;
+                }
+            }
             audio.Deselect();
             yield break;
         }
@@ -1261,7 +1277,8 @@ public partial class SouvenirModule : MonoBehaviour
         }
 
         yield return null;
-        if (_currentQuestion.CorrectIndex == number - 1)
+        if (_currentQuestion.CorrectIndex == number - 1 &&
+            (_currentQuestion.Answers is not QandA.AudioAnswerSet || _currentQuestion.Answers is QandA.AudioAnswerSet { _selected: var sel } && sel == number - 1))
             yield return "awardpoints 1";
         yield return new[] { Answers[number - 1] };
     }

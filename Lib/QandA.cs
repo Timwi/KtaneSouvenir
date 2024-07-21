@@ -268,7 +268,7 @@ namespace Souvenir
             private readonly SouvenirModule _parent;
             private readonly string _foreignKey;
             private readonly AudioClip[] _clips;
-            private int _selected = -1;
+            internal int _selected = -1;
             private Coroutine _coroutine;
             KMAudio.KMAudioRef _audioRef;
 
@@ -318,7 +318,7 @@ namespace Souvenir
                 return true;
             }
 
-            private void StopSound()
+            internal void StopSound()
             {
                 if (_coroutine != null)
                     _parent.StopCoroutine(_coroutine);
