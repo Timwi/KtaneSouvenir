@@ -1,6 +1,5 @@
 // This file should not be included in the final build.
 #if UNITY_EDITOR
-
 using UnityEngine;
 using UnityEditor;
 using System.IO;
