@@ -2211,6 +2211,10 @@
         [SouvenirQuestion("What was the color in {0}?", "Rhythms", TwoColumns4Answers, "Blue", "Red", "Green", "Yellow", TranslateAnswers = true)]
         RhythmsColor,
 
+        [SouvenirQuestion("Which bit had a tap in {0} (the output after shifting is at bit 0)?", "RNG Crystal", ThreeColumns6Answers)]
+        [AnswerGenerator.Integers(0, 23)]
+        RNGCrystalTaps,
+
         [SouvenirQuestion("Where was the empty cell in {0}?", "Robo-Scanner", ThreeColumns6Answers, "A1", "A2", "A3", "A4", "A5", "B1", "B2", "B3", "B4", "B5", "C1", "C2", "C4", "C5", "D1", "D2", "D3", "D4", "D5", "E1", "E2", "E3", "E4", "E5")]
         RoboScannerEmptyCell,
 

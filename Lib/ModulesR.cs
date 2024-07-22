@@ -364,6 +364,33 @@ public partial class SouvenirModule
         addQuestion(module, Question.RhythmsColor, correctAnswers: new[] { new[] { "Blue", "Red", "Green", "Yellow" }[color] });
     }
 
+    private IEnumerable<object> ProcessRNGCrystal(KMBombModule module)
+    {
+        var comp = GetComponent(module, "RngCrystalScript");
+        // This is an enum, with `Solved = 6`
+        var fldSolved = GetField<object>(comp, "_status");
+        while ((int)fldSolved.Get() != 6)
+            yield return new WaitForSeconds(0.1f);
+        _modulesSolved.IncSafe(_RNGCrystal);
+
+        var style = GetField<object>(comp, "_style").Get(v => (int)v is < 1 or > 3 ? $"Unexpected solve style {v}" : null);
+        if ((int)style != 2)
+        {
+            legitimatelyNoQuestion(module, $"The module was solved via luck or the autosolver. ({style})");
+            yield break;
+        }
+
+        var taps = GetField<int>(comp, "_taps").Get();
+        var degree = GetStaticMethod<int>(comp.GetType(), "LfsrPolynomialDegree", 1).Invoke(taps);
+        if (degree is < 17 or > 23)
+            throw new AbandonModuleException($"Bad register size {degree}");
+
+        var allPossible = Enumerable.Range(0, degree).ToArray();
+        var answers = allPossible.Where(i => ((1 << i) & taps) != 0).ToArray();
+
+        addQuestion(module, Question.RNGCrystalTaps, allAnswers: allPossible.Select(i => i.ToString()).ToArray(), correctAnswers: answers.Select(i => i.ToString()).ToArray());
+    }
+
     private IEnumerable<object> ProcessRoboScanner(KMBombModule module)
     {
         var comp = GetComponent(module, "RoboScannerScript");

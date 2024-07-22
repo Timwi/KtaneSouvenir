@@ -423,6 +423,7 @@ public partial class SouvenirModule
     const string _RGBMaze = "rgbMaze";
     const string _RGBSequences = "RGBSequences";
     const string _Rhythms = "MusicRhythms";
+    const string _RNGCrystal = "rngCrystal";
     const string _RoboScanner = "roboScannerModule";
     const string _RobotProgramming = "robotProgramming";
     const string _Roger = "roger";
@@ -995,6 +996,7 @@ public partial class SouvenirModule
             [_RGBMaze] = (ProcessRGBMaze, "RGB Maze", "kavinkul"),
             [_RGBSequences] = (ProcessRGBSequences, "RGB Sequences", "Hawker"),
             [_Rhythms] = (ProcessRhythms, "Rhythms", "Timwi"),
+            [_RNGCrystal] = (ProcessRNGCrystal, "RNG Crystal", "Anonymous"),
             [_RoboScanner] = (ProcessRoboScanner, "Robo-Scanner", "Quinn Wuest"),
             [_RobotProgramming] = (ProcessRobotProgramming, "Robot Programming", "Timwi"),
             [_Roger] = (ProcessRoger, "Roger", "BigCrunch22"),
