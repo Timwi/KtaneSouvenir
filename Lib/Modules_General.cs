@@ -110,6 +110,7 @@ public partial class SouvenirModule
     const string _ColorsMaximization = "colors_maximization";
     const string _ColouredCubes = "ColouredCubes";
     const string _ColourFlash = "ColourFlash";
+    const string _ConnectedMonitors = "ConnectedMonitorsModule";
     const string _ConnectionCheck = "graphModule";
     const string _Coordinates = "CoordinatesModule";
     const string _CoralCipher = "coralCipher";
@@ -681,6 +682,7 @@ public partial class SouvenirModule
             [_ColorsMaximization] = (ProcessColorsMaximization, "Colors Maximization", "NickLatkovich"),
             [_ColouredCubes] = (ProcessColouredCubes, "Coloured Cubes", "Kuro"),
             [_ColourFlash] = (ProcessColourFlash, "Colour Flash", "LotsOfS"),
+            [_ConnectedMonitors] = (ProcessConnectedMonitors, "Connected Monitors", "Anonymous"),
             [_ConnectionCheck] = (ProcessConnectionCheck, "Connection Check", "Anonymous"),
             [_Coordinates] = (ProcessCoordinates, "Coordinates", "Timwi"),
             [_CoralCipher] = (ProcessCoralCipher, "Coral Cipher", "Timwi"),

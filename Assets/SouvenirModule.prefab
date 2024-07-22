@@ -484,6 +484,22 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 24c2e6f2d97a2f342b0c4d0b278797c7, type: 3}
   - {fileID: 21300000, guid: e7169af83dd0cbc4cb2b42e37147b566, type: 3}
   - {fileID: 21300000, guid: 00ee5aceeb2aa7f4ea772ea91c16cf3f, type: 3}
+  ConnectedMonitorsSprites:
+  - {fileID: 21300000, guid: ca7dac2dc9f57c3429dc7c1fb2c89441, type: 3}
+  - {fileID: 21300000, guid: a6a381ba48c787c43abc186a9bd952b4, type: 3}
+  - {fileID: 21300000, guid: b16736d09dac33349bd919d8ff8fbf60, type: 3}
+  - {fileID: 21300000, guid: 95739e3f76299754395aa5cbf6e28fd2, type: 3}
+  - {fileID: 21300000, guid: bfa39fbf3de5021489420ad1d02a486d, type: 3}
+  - {fileID: 21300000, guid: a8ed419743c50e54ebe594823b8fd5c1, type: 3}
+  - {fileID: 21300000, guid: 7424f541043c12b458baa21b1054dfca, type: 3}
+  - {fileID: 21300000, guid: 395a877ed65218d4db3008ac08d42cf0, type: 3}
+  - {fileID: 21300000, guid: 13577812a2c52ca4b93eb6acdbb5a6c0, type: 3}
+  - {fileID: 21300000, guid: f9fae06820f131d4f8b690e1cb0c8f4f, type: 3}
+  - {fileID: 21300000, guid: a116f76ca6fefe84a851825b0e388527, type: 3}
+  - {fileID: 21300000, guid: 7add6269126a71740a8fae1af2389190, type: 3}
+  - {fileID: 21300000, guid: 364b47d741a14e74f9d90c624ebb7b93, type: 3}
+  - {fileID: 21300000, guid: 6f19baf87115afc41b33838758658897, type: 3}
+  - {fileID: 21300000, guid: f866d380693104b4eb994ae061a00b3c, type: 3}
   DiffusionSprites:
   - {fileID: 21300000, guid: 714b379a4d5d7334b9326735c7143464, type: 3}
   - {fileID: 21300000, guid: b2878632c04603640a86e647146c86a1, type: 3}

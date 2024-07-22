@@ -548,6 +548,13 @@
         [SouvenirQuestion("What was the color of the last word in the sequence in {0}?", "Colour Flash", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Magenta", "White", TranslateAnswers = true)]
         ColourFlashLastColor,
 
+        [SouvenirQuestion("What number was initially displayed on this screen in {0}?", "Connected Monitors", ThreeColumns6Answers, UsesQuestionSprite = true)]
+        [AnswerGenerator.Integers(0, 99)]
+        ConnectedMonitorsNumber,
+        [SouvenirQuestion("What colour was the {1}indicator on this screen in {0}?", "Connected Monitors", ThreeColumns6Answers, "Red", "Orange", "Green", "Blue", "Purple", "White",
+            UsesQuestionSprite = true, ExampleExtraFormatArguments = new[] { "", "first ", "second ", "third " }, ExampleExtraFormatArgumentGroupSize = 1)]
+        ConnectedMonitorsIndicator,
+
         [SouvenirQuestion("What pair of numbers was present in {0}?", "Connection Check", ThreeColumns6Answers, null)]
         [AnswerGenerator.Strings("1-8", " ", "1-8")]
         ConnectionCheckNumbers,
