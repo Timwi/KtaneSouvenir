@@ -257,6 +257,7 @@ public partial class SouvenirModule
     const string _Keywords = "xtrkeywords";
     const string _KnowYourWay = "KnowYourWay";
     const string _Kudosudoku = "KudosudokuModule";
+    const string _Kyudoku = "kyudoku";
     const string _Labyrinth = "labyrinth";
     const string _LadderLottery = "ladderLottery";
     const string _Ladders = "ladders";
@@ -830,6 +831,7 @@ public partial class SouvenirModule
             [_Keywords] = (ProcessKeywords, "Keywords", "Kuro"),
             [_KnowYourWay] = (ProcessKnowYourWay, "Know Your Way", "Kuro"),
             [_Kudosudoku] = (ProcessKudosudoku, "Kudosudoku", "Timwi"),
+            [_Kyudoku] = (ProcessKyudoku, "Kyudoku", "Anonymous"),
             [_Labyrinth] = (ProcessLabyrinth, "Labyrinth, The", "Anonymous"),
             [_LadderLottery] = (ProcessLadderLottery, "Ladder Lottery", "Hawker"),
             [_Ladders] = (ProcessLadders, "Ladders", "tandyCake"),
