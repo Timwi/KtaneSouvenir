@@ -7,7 +7,7 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
-    private IEnumerable<object> ProcessAbyss(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessAbyss(KMBombModule module)
     {
         var comp = GetComponent(module, "AbyssScript");
         var fldSolved = GetField<bool>(comp, "Solved");
@@ -18,7 +18,7 @@ public partial class SouvenirModule
         addQuestions(module, seedAbyss.Select((aChar, idx) => makeQuestion(Question.AbyssSeed, _Abyss, formatArgs: new[] { ordinal(idx + 1) }, correctAnswers: new[] { aChar.ToString() })));
     }
 
-    private IEnumerable<object> ProcessAccumulation(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessAccumulation(KMBombModule module)
     {
         var comp = GetComponent(module, "accumulationScript");
 
@@ -56,7 +56,7 @@ public partial class SouvenirModule
             makeQuestion(Question.AccumulationBackgroundColor, _Accumulation, formatArgs: new[] { "fifth" }, correctAnswers: new[] { bgNames[4] }, preferredWrongAnswers: bgNames));
     }
 
-    private IEnumerable<object> ProcessAdventureGame(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessAdventureGame(KMBombModule module)
     {
         var comp = GetComponent(module, "AdventureGameModule");
         var fldInvWeaponCount = GetIntField(comp, "InvWeaponCount");
@@ -117,12 +117,12 @@ public partial class SouvenirModule
         addQuestions(module, qs.Select(q => q()).Concat(new[] { makeQuestion(Question.AdventureGameEnemy, _AdventureGame, correctAnswers: new[] { enemyName }) }));
     }
 
-    private IEnumerable<object> ProcessAffineCycle(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessAffineCycle(KMBombModule module)
     {
         return processSpeakingEvilCycle1(module, "AffineCycleScript", Question.AffineCycleWord, _AffineCycle);
     }
 
-    private IEnumerable<object> ProcessALetter(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessALetter(KMBombModule module)
     {
         var comp = GetComponent(module, "Letter");
         var fldSolved = GetField<bool>(comp, "ModuleSolved");
@@ -134,7 +134,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.ALetterInitialLetter, correctAnswers: new[] { initialLetter.ToString() });
     }
 
-    private IEnumerable<object> ProcessAlfaBravo(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessAlfaBravo(KMBombModule module)
     {
         var comp = GetComponent(module, "AlfaBravoModule");
         var fldSolved = GetProperty<bool>(comp, "solved", true);
@@ -168,7 +168,7 @@ public partial class SouvenirModule
         addQuestions(module, questions);
     }
 
-    private IEnumerable<object> ProcessAlgebra(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessAlgebra(KMBombModule module)
     {
         var comp = GetComponent(module, "algebraScript");
         var fldStage = GetIntField(comp, "stage");
@@ -183,7 +183,7 @@ public partial class SouvenirModule
             correctAnswers: new[] { GetField<Texture>(comp, $"level{i + 1}Equation").Get().name.Replace(';', '/') })));
     }
 
-    private IEnumerable<object> ProcessAlgorithmia(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessAlgorithmia(KMBombModule module)
     {
         var comp = GetComponent(module, "AlgorithmiaScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -212,7 +212,7 @@ public partial class SouvenirModule
             makeQuestion(Question.AlgorithmiaSeed, _Algorithmia, correctAnswers: seedVals.Select(x => x.ToString()).ToArray()));
     }
 
-    private IEnumerable<object> ProcessAlphabeticalRuling(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessAlphabeticalRuling(KMBombModule module)
     {
         var comp = GetComponent(module, "AlphabeticalRuling");
         var fldSolved = GetField<bool>(comp, "solved");
@@ -255,7 +255,7 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessAlphabetNumbers(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessAlphabetNumbers(KMBombModule module)
     {
         var comp = GetComponent(module, "alphabeticalOrderScript");
 
@@ -286,7 +286,7 @@ public partial class SouvenirModule
         addQuestions(module, displayedNumberSets.Select((numArr, stage) => makeQuestion(Question.AlphabetNumbersDisplayedNumbers, _AlphabetNumbers, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: displayedNumberSets[stage], preferredWrongAnswers: allOptions.Take(stageOptionCounts[stage]).ToArray())));
     }
 
-    private IEnumerable<object> ProcessAlphabetTiles(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessAlphabetTiles(KMBombModule module)
     {
         var comp = GetComponent(module, "AlphabetTilesScript");
 
@@ -310,7 +310,7 @@ public partial class SouvenirModule
             makeQuestion(Question.AlphabetTilesMissingLetter, _AlphabetTiles, correctAnswers: new[] { shuffled[25] }));
     }
 
-    private IEnumerable<object> ProcessAlphaBits(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessAlphaBits(KMBombModule module)
     {
         var comp = GetComponent(module, "AlphaBitsScript");
 
@@ -336,7 +336,7 @@ public partial class SouvenirModule
             preferredWrongAnswers: displayedCharacters)));
     }
 
-    private IEnumerable<object> ProcessAngelHernandez(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessAngelHernandez(KMBombModule module)
     {
         var comp = GetComponent(module, "AngelHernandezScript");
         var fldActivated = GetField<bool>(comp, "_canPress");
@@ -371,7 +371,7 @@ public partial class SouvenirModule
         addQuestions(module, displayedLetters.Select((word, stage) => makeQuestion(Question.AngelHernandezMainLetter, _AngelHernandez, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { word }, preferredWrongAnswers: alph)));
     }
 
-    private IEnumerable<object> ProcessArena(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessArena(KMBombModule module)
     {
         var comp = GetComponent(module, "TheArena");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -391,7 +391,7 @@ public partial class SouvenirModule
             makeQuestion(Question.ArenaNumbers, _Arena, correctAnswers: grabNums));
     }
 
-    private IEnumerable<object> ProcessArithmelogic(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessArithmelogic(KMBombModule module)
     {
         var comp = GetComponent(module, "Arithmelogic");
         var fldSymbolNum = GetIntField(comp, "submitSymbol");
@@ -417,7 +417,7 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessASquare(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessASquare(KMBombModule module)
     {
         var comp = GetComponent(module, "ASquareScript");
         var fldSolved = GetField<bool>(comp, "_moduleSolved");
@@ -442,7 +442,7 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessASCIIMaze(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessASCIIMaze(KMBombModule module)
     {
         var comp = GetComponent(module, "ASCIIMazeScript");
         var solved = false;
@@ -456,7 +456,7 @@ public partial class SouvenirModule
         addQuestions(module, Enumerable.Range(0, 12).Select(ix => makeQuestion(Question.ASCIIMazeCharacters, _ASCIIMaze, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { characters[ix] }, preferredWrongAnswers: characters)));
     }
 
-    private IEnumerable<object> ProcessAzureButton(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessAzureButton(KMBombModule module)
     {
         var comp = GetComponent(module, "AzureButtonScript");
         var fldSolved = GetField<bool>(comp, "_solved");

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
-    private IEnumerable<object> ProcessJenga(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessJenga(KMBombModule module)
     {
         var comp = GetComponent(module, "JengaModule");
         var fldCorrect = GetIntField(comp, "correct", isPublic: true);
@@ -42,7 +42,7 @@ public partial class SouvenirModule
             preferredWrongAnswers: JengaSprites);
     }
 
-    private IEnumerable<object> ProcessJewelVault(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessJewelVault(KMBombModule module)
     {
         var comp = GetComponent(module, "jewelWheelsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -57,12 +57,12 @@ public partial class SouvenirModule
         addQuestions(module, assignedWheels.Select((aw, ix) => makeQuestion(Question.JewelVaultWheels, _JewelVault, formatArgs: new[] { "ABCD".Substring(ix, 1) }, correctAnswers: new[] { (Array.IndexOf(wheels, aw) + 1).ToString() })));
     }
 
-    private IEnumerable<object> ProcessJumbleCycle(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessJumbleCycle(KMBombModule module)
     {
         return processSpeakingEvilCycle2(module, "JumbleCycleScript", Question.JumbleCycleWord, _JumbleCycle);
     }
 
-    private IEnumerable<object> ProcessJuxtacoloredSquares(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessJuxtacoloredSquares(KMBombModule module)
     {
         var comp = GetComponent(module, "JuxtacoloredSquaresModule");
 

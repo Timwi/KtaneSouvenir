@@ -118,7 +118,7 @@ public partial class SouvenirModule : MonoBehaviour
 
     private static int _moduleIdCounter = 1;
     internal int _moduleId;
-    private Dictionary<string, (Func<KMBombModule, IEnumerable<object>> processor, string moduleName, string contributor)> _moduleProcessors;
+    private Dictionary<string, (Func<KMBombModule, IEnumerator<YieldInstruction>> processor, string moduleName, string contributor)> _moduleProcessors;
     private Dictionary<Question, SouvenirQuestionAttribute> _attributes;
 
     // Used in TestHarness only
@@ -728,7 +728,7 @@ public partial class SouvenirModule : MonoBehaviour
             Debug.Log($"‹Souvenir #{_moduleId}› Module {moduleType}: Start processing.");
 
             // I’d much rather just put a ‘foreach’ loop inside a ‘try’ block, but Unity’s C# version doesn’t allow ‘yield return’ inside of ‘try’ blocks yet
-            using (var e = iterator(module).GetEnumerator())
+            using (var e = iterator(module))
             {
                 while (true)
                 {

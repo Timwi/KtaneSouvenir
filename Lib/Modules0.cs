@@ -8,7 +8,7 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
-    private IEnumerable<object> Process1000Words(KMBombModule module)
+    private IEnumerator<YieldInstruction> Process1000Words(KMBombModule module)
     {
         var comp = GetComponent(module, "ThousandWordsScript");
         var fldSolved = GetField<bool>(comp, "ModuleSolved");
@@ -50,7 +50,7 @@ public partial class SouvenirModule
             makeQuestion(Question._1000WordsWords, _1000Words, formatArgs: new[] { ordinal(5) }, correctAnswers: new[] { wordsWritten[4] }, preferredWrongAnswers: phrases));
     }
 
-    private IEnumerable<object> Process100LevelsOfDefusal(KMBombModule module)
+    private IEnumerator<YieldInstruction> Process100LevelsOfDefusal(KMBombModule module)
     {
         var comp = GetComponent(module, "OneHundredLevelsOfDefusal");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -65,7 +65,7 @@ public partial class SouvenirModule
             makeQuestion(Question._100LevelsOfDefusalLetters, _100LevelsOfDefusal, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { ans.ToString() })));
     }
 
-    private IEnumerable<object> Process1DChess(KMBombModule module)
+    private IEnumerator<YieldInstruction> Process1DChess(KMBombModule module)
     {
         var comp = GetComponent(module, "OneDimensionalChessScript");
         var fldSolved = GetProperty<bool>(comp, "IsSolved", isPublic: true);
@@ -81,7 +81,7 @@ public partial class SouvenirModule
                 correctAnswers: new[] { move })));
     }
 
-    private IEnumerable<object> Process3DMaze(KMBombModule module)
+    private IEnumerator<YieldInstruction> Process3DMaze(KMBombModule module)
     {
         var comp = GetComponent(module, "ThreeDMazeModule");
         var fldIsComplete = GetField<bool>(comp, "isComplete");
@@ -113,7 +113,7 @@ public partial class SouvenirModule
             makeQuestion(Question._3DMazeBearing, _3DMaze, correctAnswers: new[] { new[] { "North", "East", "South", "West" }[bearing] }));
     }
 
-    private IEnumerable<object> Process3DTapCode(KMBombModule module)
+    private IEnumerator<YieldInstruction> Process3DTapCode(KMBombModule module)
     {
         var comp = GetComponent(module, "ThreeDTapCodeScript");
         var fldSolved = GetField<bool>(comp, "_moduleSolved");
@@ -128,7 +128,7 @@ public partial class SouvenirModule
         addQuestion(module, Question._3DTapCodeWord, correctAnswers: new[] { word }, preferredWrongAnswers: allWords);
     }
 
-    private IEnumerable<object> Process3DTunnels(KMBombModule module)
+    private IEnumerator<YieldInstruction> Process3DTunnels(KMBombModule module)
     {
         var comp = GetComponent(module, "ThreeDTunnels");
         var fldSolved = GetField<bool>(comp, "_solved");
@@ -145,7 +145,7 @@ public partial class SouvenirModule
         addQuestions(module, targetNodeNames.Select((tn, ix) => makeQuestion(Question._3DTunnelsTargetNode, _3DTunnels, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { tn }, preferredWrongAnswers: targetNodeNames)));
     }
 
-    private IEnumerable<object> Process3LEDs(KMBombModule module)
+    private IEnumerator<YieldInstruction> Process3LEDs(KMBombModule module)
     {
         var comp = GetComponent(module, "ThreeLEDsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -158,7 +158,7 @@ public partial class SouvenirModule
         addQuestion(module, Question._3LEDsInitialState, correctAnswers: new[] { initialStates.Select(s => s ? "on" : "off").JoinString("/") });
     }
 
-    private IEnumerable<object> Process3NPlus1(KMBombModule module)
+    private IEnumerator<YieldInstruction> Process3NPlus1(KMBombModule module)
     {
         var comp = GetComponent(module, "ThreeNPlusOneScript");
         var fldSolved = GetField<bool>(comp, "isSolved");
@@ -176,7 +176,7 @@ public partial class SouvenirModule
         addQuestion(module, Question._3NPlus1, correctAnswers: new[] { answer.ToString() });
     }
 
-    private IEnumerable<object> Process64(KMBombModule module)
+    private IEnumerator<YieldInstruction> Process64(KMBombModule module)
     {
         var comp = GetComponent(module, "SixtyFourScript");
 
@@ -196,7 +196,7 @@ public partial class SouvenirModule
         addQuestion(module, Question._64DisplayedNumber, correctAnswers: new[] { displayedNumber }, preferredWrongAnswers: answers.ToArray());
     }
 
-    private IEnumerable<object> Process7(KMBombModule module)
+    private IEnumerator<YieldInstruction> Process7(KMBombModule module)
     {
         var comp = GetComponent(module, "SevenHandler");
         var isSolved = false;
@@ -233,7 +233,7 @@ public partial class SouvenirModule
         addQuestions(module, allQuestions.ToArray());
     }
 
-    private IEnumerable<object> Process9Ball(KMBombModule module)
+    private IEnumerator<YieldInstruction> Process9Ball(KMBombModule module)
     {
         var comp = GetComponent(module, "NineBallScript");
         var potted = GetField<bool[]>(comp, "Potted");

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
-    private IEnumerable<object> ProcessEarthbound(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessEarthbound(KMBombModule module)
     {
         var comp = GetComponent(module, "EarthboundScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -32,7 +32,7 @@ public partial class SouvenirModule
         yield return null;
     }
 
-    private IEnumerable<object> ProcessEeBgnillepS(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessEeBgnillepS(KMBombModule module)
     {
         var comp = GetComponent(module, "tpircSeeBgnillepS");
         var fldSolved = GetField<bool>(comp, "devloSeludom");
@@ -47,7 +47,7 @@ public partial class SouvenirModule
         addQuestions(module, makeQuestion(Question.eeBgnillepSWord, _eeBgnillepS, formatArgs: null, correctAnswers: new[] { focus }, preferredWrongAnswers: spellTheWord));
     }
 
-    private IEnumerable<object> ProcessEight(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessEight(KMBombModule module)
     {
         var comp = GetComponent(module, "EightModule");
         var fldSolved = GetField<bool>(comp, "solved");
@@ -73,7 +73,7 @@ public partial class SouvenirModule
         addQuestions(module, questions);
     }
 
-    private IEnumerable<object> ProcessElderFuthark(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessElderFuthark(KMBombModule module)
     {
         var comp = GetComponent(module, "ElderFutharkScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -90,7 +90,7 @@ public partial class SouvenirModule
             makeQuestion(Question.ElderFutharkRunes, _ElderFuthark, correctAnswers: new[] { pickedRuneNames[2] }, formatArgs: new[] { "third" }, preferredWrongAnswers: pickedRuneNames));
     }
 
-    private IEnumerable<object> ProcessEnaCipher(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessEnaCipher(KMBombModule module)
     {
         var comp = GetComponent(module, "enaCipherScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -115,7 +115,7 @@ public partial class SouvenirModule
             makeQuestion(Question.EnaCipherEncryptedAnswer, _EnaCipher, correctAnswers: new[] { encryptedWord }));
     }
 
-    private IEnumerable<object> ProcessEncryptedDice(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessEncryptedDice(KMBombModule module)
     {
         var comp = GetComponent(module, "EncrypedDice");
 
@@ -147,7 +147,7 @@ public partial class SouvenirModule
         addQuestions(module, rolledValues.Select((vals, ix) => makeQuestion(Question.EncryptedDice, _EncryptedDice, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: vals.Select(val => (val).ToString()).ToArray())));
     }
 
-    private IEnumerable<object> ProcessEncryptedEquations(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessEncryptedEquations(KMBombModule module)
     {
         var comp = GetComponent(module, "EncryptedEquations");
         var fldSolved = GetField<bool>(comp, "isSolved");
@@ -167,7 +167,7 @@ public partial class SouvenirModule
             .Select(inf => makeQuestion(Question.EncryptedEquationsShapes, _EncryptedEquations, formatArgs: new[] { inf.Ordinal }, correctAnswers: new[] { inf.Shape }, preferredWrongAnswers: EncryptedEquationsSprites)));
     }
 
-    private IEnumerable<object> ProcessEncryptedHangman(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessEncryptedHangman(KMBombModule module)
     {
         var comp = GetComponent(module, "HangmanScript");
         var fldSolved = GetField<bool>(comp, "isSolved", isPublic: true);
@@ -204,7 +204,7 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessEncryptedMaze(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessEncryptedMaze(KMBombModule module)
     {
         var comp = GetComponent(module, "encryptedMazeScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -224,7 +224,7 @@ public partial class SouvenirModule
             makeQuestion(Question.EncryptedMazeSymbols, _EncryptedMaze, textMesh.font, textMesh.GetComponent<MeshRenderer>().sharedMaterial.mainTexture, formatArgs: new[] { "counter-clockwise" }, correctAnswers: new[] { markerCharacters[shapeCcw, markerCcw] }, preferredWrongAnswers: new[] { markerCharacters[shapeCw, markerCw] }));
     }
 
-    private IEnumerable<object> ProcessEncryptedMorse(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessEncryptedMorse(KMBombModule module)
     {
         var comp = GetComponent(module, "EncryptedMorseModule");
         var fldSolved = GetField<bool>(comp, "solved");
@@ -242,7 +242,7 @@ public partial class SouvenirModule
             makeQuestion(Question.EncryptedMorseCallResponse, _EncryptedMorse, formatArgs: new[] { "sent response" }, correctAnswers: new[] { formatResponses[index] }, preferredWrongAnswers: formatResponses));
     }
 
-    private IEnumerable<object> ProcessEncryptionBingo(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessEncryptionBingo(KMBombModule module)
     {
         var comp = GetComponent(module, "encryptionBingoScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -262,7 +262,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.EncryptionBingoEncoding, correctAnswers: new[] { encodingNames[encoding] }, preferredWrongAnswers: encodingNames);
     }
 
-    private IEnumerable<object> ProcessEnigmaCycle(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessEnigmaCycle(KMBombModule module)
     {
         var comp = GetComponent(module, "EnigmaCycleScript");
         var fldSolved = GetField<bool>(comp, "isSolving");
@@ -281,7 +281,7 @@ public partial class SouvenirModule
           makeQuestion(Question.EnigmaCycleWords, _EnigmaCycle, formatArgs: new[] { "response" }, correctAnswers: new[] { response }, preferredWrongAnswers: wordList));
     }
 
-    private IEnumerable<object> ProcessEntryNumberFour(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessEntryNumberFour(KMBombModule module)
     {
         var comp = GetComponent(module, "EntryNumberFourScript");
         var fldSolved = GetField<bool>(comp, "Solved");
@@ -305,7 +305,7 @@ public partial class SouvenirModule
             makeQuestion(Question.EntryNumberFourCoeff, _EntryNumberFour, correctAnswers: new[] { coeff }));
     }
 
-    private IEnumerable<object> ProcessEntryNumberOne(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessEntryNumberOne(KMBombModule module)
     {
         var comp = GetComponent(module, "EntryNumberOneScript");
         var fldSolved = GetField<bool>(comp, "Solved");
@@ -329,7 +329,7 @@ public partial class SouvenirModule
             makeQuestion(Question.EntryNumberOneCoeff, _EntryNumberOne, correctAnswers: new[] { coeff }));
     }
 
-    private IEnumerable<object> ProcessEpelleMoiCa(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessEpelleMoiCa(KMBombModule module)
     {
         var comp = GetComponent(module, "EpelleMoiCaScript");
         var fldSolved = GetField<bool>(comp, "IsSolved");
@@ -349,7 +349,7 @@ public partial class SouvenirModule
         addQuestions(module, makeQuestion(Question.EpelleMoiCaWord, _EpelleMoiCa, correctAnswers: new[] { inputtedText }, preferredWrongAnswers: words));
     }
 
-    private IEnumerable<object> ProcessEquationsX(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessEquationsX(KMBombModule module)
     {
         var comp = GetComponent(module, "EquationsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -392,7 +392,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.EquationsXSymbols, correctAnswers: new[] { symbol });
     }
 
-    private IEnumerable<object> ProcessEtterna(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessEtterna(KMBombModule module)
     {
         var comp = GetComponent(module, "Etterna");
         var fldSolved = GetField<bool>(comp, "isSolved");
@@ -405,7 +405,7 @@ public partial class SouvenirModule
         addQuestions(module, correct.Select((answer, ix) => makeQuestion(Question.EtternaNumber, _Etterna, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { answer.ToString() })));
     }
 
-    private IEnumerable<object> ProcessExoplanets(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessExoplanets(KMBombModule module)
     {
         var comp = GetComponent(module, "exoplanets");
         var fldSolved = GetField<bool>(comp, "moduleSolved");

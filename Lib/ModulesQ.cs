@@ -8,7 +8,7 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
-    private IEnumerable<object> ProcessQuaver(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessQuaver(KMBombModule module)
     {
         var comp = GetComponent(module, "QuaverScript");
         var init = GetField<object>(comp, "init").Get();
@@ -32,7 +32,7 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessQuestionMark(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessQuestionMark(KMBombModule module)
     {
         var comp = GetComponent(module, "Questionmark");
 
@@ -45,7 +45,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.QuestionMarkFlashedSymbols, correctAnswers: flashedSpritePool.Select(ix => QuestionMarkSprites[ix]).ToArray(), preferredWrongAnswers: QuestionMarkSprites);
     }
 
-    private IEnumerable<object> ProcessQuickArithmetic(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessQuickArithmetic(KMBombModule module)
     {
         var comp = GetComponent(module, "QuickArithmetic");
         var fldSolved = GetField<bool>(comp, "ModuleSolved");
@@ -69,7 +69,7 @@ public partial class SouvenirModule
         addQuestions(module, allQuestions);
     }
 
-    private IEnumerable<object> ProcessQuintuples(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessQuintuples(KMBombModule module)
     {
         var comp = GetComponent(module, "quintuplesScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -89,7 +89,7 @@ public partial class SouvenirModule
             colorCounts.Select((cc, ix) => makeQuestion(Question.QuintuplesColorCounts, _Quintuples, formatArgs: new[] { colorNames[ix] }, correctAnswers: new[] { cc.ToString() }))));
     }
 
-    private IEnumerable<object> ProcessQuizBuzz(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessQuizBuzz(KMBombModule module)
     {
         var comp = GetComponent(module, "quizBuzz");
 
@@ -102,7 +102,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.QuizBuzzStartingNumber, correctAnswers: new[] { startingNumber.ToString() });
     }
 
-    private IEnumerable<object> ProcessQwirkle(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessQwirkle(KMBombModule module)
     {
         var comp = GetComponent(module, "qwirkleScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");

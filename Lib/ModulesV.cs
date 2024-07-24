@@ -7,7 +7,7 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
-    private IEnumerable<object> ProcessV(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessV(KMBombModule module)
     {
         var comp = GetComponent(module, "qkV");
 
@@ -25,7 +25,7 @@ public partial class SouvenirModule
            makeQuestion(Question.VWords, _V, formatArgs: new[] { "was not" }, correctAnswers: allWords.Where(a => !currentWords.Contains(a)).ToArray(), preferredWrongAnswers: allWords));
     }
 
-    private IEnumerable<object> ProcessValves(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessValves(KMBombModule module)
     {
         var comp = GetComponent(module, "Valves");
         var fldSolved = GetField<bool>(comp, "bombSolved");
@@ -42,7 +42,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.ValvesInitialState, correctAnswers: new[] { ValvesSprites[spriteIx] });
     }
 
-    private IEnumerable<object> ProcessVaricoloredSquares(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessVaricoloredSquares(KMBombModule module)
     {
         var comp = GetComponent(module, "VaricoloredSquaresModule");
 
@@ -55,7 +55,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.VaricoloredSquaresInitialColor, correctAnswers: new[] { GetField<object>(comp, "_firstStageColor").Get().ToString() });
     }
 
-    private IEnumerable<object> ProcessVaricolourFlash(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessVaricolourFlash(KMBombModule module)
     {
         var comp = GetComponent(module, "VCFScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -87,7 +87,7 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessVariety(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessVariety(KMBombModule module)
     {
         var comp = GetComponent(module, "VarietyModule");
         var fldSolved = GetField<bool>(comp, "_isSolved");
@@ -227,7 +227,7 @@ public partial class SouvenirModule
         addQuestions(module, questions);
     }
 
-    private IEnumerable<object> ProcessVcrcs(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessVcrcs(KMBombModule module)
     {
         var comp = GetComponent(module, "VcrcsScript");
         var fldSolved = GetField<bool>(comp, "ModuleSolved");
@@ -244,7 +244,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.VcrcsWord, correctAnswers: new[] { word });
     }
 
-    private IEnumerable<object> ProcessVectors(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessVectors(KMBombModule module)
     {
         var comp = GetComponent(module, "VectorsScript");
 
@@ -274,7 +274,7 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessVexillology(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessVexillology(KMBombModule module)
     {
         var comp = GetComponent(module, "vexillologyScript");
         var fldSolved = GetField<bool>(comp, "_issolved");
@@ -294,12 +294,12 @@ public partial class SouvenirModule
             makeQuestion(Question.VexillologyColors, _Vexillology, formatArgs: new[] { "third" }, correctAnswers: new[] { colors[color3] }, preferredWrongAnswers: new[] { colors[color2], colors[color1] }));
     }
 
-    private IEnumerable<object> ProcessVioletCipher(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessVioletCipher(KMBombModule module)
     {
         return processColoredCiphers(module, "violetCipher", Question.VioletCipherScreen, _VioletCipher);
     }
 
-    private IEnumerable<object> ProcessVisualImpairment(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessVisualImpairment(KMBombModule module)
     {
         var comp = GetComponent(module, "VisualImpairment");
         var fldRoundsFinished = GetIntField(comp, "roundsFinished");

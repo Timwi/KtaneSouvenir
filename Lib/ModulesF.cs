@@ -10,7 +10,7 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
-    private IEnumerable<object> ProcessFactoringMaze(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessFactoringMaze(KMBombModule module)
     {
         var comp = GetComponent(module, "FactoringMazeScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -23,7 +23,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.FactoringMazeChosenPrimes, correctAnswers: chosenPrimes.Select(i => i.ToString()).ToArray());
     }
 
-    private IEnumerable<object> ProcessFactoryMaze(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessFactoryMaze(KMBombModule module)
     {
         var comp = GetComponent(module, "FactoryMazeScript");
         var fldSolved = GetField<bool>(comp, "solved");
@@ -41,7 +41,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.FactoryMazeStartRoom, correctAnswers: new[] { usedRooms[startRoom] }, preferredWrongAnswers: usedRooms);
     }
 
-    private IEnumerable<object> ProcessFastMath(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessFastMath(KMBombModule module)
     {
         var comp = GetComponent(module, "FastMathModule");
         var fldScreen = GetField<TextMesh>(comp, "Screen", isPublic: true);
@@ -74,7 +74,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.FastMathLastLetters, correctAnswers: new[] { letters }, preferredWrongAnswers: wrongAnswers.ToArray());
     }
 
-    private IEnumerable<object> ProcessFaultyButtons(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessFaultyButtons(KMBombModule module)
     {
         var comp = GetComponent(module, "FaultyButtonsScript");
 
@@ -95,7 +95,7 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessFaultyRGBMaze(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessFaultyRGBMaze(KMBombModule module)
     {
         var comp = GetComponent(module, "FaultyRGBMazeScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -131,7 +131,7 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessFindTheDate(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessFindTheDate(KMBombModule module)
     {
         var comp = GetComponent(module, "DateFinder");
         var fldStage = GetIntField(comp, "count");
@@ -181,7 +181,7 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessFiveLetterWords(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessFiveLetterWords(KMBombModule module)
     {
         var comp = GetComponent(module, "FiveLetterWords");
 
@@ -195,7 +195,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.FiveLetterWordsDisplayedWords, correctAnswers: displayedWords, preferredWrongAnswers: wordList);
     }
 
-    private IEnumerable<object> ProcessFizzBuzz(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessFizzBuzz(KMBombModule module)
     {
         var comp = GetComponent(module, "FizzBuzzModule");
         var labels = GetArrayField<TextMesh>(comp, "Labels", isPublic: true).Get(expectedLength: 3);
@@ -240,7 +240,7 @@ public partial class SouvenirModule
             addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessFlags(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessFlags(KMBombModule module)
     {
         var comp = GetComponent(module, "FlagsModule");
         var fldCanInteract = GetField<bool>(comp, "canInteract");
@@ -270,7 +270,7 @@ public partial class SouvenirModule
             makeQuestion(Question.FlagsCountries, _Flags, correctAnswers: otherCountrySprites, preferredWrongAnswers: FlagsSprites));
     }
 
-    private IEnumerable<object> ProcessFlashingArrows(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessFlashingArrows(KMBombModule module)
     {
         var comp = GetComponent(module, "FlashingArrowsScript");
 
@@ -295,7 +295,7 @@ public partial class SouvenirModule
             makeQuestion(Question.FlashingArrowsReferredArrow, _FlashingArrows, formatArgs: new[] { "after" }, correctAnswers: new[] { colorReference[colorAfterBlack] }, preferredWrongAnswers: colorReference));
     }
 
-    private IEnumerable<object> ProcessFlashingLights(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessFlashingLights(KMBombModule module)
     {
         var comp = GetComponent(module, "doubleNegativesScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -319,7 +319,7 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessFlavorText(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessFlavorText(KMBombModule module)
     {
         var comp = GetComponent(module, "FlavorText");
         var solved = false;
@@ -339,7 +339,7 @@ public partial class SouvenirModule
             preferredWrongAnswers: moduleNames);
     }
 
-    private IEnumerable<object> ProcessFlavorTextEX(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessFlavorTextEX(KMBombModule module)
     {
         var comp = GetComponent(module, "FlavorTextCruel");
         var fldStage = GetIntField(comp, "stage");
@@ -379,7 +379,7 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessFlyswatting(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessFlyswatting(KMBombModule module)
     {
         var comp = GetComponent(module, "flyswattingScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -401,7 +401,7 @@ public partial class SouvenirModule
             addQuestion(module, Question.FlyswattingUnpressed, correctAnswers: outsideLetters);
     }
 
-    private IEnumerable<object> ProcessFollowMe(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessFollowMe(KMBombModule module)
     {
         var comp = GetComponent(module, "FollowMe");
 
@@ -419,14 +419,14 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessForestCipher(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessForestCipher(KMBombModule module)
     {
         return processColoredCiphers(module, "forestCipher", Question.ForestCipherScreen, _ForestCipher);
     }
 
     private List<Array> _facCylinders = new();
     private List<List<int>> _facFigures = new();
-    private IEnumerable<object> ProcessForgetAnyColor(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessForgetAnyColor(KMBombModule module)
     {
         var comp = GetComponent(module, "FACScript");
 
@@ -501,7 +501,7 @@ public partial class SouvenirModule
     }
 
     private List<int[]> _feFirstDisplays = new();
-    private IEnumerable<object> ProcessForgetEverything(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessForgetEverything(KMBombModule module)
     {
         var comp = GetComponent(module, "EvilMemory");
 
@@ -567,7 +567,7 @@ public partial class SouvenirModule
         }
     }
 
-    private IEnumerable<object> ProcessForgetMe(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessForgetMe(KMBombModule module)
     {
         var comp = GetComponent(module, "NotForgetMeNotScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -583,7 +583,7 @@ public partial class SouvenirModule
     }
 
     private List<int[]> _forgetMeNotDisplays = new();
-    private IEnumerable<object> ProcessForgetMeNot(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessForgetMeNot(KMBombModule module)
     {
         var comp = GetComponent(module, "AdvancedMemory");
 
@@ -644,7 +644,7 @@ public partial class SouvenirModule
         }
     }
 
-    private IEnumerable<object> ProcessForgetMeNow(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessForgetMeNow(KMBombModule module)
     {
         var comp = GetComponent(module, "ForgetMeNow");
 
@@ -657,7 +657,7 @@ public partial class SouvenirModule
         addQuestions(module, displayedDigits.Select((d, ix) => makeQuestion(Question.ForgetMeNowDisplayedDigits, _ForgetMeNow, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { d.ToString() })));
     }
 
-    private IEnumerable<object> ProcessForgetsUltimateShowdown(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessForgetsUltimateShowdown(KMBombModule module)
     {
         var comp = GetComponent(module, "ForgetsUltimateShowdownScript");
         var fldSolved = GetField<bool>(comp, "_isSolved");
@@ -692,7 +692,7 @@ public partial class SouvenirModule
     private List<List<int>> _ftcSineNumbers = new();
     private List<List<string>> _ftcGearColors = new();
     private List<List<string>> _ftcRuleColors = new();
-    private IEnumerable<object> ProcessForgetTheColors(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessForgetTheColors(KMBombModule module)
     {
         var comp = GetComponent(module, "FTCScript");
 
@@ -787,7 +787,7 @@ public partial class SouvenirModule
 
     private List<List<int>> _ftColors = new();
     private List<List<int>> _ftDigits = new();
-    private IEnumerable<object> ProcessForgetThis(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessForgetThis(KMBombModule module)
     {
         var comp = GetComponent(module, "ForgetThis");
 
@@ -847,7 +847,7 @@ public partial class SouvenirModule
             makeQuestion(Question.ForgetThisDigits, _ForgetThis, formattedModuleName: formattedName, formatArgs: new[] { ordinal(chosenStage + 1) }, correctAnswers: new[] { base36[myDigits[chosenStage]].ToString() }));
     }
 
-    private IEnumerable<object> ProcessFreeParking(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessFreeParking(KMBombModule module)
     {
         var comp = GetComponent(module, "FreeParkingScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -862,7 +862,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.FreeParkingToken, correctAnswers: new[] { tokens[selected].name });
     }
 
-    private IEnumerable<object> ProcessFunctions(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessFunctions(KMBombModule module)
     {
         var comp = GetComponent(module, "qFunctions");
         var fldSolved = GetField<bool>(comp, "isSolved");
@@ -892,7 +892,7 @@ public partial class SouvenirModule
                 Enumerable.Range(0, int.MaxValue).Select(i => Rnd.Range(1, 999).ToString()).Distinct().Take(6).ToArray()));
     }
 
-    private IEnumerable<object> ProcessFuseBox(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessFuseBox(KMBombModule module)
     {
         var comp = GetComponent(module, "FuseBoxScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");

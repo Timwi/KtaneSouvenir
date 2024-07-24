@@ -6,7 +6,7 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
-    private IEnumerable<object> ProcessKanji(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessKanji(KMBombModule module)
     {
         var comp = GetComponent(module, "KanjiModule");
 
@@ -44,7 +44,7 @@ public partial class SouvenirModule
         addQuestions(module, Enumerable.Range(0, 3).Select(stage => makeQuestion(Question.KanjiDisplayedWords, _Kanji, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { displayedWords[stage] }, preferredWrongAnswers: wordLists[stage])));
     }
 
-    private IEnumerable<object> ProcessKanyeEncounter(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessKanyeEncounter(KMBombModule module)
     {
         var comp = GetComponent(module, "TheKanyeEncounter");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -64,7 +64,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.KanyeEncounterFoods, correctAnswers: selectedFoodNames);
     }
 
-    private IEnumerable<object> ProcessKeypadCombination(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessKeypadCombination(KMBombModule module)
     {
         var comp = GetComponent(module, "KeypadCombinations");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -82,7 +82,7 @@ public partial class SouvenirModule
                 .Where(num => num != moduleAnswer[i] - '0').Select(num => num.ToString()).ToArray())));
     }
 
-    private IEnumerable<object> ProcessKeypadMagnified(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessKeypadMagnified(KMBombModule module)
     {
         var comp = GetComponent(module, "KeypadMagnifiedScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -96,7 +96,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.KeypadMagnifiedLED, correctAnswers: new[] { posNames[LEDPos] });
     }
 
-    private IEnumerable<object> ProcessKeywords(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessKeywords(KMBombModule module)
     {
         var comp = GetComponent(module, "keywordsScript");
 
@@ -118,7 +118,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.KeywordsDisplayedKey, correctAnswers: new[] { displayedKey }, preferredWrongAnswers: possibleAnswers.ToArray());
     }
 
-    private IEnumerable<object> ProcessKnowYourWay(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessKnowYourWay(KMBombModule module)
     {
         var comp = GetComponent(module, "KnowYourWayScript");
 
@@ -140,7 +140,7 @@ public partial class SouvenirModule
         );
     }
 
-    private IEnumerable<object> ProcessKudosudoku(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessKudosudoku(KMBombModule module)
     {
         var comp = GetComponent(module, "KudosudokuModule");
         var fldSolved = GetField<bool>(comp, "_isSolved");
@@ -157,7 +157,7 @@ public partial class SouvenirModule
                 correctAnswers: Enumerable.Range(0, 16).Where(ix => !shown[ix]).Select(coord => new Coord(4, 4, coord)).ToArray()));
     }
 
-    private IEnumerable<object> ProcessKyudoku(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessKyudoku(KMBombModule module)
     {
         var comp = GetComponent(module, "KyudokuScript");
 

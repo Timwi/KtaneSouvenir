@@ -587,7 +587,7 @@ public partial class SouvenirModule
 
     void Awake()
     {
-        _moduleProcessors = new Dictionary<string, (Func<KMBombModule, IEnumerable<object>> processor, string moduleName, string contributor)>()
+        _moduleProcessors = new Dictionary<string, (Func<KMBombModule, IEnumerator<YieldInstruction>> processor, string moduleName, string contributor)>()
         {
             [_1000Words] = (Process1000Words, "1000 Words", "BigCrunch22"),
             [_100LevelsOfDefusal] = (Process100LevelsOfDefusal, "100 Levels of Defusal", "Espik"),
@@ -1165,7 +1165,7 @@ public partial class SouvenirModule
     /* Generalized handlers for modules that are extremely similar */
 
     // Used by Affine Cycle, Caesar Cycle, Pigpen Cycle and Playfair Cycle
-    private IEnumerable<object> processSpeakingEvilCycle1(KMBombModule module, string componentName, Question question, string moduleId)
+    private IEnumerator<YieldInstruction> processSpeakingEvilCycle1(KMBombModule module, string componentName, Question question, string moduleId)
     {
         var comp = GetComponent(module, componentName);
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -1189,7 +1189,7 @@ public partial class SouvenirModule
     }
 
     // Used by Cryptic Cycle, Hill Cycle, Jumble Cycle and Ultimate Cycle
-    private IEnumerable<object> processSpeakingEvilCycle2(KMBombModule module, string componentName, Question question, string moduleId)
+    private IEnumerator<YieldInstruction> processSpeakingEvilCycle2(KMBombModule module, string componentName, Question question, string moduleId)
     {
         var comp = GetComponent(module, componentName);
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -1214,7 +1214,7 @@ public partial class SouvenirModule
     }
 
     // Used by the World Mazes modules (currently: USA Maze, DACH Maze)
-    private IEnumerable<object> processWorldMaze(KMBombModule module, string script, string moduleCode, Question question)
+    private IEnumerator<YieldInstruction> processWorldMaze(KMBombModule module, string script, string moduleCode, Question question)
     {
         var comp = GetComponent(module, script);
         var fldOrigin = GetField<string>(comp, "_originState");
@@ -1244,7 +1244,7 @@ public partial class SouvenirModule
     }
 
     // Used by Black, Blue, Brown, Coral, Cornflower, Cream, Crimson, Forest, Gray, Green, Indigo, Magenta, Maroon, Orange, Red, Violet, White, Yellow, and Ultimate Cipher
-    private IEnumerable<object> processColoredCiphers(KMBombModule module, string componentName, Question question, string moduleId)
+    private IEnumerator<YieldInstruction> processColoredCiphers(KMBombModule module, string componentName, Question question, string moduleId)
     {
         var comp = GetComponent(module, componentName);
 
@@ -1367,7 +1367,7 @@ public partial class SouvenirModule
     }
 
     // Used by The Hypercube and The Ultracube
-    private IEnumerable<object> processHypercubeUltracube(KMBombModule module, string componentName, Question question, string moduleId)
+    private IEnumerator<YieldInstruction> processHypercubeUltracube(KMBombModule module, string componentName, Question question, string moduleId)
     {
         var comp = GetComponent(module, componentName);
         var rotations = GetStaticField<string[]>(comp.GetType(), "_rotationNames").Get();
@@ -1388,7 +1388,7 @@ public partial class SouvenirModule
     }
 
     // Used by Triamonds and Tetriamonds
-    private IEnumerable<object> processPolyiamonds(KMBombModule module, string componentName, Question question, string moduleId, string[] colourNames)
+    private IEnumerator<YieldInstruction> processPolyiamonds(KMBombModule module, string componentName, Question question, string moduleId, string[] colourNames)
     {
         var comp = GetComponent(module, componentName);
         var fldSolved = GetField<bool>(comp, "solved");

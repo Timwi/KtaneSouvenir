@@ -8,22 +8,22 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
-    private IEnumerable<object> ProcessUltimateCipher(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessUltimateCipher(KMBombModule module)
     {
         return processColoredCiphers(module, "ultimateCipher", Question.UltimateCipherScreen, _UltimateCipher);
     }
 
-    private IEnumerable<object> ProcessUltimateCycle(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessUltimateCycle(KMBombModule module)
     {
         return processSpeakingEvilCycle2(module, "UltimateCycleScript", Question.UltimateCycleWord, _UltimateCycle);
     }
 
-    private IEnumerable<object> ProcessUltracube(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessUltracube(KMBombModule module)
     {
         return processHypercubeUltracube(module, "TheUltracubeModule", Question.UltracubeRotations, _Ultracube);
     }
 
-    private IEnumerable<object> ProcessUltraStores(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessUltraStores(KMBombModule module)
     {
         var comp = GetComponent(module, "UltraStoresScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -59,7 +59,7 @@ public partial class SouvenirModule
         addQuestions(module, questions);
     }
 
-    private IEnumerable<object> ProcessUncoloredSquares(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessUncoloredSquares(KMBombModule module)
     {
         var comp = GetComponent(module, "UncoloredSquaresModule");
         var fldSolved = GetField<bool>(comp, "_isSolved");
@@ -73,7 +73,7 @@ public partial class SouvenirModule
             makeQuestion(Question.UncoloredSquaresFirstStage, _UncoloredSquares, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { GetField<object>(comp, "_firstStageColor2").Get().ToString() }));
     }
 
-    private IEnumerable<object> ProcessUncoloredSwitches(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessUncoloredSwitches(KMBombModule module)
     {
         var comp = GetComponent(module, "UncoloredSwitches");
         var fldLedColors = GetField<StringBuilder>(comp, "LEDsColorsString");
@@ -97,7 +97,7 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessUnfairCipher(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessUnfairCipher(KMBombModule module)
     {
         var comp = GetComponent(module, "unfairCipherScript");
         var fldSolved = GetField<bool>(comp, "solved");
@@ -114,7 +114,7 @@ public partial class SouvenirModule
             makeQuestion(Question.UnfairCipherInstructions, _UnfairCipher, formatArgs: new[] { "fourth" }, correctAnswers: new[] { instructions[3] }));
     }
 
-    private IEnumerable<object> ProcessUnfairsRevenge(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessUnfairsRevenge(KMBombModule module)
     {
         var comp = GetComponent(module, "UnfairsRevengeHandler");
         var fldSolved = GetField<bool>(comp, "isFinished");
@@ -131,7 +131,7 @@ public partial class SouvenirModule
             makeQuestion(Question.UnfairsRevengeInstructions, _UnfairsRevenge, formatArgs: new[] { "fourth" }, correctAnswers: new[] { instructions[3] }));
     }
 
-    private IEnumerable<object> ProcessUnicode(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessUnicode(KMBombModule module)
     {
         var comp = GetComponent(module, "UnicodeScript");
         var solved = false;
@@ -155,7 +155,7 @@ public partial class SouvenirModule
             makeQuestion(Question.UnicodeSortedAnswer, _Unicode, formatArgs: new[] { "fourth" }, correctAnswers: new[] { symbols[3] }));
     }
 
-    private IEnumerable<object> ProcessUNO(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessUNO(KMBombModule module)
     {
         var comp = GetComponent(module, "UNO");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -169,7 +169,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.UnoInitialCard, correctAnswers: new string[] { titleCase(mthGetUnoName.Invoke(fldFirstInDeck.Get())) });
     }
 
-    private IEnumerable<object> ProcessUnownCipher(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessUnownCipher(KMBombModule module)
     {
         var comp = GetComponent(module, "UnownCipher");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -182,7 +182,7 @@ public partial class SouvenirModule
         addQuestions(module, unownAnswer.Select((ans, i) => makeQuestion(Question.UnownCipherAnswers, _UnownCipher, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { ((char) ('A' + ans)).ToString() })));
     }
 
-    private IEnumerable<object> ProcessUSACycle(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessUSACycle(KMBombModule module)
     {
         var comp = GetComponent(module, "USACycle");
         var fldSolved = GetField<bool>(comp, "ModuleSolved");
@@ -200,7 +200,7 @@ public partial class SouvenirModule
             preferredWrongAnswers: USACycleSprites.Where((_, pos) => pos != 5 && pos != 49).ToArray());
     }
 
-    private IEnumerable<object> ProcessUSAMaze(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessUSAMaze(KMBombModule module)
     {
         return processWorldMaze(module, "USAMaze", _USAMaze, Question.USAMazeOrigin);
     }

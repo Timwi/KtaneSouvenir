@@ -8,7 +8,7 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
-    private IEnumerable<object> ProceessH(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProceessH(KMBombModule module)
     {
         var comp = GetComponent(module, "HexOS");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -21,7 +21,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.HLetter, correctAnswers: new[] { answer });
     }
 
-    private IEnumerable<object> ProcessHereditaryBaseNotation(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessHereditaryBaseNotation(KMBombModule module)
     {
         var comp = GetComponent(module, "hereditaryBaseNotationScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -45,7 +45,7 @@ public partial class SouvenirModule
         addQuestions(module, makeQuestion(Question.HereditaryBaseNotationInitialNumber, _HereditaryBaseNotation, correctAnswers: new[] { answer }, preferredWrongAnswers: invalidAnswer.ToArray()));
     }
 
-    private IEnumerable<object> ProcessHexabutton(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessHexabutton(KMBombModule module)
     {
         var comp = GetComponent(module, "hexabuttonScript");
         var fldSolved = GetField<bool>(comp, "solved");
@@ -59,7 +59,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.HexabuttonLabel, correctAnswers: new[] { labels[index] });
     }
 
-    private IEnumerable<object> ProcessHexamaze(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessHexamaze(KMBombModule module)
     {
         var comp = GetComponent(module, "HexamazeModule");
         var fldSolved = GetField<bool>(comp, "_isSolved");
@@ -71,7 +71,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.HexamazePawnColor, correctAnswers: new[] { new[] { "Red", "Yellow", "Green", "Cyan", "Blue", "Pink" }[GetIntField(comp, "_pawnColor").Get(0, 5)] });
     }
 
-    private IEnumerable<object> ProcessHexOrbits(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessHexOrbits(KMBombModule module)
     {
         var comp = GetComponent(module, "HexOrbitsScript");
         var solved = false;
@@ -89,7 +89,7 @@ public partial class SouvenirModule
         }));
     }
 
-    private IEnumerable<object> ProcessHexOS(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessHexOS(KMBombModule module)
     {
         var comp = GetComponent(module, "HexOS");
         var fldSolved = GetField<bool>(comp, "isSolved");
@@ -124,7 +124,7 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessHiddenColors(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessHiddenColors(KMBombModule module)
     {
         var comp = GetComponent(module, "HiddenColorsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -143,7 +143,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.HiddenColorsLED, correctAnswers: new[] { ledcolors[ledcolor] });
     }
 
-    private IEnumerable<object> ProcessHighScore(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessHighScore(KMBombModule module)
     {
         var comp = GetComponent(module, "HighScore");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -172,12 +172,12 @@ public partial class SouvenirModule
             makeQuestion(Question.HighScoreScore, _HighScore, correctAnswers: new[] { "" + playerScore }));
     }
 
-    private IEnumerable<object> ProcessHillCycle(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessHillCycle(KMBombModule module)
     {
         return processSpeakingEvilCycle2(module, "HillCycleScript", Question.HillCycleWord, _HillCycle);
     }
 
-    private IEnumerable<object> ProcessHinges(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessHinges(KMBombModule module)
     {
         var comp = GetComponent(module, "Hinges");
         var initialHingesStatus = GetArrayField<int>(comp, "hingeStatus").Get(expectedLength: 8, validator: i => i != 0 && i != 1 ? "expected value 0 or 1" : null).ToArray();
@@ -201,7 +201,7 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessHogwarts(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessHogwarts(KMBombModule module)
     {
         var comp = GetComponent(module, "HogwartsModule");
         var fldModuleNames = GetField<IDictionary>(comp, "_moduleNames");
@@ -231,7 +231,7 @@ public partial class SouvenirModule
                     preferredWrongAnswers: Bomb.GetSolvableModuleNames().ToArray()))));
     }
 
-    private IEnumerable<object> ProcessHoldUps(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessHoldUps(KMBombModule module)
     {
         var comp = GetComponent(module, "HoldUpsScript");
         var solved = false;
@@ -262,7 +262,7 @@ public partial class SouvenirModule
         addQuestions(module, Enumerable.Range(0, isItFiveStages.Get() ? 5 : 3).Select(stage => makeQuestion(Question.HoldUpsShadows, _HoldUps, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { shadows[stage] })));
     }
 
-    private IEnumerable<object> ProcessHomophones(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessHomophones(KMBombModule module)
     {
         var comp = GetComponent(module, "HomophonesScript");
         var isSolved = GetField<bool>(comp, "moduleSolved");
@@ -298,7 +298,7 @@ public partial class SouvenirModule
         addQuestions(module, possibleQuestions);
     }
 
-    private IEnumerable<object> ProcessHorribleMemory(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessHorribleMemory(KMBombModule module)
     {
         var comp = GetComponent(module, "cruelMemoryScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -326,7 +326,7 @@ public partial class SouvenirModule
             makeQuestion(Question.HorribleMemoryColors, _HorribleMemory, formatArgs: new[] { "fourth" }, correctAnswers: new[] { colors[3] }));
     }
 
-    private IEnumerable<object> ProcessHumanResources(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessHumanResources(KMBombModule module)
     {
         var comp = GetComponent(module, "HumanResourcesModule");
         var people = GetStaticField<Array>(comp.GetType(), "_people").Get(ar => ar.Length != 16 ? "expected length 16" : null);
@@ -350,7 +350,7 @@ public partial class SouvenirModule
             makeQuestion(Question.HumanResourcesHiredFired, _HumanResources, formatArgs: new[] { "hired" }, correctAnswers: new[] { fldName.GetFrom(people.GetValue(personToHire)) }));
     }
 
-    private IEnumerable<object> ProcessHunting(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessHunting(KMBombModule module)
     {
         var comp = GetComponent(module, "hunting");
         var fldStage = GetIntField(comp, "stage");
@@ -376,12 +376,12 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessHypercube(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessHypercube(KMBombModule module)
     {
         return processHypercubeUltracube(module, "TheHypercubeModule", Question.HypercubeRotations, _Hypercube);
     }
 
-    private IEnumerable<object> ProcessHyperlink(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessHyperlink(KMBombModule module)
     {
         var comp = GetComponent(module, "hyperlinkScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved", isPublic: true);

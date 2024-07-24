@@ -5,7 +5,7 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
-    private IEnumerable<object> ProcessZeroZero(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessZeroZero(KMBombModule module)
     {
         var comp = GetComponent(module, "ZeroZeroScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -52,7 +52,7 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessZoni(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessZoni(KMBombModule module)
     {
         var comp = GetComponent(module, "ZoniModuleScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");

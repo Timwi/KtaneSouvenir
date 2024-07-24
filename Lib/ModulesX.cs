@@ -5,7 +5,7 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
-    private IEnumerable<object> ProcessXenocryst(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessXenocryst(KMBombModule module)
     {
         var comp = GetComponent(module, "XenocrystScript");
         var fldSolved = GetField<bool>(comp, "Solved");
@@ -28,7 +28,7 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessXmORseCode(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessXmORseCode(KMBombModule module)
     {
         var comp = GetComponent(module, "XmORseCode");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -50,7 +50,7 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessXobekuJehT(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessXobekuJehT(KMBombModule module)
     {
         var comp = GetComponent(module, "tpircSxobekuJ");
         var fldSolved = GetField<bool>(comp, "moduleSolved");

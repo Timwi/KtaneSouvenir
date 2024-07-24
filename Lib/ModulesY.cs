@@ -6,7 +6,7 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
-    private IEnumerable<object> ProcessYahtzee(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessYahtzee(KMBombModule module)
     {
         var comp = GetComponent(module, "YahtzeeModule");
 
@@ -60,7 +60,7 @@ public partial class SouvenirModule
             addQuestion(module, Question.YahtzeeInitialRoll, correctAnswers: new[] { result });
     }
 
-    private IEnumerable<object> ProcessYellowArrows(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessYellowArrows(KMBombModule module)
     {
         var comp = GetComponent(module, "YellowArrowsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -73,7 +73,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.YellowArrowsStartingRow, correctAnswers: new[] { ((char) ('A' + letterIndex)).ToString() });
     }
 
-    private IEnumerable<object> ProcessYellowButton(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessYellowButton(KMBombModule module)
     {
         var comp = GetComponent(module, "YellowButtonScript");
         var fldSolved = GetField<bool>(comp, "_moduleSolved");
@@ -92,7 +92,7 @@ public partial class SouvenirModule
         }));
     }
 
-    private IEnumerable<object> ProcessYellowCipher(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessYellowCipher(KMBombModule module)
     {
         return processColoredCiphers(module, "yellowCipher", Question.YellowCipherScreen, _YellowCipher);
     }

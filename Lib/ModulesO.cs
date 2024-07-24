@@ -8,7 +8,7 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
-    private IEnumerable<object> ProcessObjectShows(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessObjectShows(KMBombModule module)
     {
         var comp = GetComponent(module, "objectShows");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -24,7 +24,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.ObjectShowsContestants, correctAnswers: contestantNames, preferredWrongAnswers: allContestantNames);
     }
 
-    private IEnumerable<object> ProcessOctadecayotton(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessOctadecayotton(KMBombModule module)
     {
         var comp = GetComponent(module, "TheOctadecayottonScript");
         var fldSolved = GetProperty<bool>(comp, "IsSolved");
@@ -45,7 +45,7 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessOddOneOut(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessOddOneOut(KMBombModule module)
     {
         var comp = GetComponent(module, "OddOneOutModule");
 
@@ -68,7 +68,7 @@ public partial class SouvenirModule
             makeQuestion(Question.OddOneOutButton, _OddOneOut, formatArgs: new[] { "sixth" }, correctAnswers: new[] { btnNames[stageBtn[5]] }));
     }
 
-    private IEnumerable<object> ProcessOldAI(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessOldAI(KMBombModule module)
     {
         var comp = GetComponent(module, "SCP079");
         var fldSolved = GetField<bool>(comp, "ModuleSolved");
@@ -84,7 +84,7 @@ public partial class SouvenirModule
             makeQuestion(Question.OldAIGroup, _OldAI, formatArgs: new[] { "sub-group" }, correctAnswers: new[] { ((seed - 1) % 5 + 1).ToString() }));
     }
 
-    private IEnumerable<object> ProcessOldFogey(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessOldFogey(KMBombModule module)
     {
         var comp = GetComponent(module, "OldFogey");
 
@@ -97,7 +97,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.OldFogeyStartingColor, correctAnswers: new[] { startingColor });
     }
 
-    private IEnumerable<object> ProcessOnlyConnect(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessOnlyConnect(KMBombModule module)
     {
         var comp = GetComponent(module, "OnlyConnectModule");
         var fldIsSolved = GetField<bool>(comp, "_isSolved");
@@ -115,7 +115,7 @@ public partial class SouvenirModule
         addQuestions(module, positions.Select((p, i) => makeQuestion(Question.OnlyConnectHieroglyphs, _OnlyConnect, formatArgs: new[] { p }, correctAnswers: new[] { hieroglyphs[hieroglyphsDisplayed[i]] })));
     }
 
-    private IEnumerable<object> ProcessOrangeArrows(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessOrangeArrows(KMBombModule module)
     {
         var comp = GetComponent(module, "OrangeArrowsScript");
         var fldSolved = GetField<bool>(comp, "moduleSolved");
@@ -173,12 +173,12 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessOrangeCipher(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessOrangeCipher(KMBombModule module)
     {
         return processColoredCiphers(module, "orangeCipher", Question.OrangeCipherScreen, _OrangeCipher);
     }
 
-    private IEnumerable<object> ProcessOrderedKeys(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessOrderedKeys(KMBombModule module)
     {
         var comp = GetComponent(module, "OrderedKeysScript");
         var fldInfo = GetArrayField<int[]>(comp, "info");
@@ -218,7 +218,7 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessOrderPicking(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessOrderPicking(KMBombModule module)
     {
         var comp = GetComponent(module, "OrderPickingScript");
 
@@ -260,7 +260,7 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerable<object> ProcessOrientationCube(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessOrientationCube(KMBombModule module)
     {
         var comp = GetComponent(module, "OrientationModule");
 
@@ -278,7 +278,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.OrientationCubeInitialObserverPosition, correctAnswers: new[] { new[] { "front", "left", "back", "right" }[initialAnglePos] });
     }
 
-    private IEnumerable<object> ProcessOrientationHypercube(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessOrientationHypercube(KMBombModule module)
     {
         var comp = GetComponent(module, "OrientationHypercubeModule");
         var fldIsSolved = GetField<bool>(comp, "_isSolved");
