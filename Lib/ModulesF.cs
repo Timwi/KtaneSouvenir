@@ -145,15 +145,15 @@ public partial class SouvenirModule
         for (int i = 0; i < 3; i++)
         {
             qs.Add(makeQuestion(Question.FindTheDateMonth, module,
-            formatArgs: new[] { (i + 1).ToString() },
+            formatArgs: new[] { ordinal(i + 1) },
             correctAnswers: new[] { monthArr[i] }));
 
             qs.Add(makeQuestion(Question.FindTheDateDay, module,
-            formatArgs: new[] { (i + 1).ToString() },
+            formatArgs: new[] { ordinal(i + 1) },
             correctAnswers: new[] { dateArr[i].ToString() }));
 
             qs.Add(makeQuestion(Question.FindTheDateYear, module,
-            formatArgs: new[] { (i + 1).ToString() },
+            formatArgs: new[] { ordinal(i + 1) },
             correctAnswers: new[] { yearArr[i] }));
         }
 
