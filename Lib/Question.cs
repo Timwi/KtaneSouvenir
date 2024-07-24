@@ -206,8 +206,8 @@
           ExampleExtraFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 2)]
         BamboozlingButtonDisplayColor,
 
-        [SouvenirQuestion("What was the screen number in {0}?", "Barcode Cipher", OneColumn4Answers, "637842", "145612", "765465", "523987", "452387")]
-        [AnswerGenerator.Integers(100000, 999999)]
+        [SouvenirQuestion("What was the screen number in {0}?", "Barcode Cipher", OneColumn4Answers)]
+        [AnswerGenerator.Integers(0, 999999, "000000")]
         BarcodeCipherScreenNumber,
         [SouvenirQuestion("What was the edgework represented by the {1} barcode in {0}?", "Barcode Cipher", OneColumn4Answers, "SERIAL NUMBER", "BATTERIES", "BATTERY HOLDERS", "PORTS", "PORT PLATES", "LIT INDICATORS", "UNLIT INDICATORS", "INDICATORS",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
