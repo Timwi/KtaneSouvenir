@@ -222,6 +222,7 @@ public partial class SouvenirModule
     const string _HereditaryBaseNotation = "hereditaryBaseNotationModule";
     const string _Hexabutton = "hexabutton";
     const string _Hexamaze = "HexamazeModule";
+    const string _HexOrbits = "hexOrbits";
     const string _HexOS = "hexOS";
     const string _HiddenColors = "lgndHiddenColors";
     const string _HighScore = "ksmHighScore";
@@ -796,6 +797,7 @@ public partial class SouvenirModule
             [_HereditaryBaseNotation] = (ProcessHereditaryBaseNotation, "Hereditary Base Notation", "kavinkul"),
             [_Hexabutton] = (ProcessHexabutton, "Hexabutton, The", "luisdiogo98"),
             [_Hexamaze] = (ProcessHexamaze, "Hexamaze", "Timwi"),
+            [_HexOrbits] = (ProcessHexOrbits, "hexOrbits", "Anonymous"),
             [_HexOS] = (ProcessHexOS, "hexOS", "Emik"),
             [_HiddenColors] = (ProcessHiddenColors, "Hidden Colors", "TasThiluna"),
             [_HighScore] = (ProcessHighScore, "High Score, The", "Hawker"),

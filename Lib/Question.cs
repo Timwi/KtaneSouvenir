@@ -1135,6 +1135,10 @@
         [SouvenirQuestion("What was the color of the pawn in {0}?", "Hexamaze", ThreeColumns6Answers, "Red", "Yellow", "Green", "Cyan", "Blue", "Pink", TranslateAnswers = true)]
         HexamazePawnColor,
 
+        [SouvenirQuestion("What was the {1} shape for the {2} display in {0}?", "hexOrbits", TwoColumns4Answers, "Square", "Pentagon", "Hexagon", "Heptagon",
+            ExampleExtraFormatArguments = new[] { "fast", QandA.Ordinal, "slow", QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 2)]
+        HexOrbitsShape,
+
         [SouvenirQuestion("What were the deciphered letters in {0}?", "hexOS", ThreeColumns6Answers)]
         [AnswerGenerator.Strings("2* A-Z")]
         HexOSCipher,

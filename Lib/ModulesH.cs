@@ -71,6 +71,24 @@ public partial class SouvenirModule
         addQuestion(module, Question.HexamazePawnColor, correctAnswers: new[] { new[] { "Red", "Yellow", "Green", "Cyan", "Blue", "Pink" }[GetIntField(comp, "_pawnColor").Get(0, 5)] });
     }
 
+    private IEnumerable<object> ProcessHexOrbits(KMBombModule module)
+    {
+        var comp = GetComponent(module, "HexOrbitsScript");
+        var solved = false;
+        module.OnPass += () => { solved = true; return false; };
+
+        while (solved)
+            yield return new WaitForSeconds(.1f);
+        _modulesSolved.IncSafe(_HexOrbits);
+
+        var stages = GetArrayField<int>(comp, "stageValues").Get(expectedLength: 5, validator: v => v is < 0 or > 15 ? $"Bad stage value {v}" : null);
+        var shapes = new[] { "Square", "Pentagon", "Hexagon", "Heptagon" };
+        addQuestions(module, stages.Take(4).SelectMany((s, i) => new[] {
+            makeQuestion(Question.HexOrbitsShape, _HexOrbits, formatArgs: new[] { "slow", ordinal(i + 1) }, correctAnswers: new[] { shapes[s / 4] }),
+            makeQuestion(Question.HexOrbitsShape, _HexOrbits, formatArgs: new[] { "fast", ordinal(i + 1) }, correctAnswers: new[] { shapes[s % 4] })
+        }));
+    }
+
     private IEnumerable<object> ProcessHexOS(KMBombModule module)
     {
         var comp = GetComponent(module, "HexOS");
