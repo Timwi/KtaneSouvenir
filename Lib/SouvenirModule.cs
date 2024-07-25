@@ -1169,7 +1169,7 @@ public partial class SouvenirModule : MonoBehaviour
         allFormatArgs[0] = formattedModuleName ?? formatModuleName(
             _translation?.Translations.Get(question)?.ModuleName ?? attr.ModuleName,
             _translation?.Translations.Get(question)?.ModuleNameWithThe ?? _translation?.Translations.Get(question)?.ModuleName ?? attr.ModuleNameWithThe,
-            _moduleCounts.Get(moduleId) > 1,
+            _moduleCounts.Get(moduleId, 0) > 1,
             solveIx);
 
         if (formatArgs != null)
