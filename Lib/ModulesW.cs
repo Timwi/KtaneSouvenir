@@ -166,7 +166,7 @@ public partial class SouvenirModule
         while (!fldSolved.Get())
             yield return new WaitForSeconds(0.1f);
 
-        _modulesSolved.IncSafe(_WhosOnFirst);
+        module.SolveIndex = _modulesSolved.IncSafe(_WhosOnFirst);
         addQuestions(module, displayWords.Select((word, stage) => makeQuestion(Question.WhosOnFirstDisplay, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { word }, preferredWrongAnswers: displayWords)));
     }
 
@@ -237,7 +237,7 @@ public partial class SouvenirModule
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_WireSequence);
+        module.SolveIndex = _modulesSolved.IncSafe(_WireSequence);
 
         var wireSequence = GetField<IEnumerable>(comp, "wireSequence").Get();
 

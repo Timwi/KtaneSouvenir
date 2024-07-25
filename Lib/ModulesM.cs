@@ -310,7 +310,7 @@ public partial class SouvenirModule
         var currentCell = GetProperty<object>(comp, "CurrentCell", isPublic: true).Get();  // Need to get the current cell at the start.
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Maze);
+        module.SolveIndex = _modulesSolved.IncSafe(_Maze);
 
         addQuestions(module,
             makeQuestion(Question.MazeStartingPosition, module, formatArgs: new[] { "column", "left" }, correctAnswers: new[] { (GetIntField(currentCell, "X", true).Get() + 1).ToString() }),
@@ -466,7 +466,7 @@ public partial class SouvenirModule
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Memory);
+        module.SolveIndex = _modulesSolved.IncSafe(_Memory);
 
         var displaySequence = GetProperty<string>(comp, "DisplaySequence", true).Get();
         var indices = GetListField<int>(comp, "buttonIndicesPressed", false).Get();

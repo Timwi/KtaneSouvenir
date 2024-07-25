@@ -901,7 +901,7 @@ public partial class SouvenirModule
             color = ledOff.activeSelf ? -1 : (int) propLightColor.Get();
             yield return new WaitForSeconds(.1f);
         }
-        _modulesSolved.IncSafe(_Button);
+        module.SolveIndex = _modulesSolved.IncSafe(_Button);
         if (color < 0)
         {
             Debug.Log($"[Souvenir #{_moduleId}] No question for The Button because the button was tapped (or I missed the light color).");
