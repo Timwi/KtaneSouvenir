@@ -220,9 +220,6 @@
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         BartendingIngredients,
 
-        [SouvenirQuestion("What number was displayed on {0}?", "Base-1", TwoColumns4Answers, "1", "11", "111", "1111", "11111", "111111", "1111111", "11111111", "111111111")]
-        Base1Number,
-
         [SouvenirQuestion("What was this bean in {0}?", "Beans", OneColumn4Answers, "Wobbly Orange", "Wobbly Yellow", "Wobbly Green", "Not Wobbly Orange", "Not Wobbly Yellow", "Not Wobbly Green",
             UsesQuestionSprite = true, TranslateAnswers = true)]
         BeansColors,
@@ -682,10 +679,6 @@
         [SouvenirQuestion("What was the {1} letter in the string of letters on {0}?", "Devilish Eggs", ThreeColumns6Answers, "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         DevilishEggsLetters,
-
-        [SouvenirQuestion("What was the displayed concentration in this compartment in {0}?", "Diffusion", ThreeColumns6Answers, "A0B0", "A1B0", "A2B0", "A3B0", "A4B0", "A0B1", "A1B1", "A2B1", "A3B1", "A4B1", "A0B2", "A1B2", "A2B2", "A3B2", "A4B2", "A0B3", "A1B3", "A2B3", "A3B3", "A4B3", "A0B4", "A1B4", "A2B4", "A3B4", "A4B4",
-           TranslateAnswers = false, UsesQuestionSprite = true)]
-        DiffusionCell,
 
         [SouvenirQuestion("What was the number on the {1} button in {0}?", "Digisibility", ThreeColumns6Answers, null,
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]

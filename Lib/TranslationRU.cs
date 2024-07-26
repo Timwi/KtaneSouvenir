@@ -652,14 +652,6 @@ namespace Souvenir
                 QuestionText = "Which ingredient was in the {1} position on «{0}»?",
             },
 
-            // Base-1
-            // What number was displayed on {0}?
-            // What number was displayed on Base-1?
-            [Question.Base1Number] = new TranslationInfo
-            {
-                QuestionText = "What number was displayed on {0}?",
-            },
-
             // Beans
             // What was this bean in {0}?
             // What was this bean in Beans?
@@ -2129,14 +2121,6 @@ namespace Souvenir
             [Question.DevilishEggsLetters] = new TranslationInfo
             {
                 QuestionText = "What was the {1} letter in the string of letters on «{0}»?",
-            },
-
-            // Diffusion
-            // What was the displayed concentration in this compartment in {0}?
-            // What was the displayed concentration in this compartment in Diffusion?
-            [Question.DiffusionCell] = new TranslationInfo
-            {
-                QuestionText = "What was the displayed concentration in this compartment in {0}?",
             },
 
             // Digisibility

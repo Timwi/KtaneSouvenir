@@ -30,7 +30,6 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] BookOfMarioSprites;
     public Sprite[] CharacterSlotsSprites;
     public Sprite[] ConnectedMonitorsSprites;
-    public Sprite[] DiffusionSprites;
     public Sprite[] EncryptedEquationsSprites;
     public Sprite[] ExampleSprites;
     public Sprite[] FlagsSprites;

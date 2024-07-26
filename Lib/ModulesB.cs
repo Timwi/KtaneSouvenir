@@ -203,29 +203,6 @@ public partial class SouvenirModule
         addQuestions(module, ingIxs.Select((ingIx, pos) => makeQuestion(Question.BartendingIngredients, module, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { ingredientNames[ingIx] })));
     }
 
-    private IEnumerator<YieldInstruction> ProcessBase1(ModuleData module)
-    {
-        var comp = GetComponent(module, "base1Script");
-
-        yield return WaitForSolve;
-
-        var text = GetField<TextMesh>(comp, "ScreenText", isPublic: true).Get();
-        var answer = GetField<int>(comp, "_answer").Get(x => x is > 9 or < 1 ? $"Unexpected number {x}" : null);
-        var cur = new string('1', answer);
-        IEnumerator Animate()
-        {
-            while (cur.Length > 0)
-            {
-                cur = cur.Substring(1);
-                text.text = cur;
-                yield return new WaitForSeconds(0.2f);
-            }
-        }
-        StartCoroutine(Animate());
-
-        addQuestion(module, Question.Base1Number, correctAnswers: new[] { new string('1', answer) });
-    }
-
     private IEnumerator<YieldInstruction> ProcessBeans(ModuleData module)
     {
         var comp = GetComponent(module, "beansScript");
