@@ -49,6 +49,7 @@ public partial class SouvenirModule
     private IEnumerator<YieldInstruction> ProcessSbemailSongs(ModuleData module)
     {
         var comp = GetComponent(module, "_sbemailsongs");
+        const string moduleId = "sbemailsongs";
 
         var fldDisplayedSongNumbers = GetListField<int>(comp, "stages", isPublic: true);
         while (!_isActivated)
@@ -71,17 +72,17 @@ public partial class SouvenirModule
 
         while (!_noUnignoredModulesLeft)
             yield return new WaitForSeconds(.1f);
-        module.SolveIndex = _modulesSolved.IncSafe(_SbemailSongs + "❖presolve");
+        module.SolveIndex = _modulesSolved.IncSafe(moduleId + "❖presolve");
 
         var myIgnoredList = GetArrayField<string>(comp, "ignoredModules").Get();
         var displayedStageCount = Bomb.GetSolvedModuleNames().Count(x => !myIgnoredList.Contains(x));
 
-        if (_sbemailSongsDisplays.Count != _moduleCounts[_SbemailSongs])
+        if (_sbemailSongsDisplays.Count != _moduleCounts[moduleId])
             throw new AbandonModuleException("The number of displays did not match the number of Sbemail Songs modules.");
 
         var transcriptionsAbridged = GetArrayField<string>(comp, "transcriptionsAbridged").Get(expectedLength: 209);
 
-        if (_moduleCounts[_SbemailSongs] == 1)
+        if (_moduleCounts[moduleId] == 1)
             addQuestions(module, myDisplay.Take(displayedStageCount).Select((digit, ix) => makeQuestion(Question.SbemailSongsSongs, module, formatArgs: new[] { (ix + 1).ToString("X2") }, correctAnswers: new[] { transcriptionsAbridged[digit - 1] }, preferredWrongAnswers: transcriptionsAbridged)));
         else
         {
@@ -483,7 +484,7 @@ public partial class SouvenirModule
 
         while (!fldSolved.Get())
             yield return new WaitForSeconds(.1f);
-        module.SolveIndex = _modulesSolved.IncSafe(_SimonSays);
+        module.SolveIndex = _modulesSolved.IncSafe("Simon");
 
         var colorNames = new[] { "red", "blue", "green", "yellow" };
         var sequence = GetArrayField<int>(comp, "currentSequence").Get(validator: arr => arr.Any(i => i < 0 || i >= colorNames.Length) ? "expected values 0–3" : null);
@@ -1266,13 +1267,14 @@ public partial class SouvenirModule
     private IEnumerator<YieldInstruction> ProcessSouvenir(ModuleData module)
     {
         var comp = module.Module.GetComponent<SouvenirModule>();
+        const string moduleId = "SouvenirModule";
         if (comp == this)
         {
             _legitimatelyNoQuestions.Add(module.Module);
             yield break;
         }
 
-        if (!_moduleCounts.TryGetValue(_Souvenir, out var souvenirCount) || souvenirCount != 2)
+        if (!_moduleCounts.TryGetValue(moduleId, out var souvenirCount) || souvenirCount != 2)
         {
             if (souvenirCount > 2)
                 Debug.Log($"[Souvenir #{_moduleId}] There are more than two Souvenir modules on this bomb. Not asking any questions about them.");
@@ -1307,7 +1309,7 @@ public partial class SouvenirModule
         while (comp._currentQuestion == firstQuestion)
             yield return new WaitForSeconds(0.1f);
 
-        module.SolveIndex = _modulesSolved.IncSafe(_Souvenir + "❖presolve");
+        module.SolveIndex = _modulesSolved.IncSafe(moduleId + "❖presolve");
         addQuestion(module, Question.SouvenirFirstQuestion, correctAnswers: new[] { firstModule },
             preferredWrongAnswers: preferredWrongAnswers.ToArray(), allAnswers: allAnswers.ToArray());
     }

@@ -320,7 +320,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessPigpenCycle(ModuleData module)
     {
-        return processSpeakingEvilCycle1(module, "PigpenCycleScript", Question.PigpenCycleWord, _PigpenCycle);
+        return processSpeakingEvilCycle1(module, "PigpenCycleScript", Question.PigpenCycleWord);
     }
 
     private IEnumerator<YieldInstruction> ProcessPlaceholderTalk(ModuleData module)
@@ -406,7 +406,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessPlayfairCycle(ModuleData module)
     {
-        return processSpeakingEvilCycle1(module, "PlayfairCycleScript", Question.PlayfairCycleWord, _PlayfairCycle);
+        return processSpeakingEvilCycle1(module, "PlayfairCycleScript", Question.PlayfairCycleWord);
     }
 
     private IEnumerator<YieldInstruction> ProcessPoetry(ModuleData module)

@@ -371,7 +371,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessForestCipher(ModuleData module)
     {
-        return processColoredCiphers(module, "forestCipher", Question.ForestCipherScreen, _ForestCipher);
+        return processColoredCiphers(module, "forestCipher", Question.ForestCipherScreen);
     }
 
     private List<Array> _facCylinders = new();
@@ -379,6 +379,7 @@ public partial class SouvenirModule
     private IEnumerator<YieldInstruction> ProcessForgetAnyColor(ModuleData module)
     {
         var comp = GetComponent(module, "FACScript");
+        const string moduleId = "ForgetAnyColor";
 
         var init = GetField<object>(comp, "init").Get();
         var fldCurrentStage = GetIntField(init, "stage");
@@ -407,7 +408,7 @@ public partial class SouvenirModule
 
         while (!_noUnignoredModulesLeft)
             yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_ForgetAnyColor + "❖presolve");
+        _modulesSolved.IncSafe(moduleId + "❖presolve");
 
         var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "White" };
         var figureNames = new[] { "LLLMR", "LMMMR", "LMRRR", "LMMRR", "LLMRR", "LLMMR" };
@@ -416,7 +417,7 @@ public partial class SouvenirModule
 
         var randomStage = Rnd.Range(0, fldCurrentStage.Get(min: 0, max: maxStage));
         var formattedName = "Forget Any Color";
-        if (_moduleCounts[_ForgetAnyColor] > 1)
+        if (_moduleCounts[moduleId] > 1)
         {
             for (int stage = 0; stage < maxStage; stage++)
             {
@@ -454,6 +455,7 @@ public partial class SouvenirModule
     private IEnumerator<YieldInstruction> ProcessForgetEverything(ModuleData module)
     {
         var comp = GetComponent(module, "EvilMemory");
+        const string moduleId = "HexiEvilFMN";
 
         var activated = false;
         module.Module.OnActivate += () => activated = true;
@@ -478,7 +480,7 @@ public partial class SouvenirModule
 
         while (!_noUnignoredModulesLeft)
             yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_ForgetEverything + "❖presolve");
+        _modulesSolved.IncSafe(moduleId + "❖presolve");
 
         var stageOrdering = GetArrayField<int>(comp, "StageOrdering").Get();
         var myIgnoredList = GetStaticField<string[]>(comp.GetType(), "ignoredModules", isPublic: true).Get();
@@ -489,10 +491,10 @@ public partial class SouvenirModule
             yield break;
         }
 
-        if (_feFirstDisplays.Count != _moduleCounts[_ForgetEverything])
-            throw new AbandonModuleException($"The number of displays ({_feFirstDisplays.Count}) did not match the number of Forget Everything modules ({_moduleCounts[_ForgetEverything]}).");
+        if (_feFirstDisplays.Count != _moduleCounts[moduleId])
+            throw new AbandonModuleException($"The number of displays ({_feFirstDisplays.Count}) did not match the number of Forget Everything modules ({_moduleCounts[moduleId]}).");
 
-        if (_moduleCounts[_ForgetEverything] == 1)
+        if (_moduleCounts[moduleId] == 1)
         {
             module.SolveIndex = 1;
             addQuestions(module, myFirstDisplay.Select((digit, pos) => makeQuestion(Question.ForgetEverythingStageOneDisplay, module, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { digit.ToString() })));
@@ -536,6 +538,7 @@ public partial class SouvenirModule
     private IEnumerator<YieldInstruction> ProcessForgetMeNot(ModuleData module)
     {
         var comp = GetComponent(module, "AdvancedMemory");
+        const string moduleId = "MemoryV2";
 
         var fldDisplayedDigits = GetArrayField<int>(comp, "Display");
         var activated = false;
@@ -558,15 +561,15 @@ public partial class SouvenirModule
 
         while (!_noUnignoredModulesLeft)
             yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_ForgetMeNot + "❖presolve");
+        _modulesSolved.IncSafe(moduleId + "❖presolve");
 
         var myIgnoredList = GetStaticField<string[]>(comp.GetType(), "ignoredModules", isPublic: true).Get();
         var displayedStageCount = Bomb.GetSolvedModuleNames().Count(x => !myIgnoredList.Contains(x));
 
-        if (_forgetMeNotDisplays.Count != _moduleCounts[_ForgetMeNot])
+        if (_forgetMeNotDisplays.Count != _moduleCounts[moduleId])
             throw new AbandonModuleException("The number of displays did not match the number of Forget Me Not modules.");
 
-        if (_moduleCounts[_ForgetMeNot] == 1)
+        if (_moduleCounts[moduleId] == 1)
             addQuestions(module, myDisplay.Take(displayedStageCount).Select((digit, ix) => makeQuestion(Question.ForgetMeNotDisplayedDigits, 1, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { digit.ToString() })));
         else
         {
@@ -639,6 +642,7 @@ public partial class SouvenirModule
     private IEnumerator<YieldInstruction> ProcessForgetTheColors(ModuleData module)
     {
         var comp = GetComponent(module, "FTCScript");
+        const string moduleId = "ForgetTheColors";
 
         var myGearNumbers = GetListField<byte>(comp, "gear").Get();
         var myLargeDisplays = GetListField<short>(comp, "largeDisplay").Get();
@@ -654,7 +658,7 @@ public partial class SouvenirModule
 
         while (!_noUnignoredModulesLeft)
             yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_ForgetTheColors + "❖presolve");
+        _modulesSolved.IncSafe(moduleId + "❖presolve");
 
         var allLists = new IList[] { _ftcGearNumbers, _ftcLargeDisplays, _ftcSineNumbers, _ftcGearColors, _ftcRuleColors };
         if (allLists.Any(l => l.Count != _ftcGearColors.Count))
@@ -693,7 +697,7 @@ public partial class SouvenirModule
         var chosenStage = Rnd.Range(0, myGearNumbers.Count);
         var formattedName = "Forget The Colors";
 
-        if (_moduleCounts[_ForgetTheColors] > 1)
+        if (_moduleCounts[moduleId] > 1)
         {
             for (int ix = 0; ix < myGearNumbers.Count; ix++)
             {
@@ -734,6 +738,7 @@ public partial class SouvenirModule
     private IEnumerator<YieldInstruction> ProcessForgetThis(ModuleData module)
     {
         var comp = GetComponent(module, "ForgetThis");
+        const string moduleId = "forgetThis";
 
         if (GetField<bool>(comp, "autoSolved").Get())
         {
@@ -757,7 +762,7 @@ public partial class SouvenirModule
 
         while (!_noUnignoredModulesLeft)
             yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_ForgetThis + "❖presolve");
+        _modulesSolved.IncSafe(moduleId + "❖presolve");
 
         var displayedStagesCount = GetIntField(comp, "curStageNum").Get(min: 0, max: myColors.Count);
 
@@ -766,7 +771,7 @@ public partial class SouvenirModule
         var chosenStage = Rnd.Range(0, displayedStagesCount);
 
         var formattedName = "Forget This";
-        if (_moduleCounts[_ForgetThis] > 1)
+        if (_moduleCounts[moduleId] > 1)
         {
             for (int stage = 0; stage < displayedStagesCount; stage++)
             {
@@ -868,14 +873,15 @@ public partial class SouvenirModule
             .Get(arr => arr.Length != 4 ? "Bad length" : arr.Any(i => i < 0 || i > 3) ? "Bad item" : null)
             .ToList();
 
+        var moduleCount = _moduleCounts.Get("FuseBox");
         for (int ix = 0; ix < 4; ix++)
         {
             var tex = FuseBoxQuestions.First(t => t.name.Equals($"flash{ix + 1}"));
             var tex2 = FuseBoxQuestions.First(t => t.name.Equals($"arrow{ix + 1}"));
 
-            if (_moduleCounts.Get(_FuseBox) > 1)
+            if (moduleCount > 1)
             {
-                var num = _modulesSolved.Get(_FuseBox).ToString();
+                var num = module.SolveIndex.ToString();
                 var tmp = new Texture2D(400, 320, TextureFormat.ARGB32, false);
                 var tmp2 = new Texture2D(400, 320, TextureFormat.ARGB32, false);
                 tmp.SetPixels(tex.GetPixels());
@@ -901,8 +907,8 @@ public partial class SouvenirModule
 
             var q = Sprite.Create(tex, Rect.MinMaxRect(0f, 0f, 400f, 320f), new Vector2(.5f, .5f), 1280f, 1u, SpriteMeshType.Tight);
             var q2 = Sprite.Create(tex2, Rect.MinMaxRect(0f, 0f, 400f, 320f), new Vector2(.5f, .5f), 1280f, 1u, SpriteMeshType.Tight);
-            q.name = $"FuseBox-Flash-{ix}-{_moduleCounts.Get(_FuseBox)}";
-            q2.name = $"FuseBox-Arrow-{ix}-{_moduleCounts.Get(_FuseBox)}";
+            q.name = $"FuseBox-Flash-{ix}-{module.SolveIndex}";
+            q2.name = $"FuseBox-Arrow-{ix}-{module.SolveIndex}";
             qs.Add(makeSpriteQuestion(q, Question.FuseBoxFlashes, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { FuseBoxColorSprites[flashes[ix]] }));
             qs.Add(makeSpriteQuestion(q2, Question.FuseBoxArrows, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { FuseBoxArrowSprites[arrows[ix]] }));
         }

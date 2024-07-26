@@ -208,7 +208,7 @@ public partial class SouvenirModule
             var name = $"{flashes.Count}-{stage + 1}";
             var tex = NonverbalSimonQuestions.First(t => t.name.Equals(name));
 
-            if (_moduleCounts.Get(_NonverbalSimon) > 1)
+            if (_moduleCounts.Get("nonverbalSimon") > 1)
             {
                 var num = module.SolveIndex.ToString();
                 var tmp = new Texture2D(400, 320, TextureFormat.ARGB32, false);
@@ -227,7 +227,7 @@ public partial class SouvenirModule
             }
 
             var q = Sprite.Create(tex, Rect.MinMaxRect(0f, 0f, 400f, 320f), new Vector2(.5f, .5f), 1280f, 1u, SpriteMeshType.Tight);
-            q.name = $"NVSQ{stage}-{_moduleCounts.Get(_NonverbalSimon)}";
+            q.name = $"NVSQ{stage}-{module.SolveIndex}";
             qs.Add(makeSpriteQuestion(q, Question.NonverbalSimonFlashes, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { NonverbalSimonSprites[Array.IndexOf(names, flashes[stage])] }, preferredWrongAnswers: NonverbalSimonSprites));
         }
 

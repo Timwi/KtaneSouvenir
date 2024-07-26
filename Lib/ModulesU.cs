@@ -10,17 +10,17 @@ public partial class SouvenirModule
 {
     private IEnumerator<YieldInstruction> ProcessUltimateCipher(ModuleData module)
     {
-        return processColoredCiphers(module, "ultimateCipher", Question.UltimateCipherScreen, _UltimateCipher);
+        return processColoredCiphers(module, "ultimateCipher", Question.UltimateCipherScreen);
     }
 
     private IEnumerator<YieldInstruction> ProcessUltimateCycle(ModuleData module)
     {
-        return processSpeakingEvilCycle2(module, "UltimateCycleScript", Question.UltimateCycleWord, _UltimateCycle);
+        return processSpeakingEvilCycle2(module, "UltimateCycleScript", Question.UltimateCycleWord);
     }
 
     private IEnumerator<YieldInstruction> ProcessUltracube(ModuleData module)
     {
-        return processHypercubeUltracube(module, "TheUltracubeModule", Question.UltracubeRotations, _Ultracube);
+        return processHypercubeUltracube(module, "TheUltracubeModule", Question.UltracubeRotations);
     }
 
     private IEnumerator<YieldInstruction> ProcessUltraStores(ModuleData module)
@@ -167,6 +167,6 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessUSAMaze(ModuleData module)
     {
-        return processWorldMaze(module, "USAMaze", _USAMaze, Question.USAMazeOrigin);
+        return processWorldMaze(module, "USAMaze", Question.USAMazeOrigin);
     }
 }

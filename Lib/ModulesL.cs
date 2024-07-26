@@ -162,7 +162,8 @@ public partial class SouvenirModule
             while (fldStage.Get() == stage)
                 yield return null;
         }
-        _modulesSolved.IncSafe(_LEDEncryption);
+
+        yield return WaitForSolve;
 
         addQuestions(module, Enumerable.Range(0, pressedLetters.Length - 1)
             .Where(i => pressedLetters[i] != null)

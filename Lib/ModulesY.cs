@@ -82,6 +82,6 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessYellowCipher(ModuleData module)
     {
-        return processColoredCiphers(module, "yellowCipher", Question.YellowCipherScreen, _YellowCipher);
+        return processColoredCiphers(module, "yellowCipher", Question.YellowCipherScreen);
     }
 }

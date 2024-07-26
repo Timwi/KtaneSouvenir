@@ -266,7 +266,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessVioletCipher(ModuleData module)
     {
-        return processColoredCiphers(module, "violetCipher", Question.VioletCipherScreen, _VioletCipher);
+        return processColoredCiphers(module, "violetCipher", Question.VioletCipherScreen);
     }
 
     private IEnumerator<YieldInstruction> ProcessVisualImpairment(ModuleData module)

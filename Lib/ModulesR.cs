@@ -147,7 +147,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessRedCipher(ModuleData module)
     {
-        return processColoredCiphers(module, "redCipher", Question.RedCipherScreen, _RedCipher);
+        return processColoredCiphers(module, "redCipher", Question.RedCipherScreen);
     }
 
     private IEnumerator<YieldInstruction> ProcessRedHerring(ModuleData module)

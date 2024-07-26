@@ -125,7 +125,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessIndigoCipher(ModuleData module)
     {
-        return processColoredCiphers(module, "indigoCipher", Question.IndigoCipherScreen, _IndigoCipher);
+        return processColoredCiphers(module, "indigoCipher", Question.IndigoCipherScreen);
     }
 
     private IEnumerator<YieldInstruction> ProcessInfiniteLoop(ModuleData module)

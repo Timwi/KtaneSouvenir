@@ -142,7 +142,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessHillCycle(ModuleData module)
     {
-        return processSpeakingEvilCycle2(module, "HillCycleScript", Question.HillCycleWord, _HillCycle);
+        return processSpeakingEvilCycle2(module, "HillCycleScript", Question.HillCycleWord);
     }
 
     private IEnumerator<YieldInstruction> ProcessHinges(ModuleData module)
@@ -323,7 +323,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessHypercube(ModuleData module)
     {
-        return processHypercubeUltracube(module, "TheHypercubeModule", Question.HypercubeRotations, _Hypercube);
+        return processHypercubeUltracube(module, "TheHypercubeModule", Question.HypercubeRotations);
     }
 
     private IEnumerator<YieldInstruction> ProcessHyperlink(ModuleData module)

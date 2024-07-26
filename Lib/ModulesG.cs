@@ -157,7 +157,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessGrayCipher(ModuleData module)
     {
-        return processColoredCiphers(module, "grayCipher", Question.GrayCipherScreen, _GrayCipher);
+        return processColoredCiphers(module, "grayCipher", Question.GrayCipherScreen);
     }
 
     private IEnumerator<YieldInstruction> ProcessGreatVoid(ModuleData module)
@@ -228,7 +228,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessGreenCipher(ModuleData module)
     {
-        return processColoredCiphers(module, "greenCipher", Question.GreenCipherScreen, _GreenCipher);
+        return processColoredCiphers(module, "greenCipher", Question.GreenCipherScreen);
     }
 
     private IEnumerator<YieldInstruction> ProcessGridLock(ModuleData module)

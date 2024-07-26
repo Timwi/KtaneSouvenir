@@ -151,7 +151,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessOrangeCipher(ModuleData module)
     {
-        return processColoredCiphers(module, "orangeCipher", Question.OrangeCipherScreen, _OrangeCipher);
+        return processColoredCiphers(module, "orangeCipher", Question.OrangeCipherScreen);
     }
 
     private IEnumerator<YieldInstruction> ProcessOrderedKeys(ModuleData module)

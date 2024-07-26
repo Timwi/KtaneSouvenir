@@ -10,7 +10,7 @@ public partial class SouvenirModule
 {
     private IEnumerator<YieldInstruction> ProcessCaesarCycle(ModuleData module)
     {
-        return processSpeakingEvilCycle1(module, "CaesarCycleScript", Question.CaesarCycleWord, _CaesarCycle);
+        return processSpeakingEvilCycle1(module, "CaesarCycleScript", Question.CaesarCycleWord);
     }
 
     private IEnumerator<YieldInstruction> ProcessCaesarPsycho(ModuleData module)
@@ -718,7 +718,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessCoralCipher(ModuleData module)
     {
-        return processColoredCiphers(module, "coralCipher", Question.CoralCipherScreen, _CoralCipher);
+        return processColoredCiphers(module, "coralCipher", Question.CoralCipherScreen);
     }
 
     private IEnumerator<YieldInstruction> ProcessCorners(ModuleData module)
@@ -738,7 +738,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessCornflowerCipher(ModuleData module)
     {
-        return processColoredCiphers(module, "cornflowerCipher", Question.CornflowerCipherScreen, _CornflowerCipher);
+        return processColoredCiphers(module, "cornflowerCipher", Question.CornflowerCipherScreen);
     }
 
     private IEnumerator<YieldInstruction> ProcessCosmic(ModuleData module)
@@ -797,7 +797,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessCreamCipher(ModuleData module)
     {
-        return processColoredCiphers(module, "creamCipher", Question.CreamCipherScreen, _CreamCipher);
+        return processColoredCiphers(module, "creamCipher", Question.CreamCipherScreen);
     }
 
     private IEnumerator<YieldInstruction> ProcessCreation(ModuleData module)
@@ -836,7 +836,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessCrimsonCipher(ModuleData module)
     {
-        return processColoredCiphers(module, "crimsonCipher", Question.CrimsonCipherScreen, _CrimsonCipher);
+        return processColoredCiphers(module, "crimsonCipher", Question.CrimsonCipherScreen);
     }
 
     private IEnumerator<YieldInstruction> ProcessCritters(ModuleData module)
@@ -935,7 +935,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessCrypticCycle(ModuleData module)
     {
-        return processSpeakingEvilCycle2(module, "CrypticCycleScript", Question.CrypticCycleWord, _CrypticCycle);
+        return processSpeakingEvilCycle2(module, "CrypticCycleScript", Question.CrypticCycleWord);
     }
 
     private IEnumerator<YieldInstruction> ProcessCrypticKeypad(ModuleData module)

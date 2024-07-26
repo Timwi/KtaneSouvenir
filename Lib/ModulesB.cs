@@ -426,7 +426,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessBlackCipher(ModuleData module)
     {
-        return processColoredCiphers(module, "blackCipher", Question.BlackCipherScreen, _BlackCipher);
+        return processColoredCiphers(module, "blackCipher", Question.BlackCipherScreen);
     }
 
     private IEnumerator<YieldInstruction> ProcessBlindMaze(ModuleData module)
@@ -546,7 +546,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessBlueCipher(ModuleData module)
     {
-        return processColoredCiphers(module, "blueCipher", Question.BlueCipherScreen, _BlueCipher);
+        return processColoredCiphers(module, "blueCipher", Question.BlueCipherScreen);
     }
 
     private IEnumerator<YieldInstruction> ProcessBobBarks(ModuleData module)
@@ -834,7 +834,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessBrownCipher(ModuleData module)
     {
-        return processColoredCiphers(module, "brownCipher", Question.BrownCipherScreen, _BrownCipher);
+        return processColoredCiphers(module, "brownCipher", Question.BrownCipherScreen);
     }
 
     private IEnumerator<YieldInstruction> ProcessBrushStrokes(ModuleData module)
@@ -901,7 +901,7 @@ public partial class SouvenirModule
             color = ledOff.activeSelf ? -1 : (int) propLightColor.Get();
             yield return new WaitForSeconds(.1f);
         }
-        module.SolveIndex = _modulesSolved.IncSafe(_Button);
+        module.SolveIndex = _modulesSolved.IncSafe("BigButton");
         if (color < 0)
         {
             Debug.Log($"[Souvenir #{_moduleId}] No question for The Button because the button was tapped (or I missed the light color).");

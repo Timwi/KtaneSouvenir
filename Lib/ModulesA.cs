@@ -111,7 +111,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessAffineCycle(ModuleData module)
     {
-        return processSpeakingEvilCycle1(module, "AffineCycleScript", Question.AffineCycleWord, _AffineCycle);
+        return processSpeakingEvilCycle1(module, "AffineCycleScript", Question.AffineCycleWord);
     }
 
     private IEnumerator<YieldInstruction> ProcessALetter(ModuleData module)

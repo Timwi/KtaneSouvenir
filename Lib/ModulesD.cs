@@ -11,7 +11,7 @@ public partial class SouvenirModule
 {
     private IEnumerator<YieldInstruction> ProcessDACHMaze(ModuleData module)
     {
-        return processWorldMaze(module, "DACHMaze", _DACHMaze, Question.DACHMazeOrigin);
+        return processWorldMaze(module, "DACHMaze", Question.DACHMazeOrigin);
     }
 
     private IEnumerator<YieldInstruction> ProcessDeafAlley(ModuleData module)

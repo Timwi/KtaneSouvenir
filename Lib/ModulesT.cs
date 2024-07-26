@@ -74,10 +74,10 @@ public partial class SouvenirModule
             tex = TechnicalKeypadQuestions.First(t => t.name.Equals("name"));
             tmp.SetPixels(40, 90, tex.width, tex.height, tex.GetPixels());
 
-            var modCount = _moduleCounts.Get(_TechnicalKeypad);
+            var modCount = _moduleCounts.Get("TechnicalKeypad");
             if (modCount > 1)
             {
-                var numText = _modulesSolved.Get(_TechnicalKeypad).ToString();
+                var numText = module.SolveIndex.ToString();
                 for (int digit = 0; digit < numText.Length; digit++)
                 {
                     tex = DigitTextures[numText[digit] - '0'];
@@ -90,7 +90,7 @@ public partial class SouvenirModule
             tex = tmp;
 
             var questionSprite = Sprite.Create(tex, Rect.MinMaxRect(0, 0, 400, 320), new Vector2(.5f, .5f), 1280f, 1, SpriteMeshType.Tight);
-            questionSprite.name = $"Technical-Keypad-{position}-{_moduleCounts.Get(_TechnicalKeypad)}";
+            questionSprite.name = $"Technical-Keypad-{position}-{module.SolveIndex}";
             qs.Add(makeSpriteQuestion(questionSprite, Question.TechnicalKeypadDisplayedDigits, module, formatArgs: new[] { ordinal(position + 1) }, correctAnswers: new[] { digits[position].ToString() }));
         }
         addQuestions(module, qs);
@@ -133,7 +133,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessTetriamonds(ModuleData module)
     {
-        return processPolyiamonds(module, "tetriamondsScript", Question.TetriamondsPulsingColours, _Tetriamonds, new[] { "orange", "lime", "jade", "azure", "violet", "rose", "grey" });
+        return processPolyiamonds(module, "tetriamondsScript", Question.TetriamondsPulsingColours, new[] { "orange", "lime", "jade", "azure", "violet", "rose", "grey" });
     }
 
     private IEnumerator<YieldInstruction> ProcessTextField(ModuleData module)
@@ -368,7 +368,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessTriamonds(ModuleData module)
     {
-        return processPolyiamonds(module, "triamondsScript", Question.TriamondsPulsingColours, _Tetriamonds, new[] { "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white" });
+        return processPolyiamonds(module, "triamondsScript", Question.TriamondsPulsingColours, new[] { "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white" });
     }
 
     private IEnumerator<YieldInstruction> ProcessTripleTerm(ModuleData module)
