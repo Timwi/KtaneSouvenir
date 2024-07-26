@@ -357,7 +357,7 @@ public partial class SouvenirModule
             { "MiddleRowShiftedToTheLeft", "Middle row shifted to the left" },
             { "BottomRowShiftedToTheRight", "Bottom row shifted to the right" },
             { "BottomRowShiftedToTheLeft", "Bottom row shifted to the left" },
-            { "EachLetterUpsideDown", "Each letter upside-down" },
+            { "EachLetterRotated180", "Each letter upside-down" },
             { "EachLetterHorizontallyFlipped", "Each letter horizontally flipped" },
             { "EachLetterVerticallyFlipped", "Each letter vertically flipped" },
             { "DotsAreInverted", "Dots are inverted" }
