@@ -215,12 +215,8 @@ public T InvokeOn(object target, params object[] arguments);
 
 ### Important
 
-Before making any questions or abandoning the module, you *must* increment the solve count for that module, which is stored in the `_modulesSolved` dictionary. Use the `IncSafe` method:
-
-
-```cs
-_modulesSolved.IncSafe(_MadMemory);
-```
+Before making any questions, you *must* wait for the module to be solved. You can use `yield return WaitForSolve;` to do this.
+For modules where this is not possible, either specify the solve order manually or give a differently formatted module name.
 
 ### No Questions
 
@@ -234,39 +230,40 @@ yield break;
 
 ### Making Questions
 
-There are several `makeQuestion` and `makeSpriteQuestion` overloads, which are for different question and answer types:
+There are several `makeQuestion` and `makeSpriteQuestion` overloads, which are for different question and answer types
+(there exist other overload for niche use cases):
 
 ```cs
 // Default
-private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0);
+private QandA makeQuestion(Question question, ModuleData data, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0);
 
 // Dynamic font answers
-private QandA makeQuestion(Question question, string moduleKey, Font font, Texture fontTexture, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0);
+private QandA makeQuestion(Question question, ModuleData data, Font font, Texture fontTexture, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0);
 
 // Sprite answers
-private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null, Sprite[] allAnswers = null, float questionSpriteRotation = 0);
+private QandA makeQuestion(Question question, ModuleData data, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null, Sprite[] allAnswers = null, float questionSpriteRotation = 0);
 
 // Grid answers
-private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0);
+private QandA makeQuestion(Question question, ModuleData data, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0);
 
 // Audio answers
-private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, AudioClip[] correctAnswers = null, AudioClip[] preferredWrongAnswers = null, AudioClip[] allAnswers = null, float questionSpriteRotation = 0);
+private QandA makeQuestion(Question question, ModuleData data, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, AudioClip[] correctAnswers = null, AudioClip[] preferredWrongAnswers = null, AudioClip[] allAnswers = null, float questionSpriteRotation = 0);
 
 // Sprite question, text answers
-private QandA makeSpriteQuestion(Sprite questionSprite, Question question, string moduleKey, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null);
+private QandA makeSpriteQuestion(Sprite questionSprite, Question question, ModuleData data, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null);
 
 // Sprite question, sprite answers
-private QandA makeSpriteQuestion(Sprite questionSprite, Question question, string moduleKey, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null, Sprite[] allAnswers = null);
+private QandA makeSpriteQuestion(Sprite questionSprite, Question question, ModuleData data, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null, Sprite[] allAnswers = null);
 
 // Sprite question, audio answers
-private QandA makeSpriteQuestion(Sprite questionSprite, Question question, string moduleKey, string formattedModuleName = null, string[] formatArgs = null, AudioClip[] correctAnswers = null, AudioClip[] preferredWrongAnswers = null, AudioClip[] allAnswers = null);
+private QandA makeSpriteQuestion(Sprite questionSprite, Question question, ModuleData data, string formattedModuleName = null, string[] formatArgs = null, AudioClip[] correctAnswers = null, AudioClip[] preferredWrongAnswers = null, AudioClip[] allAnswers = null);
 ```
 
 In every case, the meaning of each parameter is equivalent:
 
 `question` — The question being asked.
 
-`moduleKey` — The ID of the module.
+`data` — The object passed in to the module handler.
 
 `questionSprite` — For non-sprite questions, this is the sprite that appears on the right of the module when the question is asked. For sprite questions, this is the sprite that represents the question.
 
@@ -287,19 +284,19 @@ In every case, the meaning of each parameter is equivalent:
 To add a question batch, call `addQuestions`. You *must not* add more than one question batch per module—make all of the questions first and add them in one go at the end.
 
 ```cs
-private void addQuestions(KMBombModule module, IEnumerable<QandA> questions);
+private void addQuestions(ModuleData module, IEnumerable<QandA> questions);
 
-private void addQuestions(KMBombModule module, params QandA[] questions);
+private void addQuestions(ModuleData module, params QandA[] questions);
 ```
 
 If you are only adding one question, you can use one of the `addQuestion` overloads instead:
 
 ```cs
-private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0);
+private void addQuestion(ModuleData module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0);
 
-private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Sprite[] correctAnswers = null, Sprite[] allAnswers = null, Sprite[] preferredWrongAnswers = null, float questionSpriteRotation = 0);
+private void addQuestion(ModuleData module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Sprite[] correctAnswers = null, Sprite[] allAnswers = null, Sprite[] preferredWrongAnswers = null, float questionSpriteRotation = 0);
 
-private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0);
+private void addQuestion(ModuleData module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0);
 
-private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, AudioClip[] correctAnswers = null, AudioClip[] allAnswers = null, AudioClip[] preferredWrongAnswers = null, float questionSpriteRotation = 0);
+private void addQuestion(ModuleData module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, AudioClip[] correctAnswers = null, AudioClip[] allAnswers = null, AudioClip[] preferredWrongAnswers = null, float questionSpriteRotation = 0);
 ```

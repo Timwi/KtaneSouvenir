@@ -804,9 +804,13 @@ public partial class SouvenirModule : MonoBehaviour
 
     private sealed class ModuleData
     {
+        /// <summary>The actual module component</summary>
         public KMBombModule Module;
+        /// <summary>Set to <code>true</code> after <code>KMBombModule.HandlePass()</code> has been called.</summary>
         public bool IsSolved => !Unsolved;
+        /// <summary>Set to <code>false</code> after <code>KMBombModule.HandlePass()</code> has been called.</summary>
         public bool Unsolved = true;
+        /// <summary>The order in which this module has been solved, or 0 if it is currently unsolved.</summary>
         public int SolveIndex;
     }
     #endregion
@@ -1161,7 +1165,7 @@ public partial class SouvenirModule : MonoBehaviour
 
         if (solveIx < 1 && formattedModuleName is null)
         {
-            Debug.LogError($"<Souvenir #{_moduleId}> Abandoning {attr.ModuleName} because you didn't specify the solve count. Either call makeQuestion() with ModuleData, specify it yourself, or specify the formatted module name.");
+            Debug.LogError($"<Souvenir #{_moduleId}> Abandoning {attr.ModuleName} because it wasn't solved. Make sure to `yield return WaitForSolve;`. If this is intentional, either specify the solve index yourself, or specify the formatted module name.");
             return null;
         }
 
