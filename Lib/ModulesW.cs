@@ -88,17 +88,17 @@ public partial class SouvenirModule
 
         var eliminatedPerson = GetField<object>(comp, "personToEliminate").Get();
         var eliminationPersonName = GetField<string>(eliminatedPerson, "Name").Get();
-        var moneyPhaseName = eliminationPersonName == names[1] ? names[2] : names[1];
+        var moneyPhaseName = eliminationPersonName == names[0] ? names[1] : names[0];
         var jsonReader = GetStaticField<object>(comp.GetType(), "jsonData").Get();
         var allNames = GetStaticProperty<List<string>>(jsonReader.GetType(), "ContestantNames", isPublic: true).Get().ToArray();
 
         addQuestions(module,
             makeQuestion(Question.WeakestLinkElimination, module, correctAnswers: new[] { eliminationPersonName }, preferredWrongAnswers: allNames),
             makeQuestion(Question.WeakestLinkMoneyPhaseName, module, correctAnswers: new[] { moneyPhaseName }, preferredWrongAnswers: allNames),
+            makeQuestion(Question.WeakestLinkSkill, module, formatArgs: new[] { names[0] }, correctAnswers: new[] { skill[0].ToString() }),
             makeQuestion(Question.WeakestLinkSkill, module, formatArgs: new[] { names[1] }, correctAnswers: new[] { skill[1].ToString() }),
-            makeQuestion(Question.WeakestLinkSkill, module, formatArgs: new[] { names[2] }, correctAnswers: new[] { skill[2].ToString() }),
-            makeQuestion(Question.WeakestLinkRatio, module, formatArgs: new[] { names[1] }, correctAnswers: new[] { ratioArr[1] }),
-            makeQuestion(Question.WeakestLinkRatio, module, formatArgs: new[] { names[2] }, correctAnswers: new[] { ratioArr[2] })
+            makeQuestion(Question.WeakestLinkRatio, module, formatArgs: new[] { names[0] }, correctAnswers: new[] { ratioArr[0] }),
+            makeQuestion(Question.WeakestLinkRatio, module, formatArgs: new[] { names[1] }, correctAnswers: new[] { ratioArr[1] })
         );
     }
 
