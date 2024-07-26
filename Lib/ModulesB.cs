@@ -118,11 +118,11 @@ public partial class SouvenirModule
 
         addQuestions(module,
             correctButtonTexts.Select((name, index) => makeQuestion(Question.BamboozledAgainButtonText, _BamboozledAgain,
-                formatArgs: new[] { index == 3 ? "fourth" : ordinal(index + 1) },
+                formatArgs: new[] { ordinal(index + 1) },
                 correctAnswers: new[] { name },
                 preferredWrongAnswers: correctButtonTexts.Except(new[] { name }).ToArray())).Concat(
             correctButtonColors.Select((col, index) => makeQuestion(Question.BamboozledAgainButtonColor, _BamboozledAgain,
-                formatArgs: new[] { index == 3 ? "fourth" : ordinal(index + 1) },
+                formatArgs: new[] { ordinal(index + 1) },
                 correctAnswers: new[] { col },
                 preferredWrongAnswers: correctButtonColors.Except(new[] { col }).ToArray()))).Concat(
             firstRowTexts.Select((text, index) => makeQuestion(Question.BamboozledAgainDisplayTexts1, _BamboozledAgain,
