@@ -6,45 +6,37 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
-    private IEnumerator<YieldInstruction> ProcessMadMemory(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMadMemory(ModuleData module)
     {
         var comp = GetComponent(module, "MadMemory");
 
-        bool isSolved = false;
-        module.OnPass += () => { isSolved = true; return false; };
-        while (!isSolved)
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_MadMemory);
+        yield return WaitForSolve;
 
         var possibleTexts = GetArrayField<string>(comp, "screenTexts", true).Get(expectedLength: 16);
         var displayedLabels = GetArrayField<int>(comp, "screenLabels", true).Get(expectedLength: 4);
 
         var qs = new List<QandA>();
         for (int stageNum = 0; stageNum < 4; stageNum++)
-            qs.Add(makeQuestion(Question.MadMemoryDisplays, _MadMemory, formatArgs: new[] { ordinal(stageNum + 1) }, correctAnswers: new[] { possibleTexts[displayedLabels[stageNum]] }));
+            qs.Add(makeQuestion(Question.MadMemoryDisplays, module, formatArgs: new[] { ordinal(stageNum + 1) }, correctAnswers: new[] { possibleTexts[displayedLabels[stageNum]] }));
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessMafia(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMafia(ModuleData module)
     {
         var comp = GetComponent(module, "MafiaModule");
-        var fldSolved = GetField<bool>(comp, "_isSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Mafia);
+        yield return WaitForSolve;
 
         var godfather = GetField<object>(comp, "_godfather").Get();
         var suspects = GetField<Array>(comp, "_suspects").Get(ar => ar.Length != 8 ? "expected length 8" : null);
         addQuestion(module, Question.MafiaPlayers, correctAnswers: suspects.Cast<object>().Select(obj => obj.ToString()).Except(new[] { godfather.ToString() }).ToArray());
     }
 
-    private IEnumerator<YieldInstruction> ProcessMagentaCipher(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMagentaCipher(ModuleData module)
     {
         return processColoredCiphers(module, "magentaCipher", Question.MagentaCipherScreen, _MagentaCipher);
     }
 
-    private IEnumerator<YieldInstruction> ProcessMahjong(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMahjong(ModuleData module)
     {
         var comp = GetComponent(module, "MahjongModule");
 
@@ -64,7 +56,7 @@ public partial class SouvenirModule
                 currentTaken = taken.ToArray();
             }
         }
-        _modulesSolved.IncSafe(_Mahjong);
+        yield return WaitForSolve;
 
         // Remove the counting tile, complete with smoke animation
         var countingTile = GetField<MeshRenderer>(comp, "CountingTile", true).Get();
@@ -95,24 +87,21 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"The sprite for one of the matched tiles ({matchedTileSpriteNames[invalidIx]}) doesn’t exist. matchedTileSpriteNames=[{matchedTileSpriteNames.JoinString(", ")}], matchedTileSprites=[{matchedTileSprites.Select(spr => spr == null ? "<null>" : spr.name).JoinString(", ")}], countingRow=[{GetArrayField<int>(comp, "_countingRow").Get().JoinString(", ")}], matchRow1=[{matchRow1.JoinString(", ")}], matchRow2=[{matchRow2.JoinString(", ")}], tileSprites=[{tileSprites.Select(spr => spr.name).JoinString(", ")}]");
 
         addQuestions(module,
-            makeQuestion(Question.MahjongCountingTile, _Mahjong, correctAnswers: new[] { countingTileSprite }, preferredWrongAnswers: GetArrayField<int>(comp, "_countingRow").Get().Select(ix => MahjongSprites[ix]).ToArray()),
-            makeQuestion(Question.MahjongMatches, _Mahjong, formatArgs: new[] { "first" }, correctAnswers: matchedTileSprites.Take(2).ToArray(), preferredWrongAnswers: tileSprites),
-            makeQuestion(Question.MahjongMatches, _Mahjong, formatArgs: new[] { "second" }, correctAnswers: matchedTileSprites.Skip(2).Take(2).ToArray(), preferredWrongAnswers: tileSprites));
+            makeQuestion(Question.MahjongCountingTile, module, correctAnswers: new[] { countingTileSprite }, preferredWrongAnswers: GetArrayField<int>(comp, "_countingRow").Get().Select(ix => MahjongSprites[ix]).ToArray()),
+            makeQuestion(Question.MahjongMatches, module, formatArgs: new[] { "first" }, correctAnswers: matchedTileSprites.Take(2).ToArray(), preferredWrongAnswers: tileSprites),
+            makeQuestion(Question.MahjongMatches, module, formatArgs: new[] { "second" }, correctAnswers: matchedTileSprites.Skip(2).Take(2).ToArray(), preferredWrongAnswers: tileSprites));
     }
 
-    private IEnumerator<YieldInstruction> ProcessMainPage(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMainPage(ModuleData module)
     {
         var comp = GetComponent(module, "_mainpagescript");
-        var fldSolved = GetProperty<bool>(GetProperty<object>(comp, "Status", isPublic: true).Get(), "IsSolved", isPublic: true);
 
         // Homestar and the background
         var homestarBackground = GetField<object>(comp, "HSBG", isPublic: true).Get();
         var homestarNum = GetIntField(homestarBackground, "HSnumber").Get(min: 0, max: 26) + 1;
         var backgroundNum = GetIntField(homestarBackground, "BGnumber").Get(min: 0, max: 26) + 1;
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_MainPage);
+        yield return WaitForSolve;
 
         // The buttons' effects
         var anims = GetArrayField<KMSelectable>(comp, "menuButtons", isPublic: true).Get(expectedLength: 6);
@@ -129,22 +118,18 @@ public partial class SouvenirModule
         var bubbleMessageAnswers = new[] { bubbleFirstMessage[bubbleIndices[0]], bubbleMessages[bubbleIndices[1] % 5, bubbleIndices[1] / 5], bubbleMessages[bubbleIndices[2] % 5, bubbleIndices[2] / 5] };
 
         addQuestions(module,
-            new[] { "toons", "games", "characters", "downloads", "store", "email" }.Select((text, ix) => makeQuestion(Question.MainPageButtonEffectOrigin, _MainPage, formatArgs: new[] { text }, correctAnswers: new[] { animNums[ix].ToString() })).Concat(
-            new[] { makeQuestion(Question.MainPageHomestarBackgroundOrigin, _MainPage, formatArgs: new[] { "Homestar" }, correctAnswers: new[] { homestarNum.ToString() }),
-            makeQuestion(Question.MainPageHomestarBackgroundOrigin, _MainPage, formatArgs: new[] { "the background" }, correctAnswers: new[] { backgroundNum.ToString() }),
-            makeQuestion(Question.MainPageBubbleColors, _MainPage, correctAnswers: new[] { absentBubbleColor }),
-            makeQuestion(Question.MainPageBubbleMessages, _MainPage, formatArgs: new[] { "display" }, correctAnswers: bubbleMessageAnswers),
-            makeQuestion(Question.MainPageBubbleMessages, _MainPage, formatArgs: new[] { "not display" }, correctAnswers: GetAnswers(Question.MainPageBubbleMessages).Except(bubbleMessageAnswers).ToArray())}));
+            new[] { "toons", "games", "characters", "downloads", "store", "email" }.Select((text, ix) => makeQuestion(Question.MainPageButtonEffectOrigin, module, formatArgs: new[] { text }, correctAnswers: new[] { animNums[ix].ToString() })).Concat(
+            new[] { makeQuestion(Question.MainPageHomestarBackgroundOrigin, module, formatArgs: new[] { "Homestar" }, correctAnswers: new[] { homestarNum.ToString() }),
+            makeQuestion(Question.MainPageHomestarBackgroundOrigin, module, formatArgs: new[] { "the background" }, correctAnswers: new[] { backgroundNum.ToString() }),
+            makeQuestion(Question.MainPageBubbleColors, module, correctAnswers: new[] { absentBubbleColor }),
+            makeQuestion(Question.MainPageBubbleMessages, module, formatArgs: new[] { "display" }, correctAnswers: bubbleMessageAnswers),
+            makeQuestion(Question.MainPageBubbleMessages, module, formatArgs: new[] { "not display" }, correctAnswers: GetAnswers(Question.MainPageBubbleMessages).Except(bubbleMessageAnswers).ToArray())}));
     }
 
-    private IEnumerator<YieldInstruction> ProcessMandMs(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMandMs(ModuleData module)
     {
         var comp = GetComponent(module, "MandMs");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_MandMs);
+        yield return WaitForSolve;
 
         var colorNames = new[] { "red", "green", "orange", "blue", "yellow", "brown" };
         var colors = GetArrayField<int>(comp, "buttonColors").Get();
@@ -152,20 +137,16 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (int i = 0; i < 5; i++)
         {
-            qs.Add(makeQuestion(Question.MandMsColors, _MandMs, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorNames[colors[i]] }));
-            qs.Add(makeQuestion(Question.MandMsLabels, _MandMs, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { labels[i] }, preferredWrongAnswers: labels));
+            qs.Add(makeQuestion(Question.MandMsColors, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorNames[colors[i]] }));
+            qs.Add(makeQuestion(Question.MandMsLabels, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { labels[i] }, preferredWrongAnswers: labels));
         }
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessMandNs(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMandNs(ModuleData module)
     {
         var comp = GetComponent(module, "MandNs");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_MandNs);
+        yield return WaitForSolve;
 
         var colorNames = new[] { "red", "green", "orange", "blue", "yellow", "brown" };
         var colors = GetArrayField<int>(comp, "buttonColors").Get();
@@ -173,37 +154,29 @@ public partial class SouvenirModule
         var solution = GetIntField(comp, "solution").Get();
         var qs = new List<QandA>();
         for (int i = 0; i < 5; i++)
-            qs.Add(makeQuestion(Question.MandNsColors, _MandNs, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorNames[colors[i]] }));
-        qs.Add(makeQuestion(Question.MandNsLabel, _MandNs, correctAnswers: new[] { labels[solution] }, preferredWrongAnswers: labels));
+            qs.Add(makeQuestion(Question.MandNsColors, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorNames[colors[i]] }));
+        qs.Add(makeQuestion(Question.MandNsLabel, module, correctAnswers: new[] { labels[solution] }, preferredWrongAnswers: labels));
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessMaritimeFlags(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMaritimeFlags(ModuleData module)
     {
         var comp = GetComponent(module, "MaritimeFlagsModule");
-        var fldSolved = GetField<bool>(comp, "_isSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_MaritimeFlags);
+        yield return WaitForSolve;
 
         var bearing = GetIntField(comp, "_bearingOnModule").Get(min: 0, max: 359);
         var callsignObj = GetField<object>(comp, "_callsign").Get();
         var callsign = GetField<string>(callsignObj, "Name", isPublic: true).Get(str => str.Length != 7 ? "expected length 7" : null);
 
         addQuestions(module,
-            makeQuestion(Question.MaritimeFlagsBearing, _MaritimeFlags, correctAnswers: new[] { bearing.ToString() }),
-            makeQuestion(Question.MaritimeFlagsCallsign, _MaritimeFlags, correctAnswers: new[] { callsign.ToLowerInvariant() }));
+            makeQuestion(Question.MaritimeFlagsBearing, module, correctAnswers: new[] { bearing.ToString() }),
+            makeQuestion(Question.MaritimeFlagsCallsign, module, correctAnswers: new[] { callsign.ToLowerInvariant() }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessMaroonButton(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMaroonButton(ModuleData module)
     {
         var comp = GetComponent(module, "MaroonButtonScript");
-        var fldSolved = GetField<bool>(comp, "_isSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_MaroonButton);
+        yield return WaitForSolve;
 
         var ans = GetField<int>(comp, "solveFlag").Get(v => v is < 0 or > 19 ? $"Bad flag index {v}" : null);
         var solveParent = GetField<Transform>(comp, "SolveParent", isPublic: true).Get();
@@ -212,56 +185,45 @@ public partial class SouvenirModule
         addQuestion(module, Question.MaroonButtonA, correctAnswers: new[] { MaroonButtonSprites[ans] });
     }
 
-    private IEnumerator<YieldInstruction> ProcessMaroonCipher(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMaroonCipher(ModuleData module)
     {
         return processColoredCiphers(module, "maroonCipher", Question.MaroonCipherScreen, _MaroonCipher);
     }
 
-    private IEnumerator<YieldInstruction> ProcessMashematics(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMashematics(ModuleData module)
     {
         var comp = GetComponent(module, "mashematicsScript");
-        var fldSolved = GetField<bool>(comp, "isSolved");
+        yield return WaitForSolve;
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-
-        _modulesSolved.IncSafe(_Mashematics);
         var numberClass = GetField<object>(comp, "number").Get();
         var answer = GetMethod<int>(numberClass, "GetNumberOfRequiredPush", numParameters: 0, isPublic: true).Invoke();
         var number1 = GetField<int>(numberClass, "Number1", isPublic: true).Get();
         var number2 = GetField<int>(numberClass, "Number2", isPublic: true).Get();
         var number3 = GetField<int>(numberClass, "Number3", isPublic: true).Get();
 
-        var questions = new List<QandA> { makeQuestion(Question.MashematicsAnswer, _Mashematics, correctAnswers: new[] { answer.ToString() }) };
+        var questions = new List<QandA> { makeQuestion(Question.MashematicsAnswer, module, correctAnswers: new[] { answer.ToString() }) };
         for (int i = 0; i < 3; i++)
         {
             var number = i == 0 ? number1 : (i == 1 ? number2 : number3);
-            questions.Add(makeQuestion(Question.MashematicsCalculation, _Mashematics, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { number.ToString() }));
+            questions.Add(makeQuestion(Question.MashematicsCalculation, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { number.ToString() }));
         }
         addQuestions(module, questions);
     }
 
-    private IEnumerator<YieldInstruction> ProcessMasterTapes(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMasterTapes(ModuleData module)
     {
         var comp = GetComponent(module, "MasterTape");
 
-        var fldSolved = GetField<bool>(comp, "ModuleSolved");
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_MasterTapes);
+        yield return WaitForSolve;
 
         var songIndex = GetIntField(comp, "currentSong").Get(min: 1, max: 9) - 1;
         addQuestion(module, Question.MasterTapesPlayedSong, correctAnswers: new[] { GetAnswers(Question.MasterTapesPlayedSong)[songIndex] });
     }
 
-    private IEnumerator<YieldInstruction> ProcessMatchRefereeing(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMatchRefereeing(ModuleData module)
     {
         var comp = GetComponent(module, "MeteoRefereeingScript");
-        var fldSolved = GetField<bool>(comp, "IsSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(0.1f);
-        _modulesSolved.IncSafe(_MatchRefereeing);
+        yield return WaitForSolve;
 
         var planetsArr = GetField<Array>(comp, "planetsUsed").Get(x => x.Length != 3 ? "expected length 3" : null);
         var planetsUsed = new List<Sprite[]>();
@@ -286,7 +248,7 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
         for (int stage = 0; stage < 2; stage++)
-            qs.Add(makeQuestion(Question.MatchRefereeingPlanet, _MatchRefereeing,
+            qs.Add(makeQuestion(Question.MatchRefereeingPlanet, module,
                 formatArgs: new[] { ordinal(stage + 1) },
                 correctAnswers: planetsUsed[stage],
                 preferredWrongAnswers: allPlanetsUsed,
@@ -294,20 +256,15 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessMathEm(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMathEm(ModuleData module)
     {
         var comp = GetComponent(module, "MathemScript");
-
-        bool solved = false;
-        module.OnPass += delegate () { solved = true; return false; };
 
         var fldArrangements = GetField<int[][]>(comp, "tarrange");
         var fldProps = GetField<int[,]>(comp, "tprops");
         var fldMats = GetArrayField<Material>(comp, "tpatterns", isPublic: true);
 
-        while (!solved)
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_MathEm);
+        yield return WaitForSolve;
 
         int[] initialArrangement = fldArrangements.Get().First();
         int[,] props = fldProps.Get();
@@ -318,10 +275,10 @@ public partial class SouvenirModule
 
         for (int tileIx = 0; tileIx < 16; tileIx++)
         {
-            qs.Add(makeQuestion(Question.MathEmColor, _MathEm,
+            qs.Add(makeQuestion(Question.MathEmColor, module,
                 questionSprite: Sprites.GenerateGridSprite(new Coord(4, 4, tileIx)),
                 correctAnswers: new[] { colorNames[props[initialArrangement[tileIx], 1]] }));
-            qs.Add(makeQuestion(Question.MathEmLabel, _MathEm,
+            qs.Add(makeQuestion(Question.MathEmLabel, module,
                 questionSprite: Sprites.GenerateGridSprite(new Coord(4, 4, tileIx)),
                 correctAnswers: new[] { displayedMarkings[tileIx] },
                 preferredWrongAnswers: displayedMarkings));
@@ -330,14 +287,10 @@ public partial class SouvenirModule
 
     }
 
-    private IEnumerator<YieldInstruction> ProcessMatrix(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMatrix(ModuleData module)
     {
         var comp = GetComponent(module, "MatrixScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Matrix);
+        yield return WaitForSolve;
 
         // “selectedNames” contains the scrambled versions of the names. Find the unscrambled name.
         var unscrambledNames = GetArrayField<string>(comp, "selectedNames").Get()
@@ -345,11 +298,11 @@ public partial class SouvenirModule
             .ToArray();
 
         addQuestions(module,
-            makeQuestion(Question.MatrixAccessCode, _Matrix, correctAnswers: unscrambledNames),
-            makeQuestion(Question.MatrixGlitchWord, _Matrix, correctAnswers: new[] { GetField<string>(comp, "illegalWordText").Get().ToLowerInvariant() }));
+            makeQuestion(Question.MatrixAccessCode, module, correctAnswers: unscrambledNames),
+            makeQuestion(Question.MatrixGlitchWord, module, correctAnswers: new[] { GetField<string>(comp, "illegalWordText").Get().ToLowerInvariant() }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessMaze(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMaze(ModuleData module)
     {
         var comp = GetComponent(module, "InvisibleWallsComponent");
         var fldSolved = GetField<bool>(comp, "IsSolved", true);
@@ -360,55 +313,44 @@ public partial class SouvenirModule
         _modulesSolved.IncSafe(_Maze);
 
         addQuestions(module,
-            makeQuestion(Question.MazeStartingPosition, _Maze, formatArgs: new[] { "column", "left" }, correctAnswers: new[] { (GetIntField(currentCell, "X", true).Get() + 1).ToString() }),
-            makeQuestion(Question.MazeStartingPosition, _Maze, formatArgs: new[] { "row", "top" }, correctAnswers: new[] { (GetIntField(currentCell, "Y", true).Get() + 1).ToString() }));
+            makeQuestion(Question.MazeStartingPosition, module, formatArgs: new[] { "column", "left" }, correctAnswers: new[] { (GetIntField(currentCell, "X", true).Get() + 1).ToString() }),
+            makeQuestion(Question.MazeStartingPosition, module, formatArgs: new[] { "row", "top" }, correctAnswers: new[] { (GetIntField(currentCell, "Y", true).Get() + 1).ToString() }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessMaze3(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMaze3(ModuleData module)
     {
         var comp = GetComponent(module, "maze3Script");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
         var node = GetIntField(comp, "node").Get(min: 0, max: 53);
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Maze3);
+        yield return WaitForSolve;
 
         var colors = new[] { "Red", "Blue", "Yellow", "Green", "Magenta", "Orange" };
         addQuestion(module, Question.Maze3StartingFace, correctAnswers: new[] { colors[node / 9] });
     }
 
-    private IEnumerator<YieldInstruction> ProcessMazeIdentification(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMazeIdentification(ModuleData module)
     {
         var comp = GetComponent(module, "MazeIdentificationScript");
-        var fldSolved = GetField<bool>(comp, "Solved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_MazeIdentification);
+        yield return WaitForSolve;
 
         var seed = GetArrayField<int>(comp, "Quadrants").Get(validator: x => x.Any(y => y >= 4 || y < 0) ? "quadrants out of range" : null);
         var buttonFuncs = GetArrayField<int>(comp, "ButtonFunctions").Get(validator: x => x.Any(y => y >= 4 || y < 0) ? "functions out of range" : null);
         var directions = new[] { "Forwards", "Clockwise", "Backwards", "Counter-clockwise" };
         addQuestions(module,
-            makeQuestion(Question.MazeIdentificationSeed, _MazeIdentification, correctAnswers: new[] { seed.Select(x => x + 1).JoinString() }),
-            makeQuestion(Question.MazeIdentificationNum, _MazeIdentification, formatArgs: new[] { "1" }, correctAnswers: new[] { directions[buttonFuncs[0]] }),
-            makeQuestion(Question.MazeIdentificationNum, _MazeIdentification, formatArgs: new[] { "2" }, correctAnswers: new[] { directions[buttonFuncs[1]] }),
-            makeQuestion(Question.MazeIdentificationNum, _MazeIdentification, formatArgs: new[] { "3" }, correctAnswers: new[] { directions[buttonFuncs[2]] }),
-            makeQuestion(Question.MazeIdentificationNum, _MazeIdentification, formatArgs: new[] { "4" }, correctAnswers: new[] { directions[buttonFuncs[3]] }),
-            makeQuestion(Question.MazeIdentificationFunc, _MazeIdentification, formatArgs: new[] { "moved you forwards" }, correctAnswers: new[] { (Array.IndexOf(buttonFuncs, 0) + 1).ToString() }),
-            makeQuestion(Question.MazeIdentificationFunc, _MazeIdentification, formatArgs: new[] { "turned you clockwise" }, correctAnswers: new[] { (Array.IndexOf(buttonFuncs, 1) + 1).ToString() }),
-            makeQuestion(Question.MazeIdentificationFunc, _MazeIdentification, formatArgs: new[] { "moved you backwards" }, correctAnswers: new[] { (Array.IndexOf(buttonFuncs, 2) + 1).ToString() }),
-            makeQuestion(Question.MazeIdentificationFunc, _MazeIdentification, formatArgs: new[] { "turned you counter-clockwise" }, correctAnswers: new[] { (Array.IndexOf(buttonFuncs, 3) + 1).ToString() }));
+            makeQuestion(Question.MazeIdentificationSeed, module, correctAnswers: new[] { seed.Select(x => x + 1).JoinString() }),
+            makeQuestion(Question.MazeIdentificationNum, module, formatArgs: new[] { "1" }, correctAnswers: new[] { directions[buttonFuncs[0]] }),
+            makeQuestion(Question.MazeIdentificationNum, module, formatArgs: new[] { "2" }, correctAnswers: new[] { directions[buttonFuncs[1]] }),
+            makeQuestion(Question.MazeIdentificationNum, module, formatArgs: new[] { "3" }, correctAnswers: new[] { directions[buttonFuncs[2]] }),
+            makeQuestion(Question.MazeIdentificationNum, module, formatArgs: new[] { "4" }, correctAnswers: new[] { directions[buttonFuncs[3]] }),
+            makeQuestion(Question.MazeIdentificationFunc, module, formatArgs: new[] { "moved you forwards" }, correctAnswers: new[] { (Array.IndexOf(buttonFuncs, 0) + 1).ToString() }),
+            makeQuestion(Question.MazeIdentificationFunc, module, formatArgs: new[] { "turned you clockwise" }, correctAnswers: new[] { (Array.IndexOf(buttonFuncs, 1) + 1).ToString() }),
+            makeQuestion(Question.MazeIdentificationFunc, module, formatArgs: new[] { "moved you backwards" }, correctAnswers: new[] { (Array.IndexOf(buttonFuncs, 2) + 1).ToString() }),
+            makeQuestion(Question.MazeIdentificationFunc, module, formatArgs: new[] { "turned you counter-clockwise" }, correctAnswers: new[] { (Array.IndexOf(buttonFuncs, 3) + 1).ToString() }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessMazematics(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMazematics(ModuleData module)
     {
-        var solved = false;
-        module.OnPass += delegate { solved = true; return false; };
-        while (!solved)
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Mazematics);
+        yield return WaitForSolve;
 
         var comp = GetComponent(module, "Mazematics");
         var startVal = GetIntField(comp, "startValue").Get(17, 49).ToString();
@@ -418,14 +360,13 @@ public partial class SouvenirModule
         string[] possibleGoalVals = Enumerable.Range(0, 50).Select(x => x.ToString()).ToArray();
 
         addQuestions(module,
-            makeQuestion(Question.MazematicsValue, _Mazematics, formatArgs: new[] { "initial" }, correctAnswers: new[] { startVal }, preferredWrongAnswers: possibleStartVals),
-            makeQuestion(Question.MazematicsValue, _Mazematics, formatArgs: new[] { "goal" }, correctAnswers: new[] { goalVal }, preferredWrongAnswers: possibleGoalVals));
+            makeQuestion(Question.MazematicsValue, module, formatArgs: new[] { "initial" }, correctAnswers: new[] { startVal }, preferredWrongAnswers: possibleStartVals),
+            makeQuestion(Question.MazematicsValue, module, formatArgs: new[] { "goal" }, correctAnswers: new[] { goalVal }, preferredWrongAnswers: possibleGoalVals));
     }
 
-    private IEnumerator<YieldInstruction> ProcessMazeScrambler(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMazeScrambler(ModuleData module)
     {
         var comp = GetComponent(module, "MazeScrambler");
-        var fldSolved = GetField<bool>(comp, "SOLVED");
 
         var ind1X = GetIntField(comp, "IDX1").Get(min: 0, max: 2);
         var ind1Y = GetIntField(comp, "IDY1").Get(min: 0, max: 2);
@@ -436,26 +377,20 @@ public partial class SouvenirModule
         var goalX = GetIntField(comp, "GoalX").Get(min: 0, max: 2);
         var goalY = GetIntField(comp, "GoalY").Get(min: 0, max: 2);
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForSolve;
 
         var positionNames = new[] { "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right" };
 
-        _modulesSolved.IncSafe(_MazeScrambler);
         addQuestions(module,
-            makeQuestion(Question.MazeScramblerStart, _MazeScrambler, correctAnswers: new[] { positionNames[startY * 3 + startX] }, preferredWrongAnswers: new[] { positionNames[goalY * 3 + goalX] }),
-            makeQuestion(Question.MazeScramblerGoal, _MazeScrambler, correctAnswers: new[] { positionNames[goalY * 3 + goalX] }, preferredWrongAnswers: new[] { positionNames[startY * 3 + startX] }),
-            makeQuestion(Question.MazeScramblerIndicators, _MazeScrambler, correctAnswers: new[] { positionNames[ind1Y * 3 + ind1X], positionNames[ind2Y * 3 + ind2X] }, preferredWrongAnswers: positionNames));
+            makeQuestion(Question.MazeScramblerStart, module, correctAnswers: new[] { positionNames[startY * 3 + startX] }, preferredWrongAnswers: new[] { positionNames[goalY * 3 + goalX] }),
+            makeQuestion(Question.MazeScramblerGoal, module, correctAnswers: new[] { positionNames[goalY * 3 + goalX] }, preferredWrongAnswers: new[] { positionNames[startY * 3 + startX] }),
+            makeQuestion(Question.MazeScramblerIndicators, module, correctAnswers: new[] { positionNames[ind1Y * 3 + ind1X], positionNames[ind2Y * 3 + ind2X] }, preferredWrongAnswers: positionNames));
     }
 
-    private IEnumerator<YieldInstruction> ProcessMazeseeker(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMazeseeker(ModuleData module)
     {
         var comp = GetComponent(module, "MazeseekerScript");
-        var fldSolved = GetField<bool>(comp, "Solved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Mazeseeker);
+        yield return WaitForSolve;
 
         var nums = GetField<int[,]>(comp, "Grid").Get();
         var startRow = GetField<int>(comp, "StartingRow").Get();
@@ -465,45 +400,39 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
         for (int i = 0; i < 36; i++)
-            qs.Add(makeQuestion(Question.MazeseekerCell, _Mazeseeker, questionSprite: Sprites.GenerateGridSprite(new Coord(6, 6, i)), correctAnswers: new[] { nums[i / 6, i % 6].ToString() }));
+            qs.Add(makeQuestion(Question.MazeseekerCell, module, questionSprite: Sprites.GenerateGridSprite(new Coord(6, 6, i)), correctAnswers: new[] { nums[i / 6, i % 6].ToString() }));
         for (int i = 0; i < 36; i++)
-            qs.Add(makeQuestion(Question.MazeseekerStart, _Mazeseeker, correctAnswers: new[] { new Coord(6, 6, startColumn, startRow) }));
+            qs.Add(makeQuestion(Question.MazeseekerStart, module, correctAnswers: new[] { new Coord(6, 6, startColumn, startRow) }));
         for (int i = 0; i < 36; i++)
-            qs.Add(makeQuestion(Question.MazeseekerGoal, _Mazeseeker, correctAnswers: new[] { new Coord(6, 6, goalColumn, goalRow) }));
+            qs.Add(makeQuestion(Question.MazeseekerGoal, module, correctAnswers: new[] { new Coord(6, 6, goalColumn, goalRow) }));
 
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessMegaMan2(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMegaMan2(ModuleData module)
     {
         var comp = GetComponent(module, "Megaman2");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
         var robotMasters = GetArrayField<string>(comp, "robotMasters").Get();
         var selectedMaster = GetIntField(comp, "selectedMaster").Get(min: 0, max: robotMasters.Length - 1);
         var selectedWeapon = GetIntField(comp, "selectedWeapon").Get(min: 0, max: robotMasters.Length - 1);
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_MegaMan2);
+        yield return WaitForSolve;
 
         addQuestions(module,
-            makeQuestion(Question.MegaMan2SelectedMaster, _MegaMan2, correctAnswers: new[] { robotMasters[selectedMaster] }, preferredWrongAnswers: robotMasters),
-            makeQuestion(Question.MegaMan2SelectedWeapon, _MegaMan2, correctAnswers: new[] { robotMasters[selectedWeapon] }, preferredWrongAnswers: robotMasters));
+            makeQuestion(Question.MegaMan2SelectedMaster, module, correctAnswers: new[] { robotMasters[selectedMaster] }, preferredWrongAnswers: robotMasters),
+            makeQuestion(Question.MegaMan2SelectedWeapon, module, correctAnswers: new[] { robotMasters[selectedWeapon] }, preferredWrongAnswers: robotMasters));
     }
 
-    private IEnumerator<YieldInstruction> ProcessMelodySequencer(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMelodySequencer(ModuleData module)
     {
         var comp = GetComponent(module, "MelodySequencerScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
 
         var parts = GetArrayField<int[]>(comp, "parts").Get(expectedLength: 8);  // the 8 parts in their “correct” order
         var moduleParts = GetArrayField<int[]>(comp, "moduleParts").Get(expectedLength: 8, nullContentAllowed: true);      // the parts as assigned to the slots
         var partsPerSlot = Enumerable.Range(0, 8).Select(slot => parts.IndexOf(p => ReferenceEquals(p, moduleParts[slot]))).ToArray();
         Debug.Log($"<Souvenir #{_moduleId}> Melody Sequencer: parts are: [{partsPerSlot.JoinString(", ")}].");
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_MelodySequencer);
+        yield return WaitForSolve;
 
         var qs = new List<QandA>();
         var givenSlots = Enumerable.Range(0, partsPerSlot.Length).Where(slot => partsPerSlot[slot] != -1).Select(slot => (slot + 1).ToString()).ToArray();
@@ -512,28 +441,25 @@ public partial class SouvenirModule
         {
             if (partsPerSlot[i] != -1)
             {
-                qs.Add(makeQuestion(Question.MelodySequencerParts, _MelodySequencer, formatArgs: new[] { (partsPerSlot[i] + 1).ToString() }, correctAnswers: new[] { (i + 1).ToString() }, preferredWrongAnswers: givenSlots));
-                qs.Add(makeQuestion(Question.MelodySequencerSlots, _MelodySequencer, formatArgs: new[] { (i + 1).ToString() }, correctAnswers: new[] { (partsPerSlot[i] + 1).ToString() }, preferredWrongAnswers: givenParts));
+                qs.Add(makeQuestion(Question.MelodySequencerParts, module, formatArgs: new[] { (partsPerSlot[i] + 1).ToString() }, correctAnswers: new[] { (i + 1).ToString() }, preferredWrongAnswers: givenSlots));
+                qs.Add(makeQuestion(Question.MelodySequencerSlots, module, formatArgs: new[] { (i + 1).ToString() }, correctAnswers: new[] { (partsPerSlot[i] + 1).ToString() }, preferredWrongAnswers: givenParts));
             }
         }
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessMemorableButtons(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMemorableButtons(ModuleData module)
     {
         var comp = GetComponent(module, "MemorableButtons");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
         var buttonLabels = GetArrayField<TextMesh>(comp, "buttonLabels", isPublic: true).Get(ar => ar.Length == 0 ? "empty" : null);
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_MemorableButtons);
+        yield return WaitForSolve;
 
         var combinedCode = GetField<string>(comp, "combinedCode", isPublic: true).Get(str => str.Length < 10 || str.Length > 15 ? "expected length 10–15" : null);
-        addQuestions(module, combinedCode.Select((ch, ix) => makeQuestion(Question.MemorableButtonsSymbols, _MemorableButtons, buttonLabels[0].font, buttonLabels[0].GetComponent<MeshRenderer>().sharedMaterial.mainTexture, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { ch.ToString() })));
+        addQuestions(module, combinedCode.Select((ch, ix) => makeQuestion(Question.MemorableButtonsSymbols, module, buttonLabels[0].font, buttonLabels[0].GetComponent<MeshRenderer>().sharedMaterial.mainTexture, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { ch.ToString() })));
     }
 
-    private IEnumerator<YieldInstruction> ProcessMemory(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMemory(ModuleData module)
     {
         var comp = GetComponent(module, "MemoryComponent");
         var fldSolved = GetField<bool>(comp, "IsSolved", true);
@@ -548,30 +474,29 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (var stage = 0; stage < 4; stage++)
         {
-            qs.Add(makeQuestion(Question.MemoryDisplay, "Memory", formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { displaySequence[stage].ToString() }));
-            qs.Add(makeQuestion(Question.MemoryPosition, "Memory", formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { MemorySprites[indices[stage]] }, preferredWrongAnswers: MemorySprites));
-            qs.Add(makeQuestion(Question.MemoryLabel, "Memory", formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { labels[stage][labels[stage].Length - 1].ToString() }));
+            qs.Add(makeQuestion(Question.MemoryDisplay, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { displaySequence[stage].ToString() }));
+            qs.Add(makeQuestion(Question.MemoryPosition, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { MemorySprites[indices[stage]] }, preferredWrongAnswers: MemorySprites));
+            qs.Add(makeQuestion(Question.MemoryLabel, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { labels[stage][labels[stage].Length - 1].ToString() }));
         }
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessMemoryWires(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMemoryWires(ModuleData module)
     {
         var comp = GetComponent(module, "MemoryWiresScript");
 
         var fldStageNumber = GetIntField(comp, "stage");
         var fldDisplayNumber = GetIntField(comp, "dispnum");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
         var displayedDigits = new int[5];
         var currentStage = 0;
 
-        module.OnStrike += () => { currentStage = -1; return false; };
+        module.Module.OnStrike += () => { currentStage = -1; return false; };
 
         while (!_isActivated)
             yield return null; // Do not wait 0.1 seconds to make sure we get the right number.
         displayedDigits[0] = fldDisplayNumber.Get(min: 1, max: 6);
 
-        while (!fldSolved.Get())
+        while (module.Unsolved)
         {
             var stage = fldStageNumber.Get(min: 0, max: 4);
             if (currentStage != stage)
@@ -582,68 +507,56 @@ public partial class SouvenirModule
             yield return null; // Do not wait 0.1 seconds to make sure we get the right number each time.
         }
 
-        _modulesSolved.IncSafe(_MemoryWires);
-
         var allColours = GetArrayField<string>(comp, "logcol").Get(expectedLength: 5);
         var wireColours = GetArrayField<int[]>(comp, "colset").Get(expectedLength: 5,
             validator: innerArr => innerArr.Length != 6 ? "expected length 6" : innerArr.Any(i => i < 0 || i > 4) ? "inner array contained value outside expected range 0-4" : null);
 
         var qs = new List<QandA>();
         for (int pos = 0; pos < 30; pos++)
-            qs.Add(makeQuestion(Question.MemoryWiresWireColours, _MemoryWires, formatArgs: new[] { (pos + 1).ToString() }, correctAnswers: new[] { allColours[wireColours[pos / 6][pos % 6]] }));
+            qs.Add(makeQuestion(Question.MemoryWiresWireColours, module, formatArgs: new[] { (pos + 1).ToString() }, correctAnswers: new[] { allColours[wireColours[pos / 6][pos % 6]] }));
         for (int stage = 0; stage < 5; stage++)
-            qs.Add(makeQuestion(Question.MemoryWiresDisplayedDigits, _MemoryWires, formatArgs: new[] { (stage + 1).ToString() }, correctAnswers: new[] { displayedDigits[stage].ToString() }));
+            qs.Add(makeQuestion(Question.MemoryWiresDisplayedDigits, module, formatArgs: new[] { (stage + 1).ToString() }, correctAnswers: new[] { displayedDigits[stage].ToString() }));
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessMetamorse(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMetamorse(ModuleData module)
     {
         var comp = GetComponent(module, "MetamorseScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldBigChar = GetField<char>(comp, "greaterLetter");
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(0.1f);
-        _modulesSolved.IncSafe(_Metamorse);
+        yield return WaitForSolve;
         addQuestion(module, Question.MetamorseExtractedLetter, correctAnswers: new[] { fldBigChar.Get().ToString() });
     }
 
-    private IEnumerator<YieldInstruction> ProcessMetapuzzle(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMetapuzzle(ModuleData module)
     {
         var comp = GetComponent(module, "metapuzzleScript");
-        var fldSolved = GetField<bool>(comp, "solved");
 
         var wordsType = comp.GetType().Assembly.GetType("SevenLetterWords") ?? throw new AbandonModuleException("I cannot find the SevenLetterWords type.");
         var words = GetStaticField<string[]>(wordsType, "List", isPublic: true).Get();
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(0.1f);
-        _modulesSolved.IncSafe(_Metapuzzle);
+        yield return WaitForSolve;
 
         var answer = GetField<string>(comp, "metaAnswer").Get(x => x.Length != 7 ? "expected length 7" : null);
 
         addQuestion(module, Question.MetapuzzleAnswer, correctAnswers: new[] { answer }, preferredWrongAnswers: words);
     }
 
-    private IEnumerator<YieldInstruction> ProcessMicrocontroller(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMicrocontroller(ModuleData module)
     {
         var comp = GetComponent(module, "Micro");
-        var fldSolved = GetIntField(comp, "solved");
-
-        while (fldSolved.Get() == 0)
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Microcontroller);
+        yield return WaitForSolve;
 
         var ledsOrder = GetListField<int>(comp, "LEDorder").Get(lst => lst.Count != 6 && lst.Count != 8 && lst.Count != 10 ? "unexpected length (expected 6, 8 or 10)" : null);
         var positionTranslate = GetArrayField<int>(comp, "positionTranslate").Get(expectedLength: ledsOrder.Count);
 
-        addQuestions(module, ledsOrder.Select((led, ix) => makeQuestion(Question.MicrocontrollerPinOrder, _Microcontroller,
+        addQuestions(module, ledsOrder.Select((led, ix) => makeQuestion(Question.MicrocontrollerPinOrder, module,
             formatArgs: new[] { ordinal(ix + 1) },
             correctAnswers: new[] { (positionTranslate[led] + 1).ToString() },
             preferredWrongAnswers: Enumerable.Range(1, ledsOrder.Count).Select(i => i.ToString()).ToArray())));
     }
 
-    private IEnumerator<YieldInstruction> ProcessMinesweeper(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMinesweeper(ModuleData module)
     {
         var comp = GetComponent(module, "MinesweeperModule");
 
@@ -651,17 +564,13 @@ public partial class SouvenirModule
         while (!_isActivated)
             yield return new WaitForSeconds(0.1f);
 
-        var propSolved = GetProperty<bool>(GetField<object>(comp, "Game").Get(), "Solved", isPublic: true);
         var color = GetField<string>(GetField<object>(comp, "StartingCell").Get(), "Color", isPublic: true).Get();
 
-        while (!propSolved.Get())
-            yield return new WaitForSeconds(0.1f);
-
-        _modulesSolved.IncSafe(_Minesweeper);
+        yield return WaitForSolve;
         addQuestion(module, Question.MinesweeperStartingColor, correctAnswers: new[] { color });
     }
 
-    private IEnumerator<YieldInstruction> ProcessMirror(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMirror(ModuleData module)
     {
         var comp = GetComponent(module, "mirror");
         var fldModuleReady = GetField<bool>(comp, "moduleReady");
@@ -669,7 +578,6 @@ public partial class SouvenirModule
             GetStaticField<string[]>(comp.GetType(), "table1").Get().Concat(
             GetStaticField<string[]>(comp.GetType(), "table2").Get().Concat(
             GetStaticField<string[]>(comp.GetType(), "table3").Get())).ToArray();
-        var fldModuleSolved = GetField<bool>(comp, "moduleSolved");
 
         while (!fldModuleReady.Get())
             yield return null;
@@ -677,21 +585,15 @@ public partial class SouvenirModule
         var position = GetIntField(comp, "fontPosition").Get(min: 0, max: 2);
         var texts = GetArrayField<TextMesh>(comp, "mirrorTexts", isPublic: true).Get(expectedLength: 3);
 
-        while (!fldModuleSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Mirror);
+        yield return WaitForSolve;
 
         addQuestion(module, Question.MirrorWord, correctAnswers: new[] { texts[position].text }, preferredWrongAnswers: candidateWords);
     }
 
-    private IEnumerator<YieldInstruction> ProcessMisterSoftee(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMisterSoftee(ModuleData module)
     {
         var comp = GetComponent(module, "misterSoftee");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_MisterSoftee);
+        yield return WaitForSolve;
 
         var iceCreams = GetArrayField<int>(comp, "iceCreamsPresent").Get();
         var iceCreamNames = GetStaticField<string[]>(comp.GetType(), "iceCreamNames").Get();
@@ -699,17 +601,14 @@ public partial class SouvenirModule
         var directions = new[] { "top-left", "top-middle", "top-right", "middle-left", "middle-middle", "middle-right", "bottom-left", "bottom-middle", "bottom-right" };
         var displayedIceCreamSprites = iceCreams.Where(x => x != 14).Select(index => MisterSofteeSprites.First(sprite => sprite.name == iceCreamNames[index])).ToArray();
         addQuestions(module,
-            makeQuestion(Question.MisterSofteeSpongebobPosition, _MisterSoftee, correctAnswers: new[] { directions[ix] }),
-            makeQuestion(Question.MisterSofteeTreatsPresent, _MisterSoftee, correctAnswers: displayedIceCreamSprites));
+            makeQuestion(Question.MisterSofteeSpongebobPosition, module, correctAnswers: new[] { directions[ix] }),
+            makeQuestion(Question.MisterSofteeTreatsPresent, module, correctAnswers: displayedIceCreamSprites));
     }
 
-    private IEnumerator<YieldInstruction> ProcessModernCipher(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessModernCipher(ModuleData module)
     {
         var comp = GetComponent(module, "modernCipher");
-        var fldSolved = GetField<bool>(comp, "_isSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForSolve;
 
         var dictionary = GetField<Dictionary<string, string>>(comp, "chosenWords").Get();
 
@@ -719,20 +618,15 @@ public partial class SouvenirModule
         stage1word = stage1word.Substring(0, 1).ToUpperInvariant() + stage1word.Substring(1).ToLowerInvariant();
         stage2word = stage2word.Substring(0, 1).ToUpperInvariant() + stage2word.Substring(1).ToLowerInvariant();
 
-        _modulesSolved.IncSafe(_ModernCipher);
         addQuestions(module,
-            makeQuestion(Question.ModernCipherWord, _ModernCipher, formatArgs: new[] { ordinal(1) }, correctAnswers: new[] { stage1word }, preferredWrongAnswers: new[] { stage2word }),
-            makeQuestion(Question.ModernCipherWord, _ModernCipher, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { stage2word }, preferredWrongAnswers: new[] { stage1word }));
+            makeQuestion(Question.ModernCipherWord, module, formatArgs: new[] { ordinal(1) }, correctAnswers: new[] { stage1word }, preferredWrongAnswers: new[] { stage2word }),
+            makeQuestion(Question.ModernCipherWord, module, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { stage2word }, preferredWrongAnswers: new[] { stage1word }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessModuleListening(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessModuleListening(ModuleData module)
     {
         var comp = GetComponent(module, "ModuleListening");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_ModuleListening);
+        yield return WaitForSolve;
 
         var clipsPerModule = GetArrayField<AudioClip[]>(comp, "audioLibrary").Get(expectedLength: 100);
         var soundIndex = GetArrayField<int>(comp, "soundIndex").Get(expectedLength: 4);
@@ -748,42 +642,37 @@ public partial class SouvenirModule
 
         addQuestions(module,
             Enumerable.Range(0, 4).Select(btn =>
-                makeQuestion(Question.ModuleListeningButtonAudio, _ModuleListening, formatArgs: new[] { colorNames[colorOrder[btn]] },
+                makeQuestion(Question.ModuleListeningButtonAudio, module, formatArgs: new[] { colorNames[colorOrder[btn]] },
                 correctAnswers: new[] { clipsPerModule[indices[btn]][soundIndex[btn]] },
                 preferredWrongAnswers: allUsed,
                 allAnswers: allAnswers))
-            .Concat(new[] { makeQuestion(Question.ModuleListeningAnyAudio, _ModuleListening, correctAnswers: allUsed, allAnswers: allAnswers) }));
+            .Concat(new[] { makeQuestion(Question.ModuleListeningAnyAudio, module, correctAnswers: allUsed, allAnswers: allAnswers) }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessModuleMaze(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessModuleMaze(ModuleData module)
     {
         var comp = GetComponent(module, "ModuleMazeModule");
         var fldSprites = GetArrayField<Sprite>(comp, "sprites", true);
-        var fldSolved = GetField<bool>(comp, "solved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_ModuleMaze);
+        yield return WaitForSolve;
 
         var sprites = fldSprites.Get(expectedLength: 400);
         var translatedSprites = sprites.Select(spr => spr.TranslateSprite()).ToArray();
 
         addQuestions(module,
-            makeQuestion(Question.ModuleMazeStartingIcon, _ModuleMaze,
+            makeQuestion(Question.ModuleMazeStartingIcon, module,
                 correctAnswers: new[] { translatedSprites[Array.IndexOf(sprites, GetField<Sprite>(comp, "souvenirStart").Get())] }, preferredWrongAnswers: translatedSprites));
     }
 
-    private IEnumerator<YieldInstruction> ProcessModuleMovements(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessModuleMovements(ModuleData module)
     {
         var comp = GetComponent(module, "moduleMovements");
         var fldStageNum = GetIntField(comp, "stageNumber");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldDisplay = GetField<SpriteRenderer>(comp, "display", isPublic: true);
         var currentStage = -1;
         var answers = new string[3];
         var moduleNames = GetArrayField<string>(comp, "modules", true).Get();
 
-        while (!fldSolved.Get())
+        while (module.Unsolved)
         {
             var nextStage = fldStageNum.Get();
             if (currentStage != nextStage)
@@ -794,14 +683,12 @@ public partial class SouvenirModule
             yield return null;
         }
 
-        _modulesSolved.IncSafe(_ModuleMovements);
-
         addQuestions(module, answers.Select((ans, i) =>
-            makeQuestion(Question.ModuleMovementsDisplay, _ModuleMovements, formatArgs: new[] { ordinal(i + 1) },
+            makeQuestion(Question.ModuleMovementsDisplay, module, formatArgs: new[] { ordinal(i + 1) },
                 correctAnswers: new[] { ans }, preferredWrongAnswers: answers)));
     }
 
-    private IEnumerator<YieldInstruction> ProcessMonsplodeFight(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMonsplodeFight(ModuleData module)
     {
         var comp = GetComponent(module, "MonsplodeFightModule");
         var fldCreatureID = GetIntField(comp, "crID");
@@ -855,7 +742,7 @@ public partial class SouvenirModule
                 if (creatureID == -1)
                 {
                     Debug.Log($"[Souvenir #{_moduleId}] No question on Monsplode, Fight! because the creature displayed was Missingno.");
-                    _legitimatelyNoQuestions.Add(module);
+                    _legitimatelyNoQuestions.Add(module.Module);
                     displayedCreature = null;
                     displayedMoves = null;
                     finished = true;
@@ -886,7 +773,7 @@ public partial class SouvenirModule
 
         while (!finished)
             yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_MonsplodeFight);
+        yield return WaitForSolve;
 
         for (int i = 0; i < buttons.Length; i++)
             buttons[i].OnInteract = origInteracts[i];
@@ -896,12 +783,12 @@ public partial class SouvenirModule
             yield break;
 
         addQuestions(module,
-            makeQuestion(Question.MonsplodeFightCreature, _MonsplodeFight, correctAnswers: new[] { displayedCreature }),
-            makeQuestion(Question.MonsplodeFightMove, _MonsplodeFight, formatArgs: new[] { "was" }, correctAnswers: displayedMoves),
-            makeQuestion(Question.MonsplodeFightMove, _MonsplodeFight, formatArgs: new[] { "was not" }, correctAnswers: GetAnswers(Question.MonsplodeFightMove).Except(displayedMoves).ToArray()));
+            makeQuestion(Question.MonsplodeFightCreature, module, correctAnswers: new[] { displayedCreature }),
+            makeQuestion(Question.MonsplodeFightMove, module, formatArgs: new[] { "was" }, correctAnswers: displayedMoves),
+            makeQuestion(Question.MonsplodeFightMove, module, formatArgs: new[] { "was not" }, correctAnswers: GetAnswers(Question.MonsplodeFightMove).Except(displayedMoves).ToArray()));
     }
 
-    private IEnumerator<YieldInstruction> ProcessMonsplodeTradingCards(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMonsplodeTradingCards(ModuleData module)
     {
         var comp = GetComponent(module, "MonsplodeCardModule");
         var fldStage = GetIntField(comp, "correctOffer", isPublic: true);
@@ -910,9 +797,7 @@ public partial class SouvenirModule
         var data = GetField<object>(comp, "CD", isPublic: true).Get();
         var monsplodeNames = GetArrayField<string>(data, "names", isPublic: true).Get().Select(s => s.Replace("\r", "").Replace("\n", " ")).ToArray();
 
-        while (fldStage.Get() < stageCount)
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_MonsplodeTradingCards);
+        yield return WaitForSolve;
 
         if (fldStage.Get() != stageCount)
             throw new AbandonModuleException($"Abandoning Monsplode Trading Cards because ‘correctOffer’ has unexpected value {fldStage.Get()} instead of {stageCount}.");
@@ -927,47 +812,38 @@ public partial class SouvenirModule
         var monsplodes = monsplodeIds.Select(mn => monsplodeNames[mn]).ToArray();
         var printVersions = new[] { fldPrintChar.Get() + "" + fldPrintDigit.Get() }.Concat(deck.Select(card => fldPrintChar.GetFrom(card) + "" + fldPrintDigit.GetFrom(card))).ToArray();
         addQuestions(module,
-            makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, formatArgs: new[] { "card on offer" }, correctAnswers: new[] { monsplodes[0] }, preferredWrongAnswers: monsplodeNames),
-            makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, formatArgs: new[] { "first card in your hand" }, correctAnswers: new[] { monsplodes[1] }, preferredWrongAnswers: monsplodeNames),
-            makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, formatArgs: new[] { "second card in your hand" }, correctAnswers: new[] { monsplodes[2] }, preferredWrongAnswers: monsplodeNames),
-            makeQuestion(Question.MonsplodeTradingCardsCards, _MonsplodeTradingCards, formatArgs: new[] { "third card in your hand" }, correctAnswers: new[] { monsplodes[3] }, preferredWrongAnswers: monsplodeNames),
-            makeQuestion(Question.MonsplodeTradingCardsPrintVersions, _MonsplodeTradingCards, formatArgs: new[] { "card on offer" }, correctAnswers: new[] { printVersions[0] }, preferredWrongAnswers: printVersions),
-            makeQuestion(Question.MonsplodeTradingCardsPrintVersions, _MonsplodeTradingCards, formatArgs: new[] { "first card in your hand" }, correctAnswers: new[] { printVersions[1] }, preferredWrongAnswers: printVersions),
-            makeQuestion(Question.MonsplodeTradingCardsPrintVersions, _MonsplodeTradingCards, formatArgs: new[] { "second card in your hand" }, correctAnswers: new[] { printVersions[2] }, preferredWrongAnswers: printVersions),
-            makeQuestion(Question.MonsplodeTradingCardsPrintVersions, _MonsplodeTradingCards, formatArgs: new[] { "third card in your hand" }, correctAnswers: new[] { printVersions[3] }, preferredWrongAnswers: printVersions));
+            makeQuestion(Question.MonsplodeTradingCardsCards, module, formatArgs: new[] { "card on offer" }, correctAnswers: new[] { monsplodes[0] }, preferredWrongAnswers: monsplodeNames),
+            makeQuestion(Question.MonsplodeTradingCardsCards, module, formatArgs: new[] { "first card in your hand" }, correctAnswers: new[] { monsplodes[1] }, preferredWrongAnswers: monsplodeNames),
+            makeQuestion(Question.MonsplodeTradingCardsCards, module, formatArgs: new[] { "second card in your hand" }, correctAnswers: new[] { monsplodes[2] }, preferredWrongAnswers: monsplodeNames),
+            makeQuestion(Question.MonsplodeTradingCardsCards, module, formatArgs: new[] { "third card in your hand" }, correctAnswers: new[] { monsplodes[3] }, preferredWrongAnswers: monsplodeNames),
+            makeQuestion(Question.MonsplodeTradingCardsPrintVersions, module, formatArgs: new[] { "card on offer" }, correctAnswers: new[] { printVersions[0] }, preferredWrongAnswers: printVersions),
+            makeQuestion(Question.MonsplodeTradingCardsPrintVersions, module, formatArgs: new[] { "first card in your hand" }, correctAnswers: new[] { printVersions[1] }, preferredWrongAnswers: printVersions),
+            makeQuestion(Question.MonsplodeTradingCardsPrintVersions, module, formatArgs: new[] { "second card in your hand" }, correctAnswers: new[] { printVersions[2] }, preferredWrongAnswers: printVersions),
+            makeQuestion(Question.MonsplodeTradingCardsPrintVersions, module, formatArgs: new[] { "third card in your hand" }, correctAnswers: new[] { printVersions[3] }, preferredWrongAnswers: printVersions));
     }
 
-    private IEnumerator<YieldInstruction> ProcessMoon(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMoon(ModuleData module)
     {
         var comp = GetComponent(module, "theMoonScript");
-        var fldStage = GetIntField(comp, "stage");
-
-        // The Moon sets ‘stage’ to 9 when the module is solved.
-        while (fldStage.Get() != 9)
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Moon);
+        yield return WaitForSolve;
 
         var lightIndex = GetIntField(comp, "lightIndex").Get(min: 0, max: 7);
         var qNames = new[] { "first initially lit", "second initially lit", "third initially lit", "fourth initially lit", "first initially unlit", "second initially unlit", "third initially unlit", "fourth initially unlit" };
         var aNames = new[] { "south", "south-west", "west", "north-west", "north", "north-east", "east", "south-east" };
-        addQuestions(module, Enumerable.Range(0, 8).Select(i => makeQuestion(Question.MoonLitUnlit, _Moon, formatArgs: new[] { qNames[i] }, correctAnswers: new[] { aNames[(i + lightIndex) % 8] })));
+        addQuestions(module, Enumerable.Range(0, 8).Select(i => makeQuestion(Question.MoonLitUnlit, module, formatArgs: new[] { qNames[i] }, correctAnswers: new[] { aNames[(i + lightIndex) % 8] })));
     }
 
-    private IEnumerator<YieldInstruction> ProcessMoreCode(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMoreCode(ModuleData module)
     {
         var comp = GetComponent(module, "MoreCode");
-        var fldSolved = GetField<bool>(comp, "ModuleSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_MoreCode);
+        yield return WaitForSolve;
 
         var word = GetField<string>(comp, "SolutionWord").Get();
         word = word.Substring(0, 1) + word.Substring(1).ToLowerInvariant();
         addQuestion(module, Question.MoreCodeWord, correctAnswers: new[] { word });
     }
 
-    private IEnumerator<YieldInstruction> ProcessMorseAMaze(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMorseAMaze(ModuleData module)
     {
         var comp = GetComponent(module, "MorseAMaze");
 
@@ -979,85 +855,69 @@ public partial class SouvenirModule
         var word = GetField<string>(comp, "_souvenirQuestionWordPlaying").Get(str => str.Length < 4 ? "expected length ≥ 4" : null);
         var words = GetArrayField<string>(comp, "_souvenirQuestionWordList").Get(expectedLength: 36);
 
-        var fldSolved = GetField<bool>(comp, "_solved");
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(0.1f);
-
-        _modulesSolved.IncSafe(_MorseAMaze);
+        yield return WaitForSolve;
         addQuestions(module,
-            makeQuestion(Question.MorseAMazeStartingCoordinate, _MorseAMaze, correctAnswers: new[] { start }),
-            makeQuestion(Question.MorseAMazeEndingCoordinate, _MorseAMaze, correctAnswers: new[] { end }),
-            makeQuestion(Question.MorseAMazeMorseCodeWord, _MorseAMaze, correctAnswers: new[] { word }, preferredWrongAnswers: words));
+            makeQuestion(Question.MorseAMazeStartingCoordinate, module, correctAnswers: new[] { start }),
+            makeQuestion(Question.MorseAMazeEndingCoordinate, module, correctAnswers: new[] { end }),
+            makeQuestion(Question.MorseAMazeMorseCodeWord, module, correctAnswers: new[] { word }, preferredWrongAnswers: words));
     }
 
-    private IEnumerator<YieldInstruction> ProcessMorseButtons(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMorseButtons(ModuleData module)
     {
         var comp = GetComponent(module, "morseButtonsScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForSolve;
 
         string alphabet = GetField<string>(comp, "alphabet").Get();
         var colorNames = new[] { "red", "blue", "green", "yellow", "orange", "purple" };
         int[] letters = GetArrayField<int>(comp, "letters").Get(expectedLength: 6, validator: x => x < 0 || x >= alphabet.Length ? "out of range" : null);
         int[] colors = GetArrayField<int>(comp, "colors").Get(expectedLength: 6, validator: x => x < 0 || x >= colorNames.Length ? "out of range" : null);
 
-        _modulesSolved.IncSafe(_MorseButtons);
         addQuestions(module,
-            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, formatArgs: new[] { "first" }, correctAnswers: new[] { alphabet[letters[0]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, formatArgs: new[] { "second" }, correctAnswers: new[] { alphabet[letters[1]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, formatArgs: new[] { "third" }, correctAnswers: new[] { alphabet[letters[2]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, formatArgs: new[] { "fourth" }, correctAnswers: new[] { alphabet[letters[3]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, formatArgs: new[] { "fifth" }, correctAnswers: new[] { alphabet[letters[4]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButtonLabel, _MorseButtons, formatArgs: new[] { "sixth" }, correctAnswers: new[] { alphabet[letters[5]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
-            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, formatArgs: new[] { "first" }, correctAnswers: new[] { colorNames[colors[0]].ToString() }, preferredWrongAnswers: colorNames),
-            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, formatArgs: new[] { "second" }, correctAnswers: new[] { colorNames[colors[1]].ToString() }, preferredWrongAnswers: colorNames),
-            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, formatArgs: new[] { "third" }, correctAnswers: new[] { colorNames[colors[2]].ToString() }, preferredWrongAnswers: colorNames),
-            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, formatArgs: new[] { "fourth" }, correctAnswers: new[] { colorNames[colors[3]].ToString() }, preferredWrongAnswers: colorNames),
-            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, formatArgs: new[] { "fifth" }, correctAnswers: new[] { colorNames[colors[4]].ToString() }, preferredWrongAnswers: colorNames),
-            makeQuestion(Question.MorseButtonsButtonColor, _MorseButtons, formatArgs: new[] { "sixth" }, correctAnswers: new[] { colorNames[colors[5]].ToString() }, preferredWrongAnswers: colorNames));
+            makeQuestion(Question.MorseButtonsButtonLabel, module, formatArgs: new[] { "first" }, correctAnswers: new[] { alphabet[letters[0]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
+            makeQuestion(Question.MorseButtonsButtonLabel, module, formatArgs: new[] { "second" }, correctAnswers: new[] { alphabet[letters[1]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
+            makeQuestion(Question.MorseButtonsButtonLabel, module, formatArgs: new[] { "third" }, correctAnswers: new[] { alphabet[letters[2]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
+            makeQuestion(Question.MorseButtonsButtonLabel, module, formatArgs: new[] { "fourth" }, correctAnswers: new[] { alphabet[letters[3]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
+            makeQuestion(Question.MorseButtonsButtonLabel, module, formatArgs: new[] { "fifth" }, correctAnswers: new[] { alphabet[letters[4]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
+            makeQuestion(Question.MorseButtonsButtonLabel, module, formatArgs: new[] { "sixth" }, correctAnswers: new[] { alphabet[letters[5]].ToString() }, preferredWrongAnswers: alphabet.Select(x => x.ToString()).ToArray()),
+            makeQuestion(Question.MorseButtonsButtonColor, module, formatArgs: new[] { "first" }, correctAnswers: new[] { colorNames[colors[0]].ToString() }, preferredWrongAnswers: colorNames),
+            makeQuestion(Question.MorseButtonsButtonColor, module, formatArgs: new[] { "second" }, correctAnswers: new[] { colorNames[colors[1]].ToString() }, preferredWrongAnswers: colorNames),
+            makeQuestion(Question.MorseButtonsButtonColor, module, formatArgs: new[] { "third" }, correctAnswers: new[] { colorNames[colors[2]].ToString() }, preferredWrongAnswers: colorNames),
+            makeQuestion(Question.MorseButtonsButtonColor, module, formatArgs: new[] { "fourth" }, correctAnswers: new[] { colorNames[colors[3]].ToString() }, preferredWrongAnswers: colorNames),
+            makeQuestion(Question.MorseButtonsButtonColor, module, formatArgs: new[] { "fifth" }, correctAnswers: new[] { colorNames[colors[4]].ToString() }, preferredWrongAnswers: colorNames),
+            makeQuestion(Question.MorseButtonsButtonColor, module, formatArgs: new[] { "sixth" }, correctAnswers: new[] { colorNames[colors[5]].ToString() }, preferredWrongAnswers: colorNames));
     }
 
-    private IEnumerator<YieldInstruction> ProcessMorsematics(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMorsematics(ModuleData module)
     {
         var comp = GetComponent(module, "AdvancedMorse");
-        var fldSolved = GetField<bool>(comp, "solved");
         var chars = GetArrayField<string>(comp, "DisplayCharsRaw").Get(expectedLength: 3);
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForSolve;
 
-        _modulesSolved.IncSafe(_Morsematics);
-        addQuestions(module, Enumerable.Range(0, 3).Select(i => makeQuestion(Question.MorsematicsReceivedLetters, _Morsematics, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { chars[i] }, preferredWrongAnswers: chars)));
+        addQuestions(module, Enumerable.Range(0, 3).Select(i => makeQuestion(Question.MorsematicsReceivedLetters, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { chars[i] }, preferredWrongAnswers: chars)));
     }
 
-    private IEnumerator<YieldInstruction> ProcessMorseWar(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMorseWar(ModuleData module)
     {
         var comp = GetComponent(module, "MorseWar");
-        var fldIsSolved = GetField<bool>(comp, "isSolved");
-
-        while (!fldIsSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_MorseWar);
+        yield return WaitForSolve;
 
         var wordTable = GetStaticField<string[]>(comp.GetType(), "WordTable").Get();
         var rowTable = GetStaticField<string[]>(comp.GetType(), "RowTable").Get(ar => ar.Length != 6 ? "expected length 6" : null);
         var wordNum = GetIntField(comp, "wordNum").Get(min: 0, max: wordTable.Length - 1);
         var lights = GetField<string>(comp, "lights").Get(str => str.Length != 3 ? "expected length 3" : str.Any(ch => ch < '1' || ch > '6') ? "expected characters 1–6" : null);
 
-        var qs = new List<QandA>() { makeQuestion(Question.MorseWarCode, _MorseWar, correctAnswers: new[] { wordTable[wordNum].ToUpperInvariant() }) };
+        var qs = new List<QandA>() { makeQuestion(Question.MorseWarCode, module, correctAnswers: new[] { wordTable[wordNum].ToUpperInvariant() }) };
         var rowNames = new[] { "bottom", "middle", "top" };
         for (int i = 0; i < 3; i++)
-            qs.Add(makeQuestion(Question.MorseWarLeds, _MorseWar, formatArgs: new[] { rowNames[i] }, correctAnswers: new[] { rowTable[lights[i] - '1'] }));
+            qs.Add(makeQuestion(Question.MorseWarLeds, module, formatArgs: new[] { rowNames[i] }, correctAnswers: new[] { rowTable[lights[i] - '1'] }));
 
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessMouseInTheMaze(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMouseInTheMaze(ModuleData module)
     {
         var comp = GetComponent(module, "MouseInTheMazeModule");
-        var fldSolved = GetField<bool>(comp, "_isSolved");
         var sphereColors = GetArrayField<int>(comp, "_sphereColors").Get(expectedLength: 4);
 
         while (!_isActivated)
@@ -1069,43 +929,34 @@ public partial class SouvenirModule
         if (goalColor < 0 || goalColor > 3)
             throw new AbandonModuleException($"Unexpected color (torus={torusColor}; goal={goalColor})");
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-
-        _modulesSolved.IncSafe(_MouseInTheMaze);
+        yield return WaitForSolve;
         addQuestions(module,
-            makeQuestion(Question.MouseInTheMazeSphere, _MouseInTheMaze, correctAnswers: new[] { new[] { "white", "green", "blue", "yellow" }[goalColor] }),
-            makeQuestion(Question.MouseInTheMazeTorus, _MouseInTheMaze, correctAnswers: new[] { new[] { "white", "green", "blue", "yellow" }[torusColor] }));
+            makeQuestion(Question.MouseInTheMazeSphere, module, correctAnswers: new[] { new[] { "white", "green", "blue", "yellow" }[goalColor] }),
+            makeQuestion(Question.MouseInTheMazeTorus, module, correctAnswers: new[] { new[] { "white", "green", "blue", "yellow" }[torusColor] }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessMSeq(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMSeq(ModuleData module)
     {
         var comp = GetComponent(module, "MSeqScript");
-        var fldState = GetField<object>(comp, "state"); //Uses an enum value.
-        while (fldState.Get().ToString() != "Solved")
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_MSeq);
+        yield return WaitForSolve;
 
         int[] obtainedDigits = GetArrayField<int>(comp, "obtainedDigits").Get(expectedLength: 3);
         int submittedNum = GetIntField(comp, "finalNumber").Get(min: 25, max: 225);
 
         addQuestions(module,
-            makeQuestion(Question.MSeqObtained, _MSeq, correctAnswers: new[] { obtainedDigits[0].ToString() }, formatArgs: new[] { "first" }),
-            makeQuestion(Question.MSeqObtained, _MSeq, correctAnswers: new[] { obtainedDigits[1].ToString() }, formatArgs: new[] { "second" }),
-            makeQuestion(Question.MSeqObtained, _MSeq, correctAnswers: new[] { obtainedDigits[2].ToString() }, formatArgs: new[] { "third" }),
-            makeQuestion(Question.MSeqSubmitted, _MSeq, correctAnswers: new[] { submittedNum.ToString() }));
+            makeQuestion(Question.MSeqObtained, module, correctAnswers: new[] { obtainedDigits[0].ToString() }, formatArgs: new[] { "first" }),
+            makeQuestion(Question.MSeqObtained, module, correctAnswers: new[] { obtainedDigits[1].ToString() }, formatArgs: new[] { "second" }),
+            makeQuestion(Question.MSeqObtained, module, correctAnswers: new[] { obtainedDigits[2].ToString() }, formatArgs: new[] { "third" }),
+            makeQuestion(Question.MSeqSubmitted, module, correctAnswers: new[] { submittedNum.ToString() }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessMulticoloredSwitches(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMulticoloredSwitches(ModuleData module)
     {
         var comp = GetComponent(module, "MultiColoredSwitches");
-        var fldSolved = GetField<bool>(comp, "Solved");
         var fldLedsUp = GetField<Array>(comp, "LEDsUp");
         var fldLedsDown = GetField<Array>(comp, "LEDsDown");
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_MulticoloredSwitches);
+        yield return WaitForSolve;
 
         var ledsUp = fldLedsUp.Get(validator: arr => arr.Length != 5 ? "expected length 5" : null);
         var ledsDown = fldLedsDown.Get(validator: arr => arr.Length != 5 ? "expected length 5" : null);
@@ -1123,24 +974,21 @@ public partial class SouvenirModule
         for (var upDown = 0; upDown < 2; upDown++)
             for (var cycle = 0; cycle < 2; cycle++)
                 for (var led = 0; led < 5; led++)
-                    qs.Add(makeQuestion(Question.MulticoloredSwitchesLedColor, _MulticoloredSwitches,
+                    qs.Add(makeQuestion(Question.MulticoloredSwitchesLedColor, module,
                         formatArgs: new[] { ordinal(led + 1), upDown == 0 ? "top" : "bottom", cycle == 0 ? "lit" : "unlit" },
                         correctAnswers: new[] { colorNames[colorChars.IndexOf((upDown == 0 ? upColors : downColors)[led][cycle])] }));
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessMurder(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMurder(ModuleData module)
     {
         var comp = GetComponent(module, "MurderModule");
-        var fldSolved = GetField<bool>(comp, "isSolved");
 
         // Just a consistency check
         GetIntField(comp, "suspects").Get(min: 4, max: 4);
         GetIntField(comp, "weapons").Get(min: 4, max: 4);
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Murder);
+        yield return WaitForSolve;
 
         var solution = GetArrayField<int>(comp, "solution").Get(expectedLength: 3);
         var skipDisplay = GetField<int[,]>(comp, "skipDisplay").Get(ar => ar.GetLength(0) != 2 || ar.GetLength(1) != 6 ? $"dimensions are {ar.GetLength(0)},{ar.GetLength(1)}; expected 2,6" : null);
@@ -1153,35 +1001,32 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"Unexpected suspect, weapon, room or bodyFound (expected 0–5/0–5/0–8/0–8, got {actualSuspect}/{actualWeapon}/{actualRoom}/{bodyFound}).");
 
         addQuestions(module,
-            makeQuestion(Question.MurderSuspect, _Murder,
+            makeQuestion(Question.MurderSuspect, module,
                 formatArgs: new[] { "a suspect but not the murderer" },
                 correctAnswers: Enumerable.Range(0, 6).Where(suspectIx => skipDisplay[0, suspectIx] == 0 && suspectIx != actualSuspect).Select(suspectIx => names[0, suspectIx]).ToArray()),
-            makeQuestion(Question.MurderSuspect, _Murder,
+            makeQuestion(Question.MurderSuspect, module,
                 formatArgs: new[] { "not a suspect" },
                 correctAnswers: Enumerable.Range(0, 6).Where(suspectIx => skipDisplay[0, suspectIx] == 1).Select(suspectIx => names[0, suspectIx]).ToArray()),
 
-            makeQuestion(Question.MurderWeapon, _Murder,
+            makeQuestion(Question.MurderWeapon, module,
                 formatArgs: new[] { "a potential weapon but not the murder weapon" },
                 correctAnswers: Enumerable.Range(0, 6).Where(weaponIx => skipDisplay[1, weaponIx] == 0 && weaponIx != actualWeapon).Select(weaponIx => names[1, weaponIx]).ToArray()),
-            makeQuestion(Question.MurderWeapon, _Murder,
+            makeQuestion(Question.MurderWeapon, module,
                 formatArgs: new[] { "not a potential weapon" },
                 correctAnswers: Enumerable.Range(0, 6).Where(weaponIx => skipDisplay[1, weaponIx] == 1).Select(weaponIx => names[1, weaponIx]).ToArray()),
 
-            bodyFound == actualRoom ? null : makeQuestion(Question.MurderBodyFound, _Murder, correctAnswers: new[] { names[2, bodyFound] }));
+            bodyFound == actualRoom ? null : makeQuestion(Question.MurderBodyFound, module, correctAnswers: new[] { names[2, bodyFound] }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessMysticSquare(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMysticSquare(ModuleData module)
     {
         var comp = GetComponent(module, "MysticSquareModule");
-        var fldSolved = GetField<bool>(comp, "_isSolved");
         var skull = GetField<Transform>(comp, "Skull", true).Get();
 
         while (!skull.gameObject.activeSelf)
             yield return null;
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(0.1f);
-        _modulesSolved.IncSafe(_MysticSquare);
+        yield return WaitForSolve;
 
         var skullpos = GetIntField(comp, "_skullPos").Get(min: 0, max: 8);
         var spacepos = Array.IndexOf(GetArrayField<int>(comp, "_field").Get(), 0);
@@ -1207,12 +1052,11 @@ public partial class SouvenirModule
         addQuestion(module, Question.MysticSquareSkull, correctAnswers: new[] { answers[skullpos] });
     }
 
-    private IEnumerator<YieldInstruction> ProcessMysteryModule(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessMysteryModule(ModuleData module)
     {
         var comp = GetComponent(module, "MysteryModuleScript");
         var fldKeyModules = GetListField<KMBombModule>(comp, "keyModules");
         var fldMystifiedModule = GetField<KMBombModule>(comp, "mystifiedModule");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldAnimating = GetField<bool>(comp, "animating");
         var fldFailsolve = GetField<bool>(comp, "failsolve");
 
@@ -1224,7 +1068,7 @@ public partial class SouvenirModule
         if (fldFailsolve.Get())
         {
             Debug.Log($"[Souvenir #{_moduleId}] No question for Mystery Module because no module was hidden.");
-            _legitimatelyNoQuestions.Add(module);
+            _legitimatelyNoQuestions.Add(module.Module);
             yield break;
         }
 
@@ -1235,17 +1079,15 @@ public partial class SouvenirModule
         if (mystifiedModule == Module)
             _avoidQuestions++;
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_MysteryModule);
+        yield return WaitForSolve;
 
         // Do not ask questions during the solve animation, since Mystery Module modifies the scaling of this module.
         while (fldAnimating.Get())
             yield return new WaitForSeconds(.1f);
 
         addQuestions(module,
-            makeQuestion(Question.MysteryModuleFirstKey, _MysteryModule, correctAnswers: new[] { keyModule.ModuleDisplayName }, preferredWrongAnswers: Bomb.GetSolvableModuleNames().ToArray()),
-            makeQuestion(Question.MysteryModuleHiddenModule, _MysteryModule, correctAnswers: new[] { mystifiedModule.ModuleDisplayName }, preferredWrongAnswers: Bomb.GetSolvableModuleNames().ToArray()));
+            makeQuestion(Question.MysteryModuleFirstKey, module, correctAnswers: new[] { keyModule.ModuleDisplayName }, preferredWrongAnswers: Bomb.GetSolvableModuleNames().ToArray()),
+            makeQuestion(Question.MysteryModuleHiddenModule, module, correctAnswers: new[] { mystifiedModule.ModuleDisplayName }, preferredWrongAnswers: Bomb.GetSolvableModuleNames().ToArray()));
 
         if (mystifiedModule == Module)
             _avoidQuestions--;

@@ -7,32 +7,24 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
-    private IEnumerator<YieldInstruction> ProcessV(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessV(ModuleData module)
     {
         var comp = GetComponent(module, "qkV");
 
-        var solved = false;
-        module.OnPass += delegate { solved = true; return false; };
-        while (!solved)
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_V);
+        yield return WaitForSolve;
 
         var allWords = GetArrayField<string>(comp, "allWords").Get();
         var currentWords = GetField<List<string>>(comp, "currentWords").Get();
 
         addQuestions(module,
-           makeQuestion(Question.VWords, _V, formatArgs: new[] { "was" }, correctAnswers: currentWords.ToArray(), preferredWrongAnswers: allWords),
-           makeQuestion(Question.VWords, _V, formatArgs: new[] { "was not" }, correctAnswers: allWords.Where(a => !currentWords.Contains(a)).ToArray(), preferredWrongAnswers: allWords));
+           makeQuestion(Question.VWords, module, formatArgs: new[] { "was" }, correctAnswers: currentWords.ToArray(), preferredWrongAnswers: allWords),
+           makeQuestion(Question.VWords, module, formatArgs: new[] { "was not" }, correctAnswers: allWords.Where(a => !currentWords.Contains(a)).ToArray(), preferredWrongAnswers: allWords));
     }
 
-    private IEnumerator<YieldInstruction> ProcessValves(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessValves(ModuleData module)
     {
         var comp = GetComponent(module, "Valves");
-        var fldSolved = GetField<bool>(comp, "bombSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Valves);
+        yield return WaitForSolve;
 
         if (ValvesSprites.Length != 8)
             throw new AbandonModuleException($"Valves should have 8 sprites. Counted {ValvesSprites.Length}");
@@ -42,30 +34,25 @@ public partial class SouvenirModule
         addQuestion(module, Question.ValvesInitialState, correctAnswers: new[] { ValvesSprites[spriteIx] });
     }
 
-    private IEnumerator<YieldInstruction> ProcessVaricoloredSquares(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessVaricoloredSquares(ModuleData module)
     {
         var comp = GetComponent(module, "VaricoloredSquaresModule");
 
-        var solved = false;
-        module.OnPass += delegate { solved = true; return false; };
-        while (!solved)
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_VaricoloredSquares);
+        yield return WaitForSolve;
 
         addQuestion(module, Question.VaricoloredSquaresInitialColor, correctAnswers: new[] { GetField<object>(comp, "_firstStageColor").Get().ToString() });
     }
 
-    private IEnumerator<YieldInstruction> ProcessVaricolourFlash(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessVaricolourFlash(ModuleData module)
     {
         var comp = GetComponent(module, "VCFScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldStage = GetIntField(comp, "stage");
         var fldGoal = GetArrayField<int>(comp, "sequence");
 
         var words = new int[4];
         var colors = new int[4];
         var names = new[] { "Red", "Green", "Blue", "Magenta", "Yellow", "White" };
-        while (!fldSolved.Get())
+        while (module.Unsolved)
         {
             int s = fldStage.Get(min: 0, max: 5);
             if (s < 4)
@@ -79,21 +66,16 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(0.1f);
         }
 
-        _modulesSolved.IncSafe(_VaricolourFlash);
-
         var qs = new List<QandA>();
-        qs.AddRange(words.Select((val, ix) => makeQuestion(Question.VaricolourFlashWords, _VaricolourFlash, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { names[val] })));
-        qs.AddRange(colors.Select((val, ix) => makeQuestion(Question.VaricolourFlashColors, _VaricolourFlash, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { names[val] })));
+        qs.AddRange(words.Select((val, ix) => makeQuestion(Question.VaricolourFlashWords, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { names[val] })));
+        qs.AddRange(colors.Select((val, ix) => makeQuestion(Question.VaricolourFlashColors, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { names[val] })));
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessVariety(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessVariety(ModuleData module)
     {
         var comp = GetComponent(module, "VarietyModule");
-        var fldSolved = GetField<bool>(comp, "_isSolved");
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Variety);
+        yield return WaitForSolve;
 
         var items = GetField<IEnumerable>(comp, "_items").Get().Cast<object>().ToArray();
         if (items.Length != 10)
@@ -108,7 +90,7 @@ public partial class SouvenirModule
             var led = items[i];
             var c1 = GetProperty<object>(led, "Color1", isPublic: true).Get(null, v => (int) v is < 0 or > 4 ? $"Unknown LED color {v}" : null).ToString();
             var c2 = GetProperty<object>(led, "Color2", isPublic: true).Get(null, v => (int) v is < 0 or > 4 ? $"Unknown LED color {v}" : null).ToString();
-            questions.Add(makeQuestion(Question.VarietyLED, _Variety, correctAnswers: new[] { c1, c2 }));
+            questions.Add(makeQuestion(Question.VarietyLED, module, correctAnswers: new[] { c1, c2 }));
             disableSelectables = true;
         }
 
@@ -126,7 +108,7 @@ public partial class SouvenirModule
                 for (int ix = 0; ix < amount; ix++)
                     if (ix != solution)
                         ans.Add(displays[ix].ToString());
-                questions.Add(makeQuestion(Question.VarietyDigitDisplay, _Variety, correctAnswers: ans.ToArray(), preferredWrongAnswers: new[] { displays[solution].ToString() }));
+                questions.Add(makeQuestion(Question.VarietyDigitDisplay, module, correctAnswers: ans.ToArray(), preferredWrongAnswers: new[] { displays[solution].ToString() }));
                 disableSelectables = true;
             }
         }
@@ -141,7 +123,7 @@ public partial class SouvenirModule
             else
             {
                 var solution = GetProperty<int>(display, "State", isPublic: true).Get(v => v is < 0 || v >= words.Length ? $"Bad letter display solution state {v}" : null);
-                questions.Add(makeQuestion(Question.VarietyLetterDisplay, _Variety, correctAnswers: words.Where((_, i) => i != solution).ToArray(), preferredWrongAnswers: new[] { words[solution] }));
+                questions.Add(makeQuestion(Question.VarietyLetterDisplay, module, correctAnswers: words.Where((_, i) => i != solution).ToArray(), preferredWrongAnswers: new[] { words[solution] }));
                 disableSelectables = true;
             }
         }
@@ -162,11 +144,11 @@ public partial class SouvenirModule
                 return (A: a, B: b, Flavor: flavor);
             }).ToArray();
             if (data.Length == 1)
-                questions.Add(makeQuestion(Question.VarietyTimer, _Variety, formatArgs: new[] { "" }, correctAnswers: new[] { $"{data[0].A - 1} {data[0].B - 1}" }));
+                questions.Add(makeQuestion(Question.VarietyTimer, module, formatArgs: new[] { "" }, correctAnswers: new[] { $"{data[0].A - 1} {data[0].B - 1}" }));
             else
                 questions.AddRange(new[] {
-                    makeQuestion(Question.VarietyTimer, _Variety, formatArgs: new[] { data[0].Flavor.ToString().ToLowerInvariant() + " " }, correctAnswers: new[] { $"{data[0].A - 1} {data[0].B - 1}" }),
-                    makeQuestion(Question.VarietyTimer, _Variety, formatArgs: new[] { data[1].Flavor.ToString().ToLowerInvariant() + " " }, correctAnswers: new[] { $"{data[1].A - 1} {data[1].B - 1}" })
+                    makeQuestion(Question.VarietyTimer, module, formatArgs: new[] { data[0].Flavor.ToString().ToLowerInvariant() + " " }, correctAnswers: new[] { $"{data[0].A - 1} {data[0].B - 1}" }),
+                    makeQuestion(Question.VarietyTimer, module, formatArgs: new[] { data[1].Flavor.ToString().ToLowerInvariant() + " " }, correctAnswers: new[] { $"{data[1].A - 1} {data[1].B - 1}" })
                 });
             disableSelectables = true;
         }
@@ -186,7 +168,7 @@ public partial class SouvenirModule
             {
                 var ans = GetProperty<int>(knob, "NumStates", isPublic: true).Get(null, v => v is < 3 or > 6 ? $"Bad colored knob state count {v}" : null);
                 var flavor = GetProperty<object>(knob, "Color", isPublic: true).Get(null, v => (int) v is < 0 or > 3 ? $"Unknown knob color {v}" : null).ToString();
-                questions.Add(makeQuestion(Question.VarietyColoredKnob, _Variety, formatArgs: new[] { format ?? flavor.ToLowerInvariant().Substring(0, flavor.Length - 4) + " " }, correctAnswers: new[] { ans.ToString() }));
+                questions.Add(makeQuestion(Question.VarietyColoredKnob, module, formatArgs: new[] { format ?? flavor.ToLowerInvariant().Substring(0, flavor.Length - 4) + " " }, correctAnswers: new[] { ans.ToString() }));
             }
             disableSelectables = true;
         }
@@ -200,14 +182,14 @@ public partial class SouvenirModule
             {
                 var ans = GetProperty<int>(bulb, "N", isPublic: true).Get(null, v => v is < 5 or > 13 ? $"Unknown bulb N {v}" : null);
                 var flavor = GetProperty<object>(bulb, "Color", isPublic: true).Get(null, v => (int) v is < 0 or > 1 ? $"Unknown bulb color {v}" : null).ToString();
-                questions.Add(makeQuestion(Question.VarietyBulb, _Variety, formatArgs: new[] { format ?? flavor.Substring(0, flavor.Length - 4).ToLowerInvariant() + " " }, correctAnswers: new[] { ans.ToString() }));
+                questions.Add(makeQuestion(Question.VarietyBulb, module, formatArgs: new[] { format ?? flavor.Substring(0, flavor.Length - 4).ToLowerInvariant() + " " }, correctAnswers: new[] { ans.ToString() }));
             }
             disableSelectables = true;
         }
 
         if (questions.Count == 0)
         {
-            legitimatelyNoQuestion(module, "There were no relevant components (or they were not possible to ask about).");
+            legitimatelyNoQuestion(module.Module, "There were no relevant components (or they were not possible to ask about).");
             yield break;
         }
 
@@ -227,34 +209,25 @@ public partial class SouvenirModule
         addQuestions(module, questions);
     }
 
-    private IEnumerator<YieldInstruction> ProcessVcrcs(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessVcrcs(ModuleData module)
     {
         var comp = GetComponent(module, "VcrcsScript");
-        var fldSolved = GetField<bool>(comp, "ModuleSolved");
 
         var wordTextMesh = GetField<TextMesh>(comp, "Words", isPublic: true).Get();
         var word = wordTextMesh.text;
         if (word == null)
             throw new AbandonModuleException("‘Words.text’ is null.");
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Vcrcs);
+        yield return WaitForSolve;
 
         addQuestion(module, Question.VcrcsWord, correctAnswers: new[] { word });
     }
 
-    private IEnumerator<YieldInstruction> ProcessVectors(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessVectors(ModuleData module)
     {
         var comp = GetComponent(module, "VectorsScript");
 
-        // After moduleSolved is set to true, the module still performs an animation before it actually marks as solved.
-        // Therefore, we use OnPass to wait for it to be solved
-        var solved = false;
-        module.OnPass += delegate { solved = true; return false; };
-        while (!solved)
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Vectors);
+        yield return WaitForSolve;
 
         var colorsName = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Purple" };
         var vectorCount = GetIntField(comp, "vectorct").Get(min: 1, max: 3);
@@ -270,40 +243,36 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
         for (int i = 0; i < vectorCount; i++)
-            qs.Add(makeQuestion(Question.VectorsColors, _Vectors, formatArgs: new[] { vectorCount == 1 ? "only" : ordinal(i + 1) }, correctAnswers: new[] { colors[pickedVectors[i]] }));
+            qs.Add(makeQuestion(Question.VectorsColors, module, formatArgs: new[] { vectorCount == 1 ? "only" : ordinal(i + 1) }, correctAnswers: new[] { colors[pickedVectors[i]] }));
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessVexillology(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessVexillology(ModuleData module)
     {
         var comp = GetComponent(module, "vexillologyScript");
-        var fldSolved = GetField<bool>(comp, "_issolved");
 
         string[] colors = GetArrayField<string>(comp, "coloursStrings").Get();
         int color1 = GetIntField(comp, "ActiveFlagTop1").Get(min: 0, max: colors.Length - 1);
         int color2 = GetIntField(comp, "ActiveFlagTop2").Get(min: 0, max: colors.Length - 1);
         int color3 = GetIntField(comp, "ActiveFlagTop3").Get(min: 0, max: colors.Length - 1);
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Vexillology);
+        yield return WaitForSolve;
 
         addQuestions(module,
-            makeQuestion(Question.VexillologyColors, _Vexillology, formatArgs: new[] { "first" }, correctAnswers: new[] { colors[color1] }, preferredWrongAnswers: new[] { colors[color2], colors[color3] }),
-            makeQuestion(Question.VexillologyColors, _Vexillology, formatArgs: new[] { "second" }, correctAnswers: new[] { colors[color2] }, preferredWrongAnswers: new[] { colors[color1], colors[color3] }),
-            makeQuestion(Question.VexillologyColors, _Vexillology, formatArgs: new[] { "third" }, correctAnswers: new[] { colors[color3] }, preferredWrongAnswers: new[] { colors[color2], colors[color1] }));
+            makeQuestion(Question.VexillologyColors, module, formatArgs: new[] { "first" }, correctAnswers: new[] { colors[color1] }, preferredWrongAnswers: new[] { colors[color2], colors[color3] }),
+            makeQuestion(Question.VexillologyColors, module, formatArgs: new[] { "second" }, correctAnswers: new[] { colors[color2] }, preferredWrongAnswers: new[] { colors[color1], colors[color3] }),
+            makeQuestion(Question.VexillologyColors, module, formatArgs: new[] { "third" }, correctAnswers: new[] { colors[color3] }, preferredWrongAnswers: new[] { colors[color2], colors[color1] }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessVioletCipher(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessVioletCipher(ModuleData module)
     {
         return processColoredCiphers(module, "violetCipher", Question.VioletCipherScreen, _VioletCipher);
     }
 
-    private IEnumerator<YieldInstruction> ProcessVisualImpairment(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessVisualImpairment(ModuleData module)
     {
         var comp = GetComponent(module, "VisualImpairment");
         var fldRoundsFinished = GetIntField(comp, "roundsFinished");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldColor = GetIntField(comp, "color");
         var fldPicture = GetArrayField<string>(comp, "picture");
 
@@ -315,7 +284,7 @@ public partial class SouvenirModule
         var colorsPerStage = new int[stageCount];
         var colorNames = new[] { "Blue", "Green", "Red", "White" };
 
-        while (!fldSolved.Get())
+        while (module.Unsolved)
         {
             var newStage = fldRoundsFinished.Get();
             if (newStage >= stageCount)
@@ -325,8 +294,7 @@ public partial class SouvenirModule
             colorsPerStage[newStage] = newColor;
             yield return new WaitForSeconds(.1f);
         }
-        _modulesSolved.IncSafe(_VisualImpairment);
 
-        addQuestions(module, colorsPerStage.Select((col, ix) => makeQuestion(Question.VisualImpairmentColors, _VisualImpairment, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { colorNames[col] })));
+        addQuestions(module, colorsPerStage.Select((col, ix) => makeQuestion(Question.VisualImpairmentColors, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { colorNames[col] })));
     }
 }

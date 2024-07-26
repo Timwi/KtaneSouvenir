@@ -5,14 +5,10 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
-    private IEnumerator<YieldInstruction> ProcessZeroZero(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessZeroZero(ModuleData module)
     {
         var comp = GetComponent(module, "ZeroZeroScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_ZeroZero);
+        yield return WaitForSolve;
 
         var redPos = GetField<int>(comp, "redPos").Get();
         var greenPos = GetField<int>(comp, "greenPos").Get();
@@ -36,26 +32,25 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>
         {
-            makeQuestion(Question.ZeroZeroSquares, _ZeroZero, formatArgs: new[] { "red" }, correctAnswers: new[] { new Coord(7, 7, redPos) }),
-            makeQuestion(Question.ZeroZeroSquares, _ZeroZero, formatArgs: new[] { "green" }, correctAnswers: new[] { new Coord(7, 7, greenPos) }),
-            makeQuestion(Question.ZeroZeroSquares, _ZeroZero, formatArgs: new[] { "blue" }, correctAnswers: new[] { new Coord(7, 7, bluePos) })
+            makeQuestion(Question.ZeroZeroSquares, module, formatArgs: new[] { "red" }, correctAnswers: new[] { new Coord(7, 7, redPos) }),
+            makeQuestion(Question.ZeroZeroSquares, module, formatArgs: new[] { "green" }, correctAnswers: new[] { new Coord(7, 7, greenPos) }),
+            makeQuestion(Question.ZeroZeroSquares, module, formatArgs: new[] { "blue" }, correctAnswers: new[] { new Coord(7, 7, bluePos) })
         };
         var positionNames = new[] { "top-left", "top-right", "bottom-left", "bottom-right" };
         var colorNames = new[] { "black", "blue", "green", "cyan", "red", "magenta", "yellow", "white" };
         for (var starIx = 0; starIx < 4; starIx++)
         {
             var channels = fldChannels.GetFrom(stars.GetValue(starIx), expectedLength: 3);
-            qs.Add(makeQuestion(Question.ZeroZeroStarColors, _ZeroZero, formatArgs: new[] { positionNames[starIx] }, correctAnswers: new[] { colorNames[(channels[0] ? 4 : 0) + (channels[1] ? 2 : 0) + (channels[2] ? 1 : 0)] }));
+            qs.Add(makeQuestion(Question.ZeroZeroStarColors, module, formatArgs: new[] { positionNames[starIx] }, correctAnswers: new[] { colorNames[(channels[0] ? 4 : 0) + (channels[1] ? 2 : 0) + (channels[2] ? 1 : 0)] }));
             var points = fldPoints.GetFrom(stars.GetValue(starIx), 2, 8);
-            qs.Add(makeQuestion(Question.ZeroZeroStarPoints, _ZeroZero, formatArgs: new[] { positionNames[starIx] }, correctAnswers: new[] { points.ToString() }));
+            qs.Add(makeQuestion(Question.ZeroZeroStarPoints, module, formatArgs: new[] { positionNames[starIx] }, correctAnswers: new[] { points.ToString() }));
         }
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessZoni(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessZoni(ModuleData module)
     {
         var comp = GetComponent(module, "ZoniModuleScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldIndex = GetIntField(comp, "wordIndex");
         var fldStage = GetIntField(comp, "solvedStages");
 
@@ -82,9 +77,7 @@ public partial class SouvenirModule
             };
         }
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Zoni);
+        yield return WaitForSolve;
 
         if (wordsAnswered.Count != 3)
             throw new AbandonModuleException($"The received number of valid words was not 3: was {wordsAnswered.Count}.");
@@ -94,8 +87,8 @@ public partial class SouvenirModule
         var fontTexture = textbox.GetComponent<MeshRenderer>().sharedMaterial.mainTexture;
 
         addQuestions(module,
-            makeQuestion(Question.ZoniWords, _Zoni, formatArgs: new[] { "first" }, font: font, fontTexture: fontTexture, correctAnswers: new[] { words[wordsAnswered[0]] }, preferredWrongAnswers: words),
-            makeQuestion(Question.ZoniWords, _Zoni, formatArgs: new[] { "second" }, font: font, fontTexture: fontTexture, correctAnswers: new[] { words[wordsAnswered[1]] }, preferredWrongAnswers: words),
-            makeQuestion(Question.ZoniWords, _Zoni, formatArgs: new[] { "third" }, font: font, fontTexture: fontTexture, correctAnswers: new[] { words[wordsAnswered[2]] }, preferredWrongAnswers: words));
+            makeQuestion(Question.ZoniWords, module, formatArgs: new[] { "first" }, font: font, fontTexture: fontTexture, correctAnswers: new[] { words[wordsAnswered[0]] }, preferredWrongAnswers: words),
+            makeQuestion(Question.ZoniWords, module, formatArgs: new[] { "second" }, font: font, fontTexture: fontTexture, correctAnswers: new[] { words[wordsAnswered[1]] }, preferredWrongAnswers: words),
+            makeQuestion(Question.ZoniWords, module, formatArgs: new[] { "third" }, font: font, fontTexture: fontTexture, correctAnswers: new[] { words[wordsAnswered[2]] }, preferredWrongAnswers: words));
     }
 }

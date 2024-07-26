@@ -118,7 +118,7 @@ public partial class SouvenirModule : MonoBehaviour
 
     private static int _moduleIdCounter = 1;
     internal int _moduleId;
-    private Dictionary<string, (Func<KMBombModule, IEnumerator<YieldInstruction>> processor, string moduleName, string contributor)> _moduleProcessors;
+    private Dictionary<string, (Func<ModuleData, IEnumerator<YieldInstruction>> processor, string moduleName, string contributor)> _moduleProcessors;
     private Dictionary<Question, SouvenirQuestionAttribute> _attributes;
 
     // Used in TestHarness only
@@ -726,9 +726,17 @@ public partial class SouvenirModule : MonoBehaviour
             _supportedModuleNames.Add(module.ModuleDisplayName);
             yield return null;  // Ensures that the module’s Start() method has run
             Debug.Log($"‹Souvenir #{_moduleId}› Module {moduleType}: Start processing.");
+            ModuleData data = new() { Module = module };
+            module.OnPass += () =>
+            {
+                data.Unsolved = false;
+                // Use display names for vanillas
+                data.SolveIndex = _modulesSolved.IncSafe(module.ModuleDisplayName);
+                return false;
+            };
 
             // I’d much rather just put a ‘foreach’ loop inside a ‘try’ block, but Unity’s C# version doesn’t allow ‘yield return’ inside of ‘try’ blocks yet
-            using (var e = iterator(module))
+            using (var e = iterator(data))
             {
                 while (true)
                 {
@@ -750,7 +758,11 @@ public partial class SouvenirModule : MonoBehaviour
                     }
                     if (!canMoveNext)
                         break;
-                    yield return e.Current;
+
+                    if (e.Current is WaitForSolveInstruction)
+                        yield return new WaitWhile(() => data.Unsolved);
+                    else
+                        yield return e.Current;
 
                     if (TwitchAbandonModule.Contains(module))
                     {
@@ -784,7 +796,23 @@ public partial class SouvenirModule : MonoBehaviour
     }
     #endregion
 
+    #region Misc. small classes for module handlers
+    private sealed class WaitForSolveInstruction : YieldInstruction { }
+
+    /// <summary><code>yield return</code> this to wait for the module to call <see cref="KMBombModule.HandlePass()"/></summary>
+    private static readonly WaitForSolveInstruction WaitForSolve = new WaitForSolveInstruction();
+
+    private sealed class ModuleData
+    {
+        public KMBombModule Module;
+        public bool IsSolved => !Unsolved;
+        public bool Unsolved = true;
+        public int SolveIndex;
+    }
+    #endregion
+
     #region Helper methods for Reflection (used by module handlers)
+    private Component GetComponent(ModuleData module, string name) => GetComponent(module.Module, name);
     private Component GetComponent(KMBombModule module, string name) => GetComponent(module.gameObject, name);
     private Component GetComponent(GameObject module, string name) => module.GetComponent(name)
         ?? module.GetComponents(typeof(Component)).FirstOrDefault(c => c.GetType().FullName == name)
@@ -833,7 +861,7 @@ public partial class SouvenirModule : MonoBehaviour
 
         return noThrow ? null : throw new AbandonModuleException($"Type {targetType} does not contain {(isPublic ? "public" : "non-public")} field {name}. Fields are: {targetType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Select(f => $"{(f.IsPublic ? "public" : "private")} {f.FieldType.FullName} {f.Name}").JoinString(", ")}");
 
-    found:
+        found:
         return
             typeof(T).IsAssignableFrom(fld.FieldType) ? fld :
             noThrow ? null :
@@ -886,24 +914,44 @@ public partial class SouvenirModule : MonoBehaviour
     #endregion
 
     #region Methods for adding questions to the pool (used by module handlers)
-    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0)
+    private void addQuestion(ModuleData module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0)
     {
-        addQuestions(module, makeQuestion(question, module.ModuleType, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation));
+        addQuestion(module.Module, question, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation, module.SolveIndex);
     }
 
-    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Sprite[] correctAnswers = null, Sprite[] allAnswers = null, Sprite[] preferredWrongAnswers = null, float questionSpriteRotation = 0)
+    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0, int solveIx = 0)
     {
-        addQuestions(module, makeQuestion(question, module.ModuleType, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation));
+        addQuestions(module, makeQuestion(question, solveIx, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation, module.ModuleType));
     }
 
-    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0)
+    private void addQuestion(ModuleData module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Sprite[] correctAnswers = null, Sprite[] allAnswers = null, Sprite[] preferredWrongAnswers = null, float questionSpriteRotation = 0)
     {
-        addQuestions(module, makeQuestion(question, module.ModuleType, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, questionSpriteRotation));
+        addQuestion(module.Module, question, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation, module.SolveIndex);
     }
 
-    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, AudioClip[] correctAnswers = null, AudioClip[] allAnswers = null, AudioClip[] preferredWrongAnswers = null, float questionSpriteRotation = 0)
+    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Sprite[] correctAnswers = null, Sprite[] allAnswers = null, Sprite[] preferredWrongAnswers = null, float questionSpriteRotation = 0, int solveIx = 0)
     {
-        addQuestions(module, makeQuestion(question, module.ModuleType, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation));
+        addQuestions(module, makeQuestion(question, solveIx, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation, module.ModuleType));
+    }
+
+    private void addQuestion(ModuleData module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0)
+    {
+        addQuestion(module.Module, question, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, questionSpriteRotation, module.SolveIndex);
+    }
+
+    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0, int solveIx = 0)
+    {
+        addQuestions(module, makeQuestion(question, solveIx, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, questionSpriteRotation, module.ModuleType));
+    }
+
+    private void addQuestion(ModuleData module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, AudioClip[] correctAnswers = null, AudioClip[] allAnswers = null, AudioClip[] preferredWrongAnswers = null, float questionSpriteRotation = 0)
+    {
+        addQuestion(module.Module, question, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation, module.SolveIndex);
+    }
+
+    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, AudioClip[] correctAnswers = null, AudioClip[] allAnswers = null, AudioClip[] preferredWrongAnswers = null, float questionSpriteRotation = 0, int solveIx = 0)
+    {
+        addQuestions(module, makeQuestion(question, solveIx, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation, module.ModuleType));
     }
 
     private void addQuestions(KMBombModule module, IEnumerable<QandA> questions)
@@ -936,74 +984,92 @@ public partial class SouvenirModule : MonoBehaviour
         });
     }
 
-    private void addQuestions(KMBombModule module, params QandA[] questions)
-    {
-        addQuestions(module, (IEnumerable<QandA>) questions);
-    }
+    private void addQuestions(KMBombModule module, params QandA[] questions) => addQuestions(module, (IEnumerable<QandA>) questions);
+    private void addQuestions(ModuleData module, params QandA[] questions) => addQuestions(module.Module, (IEnumerable<QandA>) questions);
+    private void addQuestions(ModuleData module, IEnumerable<QandA> questions) => addQuestions(module.Module, questions);
 
     private static readonly AnswerType[] _standardAnswerTypes = Ut.GetEnumValues<AnswerType>().Where(a => (int) a >= 0).ToArray();
 
-    private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0) =>
-        makeQuestion(question, moduleKey,
-            (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation, _translation),
-            (attr, num, answers) => new QandA.TextAnswerSet(num, attr.Layout, answers, Fonts[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], attr.FontSize, attr.CharacterSize, FontTextures[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], FontMaterial),
-            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, _standardAnswerTypes);
+    private QandA makeQuestion(Question question, ModuleData data, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0) =>
+        makeQuestion(question, data.SolveIndex, questionSprite, formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation, data.Module.ModuleType);
+    private QandA makeQuestion(Question question, ModuleData data, Font font, Texture fontTexture, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0) =>
+        makeQuestion(question, data.SolveIndex, font, fontTexture, questionSprite, formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation, data.Module.ModuleType);
+    private QandA makeQuestion(Question question, ModuleData data, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null, Sprite[] allAnswers = null, float questionSpriteRotation = 0) =>
+        makeQuestion(question, data.SolveIndex, questionSprite, formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation, data.Module.ModuleType);
+    private QandA makeQuestion(Question question, ModuleData data, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0) =>
+        makeQuestion(question, data.SolveIndex, questionSprite, formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, questionSpriteRotation, data.Module.ModuleType);
+    private QandA makeQuestion(Question question, ModuleData data, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, AudioClip[] correctAnswers = null, AudioClip[] preferredWrongAnswers = null, AudioClip[] allAnswers = null, float questionSpriteRotation = 0) =>
+        makeQuestion(question, data.SolveIndex, questionSprite, formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation, data.Module.ModuleType);
 
-    private QandA makeQuestion(Question question, string moduleKey, Font font, Texture fontTexture, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0) =>
-        makeQuestion(question, moduleKey,
+    private QandA makeQuestion(Question question, int solveIx, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0, string moduleId = null) =>
+        makeQuestion(question, solveIx, (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation, _translation),
+            (attr, num, answers) => new QandA.TextAnswerSet(num, attr.Layout, answers, Fonts[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], attr.FontSize, attr.CharacterSize, FontTextures[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], FontMaterial),
+            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, moduleId, _standardAnswerTypes);
+
+    private QandA makeQuestion(Question question, int solveIx, Font font, Texture fontTexture, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0, string moduleId = null) =>
+        makeQuestion(question, solveIx,
             (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation, _translation),
             (attr, num, answers) => new QandA.TextAnswerSet(num, attr.Layout, answers, font, attr.FontSize, attr.CharacterSize, fontTexture, FontMaterial),
-            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, AnswerType.DynamicFont);
+            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, moduleId, AnswerType.DynamicFont);
 
-    private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null, Sprite[] allAnswers = null, float questionSpriteRotation = 0) =>
-        makeQuestion(question, moduleKey,
+    private QandA makeQuestion(Question question, int solveIx, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null, Sprite[] allAnswers = null, float questionSpriteRotation = 0, string moduleId = null) =>
+        makeQuestion(question, solveIx,
             (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation, _translation),
             (attr, num, answers) => new QandA.SpriteAnswerSet(num, attr.Layout, answers),
-            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? GetAllSprites(question), AnswerType.Sprites);
+            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? GetAllSprites(question), moduleId, AnswerType.Sprites);
 
-    private QandA makeSpriteQuestion(Sprite questionSprite, Question question, string moduleKey, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null) =>
-        makeQuestion(question, moduleKey,
+    private QandA makeSpriteQuestion(Sprite questionSprite, Question question, ModuleData data, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null) =>
+        makeSpriteQuestion(questionSprite, question, data.SolveIndex, formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, data.Module.ModuleType);
+
+    private QandA makeSpriteQuestion(Sprite questionSprite, Question question, int solveIx, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, string moduleId = null) =>
+        makeQuestion(question, solveIx,
             (attr, q) => new QandA.SpriteQuestion(q, questionSprite),
             (attr, num, answers) => new QandA.TextAnswerSet(num, attr.Layout, answers, Fonts[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], attr.FontSize, attr.CharacterSize, FontTextures[attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type], FontMaterial),
-            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, _standardAnswerTypes);
+            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, moduleId, _standardAnswerTypes);
 
-    private QandA makeSpriteQuestion(Sprite questionSprite, Question question, string moduleKey, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null, Sprite[] allAnswers = null) =>
-        makeQuestion(question, moduleKey,
+    private QandA makeSpriteQuestion(Sprite questionSprite, Question question, ModuleData data, string formattedModuleName = null, string[] formatArgs = null, AudioClip[] correctAnswers = null, AudioClip[] preferredWrongAnswers = null, AudioClip[] allAnswers = null) =>
+        makeSpriteQuestion(questionSprite, question, data.SolveIndex, formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, data.Module.ModuleType);
+
+    private QandA makeSpriteQuestion(Sprite questionSprite, Question question, int solveIx, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null, Sprite[] allAnswers = null, string moduleId = null) =>
+        makeQuestion(question, solveIx,
             (attr, q) => new QandA.SpriteQuestion(q, questionSprite),
             (attr, num, answers) => new QandA.SpriteAnswerSet(num, attr.Layout, answers),
-            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? GetAllSprites(question), AnswerType.Sprites);
+            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? GetAllSprites(question), moduleId, AnswerType.Sprites);
 
-    private QandA makeSpriteQuestion(Sprite questionSprite, Question question, string moduleKey, string formattedModuleName = null, string[] formatArgs = null, AudioClip[] correctAnswers = null, AudioClip[] preferredWrongAnswers = null, AudioClip[] allAnswers = null) =>
-    makeQuestion(question, moduleKey,
+    private QandA makeSpriteQuestion(Sprite questionSprite, Question question, ModuleData data, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null, Sprite[] allAnswers = null) =>
+        makeSpriteQuestion(questionSprite, question, data.SolveIndex, formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers, data.Module.ModuleType);
+
+    private QandA makeSpriteQuestion(Sprite questionSprite, Question question, int solveIx, string formattedModuleName = null, string[] formatArgs = null, AudioClip[] correctAnswers = null, AudioClip[] preferredWrongAnswers = null, AudioClip[] allAnswers = null, string moduleId = null) =>
+    makeQuestion(question, solveIx,
         (attr, q) => new QandA.SpriteQuestion(q, questionSprite),
         (attr, num, answers) => new QandA.AudioAnswerSet(num, attr.Layout, answers, this, attr.AudioSizeMultiplier, attr.ForeignAudioID),
-        formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? GetAllSounds(question), AnswerType.Audio);
+        formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? GetAllSounds(question), moduleId, AnswerType.Audio);
 
-    private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0)
+    private QandA makeQuestion(Question question, int solveIx, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0, string moduleId = null)
     {
         var w = correctAnswers[0].Width;
         var h = correctAnswers[0].Height;
         if (correctAnswers.Concat(preferredWrongAnswers ?? Enumerable.Empty<Coord>()).Any(c => c.Width != w || c.Height != h))
         {
-            Debug.LogError($"<Souvenir #{_moduleId}> The module handler for {moduleKey} provided grid coordinates for different sizes of grids.");
+            Debug.LogError($"<Souvenir #{_moduleId}> The module handler for {solveIx} provided grid coordinates for different sizes of grids.");
             throw new InvalidOperationException();
         }
-        return makeQuestion(question, moduleKey,
+        return makeQuestion(question, solveIx,
             (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation, _translation),
             (attr, num, answers) => new QandA.SpriteAnswerSet(num, attr.Layout, answers.Select(ans => Sprites.GenerateGridSprite(ans, 1)).ToArray()),
-            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, Enumerable.Range(0, w * h).Select(ix => new Coord(w, h, ix)).ToArray(), AnswerType.Grid);
+            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, Enumerable.Range(0, w * h).Select(ix => new Coord(w, h, ix)).ToArray(), moduleId, AnswerType.Grid);
     }
-    private QandA makeQuestion(Question question, string moduleKey, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, AudioClip[] correctAnswers = null, AudioClip[] preferredWrongAnswers = null, AudioClip[] allAnswers = null, float questionSpriteRotation = 0)
+    private QandA makeQuestion(Question question, int solveIx, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, AudioClip[] correctAnswers = null, AudioClip[] preferredWrongAnswers = null, AudioClip[] allAnswers = null, float questionSpriteRotation = 0, string moduleId = null)
     {
-        return makeQuestion(question, moduleKey,
+        return makeQuestion(question, solveIx,
             (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation, _translation),
             (attr, num, answers) => new QandA.AudioAnswerSet(num, attr.Layout, answers, this, attr.AudioSizeMultiplier, attr.ForeignAudioID),
-            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? GetAllSounds(question), AnswerType.Audio);
+            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? GetAllSounds(question), moduleId, AnswerType.Audio);
     }
 
-    private QandA makeQuestion<T>(Question question, string moduleKey, Func<SouvenirQuestionAttribute, string, QandA.QuestionBase> questionConstructor,
+    private QandA makeQuestion<T>(Question question, int solveIx, Func<SouvenirQuestionAttribute, string, QandA.QuestionBase> questionConstructor,
         Func<SouvenirQuestionAttribute, int, T[], QandA.AnswerSet> answerSetConstructor, string formattedModuleName = null, string[] formatArgs = null,
-        T[] correctAnswers = null, T[] preferredWrongAnswers = null, T[] allAnswers = null, params AnswerType[] acceptableTypes)
+        T[] correctAnswers = null, T[] preferredWrongAnswers = null, T[] allAnswers = null, string moduleId = null, params AnswerType[] acceptableTypes)
     {
         if (!_attributes.TryGetValue(question, out var attr))
         {
@@ -1012,7 +1078,7 @@ public partial class SouvenirModule : MonoBehaviour
         }
         if (!acceptableTypes.Contains(attr.Type))
         {
-            Debug.LogError($"<Souvenir #{_moduleId}> The module handler for {moduleKey} attempted to generate question {question} (type={attr.Type}) but used the wrong answer type.");
+            Debug.LogError($"<Souvenir #{_moduleId}> The module handler for {attr.ModuleName} attempted to generate question {question} (type={attr.Type}) but used the wrong answer type.");
             return null;
         }
 
@@ -1093,10 +1159,9 @@ public partial class SouvenirModule : MonoBehaviour
             for (var i = 0; i < answers.Count; i++)
                 answers[i] = (T) (object) translateAnswer(question, (string) (object) answers[i]);
 
-        var numSolved = _modulesSolved.Get(moduleKey);
-        if (numSolved < 1)
+        if (solveIx < 1 && formattedModuleName is null)
         {
-            Debug.LogError($"<Souvenir #{_moduleId}> Abandoning {attr.ModuleName} ({moduleKey}) because you forgot to increment the solve count.");
+            Debug.LogError($"<Souvenir #{_moduleId}> Abandoning {attr.ModuleName} because you didn't specify the solve count. Either call makeQuestion() with ModuleData, specify it yourself, or specify the formatted module name.");
             return null;
         }
 
@@ -1104,8 +1169,8 @@ public partial class SouvenirModule : MonoBehaviour
         allFormatArgs[0] = formattedModuleName ?? formatModuleName(
             _translation?.Translations.Get(question)?.ModuleName ?? attr.ModuleName,
             _translation?.Translations.Get(question)?.ModuleNameWithThe ?? _translation?.Translations.Get(question)?.ModuleName ?? attr.ModuleNameWithThe,
-            _moduleCounts.Get(moduleKey) > 1,
-            numSolved);
+            _moduleCounts.Get(moduleId) > 1,
+            solveIx);
 
         if (formatArgs != null)
             for (var i = 0; i < formatArgs.Length; i++)

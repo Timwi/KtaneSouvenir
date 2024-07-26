@@ -9,34 +9,28 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
-    private IEnumerator<YieldInstruction> ProcessDACHMaze(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDACHMaze(ModuleData module)
     {
         return processWorldMaze(module, "DACHMaze", _DACHMaze, Question.DACHMazeOrigin);
     }
 
-    private IEnumerator<YieldInstruction> ProcessDeafAlley(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDeafAlley(ModuleData module)
     {
         var comp = GetComponent(module, "DeafAlleyScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
         var shapes = GetField<string[]>(comp, "shapes").Get();
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_DeafAlley);
+        yield return WaitForSolve;
 
         var selectedShape = GetField<int>(comp, "selectedShape").Get();
-        addQuestions(module, makeQuestion(Question.DeafAlleyShape, _DeafAlley, correctAnswers: new[] { shapes[selectedShape] }, preferredWrongAnswers: shapes));
+        addQuestion(module, Question.DeafAlleyShape, correctAnswers: new[] { shapes[selectedShape] }, preferredWrongAnswers: shapes);
     }
 
-    private IEnumerator<YieldInstruction> ProcessDeckOfManyThings(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDeckOfManyThings(ModuleData module)
     {
         var comp = GetComponent(module, "deckOfManyThingsScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldSolution = GetIntField(comp, "solution");
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_DeckOfManyThings);
+        yield return WaitForSolve;
 
         var deck = GetField<Array>(comp, "deck").Get(d => d.Length == 0 ? "deck is empty" : null);
         var btns = GetArrayField<KMSelectable>(comp, "btns", isPublic: true).Get(expectedLength: 2);
@@ -64,38 +58,30 @@ public partial class SouvenirModule
         if (solution == 0)
         {
             Debug.Log($"[Souvenir #{_moduleId}] No question for The Deck of Many Things because the solution was the first card.");
-            _legitimatelyNoQuestions.Add(module);
+            _legitimatelyNoQuestions.Add(module.Module);
             yield break;
         }
 
         addQuestion(module, Question.DeckOfManyThingsFirstCard, correctAnswers: new[] { firstCardDeck });
     }
 
-    private IEnumerator<YieldInstruction> ProcessDecoloredSquares(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDecoloredSquares(ModuleData module)
     {
         var comp = GetComponent(module, "DecoloredSquaresModule");
-        var fldSolved = GetField<bool>(comp, "_isSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_DecoloredSquares);
+        yield return WaitForSolve;
 
         var colColor = GetField<string>(comp, "_color1").Get();
         var rowColor = GetField<string>(comp, "_color2").Get();
 
         addQuestions(module,
-            makeQuestion(Question.DecoloredSquaresStartingPos, _DecoloredSquares, formatArgs: new[] { "column" }, correctAnswers: new[] { colColor }),
-            makeQuestion(Question.DecoloredSquaresStartingPos, _DecoloredSquares, formatArgs: new[] { "row" }, correctAnswers: new[] { rowColor }));
+            makeQuestion(Question.DecoloredSquaresStartingPos, module, formatArgs: new[] { "column" }, correctAnswers: new[] { colColor }),
+            makeQuestion(Question.DecoloredSquaresStartingPos, module, formatArgs: new[] { "row" }, correctAnswers: new[] { rowColor }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessDecolourFlash(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDecolourFlash(ModuleData module)
     {
         var comp = GetComponent(module, "DecolourFlashScript");
-        var fldSolved = GetField<int>(comp, "_stage");
-
-        while (fldSolved.Get() != 4)
-            yield return new WaitForSeconds(0.1f);
-        _modulesSolved.IncSafe(_DecolourFlash);
+        yield return WaitForSolve;
 
         var names = new[] { "Blue", "Green", "Red", "Magenta", "Yellow", "White" };
         var goals = GetField<IList>(comp, "_goals").Get(validator: l => l.Count != 3 ? "expected length 3" : null);
@@ -111,20 +97,16 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (var i = 0; i < 3; i++)
         {
-            qs.Add(makeQuestion(Question.DecolourFlashGoal, _DecolourFlash, formatArgs: new[] { "colour", ordinal(i + 1) }, correctAnswers: new[] { names[colours[i]] }));
-            qs.Add(makeQuestion(Question.DecolourFlashGoal, _DecolourFlash, formatArgs: new[] { "word", ordinal(i + 1) }, correctAnswers: new[] { names[words[i]] }));
+            qs.Add(makeQuestion(Question.DecolourFlashGoal, module, formatArgs: new[] { "colour", ordinal(i + 1) }, correctAnswers: new[] { names[colours[i]] }));
+            qs.Add(makeQuestion(Question.DecolourFlashGoal, module, formatArgs: new[] { "word", ordinal(i + 1) }, correctAnswers: new[] { names[words[i]] }));
         }
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessDenialDisplays(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDenialDisplays(ModuleData module)
     {
         var comp = GetComponent(module, "DenialDisplaysScript");
-        var fldSolved = GetField<bool>(comp, "_moduleSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(0.1f);
-        _modulesSolved.IncSafe(_DenialDisplays);
+        yield return WaitForSolve;
 
         var initial = GetArrayField<int>(comp, "_initialDisplayNums").Get();
 
@@ -142,7 +124,7 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
         for (int disp = 0; disp < 5; disp++)
-            qs.Add(makeQuestion(Question.DenialDisplaysDisplays, _DenialDisplays,
+            qs.Add(makeQuestion(Question.DenialDisplaysDisplays, module,
                 formatArgs: new[] { "ABCDE"[disp].ToString() },
                 correctAnswers: new[] { initial[disp].ToString() },
                 preferredWrongAnswers: rands.Select(i => i.ToString()).ToArray()));
@@ -150,10 +132,9 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessDevilishEggs(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDevilishEggs(ModuleData module)
     {
         var comp = GetComponent(module, "devilishEggs");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
         var prismTexts = GetArrayField<TextMesh>(comp, "prismTexts", isPublic: true).Get(expectedLength: 3);
         var digits = prismTexts[0].text.Split(' ');
         var letters = prismTexts[1].text.Split(' ');
@@ -162,9 +143,7 @@ public partial class SouvenirModule
         if (letters.Length != 8 || letters.Any(str => str.Length != 1 || str[0] < 'A' || str[0] > 'Z'))
             throw new AbandonModuleException($"Expected 8 letters; got {letters.Length} ({letters.JoinString("; ")})");
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_DevilishEggs);
+        yield return WaitForSolve;
 
         var topRotations = GetField<Array>(comp, "topRotations").Get(validator: arr => arr.Length != 6 ? "expected length 6" : null).Cast<object>().Select(rot => rot.ToString()).ToArray();
         var bottomRotations = GetField<Array>(comp, "bottomRotations").Get(validator: arr => arr.Length != 6 ? "expected length 6" : null).Cast<object>().Select(rot => rot.ToString()).ToArray();
@@ -173,72 +152,58 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (var rotIx = 0; rotIx < 6; rotIx++)
         {
-            qs.Add(makeQuestion(Question.DevilishEggsRotations, _DevilishEggs, formatArgs: new[] { "top", ordinal(rotIx + 1) }, correctAnswers: new[] { topRotations[rotIx] }, preferredWrongAnswers: allRotations));
-            qs.Add(makeQuestion(Question.DevilishEggsRotations, _DevilishEggs, formatArgs: new[] { "bottom", ordinal(rotIx + 1) }, correctAnswers: new[] { bottomRotations[rotIx] }, preferredWrongAnswers: allRotations));
+            qs.Add(makeQuestion(Question.DevilishEggsRotations, module, formatArgs: new[] { "top", ordinal(rotIx + 1) }, correctAnswers: new[] { topRotations[rotIx] }, preferredWrongAnswers: allRotations));
+            qs.Add(makeQuestion(Question.DevilishEggsRotations, module, formatArgs: new[] { "bottom", ordinal(rotIx + 1) }, correctAnswers: new[] { bottomRotations[rotIx] }, preferredWrongAnswers: allRotations));
         }
         for (var ix = 0; ix < 8; ix++)
         {
-            qs.Add(makeQuestion(Question.DevilishEggsNumbers, _DevilishEggs, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { digits[ix] }, preferredWrongAnswers: digits));
-            qs.Add(makeQuestion(Question.DevilishEggsLetters, _DevilishEggs, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { letters[ix] }, preferredWrongAnswers: letters));
+            qs.Add(makeQuestion(Question.DevilishEggsNumbers, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { digits[ix] }, preferredWrongAnswers: digits));
+            qs.Add(makeQuestion(Question.DevilishEggsLetters, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { letters[ix] }, preferredWrongAnswers: letters));
         }
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessDiffusion(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDiffusion(ModuleData module)
     {
         var comp = GetComponent(module, "diffusionScript");
-        var fldSolved = GetField<bool>(comp, "solved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(0.1f);
-        _modulesSolved.IncSafe(_Diffusion);
+        yield return WaitForSolve;
 
         var states = GetListField<int>(comp, "diffused").Get(expectedLength: 12, validator: v => v is < 0 or > 24 ? $"Bad number {v}" : null);
         var names = new string[] { "A0B0", "A1B0", "A2B0", "A3B0", "A4B0", "A0B1", "A1B1", "A2B1", "A3B1", "A4B1", "A0B2", "A1B2", "A2B2", "A3B2", "A4B2", "A0B3", "A1B3", "A2B3", "A3B3", "A4B3", "A0B4", "A1B4", "A2B4", "A3B4", "A4B4" };
 
         addQuestions(module, states.Select((s, i) =>
-                makeQuestion(Question.DiffusionCell, _Diffusion, correctAnswers: new[] { names[s] }, questionSprite: DiffusionSprites[i])));
+                makeQuestion(Question.DiffusionCell, module, correctAnswers: new[] { names[s] }, questionSprite: DiffusionSprites[i])));
     }
 
-    private IEnumerator<YieldInstruction> ProcessDigisibility(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDigisibility(ModuleData module)
     {
         var comp = GetComponent(module, "digisibilityScript");
-        var fldSolved = GetField<bool>(comp, "solved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(0.1f);
-        _modulesSolved.IncSafe(_Digisibility);
+        yield return WaitForSolve;
 
         var displayedNums = GetField<int[][]>(comp, "Data").Get().First();
 
         var qs = new List<QandA>();
         for (int i = 0; i < 9; i++)
-            qs.Add(makeQuestion(Question.DigisibilityDisplayedNumber, _Digisibility,
+            qs.Add(makeQuestion(Question.DigisibilityDisplayedNumber, module,
                 formatArgs: new[] { ordinal(i + 1) },
                 correctAnswers: new[] { displayedNums[i].ToString() },
                 preferredWrongAnswers: displayedNums.Select(x => x.ToString()).ToArray()));
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessDigitString(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDigitString(ModuleData module)
     {
         var comp = GetComponent(module, "digitString");
-        var solved = false;
-        module.OnPass += delegate () { solved = true; return false; };
-
-        while (!solved)
-            yield return new WaitForSeconds(0.1f);
-        _modulesSolved.IncSafe(_DigitString);
+        yield return WaitForSolve;
 
         var storedInitialString = GetField<string>(comp, "shownString").Get(x => x.Length != 8 ? "Expected length 8" : null);
 
         addQuestion(module, Question.DigitStringInitialNumber, correctAnswers: new[] { storedInitialString });
     }
 
-    private IEnumerator<YieldInstruction> ProcessDimensionDisruption(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDimensionDisruption(ModuleData module)
     {
         var comp = GetComponent(module, "dimensionDisruptionScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
 
         var letterIndex = new List<int>()
         {
@@ -247,36 +212,29 @@ public partial class SouvenirModule
             GetField<int>(comp, "letThree").Get()
         };
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_DimensionDisruption);
+        yield return WaitForSolve;
 
         var alphabet = GetField<string>(comp, "alphabet").Get();
         var answers = letterIndex.Select(li => alphabet[li].ToString()).ToArray();
         addQuestion(module, Question.DimensionDisruptionVisibleLetters, correctAnswers: answers);
     }
 
-    private IEnumerator<YieldInstruction> ProcessDiscoloredSquares(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDiscoloredSquares(ModuleData module)
     {
         var comp = GetComponent(module, "DiscoloredSquaresModule");
-        var fldSolved = GetField<bool>(comp, "_isSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_DiscoloredSquares);
+        yield return WaitForSolve;
 
         var colorsRaw = GetField<Array>(comp, "_rememberedColors").Get(arr => arr.Length != 4 ? "expected length 4" : null);
         var positions = GetArrayField<int>(comp, "_rememberedPositions").Get(expectedLength: 4);
         var colors = colorsRaw.Cast<object>().Select(obj => obj.ToString()).ToArray();
 
         addQuestions(module, Enumerable.Range(0, 4).Select(color =>
-            makeQuestion(Question.DiscoloredSquaresRememberedPositions, _DiscoloredSquares, formatArgs: new[] { colors[color] }, correctAnswers: new[] { new Coord(4, 4, positions[color]) })));
+            makeQuestion(Question.DiscoloredSquaresRememberedPositions, module, formatArgs: new[] { colors[color] }, correctAnswers: new[] { new Coord(4, 4, positions[color]) })));
     }
 
-    private IEnumerator<YieldInstruction> ProcessDirectionalButton(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDirectionalButton(ModuleData module)
     {
         var comp = GetComponent(module, "DirectrionalButtonScripty");
-        var fldSolved = GetField<bool>(comp, "ModuleSolved");
         var fldStage = GetIntField(comp, "Stage");
         var fldCorrectPres = GetIntField(comp, "CorrectPres");
 
@@ -284,7 +242,7 @@ public partial class SouvenirModule
         var currentCorrectPress = 0;
         var buttonPresses = new int[5];
 
-        while (!fldSolved.Get())
+        while (module.Unsolved)
         {
             var stage = fldStage.Get();
             var correctPress = fldCorrectPres.Get();
@@ -298,20 +256,15 @@ public partial class SouvenirModule
 
             yield return null;
         }
-        _modulesSolved.IncSafe(_DirectionalButton);
 
         addQuestions(module, Enumerable.Range(0, 5).Select(i =>
-            makeQuestion(Question.DirectionalButtonButtonCount, _DirectionalButton, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { buttonPresses[i].ToString() })));
+            makeQuestion(Question.DirectionalButtonButtonCount, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { buttonPresses[i].ToString() })));
     }
 
-    private IEnumerator<YieldInstruction> ProcessDivisibleNumbers(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDivisibleNumbers(ModuleData module)
     {
         var comp = GetComponent(module, "DivisableNumbers");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_DivisibleNumbers);
+        yield return WaitForSolve;
 
         var finalAnswers = GetArrayField<string>(comp, "finalAnswers").Get(expectedLength: 3, validator: answer => answer != "Yea" && answer != "Nay" ? "expected either “Yea” or “Nea”" : null);
         var finalNumbers = GetArrayField<int>(comp, "finalNumbers").Get(expectedLength: 3, validator: number => number < 0 || number > 9999 ? "expected range 0–9999" : null);
@@ -319,43 +272,40 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
         for (int i = 0; i < finalNumbers.Length; i++)
-            qs.Add(makeQuestion(Question.DivisibleNumbersNumbers, _DivisibleNumbers, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { finalNumbersStr[i] }, preferredWrongAnswers: finalNumbersStr));
-        qs.Add(makeQuestion(Question.DivisibleNumbersAnswers, _DivisibleNumbers, correctAnswers: new[] { string.Join(", ", finalAnswers) }));
+            qs.Add(makeQuestion(Question.DivisibleNumbersNumbers, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { finalNumbersStr[i] }, preferredWrongAnswers: finalNumbersStr));
+        qs.Add(makeQuestion(Question.DivisibleNumbersAnswers, module, correctAnswers: new[] { string.Join(", ", finalAnswers) }));
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessDoubleArrows(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDoubleArrows(ModuleData module)
     {
         var comp = GetComponent(module, "DoubleArrowsScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldPresses = GetField<int>(comp, "pressCount");
         var display = GetField<TextMesh>(comp, "disp", true).Get();
         var start = "";
 
-        while (!fldSolved.Get())
+        while (module.Unsolved)
         {
             if (display.text.Length == 2)
                 start = display.text; // This resets on a strike.
             yield return new WaitForSeconds(.1f);
         }
-        _modulesSolved.IncSafe(_DoubleArrows);
 
-        var qs = new List<QandA>(17) { makeQuestion(Question.DoubleArrowsStart, _DoubleArrows, correctAnswers: new[] { start }) };
+        var qs = new List<QandA>(17) { makeQuestion(Question.DoubleArrowsStart, module, correctAnswers: new[] { start }) };
         var callib = GetArrayField<int[]>(comp, "callib").Get(expectedLength: 2);
         var dirs = new[] { "Left", "Up", "Right", "Down" };
         for (int i = 0; i < 8; i++)
         {
-            qs.Add(makeQuestion(Question.DoubleArrowsMovement, _DoubleArrows, formatArgs: new[] { $"{(i < 4 ? "inner" : "outer")} {dirs[i % 4].ToLowerInvariant()}" }, correctAnswers: new[] { dirs[callib[i / 4][i % 4]] }));
-            qs.Add(makeQuestion(Question.DoubleArrowsArrow, _DoubleArrows, formatArgs: new[] { i < 4 ? "inner" : "outer", dirs[callib[i / 4][i % 4]].ToLowerInvariant() }, correctAnswers: new[] { dirs[i % 4] }));
+            qs.Add(makeQuestion(Question.DoubleArrowsMovement, module, formatArgs: new[] { $"{(i < 4 ? "inner" : "outer")} {dirs[i % 4].ToLowerInvariant()}" }, correctAnswers: new[] { dirs[callib[i / 4][i % 4]] }));
+            qs.Add(makeQuestion(Question.DoubleArrowsArrow, module, formatArgs: new[] { i < 4 ? "inner" : "outer", dirs[callib[i / 4][i % 4]].ToLowerInvariant() }, correctAnswers: new[] { dirs[i % 4] }));
         }
 
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessDoubleColor(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDoubleColor(ModuleData module)
     {
         var comp = GetComponent(module, "doubleColor");
-        var fldSolved = GetField<bool>(comp, "_isSolved");
         var fldColor = GetIntField(comp, "screenColor");
         var fldStage = GetIntField(comp, "stageNumber");
 
@@ -377,9 +327,7 @@ public partial class SouvenirModule
             return ret;
         };
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_DoubleColor);
+        yield return WaitForSolve;
 
         // Check the value of color1 because we might have reassigned it inside the button handler
         if (color1 < 0 || color1 > 4)
@@ -390,34 +338,28 @@ public partial class SouvenirModule
         var colorNames = new[] { "Green", "Blue", "Red", "Pink", "Yellow" };
 
         addQuestions(module,
-            makeQuestion(Question.DoubleColorColors, _DoubleColor, formatArgs: new[] { "first" }, correctAnswers: new[] { colorNames[color1] }),
-            makeQuestion(Question.DoubleColorColors, _DoubleColor, formatArgs: new[] { "second" }, correctAnswers: new[] { colorNames[color2] }));
+            makeQuestion(Question.DoubleColorColors, module, formatArgs: new[] { "first" }, correctAnswers: new[] { colorNames[color1] }),
+            makeQuestion(Question.DoubleColorColors, module, formatArgs: new[] { "second" }, correctAnswers: new[] { colorNames[color2] }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessDoubleDigits(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDoubleDigits(ModuleData module)
     {
         var comp = GetComponent(module, "DoubleDigitsScript");
-        var fldSolved = GetField<bool>(comp, "_moduleSolved");
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(0.1f);
-        _modulesSolved.IncSafe(_DoubleDigits);
+        yield return WaitForSolve;
 
         var d = GetArrayField<int>(comp, "digits").Get();
         var digits = Enumerable.Range(0, d.Length).Select(str => d[str].ToString()).ToArray();
 
         addQuestions(module,
-            makeQuestion(Question.DoubleDigitsDisplays, _DoubleDigits, formatArgs: new[] { "left" }, correctAnswers: new[] { digits[0] }),
-            makeQuestion(Question.DoubleDigitsDisplays, _DoubleDigits, formatArgs: new[] { "right" }, correctAnswers: new[] { digits[1] }));
+            makeQuestion(Question.DoubleDigitsDisplays, module, formatArgs: new[] { "left" }, correctAnswers: new[] { digits[0] }),
+            makeQuestion(Question.DoubleDigitsDisplays, module, formatArgs: new[] { "right" }, correctAnswers: new[] { digits[1] }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessDoubleExpert(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDoubleExpert(ModuleData module)
     {
         var comp = GetComponent(module, "doubleExpertScript");
 
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_DoubleExpert);
+        yield return WaitForSolve;
 
         var startingKeyNumber = GetIntField(comp, "startKeyNumber").Get(min: 30, max: 69);
         var keywords = GetListField<string>(comp, "keywords").Get().ToArray();
@@ -425,19 +367,15 @@ public partial class SouvenirModule
 
         addQuestions(
             module,
-            makeQuestion(Question.DoubleExpertStartingKeyNumber, _DoubleExpert, correctAnswers: new[] { startingKeyNumber.ToString() }),
-            makeQuestion(Question.DoubleExpertSubmittedWord, _DoubleExpert, correctAnswers: new[] { keywords[correctKeywordIndex] }, preferredWrongAnswers: keywords)
+            makeQuestion(Question.DoubleExpertStartingKeyNumber, module, correctAnswers: new[] { startingKeyNumber.ToString() }),
+            makeQuestion(Question.DoubleExpertSubmittedWord, module, correctAnswers: new[] { keywords[correctKeywordIndex] }, preferredWrongAnswers: keywords)
         );
     }
 
-    private IEnumerator<YieldInstruction> ProcessDoubleListening(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDoubleListening(ModuleData module)
     {
         var comp = GetComponent(module, "doubleListeningScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_DoubleListening);
+        yield return WaitForSolve;
 
         // Sounds could be gotten directly from the module, however,
         // they can't be for Listening so there's no point.
@@ -460,14 +398,10 @@ public partial class SouvenirModule
         );
     }
 
-    private IEnumerator<YieldInstruction> ProcessDoubleOh(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDoubleOh(ModuleData module)
     {
         var comp = GetComponent(module, "DoubleOhModule");
-        var fldSolved = GetField<bool>(comp, "_isSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_DoubleOh);
+        yield return WaitForSolve;
 
         var submitIndex = GetField<Array>(comp, "_functions").Get().Cast<object>().IndexOf(f => f.ToString() == "Submit");
         if (submitIndex < 0 || submitIndex > 4)
@@ -476,13 +410,12 @@ public partial class SouvenirModule
         addQuestion(module, Question.DoubleOhSubmitButton, correctAnswers: new[] { "↕↔⇔⇕◆".Substring(submitIndex, 1) });
     }
 
-    private IEnumerator<YieldInstruction> ProcessDoubleScreen(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDoubleScreen(ModuleData module)
     {
         var comp = GetComponent(module, "DoubleScreenScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
 
         List<(int Top, int Bottom)> stages = new();
-        module.OnStrike += () => { stages.Clear(); return false; };
+        module.Module.OnStrike += () => { stages.Clear(); return false; };
 
         yield return null;  // Ensures that the module’s Start() method has run
         var stageCount = GetField<int>(comp, "stageCount").Get(v => v is < 2 or > 3 ? $"Bad stage count {v}" : null);
@@ -490,7 +423,7 @@ public partial class SouvenirModule
         var colors = GetArrayField<int>(comp, "colors");
 
         bool newStage = true;
-        while (!fldSolved.Get())
+        while (module.Unsolved)
         {
             if (newStage && screen.activeSelf)
             {
@@ -504,58 +437,47 @@ public partial class SouvenirModule
             // Screens are off for 0.2s between stages and only turn back on after stage generation.
             yield return new WaitForSeconds(.1f);
         }
-        _modulesSolved.IncSafe(_DoubleScreen);
 
         if (stages.Count != stageCount)
             throw new AbandonModuleException($"Expected {stageCount} stages but found {stages.Count}.");
 
         var colorNames = new string[] { "Red", "Yellow", "Green", "Blue" };
         addQuestions(module, stages.SelectMany((s, i) => new QandA[] {
-                makeQuestion(Question.DoubleScreenColors, _DoubleScreen, correctAnswers: new[] { colorNames[s.Top] }, formatArgs: new[] { "top", ordinal(i + 1) }),
-                makeQuestion(Question.DoubleScreenColors, _DoubleScreen, correctAnswers: new[] { colorNames[s.Bottom] }, formatArgs: new[] { "bottom", ordinal(i + 1) })
+                makeQuestion(Question.DoubleScreenColors, module, correctAnswers: new[] { colorNames[s.Top] }, formatArgs: new[] { "top", ordinal(i + 1) }),
+                makeQuestion(Question.DoubleScreenColors, module, correctAnswers: new[] { colorNames[s.Bottom] }, formatArgs: new[] { "bottom", ordinal(i + 1) })
         }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessDrDoctor(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDrDoctor(ModuleData module)
     {
         var comp = GetComponent(module, "DrDoctorModule");
-        var fldSolved = GetField<bool>(comp, "_isSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_DrDoctor);
+        yield return WaitForSolve;
 
         var diagnoses = GetArrayField<string>(comp, "_selectableDiagnoses").Get();
         var symptoms = GetArrayField<string>(comp, "_selectableSymptoms").Get();
         var diagnoseText = GetField<TextMesh>(comp, "DiagnoseText", isPublic: true).Get();
 
         addQuestions(module,
-            makeQuestion(Question.DrDoctorDiseases, _DrDoctor, correctAnswers: diagnoses.Except(new[] { diagnoseText.text }).ToArray()),
-            makeQuestion(Question.DrDoctorSymptoms, _DrDoctor, correctAnswers: symptoms));
+            makeQuestion(Question.DrDoctorDiseases, module, correctAnswers: diagnoses.Except(new[] { diagnoseText.text }).ToArray()),
+            makeQuestion(Question.DrDoctorSymptoms, module, correctAnswers: symptoms));
     }
 
-    private IEnumerator<YieldInstruction> ProcessDreamcipher(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDreamcipher(ModuleData module)
     {
         var comp = GetComponent(module, "Dreamcipher");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
         var wordList = JsonConvert.DeserializeObject<string[]>(GetField<TextAsset>(comp, "wordList", isPublic: true).Get().text);
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Dreamcipher);
+        yield return WaitForSolve;
 
         string targetWord = GetField<string>(comp, "targetWord").Get().ToLowerInvariant();
-        addQuestions(module, makeQuestion(Question.DreamcipherWord, _Dreamcipher, formatArgs: null, correctAnswers: new[] { targetWord }, preferredWrongAnswers: wordList));
+        addQuestion(module, Question.DreamcipherWord, correctAnswers: new[] { targetWord }, preferredWrongAnswers: wordList);
     }
 
-    private IEnumerator<YieldInstruction> ProcessDuck(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDuck(ModuleData module)
     {
         var comp = GetComponent(module, "theDuckScript");
 
-        var fldSolved = GetField<bool>(comp, "solved");
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Duck);
+        yield return WaitForSolve;
 
         var colorNames = new[] { "blue", "yellow", "green", "orange", "red" };
         var approaches = new[] { "dove at the duck", "walked to the duck", "ran to the duck", "snuck up on the duck", "swam to the duck", "flew to the duck", "approached the duck with caution" };
@@ -564,27 +486,23 @@ public partial class SouvenirModule
 
         addQuestions(
             module,
-            makeQuestion(Question.DuckApproach, _Duck, correctAnswers: new[] { chosenApproach }),
-            makeQuestion(Question.DuckCurtainColor, _Duck, correctAnswers: new[] { curtainColor })
+            makeQuestion(Question.DuckApproach, module, correctAnswers: new[] { chosenApproach }),
+            makeQuestion(Question.DuckCurtainColor, module, correctAnswers: new[] { curtainColor })
         );
     }
 
-    private IEnumerator<YieldInstruction> ProcessDumbWaiters(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessDumbWaiters(ModuleData module)
     {
         var comp = GetComponent(module, "dumbWaiters");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_DumbWaiters);
+        yield return WaitForSolve;
 
         var players = GetStaticField<string[]>(comp.GetType(), "names").Get();
         var playersAvaiable = GetArrayField<int>(comp, "presentPlayers").Get();
         var availablePlayers = playersAvaiable.Select(ix => players[ix]).ToArray();
 
         addQuestions(module,
-           makeQuestion(Question.DumbWaitersPlayerAvailable, _DumbWaiters, formatArgs: new[] { "was" }, correctAnswers: availablePlayers, preferredWrongAnswers: players),
-           makeQuestion(Question.DumbWaitersPlayerAvailable, _DumbWaiters, formatArgs: new[] { "was not" }, correctAnswers: players.Where(a => !availablePlayers.Contains(a)).ToArray(), preferredWrongAnswers: players));
+           makeQuestion(Question.DumbWaitersPlayerAvailable, module, formatArgs: new[] { "was" }, correctAnswers: availablePlayers, preferredWrongAnswers: players),
+           makeQuestion(Question.DumbWaitersPlayerAvailable, module, formatArgs: new[] { "was not" }, correctAnswers: players.Where(a => !availablePlayers.Contains(a)).ToArray(), preferredWrongAnswers: players));
 
     }
 }

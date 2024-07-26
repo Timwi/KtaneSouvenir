@@ -6,24 +6,23 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
-    private IEnumerator<YieldInstruction> ProcessKanji(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessKanji(ModuleData module)
     {
         var comp = GetComponent(module, "KanjiModule");
 
-        var fldSolved = GetField<bool>(comp, "ModuleSolved");
         var fldCalculating = GetField<bool>(comp, "Calculating");
         var fldStage = GetIntField(comp, "Stage");
         var screen = GetField<TextMesh>(comp, "ScreenText", isPublic: true).Get();
         var displayedWords = new string[3];
         var stage = 0;
 
-        module.OnStrike += () => { stage--; return false; }; // Grab the text on the screen again on strike.
+        module.Module.OnStrike += () => { stage--; return false; }; // Grab the text on the screen again on strike.
 
         while (screen.text == "爆発")
             yield return null; // Don’t wait .1 seconds so that we are absolutely sure we get the right stage. (yes I stole this comment :D)
         displayedWords[0] = screen.text;
 
-        for (stage = 1; stage <= 2 || !fldSolved.Get(); stage++)
+        for (stage = 1; stage <= 2 || module.Unsolved; stage++)
         {
             while (fldStage.Get(min: stage, max: stage + 1) == stage)
                 yield return new WaitForSeconds(.1f); // Stage animation takes much longer than .1 seconds anyway.
@@ -33,7 +32,6 @@ public partial class SouvenirModule
                 displayedWords[stage] = screen.text;
             yield return new WaitForSeconds(.1f); // Keep looping until solve here so we can still grab the text in the event of a strike on the last stage.
         }
-        _modulesSolved.IncSafe(_Kanji);
 
         var wordLists = new string[][]
         {
@@ -41,13 +39,12 @@ public partial class SouvenirModule
             GetArrayField<string>(comp, "Stage2Char").Get(arr => !arr.Contains(displayedWords[1]) ? $"expected array to contain \"{displayedWords[1]}\"" : null),
             GetArrayField<string>(comp, "Stage3Words").Get(arr => !arr.Contains(displayedWords[2]) ? $"expected array to contain \"{displayedWords[2]}\"" : null)
         };
-        addQuestions(module, Enumerable.Range(0, 3).Select(stage => makeQuestion(Question.KanjiDisplayedWords, _Kanji, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { displayedWords[stage] }, preferredWrongAnswers: wordLists[stage])));
+        addQuestions(module, Enumerable.Range(0, 3).Select(stage => makeQuestion(Question.KanjiDisplayedWords, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { displayedWords[stage] }, preferredWrongAnswers: wordLists[stage])));
     }
 
-    private IEnumerator<YieldInstruction> ProcessKanyeEncounter(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessKanyeEncounter(ModuleData module)
     {
         var comp = GetComponent(module, "TheKanyeEncounter");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
 
         var fldFoodsAvailable = GetArrayField<int>(comp, "FooderPickerNumberSelector");
         var foodNames = GetField<string[]>(comp, "FoodsButCodeText").Get();
@@ -55,55 +52,43 @@ public partial class SouvenirModule
             if (foodNames[i] == "Corn [inedible]")
                 foodNames[i] = "Corn";
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(0.1f);
-        _modulesSolved.IncSafe(_KanyeEncounter);
+        yield return WaitForSolve;
 
         var selectedFoods = fldFoodsAvailable.Get(expectedLength: 3);
         var selectedFoodNames = selectedFoods.Select(x => foodNames[x]).ToArray();
         addQuestion(module, Question.KanyeEncounterFoods, correctAnswers: selectedFoodNames);
     }
 
-    private IEnumerator<YieldInstruction> ProcessKeypadCombination(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessKeypadCombination(ModuleData module)
     {
         var comp = GetComponent(module, "KeypadCombinations");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(0.1f);
-        _modulesSolved.IncSafe(_KeypadCombination);
+        yield return WaitForSolve;
 
         var buttonNums = GetField<int[,]>(comp, "buttonnum").Get(v => v.GetLength(0) != 4 || v.GetLength(1) != 3 ? "expected 4×3 array" : null);
         var moduleAnswer = GetField<string>(comp, "answer").Get();
 
-        addQuestions(module, Enumerable.Range(0, 4).Select(i => makeQuestion(Question.KeypadCombinationWrongNumbers, _KeypadCombination,
+        addQuestions(module, Enumerable.Range(0, 4).Select(i => makeQuestion(Question.KeypadCombinationWrongNumbers, module,
             formatArgs: new[] { ordinal(i + 1) },
             correctAnswers: Enumerable.Range(0, 3).Select(buttonIndex => buttonNums[i, buttonIndex])
                 .Where(num => num != moduleAnswer[i] - '0').Select(num => num.ToString()).ToArray())));
     }
 
-    private IEnumerator<YieldInstruction> ProcessKeypadMagnified(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessKeypadMagnified(ModuleData module)
     {
         var comp = GetComponent(module, "KeypadMagnifiedScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
 
         var LEDPos = GetIntField(comp, "chosenPosition").Get(min: 0, max: 3);
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(0.1f);
-        _modulesSolved.IncSafe(_KeypadMagnified);
+        yield return WaitForSolve;
 
         var posNames = new[] { "Top-left", "Top-right", "Bottom-left", "Bottom-right" };
         addQuestion(module, Question.KeypadMagnifiedLED, correctAnswers: new[] { posNames[LEDPos] });
     }
 
-    private IEnumerator<YieldInstruction> ProcessKeywords(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessKeywords(ModuleData module)
     {
         var comp = GetComponent(module, "keywordsScript");
 
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Keywords);
+        yield return WaitForSolve;
 
         var consonants = "bcdfghjklmnpqrstvwxyz".ToCharArray();
         var vowels = "aeiou".ToCharArray();
@@ -118,14 +103,11 @@ public partial class SouvenirModule
         addQuestion(module, Question.KeywordsDisplayedKey, correctAnswers: new[] { displayedKey }, preferredWrongAnswers: possibleAnswers.ToArray());
     }
 
-    private IEnumerator<YieldInstruction> ProcessKnowYourWay(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessKnowYourWay(ModuleData module)
     {
         var comp = GetComponent(module, "KnowYourWayScript");
 
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_KnowYourWay);
+        yield return WaitForSolve;
 
         var ledIndex = GetIntField(comp, "LEDLoc").Get(min: 0, max: 3);
         var arrowIndex = GetIntField(comp, "ArrowLoc").Get(min: 0, max: 3);
@@ -135,36 +117,30 @@ public partial class SouvenirModule
 
         addQuestions(
             module,
-            makeQuestion(Question.KnowYourWayArrow, _KnowYourWay, correctAnswers: new[] { new[] { "Up", "Left", "Down", "Right" }[arrowIndex] }),
-            makeQuestion(Question.KnowYourWayLed, _KnowYourWay, correctAnswers: new[] { new[] { "Top", "Left", "Bottom", "Right" }[ledIndex] })
+            makeQuestion(Question.KnowYourWayArrow, module, correctAnswers: new[] { new[] { "Up", "Left", "Down", "Right" }[arrowIndex] }),
+            makeQuestion(Question.KnowYourWayLed, module, correctAnswers: new[] { new[] { "Top", "Left", "Bottom", "Right" }[ledIndex] })
         );
     }
 
-    private IEnumerator<YieldInstruction> ProcessKudosudoku(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessKudosudoku(ModuleData module)
     {
         var comp = GetComponent(module, "KudosudokuModule");
-        var fldSolved = GetField<bool>(comp, "_isSolved");
         var shown = GetArrayField<bool>(comp, "_shown").Get(expectedLength: 16).ToArray();  // Take a copy of the array because the module changes it
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Kudosudoku);
+        yield return WaitForSolve;
 
         addQuestions(module,
-            makeQuestion(Question.KudosudokuPrefilled, _Kudosudoku, formatArgs: new[] { "pre-filled" },
+            makeQuestion(Question.KudosudokuPrefilled, module, formatArgs: new[] { "pre-filled" },
                 correctAnswers: Enumerable.Range(0, 16).Where(ix => shown[ix]).Select(coord => new Coord(4, 4, coord)).ToArray()),
-            makeQuestion(Question.KudosudokuPrefilled, _Kudosudoku, formatArgs: new[] { "not pre-filled" },
+            makeQuestion(Question.KudosudokuPrefilled, module, formatArgs: new[] { "not pre-filled" },
                 correctAnswers: Enumerable.Range(0, 16).Where(ix => !shown[ix]).Select(coord => new Coord(4, 4, coord)).ToArray()));
     }
 
-    private IEnumerator<YieldInstruction> ProcessKyudoku(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessKyudoku(ModuleData module)
     {
         var comp = GetComponent(module, "KyudokuScript");
 
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Kyudoku);
+        yield return WaitForSolve;
 
         var info = GetField<object>(comp, "puzzleInfo").Get();
         var given = GetField<int>(info, "Given", isPublic: true).Get(v => v is < 0 or > 35 ? $"Bad given digit location {v}" : null);
@@ -188,7 +164,7 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"Expected 9 circled digits but found {allCircled.Length}. ({allCircled.JoinString(", ")})");
 
         addQuestions(module,
-            makeQuestion(Question.KyudokuGivenDigit, _Kyudoku, correctAnswers: new[] { digit.ToString() }),
-            makeQuestion(Question.KyudokuGivenDigitLocation, _Kyudoku, correctAnswers: new[] { new Coord(6, 6, given) }, preferredWrongAnswers: allCircled.Select(c => new Coord(6, 6, c)).ToArray()));
+            makeQuestion(Question.KyudokuGivenDigit, module, correctAnswers: new[] { digit.ToString() }),
+            makeQuestion(Question.KyudokuGivenDigitLocation, module, correctAnswers: new[] { new Coord(6, 6, given) }, preferredWrongAnswers: allCircled.Select(c => new Coord(6, 6, c)).ToArray()));
     }
 }

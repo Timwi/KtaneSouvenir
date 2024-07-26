@@ -6,12 +6,9 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
-    private IEnumerator<YieldInstruction> ProcessYahtzee(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessYahtzee(ModuleData module)
     {
         var comp = GetComponent(module, "YahtzeeModule");
-
-        var solved = false;
-        module.OnPass += delegate { solved = true; return false; };
 
         // This array only changes its contents, it’s never reassigned, so we only need to get it once
         var diceValues = GetArrayField<int>(comp, "_diceValues").Get();
@@ -25,7 +22,7 @@ public partial class SouvenirModule
         if (Enumerable.Range(1, 6).Any(i => diceValues.Count(val => val == i) == 5))
         {
             Debug.Log($"[Souvenir #{_moduleId}] No question for Yahtzee because the first roll was a Yahtzee.");
-            _legitimatelyNoQuestions.Add(module);
+            _legitimatelyNoQuestions.Add(module.Module);
             result = null;  // don’t yield break here because we need to know when the module is solved in case there are multiple Yahtzees on the bomb
         }
         else if (diceValues.Contains(2) && diceValues.Contains(3) && diceValues.Contains(4) && diceValues.Contains(5) && (diceValues.Contains(1) || diceValues.Contains(6)))
@@ -48,38 +45,29 @@ public partial class SouvenirModule
         else
         {
             Debug.Log($"[Souvenir #{_moduleId}] No question for Yahtzee because the first roll was nothing.");
-            _legitimatelyNoQuestions.Add(module);
+            _legitimatelyNoQuestions.Add(module.Module);
             result = null;
         }
 
-        while (!solved)
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Yahtzee);
+        yield return WaitForSolve;
 
         if (result != null)
             addQuestion(module, Question.YahtzeeInitialRoll, correctAnswers: new[] { result });
     }
 
-    private IEnumerator<YieldInstruction> ProcessYellowArrows(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessYellowArrows(ModuleData module)
     {
         var comp = GetComponent(module, "YellowArrowsScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_YellowArrows);
+        yield return WaitForSolve;
 
         int letterIndex = GetIntField(comp, "letindex").Get(min: 0, max: 25);
         addQuestion(module, Question.YellowArrowsStartingRow, correctAnswers: new[] { ((char) ('A' + letterIndex)).ToString() });
     }
 
-    private IEnumerator<YieldInstruction> ProcessYellowButton(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessYellowButton(ModuleData module)
     {
         var comp = GetComponent(module, "YellowButtonScript");
-        var fldSolved = GetField<bool>(comp, "_moduleSolved");
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_YellowButton);
+        yield return WaitForSolve;
 
         var sqs = GetArrayField<MeshRenderer>(comp, "ColorSquares", isPublic: true).Get(expectedLength: 8);
         var colorNames = _attributes[Question.YellowButtonColors].AllAnswers;
@@ -88,11 +76,11 @@ public partial class SouvenirModule
             var m = Regex.Match(sq.sharedMaterial.name, @"^Color([0-5])$");
             if (!m.Success)
                 throw new AbandonModuleException($"Expected material name “Color0–5”, got: “{sq.sharedMaterial.name}”");
-            return makeQuestion(Question.YellowButtonColors, _YellowButton, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { colorNames[int.Parse(m.Groups[1].Value)] });
+            return makeQuestion(Question.YellowButtonColors, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { colorNames[int.Parse(m.Groups[1].Value)] });
         }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessYellowCipher(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessYellowCipher(ModuleData module)
     {
         return processColoredCiphers(module, "yellowCipher", Question.YellowCipherScreen, _YellowCipher);
     }

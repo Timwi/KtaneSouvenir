@@ -5,14 +5,10 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
-    private IEnumerator<YieldInstruction> ProcessXenocryst(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessXenocryst(ModuleData module)
     {
         var comp = GetComponent(module, "XenocrystScript");
-        var fldSolved = GetField<bool>(comp, "Solved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Xenocryst);
+        yield return WaitForSolve;
 
         var flashes = GetArrayField<int>(comp, "Outputs").Get();
 
@@ -20,7 +16,7 @@ public partial class SouvenirModule
 
         var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet" };
         for (int i = 0; i < 10; i++)
-            qs.Add(makeQuestion(Question.Xenocryst, _Xenocryst,
+            qs.Add(makeQuestion(Question.Xenocryst, module,
                 formatArgs: new[] { ordinal(i + 1) },
                 correctAnswers: new[] { colorNames[flashes[i]] },
                 preferredWrongAnswers: colorNames));
@@ -28,16 +24,13 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessXmORseCode(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessXmORseCode(ModuleData module)
     {
         var comp = GetComponent(module, "XmORseCode");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
 
         var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_XmORseCode);
+        yield return WaitForSolve;
 
         var displayLetters = GetArrayField<int>(comp, "displayed").Get(expectedLength: 5, validator: number => number < 0 || number > 25 ? "expected range 0–25" : null);
         var words = GetAnswers(Question.XmORseCodeWord);
@@ -45,19 +38,15 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
         for (int i = 0; i < 5; i++)
-            qs.Add(makeQuestion(Question.XmORseCodeDisplayedLetters, _XmORseCode, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { alphabet.Substring(displayLetters[i], 1) }, preferredWrongAnswers: displayLetters.Select(x => alphabet.Substring(x, 1)).ToArray()));
-        qs.Add(makeQuestion(Question.XmORseCodeWord, _XmORseCode, correctAnswers: new[] { answerWord }));
+            qs.Add(makeQuestion(Question.XmORseCodeDisplayedLetters, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { alphabet.Substring(displayLetters[i], 1) }, preferredWrongAnswers: displayLetters.Select(x => alphabet.Substring(x, 1)).ToArray()));
+        qs.Add(makeQuestion(Question.XmORseCodeWord, module, correctAnswers: new[] { answerWord }));
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessXobekuJehT(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessXobekuJehT(ModuleData module)
     {
         var comp = GetComponent(module, "tpircSxobekuJ");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_XobekuJehT);
+        yield return WaitForSolve;
 
         var songIx = GetIntField(comp, "songselect").Get();
         var songList = GetArrayField<string>(comp, "titles").Get();

@@ -587,7 +587,7 @@ public partial class SouvenirModule
 
     void Awake()
     {
-        _moduleProcessors = new Dictionary<string, (Func<KMBombModule, IEnumerator<YieldInstruction>> processor, string moduleName, string contributor)>()
+        _moduleProcessors = new Dictionary<string, (Func<ModuleData, IEnumerator<YieldInstruction>> processor, string moduleName, string contributor)>()
         {
             [_1000Words] = (Process1000Words, "1000 Words", "BigCrunch22"),
             [_100LevelsOfDefusal] = (Process100LevelsOfDefusal, "100 Levels of Defusal", "Espik"),
@@ -1165,14 +1165,10 @@ public partial class SouvenirModule
     /* Generalized handlers for modules that are extremely similar */
 
     // Used by Affine Cycle, Caesar Cycle, Pigpen Cycle and Playfair Cycle
-    private IEnumerator<YieldInstruction> processSpeakingEvilCycle1(KMBombModule module, string componentName, Question question, string moduleId)
+    private IEnumerator<YieldInstruction> processSpeakingEvilCycle1(ModuleData module, string componentName, Question question, string moduleId)
     {
         var comp = GetComponent(module, componentName);
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(moduleId);
+        yield return WaitForSolve;
 
         var messages = GetArrayField<string>(comp, "message").Get();
         var responses = GetArrayField<string>(comp, "response").Get();
@@ -1184,19 +1180,15 @@ public partial class SouvenirModule
         var message = Regex.Replace(messages[index], @"(?<!^).", m => m.Value.ToLowerInvariant());
         var response = Regex.Replace(responses[index], @"(?<!^).", m => m.Value.ToLowerInvariant());
         addQuestions(module,
-          makeQuestion(question, moduleId, formatArgs: new[] { "message" }, correctAnswers: new[] { message }, preferredWrongAnswers: new[] { response }),
-          makeQuestion(question, moduleId, formatArgs: new[] { "response" }, correctAnswers: new[] { response }, preferredWrongAnswers: new[] { message }));
+          makeQuestion(question, module, formatArgs: new[] { "message" }, correctAnswers: new[] { message }, preferredWrongAnswers: new[] { response }),
+          makeQuestion(question, module, formatArgs: new[] { "response" }, correctAnswers: new[] { response }, preferredWrongAnswers: new[] { message }));
     }
 
     // Used by Cryptic Cycle, Hill Cycle, Jumble Cycle and Ultimate Cycle
-    private IEnumerator<YieldInstruction> processSpeakingEvilCycle2(KMBombModule module, string componentName, Question question, string moduleId)
+    private IEnumerator<YieldInstruction> processSpeakingEvilCycle2(ModuleData module, string componentName, Question question, string moduleId)
     {
         var comp = GetComponent(module, componentName);
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(moduleId);
+        yield return WaitForSolve;
 
         var words = GetArrayField<string[]>(comp, "message").Get(expectedLength: 2);
         var messages = words[0];
@@ -1209,27 +1201,19 @@ public partial class SouvenirModule
         var message = Regex.Replace(messages[index], @"(?<!^).", m => m.Value.ToLowerInvariant());
         var response = Regex.Replace(responses[index], @"(?<!^).", m => m.Value.ToLowerInvariant());
         addQuestions(module,
-          makeQuestion(question, moduleId, formatArgs: new[] { "message" }, correctAnswers: new[] { message }, preferredWrongAnswers: new[] { response }),
-          makeQuestion(question, moduleId, formatArgs: new[] { "response" }, correctAnswers: new[] { response }, preferredWrongAnswers: new[] { message }));
+          makeQuestion(question, module, formatArgs: new[] { "message" }, correctAnswers: new[] { message }, preferredWrongAnswers: new[] { response }),
+          makeQuestion(question, module, formatArgs: new[] { "response" }, correctAnswers: new[] { response }, preferredWrongAnswers: new[] { message }));
     }
 
     // Used by the World Mazes modules (currently: USA Maze, DACH Maze)
-    private IEnumerator<YieldInstruction> processWorldMaze(KMBombModule module, string script, string moduleCode, Question question)
+    private IEnumerator<YieldInstruction> processWorldMaze(ModuleData module, string script, string moduleCode, Question question)
     {
         var comp = GetComponent(module, script);
         var fldOrigin = GetField<string>(comp, "_originState");
-        var fldActive = GetField<bool>(comp, "_isActive");
         var mthGetStates = GetMethod<List<string>>(comp, "GetAllStates", 0);
         var mthGetName = GetMethod<string>(comp, "GetStateFullName", 1);
 
-        // wait for activation
-        while (!_isActivated)
-            yield return new WaitForSeconds(.1f);
-
-        // then wait for the module to get solved
-        while (fldActive.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(moduleCode);
+        yield return WaitForSolve;
 
         var stateCodes = mthGetStates.Invoke() ?? throw new AbandonModuleException("GetAllStates() returned null.");
         if (stateCodes.Count == 0)
@@ -1240,21 +1224,14 @@ public partial class SouvenirModule
         if (!states.Contains(origin))
             throw new AbandonModuleException($"‘_originState’ was not contained in the list of all states (“{origin}” not in: [{states.JoinString(", ")}]).");
 
-        addQuestions(module, makeQuestion(question, moduleCode, correctAnswers: new[] { origin }, preferredWrongAnswers: states));
+        addQuestion(module, question, correctAnswers: new[] { origin }, preferredWrongAnswers: states);
     }
 
     // Used by Black, Blue, Brown, Coral, Cornflower, Cream, Crimson, Forest, Gray, Green, Indigo, Magenta, Maroon, Orange, Red, Violet, White, Yellow, and Ultimate Cipher
-    private IEnumerator<YieldInstruction> processColoredCiphers(KMBombModule module, string componentName, Question question, string moduleId)
+    private IEnumerator<YieldInstruction> processColoredCiphers(ModuleData module, string componentName, Question question, string moduleId)
     {
         var comp = GetComponent(module, componentName);
-
-        var solved = false;
-        module.OnPass += delegate { solved = true; return false; };
-
-        while (!solved)
-            yield return new WaitForSeconds(.1f);
-
-        _modulesSolved.IncSafe(moduleId);
+        yield return WaitForSolve;
 
         var pages = GetField<IList>(comp, "pages").Get(v => v.Count == 0 ? "expected at least one page" : null);
         var fldScreens = GetProperty<IList>(pages[0], "Screens", isPublic: true);
@@ -1301,7 +1278,7 @@ public partial class SouvenirModule
                 // Black Cipher special case: A-VII-IV-V
                 var rom = romanNumerals.JoinString("|");
                 if (Regex.IsMatch(tup.text, $@"^[ABC]-({rom})-({rom})-({rom})$"))
-                    return makeQuestion(question, module.ModuleType, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
+                    return makeQuestion(question, module, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
                         preferredWrongAnswers: generateWrongAnswersFnc(tup.text, () => $"{"ABC"[Rnd.Range(0, 3)]}-{romanNumerals.ToArray().Shuffle().Take(3).JoinString("-")}"));
 
                 // Black Cipher special case: NJ-SG-CV
@@ -1315,94 +1292,86 @@ public partial class SouvenirModule
                             shuffle = shuffle.Insert(2 * i, "-");
                         return shuffle;
                     }
-                    return makeQuestion(question, module.ModuleType, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
+                    return makeQuestion(question, module, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
                         preferredWrongAnswers: generateWrongAnswersFnc(tup.text, gen));
                 }
 
                 // Brown Cipher page 2 screen 3 will only have letters A to F
                 if (Regex.IsMatch(tup.text, @"^[A-F]+$"))
-                    return makeQuestion(question, module.ModuleType, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
+                    return makeQuestion(question, module, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
                         preferredWrongAnswers: generateWrongAnswers(tup.text, new AnswerGenerator.Strings(tup.text.Length, 'A', 'F')));
 
                 // Cornflower Cipher special case: three letters and a digit
                 if (Regex.IsMatch(tup.text, @"^[A-Z]{3} \d$"))
-                    return makeQuestion(question, module.ModuleType, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
+                    return makeQuestion(question, module, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
                         preferredWrongAnswers: generateWrongAnswersFnc(tup.text, () => $"{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Rnd.Range(0, 26)]}{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Rnd.Range(0, 26)]}{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Rnd.Range(0, 26)]} {Rnd.Range(0, 10)}"));
 
                 // Indigo Cipher special case: 24 ? 52 = 12
                 if (Regex.IsMatch(tup.text, @"^\d+ \? \d+ = \d+$"))
-                    return makeQuestion(question, module.ModuleType, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
+                    return makeQuestion(question, module, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
                         preferredWrongAnswers: generateWrongAnswersFnc(tup.text, () => $"{Rnd.Range(0, 64)} ? {Rnd.Range(0, 64)} = {Rnd.Range(0, 64)}"));
 
                 // Yellow Cipher special case: 8-5-7-20
                 if (Regex.IsMatch(tup.text, @"^\d+-\d+-\d+-\d+$"))
-                    return makeQuestion(question, module.ModuleType, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
+                    return makeQuestion(question, module, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
                         preferredWrongAnswers: generateWrongAnswersFnc(tup.text, () => $"{Rnd.Range(0, 26)}-{Rnd.Range(0, 26)}-{Rnd.Range(0, 26)}-{Rnd.Range(0, 26)}"));
 
                 // Screens that have a word on them: pick other words of the same length as wrong answers
                 if (tup.text.Length >= 4 && tup.text.Length <= 8 && allWords[tup.text.Length - 4].Contains(tup.text))
-                    return makeQuestion(question, module.ModuleType, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
+                    return makeQuestion(question, module, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
                         preferredWrongAnswers: allWords[tup.text.Length - 4].ToArray());
 
                 // Screens that have only 0s and 1s on them
                 if (tup.text.Length >= 3 && tup.text.All(ch => ch == '0' || ch == '1'))
-                    return makeQuestion(question, module.ModuleType, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
+                    return makeQuestion(question, module, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
                         preferredWrongAnswers: generateWrongAnswers(tup.text, new AnswerGenerator.Strings(tup.text.Length, '0', '1')));
 
                 // Screens that have only digits on them
                 if (tup.text.All(ch => ch >= '0' && ch <= '9'))
-                    return makeQuestion(question, module.ModuleType, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
+                    return makeQuestion(question, module, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
                         preferredWrongAnswers: generateWrongAnswers(tup.text, new AnswerGenerator.Strings(tup.text.Length, '0', '9')));
 
                 // Screens that have only capital letters on them
                 if (tup.text.All(ch => ch >= 'A' && ch <= 'Z'))
-                    return makeQuestion(question, module.ModuleType, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
+                    return makeQuestion(question, module, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
                         preferredWrongAnswers: generateWrongAnswers(tup.text, new AnswerGenerator.Strings(tup.text.Length, 'A', 'Z')));
 
                 // All other cases: jumble of letters and digits
-                return makeQuestion(question, module.ModuleType, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
+                return makeQuestion(question, module, formatArgs: new[] { screenNames[tup.screen], (tup.page + 1).ToString() }, correctAnswers: new[] { tup.text },
                     preferredWrongAnswers: generateWrongAnswers(tup.text, new AnswerGenerator.Strings(tup.text.Length, "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")));
             });
         }));
     }
 
     // Used by The Hypercube and The Ultracube
-    private IEnumerator<YieldInstruction> processHypercubeUltracube(KMBombModule module, string componentName, Question question, string moduleId)
+    private IEnumerator<YieldInstruction> processHypercubeUltracube(ModuleData module, string componentName, Question question, string moduleId)
     {
         var comp = GetComponent(module, componentName);
         var rotations = GetStaticField<string[]>(comp.GetType(), "_rotationNames").Get();
         var sequence = GetArrayField<int>(comp, "_rotations").Get(expectedLength: 5, validator: rot => rot < 0 || rot >= rotations.Length ? $"expected range 0–{rotations.Length - 1}" : null);
 
-        var solved = false;
-        module.OnPass += delegate { solved = true; return false; };
-        while (!solved)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForSolve;
 
-        _modulesSolved.IncSafe(moduleId);
         addQuestions(module,
-            makeQuestion(question, moduleId, formatArgs: new[] { "first" }, correctAnswers: new[] { rotations[sequence[0]] }),
-            makeQuestion(question, moduleId, formatArgs: new[] { "second" }, correctAnswers: new[] { rotations[sequence[1]] }),
-            makeQuestion(question, moduleId, formatArgs: new[] { "third" }, correctAnswers: new[] { rotations[sequence[2]] }),
-            makeQuestion(question, moduleId, formatArgs: new[] { "fourth" }, correctAnswers: new[] { rotations[sequence[3]] }),
-            makeQuestion(question, moduleId, formatArgs: new[] { "fifth" }, correctAnswers: new[] { rotations[sequence[4]] }));
+            makeQuestion(question, module, formatArgs: new[] { "first" }, correctAnswers: new[] { rotations[sequence[0]] }),
+            makeQuestion(question, module, formatArgs: new[] { "second" }, correctAnswers: new[] { rotations[sequence[1]] }),
+            makeQuestion(question, module, formatArgs: new[] { "third" }, correctAnswers: new[] { rotations[sequence[2]] }),
+            makeQuestion(question, module, formatArgs: new[] { "fourth" }, correctAnswers: new[] { rotations[sequence[3]] }),
+            makeQuestion(question, module, formatArgs: new[] { "fifth" }, correctAnswers: new[] { rotations[sequence[4]] }));
     }
 
     // Used by Triamonds and Tetriamonds
-    private IEnumerator<YieldInstruction> processPolyiamonds(KMBombModule module, string componentName, Question question, string moduleId, string[] colourNames)
+    private IEnumerator<YieldInstruction> processPolyiamonds(ModuleData module, string componentName, Question question, string moduleId, string[] colourNames)
     {
         var comp = GetComponent(module, componentName);
-        var fldSolved = GetField<bool>(comp, "solved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(moduleId);
+        yield return WaitForSolve;
 
         var posColour = GetField<int[]>(comp, "poscolour").Get();
         var pulsing = GetField<int[]>(comp, "pulsing").Get();
 
         var qs = new List<QandA>();
         for (int pos = 0; pos < 3; pos++)
-            qs.Add(makeQuestion(question, _Tetriamonds, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { colourNames[posColour[pulsing[pos]]] }));
+            qs.Add(makeQuestion(question, module, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { colourNames[posColour[pulsing[pos]]] }));
         addQuestions(module, qs);
     }
 }

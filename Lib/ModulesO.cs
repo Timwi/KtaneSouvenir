@@ -8,14 +8,10 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
-    private IEnumerator<YieldInstruction> ProcessObjectShows(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessObjectShows(ModuleData module)
     {
         var comp = GetComponent(module, "objectShows");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_ObjectShows);
+        yield return WaitForSolve;
 
         var contestantsPresent = GetField<IList>(comp, "contestantsPresent").Get(lst => lst.Count != 6 ? "expected length 6" : null);
         var fldId = GetField<int>(contestantsPresent[0], "id", isPublic: true);
@@ -24,14 +20,10 @@ public partial class SouvenirModule
         addQuestion(module, Question.ObjectShowsContestants, correctAnswers: contestantNames, preferredWrongAnswers: allContestantNames);
     }
 
-    private IEnumerator<YieldInstruction> ProcessOctadecayotton(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessOctadecayotton(ModuleData module)
     {
         var comp = GetComponent(module, "TheOctadecayottonScript");
-        var fldSolved = GetProperty<bool>(comp, "IsSolved");
-
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_Octadecayotton);
+        yield return WaitForSolve;
 
         var interact = GetField<object>(comp, "Interact", isPublic: true).Get();
         var dimension = GetProperty<int>(interact, "Dimension").Get();
@@ -39,86 +31,72 @@ public partial class SouvenirModule
         var rotations = GetField<string>(comp, "souvenirRotations").Get().Split('&').ToArray();
 
         var qs = new List<QandA>();
-        qs.Add(makeQuestion(Question.OctadecayottonSphere, _Octadecayotton, correctAnswers: new[] { sphere }, preferredWrongAnswers: Enumerable.Range(0, (int) Math.Pow(2, dimension)).Select(i => Convert.ToString(i, 2).Select(s => s == '0' ? '-' : '+').JoinString().PadLeft(dimension, '-')).ToArray()));
+        qs.Add(makeQuestion(Question.OctadecayottonSphere, module, correctAnswers: new[] { sphere }, preferredWrongAnswers: Enumerable.Range(0, (int) Math.Pow(2, dimension)).Select(i => Convert.ToString(i, 2).Select(s => s == '0' ? '-' : '+').JoinString().PadLeft(dimension, '-')).ToArray()));
         for (int i = 0; i < rotations.Length; i++)
-            qs.Add(makeQuestion(Question.OctadecayottonRotations, _Octadecayotton, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: rotations[i].Split(',').Select(s => s.Trim()).ToArray(), preferredWrongAnswers: Enumerable.Range(1, 10).Select(n => "XYZWUVRSTOPQ".Substring(0, dimension).ToCharArray().Shuffle().Take(Rnd.Range(1, Math.Min(6, dimension + 1))).Select(c => (Rnd.Range(0, 1f) > 0.5 ? "+" : "-") + c).JoinString()).ToArray()));
+            qs.Add(makeQuestion(Question.OctadecayottonRotations, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: rotations[i].Split(',').Select(s => s.Trim()).ToArray(), preferredWrongAnswers: Enumerable.Range(1, 10).Select(n => "XYZWUVRSTOPQ".Substring(0, dimension).ToCharArray().Shuffle().Take(Rnd.Range(1, Math.Min(6, dimension + 1))).Select(c => (Rnd.Range(0, 1f) > 0.5 ? "+" : "-") + c).JoinString()).ToArray()));
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessOddOneOut(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessOddOneOut(ModuleData module)
     {
         var comp = GetComponent(module, "OddOneOutModule");
 
-        var solved = false;
-        module.OnPass += delegate { solved = true; return false; };
-        while (!solved)
-            yield return new WaitForSeconds(.1f);
+        yield return WaitForSolve;
 
         var stages = GetField<Array>(comp, "_stages").Get(ar => ar.Length != 6 ? "expected length 6" : ar.Cast<object>().Any(obj => obj == null) ? "contains null" : null);
         var btnNames = new[] { "top-left", "top-middle", "top-right", "bottom-left", "bottom-middle", "bottom-right" };
         var stageBtn = stages.Cast<object>().Select(x => GetIntField(x, "CorrectIndex", isPublic: true).Get(min: 0, max: btnNames.Length - 1)).ToArray();
 
-        _modulesSolved.IncSafe(_OddOneOut);
         addQuestions(module,
-            makeQuestion(Question.OddOneOutButton, _OddOneOut, formatArgs: new[] { "first" }, correctAnswers: new[] { btnNames[stageBtn[0]] }),
-            makeQuestion(Question.OddOneOutButton, _OddOneOut, formatArgs: new[] { "second" }, correctAnswers: new[] { btnNames[stageBtn[1]] }),
-            makeQuestion(Question.OddOneOutButton, _OddOneOut, formatArgs: new[] { "third" }, correctAnswers: new[] { btnNames[stageBtn[2]] }),
-            makeQuestion(Question.OddOneOutButton, _OddOneOut, formatArgs: new[] { "fourth" }, correctAnswers: new[] { btnNames[stageBtn[3]] }),
-            makeQuestion(Question.OddOneOutButton, _OddOneOut, formatArgs: new[] { "fifth" }, correctAnswers: new[] { btnNames[stageBtn[4]] }),
-            makeQuestion(Question.OddOneOutButton, _OddOneOut, formatArgs: new[] { "sixth" }, correctAnswers: new[] { btnNames[stageBtn[5]] }));
+            makeQuestion(Question.OddOneOutButton, module, formatArgs: new[] { "first" }, correctAnswers: new[] { btnNames[stageBtn[0]] }),
+            makeQuestion(Question.OddOneOutButton, module, formatArgs: new[] { "second" }, correctAnswers: new[] { btnNames[stageBtn[1]] }),
+            makeQuestion(Question.OddOneOutButton, module, formatArgs: new[] { "third" }, correctAnswers: new[] { btnNames[stageBtn[2]] }),
+            makeQuestion(Question.OddOneOutButton, module, formatArgs: new[] { "fourth" }, correctAnswers: new[] { btnNames[stageBtn[3]] }),
+            makeQuestion(Question.OddOneOutButton, module, formatArgs: new[] { "fifth" }, correctAnswers: new[] { btnNames[stageBtn[4]] }),
+            makeQuestion(Question.OddOneOutButton, module, formatArgs: new[] { "sixth" }, correctAnswers: new[] { btnNames[stageBtn[5]] }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessOldAI(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessOldAI(ModuleData module)
     {
         var comp = GetComponent(module, "SCP079");
-        var fldSolved = GetField<bool>(comp, "ModuleSolved");
         var fldSeed = GetField<int>(comp, "Seed");
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_OldAI);
+        yield return WaitForSolve;
 
         var seed = fldSeed.Get();
         addQuestions(module,
-            makeQuestion(Question.OldAIGroup, _OldAI, formatArgs: new[] { "group" }, correctAnswers: new[] { ((seed - 1) / 5 + 1).ToString() }),
-            makeQuestion(Question.OldAIGroup, _OldAI, formatArgs: new[] { "sub-group" }, correctAnswers: new[] { ((seed - 1) % 5 + 1).ToString() }));
+            makeQuestion(Question.OldAIGroup, module, formatArgs: new[] { "group" }, correctAnswers: new[] { ((seed - 1) / 5 + 1).ToString() }),
+            makeQuestion(Question.OldAIGroup, module, formatArgs: new[] { "sub-group" }, correctAnswers: new[] { ((seed - 1) % 5 + 1).ToString() }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessOldFogey(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessOldFogey(ModuleData module)
     {
         var comp = GetComponent(module, "OldFogey");
 
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_OldFogey);
+        yield return WaitForSolve;
 
         var startingColor = GetMethod<string>(comp, "GetStartingColor", 0).Invoke();
         addQuestion(module, Question.OldFogeyStartingColor, correctAnswers: new[] { startingColor });
     }
 
-    private IEnumerator<YieldInstruction> ProcessOnlyConnect(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessOnlyConnect(ModuleData module)
     {
         var comp = GetComponent(module, "OnlyConnectModule");
-        var fldIsSolved = GetField<bool>(comp, "_isSolved");
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
 
         var hieroglyphsDisplayed = GetArrayField<int>(comp, "_hieroglyphsDisplayed").Get(expectedLength: 6, validator: v => v < 0 || v > 5 ? "expected range 0–5" : null);
 
-        while (!fldIsSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_OnlyConnect);
+        yield return WaitForSolve;
 
         var hieroglyphs = new[] { "Two Reeds", "Lion", "Twisted Flax", "Horned Viper", "Water", "Eye of Horus" };
         var positions = new[] { "top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right" };
-        addQuestions(module, positions.Select((p, i) => makeQuestion(Question.OnlyConnectHieroglyphs, _OnlyConnect, formatArgs: new[] { p }, correctAnswers: new[] { hieroglyphs[hieroglyphsDisplayed[i]] })));
+        addQuestions(module, positions.Select((p, i) => makeQuestion(Question.OnlyConnectHieroglyphs, module, formatArgs: new[] { p }, correctAnswers: new[] { hieroglyphs[hieroglyphsDisplayed[i]] })));
     }
 
-    private IEnumerator<YieldInstruction> ProcessOrangeArrows(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessOrangeArrows(ModuleData module)
     {
         var comp = GetComponent(module, "OrangeArrowsScript");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldMoves = GetArrayField<string>(comp, "moves");
         var fldStage = GetIntField(comp, "stage");
 
@@ -151,9 +129,7 @@ public partial class SouvenirModule
             };
         }
 
-        while (!fldSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_OrangeArrows);
+        yield return WaitForSolve;
 
         if (correctMoves == null)   // an error message has already been output
             yield break;
@@ -168,27 +144,26 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
-                qs.Add(makeQuestion(Question.OrangeArrowsSequences, _OrangeArrows, formatArgs: new[] { ordinal(j + 1), ordinal(i + 1) }, correctAnswers: new[] { correctMoves[i][j].Substring(0, 1) + correctMoves[i][j].Substring(1).ToLowerInvariant() }));
+                qs.Add(makeQuestion(Question.OrangeArrowsSequences, module, formatArgs: new[] { ordinal(j + 1), ordinal(i + 1) }, correctAnswers: new[] { correctMoves[i][j].Substring(0, 1) + correctMoves[i][j].Substring(1).ToLowerInvariant() }));
 
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessOrangeCipher(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessOrangeCipher(ModuleData module)
     {
         return processColoredCiphers(module, "orangeCipher", Question.OrangeCipherScreen, _OrangeCipher);
     }
 
-    private IEnumerator<YieldInstruction> ProcessOrderedKeys(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessOrderedKeys(ModuleData module)
     {
         var comp = GetComponent(module, "OrderedKeysScript");
         var fldInfo = GetArrayField<int[]>(comp, "info");
-        var fldSolved = GetField<bool>(comp, "moduleSolved");
         var fldStage = GetIntField(comp, "stage");
 
         var curStage = 0;
         var moduleData = new int[3][][];
 
-        while (!fldSolved.Get())
+        while (module.Unsolved)
         {
             var info = fldInfo.Get(expectedLength: 6, validator: arr => arr == null ? "null" : arr.Length != 4 ? "expected length 4" : null);
             var newStage = fldStage.Get(min: 1, max: 3);
@@ -200,8 +175,6 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         }
 
-        _modulesSolved.IncSafe(_OrderedKeys);
-
         var colors = new string[6] { "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow" };
 
         var qs = new List<QandA>();
@@ -209,16 +182,16 @@ public partial class SouvenirModule
         {
             for (var key = 0; key < 6; key++)
             {
-                qs.Add(makeQuestion(Question.OrderedKeysColors, _OrderedKeys, formatArgs: new[] { ordinal(stage + 1), ordinal(key + 1) }, correctAnswers: new[] { colors[moduleData[stage][key][0]] }));
-                qs.Add(makeQuestion(Question.OrderedKeysLabels, _OrderedKeys, formatArgs: new[] { ordinal(stage + 1), ordinal(key + 1) }, correctAnswers: new[] { (moduleData[stage][key][3] + 1).ToString() }));
-                qs.Add(makeQuestion(Question.OrderedKeysLabelColors, _OrderedKeys, formatArgs: new[] { ordinal(stage + 1), ordinal(key + 1) }, correctAnswers: new[] { colors[moduleData[stage][key][1]] }));
+                qs.Add(makeQuestion(Question.OrderedKeysColors, module, formatArgs: new[] { ordinal(stage + 1), ordinal(key + 1) }, correctAnswers: new[] { colors[moduleData[stage][key][0]] }));
+                qs.Add(makeQuestion(Question.OrderedKeysLabels, module, formatArgs: new[] { ordinal(stage + 1), ordinal(key + 1) }, correctAnswers: new[] { (moduleData[stage][key][3] + 1).ToString() }));
+                qs.Add(makeQuestion(Question.OrderedKeysLabelColors, module, formatArgs: new[] { ordinal(stage + 1), ordinal(key + 1) }, correctAnswers: new[] { colors[moduleData[stage][key][1]] }));
             }
         }
 
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessOrderPicking(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessOrderPicking(ModuleData module)
     {
         var comp = GetComponent(module, "OrderPickingScript");
 
@@ -246,29 +219,25 @@ public partial class SouvenirModule
             }
             yield return new WaitForSeconds(.1f);
         }
-        _modulesSolved.IncSafe(_OrderPicking);
+        yield return WaitForSolve;
 
         var qs = new List<QandA>();
 
         for (int order = 0; order < orderCount; order++)
         {
-            qs.Add(makeQuestion(Question.OrderPickingOrder, _OrderPicking, formatArgs: new[] { ordinal(order + 1) }, correctAnswers: new[] { orderList[order].ToString() }));
-            qs.Add(makeQuestion(Question.OrderPickingProduct, _OrderPicking, formatArgs: new[] { ordinal(order + 1) }, correctAnswers: new[] { productList[order].ToString() }));
-            qs.Add(makeQuestion(Question.OrderPickingPallet, _OrderPicking, formatArgs: new[] { ordinal(order + 1) }, correctAnswers: new[] { palletList[order] }));
+            qs.Add(makeQuestion(Question.OrderPickingOrder, module, formatArgs: new[] { ordinal(order + 1) }, correctAnswers: new[] { orderList[order].ToString() }));
+            qs.Add(makeQuestion(Question.OrderPickingProduct, module, formatArgs: new[] { ordinal(order + 1) }, correctAnswers: new[] { productList[order].ToString() }));
+            qs.Add(makeQuestion(Question.OrderPickingPallet, module, formatArgs: new[] { ordinal(order + 1) }, correctAnswers: new[] { palletList[order] }));
         }
 
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessOrientationCube(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessOrientationCube(ModuleData module)
     {
         var comp = GetComponent(module, "OrientationModule");
 
-        var solved = false;
-        module.OnPass += delegate { solved = true; return false; };
-        while (!solved)
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_OrientationCube);
+        yield return WaitForSolve;
 
         var initialVirtualViewAngle = GetField<float>(comp, "initialVirtualViewAngle").Get();
         var initialAnglePos = Array.IndexOf(new[] { 0f, 90f, 180f, 270f }, initialVirtualViewAngle);
@@ -278,14 +247,10 @@ public partial class SouvenirModule
         addQuestion(module, Question.OrientationCubeInitialObserverPosition, correctAnswers: new[] { new[] { "front", "left", "back", "right" }[initialAnglePos] });
     }
 
-    private IEnumerator<YieldInstruction> ProcessOrientationHypercube(KMBombModule module)
+    private IEnumerator<YieldInstruction> ProcessOrientationHypercube(ModuleData module)
     {
         var comp = GetComponent(module, "OrientationHypercubeModule");
-        var fldIsSolved = GetField<bool>(comp, "_isSolved");
-
-        while (!fldIsSolved.Get())
-            yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(_OrientationHypercube);
+        yield return WaitForSolve;
 
         var initialObserverPosition = GetField<string>(comp, "_initialEyePosition").Get();
         var colourTexts = GetField<Dictionary<string, string>>(GetField<object>(comp, "_readGenerator").Get(), "_cbTexts").Get();
@@ -303,8 +268,8 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
 
         foreach (string key in faceNames.Keys)
-            qs.Add(makeQuestion(Question.OrientationHypercubeInitialFaceColour, _OrientationHypercube, formatArgs: new[] { faceNames[key] }, correctAnswers: new[] { colourTexts[key] }));
-        qs.Add(makeQuestion(Question.OrientationHypercubeInitialObserverPosition, _OrientationHypercube, correctAnswers: new[] { initialObserverPosition }));
+            qs.Add(makeQuestion(Question.OrientationHypercubeInitialFaceColour, module, formatArgs: new[] { faceNames[key] }, correctAnswers: new[] { colourTexts[key] }));
+        qs.Add(makeQuestion(Question.OrientationHypercubeInitialObserverPosition, module, correctAnswers: new[] { initialObserverPosition }));
 
         addQuestions(module, qs);
     }
