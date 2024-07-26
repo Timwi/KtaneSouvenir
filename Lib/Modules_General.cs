@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using Souvenir;
 using UnityEngine;
@@ -15,7 +14,7 @@ public partial class SouvenirModule
 
     void Awake()
     {
-        _moduleProcessors = new Dictionary<string, (Func<ModuleData, IEnumerator<YieldInstruction>> processor, string moduleName, string contributor)>()
+        _moduleProcessors = new Dictionary<string, ModuleHandlerInfo>()
         {
             ["OneThousandWords"] = (Process1000Words, "1000 Words", "BigCrunch22"),
             ["100LevelsOfDefusal"] = (Process100LevelsOfDefusal, "100 Levels of Defusal", "Espik"),
@@ -70,7 +69,7 @@ public partial class SouvenirModule
             ["ksmBobBarks"] = (ProcessBobBarks, "Bob Barks", "Kaito Sinclaire"),
             ["boggle"] = (ProcessBoggle, "Boggle", "luisdiogo98"),
             ["bombDiffusal"] = (ProcessBombDiffusal, "Bomb Diffusal", "Kuro"),
-            ["BookOfMarioModule"] = (ProccessBookOfMario, "Book of Mario", "Hawker"),
+            ["BookOfMarioModule"] = (ProcessBookOfMario, "Book of Mario", "Hawker"),
             ["booleanWires"] = (ProcessBooleanWires, "Boolean Wires", "Kuro"),
             ["boomtarTheGreat"] = (ProcessBoomtarTheGreat, "Boomtar the Great", "Anonymous"),
             ["boxing"] = (ProcessBoxing, "Boxing", "Timwi"),
@@ -221,7 +220,7 @@ public partial class SouvenirModule
             ["groceryStore"] = (ProcessGroceryStore, "Grocery Store", "BigCrunch22"),
             ["gryphons"] = (ProcessGryphons, "Gryphons", "JerryEris"),
             ["GuessWho"] = (ProcessGuessWho, "Guess Who?", "BigCrunch22"),
-            ["Averageh"] = (ProceessH, "h", "Hawker"),
+            ["Averageh"] = (ProcessH, "h", "Hawker"),
             ["hereditaryBaseNotationModule"] = (ProcessHereditaryBaseNotation, "Hereditary Base Notation", "kavinkul"),
             ["hexabutton"] = (ProcessHexabutton, "Hexabutton, The", "luisdiogo98"),
             ["HexamazeModule"] = (ProcessHexamaze, "Hexamaze", "Timwi"),

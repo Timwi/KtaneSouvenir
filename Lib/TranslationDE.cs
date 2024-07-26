@@ -653,6 +653,14 @@ namespace Souvenir
                 QuestionText = "Was war bei {0} die Zutat an {1}er Stelle?",
             },
 
+            // Base-1
+            // What number was displayed on {0}?
+            // What number was displayed on Base-1?
+            [Question.Base1Number] = new TranslationInfo
+            {
+                QuestionText = "What number was displayed on {0}?",
+            },
+
             // Beans
             // What was this bean in {0}?
             // What was this bean in Beans?
@@ -1655,6 +1663,20 @@ namespace Souvenir
                     ["Magenta"] = "Magenta",
                     ["White"] = "White",
                 },
+            },
+
+            // Connected Monitors
+            // What number was initially displayed on this screen in {0}?
+            // What number was initially displayed on this screen in Connected Monitors?
+            [Question.ConnectedMonitorsNumber] = new TranslationInfo
+            {
+                QuestionText = "What number was initially displayed on this screen in {0}?",
+            },
+            // What colour was the {1}indicator on this screen in {0}?
+            // What colour was the indicator on this screen in Connected Monitors?
+            [Question.ConnectedMonitorsIndicator] = new TranslationInfo
+            {
+                QuestionText = "What colour was the {1}indicator on this screen in {0}?",
             },
 
             // Connection Check
@@ -3211,6 +3233,14 @@ namespace Souvenir
                 },
             },
 
+            // hexOrbits
+            // What was the {1} shape for the {2} display in {0}?
+            // What was the fast shape for the first display in hexOrbits?
+            [Question.HexOrbitsShape] = new TranslationInfo
+            {
+                QuestionText = "What was the {1} shape for the {2} display in {0}?",
+            },
+
             // hexOS
             // What were the deciphered letters in {0}?
             // What were the deciphered letters in hexOS?
@@ -3752,6 +3782,20 @@ namespace Souvenir
                 },
             },
 
+            // Kyudoku
+            // What was the given digit in {0}?
+            // What was the given digit in Kyudoku?
+            [Question.KyudokuGivenDigit] = new TranslationInfo
+            {
+                QuestionText = "What was the given digit in {0}?",
+            },
+            // Where was the given digit in {0}?
+            // Where was the given digit in Kyudoku?
+            [Question.KyudokuGivenDigitLocation] = new TranslationInfo
+            {
+                QuestionText = "Where was the given digit in {0}?",
+            },
+
             // The Labyrinth
             // Where was one of the portals in layer {1} in {0}?
             // Where was one of the portals in layer 1 (Red) in The Labyrinth?
@@ -4190,6 +4234,14 @@ namespace Souvenir
             [Question.MaritimeFlagsCallsign] = new TranslationInfo
             {
                 QuestionText = "Which callsign was signalled in {0}?",
+            },
+
+            // The Maroon Button
+            // What was A in {0}?
+            // What was A in The Maroon Button?
+            [Question.MaroonButtonA] = new TranslationInfo
+            {
+                QuestionText = "What was A in {0}?",
             },
 
             // Maroon Cipher
@@ -5205,6 +5257,14 @@ namespace Souvenir
                 },
             },
 
+            // Not Password
+            // Which letter was missing from {0}?
+            // Which letter was missing from Not Password?
+            [Question.NotPasswordLetter] = new TranslationInfo
+            {
+                QuestionText = "Which letter was missing from {0}?",
+            },
+
             // Not Perspective Pegs
             // What was the position of the {1} flashing peg on {0}?
             // What was the position of the first flashing peg on Not Perspective Pegs?
@@ -5883,6 +5943,14 @@ namespace Souvenir
                 ModuleName = "Musterwürfel",
             },
 
+            // The Pentabutton
+            // What was the base colour in {0}?
+            // What was the base colour in The Pentabutton?
+            [Question.PentabuttonBaseColor] = new TranslationInfo
+            {
+                QuestionText = "What was the base colour in {0}?",
+            },
+
             // Periodic Words
             // What word was on the display in the {1} stage of {0}?
             // What word was on the display in the first stage of Periodic Words?
@@ -6499,6 +6567,14 @@ namespace Souvenir
                     ["Green"] = "Green",
                     ["Yellow"] = "Yellow",
                 },
+            },
+
+            // RNG Crystal
+            // Which bit had a tap in {0} (the output after shifting is at bit 0)?
+            // Which bit had a tap in RNG Crystal (the output after shifting is at bit 0)?
+            [Question.RNGCrystalTaps] = new TranslationInfo
+            {
+                QuestionText = "Which bit had a tap in {0} (the output after shifting is at bit 0)?",
             },
 
             // Robo-Scanner
@@ -7674,6 +7750,14 @@ namespace Souvenir
                 },
             },
 
+            // Subbly Jubbly
+            // What was a substitution word in {0}?
+            // What was a substitution word in Subbly Jubbly?
+            [Question.SubblyJubblySubstitutions] = new TranslationInfo
+            {
+                QuestionText = "What was a substitution word in {0}?",
+            },
+
             // Subscribe to Pewdiepie
             // How many subscribers does {1} have in {0}?
             // How many subscribers does PewDiePie have in Subscribe to Pewdiepie?
@@ -8345,6 +8429,44 @@ namespace Souvenir
                     ["Yellow"] = "Yellow",
                     ["White"] = "White",
                 },
+            },
+
+            // Variety
+            // What color was the LED flashing in {0}?
+            // What color was the LED flashing in Variety?
+            [Question.VarietyLED] = new TranslationInfo
+            {
+                QuestionText = "What color was the LED flashing in {0}?",
+            },
+            // What digit was displayed but not the answer for the digit display in {0}?
+            // What digit was displayed but not the answer for the digit display in Variety?
+            [Question.VarietyDigitDisplay] = new TranslationInfo
+            {
+                QuestionText = "What digit was displayed but not the answer for the digit display in {0}?",
+            },
+            // What word could be formed but was not the answer for the letter display in {0}?
+            // What word could be formed but was not the answer for the letter display in Variety?
+            [Question.VarietyLetterDisplay] = new TranslationInfo
+            {
+                QuestionText = "What word could be formed but was not the answer for the letter display in {0}?",
+            },
+            // What was the maximum display for the {1}timer in {0}?
+            // What was the maximum display for the timer in Variety?
+            [Question.VarietyTimer] = new TranslationInfo
+            {
+                QuestionText = "What was the maximum display for the {1}timer in {0}?",
+            },
+            // What was n for the {1}knob in {0}?
+            // What was n for the knob in Variety?
+            [Question.VarietyColoredKnob] = new TranslationInfo
+            {
+                QuestionText = "What was n for the {1}knob in {0}?",
+            },
+            // What was n for the {1}bulb in {0}?
+            // What was n for the bulb in Variety?
+            [Question.VarietyBulb] = new TranslationInfo
+            {
+                QuestionText = "What was n for the {1}bulb in {0}?",
             },
 
             // Vcrcs

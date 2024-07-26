@@ -8,7 +8,7 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
-    private IEnumerator<YieldInstruction> ProceessH(ModuleData module)
+    private IEnumerator<YieldInstruction> ProcessH(ModuleData module)
     {
         var comp = GetComponent(module, "HexOS");
         yield return WaitForSolve;

@@ -61,7 +61,7 @@ namespace SouvenirPostBuildTool
             var dictionary = (IDictionary) fldDictionary.GetValue(module);
             var contributorToModules = new Dictionary<string, List<string>>();
             foreach (DictionaryEntry entry in dictionary)
-                contributorToModules.AddSafe((string) ((dynamic) entry.Value).Item3, (string) ((dynamic) entry.Value).Item2);
+                contributorToModules.AddSafe((string) ((dynamic) entry.Value).Contributor, (string) ((dynamic) entry.Value).ModuleName);
 
             const int numColumns = 5;
 

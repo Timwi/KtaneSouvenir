@@ -620,7 +620,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.BombDiffusalLicenseNumber, correctAnswers: new[] { correctAnswer }, preferredWrongAnswers: answers.ToArray());
     }
 
-    private IEnumerator<YieldInstruction> ProccessBookOfMario(ModuleData module)
+    private IEnumerator<YieldInstruction> ProcessBookOfMario(ModuleData module)
     {
         var comp = GetComponent(module, "BookOfMario");
         var fldStage = GetIntField(comp, "stage");

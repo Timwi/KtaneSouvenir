@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
@@ -15,11 +15,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="RT.CommandLine" Version="2.0.1748" />
-    <PackageReference Include="RT.Lingo.Base" Version="2.0.1748" />
-    <PackageReference Include="RT.PostBuild" Version="2.0.1748" />
-    <PackageReference Include="RT.Serialization" Version="2.0.1748" />
-    <PackageReference Include="RT.Util.Core" Version="2.0.1748" />
+    <PackageReference Include="RT.CommandLine" Version="2.1.164" />
+    <PackageReference Include="RT.Lingo.Base" Version="2.0.1769" />
+    <PackageReference Include="RT.PostBuild" Version="2.0.1769" />
+    <PackageReference Include="RT.Serialization" Version="2.0.1769" />
+    <PackageReference Include="RT.Util.Core" Version="2.0.1769" />
+    <PackageReference Include="ValueTupleBridge" Version="0.1.5" />
   </ItemGroup>
 
 </Project>

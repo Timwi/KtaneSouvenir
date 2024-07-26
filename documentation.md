@@ -216,7 +216,7 @@ public T InvokeOn(object target, params object[] arguments);
 ### Important
 
 Before making any questions, you *must* wait for the module to be solved. You can use `yield return WaitForSolve;` to do this.
-For modules where this is not possible, either specify the solve order manually or give a differently formatted module name.
+For modules where this is not possible (such as bosses), either specify the solve order manually or give a differently formatted module name.
 
 ### No Questions
 
@@ -231,7 +231,7 @@ yield break;
 ### Making Questions
 
 There are several `makeQuestion` and `makeSpriteQuestion` overloads, which are for different question and answer types
-(there exist other overload for niche use cases):
+(there exist other overloads for niche use cases):
 
 ```cs
 // Default

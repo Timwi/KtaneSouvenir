@@ -118,7 +118,7 @@ public partial class SouvenirModule : MonoBehaviour
 
     private static int _moduleIdCounter = 1;
     internal int _moduleId;
-    private Dictionary<string, (Func<ModuleData, IEnumerator<YieldInstruction>> processor, string moduleName, string contributor)> _moduleProcessors;
+    private Dictionary<string, ModuleHandlerInfo> _moduleProcessors;
     private Dictionary<Question, SouvenirQuestionAttribute> _attributes;
 
     // Used in TestHarness only
@@ -209,6 +209,10 @@ public partial class SouvenirModule : MonoBehaviour
         "Ask not the double decker how the Centurion solves!", // Ask not the sparrow how the eagle soars! (Kill la Kill)
         "Someone thinks they’re too clever for me. They all think that at first." // Someone thinks they’re too clever for us. They all think that at first. (Invincible)
     );
+
+    /// <summary><code>yield return</code> this to wait for the module to call <see cref="KMBombModule.HandlePass()"/></summary>
+    private static readonly WaitForSolveInstruction WaitForSolve = new();
+
     #endregion
 
     #region Souvenir’s own module logic
@@ -719,9 +723,9 @@ public partial class SouvenirModule : MonoBehaviour
         _coroutinesActive++;
         var moduleType = module.ModuleType;
         _moduleCounts.IncSafe(moduleType);
-        var (iterator, _, _) = _moduleProcessors.Get(moduleType, default);
+        var processor = _moduleProcessors.Get(moduleType, default).Processor;
 
-        if (iterator != null)
+        if (processor != null)
         {
             _supportedModuleNames.Add(module.ModuleDisplayName);
             yield return null;  // Ensures that the module’s Start() method has run
@@ -730,13 +734,12 @@ public partial class SouvenirModule : MonoBehaviour
             module.OnPass += () =>
             {
                 data.Unsolved = false;
-                // Use display names for vanillas
                 data.SolveIndex = _modulesSolved.IncSafe(module.ModuleDisplayName);
                 return false;
             };
 
             // I’d much rather just put a ‘foreach’ loop inside a ‘try’ block, but Unity’s C# version doesn’t allow ‘yield return’ inside of ‘try’ blocks yet
-            using (var e = iterator(data))
+            using (var e = processor(data))
             {
                 while (true)
                 {
@@ -794,25 +797,7 @@ public partial class SouvenirModule : MonoBehaviour
             Destroy(tx);
         _questionTexturesToDestroyLater.Clear();
     }
-    #endregion
 
-    #region Misc. small classes for module handlers
-    private sealed class WaitForSolveInstruction : YieldInstruction { }
-
-    /// <summary><code>yield return</code> this to wait for the module to call <see cref="KMBombModule.HandlePass()"/></summary>
-    private static readonly WaitForSolveInstruction WaitForSolve = new WaitForSolveInstruction();
-
-    private sealed class ModuleData
-    {
-        /// <summary>The actual module component</summary>
-        public KMBombModule Module;
-        /// <summary>Set to <code>true</code> after <code>KMBombModule.HandlePass()</code> has been called.</summary>
-        public bool IsSolved => !Unsolved;
-        /// <summary>Set to <code>false</code> after <code>KMBombModule.HandlePass()</code> has been called.</summary>
-        public bool Unsolved = true;
-        /// <summary>The order in which this module has been solved, or 0 if it is currently unsolved.</summary>
-        public int SolveIndex;
-    }
     #endregion
 
     #region Helper methods for Reflection (used by module handlers)
@@ -1055,7 +1040,7 @@ public partial class SouvenirModule : MonoBehaviour
         var h = correctAnswers[0].Height;
         if (correctAnswers.Concat(preferredWrongAnswers ?? Enumerable.Empty<Coord>()).Any(c => c.Width != w || c.Height != h))
         {
-            Debug.LogError($"<Souvenir #{_moduleId}> The module handler for {solveIx} provided grid coordinates for different sizes of grids.");
+            Debug.LogError($"<Souvenir #{_moduleId}> The module handler for {moduleId} provided grid coordinates for different sizes of grids.");
             throw new InvalidOperationException();
         }
         return makeQuestion(question, solveIx,
@@ -1246,7 +1231,9 @@ public partial class SouvenirModule : MonoBehaviour
     #region Twitch Plays
     internal bool TwitchPlaysActive = false;
     private readonly List<KMBombModule> TwitchAbandonModule = new List<KMBombModule>();
+#pragma warning disable 649
     private bool TwitchShouldCancelCommand;
+#pragma warning restore 649
 
 #pragma warning disable 414
     private readonly string TwitchHelpMessage = @"!{0} answer 3 [order is from top to bottom, then left to right] | !{0} cycle [play all audio clips]";
