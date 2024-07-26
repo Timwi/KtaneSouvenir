@@ -6047,35 +6047,17 @@ namespace Souvenir
             {
                 QuestionText = "What was the character listed on the information display in {0}?",
             },
-            // What was the drift type listed on the information display in {0}?
-            // What was the drift type listed on the information display in Placement Roulette?
-            [Question.PlacementRouletteDrift] = new TranslationInfo
-            {
-                QuestionText = "What was the drift type listed on the information display in {0}?",
-            },
             // What was the track listed on the information display in {0}?
             // What was the track listed on the information display in Placement Roulette?
             [Question.PlacementRouletteTrack] = new TranslationInfo
             {
                 QuestionText = "What was the track listed on the information display in {0}?",
             },
-            // What was the track type of the track listed on the information display in {0}?
-            // What was the track type of the track listed on the information display in Placement Roulette?
-            [Question.PlacementRouletteTrackType] = new TranslationInfo
-            {
-                QuestionText = "What was the track type of the track listed on the information display in {0}?",
-            },
             // What was the vehicle listed on the information display in {0}?
             // What was the vehicle listed on the information display in Placement Roulette?
             [Question.PlacementRouletteVehicle] = new TranslationInfo
             {
                 QuestionText = "What was the vehicle listed on the information display in {0}?",
-            },
-            // What was the vehicle type of the vehicle listed on the information display in {0}?
-            // What was the vehicle type of the vehicle listed on the information display in Placement Roulette?
-            [Question.PlacementRouletteVehicleType] = new TranslationInfo
-            {
-                QuestionText = "What was the vehicle type of the vehicle listed on the information display in {0}?",
             },
 
             // Planets

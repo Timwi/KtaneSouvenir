@@ -380,17 +380,11 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var character = GetField<string>(comp, "Character").Get();
-        var vehicleType = GetField<string>(comp, "VehicleType").Get();
-        var drift = GetField<string>(comp, "Drift").Get();
-        var trackType = GetField<string>(comp, "TrackType").Get();
         var vehicle = GetField<string>(comp, "Vehicle").Get();
         var track = GetField<string>(comp, "Track").Get();
 
         addQuestions(module,
             makeQuestion(Question.PlacementRouletteChar, module, correctAnswers: new[] { character }),
-            makeQuestion(Question.PlacementRouletteVehicleType, module, correctAnswers: new[] { vehicleType }),
-            makeQuestion(Question.PlacementRouletteDrift, module, correctAnswers: new[] { drift }),
-            makeQuestion(Question.PlacementRouletteTrackType, module, correctAnswers: new[] { trackType }),
             makeQuestion(Question.PlacementRouletteTrack, module, correctAnswers: new[] { track }),
             makeQuestion(Question.PlacementRouletteVehicle, module, correctAnswers: new[] { vehicle })
         );
