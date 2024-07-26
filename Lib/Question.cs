@@ -2569,9 +2569,9 @@
 
         [SouvenirQuestion("How much did the sequence shift by in {0}?", "Small Circle", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8")]
         SmallCircleShift,
-        [SouvenirQuestion("Which wedge made the different noise in the beginning of {0}?", "Small Circle", TwoColumns4Answers, "red", "orange", "yellow", "green", "blue", "magenta", "white", "black")]
+        [SouvenirQuestion("Which wedge made the different noise in the beginning of {0}?", "Small Circle", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black")]
         SmallCircleWedge,
-        [SouvenirQuestion("Which color was {1} in the solution to {0}?", "Small Circle", TwoColumns4Answers, "red", "orange", "yellow", "green", "blue", "magenta", "white", "black",
+        [SouvenirQuestion("Which color was {1} in the solution to {0}?", "Small Circle", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Magenta", "White", "Black",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         SmallCircleSolution,
 
