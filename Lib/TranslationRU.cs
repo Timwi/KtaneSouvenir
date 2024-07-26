@@ -3896,20 +3896,6 @@ namespace Souvenir
                 },
             },
 
-            // Kyudoku
-            // What was the given digit in {0}?
-            // What was the given digit in Kyudoku?
-            [Question.KyudokuGivenDigit] = new TranslationInfo
-            {
-                QuestionText = "What was the given digit in {0}?",
-            },
-            // Where was the given digit in {0}?
-            // Where was the given digit in Kyudoku?
-            [Question.KyudokuGivenDigitLocation] = new TranslationInfo
-            {
-                QuestionText = "Where was the given digit in {0}?",
-            },
-
             // The Labyrinth
             // Where was one of the portals in layer {1} in {0}?
             // Where was one of the portals in layer 1 (Red) in The Labyrinth?

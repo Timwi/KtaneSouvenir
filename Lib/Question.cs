@@ -1322,13 +1322,6 @@
         [AnswerGenerator.Grid(4, 4)]
         KudosudokuPrefilled,
 
-        [SouvenirQuestion("What was the given digit in {0}?", "Kyudoku", ThreeColumns6Answers)]
-        [AnswerGenerator.Integers(1, 9)]
-        KyudokuGivenDigit,
-        [SouvenirQuestion("Where was the given digit in {0}?", "Kyudoku", ThreeColumns6Answers, Type = AnswerType.Grid)]
-        [AnswerGenerator.Grid(6, 6)]
-        KyudokuGivenDigitLocation,
-
         [SouvenirQuestion("Where was one of the portals in layer {1} in {0}?", "Labyrinth", ThreeColumns6Answers, null, AddThe = true, Type = AnswerType.Grid, TranslateFormatArgs = new[] { true },
             ExampleExtraFormatArguments = new[] { "1 (Red)", "2 (Orange)", "3 (Yellow)", "4 (Green)", "5 (Blue)" }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Grid(6, 7)]

@@ -260,7 +260,6 @@ public partial class SouvenirModule
             ["xtrkeywords"] = (ProcessKeywords, "Keywords", "Kuro"),
             ["KnowYourWay"] = (ProcessKnowYourWay, "Know Your Way", "Kuro"),
             ["KudosudokuModule"] = (ProcessKudosudoku, "Kudosudoku", "Timwi"),
-            ["kyudoku"] = (ProcessKyudoku, "Kyudoku", "Anonymous"),
             ["labyrinth"] = (ProcessLabyrinth, "Labyrinth, The", "Anonymous"),
             ["ladderLottery"] = (ProcessLadderLottery, "Ladder Lottery", "Hawker"),
             ["ladders"] = (ProcessLadders, "Ladders", "tandyCake"),

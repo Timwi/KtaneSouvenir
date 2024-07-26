@@ -135,36 +135,4 @@ public partial class SouvenirModule
             makeQuestion(Question.KudosudokuPrefilled, module, formatArgs: new[] { "not pre-filled" },
                 correctAnswers: Enumerable.Range(0, 16).Where(ix => !shown[ix]).Select(coord => new Coord(4, 4, coord)).ToArray()));
     }
-
-    private IEnumerator<YieldInstruction> ProcessKyudoku(ModuleData module)
-    {
-        var comp = GetComponent(module, "KyudokuScript");
-
-        yield return WaitForSolve;
-
-        var info = GetField<object>(comp, "puzzleInfo").Get();
-        var given = GetField<int>(info, "Given", isPublic: true).Get(v => v is < 0 or > 35 ? $"Bad given digit location {v}" : null);
-        var digit = GetArrayField<int>(info, "NumberGrid", isPublic: true).Get(expectedLength: 36, validator: v => v is < 1 or > 9 ? $"Bad grid digit {v}" : null)[given];
-        var os = GetArrayField<bool>(info, "Solution", isPublic: true).Get(expectedLength: 36);
-
-        static IEnumerable<int> allIndices(bool[] arr)
-        {
-            var lastIndex = -1;
-            do
-            {
-                lastIndex = Array.IndexOf(arr, true, lastIndex + 1);
-                if (lastIndex != -1)
-                    yield return lastIndex;
-            }
-            while (lastIndex != -1);
-        }
-
-        var allCircled = allIndices(os).ToArray();
-        if (allCircled.Length != 9)
-            throw new AbandonModuleException($"Expected 9 circled digits but found {allCircled.Length}. ({allCircled.JoinString(", ")})");
-
-        addQuestions(module,
-            makeQuestion(Question.KyudokuGivenDigit, module, correctAnswers: new[] { digit.ToString() }),
-            makeQuestion(Question.KyudokuGivenDigitLocation, module, correctAnswers: new[] { new Coord(6, 6, given) }, preferredWrongAnswers: allCircled.Select(c => new Coord(6, 6, c)).ToArray()));
-    }
 }
