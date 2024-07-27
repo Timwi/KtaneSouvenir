@@ -2092,7 +2092,7 @@ namespace Souvenir
             // What was the number on the first button in Digisibility?
             [Question.DigisibilityDisplayedNumber] = new TranslationInfo
             {
-                QuestionText = "What was the number on the {1} button in {0}?",
+                QuestionText = "Welche Zahl war bei {0} auf dem {1}en Knopf?",
             },
 
             // Digit String
@@ -2100,7 +2100,7 @@ namespace Souvenir
             // What was the initial number in Digit String?
             [Question.DigitStringInitialNumber] = new TranslationInfo
             {
-                QuestionText = "What was the initial number in {0}?",
+                QuestionText = "Was war bei {0} die Anfangszahl?",
             },
 
             // Dimension Disruption
@@ -2108,7 +2108,8 @@ namespace Souvenir
             // Which of these was a visible character in Dimension Disruption?
             [Question.DimensionDisruptionVisibleLetters] = new TranslationInfo
             {
-                QuestionText = "Which of these was a visible character in {0}?",
+                QuestionText = "Welches dieser Zeichen war bei {0} zu sehen?",
+                ModuleName = "Dimensionsspaltung"
             },
 
             // Directional Button
@@ -2116,7 +2117,8 @@ namespace Souvenir
             // How many times did you press the button in the first stage of Directional Button?
             [Question.DirectionalButtonButtonCount] = new TranslationInfo
             {
-                QuestionText = "How many times did you press the button in the {1} stage of {0}?",
+                QuestionText = "Wie oft wurde bei {0} in der {1}en Phase der Knopf gedrückt?",
+                ModuleName = "Richtungsknopf"
             },
 
             // Discolored Squares
@@ -2124,14 +2126,14 @@ namespace Souvenir
             // What was Blue’s remembered position in Discolored Squares?
             [Question.DiscoloredSquaresRememberedPositions] = new TranslationInfo
             {
-                QuestionText = "What was {1}’s remembered position in {0}?",
+                QuestionText = "Was war bei {0} die notierte Position von {1}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["Blue"] = "Blue",
-                    ["Red"] = "Red",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Magenta"] = "Magenta",
+                    ["Blue"] = "Blau",
+                    ["Red"] = "Rot",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Magenta"] = "Rosa",
                 },
             },
 
@@ -2140,13 +2142,15 @@ namespace Souvenir
             // What were the correct button presses in Divisible Numbers?
             [Question.DivisibleNumbersAnswers] = new TranslationInfo
             {
-                QuestionText = "What were the correct button presses in {0}?",
+                QuestionText = "Was waren bei {0} die korrekten Eingaben?",
+                ModuleName = "Teilbare Zahlen"
             },
             // What was the {1} stage’s number in {0}?
             // What was the first stage’s number in Divisible Numbers?
             [Question.DivisibleNumbersNumbers] = new TranslationInfo
             {
-                QuestionText = "What was the {1} stage’s number in {0}?",
+                QuestionText = "Was war bei {0} die Zahl in der {1}en Phase?",
+                ModuleName = "Teilbare Zahlen"
             },
 
             // Double Arrows
