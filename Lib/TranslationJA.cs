@@ -109,6 +109,17 @@ namespace Souvenir
             {
                 QuestionText = "{0}の初期のLEDの状態は(読み順)？",
                 ModuleName = "3つのLED",
+                Answers = new Dictionary<string, string>
+                {
+                    ["off/off/off"] = "オフオフオフ",
+                    ["off/off/on"] = "オフオフオン",
+                    ["off/on/off"] = "オフオンオフ",
+                    ["off/on/on"] = "オフオンオン",
+                    ["on/off/off"] = "オンオフオフ",
+                    ["on/off/on"] = "オンオフオン",
+                    ["on/on/off"] = "オンオンオフ",
+                    ["on/on/on"] = "オンオンオン",
+                },
             },
 
             // 3N+1
@@ -145,6 +156,13 @@ namespace Souvenir
             [Question._7LedColors] = new TranslationInfo
             {
                 QuestionText = "{0}のステージ{1}のLEDの色は何？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                    ["white"] = "白",
+                },
             },
 
             // 9-Ball
@@ -226,7 +244,7 @@ namespace Souvenir
             // What enemy were you fighting in Adventure Game?
             [Question.AdventureGameEnemy] = new TranslationInfo
             {
-                QuestionText = "{0}でどの敵と戦ったか？",
+                QuestionText = "{0}で戦った敵は？",
                 ModuleName = "アドベンチャーゲーム",
             },
 
@@ -272,7 +290,7 @@ namespace Souvenir
             // Which letter was to the right of the pressed one in Alfa-Bravo?
             [Question.AlfaBravoRightPressedLetter] = new TranslationInfo
             {
-                QuestionText = "{0}押した文字の右にあった文字は何？",
+                QuestionText = "{0}で押した文字の右にあった文字は何？",
                 ModuleName = "アルファブラボー",
             },
             // What was the last digit on the small display in {0}?
@@ -347,6 +365,14 @@ namespace Souvenir
             {
                 QuestionText = "{0}のステージ{1}でボタン上にあった数字に含まれるのは？",
                 ModuleName = "アルファベット番号",
+                FormatArgs = new Dictionary<string, string>// formatting ordinal in special case
+                {
+                    ["first"] = "1",
+                    ["second"] = "2",
+                    ["third"] = "3",
+                    ["4th"] = "4",
+                    
+                },
             },
 
             // Alphabet Tiles
@@ -436,6 +462,7 @@ namespace Souvenir
             [Question.ASCIIMazeCharacters] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}番目に表示された文字は？",
+                ModuleName = "アスキー迷路",
             },
 
             // A Square
@@ -506,6 +533,7 @@ namespace Souvenir
             {
                 QuestionText = "{0}の{1}番目に押した正しいボタンの色は？",
                 ModuleName = "再錯綜",
+                
                 Answers = new Dictionary<string, string>
                 {
                     ["Red"] = "赤",
@@ -655,6 +683,17 @@ namespace Souvenir
             {
                 QuestionText = "{0}の{1}番目のバーコードが示していたエッジワークは？",
                 ModuleName = "バーコード暗号",
+                Answers = new Dictionary<string, string>
+                {
+                    ["SERIAL NUMBER"] = "シリアルナンバー",
+                    ["BATTERIES"] = "バッテリー",
+                    ["BATTERY HOLDERS"] = "バッテリーホルダー",
+                    ["PORTS"] = "ポート",
+                    ["PORT PLATES"] = "ポートプレート",
+                    ["LIT INDICATORS"] = "点灯したインジケーター",
+                    ["UNLIT INDICATORS"] = "点灯していないインジケーター",
+                    ["INDICATORS"] = "インジケーター",
+                },
             },
             // What was the answer for the {1} barcode in {0}?
             // What was the answer for the first barcode in Barcode Cipher?
@@ -671,6 +710,13 @@ namespace Souvenir
             {
                 QuestionText = "{0}で{1}番目の位置にあった材料は？",
                 ModuleName = "バーテンディング",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Adelhyde"] = "アデルハイド",
+                    ["Flanergide"] = "フラナガイド",
+                    ["Bronson Extract"] = "ブロンソンエキス",
+                    ["Powdered Delta"] = "デルタパウダー",
+                },
             },
 
             // Beans
@@ -698,6 +744,13 @@ namespace Souvenir
             {
                 QuestionText = "{0}の{1}番目のもやしは？",
                 ModuleName = "もやし",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Raw"] = "生",
+                    ["Cooked"] = "調理済み",
+                    ["Burnt"] = "焦げている",
+                    ["Fake"] = "偽物",
+                },
             },
             // What bean was on sprout {1} in {0}?
             // What bean was on sprout 1 in Bean Sprouts?
@@ -705,6 +758,13 @@ namespace Souvenir
             {
                 QuestionText = "{0}の{1}番目のもやしの豆は？",
                 ModuleName = "もやし",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Left"] = "左",
+                    ["Right"] = "右",
+                    ["None"] = "無し",
+                    ["Both"] = "両方",
+                },
             },
 
             // Big Bean
@@ -778,12 +838,36 @@ namespace Souvenir
             [Question.BinaryShiftSelectedNumberPossition] = new TranslationInfo
             {
                 QuestionText = "{0}でステージ{1}で選択した数字は？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["bottom-left"] = "左下",
+                    ["bottom-middle"] = "下",
+                    ["bottom-right"] = "右下",
+                    ["center"] = "中央",
+                    ["left-middle"] = "左",
+                    ["right-middle"] = "右",
+                    ["top-left"] = "左上",
+                    ["top-middle"] = "上",
+                    ["top-right"] = "右上",
+                },
             },
             // What number was not selected at stage {1} in {0}?
             // What number was not selected at stage 0 in Binary Shift?
             [Question.BinaryShiftNotSelectedNumberPossition] = new TranslationInfo
             {
                 QuestionText = "{0}でステージ{1}で選択していない数字は？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["bottom-left"] = "左下",
+                    ["bottom-middle"] = "下",
+                    ["bottom-right"] = "右下",
+                    ["center"] = "中央",
+                    ["left-middle"] = "左",
+                    ["right-middle"] = "右",
+                    ["top-left"] = "左上",
+                    ["top-middle"] = "上",
+                    ["top-right"] = "右上",
+                },
             },
 
             // Binary
@@ -873,6 +957,14 @@ namespace Souvenir
             {
                 QuestionText = "{0}で最も点滅回数が少なかったのはどの色だった？",
                 ModuleName = "瞬きの停止",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Purple"] = "紫",
+                    ["Cyan"] = "シアン",
+                    ["Yellow"] = "黄",
+                    ["Multicolor"] = "虹色",
+                },
+                
             },
 
             // Blockbusters
@@ -899,42 +991,58 @@ namespace Souvenir
             [Question.BlueButtonD] = new TranslationInfo
             {
                 QuestionText = "{0}のDはどれだったか？",
+                ModuleName = "青色ボタン",
             },
             // What was {1} in {0}?
             // What was E in The Blue Button?
             [Question.BlueButtonEFGH] = new TranslationInfo
             {
                 QuestionText = "{0}のEはどれだったか？",
+                ModuleName = "青色ボタン",
             },
             // What was M in {0}?
             // What was M in The Blue Button?
             [Question.BlueButtonM] = new TranslationInfo
             {
                 QuestionText = "{0}のMはどれだったか？",
+                ModuleName = "青色ボタン",
             },
             // What was N in {0}?
             // What was N in The Blue Button?
             [Question.BlueButtonN] = new TranslationInfo
             {
                 QuestionText = "{0}のNはどれだったか？",
+                ModuleName = "青色ボタン",
             },
             // What was P in {0}?
             // What was P in The Blue Button?
             [Question.BlueButtonP] = new TranslationInfo
             {
                 QuestionText = "{0}のPはどれだったか？",
+                ModuleName = "青色ボタン",
             },
             // What was Q in {0}?
             // What was Q in The Blue Button?
             [Question.BlueButtonQ] = new TranslationInfo
             {
                 QuestionText = "{0}のQはどれだったか？",
+                ModuleName = "青色ボタン",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Blue"] = "青",
+                    ["Green"] = "緑",
+                    ["Cyan"] = "シアン",
+                    ["Red"] = "赤",
+                    ["Magenta"] = "マゼンタ",
+                    ["Yellow"] = "黄",
+                },
             },
             // What was X in {0}?
             // What was X in The Blue Button?
             [Question.BlueButtonX] = new TranslationInfo
             {
                 QuestionText = "{0}のXはどれだったか？",
+                ModuleName = "青色ボタン",
             },
 
             // Blue Cipher
@@ -1032,6 +1140,11 @@ namespace Souvenir
             {
                 QuestionText = "{0}のルール{1}は？",
                 ModuleName = "偉大なるブームター",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["one"] = "1",
+                    ["two"] = "2",
+                },
             },
 
             // Boxing
@@ -1087,6 +1200,16 @@ namespace Souvenir
             {
                 QuestionText = "{0}の黄身の色は？",
                 ModuleName = "目玉焼き",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Crimson"] = "真紅",
+                    ["Orange"] = "オレンジ",
+                    ["Pink"] = "ピンク",
+                    ["Beige"] = "ベージュ",
+                    ["Cyan"] = "シアン",
+                    ["Lime"] = "ライム",
+                    ["Petrol"] = "濃青緑",
+                },   
             },
 
             // Broken Buttons
@@ -1349,12 +1472,14 @@ namespace Souvenir
             [Question.CharacterShiftLetters] = new TranslationInfo
             {
                 QuestionText = "{0}の左スライダーにあった送信していない英字は？",
+                ModuleName = "文字シフト",
             },
             // Which digit was present but not submitted on the right slider of {0}?
             // Which digit was present but not submitted on the right slider of Character Shift?
             [Question.CharacterShiftDigits] = new TranslationInfo
             {
                 QuestionText = "{0}の右スライダーにあった送信していない英字は？",
+                ModuleName = "文字シフト",
             },
 
             // Character Slots
@@ -1391,6 +1516,37 @@ namespace Souvenir
                 {
                     ["was"] = "いた",
                     ["was not"] = "いなかった",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Auklet"] = "ウミスズメ",
+                    ["Bluebird"] = "ルリツグミ",
+                    ["Chickadee"] = "アメリカコガラ",
+                    ["Dove"] = "ハト",
+                    ["Egret"] = "シラサギ",
+                    ["Finch"] = "フィンチ",
+                    ["Godwit"] = "オグロシギ",
+                    ["Hummingbird"] = "ハチドリ",
+                    ["Ibis"] = "トキ",
+                    ["Jay"] = "カケス",
+                    ["Kinglet"] = "キクイタダキ",
+                    ["Loon"] = "アビ",
+                    ["Magpie"] = "カササギ",
+                    ["Nuthatch"] = "ゴジュウカラ",
+                    ["Oriole"] = "アメリカムクドリモドキ",
+                    ["Pipit"] = "ビンズイ",
+                    ["Quail"] = "ウズラ",
+                    ["Raven"] = "ワタリガラス",
+                    ["Shrike"] = "モズ",
+                    ["Thrush"] = "ツグミ",
+                    ["Umbrellabird"] = "カサドリ",
+                    ["Vireo"] = "モズモドキ",
+                    ["Warbler"] = "ムシクイ",
+                    ["Xantus’s Hummingbird"] = "クロビタイサファイアハチドリ",
+                    ["Yellowlegs"] = "オオキアシシギ",
+                    ["Zigzag Heron"] = "コビトサギ",
+                    
+
                 },
             },
 
@@ -1498,6 +1654,19 @@ namespace Souvenir
             {
                 QuestionText = "{0}で適用された破損は？",
                 ModuleName = "色付き点字",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Top row shifted to the right"] = "上の段が右にシフト", 
+                    ["Top row shifted to the left"] = "上の段が左にシフト",
+                    ["Middle row shifted to the right"] = "中央の段が右にシフト", 
+                    ["Middle row shifted to the left"] = "中央の段が左にシフト", 
+                    ["Bottom row shifted to the right"] = "下の段が右にシフト", 
+                    ["Bottom row shifted to the left"] = "下の段が左にシフト", 
+                    ["Each letter upside-down"] = "各点字が上下逆さま", 
+                    ["Each letter horizontally flipped"] = "各点字を左右反転", 
+                    ["Each letter vertically flipped"] = "各点字を上下反転", 
+                    ["Dots are inverted"] = "点自体が反転", 
+                },
             },
             // What was the {1} word in {0}?
             // What was the red word in Color Braille?
@@ -1520,6 +1689,13 @@ namespace Souvenir
             {
                 QuestionText = "{0}でステージ{1}のインジケーターのパターンは？",
                 ModuleName = "色の解読",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Checkered"] = "チェック",
+                    ["Horizontal"] = "ボーダー",
+                    ["Vertical"] = "ストライプ",
+                    ["Solid"] = "一色",
+                },
             },
             // Which color {1} in the {2}-stage indicator pattern in {0}?
             // Which color appeared in the first-stage indicator pattern in Color Decoding?
@@ -1556,6 +1732,15 @@ namespace Souvenir
             {
                 QuestionText = "{0}で表示された単語の色は？",
                 ModuleName = "色付きキーパッド",
+                Answers = new Dictionary<string, string>
+                {
+                    ["blue"] = "青",
+                    ["green"] = "緑",
+                    ["red"] = "赤",
+                    ["yellow"] = "黄",
+                    ["purple"] = "紫",
+                    ["white"] = "白",
+                },
             },
             // What was the color of the {1} key in {0}?
             // What was the color of the top-left key in Colored Keys?
@@ -1563,12 +1748,14 @@ namespace Souvenir
             {
                 QuestionText = "{0}の{1}のキーの色は？",
                 ModuleName = "色付きキーパッド",
-                FormatArgs = new Dictionary<string, string>
+                Answers = new Dictionary<string, string>
                 {
-                    ["top-left"] = "左上",
-                    ["top-right"] = "右上",
-                    ["bottom-left"] = "左下",
-                    ["bottom-right"] = "右下",
+                    ["blue"] = "青",
+                    ["green"] = "緑",
+                    ["red"] = "赤",
+                    ["yellow"] = "黄",
+                    ["purple"] = "紫",
+                    ["white"] = "白",
                 },
             },
             // What letter was on the {1} key in {0}?
@@ -1700,6 +1887,15 @@ namespace Souvenir
                     ["cube"] = "キューブ",
                     ["stage light"] = "ステータスライト",
                 },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Yellow"] = "黄",
+                    ["Cyan"] = "シアン",
+                    ["Magenta"] = "マゼンタ",
+                },
             },
 
             // Colour Flash
@@ -1765,6 +1961,7 @@ namespace Souvenir
             [Question.CoralCipherScreen] = new TranslationInfo
             {
                 QuestionText = "{0}のページ{2}の{1}ディスプレーに表示されていたのは？",
+                ModuleName = "珊瑚色暗号",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "上部",
@@ -1839,6 +2036,7 @@ namespace Souvenir
             [Question.CrazyHamburgerIngredient] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}番目の材料は？",
+                ModuleName = "クレイジーハンバーガー",
             },
 
             // Crazy Maze
@@ -1847,6 +2045,7 @@ namespace Souvenir
             [Question.CrazyMazeStartOrGoal] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}位置は？",
+                ModuleName = "クレイジー迷路",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["starting"] = "開始",
@@ -1860,6 +2059,7 @@ namespace Souvenir
             [Question.CreamCipherScreen] = new TranslationInfo
             {
                 QuestionText = "{0}のページ{2}の{1}ディスプレーに表示されていたのは？",
+                ModuleName = "鳥子色暗号",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "上部",
@@ -1877,11 +2077,11 @@ namespace Souvenir
                 ModuleName = "クリエーション",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Clear"] = "Clear",
-                    ["Heat Wave"] = "Heat Wave",
-                    ["Meteor Shower"] = "Meteor Shower",
-                    ["Rain"] = "Rain",
-                    ["Windy"] = "Windy",
+                    ["Clear"] = "晴れ",
+                    ["Heat Wave"] = "猛暑",
+                    ["Meteor Shower"] = "流星群",
+                    ["Rain"] = "雨",
+                    ["Windy"] = "強風",
                 },
             },
 
@@ -1891,6 +2091,7 @@ namespace Souvenir
             [Question.CrimsonCipherScreen] = new TranslationInfo
             {
                 QuestionText = "{0}のページ{2}の{1}ディスプレーに表示されていたのは？",
+                ModuleName = "紅色暗号",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "上部",
@@ -1930,6 +2131,13 @@ namespace Souvenir
             {
                 QuestionText = "{0}のステージ{1}で表示された文字に含まれるのは？",
                 ModuleName = "残忍キーパッド",
+                FormatArgs = new Dictionary<string, string> // formatting ordinal in special case
+                {
+                    ["first"] = "1",
+                    ["second"] = "2",
+                    ["third"] = "3",
+                    ["4th"] = "4",
+                },
             },
             // What was the color of the bar in the {1} stage of {0}?
             // What was the color of the bar in the first stage of Cruel Keypads?
@@ -1937,6 +2145,22 @@ namespace Souvenir
             {
                 QuestionText = "{0}のステージ{1}におけるバーの色は？",
                 ModuleName = "残忍キーパッド",
+                FormatArgs = new Dictionary<string, string> // formatting ordinal in special case
+                {
+                    ["first"] = "1",
+                    ["second"] = "2",
+                    ["third"] = "3",
+                    ["4th"] = "4",
+                },
+                Answers = new Dictionary<string, string> 
+                {
+                    ["Red"] = "赤",
+                    ["Blue"] = "青",
+                    ["Magenta"] = "マゼンタ",
+                    ["Green"] = "緑",
+                    ["Yellow"] = "黄",
+                    ["White"] = "白",
+                },
             },
 
             // The cRule
@@ -1971,6 +2195,7 @@ namespace Souvenir
             [Question.CrypticCycleWord] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}は？",
+                ModuleName = "暗号サイクル",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["message"] = "メッセージ",
@@ -2022,9 +2247,14 @@ namespace Souvenir
             {
                 QuestionText = "{0}の{1}回目のキューブの回転は？",
                 ModuleName = "キューブ",
-                FormatArgs = new Dictionary<string, string>
+                Answers = new Dictionary<string, string>
                 {
-                    ["�ordinal"] = "�ordinal",
+                    ["rotate cw"] = "時計回り",
+                    ["tip left"] = "左回転",
+                    ["tip backwards"] = "上回転",
+                    ["rotate ccw"] = "反時計回り",
+                    ["tip right"] = "右回転",
+                    ["tip forwards"] = "下回転",
                 },
             },
 
@@ -2055,12 +2285,12 @@ namespace Souvenir
                 ModuleName = "シアンボタン",
                 Answers = new Dictionary<string, string>
                 {
-                    ["top left"] = "top left",
-                    ["top middle"] = "top middle",
-                    ["top right"] = "top right",
-                    ["bottom left"] = "bottom left",
-                    ["bottom middle"] = "bottom middle",
-                    ["bottom right"] = "bottom right",
+                    ["top left"] = "左上",
+                    ["top middle"] = "上",
+                    ["top right"] = "右",
+                    ["bottom left"] = "左下",
+                    ["bottom middle"] = "下",
+                    ["bottom right"] = "右下",
                 },
             },
 
@@ -2071,6 +2301,62 @@ namespace Souvenir
             {
                 QuestionText = "{0}の出発点は？",
                 ModuleName = "DACH迷路",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Burgenland, A"] = "ブルゲンラント(A)",
+                    ["Carinthia, A"] = "ケルンテン(A)",
+                    ["Lower Austria, A"] = " ニーダーエステライヒ(A)",
+                    ["North Tyrol, A"] = "北チロル(A)",
+                    ["Upper Austria, A"] = "オーバーエステライヒ(A)",
+                    ["East Tyrol, A"] = "東チロル(A)",
+                    ["Salzburg, A"] = "ザルツブルク(A)",
+                    ["Styria, A"] = "シュタイアーマルク(A)",
+                    ["Vorarlberg, A"] = "フォアアールベルク(A)",
+                    ["Vienna, A"] = "ウィーン(A)",
+                    ["Aargau, CH"] = "アールガウ(CH)",
+                    ["Appenzell Inner Rhodes, CH"] = "アッペンツェル・インナーローデン(CH)",
+                    ["Appenzell Outer Rhodes, CH"] = "アッペンツェル・アウサーローデン(CH)",
+                    ["Basel Country, CH"] = "バーゼル＝ラント(CH)",
+                    ["Bern, CH"] = "ベルン(CH)",
+                    ["Basel City, CH"] = "バーゼル＝シュタット(CH)",
+                    ["Fribourg, CH"] = "フリブール(CH)",
+                    ["Geneva, CH"] = "ジュネーヴ(CH)",
+                    ["Glarus, CH"] = "グラールス(CH)",
+                    ["Grisons, CH"] = "グラウビュンデン(CH)",
+                    ["Jura, CH"] = "ジュラ(CH)",
+                    ["Luzern, CH"] = "ルツェルン(CH)",
+                    ["Nidwalden, CH"] = "ヌーシャテル(CH)",
+                    ["Neuchâtel, CH"] = "ニトヴァルデン(CH)",
+                    ["Obwalden, CH"] = "オプヴァルデン(CH)",
+                    ["Schaffhausen, CH"] = "ザンクト・ガレン(CH)",
+                    ["St. Gallen, CH"] = "シャフハウゼン(CH)",
+                    ["Solothurn, CH"] = "ゾロトゥルン(CH)",
+                    ["Schwyz, CH"] = "シュヴィーツ(CH)",
+                    ["Thurgau, CH"] = "トゥールガウ(CH)",
+                    ["Ticino, CH"] = "ティチーノ(CH)",
+                    ["Uri, CH"] = "ウーリ(CH)",
+                    ["Vaud, CH"] = "ヴォー(CH)",
+                    ["Valais, CH"] = "ヴァレー(CH)",
+                    ["Zug, CH"] = "ツーク(CH)",
+                    ["Zürich, CH"] = "チューリヒ(CH)",
+                    ["Brandenburg, D"] = "ブランデンブルク(D)",
+                    ["Berlin, D"] = "ベルリン(D)",
+                    ["Baden-Württemberg, D"] = "バーデン＝ヴュルテンベルク(D)",
+                    ["Bavaria, D"] = "バイエルン(D)",
+                    ["Bremen, D"] = "ブレーメン(D)",
+                    ["Hesse, D"] = "ヘッセン(D)",
+                    ["Hamburg, D"] = "ハンブルク(D)",
+                    ["Mecklenburg-Vorpommern, D"] = "メクレンブルク＝フォアポンメルン(D)",
+                    ["Lower Saxony, D"] = "ニーダーザクセン(D)",
+                    ["North Rhine-Westphalia, D"] = "ノルトライン＝ヴェストファーレン(D)",
+                    ["Rhineland-Palatinate, D"] = "ラインラント＝プファルツ(D)",
+                    ["Schleswig-Holstein, D"] = "シュレースヴィヒ＝ホルシュタイン(D)",
+                    ["Saarland, D"] = "ザールラント(D)",
+                    ["Saxony, D"] = "ザクセン(D)",
+                    ["Saxony-Anhalt, D"] = "ザクセン＝アンハルト(D)",
+                    ["Thuringia, D"] = "テューリンゲン(D)",
+                    ["Liechtenstein"] = "リヒテンシュタイン",
+                },
             },
 
             // Deaf Alley
@@ -2186,6 +2472,7 @@ namespace Souvenir
             [Question.DigitStringInitialNumber] = new TranslationInfo
             {
                 QuestionText = "{0}の初期値は？",
+                ModuleName = "数字列",
             },
 
             // Dimension Disruption
@@ -2263,12 +2550,19 @@ namespace Souvenir
                     ["riight"] = "右",
                     ["right"] = "右",
                 },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Up"] = "上",
+                    ["Left"] = "左",
+                    ["Right"] = "右",
+                    ["Down"] = "下",
+                },
             },
             // Which direction in the grid did the {1} arrow move in {0}?
             // Which direction in the grid did the inner up arrow move in Double Arrows?
             [Question.DoubleArrowsMovement] = new TranslationInfo
             {
-                QuestionText = "{0}の{1}矢印を押すとどの方向に進む？",
+                QuestionText = "{0}で{1}矢印を押すとどの方向に進んだ？",
                 ModuleName = "ダブル矢印",
                 FormatArgs = new Dictionary<string, string>
                 {
@@ -2280,6 +2574,13 @@ namespace Souvenir
                     ["outer down"] = "外側の下",
                     ["outer left"] = "外側の左",
                     ["outer right"] = "外側の右",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Up"] = "上",
+                    ["Left"] = "左",
+                    ["Right"] = "右",
+                    ["Down"] = "下",
                 },
             },
 
@@ -2335,7 +2636,8 @@ namespace Souvenir
             // What clip was played in Double Listening?
             [Question.DoubleListeningSounds] = new TranslationInfo
             {
-                QuestionText = "What clip was played in {0}?",
+                QuestionText = "{0}で再生されたクリップは？",
+                ModuleName = "ダブルリスニング",
             },
 
             // Double-Oh
@@ -2352,7 +2654,20 @@ namespace Souvenir
             // What color was the top screen in the first stage of Double Screen?
             [Question.DoubleScreenColors] = new TranslationInfo
             {
-                QuestionText = "What color was the {1} screen in the {2} stage of {0}?",
+                QuestionText = "{0}でステージ{2}の{1}画面の色は？",
+                ModuleName = "二画面",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "上",
+                    ["bottom"] = "下",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Yellow"] = "黄",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                },
             },
 
             // Dr. Doctor
@@ -2385,7 +2700,7 @@ namespace Souvenir
             // How did you approach the duck in The Duck?
             [Question.DuckApproach] = new TranslationInfo
             {
-                QuestionText = "{0}のアヒルにどう接した？",
+                QuestionText = "{0}にいたアヒルにどう接した？",
                 ModuleName = "アヒル",
             },
             // What was the color of the curtain in {0}?
@@ -2394,6 +2709,13 @@ namespace Souvenir
             {
                 QuestionText = "{0}のカーテンの色は？",
                 ModuleName = "アヒル",
+                Answers = new Dictionary<string, string>
+                {
+                    ["blue"] = "青",
+                    ["yellow"] = "黄",
+                    ["orange"] = "橙",
+                    ["red"] = "赤",
+                },
             },
 
             // Dumb Waiters
@@ -2415,12 +2737,14 @@ namespace Souvenir
             [Question.EarthboundBackground] = new TranslationInfo
             {
                 QuestionText = "{0}の背景の数字は？",
+                ModuleName = "MOTHER",
             },
             // Which monster was displayed in {0}?
             // Which monster was displayed in Earthbound?
             [Question.EarthboundMonster] = new TranslationInfo
             {
                 QuestionText = "{0}で表示されたモンスターは？",
+                ModuleName = "MOTHER",
             },
 
             // eeB gnillepS
@@ -2473,18 +2797,21 @@ namespace Souvenir
             [Question.EnaCipherKeywordAnswer] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}番目のキーワードは？",
+                ModuleName = "エナ暗号",
             },
             // What was the transposition key in {0}?
             // What was the transposition key in ENA Cipher?
             [Question.EnaCipherExtAnswer] = new TranslationInfo
             {
                 QuestionText = "{0}の転移キーは？",
+                ModuleName = "エナ暗号",
             },
             // What was the encrypted word in {0}?
             // What was the encrypted word in ENA Cipher?
             [Question.EnaCipherEncryptedAnswer] = new TranslationInfo
             {
                 QuestionText = "{0}で解読した単語は？",
+                ModuleName = "エナ暗号",
             },
 
             // Encrypted Dice
@@ -2510,12 +2837,24 @@ namespace Souvenir
             [Question.EncryptedHangmanEncryptionMethod] = new TranslationInfo
             {
                 QuestionText = "{0}で使われた暗号化方式は？",
+                ModuleName = "暗号化ハングマン",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Caesar Cipher"] = "カエサル暗号",
+                    ["Atbash Ciphert"] = "Atbash暗号",
+                    ["Rot-13 Cipher"] = "ROT-13暗号",
+                    ["Affine Cipher"] = "アフィン暗号",
+                    ["Modern Cipher"] = "現代暗号",
+                    ["Vigenère Cipher"] = "ヴィジュネル暗号",
+                    ["Playfair Cipher"] = "プレイフェア暗号",
+                },
             },
             // What module name was encrypted by {0}?
             // What module name was encrypted by Encrypted Hangman?
             [Question.EncryptedHangmanModule] = new TranslationInfo
             {
                 QuestionText = "{0}で暗号化されていたモジュール名は？",
+                ModuleName = "暗号化ハングマン",
             },
 
             // Encrypted Maze
@@ -2553,6 +2892,28 @@ namespace Souvenir
             {
                 QuestionText = "{0}の最初の復号方式は？",
                 ModuleName = "暗号化ビンゴ",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Morse Code"] = "モールス信号",
+                    ["Tap Code"] = "タップ・コード",
+                    ["Maritime Flags"] = "海上旗",
+                    ["Semaphore"] = "セマフォア信号",
+                    ["Pigpen"] = "ピッグペン暗号",
+                    ["Lombax"] = "ロンバックス",
+                    ["Braille"] = "点字",
+                    ["Wingdings"] = "Wingdings",
+                    ["Zoni"] = "ゾ二",
+                    ["Galatic Alphabet"] = "銀河標準語",
+                    ["Arrow"] = "矢印",
+                    ["Listening"] = "リスニング",
+                    ["Regular Number"] = "数字",
+                    ["Chinese Number"] = "漢数字",
+                    ["Cube Symbols"] = "キューブ記号",
+                    ["Runes"] = "ルーン文字",
+                    ["New York Point"] = "旧式点字",
+                    ["Fontana"] = "Fontana",
+                    ["ASCII Hex Code"] = "ASCII十六進数",
+                },
             },
 
             // Enigma Cycle
@@ -2588,7 +2949,7 @@ namespace Souvenir
             // What was the constant coefficient in Entry Number Four?
             [Question.EntryNumberFourCoeff] = new TranslationInfo
             {
-                QuestionText = "{0}の定数係数は？",
+                QuestionText = "{0}の増加定数は？",
                 ModuleName = "エントリーナンバー4",
             },
 
@@ -2611,7 +2972,7 @@ namespace Souvenir
             // What was the constant coefficient in Entry Number One?
             [Question.EntryNumberOneCoeff] = new TranslationInfo
             {
-                QuestionText = "{0}の定数係数は？",
+                QuestionText = "{0}の増加定数は？",
                 ModuleName = "エントリーナンバー1",
             },
 
@@ -2837,6 +3198,7 @@ namespace Souvenir
             {
                 QuestionText = "{0}に表示されていた数字は？",
                 ModuleName = "点滅矢印",
+
             },
             // What color flashed {1} black on the relevant arrow in {0}?
             // What color flashed before black on the relevant arrow in Flashing Arrows?
@@ -2848,6 +3210,16 @@ namespace Souvenir
                 {
                     ["before"] = "前",
                     ["after"] = "後",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Yellow"] = "黄",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Purple"] = "紫",
+                    ["White"] = "白",
                 },
             },
 
@@ -2875,7 +3247,7 @@ namespace Souvenir
             // Which module’s flavor text was shown in Flavor Text?
             [Question.FlavorTextModule] = new TranslationInfo
             {
-                QuestionText = "{0}で表示されたフレーバーテキストは、どのモジュールのもの？",
+                QuestionText = "{0}で表示されたフレーバーテキストは、どのモジュールのもの(英名)？",
                 ModuleName = "フレーバーテキスト",
             },
 
@@ -2884,7 +3256,7 @@ namespace Souvenir
             // Which module’s flavor text was shown in the first stage of Flavor Text EX?
             [Question.FlavorTextEXModule] = new TranslationInfo
             {
-                QuestionText = "{0}のステージ{1}で表示されたフレーバーテキストは、どのモジュールのもの？",
+                QuestionText = "{0}のステージ{1}で表示されたフレーバーテキストは、どのモジュールのもの(英名)？",
                 ModuleName = "フレーバーテキストEX",
             },
 
@@ -2903,6 +3275,13 @@ namespace Souvenir
             [Question.FollowMeDisplayedPath] = new TranslationInfo
             {
                 QuestionText = "{0}で{1}番目に点滅した方向は？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Up"] = "上",
+                    ["Down"] = "下",
+                    ["Left"] = "左",
+                    ["Right"] = "右",
+                },
             },
 
             // Forest Cipher
@@ -2927,6 +3306,17 @@ namespace Souvenir
             {
                 QuestionText = "{0}のステージ{1}におけるシリンダーは？",
                 ModuleName = "全色忘る",
+                // Answers = new Dictionary<string, string> //  it cannot be supported because the answers are generated in the module.
+                // {
+                //     ["Red"] = "赤",
+                //     ["Orange"] = "橙",
+                //     ["Yellow"] = "黄",
+                //     ["Green"] = "緑",
+                //     ["Cyan"] = "シアン",
+                //     ["Blue"] = "青",
+                //     ["Purple"] = "紫",
+                //     ["White"] = "白",
+                // },
             },
             // Which figure was used during the {1} stage of {0}?
             // Which figure was used during the first stage of Forget Any Color?
@@ -2934,6 +3324,15 @@ namespace Souvenir
             {
                 QuestionText = "{0}のステージ{1}で使用した表は？",
                 ModuleName = "全色忘る",
+                Answers = new Dictionary<string, string>
+                {
+                    ["LLLMR"] = "左左左中右", 
+                    ["LMMMR"] = "左中中中右", 
+                    ["LMRRR"] = "左中右右右", 
+                    ["LMMRR"] = "左中中右右", 
+                    ["LLMRR"] = "左左中右右", 
+                    ["LLMMR"] = "左左中中右", 
+                },
             },
 
             // Forget Everything
@@ -2951,6 +3350,7 @@ namespace Souvenir
             [Question.ForgetMeInitialState] = new TranslationInfo
             {
                 QuestionText = "{0}の初期状態のパズルにおける{1}の数字は？",
+                ModuleName = "我忘る",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top-left"] = "左上",
@@ -3011,6 +3411,17 @@ namespace Souvenir
             {
                 QuestionText = "{0}の{1}回目に使用した変換方法は？",
                 ModuleName = "忘る者の究極の対決",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Forget Me Not"] = "我忘る勿かれ",
+                    ["Simon’s Stages"] = "サイモンのステージ",
+                    ["Forget Me Later"] = "後に我忘る",
+                    ["Forget Infinity"] = "永遠に忘る",
+                    ["A>N<D"] = "AND",
+                    ["Forget Me Now"] = "我忘るる",
+                    ["Forget Everything"] = "須く忘る",
+                    ["Forget Us Not"] = "我等忘る勿かれ",
+                },
             },
 
             // Forget The Colors
@@ -3085,6 +3496,15 @@ namespace Souvenir
             {
                 QuestionText = "{0}のステージ{1}におけるLEDの色は？",
                 ModuleName = "之忘る",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Cyan"] = "シアン",
+                    ["Magenta"] = "マゼンタ",
+                    ["Yellow"] = "黄",
+                    ["Black"] = "黒",
+                    ["White"] = "白",                    
+                    ["Green"] = "緑",
+                },
             },
             // What was the digit displayed in the {1} stage of {0}?
             // What was the digit displayed in the first stage of Forget This?
@@ -3101,6 +3521,16 @@ namespace Souvenir
             {
                 QuestionText = "{0}のプレイヤーのコマは？",
                 ModuleName = "無料駐車場",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Dog"] = "犬",
+                    ["Wheelbarrow"] = "手押し車",
+                    ["Cat"] = "猫",
+                    ["Iron"] = "アイロン",
+                    ["Top Hat"] = "帽子",                    
+                    ["Car"] = "車",
+                    ["Battleship"] = "軍艦",
+                },
             },
 
             // Functions
@@ -3154,7 +3584,7 @@ namespace Souvenir
             // What was your current weapon in Gadgetron Vendor?
             [Question.GadgetronVendorCurrentWeapon] = new TranslationInfo
             {
-                QuestionText = "{0}で今所持している武器は？",
+                QuestionText = "{0}で所持していた武器は？",
                 ModuleName = "ガラクトロン・ベンダー",
             },
             // What was the weapon up for sale in {0}?
@@ -3172,6 +3602,16 @@ namespace Souvenir
             {
                 QuestionText = "{0}に出現した色の組み合わせに含まれるのは？",
                 ModuleName = "残忍ライフゲーム",
+                // Answers = new Dictionary<string, string> //  it cannot be supported because the answers are generated in the module.
+                // {
+                //     ["Red"] = "赤",
+                //     ["Orange"] = "橙",
+                //     ["Yellow"] = "黄",
+                //     ["Green"] = "緑",
+                //     ["Blue"] = "青",
+                //     ["Purple"] = "紫",
+                //     ["Brown"] = "茶",
+                // },
             },
 
             // The Gamepad
@@ -3244,6 +3684,7 @@ namespace Souvenir
             [Question.GreatVoidColor] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}番目の色は？",
+                ModuleName = "超空洞",
                 Answers = new Dictionary<string, string>
                 {
                     ["Red"] = "赤",
@@ -3260,6 +3701,7 @@ namespace Souvenir
             [Question.GreatVoidDigit] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}番目の数字は？",
+                ModuleName = "超空洞",
             },
 
             // Green Arrows
@@ -3339,13 +3781,16 @@ namespace Souvenir
             // What was the gryphon’s name in Gryphons?
             [Question.GryphonsName] = new TranslationInfo
             {
-                QuestionText = "{0}のグリフォンの名前は？",
+                QuestionText = "{0}にいたグリフォンの名前は？",
+                ModuleName = "グリフォン",
             },
             // What was the gryphon’s age in {0}?
             // What was the gryphon’s age in Gryphons?
             [Question.GryphonsAge] = new TranslationInfo
             {
-                QuestionText = "{0}のグリフォンの年齢は？",
+                QuestionText = "{0}にいたグリフォンの年齢は？",
+                ModuleName = "グリフォン",
+                
             },
 
             // Guess Who?
@@ -3406,7 +3851,7 @@ namespace Souvenir
             // What was the fast shape for the first display in hexOrbits?
             [Question.HexOrbitsShape] = new TranslationInfo
             {
-                QuestionText = "What was the {1} shape for the {2} display in {0}?",
+                QuestionText = "{0}の{2}番目の表示で、速度が{1}方の図形は？",
             },
 
             // hexOS
@@ -3644,13 +4089,15 @@ namespace Souvenir
             // What was the first character of the hyperlink in The Hyperlink?
             [Question.HyperlinkCharacters] = new TranslationInfo
             {
-                QuestionText = "{0}のハイパーリンクの{1}文字目は？",
+                QuestionText = "{0}のリンクの{1}文字目は？",
+                ModuleName = "ハイパーリンク",
             },
             // Which module was referenced on {0}?
             // Which module was referenced on The Hyperlink?
             [Question.HyperlinkAnswer] = new TranslationInfo
             {
-                QuestionText = "{0}が参照していたモジュールは？",
+                QuestionText = "{0}が参照していたモジュールは(英名)？",
+                ModuleName = "ハイパーリンク",
             },
 
             // Ice Cream
@@ -3688,6 +4135,20 @@ namespace Souvenir
             {
                 QuestionText = "{0}で使用された{1}番目の識別モジュールは？",
                 ModuleName = "識別危機",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Morse Identification"] = "モールス識別", 
+                    ["Boozleglyph Identification"] = "ブーズル文字識別",
+                    ["Plant Identification"] = "植物識別", 
+                    ["Pickup Identification"] = "アイテム識別", 
+                    ["Emotiguy Identification"] = "エモティガイ識別", 
+                    ["Ars Goetia Identification"] = "アルス・ゴエティア識別", 
+                    ["Ars Goetia Identification"] = "アルス・ゴエティア識別", 
+                    ["Mii Identification"] = "Mii識別", 
+                    ["Customer identification"] = "顧客識別", 
+                    ["Spongebob Birthday Identification"] = "スポンジ・ボブ誕生日カード識別", 
+                    ["VTuber Identification"] = "VTuber識別", 
+                },
             },
 
             // Identity Parade
@@ -3733,7 +4194,7 @@ namespace Souvenir
             // Which module was The Impostor pretending to be?
             [Question.ImpostorDisguise] = new TranslationInfo
             {
-                QuestionText = "{0}が化けていたのはどのモジュール？",
+                QuestionText = "{0}が化けていたのはどのモジュール(英名)？",
                 ModuleName = "ニセモノ",
             },
 
@@ -3816,7 +4277,7 @@ namespace Souvenir
             // What sound played in IPA?
             [Question.IpaSound] = new TranslationInfo
             {
-                QuestionText = "What sound played in {0}?",
+                QuestionText = "{0}で再生された音は？",
             },
 
             // The iPhone
@@ -3869,22 +4330,22 @@ namespace Souvenir
                 ModuleName = "色比べ格子",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Magenta"] = "Magenta",
-                    ["Orange"] = "Orange",
-                    ["Cyan"] = "Cyan",
-                    ["Purple"] = "Purple",
-                    ["Chestnut"] = "Chestnut",
-                    ["Brown"] = "Brown",
-                    ["Mauve"] = "Mauve",
-                    ["Azure"] = "Azure",
-                    ["Jade"] = "Jade",
-                    ["Forest"] = "Forest",
-                    ["Gray"] = "Gray",
-                    ["Black"] = "Black",
+                    ["Red"] = "赤",
+                    ["Blue"] = "青",
+                    ["Yellow"] = "黄",
+                    ["Green"] = "緑",
+                    ["Magenta"] = "マゼンタ",
+                    ["Orange"] = "オレンジ",
+                    ["Cyan"] = "シアン",
+                    ["Purple"] = "紫",
+                    ["Chestnut"] = "栗",
+                    ["Brown"] = "茶",
+                    ["Mauve"] = "薄藤",
+                    ["Azure"] = "空",
+                    ["Jade"] = "若緑",
+                    ["Forest"] = "深緑",
+                    ["Gray"] = "灰",
+                    ["Black"] = "黒",
                 },
             },
             // Which square was {1} in {0}?
@@ -3895,22 +4356,22 @@ namespace Souvenir
                 ModuleName = "色比べ格子",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["blue"] = "blue",
-                    ["yellow"] = "yellow",
-                    ["green"] = "green",
-                    ["magenta"] = "magenta",
-                    ["orange"] = "orange",
-                    ["cyan"] = "cyan",
-                    ["purple"] = "purple",
-                    ["chestnut"] = "chestnut",
-                    ["brown"] = "brown",
-                    ["mauve"] = "mauve",
-                    ["azure"] = "azure",
-                    ["jade"] = "jade",
-                    ["forest"] = "forest",
-                    ["gray"] = "gray",
-                    ["black"] = "black",
+                    ["Red"] = "赤",
+                    ["Blue"] = "青",
+                    ["Yellow"] = "黄",
+                    ["Green"] = "緑",
+                    ["Magenta"] = "マゼンタ",
+                    ["Orange"] = "オレンジ",
+                    ["Cyan"] = "シアン",
+                    ["Purple"] = "紫",
+                    ["Chestnut"] = "栗",
+                    ["Brown"] = "茶",
+                    ["Mauve"] = "薄藤",
+                    ["Azure"] = "空",
+                    ["Jade"] = "若緑",
+                    ["Forest"] = "深緑",
+                    ["Gray"] = "灰",
+                    ["Black"] = "黒",
                 },
             },
 
@@ -3954,6 +4415,13 @@ namespace Souvenir
             {
                 QuestionText = "{0}のLEDの位置は？",
                 ModuleName = "拡大キーパッド",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Top-left"] = "左上",
+                    ["Top-right"] = "右上",
+                    ["Bottom-left"] = "右下",
+                    ["Bottom-left"] = "左下",
+                },
             },
 
             // Keywords
@@ -3972,6 +4440,13 @@ namespace Souvenir
             {
                 QuestionText = "{0}の矢印が指していたのはどの方向？",
                 ModuleName = "方向感覚",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Up"] = "上",
+                    ["Down"] = "下",
+                    ["Left"] = "左",
+                    ["Right"] = "右",
+                },
             },
             // Which LED was green in {0}?
             // Which LED was green in Know Your Way?
@@ -3979,6 +4454,13 @@ namespace Souvenir
             {
                 QuestionText = "{0}でLEDが緑色だったのはどれ？",
                 ModuleName = "方向感覚",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Up"] = "上",
+                    ["Down"] = "下",
+                    ["Left"] = "左",
+                    ["Right"] = "右",
+                },
             },
 
             // Kudosudoku
@@ -4019,11 +4501,11 @@ namespace Souvenir
                 ModuleName = "迷宮",
                 Answers = new Dictionary<string, string>
                 {
-                    ["1 (Red)"] = "1 (Red)",
-                    ["2 (Orange)"] = "2 (Orange)",
-                    ["3 (Yellow)"] = "3 (Yellow)",
-                    ["4 (Green)"] = "4 (Green)",
-                    ["5 (Blue)"] = "5 (Blue)",
+                    ["1 (Red)"] = "1 (赤)",
+                    ["2 (Orange)"] = "2 (橙)",
+                    ["3 (Yellow)"] = "3 (黄)",
+                    ["4 (Green)"] = "4 (緑)",
+                    ["5 (Blue)"] = "5 (青)",
                 },
             },
 
@@ -4099,6 +4581,14 @@ namespace Souvenir
                     ["top-left"] = "左上",
                     ["top-middle"] = "上",
                     ["top-right"] = "右上",
+                    ["middle-left"] = "左",
+                    ["center"] = "中央",
+                    ["middle-right"] = "右",
+                    ["bottom-left"] = "左下",
+                    ["bottom-middle"] = "下",
+                    ["bottom-right"] = "右下",
+
+                    
                 },
             },
 
@@ -4117,6 +4607,7 @@ namespace Souvenir
             [Question.LEDMathLights] = new TranslationInfo
             {
                 QuestionText = "{0}における{1}の色は？",
+                ModuleName = "LED算",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["LED A"] = "LED A",
@@ -4139,6 +4630,17 @@ namespace Souvenir
             {
                 QuestionText = "{0}のLEDの初期色は？",
                 ModuleName = "LEDセット",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Yellow"] = "黄",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Purple"] = "紫",
+                    ["Black"] = "黒",
+                    ["White"] = "白",
+                },
             },
 
             // LEGOs
@@ -4185,6 +4687,17 @@ namespace Souvenir
                     ["left"] = "左",
                     ["right"] = "右",
                 },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Yellow"] = "黄",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Purple"] = "紫",
+                    ["Cyan"] = "シアン",
+                    ["Magenta"] = "マゼンタ",
+                },
             },
 
             // Linq
@@ -4217,7 +4730,8 @@ namespace Souvenir
             // What clip was played in Listening?
             [Question.ListeningSound] = new TranslationInfo
             {
-                QuestionText = "What clip was played in {0}?",
+                QuestionText = "{0}で再生されたクリップは？",
+                ModuleName = "リスニング",
             },
 
             // Logical Buttons
@@ -4325,7 +4839,7 @@ namespace Souvenir
             {
                 QuestionText = "{0}のステージ{1}における表示は？",
                 ModuleName = "狂気記憶",
-                FormatArgs = new Dictionary<string, string>
+                FormatArgs = new Dictionary<string, string> 
                 {
                     ["first"] = "1",
                     ["second"] = "2",
@@ -4379,25 +4893,54 @@ namespace Souvenir
             // Which color did the bubble not display in Main Page?
             [Question.MainPageBubbleColors] = new TranslationInfo
             {
-                QuestionText = "Which color did the bubble not display in {0}?",
+                QuestionText = "{0}で表示されなかった吹き出しの色は？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Blue"] = "青",
+                    ["Green"] = "緑",
+                    ["Red"] = "赤",
+                    ["Yellow"] = "黄",
+                },
             },
             // Which main page did the {1} button's effect come from in {0}?
             // Which main page did the toons button's effect come from in Main Page?
             [Question.MainPageButtonEffectOrigin] = new TranslationInfo
             {
-                QuestionText = "Which main page did the {1} button's effect come from in {0}?",
+                QuestionText = "{0}で{1}ボタンのエフェクトの元となったメインページは？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["toons"] = "トゥーン",
+                    ["games"] = "ゲーム",
+                    ["characters"] = "キャラクター",
+                    ["downloads"] = "ダウンロード",
+                    ["store"] = "ストア",
+                    ["email"] = "メール",
+                },
+
+
             },
             // Which of the following messages did the bubble {1} in {0}?
             // Which of the following messages did the bubble display in Main Page?
             [Question.MainPageBubbleMessages] = new TranslationInfo
             {
-                QuestionText = "Which of the following messages did the bubble {1} in {0}?",
+                QuestionText = "{0}で吹き出しに表示され{}メッセージは？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["display"] = "た",
+                    ["not display"] = "なかった",
+                },
             },
             // Which main page did {1} come from in {0}?
             // Which main page did Homestar come from in Main Page?
             [Question.MainPageHomestarBackgroundOrigin] = new TranslationInfo
             {
-                QuestionText = "Which main page did {1} come from in {0}?",
+                QuestionText = "{0}で{1}の元となったメインページは？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["Homestar"] = "Homestar",
+                    ["the background"] = "背景",
+                },
+
             },
 
             // M&Ms
@@ -4471,7 +5014,7 @@ namespace Souvenir
             // What was A in The Maroon Button?
             [Question.MaroonButtonA] = new TranslationInfo
             {
-                QuestionText = "What was A in {0}?",
+                QuestionText = "{0}のAは？",
             },
 
             // Maroon Cipher
@@ -4480,6 +5023,7 @@ namespace Souvenir
             [Question.MaroonCipherScreen] = new TranslationInfo
             {
                 QuestionText = "{0}のページ{2}の{1}ディスプレーに表示されていたのは？",
+                ModuleName = "栗色暗号",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "上部",
@@ -4527,6 +5071,13 @@ namespace Souvenir
             [Question.MathEmColor] = new TranslationInfo
             {
                 QuestionText = "{0}のシャッフル前におけるこのタイルの色は？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["White"] = "白",
+                    ["Bronze"] = "銅",
+                    ["Silver"] = "銀",
+                    ["Gold"] = "金",
+                },
             },
             // What was the design on this tile before the shuffle on {0}?
             // What was the design on this tile before the shuffle on Math ’em?
@@ -4570,7 +5121,7 @@ namespace Souvenir
             // What was the color of the starting face in Maze³?
             [Question.Maze3StartingFace] = new TranslationInfo
             {
-                QuestionText = "{0}開始面の色は？",
+                QuestionText = "{0}の開始面の色は？",
                 ModuleName = "迷路³",
                 Answers = new Dictionary<string, string>
                 {
@@ -4595,12 +5146,12 @@ namespace Souvenir
             [Question.MazeIdentificationNum] = new TranslationInfo
             {
                 QuestionText = "{0}のボタン{1}の機能は？",
-                FormatArgs = new Dictionary<string, string>
+                Answers = new Dictionary<string, string>
                 {
-                    ["1"] = "1",
-                    ["2"] = "2",
-                    ["3"] = "3",
-                    ["4"] = "4",
+                    ["Forwards"] = "前進",
+                    ["Clockwise"] = "時計回り",
+                    ["Backwards"] = "後退",
+                    ["Counter-clockwise"] = "反時計回り",
                 },
             },
             // Which button {1} in {0}?
@@ -4637,18 +5188,63 @@ namespace Souvenir
             [Question.MazeScramblerStart] = new TranslationInfo
             {
                 QuestionText = "{0}の開始位置は？",
+                ModuleName = "迷路スクランブラー",
+                Answers = new Dictionary<string, string>
+                {
+                    ["top-left"] = "左上",
+                    ["top-middle"] = "上",
+                    ["top-right"] = "右上",
+                    ["middle-left"] = "左",
+                    ["middle-middle"] = "中央",
+                    ["middle-right"] = "右",
+                    ["bottom-left"] = "左下",
+                    ["bottom-middle"] = "下",
+                    ["bottom-right"] = "右下",
+
+                    
+                },
             },
             // What was the goal on {0}?
             // What was the goal on Maze Scrambler?
             [Question.MazeScramblerGoal] = new TranslationInfo
             {
                 QuestionText = "{0}のゴール位置は？",
+                ModuleName = "迷路スクランブラー",
+                Answers = new Dictionary<string, string>
+                {
+                    ["top-left"] = "左上",
+                    ["top-middle"] = "上",
+                    ["top-right"] = "右上",
+                    ["middle-left"] = "左",
+                    ["middle-middle"] = "中央",
+                    ["middle-right"] = "右",
+                    ["bottom-left"] = "左下",
+                    ["bottom-middle"] = "下",
+                    ["bottom-right"] = "右下",
+
+                    
+                },
             },
             // Which of these positions was a maze marking on {0}?
             // Which of these positions was a maze marking on Maze Scrambler?
             [Question.MazeScramblerIndicators] = new TranslationInfo
             {
                 QuestionText = "{0}の迷路を求めるマークの位置はどれ？",
+                ModuleName = "迷路スクランブラー",
+                Answers = new Dictionary<string, string>
+                {
+                    ["top-left"] = "左上",
+                    ["top-middle"] = "上",
+                    ["top-right"] = "右上",
+                    ["middle-left"] = "左",
+                    ["middle-middle"] = "中央",
+                    ["middle-right"] = "右",
+                    ["bottom-left"] = "左下",
+                    ["bottom-middle"] = "下",
+                    ["bottom-right"] = "右下",
+
+                    
+                },
             },
 
             // Mazeseeker
@@ -4656,7 +5252,7 @@ namespace Souvenir
             // How many walls surrounded this cell in Mazeseeker?
             [Question.MazeseekerCell] = new TranslationInfo
             {
-                QuestionText = "{0}このセルの周囲にあった壁は？",
+                QuestionText = "{0}でこのセルの周囲にあった壁は？",
             },
             // Where was the start in {0}?
             // Where was the start in Mazeseeker?
@@ -4678,6 +5274,54 @@ namespace Souvenir
             {
                 QuestionText = "{0}で表示されたマスターは？",
                 ModuleName = "ロックマン2",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Cold Man"] = "コールドマン",
+                    ["Magma Man"] = "マグママン",
+                    ["Dust Man"] = "ダストマン",
+                    ["Sword Man"] = "ソードマン",
+                    ["Splash Woman"] = "スプラッシュウーマン",
+                    ["Ice Man"] = "アイスマン",
+                    ["Quick Man"] = "クイックマン",
+                    ["Hard Man"] = "ハードマン",
+                    ["Pharaoh Man"] = "ファラオマン",
+                    ["Charge Man"] = "チャージマン",
+                    ["Pirate Man"] = "パイレーツマン",
+                    ["Pump Man"] = "ポンプマン",
+                    ["Galaxy Man"] = "ギャラクシーマン",
+                    ["Grenade Man"] = "グレネードマン",
+                    ["Snake Man"] = "スネークマン",
+                    ["Burst Man"] = "バーストマン",
+                    ["Cut Man"] = "カットマン",
+                    ["Air Man"] = "エアーマン",
+                    ["Magnet Man"] = "マグネットマン",
+                    ["Toad Man"] = "トードマン",
+                    ["Gyro Man"] = "ジャイロマン",
+                    ["Tomahawk Man"] = "トマホークマン",
+                    ["Wood Man"] = "ウッドマン",
+                    ["Strike Man"] = "ストライクマン",
+                    ["Blade Man"] = "ブレイドマン",
+                    ["Aqua Man"] = "アクアマン",
+                    ["Shade Man"] = "シェードマン",
+                    ["Flash Man"] = "フラッシュマン",
+                    ["Flame Man"] = "フレイムマン",
+                    ["Concrete Man"] = "コンクリートマン",
+                    ["Metal Man"] = "メタルマン",
+                    ["Needle Man"] = "ニードルマン",
+                    ["Wave Man"] = "ウェーブマン",
+                    ["Knight Man"] = "ナイトマン",
+                    ["Slash Man"] = "スラッシュマン",
+                    ["Shadow Man"] = "シャドーマン",
+                    ["Sheep Man"] = "シープマン",
+                    ["Ground Man"] = "グランドマン",
+                    ["Wind Man"] = "ウインドマン",
+                    ["Fire Man"] = "ファイヤーマン",
+                    ["Stone Man"] = "ストーンマン",
+                    ["Tengu Man"] = "テングマン",
+                    ["Bright Man"] = "ブライトマン",
+                },
+
+
             },
             // Whose weapon was shown in {0}?
             // Whose weapon was shown in Mega Man 2?
@@ -4685,6 +5329,52 @@ namespace Souvenir
             {
                 QuestionText = "{0}で表示された武器は？",
                 ModuleName = "ロックマン2",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Cold Man"] = "コールドマン",
+                    ["Magma Man"] = "マグママン",
+                    ["Dust Man"] = "ダストマン",
+                    ["Sword Man"] = "ソードマン",
+                    ["Splash Woman"] = "スプラッシュウーマン",
+                    ["Ice Man"] = "アイスマン",
+                    ["Quick Man"] = "クイックマン",
+                    ["Hard Man"] = "ハードマン",
+                    ["Pharaoh Man"] = "ファラオマン",
+                    ["Charge Man"] = "チャージマン",
+                    ["Pirate Man"] = "パイレーツマン",
+                    ["Pump Man"] = "ポンプマン",
+                    ["Galaxy Man"] = "ギャラクシーマン",
+                    ["Grenade Man"] = "グレネードマン",
+                    ["Snake Man"] = "スネークマン",
+                    ["Burst Man"] = "バーストマン",
+                    ["Cut Man"] = "カットマン",
+                    ["Air Man"] = "エアーマン",
+                    ["Magnet Man"] = "マグネットマン",
+                    ["Toad Man"] = "トードマン",
+                    ["Gyro Man"] = "ジャイロマン",
+                    ["Tomahawk Man"] = "トマホークマン",
+                    ["Wood Man"] = "ウッドマン",
+                    ["Strike Man"] = "ストライクマン",
+                    ["Blade Man"] = "ブレイドマン",
+                    ["Aqua Man"] = "アクアマン",
+                    ["Shade Man"] = "シェードマン",
+                    ["Flash Man"] = "フラッシュマン",
+                    ["Flame Man"] = "フレイムマン",
+                    ["Concrete Man"] = "コンクリートマン",
+                    ["Metal Man"] = "メタルマン",
+                    ["Needle Man"] = "ニードルマン",
+                    ["Wave Man"] = "ウェーブマン",
+                    ["Knight Man"] = "ナイトマン",
+                    ["Slash Man"] = "スラッシュマン",
+                    ["Shadow Man"] = "シャドーマン",
+                    ["Sheep Man"] = "シープマン",
+                    ["Ground Man"] = "グランドマン",
+                    ["Wind Man"] = "ウインドマン",
+                    ["Fire Man"] = "ファイヤーマン",
+                    ["Stone Man"] = "ストーンマン",
+                    ["Tengu Man"] = "テングマン",
+                    ["Bright Man"] = "ブライトマン",
+                },
             },
 
             // Melody Sequencer
@@ -4774,6 +5464,7 @@ namespace Souvenir
             [Question.MetapuzzleAnswer] = new TranslationInfo
             {
                 QuestionText = "{0}の最終的な答えは？",
+                ModuleName = "メタパズル",
             },
 
             // Microcontroller
@@ -4855,20 +5546,22 @@ namespace Souvenir
             // Which sound did the red button play in Module Listening?
             [Question.ModuleListeningButtonAudio] = new TranslationInfo
             {
-                QuestionText = "Which sound did the {1} button play in {0}?",
+                QuestionText = "{0}で{1}色のボタンが再生した音は？",
+                ModuleName = "モジュールリスニング",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
-                    ["yellow"] = "yellow",
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                    ["yellow"] = "黄",
                 },
             },
             // Which sound played in {0}?
             // Which sound played in Module Listening?
             [Question.ModuleListeningAnyAudio] = new TranslationInfo
             {
-                QuestionText = "Which sound played in {0}?",
+                QuestionText = "{0}で再生された音は？",
+                ModuleName = "モジュールリスニング",
             },
 
             // Module Maze
@@ -4885,7 +5578,8 @@ namespace Souvenir
             // What was the first module shown in Module Movements?
             [Question.ModuleMovementsDisplay] = new TranslationInfo
             {
-                QuestionText = "{0}の{1}番目のモジュールは？",
+                QuestionText = "{0}の{1}番目のモジュールは(英名)？",
+                ModuleName = "モジュール追跡",
             },
 
             // Monsplode, Fight!
@@ -4928,7 +5622,7 @@ namespace Souvenir
             // What was the print version of the first card in your hand before the last action in Monsplode Trading Cards?
             [Question.MonsplodeTradingCardsPrintVersions] = new TranslationInfo
             {
-                QuestionText = "{0}の最後の行動前における{1}枚目のカードの印刷バージョンは？",
+                QuestionText = "{0}の最後の行動前における{1}に書かれた印刷バージョンは？",
                 ModuleName = "モンスプロード・カードゲーム",
                 FormatArgs = new Dictionary<string, string>
                 {
@@ -5199,14 +5893,14 @@ namespace Souvenir
             // Which module was the first requested to be solved by Mystery Module?
             [Question.MysteryModuleFirstKey] = new TranslationInfo
             {
-                QuestionText = "{0}で最初に解除するように指示されたモジュールは？",
+                QuestionText = "{0}で最初に解除するように指示されたモジュールは(英名)？",
                 ModuleName = "ミステリーモジュール",
             },
             // Which module was hidden by {0}?
             // Which module was hidden by Mystery Module?
             [Question.MysteryModuleHiddenModule] = new TranslationInfo
             {
-                QuestionText = "{0}で隠されていたモジュールは？",
+                QuestionText = "{0}で隠されていたモジュールは(英名)？",
                 ModuleName = "ミステリーモジュール",
             },
 
@@ -5236,7 +5930,7 @@ namespace Souvenir
             // What was the label of the correct button in N&Ms?
             [Question.NandMsAnswer] = new TranslationInfo
             {
-                QuestionText = "{0}正しいボタンのラベルは？",
+                QuestionText = "{0}の正しいボタンのラベルは？",
                 ModuleName = "NとM",
             },
 
@@ -5259,6 +5953,7 @@ namespace Souvenir
             [Question.NavigationDeterminationColor] = new TranslationInfo
             {
                 QuestionText = "{0}の迷路の色は？",
+                ModuleName = "ナビ決定",
                 Answers = new Dictionary<string, string>
                 {
                     ["Red"] = "赤",
@@ -5272,6 +5967,7 @@ namespace Souvenir
             [Question.NavigationDeterminationLabel] = new TranslationInfo
             {
                 QuestionText = "{0}の迷路のラベルは？",
+                ModuleName = "ナビ決定",
             },
 
             // Navinums
@@ -5400,10 +6096,10 @@ namespace Souvenir
                 ModuleName = "偽接続確認",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top left"] = "top left",
-                    ["top right"] = "top right",
-                    ["bottom left"] = "bottom left",
-                    ["bottom right"] = "bottom right",
+                    ["top left"] = "左上",
+                    ["top right"] = "右上",
+                    ["bottom left"] = "左下",
+                    ["bottom right"] = "右下",
                 },
             },
             // What was the value of the {1} button in {0}?
@@ -5414,10 +6110,10 @@ namespace Souvenir
                 ModuleName = "偽接続確認",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top left"] = "top left",
-                    ["top right"] = "top right",
-                    ["bottom left"] = "bottom left",
-                    ["bottom right"] = "bottom right",
+                    ["top left"] = "左上",
+                    ["top right"] = "右上",
+                    ["bottom left"] = "左下",
+                    ["bottom right"] = "右下",
                 },
             },
 
@@ -5562,7 +6258,7 @@ namespace Souvenir
             // Which letter was missing from Not Password?
             [Question.NotPasswordLetter] = new TranslationInfo
             {
-                QuestionText = "Which letter was missing from {0}?",
+                QuestionText = "{0}で欠けていた文字は？",
             },
 
             // Not Perspective Pegs
@@ -5593,21 +6289,21 @@ namespace Souvenir
             // What was the first displayed symbol on Not Piano Keys?
             [Question.NotPianoKeysFirstSymbol] = new TranslationInfo
             {
-                QuestionText = "{0}の表示された記号の一つ目は？",
+                QuestionText = "{0}に表示された記号の一つ目は？",
                 ModuleName = "偽鍵盤",
             },
             // What was the second displayed symbol on {0}?
             // What was the second displayed symbol on Not Piano Keys?
             [Question.NotPianoKeysSecondSymbol] = new TranslationInfo
             {
-                QuestionText = "{0}の表示された記号の二つ目は？",
+                QuestionText = "{0}に表示された記号の二つ目は？",
                 ModuleName = "偽鍵盤",
             },
             // What was the third displayed symbol on {0}?
             // What was the third displayed symbol on Not Piano Keys?
             [Question.NotPianoKeysThirdSymbol] = new TranslationInfo
             {
-                QuestionText = "{0}の表示された記号の三つ目は？",
+                QuestionText = "{0}に表示された記号の三つ目は？",
                 ModuleName = "偽鍵盤",
             },
 
@@ -5751,6 +6447,16 @@ namespace Souvenir
             {
                 QuestionText = "{0}の電球の色は？",
                 ModuleName = "偽電球",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Yellow"] = "黄",
+                    ["Purple"] = "紫",
+                    ["White"] = "白",
+                }
+
             },
             // What was the material of the screw cap on {0}?
             // What was the material of the screw cap on Not The Bulb?
@@ -5758,6 +6464,15 @@ namespace Souvenir
             {
                 QuestionText = "{0}の口金の素材は？",
                 ModuleName = "偽電球",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Copper"] = "銅",
+                    ["Silver"] = "銀",
+                    ["Gold"] = "金",
+                    ["Plastic"] = "プラスチック",
+                    ["Carbon Fibre"] = "カーボンファイバー",
+                    ["Ceramic"] = "セラミック",
+                },
             },
 
             // Not the Button
@@ -5873,10 +6588,11 @@ namespace Souvenir
             [Question.NotX01SectorValues] = new TranslationInfo
             {
                 QuestionText = "{0}に存在{1}セクターは？",
+                ModuleName = "偽ダーツ",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["was"] = "was",
-                    ["was not"] = "was not",
+                    ["was"] = "した",
+                    ["was not"] = "しなかった",
                 },
             },
 
@@ -5980,6 +6696,7 @@ namespace Souvenir
             [Question.ObjectShowsContestants] = new TranslationInfo
             {
                 QuestionText = "{0}の参加者に含まれるのは？",
+                ModuleName = "オブジェクトショー",
             },
 
             // The Octadecayotton
@@ -6014,6 +6731,12 @@ namespace Souvenir
             {
                 QuestionText = "{0}で表示された数字の{1}は？",
                 ModuleName = "オールドAI",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["group"] = "グループ",
+                    ["sub-group"] = "サブグループ",
+                }                                
+
             },
 
             // Old Fogey
@@ -6022,6 +6745,17 @@ namespace Souvenir
             [Question.OldFogeyStartingColor] = new TranslationInfo
             {
                 QuestionText = "{0}の初期状態におけるステータスライトの色は？",
+                ModuleName = "耄碌爺",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Green"] = "緑",
+                    ["Yellow"] = "黄色",
+                    ["Blue"] = "青",
+                    ["Magenta"] = "マゼンタ",
+                    ["Cyan"] = "シアン",
+                    ["White"] = "白",
+                },
             },
 
             // Only Connect
@@ -6042,12 +6776,12 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Two Reeds"] = "Two Reeds",
-                    ["Lion"] = "Lion",
-                    ["Twisted Flax"] = "Twisted Flax",
-                    ["Horned Viper"] = "Horned Viper",
-                    ["Water"] = "Water",
-                    ["Eye of Horus"] = "Eye of Horus",
+                    ["Two Reeds"] = "二本の葦",
+                    ["Lion"] = "ライオン",
+                    ["Twisted Flax"] = "よりあわせた亜麻糸",
+                    ["Horned Viper"] = "ヘビ",
+                    ["Water"] = "水",
+                    ["Eye of Horus"] = "ホルスの目",
                 },
             },
 
@@ -6129,12 +6863,14 @@ namespace Souvenir
             [Question.OrderPickingOrder] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}番目の注文IDは？",
+                ModuleName = "注文ピッキング",
             },
             // What was the product ID in the {1} order of {0}?
             // What was the product ID in the first order of Order Picking?
             [Question.OrderPickingProduct] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}番目の製品IDは？",
+                ModuleName = "注文ピッキング",
             },
             // What was the pallet in the {1} order of {0}?
             // What was the pallet in the first order of Order Picking?
@@ -6166,6 +6902,13 @@ namespace Souvenir
             [Question.OrientationHypercubeInitialObserverPosition] = new TranslationInfo
             {
                 QuestionText = "{0}の最初の観測者の位置は？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["front"] = "正面",
+                    ["left"] = "左",
+                    ["back"] = "後",
+                    ["right"] = "右",
+                },
             },
             // What was the initial colour of the {1} face in {0}?
             // What was the initial colour of the right face in Orientation Hypercube?
@@ -6182,6 +6925,17 @@ namespace Souvenir
                     ["front"] = "前",
                     ["zag"] = "甲",
                     ["zig"] = "乙",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["black"] = "黒",
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["yellow"] = "黄",
+                    ["blue"] = "青",
+                    ["magenta"] = "マゼンタ",
+                    ["cyan"] = "シアン",
+                    ["white"] = "白",
                 },
             },
 
@@ -6207,6 +6961,7 @@ namespace Souvenir
             [Question.ParityDisplay] = new TranslationInfo
             {
                 QuestionText = "{0}に表示されたのは？",
+                ModuleName = "偶奇性",
             },
 
             // Partial Derivatives
@@ -6299,7 +7054,19 @@ namespace Souvenir
             // What was the base colour in The Pentabutton?
             [Question.PentabuttonBaseColor] = new TranslationInfo
             {
-                QuestionText = "What was the base colour in {0}?",
+                QuestionText = "{0}のベースの色は？",
+                ModuleName = "五角形ボタン",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Yellow"] = "黄",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Purple"] = "紫",
+                    ["White"] = "白",
+                }
+
             },
 
             // Periodic Words
@@ -6316,7 +7083,7 @@ namespace Souvenir
             // What was the first color in the initial sequence in Perspective Pegs?
             [Question.PerspectivePegsColorSequence] = new TranslationInfo
             {
-                QuestionText = "{0}の最初の色シーケンスで{1}番目の色は？",
+                QuestionText = "{0}の初期色シーケンスで{1}番目の色は？",
                 ModuleName = "奥行きペグ",
                 Answers = new Dictionary<string, string>
                 {
@@ -6569,7 +7336,7 @@ namespace Souvenir
             // What was the missing frequency in the red-white wire in Probing?
             [Question.ProbingFrequencies] = new TranslationInfo
             {
-                QuestionText = "{0}において、{1}のワイヤに含まれていない周波数は？",
+                QuestionText = "{0}において、{1}のワイヤに含まれていなかった周波数は？",
                 ModuleName = "回路接続",
                 FormatArgs = new Dictionary<string, string>
                 {
@@ -6630,6 +7397,17 @@ namespace Souvenir
             {
                 QuestionText = "{0}の{1}回目に使用されたゲームの種類は？",
                 ModuleName = "パズル識別",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Professor Layton and the Curious Village"] = "レイトン教授と不思議な町",
+                    ["Professor Layton and Pandora's Box"] = "レイトン教授と悪魔の箱",
+                    ["Professor Layton and the Lost Future"] = "レイトン教授と最後の時間旅行",
+                    ["Professor Layton and the Spectre's Call"] = "レイトン教授と魔神の笛",
+                    ["Professor Layton and the Miracle Mask"] = "レイトン教授と奇跡の仮面",
+                    ["Professor Layton and the Azran Legacy"] = "レイトン教授と超文明Aの遺産",
+                    ["Professor Layton vs. Phoenix Wright: Ace Attorney"] = "レイトン教授VS逆転裁判",
+                    ["Layton's Mystery Journey: Katrielle and the Millionaire's Conspiracy"] = "レイトン ミステリージャーニー カトリーエイルと大富豪の陰謀"
+                },
             },
             // What was the {1} puzzle in {0}?
             // What was the first puzzle in Puzzle Identification?
@@ -6663,6 +7441,20 @@ namespace Souvenir
             {
                 QuestionText = "{0}の初期シーケンスにおける{1}番目の色は？",
                 ModuleName = "瞬速計算",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["blue"] = "青",
+                    ["green"] = "緑",
+                    ["yellow"] = "黄",
+                    ["white"] = "白",
+                    ["black"] = "黒",
+                    ["orange"] = "オレンジ",
+                    ["pink"] = "ピンク",
+                    ["purple"] = "紫",
+                    ["cyan"] = "シアン",
+                    ["brown"] = "茶",
+                },
             },
             // What was the {1} digit in the {2} sequence in {0}?
             // What was the first digit in the primary sequence in Quick Arithmetic?
@@ -6734,8 +7526,8 @@ namespace Souvenir
             // How many jewels were in the starting common pool in Raiding Temples?
             [Question.RaidingTemplesStartingCommonPool] = new TranslationInfo
             {
-                QuestionText = "{0}初期の共通プールに宝石は何個あった？",
-                ModuleName = "神殿襲撃",
+                QuestionText = "{0}で初期の共有財産にあった宝石の数は？",
+                ModuleName = "神殿探検",
             },
 
             // Railway Cargo Loading
@@ -6887,6 +7679,16 @@ namespace Souvenir
             {
                 QuestionText = "{0}の回答のフレーズの装飾は？",
                 ModuleName = "レギュラークレイジートーク",
+                Answers = new Dictionary<string, string>
+                {
+                    ["[PHRASE]"] = "[フレーズ]",
+                    ["It says: [PHRASE]"] = "It says: [フレーズ]",
+                    ["Quote: [PHRASE] End quote"] = "Quote: [フレーズ] End quote",
+                    ["“[PHRASE]”"] = "“[フレーズ]”",
+                    ["It says: “[PHRASE]”"] = "It says: “[フレーズ]”",
+                    ["“It says: [PHRASE]”"] = "“It says: [フレーズ]”",
+                },
+
             },
 
             // Retirement
@@ -6903,7 +7705,7 @@ namespace Souvenir
             // What was the first character in the first message of Reverse Morse?
             [Question.ReverseMorseCharacters] = new TranslationInfo
             {
-                QuestionText = "{0}の{2}つめのメッセージの{1}文字目は？",
+                QuestionText = "{0}の{2}つ目のメッセージの{1}文字目は？",
                 ModuleName = "逆モールス信号",
             },
 
@@ -6958,6 +7760,16 @@ namespace Souvenir
             {
                 QuestionText = "{0}の{1}番目のLEDの色は？",
                 ModuleName = "RGBシークエンス",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Magenta"] = "マゼンタ",
+                    ["Cyan"] = "シアン",
+                    ["Yellow"] = "黄",
+                    ["White"] = "白",
+                },
             },
 
             // Rhythms
@@ -6981,7 +7793,7 @@ namespace Souvenir
             // Which bit had a tap in RNG Crystal (the output after shifting is at bit 0)?
             [Question.RNGCrystalTaps] = new TranslationInfo
             {
-                QuestionText = "Which bit had a tap in {0} (the output after shifting is at bit 0)?",
+                QuestionText = "{0}でタップがあったビットは(点線の位置はビット0)？",
             },
 
             // Robo-Scanner
@@ -7086,6 +7898,13 @@ namespace Souvenir
             {
                 QuestionText = "{0}の白に表示された特殊ルールは？",
                 ModuleName = "セイフティスクエア",
+                Answers = new Dictionary<string, string>
+                {
+                    ["No special rule"] = "特殊ルールなし",
+                    ["Reacts with water"] = "水と過剰に反応",
+                    ["Simple asphyxiant"] = "単純窒息性ガス",
+                    ["Oxidizer"] = "空気供給なしで燃焼",
+                },
             },
 
             // The Samsung
@@ -7094,6 +7913,19 @@ namespace Souvenir
             [Question.SamsungAppPositions] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}はどこ？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["TL"] = "左上",
+                    ["TM"] = "上",
+                    ["TR"] = "右上",
+                    ["ML"] = "左",
+                    ["MM"] = "中央",
+                    ["MR"] = "右",
+                    ["BL"] = "左下",
+                    ["BM"] = "下",
+                    ["BR"] = "右下",
+                },
+
             },
 
             // Sbemail Songs
@@ -7101,7 +7933,7 @@ namespace Souvenir
             // What was the displayed song for stage 01 (hexadecimal) of Sbemail Songs?
             [Question.SbemailSongsSongs] = new TranslationInfo
             {
-                QuestionText = "What was the displayed song for stage {1} (hexadecimal) of {0}?",
+                QuestionText = "{0}のステージ{1}(十六進数)で再生された音は？",
             },
 
             // Scavenger Hunt
@@ -7110,12 +7942,14 @@ namespace Souvenir
             [Question.ScavengerHuntKeySquare] = new TranslationInfo
             {
                 QuestionText = "{0}のステージ{1}で正しく送信されたタイルは？",
+                ModuleName = "宝探し",
             },
             // Which of these tiles was {1} in the first stage of {0}?
             // Which of these tiles was red in the first stage of Scavenger Hunt?
             [Question.ScavengerHuntColoredTiles] = new TranslationInfo
             {
                 QuestionText = "{0}の最初のステージで{1}色だったタイルは？",
+                ModuleName = "宝探し",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["red"] = "赤",
@@ -7172,6 +8006,13 @@ namespace Souvenir
             {
                 QuestionText = "{0}の最初の表示内容で修正されていたのはどの要素？",
                 ModuleName = "正方形精査",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Word"] = "単語",
+                    ["Color around word"] = "単語の周りの四角の色",
+                    ["Color of background"] = "背景の色",
+                    ["Color of word"] = "単語の色",
+                },
             },
 
             // Sea Shells
@@ -7274,6 +8115,14 @@ namespace Souvenir
                     ["bottom-left"] = "左下",
                     ["bottom-right"] = "右下",
                 },
+                Answers = new Dictionary<string, string>
+                {
+                    ["White"] = "白",
+                    ["Blue"] = "青",
+                    ["Yellow"] = "黄",
+                    ["Magenta"] = "マゼンタ",
+                    ["Green"] = "緑",
+                },
             },
 
             // Shifting Maze
@@ -7292,6 +8141,39 @@ namespace Souvenir
             {
                 QuestionText = "{0}に表示された駒は？",
                 ModuleName = "将棋識別",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Go-Between"] = "仲",
+                    ["Pawn"] = "歩",
+                    ["Side Mover"] = "横",
+                    ["Vertical Mover"] = "堅",
+                    ["Bishop"] = "角",
+                    ["Rook"] = "飛",
+                    ["Dragon Horse"] = "馬",
+                    ["Dragon King"] = "龍",
+                    ["Lance"] = "香",
+                    ["Reverse Chariot"] = "反",
+                    ["Blind Tiger"] = "虎",
+                    ["Ferocious Leopard"] = "豹",
+                    ["Copper General"] = "鋼",
+                    ["Silver General"] = "銀",
+                    ["Gold General"] = "金",
+                    ["Drunk Elephant"] = "蔵",
+                    ["Kirin"] = "麒",
+                    ["Phoenix"] = "鳳",
+                    ["Queen"] = "奔",
+                    ["Flying Stag"] = "鹿",
+                    ["Flying Ox"] = "牛",
+                    ["Free Boar"] = "猪",
+                    ["Whale"] = "鯨",
+                    ["White Horse"] = "駒",
+                    ["King"] = "王",
+                    ["Prince"] = "太",
+                    ["Horned Falcon"] = "鷹",
+                    ["Soaring Eagle"] = "鷲",
+                    ["Lion"] = "獅",
+                },
+
             },
 
             // Silly Slots
@@ -7303,18 +8185,18 @@ namespace Souvenir
                 ModuleName = "ヘンテコスロット",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red bomb"] = "red bomb",
-                    ["red cherry"] = "red cherry",
-                    ["red coin"] = "red coin",
-                    ["red grape"] = "red grape",
-                    ["green bomb"] = "green bomb",
-                    ["green cherry"] = "green cherry",
-                    ["green coin"] = "green coin",
-                    ["green grape"] = "green grape",
-                    ["blue bomb"] = "blue bomb",
-                    ["blue cherry"] = "blue cherry",
-                    ["blue coin"] = "blue coin",
-                    ["blue grape"] = "blue grape",
+                    ["red bomb"] = "赤色の爆弾",
+                    ["red cherry"] = "赤色のチェリー",
+                    ["red coin"] = "赤色のコイン",
+                    ["red grape"] = "赤色のブドウ",
+                    ["green bomb"] = "緑色の爆弾",
+                    ["green cherry"] = "緑色のチェリー",
+                    ["green coin"] = "緑色のコイン",
+                    ["green grape"] = "緑色のブドウ",
+                    ["blue bomb"] = "青色の爆弾",
+                    ["blue cherry"] = "青色のチェリー",
+                    ["blue coin"] = "青色のコイン",
+                    ["blue grape"] = "青色のブドウ",
                 },
             },
 
@@ -7438,47 +8320,47 @@ namespace Souvenir
                 ModuleName = "サイモンの絶叫",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["a color flashed, then a color two away, then the first again"] = "a color flashed, then a color two away, then the first again",
-                    ["a color flashed, then a color two away, then the one opposite that"] = "a color flashed, then a color two away, then the one opposite that",
-                    ["a color flashed, then a color two away, then the one opposite the first"] = "a color flashed, then a color two away, then the one opposite the first",
-                    ["a color flashed, then an adjacent color, then the first again"] = "a color flashed, then an adjacent color, then the first again",
-                    ["a color flashed, then another color, then the first"] = "a color flashed, then another color, then the first",
-                    ["a color flashed, then one adjacent, then the one opposite that"] = "a color flashed, then one adjacent, then the one opposite that",
-                    ["a color flashed, then one adjacent, then the one opposite the first"] = "a color flashed, then one adjacent, then the one opposite the first",
-                    ["a color flashed, then the one opposite, then one adjacent to that"] = "a color flashed, then the one opposite, then one adjacent to that",
-                    ["a color flashed, then the one opposite, then one adjacent to the first"] = "a color flashed, then the one opposite, then one adjacent to the first",
-                    ["a color flashed, then the one opposite, then the first again"] = "a color flashed, then the one opposite, then the first again",
-                    ["every color flashed at least once"] = "every color flashed at least once",
-                    ["exactly one color flashed exactly twice"] = "exactly one color flashed exactly twice",
-                    ["exactly one color flashed more than once"] = "exactly one color flashed more than once",
-                    ["exactly two colors flashed exactly twice"] = "exactly two colors flashed exactly twice",
-                    ["exactly two colors flashed more than once"] = "exactly two colors flashed more than once",
-                    ["no color flashed exactly twice"] = "no color flashed exactly twice",
-                    ["no color flashed more than once"] = "no color flashed more than once",
-                    ["no two adjacent colors flashed in clockwise order"] = "no two adjacent colors flashed in clockwise order",
-                    ["no two adjacent colors flashed in counter-clockwise order"] = "no two adjacent colors flashed in counter-clockwise order",
-                    ["no two colors two apart flashed in clockwise order"] = "no two colors two apart flashed in clockwise order",
-                    ["no two colors two apart flashed in counter-clockwise order"] = "no two colors two apart flashed in counter-clockwise order",
-                    ["the colors flashing first and last are adjacent"] = "the colors flashing first and last are adjacent",
-                    ["the colors flashing first and last are different and not adjacent"] = "the colors flashing first and last are different and not adjacent",
-                    ["the colors flashing first and last are the same"] = "the colors flashing first and last are the same",
-                    ["the number of distinct colors that flashed is even"] = "the number of distinct colors that flashed is even",
-                    ["the number of distinct colors that flashed is odd"] = "the number of distinct colors that flashed is odd",
-                    ["there are at least three colors that didn’t flash"] = "there are at least three colors that didn’t flash",
-                    ["there are exactly two colors that didn’t flash"] = "there are exactly two colors that didn’t flash",
-                    ["there are two colors adjacent to each other that didn’t flash"] = "there are two colors adjacent to each other that didn’t flash",
-                    ["there are two colors opposite each other that didn’t flash"] = "there are two colors opposite each other that didn’t flash",
-                    ["there are two colors two away from each other that didn’t flash"] = "there are two colors two away from each other that didn’t flash",
-                    ["there is exactly one color that didn’t flash"] = "there is exactly one color that didn’t flash",
-                    ["three adjacent colors did not flash"] = "three adjacent colors did not flash",
-                    ["three adjacent colors flashed in clockwise order"] = "three adjacent colors flashed in clockwise order",
-                    ["three adjacent colors flashed in counter-clockwise order"] = "three adjacent colors flashed in counter-clockwise order",
-                    ["three colors, each two apart, flashed in clockwise order"] = "three colors, each two apart, flashed in clockwise order",
-                    ["three colors, each two apart, flashed in counter-clockwise order"] = "three colors, each two apart, flashed in counter-clockwise order",
-                    ["two adjacent colors flashed in clockwise order"] = "two adjacent colors flashed in clockwise order",
-                    ["two adjacent colors flashed in counter-clockwise order"] = "two adjacent colors flashed in counter-clockwise order",
-                    ["two colors two apart flashed in clockwise order"] = "two colors two apart flashed in clockwise order",
-                    ["two colors two apart flashed in counter-clockwise order"] = "two colors two apart flashed in counter-clockwise order",
+                    ["a color flashed, then a color two away, then the first again"] = "ある色が点滅した直後、2つ離れた色が点滅し、その直後に最初の色が再び点滅した",
+                    ["a color flashed, then a color two away, then the one opposite that"] = "ある色が点滅した直後、2つ離れた色が点滅し、その直後に直前の色の対角線上にある色が点滅した",
+                    ["a color flashed, then a color two away, then the one opposite the first"] = "ある色が点滅した直後、2つ離れた色が点滅し、その直後に最初の色の対角線上にある色が点滅した",
+                    ["a color flashed, then an adjacent color, then the first again"] = "ある色が点滅した直後、それに隣接した色が点滅し、その直後に再度元の色が点滅した",
+                    ["a color flashed, then another color, then the first"] = "ある色が点滅した直後、別の色が点滅し、その直後に最初の色が点滅した",
+                    ["a color flashed, then one adjacent, then the one opposite that"] = "ある色が点滅した直後、それに隣接した色が点滅し、その直後に直前の色の対角線上にある色が点滅した",
+                    ["a color flashed, then one adjacent, then the one opposite the first"] = "ある色が点滅した直後、隣接した色が点滅し、その直後に最初の色の対角線上にある色が点滅した",
+                    ["a color flashed, then the one opposite, then one adjacent to that"] = "ある色が点滅した直後、その対角線上にある色が点滅し、その直後に直前の色に隣接した色が点滅した",
+                    ["a color flashed, then the one opposite, then one adjacent to the first"] = "ある色が点滅した直後、その対角線上にある色が点滅し、 その直後に最初の色に隣接する色が点滅した",
+                    ["a color flashed, then the one opposite, then the first again"] = "ある色が点滅した直後、その対角線上にある色が点滅し、その直後に再度元の色が点滅した",
+                    ["every color flashed at least once"] = "全ての色が少なくとも1回点滅した",
+                    ["exactly one color flashed exactly twice"] = "ちょうど2回点滅した色が、ちょうど1色ある",
+                    ["exactly one color flashed more than once"] = "1回より多く点滅した色が、ちょうど1色ある",
+                    ["exactly two colors flashed exactly twice"] = "ちょうど2回点滅した色が、ちょうど2色ある",
+                    ["exactly two colors flashed more than once"] = "1回より多く点滅した色が、ちょうど2色ある",
+                    ["no color flashed exactly twice"] = "ちょうど2回点滅した色が存在しない",
+                    ["no color flashed more than once"] = "1回より多く点滅した色が存在しない",
+                    ["no two adjacent colors flashed in clockwise order"] = "どの隣接した2色も、時計回りに点滅していない",
+                    ["no two adjacent colors flashed in counter-clockwise order"] = "どの隣接した2色も、反時計回りに点滅していない",
+                    ["no two colors two apart flashed in clockwise order"] = "どの2つ離れた2色も、時計回りに点滅していない",
+                    ["no two colors two apart flashed in counter-clockwise order"] = "どの2つ離れた2色も、反時計回りに点滅していない",
+                    ["the colors flashing first and last are adjacent"] = "最初に点滅した色と最後に点滅した色が隣接している",
+                    ["the colors flashing first and last are different and not adjacent"] = "最初に点滅した色と最後に点滅した色が異なり、かつ隣接していない",
+                    ["the colors flashing first and last are the same"] = "最初に点滅した色と最後に点滅した色が同じである",
+                    ["the number of distinct colors that flashed is even"] = "点滅した異なる色の数が、偶数である",
+                    ["the number of distinct colors that flashed is odd"] = "点滅した異なる色の数が、奇数である",
+                    ["there are at least three colors that didn’t flash"] = "少なくとも3色が、点滅していない",
+                    ["there are exactly two colors that didn’t flash"] = "点滅していない色が、ちょうど2色ある",
+                    ["there are two colors adjacent to each other that didn’t flash"] = "点滅していない隣接した2色がある",
+                    ["there are two colors opposite each other that didn’t flash"] = "点滅していない対角線上にある2色がある",
+                    ["there are two colors two away from each other that didn’t flash"] = "点滅していない2つ離れた2色がある",
+                    ["there is exactly one color that didn’t flash"] = "点滅していない色が、ちょうど1色ある",
+                    ["three adjacent colors did not flash"] = "点滅していない隣接した3色がある",
+                    ["three adjacent colors flashed in clockwise order"] = "隣接する3色が、時計回りに点滅した",
+                    ["three adjacent colors flashed in counter-clockwise order"] = "隣接する3色が、反時計回りに点滅した",
+                    ["three colors, each two apart, flashed in clockwise order"] = "2つ離れた3色が、時計回りに点滅した",
+                    ["three colors, each two apart, flashed in counter-clockwise order"] = "2つ離れた3色が、反時計回りに点滅した",
+                    ["two adjacent colors flashed in clockwise order"] = "隣接した2色が、時計回りに点滅した",
+                    ["two adjacent colors flashed in counter-clockwise order"] = "隣接した2色が、反時計回りに点滅した",
+                    ["two colors two apart flashed in clockwise order"] = "2つ離れた2色が、時計回りに点滅した",
+                    ["two colors two apart flashed in counter-clockwise order"] = "2つ離れた2色が、反時計回りに点滅した",
                 },
                 Answers = new Dictionary<string, string>
                 {
@@ -7495,27 +8377,28 @@ namespace Souvenir
             // In which stage(s) of Simon Screams was “at most one color flashed out of Red, Orange, and Yellow” the applicable rule?
             [Question.SimonScreamsRuleComplex] = new TranslationInfo
             {
-                QuestionText = "In which stage(s) of {0} was “{1} flashed out of {2}, {3}, and {4}” the applicable rule?",
+                QuestionText = "{0}「flashed out of {2}、 {3}、{4}のうち{1}」のルールが当てはまったのはどのステージ？",
+                ModuleName = "サイモンの絶叫",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["at most one color"] = "at most one color",
-                    ["Red"] = "Red",
-                    ["Orange"] = "Orange",
-                    ["Yellow"] = "Yellow",
-                    ["at least two colors"] = "at least two colors",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Purple"] = "Purple",
+                    ["at most one color"] = "多くとも1色しか点滅していない",
+                    ["Red"] = "赤",
+                    ["Orange"] = "橙",
+                    ["Yellow"] = "黄",
+                    ["at least two colors"] = "少なくとも2色が点滅した",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Purple"] = "紫",
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["first"] = "first",
-                    ["second"] = "second",
-                    ["third"] = "third",
-                    ["first and second"] = "first and second",
-                    ["first and third"] = "first and third",
-                    ["second and third"] = "second and third",
-                    ["all of them"] = "all of them",
+                    ["first"] = "1",
+                    ["second"] = "2",
+                    ["third"] = "3",
+                    ["first and second"] = "1と2",
+                    ["first and third"] = "1と3",
+                    ["second and third"] = "2と3",
+                    ["all of them"] = "すべて",
                 },
             },
 
@@ -7559,13 +8442,50 @@ namespace Souvenir
             // Who flashed first in course 1 of Simon Serves?
             [Question.SimonServesFlash] = new TranslationInfo
             {
-                QuestionText = "Who flashed {1} in course {2} of {0}?",
+                QuestionText = "{0}の{2}品目で{1}番目に点滅したのは？",
+                ModuleName = "サイモンの給仕",
             },
             // Which item was not served in course {1} of {0}?
             // Which item was not served in course 1 of Simon Serves?
             [Question.SimonServesFood] = new TranslationInfo
             {
-                QuestionText = "Which item was not served in course {1} of {0}?",
+                QuestionText = "{0}の{1}品目で提供されなかった商品は？",
+                ModuleName = "サイモンの給仕",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Cruelo Juice"] = "残忍ジュース",
+                    ["Defuse Juice"] = "解除(した気分になれる)ジュース",
+                    ["Simon’s Special Mix"] = "サイモンのスペシャルミックス",
+                    ["Boom Lager Beer"] = "ドーン ラガービール",
+                    ["Forget Cocktail"] = "カクテル『忘る』",
+                    ["Wire Shake"] = "ワイヤミルクセーキ",
+                    ["Deto Bull"] = "『Deto Bull』",
+                    ["Tasha’s Drink"] = "ターシャの飲み物",
+                    ["Caesar Salad"] = "カエサルサラダ",
+                    ["Edgework Toast"] = "爆弾ケース風トースト",
+                    ["Ticking Timecakes"] = "時を刻むタイマーケーキ",
+                    ["Big Boom Tortellini"] = "大爆発トルテリーニ",
+                    ["Status Light Rolls"] = "ステータスライトロール",
+                    ["Blast Shrimps"] = "粉々のエビ",
+                    ["Morse Soup"] = "モールススープ",
+                    ["Boolean Waffles"] = "ブーリアンワッフル",
+                    ["Forghetti Bombognese"] = "フォゲッティ・ボンネーゼ",
+                    ["NATO Shrimps"] = "NATO推奨調理法のエビ",
+                    ["Wire Spaghetti"] = "ワイヤスパゲティ",
+                    ["Indicator Tar Tar"] = "インジケーター風 タルタルステーキ",
+                    ["Centurion Wings"] = "センチュリオンチキンウィング",
+                    ["Colored Spare Ribs"] = "色付きスペアリブステーキ",
+                    ["Omelette au Bombage"] = "オムレツ・オ・ボムマージュ",
+                    ["Veggie Blast Plate"] = "野菜の粉々プレート",
+                    ["Strike Pie"] = "ミスったパイ",
+                    ["Blastwave Compote"] = "旬の果物のコンポート",
+                    ["Not Ice Cream"] = "偽アイスクリーム",
+                    ["Defuse au Chocolat"] = "ディフューズ・オ・ショコラ",
+                    ["Solve Cake"] = "ソルブケーキ",
+                    ["Baked Batterys"] = "ベイクドバッテリー",
+                    ["Bamboozling Waffles"] = "錯綜ワッフル",
+                    ["Bomb Brûlée"] = "ボムブリュレ",
+                },
             },
 
             // Simon Shapes
@@ -7574,6 +8494,7 @@ namespace Souvenir
             [Question.SimonShapesSubmittedShape] = new TranslationInfo
             {
                 QuestionText = "{0}で最終的に送信した図形は？",
+                ModuleName = "サイモンの形状",
             },
 
             // Simon Simons
@@ -7600,6 +8521,7 @@ namespace Souvenir
             [Question.SimonShoutsFlashingLetter] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}の位置が点滅した英字は？",
+                ModuleName = "サイモンの叫び",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "上",
@@ -7624,6 +8546,7 @@ namespace Souvenir
             [Question.SimonSignalsColorToShape] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}色矢印の形は？",
+                ModuleName = "サイモンの信号",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["red"] = "赤",
@@ -7637,6 +8560,7 @@ namespace Souvenir
             [Question.SimonSignalsColorToRotations] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}色矢印は何個あった？",
+                ModuleName = "サイモンの信号",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["red"] = "赤",
@@ -7650,18 +8574,29 @@ namespace Souvenir
             [Question.SimonSignalsShapeToColor] = new TranslationInfo
             {
                 QuestionText = "{0}で、この形の矢印は何色だった？",
+                ModuleName = "サイモンの信号",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
+                    ["gray"] = "灰",
+                },
+
             },
             // How many directions did the arrow with this shape have in {0}?
             // How many directions did the arrow with this shape have in Simon Signals?
             [Question.SimonSignalsShapeToRotations] = new TranslationInfo
             {
                 QuestionText = "{0}で、この形の矢印は何回出現した？",
+                ModuleName = "サイモンの信号",
             },
             // What color was the arrow with {1} possible directions in {0}?
             // What color was the arrow with 3 possible directions in Simon Signals?
             [Question.SimonSignalsRotationsToColor] = new TranslationInfo
             {
-                QuestionText = "{0}で{1}色の方向を指していた矢印の色は？",
+                QuestionText = "{0}で{1}方向を指していた矢印の色は？",
+                ModuleName = "サイモンの信号",
                 Answers = new Dictionary<string, string>
                 {
                     ["red"] = "赤",
@@ -7674,7 +8609,8 @@ namespace Souvenir
             // What shape was the arrow with 3 possible directions in Simon Signals?
             [Question.SimonSignalsRotationsToShape] = new TranslationInfo
             {
-                QuestionText = "{0}で{1}色の方向を指していた矢印の形は？",
+                QuestionText = "{0}で{1}方向を指していた矢印の形は？",
+                ModuleName = "サイモンの信号",
             },
 
             // Simon Smiles
@@ -7682,7 +8618,8 @@ namespace Souvenir
             // What sound did the first button press make Simon Smiles?
             [Question.SimonSmilesSounds] = new TranslationInfo
             {
-                QuestionText = "What sound did the {1} button press make {0}?",
+                QuestionText = "{0}で{1}番目に押したボタンが鳴らした音は？",
+                ModuleName = "サイモンの笑顔",
             },
 
             // Simon Smothers
@@ -7740,6 +8677,19 @@ namespace Souvenir
             {
                 QuestionText = "{0}の1番目の点滅の吹き出しは？",
                 ModuleName = "サイモンの発話",
+                Answers = new Dictionary<string, string>
+                {
+                    ["top-left"] = "左上",
+                    ["top-middle"] = "上",
+                    ["top-right"] = "右上",
+                    ["middle-left"] = "左",
+                    ["middle-center"] = "中央",
+                    ["middle-right"] = "右",
+                    ["bottom-left"] = "左下",
+                    ["bottom-middle"] = "下",
+                    ["bottom-right"] = "右下",
+                },
+
             },
             // Which bubble flashed second in {0}?
             // Which bubble flashed second in Simon Speaks?
@@ -7805,6 +8755,15 @@ namespace Souvenir
             [Question.SimonStacksColors] = new TranslationInfo
             {
                 QuestionText = "{0}のステージ{1}で点滅した色は？",
+                ModuleName = "六角形サイモン",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Yellow"] = "黄",
+                },
+
             },
 
             // Simon Stages
@@ -7926,6 +8885,14 @@ namespace Souvenir
             {
                 QuestionText = "{0}のこの位置にあったボタンの色は？",
                 ModuleName = "サイモンの分割",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Blue"] = "",
+                    ["Green"] = "",
+                    ["Red"] = "",
+                    ["Violet"] = "",
+                },
+
             },
 
             // Simon Supports
@@ -7934,6 +8901,19 @@ namespace Souvenir
             [Question.SimonSupportsTopics] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}番目のトピックは？",
+                ModuleName = "サイモンの支持",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Boss"] = "ボス",
+                    ["Cruel"] = "残忍",
+                    ["Faulty"] = "欠陥",
+                    ["Lookalike"] = "類似",
+                    ["Puzzle"] = "パズル",
+                    ["Simon"] = "サイモン",
+                    ["Time-Based"] = "時間依存",
+                    ["Translated"] = "翻訳",
+                },
+
             },
 
             // Simultaneous Simons
@@ -7942,6 +8922,15 @@ namespace Souvenir
             [Question.SimultaneousSimonsFlash] = new TranslationInfo
             {
                 QuestionText = "{0}の{2}番目のサイモンにおける{1}番目の点滅は？",
+                ModuleName = "同時サイモン",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Blue"] = "",
+                    ["Yellow"] = "",
+                    ["Red"] = "",
+                    ["Green"] = "",
+                },
+
             },
 
             // Skewed Slots
@@ -7958,15 +8947,41 @@ namespace Souvenir
             // Which race was selectable, but not the solution, in Skyrim?
             [Question.SkyrimRace] = new TranslationInfo
             {
-                QuestionText = "{0}において、選択可能だが解除策ではなかった種族は？",
+                QuestionText = "{0}において、選択可能だが回答ではなかった種族は？",
                 ModuleName = "スカイリム",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Nord"] = "ノルド",
+                    ["Khajiit"] = "カジート",
+                    ["Breton"] = "ブレトン",
+                    ["Argonian"] = "アルゴニアン",
+                    ["Dunmer"] = "ダークエルフ",
+                    ["Altmer"] = "ハイエルフ",
+                    ["Redguard"] = "レッドガード",
+                    ["Orc"] = "オーク",
+                    ["Imperial"] = "インペリアル",
+                },
+
             },
             // Which weapon was selectable, but not the solution, in {0}?
             // Which weapon was selectable, but not the solution, in Skyrim?
             [Question.SkyrimWeapon] = new TranslationInfo
             {
-                QuestionText = "{0}において、選択可能だが解除策ではなかった武器は？",
+                QuestionText = "{0}において、選択可能だが回答ではなかった武器は？",
                 ModuleName = "スカイリム",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Axe of Whiterun"] = "ホワイトランの斧",
+                    ["Dawnbreaker"] = "ドーンブレイカー",
+                    ["Windshear"] = "ウィンドシア",
+                    ["Blade of Woe"] = "悲痛の短剣",
+                    ["Firiniel’s End"] = "フィリニエルズエンド",
+                    ["Bow of Hunt"] = "狩りの弓",
+                    ["Volendrung"] = "ヴォレンドラング",
+                    ["Chillrend"] = "チルレンド",
+                    ["Mace of Molag Bal"] = "モラグ・バルのメイス",
+                },
+
             },
             // Which enemy was selectable, but not the solution, in {0}?
             // Which enemy was selectable, but not the solution, in Skyrim?
@@ -7974,13 +8989,39 @@ namespace Souvenir
             {
                 QuestionText = "{0}において、選択可能だが解除策ではなかった敵は？",
                 ModuleName = "スカイリム",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Alduin"] = "アルドゥイン",
+                    ["Blood Dragon"] = "ブラッド・ドラゴン",
+                    ["Cave Bear"] = "ホラアナグマ",
+                    ["Dragon Priest"] = "ドラゴン・プリースト",
+                    ["Draugr"] = "ドラウグル",
+                    ["Draugr Overlord"] = "ドラウグル・オーバーロード",
+                    ["Frost Troll"] = "フロスト・トロール",
+                    ["Frostbite Spider"] = "フロストバイトスパイダー",
+                    ["Mudcrab"] = "マッドクラブ",
+                },
+
             },
             // Which city was selectable, but not the solution, in {0}?
             // Which city was selectable, but not the solution, in Skyrim?
             [Question.SkyrimCity] = new TranslationInfo
             {
-                QuestionText = "{0}において、選択可能だが解除策ではなかった故郷は？",
+                QuestionText = "{0}において、選択可能だが回答ではなかった故郷は？",
                 ModuleName = "スカイリム",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Dawnstar"] = "ドーンスター",
+                    ["Ivarstead"] = "イヴァルステッド",
+                    ["Markarth"] = "マルカルス",
+                    ["Riverwood"] = "リバーウッド",
+                    ["Rorikstead"] = "ロリクステッド",
+                    ["Solitude"] = "ソリチュード",
+                    ["Whiterun"] = "ホワイトラン",
+                    ["Windhelm"] = "ウィンドヘルム",
+                    ["Winterhold"] = "ウィンターホールド",
+                },
+
             },
             // Which dragon shout was selectable, but not the solution, in {0}?
             // Which dragon shout was selectable, but not the solution, in Skyrim?
@@ -7988,6 +9029,19 @@ namespace Souvenir
             {
                 QuestionText = "{0}において、選択可能だが解除策ではなかったドラゴンシャウトは？",
                 ModuleName = "スカイリム",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Disarm"] = "武装解除",
+                    ["Dismay"] = "不安",
+                    ["Dragonrend"] = "ドラゴンレンド",
+                    ["Fire Breath"] = "ファイアブレス",
+                    ["Ice Form"] = "氷晶",
+                    ["Kyne’s Peace"] = "カイネの安らぎ",
+                    ["Slow Time"] = "時間減速",
+                    ["Unrelenting Force"] = "揺るぎ無き力",
+                    ["Whirlwind Sprint"] = "旋風の疾走",
+                },
+
             },
 
             // Slow Math
@@ -8012,6 +9066,18 @@ namespace Souvenir
             {
                 QuestionText = "{0}の初期時点で音が違っていたのは？",
                 ModuleName = "スモールサークル",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Yellow"] = "黄",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Magenta"] = "マゼンタ",
+                    ["White"] = "白",
+                    ["Black"] = "黒",
+                },
+
             },
             // Which color was {1} in the solution to {0}?
             // Which color was first in the solution to Small Circle?
@@ -8019,6 +9085,17 @@ namespace Souvenir
             {
                 QuestionText = "{0}の解除シークエンスの{1}番目の色は？",
                 ModuleName = "スモールサークル",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Yellow"] = "黄",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Magenta"] = "マゼンタ",
+                    ["White"] = "白",
+                    ["Black"] = "黒",
+                },
             },
 
             // Snooker
@@ -8081,8 +9158,16 @@ namespace Souvenir
             // Which sound was played by the Running Boots screen on Sonic The Hedgehog?
             [Question.SonicTheHedgehogSounds] = new TranslationInfo
             {
-                QuestionText = "{0}において、{1}のスクリーンで流れていたサウンドは？",
+                QuestionText = "{0}において、{1}のモニターで流れていたサウンドは？",
                 ModuleName = "ソニック・ザ・ヘッジホッグ",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["Running Boots"] = "ハイスピード",
+                    ["Invincibility"] = "無敵",
+                    ["Extra Life"] = "1up",
+                    ["Rings"] = "リング",
+                },
+
             },
 
             // Sorting
@@ -8098,7 +9183,7 @@ namespace Souvenir
             // What was the first module asked about in the other Souvenir on this bomb?
             [Question.SouvenirFirstQuestion] = new TranslationInfo
             {
-                QuestionText = "他の「思い出」モジュールが最初に質問したのは、何のモジュールについて？",
+                QuestionText = "他の「思い出」モジュールが最初に質問したのは、何のモジュールについて(英名)？",
                 ModuleName = "思い出",
             },
 
@@ -8163,6 +9248,12 @@ namespace Souvenir
             [Question.StabilityLedColors] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}番目に点灯したLEDの色は？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Yellow"] = "黄",
+                    ["Blue"] = "青",
+                },
             },
             // What was the identification number in {0}?
             // What was the identification number in Stability?
@@ -8176,7 +9267,8 @@ namespace Souvenir
             // What was the first time signature in Stable Time Signatures?
             [Question.StableTimeSignaturesSignatures] = new TranslationInfo
             {
-                QuestionText = "What was the {1} time signature in {0}?",
+                QuestionText = "{0}の{1}番目の拍子記号は？",
+                ModuleName = "安定拍子記号",
             },
 
             // Stacked Sequences
@@ -8212,6 +9304,13 @@ namespace Souvenir
             {
                 QuestionText = "{0}における{1}の英字は？",
                 ModuleName = "星型十二面体",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["Morse code"] = "モールス信号",
+                    ["tap code"] = "タップ・コード",
+                    ["Braille"] = "点字",
+                },
+
             },
 
             // Stupid Slots
@@ -8220,6 +9319,7 @@ namespace Souvenir
             [Question.StupidSlotsValues] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}にある矢印の値は？",
+                ModuleName = "馬鹿スロット",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top-left"] = "左上",
@@ -8236,7 +9336,7 @@ namespace Souvenir
             // What was a substitution word in Subbly Jubbly?
             [Question.SubblyJubblySubstitutions] = new TranslationInfo
             {
-                QuestionText = "What was a substitution word in {0}?",
+                QuestionText = "{0}の代替語は？",
             },
 
             // Subscribe to Pewdiepie
@@ -8259,12 +9359,14 @@ namespace Souvenir
             [Question.SubwayBread] = new TranslationInfo
             {
                 QuestionText = "{0}で客が注文したパンは？",
+                ModuleName = "SUBWAY",
             },
             // Which of these was not asked for in {0}?
             // Which of these was not asked for in Subway?
             [Question.SubwayItems] = new TranslationInfo
             {
                 QuestionText = "{0}で客が頼まなかったものは？",
+                ModuleName = "SUBWAY",
             },
 
             // Sugar Skulls
@@ -8396,10 +9498,18 @@ namespace Souvenir
             {
                 QuestionText = "{0}の最後のシークエンスで{1}番目に点滅したものは？",
                 ModuleName = "シンボルターシャ",
-                FormatArgs = new Dictionary<string, string>
+                Answers = new Dictionary<string, string>
                 {
-                    ["�ordinal"] = "�ordinal",
+                    ["Top"] = "上",
+                    ["Right"] = "右",
+                    ["Bottom"] = "下",
+                    ["Left"] = "左",
+                    ["Pink"] = "ピンク",
+                    ["Green"] = "緑",
+                    ["Yellow"] = "黄",
+                    ["Blue"] = "青",
                 },
+
             },
             // Which symbol was on the {1} button in {0}?
             // Which symbol was on the top button in Symbolic Tasha?
@@ -8519,12 +9629,29 @@ namespace Souvenir
             [Question.TenpinsSplits] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}のスプリットは？",
+                ModuleName = "テンピン",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["red"] = "赤",
                     ["green"] = "緑",
                     ["blue"] = "青",
                 },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Goal Posts"] = "ゴールポスト",
+                    ["Cincinnati"] = "シンシナティ",
+                    ["Woolworth Store"] = "ダイムストア",
+                    ["Lily"] = "リリー",
+                    ["3-7 Split"] = "3-7 スプリット",
+                    ["Cocked Hat"] = "コックト・ハット",
+                    ["4-7-10 Split"] = "4-7-10 スプリット",
+                    ["Big Four"] = "ビッグフォー",
+                    ["Greek Church"] = "ギリシャ教会",
+                    ["Big Five"] = "ビッグファイブ",
+                    ["Big Six"] = "ビッグシックス",
+                    ["HOW"] = "HOW",
+                },
+
             },
 
             // Tetriamonds
@@ -8533,11 +9660,15 @@ namespace Souvenir
             [Question.TetriamondsPulsingColours] = new TranslationInfo
             {
                 QuestionText = "{0}で{1}番目に動いた三角形の色は？",
-                FormatArgs = new Dictionary<string, string>
+                Answers = new Dictionary<string, string>
                 {
-                    ["first"] = "1",
-                    ["second"] = "2",
-                    ["third"] = "3",
+                    ["orange"] = "オレンジ",
+                    ["lime"] = "黄緑",
+                    ["jade"] = "翡翠",
+                    ["azure"] = "空",
+                    ["violet"] = "紫",
+                    ["rose"] = "薔薇",
+                    ["grey"] = "灰",
                 },
             },
 
@@ -8620,7 +9751,8 @@ namespace Souvenir
             // What was the first time signature in Time Signatures?
             [Question.TimeSignaturesSignatures] = new TranslationInfo
             {
-                QuestionText = "What was the {1} time signature in {0}?",
+                QuestionText = "{0}の{1}番目の拍子記号は？",
+                ModuleName = "拍子記号",
             },
 
             // Timezone
@@ -8667,6 +9799,14 @@ namespace Souvenir
             [Question.TouchTransmissionOrder] = new TranslationInfo
             {
                 QuestionText = "{0}では点字をどのような順序で読んだ？",
+                ModuleName = "接触送信",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Standard Braille Order"] = "標準",
+                    ["Individual Reading Order"] = "個別読み順",
+                    ["Merged Reading Order"] = "全体読み順",
+                    ["Chinese Reading Order"] = "漢字読み順",
+                },
             },
 
             // Trajectory
@@ -8676,6 +9816,25 @@ namespace Souvenir
             {
                 QuestionText = "{0}でのボタン{1}の役割は？",
                 ModuleName = "軌跡",
+                Answers = new Dictionary<string, string>
+                {
+                    ["red up"] = "赤を上",
+                    ["red right"] = "赤を右",
+                    ["red down"] = "赤を下",
+                    ["red left"] = "赤を左",
+                    ["red reverse"] = "赤を反転",
+                    ["green up"] = "緑を上",
+                    ["green right"] = "緑を右",
+                    ["green down"] = "緑を下",
+                    ["green left"] = "緑を左",
+                    ["green reverse"] = "緑を反転",
+                    ["blue up"] = "青を上",
+                    ["blue right"] = "青を右",
+                    ["blue down"] = "青を下",
+                    ["blue left"] = "青を左",
+                    ["blue reverse"] = "青を反転",
+                },
+
             },
 
             // Transmitted Morse
@@ -8693,12 +9852,18 @@ namespace Souvenir
             [Question.TriamondsPulsingColours] = new TranslationInfo
             {
                 QuestionText = "{0}で{1}番目に動いた三角形の色は？",
-                FormatArgs = new Dictionary<string, string>
+                Answers = new Dictionary<string, string>
                 {
-                    ["first"] = "1",
-                    ["second"] = "2",
-                    ["third"] = "3",
+                    ["black"] = "黒",
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["yellow"] = "黄",
+                    ["blue"] = "青",
+                    ["magenta"] = "マゼンタ",
+                    ["cyan"] = "シアン",
+                    ["white"] = "白",
                 },
+
             },
 
             // Triple Term
@@ -8858,6 +10023,65 @@ namespace Souvenir
             [Question.UnoInitialCard] = new TranslationInfo
             {
                 QuestionText = "{0}の初期カードは？",
+                ModuleName = "UNO",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red 0"] = "赤の0",
+                    ["Red 1"] = "赤の1",
+                    ["Red 2"] = "赤の2",
+                    ["Red 3"] = "赤の3",
+                    ["Red 4"] = "赤の4",
+                    ["Red 5"] = "赤の5",
+                    ["Red 6"] = "赤の6",
+                    ["Red 7"] = "赤の7",
+                    ["Red 8"] = "赤の8",
+                    ["Red 9"] = "赤の9",
+                    ["Red +2"] = "赤の+2",
+                    ["Red Skip"] = "赤のスキップ",
+                    ["Red Reverse"] = "赤のリバース",
+                    ["Green 0"] = "緑の0",
+                    ["Green 1"] = "緑の1",
+                    ["Green 2"] = "緑の2",
+                    ["Green 3"] = "緑の3",
+                    ["Green 4"] = "緑の4",
+                    ["Green 5"] = "緑の5",
+                    ["Green 6"] = "緑の6",
+                    ["Green 7"] = "緑の7",
+                    ["Green 8"] = "緑の8",
+                    ["Green 9"] = "緑の9",
+                    ["Green +2"] = "緑の+2",
+                    ["Green Skip"] = "緑のスキップ",
+                    ["Green Reverse"] = "緑のリバース",
+                    ["Yellow 0"] = "黄の0",
+                    ["Yellow 1"] = "黄の1",
+                    ["Yellow 2"] = "黄の2",
+                    ["Yellow 3"] = "黄の3",
+                    ["Yellow 4"] = "黄の4",
+                    ["Yellow 5"] = "黄の5",
+                    ["Yellow 6"] = "黄の6",
+                    ["Yellow 7"] = "黄の7",
+                    ["Yellow 8"] = "黄の8",
+                    ["Yellow 9"] = "黄の9",
+                    ["Yellow +2"] = "黄の+2",
+                    ["Yellow Skip"] = "黄のスキップ",
+                    ["Yellow Reverse"] = "黄のリバース",
+                    ["Blue 0"] = "青の0",
+                    ["Blue 1"] = "青の1",
+                    ["Blue 2"] = "青の2",
+                    ["Blue 3"] = "青の3",
+                    ["Blue 4"] = "青の4",
+                    ["Blue 5"] = "青の5",
+                    ["Blue 6"] = "青の6",
+                    ["Blue 7"] = "青の7",
+                    ["Blue 8"] = "青の8",
+                    ["Blue 9"] = "青の9",
+                    ["Blue +2"] = "青の+2",
+                    ["Blue Skip"] = "青のスキップ",
+                    ["Blue Reverse"] = "青のリバース",
+                    ["+4"] = "+4",
+                    ["Wild"] = "ワイルド",
+                },
+
             },
 
             // Unown Cipher
@@ -8875,6 +10099,7 @@ namespace Souvenir
             [Question.USACycleDisplayed] = new TranslationInfo
             {
                 QuestionText = "{0}で表示された州は？",
+                ModuleName = "USAサイクル",
             },
 
             // USA Maze
@@ -8965,37 +10190,64 @@ namespace Souvenir
             // What color was the LED flashing in Variety?
             [Question.VarietyLED] = new TranslationInfo
             {
-                QuestionText = "What color was the LED flashing in {0}?",
+                QuestionText = "{0}で点滅したLEDの色は？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Yellow"] = "黄",
+                    ["Blue"] = "青",
+                    ["White"] = "白",
+                    ["Black"] = "黒",
+                },
+
             },
             // What digit was displayed but not the answer for the digit display in {0}?
             // What digit was displayed but not the answer for the digit display in Variety?
             [Question.VarietyDigitDisplay] = new TranslationInfo
             {
-                QuestionText = "What digit was displayed but not the answer for the digit display in {0}?",
+                QuestionText = "{0}の数字ディスプレーに表示されたが回答ではないものは？",
             },
             // What word could be formed but was not the answer for the letter display in {0}?
             // What word could be formed but was not the answer for the letter display in Variety?
             [Question.VarietyLetterDisplay] = new TranslationInfo
             {
-                QuestionText = "What word could be formed but was not the answer for the letter display in {0}?",
+                QuestionText = "{0}の英字ディスプレーから形成できるが回答ではないものは？",
             },
             // What was the maximum display for the {1}timer in {0}?
             // What was the maximum display for the timer in Variety?
             [Question.VarietyTimer] = new TranslationInfo
             {
-                QuestionText = "What was the maximum display for the {1}timer in {0}?",
+                QuestionText = "{0}のカウント{1}タイマー内の最大値は？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["ascending "] = "アップ",
+                    ["descending "] = "ダウン",
+                },
             },
             // What was n for the {1}knob in {0}?
             // What was n for the knob in Variety?
             [Question.VarietyColoredKnob] = new TranslationInfo
             {
-                QuestionText = "What was n for the {1}knob in {0}?",
+                QuestionText = "{0}の{1}ダイヤルに対応するNは？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["colored "] = "色付き",
+                    ["red "] = "赤色",
+                    ["black "] = "黒色",
+                    ["blue "] = "青色",
+                    ["yellow "] = "黄色",
+                },
             },
             // What was n for the {1}bulb in {0}?
             // What was n for the bulb in Variety?
             [Question.VarietyBulb] = new TranslationInfo
             {
-                QuestionText = "What was n for the {1}bulb in {0}?",
+                QuestionText = "{0}の{1}電球に対するNは？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red "] = "赤色",
+                    ["yellow "] = "黄色",
+                },
             },
 
             // Vcrcs
@@ -9013,6 +10265,7 @@ namespace Souvenir
             [Question.VectorsColors] = new TranslationInfo
             {
                 QuestionText = "{0}にあった{1}のベクトルの色は？",
+                ModuleName = "ベクトル",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["first"] = "1番目",
@@ -9354,6 +10607,7 @@ namespace Souvenir
             [Question.Xenocryst] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}番目の点滅の色は？",
+                ModuleName = "ゼノクリスト",
             },
 
             // XmORse Code
@@ -9419,12 +10673,12 @@ namespace Souvenir
                 ModuleName = "黄色ボタン",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Cyan"] = "Cyan",
-                    ["Blue"] = "Blue",
-                    ["Magenta"] = "Magenta",
+                    ["Red"] = "赤",
+                    ["Yellow"] = "黄色",
+                    ["Green"] = ",緑",
+                    ["Cyan"] = "シアン",
+                    ["Blue"] = "青",
+                    ["Magenta"] = "マゼンタ",
                 },
             },
 
@@ -9466,6 +10720,13 @@ namespace Souvenir
             [Question.ZeroZeroStarPoints] = new TranslationInfo
             {
                 QuestionText = "{0}の{1}の位置の星のポイントは？",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top-left"] = "左上",
+                    ["top-right"] = "右上",
+                    ["bottom-left"] = "左下",
+                    ["bottom-right"] = "右下",
+                },
             },
             // Where was the {1} square in {0}?
             // Where was the red square in Zero, Zero?
@@ -9493,7 +10754,7 @@ namespace Souvenir
         #endregion
 
         public override string[] IntroTexts => Ut.NewArray(
-                "あなたを器物損壊罪で訴えます！理由はもちろんおわかりですね？",
+                "あなたを詐欺罪と器物損壊罪で訴えます！理由はもちろんおわかりですね？",
                 "この爆弾は、わしが育てた。",
                 "そんな爆弾で大丈夫か？",
                 "見た目は分析担当、頭脳は処理担当！",

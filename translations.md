@@ -63,3 +63,9 @@ Note:
 ## Testing translations
 
 You can change the module language in the TestHarness with the `!1 lang xx` command. Navigate to a module with `!1 module name`.
+
+## Using translations in the game
+You will find "Souvenir-settings.txt" in the mod-settings folder.
+In the "Language": field at the bottom, enter the language code (e.g. "Language": "ja").
+Note that this item can't be changed from the ModSelector by default;
+Open the file in Notepad or some IDE.
