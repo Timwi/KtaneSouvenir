@@ -7464,6 +7464,8 @@ namespace Souvenir
                     ["Professor Layton and the Spectre's Call"] = "レイトン教授と魔神の笛",
                     ["Professor Layton and the Miracle Mask"] = "レイトン教授と奇跡の仮面",
                     ["Professor Layton and the Azran Legacy"] = "レイトン教授と超文明Aの遺産",
+                    ["Layton's Mystery Journey: Katrielle and the Millionaire's Conspiracy"] = "レイトン ミステリージャーニー カトリーエイルと大富豪の陰謀",
+                    ["Professor Layton vs. Phoenix Wright: Ace Attorney"] = "レイトン教授VS逆転裁判",
                 },
             },
             // What was the {1} puzzle in {0}?

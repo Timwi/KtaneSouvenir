@@ -7008,6 +7008,8 @@ namespace Souvenir
                     ["Professor Layton and the Spectre's Call"] = "Professor Layton and the Spectre's Call",
                     ["Professor Layton and the Miracle Mask"] = "Professor Layton and the Miracle Mask",
                     ["Professor Layton and the Azran Legacy"] = "Professor Layton and the Azran Legacy",
+                    ["Layton's Mystery Journey: Katrielle and the Millionaire's Conspiracy"] = "Layton's Mystery Journey: Katrielle and the Millionaire's Conspiracy",
+                    ["Professor Layton vs. Phoenix Wright: Ace Attorney"] = "Professor Layton vs. Phoenix Wright: Ace Attorney",
                 },
             },
             // What was the {1} puzzle in {0}?

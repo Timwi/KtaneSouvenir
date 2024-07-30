@@ -2083,7 +2083,7 @@
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 170, 1, "000")]
         PuzzleIdentificationNum,
-        [SouvenirQuestion("What game was the {1} puzzle in {0} from?", "Puzzle Identification", OneColumn4Answers, "Professor Layton and the Curious Village", "Professor Layton and Pandora's Box", "Professor Layton and the Lost Future", "Professor Layton and the Spectre's Call", "Professor Layton and the Miracle Mask", "Professor Layton and the Azran Legacy",
+        [SouvenirQuestion("What game was the {1} puzzle in {0} from?", "Puzzle Identification", OneColumn4Answers, "Professor Layton and the Curious Village", "Professor Layton and Pandora's Box", "Professor Layton and the Lost Future", "Professor Layton and the Spectre's Call", "Professor Layton and the Miracle Mask", "Professor Layton and the Azran Legacy", "Layton's Mystery Journey: Katrielle and the Millionaire's Conspiracy", "Professor Layton vs. Phoenix Wright: Ace Attorney",
             ExampleExtraFormatArguments = new[] { QandA.Ordinal }, ExampleExtraFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         PuzzleIdentificationGame,
         [SouvenirQuestion("What was the {1} puzzle in {0}?", "Puzzle Identification", OneColumn4Answers, null, ExampleAnswers = new[] { "Where's the Village?", "Dr Schrader's Map", "A Party Crasher", "A Secret Message" },
