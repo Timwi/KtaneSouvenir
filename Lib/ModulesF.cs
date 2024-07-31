@@ -445,9 +445,9 @@ public partial class SouvenirModule
             preferredCylinders.Add(Enumerable.Range(0, 3).Select(i => colorNames.PickRandom()).JoinString(", "));
 
         addQuestions(module,
-            makeQuestion(Question.ForgetAnyColorCylinder, 0, formattedModuleName: formattedName, formatArgs: new[] { ordinal(randomStage + 1) },
+            makeQuestion(Question.ForgetAnyColorCylinder, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { ordinal(randomStage + 1) },
                 correctAnswers: new[] { correctCylinders }, preferredWrongAnswers: preferredCylinders.ToArray()),
-            makeQuestion(Question.ForgetAnyColorSequence, 0, formattedModuleName: formattedName, formatArgs: new[] { ordinal(randomStage + 1) },
+            makeQuestion(Question.ForgetAnyColorSequence, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { ordinal(randomStage + 1) },
                 correctAnswers: new[] { figureNames[myFigures[randomStage]] }));
     }
 
@@ -514,7 +514,7 @@ public partial class SouvenirModule
                 if (uniquePositions.Any(p => p != pos))
                 {
                     var reference = uniquePositions.First(p => p != pos);
-                    qs.Add(makeQuestion(Question.ForgetEverythingStageOneDisplay, 0,
+                    qs.Add(makeQuestion(Question.ForgetEverythingStageOneDisplay, moduleId, 0,
                         formattedModuleName: $"the Forget Everything whose {ordinal(reference + 1)} displayed digit in this stage was {myFirstDisplay[reference]}", formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { myFirstDisplay[pos].ToString() }));
                 }
             }
@@ -570,7 +570,7 @@ public partial class SouvenirModule
             throw new AbandonModuleException("The number of displays did not match the number of Forget Me Not modules.");
 
         if (_moduleCounts[moduleId] == 1)
-            addQuestions(module, myDisplay.Take(displayedStageCount).Select((digit, ix) => makeQuestion(Question.ForgetMeNotDisplayedDigits, 1, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { digit.ToString() })));
+            addQuestions(module, myDisplay.Take(displayedStageCount).Select((digit, ix) => makeQuestion(Question.ForgetMeNotDisplayedDigits, moduleId, 1, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { digit.ToString() })));
         else
         {
             var uniqueStages = Enumerable.Range(1, displayedStageCount).Where(stage => _forgetMeNotDisplays.Count(display => display[stage - 1] == myDisplay[stage - 1]) == 1).Take(2).ToArray();
@@ -589,7 +589,7 @@ public partial class SouvenirModule
                     if (uniqueStage != 0)
                     {
                         Debug.Log(uniqueStage);
-                        qs.Add(makeQuestion(Question.ForgetMeNotDisplayedDigits, 0, formattedModuleName: $"the Forget Me Not which displayed a {myDisplay[uniqueStage - 1]} in the {ordinal(uniqueStage)} stage", formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { myDisplay[stage].ToString() }));
+                        qs.Add(makeQuestion(Question.ForgetMeNotDisplayedDigits, moduleId, 0, formattedModuleName: $"the Forget Me Not which displayed a {myDisplay[uniqueStage - 1]} in the {ordinal(uniqueStage)} stage", formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { myDisplay[stage].ToString() }));
                     }
                 }
                 addQuestions(module, qs);
@@ -726,11 +726,11 @@ public partial class SouvenirModule
 
         var stage = chosenStage.ToString();
         addQuestions(module,
-            makeQuestion(Question.ForgetTheColorsGearNumber, 0, formattedModuleName: formattedName, formatArgs: new[] { stage }, correctAnswers: new[] { myGearNumbers[chosenStage].ToString() }),
-            makeQuestion(Question.ForgetTheColorsLargeDisplay, 0, formattedModuleName: formattedName, formatArgs: new[] { stage }, correctAnswers: new[] { myLargeDisplays[chosenStage].ToString() }),
-            makeQuestion(Question.ForgetTheColorsSineNumber, 0, formattedModuleName: formattedName, formatArgs: new[] { stage }, correctAnswers: new[] { (Mathf.Abs(mySineNumbers[chosenStage]) % 10).ToString() }),
-            makeQuestion(Question.ForgetTheColorsGearColor, 0, formattedModuleName: formattedName, formatArgs: new[] { stage }, correctAnswers: new[] { myGearColors[chosenStage].ToString() }),
-            makeQuestion(Question.ForgetTheColorsRuleColor, 0, formattedModuleName: formattedName, formatArgs: new[] { stage }, correctAnswers: new[] { myRuleColors[chosenStage].ToString() }));
+            makeQuestion(Question.ForgetTheColorsGearNumber, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { stage }, correctAnswers: new[] { myGearNumbers[chosenStage].ToString() }),
+            makeQuestion(Question.ForgetTheColorsLargeDisplay, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { stage }, correctAnswers: new[] { myLargeDisplays[chosenStage].ToString() }),
+            makeQuestion(Question.ForgetTheColorsSineNumber, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { stage }, correctAnswers: new[] { (Mathf.Abs(mySineNumbers[chosenStage]) % 10).ToString() }),
+            makeQuestion(Question.ForgetTheColorsGearColor, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { stage }, correctAnswers: new[] { myGearColors[chosenStage].ToString() }),
+            makeQuestion(Question.ForgetTheColorsRuleColor, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { stage }, correctAnswers: new[] { myRuleColors[chosenStage].ToString() }));
     }
 
     private List<List<int>> _ftColors = new();
@@ -792,8 +792,8 @@ public partial class SouvenirModule
             }
         }
         addQuestions(module,
-            makeQuestion(Question.ForgetThisColors, 0, formattedModuleName: formattedName, formatArgs: new[] { ordinal(chosenStage + 1) }, correctAnswers: new[] { allColors[myColors[chosenStage]] }),
-            makeQuestion(Question.ForgetThisDigits, 0, formattedModuleName: formattedName, formatArgs: new[] { ordinal(chosenStage + 1) }, correctAnswers: new[] { base36[myDigits[chosenStage]].ToString() }));
+            makeQuestion(Question.ForgetThisColors, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { ordinal(chosenStage + 1) }, correctAnswers: new[] { allColors[myColors[chosenStage]] }),
+            makeQuestion(Question.ForgetThisDigits, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { ordinal(chosenStage + 1) }, correctAnswers: new[] { base36[myDigits[chosenStage]].ToString() }));
     }
 
     private IEnumerator<YieldInstruction> ProcessFreeParking(ModuleData module)
