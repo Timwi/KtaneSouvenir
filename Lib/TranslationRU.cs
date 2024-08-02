@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Souvenir
 {
-    public class Translation_ru : Translation
+    public class Translation_ru : TranslationBase<TranslationInfo>
     {
         public override string FormatModuleName(Question question, bool addSolveCount, int numSolved) =>
             addSolveCount ? $"{_translations[question].ModuleName ?? Ut.GetAttribute(question).ModuleName} (в {Ordinal(numSolved)}-м решённом модуле)" : _translations[question].ModuleNameWithThe ?? Ut.GetAttribute(question).ModuleNameWithThe;

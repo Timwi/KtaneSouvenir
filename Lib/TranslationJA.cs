@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Souvenir
 {
-    public class Translation_ja : Translation
+    public class Translation_ja : TranslationBase<TranslationInfo>
     {
         public override string FormatModuleName(Question question, bool addSolveCount, int numSolved) => addSolveCount
             ? $"{Ordinal(numSolved)}番目に解除された{_translations[question].ModuleName ?? Ut.GetAttribute(question).ModuleName}"

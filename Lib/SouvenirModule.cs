@@ -229,8 +229,8 @@ public partial class SouvenirModule : MonoBehaviour
         Debug.Log($"‹Souvenir #{_moduleId}› Ignored modules: {ignoredList.JoinString(", ")}");
         _ignoredModules.UnionWith(ignoredList);
 
-        if (_config.Language != null && Translation.AllTranslations.ContainsKey(_config.Language))
-            _translation = Translation.AllTranslations[_config.Language];
+        if (_config.Language != null && TranslationBase<TranslationInfo>.AllTranslations.ContainsKey(_config.Language))
+            _translation = TranslationBase<TranslationInfo>.AllTranslations[_config.Language];
         Debug.Log($"<Souvenir #{_moduleId}> Language: {_config.Language} ({(_translation == null ? "absent" : "present")})");
 
         Bomb.OnBombExploded += delegate
@@ -1227,9 +1227,9 @@ public partial class SouvenirModule : MonoBehaviour
                 yield break;
             }
 
-            if ((m = Regex.Match(command, $@"^\s*lang (en|{Translation.AllTranslations.Keys.JoinString("|")})\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)).Success)
+            if ((m = Regex.Match(command, $@"^\s*lang (en|{TranslationBase<TranslationInfo>.AllTranslations.Keys.JoinString("|")})\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)).Success)
             {
-                _translation = m.Groups[1].Value.Equals("en", StringComparison.InvariantCultureIgnoreCase) ? null : Translation.AllTranslations[m.Groups[1].Value.ToLowerInvariant()];
+                _translation = m.Groups[1].Value.Equals("en", StringComparison.InvariantCultureIgnoreCase) ? null : TranslationBase<TranslationInfo>.AllTranslations[m.Groups[1].Value.ToLowerInvariant()];
                 if (_showIntros)
                     _curExampleQuestion = 0;
                 showExampleQuestion();
