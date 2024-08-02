@@ -9,7 +9,7 @@ namespace Souvenir
         public virtual int DefaultFontIndex => 0;
         public virtual float LineSpacing => 0.525f;
 
-        public abstract string FormatModuleName(string moduleNameWithoutThe, string moduleNameWithThe, bool addSolveCount, int numSolved);
+        public abstract string FormatModuleName(Question question, bool addSolveCount, int numSolved);
         public abstract string Ordinal(int number);
 
         private Dictionary<Question, TranslationInfo> _translationsCache = null;

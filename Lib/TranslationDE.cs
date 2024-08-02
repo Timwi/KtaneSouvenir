@@ -4,8 +4,8 @@ namespace Souvenir
 {
     public class Translation_de : Translation
     {
-        public override string FormatModuleName(string moduleNameWithoutThe, string moduleNameWithThe, bool addSolveCount, int numSolved) =>
-            addSolveCount ? $"dem als {ordinal(numSolved)}es gelösten {moduleNameWithoutThe}" : moduleNameWithThe;
+        public override string FormatModuleName(Question question, bool addSolveCount, int numSolved) =>
+            addSolveCount ? $"dem als {ordinal(numSolved)}es gelösten {_translations[question].ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe}" : _translations[question].ModuleNameWithThe ?? Ut.GetAttribute(question).ModuleNameWithThe;
 
         public override string Ordinal(int number) => ordinal(number);
         private string ordinal(int num) => num < 0 ? $"({num})t" : num switch

@@ -118,7 +118,6 @@ public partial class SouvenirModule : MonoBehaviour
     private static int _moduleIdCounter = 1;
     internal int _moduleId;
     private Dictionary<string, ModuleHandlerInfo> _moduleProcessors;
-    private Dictionary<Question, SouvenirQuestionAttribute> _attributes;
 
     // Used in TestHarness only
     private Question[] _exampleQuestions = null;
@@ -256,11 +255,6 @@ public partial class SouvenirModule : MonoBehaviour
                 StopAllCoroutines();
         };
 
-        _attributes = typeof(Question).GetFields(BindingFlags.Public | BindingFlags.Static)
-            .Select(f => Ut.KeyValuePair((Question) f.GetValue(null), GetQuestionAttribute(f)))
-            .Where(kvp => kvp.Value != null)
-            .ToDictionary();
-
         var origRotation = SurfaceRenderer.transform.rotation;
         SurfaceRenderer.transform.eulerAngles = new Vector3(0, 180, 0);
         SurfaceSizeFactor = SurfaceRenderer.bounds.size.x / (2 * .834) * .9;
@@ -313,7 +307,7 @@ public partial class SouvenirModule : MonoBehaviour
             if (Application.isEditor)
             {
                 // Testing in Unity
-                foreach (var entry in _attributes)
+                foreach (var entry in Ut.Attributes)
                 {
                     var (q, attr) = (entry.Key, entry.Value);
                     if (attr.Type != AnswerType.Sprites && attr.Type != AnswerType.Grid && attr.Type != AnswerType.Audio && (attr.AllAnswers == null || attr.AllAnswers.Length == 0) &&
@@ -372,7 +366,7 @@ public partial class SouvenirModule : MonoBehaviour
         }
 
         var q = _exampleQuestions[_curExampleQuestion];
-        if (!_attributes.TryGetValue(q, out var attr))
+        if (!Ut.TryGetAttribute(q, out var attr))
         {
             Debug.LogError($"<Souvenir #{_moduleId}> Error: Question {q} has no attribute.");
             return;
@@ -383,11 +377,7 @@ public partial class SouvenirModule : MonoBehaviour
             _curExampleVariant = (_curExampleVariant % numExamples + numExamples) % numExamples;
         }
         var fmt = new object[attr.ExampleExtraFormatArgumentGroupSize + 1];
-        fmt[0] = formatModuleName(
-            _translation?.Translations.Get(q)?.ModuleName ?? attr.ModuleName,
-            _translation?.Translations.Get(q)?.ModuleNameWithThe ?? _translation?.Translations.Get(q)?.ModuleName ?? attr.ModuleNameWithThe,
-            _curExampleOrdinal > 0,
-            _curExampleOrdinal);
+        fmt[0] = formatModuleName(q, _curExampleOrdinal > 0, _curExampleOrdinal);
         for (int i = 0; i < attr.ExampleExtraFormatArgumentGroupSize; i++)
         {
             var arg = attr.ExampleExtraFormatArguments[_curExampleVariant * attr.ExampleExtraFormatArgumentGroupSize + i];
@@ -450,20 +440,9 @@ public partial class SouvenirModule : MonoBehaviour
         }
     }
 
-    private string translateQuestion(Question question) => _translation?.Translations.Get(question)?.QuestionText ?? _attributes[question].QuestionText;
+    private string translateQuestion(Question question) => _translation?.Translations.Get(question)?.QuestionText ?? question.GetAttribute().QuestionText;
     private string translateFormatArg(Question question, string arg) => arg == null ? null : _translation?.Translations.Get(question)?.FormatArgs?.Get(arg, arg) ?? arg;
     private string translateAnswer(Question question, string answ) => answ == null ? null : _translation?.Translations.Get(question)?.Answers?.Get(answ, answ) ?? answ;
-
-    private static SouvenirQuestionAttribute GetQuestionAttribute(FieldInfo field)
-    {
-        var attribute = field.GetCustomAttribute<SouvenirQuestionAttribute>();
-        if (attribute != null)
-        {
-            attribute.AnswerGenerator = field.GetCustomAttribute<AnswerGeneratorAttribute>();
-            attribute.SpriteAnswerGenerator = field.GetCustomAttribute<SpriteAnswerGeneratorAttribute>();
-        }
-        return attribute;
-    }
 
     void setAnswerHandler(int index, Action<int> handler)
     {
@@ -1059,7 +1038,7 @@ public partial class SouvenirModule : MonoBehaviour
         Func<SouvenirQuestionAttribute, int, T[], QandA.AnswerSet> answerSetConstructor, string formattedModuleName = null,
         string[] formatArgs = null, T[] correctAnswers = null, T[] preferredWrongAnswers = null, T[] allAnswers = null, params AnswerType[] acceptableTypes)
     {
-        if (!_attributes.TryGetValue(question, out var attr))
+        if (!Ut.TryGetAttribute(question, out var attr))
         {
             Debug.LogError($"<Souvenir #{_moduleId}> Question {question} has no SouvenirQuestionAttribute.");
             return null;
@@ -1154,11 +1133,7 @@ public partial class SouvenirModule : MonoBehaviour
         }
 
         var allFormatArgs = new string[formatArgs != null ? formatArgs.Length + 1 : 1];
-        allFormatArgs[0] = formattedModuleName ?? formatModuleName(
-            _translation?.Translations.Get(question)?.ModuleName ?? attr.ModuleName,
-            _translation?.Translations.Get(question)?.ModuleNameWithThe ?? _translation?.Translations.Get(question)?.ModuleName ?? attr.ModuleNameWithThe,
-            _moduleCounts.Get(moduleId, 0) > 1,
-            solveIx);
+        allFormatArgs[0] = formattedModuleName ?? formatModuleName(question, _moduleCounts.Get(moduleId, 0) > 1, solveIx);
 
         if (formatArgs != null)
             for (var i = 0; i < formatArgs.Length; i++)
@@ -1169,17 +1144,17 @@ public partial class SouvenirModule : MonoBehaviour
         return new QandA(question, attr.ModuleNameWithThe, qQuestion, qAnswerSet, correctIndex);
     }
 
-    private string formatModuleName(string moduleNameWithoutThe, string moduleNameWithThe, bool addSolveCount, int numSolved) => _translation != null
-        ? _translation.FormatModuleName(moduleNameWithoutThe, moduleNameWithThe, addSolveCount, numSolved)
-        : addSolveCount ? $"the {moduleNameWithoutThe} you solved {ordinal(numSolved)}" : moduleNameWithThe;
+    private string formatModuleName(Question question, bool addSolveCount, int numSolved) => _translation != null
+        ? _translation.FormatModuleName(question, addSolveCount, numSolved)
+        : addSolveCount ? $"the {question.GetAttribute().ModuleName} you solved {ordinal(numSolved)}" : question.GetAttribute().ModuleNameWithThe;
 
-    public string[] GetAnswers(Question question) => !_attributes.TryGetValue(question, out var attr)
+    public string[] GetAnswers(Question question) => !Ut.TryGetAttribute(question, out var attr)
         ? throw new InvalidOperationException($"<Souvenir #{_moduleId}> Question {question} is missing from the _attributes dictionary.")
         : attr.AllAnswers;
 
     private Sprite[] GetAllSprites(Question question)
     {
-        var attr = _attributes[question];
+        var attr = question.GetAttribute();
         if (attr.Type != AnswerType.Sprites)
             throw new AbandonModuleException("GetAllSprites() was called on a question that doesn’t use sprites or doesn’t have an associated sprites field.");
         return attr.SpriteField == null ? null : GetField<Sprite[]>(this, attr.SpriteField, isPublic: true).Get();
@@ -1187,7 +1162,7 @@ public partial class SouvenirModule : MonoBehaviour
 
     private AudioClip[] GetAllSounds(Question question)
     {
-        var attr = _attributes[question];
+        var attr = question.GetAttribute();
         if (attr.Type != AnswerType.Audio || attr.AudioField == null)
             throw new AbandonModuleException("GetAllSounds() was called on a question that doesn’t use sounds or doesn’t have an associated sounds field.");
         return GetField<AudioClip[]>(this, attr.AudioField, isPublic: true).Get();
@@ -1274,14 +1249,14 @@ public partial class SouvenirModule : MonoBehaviour
             for (var i = 0; i < _exampleQuestions.Length; i++)
             {
                 var j = (i + _curExampleQuestion + 1) % _exampleQuestions.Length;
-                if (Regex.IsMatch(_translation?.Translations?.Get(_exampleQuestions[j]).ModuleNameWithThe ?? _translation?.Translations.Get(_exampleQuestions[j]).ModuleName ?? _attributes[_exampleQuestions[j]].ModuleNameWithThe, $"^{Regex.Escape(command)}$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+                if (Regex.IsMatch(_translation?.Translations?.Get(_exampleQuestions[j]).ModuleNameWithThe ?? _translation?.Translations.Get(_exampleQuestions[j]).ModuleName ?? _exampleQuestions[j].GetAttribute().ModuleNameWithThe, $"^{Regex.Escape(command)}$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
                 {
                     _curExampleQuestion = j;
                     showExampleQuestion();
                     yield break;
                 }
 
-                if (substringMatch == -1 && Regex.IsMatch(_translation?.Translations.Get(_exampleQuestions[j]).ModuleNameWithThe ?? _translation?.Translations.Get(_exampleQuestions[j]).ModuleName ?? _attributes[_exampleQuestions[j]].ModuleNameWithThe, Regex.Escape(command), RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+                if (substringMatch == -1 && Regex.IsMatch(_translation?.Translations.Get(_exampleQuestions[j]).ModuleNameWithThe ?? _translation?.Translations.Get(_exampleQuestions[j]).ModuleName ?? _exampleQuestions[j].GetAttribute().ModuleNameWithThe, Regex.Escape(command), RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
                     substringMatch = j;
             }
 

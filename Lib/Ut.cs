@@ -458,5 +458,28 @@ namespace Souvenir
             key = source.Key;
             value = source.Value;
         }
+
+        static Ut()
+        {
+            Attributes = typeof(Question).GetFields(BindingFlags.Public | BindingFlags.Static)
+                .Select(f => Ut.KeyValuePair((Question) f.GetValue(null), GetQuestionAttribute(f)))
+                .Where(kvp => kvp.Value != null)
+                .ToDictionary();
+        }
+
+        private static SouvenirQuestionAttribute GetQuestionAttribute(FieldInfo field)
+        {
+            var attribute = field.GetCustomAttribute<SouvenirQuestionAttribute>();
+            if (attribute != null)
+            {
+                attribute.AnswerGenerator = field.GetCustomAttribute<AnswerGeneratorAttribute>();
+                attribute.SpriteAnswerGenerator = field.GetCustomAttribute<SpriteAnswerGeneratorAttribute>();
+            }
+            return attribute;
+        }
+
+        public static Dictionary<Question, SouvenirQuestionAttribute> Attributes;
+        public static bool TryGetAttribute(this Question question, out SouvenirQuestionAttribute attr) => Attributes.TryGetValue(question, out attr);
+        public static SouvenirQuestionAttribute GetAttribute(this Question question) => Attributes[question];
     }
 }

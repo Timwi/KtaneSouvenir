@@ -70,7 +70,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var sqs = GetArrayField<MeshRenderer>(comp, "ColorSquares", isPublic: true).Get(expectedLength: 8);
-        var colorNames = _attributes[Question.YellowButtonColors].AllAnswers;
+        var colorNames = Question.YellowButtonColors.GetAttribute().AllAnswers;
         addQuestions(module, sqs.Select((sq, ix) =>
         {
             var m = Regex.Match(sq.sharedMaterial.name, @"^Color([0-5])$");

@@ -1286,15 +1286,12 @@ public partial class SouvenirModule
         var preferredWrongAnswers = new List<string>();
         var allAnswers = new List<string>();
         var modulesOnTheBomb = _supportedModuleNames.Where(s => s != "Souvenir").Select(m => m.Replace("'", "’"));
-        foreach (var (q, attr) in _attributes)
-            if (attr != null)
-            {
-                var origModuleName = attr.ModuleNameWithThe.Replace("\u00a0", " ");
-                var translatedModuleName = (_translation?.Translations.Get(q)?.ModuleNameWithThe ?? _translation?.Translations.Get(q)?.ModuleName)?.Replace("\u00a0", " ") ?? origModuleName;
-                allAnswers.Add(translatedModuleName);
-                if (modulesOnTheBomb.Contains(origModuleName))
-                    preferredWrongAnswers.Add(translatedModuleName);
-            }
+        foreach (var (name, trName) in Ut.Attributes.Select(a => (a.Value.ModuleNameWithThe, _translation?.Translations.Get(a.Key)?.ModuleNameWithThe ?? _translation?.Translations.Get(a.Key)?.ModuleName ?? a.Value.ModuleNameWithThe)).Distinct())
+        {
+            allAnswers.Add(trName);
+            if (modulesOnTheBomb.Contains(name.Replace("\u00a0", " ")))
+                preferredWrongAnswers.Add(trName);
+        }
 
         while (comp._currentQuestion == null)
             yield return new WaitForSeconds(0.1f);

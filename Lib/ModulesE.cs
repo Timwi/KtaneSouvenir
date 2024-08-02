@@ -162,10 +162,10 @@ public partial class SouvenirModule
         fldAnswerDisp.Get().text = "G O O D\nJ O B";
 
         var moduleName = GetField<string>(comp, "moduleName", isPublic: true).Get(v => v.Length == 0 ? "empty string" : null);
-        var wrongModuleNames = Bomb.GetSolvableModuleNames();
+        var wrongModuleNames = Bomb.GetSolvableModuleNames().Distinct().ToList();
         // If there are less than 4 eligible modules, fill the remaining spaces with random other modules.
         if (wrongModuleNames.Count < 4)
-            wrongModuleNames.AddRange(_attributes.Where(x => x.Value != null).Select(x => x.Value.ModuleNameWithThe).Distinct());
+            wrongModuleNames.AddRange(Ut.Attributes.Select(a => a.Value.ModuleNameWithThe).Distinct());
 
         var qs = new List<QandA>();
         qs.Add(makeQuestion(Question.EncryptedHangmanModule, module, correctAnswers: new[] { moduleName }, preferredWrongAnswers: wrongModuleNames.ToArray()));

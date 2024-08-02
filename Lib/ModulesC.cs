@@ -1003,6 +1003,6 @@ public partial class SouvenirModule
         yield return WaitForSolve;
         var positions = GetArrayField<int>(comp, "_buttonPositions").Get(expectedLength: 6);
 
-        addQuestions(module, Enumerable.Range(0, 6).Select(stage => makeQuestion(Question.CyanButtonPositions, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { _attributes[Question.CyanButtonPositions].AllAnswers[positions[stage]] })));
+        addQuestions(module, Enumerable.Range(0, 6).Select(stage => makeQuestion(Question.CyanButtonPositions, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { Question.CyanButtonPositions.GetAttribute().AllAnswers[positions[stage]] })));
     }
 }
