@@ -36,15 +36,16 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        if (wordsWritten.Count() != 5)
+        if (wordsWritten.Count != 5)
             throw new AbandonModuleException("Unable to gather all 5 words in 1000 Words.");
 
+        var wordsWrittenArr = wordsWritten.ToArray();
         addQuestions(module,
-            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { ordinal(1) }, correctAnswers: new[] { wordsWritten[0] }, preferredWrongAnswers: phrases),
-            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { wordsWritten[1] }, preferredWrongAnswers: phrases),
-            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { ordinal(3) }, correctAnswers: new[] { wordsWritten[2] }, preferredWrongAnswers: phrases),
-            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { ordinal(4) }, correctAnswers: new[] { wordsWritten[3] }, preferredWrongAnswers: phrases),
-            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { ordinal(5) }, correctAnswers: new[] { wordsWritten[4] }, preferredWrongAnswers: phrases));
+            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { ordinal(1) }, correctAnswers: new[] { wordsWritten[0] }, preferredWrongAnswers: wordsWrittenArr, allAnswers: phrases),
+            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { wordsWritten[1] }, preferredWrongAnswers: wordsWrittenArr, allAnswers: phrases),
+            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { ordinal(3) }, correctAnswers: new[] { wordsWritten[2] }, preferredWrongAnswers: wordsWrittenArr, allAnswers: phrases),
+            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { ordinal(4) }, correctAnswers: new[] { wordsWritten[3] }, preferredWrongAnswers: wordsWrittenArr, allAnswers: phrases),
+            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { ordinal(5) }, correctAnswers: new[] { wordsWritten[4] }, preferredWrongAnswers: wordsWrittenArr, allAnswers: phrases));
     }
 
     private IEnumerator<YieldInstruction> Process100LevelsOfDefusal(ModuleData module)

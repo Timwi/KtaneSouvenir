@@ -116,7 +116,7 @@ namespace SouvenirPostBuildTool
                 dynamic attr = fld.GetCustomAttribute(attributeType);
                 var key = (string) attr.ModuleName;
                 if (!allInfos.ContainsKey(key))
-                    allInfos.Add(key, new List<(FieldInfo fld, dynamic attr)>());
+                    allInfos.Add(key, []);
                 allInfos[key].Add((fld, attr));
                 addThe[key] = attr.AddThe;
             }
@@ -124,16 +124,21 @@ namespace SouvenirPostBuildTool
             foreach (var language in "de,ja,ru".Split(','))
             {
                 var alreadyType = assembly.GetType($"Souvenir.Translation_{language}");
+                var baseType = alreadyType;
+                while (baseType != null && !(baseType.IsGenericType && baseType.GetGenericTypeDefinition().Name == "TranslationBase`1"))
+                    baseType = baseType.BaseType;
+                var translationInfoType = baseType.GetGenericArguments()[0];
+                var translationInfoPrototype = Activator.CreateInstance(translationInfoType);
+                var tiFields = translationInfoType.GetFields().ToArray();
+
                 var already = (IDictionary) (alreadyType == null ? null : (dynamic) Activator.CreateInstance(alreadyType))?.Translations;
                 var sb = new StringBuilder();
-                sb.AppendLine("        protected override Dictionary<Question, TranslationInfo> _translations => new()");
-                sb.AppendLine("        {");
                 foreach (var kvp in allInfos)
                 {
                     sb.AppendLine($"            // {(addThe[kvp.Key] ? "The " : "")}{kvp.Key}");
-                    foreach (var (fld, attr) in kvp.Value)
+                    foreach (var (qFld, attr) in kvp.Value)
                     {
-                        var id = fld.GetValue(null);
+                        var qId = qFld.GetValue(null);
                         var qText = (string) attr.QuestionText;
                         sb.AppendLine($"            // {qText}");
                         var exFormatArgs = new[] { ((string) attr.ModuleNameWithThe).Replace("\u00a0", " ") };
@@ -145,9 +150,20 @@ namespace SouvenirPostBuildTool
                         if (formatArgsComment != null)
                             sb.AppendLine($"            // {formatArgsComment}");
                         var answers = attr.AllAnswers == null || attr.AllAnswers.Length == 0 ? null : (string[]) attr.AllAnswers;
-                        dynamic ti = already?.Contains(id) == true ? already[id] : null;
-                        sb.AppendLine($@"            [Question.{id}] = new TranslationInfo");
+                        dynamic ti = already?.Contains(qId) == true ? already[qId] : null;
+                        sb.AppendLine($@"            [Question.{qId}] = new()");
                         sb.AppendLine("            {");
+
+                        var skip = "QuestionText,ModuleName,ModuleNameWithThe,FormatArgs,Answers".Split(',');
+
+                        foreach (var f in tiFields)
+                            if (!skip.Contains(f.Name) && f.GetValue(ti) is object v && !v.Equals(f.GetValue(translationInfoPrototype)))
+                                sb.AppendLine($@"                {f.Name} = {(
+                                    f.FieldType == typeof(string) ? $@"""{((string) v).CLiteralEscape()}""" :
+                                    f.FieldType.IsEnum ? $@"{f.FieldType.Name}.{v}" :
+                                    throw new NotImplementedException()
+                                )},");
+
                         sb.AppendLine($@"                QuestionText = ""{((string) (ti?.QuestionText) ?? qText).CLiteralEscape()}"",");
                         if (ti?.ModuleName != null)
                             sb.AppendLine($@"                ModuleName = ""{((string) ti.ModuleName).CLiteralEscape()}"",");
@@ -178,7 +194,6 @@ namespace SouvenirPostBuildTool
                     }
                     sb.AppendLine("");
                 }
-                sb.AppendLine("        };");
 
                 var path = Path.Combine(translationFilePath, $"Translation{language.ToUpperInvariant()}.cs");
                 if (!File.Exists(path))
