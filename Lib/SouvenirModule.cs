@@ -314,8 +314,8 @@ public partial class SouvenirModule : MonoBehaviour
                     if (attr.Type != AnswerType.Sprites && attr.Type != AnswerType.Grid && attr.Type != AnswerType.Audio && (attr.AllAnswers == null || attr.AllAnswers.Length == 0) &&
                         (attr.ExampleAnswers == null || attr.ExampleAnswers.Length == 0) && attr.AnswerGenerator == null)
                         Debug.LogError($"<Souvenir #{_moduleId}> Question {q} has no answers. Specify either SouvenirQuestionAttribute.AllAnswers or SouvenirQuestionAttribute.ExampleAnswers (with preferredWrongAnswers in-game), or add an AnswerGeneratorAttribute to the question enum value.");
-                    if (attr.TranslateFormatArgs != null && attr.TranslateFormatArgs.Length != attr.ExampleExtraFormatArgumentGroupSize)
-                        Debug.LogError($"<Souvenir #{_moduleId}> Question {q}: The length of the ‘{nameof(attr.TranslateFormatArgs)}’ array must match ‘{nameof(attr.ExampleExtraFormatArgumentGroupSize)}’.");
+                    if (attr.TranslateFormatArgs != null && attr.TranslateFormatArgs.Length != attr.ExampleFormatArgumentGroupSize)
+                        Debug.LogError($"<Souvenir #{_moduleId}> Question {q}: The length of the ‘{nameof(attr.TranslateFormatArgs)}’ array must match ‘{nameof(attr.ExampleFormatArgumentGroupSize)}’.");
                 }
 
                 Debug.LogFormat(this, "<Souvenir #{0}> Entering Unity testing mode.", _moduleId);
@@ -372,16 +372,16 @@ public partial class SouvenirModule : MonoBehaviour
             Debug.LogError($"<Souvenir #{_moduleId}> Error: Question {q} has no attribute.");
             return;
         }
-        if (attr.ExampleExtraFormatArguments != null && attr.ExampleExtraFormatArguments.Length > 0 && attr.ExampleExtraFormatArgumentGroupSize > 0)
+        if (attr.ExampleFormatArguments != null && attr.ExampleFormatArguments.Length > 0 && attr.ExampleFormatArgumentGroupSize > 0)
         {
-            var numExamples = attr.ExampleExtraFormatArguments.Length / attr.ExampleExtraFormatArgumentGroupSize;
+            var numExamples = attr.ExampleFormatArguments.Length / attr.ExampleFormatArgumentGroupSize;
             _curExampleVariant = (_curExampleVariant % numExamples + numExamples) % numExamples;
         }
-        var fmt = new object[attr.ExampleExtraFormatArgumentGroupSize + 1];
+        var fmt = new object[attr.ExampleFormatArgumentGroupSize + 1];
         fmt[0] = formatModuleName(q, _curExampleOrdinal > 0, _curExampleOrdinal);
-        for (int i = 0; i < attr.ExampleExtraFormatArgumentGroupSize; i++)
+        for (int i = 0; i < attr.ExampleFormatArgumentGroupSize; i++)
         {
-            var arg = attr.ExampleExtraFormatArguments[_curExampleVariant * attr.ExampleExtraFormatArgumentGroupSize + i];
+            var arg = attr.ExampleFormatArguments[_curExampleVariant * attr.ExampleFormatArgumentGroupSize + i];
             fmt[i + 1] = arg == QandA.Ordinal ? ordinal(Rnd.Range(1, 6)) : translateFormatArg(q, arg);
         }
         QandA.QuestionBase question;

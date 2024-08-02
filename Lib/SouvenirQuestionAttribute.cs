@@ -11,8 +11,8 @@ namespace Souvenir
         public AnswerGeneratorAttribute AnswerGenerator { get; internal set; }
         public SpriteAnswerGeneratorAttribute SpriteAnswerGenerator { get; internal set; }
 
-        public string[] ExampleExtraFormatArguments { get; set; }
-        public int ExampleExtraFormatArgumentGroupSize { get; set; }
+        public string[] ExampleFormatArguments { get; set; }
+        public int ExampleFormatArgumentGroupSize { get; set; }
         public bool AddThe { get; set; }
         public bool TranslateAnswers { get; set; }
         public bool[] TranslateFormatArgs { get; set; }

@@ -142,8 +142,8 @@ namespace SouvenirPostBuildTool
                         var qText = (string) attr.QuestionText;
                         sb.AppendLine($"            // {qText}");
                         var exFormatArgs = new[] { ((string) attr.ModuleNameWithThe).Replace("\u00a0", " ") };
-                        if (attr.ExampleExtraFormatArguments != null)
-                            exFormatArgs = exFormatArgs.Concat(((string[]) attr.ExampleExtraFormatArguments).Take((int) attr.ExampleExtraFormatArgumentGroupSize).Select(str => str == "\ufffdordinal" ? "first" : str)).ToArray();
+                        if (attr.ExampleFormatArguments != null)
+                            exFormatArgs = exFormatArgs.Concat(((string[]) attr.ExampleFormatArguments).Take((int) attr.ExampleFormatArgumentGroupSize).Select(str => str == "\ufffdordinal" ? "first" : str)).ToArray();
                         string formatArgsComment = null;
                         try { formatArgsComment = string.Format(qText, exFormatArgs); }
                         catch { }
@@ -169,9 +169,10 @@ namespace SouvenirPostBuildTool
                             sb.AppendLine($@"                ModuleName = ""{((string) ti.ModuleName).CLiteralEscape()}"",");
                         if (ti?.ModuleNameWithThe != null)
                             sb.AppendLine($@"                ModuleNameWithThe = ""{((string) ti.ModuleNameWithThe).CLiteralEscape()}"",");
+
                         var trFAs = (bool[]) attr.TranslateFormatArgs;
-                        var formatArgs = attr.ExampleExtraFormatArguments == null || attr.ExampleExtraFormatArguments.Length == 0 || trFAs == null || trFAs.Length == 0 ? null :
-                            ((string[]) attr.ExampleExtraFormatArguments).Split((int) attr.ExampleExtraFormatArgumentGroupSize)
+                        var formatArgs = attr.ExampleFormatArguments == null || attr.ExampleFormatArguments.Length == 0 || trFAs == null || trFAs.Length == 0 ? null :
+                            ((string[]) attr.ExampleFormatArguments).Split((int) attr.ExampleFormatArgumentGroupSize)
                                 .SelectMany(chunk => Enumerable.Range(0, trFAs.Length).Where(ix => trFAs[ix]).Select(ix => chunk.Skip(ix).First()))
                                 .Distinct().ToArray();
                         if (formatArgs != null)
