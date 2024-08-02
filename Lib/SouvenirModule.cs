@@ -107,6 +107,7 @@ public partial class SouvenirModule : MonoBehaviour
     private bool _noUnignoredModulesLeft = false;
     private int _avoidQuestions = 0;   // While this is > 0, temporarily avoid asking questions; currently only used when Souvenir is hidden by a Mystery Module
     private bool _showWarning = false;
+    private List<string> _activeProcessors = new();
 
     [NonSerialized]
     public double SurfaceSizeFactor;
@@ -574,6 +575,10 @@ public partial class SouvenirModule : MonoBehaviour
         _isSolved = true;
         Module.HandlePass();
         WarningIcon.SetActive(_showWarning);
+        if (_activeProcessors.Count != 0)
+            Debug.LogWarning($"[Souvenir #{_moduleId}] When the module solved, {_activeProcessors.Count} modules were still being processed. This may be a bug. The processors: {_activeProcessors.JoinString(", ")}");
+        else
+            Debug.Log($"<Souvenir #{_moduleId}> When the module solved, no modules were still being processed.");
     }
 
     private void SetQuestion(QandA q)
@@ -719,6 +724,7 @@ public partial class SouvenirModule : MonoBehaviour
             // I’d much rather just put a ‘foreach’ loop inside a ‘try’ block, but Unity’s C# version doesn’t allow ‘yield return’ inside of ‘try’ blocks yet
             using (var e = processor(data))
             {
+                _activeProcessors.Add(module.ModuleDisplayName);
                 while (true)
                 {
                     bool canMoveNext;
@@ -752,6 +758,7 @@ public partial class SouvenirModule : MonoBehaviour
                         yield break;
                     }
                 }
+                _activeProcessors.Remove(module.ModuleDisplayName);
             }
 
             if (!_legitimatelyNoQuestions.Contains(module) && !_questions.Any(q => q.Module == module))
