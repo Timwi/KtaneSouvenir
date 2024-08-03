@@ -3220,21 +3220,29 @@ namespace Souvenir
             [Question.ForgetAnyColorCylinder] = new()
             {
                 QuestionText = "What were the cylinders during stage {1} in «{0}»?",
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["{0}, {1}, {2}"] = "{0}, {1}, {2}",
+                    ["Red"] = "Red",
+                    ["Orange"] = "Orange",
+                    ["Yellow"] = "Yellow",
+                    ["Green"] = "Green",
+                    ["Cyan"] = "Cyan",
+                    ["Blue"] = "Blue",
+                    ["Purple"] = "Purple",
+                    ["White"] = "White",
+                    ["L"] = "L",
+                    ["M"] = "M",
+                    ["R"] = "R",
+                    ["the Forget Any Color which used figure {0} in the {1} stage"] = "the Forget Any Color which used figure {0} in the {1} stage",
+                    ["the Forget Any Color whose cylinders in the {0} stage were {1}"] = "the Forget Any Color whose cylinders in the {0} stage were {1}",
+                },
             },
             // Which figure was used during the {1} stage of {0}?
             // Which figure was used during the first stage of Forget Any Color?
             [Question.ForgetAnyColorSequence] = new()
             {
                 QuestionText = "What figure was used during stage {1} in «{0}»?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["LLLMR"] = "LLLMR",
-                    ["LMMMR"] = "LMMMR",
-                    ["LMRRR"] = "LMRRR",
-                    ["LMMRR"] = "LMMRR",
-                    ["LLMRR"] = "LLMRR",
-                    ["LLMMR"] = "LLMMR",
-                },
             },
 
             // Forget Everything
@@ -3244,6 +3252,10 @@ namespace Souvenir
             {
                 QuestionText = "Какая была {1}-я отображённая цифра на первом этапе в «{0}»?",
                 ModuleName = "Полном забвении",
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["the Forget Everything whose {0} displayed digit in that stage was {1}"] = "the Forget Everything whose {0} displayed digit in that stage was {1}",
+                },
             },
 
             // Forget Me
@@ -3274,6 +3286,10 @@ namespace Souvenir
             {
                 QuestionText = "Какая цифра была отображена на {1}-м этапе в «{0}»?",
                 ModuleName = "Незабудке",
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["the Forget Me Not which displayed a {0} in the {1} stage"] = "the Forget Me Not which displayed a {0} in the {1} stage",
+                },
             },
 
             // Forget Me Now
@@ -3332,6 +3348,14 @@ namespace Souvenir
             [Question.ForgetTheColorsGearNumber] = new()
             {
                 QuestionText = "What number was on the gear during stage {1} in «{0}»?",
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["the Forget The Colors whose gear number was {0} in stage {1}"] = "the Forget The Colors whose gear number was {0} in stage {1}",
+                    ["the Forget The Colors which had {0} on its large display in stage {1}"] = "the Forget The Colors which had {0} on its large display in stage {1}",
+                    ["the Forget The Colors whose received sine number in stage {1} ended with a {0}"] = "the Forget The Colors whose received sine number in stage {1} ended with a {0}",
+                    ["the Forget The Colors whose gear color was {0} in stage {1}"] = "the Forget The Colors whose gear color was {0} in stage {1}",
+                    ["the Forget The Colors whose rule color was {0} in stage {1}"] = "the Forget The Colors whose rule color was {0} in stage {1}",
+                },
             },
             // What number was on the large display during stage {1} of {0}?
             // What number was on the large display during stage 0 of Forget The Colors?
@@ -3400,6 +3424,11 @@ namespace Souvenir
                     ["Black"] = "Black",
                     ["White"] = "White",
                     ["Green"] = "Green",
+                },
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["the Forget This whose LED was {0} in the {1} stage"] = "the Forget This whose LED was {0} in the {1} stage",
+                    ["the Forget This which displayed {0} in the {1} stage"] = "the Forget This which displayed {0} in the {1} stage",
                 },
             },
             // What was the digit displayed in the {1} stage of {0}?
@@ -7760,6 +7789,10 @@ namespace Souvenir
             [Question.SbemailSongsSongs] = new()
             {
                 QuestionText = "What was the displayed song for stage {1} (hexadecimal) of {0}?",
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["the Sbemail Songs which displayed ‘{0}’ in stage {1} (hexadecimal)"] = "the Sbemail Songs which displayed ‘{0}’ in stage {1} (hexadecimal)",
+                },
             },
 
             // Scavenger Hunt

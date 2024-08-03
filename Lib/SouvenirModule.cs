@@ -444,6 +444,7 @@ public partial class SouvenirModule : MonoBehaviour
     private string translateQuestion(Question question) => _translation?.Translations.Get(question)?.QuestionText ?? question.GetAttribute().QuestionText;
     private string translateFormatArg(Question question, string arg) => arg == null ? null : _translation?.Translations.Get(question)?.FormatArgs?.Get(arg, arg) ?? arg;
     private string translateAnswer(Question question, string answ) => answ == null ? null : _translation?.Translations.Get(question)?.Answers?.Get(answ, answ) ?? answ;
+    private string translateString(Question question, string str) => str == null ? null : _translation?.Translations.Get(question)?.TranslatableStrings?.Get(str, str) ?? str;
 
     void setAnswerHandler(int index, Action<int> handler)
     {
@@ -1082,7 +1083,7 @@ public partial class SouvenirModule : MonoBehaviour
         {
             if (preferredWrongAnswers == null || preferredWrongAnswers.Length == 0)
             {
-                Debug.LogError($"<Souvenir #{_moduleId}> Question {question} has no answers. You must specify either the full set of possible answers in SouvenirQuestionAttribute.AllAnswers, provide possible wrong answers through the preferredWrongAnswers parameter, or add an AnswerGeneratorAttribute to the question enum value.");
+                Debug.LogError($"<Souvenir #{_moduleId}> Question {question} has no answers. You must specify either the full set of possible answers in SouvenirQuestionAttribute.AllAnswers, provide answers through the preferredWrongAnswers or allAnswers parameters, or add an AnswerGeneratorAttribute to the question enum value.");
                 return null;
             }
             answers.AddRange(preferredWrongAnswers.Except(correctAnswers).Distinct());

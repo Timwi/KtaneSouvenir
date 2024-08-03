@@ -149,12 +149,11 @@ namespace SouvenirPostBuildTool
                         catch { }
                         if (formatArgsComment != null)
                             sb.AppendLine($"            // {formatArgsComment}");
-                        var answers = attr.AllAnswers == null || attr.AllAnswers.Length == 0 ? null : (string[]) attr.AllAnswers;
                         dynamic ti = already?.Contains(qId) == true ? already[qId] : null;
                         sb.AppendLine($@"            [Question.{qId}] = new()");
                         sb.AppendLine("            {");
 
-                        var skip = "QuestionText,ModuleName,ModuleNameWithThe,FormatArgs,Answers".Split(',');
+                        var skip = "QuestionText,ModuleName,ModuleNameWithThe,FormatArgs,Answers,TranslatableStrings".Split(',');
 
                         foreach (var f in tiFields)
                             if (!skip.Contains(f.Name) && f.GetValue(ti) is object v && !v.Equals(f.GetValue(translationInfoPrototype)))
@@ -183,12 +182,24 @@ namespace SouvenirPostBuildTool
                                 sb.AppendLine($@"                    [""{fa.CLiteralEscape()}""] = ""{(ti?.FormatArgs?.ContainsKey(fa) == true ? (string) ti.FormatArgs[fa] : fa).CLiteralEscape()}"",");
                             sb.AppendLine("                },");
                         }
+
+                        var answers = attr.AllAnswers == null || attr.AllAnswers.Length == 0 ? null : (string[]) attr.AllAnswers;
                         if (answers != null && attr.TranslateAnswers)
                         {
                             sb.AppendLine("                Answers = new Dictionary<string, string>");
                             sb.AppendLine("                {");
                             foreach (var answer in answers)
                                 sb.AppendLine($@"                    [""{answer.CLiteralEscape()}""] = ""{(ti?.Answers?.ContainsKey(answer) == true ? (string) ti.Answers[answer] : answer).CLiteralEscape()}"",");
+                            sb.AppendLine("                },");
+                        }
+
+                        var translatableStrings = attr.TranslatableStrings == null || attr.TranslatableStrings.Length == 0 ? null : (string[]) attr.TranslatableStrings;
+                        if (translatableStrings != null)
+                        {
+                            sb.AppendLine("                TranslatableStrings = new Dictionary<string, string>");
+                            sb.AppendLine("                {");
+                            foreach (var trStr in translatableStrings)
+                                sb.AppendLine($@"                    [""{trStr.CLiteralEscape()}""] = ""{(ti?.TranslatableStrings?.ContainsKey(trStr) == true ? (string) ti.TranslatableStrings[trStr] : trStr).CLiteralEscape()}"",");
                             sb.AppendLine("                },");
                         }
                         sb.AppendLine("            },");

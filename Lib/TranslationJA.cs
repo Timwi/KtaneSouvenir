@@ -3328,6 +3328,23 @@ namespace Souvenir
             {
                 QuestionText = "{0}のステージ{1}におけるシリンダーは？",
                 ModuleName = "全色忘る",
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["{0}, {1}, {2}"] = "{0}, {1}, {2}",
+                    ["Red"] = "Red",
+                    ["Orange"] = "Orange",
+                    ["Yellow"] = "Yellow",
+                    ["Green"] = "Green",
+                    ["Cyan"] = "Cyan",
+                    ["Blue"] = "Blue",
+                    ["Purple"] = "Purple",
+                    ["White"] = "White",
+                    ["L"] = "左",
+                    ["M"] = "中",
+                    ["R"] = "右",
+                    ["the Forget Any Color which used figure {0} in the {1} stage"] = "the Forget Any Color which used figure {0} in the {1} stage",
+                    ["the Forget Any Color whose cylinders in the {0} stage were {1}"] = "the Forget Any Color whose cylinders in the {0} stage were {1}",
+                },
             },
             // Which figure was used during the {1} stage of {0}?
             // Which figure was used during the first stage of Forget Any Color?
@@ -3335,15 +3352,6 @@ namespace Souvenir
             {
                 QuestionText = "{0}のステージ{1}で使用した表は？",
                 ModuleName = "全色忘る",
-                Answers = new Dictionary<string, string>
-                {
-                    ["LLLMR"] = "左左左中右",
-                    ["LMMMR"] = "左中中中右",
-                    ["LMRRR"] = "左中右右右",
-                    ["LMMRR"] = "左中中右右",
-                    ["LLMRR"] = "左左中右右",
-                    ["LLMMR"] = "左左中中右",
-                },
             },
 
             // Forget Everything
@@ -3353,6 +3361,10 @@ namespace Souvenir
             {
                 QuestionText = "{0}の最初のステージにあった数字の{1}桁目は？",
                 ModuleName = "須く忘る",
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["the Forget Everything whose {0} displayed digit in that stage was {1}"] = "the Forget Everything whose {0} displayed digit in that stage was {1}",
+                },
             },
 
             // Forget Me
@@ -3383,6 +3395,10 @@ namespace Souvenir
             {
                 QuestionText = "{0}のステージ{1}で表示されていた数字は？",
                 ModuleName = "我忘る勿かれ",
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["the Forget Me Not which displayed a {0} in the {1} stage"] = "the Forget Me Not which displayed a {0} in the {1} stage",
+                },
             },
 
             // Forget Me Now
@@ -3442,6 +3458,14 @@ namespace Souvenir
             {
                 QuestionText = "{0}のステージ{1}におけるギアの数字は？",
                 ModuleName = "色忘る",
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["the Forget The Colors whose gear number was {0} in stage {1}"] = "the Forget The Colors whose gear number was {0} in stage {1}",
+                    ["the Forget The Colors which had {0} on its large display in stage {1}"] = "the Forget The Colors which had {0} on its large display in stage {1}",
+                    ["the Forget The Colors whose received sine number in stage {1} ended with a {0}"] = "the Forget The Colors whose received sine number in stage {1} ended with a {0}",
+                    ["the Forget The Colors whose gear color was {0} in stage {1}"] = "the Forget The Colors whose gear color was {0} in stage {1}",
+                    ["the Forget The Colors whose rule color was {0} in stage {1}"] = "the Forget The Colors whose rule color was {0} in stage {1}",
+                },
             },
             // What number was on the large display during stage {1} of {0}?
             // What number was on the large display during stage 0 of Forget The Colors?
@@ -3515,6 +3539,11 @@ namespace Souvenir
                     ["Black"] = "黒",
                     ["White"] = "白",
                     ["Green"] = "緑",
+                },
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["the Forget This whose LED was {0} in the {1} stage"] = "the Forget This whose LED was {0} in the {1} stage",
+                    ["the Forget This which displayed {0} in the {1} stage"] = "the Forget This which displayed {0} in the {1} stage",
                 },
             },
             // What was the digit displayed in the {1} stage of {0}?
@@ -7991,6 +8020,10 @@ namespace Souvenir
             [Question.SbemailSongsSongs] = new()
             {
                 QuestionText = "{0}のステージ{1}(十六進数)で再生された音は？",
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["the Sbemail Songs which displayed ‘{0}’ in stage {1} (hexadecimal)"] = "the Sbemail Songs which displayed ‘{0}’ in stage {1} (hexadecimal)",
+                },
             },
 
             // Scavenger Hunt

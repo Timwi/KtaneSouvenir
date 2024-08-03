@@ -410,13 +410,16 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         _modulesSolved.IncSafe(moduleId + "❖presolve");
 
-        var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "White" };
-        var figureNames = new[] { "LLLMR", "LMMMR", "LMRRR", "LMMRR", "LLMRR", "LLMMR" };
+        var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "White" }
+            .Select(str => translateString(Question.ForgetAnyColorCylinder, str)).ToArray();
+        var figureNames = new[] { "LLLMR", "LMMMR", "LMRRR", "LMMRR", "LLMRR", "LLMMR" }
+            .Select(str => str.Select(ch => translateString(Question.ForgetAnyColorCylinder, ch.ToString())).JoinString()).ToArray();
 
-        string getCylinders(Array cylinders, int stage) => Enumerable.Range(0, 3).Select(ix => colorNames[(int) cylinders.GetValue(stage, ix)]).JoinString(", ");
+        string getCylinders(Array cylinders, int stage) => string.Format(translateString(Question.ForgetAnyColorCylinder, "{0}, {1}, {2}"),
+            Enumerable.Range(0, 3).Select(ix => colorNames[(int) cylinders.GetValue(stage, ix)]).ToArray());
 
         var randomStage = Rnd.Range(0, fldCurrentStage.Get(min: 0, max: maxStage));
-        var formattedName = "Forget Any Color";
+        string formattedName = null;
         if (_moduleCounts[moduleId] > 1)
         {
             for (int stage = 0; stage < maxStage; stage++)
@@ -424,14 +427,24 @@ public partial class SouvenirModule
                 if (stage == randomStage)
                     continue;
                 var cylindersThisStage = getCylinders(myCylinders, stage);
+                var formatCandidates = new List<string>();
                 if (_facFigures.Count(f => f[stage] == myFigures[stage]) == 1)
-                    formattedName = $"the Forget Any Color which used figure {figureNames[myFigures[stage]]} in the {ordinal(stage + 1)} stage";
+                    formatCandidates.Add(string.Format(
+                        translateString(Question.ForgetAnyColorCylinder, "the Forget Any Color which used figure {0} in the {1} stage"),
+                        figureNames[myFigures[stage]],
+                        ordinal(stage + 1)));
                 if (_facCylinders.Count(c => getCylinders(c, stage) == cylindersThisStage) == 1)
-                    formattedName = $"the Forget Any Color whose cylinders in the {ordinal(stage + 1)} stage were {cylindersThisStage}";
-                if (formattedName != "Forget Any Color")
+                    formatCandidates.Add(string.Format(
+                        translateString(Question.ForgetAnyColorCylinder, "the Forget Any Color whose cylinders in the {0} stage were {1}"),
+                        ordinal(stage + 1),
+                        cylindersThisStage));
+                if (formatCandidates.Count > 0)
+                {
+                    formattedName = formatCandidates.PickRandom();
                     break;
+                }
             }
-            if (formattedName == "Forget Any Color")
+            if (formattedName == null)
             {
                 Debug.Log($"[Souvenir #{_moduleId}] No question for Forget Any Color because there were not enough stages where this one (#{GetIntField(init, "moduleId").Get()}) was unique.");
                 _legitimatelyNoQuestions.Add(module.Module);
@@ -439,16 +452,18 @@ public partial class SouvenirModule
             }
         }
 
+        formattedName ??= _translation?.Translations[Question.ForgetAnyColorCylinder].ModuleName ?? "Forget Any Color";
         var correctCylinders = getCylinders(myCylinders, randomStage);
         var preferredCylinders = new HashSet<string> { correctCylinders };
         while (preferredCylinders.Count < 6)
-            preferredCylinders.Add(Enumerable.Range(0, 3).Select(i => colorNames.PickRandom()).JoinString(", "));
+            preferredCylinders.Add(string.Format(translateString(Question.ForgetAnyColorCylinder, "{0}, {1}, {2}"),
+                Enumerable.Range(0, 3).Select(i => colorNames.PickRandom()).ToArray()));
 
         addQuestions(module,
             makeQuestion(Question.ForgetAnyColorCylinder, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { ordinal(randomStage + 1) },
                 correctAnswers: new[] { correctCylinders }, preferredWrongAnswers: preferredCylinders.ToArray()),
             makeQuestion(Question.ForgetAnyColorSequence, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { ordinal(randomStage + 1) },
-                correctAnswers: new[] { figureNames[myFigures[randomStage]] }));
+                correctAnswers: new[] { figureNames[myFigures[randomStage]] }, allAnswers: figureNames));
     }
 
     private List<int[]> _feFirstDisplays = new();
@@ -515,7 +530,8 @@ public partial class SouvenirModule
                 {
                     var reference = uniquePositions.First(p => p != pos);
                     qs.Add(makeQuestion(Question.ForgetEverythingStageOneDisplay, moduleId, 0,
-                        formattedModuleName: $"the Forget Everything whose {ordinal(reference + 1)} displayed digit in this stage was {myFirstDisplay[reference]}", formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { myFirstDisplay[pos].ToString() }));
+                        formattedModuleName: string.Format(translateString(Question.ForgetEverythingStageOneDisplay, "the Forget Everything whose {0} displayed digit in that stage was {1}"), ordinal(reference + 1), myFirstDisplay[reference]),
+                        formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { myFirstDisplay[pos].ToString() }));
                 }
             }
             addQuestions(module, qs);
@@ -589,7 +605,9 @@ public partial class SouvenirModule
                     if (uniqueStage != 0)
                     {
                         Debug.Log(uniqueStage);
-                        qs.Add(makeQuestion(Question.ForgetMeNotDisplayedDigits, moduleId, 0, formattedModuleName: $"the Forget Me Not which displayed a {myDisplay[uniqueStage - 1]} in the {ordinal(uniqueStage)} stage", formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { myDisplay[stage].ToString() }));
+                        qs.Add(makeQuestion(Question.ForgetMeNotDisplayedDigits, moduleId, 0,
+                            formattedModuleName: string.Format(translateString(Question.ForgetMeNotDisplayedDigits, "the Forget Me Not which displayed a {0} in the {1} stage"), myDisplay[uniqueStage - 1], ordinal(uniqueStage)),
+                            formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { myDisplay[stage].ToString() }));
                     }
                 }
                 addQuestions(module, qs);
@@ -634,11 +652,11 @@ public partial class SouvenirModule
         addQuestions(module, questions);
     }
 
-    private List<List<byte>> _ftcGearNumbers = new();
-    private List<List<short>> _ftcLargeDisplays = new();
-    private List<List<int>> _ftcSineNumbers = new();
-    private List<List<string>> _ftcGearColors = new();
-    private List<List<string>> _ftcRuleColors = new();
+    private readonly List<List<byte>> _ftcGearNumbers = new();
+    private readonly List<List<short>> _ftcLargeDisplays = new();
+    private readonly List<List<int>> _ftcSineNumbers = new();
+    private readonly List<List<string>> _ftcGearColors = new();
+    private readonly List<List<string>> _ftcRuleColors = new();
     private IEnumerator<YieldInstruction> ProcessForgetTheColors(ModuleData module)
     {
         var comp = GetComponent(module, "FTCScript");
@@ -695,7 +713,7 @@ public partial class SouvenirModule
         }
 
         var chosenStage = Rnd.Range(0, myGearNumbers.Count);
-        var formattedName = "Forget The Colors";
+        string formattedName = null;
 
         if (_moduleCounts[moduleId] > 1)
         {
@@ -703,26 +721,31 @@ public partial class SouvenirModule
             {
                 if (ix == chosenStage)
                     continue;
+                var formatCandidates = new List<string>();
                 if (_ftcGearNumbers.Count(l => l[ix] == myGearNumbers[ix]) == 1)
-                    formattedName = $"the Forget The Colors whose gear number was {myGearNumbers[ix]} in stage {ix}";
+                    formatCandidates.Add(string.Format(translateString(Question.ForgetTheColorsGearNumber, "the Forget The Colors whose gear number was {0} in stage {1}"), myGearNumbers[ix], ix));
                 if (_ftcLargeDisplays.Count(l => l[ix] == myLargeDisplays[ix]) == 1)
-                    formattedName = $"the Forget The Colors which had {myLargeDisplays[ix]} on its large display in stage {ix}";
+                    formatCandidates.Add(string.Format(translateString(Question.ForgetTheColorsGearNumber, "the Forget The Colors which had {0} on its large display in stage {1}"), myLargeDisplays[ix], ix));
                 if (_ftcSineNumbers.Count(l => l[ix] == mySineNumbers[ix]) == 1)
-                    formattedName = $"the Forget The Colors whose received sine number in stage {ix} ended with a {Mathf.Abs(mySineNumbers[ix]) % 10}";
+                    formatCandidates.Add(string.Format(translateString(Question.ForgetTheColorsGearNumber, "the Forget The Colors whose received sine number in stage {1} ended with a {0}"), Mathf.Abs(mySineNumbers[ix]) % 10, ix));
                 if (_ftcGearColors.Count(l => l[ix] == myGearColors[ix]) == 1)
-                    formattedName = $"the Forget The Colors whose gear color was {myGearColors[ix]} in stage {ix}";
+                    formatCandidates.Add(string.Format(translateString(Question.ForgetTheColorsGearNumber, "the Forget The Colors whose gear color was {0} in stage {1}"), translateAnswer(Question.ForgetTheColorsGearColor, myGearColors[ix]), ix));
                 if (_ftcRuleColors.Count(l => l[ix] == myRuleColors[ix]) == 1)
-                    formattedName = $"the Forget The Colors whose rule color was {myRuleColors[ix]} in stage {ix}";
-                if (formattedName != "Forget The Colors")
+                    formatCandidates.Add(string.Format(translateString(Question.ForgetTheColorsGearNumber, "the Forget The Colors whose rule color was {0} in stage {1}"), translateAnswer(Question.ForgetTheColorsRuleColor, myRuleColors[ix]), ix));
+                if (formatCandidates.Count > 0)
+                {
+                    formattedName = formatCandidates.PickRandom();
                     break;
+                }
             }
-            if (formattedName == "Forget The Colors")
+            if (formattedName == null)
             {
                 Debug.Log($"[Souvenir #{_moduleId}] No question for Forget The Colors because there are not enough stages at which this one (#{GetIntField(comp, "_moduleId").Get()}) is unique.");
                 _legitimatelyNoQuestions.Add(module.Module);
                 yield break;
             }
         }
+        formattedName ??= _translation?.Translations[Question.ForgetTheColorsGearNumber].ModuleName ?? "Forget The Colors";
 
         var stage = chosenStage.ToString();
         addQuestions(module,
@@ -770,27 +793,32 @@ public partial class SouvenirModule
         var base36 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         var chosenStage = Rnd.Range(0, displayedStagesCount);
 
-        var formattedName = "Forget This";
+        string formattedName = null;
         if (_moduleCounts[moduleId] > 1)
         {
-            for (int stage = 0; stage < displayedStagesCount; stage++)
+            for (var stage = 0; stage < displayedStagesCount; stage++)
             {
                 if (stage == chosenStage)
                     continue;
+                var formatCandidates = new List<string>();
                 if (_ftColors.Count(c => c[stage] == myColors[stage]) == 1)
-                    formattedName = $"the Forget This whose LED was {allColors[myColors[stage]]} in stage {stage + 1}";
+                    formatCandidates.Add(string.Format(translateString(Question.ForgetThisColors, "the Forget This whose LED was {0} in the {1} stage"), translateAnswer(Question.ForgetThisColors, allColors[myColors[stage]]), ordinal(stage + 1)));
                 if (_ftDigits.Count(d => d[stage] == myDigits[stage]) == 1)
-                    formattedName = $"the Forget This which displayed a {base36[myDigits[stage]]} in stage {stage + 1}";
-                if (formattedName != "Forget This")
+                    formatCandidates.Add(string.Format(translateString(Question.ForgetThisColors, "the Forget This which displayed {0} in the {1} stage"), base36[myDigits[stage]], ordinal(stage + 1)));
+                if (formatCandidates.Count > 0)
+                {
+                    formattedName = formatCandidates.PickRandom();
                     break;
+                }
             }
-            if (formattedName == "Forget This")
+            if (formattedName == null)
             {
                 Debug.Log($"[Souvenir #{_moduleId}] No question for Forget This because there were not enough stages in which this one (#{GetIntField(comp, "_moduleId").Get()}) was unique.");
                 _legitimatelyNoQuestions.Add(module.Module);
                 yield break;
             }
         }
+        formattedName ??= _translation?.Translations[Question.ForgetThisColors].ModuleName ?? "Forget This";
         addQuestions(module,
             makeQuestion(Question.ForgetThisColors, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { ordinal(chosenStage + 1) }, correctAnswers: new[] { allColors[myColors[chosenStage]] }),
             makeQuestion(Question.ForgetThisDigits, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { ordinal(chosenStage + 1) }, correctAnswers: new[] { base36[myDigits[chosenStage]].ToString() }));

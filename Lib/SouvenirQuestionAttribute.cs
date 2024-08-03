@@ -16,6 +16,7 @@ namespace Souvenir
         public bool AddThe { get; set; }
         public bool TranslateAnswers { get; set; }
         public bool[] TranslateFormatArgs { get; set; }
+        public string[] TranslatableStrings { get; set; }
         public bool UsesQuestionSprite { get; set; }
         public string[] ExampleAnswers { get; set; }
         public AnswerType Type { get; set; }

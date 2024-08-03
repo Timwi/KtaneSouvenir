@@ -196,10 +196,10 @@ namespace Souvenir
                 QuestionText = "Was war beim {1}en Schritt von {0} die LED-Farbe?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["blue"] = "blue",
-                    ["green"] = "green",
-                    ["white"] = "white",
+                    ["red"] = "rot",
+                    ["blue"] = "blau",
+                    ["green"] = "grün",
+                    ["white"] = "weiß",
                 },
             },
 
@@ -428,19 +428,28 @@ namespace Souvenir
             // What was the maximum weapon damage of the attack phase in The Arena?
             [Question.ArenaDamage] = new()
             {
-                QuestionText = "What was the maximum weapon damage of the attack phase in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Was war bei {0} in der Angriffsphase der maximale Waffenschaden?",
+                ModuleName = "Arena",
+                ModuleNameWithThe = "Die Arena",
             },
             // Which enemy was present in the defend phase of {0}?
             // Which enemy was present in the defend phase of The Arena?
             [Question.ArenaEnemies] = new()
             {
-                QuestionText = "Which enemy was present in the defend phase of {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welcher Gegner war bei {0} in der Verteidigungsphase anwesend?",
+                ModuleName = "Arena",
+                ModuleNameWithThe = "Die Arena",
             },
             // Which was a number present in the grab phase of {0}?
             // Which was a number present in the grab phase of The Arena?
             [Question.ArenaNumbers] = new()
             {
-                QuestionText = "Which was a number present in the grab phase of {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welche Zahl war bei {0} in der Sammelphase dabei?",
+                ModuleName = "Arena",
+                ModuleNameWithThe = "Die Arena",
             },
 
             // Arithmelogic
@@ -956,9 +965,9 @@ namespace Souvenir
                 QuestionText = "Welche Farbe hat die LED bei {0} am wenigsten gezeigt?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Purple"] = "Purple",
-                    ["Cyan"] = "Cyan",
-                    ["Yellow"] = "Yellow",
+                    ["Purple"] = "Lila",
+                    ["Cyan"] = "Türkis",
+                    ["Yellow"] = "Gelb",
                     ["Multicolor"] = "Multicolor",
                 },
             },
@@ -1030,12 +1039,12 @@ namespace Souvenir
                 ModuleNameWithThe = "Der Blaue Knopf",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
-                    ["Cyan"] = "Cyan",
-                    ["Red"] = "Red",
+                    ["Blue"] = "Blau",
+                    ["Green"] = "Grün",
+                    ["Cyan"] = "Türkis",
+                    ["Red"] = "Rot",
                     ["Magenta"] = "Magenta",
-                    ["Yellow"] = "Yellow",
+                    ["Yellow"] = "Gelb",
                 },
             },
             // What was X in {0}?
@@ -1200,7 +1209,7 @@ namespace Souvenir
                     ["Orange"] = "Orange",
                     ["Pink"] = "Pink",
                     ["Beige"] = "Beige",
-                    ["Cyan"] = "Cyan",
+                    ["Cyan"] = "Türkis",
                     ["Lime"] = "Lime",
                     ["Petrol"] = "Petrol",
                 },
@@ -1250,20 +1259,20 @@ namespace Souvenir
                 QuestionText = "What was the color of the middle contact point in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Yellow",
+                    ["Yellow"] = "Gelb",
                     ["Lime"] = "Lime",
-                    ["Green"] = "Green",
-                    ["Cyan"] = "Cyan",
+                    ["Green"] = "Grün",
+                    ["Cyan"] = "Türkis",
                     ["Sky"] = "Sky",
-                    ["Blue"] = "Blue",
-                    ["Purple"] = "Purple",
+                    ["Blue"] = "Blau",
+                    ["Purple"] = "Lila",
                     ["Magenta"] = "Magenta",
                     ["Brown"] = "Brown",
-                    ["White"] = "White",
-                    ["Gray"] = "Gray",
-                    ["Black"] = "Black",
+                    ["White"] = "Weiß",
+                    ["Gray"] = "Grau",
+                    ["Black"] = "Schwarz",
                     ["Pink"] = "Pink",
                 },
             },
@@ -1306,10 +1315,10 @@ namespace Souvenir
                 QuestionText = "What color did the light glow in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["blue"] = "blue",
-                    ["yellow"] = "yellow",
-                    ["white"] = "white",
+                    ["red"] = "rot",
+                    ["blue"] = "blau",
+                    ["yellow"] = "gelb",
+                    ["white"] = "weiß",
                 },
             },
 
@@ -1321,10 +1330,10 @@ namespace Souvenir
                 QuestionText = "How many of the buttons in {0} were {1}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["blue"] = "blue",
-                    ["yellow"] = "yellow",
-                    ["white"] = "white",
+                    ["red"] = "rot",
+                    ["blue"] = "blau",
+                    ["yellow"] = "gelb",
+                    ["white"] = "weiß",
                 },
             },
 
@@ -1363,10 +1372,10 @@ namespace Souvenir
                 QuestionText = "What was the LED color in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Green"] = "Green",
-                    ["Yellow"] = "Yellow",
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
+                    ["Green"] = "Grün",
+                    ["Yellow"] = "Gelb",
+                    ["Red"] = "Rot",
+                    ["Blue"] = "Blau",
                 },
             },
 
@@ -1385,10 +1394,10 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
+                    ["Red"] = "Rot",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
                 },
             },
             // What lyric was played by the {1} button in {0}?
@@ -1420,12 +1429,12 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
                     ["Orange"] = "Orange",
-                    ["Purple"] = "Purple",
-                    ["Yellow"] = "Yellow",
+                    ["Purple"] = "Lila",
+                    ["Yellow"] = "Gelb",
                 },
             },
 
@@ -1544,9 +1553,9 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["White"] = "White",
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
+                    ["White"] = "Weiß",
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
                     ["Orange"] = "Orange",
                 },
             },
@@ -1605,9 +1614,9 @@ namespace Souvenir
                 QuestionText = "What was {1}'s number in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
                 },
             },
 
@@ -1638,9 +1647,9 @@ namespace Souvenir
                 QuestionText = "What was the {1} word in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
                 },
             },
 
@@ -1670,11 +1679,11 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Green"] = "Green",
-                    ["Purple"] = "Purple",
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
-                    ["Yellow"] = "Yellow",
+                    ["Green"] = "Grün",
+                    ["Purple"] = "Lila",
+                    ["Red"] = "Rot",
+                    ["Blue"] = "Blau",
+                    ["Yellow"] = "Gelb",
                 },
             },
 
@@ -1686,12 +1695,12 @@ namespace Souvenir
                 QuestionText = "What was the displayed word in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["blue"] = "blue",
-                    ["green"] = "green",
-                    ["yellow"] = "yellow",
-                    ["purple"] = "purple",
-                    ["white"] = "white",
+                    ["red"] = "rot",
+                    ["blue"] = "blau",
+                    ["green"] = "grün",
+                    ["yellow"] = "gelb",
+                    ["purple"] = "lila",
+                    ["white"] = "weiß",
                 },
             },
             // What was the displayed word’s color in {0}?
@@ -1701,12 +1710,12 @@ namespace Souvenir
                 QuestionText = "What was the displayed word’s color in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["blue"] = "blue",
-                    ["green"] = "green",
-                    ["yellow"] = "yellow",
-                    ["purple"] = "purple",
-                    ["white"] = "white",
+                    ["red"] = "rot",
+                    ["blue"] = "blau",
+                    ["green"] = "grün",
+                    ["yellow"] = "gelb",
+                    ["purple"] = "lila",
+                    ["white"] = "weiß",
                 },
             },
             // What was the color of the {1} key in {0}?
@@ -1723,12 +1732,12 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["blue"] = "blue",
-                    ["green"] = "green",
-                    ["yellow"] = "yellow",
-                    ["purple"] = "purple",
-                    ["white"] = "white",
+                    ["red"] = "rot",
+                    ["blue"] = "blau",
+                    ["green"] = "grün",
+                    ["yellow"] = "gelb",
+                    ["purple"] = "lila",
+                    ["white"] = "weiß",
                 },
             },
             // What letter was on the {1} key in {0}?
@@ -1753,11 +1762,11 @@ namespace Souvenir
                 QuestionText = "What was the first color group in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["White"] = "White",
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
-                    ["Yellow"] = "Yellow",
+                    ["White"] = "Weiß",
+                    ["Red"] = "Rot",
+                    ["Blue"] = "Blau",
+                    ["Green"] = "Grün",
+                    ["Yellow"] = "Gelb",
                     ["Magenta"] = "Magenta",
                 },
             },
@@ -1784,13 +1793,13 @@ namespace Souvenir
                 QuestionText = "What was the color of the {1} LED in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
+                    ["Blue"] = "Blau",
+                    ["Green"] = "Grün",
                     ["Orange"] = "Orange",
-                    ["Purple"] = "Purple",
-                    ["Red"] = "Red",
-                    ["Yellow"] = "Yellow",
-                    ["White"] = "White",
+                    ["Purple"] = "Lila",
+                    ["Red"] = "Rot",
+                    ["Yellow"] = "Gelb",
+                    ["White"] = "Weiß",
                 },
             },
             // What character was flashed by the {1} LED in {0}?
@@ -1819,12 +1828,12 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
+                    ["Blue"] = "Blau",
+                    ["Green"] = "Grün",
                     ["Magenta"] = "Magenta",
-                    ["Red"] = "Red",
-                    ["White"] = "White",
-                    ["Yellow"] = "Yellow",
+                    ["Red"] = "Rot",
+                    ["White"] = "Weiß",
+                    ["Yellow"] = "Gelb",
                 },
             },
             // How many buttons were {1} in {0}?
@@ -1834,9 +1843,9 @@ namespace Souvenir
                 QuestionText = "How many buttons were {1} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
                 },
             },
 
@@ -1853,16 +1862,16 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Black"] = "Black",
+                    ["Black"] = "Schwarz",
                     ["Indigo"] = "Indigo",
-                    ["Blue"] = "Blue",
+                    ["Blue"] = "Blau",
                     ["Forest"] = "Forest",
                     ["Teal"] = "Teal",
                     ["Azure"] = "Azure",
-                    ["Green"] = "Green",
+                    ["Green"] = "Grün",
                     ["Jade"] = "Jade",
-                    ["Cyan"] = "Cyan",
-                    ["Maroon"] = "Maroon",
+                    ["Cyan"] = "Türkis",
+                    ["Maroon"] = "Kastanie",
                     ["Plum"] = "Plum",
                     ["Violet"] = "Violet",
                     ["Olive"] = "Olive",
@@ -1871,15 +1880,15 @@ namespace Souvenir
                     ["Lime"] = "Lime",
                     ["Mint"] = "Mint",
                     ["Aqua"] = "Aqua",
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                     ["Rose"] = "Rose",
                     ["Magenta"] = "Magenta",
                     ["Orange"] = "Orange",
                     ["Salmon"] = "Salmon",
                     ["Pink"] = "Pink",
-                    ["Yellow"] = "Yellow",
+                    ["Yellow"] = "Gelb",
                     ["Cream"] = "Cream",
-                    ["White"] = "White",
+                    ["White"] = "Weiß",
                 },
             },
 
@@ -1891,12 +1900,12 @@ namespace Souvenir
                 QuestionText = "What was the color of the last word in the sequence in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
+                    ["Red"] = "Rot",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
                     ["Magenta"] = "Magenta",
-                    ["White"] = "White",
+                    ["White"] = "Weiß",
                 },
             },
 
@@ -1965,10 +1974,10 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
-                    ["yellow"] = "yellow",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
+                    ["yellow"] = "gelb",
                 },
             },
             // How many corners in {0} were {1}?
@@ -1978,10 +1987,10 @@ namespace Souvenir
                 QuestionText = "How many corners in {0} were {1}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
-                    ["yellow"] = "yellow",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
+                    ["yellow"] = "gelb",
                 },
             },
 
@@ -2081,10 +2090,10 @@ namespace Souvenir
                 QuestionText = "What was the alteration color used in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Yellow"] = "Yellow",
+                    ["Yellow"] = "Gelb",
                     ["Pink"] = "Pink",
-                    ["Blue"] = "Blue",
-                    ["White"] = "White",
+                    ["Blue"] = "Blau",
+                    ["White"] = "Weiß",
                 },
             },
 
@@ -2110,12 +2119,12 @@ namespace Souvenir
                 QuestionText = "What was the color of the bar in the {1} stage of {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
+                    ["Red"] = "Rot",
+                    ["Blue"] = "Blau",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
                     ["Magenta"] = "Magenta",
-                    ["White"] = "White",
+                    ["White"] = "Weiß",
                 },
             },
 
@@ -2336,11 +2345,11 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["White"] = "White",
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
-                    ["Yellow"] = "Yellow",
+                    ["White"] = "Weiß",
+                    ["Red"] = "Rot",
+                    ["Blue"] = "Blau",
+                    ["Green"] = "Grün",
+                    ["Yellow"] = "Gelb",
                     ["Magenta"] = "Magenta",
                 },
             },
@@ -2358,12 +2367,12 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
-                    ["Red"] = "Red",
+                    ["Blue"] = "Blau",
+                    ["Green"] = "Grün",
+                    ["Red"] = "Rot",
                     ["Magenta"] = "Magenta",
-                    ["Yellow"] = "Yellow",
-                    ["White"] = "White",
+                    ["Yellow"] = "Gelb",
+                    ["White"] = "Weiß",
                 },
             },
 
@@ -2529,11 +2538,11 @@ namespace Souvenir
                 QuestionText = "What was the screen color on the {1} stage of {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Red"] = "Red",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Red"] = "Rot",
                     ["Pink"] = "Pink",
-                    ["Yellow"] = "Yellow",
+                    ["Yellow"] = "Gelb",
                 },
             },
 
@@ -2593,10 +2602,10 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
+                    ["Red"] = "Rot",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
                 },
             },
 
@@ -2646,11 +2655,11 @@ namespace Souvenir
                 QuestionText = "What was the color of the curtain in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["blue"] = "blue",
-                    ["yellow"] = "yellow",
-                    ["green"] = "green",
+                    ["blue"] = "blau",
+                    ["yellow"] = "gelb",
+                    ["green"] = "grün",
                     ["orange"] = "orange",
-                    ["red"] = "red",
+                    ["red"] = "rot",
                 },
             },
 
@@ -3008,9 +3017,9 @@ namespace Souvenir
                 QuestionText = "Where was the {1} key in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
                 },
             },
             // Which maze number was the {1} maze in {0}?
@@ -3020,9 +3029,9 @@ namespace Souvenir
                 QuestionText = "Which maze number was the {1} maze in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
                 },
             },
 
@@ -3107,13 +3116,13 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Purple"] = "Purple",
-                    ["White"] = "White",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Purple"] = "Lila",
+                    ["White"] = "Weiß",
                 },
             },
 
@@ -3126,10 +3135,10 @@ namespace Souvenir
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "top",
-                    ["cyan"] = "cyan",
-                    ["green"] = "green",
-                    ["red"] = "red",
-                    ["purple"] = "purple",
+                    ["cyan"] = "türkis",
+                    ["green"] = "grün",
+                    ["red"] = "rot",
+                    ["purple"] = "lila",
                     ["orange"] = "orange",
                     ["bottom"] = "bottom",
                 },
@@ -3193,22 +3202,32 @@ namespace Souvenir
             // What colors were the cylinders during the first stage of Forget Any Color?
             [Question.ForgetAnyColorCylinder] = new()
             {
-                QuestionText = "What were the cylinders during stage {1} in {0}?",
+                QuestionText = "Was waren bei {0} die Zylinderfarben in der {1}en Stufe?",
+                ModuleName = "Vergiss Jede Farbe",
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["{0}, {1}, {2}"] = "{0}, {1}, {2}",
+                    ["Red"] = "Rot",
+                    ["Orange"] = "Orange",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Cyan"] = "Türkis",
+                    ["Blue"] = "Blau",
+                    ["Purple"] = "Lila",
+                    ["White"] = "Weiß",
+                    ["L"] = "L",
+                    ["M"] = "M",
+                    ["R"] = "R",
+                    ["the Forget Any Color which used figure {0} in the {1} stage"] = "dem Vergiss Jede Farbe, in dessen {1}er Stufe die Figur {0} verwendet wurde,",
+                    ["the Forget Any Color whose cylinders in the {0} stage were {1}"] = "dem Vergiss Jede Farbe, in dessen {0}er Stufe die Zylinderfarben {1} waren,",
+                },
             },
             // Which figure was used during the {1} stage of {0}?
             // Which figure was used during the first stage of Forget Any Color?
             [Question.ForgetAnyColorSequence] = new()
             {
-                QuestionText = "What figure was used during stage {1} in {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["LLLMR"] = "LLLMR",
-                    ["LMMMR"] = "LMMMR",
-                    ["LMRRR"] = "LMRRR",
-                    ["LMMRR"] = "LMMRR",
-                    ["LLMRR"] = "LLMRR",
-                    ["LLMMR"] = "LLMMR",
-                },
+                QuestionText = "Welche Figur kam bei {0} in der {1}en Stufe vor?",
+                ModuleName = "Vergiss Jede Farbe",
             },
 
             // Forget Everything
@@ -3216,7 +3235,12 @@ namespace Souvenir
             // What was the first displayed digit in the first stage of Forget Everything?
             [Question.ForgetEverythingStageOneDisplay] = new()
             {
-                QuestionText = "What was the {1} displayed digit in the first stage of {0}?",
+                QuestionText = "Was war bei {0} die {1}e Ziffer in der ersten Stufe?",
+                ModuleName = "Vergiss Alles",
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["the Forget Everything whose {0} displayed digit in that stage was {1}"] = "dem Vergiss Alles, dessen {0}e Ziffer in der ersten Stufe {1} war,",
+                },
             },
 
             // Forget Me
@@ -3244,7 +3268,12 @@ namespace Souvenir
             // What was the digit displayed in the first stage of Forget Me Not?
             [Question.ForgetMeNotDisplayedDigits] = new()
             {
-                QuestionText = "What was the digit displayed in the {1} stage of {0}?",
+                QuestionText = "Welche Ziffer wurde bei {0} in der {1}en Stufe angezeigt?",
+                ModuleName = "Vergissmeinnicht",
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["the Forget Me Not which displayed a {0} in the {1} stage"] = "dem Vergissmeinnicht, in dessen {1}er Stufe {0} angezeigt wurde,",
+                },
             },
 
             // Forget Me Now
@@ -3281,14 +3310,14 @@ namespace Souvenir
                 QuestionText = "What was the {1} method used in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Forget Me Not"] = "Forget Me Not",
-                    ["Simon’s Stages"] = "Simon’s Stages",
-                    ["Forget Me Later"] = "Forget Me Later",
-                    ["Forget Infinity"] = "Forget Infinity",
-                    ["A>N<D"] = "A>N<D",
-                    ["Forget Me Now"] = "Forget Me Now",
-                    ["Forget Everything"] = "Forget Everything",
-                    ["Forget Us Not"] = "Forget Us Not",
+                    ["Forget Me Not"] = "Vergissmeinnicht",
+                    ["Simon’s Stages"] = "Simons Stufen",
+                    ["Forget Me Later"] = "Vergiss Mich Später",
+                    ["Forget Infinity"] = "Vergiss Unendlichkeit",
+                    ["A>N<D"] = "U>N<D",
+                    ["Forget Me Now"] = "Vergiss Mich Jetzt",
+                    ["Forget Everything"] = "Vergiss Alles",
+                    ["Forget Us Not"] = "Vergiss Uns Nicht",
                 },
             },
 
@@ -3297,58 +3326,71 @@ namespace Souvenir
             // What number was on the gear during stage 0 of Forget The Colors?
             [Question.ForgetTheColorsGearNumber] = new()
             {
-                QuestionText = "What number was on the gear during stage {1} in {0}?",
+                QuestionText = "Welche Zahl war bei {0} in Stufe {1} auf dem Zahnrad?",
+                ModuleName = "Vergiss Die Farben",
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["the Forget The Colors whose gear number was {0} in stage {1}"] = "dem Vergiss die Farben, dessen Zahnradzahl in Stufe {1} {0} war,",
+                    ["the Forget The Colors which had {0} on its large display in stage {1}"] = "dem Vergiss die Farben, dessen großes Display in Stufe {1} {0} anzeigte,",
+                    ["the Forget The Colors whose received sine number in stage {1} ended with a {0}"] = "dem Vergiss die Farben, dessen erhaltene Sinuszahl in Stufe {1} auf {0} endete,",
+                    ["the Forget The Colors whose gear color was {0} in stage {1}"] = "dem Vergiss die Farben, dessen Zahnradfarbe in Stufe {1} {0} war,",
+                    ["the Forget The Colors whose rule color was {0} in stage {1}"] = "dem Vergiss die Farben, dessen Regelfarbe in Stufe {1} {0} war,",
+                },
             },
             // What number was on the large display during stage {1} of {0}?
             // What number was on the large display during stage 0 of Forget The Colors?
             [Question.ForgetTheColorsLargeDisplay] = new()
             {
-                QuestionText = "What number was on the large display during stage {1} in {0}?",
+                QuestionText = "Welche Zahl war bei {0} in Stufe {1} auf dem großen Display?",
+                ModuleName = "Vergiss Die Farben",
             },
             // What was the last decimal in the sine number received during stage {1} of {0}?
             // What was the last decimal in the sine number received during stage 0 of Forget The Colors?
             [Question.ForgetTheColorsSineNumber] = new()
             {
-                QuestionText = "What was the last decimal in the sine number received during stage {1} in {0}?",
+                QuestionText = "Was war bei {0} die letzte Ziffer in der in Stufe {1} erhaltenen Sinuszahl?",
+                ModuleName = "Vergiss Die Farben",
             },
             // What color was the gear during stage {1} of {0}?
             // What color was the gear during stage 0 of Forget The Colors?
             [Question.ForgetTheColorsGearColor] = new()
             {
-                QuestionText = "What color was the gear during stage {1} in {0}?",
+                QuestionText = "Welche Farbe hatte bei {0} das Zahnrad in Stufe {1}?",
+                ModuleName = "Vergiss Die Farben",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Cyan"] = "Cyan",
-                    ["Blue"] = "Blue",
-                    ["Purple"] = "Purple",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Cyan"] = "Türkis",
+                    ["Blue"] = "Blau",
+                    ["Purple"] = "Lila",
                     ["Pink"] = "Pink",
-                    ["Maroon"] = "Maroon",
-                    ["White"] = "White",
-                    ["Gray"] = "Gray",
+                    ["Maroon"] = "Kastanie",
+                    ["White"] = "Weiß",
+                    ["Gray"] = "Grau",
                 },
             },
             // Which edgework-based rule was applied to the sum of nixies and gear during stage {1} of {0}?
             // Which edgework-based rule was applied to the sum of nixies and gear during stage 0 of Forget The Colors?
             [Question.ForgetTheColorsRuleColor] = new()
             {
-                QuestionText = "Which edgework-based rule was applied to the sum of nixies and gear during stage {1} in {0}?",
+                QuestionText = "Welche peripheriebasierte Regel wurde bei {0} in Stufe {1} auf die Summe der Nixies und des Zahnrads angewandt?",
+                ModuleName = "Vergiss Die Farben",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Cyan"] = "Cyan",
-                    ["Blue"] = "Blue",
-                    ["Purple"] = "Purple",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Cyan"] = "Türkis",
+                    ["Blue"] = "Blau",
+                    ["Purple"] = "Lila",
                     ["Pink"] = "Pink",
-                    ["Maroon"] = "Maroon",
-                    ["White"] = "White",
-                    ["Gray"] = "Gray",
+                    ["Maroon"] = "Kastanie",
+                    ["White"] = "Weiß",
+                    ["Gray"] = "Grau",
                 },
             },
 
@@ -3357,22 +3399,29 @@ namespace Souvenir
             // What color was the LED in the first stage of Forget This?
             [Question.ForgetThisColors] = new()
             {
-                QuestionText = "What color was the LED in the {1} stage of {0}?",
+                QuestionText = "Welche Farbe hatte bei {0} die LED in Stufe {1}?",
+                ModuleName = "Vergiss Dies",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Cyan"] = "Cyan",
+                    ["Cyan"] = "Türkis",
                     ["Magenta"] = "Magenta",
-                    ["Yellow"] = "Yellow",
-                    ["Black"] = "Black",
-                    ["White"] = "White",
-                    ["Green"] = "Green",
+                    ["Yellow"] = "Gelb",
+                    ["Black"] = "Schwarz",
+                    ["White"] = "Weiß",
+                    ["Green"] = "Grün",
+                },
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["the Forget This whose LED was {0} in the {1} stage"] = "dem Vergiss Dies, dessen LED in der {1}en Stufe {0} war,",
+                    ["the Forget This which displayed {0} in the {1} stage"] = "dem Vergiss Dies, das in der {1}en Stufe {0} anzeigte,",
                 },
             },
             // What was the digit displayed in the {1} stage of {0}?
             // What was the digit displayed in the first stage of Forget This?
             [Question.ForgetThisDigits] = new()
             {
-                QuestionText = "What was the digit displayed in the {1} stage of {0}?",
+                QuestionText = "Welche Ziffer wurde bei {0} in der {1}en Stufe angezeigt?",
+                ModuleName = "Vergiss Dies",
             },
 
             // Free Parking
@@ -3522,13 +3571,13 @@ namespace Souvenir
                 QuestionText = "What was the {1} color in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
                     ["Magenta"] = "Magenta",
-                    ["Yellow"] = "Yellow",
-                    ["Cyan"] = "Cyan",
-                    ["White"] = "White",
+                    ["Yellow"] = "Gelb",
+                    ["Cyan"] = "Türkis",
+                    ["White"] = "Weiß",
                 },
             },
             // What was the {1} digit in {0}?
@@ -3588,10 +3637,10 @@ namespace Souvenir
                 QuestionText = "What was the starting color in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Green"] = "Green",
-                    ["Yellow"] = "Yellow",
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
+                    ["Green"] = "Grün",
+                    ["Yellow"] = "Gelb",
+                    ["Red"] = "Rot",
+                    ["Blue"] = "Blau",
                 },
             },
 
@@ -3657,11 +3706,11 @@ namespace Souvenir
                 QuestionText = "What was the color of the pawn in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Cyan"] = "Cyan",
-                    ["Blue"] = "Blue",
+                    ["Red"] = "Rot",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Cyan"] = "Türkis",
+                    ["Blue"] = "Blau",
                     ["Pink"] = "Pink",
                 },
             },
@@ -3708,14 +3757,14 @@ namespace Souvenir
                 QuestionText = "What was the color of the main LED in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
-                    ["Yellow"] = "Yellow",
+                    ["Red"] = "Rot",
+                    ["Blue"] = "Blau",
+                    ["Green"] = "Grün",
+                    ["Yellow"] = "Gelb",
                     ["Orange"] = "Orange",
-                    ["Purple"] = "Purple",
+                    ["Purple"] = "Lila",
                     ["Magenta"] = "Magenta",
-                    ["White"] = "White",
+                    ["White"] = "Weiß",
                 },
             },
 
@@ -3815,11 +3864,11 @@ namespace Souvenir
                 QuestionText = "What color was the button pressed on the {1} stage of {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["blue"] = "blue",
-                    ["green"] = "green",
-                    ["red"] = "red",
+                    ["blue"] = "blau",
+                    ["green"] = "grün",
+                    ["red"] = "rot",
                     ["orange"] = "orange",
-                    ["purple"] = "purple",
+                    ["purple"] = "lila",
                     ["pink"] = "pink",
                 },
             },
@@ -3840,8 +3889,8 @@ namespace Souvenir
                 QuestionText = "Which was a descriptor shown in {1} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
                 },
             },
             // Who was {1} in {0}?
@@ -4035,12 +4084,12 @@ namespace Souvenir
                 QuestionText = "What color was the LED in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Black"] = "Black",
-                    ["Blue"] = "Blue",
-                    ["Red"] = "Red",
-                    ["White"] = "White",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
+                    ["Black"] = "Schwarz",
+                    ["Blue"] = "Blau",
+                    ["Red"] = "Rot",
+                    ["White"] = "Weiß",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
                 },
             },
             // What was the digit flashed in Morse in {0}?
@@ -4111,22 +4160,22 @@ namespace Souvenir
                 QuestionText = "What was the color of this square in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
+                    ["Red"] = "Rot",
+                    ["Blue"] = "Blau",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
                     ["Magenta"] = "Magenta",
                     ["Orange"] = "Orange",
-                    ["Cyan"] = "Cyan",
-                    ["Purple"] = "Purple",
+                    ["Cyan"] = "Türkis",
+                    ["Purple"] = "Lila",
                     ["Chestnut"] = "Chestnut",
                     ["Brown"] = "Brown",
                     ["Mauve"] = "Mauve",
                     ["Azure"] = "Azure",
                     ["Jade"] = "Jade",
                     ["Forest"] = "Forest",
-                    ["Gray"] = "Gray",
-                    ["Black"] = "Black",
+                    ["Gray"] = "Grau",
+                    ["Black"] = "Schwarz",
                 },
             },
             // Which square was {1} in {0}?
@@ -4136,22 +4185,22 @@ namespace Souvenir
                 QuestionText = "Which square was {1} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["blue"] = "blue",
-                    ["yellow"] = "yellow",
-                    ["green"] = "green",
+                    ["red"] = "rot",
+                    ["blue"] = "blau",
+                    ["yellow"] = "gelb",
+                    ["green"] = "grün",
                     ["magenta"] = "magenta",
                     ["orange"] = "orange",
-                    ["cyan"] = "cyan",
-                    ["purple"] = "purple",
-                    ["chestnut"] = "chestnut",
-                    ["brown"] = "brown",
-                    ["mauve"] = "mauve",
-                    ["azure"] = "azure",
-                    ["jade"] = "jade",
-                    ["forest"] = "forest",
-                    ["gray"] = "gray",
-                    ["black"] = "black",
+                    ["cyan"] = "türkis",
+                    ["purple"] = "lila",
+                    ["chestnut"] = "kastanienfarben",
+                    ["brown"] = "braun",
+                    ["mauve"] = "malvenfarben",
+                    ["azure"] = "azurfarben",
+                    ["jade"] = "jadefarben",
+                    ["forest"] = "waldfarben",
+                    ["gray"] = "grau",
+                    ["black"] = "schwarz",
                 },
             },
 
@@ -4289,14 +4338,14 @@ namespace Souvenir
                 QuestionText = "Which color was present on the second ladder in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Cyan"] = "Cyan",
-                    ["Purple"] = "Purple",
-                    ["Gray"] = "Gray",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Cyan"] = "Türkis",
+                    ["Purple"] = "Lila",
+                    ["Gray"] = "Grau",
                 },
             },
             // What color was missing on the third ladder in {0}?
@@ -4306,14 +4355,14 @@ namespace Souvenir
                 QuestionText = "What color was missing on the third ladder in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Cyan"] = "Cyan",
-                    ["Purple"] = "Purple",
-                    ["Gray"] = "Gray",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Cyan"] = "Türkis",
+                    ["Purple"] = "Lila",
+                    ["Gray"] = "Grau",
                 },
             },
 
@@ -4325,8 +4374,8 @@ namespace Souvenir
                 QuestionText = "Which of these squares was initially {1} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["black"] = "black",
-                    ["white"] = "white",
+                    ["black"] = "schwarz",
+                    ["white"] = "weiß",
                 },
             },
 
@@ -4372,10 +4421,10 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
+                    ["Red"] = "Rot",
+                    ["Blue"] = "Blau",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
                 },
             },
 
@@ -4387,14 +4436,14 @@ namespace Souvenir
                 QuestionText = "What was the initial color of the changed LED in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Purple"] = "Purple",
-                    ["Black"] = "Black",
-                    ["White"] = "White",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Purple"] = "Lila",
+                    ["Black"] = "Schwarz",
+                    ["White"] = "Weiß",
                 },
             },
 
@@ -4406,12 +4455,12 @@ namespace Souvenir
                 QuestionText = "What were the dimensions of the {1} piece in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
-                    ["cyan"] = "cyan",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
+                    ["cyan"] = "türkis",
                     ["magenta"] = "magenta",
-                    ["yellow"] = "yellow",
+                    ["yellow"] = "gelb",
                 },
             },
 
@@ -4441,13 +4490,13 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Purple"] = "Purple",
-                    ["Cyan"] = "Cyan",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Purple"] = "Lila",
+                    ["Cyan"] = "Türkis",
                     ["Magenta"] = "Magenta",
                 },
             },
@@ -4496,14 +4545,14 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
-                    ["Yellow"] = "Yellow",
-                    ["Purple"] = "Purple",
-                    ["White"] = "White",
+                    ["Red"] = "Rot",
+                    ["Blue"] = "Blau",
+                    ["Green"] = "Grün",
+                    ["Yellow"] = "Gelb",
+                    ["Purple"] = "Lila",
+                    ["White"] = "Weiß",
                     ["Orange"] = "Orange",
-                    ["Cyan"] = "Cyan",
+                    ["Cyan"] = "Türkis",
                     ["Grey"] = "Grey",
                 },
             },
@@ -4633,10 +4682,10 @@ namespace Souvenir
                 QuestionText = "Which color did the bubble not display in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
-                    ["Red"] = "Red",
-                    ["Yellow"] = "Yellow",
+                    ["Blue"] = "Blau",
+                    ["Green"] = "Grün",
+                    ["Red"] = "Rot",
+                    ["Yellow"] = "Gelb",
                 },
             },
             // Which main page did the {1} button's effect come from in {0}?
@@ -4685,12 +4734,12 @@ namespace Souvenir
                 QuestionText = "What color was the text on the {1} button in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
                     ["orange"] = "orange",
-                    ["blue"] = "blue",
-                    ["yellow"] = "yellow",
-                    ["brown"] = "brown",
+                    ["blue"] = "blau",
+                    ["yellow"] = "gelb",
+                    ["brown"] = "braun",
                 },
             },
             // What was the text on the {1} button in {0}?
@@ -4708,12 +4757,12 @@ namespace Souvenir
                 QuestionText = "What color was the text on the {1} button in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
                     ["orange"] = "orange",
-                    ["blue"] = "blue",
-                    ["yellow"] = "yellow",
-                    ["brown"] = "brown",
+                    ["blue"] = "blau",
+                    ["yellow"] = "gelb",
+                    ["brown"] = "braun",
                 },
             },
             // What was the text on the correct button in {0}?
@@ -4797,7 +4846,7 @@ namespace Souvenir
                 QuestionText = "What was the color of this tile before the shuffle on {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["White"] = "White",
+                    ["White"] = "Weiß",
                     ["Bronze"] = "Bronze",
                     ["Silver"] = "Silver",
                     ["Gold"] = "Gold",
@@ -4847,10 +4896,10 @@ namespace Souvenir
                 QuestionText = "What was the color of the starting face in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
+                    ["Red"] = "Rot",
+                    ["Blue"] = "Blau",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
                     ["Magenta"] = "Magenta",
                     ["Orange"] = "Orange",
                 },
@@ -5223,11 +5272,11 @@ namespace Souvenir
                 QuestionText = "What was the colour of wire {1} in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Yellow"] = "Yellow",
-                    ["Blue"] = "Blue",
-                    ["White"] = "White",
-                    ["Black"] = "Black",
+                    ["Red"] = "Rot",
+                    ["Yellow"] = "Gelb",
+                    ["Blue"] = "Blau",
+                    ["White"] = "Weiß",
+                    ["Black"] = "Schwarz",
                 },
             },
 
@@ -5263,13 +5312,13 @@ namespace Souvenir
                 QuestionText = "What was the color of the starting cell in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
+                    ["red"] = "rot",
                     ["orange"] = "orange",
-                    ["yellow"] = "yellow",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
-                    ["purple"] = "purple",
-                    ["black"] = "black",
+                    ["yellow"] = "gelb",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
+                    ["purple"] = "lila",
+                    ["black"] = "schwarz",
                 },
             },
 
@@ -5323,10 +5372,10 @@ namespace Souvenir
                 QuestionText = "Which sound did the {1} button play in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
-                    ["yellow"] = "yellow",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
+                    ["yellow"] = "gelb",
                 },
             },
             // Which sound played in {0}?
@@ -5471,12 +5520,12 @@ namespace Souvenir
                 QuestionText = "What was the color flashed by the {1} button in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["blue"] = "blue",
-                    ["green"] = "green",
-                    ["yellow"] = "yellow",
+                    ["red"] = "rot",
+                    ["blue"] = "blau",
+                    ["green"] = "grün",
+                    ["yellow"] = "gelb",
                     ["orange"] = "orange",
-                    ["purple"] = "purple",
+                    ["purple"] = "lila",
                 },
             },
 
@@ -5516,10 +5565,10 @@ namespace Souvenir
                 QuestionText = "What color was the torus in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["white"] = "white",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
-                    ["yellow"] = "yellow",
+                    ["white"] = "weiß",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
+                    ["yellow"] = "gelb",
                 },
             },
             // Which color sphere was the goal in {0}?
@@ -5529,10 +5578,10 @@ namespace Souvenir
                 QuestionText = "Which color sphere was the goal in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["white"] = "white",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
-                    ["yellow"] = "yellow",
+                    ["white"] = "weiß",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
+                    ["yellow"] = "gelb",
                 },
             },
 
@@ -5565,14 +5614,14 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["black"] = "black",
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["yellow"] = "yellow",
-                    ["blue"] = "blue",
+                    ["black"] = "schwarz",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["yellow"] = "gelb",
+                    ["blue"] = "blau",
                     ["magenta"] = "magenta",
-                    ["cyan"] = "cyan",
-                    ["white"] = "white",
+                    ["cyan"] = "türkis",
+                    ["white"] = "weiß",
                 },
             },
 
@@ -5699,10 +5748,10 @@ namespace Souvenir
                 QuestionText = "What was the color of the maze in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
+                    ["Red"] = "Rot",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
                 },
             },
             // What was the label of the maze in {0}?
@@ -5783,10 +5832,10 @@ namespace Souvenir
                 QuestionText = "What was the acid’s color in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Red"] = "Rot",
+                    ["Blue"] = "Blau",
                 },
             },
             // What was the acid’s volume in {0}?
@@ -5864,18 +5913,18 @@ namespace Souvenir
                 QuestionText = "What color flashed {1} in the final sequence in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
+                    ["red"] = "rot",
                     ["orange"] = "orange",
-                    ["yellow"] = "yellow",
-                    ["green"] = "green",
-                    ["cyan"] = "cyan",
-                    ["blue"] = "blue",
-                    ["purple"] = "purple",
+                    ["yellow"] = "gelb",
+                    ["green"] = "grün",
+                    ["cyan"] = "türkis",
+                    ["blue"] = "blau",
+                    ["purple"] = "lila",
                     ["magenta"] = "magenta",
                     ["pink"] = "pink",
-                    ["brown"] = "brown",
+                    ["brown"] = "braun",
                     ["grey"] = "grey",
-                    ["white"] = "white",
+                    ["white"] = "weiß",
                 },
             },
             // Which symbol was on the button that flashed {1} in the final sequence in {0}?
@@ -6031,12 +6080,12 @@ namespace Souvenir
                 QuestionText = "Which maze was used in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
+                    ["red"] = "rot",
                     ["orange"] = "orange",
-                    ["yellow"] = "yellow",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
-                    ["purple"] = "purple",
+                    ["yellow"] = "gelb",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
+                    ["purple"] = "lila",
                 },
             },
             // What was the starting position in {0}?
@@ -6158,12 +6207,12 @@ namespace Souvenir
                 QuestionText = "What color was the bulb on {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Yellow"] = "Yellow",
-                    ["Purple"] = "Purple",
-                    ["White"] = "White",
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Yellow"] = "Gelb",
+                    ["Purple"] = "Lila",
+                    ["White"] = "Weiß",
                 },
             },
             // What was the material of the screw cap on {0}?
@@ -6190,11 +6239,11 @@ namespace Souvenir
                 QuestionText = "What colors did the light glow in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["white"] = "white",
-                    ["red"] = "red",
-                    ["yellow"] = "yellow",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
+                    ["white"] = "weiß",
+                    ["red"] = "rot",
+                    ["yellow"] = "gelb",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
                     ["white/red"] = "white/red",
                     ["white/yellow"] = "white/yellow",
                     ["white/green"] = "white/green",
@@ -6333,10 +6382,10 @@ namespace Souvenir
                 QuestionText = "What was the scanner color in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Yellow"] = "Yellow",
-                    ["Blue"] = "Blue",
-                    ["White"] = "White",
+                    ["Red"] = "Rot",
+                    ["Yellow"] = "Gelb",
+                    ["Blue"] = "Blau",
+                    ["White"] = "Weiß",
                 },
             },
 
@@ -6364,12 +6413,12 @@ namespace Souvenir
                 QuestionText = "What was the color of the number on {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Purple"] = "Purple",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Purple"] = "Lila",
                 },
             },
             // What was the number displayed on {0}?
@@ -6430,13 +6479,13 @@ namespace Souvenir
                 QuestionText = "What was the initial color of the status light in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Yellow"] = "Yellow",
-                    ["Blue"] = "Blue",
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
+                    ["Yellow"] = "Gelb",
+                    ["Blue"] = "Blau",
                     ["Magenta"] = "Magenta",
-                    ["Cyan"] = "Cyan",
-                    ["White"] = "White",
+                    ["Cyan"] = "Türkis",
+                    ["White"] = "Weiß",
                 },
             },
 
@@ -6503,11 +6552,11 @@ namespace Souvenir
                 QuestionText = "What color was the {2} key in the {1} stage of {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
-                    ["Yellow"] = "Yellow",
-                    ["Cyan"] = "Cyan",
+                    ["Red"] = "Rot",
+                    ["Blue"] = "Blau",
+                    ["Green"] = "Grün",
+                    ["Yellow"] = "Gelb",
+                    ["Cyan"] = "Türkis",
                     ["Magenta"] = "Magenta",
                 },
             },
@@ -6524,11 +6573,11 @@ namespace Souvenir
                 QuestionText = "What color was the label of the {2} key in the {1} stage of {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
-                    ["Yellow"] = "Yellow",
-                    ["Cyan"] = "Cyan",
+                    ["Red"] = "Rot",
+                    ["Blue"] = "Blau",
+                    ["Green"] = "Grün",
+                    ["Yellow"] = "Gelb",
+                    ["Cyan"] = "Türkis",
                     ["Magenta"] = "Magenta",
                 },
             },
@@ -6600,14 +6649,14 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["black"] = "black",
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["yellow"] = "yellow",
-                    ["blue"] = "blue",
+                    ["black"] = "schwarz",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["yellow"] = "gelb",
+                    ["blue"] = "blau",
                     ["magenta"] = "magenta",
-                    ["cyan"] = "cyan",
-                    ["white"] = "white",
+                    ["cyan"] = "türkis",
+                    ["white"] = "weiß",
                 },
             },
 
@@ -6642,12 +6691,12 @@ namespace Souvenir
                 QuestionText = "What was the LED color in the {1} stage of {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["blue"] = "blue",
-                    ["green"] = "green",
+                    ["blue"] = "blau",
+                    ["green"] = "grün",
                     ["orange"] = "orange",
-                    ["purple"] = "purple",
-                    ["red"] = "red",
-                    ["yellow"] = "yellow",
+                    ["purple"] = "lila",
+                    ["red"] = "rot",
+                    ["yellow"] = "gelb",
                 },
             },
             // What was the {1} term in {0}?
@@ -6720,13 +6769,13 @@ namespace Souvenir
                 QuestionText = "What was the base colour in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Purple"] = "Purple",
-                    ["White"] = "White",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Purple"] = "Lila",
+                    ["White"] = "Weiß",
                 },
             },
 
@@ -6770,12 +6819,12 @@ namespace Souvenir
                 Answers = new Dictionary<string, string>
                 {
                     ["Azure"] = "Azure",
-                    ["Blue"] = "Blue",
+                    ["Blue"] = "Blau",
                     ["Crimson"] = "Crimson",
                     ["Diamond"] = "Diamond",
                     ["Emerald"] = "Emerald",
                     ["Fuchsia"] = "Fuchsia",
-                    ["Green"] = "Green",
+                    ["Green"] = "Grün",
                     ["Ice"] = "Ice",
                     ["Jade"] = "Jade",
                     ["Kiwi"] = "Kiwi",
@@ -6783,16 +6832,16 @@ namespace Souvenir
                     ["Magenta"] = "Magenta",
                     ["Navy"] = "Navy",
                     ["Orange"] = "Orange",
-                    ["Purple"] = "Purple",
+                    ["Purple"] = "Lila",
                     ["Quartz"] = "Quartz",
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                     ["Salmon"] = "Salmon",
                     ["Tan"] = "Tan",
                     ["Ube"] = "Ube",
                     ["Vibe"] = "Vibe",
-                    ["White"] = "White",
+                    ["White"] = "Weiß",
                     ["Xotic"] = "Xotic",
-                    ["Yellow"] = "Yellow",
+                    ["Yellow"] = "Gelb",
                     ["Zen"] = "Zen",
                 },
             },
@@ -6848,14 +6897,14 @@ namespace Souvenir
                 QuestionText = "What was the {1} color in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["black"] = "black",
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["yellow"] = "yellow",
-                    ["blue"] = "blue",
+                    ["black"] = "schwarz",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["yellow"] = "gelb",
+                    ["blue"] = "blau",
                     ["magenta"] = "magenta",
-                    ["cyan"] = "cyan",
-                    ["white"] = "white",
+                    ["cyan"] = "türkis",
+                    ["white"] = "weiß",
                 },
             },
 
@@ -6922,13 +6971,13 @@ namespace Souvenir
                 Answers = new Dictionary<string, string>
                 {
                     ["Aqua"] = "Aqua",
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
+                    ["Blue"] = "Blau",
+                    ["Green"] = "Grün",
                     ["Lime"] = "Lime",
                     ["Orange"] = "Orange",
-                    ["Red"] = "Red",
-                    ["Yellow"] = "Yellow",
-                    ["White"] = "White",
+                    ["Red"] = "Rot",
+                    ["Yellow"] = "Gelb",
+                    ["White"] = "Weiß",
                     ["Off"] = "Off",
                 },
             },
@@ -6980,8 +7029,8 @@ namespace Souvenir
                 {
                     ["red-white"] = "red-white",
                     ["yellow-black"] = "yellow-black",
-                    ["green"] = "green",
-                    ["gray"] = "gray",
+                    ["green"] = "grün",
+                    ["gray"] = "grau",
                     ["yellow-red"] = "yellow-red",
                     ["red-blue"] = "red-blue",
                 },
@@ -7074,17 +7123,17 @@ namespace Souvenir
                 QuestionText = "What was the {1} color in the primary sequence in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["blue"] = "blue",
-                    ["green"] = "green",
-                    ["yellow"] = "yellow",
-                    ["white"] = "white",
-                    ["black"] = "black",
+                    ["red"] = "rot",
+                    ["blue"] = "blau",
+                    ["green"] = "grün",
+                    ["yellow"] = "gelb",
+                    ["white"] = "weiß",
+                    ["black"] = "schwarz",
                     ["orange"] = "orange",
                     ["pink"] = "pink",
-                    ["purple"] = "purple",
-                    ["cyan"] = "cyan",
-                    ["brown"] = "brown",
+                    ["purple"] = "lila",
+                    ["cyan"] = "türkis",
+                    ["brown"] = "braun",
                 },
             },
             // What was the {1} digit in the {2} sequence in {0}?
@@ -7108,10 +7157,10 @@ namespace Souvenir
                 QuestionText = "What color was the {1} digit in the {2} slot in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["blue"] = "blue",
+                    ["red"] = "rot",
+                    ["blue"] = "blau",
                     ["orange"] = "orange",
-                    ["green"] = "green",
+                    ["green"] = "grün",
                     ["pink"] = "pink",
                 },
             },
@@ -7122,10 +7171,10 @@ namespace Souvenir
                 QuestionText = "How many numbers were {1} in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["blue"] = "blue",
+                    ["red"] = "rot",
+                    ["blue"] = "blau",
                     ["orange"] = "orange",
-                    ["green"] = "green",
+                    ["green"] = "grün",
                     ["pink"] = "pink",
                 },
             },
@@ -7189,13 +7238,13 @@ namespace Souvenir
                 QuestionText = "What was the color of the {1} LED in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
-                    ["cyan"] = "cyan",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
+                    ["cyan"] = "türkis",
                     ["orange"] = "orange",
-                    ["purple"] = "purple",
-                    ["white"] = "white",
+                    ["purple"] = "lila",
+                    ["white"] = "weiß",
                 },
             },
 
@@ -7269,12 +7318,12 @@ namespace Souvenir
                 {
                     ["Navy"] = "Navy",
                     ["Lapis"] = "Lapis",
-                    ["Blue"] = "Blue",
+                    ["Blue"] = "Blau",
                     ["Sky"] = "Sky",
                     ["Teal"] = "Teal",
                     ["Plum"] = "Plum",
                     ["Violet"] = "Violet",
-                    ["Purple"] = "Purple",
+                    ["Purple"] = "Lila",
                     ["Magenta"] = "Magenta",
                     ["Lavender"] = "Lavender",
                 },
@@ -7341,9 +7390,9 @@ namespace Souvenir
                 QuestionText = "Where was the {1} key in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
                 },
             },
             // Which maze number was the {1} maze in {0}?
@@ -7353,9 +7402,9 @@ namespace Souvenir
                 QuestionText = "Which maze number was the {1} maze in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
                 },
             },
 
@@ -7367,13 +7416,13 @@ namespace Souvenir
                 QuestionText = "What was the color of the {1} LED in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
                     ["Magenta"] = "Magenta",
-                    ["Cyan"] = "Cyan",
-                    ["Yellow"] = "Yellow",
-                    ["White"] = "White",
+                    ["Cyan"] = "Türkis",
+                    ["Yellow"] = "Gelb",
+                    ["White"] = "Weiß",
                 },
             },
 
@@ -7385,10 +7434,10 @@ namespace Souvenir
                 QuestionText = "What was the color in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Blue"] = "Blue",
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Yellow"] = "Yellow",
+                    ["Blue"] = "Blau",
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
+                    ["Yellow"] = "Gelb",
                 },
             },
 
@@ -7461,9 +7510,9 @@ namespace Souvenir
                 QuestionText = "What was the {1} coordinate of the {2} vertex in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["yellow"] = "yellow",
-                    ["blue"] = "blue",
+                    ["red"] = "rot",
+                    ["yellow"] = "gelb",
+                    ["blue"] = "blau",
                 },
             },
             // What was the position of the {1} sphere on the {2} axis in the {3} cycle in {0}?
@@ -7473,9 +7522,9 @@ namespace Souvenir
                 QuestionText = "What was the position of the {1} sphere on the {2} axis in the {3} cycle in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["yellow"] = "yellow",
-                    ["blue"] = "blue",
+                    ["red"] = "rot",
+                    ["yellow"] = "gelb",
+                    ["blue"] = "blau",
                 },
             },
 
@@ -7487,9 +7536,9 @@ namespace Souvenir
                 QuestionText = "What was the digit displayed on the {1} diamond in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["yellow"] = "yellow",
-                    ["blue"] = "blue",
+                    ["red"] = "rot",
+                    ["yellow"] = "gelb",
+                    ["blue"] = "blau",
                 },
             },
             // What was the special rule displayed on the white diamond in {0}?
@@ -7531,7 +7580,12 @@ namespace Souvenir
             // What was the displayed song for stage 01 (hexadecimal) of Sbemail Songs?
             [Question.SbemailSongsSongs] = new()
             {
-                QuestionText = "What was the displayed song for stage {1} (hexadecimal) of {0}?",
+                QuestionText = "Was war bei {0} das in Stufe {1} (hexadezimal) angezeigte Lied?",
+                ModuleName = "Sbemail-Lieder",
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["the Sbemail Songs which displayed ‘{0}’ in stage {1} (hexadecimal)"] = "den Sbemail-Liedern, deren Stufe {1} (hexadezimal) ‘{0}’ anzeigten,",
+                },
             },
 
             // Scavenger Hunt
@@ -7548,9 +7602,9 @@ namespace Souvenir
                 QuestionText = "Which of these tiles was {1} in the first stage of {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
                 },
             },
 
@@ -7644,9 +7698,9 @@ namespace Souvenir
                 QuestionText = "What was the color of the display involved in the starting value in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["cyan"] = "cyan",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["cyan"] = "türkis",
                     ["indigo"] = "indigo",
                     ["pink"] = "pink",
                 },
@@ -7699,11 +7753,11 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["White"] = "White",
-                    ["Blue"] = "Blue",
-                    ["Yellow"] = "Yellow",
+                    ["White"] = "Weiß",
+                    ["Blue"] = "Blau",
+                    ["Yellow"] = "Gelb",
                     ["Magenta"] = "Magenta",
-                    ["Green"] = "Green",
+                    ["Green"] = "Grün",
                 },
             },
 
@@ -7814,10 +7868,10 @@ namespace Souvenir
                 QuestionText = "What color was pressed in the {1} stage of {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Yellow"] = "Yellow",
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Yellow"] = "Gelb",
                 },
             },
 
@@ -7843,10 +7897,10 @@ namespace Souvenir
                 QuestionText = "What color flashed {1} in the final sequence in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["yellow"] = "yellow",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
+                    ["red"] = "rot",
+                    ["yellow"] = "gelb",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
                 },
             },
 
@@ -7858,10 +7912,10 @@ namespace Souvenir
                 QuestionText = "What color flashed {1} in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Yellow"] = "Yellow",
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Yellow"] = "Gelb",
                 },
             },
 
@@ -7873,12 +7927,12 @@ namespace Souvenir
                 QuestionText = "Which color flashed {1} in the final sequence in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Purple"] = "Purple",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Purple"] = "Lila",
                 },
             },
             // In which stage(s) of {0} was “{1}” the applicable rule?
@@ -7979,14 +8033,14 @@ namespace Souvenir
                 QuestionText = "Which color flashed {1} in the {2} stage of {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Purple"] = "Purple",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Purple"] = "Lila",
                     ["Magenta"] = "Magenta",
-                    ["Cyan"] = "Cyan",
+                    ["Cyan"] = "Türkis",
                 },
             },
 
@@ -7998,9 +8052,9 @@ namespace Souvenir
                 QuestionText = "What was the {1} received letter in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
                 },
             },
 
@@ -8108,10 +8162,10 @@ namespace Souvenir
                 QuestionText = "What shape was the {1} arrow in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
-                    ["gray"] = "gray",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
+                    ["gray"] = "grau",
                 },
             },
             // How many directions did the {1} arrow in {0} have?
@@ -8121,10 +8175,10 @@ namespace Souvenir
                 QuestionText = "How many directions did the {1} arrow in {0} have?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
-                    ["gray"] = "gray",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
+                    ["gray"] = "grau",
                 },
             },
             // What color was the arrow with this shape in {0}?
@@ -8134,10 +8188,10 @@ namespace Souvenir
                 QuestionText = "What color was the arrow with this shape in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
-                    ["gray"] = "gray",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
+                    ["gray"] = "grau",
                 },
             },
             // How many directions did the arrow with this shape have in {0}?
@@ -8153,10 +8207,10 @@ namespace Souvenir
                 QuestionText = "What color was the arrow with {1} possible directions in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
-                    ["gray"] = "gray",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
+                    ["gray"] = "grau",
                 },
             },
             // What shape was the arrow with {1} possible directions in {0}?
@@ -8182,12 +8236,12 @@ namespace Souvenir
                 QuestionText = "What was the color of the {1} flash in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Yellow"] = "Yellow",
-                    ["Blue"] = "Blue",
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
+                    ["Yellow"] = "Gelb",
+                    ["Blue"] = "Blau",
                     ["Magenta"] = "Magenta",
-                    ["Cyan"] = "Cyan",
+                    ["Cyan"] = "Türkis",
                 },
             },
             // What was the direction of the {1} flash in {0}?
@@ -8212,10 +8266,10 @@ namespace Souvenir
                 QuestionText = "Which sample button sounded {1} in the final sequence in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["blue"] = "blue",
-                    ["yellow"] = "yellow",
-                    ["green"] = "green",
+                    ["red"] = "rot",
+                    ["blue"] = "blau",
+                    ["yellow"] = "gelb",
+                    ["green"] = "grün",
                 },
             },
 
@@ -8263,15 +8317,15 @@ namespace Souvenir
                 QuestionText = "What color was the bubble that flashed fifth in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["black"] = "black",
-                    ["blue"] = "blue",
-                    ["green"] = "green",
-                    ["cyan"] = "cyan",
-                    ["red"] = "red",
-                    ["purple"] = "purple",
-                    ["yellow"] = "yellow",
-                    ["white"] = "white",
-                    ["gray"] = "gray",
+                    ["black"] = "schwarz",
+                    ["blue"] = "blau",
+                    ["green"] = "grün",
+                    ["cyan"] = "türkis",
+                    ["red"] = "rot",
+                    ["purple"] = "lila",
+                    ["yellow"] = "gelb",
+                    ["white"] = "weiß",
+                    ["gray"] = "grau",
                 },
             },
 
@@ -8283,11 +8337,11 @@ namespace Souvenir
                 QuestionText = "Which color flashed {1} in sequence in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["yellow"] = "yellow",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
-                    ["purple"] = "purple",
+                    ["red"] = "rot",
+                    ["yellow"] = "gelb",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
+                    ["purple"] = "lila",
                 },
             },
 
@@ -8299,10 +8353,10 @@ namespace Souvenir
                 QuestionText = "Which color flashed in the {1} stage of {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Yellow"] = "Yellow",
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Yellow"] = "Gelb",
                 },
             },
 
@@ -8314,16 +8368,16 @@ namespace Souvenir
                 QuestionText = "Which color flashed {1} in the {2} stage in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["blue"] = "blue",
-                    ["yellow"] = "yellow",
+                    ["red"] = "rot",
+                    ["blue"] = "blau",
+                    ["yellow"] = "gelb",
                     ["orange"] = "orange",
                     ["magenta"] = "magenta",
-                    ["green"] = "green",
+                    ["green"] = "grün",
                     ["pink"] = "pink",
                     ["lime"] = "lime",
-                    ["cyan"] = "cyan",
-                    ["white"] = "white",
+                    ["cyan"] = "türkis",
+                    ["white"] = "weiß",
                 },
             },
             // What color was the indicator in the {1} stage in {0}?
@@ -8333,16 +8387,16 @@ namespace Souvenir
                 QuestionText = "What color was the indicator in the {1} stage in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["blue"] = "blue",
-                    ["yellow"] = "yellow",
+                    ["red"] = "rot",
+                    ["blue"] = "blau",
+                    ["yellow"] = "gelb",
                     ["orange"] = "orange",
                     ["magenta"] = "magenta",
-                    ["green"] = "green",
+                    ["green"] = "grün",
                     ["pink"] = "pink",
                     ["lime"] = "lime",
-                    ["cyan"] = "cyan",
-                    ["white"] = "white",
+                    ["cyan"] = "türkis",
+                    ["white"] = "weiß",
                 },
             },
 
@@ -8359,10 +8413,10 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
+                    ["Red"] = "Rot",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
                     ["Red, Yellow"] = "Red, Yellow",
                     ["Red, Green"] = "Red, Green",
                     ["Red, Blue"] = "Red, Blue",
@@ -8382,11 +8436,11 @@ namespace Souvenir
                 QuestionText = "Which color flashed {1} in the output sequence in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
                     ["Violet"] = "Violet",
                 },
             },
@@ -8404,12 +8458,12 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Cyan"] = "Cyan",
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Cyan"] = "Türkis",
                     ["Magenta"] = "Magenta",
-                    ["Yellow"] = "Yellow",
+                    ["Yellow"] = "Gelb",
                 },
             },
 
@@ -8421,9 +8475,9 @@ namespace Souvenir
                 QuestionText = "What color was the button at this position in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
-                    ["Red"] = "Red",
+                    ["Blue"] = "Blau",
+                    ["Green"] = "Grün",
+                    ["Red"] = "Rot",
                     ["Violet"] = "Violet",
                 },
             },
@@ -8455,10 +8509,10 @@ namespace Souvenir
                 QuestionText = "What color flashed {1} on the {2} Simon in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Blue"] = "Blue",
-                    ["Yellow"] = "Yellow",
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
+                    ["Blue"] = "Blau",
+                    ["Yellow"] = "Gelb",
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
                 },
             },
 
@@ -8584,14 +8638,14 @@ namespace Souvenir
                 QuestionText = "Which wedge made the different noise in the beginning of {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
                     ["Magenta"] = "Magenta",
-                    ["White"] = "White",
-                    ["Black"] = "Black",
+                    ["White"] = "Weiß",
+                    ["Black"] = "Schwarz",
                 },
             },
             // Which color was {1} in the solution to {0}?
@@ -8601,14 +8655,14 @@ namespace Souvenir
                 QuestionText = "Which color was {1} in the solution to {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                     ["Orange"] = "Orange",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
                     ["Magenta"] = "Magenta",
-                    ["White"] = "White",
-                    ["Black"] = "Black",
+                    ["White"] = "Weiß",
+                    ["Black"] = "Schwarz",
                 },
             },
 
@@ -8708,14 +8762,14 @@ namespace Souvenir
                 QuestionText = "What was the {1} flashed color in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["blue"] = "blue",
-                    ["green"] = "green",
+                    ["red"] = "rot",
+                    ["blue"] = "blau",
+                    ["green"] = "grün",
                     ["orange"] = "orange",
                     ["pink"] = "pink",
-                    ["purple"] = "purple",
+                    ["purple"] = "lila",
                     ["grey"] = "grey",
-                    ["white"] = "white",
+                    ["white"] = "weiß",
                 },
             },
 
@@ -8751,9 +8805,9 @@ namespace Souvenir
                 QuestionText = "What was the color of the {1} lit LED in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Yellow"] = "Yellow",
-                    ["Blue"] = "Blue",
+                    ["Red"] = "Rot",
+                    ["Yellow"] = "Gelb",
+                    ["Blue"] = "Blau",
                 },
             },
             // What was the identification number in {0}?
@@ -8907,12 +8961,12 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
+                    ["red"] = "rot",
                     ["orange"] = "orange",
-                    ["yellow"] = "yellow",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
-                    ["purple"] = "purple",
+                    ["yellow"] = "gelb",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
+                    ["purple"] = "lila",
                 },
             },
 
@@ -8938,12 +8992,12 @@ namespace Souvenir
                 QuestionText = "What was the starting maze color in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Blue"] = "Blue",
-                    ["Cyan"] = "Cyan",
+                    ["Blue"] = "Blau",
+                    ["Cyan"] = "Türkis",
                     ["Magenta"] = "Magenta",
                     ["Orange"] = "Orange",
-                    ["Red"] = "Red",
-                    ["White"] = "White",
+                    ["Red"] = "Rot",
+                    ["White"] = "Weiß",
                 },
             },
 
@@ -8987,9 +9041,9 @@ namespace Souvenir
                     ["Bottom"] = "Bottom",
                     ["Left"] = "Left",
                     ["Pink"] = "Pink",
-                    ["Green"] = "Green",
-                    ["Yellow"] = "Yellow",
-                    ["Blue"] = "Blue",
+                    ["Green"] = "Grün",
+                    ["Yellow"] = "Gelb",
+                    ["Blue"] = "Blau",
                 },
             },
             // Which symbol was on the {1} button in {0}?
@@ -9003,9 +9057,9 @@ namespace Souvenir
                     ["right"] = "right",
                     ["bottom"] = "bottom",
                     ["left"] = "left",
-                    ["blue"] = "blue",
-                    ["green"] = "green",
-                    ["yellow"] = "yellow",
+                    ["blue"] = "blau",
+                    ["green"] = "grün",
+                    ["yellow"] = "gelb",
                     ["pink"] = "pink",
                 },
             },
@@ -9051,9 +9105,9 @@ namespace Souvenir
                 Answers = new Dictionary<string, string>
                 {
                     ["Pink"] = "Pink",
-                    ["Green"] = "Green",
-                    ["Yellow"] = "Yellow",
-                    ["Blue"] = "Blue",
+                    ["Green"] = "Grün",
+                    ["Yellow"] = "Gelb",
+                    ["Blue"] = "Blau",
                 },
             },
 
@@ -9089,10 +9143,10 @@ namespace Souvenir
                 QuestionText = "What was the initial color of the {1} button in the {2} stage of {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
-                    ["yellow"] = "yellow",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
+                    ["yellow"] = "gelb",
                 },
             },
 
@@ -9104,9 +9158,9 @@ namespace Souvenir
                 QuestionText = "What was the {1} split in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
                 },
                 Answers = new Dictionary<string, string>
                 {
@@ -9135,8 +9189,8 @@ namespace Souvenir
                 {
                     ["orange"] = "orange",
                     ["lime"] = "lime",
-                    ["jade"] = "jade",
-                    ["azure"] = "azure",
+                    ["jade"] = "jadefarben",
+                    ["azure"] = "azurfarben",
                     ["violet"] = "violet",
                     ["rose"] = "rose",
                     ["grey"] = "grey",
@@ -9165,14 +9219,14 @@ namespace Souvenir
                 QuestionText = "What color did the second valid wire to cut have to have in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Cyan"] = "Cyan",
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Cyan"] = "Türkis",
                     ["Magenta"] = "Magenta",
-                    ["Yellow"] = "Yellow",
-                    ["White"] = "White",
-                    ["Black"] = "Black",
+                    ["Yellow"] = "Gelb",
+                    ["White"] = "Weiß",
+                    ["Black"] = "Schwarz",
                     ["Any"] = "Any",
                 },
             },
@@ -9311,14 +9365,14 @@ namespace Souvenir
                 QuestionText = "What colour triangle pulsed {1} in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["black"] = "black",
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["yellow"] = "yellow",
-                    ["blue"] = "blue",
+                    ["black"] = "schwarz",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["yellow"] = "gelb",
+                    ["blue"] = "blau",
                     ["magenta"] = "magenta",
-                    ["cyan"] = "cyan",
-                    ["white"] = "white",
+                    ["cyan"] = "türkis",
+                    ["white"] = "weiß",
                 },
             },
 
@@ -9403,11 +9457,11 @@ namespace Souvenir
                 QuestionText = "What was the {1} color in reading order used in the first stage of {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["White"] = "White",
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
-                    ["Yellow"] = "Yellow",
+                    ["White"] = "Weiß",
+                    ["Red"] = "Rot",
+                    ["Blue"] = "Blau",
+                    ["Green"] = "Grün",
+                    ["Yellow"] = "Gelb",
                     ["Magenta"] = "Magenta",
                 },
             },
@@ -9426,14 +9480,14 @@ namespace Souvenir
                 QuestionText = "What color was the {1} LED in reading order in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
                     ["turquoise"] = "turquoise",
                     ["orange"] = "orange",
-                    ["purple"] = "purple",
-                    ["white"] = "white",
-                    ["black"] = "black",
+                    ["purple"] = "lila",
+                    ["white"] = "weiß",
+                    ["black"] = "schwarz",
                 },
             },
 
@@ -9579,11 +9633,11 @@ namespace Souvenir
                 QuestionText = "What was the initially pressed color on {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["White"] = "White",
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
-                    ["Yellow"] = "Yellow",
+                    ["White"] = "Weiß",
+                    ["Red"] = "Rot",
+                    ["Blue"] = "Blau",
+                    ["Green"] = "Grün",
+                    ["Yellow"] = "Gelb",
                     ["Magenta"] = "Magenta",
                 },
             },
@@ -9596,12 +9650,12 @@ namespace Souvenir
                 QuestionText = "What was the word of the {1} goal in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
                     ["Magenta"] = "Magenta",
-                    ["Yellow"] = "Yellow",
-                    ["White"] = "White",
+                    ["Yellow"] = "Gelb",
+                    ["White"] = "Weiß",
                 },
             },
             // What was the color of the {1} goal in {0}?
@@ -9611,12 +9665,12 @@ namespace Souvenir
                 QuestionText = "What was the colour of the {1} goal in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
                     ["Magenta"] = "Magenta",
-                    ["Yellow"] = "Yellow",
-                    ["White"] = "White",
+                    ["Yellow"] = "Gelb",
+                    ["White"] = "Weiß",
                 },
             },
 
@@ -9628,11 +9682,11 @@ namespace Souvenir
                 QuestionText = "What color was the LED flashing in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Yellow"] = "Yellow",
-                    ["Blue"] = "Blue",
-                    ["White"] = "White",
-                    ["Black"] = "Black",
+                    ["Red"] = "Rot",
+                    ["Yellow"] = "Gelb",
+                    ["Blue"] = "Blau",
+                    ["White"] = "Weiß",
+                    ["Black"] = "Schwarz",
                 },
             },
             // What digit was displayed but not the answer for the digit display in {0}?
@@ -9728,14 +9782,14 @@ namespace Souvenir
                 QuestionText = "What was the {1} flagpole color on {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                     ["Orange"] = "Orange",
-                    ["Green"] = "Green",
-                    ["Yellow"] = "Yellow",
-                    ["Blue"] = "Blue",
+                    ["Green"] = "Grün",
+                    ["Yellow"] = "Gelb",
+                    ["Blue"] = "Blau",
                     ["Aqua"] = "Aqua",
-                    ["White"] = "White",
-                    ["Black"] = "Black",
+                    ["White"] = "Weiß",
+                    ["Black"] = "Schwarz",
                 },
             },
 
@@ -9761,10 +9815,10 @@ namespace Souvenir
                 QuestionText = "What was the desired color in the {1} stage on {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
-                    ["Red"] = "Red",
-                    ["White"] = "White",
+                    ["Blue"] = "Blau",
+                    ["Green"] = "Grün",
+                    ["Red"] = "Rot",
+                    ["White"] = "Weiß",
                 },
             },
 
@@ -9792,22 +9846,22 @@ namespace Souvenir
                 QuestionText = "What was the color on the {1} stage in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                     ["Orange"] = "Orange",
                     ["Orange-Yellow"] = "Orange-Yellow",
                     ["Chartreuse"] = "Chartreuse",
                     ["Lime"] = "Lime",
-                    ["Green"] = "Green",
+                    ["Green"] = "Grün",
                     ["Seafoam Green"] = "Seafoam Green",
                     ["Cyan-Green"] = "Cyan-Green",
                     ["Turquoise"] = "Turquoise",
                     ["Dark Blue"] = "Dark Blue",
                     ["Indigo"] = "Indigo",
-                    ["Purple"] = "Purple",
+                    ["Purple"] = "Lila",
                     ["Purple-Magenta"] = "Purple-Magenta",
                     ["Magenta"] = "Magenta",
                     ["Pink"] = "Pink",
-                    ["Gray"] = "Gray",
+                    ["Gray"] = "Grau",
                 },
             },
             // What was the correct pattern on the {1} stage in {0}?
@@ -9857,12 +9911,12 @@ namespace Souvenir
                 QuestionText = "What was the display text color in the {1} stage of {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Blue"] = "Blue",
-                    ["Cyan"] = "Cyan",
-                    ["Green"] = "Green",
+                    ["Blue"] = "Blau",
+                    ["Cyan"] = "Türkis",
+                    ["Green"] = "Grün",
                     ["Magenta"] = "Magenta",
-                    ["Red"] = "Red",
-                    ["Yellow"] = "Yellow",
+                    ["Red"] = "Rot",
+                    ["Yellow"] = "Gelb",
                 },
             },
 
@@ -9918,12 +9972,12 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["blue"] = "blue",
-                    ["green"] = "green",
+                    ["blue"] = "blau",
+                    ["green"] = "grün",
                     ["grey"] = "grey",
                     ["orange"] = "orange",
-                    ["purple"] = "purple",
-                    ["red"] = "red",
+                    ["purple"] = "lila",
+                    ["red"] = "rot",
                 },
             },
             // What was the displayed number in {0}?
@@ -9941,14 +9995,14 @@ namespace Souvenir
                 QuestionText = "What color was the {1} display from the left in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
+                    ["red"] = "rot",
                     ["orange"] = "orange",
-                    ["yellow"] = "yellow",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
-                    ["purple"] = "purple",
-                    ["white"] = "white",
-                    ["black"] = "black",
+                    ["yellow"] = "gelb",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
+                    ["purple"] = "lila",
+                    ["white"] = "weiß",
+                    ["black"] = "schwarz",
                 },
             },
             // What number was on the {1} display from the left in {0}?
@@ -9964,14 +10018,14 @@ namespace Souvenir
                 QuestionText = "What color was the {1} wire from the left in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
+                    ["red"] = "rot",
                     ["orange"] = "orange",
-                    ["yellow"] = "yellow",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
-                    ["purple"] = "purple",
-                    ["white"] = "white",
-                    ["black"] = "black",
+                    ["yellow"] = "gelb",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
+                    ["purple"] = "lila",
+                    ["white"] = "weiß",
+                    ["black"] = "schwarz",
                 },
             },
 
@@ -9983,9 +10037,9 @@ namespace Souvenir
                 QuestionText = "How many {1} wires were there in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["blue"] = "blue",
-                    ["black"] = "black",
+                    ["red"] = "rot",
+                    ["blue"] = "blau",
+                    ["black"] = "schwarz",
                 },
             },
 
@@ -10081,11 +10135,11 @@ namespace Souvenir
                 QuestionText = "What was the {1} color in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Cyan"] = "Cyan",
-                    ["Blue"] = "Blue",
+                    ["Red"] = "Rot",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Cyan"] = "Türkis",
+                    ["Blue"] = "Blau",
                     ["Magenta"] = "Magenta",
                 },
             },
@@ -10119,14 +10173,14 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["black"] = "black",
-                    ["blue"] = "blue",
-                    ["green"] = "green",
-                    ["cyan"] = "cyan",
-                    ["red"] = "red",
+                    ["black"] = "schwarz",
+                    ["blue"] = "blau",
+                    ["green"] = "grün",
+                    ["cyan"] = "türkis",
+                    ["red"] = "rot",
                     ["magenta"] = "magenta",
-                    ["yellow"] = "yellow",
-                    ["white"] = "white",
+                    ["yellow"] = "gelb",
+                    ["white"] = "weiß",
                 },
             },
             // How many points were on the {1} star in {0}?
@@ -10149,9 +10203,9 @@ namespace Souvenir
                 QuestionText = "Where was the {1} square in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["blue"] = "blue",
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
                 },
             },
 

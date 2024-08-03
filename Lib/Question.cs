@@ -954,13 +954,18 @@
 
         [SouvenirQuestion("What colors were the cylinders during the {1} stage of {0}?", "Forget Any Color", OneColumn4Answers, null,
             ExampleAnswers = new[] { "Orange, Yellow, Green", "Yellow, Cyan, Purple", "Green, Purple, Orange", "Green, Blue, Purple" },
-            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1,
+            TranslatableStrings = new[] { "{0}, {1}, {2}", "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "White", "L", "M", "R",
+                "the Forget Any Color which used figure {0} in the {1} stage",
+                "the Forget Any Color whose cylinders in the {0} stage were {1}" })]
         ForgetAnyColorCylinder,
-        [SouvenirQuestion("Which figure was used during the {1} stage of {0}?", "Forget Any Color", ThreeColumns6Answers, "LLLMR", "LMMMR", "LMRRR", "LMMRR", "LLMRR", "LLMMR",
-            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
+        [SouvenirQuestion("Which figure was used during the {1} stage of {0}?", "Forget Any Color", ThreeColumns6Answers, null,
+            ExampleAnswers = new[] { "LLLMR", "LMMMR", "LMRRR", "LMMRR", "LLMRR", "LLMMR" },
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         ForgetAnyColorSequence,
 
-        [SouvenirQuestion("What was the {1} displayed digit in the first stage of {0}?", "Forget Everything", ThreeColumns6Answers, ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was the {1} displayed digit in the first stage of {0}?", "Forget Everything", ThreeColumns6Answers, ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1,
+            TranslatableStrings = new[] { "the Forget Everything whose {0} displayed digit in that stage was {1}" })]
         [AnswerGenerator.Integers(0, 9)]
         ForgetEverythingStageOneDisplay,
 
@@ -969,7 +974,8 @@
         [AnswerGenerator.Integers(1, 8)]
         ForgetMeInitialState,
 
-        [SouvenirQuestion("What was the digit displayed in the {1} stage of {0}?", "Forget Me Not", ThreeColumns6Answers, ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was the digit displayed in the {1} stage of {0}?", "Forget Me Not", ThreeColumns6Answers, ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1,
+            TranslatableStrings = new[] { "the Forget Me Not which displayed a {0} in the {1} stage" })]
         [AnswerGenerator.Integers(0, 9)]
         ForgetMeNotDisplayedDigits,
 
@@ -994,7 +1000,13 @@
         ForgetsUltimateShowdownMethod,
 
         [SouvenirQuestion("What number was on the gear during stage {1} of {0}?", "Forget The Colors", ThreeColumns6Answers,
-            ExampleFormatArguments = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }, ExampleFormatArgumentGroupSize = 1)]
+            ExampleFormatArguments = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }, ExampleFormatArgumentGroupSize = 1,
+            TranslatableStrings = new[] {
+                "the Forget The Colors whose gear number was {0} in stage {1}",
+                "the Forget The Colors which had {0} on its large display in stage {1}",
+                "the Forget The Colors whose received sine number in stage {1} ended with a {0}",
+                "the Forget The Colors whose gear color was {0} in stage {1}",
+                "the Forget The Colors whose rule color was {0} in stage {1}" })]
         [AnswerGenerator.Integers(0, 9)]
         ForgetTheColorsGearNumber,
         [SouvenirQuestion("What number was on the large display during stage {1} of {0}?", "Forget The Colors", ThreeColumns6Answers,
@@ -1013,7 +1025,8 @@
         ForgetTheColorsRuleColor,
 
         [SouvenirQuestion("What color was the LED in the {1} stage of {0}?", "Forget This", ThreeColumns6Answers, "Cyan", "Magenta", "Yellow", "Black", "White", "Green", TranslateAnswers = true,
-            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1,
+            TranslatableStrings = new[] { "the Forget This whose LED was {0} in the {1} stage", "the Forget This which displayed {0} in the {1} stage" })]
         ForgetThisColors,
         [SouvenirQuestion("What was the digit displayed in the {1} stage of {0}?", "Forget This", ThreeColumns6Answers, Type = AnswerType.AsciiMazeFont, // Use this font to make 0 and O distinguishable from each other.
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
@@ -2247,7 +2260,8 @@
         SamsungAppPositions,
 
         [SouvenirQuestion("What was the displayed song for stage {1} (hexadecimal) of {0}?", "Sbemail Songs", OneColumn4Answers, null, ExampleAnswers = new[] { "Oh, who is the guy that…", "I'm gonna check my email all of the time…", "Checkin' my email, checkin' my email…", "I check the email once…", "Checkin' emails is like the best thing I do.", "I check, you check, we all check…", "I am going to check my email.", "I remember the time when I checked my email.", "I've carefully set aside this time…", "I'm totally checking my email…" },
-            ExampleFormatArguments = new[] { "01", "02" }, ExampleFormatArgumentGroupSize = 1)]
+            ExampleFormatArguments = new[] { "01", "02" }, ExampleFormatArgumentGroupSize = 1,
+            TranslatableStrings = new[] { "the Sbemail Songs which displayed ‘{0}’ in stage {1} (hexadecimal)" })]
         SbemailSongsSongs,
 
         [SouvenirQuestion("Which tile was correctly submitted in the first stage of {0}?", "Scavenger Hunt", ThreeColumns6Answers, Type = AnswerType.Grid)]
