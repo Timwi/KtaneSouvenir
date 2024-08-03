@@ -657,7 +657,7 @@ public partial class SouvenirModule
             foreach (var q in inds.Cast<object>().Select((ind, indIx) =>
                     makeQuestion(Question.ConnectedMonitorsIndicator, module, questionSprite: ConnectedMonitorsSprites[ix],
                     correctAnswers: new[] { (colorProp ??= GetProperty<object>(ind, "Color", isPublic: true)).GetFrom(ind, v => (int) v is < 0 or > 5 ? $"Bad indicator color {v} (Monitor {ix}) (Indicator {indIx})" : null).ToString() },
-                    formatArgs: new[] { inds.Count == 1 ? "" : new[] { "first ", "second ", "third " }[indIx] })))
+                    formatArgs: new[] { inds.Count == 1 ? "" : new[] { ordinal(3) + " " }[indIx] })))
                 yield return q;
         }
         addQuestions(module, monitors.Cast<object>().SelectMany(processMonitor));
