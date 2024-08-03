@@ -528,7 +528,7 @@ public partial class SouvenirModule
             {
                 if (uniquePositions.Any(p => p != pos))
                 {
-                    var reference = uniquePositions.First(p => p != pos);
+                    var reference = uniquePositions.Where(p => p != pos).PickRandom();
                     qs.Add(makeQuestion(Question.ForgetEverythingStageOneDisplay, moduleId, 0,
                         formattedModuleName: string.Format(translateString(Question.ForgetEverythingStageOneDisplay, "the Forget Everything whose {0} displayed digit in that stage was {1}"), ordinal(reference + 1), myFirstDisplay[reference]),
                         formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { myFirstDisplay[pos].ToString() }));
