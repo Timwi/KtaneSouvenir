@@ -550,7 +550,7 @@
         [AnswerGenerator.Integers(0, 99)]
         ConnectedMonitorsNumber,
         [SouvenirQuestion("What colour was the {1}indicator on this screen in {0}?", "Connected Monitors", ThreeColumns6Answers, "Red", "Orange", "Green", "Blue", "Purple", "White",
-            UsesQuestionSprite = true, ExampleFormatArguments = new[] { "", "first ", "second ", "third " }, ExampleFormatArgumentGroupSize = 1)]
+            UsesQuestionSprite = true, ExampleFormatArguments = new[] { "", "first ", "second ", "third " }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         ConnectedMonitorsIndicator,
 
         [SouvenirQuestion("What pair of numbers was present in {0}?", "Connection Check", ThreeColumns6Answers, null)]
