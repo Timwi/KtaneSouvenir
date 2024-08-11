@@ -1893,11 +1893,35 @@ namespace Souvenir
             {
                 QuestionText = "What number was initially displayed on this screen in {0}?",
             },
-            // What colour was the {1}indicator on this screen in {0}?
+            // What colour was the indicator on this screen in {0}?
             // What colour was the indicator on this screen in Connected Monitors?
-            [Question.ConnectedMonitorsIndicator] = new()
+            [Question.ConnectedMonitorsSingleIndicator] = new()
             {
-                QuestionText = "What colour was the {1}indicator on this screen in {0}?",
+                QuestionText = "What colour was the indicator on this screen in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Orange"] = "Orange",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Purple"] = "Purple",
+                    ["White"] = "White",
+                },
+            },
+            // What colour was the {1} indicator on this screen in {0}?
+            // What colour was the first indicator on this screen in Connected Monitors?
+            [Question.ConnectedMonitorsOrdinalIndicator] = new()
+            {
+                QuestionText = "What colour was the {1} indicator on this screen in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Orange"] = "Orange",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Purple"] = "Purple",
+                    ["White"] = "White",
+                },
             },
 
             // Connection Check

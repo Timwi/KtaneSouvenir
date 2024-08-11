@@ -1914,13 +1914,37 @@ namespace Souvenir
             // What number was initially displayed on this screen in Connected Monitors?
             [Question.ConnectedMonitorsNumber] = new()
             {
-                QuestionText = "What number was initially displayed on this screen in {0}?",
+                QuestionText = "Welche Zahl war bei {0} anfänglich auf diesem Display zu sehen?",
             },
-            // What colour was the {1}indicator on this screen in {0}?
+            // What colour was the indicator on this screen in {0}?
             // What colour was the indicator on this screen in Connected Monitors?
-            [Question.ConnectedMonitorsIndicator] = new()
+            [Question.ConnectedMonitorsSingleIndicator] = new()
             {
-                QuestionText = "What colour was the {1}indicator on this screen in {0}?",
+                QuestionText = "Welche Farbe hatte bei {0} der Indikator auf diesem Display?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Rot",
+                    ["Orange"] = "Orange",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Purple"] = "Lila",
+                    ["White"] = "Weiß",
+                },
+            },
+            // What colour was the {1} indicator on this screen in {0}?
+            // What colour was the first indicator on this screen in Connected Monitors?
+            [Question.ConnectedMonitorsOrdinalIndicator] = new()
+            {
+                QuestionText = "Welche Farbe hatte bei {0} der {1}e Indikator auf diesem Display?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Rot",
+                    ["Orange"] = "Orange",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Purple"] = "Lila",
+                    ["White"] = "Weiß",
+                },
             },
 
             // Connection Check

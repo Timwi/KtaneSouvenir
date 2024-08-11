@@ -1949,9 +1949,24 @@ namespace Souvenir
             {
                 QuestionText = "{0}のこの画面に最初表示された数字は？",
             },
-            // What colour was the {1}indicator on this screen in {0}?
+            // What colour was the indicator on this screen in {0}?
             // What colour was the indicator on this screen in Connected Monitors?
-            [Question.ConnectedMonitorsIndicator] = new()
+            [Question.ConnectedMonitorsSingleIndicator] = new()
+            {
+                QuestionText = "{0}のこの画面にあったインジケーターの色は？",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Orange"] = "オレンジ",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Purple"] = "紫",
+                    ["White"] = "白",
+                },
+            },
+            // What colour was the {1} indicator on this screen in {0}?
+            // What colour was the first indicator on this screen in Connected Monitors?
+            [Question.ConnectedMonitorsOrdinalIndicator] = new()
             {
                 QuestionText = "{0}のこの画面にあったインジケーター{1}の色は？",
                 Answers = new Dictionary<string, string>
@@ -1963,7 +1978,6 @@ namespace Souvenir
                     ["Purple"] = "紫",
                     ["White"] = "白",
                 },
-
             },
 
             // Connection Check
@@ -8032,7 +8046,7 @@ namespace Souvenir
                 QuestionText = "{0}のステージ{1}(十六進数)で再生された音は？",
                 TranslatableStrings = new Dictionary<string, string>
                 {
-                    ["ステージが{0}(十六進数)であったthe Sbemail Songs which displayed ‘{0}’ in stage {1} (hexadecimal)"] = "ステージが{0}(十六進数)であったSbemail Songs",
+                    ["the Sbemail Songs which displayed ‘{0}’ in stage {1} (hexadecimal)"] = "ステージ{1}(十六進数)で「{0}」が表示されたSbemail Song",
                 },
             },
 

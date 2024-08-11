@@ -655,9 +655,9 @@ public partial class SouvenirModule
                     correctAnswers: new[] { displays[ix].ToString() });
             var inds = indsProp.GetFrom(mon, validator: v => v.Count is > 3 or < 0 ? $"Bad indicator count {v.Count} (Monitor {ix})" : null);
             foreach (var q in inds.Cast<object>().Select((ind, indIx) =>
-                    makeQuestion(Question.ConnectedMonitorsIndicator, module, questionSprite: ConnectedMonitorsSprites[ix],
+                    makeQuestion(inds.Count == 1 ? Question.ConnectedMonitorsSingleIndicator : Question.ConnectedMonitorsOrdinalIndicator, module, questionSprite: ConnectedMonitorsSprites[ix],
                     correctAnswers: new[] { (colorProp ??= GetProperty<object>(ind, "Color", isPublic: true)).GetFrom(ind, v => (int) v is < 0 or > 5 ? $"Bad indicator color {v} (Monitor {ix}) (Indicator {indIx})" : null).ToString() },
-                    formatArgs: new[] { inds.Count == 1 ? "" : new[] { ordinal(3) + " " }[indIx] })))
+                    formatArgs: new[] { ordinal(indIx + 1) })))
                 yield return q;
         }
         addQuestions(module, monitors.Cast<object>().SelectMany(processMonitor));

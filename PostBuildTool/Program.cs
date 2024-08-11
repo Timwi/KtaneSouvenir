@@ -155,13 +155,14 @@ namespace SouvenirPostBuildTool
 
                         var skip = "QuestionText,ModuleName,ModuleNameWithThe,FormatArgs,Answers,TranslatableStrings".Split(',');
 
-                        foreach (var f in tiFields)
-                            if (!skip.Contains(f.Name) && f.GetValue(ti) is object v && !v.Equals(f.GetValue(translationInfoPrototype)))
-                                sb.AppendLine($@"                {f.Name} = {(
-                                    f.FieldType == typeof(string) ? $@"""{((string) v).CLiteralEscape()}""" :
-                                    f.FieldType.IsEnum ? $@"{f.FieldType.Name}.{v}" :
-                                    throw new NotImplementedException()
-                                )},");
+                        if (ti != null)
+                            foreach (var f in tiFields)
+                                if (!skip.Contains(f.Name) && f.GetValue(ti) is object v && !v.Equals(f.GetValue(translationInfoPrototype)))
+                                    sb.AppendLine($@"                {f.Name} = {(
+                                        f.FieldType == typeof(string) ? $@"""{((string) v).CLiteralEscape()}""" :
+                                        f.FieldType.IsEnum ? $@"{f.FieldType.Name}.{v}" :
+                                        throw new NotImplementedException()
+                                    )},");
 
                         sb.AppendLine($@"                QuestionText = ""{((string) (ti?.QuestionText) ?? qText).CLiteralEscape()}"",");
                         if (ti?.ModuleName != null)

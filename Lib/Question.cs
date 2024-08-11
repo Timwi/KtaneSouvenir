@@ -549,9 +549,11 @@
         [SouvenirQuestion("What number was initially displayed on this screen in {0}?", "Connected Monitors", ThreeColumns6Answers, UsesQuestionSprite = true)]
         [AnswerGenerator.Integers(0, 99)]
         ConnectedMonitorsNumber,
-        [SouvenirQuestion("What colour was the {1}indicator on this screen in {0}?", "Connected Monitors", ThreeColumns6Answers, "Red", "Orange", "Green", "Blue", "Purple", "White",
-            UsesQuestionSprite = true, ExampleFormatArguments = new[] { "", "first ", "second ", "third " }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
-        ConnectedMonitorsIndicator,
+        [SouvenirQuestion("What colour was the indicator on this screen in {0}?", "Connected Monitors", ThreeColumns6Answers, "Red", "Orange", "Green", "Blue", "Purple", "White", UsesQuestionSprite = true, TranslateAnswers = true)]
+        ConnectedMonitorsSingleIndicator,
+        [SouvenirQuestion("What colour was the {1} indicator on this screen in {0}?", "Connected Monitors", ThreeColumns6Answers, "Red", "Orange", "Green", "Blue", "Purple", "White",
+            UsesQuestionSprite = true, ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
+        ConnectedMonitorsOrdinalIndicator,
 
         [SouvenirQuestion("What pair of numbers was present in {0}?", "Connection Check", ThreeColumns6Answers, null)]
         [AnswerGenerator.Strings("1-8", " ", "1-8")]
