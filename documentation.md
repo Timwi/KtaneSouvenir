@@ -49,6 +49,8 @@ These are additional properties that you may want to set when defining a questio
 
 `string SpriteField` — If you are using `AnswerType.Sprites` and these sprites are included in the Souvenir project, specify the name of the field holding the `Sprite[]` as in the *Question Mark* question.
 
+`float SpriteSizeMultiplier` - If you are using `AnswerType.Sprites`, you can adjust this value to scale the sprites up or down. Its default value is `1f`.
+
 `int FontSize` and `float CharacterSize` — These correspond to their respective `TextMesh` properties. Useful for increasing the resolution of complex fonts, for example in *Snowflakes* and *Sugar Skulls*.
 
 `bool IsEntireQuestionSprite` — Use this if the theme of the module in question warrants it. For example *❖* and *Technical Keypad*.

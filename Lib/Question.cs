@@ -2035,6 +2035,10 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         PhosphorescenceButtonPresses,
 
+        [SouvenirQuestion("What pickup was shown in the {1} stage of {0}?", "Pickup Identification", ThreeColumns6Answers, Type = AnswerType.Sprites,
+                ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        PickupIdentificationItem,
+
         [SouvenirQuestion("What was the code in {0}?", "Pictionary", ThreeColumns6Answers)]
         [AnswerGenerator.Strings("0-579", "0-68", "0-7", "0-68")]
         PictionaryCode,

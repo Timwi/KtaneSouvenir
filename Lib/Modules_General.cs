@@ -388,6 +388,7 @@ public partial class SouvenirModule
             ["periodicWordsRB"] = (ProcessPeriodicWords, "Periodic Words", "Kuro"),
             ["spwizPerspectivePegs"] = (ProcessPerspectivePegs, "Perspective Pegs", "Andrio Celos"),
             ["Phosphorescence"] = (ProcessPhosphorescence, "Phosphorescence", "Emik"),
+            ["PickupIdentification"] = (ProcessPickupIdentification, "Pickup Identification", "Anonymous"),
             ["pictionaryModule"] = (ProcessPictionary, "Pictionary", "Kuro"),
             ["pieModule"] = (ProcessPie, "Pie", "luisdiogo98"),
             ["pieFlash"] = (ProcessPieFlash, "Pie Flash", "VFlyer"),

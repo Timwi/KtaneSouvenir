@@ -7106,6 +7106,14 @@ namespace Souvenir
                 },
             },
 
+            // Pickup Identification
+            // What pickup was shown in the {1} stage of {0}?
+            // What pickup was shown in the first stage of Pickup Identification?
+            [Question.PickupIdentificationItem] = new()
+            {
+                QuestionText = "What pickup was shown in the {1} stage of {0}?",
+            },
+
             // Pictionary
             // What was the code in {0}?
             // What was the code in Pictionary?
