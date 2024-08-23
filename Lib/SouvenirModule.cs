@@ -1212,7 +1212,7 @@ public partial class SouvenirModule : MonoBehaviour
 
     #region Twitch Plays
     internal bool TwitchPlaysActive = false;
-    private readonly List<KMBombModule> TwitchAbandonModule = new List<KMBombModule>();
+    private readonly List<KMBombModule> TwitchAbandonModule = new();
 #pragma warning disable 649
     private bool TwitchShouldCancelCommand;
 #pragma warning restore 649

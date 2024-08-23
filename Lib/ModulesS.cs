@@ -403,7 +403,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "SillySlots");
         yield return WaitForSolve;
 
-        var prevSlots = GetField<IList>(comp, "mPreviousSlots").Get(lst => lst.Cast<object>().Any(obj => !(obj is Array ar) || ar.Length != 3) ? "expected arrays of length 3" : null);
+        var prevSlots = GetField<IList>(comp, "mPreviousSlots").Get(lst => lst.Cast<object>().Any(obj => obj is not Array ar || ar.Length != 3) ? "expected arrays of length 3" : null);
         if (prevSlots.Count < 2)
         {
             // Legitimate: first stage was a keep already
@@ -1370,7 +1370,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
 
         var comp = GetComponent(module, "SplittingTheLootScript");
-        var bags = (IList) GetField<object>(comp, "bags").Get(lst => !(lst is IList list) ? "expected an IList" : list.Count != 7 ? "expected length 7" : null);
+        var bags = (IList) GetField<object>(comp, "bags").Get(lst => lst is not IList list ? "expected an IList" : list.Count != 7 ? "expected length 7" : null);
         var fldBagColor = GetField<object>(bags[0], "Color");
         var fldBagLabel = GetField<string>(bags[0], "Label");
         var bagColors = bags.Cast<object>().Select(obj => fldBagColor.GetFrom(obj)).ToArray();
