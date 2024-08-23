@@ -6246,6 +6246,14 @@ namespace Souvenir
                 ModuleName = "НЕ-пианино",
             },
 
+            // Not Red Arrows
+            // What was the starting number in {0}?
+            // What was the starting number in Not Red Arrows?
+            [Question.NotRedArrowsStart] = new()
+            {
+                QuestionText = "What was the starting number in {0}?",
+            },
+
             // Not Simaze
             // Which maze was used in {0}?
             // Which maze was used in Not Simaze?

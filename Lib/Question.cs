@@ -1815,6 +1815,10 @@
         [SouvenirQuestion("What was the third displayed symbol on {0}?", "Not Piano Keys", ThreeColumns6Answers, "U", "T", "m", "w", "", "B", "x", "", "", Type = AnswerType.PianoKeysFont)]
         NotPianoKeysThirdSymbol,
 
+        [SouvenirQuestion("What was the starting number in {0}?", "Not Red Arrows", ThreeColumns6Answers)]
+        [AnswerGenerator.Integers(10, 99, 1, "00")]
+        NotRedArrowsStart,
+
         [SouvenirQuestion("Which maze was used in {0}?", "Not Simaze", ThreeColumns6Answers, "red", "orange", "yellow", "green", "blue", "purple", TranslateAnswers = true)]
         NotSimazeMaze,
         [SouvenirQuestion("What was the starting position in {0}?", "Not Simaze", TwoColumns4Answers, "(red, red)", "(red, orange)", "(red, yellow)", "(red, green)", "(red, blue)", "(red, purple)", "(orange, red)", "(orange, orange)", "(orange, yellow)", "(orange, green)", "(orange, blue)", "(orange, purple)", "(yellow, red)", "(yellow, orange)", "(yellow, yellow)", "(yellow, green)", "(yellow, blue)", "(yellow, purple)", "(green, red)", "(green, orange)", "(green, yellow)", "(green, green)", "(green, blue)", "(green, purple)", "(blue, red)", "(blue, orange)", "(blue, yellow)", "(blue, green)", "(blue, blue)", "(blue, purple)", "(purple, red)", "(purple, orange)", "(purple, yellow)", "(purple, green)", "(purple, blue)", "(purple, purple)", TranslateAnswers = true)]

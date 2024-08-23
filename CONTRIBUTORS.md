@@ -92,6 +92,15 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Denial Displays   │  Not Colored Switches      │  Not Perspective Pegs  │  Scramboozled Eggain  │  xobekuJ ehT
     Double Digits     │  Not Connection Check      │  Not The Bulb          │  Simon Said           │
 
+## Implemented by Anonymous (28)
+
+    ❖                   │  Connection Check  │  Labyrinth, The      │  Pickup Identification  │  Stable Time Signatures
+    Bean Sprouts        │  Double Arrows     │  Maroon Button, The  │  RNG Crystal            │  Subbly Jubbly
+    Beans               │  Double Listening  │  Not Password        │  Simon Smiles           │  Time Signatures
+    Big Bean            │  Double Screen     │  Not Red Arrows      │  Simon Subdivides       │  Variety
+    Boomtar the Great   │  Fuse Box, The     │  One Links To All    │  Simon Swindles         │
+    Connected Monitors  │  hexOrbits         │  Pentabutton, The    │  Smash, Marry, Kill     │
+
 ## Implemented by Hawker (28)
 
     3N+1                     │  Directional Button  │  Girlfriend          │  RGB Sequences                      │  Subway
@@ -109,15 +118,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Flyswatting    │  LEDs                  │  Not Text Field   │  Simon Supports        │  USA Cycle
     Forget Me      │  M-Seq                 │  Not Word Search  │  Stupid Slots          │
     Jenga          │  Math ’em              │  Numpath          │  Superparsing          │
-
-## Implemented by Anonymous (26)
-
-    ❖                   │  Connection Check  │  Labyrinth, The         │  RNG Crystal             │  Time Signatures
-    Bean Sprouts        │  Double Arrows     │  Maroon Button, The     │  Simon Smiles            │  Variety
-    Beans               │  Double Listening  │  Not Password           │  Simon Subdivides        │
-    Big Bean            │  Double Screen     │  One Links To All       │  Smash, Marry, Kill      │
-    Boomtar the Great   │  Fuse Box, The     │  Pentabutton, The       │  Stable Time Signatures  │
-    Connected Monitors  │  hexOrbits         │  Pickup Identification  │  Subbly Jubbly           │
 
 ## Implemented by kavinkul (17)
 

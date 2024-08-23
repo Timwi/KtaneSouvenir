@@ -349,6 +349,7 @@ public partial class SouvenirModule
             ["NotPassword"] = (ProcessNotPassword, "Not Password", "Anonymous"),
             ["NotPerspectivePegsModule"] = (ProcessNotPerspectivePegs, "Not Perspective Pegs", "Quinn Wuest"),
             ["notPianoKeys"] = (ProcessNotPianoKeys, "Not Piano Keys", "tandyCake"),
+            ["notRedArrowsModule"] = (ProcessNotRedArrows, "Not Red Arrows", "Anonymous"),
             ["NotSimaze"] = (ProcessNotSimaze, "Not Simaze", "Andrio Celos"),
             ["notTextField"] = (ProcessNotTextField, "Not Text Field", "tandyCake"),
             ["notTheBulb"] = (ProcessNotTheBulb, "Not The Bulb", "Quinn Wuest"),

@@ -449,6 +449,19 @@ public partial class SouvenirModule
             makeQuestion(Question.NotPianoKeysThirdSymbol, module, correctAnswers: new[] { propName.GetFrom(symbols.GetValue(2)).ToString() }));
     }
 
+    private IEnumerator<YieldInstruction> ProcessNotRedArrows(ModuleData module)
+    {
+        var comp = GetComponent(module, "NotRedArrowsScript");
+        int startNumber = -1;
+        module.Module.OnActivate += () => startNumber = GetField<int>(comp, "currentNumber").Get(v => v is < 10 or > 99 ? $"Bad number {v}" : null);
+        yield return WaitForSolve;
+
+        if (startNumber == -1)
+            throw new AbandonModuleException("Failed to capture the starting number.");
+
+        addQuestion(module, Question.NotRedArrowsStart, correctAnswers: new[] { startNumber.ToString("00") });
+    }
+
     private IEnumerator<YieldInstruction> ProcessNotSimaze(ModuleData module)
     {
         var comp = GetComponent(module, "NotSimaze");
