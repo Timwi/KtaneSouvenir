@@ -83,6 +83,15 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Chinese Counting    │  Jumble Cycle           │  N&Ms              │  Simon’s Star    │
     Codenames           │  LED Math               │  Ordered Keys      │  Small Circle    │
 
+## Implemented by Anonymous (29)
+
+    ❖                  │  Connected Monitors  │  hexOrbits           │  Pentabutton, The       │  Smash, Marry, Kill
+    1, 2, 3 Game, The  │  Connection Check    │  Labyrinth, The      │  Pickup Identification  │  Stable Time Signatures
+    Bean Sprouts       │  Double Arrows       │  Maroon Button, The  │  RNG Crystal            │  Subbly Jubbly
+    Beans              │  Double Listening    │  Not Password        │  Simon Smiles           │  Time Signatures
+    Big Bean           │  Double Screen       │  Not Red Arrows      │  Simon Subdivides       │  Variety
+    Boomtar the Great  │  Fuse Box, The       │  One Links To All    │  Simon Swindles         │
+
 ## Implemented by Quinn Wuest (29)
 
     A Square          │  Épelle-moi Ça             │  Not Coordinates       │  Not X01              │  Simultaneous Simons
@@ -91,15 +100,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cyan Button, The  │  Navigation Determination  │  Not Number Pad        │  Rule of Three        │  Varicolour Flash
     Denial Displays   │  Not Colored Switches      │  Not Perspective Pegs  │  Scramboozled Eggain  │  xobekuJ ehT
     Double Digits     │  Not Connection Check      │  Not The Bulb          │  Simon Said           │
-
-## Implemented by Anonymous (28)
-
-    ❖                   │  Connection Check  │  Labyrinth, The      │  Pickup Identification  │  Stable Time Signatures
-    Bean Sprouts        │  Double Arrows     │  Maroon Button, The  │  RNG Crystal            │  Subbly Jubbly
-    Beans               │  Double Listening  │  Not Password        │  Simon Smiles           │  Time Signatures
-    Big Bean            │  Double Screen     │  Not Red Arrows      │  Simon Subdivides       │  Variety
-    Boomtar the Great   │  Fuse Box, The     │  One Links To All    │  Simon Swindles         │
-    Connected Monitors  │  hexOrbits         │  Pentabutton, The    │  Smash, Marry, Kill     │
 
 ## Implemented by Hawker (28)
 

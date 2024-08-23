@@ -60,6 +60,24 @@ public partial class SouvenirModule
             makeQuestion(Question._100LevelsOfDefusalLetters, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { ans.ToString() })));
     }
 
+    private IEnumerator<YieldInstruction> Process123Game(ModuleData module)
+    {
+        var comp = GetComponent(module, "TheOneTwoThreeGame");
+        yield return WaitForSolve;
+
+        GetField<SpriteRenderer>(comp, "Players", isPublic: true).Get().gameObject.SetActive(false);
+
+        var sprites = GetArrayField<Sprite>(comp, "PlayersSprites", isPublic: true).Get(expectedLength: 12);
+        var names = GetArrayField<string>(comp, "Names").Get(expectedLength: 13);
+
+        var sprite = GetField<int>(comp, "ProfileSelector").Get(v => v is < 0 or >= 12 ? $"Bad sprite index {v}" : null);
+        var name = GetField<int>(comp, "NameSelector").Get(v => v is < 0 or >= 13 ? $"Bad name index {v}" : null);
+
+        addQuestions(module,
+            makeQuestion(Question._123GameProfile, module, correctAnswers: new[] { sprites[sprite] }, allAnswers: sprites),
+            makeQuestion(Question._123GameName, module, correctAnswers: new[] { names[name] }));
+    }
+
     private IEnumerator<YieldInstruction> Process1DChess(ModuleData module)
     {
         var comp = GetComponent(module, "OneDimensionalChessScript");

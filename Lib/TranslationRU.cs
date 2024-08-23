@@ -30,6 +30,20 @@ namespace Souvenir
                 ModuleName = "100 уровней обезвреживания",
             },
 
+            // The 1, 2, 3 Game
+            // Who was the opponent in {0}?
+            // Who was the opponent in The 1, 2, 3 Game?
+            [Question._123GameProfile] = new()
+            {
+                QuestionText = "Who was the opponent in {0}?",
+            },
+            // Who was the opponent in {0}?
+            // Who was the opponent in The 1, 2, 3 Game?
+            [Question._123GameName] = new()
+            {
+                QuestionText = "Who was the opponent in {0}?",
+            },
+
             // 1D Chess
             // What was {1} in {0}?
             // What was your first move in 1D Chess?
