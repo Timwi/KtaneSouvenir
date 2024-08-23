@@ -452,7 +452,7 @@ public partial class SouvenirModule
             }
         }
 
-        formattedName ??= _translation?.Translations[Question.ForgetAnyColorCylinder].ModuleName ?? "Forget Any Color";
+        formattedName ??= _translation?.Translate(Question.ForgetAnyColorCylinder).ModuleName ?? "Forget Any Color";
         var correctCylinders = getCylinders(myCylinders, randomStage);
         var preferredCylinders = new HashSet<string> { correctCylinders };
         while (preferredCylinders.Count < 6)
@@ -745,7 +745,7 @@ public partial class SouvenirModule
                 yield break;
             }
         }
-        formattedName ??= _translation?.Translations[Question.ForgetTheColorsGearNumber].ModuleName ?? "Forget The Colors";
+        formattedName ??= _translation?.Translate(Question.ForgetTheColorsGearNumber).ModuleName ?? "Forget The Colors";
 
         var stage = chosenStage.ToString();
         addQuestions(module,
@@ -818,7 +818,7 @@ public partial class SouvenirModule
                 yield break;
             }
         }
-        formattedName ??= _translation?.Translations[Question.ForgetThisColors].ModuleName ?? "Forget This";
+        formattedName ??= _translation?.Translate(Question.ForgetThisColors).ModuleName ?? "Forget This";
         addQuestions(module,
             makeQuestion(Question.ForgetThisColors, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { ordinal(chosenStage + 1) }, correctAnswers: new[] { allColors[myColors[chosenStage]] }),
             makeQuestion(Question.ForgetThisDigits, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { ordinal(chosenStage + 1) }, correctAnswers: new[] { base36[myDigits[chosenStage]].ToString() }));

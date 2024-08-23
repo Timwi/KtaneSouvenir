@@ -98,7 +98,7 @@ public partial class SouvenirModule : MonoBehaviour
     private readonly HashSet<string> _supportedModuleNames = new();
     private readonly HashSet<string> _ignoredModules = new();
     private bool _isActivated = false;
-    private Translation _translation;
+    private ITranslation _translation;
 
     private QandA _currentQuestion = null;
     private bool _isSolved = false;
@@ -441,10 +441,10 @@ public partial class SouvenirModule : MonoBehaviour
         }
     }
 
-    private string translateQuestion(Question question) => _translation?.Translations.Get(question)?.QuestionText ?? question.GetAttribute().QuestionText;
-    private string translateFormatArg(Question question, string arg) => arg == null ? null : _translation?.Translations.Get(question)?.FormatArgs?.Get(arg, arg) ?? arg;
-    private string translateAnswer(Question question, string answ) => answ == null ? null : _translation?.Translations.Get(question)?.Answers?.Get(answ, answ) ?? answ;
-    private string translateString(Question question, string str) => str == null ? null : _translation?.Translations.Get(question)?.TranslatableStrings?.Get(str, str) ?? str;
+    private string translateQuestion(Question question) => _translation?.Translate(question)?.QuestionText ?? question.GetAttribute().QuestionText;
+    private string translateFormatArg(Question question, string arg) => arg == null ? null : _translation?.Translate(question)?.FormatArgs?.Get(arg, arg) ?? arg;
+    private string translateAnswer(Question question, string answ) => answ == null ? null : _translation?.Translate(question)?.Answers?.Get(answ, answ) ?? answ;
+    private string translateString(Question question, string str) => str == null ? null : _translation?.Translate(question)?.TranslatableStrings?.Get(str, str) ?? str;
 
     void setAnswerHandler(int index, Action<int> handler)
     {
@@ -991,7 +991,7 @@ public partial class SouvenirModule : MonoBehaviour
     private QandA makeQuestion(Question question, string moduleId, int solveIx, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null, Sprite[] allAnswers = null, float questionSpriteRotation = 0) =>
         makeQuestion(question, moduleId, solveIx,
             (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation, _translation),
-            (attr, num, answers) => new QandA.SpriteAnswerSet(num, attr.Layout, answers), 
+            (attr, num, answers) => new QandA.SpriteAnswerSet(num, attr.Layout, answers),
             formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? GetAllSprites(question), AnswerType.Sprites);
 
     private QandA makeSpriteQuestion(Sprite questionSprite, Question question, ModuleData data, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null) =>
@@ -1009,7 +1009,7 @@ public partial class SouvenirModule : MonoBehaviour
     private QandA makeSpriteQuestion(Sprite questionSprite, Question question, string moduleId, int solveIx, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null, Sprite[] allAnswers = null) =>
         makeQuestion(question, moduleId, solveIx,
             (attr, q) => new QandA.SpriteQuestion(q, questionSprite),
-            (attr, num, answers) => new QandA.SpriteAnswerSet(num, attr.Layout, answers), 
+            (attr, num, answers) => new QandA.SpriteAnswerSet(num, attr.Layout, answers),
             formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? GetAllSprites(question), AnswerType.Sprites);
 
     private QandA makeSpriteQuestion(Sprite questionSprite, Question question, ModuleData data, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null, Sprite[] allAnswers = null) =>
@@ -1038,7 +1038,7 @@ public partial class SouvenirModule : MonoBehaviour
     {
         return makeQuestion(question, moduleId, solveIx,
             (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation, _translation),
-            (attr, num, answers) => new QandA.AudioAnswerSet(num, attr.Layout, answers, this, attr.AudioSizeMultiplier, attr.ForeignAudioID), 
+            (attr, num, answers) => new QandA.AudioAnswerSet(num, attr.Layout, answers, this, attr.AudioSizeMultiplier, attr.ForeignAudioID),
             formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? GetAllSounds(question), AnswerType.Audio);
     }
 
@@ -1257,14 +1257,14 @@ public partial class SouvenirModule : MonoBehaviour
             for (var i = 0; i < _exampleQuestions.Length; i++)
             {
                 var j = (i + _curExampleQuestion + 1) % _exampleQuestions.Length;
-                if (Regex.IsMatch(_translation?.Translations?.Get(_exampleQuestions[j]).ModuleNameWithThe ?? _translation?.Translations.Get(_exampleQuestions[j]).ModuleName ?? _exampleQuestions[j].GetAttribute().ModuleNameWithThe, $"^{Regex.Escape(command)}$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+                if (Regex.IsMatch(_translation?.Translate(_exampleQuestions[j]).ModuleNameWithThe ?? _translation?.Translate(_exampleQuestions[j]).ModuleName ?? _exampleQuestions[j].GetAttribute().ModuleNameWithThe, $"^{Regex.Escape(command)}$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
                 {
                     _curExampleQuestion = j;
                     showExampleQuestion();
                     yield break;
                 }
 
-                if (substringMatch == -1 && Regex.IsMatch(_translation?.Translations.Get(_exampleQuestions[j]).ModuleNameWithThe ?? _translation?.Translations.Get(_exampleQuestions[j]).ModuleName ?? _exampleQuestions[j].GetAttribute().ModuleNameWithThe, Regex.Escape(command), RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+                if (substringMatch == -1 && Regex.IsMatch(_translation?.Translate(_exampleQuestions[j]).ModuleNameWithThe ?? _translation?.Translate(_exampleQuestions[j]).ModuleName ?? _exampleQuestions[j].GetAttribute().ModuleNameWithThe, Regex.Escape(command), RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
                     substringMatch = j;
             }
 

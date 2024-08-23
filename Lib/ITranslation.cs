@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace Souvenir
+﻿namespace Souvenir
 {
-    public interface Translation
+    public interface ITranslation
     {
         string[] IntroTexts { get; }
         int DefaultFontIndex { get; }
@@ -10,7 +8,6 @@ namespace Souvenir
 
         public abstract string FormatModuleName(Question question, bool addSolveCount, int numSolved);
         public abstract string Ordinal(int number);
-
-        public Dictionary<Question, TranslationInfo> Translations { get; }
+        public TranslationInfo Translate(Question question);
     }
 }
