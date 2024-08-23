@@ -1152,6 +1152,14 @@ namespace Souvenir
                 },
             },
 
+            // Bottom Gear
+            // What tweet was shown in {0}?
+            // What tweet was shown in Bottom Gear?
+            [Question.BottomGearTweet] = new()
+            {
+                QuestionText = "What tweet was shown in {0}?",
+            },
+
             // Boxing
             // Which {1} appeared on {0}?
             // Which contestant’s first name appeared on Boxing?

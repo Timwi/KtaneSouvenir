@@ -83,14 +83,14 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Chinese Counting    │  Jumble Cycle           │  N&Ms              │  Simon’s Star    │
     Codenames           │  LED Math               │  Ordered Keys      │  Small Circle    │
 
-## Implemented by Anonymous (29)
+## Implemented by Anonymous (30)
 
-    ❖                  │  Connected Monitors  │  hexOrbits           │  Pentabutton, The       │  Smash, Marry, Kill
-    1, 2, 3 Game, The  │  Connection Check    │  Labyrinth, The      │  Pickup Identification  │  Stable Time Signatures
-    Bean Sprouts       │  Double Arrows       │  Maroon Button, The  │  RNG Crystal            │  Subbly Jubbly
-    Beans              │  Double Listening    │  Not Password        │  Simon Smiles           │  Time Signatures
-    Big Bean           │  Double Screen       │  Not Red Arrows      │  Simon Subdivides       │  Variety
-    Boomtar the Great  │  Fuse Box, The       │  One Links To All    │  Simon Swindles         │
+    ❖                  │  Bottom Gear         │  Fuse Box, The       │  One Links To All       │  Simon Swindles
+    1, 2, 3 Game, The  │  Connected Monitors  │  hexOrbits           │  Pentabutton, The       │  Smash, Marry, Kill
+    Bean Sprouts       │  Connection Check    │  Labyrinth, The      │  Pickup Identification  │  Stable Time Signatures
+    Beans              │  Double Arrows       │  Maroon Button, The  │  RNG Crystal            │  Subbly Jubbly
+    Big Bean           │  Double Listening    │  Not Password        │  Simon Smiles           │  Time Signatures
+    Boomtar the Great  │  Double Screen       │  Not Red Arrows      │  Simon Subdivides       │  Variety
 
 ## Implemented by Quinn Wuest (29)
 
