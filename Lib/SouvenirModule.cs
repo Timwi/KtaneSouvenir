@@ -445,6 +445,8 @@ public partial class SouvenirModule : MonoBehaviour
     private string translateFormatArg(Question question, string arg) => arg == null ? null : _translation?.Translate(question)?.FormatArgs?.Get(arg, arg) ?? arg;
     private string translateAnswer(Question question, string answ) => answ == null ? null : _translation?.Translate(question)?.Answers?.Get(answ, answ) ?? answ;
     private string translateString(Question question, string str) => str == null ? null : _translation?.Translate(question)?.TranslatableStrings?.Get(str, str) ?? str;
+    private string translateModuleName(Question question, string name = null) => translateModuleName(question, false) ?? translateModuleName(question, true) ?? name;
+    private string translateModuleName(Question question, bool withThe) => (withThe ? _translation?.Translate(question)?.ModuleName : _translation?.Translate(question)?.ModuleNameWithThe);
 
     void setAnswerHandler(int index, Action<int> handler)
     {

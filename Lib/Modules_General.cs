@@ -482,6 +482,7 @@ public partial class SouvenirModule
             ["skyrim"] = (ProcessSkyrim, "Skyrim", "Timwi"),
             ["SlowMathModule"] = (ProcessSlowMath, "Slow Math", "Quinn Wuest"),
             ["smallCircle"] = (ProcessSmallCircle, "Small Circle", "TasThiluna"),
+            ["smashmarrykill"] = (ProcessSmashMarryKill, "Smash, Marry, Kill", "Anonymous"),
             ["snooker"] = (ProcessSnooker, "Snooker", "TasThiluna"),
             ["snowflakes"] = (ProcessSnowflakes, "Snowflakes", "Kuro"),
             ["sonicKnuckles"] = (ProcessSonicKnuckles, "Sonic & Knuckles", "Hawker"),

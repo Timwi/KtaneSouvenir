@@ -2570,6 +2570,14 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         SmallCircleSolution,
 
+        [SouvenirQuestion("In what category was {1} for {0}?", "Smash, Marry, Kill", TwoColumns4Answers, "SMASH", "MARRY", "KILL",
+                ExampleFormatArguments = new[] { "The Button", "Maze", "Memory", "Morse Code", "Password", "Simon Says", "Who’s on First", "Wires", "Wire Sequence" }, ExampleFormatArgumentGroupSize = 1)]
+        SmashMarryKillCategory,
+        [SouvenirQuestion("Which module was in the {1} category for {0}?", "Smash, Marry, Kill", OneColumn4Answers, null,
+                ExampleAnswers = new[] { "The Button", "Maze", "Memory", "Morse Code", "Password", "Simon Says", "Who’s on First", "Wires", "Wire Sequence" },
+                ExampleFormatArguments = new[] { "SMASH", "MARRY", "KILL" }, ExampleFormatArgumentGroupSize = 1)]
+        SmashMarryKillModule,
+
         [SouvenirQuestion("How many red balls were there at the start of {0}?", "Snooker", TwoColumns4Answers, "8", "9", "10", "11")]
         SnookerReds,
 

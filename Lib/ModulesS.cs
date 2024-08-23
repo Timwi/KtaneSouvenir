@@ -1134,6 +1134,53 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerator<YieldInstruction> ProcessSmashMarryKill(ModuleData module)
+    {
+        var comp = GetComponent(module, "SmashMarryKill");
+        while (!_noUnignoredModulesLeft)
+            yield return new WaitForSeconds(.1f);
+        // All SMyK modules on a bomb share information,
+        // so we don't need to keep track of solve order at all,
+        // nor even disambiguate the modules.
+
+        var assignments = GetStaticField<IDictionary>(comp.GetType(), "allModules").Get();
+        if (assignments.Count == 0)
+        {
+            legitimatelyNoQuestion(module.Module, "No modules were categorized.");
+            yield break;
+        }
+
+        var moduleName = translateModuleName(Question.SmashMarryKillCategory, "Smash, Marry, Kill");
+        List<QandA> questions = new();
+        var smash = new List<string>();
+        var marry = new List<string>();
+        var kill = new List<string>();
+        foreach (DictionaryEntry de in assignments)
+        {
+            if (de.Value.ToString() == "SMASH")
+                smash.Add((string)de.Key);
+            if (de.Value.ToString() == "MARRY")
+                marry.Add((string)de.Key);
+            if (de.Value.ToString() == "KILL")
+                kill.Add((string)de.Key);
+            questions.Add(makeQuestion(Question.SmashMarryKillCategory, module, formattedModuleName: moduleName, formatArgs: new[] { (string)de.Key }, correctAnswers: new[] { de.Value.ToString() }));
+        }
+        var allMods = smash.Concat(marry).Concat(kill).ToArray();
+        if (allMods.Length < 4)
+            allMods = Bomb.GetSolvableModuleNames().Distinct().ToArray();
+        if (smash.Count > 0)
+            questions.Add(makeQuestion(Question.SmashMarryKillModule, module, formattedModuleName: moduleName, formatArgs: new[] { "SMASH" },
+                correctAnswers: smash.ToArray(), allAnswers: allMods));
+        if (marry.Count > 0)
+            questions.Add(makeQuestion(Question.SmashMarryKillModule, module, formattedModuleName: moduleName, formatArgs: new[] { "MARRY" },
+                correctAnswers: marry.ToArray(), allAnswers: allMods));
+        if (kill.Count > 0)
+            questions.Add(makeQuestion(Question.SmashMarryKillModule, module, formattedModuleName: moduleName, formatArgs: new[] { "KILL" },
+                correctAnswers: kill.ToArray(), allAnswers: allMods));
+
+        addQuestions(module, questions);
+    }
+
     private IEnumerator<YieldInstruction> ProcessSnooker(ModuleData module)
     {
         var comp = GetComponent(module, "snookerScript");

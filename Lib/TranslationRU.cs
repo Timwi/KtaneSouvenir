@@ -8925,6 +8925,20 @@ namespace Souvenir
                 },
             },
 
+            // Smash, Marry, Kill
+            // In what category was {1} for {0}?
+            // In what category was The Button for Smash, Marry, Kill?
+            [Question.SmashMarryKillCategory] = new()
+            {
+                QuestionText = "In what category was {1} for {0}?",
+            },
+            // Which module was in the {1} category for {0}?
+            // Which module was in the SMASH category for Smash, Marry, Kill?
+            [Question.SmashMarryKillModule] = new()
+            {
+                QuestionText = "Which module was in the {1} category for {0}?",
+            },
+
             // Snooker
             // How many red balls were there at the start of {0}?
             // How many red balls were there at the start of Snooker?
