@@ -79,6 +79,21 @@ public partial class SouvenirModule
         addQuestion(module, Question.OldFogeyStartingColor, correctAnswers: new[] { startingColor });
     }
 
+    private IEnumerator<YieldInstruction> ProcessOneLinksToAll(ModuleData module)
+    {
+        var comp = GetComponent(module, "OneLinksToAllScript");
+
+        yield return WaitForSolve;
+
+        var start = GetField<string>(comp, "title1").Get();
+        var end = GetField<string>(comp, "title2").Get();
+        var path = GetListField<string>(comp, "exampleSolution").Get().ToArray();
+
+        addQuestions(module,
+            makeQuestion(Question.OneLinksToAllStart, module, correctAnswers: new[] { start }, allAnswers: path, preferredWrongAnswers: new[] { end }),
+            makeQuestion(Question.OneLinksToAllEnd, module, correctAnswers: new[] { end }, allAnswers: path, preferredWrongAnswers: new[] { start }));
+    }
+
     private IEnumerator<YieldInstruction> ProcessOnlyConnect(ModuleData module)
     {
         var comp = GetComponent(module, "OnlyConnectModule");

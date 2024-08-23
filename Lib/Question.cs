@@ -1913,6 +1913,13 @@
         [SouvenirQuestion("What was the initial color of the status light in {0}?", "Old Fogey", ThreeColumns6Answers, "Red", "Green", "Yellow", "Blue", "Magenta", "Cyan", "White", TranslateAnswers = true)]
         OldFogeyStartingColor,
 
+        [SouvenirQuestion("What was the starting article in {0}?", "One Links To All", OneColumn4Answers, null,
+             ExampleAnswers = new[] { "Waves (Jade Warrior album)", "Himali Siriwardena", "Campbell Pass", "1973 Northern Ireland Assembly election", "Bravo Airways", "Adolph Hoffmann", "Australian cyclists at the Tour de France", "Lebanese Canadians", "Albert Richard Pritchard", "Mary A. Lehman" })]
+        OneLinksToAllStart,
+        [SouvenirQuestion("What was the ending article in {0}?", "One Links To All", OneColumn4Answers, null,
+             ExampleAnswers = new[] { "Bob Kitterman", "Johannes Nevala", "Alfred Patfield", "Dublin Bay South (Dáil constituency)", "The Monkees Present", "Finding Me", "Sibora", "Operator (linguistics)", "2022 Iowa Senate election", "Ab Dang Sar, Savadkuh" })]
+        OneLinksToAllEnd,
+
         [SouvenirQuestion("Which Egyptian hieroglyph was in the {1} in {0}?", "Only Connect", TwoColumns4Answers, "Two Reeds", "Lion", "Twisted Flax", "Horned Viper", "Water", "Eye of Horus", TranslateAnswers = true, TranslateFormatArgs = new[] { true },
             ExampleFormatArguments = new[] { "top left", "top middle", "top right", "bottom left", "bottom middle", "bottom right" }, ExampleFormatArgumentGroupSize = 1)]
         OnlyConnectHieroglyphs,

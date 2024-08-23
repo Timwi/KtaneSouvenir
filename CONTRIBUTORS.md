@@ -110,13 +110,14 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Forget Me      │  M-Seq                 │  Not Word Search  │  Stupid Slots          │
     Jenga          │  Math ’em              │  Numpath          │  Superparsing          │
 
-## Implemented by Anonymous (24)
+## Implemented by Anonymous (26)
 
-    ❖                  │  Connected Monitors  │  Fuse Box, The       │  Pentabutton, The    │  Stable Time Signatures
-    Bean Sprouts       │  Connection Check    │  hexOrbits           │  RNG Crystal         │  Subbly Jubbly
-    Beans              │  Double Arrows       │  Labyrinth, The      │  Simon Smiles        │  Time Signatures
-    Big Bean           │  Double Listening    │  Maroon Button, The  │  Simon Subdivides    │  Variety
-    Boomtar the Great  │  Double Screen       │  Not Password        │  Smash, Marry, Kill  │
+    ❖                   │  Connection Check  │  Labyrinth, The         │  RNG Crystal             │  Time Signatures
+    Bean Sprouts        │  Double Arrows     │  Maroon Button, The     │  Simon Smiles            │  Variety
+    Beans               │  Double Listening  │  Not Password           │  Simon Subdivides        │
+    Big Bean            │  Double Screen     │  One Links To All       │  Smash, Marry, Kill      │
+    Boomtar the Great   │  Fuse Box, The     │  Pentabutton, The       │  Stable Time Signatures  │
+    Connected Monitors  │  hexOrbits         │  Pickup Identification  │  Subbly Jubbly           │
 
 ## Implemented by kavinkul (17)
 

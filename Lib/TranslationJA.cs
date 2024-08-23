@@ -6871,6 +6871,20 @@ namespace Souvenir
                 },
             },
 
+            // One Links To All
+            // What was the starting article in {0}?
+            // What was the starting article in One Links To All?
+            [Question.OneLinksToAllStart] = new()
+            {
+                QuestionText = "What was the starting article in {0}?",
+            },
+            // What was the ending article in {0}?
+            // What was the ending article in One Links To All?
+            [Question.OneLinksToAllEnd] = new()
+            {
+                QuestionText = "What was the ending article in {0}?",
+            },
+
             // Only Connect
             // Which Egyptian hieroglyph was in the {1} in {0}?
             // Which Egyptian hieroglyph was in the top left in Only Connect?

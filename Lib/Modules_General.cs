@@ -366,6 +366,7 @@ public partial class SouvenirModule
             ["OddOneOutModule"] = (ProcessOddOneOut, "Odd One Out", "luisdiogo98"),
             ["SCP079"] = (ProcessOldAI, "Old AI", "noting3548"),
             ["oldFogey"] = (ProcessOldFogey, "Old Fogey", "Kuro"),
+            ["oneLinksToAllModule"] = (ProcessOneLinksToAll, "One Links To All", "Anonymous"),
             ["OnlyConnectModule"] = (ProcessOnlyConnect, "Only Connect", "Timwi"),
             ["orangeArrowsModule"] = (ProcessOrangeArrows, "Orange Arrows", "kavinkul"),
             ["orangeCipher"] = (ProcessOrangeCipher, "Orange Cipher", "BigCrunch22"),
