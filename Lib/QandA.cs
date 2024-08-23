@@ -55,15 +55,13 @@ namespace Souvenir
             private readonly Sprite _questionSprite;
             private readonly float _questionSpriteRotation;
             private readonly double _desiredHeightFactor;
-            private readonly ITranslation _translation;
 
-            public TextQuestion(string question, AnswerLayout layout, Sprite questionSprite, float questionSpriteRotation, ITranslation translation)
+            public TextQuestion(string question, AnswerLayout layout, Sprite questionSprite, float questionSpriteRotation)
                 : base(question)
             {
                 _desiredHeightFactor = layout == AnswerLayout.OneColumn4Answers ? .825 : 1.1;
                 _questionSprite = questionSprite;
                 _questionSpriteRotation = questionSpriteRotation;
-                _translation = translation;
             }
 
             public override void SetQuestion(SouvenirModule souv)
