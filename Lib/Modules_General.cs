@@ -478,6 +478,7 @@ public partial class SouvenirModule
             ["simonStores"] = (ProcessSimonStores, "Simon Stores", "kavinkul"),
             ["simonSubdivides"] = (ProcessSimonSubdivides, "Simon Subdivides", "Anonymous"),
             ["simonSupports"] = (ProcessSimonSupports, "Simon Supports", "tandyCake"),
+            ["simonSwindles"] = (ProcessSimonSwindles, "Simon Swindles", "Anonymous"),
             ["simultaneousSimons"] = (ProcessSimultaneousSimons, "Simultaneous Simons", "Quinn Wuest"),
             ["SkewedSlotsModule"] = (ProcessSkewedSlots, "Skewed Slots", "Timwi"),
             ["skyrim"] = (ProcessSkyrim, "Skyrim", "Timwi"),

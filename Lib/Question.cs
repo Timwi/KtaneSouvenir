@@ -2546,6 +2546,10 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, TranslateAnswers = true, ExampleFormatArgumentGroupSize = 1)]
         SimonSupportsTopics,
 
+        [SouvenirQuestion("What was the constant in {0}?", "Simon Swindles", TwoColumns4Answers)]
+        [AnswerGenerator.Strings(6, "KRGYBMCW")]
+        SimonSwindlesConstant,
+
         [SouvenirQuestion("What color flashed {1} on the {2} Simon in {0}?", "Simultaneous Simons", TwoColumns4Answers, "Blue", "Yellow", "Red", "Green", TranslateAnswers = true,
             ExampleFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleFormatArgumentGroupSize = 2)]
         SimultaneousSimonsFlash,

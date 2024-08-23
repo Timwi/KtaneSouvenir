@@ -9038,6 +9038,14 @@ namespace Souvenir
                 },
             },
 
+            // Simon Swindles
+            // What was the constant in {0}?
+            // What was the constant in Simon Swindles?
+            [Question.SimonSwindlesConstant] = new()
+            {
+                QuestionText = "What was the constant in {0}?",
+            },
+
             // Simultaneous Simons
             // What color flashed {1} on the {2} Simon in {0}?
             // What color flashed first on the first Simon in Simultaneous Simons?

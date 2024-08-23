@@ -1025,6 +1025,16 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerator<YieldInstruction> ProcessSimonSwindles(ModuleData module)
+    {
+        var comp = GetComponent(module, "Swindlem");
+        yield return WaitForSolve;
+
+        var constant = GetField<string>(comp, "constant")
+            .Get(v => v.Length != 6 ? $"Bad constant length! {v}" : v.Select(c => "KRGBCMYW".Contains(c) ? (char?)null : c).Aggregate((string)null, (a, b) => b is null ? a : a is null ? b.ToString() : a + b.ToString()));
+        addQuestion(module, Question.SimonSwindlesConstant, correctAnswers: new[] { constant });
+    }
+
     private IEnumerator<YieldInstruction> ProcessSimultaneousSimons(ModuleData module)
     {
         var comp = GetComponent(module, "SimultaneousSimons");
