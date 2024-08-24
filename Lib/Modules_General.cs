@@ -554,6 +554,7 @@ public partial class SouvenirModule
             ["UnicodeModule"] = (ProcessUnicode, "Unicode", "Marksam"),
             ["UNO"] = (ProcessUNO, "UNO!", "Hawker"),
             ["UnownCipher"] = (ProcessUnownCipher, "Unown Cipher", "kavinkul"),
+            ["Updog"] = (ProcessUpdog, "Updog", "Anonymous"),
             ["USACycle"] = (ProcessUSACycle, "USA Cycle", "tandyCake"),
             ["USA"] = (ProcessUSAMaze, "USA Maze", "luisdiogo98"),
             ["V"] = (ProcessV, "V", "BigCrunch22"),

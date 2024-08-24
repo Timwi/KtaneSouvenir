@@ -150,6 +150,32 @@ public partial class SouvenirModule
         addQuestions(module, unownAnswer.Select((ans, i) => makeQuestion(Question.UnownCipherAnswers, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { ((char) ('A' + ans)).ToString() })));
     }
 
+    private IEnumerator<YieldInstruction> ProcessUpdog(ModuleData module)
+    {
+        var comp = GetComponent(module, "UpdogScript");
+        yield return WaitForSolve;
+        var word = GetField<string>(comp, "_souvenirWord").Get(v => Ut.Attributes[Question.UpdogWord].AllAnswers.Contains(v) ? null : $"Bad word {v}");
+        var colors = GetArrayField<Color>(comp, "_souvenirColors").Get(expectedLength: 10);
+
+        static string colorName(Color c) => (c.r, c.g, c.b) switch
+        {
+            (0.4f, 0.05f, 0.05f) => "Red",
+            (0.4f, 0.3f, 0.05f) => "Orange",
+            (0.5f, 0.5f, 0.05f) => "Yellow",
+            (0.05f, 0.05f, 0.5f) => "Blue",
+            (0.05f, 0.5f, 0.05f) => "Green",
+            (0.5f, 0.05f, 0.5f) => "Purple",
+            _ => throw new AbandonModuleException($"Unexpected color: {c.r}, {c.g}, {c.b}"),
+        };
+        string firstCol = colorName(colors[0]);
+        string lastCol = colorName(colors[6]);
+
+        addQuestions(module,
+            makeQuestion(Question.UpdogWord, module, correctAnswers: new[] { word }),
+            makeQuestion(Question.UpdogColor, module, correctAnswers: new[] { firstCol }, formatArgs: new[] { "first" }),
+            makeQuestion(Question.UpdogColor, module, correctAnswers: new[] { lastCol }, formatArgs: new[] { "last" }));
+    }
+
     private IEnumerator<YieldInstruction> ProcessUSACycle(ModuleData module)
     {
         var comp = GetComponent(module, "USACycle");

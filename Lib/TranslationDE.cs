@@ -9678,6 +9678,20 @@ namespace Souvenir
                 QuestionText = "What was the {1} submitted letter in {0}?",
             },
 
+            // Updog
+            // What was the text on {0}?
+            // What was the text on Updog?
+            [Question.UpdogWord] = new()
+            {
+                QuestionText = "What was the text on {0}?",
+            },
+            // What was the {1} color in the sequence on {0}?
+            // What was the first color in the sequence on Updog?
+            [Question.UpdogColor] = new()
+            {
+                QuestionText = "What was the {1} color in the sequence on {0}?",
+            },
+
             // USA Cycle
             // Which state was displayed in {0}?
             // Which state was displayed in USA Cycle?

@@ -2880,6 +2880,12 @@
         [AnswerGenerator.Strings('A', 'Z')]
         UnownCipherAnswers,
 
+        [SouvenirQuestion("What was the text on {0}?", "Updog", ThreeColumns6Answers, "dog", "DOG", "dawg", "DAWG", "doge", "DOGE", "dag", "DAG", "dogg", "DOGG", "dage", "DAGE")]
+        UpdogWord,
+        [SouvenirQuestion("What was the {1} color in the sequence on {0}?", "Updog", ThreeColumns6Answers, "Red", "Yellow", "Orange", "Green", "Blue", "Purple",
+            ExampleFormatArguments = new[] { "first", "last" }, ExampleFormatArgumentGroupSize = 1)]
+        UpdogColor,
+
         [SouvenirQuestion("Which state was displayed in {0}?", "USA Cycle", TwoColumns4Answers,
             Type = AnswerType.Sprites, SpriteField = "USACycleSprites")]
         USACycleDisplayed,
