@@ -5888,6 +5888,14 @@ namespace Souvenir
                 },
             },
 
+            // Naming Conventions
+            // What was the label of the first button in {0}?
+            // What was the label of the first button in Naming Conventions?
+            [Question.NamingConventionsObject] = new()
+            {
+                QuestionText = "What was the label of the first button in {0}?",
+            },
+
             // N&Ms
             // What was the label of the correct button in {0}?
             // What was the label of the correct button in N&Ms?

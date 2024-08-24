@@ -330,6 +330,7 @@ public partial class SouvenirModule
             ["mysterymodule"] = (ProcessMysteryModule, "Mystery Module", "Timwi"),
             ["MysticSquareModule"] = (ProcessMysticSquare, "Mystic Square", "CaitSith2"),
             ["nameCodes"] = (ProcessNameCodes, "Name Codes", "tandyCake"),
+            ["NamingConventions"] = (ProcessNamingConventions, "Naming Conventions", "Anonymous"),
             ["NandMs"] = (ProcessNandMs, "N&Ms", "TasThiluna"),
             ["NavigationDeterminationModule"] = (ProcessNavigationDetermination, "Navigation Determination", "Quinn Wuest"),
             ["navinums"] = (ProcessNavinums, "Navinums", "Timwi"),

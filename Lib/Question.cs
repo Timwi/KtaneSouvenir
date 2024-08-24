@@ -1713,6 +1713,9 @@
         [SouvenirQuestion("Where was the skull in {0}?", "Mystic Square", TwoColumns4Answers, "top left", "top middle", "top right", "middle left", "center", "middle right", "bottom left", "bottom middle", "bottom right", TranslateAnswers = true)]
         MysticSquareSkull,
 
+        [SouvenirQuestion("What was the label of the first button in {0}?", "Naming Conventions", TwoColumns4Answers, "Class", "Constructor", "Method", "Argument", "Local", "Constant", "Field", "Property", "Delegate", "Enum")]
+        NamingConventionsObject,
+
         [SouvenirQuestion("What was the label of the correct button in {0}?", "N&Ms", ThreeColumns6Answers)]
         [AnswerGenerator.Strings(5, 'M', 'N')]
         NandMsAnswer,

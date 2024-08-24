@@ -73,15 +73,15 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cosmic          │  Guess Who?     │  Sequencyclopedia, The  │  Topsy Turvy             │
     Deaf Alley      │  Hold Ups       │  Shifting Maze          │  Ultimate Cipher         │
 
-## Implemented by Anonymous (33)
+## Implemented by Anonymous (34)
 
-    ❖                  │  Connected Monitors  │  Labyrinth, The         │  Pointless Machines      │  Subbly Jubbly
-    1, 2, 3 Game, The  │  Connection Check    │  Maroon Button, The     │  RNG Crystal             │  Time Signatures
-    Bean Sprouts       │  Double Arrows       │  Not Password           │  Simon Smiles            │  Updog
-    Beans              │  Double Listening    │  Not Red Arrows         │  Simon Subdivides        │  Variety
-    Big Bean           │  Double Screen       │  One Links To All       │  Simon Swindles          │  Whiteout
-    Boomtar the Great  │  Fuse Box, The       │  Pentabutton, The       │  Smash, Marry, Kill      │
-    Bottom Gear        │  hexOrbits           │  Pickup Identification  │  Stable Time Signatures  │
+    ❖                  │  Connected Monitors  │  Labyrinth, The      │  Pickup Identification  │  Stable Time Signatures
+    1, 2, 3 Game, The  │  Connection Check    │  Maroon Button, The  │  Pointless Machines     │  Subbly Jubbly
+    Bean Sprouts       │  Double Arrows       │  Naming Conventions  │  RNG Crystal            │  Time Signatures
+    Beans              │  Double Listening    │  Not Password        │  Simon Smiles           │  Updog
+    Big Bean           │  Double Screen       │  Not Red Arrows      │  Simon Subdivides       │  Variety
+    Boomtar the Great  │  Fuse Box, The       │  One Links To All    │  Simon Swindles         │  Whiteout
+    Bottom Gear        │  hexOrbits           │  Pentabutton, The    │  Smash, Marry, Kill     │
 
 ## Implemented by TasThiluna (31)
 
