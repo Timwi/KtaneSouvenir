@@ -122,6 +122,86 @@ public partial class SouvenirModule
         return processColoredCiphers(module, "whiteCipher", Question.WhiteCipherScreen);
     }
 
+    private List<List<string>> _whiteoutSequences;
+    private bool _whiteoutAbandon;
+    private IEnumerator<YieldInstruction> ProcessWhiteout(ModuleData module)
+    {
+        var comp = GetComponent(module, "whiteoutScript");
+        const string moduleId = "whiteout";
+
+        var fldStage = GetField<int>(comp, "Stage");
+        var stage = -1;
+        var cbText = GetField<GameObject>(comp, "ColorblindText", isPublic: true).Get().GetComponent<TextMesh>();
+
+        var seq = new List<string>();
+        (_whiteoutSequences ??= new()).Add(seq);
+
+        while (!_noUnignoredModulesLeft)
+        {
+            var newStage = fldStage.Get();
+            if (stage != newStage)
+            {
+                stage = newStage;
+                if (stage != seq.Count)
+                {
+                    _whiteoutAbandon = true;
+                    throw new AbandonModuleException($"Missed a stage (I noticed at stage {stage})");
+                }
+                seq.Add(cbText.text);
+            }
+
+            yield return null;
+        }
+
+        yield return null;
+
+        if (_whiteoutAbandon)
+            throw new AbandonModuleException("Another handler missed a stage");
+
+        if (seq.Count == 0)
+            throw new AbandonModuleException("No stages were captured");
+        if (seq.Count == 1)
+        {
+            legitimatelyNoQuestion(module.Module, "There was only one stage captured");
+            yield break;
+        }
+
+        static string caps(string str) => $"{str[0].ToString().ToUpperInvariant()}{str.Substring(1)}";
+
+        if (_moduleCounts[moduleId] == 1)
+            addQuestions(module, seq.Take(seq.Count - 1).Select((str, ix) => makeQuestion(Question.WhiteoutColor, moduleId, 1, formatArgs: new[] { ordinal(ix) }, correctAnswers: new[] { caps(str) })));
+        else
+        {
+            var disambigLen = _whiteoutSequences.Select(arr => arr.Count).Min();
+            var disambigStages = Enumerable
+                .Range(0, disambigLen)
+                .Where(ix => _whiteoutSequences.Select(arr => arr[ix]).Count(s => s == seq[ix]) == 1)
+                .ToArray();
+            if (disambigStages.Length == 0)
+            {
+                legitimatelyNoQuestion(module.Module, "No stages were unique");
+                yield break;
+            }
+            if (disambigStages.Length == 1)
+            {
+                if (seq.Count == 1)
+                {
+                    legitimatelyNoQuestion(module.Module, "Only one stage, so disambiguation is impossible");
+                    yield break;
+                }
+                var formattedName = string.Format(translateString(Question.WhiteoutColor, "the Whiteout which displayed {1} on its {0} stage"), ordinal(disambigStages[0]), caps(seq[disambigStages[0]]));
+                addQuestions(module, seq.Take(seq.Count - 1).Select((str, ix) => ix == disambigStages[0] ? null :
+                        makeQuestion(Question.WhiteoutColor, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { ordinal(ix) }, correctAnswers: new[] { caps(str) })
+                    ).Where(s => s is not null));
+            }
+            else
+            {
+                string formatName(int stage) => string.Format(translateString(Question.WhiteoutColor, "the Whiteout which displayed {1} on its {0} stage"), ordinal(stage), caps(seq[stage]));
+                addQuestions(module, seq.Take(seq.Count - 1).Select((str, ix) => makeQuestion(Question.WhiteoutColor, moduleId, 0, formattedModuleName: formatName(disambigStages.Where(s => s != ix).PickRandom()), formatArgs: new[] { ordinal(ix) }, correctAnswers: new[] { caps(str) })));
+            }
+        }
+    }
+
     private IEnumerator<YieldInstruction> ProcessWhoOF(ModuleData module)
     {
         var comp = GetComponent(module, "whoOFScript");

@@ -10615,6 +10615,18 @@ namespace Souvenir
                 },
             },
 
+            // Whiteout
+            // What color was displayed for the {1} stage of {0}?
+            // What color was displayed for the first stage of Whiteout?
+            [Question.WhiteoutColor] = new()
+            {
+                QuestionText = "What color was displayed for the {1} stage of {0}?",
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["the Whiteout which displayed {1} on its {0} stage"] = "the Whiteout which displayed {1} on its {0} stage",
+                },
+            },
+
             // WhoOF
             // What was the display in the {1} stage on {0}?
             // What was the display in the first stage on WhoOF?

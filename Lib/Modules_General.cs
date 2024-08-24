@@ -572,6 +572,7 @@ public partial class SouvenirModule
             ["TheWeakestLink"] = (ProcessWeakestLink, "Weakest Link, The", "Hawker"),
             ["WhatsOnSecond"] = (ProcessWhatsOnSecond, "What’s on Second", "BigCrunch22"),
             ["whiteCipher"] = (ProcessWhiteCipher, "White Cipher", "BigCrunch22"),
+            ["whiteout"] = (ProcessWhiteout, "Whiteout", "Anonymous"),
             ["whoOF"] = (ProcessWhoOF, "WhoOF", "VFlyer"),
             ["WhosOnFirst"] = (ProcessWhosOnFirst, "Who’s on First", "Andrio Celos"),
             ["whosOnMorseModule"] = (ProcessWhosOnMorse, "Who’s on Morse", "VFlyer"),

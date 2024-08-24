@@ -2977,6 +2977,11 @@
             ExampleFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { true, false })]
         WhiteCipherScreen,
 
+        [SouvenirQuestion("What color was displayed for the {1} stage of {0}?", "Whiteout", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", "Black", "White",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1,
+            TranslatableStrings = new[] { "the Whiteout which displayed {1} on its {0} stage" })]
+        WhiteoutColor,
+
         [SouvenirQuestion("What was the display in the {1} stage on {0}?", "WhoOF", ThreeColumns6Answers, "FIRST", "OKAY", "C", "BLANK", "YOU", "READ", "YOUR", "UR", "YES", "LED", "THEIR", "RED", "HIRE", "THERE", "THEY", "THING", "CEE", "LEED", "NO", "HOLD", "PLAY", "LEAD", "HARE", "HERE", " ", "REED", "SAYS", "SEE",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         WhoOFDisplay,

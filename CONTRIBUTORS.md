@@ -73,6 +73,16 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cosmic          │  Guess Who?     │  Sequencyclopedia, The  │  Topsy Turvy             │
     Deaf Alley      │  Hold Ups       │  Shifting Maze          │  Ultimate Cipher         │
 
+## Implemented by Anonymous (31)
+
+    ❖                  │  Connected Monitors  │  Labyrinth, The         │  RNG Crystal             │  Time Signatures
+    1, 2, 3 Game, The  │  Connection Check    │  Maroon Button, The     │  Simon Smiles            │  Variety
+    Bean Sprouts       │  Double Arrows       │  Not Password           │  Simon Subdivides        │  Whiteout
+    Beans              │  Double Listening    │  Not Red Arrows         │  Simon Swindles          │
+    Big Bean           │  Double Screen       │  One Links To All       │  Smash, Marry, Kill      │
+    Boomtar the Great  │  Fuse Box, The       │  Pentabutton, The       │  Stable Time Signatures  │
+    Bottom Gear        │  hexOrbits           │  Pickup Identification  │  Subbly Jubbly           │
+
 ## Implemented by TasThiluna (31)
 
     3D Tap Code         │  Cryptic Cycle          │  M&Ms              │  Pigpen Cycle    │  Snooker
@@ -82,15 +92,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Caesar Cycle        │  Identification Crisis  │  More Code         │  Samsung, The    │
     Chinese Counting    │  Jumble Cycle           │  N&Ms              │  Simon’s Star    │
     Codenames           │  LED Math               │  Ordered Keys      │  Small Circle    │
-
-## Implemented by Anonymous (30)
-
-    ❖                  │  Bottom Gear         │  Fuse Box, The       │  One Links To All       │  Simon Swindles
-    1, 2, 3 Game, The  │  Connected Monitors  │  hexOrbits           │  Pentabutton, The       │  Smash, Marry, Kill
-    Bean Sprouts       │  Connection Check    │  Labyrinth, The      │  Pickup Identification  │  Stable Time Signatures
-    Beans              │  Double Arrows       │  Maroon Button, The  │  RNG Crystal            │  Subbly Jubbly
-    Big Bean           │  Double Listening    │  Not Password        │  Simon Smiles           │  Time Signatures
-    Boomtar the Great  │  Double Screen       │  Not Red Arrows      │  Simon Subdivides       │  Variety
 
 ## Implemented by Quinn Wuest (29)
 
