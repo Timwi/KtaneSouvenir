@@ -3708,6 +3708,14 @@ namespace Souvenir
                 ModuleName = "宝石泥棒",
             },
 
+            // Ghost Movement
+            // Where was {1} in {0}?
+            // Where was Inky in Ghost Movement?
+            [Question.GhostMovementPosition] = new()
+            {
+                QuestionText = "Where was {1} in {0}?",
+            },
+
             // Girlfriend
             // What was the language sung in {0}?
             // What was the language sung in Girlfriend?

@@ -3589,6 +3589,14 @@ namespace Souvenir
                 QuestionText = "Which faction did {1} claim to be in «{0}»?",
             },
 
+            // Ghost Movement
+            // Where was {1} in {0}?
+            // Where was Inky in Ghost Movement?
+            [Question.GhostMovementPosition] = new()
+            {
+                QuestionText = "Where was {1} in {0}?",
+            },
+
             // Girlfriend
             // What was the language sung in {0}?
             // What was the language sung in Girlfriend?

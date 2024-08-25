@@ -208,6 +208,7 @@ public partial class SouvenirModule
             ["GameOfLifeCruel"] = (ProcessGameOfLifeCruel, "Game of Life Cruel", "GhostSalt"),
             ["TheGamepadModule"] = (ProcessGamepad, "Gamepad, The", "Timwi"),
             ["theGarnetThief"] = (ProcessGarnetThief, "Garnet Thief, The", "Hawker"),
+            ["ghostMovement"] = (ProcessGhostMovement, "Ghost Movement", "Anonymous"),
             ["Girlfriend"] = (ProcessGirlfriend, "Girlfriend", "Hawker"),
             ["GlitchedButtonModule"] = (ProcessGlitchedButton, "Glitched Button, The", "Timwi"),
             ["GrayButtonModule"] = (ProcessGrayButton, "Gray Button, The", "Timwi"),
