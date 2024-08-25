@@ -6982,8 +6982,8 @@ namespace Souvenir
             },
 
             // Ordered Keys
-            // What color was the {2} key in the {1} stage of {0}?
-            // What color was the first key in the first stage of Ordered Keys?
+            // What color was this key in the {1} stage of {0}?
+            // What color was this key in the first stage of Ordered Keys?
             [Question.OrderedKeysColors] = new()
             {
                 QuestionText = "{0}のステージ{1}における{2}番目の音板の色は？",
@@ -6998,15 +6998,15 @@ namespace Souvenir
                     ["Magenta"] = "マゼンタ",
                 },
             },
-            // What was the label on the {2} key in the {1} stage of {0}?
-            // What was the label on the first key in the first stage of Ordered Keys?
+            // What was the label of this key in the {1} stage of {0}?
+            // What was the label of this key in the first stage of Ordered Keys?
             [Question.OrderedKeysLabels] = new()
             {
                 QuestionText = "{0}のステージ{1}における{2}番目の音板のラベルは？",
                 ModuleName = "順番音板",
             },
-            // What color was the label of the {2} key in the {1} stage of {0}?
-            // What color was the label of the first key in the first stage of Ordered Keys?
+            // What color was the label of this key in the {1} stage of {0}?
+            // What color was the label of this key in the first stage of Ordered Keys?
             [Question.OrderedKeysLabelColors] = new()
             {
                 QuestionText = "{0}のステージ{1}における{2}番目の音板のラベルの色は？",
@@ -10258,6 +10258,26 @@ namespace Souvenir
                     ["+4"] = "+4",
                     ["Wild"] = "ワイルド",
                 },
+            },
+
+            // Unordered Keys
+            // What color was this key in the {1} stage of {0}?
+            // What color was this key in the first stage of Unordered Keys?
+            [Question.UnorderedKeysKeyColor] = new()
+            {
+                QuestionText = "What color was this key in the {1} stage of {0}?",
+            },
+            // What color was the label of this key in the {1} stage of {0}?
+            // What color was the label of this key in the first stage of Unordered Keys?
+            [Question.UnorderedKeysLabelColor] = new()
+            {
+                QuestionText = "What color was this key's label in the {1} stage of {0}?",
+            },
+            // What was the label of this key in the {1} stage of {0}?
+            // What was the label of this key in the first stage of Unordered Keys?
+            [Question.UnorderedKeysLabel] = new()
+            {
+                QuestionText = "What was this key's label in the {1} stage of {0}?",
             },
 
             // Unown Cipher

@@ -197,9 +197,9 @@ public partial class SouvenirModule
         {
             for (var key = 0; key < 6; key++)
             {
-                qs.Add(makeQuestion(Question.OrderedKeysColors, module, formatArgs: new[] { ordinal(stage + 1), ordinal(key + 1) }, correctAnswers: new[] { colors[moduleData[stage][key][0]] }));
-                qs.Add(makeQuestion(Question.OrderedKeysLabels, module, formatArgs: new[] { ordinal(stage + 1), ordinal(key + 1) }, correctAnswers: new[] { (moduleData[stage][key][3] + 1).ToString() }));
-                qs.Add(makeQuestion(Question.OrderedKeysLabelColors, module, formatArgs: new[] { ordinal(stage + 1), ordinal(key + 1) }, correctAnswers: new[] { colors[moduleData[stage][key][1]] }));
+                qs.Add(makeQuestion(Question.OrderedKeysColors, module, OrderedKeysSprites[key], formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { colors[moduleData[stage][key][0]] }));
+                qs.Add(makeQuestion(Question.OrderedKeysLabels, module, OrderedKeysSprites[key], formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { (moduleData[stage][key][3] + 1).ToString() }));
+                qs.Add(makeQuestion(Question.OrderedKeysLabelColors, module, OrderedKeysSprites[key], formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { colors[moduleData[stage][key][1]] }));
             }
         }
 

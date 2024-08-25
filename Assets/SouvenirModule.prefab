@@ -500,19 +500,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 364b47d741a14e74f9d90c624ebb7b93, type: 3}
   - {fileID: 21300000, guid: 6f19baf87115afc41b33838758658897, type: 3}
   - {fileID: 21300000, guid: f866d380693104b4eb994ae061a00b3c, type: 3}
-  DiffusionSprites:
-  - {fileID: 21300000, guid: 714b379a4d5d7334b9326735c7143464, type: 3}
-  - {fileID: 21300000, guid: b2878632c04603640a86e647146c86a1, type: 3}
-  - {fileID: 21300000, guid: e027fa210675e44448b7274819c8e2e3, type: 3}
-  - {fileID: 21300000, guid: 6ea75c993e77f304e850bc07066e17c9, type: 3}
-  - {fileID: 21300000, guid: 5a2edefb56fcd61488333c3feb6f8dd9, type: 3}
-  - {fileID: 21300000, guid: 82cdbecbbcdf3a147b3739064daf4c05, type: 3}
-  - {fileID: 21300000, guid: ddcd796138726f941b20b0562cb7deb5, type: 3}
-  - {fileID: 21300000, guid: dbe3910c77edaa547abb4f331d54538a, type: 3}
-  - {fileID: 21300000, guid: 1b849fadbaae71d4394618ba2b5b6878, type: 3}
-  - {fileID: 21300000, guid: ef867cd07989a7a4d89cd657486e2672, type: 3}
-  - {fileID: 21300000, guid: 7f648674aa44e884a94f51df9eaa452e, type: 3}
-  - {fileID: 21300000, guid: b1fd8c54ad069014b8573fedc4ffa716, type: 3}
   EncryptedEquationsSprites:
   - {fileID: 21300000, guid: ec3a26799d5ecd940b601d552b404d07, type: 3}
   - {fileID: 21300000, guid: 3ee5d260dc281174cb8b26e41697006b, type: 3}
@@ -795,6 +782,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d12bfb041eb4d5b43ad37303479d1f37, type: 3}
   - {fileID: 21300000, guid: e23559b8e84b5b144be7db7426d6c5c2, type: 3}
   - {fileID: 21300000, guid: 5028e513156f33d47ac53f819ef6aef5, type: 3}
+  OrderedKeysSprites:
+  - {fileID: 21300000, guid: 5bf5f246fc90e744ebf3278465e7740c, type: 3}
+  - {fileID: 21300000, guid: 6253f7ca072a2db46a7dd44b5e76d122, type: 3}
+  - {fileID: 21300000, guid: 2f082bc6d7463154a97cb101edd4171f, type: 3}
+  - {fileID: 21300000, guid: 579cc724720de7b42ba9d7ba800104fa, type: 3}
+  - {fileID: 21300000, guid: b5b53efa8fc056e46a4196c8ab3d2c61, type: 3}
+  - {fileID: 21300000, guid: c0e164588d2aa7b498f158eeccefa246, type: 3}
   PatternCubeSprites:
   - {fileID: 21300000, guid: 4747d4728ac72904e9abb545f1326dfc, type: 3}
   - {fileID: 21300000, guid: 6a1bdce6fa6612f41afe56292d667b96, type: 3}

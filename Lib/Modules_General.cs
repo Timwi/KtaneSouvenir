@@ -555,6 +555,7 @@ public partial class SouvenirModule
             ["unfairsRevenge"] = (ProcessUnfairsRevenge, "Unfair’s Revenge", "VFlyer"),
             ["UnicodeModule"] = (ProcessUnicode, "Unicode", "Marksam"),
             ["UNO"] = (ProcessUNO, "UNO!", "Hawker"),
+            ["unorderedKeys"] = (ProcessUnorderedKeys, "Unordered Keys", "Anonymous"),
             ["UnownCipher"] = (ProcessUnownCipher, "Unown Cipher", "kavinkul"),
             ["Updog"] = (ProcessUpdog, "Updog", "Anonymous"),
             ["USACycle"] = (ProcessUSACycle, "USA Cycle", "tandyCake"),

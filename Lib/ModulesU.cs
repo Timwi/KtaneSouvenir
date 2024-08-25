@@ -141,6 +141,42 @@ public partial class SouvenirModule
         addQuestion(module, Question.UnoInitialCard, correctAnswers: new string[] { titleCase(mthGetUnoName.Invoke(fldFirstInDeck.Get())) });
     }
 
+    private IEnumerator<YieldInstruction> ProcessUnorderedKeys(ModuleData module)
+    {
+        var comp = GetComponent(module, "UnorderedKeysScript");
+        var stages = new List<int[][]>(2);
+        var fldResetCount = GetField<int>(comp, "resetCount");
+        var fldInfo = GetArrayField<int[]>(comp, "info");
+        var fldPressed = GetArrayField<bool>(comp, "alreadypressed");
+        int[][] getInfo() {
+            var info = fldInfo.Get(expectedLength: 6, validator: a => a.Length != 3 ? $"Bad inner array length {a}" : null);
+            var pressed = fldPressed.Get(expectedLength: 7);
+            return info.Select((a, i) => pressed[i] ? null : a).ToArray();
+        }
+        stages.Add(getInfo());
+        var resets = 0;
+
+        while (module.Unsolved)
+        {
+            var newReset = fldResetCount.Get();
+            if (newReset != resets)
+            {
+                if (newReset != resets + 1)
+                    throw new AbandonModuleException($"I missed a stage (I noticed at stage {newReset})");
+                resets = newReset;
+                stages.Add(getInfo());
+            }
+            yield return null;
+        }
+
+        var colors = new[] { "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow" };
+        addQuestions(module, stages.Take(stages.Count - 1).SelectMany((stage, stageIx) => stage.SelectMany((key, keyIx) => key is null ? new QandA[0] : new[] {
+                makeQuestion(Question.UnorderedKeysKeyColor, module, OrderedKeysSprites[keyIx], formatArgs: new[] { ordinal(stageIx + 1) }, correctAnswers: new[] { colors[key[0]] }),
+                makeQuestion(Question.UnorderedKeysLabelColor, module, OrderedKeysSprites[keyIx], formatArgs: new[] { ordinal(stageIx + 1) }, correctAnswers: new[] { colors[key[1]] }),
+                makeQuestion(Question.UnorderedKeysLabel, module, OrderedKeysSprites[keyIx], formatArgs: new[] { ordinal(stageIx + 1) }, correctAnswers: new[] { key[2].ToString() })
+            })));
+    }
+
     private IEnumerator<YieldInstruction> ProcessUnownCipher(ModuleData module)
     {
         var comp = GetComponent(module, "UnownCipher");

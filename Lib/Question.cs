@@ -1948,13 +1948,13 @@
             ExampleFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { true, false })]
         OrangeCipherScreen,
 
-        [SouvenirQuestion("What color was the {2} key in the {1} stage of {0}?", "Ordered Keys", ThreeColumns6Answers, "Red", "Blue", "Green", "Yellow", "Cyan", "Magenta", TranslateAnswers = true,
+        [SouvenirQuestion("What color was this key in the {1} stage of {0}?", "Ordered Keys", ThreeColumns6Answers, "Red", "Blue", "Green", "Yellow", "Cyan", "Magenta", TranslateAnswers = true, UsesQuestionSprite = true,
             ExampleFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleFormatArgumentGroupSize = 2)]
         OrderedKeysColors,
-        [SouvenirQuestion("What was the label on the {2} key in the {1} stage of {0}?", "Ordered Keys", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6",
+        [SouvenirQuestion("What was the label of this key in the {1} stage of {0}?", "Ordered Keys", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", UsesQuestionSprite = true,
             ExampleFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleFormatArgumentGroupSize = 2)]
         OrderedKeysLabels,
-        [SouvenirQuestion("What color was the label of the {2} key in the {1} stage of {0}?", "Ordered Keys", ThreeColumns6Answers, "Red", "Blue", "Green", "Yellow", "Cyan", "Magenta", TranslateAnswers = true,
+        [SouvenirQuestion("What color was the label of this key in the {1} stage of {0}?", "Ordered Keys", ThreeColumns6Answers, "Red", "Blue", "Green", "Yellow", "Cyan", "Magenta", TranslateAnswers = true, UsesQuestionSprite = true,
             ExampleFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleFormatArgumentGroupSize = 2)]
         OrderedKeysLabelColors,
 
@@ -2881,6 +2881,14 @@
 
         [SouvenirQuestion("What was the initial card in {0}?", "UNO!", OneColumn4Answers, "Red 0", "Red 1", "Red 2", "Red 3", "Red 4", "Red 5", "Red 6", "Red 7", "Red 8", "Red 9", "Red +2", "Red Skip", "Red Reverse", "Green 0", "Green 1", "Green 2", "Green 3", "Green 4", "Green 5", "Green 6", "Green 7", "Green 8", "Green 9", "Green +2", "Green Skip", "Green Reverse", "Yellow 0", "Yellow 1", "Yellow 2", "Yellow 3", "Yellow 4", "Yellow 5", "Yellow 6", "Yellow 7", "Yellow 8", "Yellow 9", "Yellow +2", "Yellow Skip", "Yellow Reverse", "Blue 0", "Blue 1", "Blue 2", "Blue 3", "Blue 4", "Blue 5", "Blue 6", "Blue 7", "Blue 8", "Blue 9", "Blue +2", "Blue Skip", "Blue Reverse", "+4", "Wild", TranslateAnswers = true)]
         UnoInitialCard,
+
+        [SouvenirQuestion("What color was this key in the {1} stage of {0}?", "Unordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        UnorderedKeysKeyColor,
+        [SouvenirQuestion("What color was the label of this key in the {1} stage of {0}?", "Unordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", UsesQuestionSprite = true, ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        UnorderedKeysLabelColor,
+        [SouvenirQuestion("What was the label of this key in the {1} stage of {0}?", "Unordered Keys", ThreeColumns6Answers, UsesQuestionSprite = true, ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1, 6)]
+        UnorderedKeysLabel,
 
         [SouvenirQuestion("What was the {1} submitted letter in {0}?", "Unown Cipher", ThreeColumns6Answers,
             Type = AnswerType.UnownFont, ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
