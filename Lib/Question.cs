@@ -2202,6 +2202,10 @@
         [AnswerGenerator.Integers(0, 9)]
         RedArrowsStartNumber,
 
+        [SouvenirQuestion("What was the word before 'SUBMIT' in {0}?", "Red Button't", TwoColumns4Answers, null, AddThe = true,
+            ExampleAnswers = new[] { "ABACUS", "BABBLE", "CABLES", "DABBLE", "EAGLES", "FABLED", "HABITS", "IAMBIC" })]
+        RedButtontWord,
+
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Red Cipher", TwoColumns4Answers, null, ExampleAnswers = new[] { "EATING", "GOBLET", "INCOME", "INSIDE", "MARKED", "POWDER", "STRING", "WIZARD", "WOBBLE", "YELLOW" },
             ExampleFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { true, false })]
         RedCipherScreen,

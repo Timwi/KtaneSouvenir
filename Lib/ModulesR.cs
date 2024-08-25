@@ -145,6 +145,17 @@ public partial class SouvenirModule
         addQuestion(module, Question.RedArrowsStartNumber, correctAnswers: new[] { GetIntField(comp, "start").Get(min: 0, max: 9).ToString() });
     }
 
+    private IEnumerator<YieldInstruction> ProcessRedButtont(ModuleData module)
+    {
+        var comp = GetComponent(module, "BaseButtonScript");
+        yield return WaitForSolve;
+
+        GetField<TextMesh>(comp, "DisplayText", isPublic: true).Get().gameObject.SetActive(false);
+        var allWords = GetArrayField<string>(comp, "keyword").Get(expectedLength: 4027, validator: s => s.Length != 6 ? $"Bad keyword {s}" : null);
+        var word = GetField<string>(comp, "selectkeyword", isPublic: true).Get(s => !allWords.Contains(s) ? $"Bad word {s}" : null);
+        addQuestion(module, Question.RedButtontWord, correctAnswers: new[] { word }, allAnswers: allWords);
+    }
+
     private IEnumerator<YieldInstruction> ProcessRedCipher(ModuleData module)
     {
         return processColoredCiphers(module, "redCipher", Question.RedCipherScreen);
