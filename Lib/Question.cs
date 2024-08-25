@@ -3069,6 +3069,9 @@
         [SouvenirQuestion("What song was played on {0}?", "xobekuJ ehT", OneColumn4Answers, null, ExampleAnswers = new[] { "Gimme Gimme Gimme", "Take On Me", "Barbie Girl", "Do I Wanna Know" })]
         XobekuJehTSong,
 
+        [SouvenirQuestion("Which symbol was scanned in {0}?", "X-Ring", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "XRingSprites")]
+        XRingSymbol,
+
         [SouvenirQuestion("What was the initial roll on {0}?", "Yahtzee", TwoColumns4Answers, "Yahtzee", "large straight", "small straight", "four of a kind", "full house", "three of a kind", "two pairs", "pair", TranslateAnswers = true)]
         YahtzeeInitialRoll,
 

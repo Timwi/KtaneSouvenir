@@ -10554,6 +10554,14 @@ namespace Souvenir
                 QuestionText = "What song was played on «{0}»?",
             },
 
+            // X-Ring
+            // Which symbol was scanned in {0}?
+            // Which symbol was scanned in X-Ring?
+            [Question.XRingSymbol] = new()
+            {
+                QuestionText = "Which symbol was scanned in {0}?",
+            },
+
             // Yahtzee
             // What was the initial roll on {0}?
             // What was the initial roll on Yahtzee?

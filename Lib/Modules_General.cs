@@ -590,6 +590,7 @@ public partial class SouvenirModule
             ["GSXenocryst"] = (ProcessXenocryst, "Xenocryst, The", "GhostSalt"),
             ["xmorse"] = (ProcessXmORseCode, "XmORse Code", "shortc1rcuit"),
             ["xobekuj"] = (ProcessXobekuJehT, "xobekuJ ehT", "Quinn Wuest"),
+            ["xring"] = (ProcessXRing, "X-Ring", "Anonymous"),
             ["YahtzeeModule"] = (ProcessYahtzee, "Yahtzee", "Timwi"),
             ["yellowArrowsModule"] = (ProcessYellowArrows, "Yellow Arrows", "kavinkul"),
             ["YellowButtonModule"] = (ProcessYellowButton, "Yellow Button, The", "Timwi"),

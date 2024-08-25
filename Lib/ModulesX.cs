@@ -53,4 +53,13 @@ public partial class SouvenirModule
 
         addQuestion(module, Question.XobekuJehTSong, correctAnswers: new[] { songList[songIx] }, preferredWrongAnswers: songList);
     }
+
+    private IEnumerator<YieldInstruction> ProcessXRing(ModuleData module)
+    {
+        var comp = GetComponent(module, "XRingScript");
+        yield return WaitForSolve;
+
+        var used = GetArrayField<int>(comp, "symbselect").Get(expectedLength: 5, validator: v => v is < 0 or > 63 ? $"Unknown symbol {v}" : null);
+        addQuestion(module, Question.XRingSymbol, correctAnswers: used.Select(i => XRingSprites[i]).ToArray());
+    }
 }
