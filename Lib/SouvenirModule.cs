@@ -739,6 +739,7 @@ public partial class SouvenirModule : MonoBehaviour
                         Debug.Log($"<Souvenir #{_moduleId}> Abandoning {module.ModuleDisplayName} because: {ex.Message}");
                         _showWarning = true;
                         _coroutinesActive--;
+                        _activeProcessors.Remove(module.ModuleDisplayName);
                         yield break;
                     }
                     catch (Exception ex)
@@ -746,6 +747,7 @@ public partial class SouvenirModule : MonoBehaviour
                         Debug.Log($"<Souvenir #{_moduleId}> The {module.ModuleDisplayName} handler threw an exception ({ex.GetType().FullName}):\n{ex.Message}\n{ex.StackTrace}");
                         _showWarning = true;
                         _coroutinesActive--;
+                        _activeProcessors.Remove(module.ModuleDisplayName);
                         yield break;
                     }
                     if (!canMoveNext)
@@ -760,6 +762,7 @@ public partial class SouvenirModule : MonoBehaviour
                     {
                         Debug.Log($"<Souvenir #{_moduleId}> Abandoning {module.ModuleDisplayName} because Twitch Plays told me to.");
                         _coroutinesActive--;
+                        _activeProcessors.Remove(module.ModuleDisplayName);
                         yield break;
                     }
                 }
