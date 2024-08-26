@@ -7571,9 +7571,9 @@ namespace Souvenir
                 ModuleName = "Красных стрелках",
             },
 
-            // The Red Button't
+            // Red Button't
             // What was the word before 'SUBMIT' in {0}?
-            // What was the word before 'SUBMIT' in The Red Button't?
+            // What was the word before 'SUBMIT' in Red Button't?
             [Question.RedButtontWord] = new()
             {
                 QuestionText = "What was the word before 'SUBMIT' in {0}?",

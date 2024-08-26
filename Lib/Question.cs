@@ -2202,7 +2202,7 @@
         [AnswerGenerator.Integers(0, 9)]
         RedArrowsStartNumber,
 
-        [SouvenirQuestion("What was the word before 'SUBMIT' in {0}?", "Red Button't", TwoColumns4Answers, null, AddThe = true,
+        [SouvenirQuestion("What was the word before 'SUBMIT' in {0}?", "Red Button't", TwoColumns4Answers, null, AddThe = false,
             ExampleAnswers = new[] { "ABACUS", "BABBLE", "CABLES", "DABBLE", "EAGLES", "FABLED", "HABITS", "IAMBIC" })]
         RedButtontWord,
 

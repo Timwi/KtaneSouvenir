@@ -64,7 +64,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
 
 ## Implemented by Anonymous (38)
 
-    ❖                   │  Connection Check  │  Maroon Button, The     │  Red Button't, The       │  Time Signatures
+    ❖                   │  Connection Check  │  Maroon Button, The     │  Red Button’t            │  Time Signatures
     1, 2, 3 Game, The   │  Double Arrows     │  Naming Conventions     │  RNG Crystal             │  Unordered Keys
     Bean Sprouts        │  Double Listening  │  Not Password           │  Simon Smiles            │  Updog
     Beans               │  Double Screen     │  Not Red Arrows         │  Simon Subdivides        │  Variety

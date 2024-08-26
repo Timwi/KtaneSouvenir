@@ -7370,9 +7370,9 @@ namespace Souvenir
                 QuestionText = "What was the starting number in {0}?",
             },
 
-            // The Red Button't
+            // Red Button't
             // What was the word before 'SUBMIT' in {0}?
-            // What was the word before 'SUBMIT' in The Red Button't?
+            // What was the word before 'SUBMIT' in Red Button't?
             [Question.RedButtontWord] = new()
             {
                 QuestionText = "What was the word before 'SUBMIT' in {0}?",
