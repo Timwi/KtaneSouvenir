@@ -67,7 +67,7 @@ public partial class SouvenirModule
 
         GetField<SpriteRenderer>(comp, "Players", isPublic: true).Get().gameObject.SetActive(false);
 
-        var sprites = GetArrayField<Sprite>(comp, "PlayersSprites", isPublic: true).Get(expectedLength: 12);
+        var sprites = GetArrayField<Sprite>(comp, "PlayersSprites", isPublic: true).Get(expectedLength: 12).TranslateSprites(1666).ToArray();
         var names = GetArrayField<string>(comp, "Names").Get(expectedLength: 13);
 
         var sprite = GetField<int>(comp, "ProfileSelector").Get(v => v is < 0 or >= 12 ? "expected sprite index 0–11" : null);
