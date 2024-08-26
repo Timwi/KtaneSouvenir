@@ -131,14 +131,14 @@ namespace SouvenirPostBuildTool
                 var translationInfoPrototype = Activator.CreateInstance(translationInfoType);
                 var tiFields = translationInfoType.GetFields().ToArray();
 
-                var already = (IDictionary) (alreadyType == null ? null : (dynamic) Activator.CreateInstance(alreadyType))?.Translations;
+                var already = alreadyType == null ? null : (dynamic) Activator.CreateInstance(alreadyType);
                 var sb = new StringBuilder();
                 foreach (var kvp in allInfos)
                 {
                     sb.AppendLine($"            // {(addThe[kvp.Key] ? "The " : "")}{kvp.Key}");
                     foreach (var (qFld, attr) in kvp.Value)
                     {
-                        var qId = qFld.GetValue(null);
+                        var qId = (dynamic) qFld.GetValue(null);
                         var qText = (string) attr.QuestionText;
                         sb.AppendLine($"            // {qText}");
                         var exFormatArgs = new[] { ((string) attr.ModuleNameWithThe).Replace("\u00a0", " ") };
@@ -149,7 +149,7 @@ namespace SouvenirPostBuildTool
                         catch { }
                         if (formatArgsComment != null)
                             sb.AppendLine($"            // {formatArgsComment}");
-                        dynamic ti = already?.Contains(qId) == true ? already[qId] : null;
+                        dynamic ti = already?.Translate(qId);
                         sb.AppendLine($@"            [Question.{qId}] = new()");
                         sb.AppendLine("            {");
 
