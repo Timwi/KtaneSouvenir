@@ -2040,7 +2040,7 @@
         PhosphorescenceButtonPresses,
 
         [SouvenirQuestion("What pickup was shown in the {1} stage of {0}?", "Pickup Identification", ThreeColumns6Answers, Type = AnswerType.Sprites,
-                ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         PickupIdentificationItem,
 
         [SouvenirQuestion("What was the code in {0}?", "Pictionary", ThreeColumns6Answers)]

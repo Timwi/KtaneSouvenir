@@ -422,7 +422,7 @@ public partial class SouvenirModule
             ["R4YRecoloredSwitches"] = (ProcessRecoloredSwitches, "Recolored Switches", "Timwi"),
             ["RecursivePassword"] = (ProcessRecursivePassword, "Recursive Password", "Kuro"),
             ["redArrowsModule"] = (ProcessRedArrows, "Red Arrows", "kavinkul"),
-            ["redbuttont"] = (ProcessRedButtont, "Red Button't, The", "Anonymous"),
+            ["redbuttont"] = (ProcessRedButtont, "Red Button’t, The", "Anonymous"),
             ["redCipher"] = (ProcessRedCipher, "Red Cipher", "BigCrunch22"),
             ["RedHerring"] = (ProcessRedHerring, "Red Herring", "tandyCake"),
             ["ReformedRoleReversal"] = (ProcessReformedRoleReversal, "Reformed Role Reversal", "Emik"),

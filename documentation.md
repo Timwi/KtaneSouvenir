@@ -27,7 +27,7 @@ public SouvenirQuestionAttribute(string questionText, string moduleName, AnswerL
 
 `allAnswers` — Specify *every* possible answer. Do not specify any answers if you are using an `AnswerGenerator` or you are obtaining answers from the module in question. See the definition of `Souvenir.AnswerGenerator` for information on answer generators.
 
-### Additional Properties
+### Additional properties
 
 These are additional properties that you may want to set when defining a question.
 
@@ -37,7 +37,7 @@ These are additional properties that you may want to set when defining a questio
 
 `int ExampleExtraFormatArgumentGroupSize` — The number of extra format arguments. You must specify this if you specified `ExampleExtraFormatArguments`.
 
-`string[] ExampleAnswers` — If *all* of the following apply, specify as many example answers as there displayed answers (4 or 6 depending on `layout`):
+`string[] ExampleAnswers` — If *all* of the following apply, specify at least as many example answers as there are displayed answers (4 or 6 depending on `layout`):
 
 - you did not specify `allAnswers`
 - you are not using an `AnswerGenerator`
@@ -47,13 +47,11 @@ These are additional properties that you may want to set when defining a questio
 
 `bool UsesQuestionSprite` — A "question sprite" is an image that shows up with the question. See the *Coloured Cubes* question for an example of this.
 
-`string SpriteField` — If you are using `AnswerType.Sprites` and these sprites are included in the Souvenir project, specify the name of the field holding the `Sprite[]` as in the *Question Mark* question.
-
-`float SpriteSizeMultiplier` - If you are using `AnswerType.Sprites`, you can adjust this value to scale the sprites up or down. Its default value is `1f`.
+`string SpriteField` — If you are using `AnswerType.Sprites` and these sprites are included in the Souvenir project, specify the name of the field holding the `Sprite[]`. See the *Question Mark* question for an example of this.
 
 `int FontSize` and `float CharacterSize` — These correspond to their respective `TextMesh` properties. Useful for increasing the resolution of complex fonts, for example in *Snowflakes* and *Sugar Skulls*.
 
-`bool IsEntireQuestionSprite` — Use this if the theme of the module in question warrants it. For example *❖* and *Technical Keypad*.
+`bool IsEntireQuestionSprite` — Use this if the theme of the module in question warrants it. Examples include *❖* and *Technical Keypad*.
 
 Note: The next three apply to `AnswerType.Audio`.
 
@@ -73,7 +71,7 @@ Note: If you are unsure about the next two, do not specify them as a translator 
 
 Souvenir uses reflection to access information on other modules on the bomb. There are several types and methods in order to help with this.
 
-### Getting Members
+### Getting members
 
 #### Fields
 
@@ -141,7 +139,7 @@ Get a static method from `targetType`.
 
 ---
 
-### Getting Values
+### Getting values
 
 All of the `FieldInfo<T>` and `PropertyInfo<T>` types from the above section derive from `InfoBase<T>`. They have several `Get` method overloads for getting the data stored in the field or property, and validating that data. Each `Get` overload has a corresponding `GetFrom` overload, which requires a target. This means you do not need to access the same field from several instances of the same type.
 
@@ -190,21 +188,11 @@ public T Get(object[] index, Func<T, string> validator = null, bool nullAllowed 
 
 `index` — the index to specify for indexed properties.
 
-### Setting Values
+### Setting values
 
-You can also set fields and properties to new values:
+You can also set fields and properties to new values using `.Set()` or `.SetTo()`. This should be used very sparingly as it means you’re making a change to the target module instead of just reading out its info. Only do this if you know what you’re doing.
 
-```cs
-// Fields and properties
-public void Set(T value);
-public void SetTo(object target, T value);
-
-// Indexed properties only
-public void Set(T value, object[] index = null);
-public void SetTo(object target, T value, object[] index = null);
-```
-
-### Invoking Methods
+### Invoking methods
 
 #### MethodInfo&lt;T&gt;
 
@@ -213,14 +201,15 @@ public T Invoke(params object[] arguments);
 public T InvokeOn(object target, params object[] arguments);
 ```
 
-## Setting Questions
+## Setting questions
 
 ### Important
 
 Before making any questions, you *must* wait for the module to be solved. You can use `yield return WaitForSolve;` to do this.
 For modules where this is not possible (such as bosses), either specify the solve order manually or give a differently formatted module name.
+For example, *Forget Me Not* will use a phrase such as “the Forget Me Not which displayed a 5 in the first stage” to identify the specific module.
 
-### No Questions
+### No questions
 
 If, for any reason, Souvenir cannot generate any questions for a given module, you *must* call `legitimatelyNoQuestion` and provide a reason:
 
@@ -230,10 +219,10 @@ legitimatelyNoQuestion(module, "the module generated 25 cells of the same colour
 yield break;
 ```
 
-### Making Questions
+### Making questions
 
 There are several `makeQuestion` and `makeSpriteQuestion` overloads, which are for different question and answer types
-(there exist other overloads for niche use cases):
+(there exist even more overloads for niche use cases):
 
 ```cs
 // Default
@@ -267,9 +256,9 @@ In every case, the meaning of each parameter is equivalent:
 
 `data` — The object passed in to the module handler.
 
-`questionSprite` — For non-sprite questions, this is the sprite that appears on the right of the module when the question is asked. For sprite questions, this is the sprite that represents the question.
+`questionSprite` — For non-sprite questions, this sprite appears to the right of the question and usually highlights a location in a grid (example: *cRule*). For sprite questions, this is the sprite that represents the question (example: *Technical Keypad*).
 
-`formattedModuleName` — Used for boss modules to specify a uniquely identifying factor for the module being asked about. Leave unset most of the time.
+`formattedModuleName` — Used for boss modules to specify a uniquely identifying factor for the module being asked about (example: *Forget Me Not*). Leave unset most of the time.
 
 `formatArgs` — Extra format arguments used in the question.
 
@@ -281,7 +270,7 @@ In every case, the meaning of each parameter is equivalent:
 
 `questionSpriteRotation` — clockwise, measured in degrees.
 
-### Adding Questions
+### Adding questions
 
 To add a question batch, call `addQuestions`. You *must not* add more than one question batch per module—make all of the questions first and add them in one go at the end.
 
@@ -302,3 +291,15 @@ private void addQuestion(ModuleData module, Question question, Sprite questionSp
 
 private void addQuestion(ModuleData module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, AudioClip[] correctAnswers = null, AudioClip[] allAnswers = null, AudioClip[] preferredWrongAnswers = null, float questionSpriteRotation = 0);
 ```
+
+### Using sprites
+
+Fundamentally, there are three ways to create a question that uses sprites as answers:
+
+* Import the sprites from the target module. As an example, *Module Maze* uses this to show module icons as answers. The target module often has a field of type `Sprite[]` that you can just read out. In addition to passing the correct answer sprite(s) to `correctAnswers` as usual, make sure to also pass the full list of all possible sprites to `allAnswers`.
+* Generate the sprites on the fly at runtime. If the module is just an n×m rectilinear grid, you can just use the `makeQuestion` overloads that take `Coord` objects, which will automatically be converted to sprites that represent a grid with one cell highlighted. If it’s a little more involved, feel free to look at how `Sprites.GenerateGridSprite` generates the grid sprites and use it as inspiration to make your own sprite generator.
+* Include the sprites in the Souvenir mod itself, as a field of type `Sprite[]`. For example, `ArithmelogicSprites` contains the sprites for one of the Arithmelogic questions. If at all possible, this should only be used if the other two options are not available, as it means the sprites are shipped with Souvenir, increasing the size of the mod. If you do decide for this option, make sure to:
+	* Declare a field of type `Sprite[]` and assign all the sprites you need using the Unity editor.
+	* In the question attribute, use `Type = AnswerType.Sprites` and `SpriteField = "ArithmelogicSprites"` (except of course put the new field’s name).
+	* Now you can simply use these sprites in your call to `makeQuestion`.
+

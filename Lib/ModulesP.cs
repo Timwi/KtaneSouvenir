@@ -292,7 +292,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var allSprites = GetArrayField<Sprite>(comp, "SeedPacketIdentifier", isPublic: true).Get(expectedLength: 719).TranslateSprites(166).ToArray();
-        var chosen = GetArrayField<int>(comp, "Unique").Get(expectedLength: 3, validator: v => v is < 0 or >= 719 ? $"Bad pickup number {v}" : null);
+        var chosen = GetArrayField<int>(comp, "Unique").Get(expectedLength: 3, validator: v => v is < 0 or >= 719 ? "Expected pickup number 0–718" : null);
 
         addQuestions(module, chosen.Select((sprite, stage) => makeQuestion(Question.PickupIdentificationItem, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { allSprites[sprite] }, allAnswers: allSprites)));
     }

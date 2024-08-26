@@ -658,7 +658,7 @@ public partial class SouvenirModule
 
         addQuestions(module,
             makeQuestion(Question.ModuleMazeStartingIcon, module,
-                correctAnswers: new[] { translatedSprites[Array.IndexOf(sprites, GetField<Sprite>(comp, "souvenirStart").Get())] }, preferredWrongAnswers: translatedSprites));
+                correctAnswers: new[] { translatedSprites[Array.IndexOf(sprites, GetField<Sprite>(comp, "souvenirStart").Get())] }, allAnswers: translatedSprites));
     }
 
     private IEnumerator<YieldInstruction> ProcessModuleMovements(ModuleData module)
