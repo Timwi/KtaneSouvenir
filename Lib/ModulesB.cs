@@ -710,7 +710,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "BottomGearScript");
         yield return WaitForSolve;
 
-        var index = GetField<int>(comp, "ThisIsARandomNumberUsedToSelectText").Get(v => v is < 0 or >= 25 ? $"Bad tweet index {v}" : null);
+        var index = GetField<int>(comp, "ThisIsARandomNumberUsedToSelectText").Get(v => v is < 0 or >= 25 ? "expected index 0–24" : null);
         var tweets = Ut.Attributes[Question.BottomGearTweet].AllAnswers;
         addQuestion(module, Question.BottomGearTweet, correctAnswers: new[] { tweets[index] });
     }

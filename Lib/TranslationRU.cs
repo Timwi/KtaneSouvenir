@@ -6804,7 +6804,7 @@ namespace Souvenir
             // What color was this key in the first stage of Ordered Keys?
             [Question.OrderedKeysColors] = new()
             {
-                QuestionText = "Какого цвета была {2}-я клавиша на {1}-м этапе в «{0}»?",
+                QuestionText = "Какого цвета была эта клавиша на {1}-м этапе в «{0}»?",
                 ModuleName = "Упорядоченных клавишах",
                 Answers = new Dictionary<string, string>
                 {
@@ -6820,14 +6820,14 @@ namespace Souvenir
             // What was the label of this key in the first stage of Ordered Keys?
             [Question.OrderedKeysLabels] = new()
             {
-                QuestionText = "Какая была надпись на {2}-й клавише на {1}-м этапе в «{0}»?",
+                QuestionText = "Какая была надпись на этой клавише на {1}-м этапе в «{0}»?",
                 ModuleName = "Упорядоченных клавишах",
             },
             // What color was the label of this key in the {1} stage of {0}?
             // What color was the label of this key in the first stage of Ordered Keys?
             [Question.OrderedKeysLabelColors] = new()
             {
-                QuestionText = "Какого цвета была надпись на {2}-й клавише на {1}-м этапе в «{0}»?",
+                QuestionText = "Какого цвета была надпись на этой клавише на {1}-м этапе в «{0}»?",
                 ModuleName = "Упорядоченных клавишах",
                 Answers = new Dictionary<string, string>
                 {

@@ -6986,7 +6986,7 @@ namespace Souvenir
             // What color was this key in the first stage of Ordered Keys?
             [Question.OrderedKeysColors] = new()
             {
-                QuestionText = "{0}のステージ{1}における{2}番目の音板の色は？",
+                QuestionText = "{0}のステージ{1}における番目の音板の色は？",
                 ModuleName = "順番音板",
                 Answers = new Dictionary<string, string>
                 {
@@ -7002,14 +7002,14 @@ namespace Souvenir
             // What was the label of this key in the first stage of Ordered Keys?
             [Question.OrderedKeysLabels] = new()
             {
-                QuestionText = "{0}のステージ{1}における{2}番目の音板のラベルは？",
+                QuestionText = "{0}のステージ{1}における番目の音板のラベルは？",
                 ModuleName = "順番音板",
             },
             // What color was the label of this key in the {1} stage of {0}?
             // What color was the label of this key in the first stage of Ordered Keys?
             [Question.OrderedKeysLabelColors] = new()
             {
-                QuestionText = "{0}のステージ{1}における{2}番目の音板のラベルの色は？",
+                QuestionText = "{0}のステージ{1}における番目の音板のラベルの色は？",
                 ModuleName = "順番音板",
                 Answers = new Dictionary<string, string>
                 {

@@ -148,8 +148,9 @@ public partial class SouvenirModule
         var fldResetCount = GetField<int>(comp, "resetCount");
         var fldInfo = GetArrayField<int[]>(comp, "info");
         var fldPressed = GetArrayField<bool>(comp, "alreadypressed");
-        int[][] getInfo() {
-            var info = fldInfo.Get(expectedLength: 6, validator: a => a.Length != 3 ? $"Bad inner array length {a}" : null);
+        int[][] getInfo()
+        {
+            var info = fldInfo.Get(expectedLength: 6, validator: a => a.Length != 3 ? "expected inner array length of 3" : null);
             var pressed = fldPressed.Get(expectedLength: 7);
             return info.Select((a, i) => pressed[i] ? null : a).ToArray();
         }
@@ -188,6 +189,9 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessUpdog(ModuleData module)
     {
+        legitimatelyNoQuestion(module.Module, "Disabled until a pull request for Updog is merged.");
+        yield break;
+
         var comp = GetComponent(module, "UpdogScript");
         yield return WaitForSolve;
         var word = GetField<string>(comp, "_souvenirWord").Get(v => Ut.Attributes[Question.UpdogWord].AllAnswers.Contains(v) ? null : $"Bad word {v}");

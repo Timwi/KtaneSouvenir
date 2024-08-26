@@ -446,14 +446,16 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessPointlessMachines(ModuleData module)
     {
+        legitimatelyNoQuestion(module.Module, "Disabled until a pull request for Pointless Machines is merged.");
+        yield break;
+
         var comp = GetComponent(module, "PointlessMachinesScript");
         yield return WaitForSolve;
 
         var flashes = GetField<Array>(comp, "_souvenirFlashes")
             .Get(v =>
-                v.Length != 6 ? "Bad array length" :
-                v.Cast<int>().Select(i => i is >= 0 and < 5 ? null : $"Unknown color {v}")
-                    .Aggregate((a, b) => a is null ? b : b is null ? a : $"{a}, {b}"))
+                v.Length != 6 ? "Expected array length 6" :
+                v.Cast<int>().Any(i => i is < 0 or >= 5) ? "Expected color 0–4" : null)
             .Cast<object>()
             .Select(v => v.ToString())
             .ToArray();

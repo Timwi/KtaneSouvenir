@@ -70,8 +70,8 @@ public partial class SouvenirModule
         var sprites = GetArrayField<Sprite>(comp, "PlayersSprites", isPublic: true).Get(expectedLength: 12);
         var names = GetArrayField<string>(comp, "Names").Get(expectedLength: 13);
 
-        var sprite = GetField<int>(comp, "ProfileSelector").Get(v => v is < 0 or >= 12 ? $"Bad sprite index {v}" : null);
-        var name = GetField<int>(comp, "NameSelector").Get(v => v is < 0 or >= 13 ? $"Bad name index {v}" : null);
+        var sprite = GetField<int>(comp, "ProfileSelector").Get(v => v is < 0 or >= 12 ? "expected sprite index 0–11" : null);
+        var name = GetField<int>(comp, "NameSelector").Get(v => v is < 0 or >= 13 ? "expected name index 0–12" : null);
 
         addQuestions(module,
             makeQuestion(Question._123GameProfile, module, correctAnswers: new[] { sprites[sprite] }, allAnswers: sprites),

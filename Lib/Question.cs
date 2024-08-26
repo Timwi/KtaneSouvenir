@@ -13,7 +13,7 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         _100LevelsOfDefusalLetters,
 
-        [SouvenirQuestion("Who was the opponent in {0}?", "1, 2, 3 Game", ThreeColumns6Answers, AddThe = true, Type = AnswerType.Sprites, SpriteSizeMultiplier = 0.06f)]
+        [SouvenirQuestion("Who was the opponent in {0}?", "1, 2, 3 Game", ThreeColumns6Answers, AddThe = true, Type = AnswerType.Sprites)]
         _123GameProfile,
         [SouvenirQuestion("Who was the opponent in {0}?", "1, 2, 3 Game", ThreeColumns6Answers, "Changyeop", "Eunji", "Gura", "Jinho", "Jungmoon", "Junseok", "Kyungran", "Minseo", "Minsoo", "Poong", "Sangmin", "Sunggyu", "Yuram", AddThe = true)]
         _123GameName,

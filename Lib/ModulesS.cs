@@ -1030,8 +1030,9 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "Swindlem");
         yield return WaitForSolve;
 
-        var constant = GetField<string>(comp, "constant")
-            .Get(v => v.Length != 6 ? $"Bad constant length! {v}" : v.Select(c => "KRGBCMYW".Contains(c) ? (char?)null : c).Aggregate((string)null, (a, b) => b is null ? a : a is null ? b.ToString() : a + b.ToString()));
+        var constant = GetField<string>(comp, "constant").Get(v =>
+            v.Length != 6 ? "expected constant length 6" :
+            v.Any(c => !"KRGBCMYW".Contains(c)) ? "expected only KRGBCMYW" : null);
         addQuestion(module, Question.SimonSwindlesConstant, correctAnswers: new[] { constant });
     }
 
@@ -1168,12 +1169,12 @@ public partial class SouvenirModule
         foreach (DictionaryEntry de in assignments)
         {
             if (de.Value.ToString() == "SMASH")
-                smash.Add((string)de.Key);
+                smash.Add((string) de.Key);
             if (de.Value.ToString() == "MARRY")
-                marry.Add((string)de.Key);
+                marry.Add((string) de.Key);
             if (de.Value.ToString() == "KILL")
-                kill.Add((string)de.Key);
-            questions.Add(makeQuestion(Question.SmashMarryKillCategory, module, formattedModuleName: moduleName, formatArgs: new[] { (string)de.Key }, correctAnswers: new[] { de.Value.ToString() }));
+                kill.Add((string) de.Key);
+            questions.Add(makeQuestion(Question.SmashMarryKillCategory, module, formattedModuleName: moduleName, formatArgs: new[] { (string) de.Key }, correctAnswers: new[] { de.Value.ToString() }));
         }
         var allMods = smash.Concat(marry).Concat(kill).ToArray();
         if (allMods.Length < 4)

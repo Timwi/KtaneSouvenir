@@ -166,15 +166,14 @@ public partial class SouvenirModule
             yield break;
         }
 
-        static string caps(string str) => $"{str[0].ToString().ToUpperInvariant()}{str.Substring(1)}";
+        static string caps(string str) => $"{char.ToUpperInvariant(str[0])}{str.Substring(1)}";
 
         if (_moduleCounts[moduleId] == 1)
             addQuestions(module, seq.Take(seq.Count - 1).Select((str, ix) => makeQuestion(Question.WhiteoutColor, moduleId, 1, formatArgs: new[] { ordinal(ix) }, correctAnswers: new[] { caps(str) })));
         else
         {
             var disambigLen = _whiteoutSequences.Select(arr => arr.Count).Min();
-            var disambigStages = Enumerable
-                .Range(0, disambigLen)
+            var disambigStages = Enumerable.Range(0, disambigLen)
                 .Where(ix => _whiteoutSequences.Select(arr => arr[ix]).Count(s => s == seq[ix]) == 1)
                 .ToArray();
             if (disambigStages.Length == 0)
@@ -190,9 +189,11 @@ public partial class SouvenirModule
                     yield break;
                 }
                 var formattedName = string.Format(translateString(Question.WhiteoutColor, "the Whiteout which displayed {1} on its {0} stage"), ordinal(disambigStages[0]), caps(seq[disambigStages[0]]));
-                addQuestions(module, seq.Take(seq.Count - 1).Select((str, ix) => ix == disambigStages[0] ? null :
-                        makeQuestion(Question.WhiteoutColor, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { ordinal(ix) }, correctAnswers: new[] { caps(str) })
-                    ).Where(s => s is not null));
+                addQuestions(module, seq
+                    .Take(seq.Count - 1)
+                    .Select((str, ix) => ix == disambigStages[0] ? null :
+                        makeQuestion(Question.WhiteoutColor, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { ordinal(ix) }, correctAnswers: new[] { caps(str) }))
+                    .Where(s => s != null));
             }
             else
             {
