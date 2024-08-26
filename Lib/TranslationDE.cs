@@ -9697,13 +9697,13 @@ namespace Souvenir
             // What color was the label of this key in the first stage of Unordered Keys?
             [Question.UnorderedKeysLabelColor] = new()
             {
-                QuestionText = "What color was this key's label in the {1} stage of {0}?",
+                QuestionText = "What color was the label of this key in the {1} stage of {0}?",
             },
             // What was the label of this key in the {1} stage of {0}?
             // What was the label of this key in the first stage of Unordered Keys?
             [Question.UnorderedKeysLabel] = new()
             {
-                QuestionText = "What was this key's label in the {1} stage of {0}?",
+                QuestionText = "What was the label of this key in the {1} stage of {0}?",
             },
 
             // Unown Cipher
