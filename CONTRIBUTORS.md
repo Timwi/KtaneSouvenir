@@ -62,17 +62,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Colored Keys         │  Free Parking              │  Maze³             │  Reverse Morse      │  Vexillology
     Cube, The            │  Hexabutton, The           │  Mazematics        │  Simon Scrambles    │  Zoni
 
-## Implemented by Anonymous (38)
-
-    ❖                   │  Connection Check  │  Maroon Button, The     │  Red Button’t            │  Time Signatures
-    1, 2, 3 Game, The   │  Double Arrows     │  Naming Conventions     │  RNG Crystal             │  Unordered Keys
-    Bean Sprouts        │  Double Listening  │  Not Password           │  Simon Smiles            │  Updog
-    Beans               │  Double Screen     │  Not Red Arrows         │  Simon Subdivides        │  Variety
-    Big Bean            │  Fuse Box, The     │  One Links To All       │  Simon Swindles          │  Whiteout
-    Boomtar the Great   │  Ghost Movement    │  Pentabutton, The       │  Smash, Marry, Kill      │  X-Ring
-    Bottom Gear         │  hexOrbits         │  Pickup Identification  │  Stable Time Signatures  │
-    Connected Monitors  │  Labyrinth, The    │  Pointless Machines     │  Subbly Jubbly           │
-
 ## Implemented by BigCrunch22 (38)
 
     1000 Words      │  Dreamcipher    │  Indigo Cipher          │  Spelling Bee            │  V
@@ -83,6 +72,17 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cheep Checkout  │  Grocery Store  │  Roger                  │  Switching Maze          │  Yellow Cipher
     Cosmic          │  Guess Who?     │  Sequencyclopedia, The  │  Topsy Turvy             │
     Deaf Alley      │  Hold Ups       │  Shifting Maze          │  Ultimate Cipher         │
+
+## Implemented by Anonymous (36)
+
+    ❖                   │  Connection Check  │  Maroon Button, The     │  Red Button’t            │  Unordered Keys
+    1, 2, 3 Game, The   │  Double Arrows     │  Naming Conventions     │  RNG Crystal             │  Updog
+    Bean Sprouts        │  Double Listening  │  Not Password           │  Simon Smiles            │  Variety
+    Beans               │  Double Screen     │  Not Red Arrows         │  Simon Subdivides        │  X-Ring
+    Big Bean            │  Fuse Box, The     │  One Links To All       │  Smash, Marry, Kill      │
+    Boomtar the Great   │  Ghost Movement    │  Pentabutton, The       │  Stable Time Signatures  │
+    Bottom Gear         │  hexOrbits         │  Pickup Identification  │  Subbly Jubbly           │
+    Connected Monitors  │  Labyrinth, The    │  Pointless Machines     │  Time Signatures         │
 
 ## Implemented by TasThiluna (31)
 

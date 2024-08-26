@@ -9108,14 +9108,6 @@ namespace Souvenir
                 },
             },
 
-            // Simon Swindles
-            // What was the constant in {0}?
-            // What was the constant in Simon Swindles?
-            [Question.SimonSwindlesConstant] = new()
-            {
-                QuestionText = "What was the constant in {0}?",
-            },
-
             // Simultaneous Simons
             // What color flashed {1} on the {2} Simon in {0}?
             // What color flashed first on the first Simon in Simultaneous Simons?
@@ -10686,18 +10678,6 @@ namespace Souvenir
                     ["top"] = "上部",
                     ["middle"] = "中央",
                     ["bottom"] = "下部",
-                },
-            },
-
-            // Whiteout
-            // What color was displayed for the {1} stage of {0}?
-            // What color was displayed for the first stage of Whiteout?
-            [Question.WhiteoutColor] = new()
-            {
-                QuestionText = "What color was displayed for the {1} stage of {0}?",
-                TranslatableStrings = new Dictionary<string, string>
-                {
-                    ["the Whiteout which displayed {1} on its {0} stage"] = "the Whiteout which displayed {1} on its {0} stage",
                 },
             },
 

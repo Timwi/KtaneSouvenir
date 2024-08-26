@@ -229,7 +229,6 @@ public partial class SouvenirModule
         var serialNumber = JObject.Parse(Bomb.QueryWidgets(KMBombInfo.QUERYKEY_GET_SERIAL_NUMBER, null).First())["serial"].ToString();
 
         int keyNumber = 0;
-        string keyColour;
         char prevChar = '\0';
         foreach (var letter in serialNumber)
         {
@@ -244,16 +243,15 @@ public partial class SouvenirModule
             }
         }
         var colorNames = new[] { "red", "yellow", "green", "blue", "purple" };
-        switch (keyNumber % 10)
+        var keyColour = (keyNumber % 10) switch
         {
-            case 0: case 3: keyColour = "ColourRed"; break;
-            case 4: case 9: keyColour = "ColourYellow"; break;
-            case 1: case 7: keyColour = "ColourGreen"; break;
-            case 5: case 8: keyColour = "ColourBlue"; break;
-            case 2: case 6: keyColour = "ColourPurple"; break;
-            default: throw new AbandonModuleException("Invalid keyNumber % 10.");
-        }
-
+            0 or 3 => "ColourRed",
+            4 or 9 => "ColourYellow",
+            1 or 7 => "ColourGreen",
+            5 or 8 => "ColourBlue",
+            2 or 6 => "ColourPurple",
+            _ => throw new AbandonModuleException("Invalid keyNumber % 10."),
+        };
         var colourMeshes = GetField<MeshRenderer[,]>(comp, "ColourMeshes").Get();
         var pegIndex = Enumerable.Range(0, 5).IndexOf(px => Enumerable.Range(0, 5).Count(i => colourMeshes[px, i].sharedMaterial.name.StartsWith(keyColour)) >= 3);
         if (pegIndex == -1)

@@ -10,3 +10,4 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by Twitch Plays through Reflection", Scope = "member", Target = "~M:SouvenirModule.ProcessTwitchCommand(System.String)~System.Collections.IEnumerator")]
 [assembly: SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Used by Twitch Plays through Reflection", Scope = "member", Target = "~M:SouvenirModule.TwitchHandleForcedSolve~System.Collections.IEnumerator")]
 [assembly: SuppressMessage("Style", "IDE0053:Use expression body for lambda expression", Justification = "I want lambda expressions with side effects (such as assignments) to have a block body")]
+[assembly: SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Unity depends on it")]
