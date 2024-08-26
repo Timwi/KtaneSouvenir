@@ -151,8 +151,8 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         GetField<TextMesh>(comp, "DisplayText", isPublic: true).Get().gameObject.SetActive(false);
-        var allWords = GetArrayField<string>(comp, "keyword").Get(expectedLength: 4027, validator: s => s.Length != 6 ? $"Bad keyword {s}" : null);
-        var word = GetField<string>(comp, "selectkeyword", isPublic: true).Get(s => !allWords.Contains(s) ? $"Bad word {s}" : null);
+        var allWords = GetArrayField<string>(comp, "keyword").Get(expectedLength: 4027, validator: s => s.Length != 6 ? "expected word length 6" : null);
+        var word = GetField<string>(comp, "selectkeyword", isPublic: true).Get(s => !allWords.Contains(s) ? "expected valid word" : null);
         addQuestion(module, Question.RedButtontWord, correctAnswers: new[] { word }, allAnswers: allWords);
     }
 

@@ -59,7 +59,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "XRingScript");
         yield return WaitForSolve;
 
-        var used = GetArrayField<int>(comp, "symbselect").Get(expectedLength: 5, validator: v => v is < 0 or > 63 ? $"Unknown symbol {v}" : null);
+        var used = GetArrayField<int>(comp, "symbselect").Get(expectedLength: 5, validator: v => v is < 0 or > 63 ? "expected symbol index 0-63" : null);
         addQuestion(module, Question.XRingSymbol, correctAnswers: used.Select(i => XRingSprites[i]).ToArray());
     }
 }
