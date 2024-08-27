@@ -38,13 +38,15 @@ namespace Souvenir
             // Who was the opponent in The 1, 2, 3 Game?
             [Question._123GameProfile] = new()
             {
-                QuestionText = "Who was the opponent in {0}?",
+                QuestionText = "{0}の相手は？",
+                ModuleName = "123ゲーム",
             },
             // Who was the opponent in {0}?
             // Who was the opponent in The 1, 2, 3 Game?
             [Question._123GameName] = new()
             {
-                QuestionText = "Who was the opponent in {0}?",
+                QuestionText = "{0}の相手は？",
+                ModuleName = "123ゲーム",
             },
 
             // 1D Chess
@@ -1157,7 +1159,7 @@ namespace Souvenir
             // What tweet was shown in Bottom Gear?
             [Question.BottomGearTweet] = new()
             {
-                QuestionText = "What tweet was shown in {0}?",
+                QuestionText = "{0}に表示されたツイートは？",
             },
 
             // Boxing
@@ -4995,7 +4997,7 @@ namespace Souvenir
             // Which of the following messages did the bubble display in Main Page?
             [Question.MainPageBubbleMessages] = new()
             {
-                QuestionText = "{0}で吹き出しに表示され{}メッセージは？",
+                QuestionText = "{0}で吹き出しに表示され{1}メッセージは？",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["display"] = "た",
@@ -6075,7 +6077,8 @@ namespace Souvenir
             // What was the label of the first button in Naming Conventions?
             [Question.NamingConventionsObject] = new()
             {
-                QuestionText = "What was the label of the first button in {0}?",
+                QuestionText = "{0}の最初のボタンに書かれたラベルは？",
+                ModuleName = "命名規則",
             },
 
             // N&Ms
@@ -6465,7 +6468,8 @@ namespace Souvenir
             // What was the starting number in Not Red Arrows?
             [Question.NotRedArrowsStart] = new()
             {
-                QuestionText = "What was the starting number in {0}?",
+                QuestionText = "{0}の初期値は？",
+                ModuleName = "偽赤色矢印",
             },
 
             // Not Simaze
@@ -6922,13 +6926,13 @@ namespace Souvenir
             // What was the starting article in One Links To All?
             [Question.OneLinksToAllStart] = new()
             {
-                QuestionText = "What was the starting article in {0}?",
+                QuestionText = "{0}の初期記事は？",
             },
             // What was the ending article in {0}?
             // What was the ending article in One Links To All?
             [Question.OneLinksToAllEnd] = new()
             {
-                QuestionText = "What was the ending article in {0}?",
+                QuestionText = "{0}の最終記事は？",
             },
 
             // Only Connect
@@ -7498,7 +7502,16 @@ namespace Souvenir
             // What color flashed first in Pointless Machines?
             [Question.PointlessMachinesFlashes] = new()
             {
-                QuestionText = "What color flashed {1} in {0}?",
+                QuestionText = "{0}で{1}番目に点滅した色は？",
+                ModuleName = "無意味なマシーン",
+                Answers = new Dictionary<string, string>
+                {
+                    ["White"] = "白",
+                    ["Purple"] = "紫",
+                    ["Red"] = "赤",
+                    ["Blue"] = "青",
+                    ["Yellow"] = "黄",
+                },
             },
 
             // Polyhedral Maze
@@ -9117,10 +9130,10 @@ namespace Souvenir
                 ModuleName = "同時サイモン",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Blue"] = "",
-                    ["Yellow"] = "",
-                    ["Red"] = "",
-                    ["Green"] = "",
+                    ["Blue"] = "青",
+                    ["Yellow"] = "黄",
+                    ["Red"] = "赤",
+                    ["Green"] = "緑",
                 },
             },
 
@@ -9288,13 +9301,13 @@ namespace Souvenir
             // In what category was The Button for Smash, Marry, Kill?
             [Question.SmashMarryKillCategory] = new()
             {
-                QuestionText = "In what category was {1} for {0}?",
+                QuestionText = "{0}で{1}が属していたカテゴリーは？",
             },
             // Which module was in the {1} category for {0}?
             // Which module was in the SMASH category for Smash, Marry, Kill?
             [Question.SmashMarryKillModule] = new()
             {
-                QuestionText = "Which module was in the {1} category for {0}?",
+                QuestionText = "{0}で{1}のカテゴリーに属していたモジュールは？",
             },
 
             // Snooker
@@ -10281,19 +10294,19 @@ namespace Souvenir
             // What color was this key in the first stage of Unordered Keys?
             [Question.UnorderedKeysKeyColor] = new()
             {
-                QuestionText = "What color was this key in the {1} stage of {0}?",
+                QuestionText = "{0}のステージ{1}におけるこの音板の色は？",
             },
             // What color was the label of this key in the {1} stage of {0}?
             // What color was the label of this key in the first stage of Unordered Keys?
             [Question.UnorderedKeysLabelColor] = new()
             {
-                QuestionText = "What color was the label of this key in the {1} stage of {0}?",
+                QuestionText = "{0}のステージ{1}におけるこの音板のラベルの色は？",
             },
             // What was the label of this key in the {1} stage of {0}?
             // What was the label of this key in the first stage of Unordered Keys?
             [Question.UnorderedKeysLabel] = new()
             {
-                QuestionText = "What was the label of this key in the {1} stage of {0}?",
+                QuestionText = "{0}のステージ{1}におけるこの音板のラベルは？",
             },
 
             // Unown Cipher
@@ -10310,13 +10323,28 @@ namespace Souvenir
             // What was the text on Updog?
             [Question.UpdogWord] = new()
             {
-                QuestionText = "What was the text on {0}?",
+                QuestionText = "{0}のテキストは？",
             },
             // What was the {1} color in the sequence on {0}?
             // What was the first color in the sequence on Updog?
             [Question.UpdogColor] = new()
             {
-                QuestionText = "What was the {1} color in the sequence on {0}?",
+                QuestionText = "{0}のシーケンスにおける{1}の色は？",
+                ModuleName = "うざいイヌ",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["first"] = "最初",
+                    ["last"] = "最後",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Yellow"] = "黄",
+                    ["Orange"] = "橙",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Purple"] = "紫",
+                },
             },
 
             // USA Cycle
@@ -10443,6 +10471,7 @@ namespace Souvenir
             [Question.VarietyTimer] = new()
             {
                 QuestionText = "{0}のカウント{1}タイマー内の最大値は？",
+                ModuleName = "寄せ集め",
                 FormatArgs = new Dictionary<string, string>
                 {
                     [""] = "",
@@ -10455,6 +10484,7 @@ namespace Souvenir
             [Question.VarietyColoredKnob] = new()
             {
                 QuestionText = "{0}の{1}ダイヤルに対応するNは？",
+                ModuleName = "寄せ集め",
                 FormatArgs = new Dictionary<string, string>
                 {
                     [""] = "",
@@ -10470,6 +10500,7 @@ namespace Souvenir
             [Question.VarietyBulb] = new()
             {
                 QuestionText = "{0}の{1}電球に対するNは？",
+                ModuleName = "寄せ集め",
                 FormatArgs = new Dictionary<string, string>
                 {
                     [""] = "",
@@ -10939,6 +10970,7 @@ namespace Souvenir
             [Question.ZeroZeroStarColors] = new()
             {
                 QuestionText = "{0}の{1}の位置の星の色は？",
+                ModuleName = "ゼロ・ゼロ",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top-left"] = "左上",
@@ -10962,7 +10994,8 @@ namespace Souvenir
             // How many points were on the top-left star in Zero, Zero?
             [Question.ZeroZeroStarPoints] = new()
             {
-                QuestionText = "{0}の{1}の位置の星のポイントは？",
+                QuestionText = "{0}の{1}の位置の星の頂点数は？",
+                ModuleName = "ゼロ・ゼロ",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top-left"] = "左上",
@@ -10976,6 +11009,7 @@ namespace Souvenir
             [Question.ZeroZeroSquares] = new()
             {
                 QuestionText = "{0}の{1}色の正方形の場所は？",
+                ModuleName = "ゼロ・ゼロ",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["red"] = "赤",
