@@ -189,9 +189,6 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessUpdog(ModuleData module)
     {
-        legitimatelyNoQuestion(module.Module, "Disabled until a pull request for Updog is merged.");
-        yield break;
-
         var comp = GetComponent(module, "UpdogScript");
         yield return WaitForSolve;
         var word = GetField<string>(comp, "_souvenirWord").Get(v => Ut.Attributes[Question.UpdogWord].AllAnswers.Contains(v) ? null : $"Bad word {v}");

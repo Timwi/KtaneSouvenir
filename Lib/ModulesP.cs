@@ -456,9 +456,6 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessPointlessMachines(ModuleData module)
     {
-        legitimatelyNoQuestion(module.Module, "Disabled until a pull request for Pointless Machines is merged.");
-        yield break;
-
         var comp = GetComponent(module, "PointlessMachinesScript");
         yield return WaitForSolve;
 
