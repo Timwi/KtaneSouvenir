@@ -7290,6 +7290,14 @@ namespace Souvenir
             [Question.PointlessMachinesFlashes] = new()
             {
                 QuestionText = "What color flashed {1} in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["White"] = "White",
+                    ["Purple"] = "Purple",
+                    ["Red"] = "Red",
+                    ["Blue"] = "Blue",
+                    ["Yellow"] = "Yellow",
+                },
             },
 
             // Polyhedral Maze
@@ -10014,6 +10022,20 @@ namespace Souvenir
             [Question.UpdogColor] = new()
             {
                 QuestionText = "What was the {1} color in the sequence on {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["first"] = "first",
+                    ["last"] = "last",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Yellow"] = "Yellow",
+                    ["Orange"] = "Orange",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Purple"] = "Purple",
+                },
             },
 
             // USA Cycle

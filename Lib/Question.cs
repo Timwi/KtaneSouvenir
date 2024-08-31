@@ -2099,7 +2099,7 @@
         PoetryAnswers,
 
         [SouvenirQuestion("What color flashed {1} in {0}?", "Pointless Machines", TwoColumns4Answers, "White", "Purple", "Red", "Blue", "Yellow",
-            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         PointlessMachinesFlashes,
 
         [SouvenirQuestion("What was the starting position in {0}?", "Polyhedral Maze", ThreeColumns6Answers)]
@@ -2905,7 +2905,7 @@
 
         [SouvenirQuestion("What was the text on {0}?", "Updog", ThreeColumns6Answers, "dog", "DOG", "dawg", "DAWG", "doge", "DOGE", "dag", "DAG", "dogg", "DOGG", "dage", "DAGE")]
         UpdogWord,
-        [SouvenirQuestion("What was the {1} color in the sequence on {0}?", "Updog", ThreeColumns6Answers, "Red", "Yellow", "Orange", "Green", "Blue", "Purple", TranslateFormatArgs = new[] { true }, TranslateAnswers = true, 
+        [SouvenirQuestion("What was the {1} color in the sequence on {0}?", "Updog", ThreeColumns6Answers, "Red", "Yellow", "Orange", "Green", "Blue", "Purple", TranslateFormatArgs = new[] { true }, TranslateAnswers = true,
             ExampleFormatArguments = new[] { "first", "last" }, ExampleFormatArgumentGroupSize = 1)]
         UpdogColor,
 

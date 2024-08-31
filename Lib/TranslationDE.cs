@@ -7100,7 +7100,16 @@ namespace Souvenir
             // What color flashed first in Pointless Machines?
             [Question.PointlessMachinesFlashes] = new()
             {
-                QuestionText = "What color flashed {1} in {0}?",
+                QuestionText = "Welche Farbe hat bei {0} geblinkt?",
+                ModuleName = "Sinnlose Maschinen",
+                Answers = new Dictionary<string, string>
+                {
+                    ["White"] = "Weiß",
+                    ["Purple"] = "Lila",
+                    ["Red"] = "Rot",
+                    ["Blue"] = "Blau",
+                    ["Yellow"] = "Gelb",
+                },
             },
 
             // Polyhedral Maze
@@ -9735,13 +9744,27 @@ namespace Souvenir
             // What was the text on Updog?
             [Question.UpdogWord] = new()
             {
-                QuestionText = "What was the text on {0}?",
+                QuestionText = "Wie lautete bei {0} der Text?",
             },
             // What was the {1} color in the sequence on {0}?
             // What was the first color in the sequence on Updog?
             [Question.UpdogColor] = new()
             {
-                QuestionText = "What was the {1} color in the sequence on {0}?",
+                QuestionText = "Was war bei {0} die {1} Farbe in der Farbsequenz?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["first"] = "erste",
+                    ["last"] = "letzte",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Rot",
+                    ["Yellow"] = "Gelb",
+                    ["Orange"] = "Orange",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Purple"] = "Lila",
+                },
             },
 
             // USA Cycle
