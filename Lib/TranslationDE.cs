@@ -19,14 +19,14 @@ namespace Souvenir
         }
 
         public override string FormatModuleName(Question question, bool addSolveCount, int numSolved) => addSolveCount
-            ? _translations[question].Gender switch
+            ? (_translations.Get(question)?.Gender ?? Gender.Neuter) switch
             {
-                Gender.Feminine => $"der als {ordinal(numSolved)}e gelösten {_translations[question].ModuleNameDative ?? _translations[question].ModuleName ?? Ut.GetAttribute(question).ModuleName}",
-                Gender.Masculine => $"dem als {ordinal(numSolved)}en gelösten {_translations[question].ModuleNameDative ?? _translations[question].ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe}",
-                Gender.Neuter => $"dem als {ordinal(numSolved)}es gelösten {_translations[question].ModuleNameDative ?? _translations[question].ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe}",
-                _ => /* Plural */ $"den als {ordinal(numSolved)}es gelösten {_translations[question].ModuleNameDative ?? _translations[question].ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe}",
+                Gender.Feminine => $"der als {ordinal(numSolved)}e gelösten {_translations.Get(question)?.ModuleNameDative ?? _translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleName}",
+                Gender.Masculine => $"dem als {ordinal(numSolved)}en gelösten {_translations.Get(question)?.ModuleNameDative ?? _translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe}",
+                Gender.Neuter => $"dem als {ordinal(numSolved)}es gelösten {_translations.Get(question)?.ModuleNameDative ?? _translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe}",
+                _ => /* Plural */ $"den als {ordinal(numSolved)}es gelösten {_translations.Get(question)?.ModuleNameDative ?? _translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe}",
             }
-            : _translations[question].ModuleNameWithThe ?? _translations[question].ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe;
+            : _translations.Get(question)?.ModuleNameWithThe ?? _translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe;
 
         public override string Ordinal(int number) => ordinal(number);
         private string ordinal(int num) => num < 0 ? $"({num})t" : num switch
