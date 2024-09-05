@@ -37,7 +37,7 @@ public partial class CommunityFeaturesDownloader : EditorWindow
         window.Show();
     }
 
-    public const string VERSION = "2.0.3.0";
+    public const string VERSION = "2.0.3.1";
     public readonly Version PARSED_VERSION = new Version(VERSION);
 
     private static readonly string[] Sizes = {"KB", "MB", "GB", "TB" };
@@ -79,7 +79,7 @@ public partial class CommunityFeaturesDownloader : EditorWindow
     private readonly GUIStyle RichStyle = new GUIStyle();
     private readonly string[] DefaultSources = new string[]
     {
-        "https://qkrisi.xyz/ktane/kmplugins"
+        "https://qkrisi.hu/ktane/kmplugins"
     };
 
     private Vector2 ScrollPos;
@@ -280,8 +280,10 @@ public partial class CommunityFeaturesDownloader : EditorWindow
                 {
                     if (CurrentFeature.ParsedMinVersion <= PARSED_VERSION && CurrentFeature.ParsedMaxVersion >= PARSED_VERSION)
                     {
-                        CurrentFeature.Handler.Draw();
-                        if (GUILayout.Button("Install", GUILayout.Width(DownloadButtonWidth)))
+                        var enableInstall = CurrentFeature.Handler.Draw();
+                        if(!enableInstall)
+                            GUILayout.Label("<color=red>No installation candidate found</color>", RichStyle, GUILayout.ExpandWidth(false));
+                        else if (GUILayout.Button("Install", GUILayout.Width(DownloadButtonWidth)))
                             SaveFile.InstalledPlugins.Add(CurrentFeature.Handler.Download());
                     }
                     else
