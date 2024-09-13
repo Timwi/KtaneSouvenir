@@ -135,4 +135,26 @@ public partial class SouvenirModule
             makeQuestion(Question.KudosudokuPrefilled, module, formatArgs: new[] { "not pre-filled" },
                 correctAnswers: Enumerable.Range(0, 16).Where(ix => !shown[ix]).Select(coord => new Coord(4, 4, coord)).ToArray()));
     }
+
+    private IEnumerator<YieldInstruction> ProcessKuro(ModuleData module)
+    {
+        var comp = GetComponent(module, "Kuro");
+        yield return WaitForSolve;
+
+        var desiredTask = GetField<Enum>(comp, "desiredTask").Get().ToString();
+        var moods = GetArrayField<Texture2D>(comp, "kuroMoods", isPublic: true).Get(expectedLength: 5).Select(texture => texture.name);
+        Debug.Log("Desired Task: " + desiredTask);
+
+        if (desiredTask != "Eat" && desiredTask != "PlayKTANE")
+        {
+            legitimatelyNoQuestion(module.Module, "Mood is not relevant to the answer");
+            yield break;
+        }
+
+        var currentMood = GetField<Enum>(comp, "currentMood").Get().ToString();
+
+        Debug.Log("Current mood: " + currentMood);
+        Debug.Log("Possible Moods: " + string.Join(", ", moods.ToArray()));
+        addQuestion(module, Question.KuroMood, correctAnswers: new[] { currentMood }, preferredWrongAnswers: moods.ToArray());
+    }
 }

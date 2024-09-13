@@ -84,6 +84,16 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Bottom Gear         │  hexOrbits         │  Pickup Identification  │  Subbly Jubbly           │
     Connected Monitors  │  Labyrinth, The    │  Pointless Machines     │  Time Signatures         │
 
+## Implemented by Hawker (31)
+
+    3N+1                     │  Earthbound         │  h                   │  RGB Sequences                      │  UNO!
+    Arena, The               │  Find The Date      │  High Score, The     │  Scrutiny Squares                   │  Valves
+    Book of Mario            │  Flavor Text        │  Keypad Combination  │  Sign Language                      │  Weakest Link, The
+    Character Slots          │  Flavor Text EX     │  Kuro                │  Simon Serves                       │
+    Customer Identification  │  Garfield Kart      │  Ladder Lottery      │  Sonic & Knuckles                   │
+    Dimension Disruption     │  Garnet Thief, The  │  LED Grid            │  Spongebob Birthday Identification  │
+    Directional Button       │  Girlfriend         │  Module Movements    │  Subway                             │
+
 ## Implemented by TasThiluna (31)
 
     3D Tap Code         │  Cryptic Cycle          │  M&Ms              │  Pigpen Cycle    │  Snooker
@@ -102,15 +112,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cyan Button, The  │  Navigation Determination  │  Not Number Pad        │  Rule of Three        │  Varicolour Flash
     Denial Displays   │  Not Colored Switches      │  Not Perspective Pegs  │  Scramboozled Eggain  │  xobekuJ ehT
     Double Digits     │  Not Connection Check      │  Not The Bulb          │  Simon Said           │
-
-## Implemented by Hawker (28)
-
-    3N+1                     │  Directional Button  │  Girlfriend          │  RGB Sequences                      │  Subway
-    Arena, The               │  Earthbound          │  h                   │  Scrutiny Squares                   │  UNO!
-    Book of Mario            │  Find The Date       │  High Score, The     │  Sign Language                      │  Valves
-    Character Slots          │  Flavor Text         │  Keypad Combination  │  Simon Serves                       │  Weakest Link, The
-    Customer Identification  │  Flavor Text EX      │  Ladder Lottery      │  Sonic & Knuckles                   │
-    Dimension Disruption     │  Garnet Thief, The   │  Module Movements    │  Spongebob Birthday Identification  │
 
 ## Implemented by tandyCake (28)
 

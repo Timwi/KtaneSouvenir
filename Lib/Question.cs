@@ -1080,6 +1080,12 @@
         [AnswerGenerator.Strings("2*0-9", ":", "2*0-9")]
         GamepadNumbers,
 
+        [SouvenirQuestion("How many puzzle pieces did {0} have?", "Garfield Kart", TwoColumns4Answers, "0", "1", "2", "3")]
+        GarfieldKartPuzzleCount,
+        [SouvenirQuestion("What was the track in {0}?", "Garfield Kart", OneColumn4Answers, 
+            ExampleAnswers = new[] { "Play Misty for Me", "Sneak-A-Peak", "Blazing Oasis", "Pastacosi Factory", "Mysterious Temple", "Prohibited Site"})]
+        GarfieldKartTrack,
+
         [SouvenirQuestion("Which faction did {1} claim to be in {0}?", "Garnet Thief", TwoColumns4Answers, "Mafia", "Cartel", "Beggar", "Police", AddThe = true,
             ExampleFormatArguments = new[] { "Jungmoon", "Yeonseung", "Jinho", "Dongmin", "Kyunghoon", "Kyungran", "Yoohyun", "Junseok", "Sangmin", "Yohwan", "Yoonsun", "Hyunmin", "Junghyun" }, ExampleFormatArgumentGroupSize = 1)]
         GarnetThiefClaim,
@@ -1344,6 +1350,9 @@
         [AnswerGenerator.Grid(4, 4)]
         KudosudokuPrefilled,
 
+        [SouvenirQuestion("What was Kuro's mood in {0}?", "Kuro", TwoColumns4Answers, ExampleAnswers = new[] { "Angry", "Happy", "Neutral", "Curious", "Devious" })]
+        KuroMood,
+
         [SouvenirQuestion("Where was one of the portals in layer {1} in {0}?", "Labyrinth", ThreeColumns6Answers, null, AddThe = true, Type = AnswerType.Grid, TranslateFormatArgs = new[] { true },
             ExampleFormatArguments = new[] { "1 (Red)", "2 (Orange)", "3 (Yellow)", "4 (Green)", "5 (Blue)" }, ExampleFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Grid(6, 7)]
@@ -1374,6 +1383,10 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Strings('A', 'Z')]
         LEDEncryptionPressedLetters,
+
+        [SouvenirQuestion("What color was the LED at {1} on {0}?", "LED Grid", ThreeColumns6Answers, null, ExampleAnswers = new[] { "Black", "Blue", "Green", "Orange", "Pink", "Purple", "Red", "White", "Yellow" },
+            ExampleFormatArguments = new[] { "A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3" }, ExampleFormatArgumentGroupSize = 1)]
+        LEDGridColor,
 
         [SouvenirQuestion("What color was {1} in {0}?", "LED Math", TwoColumns4Answers, "Red", "Blue", "Yellow", "Green", TranslateAnswers = true,
             ExampleFormatArguments = new[] { "LED A", "LED B", "the operator LED" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
