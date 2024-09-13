@@ -170,6 +170,33 @@ public partial class SouvenirModule
             .Select(stage => makeQuestion(Question.LEDEncryptionPressedLetters, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { pressedLetters[stage] }, preferredWrongAnswers: wrongLetters.ToArray())));
     }
 
+    private IEnumerator<YieldInstruction> ProcessLEDGrid(ModuleData module)
+    {
+        string CapitalizeWord(string word)
+        {
+            return word.ToUpper()[0] + word.ToLower().Substring(1);
+        }
+        var comp = GetComponent(module, "ledGridScript");
+        yield return WaitForSolve;
+        var lights = GetListField<Renderer>(comp, "lights", isPublic: true).Get(ar => ar.Count != 9 ? "expected length 9" : null);
+        var colors = GetListField<Texture>(comp, "colours", isPublic: true).Get(ar => ar.Count != 11 ? "expected length 11" : null);
+
+        //remove duplicate colors
+        var possibleAnswers = colors
+                  .GroupBy(texture => texture.name)
+                  .Select(g => g.First())
+                  .Select(c => CapitalizeWord(c.name)).ToArray();
+
+
+        //get the leds colors
+        var answers = lights.Select(l => CapitalizeWord(l.material.mainTexture.name)).ToArray();
+
+        //change all of the leds to black
+        lights.ForEach(light => light.material.mainTexture = colors.First(c => c.name == "black"));
+
+        addQuestions(module, Enumerable.Range(0, answers.Length).Select(i => makeQuestion(Question.LEDGridColor, module, formatArgs: new[] { "" + "ABC"[i % 3] + "123"[i / 3] }, correctAnswers: new[] { answers[i] }, preferredWrongAnswers: possibleAnswers)));
+    }
+
     private IEnumerator<YieldInstruction> ProcessLEDMath(ModuleData module)
     {
         var comp = GetComponent(module, "LEDMathScript");
