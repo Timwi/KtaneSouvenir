@@ -23,7 +23,7 @@ namespace Souvenir.Reflection
                 throw new AbandonModuleException($"{LoggingString} is null.");
             string validatorFailMessage;
             if (validator != null && (validatorFailMessage = validator(value)) != null)
-                throw new AbandonModuleException($"{LoggingString} with value {stringify(value)} did not pass validity check: {validatorFailMessage}.");
+                throw new AbandonModuleException($"{LoggingString} with value {value.Stringify()} did not pass validity check: {validatorFailMessage}.");
             return value;
         }
 
@@ -34,23 +34,8 @@ namespace Souvenir.Reflection
                 throw new AbandonModuleException($"{LoggingString} is null.");
             string validatorFailMessage;
             if (validator != null && (validatorFailMessage = validator(value)) != null)
-                throw new AbandonModuleException($"{LoggingString} with value {stringify(value)} did not pass validity check: {validatorFailMessage}.");
+                throw new AbandonModuleException($"{LoggingString} with value {value.Stringify()} did not pass validity check: {validatorFailMessage}.");
             return value;
-        }
-
-        protected string stringify(object value)
-        {
-            return value switch
-            {
-                null => "null",
-                IList list => $"[{list.Cast<object>().Select(stringify).JoinString(", ")}]",
-                int i => i.ToString(),
-                double d => d.ToString(),
-                float f => f.ToString(),
-                bool b => b ? "true" : "false",
-                string s => $"“{s}”",
-                _ => $"{{{value.GetType().FullName}|{value}}}"
-            };
         }
     }
 }

@@ -150,8 +150,8 @@ public partial class SouvenirModule
         var fldPressed = GetArrayField<bool>(comp, "alreadypressed");
         int[][] getInfo()
         {
-            var info = fldInfo.Get(expectedLength: 6, validator: a => a.Length != 3 ? "expected inner array length of 3" : null);
-            var pressed = fldPressed.Get(expectedLength: 7);
+            var info = fldInfo.Get(expectedLength: 6, validator: a => a.Length != 3 ? "expected inner array length of 3" : null).Select(ar => ar.ToArray()).ToArray();
+            var pressed = fldPressed.Get(expectedLength: 7).ToArray();
             return info.Select((a, i) => pressed[i] ? null : a).ToArray();
         }
         stages.Add(getInfo());
@@ -171,11 +171,10 @@ public partial class SouvenirModule
         }
 
         var colors = new[] { "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow" };
-        addQuestions(module, stages.Take(stages.Count - 1).SelectMany((stage, stageIx) => stage.SelectMany((key, keyIx) => key is null ? new QandA[0] : new[] {
+        addQuestions(module, stages.Take(stages.Count - 1).SelectMany((stage, stageIx) => stage.SelectMany((key, keyIx) => key is null ? Enumerable.Empty<QandA>() : Ut.NewArray(
                 makeQuestion(Question.UnorderedKeysKeyColor, module, OrderedKeysSprites[keyIx], formatArgs: new[] { ordinal(stageIx + 1) }, correctAnswers: new[] { colors[key[0]] }),
                 makeQuestion(Question.UnorderedKeysLabelColor, module, OrderedKeysSprites[keyIx], formatArgs: new[] { ordinal(stageIx + 1) }, correctAnswers: new[] { colors[key[1]] }),
-                makeQuestion(Question.UnorderedKeysLabel, module, OrderedKeysSprites[keyIx], formatArgs: new[] { ordinal(stageIx + 1) }, correctAnswers: new[] { key[2].ToString() })
-            })));
+                makeQuestion(Question.UnorderedKeysLabel, module, OrderedKeysSprites[keyIx], formatArgs: new[] { ordinal(stageIx + 1) }, correctAnswers: new[] { (key[2] + 1).ToString() })))));
     }
 
     private IEnumerator<YieldInstruction> ProcessUnownCipher(ModuleData module)

@@ -64,7 +64,7 @@ namespace Souvenir.Reflection
             if (validator != null)
                 for (var ix = 0; ix < collection.Count; ix++)
                     if ((validatorFailMessage = validator(collection[ix])) != null)
-                        throw new AbandonModuleException($"Collection field {Field.DeclaringType.FullName}.{Field.Name} (length {collection.Count}) contained value {stringify(collection[ix])} at index {ix} that failed the validator: {validatorFailMessage}.");
+                        throw new AbandonModuleException($"Collection field {Field.DeclaringType.FullName}.{Field.Name} (length {collection.Count}) contained value {collection[ix].Stringify()} at index {ix} that failed the validator: {validatorFailMessage}.");
             return collection;
         }
 

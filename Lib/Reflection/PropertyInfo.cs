@@ -18,7 +18,7 @@ namespace Souvenir.Reflection
                 throw new AbandonModuleException($"Property {Property.DeclaringType.FullName}.{Property.Name} is null.");
             string validatorFailMessage;
             if (validator != null && (validatorFailMessage = validator(value)) != null)
-                throw new AbandonModuleException($"Property {Property.DeclaringType.FullName}.{Property.Name} with value {stringify(value)} did not pass validity check: {validatorFailMessage}.");
+                throw new AbandonModuleException($"Property {Property.DeclaringType.FullName}.{Property.Name} with value {value.Stringify()} did not pass validity check: {validatorFailMessage}.");
             return value;
         }
 

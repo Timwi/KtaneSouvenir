@@ -195,8 +195,7 @@ namespace Souvenir
         {
             if (values == null)
                 throw new ArgumentNullException("values");
-            if (lastSeparator == null)
-                lastSeparator = separator;
+            lastSeparator ??= separator;
 
             using var enumerator = values.GetEnumerator();
             if (!enumerator.MoveNext())
@@ -481,5 +480,20 @@ namespace Souvenir
         public static Dictionary<Question, SouvenirQuestionAttribute> Attributes;
         public static bool TryGetAttribute(this Question question, out SouvenirQuestionAttribute attr) => Attributes.TryGetValue(question, out attr);
         public static SouvenirQuestionAttribute GetAttribute(this Question question) => Attributes[question];
+
+        public static string Stringify(this object value)
+        {
+            return value switch
+            {
+                null => "null",
+                IList list => $"[{list.Cast<object>().Select(Stringify).JoinString(", ")}]",
+                int i => i.ToString(),
+                double d => d.ToString(),
+                float f => f.ToString(),
+                bool b => b ? "true" : "false",
+                string s => $"“{s}”",
+                _ => $"{{{value.GetType().FullName}|{value}}}"
+            };
+        }
     }
 }

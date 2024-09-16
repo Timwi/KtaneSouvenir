@@ -190,7 +190,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         }
 
-        var colors = new string[6] { "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow" };
+        var colors = new[] { "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow" };
 
         var qs = new List<QandA>();
         for (var stage = 0; stage < 3; stage++)
