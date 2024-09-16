@@ -56,7 +56,7 @@ namespace Souvenir
             private readonly float _questionSpriteRotation;
             private readonly double _desiredHeightFactor;
 
-            public override string DebugText => $"{_text} (sprite: {_questionSprite.name}{(_questionSpriteRotation != 0 ? $" (rotated {_questionSpriteRotation}°)" : "")})";
+            public override string DebugText => $"{_text}{(_questionSprite == null ? "" : $" (sprite: {_questionSprite.name}{(_questionSpriteRotation != 0 ? $" (rotated {_questionSpriteRotation}°)" : "")})")}";
 
             public TextQuestion(string question, AnswerLayout layout, Sprite questionSprite, float questionSpriteRotation)
                 : base(question)
