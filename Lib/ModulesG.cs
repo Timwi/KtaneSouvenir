@@ -83,25 +83,19 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "garfieldKartScript");
         yield return WaitForSolve;
 
-        var allAnswers = GetListField<string>(comp, "trackNames", isPublic: true).Get(arr => arr.Count != 16 ? "expected length 16" : null);
-        var answerIndex = GetField<int>(comp, "trackNum").Get();
-        var puzzleNum = GetField<int>(comp, "puzzleNum").Get();
-        var puzzlePiecesMeshRenders = GetArrayField<GameObject>(comp, "PuzzlePieces", isPublic: true).Get(arr => arr.Length != 3 ? "expected length 3" : null).Select(obj => obj.GetComponent<MeshRenderer>());
-        var materials = GetArrayField<Material>(comp, "PuzzleMats", isPublic: true).Get(arr => arr.Length != 2 ? "expected length 2" : null);
+        var allAnswers = GetListField<string>(comp, "trackNames", isPublic: true).Get(expectedLength: 16);
+        var answerIndex = GetIntField(comp, "trackNum").Get(min: 0, max: allAnswers.Count - 1);
+        var puzzlePiecesMeshRenders = GetArrayField<GameObject>(comp, "PuzzlePieces", isPublic: true).Get(expectedLength: 3).Select(obj => obj.GetComponent<MeshRenderer>());
+        var materials = GetArrayField<Material>(comp, "PuzzleMats", isPublic: true).Get(expectedLength: 2);
         var puzzleCount = puzzlePiecesMeshRenders.Count(mr => mr.material.name.Substring(0, 6).Trim() == materials[1].name);
 
-
-        //change the puzzle pieces to orange
-        foreach (MeshRenderer mr in puzzlePiecesMeshRenders)
-        {
+        // Change the puzzle pieces to orange
+        foreach (var mr in puzzlePiecesMeshRenders)
             mr.material = materials[0];
-        }
 
-        addQuestions(module, new List<QandA>
-        {
+        addQuestions(module,
             makeQuestion(Question.GarfieldKartTrack, module, correctAnswers: new[] { allAnswers[answerIndex] }, allAnswers: allAnswers.ToArray()),
-            makeQuestion(Question.GarfieldKartPuzzleCount, module, correctAnswers: new[] { puzzleCount.ToString() })
-        });
+            makeQuestion(Question.GarfieldKartPuzzleCount, module, correctAnswers: new[] { puzzleCount.ToString() }));
     }
 
     private IEnumerator<YieldInstruction> ProcessGarnetThief(ModuleData module)

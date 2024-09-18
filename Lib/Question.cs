@@ -488,7 +488,7 @@
         [SouvenirQuestion("Which coin was flipped in {0}?", "Coinage", ThreeColumns6Answers, ExampleAnswers = new[] { "e4", "h5", "d4", "h4", "c4", "h3", "c3", "g2", "f3", "h1", "f7" })]
         CoinageFlip,
 
-        [SouvenirQuestion("What was {1}'s number in {0}?", "Color Addition", ThreeColumns6Answers, ExampleFormatArguments = new[] { "red", "green", "blue" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
+        [SouvenirQuestion("What was {1}’s number in {0}?", "Color Addition", ThreeColumns6Answers, ExampleFormatArguments = new[] { "red", "green", "blue" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         [AnswerGenerator.Strings(3, "0123456789")]
         ColorAdditionNumbers,
 
@@ -1082,8 +1082,8 @@
 
         [SouvenirQuestion("How many puzzle pieces did {0} have?", "Garfield Kart", TwoColumns4Answers, "0", "1", "2", "3")]
         GarfieldKartPuzzleCount,
-        [SouvenirQuestion("What was the track in {0}?", "Garfield Kart", OneColumn4Answers, 
-            ExampleAnswers = new[] { "Play Misty for Me", "Sneak-A-Peak", "Blazing Oasis", "Pastacosi Factory", "Mysterious Temple", "Prohibited Site"})]
+        [SouvenirQuestion("What was the track in {0}?", "Garfield Kart", OneColumn4Answers,
+            ExampleAnswers = new[] { "Play Misty for Me", "Sneak-A-Peak", "Blazing Oasis", "Pastacosi Factory", "Mysterious Temple", "Prohibited Site" })]
         GarfieldKartTrack,
 
         [SouvenirQuestion("Which faction did {1} claim to be in {0}?", "Garnet Thief", TwoColumns4Answers, "Mafia", "Cartel", "Beggar", "Police", AddThe = true,
@@ -1350,7 +1350,7 @@
         [AnswerGenerator.Grid(4, 4)]
         KudosudokuPrefilled,
 
-        [SouvenirQuestion("What was Kuro's mood in {0}?", "Kuro", TwoColumns4Answers, ExampleAnswers = new[] { "Angry", "Happy", "Neutral", "Curious", "Devious" })]
+        [SouvenirQuestion("What was Kuro’s mood in {0}?", "Kuro", TwoColumns4Answers, "Angry", "Happy", "Neutral", "Curious", "Devious")]
         KuroMood,
 
         [SouvenirQuestion("Where was one of the portals in layer {1} in {0}?", "Labyrinth", ThreeColumns6Answers, null, AddThe = true, Type = AnswerType.Grid, TranslateFormatArgs = new[] { true },
@@ -1384,9 +1384,9 @@
         [AnswerGenerator.Strings('A', 'Z')]
         LEDEncryptionPressedLetters,
 
-        [SouvenirQuestion("What color was the LED at {1} on {0}?", "LED Grid", ThreeColumns6Answers, null, ExampleAnswers = new[] { "Black", "Blue", "Green", "Orange", "Pink", "Purple", "Red", "White", "Yellow" },
-            ExampleFormatArguments = new[] { "A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3" }, ExampleFormatArgumentGroupSize = 1)]
-        LEDGridColor,
+        [SouvenirQuestion("How many LEDs were unlit in {0}?", "LED Grid", ThreeColumns6Answers, null)]
+        [AnswerGenerator.Integers(0, 9)]
+        LEDGridNumBlack,
 
         [SouvenirQuestion("What color was {1} in {0}?", "LED Math", TwoColumns4Answers, "Red", "Blue", "Yellow", "Green", TranslateAnswers = true,
             ExampleFormatArguments = new[] { "LED A", "LED B", "the operator LED" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
@@ -1463,7 +1463,7 @@
 
         [SouvenirQuestion("Which color did the bubble not display in {0}?", "Main Page", TwoColumns4Answers, "Blue", "Green", "Red", "Yellow", TranslateAnswers = true)]
         MainPageBubbleColors,
-        [SouvenirQuestion("Which main page did the {1} button's effect come from in {0}?", "Main Page", ThreeColumns6Answers,
+        [SouvenirQuestion("Which main page did the {1} button’s effect come from in {0}?", "Main Page", ThreeColumns6Answers,
             ExampleFormatArguments = new[] { "toons", "games", "characters", "downloads", "store", "email" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         [AnswerGenerator.Integers(1, 26)]
         MainPageButtonEffectOrigin,
@@ -2215,7 +2215,7 @@
         [AnswerGenerator.Integers(0, 9)]
         RedArrowsStartNumber,
 
-        [SouvenirQuestion("What was the word before 'SUBMIT' in {0}?", "Red Button't", TwoColumns4Answers, null, AddThe = false,
+        [SouvenirQuestion("What was the word before “SUBMIT” in {0}?", "Red Button’t", TwoColumns4Answers, null, AddThe = false,
             ExampleAnswers = new[] { "ABACUS", "BABBLE", "CABLES", "DABBLE", "EAGLES", "FABLED", "HABITS", "IAMBIC" })]
         RedButtontWord,
 

@@ -143,7 +143,6 @@ public partial class SouvenirModule
 
         var desiredTask = GetField<Enum>(comp, "desiredTask").Get().ToString();
         var moods = GetArrayField<Texture2D>(comp, "kuroMoods", isPublic: true).Get(expectedLength: 5).Select(texture => texture.name);
-        Debug.Log("Desired Task: " + desiredTask);
 
         if (desiredTask != "Eat" && desiredTask != "PlayKTANE")
         {
@@ -152,9 +151,6 @@ public partial class SouvenirModule
         }
 
         var currentMood = GetField<Enum>(comp, "currentMood").Get().ToString();
-
-        Debug.Log("Current mood: " + currentMood);
-        Debug.Log("Possible Moods: " + string.Join(", ", moods.ToArray()));
         addQuestion(module, Question.KuroMood, correctAnswers: new[] { currentMood }, preferredWrongAnswers: moods.ToArray());
     }
 }

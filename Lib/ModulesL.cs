@@ -172,29 +172,20 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessLEDGrid(ModuleData module)
     {
-        string CapitalizeWord(string word)
-        {
-            return word.ToUpper()[0] + word.ToLower().Substring(1);
-        }
         var comp = GetComponent(module, "ledGridScript");
         yield return WaitForSolve;
-        var lights = GetListField<Renderer>(comp, "lights", isPublic: true).Get(ar => ar.Count != 9 ? "expected length 9" : null);
-        var colors = GetListField<Texture>(comp, "colours", isPublic: true).Get(ar => ar.Count != 11 ? "expected length 11" : null);
 
-        //remove duplicate colors
-        var possibleAnswers = colors
-                  .GroupBy(texture => texture.name)
-                  .Select(g => g.First())
-                  .Select(c => CapitalizeWord(c.name)).ToArray();
+        var lights = GetListField<Renderer>(comp, "lights", isPublic: true).Get(expectedLength: 9);
+        var colors = GetListField<Texture>(comp, "colours", isPublic: true).Get(expectedLength: 11);
+        var blackColor = colors.FirstOrDefault(c => c.name == "black")
+            ?? throw new AbandonModuleException("Abandoning LED Grid because ‘colours’ does not contain a texture named ‘black’.");
+        var numBlack = lights.Count(l => l.material.mainTexture.name == "black");
 
+        // Change all of the LEDs to black
+        foreach (var light in lights)
+            light.material.mainTexture = blackColor;
 
-        //get the leds colors
-        var answers = lights.Select(l => CapitalizeWord(l.material.mainTexture.name)).ToArray();
-
-        //change all of the leds to black
-        lights.ForEach(light => light.material.mainTexture = colors.First(c => c.name == "black"));
-
-        addQuestions(module, Enumerable.Range(0, answers.Length).Select(i => makeQuestion(Question.LEDGridColor, module, formatArgs: new[] { "" + "ABC"[i % 3] + "123"[i / 3] }, correctAnswers: new[] { answers[i] }, preferredWrongAnswers: possibleAnswers)));
+        addQuestion(module, Question.LEDGridNumBlack, correctAnswers: new[] { numBlack.ToString() });
     }
 
     private IEnumerator<YieldInstruction> ProcessLEDMath(ModuleData module)
