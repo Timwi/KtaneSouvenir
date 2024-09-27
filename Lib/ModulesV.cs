@@ -212,13 +212,15 @@ public partial class SouvenirModule
     private IEnumerator<YieldInstruction> ProcessVcrcs(ModuleData module)
     {
         var comp = GetComponent(module, "VcrcsScript");
-
         var wordTextMesh = GetField<TextMesh>(comp, "Words", isPublic: true).Get();
-        var word = wordTextMesh.text;
-        if (word == null)
-            throw new AbandonModuleException("‘Words.text’ is null.");
 
+        string word = null;
+        // The module changes the displayed word to “SOLVED” _before_ calling HandlePass, so this will get the last word displayed
+        module.Module.OnPass += delegate { word = wordTextMesh.text; return false; };
         yield return WaitForSolve;
+
+        if (word == null)
+            throw new AbandonModuleException("‘Words.text’ is null, or OnPass was never called.");
 
         addQuestion(module, Question.VcrcsWord, correctAnswers: new[] { word });
     }
