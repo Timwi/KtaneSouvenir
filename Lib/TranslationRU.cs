@@ -5,7 +5,7 @@ namespace Souvenir
     public class Translation_ru : TranslationBase<TranslationInfo>
     {
         public override string FormatModuleName(Question question, bool addSolveCount, int numSolved) =>
-            addSolveCount ? $"{_translations[question].ModuleName ?? Ut.GetAttribute(question).ModuleName} (в {Ordinal(numSolved)}-м решённом модуле)" : _translations[question].ModuleNameWithThe ?? Ut.GetAttribute(question).ModuleNameWithThe;
+            addSolveCount ? $"{_translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleName} (в {Ordinal(numSolved)}-м решённом модуле)" : _translations.Get(question)?.ModuleNameWithThe ?? Ut.GetAttribute(question).ModuleNameWithThe;
 
         public override string Ordinal(int number) => number.ToString();
 
@@ -1592,8 +1592,8 @@ namespace Souvenir
             },
 
             // Color Addition
-            // What was {1}'s number in {0}?
-            // What was red's number in Color Addition?
+            // What was {1}’s number in {0}?
+            // What was red’s number in Color Addition?
             [Question.ColorAdditionNumbers] = new()
             {
                 QuestionText = "Какое было {1} число в «{0}»?",
@@ -3581,6 +3581,20 @@ namespace Souvenir
                 ModuleName = "Геймпаде",
             },
 
+            // Garfield Kart
+            // How many puzzle pieces did {0} have?
+            // How many puzzle pieces did Garfield Kart have?
+            [Question.GarfieldKartPuzzleCount] = new()
+            {
+                QuestionText = "How many puzzle pieces did {0} have?",
+            },
+            // What was the track in {0}?
+            // What was the track in Garfield Kart?
+            [Question.GarfieldKartTrack] = new()
+            {
+                QuestionText = "What was the track in {0}?",
+            },
+
             // The Garnet Thief
             // Which faction did {1} claim to be in {0}?
             // Which faction did Jungmoon claim to be in The Garnet Thief?
@@ -4405,6 +4419,14 @@ namespace Souvenir
                 },
             },
 
+            // Kuro
+            // What was Kuro’s mood in {0}?
+            // What was Kuro’s mood in Kuro?
+            [Question.KuroMood] = new()
+            {
+                QuestionText = "What was Kuro’s mood in {0}?",
+            },
+
             // The Labyrinth
             // Where was one of the portals in layer {1} in {0}?
             // Where was one of the portals in layer 1 (Red) in The Labyrinth?
@@ -4523,6 +4545,14 @@ namespace Souvenir
             {
                 QuestionText = "Какая правильная буква была нажата на {1}-м этапе в «{0}»?",
                 ModuleName = "Шифре светодиодов",
+            },
+
+            // LED Grid
+            // How many LEDs were unlit in {0}?
+            // How many LEDs were unlit in LED Grid?
+            [Question.LEDGridNumBlack] = new()
+            {
+                QuestionText = "How many LEDs were unlit in {0}?",
             },
 
             // LED Math
@@ -4823,8 +4853,8 @@ namespace Souvenir
                     ["Yellow"] = "Yellow",
                 },
             },
-            // Which main page did the {1} button's effect come from in {0}?
-            // Which main page did the toons button's effect come from in Main Page?
+            // Which main page did the {1} button’s effect come from in {0}?
+            // Which main page did the toons button’s effect come from in Main Page?
             [Question.MainPageButtonEffectOrigin] = new()
             {
                 QuestionText = "Which main page did the {1} button's effect come from in {0}?",
@@ -7579,9 +7609,9 @@ namespace Souvenir
                 ModuleName = "Красных стрелках",
             },
 
-            // Red Button't
-            // What was the word before 'SUBMIT' in {0}?
-            // What was the word before 'SUBMIT' in Red Button't?
+            // Red Button’t
+            // What was the word before “SUBMIT” in {0}?
+            // What was the word before “SUBMIT” in Red Button’t?
             [Question.RedButtontWord] = new()
             {
                 QuestionText = "What was the word before 'SUBMIT' in {0}?",

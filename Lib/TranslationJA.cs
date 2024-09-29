@@ -1646,8 +1646,8 @@ namespace Souvenir
             },
 
             // Color Addition
-            // What was {1}'s number in {0}?
-            // What was red's number in Color Addition?
+            // What was {1}’s number in {0}?
+            // What was red’s number in Color Addition?
             [Question.ColorAdditionNumbers] = new()
             {
                 QuestionText = "{0}の{1}の数字は？",
@@ -3701,6 +3701,20 @@ namespace Souvenir
                 ModuleName = "ゲームパッド",
             },
 
+            // Garfield Kart
+            // How many puzzle pieces did {0} have?
+            // How many puzzle pieces did Garfield Kart have?
+            [Question.GarfieldKartPuzzleCount] = new()
+            {
+                QuestionText = "How many puzzle pieces did {0} have?",
+            },
+            // What was the track in {0}?
+            // What was the track in Garfield Kart?
+            [Question.GarfieldKartTrack] = new()
+            {
+                QuestionText = "What was the track in {0}?",
+            },
+
             // The Garnet Thief
             // Which faction did {1} claim to be in {0}?
             // Which faction did Jungmoon claim to be in The Garnet Thief?
@@ -4555,6 +4569,14 @@ namespace Souvenir
                 },
             },
 
+            // Kuro
+            // What was Kuro’s mood in {0}?
+            // What was Kuro’s mood in Kuro?
+            [Question.KuroMood] = new()
+            {
+                QuestionText = "What was Kuro’s mood in {0}?",
+            },
+
             // The Labyrinth
             // Where was one of the portals in layer {1} in {0}?
             // Where was one of the portals in layer 1 (Red) in The Labyrinth?
@@ -4675,6 +4697,14 @@ namespace Souvenir
             {
                 QuestionText = "{0}のステージ{1}で押した正しい文字は？",
                 ModuleName = "暗号化LED",
+            },
+
+            // LED Grid
+            // How many LEDs were unlit in {0}?
+            // How many LEDs were unlit in LED Grid?
+            [Question.LEDGridNumBlack] = new()
+            {
+                QuestionText = "How many LEDs were unlit in {0}?",
             },
 
             // LED Math
@@ -4978,8 +5008,8 @@ namespace Souvenir
                     ["Yellow"] = "黄",
                 },
             },
-            // Which main page did the {1} button's effect come from in {0}?
-            // Which main page did the toons button's effect come from in Main Page?
+            // Which main page did the {1} button’s effect come from in {0}?
+            // Which main page did the toons button’s effect come from in Main Page?
             [Question.MainPageButtonEffectOrigin] = new()
             {
                 QuestionText = "{0}で{1}ボタンのエフェクトの元となったメインページは？",
@@ -7805,9 +7835,9 @@ namespace Souvenir
                 ModuleName = "赤色矢印",
             },
 
-            // Red Button't
-            // What was the word before 'SUBMIT' in {0}?
-            // What was the word before 'SUBMIT' in Red Button't?
+            // Red Button’t
+            // What was the word before “SUBMIT” in {0}?
+            // What was the word before “SUBMIT” in Red Button’t?
             [Question.RedButtontWord] = new()
             {
                 QuestionText = "What was the word before 'SUBMIT' in {0}?",
