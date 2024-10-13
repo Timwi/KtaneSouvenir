@@ -373,6 +373,15 @@ namespace Souvenir
             [Question.AlgorithmiaColor] = new()
             {
                 QuestionText = "Welche Farbe hatte die gefärbte Glühlampe bei {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Cyan"] = "Cyan",
+                    ["Yellow"] = "Yellow",
+                    ["Magenta"] = "Magenta",
+                },
             },
             // Which number was present in the seed in {0}?
             // Which number was present in the seed in Algorithmia?
@@ -454,6 +463,23 @@ namespace Souvenir
             {
                 Gender = Gender.Feminine,
                 QuestionText = "Welcher Gegner war bei {0} in der Verteidigungsphase anwesend?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Bat"] = "Bat",
+                    ["Snake"] = "Snake",
+                    ["Spider"] = "Spider",
+                    ["Cobra"] = "Cobra",
+                    ["Mole"] = "Mole",
+                    ["Creeper"] = "Creeper",
+                    ["Goblin"] = "Goblin",
+                    ["Golem"] = "Golem",
+                    ["Robo-Mouse"] = "Robo-Mouse",
+                    ["Skeleton"] = "Skeleton",
+                    ["Undead Guard"] = "Undead Guard",
+                    ["The Repaer"] = "The Reaper",
+                    ["The Mole's Dad"] = "The Mole's Dad",
+                    ["Scorpion"] = "Scorpion",
+                },
                 ModuleName = "Arena",
                 ModuleNameWithThe = "Die Arena",
             },
@@ -505,6 +531,20 @@ namespace Souvenir
             {
                 QuestionText = "Welche Indexfarbe kam bei {0} vor?",
                 ModuleName = "Ein Quadrat",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Orange"] = "Orange",
+                    ["Pink"] = "Pink",
+                    ["Cyan"] = "Cyan",
+                    ["Yellow"] = "Yellow",
+                    ["Lavender"] = "Lavender",
+                    ["Brown"] = "Brown",
+                    ["Tan"] = "Tan",
+                    ["Blue"] = "Blue",
+                    ["Jade"] = "Jade",
+                    ["Indigo"] = "Indigo",
+                    ["White"] = "White",
+                },
             },
             // Which color was submitted {1} in {0}?
             // Which color was submitted first in A Square?
@@ -512,6 +552,20 @@ namespace Souvenir
             {
                 QuestionText = "Welche Farbe wurde bei {0} als {1}es eingegeben?",
                 ModuleName = "Ein Quadrat",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Orange"] = "Orange",
+                    ["Pink"] = "Pink",
+                    ["Cyan"] = "Cyan",
+                    ["Yellow"] = "Yellow",
+                    ["Lavender"] = "Lavender",
+                    ["Brown"] = "Brown",
+                    ["Tan"] = "Tan",
+                    ["Blue"] = "Blue",
+                    ["Jade"] = "Jade",
+                    ["Indigo"] = "Indigo",
+                    ["White"] = "White",
+                },
             },
 
             // The Azure Button
@@ -546,6 +600,17 @@ namespace Souvenir
                 QuestionText = "Was war bei {0} die {1}e Richtung im ungenutzten Pfeil?",
                 ModuleName = "Azurfarbenen Knopf",
                 ModuleNameWithThe = "Der Azurfarbene Knopf",
+                Answers = new Dictionary<string, string>
+                {
+                    ["north"] = "north",
+                    ["north-east"] = "north-east",
+                    ["east"] = "east",
+                    ["south-east"] = "south-east",
+                    ["south"] = "south",
+                    ["south-west"] = "south-west",
+                    ["west"] = "west",
+                    ["north-west"] = "north-west",
+                },
             },
             // What was the {1} direction in the {2} non-decoy arrow in {0}?
             // What was the first direction in the first non-decoy arrow in The Azure Button?
@@ -554,6 +619,17 @@ namespace Souvenir
                 QuestionText = "Was war bei {0} die {1}e Richtung im {2}en genutzten Pfeil?",
                 ModuleName = "Azurfarbenen Knopf",
                 ModuleNameWithThe = "Der Azurfarbene Knopf",
+                Answers = new Dictionary<string, string>
+                {
+                    ["north"] = "north",
+                    ["north-east"] = "north-east",
+                    ["east"] = "east",
+                    ["south-east"] = "south-east",
+                    ["south"] = "south",
+                    ["south-west"] = "south-west",
+                    ["west"] = "west",
+                    ["north-west"] = "north-west",
+                },
             },
 
             // Bakery
@@ -1183,6 +1259,14 @@ namespace Souvenir
             {
                 QuestionText = "Welcher Operator wurde bei {0} im {1}en Schritt eingegeben?",
                 ModuleName = "Boolesche Drähte",
+                Answers = new Dictionary<string, string>
+                {
+                    ["OR"] = "OR",
+                    ["XOR"] = "XOR",
+                    ["AND"] = "AND",
+                    ["NAND"] = "NAND",
+                    ["NOR"] = "NOR",
+                },
             },
 
             // Boomtar the Great
@@ -1417,6 +1501,16 @@ namespace Souvenir
             [Question.CaesarPsychoScreenColor] = new()
             {
                 QuestionText = "What color was the text on the top display in the second stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["white"] = "white",
+                    ["red"] = "red",
+                    ["magenta"] = "magenta",
+                    ["yellow"] = "yellow",
+                    ["green"] = "green",
+                    ["cyan"] = "cyan",
+                    ["violet"] = "violet",
+                },
             },
 
             // Calendar
@@ -3542,6 +3636,13 @@ namespace Souvenir
             [Question.GameOfLifeCruelColors] = new()
             {
                 QuestionText = "Which of these was a color combination that occurred in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red/Orange"] = "Red/Orange",
+                    ["Orange/Yellow"] = "Orange/Yellow",
+                    ["Yellow/Green"] = "Yellow/Green",
+                    ["Green/Blue"] = "Green/Blue",
+                },
             },
 
             // The Gamepad
@@ -4038,6 +4139,17 @@ namespace Souvenir
             [Question.IdentificationCrisisShape] = new()
             {
                 QuestionText = "What was the {1} shape used in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Circle"] = "Circle",
+                    ["Square"] = "Square",
+                    ["Diamond"] = "Diamond",
+                    ["Heart"] = "Heart",
+                    ["Star"] = "Star",
+                    ["Triangle"] = "Triangle",
+                    ["Pentagon"] = "Pentagon",
+                    ["Hexagon"] = "Hexagon",
+                },
             },
             // What was the {1} identification module used in {0}?
             // What was the first identification module used in Identification Crisis?
@@ -4651,6 +4763,15 @@ namespace Souvenir
             [Question.LogicalButtonsOperator] = new()
             {
                 QuestionText = "What was the final operator in the {1} stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["AND"] = "AND",
+                    ["OR"] = "OR",
+                    ["XOR"] = "XOR",
+                    ["NAND"] = "NAND",
+                    ["NOR"] = "NOR",
+                    ["XNOR"] = "XNOR",
+                },
             },
 
             // Logic Gates
@@ -4669,6 +4790,15 @@ namespace Souvenir
                     ["gate F"] = "gate F",
                     ["gate G"] = "gate G",
                     ["the duplicated gate"] = "the duplicated gate",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["AND"] = "AND",
+                    ["OR"] = "OR",
+                    ["XOR"] = "XOR",
+                    ["NAND"] = "NAND",
+                    ["NOR"] = "NOR",
+                    ["XNOR"] = "XNOR",
                 },
             },
 
@@ -6550,6 +6680,15 @@ namespace Souvenir
             [Question.OddOneOutButton] = new()
             {
                 QuestionText = "What was the button you pressed in the {1} stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["top-left"] = "top-left",
+                    ["top-middle"] = "top-middle",
+                    ["top-right"] = "top-right",
+                    ["bottom-left"] = "bottom-left",
+                    ["bottom-middle"] = "bottom-middle",
+                    ["bottom-right"] = "bottom-right",
+                },
             },
 
             // Old AI
@@ -7439,6 +7578,13 @@ namespace Souvenir
             [Question.RedHerringFirstFlash] = new()
             {
                 QuestionText = "What was the first color flashed by {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Purple"] = "Purple",
+                    ["Orange"] = "Orange",
+                },
             },
 
             // Reformed Role Reversal
@@ -8276,6 +8422,25 @@ namespace Souvenir
             [Question.SimonSimonsFlashingColors] = new()
             {
                 QuestionText = "What was the {1} flash in the final sequence in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["TR"] = "TR",
+                    ["TY"] = "TY",
+                    ["TG"] = "TG",
+                    ["TB"] = "TB",
+                    ["LR"] = "LR",
+                    ["LY"] = "LY",
+                    ["LG"] = "LG",
+                    ["LB"] = "LB",
+                    ["RR"] = "RR",
+                    ["RY"] = "RY",
+                    ["RG"] = "RG",
+                    ["RB"] = "RB",
+                    ["BR"] = "BR",
+                    ["BY"] = "BY",
+                    ["BG"] = "BG",
+                    ["BB"] = "BB",
+                },
             },
 
             // Simon Sings
@@ -9769,12 +9934,30 @@ namespace Souvenir
             [Question.UnorderedKeysKeyColor] = new()
             {
                 QuestionText = "What color was this key in the {1} stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Cyan"] = "Cyan",
+                    ["Magenta"] = "Magenta",
+                    ["Yellow"] = "Yellow",
+                },
             },
             // What color was the label of this key in the {1} stage of {0}?
             // What color was the label of this key in the first stage of Unordered Keys?
             [Question.UnorderedKeysLabelColor] = new()
             {
                 QuestionText = "What color was the label of this key in the {1} stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Cyan"] = "Cyan",
+                    ["Magenta"] = "Magenta",
+                    ["Yellow"] = "Yellow",
+                },
             },
             // What was the label of this key in the {1} stage of {0}?
             // What was the label of this key in the first stage of Unordered Keys?
