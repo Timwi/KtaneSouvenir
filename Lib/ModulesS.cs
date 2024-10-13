@@ -1339,7 +1339,7 @@ public partial class SouvenirModule
         var preferredWrongAnswers = new List<string>();
         var allAnswers = new List<string>();
         var modulesOnTheBomb = _supportedModuleNames.Where(s => s != "Souvenir").Select(m => m.Replace("'", "’"));
-        foreach (var (name, trName) in Ut.Attributes.Select(a => (a.Value.ModuleNameWithThe, _translation?.Translate(a.Key)?.ModuleNameWithThe ?? _translation?.Translate(a.Key)?.ModuleName ?? a.Value.ModuleNameWithThe)).Distinct())
+        foreach (var (name, trName) in Ut.Attributes.Select(a => (a.Value.ModuleNameWithThe, _translation?.Translate(a.Key)?.ModuleName ?? a.Value.ModuleNameWithThe)).Distinct())
         {
             allAnswers.Add(trName);
             if (modulesOnTheBomb.Contains(name.Replace("\u00a0", " ")))
@@ -1351,7 +1351,6 @@ public partial class SouvenirModule
 
         var firstQuestion = comp._currentQuestion;
         var firstModule = (
-            _translation?.Translate(firstQuestion.Question)?.ModuleNameWithThe ??
             _translation?.Translate(firstQuestion.Question)?.ModuleName ??
             firstQuestion.ModuleNameWithThe).Replace("\u00a0", " ");
 

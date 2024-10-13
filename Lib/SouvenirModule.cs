@@ -447,8 +447,7 @@ public partial class SouvenirModule : MonoBehaviour
     private string translateFormatArg(Question question, string arg) => arg == null ? null : _translation?.Translate(question)?.FormatArgs?.Get(arg, arg) ?? arg;
     private string translateAnswer(Question question, string answ) => answ == null ? null : _translation?.Translate(question)?.Answers?.Get(answ, answ) ?? answ;
     private string translateString(Question question, string str) => str == null ? null : _translation?.Translate(question)?.TranslatableStrings?.Get(str, str) ?? str;
-    private string translateModuleName(Question question, string name = null) => translateModuleName(question, false) ?? translateModuleName(question, true) ?? name;
-    private string translateModuleName(Question question, bool withThe) => (withThe ? _translation?.Translate(question)?.ModuleName : _translation?.Translate(question)?.ModuleNameWithThe);
+    private string translateModuleName(Question question, string name = null) => _translation?.Translate(question)?.ModuleName ?? name;
 
     void setAnswerHandler(int index, Action<int> handler)
     {
@@ -1264,14 +1263,14 @@ public partial class SouvenirModule : MonoBehaviour
             for (var i = 0; i < _exampleQuestions.Length; i++)
             {
                 var j = (i + _curExampleQuestion + 1) % _exampleQuestions.Length;
-                if (Regex.IsMatch(_translation?.Translate(_exampleQuestions[j]).ModuleNameWithThe ?? _translation?.Translate(_exampleQuestions[j]).ModuleName ?? _exampleQuestions[j].GetAttribute().ModuleNameWithThe, $"^{Regex.Escape(command)}$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+                if (Regex.IsMatch(_translation?.Translate(_exampleQuestions[j]).ModuleName ?? _exampleQuestions[j].GetAttribute().ModuleNameWithThe, $"^{Regex.Escape(command)}$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
                 {
                     _curExampleQuestion = j;
                     showExampleQuestion();
                     yield break;
                 }
 
-                if (substringMatch == -1 && Regex.IsMatch(_translation?.Translate(_exampleQuestions[j]).ModuleNameWithThe ?? _translation?.Translate(_exampleQuestions[j]).ModuleName ?? _exampleQuestions[j].GetAttribute().ModuleNameWithThe, Regex.Escape(command), RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+                if (substringMatch == -1 && Regex.IsMatch(_translation?.Translate(_exampleQuestions[j]).ModuleName ?? _exampleQuestions[j].GetAttribute().ModuleNameWithThe, Regex.Escape(command), RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
                     substringMatch = j;
             }
 

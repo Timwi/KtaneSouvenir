@@ -5,7 +5,7 @@ namespace Souvenir
     public class Translation_ru : TranslationBase<TranslationInfo>
     {
         public override string FormatModuleName(Question question, bool addSolveCount, int numSolved) =>
-            addSolveCount ? $"{_translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleName} (в {Ordinal(numSolved)}-м решённом модуле)" : _translations.Get(question)?.ModuleNameWithThe ?? Ut.GetAttribute(question).ModuleNameWithThe;
+            addSolveCount ? $"{_translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleName} (в {Ordinal(numSolved)}-м решённом модуле)" : _translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe;
 
         public override string Ordinal(int number) => number.ToString();
 

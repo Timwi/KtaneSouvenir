@@ -6,7 +6,7 @@ namespace Souvenir
     {
         public override string FormatModuleName(Question question, bool addSolveCount, int numSolved) => addSolveCount
             ? $"{Ordinal(numSolved)}番目に解除された{_translations[question].ModuleName ?? Ut.GetAttribute(question).ModuleName}"
-            : _translations[question].ModuleNameWithThe ?? Ut.GetAttribute(question).ModuleNameWithThe;
+            : _translations[question].ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe;
 
         public override string Ordinal(int number) => number.ToString();
         public override int DefaultFontIndex => 8;
