@@ -84,12 +84,12 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Bottom Gear         │  hexOrbits         │  Pickup Identification  │  Subbly Jubbly           │
     Connected Monitors  │  Labyrinth, The    │  Pointless Machines     │  Time Signatures         │
 
-## Implemented by Hawker (31)
+## Implemented by Hawker (32)
 
-    3N+1                     │  Earthbound         │  h                   │  RGB Sequences                      │  UNO!
-    Arena, The               │  Find The Date      │  High Score, The     │  Scrutiny Squares                   │  Valves
-    Book of Mario            │  Flavor Text        │  Keypad Combination  │  Sign Language                      │  Weakest Link, The
-    Character Slots          │  Flavor Text EX     │  Kuro                │  Simon Serves                       │
+    3N+1                     │  Earthbound         │  h                   │  RGB Sequences                      │  Suits and Colours
+    Arena, The               │  Find The Date      │  High Score, The     │  Scrutiny Squares                   │  UNO!
+    Book of Mario            │  Flavor Text        │  Keypad Combination  │  Sign Language                      │  Valves
+    Character Slots          │  Flavor Text EX     │  Kuro                │  Simon Serves                       │  Weakest Link, The
     Customer Identification  │  Garfield Kart      │  Ladder Lottery      │  Sonic & Knuckles                   │
     Dimension Disruption     │  Garnet Thief, The  │  LED Grid            │  Spongebob Birthday Identification  │
     Directional Button       │  Girlfriend         │  Module Movements    │  Subway                             │

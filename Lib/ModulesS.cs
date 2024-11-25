@@ -1655,6 +1655,27 @@ public partial class SouvenirModule
            makeQuestion(Question.SugarSkullsAvailability, module, formatArgs: new[] { "was not" }, correctAnswers: GetAnswers(Question.SugarSkullsAvailability).Except(skulls).ToArray()));
     }
 
+    private IEnumerator<YieldInstruction> ProcessSuitsAndColours(ModuleData module)
+    {
+        var comp = GetComponent(module, "SuitsAndColoursScript");
+        yield return WaitForSolve;
+
+        var suits = new[] { "spades", "hearts", "clubs", "diamonds" };
+        var colours = new[] { "red", "orange", "yellow", "green" };
+        var correctSuitIndices = GetListField<int>(comp, "ChosenSuits").Get(li => li.Count != 9 ? "expected length 9" : null);
+        var correctColourIndices = GetListField<int>(comp, "ChosenColours").Get(li => li.Count != 9 ? "expected length 9" : null);
+
+        var questions = new List<QandA>();
+        for (int i = 0; i < 9; i++)
+        {
+            var coordinate = new Coord(3, 3, i);
+            questions.Add(makeQuestion(Question.SuitsAndColourCoulor, module, questionSprite: Sprites.GenerateGridSprite(coordinate), correctAnswers: new[] { colours[correctColourIndices[i]] }));
+            questions.Add(makeQuestion(Question.SuitsAndColourSuit, module, questionSprite: Sprites.GenerateGridSprite(coordinate), correctAnswers: new[] { colours[correctSuitIndices[i]] }));
+        }
+
+        addQuestions(module, questions);
+    }
+
     private IEnumerator<YieldInstruction> ProcessSuperparsing(ModuleData module)
     {
         var comp = GetComponent(module, "SuperparsingScript");

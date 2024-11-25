@@ -517,6 +517,7 @@ public partial class SouvenirModule
             ["subscribeToPewdiepie"] = (ProcessSubscribeToPewdiepie, "Subscribe to Pewdiepie", "BigCrunch22"),
             ["subway"] = (ProcessSubway, "Subway", "Hawker"),
             ["sugarSkulls"] = (ProcessSugarSkulls, "Sugar Skulls", "BigCrunch22"),
+            ["GSSuitsAndColours"] = (ProcessSuitsAndColours, "Suits and Colours", "Hawker"),
             ["superparsing"] = (ProcessSuperparsing, "Superparsing", "tandyCake"),
             ["BigSwitch"] = (ProcessSwitch, "Switch, The", "Timwi"),
             ["switchModule"] = (ProcessSwitches, "Switches", "Timwi"),
