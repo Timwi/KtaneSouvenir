@@ -1450,8 +1450,6 @@ public partial class SouvenirModule
         }
         yield return new WaitForSeconds(.1f);
 
-        answers.Add(fldAnswer.Get());
-
         var allNames = GetField<Texture[]>(comp, "allImages", isPublic: true).Get().Select(x => x.name).ToArray();
         addQuestions(module, answers.Select((ans, ix) => makeQuestion(
             question: Question.SpongebobBirthdayIdentificationChildren,
