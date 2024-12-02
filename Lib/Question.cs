@@ -2727,7 +2727,7 @@
 
         [SouvenirQuestion("What was the colour of this cell in {0}?", "Suits And Colours", TwoColumns4Answers, "yellow", "green", "orange", "red", UsesQuestionSprite = true,
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
-        SuitsAndColourCoulor,
+        SuitsAndColourColour,
         [SouvenirQuestion("What was the suit of this cell in {0}?", "Suits And Colours", TwoColumns4Answers, "spades", "diamonds", "clubs", "hearts", UsesQuestionSprite = true,
         ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         SuitsAndColourSuit,

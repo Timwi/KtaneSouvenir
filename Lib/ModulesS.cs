@@ -1667,7 +1667,7 @@ public partial class SouvenirModule
         for (int i = 0; i < 9; i++)
         {
             var coordinate = new Coord(3, 3, i);
-            questions.Add(makeQuestion(Question.SuitsAndColourCoulor, module, questionSprite: Sprites.GenerateGridSprite(coordinate), correctAnswers: new[] { colours[correctColourIndices[i]] }));
+            questions.Add(makeQuestion(Question.SuitsAndColourColour, module, questionSprite: Sprites.GenerateGridSprite(coordinate), correctAnswers: new[] { colours[correctColourIndices[i]] }));
             questions.Add(makeQuestion(Question.SuitsAndColourSuit, module, questionSprite: Sprites.GenerateGridSprite(coordinate), correctAnswers: new[] { colours[correctSuitIndices[i]] }));
         }
 
