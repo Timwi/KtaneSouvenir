@@ -24,7 +24,7 @@ public partial class SouvenirModule
             var preferredWrongAnswers = new HashSet<string>();
             while (preferredWrongAnswers.Count < 6)
                 preferredWrongAnswers.Add(correctValues[i].Select(x => Math.Max(x + Rnd.Range(-4, 5), 1)).JoinString(", "));
-            qs.Add(makeQuestion(Question.QuaverArrows, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { correctValues[i].JoinString(", ") }, preferredWrongAnswers: preferredWrongAnswers.ToArray()));
+            qs.Add(makeQuestion(Question.QuaverArrows, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { correctValues[i].JoinString(", ") }, preferredWrongAnswers: preferredWrongAnswers.ToArray()));
         }
         addQuestions(module, qs);
     }
@@ -51,9 +51,9 @@ public partial class SouvenirModule
         var allQuestions = new List<QandA>();
         for (var x = 0; x < 8; x++)
         {
-            allQuestions.Add(makeQuestion(Question.QuickArithmeticColors, module, formatArgs: new[] { ordinal(x + 1) }, correctAnswers: new[] { colorRef[seqColors[x]] }, preferredWrongAnswers: colorRef));
-            allQuestions.Add(makeQuestion(Question.QuickArithmeticPrimSecDigits, module, formatArgs: new[] { ordinal(x + 1), "primary" }, correctAnswers: new[] { primSeqDigits[x].ToString() }));
-            allQuestions.Add(makeQuestion(Question.QuickArithmeticPrimSecDigits, module, formatArgs: new[] { ordinal(x + 1), "secondary" }, correctAnswers: new[] { secSeqDigits[x].ToString() }));
+            allQuestions.Add(makeQuestion(Question.QuickArithmeticColors, module, formatArgs: new[] { Ordinal(x + 1) }, correctAnswers: new[] { colorRef[seqColors[x]] }, preferredWrongAnswers: colorRef));
+            allQuestions.Add(makeQuestion(Question.QuickArithmeticPrimSecDigits, module, formatArgs: new[] { Ordinal(x + 1), "primary" }, correctAnswers: new[] { primSeqDigits[x].ToString() }));
+            allQuestions.Add(makeQuestion(Question.QuickArithmeticPrimSecDigits, module, formatArgs: new[] { Ordinal(x + 1), "secondary" }, correctAnswers: new[] { secSeqDigits[x].ToString() }));
         }
 
         addQuestions(module, allQuestions);
@@ -70,8 +70,8 @@ public partial class SouvenirModule
         var colorNames = GetArrayField<string>(comp, "potentialColorsName", isPublic: true).Get(expectedLength: 5);
 
         addQuestions(module,
-            numbers.Select((n, ix) => makeQuestion(Question.QuintuplesNumbers, module, formatArgs: new[] { ordinal(ix % 5 + 1), ordinal(ix / 5 + 1) }, correctAnswers: new[] { (n % 10).ToString() })).Concat(
-            colors.Select((color, ix) => makeQuestion(Question.QuintuplesColors, module, formatArgs: new[] { ordinal(ix % 5 + 1), ordinal(ix / 5 + 1) }, correctAnswers: new[] { color }))).Concat(
+            numbers.Select((n, ix) => makeQuestion(Question.QuintuplesNumbers, module, formatArgs: new[] { Ordinal(ix % 5 + 1), Ordinal(ix / 5 + 1) }, correctAnswers: new[] { (n % 10).ToString() })).Concat(
+            colors.Select((color, ix) => makeQuestion(Question.QuintuplesColors, module, formatArgs: new[] { Ordinal(ix % 5 + 1), Ordinal(ix / 5 + 1) }, correctAnswers: new[] { color }))).Concat(
             colorCounts.Select((cc, ix) => makeQuestion(Question.QuintuplesColorCounts, module, formatArgs: new[] { colorNames[ix] }, correctAnswers: new[] { cc.ToString() }))));
     }
 
@@ -102,6 +102,6 @@ public partial class SouvenirModule
 
         addQuestions(module,
             Enumerable.Range(0, 4).Select(tile => makeQuestion(Question.QwirkleTilesPlaced, module,
-            formatArgs: new[] { ordinal(tile + 1) }, correctAnswers: new[] { QwirkleSprites[tilesIndex[tile]] })));
+            formatArgs: new[] { Ordinal(tile + 1) }, correctAnswers: new[] { QwirkleSprites[tilesIndex[tile]] })));
     }
 }

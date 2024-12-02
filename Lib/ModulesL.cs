@@ -167,7 +167,7 @@ public partial class SouvenirModule
 
         addQuestions(module, Enumerable.Range(0, pressedLetters.Length - 1)
             .Where(i => pressedLetters[i] != null)
-            .Select(stage => makeQuestion(Question.LEDEncryptionPressedLetters, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { pressedLetters[stage] }, preferredWrongAnswers: wrongLetters.ToArray())));
+            .Select(stage => makeQuestion(Question.LEDEncryptionPressedLetters, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { pressedLetters[stage] }, preferredWrongAnswers: wrongLetters.ToArray())));
     }
 
     private IEnumerator<YieldInstruction> ProcessLEDGrid(ModuleData module)
@@ -306,7 +306,7 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
         for (int i = 0; i < functions.GetLength(0); i++)
-            qs.Add(makeQuestion(Question.LinqFunction, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { functions.GetValue(i).ToString() }));
+            qs.Add(makeQuestion(Question.LinqFunction, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { functions.GetValue(i).ToString() }));
 
         addQuestions(module, qs);
     }
@@ -428,9 +428,9 @@ public partial class SouvenirModule
 
         var _logicalButtonsButtonNames = new[] { "top", "bottom-left", "bottom-right" };
         addQuestions(module,
-            colors.SelectMany((clrs, stage) => clrs.Select((clr, btnIx) => makeQuestion(Question.LogicalButtonsColor, module, formatArgs: new[] { _logicalButtonsButtonNames[btnIx], ordinal(stage + 1) }, correctAnswers: new[] { clr })))
-                .Concat(labels.SelectMany((lbls, stage) => lbls.Select((lbl, btnIx) => makeQuestion(Question.LogicalButtonsLabel, module, formatArgs: new[] { _logicalButtonsButtonNames[btnIx], ordinal(stage + 1) }, correctAnswers: new[] { lbl }))))
-                .Concat(initialOperators.Select((op, stage) => makeQuestion(Question.LogicalButtonsOperator, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { op }))));
+            colors.SelectMany((clrs, stage) => clrs.Select((clr, btnIx) => makeQuestion(Question.LogicalButtonsColor, module, formatArgs: new[] { _logicalButtonsButtonNames[btnIx], Ordinal(stage + 1) }, correctAnswers: new[] { clr })))
+                .Concat(labels.SelectMany((lbls, stage) => lbls.Select((lbl, btnIx) => makeQuestion(Question.LogicalButtonsLabel, module, formatArgs: new[] { _logicalButtonsButtonNames[btnIx], Ordinal(stage + 1) }, correctAnswers: new[] { lbl }))))
+                .Concat(initialOperators.Select((op, stage) => makeQuestion(Question.LogicalButtonsOperator, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { op }))));
     }
 
     private IEnumerator<YieldInstruction> ProcessLogicGates(ModuleData module)
@@ -538,8 +538,8 @@ public partial class SouvenirModule
             primary = primary.Union(extraOptions).ToArray();
 
         addQuestions(module,
-            departures.Select((dep, ix) => makeQuestion(Question.LondonUndergroundStations, module, formatArgs: new[] { ordinal(ix + 1), "depart from" }, correctAnswers: new[] { dep }, preferredWrongAnswers: primary)).Concat(
-            destinations.Select((dest, ix) => makeQuestion(Question.LondonUndergroundStations, module, formatArgs: new[] { ordinal(ix + 1), "arrive to" }, correctAnswers: new[] { dest }, preferredWrongAnswers: primary))));
+            departures.Select((dep, ix) => makeQuestion(Question.LondonUndergroundStations, module, formatArgs: new[] { Ordinal(ix + 1), "depart from" }, correctAnswers: new[] { dep }, preferredWrongAnswers: primary)).Concat(
+            destinations.Select((dest, ix) => makeQuestion(Question.LondonUndergroundStations, module, formatArgs: new[] { Ordinal(ix + 1), "arrive to" }, correctAnswers: new[] { dest }, preferredWrongAnswers: primary))));
     }
 
     private IEnumerator<YieldInstruction> ProcessLongWords(ModuleData module)

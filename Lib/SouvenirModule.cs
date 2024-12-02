@@ -384,7 +384,7 @@ public partial class SouvenirModule : MonoBehaviour
         for (int i = 0; i < attr.ExampleFormatArgumentGroupSize; i++)
         {
             var arg = attr.ExampleFormatArguments[_curExampleVariant * attr.ExampleFormatArgumentGroupSize + i];
-            fmt[i + 1] = arg == QandA.Ordinal ? ordinal(Rnd.Range(1, 6)) : translateFormatArg(q, arg);
+            fmt[i + 1] = arg == QandA.Ordinal ? Ordinal(Rnd.Range(1, 6)) : translateFormatArg(q, arg);
         }
         QandA.QuestionBase question;
         QandA.AnswerSet answerSet;
@@ -1160,7 +1160,7 @@ public partial class SouvenirModule : MonoBehaviour
 
     private string formatModuleName(Question question, bool addSolveCount, int numSolved) => _translation != null
         ? _translation.FormatModuleName(question, addSolveCount, numSolved)
-        : addSolveCount ? $"the {question.GetAttribute().ModuleName} you solved {ordinal(numSolved)}" : question.GetAttribute().ModuleNameWithThe;
+        : addSolveCount ? $"the {question.GetAttribute().ModuleName} you solved {Ordinal(numSolved)}" : question.GetAttribute().ModuleNameWithThe;
 
     public string[] GetAnswers(Question question) => !Ut.TryGetAttribute(question, out var attr)
         ? throw new InvalidOperationException($"<Souvenir #{_moduleId}> Question {question} is missing from the _attributes dictionary.")
@@ -1184,7 +1184,7 @@ public partial class SouvenirModule : MonoBehaviour
 
     private string titleCase(string str) => str.Length < 1 ? str : char.ToUpperInvariant(str[0]) + str.Substring(1).ToLowerInvariant();
 
-    private string ordinal(int number) => _translation != null
+    public string Ordinal(int number) => _translation != null
             ? _translation.Ordinal(number)
             : number < 0
                 ? "(" + number + ")th"

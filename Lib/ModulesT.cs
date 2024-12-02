@@ -54,7 +54,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var displayedIngredients = GetListField<int>(comp, "Order").Get(expectedLength: 8);
-        addQuestions(module, displayedIngredients.Select((ing, ix) => makeQuestion(Question.TeaSetDisplayedIngredients, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { TeaSetSprites[ing] }, preferredWrongAnswers: TeaSetSprites)));
+        addQuestions(module, displayedIngredients.Select((ing, ix) => makeQuestion(Question.TeaSetDisplayedIngredients, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { TeaSetSprites[ing] }, preferredWrongAnswers: TeaSetSprites)));
     }
 
     private IEnumerator<YieldInstruction> ProcessTechnicalKeypad(ModuleData module)
@@ -91,7 +91,7 @@ public partial class SouvenirModule
 
             var questionSprite = Sprite.Create(tex, Rect.MinMaxRect(0, 0, 400, 320), new Vector2(.5f, .5f), 1280f, 1, SpriteMeshType.Tight);
             questionSprite.name = $"Technical-Keypad-{position}-{module.SolveIndex}";
-            qs.Add(makeSpriteQuestion(questionSprite, Question.TechnicalKeypadDisplayedDigits, module, formatArgs: new[] { ordinal(position + 1) }, correctAnswers: new[] { digits[position].ToString() }));
+            qs.Add(makeSpriteQuestion(questionSprite, Question.TechnicalKeypadDisplayedDigits, module, formatArgs: new[] { Ordinal(position + 1) }, correctAnswers: new[] { digits[position].ToString() }));
         }
         addQuestions(module, qs);
     }
@@ -114,7 +114,7 @@ public partial class SouvenirModule
 
         var colorNames = new[] { "red", "green", "blue" };
         addQuestions(module, new[] { firstStageColors, secondStageColors }.SelectMany((colors, stage) => Enumerable.Range(0, 10)
-            .Select(slot => makeQuestion(Question.TenButtonColorCodeInitialColors, module, formatArgs: new[] { ordinal(slot + 1), ordinal(stage + 1) }, correctAnswers: new[] { colorNames[colors[slot]] }))));
+            .Select(slot => makeQuestion(Question.TenButtonColorCodeInitialColors, module, formatArgs: new[] { Ordinal(slot + 1), Ordinal(stage + 1) }, correctAnswers: new[] { colorNames[colors[slot]] }))));
     }
 
     private IEnumerator<YieldInstruction> ProcessTenpins(ModuleData module)
@@ -206,7 +206,7 @@ public partial class SouvenirModule
             }
 
         yield return WaitForSolve;
-        addQuestions(module, displayWords.Select((word, stage) => makeQuestion(Question.ThirdBaseDisplay, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { word })));
+        addQuestions(module, displayWords.Select((word, stage) => makeQuestion(Question.ThirdBaseDisplay, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { word })));
     }
 
     private IEnumerator<YieldInstruction> ProcessTicTacToe(ModuleData module)
@@ -240,7 +240,7 @@ public partial class SouvenirModule
             .Get(expectedLength: 5, validator: s => s.Length != 2 ? "Bad length" : !"123456789".Contains(s[0]) ? "Bad top digit" : !"1248".Contains(s[1]) ? "Bad bottom digit" : null);
         var answers = sequence.Select(s => $"{s[0]}/{s[1]}").ToArray();
         addQuestions(module, sequence.Select((s, i) => makeQuestion(Question.TimeSignaturesSignatures, module,
-            formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { answers[i] }, preferredWrongAnswers: answers)));
+            formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { answers[i] }, preferredWrongAnswers: answers)));
     }
 
     private IEnumerator<YieldInstruction> ProcessTimezone(ModuleData module)
@@ -361,7 +361,7 @@ public partial class SouvenirModule
         }
 
         addQuestions(module, messages.Select((msg, index) => makeQuestion(Question.TransmittedMorseMessage, module,
-            formatArgs: new[] { ordinal(index + 1) },
+            formatArgs: new[] { Ordinal(index + 1) },
             correctAnswers: new[] { msg },
             preferredWrongAnswers: messages)));
     }
@@ -406,7 +406,7 @@ public partial class SouvenirModule
         };
 
         yield return WaitForSolve;
-        addQuestions(module, bugs.Take(2).Select((bug, ix) => makeQuestion(Question.TurtleRobotCodeLines, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { bug }, preferredWrongAnswers: codeLines)));
+        addQuestions(module, bugs.Take(2).Select((bug, ix) => makeQuestion(Question.TurtleRobotCodeLines, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { bug }, preferredWrongAnswers: codeLines)));
     }
 
     private IEnumerator<YieldInstruction> ProcessTwoBits(ModuleData module)
@@ -428,8 +428,8 @@ public partial class SouvenirModule
         var preferredWrongAnswers = new[] { zerothNumCode.ToString("00"), firstResponse.ToString("00"), secondResponse.ToString("00"), thirdResponse.ToString("00") };
 
         addQuestions(module,
-            makeQuestion(Question.TwoBitsResponse, module, formatArgs: new[] { ordinal(1) }, correctAnswers: new[] { firstResponse.ToString("00") }, preferredWrongAnswers: preferredWrongAnswers),
-            makeQuestion(Question.TwoBitsResponse, module, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { secondResponse.ToString("00") }, preferredWrongAnswers: preferredWrongAnswers),
-            makeQuestion(Question.TwoBitsResponse, module, formatArgs: new[] { ordinal(3) }, correctAnswers: new[] { thirdResponse.ToString("00") }, preferredWrongAnswers: preferredWrongAnswers));
+            makeQuestion(Question.TwoBitsResponse, module, formatArgs: new[] { Ordinal(1) }, correctAnswers: new[] { firstResponse.ToString("00") }, preferredWrongAnswers: preferredWrongAnswers),
+            makeQuestion(Question.TwoBitsResponse, module, formatArgs: new[] { Ordinal(2) }, correctAnswers: new[] { secondResponse.ToString("00") }, preferredWrongAnswers: preferredWrongAnswers),
+            makeQuestion(Question.TwoBitsResponse, module, formatArgs: new[] { Ordinal(3) }, correctAnswers: new[] { thirdResponse.ToString("00") }, preferredWrongAnswers: preferredWrongAnswers));
     }
 }

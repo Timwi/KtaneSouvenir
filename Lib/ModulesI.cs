@@ -45,10 +45,10 @@ public partial class SouvenirModule
 
         for (var i = 0; i < 3; i++)
         {
-            qs.Add(makeQuestion(Question.IceCreamFlavour, module, formatArgs: new[] { "was on offer, but not sold,", ordinal(i + 1) }, correctAnswers: flavours[i].Where(ix => ix != solution[i]).Select(ix => flavourNames[ix]).ToArray()));
-            qs.Add(makeQuestion(Question.IceCreamFlavour, module, formatArgs: new[] { "was not on offer", ordinal(i + 1) }, correctAnswers: flavourNames.Where((f, ix) => !flavours[i].Contains(ix)).ToArray()));
+            qs.Add(makeQuestion(Question.IceCreamFlavour, module, formatArgs: new[] { "was on offer, but not sold,", Ordinal(i + 1) }, correctAnswers: flavours[i].Where(ix => ix != solution[i]).Select(ix => flavourNames[ix]).ToArray()));
+            qs.Add(makeQuestion(Question.IceCreamFlavour, module, formatArgs: new[] { "was not on offer", Ordinal(i + 1) }, correctAnswers: flavourNames.Where((f, ix) => !flavours[i].Contains(ix)).ToArray()));
             if (i != 2)
-                qs.Add(makeQuestion(Question.IceCreamCustomer, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { customerNames[customers[i]] }, preferredWrongAnswers: customers.Select(ix => customerNames[ix]).ToArray()));
+                qs.Add(makeQuestion(Question.IceCreamCustomer, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { customerNames[customers[i]] }, preferredWrongAnswers: customers.Select(ix => customerNames[ix]).ToArray()));
         }
 
         addQuestions(module, qs);
@@ -66,8 +66,8 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (int i = 0; i < 3; i++)
         {
-            qs.Add(makeQuestion(Question.IdentificationCrisisShape, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { shapeNames[shapes[i]] }));
-            qs.Add(makeQuestion(Question.IdentificationCrisisDataset, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { datasetNames[datasets[i]] }));
+            qs.Add(makeQuestion(Question.IdentificationCrisisShape, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { shapeNames[shapes[i]] }));
+            qs.Add(makeQuestion(Question.IdentificationCrisisDataset, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { datasetNames[datasets[i]] }));
         }
         addQuestions(module, qs);
     }
@@ -189,7 +189,7 @@ public partial class SouvenirModule
         }
 
         addQuestions(module, Enumerable.Range(0, 3).Select(i =>
-            makeQuestion(Question.InterpunctDisplay, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { texts[i] })));
+            makeQuestion(Question.InterpunctDisplay, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { texts[i] })));
     }
 
     private IEnumerator<YieldInstruction> ProcessIPA(ModuleData module)
@@ -214,9 +214,9 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         addQuestions(module,
-            makeQuestion(Question.iPhoneDigits, module, formatArgs: new[] { ordinal(1) }, correctAnswers: new[] { digits[0] }, preferredWrongAnswers: new[] { digits[1], digits[2], digits[3] }),
-            makeQuestion(Question.iPhoneDigits, module, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { digits[1] }, preferredWrongAnswers: new[] { digits[0], digits[2], digits[3] }),
-            makeQuestion(Question.iPhoneDigits, module, formatArgs: new[] { ordinal(3) }, correctAnswers: new[] { digits[2] }, preferredWrongAnswers: new[] { digits[1], digits[0], digits[3] }),
-            makeQuestion(Question.iPhoneDigits, module, formatArgs: new[] { ordinal(4) }, correctAnswers: new[] { digits[3] }, preferredWrongAnswers: new[] { digits[1], digits[2], digits[0] }));
+            makeQuestion(Question.iPhoneDigits, module, formatArgs: new[] { Ordinal(1) }, correctAnswers: new[] { digits[0] }, preferredWrongAnswers: new[] { digits[1], digits[2], digits[3] }),
+            makeQuestion(Question.iPhoneDigits, module, formatArgs: new[] { Ordinal(2) }, correctAnswers: new[] { digits[1] }, preferredWrongAnswers: new[] { digits[0], digits[2], digits[3] }),
+            makeQuestion(Question.iPhoneDigits, module, formatArgs: new[] { Ordinal(3) }, correctAnswers: new[] { digits[2] }, preferredWrongAnswers: new[] { digits[1], digits[0], digits[3] }),
+            makeQuestion(Question.iPhoneDigits, module, formatArgs: new[] { Ordinal(4) }, correctAnswers: new[] { digits[3] }, preferredWrongAnswers: new[] { digits[1], digits[2], digits[0] }));
     }
 }

@@ -17,7 +17,7 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
         for (int stageNum = 0; stageNum < 4; stageNum++)
-            qs.Add(makeQuestion(Question.MadMemoryDisplays, module, formatArgs: new[] { ordinal(stageNum + 1) }, correctAnswers: new[] { possibleTexts[displayedLabels[stageNum]] }));
+            qs.Add(makeQuestion(Question.MadMemoryDisplays, module, formatArgs: new[] { Ordinal(stageNum + 1) }, correctAnswers: new[] { possibleTexts[displayedLabels[stageNum]] }));
         addQuestions(module, qs);
     }
 
@@ -137,8 +137,8 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (int i = 0; i < 5; i++)
         {
-            qs.Add(makeQuestion(Question.MandMsColors, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorNames[colors[i]] }));
-            qs.Add(makeQuestion(Question.MandMsLabels, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { labels[i] }, preferredWrongAnswers: labels));
+            qs.Add(makeQuestion(Question.MandMsColors, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { colorNames[colors[i]] }));
+            qs.Add(makeQuestion(Question.MandMsLabels, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { labels[i] }, preferredWrongAnswers: labels));
         }
         addQuestions(module, qs);
     }
@@ -154,7 +154,7 @@ public partial class SouvenirModule
         var solution = GetIntField(comp, "solution").Get();
         var qs = new List<QandA>();
         for (int i = 0; i < 5; i++)
-            qs.Add(makeQuestion(Question.MandNsColors, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorNames[colors[i]] }));
+            qs.Add(makeQuestion(Question.MandNsColors, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { colorNames[colors[i]] }));
         qs.Add(makeQuestion(Question.MandNsLabel, module, correctAnswers: new[] { labels[solution] }, preferredWrongAnswers: labels));
         addQuestions(module, qs);
     }
@@ -205,7 +205,7 @@ public partial class SouvenirModule
         for (int i = 0; i < 3; i++)
         {
             var number = i == 0 ? number1 : (i == 1 ? number2 : number3);
-            questions.Add(makeQuestion(Question.MashematicsCalculation, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { number.ToString() }));
+            questions.Add(makeQuestion(Question.MashematicsCalculation, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { number.ToString() }));
         }
         addQuestions(module, questions);
     }
@@ -249,7 +249,7 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (int stage = 0; stage < 2; stage++)
             qs.Add(makeQuestion(Question.MatchRefereeingPlanet, module,
-                formatArgs: new[] { ordinal(stage + 1) },
+                formatArgs: new[] { Ordinal(stage + 1) },
                 correctAnswers: planetsUsed[stage],
                 preferredWrongAnswers: allPlanetsUsed,
                 allAnswers: planetImages));
@@ -454,7 +454,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var combinedCode = GetField<string>(comp, "combinedCode", isPublic: true).Get(str => str.Length < 10 || str.Length > 15 ? "expected length 10–15" : null);
-        addQuestions(module, combinedCode.Select((ch, ix) => makeQuestion(Question.MemorableButtonsSymbols, module, buttonLabels[0].font, buttonLabels[0].GetComponent<MeshRenderer>().sharedMaterial.mainTexture, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { ch.ToString() })));
+        addQuestions(module, combinedCode.Select((ch, ix) => makeQuestion(Question.MemorableButtonsSymbols, module, buttonLabels[0].font, buttonLabels[0].GetComponent<MeshRenderer>().sharedMaterial.mainTexture, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { ch.ToString() })));
     }
 
     private IEnumerator<YieldInstruction> ProcessMemory(ModuleData module)
@@ -472,9 +472,9 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (var stage = 0; stage < 4; stage++)
         {
-            qs.Add(makeQuestion(Question.MemoryDisplay, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { displaySequence[stage].ToString() }));
-            qs.Add(makeQuestion(Question.MemoryPosition, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { MemorySprites[indices[stage]] }, preferredWrongAnswers: MemorySprites));
-            qs.Add(makeQuestion(Question.MemoryLabel, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { labels[stage][labels[stage].Length - 1].ToString() }));
+            qs.Add(makeQuestion(Question.MemoryDisplay, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { displaySequence[stage].ToString() }));
+            qs.Add(makeQuestion(Question.MemoryPosition, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { MemorySprites[indices[stage]] }, preferredWrongAnswers: MemorySprites));
+            qs.Add(makeQuestion(Question.MemoryLabel, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { labels[stage][labels[stage].Length - 1].ToString() }));
         }
         addQuestions(module, qs);
     }
@@ -549,7 +549,7 @@ public partial class SouvenirModule
         var positionTranslate = GetArrayField<int>(comp, "positionTranslate").Get(expectedLength: ledsOrder.Count);
 
         addQuestions(module, ledsOrder.Select((led, ix) => makeQuestion(Question.MicrocontrollerPinOrder, module,
-            formatArgs: new[] { ordinal(ix + 1) },
+            formatArgs: new[] { Ordinal(ix + 1) },
             correctAnswers: new[] { (positionTranslate[led] + 1).ToString() },
             preferredWrongAnswers: Enumerable.Range(1, ledsOrder.Count).Select(i => i.ToString()).ToArray())));
     }
@@ -617,8 +617,8 @@ public partial class SouvenirModule
         stage2word = stage2word.Substring(0, 1).ToUpperInvariant() + stage2word.Substring(1).ToLowerInvariant();
 
         addQuestions(module,
-            makeQuestion(Question.ModernCipherWord, module, formatArgs: new[] { ordinal(1) }, correctAnswers: new[] { stage1word }, preferredWrongAnswers: new[] { stage2word }),
-            makeQuestion(Question.ModernCipherWord, module, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { stage2word }, preferredWrongAnswers: new[] { stage1word }));
+            makeQuestion(Question.ModernCipherWord, module, formatArgs: new[] { Ordinal(1) }, correctAnswers: new[] { stage1word }, preferredWrongAnswers: new[] { stage2word }),
+            makeQuestion(Question.ModernCipherWord, module, formatArgs: new[] { Ordinal(2) }, correctAnswers: new[] { stage2word }, preferredWrongAnswers: new[] { stage1word }));
     }
 
     private IEnumerator<YieldInstruction> ProcessModuleListening(ModuleData module)
@@ -682,7 +682,7 @@ public partial class SouvenirModule
         }
 
         addQuestions(module, answers.Select((ans, i) =>
-            makeQuestion(Question.ModuleMovementsDisplay, module, formatArgs: new[] { ordinal(i + 1) },
+            makeQuestion(Question.ModuleMovementsDisplay, module, formatArgs: new[] { Ordinal(i + 1) },
                 correctAnswers: new[] { ans }, preferredWrongAnswers: answers)));
     }
 
@@ -892,7 +892,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module, Enumerable.Range(0, 3).Select(i => makeQuestion(Question.MorsematicsReceivedLetters, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { chars[i] }, preferredWrongAnswers: chars)));
+        addQuestions(module, Enumerable.Range(0, 3).Select(i => makeQuestion(Question.MorsematicsReceivedLetters, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { chars[i] }, preferredWrongAnswers: chars)));
     }
 
     private IEnumerator<YieldInstruction> ProcessMorseWar(ModuleData module)
@@ -973,7 +973,7 @@ public partial class SouvenirModule
             for (var cycle = 0; cycle < 2; cycle++)
                 for (var led = 0; led < 5; led++)
                     qs.Add(makeQuestion(Question.MulticoloredSwitchesLedColor, module,
-                        formatArgs: new[] { ordinal(led + 1), upDown == 0 ? "top" : "bottom", cycle == 0 ? "lit" : "unlit" },
+                        formatArgs: new[] { Ordinal(led + 1), upDown == 0 ? "top" : "bottom", cycle == 0 ? "lit" : "unlit" },
                         correctAnswers: new[] { colorNames[colorChars.IndexOf((upDown == 0 ? upColors : downColors)[led][cycle])] }));
         addQuestions(module, qs);
     }

@@ -39,7 +39,7 @@ public partial class SouvenirModule
             GetArrayField<string>(comp, "Stage2Char").Get(arr => !arr.Contains(displayedWords[1]) ? $"expected array to contain \"{displayedWords[1]}\"" : null),
             GetArrayField<string>(comp, "Stage3Words").Get(arr => !arr.Contains(displayedWords[2]) ? $"expected array to contain \"{displayedWords[2]}\"" : null)
         };
-        addQuestions(module, Enumerable.Range(0, 3).Select(stage => makeQuestion(Question.KanjiDisplayedWords, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { displayedWords[stage] }, preferredWrongAnswers: wordLists[stage])));
+        addQuestions(module, Enumerable.Range(0, 3).Select(stage => makeQuestion(Question.KanjiDisplayedWords, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { displayedWords[stage] }, preferredWrongAnswers: wordLists[stage])));
     }
 
     private IEnumerator<YieldInstruction> ProcessKanyeEncounter(ModuleData module)
@@ -68,7 +68,7 @@ public partial class SouvenirModule
         var moduleAnswer = GetField<string>(comp, "answer").Get();
 
         addQuestions(module, Enumerable.Range(0, 4).Select(i => makeQuestion(Question.KeypadCombinationWrongNumbers, module,
-            formatArgs: new[] { ordinal(i + 1) },
+            formatArgs: new[] { Ordinal(i + 1) },
             correctAnswers: Enumerable.Range(0, 3).Select(buttonIndex => buttonNums[i, buttonIndex])
                 .Where(num => num != moduleAnswer[i] - '0').Select(num => num.ToString()).ToArray())));
     }

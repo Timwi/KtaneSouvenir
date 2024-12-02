@@ -45,7 +45,7 @@ public partial class SouvenirModule
 
         // Ask about the correctly connected cars/locomotives
         for (int i = 0; i < 14; i++)    // skip 15 because it’s always the Caboose
-            qs.Add(makeQuestion(Question.RailwayCargoLoadingCars, module, formatArgs: new[] { ordinal(i + 1) },
+            qs.Add(makeQuestion(Question.RailwayCargoLoadingCars, module, formatArgs: new[] { Ordinal(i + 1) },
                 correctAnswers: new[] { trainCars[i] }, preferredWrongAnswers: allCarSprites));
 
         // Ask about the met or unmet freight table rules
@@ -117,7 +117,7 @@ public partial class SouvenirModule
             { 'W', "white" }
         };
         var ledColors = GetField<StringBuilder>(comp, "LEDsColorsString").Get(sb => sb.Length != 10 ? "expected length 10" : Enumerable.Range(0, 10).Any(ix => !colorNames.ContainsKey(sb[ix])) ? $"expected {colorNames.Keys.JoinString()}" : null);
-        addQuestions(module, Enumerable.Range(0, 10).Select(ix => makeQuestion(Question.RecoloredSwitchesLedColors, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { colorNames[ledColors[ix]] })));
+        addQuestions(module, Enumerable.Range(0, 10).Select(ix => makeQuestion(Question.RecoloredSwitchesLedColors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colorNames[ledColors[ix]] })));
     }
 
     private IEnumerator<YieldInstruction> ProcessRecursivePassword(ModuleData module)
@@ -186,9 +186,9 @@ public partial class SouvenirModule
 
         var colors = new[] { "Navy", "Lapis", "Blue", "Sky", "Teal", "Plum", "Violet", "Purple", "Magenta", "Lavender" };
         var qs = new List<QandA>();
-        qs.Add(makeQuestion(Question.ReformedRoleReversalCondition, module, correctAnswers: new[] { ordinal(index[1] + 1) }));
+        qs.Add(makeQuestion(Question.ReformedRoleReversalCondition, module, correctAnswers: new[] { Ordinal(index[1] + 1) }));
         for (var ix = 0; ix < wires.Length; ix++)
-            qs.Add(makeQuestion(Question.ReformedRoleReversalWire, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { colors[wires[ix]] }));
+            qs.Add(makeQuestion(Question.ReformedRoleReversalWire, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colors[wires[ix]] }));
         addQuestions(module, qs);
     }
 
@@ -239,8 +239,8 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (int i = 0; i < 6; i++)
         {
-            qs.Add(makeQuestion(Question.ReverseMorseCharacters, module, formatArgs: new[] { ordinal(i + 1), "first" }, correctAnswers: new[] { message1[i] }, preferredWrongAnswers: message1.ToArray()));
-            qs.Add(makeQuestion(Question.ReverseMorseCharacters, module, formatArgs: new[] { ordinal(i + 1), "second" }, correctAnswers: new[] { message2[i] }, preferredWrongAnswers: message2.ToArray()));
+            qs.Add(makeQuestion(Question.ReverseMorseCharacters, module, formatArgs: new[] { Ordinal(i + 1), "first" }, correctAnswers: new[] { message1[i] }, preferredWrongAnswers: message1.ToArray()));
+            qs.Add(makeQuestion(Question.ReverseMorseCharacters, module, formatArgs: new[] { Ordinal(i + 1), "second" }, correctAnswers: new[] { message2[i] }, preferredWrongAnswers: message2.ToArray()));
         }
         addQuestions(module, qs);
     }
@@ -258,7 +258,7 @@ public partial class SouvenirModule
         {
             if (usedChars[i].Length != i + 3)
                 throw new AbandonModuleException($"‘usedChars[{i}]’ is of an unexpected length (expected {i + 3}): [{string.Join(", ", usedChars[i])}]");
-            qs.Add(makeQuestion(Question.ReversePolishNotationCharacter, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: usedChars[i]));
+            qs.Add(makeQuestion(Question.ReversePolishNotationCharacter, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: usedChars[i]));
         }
         addQuestions(module, qs);
     }
@@ -304,7 +304,7 @@ public partial class SouvenirModule
         var displayStr = GetField<string>(comp, "StringFour").Get(val => val.Length != 10 ? "expected length of 10" : val.Any(ch => !colorDic.ContainsKey(ch)) ? $"expected characters {colorDic.Keys.JoinString()}" : null);
 
         addQuestions(module, Enumerable.Range(0, 10).Select(i =>
-            makeQuestion(Question.RGBSequencesDisplay, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorDic[displayStr[i]] })));
+            makeQuestion(Question.RGBSequencesDisplay, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { colorDic[displayStr[i]] })));
     }
 
     private IEnumerator<YieldInstruction> ProcessRhythms(ModuleData module)
@@ -367,7 +367,7 @@ public partial class SouvenirModule
         for (int i = 0; i < 4; i++)
             qs.Add(makeQuestion(Question.RobotProgrammingName,
                 data: module,
-                formatArgs: new[] { ordinal(i + 1) },
+                formatArgs: new[] { Ordinal(i + 1) },
                 correctAnswers: new[] { robotTypes[i] }));
         addQuestions(module, qs);
     }
@@ -440,7 +440,7 @@ public partial class SouvenirModule
         for (int color = 0; color < 3; color++)
             for (int axis = 0; axis < 3; axis++)
                 for (int cycle = 0; cycle < 3; cycle++)
-                    qs.Add(makeQuestion(Question.RuleOfThreeCycles, module, formatArgs: new[] { colorNames[color], "XYZ"[axis].ToString(), ordinal(cycle + 1) }, correctAnswers: new[] { coords[color][cycle][axis].ToString() }));
+                    qs.Add(makeQuestion(Question.RuleOfThreeCycles, module, formatArgs: new[] { colorNames[color], "XYZ"[axis].ToString(), Ordinal(cycle + 1) }, correctAnswers: new[] { coords[color][cycle][axis].ToString() }));
 
         addQuestions(module, qs);
     }

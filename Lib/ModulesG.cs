@@ -211,8 +211,8 @@ public partial class SouvenirModule
         var questions = new List<QandA>();
         for (int i = 0; i < 6; i++)
         {
-            questions.Add(makeQuestion(Question.GreatVoidDigit, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { fldDigits.Get()[i].ToString() }));
-            questions.Add(makeQuestion(Question.GreatVoidColor, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colorNames[fldColors.Get()[i]] }));
+            questions.Add(makeQuestion(Question.GreatVoidDigit, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { fldDigits.Get()[i].ToString() }));
+            questions.Add(makeQuestion(Question.GreatVoidColor, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { colorNames[fldColors.Get()[i]] }));
         }
         addQuestions(module, questions);
     }

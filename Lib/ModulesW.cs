@@ -52,12 +52,12 @@ public partial class SouvenirModule
 
         for (int stage = 0; stage < intPatterns.Length; stage++)
             qs.Add(makeQuestion(Question.WavetappingPatterns, module,
-                formatArgs: new[] { ordinal(stage + 1) },
+                formatArgs: new[] { Ordinal(stage + 1) },
                 correctAnswers: new[] { patternSprites[stageColors[stage]][intPatterns[stage]] },
                 preferredWrongAnswers: stageColors.SelectMany(stages => patternSprites[stages]).ToArray()));
         for (int stage = 0; stage < 2; stage++)
             qs.Add(makeQuestion(Question.WavetappingColors, module,
-                formatArgs: new[] { ordinal(stage + 1) },
+                formatArgs: new[] { Ordinal(stage + 1) },
                 correctAnswers: new[] { colorNames[stageColors[stage]] }));
 
         addQuestions(module, qs);
@@ -135,7 +135,7 @@ public partial class SouvenirModule
                 yield return new WaitForSeconds(0.1f);
             }
         yield return WaitForSolve;
-        addQuestions(module, storedDisplays.Select((disp, stage) => makeQuestion(Question.WhoOFDisplay, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { disp }, preferredWrongAnswers: storedDisplays)));
+        addQuestions(module, storedDisplays.Select((disp, stage) => makeQuestion(Question.WhoOFDisplay, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { disp }, preferredWrongAnswers: storedDisplays)));
     }
 
     private IEnumerator<YieldInstruction> ProcessWhosOnFirst(ModuleData module)
@@ -167,7 +167,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(0.1f);
 
         module.SolveIndex = _modulesSolved.IncSafe("WhosOnFirst");
-        addQuestions(module, displayWords.Select((word, stage) => makeQuestion(Question.WhosOnFirstDisplay, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { word }, preferredWrongAnswers: displayWords)));
+        addQuestions(module, displayWords.Select((word, stage) => makeQuestion(Question.WhosOnFirstDisplay, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { word }, preferredWrongAnswers: displayWords)));
     }
 
     private IEnumerator<YieldInstruction> ProcessWhosOnMorse(ModuleData module)
@@ -189,7 +189,7 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (var stage = 0; stage < storedIdxDisplays.Length; stage++)
             if (storedIdxDisplays[stage] != null)
-                qs.Add(makeQuestion(Question.WhosOnMorseTransmitDisplay, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { wordBank[storedIdxDisplays[stage].Value] }, preferredWrongAnswers: storedIdxDisplays.Select(a => a == null ? null : wordBank[a.Value]).Where(s => s != null).ToArray()));
+                qs.Add(makeQuestion(Question.WhosOnMorseTransmitDisplay, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { wordBank[storedIdxDisplays[stage].Value] }, preferredWrongAnswers: storedIdxDisplays.Select(a => a == null ? null : wordBank[a.Value]).Where(s => s != null).ToArray()));
         addQuestions(module, qs);
     }
 
@@ -223,9 +223,9 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (var ix = 0; ix < 4; ix++)
         {
-            qs.Add(makeQuestion(Question.WireOrderingDisplayColor, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { colors[chosenColorsDisplay[ix]] }));
-            qs.Add(makeQuestion(Question.WireOrderingDisplayNumber, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { chosenDisplayNumbers[ix].ToString() }));
-            qs.Add(makeQuestion(Question.WireOrderingWireColor, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { colors[chosenColorsWire[ix]] }));
+            qs.Add(makeQuestion(Question.WireOrderingDisplayColor, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colors[chosenColorsDisplay[ix]] }));
+            qs.Add(makeQuestion(Question.WireOrderingDisplayNumber, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { chosenDisplayNumbers[ix].ToString() }));
+            qs.Add(makeQuestion(Question.WireOrderingWireColor, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colors[chosenColorsWire[ix]] }));
         }
         addQuestions(module, qs);
     }

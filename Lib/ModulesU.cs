@@ -51,7 +51,7 @@ public partial class SouvenirModule
             for (int j = 0; j < i + 3; j++)
             {
                 var possibleWrong = possibleRotations[rotations[i][j].Count(ch => ch == ',')].SelectMany(x => x).ToArray();
-                questions.Add(makeQuestion(rotations[i][j].Split(',').Length - 1 == 0 ? Question.UltraStoresSingleRotation : Question.UltraStoresMultiRotation, module, formatArgs: new[] { ordinal(j + 1), ordinal(i + 1) }, correctAnswers: new[] { rotations[i][j] }, preferredWrongAnswers: possibleWrong));
+                questions.Add(makeQuestion(rotations[i][j].Split(',').Length - 1 == 0 ? Question.UltraStoresSingleRotation : Question.UltraStoresMultiRotation, module, formatArgs: new[] { Ordinal(j + 1), Ordinal(i + 1) }, correctAnswers: new[] { rotations[i][j] }, preferredWrongAnswers: possibleWrong));
             }
         }
         addQuestions(module, questions);
@@ -62,8 +62,8 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "UncoloredSquaresModule");
         yield return WaitForSolve;
         addQuestions(module,
-            makeQuestion(Question.UncoloredSquaresFirstStage, module, formatArgs: new[] { ordinal(1) }, correctAnswers: new[] { GetField<object>(comp, "_firstStageColor1").Get().ToString() }),
-            makeQuestion(Question.UncoloredSquaresFirstStage, module, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { GetField<object>(comp, "_firstStageColor2").Get().ToString() }));
+            makeQuestion(Question.UncoloredSquaresFirstStage, module, formatArgs: new[] { Ordinal(1) }, correctAnswers: new[] { GetField<object>(comp, "_firstStageColor1").Get().ToString() }),
+            makeQuestion(Question.UncoloredSquaresFirstStage, module, formatArgs: new[] { Ordinal(2) }, correctAnswers: new[] { GetField<object>(comp, "_firstStageColor2").Get().ToString() }));
     }
 
     private IEnumerator<YieldInstruction> ProcessUncoloredSwitches(ModuleData module)
@@ -82,7 +82,7 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         qs.Add(makeQuestion(Question.UncoloredSwitchesInitialState, module, correctAnswers: new[] { switchStates.Select(b => b ? 'Q' : 'R').JoinString() }));
         for (var ledIx = 0; ledIx < 10; ledIx++)
-            qs.Add(makeQuestion(Question.UncoloredSwitchesLedColors, module, formatArgs: new[] { ordinal(ledIx + 1) }, correctAnswers: new[] { colorNames[ledColors[ledIx]] }));
+            qs.Add(makeQuestion(Question.UncoloredSwitchesLedColors, module, formatArgs: new[] { Ordinal(ledIx + 1) }, correctAnswers: new[] { colorNames[ledColors[ledIx]] }));
         addQuestions(module, qs);
     }
 
@@ -172,9 +172,9 @@ public partial class SouvenirModule
 
         var colors = new[] { "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow" };
         addQuestions(module, stages.Take(stages.Count - 1).SelectMany((stage, stageIx) => stage.SelectMany((key, keyIx) => key is null ? Enumerable.Empty<QandA>() : Ut.NewArray(
-                makeQuestion(Question.UnorderedKeysKeyColor, module, OrderedKeysSprites[keyIx], formatArgs: new[] { ordinal(stageIx + 1) }, correctAnswers: new[] { colors[key[0]] }),
-                makeQuestion(Question.UnorderedKeysLabelColor, module, OrderedKeysSprites[keyIx], formatArgs: new[] { ordinal(stageIx + 1) }, correctAnswers: new[] { colors[key[1]] }),
-                makeQuestion(Question.UnorderedKeysLabel, module, OrderedKeysSprites[keyIx], formatArgs: new[] { ordinal(stageIx + 1) }, correctAnswers: new[] { (key[2] + 1).ToString() })))));
+                makeQuestion(Question.UnorderedKeysKeyColor, module, OrderedKeysSprites[keyIx], formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { colors[key[0]] }),
+                makeQuestion(Question.UnorderedKeysLabelColor, module, OrderedKeysSprites[keyIx], formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { colors[key[1]] }),
+                makeQuestion(Question.UnorderedKeysLabel, module, OrderedKeysSprites[keyIx], formatArgs: new[] { Ordinal(stageIx + 1) }, correctAnswers: new[] { (key[2] + 1).ToString() })))));
     }
 
     private IEnumerator<YieldInstruction> ProcessUnownCipher(ModuleData module)
@@ -183,7 +183,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var unownAnswer = GetArrayField<int>(comp, "letterIndexes").Get(expectedLength: 5, validator: v => v < 0 || v > 25 ? "expected 0–25" : null);
-        addQuestions(module, unownAnswer.Select((ans, i) => makeQuestion(Question.UnownCipherAnswers, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { ((char) ('A' + ans)).ToString() })));
+        addQuestions(module, unownAnswer.Select((ans, i) => makeQuestion(Question.UnownCipherAnswers, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { ((char) ('A' + ans)).ToString() })));
     }
 
     private IEnumerator<YieldInstruction> ProcessUpdog(ModuleData module)

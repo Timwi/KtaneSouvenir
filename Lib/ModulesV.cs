@@ -67,8 +67,8 @@ public partial class SouvenirModule
         }
 
         var qs = new List<QandA>();
-        qs.AddRange(words.Select((val, ix) => makeQuestion(Question.VaricolourFlashWords, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { names[val] })));
-        qs.AddRange(colors.Select((val, ix) => makeQuestion(Question.VaricolourFlashColors, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { names[val] })));
+        qs.AddRange(words.Select((val, ix) => makeQuestion(Question.VaricolourFlashWords, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { names[val] })));
+        qs.AddRange(colors.Select((val, ix) => makeQuestion(Question.VaricolourFlashColors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { names[val] })));
         addQuestions(module, qs);
     }
 
@@ -245,7 +245,7 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
         for (int i = 0; i < vectorCount; i++)
-            qs.Add(makeQuestion(Question.VectorsColors, module, formatArgs: new[] { vectorCount == 1 ? "only" : ordinal(i + 1) }, correctAnswers: new[] { colors[pickedVectors[i]] }));
+            qs.Add(makeQuestion(Question.VectorsColors, module, formatArgs: new[] { vectorCount == 1 ? "only" : Ordinal(i + 1) }, correctAnswers: new[] { colors[pickedVectors[i]] }));
         addQuestions(module, qs);
     }
 
@@ -297,6 +297,6 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         }
 
-        addQuestions(module, colorsPerStage.Select((col, ix) => makeQuestion(Question.VisualImpairmentColors, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { colorNames[col] })));
+        addQuestions(module, colorsPerStage.Select((col, ix) => makeQuestion(Question.VisualImpairmentColors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colorNames[col] })));
     }
 }

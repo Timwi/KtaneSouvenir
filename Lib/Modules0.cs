@@ -41,11 +41,11 @@ public partial class SouvenirModule
 
         var wordsWrittenArr = wordsWritten.ToArray();
         addQuestions(module,
-            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { ordinal(1) }, correctAnswers: new[] { wordsWritten[0] }, preferredWrongAnswers: wordsWrittenArr, allAnswers: phrases),
-            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { wordsWritten[1] }, preferredWrongAnswers: wordsWrittenArr, allAnswers: phrases),
-            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { ordinal(3) }, correctAnswers: new[] { wordsWritten[2] }, preferredWrongAnswers: wordsWrittenArr, allAnswers: phrases),
-            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { ordinal(4) }, correctAnswers: new[] { wordsWritten[3] }, preferredWrongAnswers: wordsWrittenArr, allAnswers: phrases),
-            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { ordinal(5) }, correctAnswers: new[] { wordsWritten[4] }, preferredWrongAnswers: wordsWrittenArr, allAnswers: phrases));
+            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { Ordinal(1) }, correctAnswers: new[] { wordsWritten[0] }, preferredWrongAnswers: wordsWrittenArr, allAnswers: phrases),
+            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { Ordinal(2) }, correctAnswers: new[] { wordsWritten[1] }, preferredWrongAnswers: wordsWrittenArr, allAnswers: phrases),
+            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { Ordinal(3) }, correctAnswers: new[] { wordsWritten[2] }, preferredWrongAnswers: wordsWrittenArr, allAnswers: phrases),
+            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { Ordinal(4) }, correctAnswers: new[] { wordsWritten[3] }, preferredWrongAnswers: wordsWrittenArr, allAnswers: phrases),
+            makeQuestion(Question._1000WordsWords, module, formatArgs: new[] { Ordinal(5) }, correctAnswers: new[] { wordsWritten[4] }, preferredWrongAnswers: wordsWrittenArr, allAnswers: phrases));
     }
 
     private IEnumerator<YieldInstruction> Process100LevelsOfDefusal(ModuleData module)
@@ -57,7 +57,7 @@ public partial class SouvenirModule
         var display = GetArrayField<char>(comp, "displayedLetters").Get(expectedLength: 12);
 
         addQuestions(module, display.Where(c => c != '.').Select((ans, i) =>
-            makeQuestion(Question._100LevelsOfDefusalLetters, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { ans.ToString() })));
+            makeQuestion(Question._100LevelsOfDefusalLetters, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { ans.ToString() })));
     }
 
     private IEnumerator<YieldInstruction> Process123Game(ModuleData module)
@@ -139,7 +139,7 @@ public partial class SouvenirModule
             .Get(tns => tns.Any(tn => tn < 0 || tn >= symbols.Length) ? "invalid symbols" : null)
             .Select(tn => symbols[tn].ToString())
             .ToArray();
-        addQuestions(module, targetNodeNames.Select((tn, ix) => makeQuestion(Question._3DTunnelsTargetNode, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { tn }, preferredWrongAnswers: targetNodeNames)));
+        addQuestions(module, targetNodeNames.Select((tn, ix) => makeQuestion(Question._3DTunnelsTargetNode, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { tn }, preferredWrongAnswers: targetNodeNames)));
     }
 
     private IEnumerator<YieldInstruction> Process3LEDs(ModuleData module)

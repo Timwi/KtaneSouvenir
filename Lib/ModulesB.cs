@@ -108,23 +108,23 @@ public partial class SouvenirModule
 
         addQuestions(module,
             correctButtonTexts.Select((name, index) => makeQuestion(Question.BamboozledAgainButtonText, module,
-                formatArgs: new[] { ordinal(index + 1) },
+                formatArgs: new[] { Ordinal(index + 1) },
                 correctAnswers: new[] { name },
                 preferredWrongAnswers: correctButtonTexts.Except(new[] { name }).ToArray())).Concat(
             correctButtonColors.Select((col, index) => makeQuestion(Question.BamboozledAgainButtonColor, module,
-                formatArgs: new[] { ordinal(index + 1) },
+                formatArgs: new[] { Ordinal(index + 1) },
                 correctAnswers: new[] { col },
                 preferredWrongAnswers: correctButtonColors.Except(new[] { col }).ToArray()))).Concat(
             firstRowTexts.Select((text, index) => makeQuestion(Question.BamboozledAgainDisplayTexts1, module,
-                formatArgs: new[] { ordinal(2 * index + 1) },
+                formatArgs: new[] { Ordinal(2 * index + 1) },
                 correctAnswers: new[] { text },
                 preferredWrongAnswers: firstRowTexts.Except(new[] { text }).ToArray()))).Concat(
             lastThreeTexts.Select((text, index) => makeQuestion(Question.BamboozledAgainDisplayTexts2, module,
-                formatArgs: new[] { ordinal(index + 6) },
+                formatArgs: new[] { Ordinal(index + 6) },
                 correctAnswers: new[] { text },
                 preferredWrongAnswers: lastThreeTexts.Except(new[] { text }).ToArray()))).Concat(
             displayColors.Select((col, index) => makeQuestion(Question.BamboozledAgainDisplayColor, module,
-                formatArgs: new[] { ordinal(index + 1) },
+                formatArgs: new[] { Ordinal(index + 1) },
                 correctAnswers: new[] { col },
                 preferredWrongAnswers: displayColors.Except(new[] { col }).ToArray()))));
     }
@@ -155,15 +155,15 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (var i = 0; i < 2; i++)
         {
-            qs.Add(makeQuestion(Question.BamboozlingButtonColor, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { colors[moduleData[i][0]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplayColor, module, formatArgs: new[] { ordinal(i + 1), "fourth" }, correctAnswers: new[] { colors[moduleData[i][1]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplayColor, module, formatArgs: new[] { ordinal(i + 1), "fifth" }, correctAnswers: new[] { colors[moduleData[i][2]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, module, formatArgs: new[] { ordinal(i + 1), "first" }, correctAnswers: new[] { texts[moduleData[i][3]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, module, formatArgs: new[] { ordinal(i + 1), "third" }, correctAnswers: new[] { texts[moduleData[i][4]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, module, formatArgs: new[] { ordinal(i + 1), "fourth" }, correctAnswers: new[] { texts[moduleData[i][5]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, module, formatArgs: new[] { ordinal(i + 1), "fifth" }, correctAnswers: new[] { texts[moduleData[i][6]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonLabel, module, formatArgs: new[] { ordinal(i + 1), "top" }, correctAnswers: new[] { texts[moduleData[i][7]] }));
-            qs.Add(makeQuestion(Question.BamboozlingButtonLabel, module, formatArgs: new[] { ordinal(i + 1), "bottom" }, correctAnswers: new[] { texts[moduleData[i][8]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonColor, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { colors[moduleData[i][0]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplayColor, module, formatArgs: new[] { Ordinal(i + 1), "fourth" }, correctAnswers: new[] { colors[moduleData[i][1]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplayColor, module, formatArgs: new[] { Ordinal(i + 1), "fifth" }, correctAnswers: new[] { colors[moduleData[i][2]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, module, formatArgs: new[] { Ordinal(i + 1), "first" }, correctAnswers: new[] { texts[moduleData[i][3]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, module, formatArgs: new[] { Ordinal(i + 1), "third" }, correctAnswers: new[] { texts[moduleData[i][4]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, module, formatArgs: new[] { Ordinal(i + 1), "fourth" }, correctAnswers: new[] { texts[moduleData[i][5]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, module, formatArgs: new[] { Ordinal(i + 1), "fifth" }, correctAnswers: new[] { texts[moduleData[i][6]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonLabel, module, formatArgs: new[] { Ordinal(i + 1), "top" }, correctAnswers: new[] { texts[moduleData[i][7]] }));
+            qs.Add(makeQuestion(Question.BamboozlingButtonLabel, module, formatArgs: new[] { Ordinal(i + 1), "bottom" }, correctAnswers: new[] { texts[moduleData[i][8]] }));
         }
 
         addQuestions(module, qs);
@@ -185,8 +185,8 @@ public partial class SouvenirModule
         qs.Add(makeQuestion(Question.BarcodeCipherScreenNumber, module, correctAnswers: new[] { fldScreenNumber }));
         for (int i = 0; i < 3; i++)
         {
-            qs.Add(makeQuestion(Question.BarcodeCipherBarcodeEdgework, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { barcodes[i] }));
-            qs.Add(makeQuestion(Question.BarcodeCipherBarcodeAnswers, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { answers[i].ToString() }));
+            qs.Add(makeQuestion(Question.BarcodeCipherBarcodeEdgework, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { barcodes[i] }));
+            qs.Add(makeQuestion(Question.BarcodeCipherBarcodeAnswers, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { answers[i].ToString() }));
         }
         addQuestions(module, qs);
     }
@@ -200,7 +200,7 @@ public partial class SouvenirModule
 
         var ingIxs = fldIngredientIxs.Get(expectedLength: 5, validator: ing => ing < 0 || ing > 4 ? "expected 0–4" : null);
         var ingredientNames = new[] { "Powdered Delta", "Flanergide", "Adelhyde", "Bronson Extract", "Karmotrine" };
-        addQuestions(module, ingIxs.Select((ingIx, pos) => makeQuestion(Question.BartendingIngredients, module, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { ingredientNames[ingIx] })));
+        addQuestions(module, ingIxs.Select((ingIx, pos) => makeQuestion(Question.BartendingIngredients, module, formatArgs: new[] { Ordinal(pos + 1) }, correctAnswers: new[] { ingredientNames[ingIx] })));
     }
 
     private IEnumerator<YieldInstruction> ProcessBeans(ModuleData module)
@@ -261,7 +261,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         addQuestions(module, GetField<Array>(comp, "_currentSolution").Get(v => v.Length != 3 ? "expected length 3" : null).Cast<object>()
-            .Select((color, ix) => makeQuestion(Question.BigCircleColors, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { color.ToString() })));
+            .Select((color, ix) => makeQuestion(Question.BigCircleColors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { color.ToString() })));
     }
 
     private IEnumerator<YieldInstruction> ProcessBinary(ModuleData module)
@@ -551,7 +551,7 @@ public partial class SouvenirModule
             )).Concat(
             Enumerable.Range(0, 5).Select(ix => makeQuestion(Question.BobBarksPositions, module,
                 correctAnswers: new[] { validDirections[flashes[ix]] },
-                formatArgs: new[] { ordinal(ix + 1) }))
+                formatArgs: new[] { Ordinal(ix + 1) }))
             ));
     }
 
@@ -661,7 +661,7 @@ public partial class SouvenirModule
             qs.Add(makeQuestion(
                 question: Question.BookOfMarioPictures,
                 data: module,
-                formatArgs: new[] { ordinal(i + 1) },
+                formatArgs: new[] { Ordinal(i + 1) },
                 correctAnswers: new[] { BookOfMarioSprites.First(sprite => sprite.name == name) },
                 preferredWrongAnswers: BookOfMarioSprites));
 
@@ -670,7 +670,7 @@ public partial class SouvenirModule
                 qs.Add(makeQuestion(
                     question: Question.BookOfMarioQuotes,
                     data: module,
-                    formatArgs: new[] { name, ordinal(i + 1) },
+                    formatArgs: new[] { name, Ordinal(i + 1) },
                     correctAnswers: new[] { quote },
                     preferredWrongAnswers: GetUpdatedQuotes(name)));
             }
@@ -688,7 +688,7 @@ public partial class SouvenirModule
         var operators = GetListField<string>(comp, "Entered", isPublic: true).Get(expectedLength: 10);
         var qs = new List<QandA>();
         for (int pos = 0; pos < 5; pos++)
-            qs.Add(makeQuestion(Question.BooleanWiresEnteredOperators, module, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { operators[2 * pos] }));
+            qs.Add(makeQuestion(Question.BooleanWiresEnteredOperators, module, formatArgs: new[] { Ordinal(pos + 1) }, correctAnswers: new[] { operators[2 * pos] }));
         addQuestions(module, qs);
     }
 
@@ -777,7 +777,7 @@ public partial class SouvenirModule
         }
 
         // skip the literally blank buttons.
-        addQuestions(module, pressed.Select((p, i) => p.Length == 0 ? null : makeQuestion(Question.BrokenButtons, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { p }, preferredWrongAnswers: pressed.Except(new[] { "" }).ToArray())));
+        addQuestions(module, pressed.Select((p, i) => p.Length == 0 ? null : makeQuestion(Question.BrokenButtons, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { p }, preferredWrongAnswers: pressed.Except(new[] { "" }).ToArray())));
     }
 
     private IEnumerator<YieldInstruction> ProcessBrokenGuitarChords(ModuleData module)
@@ -856,9 +856,9 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (int pos = 0; pos < 7; pos++)
         {
-            qs.Add(makeQuestion(Question.BurgerAlarmDigits, module, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { displayedNumber[pos].ToString() }));
+            qs.Add(makeQuestion(Question.BurgerAlarmDigits, module, formatArgs: new[] { Ordinal(pos + 1) }, correctAnswers: new[] { displayedNumber[pos].ToString() }));
             if (pos < 5)
-                qs.Add(makeQuestion(Question.BurgerAlarmOrderNumbers, module, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { orders[pos].Replace("no.    ", "") }));
+                qs.Add(makeQuestion(Question.BurgerAlarmOrderNumbers, module, formatArgs: new[] { Ordinal(pos + 1) }, correctAnswers: new[] { orders[pos].Replace("no.    ", "") }));
         }
         addQuestions(module, qs);
     }
@@ -872,7 +872,7 @@ public partial class SouvenirModule
         displayText.text = "";
 
         var moduleNumber = GetArrayField<int>(comp, "moduleNumber").Get(expectedLength: 8, validator: mn => mn < 0 || mn > 9 ? "expected 0–9" : null);
-        addQuestions(module, moduleNumber.Select((mn, ix) => makeQuestion(Question.BurglarAlarmDigits, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { mn.ToString() }, preferredWrongAnswers: moduleNumber.Select(n => n.ToString()).ToArray())));
+        addQuestions(module, moduleNumber.Select((mn, ix) => makeQuestion(Question.BurglarAlarmDigits, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { mn.ToString() }, preferredWrongAnswers: moduleNumber.Select(n => n.ToString()).ToArray())));
     }
 
     private IEnumerator<YieldInstruction> ProcessButton(ModuleData module)

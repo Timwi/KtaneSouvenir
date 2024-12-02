@@ -97,8 +97,8 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (var i = 0; i < 3; i++)
         {
-            qs.Add(makeQuestion(Question.DecolourFlashGoal, module, formatArgs: new[] { "colour", ordinal(i + 1) }, correctAnswers: new[] { names[colours[i]] }));
-            qs.Add(makeQuestion(Question.DecolourFlashGoal, module, formatArgs: new[] { "word", ordinal(i + 1) }, correctAnswers: new[] { names[words[i]] }));
+            qs.Add(makeQuestion(Question.DecolourFlashGoal, module, formatArgs: new[] { "colour", Ordinal(i + 1) }, correctAnswers: new[] { names[colours[i]] }));
+            qs.Add(makeQuestion(Question.DecolourFlashGoal, module, formatArgs: new[] { "word", Ordinal(i + 1) }, correctAnswers: new[] { names[words[i]] }));
         }
         addQuestions(module, qs);
     }
@@ -152,13 +152,13 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (var rotIx = 0; rotIx < 6; rotIx++)
         {
-            qs.Add(makeQuestion(Question.DevilishEggsRotations, module, formatArgs: new[] { "top", ordinal(rotIx + 1) }, correctAnswers: new[] { topRotations[rotIx] }, preferredWrongAnswers: allRotations));
-            qs.Add(makeQuestion(Question.DevilishEggsRotations, module, formatArgs: new[] { "bottom", ordinal(rotIx + 1) }, correctAnswers: new[] { bottomRotations[rotIx] }, preferredWrongAnswers: allRotations));
+            qs.Add(makeQuestion(Question.DevilishEggsRotations, module, formatArgs: new[] { "top", Ordinal(rotIx + 1) }, correctAnswers: new[] { topRotations[rotIx] }, preferredWrongAnswers: allRotations));
+            qs.Add(makeQuestion(Question.DevilishEggsRotations, module, formatArgs: new[] { "bottom", Ordinal(rotIx + 1) }, correctAnswers: new[] { bottomRotations[rotIx] }, preferredWrongAnswers: allRotations));
         }
         for (var ix = 0; ix < 8; ix++)
         {
-            qs.Add(makeQuestion(Question.DevilishEggsNumbers, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { digits[ix] }, preferredWrongAnswers: digits));
-            qs.Add(makeQuestion(Question.DevilishEggsLetters, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { letters[ix] }, preferredWrongAnswers: letters));
+            qs.Add(makeQuestion(Question.DevilishEggsNumbers, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { digits[ix] }, preferredWrongAnswers: digits));
+            qs.Add(makeQuestion(Question.DevilishEggsLetters, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { letters[ix] }, preferredWrongAnswers: letters));
         }
         addQuestions(module, qs);
     }
@@ -173,7 +173,7 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (int i = 0; i < 9; i++)
             qs.Add(makeQuestion(Question.DigisibilityDisplayedNumber, module,
-                formatArgs: new[] { ordinal(i + 1) },
+                formatArgs: new[] { Ordinal(i + 1) },
                 correctAnswers: new[] { displayedNums[i].ToString() },
                 preferredWrongAnswers: displayedNums.Select(x => x.ToString()).ToArray()));
         addQuestions(module, qs);
@@ -246,7 +246,7 @@ public partial class SouvenirModule
         }
 
         addQuestions(module, Enumerable.Range(0, 5).Select(i =>
-            makeQuestion(Question.DirectionalButtonButtonCount, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { buttonPresses[i].ToString() })));
+            makeQuestion(Question.DirectionalButtonButtonCount, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { buttonPresses[i].ToString() })));
     }
 
     private IEnumerator<YieldInstruction> ProcessDivisibleNumbers(ModuleData module)
@@ -260,7 +260,7 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
         for (int i = 0; i < finalNumbers.Length; i++)
-            qs.Add(makeQuestion(Question.DivisibleNumbersNumbers, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { finalNumbersStr[i] }, preferredWrongAnswers: finalNumbersStr));
+            qs.Add(makeQuestion(Question.DivisibleNumbersNumbers, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { finalNumbersStr[i] }, preferredWrongAnswers: finalNumbersStr));
         qs.Add(makeQuestion(Question.DivisibleNumbersAnswers, module, correctAnswers: new[] { string.Join(", ", finalAnswers) }));
         addQuestions(module, qs);
     }
@@ -431,8 +431,8 @@ public partial class SouvenirModule
 
         var colorNames = new string[] { "Red", "Yellow", "Green", "Blue" };
         addQuestions(module, stages.SelectMany((s, i) => new QandA[] {
-                makeQuestion(Question.DoubleScreenColors, module, correctAnswers: new[] { colorNames[s.Top] }, formatArgs: new[] { "top", ordinal(i + 1) }),
-                makeQuestion(Question.DoubleScreenColors, module, correctAnswers: new[] { colorNames[s.Bottom] }, formatArgs: new[] { "bottom", ordinal(i + 1) })
+                makeQuestion(Question.DoubleScreenColors, module, correctAnswers: new[] { colorNames[s.Top] }, formatArgs: new[] { "top", Ordinal(i + 1) }),
+                makeQuestion(Question.DoubleScreenColors, module, correctAnswers: new[] { colorNames[s.Bottom] }, formatArgs: new[] { "bottom", Ordinal(i + 1) })
         }));
     }
 

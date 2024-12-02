@@ -90,8 +90,8 @@ public partial class SouvenirModule
         var allWordsObj = Activator.CreateInstance(allWordsType);
         var allWords = GetArrayField<List<string>>(allWordsObj, "_allWords").Get(expectedLength: 6);
 
-        addQuestions(module, makeQuestion(Question.EnaCipherKeywordAnswer, module, formatArgs: new[] { ordinal(1) }, correctAnswers: new[] { keywords[0] }, preferredWrongAnswers: allWords[keywords[0].Length - 3].ToArray()),
-            makeQuestion(Question.EnaCipherKeywordAnswer, module, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { keywords[1] }, preferredWrongAnswers: allWords[keywords[1].Length - 3].ToArray()),
+        addQuestions(module, makeQuestion(Question.EnaCipherKeywordAnswer, module, formatArgs: new[] { Ordinal(1) }, correctAnswers: new[] { keywords[0] }, preferredWrongAnswers: allWords[keywords[0].Length - 3].ToArray()),
+            makeQuestion(Question.EnaCipherKeywordAnswer, module, formatArgs: new[] { Ordinal(2) }, correctAnswers: new[] { keywords[1] }, preferredWrongAnswers: allWords[keywords[1].Length - 3].ToArray()),
             makeQuestion(Question.EnaCipherExtAnswer, module, correctAnswers: new[] { extNumbers }),
             makeQuestion(Question.EnaCipherEncryptedAnswer, module, correctAnswers: new[] { encryptedWord }));
     }
@@ -124,7 +124,7 @@ public partial class SouvenirModule
             }
             yield return new WaitForSeconds(.1f); // Roll animation is much longer than .1 seconds anyway.
         }
-        addQuestions(module, rolledValues.Select((vals, ix) => makeQuestion(Question.EncryptedDice, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: vals.Select(val => (val).ToString()).ToArray())));
+        addQuestions(module, rolledValues.Select((vals, ix) => makeQuestion(Question.EncryptedDice, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: vals.Select(val => (val).ToString()).ToArray())));
     }
 
     private IEnumerator<YieldInstruction> ProcessEncryptedEquations(ModuleData module)
@@ -138,7 +138,7 @@ public partial class SouvenirModule
             .Select(fldName => GetField<object>(equation, fldName, isPublic: true).Get())
             .Select(op => GetField<object>(op, "Shape", isPublic: true).Get())
             .Select(sh => GetIntField(sh, "TextureIndex", isPublic: true).Get(min: -1, max: EncryptedEquationsSprites.Length - 1))
-            .Select((txIx, opIx) => txIx == -1 ? null : new { Shape = EncryptedEquationsSprites[txIx], Ordinal = ordinal(opIx + 1) })
+            .Select((txIx, opIx) => txIx == -1 ? null : new { Shape = EncryptedEquationsSprites[txIx], Ordinal = Ordinal(opIx + 1) })
             .Where(inf => inf != null)
             .Select(inf => makeQuestion(Question.EncryptedEquationsShapes, module, formatArgs: new[] { inf.Ordinal }, correctAnswers: new[] { inf.Shape }, preferredWrongAnswers: EncryptedEquationsSprites)));
     }
@@ -256,9 +256,9 @@ public partial class SouvenirModule
         var allShown = new string[] { num1, num2, num3 };
 
         addQuestions(module,
-            makeQuestion(Question.EntryNumberFourNumbers, module, correctAnswers: new[] { num1 }, formatArgs: new[] { ordinal(1) }, preferredWrongAnswers: allShown),
-            makeQuestion(Question.EntryNumberFourNumbers, module, correctAnswers: new[] { num2 }, formatArgs: new[] { ordinal(2) }, preferredWrongAnswers: allShown),
-            makeQuestion(Question.EntryNumberFourNumbers, module, correctAnswers: new[] { num3 }, formatArgs: new[] { ordinal(3) }, preferredWrongAnswers: allShown),
+            makeQuestion(Question.EntryNumberFourNumbers, module, correctAnswers: new[] { num1 }, formatArgs: new[] { Ordinal(1) }, preferredWrongAnswers: allShown),
+            makeQuestion(Question.EntryNumberFourNumbers, module, correctAnswers: new[] { num2 }, formatArgs: new[] { Ordinal(2) }, preferredWrongAnswers: allShown),
+            makeQuestion(Question.EntryNumberFourNumbers, module, correctAnswers: new[] { num3 }, formatArgs: new[] { Ordinal(3) }, preferredWrongAnswers: allShown),
             makeQuestion(Question.EntryNumberFourExpected, module, correctAnswers: new[] { expected }),
             makeQuestion(Question.EntryNumberFourCoeff, module, correctAnswers: new[] { coeff }));
     }
@@ -277,9 +277,9 @@ public partial class SouvenirModule
         var allShown = new string[] { num2, num3, num4 };
 
         addQuestions(module,
-            makeQuestion(Question.EntryNumberOneNumbers, module, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { num2 }, preferredWrongAnswers: allShown),
-            makeQuestion(Question.EntryNumberOneNumbers, module, formatArgs: new[] { ordinal(3) }, correctAnswers: new[] { num3 }, preferredWrongAnswers: allShown),
-            makeQuestion(Question.EntryNumberOneNumbers, module, formatArgs: new[] { ordinal(4) }, correctAnswers: new[] { num4 }, preferredWrongAnswers: allShown),
+            makeQuestion(Question.EntryNumberOneNumbers, module, formatArgs: new[] { Ordinal(2) }, correctAnswers: new[] { num2 }, preferredWrongAnswers: allShown),
+            makeQuestion(Question.EntryNumberOneNumbers, module, formatArgs: new[] { Ordinal(3) }, correctAnswers: new[] { num3 }, preferredWrongAnswers: allShown),
+            makeQuestion(Question.EntryNumberOneNumbers, module, formatArgs: new[] { Ordinal(4) }, correctAnswers: new[] { num4 }, preferredWrongAnswers: allShown),
             makeQuestion(Question.EntryNumberOneExpected, module, correctAnswers: new[] { expected }),
             makeQuestion(Question.EntryNumberOneCoeff, module, correctAnswers: new[] { coeff }));
     }
@@ -346,7 +346,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var correct = GetArrayField<byte>(comp, "correct").Get(expectedLength: 4, validator: b => b > 32 || b == 0 ? "expected 1–32" : null);
-        addQuestions(module, correct.Select((answer, ix) => makeQuestion(Question.EtternaNumber, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { answer.ToString() })));
+        addQuestions(module, correct.Select((answer, ix) => makeQuestion(Question.EtternaNumber, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { answer.ToString() })));
     }
 
     private IEnumerator<YieldInstruction> ProcessExoplanets(ModuleData module)

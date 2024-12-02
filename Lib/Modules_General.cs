@@ -812,7 +812,7 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
         for (int pos = 0; pos < 3; pos++)
-            qs.Add(makeQuestion(question, module, formatArgs: new[] { ordinal(pos + 1) }, correctAnswers: new[] { colourNames[posColour[pulsing[pos]]] }));
+            qs.Add(makeQuestion(question, module, formatArgs: new[] { Ordinal(pos + 1) }, correctAnswers: new[] { colourNames[posColour[pulsing[pos]]] }));
         addQuestions(module, qs);
     }
 }

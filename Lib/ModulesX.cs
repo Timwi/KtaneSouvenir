@@ -17,7 +17,7 @@ public partial class SouvenirModule
         var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet" };
         for (int i = 0; i < 10; i++)
             qs.Add(makeQuestion(Question.Xenocryst, module,
-                formatArgs: new[] { ordinal(i + 1) },
+                formatArgs: new[] { Ordinal(i + 1) },
                 correctAnswers: new[] { colorNames[flashes[i]] },
                 preferredWrongAnswers: colorNames));
 
@@ -38,7 +38,7 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
         for (int i = 0; i < 5; i++)
-            qs.Add(makeQuestion(Question.XmORseCodeDisplayedLetters, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { alphabet.Substring(displayLetters[i], 1) }, preferredWrongAnswers: displayLetters.Select(x => alphabet.Substring(x, 1)).ToArray()));
+            qs.Add(makeQuestion(Question.XmORseCodeDisplayedLetters, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { alphabet.Substring(displayLetters[i], 1) }, preferredWrongAnswers: displayLetters.Select(x => alphabet.Substring(x, 1)).ToArray()));
         qs.Add(makeQuestion(Question.XmORseCodeWord, module, correctAnswers: new[] { answerWord }));
         addQuestions(module, qs);
     }

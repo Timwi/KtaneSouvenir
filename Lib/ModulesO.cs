@@ -33,7 +33,7 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         qs.Add(makeQuestion(Question.OctadecayottonSphere, module, correctAnswers: new[] { sphere }, preferredWrongAnswers: Enumerable.Range(0, (int) Math.Pow(2, dimension)).Select(i => Convert.ToString(i, 2).Select(s => s == '0' ? '-' : '+').JoinString().PadLeft(dimension, '-')).ToArray()));
         for (int i = 0; i < rotations.Length; i++)
-            qs.Add(makeQuestion(Question.OctadecayottonRotations, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: rotations[i].Split(',').Select(s => s.Trim()).ToArray(), preferredWrongAnswers: Enumerable.Range(1, 10).Select(n => "XYZWUVRSTOPQ".Substring(0, dimension).ToCharArray().Shuffle().Take(Rnd.Range(1, Math.Min(6, dimension + 1))).Select(c => (Rnd.Range(0, 1f) > 0.5 ? "+" : "-") + c).JoinString()).ToArray()));
+            qs.Add(makeQuestion(Question.OctadecayottonRotations, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: rotations[i].Split(',').Select(s => s.Trim()).ToArray(), preferredWrongAnswers: Enumerable.Range(1, 10).Select(n => "XYZWUVRSTOPQ".Substring(0, dimension).ToCharArray().Shuffle().Take(Rnd.Range(1, Math.Min(6, dimension + 1))).Select(c => (Rnd.Range(0, 1f) > 0.5 ? "+" : "-") + c).JoinString()).ToArray()));
         addQuestions(module, qs);
     }
 
@@ -159,7 +159,7 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
-                qs.Add(makeQuestion(Question.OrangeArrowsSequences, module, formatArgs: new[] { ordinal(j + 1), ordinal(i + 1) }, correctAnswers: new[] { correctMoves[i][j].Substring(0, 1) + correctMoves[i][j].Substring(1).ToLowerInvariant() }));
+                qs.Add(makeQuestion(Question.OrangeArrowsSequences, module, formatArgs: new[] { Ordinal(j + 1), Ordinal(i + 1) }, correctAnswers: new[] { correctMoves[i][j].Substring(0, 1) + correctMoves[i][j].Substring(1).ToLowerInvariant() }));
 
         addQuestions(module, qs);
     }
@@ -197,9 +197,9 @@ public partial class SouvenirModule
         {
             for (var key = 0; key < 6; key++)
             {
-                qs.Add(makeQuestion(Question.OrderedKeysColors, module, OrderedKeysSprites[key], formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { colors[moduleData[stage][key][0]] }));
-                qs.Add(makeQuestion(Question.OrderedKeysLabels, module, OrderedKeysSprites[key], formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { (moduleData[stage][key][3] + 1).ToString() }));
-                qs.Add(makeQuestion(Question.OrderedKeysLabelColors, module, OrderedKeysSprites[key], formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { colors[moduleData[stage][key][1]] }));
+                qs.Add(makeQuestion(Question.OrderedKeysColors, module, OrderedKeysSprites[key], formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { colors[moduleData[stage][key][0]] }));
+                qs.Add(makeQuestion(Question.OrderedKeysLabels, module, OrderedKeysSprites[key], formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { (moduleData[stage][key][3] + 1).ToString() }));
+                qs.Add(makeQuestion(Question.OrderedKeysLabelColors, module, OrderedKeysSprites[key], formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { colors[moduleData[stage][key][1]] }));
             }
         }
 
@@ -240,9 +240,9 @@ public partial class SouvenirModule
 
         for (int order = 0; order < orderCount; order++)
         {
-            qs.Add(makeQuestion(Question.OrderPickingOrder, module, formatArgs: new[] { ordinal(order + 1) }, correctAnswers: new[] { orderList[order].ToString() }));
-            qs.Add(makeQuestion(Question.OrderPickingProduct, module, formatArgs: new[] { ordinal(order + 1) }, correctAnswers: new[] { productList[order].ToString() }));
-            qs.Add(makeQuestion(Question.OrderPickingPallet, module, formatArgs: new[] { ordinal(order + 1) }, correctAnswers: new[] { palletList[order] }));
+            qs.Add(makeQuestion(Question.OrderPickingOrder, module, formatArgs: new[] { Ordinal(order + 1) }, correctAnswers: new[] { orderList[order].ToString() }));
+            qs.Add(makeQuestion(Question.OrderPickingProduct, module, formatArgs: new[] { Ordinal(order + 1) }, correctAnswers: new[] { productList[order].ToString() }));
+            qs.Add(makeQuestion(Question.OrderPickingPallet, module, formatArgs: new[] { Ordinal(order + 1) }, correctAnswers: new[] { palletList[order] }));
         }
 
         addQuestions(module, qs);

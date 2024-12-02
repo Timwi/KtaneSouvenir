@@ -32,7 +32,7 @@ public partial class SouvenirModule
                     throw new AbandonModuleException($"The chosen character ('{digit}') was unexpected (expected a digit 0–9).");
 
                 var labels = new[] { "the screen", "X", "Y", "Z" };
-                qs.Add(makeQuestion(Question.PalindromesNumbers, module, formatArgs: new[] { labels[varIx], ordinal(digitIx + 1) }, correctAnswers: new[] { digit.ToString() }));
+                qs.Add(makeQuestion(Question.PalindromesNumbers, module, formatArgs: new[] { labels[varIx], Ordinal(digitIx + 1) }, correctAnswers: new[] { digit.ToString() }));
             }
         addQuestions(module, qs);
     }
@@ -101,9 +101,9 @@ public partial class SouvenirModule
         var colorNames = new[] { "blue", "green", "orange", "purple", "red", "yellow" };
         var qs = new List<QandA>();
         for (var stage = 0; stage < 3; stage++)
-            qs.Add(makeQuestion(Question.PartialDerivativesLedColors, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { colorNames[leds[stage]] }));
+            qs.Add(makeQuestion(Question.PartialDerivativesLedColors, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { colorNames[leds[stage]] }));
         for (var term = 0; term < 3; term++)
-            qs.Add(makeQuestion(Question.PartialDerivativesTerms, module, formatArgs: new[] { ordinal(term + 1) }, correctAnswers: new[] { terms[term] }, preferredWrongAnswers: wrongAnswers.ToArray()));
+            qs.Add(makeQuestion(Question.PartialDerivativesTerms, module, formatArgs: new[] { Ordinal(term + 1) }, correctAnswers: new[] { terms[term] }, preferredWrongAnswers: wrongAnswers.ToArray()));
         addQuestions(module, qs);
     }
 
@@ -218,7 +218,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var words = GetArrayField<string>(comp, "Words").Get().Take(4).ToArray();
-        addQuestions(module, Enumerable.Range(0, 3).Select(stage => makeQuestion(Question.PeriodicWordsDisplayedWords, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { words[stage] }, preferredWrongAnswers: words)));
+        addQuestions(module, Enumerable.Range(0, 3).Select(stage => makeQuestion(Question.PeriodicWordsDisplayedWords, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { words[stage] }, preferredWrongAnswers: words)));
     }
 
     private IEnumerator<YieldInstruction> ProcessPerspectivePegs(ModuleData module)
@@ -260,7 +260,7 @@ public partial class SouvenirModule
         addQuestions(module, Enumerable.Range(0, 5)
             .Select(i => (pegIndex + i) % 5)
             .Select(n => colorNames.First(cn => colourMeshes[n, n].sharedMaterial.name.Substring(6).StartsWith(cn, StringComparison.InvariantCultureIgnoreCase)))
-            .Select((col, ix) => makeQuestion(Question.PerspectivePegsColorSequence, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { col })));
+            .Select((col, ix) => makeQuestion(Question.PerspectivePegsColorSequence, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { col })));
     }
 
     private IEnumerator<YieldInstruction> ProcessPhosphorescence(ModuleData module)
@@ -278,7 +278,7 @@ public partial class SouvenirModule
         qs.Add(makeQuestion(Question.PhosphorescenceOffset, module, correctAnswers: new[] { index.ToString() }));
 
         for (int i = 0; i < buttonPresses.GetLength(0); i++)
-            qs.Add(makeQuestion(Question.PhosphorescenceButtonPresses, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { buttonPresses.GetValue(i).ToString() }));
+            qs.Add(makeQuestion(Question.PhosphorescenceButtonPresses, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { buttonPresses.GetValue(i).ToString() }));
 
         addQuestions(module, qs);
     }
@@ -292,7 +292,7 @@ public partial class SouvenirModule
         var allSprites = GetArrayField<Sprite>(comp, "SeedPacketIdentifier", isPublic: true).Get(expectedLength: 719).TranslateSprites(166).ToArray();
         var chosen = GetArrayField<int>(comp, "Unique").Get(expectedLength: 3, validator: v => v is < 0 or >= 719 ? "Expected pickup number 0–718" : null);
 
-        addQuestions(module, chosen.Select((sprite, stage) => makeQuestion(Question.PickupIdentificationItem, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { allSprites[sprite] }, allAnswers: allSprites)));
+        addQuestions(module, chosen.Select((sprite, stage) => makeQuestion(Question.PickupIdentificationItem, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { allSprites[sprite] }, allAnswers: allSprites)));
     }
 
     private IEnumerator<YieldInstruction> ProcessPictionary(ModuleData module)
@@ -312,7 +312,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module, digits.Select((digit, ix) => makeQuestion(Question.PieDigits, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { digit }, preferredWrongAnswers: digits)));
+        addQuestions(module, digits.Select((digit, ix) => makeQuestion(Question.PieDigits, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { digit }, preferredWrongAnswers: digits)));
     }
 
     private IEnumerator<YieldInstruction> ProcessPieFlash(ModuleData module)
@@ -369,8 +369,8 @@ public partial class SouvenirModule
 
         addQuestions(module,
             Enumerable.Range(0, 4).SelectMany(ix => Ut.NewArray(
-                 makeQuestion(Question.PinkButtonWords, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { abbreviatedColorNames[words[ix]] }),
-                 makeQuestion(Question.PinkButtonColors, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { colorNames[colors[ix]] }))));
+                 makeQuestion(Question.PinkButtonWords, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { abbreviatedColorNames[words[ix]] }),
+                 makeQuestion(Question.PinkButtonColors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colorNames[colors[ix]] }))));
     }
 
     private IEnumerator<YieldInstruction> ProcessPixelCipher(ModuleData module)
@@ -410,7 +410,7 @@ public partial class SouvenirModule
 
         var stripNames = new[] { "Aqua", "Blue", "Green", "Lime", "Orange", "Red", "Yellow", "White", "Off" };
         addQuestions(module,
-            stripColors.Select((strip, count) => makeQuestion(Question.PlanetsStrips, module, formatArgs: new[] { ordinal(count + 1) }, correctAnswers: new[] { stripNames[strip] }))
+            stripColors.Select((strip, count) => makeQuestion(Question.PlanetsStrips, module, formatArgs: new[] { Ordinal(count + 1) }, correctAnswers: new[] { stripNames[strip] }))
                 .Concat(new[] { makeQuestion(Question.PlanetsPlanet, module, correctAnswers: new[] { PlanetsSprites[planetShown] }, preferredWrongAnswers: (DateTime.Now.Month == 4 && DateTime.Now.Day == 1) ? PlanetsSprites : PlanetsSprites.Take(PlanetsSprites.Length - 2).ToArray()) }));
     }
 
@@ -451,7 +451,7 @@ public partial class SouvenirModule
         if (answers.Count != fldStageCount.Get())
             throw new AbandonModuleException($"The number of answers captured is not equal to the number of stages played ({fldStageCount.Get()}). Answers were: [{answers.JoinString(", ")}]");
 
-        addQuestions(module, answers.Select((ans, st) => makeQuestion(Question.PoetryAnswers, module, formatArgs: new[] { ordinal(st + 1) }, correctAnswers: new[] { ans }, preferredWrongAnswers: answers.ToArray())));
+        addQuestions(module, answers.Select((ans, st) => makeQuestion(Question.PoetryAnswers, module, formatArgs: new[] { Ordinal(st + 1) }, correctAnswers: new[] { ans }, preferredWrongAnswers: answers.ToArray())));
     }
 
     private IEnumerator<YieldInstruction> ProcessPointlessMachines(ModuleData module)
@@ -469,7 +469,7 @@ public partial class SouvenirModule
 
         // All 5 colors always appear (with one duplicate), so no need to add preferredWrongAnswers
         addQuestions(module, flashes.Select((f, i) =>
-            makeQuestion(Question.PointlessMachinesFlashes, module, formatArgs: new[] { ordinal(i + 1) },
+            makeQuestion(Question.PointlessMachinesFlashes, module, formatArgs: new[] { Ordinal(i + 1) },
                 correctAnswers: new[] { f })));
     }
 
@@ -582,7 +582,7 @@ public partial class SouvenirModule
         var preferredWrongAnswers = preferredWrongNumbers.Select(n => n.ToString()).ToArray();
 
         addQuestions(module, Enumerable.Range(0, 6).Select(ix =>
-            makeQuestion(Question.PurpleButtonNumbers, module, formatArgs: new[] { ordinal(ix + 1) }, correctAnswers: new[] { cyclingNumbers[ix].ToString() }, preferredWrongAnswers: preferredWrongAnswers)));
+            makeQuestion(Question.PurpleButtonNumbers, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { cyclingNumbers[ix].ToString() }, preferredWrongAnswers: preferredWrongAnswers)));
     }
 
     private IEnumerator<YieldInstruction> ProcessPuzzleIdentification(ModuleData module)
@@ -602,14 +602,14 @@ public partial class SouvenirModule
         var gameNames = GetField<string[]>(comp, "GameNames").Get();
 
         addQuestions(module,
-            makeQuestion(Question.PuzzleIdentificationNum, module, formatArgs: new[] { ordinal(1) }, correctAnswers: new[] { (puzzlesOneAndTwo[0] + 1).ToString("000") }),
-            makeQuestion(Question.PuzzleIdentificationNum, module, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { (puzzlesOneAndTwo[1] + 1).ToString("000") }),
-            makeQuestion(Question.PuzzleIdentificationNum, module, formatArgs: new[] { ordinal(3) }, correctAnswers: new[] { (puzzleThree + 1).ToString("000") }),
-            makeQuestion(Question.PuzzleIdentificationGame, module, formatArgs: new[] { ordinal(1) }, correctAnswers: new[] { gameNames[puzzlesOneAndTwo[2]] }, preferredWrongAnswers: gameNames),
-            makeQuestion(Question.PuzzleIdentificationGame, module, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { gameNames[puzzlesOneAndTwo[3]] }, preferredWrongAnswers: gameNames),
-            makeQuestion(Question.PuzzleIdentificationGame, module, formatArgs: new[] { ordinal(3) }, correctAnswers: new[] { gameNames[gameThree] }, preferredWrongAnswers: gameNames),
-            makeQuestion(Question.PuzzleIdentificationName, module, formatArgs: new[] { ordinal(1) }, correctAnswers: new[] { names[puzzlesOneAndTwo[2]][puzzlesOneAndTwo[0]] }, preferredWrongAnswers: names[puzzlesOneAndTwo[2]]),
-            makeQuestion(Question.PuzzleIdentificationName, module, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { names[puzzlesOneAndTwo[3]][puzzlesOneAndTwo[1]] }, preferredWrongAnswers: names[puzzlesOneAndTwo[3]]),
-            makeQuestion(Question.PuzzleIdentificationName, module, formatArgs: new[] { ordinal(3) }, correctAnswers: new[] { names[gameThree][puzzleThree] }, preferredWrongAnswers: names[gameThree]));
+            makeQuestion(Question.PuzzleIdentificationNum, module, formatArgs: new[] { Ordinal(1) }, correctAnswers: new[] { (puzzlesOneAndTwo[0] + 1).ToString("000") }),
+            makeQuestion(Question.PuzzleIdentificationNum, module, formatArgs: new[] { Ordinal(2) }, correctAnswers: new[] { (puzzlesOneAndTwo[1] + 1).ToString("000") }),
+            makeQuestion(Question.PuzzleIdentificationNum, module, formatArgs: new[] { Ordinal(3) }, correctAnswers: new[] { (puzzleThree + 1).ToString("000") }),
+            makeQuestion(Question.PuzzleIdentificationGame, module, formatArgs: new[] { Ordinal(1) }, correctAnswers: new[] { gameNames[puzzlesOneAndTwo[2]] }, preferredWrongAnswers: gameNames),
+            makeQuestion(Question.PuzzleIdentificationGame, module, formatArgs: new[] { Ordinal(2) }, correctAnswers: new[] { gameNames[puzzlesOneAndTwo[3]] }, preferredWrongAnswers: gameNames),
+            makeQuestion(Question.PuzzleIdentificationGame, module, formatArgs: new[] { Ordinal(3) }, correctAnswers: new[] { gameNames[gameThree] }, preferredWrongAnswers: gameNames),
+            makeQuestion(Question.PuzzleIdentificationName, module, formatArgs: new[] { Ordinal(1) }, correctAnswers: new[] { names[puzzlesOneAndTwo[2]][puzzlesOneAndTwo[0]] }, preferredWrongAnswers: names[puzzlesOneAndTwo[2]]),
+            makeQuestion(Question.PuzzleIdentificationName, module, formatArgs: new[] { Ordinal(2) }, correctAnswers: new[] { names[puzzlesOneAndTwo[3]][puzzlesOneAndTwo[1]] }, preferredWrongAnswers: names[puzzlesOneAndTwo[3]]),
+            makeQuestion(Question.PuzzleIdentificationName, module, formatArgs: new[] { Ordinal(3) }, correctAnswers: new[] { names[gameThree][puzzleThree] }, preferredWrongAnswers: names[gameThree]));
     }
 }

@@ -63,8 +63,8 @@ public partial class SouvenirModule
         var stages = GetArrayField<int>(comp, "stageValues").Get(expectedLength: 5, validator: v => v is < 0 or > 15 ? $"Bad stage value {v}" : null);
         var shapes = new[] { "Square", "Pentagon", "Hexagon", "Heptagon" };
         addQuestions(module, stages.Take(4).SelectMany((s, i) => new[] {
-            makeQuestion(Question.HexOrbitsShape, module, formatArgs: new[] { "slow", ordinal(i + 1) }, correctAnswers: new[] { shapes[s / 4] }),
-            makeQuestion(Question.HexOrbitsShape, module, formatArgs: new[] { "fast", ordinal(i + 1) }, correctAnswers: new[] { shapes[s % 4] })
+            makeQuestion(Question.HexOrbitsShape, module, formatArgs: new[] { "slow", Ordinal(i + 1) }, correctAnswers: new[] { shapes[s / 4] }),
+            makeQuestion(Question.HexOrbitsShape, module, formatArgs: new[] { "fast", Ordinal(i + 1) }, correctAnswers: new[] { shapes[s % 4] })
         }));
     }
 
@@ -95,7 +95,7 @@ public partial class SouvenirModule
             : makeQuestion(Question.HexOSCipher, module, correctAnswers: new[] { decipher.JoinString(), decipher.Reverse().JoinString() }, preferredWrongAnswers: cipherWrongAnswers));
         qs.Add(makeQuestion(Question.HexOSSum, module, correctAnswers: new[] { sum }, preferredWrongAnswers: wrongAnswers));
         for (var offset = 0; offset < 10; offset++)
-            qs.Add(makeQuestion(Question.HexOSScreen, module, formatArgs: new[] { ordinal(offset + 1) }, correctAnswers: new[] { screen.Substring(offset * 3, 3) }));
+            qs.Add(makeQuestion(Question.HexOSScreen, module, formatArgs: new[] { Ordinal(offset + 1) }, correctAnswers: new[] { screen.Substring(offset * 3, 3) }));
         addQuestions(module, qs);
     }
 
@@ -215,7 +215,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        addQuestions(module, Enumerable.Range(0, isItFiveStages.Get() ? 5 : 3).Select(stage => makeQuestion(Question.HoldUpsShadows, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { shadows[stage] })));
+        addQuestions(module, Enumerable.Range(0, isItFiveStages.Get() ? 5 : 3).Select(stage => makeQuestion(Question.HoldUpsShadows, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { shadows[stage] })));
     }
 
     private IEnumerator<YieldInstruction> ProcessHomophones(ModuleData module)
@@ -237,13 +237,13 @@ public partial class SouvenirModule
         {
             string thisWord = selectedWords[i];
             if (allCWords.Contains(thisWord))
-                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { thisWord }, preferredWrongAnswers: selectedWords.Union(allCWords).ToArray()));
+                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { thisWord }, preferredWrongAnswers: selectedWords.Union(allCWords).ToArray()));
             else if (allLWords.Contains(thisWord))
-                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { thisWord }, preferredWrongAnswers: selectedWords.Union(allLWords).ToArray()));
+                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { thisWord }, preferredWrongAnswers: selectedWords.Union(allLWords).ToArray()));
             else if (allIWords.Contains(thisWord))
-                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { thisWord }, preferredWrongAnswers: selectedWords.Union(allIWords).ToArray()));
+                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { thisWord }, preferredWrongAnswers: selectedWords.Union(allIWords).ToArray()));
             else if (allOneWords.Contains(thisWord))
-                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { thisWord }, preferredWrongAnswers: selectedWords.Union(allOneWords).ToArray()));
+                possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { thisWord }, preferredWrongAnswers: selectedWords.Union(allOneWords).ToArray()));
             else
                 throw new AbandonModuleException($"The given phrase “{thisWord}” is not one of the possible words that can be found in Homophones.");
         }
@@ -338,7 +338,7 @@ public partial class SouvenirModule
 
         var questions = new List<QandA>();
         for (var i = 0; i < 11; i++)
-            questions.Add(makeQuestion(Question.HyperlinkCharacters, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { hyperlink[i].ToString() }));
+            questions.Add(makeQuestion(Question.HyperlinkCharacters, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { hyperlink[i].ToString() }));
         questions.Add(makeQuestion(Question.HyperlinkAnswer, module, correctAnswers: new[] { moduleNames[anchor + 1].Replace("'", "’") }));
 
         addQuestions(module, questions);

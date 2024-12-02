@@ -287,5 +287,54 @@ namespace Souvenir
                     yield return Souvenir.Sprites.GenerateGridSprite(_width, _height, ix, _size);
             }
         }
+
+        /// <summary>
+        /// An answer generator that generates answers based on ordinal.
+        /// <example>
+        /// <code>
+        ///     [AnswerGenerator.Ordinal(3)] //Generate the ordinals for "first", "second", and "third" in the target language
+        ///     [AnswerGenerator.Ordinal(1, 50, 10)] //Generates ordinals that are multiples of 10 between 1 and 50 inclusive in the target language.
+        ///     [AnswerGenerator.Ordinal(2, 5)] //Generates ordinals "second", "third", "fourth", and "fifth" in the target language
+        /// </code>
+        /// </example>
+        /// </summary>
+        public class Ordinal : AnswerGeneratorAttribute
+        {
+            public int Min { get; private set; }
+            public int MaxSteps { get; private set; }
+            public int Step { get; private set; }
+
+            /// <param name="max">The inclusive upper bound for generated ordinal.</param>
+            public Ordinal(int max) : this(1, max, 1) { }
+            /// <param name="min">The inclusive lower bound for generated ordinal.</param>
+            /// <param name="max">The inclusive upper bound for generated ordinal.</param>
+            public Ordinal(int min, int max) : this(min, max, 1) { }
+            /// <param name="min">The inclusive lower bound for generated ordinal.</param>
+            /// <param name="max">The inclusive upper bound for generated ordinal.</param>
+            /// <param name="step">The step size to use for generated ordinal.</param>
+            public Ordinal(int min, int max, int step)
+            {
+                if (step <= 0) throw new ArgumentOutOfRangeException("step", "step must be positive.");
+                if (min <= 0) throw new ArgumentOutOfRangeException("min", "min must be positive");
+                if (max < min) throw new ArgumentOutOfRangeException("max", "max must be greater than min.");
+
+                Min = min;
+                MaxSteps = (max + 1 - min) / step;
+                Step = step;
+            }
+            public override IEnumerable<string> GetAnswers(SouvenirModule module)
+            {
+                if (MaxSteps >= 10)
+                    while (true)
+                        yield return module.Ordinal(Random.Range(0, MaxSteps) * Step + Min);
+
+                // With no more than 6 possible values, the above case may go into an infinite loop trying to generate 5 distinct values.
+                // In this case, we will return all possible values in a random order and then halt.
+                var values = new int[MaxSteps];
+                for (int i = MaxSteps - 1; i >= 0; --i) values[i] = i * Step + Min;
+                values.Shuffle();
+                foreach (var i in values) yield return module.Ordinal(i);
+            }
+        }
     }
 }

@@ -101,7 +101,7 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
         for (var stage = 0; stage < 8; stage++)
-            qs.Add(makeQuestion(Question.NavinumsDirectionalButtons, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { directionNames[answers[stage]] }));
+            qs.Add(makeQuestion(Question.NavinumsDirectionalButtons, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { directionNames[answers[stage]] }));
         qs.Add(makeQuestion(Question.NavinumsMiddleDigit, module, correctAnswers: new[] { centerDigit.ToString() }));
         addQuestions(module, qs);
     }
@@ -137,13 +137,13 @@ public partial class SouvenirModule
         string[] chaptersString = chapters.Select(x => x.ToString()).ToArray();
 
         addQuestions(module,
-            makeQuestion(Question.NecronomiconChapters, module, formatArgs: new[] { ordinal(1) }, correctAnswers: new[] { chaptersString[0] }, preferredWrongAnswers: chaptersString),
-            makeQuestion(Question.NecronomiconChapters, module, formatArgs: new[] { ordinal(2) }, correctAnswers: new[] { chaptersString[1] }, preferredWrongAnswers: chaptersString),
-            makeQuestion(Question.NecronomiconChapters, module, formatArgs: new[] { ordinal(3) }, correctAnswers: new[] { chaptersString[2] }, preferredWrongAnswers: chaptersString),
-            makeQuestion(Question.NecronomiconChapters, module, formatArgs: new[] { ordinal(4) }, correctAnswers: new[] { chaptersString[3] }, preferredWrongAnswers: chaptersString),
-            makeQuestion(Question.NecronomiconChapters, module, formatArgs: new[] { ordinal(5) }, correctAnswers: new[] { chaptersString[4] }, preferredWrongAnswers: chaptersString),
-            makeQuestion(Question.NecronomiconChapters, module, formatArgs: new[] { ordinal(6) }, correctAnswers: new[] { chaptersString[5] }, preferredWrongAnswers: chaptersString),
-            makeQuestion(Question.NecronomiconChapters, module, formatArgs: new[] { ordinal(7) }, correctAnswers: new[] { chaptersString[6] }, preferredWrongAnswers: chaptersString));
+            makeQuestion(Question.NecronomiconChapters, module, formatArgs: new[] { Ordinal(1) }, correctAnswers: new[] { chaptersString[0] }, preferredWrongAnswers: chaptersString),
+            makeQuestion(Question.NecronomiconChapters, module, formatArgs: new[] { Ordinal(2) }, correctAnswers: new[] { chaptersString[1] }, preferredWrongAnswers: chaptersString),
+            makeQuestion(Question.NecronomiconChapters, module, formatArgs: new[] { Ordinal(3) }, correctAnswers: new[] { chaptersString[2] }, preferredWrongAnswers: chaptersString),
+            makeQuestion(Question.NecronomiconChapters, module, formatArgs: new[] { Ordinal(4) }, correctAnswers: new[] { chaptersString[3] }, preferredWrongAnswers: chaptersString),
+            makeQuestion(Question.NecronomiconChapters, module, formatArgs: new[] { Ordinal(5) }, correctAnswers: new[] { chaptersString[4] }, preferredWrongAnswers: chaptersString),
+            makeQuestion(Question.NecronomiconChapters, module, formatArgs: new[] { Ordinal(6) }, correctAnswers: new[] { chaptersString[5] }, preferredWrongAnswers: chaptersString),
+            makeQuestion(Question.NecronomiconChapters, module, formatArgs: new[] { Ordinal(7) }, correctAnswers: new[] { chaptersString[6] }, preferredWrongAnswers: chaptersString));
     }
 
     private IEnumerator<YieldInstruction> ProcessNegativity(ModuleData module)
@@ -242,7 +242,7 @@ public partial class SouvenirModule
 
             var q = Sprite.Create(tex, Rect.MinMaxRect(0f, 0f, 400f, 320f), new Vector2(.5f, .5f), 1280f, 1u, SpriteMeshType.Tight);
             q.name = $"NVSQ{stage}-{module.SolveIndex}";
-            qs.Add(makeSpriteQuestion(q, Question.NonverbalSimonFlashes, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { NonverbalSimonSprites[Array.IndexOf(names, flashes[stage])] }, preferredWrongAnswers: NonverbalSimonSprites));
+            qs.Add(makeSpriteQuestion(q, Question.NonverbalSimonFlashes, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { NonverbalSimonSprites[Array.IndexOf(names, flashes[stage])] }, preferredWrongAnswers: NonverbalSimonSprites));
         }
 
         addQuestions(module, qs);
@@ -320,8 +320,8 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (var stage = 0; stage < colours.Length; stage++)
         {
-            qs.Add(makeQuestion(Question.NotKeypadColor, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { strings[(int) colours.GetValue(stage) - 1] }));
-            qs.Add(makeQuestion(Question.NotKeypadSymbol, module, formatArgs: new[] { ordinal(stage + 1) }, correctAnswers: new[] { KeypadSprites[(int) symbols.GetValue(buttons[stage])] }, preferredWrongAnswers: sprites));
+            qs.Add(makeQuestion(Question.NotKeypadColor, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { strings[(int) colours.GetValue(stage) - 1] }));
+            qs.Add(makeQuestion(Question.NotKeypadSymbol, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { KeypadSprites[(int) symbols.GetValue(buttons[stage])] }, preferredWrongAnswers: sprites));
         }
         addQuestions(module, qs);
     }
@@ -346,7 +346,7 @@ public partial class SouvenirModule
         addQuestions(module, Enumerable.Range(0, 5).Select(stage => makeQuestion(
             question: Question.NotMorseCodeWord,
             data: module,
-            formatArgs: new[] { ordinal(stage + 1) },
+            formatArgs: new[] { Ordinal(stage + 1) },
             correctAnswers: new[] { words[channels[stage]] },
             preferredWrongAnswers: words.Concat(Enumerable.Range(0, 50).Select(_ => columns.PickRandom().PickRandom())).Except(new[] { words[channels[stage]] }).Distinct().Take(8).ToArray())));
     }
@@ -402,8 +402,8 @@ public partial class SouvenirModule
         for (int stage = 0; stage < 3; stage++)
         {
             if (numbers[stage].Length >= 3)
-                qs.Add(makeQuestion(Question.NotNumberPadFlashes, module, formatArgs: new[] { "did not flash", ordinal(stage + 1) }, correctAnswers: numStrs.Except(numbers[stage]).ToArray()));
-            qs.Add(makeQuestion(Question.NotNumberPadFlashes, module, formatArgs: new[] { "flashed", ordinal(stage + 1) }, correctAnswers: numbers[stage]));
+                qs.Add(makeQuestion(Question.NotNumberPadFlashes, module, formatArgs: new[] { "did not flash", Ordinal(stage + 1) }, correctAnswers: numStrs.Except(numbers[stage]).ToArray()));
+            qs.Add(makeQuestion(Question.NotNumberPadFlashes, module, formatArgs: new[] { "flashed", Ordinal(stage + 1) }, correctAnswers: numbers[stage]));
         }
 
         addQuestions(module, qs);
@@ -433,18 +433,18 @@ public partial class SouvenirModule
         var positions = GetArrayField<int>(comp, "_flashPegPosition").Get();
         var qs = new List<QandA>();
         for (int i = 0; i < 5; i++)
-            qs.Add(makeQuestion(Question.NotPerspectivePegsPosition, module, formatArgs: new[] { ordinal(i + 1) },
+            qs.Add(makeQuestion(Question.NotPerspectivePegsPosition, module, formatArgs: new[] { Ordinal(i + 1) },
                 correctAnswers: new[] { posNames[positions[i]] }, preferredWrongAnswers: Enumerable.Range(0, 5).Select(i => posNames[i]).ToArray()));
         // Peg perspective
         var perspectives = GetArrayField<int>(comp, "_flashPegPerspective").Get();
         for (int i = 0; i < 5; i++)
-            qs.Add(makeQuestion(Question.NotPerspectivePegsPerspective, module, formatArgs: new[] { ordinal(i + 1) },
+            qs.Add(makeQuestion(Question.NotPerspectivePegsPerspective, module, formatArgs: new[] { Ordinal(i + 1) },
                 correctAnswers: new[] { posNames[perspectives[i]] }, preferredWrongAnswers: Enumerable.Range(0, 5).Select(i => posNames[i]).ToArray()));
         // Peg color
         var colors = GetArrayField<int>(comp, "_flashPegColor").Get();
         var colorNames = new[] { "blue", "green", "purple", "red", "yellow" };
         for (int i = 0; i < 5; i++)
-            qs.Add(makeQuestion(Question.NotPerspectivePegsColor, module, formatArgs: new[] { ordinal(i + 1) },
+            qs.Add(makeQuestion(Question.NotPerspectivePegsColor, module, formatArgs: new[] { Ordinal(i + 1) },
                 correctAnswers: new[] { colorNames[colors[i]] }, preferredWrongAnswers: Enumerable.Range(0, 5).Select(i => colorNames[i]).ToArray()));
         addQuestions(module, qs);
     }
@@ -599,13 +599,13 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (var i = 0; i < 4; i++)
         {
-            qs.Add(makeQuestion(Question.NotWhosOnFirstPressedPosition, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { positions[fldPositions.Get()[i]] }));
-            qs.Add(makeQuestion(Question.NotWhosOnFirstPressedLabel, module, formatArgs: new[] { ordinal(i + 1) }, correctAnswers: new[] { fldLabels.Get()[i] }));
+            qs.Add(makeQuestion(Question.NotWhosOnFirstPressedPosition, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { positions[fldPositions.Get()[i]] }));
+            qs.Add(makeQuestion(Question.NotWhosOnFirstPressedLabel, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { fldLabels.Get()[i] }));
         }
         for (var i = 4; i < 6; i++)
         {
-            qs.Add(makeQuestion(Question.NotWhosOnFirstReferencePosition, module, formatArgs: new[] { ordinal(i - 1) }, correctAnswers: new[] { positions[fldPositions.Get()[i]] }));
-            qs.Add(makeQuestion(Question.NotWhosOnFirstReferenceLabel, module, formatArgs: new[] { ordinal(i - 1) }, correctAnswers: new[] { fldLabels.Get()[i] }));
+            qs.Add(makeQuestion(Question.NotWhosOnFirstReferencePosition, module, formatArgs: new[] { Ordinal(i - 1) }, correctAnswers: new[] { positions[fldPositions.Get()[i]] }));
+            qs.Add(makeQuestion(Question.NotWhosOnFirstReferenceLabel, module, formatArgs: new[] { Ordinal(i - 1) }, correctAnswers: new[] { fldLabels.Get()[i] }));
         }
         qs.Add(makeQuestion(Question.NotWhosOnFirstSum, module, correctAnswers: sumCorrectAnswers));
         addQuestions(module, qs);
