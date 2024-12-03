@@ -213,6 +213,21 @@
           ExampleFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleFormatArgumentGroupSize = 2)]
         BamboozlingButtonDisplayColor,
 
+        [SouvenirQuestion("What was the category of {0}?", "Bar Charts", OneColumn4Answers, null, ExampleAnswers = new[] { "Non - Percussion Instruments", "European Capital Cities", "Cast of Star Trek: TOS", "Percussion Instruments", "Rennaissance Composers", "20th Century Composers" })]
+        BarChartsCategory,
+        [SouvenirQuestion("What was the color of the {1} bar in {0}?", "Bar Charts", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        BarChartsColor,
+        [SouvenirQuestion("What was the position of the {1} bar in {0}?", "Bar Charts", TwoColumns4Answers,
+            ExampleFormatArguments = new[] { "shortest", "second shortest", "second tallest", "tallest" }, ExampleFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Ordinal(1, 4)]
+        BarChartsHeight,
+        [SouvenirQuestion("What was the label of the {1} bar in {0}?", "Bar Charts", TwoColumns4Answers, null, ExampleAnswers = new[] { "Glockenspiel", "C.Discharge", "Shakespeare", "Sagittarius", "Malted Milk", "Venting Gas" },
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        BarChartsLabel,
+        [SouvenirQuestion("What was the unit of {0}?", "Bar Charts", ThreeColumns6Answers, "Popularity", "Frequency", "Responses", "Occurrences", "Density", "Magnitude")]
+        BarChartsUnit,
+
         [SouvenirQuestion("What was the screen number in {0}?", "Barcode Cipher", OneColumn4Answers)]
         [AnswerGenerator.Integers(0, 999999, "000000")]
         BarcodeCipherScreenNumber,

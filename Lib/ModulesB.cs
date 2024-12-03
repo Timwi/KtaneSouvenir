@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Souvenir;
 using UnityEngine;
+using UnityEngine.UI;
 
 public partial class SouvenirModule
 {
@@ -164,6 +165,53 @@ public partial class SouvenirModule
             qs.Add(makeQuestion(Question.BamboozlingButtonDisplay, module, formatArgs: new[] { Ordinal(i + 1), "fifth" }, correctAnswers: new[] { texts[moduleData[i][6]] }));
             qs.Add(makeQuestion(Question.BamboozlingButtonLabel, module, formatArgs: new[] { Ordinal(i + 1), "top" }, correctAnswers: new[] { texts[moduleData[i][7]] }));
             qs.Add(makeQuestion(Question.BamboozlingButtonLabel, module, formatArgs: new[] { Ordinal(i + 1), "bottom" }, correctAnswers: new[] { texts[moduleData[i][8]] }));
+        }
+
+        addQuestions(module, qs);
+    }
+
+    
+    
+    private IEnumerator<YieldInstruction> ProcessBarCharts(ModuleData module)
+    {
+        var comp = GetComponent(module, "BarChartsScript");
+
+        yield return WaitForSolve;
+
+        var allVariableSets = GetStaticField<object[]>(comp.GetType(), "AllVariableSets").Get().ToArray();
+        var chosenSet = GetField<object>(comp, "ChosenSet").Get();
+        var fldName = GetField<string>(allVariableSets[0], "Name", isPublic: true);
+        var fldVariables = GetArrayField<string>(allVariableSets[0], "Variables", isPublic: true);
+        var barColoursInts = new List<int>(GetField<IList>(comp, "BarColours").Get().Cast<int>());
+        var chosenUnit = GetField<Enum>(comp, "yAxisLabel").Get();
+        var relevantLabels = fldVariables.GetFrom(chosenSet);
+        var heightOrderIndices = GetListField<float>(comp, "HeightOrder").Get(expectedLength: 4).Select(x => Mathf.RoundToInt(x)).ToList();
+        var labels = GetArrayField<Text>(comp, "BarTextRends", true).Get(expectedLength: 4).Select(t => t.text).ToArray();
+        var colours = new[] { "Red", "Yellow", "Green", "Blue" };
+        var heightArr = new[] { "shortest", "second shortest", "second tallest", "tallest" };
+        var allCategories = new List<string>();
+        var allLabels = new List<string>();
+        
+        foreach (var variableSet in allVariableSets)
+        {
+            allCategories.Add(fldName.GetFrom(variableSet));
+            allLabels.AddRange(fldVariables.GetFrom(variableSet));
+        }
+
+        var qs = new List<QandA>
+        {
+            makeQuestion(Question.BarChartsCategory, module, correctAnswers: new[] { fldName.GetFrom(chosenSet) }, allAnswers: allCategories.ToArray()),
+            makeQuestion(Question.BarChartsUnit, module, correctAnswers: new[] { chosenUnit.ToString() })
+        };
+
+        for (int i = 0; i < 4; i++)
+        {
+            var correctHeightPos = heightOrderIndices.IndexOf(i + 1) + 1;
+            qs.AddRange(new[] {
+                makeQuestion(Question.BarChartsLabel, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { labels[i] }, allAnswers: relevantLabels),
+                makeQuestion(Question.BarChartsColor, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { colours[barColoursInts[i]] }),
+                makeQuestion(Question.BarChartsHeight, module, formatArgs: new[] { heightArr[i] }, correctAnswers: new[] { correctHeightPos.ToString() })
+            });
         }
 
         addQuestions(module, qs);

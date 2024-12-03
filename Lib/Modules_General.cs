@@ -49,6 +49,7 @@ public partial class SouvenirModule
             ["bakery"] = (ProcessBakery, "Bakery", "TasThiluna"),
             ["bamboozledAgain"] = (ProcessBamboozledAgain, "Bamboozled Again", "kavinkul"),
             ["bamboozlingButton"] = (ProcessBamboozlingButton, "Bamboozling Button", "TasThiluna"),
+            ["GSBarCharts"] = (ProcessBarCharts, "Bar Charts", "Hawker"),
             ["BarcodeCipherModule"] = (ProcessBarcodeCipher, "Barcode Cipher", "Brawlboxgaming"),
             ["BartendingModule"] = (ProcessBartending, "Bartending", "Timwi"),
             ["beans"] = (ProcessBeans, "Beans", "Anonymous"),
