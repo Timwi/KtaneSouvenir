@@ -683,7 +683,7 @@ public partial class SouvenirModule
         var allWordsObj = Activator.CreateInstance(allWordsType);
         var allWords = GetArrayField<List<string>>(allWordsObj, "_allWords").Get(expectedLength: 5);
 
-        string[] generateWrongAnswers(string correctAnswer, AnswerGeneratorAttribute gen)
+        string[] generateWrongAnswers(string correctAnswer, AnswerGeneratorAttribute<string> gen)
         {
             var set = new HashSet<string> { correctAnswer };
             var iter = 0;

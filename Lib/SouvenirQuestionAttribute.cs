@@ -9,7 +9,6 @@ namespace Souvenir
         public string ModuleName { get; private set; }
         public string[] AllAnswers { get; private set; }
         public AnswerGeneratorAttribute AnswerGenerator { get; internal set; }
-        public SpriteAnswerGeneratorAttribute SpriteAnswerGenerator { get; internal set; }
 
         public string[] ExampleFormatArguments { get; set; }
         public int ExampleFormatArgumentGroupSize { get; set; }

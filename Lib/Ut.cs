@@ -470,10 +470,7 @@ namespace Souvenir
         {
             var attribute = field.GetCustomAttribute<SouvenirQuestionAttribute>();
             if (attribute != null)
-            {
                 attribute.AnswerGenerator = field.GetCustomAttribute<AnswerGeneratorAttribute>();
-                attribute.SpriteAnswerGenerator = field.GetCustomAttribute<SpriteAnswerGeneratorAttribute>();
-            }
             return attribute;
         }
 
