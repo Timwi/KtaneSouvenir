@@ -877,7 +877,7 @@ public partial class SouvenirModule
             GetField<Enum>(comp, "stripColor").Get().ToString()
         };
         var fieldNames = new[] { "Stage1Symbols", "Stage2Symbols", "pickedSymbols" };
-        // Unfortunately, these are stored as IList<char> types instead of just List<char>, so we can't used GetListField.
+        // Unfortunately, these are stored as IList<char> types instead of just List<char>, so we can't use GetListField.
         string[][] displayedSymbolSets = fieldNames.Select(name => GetField<IList<char>>(comp, name).Get(list => list.Count != 4 ? "expected length 4" : null).Select(c => c.ToString()).ToArray()).ToArray();
 
         var qs = new List<QandA>();
