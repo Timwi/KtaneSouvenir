@@ -1,5 +1,6 @@
 ﻿namespace Souvenir
 {
+    using UnityEngine;
     using static AnswerLayout;
 
     public enum Question
@@ -361,8 +362,10 @@
             ExampleFormatArguments = new[] { "Muhammad", "Mike", "Floyd", "Joe", "George", "Manny", "Sugar Ray", "Evander" }, ExampleFormatArgumentGroupSize = 1)]
         BoxingStrengthByContestant,
 
-        [SouvenirQuestion("What was the solution word in {0}?", "Braille", ThreeColumns6Answers, "acting", "dating", "heading", "meaning", "server", "aiming", "dealer", "hearing", "miners", "shaking", "artist", "eating", "heating", "nearer", "sought", "asking", "eighth", "higher", "parish", "staying", "bearing", "farmer", "insist", "parker", "strands", "beating", "farming", "lasted", "parking", "strings", "beings", "faster", "laying", "paying", "teaching", "binding", "father", "leader", "powers", "tended", "bought", "finding", "leading", "pushed", "tender", "boxing", "finest", "leaned", "pushing", "testing", "breach", "finish", "leaning", "rather", "throwing", "breast", "flying", "leaving", "reaching", "towers", "breath", "foster", "linking", "reader", "vested", "breathe", "fought", "listed", "reading", "warned", "bringing", "gaining", "listen", "resting", "warning", "brings", "gather", "living", "riding", "weaker", "carers", "gazing", "making", "rushed", "wealth", "carter", "gender", "marked", "rushing", "winner", "charter", "growing", "marking", "saying", "winning", "crying", "headed", "master", "served", "winter")]
-        BrailleWord,
+        [SouvenirQuestion("What was the {1} formation in {0}?", "Braille", ThreeColumns6Answers, Type = AnswerType.Sprites,
+        ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Circles(2, 3, 20, 20, SuppressEmpty = true, DrawOutline = true)]
+        BrailleFormation,
 
         [SouvenirQuestion("Which color appeared on the egg in {0}?", "Breakfast Egg", TwoColumns4Answers, "Crimson", "Orange", "Pink", "Beige", "Cyan", "Lime", "Petrol", TranslateAnswers = true)]
         BreakfastEggColor,

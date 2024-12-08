@@ -1198,16 +1198,6 @@ namespace Souvenir
                 QuestionText = "{0}で{1}のパンチ力は？",
                 ModuleName = "ボクシング",
             },
-
-            // Braille
-            // What was the solution word in {0}?
-            // What was the solution word in Braille?
-            [Question.BrailleWord] = new()
-            {
-                QuestionText = "{0}の答えの単語は何？",
-                ModuleName = "点字",
-            },
-
             // Breakfast Egg
             // Which color appeared on the egg in {0}?
             // Which color appeared on the egg in Breakfast Egg?

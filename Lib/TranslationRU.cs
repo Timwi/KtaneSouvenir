@@ -1158,16 +1158,6 @@ namespace Souvenir
             {
                 QuestionText = "What was {1}’s strength rating on «{0}»?",
             },
-
-            // Braille
-            // What was the solution word in {0}?
-            // What was the solution word in Braille?
-            [Question.BrailleWord] = new()
-            {
-                QuestionText = "Какое слово являлось решением «{0}»?",
-                ModuleName = "Шрифта Брайля",
-            },
-
             // Breakfast Egg
             // Which color appeared on the egg in {0}?
             // Which color appeared on the egg in Breakfast Egg?
