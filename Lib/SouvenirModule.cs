@@ -313,11 +313,32 @@ public partial class SouvenirModule : MonoBehaviour
                 foreach (var entry in Ut.Attributes)
                 {
                     var (q, attr) = (entry.Key, entry.Value);
-                    if (attr.Type != AnswerType.Sprites && attr.Type != AnswerType.Grid && attr.Type != AnswerType.Audio && (attr.AllAnswers == null || attr.AllAnswers.Length == 0) &&
-                        (attr.ExampleAnswers == null || attr.ExampleAnswers.Length == 0) && attr.AnswerGenerator == null)
-                        Debug.LogError($"<Souvenir #{_moduleId}> Question {q} has no answers. Specify either SouvenirQuestionAttribute.AllAnswers or SouvenirQuestionAttribute.ExampleAnswers (with preferredWrongAnswers in-game), or add an AnswerGeneratorAttribute to the question enum value.");
                     if (attr.TranslateFormatArgs != null && attr.TranslateFormatArgs.Length != attr.ExampleFormatArgumentGroupSize)
                         Debug.LogError($"<Souvenir #{_moduleId}> Question {q}: The length of the ‘{nameof(attr.TranslateFormatArgs)}’ array must match ‘{nameof(attr.ExampleFormatArgumentGroupSize)}’.");
+
+                    if (attr.SpriteField != null && attr.Type != AnswerType.Sprites)
+                        Debug.LogError($"<Souvenir #{_moduleId}> Question {q} (type {attr.Type}) specifies a SpriteField. This should only be used for questions of type Sprites.");
+
+                    if (attr.AllAnswers != null && attr.AnswerGenerator != null)
+                        Debug.LogError($"<Souvenir #{_moduleId}> Question {q} (type {attr.Type}) specifies both AllAnswers and an answer generator. When using an answer generator, please set AllAnswers explicitly to null.");
+
+                    switch (attr.Type)
+                    {
+                        case AnswerType.Sprites:
+                            if (attr.AnswerGenerator != null && attr.AnswerGenerator is not AnswerGeneratorAttribute<Sprite>)
+                                Debug.LogError($"<Souvenir #{_moduleId}> Question {q} (type {attr.Type}) uses an answer generator for something other than sprites. Change the answer type or specify a sprite answer generator specify an answer generator (e.g. [AnswerGenerator.Grid(4, 4)]).");
+                            break;
+
+                        case AnswerType.Audio:
+                            if (attr.AnswerGenerator != null)
+                                Debug.LogError($"<Souvenir #{_moduleId}> Question {q} (type {attr.Type}) uses an answer generator. This is not supported for audio questions.");
+                            break;
+
+                        default:
+                            if ((attr.AllAnswers == null || attr.AllAnswers.Length == 0) && (attr.ExampleAnswers == null || attr.ExampleAnswers.Length == 0) && attr.AnswerGenerator is not AnswerGeneratorAttribute<string>)
+                                Debug.LogError($"<Souvenir #{_moduleId}> Question {q} has no answers. Specify either AllAnswers (if it’s a reasonable-sized, fixed finite set), or ExampleAnswers (if it’s generated at runtime and passed to allAnswers in makeQuestion()), or add an answer generator (e.g. [AnswerGenerator.Integers(0, 9999)]).");
+                            break;
+                    }
                 }
 
                 Debug.LogFormat(this, "<Souvenir #{0}> Entering Unity testing mode.", _moduleId);
@@ -407,11 +428,10 @@ public partial class SouvenirModule : MonoBehaviour
                     answerSet = new QandA.AudioAnswerSet(attr.NumAnswers, attr.Layout, audioClips, this, attr.AudioSizeMultiplier, attr.ForeignAudioID);
                     break;
                 case AnswerType.Sprites:
-                case AnswerType.Grid:
                     var answerSprites = attr.SpriteField == null ? ExampleSprites : (Sprite[]) typeof(SouvenirModule).GetField(attr.SpriteField, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleSprites;
                     answerSprites = answerSprites?.Shuffle().Take(attr.NumAnswers).ToArray();
-                    if (attr.SpriteAnswerGenerator != null)
-                        answerSprites = attr.SpriteAnswerGenerator.GetAnswers(this).OrderBy(_ => Rnd.value).Take(attr.NumAnswers).ToArray();
+                    if (attr.AnswerGenerator is AnswerGeneratorAttribute<Sprite> spriteGen)
+                        answerSprites = spriteGen.GetAnswers(this).Distinct().Take(attr.NumAnswers).ToArray();
                     answerSet = new QandA.SpriteAnswerSet(attr.NumAnswers, attr.Layout, answerSprites);
                     break;
                 default:
@@ -420,8 +440,8 @@ public partial class SouvenirModule : MonoBehaviour
                     else if (attr.ExampleAnswers != null) answers.AddRange(attr.ExampleAnswers);
                     if (answers.Count <= attr.NumAnswers)
                     {
-                        if (attr.AnswerGenerator != null)
-                            answers.AddRange(attr.AnswerGenerator.GetAnswers(this).Except(answers).Distinct().Take(attr.NumAnswers - answers.Count));
+                        if (attr.AnswerGenerator is AnswerGeneratorAttribute<string> strGen)
+                            answers.AddRange(strGen.GetAnswers(this).Except(answers).Distinct().Take(attr.NumAnswers - answers.Count));
                         answers.Shuffle();
                     }
                     else
@@ -1038,7 +1058,7 @@ public partial class SouvenirModule : MonoBehaviour
         }
         return makeQuestion(question, moduleId, solveIx,
             (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation),
-            (attr, num, answers) => new QandA.SpriteAnswerSet(num, attr.Layout, answers.Select(ans => Sprites.GenerateGridSprite(ans, 1)).ToArray()), formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, Enumerable.Range(0, w * h).Select(ix => new Coord(w, h, ix)).ToArray(), AnswerType.Grid);
+            (attr, num, answers) => new QandA.SpriteAnswerSet(num, attr.Layout, answers.Select(ans => Sprites.GenerateGridSprite(ans, 1)).ToArray()), formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, Enumerable.Range(0, w * h).Select(ix => new Coord(w, h, ix)).ToArray(), AnswerType.Sprites);
     }
     private QandA makeQuestion(Question question, string moduleId, int solveIx, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, AudioClip[] correctAnswers = null, AudioClip[] preferredWrongAnswers = null, AudioClip[] allAnswers = null, float questionSpriteRotation = 0)
     {
@@ -1085,24 +1105,24 @@ public partial class SouvenirModule : MonoBehaviour
         }
 
         var answers = new List<T>(attr.NumAnswers);
-        if (allAnswers == null && attr.AnswerGenerator == null && (attr.SpriteAnswerGenerator == null || typeof(T) != typeof(Sprite)))
+        if (allAnswers == null && attr.AnswerGenerator is not AnswerGeneratorAttribute<T>)
         {
             if (preferredWrongAnswers == null || preferredWrongAnswers.Length == 0)
             {
-                Debug.LogError($"<Souvenir #{_moduleId}> Question {question} has no answers. You must specify either the full set of possible answers in SouvenirQuestionAttribute.AllAnswers, provide answers through the preferredWrongAnswers or allAnswers parameters, or add an AnswerGeneratorAttribute to the question enum value.");
+                Debug.LogError($"<Souvenir #{_moduleId}> Question {question} has no answers. You must specify either the full set of possible answers in AllAnswers, provide answers through the preferredWrongAnswers or allAnswers parameters on makeQuestion(), or use an AnswerGenerator.");
                 return null;
             }
             answers.AddRange(preferredWrongAnswers.Except(correctAnswers).Distinct());
         }
-        else if (allAnswers != null || attr.AnswerGenerator != null)
+        else
         {
             // Pick 𝑛−1 random wrong answers.
             if (allAnswers != null)
                 answers.AddRange(allAnswers.Except(correctAnswers));
             if (answers.Count <= attr.NumAnswers - 1)
             {
-                if (attr.AnswerGenerator != null && typeof(T) == typeof(string))
-                    answers.AddRange(attr.AnswerGenerator.GetAnswers(this).Except(answers.Concat(correctAnswers) as IEnumerable<string>).Distinct().Take(attr.NumAnswers - 1 - answers.Count) as IEnumerable<T>);
+                if (attr.AnswerGenerator is AnswerGeneratorAttribute<T> ansGen)
+                    answers.AddRange(ansGen.GetAnswers(this).Except(answers.Concat(correctAnswers)).Distinct().Take(attr.NumAnswers - 1 - answers.Count));
                 if (answers.Count == 0 && (preferredWrongAnswers == null || preferredWrongAnswers.Length == 0))
                 {
                     Debug.LogError($"<Souvenir #{_moduleId}> Question {question}’s answer generator did not generate any answers.");
@@ -1115,18 +1135,6 @@ public partial class SouvenirModule : MonoBehaviour
                 answers.RemoveRange(attr.NumAnswers - 1, answers.Count - (attr.NumAnswers - 1));
             }
             // Add the preferred wrong answers, if any. If we had added them earlier, they’d come up too rarely.
-            if (preferredWrongAnswers != null)
-                answers.AddRange(preferredWrongAnswers.Except(answers.Concat(correctAnswers)).Distinct());
-        }
-        else
-        {
-            if (attr.SpriteAnswerGenerator != null && typeof(T) == typeof(Sprite))
-                answers.AddRange(attr.SpriteAnswerGenerator.GetAnswers(this).Except(answers.Concat(correctAnswers) as IEnumerable<Sprite>).Distinct().Take(attr.NumAnswers - 1 - answers.Count) as IEnumerable<T>);
-            if (answers.Count == 0 && (preferredWrongAnswers == null || preferredWrongAnswers.Length == 0))
-            {
-                Debug.LogError($"<Souvenir #{_moduleId}> Question {question}’s answer generator did not generate any answers.");
-                return null;
-            }
             if (preferredWrongAnswers != null)
                 answers.AddRange(preferredWrongAnswers.Except(answers.Concat(correctAnswers)).Distinct());
         }

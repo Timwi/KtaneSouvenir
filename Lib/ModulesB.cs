@@ -797,7 +797,10 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "BrailleModule");
         yield return WaitForSolve;
-        addQuestion(module, Question.BrailleWord, correctAnswers: new[] { GetField<string>(comp, "_word").Get() });
+        
+        var braillePatterns = GetArrayField<int>(comp, "BraillePatterns").Get();
+        var allAnswers = Enumerable.Range(1, 63).Select(litDots => Sprites.GetCircleAnswer(2, 3, litDots, 20, true, 20)).ToArray();
+        addQuestions(module, braillePatterns.Select((p, ix) => makeQuestion(Question.BrailleFormation, module, formatArgs: new[] { Ordinal(ix+1) },  correctAnswers: new Sprite[] { Sprites.GetCircleAnswer(2, 3, p, 20, true, 20) })));
     }
 
     private IEnumerator<YieldInstruction> ProcessBreakfastEgg(ModuleData module)

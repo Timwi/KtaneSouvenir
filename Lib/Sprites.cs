@@ -9,8 +9,86 @@ namespace Souvenir
 {
     public static class Sprites
     {
+        private static readonly Dictionary<string, Texture2D> _circleSpriteCache = new();
         private static readonly Dictionary<string, Texture2D> _gridSpriteCache = new();
         private static readonly Dictionary<AudioClip, Texture2D> _audioSpriteCache = new();
+
+        private static bool IsPointInCircle(int pixelX, int pixelY, int radius, int gap, int dotX, int dotY)
+        {
+            var centerX = (2 * radius + gap) * dotX + radius;
+            var centerY = (2 * radius + gap) * dotY + radius;
+            return (pixelX - centerX) * (pixelX - centerX) + (pixelY - centerY) * (pixelY - centerY) < radius * radius;
+        }
+
+        private static bool IsPointInAnnulus(int pixelX, int pixelY, int radius, int innerRadius, int gap, int dotX, int dotY)
+        {
+            var centerX = (2 * radius + gap) * dotX + radius;
+            var centerY = (2 * radius + gap) * dotY + radius;
+            var value = (pixelX - centerX) * (pixelX - centerX) + (pixelY - centerY) * (pixelY - centerY);
+            return value < radius * radius && value > innerRadius * innerRadius;
+        }
+
+        /// <summary>
+        /// Generates a sprite consisting of circles arranged in a grid (e.g. Braille, Valves).
+        /// </summary>
+        /// <param name="width">How many circles will appear in each row.</param>
+        /// <param name="height">How many circles will appear in each column.</param>
+        /// <param name="litdots">A bitfield specifying which circles are visible (LSB = top-left, going in reading order).</param>
+        /// <param name="radius">The radius of each circle, in pixels.</param>
+        /// <param name="outline">Specifies whether circles that are not visible should have an outline.</param>
+        /// <param name="gap">The gap between circles, in pixels.</param>
+        public static Sprite GetCircleAnswer(int width, int height, int litdots, int radius, bool outline, int gap, bool vertical = true)
+        {
+            var textureWidth = width * radius * 2 + (width - 1) * gap;
+            var textureHeight = height * radius * 2 + (height - 1) * gap;
+            var key = $"{width}:{height}:{litdots}:{radius}:{outline}:{gap}:{vertical}";
+
+            // If the sprite is not cached, create it
+            if (!_circleSpriteCache.TryGetValue(key, out var tx))
+            {
+                // Create the base of the texture
+                tx = new Texture2D(textureWidth, textureHeight, TextureFormat.ARGB32, false);
+                tx.SetPixels32(Ut.NewArray(textureWidth * textureHeight, pixel =>
+                {
+                    for (var dotX = 0; dotX < width; dotX++)
+                        for (var dotY = 0; dotY < height; dotY++)
+                        {
+
+                            int positionInGrid;
+
+
+                            if (vertical)
+                            {
+                                positionInGrid = dotY + height * dotX;
+                            }
+
+                            else
+                            {
+                                positionInGrid = dotX + width * dotY;
+                            }
+
+                            var bitAtThisPosition = 1 << positionInGrid;
+                            var extractThatBitFromLitdots = litdots & bitAtThisPosition;
+                            var isTheBit1 = extractThatBitFromLitdots != 0;
+
+                            if (isTheBit1 ? IsPointInCircle(pixel % textureWidth, textureHeight - 1 -  (pixel / textureWidth), radius, gap, dotX, dotY) :
+                            outline && IsPointInAnnulus(pixel % textureWidth, textureHeight - 1 - (pixel / textureWidth), radius, radius - 5, gap, dotX, dotY))
+                                return new Color32(0xFF, 0xF8, 0xDD, 0xFF);
+
+                        }
+                            
+                    return new Color32(0x00, 0x00, 0x00, 0x00);
+                }));
+                tx.Apply();
+                tx.wrapMode = TextureWrapMode.Clamp;
+                tx.filterMode = FilterMode.Point;
+                _circleSpriteCache.Add(key, tx);
+            }
+
+            var sprite = Sprite.Create(tx, new Rect(0, 0, textureWidth, textureHeight), new Vector2(0, .5f), textureHeight * (60f / 17));
+            sprite.name = $"Circles {key}";
+            return sprite;
+        }
 
         public static Sprite GenerateGridSprite(Coord coord, float size = 1f)
         {

@@ -1210,15 +1210,6 @@ namespace Souvenir
                 QuestionText = "Was war bei {0} die Kraftstufe von {1}?",
                 ModuleName = "Boxen",
             },
-
-            // Braille
-            // What was the solution word in {0}?
-            // What was the solution word in Braille?
-            [Question.BrailleWord] = new()
-            {
-                QuestionText = "Was war bei {0} das Lösungswort?",
-            },
-
             // Breakfast Egg
             // Which color appeared on the egg in {0}?
             // Which color appeared on the egg in Breakfast Egg?
