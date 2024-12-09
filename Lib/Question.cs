@@ -290,8 +290,8 @@
         [AnswerGenerator.Strings('A', 'Z')]
         BlockbustersLastLetter,
 
-        [SouvenirQuestion("What were the letters on the screen in {0}?", "Blue Arrows", ThreeColumns6Answers, "CA", "C1", "CB", "C8", "CF", "C4", "CE", "C6", "3A", "31", "3B", "38", "3F", "34", "3E", "36", "GA", "G1", "GB", "G8", "GF", "G4", "GE", "G6", "7A", "71", "7B", "78", "7F", "74", "7E", "76", "DA", "D1", "DB", "D8", "DF", "D4", "DE", "D6", "5A", "51", "5B", "58", "5F", "54", "5E", "56", "HA", "H1", "HB", "H8", "HF", "H4", "HE", "H6", "2A", "21", "2B", "28", "2F", "24", "2E", "26")]
-        BlueArrowsInitialLetters,
+        [SouvenirQuestion("What were the characters on the screen in {0}?", "Blue Arrows", ThreeColumns6Answers, "CA", "C1", "CB", "C8", "CF", "C4", "CE", "C6", "3A", "31", "3B", "38", "3F", "34", "3E", "36", "GA", "G1", "GB", "G8", "GF", "G4", "GE", "G6", "7A", "71", "7B", "78", "7F", "74", "7E", "76", "DA", "D1", "DB", "D8", "DF", "D4", "DE", "D6", "5A", "51", "5B", "58", "5F", "54", "5E", "56", "HA", "H1", "HB", "H8", "HF", "H4", "HE", "H6", "2A", "21", "2B", "28", "2F", "24", "2E", "26")]
+        BlueArrowsInitialCharacters,
 
         [SouvenirQuestion("What was D in {0}?", "Blue Button", TwoColumns4Answers, AddThe = true)]
         [AnswerGenerator.Integers(1, 4)]
@@ -471,9 +471,6 @@
 
         [SouvenirQuestion("Which note was part of the given chord in {0}?", "Chord Qualities", ThreeColumns6Answers, "A", "A♯", "B", "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯")]
         ChordQualitiesNotes,
-
-        [SouvenirQuestion("What was the given chord quality in {0}?", "Chord Qualities", ThreeColumns6Answers, "7", "-7", "Δ7", "-Δ7", "7♯9", "ø", "add9", "-add9", "7♯5", "Δ7♯5", "7sus", "-Δ7♯5")]
-        ChordQualitiesQuality,
 
         [SouvenirQuestion("What was the displayed number in {0}?", "Code", ThreeColumns6Answers, null, AddThe = true)]
         [AnswerGenerator.Integers(999, 9999)]

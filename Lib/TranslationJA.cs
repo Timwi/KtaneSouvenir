@@ -984,9 +984,9 @@ namespace Souvenir
             },
 
             // Blue Arrows
-            // What were the letters on the screen in {0}?
-            // What were the letters on the screen in Blue Arrows?
-            [Question.BlueArrowsInitialLetters] = new()
+            // What were the characters on the screen in {0}?
+            // What were the characters on the screen in Blue Arrows?
+            [Question.BlueArrowsInitialCharacters] = new()
             {
                 QuestionText = "{0}でスクリーンに表示された文字は何？",
                 ModuleName = "青色矢印",
@@ -1599,13 +1599,6 @@ namespace Souvenir
             [Question.ChordQualitiesNotes] = new()
             {
                 QuestionText = "{0}で与えられたコードの一部にある音は何？",
-                ModuleName = "コードクオリティー",
-            },
-            // What was the given chord quality in {0}?
-            // What was the given chord quality in Chord Qualities?
-            [Question.ChordQualitiesQuality] = new()
-            {
-                QuestionText = "{0}で与えられたコードクオリティーは何？",
                 ModuleName = "コードクオリティー",
             },
 

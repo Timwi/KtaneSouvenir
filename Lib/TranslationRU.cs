@@ -955,11 +955,11 @@ namespace Souvenir
             },
 
             // Blue Arrows
-            // What were the letters on the screen in {0}?
-            // What were the letters on the screen in Blue Arrows?
-            [Question.BlueArrowsInitialLetters] = new()
+            // What were the characters on the screen in {0}?
+            // What were the characters on the screen in Blue Arrows?
+            [Question.BlueArrowsInitialCharacters] = new()
             {
-                QuestionText = "Какие были буквы на экране в «{0}»?",
+                QuestionText = "Какие символы были на экране в «{0}»?",
                 ModuleName = "Синих стрелках",
             },
 
@@ -1548,13 +1548,6 @@ namespace Souvenir
             [Question.ChordQualitiesNotes] = new()
             {
                 QuestionText = "Какая нота присутствовала в начальном аккорде в «{0}»?",
-                ModuleName = "Аккордных ладах",
-            },
-            // What was the given chord quality in {0}?
-            // What was the given chord quality in Chord Qualities?
-            [Question.ChordQualitiesQuality] = new()
-            {
-                QuestionText = "Какой был исходный лад начального аккорда в «{0}»?",
                 ModuleName = "Аккордных ладах",
             },
 

@@ -259,8 +259,6 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "ChordQualities");
 
         var givenChord = GetField<object>(comp, "givenChord").Get();
-        var quality = GetField<object>(givenChord, "quality").Get();
-        var qualityName = GetField<string>(quality, "name").Get();
         var lights = GetField<Array>(comp, "lights", isPublic: true).Get(v => v.Length != 12 ? "expected length 12" : null);
         var mthSetOutputLight = GetMethod<object>(lights.GetValue(0), "setOutputLight", numParameters: 1, isPublic: true);
         var mthTurnInputLightOff = GetMethod<object>(lights.GetValue(0), "turnInputLightOff", numParameters: 0, isPublic: true);
@@ -275,8 +273,7 @@ public partial class SouvenirModule
 
         var noteNames = GetField<Array>(givenChord, "notes").Get(v => v.Length != 4 ? "expected length 4" : null).Cast<object>().Select(note => note.ToString().Replace("sharp", "♯")).ToArray();
         addQuestions(module,
-            makeQuestion(Question.ChordQualitiesNotes, module, correctAnswers: noteNames),
-            makeQuestion(Question.ChordQualitiesQuality, module, correctAnswers: new[] { qualityName }));
+            makeQuestion(Question.ChordQualitiesNotes, module, correctAnswers: noteNames));
     }
 
     private IEnumerator<YieldInstruction> ProcessCode(ModuleData module)
