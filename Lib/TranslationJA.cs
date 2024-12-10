@@ -3851,11 +3851,11 @@ namespace Souvenir
             },
 
             // Guess Who?
-            // Who was the person recalled in {0}?
-            // Who was the person recalled in Guess Who??
-            [Question.GuessWhoPerson] = new()
+            // How many times did YES flash in {0}?
+            // How many times did YES flash in Guess Who??
+            [Question.GuessWhoNumber] = new()
             {
-                QuestionText = "{0}で呼ばれた人物の名前は？",
+                QuestionText = "{0} で YES が何回点滅しましたか?",
                 ModuleName = "だーれだ？",
             },
 

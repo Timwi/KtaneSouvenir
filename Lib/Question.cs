@@ -1136,8 +1136,9 @@
         [AnswerGenerator.Integers(23, 34)]
         GryphonsAge,
 
-        [SouvenirQuestion("Who was the person recalled in {0}?", "Guess Who?", ThreeColumns6Answers, null, ExampleAnswers = new[] { "Aaron", "Albin", "Andre" })]
-        GuessWhoPerson,
+        [SouvenirQuestion("How many times did YES flash in {0}?", "Guess Who?", ThreeColumns6Answers)]
+        [AnswerGenerator.Integers(0, 8)]
+        GuessWhoNumber,
 
         [SouvenirQuestion("What was the transmitted letter in {0}?", "h", ThreeColumns6Answers)]
         [AnswerGenerator.Strings("A-Z")]

@@ -320,11 +320,11 @@ public partial class SouvenirModule
     private IEnumerator<YieldInstruction> ProcessGuessWho(ModuleData module)
     {
         var comp = GetComponent(module, "GuessWhoScript");
-        var names = GetField<string[]>(comp, "Names", isPublic: true).Get();
+        var bases = GetField<int[]>(comp, "Bases").Get();
 
         yield return WaitForSolve;
 
-        var correctAnswer = names[GetField<int>(comp, "TheCombination").Get()];
-        addQuestion(module, Question.GuessWhoPerson, correctAnswers: new[] { correctAnswer }, preferredWrongAnswers: names);
+        var correctAnswer = bases.Sum().ToString();
+        addQuestion(module, Question.GuessWhoNumber, correctAnswers: new[] { correctAnswer });
     }
 }

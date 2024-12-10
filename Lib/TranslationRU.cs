@@ -3724,11 +3724,11 @@ namespace Souvenir
             },
 
             // Guess Who?
-            // Who was the person recalled in {0}?
-            // Who was the person recalled in Guess Who??
-            [Question.GuessWhoPerson] = new()
+            // How many times did YES flash in {0}?
+            // How many times did YES flash in Guess Who??
+            [Question.GuessWhoNumber] = new()
             {
-                QuestionText = "Какого человека вспомнили в модуле «{0}»?",
+                QuestionText = "Сколько раз мигало ДА в {0}?",
                 ModuleName = "Угадай, кто?",
             },
 
