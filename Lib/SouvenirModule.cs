@@ -740,8 +740,9 @@ public partial class SouvenirModule : MonoBehaviour
             ModuleData data = new() { Module = module };
             module.OnPass += () =>
             {
+                if (data.Unsolved)
+                    data.SolveIndex = _modulesSolved.IncSafe(module.ModuleDisplayName);
                 data.Unsolved = false;
-                data.SolveIndex = _modulesSolved.IncSafe(module.ModuleDisplayName);
                 return false;
             };
 

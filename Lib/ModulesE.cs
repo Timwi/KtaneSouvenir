@@ -38,7 +38,6 @@ public partial class SouvenirModule
         addQuestions(module,
             makeQuestion(Question.EarthboundBackground, module, correctAnswers: new[] { backgroundSprites.ElementAt(backgroundIndex).Value }, allAnswers: backgroundSprites.Values.ToArray()),
             makeQuestion(Question.EarthboundMonster, module, correctAnswers: new[] { enemySprites[enemyIndex] }, allAnswers: enemySprites));
-        yield return null;
     }
 
     private IEnumerator<YieldInstruction> ProcessEeBgnillepS(ModuleData module)
