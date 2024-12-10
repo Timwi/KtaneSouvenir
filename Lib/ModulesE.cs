@@ -18,12 +18,26 @@ public partial class SouvenirModule
             "Mad Car" or "Mr Passion" => 200,
             _ => 250,
         })).ToArray();
-        var backgroundNames = GetArrayField<Material>(comp, "backgroundOptions", isPublic: true).Get(expectedLength: 30).Select(material => material.name).ToArray();
+
+        var backgroundMaterials = GetArrayField<Material>(comp, "backgroundOptions", isPublic: true).Get(expectedLength: 30);
         var backgroundIndex = GetIntField(comp, "usedBackgroundInt").Get(val => val < 0 || val > 29 ? "expected range 0–29" : null);
 
+        //key is the background number, value is the sprite of said background
+        Dictionary<string, Sprite> backgroundSprites = new Dictionary<string, Sprite>();
+
+        //get the smallest width and height to make all answers the same dimensions
+        int width = backgroundMaterials.OrderBy(m => m.mainTexture.width).FirstOrDefault().mainTexture.width;
+        int height = backgroundMaterials.OrderBy(m => m.mainTexture.height).FirstOrDefault().mainTexture.height;
+
+        foreach(var material in backgroundMaterials)
+        {
+            Sprite sprite = Sprite.Create(material.mainTexture as Texture2D, new Rect(0, 0, width, height), new Vector2(0, .5f), 200f);
+            backgroundSprites.Add(material.name, sprite);
+        }
+
         addQuestions(module,
-            makeQuestion(Question.EarthboundMonster, module, correctAnswers: new[] { enemySprites[enemyIndex] }, allAnswers: enemySprites),
-            makeQuestion(Question.EarthboundBackground, module, correctAnswers: new[] { backgroundNames[backgroundIndex] }));
+            makeQuestion(Question.EarthboundBackground, module, correctAnswers: new[] { backgroundSprites.ElementAt(backgroundIndex).Value }, allAnswers: backgroundSprites.Values.ToArray()),
+            makeQuestion(Question.EarthboundMonster, module, correctAnswers: new[] { enemySprites[enemyIndex] }, allAnswers: enemySprites));
         yield return null;
     }
 
