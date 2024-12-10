@@ -1,6 +1,5 @@
 ﻿namespace Souvenir
 {
-    using UnityEngine;
     using static AnswerLayout;
 
     public enum Question
@@ -213,7 +212,7 @@
           ExampleFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleFormatArgumentGroupSize = 2)]
         BamboozlingButtonDisplayColor,
 
-        [SouvenirQuestion("What was the category of {0}?", "Bar Charts", OneColumn4Answers, null, ExampleAnswers = new[] { "Non - Percussion Instruments", "European Capital Cities", "Cast of Star Trek: TOS", "Percussion Instruments", "Rennaissance Composers", "20th Century Composers" })]
+        [SouvenirQuestion("What was the category of {0}?", "Bar Charts", OneColumn4Answers, null, ExampleAnswers = new[] { "Non-Percussion Instruments", "European Capital Cities", "Cast of Star Trek: TOS", "Percussion Instruments", "Zodiac Signs", "20th Century Composers" })]
         BarChartsCategory,
         [SouvenirQuestion("What was the color of the {1} bar in {0}?", "Bar Charts", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
@@ -377,10 +376,9 @@
             ExampleFormatArguments = new[] { "Muhammad", "Mike", "Floyd", "Joe", "George", "Manny", "Sugar Ray", "Evander" }, ExampleFormatArgumentGroupSize = 1)]
         BoxingStrengthByContestant,
 
-        [SouvenirQuestion("What was the {1} formation in {0}?", "Braille", ThreeColumns6Answers, Type = AnswerType.Sprites,
-        ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
-        [AnswerGenerator.Circles(2, 3, 20, 20, SuppressEmpty = true, DrawOutline = true)]
-        BrailleFormation,
+        [SouvenirQuestion("What was the {1} pattern in {0}?", "Braille", ThreeColumns6Answers, Type = AnswerType.Sprites, ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Circles(2, 3, 20, 20, SuppressEmpty = true)]
+        BraillePattern,
 
         [SouvenirQuestion("Which color appeared on the egg in {0}?", "Breakfast Egg", TwoColumns4Answers, "Crimson", "Orange", "Pink", "Beige", "Cyan", "Lime", "Petrol", TranslateAnswers = true)]
         BreakfastEggColor,

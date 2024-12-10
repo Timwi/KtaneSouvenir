@@ -170,28 +170,24 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    
-    
     private IEnumerator<YieldInstruction> ProcessBarCharts(ModuleData module)
     {
         var comp = GetComponent(module, "BarChartsScript");
-
         yield return WaitForSolve;
 
         var allVariableSets = GetStaticField<object[]>(comp.GetType(), "AllVariableSets").Get().ToArray();
         var chosenSet = GetField<object>(comp, "ChosenSet").Get();
         var fldName = GetField<string>(allVariableSets[0], "Name", isPublic: true);
         var fldVariables = GetArrayField<string>(allVariableSets[0], "Variables", isPublic: true);
-        var barColoursInts = new List<int>(GetField<IList>(comp, "BarColours").Get().Cast<int>());
+        var barColours = GetField<IList>(comp, "BarColours").Get();
         var chosenUnit = GetField<Enum>(comp, "yAxisLabel").Get();
         var relevantLabels = fldVariables.GetFrom(chosenSet);
-        var heightOrderIndices = GetListField<float>(comp, "HeightOrder").Get(expectedLength: 4).Select(x => Mathf.RoundToInt(x)).ToList();
+        var heightOrderIndices = GetListField<float>(comp, "HeightOrder").Get(expectedLength: 4).Select(Mathf.RoundToInt).ToList();
         var labels = GetArrayField<Text>(comp, "BarTextRends", true).Get(expectedLength: 4).Select(t => t.text).ToArray();
-        var colours = new[] { "Red", "Yellow", "Green", "Blue" };
         var heightArr = new[] { "shortest", "second shortest", "second tallest", "tallest" };
         var allCategories = new List<string>();
         var allLabels = new List<string>();
-        
+
         foreach (var variableSet in allVariableSets)
         {
             allCategories.Add(fldName.GetFrom(variableSet));
@@ -209,7 +205,7 @@ public partial class SouvenirModule
             var correctHeightPos = heightOrderIndices.IndexOf(i + 1) + 1;
             qs.AddRange(new[] {
                 makeQuestion(Question.BarChartsLabel, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { labels[i] }, allAnswers: relevantLabels),
-                makeQuestion(Question.BarChartsColor, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { colours[barColoursInts[i]] }),
+                makeQuestion(Question.BarChartsColor, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { barColours[i].ToString() }),
                 makeQuestion(Question.BarChartsHeight, module, formatArgs: new[] { heightArr[i] }, correctAnswers: new[] { correctHeightPos.ToString() })
             });
         }
@@ -797,10 +793,9 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "BrailleModule");
         yield return WaitForSolve;
-        
-        var braillePatterns = GetArrayField<int>(comp, "BraillePatterns").Get();
-        var allAnswers = Enumerable.Range(1, 63).Select(litDots => Sprites.GetCircleAnswer(2, 3, litDots, 20, true, 20)).ToArray();
-        addQuestions(module, braillePatterns.Select((p, ix) => makeQuestion(Question.BrailleFormation, module, formatArgs: new[] { Ordinal(ix+1) },  correctAnswers: new Sprite[] { Sprites.GetCircleAnswer(2, 3, p, 20, true, 20) })));
+
+        var braillePatterns = GetArrayField<int>(comp, "BraillePatterns").Get(expectedLength: 4);
+        addQuestions(module, braillePatterns.Select((p, ix) => makeQuestion(Question.BraillePattern, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new Sprite[] { Sprites.GenerateCirclesSprite(2, 3, p, 20, 20, vertical: true) })));
     }
 
     private IEnumerator<YieldInstruction> ProcessBreakfastEgg(ModuleData module)
