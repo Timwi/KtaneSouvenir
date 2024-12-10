@@ -1827,32 +1827,6 @@ namespace Souvenir
             },
 
             // Colors Maximization
-            // What was the submitted score in {0}?
-            // What was the submitted score in Colors Maximization?
-            [Question.ColorsMaximizationSubmittedScore] = new()
-            {
-                QuestionText = "What was the submitted score in {0}?",
-            },
-            // What color {1} submitted as part of the solution in {0}?
-            // What color was submitted as part of the solution in Colors Maximization?
-            [Question.ColorsMaximizationSubmittedColor] = new()
-            {
-                QuestionText = "What color {1} submitted as part of the solution in {0}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["was"] = "was",
-                    ["was not"] = "was not",
-                },
-                Answers = new Dictionary<string, string>
-                {
-                    ["Blue"] = "Blau",
-                    ["Green"] = "Grün",
-                    ["Magenta"] = "Magenta",
-                    ["Red"] = "Rot",
-                    ["White"] = "Weiß",
-                    ["Yellow"] = "Gelb",
-                },
-            },
             // How many buttons were {1} in {0}?
             // How many buttons were red in Colors Maximization?
             [Question.ColorsMaximizationColorCount] = new()
@@ -2501,13 +2475,6 @@ namespace Souvenir
             },
 
             // Divisible Numbers
-            // What were the correct button presses in {0}?
-            // What were the correct button presses in Divisible Numbers?
-            [Question.DivisibleNumbersAnswers] = new()
-            {
-                QuestionText = "Was waren bei {0} die korrekten Eingaben?",
-                ModuleName = "Teilbare Zahlen",
-            },
             // What was the {1} stage’s number in {0}?
             // What was the first stage’s number in Divisible Numbers?
             [Question.DivisibleNumbersNumbers] = new()
@@ -2588,8 +2555,8 @@ namespace Souvenir
             },
 
             // Double Digits
-            // What was the most recent digit on the {1} display in {0}?
-            // What was the most recent digit on the left display in Double Digits?
+            // What was the digit on the {1} display in {0}?
+            // What was the digit on the left display in Double Digits?
             [Question.DoubleDigitsDisplays] = new()
             {
                 QuestionText = "What was the digit on the {1} display in {0}?",

@@ -535,12 +535,6 @@
         [AnswerGenerator.Strings("0-9A-Z")]
         ColorMorseCharacter,
 
-        [SouvenirQuestion("What was the submitted score in {0}?", "Colors Maximization", ThreeColumns6Answers)]
-        [AnswerGenerator.Integers(27, 65)]
-        ColorsMaximizationSubmittedScore,
-        [SouvenirQuestion("What color {1} submitted as part of the solution in {0}?", "Colors Maximization", TwoColumns4Answers, "Blue", "Green", "Magenta", "Red", "White", "Yellow", TranslateAnswers = true,
-            ExampleFormatArguments = new[] { "was", "was not" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
-        ColorsMaximizationSubmittedColor,
         [SouvenirQuestion("How many buttons were {1} in {0}?", "Colors Maximization", ThreeColumns6Answers, ExampleFormatArguments = new[] { "red", "green", "blue" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         [AnswerGenerator.Integers(0, 11)]
         ColorsMaximizationColorCount,
@@ -711,8 +705,6 @@
         [AnswerGenerator.Grid(4, 4)]
         DiscoloredSquaresRememberedPositions,
 
-        [SouvenirQuestion("What were the correct button presses in {0}?", "Divisible Numbers", OneColumn4Answers, "Nay, Nay, Nay", "Nay, Nay, Yea", "Nay, Yea, Nay", "Nay, Yea, Yea", "Yea, Nay, Nay", "Yea, Nay, Yea", "Yea, Yea, Nay", "Yea, Yea, Yea")]
-        DivisibleNumbersAnswers,
         [SouvenirQuestion("What was the {1} stage’s number in {0}?", "Divisible Numbers", ThreeColumns6Answers, null,
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 9999)]
@@ -732,7 +724,7 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         DoubleColorColors,
 
-        [SouvenirQuestion("What was the most recent digit on the {1} display in {0}?", "Double Digits", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+        [SouvenirQuestion("What was the digit on the {1} display in {0}?", "Double Digits", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
             ExampleFormatArguments = new[] { "left", "right" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         DoubleDigitsDisplays,
 

@@ -1856,34 +1856,6 @@ namespace Souvenir
             },
 
             // Colors Maximization
-            // What was the submitted score in {0}?
-            // What was the submitted score in Colors Maximization?
-            [Question.ColorsMaximizationSubmittedScore] = new()
-            {
-                QuestionText = "{0}の送信したスコアは？",
-                ModuleName = "最大色",
-            },
-            // What color {1} submitted as part of the solution in {0}?
-            // What color was submitted as part of the solution in Colors Maximization?
-            [Question.ColorsMaximizationSubmittedColor] = new()
-            {
-                QuestionText = "{0}の回答の一部で{1}色は？",
-                ModuleName = "最大色",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["was"] = "あった",
-                    ["was not"] = "はなかった",
-                },
-                Answers = new Dictionary<string, string>
-                {
-                    ["Blue"] = "青",
-                    ["Green"] = "緑",
-                    ["Magenta"] = "マゼンタ",
-                    ["Red"] = "赤",
-                    ["White"] = "白",
-                    ["Yellow"] = "黄",
-                },
-            },
             // How many buttons were {1} in {0}?
             // How many buttons were red in Colors Maximization?
             [Question.ColorsMaximizationColorCount] = new()
@@ -2564,13 +2536,6 @@ namespace Souvenir
             },
 
             // Divisible Numbers
-            // What were the correct button presses in {0}?
-            // What were the correct button presses in Divisible Numbers?
-            [Question.DivisibleNumbersAnswers] = new()
-            {
-                QuestionText = "{0}で押した正しいボタンはどれ？",
-                ModuleName = "割り切れる数字",
-            },
             // What was the {1} stage’s number in {0}?
             // What was the first stage’s number in Divisible Numbers?
             [Question.DivisibleNumbersNumbers] = new()
@@ -2655,8 +2620,8 @@ namespace Souvenir
             },
 
             // Double Digits
-            // What was the most recent digit on the {1} display in {0}?
-            // What was the most recent digit on the left display in Double Digits?
+            // What was the digit on the {1} display in {0}?
+            // What was the digit on the left display in Double Digits?
             [Question.DoubleDigitsDisplays] = new()
             {
                 QuestionText = "{0}の{1}の画面上の数字は？",

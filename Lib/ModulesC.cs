@@ -549,17 +549,11 @@ public partial class SouvenirModule
             yield break;
         }
 
-        var submittedScore = GetProperty<int>(comp, "submittedScore", true).Get();
-        var submittedColors = GetProperty<HashSet<Color>>(comp, "submittedColors", true).Get();
         var colorNameDic = GetStaticField<Dictionary<Color, string>>(comp.GetType(), "colorNames", true).Get();
         var colorNames = colorNameDic.Values.ToArray();
         var allColors = GetStaticField<Color[]>(comp.GetType(), "allColors").Get();
 
         var questions = new List<QandA>();
-        questions.Add(makeQuestion(Question.ColorsMaximizationSubmittedScore, module, correctAnswers: new[] { submittedScore.ToString() }));
-        questions.Add(makeQuestion(Question.ColorsMaximizationSubmittedColor, module, formatArgs: new[] { "was" }, correctAnswers: submittedColors.Select(c => colorNameDic[c]).ToArray(), preferredWrongAnswers: colorNames));
-        questions.Add(makeQuestion(Question.ColorsMaximizationSubmittedColor, module, formatArgs: new[] { "was not" }, correctAnswers: allColors.Except(submittedColors).Select(c => colorNameDic[c]).ToArray(), preferredWrongAnswers: colorNames));
-
         foreach (var color in allColors)
             questions.Add(makeQuestion(Question.ColorsMaximizationColorCount, module,
                 formatArgs: new[] { colorNameDic[color] },

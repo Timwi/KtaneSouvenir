@@ -254,14 +254,12 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "DivisableNumbers");
         yield return WaitForSolve;
 
-        var finalAnswers = GetArrayField<string>(comp, "finalAnswers").Get(expectedLength: 3, validator: answer => answer != "Yea" && answer != "Nay" ? "expected either “Yea” or “Nea”" : null);
         var finalNumbers = GetArrayField<int>(comp, "finalNumbers").Get(expectedLength: 3, validator: number => number < 0 || number > 9999 ? "expected range 0–9999" : null);
         var finalNumbersStr = finalNumbers.Select(n => n.ToString()).ToArray();
 
         var qs = new List<QandA>();
         for (int i = 0; i < finalNumbers.Length; i++)
             qs.Add(makeQuestion(Question.DivisibleNumbersNumbers, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { finalNumbersStr[i] }, preferredWrongAnswers: finalNumbersStr));
-        qs.Add(makeQuestion(Question.DivisibleNumbersAnswers, module, correctAnswers: new[] { string.Join(", ", finalAnswers) }));
         addQuestions(module, qs);
     }
 

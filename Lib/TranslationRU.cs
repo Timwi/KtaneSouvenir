@@ -1798,36 +1798,6 @@ namespace Souvenir
             },
 
             // Colors Maximization
-            // What was the submitted score in {0}?
-            // What was the submitted score in Colors Maximization?
-            [Question.ColorsMaximizationSubmittedScore] = new()
-            {
-                QuestionText = "Какое количество очков было отправлено в «{0}»?",
-                ModuleName = "Максимизации цветов",
-            },
-            // What color {1} submitted as part of the solution in {0}?
-            // What color was submitted as part of the solution in Colors Maximization?
-            [Question.ColorsMaximizationSubmittedColor] = new()
-            {
-                QuestionText = "Какой цвет {1} отправлен как часть решения в «{0}»?",
-                ModuleName = "Максимизации цветов",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["was"] = "был",
-                    ["was not"] = "не был",
-                },
-                Answers = new Dictionary<string, string>
-                {
-                    ["Blue"] = "Синий",
-                    ["Green"] = "Зелёный",
-                    ["Magenta"] = "Маджента",
-                    ["Red"] = "Красный",
-                    ["White"] = "Белый",
-                    ["Yellow"] = "Жёлтый",
-                },
-            },
-            // How many buttons were {1} in {0}?
-            // How many buttons were red in Colors Maximization?
             [Question.ColorsMaximizationColorCount] = new()
             {
                 QuestionText = "Сколько было {1} кнопок в «{0}»?",
@@ -2497,13 +2467,6 @@ namespace Souvenir
             },
 
             // Divisible Numbers
-            // What were the correct button presses in {0}?
-            // What were the correct button presses in Divisible Numbers?
-            [Question.DivisibleNumbersAnswers] = new()
-            {
-                QuestionText = "Какие были правильные нажатия кнопок в «{0}»?",
-                ModuleName = "Делимых числах",
-            },
             // What was the {1} stage’s number in {0}?
             // What was the first stage’s number in Divisible Numbers?
             [Question.DivisibleNumbersNumbers] = new()
@@ -2585,11 +2548,11 @@ namespace Souvenir
             },
 
             // Double Digits
-            // What was the most recent digit on the {1} display in {0}?
-            // What was the most recent digit on the left display in Double Digits?
+            // What was the digit on the {1} display in {0}?
+            // What was the digit on the left display in Double Digits?
             [Question.DoubleDigitsDisplays] = new()
             {
-                QuestionText = "Какая цифра была последней на {1} дисплее в «{0}»?",
+                QuestionText = "Какая цифра была на дисплее {1} в позиции {0}",
                 ModuleName = "Двойных цифрах",
                 FormatArgs = new Dictionary<string, string>
                 {
