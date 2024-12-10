@@ -2552,7 +2552,7 @@ namespace Souvenir
             // What was the digit on the left display in Double Digits?
             [Question.DoubleDigitsDisplays] = new()
             {
-                QuestionText = "Какая цифра была на дисплее {1} в позиции {0}",
+                QuestionText = "Какая цифра была на {1} дисплее в «{0}»?",
                 ModuleName = "Двойных цифрах",
                 FormatArgs = new Dictionary<string, string>
                 {
@@ -3728,7 +3728,7 @@ namespace Souvenir
             // How many times did YES flash in Guess Who??
             [Question.GuessWhoNumber] = new()
             {
-                QuestionText = "Сколько раз мигало ДА в {0}?",
+                QuestionText = "Сколько раз мигало ДА в модуле «{0}»?",
                 ModuleName = "Угадай, кто?",
             },
 
