@@ -2283,9 +2283,12 @@
         [SouvenirQuestion("Where was the empty cell in {0}?", "Robo-Scanner", ThreeColumns6Answers, "A1", "A2", "A3", "A4", "A5", "B1", "B2", "B3", "B4", "B5", "C1", "C2", "C4", "C5", "D1", "D2", "D3", "D4", "D5", "E1", "E2", "E3", "E4", "E5")]
         RoboScannerEmptyCell,
 
-        [SouvenirQuestion("What was the name of the robot in the {1} position of {0}?", "Robot Programming", TwoColumns4Answers, "R.O.B", "HAL", "R2D2", "Fender",
-            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
-        RobotProgrammingName,
+        [SouvenirQuestion("What was the color of the {1} robot in {0}?", "Robot Programming", TwoColumns4Answers, "Blue", "Green", "Red", "Yellow",
+        ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        RobotProgrammingColor,
+        [SouvenirQuestion("What was the shape of the {1} robot in {0}?", "Robot Programming", TwoColumns4Answers, "Triangle", "Square", "Hexagon", "Circle",
+        ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        RobotProgrammingShape,
 
         [SouvenirQuestion("What four-digit number was given in {0}?", "Roger", ThreeColumns6Answers)]
         [AnswerGenerator.Integers(0, 9999, "0000")]

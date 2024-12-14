@@ -7755,15 +7755,6 @@ namespace Souvenir
                 ModuleName = "Робо-сканере",
             },
 
-            // Robot Programming
-            // What was the name of the robot in the {1} position of {0}?
-            // What was the name of the robot in the first position of Robot Programming?
-            [Question.RobotProgrammingName] = new()
-            {
-                QuestionText = "Какое было имя робота на {1}-й позиции в «{0}»?",
-                ModuleName = "Программировании робота",
-            },
-
             // Roger
             // What four-digit number was given in {0}?
             // What four-digit number was given in Roger?

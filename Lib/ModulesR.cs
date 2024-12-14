@@ -354,21 +354,22 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "robotProgramming");
         yield return WaitForSolve;
 
-        var robotTypes = GetField<Array>(comp, "robotTypes").Get(v => v.Length != 4 ? "expected length 4 array" : null).Cast<object>().Select(tp => tp.ToString() switch
-        {
-            "ROB" => "R.O.B",
-            "HAL" => "HAL",
-            "R2D2" => "R2D2",
-            "Fender" => "Fender",
-            _ => throw new AbandonModuleException("Robot type enum value: expected one of “ROB”, “HAL”, “R2D2” or “Fender”."),
-        }).ToArray();
+        var robotsArr = GetArrayField<object>(comp, "robots").Get(expectedLength: 4);
+        var fldColor = GetField<Enum>(robotsArr[0], "Color", isPublic: true);
+        var fldShape = GetField<Enum>(robotsArr[0], "Shape", isPublic: true);
 
         var qs = new List<QandA>();
+
         for (int i = 0; i < 4; i++)
-            qs.Add(makeQuestion(Question.RobotProgrammingName,
-                data: module,
-                formatArgs: new[] { Ordinal(i + 1) },
-                correctAnswers: new[] { robotTypes[i] }));
+        {
+            var robot = robotsArr[i];
+            var color = fldColor.GetFrom(robot).ToString();
+            var shape = fldShape.GetFrom(robot).ToString();
+
+            qs.Add(makeQuestion(Question.RobotProgrammingColor, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { color }));
+            qs.Add(makeQuestion(Question.RobotProgrammingShape, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { shape }));
+        }
+
         addQuestions(module, qs);
     }
 
