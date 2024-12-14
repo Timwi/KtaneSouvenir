@@ -439,7 +439,7 @@ public partial class SouvenirModule
             ["MusicRhythms"] = (ProcessRhythms, "Rhythms", "Timwi"),
             ["rngCrystal"] = (ProcessRNGCrystal, "RNG Crystal", "Anonymous"),
             ["roboScannerModule"] = (ProcessRoboScanner, "Robo-Scanner", "Quinn Wuest"),
-            ["robotProgramming"] = (ProcessRobotProgramming, "Robot Programming", "Timwi"),
+            ["robotProgramming"] = (ProcessRobotProgramming, "Robot Programming", "Hawker"),
             ["roger"] = (ProcessRoger, "Roger", "BigCrunch22"),
             ["roleReversal"] = (ProcessRoleReversal, "Role Reversal", "Emik"),
             ["theRule"] = (ProcessRule, "Rule, The", "TasThiluna"),

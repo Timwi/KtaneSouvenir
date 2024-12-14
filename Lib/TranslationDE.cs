@@ -7557,14 +7557,6 @@ namespace Souvenir
                 QuestionText = "Where was the empty cell in {0}?",
             },
 
-            // Robot Programming
-            // What was the name of the robot in the {1} position of {0}?
-            // What was the name of the robot in the first position of Robot Programming?
-            [Question.RobotProgrammingName] = new()
-            {
-                QuestionText = "What was the name of the robot in the {1} position of {0}?",
-            },
-
             // Roger
             // What four-digit number was given in {0}?
             // What four-digit number was given in Roger?
