@@ -778,7 +778,7 @@ public partial class SouvenirModule : MonoBehaviour
                     else
                         yield return e.Current;
 
-                    if (TwitchAbandonModule.Contains(module))
+                    if (TwitchAbandonModule.Contains(module) && !_config.IgnoreTpAutosolvers)
                     {
                         Debug.Log($"<Souvenir #{_moduleId}> Abandoning {module.ModuleDisplayName} because Twitch Plays told me to.");
                         _coroutinesActive--;
