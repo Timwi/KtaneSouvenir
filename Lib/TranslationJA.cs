@@ -7533,6 +7533,14 @@ namespace Souvenir
                 },
             },
 
+            // Polygons
+            // Which polygon was present on {0}?
+            // Which polygon was present on Polygons?
+            [Question.PolygonsPolygon] = new()
+            {
+                QuestionText = "Which polygon was present on {0}?",
+            },
+
             // Polyhedral Maze
             // What was the starting position in {0}?
             // What was the starting position in Polyhedral Maze?

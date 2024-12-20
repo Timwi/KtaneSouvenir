@@ -72,16 +72,16 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cosmic          │  Guess Who?     │  Sequencyclopedia, The  │  Topsy Turvy             │
     Deaf Alley      │  Hold Ups       │  Shifting Maze          │  Ultimate Cipher         │
 
-## Implemented by Anonymous (36)
+## Implemented by Anonymous (37)
 
-    ❖                   │  Connection Check  │  Maroon Button, The     │  Red Button’t            │  Unordered Keys
-    1, 2, 3 Game, The   │  Double Arrows     │  Naming Conventions     │  RNG Crystal             │  Updog
-    Bean Sprouts        │  Double Listening  │  Not Password           │  Simon Smiles            │  Variety
-    Beans               │  Double Screen     │  Not Red Arrows         │  Simon Subdivides        │  X-Ring
-    Big Bean            │  Fuse Box, The     │  One Links To All       │  Smash, Marry, Kill      │
-    Boomtar the Great   │  Ghost Movement    │  Pentabutton, The       │  Stable Time Signatures  │
-    Bottom Gear         │  hexOrbits         │  Pickup Identification  │  Subbly Jubbly           │
-    Connected Monitors  │  Labyrinth, The    │  Pointless Machines     │  Time Signatures         │
+    ❖                   │  Connection Check  │  Maroon Button, The     │  Polygons                │  Time Signatures
+    1, 2, 3 Game, The   │  Double Arrows     │  Naming Conventions     │  Red Button’t            │  Unordered Keys
+    Bean Sprouts        │  Double Listening  │  Not Password           │  RNG Crystal             │  Updog
+    Beans               │  Double Screen     │  Not Red Arrows         │  Simon Smiles            │  Variety
+    Big Bean            │  Fuse Box, The     │  One Links To All       │  Simon Subdivides        │  X-Ring
+    Boomtar the Great   │  Ghost Movement    │  Pentabutton, The       │  Smash, Marry, Kill      │
+    Bottom Gear         │  hexOrbits         │  Pickup Identification  │  Stable Time Signatures  │
+    Connected Monitors  │  Labyrinth, The    │  Pointless Machines     │  Subbly Jubbly           │
 
 ## Implemented by Hawker (34)
 
