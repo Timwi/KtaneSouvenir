@@ -698,6 +698,38 @@ namespace Souvenir
                 },
             },
 
+            // Bar Charts
+            // What was the category of {0}?
+            // What was the category of Bar Charts?
+            [Question.BarChartsCategory] = new()
+            {
+                QuestionText = "What was the category of {0}?",
+            },
+            // What was the color of the {1} bar in {0}?
+            // What was the color of the first bar in Bar Charts?
+            [Question.BarChartsColor] = new()
+            {
+                QuestionText = "What was the color of the {1} bar in {0}?",
+            },
+            // What was the position of the {1} bar in {0}?
+            // What was the position of the shortest bar in Bar Charts?
+            [Question.BarChartsHeight] = new()
+            {
+                QuestionText = "What was the position of the {1} bar in {0}?",
+            },
+            // What was the label of the {1} bar in {0}?
+            // What was the label of the first bar in Bar Charts?
+            [Question.BarChartsLabel] = new()
+            {
+                QuestionText = "What was the label of the {1} bar in {0}?",
+            },
+            // What was the unit of {0}?
+            // What was the unit of Bar Charts?
+            [Question.BarChartsUnit] = new()
+            {
+                QuestionText = "What was the unit of {0}?",
+            },
+
             // Barcode Cipher
             // What was the screen number in {0}?
             // What was the screen number in Barcode Cipher?
@@ -1210,6 +1242,15 @@ namespace Souvenir
                 QuestionText = "Was war bei {0} die Kraftstufe von {1}?",
                 ModuleName = "Boxen",
             },
+
+            // Braille
+            // What was the {1} pattern in {0}?
+            // What was the first pattern in Braille?
+            [Question.BraillePattern] = new()
+            {
+                QuestionText = "What was the {1} pattern in {0}?",
+            },
+
             // Breakfast Egg
             // Which color appeared on the egg in {0}?
             // Which color appeared on the egg in Breakfast Egg?
@@ -2676,8 +2717,8 @@ namespace Souvenir
             },
 
             // Earthbound
-            // What was the background number in {0}?
-            // What was the background number in Earthbound?
+            // What was the background in {0}?
+            // What was the background in Earthbound?
             [Question.EarthboundBackground] = new()
             {
                 QuestionText = "What was the background number in {0}?",
@@ -7557,6 +7598,20 @@ namespace Souvenir
                 QuestionText = "Where was the empty cell in {0}?",
             },
 
+            // Robot Programming
+            // What was the color of the {1} robot in {0}?
+            // What was the color of the first robot in Robot Programming?
+            [Question.RobotProgrammingColor] = new()
+            {
+                QuestionText = "What was the color of the {1} robot in {0}?",
+            },
+            // What was the shape of the {1} robot in {0}?
+            // What was the shape of the first robot in Robot Programming?
+            [Question.RobotProgrammingShape] = new()
+            {
+                QuestionText = "What was the shape of the {1} robot in {0}?",
+            },
+
             // Roger
             // What four-digit number was given in {0}?
             // What four-digit number was given in Roger?
@@ -9044,6 +9099,20 @@ namespace Souvenir
                     ["was"] = "was",
                     ["was not"] = "was not",
                 },
+            },
+
+            // Suits And Colours
+            // What was the colour of this cell in {0}?
+            // What was the colour of this cell in Suits And Colours?
+            [Question.SuitsAndColourColour] = new()
+            {
+                QuestionText = "What was the colour of this cell in {0}?",
+            },
+            // What was the suit of this cell in {0}?
+            // What was the suit of this cell in Suits And Colours?
+            [Question.SuitsAndColourSuit] = new()
+            {
+                QuestionText = "What was the suit of this cell in {0}?",
             },
 
             // Superparsing

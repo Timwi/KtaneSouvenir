@@ -167,8 +167,6 @@ namespace SouvenirPostBuildTool
                         sb.AppendLine($@"                QuestionText = ""{((string) (ti?.QuestionText) ?? qText).CLiteralEscape()}"",");
                         if (ti?.ModuleName != null)
                             sb.AppendLine($@"                ModuleName = ""{((string) ti.ModuleName).CLiteralEscape()}"",");
-                        if (ti?.ModuleNameWithThe != null)
-                            sb.AppendLine($@"                ModuleNameWithThe = ""{((string) ti.ModuleNameWithThe).CLiteralEscape()}"",");
 
                         var trFAs = (bool[]) attr.TranslateFormatArgs;
                         var formatArgs = attr.ExampleFormatArguments == null || attr.ExampleFormatArguments.Length == 0 || trFAs == null || trFAs.Length == 0 ? null :
