@@ -2121,9 +2121,7 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         PointlessMachinesFlashes,
 
-        [SouvenirQuestion("Which polygon was present on {0}?", "Polygons", ThreeColumns6Answers, Type = AnswerType.Sprites
-            //, SpriteField = "PolygonsSprites"
-            )]
+        [SouvenirQuestion("Which polygon was present on {0}?", "Polygons", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "PolygonsSprites")]
         PolygonsPolygon,
 
         [SouvenirQuestion("What was the starting position in {0}?", "Polyhedral Maze", ThreeColumns6Answers)]
