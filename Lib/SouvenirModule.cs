@@ -49,6 +49,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] OrderedKeysSprites;
     public Sprite[] PatternCubeSprites;
     public Sprite[] PlanetsSprites;
+    public Sprite[] PolygonsSprites;
     public Sprite[] QuestionMarkSprites;
     public Sprite[] QwirkleSprites;
     public Sprite[] SimonShapesSprites;

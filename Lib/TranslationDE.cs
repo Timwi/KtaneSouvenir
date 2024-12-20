@@ -446,7 +446,6 @@ namespace Souvenir
                 Gender = Gender.Feminine,
                 QuestionText = "Was war bei {0} in der Angriffsphase der maximale Waffenschaden?",
                 ModuleName = "Arena",
-                ModuleNameWithThe = "Die Arena",
             },
             // Which enemy was present in the defend phase of {0}?
             // Which enemy was present in the defend phase of The Arena?
@@ -455,7 +454,6 @@ namespace Souvenir
                 Gender = Gender.Feminine,
                 QuestionText = "Welcher Gegner war bei {0} in der Verteidigungsphase anwesend?",
                 ModuleName = "Arena",
-                ModuleNameWithThe = "Die Arena",
             },
             // Which was a number present in the grab phase of {0}?
             // Which was a number present in the grab phase of The Arena?
@@ -464,7 +462,6 @@ namespace Souvenir
                 Gender = Gender.Feminine,
                 QuestionText = "Welche Zahl war bei {0} in der Sammelphase dabei?",
                 ModuleName = "Arena",
-                ModuleNameWithThe = "Die Arena",
             },
 
             // Arithmelogic
@@ -521,7 +518,6 @@ namespace Souvenir
             {
                 QuestionText = "Was war T bei {0}?",
                 ModuleName = "Azurfarbenen Knopf",
-                ModuleNameWithThe = "Der Azurfarbene Knopf",
             },
             // Which of these cards was shown in Stage 1, but not T, in {0}?
             // Which of these cards was shown in Stage 1, but not T, in The Azure Button?
@@ -529,7 +525,6 @@ namespace Souvenir
             {
                 QuestionText = "Welche Karte war bei {0} in Schritt 1 zu sehen, aber nicht T?",
                 ModuleName = "Azurfarbenen Knopf",
-                ModuleNameWithThe = "Der Azurfarbene Knopf",
             },
             // What was M in {0}?
             // What was M in The Azure Button?
@@ -537,7 +532,6 @@ namespace Souvenir
             {
                 QuestionText = "Was war M bei {0}?",
                 ModuleName = "Azurfarbenen Knopf",
-                ModuleNameWithThe = "Der Azurfarbene Knopf",
             },
             // What was the {1} direction in the decoy arrow in {0}?
             // What was the first direction in the decoy arrow in The Azure Button?
@@ -545,7 +539,6 @@ namespace Souvenir
             {
                 QuestionText = "Was war bei {0} die {1}e Richtung im ungenutzten Pfeil?",
                 ModuleName = "Azurfarbenen Knopf",
-                ModuleNameWithThe = "Der Azurfarbene Knopf",
             },
             // What was the {1} direction in the {2} non-decoy arrow in {0}?
             // What was the first direction in the first non-decoy arrow in The Azure Button?
@@ -553,7 +546,6 @@ namespace Souvenir
             {
                 QuestionText = "Was war bei {0} die {1}e Richtung im {2}en genutzten Pfeil?",
                 ModuleName = "Azurfarbenen Knopf",
-                ModuleNameWithThe = "Der Azurfarbene Knopf",
             },
 
             // Bakery
@@ -1043,7 +1035,6 @@ namespace Souvenir
             {
                 QuestionText = "Was war D bei {0}?",
                 ModuleName = "Blauen Knopf",
-                ModuleNameWithThe = "Der Blaue Knopf",
             },
             // What was {1} in {0}?
             // What was E in The Blue Button?
@@ -1051,7 +1042,6 @@ namespace Souvenir
             {
                 QuestionText = "Was war {1} bei {0}?",
                 ModuleName = "Blauen Knopf",
-                ModuleNameWithThe = "Der Blaue Knopf",
             },
             // What was M in {0}?
             // What was M in The Blue Button?
@@ -1059,7 +1049,6 @@ namespace Souvenir
             {
                 QuestionText = "Was war M bei {0}?",
                 ModuleName = "Blauen Knopf",
-                ModuleNameWithThe = "Der Blaue Knopf",
             },
             // What was N in {0}?
             // What was N in The Blue Button?
@@ -1067,7 +1056,6 @@ namespace Souvenir
             {
                 QuestionText = "Was war N bei {0}?",
                 ModuleName = "Blauen Knopf",
-                ModuleNameWithThe = "Der Blaue Knopf",
             },
             // What was P in {0}?
             // What was P in The Blue Button?
@@ -1075,7 +1063,6 @@ namespace Souvenir
             {
                 QuestionText = "Was war P bei {0}?",
                 ModuleName = "Blauen Knopf",
-                ModuleNameWithThe = "Der Blaue Knopf",
             },
             // What was Q in {0}?
             // What was Q in The Blue Button?
@@ -1083,7 +1070,6 @@ namespace Souvenir
             {
                 QuestionText = "Was war Q bei {0}?",
                 ModuleName = "Blauen Knopf",
-                ModuleNameWithThe = "Der Blaue Knopf",
                 Answers = new Dictionary<string, string>
                 {
                     ["Blue"] = "Blau",
@@ -1100,7 +1086,6 @@ namespace Souvenir
             {
                 QuestionText = "Was war X bei {0}?",
                 ModuleName = "Blauen Knopf",
-                ModuleNameWithThe = "Der Blaue Knopf",
             },
 
             // Blue Cipher
@@ -7134,6 +7119,14 @@ namespace Souvenir
                     ["Blue"] = "Blau",
                     ["Yellow"] = "Gelb",
                 },
+            },
+
+            // Polygons
+            // Which polygon was present on {0}?
+            // Which polygon was present on Polygons?
+            [Question.PolygonsPolygon] = new()
+            {
+                QuestionText = "Which polygon was present on {0}?",
             },
 
             // Polyhedral Maze

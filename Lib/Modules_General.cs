@@ -406,6 +406,7 @@ public partial class SouvenirModule
             ["playfairCycle"] = (ProcessPlayfairCycle, "Playfair Cycle", "TasThiluna"),
             ["poetry"] = (ProcessPoetry, "Poetry", "Timwi"),
             ["PointlessMachines"] = (ProcessPointlessMachines, "Pointless Machines", "Anonymous"),
+            ["polygons"] = (ProcessPolygons, "Polygons", "Anonymous"),
             ["PolyhedralMazeModule"] = (ProcessPolyhedralMaze, "Polyhedral Maze", "Timwi"),
             ["primeEncryption"] = (ProcessPrimeEncryption, "Prime Encryption", "VFlyer"),
             ["Probing"] = (ProcessProbing, "Probing", "Timwi"),
