@@ -4946,6 +4946,20 @@ namespace Souvenir
                 ModuleName = "Морских флагах",
             },
 
+            // Maritime Semaphore
+            // In which position was the dummy in {0}?
+            // In which position was the dummy in Maritime Semaphore?
+            [Question.MaritimeSemaphoreDummy] = new()
+            {
+                QuestionText = "In which position was the dummy in {0}?",
+            },
+            // Which letter was shown by the {2} in the {1} position in {0}?
+            // Which letter was shown by the left flag in the first position in Maritime Semaphore?
+            [Question.MaritimeSemaphoreLetter] = new()
+            {
+                QuestionText = "Which letter was shown by the {2} for the {1} position in {0}?",
+            },
+
             // The Maroon Button
             // What was A in {0}?
             // What was A in The Maroon Button?

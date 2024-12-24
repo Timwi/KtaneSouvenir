@@ -292,6 +292,7 @@ public partial class SouvenirModule
             ["MandMs"] = (ProcessMandMs, "M&Ms", "TasThiluna"),
             ["MandNs"] = (ProcessMandNs, "M&Ns", "TasThiluna"),
             ["MaritimeFlagsModule"] = (ProcessMaritimeFlags, "Maritime Flags", "Timwi"),
+            ["MaritimeSemaphoreModule"] = (ProcessMaritimeSemaphore, "Maritime Semaphore", "Anonymous"),
             ["MaroonButtonModule"] = (ProcessMaroonButton, "Maroon Button, The", "Anonymous"),
             ["maroonCipher"] = (ProcessMaroonCipher, "Maroon Cipher", "Timwi"),
             ["mashematics"] = (ProcessMashematics, "Mashematics", "Marksam"),
