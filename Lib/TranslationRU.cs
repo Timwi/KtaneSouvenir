@@ -1,3 +1,4 @@
+
 using System.Collections.Generic;
 
 namespace Souvenir
@@ -365,15 +366,6 @@ namespace Souvenir
             [Question.AlgorithmiaColor] = new()
             {
                 QuestionText = "Какого цвета была лампочка в {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Red"] = "Красный",
-                    ["Green"] = "Зелёный",
-                    ["Blue"] = "Синий",
-                    ["Cyan"] = "Голубой",
-                    ["Yellow"] = "Жёлтый",
-                    ["Magenta"] = "Пурпурный",
-                },
             },
             // Which number was present in the seed in {0}?
             // Which number was present in the seed in Algorithmia?
@@ -496,40 +488,12 @@ namespace Souvenir
             [Question.ASquareIndexColors] = new()
             {
                 QuestionText = "Какой из этих цветов был индексным в {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Orange"] = "Оранжевый",
-                    ["Pink"] = "Розовый",
-                    ["Cyan"] = "Голубой",
-                    ["Yellow"] = "Жёлтый",
-                    ["Lavender"] = "Лавандовый",
-                    ["Brown"] = "Коричневый",
-                    ["Tan"] = "Бежевый",
-                    ["Blue"] = "Синий",
-                    ["Jade"] = "Нефритовый",
-                    ["Indigo"] = "Индиго",
-                    ["White"] = "Белый",
-                },
             },
             // Which color was submitted {1} in {0}?
             // Which color was submitted first in A Square?
             [Question.ASquareCorrectColors] = new()
             {
                 QuestionText = "Какой цвет был отправлен {1}-м в {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Orange"] = "Оранжевый",
-                    ["Pink"] = "Розовый",
-                    ["Cyan"] = "Голубой",
-                    ["Yellow"] = "Жёлтый",
-                    ["Lavender"] = "Лавандовый",
-                    ["Brown"] = "Коричневый",
-                    ["Tan"] = "Бежевый",
-                    ["Blue"] = "Синий",
-                    ["Jade"] = "Нефритовый",
-                    ["Indigo"] = "Индиго",
-                    ["White"] = "Белый",
-                },
             },
 
             // The Azure Button
@@ -555,35 +519,13 @@ namespace Souvenir
             // What was the first direction in the decoy arrow in The Azure Button?
             [Question.AzureButtonDecoyArrowDirection] = new()
             {
-                QuestionText = "Какое было {1}-е направление у стрелки-ловуки в {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["north"] = "север",
-                    ["north-east"] = "северо-восток",
-                    ["east"] = "восток",
-                    ["south-east"] = "юго-восток",
-                    ["south"] = "юг",
-                    ["south-west"] = "юго-запад",
-                    ["west"] = "запда",
-                    ["north-west"] = "северо-запад",
-                },
+                QuestionText = "Какое было {1}-е направление у стрелки-ловушки в {0}?",
             },
             // What was the {1} direction in the {2} non-decoy arrow in {0}?
             // What was the first direction in the first non-decoy arrow in The Azure Button?
             [Question.AzureButtonNonDecoyArrowDirection] = new()
             {
                 QuestionText = "Какое было {1}-е направление у {2}-й стрелки (не ловушки) в {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["north"] = "север",
-                    ["north-east"] = "северо-восток",
-                    ["east"] = "восток",
-                    ["south-east"] = "юго-восток",
-                    ["south"] = "юг",
-                    ["south-west"] = "юго-запад",
-                    ["west"] = "запда",
-                    ["north-west"] = "северо-запад",
-                },
             },
 
             // Bakery
@@ -1162,14 +1104,6 @@ namespace Souvenir
             {
                 Conjugation = Conjugation.Genitive,
                 QuestionText = "Какой оператор был ответом на {1}-м этапе {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["OR"] = "ИЛИ",
-                    ["XOR"] = "ИСК.ИЛИ",
-                    ["AND"] = "И",
-                    ["NAND"] = "НЕ И",
-                    ["NOR"] = "НЕ ИЛИ",
-                },
             },
 
             // Boomtar the Great
@@ -1402,16 +1336,6 @@ namespace Souvenir
             [Question.CaesarPsychoScreenColor] = new()
             {
                 QuestionText = "Какого цвета был текст на верхнем экране на втором этапе в {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["white"] = "white",
-                    ["red"] = "red",
-                    ["magenta"] = "magenta",
-                    ["yellow"] = "yellow",
-                    ["green"] = "green",
-                    ["cyan"] = "cyan",
-                    ["violet"] = "violet",
-                },
             },
 
             // Calendar
@@ -2745,11 +2669,11 @@ namespace Souvenir
             },
 
             // Earthbound
-            // What was the background number in {0}?
-            // What was the background number in Earthbound?
+            // What was the background in {0}?
+            // What was the background in Earthbound?
             [Question.EarthboundBackground] = new()
             {
-                QuestionText = "Какое было значение у фона на {0}?",
+                QuestionText = "Какой был фон на {0}?",
             },
             // Which monster was displayed in {0}?
             // Which monster was displayed in Earthbound?
@@ -3573,13 +3497,6 @@ namespace Souvenir
             [Question.GameOfLifeCruelColors] = new()
             {
                 QuestionText = "Какие комбинации цветов присутствовали в {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Red/Orange"] = "Красный/Оранжевый",
-                    ["Orange/Yellow"] = "Оранжевый/Жёлтый",
-                    ["Yellow/Green"] = "Жёлтый/Зелёный",
-                    ["Green/Blue"] = "Зелёный/Синий",
-                },
             },
 
             // The Gamepad
@@ -3767,6 +3684,14 @@ namespace Souvenir
             [Question.GryphonsAge] = new()
             {
                 QuestionText = "Сколько лет было грифону в {0}?",
+            },
+
+            // Guess Who?
+            // How many times did YES flash in {0}?
+            // How many times did YES flash in Guess Who??
+            [Question.GuessWhoNumber] = new()
+            {
+                QuestionText = "Сколько раз горело YES на {0}?",
             },
 
             // h
@@ -4077,17 +4002,6 @@ namespace Souvenir
             [Question.IdentificationCrisisShape] = new()
             {
                 QuestionText = "Какая была {1}-я фигура в {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Circle"] = "Круг",
-                    ["Square"] = "Квадрат",
-                    ["Diamond"] = "Ромб",
-                    ["Heart"] = "Сердце",
-                    ["Star"] = "Звезда",
-                    ["Triangle"] = "Треугольник",
-                    ["Pentagon"] = "Пятиугольник",
-                    ["Hexagon"] = "Шестиугольник",
-                },
             },
             // What was the {1} identification module used in {0}?
             // What was the first identification module used in Identification Crisis?
@@ -4713,15 +4627,6 @@ namespace Souvenir
             [Question.LogicalButtonsOperator] = new()
             {
                 QuestionText = "Какой был конечный оператор на {1}-м этапе в {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["AND"] = "И",
-                    ["OR"] = "ИЛИ",
-                    ["XOR"] = "ИСК.ИЛИ",
-                    ["NAND"] = "НЕ И",
-                    ["NOR"] = "НЕ ИЛИ",
-                    ["XNOR"] = "НЕ ИСК.ИЛИ",
-                },
             },
 
             // Logic Gates
@@ -4740,15 +4645,6 @@ namespace Souvenir
                     ["gate F"] = "гейт F",
                     ["gate G"] = "гейт G",
                     ["the duplicated gate"] = "дублированный гейт",
-                },
-                Answers = new Dictionary<string, string>
-                {
-                    ["AND"] = "И",
-                    ["OR"] = "ИЛИ",
-                    ["XOR"] = "ИСК.ИЛИ",
-                    ["NAND"] = "НЕ И",
-                    ["NOR"] = "НЕ ИЛИ",
-                    ["XNOR"] = "НЕ ИСК.ИЛИ",
                 },
             },
 
@@ -6675,15 +6571,6 @@ namespace Souvenir
             [Question.OddOneOutButton] = new()
             {
                 QuestionText = "Какую кнопку вы нажали на {1}-м этапе в {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["top-left"] = "сверху слева",
-                    ["top-middle"] = "сверху посередине",
-                    ["top-right"] = "сверху справа",
-                    ["bottom-left"] = "снизу слева",
-                    ["bottom-middle"] = "снизу посередине",
-                    ["bottom-right"] = "снизу справа",
-                },
             },
 
             // Old AI
@@ -7583,13 +7470,6 @@ namespace Souvenir
             [Question.RedHerringFirstFlash] = new()
             {
                 QuestionText = "Какой был первый мигающий цвет в {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Green"] = "Зелёный",
-                    ["Blue"] = "Синий",
-                    ["Purple"] = "Фиолетовый",
-                    ["Orange"] = "Оранжевый",
-                },
             },
 
             // Reformed Role Reversal
@@ -8432,25 +8312,6 @@ namespace Souvenir
             [Question.SimonSimonsFlashingColors] = new()
             {
                 QuestionText = "Какая была {1}-я вспышка в полной последовательности {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["TR"] = "верх красный",
-                    ["TY"] = "верх жёлтый",
-                    ["TG"] = "верх зелёный",
-                    ["TB"] = "верх синий",
-                    ["LR"] = "лево красный",
-                    ["LY"] = "лево жёлтый",
-                    ["LG"] = "лево зелёный",
-                    ["LB"] = "лево синий",
-                    ["RR"] = "право красный",
-                    ["RY"] = "право жёлтый",
-                    ["RG"] = "право зелёный",
-                    ["RB"] = "право синий",
-                    ["BR"] = "низ красный",
-                    ["BY"] = "низ жёлтый",
-                    ["BG"] = "низ зелёный",
-                    ["BB"] = "низ синий",
-                },
             },
 
             // Simon Sings
@@ -9957,30 +9818,12 @@ namespace Souvenir
             [Question.UnorderedKeysKeyColor] = new()
             {
                 QuestionText = "Какого цвета была эта клавиша на {1}-м этапе {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Red"] = "Красный",
-                    ["Green"] = "Зелёный",
-                    ["Blue"] = "Синий",
-                    ["Cyan"] = "Голубой",
-                    ["Magenta"] = "Пурпурный",
-                    ["Yellow"] = "Жёлтый",
-                },
             },
             // What color was the label of this key in the {1} stage of {0}?
             // What color was the label of this key in the first stage of Unordered Keys?
             [Question.UnorderedKeysLabelColor] = new()
             {
                 QuestionText = "Какого цвета была надпись на этой клавише на {1}-м этапе в {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Red"] = "Красный",
-                    ["Green"] = "Зелёный",
-                    ["Blue"] = "Синий",
-                    ["Cyan"] = "Голубой",
-                    ["Magenta"] = "Пурпурный",
-                    ["Yellow"] = "Жёлтый",
-                },
             },
             // What was the label of this key in the {1} stage of {0}?
             // What was the label of this key in the first stage of Unordered Keys?
