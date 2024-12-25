@@ -678,6 +678,39 @@ namespace Souvenir
                 },
             },
 
+            // Bar Charts
+            // What was the category of {0}?
+            // What was the category of Bar Charts?
+            [Question.BarChartsCategory] = new()
+            {
+                Conjugation = Conjugation.Genitive,
+                QuestionText = "Какая была категория у {0}?",
+            },
+            // What was the color of the {1} bar in {0}?
+            // What was the color of the first bar in Bar Charts?
+            [Question.BarChartsColor] = new()
+            {
+                QuestionText = "Какой был цвет у {1}-го столбца в {0}?",
+            },
+            // What was the position of the {1} bar in {0}?
+            // What was the position of the shortest bar in Bar Charts?
+            [Question.BarChartsHeight] = new()
+            {
+                QuestionText = "Где находился {1} столбец в {0}?",
+            },
+            // What was the label of the {1} bar in {0}?
+            // What was the label of the first bar in Bar Charts?
+            [Question.BarChartsLabel] = new()
+            {
+                QuestionText = "Какая надпись была у {1}-го столбца в {0}?",
+            },
+            // What was the unit of {0}?
+            // What was the unit of Bar Charts?
+            [Question.BarChartsUnit] = new()
+            {
+                QuestionText = "Какая была единица измерения в {0}?",
+            },        
+
             // Barcode Cipher
             // What was the screen number in {0}?
             // What was the screen number in Barcode Cipher?
@@ -971,6 +1004,14 @@ namespace Souvenir
                 QuestionText = "Какая буква была нажата последней в {0}?",
             },
 
+            // Blue Arrows
+            // What were the characters on the screen in {0}?
+            // What were the characters on the screen in Blue Arrows?
+            [Question.BlueArrowsInitialCharacters] = new()
+            {
+                QuestionText = "Какие символы были на экране в {0}?",
+            },
+
             // The Blue Button
             // What was D in {0}?
             // What was D in The Blue Button?
@@ -1159,6 +1200,14 @@ namespace Souvenir
             [Question.BoxingStrengthByContestant] = new()
             {
                 QuestionText = "Какая была оценка силы у {1} в {0}?",
+            },
+
+            // Braille
+            // What was the {1} pattern in {0}?
+            // What was the first pattern in Braille?
+            [Question.BraillePattern] = new()
+            {
+                QuestionText = "Какой был {1}-й узор на {0}?",
             },
 
             // Breakfast Egg
@@ -7163,6 +7212,14 @@ namespace Souvenir
                 },
             },
 
+            // Polygons
+            // Which polygon was present on {0}?
+            // Which polygon was present on Polygons?
+            [Question.PolygonsPolygon] = new()
+            {
+                QuestionText = "Какие полигоны присутствовали на {0}?",
+            },
+
             // Polyhedral Maze
             // What was the starting position in {0}?
             // What was the starting position in Polyhedral Maze?
@@ -9158,6 +9215,20 @@ namespace Souvenir
                     ["was"] = "присутствовал",
                     ["was not"] = "отсутствовал",
                 },
+            },
+
+            // Suits And Colours
+            // What was the colour of this cell in {0}?
+            // What was the colour of this cell in Suits And Colours?
+            [Question.SuitsAndColourColour] = new()
+            {
+                QuestionText = "Какой был цвет этой клетки в {0}?",
+            },
+            // What was the suit of this cell in {0}?
+            // What was the suit of this cell in Suits And Colours?
+            [Question.SuitsAndColourSuit] = new()
+            {
+                QuestionText = "Какая была масть этой клетки в {0}?",
             },
 
             // Superparsing
