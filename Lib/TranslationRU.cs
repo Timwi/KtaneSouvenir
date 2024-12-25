@@ -21,11 +21,11 @@ namespace Souvenir
         public override string FormatModuleName(Question question, bool addSolveCount, int numSolved) =>
             addSolveCount ? (_translations.Get(question)?.Conjugation ?? Conjugation.NeutMasc) switch
             {
-                Conjugation.NeutMasc => $"{ordinal(numSolved)}-м решёном {_translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe}",
-                Conjugation.Feminine => $"{ordinal(numSolved)}-й решёной {_translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe}",
-                Conjugation.Plural => $"{ordinal(numSolved)}-х решёных {_translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe}",
-                Conjugation.Genitive => $"{ordinal(numSolved)}-го решёного {_translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe}",
-                _ /* Masculine fallback */ => $"{ordinal(numSolved)}-м решёном {_translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe}",
+                Conjugation.NeutMasc => $"{Ordinal(numSolved)}-м решёном {_translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe}",
+                Conjugation.Feminine => $"{Ordinal(numSolved)}-й решёной {_translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe}",
+                Conjugation.Plural => $"{Ordinal(numSolved)}-х решёных {_translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe}",
+                Conjugation.Genitive => $"{Ordinal(numSolved)}-го решёного {_translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe}",
+                _ /* Masculine fallback */ => $"{Ordinal(numSolved)}-м решёном {_translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe}",
             } 
             : _translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe;
 
@@ -7694,14 +7694,6 @@ namespace Souvenir
             [Question.RoboScannerEmptyCell] = new()
             {
                 QuestionText = "Где была пустая ячейка в {0}?",
-            },
-
-            // Robot Programming
-            // What was the name of the robot in the {1} position of {0}?
-            // What was the name of the robot in the first position of Robot Programming?
-            [Question.RobotProgrammingName] = new()
-            {
-                QuestionText = "Какое было имя робота на {1}-й позиции в {0}?",
             },
 
             // Roger
