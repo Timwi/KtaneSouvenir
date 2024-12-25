@@ -350,15 +350,6 @@ namespace Souvenir
             [Question.AlgorithmiaColor] = new()
             {
                 QuestionText = "{0}の色付き電球の色は？",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Cyan"] = "Cyan",
-                    ["Yellow"] = "Yellow",
-                    ["Magenta"] = "Magenta",
-                },
             },
             // Which number was present in the seed in {0}?
             // Which number was present in the seed in Algorithmia?
@@ -443,23 +434,6 @@ namespace Souvenir
             [Question.ArenaEnemies] = new()
             {
                 QuestionText = "{0}の防御フェーズで現れた敵は？",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Bat"] = "Bat",
-                    ["Snake"] = "Snake",
-                    ["Spider"] = "Spider",
-                    ["Cobra"] = "Cobra",
-                    ["Mole"] = "Mole",
-                    ["Creeper"] = "Creeper",
-                    ["Goblin"] = "Goblin",
-                    ["Golem"] = "Golem",
-                    ["Robo-Mouse"] = "Robo-Mouse",
-                    ["Skeleton"] = "Skeleton",
-                    ["Undead Guard"] = "Undead Guard",
-                    ["The Repaer"] = "The Reaper",
-                    ["The Mole's Dad"] = "The Mole's Dad",
-                    ["Scorpion"] = "Scorpion",
-                },
             },
             // Which was a number present in the grab phase of {0}?
             // Which was a number present in the grab phase of The Arena?
@@ -506,20 +480,6 @@ namespace Souvenir
             {
                 QuestionText = "{0}で一致した色に含まれるのは？",
                 ModuleName = "正方型",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Orange"] = "Orange",
-                    ["Pink"] = "Pink",
-                    ["Cyan"] = "Cyan",
-                    ["Yellow"] = "Yellow",
-                    ["Lavender"] = "Lavender",
-                    ["Brown"] = "Brown",
-                    ["Tan"] = "Tan",
-                    ["Blue"] = "Blue",
-                    ["Jade"] = "Jade",
-                    ["Indigo"] = "Indigo",
-                    ["White"] = "White",
-                },
             },
             // Which color was submitted {1} in {0}?
             // Which color was submitted first in A Square?
@@ -527,20 +487,6 @@ namespace Souvenir
             {
                 QuestionText = "{0}で{1}番目に送信した色は？",
                 ModuleName = "正方型",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Orange"] = "Orange",
-                    ["Pink"] = "Pink",
-                    ["Cyan"] = "Cyan",
-                    ["Yellow"] = "Yellow",
-                    ["Lavender"] = "Lavender",
-                    ["Brown"] = "Brown",
-                    ["Tan"] = "Tan",
-                    ["Blue"] = "Blue",
-                    ["Jade"] = "Jade",
-                    ["Indigo"] = "Indigo",
-                    ["White"] = "White",
-                },
             },
 
             // The Azure Button
@@ -571,17 +517,6 @@ namespace Souvenir
             {
                 QuestionText = "{0}の囮の矢印が{1}番目に示した方向は？",
                 ModuleName = "空色ボタン",
-                Answers = new Dictionary<string, string>
-                {
-                    ["north"] = "north",
-                    ["north-east"] = "north-east",
-                    ["east"] = "east",
-                    ["south-east"] = "south-east",
-                    ["south"] = "south",
-                    ["south-west"] = "south-west",
-                    ["west"] = "west",
-                    ["north-west"] = "north-west",
-                },
             },
             // What was the {1} direction in the {2} non-decoy arrow in {0}?
             // What was the first direction in the first non-decoy arrow in The Azure Button?
@@ -589,17 +524,6 @@ namespace Souvenir
             {
                 QuestionText = "{0}の囮ではない{2}番目の矢印が{1}番目に示した方向は？",
                 ModuleName = "空色ボタン",
-                Answers = new Dictionary<string, string>
-                {
-                    ["north"] = "north",
-                    ["north-east"] = "north-east",
-                    ["east"] = "east",
-                    ["south-east"] = "south-east",
-                    ["south"] = "south",
-                    ["south-west"] = "south-west",
-                    ["west"] = "west",
-                    ["north-west"] = "north-west",
-                },
             },
 
             // Bakery
@@ -1246,14 +1170,6 @@ namespace Souvenir
             {
                 QuestionText = "{0}のステージ{1}で送信した演算子は？",
                 ModuleName = "論理ワイヤ",
-                Answers = new Dictionary<string, string>
-                {
-                    ["OR"] = "OR",
-                    ["XOR"] = "XOR",
-                    ["AND"] = "AND",
-                    ["NAND"] = "NAND",
-                    ["NOR"] = "NOR",
-                },
             },
 
             // Boomtar the Great
@@ -1500,16 +1416,6 @@ namespace Souvenir
             [Question.CaesarPsychoScreenColor] = new()
             {
                 QuestionText = "{0}のステージ2における上のディスプレーに表示された単語の色は？",
-                Answers = new Dictionary<string, string>
-                {
-                    ["white"] = "white",
-                    ["red"] = "red",
-                    ["magenta"] = "magenta",
-                    ["yellow"] = "yellow",
-                    ["green"] = "green",
-                    ["cyan"] = "cyan",
-                    ["violet"] = "violet",
-                },
             },
 
             // Calendar
@@ -3773,13 +3679,6 @@ namespace Souvenir
             {
                 QuestionText = "{0}に出現した色の組み合わせに含まれるのは？",
                 ModuleName = "残忍ライフゲーム",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Red/Orange"] = "Red/Orange",
-                    ["Orange/Yellow"] = "Orange/Yellow",
-                    ["Yellow/Green"] = "Yellow/Green",
-                    ["Green/Blue"] = "Green/Blue",
-                },
             },
 
             // The Gamepad
@@ -4317,17 +4216,6 @@ namespace Souvenir
             {
                 QuestionText = "{0}で使用された{1}番目の図形は？",
                 ModuleName = "識別危機",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Circle"] = "Circle",
-                    ["Square"] = "Square",
-                    ["Diamond"] = "Diamond",
-                    ["Heart"] = "Heart",
-                    ["Star"] = "Star",
-                    ["Triangle"] = "Triangle",
-                    ["Pentagon"] = "Pentagon",
-                    ["Hexagon"] = "Hexagon",
-                },
             },
             // What was the {1} identification module used in {0}?
             // What was the first identification module used in Identification Crisis?
@@ -4986,15 +4874,6 @@ namespace Souvenir
             {
                 QuestionText = "{0}のステージ{1}で最終的に使用した演算子は？",
                 ModuleName = "論理ボタン",
-                Answers = new Dictionary<string, string>
-                {
-                    ["AND"] = "AND",
-                    ["OR"] = "OR",
-                    ["XOR"] = "XOR",
-                    ["NAND"] = "NAND",
-                    ["NOR"] = "NOR",
-                    ["XNOR"] = "XNOR",
-                },
             },
 
             // Logic Gates
@@ -5014,15 +4893,6 @@ namespace Souvenir
                     ["gate F"] = "ゲートF",
                     ["gate G"] = "ゲートG",
                     ["the duplicated gate"] = "重複したゲート",
-                },
-                Answers = new Dictionary<string, string>
-                {
-                    ["AND"] = "AND",
-                    ["OR"] = "OR",
-                    ["XOR"] = "XOR",
-                    ["NAND"] = "NAND",
-                    ["NOR"] = "NOR",
-                    ["XNOR"] = "XNOR",
                 },
             },
 
@@ -7035,15 +6905,6 @@ namespace Souvenir
             {
                 QuestionText = "{0}のステージ{1}で押されたボタンは？",
                 ModuleName = "仲間外れ",
-                Answers = new Dictionary<string, string>
-                {
-                    ["top-left"] = "top-left",
-                    ["top-middle"] = "top-middle",
-                    ["top-right"] = "top-right",
-                    ["bottom-left"] = "bottom-left",
-                    ["bottom-middle"] = "bottom-middle",
-                    ["bottom-right"] = "bottom-right",
-                },
             },
 
             // Old AI
@@ -8001,13 +7862,6 @@ namespace Souvenir
             {
                 QuestionText = "{0}において、最初に点滅した色は？",
                 ModuleName = "レッドヘリング",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Purple"] = "Purple",
-                    ["Orange"] = "Orange",
-                },
             },
 
             // Reformed Role Reversal
@@ -8892,25 +8746,6 @@ namespace Souvenir
             {
                 QuestionText = "{0}の最終シークエンスにおいて、{1}番目に点滅した色は？",
                 ModuleName = "サイモンのサイモン",
-                Answers = new Dictionary<string, string>
-                {
-                    ["TR"] = "TR",
-                    ["TY"] = "TY",
-                    ["TG"] = "TG",
-                    ["TB"] = "TB",
-                    ["LR"] = "LR",
-                    ["LY"] = "LY",
-                    ["LG"] = "LG",
-                    ["LB"] = "LB",
-                    ["RR"] = "RR",
-                    ["RY"] = "RY",
-                    ["RG"] = "RG",
-                    ["RB"] = "RB",
-                    ["BR"] = "BR",
-                    ["BY"] = "BY",
-                    ["BG"] = "BG",
-                    ["BB"] = "BB",
-                },
             },
 
             // Simon Sings
@@ -10506,30 +10341,12 @@ namespace Souvenir
             [Question.UnorderedKeysKeyColor] = new()
             {
                 QuestionText = "{0}のステージ{1}におけるこの音板の色は？",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Cyan"] = "Cyan",
-                    ["Magenta"] = "Magenta",
-                    ["Yellow"] = "Yellow",
-                },
             },
             // What color was the label of this key in the {1} stage of {0}?
             // What color was the label of this key in the first stage of Unordered Keys?
             [Question.UnorderedKeysLabelColor] = new()
             {
                 QuestionText = "{0}のステージ{1}におけるこの音板のラベルの色は？",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Cyan"] = "Cyan",
-                    ["Magenta"] = "Magenta",
-                    ["Yellow"] = "Yellow",
-                },
             },
             // What was the label of this key in the {1} stage of {0}?
             // What was the label of this key in the first stage of Unordered Keys?
