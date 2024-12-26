@@ -444,27 +444,27 @@ namespace Souvenir
             [Question.ArenaDamage] = new()
             {
                 Gender = Gender.Feminine,
+                ModuleNameWithThe = "Die Arena",
                 QuestionText = "Was war bei {0} in der Angriffsphase der maximale Waffenschaden?",
                 ModuleName = "Arena",
-                ModuleNameWithThe = "Die Arena",
             },
             // Which enemy was present in the defend phase of {0}?
             // Which enemy was present in the defend phase of The Arena?
             [Question.ArenaEnemies] = new()
             {
                 Gender = Gender.Feminine,
+                ModuleNameWithThe = "Die Arena",
                 QuestionText = "Welcher Gegner war bei {0} in der Verteidigungsphase anwesend?",
                 ModuleName = "Arena",
-                ModuleNameWithThe = "Die Arena",
             },
             // Which was a number present in the grab phase of {0}?
             // Which was a number present in the grab phase of The Arena?
             [Question.ArenaNumbers] = new()
             {
                 Gender = Gender.Feminine,
+                ModuleNameWithThe = "Die Arena",
                 QuestionText = "Welche Zahl war bei {0} in der Sammelphase dabei?",
                 ModuleName = "Arena",
-                ModuleNameWithThe = "Die Arena",
             },
 
             // Arithmelogic
@@ -519,41 +519,41 @@ namespace Souvenir
             // What was T in The Azure Button?
             [Question.AzureButtonT] = new()
             {
+                ModuleNameWithThe = "Der Azurfarbene Knopf",
                 QuestionText = "Was war T bei {0}?",
                 ModuleName = "Azurfarbenen Knopf",
-                ModuleNameWithThe = "Der Azurfarbene Knopf",
             },
             // Which of these cards was shown in Stage 1, but not T, in {0}?
             // Which of these cards was shown in Stage 1, but not T, in The Azure Button?
             [Question.AzureButtonNotT] = new()
             {
+                ModuleNameWithThe = "Der Azurfarbene Knopf",
                 QuestionText = "Welche Karte war bei {0} in Schritt 1 zu sehen, aber nicht T?",
                 ModuleName = "Azurfarbenen Knopf",
-                ModuleNameWithThe = "Der Azurfarbene Knopf",
             },
             // What was M in {0}?
             // What was M in The Azure Button?
             [Question.AzureButtonM] = new()
             {
+                ModuleNameWithThe = "Der Azurfarbene Knopf",
                 QuestionText = "Was war M bei {0}?",
                 ModuleName = "Azurfarbenen Knopf",
-                ModuleNameWithThe = "Der Azurfarbene Knopf",
             },
             // What was the {1} direction in the decoy arrow in {0}?
             // What was the first direction in the decoy arrow in The Azure Button?
             [Question.AzureButtonDecoyArrowDirection] = new()
             {
+                ModuleNameWithThe = "Der Azurfarbene Knopf",
                 QuestionText = "Was war bei {0} die {1}e Richtung im ungenutzten Pfeil?",
                 ModuleName = "Azurfarbenen Knopf",
-                ModuleNameWithThe = "Der Azurfarbene Knopf",
             },
             // What was the {1} direction in the {2} non-decoy arrow in {0}?
             // What was the first direction in the first non-decoy arrow in The Azure Button?
             [Question.AzureButtonNonDecoyArrowDirection] = new()
             {
+                ModuleNameWithThe = "Der Azurfarbene Knopf",
                 QuestionText = "Was war bei {0} die {1}e Richtung im {2}en genutzten Pfeil?",
                 ModuleName = "Azurfarbenen Knopf",
-                ModuleNameWithThe = "Der Azurfarbene Knopf",
             },
 
             // Bakery
@@ -1041,49 +1041,49 @@ namespace Souvenir
             // What was D in The Blue Button?
             [Question.BlueButtonD] = new()
             {
+                ModuleNameWithThe = "Der Blaue Knopf",
                 QuestionText = "Was war D bei {0}?",
                 ModuleName = "Blauen Knopf",
-                ModuleNameWithThe = "Der Blaue Knopf",
             },
             // What was {1} in {0}?
             // What was E in The Blue Button?
             [Question.BlueButtonEFGH] = new()
             {
+                ModuleNameWithThe = "Der Blaue Knopf",
                 QuestionText = "Was war {1} bei {0}?",
                 ModuleName = "Blauen Knopf",
-                ModuleNameWithThe = "Der Blaue Knopf",
             },
             // What was M in {0}?
             // What was M in The Blue Button?
             [Question.BlueButtonM] = new()
             {
+                ModuleNameWithThe = "Der Blaue Knopf",
                 QuestionText = "Was war M bei {0}?",
                 ModuleName = "Blauen Knopf",
-                ModuleNameWithThe = "Der Blaue Knopf",
             },
             // What was N in {0}?
             // What was N in The Blue Button?
             [Question.BlueButtonN] = new()
             {
+                ModuleNameWithThe = "Der Blaue Knopf",
                 QuestionText = "Was war N bei {0}?",
                 ModuleName = "Blauen Knopf",
-                ModuleNameWithThe = "Der Blaue Knopf",
             },
             // What was P in {0}?
             // What was P in The Blue Button?
             [Question.BlueButtonP] = new()
             {
+                ModuleNameWithThe = "Der Blaue Knopf",
                 QuestionText = "Was war P bei {0}?",
                 ModuleName = "Blauen Knopf",
-                ModuleNameWithThe = "Der Blaue Knopf",
             },
             // What was Q in {0}?
             // What was Q in The Blue Button?
             [Question.BlueButtonQ] = new()
             {
+                ModuleNameWithThe = "Der Blaue Knopf",
                 QuestionText = "Was war Q bei {0}?",
                 ModuleName = "Blauen Knopf",
-                ModuleNameWithThe = "Der Blaue Knopf",
                 Answers = new Dictionary<string, string>
                 {
                     ["Blue"] = "Blau",
@@ -1098,9 +1098,9 @@ namespace Souvenir
             // What was X in The Blue Button?
             [Question.BlueButtonX] = new()
             {
+                ModuleNameWithThe = "Der Blaue Knopf",
                 QuestionText = "Was war X bei {0}?",
                 ModuleName = "Blauen Knopf",
-                ModuleNameWithThe = "Der Blaue Knopf",
             },
 
             // Blue Cipher
