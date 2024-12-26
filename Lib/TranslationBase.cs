@@ -9,7 +9,7 @@ namespace Souvenir
         public virtual int DefaultFontIndex => 0;
         public virtual float LineSpacing => 0.525f;
 
-        public abstract string FormatModuleName(Question question, bool addSolveCount, int numSolved);
+        public virtual string FormatModuleName(Question question, bool addSolveCount, int numSolved) => addSolveCount ? $"the {question.GetAttribute().ModuleName} you solved {Ordinal(numSolved)}" : question.GetAttribute().ModuleNameWithThe;
         public abstract string Ordinal(int number);
 
         private Dictionary<Question, T> _translationsCache = null;
