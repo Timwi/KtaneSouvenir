@@ -275,6 +275,15 @@ public partial class SouvenirModule
         addQuestions(module, makeQuestion(Question.ChordQualitiesNotes, module, correctAnswers: noteNames));
     }
 
+    private IEnumerator<YieldInstruction> ProcessClockCounter(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "ClockCounter");
+        var ans = GetArrayField<int>(comp, "answer").Get(10, false, false, i => i is > 26 or < 1 ? "Out of range 1-26" : null);
+        addQuestion(module, Question.ClockCounterArrows, correctAnswers: ans.Select(i => ClockCounterSprites[i - 1]).ToArray());
+    }
+
     private IEnumerator<YieldInstruction> ProcessCode(ModuleData module)
     {
         var comp = GetComponent(module, "TheCodeModule");

@@ -484,6 +484,33 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 24c2e6f2d97a2f342b0c4d0b278797c7, type: 3}
   - {fileID: 21300000, guid: e7169af83dd0cbc4cb2b42e37147b566, type: 3}
   - {fileID: 21300000, guid: 00ee5aceeb2aa7f4ea772ea91c16cf3f, type: 3}
+  ClockCounterSprites:
+  - {fileID: 21300000, guid: 6b71221f28945c84d82769d235e0b922, type: 3}
+  - {fileID: 21300000, guid: 76ef004e0ce07164c88e142b92ba9492, type: 3}
+  - {fileID: 21300000, guid: fcb7ed23afd0580449f2831c6381cda5, type: 3}
+  - {fileID: 21300000, guid: a18f183f9a2e76247baec665e3130195, type: 3}
+  - {fileID: 21300000, guid: c37d7d1b38773244b93def4795cf9e23, type: 3}
+  - {fileID: 21300000, guid: a52c7b7680cc91047a09fecc6632cae0, type: 3}
+  - {fileID: 21300000, guid: d4b27bca724997140b189695cca0ff07, type: 3}
+  - {fileID: 21300000, guid: 404c7ed0682fcd04cb64f2604172af2c, type: 3}
+  - {fileID: 21300000, guid: 0e693f09899a6d24080e8260f1b876d0, type: 3}
+  - {fileID: 21300000, guid: c47f30b834bd7684ba6ce36e432599fd, type: 3}
+  - {fileID: 21300000, guid: 7ff1747f9d74ae7459312e75c2b40770, type: 3}
+  - {fileID: 21300000, guid: cdb2bf6e7a34fc749981b97c72a0ca0f, type: 3}
+  - {fileID: 21300000, guid: a98d25f4e86e2894cbefea6c2b07be28, type: 3}
+  - {fileID: 21300000, guid: 53423e1d16d47144e916466430fa50c0, type: 3}
+  - {fileID: 21300000, guid: 9b5a88d8e1fda2b49bc48686b7e87525, type: 3}
+  - {fileID: 21300000, guid: 4c8f10d3455bb2d4392e7ea134b56f8b, type: 3}
+  - {fileID: 21300000, guid: 9ffb8ddbbbd577744b868d90d21d5da6, type: 3}
+  - {fileID: 21300000, guid: fc693b55b02cb9442ab3f0393f8b90a8, type: 3}
+  - {fileID: 21300000, guid: 5de68096ca01e3c409dad89fa655a6c9, type: 3}
+  - {fileID: 21300000, guid: 9c53395dcb457384f89fa35115fccae5, type: 3}
+  - {fileID: 21300000, guid: 2bc3b71d51ffc184f91507cf7e470c28, type: 3}
+  - {fileID: 21300000, guid: 33bea6e66c6c90d4c86532faa5913902, type: 3}
+  - {fileID: 21300000, guid: ad558d9f71d939645ba5dc4e49b3368b, type: 3}
+  - {fileID: 21300000, guid: 2caa5ac064f18a645b71dfc0ccb3ac59, type: 3}
+  - {fileID: 21300000, guid: d461f76ad0b59c4458e2ee915284a7d8, type: 3}
+  - {fileID: 21300000, guid: 70a9eb0585860f0428b0b8383c3b3816, type: 3}
   ConnectedMonitorsSprites:
   - {fileID: 21300000, guid: ca7dac2dc9f57c3429dc7c1fb2c89441, type: 3}
   - {fileID: 21300000, guid: a6a381ba48c787c43abc186a9bd952b4, type: 3}

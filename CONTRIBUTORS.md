@@ -61,16 +61,16 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Colored Keys         │  Free Parking              │  Maze³             │  Reverse Morse      │  Vexillology
     Cube, The            │  Hexabutton, The           │  Mazematics        │  Simon Scrambles    │  Zoni
 
-## Implemented by Anonymous (38)
+## Implemented by Anonymous (39)
 
-    ❖                   │  Connection Check  │  Maritime Semaphore     │  Pointless Machines      │  Subbly Jubbly
-    1, 2, 3 Game, The   │  Double Arrows     │  Maroon Button, The     │  Polygons                │  Time Signatures
-    Bean Sprouts        │  Double Listening  │  Naming Conventions     │  Red Button’t            │  Unordered Keys
-    Beans               │  Double Screen     │  Not Password           │  RNG Crystal             │  Updog
-    Big Bean            │  Fuse Box, The     │  Not Red Arrows         │  Simon Smiles            │  Variety
-    Boomtar the Great   │  Ghost Movement    │  One Links To All       │  Simon Subdivides        │  X-Ring
-    Bottom Gear         │  hexOrbits         │  Pentabutton, The       │  Smash, Marry, Kill      │
-    Connected Monitors  │  Labyrinth, The    │  Pickup Identification  │  Stable Time Signatures  │
+    ↻↺                 │  Connected Monitors  │  Labyrinth, The      │  Pickup Identification  │  Stable Time Signatures
+    ❖                  │  Connection Check    │  Maritime Semaphore  │  Pointless Machines     │  Subbly Jubbly
+    1, 2, 3 Game, The  │  Double Arrows       │  Maroon Button, The  │  Polygons               │  Time Signatures
+    Bean Sprouts       │  Double Listening    │  Naming Conventions  │  Red Button’t           │  Unordered Keys
+    Beans              │  Double Screen       │  Not Password        │  RNG Crystal            │  Updog
+    Big Bean           │  Fuse Box, The       │  Not Red Arrows      │  Simon Smiles           │  Variety
+    Boomtar the Great  │  Ghost Movement      │  One Links To All    │  Simon Subdivides       │  X-Ring
+    Bottom Gear        │  hexOrbits           │  Pentabutton, The    │  Smash, Marry, Kill     │
 
 ## Implemented by BigCrunch22 (38)
 

@@ -488,6 +488,9 @@
         [SouvenirQuestion("Which note was part of the given chord in {0}?", "Chord Qualities", ThreeColumns6Answers, "A", "A♯", "B", "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯")]
         ChordQualitiesNotes,
 
+        [SouvenirQuestion("Which arrow was shown in {0}?", "↻↺", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "ClockCounterSprites")]
+        ClockCounterArrows,
+
         [SouvenirQuestion("What was the displayed number in {0}?", "Code", ThreeColumns6Answers, null, AddThe = true)]
         [AnswerGenerator.Integers(999, 9999)]
         CodeDisplayNumber,

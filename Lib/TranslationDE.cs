@@ -1623,6 +1623,14 @@ namespace Souvenir
                 QuestionText = "Which note was part of the given chord in {0}?",
             },
 
+            // ↻↺
+            // Which arrow was shown in {0}?
+            // Which arrow was shown in ↻↺?
+            [Question.ClockCounterArrows] = new()
+            {
+                QuestionText = "Which arrow was shown in {0}?",
+            },
+
             // The Code
             // What was the displayed number in {0}?
             // What was the displayed number in The Code?

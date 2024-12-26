@@ -100,6 +100,7 @@ public partial class SouvenirModule
             ["ChessModule"] = (ProcessChess, "Chess", "Timwi"),
             ["chineseCounting"] = (ProcessChineseCounting, "Chinese Counting", "TasThiluna"),
             ["ChordQualities"] = (ProcessChordQualities, "Chord Qualities", "Timwi"),
+            ["clockCounter"] = (ProcessClockCounter, "↻↺", "Anonymous"),
             ["theCodeModule"] = (ProcessCode, "Code, The", "luisdiogo98"),
             ["codenames"] = (ProcessCodenames, "Codenames", "TasThiluna"),
             ["coffeebucks"] = (ProcessCoffeebucks, "Coffeebucks", "luisdiogo98"),
