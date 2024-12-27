@@ -368,15 +368,10 @@ public partial class SouvenirModule
             { "DotsAreInverted", "Dots are inverted" }
         };
 
-        var allWordsType = comp.GetType().Assembly.GetType("ColorBraille.WordsData") ?? throw new AbandonModuleException("I cannot find the ColorBraille.WordsData type.");
-        var allWords = GetStaticField<Dictionary<string, int[]>>(allWordsType, "Words", isPublic: true).Get().Keys.ToArray();
-
-        var words = GetArrayField<string>(comp, "_words").Get(expectedLength: 3);
         var mangling = GetField<object>(comp, "_mangling").Get(m => !manglingNames.ContainsKey(m.ToString()) ? "mangling is not in the dictionary" : null);
+        var mangledChannel = GetIntField(comp, "_mangledChannel").Get(min: 0, max: 2);
         addQuestions(module,
-            makeQuestion(Question.ColorBrailleWords, module, formatArgs: new[] { "red" }, correctAnswers: new[] { words[0] }, preferredWrongAnswers: allWords),
-            makeQuestion(Question.ColorBrailleWords, module, formatArgs: new[] { "green" }, correctAnswers: new[] { words[1] }, preferredWrongAnswers: allWords),
-            makeQuestion(Question.ColorBrailleWords, module, formatArgs: new[] { "blue" }, correctAnswers: new[] { words[2] }, preferredWrongAnswers: allWords),
+            makeQuestion(Question.ColorBrailleChannel, module, correctAnswers: new[] { new[] { "Red", "Green", "Blue" }[mangledChannel] }),
             makeQuestion(Question.ColorBrailleMangling, module, correctAnswers: new[] { manglingNames[mangling.ToString()] }));
     }
 

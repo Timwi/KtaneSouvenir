@@ -1775,6 +1775,19 @@ namespace Souvenir
             },
 
             // Color Braille
+            // Which channel was mangled in {0}?
+            // Which channel was mangled in Color Braille?
+            [Question.ColorBrailleChannel] = new()
+            {
+                QuestionText = "Which channel was mangled in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Yellow"] = "Yellow",
+                },
+            },
             // What mangling was applied in {0}?
             // What mangling was applied in Color Braille?
             [Question.ColorBrailleMangling] = new()
@@ -1792,18 +1805,6 @@ namespace Souvenir
                     ["Each letter horizontally flipped"] = "Каждая буква отражена по горизонтали",
                     ["Each letter vertically flipped"] = "Каждая буква отражена по вертикали",
                     ["Dots are inverted"] = "Точки инвертированы",
-                },
-            },
-            // What was the {1} word in {0}?
-            // What was the red word in Color Braille?
-            [Question.ColorBrailleWords] = new()
-            {
-                QuestionText = "Какое было {1} слово {0}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["red"] = "красное",
-                    ["green"] = "зелёное",
-                    ["blue"] = "синее",
                 },
             },
 

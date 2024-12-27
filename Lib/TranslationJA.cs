@@ -1693,6 +1693,19 @@ namespace Souvenir
             },
 
             // Color Braille
+            // Which channel was mangled in {0}?
+            // Which channel was mangled in Color Braille?
+            [Question.ColorBrailleChannel] = new()
+            {
+                QuestionText = "Which channel was mangled in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "赤",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Yellow"] = "黄",
+                },
+            },
             // What mangling was applied in {0}?
             // What mangling was applied in Color Braille?
             [Question.ColorBrailleMangling] = new()
@@ -1711,19 +1724,6 @@ namespace Souvenir
                     ["Each letter horizontally flipped"] = "各点字を左右反転",
                     ["Each letter vertically flipped"] = "各点字を上下反転",
                     ["Dots are inverted"] = "点自体が反転",
-                },
-            },
-            // What was the {1} word in {0}?
-            // What was the red word in Color Braille?
-            [Question.ColorBrailleWords] = new()
-            {
-                QuestionText = "{0}の{1}の単語は？",
-                ModuleName = "色付き点字",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["red"] = "赤",
-                    ["green"] = "緑",
-                    ["blue"] = "青",
                 },
             },
 
