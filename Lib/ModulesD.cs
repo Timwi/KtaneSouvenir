@@ -281,6 +281,76 @@ public partial class SouvenirModule
             makeQuestion(Question.DirectionalButtonButtonCount, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { buttonPresses[i].ToString() })));
     }
 
+    private IEnumerator<YieldInstruction> ProcessDisorderedKeys(ModuleData module)
+    {
+        var comp = GetComponent(module, "DisorderedKeysScript");
+        var missingfld = GetArrayField<int>(comp, "missing");
+        var infofld = GetArrayField<int[]>(comp, "info");
+        var quirkfld = GetArrayField<int>(comp, "quirk");
+        var colorList = GetStaticField<string[]>(comp.GetType(), "colourList").Get();
+        var missingStrArr = new[] { "Key color", "Label color", "Label" };
+
+        //these 3 assignments don't matter. It's just to appease the compiler
+        int[] missing = new int[6]; 
+        int[][] info = new int[6][];
+        var quirks = new int[6];
+        string[] missingInformationArr = new string[6];
+        var unrevealedKeyColors = new string[6];
+        var unrevealedLabels = new string[6];
+        var unrevealedLabelColors = new string[6];
+
+        module.Module.OnStrike += () =>
+        {
+            StartCoroutine(GetInfo());
+            return false;
+        };
+
+        //when the mod first starts, get info
+        StartCoroutine(GetInfo());
+        yield return WaitForSolve;
+
+        IEnumerator GetInfo()
+        {
+            yield return new WaitForSeconds(1f); //here to verify resseting has finished
+            missing = missingfld.Get(expectedLength: 6, validator: number => number < 0 || number > 2 ? "expected range 0–2 inclusively" : null).ToArray();
+            info = infofld.Get(expectedLength: 6, validator: arr => arr.Length != 3 ? "expected length 3" : null).ToArray();
+            quirks = quirkfld.Get(expectedLength: 6).ToArray();
+            missingInformationArr = missing.Select(i => missingStrArr[i]).ToArray();
+
+            for (int keyIndex = 0; keyIndex < 6; keyIndex++)
+            {
+                string missingInformation = missingInformationArr[keyIndex];
+                unrevealedKeyColors[keyIndex] = missingInformation == missingStrArr[0] ? "missing" : colorList[info[keyIndex][0]];
+                unrevealedLabelColors[keyIndex] = missingInformation == missingStrArr[1] ? "missing" : colorList[info[keyIndex][1]];
+                unrevealedLabels[keyIndex] = missingInformation == missingStrArr[2] ? "missing" : (info[keyIndex][2] + 1).ToString();
+            }
+        }
+
+        var qs = new List<QandA>();
+
+        for (int keyIndex = 0; keyIndex < 6; keyIndex++)
+        {
+            string ordinal = Ordinal(keyIndex + 1);
+            qs.Add(makeQuestion(Question.DisorderedKeysMissingInfo, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { missingInformationArr[keyIndex] }));
+
+            if(missingInformationArr[keyIndex] != "Key color")
+                qs.Add(makeQuestion(Question.DisorderedKeysUnrevealedKeyColor, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { unrevealedKeyColors[keyIndex] }));
+            if (missingInformationArr[keyIndex] != "Label color")
+                qs.Add(makeQuestion(Question.DisorderedKeysUnrevealedLabelColor, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { unrevealedLabelColors[keyIndex] }));
+            if (missingInformationArr[keyIndex] != "Label")
+                qs.Add(makeQuestion(Question.DisorderedKeysUnrevealedKeyLabel, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { unrevealedLabels[keyIndex] }));
+
+            //If not a sequential nor false key, ask about reavealed key info
+            if (quirks[keyIndex] < 4)
+            {
+                qs.Add(makeQuestion(Question.DisorderedKeysRevealedKeyColor, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { colorList[info[keyIndex][0]] }));
+                qs.Add(makeQuestion(Question.DisorderedKeysRevealedLabelColor, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { colorList[info[keyIndex][1]] }));
+                qs.Add(makeQuestion(Question.DisorderedKeysRevealedLabel, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { (info[keyIndex][2] + 1).ToString() }));
+            }
+        }
+        addQuestions(module, qs);
+    }
+
     private IEnumerator<YieldInstruction> ProcessDivisibleNumbers(ModuleData module)
     {
         var comp = GetComponent(module, "DivisableNumbers");

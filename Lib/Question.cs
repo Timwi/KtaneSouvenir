@@ -730,6 +730,30 @@
         [AnswerGenerator.Grid(4, 4)]
         DiscoloredSquaresRememberedPositions,
 
+        [SouvenirQuestion("What was the missing information for the {1} key in {0}?", "Disordered Keys", OneColumn4Answers, "Key color", "Label color", "Label", "",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        DisorderedKeysMissingInfo,
+        [SouvenirQuestion("What was the revealed key color for the {1} key in {0}?", "Disordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        DisorderedKeysRevealedKeyColor,
+        [SouvenirQuestion("What was the revealed label for the {1} key in {0}?", "Disordered Keys", ThreeColumns6Answers,
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1, 6)]
+        DisorderedKeysRevealedLabel,
+        [SouvenirQuestion("What was the revealed label color for the {1} key in {0}?", "Disordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        DisorderedKeysRevealedLabelColor,
+        [SouvenirQuestion("What was the unrevealed key color for the {1} key in {0}?", "Disordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        DisorderedKeysUnrevealedKeyColor,
+        [SouvenirQuestion("What was the unrevealed label for the {1} key in {0}?", "Disordered Keys", ThreeColumns6Answers,
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1, 6)]
+        DisorderedKeysUnrevealedKeyLabel,
+        [SouvenirQuestion("What was the unrevealed label color for the {1} key in {0}?", "Disordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        DisorderedKeysUnrevealedLabelColor,
+
         [SouvenirQuestion("What was the {1} stage’s number in {0}?", "Divisible Numbers", ThreeColumns6Answers, null,
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 9999)]

@@ -151,6 +151,7 @@ public partial class SouvenirModule
             ["dimensionDisruption"] = (ProcessDimensionDisruption, "Dimension Disruption", "Hawker"),
             ["directionalButton"] = (ProcessDirectionalButton, "Directional Button", "Hawker"),
             ["DiscoloredSquaresModule"] = (ProcessDiscoloredSquares, "Discolored Squares", "luisdiogo98"),
+            ["disorderedKeys"] = (ProcessDisorderedKeys, "Disordered Keys", "Hawker"),
             ["divisibleNumbers"] = (ProcessDivisibleNumbers, "Divisible Numbers", "shortc1rcuit"),
             ["doubleArrows"] = (ProcessDoubleArrows, "Double Arrows", "Anonymous"),
             ["doubleColor"] = (ProcessDoubleColor, "Double Color", "luisdiogo98"),
