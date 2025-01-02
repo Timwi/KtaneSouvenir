@@ -83,16 +83,16 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cosmic          │  Guess Who?     │  Sequencyclopedia, The  │  Topsy Turvy             │
     Deaf Alley      │  Hold Ups       │  Shifting Maze          │  Ultimate Cipher         │
 
-## Implemented by Hawker (36)
+## Implemented by Hawker (37)
 
-    3N+1                     │  Directional Button  │  Girlfriend          │  RGB Sequences                      │  Suits and Colours
-    Arena, The               │  Earthbound          │  h                   │  Robot Programming                  │  UNO!
-    Bar Charts               │  Error Codes         │  High Score, The     │  Scrutiny Squares                   │  Valves
-    Book of Mario            │  Find The Date       │  Keypad Combination  │  Sign Language                      │  Weakest Link, The
-    Character Slots          │  Flavor Text         │  Kuro                │  Simon Serves                       │
-    Conditional Buttons      │  Flavor Text EX      │  Ladder Lottery      │  Sonic & Knuckles                   │
-    Customer Identification  │  Garfield Kart       │  LED Grid            │  Spongebob Birthday Identification  │
-    Dimension Disruption     │  Garnet Thief, The   │  Module Movements    │  Subway                             │
+    3N+1                     │  Directional Button  │  Girlfriend          │  Module Movements                   │  Subway
+    Arena, The               │  Earthbound          │  h                   │  RGB Sequences                      │  Suits and Colours
+    Bar Charts               │  Error Codes         │  High Score, The     │  Robot Programming                  │  UNO!
+    Book of Mario            │  Find The Date       │  Keypad Combination  │  Scrutiny Squares                   │  Valves
+    Character Slots          │  Flavor Text         │  Kuro                │  Sign Language                      │  Weakest Link, The
+    Conditional Buttons      │  Flavor Text EX      │  Ladder Lottery      │  Simon Serves                       │
+    Customer Identification  │  Garfield Kart       │  LED Grid            │  Sonic & Knuckles                   │
+    Dimension Disruption     │  Garnet Thief, The   │  Mixometer           │  Spongebob Birthday Identification  │
 
 ## Implemented by TasThiluna (31)
 

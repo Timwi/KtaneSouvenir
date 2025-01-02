@@ -651,6 +651,15 @@ public partial class SouvenirModule
             makeQuestion(Question.MisterSofteeTreatsPresent, module, correctAnswers: displayedIceCreamSprites));
     }
 
+    private IEnumerator<YieldInstruction> ProcessMixometer(ModuleData module)
+    {
+        var comp = GetComponent(module, "Mixometer");
+        yield return WaitForSolve;
+        var i_buttons = GetArrayField<int[]>(comp, "i_buttons").Get(expectedLength: 5);
+        var submitButtonIndex = i_buttons.IndexOf(x => x.Length == 0);
+        addQuestion(module, Question.MixometerSubmitButton, correctAnswers: new[] { Ordinal(submitButtonIndex + 1) });
+    }
+
     private IEnumerator<YieldInstruction> ProcessModernCipher(ModuleData module)
     {
         var comp = GetComponent(module, "modernCipher");

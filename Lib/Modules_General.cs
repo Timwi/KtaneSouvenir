@@ -320,6 +320,7 @@ public partial class SouvenirModule
             ["MinesweeperModule"] = (ProcessMinesweeper, "Minesweeper", "CaitSith2"),
             ["mirror"] = (ProcessMirror, "Mirror", "Timwi"),
             ["misterSoftee"] = (ProcessMisterSoftee, "Mister Softee", "TasThiluna"),
+            ["mixometer"] = (ProcessMixometer, "Mixometer", "Hawker"),
             ["modernCipher"] = (ProcessModernCipher, "Modern Cipher", "luisdiogo98"),
             ["moduleListening"] = (ProcessModuleListening, "Module Listening", "TasThiluna"),
             ["ModuleMaze"] = (ProcessModuleMaze, "Module Maze", "River"),
