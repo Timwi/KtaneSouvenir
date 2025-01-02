@@ -564,6 +564,9 @@
         [SouvenirQuestion("What was the color of the last word in the sequence in {0}?", "Colour Flash", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Magenta", "White", TranslateAnswers = true)]
         ColourFlashLastColor,
 
+        [SouvenirQuestion("What was the color of this button in {0}?", "Conditional Buttons", ThreeColumns6Answers, "black","blue","dark green","light green","orange","pink","purple","red","white","yellow", UsesQuestionSprite = true)]
+        ConditionalButtonsColors,
+
         [SouvenirQuestion("What number was initially displayed on this screen in {0}?", "Connected Monitors", ThreeColumns6Answers, UsesQuestionSprite = true)]
         [AnswerGenerator.Integers(0, 99)]
         ConnectedMonitorsNumber,

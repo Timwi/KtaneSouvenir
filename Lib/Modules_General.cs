@@ -115,6 +115,7 @@ public partial class SouvenirModule
             ["colors_maximization"] = (ProcessColorsMaximization, "Colors Maximization", "NickLatkovich"),
             ["ColouredCubes"] = (ProcessColouredCubes, "Coloured Cubes", "Kuro"),
             ["ColourFlash"] = (ProcessColourFlash, "Colour Flash", "LotsOfS"),
+            ["conditionalButtons"] = (ProcessConditionalButtons, "Conditional Buttons", "Hawker"),
             ["ConnectedMonitorsModule"] = (ProcessConnectedMonitors, "Connected Monitors", "Anonymous"),
             ["graphModule"] = (ProcessConnectionCheck, "Connection Check", "Anonymous"),
             ["CoordinatesModule"] = (ProcessCoordinates, "Coordinates", "Timwi"),

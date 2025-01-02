@@ -83,15 +83,15 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cosmic          │  Guess Who?     │  Sequencyclopedia, The  │  Topsy Turvy             │
     Deaf Alley      │  Hold Ups       │  Shifting Maze          │  Ultimate Cipher         │
 
-## Implemented by Hawker (34)
+## Implemented by Hawker (35)
 
-    3N+1                     │  Directional Button  │  Girlfriend          │  Module Movements   │  Spongebob Birthday Identification
-    Arena, The               │  Earthbound          │  h                   │  RGB Sequences      │  Subway
-    Bar Charts               │  Find The Date       │  High Score, The     │  Robot Programming  │  Suits and Colours
-    Book of Mario            │  Flavor Text         │  Keypad Combination  │  Scrutiny Squares   │  UNO!
-    Character Slots          │  Flavor Text EX      │  Kuro                │  Sign Language      │  Valves
-    Customer Identification  │  Garfield Kart       │  Ladder Lottery      │  Simon Serves       │  Weakest Link, The
-    Dimension Disruption     │  Garnet Thief, The   │  LED Grid            │  Sonic & Knuckles   │
+    3N+1                     │  Dimension Disruption  │  Garnet Thief, The   │  LED Grid           │  Sonic & Knuckles
+    Arena, The               │  Directional Button    │  Girlfriend          │  Module Movements   │  Spongebob Birthday Identification
+    Bar Charts               │  Earthbound            │  h                   │  RGB Sequences      │  Subway
+    Book of Mario            │  Find The Date         │  High Score, The     │  Robot Programming  │  Suits and Colours
+    Character Slots          │  Flavor Text           │  Keypad Combination  │  Scrutiny Squares   │  UNO!
+    Conditional Buttons      │  Flavor Text EX        │  Kuro                │  Sign Language      │  Valves
+    Customer Identification  │  Garfield Kart         │  Ladder Lottery      │  Simon Serves       │  Weakest Link, The
 
 ## Implemented by TasThiluna (31)
 

@@ -629,6 +629,24 @@ public partial class SouvenirModule
         addQuestion(module, Question.ColourFlashLastColor, correctAnswers: new[] { colorValue.ToString() });
     }
 
+    private IEnumerator<YieldInstruction> ProcessConditionalButtons(ModuleData module)
+    {
+        var comp = GetComponent(module, "conditionalButtons");
+        //get the colors of the buttons when first starting the module
+        List<KMSelectable> buttons = GetListField<KMSelectable>(comp, "Buttons", isPublic: true).Get(expectedLength: 6);
+        var buttonColors = new List<string>();
+        foreach (KMSelectable button in buttons)
+        {
+            string buttonColor = button.GetComponent<MeshRenderer>().material.name;
+            int intanceIndex = buttonColor.IndexOf(" (Instance)");
+            buttonColor = buttonColor.Remove(intanceIndex);
+            buttonColors.Add(buttonColor);
+        }
+        yield return WaitForSolve;
+        addQuestions(module,
+        buttonColors.Select((color, ix) => makeQuestion(Question.ConditionalButtonsColors, module, questionSprite: Sprites.GenerateGridSprite(new Coord(3, 2, ix)), correctAnswers: new[] { color })));
+    }
+
     private IEnumerator<YieldInstruction> ProcessConnectedMonitors(ModuleData module)
     {
         var comp = GetComponent(module, "ConnectedMonitorsScript");
