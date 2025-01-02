@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json.Linq;
 using Souvenir;
 using UnityEngine;
 
@@ -349,33 +348,31 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessErrorCodes(ModuleData module)
     {
-        var comp = GetComponent(module, "ErrorCodes");
-        yield return WaitForSolve;
+        while (!_isActivated)
+            yield return new WaitForSeconds(.1f);
 
+        var comp = GetComponent(module, "ErrorCodes");
         var errorTextDisplay = GetField<TextMesh>(comp, "errorText", isPublic: true).Get();
         var fixTextDisplay = GetField<TextMesh>(comp, "fixText", isPublic: true).Get();
         var errorPrefix = GetStaticField<string>(comp.GetType(), "ERROR_PREFIX").Get();
         var fixPrefix = GetStaticField<string>(comp.GetType(), "FIX_PREFIX").Get();
         var displayCodes = errorTextDisplay.text.Replace(errorPrefix + " ", "").Split(' ');
-        var serialNumber = JObject.Parse(Bomb.QueryWidgets(KMBombInfo.QUERYKEY_GET_SERIAL_NUMBER, null).First())["serial"].ToString().ToUpper();
-        bool serialNumberHasVowel = serialNumber.Any(c => "AEIOU".Contains(c));
-        var batteryQuery = Bomb.QueryWidgets(KMBombInfo.QUERYKEY_GET_BATTERIES, null);
-        var batteryCount = 0;
+        var serialNumberHasVowel = Bomb.GetSerialNumber().Any(c => "AEIOU".Contains(c));
+        var batteryEven = Bomb.GetBatteryCount() % 2 == 0;
 
-        if (batteryQuery.Count() > 0)
-        {
-            batteryCount = int.Parse(JObject.Parse(batteryQuery.First())["numbatteries"].ToString());
-        }
-
-        var batteryEven = batteryCount % 2 == 0;
-        var conditionTable = new[] { serialNumberHasVowel && batteryEven, 
-                                        serialNumberHasVowel && !batteryEven, 
-                                        !serialNumberHasVowel && batteryEven, 
+        var conditionTable = new[] { serialNumberHasVowel && batteryEven,
+                                        serialNumberHasVowel && !batteryEven,
+                                        !serialNumberHasVowel && batteryEven,
                                         !serialNumberHasVowel && !batteryEven };
-
         var activeErrorIndex = Array.IndexOf(conditionTable, true);
-        addQuestion(module, Question.ErrorCodesActiveError, correctAnswers: new[] { displayCodes[activeErrorIndex].ToString() }, preferredWrongAnswers: displayCodes.Where((_, ix) => ix != activeErrorIndex).ToArray());
-        //change the displays to blank
+
+        yield return WaitForSolve;
+
+        addQuestion(module, Question.ErrorCodesActiveError,
+            correctAnswers: new[] { displayCodes[activeErrorIndex] },
+            preferredWrongAnswers: displayCodes);
+
+        // Change the displays to blank
         errorTextDisplay.text = errorPrefix;
         fixTextDisplay.text = fixPrefix;
     }

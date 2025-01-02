@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json.Linq;
 using Souvenir;
 using UnityEngine;
 
@@ -226,7 +225,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "PerspectivePegsModule");
         yield return WaitForSolve;
 
-        var serialNumber = JObject.Parse(Bomb.QueryWidgets(KMBombInfo.QUERYKEY_GET_SERIAL_NUMBER, null).First())["serial"].ToString();
+        var serialNumber = Bomb.GetSerialNumber();
 
         int keyNumber = 0;
         char prevChar = '\0';

@@ -134,7 +134,6 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessDetoNATO(ModuleData module)
     {
-        //This mod will not generate questions properly with tp autosolveer
         var comp = GetComponent(module, "Detonato");
         var fldStage = GetIntField(comp, "stage");
         var words = GetArrayField<string>(comp, "words").Get(expectedLength: 156);
@@ -144,7 +143,7 @@ public partial class SouvenirModule
         while (module.Unsolved)
         {
             var newStage = fldStage.Get();
-            string currentWord = textMesh.text;
+            var currentWord = textMesh.text;
             if (currentWord != "")
             {
                 if (newStage != currentStage || currentStage >= displaysList.Count)
@@ -152,16 +151,16 @@ public partial class SouvenirModule
                     displaysList.Add(currentWord);
                     currentStage = newStage;
                 }
-                else if (displaysList[currentStage] != currentWord)
-                {
+                else
                     displaysList[currentStage] = currentWord;
-                }
             }
             yield return null;
         }
         yield return WaitForSolve;
-        var questions = displaysList.Select((w, ix) => makeQuestion(Question.DetoNATODisplay, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { displaysList[ix] }, allAnswers: words));
-        addQuestions(module, questions);
+        addQuestions(module, displaysList.Select((w, ix) => makeQuestion(Question.DetoNATODisplay, module,
+            formatArgs: new[] { Ordinal(ix + 1) },
+            correctAnswers: new[] { displaysList[ix] },
+            allAnswers: words)));
     }
 
     private IEnumerator<YieldInstruction> ProcessDevilishEggs(ModuleData module)
@@ -171,9 +170,9 @@ public partial class SouvenirModule
         var digits = prismTexts[0].text.Split(' ');
         var letters = prismTexts[1].text.Split(' ');
         if (digits.Length != 8 || digits.Any(str => str.Length != 1 || str[0] < '0' || str[0] > '9'))
-            throw new AbandonModuleException($"Expected 8 digits; got {digits.Length} ({digits.JoinString("; ")})");
+            throw new AbandonModuleException($"Expected 8 digits; got {digits.Stringify()}");
         if (letters.Length != 8 || letters.Any(str => str.Length != 1 || str[0] < 'A' || str[0] > 'Z'))
-            throw new AbandonModuleException($"Expected 8 letters; got {letters.Length} ({letters.JoinString("; ")})");
+            throw new AbandonModuleException($"Expected 8 letters; got {letters.Stringify()}");
 
         yield return WaitForSolve;
 
@@ -284,17 +283,15 @@ public partial class SouvenirModule
     private IEnumerator<YieldInstruction> ProcessDisorderedKeys(ModuleData module)
     {
         var comp = GetComponent(module, "DisorderedKeysScript");
-        var missingfld = GetArrayField<int>(comp, "missing");
-        var infofld = GetArrayField<int[]>(comp, "info");
-        var quirkfld = GetArrayField<int>(comp, "quirk");
-        var colorList = GetStaticField<string[]>(comp.GetType(), "colourList").Get();
-        var missingStrArr = new[] { "Key color", "Label color", "Label" };
+        var fldMissing = GetArrayField<int>(comp, "missing");
+        var fldInfo = GetArrayField<int[]>(comp, "info");
+        var fldQuirk = GetArrayField<int>(comp, "quirk");
+        var colorList = GetStaticField<string[]>(comp.GetType(), "colourList").Get(v => v.Length != 6 ? "expected length 6" : null);
 
-        //these 3 assignments don't matter. It's just to appease the compiler
-        int[] missing = new int[6]; 
-        int[][] info = new int[6][];
-        var quirks = new int[6];
-        string[] missingInformationArr = new string[6];
+        // These variables are populated by GetInfo() below
+        int[] missing = null;
+        int[][] info = null;
+        int[] quirks = null;
         var unrevealedKeyColors = new string[6];
         var unrevealedLabels = new string[6];
         var unrevealedLabelColors = new string[6];
@@ -305,47 +302,46 @@ public partial class SouvenirModule
             return false;
         };
 
-        //when the mod first starts, get info
+        // when the mod first starts, get info
         StartCoroutine(GetInfo());
         yield return WaitForSolve;
 
         IEnumerator GetInfo()
         {
-            yield return new WaitForSeconds(1f); //here to verify resseting has finished
-            missing = missingfld.Get(expectedLength: 6, validator: number => number < 0 || number > 2 ? "expected range 0–2 inclusively" : null).ToArray();
-            info = infofld.Get(expectedLength: 6, validator: arr => arr.Length != 3 ? "expected length 3" : null).ToArray();
-            quirks = quirkfld.Get(expectedLength: 6).ToArray();
-            missingInformationArr = missing.Select(i => missingStrArr[i]).ToArray();
+            yield return null; // allow resetting to set the variables
+            missing = fldMissing.Get(expectedLength: 6, validator: number => number < 0 || number > 2 ? "expected range 0–2 inclusively" : null).ToArray();
+            info = fldInfo.Get(expectedLength: 6, validator: arr => arr.Length != 3 ? "expected length 3" : null).ToArray();
+            quirks = fldQuirk.Get(expectedLength: 6).ToArray();
 
-            for (int keyIndex = 0; keyIndex < 6; keyIndex++)
+            for (var keyIndex = 0; keyIndex < 6; keyIndex++)
             {
-                string missingInformation = missingInformationArr[keyIndex];
-                unrevealedKeyColors[keyIndex] = missingInformation == missingStrArr[0] ? "missing" : colorList[info[keyIndex][0]];
-                unrevealedLabelColors[keyIndex] = missingInformation == missingStrArr[1] ? "missing" : colorList[info[keyIndex][1]];
-                unrevealedLabels[keyIndex] = missingInformation == missingStrArr[2] ? "missing" : (info[keyIndex][2] + 1).ToString();
+                unrevealedKeyColors[keyIndex] = missing[keyIndex] == 0 ? "missing" : colorList[info[keyIndex][0]];
+                unrevealedLabelColors[keyIndex] = missing[keyIndex] == 1 ? "missing" : colorList[info[keyIndex][1]];
+                unrevealedLabels[keyIndex] = missing[keyIndex] == 2 ? "missing" : (info[keyIndex][2] + 1).ToString();
             }
         }
 
         var qs = new List<QandA>();
+        var missingStrArr = new[] { "Key color", "Label color", "Label" };
 
-        for (int keyIndex = 0; keyIndex < 6; keyIndex++)
+        for (var keyIndex = 0; keyIndex < 6; keyIndex++)
         {
-            string ordinal = Ordinal(keyIndex + 1);
-            qs.Add(makeQuestion(Question.DisorderedKeysMissingInfo, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { missingInformationArr[keyIndex] }));
+            var formatArgs = new[] { Ordinal(keyIndex + 1) };
+            qs.Add(makeQuestion(Question.DisorderedKeysMissingInfo, module, formatArgs: formatArgs, correctAnswers: new[] { missingStrArr[missing[keyIndex]] }));
 
-            if(missingInformationArr[keyIndex] != "Key color")
-                qs.Add(makeQuestion(Question.DisorderedKeysUnrevealedKeyColor, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { unrevealedKeyColors[keyIndex] }));
-            if (missingInformationArr[keyIndex] != "Label color")
-                qs.Add(makeQuestion(Question.DisorderedKeysUnrevealedLabelColor, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { unrevealedLabelColors[keyIndex] }));
-            if (missingInformationArr[keyIndex] != "Label")
-                qs.Add(makeQuestion(Question.DisorderedKeysUnrevealedKeyLabel, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { unrevealedLabels[keyIndex] }));
+            if (missing[keyIndex] != 0)   // Key color
+                qs.Add(makeQuestion(Question.DisorderedKeysUnrevealedKeyColor, module, formatArgs: formatArgs, correctAnswers: new[] { unrevealedKeyColors[keyIndex] }));
+            if (missing[keyIndex] != 1)     // Label color
+                qs.Add(makeQuestion(Question.DisorderedKeysUnrevealedLabelColor, module, formatArgs: formatArgs, correctAnswers: new[] { unrevealedLabelColors[keyIndex] }));
+            if (missing[keyIndex] != 2)     // Label
+                qs.Add(makeQuestion(Question.DisorderedKeysUnrevealedKeyLabel, module, formatArgs: formatArgs, correctAnswers: new[] { unrevealedLabels[keyIndex] }));
 
-            //If not a sequential nor false key, ask about reavealed key info
+            // If not a sequential nor false key, ask about reavealed key info
             if (quirks[keyIndex] < 4)
             {
-                qs.Add(makeQuestion(Question.DisorderedKeysRevealedKeyColor, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { colorList[info[keyIndex][0]] }));
-                qs.Add(makeQuestion(Question.DisorderedKeysRevealedLabelColor, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { colorList[info[keyIndex][1]] }));
-                qs.Add(makeQuestion(Question.DisorderedKeysRevealedLabel, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { (info[keyIndex][2] + 1).ToString() }));
+                qs.Add(makeQuestion(Question.DisorderedKeysRevealedKeyColor, module, formatArgs: formatArgs, correctAnswers: new[] { colorList[info[keyIndex][0]] }));
+                qs.Add(makeQuestion(Question.DisorderedKeysRevealedLabelColor, module, formatArgs: formatArgs, correctAnswers: new[] { colorList[info[keyIndex][1]] }));
+                qs.Add(makeQuestion(Question.DisorderedKeysRevealedLabel, module, formatArgs: formatArgs, correctAnswers: new[] { (info[keyIndex][2] + 1).ToString() }));
             }
         }
         addQuestions(module, qs);

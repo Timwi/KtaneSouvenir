@@ -369,9 +369,9 @@
         [SouvenirQuestion("What was the border color when you pressed the {1} key in {0}?", "Bordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         BorderedKeysBorderColor,
-        [SouvenirQuestion("What was the digit displayed when you pressed the {1} key in {0}?", "Bordered Keys", ThreeColumns6Answers, 
+        [SouvenirQuestion("What was the digit displayed when you pressed the {1} key in {0}?", "Bordered Keys", ThreeColumns6Answers,
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
-        [AnswerGenerator.Integers(1,6)]
+        [AnswerGenerator.Integers(1, 6)]
         BorderedKeysDigit,
         [SouvenirQuestion("What was the key color when you pressed the {1} key in {0}?", "Bordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
@@ -582,7 +582,7 @@
         [SouvenirQuestion("What was the color of the last word in the sequence in {0}?", "Colour Flash", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Magenta", "White", TranslateAnswers = true)]
         ColourFlashLastColor,
 
-        [SouvenirQuestion("What was the color of this button in {0}?", "Conditional Buttons", ThreeColumns6Answers, "black","blue","dark green","light green","orange","pink","purple","red","white","yellow", UsesQuestionSprite = true)]
+        [SouvenirQuestion("What was the color of this button in {0}?", "Conditional Buttons", ThreeColumns6Answers, "black", "blue", "dark green", "light green", "orange", "pink", "purple", "red", "white", "yellow", UsesQuestionSprite = true)]
         ConditionalButtonsColors,
 
         [SouvenirQuestion("What number was initially displayed on this screen in {0}?", "Connected Monitors", ThreeColumns6Answers, UsesQuestionSprite = true)]
@@ -748,7 +748,7 @@
         [AnswerGenerator.Grid(4, 4)]
         DiscoloredSquaresRememberedPositions,
 
-        [SouvenirQuestion("What was the missing information for the {1} key in {0}?", "Disordered Keys", OneColumn4Answers, "Key color", "Label color", "Label", "",
+        [SouvenirQuestion("What was the missing information for the {1} key in {0}?", "Disordered Keys", OneColumn4Answers, "Key color", "Label color", "Label",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         DisorderedKeysMissingInfo,
         [SouvenirQuestion("What was the revealed key color for the {1} key in {0}?", "Disordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",

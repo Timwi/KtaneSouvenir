@@ -632,19 +632,15 @@ public partial class SouvenirModule
     private IEnumerator<YieldInstruction> ProcessConditionalButtons(ModuleData module)
     {
         var comp = GetComponent(module, "conditionalButtons");
-        //get the colors of the buttons when first starting the module
-        List<KMSelectable> buttons = GetListField<KMSelectable>(comp, "Buttons", isPublic: true).Get(expectedLength: 6);
+        // Get the colors of the buttons when first starting the module
         var buttonColors = new List<string>();
-        foreach (KMSelectable button in buttons)
+        foreach (var button in GetListField<KMSelectable>(comp, "Buttons", isPublic: true).Get(expectedLength: 6))
         {
-            string buttonColor = button.GetComponent<MeshRenderer>().material.name;
-            int intanceIndex = buttonColor.IndexOf(" (Instance)");
-            buttonColor = buttonColor.Remove(intanceIndex);
-            buttonColors.Add(buttonColor);
+            var buttonColor = button.GetComponent<MeshRenderer>().material.name;
+            buttonColors.Add(buttonColor.Remove(buttonColor.IndexOf(" (Instance)")));
         }
         yield return WaitForSolve;
-        addQuestions(module,
-        buttonColors.Select((color, ix) => makeQuestion(Question.ConditionalButtonsColors, module, questionSprite: Sprites.GenerateGridSprite(new Coord(3, 2, ix)), correctAnswers: new[] { color })));
+        addQuestions(module, buttonColors.Select((color, ix) => makeQuestion(Question.ConditionalButtonsColors, module, questionSprite: Sprites.GenerateGridSprite(new Coord(3, 2, ix)), correctAnswers: new[] { color })));
     }
 
     private IEnumerator<YieldInstruction> ProcessConnectedMonitors(ModuleData module)

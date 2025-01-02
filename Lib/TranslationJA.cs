@@ -1194,6 +1194,38 @@ namespace Souvenir
                 QuestionText = "{0}に表示されたツイートは？",
             },
 
+            // Bordered Keys
+            // What was the border color when you pressed the {1} key in {0}?
+            // What was the border color when you pressed the first key in Bordered Keys?
+            [Question.BorderedKeysBorderColor] = new()
+            {
+                QuestionText = "What was the border color when you pressed the {1} key in {0}?",
+            },
+            // What was the digit displayed when you pressed the {1} key in {0}?
+            // What was the digit displayed when you pressed the first key in Bordered Keys?
+            [Question.BorderedKeysDigit] = new()
+            {
+                QuestionText = "What was the digit displayed when you pressed the {1} key in {0}?",
+            },
+            // What was the key color when you pressed the {1} key in {0}?
+            // What was the key color when you pressed the first key in Bordered Keys?
+            [Question.BorderedKeysKeyColor] = new()
+            {
+                QuestionText = "What was the key color when you pressed the {1} key in {0}?",
+            },
+            // What was the label when you pressed the {1} key in {0}?
+            // What was the label when you pressed the first key in Bordered Keys?
+            [Question.BorderedKeysLabel] = new()
+            {
+                QuestionText = "What was the label when you pressed the {1} key in {0}?",
+            },
+            // What was the label color when you pressed the {1} key in {0}?
+            // What was the label color when you pressed the first key in Bordered Keys?
+            [Question.BorderedKeysLabelColor] = new()
+            {
+                QuestionText = "What was the label color when you pressed the {1} key in {0}?",
+            },
+
             // Boxing
             // Which {1} appeared on {0}?
             // Which contestant’s first name appeared on Boxing?
@@ -1970,6 +2002,14 @@ namespace Souvenir
                 },
             },
 
+            // Conditional Buttons
+            // What was the color of this button in {0}?
+            // What was the color of this button in Conditional Buttons?
+            [Question.ConditionalButtonsColors] = new()
+            {
+                QuestionText = "What was the color of this button in {0}?",
+            },
+
             // Connected Monitors
             // What number was initially displayed on this screen in {0}?
             // What number was initially displayed on this screen in Connected Monitors?
@@ -2494,6 +2534,14 @@ namespace Souvenir
                 QuestionText = "{0}のディスプレー{1}に最初表示されていた数字は？",
             },
 
+            // DetoNATO
+            // What was the {1} display in {0}?
+            // What was the first display in DetoNATO?
+            [Question.DetoNATODisplay] = new()
+            {
+                QuestionText = "What was the {1} display in {0}?",
+            },
+
             // Devilish Eggs
             // What was the {1} egg’s {2} rotation in {0}?
             // What was the top egg’s first rotation in Devilish Eggs?
@@ -2572,6 +2620,50 @@ namespace Souvenir
                     ["Green"] = "緑",
                     ["Magenta"] = "マゼンタ",
                 },
+            },
+
+            // Disordered Keys
+            // What was the missing information for the {1} key in {0}?
+            // What was the missing information for the first key in Disordered Keys?
+            [Question.DisorderedKeysMissingInfo] = new()
+            {
+                QuestionText = "What was the missing information for the {1} key in {0}?",
+            },
+            // What was the revealed key color for the {1} key in {0}?
+            // What was the revealed key color for the first key in Disordered Keys?
+            [Question.DisorderedKeysRevealedKeyColor] = new()
+            {
+                QuestionText = "What was the revealed key color for the {1} key in {0}?",
+            },
+            // What was the revealed label for the {1} key in {0}?
+            // What was the revealed label for the first key in Disordered Keys?
+            [Question.DisorderedKeysRevealedLabel] = new()
+            {
+                QuestionText = "What was the revealed label for the {1} key in {0}?",
+            },
+            // What was the revealed label color for the {1} key in {0}?
+            // What was the revealed label color for the first key in Disordered Keys?
+            [Question.DisorderedKeysRevealedLabelColor] = new()
+            {
+                QuestionText = "What was the revealed label color for the {1} key in {0}?",
+            },
+            // What was the unrevealed key color for the {1} key in {0}?
+            // What was the unrevealed key color for the first key in Disordered Keys?
+            [Question.DisorderedKeysUnrevealedKeyColor] = new()
+            {
+                QuestionText = "What was the unrevealed key color for the {1} key in {0}?",
+            },
+            // What was the unrevealed label for the {1} key in {0}?
+            // What was the unrevealed label for the first key in Disordered Keys?
+            [Question.DisorderedKeysUnrevealedKeyLabel] = new()
+            {
+                QuestionText = "What was the unrevealed label for the {1} key in {0}?",
+            },
+            // What was the unrevealed label color for the {1} key in {0}?
+            // What was the unrevealed label color for the first key in Disordered Keys?
+            [Question.DisorderedKeysUnrevealedLabelColor] = new()
+            {
+                QuestionText = "What was the unrevealed label color for the {1} key in {0}?",
             },
 
             // Divisible Numbers
@@ -3059,6 +3151,14 @@ namespace Souvenir
             {
                 QuestionText = "{0}に表示された記号は？",
                 ModuleName = "方程式X",
+            },
+
+            // Error Codes
+            // What was the active error code in {0}?
+            // What was the active error code in Error Codes?
+            [Question.ErrorCodesActiveError] = new()
+            {
+                QuestionText = "What was the active error code in {0}?",
             },
 
             // Etterna
@@ -5718,6 +5818,14 @@ namespace Souvenir
             {
                 QuestionText = "{0}に存在していたお菓子は？",
                 ModuleName = "ミスター・ソフティー",
+            },
+
+            // Mixometer
+            // What was the position of the submit button in {0}?
+            // What was the position of the submit button in Mixometer?
+            [Question.MixometerSubmitButton] = new()
+            {
+                QuestionText = "What was the position of the submit button in {0}?",
             },
 
             // Modern Cipher

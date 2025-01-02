@@ -763,43 +763,58 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "BorderedKeysScript");
         var colors = GetArrayField<string>(comp, "colourList").Get(expectedLength: 6);
-        List <KMSelectable> allButtons = GetListField<KMSelectable>(comp, "keys", true).Get(expectedLength: 7).ToList();
-        List<KMSelectable> keys = allButtons.Take(6).ToList();
-        var infoFld = GetArrayField<int[]>(comp, "info");
-        int[][] info = new int[6][]; //this assignment doesn't matter. It's just to appease the linter
+        var allButtons = GetListField<KMSelectable>(comp, "keys", true).Get(expectedLength: 7).ToList();
+        var keys = allButtons.Take(6).ToList();
+        var fldInfo = GetArrayField<int[]>(comp, "info");
+
         string[] keysColors = new string[6];
         string[] labelColors = new string[6];
         string[] borderColors = new string[6];
         string[] labels = new string[6];
         string[] digits = new string[6];
-        foreach (KMSelectable key in keys)
+        Exception exception = null;
+
+        foreach (var key in keys)
         {
             key.OnInteract += delegate ()
             {
-                GetMissing();
-                int index = keys.IndexOf(key);
-                keysColors[index] = colors[info[index][0]];
-                labelColors[index] = colors[info[index][1]];
-                borderColors[index] = colors[info[index][2]];
-                labels[index] = (info[index][3] + 1).ToString();
-                digits[index] = info[index][4].ToString();
-                return false;
+                if (exception != null)
+                    return false;
+                try
+                {
+                    var info = fldInfo.Get(expectedLength: 6, validator: arr => arr.Length != 5 ? "expected length of 5" : null);
+                    int index = keys.IndexOf(key);
+                    keysColors[index] = colors[info[index][0]];
+                    labelColors[index] = colors[info[index][1]];
+                    borderColors[index] = colors[info[index][2]];
+                    labels[index] = (info[index][3] + 1).ToString();
+                    digits[index] = info[index][4].ToString();
+                    return false;
+                }
+                catch (AbandonModuleException ex)
+                {
+                    exception = ex;
+                    return false;
+                }
             };
         }
-        void GetMissing() => info = GetArrayField<int[]>(comp, "info").Get(expectedLength: 6, validator: arr => arr.Length != 5 ? "expected length of 5" : null);
+
         yield return WaitForSolve;
-        List<QandA> qs = new List<QandA>();
-        for (int keyIndex = 0; keyIndex < keys.Count; keyIndex++)
+        if (exception != null)
+            throw exception;
+
+        var qs = new List<QandA>();
+        for (var keyIndex = 0; keyIndex < keys.Count; keyIndex++)
         {
-            string ordinal = Ordinal(keyIndex + 1);
             if (borderColors[keyIndex] != null)
             {
+                var formatArgs = new[] { Ordinal(keyIndex + 1) };
                 qs.AddRange(new[] {
-                    makeQuestion(Question.BorderedKeysBorderColor, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { borderColors[keyIndex] }),
-                    makeQuestion(Question.BorderedKeysDigit, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { digits[keyIndex] }),
-                    makeQuestion(Question.BorderedKeysKeyColor, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { keysColors[keyIndex] }),
-                    makeQuestion(Question.BorderedKeysLabel, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { labels[keyIndex] }),
-                    makeQuestion(Question.BorderedKeysLabelColor, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { labelColors[keyIndex] }),
+                    makeQuestion(Question.BorderedKeysBorderColor, module, formatArgs: formatArgs, correctAnswers: new[] { borderColors[keyIndex] }),
+                    makeQuestion(Question.BorderedKeysDigit, module, formatArgs: formatArgs, correctAnswers: new[] { digits[keyIndex] }),
+                    makeQuestion(Question.BorderedKeysKeyColor, module, formatArgs: formatArgs, correctAnswers: new[] { keysColors[keyIndex] }),
+                    makeQuestion(Question.BorderedKeysLabel, module, formatArgs: formatArgs, correctAnswers: new[] { labels[keyIndex] }),
+                    makeQuestion(Question.BorderedKeysLabelColor, module, formatArgs: formatArgs, correctAnswers: new[] { labelColors[keyIndex] }),
                 });
             }
         }

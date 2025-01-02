@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Souvenir;
-using Souvenir.Reflection;
 using UnityEngine;
 
 public partial class SouvenirModule
