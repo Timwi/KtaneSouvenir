@@ -132,6 +132,38 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerator<YieldInstruction> ProcessDetoNATO(ModuleData module)
+    {
+        //This mod will not generate questions properly with tp autosolveer
+        var comp = GetComponent(module, "Detonato");
+        var fldStage = GetIntField(comp, "stage");
+        var words = GetArrayField<string>(comp, "words").Get(expectedLength: 156);
+        var textMesh = GetField<TextMesh>(comp, "screenText", true).Get();
+        var displaysList = new List<string>();
+        var currentStage = -1;
+        while (module.Unsolved)
+        {
+            var newStage = fldStage.Get();
+            string currentWord = textMesh.text;
+            if (currentWord != "")
+            {
+                if (newStage != currentStage || currentStage >= displaysList.Count)
+                {
+                    displaysList.Add(currentWord);
+                    currentStage = newStage;
+                }
+                else if (displaysList[currentStage] != currentWord)
+                {
+                    displaysList[currentStage] = currentWord;
+                }
+            }
+            yield return null;
+        }
+        yield return WaitForSolve;
+        var questions = displaysList.Select((w, ix) => makeQuestion(Question.DetoNATODisplay, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { displaysList[ix] }, allAnswers: words));
+        addQuestions(module, questions);
+    }
+
     private IEnumerator<YieldInstruction> ProcessDevilishEggs(ModuleData module)
     {
         var comp = GetComponent(module, "devilishEggs");

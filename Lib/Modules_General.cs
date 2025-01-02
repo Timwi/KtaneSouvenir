@@ -144,6 +144,7 @@ public partial class SouvenirModule
             ["DecoloredSquaresModule"] = (ProcessDecoloredSquares, "Decolored Squares", "luisdiogo98"),
             ["DecolourFlashModule"] = (ProcessDecolourFlash, "Decolour Flash", "Timwi"),
             ["DenialDisplaysModule"] = (ProcessDenialDisplays, "Denial Displays", "Quinn Wuest"),
+            ["Detonato"] = (ProcessDetoNATO, "DetoNATO", "Hawker"),
             ["devilishEggs"] = (ProcessDevilishEggs, "Devilish Eggs", "Timwi"),
             ["digisibility"] = (ProcessDigisibility, "Digisibility", "tandyCake"),
             ["digitString"] = (ProcessDigitString, "Digit String", "GoodHood"),

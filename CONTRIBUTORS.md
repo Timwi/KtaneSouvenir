@@ -83,16 +83,16 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cosmic          │  Guess Who?     │  Sequencyclopedia, The  │  Topsy Turvy             │
     Deaf Alley      │  Hold Ups       │  Shifting Maze          │  Ultimate Cipher         │
 
-## Implemented by Hawker (37)
+## Implemented by Hawker (38)
 
-    3N+1                     │  Directional Button  │  Girlfriend          │  Module Movements                   │  Subway
-    Arena, The               │  Earthbound          │  h                   │  RGB Sequences                      │  Suits and Colours
-    Bar Charts               │  Error Codes         │  High Score, The     │  Robot Programming                  │  UNO!
-    Book of Mario            │  Find The Date       │  Keypad Combination  │  Scrutiny Squares                   │  Valves
-    Character Slots          │  Flavor Text         │  Kuro                │  Sign Language                      │  Weakest Link, The
-    Conditional Buttons      │  Flavor Text EX      │  Ladder Lottery      │  Simon Serves                       │
-    Customer Identification  │  Garfield Kart       │  LED Grid            │  Sonic & Knuckles                   │
-    Dimension Disruption     │  Garnet Thief, The   │  Mixometer           │  Spongebob Birthday Identification  │
+    3N+1                     │  Dimension Disruption  │  Garnet Thief, The   │  Mixometer          │  Spongebob Birthday Identification
+    Arena, The               │  Directional Button    │  Girlfriend          │  Module Movements   │  Subway
+    Bar Charts               │  Earthbound            │  h                   │  RGB Sequences      │  Suits and Colours
+    Book of Mario            │  Error Codes           │  High Score, The     │  Robot Programming  │  UNO!
+    Character Slots          │  Find The Date         │  Keypad Combination  │  Scrutiny Squares   │  Valves
+    Conditional Buttons      │  Flavor Text           │  Kuro                │  Sign Language      │  Weakest Link, The
+    Customer Identification  │  Flavor Text EX        │  Ladder Lottery      │  Simon Serves       │
+    DetoNATO                 │  Garfield Kart         │  LED Grid            │  Sonic & Knuckles   │
 
 ## Implemented by TasThiluna (31)
 

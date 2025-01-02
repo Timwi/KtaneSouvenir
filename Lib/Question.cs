@@ -694,6 +694,10 @@
             ExampleFormatArguments = new[] { "A", "B", "C", "D", "E" }, ExampleFormatArgumentGroupSize = 1)]
         DenialDisplaysDisplays,
 
+        [SouvenirQuestion("What was the {1} display in {0}?", "DetoNATO", TwoColumns4Answers, ExampleAnswers = new[] { "Ozzy Osbourne", "Jouleliette", "Flockstrot", "Joulelette", "Jouleliett", "Uniqueform" },
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        DetoNATODisplay,
+
         [SouvenirQuestion("What was the {1} egg’s {2} rotation in {0}?", "Devilish Eggs", TwoColumns4Answers, "W90CW", "W180CW", "W270CW", "W360CW", "W90CCW", "W180CCW", "W270CCW", "W360CCW", "T90CW", "T180CW", "T270CW", "T360CW", "T90CCW", "T180CCW", "T270CCW", "T360CCW", TranslateFormatArgs = new[] { true, false },
             ExampleFormatArguments = new[] { "top", QandA.Ordinal, "bottom", QandA.Ordinal }, ExampleFormatArgumentGroupSize = 2)]
         DevilishEggsRotations,
