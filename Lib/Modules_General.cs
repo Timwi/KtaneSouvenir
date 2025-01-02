@@ -178,6 +178,7 @@ public partial class SouvenirModule
             ["GSEntryNumberOne"] = (ProcessEntryNumberOne, "Entry Number One", "GhostSalt"),
             ["epelleMoiCa"] = (ProcessEpelleMoiCa, "Épelle-moi Ça", "Quinn Wuest"),
             ["equationsXModule"] = (ProcessEquationsX, "Equations X", "kavinkul"),
+            ["errorCodes"] = (ProcessErrorCodes, "Error Codes", "Hawker"),
             ["etterna"] = (ProcessEtterna, "Etterna", "Emik"),
             ["exoplanets"] = (ProcessExoplanets, "Exoplanets", "Brawlboxgaming"),
             ["factoringMaze"] = (ProcessFactoringMaze, "Factoring Maze", "Eltrick"),

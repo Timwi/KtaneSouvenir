@@ -83,15 +83,16 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cosmic          │  Guess Who?     │  Sequencyclopedia, The  │  Topsy Turvy             │
     Deaf Alley      │  Hold Ups       │  Shifting Maze          │  Ultimate Cipher         │
 
-## Implemented by Hawker (35)
+## Implemented by Hawker (36)
 
-    3N+1                     │  Dimension Disruption  │  Garnet Thief, The   │  LED Grid           │  Sonic & Knuckles
-    Arena, The               │  Directional Button    │  Girlfriend          │  Module Movements   │  Spongebob Birthday Identification
-    Bar Charts               │  Earthbound            │  h                   │  RGB Sequences      │  Subway
-    Book of Mario            │  Find The Date         │  High Score, The     │  Robot Programming  │  Suits and Colours
-    Character Slots          │  Flavor Text           │  Keypad Combination  │  Scrutiny Squares   │  UNO!
-    Conditional Buttons      │  Flavor Text EX        │  Kuro                │  Sign Language      │  Valves
-    Customer Identification  │  Garfield Kart         │  Ladder Lottery      │  Simon Serves       │  Weakest Link, The
+    3N+1                     │  Directional Button  │  Girlfriend          │  RGB Sequences                      │  Suits and Colours
+    Arena, The               │  Earthbound          │  h                   │  Robot Programming                  │  UNO!
+    Bar Charts               │  Error Codes         │  High Score, The     │  Scrutiny Squares                   │  Valves
+    Book of Mario            │  Find The Date       │  Keypad Combination  │  Sign Language                      │  Weakest Link, The
+    Character Slots          │  Flavor Text         │  Kuro                │  Simon Serves                       │
+    Conditional Buttons      │  Flavor Text EX      │  Ladder Lottery      │  Sonic & Knuckles                   │
+    Customer Identification  │  Garfield Kart       │  LED Grid            │  Spongebob Birthday Identification  │
+    Dimension Disruption     │  Garnet Thief, The   │  Module Movements    │  Subway                             │
 
 ## Implemented by TasThiluna (31)
 

@@ -874,6 +874,10 @@
         [SouvenirQuestion("What was the displayed symbol in {0}?", "Equations X", ThreeColumns6Answers, "H(T)", "P", "\u03C7", "\u03C9", "Z(T)", "\u03C4", "\u03BC", "\u03B1", "K")]
         EquationsXSymbols,
 
+        [SouvenirQuestion("What was the active error code in {0}?", "Error Codes", ThreeColumns6Answers)]
+        [AnswerGenerator.Integers(0, 101, 1, "X2")]
+        ErrorCodesActiveError,
+
         [SouvenirQuestion("What was the beat for the {1} arrow from the bottom in {0}?", "Etterna", ThreeColumns6Answers,
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 32)]
