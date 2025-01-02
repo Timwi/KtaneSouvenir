@@ -295,29 +295,31 @@ public partial class SouvenirModule
         var unrevealedKeyColors = new string[6];
         var unrevealedLabels = new string[6];
         var unrevealedLabelColors = new string[6];
+        var recompute = true;
 
         module.Module.OnStrike += () =>
         {
-            StartCoroutine(GetInfo());
+            recompute = true;
             return false;
         };
 
-        // when the mod first starts, get info
-        StartCoroutine(GetInfo());
-        yield return WaitForSolve;
-
-        IEnumerator GetInfo()
+        while (module.Unsolved)
         {
-            yield return null; // allow resetting to set the variables
-            missing = fldMissing.Get(expectedLength: 6, validator: number => number < 0 || number > 2 ? "expected range 0–2 inclusively" : null).ToArray();
-            info = fldInfo.Get(expectedLength: 6, validator: arr => arr.Length != 3 ? "expected length 3" : null).ToArray();
-            quirks = fldQuirk.Get(expectedLength: 6).ToArray();
-
-            for (var keyIndex = 0; keyIndex < 6; keyIndex++)
+            yield return null;
+            if (recompute)
             {
-                unrevealedKeyColors[keyIndex] = missing[keyIndex] == 0 ? "missing" : colorList[info[keyIndex][0]];
-                unrevealedLabelColors[keyIndex] = missing[keyIndex] == 1 ? "missing" : colorList[info[keyIndex][1]];
-                unrevealedLabels[keyIndex] = missing[keyIndex] == 2 ? "missing" : (info[keyIndex][2] + 1).ToString();
+                missing = fldMissing.Get(expectedLength: 6, validator: number => number < 0 || number > 2 ? "expected range 0–2 inclusively" : null).ToArray();
+                info = fldInfo.Get(expectedLength: 6, validator: arr => arr.Length != 3 ? "expected length 3" : null).ToArray();
+                quirks = fldQuirk.Get(expectedLength: 6).ToArray();
+
+                for (var keyIndex = 0; keyIndex < 6; keyIndex++)
+                {
+                    unrevealedKeyColors[keyIndex] = missing[keyIndex] == 0 ? "missing" : colorList[info[keyIndex][0]];
+                    unrevealedLabelColors[keyIndex] = missing[keyIndex] == 1 ? "missing" : colorList[info[keyIndex][1]];
+                    unrevealedLabels[keyIndex] = missing[keyIndex] == 2 ? "missing" : (info[keyIndex][2] + 1).ToString();
+                }
+
+                recompute = false;
             }
         }
 
