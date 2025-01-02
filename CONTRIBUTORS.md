@@ -61,6 +61,17 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Colored Keys         │  Free Parking              │  Maze³             │  Reverse Morse      │  Vexillology
     Cube, The            │  Hexabutton, The           │  Mazematics        │  Simon Scrambles    │  Zoni
 
+## Implemented by Hawker (40)
+
+    3N+1                     │  DetoNATO              │  Flavor Text EX      │  Ladder Lottery     │  Simon Serves
+    Arena, The               │  Dimension Disruption  │  Garfield Kart       │  LED Grid           │  Sonic & Knuckles
+    Bar Charts               │  Directional Button    │  Garnet Thief, The   │  Mixometer          │  Spongebob Birthday Identification
+    Book of Mario            │  Disordered Keys       │  Girlfriend          │  Module Movements   │  Subway
+    Bordered Keys            │  Earthbound            │  h                   │  RGB Sequences      │  Suits and Colours
+    Character Slots          │  Error Codes           │  High Score, The     │  Robot Programming  │  UNO!
+    Conditional Buttons      │  Find The Date         │  Keypad Combination  │  Scrutiny Squares   │  Valves
+    Customer Identification  │  Flavor Text           │  Kuro                │  Sign Language      │  Weakest Link, The
+
 ## Implemented by Anonymous (39)
 
     ↻↺                 │  Connected Monitors  │  Labyrinth, The      │  Pickup Identification  │  Stable Time Signatures
@@ -71,17 +82,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Big Bean           │  Fuse Box, The       │  Not Red Arrows      │  Simon Smiles           │  Variety
     Boomtar the Great  │  Ghost Movement      │  One Links To All    │  Simon Subdivides       │  X-Ring
     Bottom Gear        │  hexOrbits           │  Pentabutton, The    │  Smash, Marry, Kill     │
-
-## Implemented by Hawker (39)
-
-    3N+1                     │  Dimension Disruption  │  Garfield Kart       │  LED Grid           │  Sonic & Knuckles
-    Arena, The               │  Directional Button    │  Garnet Thief, The   │  Mixometer          │  Spongebob Birthday Identification
-    Bar Charts               │  Disordered Keys       │  Girlfriend          │  Module Movements   │  Subway
-    Book of Mario            │  Earthbound            │  h                   │  RGB Sequences      │  Suits and Colours
-    Character Slots          │  Error Codes           │  High Score, The     │  Robot Programming  │  UNO!
-    Conditional Buttons      │  Find The Date         │  Keypad Combination  │  Scrutiny Squares   │  Valves
-    Customer Identification  │  Flavor Text           │  Kuro                │  Sign Language      │  Weakest Link, The
-    DetoNATO                 │  Flavor Text EX        │  Ladder Lottery      │  Simon Serves       │
 
 ## Implemented by BigCrunch22 (38)
 

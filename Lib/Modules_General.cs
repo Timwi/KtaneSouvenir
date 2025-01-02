@@ -74,6 +74,7 @@ public partial class SouvenirModule
             ["booleanWires"] = (ProcessBooleanWires, "Boolean Wires", "Kuro"),
             ["boomtarTheGreat"] = (ProcessBoomtarTheGreat, "Boomtar the Great", "Anonymous"),
             ["GSBottomGear"] = (ProcessBottomGear, "Bottom Gear", "Anonymous"),
+            ["borderedKeys"] = (ProcessBorderedKeys, "Bordered Keys", "Hawker"),
             ["boxing"] = (ProcessBoxing, "Boxing", "Timwi"),
             ["BrailleModule"] = (ProcessBraille, "Braille", "Timwi"),
             ["breakfastEgg"] = (ProcessBreakfastEgg, "Breakfast Egg", "tandyCake"),

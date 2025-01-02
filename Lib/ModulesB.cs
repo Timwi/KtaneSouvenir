@@ -759,6 +759,53 @@ public partial class SouvenirModule
         addQuestion(module, Question.BottomGearTweet, correctAnswers: new[] { tweets[index] });
     }
 
+    private IEnumerator<YieldInstruction> ProcessBorderedKeys(ModuleData module)
+    {
+        var comp = GetComponent(module, "BorderedKeysScript");
+        var colors = GetArrayField<string>(comp, "colourList").Get(expectedLength: 6);
+        List <KMSelectable> allButtons = GetListField<KMSelectable>(comp, "keys", true).Get(expectedLength: 7).ToList();
+        List<KMSelectable> keys = allButtons.Take(6).ToList();
+        var infoFld = GetArrayField<int[]>(comp, "info");
+        int[][] info = new int[6][]; //this assignment doesn't matter. It's just to appease the linter
+        string[] keysColors = new string[6];
+        string[] labelColors = new string[6];
+        string[] borderColors = new string[6];
+        string[] labels = new string[6];
+        string[] digits = new string[6];
+        foreach (KMSelectable key in keys)
+        {
+            key.OnInteract += delegate ()
+            {
+                GetMissing();
+                int index = keys.IndexOf(key);
+                keysColors[index] = colors[info[index][0]];
+                labelColors[index] = colors[info[index][1]];
+                borderColors[index] = colors[info[index][2]];
+                labels[index] = (info[index][3] + 1).ToString();
+                digits[index] = info[index][4].ToString();
+                return false;
+            };
+        }
+        void GetMissing() => info = GetArrayField<int[]>(comp, "info").Get(expectedLength: 6, validator: arr => arr.Length != 5 ? "expected length of 5" : null);
+        yield return WaitForSolve;
+        List<QandA> qs = new List<QandA>();
+        for (int keyIndex = 0; keyIndex < keys.Count; keyIndex++)
+        {
+            string ordinal = Ordinal(keyIndex + 1);
+            if (borderColors[keyIndex] != null)
+            {
+                qs.AddRange(new[] {
+                    makeQuestion(Question.BorderedKeysBorderColor, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { borderColors[keyIndex] }),
+                    makeQuestion(Question.BorderedKeysDigit, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { digits[keyIndex] }),
+                    makeQuestion(Question.BorderedKeysKeyColor, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { keysColors[keyIndex] }),
+                    makeQuestion(Question.BorderedKeysLabel, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { labels[keyIndex] }),
+                    makeQuestion(Question.BorderedKeysLabelColor, module, formatArgs: new[] { ordinal }, correctAnswers: new[] { labelColors[keyIndex] }),
+                });
+            }
+        }
+        addQuestions(module, qs);
+    }
+
     private IEnumerator<YieldInstruction> ProcessBoxing(ModuleData module)
     {
         var comp = GetComponent(module, "boxing");
