@@ -458,15 +458,26 @@ public partial class SouvenirModule
     private IEnumerator<YieldInstruction> ProcessMegaMan2(ModuleData module)
     {
         var comp = GetComponent(module, "Megaman2");
-        var robotMasters = GetArrayField<string>(comp, "robotMasters").Get();
+
+        // This array contains all of the robot masters, but only the first 8 are used by the current rule seed
+        var robotMasters = GetArrayField<string>(comp, "robotMasters").Get().Take(8).ToArray();
+
+        // Make sure to use only the sprites relevant to the current rule seed
+        Sprite[] GetSprites(string fieldName) => GetArrayField<Texture2D>(comp, fieldName, isPublic: true).Get()
+            .Where(tx => robotMasters.Contains(tx.name))
+            .Select(Sprites.FromTexture)
+            .ToArray();
+
+        var applicableMasters = GetSprites("RobotMasters");
+        var applicableWeapons = GetSprites("Weapons");
         var selectedMaster = GetIntField(comp, "selectedMaster").Get(min: 0, max: robotMasters.Length - 1);
         var selectedWeapon = GetIntField(comp, "selectedWeapon").Get(min: 0, max: robotMasters.Length - 1);
 
         yield return WaitForSolve;
 
         addQuestions(module,
-            makeQuestion(Question.MegaMan2SelectedMaster, module, correctAnswers: new[] { robotMasters[selectedMaster] }, preferredWrongAnswers: robotMasters),
-            makeQuestion(Question.MegaMan2SelectedWeapon, module, correctAnswers: new[] { robotMasters[selectedWeapon] }, preferredWrongAnswers: robotMasters));
+            makeQuestion(Question.MegaMan2Master, module, correctAnswers: new[] { applicableMasters.First(spr => spr.name == robotMasters[selectedMaster]) }, preferredWrongAnswers: applicableMasters),
+            makeQuestion(Question.MegaMan2Weapon, module, correctAnswers: new[] { applicableWeapons.First(spr => spr.name == robotMasters[selectedWeapon]) }, preferredWrongAnswers: applicableWeapons));
     }
 
     private IEnumerator<YieldInstruction> ProcessMelodySequencer(ModuleData module)

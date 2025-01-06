@@ -144,6 +144,13 @@ namespace Souvenir
         public static IEnumerable<Sprite> TranslateSprites(this IEnumerable<Sprite> sprites, float? pixelsPerUnit) =>
             (sprites ?? throw new ArgumentNullException(nameof(sprites))).Select(spr => TranslateSprite(spr, pixelsPerUnit));
 
+        public static Sprite FromTexture(this Texture2D texture)
+        {
+            var newSprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0, .5f), texture.height * (60f / 17));
+            newSprite.name = texture.name;
+            return newSprite;
+        }
+
         // Height must be even, should be a power of 2
         const int HEIGHT = 128;
         const int WIDTH = HEIGHT * 4;
