@@ -9,5 +9,6 @@ namespace Souvenir
         public Dictionary<string, string> Answers;
         public Dictionary<string, string> FormatArgs;
         public Dictionary<string, string> TranslatableStrings;
+        public bool NeedsTranslation = false;
     }
 }

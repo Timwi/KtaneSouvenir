@@ -153,7 +153,10 @@ namespace SouvenirPostBuildTool
                         sb.AppendLine($@"            [Question.{qId}] = new()");
                         sb.AppendLine("            {");
 
-                        var skip = "QuestionText,ModuleName,FormatArgs,Answers,TranslatableStrings".Split(',');
+                        var skip = "QuestionText,ModuleName,FormatArgs,Answers,TranslatableStrings,NeedsTranslation".Split(',');
+
+                        if (ti == null)
+                            sb.AppendLine(@"                NeedsTranslation = true,");
 
                         if (ti != null)
                             foreach (var f in tiFields)
