@@ -697,10 +697,10 @@ namespace Souvenir
                 QuestionText = "{0}の{1}本目の棒は何色だった？",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = @"Red",
-                    ["Yellow"] = @"Yellow",
-                    ["Green"] = @"Green",
-                    ["Blue"] = @"Blue",
+                    ["Red"] = "Red",
+                    ["Yellow"] = "Yellow",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
                 },
             },
             // What was the position of the {1} bar in {0}?
@@ -2070,16 +2070,16 @@ namespace Souvenir
                 ModuleName = "条件ボタン",
                 Answers = new Dictionary<string, string>
                 {
-                    ["black"] = @"black",
-                    ["blue"] = @"blue",
-                    ["dark green"] = @"dark green",
-                    ["light green"] = @"light green",
-                    ["orange"] = @"orange",
-                    ["pink"] = @"pink",
-                    ["purple"] = @"purple",
-                    ["red"] = @"red",
-                    ["white"] = @"white",
-                    ["yellow"] = @"yellow",
+                    ["black"] = "black",
+                    ["blue"] = "blue",
+                    ["dark green"] = "dark green",
+                    ["light green"] = "light green",
+                    ["orange"] = "orange",
+                    ["pink"] = "pink",
+                    ["purple"] = "purple",
+                    ["red"] = "red",
+                    ["white"] = "white",
+                    ["yellow"] = "yellow",
                 },
             },
 
@@ -2975,13 +2975,13 @@ namespace Souvenir
                 ModuleName = "アヒル",
                 Answers = new Dictionary<string, string>
                 {
-                    ["dove at the duck"] = @"dove at the duck",
-                    ["walked to the duck"] = @"walked to the duck",
-                    ["ran to the duck"] = @"ran to the duck",
-                    ["snuck up on the duck"] = @"snuck up on the duck",
-                    ["swam to the duck"] = @"swam to the duck",
-                    ["flew to the duck"] = @"flew to the duck",
-                    ["approached the duck with caution"] = @"approached the duck with caution",
+                    ["dove at the duck"] = "dove at the duck",
+                    ["walked to the duck"] = "walked to the duck",
+                    ["ran to the duck"] = "ran to the duck",
+                    ["snuck up on the duck"] = "snuck up on the duck",
+                    ["swam to the duck"] = "swam to the duck",
+                    ["flew to the duck"] = "flew to the duck",
+                    ["approached the duck with caution"] = "approached the duck with caution",
                 },
             },
             // What was the color of the curtain in {0}?
@@ -3183,7 +3183,7 @@ namespace Souvenir
                     ["Pigpen"] = "ピッグペン暗号",
                     ["Lombax"] = "ロンバックス",
                     ["Braille"] = "点字",
-                    ["Wingdings"] = @"Wingdings",
+                    ["Wingdings"] = "Wingdings",
                     ["Zoni"] = "ゾ二",
                     ["Galatic Alphabet"] = "銀河標準語",
                     ["Arrow"] = "矢印",
@@ -3193,7 +3193,7 @@ namespace Souvenir
                     ["Cube Symbols"] = "キューブ記号",
                     ["Runes"] = "ルーン文字",
                     ["New York Point"] = "旧式点字",
-                    ["Fontana"] = @"Fontana",
+                    ["Fontana"] = "Fontana",
                     ["ASCII Hex Code"] = "ASCII十六進数",
                 },
             },
@@ -3598,7 +3598,7 @@ namespace Souvenir
                 ModuleName = "全色忘る",
                 TranslatableStrings = new Dictionary<string, string>
                 {
-                    ["{0}, {1}, {2}"] = @"{0}, {1}, {2}",
+                    ["{0}, {1}, {2}"] = "{0}, {1}, {2}",
                     ["Red"] = "赤",
                     ["Orange"] = "橙",
                     ["Yellow"] = "黄",
@@ -4937,8 +4937,8 @@ namespace Souvenir
                 ModuleName = "LED算",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["LED A"] = @"LED A",
-                    ["LED B"] = @"LED B",
+                    ["LED A"] = "LED A",
+                    ["LED B"] = "LED B",
                     ["the operator LED"] = "演算子のLED",
                 },
                 Answers = new Dictionary<string, string>
@@ -5262,7 +5262,7 @@ namespace Souvenir
                 QuestionText = "{0}で{1}の元となったメインページは？",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["Homestar"] = @"Homestar",
+                    ["Homestar"] = "Homestar",
                     ["the background"] = "背景",
                 },
             },
@@ -6088,15 +6088,15 @@ namespace Souvenir
                 ModuleName = "殺人",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Dining Room"] = @"Dining Room",
-                    ["Study"] = @"Study",
-                    ["Kitchen"] = @"Kitchen",
-                    ["Lounge"] = @"Lounge",
-                    ["Billiard Room"] = @"Billiard Room",
-                    ["Conservatory"] = @"Conservatory",
-                    ["Ballroom"] = @"Ballroom",
-                    ["Hall"] = @"Hall",
-                    ["Library"] = @"Library",
+                    ["Dining Room"] = "Dining Room",
+                    ["Study"] = "Study",
+                    ["Kitchen"] = "Kitchen",
+                    ["Lounge"] = "Lounge",
+                    ["Billiard Room"] = "Billiard Room",
+                    ["Conservatory"] = "Conservatory",
+                    ["Ballroom"] = "Ballroom",
+                    ["Hall"] = "Hall",
+                    ["Library"] = "Library",
                 },
             },
             // Which of these was {1} in {0}?
@@ -6112,12 +6112,12 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Miss Scarlett"] = @"Miss Scarlett",
-                    ["Professor Plum"] = @"Professor Plum",
-                    ["Mrs Peacock"] = @"Mrs Peacock",
-                    ["Reverend Green"] = @"Reverend Green",
-                    ["Colonel Mustard"] = @"Colonel Mustard",
-                    ["Mrs White"] = @"Mrs White",
+                    ["Miss Scarlett"] = "Miss Scarlett",
+                    ["Professor Plum"] = "Professor Plum",
+                    ["Mrs Peacock"] = "Mrs Peacock",
+                    ["Reverend Green"] = "Reverend Green",
+                    ["Colonel Mustard"] = "Colonel Mustard",
+                    ["Mrs White"] = "Mrs White",
                 },
             },
             // Which of these was {1} in {0}?
@@ -6133,12 +6133,12 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Candlestick"] = @"Candlestick",
-                    ["Dagger"] = @"Dagger",
-                    ["Lead Pipe"] = @"Lead Pipe",
-                    ["Revolver"] = @"Revolver",
-                    ["Rope"] = @"Rope",
-                    ["Spanner"] = @"Spanner",
+                    ["Candlestick"] = "Candlestick",
+                    ["Dagger"] = "Dagger",
+                    ["Lead Pipe"] = "Lead Pipe",
+                    ["Revolver"] = "Revolver",
+                    ["Rope"] = "Rope",
+                    ["Spanner"] = "Spanner",
                 },
             },
 
@@ -6456,24 +6456,24 @@ namespace Souvenir
                 ModuleName = "偽殺人",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["Miss Scarlett"] = @"Miss Scarlett",
-                    ["Colonel Mustard"] = @"Colonel Mustard",
-                    ["Reverend Green"] = @"Reverend Green",
-                    ["Mrs Peacock"] = @"Mrs Peacock",
-                    ["Professor Plum"] = @"Professor Plum",
-                    ["Mrs White"] = @"Mrs White",
+                    ["Miss Scarlett"] = "Miss Scarlett",
+                    ["Colonel Mustard"] = "Colonel Mustard",
+                    ["Reverend Green"] = "Reverend Green",
+                    ["Mrs Peacock"] = "Mrs Peacock",
+                    ["Professor Plum"] = "Professor Plum",
+                    ["Mrs White"] = "Mrs White",
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Ballroom"] = @"Ballroom",
-                    ["Billiard Room"] = @"Billiard Room",
-                    ["Conservatory"] = @"Conservatory",
-                    ["Dining Room"] = @"Dining Room",
-                    ["Hall"] = @"Hall",
-                    ["Kitchen"] = @"Kitchen",
-                    ["Library"] = @"Library",
-                    ["Lounge"] = @"Lounge",
-                    ["Study"] = @"Study",
+                    ["Ballroom"] = "Ballroom",
+                    ["Billiard Room"] = "Billiard Room",
+                    ["Conservatory"] = "Conservatory",
+                    ["Dining Room"] = "Dining Room",
+                    ["Hall"] = "Hall",
+                    ["Kitchen"] = "Kitchen",
+                    ["Library"] = "Library",
+                    ["Lounge"] = "Lounge",
+                    ["Study"] = "Study",
                 },
             },
             // What weapon did {1} possess initially on {0}?
@@ -6484,21 +6484,21 @@ namespace Souvenir
                 ModuleName = "偽殺人",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["Miss Scarlett"] = @"Miss Scarlett",
-                    ["Colonel Mustard"] = @"Colonel Mustard",
-                    ["Reverend Green"] = @"Reverend Green",
-                    ["Mrs Peacock"] = @"Mrs Peacock",
-                    ["Professor Plum"] = @"Professor Plum",
-                    ["Mrs White"] = @"Mrs White",
+                    ["Miss Scarlett"] = "Miss Scarlett",
+                    ["Colonel Mustard"] = "Colonel Mustard",
+                    ["Reverend Green"] = "Reverend Green",
+                    ["Mrs Peacock"] = "Mrs Peacock",
+                    ["Professor Plum"] = "Professor Plum",
+                    ["Mrs White"] = "Mrs White",
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Candlestick"] = @"Candlestick",
-                    ["Dagger"] = @"Dagger",
-                    ["Lead Pipe"] = @"Lead Pipe",
-                    ["Revolver"] = @"Revolver",
-                    ["Rope"] = @"Rope",
-                    ["Spanner"] = @"Spanner",
+                    ["Candlestick"] = "Candlestick",
+                    ["Dagger"] = "Dagger",
+                    ["Lead Pipe"] = "Lead Pipe",
+                    ["Revolver"] = "Revolver",
+                    ["Rope"] = "Rope",
+                    ["Spanner"] = "Spanner",
                 },
             },
 
@@ -7233,9 +7233,9 @@ namespace Souvenir
                 ModuleName = "回文",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["X"] = @"X",
-                    ["Y"] = @"Y",
-                    ["Z"] = @"Z",
+                    ["X"] = "X",
+                    ["Y"] = "Y",
+                    ["Z"] = "Z",
                     ["the screen"] = "ディスプレー",
                 },
             },
@@ -7982,16 +7982,16 @@ namespace Souvenir
                 QuestionText = "{0}の{1}番目のワイヤの色は？",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Navy"] = @"Navy",
-                    ["Lapis"] = @"Lapis",
-                    ["Blue"] = @"Blue",
-                    ["Sky"] = @"Sky",
-                    ["Teal"] = @"Teal",
-                    ["Plum"] = @"Plum",
-                    ["Violet"] = @"Violet",
-                    ["Purple"] = @"Purple",
-                    ["Magenta"] = @"Magenta",
-                    ["Lavender"] = @"Lavender",
+                    ["Navy"] = "Navy",
+                    ["Lapis"] = "Lapis",
+                    ["Blue"] = "Blue",
+                    ["Sky"] = "Sky",
+                    ["Teal"] = "Teal",
+                    ["Plum"] = "Plum",
+                    ["Violet"] = "Violet",
+                    ["Purple"] = "Purple",
+                    ["Magenta"] = "Magenta",
+                    ["Lavender"] = "Lavender",
                 },
             },
 
@@ -10002,7 +10002,7 @@ namespace Souvenir
                     ["Greek Church"] = "ギリシャ教会",
                     ["Big Five"] = "ビッグファイブ",
                     ["Big Six"] = "ビッグシックス",
-                    ["HOW"] = @"HOW",
+                    ["HOW"] = "HOW",
                 },
             },
 
@@ -10428,7 +10428,7 @@ namespace Souvenir
                     ["Blue +2"] = "青の+2",
                     ["Blue Skip"] = "青のスキップ",
                     ["Blue Reverse"] = "青のリバース",
-                    ["+4"] = @"+4",
+                    ["+4"] = "+4",
                     ["Wild"] = "ワイルド",
                 },
             },
@@ -10625,7 +10625,7 @@ namespace Souvenir
                 ModuleName = "寄せ集め",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    [""] = @"",
+                    [""] = "",
                     ["ascending "] = "カウントアップ",
                     ["descending "] = "カウントダウン",
                 },
@@ -10638,7 +10638,7 @@ namespace Souvenir
                 ModuleName = "寄せ集め",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    [""] = @"",
+                    [""] = "",
                     ["colored "] = "色付き",
                     ["red "] = "赤色",
                     ["black "] = "黒色",
@@ -10654,7 +10654,7 @@ namespace Souvenir
                 ModuleName = "寄せ集め",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    [""] = @"",
+                    [""] = "",
                     ["red "] = "赤色",
                     ["yellow "] = "黄色",
                 },
