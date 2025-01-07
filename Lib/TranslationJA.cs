@@ -694,6 +694,7 @@ namespace Souvenir
             // What was the color of the first bar in Bar Charts?
             [Question.BarChartsColor] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}の{1}本目の棒は何色だった？",
                 Answers = new Dictionary<string, string>
                 {
@@ -2066,6 +2067,7 @@ namespace Souvenir
             // What was the color of this button in Conditional Buttons?
             [Question.ConditionalButtonsColors] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}のこのボタンの色は？",
                 ModuleName = "条件ボタン",
                 Answers = new Dictionary<string, string>
@@ -2971,6 +2973,7 @@ namespace Souvenir
             // How did you approach the duck in The Duck?
             [Question.DuckApproach] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}にいたアヒルにどう接した？",
                 ModuleName = "アヒル",
                 Answers = new Dictionary<string, string>
@@ -3172,6 +3175,7 @@ namespace Souvenir
             // What was the first encoding used in Encryption Bingo?
             [Question.EncryptionBingoEncoding] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}の最初の復号方式は？",
                 ModuleName = "暗号化ビンゴ",
                 Answers = new Dictionary<string, string>
@@ -3594,6 +3598,7 @@ namespace Souvenir
             // What colors were the cylinders during the first stage of Forget Any Color?
             [Question.ForgetAnyColorCylinder] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}のステージ{1}におけるシリンダーは？",
                 ModuleName = "全色忘る",
                 TranslatableStrings = new Dictionary<string, string>
@@ -4933,6 +4938,7 @@ namespace Souvenir
             // What color was LED A in LED Math?
             [Question.LEDMathLights] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}における{1}の色は？",
                 ModuleName = "LED算",
                 FormatArgs = new Dictionary<string, string>
@@ -5259,6 +5265,7 @@ namespace Souvenir
             // Which main page did Homestar come from in Main Page?
             [Question.MainPageHomestarBackgroundOrigin] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}で{1}の元となったメインページは？",
                 FormatArgs = new Dictionary<string, string>
                 {
@@ -6084,6 +6091,7 @@ namespace Souvenir
             // Where was the body found in Murder?
             [Question.MurderBodyFound] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}の死体はどこで見つかった？",
                 ModuleName = "殺人",
                 Answers = new Dictionary<string, string>
@@ -6103,6 +6111,7 @@ namespace Souvenir
             // Which of these was a suspect but not the murderer in Murder?
             [Question.MurderSuspect] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}の{1}に含まれるのは？",
                 ModuleName = "殺人",
                 FormatArgs = new Dictionary<string, string>
@@ -6124,6 +6133,7 @@ namespace Souvenir
             // Which of these was a potential weapon but not the murder weapon in Murder?
             [Question.MurderWeapon] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}の{1}に含まれるのは？",
                 ModuleName = "殺人",
                 FormatArgs = new Dictionary<string, string>
@@ -6452,6 +6462,7 @@ namespace Souvenir
             // What room was Miss Scarlett in initially on Not Murder?
             [Question.NotMurderRoom] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}で{1}が最初にいたのはどの部屋？",
                 ModuleName = "偽殺人",
                 FormatArgs = new Dictionary<string, string>
@@ -6480,6 +6491,7 @@ namespace Souvenir
             // What weapon did Miss Scarlett possess initially on Not Murder?
             [Question.NotMurderWeapon] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}で{1}が最初に所持していたのはどの武器？",
                 ModuleName = "偽殺人",
                 FormatArgs = new Dictionary<string, string>
@@ -7229,6 +7241,7 @@ namespace Souvenir
             // What was X’s first digit from the right in Palindromes?
             [Question.PalindromesNumbers] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}で{1}の右から{2}桁目は？",
                 ModuleName = "回文",
                 FormatArgs = new Dictionary<string, string>
@@ -7979,6 +7992,7 @@ namespace Souvenir
             // What color was the first wire in Reformed Role Reversal?
             [Question.ReformedRoleReversalWire] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}の{1}番目のワイヤの色は？",
                 Answers = new Dictionary<string, string>
                 {
@@ -9981,6 +9995,7 @@ namespace Souvenir
             // What was the red split in Tenpins?
             [Question.TenpinsSplits] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}の{1}のスプリットは？",
                 ModuleName = "テンピン",
                 FormatArgs = new Dictionary<string, string>
@@ -10372,6 +10387,7 @@ namespace Souvenir
             // What was the initial card in UNO!?
             [Question.UnoInitialCard] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}の初期カードは？",
                 ModuleName = "UNO",
                 Answers = new Dictionary<string, string>
@@ -10621,6 +10637,7 @@ namespace Souvenir
             // What was the maximum display for the timer in Variety?
             [Question.VarietyTimer] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}の{1}タイマーが表示できた最大値は？",
                 ModuleName = "寄せ集め",
                 FormatArgs = new Dictionary<string, string>
@@ -10634,6 +10651,7 @@ namespace Souvenir
             // What was n for the knob in Variety?
             [Question.VarietyColoredKnob] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}の{1}ダイヤルに対応するNは？",
                 ModuleName = "寄せ集め",
                 FormatArgs = new Dictionary<string, string>
@@ -10650,6 +10668,7 @@ namespace Souvenir
             // What was n for the bulb in Variety?
             [Question.VarietyBulb] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}の{1}電球に対するNは？",
                 ModuleName = "寄せ集め",
                 FormatArgs = new Dictionary<string, string>

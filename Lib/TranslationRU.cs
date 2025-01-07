@@ -191,6 +191,7 @@ namespace Souvenir
             // What was the initial state of the LEDs in 3 LEDs (in reading order)?
             [Question._3LEDsInitialState] = new()
             {
+                NeedsTranslation = true,
                 Conjugation = Conjugation.GenitivePlural,
                 QuestionText = "Какое было исходное состояние у {0} (в порядке чтения)?",
                 ModuleName = "3 LEDs",
@@ -773,6 +774,7 @@ namespace Souvenir
             // What was the color of the first bar in Bar Charts?
             [Question.BarChartsColor] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какой был цвет у {1}-го столбца {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -786,6 +788,7 @@ namespace Souvenir
             // What was the position of the shortest bar in Bar Charts?
             [Question.BarChartsHeight] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Где находился {1} столбец {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
@@ -819,6 +822,7 @@ namespace Souvenir
             // What was the edgework represented by the first barcode in Barcode Cipher?
             [Question.BarcodeCipherBarcodeEdgework] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какой компонент бомбы был представлен {1}-м штрихкодом {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -844,6 +848,7 @@ namespace Souvenir
             // Which ingredient was in the first position on Bartending?
             [Question.BartendingIngredients] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какой ингредиент был на {1}-й позиции {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -860,6 +865,7 @@ namespace Souvenir
             // What was this bean in Beans?
             [Question.BeansColors] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Каким был данный боб {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -877,6 +883,7 @@ namespace Souvenir
             // What was sprout 1 in Bean Sprouts?
             [Question.BeanSproutsColors] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Каким был росток {1} {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -890,6 +897,7 @@ namespace Souvenir
             // What bean was on sprout 1 in Bean Sprouts?
             [Question.BeanSproutsBeans] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какой боб был на ростке {1} {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -905,6 +913,7 @@ namespace Souvenir
             // What was the bean in Big Bean?
             [Question.BigBeanColor] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Каким был боб {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -1297,6 +1306,7 @@ namespace Souvenir
             // What was the border color when you pressed the first key in Bordered Keys?
             [Question.BorderedKeysBorderColor] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "What was the border color when you pressed the {1} key in {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -1312,12 +1322,14 @@ namespace Souvenir
             // What was the digit displayed when you pressed the first key in Bordered Keys?
             [Question.BorderedKeysDigit] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "What was the digit displayed when you pressed the {1} key in {0}?",
             },
             // What was the key color when you pressed the {1} key in {0}?
             // What was the key color when you pressed the first key in Bordered Keys?
             [Question.BorderedKeysKeyColor] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "What was the key color when you pressed the {1} key in {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -1333,12 +1345,14 @@ namespace Souvenir
             // What was the label when you pressed the first key in Bordered Keys?
             [Question.BorderedKeysLabel] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "What was the label when you pressed the {1} key in {0}?",
             },
             // What was the label color when you pressed the {1} key in {0}?
             // What was the label color when you pressed the first key in Bordered Keys?
             [Question.BorderedKeysLabelColor] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "What was the label color when you pressed the {1} key in {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -1401,6 +1415,7 @@ namespace Souvenir
             // Which color appeared on the egg in Breakfast Egg?
             [Question.BreakfastEggColor] = new()
             {
+                NeedsTranslation = true,
                 Conjugation = Conjugation.GenitiveMascNeuter,
                 QuestionText = "Какой был цвет у {0}?",
                 ModuleName = "Яйца на завтрак",
@@ -1461,6 +1476,7 @@ namespace Souvenir
             // What was the color of the middle contact point in Brush Strokes?
             [Question.BrushStrokesMiddleColor] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какой был цвет центральной точки {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -1714,6 +1730,7 @@ namespace Souvenir
             // Which bird was present in Cheep Checkout?
             [Question.CheepCheckoutBirds] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какая птица {1} {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
@@ -1852,6 +1869,7 @@ namespace Souvenir
             // Which channel was mangled in Color Braille?
             [Question.ColorBrailleChannel] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Which channel was mangled in {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -1920,6 +1938,7 @@ namespace Souvenir
             // What was the displayed word in Colored Keys?
             [Question.ColoredKeysDisplayWord] = new()
             {
+                NeedsTranslation = true,
                 Conjugation = Conjugation.в_PrepositivePlural,
                 QuestionText = "Какое было показанное слово {0}?",
                 ModuleName = "Цветных кнопках",
@@ -2076,6 +2095,7 @@ namespace Souvenir
             // What was the colour of this cube in the first stage of Coloured Cubes?
             [Question.ColouredCubesColours] = new()
             {
+                NeedsTranslation = true,
                 Conjugation = Conjugation.GenitiveMascNeuter,
                 QuestionText = "Какой был цвет данного {1} на {2}-м этапе {0}?",
                 FormatArgs = new Dictionary<string, string>
@@ -2139,6 +2159,7 @@ namespace Souvenir
             // What was the color of this button in Conditional Buttons?
             [Question.ConditionalButtonsColors] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "What was the color of this button in {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -2555,6 +2576,7 @@ namespace Souvenir
             // Which region did you depart from in DACH Maze?
             [Question.DACHMazeOrigin] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Откуда вы отправились {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -2691,6 +2713,7 @@ namespace Souvenir
             // What was the first display in DetoNATO?
             [Question.DetoNATODisplay] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "What was the {1} display in {0}?",
             },
 
@@ -2781,6 +2804,7 @@ namespace Souvenir
             // What was the missing information for the first key in Disordered Keys?
             [Question.DisorderedKeysMissingInfo] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "What was the missing information for the {1} key in {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -2793,6 +2817,7 @@ namespace Souvenir
             // What was the revealed key color for the first key in Disordered Keys?
             [Question.DisorderedKeysRevealedKeyColor] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "What was the revealed key color for the {1} key in {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -2808,12 +2833,14 @@ namespace Souvenir
             // What was the revealed label for the first key in Disordered Keys?
             [Question.DisorderedKeysRevealedLabel] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "What was the revealed label for the {1} key in {0}?",
             },
             // What was the revealed label color for the {1} key in {0}?
             // What was the revealed label color for the first key in Disordered Keys?
             [Question.DisorderedKeysRevealedLabelColor] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "What was the revealed label color for the {1} key in {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -2829,6 +2856,7 @@ namespace Souvenir
             // What was the unrevealed key color for the first key in Disordered Keys?
             [Question.DisorderedKeysUnrevealedKeyColor] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "What was the unrevealed key color for the {1} key in {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -2844,12 +2872,14 @@ namespace Souvenir
             // What was the unrevealed label for the first key in Disordered Keys?
             [Question.DisorderedKeysUnrevealedKeyLabel] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "What was the unrevealed label for the {1} key in {0}?",
             },
             // What was the unrevealed label color for the {1} key in {0}?
             // What was the unrevealed label color for the first key in Disordered Keys?
             [Question.DisorderedKeysUnrevealedLabelColor] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "What was the unrevealed label color for the {1} key in {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -3049,6 +3079,7 @@ namespace Souvenir
             // How did you approach the duck in The Duck?
             [Question.DuckApproach] = new()
             {
+                NeedsTranslation = true,
                 Conjugation = Conjugation.GenitiveMascNeuter,
                 QuestionText = "Как вы встретились с уткой из {0}?",
                 Answers = new Dictionary<string, string>
@@ -3192,6 +3223,7 @@ namespace Souvenir
             // What method of encryption was used by Encrypted Hangman?
             [Question.EncryptedHangmanEncryptionMethod] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какой метод шифрования был применён {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -3242,6 +3274,7 @@ namespace Souvenir
             // What was the first encoding used in Encryption Bingo?
             [Question.EncryptionBingoEncoding] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какая шифровка была первой {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -3343,6 +3376,7 @@ namespace Souvenir
             // What was the active error code in Error Codes?
             [Question.ErrorCodesActiveError] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "What was the active error code in {0}?",
             },
 
@@ -3651,6 +3685,7 @@ namespace Souvenir
             // What colors were the cylinders during the first stage of Forget Any Color?
             [Question.ForgetAnyColorCylinder] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "What were the cylinders during stage {1} in «{0}»?",
                 TranslatableStrings = new Dictionary<string, string>
                 {
@@ -3786,6 +3821,7 @@ namespace Souvenir
             // What number was on the gear during stage 0 of Forget The Colors?
             [Question.ForgetTheColorsGearNumber] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "What number was on the gear during stage {1} in «{0}»?",
                 TranslatableStrings = new Dictionary<string, string>
                 {
@@ -3812,6 +3848,7 @@ namespace Souvenir
             // What color was the gear during stage 0 of Forget The Colors?
             [Question.ForgetTheColorsGearColor] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "What color was the gear during stage {1} in «{0}»?",
                 Answers = new Dictionary<string, string>
                 {
@@ -3832,6 +3869,7 @@ namespace Souvenir
             // Which edgework-based rule was applied to the sum of nixies and gear during stage 0 of Forget The Colors?
             [Question.ForgetTheColorsRuleColor] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Which edgework-based rule was applied to the sum of nixies and gear during stage {1} in «{0}»?",
                 Answers = new Dictionary<string, string>
                 {
@@ -3884,6 +3922,7 @@ namespace Souvenir
             // What was the player token in Free Parking?
             [Question.FreeParkingToken] = new()
             {
+                NeedsTranslation = true,
                 Conjugation = Conjugation.в_PrepositiveFeminine,
                 QuestionText = "Какой был жетон игрока {0}?",
                 ModuleName = "Бесплатной парковке",
@@ -4233,6 +4272,7 @@ namespace Souvenir
             // What was the fast shape for the first display in hexOrbits?
             [Question.HexOrbitsShape] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "What was the {1} shape for the {2} display in {0}?",
             },
 
@@ -4517,6 +4557,7 @@ namespace Souvenir
             // What was the first identification module used in Identification Crisis?
             [Question.IdentificationCrisisDataset] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какой был {1}-й использованный модуль {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -4667,6 +4708,7 @@ namespace Souvenir
             // What was the first PIN digit in The iPhone?
             [Question.iPhoneDigits] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какая была {1}-я цифра пинкода {0}?",
                 ModuleName = "iPhone",
             },
@@ -5302,6 +5344,7 @@ namespace Souvenir
             // Which main page did the toons button’s effect come from in Main Page?
             [Question.MainPageButtonEffectOrigin] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какой главной странице соответствовал эффект кнопки {1} {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
@@ -5329,6 +5372,7 @@ namespace Souvenir
             // Which main page did Homestar come from in Main Page?
             [Question.MainPageHomestarBackgroundOrigin] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "С какой главной страницы был взят {1} {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
@@ -5342,6 +5386,7 @@ namespace Souvenir
             // What color was the text on the first button in M&Ms?
             [Question.MandMsColors] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какого цвета была надпись на {1}-й кнопке {0}?",
                 ModuleName = "M&Ms",
                 Answers = new Dictionary<string, string>
@@ -5358,6 +5403,7 @@ namespace Souvenir
             // What was the text on the first button in M&Ms?
             [Question.MandMsLabels] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какая надпись была на {1}-й кнопке {0}?",
                 ModuleName = "M&Ms",
             },
@@ -5367,6 +5413,7 @@ namespace Souvenir
             // What color was the text on the first button in M&Ns?
             [Question.MandNsColors] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какого цвета была надпись на {1}-й кнопке {0}?",
                 ModuleName = "M&Ns",
                 Answers = new Dictionary<string, string>
@@ -5383,6 +5430,7 @@ namespace Souvenir
             // What was the text on the correct button in M&Ns?
             [Question.MandNsLabel] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какая надпись была на правильной кнопке {0}?",
                 ModuleName = "M&Ns",
             },
@@ -5416,6 +5464,7 @@ namespace Souvenir
             // Which letter was shown by the left flag in the first position in Maritime Semaphore?
             [Question.MaritimeSemaphoreLetter] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какая буква была показана {2} флагом в {1}-й позиции {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
@@ -5855,6 +5904,7 @@ namespace Souvenir
             // What was the position of the submit button in Mixometer?
             [Question.MixometerSubmitButton] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "What was the position of the submit button in {0}?",
             },
 
@@ -6276,6 +6326,7 @@ namespace Souvenir
             // What was the label of the correct button in N&Ms?
             [Question.NandMsAnswer] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какая надпись была на правильной кнопке {0}?",
                 ModuleName = "N&Ms",
             },
@@ -7507,6 +7558,7 @@ namespace Souvenir
             // What was the first button press in Phosphorescence?
             [Question.PhosphorescenceButtonPresses] = new()
             {
+                NeedsTranslation = true,
                 Conjugation = Conjugation.в_PrepositiveFeminine,
                 QuestionText = "Какая была {1}-я нажатая кнопка {0}?",
                 ModuleName = "Фосфоресценции",
@@ -7677,6 +7729,7 @@ namespace Souvenir
             // What was the color of the first strip (from the top) in Planets?
             [Question.PlanetsStrips] = new()
             {
+                NeedsTranslation = true,
                 Conjugation = Conjugation.PrepositivePlural,
                 QuestionText = "Какой был цвет у {1}-й полоски (начиная сверху) на {0}?",
                 ModuleName = "Планетах",
@@ -7828,6 +7881,7 @@ namespace Souvenir
             // What game was the first puzzle in Puzzle Identification from?
             [Question.PuzzleIdentificationGame] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Из какой игры был {1}-й пазл {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -8091,6 +8145,7 @@ namespace Souvenir
             // What color was the first wire in Reformed Role Reversal?
             [Question.ReformedRoleReversalWire] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какого цвета был {1}-й провод {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -8118,6 +8173,7 @@ namespace Souvenir
             // What was the embellishment of the solution phrase in Regular Crazy Talk?
             [Question.RegularCrazyTalkModifier] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какое было дополнение у фразы решения {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -8229,6 +8285,7 @@ namespace Souvenir
             // Which bit had a tap in RNG Crystal (the output after shifting is at bit 0)?
             [Question.RNGCrystalTaps] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Which bit had a tap in {0} (the output after shifting is at bit 0)?",
             },
 
@@ -8353,6 +8410,7 @@ namespace Souvenir
             // Where was Duolingo in The Samsung?
             [Question.SamsungAppPositions] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Где было приложение {1} {0}?",
                 ModuleName = "Samsung",
                 Answers = new Dictionary<string, string>
@@ -8374,6 +8432,7 @@ namespace Souvenir
             // What was the displayed song for stage 01 (hexadecimal) of Sbemail Songs?
             [Question.SbemailSongsSongs] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "What was the displayed song for stage {1} (hexadecimal) of {0}?",
                 TranslatableStrings = new Dictionary<string, string>
                 {
@@ -8582,6 +8641,7 @@ namespace Souvenir
             // What was the displayed piece in Shogi Identification?
             [Question.ShogiIdentificationPiece] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какая фигура была показана {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -8890,6 +8950,7 @@ namespace Souvenir
             // Which item was not served in course 1 of Simon Serves?
             [Question.SimonServesFood] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Что не подавалось гостям на {1}-й подаче в {0}?",
                 ModuleName = "«Simon Serves»",
                 Answers = new Dictionary<string, string>
@@ -9337,6 +9398,7 @@ namespace Souvenir
             // What was the first topic in Simon Supports?
             [Question.SimonSupportsTopics] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какая была {1}-я тема в {0}?",
                 ModuleName = "«Simon Supports»",
                 Answers = new Dictionary<string, string>
@@ -9383,6 +9445,7 @@ namespace Souvenir
             // Which race was selectable, but not the solution, in Skyrim?
             [Question.SkyrimRace] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какая раса присутствовала (но не являлась решением) {0}?",
                 ModuleName = "Скайриме",
                 Answers = new Dictionary<string, string>
@@ -9402,6 +9465,7 @@ namespace Souvenir
             // Which weapon was selectable, but not the solution, in Skyrim?
             [Question.SkyrimWeapon] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какое оружие присутствовало (но не являлось решением) {0}?",
                 ModuleName = "Скайриме",
                 Answers = new Dictionary<string, string>
@@ -9421,6 +9485,7 @@ namespace Souvenir
             // Which enemy was selectable, but not the solution, in Skyrim?
             [Question.SkyrimEnemy] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какой враг присутствовал (но не являлся решением) {0}?",
                 ModuleName = "Скайриме",
                 Answers = new Dictionary<string, string>
@@ -9440,6 +9505,7 @@ namespace Souvenir
             // Which city was selectable, but not the solution, in Skyrim?
             [Question.SkyrimCity] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какой город присутствовал (но не являлся решением) {0}?",
                 ModuleName = "Скайриме",
                 Answers = new Dictionary<string, string>
@@ -9459,6 +9525,7 @@ namespace Souvenir
             // Which dragon shout was selectable, but not the solution, in Skyrim?
             [Question.SkyrimDragonShout] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какой крик дракона присутствовал (но не являлся решением) {0}?",
                 ModuleName = "Скайриме",
                 Answers = new Dictionary<string, string>
@@ -9604,6 +9671,7 @@ namespace Souvenir
             // Which sound was played by the Running Boots screen on Sonic The Hedgehog?
             [Question.SonicTheHedgehogSounds] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какой звук воспроизводился на экране «{1}» {0}?",
                 ModuleName = "«Сонике»",
                 FormatArgs = new Dictionary<string, string>
@@ -9791,6 +9859,7 @@ namespace Souvenir
             // How many subscribers does PewDiePie have in Subscribe to Pewdiepie?
             [Question.SubscribeToPewdiepieSubCount] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Сколько подписчиков было у {1} {0}?",
                 ModuleName = "«Подпишись на Пьюдипая»",
                 FormatArgs = new Dictionary<string, string>
@@ -10087,6 +10156,7 @@ namespace Souvenir
             // What was the red split in Tenpins?
             [Question.TenpinsSplits] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какой был {1} сплит {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
@@ -10254,6 +10324,7 @@ namespace Souvenir
             // In what order was the Braille read in Touch Transmission?
             [Question.TouchTransmissionOrder] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какой порядок чтения был у Браилля {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -10269,6 +10340,7 @@ namespace Souvenir
             // Which function did the A button perform in Trajectory?
             [Question.TrajectoryButtonFunctions] = new()
             {
+                NeedsTranslation = true,
                 Conjugation = Conjugation.в_PrepositiveFeminine,
                 QuestionText = "Какую из этих функций имела кнопка {1} {0}?",
                 ModuleName = "Траектории",
@@ -10478,6 +10550,7 @@ namespace Souvenir
             // What was the initial card in UNO!?
             [Question.UnoInitialCard] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какая была начальная карта {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -10726,6 +10799,7 @@ namespace Souvenir
             // What was the maximum display for the timer in Variety?
             [Question.VarietyTimer] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какой был максимальный экран на {1}таймере {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
@@ -10738,6 +10812,7 @@ namespace Souvenir
             // What was n for the knob in Variety?
             [Question.VarietyColoredKnob] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Чему было равно n у {1}ручки {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
@@ -10753,6 +10828,7 @@ namespace Souvenir
             // What was n for the bulb in Variety?
             [Question.VarietyBulb] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Чему было равно n у {1}лампочки {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
@@ -10872,6 +10948,7 @@ namespace Souvenir
             // What was the color on the first stage in Wavetapping?
             [Question.WavetappingColors] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какой был цвет на {1}-м этапе {0}?",
                 Answers = new Dictionary<string, string>
                 {
@@ -11272,6 +11349,7 @@ namespace Souvenir
             // What was the first word in Zoni?
             [Question.ZoniWords] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какое было {1}-е расшифрованное слово {0}?",
                 ModuleName = "Zoni",
             },
