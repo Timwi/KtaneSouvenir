@@ -716,6 +716,13 @@ namespace Souvenir
                 ModuleNameDative = "Balkendiagrammen",
                 QuestionText = "Was war bei {0} die Farbe des {1}en Balkens?",
                 ModuleName = "Balkendiagramme",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Rot",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                },
             },
             // What was the position of the {1} bar in {0}?
             // What was the position of the shortest bar in Bar Charts?
@@ -1242,6 +1249,15 @@ namespace Souvenir
             [Question.BorderedKeysBorderColor] = new()
             {
                 QuestionText = "Was war beim Druck auf den {1}en Knopf bei {0} die Randfarbe?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Cyan"] = "Türkis",
+                    ["Magenta"] = @"Magenta",
+                    ["Yellow"] = "Gelb",
+                },
             },
             // What was the digit displayed when you pressed the {1} key in {0}?
             // What was the digit displayed when you pressed the first key in Bordered Keys?
@@ -1254,6 +1270,15 @@ namespace Souvenir
             [Question.BorderedKeysKeyColor] = new()
             {
                 QuestionText = "Was war beim Druck auf den {1}en Knopf bei {0} die Knopffarbe?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Cyan"] = "Türkis",
+                    ["Magenta"] = @"Magenta",
+                    ["Yellow"] = "Gelb",
+                },
             },
             // What was the label when you pressed the {1} key in {0}?
             // What was the label when you pressed the first key in Bordered Keys?
@@ -1266,6 +1291,15 @@ namespace Souvenir
             [Question.BorderedKeysLabelColor] = new()
             {
                 QuestionText = "Was war beim Druck auf den {1}en Knopf bei {0} die Aufschriftfarbe?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Cyan"] = "Türkis",
+                    ["Magenta"] = @"Magenta",
+                    ["Yellow"] = "Gelb",
+                },
             },
 
             // Boxing
@@ -2017,7 +2051,23 @@ namespace Souvenir
             // What was the color of this button in Conditional Buttons?
             [Question.ConditionalButtonsColors] = new()
             {
-                QuestionText = @"What was the color of this button in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Bedingten Knöpfen",
+                QuestionText = "Was war bei {0} die Farbe von diesem Knopf?",
+                ModuleName = "Bedingte Knöpfe",
+                Answers = new Dictionary<string, string>
+                {
+                    ["black"] = "schwarz",
+                    ["blue"] = "blau",
+                    ["dark green"] = "dunkelgrün",
+                    ["light green"] = "hellgrün",
+                    ["orange"] = @"orange",
+                    ["pink"] = @"pink",
+                    ["purple"] = "lila",
+                    ["red"] = "rot",
+                    ["white"] = "weiß",
+                    ["yellow"] = "gelb",
+                },
             },
 
             // Connected Monitors
@@ -2025,13 +2075,19 @@ namespace Souvenir
             // What number was initially displayed on this screen in Connected Monitors?
             [Question.ConnectedMonitorsNumber] = new()
             {
+                Gender = Gender.Plural,
+                ModuleNameDative = "Verbundenen Monitoren",
                 QuestionText = "Welche Zahl war bei {0} anfänglich auf diesem Display zu sehen?",
+                ModuleName = "Verbundene Monitore",
             },
             // What colour was the indicator on this screen in {0}?
             // What colour was the indicator on this screen in Connected Monitors?
             [Question.ConnectedMonitorsSingleIndicator] = new()
             {
+                Gender = Gender.Plural,
+                ModuleNameDative = "Verbundenen Monitoren",
                 QuestionText = "Welche Farbe hatte bei {0} der Indikator auf diesem Display?",
+                ModuleName = "Verbundene Monitore",
                 Answers = new Dictionary<string, string>
                 {
                     ["Red"] = "Rot",
@@ -2046,7 +2102,10 @@ namespace Souvenir
             // What colour was the first indicator on this screen in Connected Monitors?
             [Question.ConnectedMonitorsOrdinalIndicator] = new()
             {
+                Gender = Gender.Plural,
+                ModuleNameDative = "Verbundenen Monitoren",
                 QuestionText = "Welche Farbe hatte bei {0} der {1}e Indikator auf diesem Display?",
+                ModuleName = "Verbundene Monitore",
                 Answers = new Dictionary<string, string>
                 {
                     ["Red"] = "Rot",
@@ -2071,13 +2130,17 @@ namespace Souvenir
             // What was the solution you selected first in Coordinates?
             [Question.CoordinatesFirstSolution] = new()
             {
-                QuestionText = @"What was the solution you selected first in {0}?",
+                Gender = Gender.Plural,
+                QuestionText = "Welche Lösung wurde bei {0} als erstes gewählt?",
+                ModuleName = "Koordinaten",
             },
             // What was the grid size in {0}?
             // What was the grid size in Coordinates?
             [Question.CoordinatesSize] = new()
             {
-                QuestionText = @"What was the grid size in {0}?",
+                Gender = Gender.Plural,
+                QuestionText = "Was war bei {0} die Rastergröße?",
+                ModuleName = "Koordinaten",
             },
 
             // Coral Cipher
@@ -2607,43 +2670,85 @@ namespace Souvenir
             // What was the missing information for the first key in Disordered Keys?
             [Question.DisorderedKeysMissingInfo] = new()
             {
-                QuestionText = @"What was the missing information for the {1} key in {0}?",
+                QuestionText = "Welche Information fehlte bei {0} auf dem {1}en Knopf?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Key color"] = "Knopffarbe",
+                    ["Label color"] = "Aufschriftfarbe",
+                    ["Label"] = "Aufschrift",
+                },
             },
             // What was the revealed key color for the {1} key in {0}?
             // What was the revealed key color for the first key in Disordered Keys?
             [Question.DisorderedKeysRevealedKeyColor] = new()
             {
-                QuestionText = @"What was the revealed key color for the {1} key in {0}?",
+                QuestionText = "Was war bei {0} die aufgedeckte Knopffarbe des {1}en Knopfes?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Cyan"] = "Türkis",
+                    ["Magenta"] = @"Magenta",
+                    ["Yellow"] = "Gelb",
+                },
             },
             // What was the revealed label for the {1} key in {0}?
             // What was the revealed label for the first key in Disordered Keys?
             [Question.DisorderedKeysRevealedLabel] = new()
             {
-                QuestionText = @"What was the revealed label for the {1} key in {0}?",
+                QuestionText = "Was war bei {0} die aufgedeckte Aufschrift des {1}en Knopfes?",
             },
             // What was the revealed label color for the {1} key in {0}?
             // What was the revealed label color for the first key in Disordered Keys?
             [Question.DisorderedKeysRevealedLabelColor] = new()
             {
-                QuestionText = @"What was the revealed label color for the {1} key in {0}?",
+                QuestionText = "Was war bei {0} die aufgedeckte Aufschriftfarbe des {1}en Knopfes?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Cyan"] = "Türkis",
+                    ["Magenta"] = @"Magenta",
+                    ["Yellow"] = "Gelb",
+                },
             },
             // What was the unrevealed key color for the {1} key in {0}?
             // What was the unrevealed key color for the first key in Disordered Keys?
             [Question.DisorderedKeysUnrevealedKeyColor] = new()
             {
-                QuestionText = @"What was the unrevealed key color for the {1} key in {0}?",
+                QuestionText = "Was war bei {0} die unaufgedeckte Knopffarbe des {1}en Knopfes?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Cyan"] = "Türkis",
+                    ["Magenta"] = @"Magenta",
+                    ["Yellow"] = "Gelb",
+                },
             },
             // What was the unrevealed label for the {1} key in {0}?
             // What was the unrevealed label for the first key in Disordered Keys?
             [Question.DisorderedKeysUnrevealedKeyLabel] = new()
             {
-                QuestionText = @"What was the unrevealed label for the {1} key in {0}?",
+                QuestionText = "Was war bei {0} die unaufgedeckte Aufschrift des {1}en Knopfes?",
             },
             // What was the unrevealed label color for the {1} key in {0}?
             // What was the unrevealed label color for the first key in Disordered Keys?
             [Question.DisorderedKeysUnrevealedLabelColor] = new()
             {
-                QuestionText = @"What was the unrevealed label color for the {1} key in {0}?",
+                QuestionText = "Was war bei {0} die unaufgedeckte Aufschriftfarbe des {1}en Knopfes?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Cyan"] = "Türkis",
+                    ["Magenta"] = @"Magenta",
+                    ["Yellow"] = "Gelb",
+                },
             },
 
             // Divisible Numbers
@@ -2651,6 +2756,8 @@ namespace Souvenir
             // What was the first stage’s number in Divisible Numbers?
             [Question.DivisibleNumbersNumbers] = new()
             {
+                Gender = Gender.Plural,
+                ModuleNameDative = "Teilbaren Zahlen",
                 QuestionText = "Was war bei {0} die Zahl in der {1}en Phase?",
                 ModuleName = "Teilbare Zahlen",
             },
@@ -2660,53 +2767,61 @@ namespace Souvenir
             // What was the starting position in Double Arrows?
             [Question.DoubleArrowsStart] = new()
             {
-                QuestionText = @"What was the starting position in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Doppelpfeilen",
+                QuestionText = "Was war bei {0} die Anfangsposition?",
+                ModuleName = "Doppelpfeile",
             },
             // Which {1} arrow moved {2} in the grid in {0}?
             // Which inner arrow moved up in the grid in Double Arrows?
             [Question.DoubleArrowsArrow] = new()
             {
-                QuestionText = @"Which {1} arrow moved {2} in the grid in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Doppelpfeilen",
+                QuestionText = "Welcher {1} Pfeil ging bei {0} nach {2}?",
+                ModuleName = "Doppelpfeile",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["inner"] = @"inner",
-                    ["up"] = @"up",
-                    ["outer"] = @"outer",
-                    ["down"] = @"down",
-                    ["left"] = @"left",
-                    ["riight"] = @"riight",
-                    ["right"] = @"right",
+                    ["inner"] = "innere",
+                    ["up"] = "oben",
+                    ["outer"] = "äußere",
+                    ["down"] = "unten",
+                    ["left"] = "links",
+                    ["right"] = "rechts",
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Up"] = @"Up",
-                    ["Right"] = @"Right",
-                    ["Left"] = @"Left",
-                    ["Down"] = @"Down",
+                    ["Up"] = "Hoch",
+                    ["Right"] = "Rechts",
+                    ["Left"] = "Links",
+                    ["Down"] = "Runter",
                 },
             },
             // Which direction in the grid did the {1} arrow move in {0}?
             // Which direction in the grid did the inner up arrow move in Double Arrows?
             [Question.DoubleArrowsMovement] = new()
             {
-                QuestionText = @"Which direction in the grid did the {1} arrow move in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Doppelpfeilen",
+                QuestionText = "Welche Bewegungsrichtung im Raster bewirkte bei {0} der {1}?",
+                ModuleName = "Doppelpfeile",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["inner up"] = @"inner up",
-                    ["inner down"] = @"inner down",
-                    ["inner left"] = @"inner left",
-                    ["inner right"] = @"inner right",
-                    ["outer up"] = @"outer up",
-                    ["outer down"] = @"outer down",
-                    ["outer left"] = @"outer left",
-                    ["outer right"] = @"outer right",
+                    ["inner up"] = "innere Pfeil nach oben",
+                    ["inner down"] = "innere Pfeil nach unten",
+                    ["inner left"] = "innere Pfeil nach links",
+                    ["inner right"] = "innere Pfeil nach rechts",
+                    ["outer up"] = "äußere Pfeil nach oben",
+                    ["outer down"] = "äußere Pfeil nach unten",
+                    ["outer left"] = "äußere Pfeil nach links",
+                    ["outer right"] = "äußere Pfeil nach rechts",
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Up"] = @"Up",
-                    ["Right"] = @"Right",
-                    ["Left"] = @"Left",
-                    ["Down"] = @"Down",
+                    ["Up"] = "Hoch",
+                    ["Right"] = "Rechts",
+                    ["Left"] = "Links",
+                    ["Down"] = "Runter",
                 },
             },
 
@@ -5024,6 +5139,12 @@ namespace Souvenir
             [Question.MaritimeSemaphoreLetter] = new()
             {
                 QuestionText = "Which letter was shown by the {2} for the {1} position in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["left flag"] = @"left flag",
+                    ["right flag"] = @"right flag",
+                    ["semaphore"] = @"semaphore",
+                },
             },
 
             // The Maroon Button

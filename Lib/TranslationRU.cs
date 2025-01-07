@@ -774,6 +774,13 @@ namespace Souvenir
             [Question.BarChartsColor] = new()
             {
                 QuestionText = "Какой был цвет у {1}-го столбца {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = @"Red",
+                    ["Yellow"] = @"Yellow",
+                    ["Green"] = @"Green",
+                    ["Blue"] = @"Blue",
+                },
             },
             // What was the position of the {1} bar in {0}?
             // What was the position of the shortest bar in Bar Charts?
@@ -1291,6 +1298,15 @@ namespace Souvenir
             [Question.BorderedKeysBorderColor] = new()
             {
                 QuestionText = @"What was the border color when you pressed the {1} key in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = @"Red",
+                    ["Green"] = @"Green",
+                    ["Blue"] = @"Blue",
+                    ["Cyan"] = @"Cyan",
+                    ["Magenta"] = @"Magenta",
+                    ["Yellow"] = @"Yellow",
+                },
             },
             // What was the digit displayed when you pressed the {1} key in {0}?
             // What was the digit displayed when you pressed the first key in Bordered Keys?
@@ -1303,6 +1319,15 @@ namespace Souvenir
             [Question.BorderedKeysKeyColor] = new()
             {
                 QuestionText = @"What was the key color when you pressed the {1} key in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = @"Red",
+                    ["Green"] = @"Green",
+                    ["Blue"] = @"Blue",
+                    ["Cyan"] = @"Cyan",
+                    ["Magenta"] = @"Magenta",
+                    ["Yellow"] = @"Yellow",
+                },
             },
             // What was the label when you pressed the {1} key in {0}?
             // What was the label when you pressed the first key in Bordered Keys?
@@ -1315,6 +1340,15 @@ namespace Souvenir
             [Question.BorderedKeysLabelColor] = new()
             {
                 QuestionText = @"What was the label color when you pressed the {1} key in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = @"Red",
+                    ["Green"] = @"Green",
+                    ["Blue"] = @"Blue",
+                    ["Cyan"] = @"Cyan",
+                    ["Magenta"] = @"Magenta",
+                    ["Yellow"] = @"Yellow",
+                },
             },
 
             // Boxing
@@ -2106,6 +2140,19 @@ namespace Souvenir
             [Question.ConditionalButtonsColors] = new()
             {
                 QuestionText = @"What was the color of this button in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["black"] = @"black",
+                    ["blue"] = @"blue",
+                    ["dark green"] = @"dark green",
+                    ["light green"] = @"light green",
+                    ["orange"] = @"orange",
+                    ["pink"] = @"pink",
+                    ["purple"] = @"purple",
+                    ["red"] = @"red",
+                    ["white"] = @"white",
+                    ["yellow"] = @"yellow",
+                },
             },
 
             // Connected Monitors
@@ -2735,12 +2782,27 @@ namespace Souvenir
             [Question.DisorderedKeysMissingInfo] = new()
             {
                 QuestionText = @"What was the missing information for the {1} key in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Key color"] = @"Key color",
+                    ["Label color"] = @"Label color",
+                    ["Label"] = @"Label",
+                },
             },
             // What was the revealed key color for the {1} key in {0}?
             // What was the revealed key color for the first key in Disordered Keys?
             [Question.DisorderedKeysRevealedKeyColor] = new()
             {
                 QuestionText = @"What was the revealed key color for the {1} key in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = @"Red",
+                    ["Green"] = @"Green",
+                    ["Blue"] = @"Blue",
+                    ["Cyan"] = @"Cyan",
+                    ["Magenta"] = @"Magenta",
+                    ["Yellow"] = @"Yellow",
+                },
             },
             // What was the revealed label for the {1} key in {0}?
             // What was the revealed label for the first key in Disordered Keys?
@@ -2753,12 +2815,30 @@ namespace Souvenir
             [Question.DisorderedKeysRevealedLabelColor] = new()
             {
                 QuestionText = @"What was the revealed label color for the {1} key in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = @"Red",
+                    ["Green"] = @"Green",
+                    ["Blue"] = @"Blue",
+                    ["Cyan"] = @"Cyan",
+                    ["Magenta"] = @"Magenta",
+                    ["Yellow"] = @"Yellow",
+                },
             },
             // What was the unrevealed key color for the {1} key in {0}?
             // What was the unrevealed key color for the first key in Disordered Keys?
             [Question.DisorderedKeysUnrevealedKeyColor] = new()
             {
                 QuestionText = @"What was the unrevealed key color for the {1} key in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = @"Red",
+                    ["Green"] = @"Green",
+                    ["Blue"] = @"Blue",
+                    ["Cyan"] = @"Cyan",
+                    ["Magenta"] = @"Magenta",
+                    ["Yellow"] = @"Yellow",
+                },
             },
             // What was the unrevealed label for the {1} key in {0}?
             // What was the unrevealed label for the first key in Disordered Keys?
@@ -2771,6 +2851,15 @@ namespace Souvenir
             [Question.DisorderedKeysUnrevealedLabelColor] = new()
             {
                 QuestionText = @"What was the unrevealed label color for the {1} key in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = @"Red",
+                    ["Green"] = @"Green",
+                    ["Blue"] = @"Blue",
+                    ["Cyan"] = @"Cyan",
+                    ["Magenta"] = @"Magenta",
+                    ["Yellow"] = @"Yellow",
+                },
             },
 
             // Divisible Numbers
@@ -2806,7 +2895,6 @@ namespace Souvenir
                     ["outer"] = "снаружи",
                     ["down"] = "вниз",
                     ["left"] = "влево",
-                    ["riight"] = "впрааво",
                     ["right"] = "вправо",
                 },
                 Answers = new Dictionary<string, string>
@@ -5329,6 +5417,12 @@ namespace Souvenir
             [Question.MaritimeSemaphoreLetter] = new()
             {
                 QuestionText = "Какая буква была показана {2} флагом в {1}-й позиции {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["left flag"] = @"left flag",
+                    ["right flag"] = @"right flag",
+                    ["semaphore"] = @"semaphore",
+                },
             },
 
             // The Maroon Button

@@ -582,7 +582,7 @@
         [SouvenirQuestion("What was the color of the last word in the sequence in {0}?", "Colour Flash", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Magenta", "White", TranslateAnswers = true)]
         ColourFlashLastColor,
 
-        [SouvenirQuestion("What was the color of this button in {0}?", "Conditional Buttons", ThreeColumns6Answers, "black", "blue", "dark green", "light green", "orange", "pink", "purple", "red", "white", "yellow", UsesQuestionSprite = true,TranslateAnswers = true)]
+        [SouvenirQuestion("What was the color of this button in {0}?", "Conditional Buttons", ThreeColumns6Answers, "black", "blue", "dark green", "light green", "orange", "pink", "purple", "red", "white", "yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
         ConditionalButtonsColors,
 
         [SouvenirQuestion("What number was initially displayed on this screen in {0}?", "Connected Monitors", ThreeColumns6Answers, UsesQuestionSprite = true)]
@@ -781,7 +781,7 @@
         [AnswerGenerator.Integers(1, 81, "00")]
         DoubleArrowsStart,
         [SouvenirQuestion("Which {1} arrow moved {2} in the grid in {0}?", "Double Arrows", TwoColumns4Answers, "Up", "Right", "Left", "Down",
-            ExampleFormatArguments = new[] { "inner", "up", "outer", "up", "inner", "down", "outer", "down", "inner", "left", "outer", "left", "inner", "riight", "outer", "right" }, TranslateAnswers = true, ExampleFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { true, true })]
+            ExampleFormatArguments = new[] { "inner", "up", "outer", "up", "inner", "down", "outer", "down", "inner", "left", "outer", "left", "inner", "right", "outer", "right" }, TranslateAnswers = true, ExampleFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { true, true })]
         DoubleArrowsArrow,
         [SouvenirQuestion("Which direction in the grid did the {1} arrow move in {0}?", "Double Arrows", TwoColumns4Answers, "Up", "Right", "Left", "Down",
             ExampleFormatArguments = new[] { "inner up", "inner down", "inner left", "inner right", "outer up", "outer down", "outer left", "outer right" }, TranslateAnswers = true, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
@@ -1561,7 +1561,7 @@
         [AnswerGenerator.Ordinal(6)]
         MaritimeSemaphoreDummy,
         [SouvenirQuestion("Which letter was shown by the {2} in the {1} position in {0}?", "Maritime Semaphore", ThreeColumns6Answers,
-            ExampleFormatArguments = new[] { QandA.Ordinal, "left flag", QandA.Ordinal, "right flag", QandA.Ordinal, "semaphore" }, ExampleFormatArgumentGroupSize = 2,TranslateFormatArgs = new[] { true, true })]
+            ExampleFormatArguments = new[] { QandA.Ordinal, "left flag", QandA.Ordinal, "right flag", QandA.Ordinal, "semaphore" }, ExampleFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { false, true })]
         [AnswerGenerator.Strings('A', 'Z')]
         MaritimeSemaphoreLetter,
 
