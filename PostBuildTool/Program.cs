@@ -164,43 +164,41 @@ namespace SouvenirPostBuildTool
                                         throw new NotImplementedException()
                                     )},");
 
-                        sb.AppendLine($@"                QuestionText = ""{((string) (ti?.QuestionText) ?? qText).CLiteralEscape()}"",");
+                        var untranslated = (string) (ti?.QuestionText) == qText;
+                        sb.AppendLine($@"                QuestionText = {(untranslated ? "@" : "")}""{((string) (ti?.QuestionText) ?? qText).CLiteralEscape()}"",");
                         if (ti?.ModuleName != null)
                             sb.AppendLine($@"                ModuleName = ""{((string) ti.ModuleName).CLiteralEscape()}"",");
 
+                        void AddDictionaryField(string fieldName, string[] originals, dynamic trdic)
+                        {
+                            if (originals != null)
+                            {
+                                sb.AppendLine($"                {fieldName} = new Dictionary<string, string>");
+                                sb.AppendLine("                {");
+                                foreach (var english in originals)
+                                {
+                                    var translation = trdic?.ContainsKey(english) == true ? (string) trdic[english] : english;
+                                    sb.AppendLine($@"                    [""{english.CLiteralEscape()}""] = {(translation == english ? "@" : "")}""{translation.CLiteralEscape()}"",");
+                                }
+                                sb.AppendLine("                },");
+                            }
+                        }
+
                         var trFAs = (bool[]) attr.TranslateFormatArgs;
-                        var formatArgs = attr.ExampleFormatArguments == null || attr.ExampleFormatArguments.Length == 0 || trFAs == null || trFAs.Length == 0 ? null :
-                            ((string[]) attr.ExampleFormatArguments).Split((int) attr.ExampleFormatArgumentGroupSize)
-                                .SelectMany(chunk => Enumerable.Range(0, trFAs.Length).Where(ix => trFAs[ix]).Select(ix => chunk.Skip(ix).First()))
-                                .Distinct().ToArray();
-                        if (formatArgs != null)
+                        if (attr.ExampleFormatArguments != null && attr.ExampleFormatArguments.Length > 0 && trFAs != null && trFAs.Length != 0)
                         {
-                            sb.AppendLine("                FormatArgs = new Dictionary<string, string>");
-                            sb.AppendLine("                {");
-                            foreach (var fa in formatArgs)
-                                sb.AppendLine($@"                    [""{fa.CLiteralEscape()}""] = ""{(ti?.FormatArgs?.ContainsKey(fa) == true ? (string) ti.FormatArgs[fa] : fa).CLiteralEscape()}"",");
-                            sb.AppendLine("                },");
+                            var formatArgs = ((string[]) attr.ExampleFormatArguments).Split((int) attr.ExampleFormatArgumentGroupSize)
+                                    .SelectMany(chunk => Enumerable.Range(0, trFAs.Length).Where(ix => trFAs[ix]).Select(ix => chunk.Skip(ix).First()))
+                                    .Distinct().ToArray();
+                            AddDictionaryField("FormatArgs", formatArgs, ti?.FormatArgs);
                         }
 
-                        var answers = attr.AllAnswers == null || attr.AllAnswers.Length == 0 ? null : (string[]) attr.AllAnswers;
-                        if (answers != null && attr.TranslateAnswers)
-                        {
-                            sb.AppendLine("                Answers = new Dictionary<string, string>");
-                            sb.AppendLine("                {");
-                            foreach (var answer in answers)
-                                sb.AppendLine($@"                    [""{answer.CLiteralEscape()}""] = ""{(ti?.Answers?.ContainsKey(answer) == true ? (string) ti.Answers[answer] : answer).CLiteralEscape()}"",");
-                            sb.AppendLine("                },");
-                        }
+                        if (attr.TranslateAnswers && attr.AllAnswers != null && attr.AllAnswers.Length > 0)
+                            AddDictionaryField("Answers", (string[]) attr.AllAnswers, ti?.Answers);
 
-                        var translatableStrings = attr.TranslatableStrings == null || attr.TranslatableStrings.Length == 0 ? null : (string[]) attr.TranslatableStrings;
-                        if (translatableStrings != null)
-                        {
-                            sb.AppendLine("                TranslatableStrings = new Dictionary<string, string>");
-                            sb.AppendLine("                {");
-                            foreach (var trStr in translatableStrings)
-                                sb.AppendLine($@"                    [""{trStr.CLiteralEscape()}""] = ""{(ti?.TranslatableStrings?.ContainsKey(trStr) == true ? (string) ti.TranslatableStrings[trStr] : trStr).CLiteralEscape()}"",");
-                            sb.AppendLine("                },");
-                        }
+                        if (attr.TranslatableStrings != null && attr.TranslatableStrings.Length > 0)
+                            AddDictionaryField("TranslatableStrings", (string[]) attr.TranslatableStrings, ti?.TranslatableStrings);
+
                         sb.AppendLine("            },");
                     }
                     sb.AppendLine("");
