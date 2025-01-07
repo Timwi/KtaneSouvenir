@@ -215,7 +215,7 @@
         [SouvenirQuestion("What was the category of {0}?", "Bar Charts", OneColumn4Answers, null, ExampleAnswers = new[] { "Non-Percussion Instruments", "European Capital Cities", "Cast of Star Trek: TOS", "Percussion Instruments", "Zodiac Signs", "20th Century Composers" })]
         BarChartsCategory,
         [SouvenirQuestion("What was the color of the {1} bar in {0}?", "Bar Charts", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue",
-            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         BarChartsColor,
         [SouvenirQuestion("What was the position of the {1} bar in {0}?", "Bar Charts", TwoColumns4Answers, TranslateFormatArgs = new[] { true },
             ExampleFormatArguments = new[] { "shortest", "second shortest", "second tallest", "tallest" }, ExampleFormatArgumentGroupSize = 1)]
@@ -367,21 +367,21 @@
         BottomGearTweet,
 
         [SouvenirQuestion("What was the border color when you pressed the {1} key in {0}?", "Bordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
-            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         BorderedKeysBorderColor,
         [SouvenirQuestion("What was the digit displayed when you pressed the {1} key in {0}?", "Bordered Keys", ThreeColumns6Answers,
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 6)]
         BorderedKeysDigit,
         [SouvenirQuestion("What was the key color when you pressed the {1} key in {0}?", "Bordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
-            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         BorderedKeysKeyColor,
         [SouvenirQuestion("What was the label when you pressed the {1} key in {0}?", "Bordered Keys", ThreeColumns6Answers,
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 6)]
         BorderedKeysLabel,
         [SouvenirQuestion("What was the label color when you pressed the {1} key in {0}?", "Bordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
-            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         BorderedKeysLabelColor,
 
         [SouvenirQuestion("Which {1} appeared on {0}?", "Boxing", TwoColumns4Answers, ExampleAnswers = new[] { "Muhammad", "Mike", "Floyd", "Joe", "George", "Manny", "Sugar Ray", "Evander" },
@@ -582,7 +582,7 @@
         [SouvenirQuestion("What was the color of the last word in the sequence in {0}?", "Colour Flash", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Magenta", "White", TranslateAnswers = true)]
         ColourFlashLastColor,
 
-        [SouvenirQuestion("What was the color of this button in {0}?", "Conditional Buttons", ThreeColumns6Answers, "black", "blue", "dark green", "light green", "orange", "pink", "purple", "red", "white", "yellow", UsesQuestionSprite = true)]
+        [SouvenirQuestion("What was the color of this button in {0}?", "Conditional Buttons", ThreeColumns6Answers, "black", "blue", "dark green", "light green", "orange", "pink", "purple", "red", "white", "yellow", UsesQuestionSprite = true,TranslateAnswers = true)]
         ConditionalButtonsColors,
 
         [SouvenirQuestion("What number was initially displayed on this screen in {0}?", "Connected Monitors", ThreeColumns6Answers, UsesQuestionSprite = true)]
@@ -749,27 +749,27 @@
         DiscoloredSquaresRememberedPositions,
 
         [SouvenirQuestion("What was the missing information for the {1} key in {0}?", "Disordered Keys", OneColumn4Answers, "Key color", "Label color", "Label",
-            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         DisorderedKeysMissingInfo,
         [SouvenirQuestion("What was the revealed key color for the {1} key in {0}?", "Disordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
-            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         DisorderedKeysRevealedKeyColor,
         [SouvenirQuestion("What was the revealed label for the {1} key in {0}?", "Disordered Keys", ThreeColumns6Answers,
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 6)]
         DisorderedKeysRevealedLabel,
         [SouvenirQuestion("What was the revealed label color for the {1} key in {0}?", "Disordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
-            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         DisorderedKeysRevealedLabelColor,
         [SouvenirQuestion("What was the unrevealed key color for the {1} key in {0}?", "Disordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
-            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         DisorderedKeysUnrevealedKeyColor,
         [SouvenirQuestion("What was the unrevealed label for the {1} key in {0}?", "Disordered Keys", ThreeColumns6Answers,
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 6)]
         DisorderedKeysUnrevealedKeyLabel,
         [SouvenirQuestion("What was the unrevealed label color for the {1} key in {0}?", "Disordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
-            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         DisorderedKeysUnrevealedLabelColor,
 
         [SouvenirQuestion("What was the {1} stage’s number in {0}?", "Divisible Numbers", ThreeColumns6Answers, null,
