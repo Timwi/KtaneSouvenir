@@ -21,6 +21,9 @@ namespace SouvenirPostBuildTool
 
         [Option("-t", "--translations"), Documentation("If specified, the translation files in this folder are updated.")]
         public string TranslationsFolder = null;
+
+        [Option("-d", "--data"), Documentation("Specifies the path and filename to the data.json file to be updated.")]
+        public string DataFile = null;
     }
 
     public static class Program
@@ -47,6 +50,9 @@ namespace SouvenirPostBuildTool
 
             if (opt.TranslationsFolder != null)
                 DoTranslationStuff(opt.TranslationsFolder, assembly);
+
+            if (opt.DataFile != null)
+                DoDataFileStuff(opt.DataFile, assembly);
 
             return 0;
         }
@@ -225,6 +231,66 @@ namespace SouvenirPostBuildTool
                 }
                 File.WriteAllText(path, $"{string.Join(Environment.NewLine, alreadyFile.Take(p1 + 1))}{Environment.NewLine}{sb}{string.Join(Environment.NewLine, alreadyFile.Skip(p2))}");
             }
+        }
+
+        private static void DoDataFileStuff(string path, Assembly assembly)
+        {
+            var moduleType = assembly.GetType("SouvenirModule");
+            var module = Activator.CreateInstance(moduleType);
+            var awakeMethod = moduleType.GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Instance);
+            awakeMethod.Invoke(module, null);
+            var fldDictionary = moduleType.GetField("_moduleProcessors", BindingFlags.NonPublic | BindingFlags.Instance);
+            var dictionary = (IDictionary) fldDictionary.GetValue(module);
+            var contributors = new HashSet<string>();
+            var modules = new HashSet<string>();
+            foreach (DictionaryEntry entry in dictionary)
+            {
+                contributors.Add(((dynamic) entry.Value).Contributor);
+                modules.Add(((dynamic) entry.Value).ModuleName);
+            }
+
+            var questionsType = assembly.GetType("Souvenir.Question");
+
+            var translationStats = new Dictionary<string, string>();
+
+            foreach (var language in "de,ja,ru".Split(','))
+            {
+                var alreadyType = assembly.GetType($"Souvenir.Translation_{language}");
+                var translationsProp = alreadyType.GetProperty("_translations", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+                var already = alreadyType == null ? null : (dynamic) Activator.CreateInstance(alreadyType);
+                if (already == null)
+                {
+                    translationStats[language] = "Unknown";
+                    continue;
+                }
+                var translations = (dynamic) translationsProp.GetValue(already);
+
+                var count = 0;
+                var done = 0;
+                foreach (var tr in translations?.Values)
+                {
+                    count++;
+                    if (!tr.NeedsTranslation)
+                        done++;
+                }
+                var percent = (float) done / count * 100f;
+                translationStats.Add(language, percent.ToString("f2"));
+            }
+
+            var json = $$"""
+            {
+                "contributorsCount": {{contributors.Count}},
+                "modulesCount": {{modules.Count}},
+                "questionsCount": {{Enum.GetValues(questionsType).Length}},
+                "translationProgress": {
+                  "DE": "{{translationStats["de"]}}%",
+                  "JA": "{{translationStats["ja"]}}%",
+                  "RU": "{{translationStats["ru"]}}%"
+                }
+            }
+            """;
+
+            File.WriteAllText(path, json);
         }
 
         /// <summary>
