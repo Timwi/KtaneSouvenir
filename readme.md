@@ -2,6 +2,9 @@
 
 ## Intro
 
+[![](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FTimwi%2FKtaneSouvenir%2Fmaster%2Fdata.json&query=%24.questionsCount&label=Questions&color=green)](/Lib/Question.cs)
+[![](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FTimwi%2FKtaneSouvenir%2Fmaster%2Fdata.json&query=%24.modulesCount&label=Modules%20Supported&color=green)](/Lib/Modules_General.cs)
+
 This is a mod module for [_Keep Talking and Nobody Explodes_](https://keeptalkinggame.com/). This module asks you questions about some of the other modules on your bomb after you’ve solved them. It requires you to remember or write down things that you used to solve those other modules.
 
 A build is available on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=810934485).
@@ -10,6 +13,9 @@ The manual is available on the [Repository of Manual Pages](https://ktane.timwi.
 Based on the [_Keep Talking and Nobody Explodes_ modkit](https://github.com/Qkrisi/ktanemodkit/).
 
 ## Contributing
+
+[![](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FTimwi%2FKtaneSouvenir%2Fmaster%2Fdata.json&query=%24.contributorsCount&label=Contributors
+)](/CONTRIBUTORS.md)
 
 If you wish to see another module added, you can contribute development by submitting pull requests or finding a volunteer modder on the KTaNE Discord server. Additions would generally be required to satisfy the following guidelines:
 
@@ -29,6 +35,11 @@ The following vanilla modules are supported by Souvenir: The Button, Maze, Memor
 - The compiled binary `SouvenirLib.dll` is included in the git repo to allow people to build Souvenir in Unity without needing to compile the source.
 
 ## Translations
+
+[![](https://img.shields.io/badge/EN-100.00%25-red)](/Lib/Question.cs)
+[![](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FTimwi%2FKtaneSouvenir%2Fmaster%2Fdata.json&query=%24.translationProgress.DE&label=DE&color=red)](/Lib/TranslationDE.cs)
+[![](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FTimwi%2FKtaneSouvenir%2Fmaster%2Fdata.json&query=%24.translationProgress.JA&label=JA&color=red)](/Lib/TranslationJA.cs)
+[![](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FTimwi%2FKtaneSouvenir%2Fmaster%2Fdata.json&query=%24.translationProgress.RU&label=RU&color=red)](/Lib/TranslationRU.cs)
 
 For contributing to translations, see [translations.md](https://github.com/Timwi/KtaneSouvenir/blob/master/translations.md).
 

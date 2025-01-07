@@ -274,7 +274,7 @@ namespace SouvenirPostBuildTool
                         done++;
                 }
                 var percent = (float) done / count * 100f;
-                translationStats.Add(language, percent.ToString("f2"));
+                translationStats.Add(language, $"{percent:f2}%");
             }
 
             var json = $$"""
@@ -283,9 +283,9 @@ namespace SouvenirPostBuildTool
                 "modulesCount": {{modules.Count}},
                 "questionsCount": {{Enum.GetValues(questionsType).Length}},
                 "translationProgress": {
-                  "DE": "{{translationStats["de"]}}%",
-                  "JA": "{{translationStats["ja"]}}%",
-                  "RU": "{{translationStats["ru"]}}%"
+                  "DE": "{{translationStats["de"]}}",
+                  "JA": "{{translationStats["ja"]}}",
+                  "RU": "{{translationStats["ru"]}}"
                 }
             }
             """;
