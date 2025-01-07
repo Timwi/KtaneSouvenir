@@ -217,7 +217,7 @@
         [SouvenirQuestion("What was the color of the {1} bar in {0}?", "Bar Charts", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         BarChartsColor,
-        [SouvenirQuestion("What was the position of the {1} bar in {0}?", "Bar Charts", TwoColumns4Answers,
+        [SouvenirQuestion("What was the position of the {1} bar in {0}?", "Bar Charts", TwoColumns4Answers, TranslateFormatArgs = new[] { true },
             ExampleFormatArguments = new[] { "shortest", "second shortest", "second tallest", "tallest" }, ExampleFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Ordinal(1, 4)]
         BarChartsHeight,

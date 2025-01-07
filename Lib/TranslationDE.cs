@@ -25,7 +25,7 @@ namespace Souvenir
                 Gender.Feminine => $"der als {ordinal(numSolved)}e gelösten {_translations.Get(question)?.ModuleNameDative ?? _translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleName}",
                 Gender.Masculine => $"dem als {ordinal(numSolved)}en gelösten {_translations.Get(question)?.ModuleNameDative ?? _translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleName}",
                 Gender.Neuter => $"dem als {ordinal(numSolved)}es gelösten {_translations.Get(question)?.ModuleNameDative ?? _translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleName}",
-                _ => /* Plural */ $"den als {ordinal(numSolved)}es gelösten {_translations.Get(question)?.ModuleNameDative ?? _translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleName}",
+                _ => /* Plural */ $"den als {ordinal(numSolved)}e gelösten {_translations.Get(question)?.ModuleNameDative ?? _translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleName}",
             }
             : _translations.Get(question)?.ModuleNameWithThe ?? _translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe;
 
@@ -76,13 +76,13 @@ namespace Souvenir
             // Who was the opponent in The 1, 2, 3 Game?
             [Question._123GameProfile] = new()
             {
-                QuestionText = "Who was the opponent in {0}?",
+                QuestionText = "Wer war bei {0} der Gegner?",
             },
             // Who was the opponent in {0}?
             // Who was the opponent in The 1, 2, 3 Game?
             [Question._123GameName] = new()
             {
-                QuestionText = "Who was the opponent in {0}?",
+                QuestionText = "Wer war bei {0} der Gegner?",
             },
 
             // 1D Chess
@@ -164,14 +164,14 @@ namespace Souvenir
                 QuestionText = "Was war bei {0} der Anfangszustand in Lesereihenfolge?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["off/off/off"] = "off/off/off",
-                    ["off/off/on"] = "off/off/on",
-                    ["off/on/off"] = "off/on/off",
-                    ["off/on/on"] = "off/on/on",
-                    ["on/off/off"] = "on/off/off",
-                    ["on/off/on"] = "on/off/on",
-                    ["on/on/off"] = "on/on/off",
-                    ["on/on/on"] = "on/on/on",
+                    ["off/off/off"] = "aus/aus/aus",
+                    ["off/off/on"] = "aus/aus/an",
+                    ["off/on/off"] = "aus/an/aus",
+                    ["off/on/on"] = "aus/an/an",
+                    ["on/off/off"] = "an/aus/aus",
+                    ["on/off/on"] = "an/aus/an",
+                    ["on/on/off"] = "an/an/aus",
+                    ["on/on/on"] = "an/an/an",
                 },
             },
 
@@ -703,31 +703,53 @@ namespace Souvenir
             // What was the category of Bar Charts?
             [Question.BarChartsCategory] = new()
             {
-                QuestionText = "What was the category of {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Balkendiagrammen",
+                QuestionText = "Was war bei {0} die Kategorie?",
+                ModuleName = "Balkendiagramme",
             },
             // What was the color of the {1} bar in {0}?
             // What was the color of the first bar in Bar Charts?
             [Question.BarChartsColor] = new()
             {
-                QuestionText = "What was the color of the {1} bar in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Balkendiagrammen",
+                QuestionText = "Was war bei {0} die Farbe des {1}en Balkens?",
+                ModuleName = "Balkendiagramme",
             },
             // What was the position of the {1} bar in {0}?
             // What was the position of the shortest bar in Bar Charts?
             [Question.BarChartsHeight] = new()
             {
-                QuestionText = "What was the position of the {1} bar in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Balkendiagrammen",
+                QuestionText = "An welcher Position war bei {0} der {1} Balken?",
+                ModuleName = "Balkendiagramme",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["shortest"] = "kürzeste",
+                    ["second shortest"] = "zweitkürzeste",
+                    ["second tallest"] = "zweithöchste",
+                    ["tallest"] = "höchste",
+                },
             },
             // What was the label of the {1} bar in {0}?
             // What was the label of the first bar in Bar Charts?
             [Question.BarChartsLabel] = new()
             {
-                QuestionText = "What was the label of the {1} bar in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Balkendiagrammen",
+                QuestionText = "Was war bei {0} die Beschriftung des {1}en Balkens?",
+                ModuleName = "Balkendiagramme",
             },
             // What was the unit of {0}?
             // What was the unit of Bar Charts?
             [Question.BarChartsUnit] = new()
             {
-                QuestionText = "What was the unit of {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Balkendiagrammen",
+                QuestionText = "Was war bei {0} die Einheit?",
+                ModuleName = "Balkendiagramme",
             },
 
             // Barcode Cipher
@@ -766,7 +788,9 @@ namespace Souvenir
             // Which ingredient was in the first position on Bartending?
             [Question.BartendingIngredients] = new()
             {
+                Gender = Gender.Masculine,
                 QuestionText = "Was war bei {0} die Zutat an {1}er Stelle?",
+                ModuleName = "Bartender",
                 Answers = new Dictionary<string, string>
                 {
                     ["Adelhyde"] = "Adelhyde",
@@ -804,10 +828,10 @@ namespace Souvenir
                 ModuleName = "Bohnensprossen",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Raw"] = "Raw",
-                    ["Cooked"] = "Cooked",
-                    ["Burnt"] = "Burnt",
-                    ["Fake"] = "Fake",
+                    ["Raw"] = "Roh",
+                    ["Cooked"] = "Gekocht",
+                    ["Burnt"] = "Angebrannt",
+                    ["Fake"] = "Falsch",
                 },
             },
             // What bean was on sprout {1} in {0}?
@@ -818,10 +842,10 @@ namespace Souvenir
                 ModuleName = "Bohnensprossen",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Left"] = "Left",
-                    ["Right"] = "Right",
-                    ["None"] = "None",
-                    ["Both"] = "Both",
+                    ["Left"] = "Die linke",
+                    ["Right"] = "Die rechte",
+                    ["None"] = "Keine",
+                    ["Both"] = "Beide",
                 },
             },
 
@@ -834,12 +858,12 @@ namespace Souvenir
                 ModuleName = "Großbohne",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Wobbly Orange"] = "Wobbly Orange",
-                    ["Wobbly Yellow"] = "Wobbly Yellow",
-                    ["Wobbly Green"] = "Wobbly Green",
-                    ["Not Wobbly Orange"] = "Not Wobbly Orange",
-                    ["Not Wobbly Yellow"] = "Not Wobbly Yellow",
-                    ["Not Wobbly Green"] = "Not Wobbly Green",
+                    ["Wobbly Orange"] = "Orange wackelnd",
+                    ["Wobbly Yellow"] = "Gelb wackelnd",
+                    ["Wobbly Green"] = "Grün wackelnd",
+                    ["Not Wobbly Orange"] = "Orange nicht wackelnd",
+                    ["Not Wobbly Yellow"] = "Gelb nicht wackelnd",
+                    ["Not Wobbly Green"] = "Grün nicht wackelnd",
                 },
             },
 
@@ -848,6 +872,7 @@ namespace Souvenir
             // What color was first in the solution to Big Circle?
             [Question.BigCircleColors] = new()
             {
+                ModuleNameDative = "Großen Kreis",
                 QuestionText = "Welche Farbe war bei {0} die {1}e Farbe in der Lösung?",
                 ModuleName = "Großer Kreis",
                 Answers = new Dictionary<string, string>
@@ -868,7 +893,9 @@ namespace Souvenir
             // At which numeric value did you cut the correct wire in Binary LEDs?
             [Question.BinaryLEDsValue] = new()
             {
+                Gender = Gender.Plural,
                 QuestionText = "Bei welchem Zahlenwert wurde bei {0} der korrekte Draht durchtrennt?",
+                ModuleName = "Binär-LEDs",
             },
 
             // Binary Shift
@@ -897,15 +924,15 @@ namespace Souvenir
                 QuestionText = "Welche Zahl wurde bei {0} in Schritt {1} ausgewählt?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["top-left"] = "top-left",
-                    ["top-middle"] = "top-middle",
-                    ["top-right"] = "top-right",
-                    ["left-middle"] = "left-middle",
-                    ["center"] = "center",
-                    ["right-middle"] = "right-middle",
-                    ["bottom-left"] = "bottom-left",
-                    ["bottom-middle"] = "bottom-middle",
-                    ["bottom-right"] = "bottom-right",
+                    ["top-left"] = "oben links",
+                    ["top-middle"] = "oben Mitte",
+                    ["top-right"] = "oben rechts",
+                    ["left-middle"] = "Mitte links",
+                    ["center"] = "Mitte Mitte",
+                    ["right-middle"] = "Mitte rechts",
+                    ["bottom-left"] = "unten links",
+                    ["bottom-middle"] = "unten Mitte",
+                    ["bottom-right"] = "unten rechts",
                 },
             },
             // What number was not selected at stage {1} in {0}?
@@ -915,15 +942,15 @@ namespace Souvenir
                 QuestionText = "Welche Zahl wurde bei {0} in Schritt {1} nicht ausgewählt?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["top-left"] = "top-left",
-                    ["top-middle"] = "top-middle",
-                    ["top-right"] = "top-right",
-                    ["left-middle"] = "left-middle",
-                    ["center"] = "center",
-                    ["right-middle"] = "right-middle",
-                    ["bottom-left"] = "bottom-left",
-                    ["bottom-middle"] = "bottom-middle",
-                    ["bottom-right"] = "bottom-right",
+                    ["top-left"] = "oben links",
+                    ["top-middle"] = "oben Mitte",
+                    ["top-right"] = "oben rechts",
+                    ["left-middle"] = "Mitte links",
+                    ["center"] = "Mitte Mitte",
+                    ["right-middle"] = "Mitte rechts",
+                    ["bottom-left"] = "unten links",
+                    ["bottom-middle"] = "unten Mitte",
+                    ["bottom-right"] = "unten rechts",
                 },
             },
 
@@ -994,6 +1021,7 @@ namespace Souvenir
             // Which maze did you solve Blind Maze on?
             [Question.BlindMazeMaze] = new()
             {
+                Gender = Gender.Masculine,
                 QuestionText = "In welchem Labyrinth wurde {0} gelöst?",
                 ModuleName = "Blinder Irrgarten",
             },
@@ -1015,7 +1043,7 @@ namespace Souvenir
                     ["Purple"] = "Lila",
                     ["Cyan"] = "Türkis",
                     ["Yellow"] = "Gelb",
-                    ["Multicolor"] = "Multicolor",
+                    ["Multicolor"] = "Mehrfarbig",
                 },
             },
 
@@ -1190,12 +1218,13 @@ namespace Souvenir
             // What was rule one in Boomtar the Great?
             [Question.BoomtarTheGreatRules] = new()
             {
+                Gender = Gender.Masculine,
                 QuestionText = "Was war bei {0} Regel Nr. {1}?",
                 ModuleName = "Boomtar der Große",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["one"] = "one",
-                    ["two"] = "two",
+                    ["one"] = "1",
+                    ["two"] = "2",
                 },
             },
 
@@ -1204,7 +1233,7 @@ namespace Souvenir
             // What tweet was shown in Bottom Gear?
             [Question.BottomGearTweet] = new()
             {
-                QuestionText = "What tweet was shown in {0}?",
+                QuestionText = "Welcher Tweet war bei {0} zu sehen?",
             },
 
             // Bordered Keys
@@ -1212,31 +1241,31 @@ namespace Souvenir
             // What was the border color when you pressed the first key in Bordered Keys?
             [Question.BorderedKeysBorderColor] = new()
             {
-                QuestionText = "What was the border color when you pressed the {1} key in {0}?",
+                QuestionText = "Was war beim Druck auf den {1}en Knopf bei {0} die Randfarbe?",
             },
             // What was the digit displayed when you pressed the {1} key in {0}?
             // What was the digit displayed when you pressed the first key in Bordered Keys?
             [Question.BorderedKeysDigit] = new()
             {
-                QuestionText = "What was the digit displayed when you pressed the {1} key in {0}?",
+                QuestionText = "Was war beim Druck auf den {1}en Knopf bei {0} die angezeigte Ziffer?",
             },
             // What was the key color when you pressed the {1} key in {0}?
             // What was the key color when you pressed the first key in Bordered Keys?
             [Question.BorderedKeysKeyColor] = new()
             {
-                QuestionText = "What was the key color when you pressed the {1} key in {0}?",
+                QuestionText = "Was war beim Druck auf den {1}en Knopf bei {0} die Knopffarbe?",
             },
             // What was the label when you pressed the {1} key in {0}?
             // What was the label when you pressed the first key in Bordered Keys?
             [Question.BorderedKeysLabel] = new()
             {
-                QuestionText = "What was the label when you pressed the {1} key in {0}?",
+                QuestionText = "Was war beim Druck auf den {1}en Knopf bei {0} die Aufschrift?",
             },
             // What was the label color when you pressed the {1} key in {0}?
             // What was the label color when you pressed the first key in Bordered Keys?
             [Question.BorderedKeysLabelColor] = new()
             {
-                QuestionText = "What was the label color when you pressed the {1} key in {0}?",
+                QuestionText = "Was war beim Druck auf den {1}en Knopf bei {0} die Aufschriftfarbe?",
             },
 
             // Boxing
@@ -1280,7 +1309,8 @@ namespace Souvenir
             // What was the first pattern in Braille?
             [Question.BraillePattern] = new()
             {
-                QuestionText = "What was the {1} pattern in {0}?",
+                QuestionText = "Was war bei {0} das {1}e Zeichen?",
+                ModuleName = "Blindenschrift",
             },
 
             // Breakfast Egg
@@ -1292,13 +1322,13 @@ namespace Souvenir
                 ModuleName = "Frühstücksei",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Crimson"] = "Crimson",
+                    ["Crimson"] = "Karmin",
                     ["Orange"] = "Orange",
                     ["Pink"] = "Pink",
                     ["Beige"] = "Beige",
                     ["Cyan"] = "Türkis",
-                    ["Lime"] = "Lime",
-                    ["Petrol"] = "Petrol",
+                    ["Lime"] = "Limette",
+                    ["Petrol"] = "Benzin",
                 },
             },
 
@@ -1307,7 +1337,10 @@ namespace Souvenir
             // What was the first correct button you pressed in Broken Buttons?
             [Question.BrokenButtons] = new()
             {
-                QuestionText = "What was the {1} correct button you pressed in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Kaputten Knöpfen",
+                QuestionText = "Was war bei {0} der als {1}e korrekt gedrückte Knopf?",
+                ModuleName = "Kaputte Knöpfe",
             },
 
             // Broken Guitar Chords
@@ -1315,13 +1348,19 @@ namespace Souvenir
             // What was the displayed chord in Broken Guitar Chords?
             [Question.BrokenGuitarChordsDisplayedChord] = new()
             {
-                QuestionText = "What was the displayed chord in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Kaputten Gitarrenakkorden",
+                QuestionText = "Welcher Akkord wurde bei {0} angezeigt?",
+                ModuleName = "Kaputte Gitarrenakkorde",
             },
             // In which position, from left to right, was the broken string in {0}?
             // In which position, from left to right, was the broken string in Broken Guitar Chords?
             [Question.BrokenGuitarChordsMutedString] = new()
             {
-                QuestionText = "In which position, from left to right, was the broken string in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Kaputten Gitarrenakkorden",
+                QuestionText = "An welcher Position, von links nach rechts, war bei {0} die kaputte Saite?",
+                ModuleName = "Kaputte Gitarrenakkorde",
             },
 
             // Brown Cipher
@@ -1332,9 +1371,9 @@ namespace Souvenir
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
+                    ["top"] = "ober",
+                    ["middle"] = "mittler",
+                    ["bottom"] = "unter",
                 },
             },
 
@@ -3220,9 +3259,9 @@ namespace Souvenir
                 QuestionText = "What was the {1} digit on the {2} display of {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
+                    ["top"] = "ober",
+                    ["middle"] = "mittler",
+                    ["bottom"] = "unter",
                 },
             },
 
@@ -3340,9 +3379,9 @@ namespace Souvenir
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
+                    ["top"] = "ober",
+                    ["middle"] = "mittler",
+                    ["bottom"] = "unter",
                 },
             },
 
@@ -3728,9 +3767,9 @@ namespace Souvenir
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
+                    ["top"] = "ober",
+                    ["middle"] = "mittler",
+                    ["bottom"] = "unter",
                 },
             },
 
@@ -3782,9 +3821,9 @@ namespace Souvenir
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
+                    ["top"] = "ober",
+                    ["middle"] = "mittler",
+                    ["bottom"] = "unter",
                 },
             },
 
@@ -4219,9 +4258,9 @@ namespace Souvenir
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
+                    ["top"] = "ober",
+                    ["middle"] = "mittler",
+                    ["bottom"] = "unter",
                 },
             },
 
@@ -4855,9 +4894,9 @@ namespace Souvenir
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
+                    ["top"] = "ober",
+                    ["middle"] = "mittler",
+                    ["bottom"] = "unter",
                 },
             },
 
@@ -5003,9 +5042,9 @@ namespace Souvenir
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
+                    ["top"] = "ober",
+                    ["middle"] = "mittler",
+                    ["bottom"] = "unter",
                 },
             },
 
@@ -5234,13 +5273,13 @@ namespace Souvenir
             // Which master was shown in Mega Man 2?
             [Question.MegaMan2Master] = new()
             {
-                QuestionText = "Which master was shown in {0}?",
+                QuestionText = "Welcher Meister war bei {0} zu sehen?",
             },
             // Which weapon was shown in {0}?
             // Which weapon was shown in Mega Man 2?
             [Question.MegaMan2Weapon] = new()
             {
-                QuestionText = "Which weapon was shown in {0}?",
+                QuestionText = "Welche Waffe war bei {0} zu sehen?",
             },
 
             // Melody Sequencer
@@ -6585,13 +6624,13 @@ namespace Souvenir
             // What was the first arrow on the display of the first stage of Orange Arrows?
             [Question.OrangeArrowsSequences] = new()
             {
-                QuestionText = "What was the {1} arrow on the display of the {2} stage of {0}?",
+                QuestionText = "Was war bei {0} in der {2} Stufe der {1}e Pfeil auf dem Display?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Up"] = "Up",
-                    ["Right"] = "Right",
-                    ["Down"] = "Down",
-                    ["Left"] = "Left",
+                    ["Up"] = "Hoch",
+                    ["Right"] = "Rechts",
+                    ["Down"] = "Runter",
+                    ["Left"] = "Links",
                 },
             },
 
@@ -6603,9 +6642,9 @@ namespace Souvenir
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
+                    ["top"] = "ober",
+                    ["middle"] = "mittler",
+                    ["bottom"] = "unter",
                 },
             },
 
@@ -6652,19 +6691,25 @@ namespace Souvenir
             // What was the order ID in the first order of Order Picking?
             [Question.OrderPickingOrder] = new()
             {
-                QuestionText = "What was the order ID in the {1} order of {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Was war bei {0} die Auftragsnummer des {1}en Auftrags?",
+                ModuleName = "Kommissionierung",
             },
             // What was the product ID in the {1} order of {0}?
             // What was the product ID in the first order of Order Picking?
             [Question.OrderPickingProduct] = new()
             {
-                QuestionText = "What was the product ID in the {1} order of {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Was war bei {0} die Produktnummer des {1}en Auftrags?",
+                ModuleName = "Kommissionierung",
             },
             // What was the pallet in the {1} order of {0}?
             // What was the pallet in the first order of Order Picking?
             [Question.OrderPickingPallet] = new()
             {
-                QuestionText = "What was the pallet in the {1} order of {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Was war bei {0} die Palette für den {1}en Auftrag?",
+                ModuleName = "Kommissionierung",
             },
 
             // Orientation Cube
@@ -6672,13 +6717,15 @@ namespace Souvenir
             // What was the observer’s initial position in Orientation Cube?
             [Question.OrientationCubeInitialObserverPosition] = new()
             {
-                QuestionText = "What was the observer’s initial position in {0}?",
+                Gender = Gender.Masculine,
+                QuestionText = "Was war bei {0} die Anfangsposition des Beobachters?",
+                ModuleName = "Orientierungswürfel",
                 Answers = new Dictionary<string, string>
                 {
-                    ["front"] = "front",
-                    ["left"] = "left",
-                    ["back"] = "back",
-                    ["right"] = "right",
+                    ["front"] = "vorne",
+                    ["left"] = "links",
+                    ["back"] = "hinten",
+                    ["right"] = "rechts",
                 },
             },
 
@@ -6687,30 +6734,34 @@ namespace Souvenir
             // What was the observer’s initial position in Orientation Hypercube?
             [Question.OrientationHypercubeInitialObserverPosition] = new()
             {
-                QuestionText = "What was the observer’s initial position in {0}?",
+                Gender = Gender.Masculine,
+                QuestionText = "Was war bei {0} die Anfangsposition des Beobachters?",
+                ModuleName = "Orientierungshyperwürfel",
                 Answers = new Dictionary<string, string>
                 {
-                    ["front"] = "front",
-                    ["left"] = "left",
-                    ["back"] = "back",
-                    ["right"] = "right",
+                    ["front"] = "vorne",
+                    ["left"] = "links",
+                    ["back"] = "hinten",
+                    ["right"] = "rechts",
                 },
             },
             // What was the initial colour of the {1} face in {0}?
             // What was the initial colour of the right face in Orientation Hypercube?
             [Question.OrientationHypercubeInitialFaceColour] = new()
             {
-                QuestionText = "What was the initial colour of the {1} face in {0}?",
+                Gender = Gender.Masculine,
+                QuestionText = "Was war bei {0} die Anfangsfarbe der {1} Seite?",
+                ModuleName = "Orientierungshyperwürfel",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["right"] = "right",
-                    ["left"] = "left",
-                    ["top"] = "top",
-                    ["bottom"] = "bottom",
-                    ["back"] = "back",
-                    ["front"] = "front",
-                    ["zag"] = "zag",
-                    ["zig"] = "zig",
+                    ["right"] = "rechten",
+                    ["left"] = "linken",
+                    ["top"] = "oberen",
+                    ["bottom"] = "unteren",
+                    ["back"] = "hinteren",
+                    ["front"] = "vorderen",
+                    ["zag"] = "zackeren",
+                    ["zig"] = "zickeren",
                 },
                 Answers = new Dictionary<string, string>
                 {
@@ -6730,13 +6781,15 @@ namespace Souvenir
             // What was X’s first digit from the right in Palindromes?
             [Question.PalindromesNumbers] = new()
             {
-                QuestionText = "What was {1}’s {2} digit from the right in {0}?",
+                Gender = Gender.Plural,
+                QuestionText = "Was war bei {0} die {2}e Ziffer von rechts {1}?",
+                ModuleName = "Palindrome",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["X"] = "X",
-                    ["Y"] = "Y",
-                    ["Z"] = "Z",
-                    ["the screen"] = "the screen",
+                    ["X"] = "von X",
+                    ["Y"] = "von Y",
+                    ["Z"] = "von Z",
+                    ["the screen"] = "auf dem Display",
                 },
             },
 
@@ -6745,7 +6798,9 @@ namespace Souvenir
             // What was shown on the display on Parity?
             [Question.ParityDisplay] = new()
             {
-                QuestionText = "What was shown on the display on {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Was war bei {0} auf dem Display?",
+                ModuleName = "Parität",
             },
 
             // Partial Derivatives
@@ -6753,7 +6808,10 @@ namespace Souvenir
             // What was the LED color in the first stage of Partial Derivatives?
             [Question.PartialDerivativesLedColors] = new()
             {
-                QuestionText = "What was the LED color in the {1} stage of {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Partiellen Ableitungen",
+                QuestionText = "Was war bei {0} die LED-Farbe in der {1}en Stufe?",
+                ModuleName = "Partielle Ableitungen",
                 Answers = new Dictionary<string, string>
                 {
                     ["blue"] = "blau",
@@ -6768,7 +6826,10 @@ namespace Souvenir
             // What was the first term in Partial Derivatives?
             [Question.PartialDerivativesTerms] = new()
             {
-                QuestionText = "What was the {1} term in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Partiellen Ableitungen",
+                QuestionText = "Was war bei {0} der {1}e Term?",
+                ModuleName = "Partielle Ableitungen",
             },
 
             // Passport Control
@@ -6776,7 +6837,9 @@ namespace Souvenir
             // What was the passport expiration year of the first inspected passenger in Passport Control?
             [Question.PassportControlPassenger] = new()
             {
-                QuestionText = "What was the passport expiration year of the {1} inspected passenger in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Was war bei {0} das Auslaufjahr des {1}en inspizierten Passagiers?",
+                ModuleName = "Passkontrolle",
             },
 
             // Password Destroyer
@@ -6784,7 +6847,7 @@ namespace Souvenir
             // What was the starting value when you solved Password Destroyer?
             [Question.PasswordDestroyerStartingValue] = new()
             {
-                QuestionText = "What was the raw value when you solved {0}?",
+                QuestionText = "What was the starting value when you solved {0}?",
             },
             // What was the increase factor when you solved {0}?
             // What was the increase factor when you solved Password Destroyer?
@@ -6822,6 +6885,7 @@ namespace Souvenir
             // Which symbol was highlighted in Pattern Cube?
             [Question.PatternCubeHighlightedSymbol] = new()
             {
+                Gender = Gender.Masculine,
                 QuestionText = "Welches Symbol war in {0} hervorgehoben?",
                 ModuleName = "Musterwürfel",
             },
@@ -6831,7 +6895,9 @@ namespace Souvenir
             // What was the base colour in The Pentabutton?
             [Question.PentabuttonBaseColor] = new()
             {
-                QuestionText = "What was the base colour in {0}?",
+                Gender = Gender.Masculine,
+                QuestionText = "Was war bei {0} die Basisfarbe?",
+                ModuleName = "Pentaknopf",
                 Answers = new Dictionary<string, string>
                 {
                     ["Red"] = "Rot",
@@ -6849,7 +6915,10 @@ namespace Souvenir
             // What word was on the display in the first stage of Periodic Words?
             [Question.PeriodicWordsDisplayedWords] = new()
             {
-                QuestionText = "What word was on the display in the {1} stage of {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Periodischen Wörtern",
+                QuestionText = "Welches Wort war in der {1}en Stufe von {0} auf dem Display?",
+                ModuleName = "Periodische Wörter",
             },
 
             // Perspective Pegs
@@ -6857,7 +6926,8 @@ namespace Souvenir
             // What was the first color in the initial sequence in Perspective Pegs?
             [Question.PerspectivePegsColorSequence] = new()
             {
-                QuestionText = "Was war die {1}e Farbe in der Ausgangsfolge in {0}?",
+                Gender = Gender.Masculine,
+                QuestionText = "Was war bei {0} die {1}e Farbe in der Ausgangsfolge?",
                 ModuleName = "Perspektivstöpsel",
                 Answers = new Dictionary<string, string>
                 {
@@ -6874,39 +6944,43 @@ namespace Souvenir
             // What was the offset in Phosphorescence?
             [Question.PhosphorescenceOffset] = new()
             {
-                QuestionText = "Was war das Offset in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Was war bei {0} das Offset?",
+                ModuleName = "Phosphoreszenz",
             },
             // What was the {1} button press in {0}?
             // What was the first button press in Phosphorescence?
             [Question.PhosphorescenceButtonPresses] = new()
             {
-                QuestionText = "Was war die {1}e Eingabe in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Was war bei {0} die {1}e Eingabe?",
+                ModuleName = "Phosphoreszenz",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Azure"] = "Azure",
+                    ["Azure"] = "Azur",
                     ["Blue"] = "Blau",
-                    ["Crimson"] = "Crimson",
-                    ["Diamond"] = "Diamond",
-                    ["Emerald"] = "Emerald",
-                    ["Fuchsia"] = "Fuchsia",
+                    ["Crimson"] = "Carmin",
+                    ["Diamond"] = "Diamant",
+                    ["Emerald"] = "Edelsmaragd",
+                    ["Fuchsia"] = "Fuchsie",
                     ["Green"] = "Grün",
-                    ["Ice"] = "Ice",
+                    ["Ice"] = "Iglu",
                     ["Jade"] = "Jade",
                     ["Kiwi"] = "Kiwi",
-                    ["Lime"] = "Lime",
+                    ["Lime"] = "Limette",
                     ["Magenta"] = "Magenta",
-                    ["Navy"] = "Navy",
+                    ["Navy"] = "Nachtblau",
                     ["Orange"] = "Orange",
-                    ["Purple"] = "Lila",
-                    ["Quartz"] = "Quartz",
+                    ["Purple"] = "Purpur",
+                    ["Quartz"] = "Quarz",
                     ["Red"] = "Rot",
-                    ["Salmon"] = "Salmon",
-                    ["Tan"] = "Tan",
-                    ["Ube"] = "Ube",
-                    ["Vibe"] = "Vibe",
+                    ["Salmon"] = "Seelachs",
+                    ["Tan"] = "Taupe",
+                    ["Ube"] = "Ultra",
+                    ["Vibe"] = "Vibrant",
                     ["White"] = "Weiß",
-                    ["Xotic"] = "Xotic",
-                    ["Yellow"] = "Gelb",
+                    ["Xotic"] = "Xotisch",
+                    ["Yellow"] = "Yachtgelb",
                     ["Zen"] = "Zen",
                 },
             },
@@ -6916,7 +6990,7 @@ namespace Souvenir
             // What pickup was shown in the first stage of Pickup Identification?
             [Question.PickupIdentificationItem] = new()
             {
-                QuestionText = "What pickup was shown in the {1} stage of {0}?",
+                QuestionText = "Welches Sammlerstück war bei {0} in der {1}en Stufe zu sehen?",
             },
 
             // Pictionary
@@ -6924,7 +6998,7 @@ namespace Souvenir
             // What was the code in Pictionary?
             [Question.PictionaryCode] = new()
             {
-                QuestionText = "Was war der Code in {0}?",
+                QuestionText = "Was war bei {0} der Code?",
             },
 
             // Pie
@@ -6932,7 +7006,7 @@ namespace Souvenir
             // What was the first digit of the displayed number in Pie?
             [Question.PieDigits] = new()
             {
-                QuestionText = "Was war die {1}e Ziffer der in {0} angezeigten Zahl?",
+                QuestionText = "Was war die {1}e Ziffer der bei {0} angezeigten Zahl?",
             },
 
             // Pie Flash
@@ -6940,7 +7014,7 @@ namespace Souvenir
             // What number was not displayed in Pie Flash?
             [Question.PieFlashDigits] = new()
             {
-                QuestionText = "Welche Zahl war in {0} nicht zu sehen?",
+                QuestionText = "Welche Zahl war bei {0} nicht zu sehen?",
             },
 
             // Pigpen Cycle
@@ -6948,7 +7022,7 @@ namespace Souvenir
             // What was the message in Pigpen Cycle?
             [Question.PigpenCycleWord] = new()
             {
-                QuestionText = "Was war die {1} in {0}?",
+                QuestionText = "Was war bei {0} die {1}?",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["message"] = "Nachricht",
@@ -6961,13 +7035,19 @@ namespace Souvenir
             // What was the first word in The Pink Button?
             [Question.PinkButtonWords] = new()
             {
-                QuestionText = "What was the {1} word in {0}?",
+                Gender = Gender.Masculine,
+                ModuleNameDative = "Pinkfarbenen Knopf",
+                ModuleNameWithThe = "Der Pinkfarbene Knopf",
+                QuestionText = "Was war bei {0} das erste Wort?",
             },
             // What was the {1} color in {0}?
             // What was the first color in The Pink Button?
             [Question.PinkButtonColors] = new()
             {
-                QuestionText = "What was the {1} color in {0}?",
+                Gender = Gender.Masculine,
+                ModuleNameDative = "Pinkfarbenen Knopf",
+                ModuleNameWithThe = "Der Pinkfarbene Knopf",
+                QuestionText = "Was war bei {0} die {1}e Farbe?",
                 Answers = new Dictionary<string, string>
                 {
                     ["black"] = "schwarz",
@@ -6986,7 +7066,9 @@ namespace Souvenir
             // What was the keyword in Pixel Cipher?
             [Question.PixelCipherKeyword] = new()
             {
-                QuestionText = "What was the keyword in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Was war bei {0} das Schlüsselwort?",
+                ModuleName = "Pixelchiffre",
             },
 
             // Placeholder Talk
@@ -7384,9 +7466,9 @@ namespace Souvenir
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
+                    ["top"] = "ober",
+                    ["middle"] = "mittler",
+                    ["bottom"] = "unter",
                 },
             },
 
@@ -9548,9 +9630,9 @@ namespace Souvenir
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
+                    ["top"] = "ober",
+                    ["middle"] = "mittler",
+                    ["bottom"] = "unter",
                 },
             },
 
@@ -9989,9 +10071,9 @@ namespace Souvenir
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
+                    ["top"] = "ober",
+                    ["middle"] = "mittler",
+                    ["bottom"] = "unter",
                 },
             },
 
@@ -10116,9 +10198,9 @@ namespace Souvenir
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
+                    ["top"] = "ober",
+                    ["middle"] = "mittler",
+                    ["bottom"] = "unter",
                 },
             },
 
@@ -10348,9 +10430,9 @@ namespace Souvenir
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "top",
-                    ["middle"] = "middle",
-                    ["bottom"] = "bottom",
+                    ["top"] = "ober",
+                    ["middle"] = "mittler",
+                    ["bottom"] = "unter",
                 },
             },
 

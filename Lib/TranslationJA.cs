@@ -694,6 +694,13 @@ namespace Souvenir
             [Question.BarChartsHeight] = new()
             {
                 QuestionText = "What was the position of the {1} bar in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["shortest"] = "shortest",
+                    ["second shortest"] = "second shortest",
+                    ["second tallest"] = "second tallest",
+                    ["tallest"] = "tallest",
+                },
             },
             // What was the label of the {1} bar in {0}?
             // What was the label of the first bar in Bar Charts?
