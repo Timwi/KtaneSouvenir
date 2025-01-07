@@ -155,7 +155,7 @@ namespace SouvenirPostBuildTool
 
                         var skip = "QuestionText,ModuleName,FormatArgs,Answers,TranslatableStrings,NeedsTranslation".Split(',');
 
-                        if (ti == null)
+                        if (ti == null || ti.NeedsTranslation)
                             sb.AppendLine(@"                NeedsTranslation = true,");
 
                         if (ti != null)
