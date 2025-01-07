@@ -1561,7 +1561,7 @@
         [AnswerGenerator.Ordinal(6)]
         MaritimeSemaphoreDummy,
         [SouvenirQuestion("Which letter was shown by the {2} in the {1} position in {0}?", "Maritime Semaphore", ThreeColumns6Answers,
-            ExampleFormatArguments = new[] { QandA.Ordinal, "left flag", QandA.Ordinal, "right flag", QandA.Ordinal, "semaphore" }, ExampleFormatArgumentGroupSize = 2)]
+            ExampleFormatArguments = new[] { QandA.Ordinal, "left flag", QandA.Ordinal, "right flag", QandA.Ordinal, "semaphore" }, ExampleFormatArgumentGroupSize = 2,TranslateFormatArgs = new[] { true, true })]
         [AnswerGenerator.Strings('A', 'Z')]
         MaritimeSemaphoreLetter,
 

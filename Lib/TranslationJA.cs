@@ -5321,12 +5321,21 @@ namespace Souvenir
             [Question.MaritimeSemaphoreDummy] = new()
             {
                 QuestionText = "{0}でダミーの信号があった位置は？",
+                ModuleName = "海上セマフォア信号",
             },
             // Which letter was shown by the {2} in the {1} position in {0}?
             // Which letter was shown by the left flag in the first position in Maritime Semaphore?
             [Question.MaritimeSemaphoreLetter] = new()
             {
-                QuestionText = "{0}の{1}番目の左の側が表示した英字は？",
+                QuestionText = "{0}の{1}番目の{2}が表示した英字は？",
+                ModuleName = "海上セマフォア信号",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["left flag"] = "左の旗",
+                    ["right flag"] = "右の旗",
+                    ["semaphore"] = "セマフォア信号",
+                },
+
             },
 
             // The Maroon Button
