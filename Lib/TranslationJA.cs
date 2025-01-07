@@ -5487,13 +5487,13 @@ namespace Souvenir
             // Which master was shown in Mega Man 2?
             [Question.MegaMan2Master] = new()
             {
-                QuestionText = @"Which master was shown in {0}?",
+                QuestionText = "{0}で表示されたマスターは？",
             },
             // Which weapon was shown in {0}?
             // Which weapon was shown in Mega Man 2?
             [Question.MegaMan2Weapon] = new()
             {
-                QuestionText = @"Which weapon was shown in {0}?",
+                QuestionText = "{0}で表示された武器は？",
             },
 
             // Melody Sequencer
