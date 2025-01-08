@@ -127,6 +127,7 @@ namespace SouvenirPostBuildTool
                 addThe[key] = attr.AddThe;
             }
 
+            s_translationStats = [];
             foreach (var language in "de,ja,ru".Split(','))
             {
                 var alreadyType = assembly.GetType($"Souvenir.Translation_{language}");
@@ -139,6 +140,8 @@ namespace SouvenirPostBuildTool
 
                 var already = alreadyType == null ? null : (dynamic) Activator.CreateInstance(alreadyType);
                 var sb = new StringBuilder();
+                var translatedCount = 0;
+                var totalCount = 0;
                 foreach (var kvp in allInfos)
                 {
                     sb.AppendLine($"            // {(addThe[kvp.Key] ? "The " : "")}{kvp.Key}");
@@ -163,6 +166,10 @@ namespace SouvenirPostBuildTool
 
                         if (ti == null || ti.NeedsTranslation)
                             sb.AppendLine(@"                NeedsTranslation = true,");
+                        else
+                            translatedCount++;
+
+                        totalCount++;
 
                         if (ti != null)
                             foreach (var f in tiFields)
@@ -215,6 +222,8 @@ namespace SouvenirPostBuildTool
                     sb.AppendLine("");
                 }
 
+                s_translationStats[language] = $"{(float)translatedCount / totalCount * 100f:f2}%";
+
                 var path = Path.Combine(translationFilePath, $"Translation{language.ToUpperInvariant()}.cs");
                 if (!File.Exists(path))
                 {
@@ -233,6 +242,7 @@ namespace SouvenirPostBuildTool
             }
         }
 
+        static Dictionary<string, string> s_translationStats;
         private static void DoDataFileStuff(string path, Assembly assembly)
         {
             var moduleType = assembly.GetType("SouvenirModule");
@@ -251,30 +261,34 @@ namespace SouvenirPostBuildTool
 
             var questionsType = assembly.GetType("Souvenir.Question");
 
-            var translationStats = new Dictionary<string, string>();
-
-            foreach (var language in "de,ja,ru".Split(','))
+            var translationStats = s_translationStats;
+            if (translationStats is null)
             {
-                var alreadyType = assembly.GetType($"Souvenir.Translation_{language}");
-                var translationsProp = alreadyType.GetProperty("_translations", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
-                var already = alreadyType == null ? null : (dynamic) Activator.CreateInstance(alreadyType);
-                if (already == null)
-                {
-                    translationStats[language] = "Unknown";
-                    continue;
-                }
-                var translations = (dynamic) translationsProp.GetValue(already);
+                translationStats = [];
 
-                var count = 0;
-                var done = 0;
-                foreach (var tr in translations?.Values)
+                foreach (var language in "de,ja,ru".Split(','))
                 {
-                    count++;
-                    if (!tr.NeedsTranslation)
-                        done++;
+                    var alreadyType = assembly.GetType($"Souvenir.Translation_{language}");
+                    var translationsProp = alreadyType.GetProperty("_translations", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+                    var already = alreadyType == null ? null : (dynamic) Activator.CreateInstance(alreadyType);
+                    if (already == null)
+                    {
+                        translationStats[language] = "Unknown";
+                        continue;
+                    }
+                    var translations = (dynamic) translationsProp.GetValue(already);
+
+                    var count = 0;
+                    var done = 0;
+                    foreach (var tr in translations?.Values)
+                    {
+                        count++;
+                        if (!tr.NeedsTranslation)
+                            done++;
+                    }
+                    var percent = (float) done / count * 100f;
+                    translationStats.Add(language, $"{percent:f2}%");
                 }
-                var percent = (float) done / count * 100f;
-                translationStats.Add(language, $"{percent:f2}%");
             }
 
             var json = $$"""
