@@ -48,11 +48,12 @@ namespace SouvenirPostBuildTool
             if (opt.ContributorsFile != null)
                 DoContributorStuff(opt.ContributorsFile, assembly);
 
+            Dictionary<string, string> translationStats = null;
             if (opt.TranslationsFolder != null)
-                DoTranslationStuff(opt.TranslationsFolder, assembly);
+                translationStats = DoTranslationStuff(opt.TranslationsFolder, assembly);
 
             if (opt.DataFile != null)
-                DoDataFileStuff(opt.DataFile, assembly);
+                DoDataFileStuff(opt.DataFile, assembly, translationStats);
 
             return 0;
         }
@@ -109,7 +110,7 @@ namespace SouvenirPostBuildTool
             File.WriteAllText(filepath, sb.ToString());
         }
 
-        private static void DoTranslationStuff(string translationFilePath, Assembly assembly)
+        private static Dictionary<string, string> DoTranslationStuff(string translationFilePath, Assembly assembly)
         {
             var questionsType = assembly.GetType("Souvenir.Question");
             var attributeType = assembly.GetType("Souvenir.SouvenirQuestionAttribute");
@@ -127,7 +128,7 @@ namespace SouvenirPostBuildTool
                 addThe[key] = attr.AddThe;
             }
 
-            s_translationStats = [];
+            var translationStats = new Dictionary<string, string>();
             foreach (var language in "de,ja,ru".Split(','))
             {
                 var alreadyType = assembly.GetType($"Souvenir.Translation_{language}");
@@ -222,7 +223,7 @@ namespace SouvenirPostBuildTool
                     sb.AppendLine("");
                 }
 
-                s_translationStats[language] = $"{(float)translatedCount / totalCount * 100f:f2}%";
+                translationStats[language] = $"{(float) translatedCount / totalCount * 100f:f2}%";
 
                 var path = Path.Combine(translationFilePath, $"Translation{language.ToUpperInvariant()}.cs");
                 if (!File.Exists(path))
@@ -240,10 +241,10 @@ namespace SouvenirPostBuildTool
                 }
                 File.WriteAllText(path, $"{string.Join(Environment.NewLine, alreadyFile.Take(p1 + 1))}{Environment.NewLine}{sb}{string.Join(Environment.NewLine, alreadyFile.Skip(p2))}");
             }
+            return translationStats;
         }
 
-        static Dictionary<string, string> s_translationStats;
-        private static void DoDataFileStuff(string path, Assembly assembly)
+        private static void DoDataFileStuff(string path, Assembly assembly, Dictionary<string, string> translationStats)
         {
             var moduleType = assembly.GetType("SouvenirModule");
             var module = Activator.CreateInstance(moduleType);
@@ -261,7 +262,6 @@ namespace SouvenirPostBuildTool
 
             var questionsType = assembly.GetType("Souvenir.Question");
 
-            var translationStats = s_translationStats;
             if (translationStats is null)
             {
                 translationStats = [];

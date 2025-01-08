@@ -2,15 +2,15 @@
   "profiles": {
     "Run both": {
       "commandName": "Project",
-      "commandLineArgs": "\"D:\\c\\KTANE\\Souvenir\\Lib\\bin\\SouvenirLib.dll\" \"F:\\SteamLibrary\\steamapps\\common\\Keep Talking and Nobody Explodes\\ktane_Data\\Managed\" -c \"D:\\c\\KTANE\\Souvenir\\CONTRIBUTORS.md\" -t \"D:\\c\\KTANE\\Souvenir\\Lib\""
+      "commandLineArgs": "\"D:\\c\\KTANE\\Souvenir\\Lib\\bin\\SouvenirLib.dll\" \"F:\\SteamLibrary\\steamapps\\common\\Keep Talking and Nobody Explodes\\ktane_Data\\Managed\" -c \"D:\\c\\KTANE\\Souvenir\\CONTRIBUTORS.md\" -t \"D:\\c\\KTANE\\Souvenir\\Lib\" -d \"D:\\c\\KTANE\\Souvenir\\data.json\""
     },
     "Run CONTRIBUTORS.md": {
       "commandName": "Project",
-      "commandLineArgs": "\"D:\\c\\KTANE\\Souvenir\\Lib\\bin\\SouvenirLib.dll\" \"F:\\SteamLibrary\\steamapps\\common\\Keep Talking and Nobody Explodes\\ktane_Data\\Managed\" -c \"D:\\c\\KTANE\\Souvenir\\CONTRIBUTORS.md\""
+      "commandLineArgs": "\"D:\\c\\KTANE\\Souvenir\\Lib\\bin\\SouvenirLib.dll\" \"F:\\SteamLibrary\\steamapps\\common\\Keep Talking and Nobody Explodes\\ktane_Data\\Managed\" -c \"D:\\c\\KTANE\\Souvenir\\CONTRIBUTORS.md\" -d \"D:\\c\\KTANE\\Souvenir\\data.json\""
     },
     "Run translation tool": {
       "commandName": "Project",
-      "commandLineArgs": "\"D:\\c\\KTANE\\Souvenir\\Lib\\bin\\SouvenirLib.dll\" \"F:\\SteamLibrary\\steamapps\\common\\Keep Talking and Nobody Explodes\\ktane_Data\\Managed\" -t \"D:\\c\\KTANE\\Souvenir\\Lib\""
+      "commandLineArgs": "\"D:\\c\\KTANE\\Souvenir\\Lib\\bin\\SouvenirLib.dll\" \"F:\\SteamLibrary\\steamapps\\common\\Keep Talking and Nobody Explodes\\ktane_Data\\Managed\" -t \"D:\\c\\KTANE\\Souvenir\\Lib\" -d \"D:\\c\\KTANE\\Souvenir\\data.json\""
     }
   }
 }
