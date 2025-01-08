@@ -163,61 +163,51 @@ namespace SouvenirPostBuildTool
                         sb.AppendLine($@"            [Question.{qId}] = new()");
                         sb.AppendLine("            {");
 
+                        var sbFields = new StringBuilder();
+                        var translationChanged = false;
                         var skip = "QuestionText,ModuleName,FormatArgs,Answers,TranslatableStrings,NeedsTranslation".Split(',');
-
-                        if (ti == null || ti.NeedsTranslation)
-                            sb.AppendLine(@"                NeedsTranslation = true,");
-                        else
-                            translatedCount++;
-
-                        totalCount++;
-
                         if (ti != null)
                             foreach (var f in tiFields)
                                 if (!skip.Contains(f.Name) && f.GetValue(ti) is object v && !v.Equals(f.GetValue(translationInfoPrototype)))
-                                    sb.AppendLine($@"                {f.Name} = {(
+                                    sbFields.AppendLine($@"                {f.Name} = {(
                                         f.FieldType == typeof(string) ? $@"""{((string) v).CLiteralEscape()}""" :
                                         f.FieldType.IsEnum ? $@"{f.FieldType.Name}.{v}" :
                                         throw new NotImplementedException()
                                     )},");
 
-                        sb.AppendLine($@"                QuestionText = ""{((string) (ti?.QuestionText) ?? qText).CLiteralEscape()}"",");
+                        sbFields.AppendLine($@"                QuestionText = ""{((string) (ti?.QuestionText) ?? qText).CLiteralEscape()}"",");
                         if (ti?.ModuleName != null)
-                            sb.AppendLine($@"                ModuleName = ""{((string) ti.ModuleName).CLiteralEscape()}"",");
+                            sbFields.AppendLine($@"                ModuleName = ""{((string) ti.ModuleName).CLiteralEscape()}"",");
 
-                        var trFAs = (bool[]) attr.TranslateFormatArgs;
-                        var formatArgs = attr.ExampleFormatArguments == null || attr.ExampleFormatArguments.Length == 0 || trFAs == null || trFAs.Length == 0 ? null :
-                            ((string[]) attr.ExampleFormatArguments).Split((int) attr.ExampleFormatArgumentGroupSize)
+                        void AddDictionaryField(string fieldName, string[] originals, dynamic trdic)
+                        {
+                            sbFields.AppendLine($"                {fieldName} = new Dictionary<string, string>");
+                            sbFields.AppendLine("                {");
+                            foreach (var english in originals)
+                                sbFields.AppendLine($@"                    [""{english.CLiteralEscape()}""] = ""{(trdic?.ContainsKey(english) == true ? (string) trdic[english] : english).CLiteralEscape()}"",");
+                            sbFields.AppendLine("                },");
+                            if (trdic == null || originals.Any(str => !trdic.ContainsKey(str)) || ((IEnumerable<string>) trdic.Keys).Any(k => !originals.Contains(k)))
+                                translationChanged = true;
+                        }
+
+                        if (attr.ExampleFormatArguments is string[] efas && efas.Length > 0 && attr.TranslateFormatArgs is bool[] trFAs && trFAs.Length > 0)
+                            AddDictionaryField("FormatArgs", efas.Split((int) attr.ExampleFormatArgumentGroupSize)
                                 .SelectMany(chunk => Enumerable.Range(0, trFAs.Length).Where(ix => trFAs[ix]).Select(ix => chunk.Skip(ix).First()))
-                                .Distinct().ToArray();
-                        if (formatArgs != null)
-                        {
-                            sb.AppendLine("                FormatArgs = new Dictionary<string, string>");
-                            sb.AppendLine("                {");
-                            foreach (var fa in formatArgs)
-                                sb.AppendLine($@"                    [""{fa.CLiteralEscape()}""] = ""{(ti?.FormatArgs?.ContainsKey(fa) == true ? (string) ti.FormatArgs[fa] : fa).CLiteralEscape()}"",");
-                            sb.AppendLine("                },");
-                        }
+                                .Distinct().ToArray(), ti?.FormatArgs);
 
-                        var answers = attr.AllAnswers == null || attr.AllAnswers.Length == 0 ? null : (string[]) attr.AllAnswers;
-                        if (answers != null && attr.TranslateAnswers)
-                        {
-                            sb.AppendLine("                Answers = new Dictionary<string, string>");
-                            sb.AppendLine("                {");
-                            foreach (var answer in answers)
-                                sb.AppendLine($@"                    [""{answer.CLiteralEscape()}""] = ""{(ti?.Answers?.ContainsKey(answer) == true ? (string) ti.Answers[answer] : answer).CLiteralEscape()}"",");
-                            sb.AppendLine("                },");
-                        }
+                        if ((bool) attr.TranslateAnswers && attr.AllAnswers is string[] aas && aas.Length > 0)
+                            AddDictionaryField("Answers", aas, ti?.Answers);
 
-                        var translatableStrings = attr.TranslatableStrings == null || attr.TranslatableStrings.Length == 0 ? null : (string[]) attr.TranslatableStrings;
-                        if (translatableStrings != null)
-                        {
-                            sb.AppendLine("                TranslatableStrings = new Dictionary<string, string>");
-                            sb.AppendLine("                {");
-                            foreach (var trStr in translatableStrings)
-                                sb.AppendLine($@"                    [""{trStr.CLiteralEscape()}""] = ""{(ti?.TranslatableStrings?.ContainsKey(trStr) == true ? (string) ti.TranslatableStrings[trStr] : trStr).CLiteralEscape()}"",");
-                            sb.AppendLine("                },");
-                        }
+                        if (attr.TranslatableStrings is string[] tss && tss.Length > 0)
+                            AddDictionaryField("TranslatableStrings", tss, ti?.TranslatableStrings);
+
+                        if (ti == null || ti.NeedsTranslation || translationChanged)
+                            sb.AppendLine(@"                NeedsTranslation = true,");
+                        else
+                            translatedCount++;
+                        totalCount++;
+
+                        sb.Append(sbFields);
                         sb.AppendLine("            },");
                     }
                     sb.AppendLine("");
