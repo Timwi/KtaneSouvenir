@@ -229,13 +229,18 @@ public partial class SouvenirModule : MonoBehaviour
         // Use Souvenir-settings.txt as opposed to SouvenirSettings.json for existing settings
         ModSettings<Config> modConfig = new ModSettings<Config>("Souvenir-settings");
         _config = modConfig.Read();
+        if (_config.Language is null)
+        {
+            _config.Language = "en";
+            modConfig.Write(_config);
+        }
 
         var ignoredList = BossModule.GetIgnoredModules(Module, _defaultIgnoredModules);
         Debug.Log($"‹Souvenir #{_moduleId}› Ignored modules: {ignoredList.JoinString(", ")}");
         _ignoredModules.UnionWith(ignoredList);
 
-        if (_config.Language != null && TranslationInfo.AllTranslations.ContainsKey(_config.Language))
-            _translation = TranslationInfo.AllTranslations[_config.Language];
+        if (_config.Language != null && TranslationInfo.AllTranslations.TryGetValue(_config.Language, out var tr))
+            _translation = tr;
         Debug.Log($"<Souvenir #{_moduleId}> Language: {_config.Language} ({(_translation == null ? "absent" : "present")})");
 
         Bomb.OnBombExploded += delegate

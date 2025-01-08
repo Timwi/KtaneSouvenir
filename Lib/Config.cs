@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Souvenir;
 
 public class Config
@@ -27,6 +28,7 @@ public class Config
                 new Dictionary<string, object> { ["Key"] = "ExcludeVanillaModules", ["Text"] = "Exclude vanilla modules", ["Description"] = "avoid questions about vanilla modules" },
                 new Dictionary<string, object> { ["Key"] = "ExcludeIgnoredModules", ["Text"] = "Exclude ignored modules", ["Description"] = "avoid questions about boss modules (except other Souvenirs)" },
                 new Dictionary<string, object> { ["Key"] = "IgnoreTpAutosolvers", ["Text"] = "Ignore TP autosolvers", ["Description"] = "ask questions about modules even if they were autosolved in TP (useful for debugging)" },
+                new Dictionary<string, object> { ["Key"] = "Language", ["Text"] = "Language", ["Type"] = "Dropdown", ["DropdownItems"] = new string[] { "en" }.Concat(TranslationInfo.AllTranslations.Keys).Cast<object>().ToList() },
                 new Dictionary<string, object> { ["Text"] = "Exclude specific modules", ["Type"] = "Section" },
                 new Dictionary<string, object> { ["Key"] = "ExcludeMysteryModule", ["Text"] = "Mystery Module" },
                 new Dictionary<string, object> { ["Key"] = "ExcludeSouvenir", ["Text"] = "Souvenir", ["Description"] = "avoid questions about other Souvenirs on the same bomb" })
