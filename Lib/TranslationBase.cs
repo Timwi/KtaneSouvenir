@@ -14,12 +14,5 @@ namespace Souvenir
 
         private Dictionary<Question, T> _translationsCache = null;
         public TranslationInfo Translate(Question question) => (_translationsCache ??= _translations).Get(question);
-
-        public static Dictionary<string, ITranslation> AllTranslations = new()
-        {
-            ["de"] = new Translation_de(),
-            ["ja"] = new Translation_ja(),
-            ["ru"] = new Translation_ru()
-        };
     }
 }

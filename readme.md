@@ -37,9 +37,9 @@ The following vanilla modules are supported by Souvenir: The Button, Maze, Memor
 ## Translations
 
 [![](https://img.shields.io/badge/EN-100.00%25-red)](/Lib/Question.cs)
-[![](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FTimwi%2FKtaneSouvenir%2Fmaster%2Fdata.json&query=%24.translationProgress.DE&label=DE&color=red)](/Lib/TranslationDE.cs)
-[![](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FTimwi%2FKtaneSouvenir%2Fmaster%2Fdata.json&query=%24.translationProgress.JA&label=JA&color=red)](/Lib/TranslationJA.cs)
-[![](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FTimwi%2FKtaneSouvenir%2Fmaster%2Fdata.json&query=%24.translationProgress.RU&label=RU&color=red)](/Lib/TranslationRU.cs)
+[![](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FTimwi%2FKtaneSouvenir%2Fmaster%2Fdata.json&query=%24.translationProgress.de&label=DE&color=red)](/Lib/TranslationDE.cs)
+[![](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FTimwi%2FKtaneSouvenir%2Fmaster%2Fdata.json&query=%24.translationProgress.ja&label=JA&color=red)](/Lib/TranslationJA.cs)
+[![](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FTimwi%2FKtaneSouvenir%2Fmaster%2Fdata.json&query=%24.translationProgress.ru&label=RU&color=red)](/Lib/TranslationRU.cs)
 
 For contributing to translations, see [translations.md](https://github.com/Timwi/KtaneSouvenir/blob/master/translations.md).
 

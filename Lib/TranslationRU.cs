@@ -6674,22 +6674,49 @@ namespace Souvenir
             // What was the position of the first flashing peg on Not Perspective Pegs?
             [Question.NotPerspectivePegsPosition] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "В какой позиции находился {1}-й мигающий колышек {0}?",
                 ModuleName = "НЕ-взгляде на колышках",
+                Answers = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["top-right"] = "top-right",
+                    ["bottom-right"] = "bottom-right",
+                    ["bottom-left"] = "bottom-left",
+                    ["top-left"] = "top-left",
+                },
             },
             // From what perspective did the {1} peg flash on {0}?
             // From what perspective did the first peg flash on Not Perspective Pegs?
             [Question.NotPerspectivePegsPerspective] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "С какого ракурса мигнул {1}-й колышек {0}?",
                 ModuleName = "НЕ-взгляде на колышках",
+                Answers = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["top-right"] = "top-right",
+                    ["bottom-right"] = "bottom-right",
+                    ["bottom-left"] = "bottom-left",
+                    ["top-left"] = "top-left",
+                },
             },
             // What was the color of the {1} flashing peg on {0}?
             // What was the color of the first flashing peg on Not Perspective Pegs?
             [Question.NotPerspectivePegsColor] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какой был цвет {1}-го мигающего колышка {0}?",
                 ModuleName = "НЕ-взгляде на колышках",
+                Answers = new Dictionary<string, string>
+                {
+                    ["blue"] = "blue",
+                    ["green"] = "green",
+                    ["purple"] = "purple",
+                    ["red"] = "red",
+                    ["yellow"] = "yellow",
+                },
             },
 
             // Not Piano Keys

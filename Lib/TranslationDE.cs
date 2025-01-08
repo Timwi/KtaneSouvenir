@@ -6698,6 +6698,14 @@ namespace Souvenir
             {
                 NeedsTranslation = true,
                 QuestionText = "What was the position of the {1} flashing peg on {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["top-right"] = "top-right",
+                    ["bottom-right"] = "bottom-right",
+                    ["bottom-left"] = "bottom-left",
+                    ["top-left"] = "top-left",
+                },
             },
             // From what perspective did the {1} peg flash on {0}?
             // From what perspective did the first peg flash on Not Perspective Pegs?
@@ -6705,6 +6713,14 @@ namespace Souvenir
             {
                 NeedsTranslation = true,
                 QuestionText = "From what perspective did the {1} peg flash on {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["top-right"] = "top-right",
+                    ["bottom-right"] = "bottom-right",
+                    ["bottom-left"] = "bottom-left",
+                    ["top-left"] = "top-left",
+                },
             },
             // What was the color of the {1} flashing peg on {0}?
             // What was the color of the first flashing peg on Not Perspective Pegs?
@@ -6712,6 +6728,14 @@ namespace Souvenir
             {
                 NeedsTranslation = true,
                 QuestionText = "What was the color of the {1} flashing peg on {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["blue"] = "blue",
+                    ["green"] = "green",
+                    ["purple"] = "purple",
+                    ["red"] = "red",
+                    ["yellow"] = "yellow",
+                },
             },
 
             // Not Piano Keys
@@ -11412,7 +11436,6 @@ namespace Souvenir
             },
 
             #endregion
-
         };
 
         public override string[] IntroTexts => Ut.NewArray(

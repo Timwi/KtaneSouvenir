@@ -434,18 +434,18 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
         for (int i = 0; i < 5; i++)
             qs.Add(makeQuestion(Question.NotPerspectivePegsPosition, module, formatArgs: new[] { Ordinal(i + 1) },
-                correctAnswers: new[] { posNames[positions[i]] }, preferredWrongAnswers: Enumerable.Range(0, 5).Select(i => posNames[i]).ToArray()));
+                correctAnswers: new[] { posNames[positions[i]] }));
         // Peg perspective
         var perspectives = GetArrayField<int>(comp, "_flashPegPerspective").Get();
         for (int i = 0; i < 5; i++)
             qs.Add(makeQuestion(Question.NotPerspectivePegsPerspective, module, formatArgs: new[] { Ordinal(i + 1) },
-                correctAnswers: new[] { posNames[perspectives[i]] }, preferredWrongAnswers: Enumerable.Range(0, 5).Select(i => posNames[i]).ToArray()));
+                correctAnswers: new[] { posNames[perspectives[i]] }));
         // Peg color
         var colors = GetArrayField<int>(comp, "_flashPegColor").Get();
         var colorNames = new[] { "blue", "green", "purple", "red", "yellow" };
         for (int i = 0; i < 5; i++)
             qs.Add(makeQuestion(Question.NotPerspectivePegsColor, module, formatArgs: new[] { Ordinal(i + 1) },
-                correctAnswers: new[] { colorNames[colors[i]] }, preferredWrongAnswers: Enumerable.Range(0, 5).Select(i => colorNames[i]).ToArray()));
+                correctAnswers: new[] { colorNames[colors[i]] }));
         addQuestions(module, qs);
     }
 

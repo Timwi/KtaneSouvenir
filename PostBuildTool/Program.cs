@@ -114,6 +114,7 @@ namespace SouvenirPostBuildTool
         {
             var questionsType = assembly.GetType("Souvenir.Question");
             var attributeType = assembly.GetType("Souvenir.SouvenirQuestionAttribute");
+            var languages = (assembly.GetType("Souvenir.TranslationInfo").GetField("AllTranslations", BindingFlags.Static | BindingFlags.Public).GetValue(null) as IDictionary).Keys.Cast<string>().ToArray();
 
             var allInfos = new Dictionary<string, List<(FieldInfo fld, dynamic attr)>>();
             var addThe = new Dictionary<string, bool>();
@@ -129,7 +130,7 @@ namespace SouvenirPostBuildTool
             }
 
             var translationStats = new Dictionary<string, string>();
-            foreach (var language in "de,ja,ru".Split(','))
+            foreach (var language in languages)
             {
                 var alreadyType = assembly.GetType($"Souvenir.Translation_{language}");
                 var baseType = alreadyType;
@@ -237,6 +238,7 @@ namespace SouvenirPostBuildTool
         private static void DoDataFileStuff(string path, Assembly assembly, Dictionary<string, string> translationStats)
         {
             var moduleType = assembly.GetType("SouvenirModule");
+            var languages = (assembly.GetType("Souvenir.TranslationInfo").GetField("AllTranslations", BindingFlags.Static | BindingFlags.Public).GetValue(null) as IDictionary).Keys.Cast<string>().ToArray();
             var module = Activator.CreateInstance(moduleType);
             var awakeMethod = moduleType.GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Instance);
             awakeMethod.Invoke(module, null);
@@ -256,7 +258,7 @@ namespace SouvenirPostBuildTool
             {
                 translationStats = [];
 
-                foreach (var language in "de,ja,ru".Split(','))
+                foreach (var language in languages)
                 {
                     var alreadyType = assembly.GetType($"Souvenir.Translation_{language}");
                     var translationsProp = alreadyType.GetProperty("_translations", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
@@ -281,20 +283,14 @@ namespace SouvenirPostBuildTool
                 }
             }
 
-            var json = $$"""
+            File.WriteAllText(path, $$"""
             {
                 "contributorsCount": {{contributors.Count}},
                 "modulesCount": {{modules.Count}},
                 "questionsCount": {{Enum.GetValues(questionsType).Length}},
-                "translationProgress": {
-                  "DE": "{{translationStats["de"]}}",
-                  "JA": "{{translationStats["ja"]}}",
-                  "RU": "{{translationStats["ru"]}}"
-                }
+                "translationProgress": { {{languages.Select(lang => $@"""{lang}"": ""{translationStats[lang]}""").JoinString(", ")}} }
             }
-            """;
-
-            File.WriteAllText(path, json);
+            """);
         }
 
         /// <summary>

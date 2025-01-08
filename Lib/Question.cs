@@ -1378,7 +1378,7 @@
         [SouvenirQuestion("What was the color of this square in {0}?", "Juxtacolored Squares", ThreeColumns6Answers, "Red", "Blue", "Yellow", "Green", "Magenta", "Orange", "Cyan", "Purple", "Chestnut", "Brown", "Mauve", "Azure", "Jade", "Forest", "Gray", "Black", TranslateAnswers = true, UsesQuestionSprite = true)]
         JuxtacoloredSquaresColorsByPosition,
         [SouvenirQuestion("Which square was {1} in {0}?", "Juxtacolored Squares", ThreeColumns6Answers, Type = AnswerType.Sprites,
-            ExampleFormatArguments = new[] { "red", "blue", "yellow", "green", "magenta", "orange", "cyan", "purple", "chestnut", "brown", "mauve", "azure", "jade", "forest", "gray", "black" }, TranslateAnswers = true,
+            ExampleFormatArguments = new[] { "red", "blue", "yellow", "green", "magenta", "orange", "cyan", "purple", "chestnut", "brown", "mauve", "azure", "jade", "forest", "gray", "black" },
             ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         [AnswerGenerator.Grid(4, 4)]
         JuxtacoloredSquaresPositionsByColor,
@@ -1900,13 +1900,13 @@
         [AnswerGenerator.Strings('A', 'Z')]
         NotPasswordLetter,
 
-        [SouvenirQuestion("What was the position of the {1} flashing peg on {0}?", "Not Perspective Pegs", ThreeColumns6Answers, ExampleAnswers = new[] { "top", "top-right", "bottom-right", "bottom-left", "top-left" },
+        [SouvenirQuestion("What was the position of the {1} flashing peg on {0}?", "Not Perspective Pegs", ThreeColumns6Answers, "top", "top-right", "bottom-right", "bottom-left", "top-left",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         NotPerspectivePegsPosition,
-        [SouvenirQuestion("From what perspective did the {1} peg flash on {0}?", "Not Perspective Pegs", ThreeColumns6Answers, ExampleAnswers = new[] { "top", "top-right", "bottom-right", "bottom-left", "top-left" },
+        [SouvenirQuestion("From what perspective did the {1} peg flash on {0}?", "Not Perspective Pegs", ThreeColumns6Answers, "top", "top-right", "bottom-right", "bottom-left", "top-left",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         NotPerspectivePegsPerspective,
-        [SouvenirQuestion("What was the color of the {1} flashing peg on {0}?", "Not Perspective Pegs", ThreeColumns6Answers, ExampleAnswers = new[] { "blue", "green", "purple", "red", "yellow" },
+        [SouvenirQuestion("What was the color of the {1} flashing peg on {0}?", "Not Perspective Pegs", ThreeColumns6Answers, "blue", "green", "purple", "red", "yellow",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         NotPerspectivePegsColor,
 
@@ -2840,7 +2840,7 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         SymbolicTashaFlashes,
         [SouvenirQuestion("Which symbol was on the {1} button in {0}?", "Symbolic Tasha", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "SymbolicTashaSprites",
-            ExampleFormatArguments = new[] { "top", "right", "bottom", "left", "blue", "green", "yellow", "pink" }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true, TranslateFormatArgs = new[] { true })]
+            ExampleFormatArguments = new[] { "top", "right", "bottom", "left", "blue", "green", "yellow", "pink" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         SymbolicTashaSymbols,
 
         [SouvenirQuestion("What was displayed on the screen in the {1} stage of {0}?", "SYNC-125 [3]", TwoColumns4Answers, Type = AnswerType.DynamicFont, ExampleAnswers = new[] { "İ'ms'", "ăĠ'n'", "kğ'i", "kĞ'p'", "ăut'", "ăġ'r", "ăġ'm", "ărs", "kğp'", "kğk" },
