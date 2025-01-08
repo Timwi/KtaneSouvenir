@@ -857,7 +857,7 @@ public partial class SouvenirModule
         var colorNames = new[] { "Yellow", "Pink", "Blue" };
         var colorIx = fldColorIx.Get(min: 0, max: 2);
 
-        addQuestions(module, makeQuestion(Question.CrittersAlterationColor, module, correctAnswers: new[] { colorNames[colorIx] }));
+        addQuestions(module, makeQuestion(Question.CrittersColor, module, correctAnswers: new[] { colorNames[colorIx] }));
     }
 
     private IEnumerator<YieldInstruction> ProcessCruelBinary(ModuleData module)

@@ -643,8 +643,8 @@
             ExampleFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { true, false })]
         CrimsonCipherScreen,
 
-        [SouvenirQuestion("What was the alteration color used in {0}?", "Critters", TwoColumns4Answers, "Yellow", "Pink", "Blue", "White", TranslateAnswers = true)]
-        CrittersAlterationColor,
+        [SouvenirQuestion("What was the color in {0}?", "Critters", TwoColumns4Answers, "Yellow", "Pink", "Blue", "White", TranslateAnswers = true)]
+        CrittersColor,
 
         [SouvenirQuestion("What was the displayed word in {0}?", "Cruel Binary", TwoColumns4Answers, ExampleAnswers = new[] { "LEAST", "YELLOW", "SIERRA", "WHITE" })]
         CruelBinaryDisplayedWord,

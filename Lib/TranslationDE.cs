@@ -2352,12 +2352,14 @@ namespace Souvenir
             },
 
             // Critters
-            // What was the alteration color used in {0}?
-            // What was the alteration color used in Critters?
-            [Question.CrittersAlterationColor] = new()
+            // What was the color in {0}?
+            // What was the color in Critters?
+            [Question.CrittersColor] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the alteration color used in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Kriechtieren",
+                QuestionText = "Was war die Farbe bei {0}?",
+                ModuleName = "Kriechtiere",
                 Answers = new Dictionary<string, string>
                 {
                     ["Yellow"] = "Gelb",

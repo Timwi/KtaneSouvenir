@@ -2294,10 +2294,11 @@ namespace Souvenir
             },
 
             // Critters
-            // What was the alteration color used in {0}?
-            // What was the alteration color used in Critters?
-            [Question.CrittersAlterationColor] = new()
+            // What was the color in {0}?
+            // What was the color in Critters?
+            [Question.CrittersColor] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}で使用した変化した色は？",
                 Answers = new Dictionary<string, string>
                 {
