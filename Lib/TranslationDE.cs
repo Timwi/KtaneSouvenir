@@ -1004,8 +1004,10 @@ namespace Souvenir
             // What was on the top screen on page 1 in Black Cipher?
             [Question.BlackCipherScreen] = new()
             {
+                Gender = Gender.Feminine,
+                ModuleNameDative = "Schwarzen Geheimschrift",
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
-                ModuleName = "Schwarze Chiffre",
+                ModuleName = "Schwarze Geheimschrift",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "oberen",
@@ -1157,8 +1159,10 @@ namespace Souvenir
             // What was on the top screen on page 1 in Blue Cipher?
             [Question.BlueCipherScreen] = new()
             {
+                Gender = Gender.Feminine,
+                ModuleNameDative = "Blauen Geheimschrift",
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
-                ModuleName = "Blaue Chiffre",
+                ModuleName = "Blaue Geheimschrift",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "oberen",
@@ -1420,7 +1424,10 @@ namespace Souvenir
             // What was on the top screen on page 1 in Brown Cipher?
             [Question.BrownCipherScreen] = new()
             {
+                Gender = Gender.Feminine,
+                ModuleNameDative = "Braunen Geheimschrift",
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                ModuleName = "Braune Geheimschrift",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "ober",
@@ -2214,7 +2221,9 @@ namespace Souvenir
             // What was on the top screen on page 1 in Coral Cipher?
             [Question.CoralCipherScreen] = new()
             {
+                Gender = Gender.Feminine,
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                ModuleName = "Korall-Geheimschrift",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "oberen",
@@ -2228,8 +2237,8 @@ namespace Souvenir
             // What was the color of the top-left corner in Corners?
             [Question.CornersColors] = new()
             {
-                NeedsTranslation = true,
                 QuestionText = "What was the color of the {1} corner in {0}?",
+                ModuleName = "Ecken",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top-left"] = "top-left",
@@ -2249,8 +2258,8 @@ namespace Souvenir
             // How many corners in Corners were red?
             [Question.CornersColorCount] = new()
             {
-                NeedsTranslation = true,
                 QuestionText = "How many corners in {0} were {1}?",
+                ModuleName = "Ecken",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["red"] = "rot",
@@ -2265,7 +2274,9 @@ namespace Souvenir
             // What was on the top screen on page 1 in Cornflower Cipher?
             [Question.CornflowerCipherScreen] = new()
             {
+                Gender = Gender.Feminine,
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                ModuleName = "Kornblumen-Geheimschrift",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "oberen",
@@ -2279,8 +2290,8 @@ namespace Souvenir
             // What was the number initially shown in Cosmic?
             [Question.CosmicNumber] = new()
             {
-                NeedsTranslation = true,
                 QuestionText = "What was the number initially shown in {0}?",
+                ModuleName = "Kosmik",
             },
 
             // Crazy Hamburger
@@ -2288,8 +2299,10 @@ namespace Souvenir
             // What was the first ingredient shown in Crazy Hamburger?
             [Question.CrazyHamburgerIngredient] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the {1} ingredient shown in {0}?",
+                Gender = Gender.Masculine,
+                ModuleNameDative = "Verrückten Hamburger",
+                QuestionText = "Was war bei {0} die {1}e Zutat?",
+                ModuleName = "Verrückter Hamburger",
             },
 
             // Crazy Maze
@@ -2297,12 +2310,14 @@ namespace Souvenir
             // What was the starting location in Crazy Maze?
             [Question.CrazyMazeStartOrGoal] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the {1} location in {0}?",
+                Gender = Gender.Masculine,
+                ModuleNameDative = "Verrückten Irrgarten",
+                QuestionText = "Was war bei {0} die {1}?",
+                ModuleName = "Verrückter Irrgarten",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["starting"] = "starting",
-                    ["goal"] = "goal",
+                    ["starting"] = "Anfangsposition",
+                    ["goal"] = "Zielposition",
                 },
             },
 
@@ -2311,7 +2326,9 @@ namespace Souvenir
             // What was on the top screen on page 1 in Cream Cipher?
             [Question.CreamCipherScreen] = new()
             {
+                Gender = Gender.Feminine,
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                ModuleName = "Krem-Geheimschrift",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "oberen",
@@ -2342,7 +2359,9 @@ namespace Souvenir
             // What was on the top screen on page 1 in Crimson Cipher?
             [Question.CrimsonCipherScreen] = new()
             {
+                Gender = Gender.Feminine,
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                ModuleName = "Karmin-Geheimschrift",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "oberen",
@@ -2374,8 +2393,9 @@ namespace Souvenir
             // What was the displayed word in Cruel Binary?
             [Question.CruelBinaryDisplayedWord] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the displayed word in {0}?",
+                ModuleNameDative = "Höllischen Binärsystem",
+                QuestionText = "Was war bei {0} das Wort auf dem Display?",
+                ModuleName = "Höllisches Binärsystem",
             },
 
             // Cruel Keypads
@@ -2383,15 +2403,19 @@ namespace Souvenir
             // Which of these characters appeared in the first stage of Cruel Keypads?
             [Question.CruelKeypadsDisplayedSymbols] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which of these characters appeared in the {1} stage of {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Höllischen Tastenfelder",
+                QuestionText = "Welches dieser Zeichen war bei {0} in der ersten Stufe zu sehen?",
+                ModuleName = "Höllische Tastenfelder",
             },
             // What was the color of the bar in the {1} stage of {0}?
             // What was the color of the bar in the first stage of Cruel Keypads?
             [Question.CruelKeypadsColors] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the color of the bar in the {1} stage of {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Höllischen Tastenfelder",
+                QuestionText = "Was war bei {0} die Farbe des Balkens in der {1}en Stufe?",
+                ModuleName = "Höllische Tastenfelder",
                 Answers = new Dictionary<string, string>
                 {
                     ["Red"] = "Rot",
@@ -2408,29 +2432,37 @@ namespace Souvenir
             // Which cell was pre-filled at the start of The cRule?
             [Question.CRulePrefilled] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which cell was pre-filled at the start of {0}?",
+                Gender = Gender.Feminine,
+                ModuleNameWithThe = "Die CRegel",
+                QuestionText = "Welche Zelle war bei {0} am Anfang vorgegeben?",
+                ModuleName = "CRegel",
             },
             // Which symbol pair was here in {0}?
             // Which symbol pair was here in The cRule?
             [Question.CRuleSymbolPair] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which symbol pair was here in {0}?",
+                Gender = Gender.Feminine,
+                ModuleNameWithThe = "Die CRegel",
+                QuestionText = "Welches Symbolpaar war bei {0} an dieser Stelle?",
+                ModuleName = "CRegel",
             },
             // Which symbol pair was present on {0}?
             // Which symbol pair was present on The cRule?
             [Question.CRuleSymbolPairPresent] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which symbol pair was present on {0}?",
+                Gender = Gender.Feminine,
+                ModuleNameWithThe = "Die CRegel",
+                QuestionText = "Welches Symbolpaar kam bei {0} vor?",
+                ModuleName = "CRegel",
             },
             // Where was {1} in {0}?
             // Where was ♤♤ in The cRule?
             [Question.CRuleSymbolPairCell] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Where was {1} in {0}?",
+                Gender = Gender.Feminine,
+                ModuleNameWithThe = "Die CRegel",
+                QuestionText = "Wo war {1} bei {0}?",
+                ModuleName = "CRegel",
             },
 
             // Cryptic Cycle
@@ -2438,7 +2470,7 @@ namespace Souvenir
             // What was the message in Cryptic Cycle?
             [Question.CrypticCycleWord] = new()
             {
-                QuestionText = "Was war die {1} in {0}?",
+                QuestionText = "Was war bei {0} die {1}?",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["message"] = "Nachricht",
@@ -2451,35 +2483,37 @@ namespace Souvenir
             // What was the label of the top-left key in Cryptic Keypad?
             [Question.CrypticKeypadLabels] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the label of the {1} key in {0}?",
+                ModuleNameDative = "Kryptischen Tastenfeld",
+                QuestionText = "Was war bei {0} die Aufschrift auf der {1} Tasten?",
+                ModuleName = "Kryptisches Tastenfeld",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top-left"] = "top-left",
-                    ["top-right"] = "top-right",
-                    ["bottom-left"] = "bottom-left",
-                    ["bottom-right"] = "bottom-right",
+                    ["top-left"] = "oben-linken",
+                    ["top-right"] = "oben-rechten",
+                    ["bottom-left"] = "unten-linken",
+                    ["bottom-right"] = "unten-rechten",
                 },
             },
             // Which cardinal direction was the {1} key rotated to in {0}?
             // Which cardinal direction was the top-left key rotated to in Cryptic Keypad?
             [Question.CrypticKeypadRotations] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which cardinal direction was the {1} key rotated to in {0}?",
+                ModuleNameDative = "Kryptischen Tastenfeld",
+                QuestionText = "In welche Himmelsrichtung wurde bei {0} die {1} Taste gedreht?",
+                ModuleName = "Kryptisches Tastenfeld",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top-left"] = "top-left",
-                    ["top-right"] = "top-right",
-                    ["bottom-left"] = "bottom-left",
-                    ["bottom-right"] = "bottom-right",
+                    ["top-left"] = "obere linke",
+                    ["top-right"] = "obere rechte",
+                    ["bottom-left"] = "untere linke",
+                    ["bottom-right"] = "untere rechte",
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["North"] = "North",
-                    ["East"] = "East",
-                    ["South"] = "South",
-                    ["West"] = "West",
+                    ["North"] = "Norden",
+                    ["East"] = "Osten",
+                    ["South"] = "Süden",
+                    ["West"] = "Westen",
                 },
             },
 
@@ -2488,16 +2522,18 @@ namespace Souvenir
             // What was the first cube rotation in The Cube?
             [Question.CubeRotations] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the {1} cube rotation in {0}?",
+                Gender = Gender.Masculine,
+                ModuleNameWithThe = "Der Würfel",
+                QuestionText = "Was war bei {0} die {1}e Rotation?",
+                ModuleName = "Würfel",
                 Answers = new Dictionary<string, string>
                 {
-                    ["rotate cw"] = "rotate cw",
-                    ["tip left"] = "tip left",
-                    ["tip backwards"] = "tip backwards",
-                    ["rotate ccw"] = "rotate ccw",
-                    ["tip right"] = "tip right",
-                    ["tip forwards"] = "tip forwards",
+                    ["rotate cw"] = "im Uhrzeigersinn",
+                    ["tip left"] = "nach links gekippt",
+                    ["tip backwards"] = "nach hinten gekippt",
+                    ["rotate ccw"] = "gegen den Uhrzeigersinn",
+                    ["tip right"] = "nach rechts gekippt",
+                    ["tip forwards"] = "nach vorne gekippt",
                 },
             },
 
@@ -2506,8 +2542,10 @@ namespace Souvenir
             // What was the first digit of the initially displayed number in Cursed Double-Oh?
             [Question.CursedDoubleOhInitialPosition] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the first digit of the initially displayed number in {0}?",
+                Gender = Gender.Feminine,
+                ModuleNameDative = "Verflüchten Doppel-Null",
+                QuestionText = "Was war bei {0} am Anfang die erste Ziffer auf dem Display?",
+                ModuleName = "Verfluchte Doppel-Null",
             },
 
             // Customer Identification
@@ -2515,8 +2553,9 @@ namespace Souvenir
             // Who was the first customer in Customer Identification?
             [Question.CustomerIdentificationCustomer] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Who was the {1} customer in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Wer war bei {0} der {1}e Kunde?",
+                ModuleName = "Kundenidentifikation",
             },
 
             // The Cyan Button
@@ -2524,16 +2563,19 @@ namespace Souvenir
             // Where was the button at the first stage in The Cyan Button?
             [Question.CyanButtonPositions] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Where was the button at the {1} stage in {0}?",
+                Gender = Gender.Masculine,
+                ModuleNameDative = "Türkisen Knopf",
+                ModuleNameWithThe = "Der Türkise Knopf",
+                QuestionText = "Wo war bei {0} der Knopf in der {1}en Stufe?",
+                ModuleName = "Türkiser Knopf",
                 Answers = new Dictionary<string, string>
                 {
-                    ["top left"] = "top left",
-                    ["top middle"] = "top middle",
-                    ["top right"] = "top right",
-                    ["bottom left"] = "bottom left",
-                    ["bottom middle"] = "bottom middle",
-                    ["bottom right"] = "bottom right",
+                    ["top left"] = "oben links",
+                    ["top middle"] = "oben Mitte",
+                    ["top right"] = "oben rechts",
+                    ["bottom left"] = "unten links",
+                    ["bottom middle"] = "unten Mitte",
+                    ["bottom right"] = "unten rechts",
                 },
             },
 
@@ -2542,62 +2584,63 @@ namespace Souvenir
             // Which region did you depart from in DACH Maze?
             [Question.DACHMazeOrigin] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which region did you depart from in {0}?",
+                Gender = Gender.Masculine,
+                QuestionText = "Wo ging’s bei {0} los?",
+                ModuleName = "DACH-Irrgarten",
                 Answers = new Dictionary<string, string>
                 {
                     ["Burgenland, A"] = "Burgenland, A",
-                    ["Carinthia, A"] = "Carinthia, A",
-                    ["Lower Austria, A"] = "Lower Austria, A",
-                    ["North Tyrol, A"] = "North Tyrol, A",
-                    ["Upper Austria, A"] = "Upper Austria, A",
-                    ["East Tyrol, A"] = "East Tyrol, A",
+                    ["Carinthia, A"] = "Kärnten, A",
+                    ["Lower Austria, A"] = "Niederösterreich, A",
+                    ["North Tyrol, A"] = "Nordtirol, A",
+                    ["Upper Austria, A"] = "Oberösterreich, A",
+                    ["East Tyrol, A"] = "Osttirol, A",
                     ["Salzburg, A"] = "Salzburg, A",
-                    ["Styria, A"] = "Styria, A",
+                    ["Styria, A"] = "Steiermark, A",
                     ["Vorarlberg, A"] = "Vorarlberg, A",
-                    ["Vienna, A"] = "Vienna, A",
+                    ["Vienna, A"] = "Wien, A",
                     ["Aargau, CH"] = "Aargau, CH",
-                    ["Appenzell Inner Rhodes, CH"] = "Appenzell Inner Rhodes, CH",
-                    ["Appenzell Outer Rhodes, CH"] = "Appenzell Outer Rhodes, CH",
-                    ["Basel Country, CH"] = "Basel Country, CH",
+                    ["Appenzell Inner Rhodes, CH"] = "Appenzell Innerrhoden, CH",
+                    ["Appenzell Outer Rhodes, CH"] = "Appenzell Ausserrhoden, CH",
+                    ["Basel Country, CH"] = "Baselland, CH",
                     ["Bern, CH"] = "Bern, CH",
-                    ["Basel City, CH"] = "Basel City, CH",
-                    ["Fribourg, CH"] = "Fribourg, CH",
-                    ["Geneva, CH"] = "Geneva, CH",
+                    ["Basel City, CH"] = "Baselstadt, CH",
+                    ["Fribourg, CH"] = "Freiburg, CH",
+                    ["Geneva, CH"] = "Genf, CH",
                     ["Glarus, CH"] = "Glarus, CH",
-                    ["Grisons, CH"] = "Grisons, CH",
+                    ["Grisons, CH"] = "Graubünden, CH",
                     ["Jura, CH"] = "Jura, CH",
                     ["Luzern, CH"] = "Luzern, CH",
                     ["Nidwalden, CH"] = "Nidwalden, CH",
-                    ["Neuchâtel, CH"] = "Neuchâtel, CH",
+                    ["Neuchâtel, CH"] = "Neuenburg, CH",
                     ["Obwalden, CH"] = "Obwalden, CH",
                     ["Schaffhausen, CH"] = "Schaffhausen, CH",
                     ["St. Gallen, CH"] = "St. Gallen, CH",
                     ["Solothurn, CH"] = "Solothurn, CH",
                     ["Schwyz, CH"] = "Schwyz, CH",
                     ["Thurgau, CH"] = "Thurgau, CH",
-                    ["Ticino, CH"] = "Ticino, CH",
+                    ["Ticino, CH"] = "Tessin, CH",
                     ["Uri, CH"] = "Uri, CH",
                     ["Vaud, CH"] = "Vaud, CH",
-                    ["Valais, CH"] = "Valais, CH",
+                    ["Valais, CH"] = "Wallis, CH",
                     ["Zug, CH"] = "Zug, CH",
                     ["Zürich, CH"] = "Zürich, CH",
                     ["Brandenburg, D"] = "Brandenburg, D",
                     ["Berlin, D"] = "Berlin, D",
                     ["Baden-Württemberg, D"] = "Baden-Württemberg, D",
-                    ["Bavaria, D"] = "Bavaria, D",
+                    ["Bavaria, D"] = "Bayern, D",
                     ["Bremen, D"] = "Bremen, D",
-                    ["Hesse, D"] = "Hesse, D",
+                    ["Hesse, D"] = "Hessen, D",
                     ["Hamburg, D"] = "Hamburg, D",
                     ["Mecklenburg-Vorpommern, D"] = "Mecklenburg-Vorpommern, D",
-                    ["Lower Saxony, D"] = "Lower Saxony, D",
-                    ["North Rhine-Westphalia, D"] = "North Rhine-Westphalia, D",
-                    ["Rhineland-Palatinate, D"] = "Rhineland-Palatinate, D",
+                    ["Lower Saxony, D"] = "Niedersachsen, D",
+                    ["North Rhine-Westphalia, D"] = "Nordrhein-Westfalen, D",
+                    ["Rhineland-Palatinate, D"] = "Rheinland-Pfalz, D",
                     ["Schleswig-Holstein, D"] = "Schleswig-Holstein, D",
                     ["Saarland, D"] = "Saarland, D",
-                    ["Saxony, D"] = "Saxony, D",
-                    ["Saxony-Anhalt, D"] = "Saxony-Anhalt, D",
-                    ["Thuringia, D"] = "Thuringia, D",
+                    ["Saxony, D"] = "Sachsen, D",
+                    ["Saxony-Anhalt, D"] = "Sachsen-Anhalt, D",
+                    ["Thuringia, D"] = "Thüringen, D",
                     ["Liechtenstein"] = "Liechtenstein",
                 },
             },
@@ -2607,8 +2650,10 @@ namespace Souvenir
             // What was the shape generated in Deaf Alley?
             [Question.DeafAlleyShape] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the shape generated in {0}?",
+                Gender = Gender.Feminine,
+                ModuleNameDative = "Tauben Gasse",
+                QuestionText = "Was war bei {0} die generierte Form?",
+                ModuleName = "Taube Gasse",
             },
 
             // The Deck of Many Things
@@ -2616,8 +2661,10 @@ namespace Souvenir
             // What deck did the first card of The Deck of Many Things belong to?
             [Question.DeckOfManyThingsFirstCard] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What deck did the first card of {0} belong to?",
+                Gender = Gender.Masculine,
+                ModuleNameWithThe = "Der Stapel Vieler Dinge",
+                QuestionText = "Zu welchem Deck gehörte bei {0} die erste Karte?",
+                ModuleName = "Stapel Vieler Dinge",
             },
 
             // Decolored Squares
@@ -2625,12 +2672,11 @@ namespace Souvenir
             // What was the starting column defining color in Decolored Squares?
             [Question.DecoloredSquaresStartingPos] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the starting {1} defining color in {0}?",
+                QuestionText = "Welche Farbe hat bei {0} die {1} bestimmt?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["column"] = "column",
-                    ["row"] = "row",
+                    ["column"] = "Spalte",
+                    ["row"] = "Reihe",
                 },
                 Answers = new Dictionary<string, string>
                 {
@@ -2648,12 +2694,11 @@ namespace Souvenir
             // What was the colour of the first goal in Decolour Flash?
             [Question.DecolourFlashGoal] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the {1} of the {2} goal in {0}?",
+                QuestionText = "Was war bei {0} {1} vom {2}en Ziel?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["colour"] = "colour",
-                    ["word"] = "word",
+                    ["colour"] = "die Farbe",
+                    ["word"] = "das Wort",
                 },
                 Answers = new Dictionary<string, string>
                 {
@@ -3659,7 +3704,9 @@ namespace Souvenir
             // What was on the top screen on page 1 in Forest Cipher?
             [Question.ForestCipherScreen] = new()
             {
+                Gender = Gender.Feminine,
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                ModuleName = "Wald-Geheimschrift",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "ober",
@@ -4075,7 +4122,10 @@ namespace Souvenir
             // What was on the top screen on page 1 in Gray Cipher?
             [Question.GrayCipherScreen] = new()
             {
+                Gender = Gender.Feminine,
+                ModuleNameDative = "Grauen Geheimschrift",
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                ModuleName = "Graue Geheimschrift",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "ober",
@@ -4133,7 +4183,10 @@ namespace Souvenir
             // What was on the top screen on page 1 in Green Cipher?
             [Question.GreenCipherScreen] = new()
             {
+                Gender = Gender.Feminine,
+                ModuleNameDative = "Grünen Geheimschrift",
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                ModuleName = "Grüne Geheimschrift",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "ober",
@@ -4610,7 +4663,9 @@ namespace Souvenir
             // What was on the top screen on page 1 in Indigo Cipher?
             [Question.IndigoCipherScreen] = new()
             {
+                Gender = Gender.Feminine,
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                ModuleName = "Indigo-Geheimschrift",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "ober",
@@ -5296,7 +5351,9 @@ namespace Souvenir
             // What was on the top screen on page 1 in Magenta Cipher?
             [Question.MagentaCipherScreen] = new()
             {
+                Gender = Gender.Feminine,
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                ModuleName = "Magenta-Geheimschrift",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "ober",
@@ -5463,7 +5520,9 @@ namespace Souvenir
             // What was on the top screen on page 1 in Maroon Cipher?
             [Question.MaroonCipherScreen] = new()
             {
+                Gender = Gender.Feminine,
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                ModuleName = "Kastanien-Geheimschrift",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "ober",
@@ -7198,7 +7257,10 @@ namespace Souvenir
             // What was on the top screen on page 1 in Orange Cipher?
             [Question.OrangeCipherScreen] = new()
             {
+                Gender = Gender.Feminine,
+                ModuleNameDative = "Orangenen Geheimschrift",
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                ModuleName = "Orangene Geheimschrift",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "ober",
@@ -7640,7 +7702,7 @@ namespace Souvenir
             {
                 Gender = Gender.Feminine,
                 QuestionText = "Was war bei {0} das Schlüsselwort?",
-                ModuleName = "Pixelchiffre",
+                ModuleName = "Pixelgeheimschrift",
             },
 
             // Placeholder Talk
@@ -8071,7 +8133,10 @@ namespace Souvenir
             // What was on the top screen on page 1 in Red Cipher?
             [Question.RedCipherScreen] = new()
             {
+                Gender = Gender.Feminine,
+                ModuleNameDative = "Roten Geheimschrift",
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                ModuleName = "Rote Geheimschrift",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "ober",
@@ -10403,7 +10468,10 @@ namespace Souvenir
             // What was on the top screen on page 1 in Ultimate Cipher?
             [Question.UltimateCipherScreen] = new()
             {
+                Gender = Gender.Feminine,
+                ModuleNameDative = "Ultimativen Geheimschrift",
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                ModuleName = "Ultimative Geheimschrift",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "ober",
@@ -10873,7 +10941,10 @@ namespace Souvenir
             // What was on the top screen on page 1 in Violet Cipher?
             [Question.VioletCipherScreen] = new()
             {
+                Gender = Gender.Feminine,
+                ModuleNameDative = "Violetten Geheimschrift",
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                ModuleName = "Violette Geheimschrift",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "ober",
@@ -11011,7 +11082,10 @@ namespace Souvenir
             // What was on the top screen on page 1 in White Cipher?
             [Question.WhiteCipherScreen] = new()
             {
+                Gender = Gender.Feminine,
+                ModuleNameDative = "Weißen Geheimschrift",
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                ModuleName = "Weiße Geheimschrift",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "ober",
@@ -11263,7 +11337,10 @@ namespace Souvenir
             // What was on the top screen on page 1 in Yellow Cipher?
             [Question.YellowCipherScreen] = new()
             {
+                Gender = Gender.Feminine,
+                ModuleNameDative = "Gelben Geheimschrift",
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
+                ModuleName = "Gelbe Geheimschrift",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "ober",
