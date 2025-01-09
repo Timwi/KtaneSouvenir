@@ -39,6 +39,9 @@ namespace Souvenir
             InstrumentalMascNeuter,
             InstrumentalFeminine,
             InstrumentalPlural,
+            DativeMascNeuter,
+            DativeFeminine,
+            DativePlural,
         }
 
         public override string FormatModuleName(Question question, bool addSolveCount, int numSolved)
@@ -62,6 +65,9 @@ namespace Souvenir
                     Conjugation.InstrumentalMascNeuter => $"{Ordinal(numSolved)}-м решённым {tr.ModuleName}",
                     Conjugation.InstrumentalFeminine => $"{Ordinal(numSolved)}-й решённой {tr.ModuleName}",
                     Conjugation.InstrumentalPlural => $"{Ordinal(numSolved)}-ми решёнными {tr.ModuleName}",
+                    Conjugation.DativeMascNeuter => $"{Ordinal(numSolved)}-му решённому {tr.ModuleName}",
+                    Conjugation.DativeFeminine => $"{Ordinal(numSolved)}-й решённой {tr.ModuleName}",
+                    Conjugation.DativePlural => $"{Ordinal(numSolved)}-м решённым {tr.ModuleName}",
                     Conjugation.в_PrepositiveMascNeuter or Conjugation.во_PrepositiveMascNeuter => $"{(numSolved == 2 ? "во" : "в")} {Ordinal(numSolved)}-м решённом {tr.ModuleName}",
                     Conjugation.в_PrepositiveFeminine or Conjugation.во_PrepositiveFeminine => $"{(numSolved == 2 ? "во" : "в")} {Ordinal(numSolved)}-й решённой {tr.ModuleName}",
                     Conjugation.в_PrepositivePlural or Conjugation.во_PrepositivePlural => $"{(numSolved == 2 ? "во" : "в")} {Ordinal(numSolved)}-х решённых {tr.ModuleName}",
@@ -767,21 +773,24 @@ namespace Souvenir
             // What was the category of Bar Charts?
             [Question.BarChartsCategory] = new()
             {
-                Conjugation = Conjugation.GenitiveMascNeuter,
+                Conjugation = Conjugation.GenitivePlural,
                 QuestionText = "Какая была категория у {0}?",
+                ModuleName = "Столбчатых диаграмм",
             },
             // What was the color of the {1} bar in {0}?
             // What was the color of the first bar in Bar Charts?
             [Question.BarChartsColor] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "Какой был цвет у {1}-го столбца {0}?",
+                Conjugation = Conjugation.GenitivePlural,
+                QuestionText = "Какого цвета был {1}-й столбец {0}?",
+                ModuleName = "Столбчатых диаграмм",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
+                    ["Red"] = "Красного",
+                    ["Yellow"] = "Жёлтого",
+                    ["Green"] = "Зелёного",
+                    ["Blue"] = "Синего",
                 },
             },
             // What was the position of the {1} bar in {0}?
@@ -789,26 +798,32 @@ namespace Souvenir
             [Question.BarChartsHeight] = new()
             {
                 NeedsTranslation = true,
+                Conjugation = Conjugation.GenitivePlural,
                 QuestionText = "Где находился {1} столбец {0}?",
+                ModuleName = "Столбчатых диаграмм",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["shortest"] = "shortest",
-                    ["second shortest"] = "second shortest",
-                    ["second tallest"] = "second tallest",
-                    ["tallest"] = "tallest",
+                    ["shortest"] = "самый короткий",
+                    ["second shortest"] = "третий по высоте",
+                    ["second tallest"] = "второй по высоте",
+                    ["tallest"] = "самый высокий",
                 },
             },
             // What was the label of the {1} bar in {0}?
             // What was the label of the first bar in Bar Charts?
             [Question.BarChartsLabel] = new()
             {
+                Conjugation = Conjugation.GenitivePlural,
                 QuestionText = "Какая надпись была у {1}-го столбца {0}?",
+                ModuleName = "Столбчатых диаграмм",
             },
             // What was the unit of {0}?
             // What was the unit of Bar Charts?
             [Question.BarChartsUnit] = new()
             {
-                QuestionText = "Какая была единица измерения {0}?",
+                Conjugation = Conjugation.GenitivePlural,
+                QuestionText = "Какая была единица измерения у {0}?",
+                ModuleName = "Столбчатых диаграмм",
             },
 
             // Barcode Cipher
@@ -898,13 +913,13 @@ namespace Souvenir
             [Question.BeanSproutsBeans] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "Какой боб был на ростке {1} {0}?",
+                QuestionText = "Какой боб был на {1}-м ростке {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Left"] = "Left",
-                    ["Right"] = "Right",
-                    ["None"] = "None",
-                    ["Both"] = "Both",
+                    ["Left"] = "Левый",
+                    ["Right"] = "Правый",
+                    ["None"] = "Никакой",
+                    ["Both"] = "Оба",
                 },
             },
 
@@ -931,7 +946,8 @@ namespace Souvenir
             // What color was first in the solution to Big Circle?
             [Question.BigCircleColors] = new()
             {
-                QuestionText = "Какой правильный цвет был {1}-м {0}?",
+                Conjugation = Conjugation.PrepositiveMascNeuter,
+                QuestionText = "Какой правильный цвет был {1}-м на {0}?",
                 ModuleName = "Большом круге",
                 Answers = new Dictionary<string, string>
                 {
@@ -1307,15 +1323,16 @@ namespace Souvenir
             [Question.BorderedKeysBorderColor] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the border color when you pressed the {1} key in {0}?",
+                Conjugation = Conjugation.GenitivePlural,
+                QuestionText = "Какого цвета была рамка, когда вы нажали {1}-ю клавишу {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Cyan"] = "Cyan",
-                    ["Magenta"] = "Magenta",
-                    ["Yellow"] = "Yellow",
+                    ["Red"] = "Красного",
+                    ["Green"] = "Зелёного",
+                    ["Blue"] = "Синего",
+                    ["Cyan"] = "Голубого",
+                    ["Magenta"] = "Розового",
+                    ["Yellow"] = "Жёлтого",
                 },
             },
             // What was the digit displayed when you pressed the {1} key in {0}?
@@ -1323,22 +1340,24 @@ namespace Souvenir
             [Question.BorderedKeysDigit] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the digit displayed when you pressed the {1} key in {0}?",
+                Conjugation = Conjugation.GenitivePlural,
+                QuestionText = "Какая цифра отображалась на дисплее, когда вы нажали {1}-ю клавишу {0}?",
             },
             // What was the key color when you pressed the {1} key in {0}?
             // What was the key color when you pressed the first key in Bordered Keys?
             [Question.BorderedKeysKeyColor] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the key color when you pressed the {1} key in {0}?",
+                Conjugation = Conjugation.GenitivePlural,
+                QuestionText = "Какого цвета была клавиша, когда вы нажали {1}-ю клавишу {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Cyan"] = "Cyan",
-                    ["Magenta"] = "Magenta",
-                    ["Yellow"] = "Yellow",
+                    ["Red"] = "Красного",
+                    ["Green"] = "Зелёного",
+                    ["Blue"] = "Синего",
+                    ["Cyan"] = "Голубого",
+                    ["Magenta"] = "Розового",
+                    ["Yellow"] = "Жёлтого",
                 },
             },
             // What was the label when you pressed the {1} key in {0}?
@@ -1346,22 +1365,24 @@ namespace Souvenir
             [Question.BorderedKeysLabel] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the label when you pressed the {1} key in {0}?",
+                Conjugation = Conjugation.GenitivePlural,
+                QuestionText = "Какая была надпись, когда вы нажали {1}-ю клавишу {0}?",
             },
             // What was the label color when you pressed the {1} key in {0}?
             // What was the label color when you pressed the first key in Bordered Keys?
             [Question.BorderedKeysLabelColor] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the label color when you pressed the {1} key in {0}?",
+                Conjugation = Conjugation.GenitivePlural,
+                QuestionText = "Какого цвета была надпись, когда вы нажали {1}-ю клавишу {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Cyan"] = "Cyan",
-                    ["Magenta"] = "Magenta",
-                    ["Yellow"] = "Yellow",
+                    ["Red"] = "Красного",
+                    ["Green"] = "Зелёного",
+                    ["Blue"] = "Синего",
+                    ["Cyan"] = "Голубого",
+                    ["Magenta"] = "Розового",
+                    ["Yellow"] = "Жёлтого",
                 },
             },
 
@@ -1477,24 +1498,25 @@ namespace Souvenir
             [Question.BrushStrokesMiddleColor] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "Какой был цвет центральной точки {0}?",
+                Conjugation = Conjugation.GenitivePlural,
+                QuestionText = "Какого цвета была центральная точка {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Orange"] = "Orange",
-                    ["Yellow"] = "Yellow",
-                    ["Lime"] = "Lime",
-                    ["Green"] = "Green",
-                    ["Cyan"] = "Cyan",
-                    ["Sky"] = "Sky",
-                    ["Blue"] = "Blue",
-                    ["Purple"] = "Purple",
-                    ["Magenta"] = "Magenta",
-                    ["Brown"] = "Brown",
-                    ["White"] = "White",
-                    ["Gray"] = "Gray",
-                    ["Black"] = "Black",
-                    ["Pink"] = "Pink",
+                    ["Red"] = "Красного",
+                    ["Orange"] = "Оранжевого",
+                    ["Yellow"] = "Жёлтого",
+                    ["Lime"] = "Лаймового",
+                    ["Green"] = "Зелёного",
+                    ["Cyan"] = "Голубого",
+                    ["Sky"] = "Небесного",
+                    ["Blue"] = "Синего",
+                    ["Purple"] = "Фиолетового",
+                    ["Magenta"] = "Мадженты",
+                    ["Brown"] = "Коричневого",
+                    ["White"] = "Белого",
+                    ["Gray"] = "Серого",
+                    ["Black"] = "Чёрного",
+                    ["Pink"] = "Розового",
                 },
             },
 
@@ -1870,20 +1892,23 @@ namespace Souvenir
             [Question.ColorBrailleChannel] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "Which channel was mangled in {0}?",
+                QuestionText = "Какой канал был повреждён {0}?",
+                ModuleName = "Цветном шрифте Брайля",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Yellow"] = "Yellow",
+                    ["Red"] = "Красный",
+                    ["Green"] = "Зелёный",
+                    ["Blue"] = "Синий",
+                    ["Yellow"] = "Жёлтый",
                 },
             },
             // What mangling was applied in {0}?
             // What mangling was applied in Color Braille?
             [Question.ColorBrailleMangling] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "Какая модификация была применена {0}?",
+                ModuleName = "Цветном шрифте Брайля",
                 Answers = new Dictionary<string, string>
                 {
                     ["Top row shifted to the right"] = "Верхний ряд смещён вправо",
@@ -1904,7 +1929,9 @@ namespace Souvenir
             // What was the first-stage indicator pattern in Color Decoding?
             [Question.ColorDecodingIndicatorPattern] = new()
             {
+                Conjugation = Conjugation.GenitiveFeminine,
                 QuestionText = "Какой был узор индикатора на {1}-м этапе {0}?",
+                ModuleName = "Расшифровки цветов",
                 Answers = new Dictionary<string, string>
                 {
                     ["Checkered"] = "Шахматный",
@@ -1917,7 +1944,9 @@ namespace Souvenir
             // Which color appeared in the first-stage indicator pattern in Color Decoding?
             [Question.ColorDecodingIndicatorColors] = new()
             {
+                Conjugation = Conjugation.GenitiveFeminine,
                 QuestionText = "Какой цвет {1} на узоре индикатора на {2}-м этапе {0}?",
+                ModuleName = "Расшифровки цветов",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["appeared"] = "присутствовал",
@@ -1939,42 +1968,44 @@ namespace Souvenir
             [Question.ColoredKeysDisplayWord] = new()
             {
                 NeedsTranslation = true,
-                Conjugation = Conjugation.в_PrepositivePlural,
-                QuestionText = "Какое было показанное слово {0}?",
+                Conjugation = Conjugation.PrepositivePlural,
+                QuestionText = "Какое слово было отображено на дисплее на {0}?",
                 ModuleName = "Цветных кнопках",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["blue"] = "blue",
-                    ["green"] = "green",
-                    ["yellow"] = "yellow",
-                    ["purple"] = "purple",
-                    ["white"] = "white",
+                    ["red"] = "Red",
+                    ["blue"] = "Blue",
+                    ["green"] = "Green",
+                    ["yellow"] = "Yellow",
+                    ["purple"] = "Purple",
+                    ["white"] = "White",
                 },
             },
             // What was the displayed word’s color in {0}?
             // What was the displayed word’s color in Colored Keys?
             [Question.ColoredKeysDisplayWordColor] = new()
             {
-                Conjugation = Conjugation.в_PrepositivePlural,
-                QuestionText = "Какого цвета было показанное слово {0}?",
+                NeedsTranslation = true,
+                Conjugation = Conjugation.PrepositivePlural,
+                QuestionText = "Какого цвета было отображённое слово на {0}?",
                 ModuleName = "Цветных кнопках",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "красный",
-                    ["blue"] = "синий",
-                    ["green"] = "зелёный",
-                    ["yellow"] = "жёлтый",
-                    ["purple"] = "фиолетовый",
-                    ["white"] = "белый",
+                    ["red"] = "Красного",
+                    ["blue"] = "Синего",
+                    ["green"] = "Зелёного",
+                    ["yellow"] = "Жёлтого",
+                    ["purple"] = "Фиолетового",
+                    ["white"] = "Белого",
                 },
             },
             // What was the color of the {1} key in {0}?
             // What was the color of the top-left key in Colored Keys?
             [Question.ColoredKeysKeyColor] = new()
             {
-                Conjugation = Conjugation.в_PrepositivePlural,
-                QuestionText = "Какого цвета была {1} кнопка {0}?",
+                NeedsTranslation = true,
+                Conjugation = Conjugation.PrepositivePlural,
+                QuestionText = "Какого цвета была {1} кнопка на {0}?",
                 ModuleName = "Цветных кнопках",
                 FormatArgs = new Dictionary<string, string>
                 {
@@ -1985,27 +2016,28 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "красный",
-                    ["blue"] = "синий",
-                    ["green"] = "зелёный",
-                    ["yellow"] = "жёлтый",
-                    ["purple"] = "фиолетовый",
-                    ["white"] = "белый",
+                    ["red"] = "Красного",
+                    ["blue"] = "Синего",
+                    ["green"] = "Зелёного",
+                    ["yellow"] = "Жёлтого",
+                    ["purple"] = "Фиолетового",
+                    ["white"] = "Белого",
                 },
             },
             // What letter was on the {1} key in {0}?
             // What letter was on the top-left key in Colored Keys?
             [Question.ColoredKeysKeyLetter] = new()
             {
-                Conjugation = Conjugation.в_PrepositivePlural,
-                QuestionText = "Какая буква была на {1} кнопке {0}?",
+                NeedsTranslation = true,
+                Conjugation = Conjugation.PrepositivePlural,
+                QuestionText = "Какая буква была на {1} кнопке на {0}?",
                 ModuleName = "Цветных кнопках",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top-left"] = "верхняя левая",
-                    ["top-right"] = "верхняя правая",
-                    ["bottom-left"] = "нижняя левая",
-                    ["bottom-right"] = "нижняя правая",
+                    ["top-left"] = "верхней левой",
+                    ["top-right"] = "верхней правой",
+                    ["bottom-left"] = "нижней левой",
+                    ["bottom-right"] = "нижней правой",
                 },
             },
 
@@ -2160,19 +2192,20 @@ namespace Souvenir
             [Question.ConditionalButtonsColors] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the color of this button in {0}?",
+                Conjugation = Conjugation.PrepositivePlural,
+                QuestionText = "Какого цвета была эта кнопка на {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["black"] = "black",
-                    ["blue"] = "blue",
-                    ["dark green"] = "dark green",
-                    ["light green"] = "light green",
-                    ["orange"] = "orange",
-                    ["pink"] = "pink",
-                    ["purple"] = "purple",
-                    ["red"] = "red",
-                    ["white"] = "white",
-                    ["yellow"] = "yellow",
+                    ["black"] = "Чёрного",
+                    ["blue"] = "Синего",
+                    ["dark green"] = "Тёмно-зелёного",
+                    ["light green"] = "Светло-зелёного",
+                    ["orange"] = "Оранжевого",
+                    ["pink"] = "Розового",
+                    ["purple"] = "Фиолетового",
+                    ["red"] = "Красного",
+                    ["white"] = "Белого",
+                    ["yellow"] = "Жёлтого",
                 },
             },
 
@@ -2396,7 +2429,8 @@ namespace Souvenir
             [Question.CrittersColor] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "Какой цвет был альтернативным {0}?",
+                Conjugation = Conjugation.InstrumentalPlural,
+                QuestionText = "Какой цвет использовался {0}?",
                 Answers = new Dictionary<string, string>
                 {
                     ["Yellow"] = "Жёлтый",
@@ -2715,7 +2749,8 @@ namespace Souvenir
             [Question.DetoNATODisplay] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the {1} display in {0}?",
+                Conjugation = Conjugation.GenitiveMascNeuter,
+                QuestionText = "Что было на дисплее на {1}-м этапе {0}?",
             },
 
             // Devilish Eggs
@@ -2806,12 +2841,14 @@ namespace Souvenir
             [Question.DisorderedKeysMissingInfo] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the missing information for the {1} key in {0}?",
+                Conjugation = Conjugation.GenitivePlural,
+                QuestionText = "Какой информации недоставало {1}-й клавише {0}?",
+                ModuleName = "Беспорядочных клавиш",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Key color"] = "Key color",
-                    ["Label color"] = "Label color",
-                    ["Label"] = "Label",
+                    ["Key color"] = "Цвета клавиши",
+                    ["Label color"] = "Цвета надписи",
+                    ["Label"] = "Надписи",
                 },
             },
             // What was the revealed key color for the {1} key in {0}?
@@ -2819,15 +2856,17 @@ namespace Souvenir
             [Question.DisorderedKeysRevealedKeyColor] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the revealed key color for the {1} key in {0}?",
+                Conjugation = Conjugation.GenitivePlural,
+                QuestionText = "Каким был выявленный цвет {1}-й клавиши {0}?",
+                ModuleName = "Беспорядочных клавиш",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Cyan"] = "Cyan",
-                    ["Magenta"] = "Magenta",
-                    ["Yellow"] = "Yellow",
+                    ["Red"] = "Красный",
+                    ["Green"] = "Зелёный",
+                    ["Blue"] = "Синий",
+                    ["Cyan"] = "Голубой",
+                    ["Magenta"] = "Розовый",
+                    ["Yellow"] = "Жёлтый",
                 },
             },
             // What was the revealed label for the {1} key in {0}?
@@ -2835,22 +2874,26 @@ namespace Souvenir
             [Question.DisorderedKeysRevealedLabel] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the revealed label for the {1} key in {0}?",
+                Conjugation = Conjugation.GenitivePlural,
+                QuestionText = "Какая была выявленная надпись {1}-й клавиши {0}?",
+                ModuleName = "Беспорядочных клавиш",
             },
             // What was the revealed label color for the {1} key in {0}?
             // What was the revealed label color for the first key in Disordered Keys?
             [Question.DisorderedKeysRevealedLabelColor] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the revealed label color for the {1} key in {0}?",
+                Conjugation = Conjugation.GenitivePlural,
+                QuestionText = "Каким был выявленный цвет надписи {1}-й клавиши {0}?",
+                ModuleName = "Беспорядочных клавиш",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Cyan"] = "Cyan",
-                    ["Magenta"] = "Magenta",
-                    ["Yellow"] = "Yellow",
+                    ["Red"] = "Красный",
+                    ["Green"] = "Зелёный",
+                    ["Blue"] = "Синий",
+                    ["Cyan"] = "Голубой",
+                    ["Magenta"] = "Розовый",
+                    ["Yellow"] = "Жёлтый",
                 },
             },
             // What was the unrevealed key color for the {1} key in {0}?
@@ -2858,15 +2901,17 @@ namespace Souvenir
             [Question.DisorderedKeysUnrevealedKeyColor] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the unrevealed key color for the {1} key in {0}?",
+                Conjugation = Conjugation.GenitivePlural,
+                QuestionText = "Каким был нераскрытый цвет {1}-й клавиши {0}?",
+                ModuleName = "Беспорядочных клавиш",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Cyan"] = "Cyan",
-                    ["Magenta"] = "Magenta",
-                    ["Yellow"] = "Yellow",
+                    ["Red"] = "Красный",
+                    ["Green"] = "Зелёный",
+                    ["Blue"] = "Синий",
+                    ["Cyan"] = "Голубой",
+                    ["Magenta"] = "Розовый",
+                    ["Yellow"] = "Жёлтый",
                 },
             },
             // What was the unrevealed label for the {1} key in {0}?
@@ -2874,22 +2919,26 @@ namespace Souvenir
             [Question.DisorderedKeysUnrevealedKeyLabel] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the unrevealed label for the {1} key in {0}?",
+                Conjugation = Conjugation.GenitivePlural,
+                QuestionText = "Какая была нераскрытая надпись {1}-й клавиши {0}?",
+                ModuleName = "Беспорядочных клавиш",
             },
             // What was the unrevealed label color for the {1} key in {0}?
             // What was the unrevealed label color for the first key in Disordered Keys?
             [Question.DisorderedKeysUnrevealedLabelColor] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the unrevealed label color for the {1} key in {0}?",
+                Conjugation = Conjugation.GenitivePlural,
+                QuestionText = "Каким был нераскрытый цвет надписи {1}-й клавиши {0}?",
+                ModuleName = "Беспорядочных клавиш",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Cyan"] = "Cyan",
-                    ["Magenta"] = "Magenta",
-                    ["Yellow"] = "Yellow",
+                    ["Red"] = "Красный",
+                    ["Green"] = "Зелёный",
+                    ["Blue"] = "Синий",
+                    ["Cyan"] = "Голубой",
+                    ["Magenta"] = "Розовый",
+                    ["Yellow"] = "Жёлтый",
                 },
             },
 
@@ -3378,7 +3427,9 @@ namespace Souvenir
             [Question.ErrorCodesActiveError] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the active error code in {0}?",
+                Conjugation = Conjugation.GenitivePlural,
+                QuestionText = "Какой из {0} был активным?",
+                ModuleName = "Кодов ошибок",
             },
 
             // Etterna
@@ -3394,39 +3445,47 @@ namespace Souvenir
             // What was the starting target planet in Exoplanets?
             [Question.ExoplanetsStartingTargetPlanet] = new()
             {
-                QuestionText = "Какая была начальная целевая планета {0}?",
+                Conjugation = Conjugation.GenitivePlural,
+                QuestionText = "Какая была начальная целевая планета из {0}?",
+                ModuleName = "Экзопланет",
                 Answers = new Dictionary<string, string>
                 {
-                    ["outer"] = "внешняя",
-                    ["middle"] = "средняя",
-                    ["inner"] = "внутреняя",
-                    ["none"] = "никакая",
+                    ["outer"] = "Внешняя",
+                    ["middle"] = "Средняя",
+                    ["inner"] = "Внутреняя",
+                    ["none"] = "Никакая",
                 },
             },
             // What was the starting target digit in {0}?
             // What was the starting target digit in Exoplanets?
             [Question.ExoplanetsStartingTargetDigit] = new()
             {
+                Conjugation = Conjugation.в_PrepositivePlural,
                 QuestionText = "Какая была начальная целевая цифра {0}?",
+                ModuleName = "Экзопланетах",
             },
             // What was the final target planet in {0}?
             // What was the final target planet in Exoplanets?
             [Question.ExoplanetsTargetPlanet] = new()
             {
-                QuestionText = "Какая была финальная целевая планета {0}?",
+                Conjugation = Conjugation.GenitivePlural,
+                QuestionText = "Какая была финальная целевая планета из {0}?",
+                ModuleName = "Экзопланет",
                 Answers = new Dictionary<string, string>
                 {
-                    ["outer"] = "внешняя",
-                    ["middle"] = "средняя",
-                    ["inner"] = "внутреняя",
-                    ["none"] = "никакая",
+                    ["outer"] = "Внешняя",
+                    ["middle"] = "Средняя",
+                    ["inner"] = "Внутреняя",
+                    ["none"] = "Никакая",
                 },
             },
             // What was the final target digit in {0}?
             // What was the final target digit in Exoplanets?
             [Question.ExoplanetsTargetDigit] = new()
             {
+                Conjugation = Conjugation.в_PrepositivePlural,
                 QuestionText = "Какая была финальная целевая цифра {0}?",
+                ModuleName = "Экзопланетах",
             },
 
             // Factoring Maze
@@ -5466,12 +5525,12 @@ namespace Souvenir
             [Question.MaritimeSemaphoreLetter] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "Какая буква была показана {2} флагом в {1}-й позиции {0}?",
+                QuestionText = "Какая буква была показана {2} в {1}-й позиции {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["left flag"] = "left flag",
-                    ["right flag"] = "right flag",
-                    ["semaphore"] = "semaphore",
+                    ["left flag"] = "левым флагом",
+                    ["right flag"] = "правым флагом",
+                    ["semaphore"] = "семафором",
                 },
             },
 
@@ -5480,8 +5539,8 @@ namespace Souvenir
             // What was A in The Maroon Button?
             [Question.MaroonButtonA] = new()
             {
-                Conjugation = Conjugation.в_PrepositiveFeminine,
-                QuestionText = "Какой был флаг А {0}?",
+                Conjugation = Conjugation.PrepositiveFeminine,
+                QuestionText = "Какой был флаг А на {0}?",
                 ModuleName = "Бордовой кнопке",
             },
 
@@ -5906,7 +5965,9 @@ namespace Souvenir
             [Question.MixometerSubmitButton] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the position of the submit button in {0}?",
+                Conjugation = Conjugation.GenitiveMascNeuter,
+                QuestionText = "В какой позиции была кнопка отправки {0}?",
+                ModuleName = "Миксометра",
             },
 
             // Modern Cipher
@@ -6394,16 +6455,16 @@ namespace Souvenir
             // Which Greek letter appeared on The Navy Button (case-sensitive)?
             [Question.NavyButtonGreekLetters] = new()
             {
-                Conjugation = Conjugation.в_PrepositiveFeminine,
-                QuestionText = "Какая греческая буква появилась {0} (с учётом регистра)?",
+                Conjugation = Conjugation.PrepositiveFeminine,
+                QuestionText = "Какая греческая буква (с учётом регистра) появилась на {0}?",
                 ModuleName = "Тёмно-синей кнопке",
             },
             // What was the {1} of the given in {0} (0-indexed)?
             // What was the column of the given in The Navy Button (0-indexed)?
             [Question.NavyButtonGiven] = new()
             {
-                Conjugation = Conjugation.в_PrepositiveFeminine,
-                QuestionText = "{1} {0} (с индексом 0)?",
+                Conjugation = Conjugation.PrepositiveFeminine,
+                QuestionText = "{1} (с индексом 0) на {0}?",
                 ModuleName = "Тёмно-синей кнопке",
                 FormatArgs = new Dictionary<string, string>
                 {
@@ -6679,11 +6740,11 @@ namespace Souvenir
                 ModuleName = "НЕ-взгляде на колышках",
                 Answers = new Dictionary<string, string>
                 {
-                    ["top"] = "top",
-                    ["top-right"] = "top-right",
-                    ["bottom-right"] = "bottom-right",
-                    ["bottom-left"] = "bottom-left",
-                    ["top-left"] = "top-left",
+                    ["top"] = "Сверху",
+                    ["top-right"] = "Сверху справа",
+                    ["bottom-right"] = "Снизу справа",
+                    ["bottom-left"] = "Снизу слева",
+                    ["top-left"] = "Сверху слева",
                 },
             },
             // From what perspective did the {1} peg flash on {0}?
@@ -6695,11 +6756,11 @@ namespace Souvenir
                 ModuleName = "НЕ-взгляде на колышках",
                 Answers = new Dictionary<string, string>
                 {
-                    ["top"] = "top",
-                    ["top-right"] = "top-right",
-                    ["bottom-right"] = "bottom-right",
-                    ["bottom-left"] = "bottom-left",
-                    ["top-left"] = "top-left",
+                    ["top"] = "С верхнего",
+                    ["top-right"] = "С верх. правого",
+                    ["bottom-right"] = "С ниж. правого",
+                    ["bottom-left"] = "С ниж. левого",
+                    ["top-left"] = "С верх. левого",
                 },
             },
             // What was the color of the {1} flashing peg on {0}?
@@ -6707,15 +6768,15 @@ namespace Souvenir
             [Question.NotPerspectivePegsColor] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "Какой был цвет {1}-го мигающего колышка {0}?",
+                QuestionText = "Какого цвета был {1}-й мигающий колышек {0}?",
                 ModuleName = "НЕ-взгляде на колышках",
                 Answers = new Dictionary<string, string>
                 {
-                    ["blue"] = "blue",
-                    ["green"] = "green",
-                    ["purple"] = "purple",
-                    ["red"] = "red",
-                    ["yellow"] = "yellow",
+                    ["blue"] = "Синего",
+                    ["green"] = "Зелёного",
+                    ["purple"] = "Фиолетового",
+                    ["red"] = "Красного",
+                    ["yellow"] = "Жёлтого",
                 },
             },
 
@@ -7671,16 +7732,16 @@ namespace Souvenir
             // What was the first word in The Pink Button?
             [Question.PinkButtonWords] = new()
             {
-                Conjugation = Conjugation.в_PrepositiveFeminine,
+                Conjugation = Conjugation.GenitiveFeminine,
                 QuestionText = "Какое было {1}-е слово {0}?",
-                ModuleName = "Розовой кнопке",
+                ModuleName = "Розовой кнопки",
             },
             // What was the {1} color in {0}?
             // What was the first color in The Pink Button?
             [Question.PinkButtonColors] = new()
             {
-                Conjugation = Conjugation.в_PrepositiveFeminine,
-                QuestionText = "Какой был {1}-й цвет {0}?",
+                Conjugation = Conjugation.PrepositiveFeminine,
+                QuestionText = "Какой был {1}-й цвет на {0}?",
                 ModuleName = "Розовой кнопке",
                 Answers = new Dictionary<string, string>
                 {
@@ -7763,15 +7824,15 @@ namespace Souvenir
                 ModuleName = "Планетах",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Aqua"] = "Aqua",
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
-                    ["Lime"] = "Lime",
-                    ["Orange"] = "Orange",
-                    ["Red"] = "Red",
-                    ["Yellow"] = "Yellow",
-                    ["White"] = "White",
-                    ["Off"] = "Off",
+                    ["Aqua"] = "Голубой",
+                    ["Blue"] = "Синий",
+                    ["Green"] = "Зелёный",
+                    ["Lime"] = "Лаймовый",
+                    ["Orange"] = "Оранжевый",
+                    ["Red"] = "Красный",
+                    ["Yellow"] = "Жёлтый",
+                    ["White"] = "Белый",
+                    ["Off"] = "Чёрный",
                 },
             },
 
@@ -7809,7 +7870,7 @@ namespace Souvenir
                 {
                     ["White"] = "Белый",
                     ["Purple"] = "Фиолетовый",
-                    ["Red"] = "Краснывй",
+                    ["Red"] = "Красный",
                     ["Blue"] = "Синий",
                     ["Yellow"] = "Жёлтый",
                 },
@@ -7821,7 +7882,8 @@ namespace Souvenir
             [Question.PolygonsPolygon] = new()
             {
                 Conjugation = Conjugation.PrepositivePlural,
-                QuestionText = "Какие полигоны присутствовали на {0}?",
+                QuestionText = "Какой многоугольник присутствовал на {0}?",
+                ModuleName = "Многоугольниках",
             },
 
             // Polyhedral Maze
@@ -9585,15 +9647,17 @@ namespace Souvenir
             // How much did the sequence shift by in Small Circle?
             [Question.SmallCircleShift] = new()
             {
-                QuestionText = "Насколько сместилась последовательность {0}?",
+                Conjugation = Conjugation.PrepositiveMascNeuter,
+                QuestionText = "Насколько сместилась последовательность на {0}?",
                 ModuleName = "Маленьком круге",
             },
             // Which wedge made the different noise in the beginning of {0}?
             // Which wedge made the different noise in the beginning of Small Circle?
             [Question.SmallCircleWedge] = new()
             {
-                QuestionText = "Какой сегмент круга издал другой звук в начале {0}?",
-                ModuleName = "Маленьком круге",
+                Conjugation = Conjugation.GenitiveMascNeuter,
+                QuestionText = "Какой сегмент {0} издал другой звук в начале?",
+                ModuleName = "Маленького круга",
                 Answers = new Dictionary<string, string>
                 {
                     ["Red"] = "Красный",
@@ -9610,7 +9674,8 @@ namespace Souvenir
             // Which color was first in the solution to Small Circle?
             [Question.SmallCircleSolution] = new()
             {
-                QuestionText = "Какой цвет был {1}-м в решении {0}?",
+                Conjugation = Conjugation.PrepositiveMascNeuter,
+                QuestionText = "Какой цвет был {1}-м в решении на {0}?",
                 ModuleName = "Маленьком круге",
                 Answers = new Dictionary<string, string>
                 {
@@ -10424,7 +10489,7 @@ namespace Souvenir
             // Which of these was one of the passwords in Triple Term?
             [Question.TripleTermPasswords] = new()
             {
-                QuestionText = "Который из вариантом был одним из паролей {0}?",
+                QuestionText = "Что из этого было одним из паролей {0}?",
             },
 
             // Turtle Robot
@@ -10977,25 +11042,25 @@ namespace Souvenir
             [Question.WavetappingColors] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "Какой был цвет на {1}-м этапе {0}?",
+                QuestionText = "Какой цвет был на {1}-м этапе {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Orange"] = "Orange",
-                    ["Orange-Yellow"] = "Orange-Yellow",
-                    ["Chartreuse"] = "Chartreuse",
-                    ["Lime"] = "Lime",
-                    ["Green"] = "Green",
-                    ["Seafoam Green"] = "Seafoam Green",
-                    ["Cyan-Green"] = "Cyan-Green",
-                    ["Turquoise"] = "Turquoise",
-                    ["Dark Blue"] = "Dark Blue",
-                    ["Indigo"] = "Indigo",
-                    ["Purple"] = "Purple",
-                    ["Purple-Magenta"] = "Purple-Magenta",
-                    ["Magenta"] = "Magenta",
-                    ["Pink"] = "Pink",
-                    ["Gray"] = "Gray",
+                    ["Red"] = "Красный",
+                    ["Orange"] = "Оранжевый",
+                    ["Orange-Yellow"] = "Жёлто-оранжевый",
+                    ["Chartreuse"] = "Шартрез",
+                    ["Lime"] = "Лаймовый",
+                    ["Green"] = "Зелёный",
+                    ["Seafoam Green"] = "Морской волны",
+                    ["Cyan-Green"] = "Сине-зелёный",
+                    ["Turquoise"] = "Бирюзовый",
+                    ["Dark Blue"] = "Тёмно-синий",
+                    ["Indigo"] = "Индиго",
+                    ["Purple"] = "Фиолетовый",
+                    ["Purple-Magenta"] = "Пурпурно-розовый",
+                    ["Magenta"] = "Маджента",
+                    ["Pink"] = "Розовый",
+                    ["Gray"] = "Серый",
                 },
             },
             // What was the correct pattern on the {1} stage in {0}?
@@ -11397,17 +11462,17 @@ namespace Souvenir
             "Алло? Да, я сейчас обезвреживаю бомбу.",    // “E.T. phone home.” (E.T. the Extra-Terrestrial)
             "Бомб. Джеймс Бомб.",    // “Bond. James Bond.” (Dr. No / James Bond series)
             "Бомба тебе не по зубам!",   // “You can’t handle the truth!” (A Few Good Men)
-            "Тебе понадобится бомба побольше.", // “You’re gonna need a bigger boat.” (Jaws)
+            "Тебе понадо- бится бомба побольше.", // “You’re gonna need a bigger boat.” (Jaws)
             "Бомбы – это как коробка шоколадных конфет. Никогда не знаешь, что попадётся.",    // “My mom always said life was like a box of chocolates. You never know what you’re gonna get.” (Forrest Gump)
             "Хьюстон, у нас бомба.",   // “Houston, we have a problem.” (Apollo 13)
             "Элементарно, мой дорогой эксперт.",  // “Elementary, my dear Watson.” (Sherlock Holmes) (misquote)
             "Забудь об этом, Джейк, это КТАНЕ.",     // “Forget it, Jake, it’s Chinatown.” (Chinatown)
-            "Я всегда полагался на компетентность экспертов.",    // “I’ve always depended on the kindness of strangers.” (A Streetcar Named Desire)
+            "Я всегда полагался на компетент- ность экспертов.",    // “I’ve always depended on the kindness of strangers.” (A Streetcar Named Desire)
             "Бомба. Взорванная, а не обезвреженная.",   // “A martini. Shaken, not stirred.” (Diamonds Are Forever (novel) / James Bond)
             "Ябба- дабба- бум!",    // “Yabba dabba doo!” (Flintstones)
             "Эта бомба взорвётся через пять секунд.",    // “This tape will self-destruct in five seconds.” (Mission: Impossible)
             "Обезвре- живание бесполезно.",  // “Resistance is futile.” (Star Trek: The Next Generation)
-            "Это твой оконча- тельный ответ?",   // direct quote (Who Wants to be a Millionaire?)
+            "Это твой окончатель- ный ответ?",   // direct quote (Who Wants to be a Millionaire?)
             "Лучший друг бомбы – это её сапёр.", // “A man’s best friend is his dog.” (attorney George Graham Vest, 1870 Warrensburg)
             "Держи своих экспертов близко, но свою бомбу – ещё ближе.",   // “Keep your friends close and your enemies closer.” (The Prince / Machiavelli)
             "Пристегните ремни безопасности. Это будет взрывная ночь.",   // “Fasten your seat belts, it’s going to be a bumpy night.” (All About Eve)
@@ -11417,7 +11482,7 @@ namespace Souvenir
             "Вы что, перепутали провода?", // “Have you got your lions crossed?” (The Lion King)
             "Не перепутай провода.",   // “Don’t cross the streams.” (Ghostbusters)
             "Хотите услышать самый мощный и громкий взрыв в мире?", // “Wanna hear the most annoying sound in the world?” (Dumb & Dumber)
-            "Руководства? Там, куда мы идём, они нам не нужны.",   // “Roads? Where we’re going, we don’t need roads.” (Back to the Future)
+            "Руковод- ства? Там, куда мы идём, они нам не нужны.",   // “Roads? Where we’re going, we don’t need roads.” (Back to the Future)
             "Первое правило обезвреживания заключается в том, что вы продолжаете говорить об обезвреживании.",    // “The first rule of Fight Club is, you don’t talk about Fight Club.” (Fight Club)
             "Мы обезвреживаем бомбы.",  // “We rob banks.” (Bonnie and Clyde)
             "Кто-то подложил нам бомбу.",  // direct quote (Zero Wing)
@@ -11426,13 +11491,15 @@ namespace Souvenir
             "То же самое, что мы делаем каждый вечер, эксперт. Попробуем обезвредить бомбу!", // “The same thing we do every night, Pinky. Try to take over the world!” (Pinky and the Brain)
             "Кто-нибудь заказывал жареного сапёра?", // “Anybody order fried sauerkraut?” (Once Upon a Time in Hollywood)
             "У меня есть несколько сапёров, которых нужно разнести в пух и прах!", // “I’ve got some children I need to make into corpses!” (Gravity Falls, Weirdmageddon 3: Take Back The Falls)
-            "Я – неизбежность.", // direct quote (Avengers: Endgame)
+            "Я – неизбеж- ность.", // direct quote (Avengers: Endgame)
             "Бойтесь, бегите! Бомбы все равно взорвутся.", // “Dread it, run from it, destiny still arrives.” (Avengers: Infinity War)
             "Это прекрасная вещь – детонация бомб.", // “It’s a beautiful thing, the destruction of words.” (1984)
             "Кто-то считает себя слишком умным для меня. Они все так думают поначалу.", // Someone thinks they’re too clever for us. They all think that at first. (Invincible)
+            "Поздоровайся с моей маленькой бомбочкой.", // “Say hello to my little friend!” (Scarface)
+            "Давай, обезвредь мою бомбу.", // “Go ahead, make my day.” (Sudden Impact / Dirty Harry series)
 
             // Specific to Russian culture
-            "Хочешь, я взорву все бомбы, что мешают спать?",  // Хочешь я взору все звёзды, что мешают спать? — Song, Земфира - Хочешь?
+            "Хочешь, я взорву все бомбы, что мешают спать?",  // Хочешь я взорву все звёзды, что мешают спать? — Song, Земфира - Хочешь?
             "И у бомбы нашей села батарейка.",  // И у любви нашей села батарейка. — Song, Жуки - Батарейка
             "Какая гадость, какая гадость эта ваша бомба...",  // Какая гадость, какая гадость эта ваша заливная рыба... — Movie "Ирония судьбы, или С лёгким паром!"
             "Научиться бы не взрываться по пустякам.",  // Научиться бы не париться по пустякам. — Song, Градусы - Научиться бы не париться
@@ -11463,13 +11530,13 @@ namespace Souvenir
             "Ну, бомба! Ну, погоди!",  // Ну, заяц! Ну, погоди! — Cartoon "Ну, погоди!"
             "Чудо враждебной техники!",  // Чудо враждебной техники! — Movie "Тайна третьей планеты"
             "Нельзя просто так взять, и обезвредить бомбу.",  // Нельзя просто так взять и войти в Мордор. — Meme from "The Lord of the Rings"
-            "Я в своём обезвреживании настолько преисполнился.",  // Я в своём познании настолько преисполнился. — Internet meme
+            "Я в своём обезврежи- вании настолько преисполнился.",  // Я в своём познании настолько преисполнился. — Internet meme
             "Бомба замини- рована.",  // Тапок заминирован — Internet meme
             "Это бомба, братан.",  // Это фиаско, братан. — Internet meme
             "Выпьем за бомбу!",  // Выпьем за любовь! — Toast phrase/Song Игорь Николаев - Выпьем за любовь
             "Укуси меня бомба!",  // Укуси меня пчела! — Cartoon "Смешарики"
             "Взорвать нельзя обезвредить.",  // Казнить нельзя помиловать. — Famous grammatical exercise
-            "Египетская бомба!",  // Египетская сила! — Sitcom, Воронины
+            "Египет- ская бомба!",  // Египетская сила! — Sitcom, Воронины
             "И мы взорваны!",  // И мы счастливы! — Sitcom, Счастливы вместе
             "Всё поймать стремится. Бомбу!",  // Всё поймать стремится молнию! — Song, КиШ - Дурак и молния
             "Что нас ждёт, бомба хранит молчанье.",  // Что нас ждёт, море хранит молчанье. — Song, Ария - Штиль
