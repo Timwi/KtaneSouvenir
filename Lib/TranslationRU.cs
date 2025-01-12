@@ -156,14 +156,14 @@ namespace Souvenir
             {
                 Conjugation = Conjugation.NominativeMasculine,
                 QuestionText = "Какими буквами был обозначен ваш {0}?",
-                ModuleName = "3D-лабиринт",
+                ModuleName = "3D лабиринт",
             },
             // What was the cardinal direction in {0}?
             // What was the cardinal direction in 3D Maze?
             [Question._3DMazeBearing] = new()
             {
                 QuestionText = "Какое было направление нужной стены {0}?",
-                ModuleName = "3D-лабиринте",
+                ModuleName = "3D лабиринте",
                 Answers = new Dictionary<string, string>
                 {
                     ["North"] = "Север",
@@ -189,7 +189,7 @@ namespace Souvenir
             {
                 Conjugation = Conjugation.в_PrepositivePlural,
                 QuestionText = "Какой символ был вашей {1}-й целью {0}?",
-                ModuleName = "3D-туннелях",
+                ModuleName = "3D тоннелях",
             },
 
             // 3 LEDs
@@ -297,7 +297,7 @@ namespace Souvenir
                     ["Brown"] = "Коричневого",
                     ["Green"] = "Зелёного",
                     ["Grey"] = "Серого",
-                    ["Lime"] = "Лаймового",
+                    ["Lime"] = "Салатового",
                     ["Orange"] = "Оранжевого",
                     ["Pink"] = "Розового",
                     ["Red"] = "Красного",
@@ -318,7 +318,7 @@ namespace Souvenir
                     ["Brown"] = "Коричневого",
                     ["Green"] = "Зелёного",
                     ["Grey"] = "Серого",
-                    ["Lime"] = "Лаймового",
+                    ["Lime"] = "Салатового",
                     ["Orange"] = "Оранжевого",
                     ["Pink"] = "Розового",
                     ["Red"] = "Красного",
@@ -640,11 +640,11 @@ namespace Souvenir
                     ["Lime"] = "Лаймового",
                     ["Green"] = "Зелёного",
                     ["Jade"] = "Нефритового",
-                    ["Cyan"] = "Голубого",
+                    ["Cyan"] = "Цианового",
                     ["Azure"] = "Лазурного",
                     ["Blue"] = "Синего",
                     ["Violet"] = "Фиолетового",
-                    ["Magenta"] = "Мадженты",
+                    ["Magenta"] = "Пурпурного",
                     ["Rose"] = "Розового",
                     ["White"] = "Белого",
                     ["Grey"] = "Серого",
@@ -686,11 +686,11 @@ namespace Souvenir
                     ["Lime"] = "Лаймового",
                     ["Green"] = "Зелёного",
                     ["Jade"] = "Нефритового",
-                    ["Cyan"] = "Голубого",
+                    ["Cyan"] = "Цианового",
                     ["Azure"] = "Лазурного",
                     ["Blue"] = "Синего",
                     ["Violet"] = "Фиолетового",
-                    ["Magenta"] = "Мадженты",
+                    ["Magenta"] = "Пурпурного",
                     ["Rose"] = "Розового",
                     ["White"] = "Белого",
                     ["Grey"] = "Серого",
@@ -947,7 +947,7 @@ namespace Souvenir
                     ["Yellow"] = "Жёлтый",
                     ["Green"] = "Зелёный",
                     ["Blue"] = "Синий",
-                    ["Magenta"] = "Розовый",
+                    ["Magenta"] = "Пурпурный",
                     ["White"] = "Белый",
                     ["Black"] = "Чёрный",
                 },
@@ -2157,7 +2157,7 @@ namespace Souvenir
                     ["Yellow"] = "Жёлтый",
                     ["Green"] = "Зелёный",
                     ["Blue"] = "Синий",
-                    ["Magenta"] = "Маджента",
+                    ["Magenta"] = "Розовый",
                     ["White"] = "Белый",
                 },
             },
@@ -3041,7 +3041,7 @@ namespace Souvenir
             [Question.DoubleOhSubmitButton] = new()
             {
                 QuestionText = "Какая кнопка была кнопкой отправки {0}?",
-                ModuleName = "Ноль-ноль",
+                ModuleName = "Агент Ноль-ноль",
             },
 
             // Double Screen
@@ -5183,7 +5183,7 @@ namespace Souvenir
             [Question.ListeningSound] = new()
             {
                 QuestionText = "Какой звук был воспроизведён {0}?",
-                ModuleName = "Аудировании",
+                ModuleName = "Прослушке",
             },
 
             // Logical Buttons
@@ -5246,14 +5246,14 @@ namespace Souvenir
                 ModuleName = "Логических элементах",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["gate A"] = "гейт A",
-                    ["gate B"] = "гейт B",
-                    ["gate C"] = "гейт C",
-                    ["gate D"] = "гейт D",
-                    ["gate E"] = "гейт E",
-                    ["gate F"] = "гейт F",
-                    ["gate G"] = "гейт G",
-                    ["the duplicated gate"] = "гейт-дубликат",
+                    ["gate A"] = "элемент A",
+                    ["gate B"] = "элемент B",
+                    ["gate C"] = "элемент C",
+                    ["gate D"] = "элемент D",
+                    ["gate E"] = "элемент E",
+                    ["gate F"] = "элемент F",
+                    ["gate G"] = "элемент G",
+                    ["the duplicated gate"] = "элемент-дубликат",
                 },
             },
 
@@ -6216,7 +6216,7 @@ namespace Souvenir
                     ["green"] = "Зелёный",
                     ["yellow"] = "Жёлтый",
                     ["blue"] = "Синий",
-                    ["magenta"] = "Розовый",
+                    ["magenta"] = "Пурпурный",
                     ["cyan"] = "Голубой",
                     ["white"] = "Белый",
                 },
@@ -6231,15 +6231,15 @@ namespace Souvenir
                 ModuleName = "Убийстве",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Dining Room"] = "Столовая",
-                    ["Study"] = "Кабинет",
-                    ["Kitchen"] = "Кухня",
-                    ["Lounge"] = "Гостиная",
-                    ["Billiard Room"] = "Бильярдная",
-                    ["Conservatory"] = "Зимний сад",
-                    ["Ballroom"] = "Танцевальный зал",
-                    ["Hall"] = "Холл",
-                    ["Library"] = "Библиотека",
+                    ["Dining Room"] = "Dining Room",
+                    ["Study"] = "Study",
+                    ["Kitchen"] = "Kitchen",
+                    ["Lounge"] = "Lounge",
+                    ["Billiard Room"] = "Billiard Room",
+                    ["Conservatory"] = "Conservatory",
+                    ["Ballroom"] = "Ballroom",
+                    ["Hall"] = "Hall",
+                    ["Library"] = "Library",
                 },
             },
             // Which of these was {1} in {0}?
@@ -6255,12 +6255,12 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Miss Scarlett"] = "Мисс Скарлетт",
-                    ["Professor Plum"] = "Профессор Плам",
-                    ["Mrs Peacock"] = "Миссис Пикок",
-                    ["Reverend Green"] = "Преподобный Грин",
-                    ["Colonel Mustard"] = "Полковник Мастард",
-                    ["Mrs White"] = "Миссис Уайт",
+                    ["Miss Scarlett"] = "Miss Scarlett",
+                    ["Professor Plum"] = "Professor Plum",
+                    ["Mrs Peacock"] = "Mrs Peacock",
+                    ["Reverend Green"] = "Reverend Green",
+                    ["Colonel Mustard"] = "Colonel Mustard",
+                    ["Mrs White"] = "Mrs White",
                 },
             },
             // Which of these was {1} in {0}?
@@ -6277,12 +6277,12 @@ namespace Souvenir
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Candlestick"] = "Подсвечник",
-                    ["Dagger"] = "Нож",
-                    ["Lead Pipe"] = "Свинцовая труба",
-                    ["Revolver"] = "Револьвер",
-                    ["Rope"] = "Верёвка",
-                    ["Spanner"] = "Гаечный ключ",
+                    ["Candlestick"] = "Candlestick",
+                    ["Dagger"] = "Dagger",
+                    ["Lead Pipe"] = "Lead Pipe",
+                    ["Revolver"] = "Revolver",
+                    ["Rope"] = "Rope",
+                    ["Spanner"] = "Spanner",
                 },
             },
 
@@ -6338,8 +6338,9 @@ namespace Souvenir
             // What was the label of the correct button in N&Ms?
             [Question.NandMsAnswer] = new()
             {
+                Conjugation = в_PrepositiveMascNeuter,
                 QuestionText = "Какая надпись была на правильной кнопке {0}?",
-                ModuleName = "N&Ms",
+                ModuleName = "N и M",
             },
 
             // Name Codes
@@ -6547,7 +6548,7 @@ namespace Souvenir
             {
                 Conjugation = Conjugation.PrepositiveFeminine,
                 QuestionText = "Какой цвет горел {1}-м в последовательности на {0}?",
-                ModuleName = "НЕ-клавиатуре",
+                ModuleName = "Не клавиатуре",
                 Answers = new Dictionary<string, string>
                 {
                     ["red"] = "Красный",
@@ -6557,7 +6558,7 @@ namespace Souvenir
                     ["cyan"] = "Голубой",
                     ["blue"] = "Синий",
                     ["purple"] = "Фиолетовый",
-                    ["magenta"] = "Маджента",
+                    ["magenta"] = "Пурпурный",
                     ["pink"] = "Розовый",
                     ["brown"] = "Коричневый",
                     ["grey"] = "Серый",
@@ -6938,7 +6939,7 @@ namespace Souvenir
             {
                 Conjugation = Conjugation.GenitiveFeminine,
                 QuestionText = "Какими цветами горела цветная полоска {0}?",
-                ModuleName = "НЕ-кнопки",
+                ModuleName = "Не кнопки",
                 Answers = new Dictionary<string, string>
                 {
                     ["white"] = "Белым",
@@ -9306,7 +9307,7 @@ namespace Souvenir
                     ["blue"] = "Синий",
                     ["yellow"] = "Жёлтый",
                     ["orange"] = "Оранжевый",
-                    ["magenta"] = "Маджента",
+                    ["magenta"] = "Пурпурный",
                     ["green"] = "Зелёный",
                     ["pink"] = "Розовый",
                     ["lime"] = "Лаймовый",
