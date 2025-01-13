@@ -353,26 +353,10 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "ColorBrailleModule");
         yield return WaitForSolve;
-
-        var manglingNames = new Dictionary<string, string>
-        {
-            { "TopRowShiftedToTheRight", "Top row shifted to the right" },
-            { "TopRowShiftedToTheLeft", "Top row shifted to the left" },
-            { "MiddleRowShiftedToTheRight", "Middle row shifted to the right" },
-            { "MiddleRowShiftedToTheLeft", "Middle row shifted to the left" },
-            { "BottomRowShiftedToTheRight", "Bottom row shifted to the right" },
-            { "BottomRowShiftedToTheLeft", "Bottom row shifted to the left" },
-            { "EachLetterRotated180", "Each letter upside-down" },
-            { "EachLetterHorizontallyFlipped", "Each letter horizontally flipped" },
-            { "EachLetterVerticallyFlipped", "Each letter vertically flipped" },
-            { "DotsAreInverted", "Dots are inverted" }
-        };
-
-        var mangling = GetField<object>(comp, "_mangling").Get(m => !manglingNames.ContainsKey(m.ToString()) ? "mangling is not in the dictionary" : null);
+        
         var mangledChannel = GetIntField(comp, "_mangledChannel").Get(min: 0, max: 2);
         addQuestions(module,
-            makeQuestion(Question.ColorBrailleChannel, module, correctAnswers: new[] { new[] { "Red", "Green", "Blue" }[mangledChannel] }),
-            makeQuestion(Question.ColorBrailleMangling, module, correctAnswers: new[] { manglingNames[mangling.ToString()] }));
+            makeQuestion(Question.ColorBrailleChannel, module, correctAnswers: new[] { new[] { "Red", "Green", "Blue" }[mangledChannel] }));
     }
 
     private IEnumerator<YieldInstruction> ProcessColorDecoding(ModuleData module)

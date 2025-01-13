@@ -168,22 +168,12 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "passwordDestroyer");
 
-        var fldStartingValue = GetIntField(comp, "CountUpBaseNumber");       // Rv value
-        var fldIncreaseFactor = GetIntField(comp, "increaseFactor");    // If value
         var fldTwoFactorV2 = GetIntField(comp, "identityDigit");        // 2FAST value
-        var fldTwoFactorAuth1 = GetIntField(comp, "identityDigit1");    // Left half
-        var fldTwoFactorAuth2 = GetIntField(comp, "identityDigit2");    // Right half
-        var fldSolvePercentage = GetIntField(comp, "solvePercentage");  // Solve Percentage
 
         yield return WaitForSolve;
 
         addQuestions(module,
-            makeQuestion(Question.PasswordDestroyerStartingValue, module, correctAnswers: new[] { fldStartingValue.Get(1000000, 9999999).ToString() }),
-            makeQuestion(Question.PasswordDestroyerIncreaseFactor, module, correctAnswers: new[] { fldIncreaseFactor.Get(-1000000, 1000000).ToString() }),
-            makeQuestion(Question.PasswordDestroyerTwoFactorV2, module, correctAnswers: new[] { fldTwoFactorV2.Get(100100, 999999).ToString() }),
-            makeQuestion(Question.PasswordDestroyerTF1, module, correctAnswers: new[] { (fldTwoFactorAuth1.Get(100, 999) - 100).ToString() }),
-            makeQuestion(Question.PasswordDestroyerTF2, module, correctAnswers: new[] { (fldTwoFactorAuth2.Get(100, 999) % 9 == 0 ? 9 : fldTwoFactorAuth2.Get() % 9).ToString() }),
-            makeQuestion(Question.PasswordDestroyerSolvePercentage, module, correctAnswers: new[] { fldSolvePercentage.Get(1, 99).ToString() + "%" }));
+            makeQuestion(Question.PasswordDestroyerTwoFactorV2, module, correctAnswers: new[] { fldTwoFactorV2.Get(100100, 999999).ToString() }));
     }
 
     private IEnumerator<YieldInstruction> ProcessPatternCube(ModuleData module)
@@ -342,13 +332,8 @@ public partial class SouvenirModule
         var firstString = GetField<string>(comp, "firstString").Get(str => !firstPhrase.Contains(str) ? $"expected string to be contained in “{firstPhrase}” (‘firstPhrase’)" : null);
         var ordinals = GetArrayField<string>(comp, "ordinals").Get();
         var currentOrdinal = GetField<string>(comp, "currentOrdinal").Get(str => !ordinals.Contains(str) ? $"expected string to be contained in “{ordinals}” (‘ordinals’)" : null);
-        var previousModules = GetField<sbyte>(comp, "previousModules").Get();
 
         var qs = new List<QandA>();
-
-        // Because the number of solved modules could be any number, the second phrase question should be deactivated if previousModule is either 1 or -1, meaning that they apply to the numbers
-        if (previousModules == 0)
-            qs.Add(makeQuestion(Question.PlaceholderTalkSecondPhrase, module, correctAnswers: new[] { answer.ToString() }));
 
         qs.Add(makeQuestion(Question.PlaceholderTalkFirstPhrase, module, correctAnswers: new[] { firstString }, preferredWrongAnswers: firstPhrase));
         qs.Add(makeQuestion(Question.PlaceholderTalkOrdinal, module, correctAnswers: new[] { currentOrdinal }, preferredWrongAnswers: ordinals));
