@@ -206,7 +206,6 @@ public partial class SouvenirModule
         var fldCol = GetIntField(comp, "col");
         var fldKeynum = GetIntField(comp, "keynum");
         var fldStage = GetIntField(comp, "stage");
-        var fldSolved = GetField<bool>(comp, "isPassed");
         var fldDisplay = GetField<TextMesh>(comp, "Display", isPublic: true);
 
         while (!_isActivated)
@@ -220,7 +219,7 @@ public partial class SouvenirModule
             while (fldDisplay.Get().text == " ")
             {
                 yield return new WaitForSeconds(.1f);
-                if (fldSolved.Get())
+                if (module.IsSolved)
                     goto solved;
             }
 
@@ -232,14 +231,12 @@ public partial class SouvenirModule
             while (fldDisplay.Get().text != " ")
             {
                 yield return new WaitForSeconds(.1f);
-                if (fldSolved.Get())
+                if (module.IsSolved)
                     goto solved;
             }
         }
 
         solved:
-        yield return WaitForSolve;
-
         var qs = new List<QandA>();
         for (int i = 0; i < 3; i++)
         {

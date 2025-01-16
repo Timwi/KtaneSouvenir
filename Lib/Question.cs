@@ -1721,6 +1721,16 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         ModuleMovementsDisplay,
 
+        [SouvenirQuestion("What were the first and second words in the {1} phrase in {0}?", "Money Game", TwoColumns4Answers, "she sells", "she shells", "sea shells", "sea sells",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        MoneyGame1,
+        [SouvenirQuestion("What were the third and fourth words in the {1} phrase in {0}?", "Money Game", TwoColumns4Answers, "sea shells", "she shells", "sea sells", "she sells",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        MoneyGame2,
+        [SouvenirQuestion("What was the end of the {1} phrase in {0}?", "Money Game", TwoColumns4Answers, "sea shore", "she sore", "she sure", "seesaw", "seizure", "shell sea", "steep store", "sheer sort", "speed spore", "sieve horn", "steel sword",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        MoneyGame3,
+
         [SouvenirQuestion("Which creature was displayed in {0}?", "Monsplode, Fight!", TwoColumns4Answers, "Caadarim", "Buhar", "Melbor", "Lanaluff", "Bob", "Mountoise", "Aluga", "Nibs", "Zapra", "Zenlad", "Vellarim", "Ukkens", "Lugirit", "Flaurim", "Myrchat", "Clondar", "Gloorim", "Docsplode", "Magmy", "Pouse", "Asteran", "Violan", "Percy", "Cutie Pie")]
         MonsplodeFightCreature,
         [SouvenirQuestion("Which one of these moves {1} selectable in {0}?", "Monsplode, Fight!", TwoColumns4Answers, "Tic", "Tac", "Toe", "Hollow Gaze", "Splash", "Heavy Rain", "Fountain", "Candle", "Torchlight", "Flame Spear", "Tangle", "Grass Blade", "Ivy Spikes", "Spectre", "Boo", "Battery Power", "Zap", "Double Zap", "Shock", "High Voltage", "Dark Portal", "Last Word", "Void", "Boom", "Fiery Soul", "Stretch", "Shrink", "Appearify", "Sendify", "Freak Out", "Glyph", "Bug Spray", "Bedrock", "Earthquake", "Cave In", "Toxic Waste", "Venom Fang", "Countdown", "Finale", "Sidestep",

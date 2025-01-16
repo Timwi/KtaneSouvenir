@@ -61,17 +61,17 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Colored Keys         │  Free Parking              │  Maze³             │  Reverse Morse      │  Vexillology
     Cube, The            │  Hexabutton, The           │  Mazematics        │  Simon Scrambles    │  Zoni
 
-## Implemented by Anonymous (41)
+## Implemented by Anonymous (42)
 
-    ↻↺                  │  Connection Check  │  Maritime Semaphore     │  Polygons                │  Time Signatures
-    ❖                   │  Double Arrows     │  Maroon Button, The     │  Q & A                   │  Unordered Keys
-    1, 2, 3 Game, The   │  Double Listening  │  Naming Conventions     │  Red Button’t            │  Updog
-    Bean Sprouts        │  Double Screen     │  Not Password           │  RNG Crystal             │  Variety
-    Beans               │  Fuse Box, The     │  Not Red Arrows         │  Simon Smiles            │  X-Ring
-    Big Bean            │  Ghost Movement    │  One Links To All       │  Simon Subdivides        │
-    Boomtar the Great   │  Gyromaze          │  Pentabutton, The       │  Smash, Marry, Kill      │
-    Bottom Gear         │  hexOrbits         │  Pickup Identification  │  Stable Time Signatures  │
-    Connected Monitors  │  Labyrinth, The    │  Pointless Machines     │  Subbly Jubbly           │
+    ↻↺                  │  Connection Check  │  Maritime Semaphore     │  Pointless Machines      │  Subbly Jubbly
+    ❖                   │  Double Arrows     │  Maroon Button, The     │  Polygons                │  Time Signatures
+    1, 2, 3 Game, The   │  Double Listening  │  MoneyGame              │  Q & A                   │  Unordered Keys
+    Bean Sprouts        │  Double Screen     │  Naming Conventions     │  Red Button’t            │  Updog
+    Beans               │  Fuse Box, The     │  Not Password           │  RNG Crystal             │  Variety
+    Big Bean            │  Ghost Movement    │  Not Red Arrows         │  Simon Smiles            │  X-Ring
+    Boomtar the Great   │  Gyromaze          │  One Links To All       │  Simon Subdivides        │
+    Bottom Gear         │  hexOrbits         │  Pentabutton, The       │  Smash, Marry, Kill      │
+    Connected Monitors  │  Labyrinth, The    │  Pickup Identification  │  Stable Time Signatures  │
 
 ## Implemented by Hawker (40)
 

@@ -6014,6 +6014,29 @@ namespace Souvenir
                 QuestionText = "What was the {1} module shown in {0}?",
             },
 
+            // Money Game
+            // What were the first and second words in the {1} phrase in {0}?
+            // What were the first and second words in the first phrase in Money Game?
+            [Question.MoneyGame1] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What were the first and second words in the {1} phrase in {0}?",
+            },
+            // What were the third and fourth words in the {1} phrase in {0}?
+            // What were the third and fourth words in the first phrase in Money Game?
+            [Question.MoneyGame2] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What were the third and fourth words in the {1} phrase in {0}?",
+            },
+            // What was the end of the {1} phrase in {0}?
+            // What was the end of the first phrase in Money Game?
+            [Question.MoneyGame3] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the end of the {1} phrase in {0}?",
+            },
+
             // Monsplode, Fight!
             // Which creature was displayed in {0}?
             // Which creature was displayed in Monsplode, Fight!?

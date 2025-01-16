@@ -329,6 +329,7 @@ public partial class SouvenirModule
             ["moduleListening"] = (ProcessModuleListening, "Module Listening", "TasThiluna"),
             ["ModuleMaze"] = (ProcessModuleMaze, "Module Maze", "River"),
             ["moduleMovements"] = (ProcessModuleMovements, "Module Movements", "Hawker"),
+            ["MoneyGame"] = (ProcessMoneyGame, "MoneyGame", "Anonymous"),
             ["monsplodeFight"] = (ProcessMonsplodeFight, "Monsplode, Fight!", "Timwi"),
             ["monsplodeCards"] = (ProcessMonsplodeTradingCards, "Monsplode Trading Cards", "Timwi"),
             ["moon"] = (ProcessMoon, "Moon, The", "Timwi"),
