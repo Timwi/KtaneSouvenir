@@ -4253,6 +4253,27 @@ namespace Souvenir
                 QuestionText = "How many times did YES flash in {0}?",
             },
 
+            // Gyromaze
+            // What color was the {1} LED in {0}?
+            // What color was the top LED in Gyromaze?
+            [Question.GyromazeLEDColor] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What color was the {1} LED in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top"] = "top",
+                    ["bottom"] = "bottom",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Blue"] = "Blue",
+                    ["Green"] = "Green",
+                    ["Yellow"] = "Yellow",
+                },
+            },
+
             // h
             // What was the transmitted letter in {0}?
             // What was the transmitted letter in h?

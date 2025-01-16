@@ -229,6 +229,7 @@ public partial class SouvenirModule
             ["groceryStore"] = (ProcessGroceryStore, "Grocery Store", "BigCrunch22"),
             ["gryphons"] = (ProcessGryphons, "Gryphons", "JerryEris"),
             ["GuessWho"] = (ProcessGuessWho, "Guess Who?", "BigCrunch22"),
+            ["gyromaze"] = (ProcessGyromaze, "Gyromaze", "Anonymous"),
             ["Averageh"] = (ProcessH, "h", "Hawker"),
             ["hereditaryBaseNotationModule"] = (ProcessHereditaryBaseNotation, "Hereditary Base Notation", "kavinkul"),
             ["hexabutton"] = (ProcessHexabutton, "Hexabutton, The", "luisdiogo98"),

@@ -61,16 +61,17 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Colored Keys         │  Free Parking              │  Maze³             │  Reverse Morse      │  Vexillology
     Cube, The            │  Hexabutton, The           │  Mazematics        │  Simon Scrambles    │  Zoni
 
-## Implemented by Anonymous (40)
+## Implemented by Anonymous (41)
 
-    ↻↺                 │  Connected Monitors  │  Labyrinth, The      │  Pickup Identification  │  Smash, Marry, Kill
-    ❖                  │  Connection Check    │  Maritime Semaphore  │  Pointless Machines     │  Stable Time Signatures
-    1, 2, 3 Game, The  │  Double Arrows       │  Maroon Button, The  │  Polygons               │  Subbly Jubbly
-    Bean Sprouts       │  Double Listening    │  Naming Conventions  │  Q & A                  │  Time Signatures
-    Beans              │  Double Screen       │  Not Password        │  Red Button’t           │  Unordered Keys
-    Big Bean           │  Fuse Box, The       │  Not Red Arrows      │  RNG Crystal            │  Updog
-    Boomtar the Great  │  Ghost Movement      │  One Links To All    │  Simon Smiles           │  Variety
-    Bottom Gear        │  hexOrbits           │  Pentabutton, The    │  Simon Subdivides       │  X-Ring
+    ↻↺                  │  Connection Check  │  Maritime Semaphore     │  Polygons                │  Time Signatures
+    ❖                   │  Double Arrows     │  Maroon Button, The     │  Q & A                   │  Unordered Keys
+    1, 2, 3 Game, The   │  Double Listening  │  Naming Conventions     │  Red Button’t            │  Updog
+    Bean Sprouts        │  Double Screen     │  Not Password           │  RNG Crystal             │  Variety
+    Beans               │  Fuse Box, The     │  Not Red Arrows         │  Simon Smiles            │  X-Ring
+    Big Bean            │  Ghost Movement    │  One Links To All       │  Simon Subdivides        │
+    Boomtar the Great   │  Gyromaze          │  Pentabutton, The       │  Smash, Marry, Kill      │
+    Bottom Gear         │  hexOrbits         │  Pickup Identification  │  Stable Time Signatures  │
+    Connected Monitors  │  Labyrinth, The    │  Pointless Machines     │  Subbly Jubbly           │
 
 ## Implemented by Hawker (40)
 

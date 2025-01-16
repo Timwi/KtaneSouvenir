@@ -327,4 +327,23 @@ public partial class SouvenirModule
         var correctAnswer = bases.Sum().ToString();
         addQuestion(module, Question.GuessWhoNumber, correctAnswers: new[] { correctAnswer });
     }
+
+    private IEnumerator<YieldInstruction> ProcessGyromaze(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "GyromazeScript");
+
+        var leds = GetArrayField<MeshRenderer>(comp, "leds", true).Get(expectedLength: 2);
+        foreach (var l in leds)
+            l.material.color = Color.black;
+
+        var colorNames = new[] { "Red", "Blue", "Green", "Yellow" };
+        var endPos = GetIntField(comp, "endPos").Get(0, 15);
+
+        addQuestions(module, 
+            makeQuestion(Question.GyromazeLEDColor, module, correctAnswers: new[] { colorNames[endPos % 4] }, formatArgs: new[] { "top" }),
+            makeQuestion(Question.GyromazeLEDColor, module, correctAnswers: new[] { colorNames[endPos / 4] }, formatArgs: new[] { "bottom" })
+            );
+    }
 }

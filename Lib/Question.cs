@@ -1211,6 +1211,10 @@
         [AnswerGenerator.Integers(0, 8)]
         GuessWhoNumber,
 
+        [SouvenirQuestion("What color was the {1} LED in {0}?", "Gyromaze", TwoColumns4Answers, "Red", "Blue", "Green", "Yellow",
+            ExampleFormatArguments = new[] { "top", "bottom" }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true, TranslateFormatArgs = new[] { true })]
+        GyromazeLEDColor,
+
         [SouvenirQuestion("What was the transmitted letter in {0}?", "h", ThreeColumns6Answers)]
         [AnswerGenerator.Strings("A-Z")]
         HLetter,
