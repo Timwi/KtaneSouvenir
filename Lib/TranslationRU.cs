@@ -6338,7 +6338,6 @@ namespace Souvenir
             // What was the label of the correct button in N&Ms?
             [Question.NandMsAnswer] = new()
             {
-                Conjugation = в_PrepositiveMascNeuter,
                 QuestionText = "Какая надпись была на правильной кнопке {0}?",
                 ModuleName = "N и M",
             },
@@ -7934,6 +7933,15 @@ namespace Souvenir
             [Question.PuzzleIdentificationName] = new()
             {
                 QuestionText = "Какой был {1}-й пазл {0}?",
+            },
+
+            // Q & A
+            // What was the {1} question asked in {0}?
+            // What was the first question asked in Q & A?
+            [Question.QnAQuestions] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the {1} question asked in {0}?",
             },
 
             // Quaver

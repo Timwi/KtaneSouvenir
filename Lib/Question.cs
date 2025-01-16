@@ -2228,6 +2228,10 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         PuzzleIdentificationName,
 
+        [SouvenirQuestion("What was the {1} question asked in {0}?", "Q & A", ThreeColumns6Answers, "WHAT", "WHEN", "WHERE", "WHO", "HOW", "WHY",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        QnAQuestions,
+
         [SouvenirQuestion("What was the {1} sequence’s answer in {0}?", "Quaver", OneColumn4Answers, ExampleAnswers = new[] { "4", "10", "87", "320", "3, 3, 2, 3", "87, 85, 82, 84" },
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         QuaverArrows,

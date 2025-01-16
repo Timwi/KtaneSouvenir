@@ -7951,6 +7951,15 @@ namespace Souvenir
                 QuestionText = "What was the {1} puzzle in {0}?",
             },
 
+            // Q & A
+            // What was the {1} question asked in {0}?
+            // What was the first question asked in Q & A?
+            [Question.QnAQuestions] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the {1} question asked in {0}?",
+            },
+
             // Quaver
             // What was the {1} sequence’s answer in {0}?
             // What was the first sequence’s answer in Quaver?

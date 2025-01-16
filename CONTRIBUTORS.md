@@ -61,6 +61,17 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Colored Keys         │  Free Parking              │  Maze³             │  Reverse Morse      │  Vexillology
     Cube, The            │  Hexabutton, The           │  Mazematics        │  Simon Scrambles    │  Zoni
 
+## Implemented by Anonymous (40)
+
+    ↻↺                 │  Connected Monitors  │  Labyrinth, The      │  Pickup Identification  │  Smash, Marry, Kill
+    ❖                  │  Connection Check    │  Maritime Semaphore  │  Pointless Machines     │  Stable Time Signatures
+    1, 2, 3 Game, The  │  Double Arrows       │  Maroon Button, The  │  Polygons               │  Subbly Jubbly
+    Bean Sprouts       │  Double Listening    │  Naming Conventions  │  Q & A                  │  Time Signatures
+    Beans              │  Double Screen       │  Not Password        │  Red Button’t           │  Unordered Keys
+    Big Bean           │  Fuse Box, The       │  Not Red Arrows      │  RNG Crystal            │  Updog
+    Boomtar the Great  │  Ghost Movement      │  One Links To All    │  Simon Smiles           │  Variety
+    Bottom Gear        │  hexOrbits           │  Pentabutton, The    │  Simon Subdivides       │  X-Ring
+
 ## Implemented by Hawker (40)
 
     3N+1                     │  DetoNATO              │  Flavor Text EX      │  Ladder Lottery     │  Simon Serves
@@ -71,17 +82,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Character Slots          │  Error Codes           │  High Score, The     │  Robot Programming  │  UNO!
     Conditional Buttons      │  Find The Date         │  Keypad Combination  │  Scrutiny Squares   │  Valves
     Customer Identification  │  Flavor Text           │  Kuro                │  Sign Language      │  Weakest Link, The
-
-## Implemented by Anonymous (39)
-
-    ↻↺                 │  Connected Monitors  │  Labyrinth, The      │  Pickup Identification  │  Stable Time Signatures
-    ❖                  │  Connection Check    │  Maritime Semaphore  │  Pointless Machines     │  Subbly Jubbly
-    1, 2, 3 Game, The  │  Double Arrows       │  Maroon Button, The  │  Polygons               │  Time Signatures
-    Bean Sprouts       │  Double Listening    │  Naming Conventions  │  Red Button’t           │  Unordered Keys
-    Beans              │  Double Screen       │  Not Password        │  RNG Crystal            │  Updog
-    Big Bean           │  Fuse Box, The       │  Not Red Arrows      │  Simon Smiles           │  Variety
-    Boomtar the Great  │  Ghost Movement      │  One Links To All    │  Simon Subdivides       │  X-Ring
-    Bottom Gear        │  hexOrbits           │  Pentabutton, The    │  Smash, Marry, Kill     │
 
 ## Implemented by BigCrunch22 (38)
 

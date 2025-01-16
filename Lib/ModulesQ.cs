@@ -8,6 +8,17 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
+    private IEnumerator<YieldInstruction> ProcessQnA(ModuleData module)
+    {
+        var comp = GetComponent(module, "QnA");
+        var allQs = new[] { "WHAT", "WHEN", "WHERE", "WHO", "HOW", "WHY" };
+        var qs = GetArrayField<string>(comp, "questions").Get(expectedLength: 6, validator: s => allQs.Contains(s) ? null : "Unknown question phrase");
+
+        yield return WaitForSolve;
+
+        addQuestions(module, qs.Select((q, i) => makeQuestion(Question.QnAQuestions, module, correctAnswers: new[] { q }, formatArgs: new[] { Ordinal(i + 1) })));
+    }
+
     private IEnumerator<YieldInstruction> ProcessQuaver(ModuleData module)
     {
         var comp = GetComponent(module, "QuaverScript");

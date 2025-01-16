@@ -423,6 +423,7 @@ public partial class SouvenirModule
             ["purpleArrowsModule"] = (ProcessPurpleArrows, "Purple Arrows", "kavinkul"),
             ["PurpleButtonModule"] = (ProcessPurpleButton, "Purple Button, The", "Timwi"),
             ["GSPuzzleIdentification"] = (ProcessPuzzleIdentification, "Puzzle Identification", "GhostSalt"),
+            ["q&a"] = (ProcessQnA, "Q & A", "Anonymous"),
             ["Quaver"] = (ProcessQuaver, "Quaver", "Emik"),
             ["Questionmark"] = (ProcessQuestionMark, "Question Mark", "Kuro"),
             ["QuickArithmetic"] = (ProcessQuickArithmetic, "Quick Arithmetic", "VFlyer"),
