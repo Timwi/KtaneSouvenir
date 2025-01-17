@@ -2162,6 +2162,19 @@ namespace Souvenir
                 },
             },
 
+            // Concentration
+            // What number began here in {0}?
+            // What number began here in Concentration?
+            [Question.ConcentrationStartingDigit] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What number began here in {0}?",
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["the Concentration which began with {1} in the {0} position (in reading order)"] = "the Concentration which began with {1} in the {0} position (in reading order)",
+                },
+            },
+
             // Conditional Buttons
             // What was the color of this button in {0}?
             // What was the color of this button in Conditional Buttons?

@@ -408,7 +408,6 @@ public partial class SouvenirModule
 
         while (!_noUnignoredModulesLeft)
             yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(moduleId + "❖presolve");
 
         var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "White" }
             .Select(str => translateString(Question.ForgetAnyColorCylinder, str)).ToArray();
@@ -495,7 +494,6 @@ public partial class SouvenirModule
 
         while (!_noUnignoredModulesLeft)
             yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(moduleId + "❖presolve");
 
         var stageOrdering = GetArrayField<int>(comp, "StageOrdering").Get();
         var myIgnoredList = GetStaticField<string[]>(comp.GetType(), "ignoredModules", isPublic: true).Get();
@@ -577,7 +575,6 @@ public partial class SouvenirModule
 
         while (!_noUnignoredModulesLeft)
             yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(moduleId + "❖presolve");
 
         var myIgnoredList = GetStaticField<string[]>(comp.GetType(), "ignoredModules", isPublic: true).Get();
         var displayedStageCount = Bomb.GetSolvedModuleNames().Count(x => !myIgnoredList.Contains(x));
@@ -676,7 +673,6 @@ public partial class SouvenirModule
 
         while (!_noUnignoredModulesLeft)
             yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(moduleId + "❖presolve");
 
         var allLists = new IList[] { _ftcGearNumbers, _ftcLargeDisplays, _ftcSineNumbers, _ftcGearColors, _ftcRuleColors };
         if (allLists.Any(l => l.Count != _ftcGearColors.Count))
@@ -785,7 +781,6 @@ public partial class SouvenirModule
 
         while (!_noUnignoredModulesLeft)
             yield return new WaitForSeconds(.1f);
-        _modulesSolved.IncSafe(moduleId + "❖presolve");
 
         var displayedStagesCount = GetIntField(comp, "curStageNum").Get(min: 0, max: myColors.Count);
 

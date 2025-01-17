@@ -1230,6 +1230,7 @@ public partial class SouvenirModule : MonoBehaviour
         Debug.Log($"[Souvenir #{_moduleId}] No question for {module.ModuleDisplayName} because: {logMessage}");
         _legitimatelyNoQuestions.Add(module);
     }
+    private void legitimatelyNoQuestion(ModuleData module, string logMessage) => legitimatelyNoQuestion(module.Module, logMessage);
     #endregion
 
     #region Twitch Plays

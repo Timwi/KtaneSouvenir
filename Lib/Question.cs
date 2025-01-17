@@ -582,6 +582,11 @@
         [SouvenirQuestion("What was the color of the last word in the sequence in {0}?", "Colour Flash", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Magenta", "White", TranslateAnswers = true)]
         ColourFlashLastColor,
 
+        [SouvenirQuestion("What number began here in {0}?", "Concentration", ThreeColumns6Answers, UsesQuestionSprite = true,
+            TranslatableStrings = new[] { "the Concentration which began with {1} in the {0} position (in reading order)" })]
+        [AnswerGenerator.Integers(1, 15)]
+        ConcentrationStartingDigit,
+
         [SouvenirQuestion("What was the color of this button in {0}?", "Conditional Buttons", ThreeColumns6Answers, "black", "blue", "dark green", "light green", "orange", "pink", "purple", "red", "white", "yellow", UsesQuestionSprite = true, TranslateAnswers = true)]
         ConditionalButtonsColors,
 

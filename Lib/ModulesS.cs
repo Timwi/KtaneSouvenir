@@ -72,7 +72,7 @@ public partial class SouvenirModule
 
         while (!_noUnignoredModulesLeft)
             yield return new WaitForSeconds(.1f);
-        module.SolveIndex = _modulesSolved.IncSafe(moduleId + "❖presolve");
+        module.SolveIndex = 1;
 
         var myIgnoredList = GetArrayField<string>(comp, "ignoredModules").Get();
         var displayedStageCount = Bomb.GetSolvedModuleNames().Count(x => !myIgnoredList.Contains(x));
@@ -1355,7 +1355,7 @@ public partial class SouvenirModule
         while (comp._currentQuestion == firstQuestion)
             yield return new WaitForSeconds(0.1f);
 
-        module.SolveIndex = _modulesSolved.IncSafe(moduleId + "❖presolve");
+        module.SolveIndex = 1; // The question does not use the formatted module name. However, since the module may not be solved at this point, we need to specify a solve index anyways.
         addQuestion(module, Question.SouvenirFirstQuestion, correctAnswers: new[] { firstModule },
             preferredWrongAnswers: preferredWrongAnswers.ToArray(), allAnswers: allAnswers.ToArray());
     }
