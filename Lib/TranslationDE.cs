@@ -2794,7 +2794,7 @@ namespace Souvenir
                     ["Red"] = "Rot",
                     ["Yellow"] = "Gelb",
                     ["Green"] = "Grün",
-                    ["Magenta"] = "Rosa",
+                    ["Magenta"] = "Magenta",
                 },
             },
 
@@ -2815,7 +2815,6 @@ namespace Souvenir
             // What was the revealed key color for the first key in Disordered Keys?
             [Question.DisorderedKeysRevealedKeyColor] = new()
             {
-                NeedsTranslation = true,
                 QuestionText = "Was war bei {0} die aufgedeckte Knopffarbe des {1}en Knopfes?",
                 Answers = new Dictionary<string, string>
                 {
@@ -2837,7 +2836,6 @@ namespace Souvenir
             // What was the revealed label color for the first key in Disordered Keys?
             [Question.DisorderedKeysRevealedLabelColor] = new()
             {
-                NeedsTranslation = true,
                 QuestionText = "Was war bei {0} die aufgedeckte Aufschriftfarbe des {1}en Knopfes?",
                 Answers = new Dictionary<string, string>
                 {
@@ -2853,7 +2851,6 @@ namespace Souvenir
             // What was the unrevealed key color for the first key in Disordered Keys?
             [Question.DisorderedKeysUnrevealedKeyColor] = new()
             {
-                NeedsTranslation = true,
                 QuestionText = "Was war bei {0} die unaufgedeckte Knopffarbe des {1}en Knopfes?",
                 Answers = new Dictionary<string, string>
                 {
@@ -2875,7 +2872,6 @@ namespace Souvenir
             // What was the unrevealed label color for the first key in Disordered Keys?
             [Question.DisorderedKeysUnrevealedLabelColor] = new()
             {
-                NeedsTranslation = true,
                 QuestionText = "Was war bei {0} die unaufgedeckte Aufschriftfarbe des {1}en Knopfes?",
                 Answers = new Dictionary<string, string>
                 {
@@ -2967,8 +2963,9 @@ namespace Souvenir
             // What was the screen color on the first stage of Double Color?
             [Question.DoubleColorColors] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the screen color on the {1} stage of {0}?",
+                Gender = Gender.Plural,
+                QuestionText = "Was war bei {0} die Farbe des Displays in der {1}en Stufe?",
+                ModuleName = "Doppelfarben",
                 Answers = new Dictionary<string, string>
                 {
                     ["Green"] = "Grün",
@@ -2984,12 +2981,13 @@ namespace Souvenir
             // What was the digit on the left display in Double Digits?
             [Question.DoubleDigitsDisplays] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the digit on the {1} display in {0}?",
+                Gender = Gender.Plural,
+                QuestionText = "Was war bei {0} die Ziffer auf dem {1} Display?",
+                ModuleName = "Doppelziffern",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["left"] = "left",
-                    ["right"] = "right",
+                    ["left"] = "linken",
+                    ["right"] = "rechten",
                 },
             },
 
@@ -2998,15 +2996,19 @@ namespace Souvenir
             // What was the starting key number in Double Expert?
             [Question.DoubleExpertStartingKeyNumber] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the starting key number in {0}?",
+                Gender = Gender.Masculine,
+                ModuleNameDative = "Doppelexperten",
+                QuestionText = "Was war bei {0} die anfängliche Schlüsselzahl?",
+                ModuleName = "Doppelexperte",
             },
             // What was the word you submitted in {0}?
             // What was the word you submitted in Double Expert?
             [Question.DoubleExpertSubmittedWord] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the word you submitted in {0}?",
+                Gender = Gender.Masculine,
+                ModuleNameDative = "Doppelexperten",
+                QuestionText = "Was war bei {0} das eingegebene Wort?",
+                ModuleName = "Doppelexperte",
             },
 
             // Double Listening
@@ -3014,8 +3016,8 @@ namespace Souvenir
             // What clip was played in Double Listening?
             [Question.DoubleListeningSounds] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What clip was played in {0}?",
+                QuestionText = "Welcher dieser Clips kam bei {0} vor?",
+                ModuleName = "Doppelt Zuhören",
             },
 
             // Double-Oh
@@ -3023,8 +3025,9 @@ namespace Souvenir
             // Which button was the submit button in Double-Oh?
             [Question.DoubleOhSubmitButton] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which button was the submit button in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welcher Knopf war bei {0} der Eingabeknopf?",
+                ModuleName = "Doppel-Null",
             },
 
             // Double Screen
@@ -3032,12 +3035,12 @@ namespace Souvenir
             // What color was the top screen in the first stage of Double Screen?
             [Question.DoubleScreenColors] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What color was the {1} screen in the {2} stage of {0}?",
+                QuestionText = "Welche Farbe war bei {0} auf dem {1} Display in der {2}en Stufe?",
+                ModuleName = "Doppel-Display",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "top",
-                    ["bottom"] = "bottom",
+                    ["top"] = "oberen",
+                    ["bottom"] = "unteren",
                 },
                 Answers = new Dictionary<string, string>
                 {
@@ -3053,15 +3056,17 @@ namespace Souvenir
             // Which of these symptoms was listed on Dr. Doctor?
             [Question.DrDoctorSymptoms] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which of these symptoms was listed on {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welches dieser Symptome war bei {0} aufgelistet?",
+                ModuleName = "Arztpraxis",
             },
             // Which of these diseases was listed on {0}, but not the one treated?
             // Which of these diseases was listed on Dr. Doctor, but not the one treated?
             [Question.DrDoctorDiseases] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which of these diseases was listed on {0}, but not the one treated?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welche dieser Krankheiten war bei {0} aufgelistet, aber nicht die behandelte?",
+                ModuleName = "Arztpraxis",
             },
 
             // Dreamcipher
@@ -3069,8 +3074,9 @@ namespace Souvenir
             // What was the decrypted word in Dreamcipher?
             [Question.DreamcipherWord] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the decrypted word in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Was war bei {0} das entschlüsselte Wort?",
+                ModuleName = "Traumschrift",
             },
 
             // The Duck
@@ -3078,8 +3084,10 @@ namespace Souvenir
             // What was the color of the curtain in The Duck?
             [Question.DuckCurtainColor] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the color of the curtain in {0}?",
+                Gender = Gender.Feminine,
+                ModuleNameWithThe = "Die Ente",
+                QuestionText = "Welche Farbe hatte bei {0} der Vorhang?",
+                ModuleName = "Ente",
                 Answers = new Dictionary<string, string>
                 {
                     ["blue"] = "blau",
