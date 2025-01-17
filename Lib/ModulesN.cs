@@ -208,6 +208,26 @@ public partial class SouvenirModule
             makeQuestion(Question.NeutralizationVolume, module, correctAnswers: new[] { acidVol.ToString() }));
     }
 
+    private IEnumerator<YieldInstruction> ProcessNextInLine(ModuleData module)
+    {
+        var comp = GetComponent(module, "NextInLine");
+        var color = GetIntField(comp, "CurrentColor").Get(min: 0, max: 7);
+
+        var hasStruck = false;
+        module.Module.OnStrike += () => hasStruck = true;
+
+        yield return WaitForSolve;
+
+        if (hasStruck)
+        {
+            legitimatelyNoQuestion(module, "No question for Next In Line because the module struck, so the first wire color may be irretrievable.");
+            yield break;
+        }
+
+        var colors = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Black", "White", "Gray" };
+        addQuestion(module, Question.NextInLineFirstWire, correctAnswers: new[] { colors[color] });
+    }
+
     private IEnumerator<YieldInstruction> ProcessNonverbalSimon(ModuleData module)
     {
         var comp = GetComponent(module, "NonverbalSimonHandler");

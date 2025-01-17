@@ -354,6 +354,7 @@ public partial class SouvenirModule
             ["necronomicon"] = (ProcessNecronomicon, "Necronomicon, The", "luisdiogo98"),
             ["Negativity"] = (ProcessNegativity, "Negativity", "VFlyer"),
             ["neutralization"] = (ProcessNeutralization, "Neutralization", "Timwi"),
+            ["NextInLine"] = (ProcessNextInLine, "Next In Line", "Anonymous"),
             ["nonverbalSimon"] = (ProcessNonverbalSimon, "❖", "Anonymous"),
             ["NotColoredSquaresModule"] = (ProcessNotColoredSquares, "Not Colored Squares", "Kuro"),
             ["NotColoredSwitchesModule"] = (ProcessNotColoredSwitches, "Not Colored Switches", "Quinn Wuest"),

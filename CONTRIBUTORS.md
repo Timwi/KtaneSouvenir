@@ -61,17 +61,17 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Colored Keys         │  Free Parking              │  Maze³             │  Reverse Morse      │  Vexillology
     Cube, The            │  Hexabutton, The           │  Mazematics        │  Simon Scrambles    │  Zoni
 
-## Implemented by Anonymous (43)
+## Implemented by Anonymous (44)
 
-    ↻↺                 │  Connected Monitors  │  Labyrinth, The      │  Pickup Identification  │  Stable Time Signatures
-    ❖                  │  Connection Check    │  Maritime Semaphore  │  Pointless Machines     │  Subbly Jubbly
-    1, 2, 3 Game, The  │  Double Arrows       │  Maroon Button, The  │  Polygons               │  Time Signatures
-    Bean Sprouts       │  Double Listening    │  MoneyGame           │  Q & A                  │  Unordered Keys
-    Beans              │  Double Screen       │  Naming Conventions  │  Red Button’t           │  Updog
-    Big Bean           │  Fuse Box, The       │  Not Password        │  RNG Crystal            │  Variety
-    Boomtar the Great  │  Ghost Movement      │  Not Red Arrows      │  Simon Smiles           │  X-Ring
-    Bottom Gear        │  Gyromaze            │  One Links To All    │  Simon Subdivides       │
-    Concentration      │  hexOrbits           │  Pentabutton, The    │  Smash, Marry, Kill     │
+    ↻↺                 │  Connected Monitors  │  Labyrinth, The      │  Pentabutton, The       │  Smash, Marry, Kill
+    ❖                  │  Connection Check    │  Maritime Semaphore  │  Pickup Identification  │  Stable Time Signatures
+    1, 2, 3 Game, The  │  Double Arrows       │  Maroon Button, The  │  Pointless Machines     │  Subbly Jubbly
+    Bean Sprouts       │  Double Listening    │  MoneyGame           │  Polygons               │  Time Signatures
+    Beans              │  Double Screen       │  Naming Conventions  │  Q & A                  │  Unordered Keys
+    Big Bean           │  Fuse Box, The       │  Next In Line        │  Red Button’t           │  Updog
+    Boomtar the Great  │  Ghost Movement      │  Not Password        │  RNG Crystal            │  Variety
+    Bottom Gear        │  Gyromaze            │  Not Red Arrows      │  Simon Smiles           │  X-Ring
+    Concentration      │  hexOrbits           │  One Links To All    │  Simon Subdivides       │
 
 ## Implemented by Hawker (40)
 

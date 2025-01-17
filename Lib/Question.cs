@@ -1865,6 +1865,9 @@
         [SouvenirQuestion("What was the acid’s volume in {0}?", "Neutralization", TwoColumns4Answers, "5", "10", "15", "20")]
         NeutralizationVolume,
 
+        [SouvenirQuestion("What color was the first wire in {0}?", "Next In Line", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Black", "White", "Gray", TranslateAnswers = true)]
+        NextInLineFirstWire,
+
         [SouvenirQuestion("Which button flashed in the {1} stage in {0}?", "❖", TwoColumns4Answers, IsEntireQuestionSprite = true, Type = AnswerType.Sprites, SpriteField = "NonverbalSimonSprites", ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         NonverbalSimonFlashes,
 

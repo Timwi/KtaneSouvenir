@@ -6529,6 +6529,26 @@ namespace Souvenir
                 ModuleName = "Нейтрализации",
             },
 
+            // Next In Line
+            // What color was the first wire in {0}?
+            // What color was the first wire in Next In Line?
+            [Question.NextInLineFirstWire] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What color was the first wire in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Orange"] = "Orange",
+                    ["Yellow"] = "Yellow",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Black"] = "Black",
+                    ["White"] = "White",
+                    ["Gray"] = "Gray",
+                },
+            },
+
             // ❖
             // Which button flashed in the {1} stage in {0}?
             // Which button flashed in the first stage in ❖?
