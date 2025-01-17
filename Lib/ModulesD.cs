@@ -566,13 +566,10 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var colorNames = new[] { "blue", "yellow", "green", "orange", "red" };
-        var approaches = new[] { "dove at the duck", "walked to the duck", "ran to the duck", "snuck up on the duck", "swam to the duck", "flew to the duck", "approached the duck with caution" };
         var curtainColor = colorNames[GetIntField(comp, "curtainColor").Get(min: 0, max: 4)];
-        var chosenApproach = approaches[GetIntField(comp, "correctApproach").Get(min: 0, max: 6)];
 
         addQuestions(
             module,
-            makeQuestion(Question.DuckApproach, module, correctAnswers: new[] { chosenApproach }),
             makeQuestion(Question.DuckCurtainColor, module, correctAnswers: new[] { curtainColor })
         );
     }

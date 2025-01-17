@@ -3103,23 +3103,6 @@ namespace Souvenir
             },
 
             // The Duck
-            // How did you approach the duck in {0}?
-            // How did you approach the duck in The Duck?
-            [Question.DuckApproach] = new()
-            {
-                Conjugation = Conjugation.GenitiveMascNeuter,
-                QuestionText = "Как вы встретились с уткой из {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["dove at the duck"] = "dove at the duck",
-                    ["walked to the duck"] = "walked to the duck",
-                    ["ran to the duck"] = "ran to the duck",
-                    ["snuck up on the duck"] = "snuck up on the duck",
-                    ["swam to the duck"] = "swam to the duck",
-                    ["flew to the duck"] = "flew to the duck",
-                    ["approached the duck with caution"] = "approached the duck with caution",
-                },
-            },
             // What was the color of the curtain in {0}?
             // What was the color of the curtain in The Duck?
             [Question.DuckCurtainColor] = new()
@@ -7561,46 +7544,12 @@ namespace Souvenir
             },
 
             // Password Destroyer
-            // What was the starting value when you solved {0}?
-            // What was the starting value when you solved Password Destroyer?
-            [Question.PasswordDestroyerStartingValue] = new()
-            {
-                QuestionText = "What was the raw value when you solved «{0}»?",
-            },
-            // What was the increase factor when you solved {0}?
-            // What was the increase factor when you solved Password Destroyer?
-            [Question.PasswordDestroyerIncreaseFactor] = new()
-            {
-                Conjugation = Conjugation.AccusativeMascNeuter,
-                QuestionText = "Чему был равен инкрементный фактор когда вы обезвредили {0}?",
-            },
-            // What was the TFA₁ value when you solved {0}?
-            // What was the TFA₁ value when you solved Password Destroyer?
-            [Question.PasswordDestroyerTF1] = new()
-            {
-                Conjugation = Conjugation.AccusativeMascNeuter,
-                QuestionText = "Чему было равно TFA₁ когда вы обезвредили {0}?",
-            },
-            // What was the TFA₂ value when you solved {0}?
-            // What was the TFA₂ value when you solved Password Destroyer?
-            [Question.PasswordDestroyerTF2] = new()
-            {
-                Conjugation = Conjugation.AccusativeMascNeuter,
-                QuestionText = "Чему было равно TFA₂ когда вы обезвредили {0}?",
-            },
             // What was the 2FAST™ value when you solved {0}?
             // What was the 2FAST™ value when you solved Password Destroyer?
             [Question.PasswordDestroyerTwoFactorV2] = new()
             {
                 Conjugation = Conjugation.AccusativeMascNeuter,
                 QuestionText = "Чему было равно 2FAST™ когда вы обезвредили {0}?",
-            },
-            // What was the percentage of solved modules used in the final calculation when you solved {0}?
-            // What was the percentage of solved modules used in the final calculation when you solved Password Destroyer?
-            [Question.PasswordDestroyerSolvePercentage] = new()
-            {
-                Conjugation = Conjugation.GenitiveMascNeuter,
-                QuestionText = "Чему был равен процент обезвреженных модулей в финальных вычислениях {0}?",
             },
 
             // Pattern Cube
@@ -7799,12 +7748,6 @@ namespace Souvenir
             [Question.PlaceholderTalkOrdinal] = new()
             {
                 QuestionText = "Какая была вторая половина первой фразы {0}?",
-            },
-            // What was the second phrase’s calculated value in {0}?
-            // What was the second phrase’s calculated value in Placeholder Talk?
-            [Question.PlaceholderTalkSecondPhrase] = new()
-            {
-                QuestionText = "Какое было итоговое значение у второй фразы {0}?",
             },
 
             // Placement Roulette

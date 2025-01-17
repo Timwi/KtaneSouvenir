@@ -824,8 +824,6 @@
         [SouvenirQuestion("What was the decrypted word in {0}?", "Dreamcipher", OneColumn4Answers, ExampleAnswers = new[] { "asparagus", "demonstration", "fossilizing", "foursquare", "grinning", "jumpiness", "pasteboard", "prosecution", "sarcastic", "transition" })]
         DreamcipherWord,
 
-        [SouvenirQuestion("How did you approach the duck in {0}?", "Duck", OneColumn4Answers, "dove at the duck", "walked to the duck", "ran to the duck", "snuck up on the duck", "swam to the duck", "flew to the duck", "approached the duck with caution", AddThe = true, TranslateAnswers = true)]
-        DuckApproach,
         [SouvenirQuestion("What was the color of the curtain in {0}?", "Duck", TwoColumns4Answers, "blue", "yellow", "green", "orange", "red", AddThe = true, TranslateAnswers = true)]
         DuckCurtainColor,
 
@@ -2110,22 +2108,9 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         PassportControlPassenger,
 
-        [SouvenirQuestion("What was the starting value when you solved {0}?", "Password Destroyer", TwoColumns4Answers)]
-        [AnswerGenerator.Integers(1000000, 9999999)]
-        PasswordDestroyerStartingValue,
-        [SouvenirQuestion("What was the increase factor when you solved {0}?", "Password Destroyer", TwoColumns4Answers)]
-        [AnswerGenerator.Integers(-1000000, 1000000)]
-        PasswordDestroyerIncreaseFactor,
-        [SouvenirQuestion("What was the TFA₁ value when you solved {0}?", "Password Destroyer", ThreeColumns6Answers)]
-        [AnswerGenerator.Integers(0, 999)]
-        PasswordDestroyerTF1,
-        [SouvenirQuestion("What was the TFA₂ value when you solved {0}?", "Password Destroyer", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9")]
-        PasswordDestroyerTF2,
         [SouvenirQuestion("What was the 2FAST™ value when you solved {0}?", "Password Destroyer", ThreeColumns6Answers)]
         [AnswerGenerator.Integers(100100, 999999)]
         PasswordDestroyerTwoFactorV2,
-        [SouvenirQuestion("What was the percentage of solved modules used in the final calculation when you solved {0}?", "Password Destroyer", ThreeColumns6Answers, "1%", "2%", "3%", "4%", "5%", "6%", "7%", "8%", "9%", "10%", "11%", "12%", "13%", "14%", "15%", "16%", "17%", "18%", "19%", "20%", "21%", "22%", "23%", "24%", "25%", "26%", "27%", "28%", "29%", "30%", "31%", "32%", "33%", "34%", "35%", "36%", "37%", "38%", "39%", "40%", "41%", "42%", "43%", "44%", "45%", "46%", "47%", "48%", "49%", "50%", "51%", "52%", "53%", "54%", "55%", "56%", "57%", "58%", "59%", "60%", "61%", "62%", "63%", "64%", "65%", "66%", "67%", "68%", "69%", "70%", "71%", "72%", "73%", "74%", "75%", "76%", "77%", "78%", "79%", "80%", "81%", "82%", "83%", "84%", "85%", "86%", "87%", "88%", "89%", "90%", "91%", "92%", "93%", "94%", "95%", "96%", "97%", "98%", "99%")]
-        PasswordDestroyerSolvePercentage,
 
         [SouvenirQuestion("Which symbol was highlighted in {0}?", "Pattern Cube", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "PatternCubeSprites")]
         PatternCubeHighlightedSymbol,
@@ -2181,9 +2166,6 @@
         PlaceholderTalkFirstPhrase,
         [SouvenirQuestion("What was the last half of the first phrase in {0}?", "Placeholder Talk", TwoColumns4Answers, ExampleAnswers = new[] { "", "FIRST POS.", "SECOND POS.", "THIRD POS.", "FOURTH POS.", "FIFTH POS.", "MILLIONTH POS.", "BILLIONTH POS.", "LAST POS.", "AN ANSWER" })]
         PlaceholderTalkOrdinal,
-        [SouvenirQuestion("What was the second phrase’s calculated value in {0}?", "Placeholder Talk", ThreeColumns6Answers)]
-        [AnswerGenerator.Integers(1, 8)]
-        PlaceholderTalkSecondPhrase,
 
         [SouvenirQuestion("What was the character listed on the information display in {0}?", "Placement Roulette", TwoColumns4Answers, "Baby Mario", "Baby Luigi", "Baby Peach", "Baby Daisy", "Toad", "Toadette", "Koopa Troopa", "Dry Bones", "Mario", "Luigi", "Peach", "Daisy", "Yoshi", "Birdo", "Diddy Kong", "Bowser Jr.", "Mii", "Wario", "Waluigi", "Donkey Kong", "Bowser", "King Boo", "Rosalina", "Funky Kong", "Dry Bowser")]
         PlacementRouletteChar,

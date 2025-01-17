@@ -2983,24 +2983,6 @@ namespace Souvenir
             },
 
             // The Duck
-            // How did you approach the duck in {0}?
-            // How did you approach the duck in The Duck?
-            [Question.DuckApproach] = new()
-            {
-                NeedsTranslation = true,
-                QuestionText = "{0}にいたアヒルにどう接した？",
-                ModuleName = "アヒル",
-                Answers = new Dictionary<string, string>
-                {
-                    ["dove at the duck"] = "dove at the duck",
-                    ["walked to the duck"] = "walked to the duck",
-                    ["ran to the duck"] = "ran to the duck",
-                    ["snuck up on the duck"] = "snuck up on the duck",
-                    ["swam to the duck"] = "swam to the duck",
-                    ["flew to the duck"] = "flew to the duck",
-                    ["approached the duck with caution"] = "approached the duck with caution",
-                },
-            },
             // What was the color of the curtain in {0}?
             // What was the color of the curtain in The Duck?
             [Question.DuckCurtainColor] = new()
@@ -7402,46 +7384,11 @@ namespace Souvenir
             },
 
             // Password Destroyer
-            // What was the starting value when you solved {0}?
-            // What was the starting value when you solved Password Destroyer?
-            [Question.PasswordDestroyerStartingValue] = new()
-            {
-                QuestionText = "{0}を解除した時点の元の値は？",
-                ModuleName = "パスワード破壊",
-            },
-            // What was the increase factor when you solved {0}?
-            // What was the increase factor when you solved Password Destroyer?
-            [Question.PasswordDestroyerIncreaseFactor] = new()
-            {
-                QuestionText = "{0}を解除した時点の倍率は？",
-                ModuleName = "パスワード破壊",
-            },
-            // What was the TFA₁ value when you solved {0}?
-            // What was the TFA₁ value when you solved Password Destroyer?
-            [Question.PasswordDestroyerTF1] = new()
-            {
-                QuestionText = "{0}を解除した時点のTFA₁は？",
-                ModuleName = "パスワード破壊",
-            },
-            // What was the TFA₂ value when you solved {0}?
-            // What was the TFA₂ value when you solved Password Destroyer?
-            [Question.PasswordDestroyerTF2] = new()
-            {
-                QuestionText = "{0}を解除した時点のTFA₂は？",
-                ModuleName = "パスワード破壊",
-            },
             // What was the 2FAST™ value when you solved {0}?
             // What was the 2FAST™ value when you solved Password Destroyer?
             [Question.PasswordDestroyerTwoFactorV2] = new()
             {
                 QuestionText = "{0}を解除した時点の2FAST™の値は？",
-                ModuleName = "パスワード破壊",
-            },
-            // What was the percentage of solved modules used in the final calculation when you solved {0}?
-            // What was the percentage of solved modules used in the final calculation when you solved Password Destroyer?
-            [Question.PasswordDestroyerSolvePercentage] = new()
-            {
-                QuestionText = "{0}を解除した時点の解除済みモジュールの割合は？",
                 ModuleName = "パスワード破壊",
             },
 
@@ -7642,13 +7589,6 @@ namespace Souvenir
             [Question.PlaceholderTalkOrdinal] = new()
             {
                 QuestionText = "{0}の一つ目のフレーズの後半は？",
-                ModuleName = "プレースホルダートーク",
-            },
-            // What was the second phrase’s calculated value in {0}?
-            // What was the second phrase’s calculated value in Placeholder Talk?
-            [Question.PlaceholderTalkSecondPhrase] = new()
-            {
-                QuestionText = "{0}の二つ目のフレーズから得られる値は？",
                 ModuleName = "プレースホルダートーク",
             },
 
