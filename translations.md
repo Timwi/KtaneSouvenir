@@ -95,11 +95,11 @@ You may wish to look at an existing translation file to follow along with as an 
 
 Each question has an entry containing the following properties:
 
-	- `string QuestionText` — The question itself. This will contain things like {0}, {1}, etc., where information is inserted during the game. The comment above the question entry gives one example of such a replacement so you can tell which number will get replaced with which information.
-	- `string ModuleName` — the name of the module without “The”. This is usually what {0} is replaced with in the question. If your language uses definite articles, you might need to include an extra field in the `TranslationInfo_xx` class to accommodate this; see the German translation for an example, where it is called `ModuleNameWithThe`.
-	- `Dictionary<string, string> FormatArgs` — contains the strings that {1}, {2}, etc. are replaced with.	Keys are in English, values are the corresponding translations.
-	- `Dictionary<string, string> Answers` — contains the answers the user can select. Keys are in English, values are the corresponding translations.
-	- `Dictionary<string, string> TranslatableStrings` — contains some additional strings sometimes used when constructing a question. Keys are in English, values are the corresponding translations.
+- `string QuestionText` — The question itself. This will contain things like {0}, {1}, etc., where information is inserted during the game. The comment above the question entry gives one example of such a replacement so you can tell which number will get replaced with which information.
+- `string ModuleName` — the name of the module without “The”. This is usually what {0} is replaced with in the question. If your language uses definite articles, you might need to include an extra field in the `TranslationInfo_xx` class to accommodate this; see the German translation for an example, where it is called `ModuleNameWithThe`.
+- `Dictionary<string, string> FormatArgs` — contains the strings that {1}, {2}, etc. are replaced with. Keys are in English, values are the corresponding translations.
+- `Dictionary<string, string> Answers` — contains the answers the user can select. Keys are in English, values are the corresponding translations.
+- `Dictionary<string, string> TranslatableStrings` — contains some additional strings sometimes used when constructing a question. Keys are in English, values are the corresponding translations.
 
 Note:
 
@@ -112,9 +112,9 @@ The translation tool (the one that automatically populates the translation file 
 This marking is done in `Question.cs`. Let’s take `RuleOfThreeCoordinates` as an example:
 
 ```cs
-	[SouvenirQuestion("What was the {1} coordinate of the {2} vertex in {0}?", "Rule of Three", ThreeColumns6Answers,
-		ExampleFormatArguments = new[] { "X", "red", "Y", "yellow", "Z", "blue" }, ExampleFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { false, true })]
-	RuleOfThreeCoordinates,
+[SouvenirQuestion("What was the {1} coordinate of the {2} vertex in {0}?", "Rule of Three", ThreeColumns6Answers,
+	ExampleFormatArguments = new[] { "X", "red", "Y", "yellow", "Z", "blue" }, ExampleFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { false, true })]
+RuleOfThreeCoordinates,
 ```
 
 The important bit is the `TranslateFormatArgs = new[] { false, true }`. It needs to follow these rules:
