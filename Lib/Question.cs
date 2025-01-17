@@ -526,10 +526,8 @@
         [AnswerGenerator.Strings(3, "0123456789")]
         ColorAdditionNumbers,
 
-        [SouvenirQuestion("Which channel was mangled in {0}?", "Color Braille", TwoColumns4Answers, "Red", "Green", "Blue", "Yellow", TranslateAnswers = true)]
-        ColorBrailleChannel,
-        [SouvenirQuestion("What mangling was applied in {0}?", "Color Braille", OneColumn4Answers, "Top row shifted to the right", "Top row shifted to the left", "Middle row shifted to the right", "Middle row shifted to the left", "Bottom row shifted to the right", "Bottom row shifted to the left", "Each letter upside-down", "Each letter horizontally flipped", "Each letter vertically flipped", "Dots are inverted", TranslateAnswers = true)]
-        ColorBrailleMangling,
+        [SouvenirQuestion("What color was this dot in {0}?", "Color Braille", ThreeColumns6Answers, "Black", "Blue", "Green", "Cyan", "Red", "Magenta", "Yellow", "White", TranslateAnswers = true, UsesQuestionSprite = true)]
+        ColorBrailleColor,
 
         [SouvenirQuestion("What was the {1}-stage indicator pattern in {0}?", "Color Decoding", TwoColumns4Answers, "Checkered", "Horizontal", "Vertical", "Solid", TranslateAnswers = true,
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]

@@ -1784,38 +1784,22 @@ namespace Souvenir
             },
 
             // Color Braille
-            // Which channel was mangled in {0}?
-            // Which channel was mangled in Color Braille?
-            [Question.ColorBrailleChannel] = new()
+            // What color was this dot in {0}?
+            // What color was this dot in Color Braille?
+            [Question.ColorBrailleColor] = new()
             {
-                QuestionText = "{0}で破損していた色要素は？",
-                ModuleName = "色付き点字",
+                NeedsTranslation = true,
+                QuestionText = "What color was this dot in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "赤",
-                    ["Green"] = "緑",
-                    ["Blue"] = "青",
-                    ["Yellow"] = "黄",
-                },
-            },
-            // What mangling was applied in {0}?
-            // What mangling was applied in Color Braille?
-            [Question.ColorBrailleMangling] = new()
-            {
-                QuestionText = "{0}で適用された破損は？",
-                ModuleName = "色付き点字",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Top row shifted to the right"] = "上の段が右にシフト",
-                    ["Top row shifted to the left"] = "上の段が左にシフト",
-                    ["Middle row shifted to the right"] = "中央の段が右にシフト",
-                    ["Middle row shifted to the left"] = "中央の段が左にシフト",
-                    ["Bottom row shifted to the right"] = "下の段が右にシフト",
-                    ["Bottom row shifted to the left"] = "下の段が左にシフト",
-                    ["Each letter upside-down"] = "各点字が上下逆さま",
-                    ["Each letter horizontally flipped"] = "各点字を左右反転",
-                    ["Each letter vertically flipped"] = "各点字を上下反転",
-                    ["Dots are inverted"] = "点自体が反転",
+                    ["Black"] = "Black",
+                    ["Blue"] = "Blue",
+                    ["Green"] = "Green",
+                    ["Cyan"] = "Cyan",
+                    ["Red"] = "Red",
+                    ["Magenta"] = "Magenta",
+                    ["Yellow"] = "Yellow",
+                    ["White"] = "White",
                 },
             },
 

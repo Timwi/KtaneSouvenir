@@ -1820,48 +1820,32 @@ namespace Souvenir
             // What was red’s number in Color Addition?
             [Question.ColorAdditionNumbers] = new()
             {
-                QuestionText = "What was {1}'s number in {0}?",
+                QuestionText = "Was war bei {0} die Zahl im {1}-Kanal?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "rot",
-                    ["green"] = "grün",
-                    ["blue"] = "blau",
+                    ["red"] = "Rot",
+                    ["green"] = "Grün",
+                    ["blue"] = "Blau",
                 },
             },
 
             // Color Braille
-            // Which channel was mangled in {0}?
-            // Which channel was mangled in Color Braille?
-            [Question.ColorBrailleChannel] = new()
+            // What color was this dot in {0}?
+            // What color was this dot in Color Braille?
+            [Question.ColorBrailleColor] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which channel was mangled in {0}?",
+                QuestionText = "Welche Farbe hatte dieser Punkt bei {0}?",
+                ModuleName = "Farbbraille",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Rot",
-                    ["Green"] = "Grün",
+                    ["Black"] = "Schwarz",
                     ["Blue"] = "Blau",
+                    ["Green"] = "Grün",
+                    ["Cyan"] = "Türkis",
+                    ["Red"] = "Rot",
+                    ["Magenta"] = "Magenta",
                     ["Yellow"] = "Gelb",
-                },
-            },
-            // What mangling was applied in {0}?
-            // What mangling was applied in Color Braille?
-            [Question.ColorBrailleMangling] = new()
-            {
-                NeedsTranslation = true,
-                QuestionText = "What mangling was applied in {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Top row shifted to the right"] = "Top row shifted to the right",
-                    ["Top row shifted to the left"] = "Top row shifted to the left",
-                    ["Middle row shifted to the right"] = "Middle row shifted to the right",
-                    ["Middle row shifted to the left"] = "Middle row shifted to the left",
-                    ["Bottom row shifted to the right"] = "Bottom row shifted to the right",
-                    ["Bottom row shifted to the left"] = "Bottom row shifted to the left",
-                    ["Each letter upside-down"] = "Each letter upside-down",
-                    ["Each letter horizontally flipped"] = "Each letter horizontally flipped",
-                    ["Each letter vertically flipped"] = "Each letter vertically flipped",
-                    ["Dots are inverted"] = "Dots are inverted",
+                    ["White"] = "Weiß",
                 },
             },
 

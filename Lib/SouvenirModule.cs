@@ -623,22 +623,12 @@ public partial class SouvenirModule : MonoBehaviour
 
     private static readonly double[][] _acceptableWidthsWithoutQuestionSprite = Ut.NewArray(
         // First value is y (vertical text advancement), second value is width of the Surface mesh at this y
-        new[] { 0.834 - 0.834, 0.834 + 0.3556 },
-        new[] { 0.834 - 0.7628, 0.834 + 0.424 },
-        new[] { 0.834 - 0.6864, 0.834 + 0.424 },
-        new[] { 0.834 - 0.528, 0.834 + 0.5102 },
-        new[] { 0.834 - 0.4452, 0.834 + 0.6618 },
-        new[] { 0.834 - 0.4452, 0.834 + 0.7745 },
-        new[] { 0.834 - 0.391, 0.834 + 0.834 });
-
-    private static readonly double[][] _acceptableWidthsWithQuestionSprite = Ut.NewArray(
-        // First value is y (vertical text advancement), second value is width of the Surface mesh at this y
-        new[] { 0.834 - 0.834, 0.834 + 0.3556 },
-        new[] { 0.834 - 0.7628, 0.834 + 0.424 },
-        new[] { 0.834 - 0.6864, 0.834 + 0.424 },
-        new[] { 0.834 - 0.528, 0.834 + 0.5102 },
-        new[] { 0.834 + 0.255, 0.834 + 0.5102 },
-        new[] { 0.834 + 0.256, 0.834 + 0.834 });
+        new[] { 0, 1.1896 },
+        new[] { 0.0712, 1.258 },
+        new[] { 0.1476, 1.258 },
+        new[] { 0.306, 1.3442 },
+        new[] { 0.3888, 1.4958 },
+        new[] { 0.443, 1.668 });
 
     public void SetWordWrappedText(string text, double desiredHeightFactor, bool useQuestionSprite)
     {
@@ -648,7 +638,19 @@ public partial class SouvenirModule : MonoBehaviour
         TextRenderer.material.mainTexture = FontTextures[_translation?.DefaultFontIndex ?? 0];
         TextMesh.lineSpacing = _translation?.LineSpacing ?? 0.525f;
 
-        var acceptableWidths = useQuestionSprite ? _acceptableWidthsWithQuestionSprite : _acceptableWidthsWithoutQuestionSprite;
+        var acceptableWidths = _acceptableWidthsWithoutQuestionSprite;
+        if (useQuestionSprite)
+        {
+            acceptableWidths = Ut.NewArray(
+                new[] { 0, 1.1896 },
+                new[] { 0.0712, 1.258 },
+                new[] { 0.1476, 1.258 },
+                new[] { 0.306, 1.3442 },
+                new[] { 0.443, 1.668 },
+                new[] { 0.549, 1.668 },
+                new[] { 0.55, 1.6 - .874 * QuestionSprite.sprite.rect.width / QuestionSprite.sprite.pixelsPerUnit });
+        }
+
         var low = 1;
         var high = 256;
         var desiredHeight = desiredHeightFactor * SurfaceSizeFactor;
@@ -664,7 +666,7 @@ public partial class SouvenirModule : MonoBehaviour
             TextMesh.text = "\u00a0";
             var size = TextRenderer.bounds.size;
             var widthOfASpace = size.x;
-            var heightOfALine = size.z;
+            var heightOfALine = size.z / SurfaceSizeFactor;
             var wrapWidths = new List<double>();
 
             var wrappedSB = new StringBuilder();
@@ -673,7 +675,7 @@ public partial class SouvenirModule : MonoBehaviour
                 text,
                 line =>
                 {
-                    var y = line * heightOfALine / SurfaceSizeFactor;
+                    var y = line * heightOfALine;
                     if (line < wrapWidths.Count)
                         return wrapWidths[line];
                     while (wrapWidths.Count < line)
@@ -686,7 +688,19 @@ public partial class SouvenirModule : MonoBehaviour
                     else
                     {
                         var lambda = (y - acceptableWidths[i - 1][0]) / (acceptableWidths[i][0] - acceptableWidths[i - 1][0]);
-                        wrapWidths.Add((acceptableWidths[i - 1][1] * (1 - lambda) + acceptableWidths[i][1] * lambda) * SurfaceSizeFactor);
+                        var acceptableWidth = (acceptableWidths[i - 1][1] * (1 - lambda) + acceptableWidths[i][1] * lambda) * SurfaceSizeFactor;
+                        var j = i;
+                        while (j < acceptableWidths.Length && acceptableWidths[j][0] < y + heightOfALine)
+                        {
+                            acceptableWidth = Math.Min(acceptableWidth, acceptableWidths[j][1] * SurfaceSizeFactor);
+                            j++;
+                        }
+                        if (j < acceptableWidths.Length)
+                        {
+                            var lambda2 = (y + heightOfALine - acceptableWidths[j - 1][0]) / (acceptableWidths[j][0] - acceptableWidths[j - 1][0]);
+                            acceptableWidth = Math.Min(acceptableWidth, (acceptableWidths[j - 1][1] * (1 - lambda2) + acceptableWidths[j][1] * lambda2) * SurfaceSizeFactor);
+                        }
+                        wrapWidths.Add(acceptableWidth);
                     }
 
                     return wrapWidths[line];

@@ -1870,38 +1870,22 @@ namespace Souvenir
             },
 
             // Color Braille
-            // Which channel was mangled in {0}?
-            // Which channel was mangled in Color Braille?
-            [Question.ColorBrailleChannel] = new()
+            // What color was this dot in {0}?
+            // What color was this dot in Color Braille?
+            [Question.ColorBrailleColor] = new()
             {
-                QuestionText = "Какой канал был повреждён {0}?",
-                ModuleName = "Цветном шрифте Брайля",
+                NeedsTranslation = true,
+                QuestionText = "What color was this dot in {0}?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Красный",
-                    ["Green"] = "Зелёный",
-                    ["Blue"] = "Синий",
-                    ["Yellow"] = "Жёлтый",
-                },
-            },
-            // What mangling was applied in {0}?
-            // What mangling was applied in Color Braille?
-            [Question.ColorBrailleMangling] = new()
-            {
-                QuestionText = "Какая модификация была применена {0}?",
-                ModuleName = "Цветном шрифте Брайля",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Top row shifted to the right"] = "Верхний ряд смещён вправо",
-                    ["Top row shifted to the left"] = "Верхний ряд смещён влево",
-                    ["Middle row shifted to the right"] = "Средний ряд смещён вправо",
-                    ["Middle row shifted to the left"] = "Средний ряд смещён влево",
-                    ["Bottom row shifted to the right"] = "Нижний ряд смещён вправо",
-                    ["Bottom row shifted to the left"] = "Нижний ряд смещён влево",
-                    ["Each letter upside-down"] = "Каждая буква вверх ногами",
-                    ["Each letter horizontally flipped"] = "Каждая буква отражена по горизонтали",
-                    ["Each letter vertically flipped"] = "Каждая буква отражена по вертикали",
-                    ["Dots are inverted"] = "Точки инвертированы",
+                    ["Black"] = "Black",
+                    ["Blue"] = "Blue",
+                    ["Green"] = "Green",
+                    ["Cyan"] = "Cyan",
+                    ["Red"] = "Red",
+                    ["Magenta"] = "Magenta",
+                    ["Yellow"] = "Yellow",
+                    ["White"] = "White",
                 },
             },
 
