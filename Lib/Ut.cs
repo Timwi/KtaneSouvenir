@@ -492,5 +492,64 @@ namespace Souvenir
                 _ => $"{{{value.GetType().FullName}|{value}}}"
             };
         }
+
+        public static void UpdateChildren(this KMSelectable selectable, int childRowLength, params KMSelectable[] children)
+        {
+            selectable.Children = children;
+            selectable.ChildRowLength = childRowLength;
+            selectable.UpdateChildrenProperly();
+        }
+
+        private static Type ModSelectableType;
+        private static MethodInfo CopySettingsFromProxyMethod;
+        public static void UpdateChildrenProperly(this KMSelectable selectable)
+        {
+            if (selectable == null)
+                return;
+            if (Application.isEditor)
+            {
+                selectable.UpdateChildren();
+                return;
+            }
+            if (ModSelectableType == null)
+                InitializeUpdateSettings();
+            selectable.UpdateSettings();
+            selectable.UpdateChildren();
+        }
+        private static void UpdateSettings(this KMSelectable selectable)
+        {
+            if (selectable != null && CopySettingsFromProxyMethod != null)
+                CopySettingsFromProxyMethod.Invoke(
+                    selectable.GetComponent(ModSelectableType) ?? selectable.gameObject.AddComponent(ModSelectableType),
+                    new object[0]);
+        }
+        private static void InitializeUpdateSettings()
+        {
+            static IEnumerable<Type> GetSafeTypes(Assembly assembly)
+            {
+                try
+                {
+                    return assembly.GetTypes();
+                }
+                catch (ReflectionTypeLoadException e)
+                {
+                    return e.Types.Where(x => x != null);
+                }
+                catch (Exception)
+                {
+                    return new List<Type>();
+                }
+            }
+            ModSelectableType = AppDomain
+                .CurrentDomain
+                .GetAssemblies()
+                .SelectMany(a => GetSafeTypes(a))
+                .FirstOrDefault(t => t.FullName != null
+                    && t.FullName.Equals("ModSelectable")
+                    && t.Assembly.GetName().Name.Equals("Assembly-CSharp"));
+            if (ModSelectableType != null)
+                CopySettingsFromProxyMethod =
+                    ModSelectableType.GetMethod("CopySettingsFromProxy", BindingFlags.Public | BindingFlags.Instance);
+        }
     }
 }

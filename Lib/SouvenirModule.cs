@@ -21,6 +21,7 @@ public partial class SouvenirModule : MonoBehaviour
     public KMBombModule Module;
     public KMAudio Audio;
     public KMBossModule BossModule;
+    public KMSelectable RootSelectable;
     public KMSelectable[] Answers;
     public GameObject AnswersParent;
     public GameObject[] TpNumbers;
@@ -1318,7 +1319,7 @@ public partial class SouvenirModule : MonoBehaviour
         if (_currentQuestion.Answers is QandA.AudioAnswerSet audio && Regex.IsMatch(command.ToLowerInvariant(), @"\A\s*cycle\s*\z"))
         {
             yield return null;
-            for (int i = 0; i < audio.NumAnswers; i++)
+            for (int i = 0; i < audio.NumAnswersAllowed; i++)
             {
                 float startTime = Time.time;
                 float endTime = startTime + audio.PlaySound(i);

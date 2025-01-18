@@ -262,6 +262,7 @@ MonoBehaviour:
   Module: {fileID: 11429752}
   Audio: {fileID: 11496072}
   BossModule: {fileID: 114880811013771744}
+  RootSelectable: {fileID: 11420650}
   Answers:
   - {fileID: 114000014135153358}
   - {fileID: 114000013579694808}

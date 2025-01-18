@@ -26,7 +26,7 @@ namespace Souvenir
         public Question Question { get; private set; }
         public string ModuleNameWithThe { get; private set; }
         public int CorrectIndex { get; private set; }
-        public int NumAnswers => _answerSet.NumAnswers;
+        public int NumAnswers => _answerSet.NumAnswersAllowed;
 
         public string DebugString => $"{_question.DebugText} — {DebugAnswers.Select((a, ix) => string.Format(ix == CorrectIndex ? "[_{0}_]" : "{0}", a)).JoinString(" | ")}";
         public IEnumerable<string> DebugAnswers => _answerSet.DebugAnswers;
@@ -102,11 +102,12 @@ namespace Souvenir
 
             protected AnswerSet(int numAnswers, AnswerLayout layout)
             {
-                NumAnswers = numAnswers;
+                NumAnswersAllowed = numAnswers;
                 _layout = layout;
             }
 
-            public int NumAnswers { get; private set; } // must be 4 or 6
+            public int NumAnswersAllowed { get; private set; } // must be 4 or 6
+            protected abstract int NumAnswersProvided { get; }
             public abstract IEnumerable<string> DebugAnswers { get; }
 
             public abstract void BlinkAnswer(bool on, SouvenirModule souvenir, int answerIndex);
@@ -131,6 +132,8 @@ namespace Souvenir
                     getZ: i => -17f + 5 * (3 - i),
                     boxCenter: new Vector3(17, 0, 0),
                     boxSize: new Vector3(38, 5, 3));
+
+                SetSelectableChildren(souvenir, rowLength: 1, 0, 1, 2, 3, 4, 5);
             }
 
             protected virtual void SetUpTwoColumnAnswers(SouvenirModule souvenir)
@@ -140,6 +143,11 @@ namespace Souvenir
                     getZ: i => -16.25f + _multiColumnVerticalSpacing * (1 - i % 2),
                     boxCenter: new Vector3(8, 0, 0),
                     boxSize: new Vector3(19, 6, 3));
+
+                if (Application.isEditor)
+                    SetSelectableChildren(souvenir, rowLength: 3, 0, 2, 4, 1, 3, 5);
+                else
+                    SetSelectableChildren(souvenir, rowLength: 2, 0, 2, 1, 3);
             }
 
             protected virtual void SetUpThreeColumnAnswers(SouvenirModule souvenir)
@@ -149,13 +157,15 @@ namespace Souvenir
                     getZ: i => -16.25f + _multiColumnVerticalSpacing * (1 - i % 2),
                     boxCenter: new Vector3(5, 0, 0),
                     boxSize: new Vector3(13, 6, 3));
+
+                SetSelectableChildren(souvenir, rowLength: 3, 0, 2, 4, 1, 3, 5);
             }
 
             protected void SetupAnswers(SouvenirModule souvenir, Mesh highlightMesh, Func<int, float> getX, Func<int, float> getZ, Vector3 boxCenter, Vector3 boxSize)
             {
                 for (int i = 0; i < souvenir.Answers.Length; i++)
                 {
-                    souvenir.Answers[i].gameObject.SetActive(Application.isEditor || i < NumAnswers);
+                    souvenir.Answers[i].gameObject.SetActive(Application.isEditor || i < NumAnswersAllowed);
                     souvenir.Answers[i].transform.Find("SpriteHolder").gameObject.SetActive(false);
                     souvenir.Answers[i].transform.Find("AnswerText").gameObject.SetActive(false);
                     souvenir.Answers[i].transform.Find("PlayHead").gameObject.SetActive(false);
@@ -170,6 +180,13 @@ namespace Souvenir
                     souvenir.Answers[i].GetComponent<BoxCollider>().size = boxSize;
                 }
             }
+
+            protected void SetSelectableChildren(SouvenirModule souvenir, int rowLength, params int[] order) =>
+                souvenir
+                    .RootSelectable
+                    .UpdateChildren(rowLength, order
+                        .Select(o => o < NumAnswersProvided || Application.isEditor ? souvenir.Answers[o] : null)
+                        .ToArray());
 
             // Can return true to indicate Souvenir should skip normal button handling.
             public virtual bool OnPress(int index)
@@ -199,6 +216,7 @@ namespace Souvenir
             }
 
             public override IEnumerable<string> DebugAnswers => _answers;
+            protected override int NumAnswersProvided => _answers.Length;
 
             public override void BlinkAnswer(bool on, SouvenirModule souvenir, int answerIndex)
             {
@@ -244,6 +262,7 @@ namespace Souvenir
             }
 
             public override IEnumerable<string> DebugAnswers => _answers.Select(a => a.name);
+            protected override int NumAnswersProvided => _answers.Length;
 
             public override void BlinkAnswer(bool on, SouvenirModule souvenir, int answerIndex)
             {
@@ -307,7 +326,7 @@ namespace Souvenir
 
             public override bool OnPress(int index)
             {
-                if (index == _selected || index > NumAnswers)
+                if (index == _selected || index > NumAnswersAllowed)
                 {
                     StopSound();
                     return false;
