@@ -473,7 +473,7 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         ChallengeAndContactAnswers,
 
-        [SouvenirQuestion("What was the {1} character in {0}?", "Character Codes", ThreeColumns6Answers, ExampleAnswers = new[] { "♥", "♣", "•" },
+        [SouvenirQuestion("What was the {1} character in {0}?", "Character Codes", ThreeColumns6Answers, ExampleAnswers = new[] { "♥", "♣", "•", "☑", "☣", "Ϣ" },
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         CharacterCodesCharacter,
 
