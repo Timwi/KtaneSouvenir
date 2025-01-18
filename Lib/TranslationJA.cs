@@ -4751,6 +4751,22 @@ namespace Souvenir
                 ModuleName = "キーワード",
             },
 
+            // Kidney Beans
+            // What color was this bean in {0}?
+            // What color was this bean in Kidney Beans?
+            [Question.KidneyBeansColor] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What color was this bean in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Maroon"] = "Maroon",
+                    ["Dark Red"] = "Dark Red",
+                    ["Light Red"] = "Light Red",
+                },
+            },
+
             // Know Your Way
             // Which way was the arrow pointing in {0}?
             // Which way was the arrow pointing in Know Your Way?

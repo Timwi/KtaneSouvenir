@@ -1406,6 +1406,9 @@
         [SouvenirQuestion("What were the first four letters on the display in {0}?", "Keywords", ThreeColumns6Answers, ExampleAnswers = new[] { "abvo", "pola", "drea", "buew", "utre", "oidy" })]
         KeywordsDisplayedKey,
 
+        [SouvenirQuestion("What color was this bean in {0}?", "Kidney Beans", TwoColumns4Answers, "Red", "Maroon", "Dark Red", "Light Red", UsesQuestionSprite = true, TranslateAnswers = true)]
+        KidneyBeansColor,
+
         [SouvenirQuestion("Which way was the arrow pointing in {0}?", "Know Your Way", TwoColumns4Answers, "Up", "Down", "Left", "Right", TranslateAnswers = true)]
         KnowYourWayArrow,
         [SouvenirQuestion("Which LED was green in {0}?", "Know Your Way", TwoColumns4Answers, "Top", "Bottom", "Right", "Left", TranslateAnswers = true)]
