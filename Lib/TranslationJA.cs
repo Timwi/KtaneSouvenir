@@ -1172,6 +1172,15 @@ namespace Souvenir
                 ModuleName = "爆弾拡散",
             },
 
+            // Boob Tube
+            // Which word was shown on {0}?
+            // Which word was shown on Boob Tube?
+            [Question.BoobTubeWord] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which word was shown on {0}?",
+            },
+
             // Book of Mario
             // Who said the {1} quote in {0}?
             // Who said the first quote in Book of Mario?

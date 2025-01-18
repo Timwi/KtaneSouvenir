@@ -70,6 +70,7 @@ public partial class SouvenirModule
             ["ksmBobBarks"] = (ProcessBobBarks, "Bob Barks", "Kaito Sinclaire"),
             ["boggle"] = (ProcessBoggle, "Boggle", "luisdiogo98"),
             ["bombDiffusal"] = (ProcessBombDiffusal, "Bomb Diffusal", "Kuro"),
+            ["boobTubeModule"] = (ProcessBoobTube, "Boob Tube", "Anonymous"),
             ["BookOfMarioModule"] = (ProcessBookOfMario, "Book of Mario", "Hawker"),
             ["booleanWires"] = (ProcessBooleanWires, "Boolean Wires", "Kuro"),
             ["boomtarTheGreat"] = (ProcessBoomtarTheGreat, "Boomtar the Great", "Anonymous"),

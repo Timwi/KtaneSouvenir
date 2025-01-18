@@ -346,6 +346,9 @@
         [SouvenirQuestion("What was the license number in {0}?", "Bomb Diffusal", TwoColumns4Answers, ExampleAnswers = new[] { "A4BIK5", "HI391D", "ZX98O1", "12K9PL" })]
         BombDiffusalLicenseNumber,
 
+        [SouvenirQuestion("Which word was shown on {0}?", "Boob Tube", OneColumn4Answers, "Shittah", "Dik-Dik", "Aktashite", "Tetheradick", "Sack-Butt", "Nobber", "Knobstick", "Jerkinhead", "Haboob", "Fanny-Blower", "Assapanick", "Fuksheet", "Clatterfart", "Humpenscrump", "Cock-Bell", "Slagger", "Pakapoo", "Wankapin", "Lobcocked", "Poonga", "Sexagesm", "Tit-Bore", "Pershitte", "Invagination", "Bumfiddler", "Nestle-Cock", "Gullgroper", "Boob Tube", "Boobyalla", "Dreamhole")]
+        BoobTubeWord,
+
         [SouvenirQuestion("Who said the {1} quote in {0}?", "Book of Mario", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteField = "BookOfMarioSprites",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         BookOfMarioPictures,
