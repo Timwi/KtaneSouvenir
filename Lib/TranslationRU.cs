@@ -2117,6 +2117,22 @@ namespace Souvenir
                 },
             },
 
+            // Color Numbers
+            // What color was the LED in {0}?
+            // What color was the LED in Color Numbers?
+            [Question.ColorNumbersColor] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What color was the LED in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Blue"] = "Blue",
+                    ["Green"] = "Green",
+                    ["Yellow"] = "Yellow",
+                },
+            },
+
             // Coloured Cubes
             // What was the colour of this {1} in the {2} stage of {0}?
             // What was the colour of this cube in the first stage of Coloured Cubes?

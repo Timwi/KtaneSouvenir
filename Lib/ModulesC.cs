@@ -570,6 +570,16 @@ public partial class SouvenirModule
         addQuestions(module, questions);
     }
 
+    private IEnumerator<YieldInstruction> ProcessColorNumbers(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "colorNumberCode");
+        var ix = GetIntField(comp, "ledIndex").Get(0, 3);
+        var colors = new[] { "Red", "Blue", "Green", "Yellow" };
+        addQuestion(module, Question.ColorNumbersColor, correctAnswers: new[] { colors[ix] });
+    }
+
     private IEnumerator<YieldInstruction> ProcessColouredCubes(ModuleData module)
     {
         var comp = GetComponent(module, "ColouredCubesModule");
