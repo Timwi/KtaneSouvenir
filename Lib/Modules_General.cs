@@ -160,6 +160,7 @@ public partial class SouvenirModule
             ["DiscoloredSquaresModule"] = (ProcessDiscoloredSquares, "Discolored Squares", "luisdiogo98"),
             ["disorderedKeys"] = (ProcessDisorderedKeys, "Disordered Keys", "Hawker"),
             ["divisibleNumbers"] = (ProcessDivisibleNumbers, "Divisible Numbers", "shortc1rcuit"),
+            ["doofenshmirtzEvilIncModule"] = (ProcessDoofenshmirtzEvilInc, "Doofenshmirtz Evil Inc.", "Anonymous"),
             ["doubleArrows"] = (ProcessDoubleArrows, "Double Arrows", "Anonymous"),
             ["doubleColor"] = (ProcessDoubleColor, "Double Color", "luisdiogo98"),
             ["doubleDigitsModule"] = (ProcessDoubleDigits, "Double Digits", "Quinn Wuest"),

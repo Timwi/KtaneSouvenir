@@ -2869,6 +2869,22 @@ namespace Souvenir
                 ModuleName = "割り切れる数字",
             },
 
+            // Doofenshmirtz Evil Inc.
+            // What jingle played in {0}?
+            // What jingle played in Doofenshmirtz Evil Inc.?
+            [Question.DoofenshmirtzEvilIncJingles] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What jingle played in {0}?",
+            },
+            // Which image was shown in {0}?
+            // Which image was shown in Doofenshmirtz Evil Inc.?
+            [Question.DoofenshmirtzEvilIncInators] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which image was shown in {0}?",
+            },
+
             // Double Arrows
             // What was the starting position in {0}?
             // What was the starting position in Double Arrows?

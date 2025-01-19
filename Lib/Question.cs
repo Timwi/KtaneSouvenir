@@ -797,6 +797,11 @@
         [AnswerGenerator.Integers(0, 9999)]
         DivisibleNumbersNumbers,
 
+        [SouvenirQuestion("What jingle played in {0}?", "Doofenshmirtz Evil Inc.", OneColumn4Answers, Type = AnswerType.Audio, ForeignAudioID = "doofenshmirtzEvilIncModule", AudioSizeMultiplier = 8)]
+        DoofenshmirtzEvilIncJingles,
+        [SouvenirQuestion("Which image was shown in {0}?", "Doofenshmirtz Evil Inc.", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+        DoofenshmirtzEvilIncInators,
+
         [SouvenirQuestion("What was the starting position in {0}?", "Double Arrows", ThreeColumns6Answers)]
         [AnswerGenerator.Integers(1, 81, "00")]
         DoubleArrowsStart,

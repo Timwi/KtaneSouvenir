@@ -134,15 +134,15 @@ namespace Souvenir
             return sprite;
         }
 
-        public static Sprite TranslateSprite(this Sprite sprite, float? pixelsPerUnit = null, string name = null)
+        public static Sprite TranslateSprite(this Sprite sprite, float? pixelsPerUnit = null, string name = null, float pixelsPerUnitMultiplier = 1f)
         {
-            var newSprite = Sprite.Create((sprite ?? throw new ArgumentNullException(nameof(sprite))).texture, sprite.rect, new Vector2(0, .5f), pixelsPerUnit ?? sprite.pixelsPerUnit);
+            var newSprite = Sprite.Create((sprite ?? throw new ArgumentNullException(nameof(sprite))).texture, sprite.rect, new Vector2(0, .5f), (pixelsPerUnit ?? sprite.pixelsPerUnit) * pixelsPerUnitMultiplier);
             newSprite.name = name ?? sprite.name;
             return newSprite;
         }
 
-        public static IEnumerable<Sprite> TranslateSprites(this IEnumerable<Sprite> sprites, float? pixelsPerUnit) =>
-            (sprites ?? throw new ArgumentNullException(nameof(sprites))).Select(spr => TranslateSprite(spr, pixelsPerUnit));
+        public static IEnumerable<Sprite> TranslateSprites(this IEnumerable<Sprite> sprites, float? pixelsPerUnit, float pixelsPerUnitMultiplier = 1f) =>
+            (sprites ?? throw new ArgumentNullException(nameof(sprites))).Select(spr => TranslateSprite(spr, pixelsPerUnit, pixelsPerUnitMultiplier: pixelsPerUnitMultiplier));
 
         public static Sprite FromTexture(this Texture2D texture)
         {

@@ -363,6 +363,26 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerator<YieldInstruction> ProcessDoofenshmirtzEvilInc(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "DoofenshmirtzEvilIncScript");
+        var allJingles = GetArrayField<AudioClip>(comp, "jingleclips", true).Get(expectedLength: 49);
+        var usedJingles = GetListField<int>(comp, "selectedjingles").Get(expectedLength: 3, validator: v => v is < 0 or > 48 ? "Out of range 0-48" : null);
+
+        var allInators = GetArrayField<Sprite>(comp, "images", true).Get(expectedLength: 64).TranslateSprites(null, 13f).ToArray();
+        var usedInators = GetArrayField<int>(comp, "selectedimages").Get(expectedLength: 2, validator: v => v is < 0 or > 63 ? "Out of range 0-63" : null);
+        
+        var inatorRenderers = GetArrayField<SpriteRenderer>(comp, "imageRends", true).Get(expectedLength: 2);
+        foreach (var rend in inatorRenderers)
+            rend.enabled = false;
+
+        addQuestions(module, 
+            makeQuestion(Question.DoofenshmirtzEvilIncJingles, module, allAnswers: allJingles, correctAnswers: usedJingles.Select(i => allJingles[i]).ToArray()),
+            makeQuestion(Question.DoofenshmirtzEvilIncInators, module, allAnswers: allInators, correctAnswers: usedInators.Select(i => allInators[i]).ToArray()));
+    }
+
     private IEnumerator<YieldInstruction> ProcessDoubleArrows(ModuleData module)
     {
         var comp = GetComponent(module, "DoubleArrowsScript");
