@@ -1920,13 +1920,10 @@
         [SouvenirQuestion("Which coordinate was part of the square in {0}?", "Not Coordinates", OneColumn4Answers, ExampleAnswers = new[] { "[4,7]", "C4", "<0, 2>", "3, 1", "(6,2)", "B-1", "“1, 0”", "4/3", "[12]", "#23", "四十七" })]
         NotCoordinatesSquareCoords,
 
-        [SouvenirQuestion("What was the starting position in {0}?", "Not Double-Oh", ThreeColumns6Answers)]
-        [AnswerGenerator.Strings(2, 'A', 'H')]
-        NotDoubleOhStart,
-        [SouvenirQuestion("What was the {1} goal position in {0}?", "Not Double-Oh", ThreeColumns6Answers,
+        [SouvenirQuestion("What was the {1} displayed position in the second stage of {0}?", "Not Double-Oh", ThreeColumns6Answers,
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Strings(2, 'A', 'H')]
-        NotDoubleOhGoal,
+        NotDoubleOhPosition,
 
         [SouvenirQuestion("What color flashed {1} in the final sequence in {0}?", "Not Keypad", ThreeColumns6Answers, "red", "orange", "yellow", "green", "cyan", "blue", "purple", "magenta", "pink", "brown", "grey", "white", TranslateAnswers = true,
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]

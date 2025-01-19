@@ -340,9 +340,8 @@ public partial class SouvenirModule
         foreach(var seg in leftSegs.Concat(rightSegs))
             seg.SetActive(false);
 
-        addQuestions(module, Enumerable.Range(1, 7)
-            .Select(i => makeQuestion(Question.NotDoubleOhGoal, module, correctAnswers: new[] { displays[i] }, formatArgs: new[] { Ordinal(i) }))
-            .Concat(new[] { makeQuestion(Question.NotDoubleOhStart, module, correctAnswers: new[] { displays[0] }) }));
+        addQuestions(module, Enumerable.Range(0, 8).Select(i => 
+            makeQuestion(Question.NotDoubleOhPosition, module, correctAnswers: new[] { displays[i] }, formatArgs: new[] { Ordinal(i+1) })));
     }
 
     private IEnumerator<YieldInstruction> ProcessNotKeypad(ModuleData module)

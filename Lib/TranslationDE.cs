@@ -6754,19 +6754,12 @@ namespace Souvenir
             },
 
             // Not Double-Oh
-            // What was the starting position in {0}?
-            // What was the starting position in Not Double-Oh?
-            [Question.NotDoubleOhStart] = new()
+            // What was the {1} displayed position in the second stage of {0}?
+            // What was the first displayed position in the second stage of Not Double-Oh?
+            [Question.NotDoubleOhPosition] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the starting position in {0}?",
-            },
-            // What was the {1} goal position in {0}?
-            // What was the first goal position in Not Double-Oh?
-            [Question.NotDoubleOhGoal] = new()
-            {
-                NeedsTranslation = true,
-                QuestionText = "What was the {1} goal position in {0}?",
+                QuestionText = "What was the {1} displayed position in the second stage of {0}?",
             },
 
             // Not Keypad
