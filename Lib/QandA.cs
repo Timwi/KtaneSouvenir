@@ -326,7 +326,7 @@ namespace Souvenir
 
             public override bool OnPress(int index)
             {
-                if (index == _selected || index > NumAnswersAllowed)
+                if (index == _selected || index >= NumAnswersAllowed || index >= NumAnswersProvided)
                 {
                     StopSound();
                     return false;
