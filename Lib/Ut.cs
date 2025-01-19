@@ -557,12 +557,21 @@ namespace Souvenir
         /// </summary>
         public static IEnumerable<T> OrderRandomly<T>(this IList<T> collection)
         {
-            var available = Enumerable.Range(0, collection.Count).ToList();
-            while (collection.Count > 0)
+            var used = new List<int>(); // Remains sorted (ascending)
+            while (collection.Count > used.Count)
             {
-                int choice = available.PickRandom();
+                int choice = Rnd.Range(0, collection.Count - used.Count);
+                int lastGreaterThan = 0;
+                for (int i = 0; i < used.Count; i++)
+                {
+                    if (choice >= used[i])
+                    {
+                        choice++;
+                        lastGreaterThan = i;
+                    }
+                }
+                used.Insert(lastGreaterThan, choice);
                 yield return collection[choice];
-                available.Remove(choice);
             }
         }
     }
