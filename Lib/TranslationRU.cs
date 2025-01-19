@@ -1,5 +1,5 @@
-
 using System.Collections.Generic;
+using static Souvenir.Translation_ru.Conjugation;
 
 namespace Souvenir
 {
@@ -7,7 +7,7 @@ namespace Souvenir
     {
         public sealed class TranslationInfo_ru : TranslationInfo
         {
-            public Conjugation Conjugation = Conjugation.в_PrepositiveMascNeuter;
+            public Conjugation Conjugation = в_PrepositiveMascNeuter;
         }
 
         public enum Conjugation
@@ -52,31 +52,31 @@ namespace Souvenir
             return addSolveCount
                 ? tr.Conjugation switch
                 {
-                    Conjugation.NominativeMasculine => $"{Ordinal(numSolved)}-й решённый {tr.ModuleName}",
-                    Conjugation.NominativeFeminine => $"{Ordinal(numSolved)}-я решённая {tr.ModuleName}",
-                    Conjugation.NominativeNeuter => $"{Ordinal(numSolved)}-е решённое {tr.ModuleName}",
-                    Conjugation.NominativePlural => $"{Ordinal(numSolved)}-е решённые {tr.ModuleName}",
-                    Conjugation.GenitiveMascNeuter => $"{Ordinal(numSolved)}-го решённого {tr.ModuleName}",
-                    Conjugation.GenitiveFeminine => $"{Ordinal(numSolved)}-й решённой {tr.ModuleName}",
-                    Conjugation.GenitivePlural => $"{Ordinal(numSolved)}-х решённых {tr.ModuleName}",
-                    Conjugation.PrepositiveMascNeuter => $"{Ordinal(numSolved)}-м решённом {tr.ModuleName}",
-                    Conjugation.PrepositiveFeminine => $"{Ordinal(numSolved)}-й решённой {tr.ModuleName}",
-                    Conjugation.PrepositivePlural => $"{Ordinal(numSolved)}-х решённых {tr.ModuleName}",
-                    Conjugation.InstrumentalMascNeuter => $"{Ordinal(numSolved)}-м решённым {tr.ModuleName}",
-                    Conjugation.InstrumentalFeminine => $"{Ordinal(numSolved)}-й решённой {tr.ModuleName}",
-                    Conjugation.InstrumentalPlural => $"{Ordinal(numSolved)}-ми решёнными {tr.ModuleName}",
-                    Conjugation.DativeMascNeuter => $"{Ordinal(numSolved)}-му решённому {tr.ModuleName}",
-                    Conjugation.DativeFeminine => $"{Ordinal(numSolved)}-й решённой {tr.ModuleName}",
-                    Conjugation.DativePlural => $"{Ordinal(numSolved)}-м решённым {tr.ModuleName}",
-                    Conjugation.в_PrepositiveMascNeuter or Conjugation.во_PrepositiveMascNeuter => $"{(numSolved == 2 ? "во" : "в")} {Ordinal(numSolved)}-м решённом {tr.ModuleName}",
-                    Conjugation.в_PrepositiveFeminine or Conjugation.во_PrepositiveFeminine => $"{(numSolved == 2 ? "во" : "в")} {Ordinal(numSolved)}-й решённой {tr.ModuleName}",
-                    Conjugation.в_PrepositivePlural or Conjugation.во_PrepositivePlural => $"{(numSolved == 2 ? "во" : "в")} {Ordinal(numSolved)}-х решённых {tr.ModuleName}",
+                    NominativeMasculine => $"{Ordinal(numSolved)}-й решённый {tr.ModuleName}",
+                    NominativeFeminine => $"{Ordinal(numSolved)}-я решённая {tr.ModuleName}",
+                    NominativeNeuter => $"{Ordinal(numSolved)}-е решённое {tr.ModuleName}",
+                    NominativePlural => $"{Ordinal(numSolved)}-е решённые {tr.ModuleName}",
+                    GenitiveMascNeuter => $"{Ordinal(numSolved)}-го решённого {tr.ModuleName}",
+                    GenitiveFeminine => $"{Ordinal(numSolved)}-й решённой {tr.ModuleName}",
+                    GenitivePlural => $"{Ordinal(numSolved)}-х решённых {tr.ModuleName}",
+                    PrepositiveMascNeuter => $"{Ordinal(numSolved)}-м решённом {tr.ModuleName}",
+                    PrepositiveFeminine => $"{Ordinal(numSolved)}-й решённой {tr.ModuleName}",
+                    PrepositivePlural => $"{Ordinal(numSolved)}-х решённых {tr.ModuleName}",
+                    InstrumentalMascNeuter => $"{Ordinal(numSolved)}-м решённым {tr.ModuleName}",
+                    InstrumentalFeminine => $"{Ordinal(numSolved)}-й решённой {tr.ModuleName}",
+                    InstrumentalPlural => $"{Ordinal(numSolved)}-ми решёнными {tr.ModuleName}",
+                    DativeMascNeuter => $"{Ordinal(numSolved)}-му решённому {tr.ModuleName}",
+                    DativeFeminine => $"{Ordinal(numSolved)}-й решённой {tr.ModuleName}",
+                    DativePlural => $"{Ordinal(numSolved)}-м решённым {tr.ModuleName}",
+                    в_PrepositiveMascNeuter or во_PrepositiveMascNeuter => $"{(numSolved == 2 ? "во" : "в")} {Ordinal(numSolved)}-м решённом {tr.ModuleName}",
+                    в_PrepositiveFeminine or во_PrepositiveFeminine => $"{(numSolved == 2 ? "во" : "в")} {Ordinal(numSolved)}-й решённой {tr.ModuleName}",
+                    в_PrepositivePlural or во_PrepositivePlural => $"{(numSolved == 2 ? "во" : "в")} {Ordinal(numSolved)}-х решённых {tr.ModuleName}",
                     _ => throw new System.InvalidOperationException($"Unknown conjugation: {tr.Conjugation}")
                 }
                 : tr.Conjugation switch
                 {
-                    Conjugation.в_PrepositiveMascNeuter or Conjugation.в_PrepositiveFeminine or Conjugation.в_PrepositivePlural => $"в {tr.ModuleName}",
-                    Conjugation.во_PrepositiveMascNeuter or Conjugation.во_PrepositiveFeminine or Conjugation.во_PrepositivePlural => $"во {tr.ModuleName}",
+                    в_PrepositiveMascNeuter or в_PrepositiveFeminine or в_PrepositivePlural => $"в {tr.ModuleName}",
+                    во_PrepositiveMascNeuter or во_PrepositiveFeminine or во_PrepositivePlural => $"во {tr.ModuleName}",
                     _ => tr.ModuleName,
                 };
         }

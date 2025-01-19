@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using static Souvenir.Translation_de.Gender;
 
 namespace Souvenir
 {
@@ -6,7 +7,7 @@ namespace Souvenir
     {
         public sealed class TranslationInfo_de : TranslationInfo
         {
-            public Gender Gender = Gender.Neuter;
+            public Gender Gender = Neuter;
             public string ModuleNameDative;
             public string ModuleNameWithThe;
         }
@@ -20,11 +21,11 @@ namespace Souvenir
         }
 
         public override string FormatModuleName(Question question, bool addSolveCount, int numSolved) => addSolveCount
-            ? (_translations.Get(question)?.Gender ?? Gender.Neuter) switch
+            ? (_translations.Get(question)?.Gender ?? Neuter) switch
             {
-                Gender.Feminine => $"der als {ordinal(numSolved)}e gelösten {_translations.Get(question)?.ModuleNameDative ?? _translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleName}",
-                Gender.Masculine => $"dem als {ordinal(numSolved)}en gelösten {_translations.Get(question)?.ModuleNameDative ?? _translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleName}",
-                Gender.Neuter => $"dem als {ordinal(numSolved)}es gelösten {_translations.Get(question)?.ModuleNameDative ?? _translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleName}",
+                Feminine => $"der als {ordinal(numSolved)}e gelösten {_translations.Get(question)?.ModuleNameDative ?? _translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleName}",
+                Masculine => $"dem als {ordinal(numSolved)}en gelösten {_translations.Get(question)?.ModuleNameDative ?? _translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleName}",
+                Neuter => $"dem als {ordinal(numSolved)}es gelösten {_translations.Get(question)?.ModuleNameDative ?? _translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleName}",
                 _ => /* Plural */ $"den als {ordinal(numSolved)}e gelösten {_translations.Get(question)?.ModuleNameDative ?? _translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleName}",
             }
             : _translations.Get(question)?.ModuleNameWithThe ?? _translations.Get(question)?.ModuleName ?? Ut.GetAttribute(question).ModuleNameWithThe;
