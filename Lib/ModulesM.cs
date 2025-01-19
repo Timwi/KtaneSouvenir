@@ -1083,6 +1083,9 @@ public partial class SouvenirModule
 
         string vowels = translateString(Question.MssngvWlsMssNgvwL, "AEIOU");
 
+        GetField<TextMesh>(comp, "Text", true).Get().text = "";
+        GetField<KMSelectable>(comp, "CycleButton", true).Get().OnInteract = () => false;
+
         if (vowels is "")
         {
             addQuestion(module, Question.MssngvWlsMssNgvwL, correctAnswers: new[] { "AEIOU"[missingVowel].ToString() });
