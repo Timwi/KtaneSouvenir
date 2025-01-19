@@ -417,7 +417,7 @@ public partial class SouvenirModule
         var puzzle = GetField<object>(comp, "_puzzle").Get();
         var arrows = GetField<Array>(puzzle, "Arrows", isPublic: true).Get(a => a.Length != 5 ? "expected length 5" : null);
         var fldArrowDirections = GetProperty<int[]>(arrows.GetValue(0), "Directions", isPublic: true);
-        var dirNames = GetAnswers(Question.AzureButtonDecoyArrowDirection);
+        var dirNames = Question.AzureButtonDecoyArrowDirection.GetAnswers();
 
         for (var arrowIx = 0; arrowIx < 5; arrowIx++)
         {

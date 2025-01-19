@@ -18,8 +18,8 @@ public partial class SouvenirModule
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
 
-        var flavourNames = GetAnswers(Question.IceCreamFlavour);
-        var customerNames = GetAnswers(Question.IceCreamCustomer);
+        var flavourNames = Question.IceCreamFlavour.GetAnswers();
+        var customerNames = Question.IceCreamCustomer.GetAnswers();
 
         var flavours = new int[3][];
         var solution = new int[3];

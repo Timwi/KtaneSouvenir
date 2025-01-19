@@ -79,11 +79,11 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "carpsScript");
         var grid = GetArrayField<int[,]>(comp, "grid").Get(expectedLength: 3)[0];
         if ((grid.GetLength(0), grid.GetLength(1)) is not (8, 6))
-            throw new AbandonModuleException($"Expected 8x6 array, got {grid.GetLength(0)}x{grid.GetLength(1)}");
+            throw new AbandonModuleException($"Expected 8×6 array, got {grid.GetLength(0)}×{grid.GetLength(1)}");
 
         var niceGrid = Enumerable.Range(0, 8).SelectMany(y => Enumerable.Range(0, 6).Select(x => grid[y, x])).ToArray();
         if (niceGrid.Any(v => v is < 0 or > 3))
-            throw new AbandonModuleException($"Expected all values in range 0-3. Got: {niceGrid.JoinString(" ")}");
+            throw new AbandonModuleException($"Expected all values in range 0–3. Got: {niceGrid.JoinString(" ")}");
 
         var colors = new[] { "Black", "Red", "Green", "Blue" };
         addQuestions(module, niceGrid.Select((c, i) => makeQuestion(Question.CARPSCell, module, questionSprite: Sprites.GenerateGridSprite(6, 8, i), correctAnswers: new[] { colors[c] })));
@@ -100,7 +100,7 @@ public partial class SouvenirModule
         var buttonNames = new[] { "up", "right", "down", "left" };
 
         addQuestions(module,
-            Enumerable.Range(0, 4).Select(btn => makeQuestion(Question.CartineseButtonColors, module, formatArgs: new[] { buttonNames[btn] }, correctAnswers: new[] { GetAnswers(Question.CartineseButtonColors)[buttonColors[btn]] }))
+            Enumerable.Range(0, 4).Select(btn => makeQuestion(Question.CartineseButtonColors, module, formatArgs: new[] { buttonNames[btn] }, correctAnswers: new[] { Question.CartineseButtonColors.GetAnswers()[buttonColors[btn]] }))
             .Concat(Enumerable.Range(0, 4).Select(btn => makeQuestion(Question.CartineseLyrics, module, formatArgs: new[] { buttonNames[btn] }, correctAnswers: new[] { buttonLyrics[btn] }))));
     }
 
@@ -236,11 +236,11 @@ public partial class SouvenirModule
         }
 
         var shuffledList = GetField<List<int>>(comp, "numberList", isPublic: false).Get();
-        var birdsPresent = shuffledList.Take(5).Where(ix => ix < 26).Select(ix => GetAnswers(Question.CheepCheckoutBirds)[ix]).ToArray();
+        var birdsPresent = shuffledList.Take(5).Where(ix => ix < 26).Select(ix => Question.CheepCheckoutBirds.GetAnswers()[ix]).ToArray();
 
         addQuestions(module,
            makeQuestion(Question.CheepCheckoutBirds, module, formatArgs: new[] { "was" }, correctAnswers: birdsPresent),
-           makeQuestion(Question.CheepCheckoutBirds, module, formatArgs: new[] { "was not" }, correctAnswers: GetAnswers(Question.CheepCheckoutBirds).Except(birdsPresent).ToArray()));
+           makeQuestion(Question.CheepCheckoutBirds, module, formatArgs: new[] { "was not" }, correctAnswers: Question.CheepCheckoutBirds.GetAnswers().Except(birdsPresent).ToArray()));
     }
 
     private IEnumerator<YieldInstruction> ProcessChess(ModuleData module)
@@ -372,7 +372,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var colorIxs = GetArrayField<int>(comp, "_colorIxs").Get(expectedLength: 5 * 6);
-        var colorNames = GetAnswers(Question.ColorBrailleColor);
+        var colorNames = Question.ColorBrailleColor.GetAnswers();
 
         addQuestions(module, Enumerable.Range(0, 5 * 6).Select(ix =>
             makeQuestion(Question.ColorBrailleColor, module,
@@ -545,6 +545,29 @@ public partial class SouvenirModule
              makeQuestion(Question.ColorMorseCharacter, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { flashedCharacters[ix] }, preferredWrongAnswers: flashedCharacters))));
     }
 
+    private IEnumerator<YieldInstruction> ProcessColorNumbers(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "colorNumberCode");
+        var ix = GetIntField(comp, "ledIndex").Get(0, 3);
+        var colors = new[] { "Red", "Blue", "Green", "Yellow" };
+        addQuestion(module, Question.ColorNumbersColor, correctAnswers: new[] { colors[ix] });
+    }
+
+    private IEnumerator<YieldInstruction> ProcessColorOneTwo(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "colorOneTwoScript");
+        var left = GetIntField(comp, "leftLEDColor").Get(0, 3);
+        var right = GetIntField(comp, "rightLEDColor").Get(0, 3);
+        var colors = new[] { "Red", "Blue", "Green", "Yellow" };
+        addQuestions(module,
+            makeQuestion(Question.ColorOneTwoColor, module, formatArgs: new[] { "left" }, correctAnswers: new[] { colors[left] }),
+            makeQuestion(Question.ColorOneTwoColor, module, formatArgs: new[] { "right" }, correctAnswers: new[] { colors[right] }));
+    }
+
     private IEnumerator<YieldInstruction> ProcessColorsMaximization(ModuleData module)
     {
         var comp = GetComponent(module, "ColorsMaximizationModule");
@@ -568,29 +591,6 @@ public partial class SouvenirModule
                 correctAnswers: new[] { GetField<Dictionary<Color, int>>(comp, "countOfColor").Get()[color].ToString() }));
 
         addQuestions(module, questions);
-    }
-
-    private IEnumerator<YieldInstruction> ProcessColorNumbers(ModuleData module)
-    {
-        yield return WaitForSolve;
-
-        var comp = GetComponent(module, "colorNumberCode");
-        var ix = GetIntField(comp, "ledIndex").Get(0, 3);
-        var colors = new[] { "Red", "Blue", "Green", "Yellow" };
-        addQuestion(module, Question.ColorNumbersColor, correctAnswers: new[] { colors[ix] });
-    }
-
-    private IEnumerator<YieldInstruction> ProcessColorOneTwo(ModuleData module)
-    {
-        yield return WaitForSolve;
-
-        var comp = GetComponent(module, "colorOneTwoScript");
-        var left = GetIntField(comp, "leftLEDColor").Get(0, 3);
-        var right = GetIntField(comp, "rightLEDColor").Get(0, 3);
-        var colors = new[] { "Red", "Blue", "Green", "Yellow" };
-        addQuestions(module,
-            makeQuestion(Question.ColorOneTwoColor, module, formatArgs: new[] { "left" }, correctAnswers: new[] { colors[left] }),
-            makeQuestion(Question.ColorOneTwoColor, module, formatArgs: new[] { "right" }, correctAnswers: new[] { colors[right] }));
     }
 
     private IEnumerator<YieldInstruction> ProcessColouredCubes(ModuleData module)
@@ -905,7 +905,7 @@ public partial class SouvenirModule
         var fldDay = GetIntField(comp, "Day");
         var fldWeather = GetField<string>(comp, "Weather");
 
-        var weatherNames = GetAnswers(Question.CreationWeather);
+        var weatherNames = Question.CreationWeather.GetAnswers();
 
         while (!_isActivated)
             yield return new WaitForSeconds(0.1f);

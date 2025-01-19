@@ -47,7 +47,7 @@ These are additional properties that you may want to set when defining a questio
 
 `bool UsesQuestionSprite` — A "question sprite" is an image that shows up with the question. See the *Coloured Cubes* question for an example of this.
 
-`string SpriteField` — If you are using `AnswerType.Sprites` and these sprites are included in the Souvenir project, specify the name of the field holding the `Sprite[]`. See the *Question Mark* question for an example of this.
+`string SpriteFieldName` — If you are using `AnswerType.Sprites` and these sprites are included in the Souvenir project, specify the name of the field holding the `Sprite[]`. See the *Question Mark* question for an example of this.
 
 `int FontSize` and `float CharacterSize` — These correspond to their respective `TextMesh` properties. Useful for increasing the resolution of complex fonts, for example in *Snowflakes* and *Sugar Skulls*.
 
@@ -55,7 +55,7 @@ These are additional properties that you may want to set when defining a questio
 
 Note: The next three apply to `AnswerType.Audio`.
 
-`string AudioField` — If the audio is included in the Souvenir project, specify the name of the field holding the `AudioClip[]` as in the *Listening* question. If possible, prefer to use a `ForeignAudioID` instead.
+`string AudioFieldName` — If the audio is included in the Souvenir project, specify the name of the field holding the `AudioClip[]` as in the *Listening* question. If possible, prefer to use a `ForeignAudioID` instead.
 
 `string ForeignAudioID` — The mod ID where the `AudioClip`s come from. Note that this is *not* the module ID. This is the ID specified in `modInfo.json` and used as the name for a mod's `.dll` file. It is specified in `Assets/Editor/Resources/ModConfig.asset`. This only works if all of the `AudioClip`s can be obtained via reflection. If not, use an `AudioField` instead.
 

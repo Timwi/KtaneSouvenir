@@ -290,7 +290,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "topsyTurvy");
         yield return WaitForSolve;
 
-        addQuestion(module, Question.TopsyTurvyWord, correctAnswers: new[] { GetAnswers(Question.TopsyTurvyWord)[GetField<int>(comp, "displayIndex").Get()] });
+        addQuestion(module, Question.TopsyTurvyWord, correctAnswers: new[] { Question.TopsyTurvyWord.GetAnswers()[GetField<int>(comp, "displayIndex").Get()] });
     }
 
     private IEnumerator<YieldInstruction> ProcessTouchTransmission(ModuleData module)

@@ -41,7 +41,7 @@ public partial class SouvenirModule
         var appNames = new[] { "Duolingo", "Google Maps", "Kindle", "Google Authenticator", "Photomath", "Spotify", "Google Arts & Culture", "Discord" };
         var qs = new List<QandA>();
         for (int i = 0; i < 8; i++)
-            qs.Add(makeQuestion(Question.SamsungAppPositions, module, formatArgs: new[] { appNames[i] }, correctAnswers: new[] { GetAnswers(Question.SamsungAppPositions)[appPositions[i]] }));
+            qs.Add(makeQuestion(Question.SamsungAppPositions, module, formatArgs: new[] { appNames[i] }, correctAnswers: new[] { Question.SamsungAppPositions.GetAnswers()[appPositions[i]] }));
         addQuestions(module, qs);
     }
 
@@ -1647,7 +1647,7 @@ public partial class SouvenirModule
            makeQuestion(Question.SugarSkullsSkull, module, formatArgs: new[] { "bottom-left" }, correctAnswers: new[] { skulls[1] }),
            makeQuestion(Question.SugarSkullsSkull, module, formatArgs: new[] { "bottom-right" }, correctAnswers: new[] { skulls[2] }),
            makeQuestion(Question.SugarSkullsAvailability, module, formatArgs: new[] { "was" }, correctAnswers: skulls.ToArray()),
-           makeQuestion(Question.SugarSkullsAvailability, module, formatArgs: new[] { "was not" }, correctAnswers: GetAnswers(Question.SugarSkullsAvailability).Except(skulls).ToArray()));
+           makeQuestion(Question.SugarSkullsAvailability, module, formatArgs: new[] { "was not" }, correctAnswers: Question.SugarSkullsAvailability.GetAnswers().Except(skulls).ToArray()));
     }
 
     private IEnumerator<YieldInstruction> ProcessSuitsAndColours(ModuleData module)

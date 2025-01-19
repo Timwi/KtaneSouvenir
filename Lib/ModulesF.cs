@@ -692,7 +692,7 @@ public partial class SouvenirModule
         if (!new[] { myLargeDisplays.Count, mySineNumbers.Count, myGearColors.Count, myRuleColors.Count }.All(x => x == myGearNumbers.Count))
             throw new AbandonModuleException($"One or more of the lists of information for this module are not the same length as the others. Gears: {myGearNumbers.Count}, LargeDisplays: {myLargeDisplays.Count}, SineNumbers: {mySineNumbers.Count}, GearColors: {myGearColors.Count}, RuleColors: {myRuleColors.Count}");
 
-        var colors = GetAnswers(Question.ForgetTheColorsGearColor);
+        var colors = Question.ForgetTheColorsGearColor.GetAnswers();
         for (int i = 0; i < myGearNumbers.Count; i++)
         {
             if (myGearNumbers[i] < 0 || myGearNumbers[i] > 9)

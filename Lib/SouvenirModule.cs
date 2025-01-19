@@ -324,7 +324,7 @@ public partial class SouvenirModule : MonoBehaviour
                     if (attr.TranslateFormatArgs != null && attr.TranslateFormatArgs.Length != attr.ExampleFormatArgumentGroupSize)
                         Debug.LogError($"<Souvenir #{_moduleId}> Question {q}: The length of the ‘{nameof(attr.TranslateFormatArgs)}’ array must match ‘{nameof(attr.ExampleFormatArgumentGroupSize)}’.");
 
-                    if (attr.SpriteField != null && attr.Type != AnswerType.Sprites)
+                    if (attr.SpriteFieldName != null && attr.Type != AnswerType.Sprites)
                         Debug.LogError($"<Souvenir #{_moduleId}> Question {q} (type {attr.Type}) specifies a SpriteField. This should only be used for questions of type Sprites.");
 
                     if (attr.AllAnswers != null && attr.AnswerGenerator != null)
@@ -422,7 +422,7 @@ public partial class SouvenirModule : MonoBehaviour
             var questionText = string.Format(translateQuestion(q), fmt);
             if (attr.IsEntireQuestionSprite)
             {
-                var answerSprites = attr.SpriteField == null ? ExampleSprites : (Sprite[]) typeof(SouvenirModule).GetField(attr.SpriteField, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleSprites;
+                var answerSprites = attr.SpriteFieldName == null ? ExampleSprites : (Sprite[]) typeof(SouvenirModule).GetField(attr.SpriteFieldName, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleSprites;
                 answerSprites?.Shuffle();
                 question = new QandA.SpriteQuestion(questionText, WavetappingSprites[0]);
             }
@@ -431,12 +431,12 @@ public partial class SouvenirModule : MonoBehaviour
             switch (attr.Type)
             {
                 case AnswerType.Audio:
-                    var audioClips = attr.AudioField == null ? ExampleAudio : (AudioClip[]) typeof(SouvenirModule).GetField(attr.AudioField, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleAudio;
+                    var audioClips = attr.AudioFieldName == null ? ExampleAudio : (AudioClip[]) typeof(SouvenirModule).GetField(attr.AudioFieldName, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleAudio;
                     audioClips = audioClips?.Shuffle().Take(attr.NumAnswers).ToArray();
                     answerSet = new QandA.AudioAnswerSet(attr.NumAnswers, attr.Layout, audioClips, this, attr.AudioSizeMultiplier, attr.ForeignAudioID);
                     break;
                 case AnswerType.Sprites:
-                    var answerSprites = attr.SpriteField == null ? ExampleSprites : (Sprite[]) typeof(SouvenirModule).GetField(attr.SpriteField, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleSprites;
+                    var answerSprites = attr.SpriteFieldName == null ? ExampleSprites : (Sprite[]) typeof(SouvenirModule).GetField(attr.SpriteFieldName, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleSprites;
                     answerSprites = answerSprites?.Shuffle().Take(attr.NumAnswers).ToArray();
                     if (attr.AnswerGenerator is AnswerGeneratorAttribute<Sprite> spriteGen)
                         answerSprites = spriteGen.GetAnswers(this).Distinct().Take(attr.NumAnswers).ToArray();
@@ -1041,7 +1041,7 @@ public partial class SouvenirModule : MonoBehaviour
         makeQuestion(question, moduleId, solveIx,
             (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation),
             (attr, num, answers) => new QandA.SpriteAnswerSet(num, attr.Layout, answers),
-            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? GetAllSprites(question), AnswerType.Sprites);
+            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? question.GetAllSprites(this), AnswerType.Sprites);
 
     private QandA makeSpriteQuestion(Sprite questionSprite, Question question, ModuleData data, string formattedModuleName = null, string[] formatArgs = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null) =>
         makeSpriteQuestion(questionSprite, question, data.Module.ModuleType, data.SolveIndex, formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers);
@@ -1059,7 +1059,7 @@ public partial class SouvenirModule : MonoBehaviour
         makeQuestion(question, moduleId, solveIx,
             (attr, q) => new QandA.SpriteQuestion(q, questionSprite),
             (attr, num, answers) => new QandA.SpriteAnswerSet(num, attr.Layout, answers),
-            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? GetAllSprites(question), AnswerType.Sprites);
+            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? question.GetAllSprites(this), AnswerType.Sprites);
 
     private QandA makeSpriteQuestion(Sprite questionSprite, Question question, ModuleData data, string formattedModuleName = null, string[] formatArgs = null, Sprite[] correctAnswers = null, Sprite[] preferredWrongAnswers = null, Sprite[] allAnswers = null) =>
         makeSpriteQuestion(questionSprite, question, data.Module.ModuleType, data.SolveIndex, formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers);
@@ -1068,7 +1068,7 @@ public partial class SouvenirModule : MonoBehaviour
     makeQuestion(question, moduleId, solveIx,
         (attr, q) => new QandA.SpriteQuestion(q, questionSprite),
         (attr, num, answers) => new QandA.AudioAnswerSet(num, attr.Layout, answers, this, attr.AudioSizeMultiplier, attr.ForeignAudioID),
-        formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? GetAllSounds(question), AnswerType.Audio);
+        formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? question.GetAllSounds(this), AnswerType.Audio);
 
     private QandA makeQuestion(Question question, string moduleId, int solveIx, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0)
     {
@@ -1088,7 +1088,7 @@ public partial class SouvenirModule : MonoBehaviour
         return makeQuestion(question, moduleId, solveIx,
             (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation),
             (attr, num, answers) => new QandA.AudioAnswerSet(num, attr.Layout, answers, this, attr.AudioSizeMultiplier, attr.ForeignAudioID),
-            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? GetAllSounds(question), AnswerType.Audio);
+            formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? question.GetAllSounds(this), AnswerType.Audio);
     }
 
     private QandA makeQuestion<T>(Question question, string moduleId, int solveIx, Func<SouvenirQuestionAttribute, string, QandA.QuestionBase> questionConstructor,
@@ -1192,26 +1192,6 @@ public partial class SouvenirModule : MonoBehaviour
     private string formatModuleName(Question question, bool addSolveCount, int numSolved) => _translation != null
         ? _translation.FormatModuleName(question, addSolveCount, numSolved)
         : addSolveCount ? $"the {question.GetAttribute().ModuleName} you solved {Ordinal(numSolved)}" : question.GetAttribute().ModuleNameWithThe;
-
-    public string[] GetAnswers(Question question) => !Ut.TryGetAttribute(question, out var attr)
-        ? throw new InvalidOperationException($"<Souvenir #{_moduleId}> Question {question} is missing from the _attributes dictionary.")
-        : attr.AllAnswers;
-
-    private Sprite[] GetAllSprites(Question question)
-    {
-        var attr = question.GetAttribute();
-        if (attr.Type != AnswerType.Sprites)
-            throw new AbandonModuleException("GetAllSprites() was called on a question that doesn’t use sprites or doesn’t have an associated sprites field.");
-        return attr.SpriteField == null ? null : GetField<Sprite[]>(this, attr.SpriteField, isPublic: true).Get();
-    }
-
-    private AudioClip[] GetAllSounds(Question question)
-    {
-        var attr = question.GetAttribute();
-        if (attr.Type != AnswerType.Audio || attr.AudioField == null)
-            throw new AbandonModuleException("GetAllSounds() was called on a question that doesn’t use sounds or doesn’t have an associated sounds field.");
-        return GetField<AudioClip[]>(this, attr.AudioField, isPublic: true).Get();
-    }
 
     private string titleCase(string str) => str.Length < 1 ? str : char.ToUpperInvariant(str[0]) + str.Substring(1).ToLowerInvariant();
 

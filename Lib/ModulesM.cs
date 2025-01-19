@@ -125,7 +125,7 @@ public partial class SouvenirModule
             makeQuestion(Question.MainPageHomestarBackgroundOrigin, module, formatArgs: new[] { "the background" }, correctAnswers: new[] { backgroundNum.ToString() }),
             makeQuestion(Question.MainPageBubbleColors, module, correctAnswers: new[] { absentBubbleColor }),
             makeQuestion(Question.MainPageBubbleMessages, module, formatArgs: new[] { "display" }, correctAnswers: bubbleMessageAnswers),
-            makeQuestion(Question.MainPageBubbleMessages, module, formatArgs: new[] { "not display" }, correctAnswers: GetAnswers(Question.MainPageBubbleMessages).Except(bubbleMessageAnswers).ToArray())}));
+            makeQuestion(Question.MainPageBubbleMessages, module, formatArgs: new[] { "not display" }, correctAnswers: Question.MainPageBubbleMessages.GetAnswers().Except(bubbleMessageAnswers).ToArray())}));
     }
 
     private IEnumerator<YieldInstruction> ProcessMandMs(ModuleData module)
@@ -266,7 +266,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var songIndex = GetIntField(comp, "currentSong").Get(min: 1, max: 9) - 1;
-        addQuestion(module, Question.MasterTapesPlayedSong, correctAnswers: new[] { GetAnswers(Question.MasterTapesPlayedSong)[songIndex] });
+        addQuestion(module, Question.MasterTapesPlayedSong, correctAnswers: new[] { Question.MasterTapesPlayedSong.GetAnswers()[songIndex] });
     }
 
     private IEnumerator<YieldInstruction> ProcessMatchRefereeing(ModuleData module)
@@ -343,7 +343,7 @@ public partial class SouvenirModule
 
         // “selectedNames” contains the scrambled versions of the names. Find the unscrambled name.
         var unscrambledNames = GetArrayField<string>(comp, "selectedNames").Get()
-            .Select(n => GetAnswers(Question.MatrixAccessCode).FirstOrDefault(ac => n.ToLowerInvariant().OrderBy(ch => ch).JoinString() == ac.ToLowerInvariant().OrderBy(ch => ch).JoinString()))
+            .Select(n => Question.MatrixAccessCode.GetAnswers().FirstOrDefault(ac => n.ToLowerInvariant().OrderBy(ch => ch).JoinString() == ac.ToLowerInvariant().OrderBy(ch => ch).JoinString()))
             .ToArray();
 
         addQuestions(module,
@@ -903,7 +903,7 @@ public partial class SouvenirModule
         addQuestions(module,
             makeQuestion(Question.MonsplodeFightCreature, module, correctAnswers: new[] { displayedCreature }),
             makeQuestion(Question.MonsplodeFightMove, module, formatArgs: new[] { "was" }, correctAnswers: displayedMoves),
-            makeQuestion(Question.MonsplodeFightMove, module, formatArgs: new[] { "was not" }, correctAnswers: GetAnswers(Question.MonsplodeFightMove).Except(displayedMoves).ToArray()));
+            makeQuestion(Question.MonsplodeFightMove, module, formatArgs: new[] { "was not" }, correctAnswers: Question.MonsplodeFightMove.GetAnswers().Except(displayedMoves).ToArray()));
     }
 
     private IEnumerator<YieldInstruction> ProcessMonsplodeTradingCards(ModuleData module)
@@ -1081,20 +1081,18 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "MssngvWls");
         var missingVowel = GetIntField(comp, "ForbiddenNumber").Get(0, 4);
 
-        string vowels = translateString(Question.MssngvWlsMssNgvWl, "AEIOU");
+        string vowels = translateString(Question.MssngvWlsMssNgvwL, "AEIOU");
 
         if (vowels is "")
         {
-            addQuestion(module, Question.MssngvWlsMssNgvWl, correctAnswers: new[] { "AEIOU"[missingVowel].ToString() });
+            addQuestion(module, Question.MssngvWlsMssNgvwL, correctAnswers: new[] { "AEIOU"[missingVowel].ToString() });
             yield break;
         }
 
-        var moduleName = formatModuleName(Question.MssngvWlsMssNgvWl, _moduleCounts.Get(module.Module.ModuleType, 0) > 1, module.SolveIndex);
-        var questionText = string.Format(translateQuestion(Question.MssngvWlsMssNgvWl), moduleName);
+        var moduleName = formatModuleName(Question.MssngvWlsMssNgvwL, _moduleCounts.Get(module.Module.ModuleType, 0) > 1, module.SolveIndex);
+        var questionText = string.Format(translateQuestion(Question.MssngvWlsMssNgvwL), moduleName);
 
-        var letters = questionText
-            .Normalize()
-            .GetEnumerator();
+        using var letters = questionText.Normalize().GetEnumerator();
 
         StringBuilder newText = new();
         int curWordLen = 0;
@@ -1102,6 +1100,11 @@ public partial class SouvenirModule
         {
             if (char.IsWhiteSpace(letters.Current) || vowels.Contains(char.ToUpperInvariant(letters.Current)))
                 continue;
+            if (char.IsLetter(letters.Current) && ((curWordLen >= MinWordLength && UnityEngine.Random.value < SpaceChance) || curWordLen >= MaxWordLength))
+            {
+                newText.Append(' ');
+                curWordLen = 0;
+            }
             if (letters.Current is StartModuleName)
             {
                 if (curWordLen is not 0)
@@ -1120,27 +1123,17 @@ public partial class SouvenirModule
                 newText.Append(letters.Current);
                 curWordLen++;
             }
-            if ((curWordLen >= MinWordLength && UnityEngine.Random.value < SpaceChance) || curWordLen >= MaxWordLength)
-            {
-                newText.Append(' ');
-                curWordLen = 0;
-            }
         }
-        if (curWordLen is 0) // Remove trailing space
-            newText.Remove(newText.Length - 1, 1);
-        if (newText[newText.Length - 2] is ' ') // No space before the question mark
-            newText.Remove(newText.Length - 2, 1);
 
-        var attr = Ut.GetAttribute(Question.MssngvWlsMssNgvWl);
-
-        var q = new QandA.TextQuestion(newText.ToString(), attr.Layout, null, 0f);
-
+        var attr = Ut.GetAttribute(Question.MssngvWlsMssNgvwL);
         var answers = "AEIOU".Select(c => c.ToString()).ToArray().Shuffle();
-        var correctIndex = Array.IndexOf(answers, "AEIOU"[missingVowel].ToString());
 
-        var a = new QandA.TextAnswerSet(5, attr.Layout, answers, Fonts[_translation?.DefaultFontIndex ?? 0], attr.FontSize, attr.CharacterSize, FontTextures[_translation?.DefaultFontIndex ?? 0], FontMaterial);
-        var qna = new QandA(Question.MssngvWlsMssNgvWl, attr.ModuleNameWithThe, q, a, correctIndex);
-        addQuestions(module, qna);
+        addQuestions(module, new QandA(
+            q: Question.MssngvWlsMssNgvwL,
+            module: attr.ModuleNameWithThe,
+            question: new QandA.TextQuestion(newText.ToString(), attr.Layout, null, 0f),
+            answerSet: new QandA.TextAnswerSet(5, attr.Layout, answers, Fonts[_translation?.DefaultFontIndex ?? 0], attr.FontSize, attr.CharacterSize, FontTextures[_translation?.DefaultFontIndex ?? 0], FontMaterial),
+            correctIndex: Array.IndexOf(answers, "AEIOU"[missingVowel].ToString())));
     }
 
     private IEnumerator<YieldInstruction> ProcessMulticoloredSwitches(ModuleData module)

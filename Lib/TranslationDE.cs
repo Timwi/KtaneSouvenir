@@ -2051,21 +2051,6 @@ namespace Souvenir
                 QuestionText = "What character was flashed by the {1} LED in {0}?",
             },
 
-            // Colors Maximization
-            // How many buttons were {1} in {0}?
-            // How many buttons were red in Colors Maximization?
-            [Question.ColorsMaximizationColorCount] = new()
-            {
-                NeedsTranslation = true,
-                QuestionText = "How many buttons were {1} in {0}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["red"] = "rot",
-                    ["green"] = "grün",
-                    ["blue"] = "blau",
-                },
-            },
-
             // Color Numbers
             // What color was the LED in {0}?
             // What color was the LED in Color Numbers?
@@ -2100,6 +2085,21 @@ namespace Souvenir
                     ["Blue"] = "Blue",
                     ["Green"] = "Green",
                     ["Yellow"] = "Yellow",
+                },
+            },
+
+            // Colors Maximization
+            // How many buttons were {1} in {0}?
+            // How many buttons were red in Colors Maximization?
+            [Question.ColorsMaximizationColorCount] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "How many buttons were {1} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "rot",
+                    ["green"] = "grün",
+                    ["blue"] = "blau",
                 },
             },
 
@@ -4091,14 +4091,18 @@ namespace Souvenir
             // Note: This question is depicted visually, rather than with words. A translation here will only be used for logging.
             [Question.FuseBoxFlashes] = new()
             {
-                QuestionText = "What color flashed {1} in {0}?",
+                Gender = Gender.Masculine,
+                QuestionText = "Welche Farbe ist bei {0} als {1}e vorgekommen?",
+                ModuleName = "Sicherungskasten",
             },
             // What arrow was shown {1} in {0}?
             // What arrow was shown first in The Fuse Box?
             // Note: This question is depicted visually, rather than with words. A translation here will only be used for logging.
             [Question.FuseBoxArrows] = new()
             {
-                QuestionText = "What arrow was shown {1} in {0}?",
+                Gender = Gender.Masculine,
+                QuestionText = "Welcher Pfeil war bei {0} der {1}e?",
+                ModuleName = "Sicherungskasten",
             },
 
             // Gadgetron Vendor
@@ -5018,7 +5022,7 @@ namespace Souvenir
                     ["Red"] = "Red",
                     ["Maroon"] = "Maroon",
                     ["Dark Red"] = "Dark Red",
-                    ["Light Red"] = "Light Red",
+                    ["Pink"] = "Pink",
                 },
             },
 
@@ -6375,13 +6379,16 @@ namespace Souvenir
             // Mssngv Wls
             // Which vowel was missing in {0}?
             // Which vowel was missing in \uE001Mssngv Wls\uE002?
-            [Question.MssngvWlsMssNgvWl] = new()
+            [Question.MssngvWlsMssNgvwL] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "Which vowel was missing in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "\uE001Fehlenden Vokalen\uE002",
+                QuestionText = "Welcher Vokal hat bei {0} gefehlt?",
+                ModuleName = "\uE001Fehlende Vokale\uE002",
                 TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
-                    ["AEIOU"] = "AEIOU",
+                    ["AEIOU"] = "AEIOUÄÖÜ",
                 },
             },
 
@@ -6686,7 +6693,7 @@ namespace Souvenir
             // Note: This question is depicted visually, rather than with words. A translation here will only be used for logging.
             [Question.NonverbalSimonFlashes] = new()
             {
-                QuestionText = "Which button flashed for stage {1} in {0}?",
+                QuestionText = "Welcher Knopf ist bei {0} in der {1}en Stufe aufgeleuchtet?",
             },
 
             // Not Colored Squares
@@ -10372,7 +10379,9 @@ namespace Souvenir
             // Note: This question is depicted visually, rather than with words. A translation here will only be used for logging.
             [Question.TechnicalKeypadDisplayedDigits] = new()
             {
-                QuestionText = "What was the {1} displayed digit in {0}?",
+                ModuleNameDative = "Technischen Tastenfeld",
+                QuestionText = "Was war bei {0} die {1}e Ziffer auf dem Display?",
+                ModuleName = "Technisches Tastenfeld",
             },
 
             // Ten-Button Color Code

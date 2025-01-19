@@ -33,7 +33,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var displayLetters = GetArrayField<int>(comp, "displayed").Get(expectedLength: 5, validator: number => number < 0 || number > 25 ? "expected range 0–25" : null);
-        var words = GetAnswers(Question.XmORseCodeWord);
+        var words = Question.XmORseCodeWord.GetAnswers();
         var answerWord = words[GetIntField(comp, "answer").Get(validator: number => number < 0 || number > 45 ? "expected range 0–45" : null)];
 
         var qs = new List<QandA>();

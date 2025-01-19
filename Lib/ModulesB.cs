@@ -313,7 +313,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "Binary");
         yield return WaitForSolve;
 
-        addQuestions(module, makeQuestion(Question.BinaryWord, module, formatArgs: null, correctAnswers: new[] { GetAnswers(Question.BinaryWord)[GetField<int>(comp, "te").Get()] }));
+        addQuestions(module, makeQuestion(Question.BinaryWord, module, formatArgs: null, correctAnswers: new[] { Question.BinaryWord.GetAnswers()[GetField<int>(comp, "te").Get()] }));
     }
 
     private IEnumerator<YieldInstruction> ProcessBinaryLEDs(ModuleData module)
@@ -475,7 +475,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var flashes = GetArrayField<char>(comp, "prevledcols").Get(arr =>
-            !GetAnswers(Question.BlinkstopNumberOfFlashes).Contains(arr.Length.ToString()) ? "unexpected flash count" :
+            !Question.BlinkstopNumberOfFlashes.GetAnswers().Contains(arr.Length.ToString()) ? "unexpected flash count" :
             arr.Any(f => !"PMYC".Contains(f)) ? "expected only P, M, Y, or C flash values" : null);
         var leastFlashedColour = new[] { "Multicolor", "Purple", "Yellow", "Cyan" }.OrderBy(col => flashes.Count(f => f == col[0])).First();
 
@@ -664,7 +664,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var words = GetArrayField<string>(comp, "chosenWords").Get(expectedLength: 6, validator: v => Question.BoobTubeWord.GetAttribute().AllAnswers.Contains(v) ? null : "Unknown word");
+        var words = GetArrayField<string>(comp, "chosenWords").Get(expectedLength: 6, validator: v => !Question.BoobTubeWord.GetAnswers().Contains(v) ? "Unknown word" : null);
         addQuestion(module, Question.BoobTubeWord, correctAnswers: words);
     }
 

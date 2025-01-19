@@ -273,7 +273,7 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "GridlockModule");
 
-        var colors = GetAnswers(Question.GridLockStartingColor);
+        var colors = Question.GridLockStartingColor.GetAnswers();
 
         while (!_isActivated)
             yield return new WaitForSeconds(0.1f);

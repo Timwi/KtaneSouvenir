@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -552,9 +552,7 @@ namespace Souvenir
                     ModSelectableType.GetMethod("CopySettingsFromProxy", BindingFlags.Public | BindingFlags.Instance);
         }
 
-        /// <summary>
-        /// Creates a sequence of random elements chosen from <paramref name="collection"/> without repetition.
-        /// </summary>
+        /// <summary>Creates a sequence of random elements chosen from <paramref name="collection"/> without repetition.</summary>
         public static IEnumerable<T> OrderRandomly<T>(this IList<T> collection)
         {
             var used = new List<int>(); // Remains sorted (ascending)
@@ -562,17 +560,34 @@ namespace Souvenir
             {
                 int choice = Rnd.Range(0, collection.Count - used.Count);
                 int lastGreaterThan = 0;
-                for (int i = 0; i < used.Count; i++)
+                for (int i = 0; i < used.Count && choice < used[i]; i++)
                 {
-                    if (choice >= used[i])
-                    {
-                        choice++;
-                        lastGreaterThan = i;
-                    }
+                    choice++;
+                    lastGreaterThan = i;
                 }
                 used.Insert(lastGreaterThan, choice);
                 yield return collection[choice];
             }
+        }
+
+        public static string[] GetAnswers(this Question question) => !TryGetAttribute(question, out var attr)
+            ? throw new InvalidOperationException($"Question {question} is missing from the Attributes dictionary.")
+            : attr.AllAnswers;
+
+        public static Sprite[] GetAllSprites(this Question question, SouvenirModule souv)
+        {
+            var attr = question.GetAttribute();
+            if (attr.Type != AnswerType.Sprites)
+                throw new AbandonModuleException("GetAllSprites() was called on a question that doesn’t use sprites or doesn’t have an associated sprites field.");
+            return attr.SpriteFieldName == null ? null : (Sprite[]) attr.SpriteField.GetValue(souv);
+        }
+
+        public static AudioClip[] GetAllSounds(this Question question, SouvenirModule souv)
+        {
+            var attr = question.GetAttribute();
+            if (attr.Type != AnswerType.Audio || attr.AudioFieldName == null)
+                throw new AbandonModuleException("GetAllSounds() was called on a question that doesn’t use sounds or doesn’t have an associated sounds field.");
+            return (AudioClip[]) attr.AudioField.GetValue(souv);
         }
     }
 }

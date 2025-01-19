@@ -261,7 +261,7 @@ public partial class SouvenirModule
         var index = GetIntField(init, "index").Get(min: 0, max: 419);
         var buttonPresses = GetField<Array>(init, "buttonPresses").Get(ar =>
             ar.Length < 3 || ar.Length > 6 ? "expected length 3–6" :
-            ar.OfType<object>().Any(v => !GetAnswers(Question.PhosphorescenceButtonPresses).Contains(v.ToString())) ? "contains unknown color" : null);
+            ar.OfType<object>().Any(v => !Question.PhosphorescenceButtonPresses.GetAnswers().Contains(v.ToString())) ? "contains unknown color" : null);
 
         var qs = new List<QandA>();
         qs.Add(makeQuestion(Question.PhosphorescenceOffset, module, correctAnswers: new[] { index.ToString() }));

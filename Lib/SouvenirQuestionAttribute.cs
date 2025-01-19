@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reflection;
+using UnityEngine;
 
 namespace Souvenir
 {
@@ -20,13 +22,25 @@ namespace Souvenir
         public string[] ExampleAnswers { get; set; }
         public AnswerType Type { get; set; }
         public AnswerLayout Layout { get; set; }
-        public string SpriteField { get; set; }
-        public string AudioField { get; set; }
         public string ForeignAudioID { get; set; }
         public float AudioSizeMultiplier { get; set; } = 2f;
         public int FontSize { get; set; }
         public float CharacterSize { get; set; } = 1;
         public bool IsEntireQuestionSprite { get; set; }
+
+        private FieldInfo getField(string name, Type expectedFieldType)
+        {
+            var field = typeof(SouvenirModule).GetField(name, BindingFlags.Instance | BindingFlags.Public);
+            return field?.FieldType == expectedFieldType ? field : throw new InvalidOperationException($"The field ‘{name}’ is not of expected type ‘{expectedFieldType.FullName}’.");
+        }
+
+        public string SpriteFieldName { get; set; }
+        private FieldInfo _spriteFieldCache;
+        public FieldInfo SpriteField => _spriteFieldCache ??= getField(SpriteFieldName, typeof(Sprite[]));
+
+        public string AudioFieldName { get; set; }
+        private FieldInfo _audioFieldCache;
+        public FieldInfo AudioField => _audioFieldCache ??= getField(AudioFieldName, typeof(AudioClip[]));
 
         public string ModuleNameWithThe => (AddThe ? "The\u00a0" : "") + ModuleName;
 

@@ -204,7 +204,7 @@ namespace SouvenirPostBuildTool
                         if (attr.TranslatableStrings is string[] tss && tss.Length > 0)
                             AddDictionaryField("TranslatableStrings", tss, ti?.TranslatableStrings, "See translations.md for more information on this question.");
 
-                        if ((ti == null || ti.NeedsTranslation || translationChanged) && !attr.IsEntireQuestionSprite)
+                        if (ti == null || ti.NeedsTranslation || translationChanged)
                             sb.AppendLine(@"                NeedsTranslation = true,");
                         else
                             translatedCount++;

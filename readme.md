@@ -41,7 +41,7 @@ The following vanilla modules are supported by Souvenir: The Button, Maze, Memor
 [![](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FTimwi%2FKtaneSouvenir%2Fmaster%2Fdata.json&query=%24.translationProgress.ja&label=JA&color=red)](/Lib/TranslationJA.cs)
 [![](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FTimwi%2FKtaneSouvenir%2Fmaster%2Fdata.json&query=%24.translationProgress.ru&label=RU&color=red)](/Lib/TranslationRU.cs)
 
-For contributing to translations, see [translations.md](https://github.com/Timwi/KtaneSouvenir/blob/master/translations.md).
+For contributing to translations, see [translations.md](translations.md).
 
 ## Adding new module support
 
@@ -73,7 +73,7 @@ To add a new module, the following steps are required:
     - If the inserted bit is an ordinal number (first, second, third, etc.), use `QandA.Ordinal` instead of a string (example: `SwitchInitialColor`).
     - If your targeted module’s name starts with “The”, make sure to specify the name without “The” but include `AddThe = true` (example: `DeckOfManyThingsFirstCard`).
     - Make sure to specify the correct values for `TranslateAnswers` and `TranslateFormatArgs`. If a word or phrase is used to ask a question (e.g. “flash”/“didn’t flash”) or describe something (e.g. color of a button), make it translatable (example: `IndigoCipherScreen`). If a word or phrase is mentioned that is literally shown on the module, then do not make it translatable (example: `IdentityParadeHairColors`).
-- Find an existing handler for a module that is similar to the one you wish to implement. The handlers have names beginning with `Process` (for example: `ProcessMafia` in `ModulesM.cs`). Study it carefully to understand how it works. There is documentation at [documentation.md](https://github.com/Timwi/KtaneSouvenir/blob/master/documentation.md).
+- Find an existing handler for a module that is similar to the one you wish to implement. The handlers have names beginning with `Process` (for example: `ProcessMafia` in `ModulesM.cs`). Study it carefully to understand how it works. There is documentation at [documentation.md](documentation.md).
 - Implement a similar handler and place it alphabetically in the correct file (`ModulesA.cs` to `ModulesZ.cs`, or `Modules0.cs`). Omit “The” in the handler name as well.
     - Make sure to handle the case where the player gets a strike on the module and the information changes. Souvenir must not ask about information from stages that struck.
     - If there is a corner case where Souvenir should not ask a question, call `legitimatelyNoQuestions` with an appropriate log message (see `ProcessLangtonsAnteater` or `ProcessSimonSignals` for examples).

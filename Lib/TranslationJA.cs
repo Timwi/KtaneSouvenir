@@ -2004,21 +2004,6 @@ namespace Souvenir
                 ModuleName = "カラーモールス",
             },
 
-            // Colors Maximization
-            // How many buttons were {1} in {0}?
-            // How many buttons were red in Colors Maximization?
-            [Question.ColorsMaximizationColorCount] = new()
-            {
-                QuestionText = "{0}で{1}色だったボタンは何個？",
-                ModuleName = "最大色",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["red"] = "赤",
-                    ["green"] = "緑",
-                    ["blue"] = "青",
-                },
-            },
-
             // Color Numbers
             // What color was the LED in {0}?
             // What color was the LED in Color Numbers?
@@ -2053,6 +2038,21 @@ namespace Souvenir
                     ["Blue"] = "Blue",
                     ["Green"] = "Green",
                     ["Yellow"] = "Yellow",
+                },
+            },
+
+            // Colors Maximization
+            // How many buttons were {1} in {0}?
+            // How many buttons were red in Colors Maximization?
+            [Question.ColorsMaximizationColorCount] = new()
+            {
+                QuestionText = "{0}で{1}色だったボタンは何個？",
+                ModuleName = "最大色",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "赤",
+                    ["green"] = "緑",
+                    ["blue"] = "青",
                 },
             },
 
@@ -4879,7 +4879,7 @@ namespace Souvenir
                     ["Red"] = "Red",
                     ["Maroon"] = "Maroon",
                     ["Dark Red"] = "Dark Red",
-                    ["Light Red"] = "Light Red",
+                    ["Pink"] = "Pink",
                 },
             },
 
@@ -6218,7 +6218,7 @@ namespace Souvenir
             // Mssngv Wls
             // Which vowel was missing in {0}?
             // Which vowel was missing in \uE001Mssngv Wls\uE002?
-            [Question.MssngvWlsMssNgvWl] = new()
+            [Question.MssngvWlsMssNgvwL] = new()
             {
                 NeedsTranslation = true,
                 QuestionText = "Which vowel was missing in {0}?",

@@ -2101,22 +2101,6 @@ namespace Souvenir
                 ModuleName = "Цветной азбуке Морзе",
             },
 
-            // Colors Maximization
-            // How many buttons were {1} in {0}?
-            // How many buttons were red in Colors Maximization?
-            [Question.ColorsMaximizationColorCount] = new()
-            {
-                Conjugation = Conjugation.в_PrepositiveFeminine,
-                QuestionText = "Сколько было {1} кнопок {0}?",
-                ModuleName = "Максимизации цветов",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["red"] = "красных",
-                    ["green"] = "зелёных",
-                    ["blue"] = "синих",
-                },
-            },
-
             // Color Numbers
             // What color was the LED in {0}?
             // What color was the LED in Color Numbers?
@@ -2151,6 +2135,22 @@ namespace Souvenir
                     ["Blue"] = "Blue",
                     ["Green"] = "Green",
                     ["Yellow"] = "Yellow",
+                },
+            },
+
+            // Colors Maximization
+            // How many buttons were {1} in {0}?
+            // How many buttons were red in Colors Maximization?
+            [Question.ColorsMaximizationColorCount] = new()
+            {
+                Conjugation = Conjugation.в_PrepositiveFeminine,
+                QuestionText = "Сколько было {1} кнопок {0}?",
+                ModuleName = "Максимизации цветов",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "красных",
+                    ["green"] = "зелёных",
+                    ["blue"] = "синих",
                 },
             },
 
@@ -4998,7 +4998,7 @@ namespace Souvenir
                     ["Red"] = "Red",
                     ["Maroon"] = "Maroon",
                     ["Dark Red"] = "Dark Red",
-                    ["Light Red"] = "Light Red",
+                    ["Pink"] = "Pink",
                 },
             },
 
@@ -6353,7 +6353,7 @@ namespace Souvenir
             // Mssngv Wls
             // Which vowel was missing in {0}?
             // Which vowel was missing in \uE001Mssngv Wls\uE002?
-            [Question.MssngvWlsMssNgvWl] = new()
+            [Question.MssngvWlsMssNgvwL] = new()
             {
                 NeedsTranslation = true,
                 QuestionText = "Which vowel was missing in {0}?",

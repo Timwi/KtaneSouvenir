@@ -109,16 +109,14 @@ public partial class SouvenirModule
 
         var comp = GetComponent(module, "kidneyBeansScript");
         var visible = GetArrayField<bool>(comp, "beansafe").Get(expectedLength: 9);
-        var colors = GetArrayField<int>(comp, "beanArray").Get(expectedLength: 9, validator: v => v is < 0 or > 2 ? "Out of range 0-2" : null);
+        var colors = GetArrayField<int>(comp, "beanArray").Get(expectedLength: 9, validator: v => v is < 0 or > 2 ? "Out of range 0–2" : null);
         var colorNames = new[] { "Red", "Maroon", "Dark Red" };
-        addQuestions(module, 
-            Enumerable
-            .Range(0,9)
+        addQuestions(module, Enumerable.Range(0, 9)
             .Where(i => !visible[i])
             .Select(i => makeQuestion(
-                Question.KidneyBeansColor, 
-                module, 
-                Sprites.GenerateGridSprite(3,3,i), 
+                Question.KidneyBeansColor,
+                module,
+                Sprites.GenerateGridSprite(3, 3, i),
                 correctAnswers: new[] { colorNames[colors[i]] })));
     }
 

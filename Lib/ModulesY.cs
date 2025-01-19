@@ -91,12 +91,8 @@ public partial class SouvenirModule
         if (!ans.Contains('.'))
             throw new AbandonModuleException($"Expected a filename with a dot, got {ans}");
 
-        StartCoroutine(RemoveText());
-        IEnumerator RemoveText()
-        {
-            yield return null; // Wait one frame to allow other Souvenirs to also grab the text
-            text.text = string.Empty;
-        }
+        yield return null; // Wait one frame to allow other Souvenirs to also grab the text
+        text.text = "";
 
         var names = GetArrayField<string>(comp, "names").Get(expectedLength: 4031);
         var extensions = new[] {

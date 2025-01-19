@@ -331,7 +331,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var comp = GetComponent(module, "NotDoubleOhScript");
-        var positions = GetArrayField<int>(comp, "_goalPos").Get(expectedLength: 8, validator: v => v is < 0 or > 63 ? "Out of range 0-63" : null);
+        var positions = GetArrayField<int>(comp, "_goalPos").Get(expectedLength: 8, validator: v => v is < 0 or > 63 ? "Out of range 0–63" : null);
         var grid = GetStaticField<string[]>(comp.GetType(), "_grid").Get(arr => arr.Length != 64 ? "Expected 64 elements" : arr.Any(s => !Regex.IsMatch(s, "^[A-H]{2}$")) ? $"Expected all strings to match /^[A-H]{{2}}$/, got: {arr.JoinString(", ")}" : null);
         var displays = positions.Select(p => grid[p]).ToArray();
 
@@ -351,7 +351,7 @@ public partial class SouvenirModule
         var connectorComponent = GetComponent(module, "NotVanillaModulesLib.NotKeypadConnector");
         yield return WaitForSolve;
 
-        var strings = GetAnswers(Question.NotKeypadColor);
+        var strings = Question.NotKeypadColor.GetAnswers();
         var colours = GetField<Array>(comp, "sequenceColours").Get(ar => ar.Cast<int>().Any(v => v <= 0 || v > strings.Length) ? "out of range" : null);
         var buttons = GetArrayField<int>(comp, "sequenceButtons").Get(expectedLength: colours.Length);
         var symbols = GetField<Array>(connectorComponent, "symbols").Get(ar => ar.Cast<int>().Any(v => v < 0 || v > KeypadSprites.Length) ? "out of range" : null);
@@ -521,7 +521,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "NotSimaze");
         var fldMazeIndex = GetIntField(comp, "mazeIndex");
 
-        var colours = GetAnswers(Question.NotSimazeMaze);
+        var colours = Question.NotSimazeMaze.GetAnswers();
         var startPositionArray = new[] { $"({colours[GetIntField(comp, "x").Get()]}, {colours[GetIntField(comp, "y").Get()]})" };
 
         yield return WaitForSolve;
@@ -602,7 +602,7 @@ public partial class SouvenirModule
 
         if (lightColor != 0)
         {
-            var strings = GetAnswers(Question.NotTheButtonLightColor);
+            var strings = Question.NotTheButtonLightColor.GetAnswers();
             if (lightColor <= 0 || lightColor > strings.Length)
                 throw new AbandonModuleException($"‘LightColour’ is out of range ({lightColor}).");
             addQuestion(module, Question.NotTheButtonLightColor, correctAnswers: new[] { strings[lightColor - 1] });
@@ -633,7 +633,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var positions = GetAnswers(Question.NotWhosOnFirstPressedPosition);
+        var positions = Question.NotWhosOnFirstPressedPosition.GetAnswers();
         var sumCorrectAnswers = new[] { fldSum.Get().ToString() };
 
         var qs = new List<QandA>();
@@ -685,7 +685,7 @@ public partial class SouvenirModule
 
         var table = GetIntField(comp, "_table").Get(0, 7);
         var directions = GetField<Array>(comp, "_directions").Get(validator: arr => arr.Length != 4 ? "expected length 4" : null);
-        var allColors = GetAnswers(Question.NotXRayScannerColor);
+        var allColors = Question.NotXRayScannerColor.GetAnswers();
         var scannerColor = GetField<object>(comp, "_scannerColor").Get(v => v == null ? "did not expected null" : !allColors.Contains(v.ToString()) ? "expected " + allColors.JoinString(", ") : null);
 
         var qs = new List<QandA>() {

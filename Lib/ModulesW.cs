@@ -215,7 +215,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var colors = GetAnswers(Question.WireOrderingDisplayColor);
+        var colors = Question.WireOrderingDisplayColor.GetAnswers();
         var chosenColorsDisplay = fldChosenColorsDisplay.Get(expectedLength: 4);
         var chosenDisplayNumbers = fldChosenDisplayNumbers.Get(expectedLength: 4);
         var chosenColorsWire = fldChosenColorsWire.Get(expectedLength: 4);
@@ -273,7 +273,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var boatSize = GetIntField(comp, "_boatSize").Get();
-        var allAnimals = GetAnswers(Question.WolfGoatAndCabbageAnimals);
+        var allAnimals = Question.WolfGoatAndCabbageAnimals.GetAnswers();
 
         var questions = new List<QandA>();
         foreach (var present in new[] { false, true })

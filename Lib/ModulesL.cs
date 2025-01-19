@@ -302,7 +302,7 @@ public partial class SouvenirModule
         var select = GetField<object>(comp, "select").Get();
         var functions = GetField<Array>(select, "functions").Get(ar =>
             ar.Length != 3 ? "expected length 3" :
-            ar.OfType<object>().Any(v => !GetAnswers(Question.LinqFunction).Contains(v.ToString())) ? "contains unknown function" : null);
+            ar.OfType<object>().Any(v => !Question.LinqFunction.GetAnswers().Contains(v.ToString())) ? "contains unknown function" : null);
 
         var qs = new List<QandA>();
         for (int i = 0; i < functions.GetLength(0); i++)
