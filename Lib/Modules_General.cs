@@ -367,6 +367,7 @@ public partial class SouvenirModule
             ["NotColoredSwitchesModule"] = (ProcessNotColoredSwitches, "Not Colored Switches", "Quinn Wuest"),
             ["notConnectionCheck"] = (ProcessNotConnectionCheck, "Not Connection Check", "Quinn Wuest"),
             ["notCoordinates"] = (ProcessNotCoordinates, "Not Coordinates", "Quinn Wuest"),
+            ["NotDoubleOhModule"] = (ProcessNotDoubleOh, "Not Double-Oh", "Anonymous"),
             ["NotKeypad"] = (ProcessNotKeypad, "Not Keypad", "Andrio Celos"),
             ["NotMaze"] = (ProcessNotMaze, "Not Maze", "Andrio Celos"),
             ["NotMorseCode"] = (ProcessNotMorseCode, "Not Morse Code", "Andrio Celos"),

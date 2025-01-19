@@ -6687,6 +6687,22 @@ namespace Souvenir
                 ModuleName = "НЕ-координатах",
             },
 
+            // Not Double-Oh
+            // What was the starting position in {0}?
+            // What was the starting position in Not Double-Oh?
+            [Question.NotDoubleOhStart] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the starting position in {0}?",
+            },
+            // What was the {1} goal position in {0}?
+            // What was the first goal position in Not Double-Oh?
+            [Question.NotDoubleOhGoal] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the {1} goal position in {0}?",
+            },
+
             // Not Keypad
             // What color flashed {1} in the final sequence in {0}?
             // What color flashed first in the final sequence in Not Keypad?

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Souvenir;
 using UnityEngine;
 using Rnd = UnityEngine.Random;
@@ -323,6 +324,25 @@ public partial class SouvenirModule
         var answers = seq[0].Take(3).Select(coord => disp[seq[1].IndexOf(coord)]).ToArray();
 
         addQuestion(module, Question.NotCoordinatesSquareCoords, correctAnswers: answers, preferredWrongAnswers: disp.ToArray());
+    }
+
+    private IEnumerator<YieldInstruction> ProcessNotDoubleOh(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "NotDoubleOhScript");
+        var positions = GetArrayField<int>(comp, "_goalPos").Get(expectedLength: 8, validator: v => v is < 0 or > 63 ? "Out of range 0-63" : null);
+        var grid = GetStaticField<string[]>(comp.GetType(), "_grid").Get(arr => arr.Length != 64 ? "Expected 64 elements" : arr.Any(s => !Regex.IsMatch(s, "^[A-H]{2}$")) ? $"Expected all strings to match /^[A-H]{{2}}$/, got: {arr.JoinString(", ")}" : null);
+        var displays = positions.Select(p => grid[p]).ToArray();
+
+        var leftSegs = GetArrayField<GameObject>(comp, "LeftSegObjs", true).Get(expectedLength: 7);
+        var rightSegs = GetArrayField<GameObject>(comp, "RightSegObjs", true).Get(expectedLength: 7);
+        foreach(var seg in leftSegs.Concat(rightSegs))
+            seg.SetActive(false);
+
+        addQuestions(module, Enumerable.Range(1, 7)
+            .Select(i => makeQuestion(Question.NotDoubleOhGoal, module, correctAnswers: new[] { displays[i] }, formatArgs: new[] { Ordinal(i) }))
+            .Concat(new[] { makeQuestion(Question.NotDoubleOhStart, module, correctAnswers: new[] { displays[0] }) }));
     }
 
     private IEnumerator<YieldInstruction> ProcessNotKeypad(ModuleData module)
