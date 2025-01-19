@@ -16,6 +16,7 @@ public partial class SouvenirModule
     {
         _moduleProcessors = new Dictionary<string, ModuleHandlerInfo>()
         {
+            ["0"] = (Process0, "0", "Anonymous"),
             ["OneThousandWords"] = (Process1000Words, "1000 Words", "BigCrunch22"),
             ["100LevelsOfDefusal"] = (Process100LevelsOfDefusal, "100 Levels of Defusal", "Espik"),
             ["TheOneTwoThreeGame"] = (Process123Game, "1, 2, 3 Game, The", "Anonymous"),

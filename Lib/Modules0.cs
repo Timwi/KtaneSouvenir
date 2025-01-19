@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -7,6 +8,16 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
+    private IEnumerator<YieldInstruction> Process0(ModuleData module)
+    {
+        var comp = GetComponent(module, "pruzZero");
+        var solution = GetField<string>(comp, "number").Get(v => v.Length != 9 || !v.All("0123456789".Contains) ? "Expected 9 digits" : null);
+
+        yield return WaitForSolve;
+
+        addQuestion(module, Question._0Number, correctAnswers: new[] { solution });
+    }
+
     private IEnumerator<YieldInstruction> Process1000Words(ModuleData module)
     {
         var comp = GetComponent(module, "ThousandWordsScript");

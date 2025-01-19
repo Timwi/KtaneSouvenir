@@ -4,6 +4,10 @@
 
     public enum Question
     {
+        [SouvenirQuestion("What was the initially displayed number in {0}?", "0", TwoColumns4Answers)]
+        [AnswerGenerator.Integers(100000000, 999999999)]
+        _0Number,
+
         [SouvenirQuestion("What was the {1} word shown in {0}?", "1000 Words", ThreeColumns6Answers,
             ExampleAnswers = new[] { "Baken", "Ghost", "Tolts", "Oyers", "Sweel", "Rangy", "Noses", "Chapt", "Phuts", "Pingo", "Hylas", "Podia", "Vizor" },
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]

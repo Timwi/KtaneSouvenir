@@ -15,6 +15,15 @@ namespace Souvenir
         protected override Dictionary<Question, TranslationInfo> _translations => new()
         {
             #region Translatable strings
+            // 0
+            // What was the initially displayed number in {0}?
+            // What was the initially displayed number in 0?
+            [Question._0Number] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the initially displayed number in {0}?",
+            },
+
             // 1000 Words
             // What was the {1} word shown in {0}?
             // What was the first word shown in 1000 Words?
