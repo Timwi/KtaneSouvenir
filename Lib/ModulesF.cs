@@ -601,7 +601,6 @@ public partial class SouvenirModule
                     var uniqueStage = uniqueStages.FirstOrDefault(s => s != stage + 1);
                     if (uniqueStage != 0)
                     {
-                        Debug.Log(uniqueStage);
                         qs.Add(makeQuestion(Question.ForgetMeNotDisplayedDigits, moduleId, 0,
                             formattedModuleName: string.Format(translateString(Question.ForgetMeNotDisplayedDigits, "the Forget Me Not which displayed a {0} in the {1} stage"), myDisplay[uniqueStage - 1], Ordinal(uniqueStage)),
                             formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { myDisplay[stage].ToString() }));

@@ -4636,6 +4636,19 @@ namespace Souvenir
                 QuestionText = "Was war die {1}e Rotation in {0}?",
             },
 
+            // Hyperforget
+            // What was the rotation for the {1} stage in {0}?
+            // What was the rotation for the first stage in Hyperforget?
+            [Question.HyperforgetRotations] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the rotation for the {1} stage in {0}?",
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["the Hyperforget whose rotation in the {1} stage was {0}"] = "the Hyperforget whose rotation in the {1} stage was {0}",
+                },
+            },
+
             // The Hyperlink
             // What was the {1} character of the hyperlink in {0}?
             // What was the first character of the hyperlink in The Hyperlink?
