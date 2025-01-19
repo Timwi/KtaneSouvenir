@@ -11469,6 +11469,15 @@ namespace Souvenir
                 },
             },
 
+            // Yellow Button’t
+            // What was the filename in {0}?
+            // What was the filename in Yellow Button’t?
+            [Question.YellowButtontFilename] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the filename in {0}?",
+            },
+
             // Yellow Cipher
             // What was on the {1} screen on page {2} in {0}?
             // What was on the top screen on page 1 in Yellow Cipher?

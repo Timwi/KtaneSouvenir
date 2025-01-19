@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Souvenir;
@@ -78,6 +79,46 @@ public partial class SouvenirModule
                 throw new AbandonModuleException($"Expected material name “Color0–5”, got: “{sq.sharedMaterial.name}”");
             return makeQuestion(Question.YellowButtonColors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colorNames[int.Parse(m.Groups[1].Value)] });
         }));
+    }
+
+    private IEnumerator<YieldInstruction> ProcessYellowButtont(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "yellow");
+        var text = GetField<TextMesh>(comp, "DisplayText", true).Get();
+        var ans = text.text;
+        if (!ans.Contains('.'))
+            throw new AbandonModuleException($"Expected a filename with a dot, got {ans}");
+
+        StartCoroutine(RemoveText());
+        IEnumerator RemoveText()
+        {
+            yield return null; // Wait one frame to allow other Souvenirs to also grab the text
+            text.text = string.Empty;
+        }
+
+        var names = GetArrayField<string>(comp, "names").Get(expectedLength: 4031);
+        var extensions = new[] {
+            new[] { "JPG", "JPEG", "SVG", "PNG" },
+            new[] { "MP4", "AVI", "MKV", "WMV" },
+            new[] { "MP3", "WAV", "OGG", "WMA" },
+            new[] { "CS", "TXT", "JSON", "CSV", "DOC", "DOCX" },
+            new[] { "EXE" },
+            new[] { "ISO", "XYZ", "RET", "MAE" }
+        };
+
+        var ext = ans.Split('.').Last();
+        var extIx = extensions.IndexOf(a => a.Contains(ext));
+        var chosenNames = names.OrderRandomly().Take(6).ToArray();
+        var answers = Enumerable
+            .Range(0, 6)
+            .Except(new[] { extIx })
+            .Select(i => $"{names[i]}.{extensions[i].PickRandom()}")
+            .Concat(new[] { ans })
+            .ToArray();
+
+        addQuestion(module, Question.YellowButtontFilename, correctAnswers: new[] { ans }, allAnswers: answers);
     }
 
     private IEnumerator<YieldInstruction> ProcessYellowCipher(ModuleData module)

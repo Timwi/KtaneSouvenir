@@ -623,6 +623,7 @@ public partial class SouvenirModule
             ["YahtzeeModule"] = (ProcessYahtzee, "Yahtzee", "Timwi"),
             ["yellowArrowsModule"] = (ProcessYellowArrows, "Yellow Arrows", "kavinkul"),
             ["YellowButtonModule"] = (ProcessYellowButton, "Yellow Button, The", "Timwi"),
+            ["yellowbuttont"] = (ProcessYellowButtont, "Yellow Button’t", "Anonymous"),
             ["yellowCipher"] = (ProcessYellowCipher, "Yellow Cipher", "BigCrunch22"),
             ["zeroZero"] = (ProcessZeroZero, "Zero, Zero", "Timwi"),
             ["lgndZoni"] = (ProcessZoni, "Zoni", "luisdiogo98"),

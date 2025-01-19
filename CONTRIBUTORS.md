@@ -49,19 +49,20 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cruel Binary          │  Forget Me Not      │  Light Bulbs           │  Recursive Password     │  WASD
     Cruel Keypads         │  Forget Me Now      │  Mad Memory            │  Safety Square          │
 
-## Implemented by Anonymous (55)
+## Implemented by Anonymous (56)
 
-    ↻↺                 │  Color Numbers            │  Ghost Movement      │  Next In Line           │  RNG Crystal
-    ❖                  │  Color One Two            │  Gyromaze            │  Not Double-Oh          │  Simon Smiles
-    0                  │  Concentration            │  hexOrbits           │  Not Password           │  Simon Subdivides
-    1, 2, 3 Game, The  │  Connected Monitors       │  Hyperforget         │  Not Red Arrows         │  Smash, Marry, Kill
-    Bean Sprouts       │  Connection Check         │  Kidney Beans        │  One Links To All       │  Stable Time Signatures
-    Beans              │  Doofenshmirtz Evil Inc.  │  Labyrinth, The      │  Pentabutton, The       │  Subbly Jubbly
-    Big Bean           │  Double Arrows            │  Maritime Semaphore  │  Pickup Identification  │  Time Signatures
-    Boob Tube          │  Double Listening         │  Maroon Button, The  │  Pointless Machines     │  Unordered Keys
-    Boomtar the Great  │  Double Screen            │  MoneyGame           │  Polygons               │  Updog
-    Bottom Gear        │  Emoji                    │  Mssngv Wls          │  Q & A                  │  Variety
-    CA-RPS             │  Fuse Box, The            │  Naming Conventions  │  Red Button’t           │  X-Ring
+    ↻↺                 │  Color One Two            │  hexOrbits           │  Not Red Arrows         │  Stable Time Signatures
+    ❖                  │  Concentration            │  Hyperforget         │  One Links To All       │  Subbly Jubbly
+    0                  │  Connected Monitors       │  Kidney Beans        │  Pentabutton, The       │  Time Signatures
+    1, 2, 3 Game, The  │  Connection Check         │  Labyrinth, The      │  Pickup Identification  │  Unordered Keys
+    Bean Sprouts       │  Doofenshmirtz Evil Inc.  │  Maritime Semaphore  │  Pointless Machines     │  Updog
+    Beans              │  Double Arrows            │  Maroon Button, The  │  Polygons               │  Variety
+    Big Bean           │  Double Listening         │  MoneyGame           │  Q & A                  │  X-Ring
+    Boob Tube          │  Double Screen            │  Mssngv Wls          │  Red Button’t           │  Yellow Button’t
+    Boomtar the Great  │  Emoji                    │  Naming Conventions  │  RNG Crystal            │
+    Bottom Gear        │  Fuse Box, The            │  Next In Line        │  Simon Smiles           │
+    CA-RPS             │  Ghost Movement           │  Not Double-Oh       │  Simon Subdivides       │
+    Color Numbers      │  Gyromaze                 │  Not Password        │  Smash, Marry, Kill     │
 
 ## Implemented by luisdiogo98 (45)
 

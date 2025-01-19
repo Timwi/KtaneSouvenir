@@ -551,5 +551,19 @@ namespace Souvenir
                 CopySettingsFromProxyMethod =
                     ModSelectableType.GetMethod("CopySettingsFromProxy", BindingFlags.Public | BindingFlags.Instance);
         }
+
+        /// <summary>
+        /// Creates a sequence of random elements chosen from <paramref name="collection"/> without repetition.
+        /// </summary>
+        public static IEnumerable<T> OrderRandomly<T>(this IList<T> collection)
+        {
+            var available = Enumerable.Range(0, collection.Count).ToList();
+            while (collection.Count > 0)
+            {
+                int choice = available.PickRandom();
+                yield return collection[choice];
+                available.Remove(choice);
+            }
+        }
     }
 }
