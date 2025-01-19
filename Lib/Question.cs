@@ -462,6 +462,9 @@
         [SouvenirQuestion("What was the LED color in {0}?", "Calendar", TwoColumns4Answers, "Green", "Yellow", "Red", "Blue", TranslateAnswers = true)]
         CalendarLedColor,
 
+        [SouvenirQuestion("What color was this cell initially in {0}?", "CA-RPS", TwoColumns4Answers, "Red", "Green", "Blue", "Black", UsesQuestionSprite = true, TranslateAnswers = true)]
+        CARPSCell,
+
         [SouvenirQuestion("What color was the {1} button in {0}?", "Cartinese", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue",
             ExampleFormatArguments = new[] { "up", "right", "down", "left" }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true, TranslateFormatArgs = new[] { true })]
         CartineseButtonColors,

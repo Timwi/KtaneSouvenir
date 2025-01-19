@@ -92,6 +92,7 @@ public partial class SouvenirModule
             ["caesarCycle"] = (ProcessCaesarCycle, "Caesar Cycle", "TasThiluna"),
             ["caesarPsycho"] = (ProcessCaesarPsycho, "Caesar Psycho", "Quinn Wuest"),
             ["calendar"] = (ProcessCalendar, "Calendar", "Timwi"),
+            ["caRPS"] = (ProcessCARPS, "CA-RPS", "Anonymous"),
             ["cartinese"] = (ProcessCartinese, "Cartinese", "Timwi"),
             ["catchphrase"] = (ProcessCatchphrase, "Catchphrase", "GoodHood"),
             ["challengeAndContact"] = (ProcessChallengeAndContact, "Challenge & Contact", "luisdiogo98"),

@@ -1587,6 +1587,22 @@ namespace Souvenir
                 },
             },
 
+            // CA-RPS
+            // What color was this cell initially in {0}?
+            // What color was this cell initially in CA-RPS?
+            [Question.CARPSCell] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What color was this cell initially in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Black"] = "Black",
+                },
+            },
+
             // Cartinese
             // What color was the {1} button in {0}?
             // What color was the up button in Cartinese?

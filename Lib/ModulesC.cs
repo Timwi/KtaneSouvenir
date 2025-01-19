@@ -72,6 +72,23 @@ public partial class SouvenirModule
         addQuestion(module, Question.CalendarLedColor, correctAnswers: new[] { colorblindText.text });
     }
 
+    private IEnumerator<YieldInstruction> ProcessCARPS(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "carpsScript");
+        var grid = GetArrayField<int[,]>(comp, "grid").Get(expectedLength: 3)[0];
+        if ((grid.GetLength(0), grid.GetLength(1)) is not (8, 6))
+            throw new AbandonModuleException($"Expected 8x6 array, got {grid.GetLength(0)}x{grid.GetLength(1)}");
+
+        var niceGrid = Enumerable.Range(0, 8).SelectMany(y => Enumerable.Range(0, 6).Select(x => grid[y, x])).ToArray();
+        if (niceGrid.Any(v => v is < 0 or > 3))
+            throw new AbandonModuleException($"Expected all values in range 0-3. Got: {niceGrid.JoinString(" ")}");
+
+        var colors = new[] { "Black", "Red", "Green", "Blue" };
+        addQuestions(module, niceGrid.Select((c, i) => makeQuestion(Question.CARPSCell, module, questionSprite: Sprites.GenerateGridSprite(6, 8, i), correctAnswers: new[] { colors[c] })));
+    }
+
     private IEnumerator<YieldInstruction> ProcessCartinese(ModuleData module)
     {
         var comp = GetComponent(module, "cartinese");
@@ -358,8 +375,8 @@ public partial class SouvenirModule
         var colorNames = GetAnswers(Question.ColorBrailleColor);
 
         addQuestions(module, Enumerable.Range(0, 5 * 6).Select(ix =>
-            makeQuestion(Question.ColorBrailleColor, module, 
-                questionSprite: Sprites.GenerateCirclesSprite(5 * 2, 3, 1 << ix, 20, 5, outline: true, vertical: true), 
+            makeQuestion(Question.ColorBrailleColor, module,
+                questionSprite: Sprites.GenerateCirclesSprite(5 * 2, 3, 1 << ix, 20, 5, outline: true, vertical: true),
                 correctAnswers: new[] { colorNames[colorIxs[ix]] })));
     }
 
