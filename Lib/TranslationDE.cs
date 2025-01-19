@@ -6383,9 +6383,9 @@ namespace Souvenir
             {
                 NeedsTranslation = true,
                 Gender = Gender.Plural,
-                ModuleNameDative = "\uE001Fehlenden Vokalen\uE002",
+                ModuleNameDative = "\uE001Fh Lnd Nvkln\uE002",
                 QuestionText = "Welcher Vokal hat bei {0} gefehlt?",
-                ModuleName = "\uE001Fehlende Vokale\uE002",
+                ModuleName = "\uE001Fhl Ndv Kl\uE002",
                 TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
                     ["AEIOU"] = "AEIOUÄÖÜ",
