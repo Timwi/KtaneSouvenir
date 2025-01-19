@@ -118,6 +118,7 @@ public partial class SouvenirModule
             ["ColorMorseModule"] = (ProcessColorMorse, "Color Morse", "Timwi"),
             ["colors_maximization"] = (ProcessColorsMaximization, "Colors Maximization", "NickLatkovich"),
             ["colorNumbers"] = (ProcessColorNumbers, "Color Numbers", "Anonymous"),
+            ["colorOneTwo"] = (ProcessColorOneTwo, "Color One Two", "Anonymous"),
             ["ColouredCubes"] = (ProcessColouredCubes, "Coloured Cubes", "Kuro"),
             ["ColourFlash"] = (ProcessColourFlash, "Colour Flash", "LotsOfS"),
             ["ConcentrationModule"] = (ProcessConcentration, "Concentration", "Anonymous"),

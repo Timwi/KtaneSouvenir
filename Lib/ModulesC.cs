@@ -580,6 +580,19 @@ public partial class SouvenirModule
         addQuestion(module, Question.ColorNumbersColor, correctAnswers: new[] { colors[ix] });
     }
 
+    private IEnumerator<YieldInstruction> ProcessColorOneTwo(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "colorOneTwoScript");
+        var left = GetIntField(comp, "leftLEDColor").Get(0, 3);
+        var right = GetIntField(comp, "rightLEDColor").Get(0, 3);
+        var colors = new[] { "Red", "Blue", "Green", "Yellow" };
+        addQuestions(module,
+            makeQuestion(Question.ColorOneTwoColor, module, formatArgs: new[] { "left" }, correctAnswers: new[] { colors[left] }),
+            makeQuestion(Question.ColorOneTwoColor, module, formatArgs: new[] { "right" }, correctAnswers: new[] { colors[right] }));
+    }
+
     private IEnumerator<YieldInstruction> ProcessColouredCubes(ModuleData module)
     {
         var comp = GetComponent(module, "ColouredCubesModule");

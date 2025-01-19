@@ -586,6 +586,10 @@
         [SouvenirQuestion("What color was the LED in {0}?", "Color Numbers", TwoColumns4Answers, "Red", "Blue", "Green", "Yellow", TranslateAnswers = true)]
         ColorNumbersColor,
 
+        [SouvenirQuestion("What color was the {1} LED in {0}?", "Color One Two", TwoColumns4Answers, "Red", "Blue", "Green", "Yellow", TranslateAnswers = true,
+            ExampleFormatArguments = new[] { "left", "right" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
+        ColorOneTwoColor,
+
         [SouvenirQuestion("What was the colour of this {1} in the {2} stage of {0}?", "Coloured Cubes", ThreeColumns6Answers, "Black", "Indigo", "Blue", "Forest", "Teal", "Azure", "Green", "Jade", "Cyan", "Maroon", "Plum", "Violet", "Olive", "Grey", "Maya", "Lime", "Mint", "Aqua", "Red", "Rose", "Magenta", "Orange", "Salmon", "Pink", "Yellow", "Cream", "White",
             ExampleFormatArguments = new[] { "cube", QandA.Ordinal, "stage light", QandA.Ordinal }, ExampleFormatArgumentGroupSize = 2, UsesQuestionSprite = true, TranslateAnswers = true, TranslateFormatArgs = new[] { true, false })]
         ColouredCubesColours,

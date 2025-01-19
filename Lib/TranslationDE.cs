@@ -2082,6 +2082,27 @@ namespace Souvenir
                 },
             },
 
+            // Color One Two
+            // What color was the {1} LED in {0}?
+            // What color was the left LED in Color One Two?
+            [Question.ColorOneTwoColor] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What color was the {1} LED in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["left"] = "left",
+                    ["right"] = "right",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Blue"] = "Blue",
+                    ["Green"] = "Green",
+                    ["Yellow"] = "Yellow",
+                },
+            },
+
             // Coloured Cubes
             // What was the colour of this {1} in the {2} stage of {0}?
             // What was the colour of this cube in the first stage of Coloured Cubes?
