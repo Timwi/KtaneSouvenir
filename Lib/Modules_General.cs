@@ -176,6 +176,7 @@ public partial class SouvenirModule
             ["eeBgnilleps"] = (ProcessEeBgnillepS, "eeB gnillepS", "BigCrunch22"),
             ["eight"] = (ProcessEight, "Eight", "NickLatkovich"),
             ["elderFuthark"] = (ProcessElderFuthark, "Elder Futhark", "Goofy"),
+            ["emoji"] = (ProcessEmoji, "Emoji", "Anonymous"),
             ["enaCipher"] = (ProcessEnaCipher, "ƎNA Cipher", "KiloBites"),
             ["EncryptedDice"] = (ProcessEncryptedDice, "Encrypted Dice", "Kuro"),
             ["EncryptedEquationsModule"] = (ProcessEncryptedEquations, "Encrypted Equations", "Timwi"),

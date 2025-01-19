@@ -876,6 +876,10 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         ElderFutharkRunes,
 
+        [SouvenirQuestion("What was the {1} emoji in {0}?", "Emoji", ThreeColumns6Answers, Type = AnswerType.Sprites,
+            ExampleFormatArguments = new[] { "left", "right" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
+        EmojiEmoji,
+
         [SouvenirQuestion("What was the {1} keyword in {0}?", "ENA Cipher", TwoColumns4Answers, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         EnaCipherKeywordAnswer,

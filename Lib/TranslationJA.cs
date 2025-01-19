@@ -3143,6 +3143,20 @@ namespace Souvenir
                 ModuleName = "エルダー・フサルク",
             },
 
+            // Emoji
+            // What was the {1} emoji in {0}?
+            // What was the left emoji in Emoji?
+            [Question.EmojiEmoji] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the {1} emoji in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["left"] = "left",
+                    ["right"] = "right",
+                },
+            },
+
             // ENA Cipher
             // What was the {1} keyword in {0}?
             // What was the first keyword in ENA Cipher?

@@ -80,6 +80,21 @@ public partial class SouvenirModule
             makeQuestion(Question.ElderFutharkRunes, module, correctAnswers: new[] { pickedRuneNames[2] }, formatArgs: new[] { "third" }, preferredWrongAnswers: pickedRuneNames));
     }
 
+    private IEnumerator<YieldInstruction> ProcessEmoji(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "emojiScript");
+        var spriteSlots = GetArrayField<SpriteRenderer>(comp, "SpriteSlots", true).Get(expectedLength: 4);
+        var allSprites = GetArrayField<Sprite>(comp, "EmojiSprites", true).Get(expectedLength: 625);
+        var usedSprites = new[] { Array.IndexOf(allSprites, spriteSlots[0].sprite), Array.IndexOf(allSprites, spriteSlots[1].sprite) };
+        allSprites = allSprites.TranslateSprites(200).ToArray();
+
+        addQuestions(module,
+            makeQuestion(Question.EmojiEmoji, module, formatArgs: new[] { "left" }, correctAnswers: new[] { allSprites[usedSprites[0]] }, preferredWrongAnswers: new[] { allSprites[usedSprites[1]] }, allAnswers: allSprites),
+            makeQuestion(Question.EmojiEmoji, module, formatArgs: new[] { "right" }, correctAnswers: new[] { allSprites[usedSprites[1]] }, preferredWrongAnswers: new[] { allSprites[usedSprites[0]] }, allAnswers: allSprites));
+    }
+
     private IEnumerator<YieldInstruction> ProcessEnaCipher(ModuleData module)
     {
         var comp = GetComponent(module, "enaCipherScript");

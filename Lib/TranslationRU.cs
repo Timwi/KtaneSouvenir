@@ -3263,6 +3263,20 @@ namespace Souvenir
                 QuestionText = "Какая была {1}-я показанная руна {0}?",
             },
 
+            // Emoji
+            // What was the {1} emoji in {0}?
+            // What was the left emoji in Emoji?
+            [Question.EmojiEmoji] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the {1} emoji in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["left"] = "left",
+                    ["right"] = "right",
+                },
+            },
+
             // ENA Cipher
             // What was the {1} keyword in {0}?
             // What was the first keyword in ENA Cipher?
