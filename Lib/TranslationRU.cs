@@ -2224,7 +2224,7 @@ namespace Souvenir
             {
                 NeedsTranslation = true,
                 QuestionText = "What number began here in {0}?",
-                TranslatableStrings = new Dictionary<string, string>
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
                     ["the Concentration which began with {1} in the {0} position (in reading order)"] = "the Concentration which began with {1} in the {0} position (in reading order)",
                 },
@@ -3789,7 +3789,7 @@ namespace Souvenir
             {
                 NeedsTranslation = true,
                 QuestionText = "What were the cylinders during stage {1} in «{0}»?",
-                TranslatableStrings = new Dictionary<string, string>
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
                     ["{0}, {1}, {2}"] = "{0}, {1}, {2}",
                     ["Red"] = "Red",
@@ -3822,7 +3822,7 @@ namespace Souvenir
                 Conjugation = Conjugation.GenitiveMascNeuter,
                 QuestionText = "Какая была {1}-я отображённая цифра на первом этапе {0}?",
                 ModuleName = "Полного забвения",
-                TranslatableStrings = new Dictionary<string, string>
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
                     ["the Forget Everything whose {0} displayed digit in that stage was {1}"] = "Полное забвение, {0}-я отображённая цифра которого на том этапе была {1}",
                 },
@@ -3857,7 +3857,7 @@ namespace Souvenir
                 Conjugation = Conjugation.GenitiveFeminine,
                 QuestionText = "Какая цифра была отображена на {1}-м этапе {0}?",
                 ModuleName = "Незабудки",
-                TranslatableStrings = new Dictionary<string, string>
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
                     ["the Forget Me Not which displayed a {0} in the {1} stage"] = "Незабудка, на которой была отображена {0} на {1}-м этапе",
                 },
@@ -3925,7 +3925,7 @@ namespace Souvenir
             {
                 NeedsTranslation = true,
                 QuestionText = "What number was on the gear during stage {1} in «{0}»?",
-                TranslatableStrings = new Dictionary<string, string>
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
                     ["the Forget The Colors whose gear number was {0} in stage {1}"] = "the Forget The Colors whose gear number was {0} in stage {1}",
                     ["the Forget The Colors which had {0} on its large display in stage {1}"] = "the Forget The Colors which had {0} on its large display in stage {1}",
@@ -4005,7 +4005,7 @@ namespace Souvenir
                     ["White"] = "Белый",
                     ["Green"] = "Зелёный",
                 },
-                TranslatableStrings = new Dictionary<string, string>
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
                     ["the Forget This whose LED was {0} in the {1} stage"] = "Forget This, на котором был {0} светодиод на {1}-м этапе",
                     ["the Forget This which displayed {0} in the {1} stage"] = "Forget This, который показывал {0} на {1}-м этапе",
@@ -4076,6 +4076,7 @@ namespace Souvenir
             // The Fuse Box
             // What color flashed {1} in {0}?
             // What color flashed first in The Fuse Box?
+            // Note: This question is depicted visually, rather than with words. A translation here will only be used for logging.
             [Question.FuseBoxFlashes] = new()
             {
                 QuestionText = "Какой цвет горел {1}-м {0}?",
@@ -4083,6 +4084,7 @@ namespace Souvenir
             },
             // What arrow was shown {1} in {0}?
             // What arrow was shown first in The Fuse Box?
+            // Note: This question is depicted visually, rather than with words. A translation here will only be used for logging.
             [Question.FuseBoxArrows] = new()
             {
                 QuestionText = "Какая стрелка была показана {1}-й {0}?",
@@ -4637,7 +4639,7 @@ namespace Souvenir
             {
                 NeedsTranslation = true,
                 QuestionText = "What was the rotation for the {1} stage in {0}?",
-                TranslatableStrings = new Dictionary<string, string>
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
                     ["the Hyperforget whose rotation in the {1} stage was {0}"] = "the Hyperforget whose rotation in the {1} stage was {0}",
                 },
@@ -6355,7 +6357,7 @@ namespace Souvenir
             {
                 NeedsTranslation = true,
                 QuestionText = "Which vowel was missing in {0}?",
-                TranslatableStrings = new Dictionary<string, string>
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
                     ["AEIOU"] = "AEIOU",
                 },
@@ -6662,6 +6664,7 @@ namespace Souvenir
             // ❖
             // Which button flashed in the {1} stage in {0}?
             // Which button flashed in the first stage in ❖?
+            // Note: This question is depicted visually, rather than with words. A translation here will only be used for logging.
             [Question.NonverbalSimonFlashes] = new()
             {
                 Conjugation = Conjugation.GenitiveMascNeuter,
@@ -8636,7 +8639,7 @@ namespace Souvenir
             {
                 NeedsTranslation = true,
                 QuestionText = "What was the displayed song for stage {1} (hexadecimal) of {0}?",
-                TranslatableStrings = new Dictionary<string, string>
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
                     ["the Sbemail Songs which displayed ‘{0}’ in stage {1} (hexadecimal)"] = "the Sbemail Songs which displayed ‘{0}’ in stage {1} (hexadecimal)",
                 },
@@ -10324,6 +10327,7 @@ namespace Souvenir
             // Technical Keypad
             // What was the {1} displayed digit in {0}?
             // What was the first displayed digit in Technical Keypad?
+            // Note: This question is depicted visually, rather than with words. A translation here will only be used for logging.
             [Question.TechnicalKeypadDisplayedDigits] = new()
             {
                 Conjugation = Conjugation.в_PrepositiveFeminine,

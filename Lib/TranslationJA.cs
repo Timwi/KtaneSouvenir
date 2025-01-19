@@ -2124,7 +2124,7 @@ namespace Souvenir
             {
                 NeedsTranslation = true,
                 QuestionText = "What number began here in {0}?",
-                TranslatableStrings = new Dictionary<string, string>
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
                     ["the Concentration which began with {1} in the {0} position (in reading order)"] = "the Concentration which began with {1} in the {0} position (in reading order)",
                 },
@@ -3682,7 +3682,7 @@ namespace Souvenir
                 NeedsTranslation = true,
                 QuestionText = "{0}のステージ{1}におけるシリンダーは？",
                 ModuleName = "全色忘る",
-                TranslatableStrings = new Dictionary<string, string>
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
                     ["{0}, {1}, {2}"] = "{0}, {1}, {2}",
                     ["Red"] = "赤",
@@ -3715,7 +3715,7 @@ namespace Souvenir
             {
                 QuestionText = "{0}の最初のステージにあった数字の{1}桁目は？",
                 ModuleName = "須く忘る",
-                TranslatableStrings = new Dictionary<string, string>
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
                     ["the Forget Everything whose {0} displayed digit in that stage was {1}"] = "最初のステージで{0}番目の数字が{1}だった須く忘る",
                 },
@@ -3749,7 +3749,7 @@ namespace Souvenir
             {
                 QuestionText = "{0}のステージ{1}で表示されていた数字は？",
                 ModuleName = "我忘る勿かれ",
-                TranslatableStrings = new Dictionary<string, string>
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
                     ["the Forget Me Not which displayed a {0} in the {1} stage"] = "ステージ{1}の数字が{0}だった須く忘る",
                 },
@@ -3812,7 +3812,7 @@ namespace Souvenir
             {
                 QuestionText = "{0}のステージ{1}におけるギアの数字は？",
                 ModuleName = "色忘る",
-                TranslatableStrings = new Dictionary<string, string>
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
                     ["the Forget The Colors whose gear number was {0} in stage {1}"] = "ステージ{1}の歯車の数字が{0}だった色忘る",
                     ["the Forget The Colors which had {0} on its large display in stage {1}"] = "ステージ{1}の大きなディスプレーの数字が{0}であった色忘る",
@@ -3894,7 +3894,7 @@ namespace Souvenir
                     ["White"] = "白",
                     ["Green"] = "緑",
                 },
-                TranslatableStrings = new Dictionary<string, string>
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
                     ["the Forget This whose LED was {0} in the {1} stage"] = "ステージ{1}のLEDが{0}であった之忘る",
                     ["the Forget This which displayed {0} in the {1} stage"] = "ステージ{1}で表示された文字が{0}であった之忘る",
@@ -3960,6 +3960,7 @@ namespace Souvenir
             // The Fuse Box
             // What color flashed {1} in {0}?
             // What color flashed first in The Fuse Box?
+            // Note: This question is depicted visually, rather than with words. A translation here will only be used for logging.
             [Question.FuseBoxFlashes] = new()
             {
                 QuestionText = "{0}で{1}番目に点滅した色は？",
@@ -3967,6 +3968,7 @@ namespace Souvenir
             },
             // What arrow was shown {1} in {0}?
             // What arrow was shown first in The Fuse Box?
+            // Note: This question is depicted visually, rather than with words. A translation here will only be used for logging.
             [Question.FuseBoxArrows] = new()
             {
                 QuestionText = "{0}で{1}番目に表示された矢印は？",
@@ -4517,7 +4519,7 @@ namespace Souvenir
             {
                 NeedsTranslation = true,
                 QuestionText = "What was the rotation for the {1} stage in {0}?",
-                TranslatableStrings = new Dictionary<string, string>
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
                     ["the Hyperforget whose rotation in the {1} stage was {0}"] = "the Hyperforget whose rotation in the {1} stage was {0}",
                 },
@@ -6220,7 +6222,7 @@ namespace Souvenir
             {
                 NeedsTranslation = true,
                 QuestionText = "Which vowel was missing in {0}?",
-                TranslatableStrings = new Dictionary<string, string>
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
                     ["AEIOU"] = "AEIOU",
                 },
@@ -6524,6 +6526,7 @@ namespace Souvenir
             // ❖
             // Which button flashed in the {1} stage in {0}?
             // Which button flashed in the first stage in ❖?
+            // Note: This question is depicted visually, rather than with words. A translation here will only be used for logging.
             [Question.NonverbalSimonFlashes] = new()
             {
                 QuestionText = "{0}のステージ{1}で点滅したボタンは？",
@@ -8481,7 +8484,7 @@ namespace Souvenir
             [Question.SbemailSongsSongs] = new()
             {
                 QuestionText = "{0}のステージ{1}(十六進数)で再生された音は？",
-                TranslatableStrings = new Dictionary<string, string>
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
                     ["the Sbemail Songs which displayed ‘{0}’ in stage {1} (hexadecimal)"] = "ステージ{1}(十六進数)で「{0}」が表示されたSbemail Song",
                 },
@@ -10165,6 +10168,7 @@ namespace Souvenir
             // Technical Keypad
             // What was the {1} displayed digit in {0}?
             // What was the first displayed digit in Technical Keypad?
+            // Note: This question is depicted visually, rather than with words. A translation here will only be used for logging.
             [Question.TechnicalKeypadDisplayedDigits] = new()
             {
                 QuestionText = "{0}で{1}番目に表示された数字は？",

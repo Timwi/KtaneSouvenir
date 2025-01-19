@@ -160,6 +160,8 @@ namespace SouvenirPostBuildTool
                         catch { }
                         if (formatArgsComment != null)
                             sb.AppendLine($"            // {formatArgsComment}");
+                        if (attr.IsEntireQuestionSprite)
+                            sb.AppendLine("            // Note: This question is depicted visually, rather than with words. A translation here will only be used for logging.");
                         dynamic ti = already?.Translate(qId);
                         sb.AppendLine($@"            [Question.{qId}] = new()");
                         sb.AppendLine("            {");
@@ -180,9 +182,9 @@ namespace SouvenirPostBuildTool
                         if (ti?.ModuleName != null)
                             sbFields.AppendLine($@"                ModuleName = ""{((string) ti.ModuleName).CLiteralEscape()}"",");
 
-                        void AddDictionaryField(string fieldName, string[] originals, dynamic trdic)
+                        void AddDictionaryField(string fieldName, string[] originals, dynamic trdic, string comment = null)
                         {
-                            sbFields.AppendLine($"                {fieldName} = new Dictionary<string, string>");
+                            sbFields.AppendLine($"                {fieldName} = new Dictionary<string, string>{(comment is null ? "" : $" // {comment}")}");
                             sbFields.AppendLine("                {");
                             foreach (var english in originals)
                                 sbFields.AppendLine($@"                    [""{english.CLiteralEscape()}""] = ""{(trdic?.ContainsKey(english) == true ? (string) trdic[english] : english).CLiteralEscape()}"",");
@@ -200,9 +202,9 @@ namespace SouvenirPostBuildTool
                             AddDictionaryField("Answers", aas, ti?.Answers);
 
                         if (attr.TranslatableStrings is string[] tss && tss.Length > 0)
-                            AddDictionaryField("TranslatableStrings", tss, ti?.TranslatableStrings);
+                            AddDictionaryField("TranslatableStrings", tss, ti?.TranslatableStrings, "See translations.md for more information on this question.");
 
-                        if (ti == null || ti.NeedsTranslation || translationChanged)
+                        if ((ti == null || ti.NeedsTranslation || translationChanged) && !attr.IsEntireQuestionSprite)
                             sb.AppendLine(@"                NeedsTranslation = true,");
                         else
                             translatedCount++;
