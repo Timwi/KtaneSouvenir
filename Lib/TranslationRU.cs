@@ -3804,7 +3804,7 @@ namespace Souvenir
                     ["M"] = "M",
                     ["R"] = "R",
                     ["the Forget Any Color which used figure {0} in the {1} stage"] = "the Forget Any Color which used figure {0} in the {1} stage",
-                    ["the Forget Any Color whose cylinders in the {0} stage were {1}"] = "the Forget Any Color whose cylinders in the {0} stage were {1}",
+                    ["the Forget Any Color whose cylinders in the {1} stage were {0}"] = "the Forget Any Color whose cylinders in the {1} stage were {0}",
                 },
             },
             // Which figure was used during the {1} stage of {0}?
@@ -6346,6 +6346,19 @@ namespace Souvenir
             [Question.MSeqSubmitted] = new()
             {
                 QuestionText = "Какое было финальное число итерационного процесса {0}?",
+            },
+
+            // Mssngv Wls
+            // Which vowel was missing in {0}?
+            // Which vowel was missing in \uE001Mssngv Wls\uE002?
+            [Question.MssngvWlsMssNgvWl] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which vowel was missing in {0}?",
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["AEIOU"] = "AEIOU",
+                },
             },
 
             // Multicolored Switches

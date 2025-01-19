@@ -3697,7 +3697,7 @@ namespace Souvenir
                     ["M"] = "中",
                     ["R"] = "右",
                     ["the Forget Any Color which used figure {0} in the {1} stage"] = "ステージ{1}で図{0}を使用した全色忘る",
-                    ["the Forget Any Color whose cylinders in the {0} stage were {1}"] = "ステージ{1}のシリンダーに{0}があった全色忘る",
+                    ["the Forget Any Color whose cylinders in the {1} stage were {0}"] = "ステージ{0}のシリンダーに{1}があった全色忘る",
                 },
             },
             // Which figure was used during the {1} stage of {0}?
@@ -6211,6 +6211,19 @@ namespace Souvenir
             {
                 QuestionText = "{0}の最後の繰り返しで得た最終値は？",
                 ModuleName = "リズム正方型",
+            },
+
+            // Mssngv Wls
+            // Which vowel was missing in {0}?
+            // Which vowel was missing in \uE001Mssngv Wls\uE002?
+            [Question.MssngvWlsMssNgvWl] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which vowel was missing in {0}?",
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["AEIOU"] = "AEIOU",
+                },
             },
 
             // Multicolored Switches

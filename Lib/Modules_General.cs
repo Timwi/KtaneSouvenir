@@ -350,6 +350,7 @@ public partial class SouvenirModule
             ["MorseWar"] = (ProcessMorseWar, "Morse War", "Timwi"),
             ["MouseInTheMaze"] = (ProcessMouseInTheMaze, "Mouse in the Maze", "Timwi"),
             ["mSeq"] = (ProcessMSeq, "M-Seq", "tandyCake"),
+            ["MssngvWls"] = (ProcessMssngvWls, "Mssngv Wls", "Anonymous"),
             ["R4YMultiColoredSwitches"] = (ProcessMulticoloredSwitches, "Multicolored Switches", "Timwi"),
             ["murder"] = (ProcessMurder, "Murder", "Timwi"),
             ["mysterymodule"] = (ProcessMysteryModule, "Mystery Module", "Timwi"),

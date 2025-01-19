@@ -1055,7 +1055,7 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1,
             TranslatableStrings = new[] { "{0}, {1}, {2}", "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "White", "L", "M", "R",
                 "the Forget Any Color which used figure {0} in the {1} stage",
-                "the Forget Any Color whose cylinders in the {0} stage were {1}" })]
+                "the Forget Any Color whose cylinders in the {1} stage were {0}" })]
         ForgetAnyColorCylinder,
         [SouvenirQuestion("Which figure was used during the {1} stage of {0}?", "Forget Any Color", ThreeColumns6Answers,
             ExampleAnswers = new[] { "LLLMR", "LMMMR", "LMRRR", "LMMRR", "LLMRR", "LLMMR" },
@@ -1829,6 +1829,10 @@
         [SouvenirQuestion("What was the final number from the iteration process in {0}?", "M-Seq", ThreeColumns6Answers)]
         [AnswerGenerator.Integers(25, 225)]
         MSeqSubmitted,
+
+        [SouvenirQuestion("Which vowel was missing in {0}?", "\uE001Mssngv Wls\uE002", ThreeColumns6Answers, "A", "E", "I", "O", "U", TranslatableStrings = new[] { "AEIOU" })]
+        // Note to translators: See translations.md for details on this module.
+        MssngvWlsMssNgvWl,
 
         [SouvenirQuestion("What color was the {1} LED on the {2} row when the tiny LED was {3} in {0}?", "Multicolored Switches", TwoColumns4Answers, "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", TranslateAnswers = true, TranslateFormatArgs = new[] { false, true, true },
             ExampleFormatArguments = new[] { QandA.Ordinal, "top", "lit", QandA.Ordinal, "bottom", "lit", QandA.Ordinal, "top", "unlit", QandA.Ordinal, "bottom", "unlit" }, ExampleFormatArgumentGroupSize = 3)]

@@ -146,15 +146,15 @@ namespace SouvenirPostBuildTool
                 var totalCount = 0;
                 foreach (var kvp in allInfos)
                 {
-                    sb.AppendLine($"            // {(addThe[kvp.Key] ? "The " : "")}{kvp.Key}");
+                    sb.AppendLine($"            // {(addThe[kvp.Key] ? "The " : "")}{kvp.Key.Replace("\uE001", "").Replace("\uE002", "")}");
                     foreach (var (qFld, attr) in kvp.Value)
                     {
                         var qId = (dynamic) qFld.GetValue(null);
                         var qText = (string) attr.QuestionText;
                         sb.AppendLine($"            // {qText}");
-                        var exFormatArgs = new[] { ((string) attr.ModuleNameWithThe).Replace("\u00a0", " ") };
+                        var exFormatArgs = new[] { ((string) attr.ModuleNameWithThe).Replace("\u00a0", " ").Replace("\uE001", "\\uE001").Replace("\uE002", "\\uE002") };
                         if (attr.ExampleFormatArguments != null)
-                            exFormatArgs = exFormatArgs.Concat(((string[]) attr.ExampleFormatArguments).Take((int) attr.ExampleFormatArgumentGroupSize).Select(str => str == "\ufffdordinal" ? "first" : str)).ToArray();
+                            exFormatArgs = exFormatArgs.Concat(((string[]) attr.ExampleFormatArguments).Take((int) attr.ExampleFormatArgumentGroupSize).Select(str => str == "\uE047ordinal" ? "first" : str)).ToArray();
                         string formatArgsComment = null;
                         try { formatArgsComment = string.Format(qText, exFormatArgs); }
                         catch { }
@@ -318,7 +318,9 @@ namespace SouvenirPostBuildTool
                     case '\\': result.Append(@"\\"); break;
                     case '"': result.Append(@"\"""); break;
                     default:
-                        if (c >= 0xD800 && c < 0xDC00)
+                        if (c >= 0xE000 && c < 0xF900) // Private Use Area
+                            result.AppendFormat(@"\u{0:X4}", (int) c);
+                        else if (c >= 0xD800 && c < 0xDC00)
                         {
                             if (i == value.Length - 1) // string ends on a broken surrogate pair
                                 result.AppendFormat(@"\u{0:X4}", (int) c);

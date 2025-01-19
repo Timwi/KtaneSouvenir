@@ -434,9 +434,9 @@ public partial class SouvenirModule
                         Ordinal(stage + 1)));
                 if (_facCylinders.Count(c => getCylinders(c, stage) == cylindersThisStage) == 1)
                     formatCandidates.Add(string.Format(
-                        translateString(Question.ForgetAnyColorCylinder, "the Forget Any Color whose cylinders in the {0} stage were {1}"),
-                        Ordinal(stage + 1),
-                        cylindersThisStage));
+                        translateString(Question.ForgetAnyColorCylinder, "the Forget Any Color whose cylinders in the {1} stage were {0}"),
+                        cylindersThisStage,
+                        Ordinal(stage + 1)));
                 if (formatCandidates.Count > 0)
                 {
                     formattedName = formatCandidates.PickRandom();

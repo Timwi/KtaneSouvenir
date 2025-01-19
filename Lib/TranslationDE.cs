@@ -3822,7 +3822,7 @@ namespace Souvenir
                     ["M"] = "M",
                     ["R"] = "R",
                     ["the Forget Any Color which used figure {0} in the {1} stage"] = "dem Vergiss Jede Farbe, in dessen {1}er Stufe die Figur {0} verwendet wurde,",
-                    ["the Forget Any Color whose cylinders in the {0} stage were {1}"] = "dem Vergiss Jede Farbe, in dessen {0}er Stufe die Zylinderfarben {1} waren,",
+                    ["the Forget Any Color whose cylinders in the {1} stage were {0}"] = "dem Vergiss Jede Farbe, in dessen {1}er Stufe die Zylinderfarben {0} waren,",
                 },
             },
             // Which figure was used during the {1} stage of {0}?
@@ -6370,6 +6370,19 @@ namespace Souvenir
             {
                 NeedsTranslation = true,
                 QuestionText = "What was the final number from the iteration process in {0}?",
+            },
+
+            // Mssngv Wls
+            // Which vowel was missing in {0}?
+            // Which vowel was missing in \uE001Mssngv Wls\uE002?
+            [Question.MssngvWlsMssNgvWl] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which vowel was missing in {0}?",
+                TranslatableStrings = new Dictionary<string, string>
+                {
+                    ["AEIOU"] = "AEIOU",
+                },
             },
 
             // Multicolored Switches

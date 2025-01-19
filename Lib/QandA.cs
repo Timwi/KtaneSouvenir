@@ -8,7 +8,7 @@ namespace Souvenir
 {
     sealed class QandA
     {
-        public const string Ordinal = "\ufffdordinal";
+        public const string Ordinal = "\uE047ordinal";
 
         private readonly QuestionBase _question;
         private readonly AnswerSet _answerSet;

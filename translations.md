@@ -132,3 +132,48 @@ You can change the language in Mod Selector.
 
 Alternatively, you will find `Souvenir-settings.txt` in the `mod-settings` folder.
 In the `"Language":` field at the bottom, enter the language code (e.g. `"Language": "ja"`).
+
+# Specific Tricky Modules
+
+## Bosses: Concentration, Forget Any Color, Forget Anything, Forget Me Not, Forget The Colors, Forget This, Hyperforget, and Sbemail Songs
+
+All of these module have one or more `TranslatableStrings` used to identify the module. Normally, Souvenir will simply use the module name, but sometimes, it needs to identify a specific instance of the module. For most modules, this is done like `the button you solved second`. However, these modules may not be solved by the time Souvenir asks about them. Thus, a different method is needed. So, whenever there are multiple of these modules on a bomb, these strings will be used to replace `{0}` in the question instead of the module name. In most cases, context should be enough to determine what `{0}`, `{1}`, etc. mean in these phrases.
+
+Some examples of fully-formed questions using these:
+- `What number began here in the Concentration which began with 12 in the second position (in reading order)?`
+- `What colors were the cylinders during the firts stage of the Forget Any Color which used figure LMMMR in the second stage?`
+- `Which figure was used during the third stage of the Forget Any Color whose cylinders in the fourth stage were Purple, Orange, White?`
+- `What was the first displayed digit in the first stage of the Forget Everything whose tenth displayed digit in that stage was 4?`
+- `What was the digit displayed in the third stage of the Forget Me Not which displayed a 2 in the first stage?`
+- `What number was on the gear during stage 6 of the Forget The Colors whose gear number was 8 in stage 4?`
+- `What number was on the large display during stage 2 of the Forget The Colors which had 1 on its large display in stage 5?`
+- `What was the last decimal in the sine number received during stage 8 of the Forget The Colors whose received sine number in stage 2 ended with a 6?`
+- `What color was the gear during stage 6 of the Forget The Colors whose gear color was Gray in stage 4?`
+- `Which edgework-based rule was applied to the sum of nixies and gear during stage 9 of the Forget The Colors whose rule color was Red in stage 1?`
+- `What was the digit displayed in the second stage of the Forget This whose LED was Green in the first stage?`
+- `What color was the LED in the first stage of the Forget This which displayed Z in the second stage?`
+- `What was the rotation for the second stage in the Hyperforget whose rotation in the first stage was WY?`
+- `What was the displayed song for stage 2 (hexadecimal) of the Sbemail Songs which displayed ‘latest toon’ in stage 4 (hexadecimal)?`
+
+## Forget Any Color
+
+This module has a few additional `TranslatableStrings`.
+
+- `"{0}, {1}, {2}"` is used to combine the colors together to describe the module's cylinders. This will end up like `Red, Green, Blue`.
+- `"L"`, `"M"`, and `"R"` are used to describe the module's figures. Five of these will be concatenated like `LLMMR`.
+
+## Mssngv Wls
+
+This question is formatted like the module it's asking about. Specifically, all vowels and spaces are removed from the question text, then some spaces are randomly inserted back in. Spaces are added such that words are between 2 and 6 characters long.
+
+If your language can't perform an equivalent to removing vowels:
+1. Translate the question and module name normally. Do not include `\uE001` nor `\uE002` in the module name.
+2. For `TranslatableStrings`, set `["AEIOU"] = ""`.
+
+Otherwise,
+1. Translate the question and module name normally.
+2. For the `TranslatableStrings`, list out every vowel to be removed from the question text.
+3. Add `\uE001` to the start of the module name, and add `\uE002` to the end.
+
+(The following only applies to this question.)
+`\uE001` will always become a space. Any text (including vowels and spaces) between it and `\uE002` will be used exactly, i.e. no modifications will be made. `\uE002` will then be deleted.
