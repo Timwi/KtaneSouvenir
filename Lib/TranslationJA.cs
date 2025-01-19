@@ -2004,22 +2004,6 @@ namespace Souvenir
                 ModuleName = "カラーモールス",
             },
 
-            // Color Numbers
-            // What color was the LED in {0}?
-            // What color was the LED in Color Numbers?
-            [Question.ColorNumbersColor] = new()
-            {
-                NeedsTranslation = true,
-                QuestionText = "What color was the LED in {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
-                    ["Yellow"] = "Yellow",
-                },
-            },
-
             // Color One Two
             // What color was the {1} LED in {0}?
             // What color was the left LED in Color One Two?
@@ -4865,22 +4849,6 @@ namespace Souvenir
             {
                 QuestionText = "{0}のディスプレー上にあった先頭四文字の英字は？",
                 ModuleName = "キーワード",
-            },
-
-            // Kidney Beans
-            // What color was this bean in {0}?
-            // What color was this bean in Kidney Beans?
-            [Question.KidneyBeansColor] = new()
-            {
-                NeedsTranslation = true,
-                QuestionText = "What color was this bean in {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Red"] = "Red",
-                    ["Maroon"] = "Maroon",
-                    ["Dark Red"] = "Dark Red",
-                    ["Pink"] = "Pink",
-                },
             },
 
             // Know Your Way

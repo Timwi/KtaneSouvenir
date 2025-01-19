@@ -579,9 +579,6 @@
         [AnswerGenerator.Strings("0-9A-Z")]
         ColorMorseCharacter,
 
-        [SouvenirQuestion("What color was the LED in {0}?", "Color Numbers", TwoColumns4Answers, "Red", "Blue", "Green", "Yellow", TranslateAnswers = true)]
-        ColorNumbersColor,
-
         [SouvenirQuestion("What color was the {1} LED in {0}?", "Color One Two", TwoColumns4Answers, "Red", "Blue", "Green", "Yellow", TranslateAnswers = true,
             ExampleFormatArguments = new[] { "left", "right" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         ColorOneTwoColor,
@@ -1435,9 +1432,6 @@
 
         [SouvenirQuestion("What were the first four letters on the display in {0}?", "Keywords", ThreeColumns6Answers, ExampleAnswers = new[] { "abvo", "pola", "drea", "buew", "utre", "oidy" })]
         KeywordsDisplayedKey,
-
-        [SouvenirQuestion("What color was this bean in {0}?", "Kidney Beans", TwoColumns4Answers, "Red", "Maroon", "Dark Red", "Pink", UsesQuestionSprite = true, TranslateAnswers = true)]
-        KidneyBeansColor,
 
         [SouvenirQuestion("Which way was the arrow pointing in {0}?", "Know Your Way", TwoColumns4Answers, "Up", "Down", "Left", "Right", TranslateAnswers = true)]
         KnowYourWayArrow,

@@ -2051,22 +2051,6 @@ namespace Souvenir
                 QuestionText = "What character was flashed by the {1} LED in {0}?",
             },
 
-            // Color Numbers
-            // What color was the LED in {0}?
-            // What color was the LED in Color Numbers?
-            [Question.ColorNumbersColor] = new()
-            {
-                NeedsTranslation = true,
-                QuestionText = "What color was the LED in {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
-                    ["Yellow"] = "Yellow",
-                },
-            },
-
             // Color One Two
             // What color was the {1} LED in {0}?
             // What color was the left LED in Color One Two?
@@ -5008,22 +4992,6 @@ namespace Souvenir
             {
                 NeedsTranslation = true,
                 QuestionText = "What were the first four letters on the display in {0}?",
-            },
-
-            // Kidney Beans
-            // What color was this bean in {0}?
-            // What color was this bean in Kidney Beans?
-            [Question.KidneyBeansColor] = new()
-            {
-                NeedsTranslation = true,
-                QuestionText = "What color was this bean in {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["Red"] = "Red",
-                    ["Maroon"] = "Maroon",
-                    ["Dark Red"] = "Dark Red",
-                    ["Pink"] = "Pink",
-                },
             },
 
             // Know Your Way

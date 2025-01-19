@@ -545,16 +545,6 @@ public partial class SouvenirModule
              makeQuestion(Question.ColorMorseCharacter, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { flashedCharacters[ix] }, preferredWrongAnswers: flashedCharacters))));
     }
 
-    private IEnumerator<YieldInstruction> ProcessColorNumbers(ModuleData module)
-    {
-        yield return WaitForSolve;
-
-        var comp = GetComponent(module, "colorNumberCode");
-        var ix = GetIntField(comp, "ledIndex").Get(0, 3);
-        var colors = new[] { "Red", "Blue", "Green", "Yellow" };
-        addQuestion(module, Question.ColorNumbersColor, correctAnswers: new[] { colors[ix] });
-    }
-
     private IEnumerator<YieldInstruction> ProcessColorOneTwo(ModuleData module)
     {
         yield return WaitForSolve;

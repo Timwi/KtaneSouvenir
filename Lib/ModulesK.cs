@@ -103,23 +103,6 @@ public partial class SouvenirModule
         addQuestion(module, Question.KeywordsDisplayedKey, correctAnswers: new[] { displayedKey }, preferredWrongAnswers: possibleAnswers.ToArray());
     }
 
-    private IEnumerator<YieldInstruction> ProcessKidneyBeans(ModuleData module)
-    {
-        yield return WaitForSolve;
-
-        var comp = GetComponent(module, "kidneyBeansScript");
-        var visible = GetArrayField<bool>(comp, "beansafe").Get(expectedLength: 9);
-        var colors = GetArrayField<int>(comp, "beanArray").Get(expectedLength: 9, validator: v => v is < 0 or > 2 ? "Out of range 0–2" : null);
-        var colorNames = new[] { "Red", "Maroon", "Dark Red" };
-        addQuestions(module, Enumerable.Range(0, 9)
-            .Where(i => !visible[i])
-            .Select(i => makeQuestion(
-                Question.KidneyBeansColor,
-                module,
-                Sprites.GenerateGridSprite(3, 3, i),
-                correctAnswers: new[] { colorNames[colors[i]] })));
-    }
-
     private IEnumerator<YieldInstruction> ProcessKnowYourWay(ModuleData module)
     {
         var comp = GetComponent(module, "KnowYourWayScript");
