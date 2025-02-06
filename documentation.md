@@ -57,7 +57,7 @@ Note: The next three apply to `AnswerType.Audio`.
 
 `string AudioFieldName` — If the audio is included in the Souvenir project, specify the name of the field holding the `AudioClip[]` as in the *Listening* question. If possible, prefer to use a `ForeignAudioID` instead.
 
-`string ForeignAudioID` — The mod ID where the `AudioClip`s come from. Note that this is *not* the module ID. This is the ID specified in `modInfo.json` and used as the name for a mod's `.dll` file. It is specified in `Assets/Editor/Resources/ModConfig.asset`. This only works if all of the `AudioClip`s can be obtained via reflection. If not, use an `AudioField` instead.
+`string ForeignAudioID` — The mod ID where the `AudioClip`s come from. Note that this is *not* the module ID. This is the ID specified in `modInfo.json` and used as the name for a mod's `.dll` file. It is specified in `Assets/Editor/Resources/ModConfig.asset`. This only works if all of the `AudioClip`s can be obtained via reflection. If not, use an `AudioFieldName` instead.
 
 `float AudioSizeMultiplier` — Visually scales waveforms for audio clips. A value of `1f` would be appropriate for constantly peaking audio. Increase this to achieve better visuals. The default value is `2f`.
 
@@ -99,7 +99,7 @@ In `GetField` and `GetStaticField`, `T` is the type stored in the field.
 
 In `GetArrayField` and `GetListField`, `T` is the type stored in the collection in the field.
 
-Be sure to use the most applicable method because they make validating data easier (see **Getting Values** below)
+Be sure to use the most applicable method because they make validating data easier (see **Getting Values** below).
 
 #### Properties
 
@@ -300,6 +300,6 @@ Fundamentally, there are three ways to create a question that uses sprites as an
 * Generate the sprites on the fly at runtime. If the module is just an n×m rectilinear grid, you can just use the `makeQuestion` overloads that take `Coord` objects, which will automatically be converted to sprites that represent a grid with one cell highlighted. If it’s a little more involved, feel free to look at how `Sprites.GenerateGridSprite` generates the grid sprites and use it as inspiration to make your own sprite generator.
 * Include the sprites in the Souvenir mod itself, as a field of type `Sprite[]`. For example, `ArithmelogicSprites` contains the sprites for one of the Arithmelogic questions. If at all possible, this should only be used if the other two options are not available, as it means the sprites are shipped with Souvenir, increasing the size of the mod. If you do decide for this option, make sure to:
 	* Declare a field of type `Sprite[]` and assign all the sprites you need using the Unity editor.
-	* In the question attribute, use `Type = AnswerType.Sprites` and `SpriteField = "ArithmelogicSprites"` (except of course put the new field’s name).
+	* In the question attribute, use `Type = AnswerType.Sprites` and `SpriteFieldName = "ArithmelogicSprites"` (except of course put the new field’s name).
 	* Now you can simply use these sprites in your call to `makeQuestion`.
 
