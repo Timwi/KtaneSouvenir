@@ -11096,6 +11096,15 @@ namespace Souvenir
                 QuestionText = "Какая локация была показана {0}?",
             },
 
+            // Watching Paint Dry
+            // How many brush strokes were heard in {0}?
+            // How many brush strokes were heard in Watching Paint Dry?
+            [Question.WatchingPaintDryStrokeCount] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "How many brush strokes were heard in {0}?",
+            },
+
             // Wavetapping
             // What was the color on the {1} stage in {0}?
             // What was the color on the first stage in Wavetapping?

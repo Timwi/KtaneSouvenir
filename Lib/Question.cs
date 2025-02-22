@@ -3116,6 +3116,10 @@
         [SouvenirQuestion("What was the location displayed in {0}?", "WASD", ThreeColumns6Answers, "Bank", "Grocery", "School", "Gym", "Home", "Mall", "Cafe", "Park", "Office")]
         WasdDisplayedLocation,
 
+        [SouvenirQuestion("How many brush strokes were heard in {0}?", "Watching Paint Dry", ThreeColumns6Answers)]
+        [AnswerGenerator.Integers(3, 8)]
+        WatchingPaintDryStrokeCount,
+
         [SouvenirQuestion("What was the color on the {1} stage in {0}?", "Wavetapping", TwoColumns4Answers, "Red", "Orange", "Orange-Yellow", "Chartreuse", "Lime", "Green", "Seafoam Green", "Cyan-Green", "Turquoise", "Dark Blue", "Indigo", "Purple", "Purple-Magenta", "Magenta", "Pink", "Gray", TranslateAnswers = true,
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         WavetappingColors,

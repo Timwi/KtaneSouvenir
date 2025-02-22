@@ -49,7 +49,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cruel Binary          │  Forget Me Not      │  Light Bulbs           │  Recursive Password     │  WASD
     Cruel Keypads         │  Forget Me Now      │  Mad Memory            │  Safety Square          │
 
-## Implemented by Anonymous (54)
+## Implemented by Anonymous (55)
 
     ↻↺                 │  Color One Two            │  Gyromaze            │  Not Password           │  Simon Subdivides
     ❖                  │  Concentration            │  hexOrbits           │  Not Red Arrows         │  Smash, Marry, Kill
@@ -59,9 +59,9 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Beans              │  Double Arrows            │  Maroon Button, The  │  Pointless Machines     │  Unordered Keys
     Big Bean           │  Double Listening         │  MoneyGame           │  Polygons               │  Updog
     Boob Tube          │  Double Screen            │  Mssngv Wls          │  Q & A                  │  Variety
-    Boomtar the Great  │  Emoji                    │  Naming Conventions  │  Red Button’t           │  X-Ring
-    Bottom Gear        │  Fuse Box, The            │  Next In Line        │  RNG Crystal            │  Yellow Button’t
-    CA-RPS             │  Ghost Movement           │  Not Double-Oh       │  Simon Smiles           │
+    Boomtar the Great  │  Emoji                    │  Naming Conventions  │  Red Button’t           │  Watching Paint Dry
+    Bottom Gear        │  Fuse Box, The            │  Next In Line        │  RNG Crystal            │  X-Ring
+    CA-RPS             │  Ghost Movement           │  Not Double-Oh       │  Simon Smiles           │  Yellow Button’t
 
 ## Implemented by luisdiogo98 (45)
 

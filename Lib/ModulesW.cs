@@ -29,6 +29,16 @@ public partial class SouvenirModule
         addQuestion(module, Question.WasdDisplayedLocation, correctAnswers: new[] { displayedLocation });
     }
 
+    private IEnumerator<YieldInstruction> ProcessWatchingPaintDry(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "watchingPaintDry");
+        var strokes = GetIntField(comp, "strokeCount").Get(min: 3, max: 8);
+
+        addQuestion(module, Question.WatchingPaintDryStrokeCount, correctAnswers: new[] { strokes.ToString() });
+    }
+
     private IEnumerator<YieldInstruction> ProcessWavetapping(ModuleData module)
     {
         var comp = GetComponent(module, "scr_wavetapping");

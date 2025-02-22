@@ -602,6 +602,7 @@ public partial class SouvenirModule
             ["visual_impairment"] = (ProcessVisualImpairment, "Visual Impairment", "Timwi"),
             ["warningSigns"] = (ProcessWarningSigns, "Warning Signs", "Kuro"),
             ["wasdModule"] = (ProcessWasd, "WASD", "Kuro"),
+            ["watchingPaintDry"] = (ProcessWatchingPaintDry, "Watching Paint Dry", "Anonymous"),
             ["Wavetapping"] = (ProcessWavetapping, "Wavetapping", "KingSlendy"),
             ["TheWeakestLink"] = (ProcessWeakestLink, "Weakest Link, The", "Hawker"),
             ["WhatsOnSecond"] = (ProcessWhatsOnSecond, "What’s on Second", "BigCrunch22"),
