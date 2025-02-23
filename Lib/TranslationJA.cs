@@ -8268,6 +8268,15 @@ namespace Souvenir
                 },
             },
 
+            // ReGret-B Filtering
+            // Which calculation was used for the {1} stage of {0}?
+            // Which calculation was used for the first stage of ReGret-B Filtering?
+            [Question.ReGretBFilteringOperator] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which calculation was used for the {1} stage of {0}?",
+            },
+
             // Regular Crazy Talk
             // What was the displayed digit that corresponded to the solution phrase in {0}?
             // What was the displayed digit that corresponded to the solution phrase in Regular Crazy Talk?

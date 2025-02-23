@@ -460,6 +460,7 @@ public partial class SouvenirModule
             ["redCipher"] = (ProcessRedCipher, "Red Cipher", "BigCrunch22"),
             ["RedHerring"] = (ProcessRedHerring, "Red Herring", "tandyCake"),
             ["ReformedRoleReversal"] = (ProcessReformedRoleReversal, "Reformed Role Reversal", "Emik"),
+            ["regretbFiltering"] = (ProcessReGretBFiltering, "ReGret-B Filtering", "Anonymous"),
             ["RegularCrazyTalkModule"] = (ProcessRegularCrazyTalk, "Regular Crazy Talk", "Espik"),
             ["retirement"] = (ProcessRetirement, "Retirement", "luisdiogo98"),
             ["reverseMorse"] = (ProcessReverseMorse, "Reverse Morse", "luisdiogo98"),

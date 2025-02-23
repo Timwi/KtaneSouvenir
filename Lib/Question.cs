@@ -2379,6 +2379,10 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         ReformedRoleReversalWire,
 
+        [SouvenirQuestion("Which calculation was used for the {1} stage of {0}?", "ReGret-B Filtering", ThreeColumns6Answers, "+", "×", "÷", "⊻", "∧", "∨",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        ReGretBFilteringOperator,
+
         [SouvenirQuestion("What was the displayed digit that corresponded to the solution phrase in {0}?", "Regular Crazy Talk", ThreeColumns6Answers)]
         [AnswerGenerator.Integers(0, 9)]
         RegularCrazyTalkDigit,
