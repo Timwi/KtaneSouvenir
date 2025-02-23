@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using UnityEngine;
-using UnityEngine.Collections;
 
 namespace Souvenir
 {
@@ -111,9 +110,11 @@ namespace Souvenir
             return clip;
         }
 
-        /// <summary>Play a sound from another mod.</summary>
-        /// <param name="fullName">The </param>
-        /// <returns></returns>
+        /// <summary>Play a sound from another mod. The sound does not loop.</summary>
+        /// <param name="foreignAudioID">The mod ID of the mod.</param>
+        /// <param name="name">The name of the audio clip.</param>
+        /// <param name="transform">The transform to play the sound at.</param>
+        /// <returns>A reference to stop the sound early.</returns>
         public static KMAudio.KMAudioRef PlayForeignClip(string foreignAudioID, string name, Transform transform)
         {
             var aref = new KMAudio.KMAudioRef();
