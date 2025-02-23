@@ -239,6 +239,7 @@ public partial class SouvenirModule
             ["GuessWho"] = (ProcessGuessWho, "Guess Who?", "BigCrunch22"),
             ["gyromaze"] = (ProcessGyromaze, "Gyromaze", "Anonymous"),
             ["Averageh"] = (ProcessH, "h", "Hawker"),
+            ["halliGalli"] = (ProcessHalliGalli, "Halli Galli", "Anonymous"),
             ["hereditaryBaseNotationModule"] = (ProcessHereditaryBaseNotation, "Hereditary Base Notation", "kavinkul"),
             ["hexabutton"] = (ProcessHexabutton, "Hexabutton, The", "luisdiogo98"),
             ["HexamazeModule"] = (ProcessHexamaze, "Hexamaze", "Timwi"),

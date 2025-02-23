@@ -1246,6 +1246,11 @@
         [AnswerGenerator.Strings("A-Z")]
         HLetter,
 
+        [SouvenirQuestion("Which fruit were there five of in {0}?", "Halli Galli", TwoColumns4Answers, "Strawberries", "Melons", "Lemons", "Raspberries", "Bananas", TranslateAnswers = true)]
+        HalliGalliFruit,
+        [SouvenirQuestion("What were the relevant counts in {0}?", "Halli Galli", TwoColumns4Answers, "5", "1 4", "2 3", "1 1 3", "1 2 2")]
+        HalliGalliCounts,
+
         [SouvenirQuestion("What was the given number in {0}?", "Hereditary Base Notation", TwoColumns4Answers, ExampleAnswers = new[] { "12", "33", "46", "112", "356" })]
         HereditaryBaseNotationInitialNumber,
 

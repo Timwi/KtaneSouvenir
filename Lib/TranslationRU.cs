@@ -4348,6 +4348,30 @@ namespace Souvenir
                 QuestionText = "Какая буква передавалась в «{0}»?",
             },
 
+            // Halli Galli
+            // Which fruit were there five of in {0}?
+            // Which fruit were there five of in Halli Galli?
+            [Question.HalliGalliFruit] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which fruit were there five of in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Strawberries"] = "Strawberries",
+                    ["Melons"] = "Melons",
+                    ["Lemons"] = "Lemons",
+                    ["Raspberries"] = "Raspberries",
+                    ["Bananas"] = "Bananas",
+                },
+            },
+            // What were the relevant counts in {0}?
+            // What were the relevant counts in Halli Galli?
+            [Question.HalliGalliCounts] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What were the relevant counts in {0}?",
+            },
+
             // Hereditary Base Notation
             // What was the given number in {0}?
             // What was the given number in Hereditary Base Notation?

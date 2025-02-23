@@ -1613,6 +1613,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 262e5afa426a8ec4bb1d252533313235, type: 3}
   - {fileID: 8300000, guid: 8c07f76b26ee2954598e3e287b476c0e, type: 3}
   - {fileID: 8300000, guid: 811478d231f019040871059e1d9f1e89, type: 3}
+  SynesthesiaAudio:
+  - {fileID: 8300000, guid: 8ba855885f54fc44d9caa1601ea65edf, type: 3}
+  - {fileID: 8300000, guid: 7fe01275f15de014ea12632e67d71a72, type: 3}
+  - {fileID: 8300000, guid: 110fc8ec6fc094d49af7317f89cfe8c3, type: 3}
+  - {fileID: 8300000, guid: 874c1be7cabe75c4488a693d9368a987, type: 3}
+  - {fileID: 8300000, guid: 56039eaa5d4db024ea23f3863529902d, type: 3}
+  - {fileID: 8300000, guid: 30fefc439c4ca8a46b0bfe8e90b7a9ca, type: 3}
   TextMesh: {fileID: 102000012539687798}
   TextRenderer: {fileID: 23000013337156738}
   SurfaceRenderer: {fileID: 23000012396776310}
