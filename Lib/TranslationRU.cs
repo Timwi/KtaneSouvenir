@@ -499,6 +499,15 @@ namespace Souvenir
                 },
             },
 
+            // Amusement Parks
+            // Which ride was available in {0}?
+            // Which ride was available in Amusement Parks?
+            [Question.AmusementParksRides] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which ride was available in {0}?",
+            },
+
             // Ángel Hernández
             // What letter was shown by the raised buttons on the {1} stage on {0}?
             // What letter was shown by the raised buttons on the first stage on Ángel Hernández?

@@ -300,6 +300,23 @@ public partial class SouvenirModule
             preferredWrongAnswers: displayedCharacters)));
     }
 
+    private IEnumerator<YieldInstruction> ProcessAmusementParks(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "amusementParksScript");
+        var avail = GetField<IEnumerable>(comp, "ridesAvailable").Get(v => v.Cast<object>().Count() != 3 ? "Expected length 3" : null).Cast<object>().ToArray();
+        var correct = GetField<object>(comp, "correctInvestment").Get();
+
+        var f_name = GetField<string>(avail[0], "name", true);
+        var options = avail.Select(r => f_name.GetFrom(r, v => Question.AmusementParksRides.GetAnswers().Contains(v) ? null : $"Unknown ride type {v}"));
+        var correctName = f_name.GetFrom(correct, v => Question.AmusementParksRides.GetAnswers().Contains(v) ? null : $"Unknown ride type {v}");
+
+        addQuestion(module, Question.AmusementParksRides,
+            correctAnswers: options.Except(new[] { correctName }).ToArray(),
+            allAnswers: Question.AmusementParksRides.GetAnswers().Except(new[] { correctName }).ToArray());
+    }
+
     private IEnumerator<YieldInstruction> ProcessAngelHernandez(ModuleData module)
     {
         var comp = GetComponent(module, "AngelHernandezScript");

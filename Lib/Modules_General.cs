@@ -41,6 +41,7 @@ public partial class SouvenirModule
             ["alphabetNumbers"] = (ProcessAlphabetNumbers, "Alphabet Numbers", "Kuro"),
             ["AlphabetTiles"] = (ProcessAlphabetTiles, "Alphabet Tiles", "BigCrunch22"),
             ["alphaBits"] = (ProcessAlphaBits, "Alpha-Bits", "Timwi"),
+            ["amusementParks"] = (ProcessAmusementParks, "Amusement Parks", "Anonymous"),
             ["AngelHernandezModule"] = (ProcessAngelHernandez, "Ángel Hernández", "Quinn Wuest"),
             ["TheArena"] = (ProcessArena, "Arena, The", "Hawker"),
             ["arithmelogic"] = (ProcessArithmelogic, "Arithmelogic", "JerryEris"),
