@@ -300,6 +300,9 @@
         [AnswerGenerator.Integers(0, 9)]
         BlindMazeMaze,
 
+        [SouvenirQuestion("What song was flashed in {0}?", "Blinking Notes", OneColumn4Answers, "New Super Mario Bros. - Castle Theme", "Better Call Saul Intro", "Franz Schubert - Serenade", "Keep Talking and Nobody Explodes OST - SMILEYFACE", "Plants Vs. Zombies OST - Watery Graves (Horde)", "Cass Elliot - Make Your Own Kind Of Music", "Michael Jackson - Earth Song", "Maon Kurosaki - DEAD OR LIE", "La Marseillaise (French National Anthem)", "Dave James & Keith Beauvais - Class Act", "Rhythm Heaven Fever OST - Exhibition Match", "Lost OST - Hollywood And Vines", "TLoZ: A Link To The Past - Hyrule Castle", "TLoZ: Spirit Tracks OST - Realm Overworld", "Jamiroquai - Virtual Insanity", "Mii Channel Theme")]
+        BlinkingNotesSong,
+
         [SouvenirQuestion("How many times did the LED flash in {0}?", "Blinkstop", ThreeColumns6Answers, "30", "33", "37", "39", "42", "44", "47", "51", "55", "59")]
         BlinkstopNumberOfFlashes,
         [SouvenirQuestion("Which color did the LED flash the fewest times in {0}?", "Blinkstop", TwoColumns4Answers, "Purple", "Cyan", "Yellow", "Multicolor", TranslateAnswers = true)]

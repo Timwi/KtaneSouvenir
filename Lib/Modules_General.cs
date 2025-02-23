@@ -63,6 +63,7 @@ public partial class SouvenirModule
             ["BitmapsModule"] = (ProcessBitmaps, "Bitmaps", "Timwi"),
             ["blackCipher"] = (ProcessBlackCipher, "Black Cipher", "BigCrunch22"),
             ["BlindMaze"] = (ProcessBlindMaze, "Blind Maze", "Timwi"),
+            ["blinkingNotes"] = (ProcessBlinkingNotes, "Blinking Notes", "Anonymous"),
             ["blinkstopModule"] = (ProcessBlinkstop, "Blinkstop", "Kuro"),
             ["blockbusters"] = (ProcessBlockbusters, "Blockbusters", "luisdiogo98"),
             ["blueArrowsModule"] = (ProcessBlueArrows, "Blue Arrows", "kavinkul"),

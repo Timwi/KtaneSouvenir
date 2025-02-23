@@ -1054,6 +1054,15 @@ namespace Souvenir
                 ModuleName = "Blinder Irrgarten",
             },
 
+            // Blinking Notes
+            // What song was flashed in {0}?
+            // What song was flashed in Blinking Notes?
+            [Question.BlinkingNotesSong] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What song was flashed in {0}?",
+            },
+
             // Blinkstop
             // How many times did the LED flash in {0}?
             // How many times did the LED flash in Blinkstop?

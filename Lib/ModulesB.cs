@@ -468,6 +468,15 @@ public partial class SouvenirModule
                 .Concat(new[] { makeQuestion(Question.BlindMazeMaze, module, correctAnswers: new[] { ((numSolved + lastDigit) % 10).ToString() }) }));
     }
 
+    private IEnumerator<YieldInstruction> ProcessBlinkingNotes(ModuleData module)
+    {
+        yield return WaitForSolve;
+        var comp = GetComponent(module, "blinkingLightsScript");
+        var correct = GetIntField(comp, "correctClip").Get(min: 0, max: 15);
+
+        addQuestion(module, Question.BlinkingNotesSong, correctAnswers: new[] { Question.BlinkingNotesSong.GetAnswers()[correct] });
+    }
+
     private IEnumerator<YieldInstruction> ProcessBlinkstop(ModuleData module)
     {
         var comp = GetComponent(module, "BlinkstopScript");
