@@ -2888,6 +2888,10 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         Sync125_3Word,
 
+        [SouvenirQuestion("What was the {1} sound played in {0}?", "Synesthesia", ThreeColumns6Answers, Type = AnswerType.Audio, ForeignAudioID = Sounds.Generated, AudioSizeMultiplier = 1f,
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        SynesthesiaSound,
+
         [SouvenirQuestion("Which number was displayed on {0}?", "Synonyms", ThreeColumns6Answers)]
         [AnswerGenerator.Integers(0, 9)]
         SynonymsNumber,

@@ -550,6 +550,7 @@ public partial class SouvenirModule
             ["symbolicCoordinates"] = (ProcessSymbolicCoordinates, "Symbolic Coordinates", "CaitSith2"),
             ["symbolicTasha"] = (ProcessSymbolicTasha, "Symbolic Tasha", "Timwi"),
             ["sync125_3"] = (ProcessSync_125_3, "SYNC-125 [3]", "Timwi"),
+            ["synesthesia"] = (ProcessSynesthesia, "Synesthesia", "Anonymous"),
             ["synonyms"] = (ProcessSynonyms, "Synonyms", "Timwi"),
             ["sysadmin"] = (ProcessSysadmin, "Sysadmin", "NickLatkovich"),
             ["tapCode"] = (ProcessTapCode, "Tap Code", "Timwi"),

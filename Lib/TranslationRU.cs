@@ -10226,6 +10226,15 @@ namespace Souvenir
                 QuestionText = "Что было на экране на {1}-м этапе {0}?",
             },
 
+            // Synesthesia
+            // What was the {1} sound played in {0}?
+            // What was the first sound played in Synesthesia?
+            [Question.SynesthesiaSound] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the {1} sound played in {0}?",
+            },
+
             // Synonyms
             // Which number was displayed on {0}?
             // Which number was displayed on Synonyms?
