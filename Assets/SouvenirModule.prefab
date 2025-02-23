@@ -1527,6 +1527,17 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 4b8702113456acd4db82e9ae3396f97a, type: 3}
   - {fileID: 2800000, guid: 99ad550484939fc44aad4eb6f2ce9213, type: 3}
   - {fileID: 2800000, guid: eb94ab5fc22f354468ebd52eacad8c0e, type: 3}
+  DialtonesAudio:
+  - {fileID: 8300000, guid: 8217b72a65c27bb46a983703cd0b5b3c, type: 3}
+  - {fileID: 8300000, guid: bc5ff403583bee44ca9fee4f6744442c, type: 3}
+  - {fileID: 8300000, guid: aa3b75090b3fed8458c81a5fff0a2c1b, type: 3}
+  - {fileID: 8300000, guid: 7559639a1a797084d87481d180cb3eb3, type: 3}
+  - {fileID: 8300000, guid: aaebed1252f0aef4fa516328008c7c41, type: 3}
+  - {fileID: 8300000, guid: cb013e6a3d0723e40bedca051f5a651b, type: 3}
+  - {fileID: 8300000, guid: b22caed6d2a768148a48ba1d28171435, type: 3}
+  - {fileID: 8300000, guid: aac0cc6b32fc2c94d9d84590fa7056c7, type: 3}
+  - {fileID: 8300000, guid: e475d5b3ae9b75f4da267c7179a4815c, type: 3}
+  - {fileID: 8300000, guid: e6ab4095a90c159409868d24d252d301, type: 3}
   ExampleAudio:
   - {fileID: 8300000, guid: ca96153a72253b643ad50fc57d3484ab, type: 3}
   - {fileID: 8300000, guid: 2bfb157c6c8f9a147b87e35f2855e614, type: 3}
@@ -1613,13 +1624,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 262e5afa426a8ec4bb1d252533313235, type: 3}
   - {fileID: 8300000, guid: 8c07f76b26ee2954598e3e287b476c0e, type: 3}
   - {fileID: 8300000, guid: 811478d231f019040871059e1d9f1e89, type: 3}
-  SynesthesiaAudio:
-  - {fileID: 8300000, guid: 8ba855885f54fc44d9caa1601ea65edf, type: 3}
-  - {fileID: 8300000, guid: 7fe01275f15de014ea12632e67d71a72, type: 3}
-  - {fileID: 8300000, guid: 110fc8ec6fc094d49af7317f89cfe8c3, type: 3}
-  - {fileID: 8300000, guid: 874c1be7cabe75c4488a693d9368a987, type: 3}
-  - {fileID: 8300000, guid: 56039eaa5d4db024ea23f3863529902d, type: 3}
-  - {fileID: 8300000, guid: 30fefc439c4ca8a46b0bfe8e90b7a9ca, type: 3}
   TextMesh: {fileID: 102000012539687798}
   TextRenderer: {fileID: 23000013337156738}
   SurfaceRenderer: {fileID: 23000012396776310}

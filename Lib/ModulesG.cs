@@ -177,6 +177,19 @@ public partial class SouvenirModule
         addQuestion(module, Question.GlitchedButtonSequence, correctAnswers: Enumerable.Range(0, 12).Select(amount => correctAnswer.Substring(amount) + correctAnswer.Substring(0, amount)).ToArray(), preferredWrongAnswers: wrongAnswers.ToArray());
     }
 
+    private IEnumerator<YieldInstruction> ProcessGoofysGame(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "GoofysGameScript");
+        var nums = GetListField<int>(comp, "lightCodes").Get(expectedLength: 3, validator: v => v is < 0 or > 9 ? "Out of range [0, 9]" : null);
+
+        addQuestions(module, nums.Select((n, i) =>
+            makeQuestion(Question.GoofysGameNumber, module,
+                correctAnswers: new[] { n.ToString() },
+                formatArgs: new[] { new[] { "left", "center", "right" }[i] })));
+    }
+
     private IEnumerator<YieldInstruction> ProcessGrayButton(ModuleData module)
     {
         var comp = GetComponent(module, "GrayButtonScript");
@@ -341,7 +354,7 @@ public partial class SouvenirModule
         var colorNames = new[] { "Red", "Blue", "Green", "Yellow" };
         var endPos = GetIntField(comp, "endPos").Get(0, 15);
 
-        addQuestions(module, 
+        addQuestions(module,
             makeQuestion(Question.GyromazeLEDColor, module, correctAnswers: new[] { colorNames[endPos % 4] }, formatArgs: new[] { "top" }),
             makeQuestion(Question.GyromazeLEDColor, module, correctAnswers: new[] { colorNames[endPos / 4] }, formatArgs: new[] { "bottom" })
             );

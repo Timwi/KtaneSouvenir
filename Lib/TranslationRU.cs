@@ -4177,6 +4177,21 @@ namespace Souvenir
                 ModuleName = "Глитч-кнопке",
             },
 
+            // Goofy's Game
+            // What number was flashed by the {1} LED in {0}?
+            // What number was flashed by the left LED in Goofy's Game?
+            [Question.GoofysGameNumber] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What number was flashed by the {1} LED in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["left"] = "left",
+                    ["right"] = "right",
+                    ["center"] = "center",
+                },
+            },
+
             // The Gray Button
             // What was the {1} coordinate on the display in {0}?
             // What was the horizontal coordinate on the display in The Gray Button?

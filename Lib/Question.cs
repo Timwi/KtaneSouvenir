@@ -1191,6 +1191,11 @@
         [AnswerGenerator.Strings(12, "01")]
         GlitchedButtonSequence,
 
+        [SouvenirQuestion("What number was flashed by the {1} LED in {0}?", "Goofy's Game", ThreeColumns6Answers,
+            ExampleFormatArguments = new[] { "left", "right", "center" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
+        [AnswerGenerator.Integers(0, 9)]
+        GoofysGameNumber,
+
         [SouvenirQuestion("What was the {1} coordinate on the display in {0}?", "Gray Button", ThreeColumns6Answers, AddThe = true,
             ExampleFormatArguments = new[] { "horizontal", "vertical" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         [AnswerGenerator.Integers(0, 9)]
