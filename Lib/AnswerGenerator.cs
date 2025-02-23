@@ -284,8 +284,14 @@ namespace Souvenir
 
             public override IEnumerable<Sprite> GetAnswers(SouvenirModule module)
             {
-                for (int ix = 0; ix < Count; ix++)
-                    yield return Sprites.GenerateGridSprite(_width, _height, ix, _size);
+                var count = _width * _height;
+                if (count >= 10)
+                    while (true)
+                        yield return Sprites.GenerateGridSprite(_width, _height, Random.Range(0, count), _size);
+
+                var positions = Enumerable.Range(0, count).ToArray().Shuffle();
+                foreach (var position in positions)
+                    yield return Sprites.GenerateGridSprite(_width, _height, position, _size);
             }
         }
 
