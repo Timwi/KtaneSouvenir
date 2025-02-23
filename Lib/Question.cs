@@ -746,6 +746,9 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         DevilishEggsLetters,
 
+        [SouvenirQuestion("What dialtones were heard in {0}?", "Dialtones", OneColumn4Answers, Type = AnswerType.Audio, ForeignAudioID = Sounds.Generated)]
+        DialtonesDialtones,
+
         [SouvenirQuestion("What was the number on the {1} button in {0}?", "Digisibility", ThreeColumns6Answers,
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 9)]

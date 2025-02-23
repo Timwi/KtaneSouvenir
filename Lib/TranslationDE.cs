@@ -2813,6 +2813,15 @@ namespace Souvenir
                 QuestionText = "What was the {1} letter in the string of letters on {0}?",
             },
 
+            // Dialtones
+            // What dialtones were heard in {0}?
+            // What dialtones were heard in Dialtones?
+            [Question.DialtonesDialtones] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What dialtones were heard in {0}?",
+            },
+
             // Digisibility
             // What was the number on the {1} button in {0}?
             // What was the number on the first button in Digisibility?

@@ -74,6 +74,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Texture2D[] NonverbalSimonQuestions;
     public Texture2D[] TechnicalKeypadQuestions;
 
+    public AudioClip[] DialtonesAudio;
     public AudioClip[] ExampleAudio;
     public AudioClip[] ListeningAudio;
     public AudioClip[] SimonSamplesAudio;

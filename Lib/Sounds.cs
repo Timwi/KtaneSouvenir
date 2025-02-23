@@ -16,7 +16,7 @@ namespace Souvenir
         public const string Generated = "\uE047generated";
 
         /// <summary>Represents an <see cref="AudioClip"/> played at a specific time.</summary>
-        public struct AudioPosition
+        public readonly struct AudioPosition
         {
             /// <summary>The clip to play.</summary>
             public readonly AudioClip Clip;

@@ -153,6 +153,7 @@ public partial class SouvenirModule
             ["DenialDisplaysModule"] = (ProcessDenialDisplays, "Denial Displays", "Quinn Wuest"),
             ["Detonato"] = (ProcessDetoNATO, "DetoNATO", "Hawker"),
             ["devilishEggs"] = (ProcessDevilishEggs, "Devilish Eggs", "Timwi"),
+            ["xelDialtones"] = (ProcessDialtones, "Dialtones", "Anonymous"),
             ["digisibility"] = (ProcessDigisibility, "Digisibility", "tandyCake"),
             ["digitString"] = (ProcessDigitString, "Digit String", "GoodHood"),
             ["dimensionDisruption"] = (ProcessDimensionDisruption, "Dimension Disruption", "Hawker"),
