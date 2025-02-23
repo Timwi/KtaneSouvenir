@@ -520,6 +520,7 @@ public partial class SouvenirModule
             ["simonSupports"] = (ProcessSimonSupports, "Simon Supports", "tandyCake"),
             ["simultaneousSimons"] = (ProcessSimultaneousSimons, "Simultaneous Simons", "Quinn Wuest"),
             ["SkewedSlotsModule"] = (ProcessSkewedSlots, "Skewed Slots", "Timwi"),
+            ["Skewers"] = (ProcessSkewers, "Skewers", "Anonymous"),
             ["skyrim"] = (ProcessSkyrim, "Skyrim", "Timwi"),
             ["SlowMathModule"] = (ProcessSlowMath, "Slow Math", "Quinn Wuest"),
             ["smallCircle"] = (ProcessSmallCircle, "Small Circle", "TasThiluna"),

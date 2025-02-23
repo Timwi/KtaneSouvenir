@@ -362,7 +362,7 @@ namespace Souvenir
 
                 _audioRef = _foreignKey == null || Application.isEditor
                     ? _parent.Audio.HandlePlaySoundAtTransformWithRef?.Invoke(_clips[index].name, _parent.transform, false)
-                    : PlayForeignClip(_clips[index]);
+                    : Sounds.PlayForeignClip(_foreignKey, _clips[index].name, _parent.transform);
                 _coroutine = _parent.StartCoroutine(AnimatePlayHead(head, _layout switch
                 {
                     AnswerLayout.TwoColumns4Answers => _parent.TwitchPlaysActive ? 14 : 15,
@@ -396,24 +396,6 @@ namespace Souvenir
                     yield return null;
                 }
                 head.gameObject.SetActive(false);
-            }
-
-            private KMAudio.KMAudioRef PlayForeignClip(AudioClip clip)
-            {
-                var aref = new KMAudio.KMAudioRef();
-                var name = _foreignKey + "_" + clip.name;
-                var result = Type.GetType("DarkTonic.MasterAudio.MasterAudio, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null")
-                    .GetMethod("PlaySound3DAtTransform", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static)
-                    .Invoke(null, new object[] { name, _parent.transform, 1f, null, 0f, null, false, false });
-                // Skip setting loop = true since we don't want that anyways
-                aref.StopSound += () =>
-                {
-                    var variation = result?.GetType().GetProperty("ActingVariation", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
-                        ?.GetValue(result, new object[0]);
-                    variation?.GetType().GetMethod("Stop", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
-                        ?.Invoke(variation, new object[] { false, false });
-                };
-                return aref;
             }
         }
     }

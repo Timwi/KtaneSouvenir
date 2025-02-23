@@ -110,5 +110,25 @@ namespace Souvenir
             _injectAudio(new List<AudioClip>() { clip }, $"{Generated}_{clip.name}");
             return clip;
         }
+
+        /// <summary>Play a sound from another mod.</summary>
+        /// <param name="fullName">The </param>
+        /// <returns></returns>
+        public static KMAudio.KMAudioRef PlayForeignClip(string foreignAudioID, string name, Transform transform)
+        {
+            var aref = new KMAudio.KMAudioRef();
+            var result = Type.GetType("DarkTonic.MasterAudio.MasterAudio, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null")
+                .GetMethod("PlaySound3DAtTransform", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static)
+                .Invoke(null, new object[] { $"{foreignAudioID}_{name}", transform, 1f, null, 0f, null, false, false });
+            // Skip setting loop = true since we don't want that anyways
+            aref.StopSound += () =>
+            {
+                var variation = result?.GetType().GetProperty("ActingVariation", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
+                    ?.GetValue(result, new object[0]);
+                variation?.GetType().GetMethod("Stop", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
+                    ?.Invoke(variation, new object[] { false, false });
+            };
+            return aref;
+        }
     }
 }

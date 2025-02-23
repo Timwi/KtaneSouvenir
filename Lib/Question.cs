@@ -2738,6 +2738,9 @@
         [AnswerGenerator.Integers(0, 999, "000")]
         SkewedSlotsOriginalNumbers,
 
+        [SouvenirQuestion("What color was this gem in {0}?", "Skewers", ThreeColumns6Answers, "Black", "Red", "Green", "Yellow", "Blue", "Magenta", "Cyan", "White", UsesQuestionSprite = true, TranslateAnswers = true)]
+        SkewersColor,
+
         [SouvenirQuestion("Which race was selectable, but not the solution, in {0}?", "Skyrim", TwoColumns4Answers, "Nord", "Khajiit", "Breton", "Argonian", "Dunmer", "Altmer", "Redguard", "Orc", "Imperial", TranslateAnswers = true)]
         SkyrimRace,
         [SouvenirQuestion("Which weapon was selectable, but not the solution, in {0}?", "Skyrim", TwoColumns4Answers, "Axe of Whiterun", "Dawnbreaker", "Windshear", "Blade of Woe", "Firiniel’s End", "Bow of Hunt", "Volendrung", "Chillrend", "Mace of Molag Bal", TranslateAnswers = true)]

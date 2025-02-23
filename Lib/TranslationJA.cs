@@ -9516,6 +9516,26 @@ namespace Souvenir
                 ModuleName = "歪曲スロット",
             },
 
+            // Skewers
+            // What color was this gem in {0}?
+            // What color was this gem in Skewers?
+            [Question.SkewersColor] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What color was this gem in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Black"] = "Black",
+                    ["Red"] = "Red",
+                    ["Green"] = "Green",
+                    ["Yellow"] = "Yellow",
+                    ["Blue"] = "Blue",
+                    ["Magenta"] = "Magenta",
+                    ["Cyan"] = "Cyan",
+                    ["White"] = "White",
+                },
+            },
+
             // Skyrim
             // Which race was selectable, but not the solution, in {0}?
             // Which race was selectable, but not the solution, in Skyrim?

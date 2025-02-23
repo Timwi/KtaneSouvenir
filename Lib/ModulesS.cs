@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using JetBrains.Annotations;
 using Souvenir;
 using UnityEngine;
 
@@ -1068,6 +1069,19 @@ public partial class SouvenirModule
 
         addQuestion(module, Question.SkewedSlotsOriginalNumbers, correctAnswers: new[] { originalNumbers.Last() },
             preferredWrongAnswers: originalNumbers.Take(originalNumbers.Count - 1).ToArray());
+    }
+
+    private IEnumerator<YieldInstruction> ProcessSkewers(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "Skewers");
+
+        var color = GetListField<int>(comp, "GemColors").Get(expectedLength: 16, validator: v => v is < 0 or > 7 ? "Out of range [0, 7]" : null);
+        addQuestions(module, color.Select((c, i) =>
+            makeQuestion(Question.SkewersColor, module,
+                correctAnswers: new[] { Question.SkewersColor.GetAnswers()[c] },
+                questionSprite: Sprites.GenerateGridSprite(4, 4, i))));
     }
 
     private IEnumerator<YieldInstruction> ProcessSkyrim(ModuleData module)
