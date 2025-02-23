@@ -435,6 +435,7 @@ public partial class SouvenirModule
             ["polygons"] = (ProcessPolygons, "Polygons", "Anonymous"),
             ["PolyhedralMazeModule"] = (ProcessPolyhedralMaze, "Polyhedral Maze", "Timwi"),
             ["primeEncryption"] = (ProcessPrimeEncryption, "Prime Encryption", "VFlyer"),
+            ["prisonBreak"] = (ProcessPrisonBreak, "Prison Break", "Anonymous"),
             ["Probing"] = (ProcessProbing, "Probing", "Timwi"),
             ["ProceduralMaze"] = (ProcessProceduralMaze, "Procedural Maze", "Kuro"),
             ["punctuationMarks"] = (ProcessPunctuationMarks, "...?", "Kuro"),

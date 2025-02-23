@@ -380,5 +380,46 @@ namespace Souvenir
                     yield return module.Ordinal(i);
             }
         }
+
+        /// <summary>
+        /// An answer generator that concatenates other answer generators, i.e. it generates their cross product.
+        /// <example>
+        /// <code>
+        ///     [AnswerGenerator.Combo(typeof(AnswerGenerator.Strings), new object[] { 'A', 'L' }, typeof(AnswerGenerator.Integers), new object[] { 1, 12 })]
+        ///     // Generates grid coordinates from A1 to L12.
+        /// </code>
+        /// </example>
+        /// </summary>
+        /// <remarks>
+        /// This generator might enter an infinite loop if it can't generate enough answers.
+        /// </remarks>
+        public class Combo : AnswerGeneratorAttribute<string>
+        {
+            private readonly AnswerGeneratorAttribute<string>[] _generators;
+            // Attribute parameters are unfortunately quite restricted
+            public Combo(Type g1type, object[] g1args, Type g2type, object[] g2args)
+            {
+                _generators = new[] {
+                    (AnswerGeneratorAttribute<string>) Activator.CreateInstance(g1type, g1args),
+                    (AnswerGeneratorAttribute<string>) Activator.CreateInstance(g2type, g2args)
+                };
+            }
+
+            public override IEnumerable<string> GetAnswers(SouvenirModule module)
+            {
+                var parts = _generators.Select(g => g.GetAnswers(module).GetEnumerator()).ToArray();
+                while (true)
+                {
+                    StringBuilder sb = new();
+                    for (int i = 0; i < parts.Length; i++)
+                    {
+                        if (!parts[i].MoveNext())
+                            (parts[i] = _generators[i].GetAnswers(module).GetEnumerator()).MoveNext();
+                        sb.Append(parts[i].Current);
+                    }
+                    yield return sb.ToString();
+                }
+            }
+        }
     }
 }

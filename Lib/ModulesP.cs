@@ -531,6 +531,41 @@ public partial class SouvenirModule
             preferredWrongAnswers: incorrectValues.Select(val => val.ToString()).ToArray());
     }
 
+    private IEnumerator<YieldInstruction> ProcessPrisonBreak(ModuleData module)
+    {
+        var comp = GetComponent(module, "prisonBreakScript");
+        var startPos = GetIntField(comp, "currentPos").Get(v => v is < 0 or > 598 ? "Out of range [0, 598]" : (v % 25) % 2 != 1 ? "Invalid X position" : (v / 25) % 2 != 1 ? "Invalid Y position" : null);
+        string error = null;
+
+        IEnumerator waitForReset()
+        {
+            if (error is not null) yield break;
+            var timer = GetField<TextMesh>(comp, "timer", true).Get();
+            yield return new WaitUntil(() => timer.text == "-:--");
+            startPos = GetIntField(comp, "currentPos").Get();
+            error = startPos is < 0 or > 598 ? "Out of range [0, 598]"
+                    : (startPos % 25) % 2 != 1 ? "Invalid X position"
+                    : (startPos / 25) % 2 != 1 ? "Invalid Y position"
+                    : null;
+        }
+        module.Module.OnStrike += () =>
+        {
+            StartCoroutine(waitForReset());
+            return false;
+        };
+
+        yield return WaitForSolve;
+
+        if (error != null)
+            throw new AbandonModuleException($"currentPos ({startPos}) invalid: {error}");
+
+        var cell = GetIntField(comp, "cell").Get(min: 0, max: 14);
+
+        addQuestions(module,
+            makeQuestion(Question.PrisonBreakPrisoner, module, correctAnswers: new[] { (cell + 1).ToString() }),
+            makeQuestion(Question.PrisonBreakDefuser, module, correctAnswers: new[] { ((char) ('A' + (startPos % 25 - 1) / 2)).ToString() + ((startPos / 25 + 1) / 2).ToString() }));
+    }
+
     private IEnumerator<YieldInstruction> ProcessProbing(ModuleData module)
     {
         var comp = GetComponent(module, "ProbingModule");

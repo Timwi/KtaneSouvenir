@@ -7883,6 +7883,22 @@ namespace Souvenir
                 ModuleName = "素数暗号",
             },
 
+            // Prison Break
+            // Which cell did the prisoner start in in {0}?
+            // Which cell did the prisoner start in in Prison Break?
+            [Question.PrisonBreakPrisoner] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Where did the prisoner start in {0}?",
+            },
+            // Where did you start in {0}?
+            // Where did you start in Prison Break?
+            [Question.PrisonBreakDefuser] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Where did you start in {0}?",
+            },
+
             // Probing
             // What was the missing frequency in the {1} wire in {0}?
             // What was the missing frequency in the red-white wire in Probing?

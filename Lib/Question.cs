@@ -2254,6 +2254,13 @@
         [SouvenirQuestion("What was the number shown in {0}?", "Prime Encryption", ThreeColumns6Answers, ExampleAnswers = new[] { "1147", "1271", "1333", "1457", "1643", "1829" })]
         PrimeEncryptionDisplayedValue,
 
+        [SouvenirQuestion("Which cell did the prisoner start in in {0}?", "Prison Break", ThreeColumns6Answers)]
+        [AnswerGenerator.Integers(1, 15)]
+        PrisonBreakPrisoner,
+        [SouvenirQuestion("Where did you start in {0}?", "Prison Break", ThreeColumns6Answers)]
+        [AnswerGenerator.Combo(typeof(AnswerGenerator.Strings), new object[] { 'A', 'L' }, typeof(AnswerGenerator.Integers), new object[] { 1, 12 })]
+        PrisonBreakDefuser,
+
         [SouvenirQuestion("What was the missing frequency in the {1} wire in {0}?", "Probing", TwoColumns4Answers, "10Hz", "22Hz", "50Hz", "60Hz", TranslateFormatArgs = new[] { true },
             ExampleFormatArguments = new[] { "red-white", "yellow-black", "green", "gray", "yellow-red", "red-blue" }, ExampleFormatArgumentGroupSize = 1)]
         ProbingFrequencies,
