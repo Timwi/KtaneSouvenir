@@ -1517,6 +1517,22 @@ namespace Souvenir
                 },
             },
 
+            // Cacti's Conundrum
+            // What color was the LED in the {1} stage of {0}?
+            // What color was the LED in the first stage of Cacti's Conundrum?
+            [Question.CactisConundrumColor] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What color was the LED in the {1} stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Blue"] = "Blue",
+                    ["Lime"] = "Lime",
+                    ["Orange"] = "Orange",
+                    ["Red"] = "Red",
+                },
+            },
+
             // Caesar Cycle
             // What was the {1} in {0}?
             // What was the message in Caesar Cycle?

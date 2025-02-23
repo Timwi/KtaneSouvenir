@@ -8,6 +8,27 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
+    private IEnumerator<YieldInstruction> ProcessCactisConundrum(ModuleData module)
+    {
+        int[] colors = new int[3];
+        var comp = GetComponent(module, "conundramScript");
+        var f_stage = GetIntField(comp, "Stage");
+        var f_color = GetIntField(comp, "ColLedState");
+
+        while (!module.IsSolved)
+        {
+            var stage = f_stage.Get(min: 0, max: 3);
+            if (stage == 3) yield break;
+            colors[stage] = f_color.Get(min: 2, max: 5);
+            yield return null;
+        }
+
+        addQuestions(module, colors.Select((c, i) =>
+            makeQuestion(Question.CactisConundrumColor, module,
+                formatArgs: new[] { Ordinal(i + 1) },
+                correctAnswers: new[] { Question.CactisConundrumColor.GetAnswers()[c - 2] })));
+    }
+
     private IEnumerator<YieldInstruction> ProcessCaesarCycle(ModuleData module)
     {
         return processSpeakingEvilCycle1(module, "CaesarCycleScript", Question.CaesarCycleWord);
