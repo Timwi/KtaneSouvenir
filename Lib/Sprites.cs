@@ -147,7 +147,7 @@ namespace Souvenir
         public static IEnumerable<Sprite> TranslateSpritesScaled(this IEnumerable<Sprite> sprites, float pixelsPerUnitMultiplier = 1f) =>
             (sprites ?? throw new ArgumentNullException(nameof(sprites))).Select(spr => TranslateSprite(spr, spr.pixelsPerUnit * pixelsPerUnitMultiplier));
 
-        public static Sprite FromTexture(this Texture2D texture)
+        public static Sprite ToSprite(this Texture2D texture)
         {
             var newSprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0, .5f), texture.height * (60f / 17));
             newSprite.name = texture.name;

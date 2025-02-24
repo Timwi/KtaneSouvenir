@@ -34,19 +34,19 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Color Decoding       │  Green Button, The     │  Murder                   │  Simon Screams        │  Yellow Button, The
     Color Morse          │  Hexamaze              │  Mystery Module           │  Simon Shouts         │  Zero, Zero
 
-## Implemented by Anonymous (66)
+## Implemented by Anonymous (67)
 
     ↻↺                 │  Color One Two            │  Halli Galli         │  One Links To All       │  Stable Time Signatures
     ❖                  │  Concentration            │  hexOrbits           │  Pentabutton, The       │  Subbly Jubbly
     0                  │  Connected Monitors       │  HiddenValue, The    │  Pickup Identification  │  Synesthesia
     1, 2, 3 Game, The  │  Connection Check         │  Hyperforget         │  Pointless Machines     │  Time Signatures
-    Amusement Parks    │  Dialtones                │  Labyrinth, The      │  Polygons               │  Unordered Keys
-    Bean Sprouts       │  Doofenshmirtz Evil Inc.  │  Maritime Semaphore  │  Prison Break           │  Updog
-    Beans              │  Double Arrows            │  Maroon Button, The  │  Q & A                  │  Variety
-    Big Bean           │  Double Listening         │  MoneyGame           │  Red Button’t           │  Watching Paint Dry
-    Blinking Notes     │  Double Screen            │  Mssngv Wls          │  ReGret-B Filtering     │  X-Ring
-    Boob Tube          │  Emoji                    │  Naming Conventions  │  RNG Crystal            │  Yellow Button’t
-    Boomtar the Great  │  Fuse Box, The            │  Next In Line        │  Simon Smiles           │
+    Amusement Parks    │  Dialtones                │  Labyrinth, The      │  Polygons               │  Tricon
+    Bean Sprouts       │  Doofenshmirtz Evil Inc.  │  Maritime Semaphore  │  Prison Break           │  Unordered Keys
+    Beans              │  Double Arrows            │  Maroon Button, The  │  Q & A                  │  Updog
+    Big Bean           │  Double Listening         │  MoneyGame           │  Red Button’t           │  Variety
+    Blinking Notes     │  Double Screen            │  Mssngv Wls          │  ReGret-B Filtering     │  Watching Paint Dry
+    Boob Tube          │  Emoji                    │  Naming Conventions  │  RNG Crystal            │  X-Ring
+    Boomtar the Great  │  Fuse Box, The            │  Next In Line        │  Simon Smiles           │  Yellow Button’t
     Bottom Gear        │  Ghost Movement           │  Not Double-Oh       │  Simon Subdivides       │
     CA-RPS             │  Goofy's Game             │  Not Password        │  Skewers                │
     Cacti's Conundrum  │  Gyromaze                 │  Not Red Arrows      │  Smash, Marry, Kill     │

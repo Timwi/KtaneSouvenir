@@ -10704,6 +10704,15 @@ namespace Souvenir
                 },
             },
 
+            // Tricon
+            // Which icon was shown on {0}?
+            // Which icon was shown on Tricon?
+            [Question.TriconIcon] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which icon was shown on {0}?",
+            },
+
             // Triple Term
             // Which of these was one of the passwords in {0}?
             // Which of these was one of the passwords in Triple Term?

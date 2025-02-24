@@ -3018,6 +3018,9 @@
         [SouvenirQuestion("What colour triangle pulsed {1} in {0}?", "Triamonds", ThreeColumns6Answers, "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         TriamondsPulsingColours,
 
+        [SouvenirQuestion("Which icon was shown on {0}?", "Tricon", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+        TriconIcon,
+
         [SouvenirQuestion("Which of these was one of the passwords in {0}?", "Triple Term", ThreeColumns6Answers, ExampleAnswers = new[] { "Three", "Every", "These", "Would", "Where", "First", "Still", "Plant", "Small", })]
         TripleTermPasswords,
 
