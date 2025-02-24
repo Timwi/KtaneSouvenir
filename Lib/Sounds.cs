@@ -61,7 +61,7 @@ namespace Souvenir
 
         private static AudioClip Combine(AudioPosition[] clips, string name, float? length)
         {
-            if (clips is null || clips.Length is 0) throw new ArgumentException("No clips provided.", "clips");
+            if (clips is not { Length: > 0 }) throw new ArgumentException("No clips provided.", "clips");
 
             var bufferSize = length is null
                 ? clips.Select(c => c.BufferSize).Max()
@@ -73,6 +73,7 @@ namespace Souvenir
                 var offset = c.EmptySize;
                 var count = Mathf.Min(c.DataSize, bufferSize - offset);
                 var data = new float[count];
+                c.Clip.LoadAudioData();
                 c.Clip.GetData(data, 0);
                 for (var i = 0; i < count; i++)
                     buffer[offset + i] += data[i];
