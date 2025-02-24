@@ -26,9 +26,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "QuantumPasswordsScript");
         var words = GetArrayField<string>(comp, "selectedWords").Get(expectedLength: 2, validator: v => v is { Length: 5 } ? null : "Expected word length 5");
 
-        bool isCorrect(string word) =>
-            words.Any(w => word.ToUpperInvariant().All(c => word.ToUpperInvariant().Count(x => x == c) == w.Count(x => x == c)));
-
+        bool isCorrect(string word) => words.Any(w => word.ToUpperInvariant().OrderBy(c => c).SequenceEqual(w.OrderBy(c => c)));
         addQuestion(module, Question.QuantumPasswordsWord, correctAnswers: Question.QuantumPasswordsWord.GetAnswers().Where(isCorrect).ToArray());
     }
 
@@ -105,9 +103,10 @@ public partial class SouvenirModule
 
         var comp = GetComponent(module, "QLModule");
         var config = GetField<object>(comp, "ChosenConfig").Get();
-        var id = GetField<string>(config, "id", true).Get(v => Question.QuiplashNumber.GetAnswers().Contains(v) ? null : "Unexpected number");
-        var texts = GetArrayField<TextMesh>(comp, "PromptTexts", true).Get();
-        foreach (var t in texts) t.text = "Quiplash!";
+        var id = GetField<string>(config, "id", true).Get(v => !Question.QuiplashNumber.GetAnswers().Contains(v) ? "Unexpected number" : null);
+
+        foreach (var t in GetArrayField<TextMesh>(comp, "PromptTexts", true).Get())
+            t.text = "Quiplash!";
 
         addQuestion(module, Question.QuiplashNumber, correctAnswers: new[] { id });
     }

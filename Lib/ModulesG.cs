@@ -183,11 +183,12 @@ public partial class SouvenirModule
 
         var comp = GetComponent(module, "GoofysGameScript");
         var nums = GetListField<int>(comp, "lightCodes").Get(expectedLength: 3, validator: v => v is < 0 or > 9 ? "Out of range [0, 9]" : null);
+        var directions = new[] { "left", "center", "right" };
 
         addQuestions(module, nums.Select((n, i) =>
             makeQuestion(Question.GoofysGameNumber, module,
                 correctAnswers: new[] { n.ToString() },
-                formatArgs: new[] { new[] { "left", "center", "right" }[i] })));
+                formatArgs: new[] { directions[i] })));
     }
 
     private IEnumerator<YieldInstruction> ProcessGrayButton(ModuleData module)

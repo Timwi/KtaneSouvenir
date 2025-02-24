@@ -454,7 +454,7 @@
         [AnswerGenerator.Integers(1, 12)]
         ButtonSequencesColorOccurrences,
 
-        [SouvenirQuestion("What color was the LED in the {1} stage of {0}?", "Cacti's Conundrum", TwoColumns4Answers, "Blue", "Lime", "Orange", "Red",
+        [SouvenirQuestion("What color was the LED in the {1} stage of {0}?", "Cacti’s Conundrum", TwoColumns4Answers, "Blue", "Lime", "Orange", "Red",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         CactisConundrumColor,
 
@@ -1198,7 +1198,7 @@
         [AnswerGenerator.Strings(12, "01")]
         GlitchedButtonSequence,
 
-        [SouvenirQuestion("What number was flashed by the {1} LED in {0}?", "Goofy's Game", ThreeColumns6Answers,
+        [SouvenirQuestion("What number was flashed by the {1} LED in {0}?", "Goofy’s Game", ThreeColumns6Answers,
             ExampleFormatArguments = new[] { "left", "right", "center" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         [AnswerGenerator.Integers(0, 9)]
         GoofysGameNumber,
@@ -3179,7 +3179,7 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         VisualImpairmentColors,
 
-        [SouvenirQuestion("Which of these cells was part of the cube's path in {0}?", "Walking Cube", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+        [SouvenirQuestion("Which of these cells was part of the cube’s path in {0}?", "Walking Cube", ThreeColumns6Answers, Type = AnswerType.Sprites)]
         [AnswerGenerator.Grid(4, 4)]
         WalkingCubePath,
 

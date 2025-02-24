@@ -308,9 +308,9 @@ public partial class SouvenirModule
         var avail = GetField<IEnumerable>(comp, "ridesAvailable").Get(v => v.Cast<object>().Count() != 3 ? "Expected length 3" : null).Cast<object>().ToArray();
         var correct = GetField<object>(comp, "correctInvestment").Get();
 
-        var f_name = GetField<string>(avail[0], "name", true);
-        var options = avail.Select(r => f_name.GetFrom(r, v => Question.AmusementParksRides.GetAnswers().Contains(v) ? null : $"Unknown ride type {v}"));
-        var correctName = f_name.GetFrom(correct, v => Question.AmusementParksRides.GetAnswers().Contains(v) ? null : $"Unknown ride type {v}");
+        var fldName = GetField<string>(avail[0], "name", true);
+        var options = avail.Select(r => fldName.GetFrom(r, v => !Question.AmusementParksRides.GetAnswers().Contains(v) ? $"Unknown ride type {v}" : null));
+        var correctName = fldName.GetFrom(correct, v => !Question.AmusementParksRides.GetAnswers().Contains(v) ? $"Unknown ride type {v}" : null);
 
         addQuestion(module, Question.AmusementParksRides,
             correctAnswers: options.Except(new[] { correctName }).ToArray(),

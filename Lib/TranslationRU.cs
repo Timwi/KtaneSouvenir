@@ -1608,9 +1608,9 @@ namespace Souvenir
                 },
             },
 
-            // Cacti's Conundrum
+            // Cacti’s Conundrum
             // What color was the LED in the {1} stage of {0}?
-            // What color was the LED in the first stage of Cacti's Conundrum?
+            // What color was the LED in the first stage of Cacti’s Conundrum?
             [Question.CactisConundrumColor] = new()
             {
                 NeedsTranslation = true,
@@ -4202,9 +4202,9 @@ namespace Souvenir
                 ModuleName = "Глитч-кнопке",
             },
 
-            // Goofy's Game
+            // Goofy’s Game
             // What number was flashed by the {1} LED in {0}?
-            // What number was flashed by the left LED in Goofy's Game?
+            // What number was flashed by the left LED in Goofy’s Game?
             [Question.GoofysGameNumber] = new()
             {
                 NeedsTranslation = true,
@@ -11325,8 +11325,8 @@ namespace Souvenir
             },
 
             // Walking Cube
-            // Which of these cells was part of the cube's path in {0}?
-            // Which of these cells was part of the cube's path in Walking Cube?
+            // Which of these cells was part of the cube’s path in {0}?
+            // Which of these cells was part of the cube’s path in Walking Cube?
             [Question.WalkingCubePath] = new()
             {
                 NeedsTranslation = true,

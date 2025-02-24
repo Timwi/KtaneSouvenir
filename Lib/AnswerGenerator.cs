@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -8,29 +8,27 @@ using Random = UnityEngine.Random;
 
 namespace Souvenir
 {
-    /// <summary>The base class for answer generators.</summary>
+    /// <summary>
+    ///     The base class for answer generators.</summary>
     /// <remarks>
-    /// <para>
-    ///     Answer generators provide a means to easily specify common wrong answer patterns on Souvenir questions without having to write out the entire list.
-    /// </para>
-    /// <para>
-    ///     To use an answer generator, add an attribute which is a subclass of <see cref="AnswerGeneratorAttribute"/> to the <see cref="Question"/> enum value.
-    ///     <see cref="SouvenirQuestionAttribute.AllAnswers"/> should be null when using an answer generator.
-    ///     When the question is generated, any answer generator will be used to effectively append as many randomly selected answers as needed to <see cref="SouvenirQuestionAttribute.AllAnswers"/>.
-    ///     Preferred wrong answers may still be specified in addition to an answer generator, or instead of one as was done previously.
-    /// </para>
-    /// <para>
-    ///     Answer generator implementations are provided as nested classes in the <see cref="AnswerGenerator"/> class.
-    ///     See the documentation for these classes for more details.
-    /// </para>
-    /// </remarks>
+    ///     <para>
+    ///         Answer generators provide a means to easily specify common wrong answer patterns on Souvenir questions without
+    ///         having to write out the entire list.</para>
+    ///     <para>
+    ///         To use an answer generator, add an attribute which is a subclass of <see cref="AnswerGeneratorAttribute"/> to
+    ///         the <see cref="Question"/> enum value. <see cref="SouvenirQuestionAttribute.AllAnswers"/> should be null when
+    ///         using an answer generator. When the question is generated, any answer generator will be used to effectively
+    ///         append as many randomly selected answers as needed to <see cref="SouvenirQuestionAttribute.AllAnswers"/>.
+    ///         Preferred wrong answers may still be specified in addition to an answer generator, or instead of one as was
+    ///         done previously.</para>
+    ///     <para>
+    ///         Answer generator implementations are provided as nested classes in the <see cref="AnswerGenerator"/> class.
+    ///         See the documentation for these classes for more details.</para></remarks>
     /// <example>
-    /// <code>
-    ///     [SouvenirQuestion("What was the {1} correct query response from {0}?", "Two Bits", ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { "first" }, ExampleExtraFormatArgumentGroupSize = 1)]
-    ///     [AnswerGenerator.Integers(0, 99, "00")]
-    ///     TwoBitsResponse
-    /// </code>
-    /// </example>
+    ///     <code>
+    ///         [SouvenirQuestion("What was the {1} correct query response from {0}?", "Two Bits", ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { "first" }, ExampleExtraFormatArgumentGroupSize = 1)]
+    ///         [AnswerGenerator.Integers(0, 99, "00")]
+    ///         TwoBitsResponse</code></example>
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = false)]
     public abstract class AnswerGeneratorAttribute : Attribute
     {
@@ -44,24 +42,21 @@ namespace Souvenir
 
     public static class AnswerGenerator
     {
-        /// <summary>An answer generator that generates numeric answers within a specified range.</summary>
+        /// <summary>
+        ///     An answer generator that generates numeric answers within a specified range.</summary>
         /// <remarks>
-        /// <para>
-        ///     This generator generates string representations of numbers within a range specified by inclusive bounds and a step size.
-        ///     The numbers may optionally be formatted using a format string. For more details, see https://docs.microsoft.com/en-us/dotnet/api/system.int32.tostring?view=netframework-3.5.
-        /// </para>
-        /// <para>
-        ///     If a step size is specified, the generated numbers will be multiples of the step size plus the minimum.
-        ///     The maximum may not be included if the step size is greater than 1.
-        /// </para>
-        /// </remarks>
+        ///     <para>
+        ///         This generator generates string representations of numbers within a range specified by inclusive bounds
+        ///         and a step size. The numbers may optionally be formatted using a format string. For more details, see
+        ///         https://docs.microsoft.com/en-us/dotnet/api/system.int32.tostring?view=netframework-3.5.</para>
+        ///     <para>
+        ///         If a step size is specified, the generated numbers will be multiples of the step size plus the minimum.
+        ///         The maximum may not be included if the step size is greater than 1.</para></remarks>
         /// <example>
-        /// <code>
-        ///     [AnswerGenerator.Integers(1, 12)]  // Generates integers between 1 and 12 inclusive.
-        ///     [AnswerGenerator.Integers(0, 50, 5)]  // Generates multiples of 5 between 0 and 50 inclusive.
-        ///     [AnswerGenerator.Integers(0, 999, "000")]  // Generates integers between 0 and 999 and adds leading zeros.
-        /// </code>
-        /// </example>
+        ///     <code>
+        ///         [AnswerGenerator.Integers(1, 12)]  // Generates integers between 1 and 12 inclusive.
+        ///         [AnswerGenerator.Integers(0, 50, 5)]  // Generates multiples of 5 between 0 and 50 inclusive.
+        ///         [AnswerGenerator.Integers(0, 999, "000")]  // Generates integers between 0 and 999 and adds leading zeros.</code></example>
         public class Integers : AnswerGeneratorAttribute<string>
         {
             public int Min { get; private set; }
@@ -69,21 +64,33 @@ namespace Souvenir
             public int Step { get; private set; }
             public string Format { get; private set; }
 
-            /// <param name="min">The inclusive lower bound for generated numbers.</param>
-            /// <param name="max">The inclusive upper bound for generated numbers.</param>
+            /// <param name="min">
+            ///     The inclusive lower bound for generated numbers.</param>
+            /// <param name="max">
+            ///     The inclusive upper bound for generated numbers.</param>
             public Integers(int min, int max) : this(min, max, 1, null) { }
-            /// <param name="min">The inclusive lower bound for generated numbers.</param>
-            /// <param name="max">The inclusive upper bound for generated numbers.</param>
-            /// <param name="format">A format string used to format generated numbers.</param>
+            /// <param name="min">
+            ///     The inclusive lower bound for generated numbers.</param>
+            /// <param name="max">
+            ///     The inclusive upper bound for generated numbers.</param>
+            /// <param name="format">
+            ///     A format string used to format generated numbers.</param>
             public Integers(int min, int max, string format) : this(min, max, 1, format) { }
-            /// <param name="min">The inclusive lower bound for generated numbers.</param>
-            /// <param name="max">The inclusive upper bound for generated numbers.</param>
-            /// <param name="step">The step size to use for generated numbers.</param>
+            /// <param name="min">
+            ///     The inclusive lower bound for generated numbers.</param>
+            /// <param name="max">
+            ///     The inclusive upper bound for generated numbers.</param>
+            /// <param name="step">
+            ///     The step size to use for generated numbers.</param>
             public Integers(int min, int max, int step) : this(min, max, step, null) { }
-            /// <param name="min">The inclusive lower bound for generated numbers.</param>
-            /// <param name="max">The inclusive upper bound for generated numbers.</param>
-            /// <param name="step">The step size to use for generated numbers.</param>
-            /// <param name="format">A format string used to format generated numbers.</param>
+            /// <param name="min">
+            ///     The inclusive lower bound for generated numbers.</param>
+            /// <param name="max">
+            ///     The inclusive upper bound for generated numbers.</param>
+            /// <param name="step">
+            ///     The step size to use for generated numbers.</param>
+            /// <param name="format">
+            ///     A format string used to format generated numbers.</param>
             public Integers(int min, int max, int step, string format)
             {
                 if (step <= 0) throw new ArgumentOutOfRangeException("step", "step must be positive.");
@@ -111,22 +118,19 @@ namespace Souvenir
             }
         }
 
-        /// <summary>An answer generator that generates answers consisting of randomly selected characters.</summary>
+        /// <summary>
+        ///     An answer generator that generates answers consisting of randomly selected characters.</summary>
         /// <remarks>
-        /// <para>
-        ///     This generator builds answers using a specified number of random characters from one or more lists.
-        ///     Each list specifies a combination of individual characters and ranges, and chooses a specified number
-        ///     of characters from that list, with replacement.
-        /// </para>
-        /// </remarks>
+        ///     <para>
+        ///         This generator builds answers using a specified number of random characters from one or more lists. Each
+        ///         list specifies a combination of individual characters and ranges, and chooses a specified number of
+        ///         characters from that list, with replacement.</para></remarks>
         /// <example>
-        /// <code>
-        ///     [AnswerGenerator.Strings('A', 'Z')]  // Generates single uppercase letters.
-        ///     [AnswerGenerator.Strings("A-Z-")]  // Generates answers with either a single uppercase letter or a hyphen.
-        ///     [AnswerGenerator.Strings("A-F", "1-6")]  // Generates answers consisting of a letter A~F followed by a digit 1~6.
-        ///     [AnswerGenerator.Strings("2*0-9A-Z")]  // Generates answers consisting of two alphanumeric characters.
-        /// </code>
-        /// </example>
+        ///     <code>
+        ///         [AnswerGenerator.Strings('A', 'Z')]  // Generates single uppercase letters.
+        ///         [AnswerGenerator.Strings("A-Z-")]  // Generates answers with either a single uppercase letter or a hyphen.
+        ///         [AnswerGenerator.Strings("A-F", "1-6")]  // Generates answers consisting of a letter A~F followed by a digit 1~6.
+        ///         [AnswerGenerator.Strings("2*0-9A-Z")]  // Generates answers consisting of two alphanumeric characters.</code></example>
         public class Strings : AnswerGeneratorAttribute<string>
         {
             public struct CharacterList
@@ -208,37 +212,45 @@ namespace Souvenir
 
             private readonly CharacterList[] characterLists;
 
-            /// <param name="characterLists">A list of expressions specifying character lists.</param>
+            /// <param name="characterLists">
+            ///     A list of expressions specifying character lists.</param>
             /// <remarks>
-            /// <para>
-            ///     A character list expression specifies a list of characters and a number of characters to choose from that list.
-            ///     A character followed by a hyphen ('-') and another character specifies a range, including all characters between the bounds inclusively.
-            ///     Other characters are directly included in the list.
-            ///     A hyphen may be included in the list by placing it at the start or end of the string, or immediately after a range.
-            /// </para>
-            /// <para>
-            ///     The expression may be prefixed with a positive integer followed by a '*'. This specifies the number of characters to choose from the list.
-            ///     If no count is specified, one character is chosen.
-            /// </para>
-            /// </remarks>
+            ///     <para>
+            ///         A character list expression specifies a list of characters and a number of characters to choose from
+            ///         that list. A character followed by a hyphen ('-') and another character specifies a range, including
+            ///         all characters between the bounds inclusively. Other characters are directly included in the list. A
+            ///         hyphen may be included in the list by placing it at the start or end of the string, or immediately
+            ///         after a range.</para>
+            ///     <para>
+            ///         The expression may be prefixed with a positive integer followed by a '*'. This specifies the number of
+            ///         characters to choose from the list. If no count is specified, one character is chosen.</para></remarks>
             public Strings(params string[] characterLists)
             {
                 this.characterLists = new CharacterList[characterLists.Length];
                 for (int i = characterLists.Length - 1; i >= 0; i--)
                     this.characterLists[i] = CharacterList.Parse(characterLists[i]);
             }
-            /// <param name="count">The number of characters to choose.</param>
-            /// <param name="chars">The list of characters to choose from.</param>
+            /// <param name="count">
+            ///     The number of characters to choose.</param>
+            /// <param name="chars">
+            ///     The list of characters to choose from.</param>
             public Strings(int count, params char[] chars) : this(new CharacterList(count, chars, null)) { }
-            /// <param name="count">The number of characters to choose.</param>
-            /// <param name="chars">The list of characters to choose from.</param>
+            /// <param name="count">
+            ///     The number of characters to choose.</param>
+            /// <param name="chars">
+            ///     The list of characters to choose from.</param>
             public Strings(int count, string chars) : this(new CharacterList(count, chars.ToCharArray(), null)) { }
-            /// <param name="first">The inclusive lower bound of the range of characters to choose from.</param>
-            /// <param name="last">The inclusive upper bound of the range of characters to choose from.</param>
+            /// <param name="first">
+            ///     The inclusive lower bound of the range of characters to choose from.</param>
+            /// <param name="last">
+            ///     The inclusive upper bound of the range of characters to choose from.</param>
             public Strings(char first, char last) : this(new CharacterList(1, null, new[] { first, last })) { }
-            /// <param name="count">The number of characters to choose.</param>
-            /// <param name="first">The inclusive lower bound of the range of characters to choose from.</param>
-            /// <param name="last">The inclusive upper bound of the range of characters to choose from.</param>
+            /// <param name="count">
+            ///     The number of characters to choose.</param>
+            /// <param name="first">
+            ///     The inclusive lower bound of the range of characters to choose from.</param>
+            /// <param name="last">
+            ///     The inclusive upper bound of the range of characters to choose from.</param>
             public Strings(int count, char first, char last) : this(new CharacterList(count, null, new[] { first, last })) { }
             // This constructor cannot be used in an attribute.
             private Strings(params CharacterList[] characterLists)
@@ -305,14 +317,21 @@ namespace Souvenir
             /// <summary>Indicates that the pattern in which all circles are “off” should not be generated.</summary>
             public bool SuppressEmpty { get; set; }
 
-            /// <summary>Indicates whether “off” circles should be represented by a circle outline (as opposed to be missing entirely).</summary>
+            /// <summary>
+            ///     Indicates whether “off” circles should be represented by a circle outline (as opposed to be missing
+            ///     entirely).</summary>
             public bool DrawOutline { get; set; }
 
-            /// <summary>Generates sprites in which circles are arranged in a rectilinear grid.</summary>
-            /// <param name="width">Specifies the number of circles per row.</param>
-            /// <param name="height">Specifies the number of circles per column.</param>
-            /// <param name="radius">Specifies the radius of each circle, in pixels.</param>
-            /// <param name="gap">Specifies the gap between circles, in pixels.</param>
+            /// <summary>
+            ///     Generates sprites in which circles are arranged in a rectilinear grid.</summary>
+            /// <param name="width">
+            ///     Specifies the number of circles per row.</param>
+            /// <param name="height">
+            ///     Specifies the number of circles per column.</param>
+            /// <param name="radius">
+            ///     Specifies the radius of each circle, in pixels.</param>
+            /// <param name="gap">
+            ///     Specifies the gap between circles, in pixels.</param>
             public Circles(int width, int height, int radius, int gap)
             {
                 _width = width;
@@ -337,29 +356,32 @@ namespace Souvenir
         }
 
         /// <summary>
-        /// An answer generator that generates answers based on ordinal.
+        ///     An answer generator that generates answers based on ordinal.</summary>
         /// <example>
-        /// <code>
-        ///     [AnswerGenerator.Ordinal(3)] //Generate the ordinals for "first", "second", and "third" in the target language
-        ///     [AnswerGenerator.Ordinal(1, 50, 10)] //Generates ordinals that are multiples of 10 between 1 and 50 inclusive in the target language.
-        ///     [AnswerGenerator.Ordinal(2, 5)] //Generates ordinals "second", "third", "fourth", and "fifth" in the target language
-        /// </code>
-        /// </example>
-        /// </summary>
+        ///     <code>
+        ///         [AnswerGenerator.Ordinal(3)] //Generate the ordinals for "first", "second", and "third" in the target language
+        ///         [AnswerGenerator.Ordinal(1, 50, 10)] //Generates ordinals that are multiples of 10 between 1 and 50 inclusive in the target language.
+        ///         [AnswerGenerator.Ordinal(2, 5)] //Generates ordinals "second", "third", "fourth", and "fifth" in the target language</code></example>
         public class Ordinal : AnswerGeneratorAttribute<string>
         {
             public int Min { get; private set; }
             public int MaxSteps { get; private set; }
             public int Step { get; private set; }
 
-            /// <param name="max">The inclusive upper bound for generated ordinal.</param>
+            /// <param name="max">
+            ///     The inclusive upper bound for generated ordinal.</param>
             public Ordinal(int max) : this(1, max, 1) { }
-            /// <param name="min">The inclusive lower bound for generated ordinal.</param>
-            /// <param name="max">The inclusive upper bound for generated ordinal.</param>
+            /// <param name="min">
+            ///     The inclusive lower bound for generated ordinal.</param>
+            /// <param name="max">
+            ///     The inclusive upper bound for generated ordinal.</param>
             public Ordinal(int min, int max) : this(min, max, 1) { }
-            /// <param name="min">The inclusive lower bound for generated ordinal.</param>
-            /// <param name="max">The inclusive upper bound for generated ordinal.</param>
-            /// <param name="step">The step size to use for generated ordinal.</param>
+            /// <param name="min">
+            ///     The inclusive lower bound for generated ordinal.</param>
+            /// <param name="max">
+            ///     The inclusive upper bound for generated ordinal.</param>
+            /// <param name="step">
+            ///     The step size to use for generated ordinal.</param>
             public Ordinal(int min, int max, int step)
             {
                 if (step <= 0) throw new ArgumentOutOfRangeException("step", "step must be positive.");
@@ -388,17 +410,14 @@ namespace Souvenir
         }
 
         /// <summary>
-        /// An answer generator that concatenates other answer generators, i.e. it generates their cross product.
+        ///     An answer generator that concatenates the output from other answer generators, i.e. it generates their cross
+        ///     product.</summary>
         /// <example>
-        /// <code>
-        ///     [AnswerGenerator.Combo(typeof(AnswerGenerator.Strings), new object[] { 'A', 'L' }, typeof(AnswerGenerator.Integers), new object[] { 1, 12 })]
-        ///     // Generates grid coordinates from A1 to L12.
-        /// </code>
-        /// </example>
-        /// </summary>
+        ///     <code>
+        ///         [AnswerGenerator.Combo(typeof(AnswerGenerator.Strings), new object[] { 'A', 'L' }, typeof(AnswerGenerator.Integers), new object[] { 1, 12 })]
+        ///         // Generates grid coordinates from A1 to L12.</code></example>
         /// <remarks>
-        /// This generator might enter an infinite loop if it can't generate enough answers.
-        /// </remarks>
+        ///     This generator might enter an infinite loop if it can't generate enough answers.</remarks>
         public class Combo : AnswerGeneratorAttribute<string>
         {
             private readonly AnswerGeneratorAttribute<string>[] _generators;

@@ -162,7 +162,7 @@ public partial class SouvenirModule
             .Get(minLength: 4, maxLength: 6, validator: v => v is < 0 or > 9 ? "Out of range [0, 9]" : null)
             .ToArray(); // Make a copy so the module can't modify it
         var colors = GetListField<char>(comp, "numberColors")
-            .Get(expectedLength: numbers.Length, validator: v => "RGWYMCP".Contains(v) ? null : "Not in \"RGWYMCP\"")
+            .Get(expectedLength: numbers.Length, validator: v => "RGWYMCP".Contains(v) ? null : "Not in “RGWYMCP”")
             .Select(c => "RGWYMCP".IndexOf(c))
             .ToArray();
 

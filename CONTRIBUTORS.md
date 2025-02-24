@@ -47,9 +47,9 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Blinking Notes     │  Emoji                    │  Next In Line            │  Red Button’t           │  Updog
     Boob Tube          │  Fuse Box, The            │  Not Colour Flash        │  ReGret-B Filtering     │  Variety
     Boomtar the Great  │  Ghost Movement           │  Not Double-Oh           │  RNG Crystal            │  Walking Cube
-    Bottom Gear        │  Goofy's Game             │  Not Password            │  Saturn                 │  Watching Paint Dry
+    Bottom Gear        │  Goofy’s Game             │  Not Password            │  Saturn                 │  Watching Paint Dry
     CA-RPS             │  Gyromaze                 │  Not Red Arrows          │  Simon Smiles           │  X-Ring
-    Cacti's Conundrum  │  Halli Galli              │  Not The Plunger Button  │  Simon Subdivides       │  Yellow Button’t
+    Cacti’s Conundrum  │  Halli Galli              │  Not The Plunger Button  │  Simon Subdivides       │  Yellow Button’t
     Color One Two      │  hexOrbits                │  One Links To All        │  Skewers                │
 
 ## Implemented by Kuro (59)

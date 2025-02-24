@@ -374,9 +374,9 @@ public partial class SouvenirModule
     private IEnumerator<YieldInstruction> ProcessTricon(ModuleData module)
     {
         var comp = GetComponent(module, "TriconScript");
-        var initialized = GetField<bool>(comp, "_readyToPress");
+        var fldInitialized = GetField<bool>(comp, "_readyToPress");
 
-        while (!initialized.Get())
+        while (!fldInitialized.Get())
             yield return null;
 
         if (GetField<bool>(comp, "_failSafeActive").Get())
@@ -390,7 +390,7 @@ public partial class SouvenirModule
         var moduleList = GetStaticField<string[][]>(comp.GetType(), "_moduleList").Get();
         var solution = GetArrayField<int>(comp, "_solutionIxs").Get(expectedLength: 3, validator: v => v is < 0 ? "Expected non-negative number" : v > moduleList.Length ? $"Expected <= {moduleList.Length}" : null);
         var shown = GetArrayField<int>(comp, "_pickIxs").Get(expectedLength: 40, validator: v => v is < 0 ? "Expected non-negative number" : v > moduleList.Length ? $"Expected <= {moduleList.Length}" : null);
-        var iconFetch = comp.GetType().Assembly.GetType("IconFetch").GetProperty("Instance", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public).GetValue(null, new object[0]);
+        var iconFetch = GetStaticProperty<object>(comp.GetType().Assembly.GetType("IconFetch"), "Instance", isPublic: true).Get();
         var getIcon = GetMethod<Texture2D>(iconFetch, "GetIcon", 1, true);
 
         var all = shown.ToDictionary(i => i, i => getIcon.Invoke(moduleList[i][1]).ToSprite());

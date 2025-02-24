@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -7,9 +7,8 @@ using UnityEngine;
 namespace Souvenir
 {
     /// <summary>
-    /// Static utilities for generating <see cref="AudioClip"/>s.
-    /// Clips will be generated with `ForeignAudioID = Sounds.Generated`.
-    /// </summary>
+    ///     Static utilities for generating <see cref="AudioClip"/>s. Clips will be generated with `ForeignAudioID =
+    ///     Sounds.Generated`.</summary>
     public static class Sounds
     {
         public const string Generated = "\uE047generated";
@@ -38,25 +37,31 @@ namespace Souvenir
         }
 
         /// <summary>
-        /// Combines multiple audio clips together via addition.
-        /// Each clip is assumed to have the same sample rate and channel count.
-        /// </summary>
-        /// <remarks>See <see cref="SouvenirModule.ProcessSynesthesia(ModuleData)"/> for an example of how to use this.</remarks>
-        /// <param name="name">The name of the final clip.</param>
-        /// <param name="clips">The clips to combine.</param>
-        /// <returns>The new audio clip.</returns>
+        ///     Combines multiple audio clips together via addition. Each clip is assumed to have the same sample rate and
+        ///     channel count.</summary>
+        /// <remarks>
+        ///     See <see cref="SouvenirModule.ProcessSynesthesia(ModuleData)"/> for an example of how to use this.</remarks>
+        /// <param name="name">
+        ///     The name of the final clip.</param>
+        /// <param name="clips">
+        ///     The clips to combine.</param>
+        /// <returns>
+        ///     The new audio clip.</returns>
         public static AudioClip Combine(string name, params AudioPosition[] clips) => Combine(clips, name, null);
 
         /// <summary>
-        /// Combines multiple audio clips together via addition.
-        /// Each clip is assumed to have the same sample rate and channel count.
-        /// Any sound after the specified length is ignored.
-        /// </summary>
-        /// <remarks>See <see cref="SouvenirModule.ProcessSynesthesia(ModuleData)"/> for an example of how to use this.</remarks>
-        /// <param name="name">The name of the final clip.</param>
-        /// <param name="name">The length of the final clip.</param>
-        /// <param name="clips">The clips to combine.</param>
-        /// <returns>The new audio clip.</returns>
+        ///     Combines multiple audio clips together via addition. Each clip is assumed to have the same sample rate and
+        ///     channel count. Any sound after the specified length is ignored.</summary>
+        /// <remarks>
+        ///     See <see cref="SouvenirModule.ProcessSynesthesia(ModuleData)"/> for an example of how to use this.</remarks>
+        /// <param name="name">
+        ///     The name of the final clip.</param>
+        /// <param name="name">
+        ///     The length of the final clip.</param>
+        /// <param name="clips">
+        ///     The clips to combine.</param>
+        /// <returns>
+        ///     The new audio clip.</returns>
         public static AudioClip Combine(string name, float length, params AudioPosition[] clips) => Combine(clips, name, length);
 
         private static AudioClip Combine(AudioPosition[] clips, string name, float? length)
@@ -87,10 +92,14 @@ namespace Souvenir
             return clip.Inject();
         }
 
-        /// <summary>Generates an empty audio clip of the given length.</summary>
-        /// <param name="length">The length of the clip in seconds.</param>
-        /// <param name="name">The name of the clip.</param>
-        /// <returns>The audio clip.</returns>
+        /// <summary>
+        ///     Generates an empty audio clip of the given length.</summary>
+        /// <param name="length">
+        ///     The length of the clip in seconds.</param>
+        /// <param name="name">
+        ///     The name of the clip.</param>
+        /// <returns>
+        ///     The audio clip.</returns>
         public static AudioClip Empty(float length, string name = "Empty") =>
             AudioClip.Create(name, (int) (length * 44100), 1, 44100, true, (arr) => Array.Clear(arr, 0, arr.Length)).Inject();
 
@@ -111,11 +120,16 @@ namespace Souvenir
             return clip;
         }
 
-        /// <summary>Play a sound from another mod. The sound does not loop.</summary>
-        /// <param name="foreignAudioID">The mod ID of the mod.</param>
-        /// <param name="name">The name of the audio clip.</param>
-        /// <param name="transform">The transform to play the sound at.</param>
-        /// <returns>A reference to stop the sound early.</returns>
+        /// <summary>
+        ///     Play a sound from another mod. The sound does not loop.</summary>
+        /// <param name="foreignAudioID">
+        ///     The mod ID of the mod.</param>
+        /// <param name="name">
+        ///     The name of the audio clip.</param>
+        /// <param name="transform">
+        ///     The transform to play the sound at.</param>
+        /// <returns>
+        ///     A reference to stop the sound early.</returns>
         public static KMAudio.KMAudioRef PlayForeignClip(string foreignAudioID, string name, Transform transform)
         {
             var aref = new KMAudio.KMAudioRef();

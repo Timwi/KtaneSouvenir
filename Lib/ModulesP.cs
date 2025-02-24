@@ -563,7 +563,7 @@ public partial class SouvenirModule
 
         addQuestions(module,
             makeQuestion(Question.PrisonBreakPrisoner, module, correctAnswers: new[] { (cell + 1).ToString() }),
-            makeQuestion(Question.PrisonBreakDefuser, module, correctAnswers: new[] { ((char) ('A' + (startPos % 25 - 1) / 2)).ToString() + ((startPos / 25 + 1) / 2).ToString() }));
+            makeQuestion(Question.PrisonBreakDefuser, module, correctAnswers: new[] { $"{(char) ('A' + (startPos % 25 - 1) / 2)}{(startPos / 25 + 1) / 2}" }));
     }
 
     private IEnumerator<YieldInstruction> ProcessProbing(ModuleData module)

@@ -12,14 +12,14 @@ public partial class SouvenirModule
     {
         int[] colors = new int[3];
         var comp = GetComponent(module, "conundramScript");
-        var f_stage = GetIntField(comp, "Stage");
-        var f_color = GetIntField(comp, "ColLedState");
+        var fldStage = GetIntField(comp, "Stage");
+        var fldColor = GetIntField(comp, "ColLedState");
 
         while (!module.IsSolved)
         {
-            var stage = f_stage.Get(min: 0, max: 3);
+            var stage = fldStage.Get(min: 0, max: 3);
             if (stage == 3) yield break;
-            colors[stage] = f_color.Get(min: 2, max: 5);
+            colors[stage] = fldColor.Get(min: 2, max: 5);
             yield return null;
         }
 
