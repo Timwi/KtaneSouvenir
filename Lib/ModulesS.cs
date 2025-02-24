@@ -52,9 +52,10 @@ public partial class SouvenirModule
 
         var comp = GetComponent(module, "SaturnScript");
 
-        GetField<KMSelectable>(comp, "HideButton", true).Get().OnInteract = null;
-        if (!TwitchPlaysActive) // Saturn hides itself on TP
+        var hideButton = GetField<KMSelectable>(comp, "HideButton", true).Get();
+        if (!TwitchPlaysActive && hideButton.OnInteract is not null)
             StartCoroutine(GetMethod<IEnumerator>(comp, "HidePlanet", 0).Invoke());
+        hideButton.OnInteract = null;
 
         var index = GetIntField(comp, "EndIndex").Get(min: 0, max: 64 * 5);
         var outer = GetField<bool>(comp, "EndOuter").Get();

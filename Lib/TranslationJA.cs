@@ -6621,17 +6621,19 @@ namespace Souvenir
             },
 
             // Not Colour Flash
-            // What was the initial {1} on {0}?
+            // What was the initial word on {0}?
             // What was the initial word on Not Colour Flash?
-            [Question.NotColourFlashInitial] = new()
+            [Question.NotColourFlashInitialWord] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the initial {1} on {0}?",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["word"] = "word",
-                    ["colour of the word"] = "colour of the word",
-                },
+                QuestionText = "What was the initial word on {0}?",
+            },
+            // What was the initial colour of the word on {0}?
+            // What was the initial colour of the word on Not Colour Flash?
+            [Question.NotColourFlashInitialColour] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the initial colour of the word on {0}?",
                 Answers = new Dictionary<string, string>
                 {
                     ["Red"] = "Red",

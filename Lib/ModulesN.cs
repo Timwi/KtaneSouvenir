@@ -297,8 +297,8 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "NCFScript");
         var seq = GetArrayField<int[]>(comp, "seq").Get(expectedLength: 4, validator: v => v is not { Length: 6 } ? "Expected length 6" : v.Any(i => i is < 0 or > 5) ? "Expected within range [0, 5]" : null);
         addQuestions(module,
-            makeQuestion(Question.NotColourFlashInitial, module, correctAnswers: new[] { Question.NotColourFlashInitial.GetAnswers()[seq[0][0]] }, formatArgs: new[] { "word" }),
-            makeQuestion(Question.NotColourFlashInitial, module, correctAnswers: new[] { Question.NotColourFlashInitial.GetAnswers()[seq[1][0]] }, formatArgs: new[] { "colour of the word" }));
+            makeQuestion(Question.NotColourFlashInitialWord, module, correctAnswers: new[] { Question.NotColourFlashInitialWord.GetAnswers()[seq[0][0]] }),
+            makeQuestion(Question.NotColourFlashInitialColour, module, correctAnswers: new[] { Question.NotColourFlashInitialColour.GetAnswers()[seq[1][0]] }));
     }
 
     private IEnumerator<YieldInstruction> ProcessNotConnectionCheck(ModuleData module)
