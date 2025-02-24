@@ -6620,6 +6620,29 @@ namespace Souvenir
                 ModuleName = "偽色付きスイッチ",
             },
 
+            // Not Colour Flash
+            // What was the initial {1} on {0}?
+            // What was the initial word on Not Colour Flash?
+            [Question.NotColourFlashInitial] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the initial {1} on {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["word"] = "word",
+                    ["colour of the word"] = "colour of the word",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Magenta"] = "Magenta",
+                    ["Yellow"] = "Yellow",
+                    ["White"] = "White",
+                },
+            },
+
             // Not Connection Check
             // What symbol flashed on the {1} button in {0}?
             // What symbol flashed on the top left button in Not Connection Check?

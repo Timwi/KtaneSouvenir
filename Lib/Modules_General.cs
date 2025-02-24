@@ -373,6 +373,7 @@ public partial class SouvenirModule
             ["nonverbalSimon"] = (ProcessNonverbalSimon, "❖", "Anonymous"),
             ["NotColoredSquaresModule"] = (ProcessNotColoredSquares, "Not Colored Squares", "Kuro"),
             ["NotColoredSwitchesModule"] = (ProcessNotColoredSwitches, "Not Colored Switches", "Quinn Wuest"),
+            ["notColourFlash"] = (ProcessNotColourFlash, "Not Colour Flash", "Anonymous"),
             ["notConnectionCheck"] = (ProcessNotConnectionCheck, "Not Connection Check", "Quinn Wuest"),
             ["notCoordinates"] = (ProcessNotCoordinates, "Not Coordinates", "Quinn Wuest"),
             ["NotDoubleOhModule"] = (ProcessNotDoubleOh, "Not Double-Oh", "Anonymous"),

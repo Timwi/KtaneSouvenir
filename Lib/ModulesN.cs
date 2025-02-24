@@ -290,6 +290,17 @@ public partial class SouvenirModule
         addQuestion(module, Question.NotColoredSwitchesWord, correctAnswers: new[] { solutionWord }, preferredWrongAnswers: wordList);
     }
 
+    private IEnumerator<YieldInstruction> ProcessNotColourFlash(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "NCFScript");
+        var seq = GetArrayField<int[]>(comp, "seq").Get(expectedLength: 4, validator: v => v is not { Length: 6 } ? "Expected length 6" : v.Any(i => i is < 0 or > 5) ? "Expected within range [0, 5]" : null);
+        addQuestions(module,
+            makeQuestion(Question.NotColourFlashInitial, module, correctAnswers: new[] { Question.NotColourFlashInitial.GetAnswers()[seq[0][0]] }, formatArgs: new[] { "word" }),
+            makeQuestion(Question.NotColourFlashInitial, module, correctAnswers: new[] { Question.NotColourFlashInitial.GetAnswers()[seq[1][0]] }, formatArgs: new[] { "colour of the word" }));
+    }
+
     private IEnumerator<YieldInstruction> ProcessNotConnectionCheck(ModuleData module)
     {
         var comp = GetComponent(module, "NCCScript");
@@ -337,11 +348,11 @@ public partial class SouvenirModule
 
         var leftSegs = GetArrayField<GameObject>(comp, "LeftSegObjs", true).Get(expectedLength: 7);
         var rightSegs = GetArrayField<GameObject>(comp, "RightSegObjs", true).Get(expectedLength: 7);
-        foreach(var seg in leftSegs.Concat(rightSegs))
+        foreach (var seg in leftSegs.Concat(rightSegs))
             seg.SetActive(false);
 
-        addQuestions(module, Enumerable.Range(0, 8).Select(i => 
-            makeQuestion(Question.NotDoubleOhPosition, module, correctAnswers: new[] { displays[i] }, formatArgs: new[] { Ordinal(i+1) })));
+        addQuestions(module, Enumerable.Range(0, 8).Select(i =>
+            makeQuestion(Question.NotDoubleOhPosition, module, correctAnswers: new[] { displays[i] }, formatArgs: new[] { Ordinal(i + 1) })));
     }
 
     private IEnumerator<YieldInstruction> ProcessNotKeypad(ModuleData module)
