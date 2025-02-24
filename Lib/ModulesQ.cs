@@ -19,6 +19,19 @@ public partial class SouvenirModule
         addQuestions(module, qs.Select((q, i) => makeQuestion(Question.QnAQuestions, module, correctAnswers: new[] { q }, formatArgs: new[] { Ordinal(i + 1) })));
     }
 
+    private IEnumerator<YieldInstruction> ProcessQuantumPasswords(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "QuantumPasswordsScript");
+        var words = GetArrayField<string>(comp, "selectedWords").Get(expectedLength: 2, validator: v => v is { Length: 5 } ? null : "Expected word length 5");
+
+        bool isCorrect(string word) =>
+            words.Any(w => word.ToUpperInvariant().All(c => word.ToUpperInvariant().Count(x => x == c) == w.Count(x => x == c)));
+
+        addQuestion(module, Question.QuantumPasswordsWord, correctAnswers: Question.QuantumPasswordsWord.GetAnswers().Where(isCorrect).ToArray());
+    }
+
     private IEnumerator<YieldInstruction> ProcessQuaver(ModuleData module)
     {
         var comp = GetComponent(module, "QuaverScript");

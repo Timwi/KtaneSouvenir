@@ -8073,6 +8073,15 @@ namespace Souvenir
                 QuestionText = "What was the {1} question asked in {0}?",
             },
 
+            // Quantum Passwords
+            // Which word was used in {0}?
+            // Which word was used in Quantum Passwords?
+            [Question.QuantumPasswordsWord] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which word was use in {0}?",
+            },
+
             // Quaver
             // What was the {1} sequence’s answer in {0}?
             // What was the first sequence’s answer in Quaver?
