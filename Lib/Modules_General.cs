@@ -555,6 +555,7 @@ public partial class SouvenirModule
             ["sugarSkulls"] = (ProcessSugarSkulls, "Sugar Skulls", "BigCrunch22"),
             ["GSSuitsAndColours"] = (ProcessSuitsAndColours, "Suits and Colours", "Hawker"),
             ["superparsing"] = (ProcessSuperparsing, "Superparsing", "tandyCake"),
+            ["susadmin"] = (ProcessSUSadmin, "SUSadmin", "Anonymous"),
             ["BigSwitch"] = (ProcessSwitch, "Switch, The", "Timwi"),
             ["switchModule"] = (ProcessSwitches, "Switches", "Timwi"),
             ["MazeSwitching"] = (ProcessSwitchingMaze, "Switching Maze", "BigCrunch22"),

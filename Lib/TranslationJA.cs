@@ -10113,6 +10113,15 @@ namespace Souvenir
                 ModuleName = "超解析",
             },
 
+            // SUSadmin
+            // Which security protocol was installed in {0}?
+            // Which security protocol was installed in SUSadmin?
+            [Question.SUSadminSecurity] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which security protocol was installed in {0}?",
+            },
+
             // The Switch
             // What color was the {1} LED on the {2} flip of {0}?
             // What color was the top LED on the first flip of The Switch?
