@@ -481,6 +481,7 @@ public partial class SouvenirModule
             ["RuleOfThreeModule"] = (ProcessRuleOfThree, "Rule of Three", "Quinn Wuest"),
             ["safetySquare"] = (ProcessSafetySquare, "Safety Square", "Kuro"),
             ["theSamsung"] = (ProcessSamsung, "Samsung, The", "TasThiluna"),
+            ["saturn"] = (ProcessSaturn, "Saturn", "Anonymous"),
             ["sbemailsongs"] = (ProcessSbemailSongs, "Sbemail Songs", "ObjectsCountries"),
             ["scavengerHunt"] = (ProcessScavengerHunt, "Scavenger Hunt", "Timwi"),
             ["qSchlagDenBomb"] = (ProcessSchlagDenBomb, "Schlag den Bomb", "JerryEris"),

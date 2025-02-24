@@ -2481,6 +2481,10 @@
             ExampleFormatArguments = new[] { "Duolingo", "Google Maps", "Kindle", "Google Authenticator", "Photomath", "Spotify", "Google Arts & Culture", "Discord" }, ExampleFormatArgumentGroupSize = 1)]
         SamsungAppPositions,
 
+        [SouvenirQuestion("Where was the goal in {0}?", "Saturn", ThreeColumns6Answers)]
+        [AnswerGenerator.Combo(typeof(AnswerGenerator.Strings), new object[] { new string[] { "0-9", " " } }, typeof(AnswerGenerator.Integers), new object[] { 0, 63 })]
+        SaturnGoal,
+
         [SouvenirQuestion("What was the displayed song for stage {1} (hexadecimal) of {0}?", "Sbemail Songs", OneColumn4Answers, ExampleAnswers = new[] { "Oh, who is the guy that…", "I'm gonna check my email all of the time…", "Checkin' my email, checkin' my email…", "I check the email once…", "Checkin' emails is like the best thing I do.", "I check, you check, we all check…", "I am going to check my email.", "I remember the time when I checked my email.", "I've carefully set aside this time…", "I'm totally checking my email…" },
             ExampleFormatArguments = new[] { "01", "02" }, ExampleFormatArgumentGroupSize = 1,
             TranslatableStrings = new[] { "the Sbemail Songs which displayed ‘{0}’ in stage {1} (hexadecimal)" })]

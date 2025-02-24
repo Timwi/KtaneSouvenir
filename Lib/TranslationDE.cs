@@ -8813,6 +8813,15 @@ namespace Souvenir
                 },
             },
 
+            // Saturn
+            // Where was the goal in {0}?
+            // Where was the goal in Saturn?
+            [Question.SaturnGoal] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Where was the goal in {0}?",
+            },
+
             // Sbemail Songs
             // What was the displayed song for stage {1} (hexadecimal) of {0}?
             // What was the displayed song for stage 01 (hexadecimal) of Sbemail Songs?

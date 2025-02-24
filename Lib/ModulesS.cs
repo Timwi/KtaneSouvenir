@@ -46,6 +46,22 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerator<YieldInstruction> ProcessSaturn(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "SaturnScript");
+
+        GetField<KMSelectable>(comp, "HideButton", true).Get().OnInteract = null;
+        if (!TwitchPlaysActive) // Saturn hides itself on TP
+            StartCoroutine(GetMethod<IEnumerator>(comp, "HidePlanet", 0).Invoke());
+
+        var index = GetIntField(comp, "EndIndex").Get(min: 0, max: 64 * 5);
+        var outer = GetField<bool>(comp, "EndOuter").Get();
+
+        addQuestion(module, Question.SaturnGoal, correctAnswers: new[] { $"{(outer ? 9 : 4) - (index / 64)} {index % 64}" });
+    }
+
     private List<List<int>> _sbemailSongsDisplays = new();
     private IEnumerator<YieldInstruction> ProcessSbemailSongs(ModuleData module)
     {
