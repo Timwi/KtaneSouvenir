@@ -1936,41 +1936,6 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private static AudioClip[] _synesthesiaAudioProcessed;
-    private IEnumerator<YieldInstruction> ProcessSynesthesia(ModuleData module)
-    {
-        var comp = GetComponent(module, "synesthesiaScript");
-
-        if (_synesthesiaAudioProcessed is null)
-        {
-            const float ClipLength = 0.6f;
-            var rawClips = GetArrayField<AudioClip>(comp, "sounds", true).Get(expectedLength: 6);
-            _synesthesiaAudioProcessed = new AudioClip[27];
-            _synesthesiaAudioProcessed[0] = Sounds.Empty(ClipLength, "0-0-0");
-            for (int i = 1; i < 27; i++)
-            {
-                int a = i / 9, b = (i / 3) % 3, c = i % 3;
-                List<Sounds.AudioPosition> clips = new(3);
-                if (a == 1) clips.Add(rawClips[4]);
-                else if (a == 2) clips.Add(rawClips[5]);
-                if (b == 1) clips.Add((rawClips[2], 0.15f));
-                else if (b == 2) clips.Add((rawClips[3], 0.15f));
-                if (c == 1) clips.Add((rawClips[0], 0.3f));
-                else if (c == 2) clips.Add((rawClips[1], 0.3f));
-                _synesthesiaAudioProcessed[i] = Sounds.Combine($"{a}-{b}-{c}", ClipLength, clips.ToArray());
-            }
-        }
-        yield return WaitForSolve;
-
-        var solution = GetArrayField<int>(comp, "Solution").Get(expectedLength: 16, validator: i => i is < 0 or > 26 ? "Out of range [0,27]" : null);
-
-        addQuestions(module, solution.Select((s, i) =>
-            makeQuestion(Question.SynesthesiaSound, module,
-            correctAnswers: new[] { _synesthesiaAudioProcessed[s] },
-            allAnswers: _synesthesiaAudioProcessed,
-            formatArgs: new[] { Ordinal(i + 1) })));
-    }
-
     private IEnumerator<YieldInstruction> ProcessSynonyms(ModuleData module)
     {
         var comp = GetComponent(module, "Synonyms");

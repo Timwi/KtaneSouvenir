@@ -371,32 +371,6 @@ public partial class SouvenirModule
         return processPolyiamonds(module, "triamondsScript", Question.TriamondsPulsingColours, new[] { "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white" });
     }
 
-    private IEnumerator<YieldInstruction> ProcessTricon(ModuleData module)
-    {
-        var comp = GetComponent(module, "TriconScript");
-        var fldInitialized = GetField<bool>(comp, "_readyToPress");
-
-        while (!fldInitialized.Get())
-            yield return null;
-
-        if (GetField<bool>(comp, "_failSafeActive").Get())
-        {
-            legitimatelyNoQuestion(module, "The module failed to fetch its icons.");
-            yield break;
-        }
-
-        yield return WaitForSolve;
-
-        var moduleList = GetStaticField<string[][]>(comp.GetType(), "_moduleList").Get();
-        var solution = GetArrayField<int>(comp, "_solutionIxs").Get(expectedLength: 3, validator: v => v is < 0 ? "Expected non-negative number" : v > moduleList.Length ? $"Expected <= {moduleList.Length}" : null);
-        var shown = GetArrayField<int>(comp, "_pickIxs").Get(expectedLength: 40, validator: v => v is < 0 ? "Expected non-negative number" : v > moduleList.Length ? $"Expected <= {moduleList.Length}" : null);
-        var iconFetch = GetStaticProperty<object>(comp.GetType().Assembly.GetType("IconFetch"), "Instance", isPublic: true).Get();
-        var getIcon = GetMethod<Texture2D>(iconFetch, "GetIcon", 1, true);
-
-        var all = shown.ToDictionary(i => i, i => getIcon.Invoke(moduleList[i][1]).ToSprite());
-        addQuestion(module, Question.TriconIcon, allAnswers: all.Values.ToArray(), correctAnswers: solution.Select(i => all[i]).ToArray());
-    }
-
     private IEnumerator<YieldInstruction> ProcessTripleTerm(ModuleData module)
     {
         var comp = GetComponent(module, "TripleTermScript");

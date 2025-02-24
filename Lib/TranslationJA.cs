@@ -10294,15 +10294,6 @@ namespace Souvenir
                 QuestionText = "{0}にてステージ{1}でスクリーンに表示されたものは？",
             },
 
-            // Synesthesia
-            // What was the {1} sound played in {0}?
-            // What was the first sound played in Synesthesia?
-            [Question.SynesthesiaSound] = new()
-            {
-                NeedsTranslation = true,
-                QuestionText = "What was the {1} sound played in {0}?",
-            },
-
             // Synonyms
             // Which number was displayed on {0}?
             // Which number was displayed on Synonyms?
@@ -10628,15 +10619,6 @@ namespace Souvenir
                     ["cyan"] = "シアン",
                     ["white"] = "白",
                 },
-            },
-
-            // Tricon
-            // Which icon was shown on {0}?
-            // Which icon was shown on Tricon?
-            [Question.TriconIcon] = new()
-            {
-                NeedsTranslation = true,
-                QuestionText = "Which icon was shown on {0}?",
             },
 
             // Triple Term
