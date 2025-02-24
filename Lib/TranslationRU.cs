@@ -7251,6 +7251,26 @@ namespace Souvenir
                 },
             },
 
+            // Not The Plunger Button
+            // What color did the background flash in {0}?
+            // What color did the background flash in Not The Plunger Button?
+            [Question.NotThePlungerButtonBackground] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What color did the background flash in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Black"] = "Black",
+                    ["Red"] = "Red",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Cyan"] = "Cyan",
+                    ["Magenta"] = "Magenta",
+                    ["Yellow"] = "Yellow",
+                    ["White"] = "White",
+                },
+            },
+
             // Not the Screw
             // What was the initial position in {0}?
             // What was the initial position in Not the Screw?

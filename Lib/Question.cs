@@ -2029,6 +2029,9 @@
         [SouvenirQuestion("What colors did the light glow in {0}?", "Not the Button", ThreeColumns6Answers, "white", "red", "yellow", "green", "blue", "white/red", "white/yellow", "white/green", "white/blue", "red/yellow", "red/green", "red/blue", "yellow/green", "yellow/blue", "green/blue", TranslateAnswers = true)]
         NotTheButtonLightColor,
 
+        [SouvenirQuestion("What color did the background flash in {0}?", "Not The Plunger Button", TwoColumns4Answers, "Black", "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow", "White", TranslateAnswers = true)]
+        NotThePlungerButtonBackground,
+
         [SouvenirQuestion("What was the initial position in {0}?", "Not the Screw", ThreeColumns6Answers, Type = AnswerType.Sprites)]
         [AnswerGenerator.Grid(6, 4)]
         NotTheScrewInitialPosition,

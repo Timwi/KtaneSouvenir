@@ -391,6 +391,7 @@ public partial class SouvenirModule
             ["notTextField"] = (ProcessNotTextField, "Not Text Field", "tandyCake"),
             ["notTheBulb"] = (ProcessNotTheBulb, "Not The Bulb", "Quinn Wuest"),
             ["NotButton"] = (ProcessNotTheButton, "Not the Button", "Andrio Celos"),
+            ["notPlungerButtonModule"] = (ProcessNotThePlungerButton, "Not The Plunger Button", "Anonymous"),
             ["notTheScrew"] = (ProcessNotTheScrew, "Not The Screw", "GhostSalt"),
             ["NotWhosOnFirst"] = (ProcessNotWhosOnFirst, "Not Who’s on First", "Andrio Celos"),
             ["notWordSearch"] = (ProcessNotWordSearch, "Not Word Search", "tandyCake"),
