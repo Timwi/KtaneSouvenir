@@ -250,6 +250,7 @@ public partial class SouvenirModule
             ["hexOrbits"] = (ProcessHexOrbits, "hexOrbits", "Anonymous"),
             ["hexOS"] = (ProcessHexOS, "hexOS", "Emik"),
             ["lgndHiddenColors"] = (ProcessHiddenColors, "Hidden Colors", "TasThiluna"),
+            ["theHiddenValue"] = (ProcessHiddenValue, "HiddenValue, The", "Anonymous"),
             ["ksmHighScore"] = (ProcessHighScore, "High Score, The", "Hawker"),
             ["hillCycle"] = (ProcessHillCycle, "Hill Cycle", "TasThiluna"),
             ["hinges"] = (ProcessHinges, "Hinges", "Kuro"),

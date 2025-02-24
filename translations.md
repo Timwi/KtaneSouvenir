@@ -153,6 +153,13 @@ This module has a few additional `TranslatableStrings`.
 - `"{0}, {1}, {2}"` is used to combine the colors together to describe the module’s cylinders. This will end up like `Red, Green, Blue`.
 - `"L"`, `"M"`, and `"R"` are used to describe the module’s figures. Five of these will be concatenated (e.g. `LLMMR`).
 
+## Hidden Value, The
+
+This module has a few `TranslatableStrings`.
+
+- `"{0} {1}` is used to construct answers, e.g. `Red 7`.
+- The colors are normal.
+
 ## Mssngv Wls
 
 In line with the theming of the module, this question is formatted like the “missing vowels” round of the game show *Only Connect*: all vowels and spaces are removed from the question text, then some spaces are randomly inserted back in. Spaces are added such that words are between 2 and 6 letters long.

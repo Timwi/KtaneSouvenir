@@ -4394,6 +4394,26 @@ namespace Souvenir
                 },
             },
 
+            // The Hidden Value
+            // What was displayed on {0}?
+            // What was displayed on The Hidden Value?
+            [Question.HiddenValueDisplay] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was displayed on {0}?",
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+                {
+                    ["Red"] = "Red",
+                    ["Green"] = "Green",
+                    ["White"] = "White",
+                    ["Yellow"] = "Yellow",
+                    ["Magenta"] = "Magenta",
+                    ["Cyan"] = "Cyan",
+                    ["Purple"] = "Purple",
+                    ["{0} {1}"] = "{0} {1}",
+                },
+            },
+
             // The High Score
             // What was the position of the player in {0}?
             // What was the position of the player in The High Score?

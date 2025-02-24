@@ -1294,6 +1294,10 @@
         [SouvenirQuestion("What was the color of the main LED in {0}?", "Hidden Colors", ThreeColumns6Answers, "Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Magenta", "White", TranslateAnswers = true)]
         HiddenColorsLED,
 
+        [SouvenirQuestion("What was displayed on {0}?", "Hidden Value", TwoColumns4Answers, AddThe = true, ExampleAnswers = new[] { "Red 1", "Green 2", "White 3", "Yellow 4", "Magenta 5", "Cyan 6", "Purple 7" },
+            TranslatableStrings = new[] { "Red", "Green", "White", "Yellow", "Magenta", "Cyan", "Purple", "{0} {1}" })]
+        HiddenValueDisplay,
+
         [SouvenirQuestion("What was the position of the player in {0}?", "High Score", TwoColumns4Answers, "1st", "2nd", "3rd", "4th", "5th", AddThe = true)]
         HighScorePosition,
         [SouvenirQuestion("What was the score of the player in {0}?", "High Score", TwoColumns4Answers, AddThe = true)]
