@@ -86,6 +86,19 @@ public partial class SouvenirModule
             colorCounts.Select((cc, ix) => makeQuestion(Question.QuintuplesColorCounts, module, formatArgs: new[] { colorNames[ix] }, correctAnswers: new[] { cc.ToString() }))));
     }
 
+    private IEnumerator<YieldInstruction> ProcessQuiplash(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "QLModule");
+        var config = GetField<object>(comp, "ChosenConfig").Get();
+        var id = GetField<string>(config, "id", true).Get(v => Question.QuiplashNumber.GetAnswers().Contains(v) ? null : "Unexpected number");
+        var texts = GetArrayField<TextMesh>(comp, "PromptTexts", true).Get();
+        foreach (var t in texts) t.text = "Quiplash!";
+
+        addQuestion(module, Question.QuiplashNumber, correctAnswers: new[] { id });
+    }
+
     private IEnumerator<YieldInstruction> ProcessQuizBuzz(ModuleData module)
     {
         var comp = GetComponent(module, "quizBuzz");

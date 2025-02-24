@@ -449,6 +449,7 @@ public partial class SouvenirModule
             ["Questionmark"] = (ProcessQuestionMark, "Question Mark", "Kuro"),
             ["QuickArithmetic"] = (ProcessQuickArithmetic, "Quick Arithmetic", "VFlyer"),
             ["quintuples"] = (ProcessQuintuples, "Quintuples", "Timwi"),
+            ["QLModule"] = (ProcessQuiplash, "Quiplash", "Anonymous"),
             ["quizBuzz"] = (ProcessQuizBuzz, "Quiz Buzz", "Kuro"),
             ["qwirkle"] = (ProcessQwirkle, "Qwirkle", "GoodHood"),
             ["raidingTemples"] = (ProcessRaidingTemples, "Raiding Temples", "GoodHood"),

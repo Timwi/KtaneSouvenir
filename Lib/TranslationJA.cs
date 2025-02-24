@@ -8116,6 +8116,15 @@ namespace Souvenir
                 },
             },
 
+            // Quiplash
+            // What number was shown on {0}?
+            // What number was shown on Quiplash?
+            [Question.QuiplashNumber] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What number was shown on {0}?",
+            },
+
             // Quiz Buzz
             // What was the number initially on the display in {0}?
             // What was the number initially on the display in Quiz Buzz?
