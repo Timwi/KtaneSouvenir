@@ -9,9 +9,9 @@ namespace Souvenir
 {
     public static class Sprites
     {
-        private static readonly Dictionary<string, Texture2D> _circleSpriteCache = new();
-        private static readonly Dictionary<string, Texture2D> _gridSpriteCache = new();
-        private static readonly Dictionary<AudioClip, Texture2D> _audioSpriteCache = new();
+        private static readonly Dictionary<string, Sprite> _circleSpriteCache = new();
+        private static readonly Dictionary<string, Sprite> _gridSpriteCache = new();
+        private static readonly Dictionary<AudioClip, Sprite> _audioSpriteCache = new();
 
         private static bool IsPointInCircle(int pixelX, int pixelY, int radius, int gap, int dotX, int dotY)
         {
@@ -55,10 +55,10 @@ namespace Souvenir
             var key = $"{width}:{height}:{circlesPresent}:{radius}:{gap}:{outline}";
 
             // If the sprite is not cached, create it
-            if (!_circleSpriteCache.TryGetValue(key, out var tx))
+            if (!_circleSpriteCache.TryGetValue(key, out var sprite))
             {
                 // Create the base of the texture
-                tx = new Texture2D(textureWidth, textureHeight, TextureFormat.ARGB32, false);
+                var tx = new Texture2D(textureWidth, textureHeight, TextureFormat.ARGB32, false);
                 tx.SetPixels32(Ut.NewArray(textureWidth * textureHeight, pixel =>
                 {
                     for (var dotX = 0; dotX < width; dotX++)
@@ -72,11 +72,11 @@ namespace Souvenir
                 tx.Apply();
                 tx.wrapMode = TextureWrapMode.Clamp;
                 tx.filterMode = FilterMode.Point;
-                _circleSpriteCache.Add(key, tx);
-            }
 
-            var sprite = Sprite.Create(tx, new Rect(0, 0, textureWidth, textureHeight), new Vector2(0, .5f), textureHeight * (60f / 17));
-            sprite.name = $"Circles {key}";
+                sprite = Sprite.Create(tx, new Rect(0, 0, textureWidth, textureHeight), new Vector2(0, .5f), textureHeight * (60f / 17));
+                sprite.name = $"Circles {key}";
+                _circleSpriteCache.Add(key, sprite);
+            }
             return sprite;
         }
 
@@ -85,19 +85,20 @@ namespace Souvenir
             var tw = 4 * coord.Width + 1;
             var th = 4 * coord.Height + 1;
             var key = $"{coord.Width}:{coord.Height}:{coord.Index}";
-            if (!_gridSpriteCache.TryGetValue(key, out var tx))
+            if (!_gridSpriteCache.TryGetValue(key, out var sprite))
             {
-                tx = new Texture2D(tw, th, TextureFormat.ARGB32, false);
+                var tx = new Texture2D(tw, th, TextureFormat.ARGB32, false);
                 tx.SetPixels32(Ut.NewArray(tw * th, ix =>
                     (ix % tw) % 4 == 0 || (ix / tw) % 4 == 0 ? new Color32(0xFF, 0xF8, 0xDD, 0xFF) :
                     (ix % tw) / 4 + coord.Width * (coord.Height - 1 - (ix / tw / 4)) == coord.Index ? new Color32(0xD8, 0x40, 0x00, 0xFF) : new Color32(0xFF, 0xF8, 0xDD, 0x00)));
                 tx.Apply();
                 tx.wrapMode = TextureWrapMode.Clamp;
                 tx.filterMode = FilterMode.Point;
-                _gridSpriteCache.Add(key, tx);
+
+                sprite = Sprite.Create(tx, new Rect(0, 0, tw, th), new Vector2(0, .5f), th * (60f / 17) / size);
+                sprite.name = coord.ToString();
+                _gridSpriteCache[key] = sprite;
             }
-            var sprite = Sprite.Create(tx, new Rect(0, 0, tw, th), new Vector2(0, .5f), th * (60f / 17) / size);
-            sprite.name = coord.ToString();
             return sprite;
         }
 
@@ -109,9 +110,9 @@ namespace Souvenir
         public static Sprite GenerateGridSprite(string spriteKey, int tw, int th, (int x, int y)[] squares, int highlightedCell, string spriteName, float? pixelsPerUnit = null)
         {
             var key = $"{spriteKey}:{highlightedCell}";
-            if (!_gridSpriteCache.TryGetValue(key, out var tx))
+            if (!_gridSpriteCache.TryGetValue(key, out var sprite))
             {
-                tx = new Texture2D(tw, th, TextureFormat.ARGB32, false);
+                var tx = new Texture2D(tw, th, TextureFormat.ARGB32, false);
                 var pixels = Ut.NewArray(tw * th, _ => new Color32(0xFF, 0xF8, 0xDD, 0x00));
                 for (var sqIx = 0; sqIx < squares.Length; sqIx++)
                 {
@@ -127,10 +128,11 @@ namespace Souvenir
                 tx.Apply();
                 tx.wrapMode = TextureWrapMode.Clamp;
                 tx.filterMode = FilterMode.Point;
-                _gridSpriteCache.Add(key, tx);
+
+                sprite = Sprite.Create(tx, new Rect(0, 0, tw, th), new Vector2(0, .5f), pixelsPerUnit ?? th * (60f / 17));
+                sprite.name = spriteName;
+                _gridSpriteCache.Add(key, sprite);
             }
-            var sprite = Sprite.Create(tx, new Rect(0, 0, tw, th), new Vector2(0, .5f), pixelsPerUnit ?? th * (60f / 17));
-            sprite.name = spriteName;
             return sprite;
         }
 
@@ -160,14 +162,13 @@ namespace Souvenir
         const int MIN_LINE = 3;
         public static Sprite RenderWaveform(AudioClip answer, SouvenirModule module, float multiplier)
         {
-            if (!_audioSpriteCache.TryGetValue(answer, out Texture2D tex))
+            if (!_audioSpriteCache.TryGetValue(answer, out var sprite))
             {
-                tex = new(WIDTH, HEIGHT, TextureFormat.RGBA32, false, false)
+                var tex = new Texture2D(WIDTH, HEIGHT, TextureFormat.RGBA32, false, false)
                 {
                     wrapMode = TextureWrapMode.Clamp,
                     filterMode = FilterMode.Bilinear
                 };
-                _audioSpriteCache.Add(answer, tex);
 
                 answer.LoadAudioData();
                 Color[] result = Enumerable.Repeat((Color) new Color32(0xFF, 0xF8, 0xDD, 0x00), WIDTH * HEIGHT).ToArray();
@@ -195,10 +196,11 @@ namespace Souvenir
                     }.Start();
                     behavior.StartCoroutine(CopyData(behavior, tex, runner, answer.name, module._moduleId));
                 }
-            }
 
-            Sprite sprite = Sprite.Create(tex, new Rect(0, 0, WIDTH, HEIGHT), new Vector2(0, 0.5f), WIDTH);
-            sprite.name = answer.name;
+                sprite = Sprite.Create(tex, new Rect(0, 0, WIDTH, HEIGHT), new Vector2(0, 0.5f), WIDTH);
+                sprite.name = answer.name;
+                _audioSpriteCache.Add(answer, sprite);
+            }
             return sprite;
         }
 
