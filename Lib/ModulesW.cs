@@ -7,6 +7,16 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
+    private IEnumerator<YieldInstruction> ProcessWalkingCube(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "WalkingCubeModule");
+        var path = GetArrayField<int[]>(comp, "_solutionSymbols").Get(expectedLength: 4, validator: v => v is not { Length: 4 } ? "Expected length 4" : v.Any(i => i is < -1) ? "Expected all positive" : null);
+        var sol = Enumerable.Range(0, 16).Where(i => path[i / 4][i % 4] is not -1).Select(i => Sprites.GenerateGridSprite(4, 4, i)).ToArray();
+        addQuestion(module, Question.WalkingCubePath, correctAnswers: sol);
+    }
+
     private IEnumerator<YieldInstruction> ProcessWarningSigns(ModuleData module)
     {
         var comp = GetComponent(module, "warningSignSrc");

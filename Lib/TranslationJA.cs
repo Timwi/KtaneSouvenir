@@ -11132,6 +11132,15 @@ namespace Souvenir
                 },
             },
 
+            // Walking Cube
+            // Which of these cells was part of the cube's path in {0}?
+            // Which of these cells was part of the cube's path in Walking Cube?
+            [Question.WalkingCubePath] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which of these cells was part of the cube's path in {0}?",
+            },
+
             // Warning Signs
             // What was the displayed sign in {0}?
             // What was the displayed sign in Warning Signs?

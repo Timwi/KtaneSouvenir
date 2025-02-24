@@ -3168,6 +3168,10 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         VisualImpairmentColors,
 
+        [SouvenirQuestion("Which of these cells was part of the cube's path in {0}?", "Walking Cube", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+        [AnswerGenerator.Grid(4, 4)]
+        WalkingCubePath,
+
         [SouvenirQuestion("What was the displayed sign in {0}?", "Warning Signs", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "WarningSignsSprites")]
         WarningSignsDisplayedSign,
 

@@ -615,6 +615,7 @@ public partial class SouvenirModule
             ["vexillology"] = (ProcessVexillology, "Vexillology", "luisdiogo98"),
             ["violetCipher"] = (ProcessVioletCipher, "Violet Cipher", "BigCrunch22"),
             ["visual_impairment"] = (ProcessVisualImpairment, "Visual Impairment", "Timwi"),
+            ["WalkingCubeModule"] = (ProcessWalkingCube, "Walking Cube", "Anonymous"),
             ["warningSigns"] = (ProcessWarningSigns, "Warning Signs", "Kuro"),
             ["wasdModule"] = (ProcessWasd, "WASD", "Kuro"),
             ["watchingPaintDry"] = (ProcessWatchingPaintDry, "Watching Paint Dry", "Anonymous"),
