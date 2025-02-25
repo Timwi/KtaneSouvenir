@@ -6762,15 +6762,15 @@ namespace Souvenir
             },
 
             // Not Colour Flash
-            // What was the initial word on {0}?
-            // What was the initial word on Not Colour Flash?
+            // What was {1} in the displayed word sequence in {0}?
+            // What was first in the displayed word sequence in Not Colour Flash?
             [Question.NotColourFlashInitialWord] = new()
             {
                 NeedsTranslation = true,
                 QuestionText = "What was the initial word on {0}?",
             },
-            // What was the initial colour of the word on {0}?
-            // What was the initial colour of the word on Not Colour Flash?
+            // What was {1} in the displayed colour sequence in {0}?
+            // What was first in the displayed colour sequence in Not Colour Flash?
             [Question.NotColourFlashInitialColour] = new()
             {
                 NeedsTranslation = true,

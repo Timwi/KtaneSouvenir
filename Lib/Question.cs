@@ -1931,9 +1931,11 @@
         [SouvenirQuestion("What was the encrypted word in {0}?", "Not Colored Switches", ThreeColumns6Answers, ExampleAnswers = new[] { "Adjust", "Anchor", "Bowtie", "Button", "Cipher", "Corner" })]
         NotColoredSwitchesWord,
 
-        [SouvenirQuestion("What was the initial word on {0}?", "Not Colour Flash", ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Yellow", "White")]
+        [SouvenirQuestion("What was {1} in the displayed word sequence in {0}?", "Not Colour Flash", ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Yellow", "White",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         NotColourFlashInitialWord,
-        [SouvenirQuestion("What was the initial colour of the word on {0}?", "Not Colour Flash", ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Yellow", "White", TranslateAnswers = true)]
+        [SouvenirQuestion("What was {1} in the displayed colour sequence in {0}?", "Not Colour Flash", ThreeColumns6Answers, "Red", "Green", "Blue", "Magenta", "Yellow", "White", TranslateAnswers = true,
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         NotColourFlashInitialColour,
 
         [SouvenirQuestion("What symbol flashed on the {1} button in {0}?", "Not Connection Check", ThreeColumns6Answers, "+", "-", ".", ":", "/", "_", "=", ",",
