@@ -22,12 +22,4 @@
     <PackageReference Include="RT.Util.Core" Version="2.0.1769" />
     <PackageReference Include="ValueTupleBridge" Version="0.1.5" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Lib\SouvenirLib.csproj">
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
-    </ProjectReference>
-  </ItemGroup>
-
 </Project>
