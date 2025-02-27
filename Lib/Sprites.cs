@@ -84,7 +84,7 @@ namespace Souvenir
         {
             var tw = 4 * coord.Width + 1;
             var th = 4 * coord.Height + 1;
-            var key = $"{coord.Width}:{coord.Height}:{coord.Index}";
+            var key = $"{coord.Width}:{coord.Height}:{coord.Index}:{size}";
             if (!_gridSpriteCache.TryGetValue(key, out var sprite))
             {
                 var tx = new Texture2D(tw, th, TextureFormat.ARGB32, false);
