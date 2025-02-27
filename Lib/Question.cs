@@ -173,6 +173,9 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         ASquareCorrectColors,
 
+        [SouvenirQuestion("What was signaled in {0}?", "Audio Morse", OneColumn4Answers, Type = AnswerType.Audio, ForeignAudioID = Sounds.Generated)]
+        AudioMorseSound,
+
         [SouvenirQuestion("What was T in {0}?", "Azure Button", ThreeColumns6Answers, AddThe = true, Type = AnswerType.Sprites, SpriteFieldName = "AzureButtonSprites")]
         AzureButtonT,
         [SouvenirQuestion("Which of these cards was shown in Stage 1, but not T, in {0}?", "Azure Button", ThreeColumns6Answers, AddThe = true, Type = AnswerType.Sprites, SpriteFieldName = "AzureButtonSprites")]

@@ -513,6 +513,15 @@ namespace Souvenir
                 ModuleName = "正方型",
             },
 
+            // Audio Morse
+            // What was signaled in {0}?
+            // What was signaled in Audio Morse?
+            [Question.AudioMorseSound] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was signaled in {0}?",
+            },
+
             // The Azure Button
             // What was T in {0}?
             // What was T in The Azure Button?

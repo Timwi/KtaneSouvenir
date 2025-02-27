@@ -47,6 +47,7 @@ public partial class SouvenirModule
             ["arithmelogic"] = (ProcessArithmelogic, "Arithmelogic", "JerryEris"),
             ["asciiMaze"] = (ProcessASCIIMaze, "ASCII Maze", "Timwi"),
             ["ASquareModule"] = (ProcessASquare, "A Square", "Quinn Wuest"),
+            ["lgndAudioMorse"] = (ProcessAudioMorse, "Audio Morse", "Anonymous"),
             ["AzureButtonModule"] = (ProcessAzureButton, "Azure Button, The", "Timwi"),
             ["bakery"] = (ProcessBakery, "Bakery", "TasThiluna"),
             ["bamboozledAgain"] = (ProcessBamboozledAgain, "Bamboozled Again", "kavinkul"),

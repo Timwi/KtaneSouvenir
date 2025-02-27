@@ -1527,6 +1527,9 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 4b8702113456acd4db82e9ae3396f97a, type: 3}
   - {fileID: 2800000, guid: 99ad550484939fc44aad4eb6f2ce9213, type: 3}
   - {fileID: 2800000, guid: eb94ab5fc22f354468ebd52eacad8c0e, type: 3}
+  AudioMorseAudio:
+  - {fileID: 8300000, guid: f15327f7377b95d4da4d48e3a19ec015, type: 3}
+  - {fileID: 8300000, guid: 42ceb4fde8775ae4da0bad2e1a136843, type: 3}
   DialtonesAudio:
   - {fileID: 8300000, guid: 8217b72a65c27bb46a983703cd0b5b3c, type: 3}
   - {fileID: 8300000, guid: bc5ff403583bee44ca9fee4f6744442c, type: 3}
