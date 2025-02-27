@@ -601,6 +601,10 @@
             ExampleFormatArguments = new[] { "cube", QandA.Ordinal, "stage light", QandA.Ordinal }, ExampleFormatArgumentGroupSize = 2, UsesQuestionSprite = true, TranslateAnswers = true, TranslateFormatArgs = new[] { true, false })]
         ColouredCubesColours,
 
+        [SouvenirQuestion("What was the {1} colour flashed on the cylinder in {0}?", "Coloured Cylinder", ThreeColumns6Answers, "Red", "Green", "Blue", "Yellow", "Magenta", "White", "Black", TranslateAnswers = true,
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        ColouredCylinderColours,
+
         [SouvenirQuestion("What was the color of the last word in the sequence in {0}?", "Colour Flash", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Magenta", "White", TranslateAnswers = true)]
         ColourFlashLastColor,
 

@@ -122,6 +122,7 @@ public partial class SouvenirModule
             ["colorOneTwo"] = (ProcessColorOneTwo, "Color One Two", "Anonymous"),
             ["colors_maximization"] = (ProcessColorsMaximization, "Colors Maximization", "NickLatkovich"),
             ["ColouredCubes"] = (ProcessColouredCubes, "Coloured Cubes", "Kuro"),
+            ["colouredCylinder"] = (ProcessColouredCylinder, "Coloured Cylinder", "Anonymous"),
             ["ColourFlash"] = (ProcessColourFlash, "Colour Flash", "LotsOfS"),
             ["ConcentrationModule"] = (ProcessConcentration, "Concentration", "Anonymous"),
             ["conditionalButtons"] = (ProcessConditionalButtons, "Conditional Buttons", "Hawker"),

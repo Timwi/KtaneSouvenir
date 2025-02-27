@@ -2165,6 +2165,25 @@ namespace Souvenir
                 },
             },
 
+            // Coloured Cylinder
+            // What was the {1} colour flashed on the cylinder in {0}?
+            // What was the first colour flashed on the cylinder in Coloured Cylinder?
+            [Question.ColouredCylinderColours] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the {1} colour flashed on the cylinder in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Yellow"] = "Yellow",
+                    ["Magenta"] = "Magenta",
+                    ["White"] = "White",
+                    ["Black"] = "Black",
+                },
+            },
+
             // Colour Flash
             // What was the color of the last word in the sequence in {0}?
             // What was the color of the last word in the sequence in Colour Flash?
