@@ -34,24 +34,24 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Color Decoding       │  Green Button, The     │  Murder                   │  Simon Screams        │  Yellow Button, The
     Color Morse          │  Hexamaze              │  Mystery Module           │  Simon Shouts         │  Zero, Zero
 
-## Implemented by Anonymous (79)
+## Implemented by Anonymous (80)
 
     ↻↺                 │  Concentration            │  Hyperforget         │  Not The Plunger Button  │  Simon Subdivides
     ❖                  │  Connected Monitors       │  Keypad Maze         │  One Links To All        │  Skewers
     0                  │  Connection Check         │  Keypad Sequence     │  Pentabutton, The        │  Smash, Marry, Kill
     1, 2, 3 Game, The  │  Dialtones                │  Kooky Keypad        │  Pickup Identification   │  Stable Time Signatures
     Amusement Parks    │  Doofenshmirtz Evil Inc.  │  Labyrinth, The      │  Pointless Machines      │  Starstruck
-    Bean Sprouts       │  Double Arrows            │  Maritime Semaphore  │  Polygons                │  Subbly Jubbly
-    Beans              │  Double Listening         │  Maroon Button, The  │  Prison Break            │  SUSadmin
-    Big Bean           │  Double Screen            │  MoneyGame           │  Puzzling Hexabuttons    │  Time Signatures
-    Blinking Notes     │  Emoji                    │  Mssngv Wls          │  Q & A                   │  Unordered Keys
-    Boob Tube          │  Fuse Box, The            │  N&Ns                │  Quantum Passwords       │  Updog
-    Boomtar the Great  │  Ghost Movement           │  Naming Conventions  │  Quiplash                │  Variety
-    Bottom Gear        │  Goofy’s Game             │  Next In Line        │  Red Button’t            │  Walking Cube
-    CA-RPS             │  Gyromaze                 │  Not Colour Flash    │  ReGret-B Filtering      │  Watching Paint Dry
-    Cacti’s Conundrum  │  Halli Galli              │  Not Double-Oh       │  RNG Crystal             │  X-Ring
-    Color One Two      │  hexOrbits                │  Not Password        │  Saturn                  │  Yellow Button’t
-    Coloured Cylinder  │  HiddenValue, The         │  Not Red Arrows      │  Simon Smiles            │
+    Bean Sprouts       │  Double Arrows            │  Maritime Semaphore  │  Polygons                │  Stroop’s Test
+    Beans              │  Double Listening         │  Maroon Button, The  │  Prison Break            │  Subbly Jubbly
+    Big Bean           │  Double Screen            │  MoneyGame           │  Puzzling Hexabuttons    │  SUSadmin
+    Blinking Notes     │  Emoji                    │  Mssngv Wls          │  Q & A                   │  Time Signatures
+    Boob Tube          │  Fuse Box, The            │  N&Ns                │  Quantum Passwords       │  Unordered Keys
+    Boomtar the Great  │  Ghost Movement           │  Naming Conventions  │  Quiplash                │  Updog
+    Bottom Gear        │  Goofy’s Game             │  Next In Line        │  Red Button’t            │  Variety
+    CA-RPS             │  Gyromaze                 │  Not Colour Flash    │  ReGret-B Filtering      │  Walking Cube
+    Cacti’s Conundrum  │  Halli Galli              │  Not Double-Oh       │  RNG Crystal             │  Watching Paint Dry
+    Color One Two      │  hexOrbits                │  Not Password        │  Saturn                  │  X-Ring
+    Coloured Cylinder  │  HiddenValue, The         │  Not Red Arrows      │  Simon Smiles            │  Yellow Button’t
 
 ## Implemented by Kuro (59)
 

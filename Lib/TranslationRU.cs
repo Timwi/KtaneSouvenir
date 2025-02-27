@@ -10328,6 +10328,31 @@ namespace Souvenir
                 },
             },
 
+            // Stroop’s Test
+            // What was the {1} submitted word in {0}?
+            // What was the first submitted word in Stroop’s Test?
+            [Question.StroopsTestWord] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the {1} submitted word in {0}?",
+            },
+            // What was the {1} submitted word’s color in {0}?
+            // What was the first submitted word’s color in Stroop’s Test?
+            [Question.StroopsTestColor] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the {1} submitted word’s color in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Yellow"] = "Yellow",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Magenta"] = "Magenta",
+                    ["White"] = "White",
+                },
+            },
+
             // Stupid Slots
             // What was the value of the {1} arrow in {0}?
             // What was the value of the top-left arrow in Stupid Slots?

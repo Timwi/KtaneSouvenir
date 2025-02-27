@@ -1579,6 +1579,52 @@ public partial class SouvenirModule
             makeQuestion(Question.StellarLetters, module, formatArgs: new[] { "Morse code" }, correctAnswers: new[] { lastPlayed[2].ToString() }, preferredWrongAnswers: allLetters));
     }
 
+    private IEnumerator<YieldInstruction> ProcessStroopsTest(ModuleData module)
+    {
+        var comp = GetComponent(module, "StroopsTestScript");
+        var words = GetListField<int>(comp, "wordList").Get();
+        var colors = GetListField<int>(comp, "colorList").Get();
+        var fldStage = GetIntField(comp, "stage");
+
+        var usedWords = new int[] { -1, -1, -1 };
+        var usedColors = new int[] { -1, -1, -1 };
+
+        var buttons = GetArrayField<KMSelectable>(comp, "buttons", true).Get(expectedLength: 2);
+        foreach (var b in buttons)
+        {
+            var oldInteract = b.OnInteract;
+            b.OnInteract = () =>
+            {
+                if (module.Unsolved)
+                {
+                    var stage = fldStage.Get();
+                    Debug.Log(stage);
+                    if (stage is >= 0 and < 3)
+                    {
+                        usedWords[stage] = words.Last();
+                        usedColors[stage] = colors.Last();
+                    }
+                }
+                return oldInteract();
+            };
+        }
+
+        yield return WaitForSolve;
+
+        if (usedWords.Any(s => s is -1) || usedColors.Any(s => s is -1))
+            throw new AbandonModuleException($"A stage was somehow missed ({usedWords.Stringify()}), ({usedColors.Stringify()})");
+
+        addQuestions(module,
+            usedWords.Select((w, i) =>
+                makeQuestion(Question.StroopsTestWord, module,
+                    correctAnswers: new[] { Question.StroopsTestWord.GetAnswers()[w] },
+                    formatArgs: new[] { Ordinal(i + 1) }))
+            .Concat(usedColors.Select((c, i) =>
+                makeQuestion(Question.StroopsTestColor, module,
+                    correctAnswers: new[] { Question.StroopsTestColor.GetAnswers()[c] },
+                    formatArgs: new[] { Ordinal(i + 1) }))));
+    }
+
     private IEnumerator<YieldInstruction> ProcessStupidSlots(ModuleData module)
     {
         var comp = GetComponent(module, "StupidSlotsScript");

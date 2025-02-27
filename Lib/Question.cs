@@ -2913,6 +2913,13 @@
             ExampleFormatArguments = new[] { "Morse code", "tap code", "Braille" }, TranslateFormatArgs = new[] { true }, ExampleFormatArgumentGroupSize = 1)]
         StellarLetters,
 
+        [SouvenirQuestion("What was the {1} submitted word in {0}?", "Stroop’s Test", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Magenta", "White",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        StroopsTestWord,
+        [SouvenirQuestion("What was the {1} submitted word’s color in {0}?", "Stroop’s Test", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Magenta", "White",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
+        StroopsTestColor,
+
         [SouvenirQuestion("What was the value of the {1} arrow in {0}?", "Stupid Slots", ThreeColumns6Answers,
             ExampleFormatArguments = new[] { "top-left", "top-middle", "top-right", "bottom-left", "bottom-middle", "bottom-right" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         [AnswerGenerator.Integers(-30, 30)]

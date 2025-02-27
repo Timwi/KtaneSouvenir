@@ -558,6 +558,7 @@ public partial class SouvenirModule
             ["starstruck"] = (ProcessStarstruck, "Starstruck", "Anonymous"),
             ["stateOfAggregation"] = (ProcessStateOfAggregation, "State of Aggregation", "BigCrunch22"),
             ["stellar"] = (ProcessStellar, "Stellar", "Timwi"),
+            ["stroopsTest"] = (ProcessStroopsTest, "Stroop’s Test", "Anonymous"),
             ["stupidSlots"] = (ProcessStupidSlots, "Stupid Slots", "tandyCake"),
             ["subblyJubbly"] = (ProcessSubblyJubbly, "Subbly Jubbly", "Anonymous"),
             ["subscribeToPewdiepie"] = (ProcessSubscribeToPewdiepie, "Subscribe to Pewdiepie", "BigCrunch22"),
