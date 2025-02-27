@@ -94,6 +94,26 @@ public partial class SouvenirModule
         addQuestion(module, Question.KeypadMazeYellow, correctAnswers: yellow.Take(4).Select(i => Sprites.GenerateGridSprite(6, 6, i)).ToArray());
     }
 
+    private static Sprite[] _keypadSequenceSprites;
+    private IEnumerator<YieldInstruction> ProcessKeypadSequence(ModuleData module)
+    {
+        var comp = GetComponent(module, "KeypadSeqScript");
+        _keypadSequenceSprites ??= GetArrayField<Material>(comp, "symbols", true)
+            .Get(expectedLength: 36).Select(m => ((Texture2D) m.mainTexture).Recolor().ToSprite()).ToArray();
+
+        yield return WaitForSolve;
+
+        var symbols = GetArrayField<int>(comp, "symbselect").Get(expectedLength: 16, validator: v => v is < 0 or > 35 ? "Expected range [0, 35]" : null);
+
+        addQuestions(module, Enumerable.Range(0, 4).SelectMany(p =>
+            symbols.Skip(4 * p).Take(4).Select((s, i) =>
+                makeQuestion(Question.KeypadSequenceLabels, module,
+                    correctAnswers: new[] { _keypadSequenceSprites[s] },
+                    formatArgs: new[] { Ordinal(p + 1) },
+                    questionSprite: Sprites.GenerateGridSprite(2, 2, i),
+                    allAnswers: _keypadSequenceSprites))));
+    }
+
     private IEnumerator<YieldInstruction> ProcessKeywords(ModuleData module)
     {
         var comp = GetComponent(module, "keywordsScript");

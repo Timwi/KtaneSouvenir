@@ -284,6 +284,7 @@ public partial class SouvenirModule
             ["keypadCombinations"] = (ProcessKeypadCombination, "Keypad Combination", "Hawker"),
             ["keypadMagnified"] = (ProcessKeypadMagnified, "Keypad Magnified", "tandyCake"),
             ["KeypadMaze"] = (ProcessKeypadMaze, "Keypad Maze", "Anonymous"),
+            ["keypadSeq"] = (ProcessKeypadSequence, "Keypad Sequence", "Anonymous"),
             ["xtrkeywords"] = (ProcessKeywords, "Keywords", "Kuro"),
             ["KnowYourWay"] = (ProcessKnowYourWay, "Know Your Way", "Kuro"),
             ["kookyKeypadModule"] = (ProcessKookyKeypad, "Kooky Keypad", "Anonymous"),

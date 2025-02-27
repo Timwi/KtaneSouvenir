@@ -9,6 +9,8 @@ namespace Souvenir
 {
     public static class Sprites
     {
+        public static Material ColorBlit { set; get; }
+
         private static readonly Dictionary<string, Sprite> _circleSpriteCache = new();
         private static readonly Dictionary<string, Sprite> _gridSpriteCache = new();
         private static readonly Dictionary<AudioClip, Sprite> _audioSpriteCache = new();
@@ -260,6 +262,40 @@ namespace Souvenir
         {
             public int FinishedColumns = 0;
             public Color[] Result;
+        }
+
+        /// <summary>
+        /// Recolors every pixel in <paramref name="source"/> while preserving alpha.
+        /// The default color is Souvenir's standard cream.
+        /// </summary>
+        /// <param name="source">The texture to recolor.</param>
+        /// <param name="r">The red value to use.</param>
+        /// <param name="g">The green value to use.</param>
+        /// <param name="b">The blue value to use.</param>
+        /// <returns>A new texture with the recoloring applied.</returns>
+        public static Texture2D Recolor(this Texture2D source, byte r = 0xff, byte g = 0xf8, byte b = 0xdd)
+        {
+            RenderTexture renderTex = RenderTexture.GetTemporary(source.width, source.height, 0, RenderTextureFormat.Default, RenderTextureReadWrite.Linear);
+
+            RenderTexture previous = RenderTexture.active;
+            ColorBlit.color = new Color32(r, g, b, 0xff);
+            Graphics.Blit(source, renderTex, ColorBlit, 0);
+            RenderTexture.active = renderTex;
+            Texture2D dest = new(source.width, source.height, TextureFormat.ARGB32, true);
+            dest.ReadPixels(new Rect(0, 0, renderTex.width, renderTex.height), 0, 0);
+            dest.Apply();
+            RenderTexture.active = previous;
+            RenderTexture.ReleaseTemporary(renderTex);
+            dest.name = source.name;
+            return dest;
+
+            //var tex = new Texture2D(source.width, source.height, source.format, mipmap: true, true);
+            //var colors = source.GetPixels32();
+            //for (int i = 0; i < colors.Length; i++)
+            //    colors[i] = new Color32(r, g, b, colors[i].a);
+            //tex.SetPixels32(colors);
+            //tex.Apply(true);
+            //return tex;
         }
     }
 }

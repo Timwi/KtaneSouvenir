@@ -1631,6 +1631,7 @@ MonoBehaviour:
   EntireQuestionSprite: {fileID: 212919332605664980}
   WarningIcon: {fileID: 1300581303950132}
   FontMaterial: {fileID: 2100000, guid: 242a1717addea514fb331d9d02716d6d, type: 2}
+  ColorBlitMaterial: {fileID: 2100000, guid: 79b1f013c301ccf4ab3c9cccacdba8c1, type: 2}
   Fonts:
   - {fileID: 12800000, guid: 2cc5074422ed950489fe2e35af896c57, type: 3}
   - {fileID: 12800000, guid: 7eb251b1ccb04364aaed7e7915ea8c49, type: 3}

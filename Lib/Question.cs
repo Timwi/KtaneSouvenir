@@ -1465,6 +1465,10 @@
         [AnswerGenerator.Grid(6, 6)]
         KeypadMazeYellow,
 
+        [SouvenirQuestion("What was this key’s label on the {1} panel in {0}?", "Keypad Sequence", ThreeColumns6Answers, Type = AnswerType.Sprites, UsesQuestionSprite = true,
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        KeypadSequenceLabels,
+
         [SouvenirQuestion("What were the first four letters on the display in {0}?", "Keywords", ThreeColumns6Answers, ExampleAnswers = new[] { "abvo", "pola", "drea", "buew", "utre", "oidy" })]
         KeywordsDisplayedKey,
 

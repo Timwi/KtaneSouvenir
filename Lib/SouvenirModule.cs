@@ -90,6 +90,7 @@ public partial class SouvenirModule : MonoBehaviour
     public SpriteRenderer EntireQuestionSprite;
     public GameObject WarningIcon;
     public Material FontMaterial;
+    public Material ColorBlitMaterial;
     public Font[] Fonts;
     public Texture[] FontTextures;
     public Mesh HighlightShort; // 6 answers, 3 columns
@@ -384,6 +385,9 @@ public partial class SouvenirModule : MonoBehaviour
                 StartCoroutine(Play());
             }
         };
+
+        Sprites.ColorBlit ??= ColorBlitMaterial;
+        QuestionSprite.sprite = QuestionSprite.sprite.texture.Recolor().ToSprite();
     }
 
     void showExampleQuestion()

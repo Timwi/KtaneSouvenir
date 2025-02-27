@@ -5115,6 +5115,15 @@ namespace Souvenir
                 QuestionText = "Which of these cells was yellow in {0}?",
             },
 
+            // Keypad Sequence
+            // What was this key’s label on the {1} panel in {0}?
+            // What was this key’s label on the first panel in Keypad Sequence?
+            [Question.KeypadSequenceLabels] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the label on this button on the {1} panel in {0}?",
+            },
+
             // Keywords
             // What were the first four letters on the display in {0}?
             // What were the first four letters on the display in Keywords?
