@@ -1882,13 +1882,20 @@
         [SouvenirQuestion("What was the label of the first button in {0}?", "Naming Conventions", TwoColumns4Answers, "Class", "Constructor", "Method", "Argument", "Local", "Constant", "Field", "Property", "Delegate", "Enum")]
         NamingConventionsObject,
 
+        [SouvenirQuestion("What was the {1} index in {0}?", "Name Codes", TwoColumns4Answers, "2", "3", "4", "5", TranslateFormatArgs = new[] { true },
+            ExampleFormatArguments = new[] { "left", "right" }, ExampleFormatArgumentGroupSize = 1)]
+        NameCodesIndices,
+
         [SouvenirQuestion("What was the label of the correct button in {0}?", "N&Ms", ThreeColumns6Answers)]
         [AnswerGenerator.Strings(5, 'M', 'N')]
         NandMsAnswer,
 
-        [SouvenirQuestion("What was the {1} index in {0}?", "Name Codes", TwoColumns4Answers, "2", "3", "4", "5", TranslateFormatArgs = new[] { true },
-            ExampleFormatArguments = new[] { "left", "right" }, ExampleFormatArgumentGroupSize = 1)]
-        NameCodesIndices,
+        [SouvenirQuestion("Which label was present in the {1} stage of {0}?", "N&Ns", ThreeColumns6Answers,
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings(5, 'M', 'N')]
+        NandNsLabel,
+        [SouvenirQuestion("Which color was missing in the third stage of {0}?", "N&Ns", ThreeColumns6Answers, "Red", "Green", "Orange", "Blue", "Yellow", "Brown", TranslateAnswers = true)]
+        NandNsColor,
 
         [SouvenirQuestion("What was the color of the maze in {0}?", "Navigation Determination", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue", TranslateAnswers = true)]
         NavigationDeterminationColor,

@@ -6456,15 +6456,6 @@ namespace Souvenir
                 ModuleName = "命名規則",
             },
 
-            // N&Ms
-            // What was the label of the correct button in {0}?
-            // What was the label of the correct button in N&Ms?
-            [Question.NandMsAnswer] = new()
-            {
-                QuestionText = "{0}の正しいボタンのラベルは？",
-                ModuleName = "NとM",
-            },
-
             // Name Codes
             // What was the {1} index in {0}?
             // What was the left index in Name Codes?
@@ -6475,6 +6466,40 @@ namespace Souvenir
                 {
                     ["left"] = "左",
                     ["right"] = "右",
+                },
+            },
+
+            // N&Ms
+            // What was the label of the correct button in {0}?
+            // What was the label of the correct button in N&Ms?
+            [Question.NandMsAnswer] = new()
+            {
+                QuestionText = "{0}の正しいボタンのラベルは？",
+                ModuleName = "NとM",
+            },
+
+            // N&Ns
+            // Which label was present in the {1} stage of {0}?
+            // Which label was present in the first stage of N&Ns?
+            [Question.NandNsLabel] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which label was present in the {1} stage of {0}?",
+            },
+            // Which color was missing in the third stage of {0}?
+            // Which color was missing in the third stage of N&Ns?
+            [Question.NandNsColor] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which color was missing in the third stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Green"] = "Green",
+                    ["Orange"] = "Orange",
+                    ["Blue"] = "Blue",
+                    ["Yellow"] = "Yellow",
+                    ["Brown"] = "Brown",
                 },
             },
 

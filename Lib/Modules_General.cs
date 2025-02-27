@@ -364,6 +364,7 @@ public partial class SouvenirModule
             ["nameCodes"] = (ProcessNameCodes, "Name Codes", "tandyCake"),
             ["NamingConventions"] = (ProcessNamingConventions, "Naming Conventions", "Anonymous"),
             ["NandMs"] = (ProcessNandMs, "N&Ms", "TasThiluna"),
+            ["NandNs"] = (ProcessNandNs, "N&Ns", "Anonymous"),
             ["NavigationDeterminationModule"] = (ProcessNavigationDetermination, "Navigation Determination", "Quinn Wuest"),
             ["navinums"] = (ProcessNavinums, "Navinums", "Timwi"),
             ["NavyButtonModule"] = (ProcessNavyButton, "Navy Button, The", "Timwi"),

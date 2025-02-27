@@ -6591,15 +6591,6 @@ namespace Souvenir
                 QuestionText = "Какая была надпись на 1й кнопке {0}?",
             },
 
-            // N&Ms
-            // What was the label of the correct button in {0}?
-            // What was the label of the correct button in N&Ms?
-            [Question.NandMsAnswer] = new()
-            {
-                QuestionText = "Какая надпись была на правильной кнопке {0}?",
-                ModuleName = "N и M",
-            },
-
             // Name Codes
             // What was the {1} index in {0}?
             // What was the left index in Name Codes?
@@ -6610,6 +6601,40 @@ namespace Souvenir
                 {
                     ["left"] = "левый",
                     ["right"] = "правый",
+                },
+            },
+
+            // N&Ms
+            // What was the label of the correct button in {0}?
+            // What was the label of the correct button in N&Ms?
+            [Question.NandMsAnswer] = new()
+            {
+                QuestionText = "Какая надпись была на правильной кнопке {0}?",
+                ModuleName = "N и M",
+            },
+
+            // N&Ns
+            // Which label was present in the {1} stage of {0}?
+            // Which label was present in the first stage of N&Ns?
+            [Question.NandNsLabel] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which label was present in the {1} stage of {0}?",
+            },
+            // Which color was missing in the third stage of {0}?
+            // Which color was missing in the third stage of N&Ns?
+            [Question.NandNsColor] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which color was missing in the third stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Green"] = "Green",
+                    ["Orange"] = "Orange",
+                    ["Blue"] = "Blue",
+                    ["Yellow"] = "Yellow",
+                    ["Brown"] = "Brown",
                 },
             },
 
