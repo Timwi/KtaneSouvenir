@@ -1461,6 +1461,10 @@
         [SouvenirQuestion("What was the position of the LED in {0}?", "Keypad Magnified", TwoColumns4Answers, "Top-left", "Top-right", "Bottom-left", "Bottom-right", TranslateAnswers = true)]
         KeypadMagnifiedLED,
 
+        [SouvenirQuestion("Which of these cells was yellow in {0}?", "Keypad Maze", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+        [AnswerGenerator.Grid(6, 6)]
+        KeypadMazeYellow,
+
         [SouvenirQuestion("What were the first four letters on the display in {0}?", "Keywords", ThreeColumns6Answers, ExampleAnswers = new[] { "abvo", "pola", "drea", "buew", "utre", "oidy" })]
         KeywordsDisplayedKey,
 

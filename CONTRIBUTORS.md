@@ -34,23 +34,24 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Color Decoding       │  Green Button, The     │  Murder                   │  Simon Screams        │  Yellow Button, The
     Color Morse          │  Hexamaze              │  Mystery Module           │  Simon Shouts         │  Zero, Zero
 
-## Implemented by Anonymous (75)
+## Implemented by Anonymous (76)
 
-    ↻↺                 │  Coloured Cylinder        │  hexOrbits           │  Not The Plunger Button  │  Simon Smiles
-    ❖                  │  Concentration            │  HiddenValue, The    │  One Links To All        │  Simon Subdivides
-    0                  │  Connected Monitors       │  Hyperforget         │  Pentabutton, The        │  Skewers
-    1, 2, 3 Game, The  │  Connection Check         │  Labyrinth, The      │  Pickup Identification   │  Smash, Marry, Kill
-    Amusement Parks    │  Dialtones                │  Maritime Semaphore  │  Pointless Machines      │  Stable Time Signatures
-    Bean Sprouts       │  Doofenshmirtz Evil Inc.  │  Maroon Button, The  │  Polygons                │  Subbly Jubbly
-    Beans              │  Double Arrows            │  MoneyGame           │  Prison Break            │  SUSadmin
-    Big Bean           │  Double Listening         │  Mssngv Wls          │  Puzzling Hexabuttons    │  Time Signatures
-    Blinking Notes     │  Double Screen            │  N&Ns                │  Q & A                   │  Unordered Keys
-    Boob Tube          │  Emoji                    │  Naming Conventions  │  Quantum Passwords       │  Updog
-    Boomtar the Great  │  Fuse Box, The            │  Next In Line        │  Quiplash                │  Variety
-    Bottom Gear        │  Ghost Movement           │  Not Colour Flash    │  Red Button’t            │  Walking Cube
-    CA-RPS             │  Goofy’s Game             │  Not Double-Oh       │  ReGret-B Filtering      │  Watching Paint Dry
-    Cacti’s Conundrum  │  Gyromaze                 │  Not Password        │  RNG Crystal             │  X-Ring
-    Color One Two      │  Halli Galli              │  Not Red Arrows      │  Saturn                  │  Yellow Button’t
+    ↻↺                 │  Concentration            │  Hyperforget             │  Pentabutton, The       │  Smash, Marry, Kill
+    ❖                  │  Connected Monitors       │  Keypad Maze             │  Pickup Identification  │  Stable Time Signatures
+    0                  │  Connection Check         │  Labyrinth, The          │  Pointless Machines     │  Subbly Jubbly
+    1, 2, 3 Game, The  │  Dialtones                │  Maritime Semaphore      │  Polygons               │  SUSadmin
+    Amusement Parks    │  Doofenshmirtz Evil Inc.  │  Maroon Button, The      │  Prison Break           │  Time Signatures
+    Bean Sprouts       │  Double Arrows            │  MoneyGame               │  Puzzling Hexabuttons   │  Unordered Keys
+    Beans              │  Double Listening         │  Mssngv Wls              │  Q & A                  │  Updog
+    Big Bean           │  Double Screen            │  N&Ns                    │  Quantum Passwords      │  Variety
+    Blinking Notes     │  Emoji                    │  Naming Conventions      │  Quiplash               │  Walking Cube
+    Boob Tube          │  Fuse Box, The            │  Next In Line            │  Red Button’t           │  Watching Paint Dry
+    Boomtar the Great  │  Ghost Movement           │  Not Colour Flash        │  ReGret-B Filtering     │  X-Ring
+    Bottom Gear        │  Goofy’s Game             │  Not Double-Oh           │  RNG Crystal            │  Yellow Button’t
+    CA-RPS             │  Gyromaze                 │  Not Password            │  Saturn                 │
+    Cacti’s Conundrum  │  Halli Galli              │  Not Red Arrows          │  Simon Smiles           │
+    Color One Two      │  hexOrbits                │  Not The Plunger Button  │  Simon Subdivides       │
+    Coloured Cylinder  │  HiddenValue, The         │  One Links To All        │  Skewers                │
 
 ## Implemented by Kuro (59)
 

@@ -84,6 +84,16 @@ public partial class SouvenirModule
         addQuestion(module, Question.KeypadMagnifiedLED, correctAnswers: new[] { posNames[LEDPos] });
     }
 
+    private IEnumerator<YieldInstruction> ProcessKeypadMaze(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "KeypadMaze");
+        var yellow = GetArrayField<int>(comp, "yellow", true).Get(expectedLength: 5, validator: v => v is < 0 or > 35 ? "Expected range [0, 35]" : null);
+
+        addQuestion(module, Question.KeypadMazeYellow, correctAnswers: yellow.Take(4).Select(i => Sprites.GenerateGridSprite(6, 6, i)).ToArray());
+    }
+
     private IEnumerator<YieldInstruction> ProcessKeywords(ModuleData module)
     {
         var comp = GetComponent(module, "keywordsScript");

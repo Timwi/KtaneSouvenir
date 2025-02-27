@@ -5106,6 +5106,15 @@ namespace Souvenir
                 },
             },
 
+            // Keypad Maze
+            // Which of these cells was yellow in {0}?
+            // Which of these cells was yellow in Keypad Maze?
+            [Question.KeypadMazeYellow] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which of these cells was yellow in {0}?",
+            },
+
             // Keywords
             // What were the first four letters on the display in {0}?
             // What were the first four letters on the display in Keywords?

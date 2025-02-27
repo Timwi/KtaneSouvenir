@@ -283,6 +283,7 @@ public partial class SouvenirModule
             ["TheKanyeEncounter"] = (ProcessKanyeEncounter, "Kanye Encounter, The", "tandyCake"),
             ["keypadCombinations"] = (ProcessKeypadCombination, "Keypad Combination", "Hawker"),
             ["keypadMagnified"] = (ProcessKeypadMagnified, "Keypad Magnified", "tandyCake"),
+            ["KeypadMaze"] = (ProcessKeypadMaze, "Keypad Maze", "Anonymous"),
             ["xtrkeywords"] = (ProcessKeywords, "Keywords", "Kuro"),
             ["KnowYourWay"] = (ProcessKnowYourWay, "Know Your Way", "Kuro"),
             ["KudosudokuModule"] = (ProcessKudosudoku, "Kudosudoku", "Timwi"),
