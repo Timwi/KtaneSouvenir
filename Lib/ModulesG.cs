@@ -195,12 +195,12 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "GrayButtonScript");
 
-        yield return WaitForSolve;
-
-        var text = GetField<TextMesh>(comp, "GrayButtonText", isPublic: true).Get();
+        var text = GetField<TextMesh>(comp, "ScreenText", isPublic: true).Get();
         var m = Regex.Match(text.text, @"^(\d), (\d)$");
         if (!m.Success)
             throw new AbandonModuleException($"Unexpected text on Gray Button display: {text.text}");
+
+        yield return WaitForSolve;
 
         addQuestions(module,
             makeQuestion(Question.GrayButtonCoordinates, module, formatArgs: new[] { "horizontal" }, correctAnswers: new[] { m.Groups[1].Value }),
