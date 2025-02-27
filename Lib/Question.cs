@@ -3076,6 +3076,9 @@
         [SouvenirQuestion("What colour triangle pulsed {1} in {0}?", "Triamonds", ThreeColumns6Answers, "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         TriamondsPulsingColours,
 
+        [SouvenirQuestion("Who was your closest ally in {0}?", "Tribal Council", TwoColumns4Answers, "Louise", "Mark", "Hannah", "Adam", "Harvey", "Maria", "Jonathan", "Carolyn", "Stacy", "Bob")]
+        TribalCouncilClosestAlly,
+
         [SouvenirQuestion("Which of these was one of the passwords in {0}?", "Triple Term", ThreeColumns6Answers, ExampleAnswers = new[] { "Three", "Every", "These", "Would", "Where", "First", "Still", "Plant", "Small", })]
         TripleTermPasswords,
 

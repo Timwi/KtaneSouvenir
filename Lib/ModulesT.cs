@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Souvenir;
 using UnityEngine;
 
@@ -369,6 +370,28 @@ public partial class SouvenirModule
     private IEnumerator<YieldInstruction> ProcessTriamonds(ModuleData module)
     {
         return processPolyiamonds(module, "triamondsScript", Question.TriamondsPulsingColours, new[] { "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white" });
+    }
+
+    private IEnumerator<YieldInstruction> ProcessTribalCouncil(ModuleData module)
+    {
+        var comp = GetComponent(module, "tribalCouncilScript");
+        var texts = GetArrayField<TextMesh>(comp, "namesText", true).Get(expectedLength: 6);
+        var chart = GetField<int[,]>(comp, "chart").Get(v => (v.GetLength(0), v.GetLength(1)) is not (10, 10) ? "Expected 10x10 array" : null);
+
+        var ix = Bomb.GetSerialNumberLetters().First() - 'A' + 1;
+        ix *= Bomb.GetOnIndicators().Count() is var lit and > 0 ? lit : 21;
+        HashSet<(int, int)> invert = new() { (6, 1), (9, 1), (5, 4), (1, 5), (2, 5), (9, 5), (5, 9), (7, 9), (8, 9) };
+        var ne = Array.IndexOf(Question.TribalCouncilClosestAlly.GetAnswers(), texts[1].text);
+        var sw = Array.IndexOf(Question.TribalCouncilClosestAlly.GetAnswers(), texts[4].text);
+        ix += chart[ne, sw] * (invert.Contains((ne, sw)) ? -1 : 1);
+        ix = Mathf.Abs(ix);
+        ix %= 20;
+        ix %= 6;
+        var answer = texts[ix].text;
+
+        yield return WaitForSolve;
+
+        addQuestion(module, Question.TribalCouncilClosestAlly, correctAnswers: new[] { answer });
     }
 
     private IEnumerator<YieldInstruction> ProcessTripleTerm(ModuleData module)

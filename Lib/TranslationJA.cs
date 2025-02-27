@@ -10766,6 +10766,15 @@ namespace Souvenir
                 },
             },
 
+            // Tribal Council
+            // Who was your closest ally in {0}?
+            // Who was your closest ally in Tribal Council?
+            [Question.TribalCouncilClosestAlly] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Who was your closest ally in {0}?",
+            },
+
             // Triple Term
             // Which of these was one of the passwords in {0}?
             // Which of these was one of the passwords in Triple Term?

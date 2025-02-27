@@ -596,6 +596,7 @@ public partial class SouvenirModule
             ["Trajectory"] = (ProcessTrajectory, "Trajectory", "tandyCake"),
             ["transmittedMorseModule"] = (ProcessTransmittedMorse, "Transmitted Morse", "kavinkul"),
             ["triamonds"] = (ProcessTriamonds, "Triamonds", "Kuro"),
+            ["TribalCouncil"] = (ProcessTribalCouncil, "Tribal Council", "Anonymous"),
             ["tripleTermModule"] = (ProcessTripleTerm, "Triple Term", "Quinn Wuest"),
             ["turtleRobot"] = (ProcessTurtleRobot, "Turtle Robot", "CaitSith2"),
             ["TwoBits"] = (ProcessTwoBits, "Two Bits", "Timwi"),
