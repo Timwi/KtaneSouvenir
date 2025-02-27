@@ -8110,6 +8110,25 @@ namespace Souvenir
                 ModuleName = "パズル識別",
             },
 
+            // Puzzling Hexabuttons
+            // What letter was displayed on the {1} hexabutton when submitting in {0}?
+            // What letter was displayed on the top-left hexabutton when submitting in Puzzling Hexabuttons?
+            [Question.PuzzlingHexabuttonsLetter] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What letter was displayed on the {1} hexabutton when submitting in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top-left"] = "top-left",
+                    ["top-right"] = "top-right",
+                    ["middle-left"] = "middle-left",
+                    ["center"] = "center",
+                    ["middle-right"] = "middle-right",
+                    ["bottom-left"] = "bottom-left",
+                    ["bottom-right"] = "bottom-right",
+                },
+            },
+
             // Q & A
             // What was the {1} question asked in {0}?
             // What was the first question asked in Q & A?

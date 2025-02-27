@@ -670,4 +670,27 @@ public partial class SouvenirModule
             makeQuestion(Question.PuzzleIdentificationName, module, formatArgs: new[] { Ordinal(2) }, correctAnswers: new[] { names[puzzlesOneAndTwo[3]][puzzlesOneAndTwo[1]] }, preferredWrongAnswers: names[puzzlesOneAndTwo[3]]),
             makeQuestion(Question.PuzzleIdentificationName, module, formatArgs: new[] { Ordinal(3) }, correctAnswers: new[] { names[gameThree][puzzleThree] }, preferredWrongAnswers: names[gameThree]));
     }
+
+    private IEnumerator<YieldInstruction> ProcessPuzzlingHexabuttons(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "puzzlingHexabuttons");
+        var texts = GetArrayField<TextMesh>(comp, "buttonText", true).Get(expectedLength: 7);
+        var center = texts[6].text[0];
+        if (center is < 'A' or > 'F')
+            throw new AbandonModuleException($"`center` ({center}) was not in \"ABCDEF\"");
+        var outer = GetArrayField<char>(comp, "solution").Get(expectedLength: 6, validator: v => v is < 'A' or > 'F' ? "Expected character in \"ABCDEF\"" : null);
+
+        var formats = new[] { "top-left", "top-right", "middle-left", "middle-right", "bottom-left", "bottom-right", "center" };
+        addQuestions(module, outer.Concat(new[] { center }).Select((c, i) =>
+            makeQuestion(Question.PuzzlingHexabuttonsLetter, module,
+                correctAnswers: new[] { c.ToString() },
+                formatArgs: new[] { formats[i] })));
+
+        yield return null; // Allow other Souvenirs to grab the text
+
+        foreach (var text in texts)
+            text.text = "";
+    }
 }

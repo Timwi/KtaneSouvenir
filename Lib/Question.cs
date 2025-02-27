@@ -2320,6 +2320,11 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         PuzzleIdentificationName,
 
+        [SouvenirQuestion("What letter was displayed on the {1} hexabutton when submitting in {0}?", "Puzzling Hexabuttons", ThreeColumns6Answers,
+            ExampleFormatArguments = new[] { "top-left", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-right" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
+        [AnswerGenerator.Strings('A', 'F')]
+        PuzzlingHexabuttonsLetter,
+
         [SouvenirQuestion("What was the {1} question asked in {0}?", "Q & A", ThreeColumns6Answers, "WHAT", "WHEN", "WHERE", "WHO", "HOW", "WHY",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         QnAQuestions,
