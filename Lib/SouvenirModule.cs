@@ -387,7 +387,6 @@ public partial class SouvenirModule : MonoBehaviour
         };
 
         Sprites.ColorBlit ??= ColorBlitMaterial;
-        QuestionSprite.sprite = QuestionSprite.sprite.texture.Recolor().ToSprite();
     }
 
     void showExampleQuestion()

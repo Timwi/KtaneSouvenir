@@ -1539,6 +1539,19 @@ public partial class SouvenirModule
         addQuestion(module, Question.StarsCenter, correctAnswers: new[] { originalNumber });
     }
 
+    private IEnumerator<YieldInstruction> ProcessStarstruck(ModuleData module)
+    {
+        // This handler *should* ask about the color of a given star, but currently I can't turn a font character into a sprite.
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "starstruck");
+        const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^^&*()=+_,./<>?;:[]\\{}|-";
+        var stars = GetArrayField<char>(comp, "piecePositions").Get(expectedLength: 3, validator: v => !valid.Contains(v) ? $"Expected chars in \"{valid}\"" : null);
+        var text = GetArrayField<TextMesh>(comp, "bigStars", true).Get(expectedLength: 3)[0];
+
+        addQuestions(module, makeQuestion(Question.StarstruckStar, module, text.font, text.GetComponent<Renderer>().sharedMaterial.mainTexture, correctAnswers: stars.Select(c => c.ToString()).ToArray()));
+    }
+
     private IEnumerator<YieldInstruction> ProcessStateOfAggregation(ModuleData module)
     {
         var comp = GetComponent(module, "StateOfAggregation");
@@ -1548,7 +1561,6 @@ public partial class SouvenirModule
 
         var element = GetField<TextMesh>(comp, "Element", isPublic: true).Get().text;
 
-        yield return WaitForSolve;
 
         // Convert to proper case.
         addQuestion(module, Question.StateOfAggregationElement, correctAnswers: new[] { element.Substring(0, 1).ToUpperInvariant() + element.Substring(1).ToLowerInvariant() });

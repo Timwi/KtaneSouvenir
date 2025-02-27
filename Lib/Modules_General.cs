@@ -555,6 +555,7 @@ public partial class SouvenirModule
             ["StableTimeSignatures"] = (ProcessStableTimeSignatures, "Stable Time Signatures", "Anonymous"),
             ["stackedSequences"] = (ProcessStackedSequences, "Stacked Sequences", "GhostSalt"),
             ["stars"] = (ProcessStars, "Stars", "BigCrunch22"),
+            ["starstruck"] = (ProcessStarstruck, "Starstruck", "Anonymous"),
             ["stateOfAggregation"] = (ProcessStateOfAggregation, "State of Aggregation", "BigCrunch22"),
             ["stellar"] = (ProcessStellar, "Stellar", "Timwi"),
             ["stupidSlots"] = (ProcessStupidSlots, "Stupid Slots", "tandyCake"),

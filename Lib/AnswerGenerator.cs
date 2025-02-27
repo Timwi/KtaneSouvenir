@@ -179,18 +179,20 @@ namespace Souvenir
 
                 public static CharacterList Parse(string expression)
                 {
-                    int count = 1;
                     var chars = new List<char>();
                     var ranges = new List<char>();
 
                     int i = expression.IndexOf('*');
-                    if (i > 0 && int.TryParse(expression.Substring(0, i), NumberStyles.AllowLeadingWhite | NumberStyles.AllowTrailingWhite, null, out count))
+                    if (i > 0 && int.TryParse(expression.Substring(0, i), NumberStyles.AllowLeadingWhite | NumberStyles.AllowTrailingWhite, null, out int count))
                     {
                         if (count == 0) throw new FormatException("Count in a character list expression must be positive.");
                         i++;
                     }
                     else
+                    {
                         i = 0;
+                        count = 1;
+                    }
                     if (i >= expression.Length) throw new FormatException("A character list expression must contain characters.");
                     while (i < expression.Length)
                     {

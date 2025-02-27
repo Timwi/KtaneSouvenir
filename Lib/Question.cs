@@ -2902,6 +2902,10 @@
         [AnswerGenerator.Integers(0, 9)]
         StarsCenter,
 
+        [SouvenirQuestion("Which star was present on {0}?", "Starstruck", ThreeColumns6Answers, Type = AnswerType.DynamicFont, FontSize = 432, CharacterSize = 1 / 7f)]
+        [AnswerGenerator.Strings("a-zA-Z0-9!@#$%^&*()=+_,./<>?;:[]\\{}|-")]
+        StarstruckStar,
+
         [SouvenirQuestion("What was the element shown in {0}?", "State of Aggregation", ThreeColumns6Answers, "H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne", "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca", "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Ga", "Ge", "As", "Se", "Br", "Kr", "Rb", "Sr", "Y", "Zr", "Nb", "Mo", "Tc", "Ru", "Rh", "Pd", "Ag", "Cd", "In", "Sn", "Sb", "Te", "I", "Xe", "Cs", "Ba", "La", "Ce", "Pr", "Nd", "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg", "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Ac", "Th", "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm", "Md", "No", "Lr", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og")]
         StateOfAggregationElement,
 

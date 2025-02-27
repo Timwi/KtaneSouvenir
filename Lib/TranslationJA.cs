@@ -10134,6 +10134,15 @@ namespace Souvenir
                 ModuleName = "星",
             },
 
+            // Starstruck
+            // Which star was present on {0}?
+            // Which star was present on Starstruck?
+            [Question.StarstruckStar] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which star was present on {0}?",
+            },
+
             // State of Aggregation
             // What was the element shown in {0}?
             // What was the element shown in State of Aggregation?

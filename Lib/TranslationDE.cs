@@ -10338,6 +10338,15 @@ namespace Souvenir
                 QuestionText = "What was the digit in the center of {0}?",
             },
 
+            // Starstruck
+            // Which star was present on {0}?
+            // Which star was present on Starstruck?
+            [Question.StarstruckStar] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which star was present on {0}?",
+            },
+
             // State of Aggregation
             // What was the element shown in {0}?
             // What was the element shown in State of Aggregation?
