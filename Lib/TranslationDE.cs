@@ -5154,6 +5154,36 @@ namespace Souvenir
                 },
             },
 
+            // Kooky Keypad
+            // What color was the {1} button’s LED in {0}?
+            // What color was the top-left button’s LED in Kooky Keypad?
+            [Question.KookyKeypadColor] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What color was the {1} button’s LED in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["top-left"] = "top-left",
+                    ["top-right"] = "top-right",
+                    ["bottom-left"] = "bottom-left",
+                    ["bottom-right"] = "bottom-right",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Crimson"] = "Crimson",
+                    ["Red"] = "Red",
+                    ["Coral"] = "Coral",
+                    ["Orange"] = "Orange",
+                    ["Lemon Chiffon"] = "Lemon Chiffon",
+                    ["Medium Spring Green"] = "Medium Spring Green",
+                    ["Deep Sea Green"] = "Deep Sea Green",
+                    ["Cadet Blue"] = "Cadet Blue",
+                    ["Slate Blue"] = "Slate Blue",
+                    ["Dark Magenta"] = "Dark Magenta",
+                    ["Unlit"] = "Unlit",
+                },
+            },
+
             // Kudosudoku
             // Which square was {1} in {0}?
             // Which square was pre-filled in Kudosudoku?

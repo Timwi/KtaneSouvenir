@@ -1473,6 +1473,10 @@
         [SouvenirQuestion("Which LED was green in {0}?", "Know Your Way", TwoColumns4Answers, "Top", "Bottom", "Right", "Left", TranslateAnswers = true)]
         KnowYourWayLed,
 
+        [SouvenirQuestion("What color was the {1} button’s LED in {0}?", "Kooky Keypad", OneColumn4Answers, "Crimson", "Red", "Coral", "Orange", "Lemon Chiffon", "Medium Spring Green", "Deep Sea Green", "Cadet Blue", "Slate Blue", "Dark Magenta", "Unlit",
+            ExampleFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true }, TranslateAnswers = true)]
+        KookyKeypadColor,
+
         [SouvenirQuestion("Which square was {1} in {0}?", "Kudosudoku", ThreeColumns6Answers, Type = AnswerType.Sprites, TranslateFormatArgs = new[] { true },
             ExampleFormatArguments = new[] { "pre-filled", "not pre-filled" }, ExampleFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Grid(4, 4)]

@@ -286,6 +286,7 @@ public partial class SouvenirModule
             ["KeypadMaze"] = (ProcessKeypadMaze, "Keypad Maze", "Anonymous"),
             ["xtrkeywords"] = (ProcessKeywords, "Keywords", "Kuro"),
             ["KnowYourWay"] = (ProcessKnowYourWay, "Know Your Way", "Kuro"),
+            ["kookyKeypadModule"] = (ProcessKookyKeypad, "Kooky Keypad", "Anonymous"),
             ["KudosudokuModule"] = (ProcessKudosudoku, "Kudosudoku", "Timwi"),
             ["Kuro"] = (ProcessKuro, "Kuro", "Hawker"),
             ["labyrinth"] = (ProcessLabyrinth, "Labyrinth, The", "Anonymous"),
