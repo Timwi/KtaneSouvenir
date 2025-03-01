@@ -782,6 +782,16 @@ public partial class SouvenirModule
         addQuestion(module, Question.NumberedButtonsButtons, correctAnswers: expectedButtons);
     }
 
+    private IEnumerator<YieldInstruction> ProcessNumberGame(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "TheNumberGameScript");
+        var num = GetIntField(comp, "RandomMaxNumber").Get(min: 10000000, max: 99999999);
+
+        addQuestion(module, Question.NumberGameMaximum, correctAnswers: new[] { num.ToString() });
+    }
+
     private IEnumerator<YieldInstruction> ProcessNumbers(ModuleData module)
     {
         var comp = GetComponent(module, "WAnumbersScript");

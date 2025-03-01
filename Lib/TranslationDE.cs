@@ -7541,6 +7541,15 @@ namespace Souvenir
                 QuestionText = "Which number was correctly pressed on {0}?",
             },
 
+            // The Number Game
+            // What was the maximum number in {0}?
+            // What was the maximum number in The Number Game?
+            [Question.NumberGameMaximum] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the maximum number in {0}?",
+            },
+
             // Numbers
             // What two-digit number was given in {0}?
             // What two-digit number was given in Numbers?

@@ -2105,6 +2105,10 @@
         [AnswerGenerator.Integers(1, 100)]
         NumberedButtonsButtons,
 
+        [SouvenirQuestion("What was the maximum number in {0}?", "Number Game", TwoColumns4Answers, AddThe = true)]
+        [AnswerGenerator.Integers(10000000, 99999999)]
+        NumberGameMaximum,
+
         [SouvenirQuestion("What two-digit number was given in {0}?", "Numbers", ThreeColumns6Answers)]
         [AnswerGenerator.Integers(0, 99, "00")]
         NumbersTwoDigit,

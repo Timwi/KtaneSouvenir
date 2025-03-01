@@ -404,6 +404,7 @@ public partial class SouvenirModule
             ["notX01"] = (ProcessNotX01, "Not X01", "Quinn Wuest"),
             ["NotXRayModule"] = (ProcessNotXRay, "Not X-Ray", "Timwi"),
             ["numberedButtonsModule"] = (ProcessNumberedButtons, "Numbered Buttons", "Eltrick"),
+            ["TheNumberGame"] = (ProcessNumberGame, "Number Game, The", "Anonymous"),
             ["Numbers"] = (ProcessNumbers, "Numbers", "BigCrunch22"),
             ["numpath"] = (ProcessNumpath, "Numpath", "tandyCake"),
             ["objectShows"] = (ProcessObjectShows, "Object Shows", "Timwi"),
