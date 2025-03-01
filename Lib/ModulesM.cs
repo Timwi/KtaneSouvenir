@@ -456,6 +456,27 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerator<YieldInstruction> ProcessMazeSwap(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "MazeSwapScript");
+        foreach (var tri in GetArrayField<GameObject>(comp, "triangleObj", true).Get(expectedLength: 36))
+            tri.SetActive(false);
+        foreach (var cell in GetArrayField<TextMesh>(comp, "grid", true).Get(expectedLength: 36))
+        {
+            cell.text = "0";
+            cell.color = new Color32(64, 64, 64, 255);
+        }
+
+        var start = GetIntField(comp, "start").Get(min: 0, max: 35);
+        var goal = GetIntField(comp, "goal").Get(min: 0, max: 35);
+
+        addQuestions(module,
+            makeQuestion(Question.MazeSwapPosition, module, correctAnswers: new[] { new Coord(6, 6, start) }, formatArgs: new[] { "starting" }),
+            makeQuestion(Question.MazeSwapPosition, module, correctAnswers: new[] { new Coord(6, 6, goal) }, formatArgs: new[] { "goal" }));
+    }
+
     private IEnumerator<YieldInstruction> ProcessMegaMan2(ModuleData module)
     {
         var comp = GetComponent(module, "Megaman2");

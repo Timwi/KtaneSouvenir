@@ -333,6 +333,7 @@ public partial class SouvenirModule
             ["mazematics"] = (ProcessMazematics, "Mazematics", "luisdiogo98"),
             ["MazeScrambler"] = (ProcessMazeScrambler, "Maze Scrambler", "luisdiogo98"),
             ["GSMazeseeker"] = (ProcessMazeseeker, "Mazeseeker", "GhostSalt"),
+            ["mazeSwap"] = (ProcessMazeSwap, "Maze Swap", "Anonymous"),
             ["megaMan2"] = (ProcessMegaMan2, "Mega Man 2", "Goofy"),
             ["melodySequencer"] = (ProcessMelodySequencer, "Melody Sequencer", "Goofy"),
             ["memorableButtons"] = (ProcessMemorableButtons, "Memorable Buttons", "Timwi"),

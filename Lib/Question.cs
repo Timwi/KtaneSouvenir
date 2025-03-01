@@ -1712,6 +1712,11 @@
         [AnswerGenerator.Grid(6, 6)]
         MazeseekerGoal,
 
+        [SouvenirQuestion("Where was the {1} position in {0}?", "Maze Swap", ThreeColumns6Answers, Type = AnswerType.Sprites,
+            ExampleFormatArguments = new[] { "starting", "goal" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
+        [AnswerGenerator.Grid(6, 6)]
+        MazeSwapPosition,
+
         [SouvenirQuestion("Which master was shown in {0}?", "Mega Man 2", ThreeColumns6Answers, Type = AnswerType.Sprites)]
         MegaMan2Master,
         [SouvenirQuestion("Which weapon was shown in {0}?", "Mega Man 2", ThreeColumns6Answers, Type = AnswerType.Sprites)]

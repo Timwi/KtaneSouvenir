@@ -6055,6 +6055,20 @@ namespace Souvenir
                 QuestionText = "Where was the goal in {0}?",
             },
 
+            // Maze Swap
+            // Where was the {1} position in {0}?
+            // Where was the starting position in Maze Swap?
+            [Question.MazeSwapPosition] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Where was the {1} position in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["starting"] = "starting",
+                    ["goal"] = "goal",
+                },
+            },
+
             // Mega Man 2
             // Which master was shown in {0}?
             // Which master was shown in Mega Man 2?
