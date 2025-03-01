@@ -475,6 +475,7 @@ public partial class SouvenirModule
             ["ReformedRoleReversal"] = (ProcessReformedRoleReversal, "Reformed Role Reversal", "Emik"),
             ["regretbFiltering"] = (ProcessReGretBFiltering, "ReGret-B Filtering", "Anonymous"),
             ["RegularCrazyTalkModule"] = (ProcessRegularCrazyTalk, "Regular Crazy Talk", "Espik"),
+            ["reorderedKeys"] = (ProcessReorderedKeys, "Reordered Keys", "Anonymous"),
             ["retirement"] = (ProcessRetirement, "Retirement", "luisdiogo98"),
             ["reverseMorse"] = (ProcessReverseMorse, "Reverse Morse", "luisdiogo98"),
             ["revPolNot"] = (ProcessReversePolishNotation, "Reverse Polish Notation", "shortc1rcuit"),

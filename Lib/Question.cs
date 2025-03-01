@@ -2444,6 +2444,19 @@
         [SouvenirQuestion("What was the embellishment of the solution phrase in {0}?", "Regular Crazy Talk", OneColumn4Answers, "[PHRASE]", "It says: [PHRASE]", "Quote: [PHRASE] End quote", "“[PHRASE]”", "It says: “[PHRASE]”", "“It says: [PHRASE]”", TranslateAnswers = true)]
         RegularCrazyTalkModifier,
 
+        [SouvenirQuestion("Which key was the pivot in the {1} stage of {0}?", "Reordered Keys", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "OrderedKeysSprites")]
+        ReorderedKeysPivot,
+        [SouvenirQuestion("What color was this key in the {1} stage of {0}?", "Reordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
+            UsesQuestionSprite = true, ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
+        ReorderedKeysKeyColor,
+        [SouvenirQuestion("What color was the label of this key in the {1} stage of {0}?", "Reordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
+            UsesQuestionSprite = true, ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
+        ReorderedKeysLabelColor,
+        [SouvenirQuestion("What was the label of this key in the {1} stage of {0}?", "Reordered Keys", ThreeColumns6Answers,
+            UsesQuestionSprite = true, ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1, 6)]
+        ReorderedKeysLabel,
+
         [SouvenirQuestion("Which one of these houses was on offer, but not chosen by Bob in {0}?", "Retirement", TwoColumns4Answers, ExampleAnswers = new[] { "Hotham Place", "Homestead", "Riverwell", "Lodge Park" })]
         RetirementHouses,
 

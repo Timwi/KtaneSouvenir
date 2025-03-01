@@ -8672,6 +8672,53 @@ namespace Souvenir
                 },
             },
 
+            // Reordered Keys
+            // Which key was the pivot in the {1} stage of {0}?
+            [Question.ReorderedKeysPivot] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which key was the pivot in the {1} stage of {0}?",
+            },
+            // What color was this key in the {1} stage of {0}?
+            // What color was this key in the first stage of Reordered Keys?
+            [Question.ReorderedKeysKeyColor] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What color was this key in the {1} stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Cyan"] = "Cyan",
+                    ["Magenta"] = "Magenta",
+                    ["Yellow"] = "Yellow",
+                },
+            },
+            // What color was the label of this key in the {1} stage of {0}?
+            // What color was the label of this key in the first stage of Reordered Keys?
+            [Question.ReorderedKeysLabelColor] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What color was the label of this key in the {1} stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Cyan"] = "Cyan",
+                    ["Magenta"] = "Magenta",
+                    ["Yellow"] = "Yellow",
+                },
+            },
+            // What was the label of this key in the {1} stage of {0}?
+            // What was the label of this key in the first stage of Reordered Keys?
+            [Question.ReorderedKeysLabel] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the label of this key in the {1} stage of {0}?",
+            },
+
             // Retirement
             // Which one of these houses was on offer, but not chosen by Bob in {0}?
             // Which one of these houses was on offer, but not chosen by Bob in Retirement?
