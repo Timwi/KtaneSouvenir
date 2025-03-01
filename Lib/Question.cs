@@ -2822,6 +2822,17 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, TranslateAnswers = true, ExampleFormatArgumentGroupSize = 1)]
         SimonSupportsTopics,
 
+        [SouvenirQuestion("What logic gate was assigned to this button in {0}?", "Simon Swizzles", ThreeColumns6Answers, "OFF", "AND", "!LIMP", "LEFT", "!RIMP", "RIGHT", "XOR", "OR", "NOR", "XNOR", "!RIGHT", "RIMP", "!LEFT", "LIMP", "NAND", "ON",
+            UsesQuestionSprite = true, TranslateAnswers = true)]
+        SimonSwizzlesGate,
+        [SouvenirQuestion("Where was {1} in {0}?", "Simon Swizzles", ThreeColumns6Answers, Type = AnswerType.Sprites, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true },
+           ExampleFormatArguments = new[] { "OFF", "AND", "!LIMP", "LEFT", "!RIMP", "RIGHT", "XOR", "OR", "NOR", "XNOR", "!RIGHT", "RIMP", "!LEFT", "LIMP", "NAND", "ON" })]
+        [AnswerGenerator.Grid(4, 4)]
+        SimonSwizzlesButton,
+        [SouvenirQuestion("What was the hidden number in {0}?", "Simon Swizzles", ThreeColumns6Answers)]
+        [AnswerGenerator.Strings("6*01")]
+        SimonSwizzlesNumber,
+
         [SouvenirQuestion("What color flashed {1} on the {2} Simon in {0}?", "Simultaneous Simons", TwoColumns4Answers, "Blue", "Yellow", "Red", "Green", TranslateAnswers = true,
             ExampleFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleFormatArgumentGroupSize = 2)]
         SimultaneousSimonsFlash,

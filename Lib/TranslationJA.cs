@@ -9814,6 +9814,67 @@ namespace Souvenir
                 },
             },
 
+            // Simon Swizzles
+            // What logic gate was assigned to this button in {0}?
+            // What logic gate was assigned to this button in Simon Swizzles?
+            [Question.SimonSwizzlesGate] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What logic gate was assigned to this button in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["OFF"] = "OFF",
+                    ["AND"] = "AND",
+                    ["!LIMP"] = "!LIMP",
+                    ["LEFT"] = "LEFT",
+                    ["!RIMP"] = "!RIMP",
+                    ["RIGHT"] = "RIGHT",
+                    ["XOR"] = "XOR",
+                    ["OR"] = "OR",
+                    ["NOR"] = "NOR",
+                    ["XNOR"] = "XNOR",
+                    ["!RIGHT"] = "!RIGHT",
+                    ["RIMP"] = "RIMP",
+                    ["!LEFT"] = "!LEFT",
+                    ["LIMP"] = "LIMP",
+                    ["NAND"] = "NAND",
+                    ["ON"] = "ON",
+                },
+            },
+            // Where was {1} in {0}?
+            // Where was OFF in Simon Swizzles?
+            [Question.SimonSwizzlesButton] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Where was {1} in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["OFF"] = "OFF",
+                    ["AND"] = "AND",
+                    ["!LIMP"] = "!LIMP",
+                    ["LEFT"] = "LEFT",
+                    ["!RIMP"] = "!RIMP",
+                    ["RIGHT"] = "RIGHT",
+                    ["XOR"] = "XOR",
+                    ["OR"] = "OR",
+                    ["NOR"] = "NOR",
+                    ["XNOR"] = "XNOR",
+                    ["!RIGHT"] = "!RIGHT",
+                    ["RIMP"] = "RIMP",
+                    ["!LEFT"] = "!LEFT",
+                    ["LIMP"] = "LIMP",
+                    ["NAND"] = "NAND",
+                    ["ON"] = "ON",
+                },
+            },
+            // What was the hidden number in {0}?
+            // What was the hidden number in Simon Swizzles?
+            [Question.SimonSwizzlesNumber] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the hidden number in {0}?",
+            },
+
             // Simultaneous Simons
             // What color flashed {1} on the {2} Simon in {0}?
             // What color flashed first on the first Simon in Simultaneous Simons?
