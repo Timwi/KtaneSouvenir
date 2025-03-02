@@ -359,6 +359,9 @@
         [SouvenirQuestion("What was the license number in {0}?", "Bomb Diffusal", TwoColumns4Answers, ExampleAnswers = new[] { "A4BIK5", "HI391D", "ZX98O1", "12K9PL" })]
         BombDiffusalLicenseNumber,
 
+        [SouvenirQuestion("Which phrase was shown on {0}?", "Bone Apple Tea", OneColumn4Answers, "Bone Apple Tea", "Seizure Salad", "Hey to break it to ya", "This is oak ward", "Clea Shay", "It's in tents", "Bench watch", "You're an armature", "Man hat in", "Try all and era", "Million Air", "Die of beaties", "Rush and roulette", "Night and shining armour", "What a nice jester", "In some near", "This is my master peace", "I'm in a colder sac", "Cereal killer", "I come here off ten", "Slide of ham", "Test lah", "Refreshing campaign", "I'm being more pacific", "God blast you", "BC soft wear", "Sense in humor", "The three must of tears", "Third da men chin", "Prang mantas", "Hammy downs", "Yum, a case idea", "Dandy long legs", "Can't merge, little lone drive", "My guest is", "Sink", "You lake it", "Emit da feet")]
+        BoneAppleTeaPhrase,
+
         [SouvenirQuestion("Which word was shown on {0}?", "Boob Tube", OneColumn4Answers, "Shittah", "Dik-Dik", "Aktashite", "Tetheradick", "Sack-Butt", "Nobber", "Knobstick", "Jerkinhead", "Haboob", "Fanny-Blower", "Assapanick", "Fuksheet", "Clatterfart", "Humpenscrump", "Cock-Bell", "Slagger", "Pakapoo", "Wankapin", "Lobcocked", "Poonga", "Sexagesm", "Tit-Bore", "Pershitte", "Invagination", "Bumfiddler", "Nestle-Cock", "Gullgroper", "Boob Tube", "Boobyalla", "Dreamhole")]
         BoobTubeWord,
 

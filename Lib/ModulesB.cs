@@ -650,6 +650,25 @@ public partial class SouvenirModule
         addQuestion(module, Question.BombDiffusalLicenseNumber, correctAnswers: new[] { correctAnswer }, preferredWrongAnswers: answers.ToArray());
     }
 
+    private IEnumerator<YieldInstruction> ProcessBoneAppleTea(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var allAnswers = Question.BoneAppleTeaPhrase.GetAnswers();
+
+        var comp = GetComponent(module, "boneAppleTeaScript");
+        var p1 = GetIntField(comp, "phrase1").Get(min: 0, max: allAnswers.Length - 1);
+        var p2 = GetIntField(comp, "phrase2").Get(min: 0, max: allAnswers.Length - 1);
+
+        var texts = GetArrayField<TextMesh>(comp, "texts", true).Get(expectedLength: 4);
+        texts[0].text = "Matcha";
+        texts[1].text = "diffused!";
+        texts[2].text = "✓";
+        texts[3].text = "✓";
+
+        addQuestion(module, Question.BoneAppleTeaPhrase, correctAnswers: new[] { allAnswers[p1], allAnswers[p2] });
+    }
+
     private IEnumerator<YieldInstruction> ProcessBoobTube(ModuleData module)
     {
         var comp = GetComponent(module, "BoobTubeScript");

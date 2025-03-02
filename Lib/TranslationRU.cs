@@ -1299,6 +1299,15 @@ namespace Souvenir
                 QuestionText = "Какой был номер лицензии {0}?",
             },
 
+            // Bone Apple Tea
+            // Which phrase was shown on {0}?
+            // Which phrase was shown on Bone Apple Tea?
+            [Question.BoneAppleTeaPhrase] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which phrase was shown on {0}?",
+            },
+
             // Boob Tube
             // Which word was shown on {0}?
             // Which word was shown on Boob Tube?
