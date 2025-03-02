@@ -1,7 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using UnityEngine;
 
 namespace Souvenir
@@ -110,7 +113,7 @@ namespace Souvenir
             {
                 var type = Type.GetType("Mod, Assembly-CSharp");
                 var nullMod = Expression.Constant(Activator.CreateInstance(type, ""), type);
-                var method = type.GetMethod("AddAudioClipsToGroup", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                var method = type.GetMethod("AddAudioClipsToGroup", BindingFlags.Instance | BindingFlags.NonPublic);
                 var arg1 = Expression.Parameter(typeof(List<AudioClip>), "audioClips");
                 var arg2 = Expression.Parameter(typeof(string), "groupName");
                 var expr = Expression.Call(nullMod, method, arg1, arg2, Expression.Constant(32, typeof(int)));
@@ -134,17 +137,62 @@ namespace Souvenir
         {
             var aref = new KMAudio.KMAudioRef();
             var result = Type.GetType("DarkTonic.MasterAudio.MasterAudio, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null")
-                .GetMethod("PlaySound3DAtTransform", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static)
+                .GetMethod("PlaySound3DAtTransform", BindingFlags.Public | BindingFlags.Static)
                 .Invoke(null, new object[] { $"{foreignAudioID}_{name}", transform, 1f, null, 0f, null, false, false });
             // Skip setting loop = true since we don't want that anyways
             aref.StopSound += () =>
             {
-                var variation = result?.GetType().GetProperty("ActingVariation", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
+                var variation = result?.GetType().GetProperty("ActingVariation", BindingFlags.Public | BindingFlags.Instance)
                     ?.GetValue(result, new object[0]);
-                variation?.GetType().GetMethod("Stop", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
+                variation?.GetType().GetMethod("Stop", BindingFlags.Public | BindingFlags.Instance)
                     ?.Invoke(variation, new object[] { false, false });
             };
             return aref;
+        }
+
+        private static Func<string, AudioClip> _getForeign;
+        /// <summary>
+        ///     Get an <see cref="AudioClip"/> from another mod.</summary>
+        /// <param name="foreignAudioID">
+        ///     The mod ID of the mod.</param>
+        /// <param name="name">
+        ///     The name of the audio clip.</param>
+        /// <returns>
+        ///     The clip.</returns>
+        public static AudioClip GetForeignClip(string foreignAudioID, string name)
+        {
+            if (_getForeign is null)
+            {
+                // fullName => DarkTonic
+                //          .MasterAudio
+                //          .MasterAudio
+                //          .AudioSourcesBySoundType[fullName]
+                //          .Sources[0]
+                //          .Source
+                //          .clip
+
+                var tMasterAudio = Type.GetType("DarkTonic.MasterAudio.MasterAudio, Assembly-CSharp");
+                var fldDict = tMasterAudio.GetField("AudioSourcesBySoundType", BindingFlags.Static | BindingFlags.NonPublic);
+                var dictIndex = typeof(IDictionary).GetProperties(BindingFlags.Public | BindingFlags.Instance).First(p => p.GetIndexParameters().Length > 0);
+                var tAgi = fldDict.FieldType.GetGenericArguments()[1];
+                var fldSources = tAgi.GetField("Sources", BindingFlags.Public | BindingFlags.Instance);
+                var listIndex = typeof(IList).GetProperties(BindingFlags.Public | BindingFlags.Instance).First(p => p.GetIndexParameters().Length > 0);
+                var tAi = fldSources.FieldType.GetGenericArguments()[0];
+                var fldSource = tAi.GetField("Source", BindingFlags.Public | BindingFlags.Instance);
+                var propClip = typeof(AudioSource).GetProperty("clip", BindingFlags.Public | BindingFlags.Instance);
+
+                var dict = fldDict.GetValue(null);
+                var param = Expression.Parameter(typeof(string), "fullName");
+                var agi = Expression.Call(Expression.Constant(dict), dictIndex.GetGetMethod(), param);
+                var sources = Expression.Field(Expression.Convert(agi, tAgi), fldSources);
+                var ai = Expression.Call(sources, listIndex.GetGetMethod(), Expression.Constant(0, typeof(int)));
+                var source = Expression.Field(Expression.Convert(ai, tAi), fldSource);
+                var clip = Expression.Property(source, propClip);
+                var lambda = Expression.Lambda<Func<string, AudioClip>>(clip, param);
+                _getForeign = lambda.Compile();
+            }
+
+            return _getForeign($"{foreignAudioID}_{name}");
         }
     }
 }

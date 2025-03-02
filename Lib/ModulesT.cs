@@ -210,6 +210,33 @@ public partial class SouvenirModule
         addQuestions(module, displayWords.Select((word, stage) => makeQuestion(Question.ThirdBaseDisplay, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { word })));
     }
 
+    private IEnumerator<YieldInstruction> ProcessThirtyDollarModule(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "ThirtyDollarModule");
+        var displayTD = GetField<IList>(comp, "displaySounds").Get(v => v.Count is not 5 || v.Cast<object>().Any(o => o is null) ? "Expected 5 played sounds" : null);
+        var allTD = GetField<IList>(comp, "sounds").Get(v => v.Count is not 204 || v.Cast<object>().Any(o => o is null) ? "Expected 204 total sounds" : null);
+        var fldSound = GetField<string>(displayTD[0], "sound");
+        var foreignID = Question.ThirtyDollarModuleSounds.GetAttribute().ForeignAudioID;
+        var display = displayTD.Cast<object>().Select(o => fldSound.GetFrom(o)).Select(s => Sounds.GetForeignClip(foreignID, s)).ToArray();
+        var all = allTD.Cast<object>().Select(o => fldSound.GetFrom(o)).Select(s => Sounds.GetForeignClip(foreignID, s)).ToArray();
+
+        var displays = GetArrayField<Renderer>(comp, "DisplayEmojis", true).Get(expectedLength: 5);
+        var emojis = GetArrayField<Texture>(comp, "Emojis", true).Get(expectedLength: 204);
+        IEnumerator hideBacksolve()
+        {
+            for(int i = 0; i < displays.Length; i++)
+            {
+                yield return new WaitForSeconds(0.1f);
+                displays[i].material.mainTexture = emojis[i % 2 == 0 ? 5 : 36];
+            }
+        }
+        StartCoroutine(hideBacksolve());
+
+        addQuestion(module, Question.ThirtyDollarModuleSounds, correctAnswers: display, allAnswers: all);
+    }
+
     private IEnumerator<YieldInstruction> ProcessTicTacToe(ModuleData module)
     {
         var comp = GetComponent(module, "TicTacToeModule");

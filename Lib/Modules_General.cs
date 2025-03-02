@@ -598,6 +598,7 @@ public partial class SouvenirModule
             ["TextField"] = (ProcessTextField, "Text Field", "CaitSith2"),
             ["thinkingWiresModule"] = (ProcessThinkingWires, "Thinking Wires", "kavinkul"),
             ["ThirdBase"] = (ProcessThirdBase, "Third Base", "CaitSith2"),
+            ["ThirtyDollarModule"] = (ProcessThirtyDollarModule, "Thirty Dollar Module", "Anonymous"),
             ["TicTacToeModule"] = (ProcessTicTacToe, "Tic Tac Toe", "Timwi"),
             ["timeSignatures"] = (ProcessTimeSignatures, "Time Signatures", "Anonymous"),
             ["timezone"] = (ProcessTimezone, "Timezone", "Timwi"),

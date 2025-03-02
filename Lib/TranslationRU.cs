@@ -11033,6 +11033,15 @@ namespace Souvenir
                 ModuleName = "«А меня – Сава»",
             },
 
+            // Thirty Dollar Module
+            // Which sound was used in {0}?
+            // Which sound was used in Thirty Dollar Module?
+            [Question.ThirtyDollarModuleSounds] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which sound was used in {0}?",
+            },
+
             // Tic Tac Toe
             // What was on the {1} button at the start of {0}?
             // What was on the top-left button at the start of Tic Tac Toe?
