@@ -10,7 +10,7 @@ namespace Souvenir
         public string QuestionText { get; private set; }
         public string ModuleName { get; private set; }
         public string[] AllAnswers { get; private set; }
-        public AnswerGeneratorAttribute AnswerGenerator { get; internal set; }
+        public AnswerGeneratorAttribute[] AnswerGenerators { get; internal set; }
 
         public string[] ExampleFormatArguments { get; set; }
         public int ExampleFormatArgumentGroupSize { get; set; }

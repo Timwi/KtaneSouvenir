@@ -470,7 +470,11 @@ namespace Souvenir
         {
             var attribute = field.GetCustomAttribute<SouvenirQuestionAttribute>();
             if (attribute != null)
-                attribute.AnswerGenerator = field.GetCustomAttribute<AnswerGeneratorAttribute>();
+            {
+                attribute.AnswerGenerators = field.GetCustomAttributes(typeof(AnswerGeneratorAttribute), false) as AnswerGeneratorAttribute[];
+                if (attribute.AnswerGenerators.Length is 0)
+                    attribute.AnswerGenerators = null;
+            }
             return attribute;
         }
 
@@ -588,6 +592,21 @@ namespace Souvenir
             if (attr.Type != AnswerType.Audio || attr.AudioFieldName == null)
                 throw new AbandonModuleException("GetAllSounds() was called on a question that doesn’t use sounds or doesn’t have an associated sounds field.");
             return (AudioClip[]) attr.AudioField.GetValue(souv);
+        }
+
+        public static IEnumerable<T> GetAnswers<T>(this IEnumerable<AnswerGeneratorAttribute<T>> generators, SouvenirModule souv)
+            => generators.ToArray() is var arr ? arr.Length is 1 ? arr[0].GetAnswers(souv) : arr.UnionAnswers(souv) : null;
+        private static IEnumerable<T> UnionAnswers<T>(this IEnumerable<AnswerGeneratorAttribute<T>> generators, SouvenirModule souv)
+        {
+            var iterators = generators.Select(g => g.GetAnswers(souv).GetEnumerator()).ToList();
+            while (iterators.Count > 0)
+            {
+                var i = Rnd.Range(0, iterators.Count);
+                if (iterators[i].MoveNext())
+                    yield return iterators[i].Current;
+                else
+                    iterators.RemoveAt(i);
+            }
         }
     }
 }

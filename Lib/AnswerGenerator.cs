@@ -29,12 +29,12 @@ namespace Souvenir
     ///         [SouvenirQuestion("What was the {1} correct query response from {0}?", "Two Bits", ThreeColumns6Answers, ExampleExtraFormatArguments = new[] { "first" }, ExampleExtraFormatArgumentGroupSize = 1)]
     ///         [AnswerGenerator.Integers(0, 99, "00")]
     ///         TwoBitsResponse</code></example>
-    [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = false)]
+    [AttributeUsage(AttributeTargets.Field, AllowMultiple = true, Inherited = false)]
     public abstract class AnswerGeneratorAttribute : Attribute
     {
     }
 
-    [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = false)]
+    [AttributeUsage(AttributeTargets.Field, AllowMultiple = true, Inherited = false)]
     public abstract class AnswerGeneratorAttribute<T> : AnswerGeneratorAttribute
     {
         public abstract IEnumerable<T> GetAnswers(SouvenirModule module);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -331,23 +332,42 @@ public partial class SouvenirModule : MonoBehaviour
                     if (attr.SpriteFieldName != null && attr.Type != AnswerType.Sprites)
                         Debug.LogError($"<Souvenir #{_moduleId}> Question {q} (type {attr.Type}) specifies a SpriteField. This should only be used for questions of type Sprites.");
 
-                    if (attr.AllAnswers != null && attr.AnswerGenerator != null)
+                    if (attr.AllAnswers != null && attr.AnswerGenerators != null)
                         Debug.LogError($"<Souvenir #{_moduleId}> Question {q} (type {attr.Type}) specifies both AllAnswers and an answer generator. When using an answer generator, please set AllAnswers explicitly to null.");
+
+                    static Type walkUp(Type t)
+                    {
+                        while (true)
+                        {
+                            if (t == typeof(object) || t.IsGenericType && t.GetGenericTypeDefinition() == typeof(AnswerGeneratorAttribute<>))
+                                return t;
+                            t = t.BaseType;
+                        }
+                    }
+
+                    if (attr.AnswerGenerators is { } && attr.AnswerGenerators.Any(g => walkUp(g.GetType()).GetGenericTypeDefinition() != typeof(AnswerGeneratorAttribute<>)))
+                    {
+                        Debug.LogError($"<Souvenir #{_moduleId}> Question {q} (type {attr.Type}) uses an answer generator which is not derived from `AnswerGeneratorAttribute<>`. Disabling it for now to avoid errors.");
+                        attr.AnswerGenerators = null;
+                    }
+
+                    if (attr.AnswerGenerators is { Length: > 1 } && attr.AnswerGenerators.Select(g => walkUp(g.GetType()).GetGenericArguments()[0]).Distinct().Count() is not 1)
+                        Debug.LogError($"<Souvenir #{_moduleId}> Question {q} (type {attr.Type}) uses multiple answer generators, but they generate different types of answers. Ensure all answer generators are appropriate for the question.");
 
                     switch (attr.Type)
                     {
                         case AnswerType.Sprites:
-                            if (attr.AnswerGenerator != null && attr.AnswerGenerator is not AnswerGeneratorAttribute<Sprite>)
+                            if (attr.AnswerGenerators != null && attr.AnswerGenerators.Any(g => g is not AnswerGeneratorAttribute<Sprite>))
                                 Debug.LogError($"<Souvenir #{_moduleId}> Question {q} (type {attr.Type}) uses an answer generator for something other than sprites. Change the answer type or specify a sprite answer generator specify an answer generator (e.g. [AnswerGenerator.Grid(4, 4)]).");
                             break;
 
                         case AnswerType.Audio:
-                            if (attr.AnswerGenerator != null)
+                            if (attr.AnswerGenerators != null)
                                 Debug.LogError($"<Souvenir #{_moduleId}> Question {q} (type {attr.Type}) uses an answer generator. This is not supported for audio questions.");
                             break;
 
                         default:
-                            if ((attr.AllAnswers == null || attr.AllAnswers.Length == 0) && (attr.ExampleAnswers == null || attr.ExampleAnswers.Length == 0) && attr.AnswerGenerator is not AnswerGeneratorAttribute<string>)
+                            if ((attr.AllAnswers == null || attr.AllAnswers.Length == 0) && (attr.ExampleAnswers == null || attr.ExampleAnswers.Length == 0) && (attr.AnswerGenerators is null || attr.AnswerGenerators.All(g => g is not AnswerGeneratorAttribute<string>)))
                                 Debug.LogError($"<Souvenir #{_moduleId}> Question {q} has no answers. Specify either AllAnswers (if it’s a reasonable-sized, fixed finite set), or ExampleAnswers (if it’s generated at runtime and passed to allAnswers in makeQuestion()), or add an answer generator (e.g. [AnswerGenerator.Integers(0, 9999)]).");
                             break;
                     }
@@ -444,8 +464,8 @@ public partial class SouvenirModule : MonoBehaviour
                 case AnswerType.Sprites:
                     var answerSprites = attr.SpriteFieldName == null ? ExampleSprites : (Sprite[]) typeof(SouvenirModule).GetField(attr.SpriteFieldName, BindingFlags.Instance | BindingFlags.Public).GetValue(this) ?? ExampleSprites;
                     answerSprites = answerSprites?.Shuffle().Take(attr.NumAnswers).ToArray();
-                    if (attr.AnswerGenerator is AnswerGeneratorAttribute<Sprite> spriteGen)
-                        answerSprites = spriteGen.GetAnswers(this).Distinct().Take(attr.NumAnswers).ToArray();
+                    if (attr.AnswerGenerators is { } && attr.AnswerGenerators[0] is AnswerGeneratorAttribute<Sprite>)
+                        answerSprites = attr.AnswerGenerators.Cast<AnswerGeneratorAttribute<Sprite>>().GetAnswers(this).Distinct().Take(attr.NumAnswers).ToArray();
                     answerSet = new QandA.SpriteAnswerSet(attr.NumAnswers, attr.Layout, answerSprites);
                     break;
                 default:
@@ -454,8 +474,8 @@ public partial class SouvenirModule : MonoBehaviour
                     else if (attr.ExampleAnswers != null) answers.AddRange(attr.ExampleAnswers);
                     if (answers.Count <= attr.NumAnswers)
                     {
-                        if (attr.AnswerGenerator is AnswerGeneratorAttribute<string> strGen)
-                            answers.AddRange(strGen.GetAnswers(this).Except(answers).Distinct().Take(attr.NumAnswers - answers.Count));
+                        if (attr.AnswerGenerators is { } && attr.AnswerGenerators[0] is AnswerGeneratorAttribute<string>)
+                            answers.AddRange(attr.AnswerGenerators.Cast<AnswerGeneratorAttribute<string>>().GetAnswers(this).Except(answers).Distinct().Take(attr.NumAnswers - answers.Count));
                         answers.Shuffle();
                     }
                     else
@@ -1134,7 +1154,7 @@ public partial class SouvenirModule : MonoBehaviour
         }
 
         var answers = new List<T>(attr.NumAnswers);
-        if (allAnswers == null && attr.AnswerGenerator is not AnswerGeneratorAttribute<T>)
+        if (allAnswers == null && attr.AnswerGenerators is null)
         {
             if (preferredWrongAnswers == null || preferredWrongAnswers.Length == 0)
             {
@@ -1150,8 +1170,8 @@ public partial class SouvenirModule : MonoBehaviour
                 answers.AddRange(allAnswers.Except(correctAnswers));
             if (answers.Count <= attr.NumAnswers - 1)
             {
-                if (attr.AnswerGenerator is AnswerGeneratorAttribute<T> ansGen)
-                    answers.AddRange(ansGen.GetAnswers(this).Except(answers.Concat(correctAnswers)).Distinct().Take(attr.NumAnswers - 1 - answers.Count));
+                if (attr.AnswerGenerators is { } && attr.AnswerGenerators[0] is AnswerGeneratorAttribute<T>)
+                    answers.AddRange(attr.AnswerGenerators.Cast<AnswerGeneratorAttribute<T>>().GetAnswers(this).Except(answers.Concat(correctAnswers)).Distinct().Take(attr.NumAnswers - 1 - answers.Count));
                 if (answers.Count == 0 && (preferredWrongAnswers == null || preferredWrongAnswers.Length == 0))
                 {
                     Debug.LogError($"<Souvenir #{_moduleId}> Question {question}’s answer generator did not generate any answers.");
