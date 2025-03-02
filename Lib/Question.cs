@@ -550,6 +550,10 @@
         [SouvenirQuestion("Which of these words was submitted in {0}?", "Codenames", TwoColumns4Answers, ExampleAnswers = new[] { "Hyperborean", "Weenus", "Melody", "King" })]
         CodenamesAnswers,
 
+        [SouvenirQuestion("What was the {1} movement in {0}?", "Coffee Beans", TwoColumns4Answers, "Horizontal", "Vertical", "Diagonal", "Nothing",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
+        CoffeeBeansMovements,
+
         [SouvenirQuestion("What was the last served coffee in {0}?", "Coffeebucks", OneColumn4Answers, "Twix Frappuccino", "The Blue Drink", "Matcha & Espresso Fusion", "Caramel Snickerdoodle Macchiato", "Liquid Cocaine", "S’mores Hot Chocolate", "The Pink Drink", "Grasshopper Frappuccino")]
         CoffeebucksCoffee,
 

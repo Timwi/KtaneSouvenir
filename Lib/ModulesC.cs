@@ -374,6 +374,20 @@ public partial class SouvenirModule
         addQuestion(module, Question.CodenamesAnswers, correctAnswers: solutionWords, preferredWrongAnswers: words.Where(x => !solutionWords.Contains(x)).ToArray());
     }
 
+    private IEnumerator<YieldInstruction> ProcessCoffeeBeans(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "coffeeBeansScript");
+        var moves = GetListField<int>(comp, "moves").Get(minLength: 3, maxLength: 5, validator: v => v is < 0 or > 2 ? "Out of range [0, 2]" : null);
+        var names = Question.CoffeeBeansMovements.GetAnswers();
+
+        addQuestions(module, moves.Select((m, i) =>
+            makeQuestion(Question.CoffeeBeansMovements, module,
+                correctAnswers: new[] { names[m] },
+                formatArgs: new[] { Ordinal(i + 1) })));
+    }
+
     private IEnumerator<YieldInstruction> ProcessCoffeebucks(ModuleData module)
     {
         var comp = GetComponent(module, "coffeebucksScript");

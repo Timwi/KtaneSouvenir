@@ -114,6 +114,7 @@ public partial class SouvenirModule
             ["clockCounter"] = (ProcessClockCounter, "↻↺", "Anonymous"),
             ["theCodeModule"] = (ProcessCode, "Code, The", "luisdiogo98"),
             ["codenames"] = (ProcessCodenames, "Codenames", "TasThiluna"),
+            ["coffeeBeans"] = (ProcessCoffeeBeans, "Coffee Beans", "Anonymous"),
             ["coffeebucks"] = (ProcessCoffeebucks, "Coffeebucks", "luisdiogo98"),
             ["Coinage"] = (ProcessCoinage, "Coinage", "Emik"),
             ["colorAddition"] = (ProcessColorAddition, "Color Addition", "VFlyer"),

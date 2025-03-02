@@ -1918,6 +1918,22 @@ namespace Souvenir
                 QuestionText = "Which of these words was submitted in {0}?",
             },
 
+            // Coffee Beans
+            // What was the {1} movement in {0}?
+            // What was the first movement in Coffee Beans?
+            [Question.CoffeeBeansMovements] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the {1} movement in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Horizontal"] = "Horizontal",
+                    ["Vertical"] = "Vertical",
+                    ["Diagonal"] = "Diagonal",
+                    ["Nothing"] = "Nothing",
+                },
+            },
+
             // Coffeebucks
             // What was the last served coffee in {0}?
             // What was the last served coffee in Coffeebucks?
