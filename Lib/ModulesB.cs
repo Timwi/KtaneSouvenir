@@ -206,7 +206,7 @@ public partial class SouvenirModule
             qs.AddRange(new[] {
                 makeQuestion(Question.BarChartsLabel, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { labels[i] }, allAnswers: relevantLabels),
                 makeQuestion(Question.BarChartsColor, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { barColours[i].ToString() }),
-                makeQuestion(Question.BarChartsHeight, module, formatArgs: new[] { heightArr[i] }, correctAnswers: new[] { correctHeightPos.ToString() })
+                makeQuestion(Question.BarChartsHeight, module, formatArgs: new[] { heightArr[i] }, correctAnswers: new[] { Ordinal(correctHeightPos) })
             });
         }
 
