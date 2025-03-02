@@ -77,6 +77,7 @@ public partial class SouvenirModule : MonoBehaviour
     public AudioClip[] AudioMorseAudio;
     public AudioClip[] DialtonesAudio;
     public AudioClip[] ExampleAudio;
+    public AudioClip[] FaerieFiresAudio;
     public AudioClip[] ListeningAudio;
     public AudioClip[] SimonSamplesAudio;
     public AudioClip[] SimonSmilesAudio;

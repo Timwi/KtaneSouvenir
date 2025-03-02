@@ -1548,6 +1548,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2bfb157c6c8f9a147b87e35f2855e614, type: 3}
   - {fileID: 8300000, guid: ca96153a72253b643ad50fc57d3484ab, type: 3}
   - {fileID: 8300000, guid: 2bfb157c6c8f9a147b87e35f2855e614, type: 3}
+  FaerieFiresAudio:
+  - {fileID: 8300000, guid: 0be86a77dfd983141b78eeb858679b0c, type: 3}
+  - {fileID: 8300000, guid: 0f36d2a6a8c927146823baaa010bfe31, type: 3}
+  - {fileID: 8300000, guid: 037f8f8bbe7091f43976c99eefee6abe, type: 3}
+  - {fileID: 8300000, guid: cbef0c002d018004694a18d28f65143c, type: 3}
+  - {fileID: 8300000, guid: 3a7319a811b8985478d3d1c5382f0b87, type: 3}
+  - {fileID: 8300000, guid: d72e3b4f5cb7c3743adaf796b72eacf6, type: 3}
   ListeningAudio:
   - {fileID: 8300000, guid: 8bf91552a4ed8d24683dcbed64ad4929, type: 3}
   - {fileID: 8300000, guid: a84bff1a12127a5419ca1c9f2975973d, type: 3}

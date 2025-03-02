@@ -3602,6 +3602,40 @@ namespace Souvenir
                 ModuleName = "Заводском лабиринте",
             },
 
+            // Faerie Fires
+            // What pitch did the {1} faerie sing in {0}?
+            // What pitch did the first faerie sing in Faerie Fires?
+            [Question.FaerieFiresPitch] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What pitch did the {1} faerie sing in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "red",
+                    ["green"] = "green",
+                    ["blue"] = "blue",
+                    ["yellow"] = "yellow",
+                    ["cyan"] = "cyan",
+                    ["magenta"] = "magenta",
+                },
+            },
+            // What color was the {1} faerie in {0}?
+            // What color was the first faerie in Faerie Fires?
+            [Question.FaerieFiresColor] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What color was the {1} faerie in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Yellow"] = "Yellow",
+                    ["Cyan"] = "Cyan",
+                    ["Magenta"] = "Magenta",
+                },
+            },
+
             // Fast Math
             // What was the last pair of letters in {0}?
             // What was the last pair of letters in Fast Math?

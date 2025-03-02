@@ -988,6 +988,13 @@
         [SouvenirQuestion("What room did you start in in {0}?", "Factory Maze", OneColumn4Answers, "Bathroom", "Assembly Line", "Cafeteria", "Room A9", "Broom Closet", "Basement", "Copy Room", "Unnecessarily Long-Named Room", "Library", "Break Room", "Empty Room with Two Doors", "Arcade", "Classroom", "Module Testing Room", "Music Studio", "Computer Room", "Infirmary", "Bomb Room", "Space", "Storage Room", "Lounge", "Conference Room", "Kitchen", "Incinerator")]
         FactoryMazeStartRoom,
 
+        [SouvenirQuestion("What pitch did the {1} faerie sing in {0}?", "Faerie Fires", ThreeColumns6Answers, Type = AnswerType.Audio, AudioFieldName = "FaerieFiresAudio", AudioSizeMultiplier = 8,
+            ExampleFormatArguments = new[] { QandA.Ordinal, "red", "green", "blue", "yellow", "cyan", "magenta" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
+        FaerieFiresPitch,
+        [SouvenirQuestion("What color was the {1} faerie in {0}?", "Faerie Fires", ThreeColumns6Answers, "Red", "Green", "Blue", "Yellow", "Cyan", "Magenta",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
+        FaerieFiresColor,
+
         [SouvenirQuestion("What was the last pair of letters in {0}?", "Fast Math", ThreeColumns6Answers, ExampleAnswers = new[] { "CT", "DK", "SA", "SG", "SX", "TX", "TZ", "XP", "XX", "ZB" })]
         FastMathLastLetters,
 

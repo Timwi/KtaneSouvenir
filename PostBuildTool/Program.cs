@@ -196,7 +196,7 @@ namespace SouvenirPostBuildTool
                         if (attr.ExampleFormatArguments is string[] efas && efas.Length > 0 && attr.TranslateFormatArgs is bool[] trFAs && trFAs.Length > 0)
                             AddDictionaryField("FormatArgs", efas.Split((int) attr.ExampleFormatArgumentGroupSize)
                                 .SelectMany(chunk => Enumerable.Range(0, trFAs.Length).Where(ix => trFAs[ix]).Select(ix => chunk.Skip(ix).First()))
-                                .Distinct().ToArray(), ti?.FormatArgs);
+                                .Distinct().Except(["\uE047ordinal"]).ToArray(), ti?.FormatArgs);
 
                         if ((bool) attr.TranslateAnswers && attr.AllAnswers is string[] aas && aas.Length > 0)
                             AddDictionaryField("Answers", aas, ti?.Answers);

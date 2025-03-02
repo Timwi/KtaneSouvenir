@@ -199,6 +199,7 @@ public partial class SouvenirModule
             ["exoplanets"] = (ProcessExoplanets, "Exoplanets", "Brawlboxgaming"),
             ["factoringMaze"] = (ProcessFactoringMaze, "Factoring Maze", "Eltrick"),
             ["factoryMaze"] = (ProcessFactoryMaze, "Factory Maze", "luisdiogo98"),
+            ["FaerieFiresModule"] = (ProcessFaerieFires, "Faerie Fires", "Anonymous"),
             ["fastMath"] = (ProcessFastMath, "Fast Math", "Timwi"),
             ["GSFaultyButtons"] = (ProcessFaultyButtons, "Faulty Buttons", "Kuro"),
             ["faultyrgbMaze"] = (ProcessFaultyRGBMaze, "Faulty RGB Maze", "kavinkul"),

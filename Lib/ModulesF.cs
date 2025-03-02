@@ -33,6 +33,33 @@ public partial class SouvenirModule
         addQuestion(module, Question.FactoryMazeStartRoom, correctAnswers: new[] { usedRooms[startRoom] }, preferredWrongAnswers: usedRooms);
     }
 
+    private IEnumerator<YieldInstruction> ProcessFaerieFires(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "FaerieFiresScript");
+        var fires = GetField<IList>(comp, "FaerieFires").Get(v => v.Count is not 6 ? "Expected 6 fires" : v.Cast<object>().Any(o => o is null) ? "Unexpected null fire" : null);
+        var fldOrder = GetIntField(fires[0], "Order", true);
+        var fldSound = GetField<string>(fires[0], "Sound", true);
+        var fldName = GetField<string>(fires[0], "Name", true);
+
+        var faeries = fires.Cast<object>().Select(f => (
+            Order: fldOrder.GetFrom(f, 0, 5),
+            Sound: fldSound.GetFrom(f, v => !Regex.IsMatch(v, "^FaerieGlitter[1-6]$") ? "Expected sound to match \"^FaerieGlitter[1-6]$\"" : null),
+            Name: fldName.GetFrom(f, v => !Question.FaerieFiresColor.GetAnswers().Contains(v) ? "Unexpected color name" : null)));
+
+        addQuestions(module, faeries.SelectMany(f => new[] {
+            makeQuestion(Question.FaerieFiresPitch, module,
+                formatArgs: new[] { Ordinal(f.Order + 1) },
+                correctAnswers: new[] { FaerieFiresAudio[f.Sound.Last() - '1'] }),
+            makeQuestion(Question.FaerieFiresPitch, module,
+                formatArgs: new[] { f.Name },
+                correctAnswers: new[] { FaerieFiresAudio[f.Sound.Last() - '1'] }),
+            makeQuestion(Question.FaerieFiresColor, module,
+                formatArgs: new[] { Ordinal(f.Order + 1) },
+                correctAnswers: new[] { f.Name })}));
+    }
+
     private IEnumerator<YieldInstruction> ProcessFastMath(ModuleData module)
     {
         var comp = GetComponent(module, "FastMathModule");
