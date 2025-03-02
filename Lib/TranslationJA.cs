@@ -1792,6 +1792,15 @@ namespace Souvenir
                 },
             },
 
+            // Chinese Remainder Theorem
+            // Which equation was used in {0}?
+            // Which equation was used in Chinese Remainder Theorem?
+            [Question.ChineseRemainderTheoremEquations] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which equation was used in {0}?",
+            },
+
             // Chord Qualities
             // Which note was part of the given chord in {0}?
             // Which note was part of the given chord in Chord Qualities?

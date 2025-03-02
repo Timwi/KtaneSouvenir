@@ -526,6 +526,9 @@
           ExampleFormatArguments = new[] { "left", "right" }, ExampleFormatArgumentGroupSize = 1)]
         ChineseCountingLED,
 
+        [SouvenirQuestion("Which equation was used in {0}?", "Chinese Remainder Theorem", ThreeColumns6Answers, ExampleAnswers = new[] { "N % 12 = 6", "N % 7 = 0", "N % 20 = 17", "N % 2 = 1", "N % 47 = 32", "N % 15 = 14" })]
+        ChineseRemainderTheoremEquations,
+
         [SouvenirQuestion("Which note was part of the given chord in {0}?", "Chord Qualities", ThreeColumns6Answers, "A", "A♯", "B", "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯")]
         ChordQualitiesNotes,
 

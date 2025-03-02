@@ -292,6 +292,29 @@ public partial class SouvenirModule
           makeQuestion(Question.ChineseCountingLED, module, formatArgs: new[] { "right" }, correctAnswers: new[] { ledColors[ledIndices[1]] }));
     }
 
+    private IEnumerator<YieldInstruction> ProcessChineseRemainderTheorem(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "ChineseRemainderTheoremScript");
+        var moduli = GetListField<int>(comp, "_moduli").Get(minLength: 4, maxLength: 8, validator: v => v is < 2 or > 51 ? "Out of range [2, 51]" : null);
+        var remainders = GetListField<int>(comp, "_remainder").Get(expectedLength: moduli.Count, validator: v => v is < 0 or > 50 ? "Out of range [0, 50]" : null);
+        if (moduli.Select((m, i) => remainders[i] >= m).Any(x => x))
+            throw new AbandonModuleException($"A remainder was bigger than its corresponding modulus: {moduli.Select((m, i) => $"N % {m} = {remainders[i]}").JoinString("; ")}");
+
+        var right = moduli
+            .Select((m, i) => $"N % {m} = {remainders[i]}")
+            .ToArray();
+
+        var wrong = Enumerable
+            .Range(0, 10)
+            .Select(_ => UnityEngine.Random.Range(2, 51))
+            .Select(m => $"N % {m} = {UnityEngine.Random.Range(0, m)}");
+
+        addQuestion(module, Question.ChineseRemainderTheoremEquations,
+            correctAnswers: right, allAnswers: right.Concat(wrong).ToArray());
+    }
+
     private IEnumerator<YieldInstruction> ProcessChordQualities(ModuleData module)
     {
         var comp = GetComponent(module, "ChordQualities");

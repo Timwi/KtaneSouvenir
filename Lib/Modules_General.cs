@@ -107,6 +107,7 @@ public partial class SouvenirModule
             ["cheepCheckout"] = (ProcessCheepCheckout, "Cheep Checkout", "BigCrunch22"),
             ["ChessModule"] = (ProcessChess, "Chess", "Timwi"),
             ["chineseCounting"] = (ProcessChineseCounting, "Chinese Counting", "TasThiluna"),
+            ["ChineseRemainderTheoremModule"] = (ProcessChineseRemainderTheorem, "Chinese Remainder Theorem", "Anonymous"),
             ["ChordQualities"] = (ProcessChordQualities, "Chord Qualities", "Timwi"),
             ["clockCounter"] = (ProcessClockCounter, "↻↺", "Anonymous"),
             ["theCodeModule"] = (ProcessCode, "Code, The", "luisdiogo98"),
