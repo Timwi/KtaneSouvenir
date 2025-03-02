@@ -452,6 +452,11 @@
         [SouvenirQuestion("What color did the light glow in {0}?", "Button", TwoColumns4Answers, "red", "blue", "yellow", "white", AddThe = true, TranslateAnswers = true)]
         ButtonLightColor,
 
+        [SouvenirQuestion("How many {1} buttons were there on {0}?", "Buttonage", ThreeColumns6Answers, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true },
+            ExampleFormatArguments = new[] { "red", "green", "orange", "blue", "pink", "white", "black", "white-bordered", "pink-bordered", "gray-bordered", "red-bordered", "“P”", "special" })]
+        [AnswerGenerator.Integers(0, 64)]
+        ButtonageButtons,
+
         [SouvenirQuestion("How many of the buttons in {0} were {1}?", "Button Sequence", ThreeColumns6Answers, TranslateFormatArgs = new[] { true },
             ExampleFormatArguments = new[] { "red", "blue", "yellow", "white" }, ExampleFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 12)]

@@ -91,6 +91,7 @@ public partial class SouvenirModule
             ["burgerAlarm"] = (ProcessBurgerAlarm, "Burger Alarm", "Kuro"),
             ["burglarAlarm"] = (ProcessBurglarAlarm, "Burglar Alarm", "Timwi"),
             ["BigButton"] = (ProcessButton, "Button, The", "Andrio Celos"),
+            ["buttonageModule"] = (ProcessButtonage, "Buttonage", "Anonymous"),
             ["buttonSequencesModule"] = (ProcessButtonSequence, "Button Sequence", "Timwi"),
             ["CactusPConundrum"] = (ProcessCactisConundrum, "Cacti’s Conundrum", "Anonymous"),
             ["caesarCycle"] = (ProcessCaesarCycle, "Caesar Cycle", "TasThiluna"),

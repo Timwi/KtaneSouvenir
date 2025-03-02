@@ -1600,6 +1600,31 @@ namespace Souvenir
                 },
             },
 
+            // Buttonage
+            // How many {1} buttons were there on {0}?
+            // How many red buttons were there on Buttonage?
+            [Question.ButtonageButtons] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "How many {1} buttons were there on {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["red"] = "red",
+                    ["green"] = "green",
+                    ["orange"] = "orange",
+                    ["blue"] = "blue",
+                    ["pink"] = "pink",
+                    ["white"] = "white",
+                    ["black"] = "black",
+                    ["white-bordered"] = "white-bordered",
+                    ["pink-bordered"] = "pink-bordered",
+                    ["gray-bordered"] = "gray-bordered",
+                    ["red-bordered"] = "red-bordered",
+                    ["“P”"] = "“P”",
+                    ["special"] = "special",
+                },
+            },
+
             // Button Sequence
             // How many of the buttons in {0} were {1}?
             // How many of the buttons in Button Sequence were red?
