@@ -30,6 +30,15 @@ public partial class SouvenirModule
         addQuestion(module, Question.QuantumPasswordsWord, correctAnswers: Question.QuantumPasswordsWord.GetAnswers().Where(isCorrect).ToArray());
     }
 
+    private IEnumerator<YieldInstruction> ProcessQuantumTernaryConverter(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "QTCScript");
+        var ints = GetArrayField<int>(comp, "ansints").Get(expectedLength: 2, validator: v => Mathf.Abs(v) is < 9842 or > 265720 ? "Expected range ±[9842, 265720]" : null);
+        addQuestion(module, Question.QuantumTernaryConverterNumber, correctAnswers: ints.Select(i => i.ToString()).ToArray());
+    }
+
     private IEnumerator<YieldInstruction> ProcessQuaver(ModuleData module)
     {
         var comp = GetComponent(module, "QuaverScript");

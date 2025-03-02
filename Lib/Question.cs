@@ -2391,6 +2391,11 @@
         [SouvenirQuestion("Which word was used in {0}?", "Quantum Passwords", ThreeColumns6Answers, "Argue", "Blaze", "Cajun", "Depth", "Endow", "Foyer", "Gimpy", "Heavy", "Index", "Joker", "Kylix", "Lambs", "Mercy", "Nifty", "Omens", "Pupil", "Risky", "Stoic", "Taboo", "Unbox", "Viced", "Waltz", "Xerus", "Yuzus", "Zilch")]
         QuantumPasswordsWord,
 
+        [SouvenirQuestion("Which number was shown in {0}?", "Quantum Ternary Converter", TwoColumns4Answers)]
+        [AnswerGenerator.Integers(-265720, -9842)]
+        [AnswerGenerator.Integers(9842, 265720)]
+        QuantumTernaryConverterNumber,
+
         [SouvenirQuestion("What was the {1} sequence’s answer in {0}?", "Quaver", OneColumn4Answers, ExampleAnswers = new[] { "4", "10", "87", "320", "3, 3, 2, 3", "87, 85, 82, 84" },
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         QuaverArrows,

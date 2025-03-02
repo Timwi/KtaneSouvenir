@@ -463,6 +463,7 @@ public partial class SouvenirModule
             ["puzzlingHexabuttons"] = (ProcessPuzzlingHexabuttons, "Puzzling Hexabuttons", "Anonymous"),
             ["q&a"] = (ProcessQnA, "Q & A", "Anonymous"),
             ["quantumPasswords"] = (ProcessQuantumPasswords, "Quantum Passwords", "Anonymous"),
+            ["quTern"] = (ProcessQuantumTernaryConverter, "Quantum Ternary Converter", "Anonymous"),
             ["Quaver"] = (ProcessQuaver, "Quaver", "Emik"),
             ["Questionmark"] = (ProcessQuestionMark, "Question Mark", "Kuro"),
             ["QuickArithmetic"] = (ProcessQuickArithmetic, "Quick Arithmetic", "VFlyer"),

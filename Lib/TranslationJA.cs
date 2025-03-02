@@ -8336,6 +8336,15 @@ namespace Souvenir
                 QuestionText = "Which word was use in {0}?",
             },
 
+            // Quantum Ternary Converter
+            // Which number was shown in {0}?
+            // Which number was shown in Quantum Ternary Converter?
+            [Question.QuantumTernaryConverterNumber] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which number was shown in {0}?",
+            },
+
             // Quaver
             // What was the {1} sequence’s answer in {0}?
             // What was the first sequence’s answer in Quaver?
