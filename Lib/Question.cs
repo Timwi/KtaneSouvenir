@@ -1228,6 +1228,19 @@
         [AnswerGenerator.Integers(0, 9)]
         GoofysGameNumber,
 
+        [SouvenirQuestion("Which key was part of the {1} set in {0}?", "Grand Piano", ThreeColumns6Answers,
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("A-G", "1-7")]
+        [AnswerGenerator.Strings("AB", "0")]
+        [AnswerGenerator.Strings("C", "8")]
+        [AnswerGenerator.Strings("CDFGA", "♯", "1-7")]
+        [AnswerGenerator.Strings("A", "♯", "0")]
+        GrandPianoKey,
+        [SouvenirQuestion("Which key was the fifth set in {0}?", "Grand Piano", ThreeColumns6Answers)]
+        [AnswerGenerator.Strings("DEGAB", "♭", "1-7")]
+        [AnswerGenerator.Strings("B", "♭", "0")]
+        GrandPianoFinalKey,
+
         [SouvenirQuestion("What was the {1} coordinate on the display in {0}?", "Gray Button", ThreeColumns6Answers, AddThe = true,
             ExampleFormatArguments = new[] { "horizontal", "vertical" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         [AnswerGenerator.Integers(0, 9)]

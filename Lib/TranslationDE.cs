@@ -4338,6 +4338,22 @@ namespace Souvenir
                 },
             },
 
+            // Grand Piano
+            // Which key was part of the {1} set in {0}?
+            // Which key was part of the first set in Grand Piano?
+            [Question.GrandPianoKey] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which key was part of the {1} set in {0}?",
+            },
+            // Which key was the fifth set in {0}?
+            // Which key was the fifth set in Grand Piano?
+            [Question.GrandPianoFinalKey] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which key made up the fifth set in {0}?",
+            },
+
             // The Gray Button
             // What was the {1} coordinate on the display in {0}?
             // What was the horizontal coordinate on the display in The Gray Button?

@@ -237,6 +237,7 @@ public partial class SouvenirModule
             ["Girlfriend"] = (ProcessGirlfriend, "Girlfriend", "Hawker"),
             ["GlitchedButtonModule"] = (ProcessGlitchedButton, "Glitched Button, The", "Timwi"),
             ["goofysgame"] = (ProcessGoofysGame, "Goofy’s Game", "Anonymous"),
+            ["grandPiano"] = (ProcessGrandPiano, "Grand Piano", "Anonymous"),
             ["GrayButtonModule"] = (ProcessGrayButton, "Gray Button, The", "Timwi"),
             ["grayCipher"] = (ProcessGrayCipher, "Gray Cipher", "BigCrunch22"),
             ["greatVoid"] = (ProcessGreatVoid, "Great Void, The", "Marksam"),

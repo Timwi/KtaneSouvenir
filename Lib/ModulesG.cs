@@ -191,6 +191,34 @@ public partial class SouvenirModule
                 formatArgs: new[] { directions[i] })));
     }
 
+    private IEnumerator<YieldInstruction> ProcessGrandPiano(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "grandPianoScript");
+        var sets = GetArrayField<int[]>(comp, "Duck").Get(expectedLength: 5, validator: v => v.Length is not 5 ? "Expected length 5" : v.Any(c => c is < -1 or > 87) ? "Expected range [-1, 87]" : null);
+
+        var noteNames = new[] { "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B" };
+        string toNote(int note, bool flat = false)
+        {
+            note += 9;
+            int octave = note / 12;
+            var name = noteNames[note % 12];
+            if (flat && name.Length is 2)
+                name = noteNames[note % 12 + 1] + "♭";
+            name += octave;
+            return name;
+        }
+
+        addQuestions(module, sets.Take(4).Select((s, i) =>
+            makeQuestion(Question.GrandPianoKey, module,
+                correctAnswers: s.Select(n => toNote(n)).ToArray(),
+                formatArgs: new[] { Ordinal(i + 1) }))
+            .Concat(new[] { 
+                makeQuestion(Question.GrandPianoFinalKey, module,
+                correctAnswers: new[] { toNote(sets[4][4], true) })}));
+    }
+
     private IEnumerator<YieldInstruction> ProcessGrayButton(ModuleData module)
     {
         var comp = GetComponent(module, "GrayButtonScript");
