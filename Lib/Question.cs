@@ -3387,6 +3387,9 @@
         [SouvenirQuestion("What was the label shown in {0}?", "Working Title", OneColumn4Answers, "foo", "foobar", "quuz", "garply", "plugh", "wibble", "flob", "fuga", "toto", "tutu", "eggs", "alice", "lorem ipsum", "widget", "eek", "bat", "haystack", "blarg", "kalaa", "sub", "momo", "change this", "hi", "thing", "xyz", "bar", "qux", "corge", "waldo", "xyzzy", "wobble", "hoge", "hogera", "tata", "spam", "raboof", "bob", "do stuff", "bla", "moof", "shme", "beekeeper", "dothestuff", "mum", "temp", "var", "placeholder", "hello", "stuff", "text", "baz", "quux", "grault", "fred", "thud", "wubble", "piyo", "hogehoge", "titi", "ham", "fruit", "john doe", "data", "gadget", "gleep", "needle", "blah", "grault", "puppu", "test", "change", "null", "hey", "something", "abc")]
         WorkingTitleLabel,
 
+        [SouvenirQuestion("What was the number in {0}?", "Wumbo", OneColumn4Answers, ExampleAnswers = new[] { "30030", "813244863240810000", "0", "376639725", "27081081027000", "901800900" })]
+        WumboNumber,
+
         [SouvenirQuestion("What was the color of the {1} flash in {0}?", "Xenocryst", ThreeColumns6Answers, ExampleAnswers = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Indigo" },
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, AddThe = true)]
         Xenocryst,

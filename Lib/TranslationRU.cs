@@ -12035,6 +12035,15 @@ namespace Souvenir
                 ModuleName = "Рабочем названии",
             },
 
+            // Wumbo
+            // What was the number in {0}?
+            // What was the number in Wumbo?
+            [Question.WumboNumber] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the number in {0}?",
+            },
+
             // The Xenocryst
             // What was the color of the {1} flash in {0}?
             // What was the color of the first flash in The Xenocryst?

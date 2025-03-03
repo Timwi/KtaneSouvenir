@@ -655,6 +655,7 @@ public partial class SouvenirModule
             ["WireSequence"] = (ProcessWireSequence, "Wire Sequence", "Andrio Celos"),
             ["wolfGoatCabbageModule"] = (ProcessWolfGoatAndCabbage, "Wolf, Goat, and Cabbage", "Marksam"),
             ["workingTitle"] = (ProcessWorkingTitle, "Working Title", "BigCrunch22"),
+            ["wumbo"] = (ProcessWumbo, "Wumbo", "Anonymous"),
             ["GSXenocryst"] = (ProcessXenocryst, "Xenocryst, The", "GhostSalt"),
             ["xmorse"] = (ProcessXmORseCode, "XmORse Code", "shortc1rcuit"),
             ["xobekuj"] = (ProcessXobekuJehT, "xobekuJ ehT", "Quinn Wuest"),
