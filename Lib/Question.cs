@@ -3407,6 +3407,9 @@
         [SouvenirQuestion("Which symbol was scanned in {0}?", "X-Ring", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "XRingSprites")]
         XRingSymbol,
 
+        [SouvenirQuestion("Which shape was scanned by {0}?", "XY-Ray", OneColumn4Answers, "Herschel Enneahedron", "Spherical Cone", "Rhombic Triacontahedron", "Oblate Spheroid", "Dodecahedron", "Rhombohedron", "Rhombicuboctahderon", "Trapezohedron", "Bicone", "Pentagonal Prism", "Octahedron", "Cylinder", "Tetrahedron", "Sphere", "Rhombic Dodecahedron", "Cone", "Cube", "Triangular Bipyramid", "Bicylinder", "Gyrobifastigium", "Icosidodecahedron", "Cuboctahedron", "Icosahedron", "Prolate Spheroid", "Gyroelongated Square Bipyramid", "Spherical Wedge", "Rhombotriangular Dodecahedron")]
+        XYRayShapes,
+
         [SouvenirQuestion("What was the initial roll on {0}?", "Yahtzee", TwoColumns4Answers, "Yahtzee", "large straight", "small straight", "four of a kind", "full house", "three of a kind", "two pairs", "pair", TranslateAnswers = true)]
         YahtzeeInitialRoll,
 

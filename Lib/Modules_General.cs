@@ -660,6 +660,7 @@ public partial class SouvenirModule
             ["xmorse"] = (ProcessXmORseCode, "XmORse Code", "shortc1rcuit"),
             ["xobekuj"] = (ProcessXobekuJehT, "xobekuJ ehT", "Quinn Wuest"),
             ["xring"] = (ProcessXRing, "X-Ring", "Anonymous"),
+            ["xyRay"] = (ProcessXYRay, "XY-Ray", "Anonymous"),
             ["YahtzeeModule"] = (ProcessYahtzee, "Yahtzee", "Timwi"),
             ["yellowArrowsModule"] = (ProcessYellowArrows, "Yellow Arrows", "kavinkul"),
             ["YellowButtonModule"] = (ProcessYellowButton, "Yellow Button, The", "Timwi"),

@@ -62,4 +62,15 @@ public partial class SouvenirModule
         var used = GetArrayField<int>(comp, "symbselect").Get(expectedLength: 5, validator: v => v is < 0 or > 63 ? "expected symbol index 0-63" : null);
         addQuestion(module, Question.XRingSymbol, correctAnswers: used.Select(i => XRingSprites[i]).ToArray());
     }
+
+    private IEnumerator<YieldInstruction> ProcessXYRay(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "XYRayScript");
+        var shapes = GetArrayField<int>(comp, "sindex").Get(expectedLength: 3, validator: v => v is < 0 or > 26 ? "Expected range [0, 26]" : null);
+
+        var all = Question.XYRayShapes.GetAnswers();
+        addQuestion(module, Question.XYRayShapes, correctAnswers: shapes.Select(i => all[i]).ToArray());
+    }
 }

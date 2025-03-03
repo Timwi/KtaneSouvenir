@@ -11936,6 +11936,15 @@ namespace Souvenir
                 ModuleName = "円形レントゲン",
             },
 
+            // XY-Ray
+            // Which shape was scanned by {0}?
+            // Which shape was scanned by XY-Ray?
+            [Question.XYRayShapes] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which shape was scanned by {0}?",
+            },
+
             // Yahtzee
             // What was the initial roll on {0}?
             // What was the initial roll on Yahtzee?
