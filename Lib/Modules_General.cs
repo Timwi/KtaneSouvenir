@@ -645,6 +645,7 @@ public partial class SouvenirModule
             ["Wavetapping"] = (ProcessWavetapping, "Wavetapping", "KingSlendy"),
             ["TheWeakestLink"] = (ProcessWeakestLink, "Weakest Link, The", "Hawker"),
             ["WhatsOnSecond"] = (ProcessWhatsOnSecond, "What’s on Second", "BigCrunch22"),
+            ["WhiteArrows"] = (ProcessWhiteArrows, "White Arrows", "Anonymous"),
             ["whiteCipher"] = (ProcessWhiteCipher, "White Cipher", "BigCrunch22"),
             ["whoOF"] = (ProcessWhoOF, "WhoOF", "VFlyer"),
             ["WhosOnFirst"] = (ProcessWhosOnFirst, "Who’s on First", "Andrio Celos"),

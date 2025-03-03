@@ -137,6 +137,43 @@ public partial class SouvenirModule
            makeQuestion(Question.WhatsOnSecondDisplayColor, module, formatArgs: new[] { "second" }, correctAnswers: new[] { labelColors[1] }));
     }
 
+    private IEnumerator<YieldInstruction> ProcessWhiteArrows(ModuleData module)
+    {
+        var comp = GetComponent(module, "WhiteArrowsScript");
+        var fldStage = GetIntField(comp, "Stage");
+        var fldArrow = GetArrayField<int>(comp, "NumberAssist");
+
+        int[][] arrows = new int[7][];
+
+        while (module.Unsolved)
+        {
+            var stage = fldStage.Get(min: 0, max: 7);
+            if (stage is not 7)
+            {
+                arrows[stage] = fldArrow.Get(expectedLength: 2, validator: v => v is < 0 or > 7 ? "Out of range [0, 7]" : null).ToArray();
+                if (arrows[stage][0] is > 3)
+                    throw new AbandonModuleException($"Arrow out of range [0, 3] (stage {stage}, arrows {arrows[stage].Stringify()})");
+            }
+            yield return null;
+        }
+
+        if (arrows.Any(a => a is null))
+            throw new AbandonModuleException($"A stage was somehow missed: {arrows.Stringify()}");
+
+        var colors = new[] { "Blue", "Red", "Yellow", "Green", "Purple", "Orange", "Cyan", "Teal" };
+        var directions = new[] { "Up", "Right", "Down", "Left" };
+        string format(int dir, int col) =>
+            string.Format(translateString(Question.WhiteArrowsArrows, "{0} {1}"), translateString(Question.WhiteArrowsArrows, colors[col]), translateString(Question.WhiteArrowsArrows, directions[dir]));
+
+        var all = (from d in Enumerable.Range(0, 4) from c in Enumerable.Range(0, 8) select format(d, c)).ToArray();
+
+        addQuestions(module, arrows.Select((a, i) =>
+            makeQuestion(Question.WhiteArrowsArrows, module,
+                correctAnswers: new[] { format(a[0], a[1]) },
+                formatArgs: new[] { Ordinal(i + 1) },
+                allAnswers: all)));
+    }
+
     private IEnumerator<YieldInstruction> ProcessWhiteCipher(ModuleData module)
     {
         return processColoredCiphers(module, "whiteCipher", Question.WhiteCipherScreen);

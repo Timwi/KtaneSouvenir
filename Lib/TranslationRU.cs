@@ -11845,6 +11845,31 @@ namespace Souvenir
                 },
             },
 
+            // White Arrows
+            // What was the {1} non-white arrow in {0}?
+            // What was the first non-white arrow in White Arrows?
+            [Question.WhiteArrowsArrows] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the {1} non-white arrow in {0}?",
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+                {
+                    ["Blue"] = "Blue",
+                    ["Red"] = "Red",
+                    ["Yellow"] = "Yellow",
+                    ["Green"] = "Green",
+                    ["Purple"] = "Purple",
+                    ["Orange"] = "Orange",
+                    ["Cyan"] = "Cyan",
+                    ["Teal"] = "Teal",
+                    ["Up"] = "Up",
+                    ["Right"] = "Right",
+                    ["Down"] = "Down",
+                    ["Left"] = "Left",
+                    ["{0} {1}"] = "{0} {1}",
+                },
+            },
+
             // White Cipher
             // What was on the {1} screen on page {2} in {0}?
             // What was on the top screen on page 1 in White Cipher?

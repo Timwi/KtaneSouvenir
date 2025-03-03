@@ -157,7 +157,7 @@ This module has a few additional `TranslatableStrings`.
 
 This module has a few `TranslatableStrings`.
 
-- `"{0} {1}` is used to construct answers, e.g. `Red 7`.
+- `"{0} {1}"` is used to construct answers, e.g. `Red 7`.
 - The colors are normal.
 
 ## Mssngv Wls
@@ -172,3 +172,10 @@ Otherwise:
 1. Translate the question normally.
 2. Add `\uE001` to the start of the translated module name, and add `\uE002` to the end.
 3. For the `TranslatableStrings`, list out every vowel to be removed from the question text.
+
+## White Arrows
+
+This module has a few `TranslatableStrings`.
+
+- `"{0} {1}"` is used to construct answers, e.g. `Red Up`.
+- The colors and directions get inserted into the above format string.

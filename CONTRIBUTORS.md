@@ -34,7 +34,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Color Decoding       │  Green Button, The     │  Murder                   │  Simon Screams        │  Yellow Button, The
     Color Morse          │  Hexamaze              │  Mystery Module           │  Simon Shouts         │  Zero, Zero
 
-## Implemented by Anonymous (94)
+## Implemented by Anonymous (95)
 
     ↻↺                         │  Color One Two            │  HiddenValue, The        │  Number Game, The           │  Simon Swizzles
     ❖                          │  Coloured Cylinder        │  Hyperforget             │  One Links To All           │  Skewers
@@ -52,9 +52,9 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Bottom Gear                │  Ghost Movement           │  Next In Line            │  ReGret-B Filtering         │  Variety
     Buttonage                  │  Goofy’s Game             │  Not Colour Flash        │  Reordered Keys             │  Walking Cube
     CA-RPS                     │  Grand Piano              │  Not Double-Oh           │  RNG Crystal                │  Watching Paint Dry
-    Cacti’s Conundrum          │  Gyromaze                 │  Not Password            │  Saturn                     │  X-Ring
-    Chinese Remainder Theorem  │  Halli Galli              │  Not Red Arrows          │  Simon Smiles               │  Yellow Button’t
-    Coffee Beans               │  hexOrbits                │  Not The Plunger Button  │  Simon Subdivides           │
+    Cacti’s Conundrum          │  Gyromaze                 │  Not Password            │  Saturn                     │  White Arrows
+    Chinese Remainder Theorem  │  Halli Galli              │  Not Red Arrows          │  Simon Smiles               │  X-Ring
+    Coffee Beans               │  hexOrbits                │  Not The Plunger Button  │  Simon Subdivides           │  Yellow Button’t
 
 ## Implemented by Kuro (59)
 

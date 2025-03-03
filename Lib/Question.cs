@@ -3335,6 +3335,10 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         WhatsOnSecondDisplayColor,
 
+        [SouvenirQuestion("What was the {1} non-white arrow in {0}?", "White Arrows", TwoColumns4Answers, ExampleAnswers = new[] { "Blue Up", "Red Right", "Yellow Down", "Green Left", "Purple Up", "Orange Right", "Cyan Down", "Teal Left" },
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslatableStrings = new[] { "Blue", "Red", "Yellow", "Green", "Purple", "Orange", "Cyan", "Teal", "Up", "Right", "Down", "Left", "{0} {1}" })]
+        WhiteArrowsArrows,
+
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "White Cipher", TwoColumns4Answers, ExampleAnswers = new[] { "ATTEND", "BREATH", "CRUNCH", "EFFECT", "JAILED", "JUMPER", "PLASMA", "UPROAR", "VERTEX", "VIEWED" },
             ExampleFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { true, false })]
         WhiteCipherScreen,
