@@ -82,11 +82,11 @@ namespace Souvenir
             return sprite;
         }
 
-        public static Sprite GenerateGridSprite(Coord coord, float size = 1f)
+        public static Sprite GenerateGridSprite(Coord coord)
         {
             var tw = 4 * coord.Width + 1;
             var th = 4 * coord.Height + 1;
-            var key = $"{coord.Width}:{coord.Height}:{coord.Index}:{size}";
+            var key = $"{coord.Width}:{coord.Height}:{coord.Index}";
             if (!_gridSpriteCache.TryGetValue(key, out var sprite))
             {
                 var tx = new Texture2D(tw, th, TextureFormat.ARGB32, false);
@@ -97,16 +97,16 @@ namespace Souvenir
                 tx.wrapMode = TextureWrapMode.Clamp;
                 tx.filterMode = FilterMode.Point;
 
-                sprite = Sprite.Create(tx, new Rect(0, 0, tw, th), new Vector2(0, .5f), th * (60f / 17) / size);
+                sprite = Sprite.Create(tx, new Rect(0, 0, tw, th), new Vector2(0, .5f), th * (60f / 17));
                 sprite.name = coord.ToString();
                 _gridSpriteCache[key] = sprite;
             }
             return sprite;
         }
 
-        public static Sprite GenerateGridSprite(int width, int height, int index, float size = 1f)
+        public static Sprite GenerateGridSprite(int width, int height, int index)
         {
-            return GenerateGridSprite(new Coord(width, height, index), size);
+            return GenerateGridSprite(new Coord(width, height, index));
         }
 
         public static Sprite GenerateGridSprite(string spriteKey, int tw, int th, (int x, int y)[] squares, int highlightedCell, string spriteName, float? pixelsPerUnit = null)

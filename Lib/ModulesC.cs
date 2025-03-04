@@ -284,7 +284,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "chineseCounting");
         yield return WaitForSolve;
 
-        var ledIndices = GetArrayField<int>(comp, "ledIndices").Get(expectedLength: 2, validator: ix => ix < 0 || ix > 3 ? "expected range 0-3" : null);
+        var ledIndices = GetArrayField<int>(comp, "ledIndices").Get(expectedLength: 2, validator: ix => ix < 0 || ix > 3 ? "expected range 0–3" : null);
         var ledColors = new[] { "White", "Red", "Green", "Orange" };
 
         addQuestions(module,
@@ -297,8 +297,8 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var comp = GetComponent(module, "ChineseRemainderTheoremScript");
-        var moduli = GetListField<int>(comp, "_moduli").Get(minLength: 4, maxLength: 8, validator: v => v is < 2 or > 51 ? "Out of range [2, 51]" : null);
-        var remainders = GetListField<int>(comp, "_remainder").Get(expectedLength: moduli.Count, validator: v => v is < 0 or > 50 ? "Out of range [0, 50]" : null);
+        var moduli = GetListField<int>(comp, "_moduli").Get(minLength: 4, maxLength: 8, validator: v => v is < 2 or > 51 ? "Out of range 2–51" : null);
+        var remainders = GetListField<int>(comp, "_remainder").Get(expectedLength: moduli.Count, validator: v => v is < 0 or > 50 ? "Out of range 0–50" : null);
         if (moduli.Select((m, i) => remainders[i] >= m).Any(x => x))
             throw new AbandonModuleException($"A remainder was bigger than its corresponding modulus: {moduli.Select((m, i) => $"N % {m} = {remainders[i]}").JoinString("; ")}");
 

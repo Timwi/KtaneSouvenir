@@ -10,7 +10,7 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
-    const string Version = "5.7";
+    const string Version = "5.8";
 
     void Awake()
     {
@@ -79,8 +79,8 @@ public partial class SouvenirModule
             ["BookOfMarioModule"] = (ProcessBookOfMario, "Book of Mario", "Hawker"),
             ["booleanWires"] = (ProcessBooleanWires, "Boolean Wires", "Kuro"),
             ["boomtarTheGreat"] = (ProcessBoomtarTheGreat, "Boomtar the Great", "Anonymous"),
-            ["GSBottomGear"] = (ProcessBottomGear, "Bottom Gear", "Anonymous"),
             ["borderedKeys"] = (ProcessBorderedKeys, "Bordered Keys", "Hawker"),
+            ["GSBottomGear"] = (ProcessBottomGear, "Bottom Gear", "Anonymous"),
             ["boxing"] = (ProcessBoxing, "Boxing", "Timwi"),
             ["BrailleModule"] = (ProcessBraille, "Braille", "Timwi"),
             ["breakfastEgg"] = (ProcessBreakfastEgg, "Breakfast Egg", "tandyCake"),

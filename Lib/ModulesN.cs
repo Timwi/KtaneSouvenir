@@ -52,11 +52,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
 
         var comp = GetComponent(module, "NandNs");
-        var labels = new string[][]
-        {
-            new string[5],
-            new string[5]
-        };
+        var labels = new string[2][];
         var colors = new int[5];
 
         var fldStage = GetIntField(comp, "stage");
@@ -64,7 +60,7 @@ public partial class SouvenirModule
         var fldColors = GetArrayField<int>(comp, "buttonColors");
         int stage;
 
-        static string validate(string v) => v.Any(static c => c is not 'N' and not 'M') ? "String must be only N's and M's" : null;
+        static string validate(string v) => v.Any(static c => c is not 'N' and not 'M') ? "String must be only N’s and M’s" : null;
 
         do
         {
@@ -77,7 +73,7 @@ public partial class SouvenirModule
             else if (stage == 2)
             {
                 labels[1] = fldLabels.Get(expectedLength: 5, validator: validate).ToArray();
-                colors = fldColors.Get(expectedLength: 5, validator: static v => v is < 0 or > 5 ? "Expected range [0, 5]" : null).ToArray();
+                colors = fldColors.Get(expectedLength: 5, validator: static v => v is < 0 or > 5 ? "Expected range 0–5" : null).ToArray();
             }
         }
         while (stage < 5);

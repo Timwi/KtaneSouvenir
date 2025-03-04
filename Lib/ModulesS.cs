@@ -1044,15 +1044,15 @@ public partial class SouvenirModule
         yield return WaitForSolve;
         var comp = GetComponent(module, "flashingnonsense");
         var hidden = GetField<string>(comp, "inside").Get(v => !Regex.IsMatch(v, "^[01]{6}$") ? "Expected six-bit binary string" : null);
-        var gates = GetArrayField<int>(comp, "Gatestore").Get(expectedLength: 16, validator: v => v is < 0 or > 15 ? "Expected gates in range [0, 15]" : null);
+        var gates = GetArrayField<int>(comp, "Gatestore").Get(expectedLength: 16, validator: v => v is < 0 or > 15 ? "Expected gates in range 0–15" : null);
         if (gates.Distinct().Count() is not 16)
             throw new AbandonModuleException($"Expected 16 distinct gates, got {gates.Stringify()}");
 
         var gateNames = Question.SimonSwizzlesGate.GetAnswers();
-        addQuestions(module, gates.SelectMany((g, i) => new[] {
-                makeQuestion(Question.SimonSwizzlesGate, module, correctAnswers: new[] {gateNames[g]}, questionSprite: Sprites.GenerateGridSprite(4, 4, i)),
-                makeQuestion(Question.SimonSwizzlesButton, module, correctAnswers: new[] {Sprites.GenerateGridSprite(4, 4, i)}, formatArgs: new[] { gateNames[g] }),
-            }).Concat(new[] { makeQuestion(Question.SimonSwizzlesNumber, module, correctAnswers: new[] { hidden }) }));
+        addQuestions(module, gates.SelectMany((g, i) => Ut.NewArray(
+            makeQuestion(Question.SimonSwizzlesGate, module, correctAnswers: new[] { gateNames[g] }, questionSprite: Sprites.GenerateGridSprite(4, 4, i)),
+            makeQuestion(Question.SimonSwizzlesButton, module, correctAnswers: new[] { Sprites.GenerateGridSprite(4, 4, i) }, formatArgs: new[] { gateNames[g] })
+        )).Concat(new[] { makeQuestion(Question.SimonSwizzlesNumber, module, correctAnswers: new[] { hidden }) }));
     }
 
     private IEnumerator<YieldInstruction> ProcessSimultaneousSimons(ModuleData module)
@@ -1577,6 +1577,7 @@ public partial class SouvenirModule
 
         var element = GetField<TextMesh>(comp, "Element", isPublic: true).Get().text;
 
+        yield return WaitForSolve;
 
         // Convert to proper case.
         addQuestion(module, Question.StateOfAggregationElement, correctAnswers: new[] { element.Substring(0, 1).ToUpperInvariant() + element.Substring(1).ToLowerInvariant() });
@@ -1614,7 +1615,6 @@ public partial class SouvenirModule
                 if (module.Unsolved)
                 {
                     var stage = fldStage.Get();
-                    Debug.Log(stage);
                     if (stage is >= 0 and < 3)
                     {
                         usedWords[stage] = words.Last();

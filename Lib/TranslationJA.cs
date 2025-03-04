@@ -1265,14 +1265,6 @@ namespace Souvenir
                 },
             },
 
-            // Bottom Gear
-            // What tweet was shown in {0}?
-            // What tweet was shown in Bottom Gear?
-            [Question.BottomGearTweet] = new()
-            {
-                QuestionText = "{0}に表示されたツイートは？",
-            },
-
             // Bordered Keys
             // What was the border color when you pressed the {1} key in {0}?
             // What was the border color when you pressed the first key in Bordered Keys?
@@ -1335,6 +1327,14 @@ namespace Souvenir
                     ["Magenta"] = "マゼンタ",
                     ["Yellow"] = "黄",
                 },
+            },
+
+            // Bottom Gear
+            // What tweet was shown in {0}?
+            // What tweet was shown in Bottom Gear?
+            [Question.BottomGearTweet] = new()
+            {
+                QuestionText = "{0}に表示されたツイートは？",
             },
 
             // Boxing
@@ -4634,6 +4634,15 @@ namespace Souvenir
                 ModuleName = "ホールドアップ",
             },
 
+            // Homophones
+            // What was the {1} displayed phrase in {0}?
+            // What was the first displayed phrase in Homophones?
+            [Question.HomophonesDisplayedPhrases] = new()
+            {
+                QuestionText = "{0}の{1}番目に表示されたフレーズは？",
+                ModuleName = "同音異義語",
+            },
+
             // Horrible Memory
             // In what position was the button pressed on the {1} stage of {0}?
             // In what position was the button pressed on the first stage of Horrible Memory?
@@ -4664,15 +4673,6 @@ namespace Souvenir
                     ["purple"] = "紫",
                     ["pink"] = "ピンク",
                 },
-            },
-
-            // Homophones
-            // What was the {1} displayed phrase in {0}?
-            // What was the first displayed phrase in Homophones?
-            [Question.HomophonesDisplayedPhrases] = new()
-            {
-                QuestionText = "{0}の{1}番目に表示されたフレーズは？",
-                ModuleName = "同音異義語",
             },
 
             // Human Resources
@@ -5569,22 +5569,6 @@ namespace Souvenir
                 },
             },
 
-            // Mahjong
-            // Which tile was part of the {1} matched pair in {0}?
-            // Which tile was part of the first matched pair in Mahjong?
-            [Question.MahjongMatches] = new()
-            {
-                QuestionText = "{0}の{1}番目にマッチした牌のペアに含まれるのは？",
-                ModuleName = "麻雀パズル",
-            },
-            // Which tile was shown in the bottom-left of {0}?
-            // Which tile was shown in the bottom-left of Mahjong?
-            [Question.MahjongCountingTile] = new()
-            {
-                QuestionText = "{0}の左下に表示された牌は？",
-                ModuleName = "麻雀パズル",
-            },
-
             // Mafia
             // Who was a player, but not the Godfather, in {0}?
             // Who was a player, but not the Godfather, in Mafia?
@@ -5607,6 +5591,22 @@ namespace Souvenir
                     ["middle"] = "中央",
                     ["bottom"] = "下部",
                 },
+            },
+
+            // Mahjong
+            // Which tile was part of the {1} matched pair in {0}?
+            // Which tile was part of the first matched pair in Mahjong?
+            [Question.MahjongMatches] = new()
+            {
+                QuestionText = "{0}の{1}番目にマッチした牌のペアに含まれるのは？",
+                ModuleName = "麻雀パズル",
+            },
+            // Which tile was shown in the bottom-left of {0}?
+            // Which tile was shown in the bottom-left of Mahjong?
+            [Question.MahjongCountingTile] = new()
+            {
+                QuestionText = "{0}の左下に表示された牌は？",
+                ModuleName = "麻雀パズル",
             },
 
             // Main Page
@@ -6627,15 +6627,6 @@ namespace Souvenir
                 },
             },
 
-            // Naming Conventions
-            // What was the label of the first button in {0}?
-            // What was the label of the first button in Naming Conventions?
-            [Question.NamingConventionsObject] = new()
-            {
-                QuestionText = "{0}の最初のボタンに書かれたラベルは？",
-                ModuleName = "命名規則",
-            },
-
             // Name Codes
             // What was the {1} index in {0}?
             // What was the left index in Name Codes?
@@ -6647,6 +6638,15 @@ namespace Souvenir
                     ["left"] = "左",
                     ["right"] = "右",
                 },
+            },
+
+            // Naming Conventions
+            // What was the label of the first button in {0}?
+            // What was the label of the first button in Naming Conventions?
+            [Question.NamingConventionsObject] = new()
+            {
+                QuestionText = "{0}の最初のボタンに書かれたラベルは？",
+                ModuleName = "命名規則",
             },
 
             // N&Ms
@@ -9197,6 +9197,15 @@ namespace Souvenir
                 },
             },
 
+            // Sign Language
+            // What was the deciphered word in {0}?
+            // What was the deciphered word in Sign Language?
+            [Question.SignLanguageWord] = new()
+            {
+                QuestionText = "{0}で解読した単語は？",
+                ModuleName = "手話",
+            },
+
             // Silly Slots
             // What was the {1} slot in the {2} stage in {0}?
             // What was the first slot in the first stage in Silly Slots?
@@ -9219,15 +9228,6 @@ namespace Souvenir
                     ["blue coin"] = "青色のコイン",
                     ["blue grape"] = "青色のブドウ",
                 },
-            },
-
-            // Sign Language
-            // What was the deciphered word in {0}?
-            // What was the deciphered word in Sign Language?
-            [Question.SignLanguageWord] = new()
-            {
-                QuestionText = "{0}で解読した単語は？",
-                ModuleName = "手話",
             },
 
             // Silo Authorization
@@ -9518,24 +9518,6 @@ namespace Souvenir
                 ModuleName = "サイモンの形状",
             },
 
-            // Simon Simons
-            // What was the {1} flash in the final sequence in {0}?
-            // What was the first flash in the final sequence in Simon Simons?
-            [Question.SimonSimonsFlashingColors] = new()
-            {
-                QuestionText = "{0}の最終シークエンスにおいて、{1}番目に点滅した色は？",
-                ModuleName = "サイモンのサイモン",
-            },
-
-            // Simon Sings
-            // Which key’s color flashed {1} in the {2} stage of {0}?
-            // Which key’s color flashed first in the first stage of Simon Sings?
-            [Question.SimonSingsFlashing] = new()
-            {
-                QuestionText = "{0}のステージ{2}において、{1}番目に点滅したキーは？",
-                ModuleName = "サイモンの歌唱",
-            },
-
             // Simon Shouts
             // Which letter flashed on the {1} button in {0}?
             // Which letter flashed on the top button in Simon Shouts?
@@ -9631,6 +9613,24 @@ namespace Souvenir
             {
                 QuestionText = "{0}で{1}方向を指していた矢印の形は？",
                 ModuleName = "サイモンの信号",
+            },
+
+            // Simon Simons
+            // What was the {1} flash in the final sequence in {0}?
+            // What was the first flash in the final sequence in Simon Simons?
+            [Question.SimonSimonsFlashingColors] = new()
+            {
+                QuestionText = "{0}の最終シークエンスにおいて、{1}番目に点滅した色は？",
+                ModuleName = "サイモンのサイモン",
+            },
+
+            // Simon Sings
+            // Which key’s color flashed {1} in the {2} stage of {0}?
+            // Which key’s color flashed first in the first stage of Simon Sings?
+            [Question.SimonSingsFlashing] = new()
+            {
+                QuestionText = "{0}のステージ{2}において、{1}番目に点滅したキーは？",
+                ModuleName = "サイモンの歌唱",
             },
 
             // Simon Smiles
@@ -10299,6 +10299,15 @@ namespace Souvenir
                 QuestionText = "{0}での1隻当たりの最大税額は？",
             },
 
+            // Spelling Bee
+            // What word was asked to be spelled in {0}?
+            // What word was asked to be spelled in Spelling Bee?
+            [Question.SpellingBeeWord] = new()
+            {
+                QuestionText = "{0}で打ち込んだ単語は？",
+                ModuleName = "スペリング・ビー",
+            },
+
             // The Sphere
             // What was the {1} flashed color in {0}?
             // What was the first flashed color in The Sphere?
@@ -10317,15 +10326,6 @@ namespace Souvenir
                     ["grey"] = "灰",
                     ["white"] = "白",
                 },
-            },
-
-            // Spelling Bee
-            // What word was asked to be spelled in {0}?
-            // What word was asked to be spelled in Spelling Bee?
-            [Question.SpellingBeeWord] = new()
-            {
-                QuestionText = "{0}で打ち込んだ単語は？",
-                ModuleName = "スペリング・ビー",
             },
 
             // Splitting The Loot

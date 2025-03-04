@@ -32,12 +32,14 @@ namespace Souvenir
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true, Inherited = false)]
     public abstract class AnswerGeneratorAttribute : Attribute
     {
+        public abstract Type ElementType { get; }
     }
 
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true, Inherited = false)]
     public abstract class AnswerGeneratorAttribute<T> : AnswerGeneratorAttribute
     {
         public abstract IEnumerable<T> GetAnswers(SouvenirModule module);
+        public sealed override Type ElementType => typeof(T);
     }
 
     public static class AnswerGenerator
@@ -285,15 +287,13 @@ namespace Souvenir
         {
             private readonly int _width;
             private readonly int _height;
-            private readonly float _size;
 
             private int Count => _width * _height;
 
-            public Grid(int width, int height, float size = 1f)
+            public Grid(int width, int height)
             {
                 _width = width;
                 _height = height;
-                _size = size;
             }
 
             public override IEnumerable<Sprite> GetAnswers(SouvenirModule module)
@@ -301,11 +301,11 @@ namespace Souvenir
                 var count = _width * _height;
                 if (count >= 10)
                     while (true)
-                        yield return Sprites.GenerateGridSprite(_width, _height, Random.Range(0, count), _size);
+                        yield return Sprites.GenerateGridSprite(_width, _height, Random.Range(0, count));
 
                 var positions = Enumerable.Range(0, count).ToArray().Shuffle();
                 foreach (var position in positions)
-                    yield return Sprites.GenerateGridSprite(_width, _height, position, _size);
+                    yield return Sprites.GenerateGridSprite(_width, _height, position);
             }
         }
 

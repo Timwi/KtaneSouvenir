@@ -89,9 +89,9 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var comp = GetComponent(module, "KeypadMaze");
-        var yellow = GetArrayField<int>(comp, "yellow", true).Get(expectedLength: 5, validator: v => v is < 0 or > 35 ? "Expected range [0, 35]" : null);
+        var yellow = GetArrayField<int>(comp, "yellow", true).Get(expectedLength: 5, validator: v => v is < 0 or > 35 ? "Expected range 0–35" : null);
 
-        addQuestion(module, Question.KeypadMazeYellow, correctAnswers: yellow.Take(4).Select(i => Sprites.GenerateGridSprite(6, 6, i)).ToArray());
+        addQuestion(module, Question.KeypadMazeYellow, correctAnswers: yellow.Take(4).Select(i => new Coord(6, 6, i)).ToArray());
     }
 
     private static Sprite[] _keypadSequenceSprites;
@@ -103,7 +103,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var symbols = GetArrayField<int>(comp, "symbselect").Get(expectedLength: 16, validator: v => v is < 0 or > 35 ? "Expected range [0, 35]" : null);
+        var symbols = GetArrayField<int>(comp, "symbselect").Get(expectedLength: 16, validator: v => v is < 0 or > 35 ? "Expected range 0–35" : null);
 
         addQuestions(module, Enumerable.Range(0, 4).SelectMany(p =>
             symbols.Skip(4 * p).Take(4).Select((s, i) =>

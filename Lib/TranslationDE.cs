@@ -1303,14 +1303,6 @@ namespace Souvenir
                 },
             },
 
-            // Bottom Gear
-            // What tweet was shown in {0}?
-            // What tweet was shown in Bottom Gear?
-            [Question.BottomGearTweet] = new()
-            {
-                QuestionText = "Welcher Tweet war bei {0} zu sehen?",
-            },
-
             // Bordered Keys
             // What was the border color when you pressed the {1} key in {0}?
             // What was the border color when you pressed the first key in Bordered Keys?
@@ -1368,6 +1360,14 @@ namespace Souvenir
                     ["Magenta"] = "Magenta",
                     ["Yellow"] = "Gelb",
                 },
+            },
+
+            // Bottom Gear
+            // What tweet was shown in {0}?
+            // What tweet was shown in Bottom Gear?
+            [Question.BottomGearTweet] = new()
+            {
+                QuestionText = "Welcher Tweet war bei {0} zu sehen?",
             },
 
             // Boxing
@@ -4777,6 +4777,15 @@ namespace Souvenir
                 QuestionText = "What was the name of the {1} shadow shown in {0}?",
             },
 
+            // Homophones
+            // What was the {1} displayed phrase in {0}?
+            // What was the first displayed phrase in Homophones?
+            [Question.HomophonesDisplayedPhrases] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the {1} displayed phrase in {0}?",
+            },
+
             // Horrible Memory
             // In what position was the button pressed on the {1} stage of {0}?
             // In what position was the button pressed on the first stage of Horrible Memory?
@@ -4807,15 +4816,6 @@ namespace Souvenir
                     ["purple"] = "lila",
                     ["pink"] = "pink",
                 },
-            },
-
-            // Homophones
-            // What was the {1} displayed phrase in {0}?
-            // What was the first displayed phrase in Homophones?
-            [Question.HomophonesDisplayedPhrases] = new()
-            {
-                NeedsTranslation = true,
-                QuestionText = "What was the {1} displayed phrase in {0}?",
             },
 
             // Human Resources
@@ -5714,22 +5714,6 @@ namespace Souvenir
                 },
             },
 
-            // Mahjong
-            // Which tile was part of the {1} matched pair in {0}?
-            // Which tile was part of the first matched pair in Mahjong?
-            [Question.MahjongMatches] = new()
-            {
-                NeedsTranslation = true,
-                QuestionText = "Which tile was part of the {1} matched pair in {0}?",
-            },
-            // Which tile was shown in the bottom-left of {0}?
-            // Which tile was shown in the bottom-left of Mahjong?
-            [Question.MahjongCountingTile] = new()
-            {
-                NeedsTranslation = true,
-                QuestionText = "Which tile was shown in the bottom-left of {0}?",
-            },
-
             // Mafia
             // Who was a player, but not the Godfather, in {0}?
             // Who was a player, but not the Godfather, in Mafia?
@@ -5753,6 +5737,22 @@ namespace Souvenir
                     ["middle"] = "mittler",
                     ["bottom"] = "unter",
                 },
+            },
+
+            // Mahjong
+            // Which tile was part of the {1} matched pair in {0}?
+            // Which tile was part of the first matched pair in Mahjong?
+            [Question.MahjongMatches] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which tile was part of the {1} matched pair in {0}?",
+            },
+            // Which tile was shown in the bottom-left of {0}?
+            // Which tile was shown in the bottom-left of Mahjong?
+            [Question.MahjongCountingTile] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which tile was shown in the bottom-left of {0}?",
             },
 
             // Main Page
@@ -6788,15 +6788,6 @@ namespace Souvenir
                 },
             },
 
-            // Naming Conventions
-            // What was the label of the first button in {0}?
-            // What was the label of the first button in Naming Conventions?
-            [Question.NamingConventionsObject] = new()
-            {
-                NeedsTranslation = true,
-                QuestionText = "What was the label of the first button in {0}?",
-            },
-
             // Name Codes
             // What was the {1} index in {0}?
             // What was the left index in Name Codes?
@@ -6809,6 +6800,15 @@ namespace Souvenir
                     ["left"] = "left",
                     ["right"] = "right",
                 },
+            },
+
+            // Naming Conventions
+            // What was the label of the first button in {0}?
+            // What was the label of the first button in Naming Conventions?
+            [Question.NamingConventionsObject] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the label of the first button in {0}?",
             },
 
             // N&Ms
@@ -9395,6 +9395,15 @@ namespace Souvenir
                 },
             },
 
+            // Sign Language
+            // What was the deciphered word in {0}?
+            // What was the deciphered word in Sign Language?
+            [Question.SignLanguageWord] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the deciphered word in {0}?",
+            },
+
             // Silly Slots
             // What was the {1} slot in the {2} stage in {0}?
             // What was the first slot in the first stage in Silly Slots?
@@ -9417,15 +9426,6 @@ namespace Souvenir
                     ["blue coin"] = "blue coin",
                     ["blue grape"] = "blue grape",
                 },
-            },
-
-            // Sign Language
-            // What was the deciphered word in {0}?
-            // What was the deciphered word in Sign Language?
-            [Question.SignLanguageWord] = new()
-            {
-                NeedsTranslation = true,
-                QuestionText = "What was the deciphered word in {0}?",
             },
 
             // Silo Authorization
@@ -9716,24 +9716,6 @@ namespace Souvenir
                 QuestionText = "What was the shape submitted at the end of {0}?",
             },
 
-            // Simon Simons
-            // What was the {1} flash in the final sequence in {0}?
-            // What was the first flash in the final sequence in Simon Simons?
-            [Question.SimonSimonsFlashingColors] = new()
-            {
-                NeedsTranslation = true,
-                QuestionText = "What was the {1} flash in the final sequence in {0}?",
-            },
-
-            // Simon Sings
-            // Which key’s color flashed {1} in the {2} stage of {0}?
-            // Which key’s color flashed first in the first stage of Simon Sings?
-            [Question.SimonSingsFlashing] = new()
-            {
-                NeedsTranslation = true,
-                QuestionText = "Which key’s color flashed {1} in the {2} stage of {0}?",
-            },
-
             // Simon Shouts
             // Which letter flashed on the {1} button in {0}?
             // Which letter flashed on the top button in Simon Shouts?
@@ -9829,6 +9811,24 @@ namespace Souvenir
             {
                 NeedsTranslation = true,
                 QuestionText = "What shape was the arrow with {1} possible directions in {0}?",
+            },
+
+            // Simon Simons
+            // What was the {1} flash in the final sequence in {0}?
+            // What was the first flash in the final sequence in Simon Simons?
+            [Question.SimonSimonsFlashingColors] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the {1} flash in the final sequence in {0}?",
+            },
+
+            // Simon Sings
+            // Which key’s color flashed {1} in the {2} stage of {0}?
+            // Which key’s color flashed first in the first stage of Simon Sings?
+            [Question.SimonSingsFlashing] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which key’s color flashed {1} in the {2} stage of {0}?",
             },
 
             // Simon Smiles
@@ -10500,6 +10500,15 @@ namespace Souvenir
                 QuestionText = "What was the maximum tax amount per vessel in {0}?",
             },
 
+            // Spelling Bee
+            // What word was asked to be spelled in {0}?
+            // What word was asked to be spelled in Spelling Bee?
+            [Question.SpellingBeeWord] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What word was asked to be spelled in {0}?",
+            },
+
             // The Sphere
             // What was the {1} flashed color in {0}?
             // What was the first flashed color in The Sphere?
@@ -10518,15 +10527,6 @@ namespace Souvenir
                     ["grey"] = "grey",
                     ["white"] = "weiß",
                 },
-            },
-
-            // Spelling Bee
-            // What word was asked to be spelled in {0}?
-            // What word was asked to be spelled in Spelling Bee?
-            [Question.SpellingBeeWord] = new()
-            {
-                NeedsTranslation = true,
-                QuestionText = "What word was asked to be spelled in {0}?",
             },
 
             // Splitting The Loot

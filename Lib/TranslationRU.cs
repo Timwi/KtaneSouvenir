@@ -1354,14 +1354,6 @@ namespace Souvenir
                 },
             },
 
-            // Bottom Gear
-            // What tweet was shown in {0}?
-            // What tweet was shown in Bottom Gear?
-            [Question.BottomGearTweet] = new()
-            {
-                QuestionText = "Какой твит был показан {0}?",
-            },
-
             // Bordered Keys
             // What was the border color when you pressed the {1} key in {0}?
             // What was the border color when you pressed the first key in Bordered Keys?
@@ -1424,6 +1416,14 @@ namespace Souvenir
                     ["Magenta"] = "Розового",
                     ["Yellow"] = "Жёлтого",
                 },
+            },
+
+            // Bottom Gear
+            // What tweet was shown in {0}?
+            // What tweet was shown in Bottom Gear?
+            [Question.BottomGearTweet] = new()
+            {
+                QuestionText = "Какой твит был показан {0}?",
             },
 
             // Boxing
@@ -4750,6 +4750,16 @@ namespace Souvenir
                 QuestionText = "Какое было имя у {1}-й тени {0}?",
             },
 
+            // Homophones
+            // What was the {1} displayed phrase in {0}?
+            // What was the first displayed phrase in Homophones?
+            [Question.HomophonesDisplayedPhrases] = new()
+            {
+                Conjugation = Conjugation.в_PrepositivePlural,
+                QuestionText = "Какая была {1}-я показанная фраза {0}?",
+                ModuleName = "Омофонах",
+            },
+
             // Horrible Memory
             // In what position was the button pressed on the {1} stage of {0}?
             // In what position was the button pressed on the first stage of Horrible Memory?
@@ -4780,16 +4790,6 @@ namespace Souvenir
                     ["purple"] = "фиолетовый",
                     ["pink"] = "розовый",
                 },
-            },
-
-            // Homophones
-            // What was the {1} displayed phrase in {0}?
-            // What was the first displayed phrase in Homophones?
-            [Question.HomophonesDisplayedPhrases] = new()
-            {
-                Conjugation = Conjugation.в_PrepositivePlural,
-                QuestionText = "Какая была {1}-я показанная фраза {0}?",
-                ModuleName = "Омофонах",
             },
 
             // Human Resources
@@ -5693,20 +5693,6 @@ namespace Souvenir
                 },
             },
 
-            // Mahjong
-            // Which tile was part of the {1} matched pair in {0}?
-            // Which tile was part of the first matched pair in Mahjong?
-            [Question.MahjongMatches] = new()
-            {
-                QuestionText = "Какая кость была частью {1}-й сопоставленной пары {0}?",
-            },
-            // Which tile was shown in the bottom-left of {0}?
-            // Which tile was shown in the bottom-left of Mahjong?
-            [Question.MahjongCountingTile] = new()
-            {
-                QuestionText = "Какая кость была показана снизу слева {0}?",
-            },
-
             // Mafia
             // Who was a player, but not the Godfather, in {0}?
             // Who was a player, but not the Godfather, in Mafia?
@@ -5730,6 +5716,20 @@ namespace Souvenir
                     ["middle"] = "центральном",
                     ["bottom"] = "нижнем",
                 },
+            },
+
+            // Mahjong
+            // Which tile was part of the {1} matched pair in {0}?
+            // Which tile was part of the first matched pair in Mahjong?
+            [Question.MahjongMatches] = new()
+            {
+                QuestionText = "Какая кость была частью {1}-й сопоставленной пары {0}?",
+            },
+            // Which tile was shown in the bottom-left of {0}?
+            // Which tile was shown in the bottom-left of Mahjong?
+            [Question.MahjongCountingTile] = new()
+            {
+                QuestionText = "Какая кость была показана снизу слева {0}?",
             },
 
             // Main Page
@@ -6763,14 +6763,6 @@ namespace Souvenir
                 },
             },
 
-            // Naming Conventions
-            // What was the label of the first button in {0}?
-            // What was the label of the first button in Naming Conventions?
-            [Question.NamingConventionsObject] = new()
-            {
-                QuestionText = "Какая была надпись на 1й кнопке {0}?",
-            },
-
             // Name Codes
             // What was the {1} index in {0}?
             // What was the left index in Name Codes?
@@ -6782,6 +6774,14 @@ namespace Souvenir
                     ["left"] = "левый",
                     ["right"] = "правый",
                 },
+            },
+
+            // Naming Conventions
+            // What was the label of the first button in {0}?
+            // What was the label of the first button in Naming Conventions?
+            [Question.NamingConventionsObject] = new()
+            {
+                QuestionText = "Какая была надпись на 1й кнопке {0}?",
             },
 
             // N&Ms
@@ -9349,6 +9349,16 @@ namespace Souvenir
                 },
             },
 
+            // Sign Language
+            // What was the deciphered word in {0}?
+            // What was the deciphered word in Sign Language?
+            [Question.SignLanguageWord] = new()
+            {
+                Conjugation = Conjugation.PrepositiveMascNeuter,
+                QuestionText = "Какое слово было расшифровано на {0}?",
+                ModuleName = "Языке знаков",
+            },
+
             // Silly Slots
             // What was the {1} slot in the {2} stage in {0}?
             // What was the first slot in the first stage in Silly Slots?
@@ -9372,16 +9382,6 @@ namespace Souvenir
                     ["blue coin"] = "Синяя монета",
                     ["blue grape"] = "Синяя гроздь",
                 },
-            },
-
-            // Sign Language
-            // What was the deciphered word in {0}?
-            // What was the deciphered word in Sign Language?
-            [Question.SignLanguageWord] = new()
-            {
-                Conjugation = Conjugation.PrepositiveMascNeuter,
-                QuestionText = "Какое слово было расшифровано на {0}?",
-                ModuleName = "Языке знаков",
             },
 
             // Silo Authorization
@@ -9670,24 +9670,6 @@ namespace Souvenir
                 ModuleName = "«Simon Shapes»",
             },
 
-            // Simon Simons
-            // What was the {1} flash in the final sequence in {0}?
-            // What was the first flash in the final sequence in Simon Simons?
-            [Question.SimonSimonsFlashingColors] = new()
-            {
-                QuestionText = "Какая была {1}-я вспышка в полной последовательности в {0}?",
-                ModuleName = "«Simon Simons»",
-            },
-
-            // Simon Sings
-            // Which key’s color flashed {1} in the {2} stage of {0}?
-            // Which key’s color flashed first in the first stage of Simon Sings?
-            [Question.SimonSingsFlashing] = new()
-            {
-                QuestionText = "Какой цвет кнопки горел {1}-м на {2}-м этапе {0}?",
-                ModuleName = "«Саймон поёт»",
-            },
-
             // Simon Shouts
             // Which letter flashed on the {1} button in {0}?
             // Which letter flashed on the top button in Simon Shouts?
@@ -9783,6 +9765,24 @@ namespace Souvenir
             {
                 QuestionText = "Какой формы была стрелка с {1}-мя возможными направлениями в {0}?",
                 ModuleName = "«Simon Signals»",
+            },
+
+            // Simon Simons
+            // What was the {1} flash in the final sequence in {0}?
+            // What was the first flash in the final sequence in Simon Simons?
+            [Question.SimonSimonsFlashingColors] = new()
+            {
+                QuestionText = "Какая была {1}-я вспышка в полной последовательности в {0}?",
+                ModuleName = "«Simon Simons»",
+            },
+
+            // Simon Sings
+            // Which key’s color flashed {1} in the {2} stage of {0}?
+            // Which key’s color flashed first in the first stage of Simon Sings?
+            [Question.SimonSingsFlashing] = new()
+            {
+                QuestionText = "Какой цвет кнопки горел {1}-м на {2}-м этапе {0}?",
+                ModuleName = "«Саймон поёт»",
             },
 
             // Simon Smiles
@@ -10461,6 +10461,15 @@ namespace Souvenir
                 ModuleName = "Космических торговцах",
             },
 
+            // Spelling Bee
+            // What word was asked to be spelled in {0}?
+            // What word was asked to be spelled in Spelling Bee?
+            [Question.SpellingBeeWord] = new()
+            {
+                QuestionText = "Какое слово нужно было произнести {0}?",
+                ModuleName = "Правописании",
+            },
+
             // The Sphere
             // What was the {1} flashed color in {0}?
             // What was the first flashed color in The Sphere?
@@ -10480,15 +10489,6 @@ namespace Souvenir
                     ["grey"] = "Серый",
                     ["white"] = "Белый",
                 },
-            },
-
-            // Spelling Bee
-            // What word was asked to be spelled in {0}?
-            // What word was asked to be spelled in Spelling Bee?
-            [Question.SpellingBeeWord] = new()
-            {
-                QuestionText = "Какое слово нужно было произнести {0}?",
-                ModuleName = "Правописании",
             },
 
             // Splitting The Loot

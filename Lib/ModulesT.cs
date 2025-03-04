@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using Souvenir;
 using UnityEngine;
 
@@ -226,7 +225,7 @@ public partial class SouvenirModule
         var emojis = GetArrayField<Texture>(comp, "Emojis", true).Get(expectedLength: 204);
         IEnumerator hideBacksolve()
         {
-            for(int i = 0; i < displays.Length; i++)
+            for (int i = 0; i < displays.Length; i++)
             {
                 yield return new WaitForSeconds(0.1f);
                 displays[i].material.mainTexture = emojis[i % 2 == 0 ? 5 : 36];
@@ -403,7 +402,7 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "tribalCouncilScript");
         var texts = GetArrayField<TextMesh>(comp, "namesText", true).Get(expectedLength: 6);
-        var chart = GetField<int[,]>(comp, "chart").Get(v => (v.GetLength(0), v.GetLength(1)) is not (10, 10) ? "Expected 10x10 array" : null);
+        var chart = GetField<int[,]>(comp, "chart").Get(v => (v.GetLength(0), v.GetLength(1)) is not (10, 10) ? "Expected 10×10 array" : null);
 
         var ix = Bomb.GetSerialNumberLetters().First() - 'A' + 1;
         ix *= Bomb.GetOnIndicators().Count() is var lit and > 0 ? lit : 21;
