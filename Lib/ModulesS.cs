@@ -1048,10 +1048,9 @@ public partial class SouvenirModule
         if (gates.Distinct().Count() is not 16)
             throw new AbandonModuleException($"Expected 16 distinct gates, got {gates.Stringify()}");
 
-        var gateNames = Question.SimonSwizzlesGate.GetAnswers();
-        addQuestions(module, gates.SelectMany((g, i) => Ut.NewArray(
-            makeQuestion(Question.SimonSwizzlesGate, module, correctAnswers: new[] { gateNames[g] }, questionSprite: Sprites.GenerateGridSprite(4, 4, i)),
-            makeQuestion(Question.SimonSwizzlesButton, module, correctAnswers: new[] { Sprites.GenerateGridSprite(4, 4, i) }, formatArgs: new[] { gateNames[g] })
+        var gateNames = new[] { "OFF", "ON" };
+        addQuestions(module, gates.SelectMany((g, i) => g is not 0 and not 15 ? new QandA[0] : Ut.NewArray(
+            makeQuestion(Question.SimonSwizzlesButton, module, correctAnswers: new[] { Sprites.GenerateGridSprite(4, 4, i) }, formatArgs: new[] { gateNames[g / 15] })
         )).Concat(new[] { makeQuestion(Question.SimonSwizzlesNumber, module, correctAnswers: new[] { hidden }) }));
     }
 

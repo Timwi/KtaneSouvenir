@@ -470,7 +470,7 @@ namespace Souvenir
         }
 
         /// <summary>
-        /// An answer generator used for <see cref="Question.WumboNumber"/>
+        /// An answer generator used for <see cref="Question.WumboNumber"/>.
         /// </summary>
         public sealed class Wumbo : AnswerGeneratorAttribute<string>
         {
@@ -487,6 +487,22 @@ namespace Souvenir
                 }
             }
             public override int Count => 15625;
+        }
+
+        /// <summary>
+        /// An answer generator used for <see cref="Question.ChineseRemainderTheoremEquations"/>.
+        /// </summary>
+        public sealed class ChineseRemainderTheorem : AnswerGeneratorAttribute<string>
+        {
+            public override IEnumerable<string> GetAnswers(SouvenirModule module)
+            {
+                while (true)
+                {
+                    var m = Random.Range(2, 51);
+                    yield return $"N % {m} = {Random.Range(0, m)}";
+                }
+            }
+            public override int Count => 1225;
         }
     }
 }

@@ -10085,32 +10085,6 @@ namespace Souvenir
             },
 
             // Simon Swizzles
-            // What logic gate was assigned to this button in {0}?
-            // What logic gate was assigned to this button in Simon Swizzles?
-            [Question.SimonSwizzlesGate] = new()
-            {
-                NeedsTranslation = true,
-                QuestionText = "What logic gate was assigned to this button in {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["OFF"] = "OFF",
-                    ["AND"] = "AND",
-                    ["!LIMP"] = "!LIMP",
-                    ["LEFT"] = "LEFT",
-                    ["!RIMP"] = "!RIMP",
-                    ["RIGHT"] = "RIGHT",
-                    ["XOR"] = "XOR",
-                    ["OR"] = "OR",
-                    ["NOR"] = "NOR",
-                    ["XNOR"] = "XNOR",
-                    ["!RIGHT"] = "!RIGHT",
-                    ["RIMP"] = "RIMP",
-                    ["!LEFT"] = "!LEFT",
-                    ["LIMP"] = "LIMP",
-                    ["NAND"] = "NAND",
-                    ["ON"] = "ON",
-                },
-            },
             // Where was {1} in {0}?
             // Where was OFF in Simon Swizzles?
             [Question.SimonSwizzlesButton] = new()
@@ -10120,20 +10094,6 @@ namespace Souvenir
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["OFF"] = "OFF",
-                    ["AND"] = "AND",
-                    ["!LIMP"] = "!LIMP",
-                    ["LEFT"] = "LEFT",
-                    ["!RIMP"] = "!RIMP",
-                    ["RIGHT"] = "RIGHT",
-                    ["XOR"] = "XOR",
-                    ["OR"] = "OR",
-                    ["NOR"] = "NOR",
-                    ["XNOR"] = "XNOR",
-                    ["!RIGHT"] = "!RIGHT",
-                    ["RIMP"] = "RIMP",
-                    ["!LEFT"] = "!LEFT",
-                    ["LIMP"] = "LIMP",
-                    ["NAND"] = "NAND",
                     ["ON"] = "ON",
                 },
             },
@@ -11189,12 +11149,17 @@ namespace Souvenir
             },
 
             // Tribal Council
-            // Who was your closest ally in {0}?
-            // Who was your closest ally in Tribal Council?
-            [Question.TribalCouncilClosestAlly] = new()
+            // What was the {1} name in {0}?
+            // What was the northeast name in Tribal Council?
+            [Question.TribalCouncilName] = new()
             {
                 NeedsTranslation = true,
                 QuestionText = "Who was your closest ally in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["northeast"] = "northeast",
+                    ["southwest"] = "southwest",
+                },
             },
 
             // Triple Term

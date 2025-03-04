@@ -302,17 +302,19 @@ public partial class SouvenirModule
         if (moduli.Select((m, i) => remainders[i] >= m).Any(x => x))
             throw new AbandonModuleException($"A remainder was bigger than its corresponding modulus: {moduli.Select((m, i) => $"N % {m} = {remainders[i]}").JoinString("; ")}");
 
+        var remove = moduli.Select((m, i) => (m, i)).Where(t => true).Select(t => t.i).ToArray();
+        if (remove.Length == moduli.Count)
+        {
+            legitimatelyNoQuestion(module, "Every modulus was noncoprime with at least one other modulus.");
+            yield break;
+        }
+
         var right = moduli
             .Select((m, i) => $"N % {m} = {remainders[i]}")
+            .Where((_, i) => !remove.Contains(i))
             .ToArray();
 
-        var wrong = Enumerable
-            .Range(0, 10)
-            .Select(_ => UnityEngine.Random.Range(2, 51))
-            .Select(m => $"N % {m} = {UnityEngine.Random.Range(0, m)}");
-
-        addQuestion(module, Question.ChineseRemainderTheoremEquations,
-            correctAnswers: right, allAnswers: right.Concat(wrong).ToArray());
+        addQuestion(module, Question.ChineseRemainderTheoremEquations, correctAnswers: right);
     }
 
     private IEnumerator<YieldInstruction> ProcessChordQualities(ModuleData module)

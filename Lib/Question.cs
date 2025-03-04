@@ -534,7 +534,8 @@
           ExampleFormatArguments = new[] { "left", "right" }, ExampleFormatArgumentGroupSize = 1)]
         ChineseCountingLED,
 
-        [SouvenirQuestion("Which equation was used in {0}?", "Chinese Remainder Theorem", ThreeColumns6Answers, ExampleAnswers = new[] { "N % 12 = 6", "N % 7 = 0", "N % 20 = 17", "N % 2 = 1", "N % 47 = 32", "N % 15 = 14" })]
+        [SouvenirQuestion("Which equation was used in {0}?", "Chinese Remainder Theorem", ThreeColumns6Answers)]
+        [AnswerGenerator.ChineseRemainderTheorem]
         ChineseRemainderTheoremEquations,
 
         [SouvenirQuestion("Which note was part of the given chord in {0}?", "Chord Qualities", ThreeColumns6Answers, "A", "A♯", "B", "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯")]
@@ -2862,11 +2863,8 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, TranslateAnswers = true, ExampleFormatArgumentGroupSize = 1)]
         SimonSupportsTopics,
 
-        [SouvenirQuestion("What logic gate was assigned to this button in {0}?", "Simon Swizzles", ThreeColumns6Answers, "OFF", "AND", "!LIMP", "LEFT", "!RIMP", "RIGHT", "XOR", "OR", "NOR", "XNOR", "!RIGHT", "RIMP", "!LEFT", "LIMP", "NAND", "ON",
-            UsesQuestionSprite = true, TranslateAnswers = true)]
-        SimonSwizzlesGate,
         [SouvenirQuestion("Where was {1} in {0}?", "Simon Swizzles", ThreeColumns6Answers, Type = AnswerType.Sprites, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true },
-           ExampleFormatArguments = new[] { "OFF", "AND", "!LIMP", "LEFT", "!RIMP", "RIGHT", "XOR", "OR", "NOR", "XNOR", "!RIGHT", "RIMP", "!LEFT", "LIMP", "NAND", "ON" })]
+           ExampleFormatArguments = new[] { "OFF", "ON" })]
         [AnswerGenerator.Grid(4, 4)]
         SimonSwizzlesButton,
         [SouvenirQuestion("What was the hidden number in {0}?", "Simon Swizzles", ThreeColumns6Answers)]
@@ -3155,8 +3153,9 @@
         [SouvenirQuestion("What colour triangle pulsed {1} in {0}?", "Triamonds", ThreeColumns6Answers, "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         TriamondsPulsingColours,
 
-        [SouvenirQuestion("Who was your closest ally in {0}?", "Tribal Council", TwoColumns4Answers, "Louise", "Mark", "Hannah", "Adam", "Harvey", "Maria", "Jonathan", "Carolyn", "Stacy", "Bob")]
-        TribalCouncilClosestAlly,
+        [SouvenirQuestion("What was the {1} name in {0}?", "Tribal Council", TwoColumns4Answers, "Louise", "Mark", "Hannah", "Adam", "Harvey", "Maria", "Jonathan", "Carolyn", "Stacy", "Bob",
+            ExampleFormatArguments = new[] { "northeast", "southwest" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
+        TribalCouncilName,
 
         [SouvenirQuestion("Which of these was one of the passwords in {0}?", "Triple Term", ThreeColumns6Answers, ExampleAnswers = new[] { "Three", "Every", "These", "Would", "Where", "First", "Still", "Plant", "Small", })]
         TripleTermPasswords,
