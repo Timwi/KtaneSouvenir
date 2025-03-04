@@ -599,13 +599,22 @@ namespace Souvenir
         private static IEnumerable<T> UnionAnswers<T>(this IEnumerable<AnswerGeneratorAttribute<T>> generators, SouvenirModule souv)
         {
             var iterators = generators.Select(g => g.GetAnswers(souv).GetEnumerator()).ToList();
+            var weights = generators.Select(g => g.Count).ToList();
+            var totalWeight = weights.Sum();
             while (iterators.Count > 0)
             {
-                var i = Rnd.Range(0, iterators.Count);
+                var c = Rnd.Range(0, totalWeight);
+                int i = -1;
+                while (c >= 0)
+                    c -= weights[++i];
                 if (iterators[i].MoveNext())
                     yield return iterators[i].Current;
                 else
+                {
                     iterators.RemoveAt(i);
+                    totalWeight -= weights[i];
+                    weights.RemoveAt(i);
+                }
             }
         }
     }

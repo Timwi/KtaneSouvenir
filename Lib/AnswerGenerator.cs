@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -33,6 +34,7 @@ namespace Souvenir
     public abstract class AnswerGeneratorAttribute : Attribute
     {
         public abstract Type ElementType { get; }
+        public abstract int Count { get; }
     }
 
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true, Inherited = false)]
@@ -118,6 +120,8 @@ namespace Souvenir
                 foreach (var i in values)
                     yield return i.ToString(Format);
             }
+
+            public override int Count => MaxSteps;
         }
 
         /// <summary>
@@ -154,12 +158,7 @@ namespace Souvenir
 
                 public readonly char Pick()
                 {
-                    var n = Chars != null ? Chars.Length : 0;
-                    if (Ranges != null)
-                    {
-                        for (int i = 0; i < Ranges.Length; i += 2) n += Ranges[i + 1] + 1 - Ranges[i];
-                    }
-                    n = Random.Range(0, n);
+                    var n = Random.Range(0, OptionCount);
                     if (Chars != null)
                     {
                         if (n < Chars.Length) return Chars[n];
@@ -211,6 +210,19 @@ namespace Souvenir
                         }
                     }
                     return new CharacterList(count, chars.Count > 0 ? chars.ToArray() : null, ranges.Count > 0 ? ranges.ToArray() : null);
+                }
+
+                public readonly int OptionCount
+                {
+                    get
+                    {
+                        var n = Chars != null ? Chars.Length : 0;
+                        if (Ranges != null)
+                        {
+                            for (int i = 0; i < Ranges.Length; i += 2) n += Ranges[i + 1] + 1 - Ranges[i];
+                        }
+                        return n;
+                    }
                 }
             }
 
@@ -280,6 +292,8 @@ namespace Souvenir
                     builder.Length = 0;
                 }
             }
+
+            public override int Count => characterLists.Select(c => (int) Math.Pow(c.OptionCount, c.Count)).Aggregate((a, b) => a * b);
         }
 
         /// <summary>An answer generator that generates answers consisting of randomly selected grid cells.</summary>
@@ -288,7 +302,7 @@ namespace Souvenir
             private readonly int _width;
             private readonly int _height;
 
-            private int Count => _width * _height;
+            public override int Count => _width * _height;
 
             public Grid(int width, int height)
             {
@@ -355,6 +369,8 @@ namespace Souvenir
                 foreach (var dotPattern in dotPatterns)
                     yield return Sprites.GenerateCirclesSprite(_width, _height, dotPattern, _radius, _gap, DrawOutline);
             }
+
+            public override int Count => _width * _height;
         }
 
         /// <summary>
@@ -409,6 +425,8 @@ namespace Souvenir
                 foreach (var i in values)
                     yield return module.Ordinal(i);
             }
+
+            public override int Count => MaxSteps;
         }
 
         /// <summary>
@@ -447,6 +465,8 @@ namespace Souvenir
                     yield return sb.ToString();
                 }
             }
+
+            public override int Count => _generators.Select(g => g.Count).Aggregate((a, b) => a * b);
         }
 
         /// <summary>
@@ -466,6 +486,7 @@ namespace Souvenir
                     yield return n.ToString();
                 }
             }
+            public override int Count => 15625;
         }
     }
 }
