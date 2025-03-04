@@ -362,19 +362,6 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "wumboScript");
         var num = GetField<ulong>(comp, "number").Get(v => v is < 0uL or > 813244863240810000uL ? "Out of range [0, 813244863240810000]" : null);
 
-        static IEnumerable<string> exampleAnswers()
-        {
-            ulong[] primes = new[] { 2uL, 3uL, 5uL, 7uL, 11uL, 13uL };
-            while (true)
-            {
-                ulong n = 1;
-                for (int i = 0; i < primes.Length; i++)
-                    for (int j = 0, c = UnityEngine.Random.Range(0, 5); j < c; j++)
-                        n = n * primes[i];
-                yield return n.ToString();
-            }
-        }
-
-        addQuestion(module, Question.WumboNumber, correctAnswers: new[] { num.ToString() }, preferredWrongAnswers: exampleAnswers().Take(3).ToArray());
+        addQuestion(module, Question.WumboNumber, correctAnswers: new[] { num.ToString() });
     }
 }
