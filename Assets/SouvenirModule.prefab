@@ -1478,6 +1478,34 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4b404103f5073be4ea4e69cb8e77860c, type: 3}
   - {fileID: 21300000, guid: 694f68c1855a8c444b2d6b15d1339d64, type: 3}
   - {fileID: 21300000, guid: 946a9792a746df94d81c9a6b3731b048, type: 3}
+  XYRaySprites:
+  - {fileID: 21300000, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300002, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300004, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300006, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300008, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300010, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300012, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300014, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300016, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300018, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300020, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300022, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300024, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300026, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300028, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300030, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300032, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300034, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300036, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300038, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300040, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300042, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300044, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300046, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300048, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300050, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
+  - {fileID: 21300052, guid: 40ee9dc5eef8c8a4391c025436bc8615, type: 3}
   DigitTextures:
   - {fileID: 2800000, guid: bea6aa605f738a54bb355350672398ba, type: 3}
   - {fileID: 2800000, guid: 47d47ddecb6fb1b4784f9a2a756e02b5, type: 3}

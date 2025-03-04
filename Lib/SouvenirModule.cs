@@ -69,6 +69,7 @@ public partial class SouvenirModule : MonoBehaviour
     public Sprite[] WarningSignsSprites;
     public Sprite[] WavetappingSprites;
     public Sprite[] XRingSprites;
+    public Sprite[] XYRaySprites;
     public Texture2D[] DigitTextures;
     public Texture2D[] FuseBoxQuestions;
     public Texture2D[] NonverbalSimonQuestions;

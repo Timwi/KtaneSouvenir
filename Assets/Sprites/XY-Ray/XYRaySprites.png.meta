@@ -1,0 +1,491 @@
+fileFormatVersion: 2
+guid: 40ee9dc5eef8c8a4391c025436bc8615
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Herschel Enneahedron
+    21300002: Spherical Cone
+    21300004: Rhombic Triacontahedron
+    21300006: Oblate Spheroid
+    21300008: Dodecahedron
+    21300010: Rhombohedron
+    21300012: Rhombicuboctahderon
+    21300014: Trapezohedron
+    21300016: Bicone
+    21300018: Pentagonal Prism
+    21300020: Octahedron
+    21300022: Cylinder
+    21300024: Tetrahedron
+    21300026: Sphere
+    21300028: Rhombic Dodecahedron
+    21300030: Cone
+    21300032: Cube
+    21300034: Triangular Bipyramid
+    21300036: Bicylinder
+    21300038: Gyrobifastigium
+    21300040: Icosidodecahedron
+    21300042: Cuboctahedron
+    21300044: Icosahedron
+    21300046: Prolate Spheroid
+    21300048: Gyroelongated Square Bipyramid
+    21300050: Spherical Wedge
+    21300052: Rhombotriangular Dodecahedron
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 4000
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Herschel Enneahedron
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 10613.333
+        width: 1365.3334
+        height: 1326.6666
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spherical Cone
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 10613.333
+        width: 1365.3334
+        height: 1326.6666
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Rhombic Triacontahedron
+      rect:
+        serializedVersion: 2
+        x: 2730
+        y: 10613.333
+        width: 1365.3334
+        height: 1326.6666
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Oblate Spheroid
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 9287.333
+        width: 1365.3334
+        height: 1326.6666
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Dodecahedron
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 9287.333
+        width: 1365.3334
+        height: 1326.6666
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Rhombohedron
+      rect:
+        serializedVersion: 2
+        x: 2730
+        y: 9287.333
+        width: 1365.3334
+        height: 1326.6666
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Rhombicuboctahderon
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7961.3335
+        width: 1365.3334
+        height: 1326.6666
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Trapezohedron
+      rect:
+        serializedVersion: 2
+        x: 1376
+        y: 7972
+        width: 1365
+        height: 1327
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Bicone
+      rect:
+        serializedVersion: 2
+        x: 2731
+        y: 7979
+        width: 1365
+        height: 1327
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Pentagonal Prism
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6635.3335
+        width: 1365.3334
+        height: 1326.6666
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Octahedron
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 6635.3335
+        width: 1365.3334
+        height: 1326.6666
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cylinder
+      rect:
+        serializedVersion: 2
+        x: 2730
+        y: 6635.3335
+        width: 1365.3334
+        height: 1326.6666
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tetrahedron
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5309.3335
+        width: 1365.3334
+        height: 1326.6666
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sphere
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 5309.3335
+        width: 1365.3334
+        height: 1326.6666
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Rhombic Dodecahedron
+      rect:
+        serializedVersion: 2
+        x: 2730
+        y: 5309.3335
+        width: 1365.3334
+        height: 1326.6666
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cone
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 3960
+        width: 1365
+        height: 1327
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cube
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 3983.3335
+        width: 1365.3334
+        height: 1326.6666
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Triangular Bipyramid
+      rect:
+        serializedVersion: 2
+        x: 2730
+        y: 3983.3335
+        width: 1365.3334
+        height: 1326.6666
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Bicylinder
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2657.3335
+        width: 1365.3334
+        height: 1326.6666
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gyrobifastigium
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 2657.3335
+        width: 1365.3334
+        height: 1326.6666
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icosidodecahedron
+      rect:
+        serializedVersion: 2
+        x: 2730
+        y: 2657.3335
+        width: 1365.3334
+        height: 1326.6666
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cuboctahedron
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1331.3334
+        width: 1365.3334
+        height: 1326.6666
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icosahedron
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 1304
+        width: 1365
+        height: 1327
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Prolate Spheroid
+      rect:
+        serializedVersion: 2
+        x: 2730
+        y: 1331.3334
+        width: 1365.3334
+        height: 1326.6666
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gyroelongated Square Bipyramid
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5.333374
+        width: 1365.3334
+        height: 1326.6666
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Spherical Wedge
+      rect:
+        serializedVersion: 2
+        x: 1366
+        y: 0
+        width: 1310
+        height: 1293
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Rhombotriangular Dodecahedron
+      rect:
+        serializedVersion: 2
+        x: 2730
+        y: 5.333374
+        width: 1365.3334
+        height: 1326.6666
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
