@@ -1049,9 +1049,10 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"Expected 16 distinct gates, got {gates.Stringify()}");
 
         var gateNames = new[] { "OFF", "ON" };
-        addQuestions(module, gates.SelectMany((g, i) => g is not 0 and not 15 ? new QandA[0] : Ut.NewArray(
-            makeQuestion(Question.SimonSwizzlesButton, module, correctAnswers: new[] { Sprites.GenerateGridSprite(4, 4, i) }, formatArgs: new[] { gateNames[g / 15] })
-        )).Concat(new[] { makeQuestion(Question.SimonSwizzlesNumber, module, correctAnswers: new[] { hidden }) }));
+        addQuestions(module, gates
+            .Select((g, i) => g is not 0 and not 15 ? null : makeQuestion(Question.SimonSwizzlesButton, module, correctAnswers: new[] { Sprites.GenerateGridSprite(4, 4, i) }, formatArgs: new[] { gateNames[g / 15] }))
+            .Where(q => q != null)
+            .Concat(new[] { makeQuestion(Question.SimonSwizzlesNumber, module, correctAnswers: new[] { hidden }) }));
     }
 
     private IEnumerator<YieldInstruction> ProcessSimultaneousSimons(ModuleData module)

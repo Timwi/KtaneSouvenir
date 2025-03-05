@@ -317,7 +317,7 @@ public partial class SouvenirModule
 
         var remove = moduli
             .Select((m, i) => (m, i))
-            .Where(t => moduli.Except(new[] { t.m }).Any(m => GCD(t.m, m) != 1))
+            .Where(t => moduli.Any(m => m != t.m && GCD(t.m, m) != 1))
             .Select(t => t.i)
             .ToArray();
         if (remove.Length == moduli.Count)
