@@ -302,7 +302,24 @@ public partial class SouvenirModule
         if (moduli.Select((m, i) => remainders[i] >= m).Any(x => x))
             throw new AbandonModuleException($"A remainder was bigger than its corresponding modulus: {moduli.Select((m, i) => $"N % {m} = {remainders[i]}").JoinString("; ")}");
 
-        var remove = moduli.Select((m, i) => (m, i)).Where(t => true).Select(t => t.i).ToArray();
+        static int GCD(int a, int b)
+        {
+            while (a != 0 && b != 0)
+            {
+                if (a > b)
+                    a %= b;
+                else
+                    b %= a;
+            }
+
+            return a | b;
+        }
+
+        var remove = moduli
+            .Select((m, i) => (m, i))
+            .Where(t => moduli.Except(new[] { t.m }).Any(m => GCD(t.m, m) != 1))
+            .Select(t => t.i)
+            .ToArray();
         if (remove.Length == moduli.Count)
         {
             legitimatelyNoQuestion(module, "Every modulus was noncoprime with at least one other modulus.");
