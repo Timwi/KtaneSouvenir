@@ -536,7 +536,7 @@ namespace Souvenir
             // Which number was selectable, but not the solution, in the left screen on Arithmelogic?
             [Question.ArithmelogicNumbers] = new()
             {
-                QuestionText = "Какое число присутствовало (но не являлось решением) {1} экране {0}?",
+                QuestionText = "Какое число присутствовало (но не являлось решением) на {1} экране {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["left"] = "левом",
@@ -1478,6 +1478,24 @@ namespace Souvenir
             {
                 Conjugation = Conjugation.GenitiveMascNeuter,
                 QuestionText = "Какого цвета была центральная точка {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Orange"] = "Orange",
+                    ["Yellow"] = "Yellow",
+                    ["Lime"] = "Lime",
+                    ["Green"] = "Green",
+                    ["Cyan"] = "Cyan",
+                    ["Sky"] = "Sky",
+                    ["Blue"] = "Blue",
+                    ["Purple"] = "Purple",
+                    ["Magenta"] = "Magenta",
+                    ["Brown"] = "Brown",
+                    ["White"] = "White",
+                    ["Gray"] = "Gray",
+                    ["Black"] = "Black",
+                    ["Pink"] = "Pink",
+                },
             },
 
             // The Bulb
@@ -3778,6 +3796,7 @@ namespace Souvenir
             // What colors were the cylinders during the first stage of Forget Any Color?
             [Question.ForgetAnyColorCylinder] = new()
             {
+                Conjugation = Conjugation.GenitiveMascNeuter,
                 QuestionText = "Какие были цилиндры на {1}-м этапе {0}?",
                 TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
@@ -3801,6 +3820,7 @@ namespace Souvenir
             // Which figure was used during the first stage of Forget Any Color?
             [Question.ForgetAnyColorSequence] = new()
             {
+                Conjugation = Conjugation.GenitiveMascNeuter,
                 QuestionText = "Какая строка была применена на {1}-м этапе {0}?",
             },
 
@@ -4330,7 +4350,7 @@ namespace Souvenir
             // What color was the top LED in Gyromaze?
             [Question.GyromazeLEDColor] = new()
             {
-                QuestionText = "Какого цвета был {1}-й светодиод {0}?",
+                QuestionText = "Какого цвета был {1} светодиод {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "верхний",
@@ -8730,7 +8750,7 @@ namespace Souvenir
                 QuestionText = "Какая песня была показана на этапе {1} (16-ричное число) {0}?",
                 TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
-                    ["the Sbemail Songs which displayed ‘{0}’ in stage {1} (hexadecimal)"] = "в Sbemail Songs, где на этапе {1} (16-ричное число) было показано {0}",
+                    ["the Sbemail Songs which displayed ‘{0}’ in stage {1} (hexadecimal)"] = "в Sbemail Songs, где на этапе {1} (16-ричное число) была показана песня {0}",
                 },
             },
 
