@@ -8578,6 +8578,11 @@ namespace Souvenir
             {
                 NeedsTranslation = true,
                 QuestionText = "What was the {1} digit in the {2} sequence in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["primary"] = "primary",
+                    ["secondary"] = "secondary",
+                },
             },
 
             // Quintuples

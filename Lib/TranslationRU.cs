@@ -91,7 +91,7 @@ namespace Souvenir
             // What was the initially displayed number in 0?
             [Question._0Number] = new()
             {
-                Conjugation = Conjugation.PrepositiveMascNeuter, 
+                Conjugation = Conjugation.PrepositiveMascNeuter,
                 QuestionText = "Какое число было изначально показано на {0}?",
             },
 
@@ -2136,9 +2136,9 @@ namespace Souvenir
             // What color was the left LED in Color One Two?
             [Question.ColorOneTwoColor] = new()
             {
-            	Conjugation = Conjugation.PrepositiveMascNeuter,
-                ModuleName = "\"Цвет раз два\"",
+                Conjugation = Conjugation.PrepositiveMascNeuter,
                 QuestionText = "Какого цвета был {1} светодиод на {0}?",
+                ModuleName = "\"Цвет раз два\"",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["left"] = "левый",
@@ -2254,7 +2254,7 @@ namespace Souvenir
             [Question.ConcentrationStartingDigit] = new()
             {
                 QuestionText = "Какое число было здесь изначально {0}?",
-                TranslatableStrings = new Dictionary<string, string>
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
                     ["the Concentration which began with {1} in the {0} position (in reading order)"] = "в Concentration, где \"{1}\" изначально было в {0}-й позиции (в порядке чтения)",
                 },
@@ -4436,7 +4436,7 @@ namespace Souvenir
             [Question.HexOrbitsShape] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the {1} shape for the {2} display in {0}?", //What exactly is behind {1} arg? @PoisonGreen
+                QuestionText = "What was the {1} shape for the {2} display in {0}?",
             },
 
             // hexOS
@@ -5027,7 +5027,7 @@ namespace Souvenir
             // What was this key’s label on the first panel in Keypad Sequence?
             [Question.KeypadSequenceLabels] = new()
             {
-                Conjugation = Conjugation.GenetiveMascNeuter,
+                Conjugation = Conjugation.GenitiveMascNeuter,
                 QuestionText = "Какая была надпись на этой кнопке на {1}-й панели {0}?",
             },
 
@@ -6729,14 +6729,14 @@ namespace Souvenir
             [Question.NotColourFlashInitialWord] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the initial word on {0}?",     //Question comment and question string are different. Which one should be translated?
+                QuestionText = "What was the initial word on {0}?",
             },
             // What was {1} in the displayed colour sequence in {0}?
             // What was first in the displayed colour sequence in Not Colour Flash?
             [Question.NotColourFlashInitialColour] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the initial colour of the word on {0}?",       //Question comment and question string are different. Which one should be translated?
+                QuestionText = "What was the initial colour of the word on {0}?",
                 Answers = new Dictionary<string, string>
                 {
                     ["Red"] = "Red",
@@ -8027,7 +8027,7 @@ namespace Souvenir
             [Question.PrisonBreakPrisoner] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "Where did the prisoner start in {0}?",  //Question comment and question text are different. Which one should be translated?
+                QuestionText = "Where did the prisoner start in {0}?",
             },
             // Where did you start in {0}?
             // Where did you start in Prison Break?
@@ -8206,7 +8206,13 @@ namespace Souvenir
             // What was the first digit in the primary sequence in Quick Arithmetic?
             [Question.QuickArithmeticPrimSecDigits] = new()
             {
-                QuestionText = "Какое было {1}-е число в {2} последовательности {0}?",      // {2} args would be nice to have here
+                NeedsTranslation = true,
+                QuestionText = "Какое было {1}-е число в {2} последовательности {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["primary"] = "primary",
+                    ["secondary"] = "secondary",
+                },
             },
 
             // Quintuples
@@ -10719,7 +10725,7 @@ namespace Souvenir
             [Question.TribalCouncilName] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "Who was your closest ally in {0}?",    //Question comment and question text do not match. Which one should be translated?
+                QuestionText = "Who was your closest ally in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["northeast"] = "northeast",

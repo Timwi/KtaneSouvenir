@@ -2408,7 +2408,7 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         QuickArithmeticColors,
         [SouvenirQuestion("What was the {1} digit in the {2} sequence in {0}?", "Quick Arithmetic", ThreeColumns6Answers,
-            ExampleFormatArguments = new[] { QandA.Ordinal, "primary", QandA.Ordinal, "secondary" }, ExampleFormatArgumentGroupSize = 2)]
+            ExampleFormatArguments = new[] { QandA.Ordinal, "primary", QandA.Ordinal, "secondary" }, ExampleFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { false, true })]
         [AnswerGenerator.Integers(0, 9)]
         QuickArithmeticPrimSecDigits,
 

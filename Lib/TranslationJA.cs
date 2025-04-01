@@ -8388,8 +8388,14 @@ namespace Souvenir
             // What was the first digit in the primary sequence in Quick Arithmetic?
             [Question.QuickArithmeticPrimSecDigits] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}の初期シーケンスにおける{1}番目の数字は？",
                 ModuleName = "瞬速計算",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["primary"] = "primary",
+                    ["secondary"] = "secondary",
+                },
             },
 
             // Quintuples
