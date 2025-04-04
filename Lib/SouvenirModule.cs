@@ -1123,7 +1123,7 @@ public partial class SouvenirModule : MonoBehaviour
             var inconsistency = correctAnswers.Except(allAnswers).FirstOrDefault();
             if (inconsistency != null)
             {
-                Debug.LogError($"<Souvenir #{_moduleId}> Question {question}: invalid answer: {inconsistency.ToString() ?? "<null>"}.\nallAnswers: {(allAnswersWasNull ? "was null" : "was not null")}; [{allAnswers.Select(s => $"{s} ({s.GetHashCode()})").JoinString(", ")}]\ncorrectAnswers: [{correctAnswers.Select(s => $"{s} ({s.GetHashCode()})").JoinString(", ")}]");
+                Debug.LogError($"<Souvenir #{_moduleId}> Question {question}: invalid answer: {inconsistency.ToString() ?? "<null>"}.\nallAnswers: {(allAnswersWasNull ? "was null" : "was not null")}; [{allAnswers.Select(s => s.DebugExamine()).JoinString(", ")}]\ncorrectAnswers: [{correctAnswers.Select(s => s.DebugExamine()).JoinString(", ")}]");
                 return null;
             }
             if (preferredWrongAnswers != null)

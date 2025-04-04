@@ -617,5 +617,29 @@ namespace Souvenir
                 }
             }
         }
+
+        /// <summary>Generates a hexdump of the UTF-8 encoding of the string representation of the specified object.</summary>
+        public static string DebugExamine(this object input)
+        {
+            var inf = $"{input} ({input.GetHashCode()}";
+            if (input is string s)
+            {
+                var utf8 = Encoding.UTF8.GetBytes(input.ToString());
+
+                var charArr = new char[utf8.Length * 2];
+                var j = 0;
+                for (var i = 0; i < utf8.Length; i++)
+                {
+                    var b = (byte) (utf8[i] >> 4);
+                    charArr[j] = (char) (b < 10 ? '0' + b : 'W' + b);   // 'a'-10 = 'W'
+                    j++;
+                    b = (byte) (utf8[i] & 0xf);
+                    charArr[j] = (char) (b < 10 ? '0' + b : 'W' + b);
+                    j++;
+                }
+                inf += $"; str: {s.GetHashCode()}, {new string(charArr)}";
+            }
+            return inf + ")";
+        }
     }
 }

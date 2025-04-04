@@ -10,7 +10,7 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
-    const string Version = "5.8";
+    const string Version = "5.9";
 
     void Awake()
     {
