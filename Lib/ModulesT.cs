@@ -333,44 +333,6 @@ public partial class SouvenirModule
             makeQuestion(Question.TouchTransmissionOrder, module, correctAnswers: new[] { fldOrder.Get().ToString().Replace('_', ' ') }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessTrajectory(ModuleData module)
-    {
-        var comp = GetComponent(module, "TrajectoryModule");
-        yield return WaitForSolve;
-
-        object puzzle = GetField<object>(comp, "puzzle").Get();
-
-        Array configs = GetField<Array>(puzzle, "configurations").Get(arr => arr.Length == 3 ? null : "expected length 3");
-        string[] colorNames = { "red", "green", "blue" };
-        string[][] functions = new string[3][] { new string[3], new string[3], new string[3] };
-        for (int buttonIx = 0; buttonIx < 3; buttonIx++)
-        {
-            object config = configs.GetValue(buttonIx);
-            int[] xMovements = GetArrayField<int>(config, "dxs").Get(expectedLength: 3);
-            int[] yMovements = GetArrayField<int>(config, "dys").Get(expectedLength: 3);
-            for (int componentIx = 0; componentIx < 3; componentIx++)
-            {
-                string function = colorNames[componentIx] + " ";
-                int xmove = xMovements[componentIx];
-                int ymove = yMovements[componentIx];
-                if (xmove == 0 && ymove == 0)
-                    function += "reverse";
-                else if (xmove == 0 && ymove == +1)
-                    function += "up";
-                else if (xmove == 0 && ymove == -1)
-                    function += "down";
-                else if (xmove == -1 && ymove == 0)
-                    function += "left";
-                else if (xmove == +1 && ymove == 0)
-                    function += "right";
-                functions[buttonIx][componentIx] = function;
-            }
-        }
-        addQuestions(module,
-            makeQuestion(Question.TrajectoryButtonFunctions, module, formatArgs: new[] { "A" }, correctAnswers: functions[0], preferredWrongAnswers: functions.SelectMany(x => x).ToArray()),
-            makeQuestion(Question.TrajectoryButtonFunctions, module, formatArgs: new[] { "B" }, correctAnswers: functions[1], preferredWrongAnswers: functions.SelectMany(x => x).ToArray()),
-            makeQuestion(Question.TrajectoryButtonFunctions, module, formatArgs: new[] { "C" }, correctAnswers: functions[2], preferredWrongAnswers: functions.SelectMany(x => x).ToArray()));
-    }
     private IEnumerator<YieldInstruction> ProcessTransmittedMorse(ModuleData module)
     {
         var comp = GetComponent(module, "TransmittedMorseScript");
