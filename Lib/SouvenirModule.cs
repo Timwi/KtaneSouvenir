@@ -1131,7 +1131,7 @@ public partial class SouvenirModule : MonoBehaviour
                 var inconsistency2 = preferredWrongAnswers.Except(allAnswers).FirstOrDefault();
                 if (inconsistency2 != null)
                 {
-                    Debug.LogError($"<Souvenir #{_moduleId}> Question {question}: invalid preferred wrong answer: {inconsistency2.ToString() ?? "<null>"}.");
+                    Debug.LogError($"<Souvenir #{_moduleId}> Question {question}: invalid preferred wrong answer: {inconsistency2.ToString() ?? "<null>"}.\nallAnswers: {(allAnswersWasNull ? "was null" : "was not null")}; [{allAnswers.Select(s => s.DebugExamine()).JoinString(", ")}]\npreferred wrong answer: [{correctAnswers.Select(s => s.DebugExamine()).JoinString(", ")}]");
                     return null;
                 }
             }

@@ -1001,13 +1001,6 @@ public partial class SouvenirModule
         addQuestion(module, Question.BrushStrokesMiddleColor, correctAnswers: new[] { char.ToUpperInvariant(colorNames[colors[4]][0]) + colorNames[colors[4]].Substring(1) });
     }
 
-    private IEnumerator<YieldInstruction> ProcessBulb(ModuleData module)
-    {
-        var comp = GetComponent(module, "TheBulbModule");
-        yield return WaitForSolve;
-        addQuestion(module, Question.BulbButtonPresses, correctAnswers: new[] { GetField<string>(comp, "_correctButtonPresses").Get(str => str.Length != 3 ? "expected length 3" : null) });
-    }
-
     private IEnumerator<YieldInstruction> ProcessBurgerAlarm(ModuleData module)
     {
         var comp = GetComponent(module, "burgerAlarmScript");
