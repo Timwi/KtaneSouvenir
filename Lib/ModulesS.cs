@@ -1068,7 +1068,7 @@ public partial class SouvenirModule
         for (int simon = 0; simon < 4; simon++)
             for (int flash = 0; flash < 4; flash++)
                 qs.Add(makeQuestion(Question.SimultaneousSimonsFlash, module,
-                    formatArgs: new[] { Ordinal(simon + 1), Ordinal(flash + 1) },
+                    formatArgs: new[] { Ordinal(flash + 1), Ordinal(simon + 1) },
                     correctAnswers: new[] { colorNames[btnColors[sequences[simon, flash]]] }));
         addQuestions(module, qs);
     }
