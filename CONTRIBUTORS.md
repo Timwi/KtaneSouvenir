@@ -205,6 +205,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Elder Futhark            │  Goofy
     Exoplanets               │  Brawlboxgaming
     ƎNA Cipher               │  KiloBites
+    Fast Playfair Cipher     │  Dani was here
     Functions                │  JerryEris
     Gryphons                 │  JerryEris
     Hyperlink, The           │  Espik

@@ -204,6 +204,7 @@ public partial class SouvenirModule
             ["factoryMaze"] = (ProcessFactoryMaze, "Factory Maze", "luisdiogo98"),
             ["FaerieFiresModule"] = (ProcessFaerieFires, "Faerie Fires", "Anonymous"),
             ["fastMath"] = (ProcessFastMath, "Fast Math", "Timwi"),
+            ["FastPlayfairCipher"] = (ProcessFastPlayfairCipher, "Fast Playfair Cipher", "Dani was here"),
             ["GSFaultyButtons"] = (ProcessFaultyButtons, "Faulty Buttons", "Kuro"),
             ["faultyrgbMaze"] = (ProcessFaultyRGBMaze, "Faulty RGB Maze", "kavinkul"),
             ["DateFinder"] = (ProcessFindTheDate, "Find The Date", "Hawker"),

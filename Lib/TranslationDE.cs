@@ -3713,6 +3713,15 @@ namespace Souvenir
                 QuestionText = "What was the last pair of letters in {0}?",
             },
 
+            // Fast Playfair Cipher
+            // What was the last displayed message in {0}?
+            // What was the last displayed message in Fast Playfair Cipher?
+            [Question.FastPlayfairCipherLastMessage] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the last displayed message in {0}?",
+            },
+
             // Faulty Buttons
             // Which button referred to the {1} button in reading order in {0}?
             // Which button referred to the first button in reading order in Faulty Buttons?

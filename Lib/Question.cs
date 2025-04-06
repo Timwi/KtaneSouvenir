@@ -1014,6 +1014,11 @@
         [SouvenirQuestion("What was the last pair of letters in {0}?", "Fast Math", ThreeColumns6Answers, ExampleAnswers = new[] { "CT", "DK", "SA", "SG", "SX", "TX", "TZ", "XP", "XX", "ZB" })]
         FastMathLastLetters,
 
+        [SouvenirQuestion("What was the last displayed message in {0}?", "Fast Playfair Cipher", ThreeColumns6Answers, ExampleAnswers = new[] { "CT", "DK", "SA", "SG", "SH", "TG", "TZ", "FP", "JA", "ZB" })]
+        [AnswerGenerator.Strings("A-WYZ")]
+        [AnswerGenerator.Strings("A-WYZ", "A-WYZ")]
+        FastPlayfairCipherLastMessage,
+
         [SouvenirQuestion("Which button referred to the {1} button in reading order in {0}?", "Faulty Buttons", ThreeColumns6Answers, Type = AnswerType.Sprites, ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Grid(4, 4)]
         FaultyButtonsReferredToThisButton,
