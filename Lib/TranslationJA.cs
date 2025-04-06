@@ -21,7 +21,7 @@ namespace Souvenir
             [Question._0Number] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the initially displayed number in {0}?",
+                QuestionText = "{0}の初期状態の数字は？",
             },
 
             // 1000 Words
@@ -431,7 +431,7 @@ namespace Souvenir
             [Question.AmusementParksRides] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "Which ride was available in {0}?",
+                QuestionText = "{0}で利用可能だったアトラクションは？",
             },
 
             // Ángel Hernández
@@ -519,7 +519,7 @@ namespace Souvenir
             [Question.AudioMorseSound] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was signaled in {0}?",
+                QuestionText = "{0}で送信されたものは？",
             },
 
             // The Azure Button
@@ -725,10 +725,10 @@ namespace Souvenir
                 QuestionText = "{0}の{1}本目の棒は何色だった？",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
+                    ["Red"] = "赤",
+                    ["Yellow"] = "黄",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
                 },
             },
             // What was the position of the {1} bar in {0}?
@@ -1041,7 +1041,7 @@ namespace Souvenir
             [Question.BlinkingNotesSong] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What song was flashed in {0}?",
+                QuestionText = "{0}の点滅が再生した曲は？",
             },
 
             // Blinkstop
@@ -1214,7 +1214,7 @@ namespace Souvenir
             [Question.BoneAppleTeaPhrase] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "Which phrase was shown on {0}?",
+                QuestionText = "{0}で表示されたフレーズは？",
             },
 
             // Boob Tube
@@ -1223,7 +1223,7 @@ namespace Souvenir
             [Question.BoobTubeWord] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "Which word was shown on {0}?",
+                QuestionText = "{0}で表示された単語は？",
             },
 
             // Book of Mario
@@ -1525,23 +1525,24 @@ namespace Souvenir
             [Question.ButtonageButtons] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "How many {1} buttons were there on {0}?",
+                QuestionText = "{0}に{1}ボタンは何個あった？",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["orange"] = "orange",
-                    ["blue"] = "blue",
-                    ["pink"] = "pink",
-                    ["white"] = "white",
-                    ["black"] = "black",
-                    ["white-bordered"] = "white-bordered",
-                    ["pink-bordered"] = "pink-bordered",
-                    ["gray-bordered"] = "gray-bordered",
-                    ["red-bordered"] = "red-bordered",
-                    ["“P”"] = "“P”",
-                    ["special"] = "special",
+                    ["red"] = "赤の",
+                    ["green"] = "緑の",
+                    ["orange"] = "オレンジの",
+                    ["blue"] = "青の",
+                    ["pink"] = "ピンクの",
+                    ["white"] = "白の",
+                    ["black"] = "黒の",
+                    ["white-bordered"] = "白の縁取り",
+                    ["pink-bordered"] = "ピンクの縁取り",
+                    ["gray-bordered"] = "グレーの縁取り",
+                    ["red-bordered"] = "赤の縁取り",
+                    ["“P”"] = "「P」の",
+                    ["special"] = "特殊",
                 },
+
             },
 
             // Button Sequence
@@ -1566,13 +1567,13 @@ namespace Souvenir
             [Question.CactisConundrumColor] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What color was the LED in the {1} stage of {0}?",
+                QuestionText = "{0}のステージ{1}におけるLEDの色は？",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Blue"] = "Blue",
-                    ["Lime"] = "Lime",
-                    ["Orange"] = "Orange",
-                    ["Red"] = "Red",
+                    ["Blue"] = "青",
+                    ["Lime"] = "黄緑",
+                    ["Orange"] = "オレンジ",
+                    ["Red"] = "赤",
                 },
             },
 
@@ -1626,13 +1627,13 @@ namespace Souvenir
             [Question.CARPSCell] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What color was this cell initially in {0}?",
+                QuestionText = "{0}のこのセルの初期色は？",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Black"] = "Black",
+                    ["Red"] = "赤",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Black"] = "黒",
                 },
             },
 
@@ -1832,7 +1833,7 @@ namespace Souvenir
             [Question.ChineseRemainderTheoremEquations] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "Which equation was used in {0}?",
+                QuestionText = "{0}で使用された式は？",
             },
 
             // Chord Qualities
@@ -1876,13 +1877,13 @@ namespace Souvenir
             [Question.CoffeeBeansMovements] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the {1} movement in {0}?",
+                QuestionText = "{0}の{1}番目の動きは？",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Horizontal"] = "Horizontal",
-                    ["Vertical"] = "Vertical",
-                    ["Diagonal"] = "Diagonal",
-                    ["Nothing"] = "Nothing",
+                    ["Horizontal"] = "水平",
+                    ["Vertical"] = "垂直",
+                    ["Diagonal"] = "対角",
+                    ["Nothing"] = "無し",
                 },
             },
 
@@ -1925,17 +1926,17 @@ namespace Souvenir
             [Question.ColorBrailleColor] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What color was this dot in {0}?",
+                QuestionText = "{0}のこの点の色は？",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Black"] = "Black",
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
-                    ["Cyan"] = "Cyan",
-                    ["Red"] = "Red",
-                    ["Magenta"] = "Magenta",
-                    ["Yellow"] = "Yellow",
-                    ["White"] = "White",
+                    ["Black"] = "黒",
+                    ["Blue"] = "青",
+                    ["Green"] = "緑",
+                    ["Cyan"] = "シアン",
+                    ["Red"] = "赤",
+                    ["Magenta"] = "マゼンタ",
+                    ["Yellow"] = "黄",
+                    ["White"] = "白",
                 },
             },
 
@@ -2112,18 +2113,18 @@ namespace Souvenir
             [Question.ColorOneTwoColor] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What color was the {1} LED in {0}?",
+                QuestionText = "{0}の{1}側のLEDの色は？",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["left"] = "left",
-                    ["right"] = "right",
+                    ["left"] = "左",
+                    ["right"] = "右",
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
-                    ["Yellow"] = "Yellow",
+                    ["Red"] = "赤",
+                    ["Blue"] = "青",
+                    ["Green"] = "緑",
+                    ["Yellow"] = "黄",
                 },
             },
 
@@ -2191,16 +2192,16 @@ namespace Souvenir
             [Question.ColouredCylinderColours] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the {1} colour flashed on the cylinder in {0}?",
+                QuestionText = "{0}でシリンダーが{1}番目に光った色は？",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Yellow"] = "Yellow",
-                    ["Magenta"] = "Magenta",
-                    ["White"] = "White",
-                    ["Black"] = "Black",
+                    ["Red"] = "赤",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Yellow"] = "黄",
+                    ["Magenta"] = "マゼンタ",
+                    ["White"] = "白",
+                    ["Black"] = "黒",
                 },
             },
 
@@ -2228,10 +2229,10 @@ namespace Souvenir
             [Question.ConcentrationStartingDigit] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What number began here in {0}?",
+                QuestionText = "{0}で、初期状態でこの場所にあった数字は？",
                 TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
-                    ["the Concentration which began with {1} in the {0} position (in reading order)"] = "the Concentration which began with {1} in the {0} position (in reading order)",
+                    ["the Concentration which began with {1} in the {0} position (in reading order)"] = "初期状態で読み順で{0}番目に{1}があった集中",
                 },
             },
 
@@ -2245,16 +2246,16 @@ namespace Souvenir
                 ModuleName = "条件ボタン",
                 Answers = new Dictionary<string, string>
                 {
-                    ["black"] = "black",
-                    ["blue"] = "blue",
-                    ["dark green"] = "dark green",
-                    ["light green"] = "light green",
-                    ["orange"] = "orange",
-                    ["pink"] = "pink",
-                    ["purple"] = "purple",
-                    ["red"] = "red",
-                    ["white"] = "white",
-                    ["yellow"] = "yellow",
+                    ["black"] = "黒",
+                    ["blue"] = "青",
+                    ["dark green"] = "深緑",
+                    ["light green"] = "黄緑",
+                    ["orange"] = "オレンジ",
+                    ["pink"] = "ピンク",
+                    ["purple"] = "紫",
+                    ["red"] = "赤",
+                    ["white"] = "白",
+                    ["yellow"] = "黄",
                 },
             },
 
@@ -2826,7 +2827,8 @@ namespace Souvenir
             [Question.DialtonesDialtones] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What dialtones were heard in {0}?",
+                QuestionText = "{0}で聞こえたダイヤルトーンは？",
+                ModuleName = "ダイヤル音声",
             },
 
             // Digisibility
@@ -2989,14 +2991,14 @@ namespace Souvenir
             [Question.DoofenshmirtzEvilIncJingles] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What jingle played in {0}?",
+                QuestionText = "{0}で流れたジングルは？",
             },
             // Which image was shown in {0}?
             // Which image was shown in Doofenshmirtz Evil Inc.?
             [Question.DoofenshmirtzEvilIncInators] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "Which image was shown in {0}?",
+                QuestionText = "{0}で表示された画像は？",
             },
 
             // Double Arrows
@@ -3263,11 +3265,11 @@ namespace Souvenir
             [Question.EmojiEmoji] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the {1} emoji in {0}?",
+                QuestionText = "{0}の{1}の絵文字は？",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["left"] = "left",
-                    ["right"] = "right",
+                    ["left"] = "左",
+                    ["right"] = "右",
                 },
             },
 
