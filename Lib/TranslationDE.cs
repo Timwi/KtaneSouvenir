@@ -1508,17 +1508,6 @@ namespace Souvenir
                 },
             },
 
-            // The Bulb
-            // What were the correct button presses in {0}?
-            // What were the correct button presses in The Bulb?
-            [Question.BulbButtonPresses] = new()
-            {
-                Gender = Gender.Feminine,
-                ModuleNameWithThe = "Die Glühbirne",
-                QuestionText = "Was waren bei {0} die korrekten Eingaben?",
-                ModuleName = "Glühbirne",
-            },
-
             // Burger Alarm
             // What was the {1} displayed digit in {0}?
             // What was the first displayed digit in Burger Alarm?
@@ -11157,33 +11146,6 @@ namespace Souvenir
                     ["Individual Reading Order"] = "Individual Reading Order",
                     ["Merged Reading Order"] = "Merged Reading Order",
                     ["Chinese Reading Order"] = "Chinese Reading Order",
-                },
-            },
-
-            // Trajectory
-            // Which function did the {1} button perform in {0}?
-            // Which function did the A button perform in Trajectory?
-            [Question.TrajectoryButtonFunctions] = new()
-            {
-                NeedsTranslation = true,
-                QuestionText = "Which function did the {1} button perform in {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["red up"] = "red up",
-                    ["red right"] = "red right",
-                    ["red down"] = "red down",
-                    ["red left"] = "red left",
-                    ["red reverse"] = "red reverse",
-                    ["green up"] = "green up",
-                    ["green right"] = "green right",
-                    ["green down"] = "green down",
-                    ["green left"] = "green left",
-                    ["green reverse"] = "green reverse",
-                    ["blue up"] = "blue up",
-                    ["blue right"] = "blue right",
-                    ["blue down"] = "blue down",
-                    ["blue left"] = "blue left",
-                    ["blue reverse"] = "blue reverse",
                 },
             },
 

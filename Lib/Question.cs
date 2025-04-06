@@ -437,9 +437,6 @@
         [SouvenirQuestion("What was the color of the middle contact point in {0}?", "Brush Strokes", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Lime", "Green", "Cyan", "Sky", "Blue", "Purple", "Magenta", "Brown", "White", "Gray", "Black", "Pink", TranslateAnswers = true)]
         BrushStrokesMiddleColor,
 
-        [SouvenirQuestion("What were the correct button presses in {0}?", "Bulb", ThreeColumns6Answers, "OOO", "OOI", "OIO", "OII", "IOO", "IOI", "IIO", "III", AddThe = true, Type = AnswerType.TicTacToeFont)]
-        BulbButtonPresses,
-
         [SouvenirQuestion("What was the {1} displayed digit in {0}?", "Burger Alarm", ThreeColumns6Answers, ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 9)]
         BurgerAlarmDigits,
@@ -3143,11 +3140,6 @@
         TouchTransmissionWord,
         [SouvenirQuestion("In what order was the Braille read in {0}?", "Touch Transmission", OneColumn4Answers, "Standard Braille Order", "Individual Reading Order", "Merged Reading Order", "Chinese Reading Order", TranslateAnswers = true)]
         TouchTransmissionOrder,
-
-        [SouvenirQuestion("Which function did the {1} button perform in {0}?", "Trajectory", TwoColumns4Answers,
-            "red up", "red right", "red down", "red left", "red reverse", "green up", "green right", "green down", "green left", "green reverse", "blue up", "blue right", "blue down", "blue left", "blue reverse",
-            ExampleFormatArguments = new[] { "A", "B", "C" }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
-        TrajectoryButtonFunctions,
 
         [SouvenirQuestion("What was the {1} received message in {0}?", "Transmitted Morse", TwoColumns4Answers, "BOMBS", "SHORT", "UNDERSTOOD", "W1RES", "SOS", "MANUAL", "STRIKED", "WEREDEAD", "GOTASOUV", "EXPLOSION", "EXPERT", "RIP", "LISTEN", "DETONATE", "ROGER", "WELOSTBRO", "AMIDEAF", "KEYPAD", "DEFUSER", "NUCLEARWEAPONS", "KAPPA", "DELTA", "PI3", "SMOKE", "SENDHELP", "LOST", "SWAN", "NOMNOM", "BLUE", "BOOM", "CANCEL", "DEFUSED", "BROKEN", "MEMORY", "R6S8T", "TRANSMISSION", "UMWHAT", "GREEN", "EQUATIONSX", "RED", "ENERGY", "JESTER", "CONTACT", "LONG",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]

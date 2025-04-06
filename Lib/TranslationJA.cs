@@ -1469,15 +1469,6 @@ namespace Souvenir
                 },
             },
 
-            // The Bulb
-            // What were the correct button presses in {0}?
-            // What were the correct button presses in The Bulb?
-            [Question.BulbButtonPresses] = new()
-            {
-                QuestionText = "{0}のボタンの押し順はどれ？",
-                ModuleName = "ザ・電球",
-            },
-
             // Burger Alarm
             // What was the {1} displayed digit in {0}?
             // What was the first displayed digit in Burger Alarm?
@@ -10949,33 +10940,6 @@ namespace Souvenir
                     ["Individual Reading Order"] = "個別読み順",
                     ["Merged Reading Order"] = "全体読み順",
                     ["Chinese Reading Order"] = "漢字読み順",
-                },
-            },
-
-            // Trajectory
-            // Which function did the {1} button perform in {0}?
-            // Which function did the A button perform in Trajectory?
-            [Question.TrajectoryButtonFunctions] = new()
-            {
-                QuestionText = "{0}でのボタン{1}の役割は？",
-                ModuleName = "軌跡",
-                Answers = new Dictionary<string, string>
-                {
-                    ["red up"] = "赤を上",
-                    ["red right"] = "赤を右",
-                    ["red down"] = "赤を下",
-                    ["red left"] = "赤を左",
-                    ["red reverse"] = "赤を反転",
-                    ["green up"] = "緑を上",
-                    ["green right"] = "緑を右",
-                    ["green down"] = "緑を下",
-                    ["green left"] = "緑を左",
-                    ["green reverse"] = "緑を反転",
-                    ["blue up"] = "青を上",
-                    ["blue right"] = "青を右",
-                    ["blue down"] = "青を下",
-                    ["blue left"] = "青を左",
-                    ["blue reverse"] = "青を反転",
                 },
             },
 
