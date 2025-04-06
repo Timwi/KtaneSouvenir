@@ -437,11 +437,11 @@ namespace Souvenir
         ///         // Generates grid coordinates from A1 to L12.</code></example>
         /// <remarks>
         ///     This generator might enter an infinite loop if it can't generate enough answers.</remarks>
-        public class Combo : AnswerGeneratorAttribute<string>
+        public class Concatenate : AnswerGeneratorAttribute<string>
         {
             private readonly AnswerGeneratorAttribute<string>[] _generators;
             // Attribute parameters are unfortunately quite restricted
-            public Combo(Type g1type, object[] g1args, Type g2type, object[] g2args)
+            public Concatenate(Type g1type, object[] g1args, Type g2type, object[] g2args)
             {
                 _generators = new[] {
                     (AnswerGeneratorAttribute<string>) Activator.CreateInstance(g1type, g1args),

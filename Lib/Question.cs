@@ -2352,7 +2352,7 @@
         [AnswerGenerator.Integers(1, 15)]
         PrisonBreakPrisoner,
         [SouvenirQuestion("Where did you start in {0}?", "Prison Break", ThreeColumns6Answers)]
-        [AnswerGenerator.Combo(typeof(AnswerGenerator.Strings), new object[] { 'A', 'L' }, typeof(AnswerGenerator.Integers), new object[] { 1, 12 })]
+        [AnswerGenerator.Concatenate(typeof(AnswerGenerator.Strings), new object[] { 'A', 'L' }, typeof(AnswerGenerator.Integers), new object[] { 1, 12 })]
         PrisonBreakDefuser,
 
         [SouvenirQuestion("What was the missing frequency in the {1} wire in {0}?", "Probing", TwoColumns4Answers, "10Hz", "22Hz", "50Hz", "60Hz", TranslateFormatArgs = new[] { true },
@@ -2587,7 +2587,7 @@
         SamsungAppPositions,
 
         [SouvenirQuestion("Where was the goal in {0}?", "Saturn", ThreeColumns6Answers)]
-        [AnswerGenerator.Combo(typeof(AnswerGenerator.Strings), new object[] { new string[] { "0-9", " " } }, typeof(AnswerGenerator.Integers), new object[] { 0, 63 })]
+        [AnswerGenerator.Concatenate(typeof(AnswerGenerator.Strings), new object[] { new string[] { "0-9", " " } }, typeof(AnswerGenerator.Integers), new object[] { 0, 63 })]
         SaturnGoal,
 
         [SouvenirQuestion("What was the displayed song for stage {1} (hexadecimal) of {0}?", "Sbemail Songs", OneColumn4Answers, ExampleAnswers = new[] { "Oh, who is the guy that…", "I'm gonna check my email all of the time…", "Checkin' my email, checkin' my email…", "I check the email once…", "Checkin' emails is like the best thing I do.", "I check, you check, we all check…", "I am going to check my email.", "I remember the time when I checked my email.", "I've carefully set aside this time…", "I'm totally checking my email…" },
