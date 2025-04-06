@@ -1542,7 +1542,6 @@ namespace Souvenir
                     ["“P”"] = "「P」の",
                     ["special"] = "特殊",
                 },
-
             },
 
             // Button Sequence
@@ -3559,7 +3558,14 @@ namespace Souvenir
             // Faerie Fires
             // What pitch did the {1} faerie sing in {0}?
             // What pitch did the first faerie sing in Faerie Fires?
-            [Question.FaerieFiresPitch] = new()
+            [Question.FaerieFiresPitchOrdinal] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What pitch did the {1} faerie sing in {0}?",
+            },
+            // What pitch did the {1} faerie sing in {0}?
+            // What pitch did the red faerie sing in Faerie Fires?
+            [Question.FaerieFiresPitchColor] = new()
             {
                 NeedsTranslation = true,
                 QuestionText = "What pitch did the {1} faerie sing in {0}?",

@@ -1005,8 +1005,11 @@
         FactoryMazeStartRoom,
 
         [SouvenirQuestion("What pitch did the {1} faerie sing in {0}?", "Faerie Fires", ThreeColumns6Answers, Type = AnswerType.Audio, AudioFieldName = "FaerieFiresAudio", AudioSizeMultiplier = 8,
-            ExampleFormatArguments = new[] { QandA.Ordinal, "red", "green", "blue", "yellow", "cyan", "magenta" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
-        FaerieFiresPitch,
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        FaerieFiresPitchOrdinal,
+        [SouvenirQuestion("What pitch did the {1} faerie sing in {0}?", "Faerie Fires", ThreeColumns6Answers, Type = AnswerType.Audio, AudioFieldName = "FaerieFiresAudio", AudioSizeMultiplier = 8,
+            ExampleFormatArguments = new[] { "red", "green", "blue", "yellow", "cyan", "magenta" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
+        FaerieFiresPitchColor,
         [SouvenirQuestion("What color was the {1} faerie in {0}?", "Faerie Fires", ThreeColumns6Answers, "Red", "Green", "Blue", "Yellow", "Cyan", "Magenta",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         FaerieFiresColor,

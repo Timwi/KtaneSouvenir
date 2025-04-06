@@ -49,10 +49,10 @@ public partial class SouvenirModule
             Name: fldName.GetFrom(f, v => !Question.FaerieFiresColor.GetAnswers().Contains(v) ? "Unexpected color name" : null)));
 
         addQuestions(module, faeries.SelectMany(f => new[] {
-            makeQuestion(Question.FaerieFiresPitch, module,
+            makeQuestion(Question.FaerieFiresPitchOrdinal, module,
                 formatArgs: new[] { Ordinal(f.Order + 1) },
                 correctAnswers: new[] { FaerieFiresAudio[f.Sound.Last() - '1'] }),
-            makeQuestion(Question.FaerieFiresPitch, module,
+            makeQuestion(Question.FaerieFiresPitchColor, module,
                 formatArgs: new[] { f.Name },
                 correctAnswers: new[] { FaerieFiresAudio[f.Sound.Last() - '1'] }),
             makeQuestion(Question.FaerieFiresColor, module,
