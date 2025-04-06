@@ -557,7 +557,7 @@ public partial class SouvenirModule
         var valH = jumps[3];    // 0–3
         var valM = equationOffsets[3];  // 1–9
         var valN = colorStageColors.Length; // 4–9
-        var valP = suitsGoal.Where(s => s != 3).Select(s => "♠♣♥"[s]).JoinString(); // permutation of ♠♣♥
+        var valP = suitsGoal.Where(s => s != 3).Select(s => "♠♥♣"[s]).JoinString(); // permutation of ♠♥♣
         var valQ = colorNames[colorStageColors[3]]; // color
         var valX = equationOffsets[2];  // 1–5
 
