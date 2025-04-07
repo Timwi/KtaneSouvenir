@@ -116,14 +116,14 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Chinese Counting    │  Jumble Cycle           │  N&Ms              │  Simon’s Star    │
     Codenames           │  LED Math               │  Ordered Keys      │  Small Circle    │
 
-## Implemented by Quinn Wuest (29)
+## Implemented by Quinn Wuest (30)
 
-    A Square          │  Épelle-moi Ça             │  Not Coordinates       │  Not X01              │  Simultaneous Simons
-    Ángel Hernández   │  Letter Math               │  Not Morsematics       │  Parity               │  Slow Math
+    A Square          │  Double Digits             │  Not Connection Check  │  Not The Bulb         │  Simon Said
+    Ángel Hernández   │  Épelle-moi Ça             │  Not Coordinates       │  Not X01              │  Simultaneous Simons
+    Bulb, The         │  Letter Math               │  Not Morsematics       │  Parity               │  Slow Math
     Caesar Psycho     │  Match Refereeing          │  Not Murder            │  Robo-Scanner         │  Triple Term
     Cyan Button, The  │  Navigation Determination  │  Not Number Pad        │  Rule of Three        │  Varicolour Flash
     Denial Displays   │  Not Colored Switches      │  Not Perspective Pegs  │  Scramboozled Eggain  │  xobekuJ ehT
-    Double Digits     │  Not Connection Check      │  Not The Bulb          │  Simon Said           │
 
 ## Implemented by tandyCake (27)
 

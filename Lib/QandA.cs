@@ -61,7 +61,14 @@ namespace Souvenir
             public TextQuestion(string question, AnswerLayout layout, Sprite questionSprite, float questionSpriteRotation)
                 : base(question)
             {
-                _desiredHeightFactor = layout == AnswerLayout.OneColumn4Answers ? .825 : 1.1;
+                _desiredHeightFactor = layout switch
+                {
+                    AnswerLayout.OneColumn4Answers => .825,
+                    AnswerLayout.TwoColumns2Answers => 1.375,
+                    AnswerLayout.TwoColumns4Answers => 1.1,
+                    AnswerLayout.ThreeColumns6Answers => 1.1,
+                    _ => throw new InvalidOperationException("Invalid AnswerLayout."),
+                };
                 _questionSprite = questionSprite;
                 _questionSpriteRotation = questionSpriteRotation;
             }
@@ -118,6 +125,7 @@ namespace Souvenir
                 switch (_layout)
                 {
                     case AnswerLayout.OneColumn4Answers: SetUpOneColumn4Answers(souvenir); break;
+                    case AnswerLayout.TwoColumns2Answers: SetUpTwoColumn2Answers(souvenir); break;
                     case AnswerLayout.TwoColumns4Answers: SetUpTwoColumn4Answers(souvenir); break;
                     case AnswerLayout.ThreeColumns6Answers: SetUpThreeColumn6Answers(souvenir); break;
                     default: throw new InvalidOperationException("Unexpected AnswerLayout value.");
@@ -138,13 +146,16 @@ namespace Souvenir
 
             protected virtual void SetUpTwoColumn2Answers(SouvenirModule souvenir)
             {
-                SetupAnswers(souvenir, souvenir.HighlightVeryLong,
-                    getX: i => -18.125f + 19.375f * (i / 2),
-                    getZ: i => -16.25f + _multiColumnVerticalSpacing,
-                    boxCenter: new Vector3(17, 0, 0),
-                    boxSize: new Vector3(38, 5, 3));
+                SetupAnswers(souvenir, souvenir.HighlightLong,
+                    getX: i => -18.125f + 19.375f * (i % 2),
+                    getZ: i => -22.5f + _multiColumnVerticalSpacing * (1 - i / 2),
+                    boxCenter: new Vector3(8, 0, 0),
+                    boxSize: new Vector3(19, 6, 3));
 
-                SetSelectableChildren(souvenir, rowLength: 2, 0, 2);
+                if (Application.isEditor)
+                    SetSelectableChildren(souvenir, rowLength: 3, 0, 1, 2, 3, 4, 5);
+                else
+                    SetSelectableChildren(souvenir, rowLength: 2, 0, 1);
             }
 
             protected virtual void SetUpTwoColumn4Answers(SouvenirModule souvenir)
@@ -153,7 +164,7 @@ namespace Souvenir
                     getX: i => -18.125f + 19.375f * (i / 2),
                     getZ: i => -16.25f + _multiColumnVerticalSpacing * (1 - i % 2),
                     boxCenter: new Vector3(8, 0, 0),
-                    boxSize: new Vector3(19, 6, 3));
+                    boxSize: new Vector3(8, 6, 3));
 
                 if (Application.isEditor)
                     SetSelectableChildren(souvenir, rowLength: 3, 0, 2, 4, 1, 3, 5);

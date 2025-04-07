@@ -1508,6 +1508,15 @@ namespace Souvenir
                 },
             },
 
+            // The Bulb
+            // Was the bulb initially lit in {0}?
+            // Was the bulb initially lit in The Bulb?
+            [Question.BulbInitialState] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What were the correct button presses in {0}?",
+            },
+
             // Burger Alarm
             // What was the {1} displayed digit in {0}?
             // What was the first displayed digit in Burger Alarm?

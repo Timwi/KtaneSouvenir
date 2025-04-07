@@ -88,6 +88,7 @@ public partial class SouvenirModule
             ["BrokenGuitarChordsModule"] = (ProcessBrokenGuitarChords, "Broken Guitar Chords", "Kuro"),
             ["brownCipher"] = (ProcessBrownCipher, "Brown Cipher", "Marksam"),
             ["brushStrokes"] = (ProcessBrushStrokes, "Brush Strokes", "luisdiogo98"),
+            ["TheBulbModule"] = (ProcessBulb, "Bulb, The", "Quinn Wuest"),
             ["burgerAlarm"] = (ProcessBurgerAlarm, "Burger Alarm", "Kuro"),
             ["burglarAlarm"] = (ProcessBurglarAlarm, "Burglar Alarm", "Timwi"),
             ["BigButton"] = (ProcessButton, "Button, The", "Andrio Celos"),

@@ -49,6 +49,7 @@ namespace Souvenir
             AnswerLayout.TwoColumns4Answers => 4,
             AnswerLayout.ThreeColumns6Answers => 6,
             AnswerLayout.OneColumn4Answers => 4,
+            AnswerLayout.TwoColumns2Answers => 2,
             _ => throw new InvalidOperationException("Unexpected AnswerLayout value."),
         };
 

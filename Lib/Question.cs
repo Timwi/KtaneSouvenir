@@ -437,6 +437,9 @@
         [SouvenirQuestion("What was the color of the middle contact point in {0}?", "Brush Strokes", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Lime", "Green", "Cyan", "Sky", "Blue", "Purple", "Magenta", "Brown", "White", "Gray", "Black", "Pink", TranslateAnswers = true)]
         BrushStrokesMiddleColor,
 
+        [SouvenirQuestion("Was the bulb initially lit in {0}?", "Bulb", TwoColumns2Answers, "Yes", "No", AddThe = true)]
+        BulbInitialState,
+
         [SouvenirQuestion("What was the {1} displayed digit in {0}?", "Burger Alarm", ThreeColumns6Answers, ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 9)]
         BurgerAlarmDigits,
