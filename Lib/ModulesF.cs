@@ -101,8 +101,8 @@ public partial class SouvenirModule
         while (module.Unsolved)
         {
             letters = fldScreen.Get().text;
-            if (letters.Length != 2)
-                throw new AbandonModuleException($"The screen contains something other than two characters: “{letters}” ({letters.Length} characters).");
+            if (letters.Length is not 1 and not 2)
+                throw new AbandonModuleException($"The screen contains something other than one or two characters: “{letters}” ({letters.Length} characters).");
             wrongAnswers.Add(letters);
             yield return new WaitForSeconds(.1f);
         }
