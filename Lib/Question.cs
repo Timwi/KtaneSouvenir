@@ -801,7 +801,7 @@
         [AnswerGenerator.Grid(4, 4)]
         DiscoloredSquaresRememberedPositions,
 
-        [SouvenirQuestion("What was the missing information for the {1} key in {0}?", "Disordered Keys", OneColumn4Answers, "Key color", "Label color", "Label",
+        [SouvenirQuestion("What was the missing information for the {1} key in {0}?", "Disordered Keys", OneColumn3Answers, "Key color", "Label color", "Label",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         DisorderedKeysMissingInfo,
         [SouvenirQuestion("What was the revealed key color for the {1} key in {0}?", "Disordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
@@ -1300,9 +1300,8 @@
         [AnswerGenerator.Integers(23, 34)]
         GryphonsAge,
 
-        [SouvenirQuestion("How many times did YES flash in {0}?", "Guess Who?", ThreeColumns6Answers)]
-        [AnswerGenerator.Integers(0, 8)]
-        GuessWhoNumber,
+        [SouvenirQuestion("Did {1} flash “YES” in {0}?", "Guess Who?", TwoColumns2Answers, "Yes", "No")]
+        GuessWhoColors,
 
         [SouvenirQuestion("What color was the {1} LED in {0}?", "Gyromaze", TwoColumns4Answers, "Red", "Blue", "Green", "Yellow",
             ExampleFormatArguments = new[] { "top", "bottom" }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true, TranslateFormatArgs = new[] { true })]
@@ -2921,7 +2920,7 @@
                 ExampleFormatArguments = new[] { "SMASH", "MARRY", "KILL" }, ExampleFormatArgumentGroupSize = 1)]
         SmashMarryKillModule,
 
-        [SouvenirQuestion("How many red balls were there at the start of {0}?", "Snooker", TwoColumns4Answers, "8", "9", "10", "11")]
+        [SouvenirQuestion("How many red balls were there at the start of {0}?", "Snooker", ThreeColumns3Answers, "8", "9", "10")]
         SnookerReds,
 
         [SouvenirQuestion("Which snowflake was on the {1} button of {0}?", "Snowflakes", ThreeColumns6Answers, Type = AnswerType.SnowflakesFont, FontSize = 400, CharacterSize = 0.2f, ExampleFormatArguments = new[] { "top", "right", "bottom", "left" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
@@ -3097,7 +3096,7 @@
         [AnswerGenerator.Integers(0, 9)]
         TechnicalKeypadDisplayedDigits,
 
-        [SouvenirQuestion("What was the initial color of the {1} button in the {2} stage of {0}?", "Ten-Button Color Code", TwoColumns4Answers, "red", "green", "blue", "yellow", TranslateAnswers = true,
+        [SouvenirQuestion("What was the initial color of the {1} button in the {2} stage of {0}?", "Ten-Button Color Code", ThreeColumns3Answers, "red", "green", "blue", TranslateAnswers = true,
             ExampleFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleFormatArgumentGroupSize = 2)]
         TenButtonColorCodeInitialColors,
 

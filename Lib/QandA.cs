@@ -63,9 +63,11 @@ namespace Souvenir
             {
                 _desiredHeightFactor = layout switch
                 {
+                    AnswerLayout.OneColumn3Answers => 1,
                     AnswerLayout.OneColumn4Answers => .825,
                     AnswerLayout.TwoColumns2Answers => 1.375,
                     AnswerLayout.TwoColumns4Answers => 1.1,
+                    AnswerLayout.ThreeColumns3Answers => 1.375,
                     AnswerLayout.ThreeColumns6Answers => 1.1,
                     _ => throw new InvalidOperationException("Invalid AnswerLayout."),
                 };
@@ -124,13 +126,26 @@ namespace Souvenir
             {
                 switch (_layout)
                 {
+                    case AnswerLayout.OneColumn3Answers: SetUpOneColumn3Answers(souvenir); break;
                     case AnswerLayout.OneColumn4Answers: SetUpOneColumn4Answers(souvenir); break;
                     case AnswerLayout.TwoColumns2Answers: SetUpTwoColumn2Answers(souvenir); break;
                     case AnswerLayout.TwoColumns4Answers: SetUpTwoColumn4Answers(souvenir); break;
+                    case AnswerLayout.ThreeColumns3Answers: SetUpThreeColumn3Answers(souvenir); break;
                     case AnswerLayout.ThreeColumns6Answers: SetUpThreeColumn6Answers(souvenir); break;
                     default: throw new InvalidOperationException("Unexpected AnswerLayout value.");
                 }
                 RenderAnswers(souvenir);
+            }
+
+            protected virtual void SetUpOneColumn3Answers(SouvenirModule souvenir)
+            {
+                SetupAnswers(souvenir, souvenir.HighlightVeryLong,
+                    getX: i => -18.125f,
+                    getZ: i => -17f + 5 * (2 - i),
+                    boxCenter: new Vector3(17, 0, 0),
+                    boxSize: new Vector3(38, 5, 3));
+
+                SetSelectableChildren(souvenir, rowLength: 1, 0, 1, 2, 3, 4, 5);
             }
 
             protected virtual void SetUpOneColumn4Answers(SouvenirModule souvenir)
@@ -170,6 +185,17 @@ namespace Souvenir
                     SetSelectableChildren(souvenir, rowLength: 3, 0, 2, 4, 1, 3, 5);
                 else
                     SetSelectableChildren(souvenir, rowLength: 2, 0, 2, 1, 3);
+            }
+
+            protected virtual void SetUpThreeColumn3Answers(SouvenirModule souvenir)
+            {
+                SetupAnswers(souvenir, souvenir.HighlightShort,
+                    getX: i => -18.125f + 13.125f * (i % 3),
+                    getZ: i => -22.5f + _multiColumnVerticalSpacing * (1 - i / 3),
+                    boxCenter: new Vector3(5, 0, 0),
+                    boxSize: new Vector3(13, 6, 3));
+
+                SetSelectableChildren(souvenir, rowLength: 3, 0, 1, 2, 3, 4, 5);
             }
 
             protected virtual void SetUpThreeColumn6Answers(SouvenirModule souvenir)
@@ -264,7 +290,16 @@ namespace Souvenir
                     mesh.transform.eulerAngles = new Vector3(90, 0, 0);
                     mesh.transform.localScale = new Vector3(1, 1, 1);
                     var bounds = mesh.GetComponent<Renderer>().bounds.size;
-                    var fac = (_layout == AnswerLayout.OneColumn4Answers ? 1.5 : _answers.Length > 4 ? .45 : .7) * souvenir.SurfaceSizeFactor;
+                    var fac = _layout switch
+                    {
+                        AnswerLayout.OneColumn3Answers => 1.5 * souvenir.SurfaceSizeFactor,
+                        AnswerLayout.OneColumn4Answers => 1.5 * souvenir.SurfaceSizeFactor,
+                        AnswerLayout.ThreeColumns3Answers => .45 * souvenir.SurfaceSizeFactor,
+                        AnswerLayout.ThreeColumns6Answers => .45 * souvenir.SurfaceSizeFactor,
+                        AnswerLayout.TwoColumns2Answers => .7 * souvenir.SurfaceSizeFactor,
+                        AnswerLayout.TwoColumns4Answers => .7 * souvenir.SurfaceSizeFactor,
+                        _ => throw new InvalidOperationException("Invalid AnswerLayout.")
+                    };
                     if (bounds.x > fac)
                         mesh.transform.localScale = new Vector3((float) (fac / bounds.x), 1, 1);
                     mesh.transform.localRotation = origRotation;
@@ -334,9 +369,12 @@ namespace Souvenir
                 {
                     souvenir.Answers[i].transform.Find("SpriteHolder").localScale = _layout switch
                     {
-                        AnswerLayout.TwoColumns4Answers => new Vector3(_parent.TwitchPlaysActive ? 14 : 15, 10, 1),
-                        AnswerLayout.ThreeColumns6Answers => new Vector3(_parent.TwitchPlaysActive ? 8 : 10, 10, 1),
+                        AnswerLayout.OneColumn3Answers => new Vector3(30, 10, 1),
                         AnswerLayout.OneColumn4Answers => new Vector3(30, 10, 1),
+                        AnswerLayout.TwoColumns2Answers => new Vector3(_parent.TwitchPlaysActive ? 14 : 15, 10, 1),
+                        AnswerLayout.TwoColumns4Answers => new Vector3(_parent.TwitchPlaysActive ? 14 : 15, 10, 1),
+                        AnswerLayout.ThreeColumns3Answers => new Vector3(_parent.TwitchPlaysActive ? 8 : 10, 10, 1),
+                        AnswerLayout.ThreeColumns6Answers => new Vector3(_parent.TwitchPlaysActive ? 8 : 10, 10, 1),
                         // Unreachable
                         _ => throw new NotImplementedException(),
                     };

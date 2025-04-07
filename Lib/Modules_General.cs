@@ -249,7 +249,7 @@ public partial class SouvenirModule
             ["GridlockModule"] = (ProcessGridLock, "Gridlock", "CaitSith2"),
             ["groceryStore"] = (ProcessGroceryStore, "Grocery Store", "BigCrunch22"),
             ["gryphons"] = (ProcessGryphons, "Gryphons", "JerryEris"),
-            ["GuessWho"] = (ProcessGuessWho, "Guess Who?", "BigCrunch22"),
+            ["GuessWho"] = (ProcessGuessWho, "Guess Who?", "Quinn Wuest"),
             ["gyromaze"] = (ProcessGyromaze, "Gyromaze", "Anonymous"),
             ["Averageh"] = (ProcessH, "h", "Hawker"),
             ["halliGalli"] = (ProcessHalliGalli, "Halli Galli", "Anonymous"),

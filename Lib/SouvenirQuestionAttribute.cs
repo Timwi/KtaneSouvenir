@@ -46,10 +46,12 @@ namespace Souvenir
 
         public int NumAnswers => Layout switch
         {
-            AnswerLayout.TwoColumns4Answers => 4,
-            AnswerLayout.ThreeColumns6Answers => 6,
+            AnswerLayout.OneColumn3Answers => 3,
             AnswerLayout.OneColumn4Answers => 4,
             AnswerLayout.TwoColumns2Answers => 2,
+            AnswerLayout.TwoColumns4Answers => 4,
+            AnswerLayout.ThreeColumns3Answers => 3,
+            AnswerLayout.ThreeColumns6Answers => 6,
             _ => throw new InvalidOperationException("Unexpected AnswerLayout value."),
         };
 

@@ -22,9 +22,11 @@
 
     public enum AnswerLayout
     {
-        TwoColumns4Answers = 0,
-        ThreeColumns6Answers = 1,
-        OneColumn4Answers = 2,
-        TwoColumns2Answers = 3,
+        OneColumn3Answers,
+        OneColumn4Answers,
+        TwoColumns2Answers,
+        TwoColumns4Answers,
+        ThreeColumns3Answers,
+        ThreeColumns6Answers,
     }
 }

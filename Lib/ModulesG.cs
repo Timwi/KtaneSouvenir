@@ -364,10 +364,13 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "GuessWhoScript");
         var bases = GetField<int[]>(comp, "Bases").Get();
 
-        yield return WaitForSolve;
+        var colors = new string[] { "Red", "Orange", "Yellow", "Green", "Blue", "Violet", "Cyan", "Pink" };
 
-        var correctAnswer = bases.Sum().ToString();
-        addQuestion(module, Question.GuessWhoNumber, correctAnswers: new[] { correctAnswer });
+        yield return WaitForSolve;
+        var questions = new List<QandA>();
+        for (int i = 0; i < colors.Length; i++)
+            questions.Add(makeQuestion(Question.GuessWhoColors, module, formatArgs: new[] { colors[i] }, correctAnswers: new[] { bases[i] == 1 ? "Yes" : "No" }));
+        addQuestions(module, questions);
     }
 
     private IEnumerator<YieldInstruction> ProcessGyromaze(ModuleData module)

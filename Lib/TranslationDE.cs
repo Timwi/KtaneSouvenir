@@ -1514,7 +1514,7 @@ namespace Souvenir
             [Question.BulbInitialState] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What were the correct button presses in {0}?",
+                QuestionText = "Was the bulb initially lit in {0}?",
             },
 
             // Burger Alarm
@@ -4532,12 +4532,11 @@ namespace Souvenir
             },
 
             // Guess Who?
-            // How many times did YES flash in {0}?
-            // How many times did YES flash in Guess Who??
-            [Question.GuessWhoNumber] = new()
+            // Did {1} flash “YES” in {0}?
+            [Question.GuessWhoColors] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "How many times did YES flash in {0}?",
+                QuestionText = "Did {1} flash “YES” in {0}?",
             },
 
             // Gyromaze
@@ -10967,7 +10966,6 @@ namespace Souvenir
                     ["red"] = "rot",
                     ["green"] = "grün",
                     ["blue"] = "blau",
-                    ["yellow"] = "gelb",
                 },
             },
 

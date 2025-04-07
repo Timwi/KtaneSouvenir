@@ -95,16 +95,26 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Conditional Buttons      │  Find The Date         │  Keypad Combination  │  Scrutiny Squares   │  Valves
     Customer Identification  │  Flavor Text           │  Kuro                │  Sign Language      │  Weakest Link, The
 
-## Implemented by BigCrunch22 (38)
+## Implemented by BigCrunch22 (37)
 
-    1000 Words      │  Dreamcipher    │  Indigo Cipher          │  Spelling Bee            │  V
-    Alphabet Tiles  │  Dumb Waiters   │  Matrix, The            │  Stars                   │  Violet Cipher
-    Binary          │  eeB gnillepS   │  Numbers                │  State of Aggregation    │  What’s on Second
-    Black Cipher    │  Gray Cipher    │  Orange Cipher          │  Subscribe to Pewdiepie  │  White Cipher
-    Blue Cipher     │  Green Cipher   │  Red Cipher             │  Sugar Skulls            │  Working Title
-    Cheep Checkout  │  Grocery Store  │  Roger                  │  Switching Maze          │  Yellow Cipher
-    Cosmic          │  Guess Who?     │  Sequencyclopedia, The  │  Topsy Turvy             │
-    Deaf Alley      │  Hold Ups       │  Shifting Maze          │  Ultimate Cipher         │
+    1000 Words      │  Dreamcipher    │  Matrix, The            │  Stars                   │  Violet Cipher
+    Alphabet Tiles  │  Dumb Waiters   │  Numbers                │  State of Aggregation    │  What’s on Second
+    Binary          │  eeB gnillepS   │  Orange Cipher          │  Subscribe to Pewdiepie  │  White Cipher
+    Black Cipher    │  Gray Cipher    │  Red Cipher             │  Sugar Skulls            │  Working Title
+    Blue Cipher     │  Green Cipher   │  Roger                  │  Switching Maze          │  Yellow Cipher
+    Cheep Checkout  │  Grocery Store  │  Sequencyclopedia, The  │  Topsy Turvy             │
+    Cosmic          │  Hold Ups       │  Shifting Maze          │  Ultimate Cipher         │
+    Deaf Alley      │  Indigo Cipher  │  Spelling Bee           │  V                       │
+
+## Implemented by Quinn Wuest (31)
+
+    A Square          │  Épelle-moi Ça             │  Not Coordinates       │  Parity               │  Triple Term
+    Ángel Hernández   │  Guess Who?                │  Not Morsematics       │  Robo-Scanner         │  Varicolour Flash
+    Bulb, The         │  Letter Math               │  Not Murder            │  Rule of Three        │  xobekuJ ehT
+    Caesar Psycho     │  Match Refereeing          │  Not Number Pad        │  Scramboozled Eggain  │
+    Cyan Button, The  │  Navigation Determination  │  Not Perspective Pegs  │  Simon Said           │
+    Denial Displays   │  Not Colored Switches      │  Not The Bulb          │  Simultaneous Simons  │
+    Double Digits     │  Not Connection Check      │  Not X01               │  Slow Math            │
 
 ## Implemented by TasThiluna (31)
 
@@ -115,15 +125,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Caesar Cycle        │  Identification Crisis  │  More Code         │  Samsung, The    │
     Chinese Counting    │  Jumble Cycle           │  N&Ms              │  Simon’s Star    │
     Codenames           │  LED Math               │  Ordered Keys      │  Small Circle    │
-
-## Implemented by Quinn Wuest (30)
-
-    A Square          │  Double Digits             │  Not Connection Check  │  Not The Bulb         │  Simon Said
-    Ángel Hernández   │  Épelle-moi Ça             │  Not Coordinates       │  Not X01              │  Simultaneous Simons
-    Bulb, The         │  Letter Math               │  Not Morsematics       │  Parity               │  Slow Math
-    Caesar Psycho     │  Match Refereeing          │  Not Murder            │  Robo-Scanner         │  Triple Term
-    Cyan Button, The  │  Navigation Determination  │  Not Number Pad        │  Rule of Three        │  Varicolour Flash
-    Denial Displays   │  Not Colored Switches      │  Not Perspective Pegs  │  Scramboozled Eggain  │  xobekuJ ehT
 
 ## Implemented by tandyCake (27)
 

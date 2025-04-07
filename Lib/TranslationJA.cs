@@ -1475,7 +1475,7 @@ namespace Souvenir
             [Question.BulbInitialState] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What were the correct button presses in {0}?",
+                QuestionText = "Was the bulb initially lit in {0}?",
             },
 
             // Burger Alarm
@@ -4397,12 +4397,11 @@ namespace Souvenir
             },
 
             // Guess Who?
-            // How many times did YES flash in {0}?
-            // How many times did YES flash in Guess Who??
-            [Question.GuessWhoNumber] = new()
+            // Did {1} flash “YES” in {0}?
+            [Question.GuessWhoColors] = new()
             {
-                QuestionText = "{0} で YES が何回点滅しましたか?",
-                ModuleName = "だーれだ？",
+                NeedsTranslation = true,
+                QuestionText = "Did {1} flash “YES” in {0}?",
             },
 
             // Gyromaze
@@ -10755,6 +10754,7 @@ namespace Souvenir
             // What was the initial color of the first button in the first stage of Ten-Button Color Code?
             [Question.TenButtonColorCodeInitialColors] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}のステージ{2}における{1}番目のボタンの初期の色は？",
                 ModuleName = "10ボタン色コード",
                 Answers = new Dictionary<string, string>
@@ -10762,7 +10762,6 @@ namespace Souvenir
                     ["red"] = "赤",
                     ["green"] = "緑",
                     ["blue"] = "青",
-                    ["yellow"] = "黄",
                 },
             },
 
