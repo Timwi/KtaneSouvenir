@@ -1324,7 +1324,7 @@
         HexamazePawnColor,
 
         [SouvenirQuestion("What was the {1} shape for the {2} display in {0}?", "hexOrbits", TwoColumns4Answers, "Square", "Pentagon", "Hexagon", "Heptagon",
-            ExampleFormatArguments = new[] { "fast", QandA.Ordinal, "slow", QandA.Ordinal }, ExampleFormatArgumentGroupSize = 2)]
+            ExampleFormatArguments = new[] { "fast", QandA.Ordinal, "slow", QandA.Ordinal }, ExampleFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { true, false })]
         HexOrbitsShape,
 
         [SouvenirQuestion("What were the deciphered letters in {0}?", "hexOS", ThreeColumns6Answers)]
