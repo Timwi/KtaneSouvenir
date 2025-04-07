@@ -117,15 +117,15 @@ namespace Souvenir
             {
                 switch (_layout)
                 {
-                    case AnswerLayout.OneColumn4Answers: SetUpOneColumnAnswers(souvenir); break;
-                    case AnswerLayout.TwoColumns4Answers: SetUpTwoColumnAnswers(souvenir); break;
-                    case AnswerLayout.ThreeColumns6Answers: SetUpThreeColumnAnswers(souvenir); break;
+                    case AnswerLayout.OneColumn4Answers: SetUpOneColumn4Answers(souvenir); break;
+                    case AnswerLayout.TwoColumns4Answers: SetUpTwoColumn4Answers(souvenir); break;
+                    case AnswerLayout.ThreeColumns6Answers: SetUpThreeColumn6Answers(souvenir); break;
                     default: throw new InvalidOperationException("Unexpected AnswerLayout value.");
                 }
                 RenderAnswers(souvenir);
             }
 
-            protected virtual void SetUpOneColumnAnswers(SouvenirModule souvenir)
+            protected virtual void SetUpOneColumn4Answers(SouvenirModule souvenir)
             {
                 SetupAnswers(souvenir, souvenir.HighlightVeryLong,
                     getX: i => -18.125f,
@@ -136,7 +136,18 @@ namespace Souvenir
                 SetSelectableChildren(souvenir, rowLength: 1, 0, 1, 2, 3, 4, 5);
             }
 
-            protected virtual void SetUpTwoColumnAnswers(SouvenirModule souvenir)
+            protected virtual void SetUpTwoColumn2Answers(SouvenirModule souvenir)
+            {
+                SetupAnswers(souvenir, souvenir.HighlightVeryLong,
+                    getX: i => -18.125f + 19.375f * (i / 2),
+                    getZ: i => -16.25f + _multiColumnVerticalSpacing,
+                    boxCenter: new Vector3(17, 0, 0),
+                    boxSize: new Vector3(38, 5, 3));
+
+                SetSelectableChildren(souvenir, rowLength: 2, 0, 2);
+            }
+
+            protected virtual void SetUpTwoColumn4Answers(SouvenirModule souvenir)
             {
                 SetupAnswers(souvenir, souvenir.HighlightLong,
                     getX: i => -18.125f + 19.375f * (i / 2),
@@ -150,7 +161,7 @@ namespace Souvenir
                     SetSelectableChildren(souvenir, rowLength: 2, 0, 2, 1, 3);
             }
 
-            protected virtual void SetUpThreeColumnAnswers(SouvenirModule souvenir)
+            protected virtual void SetUpThreeColumn6Answers(SouvenirModule souvenir)
             {
                 SetupAnswers(souvenir, souvenir.HighlightShort,
                     getX: i => -18.125f + 13.125f * (i / 2),
