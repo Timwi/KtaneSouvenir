@@ -1393,9 +1393,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(0.1f);
 
         var firstQuestion = comp._currentQuestion;
-        var firstModule = (
-            _translation?.Translate(firstQuestion.Question)?.ModuleName ??
-            firstQuestion.ModuleNameWithThe).Replace("\u00a0", " ");
+        var firstModule = _translation?.Translate(firstQuestion.Question)?.ModuleName ?? firstQuestion.ModuleNameWithThe;
 
         // Wait for the user to solve that question before asking about it
         while (comp._currentQuestion == firstQuestion)
