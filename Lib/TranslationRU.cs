@@ -4697,15 +4697,15 @@ namespace Souvenir
                 ModuleName = "Гиперкуба",
             },
 
-            // Hyperforget
+            // HyperForget
             // What was the rotation for the {1} stage in {0}?
-            // What was the rotation for the first stage in Hyperforget?
-            [Question.HyperforgetRotations] = new()
+            // What was the rotation for the first stage in HyperForget?
+            [Question.HyperForgetRotations] = new()
             {
                 QuestionText = "Какое было вращение на {1}-м этапе {0}?",
                 TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
-                    ["the Hyperforget whose rotation in the {1} stage was {0}"] = "в Hyperforget, где на {1}-м этапе было вращение {0}",
+                    ["the HyperForget whose rotation in the {1} stage was {0}"] = "в HyperForget, где на {1}-м этапе было вращение {0}",
                 },
             },
 

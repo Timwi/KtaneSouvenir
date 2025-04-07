@@ -4752,16 +4752,16 @@ namespace Souvenir
                 ModuleName = "超立方体",
             },
 
-            // Hyperforget
+            // HyperForget
             // What was the rotation for the {1} stage in {0}?
-            // What was the rotation for the first stage in Hyperforget?
-            [Question.HyperforgetRotations] = new()
+            // What was the rotation for the first stage in HyperForget?
+            [Question.HyperForgetRotations] = new()
             {
                 NeedsTranslation = true,
                 QuestionText = "What was the rotation for the {1} stage in {0}?",
                 TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
-                    ["the Hyperforget whose rotation in the {1} stage was {0}"] = "the Hyperforget whose rotation in the {1} stage was {0}",
+                    ["the HyperForget whose rotation in the {1} stage was {0}"] = "the HyperForget whose rotation in the {1} stage was {0}",
                 },
             },
 

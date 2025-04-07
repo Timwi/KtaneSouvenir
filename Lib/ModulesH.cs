@@ -388,8 +388,8 @@ public partial class SouvenirModule
         return processHypercubeUltracube(module, "TheHypercubeModule", Question.HypercubeRotations);
     }
 
-    private List<List<string>> _hyperforgetStages = new();
-    private IEnumerator<YieldInstruction> ProcessHyperforget(ModuleData module)
+    private List<List<string>> _hyperForgetStages = new();
+    private IEnumerator<YieldInstruction> ProcessHyperForget(ModuleData module)
     {
         var comp = GetComponent(module, "HyperForget");
         const string moduleId = "HyperForget";
@@ -398,44 +398,44 @@ public partial class SouvenirModule
 
         if (module.IsSolved)
         {
-            _hyperforgetStages.Add(new());
-            legitimatelyNoQuestion(module, "No question for Hyperforget because there were no stages.");
+            _hyperForgetStages.Add(new());
+            legitimatelyNoQuestion(module, "No question for HyperForget because there were no stages.");
             yield break;
         }
 
         var rots = GetListField<string>(comp, "rotationList").Get(minLength: 1);
-        _hyperforgetStages.Add(rots);
+        _hyperForgetStages.Add(rots);
 
         yield return null;
 
-        if (_hyperforgetStages.Select(s => s.Count).Distinct().Count() is not 1)
-            throw new AbandonModuleException($"Expected consistent stage counts among Hyperforget modules, got {_hyperforgetStages.Select(s => s.Count).JoinString(", ")}");
+        if (_hyperForgetStages.Select(s => s.Count).Distinct().Count() is not 1)
+            throw new AbandonModuleException($"Expected consistent stage counts among HyperForget modules, got {_hyperForgetStages.Select(s => s.Count).JoinString(", ")}");
 
         while (!_noUnignoredModulesLeft)
             yield return new WaitForSeconds(.1f);
 
-        if (_hyperforgetStages.Count != _moduleCounts[moduleId])
-            throw new AbandonModuleException("The number of handlers did not match the number of Hyperforget modules.");
+        if (_hyperForgetStages.Count != _moduleCounts[moduleId])
+            throw new AbandonModuleException("The number of handlers did not match the number of HyperForget modules.");
 
         var currentStage = GetField<int>(comp, "currentStage").Get();
         if (currentStage < 1)
         {
-            legitimatelyNoQuestion(module, "No question for Hyperforget because not enough stages were shown.");
+            legitimatelyNoQuestion(module, "No question for HyperForget because not enough stages were shown.");
             yield break;
         }
 
         if (_moduleCounts[moduleId] == 1)
         {
-            // Only one Hyperforget: No need for the disambiguation phrase
-            addQuestions(module, rots.Take(currentStage).Select((rot, ix) => makeQuestion(Question.HyperforgetRotations, moduleId, 1, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { rot })));
+            // Only one HyperForget: No need for the disambiguation phrase
+            addQuestions(module, rots.Take(currentStage).Select((rot, ix) => makeQuestion(Question.HyperForgetRotations, moduleId, 1, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { rot })));
             yield break;
         }
 
-        var uniqueStages = Enumerable.Range(1, currentStage).Where(stage => _hyperforgetStages.Count(display => display[stage - 1] == rots[stage - 1]) == 1).Take(2).ToArray();
+        var uniqueStages = Enumerable.Range(1, currentStage).Where(stage => _hyperForgetStages.Count(display => display[stage - 1] == rots[stage - 1]) == 1).Take(2).ToArray();
         if (uniqueStages.Length == 0 || currentStage == 1)
         {
             var id = GetField<int>(comp, "moduleId").Get();
-            legitimatelyNoQuestion(module, $"No question for Hyperforget #{id} because there are not enough stages at which this one had a unique rotation.");
+            legitimatelyNoQuestion(module, $"No question for HyperForget #{id} because there are not enough stages at which this one had a unique rotation.");
             yield break;
         }
 
@@ -445,8 +445,8 @@ public partial class SouvenirModule
             var uniqueStage = uniqueStages.FirstOrDefault(s => s - 1 != stage);
             if (uniqueStage != 0)
             {
-                qs.Add(makeQuestion(Question.HyperforgetRotations, moduleId, 0,
-                    formattedModuleName: string.Format(translateString(Question.HyperforgetRotations, "the Hyperforget whose rotation in the {1} stage was {0}"), rots[uniqueStage - 1], Ordinal(uniqueStage)),
+                qs.Add(makeQuestion(Question.HyperForgetRotations, moduleId, 0,
+                    formattedModuleName: string.Format(translateString(Question.HyperForgetRotations, "the HyperForget whose rotation in the {1} stage was {0}"), rots[uniqueStage - 1], Ordinal(uniqueStage)),
                     formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { rots[stage] }));
             }
         }

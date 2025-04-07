@@ -55,7 +55,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cacti’s Conundrum          │  Halli Galli              │  Not The Plunger Button  │  Simon Swizzles             │  Yellow Button’t
     Chinese Remainder Theorem  │  hexOrbits                │  Number Game, The        │  Skewers                    │
     Coffee Beans               │  HiddenValue, The         │  One Links To All        │  Smash, Marry, Kill         │
-    Color One Two              │  Hyperforget              │  Pentabutton, The        │  Stable Time Signatures     │
+    Color One Two              │  HyperForget              │  Pentabutton, The        │  Stable Time Signatures     │
 
 ## Implemented by Kuro (59)
 

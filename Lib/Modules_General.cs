@@ -270,7 +270,7 @@ public partial class SouvenirModule
             ["HumanResourcesModule"] = (ProcessHumanResources, "Human Resources", "Timwi"),
             ["hunting"] = (ProcessHunting, "Hunting", "Timwi"),
             ["TheHypercubeModule"] = (ProcessHypercube, "Hypercube, The", "luisdiogo98"),
-            ["HyperForget"] = (ProcessHyperforget, "Hyperforget", "Anonymous"),
+            ["HyperForget"] = (ProcessHyperForget, "HyperForget", "Anonymous"),
             ["hyperlink"] = (ProcessHyperlink, "Hyperlink, The", "Espik"),
             ["iceCreamModule"] = (ProcessIceCream, "Ice Cream", "CaitSith2"),
             ["identificationCrisis"] = (ProcessIdentificationCrisis, "Identification Crisis", "TasThiluna"),
