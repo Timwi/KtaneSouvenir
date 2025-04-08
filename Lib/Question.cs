@@ -660,6 +660,13 @@ namespace Souvenir
         [SouvenirQuestion("What was the grid size in {0}?", "Coordinates", OneColumn4Answers, "9", "15", "25", "21", "35", "49", "(9)", "(15)", "(21)", "(25)", "(35)", "(49)", "3 by 3", "4 by 3", "5 by 3", "6 by 3", "7 by 3", "3 by 4", "4 by 4", "5 by 4", "6 by 4", "7 by 4", "3 by 5", "4 by 5", "5 by 5", "6 by 5", "7 by 5", "3 by 6", "4 by 6", "5 by 6", "6 by 6", "7 by 6", "3 by 7", "4 by 7", "5 by 7", "6 by 7", "7 by 7", "9*3", "12*4", "15*5", "18*6", "21*7", "12*3", "16*4", "20*5", "24*6", "28*7", "15*3", "20*4", "25*5", "30*6", "35*7", "18*3", "24*4", "30*5", "36*6", "42*7", "21*3", "28*4", "35*5", "42*6", "49*7", "9 : 3", "12 : 3", "15 : 3", "18 : 3", "21 : 3", "12 : 4", "16 : 4", "20 : 4", "24 : 4", "28 : 4", "15 : 5", "20 : 5", "25 : 5", "30 : 5", "35 : 5", "18 : 6", "24 : 6", "30 : 6", "36 : 6", "42 : 6", "21 : 7", "28 : 7", "35 : 7", "42 : 7", "49 : 7", "3×3", "3×4", "3×5", "3×6", "3×7", "4×3", "4×4", "4×5", "4×6", "4×7", "5×3", "5×4", "5×5", "5×6", "5×7", "6×3", "6×4", "6×5", "6×6", "6×7", "7×3", "7×4", "7×5", "7×6", "7×7")]
         CoordinatesSize,
 
+        [SouvenirQuestion("What was the label of the starting coordinate in {0}?", "Coordination", ThreeColumns6Answers)]
+        [AnswerGenerator.Strings("A-F", "1-6")]
+        CoordinationLabel,
+        [SouvenirQuestion("Where was the starting coordinate in {0}?", "Coordination", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+        [AnswerGenerator.Grid(6, 6)]
+        CoordinationPosition,
+
         [SouvenirQuestion("What was on the {1} screen on page {2} in {0}?", "Coral Cipher", TwoColumns4Answers, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },
             ExampleFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { true, false })]
         CoralCipherScreen,

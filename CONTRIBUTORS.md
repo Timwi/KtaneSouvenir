@@ -95,6 +95,17 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Conditional Buttons      │  Find The Date         │  Keypad Combination  │  Scrutiny Squares   │  Valves
     Customer Identification  │  Flavor Text           │  Kuro                │  Sign Language      │  Weakest Link, The
 
+## Implemented by Quinn Wuest (38)
+
+    3D Chess          │  Double Digits             │  Not Coordinates       │  Parity               │  Small Talk
+    A Square          │  Épelle-moi Ça             │  Not Morsematics       │  Quadrants            │  Triple Term
+    Ángel Hernández   │  Guess Who?                │  Not Murder            │  Robo-Scanner         │  Unpleasant Squares
+    Bulb, The         │  Letter Math               │  Not Number Pad        │  Rule of Three        │  Varicolour Flash
+    Caesar Psycho     │  Match Refereeing          │  Not Perspective Pegs  │  Scramboozled Eggain  │  Who’s on Gas
+    Coordination      │  Navigation Determination  │  Not The Bulb          │  Simon Said           │  xobekuJ ehT
+    Cyan Button, The  │  Not Colored Switches      │  Not X01               │  Simultaneous Simons  │
+    Denial Displays   │  Not Connection Check      │  Papa’s Pizzeria       │  Slow Math            │
+
 ## Implemented by BigCrunch22 (37)
 
     1000 Words      │  Dreamcipher    │  Matrix, The            │  Stars                   │  Violet Cipher
@@ -105,17 +116,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cheep Checkout  │  Grocery Store  │  Sequencyclopedia, The  │  Topsy Turvy             │
     Cosmic          │  Hold Ups       │  Shifting Maze          │  Ultimate Cipher         │
     Deaf Alley      │  Indigo Cipher  │  Spelling Bee           │  V                       │
-
-## Implemented by Quinn Wuest (37)
-
-    3D Chess          │  Épelle-moi Ça             │  Not Morsematics       │  Quadrants            │  Triple Term
-    A Square          │  Guess Who?                │  Not Murder            │  Robo-Scanner         │  Unpleasant Squares
-    Ángel Hernández   │  Letter Math               │  Not Number Pad        │  Rule of Three        │  Varicolour Flash
-    Bulb, The         │  Match Refereeing          │  Not Perspective Pegs  │  Scramboozled Eggain  │  Who’s on Gas
-    Caesar Psycho     │  Navigation Determination  │  Not The Bulb          │  Simon Said           │  xobekuJ ehT
-    Cyan Button, The  │  Not Colored Switches      │  Not X01               │  Simultaneous Simons  │
-    Denial Displays   │  Not Connection Check      │  Papa’s Pizzeria       │  Slow Math            │
-    Double Digits     │  Not Coordinates           │  Parity                │  Small Talk           │
 
 ## Implemented by TasThiluna (31)
 

@@ -135,6 +135,7 @@ public partial class SouvenirModule
             ["ConnectedMonitorsModule"] = (ProcessConnectedMonitors, "Connected Monitors", "Anonymous"),
             ["graphModule"] = (ProcessConnectionCheck, "Connection Check", "Anonymous"),
             ["CoordinatesModule"] = (ProcessCoordinates, "Coordinates", "Timwi"),
+            ["Coordination"] = (ProcessCoordination, "Coordination", "Quinn Wuest"),
             ["coralCipher"] = (ProcessCoralCipher, "Coral Cipher", "Timwi"),
             ["CornersModule"] = (ProcessCorners, "Corners", "Timwi"),
             ["cornflowerCipher"] = (ProcessCornflowerCipher, "Cornflower Cipher", "Timwi"),

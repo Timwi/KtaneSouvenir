@@ -894,6 +894,17 @@ public partial class SouvenirModule
             sizeClue == null ? null : makeQuestion(Question.CoordinatesSize, module, correctAnswers: new[] { fldClueText.GetFrom(sizeClue) }));
     }
 
+    private IEnumerator<YieldInstruction> ProcessCoordination(ModuleData module)
+    {
+        var comp = GetComponent(module, "Coordination");
+        yield return WaitForSolve;
+        var startingCoordinate = GetIntField(comp, "StartingCoordinate").Get();
+        var modCoordinates = GetArrayField<string>(comp, "ModuleCoordinates").Get();
+        addQuestions(module,
+            makeQuestion(Question.CoordinationLabel, module, correctAnswers: new[] { modCoordinates[startingCoordinate].ToString() }),
+            makeQuestion(Question.CoordinationPosition, module, correctAnswers: new[] {new Coord(6, 6, startingCoordinate)}));
+    }
+
     private IEnumerator<YieldInstruction> ProcessCoralCipher(ModuleData module)
     {
         return processColoredCiphers(module, "coralCipher", Question.CoralCipherScreen);

@@ -2398,6 +2398,22 @@ namespace Souvenir
                 ModuleName = "Koordinaten",
             },
 
+            // Coordination
+            // What was the label of the starting coordinate in {0}?
+            // What was the label of the starting coordinate in Coordination?
+            [Question.CoordinationLabel] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the label of the starting coordinate in {0}?",
+            },
+            // Where was the starting coordinate in {0}?
+            // Where was the starting coordinate in Coordination?
+            [Question.CoordinationPosition] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Where was the starting coordinate in {0}?",
+            },
+
             // Coral Cipher
             // What was on the {1} screen on page {2} in {0}?
             // What was on the top screen on page 1 in Coral Cipher?
