@@ -9276,12 +9276,12 @@ namespace Souvenir
             },
 
             // Simon Said
-            // What color was pressed {1} in the final sequence of {0}?
-            // What color was pressed first in the final sequence of Simon Said?
-            [Question.SimonSaidPresses] = new()
+            // What color flashed {1} in the final sequence of {0}?
+            // What color flashed first in the final sequence of Simon Said?
+            [Question.SimonSaidFlashes] = new()
             {
-                QuestionText = "{0}の最終シーケンスにおける{1}番目に押したボタンは？",
-                ModuleName = "サイモンの残響",
+                NeedsTranslation = true,
+                QuestionText = "What color flashed {1} in the final sequence of {0}?",
                 Answers = new Dictionary<string, string>
                 {
                     ["Red"] = "赤",

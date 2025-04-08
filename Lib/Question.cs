@@ -2686,9 +2686,9 @@
         [AnswerGenerator.Integers(0, 9999, "0000")]
         SiloAuthorizationAuthCode,
 
-        [SouvenirQuestion("What color was pressed {1} in the final sequence of {0}?", "Simon Said", TwoColumns4Answers, "Red", "Green", "Blue", "Yellow", TranslateAnswers = true,
+        [SouvenirQuestion("What color flashed {1} in the final sequence of {0}?", "Simon Said", TwoColumns4Answers, "Red", "Green", "Blue", "Yellow", TranslateAnswers = true,
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
-        SimonSaidPresses,
+        SimonSaidFlashes,
 
         [SouvenirQuestion("What were the call samples {1} of {0}?", "Simon Samples", ThreeColumns6Answers, AudioFieldName = "SimonSamplesAudio", Type = AnswerType.Audio,
             TranslateFormatArgs = new[] { true }, ExampleFormatArguments = new[] { "played in the first stage", "added in the second stage", "added in the third stage" }, ExampleFormatArgumentGroupSize = 1)]
