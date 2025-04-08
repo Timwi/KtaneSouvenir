@@ -106,15 +106,16 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cosmic          │  Hold Ups       │  Shifting Maze          │  Ultimate Cipher         │
     Deaf Alley      │  Indigo Cipher  │  Spelling Bee           │  V                       │
 
-## Implemented by Quinn Wuest (35)
+## Implemented by Quinn Wuest (36)
 
-    3D Chess          │  Double Digits             │  Not Connection Check  │  Not X01              │  Simultaneous Simons
-    A Square          │  Épelle-moi Ça             │  Not Coordinates       │  Papa’s Pizzeria      │  Slow Math
-    Ángel Hernández   │  Guess Who?                │  Not Morsematics       │  Parity               │  Triple Term
-    Bulb, The         │  Letter Math               │  Not Murder            │  Robo-Scanner         │  Unpleasant Squares
-    Caesar Psycho     │  Match Refereeing          │  Not Number Pad        │  Rule of Three        │  Varicolour Flash
-    Cyan Button, The  │  Navigation Determination  │  Not Perspective Pegs  │  Scramboozled Eggain  │  Who’s on Gas
-    Denial Displays   │  Not Colored Switches      │  Not The Bulb          │  Simon Said           │  xobekuJ ehT
+    3D Chess          │  Épelle-moi Ça             │  Not Morsematics       │  Quadrants            │  Unpleasant Squares
+    A Square          │  Guess Who?                │  Not Murder            │  Robo-Scanner         │  Varicolour Flash
+    Ángel Hernández   │  Letter Math               │  Not Number Pad        │  Rule of Three        │  Who’s on Gas
+    Bulb, The         │  Match Refereeing          │  Not Perspective Pegs  │  Scramboozled Eggain  │  xobekuJ ehT
+    Caesar Psycho     │  Navigation Determination  │  Not The Bulb          │  Simon Said           │
+    Cyan Button, The  │  Not Colored Switches      │  Not X01               │  Simultaneous Simons  │
+    Denial Displays   │  Not Connection Check      │  Papa’s Pizzeria       │  Slow Math            │
+    Double Digits     │  Not Coordinates           │  Parity                │  Triple Term          │
 
 ## Implemented by TasThiluna (31)
 

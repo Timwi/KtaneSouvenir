@@ -2249,7 +2249,7 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9)]
         PalindromesNumbers,
 
-        [SouvenirQuestion("What was the order number on {0}?", "Papa’s Pizzeria", ThreeColumns6Answers, ExampleAnswers = new[] {"123A", "234C", "523C", "447B", "360Q", "712S"})]
+        [SouvenirQuestion("What was the order number on {0}?", "Papa’s Pizzeria", ThreeColumns6Answers, ExampleAnswers = new[] { "123A", "234C", "523C", "447B", "360Q", "712S" })]
         [AnswerGenerator.Strings("3*0-7", "ACQBJMSD")]
         PapasPizzeriaRequest,
 
@@ -2406,6 +2406,10 @@ namespace Souvenir
         [SouvenirQuestion("What was the {1} question asked in {0}?", "Q & A", ThreeColumns6Answers, "WHAT", "WHEN", "WHERE", "WHO", "HOW", "WHY",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         QnAQuestions,
+
+        [SouvenirQuestion("What was on the {1} button of the {2} stage in {0}?", "Quadrants", ThreeColumns6Answers, "1", "2", "3", "4", "+", "-",
+            ExampleFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleFormatArgumentGroupSize = 2)]
+        QuadrantsButtons,
 
         [SouvenirQuestion("Which word was used in {0}?", "Quantum Passwords", ThreeColumns6Answers, "Argue", "Blaze", "Cajun", "Depth", "Endow", "Foyer", "Gimpy", "Heavy", "Index", "Joker", "Kylix", "Lambs", "Mercy", "Nifty", "Omens", "Pupil", "Risky", "Stoic", "Taboo", "Unbox", "Viced", "Waltz", "Xerus", "Yuzus", "Zilch")]
         QuantumPasswordsWord,

@@ -465,6 +465,7 @@ public partial class SouvenirModule
             ["GSPuzzleIdentification"] = (ProcessPuzzleIdentification, "Puzzle Identification", "GhostSalt"),
             ["puzzlingHexabuttons"] = (ProcessPuzzlingHexabuttons, "Puzzling Hexabuttons", "Anonymous"),
             ["q&a"] = (ProcessQnA, "Q & A", "Anonymous"),
+            ["Quadrants"] = (ProcessQuadrants, "Quadrants", "Quinn Wuest"),
             ["quantumPasswords"] = (ProcessQuantumPasswords, "Quantum Passwords", "Anonymous"),
             ["quTern"] = (ProcessQuantumTernaryConverter, "Quantum Ternary Converter", "Anonymous"),
             ["Quaver"] = (ProcessQuaver, "Quaver", "Emik"),

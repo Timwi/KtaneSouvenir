@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using Souvenir;
 using UnityEngine;
 using Rnd = UnityEngine.Random;
@@ -17,6 +19,59 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         addQuestions(module, qs.Select((q, i) => makeQuestion(Question.QnAQuestions, module, correctAnswers: new[] { q }, formatArgs: new[] { Ordinal(i + 1) })));
+    }
+
+    private IEnumerator<YieldInstruction> ProcessQuadrants(ModuleData module)
+    {
+        var comp = GetComponent(module, "Quadrants");
+
+        var chosenSet = GetIntField(comp, "ChosenSet");
+        var ixOfSymbolsComp = GetArrayField<int>(comp, "SymbolsIndex");
+        var parityOfSymbolsComp = GetArrayField<bool>(comp, "PositiveCoordinate");
+        var stageComp = GetIntField(comp, "Stage");
+
+        var stages = new string[5];
+        string[] sets = { "1243", "1324", "1432", "2134", "2341", "2413", "3142", "3214", "3421", "4123", "4231", "3214" };
+
+        var btnsAtAllStages = new string[5];
+        while (module.Unsolved)
+        {
+            var stage = stageComp.Get() - 1;
+            if (stage == -1)
+            {
+                yield return null;
+                continue;
+            }
+            var set = chosenSet.Get();
+            var ixOfSymbols = ixOfSymbolsComp.Get();
+            var parityOfSymbols = parityOfSymbolsComp.Get();
+            var btns = new string[4];
+            for (int i = 0; i < 4; i++)
+            {
+                if (ixOfSymbols.Contains(i))
+                {
+                    if (ixOfSymbols.First() == i)
+                        btns[i] = parityOfSymbols.First() ? "+" : "-";
+                    else
+                        btns[i] = parityOfSymbols.Last() ? "+" : "-";
+                }
+                else
+                    btns[i] = sets[set][i].ToString();
+            }
+            btnsAtAllStages[stage] = btns.JoinString("");
+            yield return null;
+        }
+
+        var qs = new List<QandA>();
+
+        for (int s = 0; s < 5; s++)
+            for (int b = 0; b < 4; b++)
+            {
+                qs.Add(makeQuestion(Question.QuadrantsButtons, module,
+                formatArgs: new[] { Ordinal(b + 1), Ordinal(s + 1) },
+                correctAnswers: new[] { btnsAtAllStages[s][b].ToString() }));
+            }
+        addQuestions(module, qs);
     }
 
     private IEnumerator<YieldInstruction> ProcessQuantumPasswords(ModuleData module)

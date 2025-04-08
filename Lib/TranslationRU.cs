@@ -8188,6 +8188,15 @@ namespace Souvenir
                 QuestionText = "Какой был {1}-й вопрос {0}?",
             },
 
+            // Quadrants
+            // What was on the {1} button of the {2} stage in {0}?
+            // What was on the first button of the first stage in Quadrants?
+            [Question.QuadrantsButtons] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was on the {1} button of the {2} stage in {0}?",
+            },
+
             // Quantum Passwords
             // Which word was used in {0}?
             // Which word was used in Quantum Passwords?
