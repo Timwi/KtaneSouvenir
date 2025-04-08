@@ -123,6 +123,22 @@ namespace Souvenir
                 },
             },
 
+            // 3D Chess
+            // Which of these pieces were present in {0}?
+            // Which of these pieces were present in 3D Chess?
+            [Question._3DChessPresentPieces] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which of these pieces were present in {0}?",
+            },
+            // Which of these pieces were not present in {0}?
+            // Which of these pieces were not present in 3D Chess?
+            [Question._3DChessAbsentPieces] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which of these pieces were not present in {0}?",
+            },
+
             // 3D Maze
             // What were the markings in {0}?
             // What were the markings in 3D Maze?

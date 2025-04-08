@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text.RegularExpressions;
 using Souvenir;
 using UnityEngine;
@@ -97,6 +99,43 @@ public partial class SouvenirModule
             makeQuestion(Question._1DChessMoves, module,
                 formatArgs: new[] { new[] { "your first move", "Rustmate’s first move", "your second move", "Rustmate’s second move", "your third move", "Rustmate’s third move", "your fourth move", "Rustmate’s fourth move", "your fifth move", "Rustmate’s fifth move", "your sixth move", "Rustmate’s sixth move", "your seventh move", "Rustmate’s seventh move", "your eighth move", "Rustmate’s eighth move" }[ix] },
                 correctAnswers: new[] { move })));
+    }
+
+    private IEnumerator<YieldInstruction> Process3DChess(ModuleData module)
+    {
+        var comp = GetComponent(module, "ThreeDimensionalChess");
+        yield return WaitForSolve;
+
+        var pieces = GetField<IList>(comp, "Pieces").Get(l => l.Count != 7 ? $"Bad piece list length {l}" : null);
+        var present = new List<string>();
+        var dict = new Dictionary<string, string>()
+        {
+            ["King"] = "K",
+            ["Knight"] = "N",
+            ["Bishop"] = "B",
+            ["Rook"] = "R",
+            ["Queen"] = "Q"
+        };
+        for (int i = 0; i < pieces.Count; i++)
+        {
+            var L = GetField<int>(pieces[i], "L", isPublic: true).Get();
+            var C = GetField<int>(pieces[i], "C", isPublic: true).Get();
+            var R = GetField<int>(pieces[i], "R", isPublic: true).Get();
+            var T = GetField<string>(pieces[i], "T", isPublic: true).Get();
+            present.Add(dict[T] + new[] { "I", "II", "III", "IV", "V" }[L] + "ABCDE"[C] + (R + 1).ToString());
+        }
+
+        var possible = new List<string>();
+        for (int piece = 0; piece < 5; piece++)
+            for (int layer = 0; layer < 5; layer++)
+                for (int col = 0; col < 5; col++)
+                    for (int row = 0; row < 5; row++)
+                        possible.Add("KNBRQ"[piece] + new[] { "I", "II", "III", "IV", "V" }[layer] + "ABCDE"[col] + (row + 1).ToString());
+        var absent = possible.Where(x => !present.Contains(x));
+
+        addQuestions(module,
+            makeQuestion(Question._3DChessPresentPieces, module, correctAnswers: present.ToArray(), preferredWrongAnswers: possible.ToArray()),
+            makeQuestion(Question._3DChessAbsentPieces, module, correctAnswers: absent.ToArray(), preferredWrongAnswers: possible.ToArray()));
     }
 
     private IEnumerator<YieldInstruction> Process3DMaze(ModuleData module)

@@ -21,6 +21,7 @@ public partial class SouvenirModule
             ["100LevelsOfDefusal"] = (Process100LevelsOfDefusal, "100 Levels of Defusal", "Espik"),
             ["TheOneTwoThreeGame"] = (Process123Game, "1, 2, 3 Game, The", "Anonymous"),
             ["1DChess"] = (Process1DChess, "1D Chess", "Emik"),
+            ["ThreeDimensionalChess"] = (Process3DChess, "3D Chess", "Quinn Wuest"),
             ["spwiz3DMaze"] = (Process3DMaze, "3D Maze", "Timwi"),
             ["3DTapCodeModule"] = (Process3DTapCode, "3D Tap Code", "TasThiluna"),
             ["3dTunnels"] = (Process3DTunnels, "3D Tunnels", "Timwi"),
