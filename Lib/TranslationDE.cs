@@ -8025,6 +8025,15 @@ namespace Souvenir
                 },
             },
 
+            // Papa’s Pizzeria
+            // What was the order number on {0}?
+            // What was the order number on Papa’s Pizzeria?
+            [Question.PapasPizzeriaRequest] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the order number on {0}?",
+            },
+
             // Parity
             // What was shown on the display on {0}?
             // What was shown on the display on Parity?

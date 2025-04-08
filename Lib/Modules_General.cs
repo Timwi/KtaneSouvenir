@@ -430,6 +430,7 @@ public partial class SouvenirModule
             ["OrientationCube"] = (ProcessOrientationCube, "Orientation Cube", "Timwi"),
             ["OrientationHypercube"] = (ProcessOrientationHypercube, "Orientation Hypercube", "Kuro"),
             ["palindromes"] = (ProcessPalindromes, "Palindromes", "Emik"),
+            ["papasPizzeria"] = (ProcessPapasPizzeria, "Papa’s Pizzeria", "Quinn Wuest"),
             ["parity"] = (ProcessParity, "Parity", "Quinn Wuest"),
             ["partialDerivatives"] = (ProcessPartialDerivatives, "Partial Derivatives", "Timwi"),
             ["passportControl"] = (ProcessPassportControl, "Passport Control", "luisdiogo98"),

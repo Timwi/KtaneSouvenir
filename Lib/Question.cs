@@ -2249,6 +2249,10 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9)]
         PalindromesNumbers,
 
+        [SouvenirQuestion("What was the order number on {0}?", "Papa’s Pizzeria", ThreeColumns6Answers, ExampleAnswers = new[] {"123A", "234C", "523C", "447B", "360Q", "712S"})]
+        [AnswerGenerator.Strings("3*0-7", "ACQBJMSD")]
+        PapasPizzeriaRequest,
+
         [SouvenirQuestion("What was shown on the display on {0}?", "Parity", ThreeColumns6Answers, ExampleAnswers = new[] { "A1", "B2", "C3", "D4", "E5", "F6" })]
         ParityDisplay,
 
