@@ -966,6 +966,9 @@ namespace Souvenir
             ExampleFormatArguments = new[] { "message", "response" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         EnigmaCycleWords,
 
+        [SouvenirQuestion("What was the displayed quote on {0}?", "English Entries", OneColumn4Answers, ExampleAnswers = new[] { "Let’s go shopping!", "We wear our shoes in the house.", "(Kevin starts to clap)", "What is Namsu doing?" })]
+        EnglishEntriesDisplay,
+
         [SouvenirQuestion("What was the {1} number shown in {0}?", "Entry Number Four", TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" },
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(10000000, 99999999, 1, "00000000")]

@@ -95,16 +95,16 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Conditional Buttons      │  Find The Date         │  Keypad Combination  │  Scrutiny Squares   │  Valves
     Customer Identification  │  Flavor Text           │  Kuro                │  Sign Language      │  Weakest Link, The
 
-## Implemented by Quinn Wuest (38)
+## Implemented by Quinn Wuest (39)
 
-    3D Chess          │  Double Digits             │  Not Coordinates       │  Parity               │  Small Talk
-    A Square          │  Épelle-moi Ça             │  Not Morsematics       │  Quadrants            │  Triple Term
-    Ángel Hernández   │  Guess Who?                │  Not Murder            │  Robo-Scanner         │  Unpleasant Squares
-    Bulb, The         │  Letter Math               │  Not Number Pad        │  Rule of Three        │  Varicolour Flash
-    Caesar Psycho     │  Match Refereeing          │  Not Perspective Pegs  │  Scramboozled Eggain  │  Who’s on Gas
-    Coordination      │  Navigation Determination  │  Not The Bulb          │  Simon Said           │  xobekuJ ehT
-    Cyan Button, The  │  Not Colored Switches      │  Not X01               │  Simultaneous Simons  │
-    Denial Displays   │  Not Connection Check      │  Papa’s Pizzeria       │  Slow Math            │
+    3D Chess          │  Double Digits             │  Not Connection Check  │  Papa’s Pizzeria      │  Slow Math
+    A Square          │  English Entries           │  Not Coordinates       │  Parity               │  Small Talk
+    Ángel Hernández   │  Épelle-moi Ça             │  Not Morsematics       │  Quadrants            │  Triple Term
+    Bulb, The         │  Guess Who?                │  Not Murder            │  Robo-Scanner         │  Unpleasant Squares
+    Caesar Psycho     │  Letter Math               │  Not Number Pad        │  Rule of Three        │  Varicolour Flash
+    Coordination      │  Match Refereeing          │  Not Perspective Pegs  │  Scramboozled Eggain  │  Who’s on Gas
+    Cyan Button, The  │  Navigation Determination  │  Not The Bulb          │  Simon Said           │  xobekuJ ehT
+    Denial Displays   │  Not Colored Switches      │  Not X01               │  Simultaneous Simons  │
 
 ## Implemented by BigCrunch22 (37)
 

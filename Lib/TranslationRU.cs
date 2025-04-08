@@ -3436,6 +3436,15 @@ namespace Souvenir
                 },
             },
 
+            // English Entries
+            // What was the displayed quote on {0}?
+            // What was the displayed quote on English Entries?
+            [Question.EnglishEntriesDisplay] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the displayed quote on {0}?",
+            },
+
             // Entry Number Four
             // What was the {1} number shown in {0}?
             // What was the first number shown in Entry Number Four?

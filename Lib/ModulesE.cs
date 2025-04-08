@@ -259,8 +259,21 @@ public partial class SouvenirModule
         var wordList = Enumerable.Range(0, wl.Length).Select(word => wl[word].Substring(0, 1) + wl[word].Substring(1).ToLowerInvariant()).ToArray();
 
         addQuestions(module,
-          makeQuestion(Question.EnigmaCycleWords, module, formatArgs: new[] { "message" }, correctAnswers: new[] { message }, preferredWrongAnswers: wordList),
-          makeQuestion(Question.EnigmaCycleWords, module, formatArgs: new[] { "response" }, correctAnswers: new[] { response }, preferredWrongAnswers: wordList));
+            makeQuestion(Question.EnigmaCycleWords, module, formatArgs: new[] { "message" }, correctAnswers: new[] { message }, preferredWrongAnswers: wordList),
+            makeQuestion(Question.EnigmaCycleWords, module, formatArgs: new[] { "response" }, correctAnswers: new[] { response }, preferredWrongAnswers: wordList));
+    }
+
+    private IEnumerator<YieldInstruction> ProcessEnglishEntries(ModuleData module)
+    {
+        var comp = GetComponent(module, "EnglishEntries");
+        yield return WaitForSolve;
+
+        var loudclapping = GetArrayField<string[]>(comp, "LoudClapping").Get().Select(i => i.Select(j => j.Replace('\n', ' ')).ToArray()).ToArray();
+        var ann = GetIntField(comp, "Ann").Get();
+        var kevin = GetIntField(comp, "Kevin").Get();
+        var allAnswers = loudclapping.SelectMany(i => i).ToArray();
+
+        addQuestion(module, Question.EnglishEntriesDisplay, correctAnswers: new[] { loudclapping[ann][kevin] }, preferredWrongAnswers: allAnswers);
     }
 
     private IEnumerator<YieldInstruction> ProcessEntryNumberFour(ModuleData module)
