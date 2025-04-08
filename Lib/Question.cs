@@ -3229,6 +3229,9 @@
         [AnswerGenerator.Strings('A', 'Z')]
         UnownCipherAnswers,
 
+        [SouvenirQuestion("What was the color of this square in {0}?", "Unpleasant Squares", TwoColumns4Answers, "Red", "Yellow", "Jade", "Azure", "Violet", TranslateAnswers = true, UsesQuestionSprite = true)]
+        UnpleasantSquaresColor,
+
         [SouvenirQuestion("What was the text on {0}?", "Updog", ThreeColumns6Answers, "dog", "DOG", "dawg", "DAWG", "doge", "DOGE", "dag", "DAG", "dogg", "DOGG", "dage", "DAGE")]
         UpdogWord,
         [SouvenirQuestion("What was the {1} color in the sequence on {0}?", "Updog", ThreeColumns6Answers, "Red", "Yellow", "Orange", "Green", "Blue", "Purple", TranslateFormatArgs = new[] { true }, TranslateAnswers = true,

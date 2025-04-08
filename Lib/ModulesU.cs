@@ -212,6 +212,26 @@ public partial class SouvenirModule
             makeQuestion(Question.UpdogColor, module, correctAnswers: new[] { lastCol }, formatArgs: new[] { "last" }));
     }
 
+    private IEnumerator<YieldInstruction> ProcessUnpleasantSquares(ModuleData module)
+    {
+        var comp = GetComponent(module, "UnSqScript");
+        yield return WaitForSolve;
+        var subGrid = GetField<int[,]>(comp, "subgrid").Get();
+        var colorNames = new string[] { "Red", "Yellow", "Jade", "Azure", "Violet", };
+
+        var qs = new List<QandA>();
+        for (int x = 0; x < 5; x++)
+            for (int y = 0; y < 5; y++)
+            {
+                int p = x * 5 + y;
+                if (p == 12)
+                    continue;
+                var coord = new Coord(5, 5, p);
+                qs.Add(makeQuestion(Question.UnpleasantSquaresColor, module, questionSprite: Sprites.GenerateGridSprite(coord), correctAnswers: new[] { colorNames[subGrid[x, y]] }));
+            }
+        addQuestions(module, qs);
+    }
+
     private IEnumerator<YieldInstruction> ProcessUSACycle(ModuleData module)
     {
         var comp = GetComponent(module, "USACycle");

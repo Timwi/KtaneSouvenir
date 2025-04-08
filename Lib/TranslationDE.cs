@@ -11460,6 +11460,23 @@ namespace Souvenir
                 QuestionText = "What was the {1} submitted letter in {0}?",
             },
 
+            // Unpleasant Squares
+            // What was the color of this square in {0}?
+            // What was the color of this square in Unpleasant Squares?
+            [Question.UnpleasantSquaresColor] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the color of this square in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Yellow"] = "Yellow",
+                    ["Jade"] = "Jade",
+                    ["Azure"] = "Azure",
+                    ["Violet"] = "Violet",
+                },
+            },
+
             // Updog
             // What was the text on {0}?
             // What was the text on Updog?
@@ -11929,8 +11946,8 @@ namespace Souvenir
             },
 
             // Who’s on Gas
-            // What was the display in the {1} stage on {0}?
-            // What was the display in the first stage on Who’s on Gas?
+            // What was the display in the first phase of the {1} stage on {0}?
+            // What was the display in the first phase of the first stage on Who’s on Gas?
             [Question.WhosOnGasDisplay] = new()
             {
                 NeedsTranslation = true,

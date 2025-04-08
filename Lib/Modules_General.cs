@@ -625,6 +625,7 @@ public partial class SouvenirModule
             ["UNO"] = (ProcessUNO, "UNO!", "Hawker"),
             ["unorderedKeys"] = (ProcessUnorderedKeys, "Unordered Keys", "Anonymous"),
             ["UnownCipher"] = (ProcessUnownCipher, "Unown Cipher", "kavinkul"),
+            ["unpleasantSquares"] = (ProcessUnpleasantSquares, "Unpleasant Squares", "Quinn Wuest"),
             ["Updog"] = (ProcessUpdog, "Updog", "Anonymous"),
             ["USACycle"] = (ProcessUSACycle, "USA Cycle", "tandyCake"),
             ["USA"] = (ProcessUSAMaze, "USA Maze", "luisdiogo98"),
