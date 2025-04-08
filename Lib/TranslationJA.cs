@@ -11714,6 +11714,15 @@ namespace Souvenir
                 ModuleName = "表比較",
             },
 
+            // Who’s on Gas
+            // What was the display in the {1} stage on {0}?
+            // What was the display in the first stage on Who’s on Gas?
+            [Question.WhosOnGasDisplay] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the display in the {1} stage on {0}?",
+            },
+
             // Who’s on Morse
             // What word was transmitted in the {1} stage on {0}?
             // What word was transmitted in the first stage on Who’s on Morse?

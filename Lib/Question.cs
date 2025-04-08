@@ -3352,6 +3352,10 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         WhosOnFirstDisplay,
 
+        [SouvenirQuestion("What was the display in the first phase of the {1} stage on {0}?", "Who’s on Gas", ThreeColumns6Answers, ExampleAnswers = new[] {"DISPLAY", "PRESS", "PRESSED", "LAST", "START", "ONE"},
+            ExampleFormatArguments = new[] {QandA.Ordinal}, ExampleFormatArgumentGroupSize = 1)]
+        WhosOnGasDisplay,
+
         [SouvenirQuestion("What word was transmitted in the {1} stage on {0}?", "Who’s on Morse", ThreeColumns6Answers, "SHELL", "HALLS", "SLICK", "TRICK", "BOXES", "LEAKS", "STROBE", "BISTRO", "FLICK", "BOMBS", "BREAK", "BRICK", "STEAK", "STING", "VECTOR", "BEATS", "CURSE", "NICE", "VERB", "NEARLY", "CREEK", "TRIBE", "CYBER", "CINEMA", "KOALA", "WATER", "WHISK", "MATTER", "KEYS", "STUCK",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         WhosOnMorseTransmitDisplay,

@@ -227,6 +227,30 @@ public partial class SouvenirModule
         addQuestions(module, displayWords.Select((word, stage) => makeQuestion(Question.WhosOnFirstDisplay, module, formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { word }, preferredWrongAnswers: displayWords)));
     }
 
+    private IEnumerator<YieldInstruction> ProcessWhosOnGas(ModuleData module)
+    {
+        var comp = GetComponent(module, "WhosOnGasScript");
+        var line = GetIntField(comp, "line");
+        var stage = GetIntField(comp, "stage");
+        var displays = new string[] { "DISPLAY", "PRESS", "PRESSED", "LAST", "START", "ONE", "STRIKES", "TO", "SCREEN", "TWO", "RESET", "DISARMED", "STRIKE" };
+        var screens = new string[6];
+
+        while (module.Unsolved)
+        {
+            var s = stage.Get();
+            var l = line.Get();
+            screens[s] = displays[l];
+            yield return null;
+        }
+        var qs = new List<QandA>();
+        for (int s = 0; s < 3; s++)
+        {
+            int ix = s * 2;
+            qs.Add(makeQuestion(Question.WhosOnGasDisplay, module, formatArgs: new[] { Ordinal(s + 1) }, correctAnswers: new[] { screens[ix] }, preferredWrongAnswers: displays));
+        }
+        addQuestions(module, qs);
+    }
+
     private IEnumerator<YieldInstruction> ProcessWhosOnMorse(ModuleData module)
     {
         var comp = GetComponent(module, "WhosOnMorseScript");

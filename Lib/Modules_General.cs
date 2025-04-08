@@ -649,6 +649,7 @@ public partial class SouvenirModule
             ["whiteCipher"] = (ProcessWhiteCipher, "White Cipher", "BigCrunch22"),
             ["whoOF"] = (ProcessWhoOF, "WhoOF", "VFlyer"),
             ["WhosOnFirst"] = (ProcessWhosOnFirst, "Who’s on First", "Andrio Celos"),
+            ["whosOnGas"] = (ProcessWhosOnGas, "Who’s on Gas", "Quinn Wuest"),
             ["whosOnMorseModule"] = (ProcessWhosOnMorse, "Who’s on Morse", "VFlyer"),
             ["wire"] = (ProcessWire, "Wire, The", "Timwi"),
             ["kataWireOrdering"] = (ProcessWireOrdering, "Wire Ordering", "Andrio Celos"),
