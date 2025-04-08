@@ -106,16 +106,16 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cosmic          │  Hold Ups       │  Shifting Maze          │  Ultimate Cipher         │
     Deaf Alley      │  Indigo Cipher  │  Spelling Bee           │  V                       │
 
-## Implemented by Quinn Wuest (36)
+## Implemented by Quinn Wuest (37)
 
-    3D Chess          │  Épelle-moi Ça             │  Not Morsematics       │  Quadrants            │  Unpleasant Squares
-    A Square          │  Guess Who?                │  Not Murder            │  Robo-Scanner         │  Varicolour Flash
-    Ángel Hernández   │  Letter Math               │  Not Number Pad        │  Rule of Three        │  Who’s on Gas
-    Bulb, The         │  Match Refereeing          │  Not Perspective Pegs  │  Scramboozled Eggain  │  xobekuJ ehT
-    Caesar Psycho     │  Navigation Determination  │  Not The Bulb          │  Simon Said           │
+    3D Chess          │  Épelle-moi Ça             │  Not Morsematics       │  Quadrants            │  Triple Term
+    A Square          │  Guess Who?                │  Not Murder            │  Robo-Scanner         │  Unpleasant Squares
+    Ángel Hernández   │  Letter Math               │  Not Number Pad        │  Rule of Three        │  Varicolour Flash
+    Bulb, The         │  Match Refereeing          │  Not Perspective Pegs  │  Scramboozled Eggain  │  Who’s on Gas
+    Caesar Psycho     │  Navigation Determination  │  Not The Bulb          │  Simon Said           │  xobekuJ ehT
     Cyan Button, The  │  Not Colored Switches      │  Not X01               │  Simultaneous Simons  │
     Denial Displays   │  Not Connection Check      │  Papa’s Pizzeria       │  Slow Math            │
-    Double Digits     │  Not Coordinates           │  Parity                │  Triple Term          │
+    Double Digits     │  Not Coordinates           │  Parity                │  Small Talk           │
 
 ## Implemented by TasThiluna (31)
 

@@ -2927,6 +2927,10 @@ namespace Souvenir
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         SmallCircleSolution,
 
+        [SouvenirQuestion("What was on the display in the {1} stage of {0}?", "Small Talk", TwoColumns4Answers, ExampleAnswers = new[] { "TOP", "NAH", "INDIA", "UNIFORM" },
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        SmallTalkDisplays,
+
         [SouvenirQuestion("In what category was {1} for {0}?", "Smash, Marry, Kill", TwoColumns4Answers, "SMASH", "MARRY", "KILL",
                 ExampleFormatArguments = new[] { "The Button", "Maze", "Memory", "Morse Code", "Password", "Simon Says", "Who’s on First", "Wires", "Wire Sequence" }, ExampleFormatArgumentGroupSize = 1)]
         SmashMarryKillCategory,

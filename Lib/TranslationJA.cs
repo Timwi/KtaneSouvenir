@@ -10204,6 +10204,15 @@ namespace Souvenir
                 },
             },
 
+            // Small Talk
+            // What was on the display in the {1} stage of {0}?
+            // What was on the display in the first stage of Small Talk?
+            [Question.SmallTalkDisplays] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was on the display in the {1} stage of {0}?",
+            },
+
             // Smash, Marry, Kill
             // In what category was {1} for {0}?
             // In what category was The Button for Smash, Marry, Kill?

@@ -1189,6 +1189,27 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerator<YieldInstruction> ProcessSmallTalk(ModuleData module)
+    {
+        var comp = GetComponent(module, "SmallTalk");
+        var possibleDisplays = new string[] { "TOP", "I", "OK", "YEAH", "APOSTROPHE", "1ST", "NAH", "SEA", "BOTTOM", "'", "CEA", "HOLD UP", "YUP", "EMPTY", "WHO'S ON", "INDIA", "CHARLIE", "UNIFORM", "MT", "ME", "NOPE", "WRONG", "EYE", "WHOSE ON" };
+        var stageComp = GetIntField(comp, "Stage");
+        var textMeshComp = GetField<TextMesh>(comp, "TopWordTM", isPublic: true);
+        var displays = new string[3];
+        var qs = new List<QandA>();
+        while (module.Unsolved)
+        {
+            var stage = stageComp.Get();
+            var dispText = textMeshComp.Get().text;
+            if (dispText != "")
+                displays[stage] = dispText;
+            yield return null;
+        }
+        for (int st = 0; st < 3; st++)
+            qs.Add(makeQuestion(Question.SmallTalkDisplays, module, formatArgs: new[] { Ordinal(st + 1) }, correctAnswers: new[] { displays[st] }, preferredWrongAnswers: possibleDisplays));
+        addQuestions(module, qs);
+    }
+
     private IEnumerator<YieldInstruction> ProcessSmashMarryKill(ModuleData module)
     {
         var comp = GetComponent(module, "SmashMarryKill");
