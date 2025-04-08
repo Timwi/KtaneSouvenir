@@ -2197,6 +2197,11 @@ namespace Souvenir
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         OddOneOutButton,
 
+        [SouvenirQuestion("Which of these keys played at an incorrect pitch in {0}?", "Off Keys", ThreeColumns6Answers, "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B")]
+        OffKeysIncorrectPitch,
+        [SouvenirQuestion("Which of these runes was displayed in {0}?", "Off Keys", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "OffKeysSprites")]
+        OffKeysRunes,
+
         [SouvenirQuestion("What was the {1} of the numbers shown in {0}?", "Old AI", TwoColumns4Answers, "1", "2", "3", "4", "5",
             ExampleFormatArguments = new[] { "group", "sub-group" }, TranslateFormatArgs = new[] { true }, ExampleFormatArgumentGroupSize = 1)]
         OldAIGroup,

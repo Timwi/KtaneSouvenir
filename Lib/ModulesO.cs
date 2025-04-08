@@ -67,6 +67,26 @@ public partial class SouvenirModule
             makeQuestion(Question.OddOneOutButton, module, formatArgs: new[] { "sixth" }, correctAnswers: new[] { btnNames[stageBtn[5]] }));
     }
 
+    private IEnumerator<YieldInstruction> ProcessOffKeys(ModuleData module)
+    {
+        var comp = GetComponent(module, "OffKeysScript");
+        yield return WaitForSolve;
+
+        var notes = new string[] { "C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B" };
+        var qs = new List<QandA>();
+
+        var faultyKeys = GetListField<int>(comp, "FaultyKeys").Get();
+        qs.Add(makeQuestion(Question.OffKeysIncorrectPitch, module, correctAnswers: faultyKeys.Select(i => notes[i]).ToArray()));
+
+        var pickedSymbols = GetArrayField<int>(comp, "PickedSymbols").Get();
+        Debug.Log("<><>" + OffKeysSprites.Length);
+        var correctSymbols = pickedSymbols.Select(i => OffKeysSprites[i]).ToArray();
+
+        qs.Add(makeQuestion(Question.OffKeysRunes, module, correctAnswers: correctSymbols));
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerator<YieldInstruction> ProcessOldAI(ModuleData module)
     {
         var comp = GetComponent(module, "SCP079");

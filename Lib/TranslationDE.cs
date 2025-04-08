@@ -7794,6 +7794,22 @@ namespace Souvenir
                 QuestionText = "What was the button you pressed in the {1} stage of {0}?",
             },
 
+            // Off Keys
+            // Which of these keys played at an incorrect pitch in {0}?
+            // Which of these keys played at an incorrect pitch in Off Keys?
+            [Question.OffKeysIncorrectPitch] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which of these keys played at an incorrect pitch in {0}?",
+            },
+            // Which of these runes was displayed in {0}?
+            // Which of these runes was displayed in Off Keys?
+            [Question.OffKeysRunes] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which of these runes was displayed in {0]?",
+            },
+
             // Old AI
             // What was the {1} of the numbers shown in {0}?
             // What was the group of the numbers shown in Old AI?

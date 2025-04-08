@@ -421,6 +421,7 @@ public partial class SouvenirModule
             ["objectShows"] = (ProcessObjectShows, "Object Shows", "Timwi"),
             ["TheOctadecayotton"] = (ProcessOctadecayotton, "Octadecayotton, The", "Emik"),
             ["OddOneOutModule"] = (ProcessOddOneOut, "Odd One Out", "luisdiogo98"),
+            ["offKeys"] = (ProcessOffKeys, "Off Keys", "Quinn Wuest"),
             ["SCP079"] = (ProcessOldAI, "Old AI", "noting3548"),
             ["oldFogey"] = (ProcessOldFogey, "Old Fogey", "Kuro"),
             ["oneLinksToAllModule"] = (ProcessOneLinksToAll, "One Links To All", "Anonymous"),
