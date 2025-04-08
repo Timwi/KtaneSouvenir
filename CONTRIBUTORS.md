@@ -95,7 +95,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Conditional Buttons      │  Find The Date         │  Keypad Combination  │  Scrutiny Squares   │  Valves
     Customer Identification  │  Flavor Text           │  Kuro                │  Sign Language      │  Weakest Link, The
 
-## Implemented by Quinn Wuest (39)
+## Implemented by Quinn Wuest (40)
 
     3D Chess          │  Double Digits             │  Not Connection Check  │  Papa’s Pizzeria      │  Slow Math
     A Square          │  English Entries           │  Not Coordinates       │  Parity               │  Small Talk
@@ -103,8 +103,8 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Bulb, The         │  Guess Who?                │  Not Murder            │  Robo-Scanner         │  Unpleasant Squares
     Caesar Psycho     │  Letter Math               │  Not Number Pad        │  Rule of Three        │  Varicolour Flash
     Coordination      │  Match Refereeing          │  Not Perspective Pegs  │  Scramboozled Eggain  │  Who’s on Gas
-    Cyan Button, The  │  Navigation Determination  │  Not The Bulb          │  Simon Said           │  xobekuJ ehT
-    Denial Displays   │  Not Colored Switches      │  Not X01               │  Simultaneous Simons  │
+    Cyan Button, The  │  Navigation Determination  │  Not The Bulb          │  Simon Said           │  Word Count
+    Denial Displays   │  Not Colored Switches      │  Not X01               │  Simultaneous Simons  │  xobekuJ ehT
 
 ## Implemented by BigCrunch22 (37)
 

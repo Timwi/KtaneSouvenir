@@ -368,6 +368,16 @@ public partial class SouvenirModule
         addQuestions(module, questions);
     }
 
+    private IEnumerator<YieldInstruction> ProcessWordCount(ModuleData module)
+    {
+        var comp = GetComponent(module, "WordCountScript");
+        yield return WaitForSolve;
+
+        var displayNumber = GetIntField(comp, "DisplayNumber").Get();
+
+        addQuestion(module, Question.WordCountNumber, correctAnswers: new[] { displayNumber.ToString() });
+    }
+
     private IEnumerator<YieldInstruction> ProcessWorkingTitle(ModuleData module)
     {
         var comp = GetComponent(module, "workingTitleCode");

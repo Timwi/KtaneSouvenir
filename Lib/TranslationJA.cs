@@ -11929,6 +11929,15 @@ namespace Souvenir
                 ModuleName = "川渡り問題",
             },
 
+            // Word Count
+            // What was the displayed number on {0}?
+            // What was the displayed number on Word Count?
+            [Question.WordCountNumber] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the displayed number on {0}?",
+            },
+
             // Working Title
             // What was the label shown in {0}?
             // What was the label shown in Working Title?

@@ -3421,6 +3421,10 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9)]
         WolfGoatAndCabbageBoatSize,
 
+        [SouvenirQuestion("What was the displayed number on {0}?", "Word Count", ThreeColumns6Answers)]
+        [AnswerGenerator.Integers(1, 1000)]
+        WordCountNumber,
+
         [SouvenirQuestion("What was the label shown in {0}?", "Working Title", OneColumn4Answers, "foo", "foobar", "quuz", "garply", "plugh", "wibble", "flob", "fuga", "toto", "tutu", "eggs", "alice", "lorem ipsum", "widget", "eek", "bat", "haystack", "blarg", "kalaa", "sub", "momo", "change this", "hi", "thing", "xyz", "bar", "qux", "corge", "waldo", "xyzzy", "wobble", "hoge", "hogera", "tata", "spam", "raboof", "bob", "do stuff", "bla", "moof", "shme", "beekeeper", "dothestuff", "mum", "temp", "var", "placeholder", "hello", "stuff", "text", "baz", "quux", "grault", "fred", "thud", "wubble", "piyo", "hogehoge", "titi", "ham", "fruit", "john doe", "data", "gadget", "gleep", "needle", "blah", "grault", "puppu", "test", "change", "null", "hey", "something", "abc")]
         WorkingTitleLabel,
 
