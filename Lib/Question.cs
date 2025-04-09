@@ -2816,6 +2816,10 @@ namespace Souvenir
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         SimonShrieksFlashingButton,
 
+        [SouvenirQuestion("What was the {1} flash of the {2} stage of {0}?", "Simon Shuffles", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "Magenta", "White",
+            ExampleFormatArguments = new[] {QandA.Ordinal, QandA.Ordinal}, ExampleFormatArgumentGroupSize = 2)]
+        SimonShufflesFlashes,
+
         [SouvenirQuestion("What shape was the {1} arrow in {0}?", "Simon Signals", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = nameof(SouvenirModule.SimonSignalsSprites),
             ExampleFormatArguments = new[] { "red", "green", "blue", "gray" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         SimonSignalsColorToShape,

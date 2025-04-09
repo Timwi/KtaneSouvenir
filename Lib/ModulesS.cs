@@ -753,6 +753,28 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerator<YieldInstruction> ProcessSimonShuffles(ModuleData module)
+    {
+        var comp = GetComponent(module, "SimonShufflesScript");
+        var stageComp = GetIntField(comp, "Stage");
+        var flashesComp = GetListField<int>(comp, "FlashingSequence");
+        var colourNames = GetArrayField<string>(comp, "ColourNames").Get();
+        var flashesArr = new List<int>[3];
+        while (module.Unsolved)
+        {
+            var stage = stageComp.Get();
+            var flashes = flashesComp.Get();
+            flashesArr[stage] = flashes.ToList();
+            yield return null;
+        }
+        var qs = new List<QandA>();
+
+        for (int s = 0; s < 3; s++)
+            for (int f = 0; f < flashesArr[s].Count; f++)
+                qs.Add(makeQuestion(Question.SimonShufflesFlashes, module, formatArgs: new[] { Ordinal(f + 1), Ordinal(s + 1) }, correctAnswers: new[] { colourNames[flashesArr[s][f]] }));
+        addQuestions(module, qs);
+    }
+
     private IEnumerator<YieldInstruction> ProcessSimonSignals(ModuleData module)
     {
         var comp = GetComponent(module, "SimonSignalsModule");

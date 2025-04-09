@@ -9417,6 +9417,15 @@ namespace Souvenir
                 QuestionText = "В скольки кнопках от стрелки (по часовой) была {1}-я вспышка в финальной последовательности в {0}?",
             },
 
+            // Simon Shuffles
+            // What was the {1} flash of the {2} stage of {0}?
+            // What was the first flash of the first stage of Simon Shuffles?
+            [Question.SimonShufflesFlashes] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the {1} flash of the {2} stage of {0}?",
+            },
+
             // Simon Signals
             // What shape was the {1} arrow in {0}?
             // What shape was the red arrow in Simon Signals?

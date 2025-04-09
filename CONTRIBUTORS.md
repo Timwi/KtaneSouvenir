@@ -84,17 +84,17 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Colored Keys         │  Free Parking              │  Maze³             │  Reverse Morse      │  Vexillology
     Cube, The            │  Hexabutton, The           │  Mazematics        │  Simon Scrambles    │  Zoni
 
-## Implemented by Quinn Wuest (41)
+## Implemented by Quinn Wuest (42)
 
-    3D Chess          │  English Entries           │  Not Morsematics       │  Quadrants            │  Unpleasant Squares
-    A Square          │  Épelle-moi Ça             │  Not Murder            │  Robo-Scanner         │  Varicolour Flash
-    Ángel Hernández   │  Guess Who?                │  Not Number Pad        │  Rule of Three        │  Who’s on Gas
-    Bulb, The         │  Letter Math               │  Not Perspective Pegs  │  Scramboozled Eggain  │  Word Count
-    Caesar Psycho     │  Match Refereeing          │  Not The Bulb          │  Simon Said           │  xobekuJ ehT
-    Coordination      │  Navigation Determination  │  Not X01               │  Simultaneous Simons  │
-    Cyan Button, The  │  Not Colored Switches      │  Off Keys              │  Slow Math            │
-    Denial Displays   │  Not Connection Check      │  Papa’s Pizzeria       │  Small Talk           │
-    Double Digits     │  Not Coordinates           │  Parity                │  Triple Term          │
+    3D Chess          │  English Entries           │  Not Morsematics       │  Quadrants            │  Triple Term
+    A Square          │  Épelle-moi Ça             │  Not Murder            │  Robo-Scanner         │  Unpleasant Squares
+    Ángel Hernández   │  Guess Who?                │  Not Number Pad        │  Rule of Three        │  Varicolour Flash
+    Bulb, The         │  Letter Math               │  Not Perspective Pegs  │  Scramboozled Eggain  │  Who’s on Gas
+    Caesar Psycho     │  Match Refereeing          │  Not The Bulb          │  Simon Said           │  Word Count
+    Coordination      │  Navigation Determination  │  Not X01               │  Simon Shuffles       │  xobekuJ ehT
+    Cyan Button, The  │  Not Colored Switches      │  Off Keys              │  Simultaneous Simons  │
+    Denial Displays   │  Not Connection Check      │  Papa’s Pizzeria       │  Slow Math            │
+    Double Digits     │  Not Coordinates           │  Parity                │  Small Talk           │
 
 ## Implemented by Hawker (40)
 

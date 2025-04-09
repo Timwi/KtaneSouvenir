@@ -536,6 +536,7 @@ public partial class SouvenirModule
             ["SimonShapesModule"] = (ProcessSimonShapes, "Simon Shapes", "tandyCake"),
             ["SimonShoutsModule"] = (ProcessSimonShouts, "Simon Shouts", "Timwi"),
             ["SimonShrieksModule"] = (ProcessSimonShrieks, "Simon Shrieks", "Timwi"),
+            ["GSSimonShuffles"] = (ProcessSimonShuffles, "Simon Shuffles", "Quinn Wuest"),
             ["SimonSignalsModule"] = (ProcessSimonSignals, "Simon Signals", "Timwi"),
             ["simonSimons"] = (ProcessSimonSimons, "Simon Simons", "kavinkul"),
             ["SimonSingsModule"] = (ProcessSimonSings, "Simon Sings", "Timwi"),
