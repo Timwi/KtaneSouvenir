@@ -324,6 +324,15 @@ namespace Souvenir
                 QuestionText = "What letter was written on the {1} dial in {0}?",
             },
 
+            // Alcoholic Rampage
+            // Who was the {1} mercenary you killed in {0}?
+            // Who was the first mercenary you killed in Alcoholic Rampage?
+            [Question.AlcoholicRampageMercenaries] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Who was the {1} mercenary you killed in {0}?",
+            },
+
             // A Letter
             // What was the initial letter in {0}?
             // What was the initial letter in A Letter?

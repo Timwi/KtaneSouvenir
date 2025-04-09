@@ -114,6 +114,32 @@ public partial class SouvenirModule
         return processSpeakingEvilCycle(module, "AffineCycleScript", Question.AffineCycleDialDirections, Question.AffineCycleDialLabels);
     }
 
+    private IEnumerator<YieldInstruction> ProcessAlcoholicRampage(ModuleData module)
+    {
+        var comp = GetComponent(module, "AlcoholicRampageScript");
+        var stageComp = GetIntField(comp, "stage");
+        var chosenMercComp = GetIntField(comp, "chosenMerc");
+        var mercs = new int[3];
+
+        while (stageComp.Get() != 3)
+        {
+            var stage = stageComp.Get();
+            var chosenMerc = chosenMercComp.Get();
+            mercs[stage] = chosenMerc;
+            yield return null;
+        }
+
+        yield return WaitForSolve;
+
+        var qs = new List<QandA>();
+        for (int s = 0; s < 3; s++)
+        {
+            Debug.Log("<>" + mercs[s]);
+            qs.Add(makeQuestion(Question.AlcoholicRampageMercenaries, module, formatArgs: new[] { Ordinal(s + 1) }, correctAnswers: new[] { AlcoholicRampageSprites[mercs[s]] }));
+        }
+        addQuestions(module, qs);
+    }
+
     private IEnumerator<YieldInstruction> ProcessALetter(ModuleData module)
     {
         var comp = GetComponent(module, "Letter");

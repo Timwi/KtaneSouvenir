@@ -25,6 +25,7 @@ public partial class SouvenirModule : MonoBehaviour
     public KMSelectable[] Answers;
     public GameObject AnswersParent;
     public GameObject[] TpNumbers;
+    public Sprite[] AlcoholicRampageSprites;
     public Sprite[] ArithmelogicSprites;
     public Sprite[] AudioSprites;
     public Sprite[] AzureButtonSprites;

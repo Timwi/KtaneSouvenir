@@ -33,6 +33,7 @@ public partial class SouvenirModule
             ["accumulation"] = (ProcessAccumulation, "Accumulation", "luisdiogo98"),
             ["spwizAdventureGame"] = (ProcessAdventureGame, "Adventure Game", "Timwi"),
             ["affineCycle"] = (ProcessAffineCycle, "Affine Cycle", "Quinn Wuest"),
+            ["alcoholicRampageModule"] = (ProcessAlcoholicRampage, "Alcoholic Rampage", "Quinn Wuest"),
             ["LetterModule"] = (ProcessALetter, "A Letter", "Sierra"),
             ["alfa_bravo"] = (ProcessAlfaBravo, "Alfa-Bravo", "NickLatkovich"),
             ["algebra"] = (ProcessAlgebra, "Algebra", "Timwi"),

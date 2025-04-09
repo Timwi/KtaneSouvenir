@@ -94,6 +94,10 @@ namespace Souvenir
         [AnswerGenerator.Strings("1*A-Z")]
         AffineCycleDialLabels,
 
+        [SouvenirQuestion("Who was the {1} mercenary you killed in {0}?", "Alcoholic Rampage", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "AlcoholicRampageSprites",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        AlcoholicRampageMercenaries,
+
         [SouvenirQuestion("What was the initial letter in {0}?", "A Letter", ThreeColumns6Answers)]
         [AnswerGenerator.Strings("A-Z")]
         ALetterInitialLetter,
