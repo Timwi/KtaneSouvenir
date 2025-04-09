@@ -621,34 +621,6 @@ public partial class SouvenirModule
         addQuestion(module, Question.MetapuzzleAnswer, correctAnswers: new[] { answer }, preferredWrongAnswers: words);
     }
 
-    private IEnumerator<YieldInstruction> ProcessMicrocontroller(ModuleData module)
-    {
-        var comp = GetComponent(module, "Micro");
-        yield return WaitForSolve;
-
-        var ledsOrder = GetListField<int>(comp, "LEDorder").Get(lst => lst.Count != 6 && lst.Count != 8 && lst.Count != 10 ? "unexpected length (expected 6, 8 or 10)" : null);
-        var positionTranslate = GetArrayField<int>(comp, "positionTranslate").Get(expectedLength: ledsOrder.Count);
-
-        addQuestions(module, ledsOrder.Select((led, ix) => makeQuestion(Question.MicrocontrollerPinOrder, module,
-            formatArgs: new[] { Ordinal(ix + 1) },
-            correctAnswers: new[] { (positionTranslate[led] + 1).ToString() },
-            preferredWrongAnswers: Enumerable.Range(1, ledsOrder.Count).Select(i => i.ToString()).ToArray())));
-    }
-
-    private IEnumerator<YieldInstruction> ProcessMinesweeper(ModuleData module)
-    {
-        var comp = GetComponent(module, "MinesweeperModule");
-
-        // Wait for activation as the above fields aren’t fully initialized until then
-        while (!_isActivated)
-            yield return new WaitForSeconds(0.1f);
-
-        var color = GetField<string>(GetField<object>(comp, "StartingCell").Get(), "Color", isPublic: true).Get();
-
-        yield return WaitForSolve;
-        addQuestion(module, Question.MinesweeperStartingColor, correctAnswers: new[] { color });
-    }
-
     private IEnumerator<YieldInstruction> ProcessMirror(ModuleData module)
     {
         var comp = GetComponent(module, "mirror");

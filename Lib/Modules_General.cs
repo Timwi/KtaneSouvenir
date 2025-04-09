@@ -350,8 +350,6 @@ public partial class SouvenirModule
             ["memoryWires"] = (ProcessMemoryWires, "Memory Wires", "Kuro"),
             ["metamorse"] = (ProcessMetamorse, "Metamorse", "tandyCake"),
             ["metapuzzle"] = (ProcessMetapuzzle, "Metapuzzle", "GoodHood"),
-            ["Microcontroller"] = (ProcessMicrocontroller, "Microcontroller", "Timwi"),
-            ["MinesweeperModule"] = (ProcessMinesweeper, "Minesweeper", "CaitSith2"),
             ["mirror"] = (ProcessMirror, "Mirror", "Timwi"),
             ["misterSoftee"] = (ProcessMisterSoftee, "Mister Softee", "TasThiluna"),
             ["mixometer"] = (ProcessMixometer, "Mixometer", "Hawker"),

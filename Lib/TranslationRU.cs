@@ -6050,35 +6050,6 @@ namespace Souvenir
                 QuestionText = "Какой был финальный ответ {0}?",
             },
 
-            // Microcontroller
-            // Which pin lit up {1} in {0}?
-            // Which pin lit up first in Microcontroller?
-            [Question.MicrocontrollerPinOrder] = new()
-            {
-                Conjugation = Conjugation.PrepositiveMascNeuter,
-                QuestionText = "Какой контакт загорелся {1}-м на {0}?",
-                ModuleName = "Микроконтроллере",
-            },
-
-            // Minesweeper
-            // What was the color of the starting cell in {0}?
-            // What was the color of the starting cell in Minesweeper?
-            [Question.MinesweeperStartingColor] = new()
-            {
-                QuestionText = "Какого цвета была начальная клетка {0}?",
-                ModuleName = "Сапёре",
-                Answers = new Dictionary<string, string>
-                {
-                    ["red"] = "Красная",
-                    ["orange"] = "Оранжевая",
-                    ["yellow"] = "Жёлтая",
-                    ["green"] = "Зелёная",
-                    ["blue"] = "Синяя",
-                    ["purple"] = "Фиолетовая",
-                    ["black"] = "Чёрная",
-                },
-            },
-
             // Mirror
             // What was the second word written by the original ghost in {0}?
             // What was the second word written by the original ghost in Mirror?

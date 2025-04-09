@@ -6145,34 +6145,6 @@ namespace Souvenir
                 ModuleName = "メタパズル",
             },
 
-            // Microcontroller
-            // Which pin lit up {1} in {0}?
-            // Which pin lit up first in Microcontroller?
-            [Question.MicrocontrollerPinOrder] = new()
-            {
-                QuestionText = "{0}で{1}番目に点灯したピンは？",
-                ModuleName = "マイクロコントローラー",
-            },
-
-            // Minesweeper
-            // What was the color of the starting cell in {0}?
-            // What was the color of the starting cell in Minesweeper?
-            [Question.MinesweeperStartingColor] = new()
-            {
-                QuestionText = "{0}の開始のマスは何色？",
-                ModuleName = "マインスイーパー",
-                Answers = new Dictionary<string, string>
-                {
-                    ["red"] = "赤",
-                    ["orange"] = "オレンジ",
-                    ["yellow"] = "黄",
-                    ["green"] = "緑",
-                    ["blue"] = "青",
-                    ["purple"] = "紫",
-                    ["black"] = "黒",
-                },
-            },
-
             // Mirror
             // What was the second word written by the original ghost in {0}?
             // What was the second word written by the original ghost in Mirror?

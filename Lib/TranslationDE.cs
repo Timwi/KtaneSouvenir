@@ -6307,34 +6307,6 @@ namespace Souvenir
                 QuestionText = "What was the final answer in {0}?",
             },
 
-            // Microcontroller
-            // Which pin lit up {1} in {0}?
-            // Which pin lit up first in Microcontroller?
-            [Question.MicrocontrollerPinOrder] = new()
-            {
-                NeedsTranslation = true,
-                QuestionText = "Which pin lit up {1} in {0}?",
-            },
-
-            // Minesweeper
-            // What was the color of the starting cell in {0}?
-            // What was the color of the starting cell in Minesweeper?
-            [Question.MinesweeperStartingColor] = new()
-            {
-                NeedsTranslation = true,
-                QuestionText = "What was the color of the starting cell in {0}?",
-                Answers = new Dictionary<string, string>
-                {
-                    ["red"] = "rot",
-                    ["orange"] = "orange",
-                    ["yellow"] = "gelb",
-                    ["green"] = "grün",
-                    ["blue"] = "blau",
-                    ["purple"] = "lila",
-                    ["black"] = "schwarz",
-                },
-            },
-
             // Mirror
             // What was the second word written by the original ghost in {0}?
             // What was the second word written by the original ghost in Mirror?

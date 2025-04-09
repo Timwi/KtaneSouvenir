@@ -1826,14 +1826,6 @@ namespace Souvenir
             ExampleAnswers = new[] { "GIBBONS", "GIRAFFE", "MISUSED", "RUSHING", "DUSTMAN", "STATICS" })]
         MetapuzzleAnswer,
 
-        [SouvenirQuestion("Which pin lit up {1} in {0}?", "Microcontroller", ThreeColumns6Answers,
-            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
-        [AnswerGenerator.Integers(1, 10)]
-        MicrocontrollerPinOrder,
-
-        [SouvenirQuestion("What was the color of the starting cell in {0}?", "Minesweeper", ThreeColumns6Answers, "red", "orange", "yellow", "green", "blue", "purple", "black", TranslateAnswers = true)]
-        MinesweeperStartingColor,
-
         [SouvenirQuestion("What was the second word written by the original ghost in {0}?", "Mirror", TwoColumns4Answers, ExampleAnswers = new[] { "ALPACA", "BUBBLE", "COWBOY", "DIESEL", "EULOGY", "FUSION", "GASKET", "HOODIE", "ICEBOX", "JOYPOP" })]
         MirrorWord,
 
