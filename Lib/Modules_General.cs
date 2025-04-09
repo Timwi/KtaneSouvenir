@@ -625,6 +625,7 @@ public partial class SouvenirModule
             ["UltraStores"] = (ProcessUltraStores, "UltraStores", "Marksam"),
             ["UncoloredSquaresModule"] = (ProcessUncoloredSquares, "Uncolored Squares", "Timwi"),
             ["R4YUncoloredSwitches"] = (ProcessUncoloredSwitches, "Uncolored Switches", "Timwi"),
+            ["uncolourFlash"] = (ProcessUncolourFlash, "Uncolour Flash", "Quinn Wuest"),
             ["unfairCipher"] = (ProcessUnfairCipher, "Unfair Cipher", "luisdiogo98"),
             ["unfairsRevenge"] = (ProcessUnfairsRevenge, "Unfair’s Revenge", "VFlyer"),
             ["UnicodeModule"] = (ProcessUnicode, "Unicode", "Marksam"),

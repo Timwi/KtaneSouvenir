@@ -3254,6 +3254,10 @@ namespace Souvenir
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         UncoloredSwitchesLedColors,
 
+        [SouvenirQuestion("What was the {1} in the {2} position of the {3} sequence of {0}?", "Uncolour Flash", ThreeColumns6Answers, "Red", "Green", "Blue", "Yellow", "White", "Magenta",
+            ExampleFormatArguments = new[] { "word", QandA.Ordinal, "“YES”", "colour of the word", QandA.Ordinal, "“NO”"}, ExampleFormatArgumentGroupSize = 3)]
+        UncolourFlashDisplays,
+
         [SouvenirQuestion("What was the {1} received instruction in {0}?", "Unfair Cipher", ThreeColumns6Answers, "PCR", "PCG", "PCB", "SUB", "MIT", "CHK", "PRN", "BOB", "REP", "EAT", "STR", "IKE",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         UnfairCipherInstructions,

@@ -10913,6 +10913,15 @@ namespace Souvenir
                 },
             },
 
+            // Uncolour Flash
+            // What was the {1} in the {2} position of the {3} sequence of {0}?
+            // What was the word in the first position of the “YES” sequence of Uncolour Flash?
+            [Question.UncolourFlashDisplays] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the {1} displayed in the {2} sequence of {0}?",
+            },
+
             // Unfair Cipher
             // What was the {1} received instruction in {0}?
             // What was the first received instruction in Unfair Cipher?
