@@ -1227,7 +1227,7 @@ public partial class SouvenirModule
                 displays[stage] = dispText;
             yield return null;
         }
-        for (int st = 0; st < 3; st++)
+        for (int st = 0; st < 2; st++)
             qs.Add(makeQuestion(Question.SmallTalkDisplays, module, formatArgs: new[] { Ordinal(st + 1) }, correctAnswers: new[] { displays[st] }, preferredWrongAnswers: possibleDisplays));
         addQuestions(module, qs);
     }

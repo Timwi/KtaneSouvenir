@@ -684,7 +684,7 @@ public partial class SouvenirModule
     /* Generalized handlers for modules that are extremely similar */
 
     // Used by Speakingevil’s Cycle modules. question[0] is the dial rotations. question[1] is the dial labels.
-    private IEnumerator<YieldInstruction> ProcessSpeakingEvilCycle(ModuleData module, string componentName, Question[] question)
+    private IEnumerator<YieldInstruction> processSpeakingEvilCycle(ModuleData module, string componentName, Question rotQ, Question labelQ)
     {
         var comp = GetComponent(module, componentName);
         yield return WaitForSolve;
@@ -695,6 +695,7 @@ public partial class SouvenirModule
         string dialLabels = componentName switch
         {
             "UltimateCycleScript" => GetArrayField<string[]>(comp, "ciphertext").Get()[0][8],
+            "JumbleCycleScript" => GetArrayField<string[]>(comp, "ciphertext").Get()[0][4],
             _ => GetArrayField<string>(comp, "ciphertext").Get()[0],
         };
         for (int dial = 0; dial < 8; dial++)
@@ -703,18 +704,16 @@ public partial class SouvenirModule
             {
                 case "PlayfairCycleScript":
                 case "HillCycleScript":
-                    qs.Add(makeQuestion(question[0], module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { CycleModuleFiveSprites.ToArray()[rotComp[0][dial]] }, preferredWrongAnswers: CycleModuleFiveSprites.ToArray()));
-                    qs.Add(makeQuestion(question[1], module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { dialLabels[dial].ToString() }));
+                    qs.Add(makeQuestion(rotQ, module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { CycleModuleFiveSprites[rotComp[0][dial]] }, preferredWrongAnswers: CycleModuleFiveSprites));
                     break;
                 case "CrypticCycleScript":
-                    qs.Add(makeQuestion(question[0], module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { CycleModuleCrypticSprites.ToArray()[rotComp[0][dial]] }, preferredWrongAnswers: CycleModuleCrypticSprites.ToArray()));
-                    qs.Add(makeQuestion(question[1], module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { dialLabels[dial].ToString() }));
+                    qs.Add(makeQuestion(rotQ, module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { CycleModuleCrypticSprites[rotComp[0][dial]] }, preferredWrongAnswers: CycleModuleCrypticSprites));
                     break;
                 default:
-                    qs.Add(makeQuestion(question[0], module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { CycleModuleEightSprites.ToArray()[rotComp[0][dial]] }, preferredWrongAnswers: CycleModuleEightSprites.ToArray()));
-                    qs.Add(makeQuestion(question[1], module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { dialLabels[dial].ToString() }));
+                    qs.Add(makeQuestion(rotQ, module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { CycleModuleEightSprites[rotComp[0][dial]] }, preferredWrongAnswers: CycleModuleEightSprites));
                     break;
             }
+            qs.Add(makeQuestion(labelQ, module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { dialLabels[dial].ToString() }));
         }
         addQuestions(module, qs);
     }

@@ -204,8 +204,7 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessHillCycle(ModuleData module)
     {
-        var qs = new[] { Question.HillCycleDialDirections, Question.HillCycleDialLabels };
-        return ProcessSpeakingEvilCycle(module, "HillCycleScript", qs);
+        return processSpeakingEvilCycle(module, "HillCycleScript", Question.HillCycleDialDirections, Question.HillCycleDialLabels);
     }
 
     private IEnumerator<YieldInstruction> ProcessHinges(ModuleData module)

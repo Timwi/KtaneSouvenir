@@ -179,7 +179,7 @@ namespace Souvenir
                     getX: i => -18.125f + 19.375f * (i / 2),
                     getZ: i => -16.25f + _multiColumnVerticalSpacing * (1 - i % 2),
                     boxCenter: new Vector3(8, 0, 0),
-                    boxSize: new Vector3(8, 6, 3));
+                    boxSize: new Vector3(19, 6, 3));
 
                 if (Application.isEditor)
                     SetSelectableChildren(souvenir, rowLength: 3, 0, 2, 4, 1, 3, 5);
