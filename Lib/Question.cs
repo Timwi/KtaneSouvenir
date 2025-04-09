@@ -976,30 +976,18 @@ namespace Souvenir
         [SouvenirQuestion("What was the displayed quote on {0}?", "English Entries", OneColumn4Answers, ExampleAnswers = new[] { "Let’s go shopping!", "We wear our shoes in the house.", "(Kevin starts to clap)", "What is Namsu doing?" })]
         EnglishEntriesDisplay,
 
-        [SouvenirQuestion("What was the {1} number shown in {0}?", "Entry Number Four", TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" },
-            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
-        [AnswerGenerator.Integers(10000000, 99999999, 1, "00000000")]
-        EntryNumberFourNumbers,
-        [SouvenirQuestion("What was the expected fourth entry in {0}?", "Entry Number Four", TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" })]
-        [AnswerGenerator.Integers(0, 99999999, 1, "00000000")]
-        EntryNumberFourExpected,
-        [SouvenirQuestion("What was the constant coefficient in {0}?", "Entry Number Four", TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" })]
-        [AnswerGenerator.Integers(10000000, 99999999, 1, "00000000")]
-        EntryNumberFourCoeff,
+        [SouvenirQuestion("What was the {1} digit in the {2} number shown in {0}?", "Entry Number Four", ThreeColumns6Answers,
+            ExampleFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleFormatArgumentGroupSize = 2)]
+        [AnswerGenerator.Integers(0, 9)]
+        EntryNumberFourDigits,
 
-        [SouvenirQuestion("What was the {1} number shown in {0}?", "Entry Number One", TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" },
-            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
-        [AnswerGenerator.Integers(0, 99999999, 1, "00000000")]
-        EntryNumberOneNumbers,
-        [SouvenirQuestion("What was the expected first entry in {0}?", "Entry Number One", TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" })]
-        [AnswerGenerator.Integers(10000000, 99999999, 1, "00000000")]
-        EntryNumberOneExpected,
-        [SouvenirQuestion("What was the constant coefficient in {0}?", "Entry Number One", TwoColumns4Answers, ExampleAnswers = new[] { "01234567", "42424242", "99999999", "66669420" })]
-        [AnswerGenerator.Integers(10000000, 99999999, 1, "00000000")]
-        EntryNumberOneCoeff,
+        [SouvenirQuestion("What was the {1} digit in the {2} number shown in {0}?", "Entry Number One", ThreeColumns6Answers,
+            ExampleFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleFormatArgumentGroupSize = 2)]
+        [AnswerGenerator.Integers(0, 9)]
+        EntryNumberOneDigits,
 
         [SouvenirQuestion("What word was asked to be spelled in {0}?", "Épelle-moi Ça", TwoColumns4Answers, ExampleAnswers = new[] { "abasourdi", "aberrant", "abrasive", "acatalectique", "accueil", "acrobatie", "aligot", "amphigourique", "analgésiante", "antipasti" })]
-        EpelleMoiCaWord,
+        ÉpelleMoiÇaWord,
 
         [SouvenirQuestion("What was the displayed symbol in {0}?", "Equations X", ThreeColumns6Answers, "H(T)", "P", "\u03C7", "\u03C9", "Z(T)", "\u03C4", "\u03BC", "\u03B1", "K")]
         EquationsXSymbols,
@@ -2279,9 +2267,13 @@ namespace Souvenir
         [AnswerGenerator.Integers(0, 9)]
         PalindromesNumbers,
 
-        [SouvenirQuestion("What was the order number on {0}?", "Papa’s Pizzeria", ThreeColumns6Answers, ExampleAnswers = new[] { "123A", "234C", "523C", "447B", "360Q", "712S" })]
-        [AnswerGenerator.Strings("3*0-7", "ACQBJMSD")]
-        PapasPizzeriaRequest,
+        [SouvenirQuestion("What was the {1} digit in the order number on {0}?", "Papa’s Pizzeria", ThreeColumns6Answers,
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(0, 7)]
+        PapasPizzeriaDigit,
+        [SouvenirQuestion("What was the letter in the order number on {0}?", "Papa’s Pizzeria", ThreeColumns6Answers)]
+        [AnswerGenerator.Strings("ACQBJMSD")]
+        PapasPizzeriaLetter,
 
         [SouvenirQuestion("What was shown on the display on {0}?", "Parity", ThreeColumns6Answers, ExampleAnswers = new[] { "A1", "B2", "C3", "D4", "E5", "F6" })]
         ParityDisplay,

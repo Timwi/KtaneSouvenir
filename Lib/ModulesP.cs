@@ -41,7 +41,8 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "papasPizzeriaScript");
         yield return WaitForSolve;
         var request = GetField<string>(comp, "request").Get(x => Regex.IsMatch(x, @"^[0-7]{3}[ACQBJMSD]$") ? null : "Unexpected order number.");
-        addQuestion(module, Question.PapasPizzeriaRequest, correctAnswers: new[] { request });
+        addQuestions(module, Enumerable.Range(0, 4).Select(i =>
+            makeQuestion(i == 3 ? Question.PapasPizzeriaLetter : Question.PapasPizzeriaDigit, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { request[i].ToString() })));
     }
 
     private IEnumerator<YieldInstruction> ProcessParity(ModuleData module)

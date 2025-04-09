@@ -284,17 +284,9 @@ public partial class SouvenirModule
         var num1 = GetIntField(comp, "Num1").Get().ToString("00000000");
         var num2 = GetIntField(comp, "Num2").Get().ToString("00000000");
         var num3 = GetIntField(comp, "Num3").Get().ToString("00000000");
-        var expected = GetIntField(comp, "Expected").Get().ToString("00000000");
-        var coeff = GetIntField(comp, "Add").Get().ToString("00000000");
 
-        var allShown = new string[] { num1, num2, num3 };
-
-        addQuestions(module,
-            makeQuestion(Question.EntryNumberFourNumbers, module, correctAnswers: new[] { num1 }, formatArgs: new[] { Ordinal(1) }, preferredWrongAnswers: allShown),
-            makeQuestion(Question.EntryNumberFourNumbers, module, correctAnswers: new[] { num2 }, formatArgs: new[] { Ordinal(2) }, preferredWrongAnswers: allShown),
-            makeQuestion(Question.EntryNumberFourNumbers, module, correctAnswers: new[] { num3 }, formatArgs: new[] { Ordinal(3) }, preferredWrongAnswers: allShown),
-            makeQuestion(Question.EntryNumberFourExpected, module, correctAnswers: new[] { expected }),
-            makeQuestion(Question.EntryNumberFourCoeff, module, correctAnswers: new[] { coeff }));
+        addQuestions(module, new[] { num1, num2, num3 }.SelectMany((n, i) => Enumerable.Range(0, 8).Select(d =>
+            makeQuestion(Question.EntryNumberFourDigits, module, formatArgs: new[] { Ordinal(d + 1), Ordinal(i + 1) }, correctAnswers: new[] { n[d].ToString() }))));
     }
 
     private IEnumerator<YieldInstruction> ProcessEntryNumberOne(ModuleData module)
@@ -305,17 +297,9 @@ public partial class SouvenirModule
         var num2 = GetIntField(comp, "Num2").Get().ToString("00000000");
         var num3 = GetIntField(comp, "Num3").Get().ToString("00000000");
         var num4 = GetIntField(comp, "Num4").Get().ToString("00000000");
-        var expected = GetIntField(comp, "Expected").Get().ToString("00000000");
-        var coeff = (100000000 - GetIntField(comp, "Subtract").Get()).ToString("00000000");
 
-        var allShown = new string[] { num2, num3, num4 };
-
-        addQuestions(module,
-            makeQuestion(Question.EntryNumberOneNumbers, module, formatArgs: new[] { Ordinal(2) }, correctAnswers: new[] { num2 }, preferredWrongAnswers: allShown),
-            makeQuestion(Question.EntryNumberOneNumbers, module, formatArgs: new[] { Ordinal(3) }, correctAnswers: new[] { num3 }, preferredWrongAnswers: allShown),
-            makeQuestion(Question.EntryNumberOneNumbers, module, formatArgs: new[] { Ordinal(4) }, correctAnswers: new[] { num4 }, preferredWrongAnswers: allShown),
-            makeQuestion(Question.EntryNumberOneExpected, module, correctAnswers: new[] { expected }),
-            makeQuestion(Question.EntryNumberOneCoeff, module, correctAnswers: new[] { coeff }));
+        addQuestions(module, new[] { num2, num3, num4 }.SelectMany((n, i) => Enumerable.Range(0, 8).Select(d =>
+            makeQuestion(Question.EntryNumberOneDigits, module, formatArgs: new[] { Ordinal(d + 1), Ordinal(i + 2) }, correctAnswers: new[] { n[d].ToString() }))));
     }
 
     private IEnumerator<YieldInstruction> ProcessEpelleMoiCa(ModuleData module)
@@ -331,7 +315,7 @@ public partial class SouvenirModule
                 index = i;
         var words = Enumerable.Range(0, wordList.Length).Except(new[] { index }).Select(i => wordList[i][0]).ToArray();
 
-        addQuestion(module, Question.EpelleMoiCaWord, correctAnswers: new[] { inputtedText }, preferredWrongAnswers: words);
+        addQuestion(module, Question.ÉpelleMoiÇaWord, correctAnswers: new[] { inputtedText }, preferredWrongAnswers: words);
     }
 
     private IEnumerator<YieldInstruction> ProcessEquationsX(ModuleData module)

@@ -3444,55 +3444,27 @@ namespace Souvenir
             },
 
             // Entry Number Four
-            // What was the {1} number shown in {0}?
-            // What was the first number shown in Entry Number Four?
-            [Question.EntryNumberFourNumbers] = new()
+            // What was the {1} digit in the {2} number shown in {0}?
+            // What was the first digit in the first number shown in Entry Number Four?
+            [Question.EntryNumberFourDigits] = new()
             {
-                QuestionText = "{0}の{1}番目の数字は？",
-                ModuleName = "エントリーナンバー4",
-            },
-            // What was the expected fourth entry in {0}?
-            // What was the expected fourth entry in Entry Number Four?
-            [Question.EntryNumberFourExpected] = new()
-            {
-                QuestionText = "{0}の4番目に入るはずの数字は？",
-                ModuleName = "エントリーナンバー4",
-            },
-            // What was the constant coefficient in {0}?
-            // What was the constant coefficient in Entry Number Four?
-            [Question.EntryNumberFourCoeff] = new()
-            {
-                QuestionText = "{0}の増加定数は？",
-                ModuleName = "エントリーナンバー4",
+                NeedsTranslation = true,
+                QuestionText = "What was the {1} digit in the {2} number shown in {0}?",
             },
 
             // Entry Number One
-            // What was the {1} number shown in {0}?
-            // What was the first number shown in Entry Number One?
-            [Question.EntryNumberOneNumbers] = new()
+            // What was the {1} digit in the {2} number shown in {0}?
+            // What was the first digit in the first number shown in Entry Number One?
+            [Question.EntryNumberOneDigits] = new()
             {
-                QuestionText = "{0}の上から{1}番目の数字は？",
-                ModuleName = "エントリーナンバー1",
-            },
-            // What was the expected first entry in {0}?
-            // What was the expected first entry in Entry Number One?
-            [Question.EntryNumberOneExpected] = new()
-            {
-                QuestionText = "{0}の上から1番目に入るはずの数字は？",
-                ModuleName = "エントリーナンバー1",
-            },
-            // What was the constant coefficient in {0}?
-            // What was the constant coefficient in Entry Number One?
-            [Question.EntryNumberOneCoeff] = new()
-            {
-                QuestionText = "{0}の増加定数は？",
-                ModuleName = "エントリーナンバー1",
+                NeedsTranslation = true,
+                QuestionText = "What was the{1} digit in the {2} number shown in {0}?",
             },
 
             // Épelle-moi Ça
             // What word was asked to be spelled in {0}?
             // What word was asked to be spelled in Épelle-moi Ça?
-            [Question.EpelleMoiCaWord] = new()
+            [Question.ÉpelleMoiÇaWord] = new()
             {
                 QuestionText = "{0}において綴りを尋ねられた単語は？",
             },
@@ -7895,12 +7867,19 @@ namespace Souvenir
             },
 
             // Papa’s Pizzeria
-            // What was the order number on {0}?
-            // What was the order number on Papa’s Pizzeria?
-            [Question.PapasPizzeriaRequest] = new()
+            // What was the {1} digit in the order number on {0}?
+            // What was the first digit in the order number on Papa’s Pizzeria?
+            [Question.PapasPizzeriaDigit] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the order number on {0}?",
+                QuestionText = "What was the {1} digit in the order number on {0}?",
+            },
+            // What was the letter in the order number on {0}?
+            // What was the letter in the order number on Papa’s Pizzeria?
+            [Question.PapasPizzeriaLetter] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the letter in the order number on {0}?",
             },
 
             // Parity

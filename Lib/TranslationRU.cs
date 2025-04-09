@@ -3439,49 +3439,27 @@ namespace Souvenir
             },
 
             // Entry Number Four
-            // What was the {1} number shown in {0}?
-            // What was the first number shown in Entry Number Four?
-            [Question.EntryNumberFourNumbers] = new()
+            // What was the {1} digit in the {2} number shown in {0}?
+            // What was the first digit in the first number shown in Entry Number Four?
+            [Question.EntryNumberFourDigits] = new()
             {
-                QuestionText = "Какое число было показано {1}-м {0}?",
-            },
-            // What was the expected fourth entry in {0}?
-            // What was the expected fourth entry in Entry Number Four?
-            [Question.EntryNumberFourExpected] = new()
-            {
-                QuestionText = "Какое было ожидаемое четвёртое значение {0}?",
-            },
-            // What was the constant coefficient in {0}?
-            // What was the constant coefficient in Entry Number Four?
-            [Question.EntryNumberFourCoeff] = new()
-            {
-                QuestionText = "Какой был постоянный коэффицент {0}?",
+                NeedsTranslation = true,
+                QuestionText = "What was the {1} digit in the {2} number shown in {0}?",
             },
 
             // Entry Number One
-            // What was the {1} number shown in {0}?
-            // What was the first number shown in Entry Number One?
-            [Question.EntryNumberOneNumbers] = new()
+            // What was the {1} digit in the {2} number shown in {0}?
+            // What was the first digit in the first number shown in Entry Number One?
+            [Question.EntryNumberOneDigits] = new()
             {
-                QuestionText = "Какое число было показано {1}-м {0}?",
-            },
-            // What was the expected first entry in {0}?
-            // What was the expected first entry in Entry Number One?
-            [Question.EntryNumberOneExpected] = new()
-            {
-                QuestionText = "Какое было первое ожидаемое значение {0}?",
-            },
-            // What was the constant coefficient in {0}?
-            // What was the constant coefficient in Entry Number One?
-            [Question.EntryNumberOneCoeff] = new()
-            {
-                QuestionText = "Какой был постоянный коэффицент {0}?",
+                NeedsTranslation = true,
+                QuestionText = "What was the{1} digit in the {2} number shown in {0}?",
             },
 
             // Épelle-moi Ça
             // What word was asked to be spelled in {0}?
             // What word was asked to be spelled in Épelle-moi Ça?
-            [Question.EpelleMoiCaWord] = new()
+            [Question.ÉpelleMoiÇaWord] = new()
             {
                 Conjugation = Conjugation.PrepositiveMascNeuter,
                 QuestionText = "Какое слово нужно было написать на {0}?",
@@ -7739,12 +7717,19 @@ namespace Souvenir
             },
 
             // Papa’s Pizzeria
-            // What was the order number on {0}?
-            // What was the order number on Papa’s Pizzeria?
-            [Question.PapasPizzeriaRequest] = new()
+            // What was the {1} digit in the order number on {0}?
+            // What was the first digit in the order number on Papa’s Pizzeria?
+            [Question.PapasPizzeriaDigit] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the order number on {0}?",
+                QuestionText = "What was the {1} digit in the order number on {0}?",
+            },
+            // What was the letter in the order number on {0}?
+            // What was the letter in the order number on Papa’s Pizzeria?
+            [Question.PapasPizzeriaLetter] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the letter in the order number on {0}?",
             },
 
             // Parity
