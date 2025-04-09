@@ -290,17 +290,19 @@ namespace Souvenir
             },
 
             // Affine Cycle
-            // What was the {1} in {0}?
-            // What was the message in Affine Cycle?
-            [Question.AffineCycleWord] = new()
+            // Which direction was the {1} dial pointing in {0}?
+            // Which direction was the first dial pointing in Affine Cycle?
+            [Question.AffineCycleDialDirections] = new()
             {
-                QuestionText = "{0}のメッセージとは何だった？",
-                ModuleName = "アフィンサイクル",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["message"] = "メッセージ",
-                    ["response"] = "返答",
-                },
+                NeedsTranslation = true,
+                QuestionText = "Which direction was the {1} dial pointing in {0}?",
+            },
+            // What letter was written on the {1} dial in {0}?
+            // What letter was written on the first dial in Affine Cycle?
+            [Question.AffineCycleDialLabels] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What letter was written on the {1} dial in {0}?",
             },
 
             // A Letter
@@ -1593,17 +1595,19 @@ namespace Souvenir
             },
 
             // Caesar Cycle
-            // What was the {1} in {0}?
-            // What was the message in Caesar Cycle?
-            [Question.CaesarCycleWord] = new()
+            // Which direction was the {1} dial pointing in {0}?
+            // Which direction was the first dial pointing in Caesar Cycle?
+            [Question.CaesarCycleDialDirections] = new()
             {
-                QuestionText = "{0}の{1}は？",
-                ModuleName = "カエサルサイクル",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["message"] = "メッセージ",
-                    ["response"] = "返答",
-                },
+                NeedsTranslation = true,
+                QuestionText = "Which direction was the {1} dial pointing in {0}?",
+            },
+            // What letter was written on the {1} dial in {0}?
+            // What letter was written on the first dial in Caesar Cycle?
+            [Question.CaesarCycleDialLabels] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What letter was written on the {1} dial in {0}?",
             },
 
             // Caesar Psycho
@@ -2575,17 +2579,19 @@ namespace Souvenir
             },
 
             // Cryptic Cycle
-            // What was the {1} in {0}?
-            // What was the message in Cryptic Cycle?
-            [Question.CrypticCycleWord] = new()
+            // Which direction was the {1} dial pointing in {0}?
+            // Which direction was the first dial pointing in Cryptic Cycle?
+            [Question.CrypticCycleDialDirections] = new()
             {
-                QuestionText = "{0}の{1}は？",
-                ModuleName = "暗号サイクル",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["message"] = "メッセージ",
-                    ["response"] = "返答",
-                },
+                NeedsTranslation = true,
+                QuestionText = "Which direction was the {1} dial pointing in {0}?",
+            },
+            // What letter was written on the {1} dial in {0}?
+            // What letter was written on the first dial in Cryptic Cycle?
+            [Question.CrypticCycleDialLabels] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What letter was written on the {1} dial in {0}?",
             },
 
             // Cryptic Keypad
@@ -4625,17 +4631,19 @@ namespace Souvenir
             },
 
             // Hill Cycle
-            // What was the {1} in {0}?
-            // What was the message in Hill Cycle?
-            [Question.HillCycleWord] = new()
+            // Which direction was the {1} dial pointing in {0}?
+            // Which direction was the first dial pointing in Hill Cycle?
+            [Question.HillCycleDialDirections] = new()
             {
-                QuestionText = "{0}の{1}は？",
-                ModuleName = "ヒルサイクル",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["message"] = "メッセージ",
-                    ["response"] = "返答",
-                },
+                NeedsTranslation = true,
+                QuestionText = "Which direction was the {1} dial pointing in {0}?",
+            },
+            // What letter was written on the {1} dial in {0}?
+            // What letter was written on the first dial in Hill Cycle?
+            [Question.HillCycleDialLabels] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What letter was written on the {1} dial in {0}?",
             },
 
             // Hinges
@@ -5028,17 +5036,19 @@ namespace Souvenir
             },
 
             // Jumble Cycle
-            // What was the {1} in {0}?
-            // What was the message in Jumble Cycle?
-            [Question.JumbleCycleWord] = new()
+            // Which direction was the {1} dial pointing in {0}?
+            // Which direction was the first dial pointing in Jumble Cycle?
+            [Question.JumbleCycleDialDirections] = new()
             {
-                QuestionText = "{0}の{1}は？",
-                ModuleName = "寄せ集めサイクル",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["message"] = "メッセージ",
-                    ["response"] = "返答",
-                },
+                NeedsTranslation = true,
+                QuestionText = "Which direction was the {1} dial pointing in {0}?",
+            },
+            // What letter was written on the {1} dial in {0}?
+            // What letter was written on the first dial in Jumble Cycle?
+            [Question.JumbleCycleDialLabels] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What letter was written on the {1} dial in {0}?",
             },
 
             // Juxtacolored Squares
@@ -8096,17 +8106,19 @@ namespace Souvenir
             },
 
             // Pigpen Cycle
-            // What was the {1} in {0}?
-            // What was the message in Pigpen Cycle?
-            [Question.PigpenCycleWord] = new()
+            // Which direction was the {1} dial pointing in {0}?
+            // Which direction was the first dial pointing in Pigpen Cycle?
+            [Question.PigpenCycleDialDirections] = new()
             {
-                QuestionText = "{0}の{1}は？",
-                ModuleName = "ピッグペンサイクル",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["message"] = "メッセージ",
-                    ["response"] = "返答",
-                },
+                NeedsTranslation = true,
+                QuestionText = "Which direction was the {1} dial pointing in {0}?",
+            },
+            // What letter was written on the {1} dial in {0}?
+            // What letter was written on the first dial in Pigpen Cycle?
+            [Question.PigpenCycleDialLabels] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What letter was written on the {1} dial in {0}?",
             },
 
             // The Pink Button
@@ -8213,17 +8225,19 @@ namespace Souvenir
             },
 
             // Playfair Cycle
-            // What was the {1} in {0}?
-            // What was the message in Playfair Cycle?
-            [Question.PlayfairCycleWord] = new()
+            // Which direction was the {1} dial pointing in {0}?
+            // Which direction was the first dial pointing in Playfair Cycle?
+            [Question.PlayfairCycleDialDirections] = new()
             {
-                QuestionText = "{0}の{1}は？",
-                ModuleName = "プレイフェアサイクル",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["message"] = "メッセージ",
-                    ["response"] = "返答",
-                },
+                NeedsTranslation = true,
+                QuestionText = "Which direction was the {1} dial pointing in {0}?",
+            },
+            // What letter was written on the {1} dial in {0}?
+            // What letter was written on the first dial in Playfair Cycle?
+            [Question.PlayfairCycleDialLabels] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What letter was written on the {1} dial in {0}?",
             },
 
             // Poetry
@@ -11137,16 +11151,19 @@ namespace Souvenir
             },
 
             // Ultimate Cycle
-            // What was the {1} in {0}?
-            // What was the message in Ultimate Cycle?
-            [Question.UltimateCycleWord] = new()
+            // Which direction was the {1} dial pointing in {0}?
+            // Which direction was the first dial pointing in Ultimate Cycle?
+            [Question.UltimateCycleDialDirections] = new()
             {
-                QuestionText = "{0}の{1}は？",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["message"] = "メッセージ",
-                    ["response"] = "返答",
-                },
+                NeedsTranslation = true,
+                QuestionText = "Which direction was the {1} dial pointing in {0}?",
+            },
+            // What letter was written on the {1} dial in {0}?
+            // What letter was written on the first dial in Ultimate Cycle?
+            [Question.UltimateCycleDialLabels] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What letter was written on the {1} dial in {0}?",
             },
 
             // The Ultracube

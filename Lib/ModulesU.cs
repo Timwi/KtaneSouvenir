@@ -15,7 +15,8 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessUltimateCycle(ModuleData module)
     {
-        return processSpeakingEvilCycle2(module, "UltimateCycleScript", Question.UltimateCycleWord);
+        var qs = new[] { Question.UltimateCycleDialDirections, Question.UltimateCycleDialLabels };
+        return ProcessSpeakingEvilCycle(module, "UltimateCycleScript", qs);
     }
 
     private IEnumerator<YieldInstruction> ProcessUltracube(ModuleData module)

@@ -31,7 +31,8 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessCaesarCycle(ModuleData module)
     {
-        return processSpeakingEvilCycle1(module, "CaesarCycleScript", Question.CaesarCycleWord);
+        var qs = new[] { Question.CaesarCycleDialDirections, Question.CaesarCycleDialLabels };
+        return ProcessSpeakingEvilCycle(module, "CaesarCycleScript", qs);
     }
 
     private IEnumerator<YieldInstruction> ProcessCaesarPsycho(ModuleData module)
@@ -1124,7 +1125,8 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessCrypticCycle(ModuleData module)
     {
-        return processSpeakingEvilCycle2(module, "CrypticCycleScript", Question.CrypticCycleWord);
+        var qs = new[] { Question.CrypticCycleDialDirections, Question.CrypticCycleDialLabels };
+        return ProcessSpeakingEvilCycle(module, "CrypticCycleScript", qs);
     }
 
     private IEnumerator<YieldInstruction> ProcessCrypticKeypad(ModuleData module)

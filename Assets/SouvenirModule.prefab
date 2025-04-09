@@ -528,6 +528,26 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 364b47d741a14e74f9d90c624ebb7b93, type: 3}
   - {fileID: 21300000, guid: 6f19baf87115afc41b33838758658897, type: 3}
   - {fileID: 21300000, guid: f866d380693104b4eb994ae061a00b3c, type: 3}
+  CycleModuleFiveSprites:
+  - {fileID: 21300000, guid: fa72ae3e08fb5fc428b2ae4ffd5655d8, type: 3}
+  - {fileID: 21300000, guid: 9f181d1f18b3abd41b511fbaf9301935, type: 3}
+  - {fileID: 21300000, guid: 6738255c0e0ce254b95b9f2ba2cba0a4, type: 3}
+  - {fileID: 21300000, guid: 99387f6859df4294d96a3502dddec2df, type: 3}
+  - {fileID: 21300000, guid: 1ffd258066b071445915cd931b247b84, type: 3}
+  CycleModuleEightSprites:
+  - {fileID: 21300000, guid: fa72ae3e08fb5fc428b2ae4ffd5655d8, type: 3}
+  - {fileID: 21300000, guid: 824707be578025d40920a97e45bb120f, type: 3}
+  - {fileID: 21300000, guid: 059990fe8725e4245bbf0f6af618c2ce, type: 3}
+  - {fileID: 21300000, guid: 3135a57c9b7ee374899ef949605dd8c0, type: 3}
+  - {fileID: 21300000, guid: ce3ffc15b2249ff4fafa2bd54b6cfae7, type: 3}
+  - {fileID: 21300000, guid: 9a1aeb7a898aca54dbf5448db117ecdb, type: 3}
+  - {fileID: 21300000, guid: d81d661ea3f2afb46bf2e0e96e510fce, type: 3}
+  - {fileID: 21300000, guid: adc32d7fb9b54d448b2f4212017d4aea, type: 3}
+  CycleModuleCrypticSprites:
+  - {fileID: 21300000, guid: ddf73db9402e48848a0894ed8f2da355, type: 3}
+  - {fileID: 21300000, guid: 2691a1674f6bbe0438680da583e17575, type: 3}
+  - {fileID: 21300000, guid: 66ca3f8644bdd894092cdfc25ccf9264, type: 3}
+  - {fileID: 21300000, guid: 5c7e1040839c2134e929bc60beda7019, type: 3}
   EncryptedEquationsSprites:
   - {fileID: 21300000, guid: ec3a26799d5ecd940b601d552b404d07, type: 3}
   - {fileID: 21300000, guid: 3ee5d260dc281174cb8b26e41697006b, type: 3}
@@ -1720,6 +1740,7 @@ MonoBehaviour:
   - {fileID: 12800000, guid: 8ee6c1da95bf42446ac204a87c3bfba2, type: 3}
   - {fileID: 12800000, guid: 329a20852fb95d54e9aae4714e4e4086, type: 3}
   - {fileID: 12800000, guid: 63b4d4c0cfd2254478465b17d6cd7b7e, type: 3}
+  - {fileID: 12800000, guid: edec0bd11fc2be845a7a59acd3a9731d, type: 3}
   FontTextures:
   - {fileID: 2800000, guid: 2cc5074422ed950489fe2e35af896c57, type: 3}
   - {fileID: 2800000, guid: 7eb251b1ccb04364aaed7e7915ea8c49, type: 3}
@@ -1732,6 +1753,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 8ee6c1da95bf42446ac204a87c3bfba2, type: 3}
   - {fileID: 2800000, guid: 329a20852fb95d54e9aae4714e4e4086, type: 3}
   - {fileID: 2800000, guid: 63b4d4c0cfd2254478465b17d6cd7b7e, type: 3}
+  - {fileID: 2800000, guid: edec0bd11fc2be845a7a59acd3a9731d, type: 3}
   HighlightShort: {fileID: 4300000, guid: bad8a2a5255ad274a8c1de910fca788d, type: 3}
   HighlightLong: {fileID: 4300000, guid: 3a6993f786424e045a5567c18dc83a71, type: 3}
   HighlightVeryLong: {fileID: 4300000, guid: b21a8364a7fa30142938501d0d2220bd, type: 3}

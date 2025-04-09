@@ -79,7 +79,6 @@ public partial class SouvenirModule
         qs.Add(makeQuestion(Question.OffKeysIncorrectPitch, module, correctAnswers: faultyKeys.Select(i => notes[i]).ToArray()));
 
         var pickedSymbols = GetArrayField<int>(comp, "PickedSymbols").Get();
-        Debug.Log("<><>" + OffKeysSprites.Length);
         var correctSymbols = pickedSymbols.Select(i => OffKeysSprites[i]).ToArray();
 
         qs.Add(makeQuestion(Question.OffKeysRunes, module, correctAnswers: correctSymbols));

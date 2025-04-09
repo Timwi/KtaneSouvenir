@@ -91,9 +91,13 @@ namespace Souvenir
         [SouvenirQuestion("What enemy were you fighting in {0}?", "Adventure Game", TwoColumns4Answers, "Dragon", "Demon", "Eagle", "Goblin", "Troll", "Wizard", "Golem", "Lizard")]
         AdventureGameEnemy,
 
-        [SouvenirQuestion("What was the {1} in {0}?", "Affine Cycle", TwoColumns4Answers, "Advanced", "Addition", "Allocate", "Allotted", "Binaries", "Billions", "Bulkhead", "Bulwarks", "Ciphered", "Circuits", "Computer", "Compiler", "Decrypts", "Division", "Discover", "Discrete", "Encipher", "Entrance", "Equation", "Equalise", "Finished", "Findings", "Fortress", "Fortunes", "Gauntlet", "Gambling", "Gathered", "Gateways", "Hazarded", "Haziness", "Hunkered", "Hungrier", "Indicate", "Indigoes", "Illusion", "Illuding", "Jigsawed", "Jimmying", "Junction", "Juncture", "Kilowatt", "Kinetics", "Knockout", "Knowable", "Limiting", "Linearly", "Linkages", "Lingered", "Monogram", "Monotone", "Multiply", "Mulcting", "Nanogram", "Nanotube", "Numbered", "Numerate", "Octangle", "Octuples", "Observed", "Obstacle", "Progress", "Projects", "Position", "Positron", "Quadrant", "Quadrics", "Quickest", "Quitters", "Reversed", "Revolved", "Rotation", "Relative", "Starting", "Standard", "Stopping", "Stoccata", "Triggers", "Triangle", "Tomogram", "Tomorrow", "Underrun", "Underlie", "Ultimate", "Ultrahot", "Vicinity", "Viceless", "Voltages", "Voluming", "Wingding", "Winnable", "Whatever", "Whatsits", "Yellowed", "Yeasayer", "Yielders", "Yourself", "Zippered", "Zigzaggy", "Zugzwang", "Zymogene",
-            ExampleFormatArguments = new[] { "message", "response" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
-        AffineCycleWord,
+        [SouvenirQuestion("Which direction was the {1} dial pointing in {0}?", "Affine Cycle", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "CycleModuleEightSprites",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        AffineCycleDialDirections,
+        [SouvenirQuestion("What letter was written on the {1} dial in {0}?", "Affine Cycle", ThreeColumns6Answers,
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("1*A-Z")]
+        AffineCycleDialLabels,
 
         [SouvenirQuestion("What was the initial letter in {0}?", "A Letter", ThreeColumns6Answers)]
         [AnswerGenerator.Strings("A-Z")]
@@ -476,9 +480,13 @@ namespace Souvenir
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         CactisConundrumColor,
 
-        [SouvenirQuestion("What was the {1} in {0}?", "Caesar Cycle", TwoColumns4Answers, "Advanced", "Addition", "Allocate", "Altering", "Binaries", "Billions", "Bulkhead", "Bulleted", "Ciphered", "Circuits", "Computer", "Continue", "Decrypts", "Division", "Discover", "Disposal", "Encipher", "Entrance", "Equation", "Equipped", "Finished", "Findings", "Fortress", "Forwards", "Gauntlet", "Gambling", "Gathered", "Glooming", "Hazarded", "Haziness", "Hunkered", "Huntsman", "Indicate", "Indigoes", "Illusion", "Illumine", "Jigsawed", "Jimmying", "Junction", "Judgment", "Kilowatt", "Kinetics", "Knockout", "Knuckled", "Limiting", "Linearly", "Linkages", "Labeling", "Monogram", "Monotone", "Multiply", "Mulligan", "Nanogram", "Nanotube", "Numbered", "Numerals", "Octangle", "Octuples", "Observed", "Obscured", "Progress", "Projects", "Position", "Positive", "Quadrant", "Quadrics", "Quickest", "Quintics", "Reversed", "Revolved", "Rotation", "Relation", "Starting", "Standard", "Stopping", "Stopword", "Triggers", "Triangle", "Toggling", "Together", "Underrun", "Underlie", "Ultimate", "Ultrared", "Vicinity", "Viceless", "Voltages", "Volatile", "Wingding", "Winnable", "Whatever", "Whatnots", "Yellowed", "Yeasayer", "Yielding", "Yourself", "Zippered", "Zigzaggy", "Zugzwang", "Zymogram",
-          ExampleFormatArguments = new[] { "message", "response" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
-        CaesarCycleWord,
+        [SouvenirQuestion("Which direction was the {1} dial pointing in {0}?", "Caesar Cycle", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "CycleModuleEightSprites",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        CaesarCycleDialDirections,
+        [SouvenirQuestion("What letter was written on the {1} dial in {0}?", "Caesar Cycle", ThreeColumns6Answers,
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("1*A-Z")]
+        CaesarCycleDialLabels,
 
         [SouvenirQuestion("What text was on the top display in the {1} stage of {0}?", "Caesar Psycho", ThreeColumns6Answers,
         ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
@@ -728,9 +736,13 @@ namespace Souvenir
             ExampleFormatArguments = new[] { "♤♤", "♤♧", "♤♢", "♤♡", "♧♤", "♧♧", "♧♢", "♧♡", "♢♤", "♢♧", "♢♢", "♢♡", "♡♤", "♡♧", "♡♢", "♡♡" }, ExampleFormatArgumentGroupSize = 1)]
         CRuleSymbolPairCell,
 
-        [SouvenirQuestion("What was the {1} in {0}?", "Cryptic Cycle", TwoColumns4Answers, "Advanced", "Addition", "Allocate", "Altering", "Binaries", "Billions", "Bulkhead", "Bulleted", "Ciphered", "Circuits", "Computer", "Continue", "Decrypts", "Division", "Discover", "Disposal", "Examined", "Examples", "Equation", "Equipped", "Finished", "Findings", "Fortress", "Forwards", "Gauntlet", "Gambling", "Gathered", "Glooming", "Hazarded", "Haziness", "Hunkered", "Huntsman", "Indicate", "Indigoes", "Illusion", "Illumine", "Jigsawed", "Jimmying", "Junction", "Judgment", "Kilowatt", "Kinetics", "Knockout", "Knuckled", "Limiting", "Linearly", "Linkages", "Labeling", "Monogram", "Monotone", "Multiply", "Mulligan", "Nanogram", "Nanotube", "Numbered", "Numerals", "Octangle", "Octuples", "Observed", "Obscured", "Progress", "Projects", "Position", "Positive", "Quadrant", "Quadplex", "Quickest", "Quintics", "Reversed", "Revolved", "Rotation", "Relation", "Starting", "Standard", "Stopping", "Stopword", "Triggers", "Triangle", "Toggling", "Together", "Underrun", "Underlie", "Ultimate", "Ultrared", "Vicinity", "Viceless", "Voltages", "Volatile", "Wingding", "Winnable", "Whatever", "Whatnots", "Yellowed", "Yeasayer", "Yielding", "Yourself", "Zippered", "Zigzaggy", "Zugzwang", "Zymogram",
-          ExampleFormatArguments = new[] { "message", "response" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
-        CrypticCycleWord,
+        [SouvenirQuestion("Which direction was the {1} dial pointing in {0}?", "Cryptic Cycle", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "CycleModuleCrypticSprites",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        CrypticCycleDialDirections,
+        [SouvenirQuestion("What letter was written on the {1} dial in {0}?", "Cryptic Cycle", ThreeColumns6Answers, Type = AnswerType.CrypticCycleBoozleglyphFont,
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"£$%^&*()[]{}<>")]
+        CrypticCycleDialLabels,
 
         [SouvenirQuestion("What was the label of the {1} key in {0}?", "Cryptic Keypad", ThreeColumns6Answers,
             ExampleFormatArguments = new[] { "top-left", "top-right", "bottom-left", "bottom-right" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
@@ -1371,9 +1383,13 @@ namespace Souvenir
         [AnswerGenerator.Integers(1750, 999990, 10)]
         HighScoreScore,
 
-        [SouvenirQuestion("What was the {1} in {0}?", "Hill Cycle", TwoColumns4Answers, "Adverted", "Advocate", "Allocate", "Altering", "Binormal", "Binomial", "Bulkhead", "Bulleted", "Ciphered", "Circuits", "Compiler", "Commando", "Decimate", "Deceived", "Discover", "Disposal", "Encipher", "Entrance", "Equators", "Equalise", "Finalise", "Finnicky", "Fortress", "Forwards", "Gauntlet", "Gambling", "Gatepost", "Gateways", "Hazarded", "Haziness", "Hungrier", "Huntress", "Incoming", "Indirect", "Illusion", "Illumine", "Jigsawed", "Jiggling", "Junction", "Junkyard", "Kilowatt", "Kilobyte", "Knockout", "Knocking", "Lingered", "Linearly", "Linkages", "Linkwork", "Monogram", "Monomial", "Multiply", "Multiton", "Nanogram", "Nanowatt", "Numerous", "Numerals", "Ordinals", "Ordering", "Observed", "Obscured", "Progress", "Projects", "Prophase", "Prophecy", "Quadrant", "Quadrics", "Quartile", "Quartics", "Reversed", "Revolved", "Rotators", "Relaying", "Stanzaic", "Standout", "Stopping", "Stopword", "Trigonal", "Trickier", "Toggling", "Together", "Underway", "Underlie", "Ultrahot", "Ultrared", "Vicinity", "Viceless", "Volition", "Volatile", "Whatness", "Whatsits", "Whatever", "Whatnots", "Yearlong", "Yeasayer", "Yokozuna", "Yourself", "Zippered", "Zygomata", "Zugzwang", "Zymogene",
-          ExampleFormatArguments = new[] { "message", "response" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
-        HillCycleWord,
+        [SouvenirQuestion("Which direction was the {1} dial pointing in {0}?", "Hill Cycle", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "CycleModuleFiveSprites",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        HillCycleDialDirections,
+        [SouvenirQuestion("What letter was written on the {1} dial in {0}?", "Hill Cycle", ThreeColumns6Answers,
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("1*A-Z")]
+        HillCycleDialLabels,
 
         [SouvenirQuestion("Which of these hinges was initially {1} {0}?", "Hinges", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "HingesSprites",
             ExampleFormatArguments = new[] { "present on", "absent from" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
@@ -1497,9 +1513,13 @@ namespace Souvenir
         [AnswerGenerator.Integers(1, 4)]
         JewelVaultWheels,
 
-        [SouvenirQuestion("What was the {1} in {0}?", "Jumble Cycle", TwoColumns4Answers, "Adverted", "Advocate", "Allotype", "Allotted", "Binormal", "Binomial", "Bullhorn", "Bulwarks", "Connects", "Conquers", "Commando", "Compiler", "Deceived", "Decimate", "Dispatch", "Discrete", "Encrypts", "Encoding", "Equators", "Equalise", "Finalise", "Finnicky", "Formulae", "Fortunes", "Garrison", "Garnered", "Gatepost", "Gateways", "Hotlinks", "Hotheads", "Huntress", "Hundreds", "Incoming", "Indirect", "Illusory", "Illuding", "Journeys", "Jousting", "Junkyard", "Juncture", "Kilovolt", "Kilobyte", "Knocking", "Knowable", "Language", "Landmark", "Linkwork", "Lingered", "Monomial", "Monolith", "Multiton", "Mulcting", "Nanowatt", "Nanobots", "Numerous", "Numerate", "Ordering", "Ordinals", "Obstruct", "Obstacle", "Prophase", "Prophecy", "Postsync", "Positron", "Quartile", "Quartics", "Quirkish", "Quitters", "Reversed", "Revealed", "Relaying", "Relative", "Stanzaic", "Standout", "Stockade", "Stoccata", "Trigonal", "Trickier", "Tomogram", "Tomahawk", "Underway", "Undoings", "Ulterior", "Ultrahot", "Venomous", "Vendetta", "Volition", "Voluming", "Weakened", "Weaponed", "Whatness", "Whatsits", "Yearlong", "Yearning", "Yokozuna", "Yourself", "Zygomata", "Zygotene", "Zymology", "Zymogene",
-          ExampleFormatArguments = new[] { "message", "response" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
-        JumbleCycleWord,
+        [SouvenirQuestion("Which direction was the {1} dial pointing in {0}?", "Jumble Cycle", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "CycleModuleEightSprites",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        JumbleCycleDialDirections,
+        [SouvenirQuestion("What letter was written on the {1} dial in {0}?", "Jumble Cycle", ThreeColumns6Answers,
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("1*A-Z")]
+        JumbleCycleDialLabels,
 
         [SouvenirQuestion("What was the color of this square in {0}?", "Juxtacolored Squares", ThreeColumns6Answers, "Red", "Blue", "Yellow", "Green", "Magenta", "Orange", "Cyan", "Purple", "Chestnut", "Brown", "Mauve", "Azure", "Jade", "Forest", "Gray", "Black", TranslateAnswers = true, UsesQuestionSprite = true)]
         JuxtacoloredSquaresColorsByPosition,
@@ -2322,9 +2342,13 @@ namespace Souvenir
         [SouvenirQuestion("What number was not displayed in {0}?", "Pie Flash", TwoColumns4Answers, ExampleAnswers = new[] { "31415", "62643", "28410", "93105" })]
         PieFlashDigits,
 
-        [SouvenirQuestion("What was the {1} in {0}?", "Pigpen Cycle", TwoColumns4Answers, "Advanced", "Addition", "Allotype", "Allotted", "Binaries", "Billions", "Bullhorn", "Bulwarks", "Ciphered", "Circuits", "Commando", "Compiler", "Decrypts", "Division", "Dispatch", "Discrete", "Encipher", "Entrance", "Equators", "Equalise", "Finished", "Findings", "Formulae", "Fortunes", "Gauntlet", "Gambling", "Gatepost", "Gateways", "Hazarded", "Haziness", "Huntress", "Hungrier", "Indicate", "Indigoes", "Illusory", "Illuding", "Jigsawed", "Jimmying", "Junkyard", "Juncture", "Kilowatt", "Kinetics", "Knocking", "Knowable", "Limiting", "Linearly", "Linkwork", "Lingered", "Monogram", "Monotone", "Multiton", "Mulcting", "Nanogram", "Nanotube", "Numerous", "Numerate", "Octangle", "Octuples", "Obstruct", "Obstacle", "Progress", "Projects", "Postsync", "Positron", "Quadrant", "Quadrics", "Quirkish", "Quitters", "Reversed", "Revolved", "Rotators", "Relative", "Starting", "Standard", "Stockade", "Stoccata", "Triggers", "Triangle", "Tomogram", "Tomahawk", "Underrun", "Underlie", "Ulterior", "Ultrahot", "Vicinity", "Viceless", "Volition", "Voluming", "Wingding", "Winnable", "Whatness", "Whatsits", "Yellowed", "Yeasayer", "Yokozuna", "Yourself", "Zippered", "Zigzaggy", "Zymology", "Zymogene",
-          ExampleFormatArguments = new[] { "message", "response" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
-        PigpenCycleWord,
+        [SouvenirQuestion("Which direction was the {1} dial pointing in {0}?", "Pigpen Cycle", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "CycleModuleEightSprites",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        PigpenCycleDialDirections,
+        [SouvenirQuestion("What letter was written on the {1} dial in {0}?", "Pigpen Cycle", ThreeColumns6Answers,
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("1*A-Z")]
+        PigpenCycleDialLabels,
 
         [SouvenirQuestion("What was the {1} word in {0}?", "Pink Button", TwoColumns4Answers, "BLK", "RED", "GRN", "YLW", "BLU", "MGT", "CYN", "WHT",
             AddThe = true, ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
@@ -2354,9 +2378,13 @@ namespace Souvenir
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         PlanetsStrips,
 
-        [SouvenirQuestion("What was the {1} in {0}?", "Playfair Cycle", TwoColumns4Answers, "Advanced", "Advocate", "Allotype", "Allotted", "Binaries", "Binomial", "Bullhorn", "Bulwarks", "Circular", "Circuits", "Commando", "Compiler", "Decrypts", "Decimals", "Dispatch", "Discrete", "Encipher", "Encoding", "Equators", "Equalise", "Finished", "Finnicky", "Formulae", "Fortunes", "Gauntlet", "Gauchest", "Gatepost", "Gateways", "Hotlinks", "Hotheads", "Huntress", "Hungrier", "Indicate", "Indirect", "Illusory", "Illuding", "Jigsawed", "Jiggling", "Junkyard", "Juncture", "Kilowatt", "Kilobyte", "Knocking", "Knowable", "Limiting", "Limerick", "Linkwork", "Lingered", "Monogram", "Monolith", "Multiton", "Mulcting", "Nanogram", "Nanobots", "Numerous", "Numerate", "Octangle", "Octonary", "Obstruct", "Obstacle", "Progress", "Programs", "Postsync", "Positron", "Quotient", "Quotable", "Quirkish", "Quitters", "Reversed", "Revealed", "Rotators", "Relative", "Stanzaic", "Standard", "Stockade", "Stoccata", "Triggers", "Trickier", "Tomogram", "Tomahawk", "Underrun", "Undoings", "Ulterior", "Ultrahot", "Vicinity", "Vicenary", "Volition", "Voluming", "Wingding", "Wingspan", "Whatness", "Whatsits", "Yearlong", "Yeasayer", "Yokozuna", "Yourself", "Ziggurat", "Zigzaggy", "Zymology", "Zymogene",
-          ExampleFormatArguments = new[] { "message", "response" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
-        PlayfairCycleWord,
+        [SouvenirQuestion("Which direction was the {1} dial pointing in {0}?", "Playfair Cycle", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "CycleModuleFiveSprites",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        PlayfairCycleDialDirections,
+        [SouvenirQuestion("What letter was written on the {1} dial in {0}?", "Playfair Cycle", ThreeColumns6Answers,
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("1*A-Z")]
+        PlayfairCycleDialLabels,
 
         [SouvenirQuestion("What was the {1} correct answer you pressed in {0}?", "Poetry", TwoColumns4Answers, "clarity", "flow", "fatigue", "hollow", "energy", "sunshine", "ocean", "reflection", "identity", "black", "crowd", "heart", "weather", "words", "past", "solitary", "relax", "dance", "weightless", "morality", "gaze", "failure", "bunny", "lovely", "romance", "future", "focus", "search", "cookies", "compassion", "creation", "patience",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
@@ -2817,7 +2845,7 @@ namespace Souvenir
         SimonShrieksFlashingButton,
 
         [SouvenirQuestion("What was the {1} flash of the {2} stage of {0}?", "Simon Shuffles", ThreeColumns6Answers, "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Purple", "Magenta", "White",
-            ExampleFormatArguments = new[] {QandA.Ordinal, QandA.Ordinal}, ExampleFormatArgumentGroupSize = 2)]
+            ExampleFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleFormatArgumentGroupSize = 2)]
         SimonShufflesFlashes,
 
         [SouvenirQuestion("What shape was the {1} arrow in {0}?", "Simon Signals", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = nameof(SouvenirModule.SimonSignalsSprites),
@@ -3213,9 +3241,13 @@ namespace Souvenir
             ExampleFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { true, false })]
         UltimateCipherScreen,
 
-        [SouvenirQuestion("What was the {1} in {0}?", "Ultimate Cycle", TwoColumns4Answers, "Advanced", "Adverted", "Advocate", "Addition", "Allocate", "Allotype", "Allotted", "Altering", "Binaries", "Binormal", "Binomial", "Billions", "Bulkhead", "Bullhorn", "Bulleted", "Bulwarks", "Ciphered", "Circuits", "Connects", "Conquers", "Commando", "Compiler", "Computer", "Continue", "Decrypts", "Deceived", "Decimate", "Division", "Discover", "Discrete", "Dispatch", "Disposal", "Encipher", "Encrypts", "Encoding", "Entrance", "Equalise", "Equators", "Equation", "Equipped", "Finalise", "Finished", "Findings", "Finnicky", "Formulae", "Fortunes", "Fortress", "Forwards", "Garrison", "Garnered", "Gatepost", "Gateways", "Gauntlet", "Gambling", "Gathered", "Glooming", "Hazarded", "Haziness", "Hotlinks", "Hotheads", "Hundreds", "Hunkered", "Huntsman", "Huntress", "Incoming", "Indicate", "Indirect", "Indigoes", "Illuding", "Illusion", "Illusory", "Illumine", "Jigsawed", "Jimmying", "Journeys", "Jousting", "Junction", "Juncture", "Junkyard", "Judgment", "Kilowatt", "Kilovolt", "Kilobyte", "Kinetics", "Knocking", "Knockout", "Knowable", "Knuckled", "Language", "Landmark", "Limiting", "Linearly", "Lingered", "Linkages", "Linkwork", "Labeling", "Monogram", "Monolith", "Monomial", "Monotone", "Multiton", "Multiply", "Mulcting", "Mulligan", "NANOBOTS", "Nanogram", "Nanowatt", "Nanotube", "Numbered", "Numerous", "Numerals", "Numerate", "Octangle", "Octuples", "Ordering", "Ordinals", "Observed", "Obscured", "Obstruct", "Obstacle", "Progress", "Projects", "Prophase", "Prophecy", "Postsync", "Possible", "Positron", "Positive", "Quadrant", "Quadrics", "Quartile", "Quartics", "Quickest", "Quirkish", "Quintics", "Quitters", "Reversed", "Revolved", "Revealed", "Rotation", "Rotators", "Relation", "Relative", "Relaying", "Starting", "Standard", "Standout", "Stanzaic", "Stoccata", "Stockade", "Stopping", "Stopword", "Trickier", "Trigonal", "Triggers", "Triangle", "Tomogram", "Tomahawk", "Toggling", "Together", "Underrun", "UnderwaY", "Underlie", "Undoings", "Ulterior", "Ultimate", "Ultrared", "Ultrahot", "Venomous", "Vendetta", "Vicinity", "Viceless", "Volition", "Voltages", "Volatile", "Voluming", "Weakened", "Weaponed", "Wingding", "Winnable", "Whatever", "Whatness", "Whatnots", "Whatsits", "Yellowed", "Yearlong", "Yearning", "Yeasayer", "Yielding", "Yielders", "Yokozuna", "Yourself", "Zippered", "Ziggurat", "Zigzaggy", "Zugzwang", "Zygomata", "Zygotene", "Zymology", "Zymogram",
-          ExampleFormatArguments = new[] { "message", "response" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
-        UltimateCycleWord,
+        [SouvenirQuestion("Which direction was the {1} dial pointing in {0}?", "Ultimate Cycle", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "CycleModuleEightSprites",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        UltimateCycleDialDirections,
+        [SouvenirQuestion("What letter was written on the {1} dial in {0}?", "Ultimate Cycle", ThreeColumns6Answers,
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("1*A-Z")]
+        UltimateCycleDialLabels,
 
         [SouvenirQuestion("What was the {1} rotation in {0}?", "Ultracube", ThreeColumns6Answers, "XY", "YX", "XZ", "ZX", "XW", "WX", "XV", "VX", "YZ", "ZY", "YW", "WY", "YV", "VY", "ZW", "WZ", "ZV", "VZ", "WV", "VW", AddThe = true,
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]

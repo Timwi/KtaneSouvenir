@@ -56,7 +56,8 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessJumbleCycle(ModuleData module)
     {
-        return processSpeakingEvilCycle2(module, "JumbleCycleScript", Question.JumbleCycleWord);
+        var qs = new[] { Question.JumbleCycleDialDirections, Question.JumbleCycleDialLabels };
+        return ProcessSpeakingEvilCycle(module, "JumbleCycleScript", qs);
     }
 
     private IEnumerator<YieldInstruction> ProcessJuxtacoloredSquares(ModuleData module)

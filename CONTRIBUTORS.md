@@ -72,6 +72,19 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cruel Binary          │  Forget Me Not      │  Light Bulbs           │  Recursive Password     │  WASD
     Cruel Keypads         │  Forget Me Now      │  Mad Memory            │  Safety Square          │
 
+## Implemented by Quinn Wuest (50)
+
+    3D Chess          │  Denial Displays           │  Not Colored Switches  │  Papa’s Pizzeria      │  Simultaneous Simons
+    A Square          │  Double Digits             │  Not Connection Check  │  Parity               │  Slow Math
+    Affine Cycle      │  English Entries           │  Not Coordinates       │  Pigpen Cycle         │  Small Talk
+    Ángel Hernández   │  Épelle-moi Ça             │  Not Morsematics       │  Playfair Cycle       │  Triple Term
+    Bulb, The         │  Guess Who?                │  Not Murder            │  Quadrants            │  Ultimate Cycle
+    Caesar Cycle      │  Hill Cycle                │  Not Number Pad        │  Robo-Scanner         │  Unpleasant Squares
+    Caesar Psycho     │  Jumble Cycle              │  Not Perspective Pegs  │  Rule of Three        │  Varicolour Flash
+    Coordination      │  Letter Math               │  Not The Bulb          │  Scramboozled Eggain  │  Who’s on Gas
+    Cryptic Cycle     │  Match Refereeing          │  Not X01               │  Simon Said           │  Word Count
+    Cyan Button, The  │  Navigation Determination  │  Off Keys              │  Simon Shuffles       │  xobekuJ ehT
+
 ## Implemented by luisdiogo98 (45)
 
     Accumulation         │  Deck of Many Things, The  │  Horrible Memory   │  Modern Cipher      │  Sphere, The
@@ -83,18 +96,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Coffeebucks          │  Flashing Lights           │  Maze Scrambler    │  Retirement         │  Varicolored Squares
     Colored Keys         │  Free Parking              │  Maze³             │  Reverse Morse      │  Vexillology
     Cube, The            │  Hexabutton, The           │  Mazematics        │  Simon Scrambles    │  Zoni
-
-## Implemented by Quinn Wuest (42)
-
-    3D Chess          │  English Entries           │  Not Morsematics       │  Quadrants            │  Triple Term
-    A Square          │  Épelle-moi Ça             │  Not Murder            │  Robo-Scanner         │  Unpleasant Squares
-    Ángel Hernández   │  Guess Who?                │  Not Number Pad        │  Rule of Three        │  Varicolour Flash
-    Bulb, The         │  Letter Math               │  Not Perspective Pegs  │  Scramboozled Eggain  │  Who’s on Gas
-    Caesar Psycho     │  Match Refereeing          │  Not The Bulb          │  Simon Said           │  Word Count
-    Coordination      │  Navigation Determination  │  Not X01               │  Simon Shuffles       │  xobekuJ ehT
-    Cyan Button, The  │  Not Colored Switches      │  Off Keys              │  Simultaneous Simons  │
-    Denial Displays   │  Not Connection Check      │  Papa’s Pizzeria       │  Slow Math            │
-    Double Digits     │  Not Coordinates           │  Parity                │  Small Talk           │
 
 ## Implemented by Hawker (40)
 
@@ -118,16 +119,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cosmic          │  Hold Ups       │  Shifting Maze          │  Ultimate Cipher         │
     Deaf Alley      │  Indigo Cipher  │  Spelling Bee           │  V                       │
 
-## Implemented by TasThiluna (31)
-
-    3D Tap Code         │  Cryptic Cycle          │  M&Ms              │  Pigpen Cycle    │  Snooker
-    Affine Cycle        │  Encryption Bingo       │  M&Ns              │  Playfair Cycle  │  Tenpins
-    Bakery              │  Hidden Colors          │  Mister Softee     │  Rainbow Arrows  │  Ultimate Cycle
-    Bamboozling Button  │  Hill Cycle             │  Module Listening  │  Rule, The       │
-    Caesar Cycle        │  Identification Crisis  │  More Code         │  Samsung, The    │
-    Chinese Counting    │  Jumble Cycle           │  N&Ms              │  Simon’s Star    │
-    Codenames           │  LED Math               │  Ordered Keys      │  Small Circle    │
-
 ## Implemented by tandyCake (27)
 
     Algorithmia    │  Kanye Encounter, The  │  Metamorse        │  Red Herring           │  Tasque Managing
@@ -136,6 +127,14 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Flyswatting    │  LEDs                  │  Not Text Field   │  Simon Supports        │
     Forget Me      │  M-Seq                 │  Not Word Search  │  Stupid Slots          │
     Jenga          │  Math ’em              │  Numpath          │  Superparsing          │
+
+## Implemented by TasThiluna (23)
+
+    3D Tap Code         │  Encryption Bingo       │  M&Ns              │  Ordered Keys    │  Small Circle
+    Bakery              │  Hidden Colors          │  Mister Softee     │  Rainbow Arrows  │  Snooker
+    Bamboozling Button  │  Identification Crisis  │  Module Listening  │  Rule, The       │  Tenpins
+    Chinese Counting    │  LED Math               │  More Code         │  Samsung, The    │
+    Codenames           │  M&Ms                   │  N&Ms              │  Simon’s Star    │
 
 ## Implemented by kavinkul (17)
 

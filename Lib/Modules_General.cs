@@ -33,7 +33,7 @@ public partial class SouvenirModule
             ["GSAbyss"] = (ProcessAbyss, "Abyss", "VFlyer"),
             ["accumulation"] = (ProcessAccumulation, "Accumulation", "luisdiogo98"),
             ["spwizAdventureGame"] = (ProcessAdventureGame, "Adventure Game", "Timwi"),
-            ["affineCycle"] = (ProcessAffineCycle, "Affine Cycle", "TasThiluna"),
+            ["affineCycle"] = (ProcessAffineCycle, "Affine Cycle", "Quinn Wuest"),
             ["LetterModule"] = (ProcessALetter, "A Letter", "Sierra"),
             ["alfa_bravo"] = (ProcessAlfaBravo, "Alfa-Bravo", "NickLatkovich"),
             ["algebra"] = (ProcessAlgebra, "Algebra", "Timwi"),
@@ -96,7 +96,7 @@ public partial class SouvenirModule
             ["buttonageModule"] = (ProcessButtonage, "Buttonage", "Anonymous"),
             ["buttonSequencesModule"] = (ProcessButtonSequence, "Button Sequence", "Timwi"),
             ["CactusPConundrum"] = (ProcessCactisConundrum, "Cacti’s Conundrum", "Anonymous"),
-            ["caesarCycle"] = (ProcessCaesarCycle, "Caesar Cycle", "TasThiluna"),
+            ["caesarCycle"] = (ProcessCaesarCycle, "Caesar Cycle", "Quinn Wuest"),
             ["caesarPsycho"] = (ProcessCaesarPsycho, "Caesar Psycho", "Quinn Wuest"),
             ["calendar"] = (ProcessCalendar, "Calendar", "Timwi"),
             ["caRPS"] = (ProcessCARPS, "CA-RPS", "Anonymous"),
@@ -149,7 +149,7 @@ public partial class SouvenirModule
             ["CruelBinary"] = (ProcessCruelBinary, "Cruel Binary", "Kuro"),
             ["CruelKeypads"] = (ProcessCruelKeypads, "Cruel Keypads", "Kuro"),
             ["the_cRule"] = (ProcessCRule, "cRule, The", "Timwi"),
-            ["crypticCycle"] = (ProcessCrypticCycle, "Cryptic Cycle", "TasThiluna"),
+            ["crypticCycle"] = (ProcessCrypticCycle, "Cryptic Cycle", "Quinn Wuest"),
             ["GSCrypticKeypad"] = (ProcessCrypticKeypad, "Cryptic Keypad", "Timwi"),
             ["cube"] = (ProcessCube, "Cube, The", "luisdiogo98"),
             ["CursedDoubleOhModule"] = (ProcessCursedDoubleOh, "Cursed Double-Oh", "Kuro"),
@@ -264,7 +264,7 @@ public partial class SouvenirModule
             ["lgndHiddenColors"] = (ProcessHiddenColors, "Hidden Colors", "TasThiluna"),
             ["theHiddenValue"] = (ProcessHiddenValue, "HiddenValue, The", "Anonymous"),
             ["ksmHighScore"] = (ProcessHighScore, "High Score, The", "Hawker"),
-            ["hillCycle"] = (ProcessHillCycle, "Hill Cycle", "TasThiluna"),
+            ["hillCycle"] = (ProcessHillCycle, "Hill Cycle", "Quinn Wuest"),
             ["hinges"] = (ProcessHinges, "Hinges", "Kuro"),
             ["HogwartsModule"] = (ProcessHogwarts, "Hogwarts", "Timwi"),
             ["KritHoldUps"] = (ProcessHoldUps, "Hold Ups", "BigCrunch22"),
@@ -288,7 +288,7 @@ public partial class SouvenirModule
             ["iPhone"] = (ProcessiPhone, "iPhone, The", "luisdiogo98"),
             ["jenga"] = (ProcessJenga, "Jenga", "tandyCake"),
             ["jewelVault"] = (ProcessJewelVault, "Jewel Vault, The", "luisdiogo98"),
-            ["jumbleCycle"] = (ProcessJumbleCycle, "Jumble Cycle", "TasThiluna"),
+            ["jumbleCycle"] = (ProcessJumbleCycle, "Jumble Cycle", "Quinn Wuest"),
             ["JuxtacoloredSquaresModule"] = (ProcessJuxtacoloredSquares, "Juxtacolored Squares", "Kuro"),
             ["KanjiModule"] = (ProcessKanji, "Kanji", "Kuro"),
             ["TheKanyeEncounter"] = (ProcessKanyeEncounter, "Kanye Encounter, The", "tandyCake"),
@@ -447,13 +447,13 @@ public partial class SouvenirModule
             ["pictionaryModule"] = (ProcessPictionary, "Pictionary", "Kuro"),
             ["pieModule"] = (ProcessPie, "Pie", "luisdiogo98"),
             ["pieFlash"] = (ProcessPieFlash, "Pie Flash", "VFlyer"),
-            ["pigpenCycle"] = (ProcessPigpenCycle, "Pigpen Cycle", "TasThiluna"),
+            ["pigpenCycle"] = (ProcessPigpenCycle, "Pigpen Cycle", "Quinn Wuest"),
             ["PinkButtonModule"] = (ProcessPinkButton, "Pink Button, The", "Timwi"),
             ["pixelcipher"] = (ProcessPixelCipher, "Pixel Cipher", "Eltrick"),
             ["placeholderTalk"] = (ProcessPlaceholderTalk, "Placeholder Talk", "Emik"),
             ["PlacementRouletteModule"] = (ProcessPlacementRoulette, "Placement Roulette", "Brawlboxgaming"),
             ["planets"] = (ProcessPlanets, "Planets", "KingSlendy"),
-            ["playfairCycle"] = (ProcessPlayfairCycle, "Playfair Cycle", "TasThiluna"),
+            ["playfairCycle"] = (ProcessPlayfairCycle, "Playfair Cycle", "Quinn Wuest"),
             ["poetry"] = (ProcessPoetry, "Poetry", "Timwi"),
             ["PointlessMachines"] = (ProcessPointlessMachines, "Pointless Machines", "Anonymous"),
             ["polygons"] = (ProcessPolygons, "Polygons", "Anonymous"),
@@ -622,7 +622,7 @@ public partial class SouvenirModule
             ["turtleRobot"] = (ProcessTurtleRobot, "Turtle Robot", "CaitSith2"),
             ["TwoBits"] = (ProcessTwoBits, "Two Bits", "Timwi"),
             ["ultimateCipher"] = (ProcessUltimateCipher, "Ultimate Cipher", "BigCrunch22"),
-            ["ultimateCycle"] = (ProcessUltimateCycle, "Ultimate Cycle", "TasThiluna"),
+            ["ultimateCycle"] = (ProcessUltimateCycle, "Ultimate Cycle", "Quinn Wuest"),
             ["TheUltracubeModule"] = (ProcessUltracube, "Ultracube, The", "luisdiogo98"),
             ["UltraStores"] = (ProcessUltraStores, "UltraStores", "Marksam"),
             ["UncoloredSquaresModule"] = (ProcessUncoloredSquares, "Uncolored Squares", "Timwi"),
@@ -684,45 +684,40 @@ public partial class SouvenirModule
 
     /* Generalized handlers for modules that are extremely similar */
 
-    // Used by Affine Cycle, Caesar Cycle, Pigpen Cycle and Playfair Cycle
-    private IEnumerator<YieldInstruction> processSpeakingEvilCycle1(ModuleData module, string componentName, Question question)
+    // Used by Speakingevil’s Cycle modules. question[0] is the dial rotations. question[1] is the dial labels.
+    private IEnumerator<YieldInstruction> ProcessSpeakingEvilCycle(ModuleData module, string componentName, Question[] question)
     {
         var comp = GetComponent(module, componentName);
         yield return WaitForSolve;
 
-        var messages = GetArrayField<string>(comp, "message").Get();
-        var responses = GetArrayField<string>(comp, "response").Get();
-        var index = GetIntField(comp, "r").Get(ix =>
-            ix < 0 ? "negative" :
-            ix >= messages.Length ? $"greater than ‘message’ length ({messages.Length})" :
-            ix >= responses.Length ? $"greater than ‘response’ length ({responses.Length})" : null);
+        var qs = new List<QandA>();
 
-        var message = Regex.Replace(messages[index], @"(?<!^).", m => m.Value.ToLowerInvariant());
-        var response = Regex.Replace(responses[index], @"(?<!^).", m => m.Value.ToLowerInvariant());
-        addQuestions(module,
-          makeQuestion(question, module, formatArgs: new[] { "message" }, correctAnswers: new[] { message }, preferredWrongAnswers: new[] { response }),
-          makeQuestion(question, module, formatArgs: new[] { "response" }, correctAnswers: new[] { response }, preferredWrongAnswers: new[] { message }));
-    }
-
-    // Used by Cryptic Cycle, Hill Cycle, Jumble Cycle and Ultimate Cycle
-    private IEnumerator<YieldInstruction> processSpeakingEvilCycle2(ModuleData module, string componentName, Question question)
-    {
-        var comp = GetComponent(module, componentName);
-        yield return WaitForSolve;
-
-        var words = GetArrayField<string[]>(comp, "message").Get(expectedLength: 2);
-        var messages = words[0];
-        var responses = words[1];
-        var index = GetIntField(comp, "r").Get(ix =>
-            ix < 0 ? "‘r’ is negative." :
-            ix >= messages.Length ? $"‘r’ is greater than ‘message’ length ({messages.Length})." :
-            ix >= responses.Length ? $"‘r’ is greater than ‘response’ length ({responses.Length})." : null);
-
-        var message = Regex.Replace(messages[index], @"(?<!^).", m => m.Value.ToLowerInvariant());
-        var response = Regex.Replace(responses[index], @"(?<!^).", m => m.Value.ToLowerInvariant());
-        addQuestions(module,
-          makeQuestion(question, module, formatArgs: new[] { "message" }, correctAnswers: new[] { message }, preferredWrongAnswers: new[] { response }),
-          makeQuestion(question, module, formatArgs: new[] { "response" }, correctAnswers: new[] { response }, preferredWrongAnswers: new[] { message }));
+        var rotComp = GetArrayField<int[]>(comp, "rot").Get();
+        string dialLabels = componentName switch
+        {
+            "UltimateCycleScript" => GetArrayField<string[]>(comp, "ciphertext").Get()[0][8],
+            _ => GetArrayField<string>(comp, "ciphertext").Get()[0],
+        };
+        for (int dial = 0; dial < 8; dial++)
+        {
+            switch (componentName)
+            {
+                case "PlayfairCycleScript":
+                case "HillCycleScript":
+                    qs.Add(makeQuestion(question[0], module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { CycleModuleFiveSprites.ToArray()[rotComp[0][dial]] }, preferredWrongAnswers: CycleModuleFiveSprites.ToArray()));
+                    qs.Add(makeQuestion(question[1], module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { dialLabels[dial].ToString() }));
+                    break;
+                case "CrypticCycleScript":
+                    qs.Add(makeQuestion(question[0], module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { CycleModuleCrypticSprites.ToArray()[rotComp[0][dial]] }, preferredWrongAnswers: CycleModuleCrypticSprites.ToArray()));
+                    qs.Add(makeQuestion(question[1], module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { dialLabels[dial].ToString() }));
+                    break;
+                default:
+                    qs.Add(makeQuestion(question[0], module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { CycleModuleEightSprites.ToArray()[rotComp[0][dial]] }, preferredWrongAnswers: CycleModuleEightSprites.ToArray()));
+                    qs.Add(makeQuestion(question[1], module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { dialLabels[dial].ToString() }));
+                    break;
+            }
+        }
+        addQuestions(module, qs);
     }
 
     // Used by the World Mazes modules (currently: USA Maze, DACH Maze)
