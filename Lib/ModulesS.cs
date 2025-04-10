@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Xml;
 using Souvenir;
 using UnityEngine;
 
@@ -2031,6 +2032,45 @@ public partial class SouvenirModule
                 qs.Add(makeQuestion(Question.SymbolicTashaSymbols, module, formatArgs: new[] { colorNamesLc[buttonColors[btn]] }, correctAnswers: new[] { SymbolicTashaSprites[-presentSymbols[btn] - 1] }, preferredWrongAnswers: SymbolicTashaSprites));
             }
 
+        addQuestions(module, qs);
+    }
+
+    private IEnumerator<YieldInstruction> ProcessSynapseSays(ModuleData module)
+    {
+        var comp = GetComponent(module, "SynapseSaysScript");
+        var stageComp = GetIntField(comp, "stage");
+        var positionsComp = GetListField<int>(comp, "barrange");
+        var flashesComp = GetField<int[,,]>(comp, "seq");
+        var displayTextComp = GetField<TextMesh>(comp, "display", isPublic: true);
+
+        var positions = new int[5][] { new int[4], new int[4], new int[4], new int[4], new int[4] };
+        var flashes = new int[5][] { new int[4], new int[4], new int[4], new int[4], new int[4] };
+        var displays = new string[5];
+        while (module.Unsolved)
+        {
+            var p = positionsComp.Get();
+            var f = flashesComp.Get();
+            var s = stageComp.Get();
+            var d = displayTextComp.Get().text;
+            positions[s] = positionsComp.Get().ToArray();
+            for (int x = 0; x < 4; x++)
+                flashes[s][x] = flashesComp.Get()[s, x, 1];
+            if (d != "")
+                displays[s] = d;
+            yield return null;
+        }
+
+        var colorNames = new string[] { "Red", "Yellow", "Green", "Blue" };
+        var qs = new List<QandA>();
+        for (int st = 0; st < 5; st++)
+        {
+            qs.Add(makeQuestion(Question.SynapseSaysDisplays, module, formatArgs: new[] { Ordinal(st + 1) }, correctAnswers: new[] { displays[st] }));
+            for (int ix = 0; ix < 4; ix++)
+            {
+                qs.Add(makeQuestion(Question.SynapseSaysFlashes, module, formatArgs: new[] { Ordinal(ix + 1), Ordinal(st + 1) }, correctAnswers: new[] { colorNames[flashes[st][ix]] }));
+                qs.Add(makeQuestion(Question.SynapseSaysPositions, module, formatArgs: new[] { Ordinal(ix + 1), Ordinal(st + 1) }, correctAnswers: new[] { colorNames[positions[st][ix]] }));
+            }
+        }
         addQuestions(module, qs);
     }
 

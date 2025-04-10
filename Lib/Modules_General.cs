@@ -593,6 +593,7 @@ public partial class SouvenirModule
             ["SymbolCycleModule"] = (ProcessSymbolCycle, "Symbol Cycle", "CaitSith2"),
             ["symbolicCoordinates"] = (ProcessSymbolicCoordinates, "Symbolic Coordinates", "CaitSith2"),
             ["symbolicTasha"] = (ProcessSymbolicTasha, "Symbolic Tasha", "Timwi"),
+            ["synapseSays"] = (ProcessSynapseSays, "Synapse Says", "Quinn Wuest"),
             ["sync125_3"] = (ProcessSync_125_3, "SYNC-125 [3]", "Timwi"),
             ["synonyms"] = (ProcessSynonyms, "Synonyms", "Timwi"),
             ["sysadmin"] = (ProcessSysadmin, "Sysadmin", "NickLatkovich"),

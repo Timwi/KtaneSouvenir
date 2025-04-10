@@ -6,8 +6,8 @@ namespace Souvenir
 
     public enum Question
     {
-        [SouvenirQuestion("What was the display in the {1} stage on {0}?", ".--/---/.--.", ThreeColumns6Answers, ExampleAnswers = new[] {"COULD", "SMALL", "BELOW", "LARGE", "STUDY", "FIRST"},
-            ExampleFormatArguments = new[] {QandA.Ordinal}, ExampleFormatArgumentGroupSize = 1)]
+        [SouvenirQuestion("What was the display in the {1} stage on {0}?", ".--/---/.--.", ThreeColumns6Answers, ExampleAnswers = new[] { "COULD", "SMALL", "BELOW", "LARGE", "STUDY", "FIRST" },
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         MorseWoFDisplays,
 
         [SouvenirQuestion("What was the initially displayed number in {0}?", "0", TwoColumns4Answers)]
@@ -3121,6 +3121,17 @@ namespace Souvenir
             ExampleFormatArguments = new[] { "top", "right", "bottom", "left", "blue", "green", "yellow", "pink" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         SymbolicTashaSymbols,
 
+        [SouvenirQuestion("What color flashed {1} in the {2} stage of {0}?", "Synapse Says", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue",
+            ExampleFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleFormatArgumentGroupSize = 2)]
+        SynapseSaysFlashes,
+        [SouvenirQuestion("What color was in the {1} position of the {2} stage of {0}?", "Synapse Says", TwoColumns4Answers, "Red", "Yellow", "Green", "Blue",
+            ExampleFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleFormatArgumentGroupSize = 2)]
+        SynapseSaysPositions,
+        [SouvenirQuestion("What number was displayed in the {1} stage of {0}?", "Synapse Says", TwoColumns4Answers,
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Integers(1, 4)]
+        SynapseSaysDisplays,
+
         [SouvenirQuestion("What was displayed on the screen in the {1} stage of {0}?", "SYNC-125 [3]", TwoColumns4Answers, Type = AnswerType.DynamicFont, ExampleAnswers = new[] { "İ'ms'", "ăĠ'n'", "kğ'i", "kĞ'p'", "ăut'", "ăġ'r", "ăġ'm", "ărs", "kğp'", "kğk" },
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         Sync125_3Word,
@@ -3259,7 +3270,7 @@ namespace Souvenir
         UncoloredSwitchesLedColors,
 
         [SouvenirQuestion("What was the {1} in the {2} position of the {3} sequence of {0}?", "Uncolour Flash", ThreeColumns6Answers, "Red", "Green", "Blue", "Yellow", "White", "Magenta",
-            ExampleFormatArguments = new[] { "word", QandA.Ordinal, "“YES”", "colour of the word", QandA.Ordinal, "“NO”"}, ExampleFormatArgumentGroupSize = 3)]
+            ExampleFormatArguments = new[] { "word", QandA.Ordinal, "“YES”", "colour of the word", QandA.Ordinal, "“NO”" }, ExampleFormatArgumentGroupSize = 3)]
         UncolourFlashDisplays,
 
         [SouvenirQuestion("What was the {1} received instruction in {0}?", "Unfair Cipher", ThreeColumns6Answers, "PCR", "PCG", "PCB", "SUB", "MIT", "CHK", "PRN", "BOB", "REP", "EAT", "STR", "IKE",

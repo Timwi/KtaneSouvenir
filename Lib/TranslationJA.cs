@@ -10731,6 +10731,29 @@ namespace Souvenir
                 },
             },
 
+            // Synapse Says
+            // What color flashed {1} in the {2} stage of {0}?
+            // What color flashed first in the first stage of Synapse Says?
+            [Question.SynapseSaysFlashes] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What color flashed {1} in the {2} stage of {0}?",
+            },
+            // What color was in the {1} position of the {2} stage of {0}?
+            // What color was in the first position of the first stage of Synapse Says?
+            [Question.SynapseSaysPositions] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What color was in the {1} position of the {2} stage of {0}?",
+            },
+            // What number was displayed in the {1} stage of {0}?
+            // What number was displayed in the first stage of Synapse Says?
+            [Question.SynapseSaysDisplays] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What number was displayed in the {1} stage of {0}?",
+            },
+
             // SYNC-125 [3]
             // What was displayed on the screen in the {1} stage of {0}?
             // What was displayed on the screen in the first stage of SYNC-125 [3]?
