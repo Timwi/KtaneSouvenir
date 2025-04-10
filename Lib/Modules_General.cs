@@ -384,6 +384,7 @@ public partial class SouvenirModule
             ["NavyButtonModule"] = (ProcessNavyButton, "Navy Button, The", "Timwi"),
             ["necronomicon"] = (ProcessNecronomicon, "Necronomicon, The", "luisdiogo98"),
             ["Negativity"] = (ProcessNegativity, "Negativity", "VFlyer"),
+            ["neptune"] = (ProcessNeptune, "Neptune", "Quinn Wuest"),
             ["neutralization"] = (ProcessNeutralization, "Neutralization", "Timwi"),
             ["NextInLine"] = (ProcessNextInLine, "Next In Line", "Anonymous"),
             ["nonverbalSimon"] = (ProcessNonverbalSimon, "❖", "Anonymous"),

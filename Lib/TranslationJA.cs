@@ -299,8 +299,8 @@ namespace Souvenir
             },
 
             // Alcoholic Rampage
-            // Who was the {1} mercenary you killed in {0}?
-            // Who was the first mercenary you killed in Alcoholic Rampage?
+            // Who was the {1} mercenary displayed in {0}?
+            // Who was the first mercenary displayed in Alcoholic Rampage?
             [Question.AlcoholicRampageMercenaries] = new()
             {
                 NeedsTranslation = true,
@@ -6785,6 +6785,15 @@ namespace Souvenir
             {
                 QuestionText = "0を除き、{0}で送信した値は均衡三進数でいくつ？",
                 ModuleName = "負極性",
+            },
+
+            // Neptune
+            // Which star was displayed in {0}?
+            // Which star was displayed in Neptune?
+            [Question.NeptuneStar] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which star was displayed in {0}?",
             },
 
             // Neutralization

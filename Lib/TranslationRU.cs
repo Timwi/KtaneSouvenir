@@ -372,8 +372,8 @@ namespace Souvenir
             },
 
             // Alcoholic Rampage
-            // Who was the {1} mercenary you killed in {0}?
-            // Who was the first mercenary you killed in Alcoholic Rampage?
+            // Who was the {1} mercenary displayed in {0}?
+            // Who was the first mercenary displayed in Alcoholic Rampage?
             [Question.AlcoholicRampageMercenaries] = new()
             {
                 NeedsTranslation = true,
@@ -6672,6 +6672,15 @@ namespace Souvenir
             [Question.NegativitySubmittedTernary] = new()
             {
                 QuestionText = "Какой сбалансированный троичный код был введён {0} (исключая нули)?",
+            },
+
+            // Neptune
+            // Which star was displayed in {0}?
+            // Which star was displayed in Neptune?
+            [Question.NeptuneStar] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which star was displayed in {0}?",
             },
 
             // Neutralization

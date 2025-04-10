@@ -98,7 +98,7 @@ namespace Souvenir
         [AnswerGenerator.Strings("1*A-Z")]
         AffineCycleDialLabels,
 
-        [SouvenirQuestion("Who was the {1} mercenary you killed in {0}?", "Alcoholic Rampage", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "AlcoholicRampageSprites",
+        [SouvenirQuestion("Who was the {1} mercenary displayed in {0}?", "Alcoholic Rampage", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "AlcoholicRampageSprites",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         AlcoholicRampageMercenaries,
 
@@ -2006,6 +2006,9 @@ namespace Souvenir
         NegativitySubmittedValue,
         [SouvenirQuestion("Excluding 0s, what was the submitted balanced ternary in {0}?", "Negativity", TwoColumns4Answers, ExampleAnswers = new[] { "+-", "-++", "++-+-", "++++-", "-----", "+-----++++" })]
         NegativitySubmittedTernary,
+
+        [SouvenirQuestion("Which star was displayed in {0}?", "Neptune", OneColumn4Answers, ExampleAnswers = new[] { "Bob-omb Battlefield #1", "Whomp's Fortress #2", "Jolly Roger Bay #3", "Bowser in the Sky" })]
+        NeptuneStar,
 
         [SouvenirQuestion("What was the acid’s color in {0}?", "Neutralization", TwoColumns4Answers, "Yellow", "Green", "Red", "Blue", TranslateAnswers = true)]
         NeutralizationColor,

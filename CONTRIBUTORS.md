@@ -72,19 +72,19 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cruel Binary          │  Forget Me Not      │  Light Bulbs           │  Recursive Password     │  WASD
     Cruel Keypads         │  Forget Me Now      │  Mad Memory            │  Safety Square          │
 
-## Implemented by Quinn Wuest (53)
+## Implemented by Quinn Wuest (54)
 
-    .--/---/..-.       │  Denial Displays           │  Not Connection Check  │  Pigpen Cycle         │  Synapse Says
-    A Square           │  Double Digits             │  Not Coordinates       │  Playfair Cycle       │  Triple Term
-    Affine Cycle       │  English Entries           │  Not Morsematics       │  Quadrants            │  Ultimate Cycle
-    Alcoholic Rampage  │  Épelle-moi Ça             │  Not Murder            │  Robo-Scanner         │  Uncolour Flash
-    Ángel Hernández    │  Guess Who?                │  Not Number Pad        │  Rule of Three        │  Unpleasant Squares
-    Bulb, The          │  Hill Cycle                │  Not Perspective Pegs  │  Scramboozled Eggain  │  Varicolour Flash
-    Caesar Cycle       │  Jumble Cycle              │  Not The Bulb          │  Simon Said           │  Who’s on Gas
-    Caesar Psycho      │  Letter Math               │  Not X01               │  Simon Shuffles       │  Word Count
-    Coordination       │  Match Refereeing          │  Off Keys              │  Simultaneous Simons  │  xobekuJ ehT
-    Cryptic Cycle      │  Navigation Determination  │  Papa’s Pizzeria       │  Slow Math            │
-    Cyan Button, The   │  Not Colored Switches      │  Parity                │  Small Talk           │
+    .--/---/..-.       │  Denial Displays           │  Not Colored Switches  │  Parity               │  Small Talk
+    A Square           │  Double Digits             │  Not Connection Check  │  Pigpen Cycle         │  Synapse Says
+    Affine Cycle       │  English Entries           │  Not Coordinates       │  Playfair Cycle       │  Triple Term
+    Alcoholic Rampage  │  Épelle-moi Ça             │  Not Morsematics       │  Quadrants            │  Ultimate Cycle
+    Ángel Hernández    │  Guess Who?                │  Not Murder            │  Robo-Scanner         │  Uncolour Flash
+    Bulb, The          │  Hill Cycle                │  Not Number Pad        │  Rule of Three        │  Unpleasant Squares
+    Caesar Cycle       │  Jumble Cycle              │  Not Perspective Pegs  │  Scramboozled Eggain  │  Varicolour Flash
+    Caesar Psycho      │  Letter Math               │  Not The Bulb          │  Simon Said           │  Who’s on Gas
+    Coordination       │  Match Refereeing          │  Not X01               │  Simon Shuffles       │  Word Count
+    Cryptic Cycle      │  Navigation Determination  │  Off Keys              │  Simultaneous Simons  │  xobekuJ ehT
+    Cyan Button, The   │  Neptune                   │  Papa’s Pizzeria       │  Slow Math            │
 
 ## Implemented by luisdiogo98 (45)
 
