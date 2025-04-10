@@ -6,6 +6,10 @@ namespace Souvenir
 
     public enum Question
     {
+        [SouvenirQuestion("What was the display in the {1} stage on {0}?", ".--/---/.--.", ThreeColumns6Answers, ExampleAnswers = new[] {"COULD", "SMALL", "BELOW", "LARGE", "STUDY", "FIRST"},
+            ExampleFormatArguments = new[] {QandA.Ordinal}, ExampleFormatArgumentGroupSize = 1)]
+        MorseWoFDisplays,
+
         [SouvenirQuestion("What was the initially displayed number in {0}?", "0", TwoColumns4Answers)]
         [AnswerGenerator.Integers(100000000, 999999999)]
         _0Number,

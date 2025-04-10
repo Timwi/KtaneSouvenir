@@ -86,6 +86,15 @@ namespace Souvenir
         protected override Dictionary<Question, TranslationInfo_ru> _translations => new()
         {
             #region Translatable strings
+            // .--/---/.--.
+            // What was the display in the {1} stage on {0}?
+            // What was the display in the first stage on .--/---/.--.?
+            [Question.MorseWoFDisplays] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the display in the {1} stage on {0}?",
+            },
+
             // 0
             // What was the initially displayed number in {0}?
             // What was the initially displayed number in 0?

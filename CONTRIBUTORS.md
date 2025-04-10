@@ -72,8 +72,9 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cruel Binary          │  Forget Me Not      │  Light Bulbs           │  Recursive Password     │  WASD
     Cruel Keypads         │  Forget Me Now      │  Mad Memory            │  Safety Square          │
 
-## Implemented by Quinn Wuest (51)
+## Implemented by Quinn Wuest (52)
 
+    .--/---/..-.       │  Denial Displays           │  Not Connection Check  │  Pigpen Cycle         │  Triple Term
     A Square           │  Double Digits             │  Not Coordinates       │  Playfair Cycle       │  Ultimate Cycle
     Affine Cycle       │  English Entries           │  Not Morsematics       │  Quadrants            │  Uncolour Flash
     Alcoholic Rampage  │  Épelle-moi Ça             │  Not Murder            │  Robo-Scanner         │  Unpleasant Squares
@@ -84,7 +85,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Coordination       │  Match Refereeing          │  Off Keys              │  Simultaneous Simons  │
     Cryptic Cycle      │  Navigation Determination  │  Papa’s Pizzeria       │  Slow Math            │
     Cyan Button, The   │  Not Colored Switches      │  Parity                │  Small Talk           │
-    Denial Displays    │  Not Connection Check      │  Pigpen Cycle          │  Triple Term          │
 
 ## Implemented by luisdiogo98 (45)
 
