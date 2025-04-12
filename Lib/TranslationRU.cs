@@ -147,21 +147,21 @@ namespace Souvenir
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["your first move"] = "ваш 1-й ход",
-                    ["Rustmate’s first move"] = "1-й ход Растмейта",
+                    ["Rustmate’s first move"] = "1-й ход Rustmate",
                     ["your second move"] = "ваш 2-й ход",
-                    ["Rustmate’s second move"] = "2-й ход Растмейта",
+                    ["Rustmate’s second move"] = "2-й ход Rustmate",
                     ["your third move"] = "ваш 3-й ход",
-                    ["Rustmate’s third move"] = "3-й ход Растмейта",
+                    ["Rustmate’s third move"] = "3-й ход Rustmate",
                     ["your fourth move"] = "ваш 4-й ход",
-                    ["Rustmate’s fourth move"] = "4-й ход Растмейта",
+                    ["Rustmate’s fourth move"] = "4-й ход Rustmate",
                     ["your fifth move"] = "ваш 5-й ход",
-                    ["Rustmate’s fifth move"] = "5-й ход Растмейта",
+                    ["Rustmate’s fifth move"] = "5-й ход Rustmate",
                     ["your sixth move"] = "ваш 6-й ход",
-                    ["Rustmate’s sixth move"] = "6-й ход Растмейта",
+                    ["Rustmate’s sixth move"] = "6-й ход Rustmate",
                     ["your seventh move"] = "ваш 7-й ход",
-                    ["Rustmate’s seventh move"] = "7-й ход Растмейта",
+                    ["Rustmate’s seventh move"] = "7-й ход Rustmate",
                     ["your eighth move"] = "ваш 8-й ход",
-                    ["Rustmate’s eighth move"] = "8-й ход Растмейта",
+                    ["Rustmate’s eighth move"] = "8-й ход Rustmate",
                 },
             },
 
@@ -203,7 +203,7 @@ namespace Souvenir
             // What was the received word in 3D Tap Code?
             [Question._3DTapCodeWord] = new()
             {
-                QuestionText = "Какое слово было передано {0}?",
+                QuestionText = "Какое слово было получено {0}?",
             },
 
             // 3D Tunnels
@@ -619,7 +619,7 @@ namespace Souvenir
             // What was T in The Azure Button?
             [Question.AzureButtonT] = new()
             {
-                QuestionText = "Какое значение было у T {0}?",
+                QuestionText = "Какое была карта T {0}?",
             },
             // Which of these cards was shown in Stage 1, but not T, in {0}?
             // Which of these cards was shown in Stage 1, but not T, in The Azure Button?
@@ -3263,7 +3263,7 @@ namespace Souvenir
             // What was the color of the curtain in The Duck?
             [Question.DuckCurtainColor] = new()
             {
-                QuestionText = "Какого цвета был занавес {0}?",
+                QuestionText = "Какого цвета был занавески {0}?",
                 Answers = new Dictionary<string, string>
                 {
                     ["blue"] = "синий",
@@ -3310,7 +3310,7 @@ namespace Souvenir
             [Question.eeBgnillepSWord] = new()
             {
                 Conjugation = Conjugation.PrepositiveMascNeuter,
-                QuestionText = "Какое слово нужно было расписать на {0}?",
+                QuestionText = "Какое слово нужно было прописать на {0}?",
             },
 
             // Eight
@@ -3353,7 +3353,7 @@ namespace Souvenir
             // What was the left emoji in Emoji?
             [Question.EmojiEmoji] = new()
             {
-                QuestionText = "Какой был {1} эмоджи {0}?",
+                QuestionText = "Какой был {1} эмодзи {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["left"] = "левый",
@@ -6140,7 +6140,7 @@ namespace Souvenir
             [Question.MirrorWord] = new()
             {
                 Conjugation = Conjugation.PrepositiveMascNeuter,
-                QuestionText = "Какое было второе слово, написанное призраком на {0}?",
+                QuestionText = "Какое было второе слово, написанное оригинальным призраком на {0}?",
             },
 
             // Mister Softee
@@ -6148,7 +6148,7 @@ namespace Souvenir
             // Where was the SpongeBob Bar on Mister Softee?
             [Question.MisterSofteeSpongebobPosition] = new()
             {
-                QuestionText = "Где был Спанч Боб {0}?",
+                QuestionText = "Где был SpongeBob Bar {0}?",
                 Answers = new Dictionary<string, string>
                 {
                     ["top-left"] = "Сверху слева",
@@ -10032,7 +10032,6 @@ namespace Souvenir
             {
                 Conjugation = Conjugation.PrepositiveMascNeuter,
                 QuestionText = "На сколько сместилась последовательность на {0}?",
-                ModuleName = "Маленьком круге",
             },
             // Which wedge made the different noise in the beginning of {0}?
             // Which wedge made the different noise in the beginning of Small Circle?
