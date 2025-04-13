@@ -1318,8 +1318,8 @@ namespace Souvenir
             },
 
             // Bordered Keys
-            // What was the border color when you pressed the {1} key in {0}?
-            // What was the border color when you pressed the first key in Bordered Keys?
+            // In {0}, what was the border color of the key in the {1} position when you pressed it?
+            // In Bordered Keys, what was the border color of the key in the first position when you pressed it?
             [Question.BorderedKeysBorderColor] = new()
             {
                 Conjugation = Conjugation.GenitiveMascNeuter,
@@ -1334,15 +1334,15 @@ namespace Souvenir
                     ["Yellow"] = "Yellow",
                 },
             },
-            // What was the digit displayed when you pressed the {1} key in {0}?
-            // What was the digit displayed when you pressed the first key in Bordered Keys?
+            // In {0}, what was the digit displayed when you pressed the key in the {1} position?
+            // In Bordered Keys, what was the digit displayed when you pressed the key in the first position?
             [Question.BorderedKeysDigit] = new()
             {
                 Conjugation = Conjugation.GenitiveMascNeuter,
                 QuestionText = "Какая цифра отображалась на дисплее, когда вы нажали {1}-ю клавишу {0}?",
             },
-            // What was the key color when you pressed the {1} key in {0}?
-            // What was the key color when you pressed the first key in Bordered Keys?
+            // In {0}, what was the key color of the key in the {1} position when you pressed it?
+            // In Bordered Keys, what was the key color of the key in the first position when you pressed it?
             [Question.BorderedKeysKeyColor] = new()
             {
                 Conjugation = Conjugation.GenitiveMascNeuter,
@@ -1357,15 +1357,15 @@ namespace Souvenir
                     ["Yellow"] = "Yellow",
                 },
             },
-            // What was the label when you pressed the {1} key in {0}?
-            // What was the label when you pressed the first key in Bordered Keys?
+            // In {0}, what was the label of the key in the {1} position when you pressed it?
+            // In Bordered Keys, what was the label of the key in the first position when you pressed it?
             [Question.BorderedKeysLabel] = new()
             {
                 Conjugation = Conjugation.GenitiveMascNeuter,
                 QuestionText = "Какая была надпись, когда вы нажали {1}-ю клавишу {0}?",
             },
-            // What was the label color when you pressed the {1} key in {0}?
-            // What was the label color when you pressed the first key in Bordered Keys?
+            // In {0}, what was the label color of the key in the {1} position when you pressed it?
+            // In Bordered Keys, what was the label color of the key in the first position when you pressed it?
             [Question.BorderedKeysLabelColor] = new()
             {
                 Conjugation = Conjugation.GenitiveMascNeuter,
