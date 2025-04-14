@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
 using System.Text.RegularExpressions;
 using Souvenir;
 using UnityEngine;
@@ -13,16 +11,14 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "MWoFScript");
         var wordList = new string[] { "COULD", "SMALL", "BELOW", "LARGE", "STUDY", "FIRST", "RIGHT", "THINK", "PLANT", "SOUND", "SIXTY", "BROWN", "VIRUS", "BUSHY", "FUNGI", "OPTED", "YOUNG", "ICHOR", "QUILL", "WRONG", "ZILCH", "JERKY", "BANJO", "PUNCH", "IVORY", "COQUI", "TOPAZ", "JAUNT", "NUDGE", "MAJOR" };
-        var stageComp = GetIntField(comp, "stage");
-        var textMeshComp = GetField<TextMesh[]>(comp, "displays", isPublic: true);
+        var fldStage = GetIntField(comp, "stage");
+        var display = GetField<TextMesh[]>(comp, "displays", isPublic: true).Get()[6];
 
         var displays = new string[4];
         while (module.Unsolved)
         {
-            var stage = stageComp.Get();
-            var displayText = textMeshComp.Get()[6].text;
-            if (wordList.Contains(displayText))
-                displays[stage] = displayText;
+            if (wordList.Contains(display.text))
+                displays[fldStage.Get()] = display.text;
             yield return null;
         }
 
@@ -156,7 +152,7 @@ public partial class SouvenirModule
         var indexNumber = GetField<int>(comp, "WordIndex");
         var stageNumber = GetField<int>(comp, "Stage");
 
-        foreach (var i in Enumerable.Range(0, yesAndNo.Length))    // Do not use ‘for’ loop as the loop variable is captured by a lambda
+        for (int i = 0; i < yesAndNo.Length; i++)   // Safe to use ‘for’ loop as long as the loop variable is not captured by the lambda
         {
             var oldInteract = yesAndNo[i].OnInteract;
             yesAndNo[i].OnInteract = delegate
@@ -164,7 +160,7 @@ public partial class SouvenirModule
                 wordsWritten.Add(phrases[indexNumber.Get()]);
                 var result = oldInteract();
                 if (stageNumber.Get() == 5 && module.Unsolved)
-                    wordsWritten = new List<string>();
+                    wordsWritten.Clear();
                 return result;
             };
         }

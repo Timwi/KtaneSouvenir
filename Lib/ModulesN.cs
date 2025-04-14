@@ -251,9 +251,8 @@ public partial class SouvenirModule
             "Rainbow Ride #1", "Rainbow Ride #2", "Rainbow Ride #3", "Rainbow Ride #4", "Rainbow Ride #5", "Rainbow Ride #6", "Rainbow Ride 100 Coins", 
             "Princess' Secret Slide (Normal)", "Princess' Secret Slide (Fast)", "Secret Aquarium", "Tower of the Wing Cap", "Cavern of the Metal Cap", "Vanish Cap under the Moat", "Wing Mario over the Rainbow",
             "MIPS #1", "MIPS #2", "Toad #1", "Toad #2", "Toad #3", "Bowser in the Dark World", "Bowser in the Fire Sea", "Bowser in the Sky" };
-        var chosenStarComp = GetIntField(comp, "chosenStar").Get();
 
-        addQuestion(module, Question.NeptuneStar, correctAnswers: new[] { starNames[chosenStarComp] }, preferredWrongAnswers: starNames);
+        addQuestion(module, Question.NeptuneStar, correctAnswers: new[] { starNames[GetIntField(comp, "chosenStar").Get()] }, preferredWrongAnswers: starNames);
     }
 
     private IEnumerator<YieldInstruction> ProcessNeutralization(ModuleData module)

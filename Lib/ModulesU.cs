@@ -91,7 +91,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "UCFScript");
         yield return WaitForSolve;
 
-        var initseqComp = GetArrayField<int[][]>(comp, "initseq").Get();
+        var fldInitseq = GetArrayField<int[][]>(comp, "initseq").Get();
         var colornames = new[] { "Red", "Green", "Blue", "Yellow", "Magenta", "White" };
 
         var qs = new List<QandA>();
@@ -99,7 +99,7 @@ public partial class SouvenirModule
             for (int yesno = 0; yesno < 2; yesno++)
                 if (yesno != 0 || displayIx < 6)
                     for (int wordcolor = 0; wordcolor < 2; wordcolor++)
-                        qs.Add(makeQuestion(Question.UncolourFlashDisplays, module, formatArgs: new[] { wordcolor == 0 ? "word" : "colour of the word", Ordinal(displayIx + 1), yesno == 0 ? "“YES”" : "“NO”" }, correctAnswers: new[] { colornames[initseqComp[yesno][wordcolor][displayIx]] }));
+                        qs.Add(makeQuestion(Question.UncolourFlashDisplays, module, formatArgs: new[] { wordcolor == 0 ? "word" : "colour of the word", Ordinal(displayIx + 1), yesno == 0 ? "“YES”" : "“NO”" }, correctAnswers: new[] { colornames[fldInitseq[yesno][wordcolor][displayIx]] }));
         addQuestions(module, qs);
     }
 

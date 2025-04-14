@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Xml;
 using Souvenir;
 using UnityEngine;
 
@@ -2038,25 +2037,28 @@ public partial class SouvenirModule
     private IEnumerator<YieldInstruction> ProcessSynapseSays(ModuleData module)
     {
         var comp = GetComponent(module, "SynapseSaysScript");
-        var stageComp = GetIntField(comp, "stage");
-        var positionsComp = GetListField<int>(comp, "barrange");
-        var flashesComp = GetField<int[,,]>(comp, "seq");
-        var displayTextComp = GetField<TextMesh>(comp, "display", isPublic: true);
+        var fldStage = GetIntField(comp, "stage");
+        var fldPositions = GetListField<int>(comp, "barrange");
+        var fldFlashes = GetField<int[,,]>(comp, "seq");
+        var fldDisplayText = GetField<TextMesh>(comp, "display", isPublic: true);
 
         var positions = new int[5][] { new int[4], new int[4], new int[4], new int[4], new int[4] };
-        var flashes = new int[5][] { new int[4], new int[4], new int[4], new int[4], new int[4] };
+        var allFlashes = new int[5][] { new int[4], new int[4], new int[4], new int[4], new int[4] };
         var displays = new string[5];
+
+        var stage = -1;
         while (module.Unsolved)
         {
-            var p = positionsComp.Get();
-            var f = flashesComp.Get();
-            var s = stageComp.Get();
-            var d = displayTextComp.Get().text;
-            positions[s] = positionsComp.Get().ToArray();
-            for (int x = 0; x < 4; x++)
-                flashes[s][x] = flashesComp.Get()[s, x, 1];
-            if (d != "")
-                displays[s] = d;
+            if (fldStage.Get() != stage)
+            {
+                stage = fldStage.Get();
+                var flashes = fldFlashes.Get();
+                positions[stage] = fldPositions.Get().ToArray();
+                for (var i = 0; i < 4; i++)
+                    allFlashes[stage][i] = flashes[stage, i, 1];
+                if (fldDisplayText.Get().text is var disp && disp != "")
+                    displays[stage] = disp;
+            }
             yield return null;
         }
 
@@ -2067,7 +2069,7 @@ public partial class SouvenirModule
             qs.Add(makeQuestion(Question.SynapseSaysDisplays, module, formatArgs: new[] { Ordinal(st + 1) }, correctAnswers: new[] { displays[st] }));
             for (int ix = 0; ix < 4; ix++)
             {
-                qs.Add(makeQuestion(Question.SynapseSaysFlashes, module, formatArgs: new[] { Ordinal(ix + 1), Ordinal(st + 1) }, correctAnswers: new[] { colorNames[flashes[st][ix]] }));
+                qs.Add(makeQuestion(Question.SynapseSaysFlashes, module, formatArgs: new[] { Ordinal(ix + 1), Ordinal(st + 1) }, correctAnswers: new[] { colorNames[allFlashes[st][ix]] }));
                 qs.Add(makeQuestion(Question.SynapseSaysPositions, module, formatArgs: new[] { Ordinal(ix + 1), Ordinal(st + 1) }, correctAnswers: new[] { colorNames[positions[st][ix]] }));
             }
         }

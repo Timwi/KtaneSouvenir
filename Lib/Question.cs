@@ -395,21 +395,21 @@ namespace Souvenir
         [AnswerGenerator.Integers(1, 6)]
         BoomtarTheGreatRules,
 
-        [SouvenirQuestion("In {0}, what was the border color of the key in the {1} position when you pressed it?", "Bordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
+        [SouvenirQuestion("What was the {1} key’s border color when it was pressed in {0}?", "Bordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         BorderedKeysBorderColor,
-        [SouvenirQuestion("In {0}, what was the digit displayed when you pressed the key in the {1} position?", "Bordered Keys", ThreeColumns6Answers,
+        [SouvenirQuestion("What was the digit displayed when the {1} key was pressed in {0}?", "Bordered Keys", ThreeColumns6Answers,
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 6)]
         BorderedKeysDigit,
-        [SouvenirQuestion("In {0}, what was the key color of the key in the {1} position when you pressed it?", "Bordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
+        [SouvenirQuestion("What was the {1} key’s key color when it was pressed in {0}?", "Bordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         BorderedKeysKeyColor,
-        [SouvenirQuestion("In {0}, what was the label of the key in the {1} position when you pressed it?", "Bordered Keys", ThreeColumns6Answers,
+        [SouvenirQuestion("What was the {1} key’s label when it was pressed in {0}?", "Bordered Keys", ThreeColumns6Answers,
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(1, 6)]
         BorderedKeysLabel,
-        [SouvenirQuestion("In {0}, what was the label color of the key in the {1} position when you pressed it?", "Bordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
+        [SouvenirQuestion("What was the {1} key’s label color when it was pressed in {0}?", "Bordered Keys", ThreeColumns6Answers, "Red", "Green", "Blue", "Cyan", "Magenta", "Yellow",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         BorderedKeysLabelColor,
 
