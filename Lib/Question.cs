@@ -1859,7 +1859,7 @@ namespace Souvenir
         [SouvenirQuestion("Which of the following was the starting icon for {0}?", "Module Maze", ThreeColumns6Answers, Type = AnswerType.Sprites)]
         ModuleMazeStartingIcon,
 
-        [SouvenirQuestion("What was the {1} module shown in {0}?", "Module Movements", TwoColumns4Answers, "3D Tunnels", "Alchemy", "Braille", "Button Sequence", "Chord Qualities", "Crackbox", "Functions", "Hunting", "Kudosudoku", "Logic Gates", "Morse-A-Maze", "Pattern Cube", "Planets", "Quintuples", "Schlag den Bomb", "Shapes and Bombs", "Simon Samples", "Simon States", "Symbol Cycle", "Turtle Robot", "Wavetapping", "The Wire", "Yahtzee",
+        [SouvenirQuestion("What was the {1} module shown in {0}?", "Module Movements", TwoColumns4Answers, "3D Tunnels", "Alchemy", "Braille", "Button Sequence", "Chord Qualities", "Crackbox", "Functions", "Hunting", "Kudosudoku", "Logic Gates", "Morse-A-Maze", "Pattern Cube", "Planets", "Quintuples", "Schlag den Bomb", "Shapes And Bombs", "Simon Samples", "Simon States", "Symbol Cycle", "Turtle Robot", "Wavetapping", "The Wire", "Yahtzee",
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         ModuleMovementsDisplay,
 
