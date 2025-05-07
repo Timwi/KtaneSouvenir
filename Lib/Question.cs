@@ -1629,6 +1629,10 @@ namespace Souvenir
         [SouvenirQuestion("What clip was played in {0}?", "Listening", ThreeColumns6Answers, AudioFieldName = "ListeningAudio", Type = AnswerType.Audio)]
         ListeningSound,
 
+        [SouvenirQuestion("Which letter was in this position in {0}?", "Literal Maze", ThreeColumns6Answers)]
+        [AnswerGenerator.Strings('A', 'Z')]
+        LiteralMazeLetter,
+
         [SouvenirQuestion("What was the color of the {1} button in the {2} stage of {0}?", "Logical Buttons", TwoColumns4Answers, "Red", "Blue", "Green", "Yellow", "Purple", "White", "Orange", "Cyan", "Grey", TranslateAnswers = true, TranslateFormatArgs = new[] { true, false },
             ExampleFormatArguments = new[] { "top", QandA.Ordinal, "bottom-left", QandA.Ordinal, "bottom-right", QandA.Ordinal, }, ExampleFormatArgumentGroupSize = 2)]
         LogicalButtonsColor,

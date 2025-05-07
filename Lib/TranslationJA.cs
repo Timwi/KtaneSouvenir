@@ -5496,6 +5496,15 @@ namespace Souvenir
                 ModuleName = "リスニング",
             },
 
+            // Literal Maze
+            // Which letter was in this position in {0}?
+            // Which letter was in this position in Literal Maze?
+            [Question.LiteralMazeLetter] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which letter was in this position in {0}?",
+            },
+
             // Logical Buttons
             // What was the color of the {1} button in the {2} stage of {0}?
             // What was the color of the top button in the first stage of Logical Buttons?

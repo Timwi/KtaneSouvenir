@@ -5642,6 +5642,16 @@ namespace Souvenir
                 QuestionText = "What clip was played in {0}?",
             },
 
+            // Literal Maze
+            // Which letter was in this position in {0}?
+            // Which letter was in this position in Literal Maze?
+            [Question.LiteralMazeLetter] = new()
+            {
+                ModuleNameDative = "Buchstäblichen Labyrinth",
+                QuestionText = "Welcher Buchstabe war bei {0} an dieser Stelle?",
+                ModuleName = "Buchstäbliches Labyrinth",
+            },
+
             // Logical Buttons
             // What was the color of the {1} button in the {2} stage of {0}?
             // What was the color of the top button in the first stage of Logical Buttons?

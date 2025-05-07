@@ -10,7 +10,7 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
-    const string Version = "6.3";
+    const string Version = "6.4";
 
     void Awake()
     {
@@ -317,6 +317,7 @@ public partial class SouvenirModule
             ["Linq"] = (ProcessLinq, "Linq", "Emik"),
             ["LionsShareModule"] = (ProcessLionsShare, "Lion’s Share", "Timwi"),
             ["Listening"] = (ProcessListening, "Listening", "Timwi"),
+            ["literalMaze"] = (ProcessLiteralMaze, "Literal Maze", "Timwi"),
             ["logicalButtonsModule"] = (ProcessLogicalButtons, "Logical Buttons", "Timwi"),
             ["logicGates"] = (ProcessLogicGates, "Logic Gates", "Timwi"),
             ["lgndLombaxCubes"] = (ProcessLombaxCubes, "Lombax Cubes", "Marksam"),
