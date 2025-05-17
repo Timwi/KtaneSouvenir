@@ -27,6 +27,10 @@
   <PropertyGroup>
     <GameFolder Condition="'$(GameFolder)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Keep Talking and Nobody Explodes\</GameFolder>
   </PropertyGroup>
+  <PropertyGroup>
+    <SouvenirPostBuildTool Condition="'$(OS)' == 'Windows_NT'">..\PostBuildTool\bin\Release\net8.0-windows7.0\SouvenirPostBuildTool.exe</SouvenirPostBuildTool>
+    <SouvenirPostBuildTool Condition="'$(OS)' != 'Windows_NT'">..\PostBuildTool\bin\Release\net8.0-windows7.0\SouvenirPostBuildTool</SouvenirPostBuildTool>
+  </PropertyGroup>
   <ItemGroup>
     <None Include="SouvenirLib.csproj.user" />
   </ItemGroup>
@@ -102,6 +106,11 @@
     <PackageReference Include="ValueTupleBridge" Version="0.1.5" />
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="..\PostBuildTool\bin\Release\net8.0-windows7.0\SouvenirPostBuildTool.exe &quot;$(TargetDir)SouvenirLib.dll&quot; &quot;$(GameFolder)ktane_Data\Managed&quot; -c &quot;$(ProjectDir)..\CONTRIBUTORS.md&quot; -d &quot;$(ProjectDir)..\data.json&quot; -t &quot;$(ProjectDir).&quot;&#xD;&#xA;&#xD;&#xA;xcopy /y &quot;$(TargetDir)*.dll&quot; &quot;$(ProjectDir)..\Assets\Plugins\Managed&quot;&#xD;&#xA;xcopy /y &quot;$(TargetDir)*.dll&quot; &quot;$(GameFolder)mods\Souvenir&quot;" />
+    <ItemGroup>
+      <SouvenirDlls Include="$(TargetDir)*.dll"/>
+    </ItemGroup>
+    <Exec Command="$(SouvenirPostBuildTool) &quot;$(TargetDir)SouvenirLib.dll&quot; &quot;$(GameFolder)ktane_Data\Managed&quot; -c &quot;$(ProjectDir)..\CONTRIBUTORS.md&quot; -d &quot;$(ProjectDir)..\data.json&quot; -t &quot;$(ProjectDir).&quot;" />
+    <Copy SourceFiles="@(SouvenirDlls)" DestinationFolder="$(ProjectDir)..\\Assets\\Plugins\\Managed" />
+    <Copy SourceFiles="@(SouvenirDlls)" DestinationFolder="$(Game Folder)mods\\Souvenir" />
   </Target>
 </Project>
