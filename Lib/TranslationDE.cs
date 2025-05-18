@@ -10279,6 +10279,15 @@ namespace Souvenir
                 QuestionText = "What was the hidden number in {0}?",
             },
 
+            // Simply Simon
+            // What were the flashes in the {1} stage of {0}?
+            // What were the flashes in the first stage of Simply Simon?
+            [Question.SimplySimonFlash] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What were the flashes in the {1} stage of {0}?",
+            },
+
             // Simultaneous Simons
             // What color flashed {1} on the {2} Simon in {0}?
             // What color flashed first on the first Simon in Simultaneous Simons?

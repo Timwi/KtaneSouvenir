@@ -2945,6 +2945,14 @@ namespace Souvenir
         [AnswerGenerator.Strings("6*01")]
         SimonSwizzlesNumber,
 
+        [SouvenirQuestion("What were the flashes in the {1} stage of {0}?", "Simply Simon", TwoColumns4Answers,
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("RBYG")]
+        [AnswerGenerator.Strings("2*RBYG")]
+        [AnswerGenerator.Strings("3*RBYG")]
+        [AnswerGenerator.Strings("4*RBYG")]
+        SimplySimonFlash,
+
         [SouvenirQuestion("What color flashed {1} on the {2} Simon in {0}?", "Simultaneous Simons", TwoColumns4Answers, "Blue", "Yellow", "Red", "Green", TranslateAnswers = true,
             ExampleFormatArguments = new[] { QandA.Ordinal, QandA.Ordinal }, ExampleFormatArgumentGroupSize = 2)]
         SimultaneousSimonsFlash,

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text.RegularExpressions;
 using Souvenir;
 using UnityEngine;
@@ -1087,6 +1088,33 @@ public partial class SouvenirModule
             .Select((g, i) => g is not 0 and not 15 ? null : makeQuestion(Question.SimonSwizzlesButton, module, correctAnswers: new[] { Sprites.GenerateGridSprite(4, 4, i) }, formatArgs: new[] { gateNames[g / 15] }))
             .Where(q => q != null)
             .Concat(new[] { makeQuestion(Question.SimonSwizzlesNumber, module, correctAnswers: new[] { hidden }) }));
+    }
+
+    private IEnumerator<YieldInstruction> ProcessSimplySimon(ModuleData module)
+    {
+        var comp = GetComponent(module, "simplysimon");
+        var flashes = new List<string>();
+        var fldFlash = GetField<string>(comp, "flsh");
+        var fldStage = GetIntField(comp, "_stagesDone");
+
+        KMBombModule.KMStrikeEvent onstrike = () => { flashes.Clear(); return true; };
+        module.Module.OnStrike += onstrike;
+
+        while (module.Unsolved)
+        {
+            var stage = fldStage.Get(min: 0);
+            if (stage > flashes.Count)
+                flashes.Add(fldFlash.Get(v => Regex.IsMatch(v, "^[RGBY]{1,4}$") ? null : "Expected match for /^[RGBY]{1,4}$/"));
+            yield return null;
+        }
+
+        module.Module.OnStrike -= onstrike;
+
+        addQuestions(module, flashes.Select((f, i) =>
+            makeQuestion(Question.SimplySimonFlash, module,
+                correctAnswers: new[] { f },
+                preferredWrongAnswers: flashes.ToArray(),
+                formatArgs: new[] { Ordinal(i + 1) })));
     }
 
     private IEnumerator<YieldInstruction> ProcessSimultaneousSimons(ModuleData module)

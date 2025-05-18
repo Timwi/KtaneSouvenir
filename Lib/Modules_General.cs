@@ -557,6 +557,7 @@ public partial class SouvenirModule
             ["simonSubdivides"] = (ProcessSimonSubdivides, "Simon Subdivides", "Anonymous"),
             ["simonSupports"] = (ProcessSimonSupports, "Simon Supports", "tandyCake"),
             ["simonSwizzles"] = (ProcessSimonSwizzles, "Simon Swizzles", "Anonymous"),
+            ["simplysimon"] = (ProcessSimplySimon, "Simply Simon", "Anonymous"),
             ["simultaneousSimons"] = (ProcessSimultaneousSimons, "Simultaneous Simons", "Quinn Wuest"),
             ["SkewedSlotsModule"] = (ProcessSkewedSlots, "Skewed Slots", "Timwi"),
             ["Skewers"] = (ProcessSkewers, "Skewers", "Anonymous"),
