@@ -294,6 +294,7 @@ public partial class SouvenirModule
             ["JuxtacoloredSquaresModule"] = (ProcessJuxtacoloredSquares, "Juxtacolored Squares", "Kuro"),
             ["KanjiModule"] = (ProcessKanji, "Kanji", "Kuro"),
             ["TheKanyeEncounter"] = (ProcessKanyeEncounter, "Kanye Encounter, The", "tandyCake"),
+            ["KMazeyTalk"] = (ProcessKayMazeyTalk, "KayMazey Talk", "Anonymous"),
             ["keypadCombinations"] = (ProcessKeypadCombination, "Keypad Combination", "Hawker"),
             ["keypadMagnified"] = (ProcessKeypadMagnified, "Keypad Magnified", "tandyCake"),
             ["KeypadMaze"] = (ProcessKeypadMaze, "Keypad Maze", "Anonymous"),

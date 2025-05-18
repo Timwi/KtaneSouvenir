@@ -5251,6 +5251,20 @@ namespace Souvenir
                 QuestionText = "What was a food item displayed in {0}?",
             },
 
+            // KayMazey Talk
+            // What was the {1} phrase in {0}?
+            // What was the starting phrase in KayMazey Talk?
+            [Question.KayMazeyTalkPhrase] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the {1} phrase in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["starting"] = "starting",
+                    ["ending"] = "ending",
+                },
+            },
+
             // Keypad Combinations
             // Which number was displayed on the {1} button, but not part of the answer on {0}?
             // Which number was displayed on the first button, but not part of the answer on Keypad Combinations?

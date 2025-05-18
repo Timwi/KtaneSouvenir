@@ -59,6 +59,23 @@ public partial class SouvenirModule
         addQuestion(module, Question.KanyeEncounterFoods, correctAnswers: selectedFoodNames);
     }
 
+    private IEnumerator<YieldInstruction> ProcessKayMazeyTalk(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "KMazeyTalk");
+        var valid = GetListField<int>(comp, "WeedKhungus").Get(expectedLength: 84, validator: i => i is < 16 or > 358 ? "Out of range [16, 358]" : null);
+        var endIx = GetIntField(comp, "Wavecheck").Get(i => valid.Contains(i) ? null : "Unexpected end index");
+        var startIx = GetIntField(comp, "BigIfSad").Get(i => valid.Contains(i) ? null : "Unexpected start index");
+
+        var endPhrase = Question.KayMazeyTalkPhrase.GetAnswers()[valid.IndexOf(endIx)];
+        var startPhrase = Question.KayMazeyTalkPhrase.GetAnswers()[valid.IndexOf(startIx)];
+
+        addQuestions(module,
+            makeQuestion(Question.KayMazeyTalkPhrase, module, correctAnswers: new[] { endPhrase }, preferredWrongAnswers: new[] { startPhrase }, formatArgs: new[] { "ending" }),
+            makeQuestion(Question.KayMazeyTalkPhrase, module, correctAnswers: new[] { startPhrase }, preferredWrongAnswers: new[] { endPhrase }, formatArgs: new[] { "starting" }));
+    }
+
     private IEnumerator<YieldInstruction> ProcessKeypadCombination(ModuleData module)
     {
         var comp = GetComponent(module, "KeypadCombinations");
