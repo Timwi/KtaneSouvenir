@@ -95,6 +95,15 @@ namespace Souvenir
                 },
             },
 
+            // 21
+            // What was the displayed number in {0}?
+            // What was the displayed number in 21?
+            [Question._21DisplayedNumber] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the displayed number in {0}?",
+            },
+
             // 3D Maze
             // What were the markings in {0}?
             // What were the markings in 3D Maze?

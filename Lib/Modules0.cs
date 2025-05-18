@@ -221,6 +221,9 @@ public partial class SouvenirModule
                 correctAnswers: new[] { move })));
     }
 
+    private IEnumerator<YieldInstruction> Process21(ModuleData module) =>
+        Process6421(module, "TwennyWan", "numberin21", "0123456789ABCDEFGHIJK", 21, 9261, 194480, Question._21DisplayedNumber);
+
     private IEnumerator<YieldInstruction> Process3DMaze(ModuleData module)
     {
         var comp = GetComponent(module, "ThreeDMazeModule");
@@ -297,21 +300,8 @@ public partial class SouvenirModule
         addQuestion(module, Question._3NPlus1, correctAnswers: new[] { answer.ToString() });
     }
 
-    private IEnumerator<YieldInstruction> Process64(ModuleData module)
-    {
-        var comp = GetComponent(module, "SixtyFourScript");
-
-        yield return WaitForSolve;
-
-        var base64Characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-        var displayedNumber = GetField<string>(comp, "numberIn64").Get(num => num.Length == 0 || num.Length > 4 || num.Any(c => !base64Characters.Contains(c)) ? "expected 1-4 base-64 digits" : null);
-        var mthConvertToBase = GetStaticMethod<string>(comp.GetType(), "DecimalToArbitrarySystem", 2, isPublic: true);
-        var answers = new HashSet<string> { displayedNumber };
-
-        while (answers.Count < 6)
-            answers.Add(mthConvertToBase.Invoke(UnityEngine.Random.Range(0, 16777216), 64));
-        addQuestion(module, Question._64DisplayedNumber, correctAnswers: new[] { displayedNumber }, preferredWrongAnswers: answers.ToArray());
-    }
+    private IEnumerator<YieldInstruction> Process64(ModuleData module) =>
+        Process6421(module, "SixtyFourScript", "numberIn64", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", 64, 0, 16777216, Question._64DisplayedNumber);
 
     private IEnumerator<YieldInstruction> Process7(ModuleData module)
     {

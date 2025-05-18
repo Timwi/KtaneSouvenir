@@ -22,6 +22,7 @@ public partial class SouvenirModule
             ["100LevelsOfDefusal"] = (Process100LevelsOfDefusal, "100 Levels of Defusal", "Espik"),
             ["TheOneTwoThreeGame"] = (Process123Game, "1, 2, 3 Game, The", "Anonymous"),
             ["1DChess"] = (Process1DChess, "1D Chess", "Emik"),
+            ["TwennyWan"] = (Process21, "21", "Anonymous"),
             ["spwiz3DMaze"] = (Process3DMaze, "3D Maze", "Timwi"),
             ["3DTapCodeModule"] = (Process3DTapCode, "3D Tap Code", "TasThiluna"),
             ["3dTunnels"] = (Process3DTunnels, "3D Tunnels", "Timwi"),
@@ -892,5 +893,26 @@ public partial class SouvenirModule
         for (int pos = 0; pos < 3; pos++)
             qs.Add(makeQuestion(question, module, formatArgs: new[] { Ordinal(pos + 1) }, correctAnswers: new[] { colourNames[posColour[pulsing[pos]]] }));
         addQuestions(module, qs);
+    }
+
+    // Used by 64 & 21
+    private IEnumerator<YieldInstruction> Process6421(ModuleData module, string className, string fieldName, string alphabet, int radix, int min, int max, Question question)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, className);
+        var displayedNumber = GetField<string>(comp, fieldName).Get(num => num.Length == 0 || num.Length > 4 || num.Any(c => !alphabet.Contains(c)) ? $"expected 1-4 base-{radix} digits" : null);
+        var mthConvertToBase = GetStaticMethod<string>(comp.GetType(), "DecimalToArbitrarySystem", 2, isPublic: true);
+        var answers = new HashSet<string> { displayedNumber };
+
+        foreach(var button in GetArrayField<KMSelectable>(comp, "buttons", true).Get(expectedLength: 2))
+        {
+            button.OnInteract = null;
+            button.OnInteractEnded = null;
+        }
+
+        while (answers.Count < 6)
+            answers.Add(mthConvertToBase.Invoke(Rnd.Range(min, max), radix));
+        addQuestion(module, question, correctAnswers: new[] { displayedNumber }, preferredWrongAnswers: answers.ToArray());
     }
 }

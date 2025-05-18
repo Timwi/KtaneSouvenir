@@ -32,6 +32,9 @@ namespace Souvenir
             ExampleFormatArguments = new[] { "your first move", "Rustmate’s first move", "your second move", "Rustmate’s second move", "your third move", "Rustmate’s third move", "your fourth move", "Rustmate’s fourth move", "your fifth move", "Rustmate’s fifth move", "your sixth move", "Rustmate’s sixth move", "your seventh move", "Rustmate’s seventh move", "your eighth move", "Rustmate’s eighth move", }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         _1DChessMoves,
 
+        [SouvenirQuestion("What was the displayed number in {0}?", "21", ThreeColumns6Answers, Type = AnswerType.SixtyFourFont, ExampleAnswers = new[] { "A0A3", "K1I1", "3000", "83F1", "ABCD", "1234" })]
+        _21DisplayedNumber,
+
         [SouvenirQuestion("What were the markings in {0}?", "3D Maze", ThreeColumns6Answers, "ABC", "ABD", "ABH", "ACD", "ACH", "ADH", "BCD", "BCH", "BDH", "CDH")]
         _3DMazeMarkings,
         [SouvenirQuestion("What was the cardinal direction in {0}?", "3D Maze", TwoColumns4Answers, "North", "South", "West", "East", TranslateAnswers = true)]
