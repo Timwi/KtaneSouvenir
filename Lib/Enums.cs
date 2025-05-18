@@ -15,6 +15,7 @@
         SnowflakesFont = 9,
         SixtyFourFont = 10,
         CrypticCycleBoozleglyphFont = 11,
+        AMessageFont = 12,
 
         Sprites = -1,     // Special value for answers that use sprites
         DynamicFont = -2, // Special value to indicate that the module handler will obtain the font from the client module

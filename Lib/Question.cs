@@ -154,6 +154,10 @@ namespace Souvenir
         [AnswerGenerator.Strings("0-9A-V")]
         AlphaBitsDisplayedCharacters,
 
+        [SouvenirQuestion("What was the initial message in {0}?", "A Message", OneColumn4Answers, Type = AnswerType.AMessageFont, FontSize = 320, CharacterSize = 0.125f)]
+        [AnswerGenerator.AMessage]
+        AMessageAMessage,
+
         [SouvenirQuestion("Which ride was available in {0}?", "Amusement Parks", AnswerLayout.OneColumn4Answers, "Carousel", "Drop Tower", "Enterprise", "Ferris Wheel", "Ghost Train", "Inverted Coaster", "Junior Coaster", "Launched Coaster", "Log Flume", "Omnimover", "Pirate Ship", "River Rapids", "Safari", "Star Flyer", "Top Spin", "Tourbillon", "Vintage Cars", "Walkthrough", "Wooden Coaster")]
         AmusementParksRides,
 

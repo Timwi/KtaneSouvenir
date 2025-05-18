@@ -465,6 +465,15 @@ namespace Souvenir
                 },
             },
 
+            // A Message
+            // What was the initial message in {0}?
+            // What was the initial message in A Message?
+            [Question.AMessageAMessage] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the initial message in {0}?",
+            },
+
             // Amusement Parks
             // Which ride was available in {0}?
             // Which ride was available in Amusement Parks?

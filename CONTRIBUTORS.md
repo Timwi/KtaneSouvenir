@@ -34,12 +34,13 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Color Morse          │  Hexamaze              │  Mystery Module           │  Simon Shouts         │  Zero, Zero
     Colored Squares      │  Hogwarts              │  Navinums                 │  Simon Shrieks        │
 
-## Implemented by Anonymous (97)
+## Implemented by Anonymous (98)
 
-    ↻↺                         │  Coloured Cylinder        │  Keypad Maze             │  Pickup Identification      │  Starstruck
-    ❖                          │  Concentration            │  Keypad Sequence         │  Pointless Machines         │  Stroop’s Test
-    0                          │  Connected Monitors       │  Kooky Keypad            │  Polygons                   │  Subbly Jubbly
-    1, 2, 3 Game, The          │  Connection Check         │  Labyrinth, The          │  Prison Break               │  SUSadmin
+    ↻↺                         │  Color One Two            │  HyperForget             │  Pentabutton, The           │  Stable Time Signatures
+    ❖                          │  Coloured Cylinder        │  Keypad Maze             │  Pickup Identification      │  Starstruck
+    0                          │  Concentration            │  Keypad Sequence         │  Pointless Machines         │  Stroop’s Test
+    1, 2, 3 Game, The          │  Connected Monitors       │  Kooky Keypad            │  Polygons                   │  Subbly Jubbly
+    A Message                  │  Connection Check         │  Labyrinth, The          │  Prison Break               │  SUSadmin
     Amusement Parks            │  Dialtones                │  Maritime Semaphore      │  Puzzling Hexabuttons       │  Thirty Dollar Module
     Audio Morse                │  Doofenshmirtz Evil Inc.  │  Maroon Button, The      │  Q & A                      │  Time Signatures
     Bean Sprouts               │  Double Arrows            │  Maze Swap               │  Quantum Passwords          │  Tribal Council
@@ -55,7 +56,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cacti’s Conundrum          │  Halli Galli              │  Not The Plunger Button  │  Simon Swizzles             │  Yellow Button’t
     Chinese Remainder Theorem  │  hexOrbits                │  Number Game, The        │  Skewers                    │
     Coffee Beans               │  HiddenValue, The         │  One Links To All        │  Smash, Marry, Kill         │
-    Color One Two              │  HyperForget              │  Pentabutton, The        │  Stable Time Signatures     │
 
 ## Implemented by Kuro (59)
 
