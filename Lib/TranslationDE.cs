@@ -11051,6 +11051,79 @@ namespace Souvenir
                 QuestionText = "What error code did you fix in {0}?",
             },
 
+            // TAC
+            // Which card was {1} your partner in {0}?
+            // Which card was given to your partner in TAC?
+            [Question.TACSwappedCard] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which card was {1} your partner in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["given to"] = "given to",
+                    ["received from"] = "received from",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["1"] = "1",
+                    ["2"] = "2",
+                    ["3"] = "3",
+                    ["4"] = "4",
+                    ["5"] = "5",
+                    ["6"] = "6",
+                    ["7"] = "7",
+                    ["8"] = "8",
+                    ["9"] = "9",
+                    ["10"] = "10",
+                    ["11"] = "11",
+                    ["12"] = "12",
+                    ["13"] = "13",
+                    ["backwards 3"] = "backwards 3",
+                    ["backwards 4"] = "backwards 4",
+                    ["backwards 5"] = "backwards 5",
+                    ["single-step 6"] = "single-step 6",
+                    ["single-step 7"] = "single-step 7",
+                    ["8 or discard"] = "8 or discard",
+                    ["9 or discard"] = "9 or discard",
+                    ["10 or discard"] = "10 or discard",
+                    ["Warrior"] = "Warrior",
+                    ["Trickster"] = "Trickster",
+                },
+            },
+            // Which card was in your hand in {0}?
+            // Which card was in your hand in TAC?
+            [Question.TACHeldCard] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which card was in your hand in {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["1"] = "1",
+                    ["2"] = "2",
+                    ["3"] = "3",
+                    ["4"] = "4",
+                    ["5"] = "5",
+                    ["6"] = "6",
+                    ["7"] = "7",
+                    ["8"] = "8",
+                    ["9"] = "9",
+                    ["10"] = "10",
+                    ["11"] = "11",
+                    ["12"] = "12",
+                    ["13"] = "13",
+                    ["backwards 3"] = "backwards 3",
+                    ["backwards 4"] = "backwards 4",
+                    ["backwards 5"] = "backwards 5",
+                    ["single-step 6"] = "single-step 6",
+                    ["single-step 7"] = "single-step 7",
+                    ["8 or discard"] = "8 or discard",
+                    ["9 or discard"] = "9 or discard",
+                    ["10 or discard"] = "10 or discard",
+                    ["Warrior"] = "Warrior",
+                    ["Trickster"] = "Trickster",
+                },
+            },
+
             // Tap Code
             // What was the received word in {0}?
             // What was the received word in Tap Code?

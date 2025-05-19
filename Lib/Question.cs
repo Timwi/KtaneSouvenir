@@ -3169,6 +3169,13 @@ namespace Souvenir
         [SouvenirQuestion("What error code did you fix in {0}?", "Sysadmin", ThreeColumns6Answers, ExampleAnswers = new[] { "391M", "4HZZ", "56OW", "6RO0", "6WMJ", "8V94", "CYB6", "HR71", "PT68", "X8IZ" })]
         SysadminFixedErrorCodes,
 
+        [SouvenirQuestion("Which card was {1} your partner in {0}?", "TAC", TwoColumns4Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "backwards 3", "backwards 4", "backwards 5", "single-step 6", "single-step 7", "8 or discard", "9 or discard", "10 or discard", "Warrior", "Trickster",
+            ExampleFormatArguments = new[] { "given to", "received from" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true }, TranslateAnswers = true)]
+        TACSwappedCard,
+        [SouvenirQuestion("Which card was in your hand in {0}?", "TAC", TwoColumns4Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "backwards 3", "backwards 4", "backwards 5", "single-step 6", "single-step 7", "8 or discard", "9 or discard", "10 or discard", "Warrior", "Trickster",
+            TranslateAnswers = true)]
+        TACHeldCard,
+
         [SouvenirQuestion("What was the received word in {0}?", "Tap Code", TwoColumns4Answers, ExampleAnswers = new[] { "child", "style", "shake", "alive", "axion", "wreck", "cause", "pupil", "cheat", "watch" })]
         TapCodeReceivedWord,
 

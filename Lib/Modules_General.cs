@@ -603,6 +603,7 @@ public partial class SouvenirModule
             ["sync125_3"] = (ProcessSync_125_3, "SYNC-125 [3]", "Timwi"),
             ["synonyms"] = (ProcessSynonyms, "Synonyms", "Timwi"),
             ["sysadmin"] = (ProcessSysadmin, "Sysadmin", "NickLatkovich"),
+            ["TACModule"] = (ProcessTAC, "TAC", "Anonymous"),
             ["tapCode"] = (ProcessTapCode, "Tap Code", "Timwi"),
             ["tashaSqueals"] = (ProcessTashaSqueals, "Tasha Squeals", "luisdiogo98"),
             ["tasqueManaging"] = (ProcessTasqueManaging, "Tasque Managing", "tandyCake"),
@@ -906,7 +907,7 @@ public partial class SouvenirModule
         var mthConvertToBase = GetStaticMethod<string>(comp.GetType(), "DecimalToArbitrarySystem", 2, isPublic: true);
         var answers = new HashSet<string> { displayedNumber };
 
-        foreach(var button in GetArrayField<KMSelectable>(comp, "buttons", true).Get(expectedLength: 2))
+        foreach (var button in GetArrayField<KMSelectable>(comp, "buttons", true).Get(expectedLength: 2))
         {
             button.OnInteract = null;
             button.OnInteractEnded = null;
