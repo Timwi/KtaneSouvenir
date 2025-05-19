@@ -34,19 +34,20 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Color Morse          │  Hexamaze              │  Mystery Module           │  Simon Shouts         │  Zero, Zero
     Colored Squares      │  Hogwarts              │  Navinums                 │  Simon Shrieks        │
 
-## Implemented by Anonymous (102)
+## Implemented by Anonymous (103)
 
-    ↻↺                         │  Color One Two            │  KayMazey Talk           │  Pickup Identification      │  Starstruck
-    ❖                          │  Coloured Cylinder        │  Keypad Maze             │  Pointless Machines         │  Stroop’s Test
-    0                          │  Concentration            │  Keypad Sequence         │  Polygons                   │  Subbly Jubbly
-    1, 2, 3 Game, The          │  Connected Monitors       │  Kooky Keypad            │  Prison Break               │  SUSadmin
-    21                         │  Connection Check         │  Labyrinth, The          │  Puzzling Hexabuttons       │  TAC
-    A Message                  │  Dialtones                │  Maritime Semaphore      │  Q & A                      │  Thirty Dollar Module
-    Amusement Parks            │  Doofenshmirtz Evil Inc.  │  Maroon Button, The      │  Quantum Passwords          │  Time Signatures
-    Audio Morse                │  Double Arrows            │  Maze Swap               │  Quantum Ternary Converter  │  Tribal Council
-    Bean Sprouts               │  Double Listening         │  MoneyGame               │  Quiplash                   │  Unordered Keys
-    Beans                      │  Double Screen            │  Mssngv Wls              │  Red Button’t               │  Updog
-    Big Bean                   │  Emoji                    │  N&Ns                    │  ReGret-B Filtering         │  Variety
+    ↻↺                         │  Coffee Beans             │  HyperForget             │  Pentabutton, The           │  Stable Time Signatures
+    ❖                          │  Color One Two            │  KayMazey Talk           │  Pickup Identification      │  Starstruck
+    0                          │  Coloured Cylinder        │  Keypad Maze             │  Pointless Machines         │  Stroop’s Test
+    1, 2, 3 Game, The          │  Concentration            │  Keypad Sequence         │  Polygons                   │  Subbly Jubbly
+    21                         │  Connected Monitors       │  Kooky Keypad            │  Prison Break               │  SUSadmin
+    A Message                  │  Connection Check         │  Labyrinth, The          │  Puzzling Hexabuttons       │  TAC
+    Amusement Parks            │  Dialtones                │  Maritime Semaphore      │  Q & A                      │  Thirty Dollar Module
+    Audio Morse                │  Doofenshmirtz Evil Inc.  │  Maroon Button, The      │  Quantum Passwords          │  Time Signatures
+    Bean Sprouts               │  Double Arrows            │  Maze Swap               │  Quantum Ternary Converter  │  Tribal Council
+    Beans                      │  Double Listening         │  MoneyGame               │  Quiplash                   │  Unordered Keys
+    Big Bean                   │  Double Screen            │  Mssngv Wls              │  Red Button’t               │  Updog
+    BlindfoldedYahtzee         │  Emoji                    │  N&Ns                    │  ReGret-B Filtering         │  Variety
     Blinking Notes             │  Faerie Fires             │  Naming Conventions      │  Reordered Keys             │  Walking Cube
     Bone Apple Tea             │  Fuse Box, The            │  Next In Line            │  RNG Crystal                │  Watching Paint Dry
     Boob Tube                  │  Ghost Movement           │  Not Colour Flash        │  Saturn                     │  White Arrows
@@ -56,7 +57,6 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     CA-RPS                     │  Halli Galli              │  Not The Plunger Button  │  Simply Simon               │  Yellow Button’t
     Cacti’s Conundrum          │  hexOrbits                │  Number Game, The        │  Skewers                    │
     Chinese Remainder Theorem  │  HiddenValue, The         │  One Links To All        │  Smash, Marry, Kill         │
-    Coffee Beans               │  HyperForget              │  Pentabutton, The        │  Stable Time Signatures     │
 
 ## Implemented by Kuro (59)
 

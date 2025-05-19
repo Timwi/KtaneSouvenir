@@ -320,6 +320,10 @@ namespace Souvenir
             ExampleFormatArguments = new[] { "top", "1", "middle", "1", "bottom", "1", "top", "2", "middle", "2", "bottom", "2" }, ExampleFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { true, false })]
         BlackCipherScreen,
 
+        [SouvenirQuestion("What roll did the module claim in the {1} stage of {0}?", "Blindfolded Yahtzee", TwoColumns4Answers, "Yahtzee", "Large Straight", "Small Straight", "Full House", "Four of a Kind", "Chance", "Three of a Kind", "1s", "2s", "3s", "4s", "5s", "6s",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
+        BlindfoldedYahtzeeClaim,
+
         [SouvenirQuestion("What color was the {1} button in {0}?", "Blind Maze", TwoColumns4Answers, "Red", "Green", "Blue", "Gray", "Yellow", TranslateAnswers = true, TranslateFormatArgs = new[] { true },
             ExampleFormatArguments = new[] { "north", "east", "west", "south" }, ExampleFormatArgumentGroupSize = 1)]
         BlindMazeColors,

@@ -68,6 +68,7 @@ public partial class SouvenirModule
             ["binary_shift"] = (ProcessBinaryShift, "Binary Shift", "NickLatkovich"),
             ["BitmapsModule"] = (ProcessBitmaps, "Bitmaps", "Timwi"),
             ["blackCipher"] = (ProcessBlackCipher, "Black Cipher", "BigCrunch22"),
+            ["GSBlindfoldedYahtzee"] = (ProcessBlindfoldedYahtzee, "BlindfoldedYahtzee", "Anonymous"),
             ["BlindMaze"] = (ProcessBlindMaze, "Blind Maze", "Timwi"),
             ["blinkingNotes"] = (ProcessBlinkingNotes, "Blinking Notes", "Anonymous"),
             ["blinkstopModule"] = (ProcessBlinkstop, "Blinkstop", "Kuro"),

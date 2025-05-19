@@ -450,6 +450,48 @@ public partial class SouvenirModule
         return processColoredCiphers(module, "blackCipher", Question.BlackCipherScreen);
     }
 
+    private IEnumerator<YieldInstruction> ProcessBlindfoldedYahtzee(ModuleData module)
+    {
+        var comp = GetComponent(module, "BlindfoldedYahtzeeScript");
+        var fldExpecting = GetField<bool>(comp, "ExpectingInput");
+        var fldPrev = GetListField<bool>(comp, "PrevAnswers");
+        var fldCategory = GetField<string>(comp, "CategoryName");
+        string[] stages = new string[5];
+
+        while (module.Unsolved)
+        {
+            if (fldExpecting.Get())
+            {
+                stages[fldPrev.Get(0, 4).Count] = fldCategory.Get();
+            }
+            yield return null;
+        }
+
+        var map = new Dictionary<string, string>()
+        {
+            ["Yahtzee"] = "Yahtzee",
+            ["large straight"] = "Large Straight",
+            ["small straight"] = "Small Straight",
+            ["full house"] = "Full House",
+            ["four of a kind"] = "Four of a Kind",
+            ["chance"] = "Chance",
+            ["three of a kind"] = "Three of a Kind",
+            ["1s"] = "1s",
+            ["2s"] = "2s",
+            ["3s"] = "3s",
+            ["4s"] = "4s",
+            ["5s"] = "5s",
+            ["6s"] = "6s",
+        };
+
+        var all = stages.Select(s => map[s]).ToArray();
+        addQuestions(module, stages.Select((s, i) =>
+            makeQuestion(Question.BlindfoldedYahtzeeClaim, module,
+                correctAnswers: new[] { map[s] },
+                formatArgs: new[] { Ordinal(i + 1) },
+                preferredWrongAnswers: all)));
+    }
+
     private IEnumerator<YieldInstruction> ProcessBlindMaze(ModuleData module)
     {
         var comp = GetComponent(module, "BlindMaze");

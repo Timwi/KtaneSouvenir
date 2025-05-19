@@ -1079,6 +1079,31 @@ namespace Souvenir
                 },
             },
 
+            // Blindfolded Yahtzee
+            // What roll did the module claim in the {1} stage of {0}?
+            // What roll did the module claim in the first stage of Blindfolded Yahtzee?
+            [Question.BlindfoldedYahtzeeClaim] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What roll did the module claim in the {1} stage of {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Yahtzee"] = "Yahtzee",
+                    ["Large Straight"] = "Large Straight",
+                    ["Small Straight"] = "Small Straight",
+                    ["Full House"] = "Full House",
+                    ["Four of a Kind"] = "Four of a Kind",
+                    ["Chance"] = "Chance",
+                    ["Three of a Kind"] = "Three of a Kind",
+                    ["1s"] = "1s",
+                    ["2s"] = "2s",
+                    ["3s"] = "3s",
+                    ["4s"] = "4s",
+                    ["5s"] = "5s",
+                    ["6s"] = "6s",
+                },
+            },
+
             // Blind Maze
             // What color was the {1} button in {0}?
             // What color was the north button in Blind Maze?
