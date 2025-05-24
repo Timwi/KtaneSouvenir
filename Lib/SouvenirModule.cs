@@ -1311,7 +1311,13 @@ public partial class SouvenirModule : MonoBehaviour
             yield break;
         }
 
-        if (_currentQuestion.Answers is QandA.AudioAnswerSet audio && Regex.IsMatch(command.ToLowerInvariant(), @"\A\s*cycle\s*\z"))
+        if (_animating || _currentQuestion == null)
+        {
+            yield return "sendtochaterror {0}, there is no question active right now on module {1} (Souvenir).";
+            yield break;
+        }
+
+        if (_currentQuestion.Answers is QandA.AudioAnswerSet audio && Regex.IsMatch(command, @"\A\s*cycle\s*\z", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
         {
             yield return null;
             for (int i = 0; i < audio.NumAnswersAllowed; i++)
@@ -1334,15 +1340,10 @@ public partial class SouvenirModule : MonoBehaviour
             yield break;
         }
 
-        m = Regex.Match(command.ToLowerInvariant(), @"\A\s*answer\s+(\d)\s*\z");
+        m = Regex.Match(command, @"\A\s*answer\s+(\d)\s*\z", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
         if (!m.Success || _isSolved)
             yield break;
 
-        if (_animating || _currentQuestion == null)
-        {
-            yield return "sendtochaterror {0}, there is no question active right now on module {1} (Souvenir).";
-            yield break;
-        }
         if (!int.TryParse(m.Groups[1].Value, out var number) || number <= 0 || number > Answers.Length || Answers[number - 1] == null || !Answers[number - 1].gameObject.activeSelf)
         {
             yield return $"sendtochaterror {{0}}, that’s not a valid answer; give me a number from 1 to {Answers.Count(a => a != null && a.gameObject.activeSelf)}.";
