@@ -3641,14 +3641,14 @@ namespace Souvenir
             {
                 QuestionText = "{0}の{1}番目の妖精の色は？",
                 ModuleName = "妖精の火",
-                FormatArgs = new Dictionary<string, string>
+                Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "赤",
-                    ["green"] = "緑",
-                    ["blue"] = "青",
-                    ["yellow"] = "黄",
-                    ["cyan"] = "シアン",
-                    ["magenta"] = "マゼンタ",
+                    ["Red"] = "赤",
+                    ["Green"] = "緑",
+                    ["Blue"] = "青",
+                    ["Yellow"] = "黄",
+                    ["Cyan"] = "シアン",
+                    ["Magenta"] = "マゼンタ",
                 },
             },
 
@@ -4824,7 +4824,7 @@ namespace Souvenir
                 ModuleName = "超忘る",
                 TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
-                    ["the Hyperforget whose rotation in the {1} stage was {0}"] = "the Hyperforget whose rotation in the {1} stage was {0}",
+                    ["the HyperForget whose rotation in the {1} stage was {0}"] = "{1}番目の回転方向が{0}だった超忘る",
                 },
             },
 
@@ -5242,7 +5242,7 @@ namespace Souvenir
                 QuestionText = "{0}の{1}のボタンのLEDの色は？",
                 ModuleName = "狂ったキーパッド",
                 FormatArgs = new Dictionary<string, string>
-                {   
+                {
                     ["top-left"] = "左上",
                     ["top-right"] = "右上",
                     ["bottom-left"] = "左下",
@@ -6343,7 +6343,7 @@ namespace Souvenir
             // What was the end of the first phrase in Money Game?
             [Question.MoneyGame3] = new()
             {
-                QuestionText = "{0}の{1}フレーズ目で使用された最後の単語は？", 
+                QuestionText = "{0}の{1}フレーズ目で使用された最後の単語は？",
                 ModuleName = "マネーゲーム",
             },
 
@@ -6749,8 +6749,7 @@ namespace Souvenir
                 QuestionText = "{0}のステージ3で表示された色は？",
                 ModuleName = "NとN",
                 Answers = new Dictionary<string, string>
-                {   
-
+                {
                     ["Red"] = "赤",
                     ["Green"] = "緑",
                     ["Orange"] = "オレンジ",
@@ -8417,6 +8416,7 @@ namespace Souvenir
             // What letter was displayed on the top-left hexabutton when submitting in Puzzling Hexabuttons?
             [Question.PuzzlingHexabuttonsLetter] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}の{1}の六角形ボタンに表示されていた英字は？",
                 ModuleName = "困惑六角形ボタン",
                 FormatArgs = new Dictionary<string, string>
@@ -8424,7 +8424,7 @@ namespace Souvenir
                     ["top-left"] = "左上",
                     ["top-right"] = "右上",
                     ["middle-left"] = "左",
-                    ["middle"] = "中央",
+                    ["center"] = "中央",
                     ["middle-right"] = "右",
                     ["bottom-left"] = "左下",
                     ["bottom-right"] = "右下",
@@ -11272,8 +11272,8 @@ namespace Souvenir
             [Question.UltimateCycleDialDirections] = new()
             {
                 NeedsTranslation = true,
-                ModuleName = "究極サイクル",
                 QuestionText = "Which direction was the {1} dial pointing in {0}?",
+                ModuleName = "究極サイクル",
             },
             // What letter was written on the {1} dial in {0}?
             // What letter was written on the first dial in Ultimate Cycle?

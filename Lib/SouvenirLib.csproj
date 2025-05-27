@@ -111,6 +111,6 @@
     </ItemGroup>
     <Exec Command="$(SouvenirPostBuildTool) &quot;$(TargetDir)SouvenirLib.dll&quot; &quot;$(GameFolder)ktane_Data\Managed&quot; -c &quot;$(ProjectDir)..\CONTRIBUTORS.md&quot; -d &quot;$(ProjectDir)..\data.json&quot; -t &quot;$(ProjectDir).&quot;" />
     <Copy SourceFiles="@(SouvenirDlls)" DestinationFolder="$(ProjectDir)..\\Assets\\Plugins\\Managed" />
-    <Copy SourceFiles="@(SouvenirDlls)" DestinationFolder="$(Game Folder)mods\\Souvenir" />
+    <Copy SourceFiles="@(SouvenirDlls)" DestinationFolder="$(GameFolder)mods\\Souvenir" />
   </Target>
 </Project>

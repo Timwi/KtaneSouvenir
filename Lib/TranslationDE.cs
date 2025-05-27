@@ -4703,6 +4703,11 @@ namespace Souvenir
             {
                 NeedsTranslation = true,
                 QuestionText = "What was the {1} shape for the {2} display in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["fast"] = "fast",
+                    ["slow"] = "slow",
+                },
             },
 
             // hexOS
