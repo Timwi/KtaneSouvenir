@@ -899,7 +899,7 @@ public partial class SouvenirModule
     }
 
     // Used by 64 & 21
-    private IEnumerator<YieldInstruction> Process6421(ModuleData module, string className, string fieldName, string alphabet, int radix, int min, int max, Question question)
+    private IEnumerator<YieldInstruction> process6421(ModuleData module, string className, string fieldName, string alphabet, int radix, int min, int max, Question question)
     {
         yield return WaitForSolve;
 

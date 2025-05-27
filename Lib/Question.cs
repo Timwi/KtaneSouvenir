@@ -1,6 +1,4 @@
-﻿using System.Reflection.Emit;
-
-namespace Souvenir
+﻿namespace Souvenir
 {
     using static AnswerLayout;
 
@@ -157,7 +155,7 @@ namespace Souvenir
         [AnswerGenerator.Strings("0-9A-V")]
         AlphaBitsDisplayedCharacters,
 
-        [SouvenirQuestion("What was the initial message in {0}?", "A Message", OneColumn4Answers, Type = AnswerType.AMessageFont, FontSize = 320, CharacterSize = 0.125f)]
+        [SouvenirQuestion("What was the initial message in {0}?", "A Message", TwoColumns4Answers, Type = AnswerType.AMessageFont, FontSize = 560, CharacterSize = 0.125f)]
         [AnswerGenerator.AMessage]
         AMessageAMessage,
 
@@ -3173,8 +3171,8 @@ namespace Souvenir
         [SouvenirQuestion("What error code did you fix in {0}?", "Sysadmin", ThreeColumns6Answers, ExampleAnswers = new[] { "391M", "4HZZ", "56OW", "6RO0", "6WMJ", "8V94", "CYB6", "HR71", "PT68", "X8IZ" })]
         SysadminFixedErrorCodes,
 
-        [SouvenirQuestion("Which card was {1} your partner in {0}?", "TAC", TwoColumns4Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "backwards 3", "backwards 4", "backwards 5", "single-step 6", "single-step 7", "8 or discard", "9 or discard", "10 or discard", "Warrior", "Trickster",
-            ExampleFormatArguments = new[] { "given to", "received from" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true }, TranslateAnswers = true)]
+        [SouvenirQuestion("Which card was {1} in the swap in {0}?", "TAC", TwoColumns4Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "backwards 3", "backwards 4", "backwards 5", "single-step 6", "single-step 7", "8 or discard", "9 or discard", "10 or discard", "Warrior", "Trickster",
+            ExampleFormatArguments = new[] { "given away", "received" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true }, TranslateAnswers = true)]
         TACSwappedCard,
         [SouvenirQuestion("Which card was in your hand in {0}?", "TAC", TwoColumns4Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "backwards 3", "backwards 4", "backwards 5", "single-step 6", "single-step 7", "8 or discard", "9 or discard", "10 or discard", "Warrior", "Trickster",
             TranslateAnswers = true)]

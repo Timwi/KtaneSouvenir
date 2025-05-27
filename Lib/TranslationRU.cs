@@ -10611,16 +10611,16 @@ namespace Souvenir
             },
 
             // TAC
-            // Which card was {1} your partner in {0}?
-            // Which card was given to your partner in TAC?
+            // Which card was {1} in the swap in {0}?
+            // Which card was given away in the swap in TAC?
             [Question.TACSwappedCard] = new()
             {
                 NeedsTranslation = true,
                 QuestionText = "Which card was {1} your partner in {0}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["given to"] = "given to",
-                    ["received from"] = "received from",
+                    ["given away"] = "given away",
+                    ["received"] = "received",
                 },
                 Answers = new Dictionary<string, string>
                 {

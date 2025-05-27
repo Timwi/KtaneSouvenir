@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Policy;
 using System.Text.RegularExpressions;
 using Souvenir;
 using UnityEngine;
@@ -1097,8 +1096,8 @@ public partial class SouvenirModule
         var fldFlash = GetField<string>(comp, "flsh");
         var fldStage = GetIntField(comp, "_stagesDone");
 
-        KMBombModule.KMStrikeEvent onstrike = () => { flashes.Clear(); return true; };
-        module.Module.OnStrike += onstrike;
+        bool onstrike() { flashes.Clear(); return true; }
+        module.Module.OnStrike +=  onstrike;
 
         while (module.Unsolved)
         {
@@ -1108,7 +1107,7 @@ public partial class SouvenirModule
             yield return null;
         }
 
-        module.Module.OnStrike -= onstrike;
+        module.Module.OnStrike -=  onstrike;
 
         addQuestions(module, flashes.Select((f, i) =>
             makeQuestion(Question.SimplySimonFlash, module,

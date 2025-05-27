@@ -22,8 +22,7 @@ public partial class SouvenirModule
             while (module.Unsolved)
             {
                 var hand = fldHand.Get();
-                if (hand.Cast<object>().Count(o => o is not null) == 1)
-                    topCard = hand.Cast<object>().Single(o => o is not null);
+                topCard = hand.Cast<object>().SingleOrDefault(o => o is not null) ?? topCard;
                 yield return null;
             }
         }
@@ -31,13 +30,13 @@ public partial class SouvenirModule
         var initialHand = GetField<IList>(comp, "_initialHand").Get(v => v.Count != 5 ? "Expected 5 cards" : v.Cast<object>().Any(v => v is null) ? "Expected non-null cards" : null);
 
         string[] validCards = new[] { "1", "2", "3", "backwards 4", "5", "6", "single-step 7", "8 or discard", "9", "10", "12", "13", "Trickster", "Warrior" };
-        var ruleseed = GetField<object>(comp, "RuleSeedable", true).Get();
-        var rng = GetMethod<object>(ruleseed, "GetRNG", 0, true).Invoke();
-        var seed = GetProperty<int>(rng, "Seed", true).Get();
+        var ruleseed = GetField<object>(comp, "RuleSeedable", isPublic: true).Get();
+        var rng = GetMethod<object>(ruleseed, "GetRNG", 0, isPublic: true).Invoke();
+        var seed = GetProperty<int>(rng, "Seed", isPublic: true).Get();
         if (seed != 1)
         {
-            GetMethod<object>(rng, "ShuffleFisherYates", 1, true).Invoke(GetArrayField<string>(comp, "_allNames").Get(expectedLength: 32).ToArray());
-            var next = GetMethod<int>(rng, "Next", 2, true);
+            GetMethod<object>(rng, "ShuffleFisherYates", 1, isPublic: true).Invoke(GetArrayField<string>(comp, "_allNames").Get(expectedLength: 32).ToArray());
+            var next = GetMethod<int>(rng, "Next", 2, isPublic: true);
             var backwards = next.Invoke(3, 6);
             var singleStep = next.Invoke(6, 8);
             var discard = next.Invoke(8, 11);
@@ -70,8 +69,8 @@ public partial class SouvenirModule
             var ix = GetField<int?>(comp, "_mustSwapWith").Get(v => v is null or < 0 or > 4 ? "Expected number [0, 4]" : null);
             var usedCards = initialHand.Cast<object>().Select(toString).Concat(new[] { toString(swap) }).ToArray();
             addQuestions(module,
-                makeQuestion(Question.TACSwappedCard, module, correctAnswers: new[] { toString(initialHand[ix.Value]) }, formatArgs: new[] { "given to" }, allAnswers: validCards, preferredWrongAnswers: usedCards),
-                makeQuestion(Question.TACSwappedCard, module, correctAnswers: new[] { toString(swap) }, formatArgs: new[] { "received from" }, allAnswers: validCards, preferredWrongAnswers: usedCards));
+                makeQuestion(Question.TACSwappedCard, module, correctAnswers: new[] { toString(initialHand[ix.Value]) }, formatArgs: new[] { "given away" }, allAnswers: validCards, preferredWrongAnswers: usedCards),
+                makeQuestion(Question.TACSwappedCard, module, correctAnswers: new[] { toString(swap) }, formatArgs: new[] { "received" }, allAnswers: validCards, preferredWrongAnswers: usedCards));
         }
         else
         {

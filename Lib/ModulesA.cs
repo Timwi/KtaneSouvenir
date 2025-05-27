@@ -324,14 +324,10 @@ public partial class SouvenirModule
     private IEnumerator<YieldInstruction> ProcessAMessage(ModuleData module)
     {
         yield return WaitForSolve;
-
-        // The A's all use a square aspect ration, since that's what the LFA SVGs are.
-        // If someone would like to make a font with properly proportioned A's that would be ideal, but I don't see a great way to automate it.
-
         var comp = GetComponent(module, "AMessageScriptRedone");
         var data = GetArrayField<int>(comp, "SequenceNumbers").Get(expectedLength: 5, validator: v => v is < 0 or > 31 ? "Out of range [0, 31]" : null);
         var sol = GetArrayField<int>(comp, "RealNumbers").Get(expectedLength: 5, validator: v => v is < 0 or > 31 ? "Out of range [0, 31]" : null);
-        string convert(int[] nums) => new string(nums.Select(i => (char) ('\ue900' + i)).ToArray());
+        string convert(int[] nums) => new(nums.Select(i => (char) ('\ue900' + i)).ToArray());
         addQuestion(module, Question.AMessageAMessage, correctAnswers: new[] { convert(data) }, preferredWrongAnswers: new[] { convert(sol) });
     }
 

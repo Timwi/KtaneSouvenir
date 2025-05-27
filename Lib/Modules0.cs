@@ -222,7 +222,7 @@ public partial class SouvenirModule
     }
 
     private IEnumerator<YieldInstruction> Process21(ModuleData module) =>
-        Process6421(module, "TwennyWan", "numberin21", "0123456789ABCDEFGHIJK", 21, 9261, 194480, Question._21DisplayedNumber);
+        process6421(module, "TwennyWan", "numberin21", "0123456789ABCDEFGHIJK", 21, 9261, 194480, Question._21DisplayedNumber);
 
     private IEnumerator<YieldInstruction> Process3DMaze(ModuleData module)
     {
@@ -301,7 +301,7 @@ public partial class SouvenirModule
     }
 
     private IEnumerator<YieldInstruction> Process64(ModuleData module) =>
-        Process6421(module, "SixtyFourScript", "numberIn64", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", 64, 0, 16777216, Question._64DisplayedNumber);
+        process6421(module, "SixtyFourScript", "numberIn64", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", 64, 0, 16777216, Question._64DisplayedNumber);
 
     private IEnumerator<YieldInstruction> Process7(ModuleData module)
     {
