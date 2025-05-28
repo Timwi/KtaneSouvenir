@@ -3,36 +3,36 @@
 The following is a list of modules supported by Souvenir, and the fine people who have contributed their effort to make it happen:
 
 
-## Implemented by Timwi (139)
+## Implemented by Timwi (138)
 
-    3 LEDs               │  Colored Switches      │  Human Resources          │  Navy Button, The     │  Simon Signals
-    3D Maze              │  Coordinates           │  Hunting                  │  Neutralization       │  Simon Sings
-    3D Tunnels           │  Coral Cipher          │  Identity Parade          │  Not X-Ray            │  Simon Sounds
-    Adventure Game       │  Corners               │  Ingredients              │  Object Shows         │  Simon Speaks
-    Algebra              │  Cornflower Cipher     │  IPA                      │  Only Connect         │  Simon States
-    Alpha-Bits           │  Crazy Maze            │  Kudosudoku               │  Orientation Cube     │  Skewed Slots
-    Alphabetical Ruling  │  Cream Cipher          │  Lion’s Share             │  Partial Derivatives  │  Skyrim
-    ASCII Maze           │  Crimson Cipher        │  Listening                │  Pattern Cube         │  Sonic the Hedgehog
-    Azure Button, The    │  cRule, The            │  Literal Maze             │  Pink Button, The     │  Stellar
-    Bartending           │  Cryptic Keypad        │  Logic Gates              │  Poetry               │  Switch, The
-    Binary LEDs          │  DACH Maze             │  Logical Buttons          │  Polyhedral Maze      │  Switches
-    Bitmaps              │  Decolour Flash        │  London Underground, The  │  Probing              │  Symbolic Tasha
-    Blind Maze           │  Devilish Eggs         │  Mafia                    │  Purple Button, The   │  SYNC-125 [3]
-    Blue Button, The     │  Double-Oh             │  Magenta Cipher           │  Quintuples           │  Synonyms
-    Boxing               │  Dr. Doctor            │  Maritime Flags           │  Recolored Switches   │  Tap Code
-    Braille              │  Encrypted Equations   │  Maroon Cipher            │  Rhythms              │  Ten-Button Color Code
-    Broken Buttons       │  Encrypted Hangman     │  Memorable Buttons        │  S.E.T. Theory        │  Tic Tac Toe
-    Burglar Alarm        │  Encrypted Maze        │  Mirror                   │  Scavenger Hunt       │  Timezone
-    Button Sequence      │  Enigma Cycle          │  Monsplode Trading Cards  │  Sea Shells           │  Two Bits
-    Calendar             │  Fast Math             │  Monsplode, Fight!        │  Semamorse            │  Uncolored Squares
-    Cartinese            │  Flags                 │  Moon, The                │  Shape Shift          │  Uncolored Switches
-    Cheap Checkout       │  Forest Cipher         │  Morse War                │  Shifted Maze         │  Vcrcs
-    Chess                │  Gamepad, The          │  Morsematics              │  Silly Slots          │  Visual Impairment
-    Chord Qualities      │  Glitched Button, The  │  Mouse in the Maze        │  Silo Authorization   │  Wire, The
-    Color Braille        │  Gray Button, The      │  Multicolored Switches    │  Simon Samples        │  Yahtzee
-    Color Decoding       │  Green Button, The     │  Murder                   │  Simon Screams        │  Yellow Button, The
-    Color Morse          │  Hexamaze              │  Mystery Module           │  Simon Shouts         │  Zero, Zero
-    Colored Squares      │  Hogwarts              │  Navinums                 │  Simon Shrieks        │
+    3 LEDs               │  Colored Switches      │  Hunting                  │  Neutralization       │  Simon Sings
+    3D Maze              │  Coordinates           │  Identity Parade          │  Not X-Ray            │  Simon Sounds
+    3D Tunnels           │  Coral Cipher          │  Ingredients              │  Object Shows         │  Simon Speaks
+    Adventure Game       │  Corners               │  IPA                      │  Only Connect         │  Simon States
+    Algebra              │  Cornflower Cipher     │  Kudosudoku               │  Orientation Cube     │  Skewed Slots
+    Alpha-Bits           │  Crazy Maze            │  Lion’s Share             │  Partial Derivatives  │  Skyrim
+    Alphabetical Ruling  │  Cream Cipher          │  Listening                │  Pattern Cube         │  Sonic the Hedgehog
+    ASCII Maze           │  Crimson Cipher        │  Literal Maze             │  Pink Button, The     │  Stellar
+    Azure Button, The    │  cRule, The            │  Logic Gates              │  Poetry               │  Switch, The
+    Bartending           │  Cryptic Keypad        │  Logical Buttons          │  Polyhedral Maze      │  Switches
+    Binary LEDs          │  DACH Maze             │  London Underground, The  │  Probing              │  Symbolic Tasha
+    Bitmaps              │  Decolour Flash        │  Mafia                    │  Purple Button, The   │  SYNC-125 [3]
+    Blind Maze           │  Devilish Eggs         │  Magenta Cipher           │  Quintuples           │  Synonyms
+    Blue Button, The     │  Double-Oh             │  Maritime Flags           │  Recolored Switches   │  Tap Code
+    Boxing               │  Dr. Doctor            │  Maroon Cipher            │  Rhythms              │  Ten-Button Color Code
+    Braille              │  Encrypted Equations   │  Memorable Buttons        │  S.E.T. Theory        │  Tic Tac Toe
+    Broken Buttons       │  Encrypted Hangman     │  Mirror                   │  Scavenger Hunt       │  Timezone
+    Burglar Alarm        │  Encrypted Maze        │  Monsplode Trading Cards  │  Sea Shells           │  Two Bits
+    Button Sequence      │  Fast Math             │  Monsplode, Fight!        │  Semamorse            │  Uncolored Squares
+    Calendar             │  Flags                 │  Moon, The                │  Shape Shift          │  Uncolored Switches
+    Cartinese            │  Forest Cipher         │  Morse War                │  Shifted Maze         │  Vcrcs
+    Cheap Checkout       │  Gamepad, The          │  Morsematics              │  Silly Slots          │  Visual Impairment
+    Chess                │  Glitched Button, The  │  Mouse in the Maze        │  Silo Authorization   │  Wire, The
+    Chord Qualities      │  Gray Button, The      │  Multicolored Switches    │  Simon Samples        │  Yahtzee
+    Color Braille        │  Green Button, The     │  Murder                   │  Simon Screams        │  Yellow Button, The
+    Color Decoding       │  Hexamaze              │  Mystery Module           │  Simon Shouts         │  Zero, Zero
+    Color Morse          │  Hogwarts              │  Navinums                 │  Simon Shrieks        │
+    Colored Squares      │  Human Resources       │  Navy Button, The         │  Simon Signals        │
 
 ## Implemented by Anonymous (103)
 
@@ -73,19 +73,19 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Cruel Binary          │  Forget Me Not      │  Light Bulbs           │  Recursive Password     │  WASD
     Cruel Keypads         │  Forget Me Now      │  Mad Memory            │  Safety Square          │
 
-## Implemented by Quinn Wuest (54)
+## Implemented by Quinn Wuest (55)
 
-    .--/---/..-.       │  Denial Displays           │  Not Colored Switches  │  Parity               │  Small Talk
-    A Square           │  Double Digits             │  Not Connection Check  │  Pigpen Cycle         │  Synapse Says
-    Affine Cycle       │  English Entries           │  Not Coordinates       │  Playfair Cycle       │  Triple Term
-    Alcoholic Rampage  │  Épelle-moi Ça             │  Not Morsematics       │  Quadrants            │  Ultimate Cycle
-    Ángel Hernández    │  Guess Who?                │  Not Murder            │  Robo-Scanner         │  Uncolour Flash
-    Bulb, The          │  Hill Cycle                │  Not Number Pad        │  Rule of Three        │  Unpleasant Squares
-    Caesar Cycle       │  Jumble Cycle              │  Not Perspective Pegs  │  Scramboozled Eggain  │  Varicolour Flash
-    Caesar Psycho      │  Letter Math               │  Not The Bulb          │  Simon Said           │  Who’s on Gas
-    Coordination       │  Match Refereeing          │  Not X01               │  Simon Shuffles       │  Word Count
-    Cryptic Cycle      │  Navigation Determination  │  Off Keys              │  Simultaneous Simons  │  xobekuJ ehT
-    Cyan Button, The   │  Neptune                   │  Papa’s Pizzeria       │  Slow Math            │
+    .--/---/..-.       │  Denial Displays           │  Neptune               │  Papa’s Pizzeria      │  Slow Math
+    A Square           │  Double Digits             │  Not Colored Switches  │  Parity               │  Small Talk
+    Affine Cycle       │  English Entries           │  Not Connection Check  │  Pigpen Cycle         │  Synapse Says
+    Alcoholic Rampage  │  Enigma Cycle              │  Not Coordinates       │  Playfair Cycle       │  Triple Term
+    Ángel Hernández    │  Épelle-moi Ça             │  Not Morsematics       │  Quadrants            │  Ultimate Cycle
+    Bulb, The          │  Guess Who?                │  Not Murder            │  Robo-Scanner         │  Uncolour Flash
+    Caesar Cycle       │  Hill Cycle                │  Not Number Pad        │  Rule of Three        │  Unpleasant Squares
+    Caesar Psycho      │  Jumble Cycle              │  Not Perspective Pegs  │  Scramboozled Eggain  │  Varicolour Flash
+    Coordination       │  Letter Math               │  Not The Bulb          │  Simon Said           │  Who’s on Gas
+    Cryptic Cycle      │  Match Refereeing          │  Not X01               │  Simon Shuffles       │  Word Count
+    Cyan Button, The   │  Navigation Determination  │  Off Keys              │  Simultaneous Simons  │  xobekuJ ehT
 
 ## Implemented by luisdiogo98 (45)
 

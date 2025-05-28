@@ -3474,17 +3474,33 @@ namespace Souvenir
             },
 
             // Enigma Cycle
-            // What was the {1} in {0}?
-            // What was the message in Enigma Cycle?
-            [Question.EnigmaCycleWords] = new()
+            // Which direction was the {1} dial pointing in {0}?
+            // Which direction was the first dial pointing in Enigma Cycle?
+            [Question.EnigmaCycleDialDirectionsThree] = new()
             {
-                QuestionText = "{0}の{1}は？",
-                ModuleName = "エニグマサイクル",
-                FormatArgs = new Dictionary<string, string>
-                {
-                    ["message"] = "メッセージ",
-                    ["response"] = "返答",
-                },
+                NeedsTranslation = true,
+                QuestionText = "Which direction was the {1} dial pointing in {0}?",
+            },
+            // Which direction was the {1} dial pointing in {0}?
+            // Which direction was the first dial pointing in Enigma Cycle?
+            [Question.EnigmaCycleDialDirectionsTwelve] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which direction was the {1} dial pointing in {0}?",
+            },
+            // Which direction was the {1} dial pointing in {0}?
+            // Which direction was the first dial pointing in Enigma Cycle?
+            [Question.EnigmaCycleDialDirectionsEight] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which direction was the {1} dial pointing in {0}?",
+            },
+            // What letter was written on the {1} dial in {0}?
+            // What letter was written on the first dial in Enigma Cycle?
+            [Question.EnigmaCycleDialLabels] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What letter was written on the {1} dial in {0}?",
             },
 
             // English Entries

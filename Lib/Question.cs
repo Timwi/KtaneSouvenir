@@ -986,9 +986,19 @@
         [SouvenirQuestion("What was the first encoding used in {0}?", "Encryption Bingo", OneColumn4Answers, "Morse Code", "Tap Code", "Maritime Flags", "Semaphore", "Pigpen", "Lombax", "Braille", "Wingdings", "Zoni", "Galatic Alphabet", "Arrow", "Listening", "Regular Number", "Chinese Number", "Cube Symbols", "Runes", "New York Point", "Fontana", "ASCII Hex Code", TranslateAnswers = true)]
         EncryptionBingoEncoding,
 
-        [SouvenirQuestion("What was the {1} in {0}?", "Enigma Cycle", TwoColumns4Answers, ExampleAnswers = new[] { "ABNORMAL", "AUTHORED", "BACKDOOR", "BOULDERS", "CHANGING", "CUMBERED", "DEBUGGED", "DODGIEST", "EDITABLE", "EXCESSES", "FAIRYISM", "FRAGMENT", "GIBBERED", "GROANING", "HEADACHE", "HUDDLING", "ILLUSORY", "IRONICAL", "JOKINGLY", "JUDGMENT", "KEYNOTES", "KINDLING", "LIKENESS", "LOCKOUTS", "MOBILITY", "MUFFLING", "NEUTRALS", "NOTIONAL", "OFFTRACK", "ORDERING", "PHANTASM", "PROVOKED", "QUITTERS", "QUOTABLE", "RHETORIC", "ROULETTE", "SHUTDOWN", "SUBLIMES", "TARTNESS", "TYPHONIC", "UNPURGED", "UGLINESS", "VARIANCE", "VOLATILE", "WACKIEST", "WORKFLOW", "XENOLITH", "XANTHENE", "YABBERED", "YOURSELF", "ZAPPIEST", "ZILLIONS" },
-            ExampleFormatArguments = new[] { "message", "response" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
-        EnigmaCycleWords,
+        [SouvenirQuestion("Which direction was the {1} dial pointing in {0}?", "Enigma Cycle", ThreeColumns3Answers, Type = AnswerType.Sprites, SpriteFieldName = "CycleModuleThreeSprites",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        EnigmaCycleDialDirectionsThree,
+        [SouvenirQuestion("Which direction was the {1} dial pointing in {0}?", "Enigma Cycle", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "CycleModuleTwelveSprites",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        EnigmaCycleDialDirectionsTwelve,
+        [SouvenirQuestion("Which direction was the {1} dial pointing in {0}?", "Enigma Cycle", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "CycleModuleEightSprites",
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        EnigmaCycleDialDirectionsEight,
+        [SouvenirQuestion("What letter was written on the {1} dial in {0}?", "Enigma Cycle", ThreeColumns6Answers,
+            ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        [AnswerGenerator.Strings("1*A-Z")]
+        EnigmaCycleDialLabels,
 
         [SouvenirQuestion("What was the displayed quote on {0}?", "English Entries", OneColumn4Answers, ExampleAnswers = new[] { "Let’s go shopping!", "We wear our shoes in the house.", "(Kevin starts to clap)", "What is Namsu doing?" })]
         EnglishEntriesDisplay,

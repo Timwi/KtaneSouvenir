@@ -200,7 +200,7 @@ public partial class SouvenirModule
             ["EncryptedMorse"] = (ProcessEncryptedMorse, "Encrypted Morse", "luisdiogo98"),
             ["encryptionBingo"] = (ProcessEncryptionBingo, "Encryption Bingo", "TasThiluna"),
             ["EnglishEntries"] = (ProcessEnglishEntries, "English Entries", "Quinn Wuest"),
-            ["enigmaCycle"] = (ProcessEnigmaCycle, "Enigma Cycle", "Timwi"),
+            ["enigmaCycle"] = (ProcessEnigmaCycle, "Enigma Cycle", "Quinn Wuest"),
             ["GSEntryNumberFour"] = (ProcessEntryNumberFour, "Entry Number Four", "GhostSalt"),
             ["GSEntryNumberOne"] = (ProcessEntryNumberOne, "Entry Number One", "GhostSalt"),
             ["epelleMoiCa"] = (ProcessEpelleMoiCa, "Épelle-moi Ça", "Quinn Wuest"),

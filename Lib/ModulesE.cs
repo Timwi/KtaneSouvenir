@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using Souvenir;
 using UnityEngine;
 
@@ -252,15 +253,30 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "EnigmaCycleScript");
         yield return WaitForSolve;
 
-        var kvp = GetField<KeyValuePair<string, string>>(comp, "selectedMessageResponsePair").Get();
-        var message = kvp.Key.Substring(0, 1) + kvp.Key.Substring(1).ToLowerInvariant();
-        var response = kvp.Value.Substring(0, 1) + kvp.Value.Substring(1).ToLowerInvariant();
-        var wl = new[] { "ABNORMAL", "AUTHORED", "BACKDOOR", "BOULDERS", "CHANGING", "CUMBERED", "DEBUGGED", "DODGIEST", "EDITABLE", "EXCESSES", "FAIRYISM", "FRAGMENT", "GIBBERED", "GROANING", "HEADACHE", "HUDDLING", "ILLUSORY", "IRONICAL", "JOKINGLY", "JUDGMENT", "KEYNOTES", "KINDLING", "LIKENESS", "LOCKOUTS", "MOBILITY", "MUFFLING", "NEUTRALS", "NOTIONAL", "OFFTRACK", "ORDERING", "PHANTASM", "PROVOKED", "QUITTERS", "QUOTABLE", "RHETORIC", "ROULETTE", "SHUTDOWN", "SUBLIMES", "TARTNESS", "TYPHONIC", "UNPURGED", "UGLINESS", "VARIANCE", "VOLATILE", "WACKIEST", "WORKFLOW", "XENOLITH", "XANTHENE", "YABBERED", "YOURSELF", "ZAPPIEST", "ZILLIONS" };
-        var wordList = Enumerable.Range(0, wl.Length).Select(word => wl[word].Substring(0, 1) + wl[word].Substring(1).ToLowerInvariant()).ToArray();
+        var qs = new List<QandA>();
+        var rotComp = GetArrayField<int>(comp, "assignedDialRotations").Get();
+        var dialLabels = GetField<string>(comp, "encryptedDisplay").Get();
 
-        addQuestions(module,
-            makeQuestion(Question.EnigmaCycleWords, module, formatArgs: new[] { "message" }, correctAnswers: new[] { message }, preferredWrongAnswers: wordList),
-            makeQuestion(Question.EnigmaCycleWords, module, formatArgs: new[] { "response" }, correctAnswers: new[] { response }, preferredWrongAnswers: wordList));
+        for (int dial = 0; dial < 8; dial++)
+        {
+            switch (dial)
+            {
+                case 0:
+                    qs.Add(makeQuestion(Question.EnigmaCycleDialDirectionsThree, module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { CycleModuleThreeSprites[rotComp[dial]] }, preferredWrongAnswers: CycleModuleThreeSprites));
+                    break;
+                case 4:
+                case 5:
+                case 6:
+                    qs.Add(makeQuestion(Question.EnigmaCycleDialDirectionsTwelve, module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { CycleModuleTwelveSprites[rotComp[dial]] }, preferredWrongAnswers: CycleModuleTwelveSprites));
+                    break;
+                default:
+                    qs.Add(makeQuestion(Question.EnigmaCycleDialDirectionsEight, module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { CycleModuleEightSprites[rotComp[dial]] }, preferredWrongAnswers: CycleModuleEightSprites));
+                    break;
+            }
+            qs.Add(makeQuestion(Question.EnigmaCycleDialLabels, module, formatArgs: new[] { Ordinal(dial + 1) }, correctAnswers: new[] { dialLabels[dial].ToString() }));
+        }
+
+        addQuestions(module, qs);
     }
 
     private IEnumerator<YieldInstruction> ProcessEnglishEntries(ModuleData module)
