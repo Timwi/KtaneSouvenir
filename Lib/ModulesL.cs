@@ -55,11 +55,21 @@ public partial class SouvenirModule
     private IEnumerator<YieldInstruction> ProcessLadderLottery(ModuleData module)
     {
         var comp = GetComponent(module, "LadderLottery");
-        var fldPoint = GetField<Enum>(comp, "_startingPoint");
+        var fldPoint = GetField<object>(comp, "_startingPoint");
 
         yield return WaitForSolve;
 
-        addQuestion(module, Question.LadderLotteryLightOn, correctAnswers: new[] { fldPoint.Get().ToString() });
+        try
+        {
+            var startingPoint = (int) fldPoint.Get();
+            if (startingPoint is not >= 0 or not < 4)
+                throw new AbandonModuleException($"‘_startingPoint’ was {startingPoint} but expected 0–4.");
+            addQuestion(module, Question.LadderLotteryLightOn, correctAnswers: new[] { LadderLotterySprites[startingPoint] });
+        }
+        catch (InvalidCastException)
+        {
+            throw new AbandonModuleException($"‘_startingPoint’ was not castable to int.");
+        }
     }
 
     private IEnumerator<YieldInstruction> ProcessLadders(ModuleData module)

@@ -725,6 +725,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 516bee473dbe7f84a971ba99a71597e3, type: 3}
   - {fileID: 21300000, guid: 9aa912ef12b3b8c4a93a7ee03d66a1f3, type: 3}
   - {fileID: 21300000, guid: 64518790d1ee43e4d9bb58eb1f297e54, type: 3}
+  LadderLotterySprites:
+  - {fileID: 21300000, guid: cd6c9e5c6ddb01c44a86ae58b9097652, type: 3}
+  - {fileID: 21300000, guid: 5cb39c0ff9de5304dbbacb46b0afbe9f, type: 3}
+  - {fileID: 21300000, guid: 56f0768c35a36bd4a96e189d9f6a984e, type: 3}
+  - {fileID: 21300000, guid: 32025c9bf4f990244be2ce266131c928, type: 3}
   MahjongSprites:
   - {fileID: 21300000, guid: 05b7290c9436da043a40d4bdc5afecdd, type: 3}
   - {fileID: 21300000, guid: 2f557a4b0e50fa24db1b4c55435df72f, type: 3}

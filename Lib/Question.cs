@@ -1584,7 +1584,7 @@
             UsesQuestionSprite = true)]
         LabyrinthPortalStage,
 
-        [SouvenirQuestion("Which light was on in {0}?", "Ladder Lottery", TwoColumns4Answers, "A", "B", "C", "D")]
+        [SouvenirQuestion("Which light was on in {0}?", "Ladder Lottery", TwoColumns4Answers, Type = AnswerType.Sprites, SpriteFieldName = "LadderLotterySprites")]
         LadderLotteryLightOn,
 
         [SouvenirQuestion("Which color was present on the second ladder in {0}?", "Ladders", TwoColumns4Answers, "Red", "Orange", "Yellow", "Green", "Blue", "Cyan", "Purple", "Gray", TranslateAnswers = true)]
