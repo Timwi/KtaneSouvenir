@@ -111,7 +111,8 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessAffineCycle(ModuleData module)
     {
-        return processSpeakingEvilCycle(module, "AffineCycleScript", Question.AffineCycleDialDirections, Question.AffineCycleDialLabels);
+        return processSpeakingEvilCycle(module, "AffineCycleScript", Question.AffineCycleDialDirections, Question.AffineCycleDialLabels,
+            overrideAnswers: Enumerable.Range(0, 8).Except(new[] { 6 }).Select(x => CycleModuleEightSprites[x]).ToArray());
     }
 
     private IEnumerator<YieldInstruction> ProcessAlcoholicRampage(ModuleData module)
