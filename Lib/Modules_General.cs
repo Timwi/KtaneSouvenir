@@ -454,6 +454,7 @@ public partial class SouvenirModule
             ["pieFlash"] = (ProcessPieFlash, "Pie Flash", "VFlyer"),
             ["pigpenCycle"] = (ProcessPigpenCycle, "Pigpen Cycle", "Quinn Wuest"),
             ["PinkButtonModule"] = (ProcessPinkButton, "Pink Button, The", "Timwi"),
+            ["pinpoint"] = (ProcessPinpoint, "Pinpoint", "Timwi"),
             ["pixelcipher"] = (ProcessPixelCipher, "Pixel Cipher", "Eltrick"),
             ["placeholderTalk"] = (ProcessPlaceholderTalk, "Placeholder Talk", "Emik"),
             ["PlacementRouletteModule"] = (ProcessPlacementRoulette, "Placement Roulette", "Brawlboxgaming"),

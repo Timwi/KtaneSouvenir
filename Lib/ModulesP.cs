@@ -366,6 +366,18 @@ public partial class SouvenirModule
                  makeQuestion(Question.PinkButtonColors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colorNames[colors[ix]] }))));
     }
 
+    private IEnumerator<YieldInstruction> ProcessPinpoint(ModuleData module)
+    {
+        var comp = GetComponent(module, "pinpointScript");
+        yield return WaitForSolve;
+
+        var dists = GetArrayField<float>(comp, "dists").Get(expectedLength: 3);
+        var points = GetArrayField<int>(comp, "points").Get(expectedLength: 4); // includes target point, which we ignore
+        addQuestions(module,
+            makeQuestion(Question.PinpointPoints, module, correctAnswers: points.Take(3).Select(i => $"{(char) ('A' + i % 10)}{i / 10 + 1}").ToArray()),
+            makeQuestion(Question.PinpointDistances, module, correctAnswers: dists.Select(dist => dist.ToString("0.000")).ToArray()));
+    }
+
     private IEnumerator<YieldInstruction> ProcessPixelCipher(ModuleData module)
     {
         var comp = GetComponent(module, "pixelcipherScript");

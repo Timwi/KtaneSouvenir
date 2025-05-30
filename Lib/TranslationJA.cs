@@ -8155,6 +8155,22 @@ namespace Souvenir
                 QuestionText = "What letter was written on the {1} dial in {0}?",
             },
 
+            // Pinpoint
+            // Which distance occurred in {0}?
+            // Which distance occurred in Pinpoint?
+            [Question.PinpointDistances] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which distance occurred in {0}?",
+            },
+            // Which point occurred in {0}?
+            // Which point occurred in Pinpoint?
+            [Question.PinpointPoints] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which point occurred in {0}?",
+            },
+
             // The Pink Button
             // What was the {1} word in {0}?
             // What was the first word in The Pink Button?

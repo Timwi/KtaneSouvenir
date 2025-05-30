@@ -2367,6 +2367,13 @@
         [AnswerGenerator.Strings("1*A-Z")]
         PigpenCycleDialLabels,
 
+        [SouvenirQuestion("Which distance occurred in {0}?", "Pinpoint", ThreeColumns6Answers)]
+        [AnswerGenerator.Concatenate(typeof(AnswerGenerator.Integers), new object[] { 0, 99 }, typeof(AnswerGenerator.Strings), new object[] { new string[] { ".", "0-9", "0-9", "0-9" } })]
+        PinpointDistances,
+        [SouvenirQuestion("Which point occurred in {0}?", "Pinpoint", ThreeColumns6Answers)]
+        [AnswerGenerator.Concatenate(typeof(AnswerGenerator.Strings), new object[] { new string[] { "A-J" } }, typeof(AnswerGenerator.Integers), new object[] { 1, 10 })]
+        PinpointPoints,
+
         [SouvenirQuestion("What was the {1} word in {0}?", "Pink Button", TwoColumns4Answers, "BLK", "RED", "GRN", "YLW", "BLU", "MGT", "CYN", "WHT",
             AddThe = true, ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         PinkButtonWords,
