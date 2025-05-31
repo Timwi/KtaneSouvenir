@@ -56,8 +56,7 @@ namespace Souvenir
             // What was the display in the first stage on .--/---/.--.?
             [Question.MorseWoFDisplays] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the display in the {1} stage on {0}?",
+                QuestionText = "Was stand bei {0} in der {1}en Stufe auf dem Display?",
             },
 
             // 0
@@ -65,8 +64,7 @@ namespace Souvenir
             // What was the initially displayed number in 0?
             [Question._0Number] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the initially displayed number in {0}?",
+                QuestionText = "Was war bei {0} die anfänglich angezeigte Zahl?",
             },
 
             // 1000 Words
@@ -137,8 +135,7 @@ namespace Souvenir
             // What was the displayed number in 21?
             [Question._21DisplayedNumber] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the displayed number in {0}?",
+                QuestionText = "Was war bei {0} die angezeigte Zahl?",
             },
 
             // 3D Maze
@@ -331,15 +328,19 @@ namespace Souvenir
             // Which direction was the first dial pointing in Affine Cycle?
             [Question.AffineCycleDialDirections] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which direction was the {1} dial pointing in {0}?",
+                Gender = Gender.Feminine,
+                ModuleNameDative = "Affinen Schiffer",
+                QuestionText = "In welche Richtung zeigte bei {0} der {1}e Zeiger?",
+                ModuleName = "Affine Schiffer",
             },
             // What letter was written on the {1} dial in {0}?
             // What letter was written on the first dial in Affine Cycle?
             [Question.AffineCycleDialLabels] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What letter was written on the {1} dial in {0}?",
+                Gender = Gender.Feminine,
+                ModuleNameDative = "Affinen Schiffer",
+                QuestionText = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
+                ModuleName = "Affine Schiffer",
             },
 
             // Alcoholic Rampage
@@ -347,8 +348,9 @@ namespace Souvenir
             // Who was the first mercenary displayed in Alcoholic Rampage?
             [Question.AlcoholicRampageMercenaries] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Who was the {1} mercenary you killed in {0}?",
+                Gender = Gender.Masculine,
+                QuestionText = "Welcher Söldner wurde bei {0} als {1}er angezeigt?",
+                ModuleName = "Amoksauf",
             },
 
             // A Letter
@@ -479,8 +481,9 @@ namespace Souvenir
             // What was the initial message in A Message?
             [Question.AMessageAMessage] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the initial message in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Was war bei {0} die Anfangsnachricht?",
+                ModuleName = "A Nachricht",
             },
 
             // Amusement Parks
@@ -488,8 +491,9 @@ namespace Souvenir
             // Which ride was available in Amusement Parks?
             [Question.AmusementParksRides] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which ride was available in {0}?",
+                Gender = Gender.Plural,
+                QuestionText = "Welche Attraktion wurde bei {0} angeboten?",
+                ModuleName = "Freizeitparks",
             },
 
             // Ángel Hernández
@@ -581,8 +585,8 @@ namespace Souvenir
             // What was signaled in Audio Morse?
             [Question.AudioMorseSound] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was signaled in {0}?",
+                QuestionText = "Was war bei {0} zu hören?",
+                ModuleName = "Audio-Morse",
             },
 
             // The Azure Button
@@ -1084,23 +1088,24 @@ namespace Souvenir
             // What roll did the module claim in the first stage of Blindfolded Yahtzee?
             [Question.BlindfoldedYahtzeeClaim] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What roll did the module claim in the {1} stage of {0}?",
+                ModuleNameDative = "Blinden Yahtzee",
+                QuestionText = "Was hat das Modul bei {0} in der {1}en Stufe verzeichnet?",
+                ModuleName = "Blindes Yahtzee",
                 Answers = new Dictionary<string, string>
                 {
                     ["Yahtzee"] = "Yahtzee",
-                    ["Large Straight"] = "Large Straight",
-                    ["Small Straight"] = "Small Straight",
+                    ["Large Straight"] = "Große Straße",
+                    ["Small Straight"] = "Kleine Straße",
                     ["Full House"] = "Full House",
-                    ["Four of a Kind"] = "Four of a Kind",
+                    ["Four of a Kind"] = "Vierling",
                     ["Chance"] = "Chance",
-                    ["Three of a Kind"] = "Three of a Kind",
-                    ["1s"] = "1s",
-                    ["2s"] = "2s",
-                    ["3s"] = "3s",
-                    ["4s"] = "4s",
-                    ["5s"] = "5s",
-                    ["6s"] = "6s",
+                    ["Three of a Kind"] = "Drilling",
+                    ["1s"] = "Einsen",
+                    ["2s"] = "Zweien",
+                    ["3s"] = "Dreien",
+                    ["4s"] = "Vieren",
+                    ["5s"] = "Fünfen",
+                    ["6s"] = "Sechsen",
                 },
             },
 
@@ -1141,8 +1146,10 @@ namespace Souvenir
             // What song was flashed in Blinking Notes?
             [Question.BlinkingNotesSong] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What song was flashed in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Blinkenden Noten",
+                QuestionText = "Welcher Song blinkte bei {0} auf?",
+                ModuleName = "Blinkende Noten",
             },
 
             // Blinkstop
@@ -1316,8 +1323,9 @@ namespace Souvenir
             // Which phrase was shown on Bone Apple Tea?
             [Question.BoneAppleTeaPhrase] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which phrase was shown on {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welcher Satz war bei {0} zu sehen?",
+                ModuleName = "Bonner Partie",
             },
 
             // Boob Tube
@@ -1325,8 +1333,7 @@ namespace Souvenir
             // Which word was shown on Boob Tube?
             [Question.BoobTubeWord] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which word was shown on {0}?",
+                QuestionText = "Welches Word war bei {0} zu sehen?",
             },
 
             // Book of Mario
@@ -1577,8 +1584,10 @@ namespace Souvenir
             // Was the bulb initially lit in The Bulb?
             [Question.BulbInitialState] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Was the bulb initially lit in {0}?",
+                Gender = Gender.Feminine,
+                ModuleNameWithThe = "Die Glühlampe",
+                QuestionText = "War die Glühlampe bei {0} anfänglich an?",
+                ModuleName = "Glühlampe",
             },
 
             // Burger Alarm
@@ -1586,13 +1595,17 @@ namespace Souvenir
             // What was the first displayed digit in Burger Alarm?
             [Question.BurgerAlarmDigits] = new()
             {
+                Gender = Gender.Feminine,
                 QuestionText = "Was war bei {0} die {1}e Ziffer auf dem Display?",
+                ModuleName = "Alarmbeilage",
             },
             // What was the {1} order number in {0}?
             // What was the first order number in Burger Alarm?
             [Question.BurgerAlarmOrderNumbers] = new()
             {
+                Gender = Gender.Feminine,
                 QuestionText = "Was war bei {0} die {1} Auftragsnummer?",
+                ModuleName = "Alarmbeilage",
             },
 
             // Burglar Alarm
@@ -1628,23 +1641,24 @@ namespace Souvenir
             // How many red buttons were there on Buttonage?
             [Question.ButtonageButtons] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "How many {1} buttons were there on {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Wie viele {1} waren bei {0} zu sehen?",
+                ModuleName = "Knopferei",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["red"] = "red",
-                    ["green"] = "green",
-                    ["orange"] = "orange",
-                    ["blue"] = "blue",
-                    ["pink"] = "pink",
-                    ["white"] = "white",
-                    ["black"] = "black",
-                    ["white-bordered"] = "white-bordered",
-                    ["pink-bordered"] = "pink-bordered",
-                    ["gray-bordered"] = "gray-bordered",
-                    ["red-bordered"] = "red-bordered",
-                    ["“P”"] = "“P”",
-                    ["special"] = "special",
+                    ["red"] = "rote Tasten",
+                    ["green"] = "grüne Tasten",
+                    ["orange"] = "orangene Tasten",
+                    ["blue"] = "blaue Tasten",
+                    ["pink"] = "pinke Tasten",
+                    ["white"] = "weiße Tasten",
+                    ["black"] = "schwarze Tasten",
+                    ["white-bordered"] = "weiß umrandete Tasten",
+                    ["pink-bordered"] = "pink umrandete Tasten",
+                    ["gray-bordered"] = "grau umrandete Tasten",
+                    ["red-bordered"] = "rot umrandete Tasten",
+                    ["“P”"] = "“P”-Tasten",
+                    ["special"] = "Spezialtasten",
                 },
             },
 
@@ -1670,14 +1684,15 @@ namespace Souvenir
             // What color was the LED in the first stage of Cacti’s Conundrum?
             [Question.CactisConundrumColor] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What color was the LED in the {1} stage of {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welche Farbe hatte bei {0} die LED in der {1}en Stufe?",
+                ModuleName = "Kakteen-Zwickmühle",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Blue"] = "Blue",
-                    ["Lime"] = "Lime",
+                    ["Blue"] = "Blau",
+                    ["Lime"] = "Limette",
                     ["Orange"] = "Orange",
-                    ["Red"] = "Red",
+                    ["Red"] = "Rot",
                 },
             },
 
@@ -1686,15 +1701,17 @@ namespace Souvenir
             // Which direction was the first dial pointing in Caesar Cycle?
             [Question.CaesarCycleDialDirections] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which direction was the {1} dial pointing in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
+                ModuleName = "Cäsar-Schiffer",
             },
             // What letter was written on the {1} dial in {0}?
             // What letter was written on the first dial in Caesar Cycle?
             [Question.CaesarCycleDialLabels] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What letter was written on the {1} dial in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
+                ModuleName = "Cäsar-Schiffer",
             },
 
             // Caesar Psycho
@@ -1702,15 +1719,17 @@ namespace Souvenir
             // What text was on the top display in the first stage of Caesar Psycho?
             [Question.CaesarPsychoScreenTexts] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What text was on the top display in the {1} stage of {0}?",
+                Gender = Gender.Masculine,
+                QuestionText = "Welcher Text war bei {0} in der {1}en Stufe auf dem oberen Display zu sehen?",
+                ModuleName = "Cäsar-Psycho",
             },
             // What color was the text on the top display in the second stage of {0}?
             // What color was the text on the top display in the second stage of Caesar Psycho?
             [Question.CaesarPsychoScreenColor] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What color was the text on the top display in the second stage of {0}?",
+                QuestionText = "Welche Farbe hatte bei {0} in der {1}en Stufe der Text auf dem oberen Display?",
+                ModuleName = "Cäsar-Psycho",
             },
 
             // Calendar
@@ -1718,8 +1737,8 @@ namespace Souvenir
             // What was the LED color in Calendar?
             [Question.CalendarLedColor] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the LED color in {0}?",
+                QuestionText = "Welche Farbe hatte die LED bei {0}?",
+                ModuleName = "Kalender",
                 Answers = new Dictionary<string, string>
                 {
                     ["Green"] = "Grün",
@@ -1734,14 +1753,13 @@ namespace Souvenir
             // What color was this cell initially in CA-RPS?
             [Question.CARPSCell] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What color was this cell initially in {0}?",
+                QuestionText = "Welche Farbe hatte diese Zelle bei {0} am Anfang?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Black"] = "Black",
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Black"] = "Schwarz",
                 },
             },
 
@@ -1750,14 +1768,14 @@ namespace Souvenir
             // What color was the up button in Cartinese?
             [Question.CartineseButtonColors] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What color was the {1} button in {0}?",
+                QuestionText = "Welche Farbe hatte bei {0} die {1}?",
+                ModuleName = "Cartinesisch",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["up"] = "up",
-                    ["right"] = "right",
-                    ["down"] = "down",
-                    ["left"] = "left",
+                    ["up"] = "Hoch-Taste",
+                    ["right"] = "Rechts-Taste",
+                    ["down"] = "Runter-Taste",
+                    ["left"] = "Links-Taste",
                 },
                 Answers = new Dictionary<string, string>
                 {
@@ -1771,14 +1789,14 @@ namespace Souvenir
             // What lyric was played by the up button in Cartinese?
             [Question.CartineseLyrics] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What lyric was played by the {1} button in {0}?",
+                QuestionText = "Welcher Songtext wurde bei {0} von der {1} abgespielt?",
+                ModuleName = "Cartinesisch",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["up"] = "up",
-                    ["right"] = "right",
-                    ["down"] = "down",
-                    ["left"] = "left",
+                    ["up"] = "Hoch-Taste",
+                    ["right"] = "Rechts-Taste",
+                    ["down"] = "Runter-Taste",
+                    ["left"] = "Links-Taste",
                 },
             },
 
@@ -1787,14 +1805,13 @@ namespace Souvenir
             // What was the colour of the top-left panel in Catchphrase?
             [Question.CatchphraseColour] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the colour of the {1} panel in {0}?",
+                QuestionText = "Welche Farbe hatte bei {0} die {1} Tafel?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top-left"] = "top-left",
-                    ["top-right"] = "top-right",
-                    ["bottom-left"] = "bottom-left",
-                    ["bottom-right"] = "bottom-right",
+                    ["top-left"] = "obere linke",
+                    ["top-right"] = "obere rechte",
+                    ["bottom-left"] = "untere linke",
+                    ["bottom-right"] = "untere rechte",
                 },
                 Answers = new Dictionary<string, string>
                 {
@@ -1812,8 +1829,7 @@ namespace Souvenir
             // What was the first submitted answer in Challenge & Contact?
             [Question.ChallengeAndContactAnswers] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the {1} submitted answer in {0}?",
+                QuestionText = "Was war bei {0} die als {1}e eingegebene Antwort?",
             },
 
             // Character Codes
@@ -1821,8 +1837,9 @@ namespace Souvenir
             // What was the first character in Character Codes?
             [Question.CharacterCodesCharacter] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the {1} character in {0}?",
+                Gender = Gender.Plural,
+                QuestionText = "Was war bei {0} das {1}e Zeichen?",
+                ModuleName = "Zeichencodes",
             },
 
             // Character Shift
@@ -1830,15 +1847,17 @@ namespace Souvenir
             // Which letter was present but not submitted on the left slider of Character Shift?
             [Question.CharacterShiftLetters] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which letter was present but not submitted on the left slider of {0}?",
+                Gender = Gender.Masculine,
+                QuestionText = "Welcher Buchstabe war bei {0} auf dem linken Schieber zu sehen, aber nicht Teil der Lösung?",
+                ModuleName = "Zeichenschieber",
             },
             // Which digit was present but not submitted on the right slider of {0}?
             // Which digit was present but not submitted on the right slider of Character Shift?
             [Question.CharacterShiftDigits] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which digit was present but not submitted on the right slider of {0}?",
+                Gender = Gender.Masculine,
+                QuestionText = "Welche Ziffer war bei {0} auf dem rechten Schieber zu sehen, aber nicht Teil der Lösung?",
+                ModuleName = "Zeichenschieber",
             },
 
             // Character Slots
@@ -1846,8 +1865,8 @@ namespace Souvenir
             // Who was displayed in the first slot in the first stage of Character Slots?
             [Question.CharacterSlotsDisplayedCharacters] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Who was displayed in the {1} slot in the {2} stage of {0}?",
+                QuestionText = "Wer war bei {0} in der {2}en Stufe an {1}er Stelle zu sehen?",
+                ModuleName = "Figurenkabinett",
             },
 
             // Cheap Checkout
@@ -1855,13 +1874,14 @@ namespace Souvenir
             // What was the paid amount in Cheap Checkout?
             [Question.CheapCheckoutPaid] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the {1}paid amount in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Was war bei {0} {1}?",
+                ModuleName = "Klingelkasse",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["the paid amount"] = "the paid amount",
-                    ["the first paid amount"] = "the first paid amount",
-                    ["the second paid amount"] = "the second paid amount",
+                    ["the paid amount"] = "der Betrag",
+                    ["the first paid amount"] = "der erste Betrag",
+                    ["the second paid amount"] = "der zweite Betrag",
                 },
             },
 
@@ -1870,41 +1890,42 @@ namespace Souvenir
             // Which bird was present in Cheep Checkout?
             [Question.CheepCheckoutBirds] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which bird {1} present in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welcher Vogel war bei {0} {1}?",
+                ModuleName = "Zwitscherkasse",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["was"] = "was",
-                    ["was not"] = "was not",
+                    ["was"] = "zu sehen",
+                    ["was not"] = "nicht zu sehen",
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Auklet"] = "Auklet",
-                    ["Bluebird"] = "Bluebird",
-                    ["Chickadee"] = "Chickadee",
-                    ["Dove"] = "Dove",
-                    ["Egret"] = "Egret",
-                    ["Finch"] = "Finch",
-                    ["Godwit"] = "Godwit",
-                    ["Hummingbird"] = "Hummingbird",
+                    ["Auklet"] = "Alk",
+                    ["Bluebird"] = "Berghüttensänger",
+                    ["Chickadee"] = "Chickadee-Meise",
+                    ["Dove"] = "Diamanttaube",
+                    ["Egret"] = "Europa-Reiher",
+                    ["Finch"] = "Fink",
+                    ["Godwit"] = "Gugelschnepfe",
+                    ["Hummingbird"] = "Hainkolibri",
                     ["Ibis"] = "Ibis",
-                    ["Jay"] = "Jay",
-                    ["Kinglet"] = "Kinglet",
-                    ["Loon"] = "Loon",
-                    ["Magpie"] = "Magpie",
-                    ["Nuthatch"] = "Nuthatch",
-                    ["Oriole"] = "Oriole",
-                    ["Pipit"] = "Pipit",
-                    ["Quail"] = "Quail",
-                    ["Raven"] = "Raven",
-                    ["Shrike"] = "Shrike",
-                    ["Thrush"] = "Thrush",
-                    ["Umbrellabird"] = "Umbrellabird",
+                    ["Jay"] = "Jagdhäher",
+                    ["Kinglet"] = "Königsgoldhähnchen",
+                    ["Loon"] = "Lagunentaucher",
+                    ["Magpie"] = "Meerelster",
+                    ["Nuthatch"] = "Nusskleiber",
+                    ["Oriole"] = "Opern-Pirol",
+                    ["Pipit"] = "Pieper",
+                    ["Quail"] = "Quantwachtel",
+                    ["Raven"] = "Rabe",
+                    ["Shrike"] = "Siebentöter",
+                    ["Thrush"] = "Taunus-Drossel",
+                    ["Umbrellabird"] = "Urschirmvogel",
                     ["Vireo"] = "Vireo",
-                    ["Warbler"] = "Warbler",
-                    ["Xantus’s Hummingbird"] = "Xantus’s Hummingbird",
-                    ["Yellowlegs"] = "Yellowlegs",
-                    ["Zigzag Heron"] = "Zigzag Heron",
+                    ["Warbler"] = "Waldsänger",
+                    ["Xantus’s Hummingbird"] = "Xantus-Kolibri",
+                    ["Yellowlegs"] = "Yukon-Gelbschenkel",
+                    ["Zigzag Heron"] = "Zickzackreiher",
                 },
             },
 
@@ -1913,8 +1934,8 @@ namespace Souvenir
             // What was the first coordinate in Chess?
             [Question.ChessCoordinate] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the {1} coordinate in {0}?",
+                QuestionText = "Was war bei {0} die {1}e Koordinate?",
+                ModuleName = "Schach",
             },
 
             // Chinese Counting
@@ -1922,12 +1943,12 @@ namespace Souvenir
             // What color was the left LED in Chinese Counting?
             [Question.ChineseCountingLED] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What color was the {1} LED in {0}?",
+                QuestionText = "Welche Farbe hatte bei {0} die {1} LED?",
+                ModuleName = "Chinesisch Zählen",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["left"] = "left",
-                    ["right"] = "right",
+                    ["left"] = "linke",
+                    ["right"] = "rechte",
                 },
                 Answers = new Dictionary<string, string>
                 {
@@ -1943,8 +1964,10 @@ namespace Souvenir
             // Which equation was used in Chinese Remainder Theorem?
             [Question.ChineseRemainderTheoremEquations] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which equation was used in {0}?",
+                Gender = Gender.Masculine,
+                ModuleNameDative = "Chinesischen Restsatz",
+                QuestionText = "Welche Gleichung wurde bei {0} verwendet?",
+                ModuleName = "Chinesischer Restsatz",
             },
 
             // Chord Qualities
@@ -1952,8 +1975,9 @@ namespace Souvenir
             // Which note was part of the given chord in Chord Qualities?
             [Question.ChordQualitiesNotes] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which note was part of the given chord in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welche Note war bei {0} Teil des vorgegebenen Akkords?",
+                ModuleName = "Akkordqualität",
             },
 
             // ↻↺
@@ -1961,8 +1985,7 @@ namespace Souvenir
             // Which arrow was shown in ↻↺?
             [Question.ClockCounterArrows] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which arrow was shown in {0}?",
+                QuestionText = "Welcher Pfeil war bei {0} zu sehen?",
             },
 
             // The Code
@@ -1970,8 +1993,10 @@ namespace Souvenir
             // What was the displayed number in The Code?
             [Question.CodeDisplayNumber] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the displayed number in {0}?",
+                Gender = Gender.Masculine,
+                ModuleNameWithThe = "Der Code",
+                QuestionText = "Welche Zahl wurde bei {0} angezeigt?",
+                ModuleName = "Code",
             },
 
             // Codenames
@@ -1979,8 +2004,7 @@ namespace Souvenir
             // Which of these words was submitted in Codenames?
             [Question.CodenamesAnswers] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which of these words was submitted in {0}?",
+                QuestionText = "Welches Wort war bei {0} ein Lösungswort?",
             },
 
             // Coffee Beans
@@ -1988,14 +2012,15 @@ namespace Souvenir
             // What was the first movement in Coffee Beans?
             [Question.CoffeeBeansMovements] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the {1} movement in {0}?",
+                Gender = Gender.Plural,
+                QuestionText = "Was war bei {0} die {1}e Bewegung?",
+                ModuleName = "Kaffeebohnen",
                 Answers = new Dictionary<string, string>
                 {
                     ["Horizontal"] = "Horizontal",
-                    ["Vertical"] = "Vertical",
+                    ["Vertical"] = "Vertikal",
                     ["Diagonal"] = "Diagonal",
-                    ["Nothing"] = "Nothing",
+                    ["Nothing"] = "Keine",
                 },
             },
 
@@ -2719,15 +2744,19 @@ namespace Souvenir
             // Which direction was the first dial pointing in Cryptic Cycle?
             [Question.CrypticCycleDialDirections] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which direction was the {1} dial pointing in {0}?",
+                Gender = Gender.Feminine,
+                ModuleNameDative = "Kryptischen Schiffer",
+                QuestionText = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
+                ModuleName = "Kryptische Schiffer",
             },
             // What letter was written on the {1} dial in {0}?
             // What letter was written on the first dial in Cryptic Cycle?
             [Question.CrypticCycleDialLabels] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What letter was written on the {1} dial in {0}?",
+                Gender = Gender.Feminine,
+                ModuleNameDative = "Kryptischen Schiffer",
+                QuestionText = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
+                ModuleName = "Kryptische Schiffer",
             },
 
             // Cryptic Keypad
@@ -3606,29 +3635,33 @@ namespace Souvenir
             // Which direction was the first dial pointing in Enigma Cycle?
             [Question.EnigmaCycleDialDirectionsThree] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which direction was the {1} dial pointing in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
+                ModuleName = "Enigma-Schiffer",
             },
             // Which direction was the {1} dial pointing in {0}?
             // Which direction was the first dial pointing in Enigma Cycle?
             [Question.EnigmaCycleDialDirectionsTwelve] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which direction was the {1} dial pointing in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
+                ModuleName = "Enigma-Schiffer",
             },
             // Which direction was the {1} dial pointing in {0}?
             // Which direction was the first dial pointing in Enigma Cycle?
             [Question.EnigmaCycleDialDirectionsEight] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which direction was the {1} dial pointing in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
+                ModuleName = "Enigma-Schiffer",
             },
             // What letter was written on the {1} dial in {0}?
             // What letter was written on the first dial in Enigma Cycle?
             [Question.EnigmaCycleDialLabels] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What letter was written on the {1} dial in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
+                ModuleName = "Enigma-Schiffer",
             },
 
             // English Entries
@@ -4818,15 +4851,17 @@ namespace Souvenir
             // Which direction was the first dial pointing in Hill Cycle?
             [Question.HillCycleDialDirections] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which direction was the {1} dial pointing in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
+                ModuleName = "Hill-Schiffer",
             },
             // What letter was written on the {1} dial in {0}?
             // What letter was written on the first dial in Hill Cycle?
             [Question.HillCycleDialLabels] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What letter was written on the {1} dial in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
+                ModuleName = "Hill-Schiffer",
             },
 
             // Hinges
@@ -5224,15 +5259,17 @@ namespace Souvenir
             // Which direction was the first dial pointing in Jumble Cycle?
             [Question.JumbleCycleDialDirections] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which direction was the {1} dial pointing in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
+                ModuleName = "Wirrwarr-Schiffer",
             },
             // What letter was written on the {1} dial in {0}?
             // What letter was written on the first dial in Jumble Cycle?
             [Question.JumbleCycleDialLabels] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What letter was written on the {1} dial in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
+                ModuleName = "Wirrwarr-Schiffer",
             },
 
             // Juxtacolored Squares
@@ -8344,15 +8381,17 @@ namespace Souvenir
             // Which direction was the first dial pointing in Pigpen Cycle?
             [Question.PigpenCycleDialDirections] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which direction was the {1} dial pointing in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
+                ModuleName = "Freimaurer-Schiffer",
             },
             // What letter was written on the {1} dial in {0}?
             // What letter was written on the first dial in Pigpen Cycle?
             [Question.PigpenCycleDialLabels] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What letter was written on the {1} dial in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
+                ModuleName = "Freimaurer-Schiffer",
             },
 
             // Pinpoint
@@ -8483,15 +8522,17 @@ namespace Souvenir
             // Which direction was the first dial pointing in Playfair Cycle?
             [Question.PlayfairCycleDialDirections] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which direction was the {1} dial pointing in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
+                ModuleName = "Playfair-Schiffer",
             },
             // What letter was written on the {1} dial in {0}?
             // What letter was written on the first dial in Playfair Cycle?
             [Question.PlayfairCycleDialLabels] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What letter was written on the {1} dial in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
+                ModuleName = "Playfair-Schiffer",
             },
 
             // Poetry
@@ -11542,15 +11583,19 @@ namespace Souvenir
             // Which direction was the first dial pointing in Ultimate Cycle?
             [Question.UltimateCycleDialDirections] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which direction was the {1} dial pointing in {0}?",
+                Gender = Gender.Feminine,
+                ModuleNameDative = "Ultimativen Schiffer",
+                QuestionText = "In welche Richtung zeigte bei {0} der {1}te Zeiger?",
+                ModuleName = "Ultimative Schiffer",
             },
             // What letter was written on the {1} dial in {0}?
             // What letter was written on the first dial in Ultimate Cycle?
             [Question.UltimateCycleDialLabels] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What letter was written on the {1} dial in {0}?",
+                Gender = Gender.Feminine,
+                ModuleNameDative = "Ultimativen Schiffer",
+                QuestionText = "Welcher Buchstabe stand bei {0} auf dem {1}en Zeiger?",
+                ModuleName = "Ultimative Schiffer",
             },
 
             // The Ultracube
