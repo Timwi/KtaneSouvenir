@@ -1727,7 +1727,6 @@ namespace Souvenir
             // What color was the text on the top display in the second stage of Caesar Psycho?
             [Question.CaesarPsychoScreenColor] = new()
             {
-                NeedsTranslation = true,
                 QuestionText = "Welche Farbe hatte bei {0} in der {1}en Stufe der Text auf dem oberen Display?",
                 ModuleName = "Cäsar-Psycho",
             },
@@ -2029,8 +2028,7 @@ namespace Souvenir
             // What was the last served coffee in Coffeebucks?
             [Question.CoffeebucksCoffee] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the last served coffee in {0}?",
+                QuestionText = "Welcher Kaffee wurde bei {0} als letzter serviert?",
             },
 
             // Coinage
@@ -2038,8 +2036,9 @@ namespace Souvenir
             // Which coin was flipped in Coinage?
             [Question.CoinageFlip] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which coin was flipped in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welche Münze wurde bei {0} umgedreht?",
+                ModuleName = "Münzerei",
             },
 
             // Color Addition
@@ -2081,26 +2080,28 @@ namespace Souvenir
             // What was the first-stage indicator pattern in Color Decoding?
             [Question.ColorDecodingIndicatorPattern] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the {1}-stage indicator pattern in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Was war bei {0} das Indikatormuster der {1}en Stufe?",
+                ModuleName = "Farbdekodierung",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Checkered"] = "Checkered",
+                    ["Checkered"] = "Schachbrett",
                     ["Horizontal"] = "Horizontal",
-                    ["Vertical"] = "Vertical",
-                    ["Solid"] = "Solid",
+                    ["Vertical"] = "Vertikal",
+                    ["Solid"] = "Einfarbig",
                 },
             },
             // Which color {1} in the {2}-stage indicator pattern in {0}?
             // Which color appeared in the first-stage indicator pattern in Color Decoding?
             [Question.ColorDecodingIndicatorColors] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which color {1} in the {2}-stage indicator pattern in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welche Farbe kam bei {0} im Indikatormuster der {2}en Stufe {1}?",
+                ModuleName = "Farbdekodierung",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["appeared"] = "appeared",
-                    ["did not appear"] = "did not appear",
+                    ["appeared"] = "vor",
+                    ["did not appear"] = "nicht vor",
                 },
                 Answers = new Dictionary<string, string>
                 {
@@ -2117,24 +2118,28 @@ namespace Souvenir
             // What was the displayed word in Colored Keys?
             [Question.ColoredKeysDisplayWord] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the displayed word in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Gefärbten Tasten",
+                QuestionText = "Was war bei {0} das Wort auf dem Display?",
+                ModuleName = "Gefärbte Tasten",
                 Answers = new Dictionary<string, string>
                 {
-                    ["red"] = "rot",
-                    ["blue"] = "blau",
-                    ["green"] = "grün",
-                    ["yellow"] = "gelb",
-                    ["purple"] = "lila",
-                    ["white"] = "weiß",
+                    ["red"] = "red",
+                    ["blue"] = "blue",
+                    ["green"] = "green",
+                    ["yellow"] = "yellow",
+                    ["purple"] = "purple",
+                    ["white"] = "white",
                 },
             },
             // What was the displayed word’s color in {0}?
             // What was the displayed word’s color in Colored Keys?
             [Question.ColoredKeysDisplayWordColor] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the displayed word’s color in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Gefärbten Tasten",
+                QuestionText = "Welche Farbe hatte bei {0} das Wort auf dem Display?",
+                ModuleName = "Gefärbte Tasten",
                 Answers = new Dictionary<string, string>
                 {
                     ["red"] = "rot",
@@ -2149,14 +2154,16 @@ namespace Souvenir
             // What was the color of the top-left key in Colored Keys?
             [Question.ColoredKeysKeyColor] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the color of the {1} key in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Gefärbten Tasten",
+                QuestionText = "Welche Farbe hatte bei {0} die {1} Taste?",
+                ModuleName = "Gefärbte Tasten",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top-left"] = "top-left",
-                    ["top-right"] = "top-right",
-                    ["bottom-left"] = "bottom-left",
-                    ["bottom-right"] = "bottom-right",
+                    ["top-left"] = "obere linke",
+                    ["top-right"] = "obere rechte",
+                    ["bottom-left"] = "untere linke",
+                    ["bottom-right"] = "untere rechte",
                 },
                 Answers = new Dictionary<string, string>
                 {
@@ -2172,14 +2179,16 @@ namespace Souvenir
             // What letter was on the top-left key in Colored Keys?
             [Question.ColoredKeysKeyLetter] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What letter was on the {1} key in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Gefärbten Tasten",
+                QuestionText = "Welcher Buchstabe stand bei {0} auf der {1} Taste?",
+                ModuleName = "Gefärbte Tasten",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top-left"] = "top-left",
-                    ["top-right"] = "top-right",
-                    ["bottom-left"] = "bottom-left",
-                    ["bottom-right"] = "bottom-right",
+                    ["top-left"] = "obere linken",
+                    ["top-right"] = "obere rechten",
+                    ["bottom-left"] = "untere linken",
+                    ["bottom-right"] = "untere rechten",
                 },
             },
 
@@ -2188,8 +2197,10 @@ namespace Souvenir
             // What was the first color group in Colored Squares?
             [Question.ColoredSquaresFirstGroup] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the first color group in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Gefärbten Feldern",
+                QuestionText = "Was war bei {0} die erste Farbgruppe?",
+                ModuleName = "Gefärbte Felder",
                 Answers = new Dictionary<string, string>
                 {
                     ["White"] = "Weiß",
@@ -2206,15 +2217,19 @@ namespace Souvenir
             // What was the initial position of the switches in Colored Switches?
             [Question.ColoredSwitchesInitialPosition] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the initial position of the switches in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Gefärbten Schaltern",
+                QuestionText = "Wie lagen bei {0} die Schalter am Anfang?",
+                ModuleName = "Gefärbte Schalter",
             },
             // What was the position of the switches when the LEDs came on in {0}?
             // What was the position of the switches when the LEDs came on in Colored Switches?
             [Question.ColoredSwitchesWhenLEDsCameOn] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the position of the switches when the LEDs came on in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Gefärbten Schaltern",
+                QuestionText = "Wie lagen bei {0} die Schalter, als die LEDs angingen?",
+                ModuleName = "Gefärbte Schalter",
             },
 
             // Color Morse
@@ -2222,8 +2237,10 @@ namespace Souvenir
             // What was the color of the first LED in Color Morse?
             [Question.ColorMorseColor] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the color of the {1} LED in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Gefärbten Morsezeichen",
+                QuestionText = "Welche Farbe hatte bei {0} die {1}e LED?",
+                ModuleName = "Gefärbte Morsezeichen",
                 Answers = new Dictionary<string, string>
                 {
                     ["Blue"] = "Blau",
@@ -2239,8 +2256,10 @@ namespace Souvenir
             // What character was flashed by the first LED in Color Morse?
             [Question.ColorMorseCharacter] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What character was flashed by the {1} LED in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Gefärbten Morsezeichen",
+                QuestionText = "Welches Zeichen wurde bei {0} von der {1}en LED signalisiert?",
+                ModuleName = "Gefärbte Morsezeichen",
             },
 
             // Color One Two
@@ -2269,8 +2288,9 @@ namespace Souvenir
             // How many buttons were red in Colors Maximization?
             [Question.ColorsMaximizationColorCount] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "How many buttons were {1} in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Wie viele Tasten war bei {0} {1}?",
+                ModuleName = "Farbmaximierung",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["red"] = "rot",
@@ -2285,40 +2305,40 @@ namespace Souvenir
             [Question.ColouredCubesColours] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was the colour of this {1} in the {2} stage of {0}?",
+                QuestionText = "Welche Farbe hatte bei {0} {1} in der {2}en Stufe?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["cube"] = "cube",
-                    ["stage light"] = "stage light",
+                    ["cube"] = "dieser Würfel",
+                    ["stage light"] = "dieser Stufenindikator",
                 },
                 Answers = new Dictionary<string, string>
                 {
                     ["Black"] = "Schwarz",
                     ["Indigo"] = "Indigo",
                     ["Blue"] = "Blau",
-                    ["Forest"] = "Forest",
-                    ["Teal"] = "Teal",
-                    ["Azure"] = "Azure",
+                    ["Forest"] = "Waldgrün",
+                    ["Teal"] = "Dunkeltürkis",
+                    ["Azure"] = "Azur",
                     ["Green"] = "Grün",
                     ["Jade"] = "Jade",
-                    ["Cyan"] = "Türkis",
+                    ["Cyan"] = "Helltürkis",
                     ["Maroon"] = "Kastanie",
-                    ["Plum"] = "Plum",
-                    ["Violet"] = "Violet",
-                    ["Olive"] = "Olive",
-                    ["Grey"] = "Grey",
+                    ["Plum"] = "Pflaume",
+                    ["Violet"] = "Violett",
+                    ["Olive"] = "Olivgrün",
+                    ["Grey"] = "Grau",
                     ["Maya"] = "Maya",
-                    ["Lime"] = "Lime",
-                    ["Mint"] = "Mint",
-                    ["Aqua"] = "Aqua",
+                    ["Lime"] = "Limette",
+                    ["Mint"] = "Minze",
+                    ["Aqua"] = "Aquamarin",
                     ["Red"] = "Rot",
-                    ["Rose"] = "Rose",
+                    ["Rose"] = "Rosenrot",
                     ["Magenta"] = "Magenta",
                     ["Orange"] = "Orange",
-                    ["Salmon"] = "Salmon",
+                    ["Salmon"] = "Lachs",
                     ["Pink"] = "Pink",
                     ["Yellow"] = "Gelb",
-                    ["Cream"] = "Cream",
+                    ["Cream"] = "Cremegelb",
                     ["White"] = "Weiß",
                 },
             },
@@ -2328,17 +2348,19 @@ namespace Souvenir
             // What was the first colour flashed on the cylinder in Coloured Cylinder?
             [Question.ColouredCylinderColours] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the {1} colour flashed on the cylinder in {0}?",
+                Gender = Gender.Masculine,
+                ModuleNameDative = "Gefärbten Zylinder",
+                QuestionText = "Welche Farbe erschien bei {0} auf dem Zylinder als {1}e?",
+                ModuleName = "Gefärbter Zylinder",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Yellow"] = "Yellow",
-                    ["Magenta"] = "Magenta",
-                    ["White"] = "White",
-                    ["Black"] = "Black",
+                    ["Red"] = "Rot",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Yellow"] = "Gelb",
+                    ["Magenta"] = "Rosa",
+                    ["White"] = "Weiß",
+                    ["Black"] = "Schwarz",
                 },
             },
 
@@ -2602,7 +2624,7 @@ namespace Souvenir
             {
                 Gender = Gender.Feminine,
                 QuestionText = "Was war bei {0} auf dem {1}en Bildschirm auf Seite {2}?",
-                ModuleName = "Krem-Geheimschrift",
+                ModuleName = "Creme-Geheimschrift",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["top"] = "oberen",
@@ -2997,8 +3019,9 @@ namespace Souvenir
             // What number was initially shown on display A in Denial Displays?
             [Question.DenialDisplaysDisplays] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What number was initially shown on display {1} in {0}?",
+                Gender = Gender.Plural,
+                QuestionText = "Welche Zahl war bei {0} am Anfang auf Display {1}?",
+                ModuleName = "Dementi-Displays",
             },
 
             // DetoNATO
@@ -3006,8 +3029,7 @@ namespace Souvenir
             // What was the first display in DetoNATO?
             [Question.DetoNATODisplay] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the {1} display in {0}?",
+                QuestionText = "Was stand bei {0} als {1}es auf dem Display?",
             },
 
             // Devilish Eggs
@@ -3015,27 +3037,33 @@ namespace Souvenir
             // What was the top egg’s first rotation in Devilish Eggs?
             [Question.DevilishEggsRotations] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the {1} egg’s {2} rotation in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Teufelseiern",
+                QuestionText = "Was war bei {0} die {2}e Rotation vom {1} Ei?",
+                ModuleName = "Teufelseier",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["top"] = "top",
-                    ["bottom"] = "bottom",
+                    ["top"] = "oberen",
+                    ["bottom"] = "unteren",
                 },
             },
             // What was the {1} digit in the string of numbers on {0}?
             // What was the first digit in the string of numbers on Devilish Eggs?
             [Question.DevilishEggsNumbers] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the {1} digit in the string of numbers on {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Teufelseiern",
+                QuestionText = "Was war bei {0} die {1}e Ziffer in dem Zahlensalat?",
+                ModuleName = "Teufelseier",
             },
             // What was the {1} letter in the string of letters on {0}?
             // What was the first letter in the string of letters on Devilish Eggs?
             [Question.DevilishEggsLetters] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the {1} letter in the string of letters on {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Teufelseiern",
+                QuestionText = "Was war bei {0} der {1}e Buchstabe in dem Buchstabensalat?",
+                ModuleName = "Teufelseier",
             },
 
             // Dialtones
@@ -3043,8 +3071,9 @@ namespace Souvenir
             // What dialtones were heard in Dialtones?
             [Question.DialtonesDialtones] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What dialtones were heard in {0}?",
+                Gender = Gender.Plural,
+                QuestionText = "Welches Freizeichen war bei {0} zu hören?",
+                ModuleName = "Freizeichen",
             },
 
             // Digisibility
@@ -3199,15 +3228,17 @@ namespace Souvenir
             // What jingle played in Doofenshmirtz Evil Inc.?
             [Question.DoofenshmirtzEvilIncJingles] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What jingle played in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welcher Jingle war bei {0} zu hören?",
+                ModuleName = "Doofenshmirtz Gesellschaft mit böswilliger Haftung",
             },
             // Which image was shown in {0}?
             // Which image was shown in Doofenshmirtz Evil Inc.?
             [Question.DoofenshmirtzEvilIncInators] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which image was shown in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welches Bild war bei {0} zu sehen?",
+                ModuleName = "Doofenshmirtz Gesellschaft mit böswilliger Haftung",
             },
 
             // Double Arrows
@@ -3418,12 +3449,13 @@ namespace Souvenir
             // Which player was present in Dumb Waiters?
             [Question.DumbWaitersPlayerAvailable] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which player {1} present in {0}?",
+                Gender = Gender.Masculine,
+                QuestionText = "Welcher Spieler war bei {0} {1}?",
+                ModuleName = "Speisenaufzug",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["was"] = "was",
-                    ["was not"] = "was not",
+                    ["was"] = "dabei",
+                    ["was not"] = "nicht dabei",
                 },
             },
 
@@ -3432,14 +3464,13 @@ namespace Souvenir
             // What was the background in Earthbound?
             [Question.EarthboundBackground] = new()
             {
-                QuestionText = "What was the background number in {0}?",
+                QuestionText = "Was war bei {0} im Hintergrund?",
             },
             // Which monster was displayed in {0}?
             // Which monster was displayed in Earthbound?
             [Question.EarthboundMonster] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Which monster was displayed in {0}?",
+                QuestionText = "Welches Monster kam bei {0} vor?",
             },
 
             // eeB gnillepS
