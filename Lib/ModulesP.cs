@@ -637,10 +637,10 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         string finishWord = GetField<string>(comp, "finish").Get(str => str.Length != 6 ? "expected length 6" : null);
-        string[] wordList = GetArrayField<string>(comp, "words").Get(expectedLength: 9 * 13);
+        string[] wordList = GetArrayField<string>(comp, "words").Get(v => v.Length == 0 ? "wordlist is empty" : null);
 
         if (!wordList.Contains(finishWord))
-            throw new AbandonModuleException($"‘wordList’ does not contain ‘finishWord’: [Length: {wordList.Length}, finishWord: {finishWord}].");
+            throw new AbandonModuleException($"‘words’ does not contain ‘finish’: [Length: {wordList.Length}, finishWord: {finishWord}].");
 
         var wordScreen = GetField<GameObject>(comp, "wordDisplay", isPublic: true).Get();
         var wordScreenTextMesh = wordScreen.GetComponent<TextMesh>() ?? throw new AbandonModuleException("‘wordDisplay’ does not have a TextMesh component.");
