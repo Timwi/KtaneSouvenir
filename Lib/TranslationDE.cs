@@ -2268,18 +2268,18 @@ namespace Souvenir
             [Question.ColorOneTwoColor] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What color was the {1} LED in {0}?",
+                QuestionText = "Welche Farbe hatte bei {0} die {1} LED?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["left"] = "left",
-                    ["right"] = "right",
+                    ["left"] = "linke",
+                    ["right"] = "rechte",
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Blue"] = "Blue",
-                    ["Green"] = "Green",
-                    ["Yellow"] = "Yellow",
+                    ["Red"] = "Rot",
+                    ["Blue"] = "Blau",
+                    ["Green"] = "Grün",
+                    ["Yellow"] = "Gelb",
                 },
             },
 
@@ -2304,8 +2304,10 @@ namespace Souvenir
             // What was the colour of this cube in the first stage of Coloured Cubes?
             [Question.ColouredCubesColours] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Welche Farbe hatte bei {0} {1} in der {2}en Stufe?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Farbwürfeln",
+                QuestionText = "Welche Farbe hatte {1} bei {0} in der {2}en Stufe?",
+                ModuleName = "Farbwürfel",
                 FormatArgs = new Dictionary<string, string>
                 {
                     ["cube"] = "dieser Würfel",
@@ -2369,8 +2371,9 @@ namespace Souvenir
             // What was the color of the last word in the sequence in Colour Flash?
             [Question.ColourFlashLastColor] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the color of the last word in the sequence in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welche Farbe hatte bei {0} das letzte Wort in der Folge?",
+                ModuleName = "Farbfolge",
                 Answers = new Dictionary<string, string>
                 {
                     ["Red"] = "Rot",
@@ -2387,11 +2390,12 @@ namespace Souvenir
             // What number began here in Concentration?
             [Question.ConcentrationStartingDigit] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What number began here in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welche Zahl war bei {0} am Anfang hier?",
+                ModuleName = "Konzentrationsspiel",
                 TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
-                    ["the Concentration which began with {1} in the {0} position (in reading order)"] = "the Concentration which began with {1} in the {0} position (in reading order)",
+                    ["the Concentration which began with {1} in the {0} position (in reading order)"] = "dem Konzentrationsspiel, bei dem in der {0}en Position (in Lesereihenfolge) am Anfang eine {1} war,",
                 },
             },
 
@@ -2474,8 +2478,9 @@ namespace Souvenir
             // What pair of numbers was present in Connection Check?
             [Question.ConnectionCheckNumbers] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What pair of numbers was present in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welches Zahlenpaar war bei {0} vorhanden?",
+                ModuleName = "Verbindungsprüfung",
             },
 
             // Coordinates
@@ -2501,15 +2506,17 @@ namespace Souvenir
             // What was the label of the starting coordinate in Coordination?
             [Question.CoordinationLabel] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the label of the starting coordinate in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Was war bei {0} die Aufschrift der Startkoordinate?",
+                ModuleName = "Koordinierung",
             },
             // Where was the starting coordinate in {0}?
             // Where was the starting coordinate in Coordination?
             [Question.CoordinationPosition] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Where was the starting coordinate in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Was war bei {0} die Startkoordinate?",
+                ModuleName = "Koordinierung",
             },
 
             // Coral Cipher
@@ -3478,8 +3485,9 @@ namespace Souvenir
             // What word was asked to be spelled in eeB gnillepS?
             [Question.eeBgnillepSWord] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What word was asked to be spelled in {0}?",
+                Gender = Gender.Masculine,
+                QuestionText = "Welches Wort wurde bei {0} abgefragt?",
+                ModuleName = "tsetbierhcS",
             },
 
             // Eight
