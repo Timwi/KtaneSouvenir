@@ -506,7 +506,7 @@ public partial class SouvenirModule
         var formatArgs = new[] { "played in the first stage", "added in the second stage", "added in the third stage" };
         addQuestions(module, calls.Select((c, ix) =>
             makeQuestion(Question.SimonSamplesSamples, module, formatArgs: new[] { formatArgs[ix] },
-            correctAnswers: new[] { SimonSamplesAudio[Array.IndexOf(possibleCalls, c.Substring(ix * 4))] }, preferredWrongAnswers: SimonSamplesAudio.Skip(4 * ix).Take(4).ToArray())));
+            correctAnswers: new[] { SimonSamplesAudio[Array.IndexOf(possibleCalls, c.Substring(ix * 4))] }, allAnswers: SimonSamplesAudio.Skip(4 * ix).Take(4).ToArray())));
     }
 
     private IEnumerator<YieldInstruction> ProcessSimonSays(ModuleData module)
