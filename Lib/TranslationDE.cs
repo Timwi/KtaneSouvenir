@@ -2267,7 +2267,6 @@ namespace Souvenir
             // What color was the left LED in Color One Two?
             [Question.ColorOneTwoColor] = new()
             {
-                NeedsTranslation = true,
                 QuestionText = "Welche Farbe hatte bei {0} die {1} LED?",
                 FormatArgs = new Dictionary<string, string>
                 {
@@ -3495,29 +3494,33 @@ namespace Souvenir
             // What was the last digit on the small display in Eight?
             [Question.EightLastSmallDisplayDigit] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the last digit on the small display in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welche Ziffer war bei {0} auf dem kleineren Display?",
+                ModuleName = "Acht",
             },
             // What was the position of the last broken digit in {0}?
             // What was the position of the last broken digit in Eight?
             [Question.EightLastBrokenDigitPosition] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the position of the last broken digit in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "An welcher Stelle war bei {0} die letzte kaputte Ziffer?",
+                ModuleName = "Acht",
             },
             // What were the last resulting digits in {0}?
             // What were the last resulting digits in Eight?
             [Question.EightLastResultingDigits] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What were the last resulting digits in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Was waren bei {0} die letzten Ergebnisziffern?",
+                ModuleName = "Acht",
             },
             // What was the last displayed number in {0}?
             // What was the last displayed number in Eight?
             [Question.EightLastDisplayedNumber] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the last displayed number in {0}?",
+                Gender = Gender.Feminine,
+                QuestionText = "Welche Zahl wurde bei {0} zuletzt angezeigt?",
+                ModuleName = "Acht",
             },
 
             // Elder Futhark
@@ -3534,12 +3537,11 @@ namespace Souvenir
             // What was the left emoji in Emoji?
             [Question.EmojiEmoji] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the {1} emoji in {0}?",
+                QuestionText = "Welches Emoji war bei {0} {1}?",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["left"] = "left",
-                    ["right"] = "right",
+                    ["left"] = "links",
+                    ["right"] = "rechts",
                 },
             },
 
