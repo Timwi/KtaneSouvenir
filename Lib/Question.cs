@@ -2339,7 +2339,7 @@
         [SouvenirQuestion("What was the offset in {0}?", "Phosphorescence", ThreeColumns6Answers)]
         [AnswerGenerator.Integers(0, 419)]
         PhosphorescenceOffset,
-        [SouvenirQuestion("What was the {1} button press in {0}?", "Phosphorescence", ThreeColumns6Answers, new[] { "Azure", "Blue", "Crimson", "Diamond", "Emerald", "Fuchsia", "Green", "Ice", "Jade", "Kiwi", "Lime", "Magenta", "Navy", "Orange", "Purple", "Quartz", "Red", "Salmon", "Tan", "Ube", "Vibe", "White", "Xotic", "Yellow", "Zen" }, TranslateAnswers = true,
+        [SouvenirQuestion("What was the {1} button press in {0}?", "Phosphorescence", ThreeColumns6Answers, new[] { "Azure", "Blue", "Crimson", "Diamond", "Emerald", "Fuchsia", "Green", "Hazel", "Ice", "Jade", "Kiwi", "Lime", "Magenta", "Navy", "Orange", "Purple", "Quartz", "Red", "Salmon", "Tan", "Ube", "Vibe", "White", "Xotic", "Yellow", "Zen" }, TranslateAnswers = true,
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         PhosphorescenceButtonPresses,
 

@@ -8364,6 +8364,7 @@ namespace Souvenir
                     ["Emerald"] = "Edelsmaragd",
                     ["Fuchsia"] = "Fuchsie",
                     ["Green"] = "Grün",
+                    ["Hazel"] = "Haselnuss",
                     ["Ice"] = "Iglu",
                     ["Jade"] = "Jade",
                     ["Kiwi"] = "Kiwi",

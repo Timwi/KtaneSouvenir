@@ -8071,6 +8071,7 @@ namespace Souvenir
             // What was the first button press in Phosphorescence?
             [Question.PhosphorescenceButtonPresses] = new()
             {
+                NeedsTranslation = true,
                 QuestionText = "{0}の{1}番目に押したボタンは？",
                 ModuleName = "燐光",
                 Answers = new Dictionary<string, string>
@@ -8082,6 +8083,7 @@ namespace Souvenir
                     ["Emerald"] = "エメラルド",
                     ["Fuchsia"] = "躑躅",
                     ["Green"] = "緑",
+                    ["Hazel"] = "Hazel",
                     ["Ice"] = "氷",
                     ["Jade"] = "翡翠",
                     ["Kiwi"] = "キウイ",

@@ -7944,6 +7944,7 @@ namespace Souvenir
                     ["Emerald"] = "Emerald",
                     ["Fuchsia"] = "Fuchsia",
                     ["Green"] = "Green",
+                    ["Hazel"] = "Hazel",
                     ["Ice"] = "Ice",
                     ["Jade"] = "Jade",
                     ["Kiwi"] = "Kiwi",
