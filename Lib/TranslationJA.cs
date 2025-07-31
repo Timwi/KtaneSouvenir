@@ -8083,7 +8083,7 @@ namespace Souvenir
                     ["Emerald"] = "エメラルド",
                     ["Fuchsia"] = "躑躅",
                     ["Green"] = "緑",
-                    ["Hazel"] = "Hazel",
+                    ["Hazel"] = "榛",
                     ["Ice"] = "氷",
                     ["Jade"] = "翡翠",
                     ["Kiwi"] = "キウイ",
