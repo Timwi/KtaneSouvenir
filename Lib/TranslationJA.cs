@@ -3053,6 +3053,29 @@ namespace Souvenir
                 },
             },
 
+            // Divided Squares
+            // What color was {1} while pressing it in {0}?
+            // What color was the square while pressing it in Divided Squares?
+            [Question.DividedSquaresColor] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What color was {1} while pressing it in {0}?",
+                FormatArgs = new Dictionary<string, string>
+                {
+                    ["the square"] = "the square",
+                    ["the correct square"] = "the correct square",
+                },
+                Answers = new Dictionary<string, string>
+                {
+                    ["Red"] = "Red",
+                    ["Yellow"] = "Yellow",
+                    ["Green"] = "Green",
+                    ["Blue"] = "Blue",
+                    ["Black"] = "Black",
+                    ["White"] = "White",
+                },
+            },
+
             // Divisible Numbers
             // What was the {1} stage’s number in {0}?
             // What was the first stage’s number in Divisible Numbers?

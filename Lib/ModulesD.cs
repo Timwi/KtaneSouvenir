@@ -381,6 +381,25 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private IEnumerator<YieldInstruction> ProcessDividedSquares(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "DividedSquaresModule");
+        if (GetField<int?>(comp, "_correctNumSolved").Get(nullAllowed: true) is null)
+        {
+            legitimatelyNoQuestion(module, "The module became solvable at any solve count (either solves > 199 or something went wrong)");
+            yield break;
+        }
+
+        var len = GetIntField(comp, "_sideLength").Get(1, 13);
+        var b = GetIntField(comp, "_colorB").Get(0, 5);
+
+        addQuestion(module, Question.DividedSquaresColor,
+            formatArguments: new[] { len == 1 ? "the square" : "the correct square" },
+            correctAnswers: new[] { Question.DividedSquaresColor.GetAnswers()[b] });
+    }
+
     private IEnumerator<YieldInstruction> ProcessDivisibleNumbers(ModuleData module)
     {
         var comp = GetComponent(module, "DivisableNumbers");

@@ -863,6 +863,10 @@
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
         DisorderedKeysUnrevealedLabelColor,
 
+        [SouvenirQuestion("What color was {1} while pressing it in {0}?", "Divided Squares", ThreeColumns6Answers, "Red", "Yellow", "Green", "Blue", "Black", "White",
+            ExampleFormatArguments = new[] { "the square", "the correct square" }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true, TranslateFormatArgs = new[] { true })]
+        DividedSquaresColor,
+
         [SouvenirQuestion("What was the {1} stage’s number in {0}?", "Divisible Numbers", ThreeColumns6Answers, null,
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 9999)]

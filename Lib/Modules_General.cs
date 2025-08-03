@@ -174,6 +174,7 @@ public partial class SouvenirModule
             ["directionalButton"] = (ProcessDirectionalButton, "Directional Button", "Hawker"),
             ["DiscoloredSquaresModule"] = (ProcessDiscoloredSquares, "Discolored Squares", "luisdiogo98"),
             ["disorderedKeys"] = (ProcessDisorderedKeys, "Disordered Keys", "Hawker"),
+            ["DividedSquaresModule"] = (ProcessDividedSquares, "Squares", "Anonymous"),
             ["divisibleNumbers"] = (ProcessDivisibleNumbers, "Divisible Numbers", "shortc1rcuit"),
             ["doofenshmirtzEvilIncModule"] = (ProcessDoofenshmirtzEvilInc, "Doofenshmirtz Evil Inc.", "Anonymous"),
             ["doubleArrows"] = (ProcessDoubleArrows, "Double Arrows", "Anonymous"),

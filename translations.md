@@ -179,3 +179,7 @@ This module has a few `TranslatableStrings`.
 
 - `"{0} {1}"` is used to construct answers, e.g. `Red Up`.
 - The colors and directions get inserted into the above format string.
+
+## Divided Squares
+
+"the square" is used when the square never divided, while "the correct square" is used when it has.
