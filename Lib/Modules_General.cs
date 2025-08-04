@@ -303,6 +303,7 @@ public partial class SouvenirModule
             ["KeypadMaze"] = (ProcessKeypadMaze, "Keypad Maze", "Anonymous"),
             ["keypadSeq"] = (ProcessKeypadSequence, "Keypad Sequence", "Anonymous"),
             ["xtrkeywords"] = (ProcessKeywords, "Keywords", "Kuro"),
+            ["klaxon"] = (ProcessKlaxon, "Klaxon (the)", "Anonymous"),
             ["KnowYourWay"] = (ProcessKnowYourWay, "Know Your Way", "Kuro"),
             ["kookyKeypadModule"] = (ProcessKookyKeypad, "Kooky Keypad", "Anonymous"),
             ["KudosudokuModule"] = (ProcessKudosudoku, "Kudosudoku", "Timwi"),

@@ -34,29 +34,29 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Color Morse          │  Hogwarts              │  Navinums                 │  Simon Shouts         │  Zero, Zero
     Colored Squares      │  Human Resources       │  Navy Button, The         │  Simon Shrieks        │
 
-## Implemented by Anonymous (104)
+## Implemented by Anonymous (105)
 
-    ↻↺                         │  Coffee Beans             │  HyperForget             │  Pentabutton, The           │  Squares
-    ❖                          │  Color One Two            │  KayMazey Talk           │  Pickup Identification      │  Stable Time Signatures
-    0                          │  Coloured Cylinder        │  Keypad Maze             │  Pointless Machines         │  Starstruck
-    1, 2, 3 Game, The          │  Concentration            │  Keypad Sequence         │  Polygons                   │  Stroop’s Test
-    21                         │  Connected Monitors       │  Kooky Keypad            │  Prison Break               │  Subbly Jubbly
-    A Message                  │  Connection Check         │  Labyrinth, The          │  Puzzling Hexabuttons       │  SUSadmin
-    Amusement Parks            │  Dialtones                │  Maritime Semaphore      │  Q & A                      │  TAC
-    Audio Morse                │  Doofenshmirtz Evil Inc.  │  Maroon Button, The      │  Quantum Passwords          │  Thirty Dollar Module
-    Bean Sprouts               │  Double Arrows            │  Maze Swap               │  Quantum Ternary Converter  │  Time Signatures
-    Beans                      │  Double Listening         │  MoneyGame               │  Quiplash                   │  Tribal Council
-    Big Bean                   │  Double Screen            │  Mssngv Wls              │  Red Button’t               │  Unordered Keys
-    BlindfoldedYahtzee         │  Emoji                    │  N&Ns                    │  ReGret-B Filtering         │  Updog
-    Blinking Notes             │  Faerie Fires             │  Naming Conventions      │  Reordered Keys             │  Variety
-    Bone Apple Tea             │  Fuse Box, The            │  Next In Line            │  RNG Crystal                │  Walking Cube
-    Boob Tube                  │  Ghost Movement           │  Not Colour Flash        │  Saturn                     │  Watching Paint Dry
-    Boomtar the Great          │  Goofy’s Game             │  Not Double-Oh           │  Simon Smiles               │  White Arrows
-    Bottom Gear                │  Grand Piano              │  Not Password            │  Simon Subdivides           │  Wumbo
-    Buttonage                  │  Gyromaze                 │  Not Red Arrows          │  Simon Swizzles             │  X-Ring
-    CA-RPS                     │  Halli Galli              │  Not The Plunger Button  │  Simply Simon               │  XY-Ray
-    Cacti’s Conundrum          │  hexOrbits                │  Number Game, The        │  Skewers                    │  Yellow Button’t
-    Chinese Remainder Theorem  │  HiddenValue, The         │  One Links To All        │  Smash, Marry, Kill         │
+    ↻↺                         │  Coffee Beans             │  HyperForget             │  One Links To All           │  Smash, Marry, Kill
+    ❖                          │  Color One Two            │  KayMazey Talk           │  Pentabutton, The           │  Squares
+    0                          │  Coloured Cylinder        │  Keypad Maze             │  Pickup Identification      │  Stable Time Signatures
+    1, 2, 3 Game, The          │  Concentration            │  Keypad Sequence         │  Pointless Machines         │  Starstruck
+    21                         │  Connected Monitors       │  Klaxon (the)            │  Polygons                   │  Stroop’s Test
+    A Message                  │  Connection Check         │  Kooky Keypad            │  Prison Break               │  Subbly Jubbly
+    Amusement Parks            │  Dialtones                │  Labyrinth, The          │  Puzzling Hexabuttons       │  SUSadmin
+    Audio Morse                │  Doofenshmirtz Evil Inc.  │  Maritime Semaphore      │  Q & A                      │  TAC
+    Bean Sprouts               │  Double Arrows            │  Maroon Button, The      │  Quantum Passwords          │  Thirty Dollar Module
+    Beans                      │  Double Listening         │  Maze Swap               │  Quantum Ternary Converter  │  Time Signatures
+    Big Bean                   │  Double Screen            │  MoneyGame               │  Quiplash                   │  Tribal Council
+    BlindfoldedYahtzee         │  Emoji                    │  Mssngv Wls              │  Red Button’t               │  Unordered Keys
+    Blinking Notes             │  Faerie Fires             │  N&Ns                    │  ReGret-B Filtering         │  Updog
+    Bone Apple Tea             │  Fuse Box, The            │  Naming Conventions      │  Reordered Keys             │  Variety
+    Boob Tube                  │  Ghost Movement           │  Next In Line            │  RNG Crystal                │  Walking Cube
+    Boomtar the Great          │  Goofy’s Game             │  Not Colour Flash        │  Saturn                     │  Watching Paint Dry
+    Bottom Gear                │  Grand Piano              │  Not Double-Oh           │  Simon Smiles               │  White Arrows
+    Buttonage                  │  Gyromaze                 │  Not Password            │  Simon Subdivides           │  Wumbo
+    CA-RPS                     │  Halli Galli              │  Not Red Arrows          │  Simon Swizzles             │  X-Ring
+    Cacti’s Conundrum          │  hexOrbits                │  Not The Plunger Button  │  Simply Simon               │  XY-Ray
+    Chinese Remainder Theorem  │  HiddenValue, The         │  Number Game, The        │  Skewers                    │  Yellow Button’t
 
 ## Implemented by Kuro (59)
 

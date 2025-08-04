@@ -150,6 +150,20 @@ public partial class SouvenirModule
         addQuestion(module, Question.KeywordsDisplayedKey, correctAnswers: new[] { displayedKey }, preferredWrongAnswers: possibleAnswers.ToArray());
     }
 
+    private IEnumerator<YieldInstruction> ProcessKlaxon(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "KlaxonScript");
+        var letters = GetArrayField<char>(comp, "CorrectLetters").Get(minLength: 1, validator: c => c is < 'A' or > 'Z' ? "Expected uppercase letters" : null);
+
+        var all = Bomb.GetSolvedModuleNames();
+        all.Remove("The Klaxon");
+
+        addQuestions(module, all.Distinct().Select(n =>
+            makeQuestion(Question.KlaxonKlaxon, module, formatArgs: new[] { n }, correctAnswers: new[] { n.ToUpperInvariant().Contains(letters.First()) ? "Yes" : "No" })));
+    }
+
     private IEnumerator<YieldInstruction> ProcessKnowYourWay(ModuleData module)
     {
         var comp = GetComponent(module, "KnowYourWayScript");

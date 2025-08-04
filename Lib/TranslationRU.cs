@@ -5192,6 +5192,20 @@ namespace Souvenir
                 QuestionText = "Какие были первые четыре буквы на экране {0}?",
             },
 
+            // Klaxon
+            // Did solving {1} activate {0}?
+            // Did solving The Button activate Klaxon?
+            [Question.KlaxonKlaxon] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Did solving {1} activate {0}?",
+                Answers = new Dictionary<string, string>
+                {
+                    ["Yes"] = "Yes",
+                    ["No"] = "No",
+                },
+            },
+
             // Know Your Way
             // Which way was the arrow pointing in {0}?
             // Which way was the arrow pointing in Know Your Way?

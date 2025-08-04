@@ -1573,6 +1573,10 @@
         [SouvenirQuestion("What were the first four letters on the display in {0}?", "Keywords", ThreeColumns6Answers, ExampleAnswers = new[] { "abvo", "pola", "drea", "buew", "utre", "oidy" })]
         KeywordsDisplayedKey,
 
+        [SouvenirQuestion("Did solving {1} activate {0}?", "Klaxon", TwoColumns2Answers, "Yes", "No",
+            ExampleFormatArguments = new[] { "The Button", "Wires", "Memory", "Who's on First", "Morse Code" }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
+        KlaxonKlaxon,
+
         [SouvenirQuestion("Which way was the arrow pointing in {0}?", "Know Your Way", TwoColumns4Answers, "Up", "Down", "Left", "Right", TranslateAnswers = true)]
         KnowYourWayArrow,
         [SouvenirQuestion("Which LED was green in {0}?", "Know Your Way", TwoColumns4Answers, "Top", "Bottom", "Right", "Left", TranslateAnswers = true)]
