@@ -2656,6 +2656,11 @@
             ExampleFormatArguments = new[] { "warm-colored", "cold-colored", "primary-colored", "secondary-colored" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
         RoleReversalWires,
 
+        [SouvenirQuestion("What did the {1} team throw in the {2} round of {0}?", "RPS Judging", ThreeColumns6Answers, Type = AnswerType.Sprites,
+            ExampleFormatArguments = new[] { "red", QandA.Ordinal, "blue", QandA.Ordinal }, ExampleFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { true, false },
+            TranslatableStrings = new[] { "the RPS Judging where the {0} team threw {1} in the {2} round", "dynamite", "tornado", "quicksand", "pit", "chain", "gun", "law", "whip", "sword", "rock", "death", "wall", "sun", "camera", "fire", "chainsaw", "school", "scissors", "poison", "cage", "axe", "peace", "computer", "castle", "snake", "blood", "porcupine", "vulture", "monkey", "king", "queen", "prince", "princess", "police", "woman", "baby", "man", "home", "train", "car", "noise", "bicycle", "tree", "turnip", "duck", "wolf", "cat", "bird", "fish", "spider", "cockroach", "brain", "community", "cross", "money", "vampire", "sponge", "church", "butter", "book", "paper", "cloud", "airplane", "moon", "grass", "film", "toilet", "air", "planet", "guitar", "bowl", "cup", "beer", "rain", "water", "tv", "rainbow", "ufo", "alien", "prayer", "mountain", "satan", "dragon", "diamond", "platinum", "gold", "devil", "fence", "video game", "math", "robot", "heart", "electricity", "lightning", "medusa", "power", "laser", "nuke", "sky", "tank", "helicopter" })]
+        RPSJudgingThrow,
+
         [SouvenirQuestion("What was the rule number in {0}?", "Rule", ThreeColumns6Answers, AddThe = true)]
         [AnswerGenerator.Integers(0, 15)]
         RuleNumber,

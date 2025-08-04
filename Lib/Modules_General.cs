@@ -510,6 +510,7 @@ public partial class SouvenirModule
             ["robotProgramming"] = (ProcessRobotProgramming, "Robot Programming", "Hawker"),
             ["roger"] = (ProcessRoger, "Roger", "BigCrunch22"),
             ["roleReversal"] = (ProcessRoleReversal, "Role Reversal", "Emik"),
+            ["RPSJudging"] = (ProcessRPSJudging, "RPS Judging", "Anonymous"),
             ["theRule"] = (ProcessRule, "Rule, The", "TasThiluna"),
             ["RuleOfThreeModule"] = (ProcessRuleOfThree, "Rule of Three", "Quinn Wuest"),
             ["safetySquare"] = (ProcessSafetySquare, "Safety Square", "Kuro"),

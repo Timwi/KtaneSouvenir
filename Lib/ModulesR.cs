@@ -463,6 +463,81 @@ public partial class SouvenirModule
             makeQuestion(Question.RoleReversalNumber, module, correctAnswers: new[] { answerIndex.ToString() }, preferredWrongAnswers: new[] { "2", "3", "4", "5", "6", "7", "8" }));
     }
 
+    private readonly List<(List<int> blue, List<int> red)> _RPSJudgingDisplays = new();
+    private IEnumerator<YieldInstruction> ProcessRPSJudging(ModuleData module)
+    {
+        var comp = GetComponent(module, "RPSJudgingScript");
+        const string moduleId = "RPSJudging";
+
+        while (!_noUnignoredModulesLeft)
+            yield return new WaitForSeconds(.1f);
+
+        var leftDisplays = GetListField<int>(comp, "LeftDisplays").Get(minLength: 0, validator: v => v is < 0 or > 100 ? "Expected range [0, 101]" : null);
+        var rightDisplays = GetListField<int>(comp, "RightDisplays").Get(expectedLength: leftDisplays.Count, validator: v => v is < 0 or > 100 ? "Expected range [0, 101]" : null);
+
+        if (_RPSJudgingDisplays.Any(d => d.blue.Count != leftDisplays.Count))
+        {
+            legitimatelyNoQuestion(module, "There were inconsistent stage counts among modules.");
+            yield break;
+        }
+        if (leftDisplays.Count == 0)
+        {
+            legitimatelyNoQuestion(module, "There were no stages.");
+            yield break;
+        }
+
+        _RPSJudgingDisplays.Add((leftDisplays, rightDisplays));
+
+        yield return null;
+
+        var myIgnoredList = GetField<string[]>(comp, "IgnoredModules").Get();
+        var displayedStageCount = Bomb.GetSolvedModuleNames().Count(x => !myIgnoredList.Contains(x));
+
+        if (_RPSJudgingDisplays.Count != _moduleCounts[moduleId])
+            throw new AbandonModuleException("The number of displays did not match the number of RPS Judging modules.");
+
+        var leftSprites = GetArrayField<Sprite>(comp, "SpriteLeft", true).Get(expectedLength: 101).TranslateSprites(500).ToArray();
+        var rightSprites = GetArrayField<Sprite>(comp, "SpriteRight", true).Get(expectedLength: 101).TranslateSprites(500).ToArray();
+
+        if (_moduleCounts[moduleId] == 1)
+            addQuestions(module,
+                leftDisplays.Select((digit, ix) => makeQuestion(Question.RPSJudgingThrow, moduleId, 1, formatArgs: new[] { "blue", Ordinal(ix + 1) }, correctAnswers: new[] { leftSprites[digit] }, allAnswers: leftSprites))
+                .Concat(rightDisplays.Select((digit, ix) => makeQuestion(Question.RPSJudgingThrow, moduleId, 1, formatArgs: new[] { "red", Ordinal(ix + 1) }, correctAnswers: new[] { rightSprites[digit] }, allAnswers: rightSprites))));
+        else
+        {
+            var leftUniqueStages = Enumerable.Range(1, displayedStageCount).Where(stage => _RPSJudgingDisplays.Count(display => display.blue[stage - 1] == leftDisplays[stage - 1]) == 1).Take(2).ToArray();
+            var rightUniqueStages = Enumerable.Range(1, displayedStageCount).Where(stage => _RPSJudgingDisplays.Count(display => display.red[stage - 1] == rightDisplays[stage - 1]) == 1).Take(2).ToArray();
+
+            if ((leftUniqueStages.Length == 0 && rightUniqueStages.Length == 0) || displayedStageCount == 1)
+                legitimatelyNoQuestion(module, $"There are not enough stages at which this one (#{GetIntField(comp, "moduleId").Get()}) had a unique display.");
+            else
+            {
+                // This could be replaced with a question sprite, but I feel like that'd be too cramped
+                var throws = new[] { "dynamite", "tornado", "quicksand", "pit", "chain", "gun", "law", "whip", "sword", "rock", "death", "wall", "sun", "camera", "fire", "chainsaw", "school", "scissors", "poison", "cage", "axe", "peace", "computer", "castle", "snake", "blood", "porcupine", "vulture", "monkey", "king", "queen", "prince", "princess", "police", "woman", "baby", "man", "home", "train", "car", "noise", "bicycle", "tree", "turnip", "duck", "wolf", "cat", "bird", "fish", "spider", "cockroach", "brain", "community", "cross", "money", "vampire", "sponge", "church", "butter", "book", "paper", "cloud", "airplane", "moon", "grass", "film", "toilet", "air", "planet", "guitar", "bowl", "cup", "beer", "rain", "water", "tv", "rainbow", "ufo", "alien", "prayer", "mountain", "satan", "dragon", "diamond", "platinum", "gold", "devil", "fence", "video game", "math", "robot", "heart", "electricity", "lightning", "medusa", "power", "laser", "nuke", "sky", "tank", "helicopter" };
+
+                var qs = new List<QandA>();
+                for (int stage = 0; stage < displayedStageCount; stage++)
+                {
+                    var uniqueStage = leftUniqueStages.Concat(rightUniqueStages).FirstOrDefault(s => s != stage + 1);
+                    if (uniqueStage != 0)
+                    {
+                        bool isLeft = leftUniqueStages.Contains(uniqueStage);
+                        bool isRight = leftUniqueStages.Contains(uniqueStage);
+                        if (isLeft && isRight)
+                            isLeft = UnityEngine.Random.Range(0, 2) == 0;
+
+                        var formattedName = string.Format(translateString(Question.RPSJudgingThrow, "the RPS Judging where the {0} team threw {1} in the {2} round"), isLeft ? "blue" : "red", translateString(Question.RPSJudgingThrow, throws[(isLeft ? leftDisplays : rightDisplays)[uniqueStage - 1]]), Ordinal(uniqueStage));
+                        qs.Add(makeQuestion(Question.RPSJudgingThrow, moduleId, 0, formattedModuleName: formattedName,
+                            formatArgs: new[] { "blue", Ordinal(stage + 1) }, correctAnswers: new[] { leftSprites[leftDisplays[stage]] }, allAnswers: leftSprites));
+                        qs.Add(makeQuestion(Question.RPSJudgingThrow, moduleId, 0, formattedModuleName: formattedName,
+                            formatArgs: new[] { "red", Ordinal(stage + 1) }, correctAnswers: new[] { rightSprites[rightDisplays[stage]] }, allAnswers: rightSprites));
+                    }
+                }
+                addQuestions(module, qs);
+            }
+        }
+    }
+
     private IEnumerator<YieldInstruction> ProcessRule(ModuleData module)
     {
         var comp = GetComponent(module, "TheRuleScript");
