@@ -364,6 +364,7 @@ public partial class SouvenirModule
             ["mixometer"] = (ProcessMixometer, "Mixometer", "Hawker"),
             ["modernCipher"] = (ProcessModernCipher, "Modern Cipher", "luisdiogo98"),
             ["moduleListening"] = (ProcessModuleListening, "Module Listening", "TasThiluna"),
+            ["moduleManeuvers"] = (ProcessModuleManeuvers, "Module Maneuvers", "Anonymous"),
             ["ModuleMaze"] = (ProcessModuleMaze, "Module Maze", "River"),
             ["moduleMovements"] = (ProcessModuleMovements, "Module Movements", "Hawker"),
             ["MoneyGame"] = (ProcessMoneyGame, "MoneyGame", "Anonymous"),

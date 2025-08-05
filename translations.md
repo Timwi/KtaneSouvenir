@@ -146,6 +146,10 @@ Some examples of fully-formed questions using these:
 - `What was the first displayed digit in the first stage of the Forget Everything whose tenth displayed digit in that stage was 4?`
 - `Which figure was used during the third stage of the Forget Any Color whose cylinders in the fourth stage were Purple, Orange, White?`
 
+## Divided Squares
+
+"the square" is used when the square never divided, while "the correct square" is used when it has.
+
 ## Forget Any Color
 
 This module has a few additional `TranslatableStrings`.
@@ -159,6 +163,10 @@ This module has a few `TranslatableStrings`.
 
 - `"{0} {1}"` is used to construct answers, e.g. `Red 7`.
 - The colors are normal.
+
+## Module Manuevers
+
+`"{0}, {1}"` is used to construct answers, e.g. `1, -2`
 
 ## Mssngv Wls
 
@@ -179,7 +187,3 @@ This module has a few `TranslatableStrings`.
 
 - `"{0} {1}"` is used to construct answers, e.g. `Red Up`.
 - The colors and directions get inserted into the above format string.
-
-## Divided Squares
-
-"the square" is used when the square never divided, while "the correct square" is used when it has.

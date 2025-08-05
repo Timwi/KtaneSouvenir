@@ -1891,6 +1891,9 @@
         [SouvenirQuestion("Which sound played in {0}?", "Module Listening", ThreeColumns6Answers, Type = AnswerType.Audio, ForeignAudioID = "moduleListening")]
         ModuleListeningAnyAudio,
 
+        [SouvenirQuestion("What was the goal location in {0}?", "Module Maneuvers", ThreeColumns6Answers, ExampleAnswers = new[] { "0, 0", "1, 0", "2, -1", "-2, 0", "3, 3", "12, -15" }, TranslatableStrings = new[] { "{0}, {1}" })]
+        ModuleManeuversGoal,
+
         [SouvenirQuestion("Which of the following was the starting icon for {0}?", "Module Maze", ThreeColumns6Answers, Type = AnswerType.Sprites)]
         ModuleMazeStartingIcon,
 

@@ -6607,6 +6607,19 @@ namespace Souvenir
                 QuestionText = "Which sound played in {0}?",
             },
 
+            // Module Maneuvers
+            // What was the goal location in {0}?
+            // What was the goal location in Module Maneuvers?
+            [Question.ModuleManeuversGoal] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was the goal location in {0}?",
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+                {
+                    ["{0}, {1}"] = "{0}, {1}",
+                },
+            },
+
             // Module Maze
             // Which of the following was the starting icon for {0}?
             // Which of the following was the starting icon for Module Maze?

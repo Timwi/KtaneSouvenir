@@ -34,30 +34,30 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Color Morse          │  Hogwarts              │  Navinums                 │  Simon Shouts         │  Zero, Zero
     Colored Squares      │  Human Resources       │  Navy Button, The         │  Simon Shrieks        │
 
-## Implemented by Anonymous (106)
+## Implemented by Anonymous (107)
 
-    ↻↺                         │  Color One Two            │  Keypad Maze             │  Pointless Machines         │  Starstruck
-    ❖                          │  Coloured Cylinder        │  Keypad Sequence         │  Polygons                   │  Stroop’s Test
-    0                          │  Concentration            │  Klaxon (the)            │  Prison Break               │  Subbly Jubbly
-    1, 2, 3 Game, The          │  Connected Monitors       │  Kooky Keypad            │  Puzzling Hexabuttons       │  SUSadmin
-    21                         │  Connection Check         │  Labyrinth, The          │  Q & A                      │  TAC
-    A Message                  │  Dialtones                │  Maritime Semaphore      │  Quantum Passwords          │  Thirty Dollar Module
-    Amusement Parks            │  Doofenshmirtz Evil Inc.  │  Maroon Button, The      │  Quantum Ternary Converter  │  Time Signatures
-    Audio Morse                │  Double Arrows            │  Maze Swap               │  Quiplash                   │  Tribal Council
-    Bean Sprouts               │  Double Listening         │  MoneyGame               │  Red Button’t               │  Unordered Keys
-    Beans                      │  Double Screen            │  Mssngv Wls              │  ReGret-B Filtering         │  Updog
-    Big Bean                   │  Emoji                    │  N&Ns                    │  Reordered Keys             │  Variety
-    BlindfoldedYahtzee         │  Faerie Fires             │  Naming Conventions      │  RNG Crystal                │  Walking Cube
-    Blinking Notes             │  Fuse Box, The            │  Next In Line            │  RPS Judging                │  Watching Paint Dry
-    Bone Apple Tea             │  Ghost Movement           │  Not Colour Flash        │  Saturn                     │  White Arrows
-    Boob Tube                  │  Goofy’s Game             │  Not Double-Oh           │  Simon Smiles               │  Wumbo
-    Boomtar the Great          │  Grand Piano              │  Not Password            │  Simon Subdivides           │  X-Ring
-    Bottom Gear                │  Gyromaze                 │  Not Red Arrows          │  Simon Swizzles             │  XY-Ray
-    Buttonage                  │  Halli Galli              │  Not The Plunger Button  │  Simply Simon               │  Yellow Button’t
-    CA-RPS                     │  hexOrbits                │  Number Game, The        │  Skewers                    │
-    Cacti’s Conundrum          │  HiddenValue, The         │  One Links To All        │  Smash, Marry, Kill         │
-    Chinese Remainder Theorem  │  HyperForget              │  Pentabutton, The        │  Squares                    │
-    Coffee Beans               │  KayMazey Talk            │  Pickup Identification   │  Stable Time Signatures     │
+    ↻↺                         │  Color One Two            │  Keypad Maze             │  Pickup Identification      │  Stable Time Signatures
+    ❖                          │  Coloured Cylinder        │  Keypad Sequence         │  Pointless Machines         │  Starstruck
+    0                          │  Concentration            │  Klaxon (the)            │  Polygons                   │  Stroop’s Test
+    1, 2, 3 Game, The          │  Connected Monitors       │  Kooky Keypad            │  Prison Break               │  Subbly Jubbly
+    21                         │  Connection Check         │  Labyrinth, The          │  Puzzling Hexabuttons       │  SUSadmin
+    A Message                  │  Dialtones                │  Maritime Semaphore      │  Q & A                      │  TAC
+    Amusement Parks            │  Doofenshmirtz Evil Inc.  │  Maroon Button, The      │  Quantum Passwords          │  Thirty Dollar Module
+    Audio Morse                │  Double Arrows            │  Maze Swap               │  Quantum Ternary Converter  │  Time Signatures
+    Bean Sprouts               │  Double Listening         │  Module Maneuvers        │  Quiplash                   │  Tribal Council
+    Beans                      │  Double Screen            │  MoneyGame               │  Red Button’t               │  Unordered Keys
+    Big Bean                   │  Emoji                    │  Mssngv Wls              │  ReGret-B Filtering         │  Updog
+    BlindfoldedYahtzee         │  Faerie Fires             │  N&Ns                    │  Reordered Keys             │  Variety
+    Blinking Notes             │  Fuse Box, The            │  Naming Conventions      │  RNG Crystal                │  Walking Cube
+    Bone Apple Tea             │  Ghost Movement           │  Next In Line            │  RPS Judging                │  Watching Paint Dry
+    Boob Tube                  │  Goofy’s Game             │  Not Colour Flash        │  Saturn                     │  White Arrows
+    Boomtar the Great          │  Grand Piano              │  Not Double-Oh           │  Simon Smiles               │  Wumbo
+    Bottom Gear                │  Gyromaze                 │  Not Password            │  Simon Subdivides           │  X-Ring
+    Buttonage                  │  Halli Galli              │  Not Red Arrows          │  Simon Swizzles             │  XY-Ray
+    CA-RPS                     │  hexOrbits                │  Not The Plunger Button  │  Simply Simon               │  Yellow Button’t
+    Cacti’s Conundrum          │  HiddenValue, The         │  Number Game, The        │  Skewers                    │
+    Chinese Remainder Theorem  │  HyperForget              │  One Links To All        │  Smash, Marry, Kill         │
+    Coffee Beans               │  KayMazey Talk            │  Pentabutton, The        │  Squares                    │
 
 ## Implemented by Kuro (59)
 

@@ -711,6 +711,26 @@ public partial class SouvenirModule
             .Concat(new[] { makeQuestion(Question.ModuleListeningAnyAudio, module, correctAnswers: allUsed, allAnswers: allAnswers) }));
     }
 
+    private IEnumerator<YieldInstruction> ProcessModuleManeuvers(ModuleData module)
+    {
+        yield return WaitForSolve;
+
+        var comp = GetComponent(module, "ModuleManeuversScript");
+        var end = GetField<object>(comp, "endPos").Get();
+        var x = GetProperty<int>(end, "x", true).Get();
+        var y = GetProperty<int>(end, "y", true).Get();
+
+        var template = translateString(Question.ModuleManeuversGoal, "{0}, {1}");
+        // Use answers in a 5x5 grid around the correct one, as well as reflections in all four quadrants
+        var allAnswers = from dx in new[] { -2, -1, 0, 1, 2 }
+                         from dy in new[] { -2, -1, 0, 1, 2 }
+                         from sx in new[] { -1, 1 }
+                         from sy in new[] { -1, 1 }
+                         select string.Format(template, sx * x + dx, sy * y + dy);
+
+        addQuestion(module, Question.ModuleManeuversGoal, correctAnswers: new[] { string.Format(template, x, y) }, allAnswers: allAnswers.Distinct().ToArray());
+    }
+
     private IEnumerator<YieldInstruction> ProcessModuleMaze(ModuleData module)
     {
         var comp = GetComponent(module, "ModuleMazeModule");
