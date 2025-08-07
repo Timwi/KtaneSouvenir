@@ -4010,6 +4010,44 @@ namespace Souvenir
                 ModuleName = "Забудке",
             },
 
+            // Forget Our Voices
+            // What was played in the {1} stage of {0}?
+            // What was played in the first stage of Forget Our Voices?
+            [Question.ForgetOurVoicesVoice] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What was played in the {1} stage of {0}?",
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+                {
+                    ["the Forget Our Voices which played a {0} in {1}'s voice in the {2} stage"] = "the Forget Our Voices which played a {0} in {1}'s voice in the {2} stage",
+                    ["Umbra Moruka"] = "Umbra Moruka",
+                    ["Dicey"] = "Dicey",
+                    ["MásQuéÉlite"] = "MásQuéÉlite",
+                    ["Obvious"] = "Obvious",
+                    ["1254"] = "1254",
+                    ["Dbros1000"] = "Dbros1000",
+                    ["Bomberjack"] = "Bomberjack",
+                    ["Danielstigman"] = "Danielstigman",
+                    ["Depresso"] = "Depresso",
+                    ["ktane1"] = "ktane1",
+                    ["OEGamer"] = "OEGamer",
+                    ["jTIS"] = "jTIS",
+                    ["Krispy"] = "Krispy",
+                    ["Grunkle Squeaky"] = "Grunkle Squeaky",
+                    ["Arceus"] = "Arceus",
+                    ["ScopingLandscape"] = "ScopingLandscape",
+                    ["Emik"] = "Emik",
+                    ["GhostSalt"] = "GhostSalt",
+                    ["Short_c1rcuit"] = "Short_c1rcuit",
+                    ["Eltrick"] = "Eltrick",
+                    ["Axodeau"] = "Axodeau",
+                    ["Asew"] = "Asew",
+                    ["Cooldoom"] = "Cooldoom",
+                    ["Piissii"] = "Piissii",
+                    ["CrazyCaleb"] = "CrazyCaleb",
+                },
+            },
+
             // Forget’s Ultimate Showdown
             // What was the {1} digit of the answer in {0}?
             // What was the first digit of the answer in Forget’s Ultimate Showdown?

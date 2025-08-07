@@ -232,6 +232,7 @@ public partial class SouvenirModule
             ["forgetMe"] = (ProcessForgetMe, "Forget Me", "tandyCake"),
             ["MemoryV2"] = (ProcessForgetMeNot, "Forget Me Not", "Kuro"),
             ["ForgetMeNow"] = (ProcessForgetMeNow, "Forget Me Now", "Kuro"),
+            ["forgetOurVoices"] = (ProcessForgetOurVoices, "Forget Our Voices", "Anonymous"),
             ["ForgetsUltimateShowdownModule"] = (ProcessForgetsUltimateShowdown, "Forget’s Ultimate Showdown", "Marksam"),
             ["ForgetTheColors"] = (ProcessForgetTheColors, "Forget The Colors", "Kuro"),
             ["forgetThis"] = (ProcessForgetThis, "Forget This", "Kuro"),

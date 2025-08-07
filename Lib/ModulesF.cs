@@ -668,6 +668,73 @@ public partial class SouvenirModule
         addQuestions(module, displayedDigits.Select((d, ix) => makeQuestion(Question.ForgetMeNowDisplayedDigits, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { d.ToString() })));
     }
 
+    private List<List<int>> _forgetOurVoicesStages = new();
+    private IEnumerator<YieldInstruction> ProcessForgetOurVoices(ModuleData module)
+    {
+        while (!_noUnignoredModulesLeft)
+            yield return new WaitForSeconds(.1f);
+
+        var comp = GetComponent(module, "FOVscript");
+        const string moduleId = "forgetOurVoices";
+
+        var stage = GetField<int>(comp, "currentStage").Get();
+        var stages = GetArrayField<int>(comp, "initialString").Get(minLength: stage, nullArrayAllowed: true, validator: (int x) => x is < 0 or >= 250 ? "Out of range [0, 249]" : null);
+
+        if (stages is null)
+        {
+            legitimatelyNoQuestion(module, "There were no stages.");
+            yield break;
+        }
+
+        var usedStages = stages.Take(stage).ToList();
+        var audio = GetArrayField<AudioClip>(comp, "speakers", true).Get(expectedLength: 250);
+
+        if (_moduleCounts[moduleId] is 1)
+        {
+            addQuestions(module, usedStages.Select((v, i) => makeQuestion(Question.ForgetOurVoicesVoice, moduleId, 1, allAnswers: audio, correctAnswers: new[] { audio[v] }, formatArgs: new[] { Ordinal(i + 1) })));
+            yield break;
+        }
+
+        _forgetOurVoicesStages.Add(usedStages);
+
+        yield return null;
+
+        if (_forgetOurVoicesStages.Any(s => s.Count != stage))
+            throw new AbandonModuleException("Stage counts were not consistent across modules.");
+
+        var names = new string[]
+        {
+            "Umbra Moruka", "Dicey", "MásQuéÉlite", "Obvious", "1254",
+            "Dbros1000", "Bomberjack", "Danielstigman", "Depresso", "ktane1",
+            "OEGamer", "jTIS", "Krispy", "Grunkle Squeaky", "Arceus",
+            "ScopingLandscape", "Emik", "GhostSalt", "Short_c1rcuit", "Eltrick",
+            "Axodeau", "Asew", "Cooldoom", "Piissii", "CrazyCaleb"
+        };
+
+        List<QandA> qs = new();
+        for (int i = 0; i < usedStages.Count; i++)
+        {
+            var v = usedStages[i];
+            var unique = Enumerable.Range(0, usedStages.Count).Where(s => s != i && _forgetOurVoicesStages.Count(l => l[s] == usedStages[s]) is 1).ToArray();
+
+            if (unique.Length is > 0)
+            {
+                var u = unique.PickRandom();
+                var format = translateString(Question.ForgetOurVoicesVoice, "the Forget Our Voices which played a {0} in {1}'s voice in the {2} stage");
+                format = string.Format(format, usedStages[u] % 10, translateString(Question.ForgetOurVoicesVoice, names[usedStages[u] / 10]), Ordinal(u + 1));
+                qs.Add(makeQuestion(Question.ForgetOurVoicesVoice, module, formattedModuleName: format, allAnswers: audio, correctAnswers: new[] { audio[v] }, formatArgs: new[] { Ordinal(i + 1) }));
+            }
+        }
+
+        if (qs.Count is 0)
+        {
+            legitimatelyNoQuestion(module, $"There were not enough stages where this one (#{GetField<int>(comp, "moduleId").Get()}) was unique.");
+            yield break;
+        }
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerator<YieldInstruction> ProcessForgetsUltimateShowdown(ModuleData module)
     {
         var comp = GetComponent(module, "ForgetsUltimateShowdownScript");

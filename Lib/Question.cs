@@ -1172,6 +1172,10 @@
         [AnswerGenerator.Integers(0, 9)]
         ForgetMeNowDisplayedDigits,
 
+        [SouvenirQuestion("What was played in the {1} stage of {0}?", "Forget Our Voices", ThreeColumns6Answers, Type = AnswerType.Audio, ForeignAudioID = "forgetOurVoices", AudioSizeMultiplier = 3, ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1,
+            TranslatableStrings = new[] { "the Forget Our Voices which played a {0} in {1}'s voice in the {2} stage", "Umbra Moruka", "Dicey", "MásQuéÉlite", "Obvious", "1254", "Dbros1000", "Bomberjack", "Danielstigman", "Depresso", "ktane1", "OEGamer", "jTIS", "Krispy", "Grunkle Squeaky", "Arceus", "ScopingLandscape", "Emik", "GhostSalt", "Short_c1rcuit", "Eltrick", "Axodeau", "Asew", "Cooldoom", "Piissii", "CrazyCaleb" })]
+        ForgetOurVoicesVoice,
+
         [SouvenirQuestion("What was the {1} digit of the answer in {0}?", "Forget’s Ultimate Showdown", ThreeColumns6Answers,
             ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
         [AnswerGenerator.Integers(0, 9)]
