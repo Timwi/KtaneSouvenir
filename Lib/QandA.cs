@@ -425,9 +425,12 @@ namespace Souvenir
                     : Sounds.PlayForeignClip(_foreignKey, _clips[index].name, _parent.transform);
                 _coroutine = _parent.StartCoroutine(AnimatePlayHead(head, _layout switch
                 {
-                    AnswerLayout.TwoColumns4Answers => _parent.TwitchPlaysActive ? 14 : 15,
-                    AnswerLayout.ThreeColumns6Answers => _parent.TwitchPlaysActive ? 8 : 10,
+                    AnswerLayout.OneColumn3Answers => 30,
                     AnswerLayout.OneColumn4Answers => 30,
+                    AnswerLayout.TwoColumns2Answers => _parent.TwitchPlaysActive ? 14 : 15,
+                    AnswerLayout.TwoColumns4Answers => _parent.TwitchPlaysActive ? 14 : 15,
+                    AnswerLayout.ThreeColumns3Answers => _parent.TwitchPlaysActive ? 8 : 10,
+                    AnswerLayout.ThreeColumns6Answers => _parent.TwitchPlaysActive ? 8 : 10,
                     // Unreachable  
                     _ => throw new NotImplementedException(),
                 }, _clips[index].length));
