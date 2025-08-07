@@ -6895,7 +6895,6 @@ namespace Souvenir
             // Which vowel was missing in \uE001Mssngv Wls\uE002?
             [Question.MssngvWlsMssNgvwL] = new()
             {
-                NeedsTranslation = true,
                 Gender = Gender.Plural,
                 ModuleNameDative = "\uE001Fh Lnd Nvkln\uE002",
                 QuestionText = "Welcher Vokal hat bei {0} gefehlt?",
