@@ -1222,6 +1222,10 @@
         [AnswerGenerator.Strings("0-9A-Z")]
         ForgetThisDigits,
 
+        [SouvenirQuestion("Which module name was used for stage {1} in {0}?", "Forget Us Not", OneColumn4Answers, ExampleAnswers = new[] { "Souvenir", "The Button", "The Needlessly Complicated Button", "8", "Eight", "Zero, Zero" },
+            ExampleFormatArguments = new[] { "1", "2", "3", "4", "5" }, ExampleFormatArgumentGroupSize = 1, TranslatableStrings = new[] { "the Forget Us Not in which {0} was used for stage {1}" })]
+        ForgetUsNotStage,
+
         [SouvenirQuestion("What was the player token in {0}?", "Free Parking", ThreeColumns6Answers, "Dog", "Wheelbarrow", "Cat", "Iron", "Top Hat", "Car", "Battleship", TranslateAnswers = true)]
         FreeParkingToken,
 

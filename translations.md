@@ -135,7 +135,7 @@ In the `"Language":` field at the bottom, enter the language code (e.g. `"Langua
 
 # Specific Tricky Modules
 
-## Bosses: Concentration, Forget Any Color, Forget Anything, Forget Me Not, Forget The Colors, Forget This, Hyperforget, RPS Judging, and Sbemail Songs
+## Bosses: Concentration, Forget Any Color, Forget Anything, Forget Me Not, Forget The Colors, Forget This, Forget Us Not, Hyperforget, RPS Judging, and Sbemail Songs
 
 Ordinarily, if a module — let’s say Coordinates — occurs twice on a bomb, Souvenir will use a phrasing like “the Coordinates you solved second”. This works for regular modules that can be solved, but for boss modules, Souvenir uses a different phrasing that refers to stages of the boss module instead.
 

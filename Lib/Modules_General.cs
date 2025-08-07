@@ -235,6 +235,7 @@ public partial class SouvenirModule
             ["ForgetsUltimateShowdownModule"] = (ProcessForgetsUltimateShowdown, "Forget’s Ultimate Showdown", "Marksam"),
             ["ForgetTheColors"] = (ProcessForgetTheColors, "Forget The Colors", "Kuro"),
             ["forgetThis"] = (ProcessForgetThis, "Forget This", "Kuro"),
+            ["forgetUsNot"] = (ProcessForgetUsNot, "Forget Us Not", "Anonymous"),
             ["freeParking"] = (ProcessFreeParking, "Free Parking", "luisdiogo98"),
             ["qFunctions"] = (ProcessFunctions, "Functions", "JerryEris"),
             ["FuseBox"] = (ProcessFuseBox, "Fuse Box, The", "Anonymous"),

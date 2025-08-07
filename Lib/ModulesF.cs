@@ -865,6 +865,82 @@ public partial class SouvenirModule
             makeQuestion(Question.ForgetThisDigits, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { Ordinal(chosenStage + 1) }, correctAnswers: new[] { base36[myDigits[chosenStage]].ToString() }));
     }
 
+
+    private List<List<string>> _forgetUsNotStages = new();
+    private IEnumerator<YieldInstruction> ProcessForgetUsNot(ModuleData module)
+    {
+        // The format args for this question aren't ordinals because that would be ambigous (i.e. does "first stage" refer to the stage displayed first or input first?)
+
+        const string moduleId = "forgetUsNot";
+        var comp = GetComponent(module, "AdvancedMemory");
+        HashSet<string> foreignIgnored = new(GetStaticField<string[]>(comp.GetType(), "ignoredModules", true).Get());
+        var wrongAnswers = Bomb.GetSolvableModuleNames().Where(x => !foreignIgnored.Contains(x)).ToArray();
+        if (wrongAnswers.Length is 0)
+        {
+            legitimatelyNoQuestion(module, "There were no stages.");
+            yield break;
+        }
+
+        List<string> solved = new();
+        List<string> order = new();
+
+        while (!_noUnignoredModulesLeft)
+        {
+            var newCount = Bomb.GetSolvedModuleNames().Where(x => !foreignIgnored.Contains(x)).Count();
+            if (newCount > solved.Count)
+            {
+                var nowSolved = Bomb.GetSolvedModuleNames().Where(x => !foreignIgnored.Contains(x)).ToList();
+                var delta = nowSolved.ToList();
+                foreach (var s in solved)
+                    delta.Remove(s);
+                solved = nowSolved;
+                string name = null; // Replicating FUN's own logic with this. This is off if multiple modules solve within a few frames of one another, but it should be good enough
+                foreach (var m in delta)
+                    name = m;
+                order.Add(name);
+            }
+            yield return null;
+        }
+
+        int[] stageOrder = GetArrayField<int>(comp, "Display").Get();
+        order = order.Select((s, i) => (s, i: stageOrder[i])).OrderBy(t => t.i).Select(t => t.s).ToList();
+
+        var allAnswers = Bomb.GetSolvableModuleNames().ToArray();
+
+        if (_moduleCounts[moduleId] is 1)
+        {
+            addQuestions(module, order.Select((n, i) => makeQuestion(Question.ForgetUsNotStage, moduleId, 1, formatArgs: new[] { (i + 1).ToString() }, correctAnswers: new[] { n }, allAnswers: allAnswers, preferredWrongAnswers: wrongAnswers)));
+            yield break;
+        }
+
+        _forgetUsNotStages.Add(order);
+        yield return null;
+
+        if (_forgetUsNotStages.Any(s => s.Count != order.Count))
+            throw new AbandonModuleException("Stage counts were not consistent among modules.");
+
+        List<QandA> qs = new();
+
+        for (int i = 0; i < order.Count; i++)
+        {
+            string n = order[i];
+            var disambiguators = Enumerable.Range(0, order.Count).Where(x => x != i && _forgetUsNotStages.Count(s => s[x] == n) is 1).ToArray();
+            if (disambiguators.Length is 0)
+                continue;
+            var d = disambiguators.PickRandom();
+            string format = string.Format(translateString(Question.ForgetUsNotStage, "the Forget Us Not in which {0} was used for stage {1}"), order[d], d + 1);
+            qs.Add(makeQuestion(Question.ForgetUsNotStage, module, formattedModuleName: format, formatArgs: new[] { (i + 1).ToString() }, correctAnswers: new[] { n }, allAnswers: allAnswers, preferredWrongAnswers: wrongAnswers));
+        }
+
+        if (qs.Count is 0)
+        {
+            legitimatelyNoQuestion(module, $"There were not enough stages in which this one(#{GetIntField(comp, "thisLoggingID", true).Get()}) was unique.");
+            yield break;
+        }
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerator<YieldInstruction> ProcessFreeParking(ModuleData module)
     {
         var comp = GetComponent(module, "FreeParkingScript");

@@ -4379,6 +4379,19 @@ namespace Souvenir
                 ModuleName = "Vergiss Dies",
             },
 
+            // Forget Us Not
+            // Which module name was used for stage {1} in {0}?
+            // Which module name was used for stage 1 in Forget Us Not?
+            [Question.ForgetUsNotStage] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which module name was used for stage {1} in {0}?",
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+                {
+                    ["the Forget Us Not in which {0} was used for stage {1}"] = "the Forget Us Not in which {0} was used for stage {1}",
+                },
+            },
+
             // Free Parking
             // What was the player token in {0}?
             // What was the player token in Free Parking?
