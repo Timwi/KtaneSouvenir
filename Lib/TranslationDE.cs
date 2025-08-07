@@ -5613,6 +5613,55 @@ namespace Souvenir
                 },
             },
 
+            // Kugelblitz
+            // Which particles were present for the {1} stage of {0}?
+            // Which particles were present for the first stage of Kugelblitz?
+            [Question.KugelblitzBlackOrangeYellowIndigoViolet] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "Which colors were present for the {1} stage on {0}?",
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+                {
+                    ["the {0} Kugelblitz"] = "the {0} Kugelblitz",
+                    ["black"] = "black",
+                    ["red"] = "red",
+                    ["orange"] = "orange",
+                    ["yellow"] = "yellow",
+                    ["green"] = "green",
+                    ["blue"] = "blue",
+                    ["indigo"] = "indigo",
+                    ["violet"] = "violet",
+                    ["the Kugelblitz linked with no other Kugelblitzes"] = "the Kugelblitz linked with no other Kugelblitzes",
+                    ["the {0} Kugelblitz linked with one other Kugelblitz"] = "the {0} Kugelblitz linked with one other Kugelblitz",
+                    ["the {0} Kugelblitz linked with two other Kugelblitzes"] = "the {0} Kugelblitz linked with two other Kugelblitzes",
+                    ["the {0} Kugelblitz linked with three other Kugelblitzes"] = "the {0} Kugelblitz linked with three other Kugelblitzes",
+                    ["the {0} Kugelblitz linked with four other Kugelblitzes"] = "the {0} Kugelblitz linked with four other Kugelblitzes",
+                    ["the {0} Kugelblitz linked with five other Kugelblitzes"] = "the {0} Kugelblitz linked with five other Kugelblitzes",
+                    ["the {0} Kugelblitz linked with six other Kugelblitzes"] = "the {0} Kugelblitz linked with six other Kugelblitzes",
+                    ["the {0} Kugelblitz linked with seven other Kugelblitzes"] = "the {0} Kugelblitz linked with seven other Kugelblitzes",
+                    ["R"] = "R",
+                    ["O"] = "O",
+                    ["Y"] = "Y",
+                    ["G"] = "G",
+                    ["B"] = "B",
+                    ["I"] = "I",
+                    ["V"] = "V",
+                    ["{0}{1}{2}{3}{4}{5}{6}"] = "{0}{1}{2}{3}{4}{5}{6}",
+                    ["None"] = "None",
+                },
+            },
+            // What were the particles’ values for the {1} stage of {0}?
+            // What were the particles’ values for the first stage of Kugelblitz?
+            [Question.KugelblitzRedGreenBlue] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What were the color values for the {1} stage on {0}?",
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+                {
+                    ["R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}"] = "R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}",
+                },
+            },
+
             // Kuro
             // What was Kuro’s mood in {0}?
             // What was Kuro’s mood in Kuro?

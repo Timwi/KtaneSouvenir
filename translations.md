@@ -135,7 +135,7 @@ In the `"Language":` field at the bottom, enter the language code (e.g. `"Langua
 
 # Specific Tricky Modules
 
-## Bosses: Concentration, Forget Any Color, Forget Anything, Forget Me Not, Forget The Colors, Forget This, Forget Us Not, Hyperforget, RPS Judging, and Sbemail Songs
+## Bosses: Concentration, Forget Any Color, Forget Anything, Forget Me Not, Forget The Colors, Forget This, Forget Us Not, Hyperforget, Kugelblitz, RPS Judging, and Sbemail Songs
 
 Ordinarily, if a module — let’s say Coordinates — occurs twice on a bomb, Souvenir will use a phrasing like “the Coordinates you solved second”. This works for regular modules that can be solved, but for boss modules, Souvenir uses a different phrasing that refers to stages of the boss module instead.
 
@@ -163,6 +163,12 @@ This module has a few `TranslatableStrings`.
 
 - `"{0} {1}"` is used to construct answers, e.g. `Red 7`.
 - The colors are normal.
+
+## Kugelblitz
+
+- `"{0}{1}{2}{3}{4}{5}{6}"` is used to combine the colors together to describe which particles were present. Absent particles will become nothing, while present ones will become one of `"R"`, `"O"`, `"Y"`, `"G"`, `"B"`, `"I"`, or `"v"`.
+- `"None"` is used as the answer when no particles were present.
+- `"R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}"` is used to generate answers for red, blue, and green Kugelblitzes. Each placeholder will be filled in with a single-digit number.
 
 ## Module Manuevers
 

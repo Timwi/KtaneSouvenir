@@ -309,6 +309,7 @@ public partial class SouvenirModule
             ["KnowYourWay"] = (ProcessKnowYourWay, "Know Your Way", "Kuro"),
             ["kookyKeypadModule"] = (ProcessKookyKeypad, "Kooky Keypad", "Anonymous"),
             ["KudosudokuModule"] = (ProcessKudosudoku, "Kudosudoku", "Timwi"),
+            ["kugelblitz"] = (ProcessKugelblitz, "Kugelblitz", "Anonymous"),
             ["Kuro"] = (ProcessKuro, "Kuro", "Hawker"),
             ["labyrinth"] = (ProcessLabyrinth, "Labyrinth, The", "Anonymous"),
             ["ladderLottery"] = (ProcessLadderLottery, "Ladder Lottery", "Hawker"),
