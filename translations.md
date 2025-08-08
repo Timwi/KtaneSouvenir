@@ -148,7 +148,7 @@ Some examples of fully-formed questions using these:
 
 ## Divided Squares
 
-"the square" is used when the square never divided, while "the correct square" is used when it has.
+“the square” is used when the square never divided, while “the correct square” is used when it has.
 
 ## Forget Any Color
 

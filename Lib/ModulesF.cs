@@ -27,7 +27,7 @@ public partial class SouvenirModule
         var usedRooms = GetArrayField<string>(comp, "usedRooms").Get(expectedLength: 5).ToArray();
         var startRoom = GetIntField(comp, "startRoom").Get(0, usedRooms.Length - 1);
 
-        for (int i = usedRooms.Length - 1; i >= 0; --i)
+        for (var i = usedRooms.Length - 1; i >= 0; --i)
             usedRooms[i] = usedRooms[i].Replace('\n', ' ');
 
         addQuestion(module, Question.FactoryMazeStartRoom, correctAnswers: new[] { usedRooms[startRoom] }, preferredWrongAnswers: usedRooms);
@@ -118,7 +118,7 @@ public partial class SouvenirModule
 
         var referredButtons = GetField<int[]>(comp, "ReferredButtons").Get();
         var qs = new List<QandA>();
-        for (int pos = 0; pos < 16; pos++)
+        for (var pos = 0; pos < 16; pos++)
         {
             var buttonRefersTo = new Coord(4, 4, referredButtons[pos]);
             var refersToButton = new Coord(4, 4, Array.IndexOf(referredButtons, pos));
@@ -144,7 +144,7 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
 
-        for (int index = 0; index < 3; index++)
+        for (var index = 0; index < 3; index++)
         {
             qs.Add(makeQuestion(Question.FaultyRGBMazeKeys, module,
                 formatArgs: new[] { colors[index] },
@@ -189,7 +189,7 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
 
-        for (int i = 0; i < 3; i++)
+        for (var i = 0; i < 3; i++)
         {
             qs.Add(makeQuestion(Question.FindTheDateMonth, module,
             formatArgs: new[] { Ordinal(i + 1) },
@@ -241,11 +241,11 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
         var displays = new[] { "top", "middle", "bottom" };
-        for (int pos = 0; pos < 3; pos++)
+        for (var pos = 0; pos < 3; pos++)
         {
             if (labelTexts[pos] != labels[pos].text)
             {
-                for (int digit = 0; digit < 6; digit++)
+                for (var digit = 0; digit < 6; digit++)
                     qs.Add(makeQuestion(Question.FizzBuzzDisplayedNumbers, module, formatArgs: new[] { Ordinal(digit + 1), displays[pos] }, correctAnswers: new[] { displayedDigits[pos][digit].ToString() }));
                 if (!labels[pos].text.ToLowerInvariant().Contains("buzz")) // Do not ask about the last digit if the answer was buzz because there are only two possible correct answers.
                     qs.Add(makeQuestion(Question.FizzBuzzDisplayedNumbers, module, formatArgs: new[] { "7th", displays[pos] }, correctAnswers: new[] { displayedDigits[pos][6].ToString() }));
@@ -320,7 +320,7 @@ public partial class SouvenirModule
         var bottomTotals = Enumerable.Range(1, 5).Select(num => bottomColors.Count(x => x == num)).ToArray();
 
         var qs = new List<QandA>();
-        for (int i = 0; i < 5; i++)
+        for (var i = 0; i < 5; i++)
         {
             qs.Add(makeQuestion(Question.FlashingLightsLEDFrequency, module, formatArgs: new[] { "top", colorNames[i] }, correctAnswers: new[] { topTotals[i].ToString() }, preferredWrongAnswers: new[] { bottomTotals[i].ToString() }));
             qs.Add(makeQuestion(Question.FlashingLightsLEDFrequency, module, formatArgs: new[] { "bottom", colorNames[i] }, correctAnswers: new[] { bottomTotals[i].ToString() }, preferredWrongAnswers: new[] { topTotals[i].ToString() }));
@@ -386,12 +386,12 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "flyswattingScript");
 
-        bool[] swatted = GetArrayField<int>(comp, "answers").Get(expectedLength: 5).Select(x => x == 1).ToArray();
+        var swatted = GetArrayField<int>(comp, "answers").Get(expectedLength: 5).Select(x => x == 1).ToArray();
 
         yield return WaitForSolve;
 
-        string[] letters = GetArrayField<string>(comp, "chosens").Get(expectedLength: 5);
-        string[] outsideLetters = letters.Where((_, pos) => !swatted[pos]).ToArray();
+        var letters = GetArrayField<string>(comp, "chosens").Get(expectedLength: 5);
+        var outsideLetters = letters.Where((_, pos) => !swatted[pos]).ToArray();
         if (outsideLetters.Length == 0)
         {
             Debug.Log($"[Souvenir #{_moduleId}] No question for Flyswatting because every fly was part of the solution.");
@@ -411,18 +411,15 @@ public partial class SouvenirModule
         var path = GetListField<string>(comp, "Path").Get(minLength: 1, validator: x => !directionWords.ContainsKey(x) ? $"expected only {directionWords.Keys.JoinString(", ")}" : null);
 
         var qs = new List<QandA>();
-        for (int pos = 0; pos < path.Count; pos++)
+        for (var pos = 0; pos < path.Count; pos++)
             qs.Add(makeQuestion(Question.FollowMeDisplayedPath, module, formatArgs: new[] { Ordinal(pos + 1) }, correctAnswers: new[] { directionWords[path[pos]] }));
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessForestCipher(ModuleData module)
-    {
-        return processColoredCiphers(module, "forestCipher", Question.ForestCipherScreen);
-    }
+    private IEnumerator<YieldInstruction> ProcessForestCipher(ModuleData module) => processColoredCiphers(module, "forestCipher", Question.ForestCipherScreen);
 
-    private List<Array> _facCylinders = new();
-    private List<List<int>> _facFigures = new();
+    private readonly List<Array> _facCylinders = new();
+    private readonly List<List<int>> _facFigures = new();
     private IEnumerator<YieldInstruction> ProcessForgetAnyColor(ModuleData module)
     {
         var comp = GetComponent(module, "FACScript");
@@ -461,14 +458,17 @@ public partial class SouvenirModule
         var figureNames = new[] { "LLLMR", "LMMMR", "LMRRR", "LMMRR", "LLMRR", "LLMMR" }
             .Select(str => str.Select(ch => translateString(Question.ForgetAnyColorCylinder, ch.ToString())).JoinString()).ToArray();
 
-        string getCylinders(Array cylinders, int stage) => string.Format(translateString(Question.ForgetAnyColorCylinder, "{0}, {1}, {2}"),
+        string getCylinders(Array cylinders, int stage)
+        {
+            return string.Format(translateString(Question.ForgetAnyColorCylinder, "{0}, {1}, {2}"),
             Enumerable.Range(0, 3).Select(ix => colorNames[(int) cylinders.GetValue(stage, ix)]).ToArray());
+        }
 
         var randomStage = Rnd.Range(0, fldCurrentStage.Get(min: 0, max: maxStage));
         string formattedName = null;
         if (_moduleCounts[moduleId] > 1)
         {
-            for (int stage = 0; stage < maxStage; stage++)
+            for (var stage = 0; stage < maxStage; stage++)
             {
                 if (stage == randomStage)
                     continue;
@@ -512,7 +512,7 @@ public partial class SouvenirModule
                 correctAnswers: new[] { figureNames[myFigures[randomStage]] }, allAnswers: figureNames));
     }
 
-    private List<int[]> _feFirstDisplays = new();
+    private readonly List<int[]> _feFirstDisplays = new();
     private IEnumerator<YieldInstruction> ProcessForgetEverything(ModuleData module)
     {
         var comp = GetComponent(module, "EvilMemory");
@@ -569,7 +569,7 @@ public partial class SouvenirModule
                 yield break;
             }
             var qs = new List<QandA>();
-            for (int pos = 0; pos < 10; pos++)
+            for (var pos = 0; pos < 10; pos++)
             {
                 if (uniquePositions.Any(p => p != pos))
                 {
@@ -589,13 +589,13 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         string[] positions = { "top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right" };
-        int[] initState = GetArrayField<int>(comp, "givenPuzzle").Get(expectedLength: 9);
+        var initState = GetArrayField<int>(comp, "givenPuzzle").Get(expectedLength: 9);
         addQuestions(module,
             Enumerable.Range(0, 9).Where(ix => initState[ix] != 0).Select(ix =>
             makeQuestion(Question.ForgetMeInitialState, module, formatArgs: new[] { positions[ix] }, correctAnswers: new[] { initState[ix].ToString() })));
     }
 
-    private List<int[]> _forgetMeNotDisplays = new();
+    private readonly List<int[]> _forgetMeNotDisplays = new();
     private IEnumerator<YieldInstruction> ProcessForgetMeNot(ModuleData module)
     {
         var comp = GetComponent(module, "AdvancedMemory");
@@ -643,7 +643,7 @@ public partial class SouvenirModule
             else
             {
                 var qs = new List<QandA>();
-                for (int stage = 0; stage < displayedStageCount; stage++)
+                for (var stage = 0; stage < displayedStageCount; stage++)
                 {
                     var uniqueStage = uniqueStages.FirstOrDefault(s => s != stage + 1);
                     if (uniqueStage != 0)
@@ -668,65 +668,64 @@ public partial class SouvenirModule
         addQuestions(module, displayedDigits.Select((d, ix) => makeQuestion(Question.ForgetMeNowDisplayedDigits, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { d.ToString() })));
     }
 
-    private List<List<int>> _forgetOurVoicesStages = new();
+    private readonly List<List<int>> _forgetOurVoicesStages = new();
     private IEnumerator<YieldInstruction> ProcessForgetOurVoices(ModuleData module)
     {
         while (!_noUnignoredModulesLeft)
-            yield return new WaitForSeconds(.1f);
+            yield return null;
 
         var comp = GetComponent(module, "FOVscript");
         const string moduleId = "forgetOurVoices";
 
-        var stage = GetField<int>(comp, "currentStage").Get();
-        var stages = GetArrayField<int>(comp, "initialString").Get(minLength: stage, nullArrayAllowed: true, validator: (int x) => x is < 0 or >= 250 ? "Out of range [0, 249]" : null);
+        var numStages = GetField<int>(comp, "currentStage").Get();
+        var soundIxs = GetArrayField<int>(comp, "initialString").Get(minLength: numStages, nullArrayAllowed: true, validator: x => x is < 0 or >= 250 ? "Out of range [0, 249]" : null);
 
-        if (stages is null)
+        if (soundIxs is null)
         {
             legitimatelyNoQuestion(module, "There were no stages.");
             yield break;
         }
 
-        var usedStages = stages.Take(stage).ToList();
-        var audio = GetArrayField<AudioClip>(comp, "speakers", true).Get(expectedLength: 250);
+        var usedSoundIxs = soundIxs.Take(numStages).ToList();
+        var allAudio = GetArrayField<AudioClip>(comp, "speakers", isPublic: true).Get(expectedLength: 250);
 
-        if (_moduleCounts[moduleId] is 1)
+        if (_moduleCounts[moduleId] == 1)
         {
-            addQuestions(module, usedStages.Select((v, i) => makeQuestion(Question.ForgetOurVoicesVoice, moduleId, 1, allAnswers: audio, correctAnswers: new[] { audio[v] }, formatArgs: new[] { Ordinal(i + 1) })));
+            addQuestions(module, usedSoundIxs.Select((v, i) => makeQuestion(Question.ForgetOurVoicesVoice, moduleId, 1, allAnswers: allAudio, correctAnswers: new[] { allAudio[v] }, formatArgs: new[] { Ordinal(i + 1) })));
             yield break;
         }
 
-        _forgetOurVoicesStages.Add(usedStages);
+        _forgetOurVoicesStages.Add(usedSoundIxs);
 
         yield return null;
 
-        if (_forgetOurVoicesStages.Any(s => s.Count != stage))
+        if (_forgetOurVoicesStages.Any(s => s.Count != numStages))
             throw new AbandonModuleException("Stage counts were not consistent across modules.");
 
-        var names = new string[]
-        {
+        var names = Ut.NewArray(
             "Umbra Moruka", "Dicey", "MásQuéÉlite", "Obvious", "1254",
             "Dbros1000", "Bomberjack", "Danielstigman", "Depresso", "ktane1",
             "OEGamer", "jTIS", "Krispy", "Grunkle Squeaky", "Arceus",
             "ScopingLandscape", "Emik", "GhostSalt", "Short_c1rcuit", "Eltrick",
-            "Axodeau", "Asew", "Cooldoom", "Piissii", "CrazyCaleb"
-        };
+            "Axodeau", "Asew", "Cooldoom", "Piissii", "CrazyCaleb");
 
-        List<QandA> qs = new();
-        for (int i = 0; i < usedStages.Count; i++)
+        var qs = new List<QandA>();
+        for (var stage = 0; stage < usedSoundIxs.Count; stage++)
         {
-            var v = usedStages[i];
-            var unique = Enumerable.Range(0, usedStages.Count).Where(s => s != i && _forgetOurVoicesStages.Count(l => l[s] == usedStages[s]) is 1).ToArray();
+            var soundIx = usedSoundIxs[stage];
+            var unique = Enumerable.Range(0, usedSoundIxs.Count).Where(s => s != stage && _forgetOurVoicesStages.Count(l => l[s] == usedSoundIxs[s]) == 1).ToArray();
 
-            if (unique.Length is > 0)
+            if (unique.Length > 0)
             {
                 var u = unique.PickRandom();
-                var format = translateString(Question.ForgetOurVoicesVoice, "the Forget Our Voices which played a {0} in {1}'s voice in the {2} stage");
-                format = string.Format(format, usedStages[u] % 10, translateString(Question.ForgetOurVoicesVoice, names[usedStages[u] / 10]), Ordinal(u + 1));
-                qs.Add(makeQuestion(Question.ForgetOurVoicesVoice, module, formattedModuleName: format, allAnswers: audio, correctAnswers: new[] { audio[v] }, formatArgs: new[] { Ordinal(i + 1) }));
+                var format = string.Format(
+                    translateString(Question.ForgetOurVoicesVoice, "the Forget Our Voices which played a {0} in {1}’s voice in the {2} stage"),
+                    usedSoundIxs[u] % 10, translateString(Question.ForgetOurVoicesVoice, names[usedSoundIxs[u] / 10]), Ordinal(u + 1));
+                qs.Add(makeQuestion(Question.ForgetOurVoicesVoice, module, formattedModuleName: format, allAnswers: allAudio, correctAnswers: new[] { allAudio[soundIx] }, formatArgs: new[] { Ordinal(stage + 1) }));
             }
         }
 
-        if (qs.Count is 0)
+        if (qs.Count == 0)
         {
             legitimatelyNoQuestion(module, $"There were not enough stages where this one (#{GetField<int>(comp, "moduleId").Get()}) was unique.");
             yield break;
@@ -751,13 +750,13 @@ public partial class SouvenirModule
         var methodNames = methods.Cast<object>().Select(x => GetProperty<string>(x, "Name", isPublic: true).Get()).ToList();
 
         var questions = new List<QandA>();
-        for (int i = 0; i < 12; i++)
+        for (var i = 0; i < 12; i++)
         {
             questions.Add(makeQuestion(Question.ForgetsUltimateShowdownAnswer, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { answer[i].ToString() }));
             questions.Add(makeQuestion(Question.ForgetsUltimateShowdownBottom, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { bottom[i].ToString() }));
             questions.Add(makeQuestion(Question.ForgetsUltimateShowdownInitial, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { initial[i].ToString() }));
         }
-        for (int i = 0; i < 4; i++)
+        for (var i = 0; i < 4; i++)
             questions.Add(makeQuestion(Question.ForgetsUltimateShowdownMethod, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { methodNames[i].Replace("'", "’") }));
         addQuestions(module, questions);
     }
@@ -799,7 +798,7 @@ public partial class SouvenirModule
         }
 
         foreach (var list in allLists)
-            for (int ix = 0; ix < list.Count - 1; ix++)
+            for (var ix = 0; ix < list.Count - 1; ix++)
                 if ((list[ix] as IList).Count != (list[ix + 1] as IList).Count)
                     throw new AbandonModuleException("One or more of the lists of sets of information have different lengths across modules.");
 
@@ -807,7 +806,7 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"One or more of the lists of information for this module are not the same length as the others. Gears: {myGearNumbers.Count}, LargeDisplays: {myLargeDisplays.Count}, SineNumbers: {mySineNumbers.Count}, GearColors: {myGearColors.Count}, RuleColors: {myRuleColors.Count}");
 
         var colors = Question.ForgetTheColorsGearColor.GetAnswers();
-        for (int i = 0; i < myGearNumbers.Count; i++)
+        for (var i = 0; i < myGearNumbers.Count; i++)
         {
             if (myGearNumbers[i] < 0 || myGearNumbers[i] > 9)
                 throw new AbandonModuleException($"‘gear[{i}]’ had an unexpected value. (Expected 0-9): {myGearNumbers[i]}");
@@ -826,7 +825,7 @@ public partial class SouvenirModule
 
         if (_moduleCounts[moduleId] > 1)
         {
-            for (int ix = 0; ix < myGearNumbers.Count; ix++)
+            for (var ix = 0; ix < myGearNumbers.Count; ix++)
             {
                 if (ix == chosenStage)
                     continue;
@@ -865,8 +864,8 @@ public partial class SouvenirModule
             makeQuestion(Question.ForgetTheColorsRuleColor, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { stage }, correctAnswers: new[] { myRuleColors[chosenStage].ToString() }));
     }
 
-    private List<List<int>> _ftColors = new();
-    private List<List<int>> _ftDigits = new();
+    private readonly List<List<int>> _ftColors = new();
+    private readonly List<List<int>> _ftDigits = new();
     private IEnumerator<YieldInstruction> ProcessForgetThis(ModuleData module)
     {
         var comp = GetComponent(module, "ForgetThis");
@@ -932,24 +931,23 @@ public partial class SouvenirModule
             makeQuestion(Question.ForgetThisDigits, moduleId, 0, formattedModuleName: formattedName, formatArgs: new[] { Ordinal(chosenStage + 1) }, correctAnswers: new[] { base36[myDigits[chosenStage]].ToString() }));
     }
 
-
-    private List<List<string>> _forgetUsNotStages = new();
+    private readonly List<List<string>> _forgetUsNotStages = new();
     private IEnumerator<YieldInstruction> ProcessForgetUsNot(ModuleData module)
     {
-        // The format args for this question aren't ordinals because that would be ambigous (i.e. does "first stage" refer to the stage displayed first or input first?)
+        // The format args for this question aren't ordinals because that would be ambiguous (i.e. does "first stage" refer to the stage displayed first or input first?)
 
         const string moduleId = "forgetUsNot";
         var comp = GetComponent(module, "AdvancedMemory");
-        HashSet<string> foreignIgnored = new(GetStaticField<string[]>(comp.GetType(), "ignoredModules", true).Get());
+        var foreignIgnored = new HashSet<string>(GetStaticField<string[]>(comp.GetType(), "ignoredModules", true).Get());
         var wrongAnswers = Bomb.GetSolvableModuleNames().Where(x => !foreignIgnored.Contains(x)).ToArray();
-        if (wrongAnswers.Length is 0)
+        if (wrongAnswers.Length == 0)
         {
             legitimatelyNoQuestion(module, "There were no stages.");
             yield break;
         }
 
-        List<string> solved = new();
-        List<string> order = new();
+        var solved = new List<string>();
+        var order = new List<string>();
 
         while (!_noUnignoredModulesLeft)
         {
@@ -969,12 +967,12 @@ public partial class SouvenirModule
             yield return null;
         }
 
-        int[] stageOrder = GetArrayField<int>(comp, "Display").Get();
+        var stageOrder = GetArrayField<int>(comp, "Display").Get();
         order = order.Select((s, i) => (s, i: stageOrder[i])).OrderBy(t => t.i).Select(t => t.s).ToList();
 
         var allAnswers = Bomb.GetSolvableModuleNames().ToArray();
 
-        if (_moduleCounts[moduleId] is 1)
+        if (_moduleCounts[moduleId] == 1)
         {
             addQuestions(module, order.Select((n, i) => makeQuestion(Question.ForgetUsNotStage, moduleId, 1, formatArgs: new[] { (i + 1).ToString() }, correctAnswers: new[] { n }, allAnswers: allAnswers, preferredWrongAnswers: wrongAnswers)));
             yield break;
@@ -986,20 +984,20 @@ public partial class SouvenirModule
         if (_forgetUsNotStages.Any(s => s.Count != order.Count))
             throw new AbandonModuleException("Stage counts were not consistent among modules.");
 
-        List<QandA> qs = new();
+        var qs = new List<QandA>();
 
-        for (int i = 0; i < order.Count; i++)
+        for (var i = 0; i < order.Count; i++)
         {
-            string n = order[i];
+            var n = order[i];
             var disambiguators = Enumerable.Range(0, order.Count).Where(x => x != i && _forgetUsNotStages.Count(s => s[x] == n) is 1).ToArray();
-            if (disambiguators.Length is 0)
+            if (disambiguators.Length == 0)
                 continue;
             var d = disambiguators.PickRandom();
-            string format = string.Format(translateString(Question.ForgetUsNotStage, "the Forget Us Not in which {0} was used for stage {1}"), order[d], d + 1);
+            var format = string.Format(translateString(Question.ForgetUsNotStage, "the Forget Us Not in which {0} was used for stage {1}"), order[d], d + 1);
             qs.Add(makeQuestion(Question.ForgetUsNotStage, module, formattedModuleName: format, formatArgs: new[] { (i + 1).ToString() }, correctAnswers: new[] { n }, allAnswers: allAnswers, preferredWrongAnswers: wrongAnswers));
         }
 
-        if (qs.Count is 0)
+        if (qs.Count == 0)
         {
             legitimatelyNoQuestion(module, $"There were not enough stages in which this one(#{GetIntField(comp, "thisLoggingID", true).Get()}) was unique.");
             yield break;
@@ -1086,7 +1084,7 @@ public partial class SouvenirModule
             .ToList();
 
         var moduleCount = _moduleCounts.Get("FuseBox");
-        for (int ix = 0; ix < 4; ix++)
+        for (var ix = 0; ix < 4; ix++)
         {
             var tex = FuseBoxQuestions.First(t => t.name.Equals($"flash{ix + 1}"));
             var tex2 = FuseBoxQuestions.First(t => t.name.Equals($"arrow{ix + 1}"));

@@ -5307,9 +5307,9 @@ namespace Souvenir
                 ModuleName = "キーワード",
             },
 
-            // Klaxon
+            // The Klaxon
             // Did solving {1} activate {0}?
-            // Did solving The Button activate Klaxon?
+            // Did solving The Button activate The Klaxon?
             [Question.KlaxonKlaxon] = new()
             {
                 NeedsTranslation = true,

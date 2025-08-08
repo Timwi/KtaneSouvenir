@@ -470,23 +470,19 @@ public partial class SouvenirModule
         const string moduleId = "RPSJudging";
 
         while (!_noUnignoredModulesLeft)
-            yield return new WaitForSeconds(.1f);
+            yield return null;
 
         var leftDisplays = GetListField<int>(comp, "LeftDisplays").Get(minLength: 0, validator: v => v is < 0 or > 100 ? "Expected range [0, 101]" : null);
         var rightDisplays = GetListField<int>(comp, "RightDisplays").Get(expectedLength: leftDisplays.Count, validator: v => v is < 0 or > 100 ? "Expected range [0, 101]" : null);
 
-        if (_RPSJudgingDisplays.Any(d => d.blue.Count != leftDisplays.Count))
-        {
-            legitimatelyNoQuestion(module, "There were inconsistent stage counts among modules.");
-            yield break;
-        }
+        _RPSJudgingDisplays.Add((leftDisplays, rightDisplays));
+        if (_RPSJudgingDisplays[0].blue.Count != leftDisplays.Count)
+            throw new AbandonModuleException("There were inconsistent stage counts among modules.");
         if (leftDisplays.Count == 0)
         {
             legitimatelyNoQuestion(module, "There were no stages.");
             yield break;
         }
-
-        _RPSJudgingDisplays.Add((leftDisplays, rightDisplays));
 
         yield return null;
 

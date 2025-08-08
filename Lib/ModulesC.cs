@@ -736,7 +736,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.ColourFlashLastColor, correctAnswers: new[] { colorValue.ToString() });
     }
 
-    private List<int[]> _concentrationStages = new();
+    private readonly List<int[]> _concentrationStages = new();
     private IEnumerator<YieldInstruction> ProcessConcentration(ModuleData module)
     {
         var comp = GetComponent(module, "ConcentrationModule");

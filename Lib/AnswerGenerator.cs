@@ -520,14 +520,11 @@ namespace Souvenir
 
         public sealed class HickoryDickoryDock : AnswerGeneratorAttribute<string>
         {
+            private static readonly int[] _minutes = { 0, 7, 15, 22, 30, 37, 45, 52 };
             public override IEnumerable<string> GetAnswers(SouvenirModule module)
             {
                 while (true)
-                {
-                    var hour = Random.Range(1, 13);
-                    var minute = new int[] { 0, 7, 15, 22, 30, 37, 45, 52 }.PickRandom();
-                    yield return string.Format("{0}:{1:00}", hour, minute);
-                }
+                    yield return $"{Random.Range(1, 13)}:{_minutes.PickRandom():00}";
             }
             public override int Count => 8 * 12;
         }

@@ -39,7 +39,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     ↻↺                         │  Coloured Cylinder        │  KayMazey Talk           │  Pentabutton, The           │  Stable Time Signatures
     ❖                          │  Concentration            │  Keypad Maze             │  Pickup Identification      │  Starstruck
     0                          │  Connected Monitors       │  Keypad Sequence         │  Pointless Machines         │  Stroop’s Test
-    1, 2, 3 Game, The          │  Connection Check         │  Klaxon (the)            │  Polygons                   │  Subbly Jubbly
+    1, 2, 3 Game, The          │  Connection Check         │  Klaxon, The             │  Polygons                   │  Subbly Jubbly
     21                         │  Dialtones                │  Kooky Keypad            │  Prison Break               │  SUSadmin
     A Message                  │  Doofenshmirtz Evil Inc.  │  Kugelblitz              │  Puzzling Hexabuttons       │  TAC
     Amusement Parks            │  Double Arrows            │  Labyrinth, The          │  Q & A                      │  Thirty Dollar Module

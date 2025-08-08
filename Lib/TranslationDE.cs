@@ -3223,21 +3223,23 @@ namespace Souvenir
             // What color was the square while pressing it in Divided Squares?
             [Question.DividedSquaresColor] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What color was {1} while pressing it in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Geteilten Kacheln",
+                QuestionText = "Welche Farbe hatte bei {0} die {1} beim Gedrückthalten?",
+                ModuleName = "Geteilte Kacheln",
                 FormatArgs = new Dictionary<string, string>
                 {
-                    ["the square"] = "the square",
-                    ["the correct square"] = "the correct square",
+                    ["the square"] = "Kachel",
+                    ["the correct square"] = "korrekte Kachel",
                 },
                 Answers = new Dictionary<string, string>
                 {
-                    ["Red"] = "Red",
-                    ["Yellow"] = "Yellow",
-                    ["Green"] = "Green",
-                    ["Blue"] = "Blue",
-                    ["Black"] = "Black",
-                    ["White"] = "White",
+                    ["Red"] = "Rot",
+                    ["Yellow"] = "Gelb",
+                    ["Green"] = "Grün",
+                    ["Blue"] = "Blau",
+                    ["Black"] = "Schwarz",
+                    ["White"] = "Weiß",
                 },
             },
 
@@ -4238,10 +4240,11 @@ namespace Souvenir
             [Question.ForgetOurVoicesVoice] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What was played in the {1} stage of {0}?",
+                QuestionText = "Was war bei {0} in der {1}en Stufe zu hören?",
+                ModuleName = "Vergiss Unsere Stimmen",
                 TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
-                    ["the Forget Our Voices which played a {0} in {1}'s voice in the {2} stage"] = "the Forget Our Voices which played a {0} in {1}'s voice in the {2} stage",
+                    ["the Forget Our Voices which played a {0} in {1}'s voice in the {2} stage"] = "dem Vergiss Unsere Stimmen, bei dem in der {2}en Stufe eine {0} in {1}s Stimme zu hören war,",
                     ["Umbra Moruka"] = "Umbra Moruka",
                     ["Dicey"] = "Dicey",
                     ["MásQuéÉlite"] = "MásQuéÉlite",
@@ -4911,10 +4914,11 @@ namespace Souvenir
             [Question.HickoryDickoryDockTime] = new()
             {
                 NeedsTranslation = true,
-                QuestionText = "What time was shown when the clock struck {1} on {0}?",
+                QuestionText = "Welche Uhrzeit war bei {0} zu sehen, als die Uhr {1} schlug?",
+                ModuleName = "Tickitie-Tackitie-Tock",
                 TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
-                    ["the Hickory Dickory Dock which showed {0}:{1:00} when it struck {2}"] = "the Hickory Dickory Dock which showed {0}:{1:00} when it struck {2}",
+                    ["the Hickory Dickory Dock which showed {0}:{1:00} when it struck {2}"] = "das Tickitie-Tackietie-Tock, bei dem {0}:{1:00} zu sehen war, als es {2} schlug,",
                 },
             },
 
@@ -5538,17 +5542,17 @@ namespace Souvenir
                 QuestionText = "What were the first four letters on the display in {0}?",
             },
 
-            // Klaxon
+            // The Klaxon
             // Did solving {1} activate {0}?
-            // Did solving The Button activate Klaxon?
+            // Did solving The Button activate The Klaxon?
             [Question.KlaxonKlaxon] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "Did solving {1} activate {0}?",
+                ModuleNameWithThe = "Das Klaxon",
+                QuestionText = "Hat das Entschärfen von {1} {0} ausgelöst?",
                 Answers = new Dictionary<string, string>
                 {
-                    ["Yes"] = "Yes",
-                    ["No"] = "No",
+                    ["Yes"] = "Ja",
+                    ["No"] = "Nein",
                 },
             },
 
@@ -6725,8 +6729,10 @@ namespace Souvenir
             // What was the goal location in Module Maneuvers?
             [Question.ModuleManeuversGoal] = new()
             {
-                NeedsTranslation = true,
-                QuestionText = "What was the goal location in {0}?",
+                Gender = Gender.Plural,
+                ModuleNameDative = "Modulmanövern",
+                QuestionText = "Was war bei {0} die Zielposition?",
+                ModuleName = "Modulmanöver",
                 TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
                 {
                     ["{0}, {1}"] = "{0}, {1}",

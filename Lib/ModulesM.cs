@@ -717,11 +717,11 @@ public partial class SouvenirModule
 
         var comp = GetComponent(module, "ModuleManeuversScript");
         var end = GetField<object>(comp, "endPos").Get();
-        var x = GetProperty<int>(end, "x", true).Get();
-        var y = GetProperty<int>(end, "y", true).Get();
+        var x = GetProperty<int>(end, "x", isPublic: true).Get();
+        var y = GetProperty<int>(end, "y", isPublic: true).Get();
 
         var template = translateString(Question.ModuleManeuversGoal, "{0}, {1}");
-        // Use answers in a 5x5 grid around the correct one, as well as reflections in all four quadrants
+        // Use answers in a 5×5 grid around the correct one, as well as reflections in all four quadrants
         var allAnswers = from dx in new[] { -2, -1, 0, 1, 2 }
                          from dy in new[] { -2, -1, 0, 1, 2 }
                          from sx in new[] { -1, 1 }

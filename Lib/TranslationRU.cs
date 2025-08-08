@@ -5256,9 +5256,9 @@ namespace Souvenir
                 QuestionText = "Какие были первые четыре буквы на экране {0}?",
             },
 
-            // Klaxon
+            // The Klaxon
             // Did solving {1} activate {0}?
-            // Did solving The Button activate Klaxon?
+            // Did solving The Button activate The Klaxon?
             [Question.KlaxonKlaxon] = new()
             {
                 NeedsTranslation = true,
