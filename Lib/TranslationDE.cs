@@ -4905,6 +4905,19 @@ namespace Souvenir
                 QuestionText = "What were the rhythm values in {0}?",
             },
 
+            // Hickory Dickory Dock
+            // What time was shown when the clock struck {1} on {0}?
+            // What time was shown when the clock struck 1:00 on Hickory Dickory Dock?
+            [Question.HickoryDickoryDockTime] = new()
+            {
+                NeedsTranslation = true,
+                QuestionText = "What time was shown when the clock struck {1} on {0}?",
+                TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+                {
+                    ["the Hickory Dickory Dock which showed {0}:{1:00} when it struck {2}"] = "the Hickory Dickory Dock which showed {0}:{1:00} when it struck {2}",
+                },
+            },
+
             // Hidden Colors
             // What was the color of the main LED in {0}?
             // What was the color of the main LED in Hidden Colors?

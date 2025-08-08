@@ -1392,6 +1392,11 @@
         [SouvenirQuestion("What were the rhythm values in {0}?", "hexOS", ThreeColumns6Answers, ExampleAnswers = new[] { "0001", "0012", "0123", "1230", "2300", "3000" })]
         HexOSSum,
 
+        [SouvenirQuestion("What time was shown when the clock struck {1} on {0}?", "Hickory Dickory Dock", ThreeColumns6Answers, ExampleFormatArguments = new[] { "1:00", "2:00", "3:00", "4:00", "5:00", "6:00", "7:00", "8:00", "9:00", "10:00", "11:00", "12:00" }, ExampleFormatArgumentGroupSize = 1,
+            TranslatableStrings = new[] { "the Hickory Dickory Dock which showed {0}:{1:00} when it struck {2}" })]
+        [AnswerGenerator.HickoryDickoryDock]
+        HickoryDickoryDockTime,
+
         [SouvenirQuestion("What was the color of the main LED in {0}?", "Hidden Colors", ThreeColumns6Answers, "Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Magenta", "White", TranslateAnswers = true)]
         HiddenColorsLED,
 

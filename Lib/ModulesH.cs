@@ -139,6 +139,82 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
+    private readonly List<(int h, int m)[]> _hickoryDickoryDockStages = new();
+    private int _hickoryDickoryDocksUnsolved = 0;
+    private IEnumerator<YieldInstruction> ProcessHickoryDickoryDock(ModuleData module)
+    {
+        _hickoryDickoryDocksUnsolved++;
+
+        while (!_noUnignoredModulesLeft && module.Unsolved)
+            yield return new WaitForSeconds(.1f);
+
+        _hickoryDickoryDocksUnsolved--;
+
+        while (_hickoryDickoryDocksUnsolved is not 0)
+            yield return null;
+
+        var comp = GetComponent(module, "HickoryDickoryDockScript");
+        var stageObjects = GetField<IList>(comp, "generatedStages").Get();
+
+        if (stageObjects.Count is 0)
+        {
+            legitimatelyNoQuestion(module, "There were no stages generated.");
+            yield break;
+        }
+
+        var fldMinute = GetField<string>(stageObjects[0], "minuteDirection", true);
+        var fldHour = GetField<int>(stageObjects[0], "index", true);
+        var fldChimes = GetField<int>(stageObjects[0], "chimes", true);
+
+        var validMinutes = new[] { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };
+
+        var stages = new (int h, int m)[12];
+        _hickoryDickoryDockStages.Add(stages);
+
+        foreach (var stage in stageObjects)
+        {
+            var m = fldMinute.GetFrom(stage, v => !validMinutes.Contains(v) ? "Expected a cardinal or secondary direction" : null);
+            var h = fldHour.GetFrom(stage, v => v is < 0 or > 11 ? "Expected a number [0, 11]" : null);
+            var c = fldChimes.GetFrom(stage, v => v is < 1 or > 12 ? "Expected a number [1, 12]" : null);
+
+            stages[c - 1] = (h + 1, Array.IndexOf(validMinutes, m));
+        }
+
+        static int formatMinute(int x) => new int[] { 0, 7, 15, 22, 30, 37, 45, 52 }[x];
+
+        yield return null;
+
+        if (_moduleCounts["hickoryDickoryDockModule"] is 1)
+        {
+            addQuestions(module, stages.Select((t, c) => (t, c)).Where(t => t.t is not (0, 0)).Select(t => makeQuestion(Question.HickoryDickoryDockTime, module.Module.ModuleType, 1, formatArgs: new[] { (t.c + 1) + ":00" }, correctAnswers: new[] { string.Format("{0}:{1:00}", t.t.h, formatMinute(t.t.m)) })));
+            yield break;
+        }
+
+        List<QandA> qs = new();
+        for (int i = 0; i < 12; i++)
+        {
+            if (stages[i] is (0, 0))
+                continue;
+
+            var unique = Enumerable.Range(0, 12).Where(s => s != i && stages[s] is not (0, 0) && _hickoryDickoryDockStages.Count(d => d[s] == stages[s]) is 1);
+            if (!unique.Any())
+                continue;
+
+            var used = unique.PickRandom();
+            var format = string.Format(translateString(Question.HickoryDickoryDockTime, "the Hickory Dickory Dock which showed {0}:{1:00} when it struck {2}"), stages[used].h, formatMinute(stages[used].m), (used  + 1) + ":00");
+
+            qs.Add(makeQuestion(Question.HickoryDickoryDockTime, module, formattedModuleName: format, formatArgs: new[] { (i + 1) + ":00" }, correctAnswers: new[] { string.Format("{0}:{1:00}", stages[i].h, formatMinute(stages[i].m)) }));
+        }
+
+        if (qs.Count is 0)
+        {
+            legitimatelyNoQuestion(module, $"There were not enough stages where this one (#{GetIntField(comp, "moduleId").Get()}) was unique.");
+            yield break;
+        }
+
+        addQuestions(module, qs);
+    }
+
     private IEnumerator<YieldInstruction> ProcessHiddenColors(ModuleData module)
     {
         var comp = GetComponent(module, "HiddenColorsScript");

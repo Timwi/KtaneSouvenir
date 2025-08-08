@@ -268,6 +268,7 @@ public partial class SouvenirModule
             ["HexamazeModule"] = (ProcessHexamaze, "Hexamaze", "Timwi"),
             ["hexOrbits"] = (ProcessHexOrbits, "hexOrbits", "Anonymous"),
             ["hexOS"] = (ProcessHexOS, "hexOS", "Emik"),
+            ["hickoryDickoryDockModule"] = (ProcessHickoryDickoryDock, "Hickory Dickory Dock", "Anonymous"),
             ["lgndHiddenColors"] = (ProcessHiddenColors, "Hidden Colors", "TasThiluna"),
             ["theHiddenValue"] = (ProcessHiddenValue, "HiddenValue, The", "Anonymous"),
             ["ksmHighScore"] = (ProcessHighScore, "High Score, The", "Hawker"),

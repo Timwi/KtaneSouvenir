@@ -517,5 +517,19 @@ namespace Souvenir
             }
             public override int Count => 2 * (Message.Length - 4);
         }
+
+        public sealed class HickoryDickoryDock : AnswerGeneratorAttribute<string>
+        {
+            public override IEnumerable<string> GetAnswers(SouvenirModule module)
+            {
+                while (true)
+                {
+                    var hour = Random.Range(1, 13);
+                    var minute = new int[] { 0, 7, 15, 22, 30, 37, 45, 52 }.PickRandom();
+                    yield return string.Format("{0}:{1:00}", hour, minute);
+                }
+            }
+            public override int Count => 8 * 12;
+        }
     }
 }
