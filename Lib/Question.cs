@@ -2679,10 +2679,12 @@ public enum Question
         ExampleFormatArguments = new[] { "warm-colored", "cold-colored", "primary-colored", "secondary-colored" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
     RoleReversalWires,
 
-    [SouvenirQuestion("What did the {1} team throw in the {2} round of {0}?", "RPS Judging", ThreeColumns6Answers, Type = AnswerType.Sprites,
-        ExampleFormatArguments = new[] { "red", QandA.Ordinal, "blue", QandA.Ordinal }, ExampleFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { true, false },
-        TranslatableStrings = new[] { "the RPS Judging where the {0} team threw {1} in the {2} round", "dynamite", "tornado", "quicksand", "pit", "chain", "gun", "law", "whip", "sword", "rock", "death", "wall", "sun", "camera", "fire", "chainsaw", "school", "scissors", "poison", "cage", "axe", "peace", "computer", "castle", "snake", "blood", "porcupine", "vulture", "monkey", "king", "queen", "prince", "princess", "police", "woman", "baby", "man", "home", "train", "car", "noise", "bicycle", "tree", "turnip", "duck", "wolf", "cat", "bird", "fish", "spider", "cockroach", "brain", "community", "cross", "money", "vampire", "sponge", "church", "butter", "book", "paper", "cloud", "airplane", "moon", "grass", "film", "toilet", "air", "planet", "guitar", "bowl", "cup", "beer", "rain", "water", "tv", "rainbow", "ufo", "alien", "prayer", "mountain", "satan", "dragon", "diamond", "platinum", "gold", "devil", "fence", "video game", "math", "robot", "heart", "electricity", "lightning", "medusa", "power", "laser", "nuke", "sky", "tank", "helicopter" })]
-    RPSJudgingThrow,
+    [SouvenirQuestion("Which round did the {1} team {2} in {0}?", "RPS Judging", ThreeColumns6Answers, ExampleAnswers = new[] { "first", "second", "third", "fourth", "fifth", "sixth", "None of these", "All of these" },
+        ExampleFormatArguments = new[] { "red", "win", "blue", "win", "red", "lose", "blue", "lose" }, ExampleFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { true, true },
+        TranslatableStrings = new[] { "the RPS Judging where the {0} team {1} the {2} round", "won", "lost", "the RPS Judging with a draw in the {0} round", "None of these", "All of these" })]
+    RPSJudgingWinner,
+    [SouvenirQuestion("Which stage was a draw in {0}?", "RPS Judging", ThreeColumns6Answers, ExampleAnswers = new[] { "first", "second", "third", "fourth", "fifth", "sixth", "None of these", "All of these" })]
+    RPSJudgingDraw,
 
     [SouvenirQuestion("What was the rule number in {0}?", "Rule", ThreeColumns6Answers, AddThe = true)]
     [AnswerGenerator.Integers(0, 15)]

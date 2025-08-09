@@ -187,6 +187,12 @@ Otherwise:
 2. Add `\uE001` to the start of the translated module name, and add `\uE002` to the end.
 3. For the `TranslatableStrings`, list out every vowel to be removed from the question text.
 
+## RPS Judging
+
+- `"None of these"` and `"All of these"` are answers.
+- `"won"` and `"lost"` are only used in the disambiguating phrase.
+- `"win"` and `"lose"` are only used in the main body of the question.
+
 ## White Arrows
 
 This module has a few `TranslatableStrings`.

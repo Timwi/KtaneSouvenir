@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
 using Souvenir;
@@ -489,46 +490,110 @@ public partial class SouvenirModule
         if (_RPSJudgingDisplays.Count != _moduleCounts[moduleId])
             throw new AbandonModuleException("The number of displays did not match the number of RPS Judging modules.");
 
-        var leftSprites = GetArrayField<Sprite>(comp, "SpriteLeft", true).Get(expectedLength: 101).TranslateSprites(500).ToArray();
-        var rightSprites = GetArrayField<Sprite>(comp, "SpriteRight", true).Get(expectedLength: 101).TranslateSprites(500).ToArray();
+        string OrdinalPlusOne(int x) => Ordinal(x + 1);
 
-        if (_moduleCounts[moduleId] == 1)
-            addQuestions(module,
-                leftDisplays.Select((digit, ix) => makeQuestion(Question.RPSJudgingThrow, moduleId, 1, formatArgs: new[] { "blue", Ordinal(ix + 1) }, correctAnswers: new[] { leftSprites[digit] }, allAnswers: leftSprites))
-                .Concat(rightDisplays.Select((digit, ix) => makeQuestion(Question.RPSJudgingThrow, moduleId, 1, formatArgs: new[] { "red", Ordinal(ix + 1) }, correctAnswers: new[] { rightSprites[digit] }, allAnswers: rightSprites))));
-        else
+        void pickAnswers(List<int> valid, out string[] correct, out string[] incorrect)
         {
-            var leftUniqueStages = Enumerable.Range(1, displayedStageCount).Where(stage => _RPSJudgingDisplays.Count(display => display.blue[stage - 1] == leftDisplays[stage - 1]) == 1).Take(2).ToArray();
-            var rightUniqueStages = Enumerable.Range(1, displayedStageCount).Where(stage => _RPSJudgingDisplays.Count(display => display.red[stage - 1] == rightDisplays[stage - 1]) == 1).Take(2).ToArray();
+            bool fiveValid = valid.Count >= 5;
+            bool fiveInvalid = valid.Count <= leftDisplays.Count - 5;
 
-            if ((leftUniqueStages.Length == 0 && rightUniqueStages.Length == 0) || displayedStageCount == 1)
-                legitimatelyNoQuestion(module, $"There are not enough stages at which this one (#{GetIntField(comp, "moduleId").Get()}) had a unique display.");
+            if (valid.Count == 0 || (fiveInvalid && UnityEngine.Random.Range(0, 3) == 0))
+            {
+                correct = new[] { translateString(Question.RPSJudgingDraw, "None of these") };
+                incorrect = Enumerable.Range(0, leftDisplays.Count).Except(valid).Select(OrdinalPlusOne).ToArray();
+            }
+            else if (fiveValid && (UnityEngine.Random.Range(0, 3) == 0 || !fiveInvalid))
+            {
+                correct = new[] { translateString(Question.RPSJudgingDraw, "All of these") };
+                incorrect = valid.Select(OrdinalPlusOne).ToArray();
+            }
             else
             {
-                // This could be replaced with a question sprite, but I feel like that'd be too cramped
-                var throws = new[] { "dynamite", "tornado", "quicksand", "pit", "chain", "gun", "law", "whip", "sword", "rock", "death", "wall", "sun", "camera", "fire", "chainsaw", "school", "scissors", "poison", "cage", "axe", "peace", "computer", "castle", "snake", "blood", "porcupine", "vulture", "monkey", "king", "queen", "prince", "princess", "police", "woman", "baby", "man", "home", "train", "car", "noise", "bicycle", "tree", "turnip", "duck", "wolf", "cat", "bird", "fish", "spider", "cockroach", "brain", "community", "cross", "money", "vampire", "sponge", "church", "butter", "book", "paper", "cloud", "airplane", "moon", "grass", "film", "toilet", "air", "planet", "guitar", "bowl", "cup", "beer", "rain", "water", "tv", "rainbow", "ufo", "alien", "prayer", "mountain", "satan", "dragon", "diamond", "platinum", "gold", "devil", "fence", "video game", "math", "robot", "heart", "electricity", "lightning", "medusa", "power", "laser", "nuke", "sky", "tank", "helicopter" };
-
-                var qs = new List<QandA>();
-                for (var stage = 0; stage < displayedStageCount; stage++)
-                {
-                    var uniqueStage = leftUniqueStages.Concat(rightUniqueStages).FirstOrDefault(s => s != stage + 1);
-                    if (uniqueStage != 0)
-                    {
-                        var isLeft = leftUniqueStages.Contains(uniqueStage);
-                        var isRight = leftUniqueStages.Contains(uniqueStage);
-                        if (isLeft && isRight)
-                            isLeft = UnityEngine.Random.Range(0, 2) == 0;
-
-                        var formattedName = string.Format(translateString(Question.RPSJudgingThrow, "the RPS Judging where the {0} team threw {1} in the {2} round"), isLeft ? "blue" : "red", translateString(Question.RPSJudgingThrow, throws[(isLeft ? leftDisplays : rightDisplays)[uniqueStage - 1]]), Ordinal(uniqueStage));
-                        qs.Add(makeQuestion(Question.RPSJudgingThrow, moduleId, 0, formattedModuleName: formattedName,
-                            formatArgs: new[] { "blue", Ordinal(stage + 1) }, correctAnswers: new[] { leftSprites[leftDisplays[stage]] }, allAnswers: leftSprites));
-                        qs.Add(makeQuestion(Question.RPSJudgingThrow, moduleId, 0, formattedModuleName: formattedName,
-                            formatArgs: new[] { "red", Ordinal(stage + 1) }, correctAnswers: new[] { rightSprites[rightDisplays[stage]] }, allAnswers: rightSprites));
-                    }
-                }
-                addQuestions(module, qs);
+                correct = valid.Select(OrdinalPlusOne).ToArray();
+                incorrect = Enumerable.Range(0, leftDisplays.Count).Except(valid).Select(OrdinalPlusOne).ToArray();
             }
         }
+
+        static int matchup(int a, int b) => a == b ? 0 : (b - a + 101) % 101 < 51 ? 1 : -1;
+
+        bool pickUniqueStage(int badCondition, out string format)
+        {
+            if (_moduleCounts[moduleId] == 1)
+            {
+                format = null;
+                return true;
+            }
+
+            var options = new[] { -1, 0, 1 }.Except(new[] { badCondition }).Select(condition =>
+                Enumerable
+                    .Range(0, leftDisplays.Count)
+                    .Where(i => _RPSJudgingDisplays.Count(d => matchup(d.blue[i], d.red[i]) == condition) == 1)
+                    .Select(i => (condition, i)))
+                .Aggregate(Enumerable.Concat)
+                .ToArray();
+
+            if (options.Length == 0)
+            {
+                format = null;
+                return false;
+            }
+
+            format = (options.PickRandom(), UnityEngine.Random.Range(0, 2) == 0) switch
+            {
+                ((-1, var i), var b) => string.Format(
+                    translateString(Question.RPSJudgingWinner, "the RPS Judging where the {0} team {1} the {2} round"),
+                    translateFormatArg(Question.RPSJudgingWinner, b ? "blue" : "red"), translateFormatArg(Question.RPSJudgingWinner, b ? "lost" : "won"), OrdinalPlusOne(i)),
+                ((0, var i), _) => string.Format(
+                    translateString(Question.RPSJudgingWinner, "the RPS Judging with a draw in the {0} round"),
+                    OrdinalPlusOne(i)),
+                ((1, var i), var b) => string.Format(
+                    translateString(Question.RPSJudgingWinner, "the RPS Judging where the {0} team {1} the {2} round"),
+                    translateFormatArg(Question.RPSJudgingWinner, b ? "blue" : "red"), translateFormatArg(Question.RPSJudgingWinner, b ? "won" : "lost"), OrdinalPlusOne(i)),
+                _ => throw new InvalidOperationException()
+            };
+            return true;
+        }
+
+        IEnumerable<QandA> makeQuestions()
+        {
+            List<int> wins = new(), losses = new(), draws = new();
+            for (int i = 0; i < leftDisplays.Count; i++)
+                (matchup(leftDisplays[i], rightDisplays[i]) switch
+                {
+                    -1 => losses,
+                    0 => draws,
+                    1 => wins,
+                    _ => throw new InvalidOperationException()
+                }).Add(i);
+
+            string format = null;
+            string[] correct, incorrect;
+            if ((draws.Count > 0 || UnityEngine.Random.Range(0, 10) == 0) && pickUniqueStage(0, out format))
+            {
+                pickAnswers(draws, out correct, out incorrect);
+                yield return makeQuestion(Question.RPSJudgingDraw, moduleId, 1, formattedModuleName: format, correctAnswers: correct, preferredWrongAnswers: incorrect);
+            }
+            if ((wins.Count > 0 || UnityEngine.Random.Range(0, 2) == 0) && pickUniqueStage(1, out format))
+            {
+                pickAnswers(wins, out correct, out incorrect);
+                yield return makeQuestion(Question.RPSJudgingWinner, moduleId, 1, formattedModuleName: format, formatArgs: new[] { "blue", "win" }, correctAnswers: correct, preferredWrongAnswers: incorrect);
+                yield return makeQuestion(Question.RPSJudgingWinner, moduleId, 1, formattedModuleName: format, formatArgs: new[] { "red", "lose" }, correctAnswers: correct, preferredWrongAnswers: incorrect);
+            }
+            if ((losses.Count > 0 || UnityEngine.Random.Range(0, 2) == 0) && pickUniqueStage(-1, out format))
+            {
+                pickAnswers(losses, out correct, out incorrect);
+                yield return makeQuestion(Question.RPSJudgingWinner, moduleId, 1, formattedModuleName: format, formatArgs: new[] { "blue", "lose" }, correctAnswers: correct, preferredWrongAnswers: incorrect);
+                yield return makeQuestion(Question.RPSJudgingWinner, moduleId, 1, formattedModuleName: format, formatArgs: new[] { "red", "win" }, correctAnswers: correct, preferredWrongAnswers: incorrect);
+            }
+        }
+
+        var qs = makeQuestions().ToArray();
+        if (qs.Length == 0)
+        {
+            legitimatelyNoQuestion(module, $"There were not enough stages at which this one (#{GetIntField(comp, "moduleId").Get()}) had a unique result.");
+            yield break;
+        }
+        addQuestions(module, qs);
     }
 
     private IEnumerator<YieldInstruction> ProcessRule(ModuleData module)
