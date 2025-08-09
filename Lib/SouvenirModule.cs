@@ -108,13 +108,13 @@ public partial class SouvenirModule : MonoBehaviour
     public Mesh HighlightLong;  // 4 answers, 2 columns
     public Mesh HighlightVeryLong;  // 4 long answers, 1 column
 
-    public static readonly string[] _defaultIgnoredModules = { "The Heart", "The Swan", "+", "14", "42", "501", "A>N<D", "Bamboozling Time Keeper", "Black Arrows", "Brainf---", "Busy Beaver", "Cube Synchronization", "Don't Touch Anything", "Floor Lights", "Forget Any Color", "Forget Enigma", "Forget Everything", "Forget Infinity", "Forget Maze Not", "Forget It Not", "Forget Me Not", "Forget Me Later", "Forget Perspective", "Forget The Colors", "Forget This", "Forget Them All", "Forget Us Not", "Iconic", "Keypad Directionality", "Kugelblitz", "Multitask", "OmegaDestroyer", "OmegaForget", "Organization", "Password Destroyer", "Purgatory", "RPS Judging", "Security Council", "Shoddy Chess", "Simon Forgets", "Simon's Stages", "Soulscream", "Souvenir", "Tallordered Keys", "The Time Keeper", "The Troll", "The Twin", "The Very Annoying Button", "Timing is Everything", "Turn The Key", "Ultimate Custom Night", "Whiteout", "Übermodule" };
+    private static readonly string[] _defaultIgnoredModuleIDs = { "MemoryV2", "SouvenirModule", "HexiEvilFMN", "simonsStages", "forgetThis", "PurgatoryModule", "troll", "forgetThemAll", "tallorderedKeys", "forgetEnigma", "forgetUsNot", "qkForgetPerspective", "organizationModule", "veryAnnoyingButton", "forgetMeLater", "ubermodule", "qkUCN", "14", "forgetItNot", "simonForgets", "brainf", "ForgetTheColors", "RPSJudging", "TheTwinModule", "iconic", "omegaForget", "kugelblitz", "ANDmodule", "dontTouchAnything", "busyBeaver", "whiteout", "ForgetAnyColor", "KeypadDirectionality", "SecurityCouncil", "ShoddyChessModule", "FloorLights", "blackArrowsModule", "forgetMazeNot", "plus", "soulscream", "qkCubeSynchronization", "OutOfTime", "tetrahedron", "BoardWalk", "gemory", "duckKonundrum", "ConcentrationModule", "TwisterModule", "forgetOurVoices", "soulsong", "idExchange", "GSEight", "SimpleBoss", "SimpleBossNot", "KritGrandPrix", "ForgetMeMaybeModule", "HyperForget", "qkBitwiseOblivion", "damoclesLumber", "top10nums", "queensWarModule", "forget_fractal", "pointerPointerModule", "slightGibberishTwistModule", "PianoParadoxModule", "Omission", "inOrderModule", "nobodysCodeModule", "perspectiveStackingModule", "ReportingAnomalies", "forgetle", "ActionsAndConsequences", "fizzBoss", "WatchTheClock", "solveShift", "BlackoutModule", "hickoryDickoryDockModule", "temporalSequence", "sbemailsongs", "spectatorSport", "limboKeysRB", "clearanceCodeModule", "smashmarrykill", "forgetfulGrid", "GSMarmite", "WAR", "NumericalNightmare", "ForgetMeNoModule", "TurnTheKey", "timeKeeper", "timingIsEverything", "bamboozlingTimeKeeper", "pwDestroyer", "omegaDestroyer", "kataZenerCards", "doomsdayButton", "redLightGreenLight", "repeatAgain", "Crazy", "FalseInfo", "minskMetro" };
 
     private Config _config;
     private readonly List<QuestionBatch> _questions = new();
     private readonly HashSet<KMBombModule> _legitimatelyNoQuestions = new();
     private readonly HashSet<string> _supportedModuleNames = new();
-    private readonly HashSet<string> _ignoredModules = new();
+    private readonly HashSet<string> _ignoredModuleIDs = new();
     private bool _isActivated = false;
     private ITranslation _translation;
 
@@ -233,15 +233,15 @@ public partial class SouvenirModule : MonoBehaviour
     #endregion
 
     #region Souvenir’s own module logic
-    void Start()
+    private void Start()
     {
         _moduleId = _moduleIdCounter;
         _moduleIdCounter++;
 
-        Debug.Log($"[Souvenir #{_moduleId}] Souvenir version: {Version}");
+        Debug.Log($"[Souvenir #{_moduleId}] Souvenir version: {_version}");
 
         // Use Souvenir-settings.txt as opposed to SouvenirSettings.json for existing settings
-        ModSettings<Config> modConfig = new ModSettings<Config>("Souvenir-settings");
+        var modConfig = new ModSettings<Config>("Souvenir-settings");
         _config = modConfig.Read();
         if (_config.Language is null)
         {
@@ -249,9 +249,7 @@ public partial class SouvenirModule : MonoBehaviour
             modConfig.Write(_config);
         }
 
-        var ignoredList = BossModule.GetIgnoredModules(Module, _defaultIgnoredModules);
-        Debug.Log($"‹Souvenir #{_moduleId}› Ignored modules: {ignoredList.JoinString(", ")}");
-        _ignoredModules.UnionWith(ignoredList);
+        _ignoredModuleIDs.UnionWith(BossModule.GetIgnoredModuleIDs(Module, _defaultIgnoredModuleIDs));
 
         if (_config.Language != null && TranslationInfo.AllTranslations.TryGetValue(_config.Language, out var tr))
             _translation = tr;
@@ -292,7 +290,7 @@ public partial class SouvenirModule : MonoBehaviour
         if (transform.parent != null && !Application.isEditor)
         {
             FieldInfo<object> fldType = null;
-            for (int i = 0; i < transform.parent.childCount; i++)
+            for (var i = 0; i < transform.parent.childCount; i++)
             {
                 var gameObject = transform.parent.GetChild(i).gameObject;
                 if (gameObject.GetComponent<KMBombModule>() is KMBombModule moddedModule)
@@ -393,7 +391,7 @@ public partial class SouvenirModule : MonoBehaviour
             else
             {
                 // Playing for real
-                for (int i = 0; i < 6; i++)
+                for (var i = 0; i < 6; i++)
                     setAnswerHandler(i, HandleAnswer);
                 disappear();
                 StartCoroutine(Play());
@@ -403,7 +401,7 @@ public partial class SouvenirModule : MonoBehaviour
         Sprites.ColorBlit ??= ColorBlitMaterial;
     }
 
-    void showExampleQuestion()
+    private void showExampleQuestion()
     {
         if (_showIntros)
         {
@@ -428,7 +426,7 @@ public partial class SouvenirModule : MonoBehaviour
         }
         var fmt = new object[attr.ExampleFormatArgumentGroupSize + 1];
         fmt[0] = formatModuleName(q, _curExampleOrdinal > 0, _curExampleOrdinal);
-        for (int i = 0; i < attr.ExampleFormatArgumentGroupSize; i++)
+        for (var i = 0; i < attr.ExampleFormatArgumentGroupSize; i++)
         {
             var arg = attr.ExampleFormatArguments[_curExampleVariant * attr.ExampleFormatArgumentGroupSize + i];
             fmt[i + 1] = arg == QandA.Ordinal ? Ordinal(Rnd.Range(1, 6)) : translateFormatArg(q, arg);
@@ -476,7 +474,7 @@ public partial class SouvenirModule : MonoBehaviour
                         answers.RemoveRange(attr.NumAnswers, answers.Count - attr.NumAnswers);
                     }
                     var correctAnswers = answers.Select(ans => attr.TranslateAnswers ? translateAnswer(q, ans) : ans).ToArray();
-                    int fontIndex = attr.Type == AnswerType.DynamicFont || attr.Type == AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type;
+                    var fontIndex = attr.Type is AnswerType.DynamicFont or AnswerType.Default ? (_translation?.DefaultFontIndex ?? 0) : (int) attr.Type;
                     answerSet = new QandA.TextAnswerSet(attr.NumAnswers, attr.Layout, correctAnswers, Fonts[fontIndex], attr.FontSize, attr.CharacterSize, FontTextures[fontIndex], FontMaterial);
                     break;
             }
@@ -495,7 +493,7 @@ public partial class SouvenirModule : MonoBehaviour
     private string translateString(Question question, string str) => str == null ? null : _translation?.Translate(question)?.TranslatableStrings?.Get(str, str) ?? str;
     private string translateModuleName(Question question, string name = null) => _translation?.Translate(question)?.ModuleName ?? name;
 
-    void setAnswerHandler(int index, Action<int> handler)
+    private void setAnswerHandler(int index, Action<int> handler)
     {
         Answers[index].OnInteract = delegate
         {
@@ -559,7 +557,7 @@ public partial class SouvenirModule : MonoBehaviour
     private IEnumerator revealThenMoveOn()
     {
         var on = false;
-        for (int i = 0; i < 14; i++)
+        for (var i = 0; i < 14; i++)
         {
             _currentQuestion.BlinkCorrectAnswer(on, this);
             on = !on;
@@ -575,7 +573,7 @@ public partial class SouvenirModule : MonoBehaviour
         if (!Application.isEditor && TwitchPlaysActive)
             ActivateTwitchPlaysNumbers();
 
-        var numPlayableModules = Bomb.GetSolvableModuleNames().Count(x => !_ignoredModules.Contains(x));
+        var numPlayableModules = Bomb.GetSolvableModuleIDs().Count(x => !_ignoredModuleIDs.Contains(x));
 
         while (true)
         {
@@ -583,7 +581,7 @@ public partial class SouvenirModule : MonoBehaviour
             while (_avoidQuestions > 0)
                 yield return new WaitForSeconds(.1f);
 
-            var numSolved = Bomb.GetSolvedModuleNames().Count(x => !_ignoredModules.Contains(x));
+            var numSolved = Bomb.GetSolvedModuleIDs().Count(x => !_ignoredModuleIDs.Contains(x));
             _noUnignoredModulesLeft = numSolved >= numPlayableModules;
 
             if (_questions.Count == 0 && (_noUnignoredModulesLeft || _coroutinesActive == 0))
@@ -813,10 +811,7 @@ public partial class SouvenirModule : MonoBehaviour
                     if (!canMoveNext)
                         break;
 
-                    if (e.Current is WaitForSolveInstruction)
-                        yield return new WaitWhile(() => data.Unsolved);
-                    else
-                        yield return e.Current;
+                    yield return e.Current is WaitForSolveInstruction ? new WaitWhile(() => data.Unsolved) : e.Current;
 
                     if (TwitchAbandonModule.Contains(module) && !_config.IgnoreTpAutosolvers)
                     {
@@ -887,7 +882,7 @@ public partial class SouvenirModule : MonoBehaviour
     private FieldInfo GetFieldImpl<T>(Type targetType, string name, bool isPublic, BindingFlags bindingFlags, bool noThrow = false)
     {
         FieldInfo fld;
-        Type type = targetType;
+        var type = targetType;
         while (type != null && type != typeof(object))
         {
             if ((fld = type.GetField(name, (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | bindingFlags)) != null)
@@ -930,11 +925,10 @@ public partial class SouvenirModule : MonoBehaviour
     {
         var bindingFlags = (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | (isStatic ? BindingFlags.Static : BindingFlags.Instance);
         var mths = targetType.GetMethods(bindingFlags).Where(m => m.Name == name && m.GetParameters().Length == numParameters && returnType.IsAssignableFrom(m.ReturnType)).Take(2).ToArray();
-        if (mths.Length == 0)
-            throw new AbandonModuleException($"Type {targetType} does not contain a {(isPublic ? "public" : "non-public")} {(isStatic ? "static" : "instance")} method {name} with return type {returnType.FullName} and {numParameters} parameters.");
-        if (mths.Length > 1)
-            throw new AbandonModuleException($"Type {targetType} contains multiple {(isPublic ? "public" : "non-public")} {(isStatic ? "static" : "instance")} methods {name} with return type {returnType.FullName} and {numParameters} parameters.");
-        return mths[0];
+        return
+            mths.Length == 0 ? throw new AbandonModuleException($"Type {targetType} does not contain a {(isPublic ? "public" : "non-public")} {(isStatic ? "static" : "instance")} method {name} with return type {returnType.FullName} and {numParameters} parameters.") :
+            mths.Length > 1 ? throw new AbandonModuleException($"Type {targetType} contains multiple {(isPublic ? "public" : "non-public")} {(isStatic ? "static" : "instance")} methods {name} with return type {returnType.FullName} and {numParameters} parameters.") :
+            mths[0];
     }
 
     private PropertyInfo<T> GetProperty<T>(object target, string name, bool isPublic = false) => GetPropertyImpl<T>(
@@ -949,56 +943,32 @@ public partial class SouvenirModule : MonoBehaviour
     {
         var fld = targetType.GetProperty(name, (isPublic ? BindingFlags.Public : BindingFlags.NonPublic) | bindingFlags)
             ?? throw new AbandonModuleException($"Type {targetType} does not contain {(isPublic ? "public" : "non-public")} property {name}. Properties are: {targetType.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static).Where(f => f.GetGetMethod() != null).Select(f => $"{(f.GetGetMethod().IsPublic ? "public" : "private")} {f.PropertyType.FullName} {f.Name}").JoinString(", ")}");
-        if (!typeof(T).IsAssignableFrom(fld.PropertyType))
-            throw new AbandonModuleException($"Type {targetType} has {(isPublic ? "public" : "non-public")} field {name} of type {fld.PropertyType.FullName} but expected type {typeof(T).FullName}.");
-        return new PropertyInfo<T>(target, fld);
+        return !typeof(T).IsAssignableFrom(fld.PropertyType)
+            ? throw new AbandonModuleException($"Type {targetType} has {(isPublic ? "public" : "non-public")} field {name} of type {fld.PropertyType.FullName} but expected type {typeof(T).FullName}.")
+            : new PropertyInfo<T>(target, fld);
     }
     #endregion
 
     #region Methods for adding questions to the pool (used by module handlers)
-    private void addQuestion(ModuleData module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0)
-    {
-        addQuestion(module.Module, question, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation, module.SolveIndex);
-    }
+    private void addQuestion(ModuleData module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0) => addQuestion(module.Module, question, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation, module.SolveIndex);
 
-    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0, int solveIx = 0)
-    {
-        addQuestions(module, makeQuestion(question, module.ModuleType, solveIx, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation));
-    }
+    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, string[] correctAnswers = null, string[] preferredWrongAnswers = null, string[] allAnswers = null, float questionSpriteRotation = 0, int solveIx = 0) => addQuestions(module, makeQuestion(question, module.ModuleType, solveIx, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation));
 
-    private void addQuestion(ModuleData module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Sprite[] correctAnswers = null, Sprite[] allAnswers = null, Sprite[] preferredWrongAnswers = null, float questionSpriteRotation = 0)
-    {
-        addQuestion(module.Module, question, questionSprite, formattedModuleName, formatArguments, correctAnswers, allAnswers, preferredWrongAnswers, questionSpriteRotation, module.SolveIndex);
-    }
+    private void addQuestion(ModuleData module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Sprite[] correctAnswers = null, Sprite[] allAnswers = null, Sprite[] preferredWrongAnswers = null, float questionSpriteRotation = 0) => addQuestion(module.Module, question, questionSprite, formattedModuleName, formatArguments, correctAnswers, allAnswers, preferredWrongAnswers, questionSpriteRotation, module.SolveIndex);
 
-    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Sprite[] correctAnswers = null, Sprite[] allAnswers = null, Sprite[] preferredWrongAnswers = null, float questionSpriteRotation = 0, int solveIx = 0)
-    {
-        addQuestions(module, makeQuestion(question, module.ModuleType, solveIx, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation));
-    }
+    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Sprite[] correctAnswers = null, Sprite[] allAnswers = null, Sprite[] preferredWrongAnswers = null, float questionSpriteRotation = 0, int solveIx = 0) => addQuestions(module, makeQuestion(question, module.ModuleType, solveIx, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation));
 
-    private void addQuestion(ModuleData module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0)
-    {
-        addQuestion(module.Module, question, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, questionSpriteRotation, module.SolveIndex);
-    }
+    private void addQuestion(ModuleData module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0) => addQuestion(module.Module, question, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, questionSpriteRotation, module.SolveIndex);
 
-    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0, int solveIx = 0)
-    {
-        addQuestions(module, makeQuestion(question, module.ModuleType, solveIx, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, questionSpriteRotation));
-    }
+    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, Coord[] correctAnswers = null, Coord[] preferredWrongAnswers = null, float questionSpriteRotation = 0, int solveIx = 0) => addQuestions(module, makeQuestion(question, module.ModuleType, solveIx, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, questionSpriteRotation));
 
-    private void addQuestion(ModuleData module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, AudioClip[] correctAnswers = null, AudioClip[] allAnswers = null, AudioClip[] preferredWrongAnswers = null, float questionSpriteRotation = 0)
-    {
-        addQuestion(module.Module, question, questionSprite, formattedModuleName, formatArguments, correctAnswers, allAnswers, preferredWrongAnswers, questionSpriteRotation, module.SolveIndex);
-    }
+    private void addQuestion(ModuleData module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, AudioClip[] correctAnswers = null, AudioClip[] allAnswers = null, AudioClip[] preferredWrongAnswers = null, float questionSpriteRotation = 0) => addQuestion(module.Module, question, questionSprite, formattedModuleName, formatArguments, correctAnswers, allAnswers, preferredWrongAnswers, questionSpriteRotation, module.SolveIndex);
 
-    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, AudioClip[] correctAnswers = null, AudioClip[] allAnswers = null, AudioClip[] preferredWrongAnswers = null, float questionSpriteRotation = 0, int solveIx = 0)
-    {
-        addQuestions(module, makeQuestion(question, module.ModuleType, solveIx, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation));
-    }
+    private void addQuestion(KMBombModule module, Question question, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArguments = null, AudioClip[] correctAnswers = null, AudioClip[] allAnswers = null, AudioClip[] preferredWrongAnswers = null, float questionSpriteRotation = 0, int solveIx = 0) => addQuestions(module, makeQuestion(question, module.ModuleType, solveIx, questionSprite, formattedModuleName, formatArguments, correctAnswers, preferredWrongAnswers, allAnswers, questionSpriteRotation));
 
     private void addQuestions(KMBombModule module, IEnumerable<QandA> questions)
     {
-        if (_config.IsExcluded(module, _ignoredModules))
+        if (_config.IsExcluded(module, _ignoredModuleIDs))
         {
             Debug.Log($"<Souvenir #{_moduleId}> Discarding questions for {module.ModuleDisplayName} because it is excluded in the mod settings.");
             _legitimatelyNoQuestions.Add(module);
@@ -1101,13 +1071,10 @@ public partial class SouvenirModule : MonoBehaviour
             (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation),
             (attr, num, answers) => new QandA.SpriteAnswerSet(num, attr.Layout, answers.Select(Sprites.GenerateGridSprite).ToArray()), formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, Enumerable.Range(0, w * h).Select(ix => new Coord(w, h, ix)).ToArray(), AnswerType.Sprites);
     }
-    private QandA makeQuestion(Question question, string moduleId, int solveIx, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, AudioClip[] correctAnswers = null, AudioClip[] preferredWrongAnswers = null, AudioClip[] allAnswers = null, float questionSpriteRotation = 0)
-    {
-        return makeQuestion(question, moduleId, solveIx,
+    private QandA makeQuestion(Question question, string moduleId, int solveIx, Sprite questionSprite = null, string formattedModuleName = null, string[] formatArgs = null, AudioClip[] correctAnswers = null, AudioClip[] preferredWrongAnswers = null, AudioClip[] allAnswers = null, float questionSpriteRotation = 0) => makeQuestion(question, moduleId, solveIx,
             (attr, q) => new QandA.TextQuestion(q, attr.Layout, questionSprite, questionSpriteRotation),
             (attr, num, answers) => new QandA.AudioAnswerSet(num, attr.Layout, answers, this, attr.AudioSizeMultiplier, attr.ForeignAudioID),
             formattedModuleName, formatArgs, correctAnswers, preferredWrongAnswers, allAnswers ?? question.GetAllSounds(this), AnswerType.Audio);
-    }
 
     private QandA makeQuestion<T>(Question question, string moduleId, int solveIx, Func<SouvenirQuestionAttribute, string, QandA.QuestionBase> questionConstructor,
         Func<SouvenirQuestionAttribute, int, T[], QandA.AnswerSet> answerSetConstructor, string formattedModuleName = null,
@@ -1257,7 +1224,7 @@ public partial class SouvenirModule : MonoBehaviour
     private readonly string TwitchHelpMessage = @"!{0} answer 3 [order is from top to bottom, then left to right] | !{0} cycle [play all audio clips]";
 #pragma warning restore 414
 
-    IEnumerator ProcessTwitchCommand(string command)
+    private IEnumerator ProcessTwitchCommand(string command)
     {
         Match m;
 
@@ -1289,7 +1256,7 @@ public partial class SouvenirModule : MonoBehaviour
             }
 
             _showIntros = false;
-            int substringMatch = -1;
+            var substringMatch = -1;
             for (var i = 0; i < _exampleQuestions.Length; i++)
             {
                 var j = (i + _curExampleQuestion + 1) % _exampleQuestions.Length;
@@ -1323,10 +1290,10 @@ public partial class SouvenirModule : MonoBehaviour
         if (_currentQuestion.Answers is QandA.AudioAnswerSet audio && Regex.IsMatch(command, @"\A\s*cycle\s*\z", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
         {
             yield return null;
-            for (int i = 0; i < audio.NumAnswersAllowed; i++)
+            for (var i = 0; i < audio.NumAnswersAllowed; i++)
             {
-                float startTime = Time.time;
-                float endTime = startTime + audio.PlaySound(i);
+                var startTime = Time.time;
+                var endTime = startTime + audio.PlaySound(i);
                 while (Time.time < endTime)
                 {
                     if (TwitchShouldCancelCommand)
@@ -1360,7 +1327,7 @@ public partial class SouvenirModule : MonoBehaviour
         yield return new[] { Answers[number - 1] };
     }
 
-    IEnumerator TwitchHandleForcedSolve()
+    private IEnumerator TwitchHandleForcedSolve()
     {
         while (true)
         {

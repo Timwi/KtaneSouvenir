@@ -9,10 +9,7 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
-    private IEnumerator<YieldInstruction> ProcessDACHMaze(ModuleData module)
-    {
-        return processWorldMaze(module, "DACHMaze", Question.DACHMazeOrigin);
-    }
+    private IEnumerator<YieldInstruction> ProcessDACHMaze(ModuleData module) => processWorldMaze(module, "DACHMaze", Question.DACHMazeOrigin);
 
     private IEnumerator<YieldInstruction> ProcessDeafAlley(ModuleData module)
     {
@@ -47,7 +44,7 @@ public partial class SouvenirModule
                 return false;
             };
 
-        string firstCardDeck = deck.GetValue(0).GetType().ToString().Replace("Card", "");
+        var firstCardDeck = deck.GetValue(0).GetType().ToString().Replace("Card", "");
 
         // correcting original misspelling
         if (firstCardDeck == "Artic")
@@ -91,7 +88,7 @@ public partial class SouvenirModule
         var fldWord = GetField<object>(infos[0], "Word");
         var colours = infos.Select(inf => (int) fldColour.GetFrom(inf)).ToArray();
         var words = infos.Select(inf => (int) fldWord.GetFrom(inf)).ToArray();
-        if (colours.Any(c => c < 0 || c >= 6) || words.Any(w => w < 0 || w >= 6))
+        if (colours.Any(c => c is < 0 or >= 6) || words.Any(w => w is < 0 or >= 6))
             throw new AbandonModuleException($"colours/words are: [{colours.JoinString(", ")}], [{words.JoinString(", ")}]; expected values 0–5");
 
         var qs = new List<QandA>();
@@ -111,9 +108,9 @@ public partial class SouvenirModule
         var initial = GetArrayField<int>(comp, "_initialDisplayNums").Get();
 
         var rands = new List<int>();
-        for (int i = 0; i < 50; i++)
+        for (var i = 0; i < 50; i++)
         {
-            int r = Rnd.Range(0, 3);
+            var r = Rnd.Range(0, 3);
             if (r == 0)
                 rands.Add(Rnd.Range(0, 10));
             else if (r == 1)
@@ -123,7 +120,7 @@ public partial class SouvenirModule
         }
 
         var qs = new List<QandA>();
-        for (int disp = 0; disp < 5; disp++)
+        for (var disp = 0; disp < 5; disp++)
             qs.Add(makeQuestion(Question.DenialDisplaysDisplays, module,
                 formatArgs: new[] { "ABCDE"[disp].ToString() },
                 correctAnswers: new[] { initial[disp].ToString() },
@@ -214,10 +211,10 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var toneString = GetField<string>(comp, "questionWord").Get();
-        if (!_dialtonesAnswers.TryGetValue(toneString, out AudioClip question))
+        if (!_dialtonesAnswers.TryGetValue(toneString, out var question))
             throw new AbandonModuleException($"Unexpected set of question dialtones {toneString}");
         toneString = GetField<string>(comp, "answerWord").Get();
-        if (!_dialtonesAnswers.TryGetValue(toneString, out AudioClip solution))
+        if (!_dialtonesAnswers.TryGetValue(toneString, out var solution))
             throw new AbandonModuleException($"Unexpected set of solution dialtones {toneString}");
 
         addQuestion(module, Question.DialtonesDialtones,
@@ -234,7 +231,7 @@ public partial class SouvenirModule
         var displayedNums = GetField<int[][]>(comp, "Data").Get().First();
 
         var qs = new List<QandA>();
-        for (int i = 0; i < 9; i++)
+        for (var i = 0; i < 9; i++)
             qs.Add(makeQuestion(Question.DigisibilityDisplayedNumber, module,
                 formatArgs: new[] { Ordinal(i + 1) },
                 correctAnswers: new[] { displayedNums[i].ToString() },
@@ -340,7 +337,7 @@ public partial class SouvenirModule
             yield return null;
             if (recompute)
             {
-                missing = fldMissing.Get(expectedLength: 6, validator: number => number < 0 || number > 2 ? "expected range 0–2 inclusively" : null).ToArray();
+                missing = fldMissing.Get(expectedLength: 6, validator: number => number is < 0 or > 2 ? "expected range 0–2 inclusively" : null).ToArray();
                 info = fldInfo.Get(expectedLength: 6, validator: arr => arr.Length != 3 ? "expected length 3" : null).ToArray();
                 quirks = fldQuirk.Get(expectedLength: 6).ToArray();
 
@@ -405,11 +402,11 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "DivisableNumbers");
         yield return WaitForSolve;
 
-        var finalNumbers = GetArrayField<int>(comp, "finalNumbers").Get(expectedLength: 3, validator: number => number < 0 || number > 9999 ? "expected range 0–9999" : null);
+        var finalNumbers = GetArrayField<int>(comp, "finalNumbers").Get(expectedLength: 3, validator: number => number is < 0 or > 9999 ? "expected range 0–9999" : null);
         var finalNumbersStr = finalNumbers.Select(n => n.ToString()).ToArray();
 
         var qs = new List<QandA>();
-        for (int i = 0; i < finalNumbers.Length; i++)
+        for (var i = 0; i < finalNumbers.Length; i++)
             qs.Add(makeQuestion(Question.DivisibleNumbersNumbers, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { finalNumbersStr[i] }, preferredWrongAnswers: finalNumbersStr));
         addQuestions(module, qs);
     }
@@ -454,7 +451,7 @@ public partial class SouvenirModule
         var qs = new List<QandA>(17) { makeQuestion(Question.DoubleArrowsStart, module, correctAnswers: new[] { start }) };
         var callib = GetArrayField<int[]>(comp, "callib").Get(expectedLength: 2);
         var dirs = new[] { "Left", "Up", "Right", "Down" };
-        for (int i = 0; i < 8; i++)
+        for (var i = 0; i < 8; i++)
         {
             qs.Add(makeQuestion(Question.DoubleArrowsMovement, module, formatArgs: new[] { $"{(i < 4 ? "inner" : "outer")} {dirs[i % 4].ToLowerInvariant()}" }, correctAnswers: new[] { dirs[callib[i / 4][i % 4]] }));
             qs.Add(makeQuestion(Question.DoubleArrowsArrow, module, formatArgs: new[] { i < 4 ? "inner" : "outer", dirs[callib[i / 4][i % 4]].ToLowerInvariant() }, correctAnswers: new[] { dirs[i % 4] }));
@@ -490,7 +487,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         // Check the value of color1 because we might have reassigned it inside the button handler
-        if (color1 < 0 || color1 > 4)
+        if (color1 is < 0 or > 4)
             throw new AbandonModuleException($"First stage color has unexpected value: {color1} (expected 0 to 4).");
 
         var color2 = fldColor.Get(min: 0, max: 4);
@@ -564,7 +561,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var submitIndex = GetField<Array>(comp, "_functions").Get().Cast<object>().IndexOf(f => f.ToString() == "Submit");
-        if (submitIndex < 0 || submitIndex > 4)
+        if (submitIndex is < 0 or > 4)
             throw new AbandonModuleException($"Submit button is at index {submitIndex} (expected 0–4).");
 
         addQuestion(module, Question.DoubleOhSubmitButton, correctAnswers: new[] { "↕↔⇔⇕◆".Substring(submitIndex, 1) });
@@ -582,7 +579,7 @@ public partial class SouvenirModule
         var screen = GetArrayField<GameObject>(comp, "screens", isPublic: true).Get(expectedLength: 2)[0];
         var colors = GetArrayField<int>(comp, "colors");
 
-        bool newStage = true;
+        var newStage = true;
         while (module.Unsolved)
         {
             if (newStage && screen.activeSelf)
@@ -629,7 +626,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        string targetWord = GetField<string>(comp, "targetWord").Get().ToLowerInvariant();
+        var targetWord = GetField<string>(comp, "targetWord").Get().ToLowerInvariant();
         addQuestion(module, Question.DreamcipherWord, correctAnswers: new[] { targetWord }, preferredWrongAnswers: wordList);
     }
 

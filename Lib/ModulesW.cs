@@ -60,7 +60,7 @@ public partial class SouvenirModule
         var patternSprites = new Dictionary<int, Sprite[]>();
         var spriteTake = new[] { 4, 4, 3, 2, 2, 2, 2, 2, 9, 4, 40, 13, 4, 8, 21, 38 };
         var spriteSkip = 0;
-        for (int i = 0; i < spriteTake.Length; i++)
+        for (var i = 0; i < spriteTake.Length; i++)
         {
             patternSprites.Add(i, WavetappingSprites.Skip(spriteSkip).Take(spriteTake[i]).ToArray());
             spriteSkip += spriteTake[i];
@@ -70,12 +70,12 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
 
-        for (int stage = 0; stage < intPatterns.Length; stage++)
+        for (var stage = 0; stage < intPatterns.Length; stage++)
             qs.Add(makeQuestion(Question.WavetappingPatterns, module,
                 formatArgs: new[] { Ordinal(stage + 1) },
                 correctAnswers: new[] { patternSprites[stageColors[stage]][intPatterns[stage]] },
                 preferredWrongAnswers: stageColors.SelectMany(stages => patternSprites[stages]).ToArray()));
-        for (int stage = 0; stage < 2; stage++)
+        for (var stage = 0; stage < 2; stage++)
             qs.Add(makeQuestion(Question.WavetappingColors, module,
                 formatArgs: new[] { Ordinal(stage + 1) },
                 correctAnswers: new[] { colorNames[stageColors[stage]] }));
@@ -98,7 +98,7 @@ public partial class SouvenirModule
         var names = new string[2];
         var skill = new Enum[2];
 
-        for (int i = 0; i < 2; i++)
+        for (var i = 0; i < 2; i++)
         {
             var person = contestantArr[i];
             skill[i] = fldCategory.GetFrom(person);
@@ -143,7 +143,7 @@ public partial class SouvenirModule
         var fldStage = GetIntField(comp, "Stage");
         var fldArrow = GetArrayField<int>(comp, "NumberAssist");
 
-        int[][] arrows = new int[7][];
+        var arrows = new int[7][];
 
         while (module.Unsolved)
         {
@@ -162,9 +162,8 @@ public partial class SouvenirModule
 
         var colors = new[] { "Blue", "Red", "Yellow", "Green", "Purple", "Orange", "Cyan", "Teal" };
         var directions = new[] { "Up", "Right", "Down", "Left" };
-        string format(int dir, int col) =>
-            string.Format(translateString(Question.WhiteArrowsArrows, "{0} {1}"), translateString(Question.WhiteArrowsArrows, colors[col]), translateString(Question.WhiteArrowsArrows, directions[dir]));
 
+        string format(int dir, int col) => string.Format(translateString(Question.WhiteArrowsArrows, "{0} {1}"), translateString(Question.WhiteArrowsArrows, colors[col]), translateString(Question.WhiteArrowsArrows, directions[dir]));
         var all = (from d in Enumerable.Range(0, 4) from c in Enumerable.Range(0, 8) select format(d, c)).ToArray();
 
         addQuestions(module, arrows.Select((a, i) =>
@@ -174,10 +173,7 @@ public partial class SouvenirModule
                 allAnswers: all)));
     }
 
-    private IEnumerator<YieldInstruction> ProcessWhiteCipher(ModuleData module)
-    {
-        return processColoredCiphers(module, "whiteCipher", Question.WhiteCipherScreen);
-    }
+    private IEnumerator<YieldInstruction> ProcessWhiteCipher(ModuleData module) => processColoredCiphers(module, "whiteCipher", Question.WhiteCipherScreen);
 
     private IEnumerator<YieldInstruction> ProcessWhoOF(ModuleData module)
     {
@@ -243,9 +239,9 @@ public partial class SouvenirModule
             yield return null;
         }
         var qs = new List<QandA>();
-        for (int s = 0; s < 3; s++)
+        for (var s = 0; s < 3; s++)
         {
-            int ix = s * 2;
+            var ix = s * 2;
             qs.Add(makeQuestion(Question.WhosOnGasDisplay, module, formatArgs: new[] { Ordinal(s + 1) }, correctAnswers: new[] { screens[ix] }, preferredWrongAnswers: displays));
         }
         addQuestions(module, qs);
@@ -335,7 +331,7 @@ public partial class SouvenirModule
         for (var color = 0; color < 3; color++)
         {
             var preferredWrongAnswers = new string[4];
-            for (int i = 0; i < 3; i++)
+            for (var i = 0; i < 3; i++)
                 preferredWrongAnswers[i] = counts[i].ToString();
             preferredWrongAnswers[3] = (counts[color] == 0 ? 1 : counts[color] - 1).ToString();
             qs.Add(makeQuestion(Question.WireSequenceColorCount, module, formatArgs: new[] { new[] { "black", "blue", "red" }[color] }, correctAnswers: new[] { counts[color].ToString() }, preferredWrongAnswers: preferredWrongAnswers));

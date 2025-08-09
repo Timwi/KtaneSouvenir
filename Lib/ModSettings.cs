@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using UnityEngine;
 
-class ModSettings<T> where T : new()
+internal class ModSettings<T> where T : new()
 {
     public ModSettings(string filename, Action<Exception> onRead = null)
     {
@@ -13,19 +13,16 @@ class ModSettings<T> where T : new()
         if (Application.isEditor && !Directory.Exists(settingsFolder))
             Directory.CreateDirectory(settingsFolder);
 
-        settingsPath = Path.Combine(settingsFolder, filename + ".txt");
+        _settingsPath = Path.Combine(settingsFolder, filename + ".txt");
         OnRead = onRead;
     }
 
-    private readonly string settingsPath;
+    private readonly string _settingsPath;
 
     /// <summary>Serializes settings the same way it's written to the file. Supports settings that use enums.</summary>
-    public static string SerializeSettings(T settings)
-    {
-        return JsonConvert.SerializeObject(settings, Formatting.Indented, new StringEnumConverter());
-    }
+    public static string SerializeSettings(T settings) => JsonConvert.SerializeObject(settings, Formatting.Indented, new StringEnumConverter());
 
-    private static readonly object settingsFileLock = new object();
+    private static readonly object _settingsFileLock = new();
 
     /// <summary>Whether or not there has been a successful read of the settings file.</summary>
     public bool SuccessfulRead;
@@ -40,15 +37,15 @@ class ModSettings<T> where T : new()
     {
         try
         {
-            lock (settingsFileLock)
+            lock (_settingsFileLock)
             {
-                if (!File.Exists(settingsPath))
+                if (!File.Exists(_settingsPath))
                 {
-                    File.WriteAllText(settingsPath, SerializeSettings(new T()));
+                    File.WriteAllText(_settingsPath, SerializeSettings(new T()));
                 }
 
-                string text = File.ReadAllText(settingsPath);
-                T deserialized = JsonConvert.DeserializeObject<T>(text) ?? throw new Exception(settingsPath + " should not be empty.");
+                var text = File.ReadAllText(_settingsPath);
+                var deserialized = JsonConvert.DeserializeObject<T>(text) ?? throw new Exception(_settingsPath + " should not be empty.");
 
                 SuccessfulRead = true;
 
@@ -61,7 +58,7 @@ class ModSettings<T> where T : new()
         }
         catch (Exception e)
         {
-            Debug.LogFormat("An exception has occurred while attempting to read the settings from {0}\nDefault settings will be used for the type of {1}.\nDelete the file to restore settings the next time this type is used.", settingsPath, typeof(T).ToString());
+            Debug.LogFormat("An exception has occurred while attempting to read the settings from {0}\nDefault settings will be used for the type of {1}.\nDelete the file to restore settings the next time this type is used.", _settingsPath, typeof(T).ToString());
             Debug.LogException(e);
 
             SuccessfulRead = false;
@@ -79,22 +76,19 @@ class ModSettings<T> where T : new()
         if (!SuccessfulRead)
             return;
 
-        lock (settingsFileLock)
+        lock (_settingsFileLock)
         {
             try
             {
-                File.WriteAllText(settingsPath, SerializeSettings(value));
+                File.WriteAllText(_settingsPath, SerializeSettings(value));
             }
             catch (Exception e)
             {
-                Debug.LogFormat("Failed to write to {0}", settingsPath);
+                Debug.LogFormat("Failed to write to {0}", _settingsPath);
                 Debug.LogException(e);
             }
         }
     }
 
-    public override string ToString()
-    {
-        return SerializeSettings(Read());
-    }
+    public override string ToString() => SerializeSettings(Read());
 }

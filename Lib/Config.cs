@@ -12,11 +12,11 @@ public class Config
     public string Language;
 
     /// <summary>Checks if a modded(!) module is excluded. This function does not check for vanilla modules.</summary>
-    public bool IsExcluded(KMBombModule module, HashSet<string> ignoredModules) => module.ModuleType switch
+    public bool IsExcluded(KMBombModule module, HashSet<string> ignoredModuleIDs) => module.ModuleType switch
     {
         "mysterymodule" => ExcludeMysteryModule,
         "SouvenirModule" => ExcludeSouvenir,
-        _ => ExcludeIgnoredModules && ignoredModules.Contains(module.ModuleDisplayName),
+        _ => ExcludeIgnoredModules && ignoredModuleIDs.Contains(module.ModuleType),
     };
 
     public static readonly Dictionary<string, object>[] TweaksEditorSettings = Ut.NewArray(

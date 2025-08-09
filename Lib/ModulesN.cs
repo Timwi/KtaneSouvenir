@@ -152,11 +152,11 @@ public partial class SouvenirModule
         var puzzle = GetField<object>(comp, "_puzzle").Get();
 
         var greekLetters = GetProperty<int[]>(puzzle, "GreekLetterIxs", isPublic: true)
-            .Get(validator: arr => arr.Any(v => v < 0 || v >= 48) ? "expected range 0–48" : null)
+            .Get(validator: arr => arr.Any(v => v is < 0 or >= 48) ? "expected range 0–48" : null)
             .Select(ix => "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψω"[ix].ToString())
             .ToArray();
-        var givenIndex = GetProperty<int>(puzzle, "GivenIndex", isPublic: true).Get(validator: v => v < 0 || v >= 16 ? "expected range 0–16" : null);
-        var givenValue = GetProperty<int>(puzzle, "GivenValue", isPublic: true).Get(validator: v => v < 0 || v >= 4 ? "expected range 0–4" : null);
+        var givenIndex = GetProperty<int>(puzzle, "GivenIndex", isPublic: true).Get(validator: v => v is < 0 or >= 16 ? "expected range 0–16" : null);
+        var givenValue = GetProperty<int>(puzzle, "GivenValue", isPublic: true).Get(validator: v => v is < 0 or >= 4 ? "expected range 0–4" : null);
 
         yield return WaitForSolve;
 
@@ -173,8 +173,8 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        int[] chapters = GetArrayField<int>(comp, "selectedChapters").Get(expectedLength: 7);
-        string[] chaptersString = chapters.Select(x => x.ToString()).ToArray();
+        var chapters = GetArrayField<int>(comp, "selectedChapters").Get(expectedLength: 7);
+        var chaptersString = chapters.Select(x => x.ToString()).ToArray();
 
         addQuestions(module,
             makeQuestion(Question.NecronomiconChapters, module, formatArgs: new[] { Ordinal(1) }, correctAnswers: new[] { chaptersString[0] }, preferredWrongAnswers: chaptersString),
@@ -234,21 +234,21 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var starNames = new string[] {
-            "Bob-omb Battlefield #1", "Bob-omb Battlefield #2", "Bob-omb Battlefield #3", "Bob-omb Battlefield #4", "Bob-omb Battlefield #5", "Bob-omb Battlefield #6", "Bob-omb Battlefield 100 Coins", 
-            "Whomp's Fortress #1", "Whomp's Fortress #2", "Whomp's Fortress #3", "Whomp's Fortress #4", "Whomp's Fortress #5", "Whomp's Fortress #6", "Whomp's Fortress 100 Coins", 
-            "Jolly Roger Bay #1", "Jolly Roger Bay #2", "Jolly Roger Bay #3", "Jolly Roger Bay #4", "Jolly Roger Bay #5", "Jolly Roger Bay #6", "Jolly Roger Bay 100 Coins", 
-            "Cool Cool Mountain #1", "Cool Cool Mountain #2", "Cool Cool Mountain #3", "Cool Cool Mountain #4", "Cool Cool Mountain #5", "Cool Cool Mountain #6", "Cool Cool Mountain 100 Coins", 
-            "Big Boo's Haunt #1", "Big Boo's Haunt #2", "Big Boo's Haunt #3", "Big Boo's Haunt #4", "Big Boo's Haunt #5", "Big Boo's Haunt #6", "Big Boo's Haunt 100 Coins", 
-            "Hazy Maze Cave #1", "Hazy Maze Cave #2", "Hazy Maze Cave #3", "Hazy Maze Cave #4", "Hazy Maze Cave #5", "Hazy Maze Cave #6", "Hazy Maze Cave 100 Coins", 
-            "Lethal Lava Land #1", "Lethal Lava Land #2", "Lethal Lava Land #3", "Lethal Lava Land #4", "Lethal Lava Land #5", "Lethal Lava Land #6", "Lethal Lava Land 100 Coins", 
-            "Shifting Sand Land #1", "Shifting Sand Land #2", "Shifting Sand Land #3", "Shifting Sand Land #4", "Shifting Sand Land #5", "Shifting Sand Land #6", "Shifting Sand Land 100 Coins", 
-            "Dire Dire Docks #1", "Dire Dire Docks #2", "Dire Dire Docks #3", "Dire Dire Docks #4", "Dire Dire Docks #5", "Dire Dire Docks #6", "Dire Dire Docks 100 Coins", 
-            "Snowman's Land #1", "Snowman's Land #2", "Snowman's Land #3", "Snowman's Land #4", "Snowman's Land #5", "Snowman's Land #6", "Snowman's Land 100 Coins", 
-            "Wet Dry World #1", "Wet Dry World #2", "Wet Dry World #3", "Wet Dry World #4", "Wet Dry World #5", "Wet Dry World #6", "Wet Dry World 100 Coins", 
-            "Tall Tall Mountain #1", "Tall Tall Mountain #2", "Tall Tall Mountain #3", "Tall Tall Mountain #4", "Tall Tall Mountain #5", "Tall Tall Mountain #6", "Tall Tall Mountain 100 Coins", 
-            "Tiny Huge Island #1", "Tiny Huge Island #2", "Tiny Huge Island #3", "Tiny Huge Island #4", "Tiny Huge Island #5", "Tiny Huge Island #6", "Tiny Huge Island 100 Coins", 
-            "Tick Tock Clock #1", "Tick Tock Clock #2", "Tick Tock Clock #3", "Tick Tock Clock #4", "Tick Tock Clock #5", "Tick Tock Clock #6", "Tick Tock Clock 100 Coins", 
-            "Rainbow Ride #1", "Rainbow Ride #2", "Rainbow Ride #3", "Rainbow Ride #4", "Rainbow Ride #5", "Rainbow Ride #6", "Rainbow Ride 100 Coins", 
+            "Bob-omb Battlefield #1", "Bob-omb Battlefield #2", "Bob-omb Battlefield #3", "Bob-omb Battlefield #4", "Bob-omb Battlefield #5", "Bob-omb Battlefield #6", "Bob-omb Battlefield 100 Coins",
+            "Whomp's Fortress #1", "Whomp's Fortress #2", "Whomp's Fortress #3", "Whomp's Fortress #4", "Whomp's Fortress #5", "Whomp's Fortress #6", "Whomp's Fortress 100 Coins",
+            "Jolly Roger Bay #1", "Jolly Roger Bay #2", "Jolly Roger Bay #3", "Jolly Roger Bay #4", "Jolly Roger Bay #5", "Jolly Roger Bay #6", "Jolly Roger Bay 100 Coins",
+            "Cool Cool Mountain #1", "Cool Cool Mountain #2", "Cool Cool Mountain #3", "Cool Cool Mountain #4", "Cool Cool Mountain #5", "Cool Cool Mountain #6", "Cool Cool Mountain 100 Coins",
+            "Big Boo's Haunt #1", "Big Boo's Haunt #2", "Big Boo's Haunt #3", "Big Boo's Haunt #4", "Big Boo's Haunt #5", "Big Boo's Haunt #6", "Big Boo's Haunt 100 Coins",
+            "Hazy Maze Cave #1", "Hazy Maze Cave #2", "Hazy Maze Cave #3", "Hazy Maze Cave #4", "Hazy Maze Cave #5", "Hazy Maze Cave #6", "Hazy Maze Cave 100 Coins",
+            "Lethal Lava Land #1", "Lethal Lava Land #2", "Lethal Lava Land #3", "Lethal Lava Land #4", "Lethal Lava Land #5", "Lethal Lava Land #6", "Lethal Lava Land 100 Coins",
+            "Shifting Sand Land #1", "Shifting Sand Land #2", "Shifting Sand Land #3", "Shifting Sand Land #4", "Shifting Sand Land #5", "Shifting Sand Land #6", "Shifting Sand Land 100 Coins",
+            "Dire Dire Docks #1", "Dire Dire Docks #2", "Dire Dire Docks #3", "Dire Dire Docks #4", "Dire Dire Docks #5", "Dire Dire Docks #6", "Dire Dire Docks 100 Coins",
+            "Snowman's Land #1", "Snowman's Land #2", "Snowman's Land #3", "Snowman's Land #4", "Snowman's Land #5", "Snowman's Land #6", "Snowman's Land 100 Coins",
+            "Wet Dry World #1", "Wet Dry World #2", "Wet Dry World #3", "Wet Dry World #4", "Wet Dry World #5", "Wet Dry World #6", "Wet Dry World 100 Coins",
+            "Tall Tall Mountain #1", "Tall Tall Mountain #2", "Tall Tall Mountain #3", "Tall Tall Mountain #4", "Tall Tall Mountain #5", "Tall Tall Mountain #6", "Tall Tall Mountain 100 Coins",
+            "Tiny Huge Island #1", "Tiny Huge Island #2", "Tiny Huge Island #3", "Tiny Huge Island #4", "Tiny Huge Island #5", "Tiny Huge Island #6", "Tiny Huge Island 100 Coins",
+            "Tick Tock Clock #1", "Tick Tock Clock #2", "Tick Tock Clock #3", "Tick Tock Clock #4", "Tick Tock Clock #5", "Tick Tock Clock #6", "Tick Tock Clock 100 Coins",
+            "Rainbow Ride #1", "Rainbow Ride #2", "Rainbow Ride #3", "Rainbow Ride #4", "Rainbow Ride #5", "Rainbow Ride #6", "Rainbow Ride 100 Coins",
             "Princess' Secret Slide (Normal)", "Princess' Secret Slide (Fast)", "Secret Aquarium", "Tower of the Wing Cap", "Cavern of the Metal Cap", "Vanish Cap under the Moat", "Wing Mario over the Rainbow",
             "MIPS #1", "MIPS #2", "Toad #1", "Toad #2", "Toad #3", "Bowser in the Dark World", "Bowser in the Fire Sea", "Bowser in the Sky" };
 
@@ -304,7 +304,7 @@ public partial class SouvenirModule
         var qs = new List<QandA>(flashes.Count);
         var names = new[] { "Red", "Orange", "Yellow", "Green" };
 
-        for (int stage = 0; stage < flashes.Count; stage++)
+        for (var stage = 0; stage < flashes.Count; stage++)
         {
             var name = $"{flashes.Count}-{stage + 1}";
             var tex = NonverbalSimonQuestions.First(t => t.name.Equals(name));
@@ -378,13 +378,13 @@ public partial class SouvenirModule
         var ops = GetArrayField<int>(comp, "ops").Get();
         var puncMarkNames = new[] { "+", "-", ".", ":", "/", "_", "=", "," };
         var puncMarks = Enumerable.Range(0, ops.Length).Select(i => puncMarkNames[ops[i]]).ToArray();
-        for (int p = 0; p < 4; p++)
+        for (var p = 0; p < 4; p++)
             qs.Add(makeQuestion(Question.NotConnectionCheckFlashes, module, formatArgs: new[] { positions[p] }, correctAnswers: new[] { puncMarks[p] }));
 
         // Values
         var outputs = GetArrayField<int>(comp, "outputs").Get();
         var vals = Enumerable.Range(0, outputs.Length).Select(i => outputs[i].ToString()).ToArray();
-        for (int p = 0; p < 4; p++)
+        for (var p = 0; p < 4; p++)
             qs.Add(makeQuestion(Question.NotConnectionCheckValues, module, formatArgs: new[] { positions[p] }, correctAnswers: new[] { vals[p] }, preferredWrongAnswers: Enumerable.Range(1, 9).Select(i => i.ToString()).ToArray()));
 
         addQuestions(module, qs);
@@ -496,7 +496,7 @@ public partial class SouvenirModule
         var weaponNames = new[] { "Candlestick", "Dagger", "Lead Pipe", "Revolver", "Rope", "Spanner" };
         var roomNames = new[] { "Ballroom", "Billiard Room", "Conservatory", "Dining Room", "Hall", "Kitchen", "Library", "Lounge", "Study" };
 
-        for (int suspect = 0; suspect < 5; suspect++)
+        for (var suspect = 0; suspect < 5; suspect++)
         {
             qs.Add(makeQuestion(Question.NotMurderRoom, module, formatArgs: new[] { suspectNames[dispinfo[0][suspect]] }, correctAnswers: new[] { roomNames[turns[0][suspect][0]] }));
             qs.Add(makeQuestion(Question.NotMurderWeapon, module, formatArgs: new[] { suspectNames[dispinfo[0][suspect]] }, correctAnswers: new[] { weaponNames[turns[0][suspect][1]] }));
@@ -515,7 +515,7 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
         var numStrs = Enumerable.Range(0, 10).Select(i => i.ToString()).ToArray();
-        for (int stage = 0; stage < 3; stage++)
+        for (var stage = 0; stage < 3; stage++)
         {
             if (numbers[stage].Length >= 3)
                 qs.Add(makeQuestion(Question.NotNumberPadFlashes, module, formatArgs: new[] { "did not flash", Ordinal(stage + 1) }, correctAnswers: numStrs.Except(numbers[stage]).ToArray()));
@@ -548,18 +548,18 @@ public partial class SouvenirModule
         // Peg position
         var positions = GetArrayField<int>(comp, "_flashPegPosition").Get();
         var qs = new List<QandA>();
-        for (int i = 0; i < 5; i++)
+        for (var i = 0; i < 5; i++)
             qs.Add(makeQuestion(Question.NotPerspectivePegsPosition, module, formatArgs: new[] { Ordinal(i + 1) },
                 correctAnswers: new[] { posNames[positions[i]] }));
         // Peg perspective
         var perspectives = GetArrayField<int>(comp, "_flashPegPerspective").Get();
-        for (int i = 0; i < 5; i++)
+        for (var i = 0; i < 5; i++)
             qs.Add(makeQuestion(Question.NotPerspectivePegsPerspective, module, formatArgs: new[] { Ordinal(i + 1) },
                 correctAnswers: new[] { posNames[perspectives[i]] }));
         // Peg color
         var colors = GetArrayField<int>(comp, "_flashPegColor").Get();
         var colorNames = new[] { "blue", "green", "purple", "red", "yellow" };
-        for (int i = 0; i < 5; i++)
+        for (var i = 0; i < 5; i++)
             qs.Add(makeQuestion(Question.NotPerspectivePegsColor, module, formatArgs: new[] { Ordinal(i + 1) },
                 correctAnswers: new[] { colorNames[colors[i]] }));
         addQuestions(module, qs);
@@ -582,7 +582,7 @@ public partial class SouvenirModule
     private IEnumerator<YieldInstruction> ProcessNotRedArrows(ModuleData module)
     {
         var comp = GetComponent(module, "NotRedArrowsScript");
-        int startNumber = -1;
+        var startNumber = -1;
         module.Module.OnActivate += () => startNumber = GetField<int>(comp, "currentNumber").Get(v => v is < 10 or > 99 ? "expected 10–99" : null);
         yield return WaitForSolve;
 
@@ -613,11 +613,11 @@ public partial class SouvenirModule
     private IEnumerator<YieldInstruction> ProcessNotTextField(ModuleData module)
     {
         var comp = GetComponent(module, "NotTextFieldScript");
-        bool hasStruck = false;
+        var hasStruck = false;
         module.Module.OnStrike += delegate () { hasStruck = true; return false; };
 
         var fldSolution = GetArrayField<char>(comp, "solution");
-        string[] solution = fldSolution.Get(expectedLength: 3).Select(x => x.ToString()).ToArray();
+        var solution = fldSolution.Get(expectedLength: 3).Select(x => x.ToString()).ToArray();
         var fldBG = GetField<char>(comp, "bgChar");
 
         while (module.Unsolved)
@@ -630,7 +630,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         }
 
-        char bgChar = fldBG.Get(ch => ch < 'A' || ch > 'F' ? "expected in range A-F" : null);
+        var bgChar = fldBG.Get(ch => ch is < 'A' or > 'F' ? "expected in range A-F" : null);
 
         addQuestions(module,
             makeQuestion(Question.NotTextFieldBackgroundLetter, module, correctAnswers: new[] { bgChar.ToString() }),
@@ -741,8 +741,8 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "NWSScript");
         yield return WaitForSolve;
 
-        string[] missingConsonants = GetArrayField<string>(comp, "missing").Get(expectedLength: 3);
-        string[] pressed = GetArrayField<string>(comp, "ans").Get(expectedLength: 12);
+        var missingConsonants = GetArrayField<string>(comp, "missing").Get(expectedLength: 3);
+        var pressed = GetArrayField<string>(comp, "ans").Get(expectedLength: 12);
 
         addQuestions(module,
             makeQuestion(Question.NotWordSearchMissing, module, correctAnswers: missingConsonants),

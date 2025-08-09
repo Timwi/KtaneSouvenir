@@ -38,9 +38,9 @@ public partial class SouvenirModule
         var colors2 = GetArrayField<int>(comp, "BtnColor2init").Get();
 
         var answersList = new List<string>();
-        for (int i = 0; i < 9; i++)
+        for (var i = 0; i < 9; i++)
             if (i != 1)
-                for (int j = 0; j < 9; j++)
+                for (var j = 0; j < 9; j++)
                     if (j != 1 && (i > 1 || j > 1))
                         answersList.Add(colors[i] == colors[j] ? $"Solid {colors[i]}" : $"{colors[i]}/{colors[j]}");
         var allAnswers = answersList.ToArray();
@@ -202,7 +202,7 @@ public partial class SouvenirModule
         string toNote(int note, bool flat = false)
         {
             note += 9;
-            int octave = note / 12;
+            var octave = note / 12;
             var name = noteNames[note % 12];
             if (flat && name.Length is 2)
                 name = noteNames[note % 12 + 1] + "♭";
@@ -214,7 +214,7 @@ public partial class SouvenirModule
             makeQuestion(Question.GrandPianoKey, module,
                 correctAnswers: s.Select(n => toNote(n)).ToArray(),
                 formatArgs: new[] { Ordinal(i + 1) }))
-            .Concat(new[] { 
+            .Concat(new[] {
                 makeQuestion(Question.GrandPianoFinalKey, module,
                 correctAnswers: new[] { toNote(sets[4][4], true) })}));
     }
@@ -225,20 +225,13 @@ public partial class SouvenirModule
 
         var text = GetField<TextMesh>(comp, "ScreenText", isPublic: true).Get();
         var m = Regex.Match(text.text, @"^(\d), (\d)$");
-        if (!m.Success)
-            throw new AbandonModuleException($"Unexpected text on Gray Button display: {text.text}");
-
-        yield return WaitForSolve;
-
+        yield return !m.Success ? throw new AbandonModuleException($"Unexpected text on Gray Button display: {text.text}") : (YieldInstruction) WaitForSolve;
         addQuestions(module,
             makeQuestion(Question.GrayButtonCoordinates, module, formatArgs: new[] { "horizontal" }, correctAnswers: new[] { m.Groups[1].Value }),
             makeQuestion(Question.GrayButtonCoordinates, module, formatArgs: new[] { "vertical" }, correctAnswers: new[] { m.Groups[2].Value }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessGrayCipher(ModuleData module)
-    {
-        return processColoredCiphers(module, "grayCipher", Question.GrayCipherScreen);
-    }
+    private IEnumerator<YieldInstruction> ProcessGrayCipher(ModuleData module) => processColoredCiphers(module, "grayCipher", Question.GrayCipherScreen);
 
     private IEnumerator<YieldInstruction> ProcessGreatVoid(ModuleData module)
     {
@@ -251,7 +244,7 @@ public partial class SouvenirModule
         var colorNames = new[] { "Red", "Green", "Blue", "Magenta", "Yellow", "Cyan", "White" };
 
         var questions = new List<QandA>();
-        for (int i = 0; i < 6; i++)
+        for (var i = 0; i < 6; i++)
         {
             questions.Add(makeQuestion(Question.GreatVoidDigit, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { fldDigits.Get()[i].ToString() }));
             questions.Add(makeQuestion(Question.GreatVoidColor, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { colorNames[fldColors.Get()[i]] }));
@@ -267,11 +260,11 @@ public partial class SouvenirModule
         var fldAnimating = GetField<bool>(comp, "isanimating");
 
         string numbers = null;
-        bool activated = false;
+        var activated = false;
         while (module.Unsolved)
         {
-            int streak = fldStreak.Get();
-            bool animating = fldAnimating.Get();
+            var streak = fldStreak.Get();
+            var animating = fldAnimating.Get();
             if (streak == 6 && !animating && !activated)
             {
                 var numDisplay = fldNumDisplay.Get();
@@ -287,7 +280,7 @@ public partial class SouvenirModule
 
         if (!int.TryParse(numbers, out var number))
             throw new AbandonModuleException($"The screen is not an integer: “{number}”.");
-        if (number < 0 || number > 99)
+        if (number is < 0 or > 99)
             throw new AbandonModuleException($"The number on the screen is out of range: number = {number}, expected 0-99");
 
         addQuestion(module, Question.GreenArrowsLastScreen, correctAnswers: new[] { number.ToString("00") });
@@ -306,10 +299,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.GreenButtonWord, correctAnswers: new[] { submittedWord[0] + submittedWord.Substring(1).ToLowerInvariant() }, preferredWrongAnswers: words);
     }
 
-    private IEnumerator<YieldInstruction> ProcessGreenCipher(ModuleData module)
-    {
-        return processColoredCiphers(module, "greenCipher", Question.GreenCipherScreen);
-    }
+    private IEnumerator<YieldInstruction> ProcessGreenCipher(ModuleData module) => processColoredCiphers(module, "greenCipher", Question.GreenCipherScreen);
 
     private IEnumerator<YieldInstruction> ProcessGridLock(ModuleData module)
     {
@@ -368,7 +358,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
         var questions = new List<QandA>();
-        for (int i = 0; i < colors.Length; i++)
+        for (var i = 0; i < colors.Length; i++)
             questions.Add(makeQuestion(Question.GuessWhoColors, module, formatArgs: new[] { colors[i] }, correctAnswers: new[] { bases[i] == 1 ? "Yes" : "No" }));
         addQuestions(module, questions);
     }

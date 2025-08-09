@@ -2,7 +2,7 @@
 
 namespace Souvenir.Reflection
 {
-    abstract class InfoBase<T>
+    internal abstract class InfoBase<T>
     {
         protected readonly object _target;
         protected abstract T GetValue();
@@ -20,9 +20,9 @@ namespace Souvenir.Reflection
             if (!nullAllowed && value == null)
                 throw new AbandonModuleException($"{LoggingString} is null.");
             string validatorFailMessage;
-            if (validator != null && (validatorFailMessage = validator(value)) != null)
-                throw new AbandonModuleException($"{LoggingString} with value {value.Stringify()} did not pass validity check: {validatorFailMessage}.");
-            return value;
+            return validator != null && (validatorFailMessage = validator(value)) != null
+                ? throw new AbandonModuleException($"{LoggingString} with value {value.Stringify()} did not pass validity check: {validatorFailMessage}.")
+                : value;
         }
 
         public T GetFrom(object obj, Func<T, string> validator = null, bool nullAllowed = false)
@@ -31,9 +31,9 @@ namespace Souvenir.Reflection
             if (!nullAllowed && value == null)
                 throw new AbandonModuleException($"{LoggingString} is null.");
             string validatorFailMessage;
-            if (validator != null && (validatorFailMessage = validator(value)) != null)
-                throw new AbandonModuleException($"{LoggingString} with value {value.Stringify()} did not pass validity check: {validatorFailMessage}.");
-            return value;
+            return validator != null && (validatorFailMessage = validator(value)) != null
+                ? throw new AbandonModuleException($"{LoggingString} with value {value.Stringify()} did not pass validity check: {validatorFailMessage}.")
+                : value;
         }
     }
 }

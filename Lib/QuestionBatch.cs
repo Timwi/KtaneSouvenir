@@ -1,9 +1,8 @@
-﻿namespace Souvenir
+﻿namespace Souvenir;
+
+internal sealed class QuestionBatch
 {
-    sealed class QuestionBatch
-    {
-        public QandA[] Questions;
-        public int NumSolved;
-        public KMBombModule Module;
-    }
+    public QandA[] Questions;
+    public int NumSolved;
+    public KMBombModule Module;
 }

@@ -15,7 +15,7 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
 
         var colorNames = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet" };
-        for (int i = 0; i < 10; i++)
+        for (var i = 0; i < 10; i++)
             qs.Add(makeQuestion(Question.Xenocryst, module,
                 formatArgs: new[] { Ordinal(i + 1) },
                 correctAnswers: new[] { colorNames[flashes[i]] },
@@ -32,12 +32,12 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var displayLetters = GetArrayField<int>(comp, "displayed").Get(expectedLength: 5, validator: number => number < 0 || number > 25 ? "expected range 0–25" : null);
+        var displayLetters = GetArrayField<int>(comp, "displayed").Get(expectedLength: 5, validator: number => number is < 0 or > 25 ? "expected range 0–25" : null);
         var words = Question.XmORseCodeWord.GetAnswers();
-        var answerWord = words[GetIntField(comp, "answer").Get(validator: number => number < 0 || number > 45 ? "expected range 0–45" : null)];
+        var answerWord = words[GetIntField(comp, "answer").Get(validator: number => number is < 0 or > 45 ? "expected range 0–45" : null)];
 
         var qs = new List<QandA>();
-        for (int i = 0; i < 5; i++)
+        for (var i = 0; i < 5; i++)
             qs.Add(makeQuestion(Question.XmORseCodeDisplayedLetters, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { alphabet.Substring(displayLetters[i], 1) }, preferredWrongAnswers: displayLetters.Select(x => alphabet.Substring(x, 1)).ToArray()));
         qs.Add(makeQuestion(Question.XmORseCodeWord, module, correctAnswers: new[] { answerWord }));
         addQuestions(module, qs);

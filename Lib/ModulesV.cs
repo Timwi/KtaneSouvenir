@@ -29,7 +29,7 @@ public partial class SouvenirModule
         if (ValvesSprites.Length != 8)
             throw new AbandonModuleException($"Valves should have 8 sprites. Counted {ValvesSprites.Length}");
 
-        var valvesColorNums = GetArrayField<int>(comp, "valvesColorNum").Get(expectedLength: 3, validator: val => val != 0 && val != 1 ? "expected 0 or 1" : null);
+        var valvesColorNums = GetArrayField<int>(comp, "valvesColorNum").Get(expectedLength: 3, validator: val => val is not 0 and not 1 ? "expected 0 or 1" : null);
         var spriteIx = valvesColorNums.Aggregate(0, (p, n) => (p << 1) | (n ^ 1));
         addQuestion(module, Question.ValvesInitialState, correctAnswers: new[] { ValvesSprites[spriteIx] });
     }
@@ -54,11 +54,11 @@ public partial class SouvenirModule
         var names = new[] { "Red", "Green", "Blue", "Magenta", "Yellow", "White" };
         while (module.Unsolved)
         {
-            int s = fldStage.Get(min: 0, max: 5);
+            var s = fldStage.Get(min: 0, max: 5);
             if (s < 4)
             {
                 var goal = fldGoal.Get(expectedLength: 5)[4];
-                if (goal < 0 || goal >= 36)
+                if (goal is < 0 or >= 36)
                     throw new AbandonModuleException($"‘sequence[4]’ has value {goal} (expected 0–35).");
                 words[s] = goal / 6;
                 colors[s] = goal % 6;
@@ -83,7 +83,7 @@ public partial class SouvenirModule
         var itemTypes = items.Select(i => i.GetType().Name).ToArray();
 
         List<QandA> questions = new();
-        bool disableSelectables = false;
+        var disableSelectables = false;
 
         if (Array.IndexOf(itemTypes, "Led") is var i and not -1)
         {
@@ -105,7 +105,7 @@ public partial class SouvenirModule
                 var displays = GetArrayField<int>(display, "_displayedDigitPerState").Get(expectedLength: 9);
                 var solution = GetProperty<int>(display, "State", isPublic: true).Get(v => v is < 0 || v >= amount ? $"Bad digit display solution state {v}" : null);
                 List<string> ans = new();
-                for (int ix = 0; ix < amount; ix++)
+                for (var ix = 0; ix < amount; ix++)
                     if (ix != solution)
                         ans.Add(displays[ix].ToString());
                 questions.Add(makeQuestion(Question.VarietyDigitDisplay, module, correctAnswers: ans.ToArray(), preferredWrongAnswers: new[] { displays[solution].ToString() }));
@@ -130,12 +130,7 @@ public partial class SouvenirModule
 
         if (Array.IndexOf(itemTypes, "Timer") is var l and not -1)
         {
-            object[] timers;
-            if (Array.IndexOf(itemTypes, "Timer", l + 1) is var x and not -1)
-                timers = new[] { items[l], items[x] };
-            else
-                timers = new[] { items[l] };
-
+            var timers = Array.IndexOf(itemTypes, "Timer", l + 1) is var x and not -1 ? (new[] { items[l], items[x] }) : (new[] { items[l] });
             var data = timers.Select(timer =>
             {
                 var a = GetField<int>(timer, "_a").Get(v => v is not 2 and not 3 and not 5 and not 7 ? $"Unknown timer A value {v}" : null);
@@ -156,14 +151,7 @@ public partial class SouvenirModule
         var cknobs = itemTypes.Select((t, i) => (t, i)).Where(tup => tup.t == "ColoredKnob").Select(tup => tup.i).ToArray();
         if (cknobs.Length != 0)
         {
-            string format;
-            if (cknobs.Length == 1 && itemTypes.Contains("Knob"))
-                format = "colored ";
-            else if (cknobs.Length == 1)
-                format = "";
-            else
-                format = null;
-
+            var format = cknobs.Length == 1 && itemTypes.Contains("Knob") ? "colored " : cknobs.Length == 1 ? "" : null;
             foreach (var knob in cknobs.Select(i => items[i]))
             {
                 var ans = GetProperty<int>(knob, "NumStates", isPublic: true).Get(null, v => v is < 3 or > 6 ? $"Bad colored knob state count {v}" : null);
@@ -176,7 +164,7 @@ public partial class SouvenirModule
         var bulbs = itemTypes.Select((t, i) => (t, i)).Where(tup => tup.t == "Bulb").Select(tup => tup.i).ToArray();
         if (bulbs.Length != 0)
         {
-            string format = bulbs.Length == 1 ? "" : null;
+            var format = bulbs.Length == 1 ? "" : null;
 
             foreach (var bulb in bulbs.Select(ix => items[ix]))
             {
@@ -239,12 +227,12 @@ public partial class SouvenirModule
         if (nullIx != -1)
             throw new AbandonModuleException($"‘colors[{pickedVectors[nullIx]}]’ was null; ‘pickedVectors’ = [{pickedVectors.JoinString(", ")}]");
 
-        for (int i = 0; i < vectorCount; i++)
+        for (var i = 0; i < vectorCount; i++)
             if (!colorsName.Contains(colors[pickedVectors[i]]))
                 throw new AbandonModuleException($"‘colors[{pickedVectors[i]}]’ pointed to illegal color “{colors[pickedVectors[i]]}” (colors=[{colors.JoinString(", ")}], pickedVectors=[{pickedVectors.JoinString(", ")}], index {i}).");
 
         var qs = new List<QandA>();
-        for (int i = 0; i < vectorCount; i++)
+        for (var i = 0; i < vectorCount; i++)
             qs.Add(makeQuestion(Question.VectorsColors, module, formatArgs: new[] { vectorCount == 1 ? "only" : Ordinal(i + 1) }, correctAnswers: new[] { colors[pickedVectors[i]] }));
         addQuestions(module, qs);
     }
@@ -253,10 +241,10 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "vexillologyScript");
 
-        string[] colors = GetArrayField<string>(comp, "coloursStrings").Get();
-        int color1 = GetIntField(comp, "ActiveFlagTop1").Get(min: 0, max: colors.Length - 1);
-        int color2 = GetIntField(comp, "ActiveFlagTop2").Get(min: 0, max: colors.Length - 1);
-        int color3 = GetIntField(comp, "ActiveFlagTop3").Get(min: 0, max: colors.Length - 1);
+        var colors = GetArrayField<string>(comp, "coloursStrings").Get();
+        var color1 = GetIntField(comp, "ActiveFlagTop1").Get(min: 0, max: colors.Length - 1);
+        var color2 = GetIntField(comp, "ActiveFlagTop2").Get(min: 0, max: colors.Length - 1);
+        var color3 = GetIntField(comp, "ActiveFlagTop3").Get(min: 0, max: colors.Length - 1);
 
         yield return WaitForSolve;
 
@@ -266,10 +254,7 @@ public partial class SouvenirModule
             makeQuestion(Question.VexillologyColors, module, formatArgs: new[] { "third" }, correctAnswers: new[] { colors[color3] }, preferredWrongAnswers: new[] { colors[color2], colors[color1] }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessVioletCipher(ModuleData module)
-    {
-        return processColoredCiphers(module, "violetCipher", Question.VioletCipherScreen);
-    }
+    private IEnumerator<YieldInstruction> ProcessVioletCipher(ModuleData module) => processColoredCiphers(module, "violetCipher", Question.VioletCipherScreen);
 
     private IEnumerator<YieldInstruction> ProcessVisualImpairment(ModuleData module)
     {

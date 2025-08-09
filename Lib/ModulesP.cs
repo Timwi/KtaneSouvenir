@@ -27,7 +27,7 @@ public partial class SouvenirModule
             {
                 var numString = vars[varIx].Get();
                 var digit = numString[numString.Length - 1 - digitIx];
-                if (digit < '0' || digit > '9')
+                if (digit is < '0' or > '9')
                     throw new AbandonModuleException($"The chosen character ('{digit}') was unexpected (expected a digit 0–9).");
 
                 var labels = new[] { "the screen", "X", "Y", "Z" };
@@ -52,8 +52,8 @@ public partial class SouvenirModule
 
         var text = GetField<string>(comp, "_displayedText").Get();
         var pairs = new List<string>();
-        for (int i = 0; i < 26; i++)
-            for (int j = 0; j < 10; j++)
+        for (var i = 0; i < 26; i++)
+            for (var j = 0; j < 10; j++)
                 pairs.Add("ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i].ToString() + j.ToString());
         addQuestion(module, Question.ParityDisplay, correctAnswers: new[] { text }, preferredWrongAnswers: pairs.ToArray());
     }
@@ -68,33 +68,31 @@ public partial class SouvenirModule
         if (terms.Length != 3)
             throw new AbandonModuleException($"The display does not appear to contain three terms: “{_moduleId}”");
 
-        var vars = new[] { "x", "y", "z" };
-        var exponentStrs = new[] { "²", "³", "⁴", "⁵" };
-        var writeTerm = new Func<int, bool, int[], string>((int coeff, bool negative, int[] exps) =>
+        static string writeTerm(int coeff, bool negative, int[] exps)
         {
             if (coeff == 0)
                 return "0";
 
-            var function = negative ? "−" : "";
+            var term = negative ? "−" : "";
             if (coeff > 1)
-                function += coeff.ToString();
-            for (int j = 0; j < 3; j++)
+                term += coeff;
+            for (var j = 0; j < 3; j++)
             {
                 if (exps[j] != 0)
                 {
-                    function += vars[j];
+                    term += "xyz"[j];
                     if (exps[j] > 1)
-                        function += exponentStrs[exps[j] - 2];
+                        term += "²³⁴⁵"[exps[j] - 2];
                 }
             }
-            return function;
-        });
+            return term;
+        }
 
         var wrongAnswers = new HashSet<string>();
         while (wrongAnswers.Count < 3)
         {
             var exps = new int[3];
-            for (int j = 0; j < 3; j++)
+            for (var j = 0; j < 3; j++)
                 exps[j] = Rnd.Range(0, 6);
             if (exps.All(e => e == 0))
                 exps[Rnd.Range(0, 3)] = Rnd.Range(1, 6);
@@ -105,7 +103,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var leds = fldLeds.Get(expectedLength: 3, validator: l => l < 0 || l > 5 ? "expected range 0–5" : null);
+        var leds = fldLeds.Get(expectedLength: 3, validator: l => l is < 0 or > 5 ? "expected range 0–5" : null);
         var colorNames = new[] { "blue", "green", "orange", "purple", "red", "yellow" };
         var qs = new List<QandA>();
         for (var stage = 0; stage < 3; stage++)
@@ -126,7 +124,7 @@ public partial class SouvenirModule
 
         var expirationDates = new List<int>();
 
-        for (int i = 0; i < stamps.Length; i++)
+        for (var i = 0; i < stamps.Length; i++)
         {
             var oldHandler = stamps[i].OnInteract;
             stamps[i].OnInteract = delegate
@@ -153,17 +151,17 @@ public partial class SouvenirModule
         if (expirationDates.Count != 3)
             throw new AbandonModuleException($"The number of retrieved sets of information was {expirationDates.Count} (expected 3).");
 
-        for (int i = 0; i < textToHide1.Length; i++)
+        for (var i = 0; i < textToHide1.Length; i++)
             textToHide1[i].GetComponent<TextMesh>().text = "";
         textToHide2.GetComponent<TextMesh>().text = "";
 
         var altDates = new List<string[]>();
 
-        for (int i = 0; i < expirationDates.Count; i++)
+        for (var i = 0; i < expirationDates.Count; i++)
         {
             altDates.Add(new string[6]);
-            int startVal = expirationDates[i] - Rnd.Range(0, 6);
-            for (int j = 0; j < altDates[i].Length; j++)
+            var startVal = expirationDates[i] - Rnd.Range(0, 6);
+            for (var j = 0; j < altDates[i].Length; j++)
                 altDates[i][j] = (startVal + j).ToString();
         }
 
@@ -226,8 +224,8 @@ public partial class SouvenirModule
 
         var serialNumber = Bomb.GetSerialNumber();
 
-        int keyNumber = 0;
-        char prevChar = '\0';
+        var keyNumber = 0;
+        var prevChar = '\0';
         foreach (var letter in serialNumber)
         {
             if (!char.IsLetter(letter))
@@ -269,13 +267,13 @@ public partial class SouvenirModule
 
         var index = GetIntField(init, "index").Get(min: 0, max: 419);
         var buttonPresses = GetField<Array>(init, "buttonPresses").Get(ar =>
-            ar.Length < 3 || ar.Length > 6 ? "expected length 3–6" :
+            ar.Length is < 3 or > 6 ? "expected length 3–6" :
             ar.OfType<object>().Any(v => !Question.PhosphorescenceButtonPresses.GetAnswers().Contains(v.ToString())) ? "contains unknown color" : null);
 
         var qs = new List<QandA>();
         qs.Add(makeQuestion(Question.PhosphorescenceOffset, module, correctAnswers: new[] { index.ToString() }));
 
-        for (int i = 0; i < buttonPresses.GetLength(0); i++)
+        for (var i = 0; i < buttonPresses.GetLength(0); i++)
             qs.Add(makeQuestion(Question.PhosphorescenceButtonPresses, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { buttonPresses.GetValue(i).ToString() }));
 
         addQuestions(module, qs);
@@ -326,17 +324,14 @@ public partial class SouvenirModule
         addQuestion(module, Question.PieFlashDigits, correctAnswers: validAnswers, preferredWrongAnswers: digits);
     }
 
-    private IEnumerator<YieldInstruction> ProcessPigpenCycle(ModuleData module)
-    {
-        return processSpeakingEvilCycle(module, "PigpenCycleScript", Question.PigpenCycleDialDirections, Question.PigpenCycleDialLabels);
-    }
+    private IEnumerator<YieldInstruction> ProcessPigpenCycle(ModuleData module) => processSpeakingEvilCycle(module, "PigpenCycleScript", Question.PigpenCycleDialDirections, Question.PigpenCycleDialLabels);
 
     private IEnumerator<YieldInstruction> ProcessPlaceholderTalk(ModuleData module)
     {
         var comp = GetComponent(module, "placeholderTalk");
         yield return WaitForSolve;
 
-        var answer = GetField<byte>(comp, "answerId").Get(b => b < 0 || b > 16 ? "expected range 0–16" : null) + 1;
+        var answer = GetField<byte>(comp, "answerId").Get(b => b is < 0 or > 16 ? "expected range 0–16" : null) + 1;
         var firstPhrase = GetArrayField<string>(comp, "firstPhrase").Get();
         var firstString = GetField<string>(comp, "firstString").Get(str => !firstPhrase.Contains(str) ? $"expected string to be contained in “{firstPhrase}” (‘firstPhrase’)" : null);
         var ordinals = GetArrayField<string>(comp, "ordinals").Get();
@@ -352,8 +347,8 @@ public partial class SouvenirModule
     private IEnumerator<YieldInstruction> ProcessPinkButton(ModuleData module)
     {
         var comp = GetComponent(module, "PinkButtonScript");
-        var words = GetArrayField<int>(comp, "_words").Get(expectedLength: 4, validator: v => v < 0 || v > 7 ? "expected range 0–7" : null);
-        var colors = GetArrayField<int>(comp, "_colors").Get(expectedLength: 4, validator: v => v < 0 || v > 7 ? "expected range 0–7" : null);
+        var words = GetArrayField<int>(comp, "_words").Get(expectedLength: 4, validator: v => v is < 0 or > 7 ? "expected range 0–7" : null);
+        var colors = GetArrayField<int>(comp, "_colors").Get(expectedLength: 4, validator: v => v is < 0 or > 7 ? "expected range 0–7" : null);
 
         var abbreviatedColorNames = GetStaticField<string[]>(comp.GetType(), "_abbreviatedColorNames").Get(v => v.Length != 8 ? "expected length 8" : null);
         var colorNames = GetStaticField<string[]>(comp.GetType(), "_colorNames").Get(v => v.Length != 8 ? "expected length 8" : null);
@@ -409,7 +404,7 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "planetsModScript");
         var planetShown = GetIntField(comp, "planetShown").Get(0, 9);
-        var stripColors = GetArrayField<int>(comp, "stripColours").Get(expectedLength: 5, validator: x => x < 0 || x > 8 ? "expected range 0–8" : null);
+        var stripColors = GetArrayField<int>(comp, "stripColours").Get(expectedLength: 5, validator: x => x is < 0 or > 8 ? "expected range 0–8" : null);
 
         yield return WaitForSolve;
 
@@ -419,10 +414,7 @@ public partial class SouvenirModule
                 .Concat(new[] { makeQuestion(Question.PlanetsPlanet, module, correctAnswers: new[] { PlanetsSprites[planetShown] }, preferredWrongAnswers: (DateTime.Now.Month == 4 && DateTime.Now.Day == 1) ? PlanetsSprites : PlanetsSprites.Take(PlanetsSprites.Length - 2).ToArray()) }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessPlayfairCycle(ModuleData module)
-    {
-        return processSpeakingEvilCycle(module, "PlayfairCycleScript", Question.PlayfairCycleDialDirections, Question.PlayfairCycleDialLabels);
-    }
+    private IEnumerator<YieldInstruction> ProcessPlayfairCycle(ModuleData module) => processSpeakingEvilCycle(module, "PlayfairCycleScript", Question.PlayfairCycleDialDirections, Question.PlayfairCycleDialLabels);
 
     private IEnumerator<YieldInstruction> ProcessPoetry(ModuleData module)
     {
@@ -434,7 +426,7 @@ public partial class SouvenirModule
         var selectables = GetArrayField<KMSelectable>(comp, "wordSelectables", isPublic: true).Get(expectedLength: 6);
         var wordTextMeshes = GetArrayField<TextMesh>(comp, "words", isPublic: true).Get(expectedLength: 6);
 
-        for (int i = 0; i < 6; i++)
+        for (var i = 0; i < 6; i++)
         {
             var j = i;
             var oldHandler = selectables[i].OnInteract;
@@ -502,7 +494,7 @@ public partial class SouvenirModule
 
         // We remove questionably ambiguous answers, but add one back chosen randomly from each group.
         // If a group has at least one correct answer, don't add another, but multiple correct answers can't show up anyways.
-        int[] use = incompatibleGroups
+        var use = incompatibleGroups
             .Where(g => !g.Any(v => allShapes.Contains(v)))
             .Select(a => a.PickRandom())
             .ToArray();
@@ -614,7 +606,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "ProceduralMazeModule");
         yield return WaitForSolve;
 
-        string initialSeed = GetField<string>(comp, "_initialSeed").Get();
+        var initialSeed = GetField<string>(comp, "_initialSeed").Get();
 
         StartCoroutine(GetMethod<IEnumerator>(GetField<object>(comp, "_mazeRenderer").Get(), "HideRings", 0, true).Invoke());
         addQuestion(module, Question.ProceduralMazeInitialSeed, correctAnswers: new[] { initialSeed });
@@ -636,8 +628,8 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        string finishWord = GetField<string>(comp, "finish").Get(str => str.Length != 6 ? "expected length 6" : null);
-        string[] wordList = GetArrayField<string>(comp, "words").Get(v => v.Length == 0 ? "wordlist is empty" : null);
+        var finishWord = GetField<string>(comp, "finish").Get(str => str.Length != 6 ? "expected length 6" : null);
+        var wordList = GetArrayField<string>(comp, "words").Get(v => v.Length == 0 ? "wordlist is empty" : null);
 
         if (!wordList.Contains(finishWord))
             throw new AbandonModuleException($"‘words’ does not contain ‘finish’: [Length: {wordList.Length}, finishWord: {finishWord}].");

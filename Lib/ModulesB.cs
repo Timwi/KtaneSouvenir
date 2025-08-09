@@ -19,7 +19,7 @@ public partial class SouvenirModule
         var allNameArrays = new string[8][];
         var enumNames = new[] { "regular", "teaBiscuit", "chocolateButterBiscuit", "branded", "danishButter", "macaron", "notCookie", "seasonal" };
         var nameArrayNames = new[] { "regularCookieNames", "teaBiscuitNames", "chocolateButterBiscuitNames", "brandedNames", "danishButterCookieNames", "macaronNames", "notCookieNames", "seasonalCookieNames" };
-        for (int i = 0; i < 8; i++)
+        for (var i = 0; i < 8; i++)
             allNameArrays[i] = GetStaticField<string[]>(comp.GetType(), nameArrayNames[i]).Get();
         addQuestion(module, Question.BakeryItems,
             correctAnswers: Enumerable.Range(0, 12).Select(i => allNameArrays[Array.IndexOf(enumNames, cookieTypes[i])][cookieIndices[i]]).ToArray(),
@@ -38,17 +38,17 @@ public partial class SouvenirModule
 
         //Beginning of correct button section.
 
-        int stage = 0;
+        var stage = 0;
 
-        string[] correctButtonTexts = new string[4];
-        string[] correctButtonColors = new string[4];
+        var correctButtonTexts = new string[4];
+        var correctButtonColors = new string[4];
 
         //The module cycle the stage count back to 0 regardless. So it gives no indications whether the module is solved or not on the fourth press.
         //Stores the first button in a separate variable. Then, restore it once the module is solved. Index 0 for text. Index 1 for color.
 
-        string[] correctFirstStageButton = new string[2];
+        var correctFirstStageButton = new string[2];
 
-        bool dataAdded = false;
+        var dataAdded = false;
 
         while (module.Unsolved)
         {
@@ -95,15 +95,15 @@ public partial class SouvenirModule
         var displayTexts = fldDisplayTexts.Get(expectedLength: 4, validator: v => v.Length != 8 ? "expected length 8" : null).ToArray();
         var colorIndex = fldColorIndex.Get(expectedLength: 8);
 
-        if (displayTexts[0].Any(str => string.IsNullOrEmpty(str)))
+        if (displayTexts[0].Any(string.IsNullOrEmpty))
             throw new AbandonModuleException($"'displayText[0]' contains null or an empty string: [{displayTexts[0].Select(str => str ?? "<null>").JoinString(", ")}]");
 
         displayTexts[0] = displayTexts[0].Select(str => Regex.Replace(str, "#", " ")).ToArray();
 
-        string[] firstRowTexts = displayTexts[0].Where((item, index) => index == 0 || index == 2 || index == 4).ToArray();
-        string[] lastThreeTexts = displayTexts[0].Where((item, index) => index > 4 && index < 8).ToArray();
-        string[] color = new string[14] { "White", "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Grey", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose" };
-        string[] displayColors = colorIndex.Select(index => color[index]).ToArray();
+        var firstRowTexts = displayTexts[0].Where((item, index) => index is 0 or 2 or 4).ToArray();
+        var lastThreeTexts = displayTexts[0].Where((item, index) => index is > 4 and < 8).ToArray();
+        var color = new string[14] { "White", "Red", "Orange", "Yellow", "Lime", "Green", "Jade", "Grey", "Cyan", "Azure", "Blue", "Violet", "Magenta", "Rose" };
+        var displayColors = colorIndex.Select(index => color[index]).ToArray();
 
         //End of the displayed texts section.
 
@@ -200,7 +200,7 @@ public partial class SouvenirModule
             makeQuestion(Question.BarChartsUnit, module, correctAnswers: new[] { chosenUnit.ToString() })
         };
 
-        for (int i = 0; i < 4; i++)
+        for (var i = 0; i < 4; i++)
         {
             var correctHeightPos = heightOrderIndices.IndexOf(i + 1) + 1;
             qs.AddRange(new[] {
@@ -220,14 +220,14 @@ public partial class SouvenirModule
         var edgeworkInfos = GetField<Array>(comp, "edgework").Get();
         var fldName = GetField<string>(edgeworkInfos.GetValue(0), "Name", isPublic: true);
         var barcodes = new[] { fldName.GetFrom(edgeworkInfos.GetValue(0)), fldName.GetFrom(edgeworkInfos.GetValue(1)), fldName.GetFrom(edgeworkInfos.GetValue(2)) };
-        var fldScreenNumber = GetField<string>(comp, "screenNumber").Get(validator: str => str.Length != 6 ? "expected length 6" : str.Any(ch => ch < '0' || ch > '9') ? "expected digits 0–9" : null);
-        var answers = GetArrayField<int>(comp, "answerNumbers").Get(validator: arr => arr.Length != 3 ? "expected length 3" : arr.Any(n => n < 0 || n > 8) ? "expected numbers 0–8" : null);
+        var fldScreenNumber = GetField<string>(comp, "screenNumber").Get(validator: str => str.Length != 6 ? "expected length 6" : str.Any(ch => ch is < '0' or > '9') ? "expected digits 0–9" : null);
+        var answers = GetArrayField<int>(comp, "answerNumbers").Get(validator: arr => arr.Length != 3 ? "expected length 3" : arr.Any(n => n is < 0 or > 8) ? "expected numbers 0–8" : null);
 
         yield return WaitForSolve;
 
         var qs = new List<QandA>();
         qs.Add(makeQuestion(Question.BarcodeCipherScreenNumber, module, correctAnswers: new[] { fldScreenNumber }));
-        for (int i = 0; i < 3; i++)
+        for (var i = 0; i < 3; i++)
         {
             qs.Add(makeQuestion(Question.BarcodeCipherBarcodeEdgework, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { barcodes[i] }));
             qs.Add(makeQuestion(Question.BarcodeCipherBarcodeAnswers, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { answers[i].ToString() }));
@@ -242,7 +242,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var ingIxs = fldIngredientIxs.Get(expectedLength: 5, validator: ing => ing < 0 || ing > 4 ? "expected 0–4" : null);
+        var ingIxs = fldIngredientIxs.Get(expectedLength: 5, validator: ing => ing is < 0 or > 4 ? "expected 0–4" : null);
         var ingredientNames = new[] { "Powdered Delta", "Flanergide", "Adelhyde", "Bronson Extract", "Karmotrine" };
         addQuestions(module, ingIxs.Select((ingIx, pos) => makeQuestion(Question.BartendingIngredients, module, formatArgs: new[] { Ordinal(pos + 1) }, correctAnswers: new[] { ingredientNames[ingIx] })));
     }
@@ -252,14 +252,14 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "beansScript");
         yield return WaitForSolve;
 
-        var bns = GetField<int[]>(comp, "beanArray").Get(a => a.Length != 9 ? "Bad length" : a.Any(i => i < 0 || i >= 6) ? "Bad bean value" : null);
+        var bns = GetField<int[]>(comp, "beanArray").Get(a => a.Length != 9 ? "Bad length" : a.Any(i => i is < 0 or >= 6) ? "Bad bean value" : null);
         var eaten = GetField<KMSelectable[]>(comp, "Beans", true).Get(a => a.Length != 9 ? "Bad length" : null);
 
-        string[] flavors = new[] { "Not Wobbly Orange", "Not Wobbly Yellow", "Not Wobbly Green", "Wobbly Orange", "Wobbly Yellow", "Wobbly Green" };
-        QandA beansQ(int i) => makeQuestion(Question.BeansColors, module,
-            questionSprite: Sprites.GenerateGridSprite(3, 3, i),
-            correctAnswers: new string[] { flavors[bns[i]] });
-        addQuestions(module, Enumerable.Range(0, 9).Where(i => eaten[i].transform.localScale.magnitude <= Mathf.Epsilon).Select(beansQ));
+        var flavors = new[] { "Not Wobbly Orange", "Not Wobbly Yellow", "Not Wobbly Green", "Wobbly Orange", "Wobbly Yellow", "Wobbly Green" };
+
+        addQuestions(module, Enumerable.Range(0, 9)
+            .Where(i => eaten[i].transform.localScale.magnitude <= Mathf.Epsilon)
+            .Select(i => makeQuestion(Question.BeansColors, module, questionSprite: Sprites.GenerateGridSprite(3, 3, i), correctAnswers: new string[] { flavors[bns[i]] })));
     }
 
     private IEnumerator<YieldInstruction> ProcessBeanSprouts(ModuleData module)
@@ -267,11 +267,11 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "beanSproutsScript");
         yield return WaitForSolve;
 
-        var bns = GetField<int[]>(comp, "beanArray").Get(a => a.Length != 9 ? "Bad length" : a.Any(i => i < 0 || i >= 9) ? "Bad bean value" : null);
+        var bns = GetField<int[]>(comp, "beanArray").Get(a => a.Length != 9 ? "Bad length" : a.Any(i => i is < 0 or >= 9) ? "Bad bean value" : null);
         var eaten = GetField<KMSelectable[]>(comp, "Beans", true).Get(a => a.Length != 9 ? "Bad length" : null);
 
-        string[] flavors = new[] { "Raw", "Cooked", "Burnt" };
-        string[] flavors2 = new[] { "Left", "None", "Right" };
+        var flavors = new[] { "Raw", "Cooked", "Burnt" };
+        var flavors2 = new[] { "Left", "None", "Right" };
         IEnumerable<QandA> beansQ(int i)
         {
             yield return makeQuestion(Question.BeanSproutsColors, module, formatArgs: new string[] { (i + 1).ToString() }, correctAnswers: new string[] { flavors[bns[i] % 3] });
@@ -285,9 +285,9 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "bigBeanScript");
         yield return WaitForSolve;
 
-        var bn = GetField<int>(comp, "bean").Get(i => i < 0 || i >= 6 ? "Bad bean value" : null);
+        var bn = GetField<int>(comp, "bean").Get(i => i is < 0 or >= 6 ? "Bad bean value" : null);
 
-        string[] flavors = new[] { "Not Wobbly Orange", "Not Wobbly Yellow", "Not Wobbly Green", "Wobbly Orange", "Wobbly Yellow", "Wobbly Green" };
+        var flavors = new[] { "Not Wobbly Orange", "Not Wobbly Yellow", "Not Wobbly Green", "Wobbly Orange", "Wobbly Yellow", "Wobbly Green" };
         int? match = bn switch
         {
             0 => 5,
@@ -327,7 +327,7 @@ public partial class SouvenirModule
         var fldBlinkDelay = GetField<float>(comp, "blinkDelay");
         var mthGetIndexFromTime = GetMethod<int>(comp, "GetIndexFromTime", 2);
 
-        int answer = -1;
+        var answer = -1;
         var wires = GetArrayField<KMSelectable>(comp, "wires", isPublic: true).Get(expectedLength: 3);
 
         foreach (var i in Enumerable.Range(0, wires.Length))    // Do not use ‘for’ loop as the loop variable is captured by a lambda
@@ -427,8 +427,8 @@ public partial class SouvenirModule
 
         var bitmap = GetArrayField<bool[]>(comp, "_bitmap").Get(expectedLength: 8, validator: arr => arr.Length != 8 ? "expected length 8" : null);
         var qCounts = new int[4];
-        for (int x = 0; x < 8; x++)
-            for (int y = 0; y < 8; y++)
+        for (var x = 0; x < 8; x++)
+            for (var y = 0; y < 8; y++)
                 if (bitmap[x][y])
                     qCounts[(y / 4) * 2 + (x / 4)]++;
 
@@ -445,10 +445,7 @@ public partial class SouvenirModule
             makeQuestion(Question.Bitmaps, module, formatArgs: new[] { "black", "bottom right" }, correctAnswers: new[] { (16 - qCounts[3]).ToString() }, preferredWrongAnswers: preferredWrongAnswers));
     }
 
-    private IEnumerator<YieldInstruction> ProcessBlackCipher(ModuleData module)
-    {
-        return processColoredCiphers(module, "blackCipher", Question.BlackCipherScreen);
-    }
+    private IEnumerator<YieldInstruction> ProcessBlackCipher(ModuleData module) => processColoredCiphers(module, "blackCipher", Question.BlackCipherScreen);
 
     private IEnumerator<YieldInstruction> ProcessBlindfoldedYahtzee(ModuleData module)
     {
@@ -456,7 +453,7 @@ public partial class SouvenirModule
         var fldExpecting = GetField<bool>(comp, "ExpectingInput");
         var fldPrev = GetListField<bool>(comp, "PrevAnswers");
         var fldCategory = GetField<string>(comp, "CategoryName");
-        string[] stages = new string[5];
+        var stages = new string[5];
 
         while (module.Unsolved)
         {
@@ -498,7 +495,7 @@ public partial class SouvenirModule
         // Despite the name “currentMaze”, this field actually contains the number of solved modules when Blind Maze was solved
         var numSolved = GetIntField(comp, "currentMaze").Get(v => v < 0 ? "negative" : null);
         var lastDigit = GetIntField(comp, "LastDigit").Get(min: 0, max: 9);
-        var buttonColors = GetArrayField<int>(comp, "buttonColors").Get(expectedLength: 4, validator: bc => bc < 0 || bc > 4 ? "expected 0–4" : null);
+        var buttonColors = GetArrayField<int>(comp, "buttonColors").Get(expectedLength: 4, validator: bc => bc is < 0 or > 4 ? "expected 0–4" : null);
 
         var colorNames = new[] { "Red", "Green", "Blue", "Gray", "Yellow" };
         var buttonNames = new[] { "north", "east", "south", "west" };
@@ -542,7 +539,7 @@ public partial class SouvenirModule
         var prevInteracts = new KMSelectable.OnInteractHandler[tiles.Length];
         string lastPress = null;
 
-        for (int i = 0; i < tiles.Length; i++)
+        for (var i = 0; i < tiles.Length; i++)
         {
             var selectable = selectables[i] = GetField<KMSelectable>(tiles.GetValue(i), "selectable", isPublic: true).Get();
             var prevInteract = prevInteracts[i] = selectable.OnInteract;
@@ -556,7 +553,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        for (int i = 0; i < tiles.Length; i++)
+        for (var i = 0; i < tiles.Length; i++)
             selectables[i].OnInteract = prevInteracts[i];
 
         if (lastPress == null)
@@ -573,7 +570,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         string[] characters = { "CA", "C1", "CB", "C8", "CF", "C4", "CE", "C6", "3A", "31", "3B", "38", "3F", "34", "3E", "36", "GA", "G1", "GB", "G8", "GF", "G4", "GE", "G6", "7A", "71", "7B", "78", "7F", "74", "7E", "76", "DA", "D1", "DB", "D8", "DF", "D4", "DE", "D6", "5A", "51", "5B", "58", "5F", "54", "5E", "56", "HA", "H1", "HB", "H8", "HF", "H4", "HE", "H6", "2A", "21", "2B", "28", "2F", "24", "2E", "26" };
-        string coord = fldCoord.Get(v => !characters.Contains(v) ? $"expected one of: [{characters.JoinString(", ")}]" : null);
+        var coord = fldCoord.Get(v => !characters.Contains(v) ? $"expected one of: [{characters.JoinString(", ")}]" : null);
         addQuestion(module, Question.BlueArrowsInitialCharacters, correctAnswers: new[] { coord });
     }
 
@@ -585,7 +582,7 @@ public partial class SouvenirModule
 
         var suitsGoal = GetArrayField<int>(comp, "_suitsGoal").Get(expectedLength: 4);
         var colorStageColors = GetArrayField<int>(comp, "_colorStageColors").Get();
-        var jumps = GetArrayField<int>(comp, "_jumps").Get(expectedLength: 4, validator: v => v < 0 || v >= 4 ? "expected range 0–3" : null);
+        var jumps = GetArrayField<int>(comp, "_jumps").Get(expectedLength: 4, validator: v => v is < 0 or >= 4 ? "expected range 0–3" : null);
         var equationOffsets = GetArrayField<int>(comp, "_equationOffsets").Get(expectedLength: 4);
 
         var colorNames = new[] { "Blue", "Green", "Cyan", "Red", "Magenta", "Yellow" };
@@ -614,10 +611,7 @@ public partial class SouvenirModule
             makeQuestion(Question.BlueButtonX, module, correctAnswers: new[] { valX.ToString() }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessBlueCipher(ModuleData module)
-    {
-        return processColoredCiphers(module, "blueCipher", Question.BlueCipherScreen);
-    }
+    private IEnumerator<YieldInstruction> ProcessBlueCipher(ModuleData module) => processColoredCiphers(module, "blueCipher", Question.BlueCipherScreen);
 
     private IEnumerator<YieldInstruction> ProcessBobBarks(ModuleData module)
     {
@@ -630,8 +624,8 @@ public partial class SouvenirModule
         string[] validDirections = { "top left", "top right", "bottom left", "bottom right" };
         string[] validLabels = { "BOB", "CAR", "CLR", "IND", "FRK", "FRQ", "MSA", "NSA", "SIG", "SND", "TRN", "BUB", "DOG", "ETC", "KEY" };
 
-        int[] indicators = fldIndicators.Get(expectedLength: 4, validator: idn => idn < 0 || idn >= validLabels.Length ? $"expected 0–{validLabels.Length - 1}" : null);
-        int[] flashes = fldFlashes.Get(expectedLength: 5, validator: fn => fn < 0 || fn >= validDirections.Length ? $"expected 0–{validDirections.Length - 1}" : null);
+        var indicators = fldIndicators.Get(expectedLength: 4, validator: idn => idn < 0 || idn >= validLabels.Length ? $"expected 0–{validLabels.Length - 1}" : null);
+        var flashes = fldFlashes.Get(expectedLength: 5, validator: fn => fn < 0 || fn >= validDirections.Length ? $"expected 0–{validDirections.Length - 1}" : null);
 
         // To provide preferred wrong answers, mostly.
         string[] labelsOnModule = { validLabels[indicators[0]], validLabels[indicators[1]], validLabels[indicators[2]], validLabels[indicators[3]] };
@@ -663,8 +657,8 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var letters = new List<string>();
-        for (int i = verOffset; i < verOffset + 4; i++)
-            for (int j = horOffset; j < horOffset + 4; j++)
+        for (var i = verOffset; i < verOffset + 4; i++)
+            for (var j = horOffset; j < horOffset + 4; j++)
                 letters.Add(map[i, j].ToString());
 
         addQuestion(module, Question.BoggleLetters, correctAnswers: visible.Select(v => v.ToString()).ToArray(), preferredWrongAnswers: letters.ToArray());
@@ -716,9 +710,9 @@ public partial class SouvenirModule
         var buttonTexts = GetArrayField<TextMesh>(comp, "buttonTexts", true).Get(expectedLength: 6);
         var struck = false;
         module.Module.OnStrike += () => struck = true;
-        for (int i = 0; i < 6; i++)
+        for (var i = 0; i < 6; i++)
         {
-            int j = i;
+            var j = i;
             var origInteract = buttons[i].OnInteract;
             buttons[i].OnInteract = () =>
             {
@@ -748,10 +742,8 @@ public partial class SouvenirModule
         var answer = new List<(string name, string quote)>();
         var dictionary = new Dictionary<string, string[]>();
 
-        (string, string) GetPersonKeyValue(int characterIndex, int characterQuote)
-        {
-            return (UpdateString(quotes[characterIndex][0]), UpdateString(quotes[characterIndex][fldQuoteIndex.Get()]));
-        }
+        (string, string) GetPersonKeyValue(int characterIndex, int characterQuote) =>
+            (UpdateString(quotes[characterIndex][0]), UpdateString(quotes[characterIndex][fldQuoteIndex.Get()]));
 
         while (module.Unsolved)
         {
@@ -826,7 +818,7 @@ public partial class SouvenirModule
 
         var operators = GetListField<string>(comp, "Entered", isPublic: true).Get(expectedLength: 10);
         var qs = new List<QandA>();
-        for (int pos = 0; pos < 5; pos++)
+        for (var pos = 0; pos < 5; pos++)
             qs.Add(makeQuestion(Question.BooleanWiresEnteredOperators, module, formatArgs: new[] { Ordinal(pos + 1) }, correctAnswers: new[] { operators[2 * pos] }));
         addQuestions(module, qs);
     }
@@ -836,8 +828,8 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "boomtarTheGreat");
         yield return WaitForSolve;
 
-        int rule1 = GetField<int>(comp, "rule1").Get(i => i < 0 || i > 5 ? "Bad rule 1" : null);
-        int rule2 = GetField<int>(comp, "rule2").Get(i => i < 0 || i > 5 ? "Bad rule 2" : null);
+        var rule1 = GetField<int>(comp, "rule1").Get(i => i is < 0 or > 5 ? "Bad rule 1" : null);
+        var rule2 = GetField<int>(comp, "rule2").Get(i => i is < 0 or > 5 ? "Bad rule 2" : null);
 
         addQuestions(module,
             makeQuestion(Question.BoomtarTheGreatRules, module, formatArgs: new string[] { "one" }, correctAnswers: new string[] { (rule1 + 1).ToString() }, preferredWrongAnswers: new string[] { (rule2 + 1).ToString() }),
@@ -852,11 +844,11 @@ public partial class SouvenirModule
         var keys = allButtons.Take(6).ToList();
         var fldInfo = GetArrayField<int[]>(comp, "info");
 
-        string[] keysColors = new string[6];
-        string[] labelColors = new string[6];
-        string[] borderColors = new string[6];
-        string[] labels = new string[6];
-        string[] digits = new string[6];
+        var keysColors = new string[6];
+        var labelColors = new string[6];
+        var borderColors = new string[6];
+        var labels = new string[6];
+        var digits = new string[6];
         Exception exception = null;
 
         foreach (var key in keys)
@@ -868,7 +860,7 @@ public partial class SouvenirModule
                 try
                 {
                     var info = fldInfo.Get(expectedLength: 6, validator: arr => arr.Length != 5 ? "expected length of 5" : null);
-                    int index = keys.IndexOf(key);
+                    var index = keys.IndexOf(key);
                     keysColors[index] = colors[info[index][0]];
                     labelColors[index] = colors[info[index][1]];
                     borderColors[index] = colors[info[index][2]];
@@ -960,9 +952,9 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "breakfastEggScript");
         yield return WaitForSolve;
 
-        string[] colors = new[] { "Crimson", "Orange", "Pink", "Beige", "Cyan", "Lime", "Petrol" };
-        int yolkA = GetIntField(comp, "yolkNumA").Get(min: 0, max: 7);
-        int yolkB = GetIntField(comp, "yolkNumB").Get(min: 0, max: 7);
+        var colors = new[] { "Crimson", "Orange", "Pink", "Beige", "Cyan", "Lime", "Petrol" };
+        var yolkA = GetIntField(comp, "yolkNumA").Get(min: 0, max: 7);
+        var yolkB = GetIntField(comp, "yolkNumB").Get(min: 0, max: 7);
         addQuestion(module, Question.BreakfastEggColor, correctAnswers: new[] { colors[yolkA], colors[yolkB] });
     }
 
@@ -987,7 +979,7 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "BrokenGuitarChordsModule");
         var chordDisplay = GetField<TextMesh>(comp, "ChordDisplay", isPublic: true).Get();
-        string displayedChord = chordDisplay.text;
+        var displayedChord = chordDisplay.text;
 
         yield return WaitForSolve;
 
@@ -1022,18 +1014,15 @@ public partial class SouvenirModule
         );
     }
 
-    private IEnumerator<YieldInstruction> ProcessBrownCipher(ModuleData module)
-    {
-        return processColoredCiphers(module, "brownCipher", Question.BrownCipherScreen);
-    }
+    private IEnumerator<YieldInstruction> ProcessBrownCipher(ModuleData module) => processColoredCiphers(module, "brownCipher", Question.BrownCipherScreen);
 
     private IEnumerator<YieldInstruction> ProcessBrushStrokes(ModuleData module)
     {
         var comp = GetComponent(module, "BrushStrokesScript");
         yield return WaitForSolve;
 
-        string[] colorNames = GetStaticField<string[]>(comp.GetType(), "colorNames").Get();
-        int[] colors = GetArrayField<int>(comp, "colors").Get(expectedLength: 9);
+        var colorNames = GetStaticField<string[]>(comp.GetType(), "colorNames").Get();
+        var colors = GetArrayField<int>(comp, "colors").Get(expectedLength: 9);
 
         if (colors[4] < 0 || colors[4] >= colorNames.Length)
             throw new AbandonModuleException($"‘colors[4]’ pointed to illegal color: {colors[4]}.");
@@ -1057,7 +1046,7 @@ public partial class SouvenirModule
         var orders = GetArrayField<string>(comp, "orderStrings").Get(expectedLength: 5);
 
         var qs = new List<QandA>();
-        for (int pos = 0; pos < 7; pos++)
+        for (var pos = 0; pos < 7; pos++)
         {
             qs.Add(makeQuestion(Question.BurgerAlarmDigits, module, formatArgs: new[] { Ordinal(pos + 1) }, correctAnswers: new[] { displayedNumber[pos].ToString() }));
             if (pos < 5)
@@ -1074,7 +1063,7 @@ public partial class SouvenirModule
         var displayText = GetField<TextMesh>(comp, "DisplayText", isPublic: true).Get();
         displayText.text = "";
 
-        var moduleNumber = GetArrayField<int>(comp, "moduleNumber").Get(expectedLength: 8, validator: mn => mn < 0 || mn > 9 ? "expected 0–9" : null);
+        var moduleNumber = GetArrayField<int>(comp, "moduleNumber").Get(expectedLength: 8, validator: mn => mn is < 0 or > 9 ? "expected 0–9" : null);
         addQuestions(module, moduleNumber.Select((mn, ix) => makeQuestion(Question.BurglarAlarmDigits, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { mn.ToString() }, preferredWrongAnswers: moduleNumber.Select(n => n.ToString()).ToArray())));
     }
 
@@ -1149,8 +1138,8 @@ public partial class SouvenirModule
         {
             if (mu + deviation < real || mu - deviation > real)
                 mu = real;
-            int count = UnityEngine.Random.Range(12, 18);
-            for (int i = 0; i < count; i++)
+            var count = UnityEngine.Random.Range(12, 18);
+            for (var i = 0; i < count; i++)
                 yield return UnityEngine.Random.Range(Mathf.Max(mu - deviation, 0), Mathf.Min(mu + deviation, 65)).ToString();
         }
 
@@ -1175,8 +1164,8 @@ public partial class SouvenirModule
         var fldColor = GetIntField(obj, "color", isPublic: true);
         var colorNames = GetStaticField<string[]>(comp.GetType(), "ColorNames").Get();
         var colorOccurrences = new Dictionary<int, int>();
-        for (int i = panelInfo.GetLength(0) - 1; i >= 0; i--)
-            for (int j = 0; j < 3; j++)
+        for (var i = panelInfo.GetLength(0) - 1; i >= 0; i--)
+            for (var j = 0; j < 3; j++)
                 colorOccurrences.IncSafe(fldColor.GetFrom(panelInfo.GetValue(i, j), v => v < 0 || v >= colorNames.Length ? $"out of range; colorNames.Length={colorNames.Length} ([{colorNames.JoinString(", ")}])" : null));
 
         addQuestions(module, colorOccurrences.Select(kvp =>

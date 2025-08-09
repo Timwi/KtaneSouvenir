@@ -44,7 +44,7 @@ public partial class SouvenirModule
         var qs = new List<QandA>();
 
         // Ask about the correctly connected cars/locomotives
-        for (int i = 0; i < 14; i++)    // skip 15 because it’s always the Caboose
+        for (var i = 0; i < 14; i++)    // skip 15 because it’s always the Caboose
             qs.Add(makeQuestion(Question.RailwayCargoLoadingCars, module, formatArgs: new[] { Ordinal(i + 1) },
                 correctAnswers: new[] { trainCars[i] }, preferredWrongAnswers: allCarSprites));
 
@@ -57,7 +57,7 @@ public partial class SouvenirModule
         var metRules = new List<string>();
         var unmetRules = new List<string>();
 
-        for (int i = 0; i < 14; i++)
+        for (var i = 0; i < 14; i++)
         {
             var ruleResource = fldTableRuleResource.GetFrom(freightTableRules.GetValue(i));
             var ruleName = fldTableRuleResourceName.GetFrom(ruleResource) switch
@@ -156,10 +156,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.RedButtontWord, correctAnswers: new[] { word }, allAnswers: allWords);
     }
 
-    private IEnumerator<YieldInstruction> ProcessRedCipher(ModuleData module)
-    {
-        return processColoredCiphers(module, "redCipher", Question.RedCipherScreen);
-    }
+    private IEnumerator<YieldInstruction> ProcessRedCipher(ModuleData module) => processColoredCiphers(module, "redCipher", Question.RedCipherScreen);
 
     private IEnumerator<YieldInstruction> ProcessRedHerring(ModuleData module)
     {
@@ -167,7 +164,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         string[] colorNames = { "Green", "Blue", "Purple", "Orange" };
-        int firstColor = GetArrayField<int>(comp, "colorIndices").Get(expectedLength: 4).First();
+        var firstColor = GetArrayField<int>(comp, "colorIndices").Get(expectedLength: 4).First();
         addQuestion(module, Question.RedHerringFirstFlash, correctAnswers: new[] { colorNames[firstColor] });
     }
 
@@ -182,7 +179,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var index = fldIndex.Get(expectedLength: 2);
-        var wires = fldWires.Get(minLength: 3, maxLength: 9, validator: i => i < 0 || i > 9 ? "expected value 0–9" : null);
+        var wires = fldWires.Get(minLength: 3, maxLength: 9, validator: i => i is < 0 or > 9 ? "expected value 0–9" : null);
 
         var colors = new[] { "Navy", "Lapis", "Blue", "Sky", "Teal", "Plum", "Violet", "Purple", "Magenta", "Lavender" };
         var qs = new List<QandA>();
@@ -217,7 +214,7 @@ public partial class SouvenirModule
         var phraseText = GetField<string>(selectedPhrase, "Phrase", isPublic: true).Get(v => string.IsNullOrEmpty(v) ? "‘Phrase’ is empty" : null);
         var displayDigit = GetField<int>(selectedPhrase, "ExpectedDigit", isPublic: true).Get();
 
-        string modifier = "[PHRASE]";
+        var modifier = "[PHRASE]";
 
         if (phraseText.Length >= 10 && phraseText.Substring(0, 10) == "It says: “") modifier = "It says: “[PHRASE]”";
         else if (phraseText.Length >= 9 && phraseText.Substring(0, 9) == "“It says:") modifier = "“It says: [PHRASE]”";
@@ -278,9 +275,9 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "retirementScript");
         yield return WaitForSolve;
 
-        string[] homes = GetArrayField<string>(comp, "retirementHomeOptions", isPublic: true).Get();
-        string[] available = GetArrayField<string>(comp, "selectedHomes").Get();
-        string correct = GetField<string>(comp, "correctHome").Get(str => str == "" ? "empty" : null);
+        var homes = GetArrayField<string>(comp, "retirementHomeOptions", isPublic: true).Get();
+        var available = GetArrayField<string>(comp, "selectedHomes").Get();
+        var correct = GetField<string>(comp, "correctHome").Get(str => str == "" ? "empty" : null);
         addQuestion(module, Question.RetirementHouses, correctAnswers: available.Where(x => x != correct).ToArray(), preferredWrongAnswers: homes);
     }
 
@@ -293,7 +290,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var qs = new List<QandA>();
-        for (int i = 0; i < 6; i++)
+        for (var i = 0; i < 6; i++)
         {
             qs.Add(makeQuestion(Question.ReverseMorseCharacters, module, formatArgs: new[] { Ordinal(i + 1), "first" }, correctAnswers: new[] { message1[i] }, preferredWrongAnswers: message1.ToArray()));
             qs.Add(makeQuestion(Question.ReverseMorseCharacters, module, formatArgs: new[] { Ordinal(i + 1), "second" }, correctAnswers: new[] { message2[i] }, preferredWrongAnswers: message2.ToArray()));
@@ -310,7 +307,7 @@ public partial class SouvenirModule
             .Get(expectedLength: 3, validator: x => x.Any(character => !Regex.IsMatch(character, @"^[0-9A-G]$")) ? "expected character to be in the range of 0-9 or A-G" : null);
 
         var qs = new List<QandA>();
-        for (int i = 0; i < 3; i++)
+        for (var i = 0; i < 3; i++)
         {
             if (usedChars[i].Length != i + 3)
                 throw new AbandonModuleException($"‘usedChars[{i}]’ is of an unexpected length (expected {i + 3}): [{string.Join(", ", usedChars[i])}]");
@@ -324,8 +321,8 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "RGBMazeScript");
         yield return WaitForSolve;
 
-        var keyPos = GetArrayField<int[]>(comp, "keylocations").Get(expectedLength: 3, validator: key => key.Length != 2 ? "expected length 2" : key.Any(number => number < 0 || number > 7) ? "expected range 0–7" : null);
-        var mazeNum = GetArrayField<int[]>(comp, "mazenumber").Get(expectedLength: 3, validator: maze => maze.Length != 2 ? "expected length 2" : maze[0] < 0 || maze[0] > 9 ? "expected maze[0] in range 0–9" : null);
+        var keyPos = GetArrayField<int[]>(comp, "keylocations").Get(expectedLength: 3, validator: key => key.Length != 2 ? "expected length 2" : key.Any(number => number is < 0 or > 7) ? "expected range 0–7" : null);
+        var mazeNum = GetArrayField<int[]>(comp, "mazenumber").Get(expectedLength: 3, validator: maze => maze.Length != 2 ? "expected length 2" : maze[0] is < 0 or > 9 ? "expected maze[0] in range 0–9" : null);
         var exitPos = GetArrayField<int>(comp, "exitlocation").Get(expectedLength: 3);
 
         if (exitPos[1] < 0 || exitPos[1] > 7 || exitPos[2] < 0 || exitPos[2] > 7)
@@ -335,7 +332,7 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
 
-        for (int index = 0; index < 3; index++)
+        for (var index = 0; index < 3; index++)
         {
             qs.Add(makeQuestion(Question.RGBMazeKeys, module,
                 formatArgs: new[] { colors[index] },
@@ -416,7 +413,7 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
 
-        for (int i = 0; i < 4; i++)
+        for (var i = 0; i < 4; i++)
         {
             var robot = robotsArr[i];
             var color = fldColor.GetFrom(robot).ToString();
@@ -451,10 +448,10 @@ public partial class SouvenirModule
         var purpleWires = GetListField<byte>(comp, "purpleWires").Get(lst => lst.Count > 7 ? "expected 7 or fewer elements" : null);
 
         var totalWires = redWires.Count + orangeWires.Count + yellowWires.Count + greenWires.Count + blueWires.Count + purpleWires.Count;
-        if (totalWires < 2 || totalWires > 7)
+        if (totalWires is < 2 or > 7)
             throw new AbandonModuleException($"All wires combined has unexpected value (expected 2-7): {totalWires}");
 
-        var answerIndex = GetField<byte>(comp, "souvenir").Get(b => b < 2 || b > 8 ? "expected range 2–8" : null);
+        var answerIndex = GetField<byte>(comp, "souvenir").Get(b => b is < 2 or > 8 ? "expected range 2–8" : null);
         addQuestions(module,
             makeQuestion(Question.RoleReversalWires, module, formatArgs: new[] { "warm-colored" }, correctAnswers: new[] { (redWires.Count + orangeWires.Count + yellowWires.Count).ToString() }),
             makeQuestion(Question.RoleReversalWires, module, formatArgs: new[] { "cold-colored" }, correctAnswers: new[] { (greenWires.Count + blueWires.Count + purpleWires.Count).ToString() }),
@@ -512,13 +509,13 @@ public partial class SouvenirModule
                 var throws = new[] { "dynamite", "tornado", "quicksand", "pit", "chain", "gun", "law", "whip", "sword", "rock", "death", "wall", "sun", "camera", "fire", "chainsaw", "school", "scissors", "poison", "cage", "axe", "peace", "computer", "castle", "snake", "blood", "porcupine", "vulture", "monkey", "king", "queen", "prince", "princess", "police", "woman", "baby", "man", "home", "train", "car", "noise", "bicycle", "tree", "turnip", "duck", "wolf", "cat", "bird", "fish", "spider", "cockroach", "brain", "community", "cross", "money", "vampire", "sponge", "church", "butter", "book", "paper", "cloud", "airplane", "moon", "grass", "film", "toilet", "air", "planet", "guitar", "bowl", "cup", "beer", "rain", "water", "tv", "rainbow", "ufo", "alien", "prayer", "mountain", "satan", "dragon", "diamond", "platinum", "gold", "devil", "fence", "video game", "math", "robot", "heart", "electricity", "lightning", "medusa", "power", "laser", "nuke", "sky", "tank", "helicopter" };
 
                 var qs = new List<QandA>();
-                for (int stage = 0; stage < displayedStageCount; stage++)
+                for (var stage = 0; stage < displayedStageCount; stage++)
                 {
                     var uniqueStage = leftUniqueStages.Concat(rightUniqueStages).FirstOrDefault(s => s != stage + 1);
                     if (uniqueStage != 0)
                     {
-                        bool isLeft = leftUniqueStages.Contains(uniqueStage);
-                        bool isRight = leftUniqueStages.Contains(uniqueStage);
+                        var isLeft = leftUniqueStages.Contains(uniqueStage);
+                        var isRight = leftUniqueStages.Contains(uniqueStage);
                         if (isLeft && isRight)
                             isLeft = UnityEngine.Random.Range(0, 2) == 0;
 
@@ -556,8 +553,8 @@ public partial class SouvenirModule
         var yellowValues = GetArrayField<int>(comp, "_yellowValues").Get(expectedLength: 3);
         var blueValues = GetArrayField<int>(comp, "_blueValues").Get(expectedLength: 3);
         var values = new[] { redValues, yellowValues, blueValues };
-        for (int color = 0; color < 3; color++)
-            for (int coord = 0; coord < 3; coord++)
+        for (var color = 0; color < 3; color++)
+            for (var coord = 0; coord < 3; coord++)
                 qs.Add(makeQuestion(Question.RuleOfThreeCoordinates, module, formatArgs: new[] { "XYZ"[coord].ToString(), colorNames[color] }, correctAnswers: new[] { values[color][coord].ToString() }));
 
         // Cycles
@@ -565,9 +562,9 @@ public partial class SouvenirModule
         var yellowCoords = GetArrayField<int[]>(comp, "_yellowCoords").Get(expectedLength: 3, validator: arr => arr.Length != 3 ? "expected length 3" : null);
         var blueCoords = GetArrayField<int[]>(comp, "_blueCoords").Get(expectedLength: 3, validator: arr => arr.Length != 3 ? "expected length 3" : null);
         var coords = new[] { redCoords, yellowCoords, blueCoords };
-        for (int color = 0; color < 3; color++)
-            for (int axis = 0; axis < 3; axis++)
-                for (int cycle = 0; cycle < 3; cycle++)
+        for (var color = 0; color < 3; color++)
+            for (var axis = 0; axis < 3; axis++)
+                for (var cycle = 0; cycle < 3; cycle++)
                     qs.Add(makeQuestion(Question.RuleOfThreeCycles, module, formatArgs: new[] { colorNames[color], "XYZ"[axis].ToString(), Ordinal(cycle + 1) }, correctAnswers: new[] { coords[color][cycle][axis].ToString() }));
 
         addQuestions(module, qs);

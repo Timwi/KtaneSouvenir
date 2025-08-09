@@ -64,7 +64,7 @@ public partial class SouvenirModule
         var shapeNames = GetStaticField<string[]>(comp.GetType(), "shapeNames").Get();
         var datasetNames = new[] { "Morse Identification", "Boozleglyph Identification", "Plant Identification", "Pickup Identification", "Emotiguy Identification", "Ars Goetia Identification", "Mii Identification", "Customer identification", "Spongebob Birthday Identification", "VTuber Identification" };
         var qs = new List<QandA>();
-        for (int i = 0; i < 3; i++)
+        for (var i = 0; i < 3; i++)
         {
             qs.Add(makeQuestion(Question.IdentificationCrisisShape, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { shapeNames[shapes[i]] }));
             qs.Add(makeQuestion(Question.IdentificationCrisisDataset, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { datasetNames[datasets[i]] }));
@@ -123,10 +123,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.ImpostorDisguise, correctAnswers: new[] { possibleModuleNames[chosenModIndex] }, preferredWrongAnswers: possibleModuleNames);
     }
 
-    private IEnumerator<YieldInstruction> ProcessIndigoCipher(ModuleData module)
-    {
-        return processColoredCiphers(module, "indigoCipher", Question.IndigoCipherScreen);
-    }
+    private IEnumerator<YieldInstruction> ProcessIndigoCipher(ModuleData module) => processColoredCiphers(module, "indigoCipher", Question.IndigoCipherScreen);
 
     private IEnumerator<YieldInstruction> ProcessInfiniteLoop(ModuleData module)
     {
@@ -198,7 +195,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var sounds = GetArrayField<AudioClip>(comp, "sounds", true).Get(expectedLength: 71);
-        var cap = GetField<int>(comp, "cap").Get(i => i != 44 && i != 71 ? $"Unknown cap value {i} (expected 44 or 71)" : null);
+        var cap = GetField<int>(comp, "cap").Get(i => i is not 44 and not 71 ? $"Unknown cap value {i} (expected 44 or 71)" : null);
 
         var soundIx = GetIntField(comp, "soundPresent").Get(0, sounds.Length - 1);
         addQuestions(module, makeQuestion(Question.IpaSound, module,

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using Souvenir;
 using UnityEngine;
@@ -23,8 +22,8 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "halliGalli");
         var bell = GetField<KMSelectable>(comp, "bell", isPublic: true).Get();
         var stage = GetIntField(comp, "stage");
-        int fruit = -1;
-        string figure = "";
+        var fruit = -1;
+        var figure = "";
 
         var oldInteract = bell.OnInteract;
         bell.OnInteract = () =>
@@ -35,11 +34,11 @@ public partial class SouvenirModule
             var counts = GetArrayField<int>(comp, "displayedCounts").Get(expectedLength: 3);
 
             fruit = -1;
-            for (int i = 0; i < 5; i++)
+            for (var i = 0; i < 5; i++)
                 if (Enumerable.Range(0, 3).Where(j => fruits[j] == i).Select(j => counts[j]).Sum() == 5)
                     fruit = i;
             var contrib = new List<int>(3);
-            for (int i = 0; i < 3; i++)
+            for (var i = 0; i < 3; i++)
                 if (fruits[i] == fruit)
                     contrib.Add(counts[i]);
             figure = contrib.OrderBy(x => x).JoinString(" ");
@@ -114,12 +113,12 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         const string validCharacters = " ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        string[] validPhrases = new string[24] { "a maze with edges like their knives", "someday ill be the shape they want me to be", "but i dont know how much more theyll wake away before theyre satisfied", "they have sliced away my flesh", "shorn of unsightly limbs and organs", "more stitch and scar than human", "if only marble", "grew back so quickly", "they have stolen away my spirit", "memories scattered into the slipstream", "i have no idea who i used to be", "i can only guess", "what they will make me", "they found me in my lowest days", "breathed life back into my frozen body", "promising a more beautiful future", "then i discovered", "what they really wanted", "they pulled me into their vortex", "and i saw my future reflected in their eyes", "a shimmering halo of impossible dreams", "void of my self", "it was", "perfect" };
+        var validPhrases = new string[24] { "a maze with edges like their knives", "someday ill be the shape they want me to be", "but i dont know how much more theyll wake away before theyre satisfied", "they have sliced away my flesh", "shorn of unsightly limbs and organs", "more stitch and scar than human", "if only marble", "grew back so quickly", "they have stolen away my spirit", "memories scattered into the slipstream", "i have no idea who i used to be", "i can only guess", "what they will make me", "they found me in my lowest days", "breathed life back into my frozen body", "promising a more beautiful future", "then i discovered", "what they really wanted", "they pulled me into their vortex", "and i saw my future reflected in their eyes", "a shimmering halo of impossible dreams", "void of my self", "it was", "perfect" };
 
         var octOS = GetField<bool>(comp, "solvedInOctOS").Get();
-        var decipher = GetField<char[]>(comp, "decipher").Get(arr => arr.Length != 2 && arr.Length != 6 ? "expected length 2 or 6" : arr.Any(ch => !validCharacters.Contains(char.ToUpperInvariant(ch))) ? "expected characters A–Z or space" : null);
+        var decipher = GetField<char[]>(comp, "decipher").Get(arr => arr.Length is not 2 and not 6 ? "expected length 2 or 6" : arr.Any(ch => !validCharacters.Contains(char.ToUpperInvariant(ch))) ? "expected characters A–Z or space" : null);
         var screen = GetField<string>(comp, "screen").Get(s => s.Length != 30 ? "expected length 30" : s.Any(ch => !char.IsDigit(ch)) ? "expected only digits" : null);
-        var sum = GetField<string>(comp, "sum").Get(s => s.Length != 4 ? "expected length 4" : s.Any(ch => ch != '0' && ch != '1' && ch != '2' && ch != '3') ? "expected only characters 0–3" : null);
+        var sum = GetField<string>(comp, "sum").Get(s => s.Length != 4 ? "expected length 4" : s.Any(ch => ch is not '0' and not '1' and not '2' and not '3') ? "expected only characters 0–3" : null);
 
         var qs = new List<QandA>();
         var cipherWrongAnswers = octOS ? validPhrases.SelectMany(str => Enumerable.Range(0, str.Length - 6).Select(ix => str.Substring(ix, 6))).ToArray() : validCharacters.SelectMany(c1 => validCharacters.Select(c2 => string.Concat(c1, c2))).ToArray();
@@ -197,7 +196,7 @@ public partial class SouvenirModule
         }
 
         List<QandA> qs = new();
-        for (int i = 0; i < 12; i++)
+        for (var i = 0; i < 12; i++)
         {
             if (stages[i] is (0, 0))
                 continue;
@@ -286,22 +285,19 @@ public partial class SouvenirModule
             makeQuestion(Question.HighScoreScore, module, correctAnswers: new[] { "" + playerScore }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessHillCycle(ModuleData module)
-    {
-        return processSpeakingEvilCycle(module, "HillCycleScript", Question.HillCycleDialDirections, Question.HillCycleDialLabels);
-    }
+    private IEnumerator<YieldInstruction> ProcessHillCycle(ModuleData module) => processSpeakingEvilCycle(module, "HillCycleScript", Question.HillCycleDialDirections, Question.HillCycleDialLabels);
 
     private IEnumerator<YieldInstruction> ProcessHinges(ModuleData module)
     {
         var comp = GetComponent(module, "Hinges");
-        var initialHingesStatus = GetArrayField<int>(comp, "hingeStatus").Get(expectedLength: 8, validator: i => i != 0 && i != 1 ? "expected value 0 or 1" : null).ToArray();
+        var initialHingesStatus = GetArrayField<int>(comp, "hingeStatus").Get(expectedLength: 8, validator: i => i is not 0 and not 1 ? "expected value 0 or 1" : null).ToArray();
 
         yield return WaitForSolve;
 
         var qs = new List<QandA>();
         var presentHinges = new List<Sprite>();
         var absentHinges = new List<Sprite>();
-        for (int pos = 0; pos < 8; pos++)
+        for (var pos = 0; pos < 8; pos++)
             (initialHingesStatus[pos] == 1 ? presentHinges : absentHinges).Add(HingesSprites[pos]);
 
         // There are eight hinges in total, so at least one question will generate.
@@ -379,9 +375,9 @@ public partial class SouvenirModule
 
         var possibleQuestions = new List<QandA>();
 
-        for (int i = 0; i < selectedWords.Length; i++)
+        for (var i = 0; i < selectedWords.Length; i++)
         {
-            string thisWord = selectedWords[i];
+            var thisWord = selectedWords[i];
             if (allCWords.Contains(thisWord))
                 possibleQuestions.Add(makeQuestion(Question.HomophonesDisplayedPhrases, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { thisWord }, preferredWrongAnswers: selectedWords.Union(allCWords).ToArray()));
             else if (allLWords.Contains(thisWord))
@@ -467,10 +463,7 @@ public partial class SouvenirModule
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessHypercube(ModuleData module)
-    {
-        return processHypercubeUltracube(module, "TheHypercubeModule", Question.HypercubeRotations);
-    }
+    private IEnumerator<YieldInstruction> ProcessHypercube(ModuleData module) => processHypercubeUltracube(module, "TheHypercubeModule", Question.HypercubeRotations);
 
     private readonly List<List<string>> _hyperForgetStages = new();
     private IEnumerator<YieldInstruction> ProcessHyperForget(ModuleData module)
@@ -524,7 +517,7 @@ public partial class SouvenirModule
         }
 
         var qs = new List<QandA>();
-        for (int stage = 0; stage < currentStage; stage++)
+        for (var stage = 0; stage < currentStage; stage++)
         {
             var uniqueStage = uniqueStages.FirstOrDefault(s => s - 1 != stage);
             if (uniqueStage != 0)

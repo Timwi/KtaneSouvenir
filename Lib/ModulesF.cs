@@ -133,8 +133,8 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "FaultyRGBMazeScript");
         yield return WaitForSolve;
 
-        var keyPos = GetArrayField<int[]>(comp, "keylocations").Get(expectedLength: 3, validator: key => key.Length != 2 ? "expected length 2" : key.Any(number => number < 0 || number > 6) ? "expected range 0–6" : null);
-        var mazeNum = GetArrayField<int[]>(comp, "mazenumber").Get(expectedLength: 3, validator: maze => maze.Length != 2 ? "expected length 2" : maze[0] < 0 || maze[0] > 15 ? "expected range 0–15" : null);
+        var keyPos = GetArrayField<int[]>(comp, "keylocations").Get(expectedLength: 3, validator: key => key.Length != 2 ? "expected length 2" : key.Any(number => number is < 0 or > 6) ? "expected range 0–6" : null);
+        var mazeNum = GetArrayField<int[]>(comp, "mazenumber").Get(expectedLength: 3, validator: maze => maze.Length != 2 ? "expected length 2" : maze[0] is < 0 or > 15 ? "expected range 0–15" : null);
         var exitPos = GetArrayField<int>(comp, "exitlocation").Get(expectedLength: 3);
 
         if (exitPos[1] < 0 || exitPos[1] > 6 || exitPos[2] < 0 || exitPos[2] > 6)
@@ -294,8 +294,8 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var colorReference = GetArrayField<string>(comp, "debugColors").Get(expectedLength: 7);
-        var displayedValue = GetField<int>(comp, "displayNumber").Get(num => num < 0 || num >= 100 ? "Expected the displayed value to be within 0 and 99 inclusive." : null);
-        var idxReferencedArrow = GetField<int>(comp, "idxReferencedArrow").Get(num => num < 0 || num >= 4 ? "Expected the value to be within 0 and 3 inclusive." : null);
+        var displayedValue = GetField<int>(comp, "displayNumber").Get(num => num is < 0 or >= 100 ? "Expected the displayed value to be within 0 and 99 inclusive." : null);
+        var idxReferencedArrow = GetField<int>(comp, "idxReferencedArrow").Get(num => num is < 0 or >= 4 ? "Expected the value to be within 0 and 3 inclusive." : null);
         var idxFlashedArrows = GetArrayField<int[]>(comp, "idxColorFlashingArrows").Get(expectedLength: 4);
         var arrowSet = idxFlashedArrows[idxReferencedArrow];
         var idxBlack = Array.IndexOf(arrowSet, -1);
@@ -458,11 +458,9 @@ public partial class SouvenirModule
         var figureNames = new[] { "LLLMR", "LMMMR", "LMRRR", "LMMRR", "LLMRR", "LLMMR" }
             .Select(str => str.Select(ch => translateString(Question.ForgetAnyColorCylinder, ch.ToString())).JoinString()).ToArray();
 
-        string getCylinders(Array cylinders, int stage)
-        {
-            return string.Format(translateString(Question.ForgetAnyColorCylinder, "{0}, {1}, {2}"),
+        string getCylinders(Array cylinders, int stage) => string.Format(
+            translateString(Question.ForgetAnyColorCylinder, "{0}, {1}, {2}"),
             Enumerable.Range(0, 3).Select(ix => colorNames[(int) cylinders.GetValue(stage, ix)]).ToArray());
-        }
 
         var randomStage = Rnd.Range(0, fldCurrentStage.Get(min: 0, max: maxStage));
         string formattedName = null;
@@ -608,7 +606,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
         yield return null; // Wait one frame to make sure the Display field has been set.
 
-        var myDisplay = fldDisplayedDigits.Get(minLength: 0, validator: d => d < 0 || d > 9 ? "expected range 0-9" : null);
+        var myDisplay = fldDisplayedDigits.Get(minLength: 0, validator: d => d is < 0 or > 9 ? "expected range 0-9" : null);
         if (_forgetMeNotDisplays.Any() && myDisplay.Length != _forgetMeNotDisplays[0].Length)
             throw new AbandonModuleException("The number of stages in each ‘Display’ is inconsistent.");
         _forgetMeNotDisplays.Add(myDisplay);
@@ -664,7 +662,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var displayedDigits = GetArrayField<int>(comp, "displayDigits").Get(expectedLength: Bomb.GetSolvableModuleNames().Count, validator: d => d < 0 || d > 9 ? "expected range 0-9" : null);
+        var displayedDigits = GetArrayField<int>(comp, "displayDigits").Get(expectedLength: Bomb.GetSolvableModuleNames().Count, validator: d => d is < 0 or > 9 ? "expected range 0-9" : null);
         addQuestions(module, displayedDigits.Select((d, ix) => makeQuestion(Question.ForgetMeNowDisplayedDigits, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { d.ToString() })));
     }
 
@@ -808,11 +806,11 @@ public partial class SouvenirModule
         var colors = Question.ForgetTheColorsGearColor.GetAnswers();
         for (var i = 0; i < myGearNumbers.Count; i++)
         {
-            if (myGearNumbers[i] < 0 || myGearNumbers[i] > 9)
+            if (myGearNumbers[i] is < 0 or > 9)
                 throw new AbandonModuleException($"‘gear[{i}]’ had an unexpected value. (Expected 0-9): {myGearNumbers[i]}");
-            if (myLargeDisplays[i] < 0 || myLargeDisplays[i] > 990)
+            if (myLargeDisplays[i] is < 0 or > 990)
                 throw new AbandonModuleException($"‘largeDisplay[{i}]’ had an unexpected value. (Expected 0-990): {myLargeDisplays[i]}");
-            if (mySineNumbers[i] < -99999 || mySineNumbers[i] > 99999)
+            if (mySineNumbers[i] is < -99999 or > 99999)
                 throw new AbandonModuleException($"‘sineNumber[{i}]’ had an unexpected value. (Expected (-99999)-99999): {mySineNumbers[i]}");
             if (!colors.Contains(myGearColors[i]))
                 throw new AbandonModuleException($"‘gearColor[{i}]’ had an unexpected value. (Expected {colors.JoinString(", ")}): {mySineNumbers[i]}");
@@ -1076,11 +1074,11 @@ public partial class SouvenirModule
         }
 
         var flashes = GetField<int[]>(comp, "lightColors")
-            .Get(arr => arr.Length != 4 ? "Bad length" : arr.Any(i => i < 0 || i > 3) ? "Bad item" : null)
+            .Get(arr => arr.Length != 4 ? "Bad length" : arr.Any(i => i is < 0 or > 3) ? "Bad item" : null)
             .ToList();
         var qs = new List<QandA>(8);
         var arrows = GetField<int[]>(comp, "correctButtons")
-            .Get(arr => arr.Length != 4 ? "Bad length" : arr.Any(i => i < 0 || i > 3) ? "Bad item" : null)
+            .Get(arr => arr.Length != 4 ? "Bad length" : arr.Any(i => i is < 0 or > 3) ? "Bad item" : null)
             .ToList();
 
         var moduleCount = _moduleCounts.Get("FuseBox");

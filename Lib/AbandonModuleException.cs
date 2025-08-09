@@ -1,10 +1,9 @@
 ﻿using System;
 
-namespace Souvenir
+namespace Souvenir;
+
+/// <summary>Used when a Souvenir module processor encounters a condition that requires a module to be abandoned.</summary>
+internal sealed class AbandonModuleException : Exception
 {
-    /// <summary>Used when a Souvenir module processor encounters a condition that requires a module to be abandoned.</summary>
-    sealed class AbandonModuleException : Exception
-    {
-        public AbandonModuleException(string message) : base(message) { }
-    }
+    public AbandonModuleException(string message) : base(message) { }
 }

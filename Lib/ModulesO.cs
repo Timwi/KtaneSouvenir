@@ -16,7 +16,7 @@ public partial class SouvenirModule
         var contestantsPresent = GetField<IList>(comp, "contestantsPresent").Get(lst => lst.Count != 6 ? "expected length 6" : null);
         var fldId = GetField<int>(contestantsPresent[0], "id", isPublic: true);
         var allContestantNames = GetStaticField<string[]>(comp.GetType(), "characterNames").Get(v => v.Length != 30 ? "expected length 30" : null);
-        var contestantNames = Enumerable.Range(0, contestantsPresent.Count).Select(ix => allContestantNames[fldId.GetFrom(contestantsPresent[ix], v => v < 0 || v >= 30 ? "expected range 0–29" : null)]).ToArray();
+        var contestantNames = Enumerable.Range(0, contestantsPresent.Count).Select(ix => allContestantNames[fldId.GetFrom(contestantsPresent[ix], v => v is < 0 or >= 30 ? "expected range 0–29" : null)]).ToArray();
         addQuestion(module, Question.ObjectShowsContestants, correctAnswers: contestantNames, preferredWrongAnswers: allContestantNames);
     }
 
@@ -27,23 +27,24 @@ public partial class SouvenirModule
 
         var interact = GetField<object>(comp, "Interact", isPublic: true).Get();
         var dimension = GetProperty<int>(interact, "Dimension").Get();
-        var sphere = GetField<string>(comp, "souvenirSphere").Get().Where(c => c == '-' || c == '+').JoinString();
+        var sphere = GetField<string>(comp, "souvenirSphere").Get().Where(c => c is '-' or '+').JoinString();
         var rotations = GetField<string>(comp, "souvenirRotations").Get().Split('&').ToArray();
 
         string[] wrongPositions;
         string toPosition(int i) => Convert.ToString(i, 2).Select(s => s == '0' ? '-' : '+').JoinString().PadLeft(dimension, '-');
+
         if (dimension <= 9)
             wrongPositions = Enumerable.Range(0, (int) Math.Pow(2, dimension)).Select(toPosition).ToArray();
         else
         {
             wrongPositions = new string[10];
-            for (int i = 0; i < wrongPositions.Length; i++)
+            for (var i = 0; i < wrongPositions.Length; i++)
                 do { wrongPositions[i] = toPosition(Rnd.Range(0, (int) Math.Pow(2, dimension))); }
                 while (wrongPositions.Take(i - 1).Contains(wrongPositions[i]));
         }
         var qs = new List<QandA>();
         qs.Add(makeQuestion(Question.OctadecayottonSphere, module, correctAnswers: new[] { sphere }, preferredWrongAnswers: wrongPositions));
-        for (int i = 0; i < rotations.Length; i++)
+        for (var i = 0; i < rotations.Length; i++)
             qs.Add(makeQuestion(Question.OctadecayottonRotations, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: rotations[i].Split(',').Select(s => s.Trim()).ToArray(), preferredWrongAnswers: Enumerable.Range(1, 10).Select(n => new[] { "X", "Y", "Z", "W", "U", "V", "R", "S", "T", "O", "P", "Q", "L", "M", "M", "I", "J", "K", "F", "G", "H", "C", "D", "E", "A", "B", "XX" }.Take(dimension).ToArray().Shuffle().Take(Rnd.Range(1, Math.Min(6, dimension + 1))).Select(c => (Rnd.Range(0, 1f) > 0.5 ? "+" : "-") + c).JoinString()).ToArray()));
         addQuestions(module, qs);
     }
@@ -130,7 +131,7 @@ public partial class SouvenirModule
         while (!_isActivated)
             yield return new WaitForSeconds(.1f);
 
-        var hieroglyphsDisplayed = GetArrayField<int>(comp, "_hieroglyphsDisplayed").Get(expectedLength: 6, validator: v => v < 0 || v > 5 ? "expected range 0–5" : null);
+        var hieroglyphsDisplayed = GetArrayField<int>(comp, "_hieroglyphsDisplayed").Get(expectedLength: 6, validator: v => v is < 0 or > 5 ? "expected range 0–5" : null);
 
         yield return WaitForSolve;
 
@@ -150,18 +151,18 @@ public partial class SouvenirModule
 
         var buttons = GetArrayField<KMSelectable>(comp, "buttons", isPublic: true).Get();
         var prevButtonInteracts = buttons.Select(b => b.OnInteract).ToArray();
-        for (int i = 0; i < buttons.Length; i++)
+        for (var i = 0; i < buttons.Length; i++)
         {
             var prevInteract = prevButtonInteracts[i];
             buttons[i].OnInteract = delegate
             {
                 var ret = prevInteract();
                 var st = fldStage.Get();
-                if (st < 1 || st > 3)
+                if (st is < 1 or > 3)
                 {
                     Debug.Log($"<Souvenir #{_moduleId}> Abandoning Orange Arrows because ‘stage’ was out of range: {st}.");
                     correctMoves = null;
-                    for (int j = 0; j < buttons.Length; j++)
+                    for (var j = 0; j < buttons.Length; j++)
                         buttons[j].OnInteract = prevButtonInteracts[j];
                 }
                 else
@@ -179,7 +180,7 @@ public partial class SouvenirModule
         if (correctMoves == null)   // an error message has already been output
             yield break;
 
-        for (int i = 0; i < buttons.Length; i++)
+        for (var i = 0; i < buttons.Length; i++)
             buttons[i].OnInteract = prevButtonInteracts[i];
 
         var directions = new[] { "UP", "RIGHT", "DOWN", "LEFT" };
@@ -187,17 +188,14 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"One of the move arrays has an unexpected value: [{correctMoves.Select(arr => arr == null ? "null" : $"[{arr.JoinString(", ")}]").JoinString(", ")}].");
 
         var qs = new List<QandA>();
-        for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++)
+        for (var i = 0; i < 3; i++)
+            for (var j = 0; j < 3; j++)
                 qs.Add(makeQuestion(Question.OrangeArrowsSequences, module, formatArgs: new[] { Ordinal(j + 1), Ordinal(i + 1) }, correctAnswers: new[] { correctMoves[i][j].Substring(0, 1) + correctMoves[i][j].Substring(1).ToLowerInvariant() }));
 
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessOrangeCipher(ModuleData module)
-    {
-        return processColoredCiphers(module, "orangeCipher", Question.OrangeCipherScreen);
-    }
+    private IEnumerator<YieldInstruction> ProcessOrangeCipher(ModuleData module) => processColoredCiphers(module, "orangeCipher", Question.OrangeCipherScreen);
 
     private IEnumerator<YieldInstruction> ProcessOrderedKeys(ModuleData module)
     {
@@ -268,7 +266,7 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
 
-        for (int order = 0; order < orderCount; order++)
+        for (var order = 0; order < orderCount; order++)
         {
             qs.Add(makeQuestion(Question.OrderPickingOrder, module, formatArgs: new[] { Ordinal(order + 1) }, correctAnswers: new[] { orderList[order].ToString() }));
             qs.Add(makeQuestion(Question.OrderPickingProduct, module, formatArgs: new[] { Ordinal(order + 1) }, correctAnswers: new[] { productList[order].ToString() }));
@@ -312,7 +310,7 @@ public partial class SouvenirModule
         };
         var qs = new List<QandA>();
 
-        foreach (string key in faceNames.Keys)
+        foreach (var key in faceNames.Keys)
             qs.Add(makeQuestion(Question.OrientationHypercubeInitialFaceColour, module, formatArgs: new[] { faceNames[key] }, correctAnswers: new[] { colourTexts[key] }));
         qs.Add(makeQuestion(Question.OrientationHypercubeInitialObserverPosition, module, correctAnswers: new[] { initialObserverPosition }));
 

@@ -77,7 +77,7 @@ public partial class SouvenirModule
             var selectedItem = fldSelectedItem.Get();
             var itemUsed = origInvValues[selectedItem];
             var shouldUse = mthShouldUseItem.Invoke(selectedItem);
-            for (int j = invWeaponCount; j < invValues.Count; j++)
+            for (var j = invWeaponCount; j < invValues.Count; j++)
                 shouldUse &= !mthShouldUseItem.Invoke(j);
 
             var ret = prevInteract();
@@ -109,11 +109,8 @@ public partial class SouvenirModule
         addQuestions(module, qs.Select(q => q()).Concat(new[] { makeQuestion(Question.AdventureGameEnemy, module, correctAnswers: new[] { enemyName }) }));
     }
 
-    private IEnumerator<YieldInstruction> ProcessAffineCycle(ModuleData module)
-    {
-        return processSpeakingEvilCycle(module, "AffineCycleScript", Question.AffineCycleDialDirections, Question.AffineCycleDialLabels,
+    private IEnumerator<YieldInstruction> ProcessAffineCycle(ModuleData module) => processSpeakingEvilCycle(module, "AffineCycleScript", Question.AffineCycleDialDirections, Question.AffineCycleDialLabels,
             overrideAnswers: Enumerable.Range(0, 8).Except(new[] { 6 }).Select(x => CycleModuleEightSprites[x]).ToArray());
-    }
 
     private IEnumerator<YieldInstruction> ProcessAlcoholicRampage(ModuleData module)
     {
@@ -131,7 +128,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var qs = new List<QandA>();
-        for (int s = 0; s < 3; s++)
+        for (var s = 0; s < 3; s++)
             qs.Add(makeQuestion(Question.AlcoholicRampageMercenaries, module, formatArgs: new[] { Ordinal(s + 1) }, correctAnswers: new[] { AlcoholicRampageSprites[mercs[s]] }));
         addQuestions(module, qs);
     }
@@ -191,19 +188,19 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "AlgorithmiaScript");
 
-        int startingPos = GetIntField(comp, "currentPos").Get(min: 0, max: 15);
-        int goalPos = GetIntField(comp, "goalPos").Get(min: 0, max: 15);
+        var startingPos = GetIntField(comp, "currentPos").Get(min: 0, max: 15);
+        var goalPos = GetIntField(comp, "goalPos").Get(min: 0, max: 15);
 
         yield return WaitForSolve;
 
         var fldColor = GetField<object>(comp, "mazeAlg");
-        string color = fldColor.Get(col => (int) col < 0 || (int) col >= 6 ? "expected in range 0-5" : null).ToString();
+        var color = fldColor.Get(col => (int) col is < 0 or >= 6 ? "expected in range 0-5" : null).ToString();
 
         var fldSeed = GetField<object>(comp, "seed");
         var prpSeedValues = GetProperty<int[]>(fldSeed.Get(), "values", true);
-        int[] seedVals = prpSeedValues.Get(arr =>
+        var seedVals = prpSeedValues.Get(arr =>
             arr.Length != 10 ? "expected length 10" :
-            arr.Any(val => val < 0 || val > 99) ? "expected in range 0-99" :
+            arr.Any(val => val is < 0 or > 99) ? "expected in range 0-99" :
             null);
 
         addQuestions(module,
@@ -243,7 +240,7 @@ public partial class SouvenirModule
             yield return null;
         }
 
-        if (letters.Any(l => l < 'A' || l > 'Z') || numbers.Any(n => n < 1 || n > 9))
+        if (letters.Any(l => l is < 'A' or > 'Z') || numbers.Any(n => n is < 1 or > 9))
             throw new AbandonModuleException($"The captured letters/numbers are unexpected (letters: [{letters.JoinString(", ")}], numbers: [{numbers.JoinString(", ")}]).");
 
         var qs = new List<QandA>();
@@ -310,11 +307,9 @@ public partial class SouvenirModule
         var fontTexture = textMeshes[0].GetComponent<MeshRenderer>().sharedMaterial.mainTexture;
         var displayedCharacters = textMeshes.Select(textMesh => textMesh.text.Trim()).ToArray();
 
-        if (displayedCharacters.Any(ch => !(ch.Length == 1 && (ch[0] >= 'A' && ch[0] <= 'V' || ch[0] >= '0' && ch[0] <= '9'))))
-            throw new AbandonModuleException($"The displayed characters are {displayedCharacters.Select(str => $"“{str}”").JoinString(", ")} (expected six single-character strings 0–9/A–V each).");
-
-        yield return WaitForSolve;
-
+        yield return displayedCharacters.Any(ch => !(ch.Length == 1 && (ch[0] >= 'A' && ch[0] <= 'V' || ch[0] >= '0' && ch[0] <= '9')))
+            ? throw new AbandonModuleException($"The displayed characters are {displayedCharacters.Select(str => $"“{str}”").JoinString(", ")} (expected six single-character strings 0–9/A–V each).")
+            : (YieldInstruction) WaitForSolve;
         addQuestions(module, Enumerable.Range(0, 6).Select(displayIx => makeQuestion(
             Question.AlphaBitsDisplayedCharacters, module, font, fontTexture,
             formatArgs: new[] { new[] { "top", "middle", "bottom" }[displayIx % 3], new[] { "left", "right" }[displayIx / 3] },
@@ -328,7 +323,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "AMessageScriptRedone");
         var data = GetArrayField<int>(comp, "SequenceNumbers").Get(expectedLength: 5, validator: v => v is < 0 or > 31 ? "Out of range [0, 31]" : null);
         var sol = GetArrayField<int>(comp, "RealNumbers").Get(expectedLength: 5, validator: v => v is < 0 or > 31 ? "Out of range [0, 31]" : null);
-        string convert(int[] nums) => new(nums.Select(i => (char) ('\ue900' + i)).ToArray());
+        static string convert(int[] nums) => new(nums.Select(i => (char) ('\ue900' + i)).ToArray());
         addQuestion(module, Question.AMessageAMessage, correctAnswers: new[] { convert(data) }, preferredWrongAnswers: new[] { convert(sol) });
     }
 
@@ -362,7 +357,7 @@ public partial class SouvenirModule
         var displayedLetters = new string[2];
         var alph = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".Select(i => i.ToString()).ToArray();
 
-        for (int i = 0; i < 2; i++)
+        for (var i = 0; i < 2; i++)
         {
             while (fldStage.Get() == i)
             {
@@ -405,12 +400,12 @@ public partial class SouvenirModule
 
         var symbolNum = fldSymbolNum.Get(min: 0, max: 21);
         var selVal = fldSelectableValues.Get(expectedLength: 3, validator: arr => arr.Length != 4 ? $"length {arr.Length}, expected 4" : null);
-        var curDisp = fldCurrentDisplays.Get(expectedLength: 3, validator: val => val < 0 || val >= 4 ? $"expected 0–3" : null);
+        var curDisp = fldCurrentDisplays.Get(expectedLength: 3, validator: val => val is < 0 or >= 4 ? $"expected 0–3" : null);
 
         var qs = new List<QandA>();
         qs.Add(makeQuestion(Question.ArithmelogicSubmit, module, correctAnswers: new[] { ArithmelogicSprites[symbolNum] }, preferredWrongAnswers: ArithmelogicSprites));
         var screens = new[] { "left", "middle", "right" };
-        for (int i = 0; i < 3; i++)
+        for (var i = 0; i < 3; i++)
             qs.Add(makeQuestion(Question.ArithmelogicNumbers, module, formatArgs: new[] { screens[i] },
                 correctAnswers: Enumerable.Range(0, 4).Where(ix => ix != curDisp[i]).Select(ix => selVal[i][ix].ToString()).ToArray()));
         addQuestions(module, qs);
@@ -432,7 +427,7 @@ public partial class SouvenirModule
         // Correct colors
         var correctColors = GetArrayField<int>(comp, "_correctColors").Get(expectedLength: 3);
         var correctColorNames = Enumerable.Range(0, correctColors.Length).Select(correct => colorNames[correctColors[correct]]).ToArray();
-        for (int correct = 0; correct < 3; correct++)
+        for (var correct = 0; correct < 3; correct++)
             qs.Add(makeQuestion(Question.ASquareCorrectColors, module, formatArgs: new[] { Ordinal(correct + 1) }, correctAnswers: new[] { correctColorNames[correct] }, preferredWrongAnswers: colorNames));
 
         addQuestions(module, qs);
@@ -451,7 +446,7 @@ public partial class SouvenirModule
     private static readonly Dictionary<string, AudioClip> _audioMorseAudio = new();
     private IEnumerator<YieldInstruction> ProcessAudioMorse(ModuleData module)
     {
-        Dictionary<char, string> morse = "   ;A.-;B-...;C-.-.;D-..;E.;F..-.;G--.;H....;I..;J.---;K-.-;L.-..;M--;N-.;O---;P.--.;Q--.-;R.-.;S...;T-;U..-;V...-;W.--;X-..-;Y-.--;Z--..;1.----;2..---;3...--;4....-;5.....;6-....;7--...;8---..;9----.;0-----"
+        var morse = "   ;A.-;B-...;C-.-.;D-..;E.;F..-.;G--.;H....;I..;J.---;K-.-;L.-..;M--;N-.;O---;P.--.;Q--.-;R.-.;S...;T-;U..-;V...-;W.--;X-..-;Y-.--;Z--..;1.----;2..---;3...--;4....-;5.....;6-....;7--...;8---..;9----.;0-----"
             .Split(';').ToDictionary(s => s[0], s => s.Substring(1) + " ");
 
         var comp = GetComponent(module, "AudioMorseModuleScript");
@@ -479,9 +474,9 @@ public partial class SouvenirModule
             if (!_audioMorseAudio.TryGetValue(k, out var clip))
             {
                 List<Sounds.AudioPosition> clips = new();
-                float head = 0f;
+                var head = 0f;
                 var m = k.Select(c => morse[c]).JoinString();
-                for (int i = 0; i < m.Length; i++)
+                for (var i = 0; i < m.Length; i++)
                 {
                     switch (m[i])
                     {
@@ -519,7 +514,7 @@ public partial class SouvenirModule
         qs.Add(makeQuestion(Question.AzureButtonT, module, correctAnswers: new[] { AzureButtonSprites[cardT] }, preferredWrongAnswers: cards.Select(c => AzureButtonSprites[c]).ToArray()));
         qs.Add(makeQuestion(Question.AzureButtonNotT, module, correctAnswers: cards.Take(6).Select(c => AzureButtonSprites[c]).ToArray(), preferredWrongAnswers: cards.Select(c => AzureButtonSprites[c]).ToArray()));
 
-        var m = Math.Abs(GetField<int>(comp, "_offset").Get(v => Math.Abs(v) >= 1 && Math.Abs(v) <= 9 ? null : "value out of range 1–9 (or -1–-9)"));
+        var m = Math.Abs(GetField<int>(comp, "_offset").Get(v => Math.Abs(v) is >= 1 and <= 9 ? null : "value out of range 1–9 (or -1–-9)"));
         qs.Add(makeQuestion(Question.AzureButtonM, module, correctAnswers: new[] { m.ToString() }));
 
         var puzzle = GetField<object>(comp, "_puzzle").Get();

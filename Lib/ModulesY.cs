@@ -74,9 +74,9 @@ public partial class SouvenirModule
         addQuestions(module, sqs.Select((sq, ix) =>
         {
             var m = Regex.Match(sq.sharedMaterial.name, @"^Color([0-5])$");
-            if (!m.Success)
-                throw new AbandonModuleException($"Expected material name “Color0–5”, got: “{sq.sharedMaterial.name}”");
-            return makeQuestion(Question.YellowButtonColors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colorNames[int.Parse(m.Groups[1].Value)] });
+            return !m.Success
+                ? throw new AbandonModuleException($"Expected material name “Color0–5”, got: “{sq.sharedMaterial.name}”")
+                : makeQuestion(Question.YellowButtonColors, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { colorNames[int.Parse(m.Groups[1].Value)] });
         }));
     }
 
@@ -116,8 +116,5 @@ public partial class SouvenirModule
         addQuestion(module, Question.YellowButtontFilename, correctAnswers: new[] { ans }, allAnswers: answers);
     }
 
-    private IEnumerator<YieldInstruction> ProcessYellowCipher(ModuleData module)
-    {
-        return processColoredCiphers(module, "yellowCipher", Question.YellowCipherScreen);
-    }
+    private IEnumerator<YieldInstruction> ProcessYellowCipher(ModuleData module) => processColoredCiphers(module, "yellowCipher", Question.YellowCipherScreen);
 }

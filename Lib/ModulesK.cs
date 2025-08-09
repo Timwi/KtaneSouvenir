@@ -49,7 +49,7 @@ public partial class SouvenirModule
 
         var fldFoodsAvailable = GetArrayField<int>(comp, "FooderPickerNumberSelector");
         var foodNames = GetField<string[]>(comp, "FoodsButCodeText").Get();
-        for (int i = 0; i < foodNames.Length; i++)
+        for (var i = 0; i < foodNames.Length; i++)
             if (foodNames[i] == "Corn [inedible]")
                 foodNames[i] = "Corn";
 
@@ -257,7 +257,7 @@ public partial class SouvenirModule
         var usedQuirks = new HashSet<int>(Enumerable.Range(0, 8).Where(i => quirks.Any(q => q.GetType().Name == quirkTypes[i])));
 
 
-        if (!_kugelblitzUsedQuirks.TryGetValue(lobby, out HashSet<int> askedQuirks))
+        if (!_kugelblitzUsedQuirks.TryGetValue(lobby, out var askedQuirks))
         {
             askedQuirks = _kugelblitzUsedQuirks[lobby] = new();
             _kugelblitzQuirksGroupings.Add(usedQuirks);
@@ -271,7 +271,7 @@ public partial class SouvenirModule
             throw new AbandonModuleException("There was no black Kugelblitz in the lobby.");
 
         var normalQuirks = new[] { 0, 2, 3, 6, 7 };
-        for (int q = 0; q < normalQuirks.Length; q++)
+        for (var q = 0; q < normalQuirks.Length; q++)
         {
             if (usedQuirks.Contains(normalQuirks[q]))
             {
@@ -304,11 +304,9 @@ public partial class SouvenirModule
             indices[5] = GetIntField(orderedQuirks[5], "_index").Get(min: 0);
         }
 
-        if (indices.Skip(1).Any(x => x is not null && x != indices[0]))
-            throw new AbandonModuleException("Two quirks disagreed on how many stages were shown.");
-
-        yield return null;
-
+        yield return indices.Skip(1).Any(x => x is not null && x != indices[0])
+            ? throw new AbandonModuleException("Two quirks disagreed on how many stages were shown.")
+            : null;
         string constructStandardAnswer(int b)
         {
             var format = translateString(Question.KugelblitzBlackOrangeYellowIndigoViolet, "{0}{1}{2}{3}{4}{5}{6}");
@@ -324,13 +322,13 @@ public partial class SouvenirModule
         {
             List<string> options = new();
 
-            for (int c = 0; c < 6; c++)
+            for (var c = 0; c < 6; c++)
             {
                 string answer;
                 do
                 {
                     var choice = new byte[7];
-                    for (int i = 0; i < 7; i++)
+                    for (var i = 0; i < 7; i++)
                         choice[i] = (byte) UnityEngine.Random.Range(0, max + 1);
                     answer = constructRGBAnswer(choice);
                 } while (options.Contains(answer));
@@ -340,12 +338,13 @@ public partial class SouvenirModule
             return options;
         }
 
-        var allStandardAnswers = Enumerable.Range(0, 128).Select(x => constructStandardAnswer(x)).ToArray();
+        var allStandardAnswers = Enumerable.Range(0, 128).Select(constructStandardAnswer).ToArray();
         allStandardAnswers[0] = translateString(Question.KugelblitzBlackOrangeYellowIndigoViolet, "None");
 
         var quirkNames = new[] { "black", "red", "orange", "yellow", "green", "blue", "indigo", "violet" };
         string formatName(int color) => string.Format(translateString(Question.KugelblitzBlackOrangeYellowIndigoViolet, "the {0} Kugelblitz"), translateString(Question.KugelblitzBlackOrangeYellowIndigoViolet, quirkNames[color]));
-        string[] templates = new[] { "the Kugelblitz linked with no other Kugelblitzes", "the {0} Kugelblitz linked with one other Kugelblitz", "the {0} Kugelblitz linked with two other Kugelblitzes", "the {0} Kugelblitz linked with three other Kugelblitzes", "the {0} Kugelblitz linked with four other Kugelblitzes", "the {0} Kugelblitz linked with five other Kugelblitzes", "the {0} Kugelblitz linked with six other Kugelblitzes", "the {0} Kugelblitz linked with seven other Kugelblitzes" };
+
+        var templates = new[] { "the Kugelblitz linked with no other Kugelblitzes", "the {0} Kugelblitz linked with one other Kugelblitz", "the {0} Kugelblitz linked with two other Kugelblitzes", "the {0} Kugelblitz linked with three other Kugelblitzes", "the {0} Kugelblitz linked with four other Kugelblitzes", "the {0} Kugelblitz linked with five other Kugelblitzes", "the {0} Kugelblitz linked with six other Kugelblitzes", "the {0} Kugelblitz linked with seven other Kugelblitzes" };
         string formatNameSized(int color, int size) => string.Format(translateString(Question.KugelblitzBlackOrangeYellowIndigoViolet, templates[size - 1]), translateString(Question.KugelblitzBlackOrangeYellowIndigoViolet, quirkNames[color]));
 
         bool myFormat(int color, out string format)
@@ -423,7 +422,7 @@ public partial class SouvenirModule
         var desiredTask = GetField<Enum>(comp, "desiredTask").Get().ToString();
         var moods = GetArrayField<Texture2D>(comp, "kuroMoods", isPublic: true).Get(expectedLength: 5).Select(texture => texture.name);
 
-        if (desiredTask != "Eat" && desiredTask != "PlayKTANE")
+        if (desiredTask is not "Eat" and not "PlayKTANE")
         {
             legitimatelyNoQuestion(module.Module, "Mood is not relevant to the answer");
             yield break;

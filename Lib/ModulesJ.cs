@@ -14,17 +14,17 @@ public partial class SouvenirModule
 
         KMSelectable mostRecentSelectable = null;
         KMSelectable firstCorrectSelectable = null;
-        KMSelectable[] allSelectables = GetArrayField<KMSelectable>(comp, "JengaPiece", isPublic: true).Get(expectedLength: 20);
-        for (int i = 0; i < 20; i++)
+        var allSelectables = GetArrayField<KMSelectable>(comp, "JengaPiece", isPublic: true).Get(expectedLength: 20);
+        for (var i = 0; i < 20; i++)
         {
-            int ix = i;
+            var ix = i;
             allSelectables[ix].OnInteract += delegate ()
             {
                 mostRecentSelectable = allSelectables[ix];
                 return false;
             };
         }
-        int currentCorrect = fldCorrect.Get();
+        var currentCorrect = fldCorrect.Get();
         while (fldCorrect.Get() > 0)
         {
             if (firstCorrectSelectable == null && fldCorrect.Get() != currentCorrect)
@@ -34,9 +34,9 @@ public partial class SouvenirModule
         }
         yield return WaitForSolve;
 
-        Sprite[] sprites = fldSprites.Get(expectedLength: 20);
-        Sprite[] spritesOnFirstPress = firstCorrectSelectable.GetComponentsInChildren<SpriteRenderer>().Select(x => x.sprite).ToArray(); //Always 2 sprites
-        Sprite[] prettyLookingSouvSprites = spritesOnFirstPress.Select(spr => JengaSprites[Array.IndexOf(sprites, spr)]).ToArray();
+        var sprites = fldSprites.Get(expectedLength: 20);
+        var spritesOnFirstPress = firstCorrectSelectable.GetComponentsInChildren<SpriteRenderer>().Select(x => x.sprite).ToArray(); //Always 2 sprites
+        var prettyLookingSouvSprites = spritesOnFirstPress.Select(spr => JengaSprites[Array.IndexOf(sprites, spr)]).ToArray();
         addQuestion(module, Question.JengaFirstBlock,
             correctAnswers: prettyLookingSouvSprites,
             preferredWrongAnswers: JengaSprites);
@@ -54,10 +54,7 @@ public partial class SouvenirModule
         addQuestions(module, assignedWheels.Select((aw, ix) => makeQuestion(Question.JewelVaultWheels, module, formatArgs: new[] { "ABCD".Substring(ix, 1) }, correctAnswers: new[] { (Array.IndexOf(wheels, aw) + 1).ToString() })));
     }
 
-    private IEnumerator<YieldInstruction> ProcessJumbleCycle(ModuleData module)
-    {
-        return processSpeakingEvilCycle(module, "JumbleCycleScript", Question.JumbleCycleDialDirections, Question.JumbleCycleDialLabels);
-    }
+    private IEnumerator<YieldInstruction> ProcessJumbleCycle(ModuleData module) => processSpeakingEvilCycle(module, "JumbleCycleScript", Question.JumbleCycleDialDirections, Question.JumbleCycleDialLabels);
 
     private IEnumerator<YieldInstruction> ProcessJuxtacoloredSquares(ModuleData module)
     {
@@ -81,7 +78,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var qs = new List<QandA>();
-        for (int pos = 0; pos < 16; pos++)
+        for (var pos = 0; pos < 16; pos++)
         {
             var colorName = colors.GetValue(pos).ToString();
             if (colorName == "DarkBlue")

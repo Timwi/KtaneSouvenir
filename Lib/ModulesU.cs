@@ -8,20 +8,11 @@ using UnityEngine;
 
 public partial class SouvenirModule
 {
-    private IEnumerator<YieldInstruction> ProcessUltimateCipher(ModuleData module)
-    {
-        return processColoredCiphers(module, "ultimateCipher", Question.UltimateCipherScreen);
-    }
+    private IEnumerator<YieldInstruction> ProcessUltimateCipher(ModuleData module) => processColoredCiphers(module, "ultimateCipher", Question.UltimateCipherScreen);
 
-    private IEnumerator<YieldInstruction> ProcessUltimateCycle(ModuleData module)
-    {
-        return processSpeakingEvilCycle(module, "UltimateCycleScript", Question.UltimateCycleDialDirections, Question.UltimateCycleDialLabels);
-    }
+    private IEnumerator<YieldInstruction> ProcessUltimateCycle(ModuleData module) => processSpeakingEvilCycle(module, "UltimateCycleScript", Question.UltimateCycleDialDirections, Question.UltimateCycleDialLabels);
 
-    private IEnumerator<YieldInstruction> ProcessUltracube(ModuleData module)
-    {
-        return processHypercubeUltracube(module, "TheUltracubeModule", Question.UltracubeRotations);
-    }
+    private IEnumerator<YieldInstruction> ProcessUltracube(ModuleData module) => processHypercubeUltracube(module, "TheUltracubeModule", Question.UltracubeRotations);
 
     private IEnumerator<YieldInstruction> ProcessUltraStores(ModuleData module)
     {
@@ -46,9 +37,9 @@ public partial class SouvenirModule
 
         var questions = new List<QandA>();
 
-        for (int i = 0; i < 3; i++)
+        for (var i = 0; i < 3; i++)
         {
-            for (int j = 0; j < i + 3; j++)
+            for (var j = 0; j < i + 3; j++)
             {
                 var possibleWrong = possibleRotations[rotations[i][j].Count(ch => ch == ',')].SelectMany(x => x).ToArray();
                 questions.Add(makeQuestion(rotations[i][j].Split(',').Length - 1 == 0 ? Question.UltraStoresSingleRotation : Question.UltraStoresMultiRotation, module, formatArgs: new[] { Ordinal(j + 1), Ordinal(i + 1) }, correctAnswers: new[] { rotations[i][j] }, preferredWrongAnswers: possibleWrong));
@@ -95,10 +86,10 @@ public partial class SouvenirModule
         var colornames = new[] { "Red", "Green", "Blue", "Yellow", "Magenta", "White" };
 
         var qs = new List<QandA>();
-        for (int displayIx = 0; displayIx < 12; displayIx++)
-            for (int yesno = 0; yesno < 2; yesno++)
+        for (var displayIx = 0; displayIx < 12; displayIx++)
+            for (var yesno = 0; yesno < 2; yesno++)
                 if (yesno != 0 || displayIx < 6)
-                    for (int wordcolor = 0; wordcolor < 2; wordcolor++)
+                    for (var wordcolor = 0; wordcolor < 2; wordcolor++)
                         qs.Add(makeQuestion(Question.UncolourFlashDisplays, module, formatArgs: new[] { wordcolor == 0 ? "word" : "colour of the word", Ordinal(displayIx + 1), yesno == 0 ? "“YES”" : "“NO”" }, correctAnswers: new[] { colornames[fldInitseq[yesno][wordcolor][displayIx]] }));
         addQuestions(module, qs);
     }
@@ -199,7 +190,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "UnownCipher");
         yield return WaitForSolve;
 
-        var unownAnswer = GetArrayField<int>(comp, "letterIndexes").Get(expectedLength: 5, validator: v => v < 0 || v > 25 ? "expected 0–25" : null);
+        var unownAnswer = GetArrayField<int>(comp, "letterIndexes").Get(expectedLength: 5, validator: v => v is < 0 or > 25 ? "expected 0–25" : null);
         addQuestions(module, unownAnswer.Select((ans, i) => makeQuestion(Question.UnownCipherAnswers, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { ((char) ('A' + ans)).ToString() })));
     }
 
@@ -220,8 +211,9 @@ public partial class SouvenirModule
             (0.5f, 0.05f, 0.5f) => "Purple",
             _ => throw new AbandonModuleException($"Unexpected color: {c.r}, {c.g}, {c.b}"),
         };
-        string firstCol = colorName(colors[0]);
-        string lastCol = colorName(colors[6]);
+
+        var firstCol = colorName(colors[0]);
+        var lastCol = colorName(colors[6]);
 
         addQuestions(module,
             makeQuestion(Question.UpdogWord, module, correctAnswers: new[] { word }),
@@ -237,10 +229,10 @@ public partial class SouvenirModule
         var colorNames = new string[] { "Red", "Yellow", "Jade", "Azure", "Violet", };
 
         var qs = new List<QandA>();
-        for (int x = 0; x < 5; x++)
-            for (int y = 0; y < 5; y++)
+        for (var x = 0; x < 5; x++)
+            for (var y = 0; y < 5; y++)
             {
-                int p = x * 5 + y;
+                var p = x * 5 + y;
                 if (p == 12)
                     continue;
                 var coord = new Coord(5, 5, p);
@@ -256,16 +248,13 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        int[] stateIndices = fldStateIndices.Get(minLength: 4).Where(ix => ix != 5 && ix != 49).ToArray();
+        var stateIndices = fldStateIndices.Get(minLength: 4).Where(ix => ix is not 5 and not 49).ToArray();
 
         //Colorado and Wyoming are practically indistinguishable
         addQuestion(module, Question.USACycleDisplayed,
             correctAnswers: stateIndices.Select(ix => USACycleSprites[ix]).ToArray(),
-            preferredWrongAnswers: USACycleSprites.Where((_, pos) => pos != 5 && pos != 49).ToArray());
+            preferredWrongAnswers: USACycleSprites.Where((_, pos) => pos is not 5 and not 49).ToArray());
     }
 
-    private IEnumerator<YieldInstruction> ProcessUSAMaze(ModuleData module)
-    {
-        return processWorldMaze(module, "USAMaze", Question.USAMazeOrigin);
-    }
+    private IEnumerator<YieldInstruction> ProcessUSAMaze(ModuleData module) => processWorldMaze(module, "USAMaze", Question.USAMazeOrigin);
 }

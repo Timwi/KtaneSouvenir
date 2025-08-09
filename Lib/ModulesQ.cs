@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Security.Policy;
 using Souvenir;
 using UnityEngine;
 using Rnd = UnityEngine.Random;
@@ -46,17 +44,11 @@ public partial class SouvenirModule
             var ixOfSymbols = ixOfSymbolsComp.Get();
             var parityOfSymbols = parityOfSymbolsComp.Get();
             var btns = new string[4];
-            for (int i = 0; i < 4; i++)
+            for (var i = 0; i < 4; i++)
             {
-                if (ixOfSymbols.Contains(i))
-                {
-                    if (ixOfSymbols.First() == i)
-                        btns[i] = parityOfSymbols.First() ? "+" : "-";
-                    else
-                        btns[i] = parityOfSymbols.Last() ? "+" : "-";
-                }
-                else
-                    btns[i] = sets[set][i].ToString();
+                btns[i] = ixOfSymbols.Contains(i)
+                    ? ixOfSymbols.First() == i ? parityOfSymbols.First() ? "+" : "-" : parityOfSymbols.Last() ? "+" : "-"
+                    : sets[set][i].ToString();
             }
             btnsAtAllStages[stage] = btns.JoinString("");
             yield return null;
@@ -64,8 +56,8 @@ public partial class SouvenirModule
 
         var qs = new List<QandA>();
 
-        for (int s = 0; s < 5; s++)
-            for (int b = 0; b < 4; b++)
+        for (var s = 0; s < 5; s++)
+            for (var b = 0; b < 4; b++)
             {
                 qs.Add(makeQuestion(Question.QuadrantsButtons, module,
                 formatArgs: new[] { Ordinal(b + 1), Ordinal(s + 1) },
@@ -81,8 +73,8 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "QuantumPasswordsScript");
         var words = GetArrayField<string>(comp, "selectedWords").Get(expectedLength: 2, validator: v => v is { Length: 5 } ? null : "Expected word length 5");
 
-        bool isCorrect(string word) => words.Any(w => word.ToUpperInvariant().OrderBy(c => c).SequenceEqual(w.OrderBy(c => c)));
-        addQuestion(module, Question.QuantumPasswordsWord, correctAnswers: Question.QuantumPasswordsWord.GetAnswers().Where(isCorrect).ToArray());
+        addQuestion(module, Question.QuantumPasswordsWord, correctAnswers: Question.QuantumPasswordsWord.GetAnswers()
+            .Where(word => words.Any(w => word.ToUpperInvariant().OrderBy(c => c).SequenceEqual(w.OrderBy(c => c)))).ToArray());
     }
 
     private IEnumerator<YieldInstruction> ProcessQuantumTernaryConverter(ModuleData module)
@@ -102,7 +94,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var correctValues = fldCorrectValues.Get(minLength: 1, maxLength: 20, validator: arr => arr.Length != 1 && arr.Length != 4 ? "expected array of length 1 or 4" : null);
+        var correctValues = fldCorrectValues.Get(minLength: 1, maxLength: 20, validator: arr => arr.Length is not 1 and not 4 ? "expected array of length 1 or 4" : null);
         var qs = new List<QandA>();
 
         for (var i = 0; i < correctValues.Count; i++)
@@ -150,9 +142,9 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "quintuplesScript");
         yield return WaitForSolve;
 
-        var numbers = GetArrayField<int>(comp, "cyclingNumbers", isPublic: true).Get(expectedLength: 25, validator: n => n < 1 || n > 10 ? "expected range 1–10" : null);
+        var numbers = GetArrayField<int>(comp, "cyclingNumbers", isPublic: true).Get(expectedLength: 25, validator: n => n is < 1 or > 10 ? "expected range 1–10" : null);
         var colors = GetArrayField<string>(comp, "chosenColorsName", isPublic: true).Get(expectedLength: 25);
-        var colorCounts = GetArrayField<int>(comp, "numberOfEachColour", isPublic: true).Get(expectedLength: 5, validator: cc => cc < 0 || cc > 25 ? "expected range 0–25" : null);
+        var colorCounts = GetArrayField<int>(comp, "numberOfEachColour", isPublic: true).Get(expectedLength: 5, validator: cc => cc is < 0 or > 25 ? "expected range 0–25" : null);
         var colorNames = GetArrayField<string>(comp, "potentialColorsName", isPublic: true).Get(expectedLength: 5);
 
         addQuestions(module,
@@ -193,7 +185,7 @@ public partial class SouvenirModule
         var tilesPlaces = GetField<IList>(comp, "placed").Get(l => l.Count != 4 ? "expected length 4" : null);
         var tilesIndex = new int[4];
 
-        for (int i = 0; i < 4; i++)
+        for (var i = 0; i < 4; i++)
         {
             var colourIndex = GetIntField(tilesPlaces[i], "color", isPublic: true).Get(min: 0, max: 5);
             var shapeIndex = GetIntField(tilesPlaces[i], "shape", isPublic: true).Get(min: 0, max: 5);

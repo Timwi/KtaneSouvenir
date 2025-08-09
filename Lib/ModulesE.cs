@@ -11,7 +11,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "EarthboundScript");
         yield return WaitForSolve;
 
-        var enemyIndex = GetIntField(comp, "enemyIndex").Get(val => val < 0 || val > 29 ? "expected range 0–29" : null);
+        var enemyIndex = GetIntField(comp, "enemyIndex").Get(val => val is < 0 or > 29 ? "expected range 0–29" : null);
         var enemySprites = GetArrayField<Sprite>(comp, "enemyOptions", isPublic: true).Get(expectedLength: 30).Select(sprite => sprite.TranslateSprite(sprite.name switch
         {
             "Absolutely Safe Capsule" => 350,
@@ -20,7 +20,7 @@ public partial class SouvenirModule
         })).ToArray();
 
         var backgroundMaterials = GetArrayField<Material>(comp, "backgroundOptions", isPublic: true).Get(expectedLength: 30);
-        var backgroundIndex = GetIntField(comp, "usedBackgroundInt").Get(val => val < 0 || val > 29 ? "expected range 0–29" : null);
+        var backgroundIndex = GetIntField(comp, "usedBackgroundInt").Get(val => val is < 0 or > 29 ? "expected range 0–29" : null);
 
         // Get the smallest width and height to make all answers the same dimensions
         var width = backgroundMaterials.Min(m => m.mainTexture.width);
@@ -104,9 +104,7 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
-        var allWordsType = comp.GetType().Assembly.GetType("Words.Data");
-        if (allWordsType == null)
-            throw new AbandonModuleException("I cannot find the Words.Data type.");
+        var allWordsType = comp.GetType().Assembly.GetType("Words.Data") ?? throw new AbandonModuleException("I cannot find the Words.Data type.");
         var allWordsObj = Activator.CreateInstance(allWordsType);
         var allWords = GetArrayField<List<string>>(allWordsObj, "_allWords").Get(expectedLength: 6);
 
@@ -140,7 +138,7 @@ public partial class SouvenirModule
                 while (!fldCanRoll.Get())
                     yield return null; // Do not wait .1 seconds so we are absolutely sure we get the right stage.
                 stage++;
-                rolledValues[stage] = fldRolledValues.Get(expectedLength: 3, validator: val => val < 1 || val > 6 ? "expected range 1-6" : null).ToArray();
+                rolledValues[stage] = fldRolledValues.Get(expectedLength: 3, validator: val => val is < 1 or > 6 ? "expected range 1-6" : null).ToArray();
             }
             yield return new WaitForSeconds(.1f); // Roll animation is much longer than .1 seconds anyway.
         }
@@ -220,7 +218,7 @@ public partial class SouvenirModule
 
         string[] formatCalls = { "Detonate", "Ready Now", "We're Dead", "She Sells", "Remember", "Great Job", "Solo This", "Keep Talk" };
         string[] formatResponses = { "Please No", "Cheesecake", "Sadface", "Sea Shells", "Souvenir", "Thank You", "I Dare You", "No Explode" };
-        int index = GetIntField(comp, "callResponseIndex").Get(0, Math.Min(formatCalls.Length - 1, formatResponses.Length - 1));
+        var index = GetIntField(comp, "callResponseIndex").Get(0, Math.Min(formatCalls.Length - 1, formatResponses.Length - 1));
 
         yield return WaitForSolve;
 
@@ -255,7 +253,7 @@ public partial class SouvenirModule
         var rotComp = GetArrayField<int>(comp, "assignedDialRotations").Get();
         var dialLabels = GetField<string>(comp, "encryptedDisplay").Get();
 
-        for (int dial = 0; dial < 8; dial++)
+        for (var dial = 0; dial < 8; dial++)
         {
             switch (dial)
             {
@@ -323,8 +321,8 @@ public partial class SouvenirModule
 
         var wordList = GetField<string[][]>(comp, "wordList").Get();
         var inputtedText = GetField<string>(comp, "inputtedText").Get();
-        int index = -1;
-        for (int i = 0; i < wordList.Length; i++)
+        var index = -1;
+        for (var i = 0; i < wordList.Length; i++)
             if (wordList[i].Contains(inputtedText))
                 index = i;
         var words = Enumerable.Range(0, wordList.Length).Except(new[] { index }).Select(i => wordList[i][0]).ToArray();
@@ -408,7 +406,7 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "Etterna");
         yield return WaitForSolve;
 
-        var correct = GetArrayField<byte>(comp, "correct").Get(expectedLength: 4, validator: b => b > 32 || b == 0 ? "expected 1–32" : null);
+        var correct = GetArrayField<byte>(comp, "correct").Get(expectedLength: 4, validator: b => b is > 32 or 0 ? "expected 1–32" : null);
         addQuestions(module, correct.Select((answer, ix) => makeQuestion(Question.EtternaNumber, module, formatArgs: new[] { Ordinal(ix + 1) }, correctAnswers: new[] { answer.ToString() })));
     }
 

@@ -23,7 +23,7 @@ public partial class SouvenirModule
         }
 
         var qs = new List<QandA>();
-        for (int st = 0; st < 3; st++)
+        for (var st = 0; st < 3; st++)
             qs.Add(makeQuestion(Question.MorseWoFDisplays, module, formatArgs: new[] { Ordinal(st + 1) }, correctAnswers: new[] { displays[st] }, preferredWrongAnswers: wordList));
 
         addQuestions(module, qs);
@@ -152,7 +152,7 @@ public partial class SouvenirModule
         var indexNumber = GetField<int>(comp, "WordIndex");
         var stageNumber = GetField<int>(comp, "Stage");
 
-        for (int i = 0; i < yesAndNo.Length; i++)   // Safe to use ‘for’ loop as long as the loop variable is not captured by the lambda
+        for (var i = 0; i < yesAndNo.Length; i++)   // Safe to use ‘for’ loop as long as the loop variable is not captured by the lambda
         {
             var oldInteract = yesAndNo[i].OnInteract;
             yesAndNo[i].OnInteract = delegate
@@ -237,8 +237,8 @@ public partial class SouvenirModule
         var bearing = GetIntField(map, "end_dir").Get(min: 0, max: 3);
         var fldLabel = GetField<char>(mapData.GetValue(0, 0), "label", isPublic: true);
         var chars = new HashSet<char>();
-        for (int i = 0; i < 8; i++)
-            for (int j = 0; j < 8; j++)
+        for (var i = 0; i < 8; i++)
+            for (var j = 0; j < 8; j++)
             {
                 var ch = fldLabel.GetFrom(mapData.GetValue(i, j));
                 if ("ABCDH".Contains(ch))
@@ -292,11 +292,9 @@ public partial class SouvenirModule
         var fldStage = GetField<int>(comp, "Stage");
 
         var text = fldDisplayText.Get().text;
-        if (!int.TryParse(text, out var answer))
-            throw new AbandonModuleException($"“{text}” does not parse as an integer.");
-
-        yield return WaitForSolve;
-
+        yield return !int.TryParse(text, out var answer)
+            ? throw new AbandonModuleException($"“{text}” does not parse as an integer.")
+            : (YieldInstruction) WaitForSolve;
         addQuestion(module, Question._3NPlus1, correctAnswers: new[] { answer.ToString() });
     }
 
@@ -313,7 +311,7 @@ public partial class SouvenirModule
 
         // Check if all of the stages have exactly 3 sets of values.
         var allIdxDisplayedOperators = GetListField<int>(comp, "idxOperations").Get(
-            idx => !idx.Skip(1).All(a => a >= 0 && a <= 3) ? "After stage 0, at least 1 stage does not have a valid index between 0 and 3 inclusive" : // Check after stage 0 if all indexes are within 0-3 inclusive
+            idx => !idx.Skip(1).All(a => a is >= 0 and <= 3) ? "After stage 0, at least 1 stage does not have a valid index between 0 and 3 inclusive" : // Check after stage 0 if all indexes are within 0-3 inclusive
             !(idx.First() == -1) ? "Stage 0 does not have an index of -1." : // Then check if stage 0 has an idx of -1.
             null);
 
@@ -325,7 +323,7 @@ public partial class SouvenirModule
         {
             if (x == 0) // Stage 0 is denoted as the initial stage on this module.
             {
-                for (int y = 0; y < 3; y++)
+                for (var y = 0; y < 3; y++)
                     allQuestions.Add(makeQuestion(Question._7InitialValues, module, formatArgs: new[] { colorReference[y] }, correctAnswers: new[] { allDisplayedValues[x][y].ToString() }));
             }
             else

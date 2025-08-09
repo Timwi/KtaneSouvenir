@@ -1,27 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Configuration>Release</Configuration>
+    <Platform>AnyCPU</Platform>
     <ProjectGuid>{4C3C8D4A-C793-467E-B02A-2ADC1937A9FF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Souvenir</RootNamespace>
     <AssemblyName>SouvenirLib</AssemblyName>
     <TargetFramework>net35</TargetFramework>
-    <LangVersion>11.0</LangVersion>
+    <LangVersion>12.0</LangVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <Configurations>Release</Configurations>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>11.0</LangVersion>
     <Nullable>disable</Nullable>
   </PropertyGroup>
   <PropertyGroup>

@@ -29,7 +29,7 @@ public partial class SouvenirModule
 
         var initialHand = GetField<IList>(comp, "_initialHand").Get(v => v.Count != 5 ? "Expected 5 cards" : v.Cast<object>().Any(v => v is null) ? "Expected non-null cards" : null);
 
-        string[] validCards = new[] { "1", "2", "3", "backwards 4", "5", "6", "single-step 7", "8 or discard", "9", "10", "12", "13", "Trickster", "Warrior" };
+        var validCards = new[] { "1", "2", "3", "backwards 4", "5", "6", "single-step 7", "8 or discard", "9", "10", "12", "13", "Trickster", "Warrior" };
         var ruleseed = GetField<object>(comp, "RuleSeedable", isPublic: true).Get();
         var rng = GetMethod<object>(ruleseed, "GetRNG", 0, isPublic: true).Invoke();
         var seed = GetProperty<int>(rng, "Seed", isPublic: true).Get();
@@ -53,15 +53,12 @@ public partial class SouvenirModule
         {
             var cardStr = card.ToString();
             var match = Regex.Match(cardStr, "^(1[0-3]|[1-9])(?:(◊)|(⏪)|(∴))?$");
-            if (!match.Success)
-                return cardStr;
-            if (match.Groups[2].Success)
-                return $"{match.Groups[1].Value} or discard";
-            if (match.Groups[3].Success)
-                return $"backwards {match.Groups[1].Value}";
-            if (match.Groups[4].Success)
-                return $"single-step {match.Groups[1].Value}";
-            return match.Groups[1].Value;
+            return
+                !match.Success ? cardStr :
+                match.Groups[2].Success ? $"{match.Groups[1].Value} or discard" :
+                match.Groups[3].Success ? $"backwards {match.Groups[1].Value}" :
+                match.Groups[4].Success ? $"single-step {match.Groups[1].Value}" :
+                match.Groups[1].Value;
         }
 
         if (swap is not null)
@@ -99,7 +96,7 @@ public partial class SouvenirModule
         var colors = GetStaticField<string[]>(comp.GetType(), "colorNames").Get(ar => ar.Length != 4 ? "expected length 4" : null).ToArray();
         var sequence = GetArrayField<int>(comp, "flashing").Get(expectedLength: 5, validator: val => val < 0 || val >= colors.Length ? $"expected range 0–{colors.Length - 1}" : null);
 
-        for (int i = 0; i < colors.Length; i++)
+        for (var i = 0; i < colors.Length; i++)
             colors[i] = char.ToUpperInvariant(colors[i][0]) + colors[i].Substring(1);
 
         yield return WaitForSolve;
@@ -138,7 +135,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var qs = new List<QandA>();
-        for (int position = 0; position < 12; position++)
+        for (var position = 0; position < 12; position++)
         {
             var tex = TechnicalKeypadQuestions[position];
             var tmp = new Texture2D(400, 320, TextureFormat.ARGB32, false);
@@ -151,7 +148,7 @@ public partial class SouvenirModule
             if (modCount > 1)
             {
                 var numText = module.SolveIndex.ToString();
-                for (int digit = 0; digit < numText.Length; digit++)
+                for (var digit = 0; digit < numText.Length; digit++)
                 {
                     tex = DigitTextures[numText[digit] - '0'];
                     tmp.SetPixels(140 + 40 * digit, 90, tex.width, tex.height, tex.GetPixels());
@@ -199,15 +196,12 @@ public partial class SouvenirModule
         var splits = GetArrayField<int>(comp, "splits").Get(validator: ar => ar.Length != 3 ? "expected length 3" : ar.Any(v => v < 0 || v >= splitNames.Length) ? $"out of range for splitNames (0–{splitNames.Length - 1})" : null);
         var colorNames = new[] { "red", "green", "blue" };
         var qs = new List<QandA>();
-        for (int i = 0; i < 3; i++)
+        for (var i = 0; i < 3; i++)
             qs.Add(makeQuestion(Question.TenpinsSplits, module, formatArgs: new[] { colorNames[i] }, correctAnswers: new[] { splitNames[splits[i]] }, preferredWrongAnswers: splits.Select(x => splitNames[x]).ToArray()));
         addQuestions(module, qs);
     }
 
-    private IEnumerator<YieldInstruction> ProcessTetriamonds(ModuleData module)
-    {
-        return processPolyiamonds(module, "tetriamondsScript", Question.TetriamondsPulsingColours, new[] { "orange", "lime", "jade", "azure", "violet", "rose", "grey" });
-    }
+    private IEnumerator<YieldInstruction> ProcessTetriamonds(ModuleData module) => processPolyiamonds(module, "tetriamondsScript", Question.TetriamondsPulsingColours, new[] { "orange", "lime", "jade", "azure", "violet", "rose", "grey" });
 
     private IEnumerator<YieldInstruction> ProcessTextField(ModuleData module)
     {
@@ -218,14 +212,12 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(0.1f);
 
         var displayMeshes = GetArrayField<TextMesh>(comp, "ButtonLabels", true).Get(expectedLength: 12, validator: tm => tm.text == null ? "text is null" : null);
-        var answer = displayMeshes.Select(x => x.text).FirstOrDefault(x => x != "✓" && x != "✗");
+        var answer = displayMeshes.Select(x => x.text).FirstOrDefault(x => x is not "✓" and not "✗");
         var possibleAnswers = new[] { "A", "B", "C", "D", "E", "F" };
 
-        if (!possibleAnswers.Contains(answer))
-            throw new AbandonModuleException($"Answer ‘{answer ?? "<null>"}’ is not of expected value ({possibleAnswers.JoinString(", ")}).");
-
-        yield return WaitForSolve;
-
+        yield return !possibleAnswers.Contains(answer)
+            ? throw new AbandonModuleException($"Answer ‘{answer ?? "<null>"}’ is not of expected value ({possibleAnswers.JoinString(", ")}).")
+            : (YieldInstruction) WaitForSolve;
         for (var i = 0; i < 12; i++)
             if (displayMeshes[i].text == answer)
                 displayMeshes[i].text = "✓";
@@ -298,7 +290,7 @@ public partial class SouvenirModule
         var emojis = GetArrayField<Texture>(comp, "Emojis", true).Get(expectedLength: 204);
         IEnumerator hideBacksolve()
         {
-            for (int i = 0; i < displays.Length; i++)
+            for (var i = 0; i < displays.Length; i++)
             {
                 yield return new WaitForSeconds(0.1f);
                 displays[i].material.mainTexture = emojis[i % 2 == 0 ? 5 : 36];
@@ -351,11 +343,9 @@ public partial class SouvenirModule
         var textFromCity = GetField<TextMesh>(comp, "TextFromCity", isPublic: true).Get();
         var textToCity = GetField<TextMesh>(comp, "TextToCity", isPublic: true).Get();
 
-        if (fldFromCity.Get() != textFromCity.text || fldToCity.Get() != textToCity.text)
-            throw new AbandonModuleException($"The city names don’t match up: “{fldFromCity.Get()}” vs. “{textFromCity.text}” and “{fldToCity.Get()}” vs. “{textToCity.text}”.");
-
-        yield return WaitForSolve;
-
+        yield return fldFromCity.Get() != textFromCity.text || fldToCity.Get() != textToCity.text
+            ? throw new AbandonModuleException($"The city names don’t match up: “{fldFromCity.Get()}” vs. “{textFromCity.text}” and “{fldToCity.Get()}” vs. “{textToCity.text}”.")
+            : (YieldInstruction) WaitForSolve;
         textFromCity.text = "WELL";
         textToCity.text = "DONE!";
         addQuestions(module,
@@ -368,11 +358,11 @@ public partial class SouvenirModule
         var comp = GetComponent(module, "Main");
         yield return WaitForSolve;
 
-        Array grid = GetField<Array>(comp, "Grid").Get();
+        var grid = GetField<Array>(comp, "Grid").Get();
         var rowNineSafeSquares = new List<string>();
         var rowTenSafeSquares = new List<string>();
 
-        for (int col = 0; col < 10; col++)
+        for (var col = 0; col < 10; col++)
         {
             if (!GetField<bool>(grid.GetValue(0, col), "Flicker").Get())
                 rowTenSafeSquares.Add(((col + 1) % 10).ToString());
@@ -412,8 +402,8 @@ public partial class SouvenirModule
         var fldMessage = GetField<string>(comp, "messagetrans");
         var fldStage = GetIntField(comp, "stage");
 
-        string[] messages = new string[2];
-        int stage = 0;
+        var messages = new string[2];
+        var stage = 0;
 
         while (module.Unsolved)
         {
@@ -428,10 +418,7 @@ public partial class SouvenirModule
             preferredWrongAnswers: messages)));
     }
 
-    private IEnumerator<YieldInstruction> ProcessTriamonds(ModuleData module)
-    {
-        return processPolyiamonds(module, "triamondsScript", Question.TriamondsPulsingColours, new[] { "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white" });
-    }
+    private IEnumerator<YieldInstruction> ProcessTriamonds(ModuleData module) => processPolyiamonds(module, "triamondsScript", Question.TriamondsPulsingColours, new[] { "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white" });
 
     private IEnumerator<YieldInstruction> ProcessTribalCouncil(ModuleData module)
     {

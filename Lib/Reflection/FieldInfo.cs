@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Souvenir.Reflection
 {
-    class FieldInfo<T> : InfoBase<T>
+    internal class FieldInfo<T> : InfoBase<T>
     {
         public readonly FieldInfo Field;
         protected override string LoggingString => $"Field {Field.DeclaringType.FullName}.{Field.Name}";
@@ -12,43 +12,28 @@ namespace Souvenir.Reflection
 
         protected override T GetValue() => (T) Field.GetValue(_target);
         protected override T GetValue(object from) => (T) Field.GetValue(from);
-        public void Set(T value) { Field.SetValue(_target, value); }
-        public void SetTo(object target, T value) { Field.SetValue(target, value); }
+        public void Set(T value) => Field.SetValue(_target, value);
+        public void SetTo(object target, T value) => Field.SetValue(target, value);
     }
 
-    sealed class IntFieldInfo : FieldInfo<int>
+    internal sealed class IntFieldInfo : FieldInfo<int>
     {
         public IntFieldInfo(object target, FieldInfo field) : base(target, field) { }
 
-        public int Get(int? min = null, int? max = null)
-        {
-            return Get(v => (min != null && v < min.Value) || (max != null && v > max.Value) ? $"expected {min}–{max}" : null);
-        }
+        public int Get(int? min = null, int? max = null) => Get(v => (min != null && v < min.Value) || (max != null && v > max.Value) ? $"expected {min}–{max}" : null);
 
-        public int GetFrom(object obj, int? min = null, int? max = null)
-        {
-            return GetFrom(obj, v => (min != null && v < min.Value) || (max != null && v > max.Value) ? $"expected {min}–{max}" : null);
-        }
+        public int GetFrom(object obj, int? min = null, int? max = null) => GetFrom(obj, v => (min != null && v < min.Value) || (max != null && v > max.Value) ? $"expected {min}–{max}" : null);
     }
 
-    abstract class CollectionFieldInfo<TCollection, TElement> : FieldInfo<TCollection> where TCollection : IList<TElement>
+    internal abstract class CollectionFieldInfo<TCollection, TElement> : FieldInfo<TCollection> where TCollection : IList<TElement>
     {
         protected CollectionFieldInfo(object target, FieldInfo field) : base(target, field) { }
 
-        public TCollection Get(int expectedLength, bool nullArrayAllowed = false, bool nullContentAllowed = false, Func<TElement, string> validator = null)
-        {
-            return GetFrom(_target, expectedLength, expectedLength, nullArrayAllowed, nullContentAllowed, validator);
-        }
+        public TCollection Get(int expectedLength, bool nullArrayAllowed = false, bool nullContentAllowed = false, Func<TElement, string> validator = null) => GetFrom(_target, expectedLength, expectedLength, nullArrayAllowed, nullContentAllowed, validator);
 
-        public TCollection Get(int minLength, int? maxLength = null, bool nullArrayAllowed = false, bool nullContentAllowed = false, Func<TElement, string> validator = null)
-        {
-            return GetFrom(_target, minLength, maxLength, nullArrayAllowed, nullContentAllowed, validator);
-        }
+        public TCollection Get(int minLength, int? maxLength = null, bool nullArrayAllowed = false, bool nullContentAllowed = false, Func<TElement, string> validator = null) => GetFrom(_target, minLength, maxLength, nullArrayAllowed, nullContentAllowed, validator);
 
-        public TCollection GetFrom(object target, int expectedLength, bool nullArrayAllowed = false, bool nullContentAllowed = false, Func<TElement, string> validator = null)
-        {
-            return GetFrom(target, expectedLength, expectedLength, nullArrayAllowed, nullContentAllowed, validator);
-        }
+        public TCollection GetFrom(object target, int expectedLength, bool nullArrayAllowed = false, bool nullContentAllowed = false, Func<TElement, string> validator = null) => GetFrom(target, expectedLength, expectedLength, nullArrayAllowed, nullContentAllowed, validator);
 
         public TCollection GetFrom(object target, int minLength, int? maxLength = null, bool nullArrayAllowed = false, bool nullContentAllowed = false, Func<TElement, string> validator = null)
         {
@@ -74,9 +59,9 @@ namespace Souvenir.Reflection
             if (collection == null)
                 return collection;
             var pos = collection.IndexOf(v => v == null);
-            if (pos != -1)
-                throw new AbandonModuleException($"Collection field {Field.DeclaringType.FullName}.{Field.Name} (length {collection.Count}) contained a null value at index {pos}.");
-            return collection;
+            return pos != -1
+                ? throw new AbandonModuleException($"Collection field {Field.DeclaringType.FullName}.{Field.Name} (length {collection.Count}) contained a null value at index {pos}.")
+                : collection;
         }
 
         public new TCollection GetFrom(object obj, Func<TCollection, string> validator = null, bool nullAllowed = false)
@@ -85,18 +70,18 @@ namespace Souvenir.Reflection
             if (collection == null)
                 return collection;
             var pos = collection.IndexOf(v => v == null);
-            if (pos != -1)
-                throw new AbandonModuleException($"Collection field {Field.DeclaringType.FullName}.{Field.Name} (length {collection.Count}) contained a null value at index {pos}.");
-            return collection;
+            return pos != -1
+                ? throw new AbandonModuleException($"Collection field {Field.DeclaringType.FullName}.{Field.Name} (length {collection.Count}) contained a null value at index {pos}.")
+                : collection;
         }
     }
 
-    sealed class ArrayFieldInfo<T> : CollectionFieldInfo<T[], T>
+    internal sealed class ArrayFieldInfo<T> : CollectionFieldInfo<T[], T>
     {
         public ArrayFieldInfo(object target, FieldInfo field) : base(target, field) { }
     }
 
-    sealed class ListFieldInfo<T> : CollectionFieldInfo<List<T>, T>
+    internal sealed class ListFieldInfo<T> : CollectionFieldInfo<List<T>, T>
     {
         public ListFieldInfo(object target, FieldInfo field) : base(target, field) { }
     }

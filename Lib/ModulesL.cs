@@ -38,7 +38,7 @@ public partial class SouvenirModule
         for (var layer = 0; layer < 5; layer++)
             qs.Add(makeQuestion(Question.LabyrinthPortalLocations, module, formatArgs: new[] { args[layer] }, correctAnswers: new[] { new Coord(6, 7, portals[layer][0]), new Coord(6, 7, portals[layer][1]) }, preferredWrongAnswers: distinctPortals.Select(i => new Coord(6, 7, i)).ToArray()));
 
-        foreach (int p in distinctPortals)
+        foreach (var p in distinctPortals)
         {
             var correct = new List<string>();
             for (var i = 0; i < 10; i++)
@@ -97,7 +97,7 @@ public partial class SouvenirModule
         var initialStates = GetArrayField<bool>(comp, "Board").Get(expectedLength: 25);
         var initialWhites = new List<int>();
         var initialBlacks = new List<int>();
-        for (int pos = 0; pos < 25; pos++)
+        for (var pos = 0; pos < 25; pos++)
             (initialStates[pos] ? initialBlacks : initialWhites).Add(pos);
 
         if (initialBlacks.Count == 0 || initialWhites.Count == 0)
@@ -139,7 +139,7 @@ public partial class SouvenirModule
         if (buttonLabels.Any(x => x == null))
             throw new AbandonModuleException("At least one of the buttons’ TextMesh is null.");
 
-        var multipliers = GetArrayField<int>(comp, "layerMultipliers").Get(minLength: 2, maxLength: 5, validator: m => m < 2 || m > 7 ? "expected range 2–7" : null);
+        var multipliers = GetArrayField<int>(comp, "layerMultipliers").Get(minLength: 2, maxLength: 5, validator: m => m is < 2 or > 7 ? "expected range 2–7" : null);
         var numStages = multipliers.Length;
         var pressedLetters = new string[numStages];
         var wrongLetters = new HashSet<string>();
@@ -165,7 +165,7 @@ public partial class SouvenirModule
                 wrongLetters.Add(lbl.text);
 
             // LED Encryption re-hooks the buttons at every press, so we have to re-hook it at each stage as well
-            for (int i = 0; i < 4; i++)
+            for (var i = 0; i < 4; i++)
                 reassignButton(buttons[i], buttonLabels[i]);
 
             var stage = fldStage.Get();
@@ -225,8 +225,8 @@ public partial class SouvenirModule
         var fldInitColor = GetField<object>(comp, "colorChangedTo");
         var fldActualColor = GetField<object>(comp, "currentDisplayOnChanged");
 
-        string initStr = fldInitColor.Get(col => (int) col > 7 || (int) col < 0 ? "expected value 0-7" : null).ToString();
-        string actualStr = fldActualColor.Get(col => (int) col > 7 || (int) col < 0 ? "expected value 0-7" : null).ToString();
+        var initStr = fldInitColor.Get(col => (int) col is > 7 or < 0 ? "expected value 0-7" : null).ToString();
+        var actualStr = fldActualColor.Get(col => (int) col is > 7 or < 0 ? "expected value 0-7" : null).ToString();
 
         addQuestion(module, Question.LEDsOriginalColor, correctAnswers: new[] { initStr }, preferredWrongAnswers: new[] { actualStr });
     }
@@ -259,7 +259,7 @@ public partial class SouvenirModule
 
         // Erase the solution so the player can’t see brick sizes on it either
         var submission = GetArrayField<int>(comp, "Submission").Get();
-        for (int i = 0; i < submission.Length; i++)
+        for (var i = 0; i < submission.Length; i++)
             submission[i] = 0;
         GetMethod(comp, "UpdateDisplays", numParameters: 0).Invoke();
 
@@ -315,7 +315,7 @@ public partial class SouvenirModule
             ar.OfType<object>().Any(v => !Question.LinqFunction.GetAnswers().Contains(v.ToString())) ? "contains unknown function" : null);
 
         var qs = new List<QandA>();
-        for (int i = 0; i < functions.GetLength(0); i++)
+        for (var i = 0; i < functions.GetLength(0); i++)
             qs.Add(makeQuestion(Question.LinqFunction, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { functions.GetValue(i).ToString() }));
 
         addQuestions(module, qs);
@@ -325,11 +325,9 @@ public partial class SouvenirModule
     {
         var comp = GetComponent(module, "LionsShareModule");
         var yearText = GetField<TextMesh>(comp, "Year", isPublic: true).Get().text;
-        if (!int.TryParse(yearText, out var year) || year < 1 || year > 16)
-            throw new AbandonModuleException($"Expected year number between 1 and 16; got: {yearText}");
-
-        yield return WaitForSolve;
-
+        yield return !int.TryParse(yearText, out var year) || year < 1 || year > 16
+            ? throw new AbandonModuleException($"Expected year number between 1 and 16; got: {yearText}")
+            : (YieldInstruction) WaitForSolve;
         var lionNames = GetArrayField<string>(comp, "_lionNames").Get(minLength: 2);
         var correctPortions = GetArrayField<int>(comp, "_correctPortions").Get(expectedLength: lionNames.Length);
         var removedLions = Enumerable.Range(0, lionNames.Length).Where(ix => correctPortions[ix] == 0).Select(ix => lionNames[ix]).ToArray();
@@ -436,7 +434,7 @@ public partial class SouvenirModule
             {
                 if (stage != curStage && stage != curStage + 1)
                     throw new AbandonModuleException($"I must have missed a stage (it went from {curStage} to {stage}).");
-                if (stage < 1 || stage > 3)
+                if (stage is < 1 or > 3)
                     throw new AbandonModuleException($"‘stage’ has unexpected value {stage} (expected 1–3).");
 
                 colors[stage - 1] = clrs;
@@ -469,9 +467,9 @@ public partial class SouvenirModule
 
         var gateTypeNames = gates.Cast<object>().Select(obj => fldGateTypeName.GetFrom(GetField<object>(gates[0], "GateType", isPublic: true).GetFrom(obj)).ToString()).ToArray();
         string duplicate = null;
-        bool isDuplicateInvalid = false;
-        for (int i = 0; i < gateTypeNames.Length; i++)
-            for (int j = i + 1; j < gateTypeNames.Length; j++)
+        var isDuplicateInvalid = false;
+        for (var i = 0; i < gateTypeNames.Length; i++)
+            for (var j = i + 1; j < gateTypeNames.Length; j++)
                 if (gateTypeNames[i] == gateTypeNames[j])
                 {
                     if (duplicate != null)
@@ -496,7 +494,7 @@ public partial class SouvenirModule
         };
 
         var qs = new List<QandA>();
-        for (int i = 0; i < gateTypeNames.Length; i++)
+        for (var i = 0; i < gateTypeNames.Length; i++)
             qs.Add(makeQuestion(Question.LogicGatesGates, module, formatArgs: new[] { "gate " + (char) ('A' + i) }, correctAnswers: new[] { gateTypeNames[i] }));
         if (!isDuplicateInvalid)
             qs.Add(makeQuestion(Question.LogicGatesGates, module, formatArgs: new[] { "the duplicated gate" }, correctAnswers: new[] { duplicate }));
