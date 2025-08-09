@@ -16,7 +16,7 @@ public class Config
     {
         "mysterymodule" => ExcludeMysteryModule,
         "SouvenirModule" => ExcludeSouvenir,
-        _ => ExcludeIgnoredModules && ignoredModuleIDs.Contains(module.ModuleType),
+        var id => ExcludeIgnoredModules && ignoredModuleIDs.Contains(id),
     };
 
     public static readonly Dictionary<string, object>[] TweaksEditorSettings = Ut.NewArray(
