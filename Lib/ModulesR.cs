@@ -494,23 +494,23 @@ public partial class SouvenirModule
 
         void pickAnswers(List<int> valid, out string[] correct, out string[] incorrect)
         {
-            bool fiveValid = valid.Count >= 5;
-            bool fiveInvalid = valid.Count <= leftDisplays.Count - 5;
+            bool fourValid = valid.Count >= 4;
+            bool fourInvalid = valid.Count <= leftDisplays.Count - 4;
 
-            if (valid.Count == 0 || (fiveInvalid && UnityEngine.Random.Range(0, 3) == 0))
+            if (valid.Count == 0 || (fourInvalid && UnityEngine.Random.Range(0, 3) == 0))
             {
                 correct = new[] { translateString(Question.RPSJudgingDraw, "None of these") };
-                incorrect = Enumerable.Range(0, leftDisplays.Count).Except(valid).Select(OrdinalPlusOne).ToArray();
+                incorrect = Enumerable.Range(0, leftDisplays.Count).Except(valid).Select(OrdinalPlusOne).Concat(new[] { translateString(Question.RPSJudgingDraw, "All of these") }).ToArray();
             }
-            else if (fiveValid && (UnityEngine.Random.Range(0, 3) == 0 || !fiveInvalid))
+            else if (fourValid && (UnityEngine.Random.Range(0, 3) == 0 || !fourInvalid))
             {
                 correct = new[] { translateString(Question.RPSJudgingDraw, "All of these") };
-                incorrect = valid.Select(OrdinalPlusOne).ToArray();
+                incorrect = valid.Select(OrdinalPlusOne).Concat(new[] { translateString(Question.RPSJudgingDraw, "None of these") }).ToArray();
             }
             else
             {
                 correct = valid.Select(OrdinalPlusOne).ToArray();
-                incorrect = Enumerable.Range(0, leftDisplays.Count).Except(valid).Select(OrdinalPlusOne).ToArray();
+                incorrect = Enumerable.Range(0, leftDisplays.Count).Except(valid).Select(OrdinalPlusOne).Concat(new[] { translateString(Question.RPSJudgingDraw, "None of these"), translateString(Question.RPSJudgingDraw, "All of these") }).ToArray();
             }
         }
 
