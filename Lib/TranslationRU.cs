@@ -5343,7 +5343,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [Question.KugelblitzBlackOrangeYellowIndigoViolet] = new()
         {
             NeedsTranslation = true,
-            QuestionText = "Which colors were present for the {1} stage on {0}?",
+            QuestionText = "Which particles were present for the {1} stage of {0}?",
             TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
             {
                 ["the {0} Kugelblitz"] = "the {0} Kugelblitz",
@@ -5379,7 +5379,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [Question.KugelblitzRedGreenBlue] = new()
         {
             NeedsTranslation = true,
-            QuestionText = "What were the color values for the {1} stage on {0}?",
+            QuestionText = "What were the particles’ values for the {1} stage of {0}?",
             TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
             {
                 ["R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}"] = "R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}",
@@ -9006,7 +9006,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         [Question.RPSJudgingWinner] = new()
         {
             NeedsTranslation = true,
-            QuestionText = "Which stage did the {1} team {2} in {0}?",
+            QuestionText = "Which round did the {1} team {2} in {0}?",
             FormatArgs = new Dictionary<string, string>
             {
                 ["red"] = "red",
@@ -9020,16 +9020,14 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 ["won"] = "won",
                 ["lost"] = "lost",
                 ["the RPS Judging with a draw in the {0} round"] = "the RPS Judging with a draw in the {0} round",
-                ["None of these"] = "None of these",
-                ["All of these"] = "All of these",
             },
         },
-        // Which stage was a draw in {0}?
-        // Which stage was a draw in RPS Judging?
+        // Which round was a draw in {0}?
+        // Which round was a draw in RPS Judging?
         [Question.RPSJudgingDraw] = new()
         {
             NeedsTranslation = true,
-            QuestionText = "Which stage was a draw in {0}?",
+            QuestionText = "Which round was a draw in {0}?",
         },
 
         // The Rule

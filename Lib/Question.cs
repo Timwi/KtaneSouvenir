@@ -2679,11 +2679,11 @@ public enum Question
         ExampleFormatArguments = new[] { "warm-colored", "cold-colored", "primary-colored", "secondary-colored" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
     RoleReversalWires,
 
-    [SouvenirQuestion("Which round did the {1} team {2} in {0}?", "RPS Judging", ThreeColumns6Answers, ExampleAnswers = new[] { "first", "second", "third", "fourth", "fifth", "sixth", "None of these", "All of these" },
+    [SouvenirQuestion("Which round did the {1} team {2} in {0}?", "RPS Judging", ThreeColumns6Answers, ExampleAnswers = new[] { "first", "second", "third", "fourth", "fifth", "sixth" },
         ExampleFormatArguments = new[] { "red", "win", "blue", "win", "red", "lose", "blue", "lose" }, ExampleFormatArgumentGroupSize = 2, TranslateFormatArgs = new[] { true, true },
-        TranslatableStrings = new[] { "the RPS Judging where the {0} team {1} the {2} round", "won", "lost", "the RPS Judging with a draw in the {0} round", "None of these", "All of these" })]
+        TranslatableStrings = new[] { "the RPS Judging where the {0} team {1} the {2} round", "won", "lost", "the RPS Judging with a draw in the {0} round" })]
     RPSJudgingWinner,
-    [SouvenirQuestion("Which stage was a draw in {0}?", "RPS Judging", ThreeColumns6Answers, ExampleAnswers = new[] { "first", "second", "third", "fourth", "fifth", "sixth", "None of these", "All of these" })]
+    [SouvenirQuestion("Which round was a draw in {0}?", "RPS Judging", ThreeColumns6Answers, ExampleAnswers = new[] { "first", "second", "third", "fourth", "fifth", "sixth" })]
     RPSJudgingDraw,
 
     [SouvenirQuestion("What was the rule number in {0}?", "Rule", ThreeColumns6Answers, AddThe = true)]

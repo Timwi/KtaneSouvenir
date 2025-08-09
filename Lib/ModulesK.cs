@@ -232,6 +232,8 @@ public partial class SouvenirModule
     private readonly List<HashSet<int>> _kugelblitzQuirksGroupings = new();
     private IEnumerator<YieldInstruction> ProcessKugelblitz(ModuleData module)
     {
+        module.SolveIndex = 1;
+
         while (!_isActivated)
             yield return null;
 
@@ -253,9 +255,8 @@ public partial class SouvenirModule
         var quirks = GetField<IList>(lobby, "_quirks").Get().Cast<object>().ToArray();
 
         var quirkTypes = new[] { "BaseStageManager", "OffsetStageManager", "InvertStageManager", "InsertStageManager", "LengthStageManager", "TurnStageManager", "FlipStageManager", "WrapStageManager" };
-        var orderedQuirks = Enumerable.Range(0, 8).Select(i => quirks.FirstOrDefault(q => q.GetType().Name == quirkTypes[i])).ToArray();
-        var usedQuirks = new HashSet<int>(Enumerable.Range(0, 8).Where(i => quirks.Any(q => q.GetType().Name == quirkTypes[i])));
-
+        var orderedQuirks = Enumerable.Range(0, 8).Select(qId => quirks.SingleOrDefault(quirk => quirk.GetType().Name == quirkTypes[qId])).ToArray();
+        var usedQuirks = new HashSet<int>(Enumerable.Range(0, 8).Where(qId => orderedQuirks[qId] != null));
 
         if (!_kugelblitzUsedQuirks.TryGetValue(lobby, out var askedQuirks))
         {
@@ -271,6 +272,8 @@ public partial class SouvenirModule
             throw new AbandonModuleException("There was no black Kugelblitz in the lobby.");
 
         var normalQuirks = new[] { 0, 2, 3, 6, 7 };
+        var abnormalQuirks = new[] { 1, 4, 5 };
+
         for (var q = 0; q < normalQuirks.Length; q++)
         {
             if (usedQuirks.Contains(normalQuirks[q]))
@@ -307,34 +310,20 @@ public partial class SouvenirModule
         yield return indices.Skip(1).Any(x => x is not null && x != indices[0])
             ? throw new AbandonModuleException("Two quirks disagreed on how many stages were shown.")
             : null;
-        string constructStandardAnswer(int b)
-        {
-            var format = translateString(Question.KugelblitzBlackOrangeYellowIndigoViolet, "{0}{1}{2}{3}{4}{5}{6}");
-            return string.Format(format, Enumerable.Range(0, 7).Select(i => (b & (1 << i)) != 0 ? translateString(Question.KugelblitzBlackOrangeYellowIndigoViolet, "ROYGBIV"[i].ToString()) : "").ToArray());
-        }
 
-        string constructRGBAnswer(byte[] b)
-        {
-            var format = translateString(Question.KugelblitzRedGreenBlue, "R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}");
-            return string.Format(format, b[0], b[1], b[2], b[3], b[4], b[5], b[6]);
-        }
-        IEnumerable<string> allRGBAnswers(byte max)
-        {
-            List<string> options = new();
+        string constructStandardAnswer(int b) => string.Format(
+            translateString(Question.KugelblitzBlackOrangeYellowIndigoViolet, "{0}{1}{2}{3}{4}{5}{6}"),
+            Enumerable.Range(0, 7).Select(i => (b & (1 << i)) != 0 ? translateString(Question.KugelblitzBlackOrangeYellowIndigoViolet, "ROYGBIV"[i].ToString()) : "").ToArray());
 
-            for (var c = 0; c < 6; c++)
-            {
-                string answer;
-                do
-                {
-                    var choice = new byte[7];
-                    for (var i = 0; i < 7; i++)
-                        choice[i] = (byte) UnityEngine.Random.Range(0, max + 1);
-                    answer = constructRGBAnswer(choice);
-                } while (options.Contains(answer));
-                options.Add(answer);
-            }
+        string constructRGBAnswer(byte[] b) => string.Format(
+            translateString(Question.KugelblitzRedGreenBlue, "R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}"),
+            b[0], b[1], b[2], b[3], b[4], b[5], b[6]);
 
+        IEnumerable<string> allRGBAnswers(int max)
+        {
+            var options = new HashSet<string>();
+            while (options.Count < 6)
+                options.Add(constructRGBAnswer(Ut.NewArray(7, i => (byte) UnityEngine.Random.Range(0, max + 1))));
             return options;
         }
 
@@ -344,74 +333,51 @@ public partial class SouvenirModule
         var quirkNames = new[] { "black", "red", "orange", "yellow", "green", "blue", "indigo", "violet" };
         string formatName(int color) => string.Format(translateString(Question.KugelblitzBlackOrangeYellowIndigoViolet, "the {0} Kugelblitz"), translateString(Question.KugelblitzBlackOrangeYellowIndigoViolet, quirkNames[color]));
 
-        var templates = new[] { "the Kugelblitz linked with no other Kugelblitzes", "the {0} Kugelblitz linked with one other Kugelblitz", "the {0} Kugelblitz linked with two other Kugelblitzes", "the {0} Kugelblitz linked with three other Kugelblitzes", "the {0} Kugelblitz linked with four other Kugelblitzes", "the {0} Kugelblitz linked with five other Kugelblitzes", "the {0} Kugelblitz linked with six other Kugelblitzes", "the {0} Kugelblitz linked with seven other Kugelblitzes" };
+        var templates = Ut.NewArray(
+            "the Kugelblitz linked with no other Kugelblitzes",
+            "the {0} Kugelblitz linked with one other Kugelblitz",
+            "the {0} Kugelblitz linked with two other Kugelblitzes",
+            "the {0} Kugelblitz linked with three other Kugelblitzes",
+            "the {0} Kugelblitz linked with four other Kugelblitzes",
+            "the {0} Kugelblitz linked with five other Kugelblitzes",
+            "the {0} Kugelblitz linked with six other Kugelblitzes",
+            "the {0} Kugelblitz linked with seven other Kugelblitzes");
         string formatNameSized(int color, int size) => string.Format(translateString(Question.KugelblitzBlackOrangeYellowIndigoViolet, templates[size - 1]), translateString(Question.KugelblitzBlackOrangeYellowIndigoViolet, quirkNames[color]));
 
         bool myFormat(int color, out string format)
         {
-            if (_kugelblitzQuirksGroupings.Count(g => g.Contains(color)) is 1)
+            if (color == 0 && _kugelblitzQuirksGroupings.Count == 1 && _kugelblitzQuirksGroupings[0].Count == 1)
+                format = null;
+            else if (_kugelblitzQuirksGroupings.Count(g => g.Contains(color)) == 1)
                 format = formatName(color);
-            else if (_kugelblitzQuirksGroupings.Where(g => g.Contains(color)).Count(g => g.Count == linkSize) is 1)
+            else if (_kugelblitzQuirksGroupings.Count(g => g.Contains(color) && g.Count == linkSize) == 1)
                 format = formatNameSized(color, linkSize);
             else
             {
-                legitimatelyNoQuestion(module, $"There are multiple lobbies with {linkSize} kugelblitzes and a(n) {quirkNames[color]} one, so I can't ask about them.");
+                legitimatelyNoQuestion(module, $"There are multiple lobbies with {linkSize} kugelblitzes and a(n) {quirkNames[color]} one, so I can’t ask about them.");
                 format = null;
                 return false;
             }
             return true;
         }
 
-        QandA[] qs;
-        string format;
-        if (!askedQuirks.Contains(0))
-        {
-            askedQuirks.Add(0);
-            if (_kugelblitzQuirksGroupings.Count is 1 && _kugelblitzQuirksGroupings[0].Count is 1)
-            {
-                module.SolveIndex = 1;
-                format = null;
-            }
-            else if (!myFormat(0, out format))
-                yield break;
-
-            qs = KOYIV[0].Select(b => allStandardAnswers[b]).Select((a, i) => makeQuestion(Question.KugelblitzBlackOrangeYellowIndigoViolet, module, formattedModuleName: format, correctAnswers: new[] { a }, formatArgs: new[] { Ordinal(i + 1) }, allAnswers: allStandardAnswers)).ToArray();
-        }
-        else if (new[] { 2, 3, 6, 7 }.Any(x => usedQuirks.Contains(x) && !askedQuirks.Contains(x)))
-        {
-            var q = new[] { 2, 3, 6, 7 }.First(x => usedQuirks.Contains(x) && !askedQuirks.Contains(x));
-            askedQuirks.Add(q);
-            var i = Array.IndexOf(new[] { 2, 3, 6, 7 }, q);
-
-            if (!myFormat(q, out format))
-                yield break;
-
-            qs = KOYIV[i + 1].Select(b => allStandardAnswers[b]).Select((a, i) => makeQuestion(Question.KugelblitzBlackOrangeYellowIndigoViolet, module, formattedModuleName: format, correctAnswers: new[] { a }, formatArgs: new[] { Ordinal(i + 1) }, allAnswers: allStandardAnswers)).ToArray();
-        }
-        else if (new[] { 1, 4 }.Any(x => usedQuirks.Contains(x) && !askedQuirks.Contains(x)))
-        {
-            var q = new[] { 1, 4 }.First(x => usedQuirks.Contains(x) && !askedQuirks.Contains(x));
-            askedQuirks.Add(q);
-            var i = Array.IndexOf(new[] { 1, 4 }, q);
-
-            if (!myFormat(q, out format))
-                yield break;
-
-            qs = RGB[i].Select(constructRGBAnswer).Select((a, i) => makeQuestion(Question.KugelblitzRedGreenBlue, module, formattedModuleName: format, correctAnswers: new[] { a }, formatArgs: new[] { Ordinal(i + 1) }, preferredWrongAnswers: allRGBAnswers(6).ToArray())).ToArray();
-        }
-        else if (usedQuirks.Contains(5) && !askedQuirks.Contains(5))
-        {
-            usedQuirks.Add(5);
-
-            if (!myFormat(5, out format))
-                yield break;
-
-            qs = RGB[2].Select(constructRGBAnswer).Select((a, i) => makeQuestion(Question.KugelblitzRedGreenBlue, module, formattedModuleName: format, correctAnswers: new[] { a }, formatArgs: new[] { Ordinal(i + 1) }, preferredWrongAnswers: allRGBAnswers(2).ToArray())).ToArray();
-        }
-        else
-            throw new AbandonModuleException("I somehow ran out of quirks.");
-
-        addQuestions(module, qs);
+        var finalQuirk = usedQuirks.FirstOrNull(q => !askedQuirks.Contains(q)) ?? throw new AbandonModuleException("I somehow ran out of quirks.");
+        askedQuirks.Add(finalQuirk);
+        var qp = Array.IndexOf(normalQuirks, finalQuirk);
+        var isNormal = qp != -1;
+        var answers = isNormal
+            ? KOYIV[qp].Select(b => allStandardAnswers[b])
+            : RGB[Array.IndexOf(abnormalQuirks, finalQuirk)].Select(constructRGBAnswer);
+        if (!myFormat(finalQuirk, out var format))
+            yield break;
+        addQuestions(module, answers.Select((answer, i) => makeQuestion(
+            isNormal ? Question.KugelblitzBlackOrangeYellowIndigoViolet : Question.KugelblitzRedGreenBlue,
+            module,
+            formattedModuleName: format,
+            correctAnswers: new[] { answer },
+            formatArgs: new[] { Ordinal(i + 1) },
+            preferredWrongAnswers: isNormal ? null : allRGBAnswers(finalQuirk == 5 ? 2 : 6).ToArray(),
+            allAnswers: isNormal ? allStandardAnswers : null)));
     }
 
     private IEnumerator<YieldInstruction> ProcessKuro(ModuleData module)

@@ -166,7 +166,7 @@ This module has a few `TranslatableStrings`.
 
 ## Kugelblitz
 
-- `"{0}{1}{2}{3}{4}{5}{6}"` is used to combine the colors together to describe which particles were present. Absent particles will become nothing, while present ones will become one of `"R"`, `"O"`, `"Y"`, `"G"`, `"B"`, `"I"`, or `"v"`.
+- `"{0}{1}{2}{3}{4}{5}{6}"` is used to combine the colors together to describe which particles were present. Absent particles will become nothing, while present ones will become the translation of one of `"R"`, `"O"`, `"Y"`, `"G"`, `"B"`, `"I"`, or `"V"`.
 - `"None"` is used as the answer when no particles were present.
 - `"R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}"` is used to generate answers for red, blue, and green Kugelblitzes. Each placeholder will be filled in with a single-digit number.
 

@@ -5635,47 +5635,47 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Which particles were present for the first stage of Kugelblitz?
         [Question.KugelblitzBlackOrangeYellowIndigoViolet] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "Which colors were present for the {1} stage on {0}?",
+            Gender = Gender.Masculine,
+            QuestionText = "Welche Partikel waren bei {0} in der {1}en Stufe zu sehen?",
             TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
             {
-                ["the {0} Kugelblitz"] = "the {0} Kugelblitz",
-                ["black"] = "black",
-                ["red"] = "red",
-                ["orange"] = "orange",
-                ["yellow"] = "yellow",
-                ["green"] = "green",
-                ["blue"] = "blue",
-                ["indigo"] = "indigo",
-                ["violet"] = "violet",
-                ["the Kugelblitz linked with no other Kugelblitzes"] = "the Kugelblitz linked with no other Kugelblitzes",
-                ["the {0} Kugelblitz linked with one other Kugelblitz"] = "the {0} Kugelblitz linked with one other Kugelblitz",
-                ["the {0} Kugelblitz linked with two other Kugelblitzes"] = "the {0} Kugelblitz linked with two other Kugelblitzes",
-                ["the {0} Kugelblitz linked with three other Kugelblitzes"] = "the {0} Kugelblitz linked with three other Kugelblitzes",
-                ["the {0} Kugelblitz linked with four other Kugelblitzes"] = "the {0} Kugelblitz linked with four other Kugelblitzes",
-                ["the {0} Kugelblitz linked with five other Kugelblitzes"] = "the {0} Kugelblitz linked with five other Kugelblitzes",
-                ["the {0} Kugelblitz linked with six other Kugelblitzes"] = "the {0} Kugelblitz linked with six other Kugelblitzes",
-                ["the {0} Kugelblitz linked with seven other Kugelblitzes"] = "the {0} Kugelblitz linked with seven other Kugelblitzes",
-                ["R"] = "R",
-                ["O"] = "O",
-                ["Y"] = "Y",
-                ["G"] = "G",
-                ["B"] = "B",
-                ["I"] = "I",
-                ["V"] = "V",
+                ["the {0} Kugelblitz"] = "dem {0} Kugelblitz",
+                ["black"] = "schwarzen",
+                ["red"] = "roten",
+                ["orange"] = "orangenen",
+                ["yellow"] = "gelben",
+                ["green"] = "grünen",
+                ["blue"] = "blauen",
+                ["indigo"] = "indigofarbenen",
+                ["violet"] = "violetten",
+                ["the Kugelblitz linked with no other Kugelblitzes"] = "dem Kugelblitz, der mit keinem anderen Kugelblitzen gekoppelt ist,",
+                ["the {0} Kugelblitz linked with one other Kugelblitz"] = "dem {0} Kugelblitz, der mit einem anderen Kugelblitz gekoppelt ist,",
+                ["the {0} Kugelblitz linked with two other Kugelblitzes"] = "dem {0} Kugelblitz, der mit zwei anderen Kugelblitzen gekoppelt ist,",
+                ["the {0} Kugelblitz linked with three other Kugelblitzes"] = "dem {0} Kugelblitz, der mit drei anderen Kugelblitzen gekoppelt ist,",
+                ["the {0} Kugelblitz linked with four other Kugelblitzes"] = "dem {0} Kugelblitz, der mit vier anderen Kugelblitzen gekoppelt ist,",
+                ["the {0} Kugelblitz linked with five other Kugelblitzes"] = "dem {0} Kugelblitz, der mit fünf anderen Kugelblitzen gekoppelt ist,",
+                ["the {0} Kugelblitz linked with six other Kugelblitzes"] = "dem {0} Kugelblitz, der mit sechs anderen Kugelblitzen gekoppelt ist,",
+                ["the {0} Kugelblitz linked with seven other Kugelblitzes"] = "dem {0} Kugelblitz, der mit sieben anderen Kugelblitzen gekoppelt ist,",
+                ["R"] = "Ro",
+                ["O"] = "Or",
+                ["Y"] = "Ge",
+                ["G"] = "Gr",
+                ["B"] = "Bl",
+                ["I"] = "In",
+                ["V"] = "Vi",
                 ["{0}{1}{2}{3}{4}{5}{6}"] = "{0}{1}{2}{3}{4}{5}{6}",
-                ["None"] = "None",
+                ["None"] = "Keine",
             },
         },
         // What were the particles’ values for the {1} stage of {0}?
         // What were the particles’ values for the first stage of Kugelblitz?
         [Question.KugelblitzRedGreenBlue] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What were the color values for the {1} stage on {0}?",
+            Gender = Gender.Masculine,
+            QuestionText = "Was waren bei {0} die Partikelwerte in der {1}en Stufe?",
             TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
             {
-                ["R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}"] = "R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}",
+                ["R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}"] = "Ro={0}, Or={1}, Ge={2}, Gr={3}, Bl={4}, In={5}, Vi={6}",
             },
         },
 
@@ -5684,8 +5684,8 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // What was Kuro’s mood in Kuro?
         [Question.KuroMood] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What was Kuro’s mood in {0}?",
+            Gender = Gender.Masculine,
+            QuestionText = "Was war bei {0} Kuros Stimmung?",
         },
 
         // The Labyrinth
@@ -9479,31 +9479,27 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Which round did the red team win in RPS Judging?
         [Question.RPSJudgingWinner] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "Which stage did the {1} team {2} in {0}?",
+            QuestionText = "In welcher Runde hat bei {0} das {1} Team {2}?",
             FormatArgs = new Dictionary<string, string>
             {
-                ["red"] = "red",
-                ["win"] = "win",
-                ["blue"] = "blue",
-                ["lose"] = "lose",
+                ["red"] = "rote",
+                ["win"] = "gewonnen",
+                ["blue"] = "blaue",
+                ["lose"] = "verloren",
             },
             TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
             {
-                ["the RPS Judging where the {0} team {1} the {2} round"] = "the RPS Judging where the {0} team {1} the {2} round",
-                ["won"] = "won",
-                ["lost"] = "lost",
-                ["the RPS Judging with a draw in the {0} round"] = "the RPS Judging with a draw in the {0} round",
-                ["None of these"] = "None of these",
-                ["All of these"] = "All of these",
+                ["the RPS Judging where the {0} team {1} the {2} round"] = "dem RPS Judging, bei dem das {0} Team die {2}e Runde {1},",
+                ["won"] = "gewann",
+                ["lost"] = "verlor",
+                ["the RPS Judging with a draw in the {0} round"] = "dem RPS Judging, bei dem in der {0}en Runde unentschieden war,",
             },
         },
-        // Which stage was a draw in {0}?
-        // Which stage was a draw in RPS Judging?
+        // Which round was a draw in {0}?
+        // Which round was a draw in RPS Judging?
         [Question.RPSJudgingDraw] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "Which stage was a draw in {0}?",
+            QuestionText = "In welcher Runde war bei {0} unentschieden?",
         },
 
         // The Rule
@@ -9511,8 +9507,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // What was the rule number in The Rule?
         [Question.RuleNumber] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What was the rule number in {0}?",
+            Gender = Gender.Feminine,
+            ModuleNameDative = "Regel",
+            ModuleNameWithThe = "Die Regel",
+            QuestionText = "Was war bei {0} die Regelnummer?",
+            ModuleName = "Regel",
         },
 
         // Rule of Three
@@ -9520,8 +9519,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // What was the X coordinate of the red vertex in Rule of Three?
         [Question.RuleOfThreeCoordinates] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What was the {1} coordinate of the {2} vertex in {0}?",
+            Gender = Gender.Feminine,
+            QuestionText = "Was war bei {0} die {1}-Koordinate der {2}en Ecke?",
+            ModuleName = "Dreierregel",
             FormatArgs = new Dictionary<string, string>
             {
                 ["red"] = "rot",
@@ -9533,8 +9533,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // What was the position of the red sphere on the X axis in the first cycle in Rule of Three?
         [Question.RuleOfThreeCycles] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What was the position of the {1} sphere on the {2} axis in the {3} cycle in {0}?",
+            Gender = Gender.Feminine,
+            QuestionText = "Was war bei {0} die Position der {1} Kugel auf der {2}-Achse im {3}en Zyklus?",
+            ModuleName = "Dreierregel",
             FormatArgs = new Dictionary<string, string>
             {
                 ["red"] = "rot",
