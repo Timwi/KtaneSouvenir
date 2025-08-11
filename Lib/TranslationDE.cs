@@ -4244,7 +4244,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             ModuleName = "Vergiss Unsere Stimmen",
             TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
             {
-                ["the Forget Our Voices which played a {0} in {1}'s voice in the {2} stage"] = "dem Vergiss Unsere Stimmen, bei dem in der {2}en Stufe eine {0} in {1}s Stimme zu hören war,",
+                ["the Forget Our Voices which played a {0} in {1}’s voice in the {2} stage"] = "dem Vergiss Unsere Stimmen, bei dem in der {2}en Stufe eine {0} in {1}s Stimme zu hören war,",
                 ["Umbra Moruka"] = "Umbra Moruka",
                 ["Dicey"] = "Dicey",
                 ["MásQuéÉlite"] = "MásQuéÉlite",

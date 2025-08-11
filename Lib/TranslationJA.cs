@@ -4032,7 +4032,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             QuestionText = "What was played in the {1} stage of {0}?",
             TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
             {
-                ["the Forget Our Voices which played a {0} in {1}'s voice in the {2} stage"] = "the Forget Our Voices which played a {0} in {1}'s voice in the {2} stage",
+                ["the Forget Our Voices which played a {0} in {1}’s voice in the {2} stage"] = "the Forget Our Voices which played a {0} in {1}’s voice in the {2} stage",
                 ["Umbra Moruka"] = "Umbra Moruka",
                 ["Dicey"] = "Dicey",
                 ["MásQuéÉlite"] = "MásQuéÉlite",
