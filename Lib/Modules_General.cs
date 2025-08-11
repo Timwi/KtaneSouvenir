@@ -10,7 +10,7 @@ using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
 {
-    private const string _version = "6.9";
+    private const string _version = "7.0";
 
     private void Awake() => _moduleProcessors = new Dictionary<string, ModuleHandlerInfo>()
     {
@@ -304,7 +304,7 @@ public partial class SouvenirModule
         ["KeypadMaze"] = (ProcessKeypadMaze, "Keypad Maze", "Anonymous"),
         ["keypadSeq"] = (ProcessKeypadSequence, "Keypad Sequence", "Anonymous"),
         ["xtrkeywords"] = (ProcessKeywords, "Keywords", "Kuro"),
-        ["klaxon"] = (ProcessKlaxon, "Klaxon, The", "Anonymous"),
+        ["klaxon"] = (ProcessKlaxon, "Klaxon, The", "Timwi"),
         ["KnowYourWay"] = (ProcessKnowYourWay, "Know Your Way", "Kuro"),
         ["kookyKeypadModule"] = (ProcessKookyKeypad, "Kooky Keypad", "Anonymous"),
         ["KudosudokuModule"] = (ProcessKudosudoku, "Kudosudoku", "Timwi"),

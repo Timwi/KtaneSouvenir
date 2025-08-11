@@ -5308,12 +5308,12 @@ public class Translation_ja : TranslationBase<TranslationInfo>
         },
 
         // The Klaxon
-        // Solving which module was first to set off {0}?
-        // Solving which module was first to set off The Klaxon?
+        // What was the first module to set off {0}?
+        // What was the first module to set off The Klaxon?
         [Question.KlaxonFirstModule] = new()
         {
             NeedsTranslation = true,
-            QuestionText = "Solving which module was first to set off {0}?",
+            QuestionText = "What was the first module to set off {0}?",
         },
 
         // Know Your Way

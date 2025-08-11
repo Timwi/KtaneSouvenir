@@ -5543,12 +5543,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         },
 
         // The Klaxon
-        // Solving which module was first to set off {0}?
-        // Solving which module was first to set off The Klaxon?
+        // What was the first module to set off {0}?
+        // What was the first module to set off The Klaxon?
         [Question.KlaxonFirstModule] = new()
         {
             ModuleNameWithThe = "Das Klaxon",
-            QuestionText = "Das Entschärfen welches Moduls hat als erstes {0} ausgelöst?",
+            QuestionText = "Welches Modul hat als erstes {0} ausgelöst?",
         },
 
         // Know Your Way
