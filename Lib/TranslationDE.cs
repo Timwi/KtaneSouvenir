@@ -5543,17 +5543,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         },
 
         // The Klaxon
-        // Did solving {1} activate {0}?
-        // Did solving The Button activate The Klaxon?
-        [Question.KlaxonKlaxon] = new()
+        // Solving which module was first to set off {0}?
+        // Solving which module was first to set off The Klaxon?
+        [Question.KlaxonFirstModule] = new()
         {
             ModuleNameWithThe = "Das Klaxon",
-            QuestionText = "Hat das Entschärfen von {1} {0} ausgelöst?",
-            Answers = new Dictionary<string, string>
-            {
-                ["Yes"] = "Ja",
-                ["No"] = "Nein",
-            },
+            QuestionText = "Das Entschärfen welches Moduls hat als erstes {0} ausgelöst?",
         },
 
         // Know Your Way

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -553,6 +553,10 @@ public static class Ut
         ? throw new InvalidOperationException($"Question {question} is missing from the Attributes dictionary.")
         : attr.AllAnswers;
 
+    public static string[] GetExampleAnswers(this Question question) => !TryGetAttribute(question, out var attr)
+        ? throw new InvalidOperationException($"Question {question} is missing from the Attributes dictionary.")
+        : attr.ExampleAnswers;
+
     public static Sprite[] GetAllSprites(this Question question, SouvenirModule souv)
     {
         var attr = question.GetAttribute();
@@ -629,12 +633,10 @@ public static class Ut
     {
         if (source == null)
             throw new ArgumentNullException(nameof(source));
-        using (var e = source.GetEnumerator())
-        {
-            if (e.MoveNext())
-                return e.Current;
-            return null;
-        }
+        using var e = source.GetEnumerator();
+        if (e.MoveNext())
+            return e.Current;
+        return null;
     }
 
     /// <summary>
@@ -654,12 +656,10 @@ public static class Ut
             throw new ArgumentNullException(nameof(source));
         if (predicate == null)
             throw new ArgumentNullException(nameof(predicate));
-        using (var e = source.GetEnumerator())
-        {
-            while (e.MoveNext())
-                if (predicate(e.Current))
-                    return e.Current;
-            return null;
-        }
+        using var e = source.GetEnumerator();
+        while (e.MoveNext())
+            if (predicate(e.Current))
+                return e.Current;
+        return null;
     }
 }

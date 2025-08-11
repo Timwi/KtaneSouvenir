@@ -153,16 +153,35 @@ public partial class SouvenirModule
 
     private IEnumerator<YieldInstruction> ProcessKlaxon(ModuleData module)
     {
-        yield return WaitForSolve;
+        while (!_isActivated)
+            yield return null;
 
         var comp = GetComponent(module, "KlaxonScript");
-        var letters = GetArrayField<char>(comp, "CorrectLetters").Get(minLength: 1, validator: c => c is < 'A' or > 'Z' ? "Expected uppercase letters" : null);
+        var letter = GetArrayField<char>(comp, "CorrectLetters").Get(minLength: 1, validator: c => c is < 'A' or > 'Z' ? "Expected uppercase letters" : null)[0];
 
-        var all = Bomb.GetSolvedModuleNames();
-        all.Remove("The Klaxon");
+        var prevSolved = new HashSet<string>();
+        string answer = null;
+        while (answer == null)
+        {
+            var newSolved = Bomb.GetSolvedModuleNames().Where(m => !prevSolved.Contains(m) && m.ToUpperInvariant().Contains(letter)).ToArray();
+            if (newSolved.Length == 1)
+                answer = newSolved[0];
+            else if (newSolved.Length > 1)
+            {
+                legitimatelyNoQuestion(module, $"It looks like two modules ({newSolved[0]} and {newSolved[1]}) solved at the same time.");
+                yield break;
+            }
+            yield return null;
+        }
 
-        addQuestions(module, all.Distinct().Select(n =>
-            makeQuestion(Question.KlaxonKlaxon, module, formatArgs: new[] { n }, correctAnswers: new[] { n.ToUpperInvariant().Contains(letters.First()) ? "Yes" : "No" })));
+        yield return WaitForSolve;
+
+        var preferredWrongAnswers = Bomb.GetSolvedModuleNames();
+        preferredWrongAnswers.Remove("The Klaxon");
+        if (preferredWrongAnswers.Count < 7)
+            preferredWrongAnswers.AddRange(Question.KlaxonFirstModule.GetExampleAnswers());
+
+        addQuestion(module, Question.KlaxonFirstModule, correctAnswers: new[] { answer }, preferredWrongAnswers: preferredWrongAnswers.ToArray());
     }
 
     private IEnumerator<YieldInstruction> ProcessKnowYourWay(ModuleData module)

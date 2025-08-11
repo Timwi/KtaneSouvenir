@@ -5308,17 +5308,12 @@ public class Translation_ja : TranslationBase<TranslationInfo>
         },
 
         // The Klaxon
-        // Did solving {1} activate {0}?
-        // Did solving The Button activate The Klaxon?
-        [Question.KlaxonKlaxon] = new()
+        // Solving which module was first to set off {0}?
+        // Solving which module was first to set off The Klaxon?
+        [Question.KlaxonFirstModule] = new()
         {
             NeedsTranslation = true,
-            QuestionText = "Did solving {1} activate {0}?",
-            Answers = new Dictionary<string, string>
-            {
-                ["Yes"] = "Yes",
-                ["No"] = "No",
-            },
+            QuestionText = "Solving which module was first to set off {0}?",
         },
 
         // Know Your Way
