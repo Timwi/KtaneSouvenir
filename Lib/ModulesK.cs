@@ -176,6 +176,12 @@ public partial class SouvenirModule
 
         yield return WaitForSolve;
 
+        if (answer == null)
+        {
+            legitimatelyNoQuestion(module, "No module set it off.");
+            yield break;
+        }
+
         var preferredWrongAnswers = Bomb.GetSolvedModuleNames();
         preferredWrongAnswers.Remove("The Klaxon");
         if (preferredWrongAnswers.Count < 7)
