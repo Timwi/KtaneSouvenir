@@ -100,16 +100,17 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Colored Keys         │  Free Parking              │  Maze³             │  Reverse Morse      │  Vexillology
     Cube, The            │  Hexabutton, The           │  Mazematics        │  Simon Scrambles    │  Zoni
 
-## Implemented by Hawker (40)
+## Implemented by Hawker (41)
 
-    3N+1                     │  DetoNATO              │  Flavor Text EX      │  Ladder Lottery     │  Simon Serves
-    Arena, The               │  Dimension Disruption  │  Garfield Kart       │  LED Grid           │  Sonic & Knuckles
-    Bar Charts               │  Directional Button    │  Garnet Thief, The   │  Mixometer          │  Spongebob Birthday Identification
-    Book of Mario            │  Disordered Keys       │  Girlfriend          │  Module Movements   │  Subway
-    Bordered Keys            │  Earthbound            │  h                   │  RGB Sequences      │  Suits and Colours
-    Character Slots          │  Error Codes           │  High Score, The     │  Robot Programming  │  UNO!
-    Conditional Buttons      │  Find The Date         │  Keypad Combination  │  Scrutiny Squares   │  Valves
-    Customer Identification  │  Flavor Text           │  Kuro                │  Sign Language      │  Weakest Link, The
+    3N+1                     │  DetoNATO              │  Garfield Kart       │  Mixometer                          │  Subway
+    Arena, The               │  Dimension Disruption  │  Garnet Thief, The   │  Module Movements                   │  Suits and Colours
+    Bar Charts               │  Directional Button    │  Girlfriend          │  RGB Sequences                      │  UNO!
+    Book of Mario            │  Disordered Keys       │  h                   │  Robot Programming                  │  Valves
+    Bordered Keys            │  Earthbound            │  High Score, The     │  Scrutiny Squares                   │  Weakest Link, The
+    Character Slots          │  Error Codes           │  Keypad Combination  │  Sign Language                      │
+    Cheat Checkout           │  Find The Date         │  Kuro                │  Simon Serves                       │
+    Conditional Buttons      │  Flavor Text           │  Ladder Lottery      │  Sonic & Knuckles                   │
+    Customer Identification  │  Flavor Text EX        │  LED Grid            │  Spongebob Birthday Identification  │
 
 ## Implemented by BigCrunch22 (37)
 
