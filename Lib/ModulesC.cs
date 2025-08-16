@@ -246,32 +246,17 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var spriteRenderers = GetArrayField<SpriteRenderer>(comp, "_cryptoSymbols", isPublic: true).Get(expectedLength: 9);
-        var sprites = spriteRenderers.Select(sr =>
-            Sprite.Create(sr.sprite.texture,
-                                        new Rect(0, 0, sr.sprite.texture.width, sr.sprite.texture.height),
-                                        new Vector2(.1f, 0.8f),
-                                        800)).ToArray();
-
-        for (int i = 0; i < 9; i++)
-        {
-            sprites[i].name = spriteRenderers[i].sprite.name;
-        }
-
+        var sprites = spriteRenderers.Select(sr => Sprites.TranslateSprite(sr.sprite, 800)).ToArray();
         var spriteIndex = GetField<int>(comp, "_chosenCrypto").Get(validator: ix => ix is < 0 or > 8 ? "expected range 0–8" : null);
         var hackMethods = GetArrayField<string>(comp, "_possibleHacks").Get(expectedLength: 5).ToArray();
         var sites = GetArrayField<string>(comp, "_possibleWebsites").Get(expectedLength: 32).Select(s => s.Split(':')[0]).ToArray();
-        var hacks = GetField<IList>(comp, "_hackList").Get();
+        var hacks = GetField<IList>(comp, "_hackList").Get(validator: v => v.Count != 5 ? "expected 5 hacks" : null);
         var hackSites = new List<string>();
         var hackHackMethods = new List<string>();
 
-        if (hacks.Count != 5)
+        for (var i = 0; i < hacks.Count; i++)
         {
-            throw new AbandonModuleException($"Expected 5 hacks. Ghacks.Countot {hacks.Count}");
-        }
-
-        for (int i = 0; i < hacks.Count; i++)
-        {
-            hackSites.Add(string.Copy(GetField<string>(hacks[i], "website").Get()).Split(':')[0]);
+            hackSites.Add(GetField<string>(hacks[i], "website").Get().Split(':')[0]);
             hackHackMethods.Add(hacks[i].GetType().Name switch
             {
                 "DSA" => "DSA",
@@ -279,16 +264,14 @@ public partial class SouvenirModule
                 "CodeInjection" => "CI",
                 "CrossSiteScripting" => "XSS",
                 "BruteForceAttempt" => "BFA",
-                _ => throw new AbandonModuleException($"Invalid hack method: {hacks[i].GetType().Name}"),
+                var typeName => throw new AbandonModuleException($"Invalid hack method: {typeName}"),
             });
         }
 
-        var questions = new List<QandA>()
-        {
-            makeQuestion(Question.CheatCheckoutCurrency, module, correctAnswers: new[] { sprites[spriteIndex] }, allAnswers: sprites)
-        };
+        var questions = new List<QandA>();
+        questions.Add(makeQuestion(Question.CheatCheckoutCurrency, module, correctAnswers: new[] { sprites[spriteIndex] }, allAnswers: sprites));
 
-        for (int i = 0; i < hacks.Count; i++)
+        for (var i = 0; i < hacks.Count; i++)
         {
             questions.Add(makeQuestion(Question.CheatCheckoutHack, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { hackHackMethods[i] }, allAnswers: hackMethods));
             questions.Add(makeQuestion(Question.CheatCheckoutSite, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { hackSites[i] }, allAnswers: sites));

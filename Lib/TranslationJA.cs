@@ -1817,12 +1817,12 @@ public class Translation_ja : TranslationBase<TranslationInfo>
         },
 
         // Cheat Checkout
-        // What was the crypto currency of {0}?
-        // What was the crypto currency of Cheat Checkout?
+        // What was the cryptocurrency of {0}?
+        // What was the cryptocurrency of Cheat Checkout?
         [Question.CheatCheckoutCurrency] = new()
         {
             NeedsTranslation = true,
-            QuestionText = "What was the crypto currency of {0}?",
+            QuestionText = "What was the cryptocurrency of {0}?",
         },
         // What was the hack method for the {1} hack of {0}?
         // What was the hack method for the first hack of Cheat Checkout?

@@ -548,13 +548,13 @@ public enum Question
     [AnswerGenerator.Integers(5, 50, "$0\".00\"")]
     CheapCheckoutPaid,
 
-    [SouvenirQuestion("What was the crypto currency of {0}?", "Cheat Checkout", ThreeColumns6Answers, Type = AnswerType.Sprites)]
+    [SouvenirQuestion("What was the cryptocurrency of {0}?", "Cheat Checkout", ThreeColumns6Answers, Type = AnswerType.Sprites)]
     CheatCheckoutCurrency,
-    [SouvenirQuestion("What was the hack method for the {1} hack of {0}?", "Cheat Checkout", OneColumn4Answers, "DSA", "W", "CI", "XSS", "BFA",
+    [SouvenirQuestion("What was the hack method for the {1} hack of {0}?", "Cheat Checkout", TwoColumns4Answers, "DSA", "W", "CI", "XSS", "BFA",
         ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
     CheatCheckoutHack,
-    [SouvenirQuestion("What was the site for the {1} hack of {0}?", "Cheat Checkout", OneColumn4Answers, 
-        ExampleAnswers = new[] { "medicalsite.co","checkout.kt", "collection.com", "ktane.timwi.de", "cartoon.com", "galaxydeliver.com" }, 
+    [SouvenirQuestion("What was the site for the {1} hack of {0}?", "Cheat Checkout", OneColumn4Answers,
+        ExampleAnswers = new[] { "medicalsite.co", "checkout.kt", "collection.com", "ktane.timwi.de", "cartoon.com", "galaxydeliver.com" },
         ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
     CheatCheckoutSite,
 
