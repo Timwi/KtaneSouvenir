@@ -109,6 +109,7 @@ public partial class SouvenirModule
         ["characterShift"] = (ProcessCharacterShift, "Character Shift", "Kuro"),
         ["characterSlots"] = (ProcessCharacterSlots, "Character Slots", "Hawker"),
         ["CheapCheckoutModule"] = (ProcessCheapCheckout, "Cheap Checkout", "Timwi"),
+        ["kataCheatCheckout"] = (ProcessCheatCheckout, "Cheat Checkout", "Hawker"),
         ["cheepCheckout"] = (ProcessCheepCheckout, "Cheep Checkout", "BigCrunch22"),
         ["ChessModule"] = (ProcessChess, "Chess", "Timwi"),
         ["chineseCounting"] = (ProcessChineseCounting, "Chinese Counting", "TasThiluna"),

@@ -1884,6 +1884,29 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
         },
 
+        // Cheat Checkout
+        // What was the crypto currency of {0}?
+        // What was the crypto currency of Cheat Checkout?
+        [Question.CheatCheckoutCurrency] = new()
+        {
+            NeedsTranslation = true,
+            QuestionText = "What was the crypto currency of {0}?",
+        },
+        // What was the hack method for the {1} hack of {0}?
+        // What was the hack method for the first hack of Cheat Checkout?
+        [Question.CheatCheckoutHack] = new()
+        {
+            NeedsTranslation = true,
+            QuestionText = "What was the hack method for the {1} hack of {0}?",
+        },
+        // What was the site for the {1} hack of {0}?
+        // What was the site for the first hack of Cheat Checkout?
+        [Question.CheatCheckoutSite] = new()
+        {
+            NeedsTranslation = true,
+            QuestionText = "What was the site for the {1} hack of {0}?",
+        },
+
         // Cheep Checkout
         // Which bird {1} present in {0}?
         // Which bird was present in Cheep Checkout?
