@@ -3393,23 +3393,23 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
         },
 
-        // ENA Cipher
+        // ƎNA Cipher
         // What was the {1} keyword in {0}?
-        // What was the first keyword in ENA Cipher?
+        // What was the first keyword in ƎNA Cipher?
         [Question.EnaCipherKeywordAnswer] = new()
         {
             QuestionText = "{0}の{1}番目のキーワードは？",
             ModuleName = "エナ暗号",
         },
         // What was the transposition key in {0}?
-        // What was the transposition key in ENA Cipher?
+        // What was the transposition key in ƎNA Cipher?
         [Question.EnaCipherExtAnswer] = new()
         {
             QuestionText = "{0}の転移キーは？",
             ModuleName = "エナ暗号",
         },
         // What was the encrypted word in {0}?
-        // What was the encrypted word in ENA Cipher?
+        // What was the encrypted word in ƎNA Cipher?
         [Question.EnaCipherEncryptedAnswer] = new()
         {
             QuestionText = "{0}で解読した単語は？",
@@ -8929,6 +8929,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
         // Which condition was the solving condition in Reformed Role Reversal?
         [Question.ReformedRoleReversalCondition] = new()
         {
+            NeedsTranslation = true,
             QuestionText = "{0}の解除条件は？",
             Answers = new Dictionary<string, string>
             {
@@ -9181,8 +9182,8 @@ public class Translation_ja : TranslationBase<TranslationInfo>
         },
 
         // Role Reversal
-        // What was the number to the correct condition in {0}?
-        // What was the number to the correct condition in Role Reversal?
+        // What was the number corresponding to the correct condition in {0}?
+        // What was the number corresponding to the correct condition in Role Reversal?
         [Question.RoleReversalNumber] = new()
         {
             QuestionText = "{0}の正しい状態の数字は？",
@@ -10139,10 +10140,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
         },
 
         // Simon’s Star
-        // Which color flashed {1} in sequence in {0}?
-        // Which color flashed first in sequence in Simon’s Star?
+        // Which color flashed {1} in {0}?
+        // Which color flashed first in Simon’s Star?
         [Question.SimonsStarColors] = new()
         {
+            NeedsTranslation = true,
             QuestionText = "{0}のシークエンスにおいて、{1}番目に点滅した色は？",
             ModuleName = "サイモンの星",
             Answers = new Dictionary<string, string>

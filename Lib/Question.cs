@@ -965,13 +965,13 @@ public enum Question
         ExampleFormatArguments = new[] { "left", "right" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
     EmojiEmoji,
 
-    [SouvenirQuestion("What was the {1} keyword in {0}?", "ENA Cipher", TwoColumns4Answers, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },
+    [SouvenirQuestion("What was the {1} keyword in {0}?", "ƎNA Cipher", TwoColumns4Answers, ExampleAnswers = new[] { "AMBUSH", "BANZAI", "BIGGER", "GAMBLE", "KETOSE", "OCULUS", "SCRAMS", "SENSOR", "YEANED", "YOUTHS" },
         ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
     EnaCipherKeywordAnswer,
-    [SouvenirQuestion("What was the transposition key in {0}?", "ENA Cipher", TwoColumns4Answers)]
+    [SouvenirQuestion("What was the transposition key in {0}?", "ƎNA Cipher", TwoColumns4Answers)]
     [AnswerGenerator.Strings(6, "123456")]
     EnaCipherExtAnswer,
-    [SouvenirQuestion("What was the encrypted word in {0}?", "ENA Cipher", TwoColumns4Answers)]
+    [SouvenirQuestion("What was the encrypted word in {0}?", "ƎNA Cipher", TwoColumns4Answers)]
     [AnswerGenerator.Strings(6, "ABCDEFGHIJKLMNOPQRSTUVWXYZ")]
     EnaCipherEncryptedAnswer,
 
@@ -2686,7 +2686,7 @@ public enum Question
     [AnswerGenerator.Integers(0, 9999, "0000")]
     RogerSeed,
 
-    [SouvenirQuestion("What was the number to the correct condition in {0}?", "Role Reversal", ThreeColumns6Answers, "2", "3", "4", "5", "6", "7", "8")]
+    [SouvenirQuestion("What was the number corresponding to the correct condition in {0}?", "Role Reversal", ThreeColumns6Answers, "2", "3", "4", "5", "6", "7", "8")]
     RoleReversalNumber,
     [SouvenirQuestion("How many {1} wires were there in {0}?", "Role Reversal", ThreeColumns6Answers, "0", "1", "2", "3", "4", "5", "6", "7",
         ExampleFormatArguments = new[] { "warm-colored", "cold-colored", "primary-colored", "secondary-colored" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
@@ -2973,7 +2973,7 @@ public enum Question
     [SouvenirQuestion("What color was the bubble that flashed fifth in {0}?", "Simon Speaks", ThreeColumns6Answers, "black", "blue", "green", "cyan", "red", "purple", "yellow", "white", "gray", TranslateAnswers = true)]
     SimonSpeaksColors,
 
-    [SouvenirQuestion("Which color flashed {1} in sequence in {0}?", "Simon’s Star", ThreeColumns6Answers, "red", "yellow", "green", "blue", "purple", TranslateAnswers = true,
+    [SouvenirQuestion("Which color flashed {1} in {0}?", "Simon’s Star", ThreeColumns6Answers, "red", "yellow", "green", "blue", "purple", TranslateAnswers = true,
         ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
     SimonsStarColors,
 
