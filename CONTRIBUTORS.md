@@ -220,6 +220,7 @@ The following is a list of modules supported by Souvenir, and the fine people wh
     Main Page                │  ObjectsCountries
     Mega Man 2               │  Goofy
     Melody Sequencer         │  Goofy
+    Minsk Metro              │  rand06
     Module Maze              │  River
     Old AI                   │  noting3548
     Order Picking            │  Brawlboxgaming

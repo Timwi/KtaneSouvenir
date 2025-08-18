@@ -1899,6 +1899,9 @@ public enum Question
         ExampleAnswers = new[] { "GIBBONS", "GIRAFFE", "MISUSED", "RUSHING", "DUSTMAN", "STATICS" })]
     MetapuzzleAnswer,
 
+    [SouvenirQuestion("What was the name of starting station in {0}?", "Minsk Metro", OneColumn4Answers, ExampleAnswers = new[] { "Uručča", "Kamiennaja Horka", "Park Čaluskincaŭ", "Płošča Jakuba Kołasa"})]
+    MinskMetroStation,
+
     [SouvenirQuestion("What was the second word written by the original ghost in {0}?", "Mirror", TwoColumns4Answers, ExampleAnswers = new[] { "ALPACA", "BUBBLE", "COWBOY", "DIESEL", "EULOGY", "FUSION", "GASKET", "HOODIE", "ICEBOX", "JOYPOP" })]
     MirrorWord,
 

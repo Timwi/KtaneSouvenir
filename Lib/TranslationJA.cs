@@ -6413,6 +6413,15 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             ModuleName = "メタパズル",
         },
 
+        // Minsk Metro
+        // What was the name of starting station in {0}?
+        // What was the name of starting station in Minsk Metro?
+        [Question.MinskMetroStation] = new()
+        {
+            NeedsTranslation = true,
+            QuestionText = "What was the name of starting station in {0}?",
+        },
+
         // Mirror
         // What was the second word written by the original ghost in {0}?
         // What was the second word written by the original ghost in Mirror?

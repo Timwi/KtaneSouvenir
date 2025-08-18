@@ -615,6 +615,17 @@ public partial class SouvenirModule
         addQuestion(module, Question.MetapuzzleAnswer, correctAnswers: new[] { answer }, preferredWrongAnswers: words);
     }
 
+    private IEnumerator<YieldInstruction> ProcessMinskMetro(ModuleData module)
+    {
+        var comp = GetComponent(module, "script");
+        //var ready = GetField<bool>(comp, "readyForSouv");
+        //while (!ready.Get()) yield return null;
+        var correctAnswer = GetField<string>(comp, "initStation").Get();
+        var wrongAnswers = GetField<string[]>(comp, "otherStations").Get();
+        yield return WaitForSolve;
+        addQuestion(module, Question.MinskMetroStation, correctAnswers: new[] { correctAnswer }, preferredWrongAnswers: wrongAnswers);
+    }
+
     private IEnumerator<YieldInstruction> ProcessMirror(ModuleData module)
     {
         var comp = GetComponent(module, "mirror");

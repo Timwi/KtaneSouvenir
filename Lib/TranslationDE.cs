@@ -6664,6 +6664,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             QuestionText = "What was the final answer in {0}?",
         },
 
+        // Minsk Metro
+        // What was the name of starting station in {0}?
+        // What was the name of starting station in Minsk Metro?
+        [Question.MinskMetroStation] = new()
+        {
+            NeedsTranslation = true,
+            QuestionText = "What was the name of starting station in {0}?",
+        },
+
         // Mirror
         // What was the second word written by the original ghost in {0}?
         // What was the second word written by the original ghost in Mirror?
