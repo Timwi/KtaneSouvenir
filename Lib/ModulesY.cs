@@ -16,7 +16,7 @@ public partial class SouvenirModule
         while (diceValues.Any(v => v == 0))
             yield return new WaitForSeconds(.1f);
 
-        string result;
+        string result = null;
 
         // Capture the first roll
         if (Enumerable.Range(1, 6).Any(i => diceValues.Count(val => val == i) == 5))

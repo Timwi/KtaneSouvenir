@@ -798,7 +798,7 @@ public partial class SouvenirModule
         }
 
         if (qs.Count == 0)
-            slegitimatelyNoQuestion(module, "none of the arrows had a unique color, shape, or number of directions.");
+            legitimatelyNoQuestion(module, "none of the arrows had a unique color, shape, or number of directions.");
         else
             addQuestions(module, qs);
     }
