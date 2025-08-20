@@ -81,10 +81,7 @@ public partial class SouvenirModule
         var totalNonIgnoredSbemailSongs = GetIntField(comp, "totalNonIgnored").Get();
 
         if (myDisplay.Count == 0 || totalNonIgnoredSbemailSongs == 0)
-        {
-            legitimatelyNoQuestion(module, "There were no stages.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "There were no stages.");
 
         while (!_noUnignoredModulesLeft)
             yield return new WaitForSeconds(.1f);
@@ -104,10 +101,7 @@ public partial class SouvenirModule
         {
             var uniqueStages = Enumerable.Range(1, displayedStageCount).Where(stage => _sbemailSongsDisplays.Count(display => display[stage - 1] == myDisplay[stage - 1]) == 1).Take(2).ToArray();
             if (uniqueStages.Length == 0 || displayedStageCount == 1)
-            {
-                legitimatelyNoQuestion(module, "There are not enough stages at which at least one of them had a unique displayed number.");
-                yield break;
-            }
+                yield return legitimatelyNoQuestion(module, "There are not enough stages at which at least one of them had a unique displayed number.");
 
             var qs = new List<QandA>();
             for (var stage = 0; stage < displayedStageCount; stage++)
@@ -411,11 +405,8 @@ public partial class SouvenirModule
 
         var prevSlots = GetField<IList>(comp, "mPreviousSlots").Get(lst => lst.Cast<object>().Any(obj => obj is not Array ar || ar.Length != 3) ? "expected arrays of length 3" : null);
         if (prevSlots.Count < 2)
-        {
             // Legitimate: first stage was a keep already 
-            legitimatelyNoQuestion(module, "There was only one stage.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "There was only one stage.");
 
         var testSlot = ((Array) prevSlots[0]).GetValue(0);
         var fldShape = GetField<object>(testSlot, "shape", isPublic: true);
@@ -807,7 +798,7 @@ public partial class SouvenirModule
         }
 
         if (qs.Count == 0)
-            legitimatelyNoQuestion(module.Module, "none of the arrows had a unique color, shape, or number of directions.");
+            slegitimatelyNoQuestion(module, "none of the arrows had a unique color, shape, or number of directions.");
         else
             addQuestions(module, qs);
     }
@@ -1260,10 +1251,7 @@ public partial class SouvenirModule
 
         var assignments = GetStaticField<IDictionary>(comp.GetType(), "allModules").Get();
         if (assignments.Count == 0)
-        {
-            legitimatelyNoQuestion(module.Module, "No modules were categorized.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "No modules were categorized.");
 
         var moduleName = translateModuleName(Question.SmashMarryKillCategory, "Smash, Marry, Kill");
         List<QandA> questions = new();
@@ -1482,15 +1470,9 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         if (GetProperty<bool>(comp, "forceSolved", true).Get())
-        {
-            legitimatelyNoQuestion(module, "The module was force-solved.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "The module was force-solved.");
         if (GetProperty<int>(comp, "maxPossibleTaxAmount", true).Get() < 4)
-        {
-            legitimatelyNoQuestion(module, "All paths from the solar system are too short.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "All paths from the solar system are too short.");
 
         addQuestion(module, Question.SpaceTradersMaxTax, correctAnswers: new[] { GetProperty<int>(comp, "maxTax", true).Get().ToString() + " GCr" });
     }
@@ -1767,16 +1749,10 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         if (GetField<bool>(comp, "pizzaTime").Get())
-        {
-            legitimatelyNoQuestion(module.Module, "The customer asked for pizza.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "The customer asked for pizza.");
 
         if (GetField<bool>(comp, "asMuch").Get())
-        {
-            legitimatelyNoQuestion(module.Module, "You got fired.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "You got fired.");
 
         var order = GetField<List<int>[]>(comp, "order").Get(v => v.Length != 5 ? "expected length 5" : v.Any(lst => lst == null) ? "a list within ‘order’ was null" : v[0].Count == 0 ? "expected an item in ‘order[0]’" : null);
         var orderedBreadIndex = order[0][0];
@@ -2135,17 +2111,11 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         if (GetProperty<bool>(comp, "forceSolved", true).Get())
-        {
-            legitimatelyNoQuestion(module, "The module was force-solved.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "The module was force-solved.");
 
         var fixedErrorCodes = GetProperty<HashSet<string>>(comp, "fixedErrorCodes", true).Get();
         if (fixedErrorCodes.Count == 0)
-        {
-            legitimatelyNoQuestion(module, "There are no errors to ask about.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "There are no errors to ask about.");
         var allErrorCodes = GetStaticProperty<HashSet<string>>(comp.GetType(), "allErrorCodes", true).Get();
         addQuestion(module, Question.SysadminFixedErrorCodes, correctAnswers: fixedErrorCodes.ToArray(), preferredWrongAnswers: allErrorCodes.ToArray());
     }

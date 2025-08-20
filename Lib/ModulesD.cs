@@ -53,10 +53,7 @@ public partial class SouvenirModule
         var solution = fldSolution.Get();
 
         if (solution == 0)
-        {
-            legitimatelyNoQuestion(module, "The solution was the first card.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "The solution was the first card.");
 
         addQuestion(module, Question.DeckOfManyThingsFirstCard, correctAnswers: new[] { firstCardDeck });
     }
@@ -383,10 +380,7 @@ public partial class SouvenirModule
 
         var comp = GetComponent(module, "DividedSquaresModule");
         if (GetField<int?>(comp, "_correctNumSolved").Get(nullAllowed: true) is null)
-        {
-            legitimatelyNoQuestion(module, "The module became solvable at any solve count (either solves > 199 or something went wrong)");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "The module became solvable at any solve count (either solves > 199 or something went wrong)");
 
         var len = GetIntField(comp, "_sideLength").Get(1, 13);
         var b = GetIntField(comp, "_colorB").Get(0, 5);

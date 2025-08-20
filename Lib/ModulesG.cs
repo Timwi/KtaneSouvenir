@@ -49,10 +49,7 @@ public partial class SouvenirModule
             .Distinct().ToArray();
 
         if (correctAnswers.Length == 0)
-        {
-            legitimatelyNoQuestion(module, "There were no colored squares.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "There were no colored squares.");
 
         addQuestion(module, Question.GameOfLifeCruelColors, correctAnswers: correctAnswers, preferredWrongAnswers: allAnswers);
     }

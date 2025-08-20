@@ -20,10 +20,7 @@ public partial class SouvenirModule
 
         // Capture the first roll
         if (Enumerable.Range(1, 6).Any(i => diceValues.Count(val => val == i) == 5))
-        {
-            legitimatelyNoQuestion(module, "The first roll was a Yahtzee.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "The first roll was a Yahtzee.");
 
         if (diceValues.Contains(2) && diceValues.Contains(3) && diceValues.Contains(4) && diceValues.Contains(5) && (diceValues.Contains(1) || diceValues.Contains(6)))
             result = "large straight";
@@ -43,10 +40,7 @@ public partial class SouvenirModule
         else if (Enumerable.Range(1, 6).Any(i => diceValues.Count(val => val == i) == 2))
             result = "pair";
         else
-        {
-            legitimatelyNoQuestion(module, "The first roll was nothing.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "The first roll was nothing.");
 
         yield return WaitForSolve;
 

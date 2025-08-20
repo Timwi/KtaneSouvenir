@@ -811,7 +811,17 @@ public partial class SouvenirModule : MonoBehaviour
                     if (!canMoveNext)
                         break;
 
-                    yield return e.Current is WaitForSolveInstruction ? new WaitWhile(() => data.Unsolved) : e.Current;
+                    switch (e.Current)
+                    {
+                        case WaitForSolveInstruction:
+                            yield return new WaitWhile(() => data.Unsolved);
+                            break;
+                        case LegitimatelyNoQuestionInstruction:
+                            yield break;
+                        default:
+                            yield return e.Current;
+                            break;
+                    }
 
                     if (TwitchAbandonModule.Contains(module) && !_config.IgnoreTpAutosolvers)
                     {
@@ -1205,12 +1215,21 @@ public partial class SouvenirModule : MonoBehaviour
                     },
                 };
 
-    private void legitimatelyNoQuestion(KMBombModule module, string logMessage)
+    /// <summary>
+    /// Indicates that this handler can't generate a question, but that that's no an error.
+    /// <code>yield return</code>ing this will stop the handler.
+    /// </summary>
+    private LegitimatelyNoQuestionInstruction legitimatelyNoQuestion(KMBombModule module, string logMessage)
     {
         Debug.Log($"[Souvenir #{_moduleId}] No question for {module.ModuleDisplayName} because: {logMessage}");
         _legitimatelyNoQuestions.Add(module);
+        return new();
     }
-    private void legitimatelyNoQuestion(ModuleData module, string logMessage) => legitimatelyNoQuestion(module.Module, logMessage);
+    /// <summary>
+    /// Indicates that this handler can't generate a question, but that that's no an error.
+    /// <code>yield return</code>ing this will stop the handler.
+    /// </summary>
+    private LegitimatelyNoQuestionInstruction legitimatelyNoQuestion(ModuleData module, string logMessage) => legitimatelyNoQuestion(module.Module, logMessage);
     #endregion
 
     #region Twitch Plays

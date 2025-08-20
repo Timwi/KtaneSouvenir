@@ -286,10 +286,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         if (hasStruck)
-        {
-            legitimatelyNoQuestion(module, "No question for Next In Line because the module struck, so the first wire color may be irretrievable.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "No question for Next In Line because the module struck, so the first wire color may be irretrievable.");
 
         var colors = new[] { "Red", "Orange", "Yellow", "Green", "Blue", "Black", "White", "Gray" };
         addQuestion(module, Question.NextInLineFirstWire, correctAnswers: new[] { colors[color] });
@@ -677,10 +674,7 @@ public partial class SouvenirModule
         }
 
         if (lightColor == 0)
-        {
-            legitimatelyNoQuestion(module, "The strip didn’t light up (or I missed the light color).");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "The strip didn’t light up (or I missed the light color).");
 
         var strings = Question.NotTheButtonLightColor.GetAnswers();
         if (lightColor <= 0 || lightColor > strings.Length)

@@ -875,7 +875,7 @@ public partial class SouvenirModule
 
                 if (creatureID == -1)
                 {
-                    legitimatelyNoQuestion(module, "The creature displayed was Maiingno.");
+                    legitimatelyNoQuestion(module, "The creature displayed was Missingno.");
                     displayedCreature = null;
                     displayedMoves = null;
                     finished = true;
@@ -1269,10 +1269,7 @@ public partial class SouvenirModule
             yield return null;
 
         if (fldFailsolve.Get())
-        {
-            legitimatelyNoQuestion(module, "No module was hidden.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "No module was hidden.");
 
         var keyModule = fldKeyModules.Get(ar => ar.Count == 0 ? "empty" : null)[0];
         var mystifiedModule = fldMystifiedModule.Get();

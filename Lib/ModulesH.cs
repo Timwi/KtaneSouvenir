@@ -157,10 +157,7 @@ public partial class SouvenirModule
         var stageObjects = GetField<IList>(comp, "generatedStages").Get();
 
         if (stageObjects.Count == 0)
-        {
-            legitimatelyNoQuestion(module, "There were no stages generated.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "There were no stages generated.");
 
         var fldMinute = GetField<string>(stageObjects[0], "minuteDirection", isPublic: true);
         var fldHour = GetField<int>(stageObjects[0], "index", isPublic: true);
@@ -214,10 +211,7 @@ public partial class SouvenirModule
         }
 
         if (qs.Count == 0)
-        {
-            legitimatelyNoQuestion(module, $"There were not enough stages where this one (#{GetIntField(comp, "moduleId").Get()}) was unique.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, $"There were not enough stages where this one (#{GetIntField(comp, "moduleId").Get()}) was unique.");
 
         addQuestions(module, qs);
     }
@@ -316,10 +310,7 @@ public partial class SouvenirModule
 
         var dic = fldModuleNames.Get();
         if (dic.Count == 0)
-        {
-            legitimatelyNoQuestion(module, "No module solves were awarded to it.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "No module solves were awarded to it.");
 
         // Rock-Paper-Scissors-Lizard-Spock needs to be broken up in the question because hyphens don't word-wrap.
         addQuestions(module,
@@ -475,8 +466,7 @@ public partial class SouvenirModule
         if (module.IsSolved)
         {
             _hyperForgetStages.Add(new());
-            legitimatelyNoQuestion(module, "No question for HyperForget because there were no stages.");
-            yield break;
+            yield return legitimatelyNoQuestion(module, "No question for HyperForget because there were no stages.");
         }
 
         var rots = GetListField<string>(comp, "rotationList").Get(minLength: 1);
@@ -495,10 +485,7 @@ public partial class SouvenirModule
 
         var currentStage = GetField<int>(comp, "currentStage").Get();
         if (currentStage < 1)
-        {
-            legitimatelyNoQuestion(module, "No question for HyperForget because not enough stages were shown.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "No question for HyperForget because not enough stages were shown.");
 
         if (_moduleCounts[moduleId] == 1)
         {
@@ -511,8 +498,7 @@ public partial class SouvenirModule
         if (uniqueStages.Length == 0 || currentStage == 1)
         {
             var id = GetField<int>(comp, "moduleId").Get();
-            legitimatelyNoQuestion(module, $"No question for HyperForget #{id} because there are not enough stages at which this one had a unique rotation.");
-            yield break;
+            yield return legitimatelyNoQuestion(module, $"No question for HyperForget #{id} because there are not enough stages at which this one had a unique rotation.");
         }
 
         var qs = new List<QandA>();

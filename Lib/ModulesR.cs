@@ -377,10 +377,7 @@ public partial class SouvenirModule
 
         var style = GetField<object>(comp, "_style").Get(v => (int) v is < 1 or > 3 ? $"Unexpected solve style {v}" : null);
         if ((int) style != 2)
-        {
-            legitimatelyNoQuestion(module.Module, $"The module was solved via luck or the autosolver. ({style})");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, $"The module was solved via luck or the autosolver. ({style})");
 
         var taps = GetField<int>(comp, "_taps").Get();
         var degree = GetStaticMethod<int>(comp.GetType(), "LfsrPolynomialDegree", 1).Invoke(taps);
@@ -482,10 +479,7 @@ public partial class SouvenirModule
         if (_rpsJudgingDisplays[0].blue.Count != leftDisplays.Count)
             throw new AbandonModuleException("There were inconsistent stage counts among modules.");
         if (leftDisplays.Count == 0)
-        {
-            legitimatelyNoQuestion(module, "There were no stages.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "There were no stages.");
 
         yield return null;
 
@@ -566,10 +560,7 @@ public partial class SouvenirModule
 
         var qs = makeQuestions().ToArray();
         if (qs.Length == 0)
-        {
-            legitimatelyNoQuestion(module, $"There were not enough stages at which this one (#{GetIntField(comp, "moduleId").Get()}) had a unique result.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, $"There were not enough stages at which this one (#{GetIntField(comp, "moduleId").Get()}) had a unique result.");
         addQuestions(module, qs);
     }
 

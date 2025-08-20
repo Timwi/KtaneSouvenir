@@ -148,10 +148,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         if (GetProperty<bool>(comp, "forceSolved", true).Get())
-        {
-            legitimatelyNoQuestion(module, "The module was force-solved.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "The module was force-solved.");
 
         var questions = new List<QandA>();
 

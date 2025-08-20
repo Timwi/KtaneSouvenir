@@ -433,10 +433,7 @@ public partial class SouvenirModule
 
         var maxStage = GetIntField(init, "maxStage").Get(min: 0);
         if (maxStage == 0)
-        {
-            legitimatelyNoQuestion(module, "There were no stages.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "There were no stages.");
 
         var myCylinders = fldCylinders.Get(v => v.Rank != 2 || v.GetLength(0) != maxStage + 1 || v.GetLength(1) != 3 ? $"expected a {maxStage + 1}×3 2D array" : null);
         var myFigures = fldFigures.Get();
@@ -482,10 +479,7 @@ public partial class SouvenirModule
                 }
             }
             if (formattedName == null)
-            {
-                legitimatelyNoQuestion(module, $"There were not enough stages where this one (#{GetIntField(init, "moduleId").Get()}) was unique.");
-                yield break;
-            }
+                yield return legitimatelyNoQuestion(module, $"There were not enough stages where this one (#{GetIntField(init, "moduleId").Get()}) was unique.");
         }
 
         formattedName ??= _translation?.Translate(Question.ForgetAnyColorCylinder).ModuleName ?? "Forget Any Color";
@@ -516,10 +510,7 @@ public partial class SouvenirModule
 
         var allDisplays = GetArrayField<int[]>(comp, "DialDisplay").Get(nullAllowed: true);
         if (allDisplays is null)
-        {
-            legitimatelyNoQuestion(module, "There were no stages.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "There were no stages.");
         if (allDisplays.Length < 1)
             throw new AbandonModuleException("‘DialDisplay’ had length 0, when I expected length at least 1.");
 
@@ -534,10 +525,7 @@ public partial class SouvenirModule
         var stageOrdering = GetArrayField<int>(comp, "StageOrdering").Get();
         var myIgnoredList = GetStaticField<string[]>(comp.GetType(), "ignoredModules", isPublic: true).Get();
         if (Array.IndexOf(stageOrdering, 0) + 1 > Bomb.GetSolvableModuleNames().Count(x => !myIgnoredList.Contains(x)))
-        {
-            legitimatelyNoQuestion(module, "Stage one was not displayed before non-ignored modules were solved.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "Stage one was not displayed before non-ignored modules were solved.");
 
         if (_feFirstDisplays.Count != _moduleCounts[moduleId])
             throw new AbandonModuleException($"The number of displays ({_feFirstDisplays.Count}) did not match the number of Forget Everything modules ({_moduleCounts[moduleId]}).");
@@ -551,10 +539,7 @@ public partial class SouvenirModule
         {
             var uniquePositions = Enumerable.Range(0, 10).Where(pos => _feFirstDisplays.Count(dis => dis[pos] == myFirstDisplay[pos]) == 1).Take(2).ToArray();
             if (!uniquePositions.Any())
-            {
-                legitimatelyNoQuestion(module, $"This one (#{GetIntField(comp, "thisLoggingID", isPublic: true)}) had a non-unique first stage.");
-                yield break;
-            }
+                yield return legitimatelyNoQuestion(module, $"This one (#{GetIntField(comp, "thisLoggingID", isPublic: true)}) had a non-unique first stage.");
             var qs = new List<QandA>();
             for (var pos = 0; pos < 10; pos++)
             {
@@ -601,10 +586,7 @@ public partial class SouvenirModule
         _forgetMeNotDisplays.Add(myDisplay);
 
         if (myDisplay.Length == 0)
-        {
-            legitimatelyNoQuestion(module, "There were no stages.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "There were no stages.");
 
         while (!_noUnignoredModulesLeft)
             yield return new WaitForSeconds(.1f);
@@ -621,10 +603,7 @@ public partial class SouvenirModule
         {
             var uniqueStages = Enumerable.Range(1, displayedStageCount).Where(stage => _forgetMeNotDisplays.Count(display => display[stage - 1] == myDisplay[stage - 1]) == 1).Take(2).ToArray();
             if (uniqueStages.Length == 0 || displayedStageCount == 1)
-            {
-                legitimatelyNoQuestion(module, $"There are not enough stages at which this one (#{(GetIntField(comp, "thisLoggingID", isPublic: true).Get())}) had a unique displayed number.");
-                yield break;
-            }
+                yield return legitimatelyNoQuestion(module, $"There are not enough stages at which this one (#{(GetIntField(comp, "thisLoggingID", isPublic: true).Get())}) had a unique displayed number.");
 
             var qs = new List<QandA>();
             for (var stage = 0; stage < displayedStageCount; stage++)
@@ -664,10 +643,7 @@ public partial class SouvenirModule
         var soundIxs = GetArrayField<int>(comp, "initialString").Get(minLength: numStages, nullArrayAllowed: true, validator: x => x is < 0 or >= 250 ? "Out of range [0, 249]" : null);
 
         if (soundIxs is null)
-        {
-            legitimatelyNoQuestion(module, "There were no stages.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "There were no stages.");
 
         var usedSoundIxs = soundIxs.Take(numStages).ToList();
         var allAudio = GetArrayField<AudioClip>(comp, "speakers", isPublic: true).Get(expectedLength: 250);
@@ -709,10 +685,7 @@ public partial class SouvenirModule
         }
 
         if (qs.Count == 0)
-        {
-            legitimatelyNoQuestion(module, $"There were not enough stages where this one (#{GetField<int>(comp, "moduleId").Get()}) was unique.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, $"There were not enough stages where this one (#{GetField<int>(comp, "moduleId").Get()}) was unique.");
 
         addQuestions(module, qs);
     }
@@ -774,10 +747,7 @@ public partial class SouvenirModule
             throw new AbandonModuleException($"One or more of the lists of sets of information are not the same length as the others. AllGears: {_ftcGearNumbers.Count}, AllLargeDisplays: {_ftcLargeDisplays.Count}, AllSineNumbers: {_ftcSineNumbers.Count}, AllGearColors: {_ftcGearColors.Count}, AllRuleColors: {_ftcRuleColors.Count}");
 
         if (myGearColors.Count == 0)
-        {
-            legitimatelyNoQuestion(module, "There were no stages.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "There were no stages.");
 
         foreach (var list in allLists)
             for (var ix = 0; ix < list.Count - 1; ix++)
@@ -829,10 +799,7 @@ public partial class SouvenirModule
                 }
             }
             if (formattedName == null)
-            {
-                legitimatelyNoQuestion(module, $"There are not enough stages at which this one (#{GetIntField(comp, "_moduleId").Get()}) is unique.");
-                yield break;
-            }
+                yield return legitimatelyNoQuestion(module, $"There are not enough stages at which this one (#{GetIntField(comp, "_moduleId").Get()}) is unique.");
         }
         formattedName ??= _translation?.Translate(Question.ForgetTheColorsGearNumber).ModuleName ?? "Forget The Colors";
 
@@ -853,10 +820,7 @@ public partial class SouvenirModule
         const string moduleId = "forgetThis";
 
         if (GetField<bool>(comp, "autoSolved").Get())
-        {
-            legitimatelyNoQuestion(module, "It solved itself due to a lack of stages.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "It solved itself due to a lack of stages.");
 
         var myColors = GetListField<int>(comp, "stageColors").Get();
         var myDigits = GetListField<int>(comp, "stageNumbers").Get();
@@ -899,10 +863,7 @@ public partial class SouvenirModule
                 }
             }
             if (formattedName == null)
-            {
-                legitimatelyNoQuestion(module, $"There were not enough stages in which this one (#{GetIntField(comp, "_moduleId").Get()}) was unique.");
-                yield break;
-            }
+                yield return legitimatelyNoQuestion(module, $"There were not enough stages in which this one (#{GetIntField(comp, "_moduleId").Get()}) was unique.");
         }
         formattedName ??= _translation?.Translate(Question.ForgetThisColors).ModuleName ?? "Forget This";
         addQuestions(module,
@@ -920,10 +881,7 @@ public partial class SouvenirModule
         var foreignIgnored = new HashSet<string>(GetStaticField<string[]>(comp.GetType(), "ignoredModules", true).Get());
         var wrongAnswers = Bomb.GetSolvableModuleNames().Where(x => !foreignIgnored.Contains(x)).ToArray();
         if (wrongAnswers.Length == 0)
-        {
-            legitimatelyNoQuestion(module, "There were no stages.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "There were no stages.");
 
         var solved = new List<string>();
         var order = new List<string>();
@@ -977,10 +935,7 @@ public partial class SouvenirModule
         }
 
         if (qs.Count == 0)
-        {
-            legitimatelyNoQuestion(module, $"There were not enough stages in which this one(#{GetIntField(comp, "thisLoggingID", true).Get()}) was unique.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, $"There were not enough stages in which this one(#{GetIntField(comp, "thisLoggingID", true).Get()}) was unique.");
 
         addQuestions(module, qs);
     }
@@ -1004,10 +959,7 @@ public partial class SouvenirModule
 
         var lastDigit = GetIntField(comp, "firstLastDigit").Get(-1, 9);
         if (lastDigit == -1)
-        {
-            legitimatelyNoQuestion(module, "It was solved with no queries! This isn’t a bug, just impressive (or cheating).");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "It was solved with no queries! This isn’t a bug, just impressive (or cheating).");
 
         var lNum = GetIntField(comp, "numberA").Get(1, 999);
         var rNum = GetIntField(comp, "numberB").Get(1, 999);

@@ -287,10 +287,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         if (fldUnicorn.Get())
-        {
-            legitimatelyNoQuestion(module, "The unicorn happened.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "The unicorn happened.");
 
         var shuffledList = GetField<List<int>>(comp, "numberList", isPublic: false).Get();
         var birdsPresent = shuffledList.Take(5).Where(ix => ix < 26).Select(ix => Question.CheepCheckoutBirds.GetAnswers()[ix]).ToArray();
@@ -357,10 +354,7 @@ public partial class SouvenirModule
             .Select(t => t.i)
             .ToArray();
         if (remove.Length == moduli.Count)
-        {
-            legitimatelyNoQuestion(module, "Every modulus was noncoprime with at least one other modulus.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "Every modulus was noncoprime with at least one other modulus.");
 
         var right = moduli
             .Select((m, i) => $"N % {m} = {remainders[i]}")
@@ -677,10 +671,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         if (GetProperty<bool>(comp, "forceSolved", true).Get())
-        {
-            legitimatelyNoQuestion(module, "The module was force-solved.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "The module was force-solved.");
 
         var colorNameDic = GetStaticField<Dictionary<Color, string>>(comp.GetType(), "colorNames", true).Get();
         var colorNames = colorNameDic.Values.ToArray();
@@ -798,10 +789,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
 
         if (swapCount < 1)
-        {
-            legitimatelyNoQuestion(module, "No question for Concentration because no swaps occurred.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "No swaps occurred.");
 
         if (_moduleCounts[moduleId] == 1)
             addQuestions(module, swappedPositions.Select(ix => makeQuestion(Question.ConcentrationStartingDigit, moduleId, 1, questionSprite: Sprites.GenerateGridSprite(3, 5, ix), correctAnswers: new[] { (stage[ix] + 1).ToString() })));
@@ -815,8 +803,7 @@ public partial class SouvenirModule
             if (validUnique.Length is 0)
             {
                 var id = GetIntField(comp, "_moduleId").Get(min: 0);
-                legitimatelyNoQuestion(module, $"No question for Concentration because no position was unique for this one (#{id}).");
-                yield break;
+                yield return legitimatelyNoQuestion(module, $"No position was unique for this one (#{id}).");
             }
 
             if (validUnique.Length == 1 && swappedPositions.Contains(validUnique[0]))

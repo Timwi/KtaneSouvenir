@@ -176,10 +176,7 @@ public partial class SouvenirModule
         }
 
         if (questions.Count == 0)
-        {
-            legitimatelyNoQuestion(module.Module, "There were no relevant components (or they were not possible to ask about).");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "There were no relevant components (or they were not possible to ask about).");
 
         if (disableSelectables)
         {

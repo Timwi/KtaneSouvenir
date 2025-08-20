@@ -391,10 +391,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         if (GetProperty<bool>(comp, "forceSolved", true).Get())
-        {
-            legitimatelyNoQuestion(module, "The module was force-solved.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "The module was force-solved.");
 
         var allPositions = new[] { "top-left", "top-middle", "top-right", "left-middle", "center", "right-middle", "bottom-left", "bottom-middle", "bottom-right" };
         var questions = new List<QandA>();
@@ -961,10 +958,7 @@ public partial class SouvenirModule
 
         var pressed = GetListField<string>(comp, "Pressed").Get();
         if (pressed.All(p => p.Length == 0))
-        {
-            legitimatelyNoQuestion(module, "The only buttons you pressed were literally blank.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "The only buttons you pressed were literally blank.");
 
         // skip the literally blank buttons.
         addQuestions(module, pressed.Select((p, i) => p.Length == 0 ? null : makeQuestion(Question.BrokenButtons, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { p }, preferredWrongAnswers: pressed.Except(new[] { "" }).ToArray())));
@@ -1077,10 +1071,7 @@ public partial class SouvenirModule
         }
         module.SolveIndex = _modulesSolved.IncSafe("BigButton");
         if (color < 0)
-        {
-            legitimatelyNoQuestion(module, "The button was tapped (or I missed the light color).");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "The button was tapped (or I missed the light color).");
 
         var answer = color switch
         {

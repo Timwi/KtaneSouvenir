@@ -167,20 +167,14 @@ public partial class SouvenirModule
             if (newSolved.Length == 1)
                 answer = newSolved[0];
             else if (newSolved.Length > 1)
-            {
-                legitimatelyNoQuestion(module, $"It looks like two modules ({newSolved[0]} and {newSolved[1]}) solved at the same time.");
-                yield break;
-            }
+                yield return legitimatelyNoQuestion(module, $"It looks like two modules ({newSolved[0]} and {newSolved[1]}) solved at the same time.");
             yield return null;
         }
 
         yield return WaitForSolve;
 
         if (answer == null)
-        {
-            legitimatelyNoQuestion(module, "No module set it off.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "No module set it off.");
 
         var preferredWrongAnswers = Bomb.GetSolvedModuleNames();
         preferredWrongAnswers.Remove("The Klaxon");
@@ -266,10 +260,7 @@ public partial class SouvenirModule
         yield return null; // The module takes this long to subscribe to a lobby
 
         if (module.IsSolved)
-        {
-            legitimatelyNoQuestion(module, "The module had too few stages to generate and autosolved.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module, "The module had too few stages to generate and autosolved.");
 
         while (!_noUnignoredModulesLeft)
             yield return new WaitForSeconds(.1f);
@@ -414,10 +405,7 @@ public partial class SouvenirModule
         var moods = GetArrayField<Texture2D>(comp, "kuroMoods", isPublic: true).Get(expectedLength: 5).Select(texture => texture.name);
 
         if (desiredTask is not "Eat" and not "PlayKTANE")
-        {
-            legitimatelyNoQuestion(module.Module, "Mood is not relevant to the answer");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module.Module, "Mood is not relevant to the answer");
 
         var currentMood = GetField<Enum>(comp, "currentMood").Get().ToString();
         addQuestion(module, Question.KuroMood, correctAnswers: new[] { currentMood }, preferredWrongAnswers: moods.ToArray());

@@ -101,10 +101,7 @@ public partial class SouvenirModule
             (initialStates[pos] ? initialBlacks : initialWhites).Add(pos);
 
         if (initialBlacks.Count == 0 || initialWhites.Count == 0)
-        {
-            legitimatelyNoQuestion(module.Module, "the module generated 25 cells of the same colour.");
-            yield break;
-        }
+            yield return legitimatelyNoQuestion(module.Module, "the module generated 25 cells of the same colour.");
 
         yield return WaitForSolve;
 
