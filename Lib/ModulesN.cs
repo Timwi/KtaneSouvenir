@@ -676,18 +676,16 @@ public partial class SouvenirModule
             yield return null;  // Don’t wait for .1 seconds so we don’t miss it
         }
 
-        if (lightColor != 0)
+        if (lightColor == 0)
         {
-            var strings = Question.NotTheButtonLightColor.GetAnswers();
-            if (lightColor <= 0 || lightColor > strings.Length)
-                throw new AbandonModuleException($"‘LightColour’ is out of range ({lightColor}).");
-            addQuestion(module, Question.NotTheButtonLightColor, correctAnswers: new[] { strings[lightColor - 1] });
+            legitimatelyNoQuestion(module, "The strip didn’t light up (or I missed the light color).");
+            yield break;
         }
-        else
-        {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Not the Button because the strip didn’t light up (or I missed the light color).");
-            _legitimatelyNoQuestions.Add(module.Module);
-        }
+
+        var strings = Question.NotTheButtonLightColor.GetAnswers();
+        if (lightColor <= 0 || lightColor > strings.Length)
+            throw new AbandonModuleException($"‘LightColour’ is out of range ({lightColor}).");
+        addQuestion(module, Question.NotTheButtonLightColor, correctAnswers: new[] { strings[lightColor - 1] });
     }
 
     private IEnumerator<YieldInstruction> ProcessNotThePlungerButton(ModuleData module)

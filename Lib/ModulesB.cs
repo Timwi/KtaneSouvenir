@@ -380,10 +380,7 @@ public partial class SouvenirModule
             yield return new WaitForSeconds(.1f);
 
         if (answer == -1)
-        {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Binary LEDs because the module auto-solved after all three wires were cut incorrectly.");
-            _legitimatelyNoQuestions.Add(module.Module);
-        }
+            legitimatelyNoQuestion(module, "The module auto-solved after all three wires were cut incorrectly.");
         else
             addQuestion(module, Question.BinaryLEDsValue, correctAnswers: new[] { answer.ToString() });
     }
@@ -395,8 +392,7 @@ public partial class SouvenirModule
 
         if (GetProperty<bool>(comp, "forceSolved", true).Get())
         {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Binary Shift because the module was force-solved.");
-            _legitimatelyNoQuestions.Add(module.Module);
+            legitimatelyNoQuestion(module, "The module was force-solved.");
             yield break;
         }
 
@@ -966,8 +962,7 @@ public partial class SouvenirModule
         var pressed = GetListField<string>(comp, "Pressed").Get();
         if (pressed.All(p => p.Length == 0))
         {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Broken Buttons because the only buttons you pressed were literally blank.");
-            _legitimatelyNoQuestions.Add(module.Module);
+            legitimatelyNoQuestion(module, "The only buttons you pressed were literally blank.");
             yield break;
         }
 
@@ -1083,21 +1078,19 @@ public partial class SouvenirModule
         module.SolveIndex = _modulesSolved.IncSafe("BigButton");
         if (color < 0)
         {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for The Button because the button was tapped (or I missed the light color).");
-            _legitimatelyNoQuestions.Add(module.Module);
+            legitimatelyNoQuestion(module, "The button was tapped (or I missed the light color).");
+            yield break;
         }
-        else
+
+        var answer = color switch
         {
-            var answer = color switch
-            {
-                0 => "red",
-                1 => "blue",
-                2 => "yellow",
-                3 => "white",
-                _ => throw new AbandonModuleException($"IndicatorColor is out of range ({color})."),
-            };
-            addQuestion(module, Question.ButtonLightColor, correctAnswers: new[] { answer });
-        }
+            0 => "red",
+            1 => "blue",
+            2 => "yellow",
+            3 => "white",
+            _ => throw new AbandonModuleException($"IndicatorColor is out of range ({color})."),
+        };
+        addQuestion(module, Question.ButtonLightColor, correctAnswers: new[] { answer });
     }
 
     private IEnumerator<YieldInstruction> ProcessButtonage(ModuleData module)

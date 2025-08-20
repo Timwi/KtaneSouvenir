@@ -875,8 +875,7 @@ public partial class SouvenirModule
 
                 if (creatureID == -1)
                 {
-                    Debug.Log($"[Souvenir #{_moduleId}] No question on Monsplode, Fight! because the creature displayed was Missingno.");
-                    _legitimatelyNoQuestions.Add(module.Module);
+                    legitimatelyNoQuestion(module, "The creature displayed was Maiingno.");
                     displayedCreature = null;
                     displayedMoves = null;
                     finished = true;
@@ -1271,8 +1270,7 @@ public partial class SouvenirModule
 
         if (fldFailsolve.Get())
         {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Mystery Module because no module was hidden.");
-            _legitimatelyNoQuestions.Add(module.Module);
+            legitimatelyNoQuestion(module, "No module was hidden.");
             yield break;
         }
 

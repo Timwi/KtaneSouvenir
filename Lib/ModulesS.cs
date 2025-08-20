@@ -82,8 +82,7 @@ public partial class SouvenirModule
 
         if (myDisplay.Count == 0 || totalNonIgnoredSbemailSongs == 0)
         {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Sbemail Songs because there were no stages.");
-            _legitimatelyNoQuestions.Add(module.Module);
+            legitimatelyNoQuestion(module, "There were no stages.");
             yield break;
         }
 
@@ -106,26 +105,24 @@ public partial class SouvenirModule
             var uniqueStages = Enumerable.Range(1, displayedStageCount).Where(stage => _sbemailSongsDisplays.Count(display => display[stage - 1] == myDisplay[stage - 1]) == 1).Take(2).ToArray();
             if (uniqueStages.Length == 0 || displayedStageCount == 1)
             {
-                Debug.Log($"[Souvenir #{_moduleId}] No question for Sbemail Songs because there are not enough stages at which at least one of them had a unique displayed number.");
-                _legitimatelyNoQuestions.Add(module.Module);
+                legitimatelyNoQuestion(module, "There are not enough stages at which at least one of them had a unique displayed number.");
+                yield break;
             }
-            else
+
+            var qs = new List<QandA>();
+            for (var stage = 0; stage < displayedStageCount; stage++)
             {
-                var qs = new List<QandA>();
-                for (var stage = 0; stage < displayedStageCount; stage++)
-                {
-                    var uniqueStage = uniqueStages.FirstOrDefault(s => s != stage + 1);
-                    if (uniqueStage != 0)
-                        qs.Add(makeQuestion(Question.SbemailSongsSongs, moduleId, 0,
-                            formattedModuleName: string.Format(translateString(Question.SbemailSongsSongs,
-                                "the Sbemail Songs which displayed ‘{0}’ in stage {1} (hexadecimal)"),
-                                transcriptionsAbridged[myDisplay[uniqueStage - 1] - 1],
-                                uniqueStage.ToString("X2")), formatArgs: new[] { (stage + 1).ToString("X2") },
-                            correctAnswers: new[] { transcriptionsAbridged[myDisplay[stage] - 1] },
-                            preferredWrongAnswers: transcriptionsAbridged));
-                }
-                addQuestions(module, qs);
+                var uniqueStage = uniqueStages.FirstOrDefault(s => s != stage + 1);
+                if (uniqueStage != 0)
+                    qs.Add(makeQuestion(Question.SbemailSongsSongs, moduleId, 0,
+                        formattedModuleName: string.Format(translateString(Question.SbemailSongsSongs,
+                            "the Sbemail Songs which displayed ‘{0}’ in stage {1} (hexadecimal)"),
+                            transcriptionsAbridged[myDisplay[uniqueStage - 1] - 1],
+                            uniqueStage.ToString("X2")), formatArgs: new[] { (stage + 1).ToString("X2") },
+                        correctAnswers: new[] { transcriptionsAbridged[myDisplay[stage] - 1] },
+                        preferredWrongAnswers: transcriptionsAbridged));
             }
+            addQuestions(module, qs);
         }
     }
 
@@ -341,10 +338,7 @@ public partial class SouvenirModule
                     if (stR != solR || r == stR)
                         answers.Add(((char) ('A' + r + (4 * l))).ToString());
         if (answers.Count < 4)
-        {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Shape Shift because the answer was the same as the initial state.");
-            _legitimatelyNoQuestions.Add(module.Module);
-        }
+            legitimatelyNoQuestion(module, "The answer was the same as the initial state.");
         else
             addQuestion(module, Question.ShapeShiftInitialShape, correctAnswers: new[] { ((char) ('A' + stR + (4 * stL))).ToString() }, preferredWrongAnswers: answers.ToArray());
     }
@@ -418,9 +412,8 @@ public partial class SouvenirModule
         var prevSlots = GetField<IList>(comp, "mPreviousSlots").Get(lst => lst.Cast<object>().Any(obj => obj is not Array ar || ar.Length != 3) ? "expected arrays of length 3" : null);
         if (prevSlots.Count < 2)
         {
-            // Legitimate: first stage was a keep already
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Silly Slots because there was only one stage.");
-            _legitimatelyNoQuestions.Add(module.Module);
+            // Legitimate: first stage was a keep already 
+            legitimatelyNoQuestion(module, "There was only one stage.");
             yield break;
         }
 
@@ -1490,14 +1483,12 @@ public partial class SouvenirModule
 
         if (GetProperty<bool>(comp, "forceSolved", true).Get())
         {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Space Traders because the module was force-solved.");
-            _legitimatelyNoQuestions.Add(module.Module);
+            legitimatelyNoQuestion(module, "The module was force-solved.");
             yield break;
         }
         if (GetProperty<int>(comp, "maxPossibleTaxAmount", true).Get() < 4)
         {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Space Traders because all paths from the solar system are too short.");
-            _legitimatelyNoQuestions.Add(module.Module);
+            legitimatelyNoQuestion(module, "All paths from the solar system are too short.");
             yield break;
         }
 
@@ -2145,16 +2136,14 @@ public partial class SouvenirModule
 
         if (GetProperty<bool>(comp, "forceSolved", true).Get())
         {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Alfa-Bravo because the module was force-solved.");
-            _legitimatelyNoQuestions.Add(module.Module);
+            legitimatelyNoQuestion(module, "The module was force-solved.");
             yield break;
         }
 
         var fixedErrorCodes = GetProperty<HashSet<string>>(comp, "fixedErrorCodes", true).Get();
         if (fixedErrorCodes.Count == 0)
         {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Sysadmin because there are no errors to ask about.");
-            _legitimatelyNoQuestions.Add(module.Module);
+            legitimatelyNoQuestion(module, "There are no errors to ask about.");
             yield break;
         }
         var allErrorCodes = GetStaticProperty<HashSet<string>>(comp.GetType(), "allErrorCodes", true).Get();

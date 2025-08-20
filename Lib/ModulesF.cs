@@ -252,10 +252,7 @@ public partial class SouvenirModule
             }
         }
         if (qs.Count == 0)
-        {
-            Debug.Log($"[Souvenir #{_moduleId}] No questions for FizzBuzz because all of the numbers remained on the displays.");
-            _legitimatelyNoQuestions.Add(module.Module);
-        }
+            legitimatelyNoQuestion(module, "All of the numbers remained on the display.");
         else
             addQuestions(module, qs);
     }
@@ -393,10 +390,7 @@ public partial class SouvenirModule
         var letters = GetArrayField<string>(comp, "chosens").Get(expectedLength: 5);
         var outsideLetters = letters.Where((_, pos) => !swatted[pos]).ToArray();
         if (outsideLetters.Length == 0)
-        {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Flyswatting because every fly was part of the solution.");
-            _legitimatelyNoQuestions.Add(module.Module);
-        }
+            legitimatelyNoQuestion(module, "Every fly was part of the solution.");
         else
             addQuestion(module, Question.FlyswattingUnpressed, correctAnswers: outsideLetters);
     }
@@ -440,8 +434,7 @@ public partial class SouvenirModule
         var maxStage = GetIntField(init, "maxStage").Get(min: 0);
         if (maxStage == 0)
         {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Forget Any Color because there were no stages.");
-            _legitimatelyNoQuestions.Add(module.Module);
+            legitimatelyNoQuestion(module, "There were no stages.");
             yield break;
         }
 
@@ -490,8 +483,7 @@ public partial class SouvenirModule
             }
             if (formattedName == null)
             {
-                Debug.Log($"[Souvenir #{_moduleId}] No question for Forget Any Color because there were not enough stages where this one (#{GetIntField(init, "moduleId").Get()}) was unique.");
-                _legitimatelyNoQuestions.Add(module.Module);
+                legitimatelyNoQuestion(module, $"There were not enough stages where this one (#{GetIntField(init, "moduleId").Get()}) was unique.");
                 yield break;
             }
         }
@@ -525,8 +517,7 @@ public partial class SouvenirModule
         var allDisplays = GetArrayField<int[]>(comp, "DialDisplay").Get(nullAllowed: true);
         if (allDisplays is null)
         {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Forget Everything because there were no stages.");
-            _legitimatelyNoQuestions.Add(module.Module);
+            legitimatelyNoQuestion(module, "There were no stages.");
             yield break;
         }
         if (allDisplays.Length < 1)
@@ -544,8 +535,7 @@ public partial class SouvenirModule
         var myIgnoredList = GetStaticField<string[]>(comp.GetType(), "ignoredModules", isPublic: true).Get();
         if (Array.IndexOf(stageOrdering, 0) + 1 > Bomb.GetSolvableModuleNames().Count(x => !myIgnoredList.Contains(x)))
         {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Forget Everything because stage one was not displayed before non-ignored modules were solved.");
-            _legitimatelyNoQuestions.Add(module.Module);
+            legitimatelyNoQuestion(module, "Stage one was not displayed before non-ignored modules were solved.");
             yield break;
         }
 
@@ -562,8 +552,7 @@ public partial class SouvenirModule
             var uniquePositions = Enumerable.Range(0, 10).Where(pos => _feFirstDisplays.Count(dis => dis[pos] == myFirstDisplay[pos]) == 1).Take(2).ToArray();
             if (!uniquePositions.Any())
             {
-                Debug.Log($"[Souvenir #{_moduleId}] No question for Forget Everything because this one (#{GetIntField(comp, "thisLoggingID", isPublic: true)}) had a non-unique first stage.");
-                _legitimatelyNoQuestions.Add(module.Module);
+                legitimatelyNoQuestion(module, $"This one (#{GetIntField(comp, "thisLoggingID", isPublic: true)}) had a non-unique first stage.");
                 yield break;
             }
             var qs = new List<QandA>();
@@ -613,8 +602,7 @@ public partial class SouvenirModule
 
         if (myDisplay.Length == 0)
         {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Forget Me Not because there were no stages.");
-            _legitimatelyNoQuestions.Add(module.Module);
+            legitimatelyNoQuestion(module, "There were no stages.");
             yield break;
         }
 
@@ -634,25 +622,22 @@ public partial class SouvenirModule
             var uniqueStages = Enumerable.Range(1, displayedStageCount).Where(stage => _forgetMeNotDisplays.Count(display => display[stage - 1] == myDisplay[stage - 1]) == 1).Take(2).ToArray();
             if (uniqueStages.Length == 0 || displayedStageCount == 1)
             {
-                var fmnId = GetIntField(comp, "thisLoggingID", isPublic: true).Get();
-                Debug.Log($"[Souvenir #{_moduleId}] No question for Forget Me Not because there are not enough stages at which this one (#{fmnId}) had a unique displayed number.");
-                _legitimatelyNoQuestions.Add(module.Module);
+                legitimatelyNoQuestion(module, $"There are not enough stages at which this one (#{(GetIntField(comp, "thisLoggingID", isPublic: true).Get())}) had a unique displayed number.");
+                yield break;
             }
-            else
+
+            var qs = new List<QandA>();
+            for (var stage = 0; stage < displayedStageCount; stage++)
             {
-                var qs = new List<QandA>();
-                for (var stage = 0; stage < displayedStageCount; stage++)
+                var uniqueStage = uniqueStages.FirstOrDefault(s => s != stage + 1);
+                if (uniqueStage != 0)
                 {
-                    var uniqueStage = uniqueStages.FirstOrDefault(s => s != stage + 1);
-                    if (uniqueStage != 0)
-                    {
-                        qs.Add(makeQuestion(Question.ForgetMeNotDisplayedDigits, moduleId, 0,
-                            formattedModuleName: string.Format(translateString(Question.ForgetMeNotDisplayedDigits, "the Forget Me Not which displayed a {0} in the {1} stage"), myDisplay[uniqueStage - 1], Ordinal(uniqueStage)),
-                            formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { myDisplay[stage].ToString() }));
-                    }
+                    qs.Add(makeQuestion(Question.ForgetMeNotDisplayedDigits, moduleId, 0,
+                        formattedModuleName: string.Format(translateString(Question.ForgetMeNotDisplayedDigits, "the Forget Me Not which displayed a {0} in the {1} stage"), myDisplay[uniqueStage - 1], Ordinal(uniqueStage)),
+                        formatArgs: new[] { Ordinal(stage + 1) }, correctAnswers: new[] { myDisplay[stage].ToString() }));
                 }
-                addQuestions(module, qs);
             }
+            addQuestions(module, qs);
         }
     }
 
@@ -790,8 +775,7 @@ public partial class SouvenirModule
 
         if (myGearColors.Count == 0)
         {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Forget The Colors because there were no stages.");
-            _legitimatelyNoQuestions.Add(module.Module);
+            legitimatelyNoQuestion(module, "There were no stages.");
             yield break;
         }
 
@@ -846,8 +830,7 @@ public partial class SouvenirModule
             }
             if (formattedName == null)
             {
-                Debug.Log($"[Souvenir #{_moduleId}] No question for Forget The Colors because there are not enough stages at which this one (#{GetIntField(comp, "_moduleId").Get()}) is unique.");
-                _legitimatelyNoQuestions.Add(module.Module);
+                legitimatelyNoQuestion(module, $"There are not enough stages at which this one (#{GetIntField(comp, "_moduleId").Get()}) is unique.");
                 yield break;
             }
         }
@@ -871,8 +854,7 @@ public partial class SouvenirModule
 
         if (GetField<bool>(comp, "autoSolved").Get())
         {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Forget This because it solved itself due to a lack of stages.");
-            _legitimatelyNoQuestions.Add(module.Module);
+            legitimatelyNoQuestion(module, "It solved itself due to a lack of stages.");
             yield break;
         }
 
@@ -918,8 +900,7 @@ public partial class SouvenirModule
             }
             if (formattedName == null)
             {
-                Debug.Log($"[Souvenir #{_moduleId}] No question for Forget This because there were not enough stages in which this one (#{GetIntField(comp, "_moduleId").Get()}) was unique.");
-                _legitimatelyNoQuestions.Add(module.Module);
+                legitimatelyNoQuestion(module, $"There were not enough stages in which this one (#{GetIntField(comp, "_moduleId").Get()}) was unique.");
                 yield break;
             }
         }
@@ -1024,8 +1005,7 @@ public partial class SouvenirModule
         var lastDigit = GetIntField(comp, "firstLastDigit").Get(-1, 9);
         if (lastDigit == -1)
         {
-            Debug.Log($"[Souvenir #{_moduleId}] No questions for Functions because it was solved with no queries! This isn’t a bug, just impressive (or cheating).");
-            _legitimatelyNoQuestions.Add(module.Module);
+            legitimatelyNoQuestion(module, "It was solved with no queries! This isn’t a bug, just impressive (or cheating).");
             yield break;
         }
 

@@ -288,8 +288,7 @@ public partial class SouvenirModule
 
         if (fldUnicorn.Get())
         {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Cheep Checkout because the unicorn happened.");
-            _legitimatelyNoQuestions.Add(module.Module);
+            legitimatelyNoQuestion(module, "The unicorn happened.");
             yield break;
         }
 
@@ -679,8 +678,7 @@ public partial class SouvenirModule
 
         if (GetProperty<bool>(comp, "forceSolved", true).Get())
         {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Colors Maximization because the module was force-solved.");
-            _legitimatelyNoQuestions.Add(module.Module);
+            legitimatelyNoQuestion(module, "The module was force-solved.");
             yield break;
         }
 

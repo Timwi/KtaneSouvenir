@@ -21,11 +21,11 @@ public partial class SouvenirModule
         // Capture the first roll
         if (Enumerable.Range(1, 6).Any(i => diceValues.Count(val => val == i) == 5))
         {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Yahtzee because the first roll was a Yahtzee.");
-            _legitimatelyNoQuestions.Add(module.Module);
-            result = null;  // don’t yield break here because we need to know when the module is solved in case there are multiple Yahtzees on the bomb
+            legitimatelyNoQuestion(module, "The first roll was a Yahtzee.");
+            yield break;
         }
-        else if (diceValues.Contains(2) && diceValues.Contains(3) && diceValues.Contains(4) && diceValues.Contains(5) && (diceValues.Contains(1) || diceValues.Contains(6)))
+
+        if (diceValues.Contains(2) && diceValues.Contains(3) && diceValues.Contains(4) && diceValues.Contains(5) && (diceValues.Contains(1) || diceValues.Contains(6)))
             result = "large straight";
         else if (diceValues.Contains(3) && diceValues.Contains(4) && (
             (diceValues.Contains(1) && diceValues.Contains(2)) ||
@@ -44,15 +44,13 @@ public partial class SouvenirModule
             result = "pair";
         else
         {
-            Debug.Log($"[Souvenir #{_moduleId}] No question for Yahtzee because the first roll was nothing.");
-            _legitimatelyNoQuestions.Add(module.Module);
-            result = null;
+            legitimatelyNoQuestion(module, "The first roll was nothing.");
+            yield break;
         }
 
         yield return WaitForSolve;
 
-        if (result != null)
-            addQuestion(module, Question.YahtzeeInitialRoll, correctAnswers: new[] { result });
+        addQuestion(module, Question.YahtzeeInitialRoll, correctAnswers: new[] { result });
     }
 
     private IEnumerator<YieldInstruction> ProcessYellowArrows(ModuleData module)
