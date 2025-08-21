@@ -519,15 +519,15 @@ public partial class SouvenirModule
             ["ChamferedIcosahedron2"] = "the chamfered icosahedral Polyhedral Maze",
             ["DeltoidalHexecontahedron"] = "the deltoidal hexecontahedral Polyhedral Maze",
             ["DisdyakisDodecahedron"] = "the disdyakis dodecahedral Polyhedral Maze",
-            ["JoinedLsnubCube"] = "the joined snub cubic (laevo) Polyhedral Maze",
+            ["JoinedLsnubCube"] = "the joined snub cubic Polyhedral Maze",
             ["JoinedRhombicuboctahedron"] = "the joined rhombicuboctahedral Polyhedral Maze",
-            ["LpentagonalHexecontahedron"] = "the pentagonal hexecontahedral (laevo) Polyhedral Maze",
+            ["LpentagonalHexecontahedron"] = "the pentagonal hexecontahedral Polyhedral Maze",
             ["OrthokisPropelloCube"] = "the orthokis propello cubic Polyhedral Maze",
             ["PentakisDodecahedron"] = "the pentakis dodecahedral Polyhedral Maze",
             ["RectifiedRhombicuboctahedron"] = "the rectified rhombicuboctahedral Polyhedral Maze",
             ["TriakisIcosahedron"] = "the triakis icosahedral Polyhedral Maze",
             ["Rhombicosidodecahedron"] = "the rhombicosidodecahedral Polyhedral Maze",
-            ["CanonicalRectifiedLsnubCube"] = "the canonical rectified snub cubic (laevo) Polyhedral Maze",
+            ["CanonicalRectifiedLsnubCube"] = "the canonical rectified snub cubic Polyhedral Maze",
         };
 
         var comp = GetComponent(module, "PolyhedralMazeModule");
