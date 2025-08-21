@@ -3437,7 +3437,8 @@ public enum Question
         TranslateAnswers = true, ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
     VaricolourFlashColors,
 
-    [SouvenirQuestion("What color was the LED flashing in {0}?", "Variety", TwoColumns4Answers, "Red", "Yellow", "Blue", "White", "Black", TranslateAnswers = true)]
+    [SouvenirQuestion("What color was the LED flashing in {0}?", "Variety", TwoColumns4Answers, "Red", "Yellow", "Blue", "White", "Black", TranslateAnswers = true,
+        TranslatableStrings = new[] { "the Variety that has one", "the Variety that has {0}", "a knob", "a colored knob", "a white knob", "a red knob", "a black knob", "a blue knob", "a yellow knob", "a keypad", "a white keypad", "a red keypad", "a yellow keypad", "a blue keypad", "a slider", "a horizontal slider", "a vertical slider", "an LED", "a digit display", "a wire", "a black wire", "a blue wire", "a red wire", "a yellow wire", "a white wire", "a button", "a red button", "a yellow button", "a blue button", "a white button", "a letter display", "a Braille display", "a key-in-lock", "a switch", "a red switch", "a yellow switch", "a blue switch", "a white switch", "a timer", "an ascending timer", "a descending timer", "a die", "a light-on-dark die", "a dark-on-light die", "a bulb", "a red bulb", "a yellow bulb", "a maze", "a 3×3 maze", "a 3×4 maze", "a 4×3 maze", "a 4×4 maze" })]
     VarietyLED,
     [SouvenirQuestion("What digit was displayed but not the answer for the digit display in {0}?", "Variety", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "0")]
     VarietyDigitDisplay,

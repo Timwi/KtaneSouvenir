@@ -319,14 +319,11 @@ public partial class SouvenirModule
         for (var i = 0; i < functions.Length; i++)
         {
             string format = null;
-            if (_moduleCounts["Linq"] > 1)
+            var stages = Enumerable.Range(0, 2).Where(s => s != i && _linqFunctions.Count(f => f[s] == functions[s]) == 1).ToArray();
+            if (stages.Any() && UnityEngine.Random.Range(0, 2) != 0)
             {
-                var stages = Enumerable.Range(0, 2).Where(s => s != i && _linqFunctions.Count(f => f[s] == functions[s]) == 1).ToArray();
-                if (stages.Any() && UnityEngine.Random.Range(0, 2) != 0)
-                {
-                    var stage = stages.PickRandom();
-                    format = string.Format(translateString(Question.LinqFunction, "the Linq whose {0} function was {1}"), Ordinal(stage + 1), functions[stage]);
-                }
+                var stage = stages.PickRandom();
+                format = string.Format(translateString(Question.LinqFunction, "the Linq whose {0} function was {1}"), Ordinal(stage + 1), functions[stage]);
             }
             qs.Add(makeQuestion(Question.LinqFunction, module, formattedModuleName: format, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { functions[i].ToString() }));
         }

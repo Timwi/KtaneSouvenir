@@ -903,18 +903,15 @@ public partial class SouvenirModule
             {
                 string format = null;
                 var myWrong = wrong;
-                if (_moduleCounts["graphModule"] > 1)
+                int[] candidates = Enumerable.Range(1, 8).Where(i => q.x != i && q.y != i && _connectionCheckDigitCounts.Count(d => d[i] == allDigits[i]) == 1).ToArray();
+                if (candidates.Any() && UnityEngine.Random.Range(0, 3) != 0)
                 {
-                    int[] candidates = Enumerable.Range(1, 8).Where(i => q.x != i && q.y != i && _connectionCheckDigitCounts.Count(d => d[i] == allDigits[i]) == 1).ToArray();
-                    if (candidates.Any() && UnityEngine.Random.Range(0, 3) != 0)
-                    {
-                        var which = candidates.PickRandom();
-                        var count = allDigits[which];
-                        var phrase = new[] { "the Connection Check with no {0}’s", "the Connection Check with one {0}", "the Connection Check with two {0}’s", "the Connection Check with three {0}’s", "the Connection Check with four {0}’s" }[count];
-                        format = string.Format(translateString(Question.ConnectionCheckNumbers,phrase), which);
-                        if (count == 0)
-                            myWrong = myWrong.Where(s => !s.Contains(which.ToString())).ToArray();
-                    }
+                    var which = candidates.PickRandom();
+                    var count = allDigits[which];
+                    var phrase = new[] { "the Connection Check with no {0}’s", "the Connection Check with one {0}", "the Connection Check with two {0}’s", "the Connection Check with three {0}’s", "the Connection Check with four {0}’s" }[count];
+                    format = string.Format(translateString(Question.ConnectionCheckNumbers, phrase), which);
+                    if (count == 0)
+                        myWrong = myWrong.Where(s => !s.Contains(which.ToString())).ToArray();
                 }
                 yield return makeQuestion(Question.ConnectionCheckNumbers, module, formattedModuleName: format, correctAnswers: new[] { $"{q.x} {q.y}", $"{q.y} {q.x}" }, preferredWrongAnswers: myWrong);
             }

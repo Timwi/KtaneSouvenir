@@ -1166,7 +1166,7 @@ public partial class SouvenirModule : MonoBehaviour
             for (var i = 0; i < answers.Count; i++)
                 answers[i] = (T) (object) translateAnswer(question, (string) (object) answers[i]);
 
-        if (formattedModuleName is "")
+        if (formattedModuleName is "" || _moduleCounts[moduleId] == 1)
             formattedModuleName = null;
 
         if (solveIx < 1 && formattedModuleName is null)
