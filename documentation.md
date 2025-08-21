@@ -207,7 +207,7 @@ public T InvokeOn(object target, params object[] arguments);
 
 Before making any questions, you *must* wait for the module to be solved. You can use `yield return WaitForSolve;` to do this.
 For modules where this is not possible (such as bosses), either specify the solve order manually or give a differently formatted module name.
-For example, *Forget Me Not* will use a phrase such as “the Forget Me Not which displayed a 5 in the first stage” to identify the specific module.
+For example, *Forget Me Not* will use a phrase such as “the Forget Me Not which displayed a 5 in the first stage” to identify the specific module. It's okay to specify a formatted module name when only one of that module is on the bomb; Souvenir will simply ignore the specified formatted name.
 
 ### No questions
 
