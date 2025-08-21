@@ -8369,7 +8369,25 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // What was the starting position in Polyhedral Maze?
         [Question.PolyhedralMazeStartPosition] = new()
         {
+            NeedsTranslation = true,
             QuestionText = "Какая была начальная позиция {0}?",
+            TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+            {
+                ["the 4-truncated deltoidal icositetrahedral Polyhedral Maze"] = "the 4-truncated deltoidal icositetrahedral Polyhedral Maze",
+                ["the chamfered dodecahedral Polyhedral Maze"] = "the chamfered dodecahedral Polyhedral Maze",
+                ["the chamfered icosahedral Polyhedral Maze"] = "the chamfered icosahedral Polyhedral Maze",
+                ["the deltoidal hexecontahedral Polyhedral Maze"] = "the deltoidal hexecontahedral Polyhedral Maze",
+                ["the disdyakis dodecahedral Polyhedral Maze"] = "the disdyakis dodecahedral Polyhedral Maze",
+                ["the joined snub cubic (laevo) Polyhedral Maze"] = "the joined snub cubic (laevo) Polyhedral Maze",
+                ["the joined rhombicuboctahedral Polyhedral Maze"] = "the joined rhombicuboctahedral Polyhedral Maze",
+                ["the pentagonal hexecontahedral (laevo) Polyhedral Maze"] = "the pentagonal hexecontahedral (laevo) Polyhedral Maze",
+                ["the orthokis propello cubic Polyhedral Maze"] = "the orthokis propello cubic Polyhedral Maze",
+                ["the pentakis dodecahedral Polyhedral Maze"] = "the pentakis dodecahedral Polyhedral Maze",
+                ["the rectified rhombicuboctahedral Polyhedral Maze"] = "the rectified rhombicuboctahedral Polyhedral Maze",
+                ["the triakis icosahedral Polyhedral Maze"] = "the triakis icosahedral Polyhedral Maze",
+                ["the rhombicosidodecahedral Polyhedral Maze"] = "the rhombicosidodecahedral Polyhedral Maze",
+                ["the canonical rectified snub cubic (laevo) Polyhedral Maze"] = "the canonical rectified snub cubic (laevo) Polyhedral Maze",
+            },
         },
 
         // Prime Encryption

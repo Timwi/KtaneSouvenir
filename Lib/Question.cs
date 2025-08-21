@@ -1899,7 +1899,7 @@ public enum Question
         ExampleAnswers = new[] { "GIBBONS", "GIRAFFE", "MISUSED", "RUSHING", "DUSTMAN", "STATICS" })]
     MetapuzzleAnswer,
 
-    [SouvenirQuestion("What was the name of starting station in {0}?", "Minsk Metro", OneColumn4Answers, ExampleAnswers = new[] { "Uručča", "Kamiennaja Horka", "Park Čaluskincaŭ", "Płošča Jakuba Kołasa"})]
+    [SouvenirQuestion("What was the name of starting station in {0}?", "Minsk Metro", OneColumn4Answers, ExampleAnswers = new[] { "Uručča", "Kamiennaja Horka", "Park Čaluskincaŭ", "Płošča Jakuba Kołasa" })]
     MinskMetroStation,
 
     [SouvenirQuestion("What was the second word written by the original ghost in {0}?", "Mirror", TwoColumns4Answers, ExampleAnswers = new[] { "ALPACA", "BUBBLE", "COWBOY", "DIESEL", "EULOGY", "FUSION", "GASKET", "HOODIE", "ICEBOX", "JOYPOP" })]
@@ -2465,7 +2465,8 @@ public enum Question
     [SouvenirQuestion("Which polygon was present on {0}?", "Polygons", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "PolygonsSprites")]
     PolygonsPolygon,
 
-    [SouvenirQuestion("What was the starting position in {0}?", "Polyhedral Maze", ThreeColumns6Answers)]
+    [SouvenirQuestion("What was the starting position in {0}?", "Polyhedral Maze", ThreeColumns6Answers,
+        TranslatableStrings = new[] { "the 4-truncated deltoidal icositetrahedral Polyhedral Maze", "the chamfered dodecahedral Polyhedral Maze", "the chamfered icosahedral Polyhedral Maze", "the deltoidal hexecontahedral Polyhedral Maze", "the disdyakis dodecahedral Polyhedral Maze", "the joined snub cubic (laevo) Polyhedral Maze", "the joined rhombicuboctahedral Polyhedral Maze", "the pentagonal hexecontahedral (laevo) Polyhedral Maze", "the orthokis propello cubic Polyhedral Maze", "the pentakis dodecahedral Polyhedral Maze", "the rectified rhombicuboctahedral Polyhedral Maze", "the triakis icosahedral Polyhedral Maze", "the rhombicosidodecahedral Polyhedral Maze", "the canonical rectified snub cubic (laevo) Polyhedral Maze" })]
     [AnswerGenerator.Integers(0, 61)]
     PolyhedralMazeStartPosition,
 

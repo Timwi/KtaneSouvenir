@@ -146,6 +146,10 @@ Some examples of fully-formed questions using these:
 - `What was the first displayed digit in the first stage of the Forget Everything whose tenth displayed digit in that stage was 4?`
 - `Which figure was used during the third stage of the Forget Any Color whose cylinders in the fourth stage were Purple, Orange, White?`
 
+## Other Disambiguated Module Names: Polyhedral Maze
+
+These strings behave like the ones above, but exist only for the sake of variety.
+
 ## Divided Squares
 
 “the square” is used when the square never divided, while “the correct square” is used when it has.
