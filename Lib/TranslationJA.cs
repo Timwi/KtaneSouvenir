@@ -5714,8 +5714,13 @@ public class Translation_ja : TranslationBase<TranslationInfo>
         // What was the first function in Linq?
         [Question.LinqFunction] = new()
         {
+            NeedsTranslation = true,
             QuestionText = "{0}の{1}番目の関数は？",
             ModuleName = "リンク",
+            TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+            {
+                ["the Linq whose {0} function was {1}"] = "the Linq whose {0} function was {1}",
+            },
         },
 
         // Lion’s Share

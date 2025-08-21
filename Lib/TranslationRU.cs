@@ -5648,7 +5648,12 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // What was the first function in Linq?
         [Question.LinqFunction] = new()
         {
+            NeedsTranslation = true,
             QuestionText = "Какая была {1}-я функция {0}?",
+            TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+            {
+                ["the Linq whose {0} function was {1}"] = "the Linq whose {0} function was {1}",
+            },
         },
 
         // Lion’s Share

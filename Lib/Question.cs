@@ -1678,7 +1678,7 @@ public enum Question
     LightBulbsColors,
 
     [SouvenirQuestion("What was the {1} function in {0}?", "Linq", ThreeColumns6Answers, "First", "Last", "Min", "Max", "Distinct", "Skip", "SkipLast", "Take", "TakeLast", "ElementAt", "Except", "Intersect", "Concat", "Append", "Prepend",
-        ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
+        ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslatableStrings = new[] { "the Linq whose {0} function was {1}" })]
     LinqFunction,
 
     [SouvenirQuestion("Which year was displayed on {0}?", "Lion’s Share", ThreeColumns6Answers, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16")]

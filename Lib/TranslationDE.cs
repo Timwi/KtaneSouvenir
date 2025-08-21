@@ -5964,6 +5964,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         {
             NeedsTranslation = true,
             QuestionText = "What was the {1} function in {0}?",
+            TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+            {
+                ["the Linq whose {0} function was {1}"] = "the Linq whose {0} function was {1}",
+            },
         },
 
         // Lion’s Share

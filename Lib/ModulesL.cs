@@ -301,19 +301,35 @@ public partial class SouvenirModule
         );
     }
 
+    private readonly List<string[]> _linqFunctions = new();
     private IEnumerator<YieldInstruction> ProcessLinq(ModuleData module)
     {
         var comp = GetComponent(module, "LinqScript");
-        yield return WaitForSolve;
 
         var select = GetField<object>(comp, "select").Get();
         var functions = GetField<Array>(select, "functions").Get(ar =>
-            ar.Length != 3 ? "expected length 3" :
-            ar.OfType<object>().Any(v => !Question.LinqFunction.GetAnswers().Contains(v.ToString())) ? "contains unknown function" : null);
+                ar.Length != 3 ? "expected length 3" :
+                ar.OfType<object>().Any(v => !Question.LinqFunction.GetAnswers().Contains(v.ToString())) ? "contains unknown function" : null)
+            .OfType<object>().Select(v => v.ToString()).ToArray();
+        _linqFunctions.Add(functions);
+
+        yield return WaitForSolve;
 
         var qs = new List<QandA>();
-        for (var i = 0; i < functions.GetLength(0); i++)
-            qs.Add(makeQuestion(Question.LinqFunction, module, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { functions.GetValue(i).ToString() }));
+        for (var i = 0; i < functions.Length; i++)
+        {
+            string format = null;
+            if (_moduleCounts["Linq"] > 1)
+            {
+                var stages = Enumerable.Range(0, 2).Where(s => s != i && _linqFunctions.Count(f => f[s] == functions[s]) == 1).ToArray();
+                if (stages.Any())
+                {
+                    var stage = stages.PickRandom();
+                    format = string.Format(translateString(Question.LinqFunction, "the Linq whose {0} function was {1}"), Ordinal(stage + 1), functions[stage]);
+                }
+            }
+            qs.Add(makeQuestion(Question.LinqFunction, module, formattedModuleName: format, formatArgs: new[] { Ordinal(i + 1) }, correctAnswers: new[] { functions[i].ToString() }));
+        }
 
         addQuestions(module, qs);
     }
