@@ -2385,8 +2385,17 @@ public class Translation_ja : TranslationBase<TranslationInfo>
         // What pair of numbers was present in Connection Check?
         [Question.ConnectionCheckNumbers] = new()
         {
+            NeedsTranslation = true,
             QuestionText = "{0}内に存在していたペアは？",
             ModuleName = "接続確認",
+            TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+            {
+                ["the Connection Check with no {0}’s"] = "the Connection Check with no {0}’s",
+                ["the Connection Check with one {0}"] = "the Connection Check with one {0}",
+                ["the Connection Check with two {0}’s"] = "the Connection Check with two {0}’s",
+                ["the Connection Check with three {0}’s"] = "the Connection Check with three {0}’s",
+                ["the Connection Check with four {0}’s"] = "the Connection Check with four {0}’s",
+            },
         },
 
         // Coordinates

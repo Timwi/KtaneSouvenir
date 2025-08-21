@@ -2503,9 +2503,18 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // What pair of numbers was present in Connection Check?
         [Question.ConnectionCheckNumbers] = new()
         {
+            NeedsTranslation = true,
             Gender = Gender.Feminine,
             QuestionText = "Welches Zahlenpaar war bei {0} vorhanden?",
             ModuleName = "Verbindungsprüfung",
+            TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+            {
+                ["the Connection Check with no {0}’s"] = "the Connection Check with no {0}’s",
+                ["the Connection Check with one {0}"] = "the Connection Check with one {0}",
+                ["the Connection Check with two {0}’s"] = "the Connection Check with two {0}’s",
+                ["the Connection Check with three {0}’s"] = "the Connection Check with three {0}’s",
+                ["the Connection Check with four {0}’s"] = "the Connection Check with four {0}’s",
+            },
         },
 
         // Coordinates

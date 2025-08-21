@@ -681,8 +681,7 @@ public enum Question
         UsesQuestionSprite = true, ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
     ConnectedMonitorsOrdinalIndicator,
 
-    [SouvenirQuestion("What pair of numbers was present in {0}?", "Connection Check", ThreeColumns6Answers)]
-    [AnswerGenerator.Strings("1-8", " ", "1-8")]
+    [SouvenirQuestion("What pair of numbers was present in {0}?", "Connection Check", ThreeColumns6Answers, TranslatableStrings = new[] { "the Connection Check with no {0}’s", "the Connection Check with one {0}", "the Connection Check with two {0}’s", "the Connection Check with three {0}’s", "the Connection Check with four {0}’s" })]
     ConnectionCheckNumbers,
 
     [SouvenirQuestion("What was the solution you selected first in {0}?", "Coordinates", OneColumn4Answers, ExampleAnswers = new[] { "[4,7]", "C4", "<0, 2>", "3, 1", "(6,2)", "B-1", "“1, 0”", "4/3", "[12]", "#23", "四十七" })]

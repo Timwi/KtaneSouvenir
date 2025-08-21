@@ -1166,6 +1166,9 @@ public partial class SouvenirModule : MonoBehaviour
             for (var i = 0; i < answers.Count; i++)
                 answers[i] = (T) (object) translateAnswer(question, (string) (object) answers[i]);
 
+        if (formattedModuleName is "")
+            formattedModuleName = null;
+
         if (solveIx < 1 && formattedModuleName is null)
         {
             Debug.LogError($"<Souvenir #{_moduleId}> Abandoning {attr.ModuleName} because it wasn't solved. Make sure to `yield return WaitForSolve;`. If this is intentional, either specify the solve index yourself, or specify the formatted module name.");

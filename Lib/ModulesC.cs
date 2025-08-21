@@ -863,11 +863,10 @@ public partial class SouvenirModule
         addQuestions(module, monitors.Cast<object>().SelectMany(processMonitor));
     }
 
+    private readonly List<Dictionary<int, int>> _connectionCheckDigitCounts = new();
     private IEnumerator<YieldInstruction> ProcessConnectionCheck(ModuleData module)
     {
         var comp = GetComponent(module, "GraphModule");
-
-        yield return WaitForSolve;
 
         var valid = new float[] { 1, 2, 3, 4, 5, 6, 7, 8 };
         var queries = GetArrayField<Vector2>(comp, "Queries")
@@ -876,7 +875,51 @@ public partial class SouvenirModule
             !valid.Contains(v.y) ? $"y out of bounds (got: {v.y})" :
             v.y <= v.x ? $"y less than or equal to x (got: {v.x} {v.y})" : null);
 
-        addQuestion(module, Question.ConnectionCheckNumbers, correctAnswers: queries.SelectMany(v => new[] { $"{v.x} {v.y}", $"{v.y} {v.x}" }).ToArray());
+        var allDigits = queries.SelectMany(v => new[] { (int) v.x, (int) v.y }).GroupBy(x => x).ToDictionary(g => g.Key, g => g.Count());
+        for (int i = 1; i <= 8; i++)
+            allDigits.TryAdd(i, 0);
+        _connectionCheckDigitCounts.Add(allDigits);
+
+        yield return WaitForSolve;
+
+        IEnumerable<string> wrongAnswers()
+        {
+            for (int i = 1; i <= 8; i++)
+            {
+                for (int j = i + 1; j <= 8; j++)
+                {
+                    if (!queries.Any(q => q.x == i && q.y == j))
+                    {
+                        yield return $"{i} {j}";
+                        yield return $"{j} {i}";
+                    }
+                }
+            }
+        }
+        var wrong = wrongAnswers().ToArray();
+        IEnumerable<QandA> qs()
+        {
+            foreach (var q in queries)
+            {
+                string format = null;
+                var myWrong = wrong;
+                if (_moduleCounts["graphModule"] > 1)
+                {
+                    int[] candidates = Enumerable.Range(1, 8).Where(i => q.x != i && q.y != i && _connectionCheckDigitCounts.Count(d => d[i] == allDigits[i]) == 1).ToArray();
+                    if (candidates.Any())
+                    {
+                        var which = candidates.PickRandom();
+                        var count = allDigits[which];
+                        var phrase = new[] { "the Connection Check with no {0}’s", "the Connection Check with one {0}", "the Connection Check with two {0}’s", "the Connection Check with three {0}’s", "the Connection Check with four {0}’s" }[count];
+                        format = string.Format(translateString(Question.ConnectionCheckNumbers,phrase), which);
+                        if (count == 0)
+                            myWrong = myWrong.Where(s => !s.Contains(which.ToString())).ToArray();
+                    }
+                }
+                yield return makeQuestion(Question.ConnectionCheckNumbers, module, formattedModuleName: format, correctAnswers: new[] { $"{q.x} {q.y}", $"{q.y} {q.x}" }, preferredWrongAnswers: myWrong);
+            }
+        }
+        addQuestions(module, qs());
 
         var L = GetArrayField<GameObject>(comp, "L", true).Get(expectedLength: 4);
         var R = GetArrayField<GameObject>(comp, "R", true).Get(expectedLength: 4);

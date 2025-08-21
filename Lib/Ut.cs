@@ -662,4 +662,18 @@ public static class Ut
                 return e.Current;
         return null;
     }
+
+    /// <summary>
+    ///     Adds an entry to the dictionary if one isn't already there.</summary>
+    /// <returns>
+    ///     <see langword="true"/> if something was added, otherwise <see langword="false">.</returns>
+    public static bool TryAdd<T, U>(this Dictionary<T, U> dict, T key, U value)
+    {
+        if (!dict.ContainsKey(key))
+        {
+            dict.Add(key, value);
+            return true;
+        }
+        return false;
+    }
 }

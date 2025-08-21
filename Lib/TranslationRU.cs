@@ -2410,9 +2410,18 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // What pair of numbers was present in Connection Check?
         [Question.ConnectionCheckNumbers] = new()
         {
+            NeedsTranslation = true,
             Conjugation = Conjugation.в_PrepositiveFeminine,
             QuestionText = "Какая пара чисел присутствовала {0}?",
             ModuleName = "Проверке соединения",
+            TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+            {
+                ["the Connection Check with no {0}’s"] = "the Connection Check with no {0}’s",
+                ["the Connection Check with one {0}"] = "the Connection Check with one {0}",
+                ["the Connection Check with two {0}’s"] = "the Connection Check with two {0}’s",
+                ["the Connection Check with three {0}’s"] = "the Connection Check with three {0}’s",
+                ["the Connection Check with four {0}’s"] = "the Connection Check with four {0}’s",
+            },
         },
 
         // Coordinates
