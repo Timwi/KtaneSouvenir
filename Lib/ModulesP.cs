@@ -539,7 +539,7 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         string format = null;
-        if (_moduleCounts["PolyhedralMazeModule"] > 1 && _polyhedralMazeTypes.Count(n => n == souvenirName) == 1)
+        if (_moduleCounts["PolyhedralMazeModule"] > 1 && _polyhedralMazeTypes.Count(n => n == souvenirName) == 1 && Rnd.Range(0, 2) != 0)
             format = translateString(Question.PolyhedralMazeStartPosition, souvenirName);
 
         addQuestion(module, Question.PolyhedralMazeStartPosition, formattedModuleName: format, correctAnswers: new[] { GetIntField(comp, "_startFace").Get().ToString() });

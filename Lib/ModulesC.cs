@@ -906,7 +906,7 @@ public partial class SouvenirModule
                 if (_moduleCounts["graphModule"] > 1)
                 {
                     int[] candidates = Enumerable.Range(1, 8).Where(i => q.x != i && q.y != i && _connectionCheckDigitCounts.Count(d => d[i] == allDigits[i]) == 1).ToArray();
-                    if (candidates.Any())
+                    if (candidates.Any() && UnityEngine.Random.Range(0, 3) != 0)
                     {
                         var which = candidates.PickRandom();
                         var count = allDigits[which];
