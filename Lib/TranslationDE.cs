@@ -5051,6 +5051,11 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 ["present on"] = "present on",
                 ["absent from"] = "absent from",
             },
+            TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+            {
+                ["the Hinges where this hinge was initally present"] = "the Hinges where this hinge was initally present",
+                ["the Hinges where this hinge was initally absent"] = "the Hinges where this hinge was initally absent",
+            },
         },
 
         // Hogwarts

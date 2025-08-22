@@ -4764,6 +4764,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Which of these hinges was initially present on Hinges?
         [Question.HingesInitialHinges] = new()
         {
+            NeedsTranslation = true,
             Conjugation = Conjugation.в_PrepositivePlural,
             QuestionText = "Какие из петель изначально {1} {0}?",
             ModuleName = "Петлях",
@@ -4771,6 +4772,11 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             {
                 ["present on"] = "присутствовали",
                 ["absent from"] = "отсутствовали",
+            },
+            TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+            {
+                ["the Hinges where this hinge was initally present"] = "the Hinges where this hinge was initally present",
+                ["the Hinges where this hinge was initally absent"] = "the Hinges where this hinge was initally absent",
             },
         },
 

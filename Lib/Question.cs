@@ -1428,7 +1428,7 @@ public enum Question
     HillCycleDialLabels,
 
     [SouvenirQuestion("Which of these hinges was initially {1} {0}?", "Hinges", ThreeColumns6Answers, Type = AnswerType.Sprites, SpriteFieldName = "HingesSprites",
-        ExampleFormatArguments = new[] { "present on", "absent from" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
+        ExampleFormatArguments = new[] { "present on", "absent from" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true }, TranslatableStrings = new[] { "the Hinges where this hinge was initally present", "the Hinges where this hinge was initally absent" })]
     HingesInitialHinges,
 
     [SouvenirQuestion("Which House was {1} solved\u00a0for in {0}?", "Hogwarts", TwoColumns4Answers, "Gryffindor", "Hufflepuff", "Slytherin", "Ravenclaw", TranslateAnswers = true,

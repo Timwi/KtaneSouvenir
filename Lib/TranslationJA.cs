@@ -4801,12 +4801,18 @@ public class Translation_ja : TranslationBase<TranslationInfo>
         // Which of these hinges was initially present on Hinges?
         [Question.HingesInitialHinges] = new()
         {
+            NeedsTranslation = true,
             QuestionText = "{0}の初期状態で存在して{1}蝶番に含まれるのは？",
             ModuleName = "蝶番",
             FormatArgs = new Dictionary<string, string>
             {
                 ["present on"] = "いた",
                 ["absent from"] = "いなかった",
+            },
+            TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+            {
+                ["the Hinges where this hinge was initally present"] = "the Hinges where this hinge was initally present",
+                ["the Hinges where this hinge was initally absent"] = "the Hinges where this hinge was initally absent",
             },
         },
 
