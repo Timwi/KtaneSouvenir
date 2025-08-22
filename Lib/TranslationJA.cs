@@ -8233,6 +8233,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
         // What was the base colour in The Pentabutton?
         [Question.PentabuttonBaseColor] = new()
         {
+            NeedsTranslation = true,
             QuestionText = "{0}のベースの色は？",
             ModuleName = "五角形ボタン",
             Answers = new Dictionary<string, string>
@@ -8244,6 +8245,10 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 ["Blue"] = "青",
                 ["Purple"] = "紫",
                 ["White"] = "白",
+            },
+            TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+            {
+                ["the Pentabutton labelled “{0}”"] = "the Pentabutton labelled “{0}”",
             },
         },
 

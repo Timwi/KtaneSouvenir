@@ -8093,6 +8093,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // What was the base colour in The Pentabutton?
         [Question.PentabuttonBaseColor] = new()
         {
+            NeedsTranslation = true,
             Conjugation = Conjugation.GenitiveMascNeuter,
             QuestionText = "Какой был цвет у основания {0}?",
             Answers = new Dictionary<string, string>
@@ -8104,6 +8105,10 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 ["Blue"] = "Синий",
                 ["Purple"] = "Фиолетовый",
                 ["White"] = "Белый",
+            },
+            TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+            {
+                ["the Pentabutton labelled “{0}”"] = "the Pentabutton labelled “{0}”",
             },
         },
 

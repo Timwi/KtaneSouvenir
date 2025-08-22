@@ -8537,6 +8537,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 ["Purple"] = "Lila",
                 ["White"] = "Weiß",
             },
+            TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+            {
+                ["the Pentabutton labelled “{0}”"] = "the Pentabutton labelled “{0}”",
+            },
         },
 
         // Periodic Words

@@ -197,14 +197,23 @@ public partial class SouvenirModule
         addQuestion(module, Question.PatternCubeHighlightedSymbol, correctAnswers: new[] { symbols[highlightPos] }, preferredWrongAnswers: symbols);
     }
 
+    private readonly List<string> _pentabuttonLabels = new();
     private IEnumerator<YieldInstruction> ProcessPentabutton(ModuleData module)
     {
         var comp = GetComponent(module, "PentabuttonScript");
+
+        var label = GetField<TextMesh>(comp, "Label", isPublic: true).Get().text;
+        _pentabuttonLabels.Add(label);
+
         yield return WaitForSolve;
+
+        string format = null;
+        if (_pentabuttonLabels.Count(x => x == label) == 1)
+            format = string.Format(translateString(Question.PentabuttonBaseColor, "the Pentabutton labelled “{0}”"), label.ToUpperInvariant());
 
         var colors = new string[] { "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "White" };
         var ans = GetField<int>(comp, "RndColour").Get(i => i is < 0 or > 6 ? $"Unknown color index {i}" : null);
-        addQuestion(module, Question.PentabuttonBaseColor, correctAnswers: new[] { colors[ans] });
+        addQuestion(module, Question.PentabuttonBaseColor, formattedModuleName: format, correctAnswers: new[] { colors[ans] });
     }
 
     private IEnumerator<YieldInstruction> ProcessPeriodicWords(ModuleData module)
