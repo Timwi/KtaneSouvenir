@@ -2139,7 +2139,8 @@ public enum Question
     NotMorsematicsWord,
 
     [SouvenirQuestion("What room was {1} in initially on {0}?", "Not Murder", TwoColumns4Answers, "Ballroom", "Billiard Room", "Conservatory", "Dining Room", "Hall", "Kitchen", "Library", "Lounge", "Study", TranslateAnswers = true,
-        ExampleFormatArguments = new[] { "Miss Scarlett", "Colonel Mustard", "Reverend Green", "Mrs Peacock", "Professor Plum", "Mrs White", }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
+        ExampleFormatArguments = new[] { "Miss Scarlett", "Colonel Mustard", "Reverend Green", "Mrs Peacock", "Professor Plum", "Mrs White", }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true },
+        TranslatableStrings = new[] { "the Not Murder where he initially held the {0}", "the Not Murder where she initially held the {0}", "the Not Murder where he started in the {0}", "the Not Murder where she started in the {0}", "the Not Murder where he was present", "the Not Murder where she was present" })]
     NotMurderRoom,
     [SouvenirQuestion("What weapon did {1} possess initially on {0}?", "Not Murder", TwoColumns4Answers, "Candlestick", "Dagger", "Lead Pipe", "Revolver", "Rope", "Spanner", TranslateAnswers = true,
         ExampleFormatArguments = new[] { "Miss Scarlett", "Colonel Mustard", "Reverend Green", "Mrs Peacock", "Professor Plum", "Mrs White", }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]

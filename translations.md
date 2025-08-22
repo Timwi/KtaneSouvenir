@@ -146,7 +146,7 @@ Some examples of fully-formed questions using these:
 - `What was the first displayed digit in the first stage of the Forget Everything whose tenth displayed digit in that stage was 4?`
 - `Which figure was used during the third stage of the Forget Any Color whose cylinders in the fourth stage were Purple, Orange, White?`
 
-## Other Disambiguated Module Names: Connection Check, Linq, Polyhedral Maze, and Variety
+## Other Disambiguated Module Names: Connection Check, Linq, Not Murder, Polyhedral Maze, and Variety
 
 These strings behave like the ones above, but exist only for the sake of variety. You can translate some or all of these phrases as `""` to tell Souvenir to use the original phrasing.
 

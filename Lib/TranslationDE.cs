@@ -7577,6 +7577,15 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 ["Lounge"] = "Lounge",
                 ["Study"] = "Study",
             },
+            TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+            {
+                ["the Not Murder where he initially held the {0}"] = "the Not Murder where he initially held the {0}",
+                ["the Not Murder where she initially held the {0}"] = "the Not Murder where she initially held the {0}",
+                ["the Not Murder where he started in the {0}"] = "the Not Murder where he started in the {0}",
+                ["the Not Murder where she started in the {0}"] = "the Not Murder where she started in the {0}",
+                ["the Not Murder where he was present"] = "the Not Murder where he was present",
+                ["the Not Murder where she was present"] = "the Not Murder where she was present",
+            },
         },
         // What weapon did {1} possess initially on {0}?
         // What weapon did Miss Scarlett possess initially on Not Murder?
