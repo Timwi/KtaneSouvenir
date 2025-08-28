@@ -60,21 +60,65 @@ public partial class SouvenirModule
         addQuestion(module, Question.KanyeEncounterFoods, correctAnswers: selectedFoodNames);
     }
 
+    private readonly List<(int start, int end)> _kayMazeyTalkInfo = new();
     private IEnumerator<YieldInstruction> ProcessKayMazeyTalk(ModuleData module)
     {
+        var comp = GetComponent(module, "kayMazeyTalkScript");
+
+        var startingPosition = GetIntField(comp, "currentPosition").Get(min: 0, max: 35);
+        var endingPosition = GetIntField(comp, "goalPosition").Get(min: 0, max: 35);
+        _kayMazeyTalkInfo.Add((startingPosition, endingPosition));
+
+        bool struck = false;
+        module.Module.OnStrike += () => { struck = true; return false; };
+
         yield return WaitForSolve;
 
-        var comp = GetComponent(module, "KMazeyTalk");
-        var valid = GetListField<int>(comp, "WeedKhungus").Get(expectedLength: 84, validator: i => i is < 16 or > 358 ? "Out of range [16, 358]" : null);
-        var endIx = GetIntField(comp, "Wavecheck").Get(i => valid.Contains(i) ? null : "Unexpected end index");
-        var startIx = GetIntField(comp, "BigIfSad").Get(i => valid.Contains(i) ? null : "Unexpected start index");
+        string[] mazeWords = {
+            "Knit",   "Knows",   "Knock",   "",       "Knew",   "Knoll",
+            "Kneed",  "Knuff",   "Knork",   "Knout",  "Knits",  "",
+            "Knife",  "Knights", "Knap",    "Knee",   "Knocks", "",
+            "Knacks", "Knab",    "Knocked", "Knight", "Knitch", "",
+            "Knots",  "Knish",   "Knob",    "Knox",   "Knur",   "",
+            "Knook",  "Know",    "",        "Knack",  "Knurl",  "Knot"
+        };
 
-        var endPhrase = Question.KayMazeyTalkPhrase.GetAnswers()[valid.IndexOf(endIx)];
-        var startPhrase = Question.KayMazeyTalkPhrase.GetAnswers()[valid.IndexOf(startIx)];
+        var endPhrase = mazeWords[endingPosition];
+        var startPhrase = mazeWords[startingPosition];
 
-        addQuestions(module,
-            makeQuestion(Question.KayMazeyTalkPhrase, module, correctAnswers: new[] { endPhrase }, preferredWrongAnswers: new[] { startPhrase }, formatArgs: new[] { "ending" }),
-            makeQuestion(Question.KayMazeyTalkPhrase, module, correctAnswers: new[] { startPhrase }, preferredWrongAnswers: new[] { endPhrase }, formatArgs: new[] { "starting" }));
+        IEnumerable<QandA> qs()
+        {
+            string startFormat = null;
+            bool usesFormat = _moduleCounts["KMazeyTalk"] > 1;
+
+            if (!struck)
+            {
+                if (_kayMazeyTalkInfo.Count(i => i.start == startingPosition) == 1)
+                    startFormat = string.Format(translateString(Question.KayMazeyTalkPhrase, "the KayMazey Talk whose starting phrase was {0}"), startPhrase);
+
+                string endFormat = null;
+                if (_kayMazeyTalkInfo.Count(i => i.end == endingPosition) == 1)
+                    endFormat = string.Format(translateString(Question.KayMazeyTalkPhrase, "the KayMazey Talk whose goal phrase was {0}"), endPhrase);
+
+                yield return makeQuestion(
+                    Question.KayMazeyTalkPhrase,
+                    module,
+                    formattedModuleName: endFormat,
+                    correctAnswers: new[] { startPhrase },
+                    preferredWrongAnswers: usesFormat && endFormat != null ? new string[0] : new[] { endPhrase },
+                    formatArgs: new[] { "starting" });
+            }
+
+            yield return makeQuestion(
+                Question.KayMazeyTalkPhrase,
+                module,
+                formattedModuleName: startFormat,
+                correctAnswers: new[] { endPhrase },
+                preferredWrongAnswers: usesFormat && startFormat != null ? new string[0] : new[] { startPhrase },
+                formatArgs: new[] { "ending" });
+        }
+
+        addQuestions(module, qs());
     }
 
     private IEnumerator<YieldInstruction> ProcessKeypadCombination(ModuleData module)

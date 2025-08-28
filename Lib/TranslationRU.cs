@@ -5238,7 +5238,12 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
             FormatArgs = new Dictionary<string, string>
             {
                 ["starting"] = "starting",
-                ["ending"] = "ending",
+                ["goal"] = "goal",
+            },
+            TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+            {
+                ["the KayMazey Talk whose starting phrase was {0}"] = "the KayMazey Talk whose starting phrase was {0}",
+                ["the KayMazey Talk whose goal phrase was {0}"] = "the KayMazey Talk whose goal phrase was {0}",
             },
         },
 
