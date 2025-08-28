@@ -515,9 +515,9 @@ public partial class SouvenirModule
                 else
                 {
                     if (_notMurderInfo.Count(n => n.Any(t => t.Suspect == data[i].Suspect && t.Weapon == data[i].Weapon)) == 1)
-                        dRoom = string.Format(translateString(Question.NotMurderRoom, gender[data[i].Suspect] ? "the Not Murder where she initially held the {0}" : "the Not Murder where he initially held the {0}"), weaponNames[data[i].Weapon]);
+                        dRoom = string.Format(translateString(Question.NotMurderRoom, gender[data[i].Suspect] ? "the Not Murder where she initially held the {0}" : "the Not Murder where he initially held the {0}"), translateString(Question.NotMurderRoom, weaponNames[data[i].Weapon]));
                     if (_notMurderInfo.Count(n => n.Any(t => t.Suspect == data[i].Suspect && t.Room == data[i].Room)) == 1)
-                        dWeapon = string.Format(translateString(Question.NotMurderRoom, gender[data[i].Suspect] ? "the Not Murder where she started in the {0}" : "the Not Murder where he started in the {0}"), roomNames[data[i].Room]);
+                        dWeapon = string.Format(translateString(Question.NotMurderRoom, gender[data[i].Suspect] ? "the Not Murder where she started in the {0}" : "the Not Murder where he started in the {0}"), translateString(Question.NotMurderRoom, roomNames[data[i].Room]));
                 }
             }
             qs.Add(makeQuestion(Question.NotMurderRoom, module, formattedModuleName: dRoom, formatArgs: new[] { suspectNames[data[i].Suspect] }, correctAnswers: new[] { roomNames[data[i].Room] }));
