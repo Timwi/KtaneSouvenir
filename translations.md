@@ -197,6 +197,10 @@ Otherwise:
 - `"won"` and `"lost"` are only used in the disambiguating phrase.
 - `"win"` and `"lose"` are only used in the main body of the question.
 
+## Variety
+
+The disambiguator `"the Variety that has one"` might need to agree with the component in question. If this is the case, translate that string as `""` and use the provided variants (with the component in parentheses). If this is not the case, then the variants can be ignored.
+
 ## White Arrows
 
 This module has a few `TranslatableStrings`.

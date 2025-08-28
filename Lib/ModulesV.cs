@@ -155,31 +155,49 @@ public partial class SouvenirModule
             {
                 case "Led":
                     if (canDisambiguateWith("an LED"))
-                        return translateString(Question.VarietyLED, "the Variety that has one");
+                    {
+                        var str = translateString(Question.VarietyLED, "the Variety that has one");
+                        return str != "" ? str : translateString(Question.VarietyLED, "the Variety that has one (LED)");
+                    }
                     break;
                 case "DigitDisplay":
                     if (canDisambiguateWith("a digit display"))
-                        return translateString(Question.VarietyLED, "the Variety that has one");
+                    {
+                        var str = translateString(Question.VarietyLED, "the Variety that has one");
+                        return str != "" ? str : translateString(Question.VarietyLED, "the Variety that has one (digit display)");
+                    }
                     break;
                 case "LetterDisplay":
                     if (canDisambiguateWith("a letter display"))
-                        return translateString(Question.VarietyLED, "the Variety that has one");
+                    {
+                        var str = translateString(Question.VarietyLED, "the Variety that has one");
+                        return str != "" ? str : translateString(Question.VarietyLED, "the Variety that has one (letter display)");
+                    }
                     break;
                 case "Timer":
                     if (flavor == null && canDisambiguateWith("a timer") ||
                         flavor == "ascending" && canDisambiguateWith("an ascending timer") ||
                         flavor == "descending" && canDisambiguateWith("a descending timer"))
-                        return translateString(Question.VarietyLED, "the Variety that has one");
+                    {
+                        var str = translateString(Question.VarietyLED, "the Variety that has one");
+                        return str != "" ? str : translateString(Question.VarietyLED, "the Variety that has one (timer)");
+                    }
                     break;
                 case "ColoredKnob":
                     if (flavor == null && canDisambiguateWith("a knob") ||
                         flavor != null && canDisambiguateWith($"a {flavor} knob"))
-                        return translateString(Question.VarietyLED, "the Variety that has one");
+                    {
+                        var str = translateString(Question.VarietyLED, "the Variety that has one");
+                        return str != "" ? str : translateString(Question.VarietyLED, "the Variety that has one (knob)");
+                    }
                     break;
                 case "Bulb":
                     if (flavor == null && canDisambiguateWith("a bulb") ||
                         flavor != null && canDisambiguateWith($"a {flavor} bulb"))
-                        return translateString(Question.VarietyLED, "the Variety that has one");
+                    {
+                        var str = translateString(Question.VarietyLED, "the Variety that has one");
+                        return str != "" ? str : translateString(Question.VarietyLED, "the Variety that has one (bulb)");
+                    }
                     break;
                 default:
                     throw new AbandonModuleException($"Unexpected component type {component}");
