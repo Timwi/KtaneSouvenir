@@ -69,7 +69,7 @@ public partial class SouvenirModule
         var endingPosition = GetIntField(comp, "goalPosition").Get(min: 0, max: 35);
         _kayMazeyTalkInfo.Add((startingPosition, endingPosition));
 
-        bool struck = false;
+        var struck = false;
         module.Module.OnStrike += () => { struck = true; return false; };
 
         yield return WaitForSolve;
@@ -83,38 +83,38 @@ public partial class SouvenirModule
             "Knook",  "Know",    "",        "Knack",  "Knurl",  "Knot"
         };
 
-        var endPhrase = mazeWords[endingPosition];
-        var startPhrase = mazeWords[startingPosition];
+        var endWord = mazeWords[endingPosition];
+        var startWord = mazeWords[startingPosition];
 
         IEnumerable<QandA> qs()
         {
             string startFormat = null;
-            bool usesFormat = _moduleCounts["KMazeyTalk"] > 1;
+            var usesFormat = _moduleCounts["KMazeyTalk"] > 1;
 
             if (!struck)
             {
                 if (_kayMazeyTalkInfo.Count(i => i.start == startingPosition) == 1)
-                    startFormat = string.Format(translateString(Question.KayMazeyTalkPhrase, "the KayMazey Talk whose starting phrase was {0}"), startPhrase);
+                    startFormat = string.Format(translateString(Question.KayMazeyTalkWord, "the KayMazey Talk whose starting word was {0}"), startWord);
 
                 string endFormat = null;
                 if (_kayMazeyTalkInfo.Count(i => i.end == endingPosition) == 1)
-                    endFormat = string.Format(translateString(Question.KayMazeyTalkPhrase, "the KayMazey Talk whose goal phrase was {0}"), endPhrase);
+                    endFormat = string.Format(translateString(Question.KayMazeyTalkWord, "the KayMazey Talk whose goal word was {0}"), endWord);
 
                 yield return makeQuestion(
-                    Question.KayMazeyTalkPhrase,
+                    Question.KayMazeyTalkWord,
                     module,
                     formattedModuleName: endFormat,
-                    correctAnswers: new[] { startPhrase },
-                    preferredWrongAnswers: usesFormat && endFormat != null ? new string[0] : new[] { endPhrase },
+                    correctAnswers: new[] { startWord },
+                    preferredWrongAnswers: usesFormat && endFormat != null ? new string[0] : new[] { endWord },
                     formatArgs: new[] { "starting" });
             }
 
             yield return makeQuestion(
-                Question.KayMazeyTalkPhrase,
+                Question.KayMazeyTalkWord,
                 module,
                 formattedModuleName: startFormat,
-                correctAnswers: new[] { endPhrase },
-                preferredWrongAnswers: usesFormat && startFormat != null ? new string[0] : new[] { startPhrase },
+                correctAnswers: new[] { endWord },
+                preferredWrongAnswers: usesFormat && startFormat != null ? new string[0] : new[] { startWord },
                 formatArgs: new[] { "ending" });
         }
 

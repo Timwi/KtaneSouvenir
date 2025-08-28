@@ -876,7 +876,7 @@ public partial class SouvenirModule
             v.y <= v.x ? $"y less than or equal to x (got: {v.x} {v.y})" : null);
 
         var allDigits = queries.SelectMany(v => new[] { (int) v.x, (int) v.y }).GroupBy(x => x).ToDictionary(g => g.Key, g => g.Count());
-        for (int i = 1; i <= 8; i++)
+        for (var i = 1; i <= 8; i++)
             allDigits.TryAdd(i, 0);
         _connectionCheckDigitCounts.Add(allDigits);
 
@@ -884,9 +884,9 @@ public partial class SouvenirModule
 
         IEnumerable<string> wrongAnswers()
         {
-            for (int i = 1; i <= 8; i++)
+            for (var i = 1; i <= 8; i++)
             {
-                for (int j = i + 1; j <= 8; j++)
+                for (var j = i + 1; j <= 8; j++)
                 {
                     if (!queries.Any(q => q.x == i && q.y == j))
                     {
@@ -903,12 +903,12 @@ public partial class SouvenirModule
             {
                 string format = null;
                 var myWrong = wrong;
-                int[] candidates = Enumerable.Range(1, 8).Where(i => q.x != i && q.y != i && _connectionCheckDigitCounts.Count(d => d[i] == allDigits[i]) == 1).ToArray();
+                var candidates = Enumerable.Range(1, 8).Where(i => q.x != i && q.y != i && _connectionCheckDigitCounts.Count(d => d[i] == allDigits[i]) == 1).ToArray();
                 if (candidates.Any() && UnityEngine.Random.Range(0, 3) != 0)
                 {
                     var which = candidates.PickRandom();
                     var count = allDigits[which];
-                    var phrase = new[] { "the Connection Check with no {0}’s", "the Connection Check with one {0}", "the Connection Check with two {0}’s", "the Connection Check with three {0}’s", "the Connection Check with four {0}’s" }[count];
+                    var phrase = new[] { "the Connection Check with no {0}s", "the Connection Check with one {0}", "the Connection Check with two {0}s", "the Connection Check with three {0}s", "the Connection Check with four {0}s" }[count];
                     format = string.Format(translateString(Question.ConnectionCheckNumbers, phrase), which);
                     if (count == 0)
                         myWrong = myWrong.Where(s => !s.Contains(which.ToString())).ToArray();

@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Souvenir;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 using Rnd = UnityEngine.Random;
 
 public partial class SouvenirModule
@@ -479,7 +478,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.NotMorsematicsWord, correctAnswers: new[] { wordLower }, preferredWrongAnswers: wordListLower);
     }
 
-    private readonly List<(int Suspect, int Room, int Weapon)[]> _notMurderInfo = new();
+    private readonly List<(int suspect, int room, int weapon)[]> _notMurderInfo = new();
     private IEnumerator<YieldInstruction> ProcessNotMurder(ModuleData module)
     {
         while (!_isActivated)
@@ -493,7 +492,7 @@ public partial class SouvenirModule
         // turn number, then suspect, then room/weapon
         var turns = GetListField<List<int[]>>(comp, "turns").Get(expectedLength: 6);
 
-        var data = Enumerable.Range(0, 5).Select(i => (Suspect: dispinfo[0][i], Room: turns[0][i][0], Weapon: turns[0][i][1])).ToArray();
+        var data = Enumerable.Range(0, 5).Select(i => (suspect: dispinfo[0][i], room: turns[0][i][0], weapon: turns[0][i][1])).ToArray();
         _notMurderInfo.Add(data);
 
         yield return WaitForSolve;
@@ -501,7 +500,7 @@ public partial class SouvenirModule
         var suspectNames = new[] { "Miss Scarlett", "Colonel Mustard", "Reverend Green", "Mrs Peacock", "Professor Plum", "Mrs White" };
         var weaponNames = new[] { "Candlestick", "Dagger", "Lead Pipe", "Revolver", "Rope", "Spanner" };
         var roomNames = new[] { "Ballroom", "Billiard Room", "Conservatory", "Dining Room", "Hall", "Kitchen", "Library", "Lounge", "Study" };
-        var gender = new[] { true, false, false, true, false, true };
+        var suspectIsFemale = new[] { true, false, false, true, false, true };
 
         var qs = new List<QandA>();
 
@@ -510,18 +509,18 @@ public partial class SouvenirModule
             string dRoom = null, dWeapon = null;
             if (Rnd.Range(0, 3) != 0)
             {
-                if (_notMurderInfo.Count(n => n.Any(t => t.Suspect == data[i].Suspect)) == 1)
-                    dRoom = dWeapon = translateString(Question.NotMurderRoom, gender[data[i].Suspect] ? "the Not Murder where she was present" : "the Not Murder where he was present");
+                if (_notMurderInfo.Count(n => n.Any(t => t.suspect == data[i].suspect)) == 1)
+                    dRoom = dWeapon = translateString(Question.NotMurderRoom, suspectIsFemale[data[i].suspect] ? "the Not Murder where she was present" : "the Not Murder where he was present");
                 else
                 {
-                    if (_notMurderInfo.Count(n => n.Any(t => t.Suspect == data[i].Suspect && t.Weapon == data[i].Weapon)) == 1)
-                        dRoom = string.Format(translateString(Question.NotMurderRoom, gender[data[i].Suspect] ? "the Not Murder where she initially held the {0}" : "the Not Murder where he initially held the {0}"), translateString(Question.NotMurderRoom, weaponNames[data[i].Weapon]));
-                    if (_notMurderInfo.Count(n => n.Any(t => t.Suspect == data[i].Suspect && t.Room == data[i].Room)) == 1)
-                        dWeapon = string.Format(translateString(Question.NotMurderRoom, gender[data[i].Suspect] ? "the Not Murder where she started in the {0}" : "the Not Murder where he started in the {0}"), translateString(Question.NotMurderRoom, roomNames[data[i].Room]));
+                    if (_notMurderInfo.Count(n => n.Any(t => t.suspect == data[i].suspect && t.weapon == data[i].weapon)) == 1)
+                        dRoom = string.Format(translateString(Question.NotMurderRoom, suspectIsFemale[data[i].suspect] ? "the Not Murder where she initially held the {0}" : "the Not Murder where he initially held the {0}"), translateString(Question.NotMurderRoom, weaponNames[data[i].weapon]));
+                    if (_notMurderInfo.Count(n => n.Any(t => t.suspect == data[i].suspect && t.room == data[i].room)) == 1)
+                        dWeapon = string.Format(translateString(Question.NotMurderRoom, suspectIsFemale[data[i].suspect] ? "the Not Murder where she started in the {0}" : "the Not Murder where he started in the {0}"), translateString(Question.NotMurderRoom, roomNames[data[i].room]));
                 }
             }
-            qs.Add(makeQuestion(Question.NotMurderRoom, module, formattedModuleName: dRoom, formatArgs: new[] { suspectNames[data[i].Suspect] }, correctAnswers: new[] { roomNames[data[i].Room] }));
-            qs.Add(makeQuestion(Question.NotMurderWeapon, module, formattedModuleName: dWeapon, formatArgs: new[] { suspectNames[data[i].Suspect] }, correctAnswers: new[] { weaponNames[data[i].Weapon] }));
+            qs.Add(makeQuestion(Question.NotMurderRoom, module, formattedModuleName: dRoom, formatArgs: new[] { suspectNames[data[i].suspect] }, correctAnswers: new[] { roomNames[data[i].room] }));
+            qs.Add(makeQuestion(Question.NotMurderWeapon, module, formattedModuleName: dWeapon, formatArgs: new[] { suspectNames[data[i].suspect] }, correctAnswers: new[] { weaponNames[data[i].weapon] }));
         }
         addQuestions(module, qs);
     }

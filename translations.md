@@ -199,7 +199,7 @@ Otherwise:
 
 ## Variety
 
-The disambiguator `"the Variety that has one"` might need to agree with the component in question. If this is the case, translate that string as `""` and use the provided variants (with the component in parentheses). If this is not the case, then the variants can be ignored.
+The disambiguator `"the Variety that has one"` might need to agree with the component in question (e.g. gender). If this is the case, translate that string as `""` and use the provided variants with the component in parentheses, but do not include the component in parentheses in your translation. If this is not the case, then the variants should all be translated as `""`.
 
 ## White Arrows
 

@@ -2390,11 +2390,11 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             ModuleName = "接続確認",
             TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
             {
-                ["the Connection Check with no {0}’s"] = "the Connection Check with no {0}’s",
+                ["the Connection Check with no {0}s"] = "the Connection Check with no {0}s",
                 ["the Connection Check with one {0}"] = "the Connection Check with one {0}",
-                ["the Connection Check with two {0}’s"] = "the Connection Check with two {0}’s",
-                ["the Connection Check with three {0}’s"] = "the Connection Check with three {0}’s",
-                ["the Connection Check with four {0}’s"] = "the Connection Check with four {0}’s",
+                ["the Connection Check with two {0}s"] = "the Connection Check with two {0}s",
+                ["the Connection Check with three {0}s"] = "the Connection Check with three {0}s",
+                ["the Connection Check with four {0}s"] = "the Connection Check with four {0}s",
             },
         },
 
@@ -5280,9 +5280,9 @@ public class Translation_ja : TranslationBase<TranslationInfo>
         },
 
         // KayMazey Talk
-        // What was the {1} phrase in {0}?
-        // What was the starting phrase in KayMazey Talk?
-        [Question.KayMazeyTalkPhrase] = new()
+        // What was the {1} word in {0}?
+        // What was the starting word in KayMazey Talk?
+        [Question.KayMazeyTalkWord] = new()
         {
             NeedsTranslation = true,
             QuestionText = "What was the {1} phrase in {0}?",
@@ -5293,8 +5293,8 @@ public class Translation_ja : TranslationBase<TranslationInfo>
             },
             TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
             {
-                ["the KayMazey Talk whose starting phrase was {0}"] = "the KayMazey Talk whose starting phrase was {0}",
-                ["the KayMazey Talk whose goal phrase was {0}"] = "the KayMazey Talk whose goal phrase was {0}",
+                ["the KayMazey Talk whose starting word was {0}"] = "the KayMazey Talk whose starting word was {0}",
+                ["the KayMazey Talk whose goal word was {0}"] = "the KayMazey Talk whose goal word was {0}",
             },
         },
 
@@ -11978,8 +11978,17 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 ["the Variety that has one (digit display)"] = "the Variety that has one (digit display)",
                 ["the Variety that has one (letter display)"] = "the Variety that has one (letter display)",
                 ["the Variety that has one (timer)"] = "the Variety that has one (timer)",
+                ["the Variety that has one (ascendingtimer)"] = "the Variety that has one (ascendingtimer)",
+                ["the Variety that has one (descendingtimer)"] = "the Variety that has one (descendingtimer)",
                 ["the Variety that has one (knob)"] = "the Variety that has one (knob)",
+                ["the Variety that has one (coloredknob)"] = "the Variety that has one (coloredknob)",
+                ["the Variety that has one (redknob)"] = "the Variety that has one (redknob)",
+                ["the Variety that has one (yellowknob)"] = "the Variety that has one (yellowknob)",
+                ["the Variety that has one (blueknob)"] = "the Variety that has one (blueknob)",
+                ["the Variety that has one (blackknob)"] = "the Variety that has one (blackknob)",
                 ["the Variety that has one (bulb)"] = "the Variety that has one (bulb)",
+                ["the Variety that has one (redbulb)"] = "the Variety that has one (redbulb)",
+                ["the Variety that has one (yellowbulb)"] = "the Variety that has one (yellowbulb)",
                 ["the Variety that has {0}"] = "the Variety that has {0}",
                 ["a knob"] = "a knob",
                 ["a colored knob"] = "a colored knob",

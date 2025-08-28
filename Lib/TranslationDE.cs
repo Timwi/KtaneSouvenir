@@ -2503,17 +2503,16 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // What pair of numbers was present in Connection Check?
         [Question.ConnectionCheckNumbers] = new()
         {
-            NeedsTranslation = true,
             Gender = Gender.Feminine,
             QuestionText = "Welches Zahlenpaar war bei {0} vorhanden?",
             ModuleName = "Verbindungsprüfung",
             TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
             {
-                ["the Connection Check with no {0}’s"] = "the Connection Check with no {0}’s",
-                ["the Connection Check with one {0}"] = "the Connection Check with one {0}",
-                ["the Connection Check with two {0}’s"] = "the Connection Check with two {0}’s",
-                ["the Connection Check with three {0}’s"] = "the Connection Check with three {0}’s",
-                ["the Connection Check with four {0}’s"] = "the Connection Check with four {0}’s",
+                ["the Connection Check with no {0}s"] = "der Verbindungsprüfung mit keiner {0}",
+                ["the Connection Check with one {0}"] = "der Verbindungsprüfung mit einer {0}",
+                ["the Connection Check with two {0}s"] = "der Verbindungsprüfung mit zwei {0}en",
+                ["the Connection Check with three {0}s"] = "der Verbindungsprüfung mit drei {0}en",
+                ["the Connection Check with four {0}s"] = "der Verbindungsprüfung mit vier {0}en",
             },
         },
 
@@ -5044,17 +5043,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Which of these hinges was initially present on Hinges?
         [Question.HingesInitialHinges] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "Which of these hinges was initially {1} {0}?",
+            Gender = Gender.Plural,
+            ModuleNameDative = "Scharnieren",
+            QuestionText = "Welches dieser Scharniere war bei {0} anfänglich {1}?",
+            ModuleName = "Scharniere",
             FormatArgs = new Dictionary<string, string>
             {
-                ["present on"] = "present on",
-                ["absent from"] = "absent from",
+                ["present on"] = "vorhanden",
+                ["absent from"] = "abwesend",
             },
             TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
             {
-                ["the Hinges where this hinge was initally present"] = "the Hinges where this hinge was initally present",
-                ["the Hinges where this hinge was initally absent"] = "the Hinges where this hinge was initally absent",
+                ["the Hinges where this hinge was initally present"] = "den Scharnieren, bei denen dieses Scharnier anfänglich vorhanden war,",
+                ["the Hinges where this hinge was initally absent"] = "den Scharnieren, bei denen dieses Scharnier anfänglich abwesend war,",
             },
         },
 
@@ -5525,21 +5526,20 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         },
 
         // KayMazey Talk
-        // What was the {1} phrase in {0}?
-        // What was the starting phrase in KayMazey Talk?
-        [Question.KayMazeyTalkPhrase] = new()
+        // What was the {1} word in {0}?
+        // What was the starting word in KayMazey Talk?
+        [Question.KayMazeyTalkWord] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What was the {1} phrase in {0}?",
+            QuestionText = "Was war bei {0} das {1}?",
             FormatArgs = new Dictionary<string, string>
             {
-                ["starting"] = "starting",
-                ["goal"] = "goal",
+                ["starting"] = "Startwort",
+                ["goal"] = "Zielwort",
             },
             TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
             {
-                ["the KayMazey Talk whose starting phrase was {0}"] = "the KayMazey Talk whose starting phrase was {0}",
-                ["the KayMazey Talk whose goal phrase was {0}"] = "the KayMazey Talk whose goal phrase was {0}",
+                ["the KayMazey Talk whose starting word was {0}"] = "the KayMazey Talk whose starting word was {0}",
+                ["the KayMazey Talk whose goal word was {0}"] = "the KayMazey Talk whose goal word was {0}",
             },
         },
 
@@ -5972,11 +5972,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // What was the first function in Linq?
         [Question.LinqFunction] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What was the {1} function in {0}?",
+            QuestionText = "Was war bei {0} die {1}e Funktion?",
             TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
             {
-                ["the Linq whose {0} function was {1}"] = "the Linq whose {0} function was {1}",
+                ["the Linq whose {0} function was {1}"] = "dem Linq, dessen {0}e Funktion {1} war,",
             },
         },
 
@@ -7564,8 +7563,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // What room was Miss Scarlett in initially on Not Murder?
         [Question.NotMurderRoom] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What room was {1} in during {2} on {0}?",
+            Gender = Gender.Masculine,
+            QuestionText = "In welchem Zimmer war {1} bei {0} am Anfang?",
+            ModuleName = "Mord Mal Anders",
             FormatArgs = new Dictionary<string, string>
             {
                 ["Miss Scarlett"] = "Miss Scarlett",
@@ -7577,47 +7577,48 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Answers = new Dictionary<string, string>
             {
-                ["Ballroom"] = "Ballroom",
-                ["Billiard Room"] = "Billiard Room",
-                ["Conservatory"] = "Conservatory",
-                ["Dining Room"] = "Dining Room",
-                ["Hall"] = "Hall",
-                ["Kitchen"] = "Kitchen",
-                ["Library"] = "Library",
-                ["Lounge"] = "Lounge",
-                ["Study"] = "Study",
+                ["Ballroom"] = "Musikzimmer",
+                ["Billiard Room"] = "Billardzimmer",
+                ["Conservatory"] = "Wintergarten",
+                ["Dining Room"] = "Speisezimmer",
+                ["Hall"] = "Halle",
+                ["Kitchen"] = "Küche",
+                ["Library"] = "Bibliothek",
+                ["Lounge"] = "Salon",
+                ["Study"] = "Arbeitszimmer",
             },
             TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
             {
-                ["the Not Murder where he initially held the {0}"] = "the Not Murder where he initially held the {0}",
-                ["the Not Murder where she initially held the {0}"] = "the Not Murder where she initially held the {0}",
-                ["the Not Murder where he started in the {0}"] = "the Not Murder where he started in the {0}",
-                ["the Not Murder where she started in the {0}"] = "the Not Murder where she started in the {0}",
-                ["the Not Murder where he was present"] = "the Not Murder where he was present",
-                ["the Not Murder where she was present"] = "the Not Murder where she was present",
-                ["Candlestick"] = "Candlestick",
-                ["Dagger"] = "Dagger",
-                ["Lead Pipe"] = "Lead Pipe",
-                ["Revolver"] = "Revolver",
-                ["Rope"] = "Rope",
-                ["Spanner"] = "Spanner",
-                ["Ballroom"] = "Ballroom",
-                ["Billiard Room"] = "Billiard Room",
-                ["Conservatory"] = "Conservatory",
-                ["Dining Room"] = "Dining Room",
-                ["Hall"] = "Hall",
-                ["Kitchen"] = "Kitchen",
-                ["Library"] = "Library",
-                ["Lounge"] = "Lounge",
-                ["Study"] = "Study",
+                ["the Not Murder where he initially held the {0}"] = "dem Mord Mal Anders, bei dem er anfänglich {0} hatte,",
+                ["the Not Murder where she initially held the {0}"] = "dem Mord Mal Anders, bei dem sie anfänglich {0} hatte,",
+                ["the Not Murder where he started in the {0}"] = "dem Mord Mal Anders, bei dem er {0} anfing,",
+                ["the Not Murder where she started in the {0}"] = "dem Mord Mal Anders, bei dem sie {0} anfing,",
+                ["the Not Murder where he was present"] = "dem Mord Mal Anders, bei dem er anwesend war,",
+                ["the Not Murder where she was present"] = "dem Mord Mal Anders, bei dem sie anwesend war,",
+                ["Candlestick"] = "den Kerzenleuchter",
+                ["Dagger"] = "den Dolch",
+                ["Lead Pipe"] = "das Bleirohr",
+                ["Revolver"] = "die Pistole",
+                ["Rope"] = "das Seil",
+                ["Spanner"] = "die Rohrzange",
+                ["Ballroom"] = "im Musikzimmer",
+                ["Billiard Room"] = "im Billardzimmer",
+                ["Conservatory"] = "im Wintergarten",
+                ["Dining Room"] = "im Speisezimmer",
+                ["Hall"] = "in der Halle",
+                ["Kitchen"] = "in der Küche",
+                ["Library"] = "in der Bibliothek",
+                ["Lounge"] = "im Salon",
+                ["Study"] = "im Arbeitszimmer",
             },
         },
         // What weapon did {1} possess initially on {0}?
         // What weapon did Miss Scarlett possess initially on Not Murder?
         [Question.NotMurderWeapon] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What weapon did {1} possess during {2} on {0}?",
+            Gender = Gender.Masculine,
+            QuestionText = "Welche Waffe hatte {1} bei {0} am Anfang?",
+            ModuleName = "Mord Mal Anders",
             FormatArgs = new Dictionary<string, string>
             {
                 ["Miss Scarlett"] = "Miss Scarlett",
@@ -7629,12 +7630,12 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             Answers = new Dictionary<string, string>
             {
-                ["Candlestick"] = "Candlestick",
-                ["Dagger"] = "Dagger",
-                ["Lead Pipe"] = "Lead Pipe",
-                ["Revolver"] = "Revolver",
-                ["Rope"] = "Rope",
-                ["Spanner"] = "Spanner",
+                ["Candlestick"] = "Kerzenleuchter",
+                ["Dagger"] = "Dolch",
+                ["Lead Pipe"] = "Bleirohr",
+                ["Revolver"] = "Pistole",
+                ["Rope"] = "Seil",
+                ["Spanner"] = "Rohrzange",
             },
         },
 
@@ -8548,7 +8549,6 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // What was the base colour in The Pentabutton?
         [Question.PentabuttonBaseColor] = new()
         {
-            NeedsTranslation = true,
             Gender = Gender.Masculine,
             QuestionText = "Was war bei {0} die Basisfarbe?",
             ModuleName = "Pentaknopf",
@@ -8564,7 +8564,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
             {
-                ["the Pentabutton labelled “{0}”"] = "the Pentabutton labelled “{0}”",
+                ["the Pentabutton labelled “{0}”"] = "dem Pentaknopf mit der Aufschrift “{0}”",
             },
         },
 
@@ -8875,24 +8875,24 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // What was the starting position in Polyhedral Maze?
         [Question.PolyhedralMazeStartPosition] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What was the starting position in {0}?",
+            QuestionText = "Was war bei {0} die Startposition?",
+            ModuleName = "Polyederlabyrinth",
             TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
             {
-                ["the 4-truncated deltoidal icositetrahedral Polyhedral Maze"] = "the 4-truncated deltoidal icositetrahedral Polyhedral Maze",
-                ["the chamfered dodecahedral Polyhedral Maze"] = "the chamfered dodecahedral Polyhedral Maze",
-                ["the chamfered icosahedral Polyhedral Maze"] = "the chamfered icosahedral Polyhedral Maze",
-                ["the deltoidal hexecontahedral Polyhedral Maze"] = "the deltoidal hexecontahedral Polyhedral Maze",
-                ["the disdyakis dodecahedral Polyhedral Maze"] = "the disdyakis dodecahedral Polyhedral Maze",
-                ["the joined snub cubic Polyhedral Maze"] = "the joined snub cubic Polyhedral Maze",
-                ["the joined rhombicuboctahedral Polyhedral Maze"] = "the joined rhombicuboctahedral Polyhedral Maze",
-                ["the pentagonal hexecontahedral Polyhedral Maze"] = "the pentagonal hexecontahedral Polyhedral Maze",
-                ["the orthokis propello cubic Polyhedral Maze"] = "the orthokis propello cubic Polyhedral Maze",
-                ["the pentakis dodecahedral Polyhedral Maze"] = "the pentakis dodecahedral Polyhedral Maze",
-                ["the rectified rhombicuboctahedral Polyhedral Maze"] = "the rectified rhombicuboctahedral Polyhedral Maze",
-                ["the triakis icosahedral Polyhedral Maze"] = "the triakis icosahedral Polyhedral Maze",
-                ["the rhombicosidodecahedral Polyhedral Maze"] = "the rhombicosidodecahedral Polyhedral Maze",
-                ["the canonical rectified snub cubic Polyhedral Maze"] = "the canonical rectified snub cubic Polyhedral Maze",
+                ["the 4-truncated deltoidal icositetrahedral Polyhedral Maze"] = "dem Polyederlabyrinth mit einem 4-gestumpften Deltoidikositetraeder",
+                ["the chamfered dodecahedral Polyhedral Maze"] = "dem Polyederlabyrinth mit einem abgekanteten Dodekaeder",
+                ["the chamfered icosahedral Polyhedral Maze"] = "dem Polyederlabyrinth mit einem abgekanteten Ikosaeder",
+                ["the deltoidal hexecontahedral Polyhedral Maze"] = "dem Polyederlabyrinth mit einem Deltoidhexakontaeder",
+                ["the disdyakis dodecahedral Polyhedral Maze"] = "dem Polyederlabyrinth mit einem Disdyakisdodekaeder",
+                ["the joined snub cubic Polyhedral Maze"] = "dem Polyederlabyrinth mit einem verbundenen abgeschrägten Hexaeder",
+                ["the joined rhombicuboctahedral Polyhedral Maze"] = "dem Polyederlabyrinth mit einem verbundenen Rhombenkuboktaeder",
+                ["the pentagonal hexecontahedral Polyhedral Maze"] = "dem Polyederlabyrinth mit einem Pentagonhexakontaeder",
+                ["the orthokis propello cubic Polyhedral Maze"] = "dem Polyederlabyrinth mit einem Orthokis-Propello-Würfel",
+                ["the pentakis dodecahedral Polyhedral Maze"] = "dem Polyederlabyrinth mit einem Pentakisdodekaeder",
+                ["the rectified rhombicuboctahedral Polyhedral Maze"] = "dem Polyederlabyrinth mit einem Rhombikuboktaederstumpf",
+                ["the triakis icosahedral Polyhedral Maze"] = "dem Polyederlabyrinth mit einem Triakisikosaeder",
+                ["the rhombicosidodecahedral Polyhedral Maze"] = "dem Polyederlabyrinth mit einem Rhombikosidodekaeder",
+                ["the canonical rectified snub cubic Polyhedral Maze"] = "dem Polyederlabyrinth mit einem kanonischen abgeschrägten Hexaederstumpf",
             },
         },
 
@@ -12301,7 +12301,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [Question.VarietyLED] = new()
         {
             NeedsTranslation = true,
-            QuestionText = "What color was the LED flashing in {0}?",
+            Gender = Gender.Feminine,
+            QuestionText = "Welche Farbe ist bei {0} bei der LED vorgekommen?",
+            ModuleName = "Vielfalt",
             Answers = new Dictionary<string, string>
             {
                 ["Red"] = "Rot",
@@ -12312,120 +12314,134 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
             },
             TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
             {
-                ["the Variety that has one"] = "the Variety that has one",
-                ["the Variety that has one (LED)"] = "the Variety that has one (LED)",
-                ["the Variety that has one (digit display)"] = "the Variety that has one (digit display)",
-                ["the Variety that has one (letter display)"] = "the Variety that has one (letter display)",
-                ["the Variety that has one (timer)"] = "the Variety that has one (timer)",
-                ["the Variety that has one (knob)"] = "the Variety that has one (knob)",
-                ["the Variety that has one (bulb)"] = "the Variety that has one (bulb)",
-                ["the Variety that has {0}"] = "the Variety that has {0}",
-                ["a knob"] = "a knob",
-                ["a colored knob"] = "a colored knob",
-                ["a white knob"] = "a white knob",
-                ["a red knob"] = "a red knob",
-                ["a black knob"] = "a black knob",
-                ["a blue knob"] = "a blue knob",
-                ["a yellow knob"] = "a yellow knob",
-                ["a keypad"] = "a keypad",
-                ["a white keypad"] = "a white keypad",
-                ["a red keypad"] = "a red keypad",
-                ["a yellow keypad"] = "a yellow keypad",
-                ["a blue keypad"] = "a blue keypad",
-                ["a slider"] = "a slider",
-                ["a horizontal slider"] = "a horizontal slider",
-                ["a vertical slider"] = "a vertical slider",
-                ["an LED"] = "an LED",
-                ["a digit display"] = "a digit display",
-                ["a wire"] = "a wire",
-                ["a black wire"] = "a black wire",
-                ["a blue wire"] = "a blue wire",
-                ["a red wire"] = "a red wire",
-                ["a yellow wire"] = "a yellow wire",
-                ["a white wire"] = "a white wire",
-                ["a button"] = "a button",
-                ["a red button"] = "a red button",
-                ["a yellow button"] = "a yellow button",
-                ["a blue button"] = "a blue button",
-                ["a white button"] = "a white button",
-                ["a letter display"] = "a letter display",
-                ["a Braille display"] = "a Braille display",
-                ["a key-in-lock"] = "a key-in-lock",
-                ["a switch"] = "a switch",
-                ["a red switch"] = "a red switch",
-                ["a yellow switch"] = "a yellow switch",
-                ["a blue switch"] = "a blue switch",
-                ["a white switch"] = "a white switch",
-                ["a timer"] = "a timer",
-                ["an ascending timer"] = "an ascending timer",
-                ["a descending timer"] = "a descending timer",
-                ["a die"] = "a die",
-                ["a light-on-dark die"] = "a light-on-dark die",
-                ["a dark-on-light die"] = "a dark-on-light die",
-                ["a bulb"] = "a bulb",
-                ["a red bulb"] = "a red bulb",
-                ["a yellow bulb"] = "a yellow bulb",
-                ["a maze"] = "a maze",
-                ["a 3×3 maze"] = "a 3×3 maze",
-                ["a 3×4 maze"] = "a 3×4 maze",
-                ["a 4×3 maze"] = "a 4×3 maze",
-                ["a 4×4 maze"] = "a 4×4 maze",
+                ["the Variety that has one"] = "der zutreffenden Vielfalt",
+                ["the Variety that has one (LED)"] = "",
+                ["the Variety that has one (digit display)"] = "",
+                ["the Variety that has one (letter display)"] = "",
+                ["the Variety that has one (timer)"] = "",
+                ["the Variety that has one (ascendingtimer)"] = "",
+                ["the Variety that has one (descendingtimer)"] = "",
+                ["the Variety that has one (knob)"] = "",
+                ["the Variety that has one (coloredknob)"] = "",
+                ["the Variety that has one (redknob)"] = "",
+                ["the Variety that has one (yellowknob)"] = "",
+                ["the Variety that has one (blueknob)"] = "",
+                ["the Variety that has one (blackknob)"] = "",
+                ["the Variety that has one (bulb)"] = "",
+                ["the Variety that has one (redbulb)"] = "",
+                ["the Variety that has one (yellowbulb)"] = "",
+                ["the Variety that has {0}"] = "der Vielfalt mit {0}",
+                ["a knob"] = "einem Drehregler",
+                ["a colored knob"] = "einem farbigen Drehregler",
+                ["a white knob"] = "einem weißen Drehregler",
+                ["a red knob"] = "einem roten Drehregler",
+                ["a black knob"] = "einem schwarzen  Drehregler",
+                ["a blue knob"] = "einem blauen Drehregler",
+                ["a yellow knob"] = "einem gelben Drehregler",
+                ["a keypad"] = "einem Tastenfeld",
+                ["a white keypad"] = "einem weißen Tastenfeld",
+                ["a red keypad"] = "einem roten Tastenfeld",
+                ["a yellow keypad"] = "einem gelben Tastenfeld",
+                ["a blue keypad"] = "einem blauen Tastenfeld",
+                ["a slider"] = "einem Schieber",
+                ["a horizontal slider"] = "einem waagerechten Schieber",
+                ["a vertical slider"] = "einem senkrechten Schieber",
+                ["an LED"] = "einer LED",
+                ["a digit display"] = "einem Zifferndisplay",
+                ["a wire"] = "einem Draht",
+                ["a black wire"] = "einem schwarzen Draht",
+                ["a blue wire"] = "einem blauen Draht",
+                ["a red wire"] = "einem roten Draht",
+                ["a yellow wire"] = "einem gelben Draht",
+                ["a white wire"] = "einem weißen Draht",
+                ["a button"] = "einem Druckknopf",
+                ["a red button"] = "einem roten Druckknopf",
+                ["a yellow button"] = "einem gelben Druckknopf",
+                ["a blue button"] = "einem blauen Druckknopf",
+                ["a white button"] = "einem weißen Druckknopf",
+                ["a letter display"] = "einem Buchstabendisplay",
+                ["a Braille display"] = "einem Braille-Display",
+                ["a key-in-lock"] = "einem Schlüssel",
+                ["a switch"] = "einem Schalter",
+                ["a red switch"] = "einem roten Schalter",
+                ["a yellow switch"] = "einem gelben Schalter",
+                ["a blue switch"] = "einem blauen Schalter",
+                ["a white switch"] = "einem weißen Schalter",
+                ["a timer"] = "einem Timer",
+                ["an ascending timer"] = "einem aufsteigenden Timer",
+                ["a descending timer"] = "einem absteigenden Timer",
+                ["a die"] = "einem Würfel",
+                ["a light-on-dark die"] = "einem dunklen Würfel mit hellen Punkten",
+                ["a dark-on-light die"] = "einem hellen Würfel mit dunklen Punkten",
+                ["a bulb"] = "einer Glühlampe",
+                ["a red bulb"] = "einer roten Glühlampe",
+                ["a yellow bulb"] = "einer gelben Glühlampe",
+                ["a maze"] = "einem Labyrinth",
+                ["a 3×3 maze"] = "einem 3×3-Labyrinth",
+                ["a 3×4 maze"] = "einem 3×4-Labyrinth",
+                ["a 4×3 maze"] = "einem 4×3-Labyrinth",
+                ["a 4×4 maze"] = "einem 4×4-Labyrinth",
             },
         },
         // What digit was displayed but not the answer for the digit display in {0}?
         // What digit was displayed but not the answer for the digit display in Variety?
         [Question.VarietyDigitDisplay] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What digit was displayed but not the answer for the digit display in {0}?",
+            Gender = Gender.Feminine,
+            QuestionText = "Welche Ziffer kam bei {0} auf dem Zifferndisplay vor, war aber nicht die Lösung?",
+            ModuleName = "Vielfalt",
         },
         // What word could be formed but was not the answer for the letter display in {0}?
         // What word could be formed but was not the answer for the letter display in Variety?
         [Question.VarietyLetterDisplay] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What word could be formed but was not the answer for the letter display in {0}?",
+            Gender = Gender.Feminine,
+            QuestionText = "Welches Wort konnte bei {0} mit dem Buchstabendisplay gebildet werden, war aber nicht die Lösung?",
+            ModuleName = "Vielfalt",
         },
         // What was the maximum display for the {1}timer in {0}?
         // What was the maximum display for the timer in Variety?
         [Question.VarietyTimer] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What was the maximum display for the {1}timer in {0}?",
+            Gender = Gender.Feminine,
+            QuestionText = "Was war bei {0} die höchste Zahl auf dem {1}Timer?",
+            ModuleName = "Vielfalt",
             FormatArgs = new Dictionary<string, string>
             {
                 [""] = "",
-                ["ascending "] = "ascending ",
-                ["descending "] = "descending ",
+                ["ascending "] = "aufsteigenden ",
+                ["descending "] = "absteigenden ",
             },
         },
         // What was n for the {1}knob in {0}?
         // What was n for the knob in Variety?
         [Question.VarietyColoredKnob] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What was n for the {1}knob in {0}?",
+            Gender = Gender.Feminine,
+            QuestionText = "Was war bei {0} der Wert n beim {1}Drehregler?",
+            ModuleName = "Vielfalt",
             FormatArgs = new Dictionary<string, string>
             {
                 [""] = "",
-                ["colored "] = "colored ",
-                ["red "] = "red ",
-                ["black "] = "black ",
-                ["blue "] = "blue ",
-                ["yellow "] = "yellow ",
+                ["colored "] = "farbigen ",
+                ["red "] = "roten ",
+                ["black "] = "schwarzen ",
+                ["blue "] = "blauen ",
+                ["yellow "] = "gelben ",
             },
         },
         // What was n for the {1}bulb in {0}?
         // What was n for the bulb in Variety?
         [Question.VarietyBulb] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What was n for the {1}bulb in {0}?",
+            Gender = Gender.Feminine,
+            QuestionText = "Was war bei {0} der Wert n bei der {1}Glühlampe?",
+            ModuleName = "Vielfalt",
             FormatArgs = new Dictionary<string, string>
             {
                 [""] = "",
-                ["red "] = "red ",
-                ["yellow "] = "yellow ",
+                ["red "] = "roten ",
+                ["yellow "] = "gelben ",
             },
         },
 
@@ -12442,7 +12458,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // What was the color of the first vector in Vectors?
         [Question.VectorsColors] = new()
         {
-            NeedsTranslation = true,
+            Gender = Gender.Plural,
             QuestionText = "Welche Farbe hatte bei {0} der {1} Vektor?",
             ModuleName = "Vektoren",
             FormatArgs = new Dictionary<string, string>

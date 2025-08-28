@@ -294,7 +294,7 @@ public partial class SouvenirModule
         string format = null;
         Sprite formatSprite = null;
         if (_moduleCounts["hinges"] > 1 && Rnd.Range(0, 3) != 0)
-        { 
+        {
             var presentCount = initialHingesStatus.Count(x => x != 0);
             var disambiguators = Enumerable.Range(0, 8)
                 .Where(d =>
@@ -311,7 +311,7 @@ public partial class SouvenirModule
         var presentHinges = new List<Sprite>();
         var absentHinges = new List<Sprite>();
         for (var pos = 0; pos < 8; pos++)
-            if (!disambiguator.HasValue || disambiguator.Value != pos)
+            if (pos != disambiguator)
                 (initialHingesStatus[pos] == 1 ? presentHinges : absentHinges).Add(HingesSprites[pos]);
         var allHinges = presentHinges.Concat(absentHinges).ToArray();
 

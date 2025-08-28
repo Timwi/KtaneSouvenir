@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
 using Souvenir;
@@ -535,7 +534,7 @@ public partial class SouvenirModule
         IEnumerable<QandA> makeQuestions()
         {
             List<int> blueWins = new(), redWins = new(), draws = new();
-            for (int stage = 0; stage < leftDisplays.Count; stage++)
+            for (var stage = 0; stage < leftDisplays.Count; stage++)
                 (matchup(leftDisplays[stage], rightDisplays[stage]) switch
                 {
                     OutcomeRed => redWins,

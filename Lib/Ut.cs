@@ -634,9 +634,7 @@ public static class Ut
         if (source == null)
             throw new ArgumentNullException(nameof(source));
         using var e = source.GetEnumerator();
-        if (e.MoveNext())
-            return e.Current;
-        return null;
+        return e.MoveNext() ? e.Current : null;
     }
 
     /// <summary>
