@@ -180,7 +180,7 @@ public partial class SouvenirModule
                         flavor == "descending" && canDisambiguateWith("a descending timer"))
                     {
                         var str = translateString(Question.VarietyLED, "the Variety that has one");
-                        return str != "" ? str : translateString(Question.VarietyLED, "the Variety that has one (timer)");
+                        return str != "" ? str : translateString(Question.VarietyLED, $"the Variety that has one ({flavor ?? ""}timer)");
                     }
                     break;
                 case "ColoredKnob":
@@ -188,7 +188,7 @@ public partial class SouvenirModule
                         flavor != null && canDisambiguateWith($"a {flavor} knob"))
                     {
                         var str = translateString(Question.VarietyLED, "the Variety that has one");
-                        return str != "" ? str : translateString(Question.VarietyLED, "the Variety that has one (knob)");
+                        return str != "" ? str : translateString(Question.VarietyLED, $"the Variety that has one ({flavor ?? ""}knob)");
                     }
                     break;
                 case "Bulb":
@@ -196,7 +196,7 @@ public partial class SouvenirModule
                         flavor != null && canDisambiguateWith($"a {flavor} bulb"))
                     {
                         var str = translateString(Question.VarietyLED, "the Variety that has one");
-                        return str != "" ? str : translateString(Question.VarietyLED, "the Variety that has one (bulb)");
+                        return str != "" ? str : translateString(Question.VarietyLED, $"the Variety that has one ({flavor ?? ""}bulb)");
                     }
                     break;
                 default:
