@@ -681,7 +681,8 @@ public enum Question
         UsesQuestionSprite = true, ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1, TranslateAnswers = true)]
     ConnectedMonitorsOrdinalIndicator,
 
-    [SouvenirQuestion("What pair of numbers was present in {0}?", "Connection Check", ThreeColumns6Answers, TranslatableStrings = new[] { "the Connection Check with no {0}s", "the Connection Check with one {0}", "the Connection Check with two {0}s", "the Connection Check with three {0}s", "the Connection Check with four {0}s" })]
+    [SouvenirQuestion("What pair of numbers was present in {0}?", "Connection Check", ThreeColumns6Answers, TranslatableStrings = new[] { "the Connection Check with no {0}s", "the Connection Check with one {0}", "the Connection Check with two {0}s", "the Connection Check with three {0}s", "the Connection Check with four {0}s" },
+        ExampleAnswers = new[] { "2 1", "3 1", "4 1", "5 1", "6 1", "7 1", "8 1", "1 2", "3 2", "4 2", "5 2", "6 2", "7 2", "8 2", "1 3", "2 3", "4 3", "5 3", "6 3", "7 3", "8 3", "1 4", "2 4", "3 4", "5 4", "6 4", "7 4", "8 4", "1 5", "2 5", "3 5", "4 5", "6 5", "7 5", "8 5", "1 6", "2 6", "3 6", "4 6", "5 6", "7 6", "8 6", "1 7", "2 7", "3 7", "4 7", "5 7", "6 7", "8 7", "1 8", "2 8", "3 8", "4 8", "5 8", "6 8", "7 8" }, ExampleFormatArgumentGroupSize = 1)]
     ConnectionCheckNumbers,
 
     [SouvenirQuestion("What was the solution you selected first in {0}?", "Coordinates", OneColumn4Answers, ExampleAnswers = new[] { "[4,7]", "C4", "<0, 2>", "3, 1", "(6,2)", "B-1", "“1, 0”", "4/3", "[12]", "#23", "四十七" })]
@@ -1572,7 +1573,7 @@ public enum Question
         "Onion", "Corn", "big MIOLK", "Yam", "Corn Cube", "Egg", "Eggchips", "hamger", "Tyler the Creator", "Onionade", "Soup", "jeb", AddThe = true)]
     KanyeEncounterFoods,
 
-    [SouvenirQuestion("What was the {1} word in {0}?", "KayMazey Talk", OneColumn4Answers, "Knit", "Knows", "Knock", "Knew", "Knoll", "Kneed", "Knuff", "Knork", "Knout", "Knits", "Knife", "Knights", "Knap", "Knee", "Knocks", "Knacks", "Knab", "Knocked", "Knight", "Knitch", "Knots", "Knish", "Knob", "Knox", "Knur", "Knook", "Know", "Knack", "Knurl", "Knot",
+    [SouvenirQuestion("What was the {1} word in {0}?", "KayMazey Talk", ThreeColumns6Answers, "Knit", "Knows", "Knock", "Knew", "Knoll", "Kneed", "Knuff", "Knork", "Knout", "Knits", "Knife", "Knights", "Knap", "Knee", "Knocks", "Knacks", "Knab", "Knocked", "Knight", "Knitch", "Knots", "Knish", "Knob", "Knox", "Knur", "Knook", "Know", "Knack", "Knurl", "Knot",
         ExampleFormatArguments = new[] { "starting", "goal" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true }, TranslatableStrings = new[] { "the KayMazey Talk whose starting word was {0}", "the KayMazey Talk whose goal word was {0}" })]
     KayMazeyTalkWord,
 
