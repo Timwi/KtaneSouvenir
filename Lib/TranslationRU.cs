@@ -615,7 +615,23 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // What was T in The Azure Button?
         [Question.AzureButtonT] = new()
         {
+            NeedsTranslation = true,
             QuestionText = "Какое была карта T {0}?",
+            TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+            {
+                ["the Azure Button that had this card in Stage 1"] = "the Azure Button that had this card in Stage 1",
+                ["the Azure Button where M was {0}"] = "the Azure Button where M was {0}",
+                ["the Azure Button where the decoy arrow went {0} at some point"] = "the Azure Button where the decoy arrow went {0} at some point",
+                ["the Azure Button where the {1} non-decoy arrow went {0} at some point"] = "the Azure Button where the {1} non-decoy arrow went {0} at some point",
+                ["north"] = "north",
+                ["north-east"] = "north-east",
+                ["east"] = "east",
+                ["south-east"] = "south-east",
+                ["south"] = "south",
+                ["south-west"] = "south-west",
+                ["west"] = "west",
+                ["north-west"] = "north-west",
+            },
         },
         // Which of these cards was shown in Stage 1, but not T, in {0}?
         // Which of these cards was shown in Stage 1, but not T, in The Azure Button?
@@ -1186,8 +1202,19 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // What was D in The Blue Button?
         [Question.BlueButtonD] = new()
         {
+            NeedsTranslation = true,
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какое значение было у D на {0}?",
+            TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+            {
+                ["the Blue Button where {0} was {1}"] = "the Blue Button where {0} was {1}",
+                ["Blue"] = "Blue",
+                ["Green"] = "Green",
+                ["Cyan"] = "Cyan",
+                ["Red"] = "Red",
+                ["Magenta"] = "Magenta",
+                ["Yellow"] = "Yellow",
+            },
         },
         // What was {1} in {0}?
         // What was E in The Blue Button?
@@ -6933,19 +6960,29 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
         // Which Greek letter appeared on The Navy Button (case-sensitive)?
         [Question.NavyButtonGreekLetters] = new()
         {
+            NeedsTranslation = true,
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "Какая греческая буква (с учётом регистра) появилась на {0}?",
+            TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+            {
+                ["the Navy Button that had a {0} on it"] = "the Navy Button that had a {0} on it",
+                ["the Navy Button that had an {0} on it"] = "the Navy Button that had an {0} on it",
+                ["the Navy Button where the (0-indexed) column of the given was {0}"] = "the Navy Button where the (0-indexed) column of the given was {0}",
+                ["the Navy Button where the (0-indexed) row of the given was {0}"] = "the Navy Button where the (0-indexed) row of the given was {0}",
+                ["the Navy Button where the value of the given was {0}"] = "the Navy Button where the value of the given was {0}",
+            },
         },
-        // What was the {1} of the given in {0} (0-indexed)?
-        // What was the column of the given in The Navy Button (0-indexed)?
+        // What was the {1} of the given in {0}?
+        // What was the (0-indexed) column of the given in The Navy Button?
         [Question.NavyButtonGiven] = new()
         {
+            NeedsTranslation = true,
             Conjugation = Conjugation.PrepositiveMascNeuter,
             QuestionText = "{1} (с индексом 0) на {0}?",
             FormatArgs = new Dictionary<string, string>
             {
-                ["column"] = "Какой столбец был указан",
-                ["row"] = "Какая строка была указана",
+                ["(0-indexed) column"] = "(0-indexed) column",
+                ["(0-indexed) row"] = "(0-indexed) row",
                 ["value"] = "Какое значение было указано",
             },
         },

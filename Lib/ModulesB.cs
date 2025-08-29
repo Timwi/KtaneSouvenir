@@ -567,11 +567,10 @@ public partial class SouvenirModule
         addQuestion(module, Question.BlueArrowsInitialCharacters, correctAnswers: new[] { coord });
     }
 
+    private readonly List<(int d, int e, int f, int g, int h, int m, int n, string p, string q, int x)> _blueButtonInfos = [];
     private IEnumerator<YieldInstruction> ProcessBlueButton(ModuleData module)
     {
         var comp = GetComponent(module, "BlueButtonScript");
-
-        yield return WaitForSolve;
 
         var suitsGoal = GetArrayField<int>(comp, "_suitsGoal").Get(expectedLength: 4);
         var colorStageColors = GetArrayField<int>(comp, "_colorStageColors").Get();
@@ -588,20 +587,45 @@ public partial class SouvenirModule
         var valM = equationOffsets[3];  // 1–9
         var valN = colorStageColors.Length; // 4–9
         var valP = suitsGoal.Where(s => s != 3).Select(s => "♠♥♣"[s]).JoinString(); // permutation of ♠♥♣
-        var valQ = colorNames[colorStageColors[3]]; // color
+        var valQ = translateString(Question.BlueButtonD, colorNames[colorStageColors[3]]); // color
         var valX = equationOffsets[2];  // 1–5
 
+        _blueButtonInfos.Add((valD, valE, valF, valG, valH, valM, valN, valP, valQ, valX));
+
+        yield return WaitForSolve;
+
+        var candidateDiscriminators = new List<(string format, string name)> { (null, null) };
+        void addCandidateDiscriminator<T>(Func<(int d, int e, int f, int g, int h, int m, int n, string p, string q, int x), T> getter, string name, T value)
+        {
+            if (_blueButtonInfos.Count(tup => getter(tup).Equals(value)) == 1)
+                candidateDiscriminators.Add((string.Format(translateString(Question.BlueButtonD, "the Blue Button where {0} was {1}"), name, value), name));
+        }
+        addCandidateDiscriminator(tup => tup.d, "D", valD);
+        addCandidateDiscriminator(tup => tup.e, "E", valE);
+        addCandidateDiscriminator(tup => tup.f, "F", valF);
+        addCandidateDiscriminator(tup => tup.g, "G", valG);
+        addCandidateDiscriminator(tup => tup.h, "H", valH);
+        addCandidateDiscriminator(tup => tup.m, "M", valM);
+        addCandidateDiscriminator(tup => tup.n, "N", valN);
+        addCandidateDiscriminator(tup => tup.p, "P", valP);
+        addCandidateDiscriminator(tup => tup.q, "Q", valQ);
+        addCandidateDiscriminator(tup => tup.x, "X", valX);
+
+        QandA makeQ(Question q, string forbiddenDiscriminator, string correctAnswer, string[] formatArgs = null) =>
+            makeQuestion(q, module, formatArgs: formatArgs, correctAnswers: new[] { correctAnswer },
+                formattedModuleName: candidateDiscriminators.Where(tup => tup.name != forbiddenDiscriminator).PickRandom().format);
+
         addQuestions(module,
-            makeQuestion(Question.BlueButtonD, module, correctAnswers: new[] { valD.ToString() }),
-            makeQuestion(Question.BlueButtonEFGH, module, formatArgs: new[] { "E" }, correctAnswers: new[] { valE.ToString() }),
-            makeQuestion(Question.BlueButtonEFGH, module, formatArgs: new[] { "F" }, correctAnswers: new[] { valF.ToString() }),
-            makeQuestion(Question.BlueButtonEFGH, module, formatArgs: new[] { "G" }, correctAnswers: new[] { valG.ToString() }),
-            makeQuestion(Question.BlueButtonEFGH, module, formatArgs: new[] { "H" }, correctAnswers: new[] { valH.ToString() }),
-            makeQuestion(Question.BlueButtonM, module, correctAnswers: new[] { valM.ToString() }),
-            makeQuestion(Question.BlueButtonN, module, correctAnswers: new[] { valN.ToString() }),
-            makeQuestion(Question.BlueButtonP, module, correctAnswers: new[] { valP }),
-            makeQuestion(Question.BlueButtonQ, module, correctAnswers: new[] { valQ }),
-            makeQuestion(Question.BlueButtonX, module, correctAnswers: new[] { valX.ToString() }));
+            makeQ(Question.BlueButtonEFGH, "E", valE.ToString(), formatArgs: new[] { "E" }),
+            makeQ(Question.BlueButtonEFGH, "F", valF.ToString(), formatArgs: new[] { "F" }),
+            makeQ(Question.BlueButtonEFGH, "G", valG.ToString(), formatArgs: new[] { "G" }),
+            makeQ(Question.BlueButtonEFGH, "H", valH.ToString(), formatArgs: new[] { "H" }),
+            makeQ(Question.BlueButtonD, "D", valD.ToString()),
+            makeQ(Question.BlueButtonM, "M", valM.ToString()),
+            makeQ(Question.BlueButtonN, "N", valN.ToString()),
+            makeQ(Question.BlueButtonP, "P", valP),
+            makeQ(Question.BlueButtonQ, "Q", valQ),
+            makeQ(Question.BlueButtonX, "X", valX.ToString()));
     }
 
     private IEnumerator<YieldInstruction> ProcessBlueCipher(ModuleData module) => processColoredCiphers(module, "blueCipher", Question.BlueCipherScreen);

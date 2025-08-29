@@ -498,38 +498,56 @@ public partial class SouvenirModule
         addQuestion(module, Question.AudioMorseSound, correctAnswers: new[] { clips[0] }, allAnswers: clips);
     }
 
+    private readonly List<(int[] cards, int m, int[][] arrowDirs)> _azureButtonInfos = [];
     private IEnumerator<YieldInstruction> ProcessAzureButton(ModuleData module)
     {
         var comp = GetComponent(module, "AzureButtonScript");
-        yield return WaitForSolve;
-
-        var qs = new List<QandA>();
-
         var cards = GetListField<int>(comp, "_cards").Get(expectedLength: 7);
         var cardT = cards.Last();
-        qs.Add(makeQuestion(Question.AzureButtonT, module, correctAnswers: new[] { AzureButtonSprites[cardT] }, preferredWrongAnswers: cards.Select(c => AzureButtonSprites[c]).ToArray()));
-        qs.Add(makeQuestion(Question.AzureButtonNotT, module, correctAnswers: cards.Take(6).Select(c => AzureButtonSprites[c]).ToArray(), preferredWrongAnswers: cards.Select(c => AzureButtonSprites[c]).ToArray()));
-
         var m = Math.Abs(GetField<int>(comp, "_offset").Get(v => Math.Abs(v) is >= 1 and <= 9 ? null : "value out of range 1–9 (or -1–-9)"));
-        qs.Add(makeQuestion(Question.AzureButtonM, module, correctAnswers: new[] { m.ToString() }));
-
         var puzzle = GetField<object>(comp, "_puzzle").Get();
         var arrows = GetField<Array>(puzzle, "Arrows", isPublic: true).Get(a => a.Length != 5 ? "expected length 5" : null);
         var fldArrowDirections = GetProperty<int[]>(arrows.GetValue(0), "Directions", isPublic: true);
-        var dirNames = Question.AzureButtonDecoyArrowDirection.GetAnswers();
+        var arrowDirections = Enumerable.Range(0, 5).Select(arrowIx => fldArrowDirections.GetFrom(arrows.GetValue(arrowIx), validator: ar => ar.Length != 3 ? "expected length 3" : null)).ToArray();
+        _azureButtonInfos.Add((cards.ToArray(), m, arrowDirections));
+
+        yield return WaitForSolve;
+
+        var dirNames = Question.AzureButtonDecoyArrowDirection.GetAnswers().Select(dir => translateString(Question.AzureButtonT, dir)).ToArray();
+        var candidateDiscriminators = new List<(string format, string name, Sprite qSprite)> { (null, null, null) };
+        foreach (var card in cards)
+            if (_azureButtonInfos.Count(tup => tup.cards.Contains(card)) == 1)
+                candidateDiscriminators.Add((translateString(Question.AzureButtonT, "the Azure Button that had this card in Stage 1"), "s1c", AzureButtonSprites[card]));
+        if (_azureButtonInfos.Count(tup => tup.m == m) == 1)
+            candidateDiscriminators.Add((string.Format(translateString(Question.AzureButtonT, "the Azure Button where M was {0}"), m), "m", null));
+        for (var arrowIx = 0; arrowIx < 5; arrowIx++)
+            foreach (var dir in arrowDirections[arrowIx])
+                if (_azureButtonInfos.Count(tup => tup.arrowDirs[arrowIx].Contains(dir)) == 1)
+                    candidateDiscriminators.Add((
+                        arrowIx == 0
+                            ? string.Format(translateString(Question.AzureButtonT, "the Azure Button where the decoy arrow went {0} at some point"), dirNames[dir])
+                            : string.Format(translateString(Question.AzureButtonT, "the Azure Button where the {1} non-decoy arrow went {0} at some point"), dirNames[dir], Ordinal(arrowIx)),
+                        "ar", null));
+
+        var qs = new List<QandA>();
+        void makeQ(string forbiddenDiscriminator, Question q, object correctAnswers, object preferredWrongAnswers = null, string[] formatArgs = null)
+        {
+            var fmt = candidateDiscriminators.Where(tup => tup.name != forbiddenDiscriminator).PickRandom();
+            qs.Add(correctAnswers is Sprite[] caSpr && preferredWrongAnswers is Sprite[] pwaSpr
+                ? makeQuestion(q, module, formattedModuleName: fmt.format, questionSprite: fmt.qSprite, formatArgs: formatArgs, correctAnswers: caSpr, preferredWrongAnswers: pwaSpr)
+                : makeQuestion(q, module, formattedModuleName: fmt.format, questionSprite: fmt.qSprite, formatArgs: formatArgs, correctAnswers: (string[]) correctAnswers, preferredWrongAnswers: (string[]) preferredWrongAnswers));
+        }
+
+        makeQ("s1c", Question.AzureButtonT, correctAnswers: new[] { AzureButtonSprites[cardT] }, preferredWrongAnswers: cards.Select(c => AzureButtonSprites[c]).ToArray());
+        makeQ("s1c", Question.AzureButtonNotT, correctAnswers: cards.Take(6).Select(c => AzureButtonSprites[c]).ToArray(), preferredWrongAnswers: cards.Select(c => AzureButtonSprites[c]).ToArray());
+        makeQ("m", Question.AzureButtonM, correctAnswers: new[] { m.ToString() });
 
         for (var arrowIx = 0; arrowIx < 5; arrowIx++)
-        {
-            var dirs = fldArrowDirections.GetFrom(arrows.GetValue(arrowIx), validator: ar => ar.Length != 3 ? "expected length 3" : null);
             for (var dirIx = 0; dirIx < 3; dirIx++)
-            {
-                qs.Add(makeQuestion(
+                makeQ("ar",
                     arrowIx == 0 ? Question.AzureButtonDecoyArrowDirection : Question.AzureButtonNonDecoyArrowDirection,
-                    module,
-                    formatArgs: arrowIx == 0 ? new[] { Ordinal(dirIx + 1) } : new[] { Ordinal(dirIx + 1), Ordinal(arrowIx) },
-                    correctAnswers: new[] { dirNames[dirs[dirIx]] }));
-            }
-        }
+                    correctAnswers: new[] { dirNames[arrowDirections[arrowIx][dirIx]] },
+                    formatArgs: arrowIx == 0 ? new[] { Ordinal(dirIx + 1) } : new[] { Ordinal(dirIx + 1), Ordinal(arrowIx) });
 
         addQuestions(module, qs);
     }

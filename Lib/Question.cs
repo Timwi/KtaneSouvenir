@@ -195,7 +195,8 @@ public enum Question
     [SouvenirQuestion("What was signaled in {0}?", "Audio Morse", OneColumn4Answers, Type = AnswerType.Audio, ForeignAudioID = Sounds.Generated)]
     AudioMorseSound,
 
-    [SouvenirQuestion("What was T in {0}?", "Azure Button", ThreeColumns6Answers, AddThe = true, Type = AnswerType.Sprites, SpriteFieldName = "AzureButtonSprites")]
+    [SouvenirQuestion("What was T in {0}?", "Azure Button", ThreeColumns6Answers, AddThe = true, Type = AnswerType.Sprites, SpriteFieldName = "AzureButtonSprites",
+        TranslatableStrings = new[] { "the Azure Button that had this card in Stage 1", "the Azure Button where M was {0}", "the Azure Button where the decoy arrow went {0} at some point", "the Azure Button where the {1} non-decoy arrow went {0} at some point", "north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west" })]
     AzureButtonT,
     [SouvenirQuestion("Which of these cards was shown in Stage 1, but not T, in {0}?", "Azure Button", ThreeColumns6Answers, AddThe = true, Type = AnswerType.Sprites, SpriteFieldName = "AzureButtonSprites")]
     AzureButtonNotT,
@@ -344,7 +345,7 @@ public enum Question
     [SouvenirQuestion("What were the characters on the screen in {0}?", "Blue Arrows", ThreeColumns6Answers, "CA", "C1", "CB", "C8", "CF", "C4", "CE", "C6", "3A", "31", "3B", "38", "3F", "34", "3E", "36", "GA", "G1", "GB", "G8", "GF", "G4", "GE", "G6", "7A", "71", "7B", "78", "7F", "74", "7E", "76", "DA", "D1", "DB", "D8", "DF", "D4", "DE", "D6", "5A", "51", "5B", "58", "5F", "54", "5E", "56", "HA", "H1", "HB", "H8", "HF", "H4", "HE", "H6", "2A", "21", "2B", "28", "2F", "24", "2E", "26")]
     BlueArrowsInitialCharacters,
 
-    [SouvenirQuestion("What was D in {0}?", "Blue Button", TwoColumns4Answers, AddThe = true)]
+    [SouvenirQuestion("What was D in {0}?", "Blue Button", TwoColumns4Answers, AddThe = true, TranslatableStrings = new[] { "the Blue Button where {0} was {1}", "Blue", "Green", "Cyan", "Red", "Magenta", "Yellow" })]
     [AnswerGenerator.Integers(1, 4)]
     BlueButtonD,
     [SouvenirQuestion("What was {1} in {0}?", "Blue Button", TwoColumns4Answers, AddThe = true,
@@ -2063,10 +2064,11 @@ public enum Question
         ExampleFormatArguments = new[] { QandA.Ordinal }, ExampleFormatArgumentGroupSize = 1)]
     NavinumsDirectionalButtons,
 
-    [SouvenirQuestion("Which Greek letter appeared on {0} (case-sensitive)?", "Navy Button", ThreeColumns6Answers, "Α", "Β", "Γ", "Δ", "Ε", "Ζ", "Η", "Θ", "Ι", "Κ", "Λ", "Μ", "Ν", "Ξ", "Ο", "Π", "Ρ", "Σ", "Τ", "Υ", "Φ", "Χ", "Ψ", "Ω", "α", "β", "γ", "δ", "ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ", "ο", "π", "ρ", "σ", "τ", "υ", "φ", "χ", "ψ", "ω", AddThe = true)]
+    [SouvenirQuestion("Which Greek letter appeared on {0} (case-sensitive)?", "Navy Button", ThreeColumns6Answers, "Α", "Β", "Γ", "Δ", "Ε", "Ζ", "Η", "Θ", "Ι", "Κ", "Λ", "Μ", "Ν", "Ξ", "Ο", "Π", "Ρ", "Σ", "Τ", "Υ", "Φ", "Χ", "Ψ", "Ω", "α", "β", "γ", "δ", "ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ", "ο", "π", "ρ", "σ", "τ", "υ", "φ", "χ", "ψ", "ω", AddThe = true,
+        TranslatableStrings = new[] { "the Navy Button that had a {0} on it", "the Navy Button that had an {0} on it", "the Navy Button where the (0-indexed) column of the given was {0}", "the Navy Button where the (0-indexed) row of the given was {0}", "the Navy Button where the value of the given was {0}", })]
     NavyButtonGreekLetters,
-    [SouvenirQuestion("What was the {1} of the given in {0} (0-indexed)?", "Navy Button", ThreeColumns6Answers, "0", "1", "2", "3", AddThe = true,
-        ExampleFormatArguments = new[] { "column", "row", "value" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
+    [SouvenirQuestion("What was the {1} of the given in {0}?", "Navy Button", TwoColumns4Answers, "0", "1", "2", "3", AddThe = true,
+        ExampleFormatArguments = new[] { "(0-indexed) column", "(0-indexed) row", "value" }, ExampleFormatArgumentGroupSize = 1, TranslateFormatArgs = new[] { true })]
     NavyButtonGiven,
 
     [SouvenirQuestion("What was the chapter number of the {1} page in {0}?", "Necronomicon", ThreeColumns6Answers, ExampleAnswers = new[] { "1", "24", "36" }, AddThe = true,

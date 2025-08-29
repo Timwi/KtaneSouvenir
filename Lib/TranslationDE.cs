@@ -594,9 +594,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // What was T in The Azure Button?
         [Question.AzureButtonT] = new()
         {
+            NeedsTranslation = true,
             ModuleNameWithThe = "Der Azurfarbene Knopf",
-            QuestionText = "Was war T bei {0}?",
+            QuestionText = "Was war bei {0} T?",
             ModuleName = "Azurfarbenen Knopf",
+            TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+            {
+                ["the Azure Button that had this card in Stage 1"] = "dem Azurfarbenen Knopf, bei dem in Schritt 1 diese Karte vorkam,",
+                ["the Azure Button where M was {0}"] = "dem Azurfarbenen Knopf, bei dem M {0} war,",
+                ["the Azure Button where the decoy arrow went {0} at some point"] = "dem Azurfarbenen Knopf, dessen ungenutzter Pfeil einmal nach {0} ging",
+                ["the Azure Button where the {1} non-decoy arrow went {0} at some point"] = "dem Azurfarbenen Knopf, dessen {1}er genutzter Pfeil einmal nach {0} ging",
+                ["north"] = "Norden",
+                ["north-east"] = "Nordosten",
+                ["east"] = "Osten",
+                ["south-east"] = "Südosten",
+                ["south"] = "Süden",
+                ["south-west"] = "Südwesten",
+                ["west"] = "Westen",
+                ["north-west"] = "Nordwesten",
+            },
         },
         // Which of these cards was shown in Stage 1, but not T, in {0}?
         // Which of these cards was shown in Stage 1, but not T, in The Azure Button?
@@ -611,7 +627,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [Question.AzureButtonM] = new()
         {
             ModuleNameWithThe = "Der Azurfarbene Knopf",
-            QuestionText = "Was war M bei {0}?",
+            QuestionText = "Was war bei {0} M?",
             ModuleName = "Azurfarbenen Knopf",
         },
         // What was the {1} direction in the decoy arrow in {0}?
@@ -1195,16 +1211,27 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // What was D in The Blue Button?
         [Question.BlueButtonD] = new()
         {
+            NeedsTranslation = true,
             ModuleNameWithThe = "Der Blaue Knopf",
-            QuestionText = "Was war D bei {0}?",
+            QuestionText = "Was war bei {0} D?",
             ModuleName = "Blauen Knopf",
+            TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+            {
+                ["the Blue Button where {0} was {1}"] = "dem Blauen Knopf, bei dem {0} {1} war,",
+                ["Blue"] = "Blau",
+                ["Green"] = "Grün",
+                ["Cyan"] = "Türkis",
+                ["Red"] = "Rot",
+                ["Magenta"] = "Lila",
+                ["Yellow"] = "Gelb",
+            },
         },
         // What was {1} in {0}?
         // What was E in The Blue Button?
         [Question.BlueButtonEFGH] = new()
         {
             ModuleNameWithThe = "Der Blaue Knopf",
-            QuestionText = "Was war {1} bei {0}?",
+            QuestionText = "Was war bei {0} {1}?",
             ModuleName = "Blauen Knopf",
         },
         // What was M in {0}?
@@ -1212,7 +1239,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [Question.BlueButtonM] = new()
         {
             ModuleNameWithThe = "Der Blaue Knopf",
-            QuestionText = "Was war M bei {0}?",
+            QuestionText = "Was war bei {0} M?",
             ModuleName = "Blauen Knopf",
         },
         // What was N in {0}?
@@ -1220,7 +1247,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [Question.BlueButtonN] = new()
         {
             ModuleNameWithThe = "Der Blaue Knopf",
-            QuestionText = "Was war N bei {0}?",
+            QuestionText = "Was war bei {0} N?",
             ModuleName = "Blauen Knopf",
         },
         // What was P in {0}?
@@ -1228,7 +1255,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [Question.BlueButtonP] = new()
         {
             ModuleNameWithThe = "Der Blaue Knopf",
-            QuestionText = "Was war P bei {0}?",
+            QuestionText = "Was war bei {0} P?",
             ModuleName = "Blauen Knopf",
         },
         // What was Q in {0}?
@@ -1236,7 +1263,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [Question.BlueButtonQ] = new()
         {
             ModuleNameWithThe = "Der Blaue Knopf",
-            QuestionText = "Was war Q bei {0}?",
+            QuestionText = "Was war bei {0} Q?",
             ModuleName = "Blauen Knopf",
             Answers = new Dictionary<string, string>
             {
@@ -1244,7 +1271,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
                 ["Green"] = "Grün",
                 ["Cyan"] = "Türkis",
                 ["Red"] = "Rot",
-                ["Magenta"] = "Magenta",
+                ["Magenta"] = "Lila",
                 ["Yellow"] = "Gelb",
             },
         },
@@ -1253,7 +1280,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [Question.BlueButtonX] = new()
         {
             ModuleNameWithThe = "Der Blaue Knopf",
-            QuestionText = "Was war X bei {0}?",
+            QuestionText = "Was war bei {0} X?",
             ModuleName = "Blauen Knopf",
         },
 
@@ -7306,20 +7333,32 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Which Greek letter appeared on The Navy Button (case-sensitive)?
         [Question.NavyButtonGreekLetters] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "Which Greek letter appeared on {0} (case-sensitive)?",
+            Gender = Gender.Masculine,
+            ModuleNameDative = "Königsblauen Knopf",
+            QuestionText = "Welcher griechische Buchstabe kam bei {0} vor (auf Groß-/Kleinschreibung achten)?",
+            ModuleName = "Der Königsblaue Knopf",
+            TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
+            {
+                ["the Navy Button that had a {0} on it"] = "dem Königsblauen Knopf, bei dem ein {0} vorkam,",
+                ["the Navy Button that had an {0} on it"] = "dem Königsblauen Knopf, bei dem ein {0} vorkam,",
+                ["the Navy Button where the (0-indexed) column of the given was {0}"] = "dem Königsblauen Knopf, bei dem die (0-basierte) Spalte des vorgegebenen Wertes {0} war,",
+                ["the Navy Button where the (0-indexed) row of the given was {0}"] = "dem Königsblauen Knopf, bei dem die (0-basierte) Reihe des vorgegebenen Wertes {0} war,",
+                ["the Navy Button where the value of the given was {0}"] = "dem Königsblauen Knopf, bei dem der vorgegebene Wert {0} war,",
+            },
         },
-        // What was the {1} of the given in {0} (0-indexed)?
-        // What was the column of the given in The Navy Button (0-indexed)?
+        // What was the {1} of the given in {0}?
+        // What was the (0-indexed) column of the given in The Navy Button?
         [Question.NavyButtonGiven] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What was the {1} of the given in {0} (0-indexed)?",
+            Gender = Gender.Masculine,
+            ModuleNameDative = "Königsblauen Knopf",
+            QuestionText = "Was war bei {0} {1}?",
+            ModuleName = "Der Königsblaue Knopf",
             FormatArgs = new Dictionary<string, string>
             {
-                ["column"] = "column",
-                ["row"] = "row",
-                ["value"] = "value",
+                ["(0-indexed) column"] = "die (0-basierte) Spalte des vorgegebenen Wertes",
+                ["(0-indexed) row"] = "die (0-basierte) Reihe des vorgegebenen Wertes",
+                ["value"] = "der vorgegebene Wert",
             },
         },
 
@@ -7328,8 +7367,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // What was the chapter number of the first page in The Necronomicon?
         [Question.NecronomiconChapters] = new()
         {
-            NeedsTranslation = true,
+            Gender = Gender.Masculine,
+            ModuleNameDative = "Königsblauen Knopf",
             QuestionText = "What was the chapter number of the {1} page in {0}?",
+            ModuleName = "Der Königsblaue Knopf",
         },
 
         // Negativity
