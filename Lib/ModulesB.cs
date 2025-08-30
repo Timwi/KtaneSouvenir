@@ -567,7 +567,7 @@ public partial class SouvenirModule
         addQuestion(module, Question.BlueArrowsInitialCharacters, correctAnswers: new[] { coord });
     }
 
-    private readonly List<(int d, int e, int f, int g, int h, int m, int n, string p, string q, int x)> _blueButtonInfos = [];
+    private readonly List<(int d, int e, int f, int g, int h, int m, int n, string p, int q, int x)> _blueButtonInfos = [];
     private IEnumerator<YieldInstruction> ProcessBlueButton(ModuleData module)
     {
         var comp = GetComponent(module, "BlueButtonScript");
@@ -587,7 +587,7 @@ public partial class SouvenirModule
         var valM = equationOffsets[3];  // 1–9
         var valN = colorStageColors.Length; // 4–9
         var valP = suitsGoal.Where(s => s != 3).Select(s => "♠♥♣"[s]).JoinString(); // permutation of ♠♥♣
-        var valQ = translateString(Question.BlueButtonD, colorNames[colorStageColors[3]]); // color
+        var valQ = colorStageColors[3]; // 0–5; corresponds to a color in ‘colorNames’ above
         var valX = equationOffsets[2];  // 1–5
 
         _blueButtonInfos.Add((valD, valE, valF, valG, valH, valM, valN, valP, valQ, valX));
@@ -595,21 +595,21 @@ public partial class SouvenirModule
         yield return WaitForSolve;
 
         var candidateDiscriminators = new List<(string format, string name)> { (null, null) };
-        void addCandidateDiscriminator<T>(Func<(int d, int e, int f, int g, int h, int m, int n, string p, string q, int x), T> getter, string name, T value)
+        void addCandidateDiscriminator<T>(Func<(int d, int e, int f, int g, int h, int m, int n, string p, int q, int x), T> getter, string name, T value, string valueReadable)
         {
             if (_blueButtonInfos.Count(tup => getter(tup).Equals(value)) == 1)
-                candidateDiscriminators.Add((string.Format(translateString(Question.BlueButtonD, "the Blue Button where {0} was {1}"), name, value), name));
+                candidateDiscriminators.Add((string.Format(translateString(Question.BlueButtonD, "the Blue Button where {0} was {1}"), name, valueReadable), name));
         }
-        addCandidateDiscriminator(tup => tup.d, "D", valD);
-        addCandidateDiscriminator(tup => tup.e, "E", valE);
-        addCandidateDiscriminator(tup => tup.f, "F", valF);
-        addCandidateDiscriminator(tup => tup.g, "G", valG);
-        addCandidateDiscriminator(tup => tup.h, "H", valH);
-        addCandidateDiscriminator(tup => tup.m, "M", valM);
-        addCandidateDiscriminator(tup => tup.n, "N", valN);
-        addCandidateDiscriminator(tup => tup.p, "P", valP);
-        addCandidateDiscriminator(tup => tup.q, "Q", valQ);
-        addCandidateDiscriminator(tup => tup.x, "X", valX);
+        addCandidateDiscriminator(tup => tup.d, "D", valD, valD.ToString());
+        addCandidateDiscriminator(tup => tup.e, "E", valE, valE.ToString());
+        addCandidateDiscriminator(tup => tup.f, "F", valF, valF.ToString());
+        addCandidateDiscriminator(tup => tup.g, "G", valG, valG.ToString());
+        addCandidateDiscriminator(tup => tup.h, "H", valH, valH.ToString());
+        addCandidateDiscriminator(tup => tup.m, "M", valM, valM.ToString());
+        addCandidateDiscriminator(tup => tup.n, "N", valN, valN.ToString());
+        addCandidateDiscriminator(tup => tup.p, "P", valP, valP);
+        addCandidateDiscriminator(tup => tup.q, "Q", valQ, translateString(Question.BlueButtonD, colorNames[valQ]));
+        addCandidateDiscriminator(tup => tup.x, "X", valX, valX.ToString());
 
         QandA makeQ(Question q, string forbiddenDiscriminator, string correctAnswer, string[] formatArgs = null) =>
             makeQuestion(q, module, formatArgs: formatArgs, correctAnswers: new[] { correctAnswer },
@@ -624,7 +624,7 @@ public partial class SouvenirModule
             makeQ(Question.BlueButtonM, "M", valM.ToString()),
             makeQ(Question.BlueButtonN, "N", valN.ToString()),
             makeQ(Question.BlueButtonP, "P", valP),
-            makeQ(Question.BlueButtonQ, "Q", valQ),
+            makeQ(Question.BlueButtonQ, "Q", colorNames[valQ]),
             makeQ(Question.BlueButtonX, "X", valX.ToString()));
     }
 
