@@ -40,7 +40,7 @@ You may wish to look at an existing translation file to follow along with as an 
 
 	- `Ordinal` should return the ordinal form of any number, e.g. "first", "second", "400th", "-40th".
 	- `FormatModuleName` determines what the {0} in a question string is replaced with:
-	    * If `addSolveCount` is false, this should just be the module name, including “The” (where relevant).
+		* If `addSolveCount` is false, this should just be the module name, including “The” (where relevant).
 		* If `addSolveCount` is true, this should return a phrase meaning something like “the Mad Memory that you solved 4th”.
 		* See below if you need special grammar considerations.
 
