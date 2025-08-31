@@ -298,7 +298,7 @@ public partial class SouvenirModule
             var presentCount = initialHingesStatus.Count(x => x != 0);
             var disambiguators = Enumerable.Range(0, 8)
                 .Where(d =>
-                    (d == 4 || d < 4 && initialHingesStatus[d] != 0 || d > 4 && initialHingesStatus[d] == 0) &&
+                    (presentCount == 4 || presentCount < 4 && initialHingesStatus[d] != 0 || presentCount > 4 && initialHingesStatus[d] == 0) &&
                     _hingesInitialStates.Count(s => s[d] == initialHingesStatus[d]) == 1).ToArray();
             if (disambiguators.Any())
             {
