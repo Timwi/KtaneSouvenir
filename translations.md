@@ -133,44 +133,46 @@ You can change the language in Mod Selector.
 Alternatively, you will find `Souvenir-settings.txt` in the `mod-settings` folder.
 In the `"Language":` field at the bottom, enter the language code (e.g. `"Language": "ja"`).
 
-# Specific Tricky Modules
+# Custom discriminators (includes boss modules)
 
-## Bosses: Concentration, Forget Any Color, Forget Anything, Forget Me Not, Forget The Colors, Forget This, Forget Us Not, Hickory Dickory Dock, Hyperforget, Kugelblitz, RPS Judging, and Sbemail Songs
+Affected modules:
+* Boss modules: Concentration, Forget Any Color, Forget Anything, Forget Me Not, Forget The Colors, Forget This, Forget Us Not, Hickory Dickory Dock, Hyperforget, Kugelblitz, RPS Judging, Sbemail Songs
+* Other modules: The Azure Button, The Blue Button, Connection Check, Hinges, KayMazey Talk, Linq, Not Murder, The Navy Button, The Pentabutton, Polyhedral Maze, Variety
 
-Ordinarily, if a module — let’s say Coordinates — occurs twice on a bomb, Souvenir will use a phrasing like “the Coordinates you solved second”. This works for regular modules that can be solved, but for boss modules, Souvenir uses a different phrasing that refers to stages of the boss module instead.
+If a module — let’s say Coordinates — occurs twice on a bomb, Souvenir needs to distinguish them. Usually this is done using solve order (e.g. “the Coordinates you solved second”). However, Souvenir can sometimes use information from the modules in question to discriminate between them (e.g. “the Connection Check with no 5”). In regular modules, this exists simply for the sake of variety, but with boss modules, this is *required* as they cannot use solve order; they typically use information from stages instead.
 
-These special phrasings are included as `TranslatableStrings`. So, whenever there are multiple instances of a boss module on a bomb, these translatable strings will be used to replace `{0}` in the question. In most cases, context should be enough to determine what `{0}`, `{1}`, etc. mean in these phrases.
+These special phrasings are included as `TranslatableStrings`. So, whenever there are multiple instances of such a module on a bomb, these translatable strings will be used to replace `{0}` in the question. In most cases, context should be enough to determine what `{0}`, `{1}`, etc. mean in these phrases.
 
 Some examples of fully-formed questions using these:
 - `What was the digit displayed in the third stage of the Forget Me Not which displayed a 2 in the first stage?`
 - `What was the first displayed digit in the first stage of the Forget Everything whose tenth displayed digit in that stage was 4?`
 - `Which figure was used during the third stage of the Forget Any Color whose cylinders in the fourth stage were Purple, Orange, White?`
 
-## Other Disambiguated Module Names: Connection Check, Hinges, KayMazey Talk, Linq, Not Murder, The Pentabutton, Polyhedral Maze, and Variety
+## Azure Button, The
 
-These strings behave like the ones above, but exist only for the sake of variety. You can translate some or all of these phrases as `""` to tell Souvenir to use the original phrasing.
+- The cardinal directions are used in the discriminator about the arrows (decoy and non-decoy).
+
+## Blue Button, The
+
+- The colors are used when Blue Buttons are discriminated by Q (e.g. “the Blue Button where Q was Yellow”).
 
 ## Divided Squares
 
-“the square” is used when the square never divided, while “the correct square” is used when it has.
+- “the square” is used when the module never divided, while “the correct square” is used when it has.
 
 ## Forget Any Color
-
-This module has a few additional `TranslatableStrings`.
 
 - `"{0}, {1}, {2}"` is used to combine the colors together to describe the module’s cylinders. This will end up like `Red, Green, Blue`.
 - `"L"`, `"M"`, and `"R"` are used to describe the module’s figures. Five of these will be concatenated (e.g. `LLMMR`).
 
 ## Hidden Value, The
 
-This module has a few `TranslatableStrings`.
-
 - `"{0} {1}"` is used to construct answers, e.g. `Red 7`.
 - The colors are normal.
 
 ## Kugelblitz
 
-- `"{0}{1}{2}{3}{4}{5}{6}"` is used to combine the colors together to describe which particles were present. Absent particles will become nothing, while present ones will become the translation of one of `"R"`, `"O"`, `"Y"`, `"G"`, `"B"`, `"I"`, or `"V"`.
+- `"{0}{1}{2}{3}{4}{5}{6}"` is used to combine the colors together to describe which particles were present. Absent particles will become nothing, while present ones will become the translation of `"R"`, `"O"`, `"Y"`, `"G"`, `"B"`, `"I"`, or `"V"`, which stand for the colors.
 - `"None"` is used as the answer when no particles were present.
 - `"R={0}, O={1}, Y={2}, G={3}, B={4}, I={5}, V={6}"` is used to generate answers for red, blue, and green Kugelblitzes. Each placeholder will be filled in with a single-digit number.
 
@@ -184,22 +186,29 @@ In line with the theming of the module, this question is formatted like the “m
 
 If your language can’t perform an equivalent to removing vowels:
 1. Translate the question and module name normally. Do not include `\uE001` nor `\uE002` in the module name.
-2. For `TranslatableStrings`, set `["AEIOU"] = ""`.
+2. In `TranslatableStrings`, set `["AEIOU"] = ""`.
 
 Otherwise:
 1. Translate the question normally.
 2. Add `\uE001` to the start of the translated module name, and add `\uE002` to the end.
-3. For the `TranslatableStrings`, list out every vowel to be removed from the question text.
+3. In `TranslatableStrings`, translate `["AEIOU"]` with a string containing every vowel to be removed from the question text (e.g. `"AEIOUÄÖÜ"` for German).
+
+## Navy Button, The
+
+- The `{0}` in `"the Navy Button that had a {0} on it"` becomes a Greek letter (which could be upper- or lower-case).
+- The separate `"the Navy Button that had an {0} on it"` exists only because English needs it when a Greek letter name starts with a vowel (e.g. epsilon, omega). In most languages you will just translate both phrases identically. However, if your language requires such a distinction, and it’s different from that in English, please let me know.
 
 ## RPS Judging
 
 - `"None of these"` and `"All of these"` are answers.
-- `"won"` and `"lost"` are only used in the disambiguating phrase.
+- `"won"` and `"lost"` are only used in the discriminating phrase.
 - `"win"` and `"lose"` are only used in the main body of the question.
 
 ## Variety
 
-The disambiguator `"the Variety that has one"` might need to agree with the component in question (e.g. gender). If this is the case, translate that string as `""` and use the provided variants with the component in parentheses, but do not include the component in parentheses in your translation. If this is not the case, then the variants should all be translated as `""`.
+The discriminator `"the Variety that has one"` might need to agree grammatically with the component in question (e.g. gender).
+* If this is the case, translate *that* string as `""` and use the provided variants with the component in parentheses. *Do not* include the component in parentheses in your translation.
+* If this is not the case, translate all the variants with parentheses as `""`.
 
 ## White Arrows
 
