@@ -5014,7 +5014,7 @@ public class Translation_ru : TranslationBase<Translation_ru.TranslationInfo_ru>
                 ["Emotiguy Identification"] = "Emotiguy Identification",
                 ["Ars Goetia Identification"] = "Ars Goetia Identification",
                 ["Mii Identification"] = "Mii Identification",
-                ["Customer identification"] = "Customer identification",
+                ["Customer Identification"] = "Customer Identification",
                 ["Spongebob Birthday Identification"] = "Spongebob Birthday Identification",
                 ["VTuber Identification"] = "VTuber Identification",
             },

@@ -5091,8 +5091,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Which House was Binary Puzzle solved for in Hogwarts?
         [Question.HogwartsHouse] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "Which House was {1} solved for in {0}?",
+            QuestionText = "Für welches Haus wurde bei {0} {1} gelöst?",
             Answers = new Dictionary<string, string>
             {
                 ["Gryffindor"] = "Gryffindor",
@@ -5105,8 +5104,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Which module was solved for Gryffindor in Hogwarts?
         [Question.HogwartsModule] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "Which module was solved for {1} in {0}?",
+            QuestionText = "Welches Modul wurde bei {0} für {1} gelöst?",
             FormatArgs = new Dictionary<string, string>
             {
                 ["Gryffindor"] = "Gryffindor",
@@ -5121,8 +5119,7 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // What was the name of the first shadow shown in Hold Ups?
         [Question.HoldUpsShadows] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What was the name of the {1} shadow shown in {0}?",
+            QuestionText = "Was war bei {0} der Name des ersten Schattens?",
         },
 
         // Homophones
@@ -5130,8 +5127,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // What was the first displayed phrase in Homophones?
         [Question.HomophonesDisplayedPhrases] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What was the {1} displayed phrase in {0}?",
+            Gender = Gender.Plural,
+            QuestionText = "Was wurde bei {0} als {1}es angezeigt?",
+            ModuleName = "Teekesselchen",
         },
 
         // Horrible Memory
@@ -5139,22 +5137,25 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // In what position was the button pressed on the first stage of Horrible Memory?
         [Question.HorribleMemoryPositions] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "In what position was the button pressed on the {1} stage of {0}?",
+            ModuleNameDative = "Grausigen Memory",
+            QuestionText = "In welcher Position war bei {0} die gedrückte Taste in Stufe {1}?",
+            ModuleName = "Grausiges Memory",
         },
         // What was the label of the button pressed on the {1} stage of {0}?
         // What was the label of the button pressed on the first stage of Horrible Memory?
         [Question.HorribleMemoryLabels] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What was the label of the button pressed on the {1} stage of {0}?",
+            ModuleNameDative = "Grausigen Memory",
+            QuestionText = "Welche Aufschrift hatte bei {0} die gedrückte Taste in Stufe {1}?",
+            ModuleName = "Grausiges Memory",
         },
         // What color was the button pressed on the {1} stage of {0}?
         // What color was the button pressed on the first stage of Horrible Memory?
         [Question.HorribleMemoryColors] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What color was the button pressed on the {1} stage of {0}?",
+            ModuleNameDative = "Grausigen Memory",
+            QuestionText = "Welche Farbe hatte bei {0} die gedrückte Taste in Stufe {1}?",
+            ModuleName = "Grausiges Memory",
             Answers = new Dictionary<string, string>
             {
                 ["blue"] = "blau",
@@ -5171,8 +5172,9 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Which was a descriptor shown in red in Human Resources?
         [Question.HumanResourcesDescriptors] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "Which was a descriptor shown in {1} in {0}?",
+            Gender = Gender.Feminine,
+            QuestionText = "Welcher Deskriptor kam bei {0} in {1} vor?",
+            ModuleName = "Personalabteilung",
             FormatArgs = new Dictionary<string, string>
             {
                 ["red"] = "rot",
@@ -5183,12 +5185,13 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Who was fired in Human Resources?
         [Question.HumanResourcesHiredFired] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "Who was {1} in {0}?",
+            Gender = Gender.Feminine,
+            QuestionText = "Wer wurde bei {0} {1}?",
+            ModuleName = "Personalabteilung",
             FormatArgs = new Dictionary<string, string>
             {
-                ["fired"] = "fired",
-                ["hired"] = "hired",
+                ["fired"] = "gefeuert",
+                ["hired"] = "eingestellt",
             },
         },
 
@@ -5198,22 +5201,22 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         [Question.HuntingColumnsRows] = new()
         {
             NeedsTranslation = true,
-            QuestionText = "Which of the first three stages of {0} had the {1} symbol {2}?",
+            QuestionText = "In welchen der ersten drei Stufen von {0} war das {1} das {2}e?",
             FormatArgs = new Dictionary<string, string>
             {
-                ["column"] = "column",
-                ["row"] = "row",
+                ["column"] = "Spaltensymbol",
+                ["row"] = "Reihensymbol",
             },
             Answers = new Dictionary<string, string>
             {
-                ["none"] = "none",
-                ["first"] = "first",
-                ["second"] = "second",
-                ["first two"] = "first two",
-                ["third"] = "third",
-                ["first & third"] = "first & third",
-                ["second & third"] = "second & third",
-                ["all three"] = "all three",
+                ["none"] = "keine",
+                ["first"] = "erste",
+                ["second"] = "zweite",
+                ["first two"] = "erste & zweite",
+                ["third"] = "dritte",
+                ["first & third"] = "erste & dritte",
+                ["second & third"] = "zweite & dritte",
+                ["all three"] = "alle drei",
             },
         },
 
@@ -5230,11 +5233,10 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // What was the rotation for the first stage in HyperForget?
         [Question.HyperForgetRotations] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What was the rotation for the {1} stage in {0}?",
+            QuestionText = "Was war bei {0} die Rotation in der {1}en Stufe?",
             TranslatableStrings = new Dictionary<string, string> // See translations.md for more information on this question.
             {
-                ["the HyperForget whose rotation in the {1} stage was {0}"] = "the HyperForget whose rotation in the {1} stage was {0}",
+                ["the HyperForget whose rotation in the {1} stage was {0}"] = "dem HyperForget, dessen Rotation in der {1}en Stufe {0} war,",
             },
         },
 
@@ -5243,15 +5245,19 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // What was the first character of the hyperlink in The Hyperlink?
         [Question.HyperlinkCharacters] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What was the {1} character of the hyperlink in {0}?",
+            Gender = Gender.Masculine,
+            ModuleNameWithThe = "Der Hyperlink",
+            QuestionText = "Was war bei {0} das erste Zeichen im Hyperlink?",
+            ModuleName = "Hyperlink",
         },
         // Which module was referenced on {0}?
         // Which module was referenced on The Hyperlink?
         [Question.HyperlinkAnswer] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "Which module was referenced on {0}?",
+            Gender = Gender.Masculine,
+            ModuleNameWithThe = "Der Hyperlink",
+            QuestionText = "Auf welches Modul wurde bei {0} verwiesen?",
+            ModuleName = "Hyperlink",
         },
 
         // Ice Cream
@@ -5259,20 +5265,22 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // Which one of these flavours was on offer, but not sold, to the first customer in Ice Cream?
         [Question.IceCreamFlavour] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "Which one of these flavours {1} to the {2} customer in {0}?",
+            Gender = Gender.Feminine,
+            QuestionText = "Welche Geschmacksrichtung wurde bei {0} dem/der {2}en Kunden/Kundin {1}?",
+            ModuleName = "Eiscreme",
             FormatArgs = new Dictionary<string, string>
             {
-                ["was on offer, but not sold,"] = "was on offer, but not sold,",
-                ["was not on offer"] = "was not on offer",
+                ["was on offer, but not sold,"] = "angeboten, aber nicht verkauft",
+                ["was not on offer"] = "nicht angeboten",
             },
         },
         // Who was the {1} customer in {0}?
         // Who was the first customer in Ice Cream?
         [Question.IceCreamCustomer] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "Who was the {1} customer in {0}?",
+            Gender = Gender.Feminine,
+            QuestionText = "Wer war bei {0} der/die {1}e Kunde/Kundin?",
+            ModuleName = "Eiscreme",
         },
 
         // Identification Crisis
@@ -5280,27 +5288,29 @@ public class Translation_de : TranslationBase<Translation_de.TranslationInfo_de>
         // What was the first shape used in Identification Crisis?
         [Question.IdentificationCrisisShape] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What was the {1} shape used in {0}?",
+            Gender = Gender.Feminine,
+            QuestionText = "Was war bei {0} die {1} verwendete Form?",
+            ModuleName = "Identifikationskrise",
         },
         // What was the {1} identification module used in {0}?
         // What was the first identification module used in Identification Crisis?
         [Question.IdentificationCrisisDataset] = new()
         {
-            NeedsTranslation = true,
-            QuestionText = "What was the {1} identification module used in {0}?",
+            Gender = Gender.Feminine,
+            QuestionText = "Was war bei {0} das {1}e Identifikationsmodul?",
+            ModuleName = "Identifikationskrise",
             Answers = new Dictionary<string, string>
             {
-                ["Morse Identification"] = "Morse Identification",
-                ["Boozleglyph Identification"] = "Boozleglyph Identification",
-                ["Plant Identification"] = "Plant Identification",
-                ["Pickup Identification"] = "Pickup Identification",
-                ["Emotiguy Identification"] = "Emotiguy Identification",
-                ["Ars Goetia Identification"] = "Ars Goetia Identification",
-                ["Mii Identification"] = "Mii Identification",
-                ["Customer identification"] = "Customer identification",
-                ["Spongebob Birthday Identification"] = "Spongebob Birthday Identification",
-                ["VTuber Identification"] = "VTuber Identification",
+                ["Morse Identification"] = "Morse-Identifikation",
+                ["Boozleglyph Identification"] = "Boozleglyph-Identifikation",
+                ["Plant Identification"] = "Pflanzen-Identifikation",
+                ["Pickup Identification"] = "Pickup-Identifikation",
+                ["Emotiguy Identification"] = "Emotiguy-Identifikation",
+                ["Ars Goetia Identification"] = "Ars-Goetia-Identifikation",
+                ["Mii Identification"] = "Mii-Identifikation",
+                ["Customer Identification"] = "Kunden-Identifikation",
+                ["Spongebob Birthday Identification"] = "Spongebob-Geburtstags-Identifikation",
+                ["VTuber Identification"] = "VTuber-Identifikation",
             },
         },
 

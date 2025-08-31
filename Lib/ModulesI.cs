@@ -62,7 +62,7 @@ public partial class SouvenirModule
         var shapes = GetArrayField<int>(comp, "shapesUsed").Get();
         var datasets = GetArrayField<int>(comp, "datasetsUsed").Get();
         var shapeNames = GetStaticField<string[]>(comp.GetType(), "shapeNames").Get();
-        var datasetNames = new[] { "Morse Identification", "Boozleglyph Identification", "Plant Identification", "Pickup Identification", "Emotiguy Identification", "Ars Goetia Identification", "Mii Identification", "Customer identification", "Spongebob Birthday Identification", "VTuber Identification" };
+        var datasetNames = new[] { "Morse Identification", "Boozleglyph Identification", "Plant Identification", "Pickup Identification", "Emotiguy Identification", "Ars Goetia Identification", "Mii Identification", "Customer Identification", "Spongebob Birthday Identification", "VTuber Identification" };
         var qs = new List<QandA>();
         for (var i = 0; i < 3; i++)
         {

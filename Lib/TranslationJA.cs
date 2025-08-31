@@ -5056,7 +5056,7 @@ public class Translation_ja : TranslationBase<TranslationInfo>
                 ["Emotiguy Identification"] = "エモティガイ識別",
                 ["Ars Goetia Identification"] = "アルス・ゴエティア識別",
                 ["Mii Identification"] = "Mii識別",
-                ["Customer identification"] = "顧客識別",
+                ["Customer Identification"] = "顧客識別",
                 ["Spongebob Birthday Identification"] = "スポンジ・ボブ誕生日カード識別",
                 ["VTuber Identification"] = "VTuber識別",
             },
