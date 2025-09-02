@@ -11,6 +11,7 @@ public sealed class QandA(Enum q, QuestionBase question, AnswerSet answerSet)
     public AnswerSet Answers { get; } = answerSet;
     public Enum EnumValue { get; private set; } = q;
     public int NumAnswers => Answers.NumAnswersAllowed;
+    public int GeneratedAtNumSolved { get; set; }
 
     public string DebugString => $"{question.DebugText} — {DebugAnswers.Select((a, ix) => string.Format(ix == Answers.CorrectIndex ? "[_{0}_]" : "{0}", a)).JoinString(" | ")}";
     public IEnumerable<string> DebugAnswers => Answers.DebugAnswers;

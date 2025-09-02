@@ -227,10 +227,10 @@ public static class Ut
 
     private static readonly string[] _joshi = "でなければ|について|かしら|くらい|けれど|なのか|ばかり|ながら|ことよ|こそ|こと|さえ|しか|した|たり|だけ|だに|だの|つつ|ても|てよ|でも|とも|から|など|なり|ので|のに|ほど|まで|もの|やら|より|って|で|と|な|に|ね|の|も|は|ば|へ|や|わ|を|か|が|さ|し|ぞ|て".Split('|');
     private static readonly string _punctuation = ".,。、！!？?〉》」』｣)）]】〕〗〙〛}>)❩❫❭❯❱❳❵｝";
-    private static readonly (char from, char to)[] _breakableRanges = new (char from, char to)[] {
+    private static readonly (char from, char to)[] _breakableRanges = [
         ('\u4E00', '\u9FA0'),   // CJK
         ('\u3041','\u30ff'),    // Hiragana + Katakana
-    };
+    ];
 
     public static IEnumerable<string> WordWrap(this string text, Func<int, double> wrapWidth, double widthOfASpace, Func<string, double> measure, bool allowBreakingWordsApart)
     {
@@ -433,8 +433,8 @@ public static class Ut
     }
 
     public static Dictionary<string, SouvenirHandlerAttribute> ModuleHandlers = [];
-    private static Dictionary<Enum, (SouvenirHandlerAttribute h, SouvenirQuestionAttribute q, SouvenirDiscriminatorAttribute d)> _attributes = new(EnumEqualityComparer.Default);
-    public static (SouvenirHandlerAttribute h, SouvenirQuestionAttribute q, SouvenirDiscriminatorAttribute d) GetAttributes(this Enum value) => _attributes.Get(value, default);
+    public static Dictionary<Enum, (SouvenirHandlerAttribute h, SouvenirQuestionAttribute q, SouvenirDiscriminatorAttribute d)> Attributes = new(EnumEqualityComparer.Default);
+    public static (SouvenirHandlerAttribute h, SouvenirQuestionAttribute q, SouvenirDiscriminatorAttribute d) GetAttributes(this Enum value) => Attributes.Get(value, default);
     public static SouvenirHandlerAttribute GetHandlerAttribute(this Enum questionOrDiscriminator) => GetAttributes(questionOrDiscriminator).h;
     public static SouvenirQuestionAttribute GetQuestionAttribute(this Enum question) => GetAttributes(question).q;
     public static SouvenirDiscriminatorAttribute GetDiscriminatorAttribute(this Enum discriminator) => GetAttributes(discriminator).d;
@@ -456,10 +456,16 @@ public static class Ut
                     {
                         if (field.GetCustomAttributes(typeof(AnswerGeneratorAttribute), false) is AnswerGeneratorAttribute[] agAttrs)
                             qAttr.AnswerGenerators = agAttrs.Length == 0 ? null : agAttrs;
-                        _attributes.Add((Enum) field.GetValue(null), (hAttr, qAttr, null));
+                        qAttr.EnumValue = (Enum) field.GetValue(null);
+                        qAttr.Handler = hAttr;
+                        Attributes.Add((Enum) field.GetValue(null), (hAttr, qAttr, null));
                     }
                     else if (field.GetCustomAttribute<SouvenirDiscriminatorAttribute>() is { } dAttr)
-                        _attributes.Add((Enum) field.GetValue(null), (hAttr, null, dAttr));
+                    {
+                        dAttr.EnumValue = (Enum) field.GetValue(null);
+                        dAttr.Handler = hAttr;
+                        Attributes.Add((Enum) field.GetValue(null), (hAttr, null, dAttr));
+                    }
                 }
             }
     }

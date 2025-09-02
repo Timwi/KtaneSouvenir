@@ -8,6 +8,7 @@ public sealed class TextAnswerSet(AnswerLayout layout, string[] answers, int cor
 {
     public override IEnumerable<string> DebugAnswers => answers;
     protected override int NumAnswersProvided => answers.Length;
+    public override object[] Answers => answers;
 
     public override void BlinkAnswer(bool on, SouvenirModule souvenir, int answerIndex) => souvenir.Answers[answerIndex].transform.Find("AnswerText").gameObject.SetActive(on);
 

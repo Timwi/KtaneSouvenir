@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Souvenir;
 
-public abstract class QuestionStump(Enum question, SouvenirModule souvenir)
+public abstract class QuestionStump(Enum enumValue, SouvenirModule souvenir)
 {
-    public Enum EnumValue { get; private set; } = question;
+    public Enum EnumValue { get; private set; } = enumValue;
     public SouvenirModule Souvenir { get; private set; } = souvenir;
     public SouvenirHandlerAttribute HandlerAttribute => EnumValue.GetHandlerAttribute();
     public SouvenirQuestionAttribute QuestionAttribute => EnumValue.GetQuestionAttribute();

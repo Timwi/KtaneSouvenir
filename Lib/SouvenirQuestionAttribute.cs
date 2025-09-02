@@ -50,4 +50,7 @@ public sealed class SouvenirQuestionAttribute(string questionText, AnswerLayout 
         AnswerLayout.ThreeColumns6Answers => 6,
         _ => throw new InvalidOperationException("Unexpected AnswerLayout value."),
     };
+
+    public Enum EnumValue { get; set; }
+    public SouvenirHandlerAttribute Handler { get; set; }
 }

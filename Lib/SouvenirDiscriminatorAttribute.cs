@@ -12,4 +12,7 @@ public sealed class SouvenirDiscriminatorAttribute(string discriminatorText) : A
     public bool[] TranslateArgs { get; set; }
     public string[] TranslatableStrings { get; set; }
     public bool UsesQuestionSprite { get; set; }
+
+    public Enum EnumValue { get; set; }
+    public SouvenirHandlerAttribute Handler { get; set; }
 }
